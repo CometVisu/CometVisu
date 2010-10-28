@@ -61,6 +61,7 @@ visu.user = 'demo_user'; // example for setting a user
 
 $(document).ready(function() {
   // get the data once the page was loaded
+  $.ajaxSetup({cache: false});
   window.setTimeout("$.get( 'visu_config.xml', setup_page );", 200);
 
   // disable text selection - it's annoying on a touch screen!
