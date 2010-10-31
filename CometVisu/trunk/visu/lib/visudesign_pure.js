@@ -72,7 +72,8 @@ function VisuDesign()
     return ret_val;
   }
 
-  this.createDim = function( page )
+  this.createDim =
+  this.createSlide = function( page )
   {
     var ret_val = $('<div class="widget" />');
     ret_val.addClass( 'dim' );
@@ -80,14 +81,20 @@ function VisuDesign()
     ga_list.push( $(page).attr('address') );
     var actor = $('<div class="actor GA' + $(page).attr('address').split('/').join('_') + '" />');
     ret_val.append( label ).append( actor );
+    var min  = parseFloat( $(page).attr('min')  || 0   ); 
+    var max  = parseFloat( $(page).attr('max')  || 100 );
+    var step = parseFloat( $(page).attr('step') || 0.5 );
     ret_val.find('.actor').data( {
         'events':   $(actor).data( 'events' ),
         'GA':       $(page).attr('address'),
         'datatype': $(page).attr('datatype'),
         'mapping' : $(page).attr('mapping'),
         'style'   : $(page).attr('style'),
+        'min'     : min,
+        'max'     : max,
+        'step'    : step,
         'type'    : 'dim'
-    }).slider({step:0.5, animate: true,start:slideStart,change:slideChange});//slide:slideAction});
+    }).slider({step:step,min:min,max:max, animate: true,start:slideStart,change:slideChange});//slide:slideAction});
 
     return ret_val;
   }

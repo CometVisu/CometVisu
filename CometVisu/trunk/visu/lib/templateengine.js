@@ -186,6 +186,8 @@ function create_pages( page, path )
       return design.createInfo( page );
     case 'dim':
       return design.createDim( page );
+    case 'slide':
+      return design.createSlide( page );
     case 'switch':
     case 'toggle':
       return design.createSwitch( page );
