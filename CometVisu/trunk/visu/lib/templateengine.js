@@ -40,10 +40,26 @@ visu.update = function( json ) // overload the handler
       $('.value', element).text( map( value, element ) );
 
       var style = element.data('style');
-      if( style && styles[style] && styles[style][value] )
+      if( style && styles[style] && (styles[style][value] || styles[style]['range']) )
       {
+        if( styles[style]['range'] ) value = parseFloat( value );
         element.removeClass();
-        element.addClass( 'actor ' + GA + ' ' + styles[style][value] );
+        if( styles[style][value] )
+        {
+          element.addClass( 'actor ' + GA + ' ' + styles[style][value] );
+        } else {
+          var range = styles[style]['range'];
+          var not_found = true;
+          for( var min in range )
+          {
+            if( min > value ) continue;
+            if( range[min][0] < value ) continue; // check max
+            element.addClass( 'actor ' + GA + ' ' + range[min][1] );
+            not_found = false;
+            break;
+          }
+          if( not_found ) element.addClass( 'actor ' + GA );
+        }
       }
       switch( element.data( 'type' ) )
       { 
@@ -51,6 +67,7 @@ visu.update = function( json ) // overload the handler
           element.removeClass( value == '0' ? 'switchPressed' : 'switchUnpressed' );
           element.addClass(    value == '0' ? 'switchUnpressed' : 'switchPressed' );
           break;
+        case 'slide':
         case 'dim':
           element.slider( 'value', value ); // only update when necessary
       }
@@ -100,8 +117,19 @@ $(document).ready(function() {
 function map( value, element )
 {
   var map = element.data('mapping');
-  if( map && mappings[map] && mappings[map][value])
-    return mappings[map][value];
+  if( map && mappings[map] && (mappings[map][value] || mappings[map]['range']) )
+  {
+    if( mappings[map]['range'] ) value = parseFloat( value );
+    if( mappings[map][value] ) return mappings[map][value];
+
+    var range = mappings[map]['range'];
+    for( var min in range )
+    {
+      if( min > value ) continue;
+      if( range[min][0] < value ) continue; // check max
+      return range[min][1];
+    }
+  }
   return value;
 }
 
@@ -141,7 +169,14 @@ function setup_page( xml )
     var name = $(this).attr('name');
     mappings[ name ] = {};
     $(this).find('entry').each( function(){
-      mappings[ name ][ $(this).attr('value') ] = $(this).text();
+      if( $(this).attr('value') )
+      {
+        mappings[ name ][ $(this).attr('value') ] = $(this).text();
+      } else {
+        if( ! mappings[ name ][ 'range' ] ) mappings[ name ][ 'range' ] = {};
+        mappings[ name ][ 'range' ][ parseFloat($(this).attr('range_min')) ] =
+          [ parseFloat( $(this).attr('range_max') ), $(this).text() ];
+      }
     });
   });
 
@@ -150,7 +185,14 @@ function setup_page( xml )
     var name = $(this).attr('name');
     styles[ name ] = {};
     $(this).find('entry').each( function(){
-      styles[ name ][ $(this).attr('value') ] = $(this).text();
+      if( $(this).attr('value') )
+      {
+        styles[ name ][ $(this).attr('value') ] = $(this).text();
+      } else { // a range
+        if( ! styles[ name ][ 'range' ] ) styles[ name ][ 'range' ] = {};
+        styles[ name ][ 'range' ][ parseFloat($(this).attr('range_min')) ] =
+          [ parseFloat( $(this).attr('range_max') ), $(this).text() ];
+      }
     });
   });
 
