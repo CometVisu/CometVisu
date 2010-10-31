@@ -4,6 +4,7 @@ HEAD
 - New Feature: editor
 - New Feature: generic slide widget
 - New Feature: slide and dim widgets allow range and step attributes
+- New Feature: ranges for mapping and style
 
 0.5.0
 =====
