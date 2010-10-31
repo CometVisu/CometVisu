@@ -138,8 +138,12 @@ jQuery(function() {
             var divSelector = "";
             switch (val) {
                 case 'switch':
-                case 'dim':
+                case 'toggle':
                     divSelector = ".add_text, .add_address, .add_datatype, .add_response_address, .add_response_datatype, .add_pre, .add_post, .add_mapping, .add_style";
+                    break;
+                case 'dim':
+                case 'slide':
+                    divSelector = ".add_text, .add_address, .add_datatype, .add_response_address, .add_response_datatype, .add_pre, .add_post, .add_mapping, .add_style, .add_min, .add_max, .add_step";
                     break;
                 case 'trigger':
                     divSelector = ".add_text, .add_address, .add_datatype, .add_pre, .add_post, .add_mapping, .add_style, .add_value";
@@ -182,6 +186,9 @@ jQuery(function() {
                 post: jQuery("#addDummy input#add_post").val(),
                 mapping: jQuery("#addDummy select#add_mapping").val(),
                 design: jQuery("#addDummy select#add_style").val(),
+                min: jQuery("#addDummy input#add_min").val(),
+                max: jQuery("#addDummy input#add_max").val(),
+                step: jQuery("#addDummy input#add_step").val(),
                 textContent: jQuery("#addDummy input#add_text").val(),
                 nodeName: jQuery("#addDummy #add_type").val(),
                 name: jQuery("#addDummy input#add_text").val() // wird nur bei page benötigt
@@ -285,6 +292,9 @@ function getWidgetData(element, nodive) {
                 datatype: a.data("datatype"),
                 mapping: a.data("mapping"),
                 style: a.data("style"),
+                min: a.data("min"),
+                max: a.data("max"),
+                step: a.data("step"),
                 response_address: e.data("response_address"),
                 response_datatype: e.data("response_datatype"),
                 _text: e.find("div.label").text(),
