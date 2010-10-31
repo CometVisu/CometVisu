@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Visu - Editor-Modus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="style_orange.css" />
+    <link rel="stylesheet" type="text/css" href="edit/style_edit.css" />
+    <script src="lib/jquery.js" type="text/javascript"></script>
+    <script src="lib/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+    <script src="lib/scrollable.js" type="text/javascript"></script>
+    <script src="lib/visuclient.js" type="text/javascript"></script>
+    <script src="lib/knx_decode.js" type="text/javascript"></script>
+    <script src="lib/visudesign_pure.js" type="text/javascript"></script>
+    <script src="edit/visudesign_editmode.js" type="text/javascript"></script>
+    <script src="lib/templateengine.js" type="text/javascript"></script>
+    <script src="edit/visuconfig_edit.js" type="text/javascript"></script>
+    <script src="edit/json2.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="top">
+      <div class="nav_path">-</div>
+      <hr />
+    </div>
+    <div id="main" style="width:900px;position:relative; overflow: hidden; z-index: 1;">
+      <div id="pages" class="clearfix" style="width:20000em; position:relative;clear:both;"><!-- all pages will be inserted here -->
+      </div>
+    </div>
+    <div id="bottom">
+      <hr />
+        <div class="footer">
+        <img src="icon/comet_64_ff8000.png" alt="CometVisu" />
+        by <a href="http://www.cometvisu.org/">ComeVisu.org</a> - <a href="edit_config.html">Reload</a>
+      </div>
+    </div>
+
+    <div id="addDummy">
+      <form method="post" action="self">
+          <div class="addwidget">
+              <h2 class="create">Insert new widget</h2>
+              <h2 class="edit">Edit widget</h2>
+                  <div class="editcontrols">
+                  <label for="add_type">Typ</label>
+                  <select id="add_type">
+                      <option value="switch">switch</option>
+                      <option value="trigger">trigger</option>
+                      <option value="line">line</option>
+                      <option value="dim">slider/dimmer</option>
+                      <option value="shade">shade</option>
+                      <option value="info">info</option>
+                      <option value="text">text</option>
+                      <option value="page">page</option>
+                  </select>
+
+                  <div class="add_inputs add_text">
+                      <label for="add_text">Text</label>
+                      <input type="text" id="add_text" />
+                  </div>
+                  <div class="add_inputs add_address">
+                      <label for="add_address">address</label>
+                      <input type="text" id="add_address" />
+                  </div>
+                  <div class="add_inputs add_datatype">
+                      <label for="add_datatype">DPT</label>
+                      <input type="text" id="add_datatype" />
+                  </div>
+                  <div class="add_inputs add_value">
+                      <label for="add_value">Value</label>
+                      <input type="text" id="add_value" />
+                  </div>
+
+                  <div class="add_inputs add_response_address">
+                      <label for="add_response_address">response_address</label>
+                      <input type="text" id="add_response_address" />
+                  </div>
+                  <div class="add_inputs add_response_datatype">
+                      <label for="add_response_datatype">response DPT</label>
+                      <input type="text" id="add_response_datatype" />
+                  </div>
+
+                  <div class="add_inputs add_pre">
+                      <label for="add_pre">pre</label>
+                      <input type="text" id="add_pre" />
+                  </div>
+                  <div class="add_inputs add_post">
+                      <label for="add_post">post</label>
+                      <input type="text" id="add_post" />
+                  </div>
+
+                  <div class="add_inputs add_mapping">
+                      <label for="add_mapping">mapping</label>
+                      <select id="add_mapping"><option>-</option></select>
+                  </div>
+                  <div class="add_inputs add_style">
+                      <label for="add_style">style</label>
+                      <select id="add_style"><option>-</option></select>
+                  </div>
+              </div>
+
+              <input type="button" id="add_submit" value="OK"/>
+              <input type="button" id="add_cancel" value="Cancel"/>
+
+              <p><small class="create">The new widget will be added at the end of the current page. You can drag&amp;drop it to the desired location on this page after creation.</small></p>
+          </div>
+      </form>
+    </div>
+    <div id="controlcontainer">
+        <div id="saveconfigcontrol">save</div>
+        <div id="addwidgetcontrol">+</div>
+    </div>
+  </body>
+</html>
