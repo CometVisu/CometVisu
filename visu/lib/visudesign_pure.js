@@ -35,7 +35,7 @@ function VisuDesign()
         container.append( create_pages(childs[i], path + '_' + i ) );
       } );
       $('#pages').prepend( $( '<div class="page" id="' + path + '" style="'+style+';"/>' ).append(container) );
-    return ret_val;;position: relative
+    return ret_val;
   }
 
   this.createLine = function()
@@ -67,7 +67,7 @@ function VisuDesign()
         'GA':       $(page).attr('address'),
         'datatype': $(page).attr('datatype'),
         'mapping' : $(page).attr('mapping'),
-        'style'   : $(page).attr('style'),
+        'style'   : $(page).attr('style')
       } ) );
     return ret_val;
   }
@@ -86,7 +86,7 @@ function VisuDesign()
         'datatype': $(page).attr('datatype'),
         'mapping' : $(page).attr('mapping'),
         'style'   : $(page).attr('style'),
-        'type'    : 'dim',
+        'type'    : 'dim'
     }).slider({step:0.5, animate: true,start:slideStart,change:slideChange});//slide:slideAction});
 
     return ret_val;
@@ -110,7 +110,7 @@ function VisuDesign()
         'datatype': $(page).attr('datatype'),
         'mapping' : $(page).attr('mapping'),
         'style'   : $(page).attr('style'),
-        'type'    : 'toggle',
+        'type'    : 'toggle'
       } ).bind('click',switchAction) );
     return ret_val;
   }
@@ -137,7 +137,7 @@ function VisuDesign()
       'mapping' : $(page).attr('mapping'),
       'style'   : $(page).attr('style'),
       'type'    : 'trigger',
-      'sendValue': value,
+      'sendValue': value
     } ).bind('click',triggerAction) );
 
     return ret_val;

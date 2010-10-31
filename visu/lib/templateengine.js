@@ -59,11 +59,32 @@ visu.update = function( json ) // overload the handler
 }
 visu.user = 'demo_user'; // example for setting a user
 
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  }
+});
+
+var configSuffix = "";
+if ($.getUrlVar("config")) {
+    configSuffix = "_" + $.getUrlVar("config");
+}
+
 $(document).ready(function() {
   // get the data once the page was loaded
   $.ajaxSetup({cache: false});
-  window.setTimeout("$.get( 'visu_config.xml', setup_page );", 200);
-  $.ajaxSetup({cache: true});
+  window.setTimeout("$.get( 'visu_config" + configSuffix + ".xml', setup_page );", 200);
 
   // disable text selection - it's annoying on a touch screen!
   if($.browser.mozilla)
@@ -110,6 +131,8 @@ $( window ).bind( 'resize', handleResize );
 
 function setup_page( xml )
 {
+  // erst mal den Cache für AJAX-Requests wieder aktivieren
+  $.ajaxSetup({cache: true});
   // adapt width for pages to show
   handleResize();
 
@@ -145,6 +168,7 @@ function setup_page( xml )
   });
 
   visu.subscribe( ga_list );
+  $("#pages").triggerHandler("done");
 }
 
 function create_pages( page, path )
