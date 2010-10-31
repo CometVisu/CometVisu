@@ -54,6 +54,7 @@ body hr
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+  min-height: 2em;
 }
 
 .widget .label

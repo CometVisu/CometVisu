@@ -1,0 +1,96 @@
+/* Editor-Stuff */
+.widget {position: relative;}
+
+.editcontrol, .movecontrol, .removecontrol {
+    position: absolute;
+    height: auto;
+    min-height: 2em;
+    background-color: grey;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    text-align: center;
+}
+
+.editcontrol {
+    right: 1.1em;
+    cursor: pointer;
+    padding: 0 .2em;
+    background-color: #333333;
+}
+
+.movecontrol, .removecontrol {
+    left: 0;
+    background-color: #666666;
+    width: 8mm;
+    cursor: move;
+}
+
+.removecontrol {
+    left: auto;
+    right: .1em;
+    width: .8em;
+    cursor: pointer;
+    background-color: red;
+}
+
+div#controlcontainer {
+    height: 2em;
+    position: fixed;
+    right: 2em;
+    top: 2em;
+    z-index: 3;
+}
+
+div#controlcontainer div {
+    border: 1px solid #444;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    height: 1.5em;
+    text-align: center;
+    background-color: grey;
+    cursor: pointer;
+    float: right;
+    margin-right: .5em;
+}
+
+div#saveconfigcontrol {
+    padding: 0 .2em;
+}
+
+div#addwidgetcontrol {
+    width: 1.5em;
+}
+
+div#addDummy {
+    border: 1px solid #444;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color: grey;
+    display: none;
+    position: absolute;
+    width: 48%;
+    margin: auto;
+    top: 2em;
+    left: 2em;
+    padding: .5em;
+    z-index: 2;
+}
+
+.addwidget .editcontrols label {
+    float: left;
+    width: 220px;
+}
+
+.addwidget .editcontrols input, .addwidget .editcontrols select {
+
+}
+
+div.line {
+    width: 97%;
+}
+
+div.line hr {
+    margin-top: .9em;
+}
