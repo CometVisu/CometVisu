@@ -25,6 +25,7 @@ function VisuDesign()
     var ret_val = $('<div class="widget" />');
       var style = ( '0' != path ) ? 'display:none' : '';
       var name = $(page).attr('name'); //path += '_' + name;
+      var type = $(page).attr('type'); //text, 2d or 3d
       ret_val.addClass( 'link' );
       ret_val.append( '<a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a>' );
       var childs = $(page).children();
