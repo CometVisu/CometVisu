@@ -237,6 +237,8 @@ function create_pages( page, path )
       return design.createSwitch( page );
     case 'trigger':
       return design.createTrigger( page );
+    case 'image':
+      return design.createImage( page );
   }
   return design.createUnknown( page );
 }
