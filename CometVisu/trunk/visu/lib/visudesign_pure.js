@@ -53,7 +53,10 @@ function VisuDesign()
   { 
     var ret_val = $('<div class="widget" />');
     ret_val.addClass( 'text' );
-    ret_val.append( '<div class="label">' + page.textContent + '</div>' );
+    var style = '';
+    if( $(page).attr('align') ) style += 'text-align:' + $(page).attr('align') + ';';
+    if( style != '' ) style = 'style="' + style + '"';
+    ret_val.append( '<div ' + style + '>' + page.textContent + '</div>' );
     return ret_val;
   }
 
