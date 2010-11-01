@@ -45,6 +45,10 @@
     <info address="12/4/250"  datatype="9" style="BluePurpleRed">Slide Info</info>
     <info address="12/4/250"  datatype="9" style="BluePurpleRed" mapping="Sign">Slide Info</info>
     <line />
+    <image src="icon/comet_128_ff8000.png" >Ein Bild</image>
+    <image src="icon/comet_128_ff8000.png" />
+    <image src="icon/comet_128_ff8000.png" width="500px" height="46px" />
+    <line />
     <info address="1/0/41"  datatype="1.000" mapping="OnOff">Treppenlicht</info>
     <page name="Fenster Kontakte">
       <info address="4/3/10"  datatype="1" mapping="OpenClose" style="GreenRed">Bad EG Reed Fenster</info>
