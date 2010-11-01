@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+<!-- basic types -->
+<xsd:simpleType name="address">
+    <xsd:restriction base="xsd:string">
+        <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,2}" />
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="dimension">
+    <xsd:restriction base="xsd:string" />
+</xsd:simpleType>
+<xsd:simpleType name="uri">
+    <xsd:restriction base="xsd:string" />
+</xsd:simpleType>
+
+<xsd:complexType name="entry">
+    <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+            <xsd:attribute ref="value" use="required" />
+        </xsd:extension>
+    </xsd:simpleContent>
+</xsd:complexType>
+
+<!-- simple elements -->
+
+
+<!-- attributes -->
+<xsd:attribute name="address" type="address" />
+<xsd:attribute name="datatype" type="xsd:decimal" />
+<xsd:attribute name="response_address" type="address" />
+<xsd:attribute name="response_datatype" type="xsd:decimal" />
+
+<xsd:attribute name="pre" type="xsd:string" />
+<xsd:attribute name="post" type="xsd:string" />
+
+<xsd:attribute name="min" type="xsd:decimal" />
+<xsd:attribute name="max" type="xsd:decimal" />
+<xsd:attribute name="step" type="xsd:decimal" />
+
+<xsd:attribute name="mapping" type="xsd:string" />
+<xsd:attribute name="style" type="xsd:string" />
+<xsd:attribute name="value" type="xsd:string" />
+
+<!-- complex elements -->
+<xsd:element name="pages">
+    <xsd:complexType>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element ref="mappings" />
+            <xsd:element ref="styles" />
+            <xsd:element ref="page" minOccurs="1" />
+        </xsd:choice>
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="mappings">
+    <xsd:complexType>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element ref="mapping" />
+        </xsd:choice>
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="mapping">
+    <xsd:complexType>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="entry" type="entry" minOccurs="1" />
+        </xsd:choice>
+        <xsd:attribute name="name" type="xsd:string" use="required" />
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="styles">
+    <xsd:complexType>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element ref="style" />
+        </xsd:choice>
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="style">
+    <xsd:complexType>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="entry" type="entry" minOccurs="1" />
+        </xsd:choice>
+        <xsd:attribute name="name" type="xsd:string" use="required" />
+    </xsd:complexType>
+</xsd:element>
+
+<!-- define a page - if you add a new widget, you need to list it here -->
+<xsd:element name="page">
+    <xsd:complexType>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <!-- list all possbile widgets here -->
+            <xsd:element name="text" type="xsd:string" />
+            <xsd:element name="line" type="line" />
+            <xsd:element name="switch" type="switch" />
+            <xsd:element name="toggle" type="switch" />
+            <xsd:element name="trigger" type="trigger" />
+            <xsd:element name="dim" type="dim" />
+            <xsd:element name="slider" type="dim" />
+            <xsd:element name="info" type="info" />
+            <xsd:element name="shade" type="info" />
+            <xsd:element name="image" type="image" />
+            <xsd:element name="break" type="break" />
+            <xsd:element ref="page" />
+        </xsd:choice>
+        <xsd:attribute name="name" type="xsd:string" use="required" />
+    </xsd:complexType>
+</xsd:element>
+
+<!-- more fun part - all widgets - if you add a new widget, you need to define it here -->
+
+<xsd:complexType name="switch">
+    <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+            <xsd:attribute ref="address" use="required" />
+            <xsd:attribute ref="datatype" use="required" />
+            <xsd:attribute ref="response_address" use="required" />
+            <xsd:attribute ref="response_datatype" use="required" />
+            <xsd:attribute ref="pre" />
+            <xsd:attribute ref="post" />
+            <xsd:attribute ref="mapping" />
+            <xsd:attribute ref="style" />
+        </xsd:extension>
+    </xsd:simpleContent>
+</xsd:complexType>
+
+
+<xsd:complexType name="trigger">
+    <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+            <xsd:attribute ref="address" use="required" />
+            <xsd:attribute ref="datatype" use="required" />
+            <xsd:attribute ref="value" use="required" />
+            <xsd:attribute ref="pre" />
+            <xsd:attribute ref="post" />
+            <xsd:attribute ref="mapping" />
+            <xsd:attribute ref="style" />
+        </xsd:extension>
+    </xsd:simpleContent>
+</xsd:complexType>
+
+<xsd:complexType name="dim">
+    <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+            <xsd:attribute ref="address" use="required" />
+            <xsd:attribute ref="datatype" use="required" />
+            <xsd:attribute ref="response_address" use="required" />
+            <xsd:attribute ref="response_datatype" use="required" />
+            <xsd:attribute ref="min" />
+            <xsd:attribute ref="max" />
+            <xsd:attribute ref="step" />
+            <xsd:attribute ref="mapping" />
+            <xsd:attribute ref="style" />
+        </xsd:extension>
+    </xsd:simpleContent>
+</xsd:complexType>
+
+<xsd:complexType name="info">
+    <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+            <xsd:attribute ref="address" use="required" />
+            <xsd:attribute ref="datatype" use="required" />
+            <xsd:attribute ref="pre" />
+            <xsd:attribute ref="post" />
+            <xsd:attribute ref="mapping" />
+            <xsd:attribute ref="style" />
+        </xsd:extension>
+    </xsd:simpleContent>
+</xsd:complexType>
+
+<xsd:complexType name="image">
+    <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+            <xsd:attribute name="src" type="uri" use="required" />
+            <xsd:attribute name="width" type="dimension" />
+            <xsd:attribute name="height" type="dimension" />
+        </xsd:extension>
+    </xsd:simpleContent>
+</xsd:complexType>
+
+<xsd:complexType name="break" />
+<xsd:complexType name="line" />
+
+<!-- toggle is not yet implemented -->
+<!-- shade is not yet implemented -->
+<!-- slider is not yet implemented -->
+
+</xsd:schema>
