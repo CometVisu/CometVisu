@@ -31,7 +31,7 @@
     </style>
   </styles>
   <page name="Übersicht">
-    <text>Willkommen bei der CometVisu!</text>
+    <text align="center">Willkommen bei der CometVisu!</text>
     <toggle address="1/0/2"  datatype="1.001" response_address="1/0/2" mapping="OnOff">Terrase Licht</toggle>
     <trigger address="1/0/2"  datatype="1.001" value="0" mapping="OnOff">Terrase Licht 0</trigger>
     <trigger address="1/0/2"  datatype="1.001" value="1" mapping="OnOff">Terrase Licht 1</trigger>
