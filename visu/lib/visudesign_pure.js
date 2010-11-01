@@ -44,6 +44,11 @@ function VisuDesign()
     return $( '<hr />' );
   }
 
+  this.createBreak = function()
+  {
+    return $( '<br />' );
+  }
+
   this.createText = function( page )
   { 
     var ret_val = $('<div class="widget" />');
