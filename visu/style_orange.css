@@ -25,6 +25,11 @@ body hr
   margin:0.1em;
 }
 
+body br
+{
+  clear:both;
+}
+
 .nav_path 
 {
   color: #ff8000;
