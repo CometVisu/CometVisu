@@ -221,6 +221,8 @@ function create_pages( page, path )
       return design.createPage( page, path );
     case 'line':
       return design.createLine();
+    case 'break':
+      return design.createBreak();
     case 'text':
       return design.createText( page );
     case 'info':
