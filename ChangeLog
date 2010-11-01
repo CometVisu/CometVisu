@@ -6,6 +6,8 @@ HEAD
 - New Feature: slide and dim widgets allow range and step attributes
 - New Feature: ranges for mapping and style
 - New Feature: tag for "line" break
+- New Feature: tag for images
+- New Feature: <text> has new optional attribute "align"
 
 0.5.0
 =====
