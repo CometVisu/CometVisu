@@ -156,6 +156,19 @@ function VisuDesign()
     return ret_val;
   }
 
+  this.createImage = function( page )
+  { 
+    var ret_val = $('<div class="widget" />');
+    ret_val.addClass( 'image' );
+    ret_val.append( '<div class="label">' + page.textContent + '</div>' );
+    var style = '';
+    if( $(page).attr('width') ) style += 'width:' + $(page).attr('width') + ';';
+    if( $(page).attr('height') ) style += 'height:' + $(page).attr('height') + ';';
+    if( style != '' ) style = 'style="' + style + '"';
+    ret_val.append( '<div class="actor"><img src="' +$(page).attr('src') + '" ' + style + ' /></div>' );
+    return ret_val;
+  }
+
   this.createUnknown = function( page )
   {
     var ret_val = $('<div class="widget" />');
