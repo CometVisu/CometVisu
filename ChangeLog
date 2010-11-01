@@ -5,6 +5,7 @@ HEAD
 - New Feature: generic slide widget
 - New Feature: slide and dim widgets allow range and step attributes
 - New Feature: ranges for mapping and style
+- New Feature: tag for "line" break
 
 0.5.0
 =====
