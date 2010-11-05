@@ -103,6 +103,7 @@
             <xsd:element name="info" type="info" />
             <xsd:element name="shade" type="info" />
             <xsd:element name="image" type="image" />
+            <xsd:element name="video" type="video" />
             <xsd:element name="break" type="break" />
             <xsd:element ref="page" />
         </xsd:choice>
@@ -172,6 +173,17 @@
 </xsd:complexType>
 
 <xsd:complexType name="image">
+    <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+            <xsd:attribute name="src" type="uri" use="required" />
+            <xsd:attribute name="width" type="dimension" />
+            <xsd:attribute name="height" type="dimension" />
+            <xsd:attribute name="refresh" type="xsd:decima" />
+        </xsd:extension>
+    </xsd:simpleContent>
+</xsd:complexType>
+
+<xsd:complexType name="video">
     <xsd:simpleContent>
         <xsd:extension base="xsd:string">
             <xsd:attribute name="src" type="uri" use="required" />
