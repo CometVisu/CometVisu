@@ -176,6 +176,23 @@ function VisuDesign()
     return ret_val;
   }
 
+  this.createVideo = function( page )
+  { 
+    var ret_val = $('<div class="widget" />');
+    ret_val.addClass( 'video' );
+    ret_val.append( '<div class="label">' + page.textContent + '</div>' );
+    var style = '';
+    if( $(page).attr('width') ) style += 'width:' + $(page).attr('width') + ';';
+    if( $(page).attr('height') ) style += 'height:' + $(page).attr('height') + ';';
+    if( style != '' ) style = 'style="' + style + '"';
+    var actor = '<div class="actor"><video src="' +$(page).attr('src') + '" ' + style + '  controls="controls" /></div>';
+    var refresh = $(page).attr('refresh') ? $(page).attr('refresh')*1000 : 0;
+    ret_val.append( $(actor).data( {
+      'refresh': refresh
+    } ).each(setupRefreshAction) ); // abuse "each" to call in context...
+    return ret_val;
+  }
+
   this.createUnknown = function( page )
   {
     var ret_val = $('<div class="widget" />');
