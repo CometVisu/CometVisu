@@ -239,6 +239,8 @@ function create_pages( page, path )
       return design.createTrigger( page );
     case 'image':
       return design.createImage( page );
+    case 'video':
+      return design.createVideo( page );
   }
   return design.createUnknown( page );
 }
