@@ -9,6 +9,7 @@ HEAD
 - New Feature: tag for images
 - New Feature: <text> has new optional attribute "align"
 - Added XML Schema / XSD to validate config-XML
+- New Feature: tag for videos (HTML5 based)
 
 0.5.0
 =====
