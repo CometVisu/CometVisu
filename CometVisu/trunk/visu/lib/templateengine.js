@@ -290,6 +290,22 @@ function triggerAction()
   visu.write( data.GA, data.sendValue, data.datatype );
 }
 
+function refreshAction( target, src )
+{
+  target.src = src + '&' + new Date().getTime();
+}
+function setupRefreshAction()
+{
+  var refresh = $(this).data('refresh');
+  if( refresh && refresh > 0 )
+  {
+    var target = $('img', $(this) )[0];
+    var src = target.src;
+    if( src.indexOf('?') < 0 ) src += '?';
+    $(this).data('interval', setInterval( function(){refreshAction(target, src);}, refresh ) );
+  }
+}
+
 /**
  * The update thread to send the slider position to the bus
  */

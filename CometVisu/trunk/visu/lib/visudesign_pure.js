@@ -168,7 +168,11 @@ function VisuDesign()
     if( $(page).attr('width') ) style += 'width:' + $(page).attr('width') + ';';
     if( $(page).attr('height') ) style += 'height:' + $(page).attr('height') + ';';
     if( style != '' ) style = 'style="' + style + '"';
-    ret_val.append( '<div class="actor"><img src="' +$(page).attr('src') + '" ' + style + ' /></div>' );
+    var actor = '<div class="actor"><img src="' +$(page).attr('src') + '" ' + style + ' /></div>';
+    var refresh = $(page).attr('refresh') ? $(page).attr('refresh')*1000 : 0;
+    ret_val.append( $(actor).data( {
+      'refresh': refresh
+    } ).each(setupRefreshAction) ); // abuse "each" to call in context...
     return ret_val;
   }
 
@@ -197,5 +201,15 @@ function VisuDesign()
   //  alert( data.GA + ' = ' + data.value );
     //visu.write( data.GA, data.value=='1' ? '0' : '1', data.datatype ); 
     //FIXME eigentlich richtig... visu.write( data.GA, ui.value, data.datatype ); 
+  }
+
+  /**
+   * Setup a refresh interval in seconds if the 'refresh' in the .data()
+   * ist bigger than 0
+   */
+  this.refreshAction = function(that)
+  {
+    var data = $(this).data();
+    alert('this.refreshAction');
   }
 };

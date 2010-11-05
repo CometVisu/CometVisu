@@ -48,6 +48,9 @@
     <image src="icon/comet_128_ff8000.png" >Ein Bild</image>
     <image src="icon/comet_128_ff8000.png" />
     <image src="icon/comet_128_ff8000.png" width="500px" height="46px" />
+    <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10" >Update every 10 sec</image>
+    <break />
+    <image src="http://www.yr.no/place/Germany/Bavaria/Holzkirchen~2899676/meteogram.png" refresh="1800" />
     <line />
     <info address="1/0/41"  datatype="1.000" mapping="OnOff">Treppenlicht</info>
     <page name="Fenster Kontakte">
