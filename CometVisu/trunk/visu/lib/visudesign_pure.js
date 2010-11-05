@@ -20,7 +20,12 @@
  */
 function VisuDesign()
 {
-  this.createPage = function( page, path )
+  /**
+   * The creators object contians all widgets creators and their mappin to the
+   * XML config file tags
+   */
+  this.creators = {};
+  this.creators.page = function( page, path )
   {
     var ret_val = $('<div class="widget" />');
       var style = ( '0' != path ) ? 'display:none' : '';
@@ -39,17 +44,17 @@ function VisuDesign()
     return ret_val;
   }
 
-  this.createLine = function()
+  this.creators.line = function()
   {
     return $( '<hr />' );
   }
 
-  this.createBreak = function()
+  this.creators.break = function()
   {
     return $( '<br />' );
   }
 
-  this.createText = function( page )
+  this.creators.text = function( page )
   { 
     var ret_val = $('<div class="widget" />');
     ret_val.addClass( 'text' );
@@ -60,8 +65,8 @@ function VisuDesign()
     return ret_val;
   }
 
-  this.createInfo =
-  this.createShade = function( page )
+  this.creators.info =
+  this.creators.shade = function( page )
   {
     var ret_val = $('<div class="widget" />');
       ret_val.addClass( 'info' );
@@ -81,8 +86,8 @@ function VisuDesign()
     return ret_val;
   }
 
-  this.createDim =
-  this.createSlide = function( page )
+  this.creators.dim =
+  this.creators.slide = function( page )
   {
     var ret_val = $('<div class="widget" />');
     ret_val.addClass( 'dim' );
@@ -108,8 +113,8 @@ function VisuDesign()
     return ret_val;
   }
 
-  this.createSwitch =
-  this.createToggle = function( page )
+  this.creators.switch =
+  this.creators.toggle = function( page )
   {
     var ret_val = $('<div class="widget" />');
       ret_val.addClass( 'switch' );
@@ -131,7 +136,7 @@ function VisuDesign()
     return ret_val;
   }
 
-  this.createTrigger = function( page )
+  this.creators.trigger = function( page )
   {
     var value = $(page).attr('value') ? $(page).attr('value') : 0;
     var ret_val = $('<div class="widget" />');
@@ -159,7 +164,7 @@ function VisuDesign()
     return ret_val;
   }
 
-  this.createImage = function( page )
+  this.creators.image = function( page )
   { 
     var ret_val = $('<div class="widget" />');
     ret_val.addClass( 'image' );
@@ -176,7 +181,7 @@ function VisuDesign()
     return ret_val;
   }
 
-  this.createVideo = function( page )
+  this.creators.video = function( page )
   { 
     var ret_val = $('<div class="widget" />');
     ret_val.addClass( 'video' );
@@ -193,7 +198,7 @@ function VisuDesign()
     return ret_val;
   }
 
-  this.createUnknown = function( page )
+  this.creators.unknown = function( page )
   {
     var ret_val = $('<div class="widget" />');
     ret_val.append( '<pre>' + page.textContent + '</pre>' );

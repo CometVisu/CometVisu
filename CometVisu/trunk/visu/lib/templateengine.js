@@ -215,34 +215,9 @@ function setup_page( xml )
 
 function create_pages( page, path )
 {
-  switch( page.nodeName )
-  {
-    case 'page':
-      return design.createPage( page, path );
-    case 'line':
-      return design.createLine();
-    case 'break':
-      return design.createBreak();
-    case 'text':
-      return design.createText( page );
-    case 'info':
-    case 'shade':
-      return design.createInfo( page );
-    case 'dim':
-      return design.createDim( page );
-    case 'slide':
-      return design.createSlide( page );
-    case 'switch':
-    case 'toggle':
-      return design.createSwitch( page );
-    case 'trigger':
-      return design.createTrigger( page );
-    case 'image':
-      return design.createImage( page );
-    case 'video':
-      return design.createVideo( page );
-  }
-  return design.createUnknown( page );
+  if( design.creators[ page.nodeName ] )
+    return design.creators[ page.nodeName ]( page, path );
+  return design.creators.unknown( page );
 }
 
 function scrollToPage( page_id )

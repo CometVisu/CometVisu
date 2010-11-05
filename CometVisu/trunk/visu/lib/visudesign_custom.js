@@ -24,7 +24,7 @@ VisuDesign_Custom.prototype = new VisuDesign(); // do NOT chagen here
 /**
  * Custom changes could go here and look e.g. like
 ****************************************
-VisuDesign_Custom.prototype.createText = function( page )
+VisuDesign_Custom.prototype.creators.text = function( page )
 {
   var ret_val = $('<div class="widget" />');
   ret_val.addClass( 'text' );
