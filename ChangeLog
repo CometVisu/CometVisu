@@ -11,6 +11,7 @@ HEAD
 - Added XML Schema / XSD to validate config-XML
 - New Feature: tag for videos (HTML5 based)
 - changed procedures for creating new widgets
+- added design "discreet", set as default
 
 0.5.0
 =====
