@@ -215,9 +215,26 @@ function setup_page( xml )
 
 function create_pages( page, path )
 {
-  if( design.creators[ page.nodeName ] )
-    return design.creators[ page.nodeName ]( page, path );
-  return design.creators.unknown( page );
+  var retval;
+  retval = design.creators[ page.nodeName ].create( page, path );
+
+    node = $(page).get(0);
+    var attributes = {};
+    if (typeof node.attributes != "undefined") {
+        for(var i=0; i<node.attributes.length; i++)  {
+            if(node.attributes.item(i).specified) {
+                attributes[node.attributes.item(i).nodeName]=node.attributes.item(i).nodeValue
+            }
+        }
+    } else {
+        $.extend(attributes, node);
+    }
+
+  retval.data("attributes", attributes)
+        .data("path", path)
+        .data("nodeName", page.nodeName)
+        .data("textContent", page.textContent);
+  return retval;
 }
 
 function scrollToPage( page_id )

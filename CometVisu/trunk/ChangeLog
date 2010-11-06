@@ -1,7 +1,7 @@
 HEAD
 ====
 
-- New Feature: editor
+- New Feature: editor (easily extensible)
 - New Feature: generic slide widget
 - New Feature: slide and dim widgets allow range and step attributes
 - New Feature: ranges for mapping and style
@@ -10,6 +10,7 @@ HEAD
 - New Feature: <text> has new optional attribute "align"
 - Added XML Schema / XSD to validate config-XML
 - New Feature: tag for videos (HTML5 based)
+- changed procedures for creating new widgets
 
 0.5.0
 =====

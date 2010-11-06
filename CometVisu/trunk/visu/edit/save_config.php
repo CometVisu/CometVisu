@@ -125,6 +125,11 @@ function createChildFromJSON($objJSON) {
             // Parameter die mit "_" beginnen sind special purpose
             continue;
         }
+
+        if ($strAttribute === "textContent") {
+            $objXML->nodeValue = $strValue;
+            continue;
+        }
         $objXML->setAttribute($strAttribute, $strValue);
     }
 

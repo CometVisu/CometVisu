@@ -178,7 +178,7 @@
             <xsd:attribute name="src" type="uri" use="required" />
             <xsd:attribute name="width" type="dimension" />
             <xsd:attribute name="height" type="dimension" />
-            <xsd:attribute name="refresh" type="xsd:decima" />
+            <xsd:attribute name="refresh" type="xsd:decimal" />
         </xsd:extension>
     </xsd:simpleContent>
 </xsd:complexType>
