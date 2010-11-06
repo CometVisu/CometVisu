@@ -24,12 +24,13 @@ VisuDesign_Custom.prototype = new VisuDesign(); // do NOT chagen here
 /**
  * Custom changes could go here and look e.g. like
 ****************************************
-VisuDesign_Custom.prototype.creators.text = function( page )
-{
-  var ret_val = $('<div class="widget" />');
-  ret_val.addClass( 'text' );
-  ret_val.append( '<div class="label">[' + page.textContent + ']</div>' );
-  return ret_val;
-}
+VisuDesign_Custom.prototype.addCreator("line", {
+      create: function( page, path ) {
+              return $( '<hr />' );
+          },
+      attributes: {
+      },
+      content: false
+});
 ****************************************
  */

@@ -9,6 +9,8 @@
     filter: alpha(opacity=50);
     opacity: 0.5;
     text-align: center;
+    float: none !important;
+    padding: 0 !important;
 }
 
 .editcontrol {
@@ -62,7 +64,7 @@ div#addwidgetcontrol {
     width: 1.5em;
 }
 
-div#addDummy {
+div#addMaster {
     border: 1px solid #444;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
