@@ -4,7 +4,10 @@ var lingua = function(element, param) {
         confirm_save:   "Save config?",
         prompt_rename:  "Rename page '%s' to ...",
         save_good:      "Config has been successfully saved.",
-        save_bad:       "Config not saved. Error: '%s'"
+        save_bad:       "Config not saved. Error: '%s'",
+        value_required: "Field '%s' is required but empty. Please correct your input.",
+        value_invalid:  "The value for field '%s' is invalid. Please correct your input.",
+        regexp_invalid: "There something wrong with the cable."
     }
 
     if (typeof texts[element] == "undefined") {
@@ -20,10 +23,12 @@ var lingua = function(element, param) {
     return myText;
 }
 
+var addressesCache;
+
 jQuery(document).ready(function() {
 
     jQuery("div#addwidgetcontrol").bind("click", function() {
-        jQuery("#addDummy").trigger("show").find("#add_type").triggerHandler("change");
+        jQuery("#addMaster").trigger("show").find("#add_type").triggerHandler("change");
     });
 
     $("#saveconfigcontrol").bind("click", function () {
@@ -33,7 +38,19 @@ jQuery(document).ready(function() {
        }
     });
 
+    // get all GA from the server
+    $.getJSON('edit/get_addresses.php', function(data) { addressesCache = data});
+
     jQuery("#pages").bind("done", function() {
+        $("#pages hr, #pages br").each(function() {
+            if ($(this).closest(".widget").length == 0) {
+                $(this).wrap("<div class=\"widget line\" />");
+                var d = $.extend({}, $(this).data());
+                $(this).closest("div.widget").data(d);
+            }
+        });
+
+
         jQuery(".page div").sortable({
             handle: ".movecontrol",
             items: '.widget',
@@ -54,13 +71,27 @@ jQuery(document).ready(function() {
             jQuery(this).css("background-color", jQuery(this).data("background-color-old"));
             jQuery(this).find("div.editcontrol, div.movecontrol, div.removecontrol").remove();
         });
+
+        var options = {};
+        $("#addMaster").find("select#add_type").empty();
+        jQuery.each(design.creators, function (index, e) {
+            $("#addMaster").find("select#add_type").append(
+                $("<option />").attr("value", index).html(index)
+            );
+        });
     });
 
     jQuery(".removecontrol").live("click", function() {
         var widget = $(this).parents("div.widget");
         var data = getWidgetData(widget, true);
 
-        var b = confirm(lingua("confirm_delete", data._text));
+        var t;
+        if (data._type == "page") {
+            t = data.name;
+        } else {
+            t = data.textContent;
+        }
+        var b = confirm(lingua("confirm_delete", t));
         if (b) {
             widget.remove();
         }
@@ -68,6 +99,7 @@ jQuery(document).ready(function() {
 
 
     jQuery(".editcontrol").live("click", function() {
+
         var widget = $(this).parents("div.widget");
         if (widget.is(".pagelink")) {
             return renamePage(widget);
@@ -78,29 +110,21 @@ jQuery(document).ready(function() {
         // kennzeichnen welches Element grade bearbeitet wird
         widget.addClass("inedit");
 
-        jQuery.each(data, function(i, element) {
-            // alle bekannten Einstellungen in die Maske einfügen
-            $("#addDummy").find("#add_" + i).val(element);
-        });
+        $("#addMaster").data("widgetdata", data);
 
-        if (typeof data._text != "undefined") {
-            // text ist in einem Sonderfeld abgelegt
-            $("#addDummy #add_text").val(data._text)
-        }
+        $("#addMaster #add_type").find("option[value=" + data._type + "]").attr("selected", "selected");
 
-        $("#addDummy #add_type").find("option[value=" + data._type + "]").attr("selected", "selected").trigger("change");
-
-        $("#addDummy").triggerHandler("show");
+        $("#addMaster").triggerHandler("show");
     });
 
     jQuery("#pages").bind("done", function() {
         // die Selectlisten vorbelegen
-        $("#addDummy #add_mapping, #addDummy #add_style").empty().append($("<option />").attr("value", "").html("-"));
+        $("#addMaster #add_mapping, #addMaster #add_style").empty().append($("<option />").attr("value", "").html("-"));
         jQuery.each(mappings, function(i, element) {
-            $("#addDummy #add_mapping").append($("<option />").attr("value", i).html(i));
+            $("#addMaster #add_mapping").append($("<option />").attr("value", i).html(i));
         });
         jQuery.each(styles, function(i, element) {
-            $("#addDummy #add_style").append($("<option />").attr("value", i).html(i));
+            $("#addMaster #add_style").append($("<option />").attr("value", i).html(i));
         });
     });
 
@@ -108,14 +132,21 @@ jQuery(document).ready(function() {
 
 
 jQuery(function() {
-    // dem AddDummy Leben einhauchen
-    jQuery("#addDummy")
+    // dem addMaster Leben einhauchen
+    jQuery("#addMaster")
         .bind("show", function() {
             if ($("#pages .inedit").is(".widget")) {
                 $(this).find(".create").hide().end().find(".edit").show();
             } else {
                 $(this).find(".create").show().end().find(".edit").hide();
             }
+
+            // if we have widget-specific data, we must be in edit-mode
+            var widgetdata = $(this).data("widgetdata");
+            if (typeof widgetdata != "undefined") {
+                $(this).find("#add_type").find("option[value=" + widgetdata._type + "]").attr("selected", "selected").trigger("change");
+            }
+
             $(this).show()
                 .find("#add_type").triggerHandler("change")
             jQuery(".page div").sortable("destroy");
@@ -126,73 +157,162 @@ jQuery(function() {
             $("#pages").triggerHandler("done");
         })
         .bind("cleanup", function() {
+            $(this).removeData("widgetdata");
             jQuery(this).find("input[type=text]").val("");
             $("#pages").find(".inedit").removeClass("inedit");
         })
         .find("#add_cancel").click(function() {
-            jQuery("#addDummy").trigger("hide").trigger("cleanup")
+            jQuery("#addMaster").trigger("hide").trigger("cleanup")
         })
         .end()
         .find("#add_type").change(function() {
+            // the type has been changed
+            // we need to change the input-field accordingly to match
+            // what attributes we need
             var val = jQuery(this).val();
-            var divSelector = "";
-            switch (val) {
-                case 'switch':
-                case 'toggle':
-                    divSelector = ".add_text, .add_address, .add_datatype, .add_response_address, .add_response_datatype, .add_pre, .add_post, .add_mapping, .add_style";
-                    break;
-                case 'dim':
-                case 'slide':
-                    divSelector = ".add_text, .add_address, .add_datatype, .add_response_address, .add_response_datatype, .add_pre, .add_post, .add_mapping, .add_style, .add_min, .add_max, .add_step";
-                    break;
-                case 'trigger':
-                    divSelector = ".add_text, .add_address, .add_datatype, .add_pre, .add_post, .add_mapping, .add_style, .add_value";
-                    break;
-                case 'line':
-                    divSelector = "";
-                    break;
-                case 'shade':
-                    divSelector = "";
-                    break;
-                case 'info':
-                    divSelector = ".add_text, .add_address, .add_datatype, .add_pre, .add_post, .add_mapping, .add_style";
-                    break;
-                case 'text':
-                    divSelector = ".add_text";
-                    break;
-                case 'page':
-                    divSelector = ".add_text";
-                    break;
+            var creator = design.getCreator(val);
+            var attributes = creator.attributes;
+            if (typeof attributes == "undefined") {
+                alert("there's something wrong with the cable");
+                return;
             }
 
-            jQuery("#addDummy").find("div.add_inputs")
-                .not(divSelector).hide()
-                    .find("input[type=text]").val("")
-                    .end()
-                .end()
-                .filter(divSelector).show();
+            var container = $("#addMaster div.inputs");
+            var values = $.extend({}, $("#addMaster").data("widgetdata"));
+
+            // alte Werte zwischenspeichern
+            container.find(":input").each(function() {
+                if ($(this).val() != "") {
+                    var name = $(this).data("name");
+                    values[name] = $(this).val();
+                }
+            })
+            container.empty();
+
+            if (creator.content == "string") {
+                var element = $("<div />").addClass("add_input").addClass("content")
+                            .append($("<label />").attr("for", "add_textContent").html("text-content"))
+                            .append($("<input type=\"text\" id=\"add_textContent\"/>"));
+                if (typeof values["textContent"] != "undefined") {
+                    element.find("input").val(values["textContent"]);
+                }
+
+                container.append(element);
+                delete element;
+            }
+
+            $.each(attributes, function (index, e) {
+                var element = $("<div />").addClass("add_input").addClass("attribute")
+                                    .append($("<label />").attr("for", "add_" + index).html(index));
+
+                switch (e.type) {
+                    case "address":
+                        element.append($("<select id=\"add_" + index + "\" />")
+                                        .append($("<option />").attr("value", "").html("-")));
+
+                        element.find("select:first").append(getAddressesObject());
+
+                        element.find("select").bind("change", function() {
+                            // on changing the address, the coresponding datatype-field is
+                            // automagically set
+                            var name = $(this).attr("id");
+                            var dptFieldName = name.replace(/_?address$/i, "_datatype");
+                            var dpt = $(this).find("option:selected").attr("class").replace(/[^dpt_\d+\.\d+]*/, "").replace(/^dpt_/, "");
+                            $("#addMaster div.inputs #" + dptFieldName).val(dpt);
+                        });
+
+                        if (typeof values[index] != "undefined") {
+                            element.find("option[value=" + values[index] + "]").attr("selected", "selected");
+                        }
+
+                        break;
+
+                    case "mapping":
+                        element.append($("<select id=\"add_mapping\" />")
+                                        .append($("<option />").attr("value", "").html("-")));
+                        jQuery.each(mappings, function(i, tmp) {
+                            element.find("select#add_mapping").append($("<option />").attr("value", i).html(i));
+                        });
+
+                        if (typeof values[index] != "undefined") {
+                            element.find("option[value=" + values[index] + "]").attr("selected", "selected");
+                        }
+
+                        break;
+                        
+                    case "style":
+                        element.append($("<select id=\"add_style\" />")
+                                        .append($("<option />").attr("value", "").html("-")));
+                        jQuery.each(styles, function(i, tmp) {
+                            element.find("select#add_style").append($("<option />").attr("value", i).html(i));
+                        });
+
+                        if (typeof values[index] != "undefined") {
+                            element.find("option[value=" + values[index] + "]").attr("selected", "selected");
+                        }
+
+                        break;
+
+                    default:
+                        element.append($("<input type=\"text\" id=\"add_" +  index + "\" />"));
+
+                        if (typeof values[index] != "undefined") {
+                            element.find("input").val(values[index]);
+                        }
+
+                        break;
+                }
+
+                element.find(":input")
+                        .data("name", index)
+                        .data("required", e.required)
+                        .data("type", e.type);
+
+                container.append(element);
+                delete element;
+            });
         })
         .end()
         .find("#add_submit").click(function() {
             // Daten aus den Eingabefeldner übernehmen
-            // einfach alle rein - das Design weiß schon welche Daten es benötigt
+            // einfach alle rein - wir haben ja nur die passenden Felder
+
+            var container = $("#addMaster div.inputs");
+
             var dataObject = {
-                value: jQuery("#addDummy input#add_value").val(),
-                address: jQuery("#addDummy input#add_address").val(),
-                datatype: jQuery("#addDummy input#add_datatype").val(),
-                response_address: jQuery("#addDummy input#add_response_address").val(),
-                response_datatype: jQuery("#addDummy input#add_response_datatype").val(),
-                pre: jQuery("#addDummy input#add_pre").val(),
-                post: jQuery("#addDummy input#add_post").val(),
-                mapping: jQuery("#addDummy select#add_mapping").val(),
-                design: jQuery("#addDummy select#add_style").val(),
-                min: jQuery("#addDummy input#add_min").val(),
-                max: jQuery("#addDummy input#add_max").val(),
-                step: jQuery("#addDummy input#add_step").val(),
-                textContent: jQuery("#addDummy input#add_text").val(),
-                nodeName: jQuery("#addDummy #add_type").val(),
-                name: jQuery("#addDummy input#add_text").val() // wird nur bei page benötigt
-                };
+                nodeName: jQuery("#addMaster #add_type").val()
+            };
+
+            var error = false;
+
+            // alte Werte zwischenspeichern
+            container.find(":input").each(function() {
+                var name;
+                if ($(this).closest("div.add_input").hasClass("attribute")) {
+                    name = $(this).data("name");
+                } else if ($(this).closest("div.add_input").hasClass("content")) {
+                    name = "textContent";
+                }
+
+                if ($(this).val() != "") {
+                    // validating
+                    if (false === isInputValid($(this).val(), $(this).data("type"))) {
+                        alert(lingua("value_invalid", name));
+                        // do not save
+                        error = true;
+                    }
+                    dataObject[name] = $(this).val();
+                } else if ($(this).data("required") === true) {
+                    // do not save
+                    alert(lingua("value_required", name));
+                    error = true;
+                }
+            })
+
+            if (error !== false) {
+                return;
+            }
+
             // als path verwenden wir einfach den aktuellen UNIX-Timestamp
             // der wird nicht schon belegt sein
             var path = $(".page:visible:last").attr("id");
@@ -210,11 +330,54 @@ jQuery(function() {
             jQuery("#pages").triggerHandler("done");
 
             // und dann noch mich wieder verstecken
-            jQuery("#addDummy").trigger("hide").trigger("cleanup");
+            jQuery("#addMaster").trigger("hide").trigger("cleanup");
         })
         .end();
 
 });
+
+/**
+ * check whether a user-given value matches the type-criterias and thus is valid
+ */
+function isInputValid(val, type) {
+    if (typeof type == "undefined" || type == null) {
+        // nicht mit Geistern rumschlagen
+        return true;
+    }
+    if (typeof type == "object") {
+        // wohl ein regulärer Ausdruck
+        try {
+            if (val.match(type)) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (e) {
+            alert(lingua("regexp_invalid"));
+            return false;
+        }
+    }
+
+    switch (type) {
+        case "address":
+            return !Boolean(val.match(/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2}$/));
+            break;
+        case "numeric":
+            return Boolean(val.match(/^\d+([\.,]\d+)?$/g));
+            break;
+        case "string":
+        case "uri":
+            return Boolean(typeof val == "string");
+            break;
+        case "mapping":
+            return Boolean(typeof mappings[val] != "undefined");
+            break;
+        case "style":
+            return Boolean(typeof styles[val] != "undefined");
+            break;
+    }
+}
 
 function saveConfig() {
     var configData = createObjectFromPage("#0.page");
@@ -245,80 +408,17 @@ function saveConfig() {
     });
 }
 
-function getWidgetData(element, nodive) {
+function getWidgetData(element) {
     var myObj = {};
+
     var e = $(element);
-    var a = $(e).find(".actor");
-    if (e.is("div.switch")) {
-        // switch oder trigger
-        if (a.data("type") == "trigger") {
-            // trigger
-            myObj = {
-                    address: a.data("GA"),
-                    datatype: a.data("datatype"),
-                    value: a.data("sendValue"),
-                    pre: e.data("pre"),
-                    post: e.data("post"),
-                    mapping: a.data("mapping"),
-                    style: a.data("style"),
-                    _text: e.find("div.label").text(),
-                    _type: "trigger"
-            };
-        } else {
-            // switch
-            myObj = {
-                    address: a.data("GA"),
-                    datatype: a.data("datatype"),
-                    pre: e.data("pre"),
-                    post: e.data("post"),
-                    mapping: a.data("mapping"),
-                    style: a.data("style"),
-                    response_address: e.data("response_address"),
-                    response_datatype: e.data("response_datatype"),
-                    _text: e.find("div.label").text(),
-                    _type: "switch"
-            };
-        }
-    } else if (e.is("div.text")) {
-        // text
-        myObj = {
-                _text: e.find("div.label").text(),
-                _type: "text"
-        };
-    } else if (e.is("div.dim")) {
-        // slider
-        myObj = {
-                address: a.data("GA"),
-                datatype: a.data("datatype"),
-                mapping: a.data("mapping"),
-                style: a.data("style"),
-                min: a.data("min"),
-                max: a.data("max"),
-                step: a.data("step"),
-                response_address: e.data("response_address"),
-                response_datatype: e.data("response_datatype"),
-                _text: e.find("div.label").text(),
-                _type: "dim"
-        };
-    } else if (e.is("div.info")) {
-        // Info-Feld
-        myObj = {
-                address: a.data("GA"),
-                datatype: a.data("datatype"),
-                pre: e.data("pre"),
-                post: e.data("post"),
-                mapping: a.data("mapping"),
-                style: a.data("style"),
-                _text: e.find("div.label").text(),
-                _type: "info"
-        };
-    } else if (e.is("div.line")) {
-        // Trennlinie
-        myObj = {
-            _type: "line",
-            _text: "line"
-        }
-    } else if (e.is(".pagelink")) {
+
+    myObj._type = e.data("nodeName");
+    myObj.textContent = e.data("textContent");
+    $.extend(myObj, e.data("attributes"));
+
+    if (e.is(".pagelink")) {
+        // it's a page, we need to dive in
         // eine Sub-Seite
         // versuchen die Seiten-Id durch den Link zu bekommen
         var s = e.find("a");
@@ -334,19 +434,10 @@ function getWidgetData(element, nodive) {
             if (subObject._elements.length > 0) {
                 myObj = subObject;
             }
-        } else if (nodive) {
-            // wir sollen nicht rekursiv arbeiten,
-            // aber dieses eine Objekt liefern wir zurück
-            myObj = {
-              _type: "page",
-              _text: s.text(), // für edit-modus benötigt
-              name: s.text()
-            };
         }
     }
 
     return myObj;
-
 }
 
 function createObjectFromPage(pageObject) {
@@ -378,7 +469,7 @@ function createObjectFromPage(pageObject) {
 function renamePage(widget) {
     var data = getWidgetData(widget, true);
 
-    var newText = prompt(lingua("prompt_rename", data._text), data._text);
+    var newText = prompt(lingua("prompt_rename", data.name), data.name);
     if (!newText) {
         return;
     }
@@ -386,5 +477,35 @@ function renamePage(widget) {
     var path = widget.data("path");
 
     widget.find("a").html(newText);
+    widget.data("name", newText);
     $("#pages").find("#" + path + ".page").find("h1").html(newText);
+}
+
+var cachedAddressesObject;
+function getAddressesObject() {
+
+    if (typeof cachedAddressesObject == "object") {
+        return cachedAddressesObject.clone();
+    }
+
+    element = $("<select />");
+
+    $.each(addressesCache, function(hg, sub) {
+        $.each(sub, function(mg, addresses) {
+            element.append(
+                $("<optgroup />").attr("label", hg + " - " + mg)
+            );
+            $.each(addresses, function (i, address) {
+                element.find("optgroup:last")
+                    .append($("<option />").attr("value", address.address)
+                                .addClass("dpt_" + address.dpt)
+                                .html(address.name)
+                                )
+            });
+        });
+    });
+
+    cachedAddressesObject = element.children();
+
+    return cachedAddressesObject;
 }
