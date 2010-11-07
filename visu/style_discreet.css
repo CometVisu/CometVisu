@@ -176,6 +176,8 @@ div#top {
   border-width:  1px 2px 2px 1px;
   border-color: #282828 #010101 #010101 #282828;
   margin-top: 0px;
+  background-color: #3A3A3A;
+  background-position: center +2px;
 }
 .switchUnpressed div, .switchPressed div
 {
@@ -192,6 +194,7 @@ div#top {
   border-width:  2px 1px 1px 2px;
   border-color: #010101 #282828 #282828 #010101;
   margin-top: 1px;
+  background-position: center -2px;
 }
 
 .switchUnpressed div {
