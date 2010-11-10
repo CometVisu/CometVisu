@@ -361,7 +361,7 @@ function isInputValid(val, type) {
 
     switch (type) {
         case "address":
-            return Boolean(val.match(/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,2}$/) != null);
+            return Boolean(val.match(/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,3}$/) != null);
             break;
         case "numeric":
             return Boolean(val.match(/^\d+([\.,]\d+)?$/g));
