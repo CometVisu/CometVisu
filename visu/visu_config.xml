@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages>
+<pages design="pure">
   <mappings>
     <mapping name="OpenClose">
       <entry value="0">zu</entry>
@@ -30,9 +30,9 @@
       <entry range_min="0"    range_max="100">red</entry>
     </style>
   </styles>
-  <page name="Übersicht">
+  <page name="Übersicht" flavour="orange">
     <text align="center">Willkommen bei der CometVisu!</text>
-    <toggle address="1/0/2"  datatype="1.001" response_address="1/0/2" mapping="OnOff">Terrase Licht</toggle>
+    <toggle address="1/0/2"  datatype="1.001" response_address="1/0/2" mapping="OnOff" style="RedGreen" >Terrase Licht</toggle>
     <trigger address="1/0/2"  datatype="1.001" value="0" mapping="OnOff">Terrase Licht 0</trigger>
     <trigger address="1/0/2"  datatype="1.001" value="1" mapping="OnOff">Terrase Licht 1</trigger>
     <trigger address="2/2/5"  datatype="5.001" value="0" >Rolladen Licht 0</trigger>
@@ -53,7 +53,7 @@
     <image src="http://www.yr.no/place/Germany/Bavaria/Holzkirchen~2899676/meteogram.png" refresh="1800" />
     <line />
     <info address="1/0/41"  datatype="1.000" mapping="OnOff">Treppenlicht</info>
-    <page name="Fenster Kontakte">
+    <page name="Fenster Kontakte" flavour="blue">
       <info address="4/3/10"  datatype="1" mapping="OpenClose" style="GreenRed">Bad EG Reed Fenster</info>
       <info address="4/3/20"  datatype="1.001" mapping="OpenClose" style="GreenRed">WC Reed Fenster</info>
       <info address="4/3/30"  datatype="1" mapping="OpenClose" style="GreenRed">Schlafen Reed Fenster links</info>
@@ -76,7 +76,7 @@
       <info address="4/3/210" datatype="1.001">Lueftung Filter</info>
       <info address="4/3/250" datatype="1.001" mapping="OnOff">Rauchmelder</info>
     </page>
-    <page name="Temperaturen">
+    <page name="Temperaturen" flavour="red">
       <info address="4/0/10" datatype="9.001" pre="ca. " post=" °C">Bad EG Boden Temperatur</info>
       <info address="4/0/11" datatype="9.001" pre="ca. " post=" °C">Bad EG Luft Temperatur</info>
       <info address="4/0/15" datatype="9.001" pre="ca. " post=" °C">Bad EG Dusche Temperatur</info>
@@ -101,7 +101,7 @@
       <info address="4/0/203" datatype="9.001" pre="ca. " post=" °C">Kaltwasser Temperatur</info>
       <info address="4/0/205" datatype="9.001" pre="ca. " post=" °C">Warmwasser UG Temperatur</info>
     </page>
-    <page name="Rollläden">
+    <page name="Rollläden" flavour="green">
       <shade address="2/4/0"  datatype="5.001">Rollladen Bad</shade>
       <shade address="2/4/1"  datatype="5.001">Rollladen Schlafen Fenster</shade>
       <shade address="2/4/2"  datatype="5.001">Rollladen Schlafen Türe</shade>
