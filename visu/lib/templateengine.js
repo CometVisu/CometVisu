@@ -161,6 +161,10 @@ function setup_page( xml )
 {
   // erst mal den Cache für AJAX-Requests wieder aktivieren
   $.ajaxSetup({cache: true});
+
+  var design = $( 'pages', xml ).attr('design');
+  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + design + '/basic.css" />' );
+  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + design + '/mobile.css" media="only screen and (max-device-width: 480px)" />' );
   // adapt width for pages to show
   handleResize();
 
