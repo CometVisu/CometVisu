@@ -44,6 +44,7 @@
     <slide address="12/4/250"  datatype="9" min="-18" max="26">Slide</slide>
     <info address="12/4/250"  datatype="9" style="BluePurpleRed">Slide Info</info>
     <info address="12/4/250"  datatype="9" style="BluePurpleRed" mapping="Sign">Slide Info</info>
+    <designtoggle>Change design</designtoggle>
     <line />
     <image src="icon/comet_128_ff8000.png" >Ein Bild</image>
     <image src="icon/comet_128_ff8000.png" />
