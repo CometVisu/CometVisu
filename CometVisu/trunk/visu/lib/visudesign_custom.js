@@ -46,7 +46,7 @@ VisuDesign_Custom.prototype.addCreator("designtoggle", {
                 ret_val.addClass( 'switch' );
                 var label = '<div class="label">' + page.textContent + '</div>';
                 var actor = '<div class="actor switchUnpressed">';
-                var value = $('link').attr('href').split('/')[1];
+                var value = $('link[href*="designs"]').attr('href').split('/')[1];
                 actor += '<div class="value">' + value + '</div>';
                 actor += '</div>';
                 ret_val.append( label ).append( $(actor).data( {
@@ -68,7 +68,7 @@ function designToggleAction()
   var oldDesign = $('.value',this).text();
   var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
   $('.value',this).text(newDesign);
-  $('link').each(function(){
+  $('link[href*="designs"]').each(function(){
     this.href = this.href.replace( oldDesign, newDesign );
   });
 }
