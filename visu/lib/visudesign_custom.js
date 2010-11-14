@@ -34,3 +34,41 @@ VisuDesign_Custom.prototype.addCreator("line", {
 });
 ****************************************
  */
+
+/**
+ * This is a custom function that extends the available widgets.
+ * It's purpose is to change the design of the visu during runtime
+ * to demonstrate all available
+ */
+VisuDesign_Custom.prototype.addCreator("designtoggle", {
+      create: function( page, path ) {
+                var ret_val = $('<div class="widget" />');
+                ret_val.addClass( 'switch' );
+                var label = '<div class="label">' + page.textContent + '</div>';
+                var actor = '<div class="actor switchUnpressed">';
+                var value = $('link').attr('href').split('/')[1];
+                actor += '<div class="value">' + value + '</div>';
+                actor += '</div>';
+                ret_val.append( label ).append( $(actor).data( {
+                    'mapping' : $(page).attr('mapping'),
+                    'style'   : $(page).attr('style'),
+                    'value'   : value,
+                    'type'    : 'toggle'
+                } ).bind('click',designToggleAction) );
+                return ret_val;
+          },
+      attributes: {
+      },
+      content: "string"
+});
+
+function designToggleAction()
+{
+  var designs     = [ 'pure', 'discreet' ];
+  var oldDesign = $('.value',this).text();
+  var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
+  $('.value',this).text(newDesign);
+  $('link').each(function(){
+    this.href = this.href.replace( oldDesign, newDesign );
+  });
+}
