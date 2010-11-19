@@ -12,6 +12,7 @@ HEAD
 - New Feature: tag for videos (HTML5 based)
 - changed procedures for creating new widgets
 - added design "discreet", set as default
+- changed name for styles; new name: styling / stylings
 
 0.5.0
 =====

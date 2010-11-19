@@ -18,7 +18,7 @@
 var design = new VisuDesign_Custom();
 
 var mappings = {}; // store the mappings
-var styles   = {}; // store the styles  
+var stylings = {}; // store the stylings
 
 var ga_list = [];
 
@@ -39,16 +39,16 @@ visu.update = function( json ) // overload the handler
       element.data( 'value', value );
       $('.value', element).text( map( value, element ) );
 
-      var style = element.data('style');
-      if( style && styles[style] && (styles[style][value] || styles[style]['range']) )
+      var styling = element.data('styling');
+      if( styling && stylings[styling] && (stylings[styling][value] || stylings[styling]['range']) )
       {
-        if( styles[style]['range'] ) value = parseFloat( value );
+        if( stylings[styling]['range'] ) value = parseFloat( value );
         element.removeClass();
-        if( styles[style][value] )
+        if( stylings[styling][value] )
         {
-          element.addClass( 'actor ' + GA + ' ' + styles[style][value] );
+          element.addClass( 'actor ' + GA + ' ' + stylings[styling][value] );
         } else {
-          var range = styles[style]['range'];
+          var range = stylings[styling]['range'];
           var not_found = true;
           for( var min in range )
           {
@@ -184,17 +184,17 @@ function setup_page( xml )
     });
   });
 
-  // then the styles
-  $( 'pages > styles style', xml ).each( function(i){
+  // then the stylings
+  $( 'pages > stylings styling', xml ).each( function(i){
     var name = $(this).attr('name');
-    styles[ name ] = {};
+    stylings[ name ] = {};
     $(this).find('entry').each( function(){
       if( $(this).attr('value') )
       {
-        styles[ name ][ $(this).attr('value') ] = $(this).text();
+        stylings[ name ][ $(this).attr('value') ] = $(this).text();
       } else { // a range
-        if( ! styles[ name ][ 'range' ] ) styles[ name ][ 'range' ] = {};
-        styles[ name ][ 'range' ][ parseFloat($(this).attr('range_min')) ] =
+        if( ! stylings[ name ][ 'range' ] ) stylings[ name ][ 'range' ] = {};
+        stylings[ name ][ 'range' ][ parseFloat($(this).attr('range_min')) ] =
           [ parseFloat( $(this).attr('range_max') ), $(this).text() ];
       }
     });

@@ -24,6 +24,7 @@ var lingua = function(element, param) {
 }
 
 var addressesCache;
+var dptCache;
 
 jQuery(document).ready(function() {
 
@@ -38,8 +39,31 @@ jQuery(document).ready(function() {
        }
     });
 
-    // get all GA from the server
-    $.getJSON('edit/get_addresses.php', function(data) { addressesCache = data});
+    // get all GAs from the server
+    $.ajax({
+        url: "edit/get_addresses.php",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+             addressesCache = data;
+        },
+        error: function(xhr, textStatus, e) {
+            addressesCache = false;
+        }
+    });
+
+    // get all known dpt from the server
+    $.ajax({
+        url: "edit/dpt_list.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+             dptCache = data;
+        },
+        error: function(xhr, textStatus, e) {
+            dptCache = false;
+        }
+    });
 
     jQuery("#pages").bind("done", function() {
         $("#pages hr, #pages br").each(function() {
@@ -116,18 +140,6 @@ jQuery(document).ready(function() {
 
         $("#addMaster").triggerHandler("show");
     });
-
-    jQuery("#pages").bind("done", function() {
-        // die Selectlisten vorbelegen
-        $("#addMaster #add_mapping, #addMaster #add_style").empty().append($("<option />").attr("value", "").html("-"));
-        jQuery.each(mappings, function(i, element) {
-            $("#addMaster #add_mapping").append($("<option />").attr("value", i).html(i));
-        });
-        jQuery.each(styles, function(i, element) {
-            $("#addMaster #add_style").append($("<option />").attr("value", i).html(i));
-        });
-    });
-
 });
 
 
@@ -180,22 +192,27 @@ jQuery(function() {
             var container = $("#addMaster div.inputs");
             var values = $.extend({}, $("#addMaster").data("widgetdata"));
 
-            // alte Werte zwischenspeichern
-            container.find(":input").each(function() {
-                if ($(this).val() != "") {
-                    var name = $(this).data("name");
-                    values[name] = $(this).val();
-                }
-            })
+            if (!$("#pages .inedit").is(".widget")) {
+                // alte Werte zwischenspeichern
+                container.find(":input").each(function() {
+                    if ($(this).val() != "") {
+                        var name = $(this).data("name");
+                        values[name] = $(this).val();
+                    }
+                })
+            }
             container.empty();
 
-            if (creator.content == "string") {
+            if (typeof creator.content.type != "undefined" && creator.content.type == "string") {
+
                 var element = $("<div />").addClass("add_input").addClass("content")
                             .append($("<label />").attr("for", "add_textContent").html("text-content"))
                             .append($("<input type=\"text\" id=\"add_textContent\"/>"));
                 if (typeof values["textContent"] != "undefined") {
                     element.find("input").val(values["textContent"]);
                 }
+
+                element.find(":input").data("required", creator.content.required);
 
                 container.append(element);
                 delete element;
@@ -207,24 +224,59 @@ jQuery(function() {
 
                 switch (e.type) {
                     case "address":
-                        element.append($("<select id=\"add_" + index + "\" />")
-                                        .append($("<option />").attr("value", "").html("-")));
+                        if (typeof addressesCache == undefined || addressesCache == false) {
+                            // appearantly we were unable to load the list of addresses from the server
+                            // we will provide an input-field instead
+                            element.append($("<input id=\"add_" + index + "\" />"));
+                            if (typeof values[index] != "undefined") {
+                                // pre-set the value
+                                element.find(":input").val(values[index]);
+                            }
+                        } else {
+                            element.append($("<select id=\"add_" + index + "\" />")
+                                            .append($("<option />").attr("value", "").html("-")));
 
-                        element.find("select:first").append(getAddressesObject());
+                            element.find("select:first").append(getAddressesObject());
 
-                        element.find("select").bind("change", function() {
-                            // on changing the address, the coresponding datatype-field is
-                            // automagically set
-                            var name = $(this).attr("id");
-                            var dptFieldName = name.replace(/_?address$/i, "_datatype");
-                            var dpt = $(this).find("option:selected").attr("class").replace(/[^dpt_\d+\.\d+]*/, "").replace(/^dpt_/, "");
-                            $("#addMaster div.inputs #" + dptFieldName).val(dpt);
-                        });
+                            element.find("select").bind("change", function() {
+                                // on changing the address, the coresponding datatype-field is
+                                // automagically set
+                                var name = $(this).attr("id");
+                                var dptFieldName = name.replace(/_?address$/i, "_datatype");
+                                var dpt = $(this).find("option:selected").attr("class").replace(/[^dpt_\d+\.\d+]*/, "").replace(/^dpt_/, "");
+                                if ($("#addMaster #" + dptFieldName).is("input")) {
+                                    $("#addMaster div.inputs #" + dptFieldName).val(dpt);
+                                } else if ($("#addMaster #" + dptFieldName).is("select")) {
+                                    $("#addMaster #" + dptFieldName).find("option[value=" + dpt + "]").attr("selected", "selected");
+                                }
+                            });
 
-                        if (typeof values[index] != "undefined") {
-                            element.find("option[value=" + values[index] + "]").attr("selected", "selected");
+                            if (typeof values[index] != "undefined") {
+                                element.find("option[value=" + values[index] + "]").attr("selected", "selected");
+                            }
+
                         }
+                        break;
+                    case "datatype":
+                        if (typeof dptCache == undefined || dptCache == false) {
+                            // appearantly we were unable to load the list of datatypes from the server
+                            // we will provide an input-field instead
+                            element.append($("<input id=\"add_" + index + "\" />"));
+                            if (typeof values[index] != "undefined") {
+                                // pre-set the value
+                                element.find(":input").val(values[index]);
+                            }
+                        } else {
+                            element.append($("<select id=\"add_" + index + "\" />")
+                                            .append($("<option />").attr("value", "").html("-")));
 
+                            element.find("select:first").append(getDPTObject());
+
+                            if (typeof values[index] != "undefined") {
+                                element.find("option[value=" + values[index] + "]").attr("selected", "selected");
+                            }
+
+                        }
                         break;
 
                     case "mapping":
@@ -240,11 +292,11 @@ jQuery(function() {
 
                         break;
                         
-                    case "style":
-                        element.append($("<select id=\"add_style\" />")
+                    case "styling":
+                        element.append($("<select id=\"add_styling\" />")
                                         .append($("<option />").attr("value", "").html("-")));
-                        jQuery.each(styles, function(i, tmp) {
-                            element.find("select#add_style").append($("<option />").attr("value", i).html(i));
+                        jQuery.each(stylings, function(i, tmp) {
+                            element.find("select#add_styling").append($("<option />").attr("value", i).html(i));
                         });
 
                         if (typeof values[index] != "undefined") {
@@ -252,7 +304,8 @@ jQuery(function() {
                         }
 
                         break;
-
+                    case "datatype":
+                        break;
                     default:
                         element.append($("<input type=\"text\" id=\"add_" +  index + "\" />"));
 
@@ -292,6 +345,8 @@ jQuery(function() {
                     name = $(this).data("name");
                 } else if ($(this).closest("div.add_input").hasClass("content")) {
                     name = "textContent";
+                    // preset text-content to be empty
+                    dataObject[name] = "";
                 }
 
                 if ($(this).val() != "") {
@@ -363,6 +418,7 @@ function isInputValid(val, type) {
         case "address":
             return Boolean(val.match(/^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,3}$/) != null);
             break;
+        case "datatype":
         case "numeric":
             return Boolean(val.match(/^\d+([\.,]\d+)?$/g));
             break;
@@ -373,8 +429,8 @@ function isInputValid(val, type) {
         case "mapping":
             return Boolean(typeof mappings[val] != "undefined");
             break;
-        case "style":
-            return Boolean(typeof styles[val] != "undefined");
+        case "styling":
+            return Boolean(typeof stylings[val] != "undefined");
             break;
     }
 }
@@ -508,4 +564,24 @@ function getAddressesObject() {
     cachedAddressesObject = element.children();
 
     return cachedAddressesObject;
+}
+
+var cachedDPTObject;
+function getDPTObject() {
+
+    if (typeof cachedDPTObject == "object") {
+        return cachedDPTObject.clone();
+    }
+
+    element = $("<select />");
+
+    $.each(dptCache, function(i, dptDefinition) {
+        element.append($("<option />").attr("value", dptDefinition.dpt)
+                .html("" + dptDefinition.dpt + ": " + dptDefinition.name)
+                );
+    });
+
+    cachedDPTObject = element.children();
+
+    return cachedDPTObject;
 }

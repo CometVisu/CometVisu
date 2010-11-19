@@ -92,7 +92,7 @@ function VisuDesign() {
         attributes: {
             align:  {type: "string", required: false}
         },
-        content: "string"
+        content: {type: "string", required: true}
   });
   
   this.addCreator("info", {
@@ -110,19 +110,19 @@ function VisuDesign() {
                     'GA':       $(page).attr('address'),
                     'datatype': $(page).attr('datatype'),
                     'mapping' : $(page).attr('mapping'),
-                    'style'   : $(page).attr('style')
+                    'styling' : $(page).attr('styling')
                 } ) );
                 return ret_val;
             },
         attributes: {
             address:    {type: "address", required: true},
-            datatype:   {type: "numeric", required: true},
+            datatype:   {type: "datatype", required: true},
             pre:        {type: "string", required: false},
             post:       {type: "string", required: false},
             mapping:    {type: "mapping", required: false},
-            style:      {type: "style", required: false}
+            styling:    {type: "styling", required: false}
         },
-        content: "string"
+        content: {type: "string", required: true}
   });
 
   this.addCreator("shade", this.getCreator("info"));
@@ -144,7 +144,7 @@ function VisuDesign() {
                     'GA':       $(page).attr('address'),
                     'datatype': $(page).attr('datatype'),
                     'mapping' : $(page).attr('mapping'),
-                    'style'   : $(page).attr('style'),
+                    'styling' : $(page).attr('styling'),
                     'min'     : min,
                     'max'     : max,
                     'step'    : step,
@@ -155,16 +155,16 @@ function VisuDesign() {
             },
         attributes: {
             address:    {type: "address", required: true},
-            datatype:   {type: "numeric", required: true},
+            datatype:   {type: "datatype", required: true},
             response_address:    {type: "address", required: true},
-            response_datatype:   {type: "numeric", required: true},
+            response_datatype:   {type: "datatype", required: true},
             min:        {type: "numeric", required: false},
             max:        {type: "numeric", required: false},
             step:       {type: "numeric", required: false},
             mapping:    {type: "mapping", required: false},
-            style:      {type: "style", required: false}
+            styling:    {type: "styling", required: false}
         },
-        content: "string"
+        content: {type: "string", required: true}
   });
 
   this.addCreator("slide", this.getCreator("dim"));
@@ -185,22 +185,22 @@ function VisuDesign() {
                     'GA':       $(page).attr('address'),
                     'datatype': $(page).attr('datatype'),
                     'mapping' : $(page).attr('mapping'),
-                    'style'   : $(page).attr('style'),
+                    'styling' : $(page).attr('styling'),
                     'type'    : 'toggle'
                 } ).bind('click',switchAction) );
                 return ret_val;
             },
         attributes: {
             address:    {type: "address", required: true},
-            datatype:   {type: "numeric", required: true},
+            datatype:   {type: "datatype", required: true},
             response_address:    {type: "address", required: true},
-            response_datatype:   {type: "numeric", required: true},
+            response_datatype:   {type: "datatype", required: true},
             pre:        {type: "string", required: false},
             post:       {type: "string", required: false},
             mapping:    {type: "mapping", required: false},
-            style:      {type: "style", required: false}
+            styling:    {type: "styling", required: false}
         },
-        content: "string"
+        content: {type: "string", required: true}
   });
 
   this.addCreator("toggle", this.getCreator("switch"));
@@ -222,10 +222,10 @@ function VisuDesign() {
                 if( $(page).attr('post') ) actor += $(page).attr('post');
                 actor += '</div>';
                 ret_val.append( label ).append( $(actor).data( {
-                  'GA':       $(page).attr('address'),
+                  'GA'      : $(page).attr('address'),
                   'datatype': $(page).attr('datatype'),
                   'mapping' : $(page).attr('mapping'),
-                  'style'   : $(page).attr('style'),
+                  'styling' : $(page).attr('styling'),
                   'type'    : 'trigger',
                   'sendValue': value
                 } ).bind('click',triggerAction) );
@@ -234,14 +234,14 @@ function VisuDesign() {
             },
         attributes: {
             address:    {type: "address", required: true},
-            datatype:   {type: "numeric", required: true},
+            datatype:   {type: "datatype", required: true},
             value:      {type: "string", required: true},
             pre:        {type: "string", required: false},
             post:       {type: "string", required: false},
             mapping:    {type: "mapping", required: false},
-            style:      {type: "style", required: false}
+            styling:    {type: "styling", required: false}
         },
-        content: "string"
+        content: {type: "string", required: true}
   });
 
   this.addCreator("image", {
@@ -266,7 +266,7 @@ function VisuDesign() {
             height:     {type: "string", required: false},
             refresh:    {type: "numeric", required: false}
         },
-        content: "string"
+        content: {type: "string", required: false}
   });
 
   this.addCreator("video", {
@@ -291,7 +291,7 @@ function VisuDesign() {
             height:     {type: "string", required: false},
             refresh:    {type: "numeric", required: false}
         },
-        content: "string"
+        content: {type: "string", required: true}
   });
 
   this.addCreator("unknown", {
@@ -302,7 +302,7 @@ function VisuDesign() {
             },
         attributes: {
         },
-        content: "string"
+        content: {type: "string", required: true}
   });
 
   this.switchAction = function() {
