@@ -28,7 +28,7 @@ if (true === empty($strJson)) {
 // JSON dekodieren und PHP-geeignetes Array-Object-Kram daraus erzeugen
 $objConfig = json_decode(stripslashes($strJson));
 
-/** die alten Mappings und Styles übernehmen */
+/** die alten Mappings und stylings übernehmen */
 $objDOM = new DOMDocument("1.0", "UTF-8");
 $objDOM->load($strConfig);
 $objDOM->formatOutput = true;
@@ -40,7 +40,7 @@ $objTmp = $objPages->getElementsByTagName("page");
 foreach ($objTmp as $objTmpNode) {
     $objPages->removeChild($objTmpNode);
 }
- /** mappings und styles übernommen */
+ /** mappings und stylings übernommen */
 
 $objPages->appendChild(createDOMFromJSON($objConfig));
 $objDOM->appendChild($objPages);

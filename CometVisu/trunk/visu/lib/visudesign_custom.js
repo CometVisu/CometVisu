@@ -49,26 +49,27 @@ VisuDesign_Custom.prototype.addCreator("designtoggle", {
                 var value = $('link[href*="designs"]').attr('href').split('/')[1];
                 actor += '<div class="value">' + value + '</div>';
                 actor += '</div>';
-                ret_val.append( label ).append( $(actor).data( {
-                    'mapping' : $(page).attr('mapping'),
-                    'style'   : $(page).attr('style'),
-                    'value'   : value,
-                    'type'    : 'toggle'
-                } ).bind('click',designToggleAction) );
+                ret_val.append(label).append($(actor)
+                    .data({
+                        'mapping' : $(page).attr('mapping'),
+                        'styling' : $(page).attr('styling'),
+                        'value'   : value,
+                        'type'    : 'toggle'
+                    })
+                    .bind('click', function() {
+                            var designs     = [ 'pure', 'discreet' ];
+                            var oldDesign = $('.value',this).text();
+                            var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
+                            $('.value',this).text(newDesign);
+                            $('link[href*="designs"]').each(function(){
+                                this.href = this.href.replace( oldDesign, newDesign );
+                            });
+                        })
+                );
                 return ret_val;
           },
       attributes: {
       },
-      content: "string"
+      content: {type: "string", required: true}
 });
 
-function designToggleAction()
-{
-  var designs     = [ 'pure', 'discreet' ];
-  var oldDesign = $('.value',this).text();
-  var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
-  $('.value',this).text(newDesign);
-  $('link[href*="designs"]').each(function(){
-    this.href = this.href.replace( oldDesign, newDesign );
-  });
-}

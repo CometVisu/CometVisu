@@ -40,7 +40,7 @@
 <xsd:attribute name="step" type="xsd:decimal" />
 
 <xsd:attribute name="mapping" type="xsd:string" />
-<xsd:attribute name="style" type="xsd:string" />
+<xsd:attribute name="styling" type="xsd:string" />
 <xsd:attribute name="value" type="xsd:string" />
 
 <!-- complex elements -->
@@ -48,7 +48,7 @@
     <xsd:complexType>
         <xsd:choice minOccurs="0" maxOccurs="unbounded">
             <xsd:element ref="mappings" />
-            <xsd:element ref="styles" />
+            <xsd:element ref="stylings" />
             <xsd:element ref="page" minOccurs="1" />
         </xsd:choice>
         <xsd:attribute name="design" type="xsd:string" use="required" />
@@ -72,15 +72,15 @@
     </xsd:complexType>
 </xsd:element>
 
-<xsd:element name="styles">
+<xsd:element name="stylings">
     <xsd:complexType>
         <xsd:choice minOccurs="0" maxOccurs="unbounded">
-            <xsd:element ref="style" />
+            <xsd:element ref="styling" />
         </xsd:choice>
     </xsd:complexType>
 </xsd:element>
 
-<xsd:element name="style">
+<xsd:element name="styling">
     <xsd:complexType>
         <xsd:choice minOccurs="0" maxOccurs="unbounded">
             <xsd:element name="entry" type="entry" minOccurs="1" />
@@ -125,7 +125,7 @@
             <xsd:attribute ref="pre" />
             <xsd:attribute ref="post" />
             <xsd:attribute ref="mapping" />
-            <xsd:attribute ref="style" />
+            <xsd:attribute ref="styling" />
         </xsd:extension>
     </xsd:simpleContent>
 </xsd:complexType>
@@ -140,7 +140,7 @@
             <xsd:attribute ref="pre" />
             <xsd:attribute ref="post" />
             <xsd:attribute ref="mapping" />
-            <xsd:attribute ref="style" />
+            <xsd:attribute ref="styling" />
         </xsd:extension>
     </xsd:simpleContent>
 </xsd:complexType>
@@ -156,7 +156,7 @@
             <xsd:attribute ref="max" />
             <xsd:attribute ref="step" />
             <xsd:attribute ref="mapping" />
-            <xsd:attribute ref="style" />
+            <xsd:attribute ref="styling" />
         </xsd:extension>
     </xsd:simpleContent>
 </xsd:complexType>
@@ -169,7 +169,7 @@
             <xsd:attribute ref="pre" />
             <xsd:attribute ref="post" />
             <xsd:attribute ref="mapping" />
-            <xsd:attribute ref="style" />
+            <xsd:attribute ref="styling" />
         </xsd:extension>
     </xsd:simpleContent>
 </xsd:complexType>
