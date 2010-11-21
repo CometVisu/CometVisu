@@ -114,6 +114,10 @@ $(document).ready(function() {
   }
 } );
 
+$(window).unload(function() {
+  visu.stop();
+});
+
 function map( value, element )
 {
   var map = element.data('mapping');

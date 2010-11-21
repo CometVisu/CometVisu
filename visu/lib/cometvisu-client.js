@@ -27,6 +27,7 @@ function CometVisu( urlPrefix )
   this.pass   = '';                                      // the current password
   this.device = '';                                      // the current device ID
   this.running = false;                                  // is the communication running at the moment?
+  this.xhr     = false;                                  // the ongoing AJAX request
   
   /**
    * This function gets called once the communication is established and session information is available
@@ -41,7 +42,7 @@ function CometVisu( urlPrefix )
 
     // send first request
     this.running = true;
-    $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+    this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
   };
 
   /**
@@ -53,7 +54,7 @@ function CometVisu( urlPrefix )
     {
       if( this.running )
       { // retry initial request
-        $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+        this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
       }
       return;
     }
@@ -64,7 +65,7 @@ function CometVisu( urlPrefix )
 
     if( this.running )
     { // keep the requests going
-      $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&i='+lastIndex, success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+      this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&i='+lastIndex, success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
     }
   };
 
@@ -74,7 +75,19 @@ function CometVisu( urlPrefix )
    */
   this.handleError=function(xhr,str,excptObj)
   {
-    alert('Error! "'+str+'"');
+    if( this.running && xhr.readyState != 4 ) // ignore error when connection is irrelevant
+    {
+      var readyState = 'UNKNOWN';
+      switch( xhr.readyState )
+      {
+        case 0: readyState = 'UNINITIALIZED'; break;
+        case 1: readyState = 'LOADING'      ; break;
+        case 2: readyState = 'LOADED'       ; break;
+        case 3: readyState = 'INTERACTIVE'  ; break;
+        case 4: readyState = 'COMPLETED'    ; break;
+      }
+      alert('Error! Type: "'+str+'" ExceptionObject: "'+excptObj+'" readyState: '+readyState);
+    }
   }
   this.handleComplete=function(xhr,str)
   {
@@ -124,6 +137,8 @@ function CometVisu( urlPrefix )
   this.stop = function()
   {
     this.running = false;
+    this.xhr.abort();
+    //alert('this.stop');
   };
 
   /**
