@@ -1,5 +1,5 @@
-HEAD
-====
+0.5.1
+=====
 
 - New Feature: editor (easily extensible)
 - New Feature: generic slide widget
@@ -13,6 +13,7 @@ HEAD
 - changed procedures for creating new widgets
 - added design "discreet", set as default
 - changed name for styles; new name: styling / stylings
+- NewFeature: the design can be set in the config - and even changed at runtime
 
 0.5.0
 =====
