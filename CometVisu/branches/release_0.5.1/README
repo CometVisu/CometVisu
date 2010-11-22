@@ -1,9 +1,0 @@
-The CometVisu is a package that contains two important parts.
-
-One is the CometVisu Client, a JavaScript file that establishes the
-communication to a Backend on a server that talks the CometVisu Protocoll.
-This file might be used on its own together with a custom visualisation.
-
-The other part is the CometVisu Visualisation. It is a template engine
-that creates an easy to use, web based visualisation. All the necessary
-configuration is done in a simple XML file.
