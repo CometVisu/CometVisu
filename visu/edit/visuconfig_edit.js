@@ -29,6 +29,7 @@ var dptCache;
 jQuery(document).ready(function() {
 
     jQuery("div#addwidgetcontrol").bind("click", function() {
+        $("#addMaster").triggerHandler("cleanup");
         jQuery("#addMaster").trigger("show").find("#add_type").triggerHandler("change");
     });
 
@@ -123,6 +124,7 @@ jQuery(document).ready(function() {
 
 
     jQuery(".editcontrol").live("click", function() {
+        $("#addMaster").triggerHandler("cleanup");
 
         var widget = $(this).parents("div.widget");
         if (widget.is(".pagelink")) {
@@ -171,6 +173,7 @@ jQuery(function() {
         .bind("cleanup", function() {
             $(this).removeData("widgetdata");
             jQuery(this).find("input[type=text]").val("");
+            $("#addMaster div.inputs").empty(); 
             $("#pages").find(".inedit").removeClass("inedit");
         })
         .find("#add_cancel").click(function() {
@@ -420,7 +423,7 @@ function isInputValid(val, type) {
             break;
         case "datatype":
         case "numeric":
-            return Boolean(val.match(/^\d+([\.,]\d+)?$/g));
+            return Boolean(val.match(/^-?\d+([\.,]\d+)?$/g));
             break;
         case "string":
         case "uri":
