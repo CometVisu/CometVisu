@@ -172,7 +172,13 @@ function setup_page( xml )
   // adapt width for pages to show
   handleResize();
 
-  // start with the mappings
+  // start with the plugins
+  $( 'pages > plugins plugin', xml ).each( function(i){
+    var name = $(this).attr('name');
+    $( 'head' ).append( '<script src="plugins/' + name + '/structure_plugin.js" type="text/javascript"></script>' );
+  } );
+
+  // then the mappings
   $( 'pages > mappings mapping', xml ).each( function(i){
     var name = $(this).attr('name');
     mappings[ name ] = {};
