@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <pages design="pure">
+  <plugins>
+    <plugin name="colorChooser" />
+  </plugins>
   <mappings>
     <mapping name="OpenClose">
       <entry value="0">zu</entry>
@@ -45,6 +48,7 @@
     <info address="12/4/250"  datatype="9" styling="BluePurpleRed">Slide Info</info>
     <info address="12/4/250"  datatype="9" styling="BluePurpleRed" mapping="Sign">Slide Info</info>
     <designtoggle>Change design</designtoggle>
+    <colorChooser address_r="1/2/13" address_g="1/2/14" address_b="1/2/15" datatype="5.001">A colorChooser</colorChooser>
     <line />
     <image src="icon/comet_128_ff8000.png" >Ein Bild</image>
     <image src="icon/comet_128_ff8000.png" />
