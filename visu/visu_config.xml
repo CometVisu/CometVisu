@@ -49,6 +49,9 @@
     <info address="12/4/250"  datatype="9" styling="BluePurpleRed" mapping="Sign">Slide Info</info>
     <designtoggle>Change design</designtoggle>
     <colorChooser address_r="1/2/13" address_g="1/2/14" address_b="1/2/15" datatype="5.001">A colorChooser</colorChooser>
+    <info address="1/2/13"  datatype="5.001" >R</info>
+    <info address="1/2/14"  datatype="5.001" >G</info>
+    <info address="1/2/15"  datatype="5.001" >B</info>
     <line />
     <image src="icon/comet_128_ff8000.png" >Ein Bild</image>
     <image src="icon/comet_128_ff8000.png" />
