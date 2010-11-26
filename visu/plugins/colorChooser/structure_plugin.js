@@ -35,9 +35,9 @@ VisuDesign_Custom.prototype.addCreator("colorChooser", {
                         'type'    : 'toggle'
                     })
                     .farbtastic( function(color){
-                      var r = parseInt(color.substring(1, 3), 16);
-                      var g = parseInt(color.substring(3, 5), 16);
-                      var b = parseInt(color.substring(5, 7), 16);
+                      var r = parseInt(color.substring(1, 3), 16) * 100 / 255;
+                      var g = parseInt(color.substring(3, 5), 16) * 100 / 255;
+                      var b = parseInt(color.substring(5, 7), 16) * 100 / 255;
                       var a_r =  $(page).attr('address_r');
                       var a_g =  $(page).attr('address_g');
                       var a_b =  $(page).attr('address_b');
