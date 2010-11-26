@@ -1,4 +1,4 @@
-/* visudesign_custom.js (c) 2010 by Christian Mayer [CometVisu at ChristianMayer dot de]
+/* structure_custom.js (c) 2010 by Christian Mayer [CometVisu at ChristianMayer dot de]
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -19,7 +19,7 @@
  * This class defines all the custom changes to the visu
  */
 function VisuDesign_Custom() {};                // do NOT change here
-VisuDesign_Custom.prototype = new VisuDesign(); // do NOT chagen here
+VisuDesign_Custom.prototype = new VisuDesign(); // do NOT change here
 
 /**
  * Custom changes could go here and look e.g. like
