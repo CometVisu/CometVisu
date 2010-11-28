@@ -20,7 +20,7 @@
  * It's purpose is to change the design of the visu during runtime
  * to demonstrate all available
  */
-VisuDesign_Custom.prototype.addCreator("colorChooser", {
+VisuDesign_Custom.prototype.addCreator("colorchooser", {
       create: function( page, path ) {
                 var ret_val = $('<div class="widget" />');
                 ret_val.addClass( 'colorChooser' );
