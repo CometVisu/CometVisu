@@ -288,3 +288,11 @@ html[xmlns] .clearfix {
     height: 1%;
     /* End hide from IE-mac */
 }
+
+div#top, div#main, div#bottom {
+    display: block !important;
+}
+
+div#loading {
+    display: none !important;
+}
