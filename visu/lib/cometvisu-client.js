@@ -137,7 +137,7 @@ function CometVisu( urlPrefix )
   this.stop = function()
   {
     this.running = false;
-    this.xhr.abort();
+    if( this.xhr.abort ) this.xhr.abort();
     //alert('this.stop');
   };
 
