@@ -7,7 +7,7 @@ var lingua = function(element, param) {
         save_bad:       "Config not saved. Error: '%s'",
         value_required: "Field '%s' is required but empty. Please correct your input.",
         value_invalid:  "The value for field '%s' is invalid. Please correct your input.",
-        regexp_invalid: "There something wrong with the cable."
+        regexp_invalid: "There's something wrong with the cable."
     }
 
     if (typeof texts[element] == "undefined") {
@@ -335,9 +335,32 @@ jQuery(function() {
 
             var container = $("#addMaster div.inputs");
 
-            var dataObject = {
-                nodeName: jQuery("#addMaster #add_type").val()
-            };
+            // dataObject needs to be a real dom-object, so we need to go all the
+            // way through parsing an xml-string ...
+            var name = jQuery("#addMaster #add_type").val();
+            var text = container.find("#add_textContent:input").val();
+            var xml = "<" + name + ">" + text + "</" + name + ">";
+            var dataObject;
+
+            if (window.DOMParser) {
+                var parser = new DOMParser();
+                dataObject = parser.parseFromString(xml, "text/xml");
+            } else {
+                // Internet Explorer
+                dataObject = new ActiveXObject("Microsoft.XMLDOM");
+                dataObject.async="false";
+                dataObject.loadXML(xml);
+            }
+
+            dataObject = jQuery(dataObject.documentElement);
+            if (typeof (dataObject.nodeName) == "undefined" || dataObject.nodeName == "") {
+                dataObject.nodeName = name;
+            }
+            if (typeof (text) != "undefined"
+                && (typeof (dataObject.textContent) == "undefined" || dataObject.textContent == "")) {
+                dataObject.textContent = text;
+            }
+
 
             var error = false;
 
@@ -346,10 +369,6 @@ jQuery(function() {
                 var name;
                 if ($(this).closest("div.add_input").hasClass("attribute")) {
                     name = $(this).data("name");
-                } else if ($(this).closest("div.add_input").hasClass("content")) {
-                    name = "textContent";
-                    // preset text-content to be empty
-                    dataObject[name] = "";
                 }
 
                 if ($(this).val() != "") {
@@ -359,7 +378,7 @@ jQuery(function() {
                         // do not save
                         error = true;
                     }
-                    dataObject[name] = $(this).val();
+                    dataObject.attr(name, $(this).val());
                 } else if ($(this).data("required") === true) {
                     // do not save
                     alert(lingua("value_required", name));
