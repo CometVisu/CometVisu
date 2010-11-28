@@ -82,11 +82,12 @@ div#addMaster {
 
 .addwidget .editcontrols label {
     float: left;
-    width: 220px;
+    width: 180px;
 }
 
-.addwidget .editcontrols input, .addwidget .editcontrols select {
 
+.addwidget .editcontrols .input {
+    padding-left: 200px;
 }
 
 div.line {
