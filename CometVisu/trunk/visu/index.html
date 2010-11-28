@@ -13,16 +13,19 @@
     <script src="designs/structure_pure.js" type="text/javascript"></script>
     <script src="designs/structure_custom.js" type="text/javascript"></script>
     <script src="lib/templateengine.js" type="text/javascript"></script>
+    <style type="text/css">
+        .loading { display: none; }
+    </style>
   </head>
   <body>
-    <div id="top" style="display: none;">
+    <div id="top" class="loading">
       <div class="nav_path">-</div>
     </div>
-    <div id="main" style="width:900px;position:relative; overflow: hidden;"  style="display: none;">
+    <div id="main" style="width:900px;position:relative; overflow: hidden;" class="loading">
       <div id="pages" class="clearfix" style="width:20000em; position:relative;clear:both;"><!-- all pages will be inserted here -->
       </div>
     </div>
-    <div id="bottom" style="display: none;">
+    <div id="bottom" class="loading">
       <hr />
         <div class="footer">
         <img src="icon/comet_64_000000.png" alt="CometVisu" />
