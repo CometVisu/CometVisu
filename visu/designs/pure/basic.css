@@ -252,7 +252,7 @@ html[xmlns] .clearfix {
     /* End hide from IE-mac */
 }
 
-div#top, div#main, div#bottom {
+.loading {
     display: block !important;
 }
 

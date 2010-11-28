@@ -210,7 +210,9 @@ jQuery(function() {
 
                 var element = $("<div />").addClass("add_input").addClass("content")
                             .append($("<label />").attr("for", "add_textContent").html("text-content"))
-                            .append($("<input type=\"text\" id=\"add_textContent\"/>"));
+                            .append($("<div class=\"input\" />")
+                                .append($("<input type=\"text\" id=\"add_textContent\"/>"))
+                                );
                 if (typeof values["textContent"] != "undefined") {
                     element.find("input").val(values["textContent"]);
                 }
@@ -223,25 +225,41 @@ jQuery(function() {
 
             $.each(attributes, function (index, e) {
                 var element = $("<div />").addClass("add_input").addClass("attribute")
-                                    .append($("<label />").attr("for", "add_" + index).html(index));
+                                    .append($("<label />").attr("for", "add_" + index).html(index))
+                                    .append($("<div class=\"input\" />"));
+                var myElement = element.find("div.input");
 
                 switch (e.type) {
                     case "address":
-                        if (typeof addressesCache == undefined || addressesCache == false) {
-                            // appearantly we were unable to load the list of addresses from the server
-                            // we will provide an input-field instead
-                            element.append($("<input id=\"add_" + index + "\" />"));
-                            if (typeof values[index] != "undefined") {
-                                // pre-set the value
-                                element.find(":input").val(values[index]);
-                            }
-                        } else {
-                            element.append($("<select id=\"add_" + index + "\" />")
+                        // appearantly we were unable to load the list of addresses from the server
+                        // we will provide an input-field instead
+                        myElement.append($("<input id=\"add_" + index + "\" />"));
+                        if (typeof values[index] != "undefined") {
+                            // pre-set the value
+                            myElement.find(":input").val(values[index]);
+                        }
+
+                        if (typeof addressesCache != undefined && addressesCache != false) {
+                            var input = myElement.find("input");
+                            input.attr("disabled", "disabled");
+                            myElement.append($("<input type=\"checkbox\" name=\"enable_" + e.type + "\" checked=\"checked\" />")
+                                                .change(function() {
+                                                    if ($(this).attr("checked")) {
+                                                        input.attr("disabled", "disabled");
+                                                        myElement.find("select").show();
+                                                    } else {
+                                                        input.removeAttr("disabled");
+                                                        myElement.find("select").hide();
+                                                    }
+                                                })
+                                            );
+                            myElement.append($("<br />"));
+                            myElement.append($("<select id=\"add_" + index + "\" />")
                                             .append($("<option />").attr("value", "").html("-")));
 
-                            element.find("select:first").append(getAddressesObject());
+                            myElement.find("select:first").append(getAddressesObject());
 
-                            element.find("select").bind("change", function() {
+                            myElement.find("select").bind("change", function() {
                                 // on changing the address, the coresponding datatype-field is
                                 // automagically set
                                 var name = $(this).attr("id");
@@ -255,7 +273,7 @@ jQuery(function() {
                             });
 
                             if (typeof values[index] != "undefined") {
-                                element.find("option[value=" + values[index] + "]").attr("selected", "selected");
+                                myElement.find("option[value=" + values[index] + "]").attr("selected", "selected");
                             }
 
                         }
@@ -264,59 +282,67 @@ jQuery(function() {
                         if (typeof dptCache == undefined || dptCache == false) {
                             // appearantly we were unable to load the list of datatypes from the server
                             // we will provide an input-field instead
-                            element.append($("<input id=\"add_" + index + "\" />"));
+                            myElement.append($("<input id=\"add_" + index + "\" />"));
                             if (typeof values[index] != "undefined") {
                                 // pre-set the value
-                                element.find(":input").val(values[index]);
+                                myElement.find(":input").val(values[index]);
                             }
                         } else {
-                            element.append($("<select id=\"add_" + index + "\" />")
+                            myElement.append($("<select id=\"add_" + index + "\" />")
                                             .append($("<option />").attr("value", "").html("-")));
 
-                            element.find("select:first").append(getDPTObject());
+                            myElement.find("select:first").append(getDPTObject());
 
                             if (typeof values[index] != "undefined") {
-                                element.find("option[value=" + values[index] + "]").attr("selected", "selected");
+                                myElement.find("option[value=" + values[index] + "]").attr("selected", "selected");
                             }
 
                         }
                         break;
 
                     case "mapping":
-                        element.append($("<select id=\"add_mapping\" />")
+                        myElement.append($("<select id=\"add_mapping\" />")
                                         .append($("<option />").attr("value", "").html("-")));
                         jQuery.each(mappings, function(i, tmp) {
-                            element.find("select#add_mapping").append($("<option />").attr("value", i).html(i));
+                            myElement.find("select#add_mapping").append($("<option />").attr("value", i).html(i));
                         });
 
                         if (typeof values[index] != "undefined") {
-                            element.find("option[value=" + values[index] + "]").attr("selected", "selected");
+                            myElement.find("option[value=" + values[index] + "]").attr("selected", "selected");
                         }
 
                         break;
                         
                     case "styling":
-                        element.append($("<select id=\"add_styling\" />")
+                        myElement.append($("<select id=\"add_styling\" />")
                                         .append($("<option />").attr("value", "").html("-")));
                         jQuery.each(stylings, function(i, tmp) {
-                            element.find("select#add_styling").append($("<option />").attr("value", i).html(i));
+                            myElement.find("select#add_styling").append($("<option />").attr("value", i).html(i));
                         });
 
                         if (typeof values[index] != "undefined") {
-                            element.find("option[value=" + values[index] + "]").attr("selected", "selected");
+                            myElement.find("option[value=" + values[index] + "]").attr("selected", "selected");
                         }
 
                         break;
                     case "datatype":
                         break;
                     default:
-                        element.append($("<input type=\"text\" id=\"add_" +  index + "\" />"));
+                        myElement.append($("<input type=\"text\" id=\"add_" +  index + "\" />"));
 
                         if (typeof values[index] != "undefined") {
-                            element.find("input").val(values[index]);
+                            myElement.find("input").val(values[index]);
                         }
 
                         break;
+                }
+
+                if (element.find("select")[0]) {
+                    var select = element.find("select");
+                    select.change(function() {
+                        // update the input-field
+                        jQuery(this).parent().find("input").val(jQuery(this).val());
+                    })
                 }
 
                 element.find(":input")
@@ -365,7 +391,7 @@ jQuery(function() {
             var error = false;
 
             // alte Werte zwischenspeichern
-            container.find(":input").each(function() {
+            container.find(":input:visible").not("[name^=enable_]").each(function() {
                 var name;
                 if ($(this).closest("div.add_input").hasClass("attribute")) {
                     name = $(this).data("name");
