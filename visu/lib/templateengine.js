@@ -173,13 +173,13 @@ function setup_page( xml )
   handleResize();
 
   // start with the plugins
-  $( 'pages > plugins plugin', xml ).each( function(i){
+  $( 'meta > plugins plugin', xml ).each( function(i){
     var name = $(this).attr('name');
     $( 'head' ).append( '<script src="plugins/' + name + '/structure_plugin.js" type="text/javascript"></script>' );
   } );
 
   // then the mappings
-  $( 'pages > mappings mapping', xml ).each( function(i){
+  $( 'meta > mappings mapping', xml ).each( function(i){
     var name = $(this).attr('name');
     mappings[ name ] = {};
     $(this).find('entry').each( function(){
@@ -195,7 +195,7 @@ function setup_page( xml )
   });
 
   // then the stylings
-  $( 'pages > stylings styling', xml ).each( function(i){
+  $( 'meta > stylings styling', xml ).each( function(i){
     var name = $(this).attr('name');
     stylings[ name ] = {};
     $(this).find('entry').each( function(){

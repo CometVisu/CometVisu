@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <pages design="pure">
-  <plugins>
-    <plugin name="colorChooser" />
-  </plugins>
-  <mappings>
-    <mapping name="OpenClose">
-      <entry value="0">zu</entry>
-      <entry value="1">offen</entry>
-    </mapping>
-    <mapping name="OnOff">
-      <entry value="0">Aus</entry>
-      <entry value="1">An</entry>
-    </mapping>
-    <mapping name="Sign">
-      <entry range_min="-1e99" range_max="0">Negativ</entry>
-      <entry value="0">Null</entry>
-      <entry range_min="0" range_max="1e99">Positiv</entry>
-    </mapping>
-  </mappings>
-  <stylings>
-    <styling name="RedGreen">
-      <entry value="0">red</entry>
-      <entry value="1">green</entry>
-    </styling>
-    <styling name="GreenRed">
-      <entry value="0">green</entry>
-      <entry value="1">red</entry>
-    </styling>
-    <styling name="BluePurpleRed">
-      <entry range_min="-100" range_max="0"  >blue</entry>
-      <entry value="0"                       >purple</entry>
-      <entry range_min="0"    range_max="100">red</entry>
-    </styling>
-  </stylings>
+  <meta>
+    <plugins>
+      <plugin name="colorChooser" />
+    </plugins>
+    <mappings>
+      <mapping name="OpenClose">
+        <entry value="0">zu</entry>
+        <entry value="1">offen</entry>
+      </mapping>
+      <mapping name="OnOff">
+        <entry value="0">Aus</entry>
+        <entry value="1">An</entry>
+      </mapping>
+      <mapping name="Sign">
+        <entry range_min="-1e99" range_max="0">Negativ</entry>
+        <entry value="0">Null</entry>
+        <entry range_min="0" range_max="1e99">Positiv</entry>
+      </mapping>
+    </mappings>
+    <stylings>
+      <styling name="RedGreen">
+        <entry value="0">red</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="GreenRed">
+        <entry value="0">green</entry>
+        <entry value="1">red</entry>
+      </styling>
+      <styling name="BluePurpleRed">
+        <entry range_min="-100" range_max="0"  >blue</entry>
+        <entry value="0"                       >purple</entry>
+        <entry range_min="0"    range_max="100">red</entry>
+      </styling>
+    </stylings>
+  </meta>
   <page name="Übersicht" flavour="orange">
     <text align="center">Willkommen bei der CometVisu!</text>
     <toggle address="1/0/2"  datatype="1.001" response_address="1/0/2" mapping="OnOff" styling="RedGreen" >Terrase Licht</toggle>
@@ -48,10 +50,10 @@
     <info address="12/4/250"  datatype="9" styling="BluePurpleRed">Slide Info</info>
     <info address="12/4/250"  datatype="9" styling="BluePurpleRed" mapping="Sign">Slide Info</info>
     <designtoggle>Change design</designtoggle>
-    <colorChooser address_r="1/2/13" address_g="1/2/14" address_b="1/2/15" datatype="5.001">A colorChooser</colorChooser>
-    <info address="1/2/13"  datatype="5.001" >R</info>
-    <info address="1/2/14"  datatype="5.001" >G</info>
-    <info address="1/2/15"  datatype="5.001" >B</info>
+    <colorChooser address_r="1/2/59" address_g="1/2/60" address_b="1/2/61" datatype="5.001">A colorChooser</colorChooser>
+    <info address="1/2/59"  datatype="5.001" >R</info>
+    <info address="1/2/60"  datatype="5.001" >G</info>
+    <info address="1/2/61"  datatype="5.001" >B</info>
     <line />
     <image src="icon/comet_128_ff8000.png" >Ein Bild</image>
     <image src="icon/comet_128_ff8000.png" />
