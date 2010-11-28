@@ -47,11 +47,34 @@
 <xsd:element name="pages">
     <xsd:complexType>
         <xsd:choice minOccurs="0" maxOccurs="unbounded">
-            <xsd:element ref="mappings" />
-            <xsd:element ref="stylings" />
+            <xsd:element ref="meta" />
             <xsd:element ref="page" minOccurs="1" />
         </xsd:choice>
         <xsd:attribute name="design" type="xsd:string" use="required" />
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="meta">
+    <xsd:complexType>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element ref="plugins" />
+            <xsd:element ref="mappings" />
+            <xsd:element ref="stylings" />
+        </xsd:choice>
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="plugins">
+    <xsd:complexType>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element ref="plugin" />
+        </xsd:choice>
+    </xsd:complexType>
+</xsd:element>
+^
+<xsd:element name="plugin">
+    <xsd:complexType>
+        <xsd:attribute name="name" type="xsd:string" use="required" />
     </xsd:complexType>
 </xsd:element>
 
