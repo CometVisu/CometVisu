@@ -169,8 +169,6 @@ function setup_page( xml )
   var design = $( 'pages', xml ).attr('design');
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + design + '/basic.css" />' );
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + design + '/mobile.css" media="only screen and (max-device-width: 480px)" />' );
-  // adapt width for pages to show
-  handleResize();
 
   // start with the plugins
   $( 'meta > plugins plugin', xml ).each( function(i){
@@ -209,6 +207,22 @@ function setup_page( xml )
       }
     });
   });
+
+  // then the status bar
+  $( 'meta > statusbar status', xml ).each( function(i){
+    var type      = $(this).attr('type');
+    var condition = $(this).attr('condition');
+    var sPath = window.location.pathname;
+    var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+    var editMode = 'edit_config.html' == sPage;
+    if( editMode  && '!edit' == condition ) return;
+    if( !editMode && 'edit'  == condition ) return;
+    //$('.footer').append( $(this.textContent) );
+    $('.footer').html( $('.footer').html() + this.textContent );
+  });
+
+  // adapt width for pages to show
+  handleResize();
 
   // and now setup the pages
   var page = $( 'pages > page', xml )[0]; // only one page element allowed...
