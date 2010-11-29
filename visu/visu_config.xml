@@ -2,7 +2,7 @@
 <pages design="pure">
   <meta>
     <plugins>
-      <plugin name="colorChooser" />
+      <plugin name="colorchooser" />
     </plugins>
     <mappings>
       <mapping name="OpenClose">
@@ -34,6 +34,24 @@
         <entry range_min="0"    range_max="100">red</entry>
       </styling>
     </stylings>
+    <statusbar>
+      <status type="html">
+        <![CDATA[
+          <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          - <a href=".">Reload</a>
+        ]]>
+      </status>
+      <status type="html" condition="!edit">
+        <![CDATA[
+          - <a href="edit_config.html">Edit</a>
+        ]]>
+      </status>
+      <status type="html" condition="edit">
+        <![CDATA[
+          - <a href=".">normal Mode</a>
+        ]]>
+      </status>
+    </statusbar>
   </meta>
   <page name="Übersicht" flavour="orange">
     <text align="center">Willkommen bei der CometVisu!</text>
@@ -50,7 +68,7 @@
     <info address="12/4/250"  datatype="9" styling="BluePurpleRed">Slide Info</info>
     <info address="12/4/250"  datatype="9" styling="BluePurpleRed" mapping="Sign">Slide Info</info>
     <designtoggle>Change design</designtoggle>
-    <colorChooser address_r="1/2/59" address_g="1/2/60" address_b="1/2/61" datatype="5.001">A colorChooser</colorChooser>
+    <colorchooser address_r="1/2/59" address_g="1/2/60" address_b="1/2/61" datatype="5.001">A colorChooser</colorchooser>
     <info address="1/2/59"  datatype="5.001" >R</info>
     <info address="1/2/60"  datatype="5.001" >G</info>
     <info address="1/2/61"  datatype="5.001" >B</info>
