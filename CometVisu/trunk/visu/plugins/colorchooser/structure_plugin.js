@@ -60,6 +60,6 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
 /**
  * Include the needed stuff
  */
-$( 'head' ).append( '<script type="text/javascript" src="plugins/colorChooser/farbtastic/farbtastic.js"></script>' );
-$( 'head' ).append( '<link rel="stylesheet" href="plugins/colorChooser/farbtastic/farbtastic.css" type="text/css" />' );
+$( 'head' ).append( '<script type="text/javascript" src="plugins/colorchooser/farbtastic/farbtastic.js"></script>' );
+$( 'head' ).append( '<link rel="stylesheet" href="plugins/colorchooser/farbtastic/farbtastic.css" type="text/css" />' );
 
