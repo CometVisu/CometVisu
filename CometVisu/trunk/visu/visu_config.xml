@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages design="pure">
+<pages design="pure"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="visu_config.xsd">
   <meta>
     <plugins>
       <plugin name="colorchooser" />
@@ -49,6 +51,11 @@
       <status type="html" condition="edit">
         <![CDATA[
           - <a href=".">normal Mode</a>
+        ]]>
+      </status>
+      <status type="html">
+        <![CDATA[
+          - <a href="check_config.php">Check Config</a>
         ]]>
       </status>
     </statusbar>

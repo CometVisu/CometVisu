@@ -71,7 +71,7 @@
         </xsd:choice>
     </xsd:complexType>
 </xsd:element>
-^
+
 <xsd:element name="plugin">
     <xsd:complexType>
         <xsd:attribute name="name" type="xsd:string" use="required" />
