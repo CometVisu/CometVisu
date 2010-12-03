@@ -32,6 +32,22 @@ function VisuDesign() {
         return this.creators[name];
     }
 
+    this.popups = {};
+
+    this.addPopup = function (name, object) {
+        this.popups[name] = object;
+        this.popups[name].type = name;
+console.log( name );
+console.log( this.popups[name] );
+    }
+
+    this.getPopup = function(name) {
+        if (typeof this.popups[name] == undefined) {
+            return this.popups.unknown;
+        }
+        return this.popups[name];
+    }
+
     /**
      * The creators object contians all widgets creators and their mappin to the
      * XML config file tags
@@ -325,6 +341,28 @@ function VisuDesign() {
         },
         content: {type: "string", required: true}
   });
+
+  this.addPopup('unknown', {
+    create: function( attributes ) {
+                var ret_val = $('<div class="popup" />');
+                ret_val.addClass( this.type );
+                if( attributes['title'] ) ret_val.append( $('<div class="head">' + attributes['title'] + '</div>') );
+                var content = '';
+                if( attributes['content'] ) content = attributes['content'];
+                ret_val.append( '<div class="main">' + content + '</div>' );
+                return ret_val;
+            },
+    attributes: {
+            title:      {type: 'string', required: false},
+            content:    {type: 'string', required: false},
+            width:      {type: 'string', required: false},
+            height:     {type: 'string', required: false}
+            }
+  });
+
+  this.addPopup('info'   , this.getPopup('unknown') );
+  this.addPopup('warning', this.getPopup('unknown') );
+  this.addPopup('error'  , this.getPopup('unknown') ) ;
 
   this.switchAction = function() {
     var data = $(this).data();
