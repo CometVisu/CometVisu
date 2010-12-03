@@ -4,6 +4,7 @@ HEAD
 - New Feature: Plugins
 - New Plugin: colorChooser (based on farbtastic)
 - New Feature: user settable status bar (i.e. footer)
+- New Feature: iframe widget
 
 0.5.1
 =====
