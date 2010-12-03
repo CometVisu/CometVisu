@@ -294,6 +294,27 @@ function VisuDesign() {
         content: {type: "string", required: true}
   });
 
+  this.addCreator("iframe", {
+        create: function( page, path ) {
+                var ret_val = $('<div class="widget" />');
+                ret_val.addClass( 'iframe' );
+                ret_val.append( '<div class="label">' + page.textContent + '</div>' );
+                var style = '';
+                if( $(page).attr('width') ) style += 'width:' + $(page).attr('width') + ';';
+                if( $(page).attr('height') ) style += 'height:' + $(page).attr('height') + ';';
+                if( style != '' ) style = 'style="' + style + '"';
+                var actor = '<div class="actor"><iframe src="' +$(page).attr('src') + '" ' + style + '></iframe></div>';
+                ret_val.append( $(actor) ); // abuse "each" to call in context...
+                return ret_val;
+            },
+        attributes: {
+            src:        {type: "uri", required: true},
+            width:      {type: "string", required: false},
+            height:     {type: "string", required: false},
+        },
+        content: {type: "string", required: false}
+  });
+
   this.addCreator("unknown", {
         create: function( page, path ) {
                 var ret_val = $('<div class="widget" />');
