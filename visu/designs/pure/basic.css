@@ -259,3 +259,29 @@ html[xmlns] .clearfix {
 div#loading {
     display: none !important;
 }
+
+.popup {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  top: 5%;
+  left: 5%;
+  z-index: 100;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 1px solid #fff;
+  opacity: 0.75;
+}
+
+.popup div {
+  margin: 4px;
+}
+
+.popup div.head {
+  border-bottom: 1px solid;
+}
+
+.popup.error {
+  background: #800000;
+  border: #f00;
+}
