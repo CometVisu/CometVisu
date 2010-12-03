@@ -218,6 +218,16 @@
     </xsd:simpleContent>
 </xsd:complexType>
 
+<xsd:complexType name="iframe">
+    <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+            <xsd:attribute name="src" type="uri" use="required" />
+            <xsd:attribute name="width" type="dimension" />
+            <xsd:attribute name="height" type="dimension" />
+        </xsd:extension>
+    </xsd:simpleContent>
+</xsd:complexType>
+
 <xsd:complexType name="break" />
 <xsd:complexType name="line" />
 

@@ -87,6 +87,9 @@
     <break />
     <image src="http://www.yr.no/place/Germany/Bavaria/Holzkirchen~2899676/meteogram.png" refresh="1800" />
     <line />
+    <page name="iframe Test">
+      <iframe src="http://www.cometvisu.org" width="500px" height="500px"></iframe>
+    </page>
     <info address="1/0/41"  datatype="1.000" mapping="OnOff">Treppenlicht</info>
     <page name="Fenster Kontakte" flavour="blue">
       <info address="4/3/10"  datatype="1" mapping="OpenClose" styling="GreenRed">Bad EG Reed Fenster</info>
