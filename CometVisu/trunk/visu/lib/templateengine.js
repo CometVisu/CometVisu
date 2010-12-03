@@ -296,6 +296,28 @@ function updateTopNavigation()
   }
 }
 
+/**
+ * Show a popup of type "type".
+ * The attributes is an type dependend object
+ * This function returnes a jQuery object that points to the whole popup,
+ * so it's content can be easily extended
+ */
+function showPopup( type, attributes )
+{
+  //var retval = design.popups[ type ].create( attributes ); //page, path );
+  //return retval;
+  return design.popups[ type ].create( attributes ).appendTo('body');
+}
+
+/**
+ * Remove the popup.
+ * The parameter is the jQuery object returned by the showPopup function
+ */
+function removePopup( jQuery_object )
+{
+  jQuery_object.remove();
+}
+
 /****************************************************************************/
 /* FIXME - Question: should this belong to the VisuDesign object so that it */
 /* is possible to overload?!?                                               */
