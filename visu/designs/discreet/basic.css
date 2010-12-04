@@ -296,3 +296,48 @@ html[xmlns] .clearfix {
 div#loading {
     display: none !important;
 }
+
+
+.popup,
+.popup_background {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  top: 5%;
+  left: 5%;
+}
+
+.popup {
+  z-index: 101;
+  background: transparent;
+}
+
+
+.popup_background {
+  z-index: 100;
+  border-color: #020202;
+  border-style: solid;
+  border-width: 2px 0px 0px 2px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  background: #101010;
+  opacity: .98;
+}
+
+.popup div {
+  margin: 4px;
+}
+
+.popup div.head {
+  border-bottom: 1px solid;
+}
+
+.popup_background.error {
+  background: #800000;
+  border: #f00;
+}
+
+.clickable {
+    cursor: pointer;
+}

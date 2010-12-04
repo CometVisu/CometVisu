@@ -326,7 +326,7 @@ console.log( this.popups[name] );
         attributes: {
             src:        {type: "uri", required: true},
             width:      {type: "string", required: false},
-            height:     {type: "string", required: false},
+            height:     {type: "string", required: false}
         },
         content: {type: "string", required: false}
   });
@@ -344,12 +344,22 @@ console.log( this.popups[name] );
 
   this.addPopup('unknown', {
     create: function( attributes ) {
-                var ret_val = $('<div class="popup" />');
+                var ret_val = $('<div class="popup" /><div class=\"popup_background\" />');
                 ret_val.addClass( this.type );
-                if( attributes['title'] ) ret_val.append( $('<div class="head">' + attributes['title'] + '</div>') );
-                var content = '';
-                if( attributes['content'] ) content = attributes['content'];
-                ret_val.append( '<div class="main">' + content + '</div>' );
+
+                if (attributes.title) {
+                    ret_val.filter(".popup").append( $('<div class="head" />').append(attributes.title));
+                }
+
+                if( attributes.content) {
+                    ret_val.filter(".popup").append( $('<div class="main" />').append(attributes.content));
+                }
+
+                ret_val.bind("click", function() {
+                    ret_val.hide();
+                    return false;
+                })
+
                 return ret_val;
             },
     attributes: {
@@ -360,9 +370,9 @@ console.log( this.popups[name] );
             }
   });
 
-  this.addPopup('info'   , this.getPopup('unknown') );
-  this.addPopup('warning', this.getPopup('unknown') );
-  this.addPopup('error'  , this.getPopup('unknown') ) ;
+  this.addPopup('info'   , $.extend(true, {}, this.getPopup('unknown')) );
+  this.addPopup('warning', $.extend(true, {}, this.getPopup('unknown')) );
+  this.addPopup('error'  , $.extend(true, {}, this.getPopup('unknown')) ) ;
 
   this.switchAction = function() {
     var data = $(this).data();

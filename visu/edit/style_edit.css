@@ -11,6 +11,7 @@
     text-align: center;
     float: none !important;
     padding: 0 !important;
+    z-index: 5;
 }
 
 .editcontrol {
