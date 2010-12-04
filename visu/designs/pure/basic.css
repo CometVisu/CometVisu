@@ -260,12 +260,22 @@ div#loading {
     display: none !important;
 }
 
-.popup {
+.popup,
+.popup_background {
   position: absolute;
   width: 90%;
   height: 90%;
   top: 5%;
   left: 5%;
+}
+
+.popup {
+  z-index: 101;
+  background: transparent;
+}
+
+
+.popup_background {
   z-index: 100;
   -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
   background: #000;
@@ -281,7 +291,11 @@ div#loading {
   border-bottom: 1px solid;
 }
 
-.popup.error {
+.popup_background.error {
   background: #800000;
   border: #f00;
+}
+
+.clickable {
+    cursor: pointer;
 }
