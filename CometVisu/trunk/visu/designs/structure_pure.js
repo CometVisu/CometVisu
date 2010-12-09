@@ -37,8 +37,6 @@ function VisuDesign() {
     this.addPopup = function (name, object) {
         this.popups[name] = object;
         this.popups[name].type = name;
-console.log( name );
-console.log( this.popups[name] );
     }
 
     this.getPopup = function(name) {
@@ -356,7 +354,7 @@ console.log( this.popups[name] );
                 }
 
                 ret_val.bind("click", function() {
-                    ret_val.hide();
+                    ret_val.remove();
                     return false;
                 })
 
