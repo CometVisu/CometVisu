@@ -306,6 +306,8 @@ function showPopup( type, attributes )
 {
   //var retval = design.popups[ type ].create( attributes ); //page, path );
   //return retval;
+  if( !design.popups[ type ] ) type = 'unknown';
+
   return design.popups[ type ].create( attributes ).appendTo('body');
 }
 
