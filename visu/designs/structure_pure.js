@@ -342,7 +342,8 @@ function VisuDesign() {
 
   this.addPopup('unknown', {
     create: function( attributes ) {
-                var ret_val = $('<div class="popup" /><div class=\"popup_background\" />');
+                var repositon = false;
+                var ret_val = $('<div class="popup" style="display:none"/><div class="popup_background" style="display:none" />').appendTo('body');
                 ret_val.addClass( this.type );
 
                 if (attributes.title) {
@@ -353,18 +354,59 @@ function VisuDesign() {
                     ret_val.filter(".popup").append( $('<div class="main" />').append(attributes.content));
                 }
 
+                if( attributes.width ) {
+                  ret_val.width( attributes.width );
+                  reposition = true;
+                }
+
+                if( attributes.height ) {
+                  ret_val.height( attributes.height );
+                  reposition = true;
+                }
+
+                var anchor = {x: -1, y: -1, w: 0, h: 0};
+                var align;
+                if( attributes.position )
+                {
+                  if( attributes.position.offset )
+                  {
+                    var offset = attributes.position.offset();
+                    anchor.x = offset.left;
+                    anchor.y = offset.top;
+                    anchor.w = attributes.position.width();
+                    anchor.h = attributes.position.height();
+                  } else {
+                    if( attributes.position.hasOwnProperty('x') ) anchor.x = attributes.position.x;
+                    if( attributes.position.hasOwnProperty('y') ) anchor.y = attributes.position.y;
+                    if( attributes.position.hasOwnProperty('w') ) anchor.w = attributes.position.w;
+                    if( attributes.position.hasOwnProperty('h') ) anchor.h = attributes.position.h;
+                    if( anchor.w == 0 && anchor.h == 0 ) align = 5;
+                  }
+                }
+                if( attributes.align !== undefined ) align = attributes.align;
+                var placement = placementStrategy( 
+                  anchor, 
+                  { w:ret_val.outerWidth(), h:ret_val.outerHeight() }, 
+                  { w:$(window).width()   , h:$(window).height()    },
+                  align
+                );
+                ret_val.css( 'left', placement.x );
+                ret_val.css( 'top' , placement.y );
+                
                 ret_val.bind("click", function() {
                     ret_val.remove();
                     return false;
                 })
 
+                ret_val.css( 'display', 'block' );
                 return ret_val;
             },
     attributes: {
             title:      {type: 'string', required: false},
             content:    {type: 'string', required: false},
             width:      {type: 'string', required: false},
-            height:     {type: 'string', required: false}
+            height:     {type: 'string', required: false},
+            position:   {type: 'object', required: false}  // either {x:,y:} or an jQuery object
             }
   });
 
@@ -399,3 +441,76 @@ function VisuDesign() {
     alert('this.refreshAction');
   }
 };
+
+/**
+ * Figure out best placement of popup.
+ * A preference can optionally be passed. The position is that of the numbers
+ * on the numeric keypad. I.e. a value of "6" means centered above the anchor.
+ * A value of "0" means centered to the page
+ */
+function placementStrategy( anchor, popup, page, preference )
+{
+  var position_order = [ 8, 2, 6, 4, 9, 3, 7, 1, 5, 0 ];
+  if( preference !== undefined ) position_order.unshift( preference );
+  
+  for( pos in position_order )
+  {
+    var xy = {};
+    switch(position_order[pos])
+    {
+      case 0: // page center - will allways work
+        return { x: (page.w-popup.w)/2, y: (page.h-popup.h)/2 };
+      
+      case 1:
+        xy.x = anchor.x - popup.w;
+        xy.y = anchor.y + anchor.h;
+        break;
+      
+      case 2:
+        xy.x = anchor.x + anchor.w/2 - popup.w/2;
+        xy.y = anchor.y + anchor.h;
+        break;
+      
+      case 3:
+        xy.x = anchor.x + anchor.w;
+        xy.y = anchor.y + anchor.h;
+        break;
+      
+      case 4:
+        xy.x = anchor.x - popup.w;
+        xy.y = anchor.y + anchor.h/2 - popup.h/2;
+        break;
+      
+      case 5:
+        xy.x = anchor.x + anchor.w/2 - popup.w/2;
+        xy.y = anchor.y + anchor.h/2 - popup.h/2;
+        break;
+      
+      case 6:
+        xy.x = anchor.x + anchor.w;
+        xy.y = anchor.y + anchor.h/2 - popup.h/2;
+        break;
+      
+      case 7:
+        xy.x = anchor.x - popup.w;
+        xy.y = anchor.y - popup.h;
+        break;
+      
+      case 8:
+        xy.x = anchor.x + anchor.w/2 - popup.w/2;
+        xy.y = anchor.y - popup.h;
+        break;
+      
+      case 9:
+        xy.x = anchor.x + anchor.w;
+        xy.y = anchor.y - popup.h;
+        break;
+    }
+    
+    // test if that solution is valid
+    if( xy.x >= 0 && xy.y >= 0 && xy.x+popup.w<=page.w && xy.y+popup.h<=page.h )
+      return xy;
+  }
+  
+  return { x: 0, y: 0 }; // sanity return
+}
