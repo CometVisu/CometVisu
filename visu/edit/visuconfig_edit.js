@@ -100,6 +100,10 @@ jQuery(document).ready(function() {
         var options = {};
         $("#addMaster").find("select#add_type").empty();
         jQuery.each(design.creators, function (index, e) {
+            if (index == "unknown") {
+                // "unknown" is not a good choice for a new widget :)
+                return;
+            }
             $("#addMaster").find("select#add_type").append(
                 $("<option />").attr("value", index).html(index)
             );
