@@ -32,6 +32,7 @@ function formatInt(number,minlen)
 function decodeDPT(hexstr,dpt)
 {
   if( null === dpt ) return hexstr;
+  if( undefined === dpt ) return hexstr;
   var val;
   var parts = dpt.split('.');
   dpt = parseInt( parts[0] );
