@@ -1,4 +1,4 @@
-/* structure_plugin.js (c) 2010 by Christian Mayer [CometVisu at ChristianMayer dot de]
+/* structure_plugin.js (c) 2010 by Julian Hartmann [julian dot hartmann at gmail dot com]
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -16,9 +16,8 @@
 */
 
 /**
- * This is a custom function that extends the available widgets.
- * It's purpose is to change the design of the visu during runtime
- * to demonstrate all available
+ * This plugins integrates flot (diagrams in javascript) into the visualization.
+ * server-side data-storage is rrd
  */
 $("body").append("<script type=\"text/javascript\" src=\"plugins/diagram/flot/jquery.flot.js\"></script>");
 
@@ -59,13 +58,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         diagram.data("unit", $p.attr("unit") || "");
         diagram.data("series", $p.attr("series") || "day");
         diagram.data("label", page.textContent);
-
-        if ($(page).attr("refresh")) {
-            // reload regularly
-            window.setInterval(function(actor) {
-                $(diagram).triggerHandler("refresh.widget");
-                }, $p.attr("refresh") * 1000, actor);
-        }
+        diagram.data("refresh", $p.attr("refresh"));
 
         refreshDiagram(diagram, {});
 
@@ -117,13 +110,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         diagram.data("unit", $p.attr("unit") || "");
         diagram.data("series", $p.attr("series") || "day");
         diagram.data("label", page.textContent);
-
-        if ($(page).attr("refresh")) {
-            // reload regularly
-            window.setInterval(function(actor) {
-                $(actor).triggerHandler("refresh.widget");
-                }, $p.attr("refresh") * 1000, actor);
-        }
+        diagram.data("refresh", $p.attr("refresh"));
 
         var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
 
@@ -154,11 +141,12 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
 
 function refreshDiagram(diagram, flotoptions, data) {
     var diagram = $(diagram);
-    var c = jQuery.extend(true, {series: diagram.data("series")}, data || {});
+    var config = jQuery.extend(true, {series: diagram.data("series")}, data || {});
 
     var unit = diagram.data("unit");
     var rrd = diagram.data("rrd");
     var label = diagram.data("label");
+    var refresh = diagram.data("refresh");
 
     var series = {
         day:    {label: "day", res: "300", start: "-1day", end: "now"},
@@ -194,17 +182,29 @@ function refreshDiagram(diagram, flotoptions, data) {
         },
         flotoptions);
 
-    var s = series[c.series];
+    var s = series[config.series];
 
-    // init
-    $.ajax({
-        url: "/cgi-bin/rrdfetch?rrd=" + rrd + ".rrd&ds=AVERAGE&start=end" + s.start + "&end=" + s.end + "&res=" + s.res,
-        dataType: "json",
-        type: "GET",
-        success: function(data) {
-            $.plot(diagram, [{data: data}], options);
+    if (s) {
+        // init
+        $.ajax({
+            url: "/cgi-bin/rrdfetch?rrd=" + rrd + ".rrd&ds=AVERAGE&start=end" + s.start + "&end=" + s.end + "&res=" + s.res,
+            dataType: "json",
+            type: "GET",
+            success: function(data) {
+                $.plot(diagram, [{data: data}], options);
+            }
+        });
+
+        if (typeof (refresh) != "undefined" && refresh) {
+            // reload regularly
+            window.setTimeout(function(diagram, flotoptions, data) {
+                refreshDiagram(diagram, flotoptions, data)
+                }, refresh * 1000, diagram, flotoptions, data);
         }
-    });
+    }
+
+
+
 
     return false;
 
