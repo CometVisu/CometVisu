@@ -101,7 +101,7 @@ if ($.getUrlVar("config")) {
 $(document).ready(function() {
   // get the data once the page was loaded
   $.ajaxSetup({cache: false});
-  window.setTimeout("$.get( 'visu_config" + configSuffix + ".xml', setup_page );", 200);
+  window.setTimeout("$.get( 'visu_config" + configSuffix + ".xml', parseXML );", 200);
 
   // disable text selection - it's annoying on a touch screen!
   if($.browser.mozilla)
@@ -161,8 +161,7 @@ function handleResize()
 }
 $( window ).bind( 'resize', handleResize );
 
-function setup_page( xml )
-{
+function parseXML(xml) {
   // erst mal den Cache für AJAX-Requests wieder aktivieren
   $.ajaxSetup({cache: true});
 
@@ -171,9 +170,33 @@ function setup_page( xml )
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + design + '/mobile.css" media="only screen and (max-device-width: 480px)" />' );
 
   // start with the plugins
+  var pluginsToLoad = 0;
   $( 'meta > plugins plugin', xml ).each( function(i){
+      pluginsToLoad += 1;
     var name = $(this).attr('name');
-    $( 'head' ).append( '<script src="plugins/' + name + '/structure_plugin.js" type="text/javascript"></script>' );
+    var html_doc = document.getElementsByTagName('body')[0];
+    js = document.createElement('script');
+    js.setAttribute('type', 'text/javascript');
+    js.setAttribute('src', 'plugins/' + name + '/structure_plugin.js');
+    html_doc.appendChild(js);
+
+    js.onreadystatechange = function () {
+        if (js.readyState == 'complete') {
+            pluginsToLoad -= 1;
+            if (pluginsToLoad <= 0) {
+                setup_page(xml);
+            }
+        }
+    }
+
+    js.onload = function () {
+        pluginsToLoad -= 1;
+        if (pluginsToLoad <= 0) {
+            setup_page(xml);
+        }
+    }
+    return false;
+
   } );
 
   // then the mappings
@@ -224,10 +247,19 @@ function setup_page( xml )
   // adapt width for pages to show
   handleResize();
 
+    if (pluginsToLoad <= 0) {
+        setup_page(xml);
+    }
+
+
+}
+
+function setup_page( xml )
+{
   // and now setup the pages
   var page = $( 'pages > page', xml )[0]; // only one page element allowed...
 
-  create_pages( page, '0' );
+  create_pages(page, '0');
 
   // setup the scrollable
   main_scroll = $('#main').scrollable({keyboard: false, touch: false}).data('scrollable');
