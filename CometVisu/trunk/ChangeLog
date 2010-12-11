@@ -1,3 +1,12 @@
+HEAD
+====
+
+- ...
+
+Config changes:
+The format of the config file has changed. Please update the existing file to:
+- ...
+
 0.5.2
 =====
 
