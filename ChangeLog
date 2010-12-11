@@ -6,6 +6,8 @@ HEAD
 Config changes:
 The format of the config file has changed. Please update the existing file to:
 - ...
+- New Design: "discreet_sand": dark text, light background
+- New Design: "discreet_slim": more widgets per line for bigger screens
 
 0.5.2
 =====
