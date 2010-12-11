@@ -299,3 +299,13 @@ div#loading {
 .clickable {
     cursor: pointer;
 }
+
+.diagram_inline {
+    width: 320px;
+    height: 180px;
+}
+
+.diagram_preview {
+    width: 320px;
+    height: 2em;
+}
