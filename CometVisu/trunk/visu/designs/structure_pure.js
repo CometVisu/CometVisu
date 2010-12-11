@@ -125,9 +125,10 @@ function VisuDesign() {
                     'datatype': $(page).attr('datatype'),
                     'mapping' : $(page).attr('mapping'),
                     'styling' : $(page).attr('styling')
-                } ) );
+                } ).bind('_'+$(page).attr('address'), this.update ) );
                 return ret_val;
             },
+        update: defaultUpdate,
         attributes: {
             address:    {type: "address", required: true},
             datatype:   {type: "datatype", required: true},
@@ -163,10 +164,16 @@ function VisuDesign() {
                     'max'     : max,
                     'step'    : step,
                     'type'    : 'dim'
-                }).slider({step:step,min:min,max:max, animate: true,start:slideStart,change:slideChange});//slide:slideAction});
-
+                }).bind('_'+$(page).attr('address'), this.update ) 
+                  .slider({step:step,min:min,max:max, animate: true,start:slideStart,change:slideChange}/*slide:slideAction}*/);
                 return ret_val;
-            },
+        },
+        update: function(e,d) { 
+                var element = $(this);
+                var value = decodeDPT( d, element.data('datatype') );
+                element.data( 'value', value );
+                element.slider('value', value);
+        },
         attributes: {
             address:    {type: "address", required: true},
             datatype:   {type: "datatype", required: true},
@@ -201,8 +208,15 @@ function VisuDesign() {
                     'mapping' : $(page).attr('mapping'),
                     'styling' : $(page).attr('styling'),
                     'type'    : 'toggle'
-                } ).bind('click',switchAction) );
+                } ).bind('click',switchAction)
+                   .bind('_'+$(page).attr('address'), this.update ) );
                 return ret_val;
+            },
+        update: function(e,d) { 
+                var element = $(this);
+                var value = defaultUpdate( e, d, element );
+                element.removeClass( value == '0' ? 'switchPressed' : 'switchUnpressed' );
+                element.addClass(    value == '0' ? 'switchUnpressed' : 'switchPressed' );
             },
         attributes: {
             address:    {type: "address", required: true},
@@ -513,4 +527,37 @@ function placementStrategy( anchor, popup, page, preference )
   }
   
   return { x: 0, y: 0 }; // sanity return
+}
+
+
+function defaultUpdate( e, data, passedElement ) 
+{
+  var element = passedElement || $(this);
+  var value = decodeDPT( data, element.data('datatype') );
+  element.data( 'value', value );
+  element.find('.value').text( map( value, element ) );
+
+  var styling = element.data('styling');
+  if( styling && stylings[styling] && (stylings[styling][value] || stylings[styling]['range']) )
+  {
+    if( stylings[styling]['range'] ) value = parseFloat( value );
+    element.removeClass();
+    if( stylings[styling][value] )
+    {
+      element.addClass( 'actor ' + stylings[styling][value] );
+    } else {
+      var range = stylings[styling]['range'];
+      var not_found = true;
+      for( var min in range )
+      {
+        if( min > value ) continue;
+        if( range[min][0] < value ) continue; // check max
+        element.addClass( 'actor ' + range[min][1] );
+        not_found = false;
+        break;
+      }
+      if( not_found ) element.addClass( 'actor' );
+    }
+  }
+  return value;
 }
