@@ -30,48 +30,7 @@ visu.update = function( json ) // overload the handler
 {
   for( key in json )
   {
-    var GA = 'GA' + key.split('/').join('_');
-    var elements = $( '.' + GA );
-    for( i = 0; i < elements.length; i++ )
-    {
-      var element = $( elements[i] );
-      var value = decodeDPT( json[key], element.data('datatype') );
-      element.data( 'value', value );
-      $('.value', element).text( map( value, element ) );
-
-      var styling = element.data('styling');
-      if( styling && stylings[styling] && (stylings[styling][value] || stylings[styling]['range']) )
-      {
-        if( stylings[styling]['range'] ) value = parseFloat( value );
-        element.removeClass();
-        if( stylings[styling][value] )
-        {
-          element.addClass( 'actor ' + GA + ' ' + stylings[styling][value] );
-        } else {
-          var range = stylings[styling]['range'];
-          var not_found = true;
-          for( var min in range )
-          {
-            if( min > value ) continue;
-            if( range[min][0] < value ) continue; // check max
-            element.addClass( 'actor ' + GA + ' ' + range[min][1] );
-            not_found = false;
-            break;
-          }
-          if( not_found ) element.addClass( 'actor ' + GA );
-        }
-      }
-      switch( element.data( 'type' ) )
-      { 
-        case 'toggle':
-          element.removeClass( value == '0' ? 'switchPressed' : 'switchUnpressed' );
-          element.addClass(    value == '0' ? 'switchUnpressed' : 'switchPressed' );
-          break;
-        case 'slide':
-        case 'dim':
-          element.slider( 'value', value ); // only update when necessary
-      }
-    }
+    $.event.trigger( '_' + key, json[key] );
   }
 }
 visu.user = 'demo_user'; // example for setting a user
