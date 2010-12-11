@@ -27,26 +27,63 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 var label = '<div class="label">' + page.textContent + '</div>';
                 var actor = '<div class="actor">';
                 actor += '</div>';
+                var a_r =  $(page).attr('address_r');
+                var a_g =  $(page).attr('address_g');
+                var a_b =  $(page).attr('address_b');
+                var datatype =  $(page).attr('datatype');
                 ret_val.append(label)
                     .append($(actor)
                     .data({
-                        'mapping' : $(page).attr('mapping'),
-                        'styling' : $(page).attr('styling'),
-                        'type'    : 'toggle'
+                        //'mapping' : $(page).attr('mapping'),
+                        //'styling' : $(page).attr('styling'),
+                        'datatype': datatype, //jQuery(page).attr('datatype'), // use jQuery as '$' dosn't work here?!?
+                        'value_r' : 0,
+                        'value_g' : 0,
+                        'value_b' : 0,
+                        'type'    : 'colorChooser'
                     })
                     .farbtastic( function(color){
                       var r = parseInt(color.substring(1, 3), 16) * 100 / 255;
                       var g = parseInt(color.substring(3, 5), 16) * 100 / 255;
                       var b = parseInt(color.substring(5, 7), 16) * 100 / 255;
-                      var a_r =  $(page).attr('address_r');
-                      var a_g =  $(page).attr('address_g');
-                      var a_b =  $(page).attr('address_b');
-                      var datatype =  $(page).attr('datatype');
                       visu.write( a_r, r, datatype );
                       visu.write( a_g, g, datatype );
                       visu.write( a_b, b, datatype );
-                    })) ;
+                    })
+                    .bind('_'+$(page).attr('address_r'), this.update_r )
+                    .bind('_'+$(page).attr('address_g'), this.update_g )
+                    .bind('_'+$(page).attr('address_b'), this.update_b ) );
                 return ret_val;
+          },
+      update_r: function(e,d) { 
+                var element = $(this);
+                var value = decodeDPT( d, element.data('datatype') );
+                element.data( 'value_r', value );
+                function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
+                var color = toHex( element.data( 'value_r' )*255/100 )
+                          + toHex( element.data( 'value_g' )*255/100 )
+                          + toHex( element.data( 'value_b' )*255/100 );
+                jQuery.farbtastic( element ).setColor( '#' + color );
+          },
+      update_g: function(e,d) { 
+                var element = $(this);
+                var value = decodeDPT( d, element.data('datatype') );
+                element.data( 'value_g', value );
+                function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
+                var color = toHex( element.data( 'value_r' )*255/100 )
+                          + toHex( element.data( 'value_g' )*255/100 )
+                          + toHex( element.data( 'value_b' )*255/100 );
+                jQuery.farbtastic( element ).setColor( '#' + color );
+          },
+      update_b: function(e,d) { 
+                var element = $(this);
+                var value = decodeDPT( d, element.data('datatype') );
+                element.data( 'value_b', value );
+                function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
+                var color = toHex( element.data( 'value_r' )*255/100 )
+                          + toHex( element.data( 'value_g' )*255/100 )
+                          + toHex( element.data( 'value_b' )*255/100 );
+                jQuery.farbtastic( element ).setColor( '#' + color );
           },
       attributes: {
             address_r:  {type: "address", required: true},
