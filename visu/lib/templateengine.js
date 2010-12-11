@@ -195,8 +195,6 @@ function parseXML(xml) {
             setup_page(xml);
         }
     }
-    return false;
-
   } );
 
   // then the mappings
