@@ -45,10 +45,6 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
             diagram.css("height", $p.attr("height"));
         }
 
-        $("#" + id, actor).css({width: w, height: h});
-
-        //$("#" + id, actor).css({paddingBottom: "1em"});
-
         ret_val.append(label).append(actor);
 
         diagram.data("id", id);
