@@ -35,16 +35,14 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         var ret_val = $('<div class="widget" />');
         ret_val.addClass( 'diagram' );
         var label = '<div class="label">' + page.textContent + '</div>';
-        var actor = $("<div class=\"actor\"><div id=\"" + id + "\">loading...</div></div>");
+        var actor = $("<div class=\"actor\"><div class=\"diagram_inline\" id=\"" + id + "\">loading...</div></div>");
         var diagram = $("#" + id, actor);
 
-        var w = "240px";
-        var h = "180px";
         if ($p.attr("width")) {
-            w = $p.attr("width");
+            diagram.css("width", $p.attr("width"));
         }
         if ($p.attr("height")) {
-            h = $p.attr("height");
+            diagram.css("height", $p.attr("height"));
         }
 
         $("#" + id, actor).css({width: w, height: h});
@@ -89,19 +87,15 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         var ret_val = $('<div class="widget" />');
         ret_val.addClass( 'diagram' );
         var label = '<div class="label">' + page.textContent + '</div>';
-        var actor = $("<div class=\"actor\"><div id=\"" + id + "\">loading...</div></div>");
+        var actor = $("<div class=\"actor\"><div class=\"diagram_preview\" id=\"" + id + "\">loading...</div></div>");
         var diagram = $("#" + id, actor);
 
-        var w = "240px";
-        var h = "2em";
         if ($p.attr("width")) {
-            w = $p.attr("width");
+            diagram.css("width", $p.attr("width"));
         }
         if ($p.attr("height")) {
-            h = $p.attr("height");
+            diagram.css("height", $p.attr("height"));
         }
-
-        diagram.css({width: w, height: h});
 
         ret_val.append(label).append(actor);
 
@@ -138,6 +132,9 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
     content: {type: "string", required: true}
 });
 
+diagramColors = {
+    data: $("<span class='link'><a href='#' /></a>").find("a").css("color")
+};
 
 function refreshDiagram(diagram, flotoptions, data) {
     var diagram = $(diagram);
@@ -191,7 +188,7 @@ function refreshDiagram(diagram, flotoptions, data) {
             dataType: "json",
             type: "GET",
             success: function(data) {
-                $.plot(diagram, [{data: data}], options);
+                $.plot(diagram, [{color: diagramColors.data, data: data}], options);
             }
         });
 

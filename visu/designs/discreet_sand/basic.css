@@ -1,14 +1,14 @@
-@font-face { font-family: Liberation; src:url(fonts/liberationsans-regular.ttf); }
+@font-face { font-family: Liberation; src:url(fonts/liberationsans.ttf); }
 @font-face { font-family: Liberation; font-weight: bold; src:url(fonts/liberationsans-bold.ttf); }
 
 body 
 { 
-  color: white;
-  font-family: Liberation;
+  color: #453420; /*#2F2A20;*/
+  font-family: Arial, Liberation;
   font-size: 5.5mm;
   overflow: hidden;
   margin:0;
-  background: #1d1d1d; /* url(images/body_bg.png) repeat-x; */
+  background: #CFC8B5; /* url(images/body_bg.png) repeat-x; */
 }
 
 h1
@@ -20,8 +20,8 @@ h1
 body hr
 {
   clear:both;
-  color: #81664b;
-  background-color: #81664b;
+  color: #7F735F;
+  background-color: #7F735F;
   height: 1px;
   border:none;
   padding:0px;
@@ -29,7 +29,7 @@ body hr
 }
 
 #pages hr {
- border: 0; height: 30px; margin: 0 .1em;
+ border: 0; height: 30px; margin: 0 .5%;
  background: transparent url(images/hr_bg.png) 50% repeat-x;
  clear: both;
 }
@@ -42,26 +42,27 @@ body br
 
 div#top {
     padding-top: 8px;
-    border-top: 3px solid #1d1d1d;
-    border-bottom: 1px solid #0a0a0a;
-    background-color: #121212;
-    padding-bottom: 2px;
+    border-top: 3px solid #BAAF98;
+    background: #165D7E url(images/nav_bg.png) bottom repeat-x;
+    padding-bottom: 8px;
 }
 
 .page h1 {
     margin-top: 0;
-    padding-top: 1em;
-    background: #121212 url(images/head_bg.png) scroll repeat-x bottom;
+    padding-top: .1em;
+    background: #CFC8B5;
+    color: #2F2A20;
+    /*background: #7F735F url(images/head_bg.png) scroll repeat-x bottom;*/
 }
 
 .nav_path 
 {
-  color: #81664b;
+  color: #EFEBE0; /*#81664b;*/
   margin-left: 15px;
 }
 .nav_path a
 {
-  color: white;
+  color: #EFEBE0; /*#3F3327;*/
   text-decoration:none;
 }
 
@@ -80,14 +81,14 @@ div#top {
   margin: .2em;
   padding: 0.3em;
  /* border:yellow 1px solid; */
-  border-color: #020202;
+  border-color: #7F735F;
   border-style: solid;
   border-width: 2px 0px 0px 2px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
   min-height: 2em;
-  background-color: #101010;
+  background-color: #BAAF98;
 }
 
 .text > div,
@@ -129,11 +130,11 @@ div#top {
 
 .green.switchPressed div, .green.switchUnpressed div{
     background: transparent url(images/dot_green.png) no-repeat center center;
-    color: white !important;
+    color: #3F2F1F !important;
 }
 .red.switchPressed div, .red.switchUnpressed div{
     background: transparent url(images/dot_red.png) no-repeat center center;
-    color: white !important;
+    color: #3F2F1F !important;
 }
 
 
@@ -160,7 +161,7 @@ div#top {
 
 .link a
 {
-  color: #81664b;
+  color: #165d7e; /*#3F2F1F;*/
   width: 49%;
 }
 
@@ -178,15 +179,15 @@ div#top {
   -webkit-border-radius: 12px;
   border-radius: 12px;
   padding: 1px;
-  background: url(images/button_bg.png) #171717 repeat-x;
+  background: url(images/button_bg.png) #A79367 repeat-x;
 }
 
 .switchUnpressed
 {
   border-width:  1px 2px 2px 1px;
-  border-color: #282828 #010101 #010101 #282828;
+  border-color: #6C6251 #4F483B #4F483B #6C6251;
   margin-top: 0px;
-  background-color: #3A3A3A;
+  background-color: #EFE6D1;
   background-position: center +2px;
 }
 .switchUnpressed div, .switchPressed div
@@ -202,7 +203,7 @@ div#top {
 .switchPressed
 {
   border-width:  2px 1px 1px 2px;
-  border-color: #010101 #282828 #282828 #010101;
+  border-color: #4F483B #6C6251 #6C6251 #4F483B;
   margin-top: 1px;
   background-position: center -2px;
 }
@@ -247,8 +248,8 @@ div#top {
   margin-left: 10px;
   margin-left: 1em;
   margin-top: 0.5em;
-  border-color:  #010101 #282828 #282828 #010101;
-  background: url(images/gradient.png) #a7a7a7 repeat-y;
+  border-color: #4F483B #6C6251 #6C6251 #4F483B;
+  background: url(images/gradient.png) #F8EFC6 repeat-y;
 }
 
 .widget .ui-slider-handle
@@ -258,9 +259,9 @@ div#top {
   -webkit-border-radius: 12px;
   border-radius: 12px;
   padding: 1px;
-  background: url(images/button_bg.png) #171717 repeat-x;
+  background: url(images/button_bg.png) #A79367 repeat-x;
   border-width:  1px 2px 2px 1px;
-  border-color: #282828 #010101 #010101 #282828;
+  border-color: #6C6251 #4F483B #4F483B #6C6251;
 }
 /* Clearfix */
 .clearfix:after {
@@ -325,13 +326,13 @@ div#loading {
 
 .popup_background {
   z-index: 100;
-  border-color: #020202;
+  border-color: #7F735F;
   border-style: solid;
   border-width: 2px 0px 0px 2px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
-  background: #101010;
+  background: #BAAF98;
   opacity: .98;
 }
 
@@ -358,6 +359,10 @@ div#loading {
 }
 
 .diagram_preview {
-    width: 240px;
+    width: 320px;
     height: 2em;
+}
+
+.tickLabel {
+    color: #453420;
 }
