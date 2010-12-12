@@ -38,7 +38,8 @@
     <statusbar>
       <status type="html"><![CDATA[
           <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
-          - <a href=".">Reload</a>
+          - <a href=".?config=demo">Reload</a>
+          - <a href=".">Default Config</a>
         ]]></status>
       <status type="html" condition="!edit"><![CDATA[
           - <a href="edit_config.html">Edit</a>
@@ -52,7 +53,7 @@
     </statusbar>
   </meta>
   <page name="Übersicht">
-    <text align="center">Willkommen bei der CometVisu!</text>
+    <text align="center">CometVisu widget demo</text>
     <toggle address="1/0/2" datatype="1.001" response_address="1/0/2" mapping="OnOff" styling="RedGreen">Terrase Licht</toggle>
     <trigger address="1/0/2" datatype="1.001" value="0" mapping="OnOff">Terrase Licht 0</trigger>
     <trigger address="1/0/2" datatype="1.001" value="1" mapping="OnOff">Terrase Licht 1</trigger>
