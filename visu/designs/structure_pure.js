@@ -46,10 +46,10 @@ function VisuDesign() {
     return this.popups[name];
   }
 
-    /**
-     * The creators object contians all widgets creators and their mappin to the
-     * XML config file tags
-     */
+  /**
+   * The creators object contians all widgets creators and their mapping to the
+   * XML config file tags
+   */
   this.addCreator('page', {
     create: function( page, path ) {
       var $p = $(page);
@@ -296,54 +296,56 @@ function VisuDesign() {
     content:    { type: 'string'  , required: true  }
   });
 
-  this.addCreator("image", {
-        create: function( page, path ) {
-                var ret_val = $('<div class="widget" />');
-                ret_val.addClass( 'image' );
-                ret_val.append( '<div class="label">' + page.textContent + '</div>' );
-                var style = '';
-                if( $(page).attr('width') ) style += 'width:' + $(page).attr('width') + ';';
-                if( $(page).attr('height') ) style += 'height:' + $(page).attr('height') + ';';
-                if( style != '' ) style = 'style="' + style + '"';
-                var actor = '<div class="actor"><img src="' +$(page).attr('src') + '" ' + style + ' /></div>';
-                var refresh = $(page).attr('refresh') ? $(page).attr('refresh')*1000 : 0;
-                ret_val.append( $(actor).data( {
-                  'refresh': refresh
-                } ).each(setupRefreshAction) ); // abuse "each" to call in context...
-                return ret_val;
-            },
-        attributes: {
-            src:        {type: "uri", required: true},
-            width:      {type: "string", required: false},
-            height:     {type: "string", required: false},
-            refresh:    {type: "numeric", required: false}
-        },
-        content: {type: "string", required: false}
+  this.addCreator('image', {
+    create: function( page, path ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget image" />');
+      var labelElement = $p.find('label')[0];
+      ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
+      var style = '';
+      if( $p.attr('width' ) ) style += 'width:'  + $p.attr('width' ) + ';';
+      if( $p.attr('height') ) style += 'height:' + $p.attr('height') + ';';
+      if( style != '' ) style = 'style="' + style + '"';
+      var actor = '<div class="actor"><img src="' +$p.attr('src') + '" ' + style + ' /></div>';
+      var refresh = $p.attr('refresh') ? $p.attr('refresh')*1000 : 0;
+      ret_val.append( $(actor).data( {
+        'refresh': refresh
+      } ).each(setupRefreshAction) ); // abuse "each" to call in context...
+      return ret_val;
+    },
+    attributes: {
+      src:        { type: 'uri'    , required: true  },
+      width:      { type: 'string' , required: false },
+      height:     { type: 'string' , required: false },
+      refresh:    { type: 'numeric', required: false }
+    },
+    content: { type: 'string', required: false }
   });
 
-  this.addCreator("video", {
-        create: function( page, path ) {
-                var ret_val = $('<div class="widget" />');
-                ret_val.addClass( 'video' );
-                ret_val.append( '<div class="label">' + page.textContent + '</div>' );
-                var style = '';
-                if( $(page).attr('width') ) style += 'width:' + $(page).attr('width') + ';';
-                if( $(page).attr('height') ) style += 'height:' + $(page).attr('height') + ';';
-                if( style != '' ) style = 'style="' + style + '"';
-                var actor = '<div class="actor"><video src="' +$(page).attr('src') + '" ' + style + '  controls="controls" /></div>';
-                var refresh = $(page).attr('refresh') ? $(page).attr('refresh')*1000 : 0;
-                ret_val.append( $(actor).data( {
-                  'refresh': refresh
-                } ).each(setupRefreshAction) ); // abuse "each" to call in context...
-                return ret_val;
-            },
-        attributes: {
-            src:        {type: "uri", required: true},
-            width:      {type: "string", required: false},
-            height:     {type: "string", required: false},
-            refresh:    {type: "numeric", required: false}
-        },
-        content: {type: "string", required: true}
+  this.addCreator('video', {
+    create: function( page, path ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget video" />');
+      var labelElement = $p.find('label')[0];
+      ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
+      var style = '';
+      if( $p.attr('width' ) ) style += 'width:'  + $p.attr('width' ) + ';';
+      if( $p.attr('height') ) style += 'height:' + $p.attr('height') + ';';
+      if( style != '' ) style = 'style="' + style + '"';
+      var actor = '<div class="actor"><video src="' +$p.attr('src') + '" ' + style + '  controls="controls" /></div>';
+      var refresh = $p.attr('refresh') ? $p.attr('refresh')*1000 : 0;
+      ret_val.append( $(actor).data( {
+        'refresh': refresh
+      } ).each(setupRefreshAction) ); // abuse "each" to call in context...
+      return ret_val;
+    },
+    attributes: {
+      src:     { type: 'uri'    , required: true  },
+      width:   { type: 'string' , required: false },
+      height:  { type: 'string' , required: false },
+      refresh: { type: 'numeric', required: false }
+    },
+    content: { type: 'string', required: true }
   });
 
   this.addCreator('iframe', {
