@@ -27,9 +27,9 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 var label = '<div class="label">' + page.textContent + '</div>';
                 var actor = '<div class="actor">';
                 actor += '</div>';
-                var a_r =  $(page).attr('address_r');
-                var a_g =  $(page).attr('address_g');
-                var a_b =  $(page).attr('address_b');
+                var a_r = $(page).attr('address_r'); ga_list.push( a_r );
+                var a_g = $(page).attr('address_g'); ga_list.push( a_g );
+                var a_b = $(page).attr('address_b'); ga_list.push( a_b );
                 var datatype =  $(page).attr('datatype');
                 ret_val.append(label)
                     .append($(actor)
