@@ -61,6 +61,20 @@
       <address src="12/4/250" transform="DPT:9" />
       <address src="12/4/251" transform="DPT:9.001" />
     </info>
+    <switch mapping="OnOff" styling="RedGreen">
+      <label>Terrase Licht</label>
+      <address src="1/0/2" transform="DPT:1.001" />
+      <address src="12/4/253" transform="DPT:9.001" readonly="true" />
+    </switch>
+    <break />
+    <trigger value="0" mapping="OnOff">
+      <label>Terrase Licht 0</label>
+      <address src="1/0/2" transform="DPT:1.001" />
+    </trigger>
+    <trigger value="1" mapping="OnOff">
+      <label>Terrase Licht 1</label>
+      <address src="1/0/2" transform="DPT:1.001" />
+    </trigger>
     <line />
     <designtoggle>Change design</designtoggle>
   </page>
