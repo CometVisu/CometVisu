@@ -313,18 +313,6 @@ function removePopup( jQuery_object )
 /* FIXME - Question: should this belong to the VisuDesign object so that it */
 /* is possible to overload?!?                                               */
 /****************************************************************************/
-function switchAction()
-{
-  var data = $(this).data();
-  visu.write( data.GA, data.value=='1' ? '0' : '1', data.datatype ); 
-}
-
-function triggerAction()
-{
-  var data = $(this).data();
-  visu.write( data.GA, data.sendValue, data.datatype );
-}
-
 function refreshAction( target, src )
 {
   target.src = src + '&' + new Date().getTime();

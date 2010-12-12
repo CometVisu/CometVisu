@@ -119,7 +119,7 @@ function VisuDesign() {
         var src = this.getAttribute('src');
         var transform = this.getAttribute('transform');
         ga_list.push( src ) 
-        address[ '_' + src ] = transform;
+        address[ '_' + src ] = [transform];
       });
       var actor = '<div class="actor">';
       if( $p.attr('pre') ) actor += '<div>' + $p.attr('pre') + '</div>';
@@ -190,86 +190,110 @@ function VisuDesign() {
         content: {type: "string", required: true}
   });
 
-  this.addCreator("switch", {
-        create: function( page, path ) {
-                var ret_val = $('<div class="widget" />');
-                ret_val.addClass( 'switch' );
-                var label = '<div class="label">' + page.textContent + '</div>';
-                var response_address = $(page).attr('response_address');
-                ga_list.push( response_address );
-                var actor = '<div class="actor switchUnpressed">';
-                if( $(page).attr('pre') ) actor += $(page).attr('pre');
-                actor += '<div class="value">-</div>';
-                if( $(page).attr('post') ) actor += $(page).attr('post');
-                actor += '</div>';
-                ret_val.append( label ).append( $(actor).data( {
-                    'GA':       $(page).attr('address'),
-                    'datatype': $(page).attr('datatype'),
-                    'mapping' : $(page).attr('mapping'),
-                    'styling' : $(page).attr('styling'),
-                    'type'    : 'toggle'
-                } ).bind('click',switchAction)
-                   .bind('_'+$(page).attr('address'), this.update ) );
-                return ret_val;
-            },
-        update: function(e,d) { 
-                var element = $(this);
-                var value = defaultUpdate( e, d, element );
-                element.removeClass( value == '0' ? 'switchPressed' : 'switchUnpressed' );
-                element.addClass(    value == '0' ? 'switchUnpressed' : 'switchPressed' );
-            },
-        attributes: {
-            address:    {type: "address", required: true},
-            datatype:   {type: "datatype", required: true},
-            response_address:    {type: "address", required: true},
-            response_datatype:   {type: "datatype", required: true},
-            pre:        {type: "string", required: false},
-            post:       {type: "string", required: false},
-            mapping:    {type: "mapping", required: false},
-            styling:    {type: "styling", required: false}
-        },
-        content: {type: "string", required: true}
+  this.addCreator('switch', {
+    create: function( page, path ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget switch" />');
+      var labelElement = $p.find('label')[0];
+      var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+      var address = {};
+      $p.find('address').each( function(){ 
+        var src = this.getAttribute('src');
+        var transform = this.getAttribute('transform');
+        var readonly  = this.getAttribute('readonly');
+        ga_list.push( src ) 
+        address[ '_' + src ] = [ transform, readonly=='true' ];
+      });
+      var actor = '<div class="actor switchUnpressed">';
+      if( $p.attr('pre') ) actor += $p.attr('pre');
+      actor += '<div class="value">-</div>';
+      if( $p.attr('post') ) actor += $p.attr('post');
+      actor += '</div>';
+      var $actor = $(actor).data( {
+        'address' : address,
+        'mapping' : $p.attr('mapping'),
+        'styling' : $p.attr('styling'),
+        'type'    : 'switch'
+      } ).bind( 'click', this.action );
+      for( var addr in address ) $actor.bind( addr, this.update );
+      ret_val.append( label ).append( $actor );
+      return ret_val;
+    },
+    update: function(e,d) { 
+      var element = $(this);
+      var value = defaultUpdate( e, d, element );
+      element.removeClass( value == '0' ? 'switchPressed' : 'switchUnpressed' );
+      element.addClass(    value == '0' ? 'switchUnpressed' : 'switchPressed' );
+    },
+    action: function() {
+      var data = $(this).data();
+      for( var addr in data.address )
+      {
+        if( data.address[addr][1] == true ) continue; // skip read only
+        visu.write( addr.substr(1), data.value=='1' ? '0' : '1', data.address[addr][0].substr(4) );
+      }
+    },
+    attributes: {
+      pre:               { type: 'string'  , required: false },
+      post:              { type: 'string'  , required: false },
+      mapping:           { type: 'mapping' , required: false },
+      styling:           { type: 'styling' , required: false }
+    },
+    content:    { type: 'string', required: true }
   });
 
-  this.addCreator("toggle", this.getCreator("switch"));
-
-  this.addCreator("trigger", {
-        create: function( page, path ) {
-                var value = $(page).attr('value') ? $(page).attr('value') : 0;
-                var ret_val = $('<div class="widget" />');
-                ret_val.addClass( 'switch' );
-                var label = '<div class="label">' + page.textContent + '</div>';
-                var address = $(page).attr('address');
-                var actor = '<div class="actor switchUnpressed">';
-                if( $(page).attr('pre') ) actor += $(page).attr('pre');
-                var map = $(page).attr('mapping');
-                if( mappings[map] && mappings[map][value] )
-                  actor += '<div class="value">' + mappings[map][value] + '</div>';
-                else
-                  actor += '<div class="value">' + value + '</div>';
-                if( $(page).attr('post') ) actor += $(page).attr('post');
-                actor += '</div>';
-                ret_val.append( label ).append( $(actor).data( {
-                  'GA'      : $(page).attr('address'),
-                  'datatype': $(page).attr('datatype'),
-                  'mapping' : $(page).attr('mapping'),
-                  'styling' : $(page).attr('styling'),
-                  'type'    : 'trigger',
-                  'sendValue': value
-                } ).bind('click',triggerAction) );
-
-                return ret_val;
-            },
-        attributes: {
-            address:    {type: "address", required: true},
-            datatype:   {type: "datatype", required: true},
-            value:      {type: "string", required: true},
-            pre:        {type: "string", required: false},
-            post:       {type: "string", required: false},
-            mapping:    {type: "mapping", required: false},
-            styling:    {type: "styling", required: false}
-        },
-        content: {type: "string", required: true}
+  this.addCreator('trigger', {
+    create: function( page, path ) {
+      var $p = $(page);
+      var value = $p.attr('value') ? $p.attr('value') : 0;
+      var ret_val = $('<div class="widget switch" />');
+      var labelElement = $p.find('label')[0];
+      var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+      var address = {};
+      $p.find('address').each( function(){ 
+        var src = this.getAttribute('src');
+        var transform = this.getAttribute('transform');
+        var readonly  = this.getAttribute('readonly');
+        ga_list.push( src ) 
+        address[ '_' + src ] = [ transform, readonly=='true' ];
+      });
+      var actor = '<div class="actor switchUnpressed">';
+      if( $p.attr('pre') ) actor += $p.attr('pre');
+      var map = $p.attr('mapping');
+      if( mappings[map] && mappings[map][value] )
+        actor += '<div class="value">' + mappings[map][value] + '</div>';
+      else
+        actor += '<div class="value">' + value + '</div>';
+      if( $p.attr('post') ) actor += $p.attr('post');
+      actor += '</div>';
+      var $actor = $(actor).data( {
+        'address' : address,
+        'mapping' : $(page).attr('mapping'),
+        'styling' : $(page).attr('styling'),
+        'type'    : 'trigger',
+        'sendValue': value
+      } ).bind( 'click', this.action );
+      ret_val.append( label ).append( $actor );
+      return ret_val;
+    },
+    action: function() {
+      var data = $(this).data();
+      for( var addr in data.address )
+      {
+        if( data.address[addr][1] == true ) continue; // skip read only
+        visu.write( addr.substr(1), data.sendValue, data.address[addr][0].substr(4) );
+      }
+    },
+    attributes: {
+      address:  { type: 'address' , required: true  },
+      datatype: { type: 'datatype', required: true  },
+      value:    { type: 'string'  , required: true  },
+      pre:      { type: 'string'  , required: false },
+      post:     { type: 'string'  , required: false },
+      mapping:  { type: 'mapping' , required: false },
+      styling:  { type: 'styling' , required: false }
+    },
+    content:    { type: 'string'  , required: true  }
   });
 
   this.addCreator("image", {
@@ -428,12 +452,6 @@ function VisuDesign() {
   this.addPopup('warning', $.extend(true, {}, this.getPopup('unknown')) );
   this.addPopup('error'  , $.extend(true, {}, this.getPopup('unknown')) ) ;
 
-  this.switchAction = function() {
-    var data = $(this).data();
-  //  alert( data.GA + ' = ' + data.value );
-    visu.write( data.GA, data.value=='1' ? '0' : '1', data.datatype ); 
-  }
-
   this.slideAction = function(event,ui) {
   //alert(ui.value);
     var now = new Date().getTime();
@@ -542,7 +560,7 @@ function defaultUpdate( e, data, passedElement )
   var element = passedElement || $(this);
   //var datatype = element.data().address[ e.type ];
   //var value = decodeDPT( data, element.data('datatype') );
-  var value = transform( data, element.data().address[ e.type ] );
+  var value = transform( data, element.data().address[ e.type ][0] );
   element.data( 'value', value );
   element.find('.value').text( map( value, element ) );
 
