@@ -1,13 +1,20 @@
 HEAD
 ====
 
-- ...
-
-Config changes:
-The format of the config file has changed. Please update the existing file to:
-- ...
 - New Design: "discreet_sand": dark text, light background
 - New Design: "discreet_slim": more widgets per line for bigger screens
+- New config structure: To allow widgets to listen to multiple addresses
+  the structure of the config file had to change.
+
+Config changes:
+The format of the config file has changed. Please update the existing file, so:
+- the labels are now sub elements of type <label>
+- the addresses are now sub elements of type <address> with the attributes
+  - src: the addess on the bus
+  - transform (optional): the name of a function that translates between the
+    raw values on the bus and the internal JavaScript types
+  - readonly (optional): when set to "true" the widget will only listen on
+    that address and not send values when the widget gets changed
 
 0.5.2
 =====
