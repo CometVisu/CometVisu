@@ -145,49 +145,93 @@ function VisuDesign() {
     content:      { type: 'string' , required: true  }
   });
 
-  this.addCreator("slide", {
-        create: function( page, path ) {
-                var ret_val = $('<div class="widget" />');
-                ret_val.addClass( 'dim' );
-                var label = '<div class="label">' + page.textContent + '</div>';
-                ga_list.push( $(page).attr('address') );
-                var actor = $('<div class="actor">');
-                ret_val.append( label ).append( actor );
-                var min  = parseFloat( $(page).attr('min')  || 0   );
-                var max  = parseFloat( $(page).attr('max')  || 100 );
-                var step = parseFloat( $(page).attr('step') || 0.5 );
-                ret_val.find('.actor').data( {
-                    'events':   $(actor).data( 'events' ),
-                    'GA':       $(page).attr('address'),
-                    'datatype': $(page).attr('datatype'),
-                    'mapping' : $(page).attr('mapping'),
-                    'styling' : $(page).attr('styling'),
-                    'min'     : min,
-                    'max'     : max,
-                    'step'    : step,
-                    'type'    : 'dim'
-                }).bind('_'+$(page).attr('address'), this.update ) 
-                  .slider({step:step,min:min,max:max, animate: true,start:slideStart,change:slideChange}/*slide:slideAction}*/);
-                return ret_val;
-        },
-        update: function(e,d) { 
-                var element = $(this);
-                var value = decodeDPT( d, element.data('datatype') );
-                element.data( 'value', value );
-                element.slider('value', value);
-        },
-        attributes: {
-            address:    {type: "address", required: true},
-            datatype:   {type: "datatype", required: true},
-            response_address:    {type: "address", required: true},
-            response_datatype:   {type: "datatype", required: true},
-            min:        {type: "numeric", required: false},
-            max:        {type: "numeric", required: false},
-            step:       {type: "numeric", required: false},
-            mapping:    {type: "mapping", required: false},
-            styling:    {type: "styling", required: false}
-        },
-        content: {type: "string", required: true}
+  this.addCreator('slide', {
+    create: function( page, path ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget slide" />');
+      var labelElement = $p.find('label')[0];
+      var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+      var address = {};
+      $p.find('address').each( function(){ 
+        var src = this.getAttribute('src');
+        var transform = this.getAttribute('transform');
+        ga_list.push( src ) 
+        address[ '_' + src ] = [transform];
+      });
+      var actor = $('<div class="actor">');
+//      ret_val.append( label ).append( actor );
+      var min  = parseFloat( $p.attr('min')  || 0   );
+      var max  = parseFloat( $p.attr('max')  || 100 );
+      var step = parseFloat( $p.attr('step') || 0.5 );
+//      ret_val.find('.actor').data( {
+      var $actor = $(actor).data({
+        'events':   $(actor).data( 'events' ),
+        'address' : address,
+        'mapping' : $p.attr('mapping'),
+        'styling' : $p.attr('styling'),
+        'min'     : min,
+        'max'     : max,
+        'step'    : step,
+        'type'    : 'dim'
+      });//.bind('_'+$(page).attr('address'), this.update ) 
+        //.slider({step:step,min:min,max:max, animate: true,start:slideStart,change:slideChange}/*slide:slideAction}*/);
+      for( var addr in address ) $actor.bind( addr, this.update );
+      $actor.slider({
+        step:    step,
+        min:     min,
+        max:     max, 
+        animate: true,
+        start:   this.slideStart,
+        change:  this.slideChange
+      }/*slide:slideAction}*/);
+      ret_val.append( label ).append( $actor );
+      return ret_val;
+    },
+    update: function( e, data ) { 
+      var element = $(this);
+      var value = transform( data, element.data().address[ e.type ][0] );
+      element.data( 'value', value );
+      element.slider('value', value);
+    },
+/**
+ * Start a thread that regularily sends the silder position to the bus
+ */
+slideStart:function(event,ui)
+{
+  console.log('start');
+  var actor = $( '.actor', $(this).parent() );
+  actor.data( 'updateFn', setInterval( function(){
+    var data = actor.data();
+    for( var addr in data.address )
+    {
+      if( data.address[addr][1] == true ) continue; // skip read only
+      visu.write( addr.substr(1), ui.value, data.address[addr][0].substr(4) );
+    }
+  }, 250 ) ); // update KNX every 250 ms 
+},
+/**
+ * Delete the update thread and send the final value of the slider to the bus
+ */
+slideChange:function(event,ui)
+{
+  console.log('change');
+  var data = $(this).data();
+  clearInterval( data.updateFn, ui.value);
+  if( data.value != ui.value )
+  for( var addr in data.address )
+  {
+    if( data.address[addr][1] == true ) continue; // skip read only
+    visu.write( addr.substr(1), ui.value, data.address[addr][0].substr(4) );
+  }
+},
+    attributes: {
+      min:     { type: 'numeric', required: false },
+      max:     { type: 'numeric', required: false },
+      step:    { type: 'numeric', required: false },
+      mapping: { type: 'mapping', required: false },
+      styling: { type: 'styling', required: false }
+    },
+    content: { type: 'string', required: true }
   });
 
   this.addCreator('switch', {
