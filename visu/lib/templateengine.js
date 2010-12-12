@@ -233,7 +233,9 @@ function setup_page( xml )
 function create_pages( page, path )
 {
   var retval;
-  retval = design.creators[ page.nodeName ].create( page, path );
+  retval = (design.creators[ page.nodeName ]) ? 
+           design.creators[ page.nodeName ].create( page, path ) :
+           design.creators[ 'unknown'     ].create( page, path ) ;
 
     node = $(page).get(0);
     var attributes = {};
