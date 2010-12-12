@@ -76,6 +76,10 @@
       <address src="1/0/2" transform="DPT:1.001" />
     </trigger>
     <line />
+    <image src="icon/comet_128_ff8000.png" width="500px" height="46px"/>
+    <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
+      <label>Update every 10 sec</label>
+    </image>
     <designtoggle>Change design</designtoggle>
     <page name="iframe Test">
       <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
