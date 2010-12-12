@@ -328,35 +328,3 @@ function setupRefreshAction()
     $(this).data('interval', setInterval( function(){refreshAction(target, src);}, refresh ) );
   }
 }
-
-/**
- * The update thread to send the slider position to the bus
- */
-function slideUpdate(actor)
-{
-  var data = actor.data();
-  visu.write( data.GA, actor.slider('value'), data.datatype );
-}
-
-/**
- * Start a thread that regularily sends the silder position to the bus
- */
-function slideStart(event,ui)
-{
-  var actor = $( '.actor', $(this).parent() );
-  actor.data( 'updateFn', setInterval( function(){slideUpdate(actor);}, 250 ) ); // update KNX every 250 ms 
-}
-
-/**
- * Delete the update thread and send the final value of the slider to the bus
- */
-function slideChange(event,ui)
-{
-  var data = $( '.actor', $(this).parent() ).data();
-  var actor = $( '.actor', $(this).parent() );
-
-  clearInterval( data.updateFn, ui.value);
-
-  if( data.value != ui.value )
-    visu.write( data.GA, ui.value, data.datatype );
-}
