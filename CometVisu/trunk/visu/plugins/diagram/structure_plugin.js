@@ -184,7 +184,8 @@ function refreshDiagram(diagram, flotoptions, data) {
             dataType: "json",
             type: "GET",
             success: function(data) {
-                $.plot(diagram, [{color: diagramColors.data, data: data}], options);
+                var color = diagramColors.data || options.grid.color;
+                $.plot(diagram, [{color: color, data: data}], options);
             }
         });
 
