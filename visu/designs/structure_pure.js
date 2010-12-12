@@ -50,28 +50,28 @@ function VisuDesign() {
      * The creators object contians all widgets creators and their mappin to the
      * XML config file tags
      */
-    this.addCreator("page", {
-        create: function( page, path ) {
-                var ret_val = $('<div class="widget" />');
-                var style = ( '0' != path ) ? 'display:none' : '';
-                var name = $(page).attr('name'); //path += '_' + name;
-                var type = $(page).attr('type'); //text, 2d or 3d
-                ret_val.addClass( 'link' ).addClass("pagelink");
-                ret_val.append( '<a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a>' );
-                var childs = $(page).children();
-                var container = $( '<div class="clearfix"/>' );
-
-                container.append( '<h1>' + name + '</h1>' );
-                $( childs ).each( function(i){
-                    container.append( create_pages(childs[i], path + '_' + i ) );
-                } );
-                $('#pages').prepend( $( '<div class="page" id="' + path + '" style="'+style+';"/>' ).append(container) );
-                return ret_val;
-            },
-        attributes: {
-                name: {type: "string", required: true}
-        },
-        content: true
+  this.addCreator('page', {
+    create: function( page, path ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget" />');
+      var style = ( '0' != path ) ? 'display:none' : '';
+      var name = $p.attr('name');
+      var type = $p.attr('type'); //text, 2d or 3d
+      ret_val.addClass( 'link' ).addClass('pagelink');
+      ret_val.append( '<a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a>' );
+      var childs = $p.children();
+      var container = $( '<div class="clearfix"/>' );
+      container.append( '<h1>' + name + '</h1>' );
+      $( childs ).each( function(i){
+          container.append( create_pages(childs[i], path + '_' + i ) );
+      } );
+      $('#pages').prepend( $( '<div class="page" id="' + path + '" style="'+style+';"/>' ).append(container) );
+      return ret_val;
+    },
+    attributes: {
+      name: { type: 'string', required: true }
+    },
+    content: true
   });
 
   this.addCreator('line', {
@@ -346,25 +346,26 @@ function VisuDesign() {
         content: {type: "string", required: true}
   });
 
-  this.addCreator("iframe", {
-        create: function( page, path ) {
-                var ret_val = $('<div class="widget" />');
-                ret_val.addClass( 'iframe' );
-                ret_val.append( '<div class="label">' + page.textContent + '</div>' );
-                var style = '';
-                if( $(page).attr('width') ) style += 'width:' + $(page).attr('width') + ';';
-                if( $(page).attr('height') ) style += 'height:' + $(page).attr('height') + ';';
-                if( style != '' ) style = 'style="' + style + '"';
-                var actor = '<div class="actor"><iframe src="' +$(page).attr('src') + '" ' + style + '></iframe></div>';
-                ret_val.append( $(actor) ); // abuse "each" to call in context...
-                return ret_val;
-            },
-        attributes: {
-            src:        {type: "uri", required: true},
-            width:      {type: "string", required: false},
-            height:     {type: "string", required: false}
-        },
-        content: {type: "string", required: false}
+  this.addCreator('iframe', {
+    create: function( page, path ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget" />');
+      ret_val.addClass( 'iframe' );
+      ret_val.append( '<div class="label">' + page.textContent + '</div>' );
+      var style = '';
+      if( $p.attr('width' ) ) style += 'width:'  + $p.attr('width' ) + ';';
+      if( $p.attr('height') ) style += 'height:' + $p.attr('height') + ';';
+      if( style != '' ) style = 'style="' + style + '"';
+      var actor = '<div class="actor"><iframe src="' +$p.attr('src') + '" ' + style + '></iframe></div>';
+      ret_val.append( $(actor) ); // abuse "each" to call in context...
+      return ret_val;
+    },
+    attributes: {
+      src:    { type: 'uri'   , required: true  },
+      width:  { type: 'string', required: false },
+      height: { type: 'string', required: false }
+    },
+    content: { type: 'string', required: false }
   });
 
   this.addCreator('unknown', {
