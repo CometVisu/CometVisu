@@ -2,8 +2,8 @@
 <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="visu_config.xsd">
   <meta>
     <plugins>
-    <!--
       <plugin name="colorchooser"/>
+    <!--
       <plugin name="diagram"/>
     -->
     </plugins>
@@ -88,5 +88,15 @@
     <page name="iframe Test">
       <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
     </page>
+    <colorchooser>
+      <label>A colorChooser</label>
+      <address src="1/2/59" transform="DPT:5.001" color="r" />
+      <address src="1/2/60" transform="DPT:5.001" color="g" />
+      <address src="1/2/61" transform="DPT:5.001" color="b" />
+    </colorchooser>
+    <info><label>R</label><address src="1/2/59" transform="DPT:5.001" /></info>
+    <info><label>G</label><address src="1/2/60" transform="DPT:5.001" /></info>
+    <info><label>B</label><address src="1/2/61" transform="DPT:5.001" /></info>
+    <slide><label>B</label><address src="1/2/61" transform="DPT:5.001" /></slide>
   </page>
 </pages>
