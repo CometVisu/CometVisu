@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="visu_config.xsd">
+  <meta>
+    <plugins>
+    <!--
+      <plugin name="colorchooser"/>
+      <plugin name="diagram"/>
+    -->
+    </plugins>
+    <mappings>
+      <mapping name="OpenClose">
+        <entry value="0">zu</entry>
+        <entry value="1">offen</entry>
+      </mapping>
+      <mapping name="OnOff">
+        <entry value="0">Aus</entry>
+        <entry value="1">An</entry>
+      </mapping>
+      <mapping name="Sign">
+        <entry range_min="-1e99" range_max="0">Negativ</entry>
+        <entry value="0">Null</entry>
+        <entry range_min="0" range_max="1e99">Positiv</entry>
+      </mapping>
+    </mappings>
+    <stylings>
+      <styling name="RedGreen">
+        <entry value="0">red</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="GreenRed">
+        <entry value="0">green</entry>
+        <entry value="1">red</entry>
+      </styling>
+      <styling name="BluePurpleRed">
+        <entry range_min="-100" range_max="0">blue</entry>
+        <entry value="0">purple</entry>
+        <entry range_min="0" range_max="100">red</entry>
+      </styling>
+    </stylings>
+    <statusbar>
+      <status type="html"><![CDATA[
+          <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          - <a href=".?config=neu">Reload</a>
+          - <a href=".">Default Config</a>
+        ]]></status>
+      <status type="html" condition="!edit"><![CDATA[
+          - <a href="edit_config.html">Edit</a>
+        ]]></status>
+      <status type="html" condition="edit"><![CDATA[
+          - <a href=".">normal Mode</a>
+        ]]></status>
+      <status type="html"><![CDATA[
+          - <a href="check_config.php">Check Config</a>
+        ]]></status>
+    </statusbar>
+  </meta>
+  <page name="Übersicht">
+    <text align="center">CometVisu format neu</text>
+    <info styling="BluePurpleRed">
+      <label>Slide Info</label>
+      <address src="12/4/250" transform="DPT:9" />
+      <address src="12/4/251" transform="DPT:9.001" />
+    </info>
+    <line />
+    <designtoggle>Change design</designtoggle>
+  </page>
+</pages>

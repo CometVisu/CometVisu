@@ -110,34 +110,40 @@ function VisuDesign() {
   });
   
   this.addCreator("info", {
-        create: function( page, path ) {
-                var ret_val = $('<div class="widget" />');
-                ret_val.addClass( 'info' );
-                var label = '<div class="label">' + page.textContent + '</div>';
-                ga_list.push( $(page).attr('address') );
-                var actor = '<div class="actor">';
-                if( $(page).attr('pre') ) actor += '<div>' + $(page).attr('pre') + '</div>';
-                actor += '<div class="value">-</div>';
-                if( $(page).attr('post') ) actor += '<div>' + $(page).attr('post') + '</div>';
-                actor += '</div>';
-                ret_val.append( label ).append( $(actor).data( {
-                    'GA':       $(page).attr('address'),
-                    'datatype': $(page).attr('datatype'),
-                    'mapping' : $(page).attr('mapping'),
-                    'styling' : $(page).attr('styling')
-                } ).bind('_'+$(page).attr('address'), this.update ) );
-                return ret_val;
-            },
-        update: defaultUpdate,
-        attributes: {
-            address:    {type: "address", required: true},
-            datatype:   {type: "datatype", required: true},
-            pre:        {type: "string", required: false},
-            post:       {type: "string", required: false},
-            mapping:    {type: "mapping", required: false},
-            styling:    {type: "styling", required: false}
-        },
-        content: {type: "string", required: true}
+    create: function( page, path ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget info" />');
+      var labelElement = $p.find('label')[0];
+      var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+      var address = {};
+      $p.find('address').each( function(){ 
+        var src = this.getAttribute('src');
+        var transform = this.getAttribute('transform');
+        ga_list.push( src ) 
+        address[ '_' + src ] = transform;
+      });
+      var actor = '<div class="actor">';
+      if( $p.attr('pre') ) actor += '<div>' + $p.attr('pre') + '</div>';
+      actor += '<div class="value">-</div>';
+      if( $p.attr('post') ) actor += '<div>' + $p.attr('post') + '</div>';
+      actor += '</div>';
+      var $actor = $(actor).data({
+        'address' : address,
+        'mapping' : $p.attr('mapping'),
+        'styling' : $p.attr('styling')
+      });
+      for( var addr in address ) $actor.bind( addr, this.update );
+      ret_val.append( label ).append( $actor );
+      return ret_val;
+    },
+    update:       defaultUpdate,
+    attributes: {
+      pre:        {type: "string", required: false},
+      post:       {type: "string", required: false},
+      mapping:    {type: "mapping", required: false},
+      styling:    {type: "styling", required: false}
+    },
+    content:      {type: "string", required: true}
   });
 
   this.addCreator("shade", this.getCreator("info"));
@@ -529,11 +535,20 @@ function placementStrategy( anchor, popup, page, preference )
   return { x: 0, y: 0 }; // sanity return
 }
 
+/**
+ * temporary function till the transformation framework is implemented
+ */
+function transform( raw, type )
+{
+  return decodeDPT( raw, type.substr(4) ); // filter away the 'DPT:'
+}
 
 function defaultUpdate( e, data, passedElement ) 
 {
   var element = passedElement || $(this);
-  var value = decodeDPT( data, element.data('datatype') );
+  //var datatype = element.data().address[ e.type ];
+  //var value = decodeDPT( data, element.data('datatype') );
+  var value = transform( data, element.data().address[ e.type ] );
   element.data( 'value', value );
   element.find('.value').text( map( value, element ) );
 
