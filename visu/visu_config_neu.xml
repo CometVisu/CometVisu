@@ -77,5 +77,8 @@
     </trigger>
     <line />
     <designtoggle>Change design</designtoggle>
+    <page name="iframe Test">
+      <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
+    </page>
   </page>
 </pages>
