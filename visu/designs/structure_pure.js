@@ -403,7 +403,7 @@ slideChange:function(event,ui)
       if( $p.attr('height') ) style += 'height:' + $p.attr('height') + ';';
       if( style != '' ) style = 'style="' + style + '"';
       var actor = '<div class="actor"><iframe src="' +$p.attr('src') + '" ' + style + '></iframe></div>';
-      ret_val.append( $(actor) ); // abuse "each" to call in context...
+      ret_val.append( $(actor) ); 
       return ret_val;
     },
     attributes: {
@@ -417,7 +417,7 @@ slideChange:function(event,ui)
   this.addCreator('unknown', {
     create: function( page, path ) {
       var ret_val = $('<div class="widget" />');
-      ret_val.append( '<pre>' + page.textContent + '</pre>' );
+      ret_val.append( '<pre>unknown: ' + page.nodeName + '</pre>' );
       return ret_val;
     },
     attributes: {
