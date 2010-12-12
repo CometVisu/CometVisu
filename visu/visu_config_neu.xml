@@ -66,6 +66,10 @@
       <address src="1/0/2" transform="DPT:1.001" />
       <address src="12/4/253" transform="DPT:9.001" readonly="true" />
     </switch>
+    <slide min="-18" max="26">
+      <label>Slide</label>
+      <address src="12/4/250" transform="DPT:9" />
+    </slide>
     <break />
     <trigger value="0" mapping="OnOff">
       <label>Terrase Licht 0</label>
