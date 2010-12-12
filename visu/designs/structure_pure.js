@@ -115,7 +115,7 @@ function VisuDesign() {
                 ret_val.addClass( 'info' );
                 var label = '<div class="label">' + page.textContent + '</div>';
                 ga_list.push( $(page).attr('address') );
-                var actor = '<div class="actor GA' + $(page).attr('address').split('/').join('_') + '">';
+                var actor = '<div class="actor">';
                 if( $(page).attr('pre') ) actor += '<div>' + $(page).attr('pre') + '</div>';
                 actor += '<div class="value">-</div>';
                 if( $(page).attr('post') ) actor += '<div>' + $(page).attr('post') + '</div>';
@@ -149,7 +149,7 @@ function VisuDesign() {
                 ret_val.addClass( 'dim' );
                 var label = '<div class="label">' + page.textContent + '</div>';
                 ga_list.push( $(page).attr('address') );
-                var actor = $('<div class="actor GA' + $(page).attr('address').split('/').join('_') + '" />');
+                var actor = $('<div class="actor">');
                 ret_val.append( label ).append( actor );
                 var min  = parseFloat( $(page).attr('min')  || 0   );
                 var max  = parseFloat( $(page).attr('max')  || 100 );
@@ -197,7 +197,7 @@ function VisuDesign() {
                 var label = '<div class="label">' + page.textContent + '</div>';
                 var response_address = $(page).attr('response_address');
                 ga_list.push( response_address );
-                var actor = '<div class="actor GA' + response_address.split('/').join('_') + ' switchUnpressed">';
+                var actor = '<div class="actor switchUnpressed">';
                 if( $(page).attr('pre') ) actor += $(page).attr('pre');
                 actor += '<div class="value">-</div>';
                 if( $(page).attr('post') ) actor += $(page).attr('post');
