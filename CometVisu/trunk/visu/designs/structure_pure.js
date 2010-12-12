@@ -19,32 +19,32 @@
  * This class defines all the building blocks for a Visu in the "Pure" design
  */
 function VisuDesign() {
-    this.creators = {};
+  this.creators = {};
 
-    this.addCreator = function (name, object) {
-        this.creators[name] = object;
+  this.addCreator = function (name, object) {
+    this.creators[name] = object;
+  }
+
+  this.getCreator = function(name) {
+    if (typeof this.creators[name] == undefined) {
+      return this.creators.unknown;
     }
+    return this.creators[name];
+  }
 
-    this.getCreator = function(name) {
-        if (typeof this.creators[name] == undefined) {
-            return this.creators.unknown;
-        }
-        return this.creators[name];
+  this.popups = {};
+
+  this.addPopup = function (name, object) {
+    this.popups[name] = object;
+    this.popups[name].type = name;
+  }
+
+  this.getPopup = function(name) {
+    if (typeof this.popups[name] == undefined) {
+        return this.popups.unknown;
     }
-
-    this.popups = {};
-
-    this.addPopup = function (name, object) {
-        this.popups[name] = object;
-        this.popups[name].type = name;
-    }
-
-    this.getPopup = function(name) {
-        if (typeof this.popups[name] == undefined) {
-            return this.popups.unknown;
-        }
-        return this.popups[name];
-    }
+    return this.popups[name];
+  }
 
     /**
      * The creators object contians all widgets creators and their mappin to the
@@ -74,42 +74,41 @@ function VisuDesign() {
         content: true
   });
 
-  this.addCreator("line", {
-        create: function( page, path ) {
-                return $( '<hr />' );
-            },
-        attributes: {
-        },
-        content: false
+  this.addCreator('line', {
+    create:     function( page, path ) {
+      return $( '<hr />' );
+    },
+    attributes: {
+    },
+    content:    false
   });
 
-  this.addCreator("break", {
-        create: function( page, path ) {
-                return $( '<br />' );
-            },
-        attributes: {
-        },
-        content: false
+  this.addCreator('break', {
+    create:     function( page, path ) {
+      return $( '<br />' );
+    },
+    attributes: {
+    },
+    content:    false
   });
 
-
-  this.addCreator("text", {
-        create: function( page, path ) {
-                var ret_val = $('<div class="widget" />');
-                ret_val.addClass( 'text' );
-                var style = '';
-                if( $(page).attr('align') ) style += 'text-align:' + $(page).attr('align') + ';';
-                if( style != '' ) style = 'style="' + style + '"';
-                ret_val.append( '<div ' + style + '>' + page.textContent + '</div>' );
-                return ret_val;
-            },
-        attributes: {
-            align:  {type: "string", required: false}
-        },
-        content: {type: "string", required: true}
+  this.addCreator('text', {
+    create: function( page, path ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget text" />');
+      var style = '';
+      if( $p.attr('align') ) style += 'text-align:' + $p.attr('align') + ';';
+      if( style != '' ) style = 'style="' + style + '"';
+      ret_val.append( '<div ' + style + '>' + page.textContent + '</div>' );
+      return ret_val;
+    },
+    attributes: {
+      align:    { type: 'string', required: false }
+    },
+    content:    { type: 'string', required: true }
   });
-  
-  this.addCreator("info", {
+
+  this.addCreator('info', {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget info" />');
@@ -138,18 +137,15 @@ function VisuDesign() {
     },
     update:       defaultUpdate,
     attributes: {
-      pre:        {type: "string", required: false},
-      post:       {type: "string", required: false},
-      mapping:    {type: "mapping", required: false},
-      styling:    {type: "styling", required: false}
+      pre:        { type: 'string' , required: false },
+      post:       { type: 'string' , required: false },
+      mapping:    { type: 'mapping', required: false },
+      styling:    { type: 'styling', required: false }
     },
-    content:      {type: "string", required: true}
+    content:      { type: 'string' , required: true  }
   });
 
-  this.addCreator("shade", this.getCreator("info"));
-
-
-  this.addCreator("dim", {
+  this.addCreator("slide", {
         create: function( page, path ) {
                 var ret_val = $('<div class="widget" />');
                 ret_val.addClass( 'dim' );
@@ -193,8 +189,6 @@ function VisuDesign() {
         },
         content: {type: "string", required: true}
   });
-
-  this.addCreator("slide", this.getCreator("dim"));
 
   this.addCreator("switch", {
         create: function( page, path ) {
@@ -349,15 +343,15 @@ function VisuDesign() {
         content: {type: "string", required: false}
   });
 
-  this.addCreator("unknown", {
-        create: function( page, path ) {
-                var ret_val = $('<div class="widget" />');
-                ret_val.append( '<pre>' + page.textContent + '</pre>' );
-                return ret_val;
-            },
-        attributes: {
-        },
-        content: {type: "string", required: true}
+  this.addCreator('unknown', {
+    create: function( page, path ) {
+      var ret_val = $('<div class="widget" />');
+      ret_val.append( '<pre>' + page.textContent + '</pre>' );
+      return ret_val;
+    },
+    attributes: {
+    },
+    content: {type: 'string', required: true}
   });
 
   this.addPopup('unknown', {
