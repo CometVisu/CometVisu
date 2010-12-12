@@ -60,6 +60,7 @@
             <xsd:element ref="plugins" />
             <xsd:element ref="mappings" />
             <xsd:element ref="stylings" />
+            <xsd:element ref="statusbar" />
         </xsd:choice>
     </xsd:complexType>
 </xsd:element>
@@ -112,12 +113,29 @@
     </xsd:complexType>
 </xsd:element>
 
+<xsd:complexType name="status">
+    <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute name="type" type="xsd:string" use="optional" />
+          <xsd:attribute name="condition" type="xsd:string" use="optional" />
+        </xsd:extension>
+    </xsd:simpleContent>
+</xsd:complexType>
+
+<xsd:element name="statusbar">
+    <xsd:complexType>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="status" type="status" minOccurs="1" />
+        </xsd:choice>
+    </xsd:complexType>
+</xsd:element>
+
 <!-- define a page - if you add a new widget, you need to list it here -->
 <xsd:element name="page">
     <xsd:complexType>
         <xsd:choice minOccurs="0" maxOccurs="unbounded">
             <!-- list all possbile widgets here -->
-            <xsd:element name="text" type="xsd:string" />
+            <xsd:element name="text" type="text" />
             <xsd:element name="line" type="line" />
             <xsd:element name="switch" type="switch" />
             <xsd:element name="toggle" type="switch" />
@@ -137,6 +155,14 @@
 </xsd:element>
 
 <!-- more fun part - all widgets - if you add a new widget, you need to define it here -->
+
+<xsd:complexType name="text">
+    <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+            <xsd:attribute name="align" type="xsd:string" />
+        </xsd:extension>
+    </xsd:simpleContent>
+</xsd:complexType>
 
 <xsd:complexType name="switch">
     <xsd:simpleContent>
