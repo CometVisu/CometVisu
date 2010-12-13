@@ -61,9 +61,9 @@ function addTransform( prefix, transforms )
   {
     if( transforms[trans].link )
     {
-      Transform[ trans ] = transforms[ transforms[trans].link ];
+      Transform[ prefix + ':' + trans ] = transforms[ transforms[trans].link ];
     } else {
-      Transform[ trans ] = transforms[ trans ];
+      Transform[ prefix + ':' + trans ] = transforms[ trans ];
     }
   }
 }
