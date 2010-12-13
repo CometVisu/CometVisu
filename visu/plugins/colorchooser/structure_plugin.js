@@ -30,11 +30,11 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
     var address = {};
     $p.find('address').each( function(){ 
-      var src = this.getAttribute('src');
+      var src = this.textContent;
       var transform = this.getAttribute('transform');
       var color     = this.getAttribute('color'    );
       var readonly  = this.getAttribute('readonly' );
-      ga_list.push( src ) 
+      ga_list.push( src ); 
       address[ '_' + src ] = [ transform, color, readonly=='true' ];
     });
 
