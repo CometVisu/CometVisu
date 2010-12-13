@@ -58,26 +58,26 @@
     <text align="center">CometVisu format neu</text>
     <info styling="BluePurpleRed">
       <label>Slide Info</label>
-      <address src="12/4/250" transform="DPT:9" />
-      <address src="12/4/251" transform="DPT:9.001" />
+      <address transform="DPT:9">12/4/250</address>
+      <address transform="DPT:9.001">12/4/251</address>
     </info>
     <switch mapping="OnOff" styling="RedGreen">
       <label>Terrase Licht</label>
-      <address src="1/0/2" transform="DPT:1.001" />
-      <address src="12/4/253" transform="DPT:9.001" readonly="true" />
+      <address transform="DPT:1.001">1/0/2</address>
+      <address transform="DPT:9.001" readonly="true">12/4/253</address>
     </switch>
     <slide min="-18" max="26">
       <label>Slide</label>
-      <address src="12/4/250" transform="DPT:9" />
+      <address transform="DPT:9">12/4/250</address>
     </slide>
     <break />
     <trigger value="0" mapping="OnOff">
       <label>Terrase Licht 0</label>
-      <address src="1/0/2" transform="DPT:1.001" />
+      <address transform="DPT:1.001">1/0/2</address>
     </trigger>
     <trigger value="1" mapping="OnOff">
       <label>Terrase Licht 1</label>
-      <address src="1/0/2" transform="DPT:1.001" />
+      <address transform="DPT:1.001">1/0/2</address>
     </trigger>
     <line />
     <image src="icon/comet_128_ff8000.png" width="500px" height="46px"/>
@@ -90,13 +90,13 @@
     </page>
     <colorchooser>
       <label>A colorChooser</label>
-      <address src="1/2/59" transform="DPT:5.001" color="r" />
-      <address src="1/2/60" transform="DPT:5.001" color="g" />
-      <address src="1/2/61" transform="DPT:5.001" color="b" />
+      <address transform="DPT:5.001" color="r">1/2/59</address>
+      <address transform="DPT:5.001" color="g">1/2/60</address>
+      <address transform="DPT:5.001" color="b">1/2/61</address>
     </colorchooser>
-    <info><label>R</label><address src="1/2/59" transform="DPT:5.001" /></info>
-    <info><label>G</label><address src="1/2/60" transform="DPT:5.001" /></info>
-    <info><label>B</label><address src="1/2/61" transform="DPT:5.001" /></info>
-    <slide><label>B</label><address src="1/2/61" transform="DPT:5.001" /></slide>
+    <info><label>R</label><address transform="DPT:5.001">1/2/59</address></info>
+    <info><label>G</label><address transform="DPT:5.001">1/2/60</address></info>
+    <info><label>B</label><address transform="DPT:5.001">1/2/61</address></info>
+    <slide><label>B</label><address transform="DPT:5.001">1/2/61</address></slide>
   </page>
 </pages>
