@@ -4,7 +4,7 @@
 <!-- basic types -->
 <xsd:simpleType name="address">
     <xsd:restriction base="xsd:string">
-        <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,2}" />
+        <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}" />
     </xsd:restriction>
 </xsd:simpleType>
 
