@@ -3,9 +3,7 @@
   <meta>
     <plugins>
       <plugin name="colorchooser"/>
-    <!--
       <plugin name="diagram"/>
-    -->
     </plugins>
     <mappings>
       <mapping name="OpenClose">
@@ -98,5 +96,6 @@
     <info><label>G</label><address transform="DPT:5.001">1/2/60</address></info>
     <info><label>B</label><address transform="DPT:5.001">1/2/61</address></info>
     <slide><label>B</label><address transform="DPT:5.001">1/2/61</address></slide>
+    <diagram_popup undefined="DALI Strom L1" rrd="200_DALI_Linie_1_Strom" unit="mA" series="day" refresh="300">DALI Strom L1</diagram_popup>
   </page>
 </pages>
