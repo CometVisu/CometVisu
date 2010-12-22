@@ -190,40 +190,44 @@ function VisuDesign() {
     update: function( e, data ) { 
       var element = $(this);
       var value = transform( data, element.data().address[ e.type ][0] );
-      element.data( 'value', value );
-      element.slider('value', value);
+      if( element.data( 'value' ) != value )
+      {
+        element.data( 'value', value );
+        element.slider('value', value);
+      }
     },
-/**
- * Start a thread that regularily sends the silder position to the bus
- */
-slideStart:function(event,ui)
-{
-  console.log('start');
-  var actor = $( '.actor', $(this).parent() );
-  actor.data( 'updateFn', setInterval( function(){
-    var data = actor.data();
-    for( var addr in data.address )
+    /**
+    * Start a thread that regularily sends the silder position to the bus
+    */
+    slideStart:function(event,ui)
     {
-      if( data.address[addr][1] == true ) continue; // skip read only
-      visu.write( addr.substr(1), ui.value, data.address[addr][0].substr(4) );
-    }
-  }, 250 ) ); // update KNX every 250 ms 
-},
-/**
- * Delete the update thread and send the final value of the slider to the bus
- */
-slideChange:function(event,ui)
-{
-  console.log('change');
-  var data = $(this).data();
-  clearInterval( data.updateFn, ui.value);
-  if( data.value != ui.value )
-  for( var addr in data.address )
-  {
-    if( data.address[addr][1] == true ) continue; // skip read only
-    visu.write( addr.substr(1), ui.value, data.address[addr][0].substr(4) );
-  }
-},
+      var actor = $( '.actor', $(this).parent() );
+      actor.data( 'updateFn', setInterval( function(){
+        var data = actor.data();
+        if( data.value == actor.slider('value') ) return;
+        for( var addr in data.address )
+        {
+          data.value = actor.slider('value');
+          if( data.address[addr][1] == true ) continue; // skip read only
+          visu.write( addr.substr(1), data.value, data.address[addr][0].substr(4) );
+        }
+      }, 250 ) ); // update KNX every 250 ms 
+    },
+    /**
+    * Delete the update thread and send the final value of the slider to the bus
+    */
+    slideChange:function(event,ui)
+    {
+      var data = $(this).data();
+      clearInterval( data.updateFn, ui.value);
+      if( data.value != ui.value )
+      for( var addr in data.address )
+      {
+      console.log('change send');
+        if( data.address[addr][1] == true ) continue; // skip read only
+        visu.write( addr.substr(1), ui.value, data.address[addr][0].substr(4) );
+      }
+    },
     attributes: {
       min:     { type: 'numeric', required: false },
       max:     { type: 'numeric', required: false },
