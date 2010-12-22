@@ -23,14 +23,158 @@
 addTransform( 'DPT', {
   '1.001': {
     name  : 'DPT_Switch',
-    encode: function( i ){
-      return i.toSting( 16 );
+    encode: function( phy ){
+      return phy.toSting( 16 );
     },
-    decode: function( i ){
-      return parseInt( i , 16 );
+    decode: function( hex ){
+      return parseInt( hex , 16 );
     }
   },
   '1': {
     link  : '1.001'
+  },
+  
+  '2': {
+    link  : '1.001'
+  },
+  
+  '3': {
+    link  : '1.001'
+  },
+  
+  '4.001': {
+    name : 'DPT_Char_ASCII',
+    encode: function( phy ){
+      return phy.charCodeAt( 0 ).toString( 16 );
+    },
+    decode: function( hex ){
+      return String.fromCharCode(parseInt( hex, 16 ));
+    }
+  },
+  '4': {
+    link  : '4.001'
+  },
+  
+  '5.001' : {
+    name  : 'DPT_Scaling',
+    encode: function( phy ){
+      return phy;
+    },
+    decode: function( hex ){
+      return parseInt( hex, 16 );
+    }
+  },
+  '5.004' : {
+    name  : 'DPT_Percent_U8',
+    encode: function( phy ){
+      return phy;
+    },
+    decode: function( hex ){
+      return parseInt( hex, 16 ) * 100 / 255.0;
+    }
+  },
+  '5': {
+    link  : '5.004'
+  },
+  
+  '6.001' : {
+    name  : 'DPT_Percent_V8',
+    encode: function( phy ){
+      return phy;
+    },
+    decode: function( hex ){
+      var val = parseInt( hex, 16 )
+      return val > 127 ? (val-256) : val;
+    }
+  },
+  '6': {
+    link  : '6.001'
+  },
+  
+  '7.001' : {
+    name  : 'DPT_Value_2_Ucount',
+    encode: function( phy ){
+      return phy;
+    },
+    decode: function( hex ){ 
+      return parseInt( hex, 16 );
+    }
+  },
+  '7': {
+    link  : '7.001'
+  },
+  
+  '8.001' : {
+    name  : 'DPT_Value_2_Count',
+    encode: function( phy ){
+      return phy;
+    },
+    decode: function( hex ){
+      var val = parseInt( hex, 16 );
+      return val > 32767 ? (val-65536) : val;
+    }
+  },
+  '8': {
+    link  : '8.001'
+  },
+  
+  '12.001' : {
+    name  : 'DPT_Value_4_Ucount',
+    encode: function( phy ){
+      return phy;
+    },
+    decode: function( hex ){ 
+      return parseInt( hex, 16 );
+    }
+  },
+  '12': {
+    link  : '12.001'
+  },
+  
+  '13.001' : {
+    name  : 'DPT_Value_4_Count',
+    encode: function( phy ){
+      return phy;
+    },
+    decode: function( hex ){
+      var val = parseInt( hex, 16 );
+      return val > 2147483647 ? (val-4294967296) : val;
+    }
+  },
+  '13': {
+    link  : '13.001'
+  },
+  
+  '14.001' : {
+    name  : 'DPT_Value_Acceleration_Angular',
+    encode: function( phy ){
+      return phy;
+    },
+    decode: function( hex ){
+      var val = parseInt( hex, 16 );
+      var sign = (val & 0x80000000) ? -1 : 1;
+      var exp  =((val & 0x7F800000) >> 23) - 127;
+      var mant = (val & 0x007FFFFF | 0x00800000);
+      return sign * Math.pow( 2, exp ) * ( mant / (1 << 23));
+    }
+  },
+  /* 9 Zeilen:
+  },
+  '.001' : {
+    name  : '',
+    encode: function( phy ){
+      return phy;
+    },
+    decode: function( hex ){
+      return hex;
+    }
   }
+  */ /////////////////////////////////////////////////
+  /* 3 Zeilen:
+  }
+  '': {
+    link  : '.001'
+  },
+  */
+  'temp dummy' : {link:'1.001'}
 } );
