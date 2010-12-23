@@ -603,14 +603,12 @@ function placementStrategy( anchor, popup, page, preference )
  */
 function transform( raw, type )
 {
-  return decodeDPT( raw, type.substr(4) ); // filter away the 'DPT:'
+  return Transform[type].decode( raw );
 }
 
 function defaultUpdate( e, data, passedElement ) 
 {
   var element = passedElement || $(this);
-  //var datatype = element.data().address[ e.type ];
-  //var value = decodeDPT( data, element.data('datatype') );
   var value = transform( data, element.data().address[ e.type ][0] );
   element.data( 'value', value );
   element.find('.value').text( map( value, element ) );
