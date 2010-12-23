@@ -24,7 +24,7 @@ addTransform( 'DPT', {
   '1.001': {
     name  : 'DPT_Switch',
     encode: function( phy ){
-      return phy.toSting( 16 );
+      return phy.toString( 16 );
     },
     decode: function( hex ){
       return parseInt( hex , 16 );
@@ -58,7 +58,7 @@ addTransform( 'DPT', {
   '5.001' : {
     name  : 'DPT_Scaling',
     encode: function( phy ){
-      return phy;
+      return phy.toString( 16 );
     },
     decode: function( hex ){
       return parseInt( hex, 16 );
@@ -67,7 +67,7 @@ addTransform( 'DPT', {
   '5.004' : {
     name  : 'DPT_Percent_U8',
     encode: function( phy ){
-      return phy;
+      return parseInt( phy * 255 / 100 ).toSting( 16 );
     },
     decode: function( hex ){
       return parseInt( hex, 16 ) * 100 / 255.0;
@@ -80,7 +80,8 @@ addTransform( 'DPT', {
   '6.001' : {
     name  : 'DPT_Percent_V8',
     encode: function( phy ){
-      return phy;
+      var val = phy < 0 ? phy + 256 : phy;
+      return val.toString( 16 );
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 )
@@ -94,7 +95,7 @@ addTransform( 'DPT', {
   '7.001' : {
     name  : 'DPT_Value_2_Ucount',
     encode: function( phy ){
-      return phy;
+      return phy.toString( 16 );
     },
     decode: function( hex ){ 
       return parseInt( hex, 16 );
@@ -107,7 +108,8 @@ addTransform( 'DPT', {
   '8.001' : {
     name  : 'DPT_Value_2_Count',
     encode: function( phy ){
-      return phy;
+      var val = phy < 0 ? phy + 65536 : phy;
+      return val.toString( 16 );
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 );
@@ -121,7 +123,7 @@ addTransform( 'DPT', {
   '12.001' : {
     name  : 'DPT_Value_4_Ucount',
     encode: function( phy ){
-      return phy;
+      return phy.toString( 16 );
     },
     decode: function( hex ){ 
       return parseInt( hex, 16 );
@@ -134,7 +136,8 @@ addTransform( 'DPT', {
   '13.001' : {
     name  : 'DPT_Value_4_Count',
     encode: function( phy ){
-      return phy;
+      var val = phy < 0 ? phy + 4294967296 : phy;
+      return val.toString( 16 );
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 );
