@@ -120,6 +120,26 @@ addTransform( 'DPT', {
     link  : '8.001'
   },
   
+  '9.001' : {
+    name  : 'DPT_Value_Temp',
+    encode: function( phy ){
+      return phy;
+    },
+    decode: function( hex ){
+      var bin1 = parseInt( hex.substr(0,2), 16 );
+      var bin2 = parseInt( hex.substr(2,2), 16 );
+      var sign = parseInt( bin1 & 0x80 );
+      var exp  = parseInt( bin1 & 0x78 ) >> 3;
+      var mant = parseInt( ((bin1 & 0x7) << 8) | bin2 );
+      if( sign != 0 ) 
+        mant = -(~(mant - 1) & 0x7ff);
+      return (1 << exp) * 0.01 * mant;  
+    }
+  },
+  '9': {
+    link  : '9.001'
+  },
+  
   '12.001' : {
     name  : 'DPT_Value_4_Ucount',
     encode: function( phy ){
