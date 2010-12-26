@@ -61,17 +61,9 @@ function addTransform( prefix, transforms )
   {
     if( transforms[trans].link )
     {
-      Transform[ prefix + ':' + trans ] = transforms[ transforms[trans].link ];
+      Transform[ prefix + ':' + trans ] = $.extend( {}, transforms[ transforms[trans].link ], transforms[trans] );
     } else {
       Transform[ prefix + ':' + trans ] = transforms[ trans ];
     }
   }
-}
-
-/**
- * The universal decoding function.
- */
-function decode( raw, type )
-{
-  return decodeDPT( raw, type.substr(4) ); // filter away the 'DPT:'
 }
