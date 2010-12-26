@@ -181,6 +181,14 @@ addTransform( 'DPT', {
       return sign * Math.pow( 2, exp ) * ( mant / (1 << 23));
     }
   },
+  '14': {
+    link  : '14.001',
+    name  : '4 byte float',
+    lname : {
+      'de': '4 Byte Gleitkommazahl'
+    },
+    unit  : '-'
+  },
   /* 9 Zeilen:
   },
   '.001' : {
