@@ -57,6 +57,27 @@ addTransform( 'DPT', {
   
   '5.001' : {
     name  : 'DPT_Scaling',
+    unit  : '%',
+    encode: function( phy ){
+      return parseInt( phy * 255 / 100 ).toString( 16 );
+    },
+    decode: function( hex ){
+      return parseInt( hex, 16 ) * 100 / 255.0;
+    }
+  },
+  '5.003' : {
+    name  : 'DPT_Angle',
+    unit  : '°',
+    encode: function( phy ){
+      return parseInt( phy * 255 / 360 ).toString( 16 );
+    },
+    decode: function( hex ){
+      return parseInt( hex, 16 ) * 100 / 360.0;
+    }
+  },
+  '5.004' : {
+    name  : 'DPT_Percent_U8',
+    unit  : '%',
     encode: function( phy ){
       return phy.toString( 16 );
     },
@@ -64,17 +85,14 @@ addTransform( 'DPT', {
       return parseInt( hex, 16 );
     }
   },
-  '5.004' : {
-    name  : 'DPT_Percent_U8',
-    encode: function( phy ){
-      return parseInt( phy * 255 / 100 ).toSting( 16 );
-    },
-    decode: function( hex ){
-      return parseInt( hex, 16 ) * 100 / 255.0;
-    }
+  '5.010': {
+    link  : '5.004',
+    name  : 'DPT_Value_1_Ucount',
+    unit  : '-'
   },
   '5': {
-    link  : '5.004'
+    link  : '5.004',
+    name  : '8-Bit Unsigned Value'
   },
   
   '6.001' : {
