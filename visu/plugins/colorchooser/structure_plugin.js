@@ -50,22 +50,25 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
         'type'    : 'colorChooser'
       })
       .farbtastic( function(color){
-        var r = parseInt(color.substring(1, 3), 16) * 100 / 255;
-        var g = parseInt(color.substring(3, 5), 16) * 100 / 255;
-        var b = parseInt(color.substring(5, 7), 16) * 100 / 255;
+        var r = parseInt(color.substring(1, 3), 16) * 100 / 255.0;
+        var g = parseInt(color.substring(3, 5), 16) * 100 / 255.0;
+        var b = parseInt(color.substring(5, 7), 16) * 100 / 255.0;
         for( var addr in address )
         {
           if( address[addr][2] == true ) continue; // skip read only
           switch( address[addr][1] )
           {
             case 'r':
-              visu.write( addr.substr(1), r, address[addr][0].substr(4) );
+              //visu.write( addr.substr(1), r, address[addr][0].substr(4) );
+              visu.write( addr.substr(1), Transform[address[addr][0]].encode( r ) );
               break;
             case 'g':
-              visu.write( addr.substr(1), g, address[addr][0].substr(4) );
+              //visu.write( addr.substr(1), g, address[addr][0].substr(4) );
+              visu.write( addr.substr(1), Transform[address[addr][0]].encode( g ) );
               break;
             case 'b':
-              visu.write( addr.substr(1), b, address[addr][0].substr(4) );
+              //visu.write( addr.substr(1), b, address[addr][0].substr(4) );
+              visu.write( addr.substr(1), Transform[address[addr][0]].encode( b ) );
               break;
           }
         }

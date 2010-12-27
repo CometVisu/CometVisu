@@ -144,16 +144,10 @@ function CometVisu( urlPrefix )
   /**
    * This function sends a value
    */
-  this.write = function( address, value, datatype ) // FIXME datatype not in spec!!!
+  this.write = function( address, value )
   {
-    //var request = {};
-    //request.a = address; // FIXME the spec allows multiple addresses
-    //request.v = value;
-var request = 'a=' + address + '&v=' + value;
-datatype = datatype.split('.');
-request += '&d=' + datatype[0]; // FIXME datatype not in spec!!!
+    var request = 'a=' + address + '&v=' + value;
     $.ajax( {url:this.urlPrefix + 'w',dataType: 'json',context:this,data:request} );
-//alert( 'write to "' + address + '" value "' + value + '"' );
   }
 };
 

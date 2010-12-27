@@ -209,7 +209,8 @@ function VisuDesign() {
         {
           data.value = actor.slider('value');
           if( data.address[addr][1] == true ) continue; // skip read only
-          visu.write( addr.substr(1), data.value, data.address[addr][0].substr(4) );
+          //visu.write( addr.substr(1), data.value, data.address[addr][0].substr(4) );
+          visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( data.value ) );
         }
       }, 250 ) ); // update KNX every 250 ms 
     },
@@ -225,7 +226,8 @@ function VisuDesign() {
       {
       console.log('change send');
         if( data.address[addr][1] == true ) continue; // skip read only
-        visu.write( addr.substr(1), ui.value, data.address[addr][0].substr(4) );
+        //visu.write( addr.substr(1), ui.value, data.address[addr][0].substr(4) );
+        visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( ui.value ) );
       }
     },
     attributes: {
@@ -278,7 +280,8 @@ function VisuDesign() {
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        visu.write( addr.substr(1), data.value=='1' ? '0' : '1', data.address[addr][0].substr(4) );
+//        visu.write( addr.substr(1), data.value=='1' ? '0' : '1', data.address[addr][0].substr(4) );
+        visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( data.value ) );
       }
     },
     attributes: {
@@ -329,7 +332,7 @@ function VisuDesign() {
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        visu.write( addr.substr(1), data.sendValue, data.address[addr][0].substr(4) );
+        visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( data.sendValue ) );
       }
     },
     attributes: {
