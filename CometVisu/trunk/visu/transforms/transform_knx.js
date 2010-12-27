@@ -24,7 +24,7 @@ addTransform( 'DPT', {
   '1.001': {
     name  : 'DPT_Switch',
     encode: function( phy ){
-      return phy.toString( 16 );
+      return (phy | 0x80).toString( 16 );
     },
     decode: function( hex ){
       return parseInt( hex , 16 );
@@ -45,7 +45,8 @@ addTransform( 'DPT', {
   '4.001': {
     name : 'DPT_Char_ASCII',
     encode: function( phy ){
-      return phy.charCodeAt( 0 ).toString( 16 );
+      var val = phy.charCodeAt( 0 ).toString( 16 );
+      return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){
       return String.fromCharCode(parseInt( hex, 16 ));
@@ -59,7 +60,8 @@ addTransform( 'DPT', {
     name  : 'DPT_Scaling',
     unit  : '%',
     encode: function( phy ){
-      return parseInt( phy * 255 / 100 ).toString( 16 );
+      var val = parseInt( phy * 255 / 100 ).toString( 16 );
+      return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){
       return parseInt( hex, 16 ) * 100 / 255.0;
@@ -69,7 +71,8 @@ addTransform( 'DPT', {
     name  : 'DPT_Angle',
     unit  : '°',
     encode: function( phy ){
-      return parseInt( phy * 255 / 360 ).toString( 16 );
+      var val = parseInt( phy * 255 / 360 ).toString( 16 );
+      return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){
       return parseInt( hex, 16 ) * 100 / 360.0;
@@ -79,7 +82,8 @@ addTransform( 'DPT', {
     name  : 'DPT_Percent_U8',
     unit  : '%',
     encode: function( phy ){
-      return phy.toString( 16 );
+      var val = phy.toString( 16 );
+      return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){
       return parseInt( hex, 16 );
@@ -99,7 +103,8 @@ addTransform( 'DPT', {
     name  : 'DPT_Percent_V8',
     encode: function( phy ){
       var val = phy < 0 ? phy + 256 : phy;
-      return val.toString( 16 );
+      val = val.toString( 16 );
+      return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 )
@@ -113,7 +118,8 @@ addTransform( 'DPT', {
   '7.001' : {
     name  : 'DPT_Value_2_Ucount',
     encode: function( phy ){
-      return phy.toString( 16 );
+      var val = phy.toString( 16 );
+      return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){ 
       return parseInt( hex, 16 );
@@ -127,7 +133,7 @@ addTransform( 'DPT', {
     name  : 'DPT_Value_2_Count',
     encode: function( phy ){
       var val = phy < 0 ? phy + 65536 : phy;
-      return val.toString( 16 );
+      return '80' + val.toString( 16 );
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 );
@@ -149,8 +155,8 @@ addTransform( 'DPT', {
         mant >>= 1;
         exp++;
       }
-      var v = ( sign | (exp<<11) | (mant & 0x07ff) ).toString( 16 );
-      return new Array(4 - v.length + 1).join('0') + v;
+      var val = ( sign | (exp<<11) | (mant & 0x07ff) ).toString( 16 );
+      return '80' + ( new Array(4 - val.length + 1).join('0') + val );
     },
     decode: function( hex ){
       if( 0x7fff == parseInt( hex, 16 ) ) return NaN;
@@ -171,7 +177,8 @@ addTransform( 'DPT', {
   '12.001' : {
     name  : 'DPT_Value_4_Ucount',
     encode: function( phy ){
-      return phy.toString( 16 );
+      var val = phy.toString( 16 );
+      return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){ 
       return parseInt( hex, 16 );
@@ -185,7 +192,8 @@ addTransform( 'DPT', {
     name  : 'DPT_Value_4_Count',
     encode: function( phy ){
       var val = phy < 0 ? phy + 4294967296 : phy;
-      return val.toString( 16 );
+      val = val.toString( 16 );
+      return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 );
@@ -199,7 +207,7 @@ addTransform( 'DPT', {
   '14.001' : {
     name  : 'DPT_Value_Acceleration_Angular',
     encode: function( phy ){
-      return phy;
+      return '80' + phy;
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 );
