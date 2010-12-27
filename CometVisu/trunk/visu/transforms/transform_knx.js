@@ -141,9 +141,19 @@ addTransform( 'DPT', {
   '9.001' : {
     name  : 'DPT_Value_Temp',
     encode: function( phy ){
-      return phy;
+      if( undefined === phy || NaN == phy ) return '7fff';
+      var sign = phy < 0 ? 0x8000 : 0;
+      var mant = Math.round(phy * 100.0);
+      var exp = 0;
+      while( Math.abs(mant) > 2047 ) {
+        mant >>= 1;
+        exp++;
+      }
+      var v = ( sign | (exp<<11) | (mant & 0x07ff) ).toString( 16 );
+      return new Array(4 - v.length + 1).join('0') + v;
     },
     decode: function( hex ){
+      if( 0x7fff == parseInt( hex, 16 ) ) return NaN;
       var bin1 = parseInt( hex.substr(0,2), 16 );
       var bin2 = parseInt( hex.substr(2,2), 16 );
       var sign = parseInt( bin1 & 0x80 );
@@ -227,3 +237,32 @@ addTransform( 'DPT', {
   */
   'temp dummy' : {link:'1.001'}
 } );
+
+//////
+// To be deleted later: a test function to check if the coding is consistent
+function TEST( DPT, Bytes )
+{
+  var maxErr = 5;
+  DPT = 'DPT:' + DPT;
+  for( i = 0; i < Math.pow(2,8*Bytes); i++ )
+  {
+    var v = i.toString( 16 );
+    v = new Array(2*Bytes - v.length + 1).join('0') + v;
+    var test = Transform[DPT].encode(
+      Transform[DPT].decode(v)
+    );
+    //console.log(i,v,test);
+    if( v != test )
+    {
+      var v2 = Transform[DPT].decode(v);
+      var test2 = Transform[DPT].decode(
+        Transform[DPT].encode(v2)
+      );
+      if( v2 != test2 )
+      {
+        console.log( i, v, test, Transform[DPT].decode(v), v2, test2, maxErr );
+        if( (--maxErr) < 0 ) return maxErr;
+      }
+    }
+  }
+}
