@@ -127,9 +127,10 @@ function VisuDesign() {
       if( $p.attr('post') ) actor += '<div>' + $p.attr('post') + '</div>';
       actor += '</div>';
       var $actor = $(actor).data({
-        'address' : address,
-        'mapping' : $p.attr('mapping'),
-        'styling' : $p.attr('styling')
+        'address'  : address,
+        'precision': $p.attr('precision'),
+        'mapping'  : $p.attr('mapping'),
+        'styling'  : $p.attr('styling')
       });
       for( var addr in address ) $actor.bind( addr, this.update );
       ret_val.append( label ).append( $actor );
@@ -137,10 +138,11 @@ function VisuDesign() {
     },
     update:       defaultUpdate,
     attributes: {
-      pre:        { type: 'string' , required: false },
-      post:       { type: 'string' , required: false },
-      mapping:    { type: 'mapping', required: false },
-      styling:    { type: 'styling', required: false }
+      pre:        { type: 'string'   , required: false },
+      post:       { type: 'string'   , required: false },
+      precision:  { type: 'precision', required: false },
+      mapping:    { type: 'mapping'  , required: false },
+      styling:    { type: 'styling'  , required: false }
     },
     content:      { type: 'string' , required: true  }
   });
@@ -612,6 +614,8 @@ function defaultUpdate( e, data, passedElement )
 {
   var element = passedElement || $(this);
   var value = transform( data, element.data().address[ e.type ][0] );
+  if( element.data( 'precision' ) )
+    value = Number( value ).toPrecision( element.data( 'precision' ) );
   element.data( 'value', value );
   element.find('.value').text( map( value, element ) );
 

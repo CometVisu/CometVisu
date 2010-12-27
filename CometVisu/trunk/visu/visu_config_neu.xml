@@ -92,11 +92,11 @@
       <address transform="DPT:5.001" color="g">1/2/60</address>
       <address transform="DPT:5.001" color="b">1/2/61</address>
     </colorchooser>
-    <info><label>R</label><address transform="DPT:5.001">1/2/59</address></info>
+    <info precision="4"><label>R</label><address transform="DPT:5.001">1/2/59</address></info>
     <slide><label>R</label><address transform="DPT:5.001">1/2/59</address></slide>
-    <info><label>G</label><address transform="DPT:5.001">1/2/60</address></info>
+    <info precision="4"><label>G</label><address transform="DPT:5.001">1/2/60</address></info>
     <slide><label>G</label><address transform="DPT:5.001">1/2/60</address></slide>
-    <info><label>B</label><address transform="DPT:5.001">1/2/61</address></info>
+    <info precision="4"><label>B</label><address transform="DPT:5.001">1/2/61</address></info>
     <slide><label>B</label><address transform="DPT:5.001">1/2/61</address></slide>
     <diagram_popup undefined="DALI Strom L1" rrd="200_DALI_Linie_1_Strom" unit="mA" series="day" refresh="300">DALI Strom L1</diagram_popup>
   </page>
