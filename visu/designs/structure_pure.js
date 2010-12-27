@@ -224,7 +224,6 @@ function VisuDesign() {
       if( data.value != ui.value )
       for( var addr in data.address )
       {
-      console.log('change send');
         if( data.address[addr][1] == true ) continue; // skip read only
         //visu.write( addr.substr(1), ui.value, data.address[addr][0].substr(4) );
         visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( ui.value ) );
