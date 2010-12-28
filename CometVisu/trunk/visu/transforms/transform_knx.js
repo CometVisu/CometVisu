@@ -75,7 +75,7 @@ addTransform( 'DPT', {
       return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){
-      return parseInt( hex, 16 ) * 100 / 360.0;
+      return parseInt( hex, 16 ) * 360 / 255.0;
     }
   },
   '5.004' : {
