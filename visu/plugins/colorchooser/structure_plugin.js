@@ -48,27 +48,36 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
         'value_g' : 0,
         'value_b' : 0,
         'type'    : 'colorChooser'
-      })
-      .farbtastic( function(color){
+      });
+      $actor.farbtastic( function(color){
         var r = parseInt(color.substring(1, 3), 16) * 100 / 255.0;
         var g = parseInt(color.substring(3, 5), 16) * 100 / 255.0;
         var b = parseInt(color.substring(5, 7), 16) * 100 / 255.0;
+        var vr = $actor.data('value_r');
+        var vg = $actor.data('value_g');
+        var vb = $actor.data('value_b');
+        $actor.data( 'value_r', vr );
+        $actor.data( 'value_g', vg );
+        $actor.data( 'value_b', vb );
         for( var addr in address )
         {
           if( address[addr][2] == true ) continue; // skip read only
           switch( address[addr][1] )
           {
             case 'r':
-              //visu.write( addr.substr(1), r, address[addr][0].substr(4) );
-              visu.write( addr.substr(1), Transform[address[addr][0]].encode( r ) );
+              var v = Transform[address[addr][0]].encode( r );
+              if( v != Transform[address[addr][0]].encode( vr ) )
+                visu.write( addr.substr(1), v );
               break;
             case 'g':
-              //visu.write( addr.substr(1), g, address[addr][0].substr(4) );
-              visu.write( addr.substr(1), Transform[address[addr][0]].encode( g ) );
+              var v = Transform[address[addr][0]].encode( g );
+              if( v != Transform[address[addr][0]].encode( vg ) )
+                visu.write( addr.substr(1), v );
               break;
             case 'b':
-              //visu.write( addr.substr(1), b, address[addr][0].substr(4) );
-              visu.write( addr.substr(1), Transform[address[addr][0]].encode( b ) );
+              var v = Transform[address[addr][0]].encode( b );
+              if( v != Transform[address[addr][0]].encode( vb ) )
+                visu.write( addr.substr(1), v );
               break;
           }
         }
@@ -95,30 +104,33 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
     var value = transform( data, element.data().address[ e.type ][0] );
     element.data( 'value_r', value );
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
-    var color = toHex( element.data( 'value_r' )*255/100 )
-              + toHex( element.data( 'value_g' )*255/100 )
-              + toHex( element.data( 'value_b' )*255/100 );
-    jQuery.farbtastic( element ).setColor( '#' + color );
+    var color = jQuery.farbtastic( element ).color || '#000000';
+    color = color.substring(0,1) +
+            toHex( value*255/100 )+
+            color.substring(3);
+    jQuery.farbtastic( element ).setColor( color );
   },
   update_g: function( e, data ) { 
     var element = $(this);
     var value = transform( data, element.data().address[ e.type ][0] );
     element.data( 'value_g', value );
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
-    var color = toHex( element.data( 'value_r' )*255/100 )
-              + toHex( element.data( 'value_g' )*255/100 )
-              + toHex( element.data( 'value_b' )*255/100 );
-    jQuery.farbtastic( element ).setColor( '#' + color );
+    var color = jQuery.farbtastic( element ).color || '#000000';
+    color = color.substring(0,3) +
+            toHex( value*255/100 )+
+            color.substring(5);
+    jQuery.farbtastic( element ).setColor( color );
   },
   update_b: function( e, data ) { 
     var element = $(this);
     var value = transform( data, element.data().address[ e.type ][0] );
     element.data( 'value_b', value );
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
-    var color = toHex( element.data( 'value_r' )*255/100 )
-              + toHex( element.data( 'value_g' )*255/100 )
-              + toHex( element.data( 'value_b' )*255/100 );
-    jQuery.farbtastic( element ).setColor( '#' + color );
+    var color = jQuery.farbtastic( element ).color || '#000000';
+    color = color.substring(0,5) +
+            toHex( value*255/100 )+
+            color.substring(7);
+    jQuery.farbtastic( element ).setColor( color );
   },
   attributes: {
     address_r: { type: 'address' , required: true },
