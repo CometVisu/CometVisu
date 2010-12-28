@@ -57,9 +57,14 @@ if ($.getUrlVar("config")) {
     configSuffix = "_" + $.getUrlVar("config");
 }
 
+var forceReload = false;
+if( $.getUrlVar('forceReload') ) {
+  forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set to false
+}
+
 $(document).ready(function() {
   // get the data once the page was loaded
-  $.ajaxSetup({cache: false});
+  $.ajaxSetup({cache: !forceReload});
   window.setTimeout("$.get( 'visu_config" + configSuffix + ".xml', parseXML );", 200);
 
   // disable text selection - it's annoying on a touch screen!
@@ -131,12 +136,14 @@ function parseXML(xml) {
   // start with the plugins
   var pluginsToLoad = 0;
   $( 'meta > plugins plugin', xml ).each( function(i){
-      pluginsToLoad += 1;
-    var name = $(this).attr('name');
+    pluginsToLoad += 1;
+    var name = 'plugins/' + $(this).attr('name') + '/structure_plugin.js';
+    if( forceReload )
+      name += '?_=' + (new Date().getTime());
     var html_doc = document.getElementsByTagName('body')[0];
     js = document.createElement('script');
     js.setAttribute('type', 'text/javascript');
-    js.setAttribute('src', 'plugins/' + name + '/structure_plugin.js');
+    js.setAttribute('src' , name             );
     html_doc.appendChild(js);
 
     js.onreadystatechange = function () {
