@@ -44,43 +44,73 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
     var $actor = $(actor)
       .data({
         'address' : address,
-        'value_r' : 0,
-        'value_g' : 0,
-        'value_b' : 0,
+        'value_r' : 0, // The currenty displayed value
+        'value_g' : 0, // The currenty displayed value
+        'value_b' : 0, // The currenty displayed value
+        'bus_r'   : 0, // The current value on the bus
+        'bus_g'   : 0, // The current value on the bus
+        'bus_b'   : 0, // The current value on the bus
+        'rateLimiter' : false, // is the rate limiter active?
         'type'    : 'colorChooser'
       });
       $actor.farbtastic( function(color){
-        var r = parseInt(color.substring(1, 3), 16) * 100 / 255.0;
-        var g = parseInt(color.substring(3, 5), 16) * 100 / 255.0;
-        var b = parseInt(color.substring(5, 7), 16) * 100 / 255.0;
-        var vr = $actor.data('value_r');
-        var vg = $actor.data('value_g');
-        var vb = $actor.data('value_b');
-        $actor.data( 'value_r', vr );
-        $actor.data( 'value_g', vg );
-        $actor.data( 'value_b', vb );
-        for( var addr in address )
-        {
-          if( address[addr][2] == true ) continue; // skip read only
-          switch( address[addr][1] )
+        $actor.data( 'value_r', parseInt(color.substring(1, 3), 16) * 100 / 255.0 );
+        $actor.data( 'value_g', parseInt(color.substring(3, 5), 16) * 100 / 255.0 );
+        $actor.data( 'value_b', parseInt(color.substring(5, 7), 16) * 100 / 255.0 );
+        function rateLimitedSend( a ) {
+          var modified = false;
+          var address = a.data( 'address' );
+          var r  = a.data( 'value_r' );
+          var g  = a.data( 'value_g' );
+          var b  = a.data( 'value_b' );
+          var br = a.data( 'bus_r' );
+          var bg = a.data( 'bus_g' );
+          var bb = a.data( 'bus_b' );
+          for( var addr in address )
           {
-            case 'r':
-              var v = Transform[address[addr][0]].encode( r );
-              if( v != Transform[address[addr][0]].encode( vr ) )
-                visu.write( addr.substr(1), v );
-              break;
-            case 'g':
-              var v = Transform[address[addr][0]].encode( g );
-              if( v != Transform[address[addr][0]].encode( vg ) )
-                visu.write( addr.substr(1), v );
-              break;
-            case 'b':
-              var v = Transform[address[addr][0]].encode( b );
-              if( v != Transform[address[addr][0]].encode( vb ) )
-                visu.write( addr.substr(1), v );
-              break;
+            if( address[addr][2] == true ) continue; // skip read only
+            switch( address[addr][1] )
+            {
+              case 'r':
+                var v = Transform[address[addr][0]].encode( r );
+                if( v != Transform[address[addr][0]].encode( br ) )
+                {
+                  visu.write( addr.substr(1), v );
+                  modified = true;
+                }
+                break;
+              case 'g':
+                var v = Transform[address[addr][0]].encode( g );
+                if( v != Transform[address[addr][0]].encode( bg ) )
+                {
+                  visu.write( addr.substr(1), v );
+                  modified = true;
+                }
+                break;
+              case 'b':
+                var v = Transform[address[addr][0]].encode( b );
+                if( v != Transform[address[addr][0]].encode( bb ) )
+                {
+                  visu.write( addr.substr(1), v );
+                  modified = true;
+                }
+                break;
+            }
+          }
+
+          if( modified ) 
+          {
+            a.data( 'bus_r', a.data( 'value_r' ) );
+            a.data( 'bus_g', a.data( 'value_g' ) );
+            a.data( 'bus_b', a.data( 'value_b' ) );
+            a.data( 'rateLimiter', true );
+            setTimeout( function(){rateLimitedSend( a );}, 250 ); // next call in 250ms
+          } else {
+            a.data( 'rateLimiter', false );
           }
         }
+        if( $actor.data( 'rateLimiter' ) == false ) // already requests going?
+          rateLimitedSend( $actor ); 
       });
     for( var addr in address ) {
       switch( address[addr][1] ) {
@@ -102,7 +132,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
   update_r: function( e, data ) { 
     var element = $(this);
     var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
-    element.data( 'value_r', value );
+    element.data( 'bus_r', value );
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
     var color = jQuery.farbtastic( element ).color || '#000000';
     color = color.substring(0,1) +
@@ -113,7 +143,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
   update_g: function( e, data ) { 
     var element = $(this);
     var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
-    element.data( 'value_g', value );
+    element.data( 'bus_g', value );
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
     var color = jQuery.farbtastic( element ).color || '#000000';
     color = color.substring(0,3) +
@@ -124,7 +154,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
   update_b: function( e, data ) { 
     var element = $(this);
     var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
-    element.data( 'value_b', value );
+    element.data( 'bus_b', value );
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
     var color = jQuery.farbtastic( element ).color || '#000000';
     color = color.substring(0,5) +
