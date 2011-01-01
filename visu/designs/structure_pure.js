@@ -159,11 +159,9 @@ function VisuDesign() {
         address[ '_' + src ] = [ this.getAttribute('transform') ];
       });
       var actor = $('<div class="actor">');
-//      ret_val.append( label ).append( actor );
       var min  = parseFloat( $p.attr('min')  || 0   );
       var max  = parseFloat( $p.attr('max')  || 100 );
       var step = parseFloat( $p.attr('step') || 0.5 );
-//      ret_val.find('.actor').data( {
       var $actor = $(actor).data({
         'events':   $(actor).data( 'events' ),
         'address' : address,
@@ -173,8 +171,7 @@ function VisuDesign() {
         'max'     : max,
         'step'    : step,
         'type'    : 'dim'
-      });//.bind('_'+$(page).attr('address'), this.update ) 
-        //.slider({step:step,min:min,max:max, animate: true,start:slideStart,change:slideChange}/*slide:slideAction}*/);
+      });
       for( var addr in address ) $actor.bind( addr, this.update );
       $actor.slider({
         step:    step,
@@ -183,7 +180,7 @@ function VisuDesign() {
         animate: true,
         start:   this.slideStart,
         change:  this.slideChange
-      }/*slide:slideAction}*/);
+      });
       ret_val.append( label ).append( $actor );
       return ret_val;
     },
@@ -209,7 +206,6 @@ function VisuDesign() {
         {
           data.value = actor.slider('value');
           if( data.address[addr][1] == true ) continue; // skip read only
-          //visu.write( addr.substr(1), data.value, data.address[addr][0].substr(4) );
           visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( data.value ) );
         }
       }, 250 ) ); // update KNX every 250 ms 
@@ -225,7 +221,6 @@ function VisuDesign() {
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        //visu.write( addr.substr(1), ui.value, data.address[addr][0].substr(4) );
         visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( ui.value ) );
       }
     },
