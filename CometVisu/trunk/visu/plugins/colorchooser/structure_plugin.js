@@ -101,7 +101,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
   },
   update_r: function( e, data ) { 
     var element = $(this);
-    var value = transform( data, element.data().address[ e.type ][0] );
+    var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
     element.data( 'value_r', value );
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
     var color = jQuery.farbtastic( element ).color || '#000000';
@@ -112,7 +112,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
   },
   update_g: function( e, data ) { 
     var element = $(this);
-    var value = transform( data, element.data().address[ e.type ][0] );
+    var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
     element.data( 'value_g', value );
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
     var color = jQuery.farbtastic( element ).color || '#000000';
@@ -123,7 +123,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
   },
   update_b: function( e, data ) { 
     var element = $(this);
-    var value = transform( data, element.data().address[ e.type ][0] );
+    var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
     element.data( 'value_b', value );
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
     var color = jQuery.farbtastic( element ).color || '#000000';
