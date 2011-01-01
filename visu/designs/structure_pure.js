@@ -271,15 +271,15 @@ function VisuDesign() {
     update: function(e,d) { 
       var element = $(this);
       var value = defaultUpdate( e, d, element );
-      element.removeClass( value == '0' ? 'switchPressed' : 'switchUnpressed' );
-      element.addClass(    value == '0' ? 'switchUnpressed' : 'switchPressed' );
+      element.removeClass( value == 0 ? 'switchPressed' : 'switchUnpressed' );
+      element.addClass(    value == 0 ? 'switchUnpressed' : 'switchPressed' );
     },
     action: function() {
       var data = $(this).data();
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( data.value ) );
+        visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( data.value == 0 ) );
       }
     },
     attributes: {
