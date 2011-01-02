@@ -155,8 +155,10 @@ function VisuDesign() {
       var address = {};
       $p.find('address').each( function(){ 
         var src = this.textContent;
+        var transform = this.getAttribute('transform');
+        var readonly  = this.getAttribute('readonly');
         ga_list.push( src ) 
-        address[ '_' + src ] = [ this.getAttribute('transform') ];
+        address[ '_' + src ] = [ transform, readonly=='true' ];
       });
       var actor = $('<div class="actor">');
       var min  = parseFloat( $p.attr('min')  || 0   );
