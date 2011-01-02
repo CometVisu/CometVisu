@@ -202,12 +202,15 @@ function VisuDesign() {
       actor.data( 'updateFn', setInterval( function(){
         var data = actor.data();
         if( data.value == actor.slider('value') ) return;
+        var asv = actor.slider('value');
         for( var addr in data.address )
         {
-          data.value = actor.slider('value');
           if( data.address[addr][1] == true ) continue; // skip read only
-          visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( data.value ) );
+          var dv = Transform[data.address[addr][0]].encode( data.value );
+          if( dv != Transform[data.address[addr][0]].encode( asv ) )
+            visu.write( addr.substr(1), dv );
         }
+        data.value = actor.slider('value');
       }, 250 ) ); // update KNX every 250 ms 
     },
     /**
@@ -218,11 +221,13 @@ function VisuDesign() {
       var data = $(this).data();
       clearInterval( data.updateFn, ui.value);
       if( data.value != ui.value )
-      for( var addr in data.address )
-      {
-        if( data.address[addr][1] == true ) continue; // skip read only
-        visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( ui.value ) );
-      }
+        for( var addr in data.address )
+        {
+          if( data.address[addr][1] == true ) continue; // skip read only
+          var uv = Transform[data.address[addr][0]].encode( ui.value );
+          if( uv != Transform[data.address[addr][0]].encode( data.value ) )
+            visu.write( addr.substr(1), uv );
+        }
     },
     attributes: {
       min:     { type: 'numeric', required: false },
