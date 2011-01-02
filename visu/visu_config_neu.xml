@@ -67,6 +67,7 @@
     <slide min="-18" max="26">
       <label>Slide</label>
       <address transform="DPT:9">12/4/250</address>
+      <address transform="DPT:9.001" readonly="true">12/4/253</address>
     </slide>
     <break />
     <trigger value="0" mapping="OnOff">
