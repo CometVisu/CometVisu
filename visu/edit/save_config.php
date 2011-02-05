@@ -1,4 +1,9 @@
 <?php
+//// Report all PHP errors
+//// debugging:
+//error_reporting(-1);
+//header("content-type: text/plain");
+
 define("CONFIG_FILENAME", "../visu_config%s.xml");
 define("CONFIG_BASE_XML", "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><pages />");
 define("CONFIG_PAGE_XML", "<page />");
@@ -58,6 +63,8 @@ $objXML->loadXML($strXML);
 $handle = fopen($strConfig, "w");
 fputs($handle, $objXML->saveXML());
 fclose($handle);
+// debugging:
+//print $objXML->saveXML();
 
 echo 1;
 exit;
@@ -73,13 +80,11 @@ exit;
  */
 function createDOMFromJSON($objJSON) {
 
-    global $objDOM;
-
     if (false === isset($objJSON->_type) || "page" != $objJSON->_type) {
         throw new Exception("Malformed config received!");
     }
 
-    $objXML = $objDOM->createElement("page");
+    $objXML = $GLOBALS['objDOM']->createElement("page");
 
     if (false === empty($objJSON->name)) {
         // den Namen der Seite festlegen
@@ -90,11 +95,19 @@ function createDOMFromJSON($objJSON) {
         return $objXML;
     }
 
-    foreach ($objJSON->_elements as $objElement) {
-        if ("page" == $objElement->_type) {
-            $objXML->appendChild(createDOMFromJSON($objElement));
-        } else {
-            $objXML->appendChild(createChildFromJSON($objElement));
+    foreach ($objJSON->_elements as $strKey => $arrElements) {
+        // create an array - sometimes we have one, sometimes not
+        // so just make sure we have one every single time
+        if (false === is_array($arrElements)) {
+            $arrElements = array($arrElements);
+        }
+
+        foreach ($arrElements as $objElement) {
+            if ("page" == $objElement->_type) {
+                $objXML->appendChild(createDOMFromJSON($objElement));
+            } else {
+                $objXML->appendChild(createChildFromJSON($objElement));
+            }
         }
     }
 
@@ -108,31 +121,60 @@ function createDOMFromJSON($objJSON) {
  * @param   object  $obj    Ein Objekt das aus dem JSON gewonnen wurde
  * @returns object          DOM-Objekt
  */
-function createChildFromJSON($objJSON) {
-    global $objDOM;
+function createChildFromJSON($objJSON, $debug = false) {
 
     if (true === empty($objJSON->_type)) {
         return null;
     }
 
-    $objXML = $objDOM->createElement($objJSON->_type);
+    $objXML = $GLOBALS['objDOM']->createElement($objJSON->_type);
     if (false === empty($objJSON->_text)) {
         $objXML->nodeValue = $objJSON->_text;
     }
+   
+    if (false === empty($objJSON->_attributes)) {
+        // some attributes are in a sub-element - it's easier to get them out of there
+        // into our main namespace
+        foreach ($objJSON->_attributes as $strKey => $strValue) {
+            $objJSON->$strKey = $strValue;
+        }
+    }
 
-    foreach ($objJSON as $strAttribute => $strValue) {
+
+
+    foreach ($objJSON as $strAttribute => $mixValue) {
         if (0 === strpos($strAttribute, "_")) {
             // Parameter die mit "_" beginnen sind special purpose
             continue;
         }
 
         if ($strAttribute === "textContent") {
-            $objXML->nodeValue = $strValue;
+            $objXML->nodeValue = $mixValue;
             continue;
         }
-        $objXML->setAttribute($strAttribute, $strValue);
+        $objXML->setAttribute($strAttribute, $mixValue);
     }
 
+
+    // elements AFTER attributes, as they might be overwritten by nodeValue!
+    if (false === empty($objJSON->_elements)) {
+        // sub-elements - we needs thems
+        $arrElements = array();
+        foreach ($objJSON->_elements as $arrSubElements) {
+            foreach ($arrSubElements as $objSubElement) {
+                $arrChildren[] = createChildFromJSON($objSubElement);
+            }
+        }
+
+        if (false === empty($arrChildren)) {
+            // unset the node-value - we have either text OR sub-nodes
+            $objXML->nodeValue = "";
+            foreach ($arrChildren as $objChildNode) {
+                $objXML->appendChild($objChildNode);
+            }
+        }
+    }
+    
     return $objXML;
 }
 
