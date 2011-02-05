@@ -237,12 +237,10 @@ function setup_page( xml )
   $("#pages").triggerHandler("done");
 }
 
-function create_pages( page, path )
-{
-  var retval;
-  retval = (design.creators[ page.nodeName ]) ? 
-           design.creators[ page.nodeName ].create( page, path ) :
-           design.creators[ 'unknown'     ].create( page, path ) ;
+function create_pages( page, path ) {
+
+    var creator = design.getCreator(page.nodeName);
+    var retval = creator.create(page, path);
 
     node = $(page).get(0);
     var attributes = {};
@@ -256,7 +254,23 @@ function create_pages( page, path )
         $.extend(attributes, node);
     }
 
-  retval.data("attributes", attributes)
+    var configData = {attributes: {}, elements: {}}
+    if (typeof creator.attributes != "undefined") {
+        $.each(creator.attributes, function (index, e) {
+            if ($(page).attr(index)) {
+                configData.attributes[index] = $(page).attr(index);
+            }
+        });
+    }
+
+    if (typeof creator.elements != "undefined") {
+        $.each(creator.elements, function (index, e) {
+            var elements = $(page).find(index);
+            configData.elements[index] = elements;
+        });
+    }
+
+    retval.data("configData", configData)
         .data("path", path)
         .data("nodeName", page.nodeName)
         .data("textContent", page.textContent);
