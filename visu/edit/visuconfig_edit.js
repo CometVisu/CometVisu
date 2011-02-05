@@ -146,6 +146,152 @@ jQuery(document).ready(function() {
 
         $("#addMaster").triggerHandler("show");
     });
+
+    jQuery(".multi_element .element").live("click", function() {
+        $this = jQuery(this);
+        if ($this.is(".inedit")) {
+            // edit-Feld schon vorhanden, leave it alone
+            return;
+        }
+        $this.addClass("inedit");
+        $edit = jQuery("<div class=\"clearfix edit\" />");
+        $this.append($edit);
+
+        $this.find(".editable").hide().each(function(index, e) {
+           $e = jQuery(e);
+
+           if ($this.closest(".multi_element").hasClass("address")) {
+                // we're editing addresses
+                var element = $("<div />").addClass("add_input").addClass("attribute")
+                                    .append($("<label />").attr("for", "add_" + index).html(index))
+                                    .append($("<div class=\"input\" />"));
+                var myElement = element.find("div.input");
+
+                if ($e.hasClass("value")) {
+                    element.find("label").html("address");
+                    // we will provide an input-field AND a select-list.
+                    myElement.append($("<input class=\"add_address\" />"));
+                    if (typeof $e.text() != "undefined") {
+                        // pre-set the value
+                        myElement.find(":input").val($e.text());
+                    }
+
+                    if (typeof addressesCache != undefined && addressesCache != false) {
+                        var input = myElement.find("input");
+                        input.attr("disabled", "disabled");
+                        myElement.append($("<input type=\"checkbox\" name=\"enable_address\" checked=\"checked\" />")
+                                            .change(function() {
+                                                if ($(this).attr("checked")) {
+                                                    input.attr("disabled", "disabled");
+                                                    myElement.find("select").show();
+                                                } else {
+                                                    input.removeAttr("disabled");
+                                                    myElement.find("select").hide();
+                                                }
+                                            })
+                                        );
+                        myElement.append($("<br />"));
+                        myElement.append($("<select class=\"add_address\" />")
+                                        .append($("<option />").attr("value", "").html("-")));
+
+                        myElement.find("select:first").append(getAddressesObject());
+
+                        myElement.find("select").bind("change", function() {
+                            // on changing the address, the coresponding datatype-field is
+                            // automagically set
+                            $dptField = $(this).closest(".edit").find(".add_transform:input");
+                            var dpt = $(this).find("option:selected").attr("class").replace(/[^dpt_\d+\.\d+]*/, "").replace(/^dpt_/, "");
+                            if ($dptField.is("input")) {
+                                $dptField.val(dpt);
+                            } else if ($dptField.is("select")) {
+                                $dptField.find("option[value=" + dpt + "]").attr("selected", "selected");
+                            }
+                        });
+
+                        if (typeof $e.text() != "undefined") {
+                            myElement.find("option[value=" + $e.text() + "]").attr("selected", "selected");
+                        }
+
+                    }
+                }
+                if ($e.hasClass("transform")) {
+                    element.find("label").html("transform");
+                    if (typeof dptCache == undefined || dptCache == false) {
+                        // appearantly we were unable to load the list of datatypes from the server
+                        // we will provide an input-field instead
+                        myElement.append($("<input class=\"add_transform\" />"));
+                        if (typeof $e.val() != "undefined") {
+                            // pre-set the value
+                            myElement.find(":input").val($e.val());
+                        }
+                    } else {
+                        myElement.append($("<select class=\"add_transform\" />")
+                                        .append($("<option />").attr("value", "").html("-")));
+
+                        myElement.find("select:first").append(getDPTObject());
+
+                        if (typeof $e.text() != "undefined") {
+                            myElement.find("option[value=" + $e.text() + "]").attr("selected", "selected");
+                        }
+
+                    }
+                }
+                if ($e.hasClass("readonly")) {
+                    element.find("label").html("readonly");
+                    myElement.append($("<input type=\"checkbox\" name=\"add_readonly\" class=\"add_readonly\" value=\"true\" />"));
+                    if (typeof $e.text() != "undefined" && $e.text() != "") {
+                        myElement.find("input").attr("checked", "checked");
+                    }
+                }
+
+                if (element.find("select")[0]) {
+                    var select = element.find("select");
+                    select.change(function() {
+                        // update the input-field
+                        jQuery(this).parent().find("input").val(jQuery(this).val());
+                    })
+                }
+
+                element.find(":input")
+                        .data("name", index)
+
+                $edit.append(element);
+                delete element;
+           }
+        });
+        $edit.append(jQuery("<div class=\"clearfix\" />")
+                    .append(jQuery("<button type=\"button\" class=\"save\">save</button>").click(function() {
+                        // save sub-element
+                        // todo: validate
+                        $this = jQuery(this);
+                        $e = $this.closest(".element");
+
+                        var objData = {};
+                        // don't try to hide it: this is hardcoded and works for addresses only
+                        objData.type = "address";
+                        objData.textContent = $e.find("input.add_address").val();
+                        objData._attributes = {};
+                        objData._attributes.transform = $e.find(".add_transform").val();
+                        objData._attributes.readonly = $e.find(".add_readonly:checked").val();
+
+                        // remove this item and insert a new one instead
+                        var elementDiv = createAddressEditorElement(objData);
+                        $this.closest(".element").replaceWith(elementDiv);
+
+                    }))
+                    .append(jQuery("<button type=\"button\" class=\"cancel\">cancel</button>").click(function() {
+                        // cancel edit of sub-element and return to previous values
+                        $this = jQuery(this);
+                        $this.closest(".element").removeClass("inedit").find(".editable").show();
+                        $this.closest("div.edit").remove();
+                    }))
+                    .append(jQuery("<button type=\"button\" class=\"remove\">remove</button>").click(function() {
+                        // remove this sub-element
+                        $this = jQuery(this);
+                        $this.closest(".element").remove();
+                    }))
+        );
+    });
 });
 
 
@@ -189,17 +335,19 @@ jQuery(function() {
             // we need to change the input-field accordingly to match
             // what attributes we need
             var val = jQuery(this).val();
+            
+            // get all the info we need to edit this piece of work
             var creator = design.getCreator(val);
-            var attributes = creator.attributes;
-            if (typeof attributes == "undefined") {
-                alert("there's something wrong with the cable");
-                return;
-            }
+            var attributes = creator.attributes || {};
+            var elements   = creator.elements || {};
 
+            // find old input-fields in the editor to remember those values ...
+            // this is need in case someone switches types while editing - and sure they want to keep their settings
             var container = $("#addMaster div.inputs");
             var values = $.extend({}, $("#addMaster").data("widgetdata"));
 
             if (!$("#pages .inedit").is(".widget")) {
+                // this needs to be changed for the new settings-layout - it's completely broken right now!
                 // alte Werte zwischenspeichern
                 container.find(":input").each(function() {
                     if ($(this).val() != "") {
@@ -210,6 +358,8 @@ jQuery(function() {
             }
             container.empty();
 
+            // we will need this variable later on to store our fieldset in.
+            var set;
             if (typeof creator.content.type != "undefined" && creator.content.type == "string") {
 
                 var element = $("<div />").addClass("add_input").addClass("content")
@@ -227,138 +377,148 @@ jQuery(function() {
                 delete element;
             }
 
-            $.each(attributes, function (index, e) {
-                var element = $("<div />").addClass("add_input").addClass("attribute")
-                                    .append($("<label />").attr("for", "add_" + index).html(index))
-                                    .append($("<div class=\"input\" />"));
-                var myElement = element.find("div.input");
+            if (false === jQuery.isEmptyObject(elements)) {
+                // we've got elements we need to addit :)
+                container.append(set = jQuery("<fieldset />").addClass("elements"));
+                jQuery.each(elements, function(index, e) {
+                    var $line = $("<div />").addClass("add_input")
+                        .append($("<label />").attr("for", "add_" + index).html(index))
+                        .append($("<div class=\"input\" />"));
+                    var $input = $line.find("div.input");
 
-                switch (e.type) {
-                    case "address":
-                        // appearantly we were unable to load the list of addresses from the server
-                        // we will provide an input-field instead
-                        myElement.append($("<input id=\"add_" + index + "\" />"));
-                        if (typeof values[index] != "undefined") {
-                            // pre-set the value
-                            myElement.find(":input").val(values[index]);
-                        }
+                    switch (e.type) {
+                        case "address":
+                            // create a fake input-element to store our data later on
+                            $input.append(jQuery("<input type=\"hidden\" id=\"add_" + index + "\" class=\"multi address\" />"));
 
-                        if (typeof addressesCache != undefined && addressesCache != false) {
-                            var input = myElement.find("input");
-                            input.attr("disabled", "disabled");
-                            myElement.append($("<input type=\"checkbox\" name=\"enable_" + e.type + "\" checked=\"checked\" />")
-                                                .change(function() {
-                                                    if ($(this).attr("checked")) {
-                                                        input.attr("disabled", "disabled");
-                                                        myElement.find("select").show();
-                                                    } else {
-                                                        input.removeAttr("disabled");
-                                                        myElement.find("select").hide();
-                                                    }
-                                                })
-                                            );
-                            myElement.append($("<br />"));
-                            myElement.append($("<select id=\"add_" + index + "\" />")
-                                            .append($("<option />").attr("value", "").html("-")));
+                            // create the real inputs-thingy-thing
+                            $input.append('<div><div class="add_element">+</div><div class="multi_element address" /></div>');
+                            $input.find(".add_element").click(function() {
+                                // insert a new, empty sub-element
+                                var objData = {};
+                                // don't try to hide it: this is hardcoded and works for addresses only
+                                objData.type = "address";
+                                objData.textContent = "";
+                                objData._attributes = {};
+                                objData._attributes.transform = "";
+                                objData._attributes.readonly = false;
 
-                            myElement.find("select:first").append(getAddressesObject());
-
-                            myElement.find("select").bind("change", function() {
-                                // on changing the address, the coresponding datatype-field is
-                                // automagically set
-                                var name = $(this).attr("id");
-                                var dptFieldName = name.replace(/_?address$/i, "_datatype");
-                                var dpt = $(this).find("option:selected").attr("class").replace(/[^dpt_\d+\.\d+]*/, "").replace(/^dpt_/, "");
-                                if ($("#addMaster #" + dptFieldName).is("input")) {
-                                    $("#addMaster div.inputs #" + dptFieldName).val(dpt);
-                                } else if ($("#addMaster #" + dptFieldName).is("select")) {
-                                    $("#addMaster #" + dptFieldName).find("option[value=" + dpt + "]").attr("selected", "selected");
-                                }
+                                var elementDiv = createAddressEditorElement(objData);
+                                $input.find("div.multi_element").append(elementDiv);
                             });
 
-                            if (typeof values[index] != "undefined") {
-                                myElement.find("option[value=" + values[index] + "]").attr("selected", "selected");
+                            if (typeof values._elements != "undefined"
+                                && typeof values._elements[index] != "undefined") {
+                                $.each(values._elements[index], function(i, e) {
+                                    var elementDiv = createAddressEditorElement(e);
+                                    $input.find("div.multi_element").append(elementDiv);
+                                });
                             }
+                            break;
+                        default:
+                            // add an unknown element (e.g. the label)
+                            if (e.multi == false) {
+                                // this element can appear only once
+                                $input.append(jQuery("<input type=\"text\" id=\"add_" + index + "\" />"));
 
-                        }
-                        break;
-                    case "datatype":
-                        if (typeof dptCache == undefined || dptCache == false) {
-                            // appearantly we were unable to load the list of datatypes from the server
-                            // we will provide an input-field instead
-                            myElement.append($("<input id=\"add_" + index + "\" />"));
-                            if (typeof values[index] != "undefined") {
-                                // pre-set the value
-                                myElement.find(":input").val(values[index]);
+                                if (typeof values._elements != "undefined"
+                                    && typeof values._elements[index] != "undefined") {
+                                    $.each(values._elements[index], function(i, e) {
+                                        $input.find("input").val(values._elements[index][0].textContent);
+                                    });
+                                }
+                            } else {
+                                // handling for "if an element can appear more than once"
+                                // TODO: needs to be coded once someone wants to use it :)
                             }
-                        } else {
-                            myElement.append($("<select id=\"add_" + index + "\" />")
-                                            .append($("<option />").attr("value", "").html("-")));
+                            break;
+                    }
 
-                            myElement.find("select:first").append(getDPTObject());
-
-                            if (typeof values[index] != "undefined") {
-                                myElement.find("option[value=" + values[index] + "]").attr("selected", "selected");
-                            }
-
-                        }
-                        break;
-
-                    case "mapping":
-                        myElement.append($("<select id=\"add_mapping\" />")
-                                        .append($("<option />").attr("value", "").html("-")));
-                        jQuery.each(mappings, function(i, tmp) {
-                            myElement.find("select#add_mapping").append($("<option />").attr("value", i).html(i));
-                        });
-
-                        if (typeof values[index] != "undefined") {
-                            myElement.find("option[value=" + values[index] + "]").attr("selected", "selected");
-                        }
-
-                        break;
-                        
-                    case "styling":
-                        myElement.append($("<select id=\"add_styling\" />")
-                                        .append($("<option />").attr("value", "").html("-")));
-                        jQuery.each(stylings, function(i, tmp) {
-                            myElement.find("select#add_styling").append($("<option />").attr("value", i).html(i));
-                        });
-
-                        if (typeof values[index] != "undefined") {
-                            myElement.find("option[value=" + values[index] + "]").attr("selected", "selected");
-                        }
-
-                        break;
-                    case "datatype":
-                        break;
-                    default:
-                        myElement.append($("<input type=\"text\" id=\"add_" +  index + "\" />"));
-
-                        if (typeof values[index] != "undefined") {
-                            myElement.find("input").val(values[index]);
-                        }
-
-                        break;
-                }
-
-                if (element.find("select")[0]) {
-                    var select = element.find("select");
-                    select.change(function() {
-                        // update the input-field
-                        jQuery(this).parent().find("input").val(jQuery(this).val());
-                    })
-                }
-
-                element.find(":input")
+                // remember how to name and how to validate this input
+                $line.find(":input")
                         .data("name", index)
                         .data("required", e.required)
                         .data("type", e.type);
 
-                container.append(element);
-                delete element;
-            });
+                // add this "line" to the editor
+                set.append($line);
+                delete $line;
+                });
+            }
+
+            if (false === jQuery.isEmptyObject(attributes)) {
+                // we've got attributes to addit :)
+                container.append(set = jQuery("<fieldset />").addClass("attributes"));
+                $.each(attributes, function (index, e) {
+                    var $line = $("<div />").addClass("add_input")
+                                        .append($("<label />").attr("for", "add_" + index).html(index))
+                                        .append($("<div class=\"input\" />"));
+                    var $input = $line.find("div.input");
+
+                    switch (e.type) {
+                        case "mapping":
+                            $input.append($("<select id=\"add_mapping\" />")
+                                            .append($("<option />").attr("value", "").html("-")));
+                            jQuery.each(mappings, function(i, tmp) {
+                                $input.find("select#add_mapping").append($("<option />").attr("value", i).html(i));
+                            });
+
+                            if (typeof values._attributes != "undefined"
+                                && typeof values._attributes[index] != "undefined") {
+                                $input.find("option[value=" + values._attributes[index] + "]").attr("selected", "selected");
+                            }
+
+                            break;
+
+                        case "styling":
+                            $input.append($("<select id=\"add_styling\" />")
+                                            .append($("<option />").attr("value", "").html("-")));
+                            jQuery.each(stylings, function(i, tmp) {
+                                $input.find("select#add_styling").append($("<option />").attr("value", i).html(i));
+                            });
+
+                            if (typeof values._attributes != "undefined"
+                                && typeof values._attributes[index] != "undefined") {
+                                $input.find("option[value=" + values._attributes[index] + "]").attr("selected", "selected");
+                            }
+
+                            break;
+                        case "datatype":
+                            break;
+                        default:
+                            $input.append($("<input type=\"text\" id=\"add_" +  index + "\" />"));
+
+                            if (typeof values._attributes != "undefined"
+                                && typeof values._attributes[index] != "undefined") {
+                                $input.find("input").val(values._attributes[index]);
+                            }
+
+                            break;
+                    }
+
+                    if ($line.find("select")[0]) {
+                        var select = $line.find("select");
+                        select.change(function() {
+                            // update the input-field
+                            jQuery(this).parent().find("input").val(jQuery(this).val());
+                        })
+                    }
+
+                    $line.find(":input")
+                            .data("name", index)
+                            .data("required", e.required)
+                            .data("type", e.type);
+
+                    set.append($line);
+                    delete $line;
+                });
+            }
+
         })
         .end()
+        /*******************
+         * Speichervorgang *
+         *******************/
         .find("#add_submit").click(function() {
             // Daten aus den Eingabefeldner übernehmen
             // einfach alle rein - wir haben ja nur die passenden Felder
@@ -391,15 +551,44 @@ jQuery(function() {
                 dataObject.textContent = text;
             }
 
-
             var error = false;
 
-            // alte Werte zwischenspeichern
-            container.find(":input:visible").not("[name^=enable_]").each(function() {
-                var name;
-                if ($(this).closest("div.add_input").hasClass("attribute")) {
-                    name = $(this).data("name");
+            // get the settings for all sub-elements
+            container.find("fieldset.elements :input").each(function() {
+                var name = $(this).data("name");
+
+                if (!$(this).is(".multi")) {
+                    if ($(this).val() != "") {
+                        // validating
+                        if (false === isInputValid($(this).val(), $(this).data("type"))) {
+                            alert(lingua("value_invalid", name));
+                            // do not save
+                            error = true;
+                        }
+                        dataObject.append($("<" + name + " />").append($(this).val()));
+                    } else if ($(this).data("required") === true) {
+                        // do not save
+                        alert(lingua("value_required", name));
+                        error = true;
+                    }
+                } else {
+                    // multi-element-input
+                    if ($(this).is(".address")) {
+                        $elements = jQuery(this).closest("div.input").find(".multi_element .element");
+                        $elements.each(function (index, e) {
+                            $address = $("<address />")
+                                .attr("transform", $(e).data("transform"))
+                                .attr("readonly", $(e).data("readonly") == true ? "true" : "false")
+                                .append($(e).data("address"));
+                            dataObject.append($address);
+                        });
+                    }
                 }
+            });
+
+            // get the settings for all attributes
+            container.find("fieldset.attributes :input").each(function() {
+                var name = $(this).data("name");
 
                 if ($(this).val() != "") {
                     // validating
@@ -414,7 +603,7 @@ jQuery(function() {
                     alert(lingua("value_required", name));
                     error = true;
                 }
-            })
+            });
 
             if (error !== false) {
                 return;
@@ -523,7 +712,40 @@ function getWidgetData(element) {
 
     myObj._type = e.data("nodeName");
     myObj.textContent = e.data("textContent");
-    $.extend(myObj, e.data("attributes"));
+    myObj._attributes = e.data("configData").attributes;
+
+    if (e.data("configData").elements) {
+        // Sub-Elements must be processed differently.
+        var myElements = {};
+        $.each(e.data("configData").elements, function (index, elementGroup) {
+            $.each(elementGroup, function (index, element) {
+                var myElement = {};
+                element = jQuery(element).get(0);
+                switch (element.nodeName) {
+                    case "address":
+                        myElement._type = "address";
+                        myElement.textContent = element.textContent;
+
+                        myElement._attributes = {};
+
+                        myElement._attributes.transform = jQuery(element).attr("transform");
+                        myElement._attributes.readonly  = jQuery(element).attr("readonly");
+                        break;
+                    default:
+                        // mostly labels
+                        myElement._type = element.nodeName;
+                        myElement.textContent = element.textContent;
+                        break;
+                }
+                if (typeof(myElements[element.nodeName]) == "undefined") {
+                    myElements[element.nodeName] = [];
+                }
+                myElements[element.nodeName].push(myElement);
+            });
+        });
+        // add it to the object-to-be-saved
+        myObj._elements = myElements;
+    }
 
     if (e.is(".pagelink")) {
         // it's a page, we need to dive in
@@ -606,7 +828,7 @@ function getAddressesObject() {
             $.each(addresses, function (i, address) {
                 element.find("optgroup:last")
                     .append($("<option />").attr("value", address.address)
-                                .addClass("dpt_" + address.dpt)
+                                .addClass("dpt_DPT:" + address.dpt)
                                 .html(address.name)
                                 )
             });
@@ -625,10 +847,26 @@ function getDPTObject() {
         return cachedDPTObject.clone();
     }
 
-    element = $("<select />");
+    var element = $("<select />");
+
+    var lastMajor = "";
 
     $.each(dptCache, function(i, dptDefinition) {
-        element.append($("<option />").attr("value", dptDefinition.dpt)
+        var myMajor = lastMajor;
+        var t = dptDefinition.dpt.match(/^([0-9]+)\./);
+        if (typeof (t[1]) != "undefined") {
+            myMajor = t[1];
+        }
+        
+        if (lastMajor != myMajor) {
+            if (element.is("optgroup")) {
+                element = element.closest("select");
+            }
+            element.append($("<optgroup />").attr("label", "DPT " + myMajor));
+            lastMajor = myMajor;
+        }
+
+        element.find("optgroup:last").append($("<option />").attr("value", "DPT:" + dptDefinition.dpt)
                 .html("" + dptDefinition.dpt + ": " + dptDefinition.name)
                 );
     });
@@ -636,4 +874,28 @@ function getDPTObject() {
     cachedDPTObject = element.children();
 
     return cachedDPTObject;
+}
+
+/**
+ * Create a sub-element for the multi-editor to edit an address-entry.
+ */
+function createAddressEditorElement(element) {
+    var elementDiv = jQuery("<div class=\"element clearfix\" />");
+    elementDiv.append("<div class=\"title\" />")
+        .append("<div class=\"value editable\" />")
+        .append("<div class=\"transform editable\" />")
+        .append("<div class=\"readonly editable\" />");
+    //myDiv.find(".title").append();
+    var t = getAddressesObject();
+    elementDiv.find(".title").append(t.find("option[value=" + element.textContent + "]").text());
+    elementDiv.find(".value").append(element.textContent);
+    elementDiv.find(".transform").append(element._attributes.transform);
+    elementDiv.find(".readonly").append(element._attributes.readonly == "true" ? "readonly" : "")
+
+    elementDiv.data("transform", element._attributes.transform)
+        .data("readonly", element._attributes.readonly == "true" ? true : false)
+        .data("address", element.textContent);
+
+    return elementDiv;
+
 }

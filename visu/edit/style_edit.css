@@ -74,12 +74,73 @@ div#addMaster {
     background-color: grey;
     display: none;
     position: absolute;
-    width: 48%;
+    width: 97%;
     margin: auto;
     top: 2em;
-    left: 2em;
+    left: .5em;
     padding: .5em;
-    z-index: 2;
+    z-index: 4;
+}
+
+#addMaster .multi_element {
+    width: 90%;
+    height: 8em;
+    overflow: auto;
+    border: 1px solid #444;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    padding: 2px;
+}
+
+#addMaster fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.multi_element .element {
+    min-height: 2em;
+    border: 1px solid #5A5A5A;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+
+.input .add_element {
+    cursor: pointer;
+}
+
+.element .edit {
+    clear: both;
+}
+
+.element .title {
+    font-weight: bold;
+    height: 1em;
+}
+
+.element .value, .element .transform, .element .readonly {
+    font-weight: normal;
+    height: 1em;
+    font-size: small;
+}
+
+.element .value, .element .readonly {
+    float: left;
+}
+
+.element .transform {
+    float: right;
+}
+
+.element .readonly {
+    margin-left: .4em;
+}
+
+.multi_element .element .edit {
 }
 
 .addwidget .editcontrols label {
@@ -92,10 +153,25 @@ div#addMaster {
     padding-left: 200px;
 }
 
+.addwidget .editcontrols .multi_element label {
+    float: left;
+    width: 100px;
+    font-size: smaller;
+}
+
+
+.addwidget .editcontrols .multi_element .input {
+    padding-left: 120px;
+}
+
 div.line {
     width: 97%;
 }
 
 div.line hr {
     margin-top: .9em;
+}
+
+#addMaster button {
+    margin: .4em;
 }

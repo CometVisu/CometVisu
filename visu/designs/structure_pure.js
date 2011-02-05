@@ -71,6 +71,8 @@ function VisuDesign() {
     attributes: {
       name: { type: 'string', required: true }
     },
+    elements: {
+    },
     content: true
   });
 
@@ -89,6 +91,8 @@ function VisuDesign() {
     },
     attributes: {
     },
+    elements: {
+    },
     content:    false
   });
 
@@ -104,6 +108,8 @@ function VisuDesign() {
     },
     attributes: {
       align:    { type: 'string', required: false }
+    },
+    elements: {
     },
     content:    { type: 'string', required: true }
   });
@@ -137,13 +143,17 @@ function VisuDesign() {
     },
     update:       defaultUpdate,
     attributes: {
-      pre:        { type: 'string'   , required: false },
-      post:       { type: 'string'   , required: false },
+      pre:        { type: 'string',    required: false },
+      post:       { type: 'string',    required: false },
       precision:  { type: 'precision', required: false },
-      mapping:    { type: 'mapping'  , required: false },
-      styling:    { type: 'styling'  , required: false }
+      mapping:    { type: 'mapping',   required: false },
+      styling:    { type: 'styling',   required: false }
     },
-    content:      { type: 'string' , required: true  }
+    elements: {
+      label:      { type: 'string',    required: true, multi: false },
+      address:    { type: 'address',   required: true, multi: true }
+    },
+    content:      false
   });
 
   this.addCreator('slide', {
@@ -238,7 +248,11 @@ function VisuDesign() {
       mapping: { type: 'mapping', required: false },
       styling: { type: 'styling', required: false }
     },
-    content: { type: 'string', required: true }
+    elements: {
+      label:      { type: 'string',    required: true, multi: false },
+      address:    { type: 'address',   required: true, multi: true }
+    },
+    content:      false
   });
 
   this.addCreator('switch', {
@@ -290,7 +304,11 @@ function VisuDesign() {
       mapping:           { type: 'mapping' , required: false },
       styling:           { type: 'styling' , required: false }
     },
-    content:    { type: 'string', required: true }
+    elements: {
+      label:      { type: 'string',    required: true, multi: false },
+      address:    { type: 'address',   required: true, multi: true }
+    },
+    content:      false
   });
 
   this.addCreator('trigger', {
@@ -336,15 +354,17 @@ function VisuDesign() {
       }
     },
     attributes: {
-      address:  { type: 'address' , required: true  },
-      datatype: { type: 'datatype', required: true  },
       value:    { type: 'string'  , required: true  },
       pre:      { type: 'string'  , required: false },
       post:     { type: 'string'  , required: false },
       mapping:  { type: 'mapping' , required: false },
       styling:  { type: 'styling' , required: false }
     },
-    content:    { type: 'string'  , required: true  }
+    elements: {
+      label:      { type: 'string',    required: true, multi: false },
+      address:    { type: 'address',   required: true, multi: true }
+    },
+    content:      false
   });
 
   this.addCreator('image', {
@@ -370,7 +390,10 @@ function VisuDesign() {
       height:     { type: 'string' , required: false },
       refresh:    { type: 'numeric', required: false }
     },
-    content: { type: 'string', required: false }
+    elements: {
+      label:      { type: 'string',    required: false, multi: false }
+    },
+    content:      false
   });
 
   this.addCreator('video', {
@@ -396,7 +419,10 @@ function VisuDesign() {
       height:  { type: 'string' , required: false },
       refresh: { type: 'numeric', required: false }
     },
-    content: { type: 'string', required: true }
+    elements: {
+      label:      { type: 'string',    required: false, multi: false }
+    },
+    content:      false
   });
 
   this.addCreator('iframe', {
@@ -418,7 +444,10 @@ function VisuDesign() {
       width:  { type: 'string', required: false },
       height: { type: 'string', required: false }
     },
-    content: { type: 'string', required: false }
+    elements: {
+      label:      { type: 'string',    required: false, multi: false }
+    },
+    content:      false
   });
 
   this.addCreator('unknown', {
