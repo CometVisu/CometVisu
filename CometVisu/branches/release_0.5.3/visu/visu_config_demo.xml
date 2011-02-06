@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="visu_config.xsd">
+  <meta>
+    <plugins>
+      <plugin name="colorchooser"/>
+      <plugin name="diagram"/>
+    </plugins>
+    <mappings>
+      <mapping name="OpenClose">
+        <entry value="0">zu</entry>
+        <entry value="1">offen</entry>
+      </mapping>
+      <mapping name="OnOff">
+        <entry value="0">Aus</entry>
+        <entry value="1">An</entry>
+      </mapping>
+      <mapping name="Sign">
+        <entry range_min="-1e99" range_max="0">Negativ</entry>
+        <entry value="0">Null</entry>
+        <entry range_min="0" range_max="1e99">Positiv</entry>
+      </mapping>
+    </mappings>
+    <stylings>
+      <styling name="RedGreen">
+        <entry value="0">red</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="GreenRed">
+        <entry value="0">green</entry>
+        <entry value="1">red</entry>
+      </styling>
+      <styling name="BluePurpleRed">
+        <entry range_min="-100" range_max="0">blue</entry>
+        <entry value="0">purple</entry>
+        <entry range_min="0" range_max="100">red</entry>
+      </styling>
+    </stylings>
+    <statusbar>
+      <status type="html"><![CDATA[
+          <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          - <a href=".?config=neu">Reload</a>
+          - <a href=".">Default Config</a>
+        ]]></status>
+      <status type="html" condition="!edit"><![CDATA[
+          - <a href="edit_config.html">Edit</a>
+        ]]></status>
+      <status type="html" condition="edit"><![CDATA[
+          - <a href=".">normal Mode</a>
+        ]]></status>
+      <status type="html"><![CDATA[
+          - <a href="check_config.php">Check Config</a>
+        ]]></status>
+    </statusbar>
+  </meta>
+  <page name="Übersicht">
+    <text align="center">CometVisu format neu</text>
+    <info styling="BluePurpleRed">
+      <label>Slide Info</label>
+      <address transform="DPT:9">12/4/250</address>
+      <address transform="DPT:9.001">12/4/251</address>
+    </info>
+    <switch mapping="OnOff" styling="RedGreen">
+      <label>Terrase Licht</label>
+      <address transform="DPT:1.001">1/0/2</address>
+      <address transform="DPT:9.001" readonly="true">12/4/253</address>
+    </switch>
+    <slide min="-18" max="26">
+      <label>Slide</label>
+      <address transform="DPT:9">12/4/250</address>
+      <address transform="DPT:9.001" readonly="true">12/4/253</address>
+    </slide>
+    <break />
+    <trigger value="0" mapping="OnOff">
+      <label>Terrase Licht 0</label>
+      <address transform="DPT:1.001">1/0/2</address>
+    </trigger>
+    <trigger value="1" mapping="OnOff">
+      <label>Terrase Licht 1</label>
+      <address transform="DPT:1.001">1/0/2</address>
+    </trigger>
+    <line />
+    <image src="icon/comet_128_ff8000.png" width="500px" height="46px"/>
+    <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
+      <label>Update every 10 sec</label>
+    </image>
+    <designtoggle>Change design</designtoggle>
+    <page name="iframe Test">
+      <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
+    </page>
+    <colorchooser>
+      <label>A colorChooser</label>
+      <address transform="DPT:5.001" color="r">1/2/59</address>
+      <address transform="DPT:5.001" color="g">1/2/60</address>
+      <address transform="DPT:5.001" color="b">1/2/61</address>
+    </colorchooser>
+    <info precision="4"><label>R</label><address transform="DPT:5.001">1/2/59</address></info>
+    <slide><label>R</label><address transform="DPT:5.001">1/2/59</address></slide>
+    <info precision="4"><label>G</label><address transform="DPT:5.001">1/2/60</address></info>
+    <slide><label>G</label><address transform="DPT:5.001">1/2/60</address></slide>
+    <info precision="4"><label>B</label><address transform="DPT:5.001">1/2/61</address></info>
+    <slide><label>B</label><address transform="DPT:5.001">1/2/61</address></slide>
+    <diagram_popup undefined="DALI Strom L1" rrd="200_DALI_Linie_1_Strom" unit="mA" series="day" refresh="300">DALI Strom L1</diagram_popup>
+  </page>
+</pages>
