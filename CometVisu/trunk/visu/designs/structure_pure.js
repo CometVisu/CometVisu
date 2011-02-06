@@ -26,7 +26,7 @@ function VisuDesign() {
   }
 
   this.getCreator = function(name) {
-    if (typeof this.creators[name] == undefined) {
+    if (this.creators[name] === undefined) {
       return this.creators.unknown;
     }
     return this.creators[name];
