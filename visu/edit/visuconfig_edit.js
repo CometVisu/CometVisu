@@ -244,6 +244,16 @@ jQuery(document).ready(function() {
                     }
                 }
 
+                if ($e.hasClass("addresstype")) {
+                    element.find("label").html("addresstype");
+                    myElement.append($("<input class=\"add_addresstype\" />"));
+                    if (typeof $e.text() != "undefined") {
+                        // pre-set the value
+                        myElement.find(":input").val($e.text());
+                    }
+
+                }
+
                 if (element.find("select")[0]) {
                     var select = element.find("select");
                     select.change(function() {
@@ -272,6 +282,7 @@ jQuery(document).ready(function() {
                         objData.textContent = $e.find("input.add_address").val();
                         objData._attributes = {};
                         objData._attributes.transform = $e.find(".add_transform").val();
+                        objData._attributes.type = $e.find(".add_addresstype").val();
                         objData._attributes.readonly = $e.find(".add_readonly:checked").val();
 
                         // remove this item and insert a new one instead
@@ -401,6 +412,7 @@ jQuery(function() {
                                 objData.textContent = "";
                                 objData._attributes = {};
                                 objData._attributes.transform = "";
+                                objData._attributes.type = "";
                                 objData._attributes.readonly = false;
 
                                 var elementDiv = createAddressEditorElement(objData);
@@ -578,6 +590,7 @@ jQuery(function() {
                         $elements.each(function (index, e) {
                             $address = $("<address />")
                                 .attr("transform", $(e).data("transform"))
+                                .attr("addresstype", $(e).data("addresstype"))
                                 .attr("readonly", $(e).data("readonly") == true ? "true" : "false")
                                 .append($(e).data("address"));
                             dataObject.append($address);
@@ -730,6 +743,7 @@ function getWidgetData(element) {
 
                         myElement._attributes.transform = jQuery(element).attr("transform");
                         myElement._attributes.readonly  = jQuery(element).attr("readonly");
+                        myElement._attributes.type  = jQuery(element).attr("type") || "";
                         break;
                     default:
                         // mostly labels
@@ -884,15 +898,22 @@ function createAddressEditorElement(element) {
     elementDiv.append("<div class=\"title\" />")
         .append("<div class=\"value editable\" />")
         .append("<div class=\"transform editable\" />")
+        .append("<div class=\"addresstype editable\" />")
         .append("<div class=\"readonly editable\" />");
     //myDiv.find(".title").append();
     var t = getAddressesObject();
     elementDiv.find(".title").append(t.find("option[value=" + element.textContent + "]").text());
     elementDiv.find(".value").append(element.textContent);
     elementDiv.find(".transform").append(element._attributes.transform);
+    if (element._attributes.type != "undefined" && element._attributes.type != "") {
+        elementDiv.find(".addresstype").append(element._attributes.type).show();
+    } else {
+        elementDiv.find(".addresstype").hide();
+    }
     elementDiv.find(".readonly").append(element._attributes.readonly == "true" ? "readonly" : "")
 
     elementDiv.data("transform", element._attributes.transform)
+        .data("addresstype", element._attributes.type)
         .data("readonly", element._attributes.readonly == "true" ? true : false)
         .data("address", element.textContent);
 
