@@ -63,7 +63,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         width:      {type: "string", required: false},
         height:     {type: "string", required: false},
         unit:       {type: "string", required: false},
-        series:     {type: "string", required: false},
+        series:     {type: "list", required: false, list: {day: "day", week: "week", month: "month", year: "year"}},
         refresh:    {type: "numeric", required: false}
     },
     content: {type: "string", required: true}
@@ -122,7 +122,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
     attributes: {
         rrd:        {type: "string", required: true},
         unit:       {type: "string", required: false},
-        series:     {type: "string", required: false},
+        series:     {type: "list", required: false, list: {day: "day", week: "week", month: "month", year: "year"}},
         refresh:    {type: "numeric", required: false}
     },
     content: {type: "string", required: true}

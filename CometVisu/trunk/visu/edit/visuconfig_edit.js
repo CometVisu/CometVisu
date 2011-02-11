@@ -497,6 +497,19 @@ jQuery(function() {
                             break;
                         case "datatype":
                             break;
+                        case "list":
+                            $input.append($("<select id=\"add_" + index + "\" />")
+                                            .append($("<option />").attr("value", "").html("-")));
+                            jQuery.each(e.list, function (i, val) {
+                                $input.find("select#add_" + index).append($("<option />").attr("value", i).html(val));
+                            });
+
+                            if (typeof values._attributes != "undefined"
+                                && typeof values._attributes[index] != "undefined") {
+                                $input.find("option[value=" + values._attributes[index] + "]").attr("selected", "selected");
+                            }
+
+                            break;
                         default:
                             $input.append($("<input type=\"text\" id=\"add_" +  index + "\" />"));
 
