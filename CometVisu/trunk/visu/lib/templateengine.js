@@ -115,11 +115,10 @@ function handleResize()
       $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;}</style>' );
       // do nothing
   } else {
-  var width = $( window ).width();
-  var height = $( window ).height() - $( '#top' ).outerHeight(true) - $( '#bottom' ).outerHeight(true) - 2;
-  $( '#main' ).css( 'width', width ).css( 'height', height );
-  $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;height:' + height + 'px;}</style>' );  
-
+      var width = $( window ).width();
+      var height = $( window ).height() - $( '#top' ).outerHeight(true) - $( '#bottom' ).outerHeight(true) - 2;
+      $( '#main' ).css( 'width', width ).css( 'height', height );
+      $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;height:' + height + 'px;}</style>' );
   }
   main_scroll != undefined && main_scroll.seekTo( main_scroll.getIndex(), 0 ); // fix scroll
 }

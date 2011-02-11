@@ -84,7 +84,7 @@ div#addMaster {
 
 #addMaster .multi_element {
     width: 90%;
-    height: 8em;
+    height: 10em;
     overflow: auto;
     border: 1px solid #444;
     -moz-border-radius: 3px;
@@ -122,7 +122,7 @@ div#addMaster {
     height: 1em;
 }
 
-.element .value, .element .transform, .element .readonly {
+.element .value, .element .transform, .element .readonly, .element .addresstype {
     font-weight: normal;
     height: 1em;
     font-size: small;
@@ -138,7 +138,24 @@ div#addMaster {
 
 .element .readonly {
     margin-left: .4em;
+    font-style: italic;
 }
+
+.element .addresstype {
+    float: left;
+    margin-left: .4em;
+    font-weight: bold;
+}
+
+.element .addresstype:before {
+    content: "(";
+}
+
+.element .addresstype:after {
+    content: ")";
+}
+
+
 
 .multi_element .element .edit {
 }
