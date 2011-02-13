@@ -198,13 +198,26 @@ function parseXML(xml) {
   $( 'meta > statusbar status', xml ).each( function(i){
     var type      = $(this).attr('type');
     var condition = $(this).attr('condition');
+    var extend    = $(this).attr('hrefextend');
     var sPath = window.location.pathname;
     var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
     var editMode = 'edit_config.html' == sPage;
     if( editMode  && '!edit' == condition ) return;
     if( !editMode && 'edit'  == condition ) return;
-    //$('.footer').append( $(this.textContent) );
-    $('.footer').html( $('.footer').html() + this.textContent );
+    var text = this.textContent;
+    switch( extend )
+    {
+      case 'all':    // append all parameters
+        var search = window.location.search.replace( /\$/g, '$$$$' );
+        text = text.replace( /(href="[^"]*)(")/g, '$1' + search + '$2' );
+        break;
+      case 'config': // append config file info
+        var search = window.location.search.replace( /\$/g, '$$$$' );
+        search = search.replace( /.*(config=[^&]*).*|.*/, '?$1' );
+        text = text.replace( /(href="[^"]*)(")/g, '$1' + search + '$2' );
+        break;
+    }
+    $('.footer').html( $('.footer').html() + text );
   });
 
   // adapt width for pages to show
