@@ -82,7 +82,7 @@ addTransform( 'DPT', {
     name  : 'DPT_Percent_U8',
     unit  : '%',
     encode: function( phy ){
-      var val = phy.toString( 16 );
+      var val = parseInt( phy ).toString( 16 );
       return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){
