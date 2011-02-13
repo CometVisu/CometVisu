@@ -218,8 +218,8 @@ function VisuDesign() {
         for( var addr in data.address )
         {
           if( data.address[addr][1] == true ) continue; // skip read only
-          var dv = Transform[data.address[addr][0]].encode( data.value );
-          if( dv != Transform[data.address[addr][0]].encode( asv ) )
+          var dv = Transform[data.address[addr][0]].encode( asv );
+          if( dv != Transform[data.address[addr][0]].encode( data.value ) )
             visu.write( addr.substr(1), dv );
         }
         data.value = actor.slider('value');
@@ -310,7 +310,7 @@ function VisuDesign() {
     },
     content:      false
   });
-
+  
   this.addCreator('trigger', {
     create: function( page, path ) {
       var $p = $(page);
