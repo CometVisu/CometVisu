@@ -38,13 +38,13 @@
     <statusbar>
       <status type="html"><![CDATA[
           <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
-          - <a href=".?config=neu">Reload</a>
+          - <a href=".?config=demo">Reload</a>
           - <a href=".">Default Config</a>
         ]]></status>
-      <status type="html" condition="!edit"><![CDATA[
+      <status type="html" condition="!edit" hrefextend="config"><![CDATA[
           - <a href="edit_config.html">Edit</a>
         ]]></status>
-      <status type="html" condition="edit"><![CDATA[
+      <status type="html" condition="edit" hrefextend="all"><![CDATA[
           - <a href=".">normal Mode</a>
         ]]></status>
       <status type="html"><![CDATA[
@@ -69,7 +69,7 @@
       <address transform="DPT:9">12/4/250</address>
       <address transform="DPT:9.001" readonly="true">12/4/253</address>
     </slide>
-    <break />
+    <break/>
     <trigger value="0" mapping="OnOff">
       <label>Terrase Licht 0</label>
       <address transform="DPT:1.001">1/0/2</address>
@@ -78,7 +78,7 @@
       <label>Terrase Licht 1</label>
       <address transform="DPT:1.001">1/0/2</address>
     </trigger>
-    <line />
+    <line/>
     <image src="icon/comet_128_ff8000.png" width="500px" height="46px"/>
     <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
       <label>Update every 10 sec</label>
@@ -88,17 +88,36 @@
       <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
     </page>
     <colorchooser>
-      <label>A colorChooser</label>
-      <address transform="DPT:5.001" color="r">1/2/59</address>
-      <address transform="DPT:5.001" color="g">1/2/60</address>
-      <address transform="DPT:5.001" color="b">1/2/61</address>
+      A colorChooser
+      1/2/59
+      1/2/60
+      1/2/61
     </colorchooser>
-    <info precision="4"><label>R</label><address transform="DPT:5.001">1/2/59</address></info>
-    <slide><label>R</label><address transform="DPT:5.001">1/2/59</address></slide>
-    <info precision="4"><label>G</label><address transform="DPT:5.001">1/2/60</address></info>
-    <slide><label>G</label><address transform="DPT:5.001">1/2/60</address></slide>
-    <info precision="4"><label>B</label><address transform="DPT:5.001">1/2/61</address></info>
-    <slide><label>B</label><address transform="DPT:5.001">1/2/61</address></slide>
-    <diagram_popup undefined="DALI Strom L1" rrd="200_DALI_Linie_1_Strom" unit="mA" series="day" refresh="300">DALI Strom L1</diagram_popup>
+    <info precision="4">
+      <label>R</label>
+      <address transform="DPT:5.001">1/2/59</address>
+    </info>
+    <slide>
+      <label>R</label>
+      <address transform="DPT:5.001">1/2/59</address>
+    </slide>
+    <info precision="4">
+      <label>G</label>
+      <address transform="DPT:5.001">1/2/60</address>
+    </info>
+    <slide>
+      <label>G</label>
+      <address transform="DPT:5.001">1/2/60</address>
+    </slide>
+    <info precision="4">
+      <label>B</label>
+      <address transform="DPT:5.001">1/2/61</address>
+    </info>
+    <slide>
+      <label>B</label>
+      <address transform="DPT:5.001">1/2/61</address>
+    </slide>
+    <diagram_popup rrd="200_DALI_Linie_1_Strom" unit="mA" series="day" refresh="300">DALI Strom L1</diagram_popup>
+    <diagram_inline rrd="200_DALI_Linie_1_Strom" width="600" height="400"/>
   </page>
 </pages>
