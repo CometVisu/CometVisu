@@ -13,10 +13,10 @@
           - <a href=".">Reload</a>
           - <a href="?config=demo">Widget Demo</a>
         ]]></status>
-      <status type="html" condition="!edit"><![CDATA[
+      <status type="html" condition="!edit" hrefextend="config"><![CDATA[
           - <a href="edit_config.html">Edit</a>
         ]]></status>
-      <status type="html" condition="edit"><![CDATA[
+      <status type="html" condition="edit" hrefextend="all"><![CDATA[
           - <a href=".">normal Mode</a>
         ]]></status>
       <status type="html"><![CDATA[
@@ -25,7 +25,8 @@
     </statusbar>
   </meta>
   <page name="Overview">
-    <line />
+    <line/>
     <text align="center">Welcome to the CometVisu!</text>
+    <line/>
   </page>
 </pages>
