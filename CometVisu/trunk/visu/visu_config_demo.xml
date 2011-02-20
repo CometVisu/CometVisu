@@ -53,31 +53,35 @@
     </statusbar>
   </meta>
   <page name="Übersicht">
-    <text align="center">CometVisu format neu</text>
+    <text align="center">CometVisu Widget Demo</text>
     <info styling="BluePurpleRed">
       <label>Slide Info</label>
-      <address transform="DPT:9">12/4/250</address>
-      <address transform="DPT:9.001">12/4/251</address>
+      <address transform="DPT:9" type="">12/4/250</address>
+      <address transform="DPT:9.001" type="">12/4/251</address>
     </info>
     <switch mapping="OnOff" styling="RedGreen">
-      <label>Terrase Licht</label>
-      <address transform="DPT:1.001">1/0/2</address>
-      <address transform="DPT:9.001" readonly="true">12/4/253</address>
+      <label>Switch - Terrase Licht</label>
+      <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
+      <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
     </switch>
     <slide min="-18" max="26">
       <label>Slide</label>
-      <address transform="DPT:9">12/4/250</address>
-      <address transform="DPT:9.001" readonly="true">12/4/253</address>
+      <address transform="DPT:9" type="">12/4/250</address>
+      <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
     </slide>
     <break/>
     <trigger value="0" mapping="OnOff">
-      <label>Terrase Licht 0</label>
-      <address transform="DPT:1.001">1/0/2</address>
+      <label>Trigger - Terrase Licht</label>
+      <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
     </trigger>
     <trigger value="1" mapping="OnOff">
-      <label>Terrase Licht 1</label>
-      <address transform="DPT:1.001">1/0/2</address>
+      <label>Trigger - Terrase Licht</label>
+      <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
     </trigger>
+    <multitrigger button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
+      <label>Multitrigger - Szenenaufruf</label>
+      <address transform="DPT:5.010" readonly="false" type="">11/2/50</address>
+    </multitrigger>
     <line/>
     <image src="icon/comet_128_ff8000.png" width="500px" height="46px"/>
     <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
@@ -95,29 +99,30 @@
     </colorchooser>
     <info precision="4">
       <label>R</label>
-      <address transform="DPT:5.001">1/2/59</address>
+      <address transform="DPT:5.001" type="">1/2/59</address>
     </info>
     <slide>
       <label>R</label>
-      <address transform="DPT:5.001">1/2/59</address>
+      <address transform="DPT:5.001" type="">1/2/59</address>
     </slide>
     <info precision="4">
       <label>G</label>
-      <address transform="DPT:5.001">1/2/60</address>
+      <address transform="DPT:5.001" type="">1/2/60</address>
     </info>
     <slide>
       <label>G</label>
-      <address transform="DPT:5.001">1/2/60</address>
+      <address transform="DPT:5.001" type="">1/2/60</address>
     </slide>
     <info precision="4">
       <label>B</label>
-      <address transform="DPT:5.001">1/2/61</address>
+      <address transform="DPT:5.001" type="">1/2/61</address>
     </info>
     <slide>
       <label>B</label>
-      <address transform="DPT:5.001">1/2/61</address>
+      <address transform="DPT:5.001" type="">1/2/61</address>
     </slide>
     <diagram_popup rrd="200_DALI_Linie_1_Strom" unit="mA" series="day" refresh="300">DALI Strom L1</diagram_popup>
     <diagram_inline rrd="200_DALI_Linie_1_Strom" width="600" height="400"/>
+    <designtoggle/>
   </page>
 </pages>
