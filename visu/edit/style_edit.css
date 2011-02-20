@@ -75,6 +75,8 @@ div#addMaster {
     display: none;
     position: absolute;
     width: 97%;
+    height: 80%;
+    overflow: auto;
     margin: auto;
     top: 2em;
     left: .5em;
