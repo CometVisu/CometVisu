@@ -57,8 +57,11 @@ function VisuDesign() {
       var style = ( '0' != path ) ? 'display:none' : '';
       var name = $p.attr('name');
       var type = $p.attr('type'); //text, 2d or 3d
+      var style = '';
+      if( $p.attr('align') ) style += 'text-align:' + $p.attr('align') + ';';
+      if( style != '' ) style = 'style="' + style + '"';
       ret_val.addClass( 'link' ).addClass('pagelink');
-      ret_val.append( '<a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a>' );
+      ret_val.append( '<div ' + style + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
       var childs = $p.children();
       var container = $( '<div class="clearfix"/>' );
       container.append( '<h1>' + name + '</h1>' );
@@ -69,6 +72,7 @@ function VisuDesign() {
       return ret_val;
     },
     attributes: {
+      align:{ type: 'string', required: false },
       name: { type: 'string', required: true }
     },
     elements: {
