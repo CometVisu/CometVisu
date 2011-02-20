@@ -225,6 +225,57 @@ addTransform( 'DPT', {
     },
     unit  : '-'
   },
+  '20.102': {
+    name  : 'DPT_HVACMode',
+    lname : {
+      'de': 'KONNEX Betriebsart'
+    },
+    unit  : '-',
+    range : {
+      enum: [ 'auto', 'comfort', 'standby', 'economy', 'building_protection' ]
+    },
+    encode: function( phy ){
+      var val;
+      switch( phy )
+      {
+        case 1: 
+        case 'comfort':
+          val = 1;
+          break;
+        case 2: 
+        case 'standby':
+          val = 2;
+          break;
+        case 3: 
+        case 'economy':
+          val = 3;
+          break;
+        case 4: 
+        case 'building_protection':
+          val = 4;
+          break;
+        default: // actually "case 0:" / "auto"
+          val = 0;
+      }
+      val = val.toString( 16 );
+      return (val.length == 1 ? '800' : '80') + val;
+    },
+    decode: function( hex ){
+      switch( parseInt( hex, 16 ) )
+      {
+        case 1: 
+          return 'comfort';
+        case 2: 
+          return 'standby';
+        case 3: 
+          return 'economy';
+        case 4: 
+          return 'building_protection';
+        default: // actually "case 0:"
+          return 'auto';
+      }
+    },
+  },
   /* 9 Zeilen:
   },
   '.001' : {
