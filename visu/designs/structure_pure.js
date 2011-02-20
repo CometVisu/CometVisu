@@ -137,7 +137,7 @@ function VisuDesign() {
       actor += '</div>';
       var $actor = $(actor).data({
         'address'  : address,
-        'precision': $p.attr('precision'),
+        'format'   : $p.attr('format'),
         'mapping'  : $p.attr('mapping'),
         'styling'  : $p.attr('styling')
       });
@@ -149,7 +149,7 @@ function VisuDesign() {
     attributes: {
       pre:        { type: 'string',    required: false },
       post:       { type: 'string',    required: false },
-      precision:  { type: 'precision', required: false },
+      format:     { type: 'format',    required: false },
       mapping:    { type: 'mapping',   required: false },
       styling:    { type: 'styling',   required: false }
     },
@@ -751,6 +751,8 @@ function defaultUpdate( e, data, passedElement )
   var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
   if( element.data( 'precision' ) )
     value = Number( value ).toPrecision( element.data( 'precision' ) );
+  if( element.data( 'format' ) )
+    value = sprintf( element.data( 'format' ), value );
   element.data( 'value', value );
   element.find('.value').text( map( value, element ) );
 
