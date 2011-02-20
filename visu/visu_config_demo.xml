@@ -88,7 +88,7 @@
       <label>Update every 10 sec</label>
     </image>
     <designtoggle>Change design</designtoggle>
-    <page name="iframe Test">
+    <page name="iframe Test" align="center" >
       <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
     </page>
     <colorchooser>
