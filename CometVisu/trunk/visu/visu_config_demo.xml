@@ -82,6 +82,10 @@
       <label>Multitrigger - Szenenaufruf</label>
       <address transform="DPT:5.010" readonly="false" type="">11/2/50</address>
     </multitrigger>
+    <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy">
+      <label>KONNEX Betriebsart</label>
+      <address transform="DPT:20.102" readonly="false" type="">3/1/50</address>
+    </multitrigger>
     <line/>
     <image src="icon/comet_128_ff8000.png" width="500px" height="46px"/>
     <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
@@ -97,7 +101,7 @@
       1/2/60
       1/2/61
     </colorchooser>
-    <info precision="4">
+    <info format="%.2f">
       <label>R</label>
       <address transform="DPT:5.001" type="">1/2/59</address>
     </info>
@@ -105,7 +109,7 @@
       <label>R</label>
       <address transform="DPT:5.001" type="">1/2/59</address>
     </slide>
-    <info precision="4">
+    <info format="%.2f">
       <label>G</label>
       <address transform="DPT:5.001" type="">1/2/60</address>
     </info>
@@ -113,7 +117,7 @@
       <label>G</label>
       <address transform="DPT:5.001" type="">1/2/60</address>
     </slide>
-    <info precision="4">
+    <info format="%.2f">
       <label>B</label>
       <address transform="DPT:5.001" type="">1/2/61</address>
     </info>
