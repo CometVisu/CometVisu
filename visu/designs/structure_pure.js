@@ -311,6 +311,117 @@ function VisuDesign() {
     content:      false
   });
   
+  this.addCreator('multitrigger', {
+    create: function( page, path ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget switch" />');
+      var labelElement = $p.find('label')[0];
+      var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+      var address = {};
+      $p.find('address').each( function(){ 
+        var src = this.textContent;
+        var transform = this.getAttribute('transform');
+        var readonly  = this.getAttribute('readonly');
+        ga_list.push( src ) 
+        address[ '_' + src ] = [ transform, readonly=='true' ];
+      });
+      ret_val.append( label );
+      if( $p.attr('button1label') )
+      {
+        var actor = '<div class="actor switchUnpressed">';
+        actor += '<div class="value">' + $p.attr('button1label') + '</div>';
+        actor += '</div>';
+        var $actor = $(actor).data( {
+          'address' : address,
+          'mapping' : $p.attr('mapping'),
+          'styling' : $p.attr('styling'),
+          'value'   : $p.attr('button1value'),
+          'type'    : 'switch'
+        } ).bind( 'click', this.action );
+        ret_val.append( $actor );
+      }
+      if( $p.attr('button2label') )
+      {
+        var actor = '<div class="actor switchUnpressed">';
+        actor += '<div class="value">' + $p.attr('button2label') + '</div>';
+        actor += '</div>';
+        var $actor = $(actor).data( {
+          'address' : address,
+          'mapping' : $p.attr('mapping'),
+          'styling' : $p.attr('styling'),
+          'value'   : $p.attr('button2value'),
+          'type'    : 'switch'
+        } ).bind( 'click', this.action );
+        ret_val.append( $actor );
+      }
+      if( $p.attr('button3label') )
+      {
+        var actor = '<div class="actor switchUnpressed">';
+        actor += '<div class="value">' + $p.attr('button3label') + '</div>';
+        actor += '</div>';
+        var $actor = $(actor).data( {
+          'address' : address,
+          'mapping' : $p.attr('mapping'),
+          'styling' : $p.attr('styling'),
+          'value'   : $p.attr('button3value'),
+          'type'    : 'switch'
+        } ).bind( 'click', this.action );
+        ret_val.append( $actor );
+      }
+      if( $p.attr('button4label') )
+      {
+        var actor = '<div class="actor switchUnpressed">';
+        actor += '<div class="value">' + $p.attr('button4label') + '</div>';
+        actor += '</div>';
+        var $actor = $(actor).data( {
+          'address' : address,
+          'mapping' : $p.attr('mapping'),
+          'styling' : $p.attr('styling'),
+          'value'   : $p.attr('button4value'),
+          'type'    : 'switch'
+        } ).bind( 'click', this.action );
+        ret_val.append( $actor );
+      }
+      //for( var addr in address ) $actor.bind( addr, this.update );
+      //            ret_val.append( label ).append( $actor );
+      return ret_val;
+    },
+    update: function(e,d) { 
+      var element = $(this);
+      var value = defaultUpdate( e, d, element );
+      element.removeClass( value == 0 ? 'switchPressed' : 'switchUnpressed' );
+      element.addClass(    value == 0 ? 'switchUnpressed' : 'switchPressed' );
+    },
+    action: function() {
+      var data = $(this).data();
+      for( var addr in data.address )
+      {
+        if( data.address[addr][1] == true ) continue; // skip read only
+        var a = visu.write;
+        var b = addr.substr(1);
+        var c = Transform[data.address[addr][0]].encode( data.value );
+        visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( data.value ) );
+      }
+    },
+    attributes: {
+      button1label:      { type: 'string'  , required: false },
+      button1value:      { type: 'string'  , required: false },
+      button2label:      { type: 'string'  , required: false },
+      button2value:      { type: 'string'  , required: false },
+      button3label:      { type: 'string'  , required: false },
+      button3value:      { type: 'string'  , required: false },
+      button4label:      { type: 'string'  , required: false },
+      button4value:      { type: 'string'  , required: false },
+      mapping:           { type: 'mapping' , required: false },
+      styling:           { type: 'styling' , required: false }
+    },
+    elements: {
+      label:             { type: 'string',    required: false, multi: false },
+      address:           { type: 'address',   required: true, multi: true }
+    },
+    content:      false
+  });
+  
   this.addCreator('trigger', {
     create: function( page, path ) {
       var $p = $(page);
