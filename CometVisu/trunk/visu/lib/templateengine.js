@@ -68,6 +68,8 @@ $(document).ready(function() {
   window.setTimeout("$.get( 'visu_config" + configSuffix + ".xml', parseXML );", 200);
 
   // disable text selection - it's annoying on a touch screen!
+  /*
+   * Now in the CSS!
   if($.browser.mozilla)
   {//Firefox
       $('body').css('MozUserSelect','none');
@@ -76,6 +78,7 @@ $(document).ready(function() {
   } else {//Opera, etc.
       $(document).mousedown(function(){return false;});
   }
+  */
 } );
 
 $(window).unload(function() {
