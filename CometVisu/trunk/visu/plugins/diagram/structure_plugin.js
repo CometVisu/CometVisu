@@ -103,15 +103,54 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         diagram.data("refresh", $p.attr("refresh"));
 
         var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
-
+        
         diagram.addClass("clickable");
+        var data = jQuery.extend({}, diagram.data());
 
         diagram.bind("click", function() {
-            bDiagram.data(jQuery.extend({}, diagram.data()));
+            bDiagram.data(data);
             bDiagram.css({height: "90%"});
+
             showPopup("unknown", {title: page.textContent, content: bDiagram});
             bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
-            refreshDiagram(bDiagram, {yaxis: {labelWidth: null}});
+ 
+            var bDiagramOpts = {yaxis: {labelWidth: null}};
+            if ($p.attr("tooltip") == "true") {
+                // if we want to display a tooltip, we need to listen to the event
+                var previousPoint = null;
+                jQuery(bDiagram).bind("plothover", function (event, pos, item) {
+                    jQuery("#x").text(pos.x.toFixed(2));
+                    jQuery("#y").text(pos.y.toFixed(2));
+                    
+                    if (item) {
+                        if (previousPoint != item.datapoint) {
+                            previousPoint = item.datapoint;
+                            
+                            $("#diagramTooltip").remove();
+                            var x = item.datapoint[0],
+                                y = item.datapoint[1].toFixed(2);
+                            
+                            var dte = new Date(x);
+                            
+                            showDiagramTooltip(item.pageX, item.pageY,
+                                        dte.toLocaleString() + ": " + y + jQuery(this).data("unit"));
+                        }
+                    }
+                    else {
+                        $("#diagramTooltip").remove();
+                        previousPoint = null;            
+                    }
+
+                })
+                .bind("click", function(event) {
+                    // don't let the popup know about the click, or it will close on touch-displays
+                    event.stopPropagation();
+                });
+                
+                bDiagramOpts = jQuery.extend(bDiagramOpts, {grid: {hoverable: true, clickable: true} });
+            }
+
+            refreshDiagram(bDiagram, bDiagramOpts);
             return false;
         });
 
@@ -123,7 +162,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         rrd:        {type: "string", required: true},
         unit:       {type: "string", required: false},
         series:     {type: "list", required: false, list: {day: "1 day", week: "1 week", month: "1 month", year: "1 year"}},
-        refresh:    {type: "numeric", required: false}
+        refresh:    {type: "numeric", required: false},
+        tooltip:    {type: "list", required: false, list: {true: "yes", false: "no"}},
     },
     content: {type: "string", required: true}
 });
@@ -131,6 +171,16 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
 diagramColors = {
     data: $("<span class='link'><a href='#' /></a>").find("a").css("color")
 };
+
+function showDiagramTooltip(x, y, contents) {
+    $('<div id="diagramTooltip">' + contents + '</div>').css( {
+        position: 'absolute',
+        display: 'none',
+        top: y + 5,
+        left: x + 5,
+    }).appendTo("body").fadeIn(200);
+}
+
 
 function refreshDiagram(diagram, flotoptions, data) {
     var diagram = $(diagram);
