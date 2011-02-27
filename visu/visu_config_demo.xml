@@ -19,6 +19,13 @@
         <entry value="0">Null</entry>
         <entry range_min="0" range_max="1e99">Positiv</entry>
       </mapping>
+      <mapping name="KonnexHVAC">
+        <entry value="auto">Auto</entry>
+        <entry value="comfort">Komfort</entry>
+        <entry value="standby">Stand By</entry>
+        <entry value="economy">Economy</entry>
+        <entry value="building_protection">Haus-Schutz</entry>
+      </mapping>
     </mappings>
     <stylings>
       <styling name="RedGreen">
@@ -86,6 +93,10 @@
       <label>KONNEX Betriebsart</label>
       <address transform="DPT:20.102" readonly="false" type="">3/1/50</address>
     </multitrigger>
+    <info mapping="KonnexHVAC">
+      <label>Betriebsart</label>
+      <address transform="DPT:20.102" type="">3/1/50</address>
+    </info>
     <line/>
     <image src="icon/comet_128_ff8000.png" width="500px" height="46px"/>
     <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
@@ -95,12 +106,76 @@
     <page name="iframe Test" align="center" >
       <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
     </page>
+    <page name="Flavour Test" align="center" >
+      <text>The flavours define a page specific look for a choosen design. 
+        The CometVisu's pure design was inspired by the colors that a comet out of
+        that material would shine in.
+      </text>
+      <page name="Flavour: Antimony" align="center" flavour="antimony">
+        <text align="center">CometVisu Antimony flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <page name="Flavour: Boron" align="center" flavour="boron">
+        <text align="center">CometVisu Boron flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <page name="Flavour: Lithium" align="center" flavour="lithium">
+        <text align="center">CometVisu Lithium flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <page name="Flavour: Potassium" align="center" flavour="potassium">
+        <text align="center">CometVisu Potassium flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <page name="Flavour: Sodium" align="center" flavour="sodium">
+        <text align="center">CometVisu Sodium flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <line />
+      <page name="Flavour: black" align="center" flavour="black">
+        <text align="center">CometVisu black flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <page name="Flavour: white" align="center" flavour="white">
+        <text align="center">CometVisu white flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+    </page>
     <colorchooser>
       A colorChooser
       1/2/59
       1/2/60
       1/2/61
     </colorchooser>
+    <break/>
     <info format="%.2f">
       <label>R</label>
       <address transform="DPT:5.001" type="">1/2/59</address>
@@ -127,6 +202,5 @@
     </slide>
     <diagram_popup rrd="200_DALI_Linie_1_Strom" unit="mA" series="day" refresh="300">DALI Strom L1</diagram_popup>
     <diagram_inline rrd="200_DALI_Linie_1_Strom" width="600" height="400"/>
-    <designtoggle/>
   </page>
 </pages>
