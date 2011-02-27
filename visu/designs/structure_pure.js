@@ -748,7 +748,10 @@ function placementStrategy( anchor, popup, page, preference )
 function defaultUpdate( e, data, passedElement ) 
 {
   var element = passedElement || $(this);
-  var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
+  var thisTransform = element.data().address[ e.type ][0];
+  var value = thisTransform in Transform ?
+              Transform[ element.data().address[ e.type ][0] ].decode( data ) :
+              data; // fall back - no Transform defined...
   if( element.data( 'precision' ) )
     value = Number( value ).toPrecision( element.data( 'precision' ) );
   if( element.data( 'format' ) )
