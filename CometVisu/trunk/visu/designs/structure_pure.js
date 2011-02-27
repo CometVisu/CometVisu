@@ -207,7 +207,7 @@ function VisuDesign() {
     },
     update: function( e, data ) { 
       var element = $(this);
-      var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
+      var value = transformDecode( element.data().address[ e.type ][0], data );
       if( element.data( 'value' ) != value )
       {
         element.data( 'value', value );
@@ -227,8 +227,8 @@ function VisuDesign() {
         for( var addr in data.address )
         {
           if( data.address[addr][1] == true ) continue; // skip read only
-          var dv = Transform[data.address[addr][0]].encode( asv );
-          if( dv != Transform[data.address[addr][0]].encode( data.value ) )
+          var dv  = transformEncode( data.address[addr][0], asv );
+          if( dv != transformEncode( data.address[addr][0], data.value ) )
             visu.write( addr.substr(1), dv );
         }
         data.value = actor.slider('value');
@@ -245,8 +245,8 @@ function VisuDesign() {
         for( var addr in data.address )
         {
           if( data.address[addr][1] == true ) continue; // skip read only
-          var uv = Transform[data.address[addr][0]].encode( ui.value );
-          if( uv != Transform[data.address[addr][0]].encode( data.value ) )
+          var uv  = transformEncode( data.address[addr][0], ui.value );
+          if( uv != transformEncode( data.address[addr][0], data.value ) )
             visu.write( addr.substr(1), uv );
         }
     },
@@ -304,7 +304,7 @@ function VisuDesign() {
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( data.value == 0 ) );
+        visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value == 0 ) );
       }
     },
     attributes: {
@@ -406,10 +406,7 @@ function VisuDesign() {
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        var a = visu.write;
-        var b = addr.substr(1);
-        var c = Transform[data.address[addr][0]].encode( data.value );
-        visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( data.value ) );
+        visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
       }
     },
     attributes: {
@@ -470,7 +467,7 @@ function VisuDesign() {
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        visu.write( addr.substr(1), Transform[data.address[addr][0]].encode( data.sendValue ) );
+        visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.sendValue ) );
       }
     },
     attributes: {
@@ -754,9 +751,7 @@ function defaultUpdate( e, data, passedElement )
 {
   var element = passedElement || $(this);
   var thisTransform = element.data().address[ e.type ][0];
-  var value = thisTransform in Transform ?
-              Transform[ element.data().address[ e.type ][0] ].decode( data ) :
-              data; // fall back - no Transform defined...
+  var value = transformDecode( element.data().address[ e.type ][0], data );
   if( element.data( 'precision' ) )
     value = Number( value ).toPrecision( element.data( 'precision' ) );
   if( element.data( 'format' ) )

@@ -85,6 +85,20 @@ $(window).unload(function() {
   visu.stop();
 });
 
+function transformEncode( transformation, value )
+{
+  return transformation in Transform ?
+    Transform[ transformation ].encode( value ) :
+    value;
+}
+
+function transformDecode( transformation, value )
+{
+  return transformation in Transform ?
+    Transform[ transformation ].decode( value ) :
+    value;
+}
+
 function map( value, element )
 {
   var map = element.data('mapping');
