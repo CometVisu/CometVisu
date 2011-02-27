@@ -243,6 +243,10 @@ function setup_page( xml )
   // setup the scrollable
   main_scroll = $('#main').scrollable({keyboard: false, touch: false}).data('scrollable');
   main_scroll.onSeek( updateTopNavigation );
+  
+  if ($.getUrlVar('startpage')) {
+    scrollToPage( $.getUrlVar('startpage'), 0 );
+  }
 
   $('.fast').bind('click', function(){
     main_scroll.seekTo( $(this).text() );
@@ -292,10 +296,10 @@ function create_pages( page, path, flavour ) {
   return retval;
 }
 
-function scrollToPage( page_id )
+function scrollToPage( page_id, speed )
 {
   $('#'+page_id).css( 'display', '' );                         // show new page
-  main_scroll.seekTo( $('.page').index( $('#'+page_id)[0] ) ); // scroll to it
+  main_scroll.seekTo( $('.page').index( $('#'+page_id)[0] ), speed ); // scroll to it
 }
 
 function updateTopNavigation()
