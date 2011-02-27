@@ -54,26 +54,28 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget" />');
-      var style = ( '0' != path ) ? 'display:none' : '';
-      var name = $p.attr('name');
-      var type = $p.attr('type'); //text, 2d or 3d
-      var style = '';
-      if( $p.attr('align') ) style += 'text-align:' + $p.attr('align') + ';';
-      if( style != '' ) style = 'style="' + style + '"';
+      var pstyle  = ( '0' != path ) ? 'display:none;' : ''; // subPage style
+      var name    = $p.attr('name');
+      var type    = $p.attr('type');                        //text, 2d or 3d
+      var flavour = $p.attr('flavour');                     // sub design choice
+      var wstyle  = '';                                     // widget style
+      if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
+      if( wstyle != '' ) wstyle = 'style="' + wstyle + '"';
       ret_val.addClass( 'link' ).addClass('pagelink');
-      ret_val.append( '<div ' + style + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
+      ret_val.append( '<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
       var childs = $p.children();
       var container = $( '<div class="clearfix"/>' );
       container.append( '<h1>' + name + '</h1>' );
       $( childs ).each( function(i){
           container.append( create_pages(childs[i], path + '_' + i ) );
       } );
-      $('#pages').prepend( $( '<div class="page" id="' + path + '" style="'+style+';"/>' ).append(container) );
+      $('#pages').prepend( $( '<div class="page" id="' + path + '" style="'+pstyle+';"/>' ).append(container) );
       return ret_val;
     },
     attributes: {
-      align:{ type: 'string', required: false },
-      name: { type: 'string', required: true }
+      align:  { type: 'string', required: false },
+      flavour:{ type: 'string', required: false },
+      name:   { type: 'string', required: true }
     },
     elements: {
     },
