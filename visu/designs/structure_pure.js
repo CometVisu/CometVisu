@@ -762,7 +762,20 @@ function defaultUpdate( e, data, passedElement )
   if( element.data( 'format' ) )
     value = sprintf( element.data( 'format' ), value );
   element.data( 'value', value );
-  element.find('.value').text( map( value, element ) );
+  value = map( value, element );
+  if( value.constructor == Date )
+  {
+    switch( thisTransform ) // special case for KNX
+    {
+      case 'DPT:10.001':
+        value = value.toLocaleTimeString();
+        break;
+      case 'DPT:11.001':
+        value = value.toLocaleDateString();
+        break;
+    }
+  }
+  element.find('.value').text( value );
 
   var styling = element.data('styling');
   if( styling && stylings[styling] && (stylings[styling][value] || stylings[styling]['range']) )
