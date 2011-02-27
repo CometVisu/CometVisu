@@ -321,3 +321,73 @@ div#loading {
 	background-color: #fee;
 	opacity: 0.80;
 }
+
+/*****************************************************************************/
+/* The definition of the flavours - overwrite the generic settings           */
+/*****************************************************************************/
+
+.flavour_black hr
+{
+  background-color: #000000;
+}
+
+.flavour_black .link a
+{
+  color: #000000;
+}
+
+.flavour_white hr
+{
+  background-color: #ffffff;
+}
+.flavour_white .link a
+{
+  color: #ffffff;
+}
+
+.flavour_antimony hr
+{
+  background-color: #00ddff;
+}
+
+.flavour_antimony .link a
+{
+  color: #00ddff;
+}
+
+.flavour_boron hr
+{
+  background-color: #00ff11;
+}
+.flavour_boron .link a
+{
+  color: #00ff11;
+}
+
+.flavour_lithium hr
+{
+  background-color: #ff0000;
+}
+.flavour_lithium .link a
+{
+  color: #ff0000;
+}
+
+.flavour_potassium hr
+{
+  background-color: #d00055;
+}
+.flavour_potassium .link a
+{
+  color: #d00055;
+}
+
+.flavour_sodium hr
+{
+  background-color: #ff8000;
+}
+.flavour_sodium .link a
+{
+  color: #ff8000;
+}
+

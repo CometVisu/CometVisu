@@ -51,13 +51,13 @@ function VisuDesign() {
    * XML config file tags
    */
   this.addCreator('page', {
-    create: function( page, path ) {
+    create: function( page, path, flavour ) {
       var $p = $(page);
       var ret_val = $('<div class="widget" />');
       var pstyle  = ( '0' != path ) ? 'display:none;' : ''; // subPage style
       var name    = $p.attr('name');
       var type    = $p.attr('type');                        //text, 2d or 3d
-      var flavour = $p.attr('flavour');                     // sub design choice
+      if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
       var wstyle  = '';                                     // widget style
       if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
       if( wstyle != '' ) wstyle = 'style="' + wstyle + '"';
@@ -67,9 +67,12 @@ function VisuDesign() {
       var container = $( '<div class="clearfix"/>' );
       container.append( '<h1>' + name + '</h1>' );
       $( childs ).each( function(i){
-          container.append( create_pages(childs[i], path + '_' + i ) );
+          container.append( create_pages( childs[i], path + '_' + i, flavour ) );
       } );
-      $('#pages').prepend( $( '<div class="page" id="' + path + '" style="'+pstyle+';"/>' ).append(container) );
+      var subpage = $( '<div class="page" id="' + path + '" style="'+pstyle+';"/>' );
+      subpage.append(container);
+      if( flavour ) subpage.addClass( 'flavour_' + flavour );
+      $('#pages').prepend( subpage );
       return ret_val;
     },
     attributes: {
