@@ -174,6 +174,41 @@ addTransform( 'DPT', {
     link  : '9.001'
   },
   
+  '10.001' : {
+    name  : 'DPT_TimeOfDay',
+    encode: function( phy ){
+      // FIXME
+    },
+    decode: function( hex ){ 
+      var date = new Date(); // assume today
+      date.setHours  ( parseInt(hex.substr(0,2),16) & 0x1F );
+      date.setMinutes( parseInt(hex.substr(2,2),16)        );
+      date.setSeconds( parseInt(hex.substr(4,2),16)        );
+      // as KNX thinks the day of the week belongs to the time, but JavaScript
+      // doesn't, tweak the date till it fits...
+      var day = (parseInt(hex.substr(0,2),16) & 0xE0) >> 5;
+      if( day > 0 )
+      {
+        var dayShift = (day - date.getDay()) % 7;
+        date.setDate( date.getDate() + dayShift );
+      }
+      return date;
+    }
+  },
+
+  '11.001' : {
+    name  : 'DPT_Date',
+    encode: function( phy ){
+      // FIXME
+    },
+    decode: function( hex ){ 
+      var year = parseInt(hex.substr(4,2),16) & 0x7F;
+      return new Date(year < 90 ? year+2000 : year+1900, //1990 - 2089
+                      (parseInt(hex.substr(2,2),16) & 0x0F) - 1,
+                      parseInt(hex.substr(0,2),16) & 0x1F);
+    }
+  },
+  
   '12.001' : {
     name  : 'DPT_Value_4_Ucount',
     encode: function( phy ){
