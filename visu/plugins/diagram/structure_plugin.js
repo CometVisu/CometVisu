@@ -163,7 +163,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         unit:       {type: "string", required: false},
         series:     {type: "list", required: false, list: {day: "1 day", week: "1 week", month: "1 month", year: "1 year"}},
         refresh:    {type: "numeric", required: false},
-        tooltip:    {type: "list", required: false, list: {true: "yes", false: "no"}},
+        tooltip:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
     },
     content: {type: "string", required: true}
 });

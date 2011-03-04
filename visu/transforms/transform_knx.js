@@ -267,7 +267,7 @@ addTransform( 'DPT', {
     },
     unit  : '-',
     range : {
-      enum: [ 'auto', 'comfort', 'standby', 'economy', 'building_protection' ]
+      'enum': [ 'auto', 'comfort', 'standby', 'economy', 'building_protection' ]
     },
     encode: function( phy ){
       var val;
