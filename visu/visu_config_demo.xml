@@ -169,6 +169,72 @@
         </page>
       </page>
     </page>
+    <page name="Format Test" align="center">
+      <text>
+        Über das Format-Attribut kann die Anzeige von Werten variiert werden.
+        Dazu wird die Synatx des vom "printf" bekannten Formatstrings benutzt.
+      </text>
+      <break/>
+      <slide min="-100" max="101">
+        <label>Test-Slider</label>
+        <address transform="DPT:9">14/4/4</address>
+      </slide>
+      <info>
+        <label>Ohne Format</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <line/>
+      <info format="%.0f">
+        <label>Format "%.0f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%.1f">
+        <label>Format "%.1f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%.2f">
+        <label>Format "%.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%.3f">
+        <label>Format "%.3f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%.4f">
+        <label>Format "%.4f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <line/>
+      <info format="%01.2f">
+        <label>Format "%01.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%02.2f">
+        <label>Format "%02.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%03.2f">
+        <label>Format "%03.3f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%04.2f">
+        <label>Format "%04.3f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%05.2f">
+        <label>Format "%05.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%06.2f">
+        <label>Format "%06.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <line/>
+      <info format="%+.2f">
+        <label>Format "%+.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+    </page>
     <colorchooser>
       A colorChooser
       1/2/59
