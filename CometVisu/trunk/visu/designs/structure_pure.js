@@ -172,16 +172,25 @@ function VisuDesign() {
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
+      var datatype_min = undefined;
+      var datatype_max = undefined;
       $p.find('address').each( function(){ 
         var src = this.textContent;
         var transform = this.getAttribute('transform');
         var readonly  = this.getAttribute('readonly');
         ga_list.push( src ) 
         address[ '_' + src ] = [ transform, readonly=='true' ];
+        if( Transform[ transform ] && Transform[ transform ].range )
+        {
+          if( !( datatype_min > Transform[ transform ].range.min ) ) 
+            datatype_min = Transform[ transform ].range.min;
+          if( !( datatype_max < Transform[ transform ].range.max ) ) 
+            datatype_max = Transform[ transform ].range.max;
+        }
       });
       var actor = $('<div class="actor">');
-      var min  = parseFloat( $p.attr('min')  || 0   );
-      var max  = parseFloat( $p.attr('max')  || 100 );
+      var min  = parseFloat( $p.attr('min')  || datatype_min || 0   );
+      var max  = parseFloat( $p.attr('max')  || datatype_max || 100 );
       var step = parseFloat( $p.attr('step') || 0.5 );
       var $actor = $(actor).data({
         'events':   $(actor).data( 'events' ),
