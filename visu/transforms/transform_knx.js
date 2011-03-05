@@ -59,6 +59,10 @@ addTransform( 'DPT', {
   '5.001' : {
     name  : 'DPT_Scaling',
     unit  : '%',
+    range : {
+      min: 0.0,
+      max: 100.0
+    },
     encode: function( phy ){
       var val = parseInt( phy * 255 / 100 ).toString( 16 );
       return (val.length == 1 ? '800' : '80') + val;
@@ -70,6 +74,10 @@ addTransform( 'DPT', {
   '5.003' : {
     name  : 'DPT_Angle',
     unit  : '°',
+    range : {
+      min: 0.0,
+      max: 360.0
+    },
     encode: function( phy ){
       var val = parseInt( phy * 255 / 360 ).toString( 16 );
       return (val.length == 1 ? '800' : '80') + val;
@@ -81,6 +89,10 @@ addTransform( 'DPT', {
   '5.004' : {
     name  : 'DPT_Percent_U8',
     unit  : '%',
+    range : {
+      min: 0.0,
+      max: 255.0
+    },
     encode: function( phy ){
       var val = parseInt( phy ).toString( 16 );
       return (val.length == 1 ? '800' : '80') + val;
