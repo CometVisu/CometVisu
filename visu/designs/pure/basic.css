@@ -313,6 +313,10 @@ div#loading {
     cursor: pointer;
 }
 
+.diagram_inline {
+  margin-left: 1em;
+}
+
 #diagramTooltip {
 	z-index: 1000;
 	color: black;
