@@ -20,6 +20,7 @@
  */
 function CometVisu( urlPrefix )
 {
+  var thisCometVisu = this;
   this.urlPrefix = (null == urlPrefix) ? '' : urlPrefix; // the address of the service
   this.addresses = [];                                   // the subscribed addresses
   this.filters   = [];                                   // the subscribed filters
@@ -28,6 +29,8 @@ function CometVisu( urlPrefix )
   this.device = '';                                      // the current device ID
   this.running = false;                                  // is the communication running at the moment?
   this.xhr     = false;                                  // the ongoing AJAX request
+  this.watchdogTimer = 5;                                // in Seconds - the alive check intervall of the watchdog
+  this.maxConnectionAge = 60;                            // in Seconds - restart if last read is older
   
   /**
    * This function gets called once the communication is established and session information is available
@@ -55,6 +58,7 @@ function CometVisu( urlPrefix )
       if( this.running )
       { // retry initial request
         this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+        watchdog.ping();
       }
       return;
     }
@@ -66,6 +70,7 @@ function CometVisu( urlPrefix )
     if( this.running )
     { // keep the requests going
       this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&i='+lastIndex, success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+      watchdog.ping();
     }
   };
 
@@ -149,6 +154,34 @@ function CometVisu( urlPrefix )
     var request = 'a=' + address + '&v=' + value;
     $.ajax( {url:this.urlPrefix + 'w',dataType: 'json',context:this,data:request} );
   }
+  
+  /**
+   * Restart the read request, e.g. when the watchdog kicks in
+   */
+  this.restart = function()
+  {
+    if( this.xhr.abort ) this.xhr.abort();
+    this.handleRead(); // restart
+  }
+  
+  /**
+   * The watchdog to recreate a read request when it stopped somehow
+   */
+  var watchdog = (function(){
+    var last = new Date();
+    var aliveCheckFunction = function(){
+      var now = new Date();
+      if( now - last < thisCometVisu.maxConnectionAge * 1000 ) return;
+      thisCometVisu.restart();
+      last = now;
+    };
+    var aliveHandler = setInterval( aliveCheckFunction, thisCometVisu.watchdogTimer * 1000 );
+    return {
+      ping: function(){
+        last = new Date();
+      }
+    };
+  })();
 };
 
 CometVisu.prototype.update = function( json ) {}
