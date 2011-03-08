@@ -761,25 +761,6 @@ function defaultUpdate( e, data, passedElement )
   var element = passedElement || $(this);
   var thisTransform = element.data().address[ e.type ][0];
   var value = transformDecode( element.data().address[ e.type ][0], data );
-  if( element.data( 'precision' ) )
-    value = Number( value ).toPrecision( element.data( 'precision' ) );
-  if( element.data( 'format' ) )
-    value = sprintf( element.data( 'format' ), value );
-  element.data( 'value', value );
-  value = map( value, element );
-  if( value.constructor == Date )
-  {
-    switch( thisTransform ) // special case for KNX
-    {
-      case 'DPT:10.001':
-        value = value.toLocaleTimeString();
-        break;
-      case 'DPT:11.001':
-        value = value.toLocaleDateString();
-        break;
-    }
-  }
-  element.find('.value').text( value );
 
   var styling = element.data('styling');
   if( styling && stylings[styling] && (stylings[styling][value] || stylings[styling]['range']) )
@@ -803,5 +784,26 @@ function defaultUpdate( e, data, passedElement )
       if( not_found ) element.addClass( 'actor' );
     }
   }
+
+  if( element.data( 'precision' ) )
+    value = Number( value ).toPrecision( element.data( 'precision' ) );
+  if( element.data( 'format' ) )
+    value = sprintf( element.data( 'format' ), value );
+  element.data( 'value', value );
+  value = map( value, element );
+  if( value.constructor == Date )
+  {
+    switch( thisTransform ) // special case for KNX
+      {
+      case 'DPT:10.001':
+        value = value.toLocaleTimeString();
+        break;
+      case 'DPT:11.001':
+        value = value.toLocaleDateString();
+        break;
+      }
+  }
+  element.find('.value').text( value );
+  
   return value;
 }
