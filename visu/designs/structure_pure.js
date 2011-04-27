@@ -296,6 +296,8 @@ function VisuDesign() {
         'address' : address,
         'mapping' : $p.attr('mapping'),
         'styling' : $p.attr('styling'),
+        'on_value'  : $p.attr('on_value' ) || 1,
+        'off_value' : $p.attr('off_value') || 0,
         'type'    : 'switch'
       } ).bind( 'click', this.action );
       for( var addr in address ) $actor.bind( addr, this.update );
@@ -305,18 +307,21 @@ function VisuDesign() {
     update: function(e,d) { 
       var element = $(this);
       var value = defaultUpdate( e, d, element );
-      element.removeClass( value == 0 ? 'switchPressed' : 'switchUnpressed' );
-      element.addClass(    value == 0 ? 'switchUnpressed' : 'switchPressed' );
+      var off = element.data( 'off_value' );
+      element.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
+      element.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
     },
     action: function() {
       var data = $(this).data();
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value == 0 ) );
+        visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value == data.off_value ? data.on_value : data.off_value ) );
       }
     },
     attributes: {
+      on_value:          { type: 'string'  , required: false },
+      off_value:         { type: 'string'  , required: false },
       pre:               { type: 'string'  , required: false },
       post:              { type: 'string'  , required: false },
       mapping:           { type: 'mapping' , required: false },
