@@ -2,6 +2,7 @@ HEAD
 ====
 
 - New Feature: Multitrigger widget
+- New Feature: The switch widget can send arbitrary values now
 
 0.5.3
 =====
