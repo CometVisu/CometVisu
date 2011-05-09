@@ -51,6 +51,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         diagram.data("rrd", $p.attr("rrd"));
         diagram.data("unit", $p.attr("unit") || "");
         diagram.data("series", $p.attr("series") || "day");
+        diagram.data("period", $p.attr("period") || 1);
+        diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
         diagram.data("label", page.textContent);
         diagram.data("refresh", $p.attr("refresh"));
 
@@ -63,7 +65,9 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         width:      {type: "string", required: false},
         height:     {type: "string", required: false},
         unit:       {type: "string", required: false},
-        series:     {type: "list", required: false, list: {day: "1 day", week: "1 week", month: "1 month", year: "1 year"}},
+        series:     {type: "list", required: false, list: {hour: "hours", day: "days", week: "weeks", month: "months", year: "years"}},
+        period:     {type: "numeric", required: false},
+        datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
         refresh:    {type: "numeric", required: false}
     },
     content: {type: "string", required: true}
@@ -99,6 +103,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         diagram.data("rrd", $p.attr("rrd"));
         diagram.data("unit", $p.attr("unit") || "");
         diagram.data("series", $p.attr("series") || "day");
+        diagram.data("period", $p.attr("period") || 1);
+        diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
         diagram.data("label", page.textContent);
         diagram.data("refresh", $p.attr("refresh"));
 
@@ -130,8 +136,9 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
                             var x = item.datapoint[0],
                                 y = item.datapoint[1].toFixed(2);
                             
-                            var dte = new Date(x);
-                            
+                            //This is a mess but toLocaleString expects UTC again
+                            var offset = new Date().getTimezoneOffset() * 60 * 1000;
+                            var dte = new Date(x + offset);
                             showDiagramTooltip(item.pageX, item.pageY,
                                         dte.toLocaleString() + ": " + y + jQuery(this).data("unit"));
                         }
@@ -161,7 +168,9 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
     attributes: {
         rrd:        {type: "string", required: true},
         unit:       {type: "string", required: false},
-        series:     {type: "list", required: false, list: {day: "1 day", week: "1 week", month: "1 month", year: "1 year"}},
+        series:     {type: "list", required: false, list: {hour: "hours", day: "days", week: "weeks", month: "months", year: "years"}},
+        period:     {type: "numeric", required: false},
+        datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
         refresh:    {type: "numeric", required: false},
         tooltip:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
     },
@@ -190,12 +199,15 @@ function refreshDiagram(diagram, flotoptions, data) {
     var rrd = diagram.data("rrd");
     var label = diagram.data("label");
     var refresh = diagram.data("refresh");
+    var datasource = diagram.data("datasource") || "AVERAGE";
+    var period = diagram.data("period") || 1;
 
     var series = {
-        day:    {label: "day", res: "300", start: "-1day", end: "now"},
-        week:   {label: "week", res: "1800", start: "-1week", end: "now"},
-        month:  {label: "month", res: "21600", start: "-1month", end: "now"},
-        year:   {label: "year", res: "432000", start: "-1year", end: "now"}
+        hour:   {label: "hour", res: "60", start: "hour", end: "now"},
+        day:    {label: "day", res: "300", start: "day", end: "now"},
+        week:   {label: "week", res: "1800", start: "week", end: "now"},
+        month:  {label: "month", res: "21600", start: "month", end: "now"},
+        year:   {label: "year", res: "432000", start: "year", end: "now"},
     };
 
     var options = jQuery.extend(true,
@@ -230,11 +242,16 @@ function refreshDiagram(diagram, flotoptions, data) {
     if (s) {
         // init
         $.ajax({
-            url: "/cgi-bin/rrdfetch?rrd=" + rrd + ".rrd&ds=AVERAGE&start=end" + s.start + "&end=" + s.end + "&res=" + s.res,
+            url: "/cgi-bin/rrdfetch?rrd=" + rrd + ".rrd&ds=" + datasource + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
             dataType: "json",
             type: "GET",
             success: function(data) {
                 var color = diagramColors.data || options.grid.color;
+                var offset = new Date().getTimezoneOffset() * 60 * 1000;
+                //TODO: find a better way
+                for (var j = 0; j < data.length; j++) {
+                    data[j][0] -= offset;
+                }
                 $.plot(diagram, [{color: color, data: data}], options);
             }
         });
@@ -253,3 +270,4 @@ function refreshDiagram(diagram, flotoptions, data) {
     return false;
 
 }
+
