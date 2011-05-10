@@ -106,7 +106,7 @@ function CometVisu( urlPrefix )
   {
     var requestAddresses = (this.addresses.length)?'a=' + this.addresses.join( '&a=' ):'';
     var requestFilters   = (this.filters.length  )?'f=' + this.filters.join(   '&f=' ):'';
-    return requestAddresses + ( (this.addresses.length&&this.filters.length)?'&':'' ) + requestFilters;
+    return 's=' + this.session + '&' + requestAddresses + ( (this.addresses.length&&this.filters.length)?'&':'' ) + requestFilters;
   }
 
   /**
