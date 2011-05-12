@@ -349,8 +349,11 @@ function VisuDesign() {
         address[ '_' + src ] = [ transform, readonly=='true' ];
       });
       ret_val.append( label );
+      var buttons = $('<div style="float:left"/>');
+      var buttonCount = 0;
       if( $p.attr('button1label') )
       {
+        //buttonCount++;
         var actor = '<div class="actor switchUnpressed">';
         actor += '<div class="value">' + $p.attr('button1label') + '</div>';
         actor += '</div>';
@@ -361,7 +364,8 @@ function VisuDesign() {
           'value'   : $p.attr('button1value'),
           'type'    : 'switch'
         } ).bind( 'click', this.action );
-        ret_val.append( $actor );
+        buttons.append( $actor );
+        if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
       }
       if( $p.attr('button2label') )
       {
@@ -375,7 +379,8 @@ function VisuDesign() {
           'value'   : $p.attr('button2value'),
           'type'    : 'switch'
         } ).bind( 'click', this.action );
-        ret_val.append( $actor );
+        buttons.append( $actor );
+        if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
       }
       if( $p.attr('button3label') )
       {
@@ -389,7 +394,8 @@ function VisuDesign() {
           'value'   : $p.attr('button3value'),
           'type'    : 'switch'
         } ).bind( 'click', this.action );
-        ret_val.append( $actor );
+        buttons.append( $actor );
+        if( 1 == buttonCount++ % 2 ) buttons.append( $('<br/>') );
       }
       if( $p.attr('button4label') )
       {
@@ -403,11 +409,12 @@ function VisuDesign() {
           'value'   : $p.attr('button4value'),
           'type'    : 'switch'
         } ).bind( 'click', this.action );
-        ret_val.append( $actor );
+        buttons.append( $actor );
+        if( 1 == buttonCount++ % 2 ) buttons.append( $('<br/>') );
       }
       //for( var addr in address ) $actor.bind( addr, this.update );
       //            ret_val.append( label ).append( $actor );
-      return ret_val;
+      return ret_val.append( buttons );
     },
     update: function(e,d) { 
       var element = $(this);
