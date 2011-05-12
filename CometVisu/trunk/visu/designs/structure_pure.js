@@ -819,3 +819,4 @@ function defaultUpdate( e, data, passedElement )
   
   return value;
 }
+
