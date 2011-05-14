@@ -213,8 +213,12 @@
     </xsd:choice>
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
- </xsd:complexType>
+	<xsd:attribute name="on_value" type="xsd:string" use="optional" />
+	<xsd:attribute name="off_value" type="xsd:string" use="optional" />
+    <xsd:attribute ref="pre" use="optional" />
+    <xsd:attribute ref="post" use="optional" />
 
+</xsd:complexType>
 
 <xsd:complexType name="trigger">
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
@@ -224,6 +228,8 @@
     <xsd:attribute ref="value" use="required" />
     <xsd:attribute ref="mapping" use="optional"/>
     <xsd:attribute ref="styling" use="optional"/>
+    <xsd:attribute ref="pre" use="optional" />
+    <xsd:attribute ref="post" use="optional" />
 </xsd:complexType>
 
 <xsd:complexType name="multitrigger">
@@ -245,7 +251,7 @@
 
 <xsd:complexType name="slide">
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
-        <xsd:element name="label" type="xsd:string" minOccurs="0"/>
+        <xsd:element name="label" type="xsd:string" minOccurs="0" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="1" />
     </xsd:choice>
     <xsd:attribute ref="min" />
@@ -256,15 +262,15 @@
 </xsd:complexType>
 
 <xsd:complexType name="info">
-      <xsd:choice maxOccurs="unbounded" minOccurs="0">
-         <xsd:element name="label" type="xsd:string" />
-         <xsd:element name="address" type="address" minOccurs="1"/>
-      </xsd:choice>
-      <xsd:attribute ref="pre" use="optional" />
-      <xsd:attribute ref="post" use="optional" />
-      <xsd:attribute ref="format" use="optional" />
-      <xsd:attribute ref="styling" use="optional" />
-      <xsd:attribute ref="mapping" use="optional" />
+    <xsd:choice maxOccurs="unbounded" minOccurs="1">
+        <xsd:element name="label" type="xsd:string" maxOccurs="1" />
+        <xsd:element name="address" type="address" minOccurs="1"/>
+    </xsd:choice>
+    <xsd:attribute ref="pre" use="optional" />
+    <xsd:attribute ref="post" use="optional" />
+    <xsd:attribute ref="format" use="optional" />
+    <xsd:attribute ref="styling" use="optional" />
+    <xsd:attribute ref="mapping" use="optional" />
 </xsd:complexType>
 
 <xsd:complexType name="image">
@@ -278,36 +284,42 @@
 </xsd:complexType>
 
 <xsd:complexType name="video">
-    <xsd:simpleContent>
-        <xsd:extension base="xsd:string">
-            <xsd:attribute name="src" type="uri" use="required" />
-            <xsd:attribute name="width" type="dimension" />
-            <xsd:attribute name="height" type="dimension" />
-        </xsd:extension>
-    </xsd:simpleContent>
-</xsd:complexType>
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+	   <xsd:element name="label" type="xsd:string" maxOccurs="1" />
+    </xsd:choice>
+    <xsd:attribute name="src" type="uri" use="required" />
+    <xsd:attribute name="width" type="dimension" />
+    <xsd:attribute name="height" type="dimension" />
+ </xsd:complexType>
 
 <xsd:complexType name="iframe">
-    <xsd:simpleContent>
-        <xsd:extension base="xsd:string">
-            <xsd:attribute name="src" type="uri" use="required" />
-            <xsd:attribute name="width" type="dimension" />
-            <xsd:attribute name="height" type="dimension" />
-        </xsd:extension>
-    </xsd:simpleContent>
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+	   <xsd:element name="label" type="xsd:string" maxOccurs="1" />
+    </xsd:choice>
+	<xsd:attribute name="src" type="uri" use="required" />
+    <xsd:attribute name="width" type="dimension" />
+    <xsd:attribute name="height" type="dimension" />
 </xsd:complexType>
 
 <xsd:complexType name="colorchooser" >
     <xsd:choice maxOccurs="unbounded" minOccurs="0" >
-        <xsd:element name="label" type="xsd:string" />
+        <xsd:element name="label" type="xsd:string" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="3" maxOccurs="3"/>
     </xsd:choice>
 </xsd:complexType>
 
 <xsd:complexType name="diagram_inline">
-    <xsd:attribute name="rrd" type="xsd:string" use="required" />
-    <xsd:attribute name="width" type="dimension" use="optional"/>
-    <xsd:attribute name="height" type="dimension" use="optional"/>
+    <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+            <xsd:attribute name="rrd" type="xsd:string" use="required" />
+	        <xsd:attribute name="unit" type="xsd:string" use="optional" />
+			<xsd:attribute name="width" type="dimension" use="optional"/>
+			<xsd:attribute name="series" type="xsd:string" use="optional"/>
+			<xsd:attribute name="height" type="dimension" use="optional"/>
+			<xsd:attribute name="refresh" type="xsd:integer" use="optional" />
+			<xsd:attribute name="period" type="xsd:string" use="optional" />
+		</xsd:extension>
+    </xsd:simpleContent>
 </xsd:complexType>
 
 <xsd:complexType name="diagram_popup" >
@@ -317,6 +329,9 @@
             <xsd:attribute name="unit" type="xsd:string" use="optional" />
             <xsd:attribute name="series" type="xsd:string" use="optional" />
             <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
+			<xsd:attribute name="period" type="xsd:string" use="optional" />
+			<xsd:attribute name="datasource" type="xsd:string" use="optional" />
+			<xsd:attribute name="tooltip" type="xsd:string" use="optional" />
         </xsd:extension>
     </xsd:simpleContent>
 </xsd:complexType>
@@ -327,8 +342,6 @@
 
 <!-- toggle is not yet implemented -->
 <!-- shade is not yet implemented -->
-
-
 
 
 </xsd:schema>
