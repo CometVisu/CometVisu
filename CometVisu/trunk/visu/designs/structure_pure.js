@@ -135,11 +135,7 @@ function VisuDesign() {
         ga_list.push( src ) 
         address[ '_' + src ] = [ this.getAttribute('transform') ];
       });
-      var actor = '<div class="actor">';
-      if( $p.attr('pre') ) actor += '<div>' + $p.attr('pre') + '</div>';
-      actor += '<div class="value">-</div>';
-      if( $p.attr('post') ) actor += '<div>' + $p.attr('post') + '</div>';
-      actor += '</div>';
+      var actor = '<div class="actor"><div class="value">-</div></div>';
       var $actor = $(actor).data({
         'address'  : address,
         'format'   : $p.attr('format'),
@@ -152,8 +148,6 @@ function VisuDesign() {
     },
     update:       defaultUpdate,
     attributes: {
-      pre:        { type: 'string',    required: false },
-      post:       { type: 'string',    required: false },
       format:     { type: 'format',    required: false },
       mapping:    { type: 'mapping',   required: false },
       styling:    { type: 'styling',   required: false }
@@ -287,11 +281,7 @@ function VisuDesign() {
         ga_list.push( src ) 
         address[ '_' + src ] = [ transform, readonly=='true' ];
       });
-      var actor = '<div class="actor switchUnpressed">';
-      if( $p.attr('pre') ) actor += $p.attr('pre');
-      actor += '<div class="value">-</div>';
-      if( $p.attr('post') ) actor += $p.attr('post');
-      actor += '</div>';
+      var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       var $actor = $(actor).data( {
         'address' : address,
         'mapping' : $p.attr('mapping'),
@@ -322,8 +312,6 @@ function VisuDesign() {
     attributes: {
       on_value:          { type: 'string'  , required: false },
       off_value:         { type: 'string'  , required: false },
-      pre:               { type: 'string'  , required: false },
-      post:              { type: 'string'  , required: false },
       mapping:           { type: 'mapping' , required: false },
       styling:           { type: 'styling' , required: false }
     },
@@ -465,13 +453,11 @@ function VisuDesign() {
         address[ '_' + src ] = [ transform, readonly=='true' ];
       });
       var actor = '<div class="actor switchUnpressed">';
-      if( $p.attr('pre') ) actor += $p.attr('pre');
       var map = $p.attr('mapping');
       if( mappings[map] && mappings[map][value] )
         actor += '<div class="value">' + mappings[map][value] + '</div>';
       else
         actor += '<div class="value">' + value + '</div>';
-      if( $p.attr('post') ) actor += $p.attr('post');
       actor += '</div>';
       var $actor = $(actor).data( {
         'address' : address,
@@ -493,8 +479,6 @@ function VisuDesign() {
     },
     attributes: {
       value:    { type: 'string'  , required: true  },
-      pre:      { type: 'string'  , required: false },
-      post:     { type: 'string'  , required: false },
       mapping:  { type: 'mapping' , required: false },
       styling:  { type: 'styling' , required: false }
     },
@@ -583,7 +567,7 @@ function VisuDesign() {
       height: { type: 'string', required: false }
     },
     elements: {
-      label:      { type: 'string',    required: false, multi: false }
+      label:  { type: 'string',    required: false, multi: false }
     },
     content:      false
   });
