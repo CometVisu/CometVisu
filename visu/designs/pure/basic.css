@@ -315,6 +315,13 @@ div#loading {
 
 .diagram_inline {
   margin-left: 1em;
+  width: 320px;
+  height: 180px;
+}
+
+.diagram_preview {
+    width: 240px;
+    height: 2em;
 }
 
 #diagramTooltip {
