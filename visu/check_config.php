@@ -8,12 +8,17 @@
 <?php
 
 $dom = new DomDocument();
-$dom->load("visu_config.xml");
+$conffile = "visu_config";
+if ($_GET['config']) {
+   $conffile .= "_" . $_GET['config'];
+}
+
+$dom->load($conffile . ".xml");
 
 if ($dom->schemaValidate("visu_config.xsd")) {
-    print ("config is valid XML");
+    print ("config <b>" . $conffile . " is valid </b> XML");
 } else {
-    print ("config is NOT valid XML");
+    print ("config <b>" . $conffile . " is NOT </b> valid XML");
 }
 
 ?> 
