@@ -84,25 +84,38 @@ body br
   text-align:right;
 /*  border:blue 1px solid; */
 }
+
 .widget .actor
 {
   float:left;
   margin-left:1em;
-  /*width:49%;*/
-  text-align:left;
-/*  color:green; */
-/*  border:blue 1px solid; */
 }
+
 .widget .actor div
 {
   float:left;
   white-space: pre-wrap;
 }
 
+.center
+{ 
+   text-align:center;
+}
+
+.left
+{ 
+   text-align:left;
+}
+
+.right
+{ 
+   text-align:right;
+}
+
 .red 
 {
   color:#f44;
-  font-weight:bold;
+  
 }
 
 .green

@@ -288,6 +288,7 @@ function VisuDesign() {
         'styling' : $p.attr('styling'),
         'on_value'  : $p.attr('on_value' ) || 1,
         'off_value' : $p.attr('off_value') || 0,
+		'align' : $p.attr('align'),
         'type'    : 'switch'
       } ).bind( 'click', this.action );
       for( var addr in address ) $actor.bind( addr, this.update );
@@ -313,7 +314,8 @@ function VisuDesign() {
       on_value:          { type: 'string'  , required: false },
       off_value:         { type: 'string'  , required: false },
       mapping:           { type: 'mapping' , required: false },
-      styling:           { type: 'styling' , required: false }
+      styling:           { type: 'styling' , required: false },
+	  align:             { type: 'string'  , required: false }
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
@@ -342,7 +344,11 @@ function VisuDesign() {
       if( $p.attr('button1label') )
       {
         //buttonCount++;
-        var actor = '<div class="actor switchUnpressed">';
+        var actor = '<div class="actor switchUnpressed '
+		if ( $p.attr( 'align' ) ) 
+		    actor += $p.attr( 'align' ); 
+		actor += '">';
+	
         actor += '<div class="value">' + $p.attr('button1label') + '</div>';
         actor += '</div>';
         var $actor = $(actor).data( {
@@ -350,14 +356,18 @@ function VisuDesign() {
           'mapping' : $p.attr('mapping'),
           'styling' : $p.attr('styling'),
           'value'   : $p.attr('button1value'),
-          'type'    : 'switch'
+		  'align'   : $p.attr('align'),
+		  'type'    : 'switch'
         } ).bind( 'click', this.action );
         buttons.append( $actor );
         if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
       }
       if( $p.attr('button2label') )
       {
-        var actor = '<div class="actor switchUnpressed">';
+        var actor = '<div class="actor switchUnpressed '
+		if ( $p.attr( 'align' ) ) 
+		    actor += $p.attr( 'align' ); 
+		actor += '">';
         actor += '<div class="value">' + $p.attr('button2label') + '</div>';
         actor += '</div>';
         var $actor = $(actor).data( {
@@ -365,14 +375,18 @@ function VisuDesign() {
           'mapping' : $p.attr('mapping'),
           'styling' : $p.attr('styling'),
           'value'   : $p.attr('button2value'),
-          'type'    : 'switch'
+		  'type'    : 'switch',
+		  'align'   : $p.attr('align')
         } ).bind( 'click', this.action );
         buttons.append( $actor );
         if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
       }
       if( $p.attr('button3label') )
       {
-        var actor = '<div class="actor switchUnpressed">';
+        var actor = '<div class="actor switchUnpressed '
+		if ( $p.attr( 'align' ) ) 
+		    actor += $p.attr( 'align' ); 
+		actor += '">';
         actor += '<div class="value">' + $p.attr('button3label') + '</div>';
         actor += '</div>';
         var $actor = $(actor).data( {
@@ -380,14 +394,17 @@ function VisuDesign() {
           'mapping' : $p.attr('mapping'),
           'styling' : $p.attr('styling'),
           'value'   : $p.attr('button3value'),
-          'type'    : 'switch'
+		  'type'    : 'switch'
         } ).bind( 'click', this.action );
         buttons.append( $actor );
         if( 1 == buttonCount++ % 2 ) buttons.append( $('<br/>') );
       }
       if( $p.attr('button4label') )
       {
-        var actor = '<div class="actor switchUnpressed">';
+        var actor = '<div class="actor switchUnpressed '
+		if ( $p.attr( 'align' ) ) 
+		    actor += $p.attr( 'align' ); 
+		actor += '">';
         actor += '<div class="value">' + $p.attr('button4label') + '</div>';
         actor += '</div>';
         var $actor = $(actor).data( {
@@ -395,8 +412,8 @@ function VisuDesign() {
           'mapping' : $p.attr('mapping'),
           'styling' : $p.attr('styling'),
           'value'   : $p.attr('button4value'),
-          'type'    : 'switch'
-        } ).bind( 'click', this.action );
+          'type'    : 'switch',
+		} ).bind( 'click', this.action );
         buttons.append( $actor );
         if( 1 == buttonCount++ % 2 ) buttons.append( $('<br/>') );
       }
@@ -428,7 +445,8 @@ function VisuDesign() {
       button4label:      { type: 'string'  , required: false },
       button4value:      { type: 'string'  , required: false },
       mapping:           { type: 'mapping' , required: false },
-      styling:           { type: 'styling' , required: false }
+      styling:           { type: 'styling' , required: false },
+	  align:             { type: 'string'  , required: false }
     },
     elements: {
       label:             { type: 'string',    required: false, multi: false },
@@ -452,7 +470,10 @@ function VisuDesign() {
         ga_list.push( src ) 
         address[ '_' + src ] = [ transform, readonly=='true' ];
       });
-      var actor = '<div class="actor switchUnpressed">';
+      var actor = '<div class="actor switchUnpressed '
+	  if ( $p.attr( 'align' ) ) 
+		    actor += $p.attr( 'align' ); 
+	  actor += '">';
       var map = $p.attr('mapping');
       if( mappings[map] && mappings[map][value] )
         actor += '<div class="value">' + mappings[map][value] + '</div>';
@@ -464,6 +485,7 @@ function VisuDesign() {
         'mapping' : $(page).attr('mapping'),
         'styling' : $(page).attr('styling'),
         'type'    : 'trigger',
+		'align'   : $p.attr('align'),
         'sendValue': value
       } ).bind( 'click', this.action );
       ret_val.append( label ).append( $actor );
@@ -480,7 +502,8 @@ function VisuDesign() {
     attributes: {
       value:    { type: 'string'  , required: true  },
       mapping:  { type: 'mapping' , required: false },
-      styling:  { type: 'styling' , required: false }
+      styling:  { type: 'styling' , required: false },
+	  align:    { type: 'string'  , required: false },
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
@@ -777,10 +800,13 @@ function defaultUpdate( e, data, passedElement )
         not_found = false;
         break;
       }
-      if( not_found ) element.addClass( 'actor' );
+      if( not_found ) element.addClass( 'actor ' );
     }
   }
 
+  if( element.data( 'align' ) )
+    element.addClass(element.data( 'align' ) );
+	
   if( element.data( 'precision' ) )
     value = Number( value ).toPrecision( element.data( 'precision' ) );
   if( element.data( 'format' ) )
