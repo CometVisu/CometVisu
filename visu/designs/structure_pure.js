@@ -288,7 +288,7 @@ function VisuDesign() {
         'styling' : $p.attr('styling'),
         'on_value'  : $p.attr('on_value' ) || 1,
         'off_value' : $p.attr('off_value') || 0,
-		'align' : $p.attr('align'),
+	'align'   : $p.attr('align'),
         'type'    : 'switch'
       } ).bind( 'click', this.action );
       for( var addr in address ) $actor.bind( addr, this.update );
@@ -315,7 +315,7 @@ function VisuDesign() {
       off_value:         { type: 'string'  , required: false },
       mapping:           { type: 'mapping' , required: false },
       styling:           { type: 'styling' , required: false },
-	  align:             { type: 'string'  , required: false }
+      align:             { type: 'string'  , required: false }
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
@@ -446,7 +446,7 @@ function VisuDesign() {
       button4value:      { type: 'string'  , required: false },
       mapping:           { type: 'mapping' , required: false },
       styling:           { type: 'styling' , required: false },
-	  align:             { type: 'string'  , required: false }
+      align:             { type: 'string'  , required: false }
     },
     elements: {
       label:             { type: 'string',    required: false, multi: false },
