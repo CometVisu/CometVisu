@@ -318,6 +318,7 @@
 			<xsd:attribute name="height" type="dimension" use="optional"/>
 			<xsd:attribute name="refresh" type="xsd:integer" use="optional" />
 			<xsd:attribute name="period" type="xsd:string" use="optional" />
+			<xsd:attribute name="datasource" type="xsd:string" use="optional" />
 		</xsd:extension>
     </xsd:simpleContent>
 </xsd:complexType>
