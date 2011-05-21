@@ -288,7 +288,7 @@ function VisuDesign() {
         'styling' : $p.attr('styling'),
         'on_value'  : $p.attr('on_value' ) || 1,
         'off_value' : $p.attr('off_value') || 0,
-	'align'   : $p.attr('align'),
+        'align'   : $p.attr('align'),
         'type'    : 'switch'
       } ).bind( 'click', this.action );
       for( var addr in address ) $actor.bind( addr, this.update );
@@ -298,7 +298,7 @@ function VisuDesign() {
     update: function(e,d) { 
       var element = $(this);
       var value = defaultUpdate( e, d, element );
-      var off = element.data( 'off_value' );
+      var off = map( element.data( 'off_value' ), element );
       element.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
       element.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
     },
