@@ -7,7 +7,10 @@ var lingua = function(element, param) {
         save_bad:       "Config not saved. Error: '%s'",
         value_required: "Field '%s' is required but empty. Please correct your input.",
         value_invalid:  "The value for field '%s' is invalid. Please correct your input.",
-        regexp_invalid: "There's something wrong with the cable."
+        regexp_invalid: "There's something wrong with the cable.",
+        getaddr_bad:    "Failed to get address-config. Error: '%s'.",
+        getdpt_bad:     "Failed to get DPT-config. Error: '%s'.",
+        getrrd_bad:     "Failed to get available RRDs. Error: '%s'."
     }
 
     if (typeof texts[element] == "undefined") {
@@ -25,8 +28,11 @@ var lingua = function(element, param) {
 
 var addressesCache;
 var dptCache;
+var rrdCache
 
 jQuery(document).ready(function() {
+
+    $('#StatusBar').jnotifyInizialize({ oneAtTime: false })
 
     jQuery("div#addwidgetcontrol").bind("click", function() {
         $("#addMaster").triggerHandler("cleanup");
@@ -34,10 +40,7 @@ jQuery(document).ready(function() {
     });
 
     $("#saveconfigcontrol").bind("click", function () {
-       var b = confirm(lingua("confirm_save"));
-       if (b) {
-           saveConfig();
-       }
+       saveConfig();
     });
 
     // get all GAs from the server
@@ -46,10 +49,16 @@ jQuery(document).ready(function() {
         type: "GET",
         dataType: "json",
         success: function(data) {
-             addressesCache = data;
+            addressesCache = data;
         },
         error: function(xhr, textStatus, e) {
             addressesCache = false;
+            $('#StatusBar').jnotifyAddMessage({
+                text: lingua("getaddr_bad", textStatus + " " +e),
+                permanent: false,
+                type: 'error',
+                disappearTime: 30000
+            });
         }
     });
 
@@ -63,6 +72,31 @@ jQuery(document).ready(function() {
         },
         error: function(xhr, textStatus, e) {
             dptCache = false;
+            $('#StatusBar').jnotifyAddMessage({
+                text: lingua("getdpt_bad", textStatus + " " +e),
+                permanent: false,
+                type: 'error',
+                disappearTime: 30000
+            });
+        }
+    });
+
+    // get all rrds from the server
+    $.ajax({
+        url: "edit/get_widget_diagram.php",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            rrdCache = data;
+        },
+        error: function(xhr, textStatus, e) {
+            rrdCache = false;
+            $('#StatusBar').jnotifyAddMessage({
+                text: lingua("getrrd_bad", textStatus + " " +e),
+                permanent: false,
+                type: 'error',
+                disappearTime: 30000
+            });
         }
     });
 
@@ -586,14 +620,22 @@ jQuery(function() {
                     if ($(this).val() != "") {
                         // validating
                         if (false === isInputValid($(this).val(), $(this).data("type"))) {
-                            alert(lingua("value_invalid", name));
+                            $('#StatusBar').jnotifyAddMessage({
+                                text: lingua("value_invalid", name),
+                                permanent: false,
+                                type: 'error'
+                            });
                             // do not save
                             error = true;
                         }
                         dataObject.append($("<" + name + " />").append($(this).val()));
                     } else if ($(this).data("required") === true) {
                         // do not save
-                        alert(lingua("value_required", name));
+                        $('#StatusBar').jnotifyAddMessage({
+                            text: lingua("value_required", name),
+                            permanent: false,
+                            type: 'error'
+                        });
                         error = true;
                     }
                 } else {
@@ -619,14 +661,22 @@ jQuery(function() {
                 if ($(this).val() != "") {
                     // validating
                     if (false === isInputValid($(this).val(), $(this).data("type"))) {
-                        alert(lingua("value_invalid", name));
+                        $('#StatusBar').jnotifyAddMessage({
+                            text: lingua("value_invalid", name),
+                            permanent: false,
+                            type: 'error'
+                        });
                         // do not save
                         error = true;
                     }
                     dataObject.attr(name, $(this).val());
                 } else if ($(this).data("required") === true) {
                     // do not save
-                    alert(lingua("value_required", name));
+                    $('#StatusBar').jnotifyAddMessage({
+                        text: lingua("value_required", name),
+                        permanent: false,
+                        type: 'error'
+                    });
                     error = true;
                 }
             });
@@ -655,7 +705,7 @@ jQuery(function() {
             jQuery("#addMaster").trigger("hide").trigger("cleanup");
         })
         .end();
-
+        
 });
 
 /**
@@ -676,7 +726,11 @@ function isInputValid(val, type) {
             }
 
         } catch (e) {
-            alert(lingua("regexp_invalid"));
+            $('#StatusBar').jnotifyAddMessage({
+                text: lingua("regexp_invalid", name),
+                permanent: false,
+                type: 'error'
+            });
             return false;
         }
     }
@@ -719,14 +773,28 @@ function saveConfig() {
         cache: false,
         dataType: "json",
         error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert(lingua("save_bad", errorThrown));
+            $('#StatusBar').jnotifyAddMessage({
+                text: lingua("save_bad", errorThrown),
+                permanent: false,
+                type: 'error',
+                disappearTime: 30000
+            });
         },
         success: function(data, textStatus, XMLHttpRequest) {
             if (data != 1) {
-                alert(lingua("save_bad", data));
+                $('#StatusBar').jnotifyAddMessage({
+                    text: lingua("save_bad", data),
+                    permanent: false,
+                    type: 'error',
+                    disappearTime: 30000
+                });
                 return;
             }
-            alert(lingua("save_good"));
+            $('#StatusBar').jnotifyAddMessage({
+                text: lingua("save_good"),
+                permanent: false,
+                type: 'message'
+            });
         }
     });
 }
