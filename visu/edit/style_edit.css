@@ -194,3 +194,24 @@ div.line hr {
 #addMaster button {
     margin: .4em;
 }
+
+/* jnotify stuff */
+.jnotify-item
+{
+    height: auto;
+    width: 80%;
+    padding: 4px 4px 4px 4px;
+    margin: 0 0 5px 0;
+    display: block;
+    position: fixed;
+    left: 1em;
+    top: 1em;
+    z-index: 6;
+}
+
+.jnotify-item-close
+{
+    float: right;
+    margin-left: 2px;
+}
+
