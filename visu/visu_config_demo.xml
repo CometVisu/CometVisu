@@ -61,21 +61,11 @@
   </meta>
   <page name="Übersicht">
     <text align="center">CometVisu Widget Demo</text>
-    <info styling="BluePurpleRed">
-      <label>Slide Info</label>
-      <address transform="DPT:9" type="">12/4/250</address>
-      <address transform="DPT:9.001" type="">12/4/251</address>
-    </info>
     <switch mapping="OnOff" styling="RedGreen">
       <label>Switch - Terrase Licht</label>
       <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
       <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
     </switch>
-    <slide min="-18" max="26">
-      <label>Slide</label>
-      <address transform="DPT:9" type="">12/4/250</address>
-      <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
-    </slide>
     <break/>
     <trigger pre="pre" post="post" value="0" mapping="OnOff">
       <label>Trigger - Terrasse Licht</label>
@@ -85,6 +75,19 @@
       <label>Trigger - Terrasse Licht</label>
       <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
     </trigger>
+    <group name="Slide group" flavour="potassium">
+      <info styling="BluePurpleRed">
+        <label>Slide Info</label>
+        <address transform="DPT:9" type="">12/4/250</address>
+        <address transform="DPT:9.001" type="">12/4/251</address>
+      </info>
+      <line />
+      <slide min="-18" max="26">
+        <label>Slide</label>
+        <address transform="DPT:9" type="">12/4/250</address>
+        <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
+      </slide>
+    </group>
     <multitrigger pre="pre" post="post" button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
       <label>Multitrigger - Szenenaufruf</label>
       <address transform="DPT:5.010" readonly="false" type="">11/2/50</address>
