@@ -88,22 +88,19 @@ function VisuDesign() {
   this.addCreator('group', {
     create: function( page, path, flavour ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget" />');
-      var name    = $p.attr('name');
+      var ret_val = $('<div class="widget group" />');
       if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
-      var wstyle  = '';                                     // widget style
-      if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
-      if( wstyle != '' ) wstyle = 'style="' + wstyle + '"';
+      var hstyle  = '';                                     // heading style
+      if( $p.attr('align') ) hstyle += 'text-align:' + $p.attr('align') + ';';
+      if( hstyle != '' ) hstyle = 'style="' + hstyle + '"';
       var childs = $p.children();
       var container = $( '<div class="clearfix"/>' );
-      container.append( '<h2>' + name + '</h2>' );
+      if( $p.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $p.attr('name') + '</h2>' );
       $( childs ).each( function(i){
           container.append( create_pages( childs[i], path + '_' + i, flavour ) );
       } );
-      var group = $( '<div class="group" id="' + path + '"/>' );
-      group.append(container);
-      if( flavour ) group.addClass( 'flavour_' + flavour );
-      ret_val.append( group );
+      if( flavour ) ret_val.addClass( 'flavour_' + flavour );
+      ret_val.append( container );
       return ret_val;
     },
     attributes: {
