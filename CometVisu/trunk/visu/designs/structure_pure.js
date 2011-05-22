@@ -84,6 +84,37 @@ function VisuDesign() {
     },
     content: true
   });
+  
+  this.addCreator('group', {
+    create: function( page, path, flavour ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget" />');
+      var name    = $p.attr('name');
+      if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
+      var wstyle  = '';                                     // widget style
+      if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
+      if( wstyle != '' ) wstyle = 'style="' + wstyle + '"';
+      var childs = $p.children();
+      var container = $( '<div class="clearfix"/>' );
+      container.append( '<h2>' + name + '</h2>' );
+      $( childs ).each( function(i){
+          container.append( create_pages( childs[i], path + '_' + i, flavour ) );
+      } );
+      var group = $( '<div class="group" id="' + path + '"/>' );
+      group.append(container);
+      if( flavour ) group.addClass( 'flavour_' + flavour );
+      ret_val.append( group );
+      return ret_val;
+    },
+    attributes: {
+      align:  { type: 'string', required: false },
+      flavour:{ type: 'string', required: false },
+      name:   { type: 'string', required: true }
+    },
+    elements: {
+    },
+    content: true
+  });
 
   this.addCreator('line', {
     create:     function( page, path ) {

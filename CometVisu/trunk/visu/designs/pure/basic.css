@@ -19,6 +19,14 @@ h1
   margin-left: 15px;
 }
 
+h2
+{
+  font-size: 1.25em;
+  margin-left: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 body hr
 {
   clear:both;
@@ -66,6 +74,11 @@ body br
   -webkit-border-radius: 5px;
   border-radius: 5px;
   min-height: 2em;
+}
+
+.widget .widget
+{
+  width:98%;
 }
 
 .widget .label,
