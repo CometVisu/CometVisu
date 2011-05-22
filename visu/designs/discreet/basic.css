@@ -17,6 +17,14 @@ h1
   padding-left: 15px;
 }
 
+h2
+{
+  font-size: 1.25em;
+  margin-left: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 body hr
 {
   clear:both;
@@ -88,6 +96,11 @@ div#top {
   border-radius: 8px;
   min-height: 2em;
   background-color: #101010;
+}
+
+.widget .widget
+{
+  width:98%;
 }
 
 .text > div,
