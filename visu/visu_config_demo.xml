@@ -75,13 +75,12 @@
       <label>Trigger - Terrasse Licht</label>
       <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
     </trigger>
-    <group name="Slide group" flavour="potassium">
+    <group name="Slide group" flavour="potassium" align="center">
       <info styling="BluePurpleRed">
         <label>Slide Info</label>
         <address transform="DPT:9" type="">12/4/250</address>
         <address transform="DPT:9.001" type="">12/4/251</address>
       </info>
-      <line />
       <slide min="-18" max="26">
         <label>Slide</label>
         <address transform="DPT:9" type="">12/4/250</address>

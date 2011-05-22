@@ -367,10 +367,13 @@ div#loading {
 {
   background-color: #000000;
 }
-
 .flavour_black .link a
 {
   color: #000000;
+}
+.flavour_black.group
+{
+  border: #000000 1px solid;
 }
 
 .flavour_white hr
@@ -381,15 +384,22 @@ div#loading {
 {
   color: #ffffff;
 }
+.flavour_white.group
+{
+  border: #ffffff 1px solid;
+}
 
 .flavour_antimony hr
 {
   background-color: #00ddff;
 }
-
 .flavour_antimony .link a
 {
   color: #00ddff;
+}
+.flavour_antimony.group
+{
+  border: #00ddff 1px solid;
 }
 
 .flavour_boron hr
@@ -400,6 +410,10 @@ div#loading {
 {
   color: #00ff11;
 }
+.flavour_boron.group
+{
+  border: #00ff11 1px solid;
+}
 
 .flavour_lithium hr
 {
@@ -408,6 +422,10 @@ div#loading {
 .flavour_lithium .link a
 {
   color: #ff0000;
+}
+.flavour_lithium.group
+{
+  border: #ff0000 1px solid;
 }
 
 .flavour_potassium hr
@@ -418,6 +436,10 @@ div#loading {
 {
   color: #d00055;
 }
+.flavour_potassium.group
+{
+  border: #d00055 1px solid;
+}
 
 .flavour_sodium hr
 {
@@ -426,5 +448,9 @@ div#loading {
 .flavour_sodium .link a
 {
   color: #ff8000;
+}
+.flavour_sodium.group
+{
+  border: #ff8000 1px solid;
 }
 
