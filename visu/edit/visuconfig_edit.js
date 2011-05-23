@@ -865,6 +865,10 @@ function getWidgetData(element) {
     return myObj;
 }
 
+function getPageData(element) {
+
+}
+
 function createObjectFromPage(pageObject) {
     var obj = {};
     var elements = new Array();
@@ -873,6 +877,10 @@ function createObjectFromPage(pageObject) {
             // Seitenname
             obj.name = $(element).text();
             obj._type = "page";
+            if ($(element).parents("div.page").data("configData")) {
+                var data = $(element).parents("div.page").data("configData");
+                obj = jQuery.extend(obj, data.attributes);
+            }
         } else {
             var myObj = {};
             myObj = getWidgetData(element);

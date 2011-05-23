@@ -91,6 +91,27 @@ function createDOMFromJSON($objJSON) {
         $objXML->setAttribute("name", (string)$objJSON->name);
     }
 
+    if (false === empty($objJSON->_attributes)) {
+        // some attributes are in a sub-element - it's easier to get them out of there
+        // into our main namespace
+        foreach ($objJSON->_attributes as $strKey => $strValue) {
+            $objJSON->$strKey = $strValue;
+        }
+    }
+
+    foreach ($objJSON as $strAttribute => $mixValue) {
+        if (0 === strpos($strAttribute, "_")) {
+            // Parameter die mit "_" beginnen sind special purpose
+            continue;
+        }
+
+        if ($strAttribute === "textContent") {
+            $objXML->nodeValue = $mixValue;
+            continue;
+        }
+        $objXML->setAttribute($strAttribute, $mixValue);
+    }
+
     if (true === empty($objJSON->_elements) || false === is_array($objJSON->_elements)) {
         return $objXML;
     }
