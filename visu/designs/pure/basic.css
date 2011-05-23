@@ -214,6 +214,29 @@ body br
   border-radius: 5px;
 }
 
+.switchInvisible
+{
+  border-style:  solid;
+  border-width:  1px;
+  border-color:  #000 #000 #000 #000;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  padding: 1px;
+}
+
+.switchInvisible div
+{
+  border-style:  solid;
+  border-width:  1px;
+  border-color:  #000 #000 #000 #000;
+  padding: 5px;
+  width: 5em;
+  float: left;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
 
 .ui-slider { position: relative; text-align: left; }
 .ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.6em; height: 1.6em; cursor: default; }
