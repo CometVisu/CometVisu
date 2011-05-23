@@ -47,9 +47,6 @@
 <!-- simple elements -->
 
 <!-- attributes -->
-<xsd:attribute name="pre" type="xsd:string" />
-<xsd:attribute name="post" type="xsd:string" />
-
 <xsd:attribute name="min" type="xsd:decimal" />
 <xsd:attribute name="max" type="xsd:decimal" />
 <xsd:attribute name="step" type="xsd:decimal" />
@@ -169,7 +166,8 @@
             <xsd:element name="switch" type="switch" />
             <xsd:element name="toggle" type="switch" />
             <xsd:element name="trigger" type="trigger" />
-            <xsd:element name="multitrigger" type="multitrigger" /> 
+            <xsd:element name="multitrigger" type="multitrigger" />
+			<xsd:element name="infotrigger" type="infotrigger" />
             <xsd:element name="designtoggle" type="designtoggle" />
             <xsd:element name="slide" type="slide" />
             <xsd:element name="info" type="info" />
@@ -215,9 +213,7 @@
     <xsd:attribute ref="mapping" use="optional" />
 	<xsd:attribute name="on_value" type="xsd:string" use="optional" />
 	<xsd:attribute name="off_value" type="xsd:string" use="optional" />
-    <xsd:attribute ref="pre" use="optional" />
-    <xsd:attribute ref="post" use="optional" />
-
+    <xsd:attribute ref="align" use="optional" />
 </xsd:complexType>
 
 <xsd:complexType name="trigger">
@@ -228,8 +224,21 @@
     <xsd:attribute ref="value" use="required" />
     <xsd:attribute ref="mapping" use="optional"/>
     <xsd:attribute ref="styling" use="optional"/>
-    <xsd:attribute ref="pre" use="optional" />
-    <xsd:attribute ref="post" use="optional" />
+</xsd:complexType>
+
+<xsd:complexType name="infotrigger">
+    <xsd:choice maxOccurs="unbounded" minOccurs="1">
+        <xsd:element name="label" type="xsd:string" />
+        <xsd:element name="address" type="address" minOccurs="2" maxOccurs="unbounded"/>
+    </xsd:choice>
+    <xsd:attribute name="upvalue" type="xsd:string" use="optional"/>
+	<xsd:attribute name="downvalue" type="xsd:string" use="optional"/>
+	<xsd:attribute name="uplabel" type="xsd:string" use="optional"/>
+	<xsd:attribute name="downlabel" type="xsd:string" use="optional"/>
+    <xsd:attribute ref="mapping" use="optional"/>
+	<xsd:attribute ref="styling" use="optional"/>
+    <xsd:attribute ref="align" use="optional" />
+	<xsd:attribute ref="format" use="optional" />
 </xsd:complexType>
 
 <xsd:complexType name="multitrigger">
@@ -266,8 +275,6 @@
         <xsd:element name="label" type="xsd:string" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="1"/>
     </xsd:choice>
-    <xsd:attribute ref="pre" use="optional" />
-    <xsd:attribute ref="post" use="optional" />
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
