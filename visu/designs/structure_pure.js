@@ -623,6 +623,110 @@ function VisuDesign() {
     content:      false
   });
 
+  this.addCreator('infotrigger', {
+    create: function( page, path ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget switch" />');
+      
+	  // handle label
+	  var labelElement = $p.find('label')[0];
+      var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+      ret_val.append( label );
+	  
+      // handle addresses
+	  var address = {};
+	  var addrread = {};
+	  $p.find('address').each( function(){ 
+        var src = this.textContent;
+        var transform = this.getAttribute('transform');
+        var readonly  = this.getAttribute('readonly');
+        ga_list.push( src ) 
+        if (readonly=='true') {
+		  addrread[ '_' + src ] = [ transform, readonly=='true' ];
+		} else {
+		  address[ '_' + src ] = [ transform, readonly=='true' ];
+		};
+      });
+      
+	  // create buttons + info
+      var buttons = $('<div style="float:left;"/>');
+      var buttonCount = 2;
+	  
+	  var actor = '<div class="actor switchUnpressed '
+	  if ( $p.attr( 'align' ) ) 
+		actor += $p.attr( 'align' ); 
+	  actor += '">';
+	  actor += '<div class="value">' + ($p.attr('downlabel') ? $p.attr('downlabel') : '-') + '</div>';
+      actor += '</div>';
+      var $actor = $(actor).data( {
+        'address' : address,
+        'mapping' : $p.attr('mapping'),
+        'styling' : $p.attr('styling'),
+        'value'   : $p.attr('downvalue') || 0,
+		'align'   : $p.attr('align'),
+		'type'    : 'switch'
+      } ).bind( 'click', this.action );
+      buttons.append( $actor );
+	  
+      var actor = '<div class="actor switchUnpressed '
+	  if ( $p.attr( 'align' ) ) 
+		actor += $p.attr( 'align' ); 
+	  actor += '">';
+	  actor += '<div class="value">' + ($p.attr('uplabel') ? $p.attr('uplabel') : '+') + '</div>';
+      actor += '</div>';
+      var $actor = $(actor).data( {
+        'address' : address,
+        'mapping' : $p.attr('mapping'),
+        'styling' : $p.attr('styling'),
+        'value'   : $p.attr('upvalue') || 1,
+		'align'   : $p.attr('align'),
+		'type'    : 'switch'
+      } ).bind( 'click', this.action );
+      buttons.append( $actor );
+      
+      var actor = '<div class="actor switchInvisible "><div class="value">-</div></div>';
+      var $actor = $(actor).data({
+        'address'  : addrread,
+        'format'   : $p.attr('format'),
+        'mapping'  : $p.attr('mapping'),
+        'styling'  : $p.attr('styling'),
+      });
+	  for( var addr in addrread ) $actor.bind( addr, this.update );
+	  buttons.append( $actor );
+	  
+      ret_val.append( buttons );
+	  return ret_val;
+    },
+	
+    update: function(e,d) { 
+      var element = $(this);
+      var value = defaultUpdate( e, d, element );
+	  element.addClass('switchInvisible');
+    },
+    action: function() {
+      var data = $(this).data();
+      for( var addr in data.address )
+      {
+        if( data.address[addr][1] == true ) continue; // skip read only
+        visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
+      }
+    },
+    attributes: {
+      uplabel:           { type: 'string'  , required: false },
+      upvalue:           { type: 'string'  , required: false },
+      downlabel:         { type: 'string'  , required: false },
+      downvalue:         { type: 'string'  , required: false },
+      mapping:           { type: 'mapping' , required: false },
+      styling:           { type: 'styling' , required: false },
+	  align:             { type: 'string'  , required: false }
+    },
+    elements: {
+      label:             { type: 'string',    required: false, multi: false },
+      address:           { type: 'address',   required: true, multi: true }
+    },
+    content:      false
+  });
+  
   this.addCreator('unknown', {
     create: function( page, path ) {
       var ret_val = $('<div class="widget" />');
