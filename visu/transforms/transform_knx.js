@@ -182,6 +182,9 @@ addTransform( 'DPT', {
       return (1 << exp) * 0.01 * mant;  
     }
   },
+  '9.004': {
+    link  : '9.001'
+  },
   '9': {
     link  : '9.001'
   },
