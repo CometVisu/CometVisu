@@ -652,13 +652,13 @@ function VisuDesign() {
       var buttons = $('<div style="float:left;"/>');
       var buttonCount = 2;
 	  
-	  var actor = '<div class="actor switchUnpressed '
+	  var actordown = '<div class="actor switchUnpressed '
 	  if ( $p.attr( 'align' ) ) 
-		actor += $p.attr( 'align' ); 
-	  actor += '">';
-	  actor += '<div class="value">' + ($p.attr('downlabel') ? $p.attr('downlabel') : '-') + '</div>';
-      actor += '</div>';
-      var $actor = $(actor).data( {
+		actordown += $p.attr( 'align' ); 
+	  actordown += '">';
+	  actordown += '<div class="value">' + ($p.attr('downlabel') ? $p.attr('downlabel') : '-') + '</div>';
+      actordown += '</div>';
+      var $actordown = $(actordown).data( {
         'address' : address,
         'mapping' : $p.attr('mapping'),
         'styling' : $p.attr('styling'),
@@ -666,15 +666,14 @@ function VisuDesign() {
 		'align'   : $p.attr('align'),
 		'type'    : 'switch'
       } ).bind( 'click', this.action );
-      buttons.append( $actor );
-	  
-      var actor = '<div class="actor switchUnpressed '
+      	  
+      var actorup = '<div class="actor switchUnpressed '
 	  if ( $p.attr( 'align' ) ) 
-		actor += $p.attr( 'align' ); 
-	  actor += '">';
-	  actor += '<div class="value">' + ($p.attr('uplabel') ? $p.attr('uplabel') : '+') + '</div>';
-      actor += '</div>';
-      var $actor = $(actor).data( {
+		actorup += $p.attr( 'align' ); 
+	  actorup += '">';
+	  actorup += '<div class="value">' + ($p.attr('uplabel') ? $p.attr('uplabel') : '+') + '</div>';
+      actorup += '</div>';
+      var $actorup = $(actorup).data( {
         'address' : address,
         'mapping' : $p.attr('mapping'),
         'styling' : $p.attr('styling'),
@@ -682,17 +681,30 @@ function VisuDesign() {
 		'align'   : $p.attr('align'),
 		'type'    : 'switch'
       } ).bind( 'click', this.action );
-      buttons.append( $actor );
       
-      var actor = '<div class="actor switchInvisible "><div class="value">-</div></div>';
-      var $actor = $(actor).data({
+      var actorinfo = '<div class="actor switchInvisible"><div class="value">-</div></div>';
+      var $actorinfo = $(actorinfo).data({
         'address'  : addrread,
         'format'   : $p.attr('format'),
         'mapping'  : $p.attr('mapping'),
         'styling'  : $p.attr('styling'),
+		'align'    : $p.attr('align'),
       });
-	  for( var addr in addrread ) $actor.bind( addr, this.update );
-	  buttons.append( $actor );
+	  for( var addr in addrread ) $actorinfo.bind( addr, this.update );
+	  
+	  if ( $p.attr('infoposition' )==1 ) {
+	    buttons.append( $actordown );
+		buttons.append( $actorinfo );
+	    buttons.append( $actorup );	
+	  } else if ( $p.attr('infoposition' )==2 ) {
+	    buttons.append( $actordown );
+	    buttons.append( $actorup );	
+		buttons.append( $actorinfo );
+	  } else {
+	  	buttons.append( $actorinfo );
+	    buttons.append( $actordown );
+	    buttons.append( $actorup );	
+	  }
 	  
       ret_val.append( buttons );
 	  return ret_val;
