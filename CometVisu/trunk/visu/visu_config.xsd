@@ -160,9 +160,12 @@
 <xsd:element name="page">
     <xsd:complexType>
         <xsd:choice minOccurs="0" maxOccurs="unbounded">
+		    <!-- visual effects -->
+            <xsd:element name="line" type="line" />			
+			<xsd:element name="break" type="break" />
+			<xsd:element name="group" type="group" />
             <!-- list all possbile widgets here -->
             <xsd:element name="text" type="text" />
-            <xsd:element name="line" type="line" />
             <xsd:element name="switch" type="switch" />
             <xsd:element name="toggle" type="switch" />
             <xsd:element name="trigger" type="trigger" />
@@ -174,7 +177,6 @@
             <xsd:element name="shade" type="info" />
             <xsd:element name="image" type="image" />
             <xsd:element name="video" type="video" />
-            <xsd:element name="break" type="break" />
             <xsd:element name="iframe" type="iframe" />
             <!-- available plugins - include not checked -->
             <xsd:element name="colorchooser" type="colorchooser" />
@@ -187,6 +189,37 @@
         <xsd:attribute ref="align" use="optional" />
     </xsd:complexType>
 </xsd:element>
+
+<xsd:complexType name="group">
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+		<!-- visual effects -->
+        <xsd:element name="line" type="line" />			
+		<xsd:element name="break" type="break" />
+		<!-- list all possbile widgets here -->
+        <xsd:element name="text" type="text" />
+        <xsd:element name="switch" type="switch" />
+        <xsd:element name="toggle" type="switch" />
+        <xsd:element name="trigger" type="trigger" />
+        <xsd:element name="multitrigger" type="multitrigger" />
+		<xsd:element name="infotrigger" type="infotrigger" />
+        <xsd:element name="designtoggle" type="designtoggle" />
+        <xsd:element name="slide" type="slide" />
+        <xsd:element name="info" type="info" />
+        <xsd:element name="shade" type="info" />
+        <xsd:element name="image" type="image" />
+        <xsd:element name="video" type="video" />
+        <xsd:element name="iframe" type="iframe" />
+        <!-- available plugins - include not checked -->
+        <xsd:element name="colorchooser" type="colorchooser" />
+        <xsd:element name="diagram_popup" type="diagram_popup" />
+        <xsd:element name="diagram_inline" type="diagram_inline" />
+        <xsd:element ref="page" />
+    </xsd:choice>
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="align" use="optional" />
+</xsd:complexType>
+
 
 <!-- more fun part - all widgets - if you add a new widget, you need to define it here -->
 
@@ -239,6 +272,7 @@
 	<xsd:attribute ref="styling" use="optional"/>
     <xsd:attribute ref="align" use="optional" />
 	<xsd:attribute ref="format" use="optional" />
+	<xsd:attribute name="infoposition" type="xsd:decimal" use="optional" />
 </xsd:complexType>
 
 <xsd:complexType name="multitrigger">
