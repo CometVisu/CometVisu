@@ -222,7 +222,8 @@ function VisuDesign() {
         'min'     : min,
         'max'     : max,
         'step'    : step,
-        'type'    : 'dim'
+        'type'    : 'dim',
+        'valueInternal': true
       });
       for( var addr in address ) $actor.bind( addr, this.update );
       $actor.slider({
@@ -242,7 +243,9 @@ function VisuDesign() {
       if( element.data( 'value' ) != value )
       {
         element.data( 'value', value );
+        element.data( 'valueInternal', false );
         element.slider('value', value);
+        element.data( 'valueInternal', true );
       }
     },
     /**
@@ -251,6 +254,7 @@ function VisuDesign() {
     slideStart:function(event,ui)
     {
       var actor = $( '.actor', $(this).parent() );
+      actor.data( 'valueInternal', true );
       actor.data( 'updateFn', setInterval( function(){
         var data = actor.data();
         if( data.value == actor.slider('value') ) return;
@@ -272,7 +276,7 @@ function VisuDesign() {
     {
       var data = $(this).data();
       clearInterval( data.updateFn, ui.value);
-      if( data.value != ui.value )
+      if( data.valueInternal && data.value != ui.value )
         for( var addr in data.address )
         {
           if( data.address[addr][1] == true ) continue; // skip read only
