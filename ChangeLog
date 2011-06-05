@@ -3,6 +3,25 @@ HEAD
 
 - New Feature: Multitrigger widget
 - New Feature: The switch widget can send arbitrary values now
+- New Feature: Add selectable config to check_config.php
+- New Feature: groups
+- New Feature: infotrigger widget
+- updated config scheme, added documentaion for widgets
+- added "align"-attribute to switch, trigger, multitrigger
+- Add jnotify statusbar instead of alerts in editor
+- Changed behaviour of the slider to not send any packets when it's changed by
+  an external packet - even if it can't display that value
+- diagrams: Fix Grid timezone and add periods+datasource
+- editor fixes: allow attributes for pages, don't drop names of "empty" pages
+- fix diagram_popup preview in design pure
+- Fix bug #3300926: "Multitrigger display broken"
+- Fix bug #3301566
+- Fix bug #3309264: fix for broken infotrigger scheme
+
+Config changes:
+- Change the ColorChooser plugin from using <address ... color="..."> to the new
+  common attribute "variant"
+NOTE: this breaks backward compatability. Please adjust your config file!
 
 0.5.3
 =====
