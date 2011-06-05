@@ -16,21 +16,13 @@
     <xsd:restriction base="xsd:string" />
 </xsd:simpleType>
 
-<xsd:simpleType name="color">
-    <xsd:restriction base="xsd:string">
-        <xsd:enumeration value="r" />
-        <xsd:enumeration value="g" />
-        <xsd:enumeration value="b" />
-    </xsd:restriction>
-</xsd:simpleType>
-
 <xsd:complexType name="address">
     <xsd:simpleContent>
         <xsd:extension base="addr">
             <xsd:attribute ref="transform" use="required" />
             <xsd:attribute ref="readonly" use="optional" />
             <xsd:attribute name="type" type="xsd:string" use="optional" />
-            <xsd:attribute name="color" type="color" use="optional" />
+            <xsd:attribute name="variant" type="xsd:string" use="optional" />
         </xsd:extension>
     </xsd:simpleContent>
 </xsd:complexType>
