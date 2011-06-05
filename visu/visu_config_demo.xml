@@ -67,7 +67,7 @@
       <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
     </switch>
     <break/>
-    <trigger pre="pre" post="post" value="0" mapping="OnOff">
+    <trigger value="0" mapping="OnOff">
       <label>Trigger - Terrasse Licht</label>
       <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
     </trigger>
@@ -87,7 +87,7 @@
         <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
       </slide>
     </group>
-    <multitrigger pre="pre" post="post" button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
+    <multitrigger button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
       <label>Multitrigger - Szenenaufruf</label>
       <address transform="DPT:5.010" readonly="false" type="">11/2/50</address>
     </multitrigger>
