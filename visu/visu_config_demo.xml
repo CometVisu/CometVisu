@@ -239,9 +239,9 @@
     </page>
     <colorchooser>
       <label>A colorChooser</label>
-      <address transform="DPT:5.001" color="r">1/2/59</address>
-      <address transform="DPT:5.001" color="g">1/2/60</address>
-      <address transform="DPT:5.001" color="b">1/2/61</address>
+      <address transform="DPT:5.001" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" variant="b">1/2/61</address>
     </colorchooser>
     <break/>
     <info format="%.2f">
