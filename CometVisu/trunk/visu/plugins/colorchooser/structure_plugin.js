@@ -32,7 +32,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
     $p.find('address').each( function(){ 
       var src = this.textContent;
       var transform = this.getAttribute('transform');
-      var color     = this.getAttribute('variant'    );
+      var color     = this.getAttribute('variant'  );
       var readonly  = this.getAttribute('readonly' );
       ga_list.push( src ); 
       address[ '_' + src ] = [ transform, color, readonly=='true' ];
