@@ -126,8 +126,7 @@ function handleResize()
 {
   var uagent = navigator.userAgent.toLowerCase();
 
-  if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
-      var width = $( window ).width();
+if (/(android|blackberry|iphone|ipod|ipad|series60|symbian|windows ce|palm)/i.test(uagent)) {      var width = $( window ).width();
       $( '#main' ).css( 'width', width );
       $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;}</style>' );
       // do nothing
