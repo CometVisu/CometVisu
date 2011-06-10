@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="visu_config.xsd">
+  <meta>
+    <plugins>
+      <plugin name="colorchooser"/>
+      <plugin name="diagram"/>
+    </plugins>
+    <mappings>
+      <mapping name="OpenClose">
+        <entry value="0">zu</entry>
+        <entry value="1">offen</entry>
+      </mapping>
+      <mapping name="OnOff">
+        <entry value="0">Aus</entry>
+        <entry value="1">An</entry>
+      </mapping>
+      <mapping name="Sign">
+        <entry range_min="-1e99" range_max="0">Negativ</entry>
+        <entry value="0">Null</entry>
+        <entry range_min="0" range_max="1e99">Positiv</entry>
+      </mapping>
+      <mapping name="KonnexHVAC">
+        <entry value="auto">Auto</entry>
+        <entry value="comfort">Komfort</entry>
+        <entry value="standby">Stand By</entry>
+        <entry value="economy">Economy</entry>
+        <entry value="building_protection">Haus-Schutz</entry>
+      </mapping>
+    </mappings>
+    <stylings>
+      <styling name="RedGreen">
+        <entry value="0">red</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="GreenRed">
+        <entry value="0">green</entry>
+        <entry value="1">red</entry>
+      </styling>
+      <styling name="BluePurpleRed">
+        <entry range_min="-100" range_max="0">blue</entry>
+        <entry value="0">purple</entry>
+        <entry range_min="0" range_max="100">red</entry>
+      </styling>
+    </stylings>
+    <statusbar>
+      <status type="html"><![CDATA[
+          <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          - <a href=".?config=demo">Reload</a>
+          - <a href=".">Default Config</a>
+        ]]></status>
+      <status type="html" condition="!edit" hrefextend="config"><![CDATA[
+          - <a href="edit_config.html">Edit</a>
+        ]]></status>
+      <status type="html" condition="edit" hrefextend="all"><![CDATA[
+          - <a href=".">normal Mode</a>
+        ]]></status>
+      <status type="html"><![CDATA[
+          - <a href="check_config.php">Check Config</a>
+        ]]></status>
+    </statusbar>
+  </meta>
+  <page name="Übersicht">
+    <text align="center">CometVisu Widget Demo</text>
+    <switch mapping="OnOff" styling="RedGreen">
+      <label>Switch - Terrase Licht</label>
+      <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
+      <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
+    </switch>
+    <break/>
+    <trigger value="0" mapping="OnOff">
+      <label>Trigger - Terrasse Licht</label>
+      <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
+    </trigger>
+    <trigger value="1" mapping="OnOff">
+      <label>Trigger - Terrasse Licht</label>
+      <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
+    </trigger>
+    <group name="Slide group" flavour="potassium" align="center">
+      <info styling="BluePurpleRed">
+        <label>Slide Info</label>
+        <address transform="DPT:9" type="">12/4/250</address>
+        <address transform="DPT:9.001" type="">12/4/251</address>
+      </info>
+      <slide min="-18" max="26">
+        <label>Slide</label>
+        <address transform="DPT:9" type="">12/4/250</address>
+        <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
+      </slide>
+    </group>
+    <multitrigger button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
+      <label>Multitrigger - Szenenaufruf</label>
+      <address transform="DPT:5.010" readonly="false" type="">11/2/50</address>
+    </multitrigger>
+    <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy">
+      <label>KONNEX Betriebsart</label>
+      <address transform="DPT:20.102" readonly="false" type="">3/1/50</address>
+    </multitrigger>
+    <info mapping="KonnexHVAC">
+      <label>Betriebsart</label>
+      <address transform="DPT:20.102" type="">3/1/50</address>
+    </info>
+    <line/>
+    <image src="icon/comet_128_ff8000.png" width="500px" height="46px"/>
+    <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
+      <label>Update every 10 sec</label>
+    </image>
+    <designtoggle>Change design</designtoggle>
+    <page name="iframe Test" align="center" >
+      <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
+    </page>
+    <page name="Flavour Test" align="center" >
+      <text>The flavours define a page specific look for a choosen design. 
+        The CometVisu's pure design was inspired by the colors that a comet out of
+        that material would shine in.
+      </text>
+      <page name="Flavour: Antimony" align="center" flavour="antimony">
+        <text align="center">CometVisu Antimony flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <page name="Flavour: Boron" align="center" flavour="boron">
+        <text align="center">CometVisu Boron flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <page name="Flavour: Lithium" align="center" flavour="lithium">
+        <text align="center">CometVisu Lithium flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <page name="Flavour: Potassium" align="center" flavour="potassium">
+        <text align="center">CometVisu Potassium flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <page name="Flavour: Sodium" align="center" flavour="sodium">
+        <text align="center">CometVisu Sodium flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <line />
+      <page name="Flavour: black" align="center" flavour="black">
+        <text align="center">CometVisu black flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+      <page name="Flavour: white" align="center" flavour="white">
+        <text align="center">CometVisu white flavour</text>
+        <line/>
+        <page name="Subpage">
+          <text>An empty page</text>
+          <line/>
+        </page>
+      </page>
+    </page>
+    <page name="Format Test" align="center">
+      <text>
+        Über das Format-Attribut kann die Anzeige von Werten variiert werden.
+        Dazu wird die Synatx des vom "printf" bekannten Formatstrings benutzt.
+      </text>
+      <break/>
+      <slide min="-100" max="101">
+        <label>Test-Slider</label>
+        <address transform="DPT:9">14/4/4</address>
+      </slide>
+      <info>
+        <label>Ohne Format</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <line/>
+      <info format="%.0f">
+        <label>Format "%.0f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%.1f">
+        <label>Format "%.1f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%.2f">
+        <label>Format "%.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%.3f">
+        <label>Format "%.3f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%.4f">
+        <label>Format "%.4f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <line/>
+      <info format="%01.2f">
+        <label>Format "%01.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%02.2f">
+        <label>Format "%02.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%03.2f">
+        <label>Format "%03.3f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%04.2f">
+        <label>Format "%04.3f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%05.2f">
+        <label>Format "%05.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <info format="%06.2f">
+        <label>Format "%06.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+      <line/>
+      <info format="%+.2f">
+        <label>Format "%+.2f":</label>
+        <address transform="DPT:9">14/4/4</address>
+      </info>
+    </page>
+    <colorchooser>
+      <label>A colorChooser</label>
+      <address transform="DPT:5.001" variant="r">1/2/59</address>
+      <address transform="DPT:5.001" variant="g">1/2/60</address>
+      <address transform="DPT:5.001" variant="b">1/2/61</address>
+    </colorchooser>
+    <break/>
+    <info format="%.2f">
+      <label>R</label>
+      <address transform="DPT:5.001" type="">1/2/59</address>
+    </info>
+    <slide>
+      <label>R</label>
+      <address transform="DPT:5.001" type="">1/2/59</address>
+    </slide>
+    <info format="%.2f">
+      <label>G</label>
+      <address transform="DPT:5.001" type="">1/2/60</address>
+    </info>
+    <slide>
+      <label>G</label>
+      <address transform="DPT:5.001" type="">1/2/60</address>
+    </slide>
+    <info format="%.2f">
+      <label>B</label>
+      <address transform="DPT:5.001" type="">1/2/61</address>
+    </info>
+    <slide>
+      <label>B</label>
+      <address transform="DPT:5.001" type="">1/2/61</address>
+    </slide>
+    <diagram_popup rrd="200_DALI_Linie_1_Strom" unit="mA" series="day" refresh="300">DALI Strom L1</diagram_popup>
+    <diagram_inline rrd="200_DALI_Linie_1_Strom" width="600" height="400"/>
+	<infotrigger uplabel="wärmer" downlabel="kälter" upvalue="1" downvalue="0" align="center" format="%.1f °C">
+        <label>Temperatur Sollwert</label>
+		<address transform="DPT:1.001">4/1/3</address>
+		<address transform="DPT:9" readonly="true">4/2/3</address>
+      </infotrigger>    
+  </page>
+</pages>
