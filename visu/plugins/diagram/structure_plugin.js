@@ -161,7 +161,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
             return false;
         });
 
-        refreshDiagram(diagram, {xaxis: {ticks: 0}, yaxis: {ticks: 0}});
+        refreshDiagram(diagram, {xaxes: [{ticks: 0}], yaxes: [{ticks: 0}]});
 
         return ret_val;
     },
@@ -209,16 +209,15 @@ function refreshDiagram(diagram, flotoptions, data) {
         month:  {label: "month", res: "21600", start: "month", end: "now"},
         year:   {label: "year", res: "432000", start: "year", end: "now"},
     };
-
+    
     var options = jQuery.extend(true,
         {
-            yaxis: {
-                tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals) + unit; },
-                labelWidth: "auto"
-            },
-            xaxis: {
+            yaxes: [{
+                tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals) + unit; }
+            }],
+            xaxes: [{
                 mode: "time"
-            },
+            }],
             legend: {
                 show: 1,
                 backgroundColor: "#101010"
@@ -232,7 +231,9 @@ function refreshDiagram(diagram, flotoptions, data) {
                 color: "#81664B",
                 backgroundColor: "black",
                 tickColor: "#81664B",
-                borderColor: "#81664B"
+                borderColor: "#81664B"//,
+                //axisMargin: 0,
+                //labelMargin: 0
             }
         },
         flotoptions);
@@ -251,8 +252,10 @@ function refreshDiagram(diagram, flotoptions, data) {
                 //TODO: find a better way
                 for (var j = 0; j < data.length; j++) {
                     data[j][0] -= offset;
+                    data[j][1] = parseFloat( data[j][1][0] );
                 }
-                $.plot(diagram, [{color: color, data: data}], options);
+                p = $.plot(diagram, [{color: color, data: data}], options);
+                console.log( p, p.width(), p.height(), p.getPlotOffset() );
             }
         });
 
