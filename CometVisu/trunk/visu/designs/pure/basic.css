@@ -4,7 +4,7 @@ body
   color: white;
   font-family: Verdana, Helvetica, sans-serif;
   font-family: 'URW Gothic L','Century Gothic','Apple Gothic',Arial,sans-serif;
-  font-size: 6mm;
+  font-size: 5mm;
   overflow: hidden;
   margin:0;
   -moz-user-select: none;
@@ -65,27 +65,40 @@ body br
 .widget
 {
  float:left; 
-  width:48%;
+  width:48%; /* dumb fallback */
+  width: -moz-calc(50% - 0.6em);
+  width: -webkit-calc(50% - 0.6em);
+  width: -o-calc(50% - 0.6em);
+  width: calc(50% - 0.6em);
   margin:0.10em;
   padding:0.1em;
  /* border:yellow 1px solid; */
-  border: 1px solid #444;
+  border: none;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   min-height: 2em;
 }
 
+.editmode .widget
+{
+  border: 1px solid #444;
+}
+
 .widget .widget
 {
-  width:98%;
+  width:98%; /* dumb fallback */
+  width: -moz-calc(100% - 0.6em);
+  width: -webkit-calc(100% - 0.6em);
+  width: -o-calc(100% - 0.6em);
+  width: calc(100% - 0.6em);
 }
 
 .widget .label,
 .widget.info .actor,
 .text > div,
 .link > a {
-    line-height: 2em;
+  padding: 5px;
 }
 
 .widget .label
@@ -151,6 +164,7 @@ body br
   color: #ff8000;
   text-align: right;
   width: 49%;
+  padding: 5px;
 }
 
 .page
@@ -176,7 +190,7 @@ body br
   border-style:  solid;
   border-width:  1px;
   border-color:  #fff #666 #666 #fff;
-  padding: 5px;
+  padding: 3px;
   width: 5em;
   float: left;
   -moz-border-radius: 5px;
@@ -184,13 +198,6 @@ body br
   border-radius: 5px;
 }
 
-.switchPressed
-{
-  border-top:    1px solid #666;
-  border-left:   1px solid #666;
-  border-right:  1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-}
 .switchPressed
 {
   border-style:  solid;
@@ -206,7 +213,7 @@ body br
   border-style:  solid;
   border-width:  1px;
   border-color:  #444 #666 #666 #444;
-  padding: 5px;
+  padding: 3px;
   width: 5em;
   float: left;
   -moz-border-radius: 5px;
