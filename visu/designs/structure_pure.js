@@ -611,15 +611,21 @@ function VisuDesign() {
       var style = '';
       if( $p.attr('width' ) ) style += 'width:'  + $p.attr('width' ) + ';';
       if( $p.attr('height') ) style += 'height:' + $p.attr('height') + ';';
+      if( $p.attr('allowtransparency') == 0 ) style += 'allowTransparency: false ;';
+      if( $p.attr('frameborder') == 0 ) style += 'border: 0px ;';
+      if( $p.attr('background') ) style += 'background-color:' + $p.attr('background') + ';';
       if( style != '' ) style = 'style="' + style + '"';
       var actor = '<div class="actor"><iframe src="' +$p.attr('src') + '" ' + style + '></iframe></div>';
       ret_val.append( $(actor) ); 
       return ret_val;
     },
     attributes: {
-      src:    { type: 'uri'   , required: true  },
-      width:  { type: 'string', required: false },
-      height: { type: 'string', required: false }
+      src:               { type: 'uri'   , required: true  },
+      width:             { type: 'string', required: false },
+      height:            { type: 'string', required: false },
+      allowtransparency: { type: 'numeric', required: false },
+      frameborder:       { type: 'numeric', required: false },
+      background:        { type: 'string', required: false }
     },
     elements: {
       label:  { type: 'string',    required: false, multi: false }

@@ -329,9 +329,12 @@
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
 	   <xsd:element name="label" type="xsd:string" maxOccurs="1" />
     </xsd:choice>
-	<xsd:attribute name="src" type="uri" use="required" />
+    <xsd:attribute name="src" type="uri" use="required" />
     <xsd:attribute name="width" type="dimension" />
     <xsd:attribute name="height" type="dimension" />
+    <xsd:attribute name="allowtransparency" type="xsd:bool" />
+    <xsd:attribute name="frameborder" type="xsd:bool" />
+    <xsd:attribute name="background" type="xsd:string" />
 </xsd:complexType>
 
 <xsd:complexType name="colorchooser" >
