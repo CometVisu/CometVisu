@@ -332,8 +332,7 @@
     <xsd:attribute name="src" type="uri" use="required" />
     <xsd:attribute name="width" type="dimension" />
     <xsd:attribute name="height" type="dimension" />
-    <xsd:attribute name="allowtransparency" type="xsd:bool" />
-    <xsd:attribute name="frameborder" type="xsd:bool" />
+    <xsd:attribute name="frameborder" type="xsd:string" />
     <xsd:attribute name="background" type="xsd:string" />
 </xsd:complexType>
 
