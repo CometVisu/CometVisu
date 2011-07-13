@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 /*
  * Example of zRSSFeed Styling
  *
@@ -7,10 +7,12 @@
  *
  */
 
+/*
 body {
 	margin: 1em 3em;
 	font-family: Tahoma, Genevam, sans-serif;
 }
+*/
 
 .rssFeed {
 	font-family: Arial, Helvetica, sans-serif;
@@ -50,3 +52,4 @@ body {
 	padding: 0.5em;
 	font-size: 1em;
 }
+
