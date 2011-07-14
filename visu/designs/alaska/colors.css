@@ -8,6 +8,26 @@ body, .nav_path, .nav_path a, .link a, .ui-state-default a, .ui-state-default a:
   color: #999;
 }
 
+.red 
+{
+  color:white;
+}
+
+.green
+{
+  color:white;
+}
+
+.blue
+{
+  color:white;
+}
+
+.purple
+{
+  color:white;
+}
+
 .green.switchPressed, .green.switchUnpressed 
 {
   color: #e8f0de;
@@ -28,24 +48,24 @@ body, .nav_path, .nav_path a, .link a, .ui-state-default a, .ui-state-default a:
   color: #de898c;
 }
 
-.red 
+.blue.switchPressed, .blue.switchUnpressed 
 {
-  color:white;
+  color: #d9eef7;
 }
 
-.green
+.blue.switchPressed:active, .blue.switchUnpressed:active 
 {
-  color:white;
+  color: #80bed6;
 }
 
-.blue
+.purple.switchPressed, .purple.switchUnpressed 
 {
-  color:#44f;
+  color: #feeef5;
 }
 
-.purple
+.purple.switchPressed:active, .purple.switchUnpressed:active 
 {
-  color:#f4f;
+  color: #f3c3d9;
 }
 
 /* gradient */
@@ -66,6 +86,7 @@ body, div#top, .switchUnpressed, .switchPressed:active, .widget .ui-slider-handl
 
 .green.switchPressed, .green.switchUnpressed 
 {
+  border-color: #538312;
   background: #64991e;
   background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
   background: -moz-linear-gradient(top,  #7db72f,  #4e7d0e);
@@ -81,6 +102,7 @@ body, div#top, .switchUnpressed, .switchPressed:active, .widget .ui-slider-handl
 
 .red.switchPressed, .red.switchUnpressed 
 {
+  border-color: #980c10;
   background: #d81b21;
   background: -webkit-gradient(linear, left top, left bottom, from(#ed1c24), to(#aa1317));
   background: -moz-linear-gradient(top,  #ed1c24,  #aa1317);
@@ -94,6 +116,39 @@ body, div#top, .switchUnpressed, .switchPressed:active, .widget .ui-slider-handl
   filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#aa1317', endColorstr='#ed1c24');
 }
 
+.blue.switchPressed, .blue.switchUnpressed 
+{
+  border-color: #0076a3;
+  background: #0095cd;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+  background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
+}
+
+.blue.switchPressed:active, .blue.switchUnpressed:active 
+{
+  background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+  background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
+}
+
+.purple.switchPressed, .purple.switchUnpressed 
+{
+  border-color: #d2729e;
+  background: #f895c2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#feb1d3), to(#f171ab));
+  background: -moz-linear-gradient(top,  #feb1d3,  #f171ab);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#feb1d3', endColorstr='#f171ab');
+
+}
+
+.purple.switchPressed:active, .purple.switchUnpressed:active 
+{
+  background: -webkit-gradient(linear, left top, left bottom, from(#f171ab), to(#feb1d3));
+  background: -moz-linear-gradient(top,  #f171ab,  #feb1d3);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f171ab', endColorstr='#feb1d3');
+}
+
 /* border */
 div#top, .ui-state-default, .ui-widget-content, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, #pages .hr, .widget, .switchPressed, .switchUnpressed, .widget .ui-slider, .widget .ui-slider-handle, .popup_background, #diagramTooltip, .widget IFRAME, .clearfix 
 {
@@ -105,6 +160,8 @@ div#top, .ui-state-default, .ui-widget-content, .ui-widget-content .ui-state-def
   background: #ececec;
 }
 
+
+
 /* shadow */
 .switchPressed, .switchUnpressed, .widget .ui-slider, .clearfix, .popup_background, .widget IFRAME 
 {
@@ -112,4 +169,5 @@ div#top, .ui-state-default, .ui-widget-content, .ui-widget-content .ui-state-def
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
   box-shadow: 0 1px 2px rgba(0,0,0,.2);
 }
+
 
