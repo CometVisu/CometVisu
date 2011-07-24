@@ -88,6 +88,11 @@ div#top {
   background-color: #101010;
 }
 
+.widget .widget
+{
+  width:98%;
+}
+
 .text > div,
 .link > a {
   float:left;
