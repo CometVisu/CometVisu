@@ -151,7 +151,12 @@ function CometVisu( urlPrefix )
    */
   this.write = function( address, value )
   {
-    var request = 'a=' + address + '&v=' + value;
+    /**
+     * ts is a quirk to fix wrong caching on some Android-tablets/Webkit;
+     * could maybe selective based on UserAgent but isn't that costly on writes
+     */
+    var ts = new Date().getTime();
+    var request = 'a=' + address + '&v=' + value + '&ts=' + ts;
     $.ajax( {url:this.urlPrefix + 'w',dataType: 'json',context:this,data:request} );
   }
   
@@ -185,3 +190,4 @@ function CometVisu( urlPrefix )
 };
 
 CometVisu.prototype.update = function( json ) {}
+
