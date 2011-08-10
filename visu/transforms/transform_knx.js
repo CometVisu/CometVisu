@@ -281,7 +281,6 @@ addTransform( 'DPT', {
       'de': '14 Byte Text ISO-8859-1'
     },
     decode: function( hex ){
-    	console.log('16-val: ' + hex);
       var val="";        
       var chars;
       for (var i=0;i<28;i=i+2) {
