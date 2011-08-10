@@ -268,10 +268,44 @@ addTransform( 'DPT', {
     }
   },
   '14': {
-    link  : '14.001',
+    link  : '16.001',
     name  : '4 byte float',
     lname : {
       'de': '4 Byte Gleitkommazahl'
+    },
+    unit  : '-'
+  },
+  '16.001' : {
+    name  : 'DPT_String_8859_1',
+    lname : {
+      'de': '14 Byte Text ISO-8859-1'
+    },
+    decode: function( hex ){
+    	console.log('16-val: ' + hex);
+      var val="";        
+      var chars;
+      for (var i=0;i<28;i=i+2) {
+          chars=parseInt(hex.substr(i,2),16);
+          if (chars>0) {
+            val+=String.fromCharCode(chars);
+          }
+      }
+      return val;
+    }
+  },
+  '16.000': {
+    link  : '16.001',
+    name  : 'DPT_String_ASCII',
+    lname : {
+      'de': '14 Byte Text ASCII'
+    },
+    unit  : '-'
+  },
+  '16': {
+    link  : '16.001',
+    name  : 'DPT_String_ASCII',
+    lname : {
+      'de': '14 Byte Text ASCII'
     },
     unit  : '-'
   },
