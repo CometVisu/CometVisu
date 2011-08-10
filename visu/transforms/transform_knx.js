@@ -268,7 +268,7 @@ addTransform( 'DPT', {
     }
   },
   '14': {
-    link  : '16.001',
+    link  : '14.001',
     name  : '4 byte float',
     lname : {
       'de': '4 Byte Gleitkommazahl'
