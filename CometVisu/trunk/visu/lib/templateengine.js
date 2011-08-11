@@ -25,7 +25,7 @@ var ga_list = [];
 var main_scroll;
 var old_scroll = '';
 
-visu = new CometVisu('../cgi-bin/');//{};
+visu = new CometVisu('/cgi-bin/');//{};
 visu.update = function( json ) // overload the handler
 {
   for( key in json )
