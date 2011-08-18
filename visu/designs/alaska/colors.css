@@ -68,6 +68,23 @@ body, .nav_path, .nav_path a, .link a, .ui-state-default a, .ui-state-default a:
   color: #f3c3d9;
 }
 
+/* Widget Info */
+.widget.info .actor.red div {
+  color: #d81b21;
+}
+
+.widget.info .actor.green div {
+  color: #64991e;
+}
+
+.widget.info .actor.purple div {
+  color: #f895c2;
+}
+
+.widget.info .actor.blue div {
+  color: #0095cd;
+}
+
 /* gradient */
 body, div#top, .switchUnpressed, .switchPressed:active, .widget .ui-slider-handle, .popup_background, .clearfix 
 {
