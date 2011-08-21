@@ -148,10 +148,11 @@ div#top {
   position: relative;
 }
 
-.switchPressed, .switchUnpressed 
+.switchPressed, .switchUnpressed, .widget.link.pagelink div 
 {
   overflow: hidden;
   text-align: center;
+  white-space: nowrap;
   font: 14px/100%;
   padding: 1px;
   -webkit-border-radius: .5em; 
@@ -162,7 +163,7 @@ div#top {
   margin: 5px;
 }
 
-.switchPressed, .switchUnpressed:active, 
+.switchPressed, .switchUnpressed:active
 {
   position: relative;
   top: 1px;
@@ -182,7 +183,6 @@ div#top {
   text-align: center;
   cursor: pointer;
 }
-
 
 .ui-slider { position: relative; text-align: left;}
 .ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.6em; height: 1.6em; cursor: default; }
@@ -375,3 +375,15 @@ div#loading
   border-width: 1px;
 }
 
+/* Pagelinks as Button */
+.widget.link.pagelink div 
+{
+  width: 48%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.widget.link.pagelink div a
+{
+  text-decoration: none;
+}
