@@ -385,5 +385,7 @@ div#loading
 
 .widget.link.pagelink div a
 {
+  display: inline-block;
+  width: 100%;
   text-decoration: none;
 }
