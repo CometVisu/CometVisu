@@ -143,27 +143,25 @@ div#top {
   position: relative;
 }
 
-.switchPressed, .switchUnpressed 
+.switchPressed, .switchUnpressed, .widget.link.pagelink div
 {
   overflow: hidden;
   text-align: center;
+  white-space: nowrap;
   font: 14px/100%;
   padding: 1px;
   -webkit-border-radius: .5em; 
   -moz-border-radius: .5em;
   border-radius: .5em;
+  border-style: solid;
+  border-width: 1px;
   margin: 5px;
 }
 
-.switchPressed 
+.switchPressed, .switchUnpressed:active
 {
    position: relative;
 	top: 1px;
-}
-
-.switchUnpressed:active {
-  position: relative;
-  top: 1px;
 }
 
 .switchPressed:active {
@@ -355,4 +353,17 @@ div#loading
   -webkit-border-radius: .5em; 
   -moz-border-radius: .5em;
   border-radius: .5em;
+}
+
+/* Pagelinks as Button */
+.widget.link.pagelink div 
+{
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.widget.link.pagelink div a
+{
+  text-decoration: none;
 }
