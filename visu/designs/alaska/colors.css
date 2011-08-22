@@ -86,7 +86,7 @@ body, .nav_path, .nav_path a, .link a, .ui-state-default a, .ui-state-default a:
 }
 
 /* gradient */
-body, div#top, .switchUnpressed, .switchPressed:active, .widget .ui-slider-handle, .popup_background, .clearfix, .widget.link.pagelink div
+body, div#top, .switchUnpressed, .switchPressed:active, .widget .ui-slider-handle, .popup_background, .clearfix, .widget.link.pagelink div a
 {
   background: #fff;
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
@@ -167,7 +167,7 @@ body, div#top, .switchUnpressed, .switchPressed:active, .widget .ui-slider-handl
 }
 
 /* border */
-div#top, .ui-state-default, .ui-widget-content, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, #pages .hr, .widget, .switchPressed, .switchUnpressed, .widget .ui-slider, .widget .ui-slider-handle, .popup_background, #diagramTooltip, .widget IFRAME, .clearfix, .widget.link.pagelink div
+div#top, .ui-state-default, .ui-widget-content, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, #pages .hr, .widget, .switchPressed, .switchUnpressed, .widget .ui-slider, .widget .ui-slider-handle, .popup_background, #diagramTooltip, .widget IFRAME, .clearfix, .widget.link.pagelink div a
 {
   border-color: #686868;
 }
@@ -178,7 +178,7 @@ div#top, .ui-state-default, .ui-widget-content, .ui-widget-content .ui-state-def
 }
 
 /* shadow */
-.switchPressed, .switchUnpressed, .widget .ui-slider, .clearfix, .popup_background, .widget IFRAME, .widget.link.pagelink div
+.switchPressed, .switchUnpressed, .widget .ui-slider, .widget .ui-slider-handle, .clearfix, .popup_background, .widget IFRAME, .widget.link.pagelink div a
 {
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
