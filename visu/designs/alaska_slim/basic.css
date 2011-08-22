@@ -143,7 +143,7 @@ div#top {
   position: relative;
 }
 
-.switchPressed, .switchUnpressed, .widget.link.pagelink div
+.switchPressed, .switchUnpressed, .widget.link.pagelink div a
 {
   overflow: hidden;
   text-align: center;
@@ -356,13 +356,6 @@ div#loading
 }
 
 /* Pagelinks as Button */
-.widget.link.pagelink div 
-{
-  width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .widget.link.pagelink div a
 {
   display: inline-block;
