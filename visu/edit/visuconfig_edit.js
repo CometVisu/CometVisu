@@ -138,6 +138,11 @@ jQuery(document).ready(function() {
                 // "unknown" is not a good choice for a new widget :)
                 return;
             }
+            if( design.creators[index].maturity > use_maturity )
+            {
+                // widget is not mature enough to show in the edior
+                return;
+            }
             $("#addMaster").find("select#add_type").append(
                 $("<option />").attr("value", index).html(index)
             );

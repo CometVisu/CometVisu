@@ -62,6 +62,18 @@ if( $.getUrlVar('forceReload') ) {
   forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set to false
 }
 
+// Disable features that aren't ready yet
+// This can be overwritten in the URL with the parameter "maturity"
+var use_maturity; 
+if( $.getUrlVar('maturity') ) {
+  var url_maturity = $.getUrlVar('maturity');
+  if( !isNaN ( url_maturity - 0 ) )
+    use_maturity = url_maturity - 0;         // given directly as number
+  else
+    use_maturity = Maturity[ url_maturity ]; // or as the ENUM name
+}
+if( isNaN( use_maturity ) ) use_maturity = Maturity.release; // default to release
+
 $(document).ready(function() {
   // get the data once the page was loaded
   $.ajaxSetup({cache: !forceReload});
