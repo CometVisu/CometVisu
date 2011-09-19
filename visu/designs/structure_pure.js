@@ -15,6 +15,13 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
+// Define ENUM of maturity levels for features, so that e.g. the editor can 
+// ignore some widgets when they are not supported yet
+var Maturity = {
+  release     : 0,
+  development : 1
+};
+
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
  */
@@ -86,6 +93,7 @@ function VisuDesign() {
   });
   
   this.addCreator('group', {
+    maturity: Maturity.development,
     create: function( page, path, flavour ) {
       var $p = $(page);
       var ret_val = $('<div class="widget group" />');
