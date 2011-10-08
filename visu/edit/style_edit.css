@@ -124,7 +124,7 @@ div#addMaster {
     height: 1em;
 }
 
-.element .value, .element .transform, .element .readonly, .element .addresstype {
+.element .value, .element .transform, .element .readonly, .element .variant {
     font-weight: normal;
     height: 1em;
     font-size: small;
@@ -143,17 +143,17 @@ div#addMaster {
     font-style: italic;
 }
 
-.element .addresstype {
+.element .variant {
     float: left;
     margin-left: .4em;
     font-weight: bold;
 }
 
-.element .addresstype:before {
+.element .variant:before {
     content: "(";
 }
 
-.element .addresstype:after {
+.element .variant:after {
     content: ")";
 }
 

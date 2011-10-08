@@ -3,8 +3,16 @@ define('FILE_GA', "/etc/wiregate/eibga.conf");
 define('FILE_OW', "/etc/wiregate/owsensors.conf");
 define('DIR_RRD', "/var/www/rrd/*.rrd");
 
-$arrOW = parse_ini_file(FILE_OW, true);
-$arrGA = parse_ini_file(FILE_GA, true);
+
+$arrOW = array();
+if (true === file_exists(FILE_OW)) {
+    $arrOW = parse_ini_file(FILE_OW, true);
+}
+
+$arrGA = array();
+if (true === file_exists(FILE_GA)) {
+    $arrGA = parse_ini_file(FILE_GA, true);
+}
 
 $arrAdresses = array();
 
