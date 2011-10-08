@@ -3,9 +3,19 @@ define('FILE_GA', "/etc/wiregate/eibga.conf");
 define('FILE_HG', "/etc/wiregate/eibga_hg.conf");
 define('FILE_MG', "/etc/wiregate/eibga_mg.conf");
 
-$arrGA = parse_ini_file(FILE_GA, true);
-$arrHG = parse_ini_file(FILE_HG, true);
-$arrMG = parse_ini_file(FILE_MG, true);
+$arrGA = array();
+$arrHG = array();
+$arrMG = array();
+
+if (true === file_exists(FILE_GA)) {
+    $arrGA = parse_ini_file(FILE_GA, true);
+}
+if (true === file_exists(FILE_HG)) {
+    $arrHG = parse_ini_file(FILE_HG, true);
+}
+if (true === file_exists(FILE_MG)) {
+    $arrMG = parse_ini_file(FILE_MG, true);
+}
 
 
 $arrAdresses = array();

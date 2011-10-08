@@ -162,13 +162,13 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
             color.substring(7);
     jQuery.farbtastic( element ).setColor( color );
   },
-  attributes: {
-    address_r: { type: 'address' , required: true },
-    address_g: { type: 'address' , required: true },
-    address_b: { type: 'address' , required: true },
-    datatype:  { type: 'datatype', required: true },
-  },
-  content: { type: 'string', required: true }
+    attributes: {
+    },
+    elements: {
+      label:      { type: 'string',    required: true, multi: false },
+      address:    { type: 'address',   required: true, multi: true }
+    },
+    content:      false
 });
 
 /**
