@@ -366,6 +366,7 @@ div#loading {
 }
 
 .diagram_inline {
+    margin-left: 1em;
     width: 320px;
     height: 180px;
 }
