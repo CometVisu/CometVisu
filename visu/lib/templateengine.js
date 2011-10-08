@@ -57,7 +57,9 @@ if ($.getUrlVar("config")) {
     configSuffix = "_" + $.getUrlVar("config");
 }
 
-var forceReload = false;
+if (typeof forceReload == "undefined") {
+    var forceReload = false;
+}
 if( $.getUrlVar('forceReload') ) {
   forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set to false
 }
@@ -65,14 +67,19 @@ if( $.getUrlVar('forceReload') ) {
 // Disable features that aren't ready yet
 // This can be overwritten in the URL with the parameter "maturity"
 var use_maturity; 
-if( $.getUrlVar('maturity') ) {
-  var url_maturity = $.getUrlVar('maturity');
-  if( !isNaN ( url_maturity - 0 ) )
-    use_maturity = url_maturity - 0;         // given directly as number
-  else
-    use_maturity = Maturity[ url_maturity ]; // or as the ENUM name
+if ($.getUrlVar('maturity')) {
+	var url_maturity = $.getUrlVar('maturity');
+	if (!isNaN(url_maturity - 0)) {
+    	use_maturity = url_maturity - 0;         // given directly as number
+	}
+	else {
+    	use_maturity = Maturity[url_maturity]; // or as the ENUM name
+	}
 }
-if( isNaN( use_maturity ) ) use_maturity = Maturity.release; // default to release
+
+if (isNaN(use_maturity)) {
+	use_maturity = Maturity.release; // default to release
+}
 
 $(document).ready(function() {
   // get the data once the page was loaded
@@ -138,7 +145,8 @@ function handleResize()
 {
   var uagent = navigator.userAgent.toLowerCase();
 
-if (/(android|blackberry|iphone|ipod|ipad|series60|symbian|windows ce|palm)/i.test(uagent)) {      var width = $( window ).width();
+  if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
+      var width = $( window ).width();
       $( '#main' ).css( 'width', width );
       $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;}</style>' );
       // do nothing
