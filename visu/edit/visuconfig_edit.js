@@ -292,7 +292,7 @@ jQuery(document).ready(function() {
                         objData.textContent = $e.find("input.add_address").val();
                         objData._attributes = {};
                         objData._attributes.transform = $e.find(".add_transform").val();
-                        objData._attributes.type = $e.find(".add_variant").val();
+                        objData._attributes.variant = $e.find(".add_variant").val();
                         objData._attributes.readonly = $e.find(".add_readonly:checked").val();
 
                         // remove this item and insert a new one instead
