@@ -95,7 +95,7 @@ var CometEditor = function() {
                             objData.textContent = "";
                             objData._attributes = {};
                             objData._attributes.transform = "";
-                            objData._attributes.type = "";
+                            objData._attributes.variant = "";
                             objData._attributes.readonly = false;
 
                             var elementDiv = HTMLLayer.createAddressEditorElement(objData);
@@ -469,7 +469,7 @@ var CometEditor = function() {
 
                             myElement._attributes.transform = jQuery(element).attr("transform");
                             myElement._attributes.readonly  = jQuery(element).attr("readonly");
-                            myElement._attributes.type  = jQuery(element).attr("type") || "";
+                            myElement._attributes.variant  = jQuery(element).attr("variant") || "";
                             break;
                         default:
                             // mostly labels
@@ -620,15 +620,15 @@ var CometEditorHTMLLayer = function() {
         elementDiv.find(".title").append(t.find("option[value=" + elementData.textContent + "]").text());
         elementDiv.find(".value").append(elementData.textContent);
         elementDiv.find(".transform").append(elementData._attributes.transform);
-        if (elementData._attributes.type != "undefined" && elementData._attributes.type != "") {
-            elementDiv.find(".variant").append(elementData._attributes.type).show();
+        if (elementData._attributes.variant != "undefined" && elementData._attributes.variant != "") {
+            elementDiv.find(".variant").append(elementData._attributes.variant).show();
         } else {
             elementDiv.find(".variant").hide();
         }
         elementDiv.find(".readonly").append(elementData._attributes.readonly == "true" ? "readonly" : "")
 
         elementDiv.data("transform", elementData._attributes.transform)
-            .data("variant", elementData._attributes.type)
+            .data("variant", elementData._attributes.variant)
             .data("readonly", elementData._attributes.readonly == "true" ? true : false)
             .data("address", elementData.textContent);
 
