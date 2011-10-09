@@ -1,7 +1,15 @@
 0.6.0-RC1
 =========
 
+- Update flot to version 0.7 to have a better fix for bug 3175343
+- Refinement of the "pure" design
 - added frameborder and background to iframe
+- Plugins RSS and Yahoo-weather 
+- Add gweather (Google)-Plugin, withdraw zweather
+- Fix Bug #3376682
+- Add DPT16 to transform_knx
+- Design Alaska: multiple fixes
+- New Feature: widgets can be (optionally) marked by a maturity value
 
 0.6.0-pre1
 ==========
