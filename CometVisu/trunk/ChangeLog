@@ -1,6 +1,9 @@
 HEAD
 ====
 
+0.6.0-RC1
+=========
+
 - added frameborder and background to iframe
 
 0.6.0-pre1
