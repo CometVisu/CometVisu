@@ -747,7 +747,8 @@ function VisuDesign() {
       mapping:           { type: 'mapping' , required: false },
       styling:           { type: 'styling' , required: false },
       align:             { type: 'string'  , required: false },
-      infoposition:      { type: 'numeric' , required: false }
+      infoposition:      { type: 'numeric' , required: false },
+      format:            { type: 'string'  , required: false }
     },
     elements: {
       label:             { type: 'string',    required: false, multi: false },
