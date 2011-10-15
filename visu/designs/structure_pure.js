@@ -351,11 +351,11 @@ function VisuDesign() {
       }
     },
     attributes: {
-      on_value:          { type: 'string'  , required: false },
-      off_value:         { type: 'string'  , required: false },
-      mapping:           { type: 'mapping' , required: false },
-      styling:           { type: 'styling' , required: false },
-      align:             { type: 'string'  , required: false }
+      on_value:   { type: 'string'  , required: false },
+      off_value:  { type: 'string'  , required: false },
+      mapping:    { type: 'mapping' , required: false },
+      styling:    { type: 'styling' , required: false },
+      align:      { type: 'string'  , required: false }
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
@@ -384,11 +384,11 @@ function VisuDesign() {
       if( $p.attr('button1label') )
       {
         //buttonCount++;
-        var actor = '<div class="actor switchUnpressed '
-		if ( $p.attr( 'align' ) ) 
-		    actor += $p.attr( 'align' ); 
-		actor += '">';
-	
+        var actor = '<div class="actor switchUnpressed ';
+        if ( $p.attr( 'align' ) ) 
+          actor += $p.attr( 'align' ); 
+        actor += '">';
+        
         actor += '<div class="value">' + $p.attr('button1label') + '</div>';
         actor += '</div>';
         var $actor = $(actor).data( {
@@ -396,18 +396,18 @@ function VisuDesign() {
           'mapping' : $p.attr('mapping'),
           'styling' : $p.attr('styling'),
           'value'   : $p.attr('button1value'),
-		  'align'   : $p.attr('align'),
-		  'type'    : 'switch'
+          'align'   : $p.attr('align'),
+          'type'    : 'switch'
         } ).bind( 'click', this.action );
         buttons.append( $actor );
         if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
       }
       if( $p.attr('button2label') )
       {
-        var actor = '<div class="actor switchUnpressed '
-		if ( $p.attr( 'align' ) ) 
-		    actor += $p.attr( 'align' ); 
-		actor += '">';
+        var actor = '<div class="actor switchUnpressed ';
+        if ( $p.attr( 'align' ) ) 
+          actor += $p.attr( 'align' ); 
+        actor += '">';
         actor += '<div class="value">' + $p.attr('button2label') + '</div>';
         actor += '</div>';
         var $actor = $(actor).data( {
@@ -415,18 +415,18 @@ function VisuDesign() {
           'mapping' : $p.attr('mapping'),
           'styling' : $p.attr('styling'),
           'value'   : $p.attr('button2value'),
-		  'type'    : 'switch',
-		  'align'   : $p.attr('align')
+          'type'    : 'switch',
+          'align'   : $p.attr('align')
         } ).bind( 'click', this.action );
         buttons.append( $actor );
         if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
       }
       if( $p.attr('button3label') )
       {
-        var actor = '<div class="actor switchUnpressed '
-		if ( $p.attr( 'align' ) ) 
-		    actor += $p.attr( 'align' ); 
-		actor += '">';
+        var actor = '<div class="actor switchUnpressed ';
+        if ( $p.attr( 'align' ) ) 
+          actor += $p.attr( 'align' ); 
+        actor += '">';
         actor += '<div class="value">' + $p.attr('button3label') + '</div>';
         actor += '</div>';
         var $actor = $(actor).data( {
@@ -434,17 +434,17 @@ function VisuDesign() {
           'mapping' : $p.attr('mapping'),
           'styling' : $p.attr('styling'),
           'value'   : $p.attr('button3value'),
-		  'type'    : 'switch'
+          'type'    : 'switch'
         } ).bind( 'click', this.action );
         buttons.append( $actor );
         if( 1 == buttonCount++ % 2 ) buttons.append( $('<br/>') );
       }
       if( $p.attr('button4label') )
       {
-        var actor = '<div class="actor switchUnpressed '
-		if ( $p.attr( 'align' ) ) 
-		    actor += $p.attr( 'align' ); 
-		actor += '">';
+        var actor = '<div class="actor switchUnpressed ';
+        if ( $p.attr( 'align' ) ) 
+          actor += $p.attr( 'align' ); 
+        actor += '">';
         actor += '<div class="value">' + $p.attr('button4label') + '</div>';
         actor += '</div>';
         var $actor = $(actor).data( {
@@ -453,7 +453,7 @@ function VisuDesign() {
           'styling' : $p.attr('styling'),
           'value'   : $p.attr('button4value'),
           'type'    : 'switch',
-		} ).bind( 'click', this.action );
+        } ).bind( 'click', this.action );
         buttons.append( $actor );
         if( 1 == buttonCount++ % 2 ) buttons.append( $('<br/>') );
       }
@@ -510,10 +510,10 @@ function VisuDesign() {
         ga_list.push( src ) 
         address[ '_' + src ] = [ transform, readonly=='true' ];
       });
-      var actor = '<div class="actor switchUnpressed '
-	  if ( $p.attr( 'align' ) ) 
-		    actor += $p.attr( 'align' ); 
-	  actor += '">';
+      var actor = '<div class="actor switchUnpressed ';
+      if ( $p.attr( 'align' ) ) 
+        actor += $p.attr( 'align' ); 
+      actor += '">';
       var map = $p.attr('mapping');
       if( mappings[map] && mappings[map][value] )
         actor += '<div class="value">' + mappings[map][value] + '</div>';
@@ -525,7 +525,7 @@ function VisuDesign() {
         'mapping' : $(page).attr('mapping'),
         'styling' : $(page).attr('styling'),
         'type'    : 'trigger',
-		'align'   : $p.attr('align'),
+        'align'   : $p.attr('align'),
         'sendValue': value
       } ).bind( 'click', this.action );
       ret_val.append( label ).append( $actor );
@@ -543,7 +543,7 @@ function VisuDesign() {
       value:    { type: 'string'  , required: true  },
       mapping:  { type: 'mapping' , required: false },
       styling:  { type: 'styling' , required: false },
-	  align:    { type: 'string'  , required: false },
+      align:    { type: 'string'  , required: false },
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
@@ -643,93 +643,93 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget switch" />');
-      
-	  // handle label
-	  var labelElement = $p.find('label')[0];
+
+      // handle label
+      var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       ret_val.append( label );
-	  
+
       // handle addresses
-	  var address = {};
-	  var addrread = {};
-	  $p.find('address').each( function(){ 
+      var address = {};
+      var addrread = {};
+      $p.find('address').each( function(){ 
         var src = this.textContent;
         var transform = this.getAttribute('transform');
         var readonly  = this.getAttribute('readonly');
         ga_list.push( src ) 
         if (readonly=='true') {
-		  addrread[ '_' + src ] = [ transform, readonly=='true' ];
-		} else {
-		  address[ '_' + src ] = [ transform, readonly=='true' ];
-		};
+          addrread[ '_' + src ] = [ transform, readonly=='true' ];
+        } else {
+          address[ '_' + src ] = [ transform, readonly=='true' ];
+        };
       });
-      
-	  // create buttons + info
+
+      // create buttons + info
       var buttons = $('<div style="float:left;"/>');
       var buttonCount = 2;
-	  
-	  var actordown = '<div class="actor switchUnpressed '
-	  if ( $p.attr( 'align' ) ) 
-		actordown += $p.attr( 'align' ); 
-	  actordown += '">';
-	  actordown += '<div class="value">' + ($p.attr('downlabel') ? $p.attr('downlabel') : '-') + '</div>';
+
+      var actordown = '<div class="actor switchUnpressed '
+      if ( $p.attr( 'align' ) ) 
+        actordown += $p.attr( 'align' ); 
+      actordown += '">';
+      actordown += '<div class="value">' + ($p.attr('downlabel') ? $p.attr('downlabel') : '-') + '</div>';
       actordown += '</div>';
       var $actordown = $(actordown).data( {
         'address' : address,
         'mapping' : $p.attr('mapping'),
         'styling' : $p.attr('styling'),
         'value'   : $p.attr('downvalue') || 0,
-		'align'   : $p.attr('align'),
-		'type'    : 'switch'
+        'align'   : $p.attr('align'),
+        'type'    : 'switch'
       } ).bind( 'click', this.action );
-      	  
+
       var actorup = '<div class="actor switchUnpressed '
-	  if ( $p.attr( 'align' ) ) 
-		actorup += $p.attr( 'align' ); 
-	  actorup += '">';
-	  actorup += '<div class="value">' + ($p.attr('uplabel') ? $p.attr('uplabel') : '+') + '</div>';
+      if ( $p.attr( 'align' ) ) 
+        actorup += $p.attr( 'align' ); 
+      actorup += '">';
+      actorup += '<div class="value">' + ($p.attr('uplabel') ? $p.attr('uplabel') : '+') + '</div>';
       actorup += '</div>';
       var $actorup = $(actorup).data( {
         'address' : address,
         'mapping' : $p.attr('mapping'),
         'styling' : $p.attr('styling'),
         'value'   : $p.attr('upvalue') || 1,
-		'align'   : $p.attr('align'),
-		'type'    : 'switch'
+        'align'   : $p.attr('align'),
+        'type'    : 'switch'
       } ).bind( 'click', this.action );
-      
+
       var actorinfo = '<div class="actor switchInvisible"><div class="value">-</div></div>';
       var $actorinfo = $(actorinfo).data({
         'address'  : addrread,
         'format'   : $p.attr('format'),
         'mapping'  : $p.attr('mapping'),
         'styling'  : $p.attr('styling'),
-		'align'    : $p.attr('align'),
+        'align'    : $p.attr('align'),
       });
-	  for( var addr in addrread ) $actorinfo.bind( addr, this.update );
-	  
-	  if ( $p.attr('infoposition' )==1 ) {
-	    buttons.append( $actordown );
-		buttons.append( $actorinfo );
-	    buttons.append( $actorup );	
-	  } else if ( $p.attr('infoposition' )==2 ) {
-	    buttons.append( $actordown );
-	    buttons.append( $actorup );	
-		buttons.append( $actorinfo );
-	  } else {
-	  	buttons.append( $actorinfo );
-	    buttons.append( $actordown );
-	    buttons.append( $actorup );	
-	  }
-	  
+      for( var addr in addrread ) $actorinfo.bind( addr, this.update );
+
+      if ( $p.attr('infoposition' )==1 ) {
+        buttons.append( $actordown );
+        buttons.append( $actorinfo );
+        buttons.append( $actorup );        
+      } else if ( $p.attr('infoposition' )==2 ) {
+        buttons.append( $actordown );
+        buttons.append( $actorup );        
+        buttons.append( $actorinfo );
+      } else {
+        buttons.append( $actorinfo );
+        buttons.append( $actordown );
+        buttons.append( $actorup );        
+      }
+
       ret_val.append( buttons );
-	  return ret_val;
+      return ret_val;
     },
-	
+
     update: function(e,d) { 
       var element = $(this);
       var value = defaultUpdate( e, d, element );
-	  element.addClass('switchInvisible');
+      element.addClass('switchInvisible');
     },
     action: function() {
       var data = $(this).data();
@@ -746,7 +746,7 @@ function VisuDesign() {
       downvalue:         { type: 'string'  , required: false },
       mapping:           { type: 'mapping' , required: false },
       styling:           { type: 'styling' , required: false },
-	  align:             { type: 'string'  , required: false }
+      align:             { type: 'string'  , required: false }
     },
     elements: {
       label:             { type: 'string',    required: false, multi: false },
@@ -768,72 +768,72 @@ function VisuDesign() {
 
   this.addPopup('unknown', {
     create: function( attributes ) {
-                var repositon = false;
-                var ret_val = $('<div class="popup" style="display:none"/><div class="popup_background" style="display:none" />').appendTo('body');
-                ret_val.addClass( this.type );
+      var repositon = false;
+      var ret_val = $('<div class="popup" style="display:none"/><div class="popup_background" style="display:none" />').appendTo('body');
+      ret_val.addClass( this.type );
 
-                if (attributes.title) {
-                    ret_val.filter(".popup").append( $('<div class="head" />').append(attributes.title));
-                }
+      if (attributes.title) {
+          ret_val.filter(".popup").append( $('<div class="head" />').append(attributes.title));
+      }
 
-                if( attributes.content) {
-                    ret_val.filter(".popup").append( $('<div class="main" />').append(attributes.content));
-                }
+      if( attributes.content) {
+          ret_val.filter(".popup").append( $('<div class="main" />').append(attributes.content));
+      }
 
-                if( attributes.width ) {
-                  ret_val.width( attributes.width );
-                  reposition = true;
-                }
+      if( attributes.width ) {
+        ret_val.width( attributes.width );
+        reposition = true;
+      }
 
-                if( attributes.height ) {
-                  ret_val.height( attributes.height );
-                  reposition = true;
-                }
+      if( attributes.height ) {
+        ret_val.height( attributes.height );
+        reposition = true;
+      }
 
-                var anchor = {x: -1, y: -1, w: 0, h: 0};
-                var align;
-                if( attributes.position )
-                {
-                  if( attributes.position.offset )
-                  {
-                    var offset = attributes.position.offset();
-                    anchor.x = offset.left;
-                    anchor.y = offset.top;
-                    anchor.w = attributes.position.width();
-                    anchor.h = attributes.position.height();
-                  } else {
-                    if( attributes.position.hasOwnProperty('x') ) anchor.x = attributes.position.x;
-                    if( attributes.position.hasOwnProperty('y') ) anchor.y = attributes.position.y;
-                    if( attributes.position.hasOwnProperty('w') ) anchor.w = attributes.position.w;
-                    if( attributes.position.hasOwnProperty('h') ) anchor.h = attributes.position.h;
-                    if( anchor.w == 0 && anchor.h == 0 ) align = 5;
-                  }
-                }
-                if( attributes.align !== undefined ) align = attributes.align;
-                var placement = placementStrategy( 
-                  anchor, 
-                  { w:ret_val.outerWidth(), h:ret_val.outerHeight() }, 
-                  { w:$(window).width()   , h:$(window).height()    },
-                  align
-                );
-                ret_val.css( 'left', placement.x );
-                ret_val.css( 'top' , placement.y );
-                
-                ret_val.bind("click", function() {
-                    ret_val.remove();
-                    return false;
-                })
+      var anchor = {x: -1, y: -1, w: 0, h: 0};
+      var align;
+      if( attributes.position )
+      {
+        if( attributes.position.offset )
+        {
+          var offset = attributes.position.offset();
+          anchor.x = offset.left;
+          anchor.y = offset.top;
+          anchor.w = attributes.position.width();
+          anchor.h = attributes.position.height();
+        } else {
+          if( attributes.position.hasOwnProperty('x') ) anchor.x = attributes.position.x;
+          if( attributes.position.hasOwnProperty('y') ) anchor.y = attributes.position.y;
+          if( attributes.position.hasOwnProperty('w') ) anchor.w = attributes.position.w;
+          if( attributes.position.hasOwnProperty('h') ) anchor.h = attributes.position.h;
+          if( anchor.w == 0 && anchor.h == 0 ) align = 5;
+        }
+      }
+      if( attributes.align !== undefined ) align = attributes.align;
+      var placement = placementStrategy( 
+        anchor, 
+        { w:ret_val.outerWidth(), h:ret_val.outerHeight() }, 
+        { w:$(window).width()   , h:$(window).height()    },
+        align
+      );
+      ret_val.css( 'left', placement.x );
+      ret_val.css( 'top' , placement.y );
 
-                ret_val.css( 'display', 'block' );
-                return ret_val;
-            },
+      ret_val.bind("click", function() {
+          ret_val.remove();
+          return false;
+      });
+
+      ret_val.css( 'display', 'block' );
+      return ret_val;
+    },
     attributes: {
-            title:      {type: 'string', required: false},
-            content:    {type: 'string', required: false},
-            width:      {type: 'string', required: false},
-            height:     {type: 'string', required: false},
-            position:   {type: 'object', required: false}  // either {x:,y:} or an jQuery object
-            }
+      title:      {type: 'string', required: false},
+      content:    {type: 'string', required: false},
+      width:      {type: 'string', required: false},
+      height:     {type: 'string', required: false},
+      position:   {type: 'object', required: false}  // either {x:,y:} or an jQuery object
+    }
   });
 
   this.addPopup('info'   , $.extend(true, {}, this.getPopup('unknown')) );
@@ -966,7 +966,7 @@ function defaultUpdate( e, data, passedElement )
 
   if( element.data( 'align' ) )
     element.addClass(element.data( 'align' ) );
-	
+
   if( element.data( 'precision' ) )
     value = Number( value ).toPrecision( element.data( 'precision' ) );
   if( element.data( 'format' ) )
