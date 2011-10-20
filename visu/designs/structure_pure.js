@@ -733,10 +733,16 @@ function VisuDesign() {
     },
     action: function() {
       var data = $(this).data();
+      var value = $(this).parent().find('.switchInvisible').data('basicvalue');
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
+        if( data.change == 'absolute' )
+        {
+          visu.write( addr.substr(1), transformEncode( data.address[addr][0], value + data.value ) );
+        } else {
+          visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
+        }
       }
     },
     attributes: {
@@ -970,6 +976,7 @@ function defaultUpdate( e, data, passedElement )
   if( element.data( 'align' ) )
     element.addClass(element.data( 'align' ) );
 
+  element.data( 'basicvalue', value );
   if( element.data( 'precision' ) )
     value = Number( value ).toPrecision( element.data( 'precision' ) );
   if( element.data( 'format' ) )
