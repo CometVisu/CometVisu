@@ -680,6 +680,7 @@ function VisuDesign() {
         'styling' : $p.attr('styling'),
         'value'   : $p.attr('downvalue') || 0,
         'align'   : $p.attr('align'),
+        'change'  : $p.attr('change'),
         'type'    : 'switch'
       } ).bind( 'click', this.action );
 
@@ -695,6 +696,7 @@ function VisuDesign() {
         'styling' : $p.attr('styling'),
         'value'   : $p.attr('upvalue') || 1,
         'align'   : $p.attr('align'),
+        'change'  : $p.attr('change'),
         'type'    : 'switch'
       } ).bind( 'click', this.action );
 
@@ -733,13 +735,13 @@ function VisuDesign() {
     },
     action: function() {
       var data = $(this).data();
-      var value = $(this).parent().find('.switchInvisible').data('basicvalue');
+      var value = parseFloat($(this).parent().find('.switchInvisible').data('basicvalue'));
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        if( data.change == 'absolute' )
+        if( data.change == 'relative' )
         {
-          visu.write( addr.substr(1), transformEncode( data.address[addr][0], value + data.value ) );
+          visu.write( addr.substr(1), transformEncode( data.address[addr][0], value + parseFloat(data.value) ) );
         } else {
           visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
         }
