@@ -241,6 +241,16 @@
     <xsd:attribute ref="align" use="optional" />
 </xsd:complexType>
 
+<xsd:complexType name="toogle">
+    <xsd:choice maxOccurs="unbounded" minOccurs="1">
+        <xsd:element name="label" type="xsd:string" />
+        <xsd:element name="address" type="address" minOccurs="1" />
+    </xsd:choice>
+    <xsd:attribute ref="styling" use="optional" />
+    <xsd:attribute ref="mapping" use="optional" />
+    <xsd:attribute ref="align" use="optional" />
+</xsd:complexType>
+
 <xsd:complexType name="trigger">
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
         <xsd:element name="label" type="xsd:string" />
@@ -260,6 +270,9 @@
 	<xsd:attribute name="downvalue" type="xsd:string" use="optional"/>
 	<xsd:attribute name="uplabel" type="xsd:string" use="optional"/>
 	<xsd:attribute name="downlabel" type="xsd:string" use="optional"/>
+    <xsd:attribute name="change" type="xsd:string" use="optional"/>
+    <xsd:attribute ref="min" />
+    <xsd:attribute ref="max" />
     <xsd:attribute ref="mapping" use="optional"/>
 	<xsd:attribute ref="styling" use="optional"/>
     <xsd:attribute ref="align" use="optional" />
