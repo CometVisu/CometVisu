@@ -364,6 +364,70 @@ function VisuDesign() {
     content:      false
   });
   
+  this.addCreator('toggle', {
+    create: function( page, path ) {
+      var $p = $(page);
+      var ret_val = $('<div class="widget toggle" />');
+      var labelElement = $p.find('label')[0];
+      var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+      var address = {};
+      $p.find('address').each( function(){ 
+        var src = this.textContent;
+        var transform = this.getAttribute('transform');
+        var readonly  = this.getAttribute('readonly');
+        ga_list.push( src ) 
+        address[ '_' + src ] = [ transform, readonly=='true' ];
+      });
+      var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+      var $actor = $(actor).data( {
+        'address' : address,
+        'mapping' : $p.attr('mapping'),
+        'styling' : $p.attr('styling'),
+        'align'   : $p.attr('align'),
+        'type'    : 'switch'
+      } ).bind( 'click', this.action );
+      for( var addr in address ) $actor.bind( addr, this.update );
+      ret_val.append( label ).append( $actor );
+      return ret_val;
+    },
+    update: function(e,d) { 
+      var element = $(this);
+      var value = defaultUpdate( e, d, element );
+      element.addClass('switchUnpressed');
+    },
+    action: function() {
+      var data = $(this).data();
+      var element_count = 0;
+      var next_element;
+      var first_element;
+      for(var e in mappings[data.mapping])
+          if(mappings[data.mapping].hasOwnProperty(e))
+            {
+                element_count++;
+                if (e > data.value && !next_element)
+                    next_element = e;
+                if (!first_element)
+                    first_element = e;
+            }
+      sendValue = (next_element) ? next_element : first_element;
+      for( var addr in data.address )
+      {
+        if( data.address[addr][1] == true ) continue; // skip read only
+        visu.write( addr.substr(1), transformEncode( data.address[addr][0], sendValue ) );
+      }
+    },
+    attributes: {
+      mapping:    { type: 'mapping' , required: false },
+      styling:    { type: 'styling' , required: false },
+      align:      { type: 'string'  , required: false }
+    },
+    elements: {
+      label:      { type: 'string',    required: true, multi: false },
+      address:    { type: 'address',   required: true, multi: true }
+    },
+    content:      false
+  });
+
   this.addCreator('multitrigger', {
     create: function( page, path ) {
       var $p = $(page);
@@ -680,7 +744,9 @@ function VisuDesign() {
         'styling' : $p.attr('styling'),
         'value'   : $p.attr('downvalue') || 0,
         'align'   : $p.attr('align'),
-        'change'  : $p.attr('change'),
+        'change'  : $p.attr('change') || 'absolute',
+        'min'     : parseFloat($p.attr('min')) || 0,
+        'max'     : parseFloat($p.attr('max')) || 255,
         'type'    : 'switch'
       } ).bind( 'click', this.action );
 
@@ -696,7 +762,9 @@ function VisuDesign() {
         'styling' : $p.attr('styling'),
         'value'   : $p.attr('upvalue') || 1,
         'align'   : $p.attr('align'),
-        'change'  : $p.attr('change'),
+        'change'  : $p.attr('change') || 'absolute',
+        'min'     : parseFloat($p.attr('min')) || 0,
+        'max'     : parseFloat($p.attr('max')) || 255,
         'type'    : 'switch'
       } ).bind( 'click', this.action );
 
@@ -736,12 +804,14 @@ function VisuDesign() {
     action: function() {
       var data = $(this).data();
       var value = parseFloat($(this).parent().find('.switchInvisible').data('basicvalue'));
+      var relativevalue = value + parseFloat(data.value);
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
         if( data.change == 'relative' )
         {
-          visu.write( addr.substr(1), transformEncode( data.address[addr][0], value + parseFloat(data.value) ) );
+          if (relativevalue < data.min || relativevalue > data.max) continue; // check min/max
+          visu.write( addr.substr(1), transformEncode( data.address[addr][0], relativevalue ) );
         } else {
           visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
         }
@@ -757,7 +827,9 @@ function VisuDesign() {
       align:             { type: 'string'  , required: false },
       infoposition:      { type: 'list'    , required: true , list: {0: 'Info/Down/Up', 1: 'Down/Info/Up', 2: 'Down/Up/Info'} },
       format:            { type: 'string'  , required: false },
-      change:            { type: 'list'    , required: true , list: {'relative': 'relative', 'absolute': 'absolute'} }
+      change:            { type: 'list'    , required: false , list: {'relative': 'relative', 'absolute': 'absolute'} },
+      min:               { type: 'numeric' , required: false },
+      max:               { type: 'numeric' , required: false }
     },
     elements: {
       label:             { type: 'string',    required: false, multi: false },
