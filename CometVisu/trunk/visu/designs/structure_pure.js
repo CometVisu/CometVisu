@@ -744,7 +744,7 @@ function VisuDesign() {
         'styling' : $p.attr('styling'),
         'value'   : $p.attr('downvalue') || 0,
         'align'   : $p.attr('align'),
-        'change'  : $p.attr('change') || 'absolute',
+        'change'  : $p.attr('change') || 'relative',
         'min'     : parseFloat($p.attr('min')) || 0,
         'max'     : parseFloat($p.attr('max')) || 255,
         'type'    : 'switch'
@@ -762,7 +762,7 @@ function VisuDesign() {
         'styling' : $p.attr('styling'),
         'value'   : $p.attr('upvalue') || 1,
         'align'   : $p.attr('align'),
-        'change'  : $p.attr('change') || 'absolute',
+        'change'  : $p.attr('change') || 'relative',
         'min'     : parseFloat($p.attr('min')) || 0,
         'max'     : parseFloat($p.attr('max')) || 255,
         'type'    : 'switch'
@@ -804,14 +804,14 @@ function VisuDesign() {
     action: function() {
       var data = $(this).data();
       var value = parseFloat($(this).parent().find('.switchInvisible').data('basicvalue'));
-      var relativevalue = value + parseFloat(data.value);
+      var absoluteValue = value + parseFloat(data.value);
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        if( data.change == 'relative' )
+        if( data.change == 'absolute' )
         {
-          if (relativevalue < data.min || relativevalue > data.max) continue; // check min/max
-          visu.write( addr.substr(1), transformEncode( data.address[addr][0], relativevalue ) );
+          if (absoluteValue < data.min || data.max < absoluteValue) continue; // check min/max
+          visu.write( addr.substr(1), transformEncode( data.address[addr][0], absoluteValue ) );
         } else {
           visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
         }
@@ -827,7 +827,7 @@ function VisuDesign() {
       align:             { type: 'string'  , required: false },
       infoposition:      { type: 'list'    , required: true , list: {0: 'Info/Down/Up', 1: 'Down/Info/Up', 2: 'Down/Up/Info'} },
       format:            { type: 'string'  , required: false },
-      change:            { type: 'list'    , required: false , list: {'relative': 'relative', 'absolute': 'absolute'} },
+      change:            { type: 'list'    , required: false , list: {'relative': 'Send relative/delta values', 'absolute': 'Send absolute values'} },
       min:               { type: 'numeric' , required: false },
       max:               { type: 'numeric' , required: false }
     },
