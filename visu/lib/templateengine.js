@@ -118,7 +118,7 @@ function transformDecode( transformation, value )
   var basetrans = transformation.split('.')[0];
   return transformation in Transform ?
     Transform[ transformation ].decode( value ) : 
-	  basetrans in Transform ? Transform[ basetrans ].decode( value ) : value);
+	  (basetrans in Transform ? Transform[ basetrans ].decode( value ) : value);
 }
 
 function map( value, element )
