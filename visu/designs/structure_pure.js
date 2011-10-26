@@ -768,7 +768,10 @@ function VisuDesign() {
         'type'    : 'switch'
       } ).bind( 'click', this.action );
 
-      var actorinfo = '<div class="actor switchInvisible"><div class="value">-</div></div>';
+      var actorinfo = '<div class="actor switchInvisible" ';
+	  if ( $p.attr( 'align' ) ) 
+        actorinfo += 'style="text-align: '+$p.attr( 'align' )+'" '; 
+	  actorinfo += '" ><div class="value">-</div></div>';
       var $actorinfo = $(actorinfo).data({
         'address'  : addrread,
         'format'   : $p.attr('format'),

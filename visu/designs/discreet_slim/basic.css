@@ -84,7 +84,7 @@ div#top {
   border-color: #020202;
   border-style: solid;
   border-width: 1px 0px 0px 1px;
-  min-height: 2em;
+  min-height: 2.1em;
   background-color: #101010;
 }
 
@@ -215,6 +215,19 @@ div#top {
     margin-top: -1px;
 }
 
+.switchInvisible
+{
+   border: none;
+   padding: 1px; 
+}
+
+.switchInvisible div
+{
+  border: none;
+  padding: 5px;
+  width: 5em;
+  float: left;
+}
 .ui-slider { position: relative; text-align: left; }
 .ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.6em; height: 1.6em; cursor: default; }
 .ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
