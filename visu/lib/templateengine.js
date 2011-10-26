@@ -106,16 +106,19 @@ $(window).unload(function() {
 
 function transformEncode( transformation, value )
 {
+  var basetrans = transformation.split('.')[0];
   return transformation in Transform ?
-    Transform[ transformation ].encode( value ) :
-    value;
+    Transform[ transformation ].encode( value ) : 
+	  (basetrans in Transform ? Transform[ basetrans ].encode( value ) : value);
+    
 }
 
 function transformDecode( transformation, value )
 {
+  var basetrans = transformation.split('.')[0];
   return transformation in Transform ?
-    Transform[ transformation ].decode( value ) :
-    value;
+    Transform[ transformation ].decode( value ) : 
+	  basetrans in Transform ? Transform[ basetrans ].decode( value ) : value);
 }
 
 function map( value, element )
