@@ -55,6 +55,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
         diagram.data("label", page.textContent);
         diagram.data("refresh", $p.attr("refresh"));
+		diagram.data("linecolor", $p.attr("linecolor") || "");
+        diagram.data("gridcolor", $p.attr("gridcolor") || "");
 
         refreshDiagram(diagram, {});
 
@@ -68,7 +70,9 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         series:     {type: "list", required: false, list: {hour: "hours", day: "days", week: "weeks", month: "months", year: "years"}},
         period:     {type: "numeric", required: false},
         datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
-        refresh:    {type: "numeric", required: false}
+        refresh:    {type: "numeric", required: false},
+		linecolor:  {type: "string", required: false},
+        gridcolor:  {type: "string", required: false}
     },
     content: {type: "string", required: true}
 });
@@ -107,6 +111,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
         diagram.data("label", page.textContent);
         diagram.data("refresh", $p.attr("refresh"));
+		diagram.data("linecolor", $p.attr("linecolor") || "");
+        diagram.data("gridcolor", $p.attr("gridcolor") || "");
 
         var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
         
@@ -173,6 +179,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
         refresh:    {type: "numeric", required: false},
         tooltip:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
+		linecolor:  {type: "string", required: false},
+        gridcolor:  {type: "string", required: false}
     },
     content: {type: "string", required: true}
 });
@@ -201,7 +209,9 @@ function refreshDiagram(diagram, flotoptions, data) {
     var refresh = diagram.data("refresh");
     var datasource = diagram.data("datasource") || "AVERAGE";
     var period = diagram.data("period") || 1;
-
+    var linecolor = diagram.data("linecolor") || diagramColors.data;
+    var gridcolor = diagram.data("gridcolor");
+	
     var series = {
         hour:   {label: "hour", res: "60", start: "hour", end: "now"},
         day:    {label: "day", res: "300", start: "day", end: "now"},
@@ -228,10 +238,10 @@ function refreshDiagram(diagram, flotoptions, data) {
             grid: {
                 show: true,
                 aboveData: false,
-                color: "#81664B",
+                color: gridcolor || "#81664B",
                 backgroundColor: "black",
-                tickColor: "#81664B",
-                borderColor: "#81664B"//,
+                tickColor: gridcolor || "#81664B",
+                borderColor: gridcolor || "#81664B"//,
                 //axisMargin: 0,
                 //labelMargin: 0
             }
@@ -247,7 +257,7 @@ function refreshDiagram(diagram, flotoptions, data) {
             dataType: "json",
             type: "GET",
             success: function(data) {
-                var color = diagramColors.data || options.grid.color;
+                var color = linecolor || options.grid.color;
                 var offset = new Date().getTimezoneOffset() * 60 * 1000;
                 //TODO: find a better way
                 for (var j = 0; j < data.length; j++) {
