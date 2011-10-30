@@ -715,16 +715,14 @@ function VisuDesign() {
 
       // handle addresses
       var address = {};
-      var addrread = {};
       $p.find('address').each( function(){ 
         var src = this.textContent;
         var transform = this.getAttribute('transform');
-        var readonly  = this.getAttribute('readonly');
-        ga_list.push( src ) 
-        if (readonly=='true') {
-          addrread[ '_' + src ] = [ transform, readonly=='true' ];
-        } else {
-          address[ '_' + src ] = [ transform, readonly=='true' ];
+        var readonly  = this.getAttribute('readonly' ) == 'true'    ;
+        var relative  = this.getAttribute('variant'  ) == 'relative';
+        address[ '_' + src ] = [ transform, readonly, relative ];
+        if( !relative ) { // no need to listen to relative address
+          ga_list.push( src );
         };
       });
 
@@ -773,13 +771,17 @@ function VisuDesign() {
         actorinfo += 'style="text-align: '+$p.attr( 'align' )+'" '; 
 	  actorinfo += '" ><div class="value">-</div></div>';
       var $actorinfo = $(actorinfo).data({
-        'address'  : addrread,
+        'address'  : address,
         'format'   : $p.attr('format'),
         'mapping'  : $p.attr('mapping'),
         'styling'  : $p.attr('styling'),
         'align'    : $p.attr('align'),
       });
-      for( var addr in addrread ) $actorinfo.bind( addr, this.update );
+      for( var addr in address ) 
+      {
+        if( !address[addr][2] ) // if NOT relative
+          $actorinfo.bind( addr, this.update );
+      }
 
       if ( $p.attr('infoposition' )==1 ) {
         buttons.append( $actordown );
@@ -806,18 +808,19 @@ function VisuDesign() {
     },
     action: function() {
       var data = $(this).data();
-      var value = parseFloat($(this).parent().find('.switchInvisible').data('basicvalue'));
-      var absoluteValue = value + parseFloat(data.value);
+      var value = data.value;
+      var relative = ( data.change != 'absolute' );
+      if( !relative )
+      {
+        value = parseFloat($(this).parent().find('.switchInvisible').data('basicvalue'));
+        value = value + parseFloat(data.value);
+        if (value < data.min || data.max < value) return; // check min/max
+      }
       for( var addr in data.address )
       {
         if( data.address[addr][1] == true ) continue; // skip read only
-        if( data.change == 'absolute' )
-        {
-          if (absoluteValue < data.min || data.max < absoluteValue) continue; // check min/max
-          visu.write( addr.substr(1), transformEncode( data.address[addr][0], absoluteValue ) );
-        } else {
-          visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
-        }
+        if( data.address[addr][2] != relative ) continue; // skip when address mode doesn't fit action mode
+        visu.write( addr.substr(1), transformEncode( data.address[addr][0], value ) );
       }
     },
     attributes: {
