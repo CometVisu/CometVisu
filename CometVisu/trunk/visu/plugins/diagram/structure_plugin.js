@@ -255,7 +255,7 @@ function refreshDiagram(diagram, flotoptions, data) {
                     data[j][1] = parseFloat( data[j][1][0] );
                 }
                 p = $.plot(diagram, [{color: color, data: data}], options);
-                console.log( p, p.width(), p.height(), p.getPlotOffset() );
+                //console.log( p, p.width(), p.height(), p.getPlotOffset() );
             }
         });
 
