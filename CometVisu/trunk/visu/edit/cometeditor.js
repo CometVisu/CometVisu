@@ -553,7 +553,7 @@ var CometEditor = function() {
                     element.find("optgroup:last")
                         .append($("<option />").attr("value", address.address)
                                     .addClass("dpt_DPT:" + address.dpt)
-                                    .html(address.name)
+                                    .html(address.address + ': ' + address.name)
                                     )
                 });
             });
