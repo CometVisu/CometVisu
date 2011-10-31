@@ -11,6 +11,21 @@ var CometEditor = function() {
             dataType: "json",
             success: function(data) {
                 Editor.cache[variable] = data;
+                switch( variable )
+                {
+                  case 'addresses':
+                    // Sort list of addresses in each HG/MG
+                    for( var hg in Editor.cache.addresses )
+                    {
+                      for( var mg in Editor.cache.addresses[hg] )
+                      {
+                        Editor.cache.addresses[hg][mg].sort( function(a,b){
+                          return a.address.split('/')[2] - b.address.split('/')[2];
+                        });
+                      }
+                    }
+                    break;
+                }
             },
             error: function(xhr, textStatus, e) {
                 Editor.cache[variable] = false;
