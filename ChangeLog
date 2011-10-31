@@ -1,6 +1,11 @@
 HEAD
 ====
 
+-
+
+0.6.0-RC2
+=========
+
 - New Feature: Show version in status bar
 - New Feature: toogle-widget (switch toggling multiple values based on mapping)
 - New Feature: jqclock - a clock widget with statusbar-support
