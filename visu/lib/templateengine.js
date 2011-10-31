@@ -282,6 +282,8 @@ function setup_page( xml )
   
   if ($.getUrlVar('startpage')) {
     scrollToPage( $.getUrlVar('startpage'), 0 );
+  } else {
+    scrollToPage( '0', 0 ); // simple solution to show page name on top at start
   }
 
   $('.fast').bind('click', function(){
