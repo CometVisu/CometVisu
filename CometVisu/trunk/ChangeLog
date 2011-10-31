@@ -1,6 +1,29 @@
 HEAD
 ====
 
+- New Feature: Show version in status bar
+- New Feature: toogle-widget (switch toggling multiple values based on mapping)
+- New Feature: jqclock - a clock widget with statusbar-support
+- infotrigger widget:
+  - Show infoposition and format attribute in the editor
+  - New Feature: also send absolute value change
+- Add some missing links for DPT sub-types (incomplete; see Artifact 3424149)
+- Feature Request #3113716: "Addresses should be shown"
+- Fix Bug #3423019 and rendering problem in discreet_slim design
+- Fix Bug #3424149
+- Fix Bug #3370929: "Missing text in top line"
+- Fix Bug #3204682: "Caching on web server"
+- Fix Bug #3427309: "GA list unsorted in editor (transform_knx, get_adreesses)"
+- Fix Usability: add a button movement "animation" to the triggers so that a 
+  user has immediate feedback
+- Whitespace clean up (DON'T USE TABS IN THE CODE!)
+
+Config changes:
+- As the infotrigger can send absolute values now and the distinguishing of the
+  addesses for the relative mode based on the readonly attribute was unusual,
+  the new version is using the variant attribute of the address element now.
+  This will break backward compatability!
+
 0.6.0-RC1
 =========
 
