@@ -64,6 +64,12 @@ if( $.getUrlVar('forceReload') ) {
   forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set to false
 }
 
+// "Bug"-Fix for ID: 3204682 "Caching on web server"
+// This isn't a real fix for the problem as that's part of the web browser, but
+// it helps to avoid the problems on the client, e.g. when the config file
+// has changed but the browser doesn't even ask the server about it...
+forceReload = true;
+
 // Disable features that aren't ready yet
 // This can be overwritten in the URL with the parameter "maturity"
 var use_maturity; 
