@@ -591,7 +591,11 @@ function VisuDesign() {
         'type'    : 'trigger',
         'align'   : $p.attr('align'),
         'sendValue': value
-      } ).bind( 'click', this.action );
+      } ).bind( 'click', this.action ).bind( 'mousedown', function(){
+        $(this).removeClass('switchUnpressed').addClass('switchPressed');
+      } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
+        $(this).removeClass('switchPressed').addClass('switchUnpressed');
+      } );
       ret_val.append( label ).append( $actor );
       return ret_val;
     },
@@ -746,7 +750,11 @@ function VisuDesign() {
         'min'     : parseFloat($p.attr('min')) || 0,
         'max'     : parseFloat($p.attr('max')) || 255,
         'type'    : 'switch'
-      } ).bind( 'click', this.action );
+      } ).bind( 'click', this.action ).bind( 'mousedown', function(){
+        $(this).removeClass('switchUnpressed').addClass('switchPressed');
+      } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
+        $(this).removeClass('switchPressed').addClass('switchUnpressed');
+      } );
 
       var actorup = '<div class="actor switchUnpressed '
       if ( $p.attr( 'align' ) ) 
@@ -764,7 +772,11 @@ function VisuDesign() {
         'min'     : parseFloat($p.attr('min')) || 0,
         'max'     : parseFloat($p.attr('max')) || 255,
         'type'    : 'switch'
-      } ).bind( 'click', this.action );
+      } ).bind( 'click', this.action ).bind( 'mousedown', function(){
+        $(this).removeClass('switchUnpressed').addClass('switchPressed');
+      } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
+        $(this).removeClass('switchPressed').addClass('switchUnpressed');
+      } );
 
       var actorinfo = '<div class="actor switchInvisible" ';
 	  if ( $p.attr( 'align' ) ) 
