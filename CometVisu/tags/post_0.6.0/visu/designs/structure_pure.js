@@ -60,7 +60,16 @@ function VisuDesign() {
   this.addCreator('page', {
     create: function( page, path, flavour ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget" />');
+      var address = {};
+      if ($p.attr('ga')) {
+        src = $p.attr('ga');
+        ga_list.push($p.attr('ga'));
+        address[ '_' + $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
+      }
+      
+      var $header = $('<div class="widget" path="'+path+'"/>');
+      for( var addr in address ) $header.bind( addr, this.update );
+      var ret_val = $header;
       var pstyle  = ( '0' != path ) ? 'display:none;' : ''; // subPage style
       var name    = $p.attr('name');
       var type    = $p.attr('type');                        //text, 2d or 3d
@@ -88,6 +97,12 @@ function VisuDesign() {
       name:   { type: 'string', required: true }
     },
     elements: {
+    },
+    update: function(e, data) {
+      if (data==01) {
+        scrollToPage(this.attributes.path.nodeValue, 1);
+        visu.write(e.type.substr(1), transformEncode("DPT:1.001", 0));
+      }
     },
     content: true
   });

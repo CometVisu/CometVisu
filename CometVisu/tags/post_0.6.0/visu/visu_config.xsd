@@ -152,17 +152,17 @@
 <xsd:element name="page">
     <xsd:complexType>
         <xsd:choice minOccurs="0" maxOccurs="unbounded">
-		    <!-- visual effects -->
+            <!-- visual effects -->
             <xsd:element name="line" type="line" />			
-			<xsd:element name="break" type="break" />
-			<xsd:element name="group" type="group" />
+            <xsd:element name="break" type="break" />
+            <xsd:element name="group" type="group" />
             <!-- list all possbile widgets here -->
             <xsd:element name="text" type="text" />
             <xsd:element name="switch" type="switch" />
             <xsd:element name="toggle" type="switch" />
             <xsd:element name="trigger" type="trigger" />
             <xsd:element name="multitrigger" type="multitrigger" />
-			<xsd:element name="infotrigger" type="infotrigger" />
+            <xsd:element name="infotrigger" type="infotrigger" />
             <xsd:element name="designtoggle" type="designtoggle" />
             <xsd:element name="slide" type="slide" />
             <xsd:element name="info" type="info" />
@@ -179,6 +179,7 @@
         <xsd:attribute name="name" type="xsd:string" use="required" />
         <xsd:attribute name="flavour" type="xsd:string" use="optional" />
         <xsd:attribute ref="align" use="optional" />
+        <xsd:attribute name="ga" type="addr" use="optional" />
     </xsd:complexType>
 </xsd:element>
 
