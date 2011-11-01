@@ -180,6 +180,7 @@
         <xsd:attribute name="flavour" type="xsd:string" use="optional" />
         <xsd:attribute ref="align" use="optional" />
         <xsd:attribute name="ga" type="addr" use="optional" />
+        <xsd:attribute name="visible" type="xsd:boolean" />
     </xsd:complexType>
 </xsd:element>
 
