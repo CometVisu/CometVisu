@@ -100,7 +100,7 @@ function VisuDesign() {
     },
     update: function(e, data) {
       if (data==01) {
-        scrollToPage(this.attributes.path.nodeValue, 1);
+        scrollToPage(this.attributes.path.nodeValue);
         visu.write(e.type.substr(1), transformEncode("DPT:1.001", 0));
       }
     },
