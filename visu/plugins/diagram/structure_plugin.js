@@ -55,7 +55,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
         diagram.data("label", page.textContent);
         diagram.data("refresh", $p.attr("refresh"));
-		diagram.data("linecolor", $p.attr("linecolor") || "");
+        diagram.data("linecolor", $p.attr("linecolor") || "");
         diagram.data("gridcolor", $p.attr("gridcolor") || "");
 
         refreshDiagram(diagram, {});
@@ -71,7 +71,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         period:     {type: "numeric", required: false},
         datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
         refresh:    {type: "numeric", required: false},
-		linecolor:  {type: "string", required: false},
+        linecolor:  {type: "string", required: false},
         gridcolor:  {type: "string", required: false}
     },
     content: {type: "string", required: true}
@@ -111,7 +111,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
         diagram.data("label", page.textContent);
         diagram.data("refresh", $p.attr("refresh"));
-		diagram.data("linecolor", $p.attr("linecolor") || "");
+        diagram.data("linecolor", $p.attr("linecolor") || "");
         diagram.data("gridcolor", $p.attr("gridcolor") || "");
 
         var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
@@ -179,7 +179,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
         refresh:    {type: "numeric", required: false},
         tooltip:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-		linecolor:  {type: "string", required: false},
+        linecolor:  {type: "string", required: false},
         gridcolor:  {type: "string", required: false}
     },
     content: {type: "string", required: true}
@@ -198,7 +198,6 @@ function showDiagramTooltip(x, y, contents) {
     }).appendTo("body").fadeIn(200);
 }
 
-
 function refreshDiagram(diagram, flotoptions, data) {
     var diagram = $(diagram);
     var config = jQuery.extend(true, {series: diagram.data("series")}, data || {});
@@ -210,8 +209,8 @@ function refreshDiagram(diagram, flotoptions, data) {
     var datasource = diagram.data("datasource") || "AVERAGE";
     var period = diagram.data("period") || 1;
     var linecolor = diagram.data("linecolor") || diagramColors.data;
-    var gridcolor = diagram.data("gridcolor");
-	
+    var gridcolor = diagram.data("gridcolor") || "#81664B";
+
     var series = {
         hour:   {label: "hour", res: "60", start: "hour", end: "now"},
         day:    {label: "day", res: "300", start: "day", end: "now"},
@@ -238,10 +237,10 @@ function refreshDiagram(diagram, flotoptions, data) {
             grid: {
                 show: true,
                 aboveData: false,
-                color: gridcolor || "#81664B",
+                color: gridcolor,
                 backgroundColor: "black",
-                tickColor: gridcolor || "#81664B",
-                borderColor: gridcolor || "#81664B"//,
+                tickColor: gridcolor ,
+                borderColor: gridcolor,
                 //axisMargin: 0,
                 //labelMargin: 0
             }
@@ -277,10 +276,6 @@ function refreshDiagram(diagram, flotoptions, data) {
         }
     }
 
-
-
-
     return false;
-
 }
 
