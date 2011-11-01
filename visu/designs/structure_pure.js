@@ -60,6 +60,7 @@ function VisuDesign() {
   this.addCreator('page', {
     create: function( page, path, flavour ) {
       var $p = $(page);
+  
       var address = {};
       if ($p.attr('ga')) {
         src = $p.attr('ga');
@@ -67,9 +68,6 @@ function VisuDesign() {
         address[ '_' + $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
       }
       
-      var $header = $('<div class="widget" path="'+path+'"/>');
-      for( var addr in address ) $header.bind( addr, this.update );
-      var ret_val = $header;
       var pstyle  = ( '0' != path ) ? 'display:none;' : ''; // subPage style
       var name    = $p.attr('name');
       var type    = $p.attr('type');                        //text, 2d or 3d
@@ -77,10 +75,23 @@ function VisuDesign() {
       var wstyle  = '';                                     // widget style
       if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
       if( wstyle != '' ) wstyle = 'style="' + wstyle + '"';
-      ret_val.addClass( 'link' ).addClass('pagelink');
-      ret_val.append( '<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
+    
+      var ret_val;
+      
+      if ($p.attr('visible')=='false') {
+        ret_val=$('');
+      } else { // default is visible
+        ret_val = $('<div class="widget"/>');
+        ret_val.addClass( 'link' ).addClass('pagelink');
+        ret_val.append( '<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
+      }
+
       var childs = $p.children();
-      var container = $( '<div class="clearfix"/>' );
+      
+      var $container = $( '<div class="clearfix" path="'+path+'"/>'); 
+      for( var addr in address ) $container.bind( addr, this.update );
+      var container=$container;
+      
       container.append( '<h1>' + name + '</h1>' );
       $( childs ).each( function(i){
           container.append( create_pages( childs[i], path + '_' + i, flavour ) );
@@ -89,12 +100,15 @@ function VisuDesign() {
       subpage.append(container);
       if( flavour ) subpage.addClass( 'flavour_' + flavour );
       $('#pages').prepend( subpage );
+      
       return ret_val;
     },
     attributes: {
       align:  { type: 'string', required: false },
       flavour:{ type: 'string', required: false },
-      name:   { type: 'string', required: true }
+      name:   { type: 'string', required: true },
+      ga:     { type: 'addr', required: false },
+      visible:{ type: 'string', required: false }
     },
     elements: {
     },
