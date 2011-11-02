@@ -163,7 +163,9 @@ div#top {
 
 .link a
 {
+  line-height: 2em;
   color: #81664b;
+  padding-left: 1em;
   width: 49%;
 }
 
