@@ -685,7 +685,11 @@ function VisuDesign() {
       ret_val.addClass( 'iframe' );
       ret_val.append( '<div class="label">' + page.textContent + '</div>' );
       var style = '';
-      if( $p.attr('width' ) ) style += 'width:'  + $p.attr('width' ) + ';';
+      if( $p.attr('width' ) ) {
+        style += 'width:'  + $p.attr('width' ) + ';'; 
+      } else {  // default width is 100% of widget space (fix bug #3175343 part 1)
+        style += 'width: 100%;';
+      }
       if( $p.attr('height') ) style += 'height:' + $p.attr('height') + ';';
       if( $p.attr('frameborder') == "false" ) style += 'border: 0px ;';
       if( $p.attr('background') ) style += 'background-color:' + $p.attr('background') + ';';
