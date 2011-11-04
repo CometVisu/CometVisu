@@ -397,7 +397,7 @@ function setupRefreshAction()
   var refresh = $(this).data('refresh');
   if( refresh && refresh > 0 )
   {
-    var target = $('img', $(this) )[0];
+    var target = $('img', $(this) )[0] || $('video', $(this) )[0] || $('iframe', $(this) )[0];
     var src = target.src;
     if( src.indexOf('?') < 0 ) src += '?';
     $(this).data('interval', setInterval( function(){refreshAction(target, src);}, refresh ) );
