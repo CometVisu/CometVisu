@@ -323,7 +323,7 @@
 
 <xsd:complexType name="image">
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
-        <xsd:element name="label" type="xsd:string" />
+      <xsd:element name="label" type="xsd:string" />
     </xsd:choice>
     <xsd:attribute name="src" type="uri" use="required" />
     <xsd:attribute name="width" type="dimension" />
@@ -333,22 +333,24 @@
 
 <xsd:complexType name="video">
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
-	   <xsd:element name="label" type="xsd:string" maxOccurs="1" />
+      <xsd:element name="label" type="xsd:string" maxOccurs="1" />
     </xsd:choice>
     <xsd:attribute name="src" type="uri" use="required" />
     <xsd:attribute name="width" type="dimension" />
     <xsd:attribute name="height" type="dimension" />
+    <xsd:attribute name="refresh" type="xsd:decimal" />
  </xsd:complexType>
 
 <xsd:complexType name="iframe">
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
-	   <xsd:element name="label" type="xsd:string" maxOccurs="1" />
+      <xsd:element name="label" type="xsd:string" maxOccurs="1" />
     </xsd:choice>
     <xsd:attribute name="src" type="uri" use="required" />
     <xsd:attribute name="width" type="dimension" />
     <xsd:attribute name="height" type="dimension" />
     <xsd:attribute name="frameborder" type="xsd:string" />
     <xsd:attribute name="background" type="xsd:string" />
+    <xsd:attribute name="refresh" type="xsd:decimal" />
 </xsd:complexType>
 
 <xsd:complexType name="colorchooser" >

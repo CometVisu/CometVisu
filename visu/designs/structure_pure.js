@@ -715,8 +715,12 @@ function VisuDesign() {
       if( $p.attr('frameborder') == "false" ) style += 'border: 0px ;';
       if( $p.attr('background') ) style += 'background-color:' + $p.attr('background') + ';';
       if( style != '' ) style = 'style="' + style + '"';
+      
       var actor = '<div class="actor"><iframe src="' +$p.attr('src') + '" ' + style + '></iframe></div>';
-      ret_val.append( $(actor) ); 
+      var refresh = $p.attr('refresh') ? $p.attr('refresh')*1000 : 0;
+      ret_val.append( $(actor).data( {
+        'refresh': refresh
+      } ).each(setupRefreshAction) ); // abuse "each" to call in context...
       return ret_val;
     },
     attributes: {
@@ -724,7 +728,8 @@ function VisuDesign() {
       width:       { type: 'string', required: false },
       height:      { type: 'string', required: false },
       frameborder: { type: 'list'  , required: false, list: {'true': "yes", 'false': "no"} },
-      background:  { type: 'string', required: false }
+      background:  { type: 'string', required: false },
+      refresh: { type: 'numeric', required: false }
     },
     elements: {
       label:  { type: 'string',    required: false, multi: false }
