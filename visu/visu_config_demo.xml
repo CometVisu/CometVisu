@@ -6,13 +6,21 @@
       <plugin name="diagram"/>
     </plugins>
     <mappings>
-      <mapping name="OpenClose">
+      <mapping name="Open_Close">
         <entry value="0">zu</entry>
         <entry value="1">offen</entry>
       </mapping>
-      <mapping name="OnOff">
+      <mapping name="Close_Open">
+        <entry value="0">offen</entry>
+        <entry value="1">zu</entry>
+      </mapping>
+      <mapping name="On_Off">
         <entry value="0">Aus</entry>
         <entry value="1">An</entry>
+      </mapping>
+      <mapping name="Off_On">
+        <entry value="0">An</entry>
+        <entry value="1">Aus</entry>
       </mapping>
       <mapping name="Sign">
         <entry range_min="-1e99" range_max="0">Negativ</entry>
@@ -28,15 +36,15 @@
       </mapping>
     </mappings>
     <stylings>
-      <styling name="RedGreen">
+      <styling name="Red_Green">
         <entry value="0">red</entry>
         <entry value="1">green</entry>
       </styling>
-      <styling name="GreenRed">
+      <styling name="Green_Red">
         <entry value="0">green</entry>
         <entry value="1">red</entry>
       </styling>
-      <styling name="BluePurpleRed">
+      <styling name="Blue_Purple_Red">
         <entry range_min="-100" range_max="0">blue</entry>
         <entry value="0">purple</entry>
         <entry range_min="0" range_max="100">red</entry>
@@ -62,22 +70,22 @@
   </meta>
   <page name="Übersicht">
     <text align="center">CometVisu Widget Demo</text>
-    <switch mapping="OnOff" styling="RedGreen">
+    <switch mapping="On_Off" styling="Red_Green">
       <label>Switch - Terrase Licht</label>
       <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
       <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
     </switch>
     <break/>
-    <trigger value="0" mapping="OnOff">
+    <trigger value="0" mapping="On_Off">
       <label>Trigger - Terrasse Licht</label>
       <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
     </trigger>
-    <trigger value="1" mapping="OnOff">
+    <trigger value="1" mapping="On_Off">
       <label>Trigger - Terrasse Licht</label>
       <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
     </trigger>
     <group name="Slide group" flavour="potassium" align="center">
-      <info styling="BluePurpleRed">
+      <info styling="Blue_Purple_Red">
         <label>Slide Info</label>
         <address transform="DPT:9" type="">12/4/250</address>
         <address transform="DPT:9.001" type="">12/4/251</address>
