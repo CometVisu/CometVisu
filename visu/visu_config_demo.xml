@@ -14,6 +14,11 @@
         <entry value="0">offen</entry>
         <entry value="1">zu</entry>
       </mapping>
+      <mapping name="Close_Tilted_Open">
+        <entry value="0">offen</entry>
+        <entry value="1">gekippt</entry>
+        <entry value="2">zu</entry>
+      </mapping>
       <mapping name="On_Off">
         <entry value="0">Aus</entry>
         <entry value="1">An</entry>
@@ -33,6 +38,14 @@
         <entry value="standby">Stand By</entry>
         <entry value="economy">Economy</entry>
         <entry value="building_protection">Haus-Schutz</entry>
+      </mapping>
+      <mapping name="AudioSource">
+        <entry value="0">UKW</entry>
+        <entry value="1">Squeeze</entry>
+        <entry value="2">Denon</entry>
+        <entry value="3">iPod</entry>
+        <entry value="4">Sat</entry>
+        <entry value="5">Kino</entry>
       </mapping>
     </mappings>
     <stylings>
@@ -71,47 +84,67 @@
   <page name="CometVisu Widget Demo">
     <text align="center">Herzlich willkommen bei dem CometVisu Widget Demo!</text>
     <text>&lt;b&gt;Hinweis:&lt;/b&gt;&lt;br/&gt;Alle Widgets verwenden KNX-Addressen mit der Haupt- und Mittelgruppe 12/7, da diese meist unbenutzt sind und so beim Testen oft keine Nebenwirkungen auftreten können. Sollten diese Gruppe bei Ihnen verwendet werden, so sollten Sie diese Widgets hier nicht betätigen!</text>
+    <line/>
+    <text>Für die CometVisu gibt es verschiedene Designs.</text>
+    <designtoggle>Wechsle Design</designtoggle>
+    <line/>
+    <text>Standard-Widgets</text>
+    <break/>
     <switch mapping="On_Off" styling="Red_Green">
-      <label>Switch - Terrase Licht</label>
+      <label>Switch</label>
       <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
     </switch>
     <break/>
     <trigger value="0" mapping="On_Off">
-      <label>Trigger - Terrasse Licht</label>
+      <label>Trigger</label>
       <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
     </trigger>
     <trigger value="1" mapping="On_Off">
-      <label>Trigger - Terrasse Licht</label>
+      <label>Trigger</label>
       <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
     </trigger>
-    <group name="Slide group" flavour="potassium" align="center">
-      <info styling="Blue_Purple_Red">
-        <label>Slide Info</label>
-        <address transform="DPT:9" type="">12/7/9</address>
-      </info>
-      <slide min="-18" max="26">
-        <label>Slide</label>
-        <address transform="DPT:9" type="">12/7/9</address>
-      </slide>
-    </group>
-    <multitrigger button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
-      <label>Multitrigger - Szenenaufruf</label>
-      <address transform="DPT:5.010" readonly="false" type="">12/7/5</address>
-    </multitrigger>
     <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy">
-      <label>KONNEX Betriebsart</label>
+      <label>Multitrigger: KONNEX Betriebsart</label>
       <address transform="DPT:20.102" readonly="false" type="">12/7/20</address>
     </multitrigger>
     <info mapping="KonnexHVAC">
-      <label>Betriebsart</label>
+      <label>Info: Betriebsart</label>
       <address transform="DPT:20.102" type="">12/7/20</address>
     </info>
-    <line/>
-    <image src="icon/comet_128_ff8000.png" width="500px" height="46px"/>
-    <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
-      <label>Update every 10 sec</label>
+    <break/>
+    <multitrigger button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
+      <label>Multitrigger: Szenenaufruf</label>
+      <address transform="DPT:5.010" readonly="false" type="">12/7/5</address>
+    </multitrigger>
+    <break/>
+    <infotrigger uplabel="wärmer" downlabel="kälter" upvalue="0.1" downvalue="-0.1" align="center" format="%.1f °C"  change="absolute" min="7" max="24">
+      <label>Infotrigger: Sollwert</label>
+      <address transform="DPT:9" variant="absolute">12/7/9</address>
+    </infotrigger>
+    <infotrigger uplabel="&gt;" downlabel="&lt;" upvalue="1" downvalue="-1" min="0" max="5" align="center" infoposition="1" change="absolute" mapping="AudioSource" >
+      <label>Infotrigger: Audioquelle</label>
+      <address transform="DPT:5.010" variant="absolute">12/7/105</address>
+    </infotrigger>
+    <slide min="-18" max="26">
+      <label>Slider</label>
+      <address transform="DPT:9" type="">12/7/9</address>
+    </slide>
+    <info styling="Blue_Purple_Red">
+      <label>Info: Slider</label>
+      <address transform="DPT:9" type="">12/7/9</address>
+    </info>
+    <image src="icon/comet_128_ff8000.png">
+      <label>Image</label>
     </image>
-    <designtoggle>Change design</designtoggle>
+    <page name="Erweitert...">
+      <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
+        <label>Image: Update alle 10s</label>
+      </image>
+      <image src="icon/comet_128_ff8000.png" width="500px" height="46px">
+        <label>Image: mit Größenangabe</label>
+      </image>
+    </page>
+    <line/>
     <page name="iframe Test" align="center" >
       <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
     </page>
@@ -244,6 +277,11 @@
         <address transform="DPT:9">12/7/9</address>
       </info>
     </page>
+    <line/>
+    <text align="center">Plugins</text>
+    <text>Diese Widgets sind Plugins und stehen dann zur Verfügung, wenn sie in
+      der Config-Datei aktiviert werden.
+    </text>
     <colorchooser>
       <label>A colorChooser</label>
       <address transform="DPT:5.001" variant="r">12/7/50</address>
@@ -277,10 +315,29 @@
     </slide>
     <diagram_popup rrd="eib_traffic" unit="tps" series="day" refresh="300">KNX traffic</diagram_popup>
     <diagram_inline rrd="eib_traffic" width="600" height="400"/>
-    <infotrigger uplabel="wärmer" downlabel="kälter" upvalue="1" downvalue="0" align="center" format="%.1f °C">
-      <label>Temperatur Sollwert</label>
-      <address transform="DPT:1.001">12/7/1</address>
-      <address transform="DPT:9" readonly="true">12/7/9</address>
-    </infotrigger>
+    <line/>
+    <page name="Erweiterte Widgets">
+      <text>Auf dieser Seite sind Widgets zu finden, die noch in Entwicklung
+        sind und daher im Allgemeinen noch nicht verwendet werden sollten.
+      </text>
+      <line/>
+      <group name="Gruppe" align="center">
+        <text align="center">Ohne Flavour</text>
+        <info styling="Blue_Purple_Red">
+          <label>Info</label>
+          <address transform="DPT:9" type="">12/7/9</address>
+        </info>
+      </group>
+      <group name="Slider Gruppe mit Flavour" flavour="lithium" align="center">
+        <info styling="Blue_Purple_Red">
+          <label>Info: Slider</label>
+          <address transform="DPT:9" type="">12/7/9</address>
+        </info>
+        <slide min="-18" max="26">
+          <label>Slider</label>
+          <address transform="DPT:9" type="">12/7/9</address>
+        </slide>
+      </group>
+    </page>
   </page>
 </pages>
