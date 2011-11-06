@@ -1,7 +1,11 @@
 HEAD
 ====
 
--
+- Fix rendering problem in discreet_slim
+- Fix Bug #3175343
+- Fix Bug in infotrigger (min/max clipping)
+- Compatability improvement for iPad
+- Improvements to default config and widget demo config
 
 0.6.0-RC2
 =========
