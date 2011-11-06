@@ -63,7 +63,7 @@
         ]]></status>
     </statusbar>
   </meta>
-  <page name="Overview">
+  <page name="Start">
     <line/>
     <text align="center">Welcome to the CometVisu!</text>
     <line/>
