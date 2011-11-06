@@ -1,10 +1,10 @@
 @import "colors.css";
-@font-face { font-family: new_cicle; src:url(fonts/new_cicle_fina.ttf); }
-@font-face { font-family: new_cicle; font-weight: bold; src:url(fonts/new_cicle_gordita.ttf); }
+@font-face { font-family: alaska; src:url(fonts/alaska_light_nocaps.ttf); }
+@font-face { font-family: alaska; font-weight: bold; src:url(fonts/alaska_black_nocaps.ttf); }
 
 body 
 { 
-  font-family: new_cicle,sans-serif;
+  font-family: alaska,sans-serif;
   font-size: 5.5mm;
   overflow: hidden;
   margin:0;
