@@ -830,7 +830,8 @@ function VisuDesign() {
       {
         value = parseFloat($(this).parent().find('.switchInvisible').data('basicvalue'));
         value = value + parseFloat(data.value);
-        if (value < data.min || data.max < value) return; // check min/max
+        if (value < data.min ) value = data.min;
+        if( value > data.max ) value = data.max;
       }
       for( var addr in data.address )
       {
