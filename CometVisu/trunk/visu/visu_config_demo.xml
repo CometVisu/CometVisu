@@ -68,45 +68,43 @@
         ]]></status>
     </statusbar>
   </meta>
-  <page name="Übersicht">
-    <text align="center">CometVisu Widget Demo</text>
+  <page name="CometVisu Widget Demo">
+    <text align="center">Herzlich willkommen bei dem CometVisu Widget Demo!</text>
+    <text>&lt;b&gt;Hinweis:&lt;/b&gt;&lt;br/&gt;Alle Widgets verwenden KNX-Addressen mit der Haupt- und Mittelgruppe 12/7, da diese meist unbenutzt sind und so beim Testen oft keine Nebenwirkungen auftreten können. Sollten diese Gruppe bei Ihnen verwendet werden, so sollten Sie diese Widgets hier nicht betätigen!</text>
     <switch mapping="On_Off" styling="Red_Green">
       <label>Switch - Terrase Licht</label>
-      <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
-      <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
+      <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
     </switch>
     <break/>
     <trigger value="0" mapping="On_Off">
       <label>Trigger - Terrasse Licht</label>
-      <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
+      <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
     </trigger>
     <trigger value="1" mapping="On_Off">
       <label>Trigger - Terrasse Licht</label>
-      <address transform="DPT:1.001" readonly="false" type="">1/0/2</address>
+      <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
     </trigger>
     <group name="Slide group" flavour="potassium" align="center">
       <info styling="Blue_Purple_Red">
         <label>Slide Info</label>
-        <address transform="DPT:9" type="">12/4/250</address>
-        <address transform="DPT:9.001" type="">12/4/251</address>
+        <address transform="DPT:9" type="">12/7/9</address>
       </info>
       <slide min="-18" max="26">
         <label>Slide</label>
-        <address transform="DPT:9" type="">12/4/250</address>
-        <address transform="DPT:9.001" readonly="true" type="">12/4/253</address>
+        <address transform="DPT:9" type="">12/7/9</address>
       </slide>
     </group>
     <multitrigger button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
       <label>Multitrigger - Szenenaufruf</label>
-      <address transform="DPT:5.010" readonly="false" type="">11/2/50</address>
+      <address transform="DPT:5.010" readonly="false" type="">12/7/5</address>
     </multitrigger>
     <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy">
       <label>KONNEX Betriebsart</label>
-      <address transform="DPT:20.102" readonly="false" type="">3/1/50</address>
+      <address transform="DPT:20.102" readonly="false" type="">12/7/20</address>
     </multitrigger>
     <info mapping="KonnexHVAC">
       <label>Betriebsart</label>
-      <address transform="DPT:20.102" type="">3/1/50</address>
+      <address transform="DPT:20.102" type="">12/7/20</address>
     </info>
     <line/>
     <image src="icon/comet_128_ff8000.png" width="500px" height="46px"/>
@@ -188,101 +186,101 @@
       <break/>
       <slide min="-100" max="101">
         <label>Test-Slider</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </slide>
       <info>
         <label>Ohne Format</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <line/>
       <info format="%.0f">
         <label>Format "%.0f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <info format="%.1f">
         <label>Format "%.1f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <info format="%.2f">
         <label>Format "%.2f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <info format="%.3f">
         <label>Format "%.3f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <info format="%.4f">
         <label>Format "%.4f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <line/>
       <info format="%01.2f">
         <label>Format "%01.2f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <info format="%02.2f">
         <label>Format "%02.2f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <info format="%03.2f">
         <label>Format "%03.3f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <info format="%04.2f">
         <label>Format "%04.3f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <info format="%05.2f">
         <label>Format "%05.2f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <info format="%06.2f">
         <label>Format "%06.2f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
       <line/>
       <info format="%+.2f">
         <label>Format "%+.2f":</label>
-        <address transform="DPT:9">14/4/4</address>
+        <address transform="DPT:9">12/7/9</address>
       </info>
     </page>
     <colorchooser>
       <label>A colorChooser</label>
-      <address transform="DPT:5.001" variant="r">1/2/59</address>
-      <address transform="DPT:5.001" variant="g">1/2/60</address>
-      <address transform="DPT:5.001" variant="b">1/2/61</address>
+      <address transform="DPT:5.001" variant="r">12/7/50</address>
+      <address transform="DPT:5.001" variant="g">12/7/51</address>
+      <address transform="DPT:5.001" variant="b">12/7/52</address>
     </colorchooser>
     <break/>
     <info format="%.2f">
       <label>R</label>
-      <address transform="DPT:5.001" type="">1/2/59</address>
+      <address transform="DPT:5.001" type="">12/7/50</address>
     </info>
     <slide>
       <label>R</label>
-      <address transform="DPT:5.001" type="">1/2/59</address>
+      <address transform="DPT:5.001" type="">12/7/50</address>
     </slide>
     <info format="%.2f">
       <label>G</label>
-      <address transform="DPT:5.001" type="">1/2/60</address>
+      <address transform="DPT:5.001" type="">12/7/51</address>
     </info>
     <slide>
       <label>G</label>
-      <address transform="DPT:5.001" type="">1/2/60</address>
+      <address transform="DPT:5.001" type="">12/7/51</address>
     </slide>
     <info format="%.2f">
       <label>B</label>
-      <address transform="DPT:5.001" type="">1/2/61</address>
+      <address transform="DPT:5.001" type="">12/7/52</address>
     </info>
     <slide>
       <label>B</label>
-      <address transform="DPT:5.001" type="">1/2/61</address>
+      <address transform="DPT:5.001" type="">12/7/52</address>
     </slide>
-    <diagram_popup rrd="200_DALI_Linie_1_Strom" unit="mA" series="day" refresh="300">DALI Strom L1</diagram_popup>
-    <diagram_inline rrd="200_DALI_Linie_1_Strom" width="600" height="400"/>
+    <diagram_popup rrd="eib_traffic" unit="tps" series="day" refresh="300">KNX traffic</diagram_popup>
+    <diagram_inline rrd="eib_traffic" width="600" height="400"/>
     <infotrigger uplabel="wärmer" downlabel="kälter" upvalue="1" downvalue="0" align="center" format="%.1f °C">
       <label>Temperatur Sollwert</label>
-      <address transform="DPT:1.001">4/1/3</address>
-      <address transform="DPT:9" readonly="true">4/2/3</address>
+      <address transform="DPT:1.001">12/7/1</address>
+      <address transform="DPT:9" readonly="true">12/7/9</address>
     </infotrigger>
   </page>
 </pages>
