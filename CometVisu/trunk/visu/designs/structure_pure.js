@@ -1068,6 +1068,9 @@ function defaultUpdate( e, data, passedElement )
       }
       if( not_found ) element.addClass( 'actor ' );
     }
+  } else {
+    element.removeClass();
+    element.addClass( 'actor ' );
   }
 
   if( element.data( 'align' ) )
