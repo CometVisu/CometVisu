@@ -62,21 +62,6 @@ div#saveconfigcontrol {
     padding: 0 .2em;
 }
 
-div#helplink {
-    padding: 0 .2em;
-    text-decoration: none;
-}
-
-div#helplink a:link {
-    color: #FFFFFF;
-    text-decoration: none;
-}
-
-div#helplink a:visited {
-    color: #FFFFFF;
-    text-decoration: none;
-}
-
 div#addwidgetcontrol {
     width: 1.5em;
 }
