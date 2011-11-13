@@ -304,6 +304,15 @@ addTransform( 'DPT', {
     lname : {
       'de': '14 Byte Text ISO-8859-1'
     },
+    encode: function( phy ){
+      var val = '80';
+      for( var i = 0; i < 14; i++ )
+      {
+        var c = phy.charCodeAt( i );
+        val += c ? ( (c < 16 ? '0' : '') + c.toString( 16 ) ) : '00';
+      }
+      return val;
+    },
     decode: function( hex ){
       var val="";        
       var chars;
