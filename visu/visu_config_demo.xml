@@ -88,7 +88,7 @@
     <text>Für die CometVisu gibt es verschiedene Designs.</text>
     <designtoggle>Wechsle Design</designtoggle>
     <line/>
-    <text>Standard-Widgets</text>
+    <text align="center">&lt;b&gt;Standard-Widgets&lt;/b&gt;</text>
     <break/>
     <switch mapping="On_Off" styling="Red_Green">
       <label>Switch</label>
@@ -103,6 +103,7 @@
       <label>Trigger</label>
       <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
     </trigger>
+    <break/>
     <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy">
       <label>Multitrigger: KONNEX Betriebsart</label>
       <address transform="DPT:20.102" readonly="false" type="">12/7/20</address>
@@ -125,6 +126,38 @@
       <label>Infotrigger: Audioquelle</label>
       <address transform="DPT:5.010" variant="absolute">12/7/105</address>
     </infotrigger>
+    <page name="Infotrigger: Erweitert..." align="center">
+      <text>Ein Infotrigger lässt sich in zwei verschiedenen Betriebsarten betreiben: relativ und absolut</text>
+      <line/>
+      <text>Relativ</text>
+      <break/>
+      <infotrigger uplabel="+" upvalue="1" downlabel="-" downvalue="0" align="center" infoposition="1" change="relative">
+        <label>Lautstärke</label>
+        <address transform="DPT:16.000" readonly="true" variant="absolute">12/7/16</address>
+        <address transform="DPT:1.001" readonly="false" variant="relative">12/7/1</address>
+      </infotrigger>
+      <break/>
+      <info>
+        <label>Absolute GA</label>
+        <address transform="DPT:16.000">12/7/16</address>
+      </info>
+      <info>
+        <label>Relative GA</label>
+        <address transform="DPT:1.001">12/7/1</address>
+      </info>
+      <multitrigger button1label="An" button1value="50%" button2label="Aus" button2value="0%" button3label="Leise" button3value="25%" button4label="Laut" button4value="100%">
+        <label>Lautstärke-Text</label>
+        <address transform="DPT:16.000" readonly="false" type="">12/7/16</address>
+      </multitrigger>
+      <line/>
+      <text>Absolut</text>
+      <break/>
+      <infotrigger uplabel="+" upvalue="5" downlabel="-" downvalue="-5" align="center" infoposition="1" change="absolute" format="%.1f%%">
+        <label>Lautstärke</label>
+        <address transform="DPT:5.001" readonly="false" variant="absolute">12/7/5</address>
+      </infotrigger>
+    </page>
+    <break/>
     <slide min="-18" max="26">
       <label>Slider</label>
       <address transform="DPT:9" type="">12/7/9</address>
@@ -133,10 +166,11 @@
       <label>Info: Slider</label>
       <address transform="DPT:9" type="">12/7/9</address>
     </info>
+    <break/>
     <image src="icon/comet_128_ff8000.png">
       <label>Image</label>
     </image>
-    <page name="Erweitert...">
+    <page name="Image: Erweitert..." align="center">
       <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
         <label>Image: Update alle 10s</label>
       </image>
@@ -149,10 +183,17 @@
       <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
     </page>
     <page name="Flavour Test" align="center" >
-      <text>The flavours define a page specific look for a choosen design. 
-        The CometVisu's pure design was inspired by the colors that a comet out of
-        that material would shine in.
+      <text>
+        Die Flavour (englisch für Geschmacksrichtung) definieren eine, vom
+        Design abhängige, Variation des Aussehens einzelner Sub-Seiten. 
       </text>
+      <line/>
+      <text align="center">Design: &lt;b&gt;Pure&lt;/b&gt;</text>
+      <text>
+        Das Design "Pure" ist inspiriert von den Farben, in denen ein Komet
+        scheinen würde, wenn er aus dem jeweiligen Element bestehen würde.
+      </text>
+      <break/>
       <page name="Flavour: Antimony" align="center" flavour="antimony">
         <text align="center">CometVisu Antimony flavour</text>
         <line/>
@@ -278,12 +319,13 @@
       </info>
     </page>
     <line/>
-    <text align="center">Plugins</text>
+    <text align="center">&lt;b&gt;Plugins&lt;/b&gt;</text>
     <text>Diese Widgets sind Plugins und stehen dann zur Verfügung, wenn sie in
       der Config-Datei aktiviert werden.
     </text>
+    <break/>
     <colorchooser>
-      <label>A colorChooser</label>
+      <label>ColorChooser</label>
       <address transform="DPT:5.001" variant="r">12/7/50</address>
       <address transform="DPT:5.001" variant="g">12/7/51</address>
       <address transform="DPT:5.001" variant="b">12/7/52</address>
@@ -297,6 +339,7 @@
       <label>R</label>
       <address transform="DPT:5.001" type="">12/7/50</address>
     </slide>
+    <break/>
     <info format="%.2f">
       <label>G</label>
       <address transform="DPT:5.001" type="">12/7/51</address>
@@ -305,6 +348,7 @@
       <label>G</label>
       <address transform="DPT:5.001" type="">12/7/51</address>
     </slide>
+    <break/>
     <info format="%.2f">
       <label>B</label>
       <address transform="DPT:5.001" type="">12/7/52</address>
@@ -313,6 +357,7 @@
       <label>B</label>
       <address transform="DPT:5.001" type="">12/7/52</address>
     </slide>
+    <break/>
     <diagram_popup rrd="eib_traffic" unit="tps" series="day" refresh="300">KNX traffic</diagram_popup>
     <diagram_inline rrd="eib_traffic" width="600" height="400"/>
     <line/>
