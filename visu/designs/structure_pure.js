@@ -659,22 +659,20 @@ function VisuDesign() {
       var ret_val = $('<div class="widget video" />');
       var labelElement = $p.find('label')[0];
       ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
+      var autoplay = ($p.attr('autoplay') && $p.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
       var style = '';
       if( $p.attr('width' ) ) style += 'width:'  + $p.attr('width' ) + ';';
       if( $p.attr('height') ) style += 'height:' + $p.attr('height') + ';';
       if( style != '' ) style = 'style="' + style + '"';
-      var actor = '<div class="actor"><video src="' +$p.attr('src') + '" ' + style + '  controls="controls" /></div>';
-      var refresh = $p.attr('refresh') ? $p.attr('refresh')*1000 : 0;
-      ret_val.append( $(actor).data( {
-        'refresh': refresh
-      } ).each(setupRefreshAction) ); // abuse "each" to call in context...
+      var actor = '<div class="actor"><video src="' +$p.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>';
+      ret_val.append( $(actor).data( {} ) );
       return ret_val;
     },
     attributes: {
       src:     { type: 'uri'    , required: true  },
       width:   { type: 'string' , required: false },
       height:  { type: 'string' , required: false },
-      refresh: { type: 'numeric', required: false }
+      autoplay:{ type: 'list'   , required: true, list: {'true': "yes", 'false': "no"} }
     },
     elements: {
       label:      { type: 'string',    required: false, multi: false }

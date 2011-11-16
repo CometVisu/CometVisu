@@ -178,6 +178,14 @@
         <label>Image: mit Größenangabe</label>
       </image>
     </page>
+    <break/>
+    <page name="Video..." align="center">
+      <text>In dem Video-Element lassen sich Videos nach dem HTML5 Standard einbinden</text>
+      <break/>
+      <video src="https://upload.wikimedia.org/wikipedia/commons/b/b5/I-15bis.ogg" autoplay="false">
+        <label>Polikarpov I-15bis - Ogg Theora</label>
+      </video>
+    </page>
     <line/>
     <page name="iframe Test" align="center" >
       <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
