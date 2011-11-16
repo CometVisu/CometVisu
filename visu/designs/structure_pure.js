@@ -627,7 +627,11 @@ function VisuDesign() {
       var labelElement = $p.find('label')[0];
       ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
       var style = '';
-      if( $p.attr('width' ) ) style += 'width:'  + $p.attr('width' ) + ';';
+      if( $p.attr('width' ) ) {
+        style += 'width:'  + $p.attr('width' ) + ';';
+      } else {
+        style += 'width: 100%';
+      }
       if( $p.attr('height') ) style += 'height:' + $p.attr('height') + ';';
       if( style != '' ) style = 'style="' + style + '"';
       var actor = '<div class="actor"><img src="' +$p.attr('src') + '" ' + style + ' /></div>';
