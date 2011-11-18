@@ -1,11 +1,18 @@
-HEAD
-====
+0.6.0-RC3
+=========
 
 - Fix rendering problem in discreet_slim
 - Fix Bug #3175343
 - Fix Bug in infotrigger (min/max clipping)
 - Compatability improvement for iPad
 - Improvements to default config and widget demo config
+- Fix Bug when value in styling didn't exist
+- New Feature: add link to show help (SF Wiki) in the editor
+- Add encode function for DPT16 (= 14 byte text)
+- Fix Bug: avoid overflow in infotrigger
+- Fix Bug in video element: remove "refresh" and add the more 
+  sensible "autoplay"
+- New Feature: Add favicon - edit in red, svn in black and release in sodium
 
 0.6.0-RC2
 =========
