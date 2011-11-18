@@ -264,7 +264,7 @@
 <xsd:complexType name="infotrigger">
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
         <xsd:element name="label" type="xsd:string" />
-        <xsd:element name="address" type="address" minOccurs="2" maxOccurs="unbounded"/>
+        <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:choice>
     <xsd:attribute name="upvalue" type="xsd:string" use="optional"/>
 	<xsd:attribute name="downvalue" type="xsd:string" use="optional"/>
@@ -336,6 +336,7 @@
     <xsd:attribute name="src" type="uri" use="required" />
     <xsd:attribute name="width" type="dimension" />
     <xsd:attribute name="height" type="dimension" />
+    <xsd:attribute name="autoplay" type="xsd:string" />
  </xsd:complexType>
 
 <xsd:complexType name="iframe">
