@@ -56,14 +56,12 @@ div#controlcontainer div {
     cursor: pointer;
     float: right;
     margin-right: .5em;
-}
-
-div#saveconfigcontrol {
     padding: 0 .2em;
 }
 
 div#addwidgetcontrol {
     width: 1.5em;
+    padding: 0;
 }
 
 div#addMaster {
