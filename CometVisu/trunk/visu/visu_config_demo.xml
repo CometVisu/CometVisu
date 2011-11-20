@@ -120,11 +120,11 @@
     <break/>
     <infotrigger uplabel="wärmer" downlabel="kälter" upvalue="0.1" downvalue="-0.1" align="center" format="%.1f °C"  change="absolute" min="7" max="24">
       <label>Infotrigger: Sollwert</label>
-      <address transform="DPT:9" variant="absolute">12/7/9</address>
+      <address transform="DPT:9">12/7/9</address>
     </infotrigger>
     <infotrigger uplabel="&gt;" downlabel="&lt;" upvalue="1" downvalue="-1" min="0" max="5" align="center" infoposition="1" change="absolute" mapping="AudioSource" >
       <label>Infotrigger: Audioquelle</label>
-      <address transform="DPT:5.010" variant="absolute">12/7/105</address>
+      <address transform="DPT:5.010">12/7/105</address>
     </infotrigger>
     <page name="Infotrigger: Erweitert..." align="center">
       <text>Ein Infotrigger lässt sich in zwei verschiedenen Betriebsarten betreiben: relativ und absolut</text>
@@ -133,8 +133,8 @@
       <break/>
       <infotrigger uplabel="+" upvalue="1" downlabel="-" downvalue="0" align="center" infoposition="1" change="relative">
         <label>Lautstärke</label>
-        <address transform="DPT:16.000" readonly="true" variant="absolute">12/7/16</address>
-        <address transform="DPT:1.001" readonly="false" variant="relative">12/7/1</address>
+        <address transform="DPT:16.000" readonly="true" variant="display">12/7/16</address>
+        <address transform="DPT:1.001" readonly="false" variant="button">12/7/1</address>
       </infotrigger>
       <break/>
       <info>
@@ -154,7 +154,7 @@
       <break/>
       <infotrigger uplabel="+" upvalue="5" downlabel="-" downvalue="-5" align="center" infoposition="1" change="absolute" format="%.1f%%" max="100">
         <label>Lautstärke</label>
-        <address transform="DPT:5.001" readonly="false" variant="absolute">12/7/5</address>
+        <address transform="DPT:5.001" readonly="false">12/7/5</address>
       </infotrigger>
     </page>
     <break/>
