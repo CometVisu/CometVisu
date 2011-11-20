@@ -728,10 +728,10 @@ function VisuDesign() {
       $p.find('address').each( function(){ 
         var src = this.textContent;
         var transform = this.getAttribute('transform');
-        var readonly  = this.getAttribute('readonly' ) == 'true'    ;
-        var relative  = this.getAttribute('variant'  ) == 'relative';
-        address[ '_' + src ] = [ transform, readonly, relative ];
-        if( !relative ) { // no need to listen to relative address
+        var readonly  = this.getAttribute('readonly' ) == 'true';
+        var isButton  = this.getAttribute('variant'  ) == 'button';
+        address[ '_' + src ] = [ transform, readonly, isButton ];
+        if( !isButton ) { // no need to listen to relative address
           ga_list.push( src );
         };
       });
