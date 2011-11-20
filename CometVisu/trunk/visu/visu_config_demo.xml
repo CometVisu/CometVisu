@@ -366,7 +366,9 @@
       <address transform="DPT:5.001" type="">12/7/52</address>
     </slide>
     <break/>
-    <diagram_popup rrd="eib_traffic" unit="tps" series="day" refresh="300">KNX traffic</diagram_popup>
+    <diagram_popup rrd="eib_traffic" unit="tps" series="day" refresh="300">
+      <label>KNX traffic</label>
+    </diagram_popup>
     <diagram_inline rrd="eib_traffic" width="600" height="400"/>
     <line/>
     <page name="Erweiterte Widgets">

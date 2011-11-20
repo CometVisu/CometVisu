@@ -34,7 +34,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
 
         var ret_val = $('<div class="widget" />');
         ret_val.addClass( 'diagram' );
-        var label = '<div class="label">' + page.textContent + '</div>';
+        var labelElement = $p.find('label')[0];
+        var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
         var actor = $("<div class=\"actor\"><div class=\"diagram_inline\" id=\"" + id + "\">loading...</div></div>");
         var diagram = $("#" + id, actor);
 
@@ -53,7 +54,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         diagram.data("series", $p.attr("series") || "day");
         diagram.data("period", $p.attr("period") || 1);
         diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
-        diagram.data("label", page.textContent);
+        diagram.data("label", $p.find('label')[0] ? $p.find('label')[0].textContent : '');
         diagram.data("refresh", $p.attr("refresh"));
 
         refreshDiagram(diagram, {});
@@ -70,7 +71,10 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
         refresh:    {type: "numeric", required: false}
     },
-    content: {type: "string", required: true}
+    elements: {
+      label:      { type: 'string',    required: false, multi: false }
+    },
+    content:      false
 });
 
 VisuDesign_Custom.prototype.addCreator("diagram_popup", {
@@ -86,7 +90,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
 
         var ret_val = $('<div class="widget" />');
         ret_val.addClass( 'diagram' );
-        var label = '<div class="label">' + page.textContent + '</div>';
+        var labelElement = $p.find('label')[0];
+        var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
         var actor = $("<div class=\"actor\"><div class=\"diagram_preview\" id=\"" + id + "\">loading...</div></div>");
         var diagram = $("#" + id, actor);
 
@@ -105,7 +110,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         diagram.data("series", $p.attr("series") || "day");
         diagram.data("period", $p.attr("period") || 1);
         diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
-        diagram.data("label", page.textContent);
+        diagram.data("label", $p.find('label')[0] ? $p.find('label')[0].textContent : '');
         diagram.data("refresh", $p.attr("refresh"));
 
         var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
@@ -174,7 +179,10 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         refresh:    {type: "numeric", required: false},
         tooltip:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
     },
-    content: {type: "string", required: true}
+    elements: {
+      label:      { type: 'string',    required: false, multi: false }
+    },
+    content:      false
 });
 
 diagramColors = {
