@@ -393,6 +393,26 @@
     </xsd:simpleContent>
 </xsd:complexType>
 
+<xsd:complexType name="diagram_info" >
+    <xsd:choice maxOccurs="unbounded" minOccurs="1">
+        <xsd:element name="label" type="xsd:string" maxOccurs="1" />
+        <xsd:element name="address" type="address" minOccurs="1"/>
+    </xsd:choice>
+    <xsd:attribute ref="format" use="optional" />
+    <xsd:attribute ref="styling" use="optional" />
+    <xsd:attribute ref="mapping" use="optional" />
+    <xsd:element name="label" type="xsd:string" maxOccurs="1" />
+    <xsd:attribute name="rrd" type="xsd:string" use="required" />
+    <xsd:attribute name="unit" type="xsd:string" use="optional" />
+    <xsd:attribute name="series" type="xsd:string" use="optional" />
+    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
+    <xsd:attribute name="period" type="xsd:string" use="optional" />
+    <xsd:attribute name="datasource" type="xsd:string" use="optional" />
+    <xsd:attribute name="tooltip" type="xsd:string" use="optional" />
+    <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
+    <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
+</xsd:complexType>
+
 <xsd:complexType name="break" />
 
 <xsd:complexType name="line" />

@@ -185,6 +185,140 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
     content: {type: "string", required: true}
 });
 
+VisuDesign_Custom.prototype.addCreator("diagram_info", {
+    create: function( page, path ) {
+        var $p = $(page);
+
+        var address = {};
+        $p.find('address').each( function(){ 
+          var src = this.textContent;
+          ga_list.push( src ) 
+          address[ '_' + src ] = [ this.getAttribute('transform') ];
+        });
+        
+        function uniqid() {
+            var newDate = new Date;
+            return newDate.getTime();
+        }
+
+        var id = "diagram_" + uniqid();
+
+        var ret_val = $('<div class="widget" />');
+        ret_val.addClass( 'diagram' );
+        
+        var labelElement = $p.find('label')[0];
+        var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+                
+        var actor = '<div class="actor switchUnpressed ';
+        if ( $p.attr( 'align' ) ) 
+          actor += $p.attr( 'align' ); 
+        actor += '">';
+        var map = $p.attr('mapping');
+        if( mappings[map] && mappings[map][value] )
+          actor += '<div class="value">' + mappings[map][value] + '</div>';
+        else
+          actor += '<div class="value">-</div>';
+        actor += '</div>';
+                
+        var $actor = $(actor).data({
+          'address'  : address,
+          'format'   : $p.attr('format'),
+          'mapping'  : $p.attr('mapping'),
+          'styling'  : $p.attr('styling')
+        });
+        for( var addr in address ) $actor.bind( addr, this.update );
+        
+        ret_val.append(label).append($actor);
+
+        $actor.addClass("clickable");
+
+        var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
+        
+        bDiagram.data("id", id);
+        bDiagram.data("rrd", $p.attr("rrd"));
+        bDiagram.data("unit", $p.attr("unit") || "");
+        bDiagram.data("series", $p.attr("series") || "day");
+        bDiagram.data("period", $p.attr("period") || 1);
+        bDiagram.data("datasource", $p.attr("datasource") || "AVERAGE");
+        bDiagram.data("label", labelElement.textContent);
+        bDiagram.data("refresh", $p.attr("refresh"));
+        bDiagram.data("linecolor", $p.attr("linecolor") || "");
+        bDiagram.data("gridcolor", $p.attr("gridcolor") || "");
+               
+        var data = jQuery.extend({}, bDiagram.data());
+
+        $actor.bind("click", function() {
+            bDiagram.data(data);
+            bDiagram.css({height: "90%"});
+
+            showPopup("unknown", {title: labelElement.textContent, content: bDiagram});
+            bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
+ 
+            var bDiagramOpts = {yaxis: {labelWidth: null}};
+            if ($p.attr("tooltip") == "true") {
+                // if we want to display a tooltip, we need to listen to the event
+                var previousPoint = null;
+                jQuery(bDiagram).bind("plothover", function (event, pos, item) {
+                    jQuery("#x").text(pos.x.toFixed(2));
+                    jQuery("#y").text(pos.y.toFixed(2));
+                    
+                    if (item) {
+                        if (previousPoint != item.datapoint) {
+                            previousPoint = item.datapoint;
+                            
+                            $("#diagramTooltip").remove();
+                            var x = item.datapoint[0],
+                                y = item.datapoint[1].toFixed(2);
+                            
+                            //This is a mess but toLocaleString expects UTC again
+                            var offset = new Date().getTimezoneOffset() * 60 * 1000;
+                            var dte = new Date(x + offset);
+                            showDiagramTooltip(item.pageX, item.pageY,
+                                        dte.toLocaleString() + ": " + y + jQuery(this).data("unit"));
+                        }
+                    }
+                    else {
+                        $("#diagramTooltip").remove();
+                        previousPoint = null;            
+                    }
+
+                })
+                .bind("click", function(event) {
+                    // don't let the popup know about the click, or it will close on touch-displays
+                    event.stopPropagation();
+                });
+                
+                bDiagramOpts = jQuery.extend(bDiagramOpts, {grid: {hoverable: true, clickable: true} });
+            }
+
+            refreshDiagram(bDiagram, bDiagramOpts);
+            return false;
+        });
+
+        return ret_val;
+    },
+    update:       defaultUpdate,
+    attributes: {
+      rrd:        {type: "string", required: true},
+      unit:       {type: "string", required: false},
+      series:     {type: "list", required: false, list: {hour: "hours", day: "days", week: "weeks", month: "months", year: "years"}},
+      period:     {type: "numeric", required: false},
+      datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
+      refresh:    {type: "numeric", required: false},
+      tooltip:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
+      linecolor:  {type: "string", required: false},
+      gridcolor:  {type: "string", required: false},
+      format:     { type: 'format',    required: false },
+      mapping:    { type: 'mapping',   required: false },
+      styling:    { type: 'styling',   required: false }
+    },
+    elements: {
+      label:      { type: 'string',    required: true, multi: false },
+      address:    { type: 'address',   required: true, multi: true }
+    },
+    content: {type: "string", required: true}
+});
+
 diagramColors = {
     data: $("<span class='link'><a href='#' /></a>").find("a").css("color")
 };
