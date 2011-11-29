@@ -344,6 +344,14 @@ function scrollToPage( page_id, speed )
 {
   $('#'+page_id).css( 'display', '' );                         // show new page
   main_scroll.seekTo( $('.page').index( $('#'+page_id)[0] ), speed ); // scroll to it
+  var pagedivs=$('div', '#'+page_id); 
+  for( var i = 0; i<pagedivs.length; i++) //check for inline diagrams & refresh
+  {
+    if( pagedivs[i].className == 'diagram_inline') 
+    {
+      refreshDiagram(pagedivs[i]);
+    }
+  }
 }
 
 function updateTopNavigation()
@@ -408,7 +416,7 @@ function setupRefreshAction()
   var refresh = $(this).data('refresh');
   if( refresh && refresh > 0 )
   {
-    var target = $('img', $(this) )[0];
+    var target = $('img', $(this) )[0] || $('iframe', $(this) )[0];
     var src = target.src;
     if( src.indexOf('?') < 0 ) src += '?';
     $(this).data('interval', setInterval( function(){refreshAction(target, src);}, refresh ) );
