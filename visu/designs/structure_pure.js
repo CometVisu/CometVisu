@@ -60,7 +60,14 @@ function VisuDesign() {
   this.addCreator('page', {
     create: function( page, path, flavour ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget" />');
+      
+      var address = {};
+      if ($p.attr('ga')) {
+        src = $p.attr('ga');
+        ga_list.push($p.attr('ga'));
+        address[ '_' + $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
+      }
+
       var pstyle  = ( '0' != path ) ? 'display:none;' : ''; // subPage style
       var name    = $p.attr('name');
       var type    = $p.attr('type');                        //text, 2d or 3d
@@ -68,10 +75,24 @@ function VisuDesign() {
       var wstyle  = '';                                     // widget style
       if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
       if( wstyle != '' ) wstyle = 'style="' + wstyle + '"';
-      ret_val.addClass( 'link' ).addClass('pagelink');
-      ret_val.append( '<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
+
+      var ret_val;
+      
+      if ($p.attr('visible')=='false') {
+        ret_val=$('');
+      } else { // default is visible
+        ret_val = $('<div class="widget"/>');
+        ret_val.addClass( 'link' ).addClass('pagelink');
+        ret_val.append( '<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
+      }
+
       var childs = $p.children();
       var container = $( '<div class="clearfix"/>' );
+      
+      var $container = $( '<div class="clearfix" path="'+path+'"/>'); 
+      for( var addr in address ) $container.bind( addr, this.update );
+      var container=$container;
+      
       container.append( '<h1>' + name + '</h1>' );
       $( childs ).each( function(i){
           container.append( create_pages( childs[i], path + '_' + i, flavour ) );
@@ -85,9 +106,17 @@ function VisuDesign() {
     attributes: {
       align:  { type: 'string', required: false },
       flavour:{ type: 'string', required: false },
-      name:   { type: 'string', required: true }
+      name:   { type: 'string', required: true },
+      ga:     { type: 'addr', required: false },
+      visible:{ type: 'string', required: false }
     },
     elements: {
+    },
+    update: function(e, data) {
+      if (data==01) {
+        scrollToPage(this.attributes.path.nodeValue);
+        visu.write(e.type.substr(1), transformEncode("DPT:1.001", 0));
+      }
     },
     content: true
   });
@@ -697,7 +726,11 @@ function VisuDesign() {
       if( $p.attr('background') ) style += 'background-color:' + $p.attr('background') + ';';
       if( style != '' ) style = 'style="' + style + '"';
       var actor = '<div class="actor"><iframe src="' +$p.attr('src') + '" ' + style + '></iframe></div>';
-      ret_val.append( $(actor) ); 
+      
+      var refresh = $p.attr('refresh') ? $p.attr('refresh')*1000 : 0;
+      ret_val.append( $(actor).data( {
+        'refresh': refresh
+      } ).each(setupRefreshAction) ); // abuse "each" to call in context...
       return ret_val;
     },
     attributes: {
@@ -705,7 +738,8 @@ function VisuDesign() {
       width:       { type: 'string', required: false },
       height:      { type: 'string', required: false },
       frameborder: { type: 'list'  , required: false, list: {'true': "yes", 'false': "no"} },
-      background:  { type: 'string', required: false }
+      background:  { type: 'string', required: false },
+      refresh: { type: 'numeric', required: false }
     },
     elements: {
       label:  { type: 'string',    required: false, multi: false }
