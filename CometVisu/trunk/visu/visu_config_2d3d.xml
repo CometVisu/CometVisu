@@ -67,7 +67,7 @@
     <line/>
     <text align="center">Welcome to the CometVisu!</text>
     <break/>
-    <page name="2D Demo" type="2d" backdrop="media/demo_2d_backdrop_red_pot.png">
+    <page name="2D Demo" type="2d" backdrop="media/demo_2d_backdrop_red_pot.svg">
       <slide>
         <layout x="0px" y="470px" width="600px" />
         <label>Level</label>
