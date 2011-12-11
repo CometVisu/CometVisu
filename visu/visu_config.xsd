@@ -16,6 +16,12 @@
     <xsd:restriction base="xsd:string" />
 </xsd:simpleType>
 
+<xsd:complexType name="layout">
+  <xsd:attribute name="x" type="xsd:string" use="optional" />
+  <xsd:attribute name="y" type="xsd:string" use="optional" />
+  <xsd:attribute name="width" type="xsd:string" use="optional" />
+</xsd:complexType>
+
 <xsd:complexType name="address">
     <xsd:simpleContent>
         <xsd:extension base="addr">
@@ -180,6 +186,16 @@
         <xsd:attribute ref="align" use="optional" />
         <xsd:attribute name="ga" type="addr" use="optional" />
         <xsd:attribute name="visible" type="xsd:boolean" />
+        <xsd:attribute name="type" use="optional">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="text"/>
+              <xsd:enumeration value="2d"/>
+              <xsd:enumeration value="3d"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+      </xsd:attribute>
+    <xsd:attribute name="backdrop" type="uri" use="optional" />
     </xsd:complexType>
 </xsd:element>
 
@@ -302,6 +318,7 @@
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
         <xsd:element name="label" type="xsd:string" minOccurs="0" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="1" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
     </xsd:choice>
     <xsd:attribute ref="min" />
     <xsd:attribute ref="max" />
@@ -314,6 +331,7 @@
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
         <xsd:element name="label" type="xsd:string" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="1"/>
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
     </xsd:choice>
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
