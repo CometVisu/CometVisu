@@ -70,7 +70,8 @@ function VisuDesign() {
 
       var pstyle  = ( '0' != path ) ? 'display:none;' : ''; // subPage style
       var name    = $p.attr('name');
-      var type    = $p.attr('type');                        //text, 2d or 3d
+      var type    = $p.attr('type') || 'text';              //text, 2d or 3d
+      var backdrop = $p.attr('backdrop');
       if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
       var wstyle  = '';                                     // widget style
       if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
@@ -87,13 +88,17 @@ function VisuDesign() {
       }
 
       var childs = $p.children();
-      var container = $( '<div class="clearfix"/>' );
+      var container = $( '<div class="clearfix" />' );
       
       var $container = $( '<div class="clearfix" path="'+path+'"/>'); 
       for( var addr in address ) $container.bind( addr, this.update );
       var container=$container;
       
       container.append( '<h1>' + name + '</h1>' );
+      if( '2d' == type )
+      {
+        container.append( '<img src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;"/>' );
+      }
       $( childs ).each( function(i){
           container.append( create_pages( childs[i], path + '_' + i, flavour ) );
       } );
@@ -104,11 +109,13 @@ function VisuDesign() {
       return ret_val;
     },
     attributes: {
-      align:  { type: 'string', required: false },
-      flavour:{ type: 'string', required: false },
-      name:   { type: 'string', required: true },
-      ga:     { type: 'addr', required: false },
-      visible:{ type: 'string', required: false }
+      align:    { type: 'string', required: false },
+      flavour:  { type: 'string', required: false },
+      name:     { type: 'string', required: true  },
+      ga:       { type: 'addr', required: false   },
+      visible:  { type: 'string', required: false },
+      type:     { type: 'string', required: false },
+      backdrop: { type: 'string', required: false }
     },
     elements: {
     },
@@ -191,7 +198,9 @@ function VisuDesign() {
   this.addCreator('info', {
     create: function( page, path ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget info" />');
+      var layout = $p.find('layout')[0];
+      var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
+      var ret_val = $('<div class="widget info" ' + style + ' />');
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -218,6 +227,7 @@ function VisuDesign() {
       styling:    { type: 'styling',   required: false }
     },
     elements: {
+      layout:     { type: 'layout',    required: false, multi: false },
       label:      { type: 'string',    required: true, multi: false },
       address:    { type: 'address',   required: true, multi: true }
     },
@@ -227,7 +237,9 @@ function VisuDesign() {
   this.addCreator('slide', {
     create: function( page, path ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget slide" />');
+      var layout = $p.find('layout')[0];
+      var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
+      var ret_val = $('<div class="widget slide" ' + style + ' />');
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -330,6 +342,7 @@ function VisuDesign() {
       styling: { type: 'styling', required: false }
     },
     elements: {
+      layout:     { type: 'layout',    required: false, multi: false },
       label:      { type: 'string',    required: true, multi: false },
       address:    { type: 'address',   required: true, multi: true }
     },
@@ -1134,4 +1147,13 @@ function defaultUpdate( e, data, passedElement )
   element.find('.value').text( value );
   
   return value;
+}
+
+function extractLayout( layout )
+{
+  var ret_val = 'position:absolute;';
+  if( layout.getAttribute('x'    ) ) ret_val += 'left:'  + layout.getAttribute('x'    ) + ';';
+  if( layout.getAttribute('y'    ) ) ret_val += 'top:'   + layout.getAttribute('y'    ) + ';';
+  if( layout.getAttribute('width') ) ret_val += 'width:' + layout.getAttribute('width') + ';';
+  return ret_val;
 }
