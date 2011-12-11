@@ -28,6 +28,7 @@ function CometVisu( urlPrefix )
   this.pass   = '';                                      // the current password
   this.device = '';                                      // the current device ID
   this.running = false;                                  // is the communication running at the moment?
+  this.doRestart = false;                                // are we currently in a reastart, e.g. due to the watchdog
   this.xhr     = false;                                  // the ongoing AJAX request
   this.watchdogTimer = 5;                                // in Seconds - the alive check intervall of the watchdog
   this.maxConnectionAge = 60;                            // in Seconds - restart if last read is older
@@ -80,7 +81,7 @@ function CometVisu( urlPrefix )
    */
   this.handleError=function(xhr,str,excptObj)
   {
-    if( this.running && xhr.readyState != 4 ) // ignore error when connection is irrelevant
+    if( this.running && xhr.readyState != 4 && !this.doRestart) // ignore error when connection is irrelevant
     {
       var readyState = 'UNKNOWN';
       switch( xhr.readyState )
@@ -165,7 +166,9 @@ function CometVisu( urlPrefix )
    */
   this.restart = function()
   {
+    this.doRestart = true;
     if( this.xhr.abort ) this.xhr.abort();
+    this.doRestart = false;
     this.handleRead(); // restart
   }
   
