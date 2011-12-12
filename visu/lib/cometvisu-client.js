@@ -81,7 +81,7 @@ function CometVisu( urlPrefix )
    */
   this.handleError=function(xhr,str,excptObj)
   {
-    if( this.running && xhr.readyState != 4 && !this.doRestart) // ignore error when connection is irrelevant
+    if( this.running && xhr.readyState != 4 && !this.doRestart && xhr.status!==0 ) // ignore error when connection is irrelevant
     {
       var readyState = 'UNKNOWN';
       switch( xhr.readyState )
