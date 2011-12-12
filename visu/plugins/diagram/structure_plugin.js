@@ -305,7 +305,11 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
 
         return ret_val;
     },
-    update:       defaultUpdate,
+    update:  function(e,d) { 
+      var element = $(this);
+      var value = defaultUpdate( e, d, element );
+      element.addClass('switchUnpressed');
+    },
     attributes: {
       rrd:        {type: "string", required: true},
       unit:       {type: "string", required: false},
