@@ -97,7 +97,7 @@ function VisuDesign() {
       container.append( '<h1>' + name + '</h1>' );
       if( '2d' == type )
       {
-        container.append( '<embed src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;"/>' );
+        container.append( '<embed src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;width:100%;height:100%;"/>' );
       }
       $( childs ).each( function(i){
           container.append( create_pages( childs[i], path + '_' + i, flavour ) );
