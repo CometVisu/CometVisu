@@ -364,3 +364,33 @@ div#loading
   width: 100%;
   text-decoration: none;
 }
+
+/* styles for the preview */
+div#demo_1, div#demo_2, div#demo_3 {
+    width: 100%;
+}
+
+div#demo_container {
+    position: relative;
+}
+
+div#demo_1 {
+  height: 90px;
+  background: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+  background: -moz-linear-gradient(top,  #fff,  #ededed);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
+  z-index: 1;
+}
+
+div#demo_2 {
+    height: 2px;
+    position: absolute;
+    top: 44px;
+    z-index: 2;
+    background-color: #686868;
+}
+
+div#demo_3 {
+    display: none;
+}

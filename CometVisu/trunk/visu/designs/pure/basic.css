@@ -466,3 +466,23 @@ div#loading {
   border: #ff8000 1px solid;
 }
 
+/* styles for the preview */
+div#demo_1, div#demo_2, div#demo_3 {
+    width: 100%;
+}
+
+div#demo_1 {
+    height: 30px;
+    background-color: black;
+}
+
+div#demo_2 {
+    height: 2px;
+    background-color: #ff8000;
+}
+
+div#demo_3 {
+    height: 58px;
+    background-color: black;
+}
+
