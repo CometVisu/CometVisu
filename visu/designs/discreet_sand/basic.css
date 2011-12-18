@@ -381,3 +381,21 @@ div#loading {
 	background-color: #fee;
 	opacity: 0.80;
 }
+
+/* styles for the preview */
+div#demo_1, div#demo_2, div#demo_3 {
+    width: 100%;
+    height: 30px;
+}
+
+div#demo_1 {
+    background-color: #165d7e;
+}
+
+div#demo_2 {
+    background-color: #cfc8b5;
+}
+
+div#demo_3 {
+    background-color: #baaf98;
+}
