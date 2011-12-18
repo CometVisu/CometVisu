@@ -90,6 +90,11 @@ var CometEditor = function() {
             // we've got elements we need to addit :)
             container.append(set = jQuery("<fieldset />").addClass("elements"));
             jQuery.each(elements, function(index, e) {
+                // Fallback if no options are specified
+                if (typeof e.options == "undefined") {
+                    e.options = {};
+                }
+                
                 var $line = $("<div />").addClass("add_input")
                     .append($("<label />").attr("for", "add_" + index).html(index))
                     .append($("<div class=\"input\" />"));
@@ -113,14 +118,14 @@ var CometEditor = function() {
                             objData._attributes.variant = "";
                             objData._attributes.readonly = false;
 
-                            var elementDiv = HTMLLayer.createAddressEditorElement(objData);
+                            var elementDiv = HTMLLayer.createAddressEditorElement(objData, e.options);
                             $input.find("div.multi_element").append(elementDiv);
                         });
 
                         if (typeof values._elements != "undefined"
                             && typeof values._elements[index] != "undefined") {
-                            $.each(values._elements[index], function(i, e) {
-                                var elementDiv = HTMLLayer.createAddressEditorElement(e);
+                            $.each(values._elements[index], function(i, myE) {
+                                var elementDiv = HTMLLayer.createAddressEditorElement(myE, e.options);
                                 $input.find("div.multi_element").append(elementDiv);
                             });
                         }
@@ -628,7 +633,8 @@ var CometEditorHTMLLayer = function() {
     /**
      * Create a sub-element for the multi-editor to edit an address-entry.
      */
-    Layer.createAddressEditorElement = function(elementData) {
+    Layer.createAddressEditorElement = function(elementData, options) {
+
         var elementDiv = jQuery("<div class=\"element clearfix\" />");
         elementDiv.append("<div class=\"title\" />")
             .append("<div class=\"value editable\" />")
@@ -651,6 +657,13 @@ var CometEditorHTMLLayer = function() {
             .data("variant", elementData._attributes.variant)
             .data("readonly", elementData._attributes.readonly == "true" ? true : false)
             .data("address", elementData.textContent);
+
+        if (typeof options == "undefined" || typeof options.variant == "undefined" || options.variant == false) {
+            // if this element does not support variants, then remove them from the HTML.
+            elementDiv.find("div.variant").remove();
+        }
+
+        elementDiv.data("options", options);
 
         return elementDiv;
     }

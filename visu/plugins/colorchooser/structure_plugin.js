@@ -166,7 +166,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
-      address:    { type: 'address',   required: true, multi: true }
+      address:    { type: 'address',   required: true, multi: true, options: {variant: ['r', 'g', 'b']} }
     },
     content:      false
 });
