@@ -109,9 +109,9 @@ function VisuDesign() {
       return ret_val;
     },
     attributes: {
+      name:     { type: 'string', required: true  },
       align:    { type: 'string', required: false },
       flavour:  { type: 'string', required: false },
-      name:     { type: 'string', required: true  },
       ga:       { type: 'addr', required: false   },
       visible:  { type: 'string', required: false },
       type:     { type: 'string', required: false },
@@ -227,9 +227,9 @@ function VisuDesign() {
       styling:    { type: 'styling',   required: false }
     },
     elements: {
-      layout:     { type: 'layout',    required: false, multi: false },
       label:      { type: 'string',    required: true, multi: false },
-      address:    { type: 'address',   required: true, multi: true }
+      address:    { type: 'address',   required: true, multi: true },
+      layout:     { type: 'layout',    required: false, multi: false }
     },
     content:      false
   });
@@ -342,9 +342,9 @@ function VisuDesign() {
       styling: { type: 'styling', required: false }
     },
     elements: {
-      layout:     { type: 'layout',    required: false, multi: false },
       label:      { type: 'string',    required: true, multi: false },
-      address:    { type: 'address',   required: true, multi: true }
+      address:    { type: 'address',   required: true, multi: true },
+      layout:     { type: 'layout',    required: false, multi: false }
     },
     content:      false
   });
