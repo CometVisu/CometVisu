@@ -62,17 +62,19 @@ body br
   vertical-align: middle;
 }
 
+.widget_container {
+  width: 50%;
+  float: left;
+}
+
+.widget_container .widget_container {
+    width: 100%;
+}
+
 .widget
 {
- float:left; 
-  width:48%; /* dumb fallback */
-  width: -moz-calc(50% - 0.6em);
-  width: -webkit-calc(50% - 0.6em);
-  width: -o-calc(50% - 0.6em);
-  width: calc(50% - 0.6em);
   margin:0.10em;
   padding:0.1em;
- /* border:yellow 1px solid; */
   border: none;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -83,15 +85,6 @@ body br
 .editmode .widget
 {
   border: 1px solid #444;
-}
-
-.widget .widget
-{
-  width:98%; /* dumb fallback */
-  width: -moz-calc(100% - 0.6em);
-  width: -webkit-calc(100% - 0.6em);
-  width: -o-calc(100% - 0.6em);
-  width: calc(100% - 0.6em);
 }
 
 .widget .label,

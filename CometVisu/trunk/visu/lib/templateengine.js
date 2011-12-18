@@ -337,7 +337,12 @@ function create_pages( page, path, flavour ) {
         .data("path", path)
         .data("nodeName", page.nodeName)
         .data("textContent", page.textContent);
-  return retval;
+        
+    if (jQuery(retval).is(".widget")) {
+        retval = jQuery("<div class='widget_container' />").append(retval);
+    }
+        
+    return retval;
 }
 
 function scrollToPage( page_id, speed )

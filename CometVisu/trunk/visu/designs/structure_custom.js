@@ -42,7 +42,7 @@ VisuDesign_Custom.prototype.addCreator("line", {
  */
 VisuDesign_Custom.prototype.addCreator("designtoggle", {
       create: function( page, path ) {
-                var ret_val = $('<div class="widget" />');
+                var ret_val = $('<div class="widget clearfix" />');
                 ret_val.addClass( 'switch' );
                 var label = '<div class="label">' + page.textContent + '</div>';
                 var actor = '<div class="actor switchUnpressed">';

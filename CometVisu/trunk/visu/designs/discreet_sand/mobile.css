@@ -1,6 +1,5 @@
-.widget
-{
-  width:98%;
+.widget_container {
+    width: 98%;
 }
 
 #bottom {
