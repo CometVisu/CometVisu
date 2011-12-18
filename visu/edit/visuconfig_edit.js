@@ -179,6 +179,7 @@ jQuery(document).ready(function() {
         $this.addClass("inedit");
         $edit = jQuery("<div class=\"clearfix edit\" />");
         $this.append($edit);
+       var options = $this.data("options");
 
         $this.find(".editable").hide().each(function(index, e) {
            $e = jQuery(e);
@@ -267,14 +268,24 @@ jQuery(document).ready(function() {
                     }
                 }
 
-                if ($e.hasClass("variant")) {
+                if ($e.hasClass("variant") && typeof options.variant != "undefined") {
+                    // variants can be selected from a pre-defined list ONLY.
                     element.find("label").html("variant");
-                    myElement.append($("<input class=\"add_variant\" />"));
-                    if (typeof $e.text() != "undefined") {
-                        // pre-set the value
-                        myElement.find(":input").val($e.text());
-                    }
+            
+                    // variants can be selected from a pre-defined list ONLY.
+                    var variantList = $("<select name=\"variant\" />");
 
+                    // go through list of available variants and display as select-list
+                    $.each(options.variant, function (i, element) {
+                        if (typeof $e.text() != "undefined"
+                            && $e.text() == element) {
+                            variantList.append("<option value=\"" + element + "\" label=\"" + element + "\" selected>" + element + "</option>");    
+                        } else {
+                            variantList.append("<option value=\"" + element + "\" label=\"" + element + "\">" + element + "</option>");    
+                        }
+                    });
+
+                    myElement.append(variantList);
                 }
 
                 if (element.find("select")[0]) {
@@ -308,8 +319,10 @@ jQuery(document).ready(function() {
                         objData._attributes.variant = $e.find(".add_variant").val();
                         objData._attributes.readonly = $e.find(".add_readonly:checked").val();
 
+                        var options = $e.data("options");
+
                         // remove this item and insert a new one instead
-                        var elementDiv = HTMLLayer.createAddressEditorElement(objData);
+                        var elementDiv = HTMLLayer.createAddressEditorElement(objData, options);
                         $this.closest(".element").replaceWith(elementDiv);
 
                     }))
