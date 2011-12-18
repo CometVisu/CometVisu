@@ -74,10 +74,17 @@ div#top {
   vertical-align: middle;
 }
 
+.widget_container {
+  width: 33%;
+  float: left;
+}
+
+.widget_container .widget_container {
+    width: 100%;
+}
+
 .widget
 {
-  float:left;
-  width:32%;
   margin: .1em;
   padding: 0.15em;
  /* border:yellow 1px solid; */
@@ -86,11 +93,6 @@ div#top {
   border-width: 1px 0px 0px 1px;
   min-height: 2.1em;
   background-color: #101010;
-}
-
-.widget .widget
-{
-  width:98%;
 }
 
 .text > div,

@@ -31,7 +31,7 @@ VisuDesign_Custom.prototype.addCreator("jqclock", {
         }
         var id = "jqclock_" + uniqid();
 
-        var ret_val = $('<div class="widget" />');
+        var ret_val = $('<div class="widget clearfix" />');
         ret_val.addClass( 'jqclock' );
         var label = '<div class="label">' + page.textContent + '</div>';
         var actor = $("<div class=\"actor\"><div class=\"jqclock_inline\" id=\"" + id + "\"></div></div>");

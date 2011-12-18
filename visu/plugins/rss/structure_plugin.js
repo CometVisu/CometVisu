@@ -32,7 +32,7 @@ VisuDesign_Custom.prototype.addCreator("rss", {
 
         var id = "rss_" + uniqid();
 
-        var ret_val = $('<div class="widget" />');
+        var ret_val = $('<div class="widget clearfix" />');
         ret_val.addClass( 'rss' );
         var label = '<div class="label">' + page.textContent + '</div>';
         var actor = $("<div class=\"actor\"><div class=\"rss_inline\" id=\"" + id + "\">loading...</div></div>");

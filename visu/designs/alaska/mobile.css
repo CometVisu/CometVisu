@@ -1,14 +1,11 @@
-.widget
-{
-  width:98%;
+.widget_container {
+    width: 98%;
 }
 
-#bottom 
-{
-  display: none;
+#bottom {
+    display: none;
 }
 
-.page 
-{
-  overflow: visible;
+.page {
+    overflow: visible;
 }
