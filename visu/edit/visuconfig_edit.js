@@ -73,7 +73,7 @@ jQuery(document).ready(function() {
     jQuery("#pages").bind("done", function() {
         $("#pages hr, #pages br").each(function() {
             if ($(this).closest(".widget").length == 0) {
-                $(this).wrap("<div class=\"widget line\" />");
+                $(this).wrap("<div class=\"widget clearfix line\" />");
                 var d = $.extend({}, $(this).data());
                 $(this).closest("div.widget").data(d);
             }

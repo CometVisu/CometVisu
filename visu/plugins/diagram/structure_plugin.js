@@ -32,7 +32,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
 
         var id = "diagram_" + uniqid();
 
-        var ret_val = $('<div class="widget" />');
+        var ret_val = $('<div class="widget clearfix" />');
         ret_val.addClass( 'diagram' );
         var labelElement = $p.find('label')[0];
         var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
@@ -92,7 +92,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
 
         var id = "diagram_" + uniqid();
 
-        var ret_val = $('<div class="widget" />');
+        var ret_val = $('<div class="widget clearfix" />');
         ret_val.addClass( 'diagram' );
         var labelElement = $p.find('label')[0];
         var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
@@ -211,7 +211,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
 
         var id = "diagram_" + uniqid();
 
-        var ret_val = $('<div class="widget" />');
+        var ret_val = $('<div class="widget clearfix" />');
         ret_val.addClass( 'diagram' );
         
         var labelElement = $p.find('label')[0];

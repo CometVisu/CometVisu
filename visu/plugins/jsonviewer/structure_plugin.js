@@ -23,7 +23,7 @@
   maturity: Maturity.development,
   create: function( page, path ) {
     var $p = $(page);
-    var ret_val = $('<div class="widget text" />');
+    var ret_val = $('<div class="widget clearfix text" />');
     var style = '';
     
     if( style != '' ) style = 'style="' + style + '"';

@@ -74,13 +74,19 @@ div#top {
   vertical-align: middle;
 }
 
+.widget_container {
+  width: 50%;
+  float: left;
+}
+
+.widget_container .widget_container {
+    width: 100%;
+}
+
 .widget
 {
-  float:left;
-  width:48%;
   margin: .2em;
   padding: 0.3em;
- /* border:yellow 1px solid; */
   border-color: #7F735F;
   border-style: solid;
   border-width: 2px 0px 0px 2px;

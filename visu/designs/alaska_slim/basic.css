@@ -82,21 +82,23 @@ div#top {
   text-decoration: none;
 }
 
+.widget_container {
+  width: 33%;
+  float: left;
+}
+
+.widget_container .widget_container {
+    width: 100%;
+}
+
 .widget
 {
-  float:left;
-  width:32%;
   margin: 0.2em;
   padding: 0.2em;
   border-style: solid none none none; /* oben rechts unten links */
   border-width: 1px;
   min-height: 2em;
   background: transparent;
-}
-
-.widget .widget
-{
-  width:98%;
 }
 
 .text > div, .link > a {
