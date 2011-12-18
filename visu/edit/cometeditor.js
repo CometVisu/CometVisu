@@ -175,7 +175,7 @@ var CometEditor = function() {
 
                         if (typeof values._attributes != "undefined"
                             && typeof values._attributes[index] != "undefined") {
-                            $input.find("option[value=" + values._attributes[index] + "]").attr("selected", "selected");
+                            $input.find("option[value='" + values._attributes[index] + "']").attr("selected", "selected");
                         }
 
                         break;
@@ -189,7 +189,7 @@ var CometEditor = function() {
 
                         if (typeof values._attributes != "undefined"
                             && typeof values._attributes[index] != "undefined") {
-                            $input.find("option[value=" + values._attributes[index] + "]").attr("selected", "selected");
+                            $input.find("option[value='" + values._attributes[index] + "']").attr("selected", "selected");
                         }
 
                         break;
@@ -204,7 +204,7 @@ var CometEditor = function() {
 
                         if (typeof values._attributes != "undefined"
                             && typeof values._attributes[index] != "undefined") {
-                            $input.find("option[value=" + values._attributes[index] + "]").attr("selected", "selected");
+                            $input.find("option[value='" + values._attributes[index] + "']").attr("selected", "selected");
                         }
 
                         break;
@@ -356,7 +356,7 @@ var CometEditor = function() {
         $("#" + path + ".page").insertAfter($(".page:visible:last"));
 
         if ($("#pages .inedit").is(".widget")) {
-            $("#pages .inedit").replaceWith(newWidget);
+            $("#pages .inedit").closest(".widget_container").replaceWith(newWidget);
         } else {
             jQuery(".page:visible:last > div").append(newWidget);
         }
@@ -463,6 +463,11 @@ var CometEditor = function() {
         var myObj = {};
 
         var e = $(element);
+        
+        // if this is a widget-container, get its widget
+        if (e.is(".widget_container")) {
+            e = e.children(".widget");
+        }
 
         myObj._type = e.data("nodeName");
         myObj.textContent = e.data("textContent");
@@ -632,7 +637,7 @@ var CometEditorHTMLLayer = function() {
             .append("<div class=\"readonly editable\" />");
         //myDiv.find(".title").append();
         var t = Editor.getAddressesObject();
-        elementDiv.find(".title").append(t.find("option[value=" + elementData.textContent + "]").text());
+        elementDiv.find(".title").append(t.find("option[value='" + elementData.textContent + "']").text());
         elementDiv.find(".value").append(elementData.textContent);
         elementDiv.find(".transform").append(elementData._attributes.transform);
         if (elementData._attributes.variant != "undefined" && elementData._attributes.variant != "") {
