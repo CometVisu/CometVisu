@@ -131,6 +131,21 @@ div#top {
   white-space: pre-wrap;
 }
 
+.jsonfeedview  {
+  line-height: 2em;
+  text-align:left;
+  overflow:hidden;
+  display:table;
+}
+
+.jsonfeedview  .table {
+  display:table;
+  padding-left: 1em;
+}
+
+.jsonfeedview > div .tr {
+  display:table-row;
+}
 
 .green.switchPressed div, .green.switchUnpressed div{
     background: transparent url(images/dot_green.png) no-repeat center center;

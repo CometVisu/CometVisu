@@ -18,29 +18,35 @@
 /**
  * This plugins views json-feeds
  */
- 
- VisuDesign_Custom.prototype.addCreator('jsonviewer', {
+
+VisuDesign_Custom.prototype.addCreator('jsonfeedview', {
   maturity: Maturity.development,
-  create: function( page, path ) {
+  create: function (page, path) {
     var $p = $(page);
-    var ret_val = $('<div class="widget clearfix text" />');
-    var style = '';
-    
-    if( style != '' ) style = 'style="' + style + '"';
-    var json = $('<div class="value">-</div>');
+    var viewnum = parseFloat($p.attr('view')) || 1;
+
+    var dummy = $('<div class="widget text" />').appendTo($("body"));
+    dummy.css({'float': 'left', 'visibility': 'hidden', 'display': 'inline'});
+    var h = dummy.outerHeight();
+    var fontsize = parseFloat(dummy.css("font-size"));
+    var margin = parseFloat(dummy.css("marginTop"));
+    var padding = parseFloat(dummy.css("paddingTop"));
+    var minheight = parseFloat(dummy.css("min-height"));
+    dummy.remove();
+        
+    var ourheight = ((viewnum-1)*(2*margin+2*padding)+viewnum*minheight)/fontsize;
+    var ret_val = $('<div class="widget clearfix jsonfeedview" style="height:'+ourheight+'em" ><div class="table" /></div>'); 
+            
     var refresh = $p.attr('refresh') || 30; // default 30s
+       
+    ret_val.data("src", $p.attr('src'));
+    ret_val.data("refresh", refresh);  
+    ret_val.data("view", viewnum); // default alles
+    ret_val.data("idx", 0);
         
-    json.data("src", $p.attr('src'));
-    json.data("refresh", refresh);  
-    json.data("view", $p.attr('view')); // default alles
-    json.data("idx", 0);
-    
-    var data = jQuery.extend({}, json.data());
-    ret_val.append(json);
-    
-    
-        
-    refreshjson(json,  data);
+    var data = jQuery.extend({}, ret_val.data());
+            
+    refreshjson(ret_val,  data);
     return ret_val;
   },
   attributes: {
@@ -54,29 +60,32 @@
 
 function refreshjson(e,data) {
     var element = $(e);
+
     var tmp = $.getJSON(data.src, function(json) {
-       var content = '';
+       var content = '<div class="table">';
        var feed = json.responseData.feed;
        var feedlength = feed.entries.length;
        var viewnum = data.view;
+       
        if (viewnum > feedlength) { // max is number of entries
          viewnum = feedlength;
        }
-       for (var i=0; i<viewnum; i++) {
+       
+       for (var i=0; i<viewnum; i++) { //
          var showidx = i + data.idx;
          if (showidx >= feedlength) {
            showidx = showidx - feedlength;
          }
-         content += ""+feed.entries[showidx].content + "<br>";
+         content += "<div class ='tr'>"+feed.entries[showidx].content+"</div>";
        };
-       element.html(content); 
+       element.find('.table').replaceWith($(content+"</div")); //html(content); 
        if (data.idx >= feedlength) {
          data.idx=0;
        } else {
          data.idx = data.idx+1;
        }
     });
-    var tmp2=0;
+    
     window.setTimeout(function(element, data) {
       refreshjson(element, data)
     }, data.refresh * 1000, element, data);
