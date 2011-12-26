@@ -128,6 +128,26 @@ function VisuDesign() {
     content: true
   });
   
+  this.addCreator('include', {
+    maturity: Maturity.development,
+    create: function( page, path, flavour ) {
+      var p = $.get( $(page).attr('src') );
+      var p = $.ajax({
+        url: $(page).attr('src'),
+        dataType: 'xml',
+        async: false
+      });
+      var child = (p.responseXML.childNodes[0]);
+      return create_pages( child, path , flavour ); 
+    },
+    attributes: {
+      src: { type: 'string', required: true }
+    },
+    elements: {
+    },
+    content: true
+  });
+
   this.addCreator('group', {
     maturity: Maturity.development,
     create: function( page, path, flavour ) {
