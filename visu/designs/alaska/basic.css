@@ -1,10 +1,10 @@
 @import "colors.css";
-@font-face { font-family: alaska; src:url(fonts/alaska_light_nocaps.ttf); }
-@font-face { font-family: alaska; font-weight: bold; src:url(fonts/alaska_black_nocaps.ttf); }
+@font-face { font-family: Tuffy; src:url(fonts/Tuffy.ttf); }
+@font-face { font-family: Tuffy; font-weight: bold; src:url(fonts/Tuffy_Bold.ttf); }
 
 body 
 { 
-  font-family: alaska,sans-serif;
+  font-family: Tuffy,sans-serif;
   font-size: 5.5mm;
   overflow: hidden;
   margin:0;
