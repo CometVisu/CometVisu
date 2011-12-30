@@ -77,7 +77,7 @@
         ]]></status>
       <status type="html"><![CDATA[
           - <a href="check_config.php">Check Config</a>
-          <div style="float:right;padding-right:0.5em">Version: 0.6.1</div>
+          <div style="float:right;padding-right:0.5em">Version: 0.6.2</div>
         ]]></status>
     </statusbar>
   </meta>
