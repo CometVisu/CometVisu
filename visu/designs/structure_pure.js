@@ -60,45 +60,19 @@ function VisuDesign() {
   this.addCreator('page', {
     create: function( page, path, flavour ) {
       var $p = $(page);
-      
-      var address = {};
-      if ($p.attr('ga')) {
-        src = $p.attr('ga');
-        ga_list.push($p.attr('ga'));
-        address[ '_' + $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
-      }
-
+      var ret_val = $('<div class="widget" />');
       var pstyle  = ( '0' != path ) ? 'display:none;' : ''; // subPage style
       var name    = $p.attr('name');
-      var type    = $p.attr('type') || 'text';              //text, 2d or 3d
-      var backdrop = $p.attr('backdrop');
+      var type    = $p.attr('type');                        //text, 2d or 3d
       if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
       var wstyle  = '';                                     // widget style
       if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
       if( wstyle != '' ) wstyle = 'style="' + wstyle + '"';
-
-      var ret_val;
-      
-      if ($p.attr('visible')=='false') {
-        ret_val=$('');
-      } else { // default is visible
-        ret_val = $('<div class="widget clearfix"/>');
-        ret_val.addClass( 'link' ).addClass('pagelink');
-        ret_val.append( '<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
-      }
-
+      ret_val.addClass( 'link' ).addClass('pagelink');
+      ret_val.append( '<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
       var childs = $p.children();
-      var container = $( '<div class="clearfix" />' );
-      
-      var $container = $( '<div class="clearfix" path="'+path+'"/>'); 
-      for( var addr in address ) $container.bind( addr, this.update );
-      var container=$container;
-      
+      var container = $( '<div class="clearfix"/>' );
       container.append( '<h1>' + name + '</h1>' );
-      if( '2d' == type )
-      {
-        container.append( '<embed src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;width:100%;height:100%;"/>' );
-      }
       $( childs ).each( function(i){
           container.append( create_pages( childs[i], path + '_' + i, flavour ) );
       } );
@@ -109,50 +83,20 @@ function VisuDesign() {
       return ret_val;
     },
     attributes: {
-      name:     { type: 'string', required: true  },
-      align:    { type: 'string', required: false },
-      flavour:  { type: 'string', required: false },
-      ga:       { type: 'addr', required: false   },
-      visible:  { type: 'string', required: false },
-      type:     { type: 'string', required: false },
-      backdrop: { type: 'string', required: false }
+      align:  { type: 'string', required: false },
+      flavour:{ type: 'string', required: false },
+      name:   { type: 'string', required: true }
     },
     elements: {
-    },
-    update: function(e, data) {
-      if (data==01) {
-        scrollToPage(this.attributes.path.nodeValue);
-        visu.write(e.type.substr(1), transformEncode("DPT:1.001", 0));
-      }
     },
     content: true
   });
   
-  this.addCreator('include', {
-    maturity: Maturity.development,
-    create: function( page, path, flavour ) {
-      var p = $.get( $(page).attr('src') );
-      var p = $.ajax({
-        url: $(page).attr('src'),
-        dataType: 'xml',
-        async: false
-      });
-      var child = (p.responseXML.childNodes[0]);
-      return create_pages( child, path , flavour ); 
-    },
-    attributes: {
-      src: { type: 'string', required: true }
-    },
-    elements: {
-    },
-    content: true
-  });
-
   this.addCreator('group', {
     maturity: Maturity.development,
     create: function( page, path, flavour ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget clearfix group" />');
+      var ret_val = $('<div class="widget group" />');
       if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
       var hstyle  = '';                                     // heading style
       if( $p.attr('align') ) hstyle += 'text-align:' + $p.attr('align') + ';';
@@ -200,7 +144,7 @@ function VisuDesign() {
   this.addCreator('text', {
     create: function( page, path ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget clearfix text" />');
+      var ret_val = $('<div class="widget text" />');
       var style = '';
       if( $p.attr('align') ) style += 'text-align:' + $p.attr('align') + ';';
       if( style != '' ) style = 'style="' + style + '"';
@@ -218,9 +162,7 @@ function VisuDesign() {
   this.addCreator('info', {
     create: function( page, path ) {
       var $p = $(page);
-      var layout = $p.find('layout')[0];
-      var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
-      var ret_val = $('<div class="widget clearfix info" ' + style + ' />');
+      var ret_val = $('<div class="widget info" />');
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -248,8 +190,7 @@ function VisuDesign() {
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
-      address:    { type: 'address',   required: true, multi: true },
-      layout:     { type: 'layout',    required: false, multi: false }
+      address:    { type: 'address',   required: true, multi: true }
     },
     content:      false
   });
@@ -257,9 +198,7 @@ function VisuDesign() {
   this.addCreator('slide', {
     create: function( page, path ) {
       var $p = $(page);
-      var layout = $p.find('layout')[0];
-      var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
-      var ret_val = $('<div class="widget clearfix slide" ' + style + ' />');
+      var ret_val = $('<div class="widget slide" />');
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -363,8 +302,7 @@ function VisuDesign() {
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
-      address:    { type: 'address',   required: true, multi: true },
-      layout:     { type: 'layout',    required: false, multi: false }
+      address:    { type: 'address',   required: true, multi: true }
     },
     content:      false
   });
@@ -372,7 +310,7 @@ function VisuDesign() {
   this.addCreator('switch', {
     create: function( page, path ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget clearfix switch" />');
+      var ret_val = $('<div class="widget switch" />');
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -429,7 +367,7 @@ function VisuDesign() {
   this.addCreator('toggle', {
     create: function( page, path ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget clearfix toggle" />');
+      var ret_val = $('<div class="widget toggle" />');
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -493,7 +431,7 @@ function VisuDesign() {
   this.addCreator('multitrigger', {
     create: function( page, path ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget clearfix switch" />');
+      var ret_val = $('<div class="widget switch" />');
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -625,7 +563,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var value = $p.attr('value') ? $p.attr('value') : 0;
-      var ret_val = $('<div class="widget clearfix switch" />');
+      var ret_val = $('<div class="widget switch" />');
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -685,7 +623,7 @@ function VisuDesign() {
   this.addCreator('image', {
     create: function( page, path ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget clearfix image" />');
+      var ret_val = $('<div class="widget image" />');
       var labelElement = $p.find('label')[0];
       ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
       var style = '';
@@ -718,7 +656,7 @@ function VisuDesign() {
   this.addCreator('video', {
     create: function( page, path ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget clearfix video" />');
+      var ret_val = $('<div class="widget video" />');
       var labelElement = $p.find('label')[0];
       ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
       var autoplay = ($p.attr('autoplay') && $p.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
@@ -759,11 +697,7 @@ function VisuDesign() {
       if( $p.attr('background') ) style += 'background-color:' + $p.attr('background') + ';';
       if( style != '' ) style = 'style="' + style + '"';
       var actor = '<div class="actor"><iframe src="' +$p.attr('src') + '" ' + style + '></iframe></div>';
-      
-      var refresh = $p.attr('refresh') ? $p.attr('refresh')*1000 : 0;
-      ret_val.append( $(actor).data( {
-        'refresh': refresh
-      } ).each(setupRefreshAction) ); // abuse "each" to call in context...
+      ret_val.append( $(actor) ); 
       return ret_val;
     },
     attributes: {
@@ -771,8 +705,7 @@ function VisuDesign() {
       width:       { type: 'string', required: false },
       height:      { type: 'string', required: false },
       frameborder: { type: 'list'  , required: false, list: {'true': "yes", 'false': "no"} },
-      background:  { type: 'string', required: false },
-      refresh: { type: 'numeric', required: false }
+      background:  { type: 'string', required: false }
     },
     elements: {
       label:  { type: 'string',    required: false, multi: false }
@@ -783,7 +716,7 @@ function VisuDesign() {
   this.addCreator('infotrigger', {
     create: function( page, path ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget clearfix switch" />');
+      var ret_val = $('<div class="widget switch" />');
 
       // handle label
       var labelElement = $p.find('label')[0];
@@ -932,7 +865,7 @@ function VisuDesign() {
   
   this.addCreator('unknown', {
     create: function( page, path ) {
-      var ret_val = $('<div class="widget clearfix" />');
+      var ret_val = $('<div class="widget" />');
       ret_val.append( '<pre>unknown: ' + page.nodeName + '</pre>' );
       return ret_val;
     },
@@ -1167,13 +1100,4 @@ function defaultUpdate( e, data, passedElement )
   element.find('.value').text( value );
   
   return value;
-}
-
-function extractLayout( layout )
-{
-  var ret_val = 'position:absolute;';
-  if( layout.getAttribute('x'    ) ) ret_val += 'left:'  + layout.getAttribute('x'    ) + ';';
-  if( layout.getAttribute('y'    ) ) ret_val += 'top:'   + layout.getAttribute('y'    ) + ';';
-  if( layout.getAttribute('width') ) ret_val += 'width:' + layout.getAttribute('width') + ';';
-  return ret_val;
 }

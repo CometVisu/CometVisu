@@ -39,7 +39,6 @@ foreach ($arrGA as $strGA => $arrData) {
                                         );
 }
 
-Header("Content-type: application/json");
 print json_encode($arrAdresses);
 exit;
 

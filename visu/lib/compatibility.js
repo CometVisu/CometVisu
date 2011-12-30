@@ -48,7 +48,7 @@ sprintfWrapper = {
         min: match[6] || 0,
         precision: match[8],
         code: match[9] || '%',
-        negative: parseFloat(arguments[convCount]) < 0 ? true : false,
+        negative: parseInt(arguments[convCount]) < 0 ? true : false,
         argument: String(arguments[convCount])
       };
     }
@@ -135,23 +135,3 @@ sprintfWrapper = {
 }
 
 sprintf = sprintfWrapper.init;
-
-/**
- * be able to access GET-Params
- */
-$.extend({
-  getUrlVars: function(){
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
-      hash = hashes[i].split('=');
-      vars.push(hash[0]);
-      vars[hash[0]] = hash[1];
-    }
-    return vars;
-  },
-  getUrlVar: function(name){
-    return $.getUrlVars()[name];
-  }
-});

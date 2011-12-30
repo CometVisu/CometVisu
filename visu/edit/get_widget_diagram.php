@@ -28,7 +28,6 @@ foreach (glob(DIR_RRD) as $filename) {
 
 }
 
-Header("Content-type: application/json");
 print json_encode($arrAdresses);
 exit;
 

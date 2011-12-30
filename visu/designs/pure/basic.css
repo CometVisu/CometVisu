@@ -62,19 +62,17 @@ body br
   vertical-align: middle;
 }
 
-.widget_container {
-  width: 50%;
-  float: left;
-}
-
-.widget_container .widget_container {
-    width: 100%;
-}
-
 .widget
 {
+ float:left; 
+  width:48%; /* dumb fallback */
+  width: -moz-calc(50% - 0.6em);
+  width: -webkit-calc(50% - 0.6em);
+  width: -o-calc(50% - 0.6em);
+  width: calc(50% - 0.6em);
   margin:0.10em;
   padding:0.1em;
+ /* border:yellow 1px solid; */
   border: none;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -85,6 +83,15 @@ body br
 .editmode .widget
 {
   border: 1px solid #444;
+}
+
+.widget .widget
+{
+  width:98%; /* dumb fallback */
+  width: -moz-calc(100% - 0.6em);
+  width: -webkit-calc(100% - 0.6em);
+  width: -o-calc(100% - 0.6em);
+  width: calc(100% - 0.6em);
 }
 
 .widget .label,
@@ -464,25 +471,5 @@ div#loading {
 .flavour_sodium.group
 {
   border: #ff8000 1px solid;
-}
-
-/* styles for the preview */
-div#demo_1, div#demo_2, div#demo_3 {
-    width: 100%;
-}
-
-div#demo_1 {
-    height: 30px;
-    background-color: black;
-}
-
-div#demo_2 {
-    height: 2px;
-    background-color: #ff8000;
-}
-
-div#demo_3 {
-    height: 58px;
-    background-color: black;
 }
 

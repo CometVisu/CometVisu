@@ -77,7 +77,7 @@
         ]]></status>
       <status type="html"><![CDATA[
           - <a href="check_config.php">Check Config</a>
-          <div style="float:right;padding-right:0.5em">Version: SVN</div>
+          <div style="float:right;padding-right:0.5em">Version: 0.6.1</div>
         ]]></status>
     </statusbar>
   </meta>
@@ -370,10 +370,6 @@
       <label>KNX traffic</label>
     </diagram_popup>
     <diagram_inline rrd="eib_traffic" width="600" height="400"/>
-    <diagram_info rrd="200_DALI_Linie_1_Strom" unit="mA" series="day" refresh="300">
-      <label>DALI Strom L1</label>
-      <address transform="DPT:9.021">14/2/7</address>
-    </diagram_info>
     <line/>
     <page name="Erweiterte Widgets">
       <text>Auf dieser Seite sind Widgets zu finden, die noch in Entwicklung

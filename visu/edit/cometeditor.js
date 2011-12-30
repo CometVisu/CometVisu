@@ -90,11 +90,6 @@ var CometEditor = function() {
             // we've got elements we need to addit :)
             container.append(set = jQuery("<fieldset />").addClass("elements"));
             jQuery.each(elements, function(index, e) {
-                // Fallback if no options are specified
-                if (typeof e.options == "undefined") {
-                    e.options = {};
-                }
-                
                 var $line = $("<div />").addClass("add_input")
                     .append($("<label />").attr("for", "add_" + index).html(index))
                     .append($("<div class=\"input\" />"));
@@ -118,14 +113,14 @@ var CometEditor = function() {
                             objData._attributes.variant = "";
                             objData._attributes.readonly = false;
 
-                            var elementDiv = HTMLLayer.createAddressEditorElement(objData, e.options);
+                            var elementDiv = HTMLLayer.createAddressEditorElement(objData);
                             $input.find("div.multi_element").append(elementDiv);
                         });
 
                         if (typeof values._elements != "undefined"
                             && typeof values._elements[index] != "undefined") {
-                            $.each(values._elements[index], function(i, myE) {
-                                var elementDiv = HTMLLayer.createAddressEditorElement(myE, e.options);
+                            $.each(values._elements[index], function(i, e) {
+                                var elementDiv = HTMLLayer.createAddressEditorElement(e);
                                 $input.find("div.multi_element").append(elementDiv);
                             });
                         }
@@ -180,7 +175,7 @@ var CometEditor = function() {
 
                         if (typeof values._attributes != "undefined"
                             && typeof values._attributes[index] != "undefined") {
-                            $input.find("option[value='" + values._attributes[index] + "']").attr("selected", "selected");
+                            $input.find("option[value=" + values._attributes[index] + "]").attr("selected", "selected");
                         }
 
                         break;
@@ -194,7 +189,7 @@ var CometEditor = function() {
 
                         if (typeof values._attributes != "undefined"
                             && typeof values._attributes[index] != "undefined") {
-                            $input.find("option[value='" + values._attributes[index] + "']").attr("selected", "selected");
+                            $input.find("option[value=" + values._attributes[index] + "]").attr("selected", "selected");
                         }
 
                         break;
@@ -209,7 +204,7 @@ var CometEditor = function() {
 
                         if (typeof values._attributes != "undefined"
                             && typeof values._attributes[index] != "undefined") {
-                            $input.find("option[value='" + values._attributes[index] + "']").attr("selected", "selected");
+                            $input.find("option[value=" + values._attributes[index] + "]").attr("selected", "selected");
                         }
 
                         break;
@@ -361,7 +356,7 @@ var CometEditor = function() {
         $("#" + path + ".page").insertAfter($(".page:visible:last"));
 
         if ($("#pages .inedit").is(".widget")) {
-            $("#pages .inedit").closest(".widget_container").replaceWith(newWidget);
+            $("#pages .inedit").replaceWith(newWidget);
         } else {
             jQuery(".page:visible:last > div").append(newWidget);
         }
@@ -468,11 +463,6 @@ var CometEditor = function() {
         var myObj = {};
 
         var e = $(element);
-        
-        // if this is a widget-container, get its widget
-        if (e.is(".widget_container")) {
-            e = e.children(".widget");
-        }
 
         myObj._type = e.data("nodeName");
         myObj.textContent = e.data("textContent");
@@ -633,8 +623,7 @@ var CometEditorHTMLLayer = function() {
     /**
      * Create a sub-element for the multi-editor to edit an address-entry.
      */
-    Layer.createAddressEditorElement = function(elementData, options) {
-
+    Layer.createAddressEditorElement = function(elementData) {
         var elementDiv = jQuery("<div class=\"element clearfix\" />");
         elementDiv.append("<div class=\"title\" />")
             .append("<div class=\"value editable\" />")
@@ -643,7 +632,7 @@ var CometEditorHTMLLayer = function() {
             .append("<div class=\"readonly editable\" />");
         //myDiv.find(".title").append();
         var t = Editor.getAddressesObject();
-        elementDiv.find(".title").append(t.find("option[value='" + elementData.textContent + "']").text());
+        elementDiv.find(".title").append(t.find("option[value=" + elementData.textContent + "]").text());
         elementDiv.find(".value").append(elementData.textContent);
         elementDiv.find(".transform").append(elementData._attributes.transform);
         if (elementData._attributes.variant != "undefined" && elementData._attributes.variant != "") {
@@ -657,13 +646,6 @@ var CometEditorHTMLLayer = function() {
             .data("variant", elementData._attributes.variant)
             .data("readonly", elementData._attributes.readonly == "true" ? true : false)
             .data("address", elementData.textContent);
-
-        if (typeof options == "undefined" || typeof options.variant == "undefined" || options.variant == false) {
-            // if this element does not support variants, then remove them from the HTML.
-            elementDiv.find("div.variant").remove();
-        }
-
-        elementDiv.data("options", options);
 
         return elementDiv;
     }

@@ -71,46 +71,36 @@ jQuery(document).ready(function() {
     });
 
     jQuery("#pages").bind("done", function() {
-        // wrap hr and br into "widgets", so they can be moved + removed
         $("#pages hr, #pages br").each(function() {
             if ($(this).closest(".widget").length == 0) {
-                $(this).wrap("<div class=\"widget clearfix\" />");
-                $(this).closest(".widget").wrap("<div class=\"widget_container line\" />");
+                $(this).wrap("<div class=\"widget line\" />");
                 var d = $.extend({}, $(this).data());
                 $(this).closest("div.widget").data(d);
             }
         });
 
 
-        // init "sortable"
         jQuery(".page div").sortable({
             handle: ".movecontrol",
-            items: '.widget_container',
+            items: '.widget',
             stop: function(event, ui) {
                 //console.log(jQuery(this).sortable("toArray"));
                 // hier haben wir eine neue Config
             }
         });
 
-        // create buttons for edit, move, remove
-        jQuery(".widget_container").unbind("mouseenter.edit").bind("mouseenter.edit", function() {
+        jQuery(".widget").unbind("mouseenter.edit").bind("mouseenter.edit", function() {
             jQuery(this).data("background-color-old", jQuery(this).css("background-color"));
-            if ($(this).find("div.movecontrol").is("div")) {
-                jQuery(this).find("div.editcontrol, div.movecontrol, div.removecontrol").show();
-            } else {
-                $(this).prepend(jQuery("<div />").attr("class", "movecontrol"));
-                $(this).prepend(jQuery("<div />").attr("class", "editcontrol").html("edit"));
-                $(this).prepend(jQuery("<div />").attr("class", "removecontrol").html("x"));
-            }
+            $(this).prepend(jQuery("<div />").attr("class", "movecontrol"));
+            $(this).prepend(jQuery("<div />").attr("class", "editcontrol").html("edit"));
+            $(this).prepend(jQuery("<div />").attr("class", "removecontrol").html("x"));
         });
 
-        // remove buttons when cursor leaves
-        jQuery(".widget_container").unbind("mouseleave.edit").bind("mouseleave.edit", function() {
+        jQuery(".widget").unbind("mouseleave.edit").bind("mouseleave.edit", function() {
             jQuery(this).css("background-color", jQuery(this).data("background-color-old"));
-            jQuery(this).find("div.editcontrol, div.movecontrol, div.removecontrol").hide();
+            jQuery(this).find("div.editcontrol, div.movecontrol, div.removecontrol").remove();
         });
 
-        // create list of widgets to be insertable/editable
         var options = {};
         $("#addMaster").find("select#add_type").empty();
         jQuery.each(design.creators, function (index, e) {
@@ -130,9 +120,8 @@ jQuery(document).ready(function() {
         });
     });
 
-    // act on "remove"-Clicks
     jQuery(".removecontrol").live("click", function() {
-        var widget = $(this).siblings("div.widget");
+        var widget = $(this).parents("div.widget");
         var data = Editor.getWidgetData(widget, true);
 
         var t;
@@ -143,16 +132,15 @@ jQuery(document).ready(function() {
         }
         var b = confirm(lingua("confirm_delete", t));
         if (b) {
-            widget.closest(".widget_container").remove();
+            widget.remove();
         }
     });
 
 
-    // act on "edit"-clicks
     jQuery(".editcontrol").live("click", function() {
         $("#addMaster").triggerHandler("cleanup");
 
-        var widget = $(this).siblings("div.widget");
+        var widget = $(this).parents("div.widget");
         if (widget.is(".pagelink")) {
             return renamePage(widget);
         }
@@ -164,12 +152,11 @@ jQuery(document).ready(function() {
 
         $("#addMaster").data("widgetdata", data);
 
-        $("#addMaster #add_type").find("option[value='" + data._type + "']").attr("selected", "selected");
+        $("#addMaster #add_type").find("option[value=" + data._type + "]").attr("selected", "selected");
 
         $("#addMaster").triggerHandler("show");
     });
 
-    // multi-element edits, like "address"
     jQuery(".multi_element .element").live("click", function() {
         $this = jQuery(this);
         if ($this.is(".inedit")) {
@@ -179,7 +166,6 @@ jQuery(document).ready(function() {
         $this.addClass("inedit");
         $edit = jQuery("<div class=\"clearfix edit\" />");
         $this.append($edit);
-       var options = $this.data("options");
 
         $this.find(".editable").hide().each(function(index, e) {
            $e = jQuery(e);
@@ -228,12 +214,12 @@ jQuery(document).ready(function() {
                             if ($dptField.is("input")) {
                                 $dptField.val(dpt);
                             } else if ($dptField.is("select")) {
-                                $dptField.find("option[value='" + dpt + "']").attr("selected", "selected");
+                                $dptField.find("option[value=" + dpt + "]").attr("selected", "selected");
                             }
                         });
 
                         if (typeof $e.text() != "undefined") {
-                            myElement.find("option[value='" + $e.text() + "']").attr("selected", "selected");
+                            myElement.find("option[value=" + $e.text() + "]").attr("selected", "selected");
                         }
 
                     }
@@ -255,7 +241,7 @@ jQuery(document).ready(function() {
                         myElement.find("select:first").append(Editor.getDPTObject());
 
                         if (typeof $e.text() != "undefined") {
-                            myElement.find("option[value='" + $e.text() + "']").attr("selected", "selected");
+                            myElement.find("option[value=" + $e.text() + "]").attr("selected", "selected");
                         }
 
                     }
@@ -268,24 +254,14 @@ jQuery(document).ready(function() {
                     }
                 }
 
-                if ($e.hasClass("variant") && typeof options.variant != "undefined") {
-                    // variants can be selected from a pre-defined list ONLY.
+                if ($e.hasClass("variant")) {
                     element.find("label").html("variant");
-            
-                    // variants can be selected from a pre-defined list ONLY.
-                    var variantList = $("<select name=\"variant\" />");
+                    myElement.append($("<input class=\"add_variant\" />"));
+                    if (typeof $e.text() != "undefined") {
+                        // pre-set the value
+                        myElement.find(":input").val($e.text());
+                    }
 
-                    // go through list of available variants and display as select-list
-                    $.each(options.variant, function (i, element) {
-                        if (typeof $e.text() != "undefined"
-                            && $e.text() == element) {
-                            variantList.append("<option value=\"" + element + "\" label=\"" + element + "\" selected>" + element + "</option>");    
-                        } else {
-                            variantList.append("<option value=\"" + element + "\" label=\"" + element + "\">" + element + "</option>");    
-                        }
-                    });
-
-                    myElement.append(variantList);
                 }
 
                 if (element.find("select")[0]) {
@@ -319,10 +295,8 @@ jQuery(document).ready(function() {
                         objData._attributes.variant = $e.find(".add_variant").val();
                         objData._attributes.readonly = $e.find(".add_readonly:checked").val();
 
-                        var options = $e.data("options");
-
                         // remove this item and insert a new one instead
-                        var elementDiv = HTMLLayer.createAddressEditorElement(objData, options);
+                        var elementDiv = HTMLLayer.createAddressEditorElement(objData);
                         $this.closest(".element").replaceWith(elementDiv);
 
                     }))
@@ -340,9 +314,7 @@ jQuery(document).ready(function() {
         );
     });
 
-    // edit-"window"
     jQuery("#addMaster")
-        // act on "show"
         .bind("show", function() {
             if ($("#pages .inedit").is(".widget")) {
                 $(this).find(".create").hide().end().find(".edit").show();
@@ -353,7 +325,7 @@ jQuery(document).ready(function() {
             // if we have widget-specific data, we must be in edit-mode
             var widgetdata = $(this).data("widgetdata");
             if (typeof widgetdata != "undefined") {
-                $(this).find("#add_type").find("option[value='" + widgetdata._type + "']").attr("selected", "selected").trigger("change");
+                $(this).find("#add_type").find("option[value=" + widgetdata._type + "]").attr("selected", "selected").trigger("change");
             }
 
             $(this).show()
@@ -361,24 +333,20 @@ jQuery(document).ready(function() {
             jQuery(".page div").sortable("destroy");
             jQuery(".widget").unbind("mouseenter.edit").trigger("mouseleave.edit").unbind("mouseleave.edit");
         })
-        // act on "hide"
         .bind("hide", function() {
             $(this).hide();
             $("#pages").triggerHandler("done");
         })
-        // cleanup
         .bind("cleanup", function() {
             $(this).removeData("widgetdata");
             jQuery(this).find("input[type=text]").val("");
             $("#addMaster div.inputs").empty(); 
             $("#pages").find(".inedit").removeClass("inedit");
         })
-        // cancel: hide and cleanup
         .find("#add_cancel").click(function() {
             jQuery("#addMaster").trigger("hide").trigger("cleanup")
         })
         .end()
-        // act on changes of widget-type (the select-list)
         .find("#add_type").change(function() {
             // the type has been changed
             // we need to change the input-field accordingly to match

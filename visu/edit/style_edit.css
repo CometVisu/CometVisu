@@ -1,5 +1,5 @@
 /* Editor-Stuff */
-.widget_container, .widget {position: relative;}
+.widget {position: relative;}
 
 .editcontrol, .movecontrol, .removecontrol {
     position: absolute;
@@ -181,8 +181,8 @@ div#addMaster {
     padding-left: 120px;
 }
 
-.widget_container.line {
-    width: 100%;
+div.line {
+    width: 97%;
 }
 
 div.line hr {

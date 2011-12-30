@@ -35,14 +35,26 @@ visu.update = function( json ) // overload the handler
 }
 visu.user = 'demo_user'; // example for setting a user
 
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  }
+});
+
 var configSuffix = "";
 if ($.getUrlVar("config")) {
     configSuffix = "_" + $.getUrlVar("config");
-}
-
-var clientDesign = "";
-if ($.getUrlVar("design")) {
-    clientDesign = $.getUrlVar("design");
 }
 
 if (typeof forceReload == "undefined") {
@@ -76,16 +88,22 @@ if (isNaN(use_maturity)) {
 }
 
 $(document).ready(function() {
-  
-  // only load the config and stuff if a design was specified
-  if (clientDesign != "") {
-      // get the data once the page was loaded
-      $.ajaxSetup({cache: !forceReload});
-      window.setTimeout("$.get( 'visu_config" + configSuffix + ".xml', parseXML );", 200);
-  } else {
-      selectDesign();
-  }
+  // get the data once the page was loaded
+  $.ajaxSetup({cache: !forceReload});
+  window.setTimeout("$.get( 'visu_config" + configSuffix + ".xml', parseXML );", 200);
 
+  // disable text selection - it's annoying on a touch screen!
+  /*
+   * Now in the CSS!
+  if($.browser.mozilla)
+  {//Firefox
+      $('body').css('MozUserSelect','none');
+  } else if($.browser.msie) {//IE
+      $(document).bind('selectstart',function(){return false;});
+  } else {//Opera, etc.
+      $(document).mousedown(function(){return false;});
+  }
+  */
 } );
 
 $(window).unload(function() {
@@ -155,8 +173,9 @@ function parseXML(xml) {
   // erst mal den Cache für AJAX-Requests wieder aktivieren
   $.ajaxSetup({cache: true});
 
-  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/basic.css" />' );
-  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/mobile.css" media="only screen and (max-device-width: 480px)" />' );
+  var design = $( 'pages', xml ).attr('design');
+  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + design + '/basic.css" />' );
+  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + design + '/mobile.css" media="only screen and (max-device-width: 480px)" />' );
 
   // start with the plugins
   var pluginsToLoad = 0;
@@ -318,26 +337,13 @@ function create_pages( page, path, flavour ) {
         .data("path", path)
         .data("nodeName", page.nodeName)
         .data("textContent", page.textContent);
-        
-    if (jQuery(retval).is(".widget")) {
-        retval = jQuery("<div class='widget_container' />").append(retval);
-    }
-        
-    return retval;
+  return retval;
 }
 
 function scrollToPage( page_id, speed )
 {
   $('#'+page_id).css( 'display', '' );                         // show new page
   main_scroll.seekTo( $('.page').index( $('#'+page_id)[0] ), speed ); // scroll to it
-  var pagedivs=$('div', '#'+page_id); 
-  for( var i = 0; i<pagedivs.length; i++) //check for inline diagrams & refresh
-  {
-    if( pagedivs[i].className == 'diagram_inline') 
-    {
-      refreshDiagram(pagedivs[i]);
-    }
-  }
 }
 
 function updateTopNavigation()
@@ -402,67 +408,9 @@ function setupRefreshAction()
   var refresh = $(this).data('refresh');
   if( refresh && refresh > 0 )
   {
-    var target = $('img', $(this) )[0] || $('iframe', $(this) )[0];
+    var target = $('img', $(this) )[0];
     var src = target.src;
     if( src.indexOf('?') < 0 ) src += '?';
     $(this).data('interval', setInterval( function(){refreshAction(target, src);}, refresh ) );
   }
-}
-
-
-function selectDesign() {
-
-    $body = $("body");
-
-    $("body > *").hide();
-    $body.css({backgroundColor: "black"});
-    
-    $div = $("<div id=\"designSelector\" />");
-    $div.css({background: "#808080", width: "400px", color: "white", margin: "auto", padding: "0.5em"});
-    $div.html("Loading ...");
-    
-    $body.append($div);
-    
-    $.getJSON("edit/get_designs.php", function(data) {
-        $div.empty();
-        
-        $div.append("<h1>Please select design</h1>");
-        $div.append("<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>");
-        
-        $.each(data, function(i, element) {
-            var $myDiv = $("<div />");
-
-            $myDiv.css({cursor: "pointer", padding: "0.5em 1em", borderBottom: "1px solid black", margin: "auto", width: "262px", position: "relative"});
-            
-            $myDiv.append("<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>");
-            $myDiv.append("<iframe src=\"designs/design_preview.html?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>");
-            $myDiv.append("<img width=\"60\" height=\"30\" src=\"media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>");
-            
-            $div.append($myDiv);
-
-            var $tDiv = $("<div />");
-            $tDiv.css({background: "transparent", position: "absolute", height: "90px", width: "160px", zIndex: 2})
-            var pos = $myDiv.find("iframe").position();
-            $tDiv.css({left: pos.left + "px", top: pos.top + "px"});
-            $myDiv.append($tDiv);
-            
-            $myDiv.hover(function() {
-                // over
-                $myDiv.css({background: "#bbbbbb"});
-            },
-            function() {
-                // out
-                $myDiv.css({background: "transparent"});
-            });
-            
-            $myDiv.click(function() {
-                if (document.location.search == "") {
-                    document.location.href = document.location.href + "?design=" + element;
-                } else {
-                    document.location.href = document.location.href + "&design=" + element;
-                }
-            })
-            
-        })
-    })
 }

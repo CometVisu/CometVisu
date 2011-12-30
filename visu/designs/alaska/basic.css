@@ -1,10 +1,10 @@
 @import "colors.css";
-@font-face { font-family: Tuffy; src:url(fonts/Tuffy.ttf); }
-@font-face { font-family: Tuffy; font-weight: bold; src:url(fonts/Tuffy_Bold.ttf); }
+@font-face { font-family: alaska; src:url(fonts/alaska_light_nocaps.ttf); }
+@font-face { font-family: alaska; font-weight: bold; src:url(fonts/alaska_black_nocaps.ttf); }
 
 body 
 { 
-  font-family: Tuffy,sans-serif;
+  font-family: alaska,sans-serif;
   font-size: 5.5mm;
   overflow: hidden;
   margin:0;
@@ -87,23 +87,21 @@ div#top {
   text-decoration: none;
 }
 
-.widget_container {
-  width: 50%;
-  float: left;
-}
-
-.widget_container .widget_container {
-    width: 100%;
-}
-
 .widget 
 {
+  float:left;
+  width:48%;
   margin: 0.2em;
   padding: 0.2em;
   border-style: solid none none none; /* oben rechts unten links */
   border-width: 1px;
   min-height: 2em;
   background: transparent;
+}
+
+.widget .widget 
+{
+  width:98%;
 }
 
 .text > div, .link > a 
@@ -383,35 +381,4 @@ div#loading
   display: inline-block;
   width: 100%;
   text-decoration: none;
-}
-
-
-/* styles for the preview */
-div#demo_1, div#demo_2, div#demo_3 {
-    width: 100%;
-}
-
-div#demo_container {
-    position: relative;
-}
-
-div#demo_1 {
-  height: 90px;
-  background: #fff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
-  background: -moz-linear-gradient(top,  #fff,  #ededed);
-  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
-  z-index: 1;
-}
-
-div#demo_2 {
-    height: 2px;
-    position: absolute;
-    top: 44px;
-    z-index: 2;
-    background-color: #686868;
-}
-
-div#demo_3 {
-    display: none;
 }
