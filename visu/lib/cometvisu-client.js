@@ -32,6 +32,7 @@ function CometVisu( urlPrefix )
   this.xhr     = false;                                  // the ongoing AJAX request
   this.watchdogTimer = 5;                                // in Seconds - the alive check intervall of the watchdog
   this.maxConnectionAge = 60;                            // in Seconds - restart if last read is older
+  this.lastIndex        = 0;                             // index returned by the last request
   
   /**
    * This function gets called once the communication is established and session information is available
@@ -54,7 +55,7 @@ function CometVisu( urlPrefix )
    */
   this.handleRead = function( json )
   {
-    if( !json )
+    if( !json && !this.doRestart )
     {
       if( this.running )
       { // retry initial request
@@ -64,13 +65,16 @@ function CometVisu( urlPrefix )
       return;
     }
 
-    var lastIndex = json.i;
-    var data      = json.d;
-    this.update( data );
+    if( !this.doRestart )
+    {
+      this.lastIndex = json.i;
+      var data       = json.d;
+      this.update( data );
+    }
 
     if( this.running )
     { // keep the requests going
-      this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&i='+lastIndex, success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+      this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&i='+this.lastIndex, success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
       watchdog.ping();
     }
   };
@@ -168,8 +172,8 @@ function CometVisu( urlPrefix )
   {
     this.doRestart = true;
     if( this.xhr.abort ) this.xhr.abort();
-    this.doRestart = false;
     this.handleRead(); // restart
+    this.doRestart = false;
   }
   
   /**
