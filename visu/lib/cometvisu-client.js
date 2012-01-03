@@ -32,7 +32,9 @@ function CometVisu( urlPrefix )
   this.xhr     = false;                                  // the ongoing AJAX request
   this.watchdogTimer = 5;                                // in Seconds - the alive check intervall of the watchdog
   this.maxConnectionAge = 60;                            // in Seconds - restart if last read is older
-  this.lastIndex        = 0;                             // index returned by the last request
+  this.maxDataAge       = 3200;                          // in Seconds - reload all data when last successfull read is older 
+                                                         // (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
+  this.lastIndex        = -1;                            // index returned by the last request
   
   /**
    * This function gets called once the communication is established and session information is available
@@ -55,7 +57,7 @@ function CometVisu( urlPrefix )
    */
   this.handleRead = function( json )
   {
-    if( !json && !this.doRestart )
+    if( !json && (-1 == this.lastIndex) )
     {
       if( this.running )
       { // retry initial request
@@ -181,9 +183,11 @@ function CometVisu( urlPrefix )
    */
   var watchdog = (function(){
     var last = new Date();
+    var hardLast = last;
     var aliveCheckFunction = function(){
       var now = new Date();
       if( now - last < thisCometVisu.maxConnectionAge * 1000 ) return;
+      if( now - hardLast > thisCometVisu.maxDataAge * 1000 ) thisCometVisu.lastIndex = -1; // reload all data
       thisCometVisu.restart();
       last = now;
     };
@@ -191,6 +195,8 @@ function CometVisu( urlPrefix )
     return {
       ping: function(){
         last = new Date();
+        if( !thisCometVisu.doRestart )
+          hardLast = last;
       }
     };
   })();
