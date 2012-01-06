@@ -380,8 +380,9 @@ function VisuDesign() {
         var src = this.textContent;
         var transform = this.getAttribute('transform');
         var readonly  = this.getAttribute('readonly');
+        var writeonly = this.getAttribute('writeonly');
         ga_list.push( src ) 
-        address[ '_' + src ] = [ transform, readonly=='true' ];
+        address[ '_' + src ] = [ transform, readonly=='true', writeonly=='true' ];
       });
       var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       var $actor = $(actor).data( {
@@ -393,7 +394,10 @@ function VisuDesign() {
         'align'   : $p.attr('align'),
         'type'    : 'switch'
       } ).bind( 'click', this.action );
-      for( var addr in address ) $actor.bind( addr, this.update );
+      for( var addr in address ) 
+      { 
+        if( !address[addr][2] ) $actor.bind( addr, this.update ); // no writeonly
+      }
       ret_val.append( label ).append( $actor );
       return ret_val;
     },
