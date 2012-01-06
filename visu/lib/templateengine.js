@@ -41,9 +41,6 @@ if ($.getUrlVar("config")) {
 }
 
 var clientDesign = "";
-if ($.getUrlVar("design")) {
-    clientDesign = $.getUrlVar("design");
-}
 
 if (typeof forceReload == "undefined") {
     var forceReload = false;
@@ -77,14 +74,9 @@ if (isNaN(use_maturity)) {
 
 $(document).ready(function() {
   
-  // only load the config and stuff if a design was specified
-  if (clientDesign != "") {
-      // get the data once the page was loaded
-      $.ajaxSetup({cache: !forceReload});
-      window.setTimeout("$.get( 'visu_config" + configSuffix + ".xml', parseXML );", 200);
-  } else {
-      selectDesign();
-  }
+  // get the data once the page was loaded
+  $.ajaxSetup({cache: !forceReload});
+  window.setTimeout("$.get( 'visu_config" + configSuffix + ".xml', parseXML );", 200);
 
 } );
 
@@ -155,9 +147,32 @@ function parseXML(xml) {
   // erst mal den Cache für AJAX-Requests wieder aktivieren
   $.ajaxSetup({cache: true});
 
+  
+  /* First, we try to get a design by url
+   * Secondly, we try to get a predefined design in the config file
+   * Otherwise we show the design selection dialog
+   */
+  
+  // read predefined design in config
+  predefinedDesign = $( 'pages', xml ).attr("design");
+
+  // design by url
+  if ($.getUrlVar("design")) {
+	  clientDesign = $.getUrlVar("design");
+  }
+  // design by config file
+  else if (predefinedDesign){
+	  clientDesign = predefinedDesign; 
+  }
+  // selection dialog
+  else {
+	  selectDesign();
+  }
+  
+  
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/basic.css" />' );
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/mobile.css" media="only screen and (max-device-width: 480px)" />' );
-
+  
   // start with the plugins
   var pluginsToLoad = 0;
   $( 'meta > plugins plugin', xml ).each( function(i){
