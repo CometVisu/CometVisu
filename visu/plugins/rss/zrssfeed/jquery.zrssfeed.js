@@ -1,13 +1,16 @@
 /**
  * Plugin: jquery.zRSSFeed
  * 
- * Version: 1.1.2
+ * Version: 1.1.5
  * (c) Copyright 2010-2011, Zazar Ltd
  * 
  * Description: jQuery plugin for display of RSS feeds via Google Feed API
  *              (Based on original plugin jGFeed by jQuery HowTo. Filesize function by Cary Dunn.)
  * 
  * History:
+ * 1.1.5 - Target option now applies to all feed links
+ * 1.1.4 - Added option to hide media and now compressed with Google Closure
+ * 1.1.3 - Check for valid published date
  * 1.1.2 - Added user callback function due to issue with ajaxStop after jQuery 1.4.2
  * 1.1.1 - Correction to null xml entries and support for media with jQuery < 1.5
  * 1.1.0 - Added support for media in enclosure tags
@@ -29,6 +32,7 @@
 			date: true,
 			content: true,
 			snippet: true,
+			media: true,
 			showerror: true,
 			errormsg: '',
 			key: null,
@@ -96,8 +100,10 @@
 		var row = 'odd';
 		
 		// Get XML data for media (parseXML not used as requires 1.5+)
-		var xml = getXMLDocument(data.xmlString);
-		var xmlEntries = xml.getElementsByTagName('item');
+		if (options.media) {
+			var xml = getXMLDocument(data.xmlString);
+			var xmlEntries = xml.getElementsByTagName('item');
+		}
 		
 		// Add header if required
 		if (options.header)
@@ -114,15 +120,18 @@
 			
 			// Get individual feed
 			var entry = feeds.entries[i];
-		
+			var pubDate;
+
 			// Format published date
-			var entryDate = new Date(entry.publishedDate);
-			var pubDate = entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString();
+			if (entry.publishedDate) {
+				var entryDate = new Date(entry.publishedDate);
+				var pubDate = entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;';
+			}
 			
 			// Add feed row
 			html += '<li class="rssRow '+row+'">' + 
-				'<'+ options.titletag +'><a href="'+ entry.link +'" title="View this feed at '+ feeds.title +'" target="'+ options.linktarget +'">'+ entry.title +'</a></'+ options.titletag +'>'
-			if (options.date) html += '<div>'+ pubDate +'</div>'
+				'<'+ options.titletag +'><a href="'+ entry.link +'" title="View this feed at '+ feeds.title +'">'+ entry.title +'</a></'+ options.titletag +'>'
+			if (options.date && pubDate) html += '<div>'+ pubDate +'</div>'
 			if (options.content) {
 			
 				// Use feed snippet if available and optioned
@@ -136,7 +145,7 @@
 			}
 			
 			// Add any media
-			if(xmlEntries.length > 0) {
+			if (options.media && xmlEntries.length > 0) {
 				var xmlMedia = xmlEntries[i].getElementsByTagName('enclosure');
 				if (xmlMedia.length > 0) {
 					html += '<div class="rssMedia"><div>Media files</div><ul>'
@@ -163,6 +172,9 @@
 			'</div>'
 		
 		$(e).html(html);
+
+		// Apply target to links
+		$('a',e).attr('target',options.linktarget);
 	};
 	
 	function formatFilesize(bytes) {
@@ -185,3 +197,4 @@
 	}
 
 })(jQuery);
+
