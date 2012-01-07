@@ -297,7 +297,7 @@ function setup_page( xml )
   window.onpopstate = function(e) {
 	  
 	  // where do we come frome?
-	  lastpage = $.getUrlVar("lastpage");
+	  lastpage = $('body').data("lastpage")
 	  if (lastpage) {
 		  // browser back button takes us one level higher
 		  scrollToPage(lastpage);
@@ -358,37 +358,23 @@ function scrollToPage( page_id, speed )
 {
   $('#'+page_id).css( 'display', '' );                         // show new page
 
-  
-  // build url string with new lastpage parameter
-  url_vars = $.getUrlVars();
-  parameters = [];
-  
-  // filter old lastpage parameter
-  for (var i = 0; i < url_vars.length; i++) {
-      key = url_vars[i];
-      value = url_vars[key];
-	  if (key != "lastpage"){
-    	parameters.push(key+"="+value);
-	  }
-  }
-  
   // which is the parent of target page_id?
-  // => set this id as lastpage in url for window.onpopstate handling 
+  // => set this id as lastpage in url for window.onpopstate handling
   var path = page_id.split( '_' );
   if (path.length > 1){
 	  // above top level
-	  // the next to last item of path is the parent id
+	  // everything besides the last number is the parent id
 	  path.pop();
-	  parameters.push("lastpage="+path.pop());
+	  // store lastpage in body.data
+	  $('body').data("lastpage", path.join("_"));
   }
   else {
 	  // top level
-	  parameters.push("lastpage="+page_id);
+	  $('body').data("lastpage", page_id);
   }
   
-  // manipulate browser url
-  path = window.location.pathname+"?"+parameters.join("&");
-  window.history.pushState(page_id, page_id, path);
+  // push new state to history
+  window.history.pushState(page_id, page_id, window.location.href);
   
   
   main_scroll.seekTo( $('.page').index( $('#'+page_id)[0] ), speed ); // scroll to it
