@@ -19,6 +19,11 @@
  * This plugins integrates zrssfeed to display RSS-Feeds via Google-API 
  * *and* a parser for local feeds using jQuery 1.5+ into CometVisu.
  * rssfeedlocal is derived from simplerss and zrssfeed
+ * rssfeedlocal is mainly meant to be used with rsslog.php and plugins
+ * Examples
+ *   <rss src="/visu/plugins/rss/rsslog.php" refresh="300" link="false" title="false"></rss>
+ *   <rss src="http://www.tagesschau.de/xml/rss2" refresh="300">Test API</rss>
+ *   <rss src="/visu/plugins/rss/tagesschau-rss2.xml" refresh="300" header="true" date="true"></rss>
  */
 
 $("body").append("<script type=\"text/javascript\" src=\"plugins/rss/zrssfeed/jquery.zrssfeed.js\"></script>");
@@ -62,6 +67,7 @@ VisuDesign_Custom.prototype.addCreator("rss", {
         rss.data("ssl", $p.attr("ssl")) || false;
         rss.data("linktarget", $p.attr("linktarget")) || "_new";
         rss.data("link", $p.attr("link")) || true;
+        rss.data("title", $p.attr("title")) || true;
 
         refreshRSS(rss, {});
 
@@ -80,7 +86,8 @@ VisuDesign_Custom.prototype.addCreator("rss", {
         showerror:  {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
         ssl:        {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
         linktarget: {type: "list", required: false, list: {"_new": "_new", "_self": "_self"}},
-        link:       {type: "list", required: false, list: {'true': "yes", 'false': "no"}}
+        link:       {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
+        title:      {type: "list", required: false, list: {'true': "yes", 'false': "no"}}
     },
     content: {type: "string", required: true}
 });
@@ -119,7 +126,8 @@ function refreshRSS(rss, data) {
 				showerror: eval(rss.data("showerror")),
 				ssl: eval(rss.data("ssl")),
 				linktarget: rss.data("linktarget"),
-				link: eval(rss.data("link"))
+				link: eval(rss.data("link")),
+				title: eval(rss.data("title"))
 			});
         });
     }
@@ -146,9 +154,11 @@ function refreshRSS(rss, data) {
                 limit: 10,
                 linktarget: 'new',
                 date: true,
-                link: true
+                link: true,
+                title: true
             }
             var options = jQuery.extend(defaults, options);
+
             return this.each(function() {
                 var o = options;
                 var c = jQuery(this);
@@ -166,15 +176,16 @@ function refreshRSS(rss, data) {
                         console.log('C: #%s, Error: %s, Feed: %s', $(c).attr('id'), e, o.src);
                     },
                     success: function(feed){
-
-                          if (o.header) 
-                            jQuery(c).parent().parent().prepend( '<p><div class="rssHeader">' +
+                          jQuery(c).html('');
+/* FIXME: Header gets added on each refresh, unsupported in rssfeedlocal for now..
+                          if (options.header)
+                             jQuery(c).parent().parent().prepend( '<p><div class="rssHeader">' +
                                 '<a href="' + jQuery(feed).find('link:first').text() 
                                 +'" title="'+ jQuery(feed).find('description:first').text()
                                 +'" target="' + o.linktarget + '">'
                                 + jQuery(feed).find('title:first').text()
                                 +'</a>' + '</div></p>');
-
+*/
                           jQuery(feed).find('item').each(function(i){
                             var row = 'odd';
                             var itemHtml;
@@ -183,7 +194,10 @@ function refreshRSS(rss, data) {
                                     + jQuery(this).find('guid').text() 
                                     + '" target="' + o.linktarget + '">'
                                     + jQuery(this).find('title').text() + '</a><br />');
-                            else
+                            else if (o.title)
+                                itemHtml = o.html.replace(/{title}/,  
+                                    jQuery(this).find('title').text() + '<br />');
+                            else    
                                 itemHtml = o.html.replace(/{title}/, '');
 
                             itemHtml = itemHtml.replace(/{text}/, jQuery(this).find('description').text());
