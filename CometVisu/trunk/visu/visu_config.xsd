@@ -63,6 +63,7 @@
 
 <xsd:attribute name="readonly" type="xsd:boolean" />
 <xsd:attribute name="align" type="xsd:string" />
+<xsd:attribute name="variant" type="xsd:string" />
 
 <!-- complex elements -->
 
@@ -179,6 +180,9 @@
             <xsd:element name="colorchooser" type="colorchooser" />
             <xsd:element name="diagram_popup" type="diagram_popup" />
             <xsd:element name="diagram_inline" type="diagram_inline" />
+            <xsd:element name="gweather" type="gweather" />
+            <xsd:element name="rss" type="rss" />
+            <xsd:element name="jqclock" type="jqclock" />
             <xsd:element ref="page" />
         </xsd:choice>
         <xsd:attribute name="name" type="xsd:string" use="required" />
@@ -222,6 +226,9 @@
         <xsd:element name="colorchooser" type="colorchooser" />
         <xsd:element name="diagram_popup" type="diagram_popup" />
         <xsd:element name="diagram_inline" type="diagram_inline" />
+        <xsd:element name="gweather" type="gweather" />
+        <xsd:element name="rss" type="rss" />
+        <xsd:element name="jqclock" type="jqclock" />
         <xsd:element ref="page" />
     </xsd:choice>
     <xsd:attribute name="name" type="xsd:string" use="required" />
@@ -426,6 +433,51 @@
     <xsd:attribute name="tooltip" type="xsd:string" use="optional" />
     <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
+</xsd:complexType>
+
+<xsd:complexType name="gweather" >
+    <xsd:choice maxOccurs="unbounded" minOccurs="1">
+        <xsd:element name="label" type="xsd:string" maxOccurs="1" />
+    </xsd:choice>    
+    <xsd:attribute name="width" type="dimension" use="optional"/>
+    <xsd:attribute name="height" type="dimension" use="optional"/>
+    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
+    <xsd:attribute name="city" type="xsd:string" use="required" />
+    <xsd:attribute name="lang" type="xsd:string" use="optional" />
+    <xsd:attribute name="image_url" type="xsd:string" use="optional" />
+    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
+    <xsd:attribute name="current" type="xsd:string" use="optional" />
+    <xsd:attribute name="forecast" type="xsd:string" use="optional" />
+</xsd:complexType>
+
+<xsd:complexType name="rss" >
+    <xsd:choice maxOccurs="unbounded" minOccurs="1">
+        <xsd:element name="label" type="xsd:string" maxOccurs="1" />
+    </xsd:choice>    
+    <xsd:attribute name="src" type="xsd:string" use="required" />
+    <xsd:attribute name="width" type="dimension" use="optional"/>
+    <xsd:attribute name="height" type="dimension" use="optional"/>
+    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
+    <xsd:attribute name="limit" type="xsd:integer" use="optional" />
+    <xsd:attribute name="header" type="xsd:string" use="required" />
+    <xsd:attribute name="date" type="xsd:string" use="optional" />
+    <xsd:attribute name="content" type="xsd:string" use="optional" />
+    <xsd:attribute name="snippet" type="xsd:integer" use="optional" />
+    <xsd:attribute name="showerror" type="xsd:string" use="optional" />
+    <xsd:attribute name="ssl" type="xsd:string" use="optional" />
+    <xsd:attribute name="linktarget" type="xsd:string" use="optional" />
+    <xsd:attribute name="link" type="xsd:string" use="optional" />
+    <xsd:attribute name="title" type="xsd:string" use="optional" />
+</xsd:complexType>
+
+<xsd:complexType name="jqclock" >
+    <xsd:choice maxOccurs="unbounded" minOccurs="1">
+        <xsd:element name="label" type="xsd:string" maxOccurs="1" />
+    </xsd:choice>    
+    <xsd:attribute name="width" type="dimension" use="optional"/>
+    <xsd:attribute name="height" type="dimension" use="optional"/>
+    <xsd:attribute name="lang" type="xsd:string" use="required" />
+    <xsd:attribute name="date" type="xsd:string" use="optional" />
 </xsd:complexType>
 
 <xsd:complexType name="break" />
