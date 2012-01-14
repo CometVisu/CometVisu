@@ -654,13 +654,14 @@ var CometEditorHTMLLayer = function() {
         elementDiv.find(".readonly").append(elementData._attributes.readonly == "true" ? "readonly" : "")
 
         elementDiv.data("transform", elementData._attributes.transform)
-            .data("variant", elementData._attributes.variant)
             .data("readonly", elementData._attributes.readonly == "true" ? true : false)
             .data("address", elementData.textContent);
 
         if (typeof options == "undefined" || typeof options.variant == "undefined" || options.variant == false) {
             // if this element does not support variants, then remove them from the HTML.
             elementDiv.find("div.variant").remove();
+        } else {
+            elementDiv.data("variant", elementData._attributes.variant);
         }
 
         elementDiv.data("options", options);
@@ -668,3 +669,4 @@ var CometEditorHTMLLayer = function() {
         return elementDiv;
     }
 }
+
