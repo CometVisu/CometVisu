@@ -696,7 +696,7 @@ function VisuDesign() {
       if( $p.attr('width' ) ) {
         style += 'width:'  + $p.attr('width' ) + ';';
       } else {
-        style += 'width: 100%';
+        style += 'width: 100%;';
       }
       if( $p.attr('height') ) style += 'height:' + $p.attr('height') + ';';
       if( style != '' ) style = 'style="' + style + '"';
