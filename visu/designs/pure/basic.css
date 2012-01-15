@@ -371,6 +371,11 @@ div#loading {
 	opacity: 0.80;
 }
 
+.rss_inline>ul {
+  padding-left:1em;
+  margin: 0px;
+}
+
 /*****************************************************************************/
 /* The definition of the flavours - overwrite the generic settings           */
 /*****************************************************************************/
