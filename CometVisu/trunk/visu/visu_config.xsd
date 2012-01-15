@@ -386,7 +386,7 @@
 
 <xsd:complexType name="diagram_inline">
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
-        <xsd:element name="label" type="xsd:string" maxOccurs="1" />
+      <xsd:element name="label" type="xsd:string" maxOccurs="1" />
     </xsd:choice>    
     <xsd:attribute name="rrd" type="xsd:string" use="required" />
     <xsd:attribute name="unit" type="xsd:string" use="optional" />
@@ -423,7 +423,6 @@
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
-    <xsd:element name="label" type="xsd:string" maxOccurs="1" />
     <xsd:attribute name="rrd" type="xsd:string" use="required" />
     <xsd:attribute name="unit" type="xsd:string" use="optional" />
     <xsd:attribute name="series" type="xsd:string" use="optional" />
@@ -445,7 +444,6 @@
     <xsd:attribute name="city" type="xsd:string" use="required" />
     <xsd:attribute name="lang" type="xsd:string" use="optional" />
     <xsd:attribute name="image_url" type="xsd:string" use="optional" />
-    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="current" type="xsd:string" use="optional" />
     <xsd:attribute name="forecast" type="xsd:string" use="optional" />
 </xsd:complexType>
