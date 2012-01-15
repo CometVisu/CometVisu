@@ -68,6 +68,8 @@ VisuDesign_Custom.prototype.addCreator("rss", {
         rss.data("linktarget", $p.attr("linktarget")) || "_new";
         rss.data("link", $p.attr("link")) || true;
         rss.data("title", $p.attr("title")) || true;
+        rss.data("mode", $p.attr("mode") || "last");
+        rss.data("itemoffset", 0);
 
         refreshRSS(rss, {});
 
@@ -87,7 +89,8 @@ VisuDesign_Custom.prototype.addCreator("rss", {
         ssl:        {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
         linktarget: {type: "list", required: false, list: {"_new": "_new", "_self": "_self"}},
         link:       {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        title:      {type: "list", required: false, list: {'true': "yes", 'false': "no"}}
+        title:      {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
+        mode:       {type: "list", required: false, list: {'first': 'first', 'last': 'last', 'rollover':'rollover' }}
     },
     content: {type: "string", required: true}
 });
@@ -127,17 +130,18 @@ function refreshRSS(rss, data) {
             ssl: eval(rss.data("ssl")),
             linktarget: rss.data("linktarget"),
             link: eval(rss.data("link")),
-            title: eval(rss.data("title"))
+            title: eval(rss.data("title")),
+            mode: rss.data("mode"),
           });
         });
     }
     if (typeof (refresh) != "undefined" && refresh) {
-	     // reload regularly
-	     window.setTimeout(function(rss, data) {
-	           refreshRSS(rss, data)
-	         }, refresh * 1000, rss, data);
-	 }
-
+      // reload regularly
+      window.setTimeout(function(rss, data) {
+        refreshRSS(rss, data)
+      }, refresh * 1000, rss, data);
+    }
+    //rss.data("itemoffset") = itemoffset;
     return false;
 }
 
@@ -187,23 +191,55 @@ function refreshRSS(rss, data) {
                                 + jQuery(feed).find('title:first').text()
                                 +'</a>' + '</div></p>');
 */                        
+                          // get height of one entry, calc max num of display items in widget
+                          var dummyDiv = $('<' + o.wrapper + ' class="rssRow odd" id="dummydiv">').append('l1<br />l2').appendTo($(c));
+                          var itemheight = dummyDiv.height();
+                          dummyDiv.remove();
+                          var displayheight = $(c).height();
+                          var displayrows = Math.floor(displayheight/itemheight);
+                                   
+                          var items = $(feed).find('item');
+                          var itemnum = items.length;
+                          var itemoffset = 0; // correct if mode='first' or itemnum<=displayrows
+                          
+                          
+                          if (itemnum>displayrows) { // no need to check mode if items are less than rows
+                            if (o.mode=='last') {
+                              itemoffset=itemnum-displayrows;
+                            }
+                            if (o.mode=='rollover') {
+                              itemoffset = $(c).data("itemoffset") || 0;
+                              if (itemoffset==itemnum) {
+                                itemoffset = 0;
+                              }
+                              $(c).data("itemoffset", itemoffset+1);
+                            }
+                          }
+                          
                           var row = 'odd';
-                          jQuery(feed).find('item').each(function(i) {  
+                                          
+                          for (var i=itemoffset; i<itemoffset+displayrows; i++) {  
+                            var idx = i;
+                            if (i>=itemnum) {
+                              idx = idx - itemnum;
+                            }
+                            
+                            var item = items[idx];
                             
                             var itemHtml;
                             if (o.link) 
                                 itemHtml = o.html.replace(/{title}/, '<a href="' 
-                                    + jQuery(this).find('guid').text() 
+                                    + jQuery(item).find('guid').text() 
                                     + '" target="' + o.linktarget + '">'
-                                    + jQuery(this).find('title').text() + '</a><br />');
+                                    + jQuery(item).find('title').text() + '</a><br />');
                             else if (o.title)
                                 itemHtml = o.html.replace(/{title}/,  
-                                    jQuery(this).find('title').text() + '<br />');
+                                    jQuery(item).find('title').text() + '<br />');
                             else    
                                 itemHtml = o.html.replace(/{title}/, '');
 
-                            itemHtml = itemHtml.replace(/{text}/, jQuery(this).find('description').text());
-                            var entryDate = new Date($(this).find('pubDate').text());
+                            itemHtml = itemHtml.replace(/{text}/, jQuery(item).find('description').text());
+                            var entryDate = new Date($(item).find('pubDate').text());
                             if (o.date && entryDate)
                                 itemHtml = itemHtml.replace(/{date}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;');
                             else
@@ -217,11 +253,7 @@ function refreshRSS(rss, data) {
                             } else {
                               row = 'odd';
                             }
-                            if (i == o.limit-1) {
-                                return false;
-                            }
-
-                          });
+                          };
                           $('li').wrapAll("<ul>");                      
                     }
                 });
