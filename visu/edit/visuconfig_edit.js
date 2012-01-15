@@ -273,7 +273,7 @@ jQuery(document).ready(function() {
                     element.find("label").html("variant");
             
                     // variants can be selected from a pre-defined list ONLY.
-                    var variantList = $("<select name=\"variant\" />");
+                    var variantList = $("<select name=\"variant\" class=\"add_variant\" />");
 
                     // go through list of available variants and display as select-list
                     $.each(options.variant, function (i, element) {

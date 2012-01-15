@@ -929,7 +929,7 @@ function VisuDesign() {
     },
     elements: {
       label:             { type: 'string',    required: false, multi: false },
-      address:           { type: 'address',   required: true, multi: true }
+      address:           { type: 'address',   required: true, multi: true, options: {variant: ['', 'isbutton']} }
     },
     content:      false
   });
@@ -1181,3 +1181,4 @@ function extractLayout( layout )
   if( layout.getAttribute('width') ) ret_val += 'width:' + layout.getAttribute('width') + ';';
   return ret_val;
 }
+
