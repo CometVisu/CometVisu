@@ -311,7 +311,7 @@ var CometEditor = function() {
                     $elements.each(function (index, e) {
                         $address = $("<address />")
                             .attr("transform", $(e).data("transform"))
-                            .attr("variant", $(e).data("variant"))
+                            .attr("variant", $(e).data("variant") || "")
                             .attr("readonly", $(e).data("readonly") == true ? "true" : "false")
                             .append($(e).data("address"));
                         dataObject.append($address);
@@ -646,8 +646,9 @@ var CometEditorHTMLLayer = function() {
         elementDiv.find(".title").append(t.find("option[value='" + elementData.textContent + "']").text());
         elementDiv.find(".value").append(elementData.textContent);
         elementDiv.find(".transform").append(elementData._attributes.transform);
+        elementDiv.find(".variant").append(elementData._attributes.variant);
         if (elementData._attributes.variant != "undefined" && elementData._attributes.variant != "") {
-            elementDiv.find(".variant").append(elementData._attributes.variant).show();
+            elementDiv.find(".variant").show();
         } else {
             elementDiv.find(".variant").hide();
         }
