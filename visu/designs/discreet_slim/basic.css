@@ -336,7 +336,6 @@ div#loading {
     display: none !important;
 }
 
-
 .popup,
 .popup_background {
   position: absolute;
@@ -367,6 +366,11 @@ div#loading {
 
 .popup div.head {
   border-bottom: 1px solid;
+}
+
+.rss_inline>ul {
+  padding-left:1em;
+  margin: 0px;
 }
 
 .popup_background.error {

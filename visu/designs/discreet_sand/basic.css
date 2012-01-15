@@ -169,6 +169,8 @@ div#top {
 {
   color: #165d7e; /*#3F2F1F;*/
   width: 49%;
+  line-height: 2em;
+  padding-left: 1em;
 }
 
 .page
@@ -373,6 +375,10 @@ div#loading {
     color: #453420;
 }
 
+.rss_inline>ul {
+  padding-left:1em;
+  margin: 0px;
+}
 #diagramTooltip {
 	z-index: 1000;
 	color: black;
