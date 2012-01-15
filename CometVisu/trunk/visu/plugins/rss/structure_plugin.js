@@ -42,7 +42,7 @@ VisuDesign_Custom.prototype.addCreator("rss", {
         var ret_val = $('<div class="widget clearfix" />');
         ret_val.addClass( 'rss' );
         var label = '<div class="label">' + page.textContent + '</div>';
-        var actor = $("<div class=\"actor\"><div class=\"rss_inline\" id=\"" + id + "\"></div></div>");
+        var actor = $("<div class=\"actor\"><div class=\"rss_inline\" id=\"" + id + "\"><div class='ul'></div></div></div>");
         var rss = $("#" + id, actor);
 
         if ($p.attr("width")) {
@@ -103,32 +103,32 @@ function refreshRSS(rss, data) {
     if (src.match(/^http/)) {
         //use zrssfeed
         jQuery(function() {
-			$(rss).rssfeed(src, {
-				limit: rss.data("limit"),
-				header: eval(rss.data("header")),
-				date: eval(rss.data("date")),
-				content: rss.data("content"),
-				snippet: eval(rss.data("snippet")),
-				showerror: eval(rss.data("showerror")),
-				ssl: eval(rss.data("ssl")),
-				linktarget: rss.data("linktarget"),
-			});
+          $(rss).rssfeed(src, {
+            limit: rss.data("limit"),
+            header: eval(rss.data("header")),
+            date: eval(rss.data("date")),
+            content: rss.data("content"),
+            snippet: eval(rss.data("snippet")),
+            showerror: eval(rss.data("showerror")),
+            ssl: eval(rss.data("ssl")),
+            linktarget: rss.data("linktarget"),
+          });
         });
     } else {
         jQuery(function() {
-			$(rss).rssfeedlocal({
-			    src: src,
-				limit: rss.data("limit"),
-				header: eval(rss.data("header")),
-				date: eval(rss.data("date")),
-				content: rss.data("content"),
-				snippet: eval(rss.data("snippet")),
-				showerror: eval(rss.data("showerror")),
-				ssl: eval(rss.data("ssl")),
-				linktarget: rss.data("linktarget"),
-				link: eval(rss.data("link")),
-				title: eval(rss.data("title"))
-			});
+          $(rss).rssfeedlocal({
+            src: src,
+            limit: rss.data("limit"),
+            header: eval(rss.data("header")),
+            date: eval(rss.data("date")),
+            content: rss.data("content"),
+            snippet: eval(rss.data("snippet")),
+            showerror: eval(rss.data("showerror")),
+            ssl: eval(rss.data("ssl")),
+            linktarget: rss.data("linktarget"),
+            link: eval(rss.data("link")),
+            title: eval(rss.data("title"))
+          });
         });
     }
     if (typeof (refresh) != "undefined" && refresh) {
@@ -177,6 +177,7 @@ function refreshRSS(rss, data) {
                     },
                     success: function(feed){
                           jQuery(c).html('');
+                          
 /* FIXME: Header gets added on each refresh, unsupported in rssfeedlocal for now..
                           if (options.header)
                              jQuery(c).parent().parent().prepend( '<p><div class="rssHeader">' +
@@ -185,9 +186,10 @@ function refreshRSS(rss, data) {
                                 +'" target="' + o.linktarget + '">'
                                 + jQuery(feed).find('title:first').text()
                                 +'</a>' + '</div></p>');
-*/
-                          jQuery(feed).find('item').each(function(i){
-                            var row = 'odd';
+*/                        
+                          var row = 'odd';
+                          jQuery(feed).find('item').each(function(i) {  
+                            
                             var itemHtml;
                             if (o.link) 
                                 itemHtml = o.html.replace(/{title}/, '<a href="' 
@@ -201,7 +203,7 @@ function refreshRSS(rss, data) {
                                 itemHtml = o.html.replace(/{title}/, '');
 
                             itemHtml = itemHtml.replace(/{text}/, jQuery(this).find('description').text());
-                            var entryDate = new Date(jQuery(this).find('pubDate').text());
+                            var entryDate = new Date($(this).find('pubDate').text());
                             if (o.date && entryDate)
                                 itemHtml = itemHtml.replace(/{date}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;');
                             else
@@ -209,17 +211,18 @@ function refreshRSS(rss, data) {
 
                             jQuery(c).append(jQuery('<' + o.wrapper + ' class="rssRow ' + row + '">').append(itemHtml));
 
-			                // Alternate row classes
-			                if (row == 'odd') {
-				                row = 'even';
-			                } else {
-				                row = 'odd';
-			                }			
+                            // Alternate row classes
+                            if (row == 'odd') {
+                              row = 'even';
+                            } else {
+                              row = 'odd';
+                            }
                             if (i == o.limit-1) {
                                 return false;
                             }
 
-                        });
+                          });
+                          $('li').wrapAll("<ul>");                      
                     }
                 });
             });
