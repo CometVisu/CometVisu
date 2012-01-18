@@ -42,7 +42,7 @@ VisuDesign_Custom.prototype.addCreator("rss", {
         var ret_val = $('<div class="widget clearfix" />');
         ret_val.addClass( 'rss' );
         var label = '<div class="label">' + page.textContent + '</div>';
-        var actor = $("<div class=\"actor\"><div class=\"rss_inline\" id=\"" + id + "\"><div class='ul'></div></div></div>");
+        var actor = $("<div class=\"actor\"><div class=\"rss_inline\" id=\"" + id + "\"></div>");
         var rss = $("#" + id, actor);
 
         if ($p.attr("width")) {
@@ -68,9 +68,7 @@ VisuDesign_Custom.prototype.addCreator("rss", {
         rss.data("linktarget", $p.attr("linktarget")) || "_new";
         rss.data("link", $p.attr("link")) || true;
         rss.data("title", $p.attr("title")) || true;
-        rss.data("mode", $p.attr("mode") || "last");
-        rss.data("itemoffset", 0);
-
+        
         refreshRSS(rss, {});
 
         return ret_val;
@@ -90,7 +88,6 @@ VisuDesign_Custom.prototype.addCreator("rss", {
         linktarget: {type: "list", required: false, list: {"_new": "_new", "_self": "_self"}},
         link:       {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
         title:      {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        mode:       {type: "list", required: false, list: {'first': 'first', 'last': 'last', 'rollover':'rollover' }}
     },
     content: {type: "string", required: true}
 });
@@ -103,8 +100,7 @@ function refreshRSS(rss, data) {
     var refresh = rss.data("refresh");
     var limit = rss.data("limit");
     //FIXME: eval really needed?? to convert string true/false to bool?
-    if (src.match(/^http/)) {
-        //use zrssfeed
+    
         jQuery(function() {
           $(rss).rssfeed(src, {
             limit: rss.data("limit"),
@@ -117,25 +113,7 @@ function refreshRSS(rss, data) {
             linktarget: rss.data("linktarget"),
           });
         });
-    } else {
-        jQuery(function() {
-          $(rss).rssfeedlocal({
-            src: src,
-            limit: rss.data("limit"),
-            header: eval(rss.data("header")),
-            date: eval(rss.data("date")),
-            content: rss.data("content"),
-            snippet: eval(rss.data("snippet")),
-            showerror: eval(rss.data("showerror")),
-            ssl: eval(rss.data("ssl")),
-            linktarget: rss.data("linktarget"),
-            link: eval(rss.data("link")),
-            title: eval(rss.data("title")),
-            mode: rss.data("mode"),
-          });
-        });
-    }
-    if (typeof (refresh) != "undefined" && refresh) {
+        if (typeof (refresh) != "undefined" && refresh) {
       // reload regularly
       window.setTimeout(function(rss, data) {
         refreshRSS(rss, data)
@@ -144,122 +122,3 @@ function refreshRSS(rss, data) {
     //rss.data("itemoffset") = itemoffset;
     return false;
 }
-
-(function($){
-    jQuery.fn.extend({
-        rssfeedlocal: function(options) {
-  
-            var defaults = {
-                src: '',
-                header: false,
-                html: '{title}{date}{text}',
-                wrapper: 'li',
-                dataType: 'xml',
-                limit: 10,
-                linktarget: 'new',
-                date: true,
-                link: true,
-                title: true
-            }
-            var options = jQuery.extend(defaults, options);
-
-            return this.each(function() {
-                var o = options;
-                var c = jQuery(this);
-
-                if (o.src == '') {
-                    console.log('rssfeedlocal: no src URL');
-                    return; // avoid the request
-                }
-
-                jQuery.ajax({
-                    url: o.src,
-                    type: 'GET',
-                    dataType: o.dataType,
-                    error: function (xhr, status, e) {
-                        console.log('C: #%s, Error: %s, Feed: %s', $(c).attr('id'), e, o.src);
-                    },
-                    success: function(feed){
-                          jQuery(c).html('');
-                          
-/* FIXME: Header gets added on each refresh, unsupported in rssfeedlocal for now..
-                          if (options.header)
-                             jQuery(c).parent().parent().prepend( '<p><div class="rssHeader">' +
-                                '<a href="' + jQuery(feed).find('link:first').text() 
-                                +'" title="'+ jQuery(feed).find('description:first').text()
-                                +'" target="' + o.linktarget + '">'
-                                + jQuery(feed).find('title:first').text()
-                                +'</a>' + '</div></p>');
-*/                        
-                          // get height of one entry, calc max num of display items in widget
-                          var dummyDiv = $('<' + o.wrapper + ' class="rssRow odd" id="dummydiv">').append('l1<br />l2').appendTo($(c));
-                          var itemheight = dummyDiv.height();
-                          dummyDiv.remove();
-                          var displayheight = $(c).height();
-                          var displayrows = Math.floor(displayheight/itemheight);
-                                   
-                          var items = $(feed).find('item');
-                          var itemnum = items.length;
-                          var itemoffset = 0; // correct if mode='first' or itemnum<=displayrows
-                          
-                          
-                          if (itemnum>displayrows) { // no need to check mode if items are less than rows
-                            if (o.mode=='last') {
-                              itemoffset=itemnum-displayrows;
-                            }
-                            if (o.mode=='rollover') {
-                              itemoffset = $(c).data("itemoffset") || 0;
-                              if (itemoffset==itemnum) {
-                                itemoffset = 0;
-                              }
-                              $(c).data("itemoffset", itemoffset+1);
-                            }
-                          }
-                          
-                          var row = 'odd';
-                                          
-                          for (var i=itemoffset; i<itemoffset+displayrows; i++) {  
-                            var idx = i;
-                            if (i>=itemnum) {
-                              idx = idx - itemnum;
-                            }
-                            
-                            var item = items[idx];
-                            
-                            var itemHtml;
-                            if (o.link) 
-                                itemHtml = o.html.replace(/{title}/, '<a href="' 
-                                    + jQuery(item).find('guid').text() 
-                                    + '" target="' + o.linktarget + '">'
-                                    + jQuery(item).find('title').text() + '</a><br />');
-                            else if (o.title)
-                                itemHtml = o.html.replace(/{title}/,  
-                                    jQuery(item).find('title').text() + '<br />');
-                            else    
-                                itemHtml = o.html.replace(/{title}/, '');
-
-                            itemHtml = itemHtml.replace(/{text}/, jQuery(item).find('description').text());
-                            var entryDate = new Date($(item).find('pubDate').text());
-                            if (o.date && entryDate)
-                                itemHtml = itemHtml.replace(/{date}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;');
-                            else
-                                itemHtml = itemHtml.replace(/{date}/, '');
-
-                            jQuery(c).append(jQuery('<' + o.wrapper + ' class="rssRow ' + row + '">').append(itemHtml));
-
-                            // Alternate row classes
-                            if (row == 'odd') {
-                              row = 'even';
-                            } else {
-                              row = 'odd';
-                            }
-                          };
-                          $('li').wrapAll("<ul>");                      
-                    }
-                });
-            });
-            return this;
-        }
-    });
-})(jQuery);
-
