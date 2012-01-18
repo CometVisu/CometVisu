@@ -368,11 +368,6 @@ div#loading {
   border-bottom: 1px solid;
 }
 
-.rss_inline>ul {
-  padding-left:1em;
-  margin: 0px;
-}
-
 .popup_background.error {
   background: #800000;
   border: #f00;

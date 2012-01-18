@@ -385,11 +385,6 @@ div#loading
   text-decoration: none;
 }
 
-.rss_inline>ul {
-  padding-left:1em;
-  margin: 0px;
-}
-
 /* styles for the preview */
 div#demo_1, div#demo_2, div#demo_3 {
     width: 100%;
