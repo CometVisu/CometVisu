@@ -363,17 +363,12 @@ div#loading {
 }
 
 #diagramTooltip {
-	z-index: 1000;
-	color: black;
-	border: 1px solid #fdd;
-	padding: 2px;
-	background-color: #fee;
-	opacity: 0.80;
-}
-
-.rss_inline>ul {
-  padding-left:1em;
-  margin: 0px;
+  z-index: 1000;
+  color: black;
+  border: 1px solid #fdd;
+  padding: 2px;
+  background-color: #fee;
+  opacity: 0.80;
 }
 
 /*****************************************************************************/
