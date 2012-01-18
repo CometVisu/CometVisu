@@ -1,0 +1,10 @@
+.rssBody, .rsslog_inline {
+  padding-left:0.15em;
+}
+
+.rssBody>ul, .rsslog_inline>ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+}

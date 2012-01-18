@@ -389,11 +389,6 @@ div#loading {
 	opacity: 0.80;
 }
 
-.rss_inline>ul {
-  padding-left:1em;
-  margin: 0px;
-}
-
 /* styles for the preview */
 div#demo_1, div#demo_2 {
     width: 100%;

@@ -26,6 +26,10 @@
  *   <rss src="/visu/plugins/rss/tagesschau-rss2.xml" refresh="300" header="true" date="true"></rss>
  */
 
+$.get("plugins/rsslog/rsslog.css", function(css) {
+    $("head").append("<style>"+css+"</style>");
+  });
+
 VisuDesign_Custom.prototype.addCreator("rsslog", {
     create: function( page, path ) {
         var $p = $(page);

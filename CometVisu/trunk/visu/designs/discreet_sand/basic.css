@@ -375,10 +375,6 @@ div#loading {
     color: #453420;
 }
 
-.rss_inline>ul {
-  padding-left:1em;
-  margin: 0px;
-}
 #diagramTooltip {
 	z-index: 1000;
 	color: black;
