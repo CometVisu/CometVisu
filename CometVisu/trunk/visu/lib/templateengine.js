@@ -59,17 +59,17 @@ forceReload = true;
 // This can be overwritten in the URL with the parameter "maturity"
 var use_maturity; 
 if ($.getUrlVar('maturity')) {
-	var url_maturity = $.getUrlVar('maturity');
-	if (!isNaN(url_maturity - 0)) {
-    	use_maturity = url_maturity - 0;         // given directly as number
-	}
-	else {
-    	use_maturity = Maturity[url_maturity]; // or as the ENUM name
-	}
+  var url_maturity = $.getUrlVar('maturity');
+  if (!isNaN(url_maturity - 0)) {
+    use_maturity = url_maturity - 0;         // given directly as number
+  }
+  else {
+    use_maturity = Maturity[url_maturity]; // or as the ENUM name
+  }
 }
 
 if (isNaN(use_maturity)) {
-	use_maturity = Maturity.release; // default to release
+  use_maturity = Maturity.release; // default to release
 }
 
 $(document).ready(function() {
@@ -142,6 +142,35 @@ function handleResize()
   main_scroll != undefined && main_scroll.seekTo( main_scroll.getIndex(), 0 ); // fix scroll
 }
 $( window ).bind( 'resize', handleResize );
+
+function rowspanClass(rowspan) {
+  var className = 'rowspan'+ rowspan;
+  if ( $('<div class="' + className + '" />').height() == 0 ) { 
+    var dummyDiv = $('<div><div class="widget clearfix text" id="innerDiv" /></div>')
+      .appendTo($('body'));
+
+    // get css settings of single object
+    var paddingTop = parseFloat($('#innerDiv').css('padding-top'));
+    var paddingBottom = parseFloat($('#innerDiv').css('padding-bottom'));
+    var marginTop = parseFloat($('#innerDiv').css('margin-top'));
+    var marginBottom = parseFloat($('#innerDiv').css('margin-bottom'));
+    var borderTop = parseFloat($('#innerDiv').css('border-top-width'));
+    var borderBottom = parseFloat($('#innerDiv').css('border-bottom-width'));
+    var singleHeight = parseFloat($('#innerDiv').css('height'));        
+
+    dummyDiv.remove();
+          
+    // calculate total height
+    var totalHeight = (rowspan-1) * Math.round((singleHeight+ 
+      + marginTop + paddingTop + borderTop
+      + marginBottom + paddingBottom + borderBottom))
+      + singleHeight;
+          
+    // append css style
+    $('head').append('<style>.rowspan' + rowspan + ' { height: ' + totalHeight + 'px; } </style>');
+  }
+  return className;
+}
 
 function parseXML(xml) {
   // erst mal den Cache für AJAX-Requests wieder aktivieren
