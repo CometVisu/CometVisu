@@ -690,6 +690,11 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix image" />');
+      
+      if ($p.attr("rowspan")) {  // add rowspan only if not default
+        ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+        
       var labelElement = $p.find('label')[0];
       ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
       var style = '';
