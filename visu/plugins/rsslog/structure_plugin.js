@@ -28,7 +28,7 @@
 
 $.get("plugins/rsslog/rsslog.css", function(css) {
     $("head").append("<style>"+css+"</style>");
-  });
+});
 
 VisuDesign_Custom.prototype.addCreator("rsslog", {
     create: function( page, path ) {
@@ -41,10 +41,17 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
 
         var id = "rss_" + uniqid();
 
-        var ret_val = $('<div class="widget clearfix" style="height:205px"/>');
+        var ret_val = $('<div class="widget clearfix" />');
         ret_val.addClass( 'rsslog' );
-        var label = '<div class="label" style="clear:both;">' + page.textContent + '</div>';
-        var actor = $('<div class="actor" style="clear:left;"><div class="rsslog_inline" id="' + id + '"></div></div>');
+        
+        if ($p.attr("rowspan")) {  // add rowspan only if not default
+          ret_val.addClass(rowspanClass($p.attr("rowspan")));
+        }
+        
+        var labelElement = $p.find('label')[0];
+        var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+       
+        var actor = $('<div class="actor rsslogBody"><div class="rsslog_inline" id="' + id + '"></div></div>');
         var rss = $("#" + id, actor);
 
         if ($p.attr("width")) {
@@ -58,22 +65,15 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
 
         rss.data("id", id);
         rss.data("src", $p.attr("src"));
-        rss.data("label", page.textContent);
+        rss.data("label", labelElement ? labelElement.textContent : '' );
         rss.data("refresh", $p.attr("refresh"));
-        rss.data("limit", $p.attr("limit")) || 10;
-        rss.data("header", $p.attr("header")) || true;
-        rss.data("date", $p.attr("date")) || true;
         rss.data("content", $p.attr("content")) || true;
-        rss.data("snippet", $p.attr("snippet")) || true;
-        rss.data("showerror", $p.attr("showerror")) || true;
-        rss.data("ssl", $p.attr("ssl")) || false;
-        rss.data("linktarget", $p.attr("linktarget")) || "_new";
-        rss.data("link", $p.attr("link")) || true;
         rss.data("title", $p.attr("title")) || true;
         rss.data("mode", $p.attr("mode") || "last");
-        rss.data("itemoffset", 0);
         rss.data("timeformat", $p.attr("timeformat"));
 
+        rss.data("itemoffset", 0);
+        
         refreshRSSlog(rss, {});
 
         return ret_val;
@@ -83,19 +83,12 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
         width:      {type: "string", required: false},
         height:     {type: "string", required: false},
         refresh:    {type: "numeric", required: false},
-        limit:      {type: "numeric", required: false},
-        header:     {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        date:       {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
         content:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        snippet:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        showerror:  {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        ssl:        {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        linktarget: {type: "list", required: false, list: {"_new": "_new", "_self": "_self"}},
-        link:       {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
         title:      {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        mode:       {type: "list", required: false, list: {'first': 'first', 'last': 'last', 'rollover':'rollover' }}
+        mode:       {type: "list", required: false, list: {'first': 'first', 'last': 'last', 'rollover':'rollover' }},
+        timeformat: {type: "string", required: false},
     },
-    content: {type: "string", required: true}
+    content: false
 });
 
 function refreshRSSlog(rss, data) {
@@ -105,25 +98,17 @@ function refreshRSSlog(rss, data) {
     var label = rss.data("label");
     var refresh = rss.data("refresh");
     var limit = rss.data("limit");
-    //FIXME: eval really needed?? to convert string true/false to bool?
+    
 
-        jQuery(function() {
-          $(rss).rssfeedlocal({
-            src: src,
-            limit: rss.data("limit"),
-            header: eval(rss.data("header")),
-            date: eval(rss.data("date")),
-            content: rss.data("content"),
-            snippet: eval(rss.data("snippet")),
-            showerror: eval(rss.data("showerror")),
-            ssl: eval(rss.data("ssl")),
-            linktarget: rss.data("linktarget"),
-            link: eval(rss.data("link")),
-            title: eval(rss.data("title")),
-            mode: rss.data("mode"),
-            timeformat: rss.data("timeformat"),
-          });
-        });
+    $(function() {
+      $(rss).rssfeedlocal({
+        src: src,
+        content: rss.data("content"),
+        title: eval(rss.data("title")),
+        mode: rss.data("mode"),
+        timeformat: rss.data("timeformat"),
+      });
+    });
     
     if (typeof (refresh) != "undefined" && refresh) {
       // reload regularly
@@ -131,7 +116,7 @@ function refreshRSSlog(rss, data) {
         refreshRSSlog(rss, data)
       }, refresh * 1000, rss, data);
     }
-    //rss.data("itemoffset") = itemoffset;
+    
     return false;
 }
 
@@ -141,14 +126,9 @@ function refreshRSSlog(rss, data) {
   
             var defaults = {
                 src: '',
-                header: false,
                 html: '{date}: {text}',
                 wrapper: 'li',
                 dataType: 'xml',
-                limit: 10,
-                linktarget: 'new',
-                date: true,
-                link: true,
                 title: true
             }
             var options = jQuery.extend(defaults, options);
@@ -193,7 +173,6 @@ function refreshRSSlog(rss, data) {
                           var itemnum = items.length;
                           var itemoffset = 0; // correct if mode='first' or itemnum<=displayrows
                           
-                          
                           if (itemnum>displayrows) { // no need to check mode if items are less than rows
                             if (o.mode=='last') {
                               itemoffset=itemnum-displayrows;
@@ -207,51 +186,33 @@ function refreshRSSlog(rss, data) {
                             }
                           }
                           
-                          var row = 'odd';
+                          var row = 'rsslogodd';
                           var last = itemoffset+displayrows;
                           if (last>itemnum) {
                             last=itemnum;
                           }
                           for (var i=itemoffset; i<last; i++) {  
                             var idx = i;
-                            if (i>=itemnum) {
-                              idx = idx - itemnum;
-                            }
+                            idx = (i>=itemnum) ? (idx = idx - itemnum) : idx;
                             
                             var item = items[idx];
                             
                             var itemHtml=o.html;
-                            /*if (o.link) 
-                                itemHtml = o.html.replace(/{title}/, '<a href="' 
-                                    + jQuery(item).find('guid').text() 
-                                    + '" target="' + o.linktarget + '">'
-                                    + jQuery(item).find('title').text() + '</a><br />');
-                            else if (o.title)
-                                itemHtml = o.html.replace(/{title}/,  
-                                    jQuery(item).find('title').text() + '<br />');
-                            else    
-                                itemHtml = o.html.replace(/{title}/, ''); */
-
+                            
                             itemHtml = itemHtml.replace(/{text}/, jQuery(item).find('description').text());
                             var entryDate = new Date($(item).find('pubDate').text());
-                            if (o.date && entryDate) {
-                              if (o.timeformat) {
-                                itemHtml = itemHtml.replace(/{date}/, entryDate.toLocaleFormat(o.timeformat) + '&nbsp;');
-                              } else {
-                                itemHtml = itemHtml.replace(/{date}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;');
-                              }
+                            if (entryDate) {
+                              itemHtml = (o.timeformat) ? 
+                                (itemHtml.replace(/{date}/, entryDate.toLocaleFormat(o.timeformat) + '&nbsp;')) : 
+                                (itemHtml.replace(/{date}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;'));
                             } else {
                               itemHtml = itemHtml.replace(/{date}/, '');
                             }
 
-                            jQuery(c).append(jQuery('<' + o.wrapper + ' class="rssRow ' + row + '">').append(itemHtml));
+                            jQuery(c).append(jQuery('<' + o.wrapper + ' class="rsslogRow ' + row + '">').append(itemHtml));
 
                             // Alternate row classes
-                            if (row == 'odd') {
-                              row = 'even';
-                            } else {
-                              row = 'odd';
-                            }
+                            row = (row == 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
                           };
                           
                           $('li', c).wrapAll("<ul>");                      
