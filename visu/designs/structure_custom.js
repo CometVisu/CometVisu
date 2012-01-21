@@ -41,35 +41,46 @@ VisuDesign_Custom.prototype.addCreator("line", {
  * to demonstrate all available
  */
 VisuDesign_Custom.prototype.addCreator("designtoggle", {
-      create: function( page, path ) {
-                var ret_val = $('<div class="widget clearfix" />');
-                ret_val.addClass( 'switch' );
-                var label = '<div class="label">' + page.textContent + '</div>';
-                var actor = '<div class="actor switchUnpressed">';
-                var value = $('link[href*="designs"]').attr('href').split('/')[1];
-                actor += '<div class="value">' + value + '</div>';
-                actor += '</div>';
-                ret_val.append(label).append($(actor)
-                    .data({
-                        'mapping' : $(page).attr('mapping'),
-                        'styling' : $(page).attr('styling'),
-                        'value'   : value,
-                        'type'    : 'toggle'
-                    })
-                    .bind('click', function() {
-                            var designs     = [ 'pure', 'discreet', 'discreet_sand', 'discreet_slim', 'alaska', 'alaska_slim' ];
-                            var oldDesign = $('.value',this).text();
-                            var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
-                            $('.value',this).text(newDesign);
-                            $('link[href*="designs"]').each(function(){
-                                this.href = this.href.replace( oldDesign, newDesign );
-                            });
-                        })
-                );
-                return ret_val;
-          },
-      attributes: {
-      },
-      content: {type: "string", required: true}
+  create: function( page, path ) {
+             
+    var ret_val = $('<div class="widget clearfix" />');
+    ret_val.addClass( 'switch' );
+    var label = '<div class="label">' + page.textContent + '</div>';
+    var actor = '<div class="actor switchUnpressed">';
+    var value = $('link[href*="designs"]').attr('href').split('/')[1];
+    actor += '<div class="value">' + value + '</div>';
+    actor += '</div>';
+    ret_val.append(label).append($(actor)
+      .data({
+        'mapping' : $(page).attr('mapping'),
+        'styling' : $(page).attr('styling'),
+        'value'   : value,
+        'type'    : 'toggle'
+      })
+      .bind('click', function() {
+        var designs     = [ 'pure', 'discreet', 'discreet_sand', 'discreet_slim', 'alaska', 'alaska_slim' ];
+        var oldDesign = $('.value',this).text();
+        var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
+        $('.value',this).text(newDesign);
+        $('link[href*="designs"]').each(function(){
+          this.href = this.href.replace( oldDesign, newDesign );
+        });
+                      
+        setTimeout(function() {
+          $('style').each(function(style) {
+            var txt = this.textContent;
+            var idx = txt.search('rowspan');
+            if (idx>0) {
+              rowspanClass(parseInt(txt[idx+7]), this);
+            }
+          });
+        }, 100);
+      })
+    );
+    return ret_val;
+  },
+  attributes: {
+  },
+  content: true
 });
 

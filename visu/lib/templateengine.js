@@ -98,7 +98,7 @@ function transformDecode( transformation, value )
   var basetrans = transformation.split('.')[0];
   return transformation in Transform ?
     Transform[ transformation ].decode( value ) : 
-	  (basetrans in Transform ? Transform[ basetrans ].decode( value ) : value);
+    (basetrans in Transform ? Transform[ basetrans ].decode( value ) : value);
 }
 
 function map( value, element )
@@ -143,12 +143,13 @@ function handleResize()
 }
 $( window ).bind( 'resize', handleResize );
 
-function rowspanClass(rowspan) {
+function rowspanClass(rowspan, elem) {
   var className = 'rowspan'+ rowspan;
-  if ( $('<div class="' + className + '" />').height() == 0 ) { 
-    var dummyDiv = $('<div><div class="widget clearfix text" id="innerDiv" /></div>')
-      .appendTo($('body'));
-
+  
+  if (( $('<div class="' + className + '" />').height() == 0 ) || elem ) { 
+    var dummyDiv = $('<div id="calcrowspan" ><div class="widget clearfix text" id="innerDiv" /></div>')
+      .appendTo(document.body).show();
+    
     // get css settings of single object
     var paddingTop = parseFloat($('#innerDiv').css('padding-top'));
     var paddingBottom = parseFloat($('#innerDiv').css('padding-bottom'));
@@ -158,7 +159,7 @@ function rowspanClass(rowspan) {
     var borderBottom = parseFloat($('#innerDiv').css('border-bottom-width'));
     var singleHeight = parseFloat($('#innerDiv').css('height'));        
 
-    dummyDiv.remove();
+    $('#calcrowspan').remove();
           
     // calculate total height
     var totalHeight = (rowspan-1) * Math.round((singleHeight+ 
@@ -167,8 +168,14 @@ function rowspanClass(rowspan) {
       + singleHeight;
           
     // append css style
+    
+    if (elem) {
+      $(elem).remove(); 
+    } 
+    
     $('head').append('<style>.rowspan' + rowspan + ' { height: ' + totalHeight + 'px; } </style>');
   }
+  
   return className;
 }
 
