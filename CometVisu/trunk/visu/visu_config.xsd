@@ -66,7 +66,6 @@
 <xsd:attribute name="variant" type="xsd:string" />
 
 <!-- complex elements -->
-
 <xsd:element name="pages">
     <xsd:complexType>
         <xsd:choice minOccurs="0" maxOccurs="unbounded">
@@ -260,8 +259,8 @@
     </xsd:choice>
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
-	<xsd:attribute name="on_value" type="xsd:string" use="optional" />
-	<xsd:attribute name="off_value" type="xsd:string" use="optional" />
+    <xsd:attribute name="on_value" type="xsd:string" use="optional" />
+    <xsd:attribute name="off_value" type="xsd:string" use="optional" />
     <xsd:attribute ref="align" use="optional" />
 </xsd:complexType>
 
@@ -311,6 +310,7 @@
     </xsd:choice>
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
+    <xsd:attribute name="showstatus" type="xsd:string" use="optional" />
     <xsd:attribute name="button1label" type="xsd:string" use="optional" />
     <xsd:attribute name="button1value" type="xsd:string" use="optional" />
     <xsd:attribute name="button2label" type="xsd:string" use="optional" />
