@@ -430,6 +430,7 @@ function VisuDesign() {
     content:      false
   });
   
+
   this.addCreator('toggle', {
     create: function( page, path ) {
       var $p = $(page);
@@ -501,6 +502,7 @@ function VisuDesign() {
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
+      var showstatus = $p.attr("showstatus") || "false";
       $p.find('address').each( function(){ 
         var src = this.textContent;
         var transform = this.getAttribute('transform');
@@ -529,6 +531,9 @@ function VisuDesign() {
           'align'   : $p.attr('align'),
           'type'    : 'switch'
         } ).bind( 'click', this.action );
+        if( showstatus == "true" ) {
+            for( var addr in address ) $actor.bind( addr, this.update );	
+        }
         buttons.append( $actor );
         if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
       }
@@ -548,6 +553,9 @@ function VisuDesign() {
           'type'    : 'switch',
           'align'   : $p.attr('align')
         } ).bind( 'click', this.action );
+        if( showstatus == "true" ) {
+            for( var addr in address ) $actor.bind( addr, this.update );	
+        }
         buttons.append( $actor );
         if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
       }
@@ -566,6 +574,9 @@ function VisuDesign() {
           'value'   : $p.attr('button3value'),
           'type'    : 'switch'
         } ).bind( 'click', this.action );
+        if( showstatus == "true" ) {
+            for( var addr in address ) $actor.bind( addr, this.update );	
+        }
         buttons.append( $actor );
         if( 1 == buttonCount++ % 2 ) buttons.append( $('<br/>') );
       }
@@ -584,6 +595,9 @@ function VisuDesign() {
           'value'   : $p.attr('button4value'),
           'type'    : 'switch',
         } ).bind( 'click', this.action );
+        if( showstatus == "true" ) {
+            for( var addr in address ) $actor.bind( addr, this.update );	
+        }
         buttons.append( $actor );
         if( 1 == buttonCount++ % 2 ) buttons.append( $('<br/>') );
       }
@@ -593,9 +607,11 @@ function VisuDesign() {
     },
     update: function(e,d) { 
       var element = $(this);
-      var value = defaultUpdate( e, d, element );
-      element.removeClass( value == 0 ? 'switchPressed' : 'switchUnpressed' );
-      element.addClass(    value == 0 ? 'switchUnpressed' : 'switchPressed' );
+      //var value = defaultUpdate( e, d, element );
+      var thisTransform = element.data().address[ e.type ][0];
+      var value = transformDecode( element.data().address[ e.type ][0], d );
+      element.removeClass( value == element.data().value ? 'switchUnpressed' : 'switchPressed' );
+      element.addClass(    value == element.data().value ? 'switchPressed' : 'switchUnpressed' );
     },
     action: function() {
       var data = $(this).data();
@@ -616,7 +632,8 @@ function VisuDesign() {
       button4value:      { type: 'string'  , required: false },
       mapping:           { type: 'mapping' , required: false },
       styling:           { type: 'styling' , required: false },
-      align:             { type: 'string'  , required: false }
+      align:             { type: 'string'  , required: false },
+      showstatus:        { type: 'list'   , required: true, list: {'true': "yes", 'false': "no"}   }
     },
     elements: {
       label:             { type: 'string',    required: false, multi: false },
@@ -861,9 +878,9 @@ function VisuDesign() {
       } );
 
       var actorinfo = '<div class="actor switchInvisible" ';
-	  if ( $p.attr( 'align' ) ) 
+      if ( $p.attr( 'align' ) ) 
         actorinfo += 'style="text-align: '+$p.attr( 'align' )+'" '; 
-	  actorinfo += '" ><div class="value">-</div></div>';
+      actorinfo += '" ><div class="value">-</div></div>';
       var $actorinfo = $(actorinfo).data({
         'address'  : address,
         'format'   : $p.attr('format'),
