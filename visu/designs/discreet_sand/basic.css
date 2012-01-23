@@ -79,6 +79,10 @@ div#top {
   float: left;
 }
 
+.colspan2 {
+  width:100%;
+}
+
 .widget_container .widget_container {
     width: 100%;
 }

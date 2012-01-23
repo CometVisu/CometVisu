@@ -48,6 +48,9 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
           ret_val.addClass(rowspanClass($p.attr("rowspan")));
         }
         
+        if ($p.attr("colspan")) {  // add colspan only if not default
+          ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+        }
         var labelElement = $p.find('label')[0];
         var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
        
@@ -152,15 +155,6 @@ function refreshRSSlog(rss, data) {
                     success: function(feed){
                           jQuery(c).html('');
                           
-/* FIXME: Header gets added on each refresh, unsupported in rssfeedlocal for now..
-                          if (options.header)
-                             jQuery(c).parent().parent().prepend( '<p><div class="rssHeader">' +
-                                '<a href="' + jQuery(feed).find('link:first').text() 
-                                +'" title="'+ jQuery(feed).find('description:first').text()
-                                +'" target="' + o.linktarget + '">'
-                                + jQuery(feed).find('title:first').text()
-                                +'</a>' + '</div></p>');
-*/                        
                           // get height of one entry, calc max num of display items in widget
                           var dummyDiv = $('<' + o.wrapper + ' class="rssRow odd" id="dummydiv">').append('<li />').appendTo($(c));
                           var itemheight = dummyDiv.height();
@@ -203,7 +197,7 @@ function refreshRSSlog(rss, data) {
                             var entryDate = new Date($(item).find('pubDate').text());
                             if (entryDate) {
                               itemHtml = (o.timeformat) ? 
-                                (itemHtml.replace(/{date}/, entryDate.toLocaleFormat(o.timeformat) + '&nbsp;')) : 
+                                (itemHtml.replace(/{date}/, entryDate.strftime(o.timeformat) + '&nbsp;')) : 
                                 (itemHtml.replace(/{date}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;'));
                             } else {
                               itemHtml = itemHtml.replace(/{date}/, '');

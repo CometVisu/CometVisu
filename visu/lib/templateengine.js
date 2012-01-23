@@ -173,12 +173,16 @@ function rowspanClass(rowspan, elem) {
       $(elem).remove(); 
     } 
     
-    $('head').append('<style>.rowspan' + rowspan + ' { height: ' + totalHeight + 'px; } </style>');
+    $('head').append('<style>.rowspan' + rowspan + ' { height: ' + totalHeight + 'px; overflow:hidden;} </style>');
   }
   
   return className;
 }
 
+function colspanClass(colspan, elem) {
+  var className = 'colspan'+ colspan; // mostly dummy, has to be defined in design-CSS
+  return className;
+}
 function parseXML(xml) {
   // erst mal den Cache für AJAX-Requests wieder aktivieren
   $.ajaxSetup({cache: true});
@@ -384,7 +388,7 @@ function create_pages( page, path, flavour ) {
         .data("textContent", page.textContent);
         
     if (jQuery(retval).is(".widget")) {
-        retval = jQuery("<div class='widget_container' />").append(retval);
+       retval = jQuery("<div class='widget_container "+retval.data("colspanClass")+"' />").append(retval);
     }
         
     return retval;
