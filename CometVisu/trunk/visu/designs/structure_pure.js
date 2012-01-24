@@ -201,6 +201,12 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix text" />');
+      if ($p.attr("rowspan")) {  // add rowspan only if not default
+        ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+      if ($p.attr("colspan")) {  // add colspan only if not default
+        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+      }
       var style = '';
       if( $p.attr('align') ) style += 'text-align:' + $p.attr('align') + ';';
       if( style != '' ) style = 'style="' + style + '"';
@@ -208,7 +214,9 @@ function VisuDesign() {
       return ret_val;
     },
     attributes: {
-      align:    { type: 'string', required: false }
+      align:      { type: 'string', required: false },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false }
     },
     elements: {
     },
@@ -221,6 +229,12 @@ function VisuDesign() {
       var layout = $p.find('layout')[0];
       var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
       var ret_val = $('<div class="widget clearfix info" ' + style + ' />');
+      if ($p.attr("rowspan")) {  // add rowspan only if not default
+        ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+      if ($p.attr("colspan")) {  // add colspan only if not default
+        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+      }
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -244,7 +258,9 @@ function VisuDesign() {
     attributes: {
       format:     { type: 'format',    required: false },
       mapping:    { type: 'mapping',   required: false },
-      styling:    { type: 'styling',   required: false }
+      styling:    { type: 'styling',   required: false },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false }
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
@@ -260,6 +276,12 @@ function VisuDesign() {
       var layout = $p.find('layout')[0];
       var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
       var ret_val = $('<div class="widget clearfix slide" ' + style + ' />');
+      if ($p.attr("rowspan")) {  // add rowspan only if not default
+        ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+      if ($p.attr("colspan")) {  // add colspan only if not default
+        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+      }
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -359,7 +381,9 @@ function VisuDesign() {
       max:     { type: 'numeric', required: false },
       step:    { type: 'numeric', required: false },
       mapping: { type: 'mapping', required: false },
-      styling: { type: 'styling', required: false }
+      styling: { type: 'styling', required: false },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false }
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
@@ -373,6 +397,12 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix switch" />');
+      if ($p.attr("rowspan")) {  // add rowspan only if not default
+        ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+      if ($p.attr("colspan")) {  // add colspan only if not default
+        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+      }
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -421,7 +451,9 @@ function VisuDesign() {
       off_value:  { type: 'string'  , required: false },
       mapping:    { type: 'mapping' , required: false },
       styling:    { type: 'styling' , required: false },
-      align:      { type: 'string'  , required: false }
+      align:      { type: 'string'  , required: false },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false }
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
@@ -435,6 +467,12 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix toggle" />');
+      if ($p.attr("rowspan")) {  // add rowspan only if not default
+        ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+      if ($p.attr("colspan")) {  // add colspan only if not default
+        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+      }
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -486,7 +524,9 @@ function VisuDesign() {
     attributes: {
       mapping:    { type: 'mapping' , required: false },
       styling:    { type: 'styling' , required: false },
-      align:      { type: 'string'  , required: false }
+      align:      { type: 'string'  , required: false },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false }
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
@@ -499,6 +539,12 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix switch" />');
+      if ($p.attr("rowspan")) {  // add rowspan only if not default
+        ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+      if ($p.attr("colspan")) {  // add colspan only if not default
+        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+      }
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -633,7 +679,9 @@ function VisuDesign() {
       mapping:           { type: 'mapping' , required: false },
       styling:           { type: 'styling' , required: false },
       align:             { type: 'string'  , required: false },
-      showstatus:        { type: 'list'   , required: true, list: {'true': "yes", 'false': "no"}   }
+      showstatus:        { type: 'list'   , required: true, list: {'true': "yes", 'false': "no"}   },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false }
     },
     elements: {
       label:             { type: 'string',    required: false, multi: false },
@@ -647,6 +695,12 @@ function VisuDesign() {
       var $p = $(page);
       var value = $p.attr('value') ? $p.attr('value') : 0;
       var ret_val = $('<div class="widget clearfix switch" />');
+      if ($p.attr("rowspan")) {  // add rowspan only if not default
+        ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+      if ($p.attr("colspan")) {  // add colspan only if not default
+        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+      }
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -695,6 +749,8 @@ function VisuDesign() {
       mapping:  { type: 'mapping' , required: false },
       styling:  { type: 'styling' , required: false },
       align:    { type: 'string'  , required: false },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false }
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
@@ -710,6 +766,9 @@ function VisuDesign() {
       
       if ($p.attr("rowspan")) {  // add rowspan only if not default
         ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+      if ($p.attr("colspan")) {  // add colspan only if not default
+        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
       }
         
       var labelElement = $p.find('label')[0];
@@ -733,7 +792,9 @@ function VisuDesign() {
       src:        { type: 'uri'    , required: true  },
       width:      { type: 'string' , required: false },
       height:     { type: 'string' , required: false },
-      refresh:    { type: 'numeric', required: false }
+      refresh:    { type: 'numeric', required: false },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false }
     },
     elements: {
       label:      { type: 'string',    required: false, multi: false }
@@ -745,6 +806,12 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix video" />');
+      if ($p.attr("rowspan")) {  // add rowspan only if not default
+        ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+      if ($p.attr("colspan")) {  // add colspan only if not default
+        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+      }
       var labelElement = $p.find('label')[0];
       ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
       var autoplay = ($p.attr('autoplay') && $p.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
@@ -760,7 +827,9 @@ function VisuDesign() {
       src:     { type: 'uri'    , required: true  },
       width:   { type: 'string' , required: false },
       height:  { type: 'string' , required: false },
-      autoplay:{ type: 'list'   , required: true, list: {'true': "yes", 'false': "no"} }
+      autoplay:{ type: 'list'   , required: true, list: {'true': "yes", 'false': "no"} },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false }
     },
     elements: {
       label:      { type: 'string',    required: false, multi: false }
@@ -771,8 +840,15 @@ function VisuDesign() {
   this.addCreator('iframe', {
     create: function( page, path ) {
       var $p = $(page);
-      var ret_val = $('<div class="widget" />');
-      ret_val.addClass( 'iframe' );
+      var ret_val = $('<div class="widget iframe" />');
+  
+      if ($p.attr("rowspan")) {  // add rowspan only if not default
+        ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+      if ($p.attr("colspan")) {  // add colspan only if not default
+        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+      }
+  
       ret_val.append( '<div class="label">' + page.textContent + '</div>' );
       var style = '';
       if( $p.attr('width' ) ) {
@@ -798,7 +874,9 @@ function VisuDesign() {
       height:      { type: 'string', required: false },
       frameborder: { type: 'list'  , required: false, list: {'true': "yes", 'false': "no"} },
       background:  { type: 'string', required: false },
-      refresh: { type: 'numeric', required: false }
+      refresh: { type: 'numeric', required: false },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false }
     },
     elements: {
       label:  { type: 'string',    required: false, multi: false }
@@ -810,7 +888,12 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix switch" />');
-
+      if ($p.attr("rowspan")) {  // add rowspan only if not default
+        ret_val.addClass(rowspanClass($p.attr("rowspan")));
+      }
+      if ($p.attr("colspan")) {  // add colspan only if not default
+        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+      }
       // handle label
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
@@ -947,7 +1030,9 @@ function VisuDesign() {
       format:            { type: 'string'  , required: false },
       change:            { type: 'list'    , required: false , list: {'relative': 'Send relative/delta values', 'absolute': 'Send absolute values'} },
       min:               { type: 'numeric' , required: false },
-      max:               { type: 'numeric' , required: false }
+      max:               { type: 'numeric' , required: false },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false }
     },
     elements: {
       label:             { type: 'string',    required: false, multi: false },
