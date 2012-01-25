@@ -143,10 +143,10 @@ function handleResize()
 }
 $( window ).bind( 'resize', handleResize );
 
-function rowspanClass(rowspan, elem) {
+function rowspanClass(rowspan) {
   var className = 'rowspan'+ rowspan;
   
-  if (( $('<div class="' + className + '" />').height() == 0 ) || elem ) { 
+  if ( $('<div class="' + className + '" />').height() == 0 ) { 
     var dummyDiv = $('<div id="calcrowspan" ><div class="widget clearfix text" id="innerDiv" /></div>')
       .appendTo(document.body).show();
     
@@ -169,20 +169,48 @@ function rowspanClass(rowspan, elem) {
           
     // append css style
     
-    if (elem) {
-      $(elem).remove(); 
-    } 
-    
     $('head').append('<style>.rowspan' + rowspan + ' { height: ' + totalHeight + 'px; overflow:hidden;} </style>');
   }
   
   return className;
 }
 
-function colspanClass(colspan, elem) {
-  var className = 'colspan'+ colspan; // mostly dummy, has to be defined in design-CSS
+function colspanClass(colspan) {
+  var className = 'colspan'+ colspan; 
+  
+  if ( $('<div class="' + className + '" />').width() == 0 ) { // only if not defined
+    var singleWidth=0;
+  
+    // loop over all stylesheets and classes and find .widget_container
+    $.each(document.styleSheets, function(idx, sheet) {
+      if (sheet.href ? (sheet.href.search(/basic.css/) > 0) : false) {
+        $.each(sheet.cssRules, function(idx, cssclass) {
+          if (cssclass.selectorText=='.widget_container') {
+            singleWidth = parseInt((cssclass.style.width).match(/[0-9]*/)[0]); 
+            return;    
+          }
+        });
+      }
+      if (singleWidth > 0) { // match already found
+        return;
+      }
+    });
+      
+    var totalWidth = singleWidth * colspan;
+    
+    if (totalWidth>100) { // check if totalWidth is <=100
+      alert('colspan="'+colspan+'" leads to width:' + totalWidth +
+        '% which is >100% and not allowed. Corrected to 100%');
+      totalWidth=100;
+    }
+    
+    $('head').append('<style>.colspan' + colspan + ' { width: ' + totalWidth + 
+      '%; overflow:hidden;} </style>');
+  } 
+  
   return className;
 }
+
 function parseXML(xml) {
   // erst mal den Cache für AJAX-Requests wieder aktivieren
   $.ajaxSetup({cache: true});
