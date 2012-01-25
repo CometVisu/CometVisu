@@ -23,45 +23,52 @@ $('head').append('<script type=\"text/javascript\" src=\"plugins/jqclock/jqclock
 $('head').append('<link rel="stylesheet" href="plugins/jqclock/jqclock.css" type="text/css" />');
 
 VisuDesign_Custom.prototype.addCreator("jqclock", {
-    create: function( page, path ) {
-        var $p = $(page);
-        function uniqid() {
-            var newDate = new Date;
-            return newDate.getTime();
-        }
-        var id = "jqclock_" + uniqid();
+  create: function( page, path ) {
+    var $p = $(page);
+    function uniqid() {
+      var newDate = new Date;
+      return newDate.getTime();
+    }
+    var id = "jqclock_" + uniqid();
 
-        var ret_val = $('<div class="widget clearfix" />');
-        ret_val.addClass( 'jqclock' );
-        var label = '<div class="label">' + page.textContent + '</div>';
-        var actor = $("<div class=\"actor\"><div class=\"jqclock_inline\" id=\"" + id + "\"></div></div>");
-        var jqclock = $("#"+id,actor);
+    var ret_val = $('<div class="widget clearfix jqclock" />');
+    if ($p.attr("rowspan")) {  // add rowspan only if not default
+      ret_val.addClass(rowspanClass($p.attr("rowspan")));
+    }
+    if ($p.attr("colspan")) {  // add colspan only if not default
+      ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
+    }
+    
+    var label = '<div class="label">' + page.textContent + '</div>';
+    var actor = $("<div class=\"actor\"><div class=\"jqclock_inline\" id=\"" + id + "\"></div></div>");
+    var jqclock = $("#"+id,actor);
 
-        if ($p.attr("width")) {
-            jqclock.css("width", $p.attr("width"));
-        }
-        if ($p.attr("height")) {
-            jqclock.css("height", $p.attr("height"));
-        }
+    if ($p.attr("width")) {
+      jqclock.css("width", $p.attr("width"));
+    }
+    if ($p.attr("height")) {
+      jqclock.css("height", $p.attr("height"));
+    }
 
-        //start the clock in statusbar - if any
-        $("div#jqclock_status").clock({"langSet":$("div#jqclock_status").attr('lang'),"calendar":$("div#jqclock_status").attr('date')});
+    //start the clock in statusbar - if any
+    $("div#jqclock_status").clock({"langSet":$("div#jqclock_status").attr('lang'),"calendar":$("div#jqclock_status").attr('date')});
 
-        window.setTimeout(function() {
-            //start myself after 1 sec? a quirk?
-            $("#"+id).clock({"langSet":$p.attr("lang"), "calendar":$p.attr("date")});
-        }, 1000);
+    window.setTimeout(function() {
+      //start myself after 1 sec? a quirk?
+      $("#"+id).clock({"langSet":$p.attr("lang"), "calendar":$p.attr("date")});
+    }, 1000);
 
-        ret_val.append(label).append(actor);
-        return ret_val;
-    },
-    attributes: {
-        width:      {type: "string", required: false},
-        height:     {type: "string", required: false},
-        //refresh:    {type: "numeric", required: false},
-        lang:   {type: "list", required: true, list:  {'de':'Deutsch','en':'English','es':'Espanol','fr':'Francais','it':'Italiano','ru':'Ruski'}},
-        date:   {type: "list", required: false, list: {'true': "yes", 'false': "no"}}
-    },
-    content: {type: "string", required: false}
+    ret_val.append(label).append(actor);
+    return ret_val;
+  },
+  attributes: {
+    width:      {type: "string", required: false},
+    height:     {type: "string", required: false},
+    lang:   {type: "list", required: true, list:  {'de':'Deutsch','en':'English','es':'Espanol','fr':'Francais','it':'Italiano','ru':'Ruski'}},
+    date:   {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
+    colspan:    { type: 'numeric', required: false },
+    rowspan:    { type: 'numeric', required: false }
+  },
+  content: false
 });
 
