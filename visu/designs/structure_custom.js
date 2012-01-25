@@ -61,20 +61,19 @@ VisuDesign_Custom.prototype.addCreator("designtoggle", {
         var designs     = [ 'pure', 'discreet', 'discreet_sand', 'discreet_slim', 'alaska', 'alaska_slim' ];
         var oldDesign = $('.value',this).text();
         var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
-        $('.value',this).text(newDesign);
-        $('link[href*="designs"]').each(function(){
-          this.href = this.href.replace( oldDesign, newDesign );
-        });
-                      
-        setTimeout(function() {
-          $('style').each(function(style) {
-            var txt = this.textContent;
-            var idx = txt.search('rowspan');
-            if (idx>0) {
-              rowspanClass(parseInt(txt[idx+7]), this);
-            }
-          });
-        }, 100);
+        
+        var URL = window.location.href;
+        var regexp = new RegExp("design="+oldDesign)
+        if (URL.search(regexp) != -1) { // has URL-parameter design
+          window.location.href=URL.replace(regexp, "design="+newDesign);
+        } else {
+          if (URL.indexOf("?") != -1) { // has other parameters, append design
+            window.location.href=URL+"&design="+newDesign;
+          } else { // has now parameters
+            window.location.href=URL+"?design="+newDesign;
+          }
+        }
+        
       })
     );
     return ret_val;
