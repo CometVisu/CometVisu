@@ -30,8 +30,10 @@ var Maturity = {
  
 $.fn.setWidgetStyle = function(page) { 
    this.data('colspanClass', colspanClass(page.attr('colspan') || 1));
-   this.data('rowspanClass', rowspanClass(page.attr('rowspan') || 1));
-   this.addClass(innerRowspanClass(page.attr('rowspan') || 1));
+   if (page.attr('rowspan')) {
+     this.data('rowspanClass', rowspanClass(page.attr('rowspan') || 1));
+     this.addClass(innerRowspanClass(page.attr('rowspan') || 1));
+   }
    return this;
  }
 
