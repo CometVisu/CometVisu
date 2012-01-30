@@ -23,8 +23,34 @@ var Maturity = {
 };
 
 /**
+ * this function implements all widget stylings that are identical (JNK)
+ *
+ * implemented: rowspan, colspan
+ */
+ 
+$.fn.setWidgetStyle = function(page) { 
+   this.data('colspanClass', colspanClass(page.attr('colspan') || 1));
+   this.data('rowspanClass', rowspanClass(page.attr('rowspan') || 1));
+   this.addClass(innerRowspanClass(page.attr('rowspan') || 1));
+   return this;
+ }
+
+ /**
+ * this function implements the widget label (JNK)
+ */
+ 
+$.fn.makeWidgetLabel = function(page) { 
+  var labelElement = page.find('label')[0]; // get first label element
+  if (labelElement) { // if exists, add it
+    this.append($('<div class="label">' + labelElement.textContent + '<div>'));
+  }
+  return this;
+}
+ 
+/**
  * This class defines all the building blocks for a Visu in the "Pure" design
  */
+   
 function VisuDesign() {
   this.creators = {};
 
@@ -82,8 +108,8 @@ function VisuDesign() {
       if ($p.attr('visible')=='false') {
         ret_val=$('');
       } else { // default is visible
-        ret_val = $('<div class="widget clearfix"/>');
-        ret_val.addClass( 'link' ).addClass('pagelink');
+        ret_val = $('<div class="widget clearfix link pagelink"/>');
+        ret_val.setWidgetStyle($p);
         ret_val.append( '<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
       }
 
@@ -201,12 +227,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix text" />');
-      if ($p.attr("rowspan")) {  // add rowspan only if not default
-        ret_val.addClass(rowspanClass($p.attr("rowspan")));
-      }
-      if ($p.attr("colspan")) {  // add colspan only if not default
-        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-      }
+      ret_val.setWidgetStyle($p);
       var style = '';
       if( $p.attr('align') ) style += 'text-align:' + $p.attr('align') + ';';
       if( style != '' ) style = 'style="' + style + '"';
@@ -229,14 +250,7 @@ function VisuDesign() {
       var layout = $p.find('layout')[0];
       var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
       var ret_val = $('<div class="widget clearfix info" ' + style + ' />');
-      if ($p.attr("rowspan")) {  // add rowspan only if not default
-        ret_val.addClass(rowspanClass($p.attr("rowspan")));
-      }
-      if ($p.attr("colspan")) {  // add colspan only if not default
-        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-      }
-      var labelElement = $p.find('label')[0];
-      var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+      ret_val.setWidgetStyle($p).makeWidgetLabel($p);
       var address = {};
       $p.find('address').each( function(){ 
         var src = this.textContent;
@@ -251,7 +265,7 @@ function VisuDesign() {
         'styling'  : $p.attr('styling')
       });
       for( var addr in address ) $actor.bind( addr, this.update );
-      ret_val.append( label ).append( $actor );
+      ret_val.append( $actor );
       return ret_val;
     },
     update:       defaultUpdate,
@@ -276,14 +290,7 @@ function VisuDesign() {
       var layout = $p.find('layout')[0];
       var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
       var ret_val = $('<div class="widget clearfix slide" ' + style + ' />');
-      if ($p.attr("rowspan")) {  // add rowspan only if not default
-        ret_val.addClass(rowspanClass($p.attr("rowspan")));
-      }
-      if ($p.attr("colspan")) {  // add colspan only if not default
-        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-      }
-      var labelElement = $p.find('label')[0];
-      var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+      ret_val.setWidgetStyle($p).makeWidgetLabel($p);
       var address = {};
       var datatype_min = undefined;
       var datatype_max = undefined;
@@ -325,7 +332,7 @@ function VisuDesign() {
         start:   this.slideStart,
         change:  this.slideChange
       });
-      ret_val.append( label ).append( $actor );
+      ret_val.append( $actor );
       return ret_val;
     },
     update: function( e, data ) { 
@@ -397,12 +404,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix switch" />');
-      if ($p.attr("rowspan")) {  // add rowspan only if not default
-        ret_val.addClass(rowspanClass($p.attr("rowspan")));
-      }
-      if ($p.attr("colspan")) {  // add colspan only if not default
-        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-      }
+      ret_val.setWidgetStyle($p)
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -467,12 +469,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix toggle" />');
-      if ($p.attr("rowspan")) {  // add rowspan only if not default
-        ret_val.addClass(rowspanClass($p.attr("rowspan")));
-      }
-      if ($p.attr("colspan")) {  // add colspan only if not default
-        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-      }
+      ret_val.setWidgetStyle($p);
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -539,12 +536,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix switch" />');
-      if ($p.attr("rowspan")) {  // add rowspan only if not default
-        ret_val.addClass(rowspanClass($p.attr("rowspan")));
-      }
-      if ($p.attr("colspan")) {  // add colspan only if not default
-        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-      }
+      ret_val.setWidgetStyle($p)
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -695,12 +687,7 @@ function VisuDesign() {
       var $p = $(page);
       var value = $p.attr('value') ? $p.attr('value') : 0;
       var ret_val = $('<div class="widget clearfix switch" />');
-      if ($p.attr("rowspan")) {  // add rowspan only if not default
-        ret_val.addClass(rowspanClass($p.attr("rowspan")));
-      }
-      if ($p.attr("colspan")) {  // add colspan only if not default
-        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-      }
+      ret_val.setWidgetStyle($p);
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = {};
@@ -763,14 +750,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix image" />');
-      
-      if ($p.attr("rowspan")) {  // add rowspan only if not default
-        ret_val.addClass(rowspanClass($p.attr("rowspan")));
-      }
-      if ($p.attr("colspan")) {  // add colspan only if not default
-        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-      }
-        
+      ret_val.setWidgetStyle($p);
       var labelElement = $p.find('label')[0];
       ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
       var style = '';
@@ -806,12 +786,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix video" />');
-      if ($p.attr("rowspan")) {  // add rowspan only if not default
-        ret_val.addClass(rowspanClass($p.attr("rowspan")));
-      }
-      if ($p.attr("colspan")) {  // add colspan only if not default
-        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-      }
+      ret_val.setWidgetStyle($p);
       var labelElement = $p.find('label')[0];
       ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
       var autoplay = ($p.attr('autoplay') && $p.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
@@ -841,14 +816,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget iframe" />');
-  
-      if ($p.attr("rowspan")) {  // add rowspan only if not default
-        ret_val.addClass(rowspanClass($p.attr("rowspan")));
-      }
-      if ($p.attr("colspan")) {  // add colspan only if not default
-        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-      }
-  
+      ret_val.setWidgetStyle($p);
       ret_val.append( '<div class="label">' + page.textContent + '</div>' );
       var style = '';
       if( $p.attr('width' ) ) {
@@ -888,12 +856,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix switch" />');
-      if ($p.attr("rowspan")) {  // add rowspan only if not default
-        ret_val.addClass(rowspanClass($p.attr("rowspan")));
-      }
-      if ($p.attr("colspan")) {  // add colspan only if not default
-        ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-      }
+      ret_val.setWidgetStyle($p);
       // handle label
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';

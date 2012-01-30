@@ -37,13 +37,13 @@ visu.user = 'demo_user'; // example for setting a user
 
 var configSuffix = "";
 if ($.getUrlVar("config")) {
-    configSuffix = "_" + $.getUrlVar("config");
+  configSuffix = "_" + $.getUrlVar("config");
 }
 
 var clientDesign = "";
 
 if (typeof forceReload == "undefined") {
-    var forceReload = false;
+  var forceReload = false;
 }
 if( $.getUrlVar('forceReload') ) {
   forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set to false
@@ -73,24 +73,20 @@ if (isNaN(use_maturity)) {
 }
 
 $(document).ready(function() {
-  
   // get the data once the page was loaded
   $.ajaxSetup({cache: !forceReload});
   window.setTimeout("$.get( 'visu_config" + configSuffix + ".xml', parseXML );", 200);
-
 } );
 
 $(window).unload(function() {
   visu.stop();
 });
 
-function transformEncode( transformation, value )
-{
+function transformEncode( transformation, value ) {
   var basetrans = transformation.split('.')[0];
   return transformation in Transform ?
     Transform[ transformation ].encode( value ) : 
-	  (basetrans in Transform ? Transform[ basetrans ].encode( value ) : value);
-    
+    (basetrans in Transform ? Transform[ basetrans ].encode( value ) : value);
 }
 
 function transformDecode( transformation, value )
@@ -147,29 +143,39 @@ function rowspanClass(rowspan) {
   var className = 'rowspan'+ rowspan;
   
   if ( $('<div class="' + className + '" />').height() == 0 ) { 
-    var dummyDiv = $('<div id="calcrowspan" ><div class="widget clearfix text" id="innerDiv" /></div>')
+    var dummyDiv = $('<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
       .appendTo(document.body).show();
     
-    // get css settings of single object
-    var paddingTop = parseFloat($('#innerDiv').css('padding-top'));
-    var paddingBottom = parseFloat($('#innerDiv').css('padding-bottom'));
-    var marginTop = parseFloat($('#innerDiv').css('margin-top'));
-    var marginBottom = parseFloat($('#innerDiv').css('margin-bottom'));
-    var borderTop = parseFloat($('#innerDiv').css('border-top-width'));
-    var borderBottom = parseFloat($('#innerDiv').css('border-bottom-width'));
-    var singleHeight = parseFloat($('#innerDiv').css('height'));        
+    var singleHeight = parseFloat($('#containerDiv').css('height'));        
 
     $('#calcrowspan').remove();
           
-    // calculate total height
-    var totalHeight = (rowspan-1) * Math.round((singleHeight+ 
-      + marginTop + paddingTop + borderTop
-      + marginBottom + paddingBottom + borderBottom))
-      + singleHeight;
-          
     // append css style
     
-    $('head').append('<style>.rowspan' + rowspan + ' { height: ' + totalHeight + 'px; overflow:hidden;} </style>');
+    $('head').append('<style>.rowspan' + rowspan + ' { height: ' + rowspan*Math.round(singleHeight) + 'px; overflow:hidden;} </style>');
+  }
+  
+  return className;
+}
+
+function innerRowspanClass(rowspan) {
+  var className = 'innerrowspan'+ rowspan;
+  
+  if ( $('<div class="' + className + '" />').height() == 0 ) { 
+    var dummyDiv = $('<div class="clearfix" id="calcinnerrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
+      .appendTo(document.body).show();
+    $('#containerDiv').addClass(rowspanClass(rowspan));
+    
+    var outerHeight = parseFloat($('#containerDiv').css('height'));        
+    var innerDiv=$('#innerDiv');
+    var margin=Math.round(parseFloat(innerDiv.css('marginTop')))+Math.round(parseFloat(innerDiv.css('marginBottom')));
+    var padding=Math.round(parseFloat(innerDiv.css('paddingTop')))+Math.round(parseFloat(innerDiv.css('paddingBottom')));
+    var border=Math.round(parseFloat(innerDiv.css('borderTopWidth')))+Math.round(parseFloat(innerDiv.css('borderBottomWidth')));
+    var innerHeight=outerHeight-margin-padding-border;
+    $('#calcinnerrowspan').remove();
+          
+    // append css style
+    $('head').append('<style>.innerrowspan' + rowspan + ' { height: ' + innerHeight + 'px;} </style>');
   }
   
   return className;
@@ -178,7 +184,7 @@ function rowspanClass(rowspan) {
 function colspanClass(colspan) {
   var className = 'colspan'+ colspan; 
   
-  if ( $('<div class="' + className + '" />').width() == 0 ) { // only if not defined
+  if ( $('<div class="' + className + '" />').width() == 0 ) { 
     var singleWidth=0;
   
     // loop over all stylesheets and classes and find .widget_container
@@ -186,7 +192,7 @@ function colspanClass(colspan) {
       if (sheet.href ? (sheet.href.search(/basic.css/) > 0) : false) {
         $.each(sheet.cssRules, function(idx, cssclass) {
           if (cssclass.selectorText=='.widget_container') {
-            singleWidth = parseInt((cssclass.style.width).match(/[0-9]*/)[0]); 
+            singleWidth = parseFloat((cssclass.style.width).match(/[0-9.]*/)[0]); 
             return;    
           }
         });
@@ -204,13 +210,12 @@ function colspanClass(colspan) {
       totalWidth=100;
     }
     
-    $('head').append('<style>.colspan' + colspan + ' { width: ' + totalWidth + 
-      '%; overflow:hidden;} </style>');
+    $('head').append('<style>.colspan' + colspan + ' { width: ' + 
+      totalWidth + '%; overflow:hidden;} </style>');
   } 
   
   return className;
 }
-
 function parseXML(xml) {
   // erst mal den Cache für AJAX-Requests wieder aktivieren
   $.ajaxSetup({cache: true});
@@ -416,7 +421,7 @@ function create_pages( page, path, flavour ) {
         .data("textContent", page.textContent);
         
     if (jQuery(retval).is(".widget")) {
-       retval = jQuery("<div class='widget_container "+retval.data("colspanClass")+"' />").append(retval);
+       retval = jQuery("<div class='widget_container "+(retval.data("colspanClass") ? retval.data("colspanClass") : '')+" "+(retval.data("rowspanClass") ? retval.data("rowspanClass") : '')+"' />").append(retval);
     }
         
     return retval;
