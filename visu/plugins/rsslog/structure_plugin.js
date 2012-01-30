@@ -41,16 +41,9 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
 
         var id = "rss_" + uniqid();
 
-        var ret_val = $('<div class="widget clearfix" />');
-        ret_val.addClass( 'rsslog' );
+        var ret_val = $('<div class="widget clearfix rsslog" />');
+        ret_val.setWidgetStyle($p);
         
-        if ($p.attr("rowspan")) {  // add rowspan only if not default
-          ret_val.addClass(rowspanClass($p.attr("rowspan")));
-        }
-        
-        if ($p.attr("colspan")) {  // add colspan only if not default
-          ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-        }
         var labelElement = $p.find('label')[0];
         var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
        
@@ -71,9 +64,10 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
         rss.data("label", labelElement ? labelElement.textContent : '' );
         rss.data("refresh", $p.attr("refresh"));
         rss.data("content", $p.attr("content")) || true;
-        rss.data("title", $p.attr("title")) || true;
+        rss.data("datetime", $p.attr("datetime")) || true;
         rss.data("mode", $p.attr("mode") || "last");
         rss.data("timeformat", $p.attr("timeformat"));
+        
 
         rss.data("itemoffset", 0);
         
@@ -87,7 +81,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
         height:     {type: "string", required: false},
         refresh:    {type: "numeric", required: false},
         content:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        title:      {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
+        datetime:   {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
         mode:       {type: "list", required: false, list: {'first': 'first', 'last': 'last', 'rollover':'rollover' }},
         timeformat: {type: "string", required: false},
     },
@@ -107,7 +101,7 @@ function refreshRSSlog(rss, data) {
       $(rss).rssfeedlocal({
         src: src,
         content: rss.data("content"),
-        title: eval(rss.data("title")),
+        datetime: eval(rss.data("datetime")),
         mode: rss.data("mode"),
         timeformat: rss.data("timeformat"),
       });
@@ -129,12 +123,17 @@ function refreshRSSlog(rss, data) {
   
             var defaults = {
                 src: '',
-                html: '{date}: {text}',
+                html: '{text}',
                 wrapper: 'li',
                 dataType: 'xml',
-                title: true
+                title: true,
+                datetime: true
             }
             var options = jQuery.extend(defaults, options);
+            
+            if (options.datetime) {
+              options.html = '{date}: ' + options.html;
+            }
 
             return this.each(function() {
                 var o = options;
