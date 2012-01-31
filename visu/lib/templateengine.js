@@ -295,8 +295,10 @@ function parseXML(xml) {
   // then the stylings
   $( 'meta > stylings styling', xml ).each( function(i){
     var name = $(this).attr('name');
+    var classnames = '';
     stylings[ name ] = {};
     $(this).find('entry').each( function(){
+      classnames += $(this).text() + ' ';
       if( $(this).attr('value') )
       {
         stylings[ name ][ $(this).attr('value') ] = $(this).text();
@@ -304,8 +306,10 @@ function parseXML(xml) {
         if( ! stylings[ name ][ 'range' ] ) stylings[ name ][ 'range' ] = {};
         stylings[ name ][ 'range' ][ parseFloat($(this).attr('range_min')) ] =
           [ parseFloat( $(this).attr('range_max') ), $(this).text() ];
+          
       }
     });
+    stylings[ name ]['classnames'] = classnames;
   });
 
   // then the status bar
