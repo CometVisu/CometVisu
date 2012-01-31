@@ -48,7 +48,24 @@ $.fn.makeWidgetLabel = function(page) {
   }
   return this;
 }
- 
+
+/**
+  * this function extracts all addresses with attributes (JNK)
+  */
+  
+function makeAddressList(page) {
+  var address = {};
+  page.find('address').each( function(){ 
+    var src = this.textContent;
+    var transform = this.getAttribute('transform');
+    var readonly  = this.getAttribute('readonly');
+    var writeonly = this.getAttribute('writeonly');
+    ga_list.push( src ) 
+    address[ '_' + src ] = [ transform, readonly=='true', writeonly=='true' ];
+  });
+  return address;
+}
+
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
  */
@@ -253,12 +270,12 @@ function VisuDesign() {
       var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
       var ret_val = $('<div class="widget clearfix info" ' + style + ' />');
       ret_val.setWidgetStyle($p).makeWidgetLabel($p);
-      var address = {};
-      $p.find('address').each( function(){ 
+      var address = makeAddressList($p);
+      /*$p.find('address').each( function(){ 
         var src = this.textContent;
         ga_list.push( src ) 
         address[ '_' + src ] = [ this.getAttribute('transform') ];
-      });
+      }); */
       var actor = '<div class="actor"><div class="value">-</div></div>';
       var $actor = $(actor).data({
         'address'  : address,
@@ -409,15 +426,7 @@ function VisuDesign() {
       ret_val.setWidgetStyle($p)
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-      var address = {};
-      $p.find('address').each( function(){ 
-        var src = this.textContent;
-        var transform = this.getAttribute('transform');
-        var readonly  = this.getAttribute('readonly');
-        var writeonly = this.getAttribute('writeonly');
-        ga_list.push( src ) 
-        address[ '_' + src ] = [ transform, readonly=='true', writeonly=='true' ];
-      });
+      var address = makeAddressList($p);
       var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       var $actor = $(actor).data( {
         'address' : address,
@@ -474,14 +483,7 @@ function VisuDesign() {
       ret_val.setWidgetStyle($p);
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-      var address = {};
-      $p.find('address').each( function(){ 
-        var src = this.textContent;
-        var transform = this.getAttribute('transform');
-        var readonly  = this.getAttribute('readonly');
-        ga_list.push( src ) 
-        address[ '_' + src ] = [ transform, readonly=='true' ];
-      });
+      var address = makeAddressList($p);
       var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       var $actor = $(actor).data( {
         'address' : address,
@@ -541,15 +543,8 @@ function VisuDesign() {
       ret_val.setWidgetStyle($p)
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-      var address = {};
+      var address = makeAddressList($p);
       var showstatus = $p.attr("showstatus") || "false";
-      $p.find('address').each( function(){ 
-        var src = this.textContent;
-        var transform = this.getAttribute('transform');
-        var readonly  = this.getAttribute('readonly');
-        ga_list.push( src ) 
-        address[ '_' + src ] = [ transform, readonly=='true' ];
-      });
       ret_val.append( label );
       var buttons = $('<div style="float:left"/>');
       var buttonCount = 0;
@@ -692,14 +687,7 @@ function VisuDesign() {
       ret_val.setWidgetStyle($p);
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-      var address = {};
-      $p.find('address').each( function(){ 
-        var src = this.textContent;
-        var transform = this.getAttribute('transform');
-        var readonly  = this.getAttribute('readonly');
-        ga_list.push( src ) 
-        address[ '_' + src ] = [ transform, readonly=='true' ];
-      });
+      var address = makeAddressList($p);
       var actor = '<div class="actor switchUnpressed ';
       if ( $p.attr( 'align' ) ) 
         actor += $p.attr( 'align' ); 
