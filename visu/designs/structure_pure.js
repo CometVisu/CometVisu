@@ -29,10 +29,9 @@ var Maturity = {
  */
 
 $.fn.setWidgetStyling = function(value) {
-  if (this.data('styling')) {
-    var styling = stylings[this.data('styling')];
+  var styling = stylings[this.data('styling')];
+  if (styling) {    
     this.removeClass(styling['classnames']); // remove only styling classes
-    
     if (styling[value]) { // fixed value
       this.addClass(styling[value]); 
     } else { // 
