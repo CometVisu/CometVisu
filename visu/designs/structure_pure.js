@@ -23,11 +23,38 @@ var Maturity = {
 };
 
 /**
- * this function implements all widget stylings that are identical (JNK)
+ * this function implements widget stylings 
+ *
+ * implemented in: default_update, trigger-widget
+ */
+
+$.fn.setWidgetStyling = function(value) {
+  if (this.data('styling')) {
+    var styling = stylings[this.data('styling')];
+    this.removeClass(styling['classnames']); // remove only styling classes
+    
+    if (styling[value]) { // fixed value
+      this.addClass(styling[value]); 
+    } else { // 
+      value = parseFloat(value);
+      var range = styling['range'];
+      for( var min in range ) {
+        if( min > value ) continue;
+        if( range[min][0] < value ) continue; // check max
+        this.addClass( range[min][1] );
+        break;
+      } 
+    }
+  }
+  return this;
+}
+
+/**
+ * this function implements all widget layouts that are identical (JNK)
  *
  * implemented: rowspan, colspan
  */
- 
+  
 $.fn.setWidgetStyle = function(page) { 
    this.data('colspanClass', colspanClass(page.attr('colspan') || 1));
    if (page.attr('rowspan')) {
@@ -271,11 +298,7 @@ function VisuDesign() {
       var ret_val = $('<div class="widget clearfix info" ' + style + ' />');
       ret_val.setWidgetStyle($p).makeWidgetLabel($p);
       var address = makeAddressList($p);
-      /*$p.find('address').each( function(){ 
-        var src = this.textContent;
-        ga_list.push( src ) 
-        address[ '_' + src ] = [ this.getAttribute('transform') ];
-      }); */
+      
       var actor = '<div class="actor"><div class="value">-</div></div>';
       var $actor = $(actor).data({
         'address'  : address,
@@ -709,7 +732,7 @@ function VisuDesign() {
         $(this).removeClass('switchUnpressed').addClass('switchPressed');
       } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
         $(this).removeClass('switchPressed').addClass('switchUnpressed');
-      } );
+      } ).setWidgetStyling(value);
       ret_val.append( label ).append( $actor );
       return ret_val;
     },
@@ -1174,38 +1197,15 @@ function placementStrategy( anchor, popup, page, preference )
   return { x: 0, y: 0 }; // sanity return
 }
 
+
 function defaultUpdate( e, data, passedElement ) 
 {
   var element = passedElement || $(this);
   var thisTransform = element.data().address[ e.type ][0];
   var value = transformDecode( element.data().address[ e.type ][0], data );
-
-  var styling = element.data('styling');
-  if( styling && stylings[styling] && (stylings[styling][value] || stylings[styling]['range']) )
-  {
-    if( stylings[styling]['range'] ) value = parseFloat( value );
-    element.removeClass();
-    if( stylings[styling][value] )
-    {
-      element.addClass( 'actor ' + stylings[styling][value] );
-    } else {
-      var range = stylings[styling]['range'];
-      var not_found = true;
-      for( var min in range )
-      {
-        if( min > value ) continue;
-        if( range[min][0] < value ) continue; // check max
-        element.addClass( 'actor ' + range[min][1] );
-        not_found = false;
-        break;
-      }
-      if( not_found ) element.addClass( 'actor ' );
-    }
-  } else {
-    element.removeClass();
-    element.addClass( 'actor ' );
-  }
-
+ 
+  element.setWidgetStyling(value);
+  
   if( element.data( 'align' ) )
     element.addClass(element.data( 'align' ) );
 
