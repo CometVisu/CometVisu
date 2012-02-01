@@ -18,12 +18,17 @@
 
 require 'upnpctrl_util.php';
 
-//header("content-type: text/html");
-header("content-type: text/json");
+$format = $_GET['format'];
+
+if($format == 'html'){
+	header("content-type: text/html");
+}else{
+	header("content-type: text/json");
+}
 
 $cmd_getvolume='POST /MediaRenderer/RenderingControl/Control HTTP/1.1
 CONNECTION: close
-HOST: '.$address.':1400
+HOST: '.$address.':'.$port.'
 CONTENT-LENGTH: 296
 CONTENT-TYPE: text/xml; charset="utf-8"
 SOAPACTION: "urn:schemas-upnp-org:service:RenderingControl:1#GetVolume"
@@ -32,7 +37,7 @@ SOAPACTION: "urn:schemas-upnp-org:service:RenderingControl:1#GetVolume"
 
 $cmd_getmute='POST /MediaRenderer/RenderingControl/Control HTTP/1.1
 CONNECTION: close
-HOST: '.$address.':1400
+HOST: '.$address.':'.$port.'
 CONTENT-LENGTH: 288
 CONTENT-TYPE: text/xml; charset="utf-8"
 SOAPACTION: "urn:schemas-upnp-org:service:RenderingControl:1#GetMute"
@@ -41,7 +46,7 @@ SOAPACTION: "urn:schemas-upnp-org:service:RenderingControl:1#GetMute"
 
 $cmd_getpositioninfo='POST /MediaRenderer/AVTransport/Control HTTP/1.1
 CONNECTION: close
-HOST: '.$address.':1400
+HOST: '.$address.':'.$port.'
 CONTENT-LENGTH: 299  
 CONTENT-TYPE: text/xml; charset="utf-8"
 SOAPACTION: "urn:schemas-upnp-org:service:AVTransport:1#GetPositionInfo"
@@ -50,7 +55,7 @@ SOAPACTION: "urn:schemas-upnp-org:service:AVTransport:1#GetPositionInfo"
 
 $cmd_gettransportinfo='POST /MediaRenderer/AVTransport/Control HTTP/1.1
 CONNECTION: close
-HOST: '.$address.':1400
+HOST: '.$address.':'.$port.'
 CONTENT-LENGTH: 274
 CONTENT-TYPE: text/xml; charset="utf-8"
 SOAPACTION: "urn:schemas-upnp-org:service:AVTransport:1#GetTransportInfo"

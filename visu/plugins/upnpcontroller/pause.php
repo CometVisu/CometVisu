@@ -23,7 +23,7 @@ header("content-type: text/json");
 
 $cmd_pause='POST /MediaRenderer/AVTransport/Control HTTP/1.1
 CONNECTION: close
-HOST: '.$address.':1400
+HOST: '.$address.':'.$port.'
 CONTENT-LENGTH: 252
 CONTENT-TYPE: text/xml; charset="utf-8"
 SOAPACTION: "urn:schemas-upnp-org:service:AVTransport:1#Pause"

@@ -23,7 +23,7 @@ header("content-type: text/json");
 
 $cmd_play='POST /MediaRenderer/AVTransport/Control HTTP/1.1
 CONNECTION: close
-HOST: '.$address.':1400
+HOST: '.$address.':'.$port.'
 CONTENT-LENGTH: 266
 CONTENT-TYPE: text/xml; charset="utf-8"
 SOAPACTION: "urn:schemas-upnp-org:service:AVTransport:1#Play"
