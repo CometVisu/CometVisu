@@ -24,7 +24,7 @@ $mute = $_GET['mute'];
 
 $cmd_setmute='POST /MediaRenderer/RenderingControl/Control HTTP/1.1
 CONNECTION: close
-HOST: '.$address.':1400
+HOST: '.$address.':'.$port.'
 CONTENT-LENGTH: 314
 CONTENT-TYPE: text/xml; charset="utf-8"
 SOAPACTION: "urn:schemas-upnp-org:service:RenderingControl:1#SetMute"

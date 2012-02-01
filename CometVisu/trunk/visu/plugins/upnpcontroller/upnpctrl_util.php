@@ -17,6 +17,7 @@
 */
 
 $address = $_GET['player_ip_addr'];
+$port = $_GET['port'];
 $port = 1400;
 $error_msg;
 
