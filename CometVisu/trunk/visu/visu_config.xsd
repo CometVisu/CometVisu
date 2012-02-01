@@ -182,6 +182,7 @@
             <xsd:element name="gweather" type="gweather" />
             <xsd:element name="rss" type="rss" />
             <xsd:element name="jqclock" type="jqclock" />
+        	<xsd:element name="upnpcontroller" type="upnpcontroller" />
             <xsd:element ref="page" />
         </xsd:choice>
         <xsd:attribute name="name" type="xsd:string" use="required" />
@@ -228,6 +229,7 @@
         <xsd:element name="gweather" type="gweather" />
         <xsd:element name="rss" type="rss" />
         <xsd:element name="jqclock" type="jqclock" />
+        <xsd:element name="upnpcontroller" type="upnpcontroller" />
         <xsd:element ref="page" />
     </xsd:choice>
     <xsd:attribute name="name" type="xsd:string" use="required" />
@@ -476,6 +478,14 @@
     <xsd:attribute name="height" type="dimension" use="optional"/>
     <xsd:attribute name="lang" type="xsd:string" use="required" />
     <xsd:attribute name="date" type="xsd:string" use="optional" />
+</xsd:complexType>
+
+<xsd:complexType name="upnpcontroller" >
+    <xsd:attribute name="label" type="xsd:string" use="required"/>
+    <xsd:attribute name="player_ip_addr" type="xsd:string" use="required"/>
+    <xsd:attribute name="player_port" type="xsd:string" use="optional" />
+    <xsd:attribute name="refresh" type="xsd:string" use="required" />
+    <xsd:attribute name="debug" type="xsd:string" use="optional" />
 </xsd:complexType>
 
 <xsd:complexType name="break" />
