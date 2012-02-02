@@ -70,7 +70,7 @@ $.fn.setWidgetStyle = function(page) {
 $.fn.makeWidgetLabel = function(page) { 
   var labelElement = page.find('label')[0]; // get first label element
   if (labelElement) { // if exists, add it
-    this.append($('<div class="label">' + labelElement.textContent + '<div>'));
+    this.append($('<div class="label">' + labelElement.textContent + '</div>'));
   }
   return this;
 }

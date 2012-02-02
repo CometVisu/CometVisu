@@ -32,10 +32,9 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
 
         var id = "diagram_" + uniqid();
 
-        var ret_val = $('<div class="widget clearfix" />');
-        ret_val.addClass( 'diagram' );
-        var labelElement = $p.find('label')[0];
-        var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+        var ret_val = $('<div class="widget clearfix diagram" />');
+        ret_val.setWidgetLayout($p).makeWidgetLabel($p);
+        
         var actor = $("<div class=\"actor\"><div class=\"diagram_inline\" id=\"" + id + "\">loading...</div></div>");
         var diagram = $("#" + id, actor);
 
@@ -46,7 +45,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
             diagram.css("height", $p.attr("height"));
         }
 
-        ret_val.append(label).append(actor);
+        ret_val.append(actor);
 
         diagram.data("id", id);
         diagram.data("rrd", $p.attr("rrd"));
@@ -54,8 +53,10 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         diagram.data("series", $p.attr("series") || "day");
         diagram.data("period", $p.attr("period") || 1);
         diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
-        diagram.data("label", $p.find('label')[0] ? $p.find('label')[0].textContent : '');
+        diagram.data("label", $('.label', ret_val).text() || '');
         diagram.data("refresh", $p.attr("refresh"));
+        diagram.data("yaxismin", $p.attr("yaxismin"));
+        diagram.data("yaxismax", $p.attr("yaxismax"));
         diagram.data("linecolor", $p.attr("linecolor") || "");
         diagram.data("gridcolor", $p.attr("gridcolor") || "");
 
@@ -72,7 +73,11 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         period:     {type: "numeric", required: false},
         datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
         refresh:    {type: "numeric", required: false},
+        yaxismin:   {type: "numeric", required: false},
+        yaxismax:   {type: "numeric", required: false},
         linecolor:  {type: "string", required: false},
+        colspan:    {type: "numeric", required: false},
+        rowspan:    {type: "numeric", required: false},
         gridcolor:  {type: "string", required: false}
     },
     elements: {
@@ -92,10 +97,9 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
 
         var id = "diagram_" + uniqid();
 
-        var ret_val = $('<div class="widget clearfix" />');
-        ret_val.addClass( 'diagram' );
-        var labelElement = $p.find('label')[0];
-        var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+        var ret_val = $('<div class="widget clearfix diagram" />');
+        ret_val.setWidgetLayout($p).makeWidgetLabel($p);
+        
         var actor = $("<div class=\"actor\"><div class=\"diagram_preview\" id=\"" + id + "\">loading...</div></div>");
         var diagram = $("#" + id, actor);
 
@@ -106,7 +110,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
             diagram.css("height", $p.attr("height"));
         }
 
-        ret_val.append(label).append(actor);
+        ret_val.append(actor);
 
         diagram.data("id", id);
         diagram.data("rrd", $p.attr("rrd"));
@@ -114,8 +118,10 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         diagram.data("series", $p.attr("series") || "day");
         diagram.data("period", $p.attr("period") || 1);
         diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
-        diagram.data("label", $p.find('label')[0] ? $p.find('label')[0].textContent : '');
+        diagram.data("label", $('.label', ret_val).text() || '');
         diagram.data("refresh", $p.attr("refresh"));
+        diagram.data("yaxismin", $p.attr("yaxismin"));
+        diagram.data("yaxismax", $p.attr("yaxismax"));
         diagram.data("linecolor", $p.attr("linecolor") || "");
         diagram.data("gridcolor", $p.attr("gridcolor") || "");
 
@@ -183,6 +189,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         period:     {type: "numeric", required: false},
         datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
         refresh:    {type: "numeric", required: false},
+        yaxismin:   {type: "numeric", required: false},
+        yaxismax:   {type: "numeric", required: false},
         linecolor:  {type: "string", required: false},
         gridcolor:  {type: "string", required: false},
         tooltip:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
@@ -211,11 +219,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
 
         var id = "diagram_" + uniqid();
 
-        var ret_val = $('<div class="widget clearfix" />');
-        ret_val.addClass( 'diagram' );
-        
-        var labelElement = $p.find('label')[0];
-        var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+        var ret_val = $('<div class="widget clearfix diagram" />');
+        ret_val.setWidgetLayout($p).makeWidgetLabel($p);
                 
         var actor = '<div class="actor switchUnpressed ';
         if ( $p.attr( 'align' ) ) 
@@ -236,7 +241,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
         });
         for( var addr in address ) $actor.bind( addr, this.update );
         
-        ret_val.append(label).append($actor);
+        ret_val.append($actor);
 
         $actor.addClass("clickable");
 
@@ -248,8 +253,10 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
         bDiagram.data("series", $p.attr("series") || "day");
         bDiagram.data("period", $p.attr("period") || 1);
         bDiagram.data("datasource", $p.attr("datasource") || "AVERAGE");
-        bDiagram.data("label", labelElement.textContent);
+        bDiagram.data("label", $('.label', ret_val).text() || '');
         bDiagram.data("refresh", $p.attr("refresh"));
+        bDiagram.data("yaxismin", $p.attr("yaxismin"));
+        bDiagram.data("yaxismax", $p.attr("yaxismax"));
         bDiagram.data("linecolor", $p.attr("linecolor") || "");
         bDiagram.data("gridcolor", $p.attr("gridcolor") || "");
                
@@ -259,7 +266,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
             bDiagram.data(data);
             bDiagram.css({height: "90%"});
 
-            showPopup("unknown", {title: labelElement.textContent, content: bDiagram});
+            showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
             bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
  
             var bDiagramOpts = {yaxis: {labelWidth: null}};
@@ -320,6 +327,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
       tooltip:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
       linecolor:  {type: "string", required: false},
       gridcolor:  {type: "string", required: false},
+      yaxismin:   {type: "numeric", required: false},
+      yaxismax:   {type: "numeric", required: false},
       format:     { type: 'format',    required: false },
       mapping:    { type: 'mapping',   required: false },
       styling:    { type: 'styling',   required: false }
@@ -357,6 +366,8 @@ function refreshDiagram(diagram, flotoptions, data) {
     var period = diagram.data("period") || 1;
     var linecolor = diagram.data("linecolor") || diagramColors.data;
     var gridcolor = diagram.data("gridcolor") || "#81664B";
+    var yaxismin = diagram.data("yaxismin") || null;
+    var yaxismax = diagram.data("yaxismax") || null;
     
     var series = {
         hour:   {label: "hour", res: "60", start: "hour", end: "now"},
@@ -369,7 +380,9 @@ function refreshDiagram(diagram, flotoptions, data) {
     var options = jQuery.extend(true,
         {
             yaxes: [{
-                tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals) + unit; }
+                tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals) + unit; },
+                min: yaxismin,
+                max: yaxismax,
             }],
             xaxes: [{
                 mode: "time"

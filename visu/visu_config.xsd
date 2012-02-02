@@ -399,7 +399,9 @@
     <xsd:attribute name="period" type="xsd:string" use="optional" />
     <xsd:attribute name="datasource" type="xsd:string" use="optional" />
     <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
-    <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />    
+    <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
+    <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
+    <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />    
 </xsd:complexType>
 
 <xsd:complexType name="diagram_popup" >
@@ -415,6 +417,8 @@
     <xsd:attribute name="tooltip" type="xsd:string" use="optional" />
     <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
+    <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
+    <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
 </xsd:complexType>
 
 <xsd:complexType name="diagram_info" >
@@ -434,6 +438,8 @@
     <xsd:attribute name="tooltip" type="xsd:string" use="optional" />
     <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
+    <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
+    <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
 </xsd:complexType>
 
 <xsd:complexType name="gweather" >
