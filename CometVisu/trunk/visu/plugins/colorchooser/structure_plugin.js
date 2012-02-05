@@ -24,7 +24,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
   create: function( page, path ) {
     var $p = $(page);
     var ret_val = $('<div class="widget clearfix colorChooser" />');
-    ret_val.setWidgetStyle($p);
+    ret_val.setWidgetLayout($p);
     var labelElement = $p.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
     var address = {};
