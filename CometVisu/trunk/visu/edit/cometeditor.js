@@ -214,6 +214,17 @@ var CometEditor = function() {
                         }
 
                         break;
+                    case "string": //FIXME: for filling in RRD-name, better would be change attribute e.type=rrd?
+                        if (index == "rrd") {
+                            $input.append($("<select id=\"add_rrd\" />"));
+                            $input.find("select:first").append(Editor.getRRDObject());
+                            if (typeof values._attributes != "undefined"
+                                && typeof values._attributes[index] != "undefined") {
+                                $input.find("option[value='" + values._attributes[index] + "']").attr("selected", "selected");
+                            }
+                            //FIXME: provide text-input if RRDs failed to get fetched
+                            break;
+                        } //else fall through
                     default:
                         $input.append($("<input type=\"text\" id=\"add_" +  index + "\" />"));
 
@@ -627,6 +638,20 @@ var CometEditor = function() {
         return Editor.cache.cachedDPTObject;
     }
 
+    Editor.getRRDObject = function() {
+        if (typeof Editor.cache.cachedRRDObject == "object") {
+            return Editor.cache.cachedRRDObject.clone();
+        }
+        var element = $("<select />");
+        $.each(Editor.cache.rrdCache, function(file, rrdEntry) {
+            file = file.substring(0,file.lastIndexOf("."));
+            element.append($("<option />").attr("value", file)
+                    .html("" + rrdEntry.name + ": " + file + ".rrd (" + rrdEntry.address + ")") 
+                    );
+        });
+        Editor.cache.cachedRRDObject = element.children();
+        return Editor.cache.cachedRRDObject;
+    }
 };
 
 var CometEditorHTMLLayer = function() {

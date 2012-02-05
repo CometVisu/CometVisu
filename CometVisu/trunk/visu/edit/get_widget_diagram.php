@@ -21,7 +21,7 @@ foreach (glob(DIR_RRD) as $filename) {
     $arrRRDParts = explode("_", $filebase, 2);
     $arrRRDtype = explode(".", $arrRRDParts[1], 2);
     $arrAdresses[$filebase] = array(
-                                        "adddress" => $arrOW[$arrRRDParts[0]]['eib_ga_'.$arrRRDtype[0]],
+                                        "address" => $arrOW[$arrRRDParts[0]]['eib_ga_'.$arrRRDtype[0]],
                                         "name"    => utf8_encode($arrOW[$arrRRDParts[0]]['name']),
                                         "dpt"     => $arrGA[$arrOW[$arrRRDParts[0]]['eib_ga_'.$arrRRDtype[0]]]['DPTSubId']
                                         );
