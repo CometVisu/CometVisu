@@ -429,7 +429,7 @@ function refreshDiagram(diagram, flotoptions, data) {
         if (typeof (refresh) != "undefined" && refresh) {
             // reload regularly
             window.setTimeout(function(diagram, flotoptions, data) {
-                refreshDiagram(diagram, flotoptions, data)
+                refreshDiagram(diagram, flotoptions, data);
                 }, refresh * 1000, diagram, flotoptions, data);
         }
     }
