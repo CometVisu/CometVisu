@@ -98,7 +98,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
         var id = "diagram_" + uniqid();
 
         var ret_val = $('<div class="widget clearfix diagram" />');
-        ret_val.setWidgetStyle($p).makeWidgetLabel($p);
+        ret_val.setWidgetLayout($p).makeWidgetLabel($p);
         
         var actor = $("<div class=\"actor\"><div class=\"diagram_preview\" id=\"" + id + "\">loading...</div></div>");
         var diagram = $("#" + id, actor);
@@ -220,7 +220,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
         var id = "diagram_" + uniqid();
 
         var ret_val = $('<div class="widget clearfix diagram" />');
-        ret_val.setWidgetStyle($p).makeWidgetLabel($p);
+        ret_val.setWidgetLayout($p).makeWidgetLabel($p);
                 
         var actor = '<div class="actor switchUnpressed ';
         if ( $p.attr( 'align' ) ) 
