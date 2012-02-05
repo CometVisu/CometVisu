@@ -54,7 +54,7 @@ $.fn.setWidgetStyling = function(value) {
  * implemented: rowspan, colspan
  */
   
-$.fn.setWidgetStyle = function(page) { 
+$.fn.setWidgetLayout = function(page) { 
    this.data('colspanClass', colspanClass(page.attr('colspan') || 1));
    if (page.attr('rowspan')) {
      this.data('rowspanClass', rowspanClass(page.attr('rowspan') || 1));
@@ -154,7 +154,7 @@ function VisuDesign() {
         ret_val=$('');
       } else { // default is visible
         ret_val = $('<div class="widget clearfix link pagelink"/>');
-        ret_val.setWidgetStyle($p);
+        ret_val.setWidgetLayout($p);
         ret_val.append( '<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
       }
 
@@ -272,7 +272,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix text" />');
-      ret_val.setWidgetStyle($p);
+      ret_val.setWidgetLayout($p);
       var style = '';
       if( $p.attr('align') ) style += 'text-align:' + $p.attr('align') + ';';
       if( style != '' ) style = 'style="' + style + '"';
@@ -295,7 +295,7 @@ function VisuDesign() {
       var layout = $p.find('layout')[0];
       var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
       var ret_val = $('<div class="widget clearfix info" ' + style + ' />');
-      ret_val.setWidgetStyle($p).makeWidgetLabel($p);
+      ret_val.setWidgetLayout($p).makeWidgetLabel($p);
       var address = makeAddressList($p);
       
       var actor = '<div class="actor"><div class="value">-</div></div>';
@@ -331,7 +331,7 @@ function VisuDesign() {
       var layout = $p.find('layout')[0];
       var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
       var ret_val = $('<div class="widget clearfix slide" ' + style + ' />');
-      ret_val.setWidgetStyle($p).makeWidgetLabel($p);
+      ret_val.setWidgetLayout($p).makeWidgetLabel($p);
       var address = {};
       var datatype_min = undefined;
       var datatype_max = undefined;
@@ -445,7 +445,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix switch" />');
-      ret_val.setWidgetStyle($p)
+      ret_val.setWidgetLayout($p)
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = makeAddressList($p);
@@ -502,7 +502,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix toggle" />');
-      ret_val.setWidgetStyle($p);
+      ret_val.setWidgetLayout($p);
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = makeAddressList($p);
@@ -562,7 +562,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix switch" />');
-      ret_val.setWidgetStyle($p)
+      ret_val.setWidgetLayout($p)
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = makeAddressList($p);
@@ -706,7 +706,7 @@ function VisuDesign() {
       var $p = $(page);
       var value = $p.attr('value') ? $p.attr('value') : 0;
       var ret_val = $('<div class="widget clearfix switch" />');
-      ret_val.setWidgetStyle($p);
+      ret_val.setWidgetLayout($p);
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
       var address = makeAddressList($p);
@@ -762,7 +762,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix image" />');
-      ret_val.setWidgetStyle($p);
+      ret_val.setWidgetLayout($p);
       var labelElement = $p.find('label')[0];
       ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
       var style = '';
@@ -798,7 +798,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix video" />');
-      ret_val.setWidgetStyle($p);
+      ret_val.setWidgetLayout($p);
       var labelElement = $p.find('label')[0];
       ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
       var autoplay = ($p.attr('autoplay') && $p.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
@@ -828,7 +828,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget iframe" />');
-      ret_val.setWidgetStyle($p);
+      ret_val.setWidgetLayout($p);
       ret_val.append( '<div class="label">' + page.textContent + '</div>' );
       var style = '';
       if( $p.attr('width' ) ) {
@@ -868,7 +868,7 @@ function VisuDesign() {
     create: function( page, path ) {
       var $p = $(page);
       var ret_val = $('<div class="widget clearfix switch" />');
-      ret_val.setWidgetStyle($p);
+      ret_val.setWidgetLayout($p);
       // handle label
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
@@ -1195,7 +1195,6 @@ function placementStrategy( anchor, popup, page, preference )
   
   return { x: 0, y: 0 }; // sanity return
 }
-
 
 function defaultUpdate( e, data, passedElement ) 
 {

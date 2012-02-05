@@ -32,8 +32,8 @@ VisuDesign_Custom.prototype.addCreator("gweather", {
 
         var id = "gweather_" + uniqid();
 
-        var ret_val = $('<div class="widget clearfix" />');
-        ret_val.addClass( 'gweather' );
+        var ret_val = $('<div class="widget clearfix gweather" />');
+        ret_val.setWidgetLayout($p);
         var label = '<div class="label">' + page.textContent + '</div>';
         var actor = $("<div class=\"actor\"><div class=\"gweather\" id=\"" + id + "\">loading</div></div>");
         var gweather = $("#" + id, actor);

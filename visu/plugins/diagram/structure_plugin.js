@@ -33,7 +33,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
         var id = "diagram_" + uniqid();
 
         var ret_val = $('<div class="widget clearfix diagram" />');
-        ret_val.setWidgetStyle($p).makeWidgetLabel($p);
+        ret_val.setWidgetLayout($p).makeWidgetLabel($p);
         
         var actor = $("<div class=\"actor\"><div class=\"diagram_inline\" id=\"" + id + "\">loading...</div></div>");
         var diagram = $("#" + id, actor);
