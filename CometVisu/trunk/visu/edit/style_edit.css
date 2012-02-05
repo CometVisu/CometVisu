@@ -122,13 +122,13 @@ div#addMaster {
     height: 1em;
 }
 
-.element .value, .element .transform, .element .readonly, .element .variant {
+.element .value, .element .transform, .element .readonly, .element .writeonly, .element .variant {
     font-weight: normal;
     height: 1em;
     font-size: small;
 }
 
-.element .value, .element .readonly {
+.element .value, .element .readonly, .element .writeonly {
     float: left;
 }
 
@@ -137,6 +137,11 @@ div#addMaster {
 }
 
 .element .readonly {
+    margin-left: .4em;
+    font-style: italic;
+}
+
+.element .writeonly {
     margin-left: .4em;
     font-style: italic;
 }
