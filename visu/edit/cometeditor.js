@@ -117,6 +117,7 @@ var CometEditor = function() {
                             objData._attributes.transform = "";
                             objData._attributes.variant = "";
                             objData._attributes.readonly = false;
+                            objData._attributes.writeonly = false;
 
                             var elementDiv = HTMLLayer.createAddressEditorElement(objData, e.options);
                             $input.find("div.multi_element").append(elementDiv);
@@ -313,6 +314,7 @@ var CometEditor = function() {
                             .attr("transform", $(e).data("transform"))
                             .attr("variant", $(e).data("variant") || "")
                             .attr("readonly", $(e).data("readonly") == true ? "true" : "false")
+                            .attr("writeonly", $(e).data("writeonly") == true ? "true" : "false")
                             .append($(e).data("address"));
                         dataObject.append($address);
                     });
@@ -494,6 +496,7 @@ var CometEditor = function() {
 
                             myElement._attributes.transform = jQuery(element).attr("transform");
                             myElement._attributes.readonly  = jQuery(element).attr("readonly");
+                            myElement._attributes.writeonly  = jQuery(element).attr("writeonly");
                             myElement._attributes.variant  = jQuery(element).attr("variant") || "";
                             break;
                         default:
@@ -640,7 +643,8 @@ var CometEditorHTMLLayer = function() {
             .append("<div class=\"value editable\" />")
             .append("<div class=\"transform editable\" />")
             .append("<div class=\"variant editable\" />")
-            .append("<div class=\"readonly editable\" />");
+            .append("<div class=\"readonly editable\" />")
+            .append("<div class=\"writeonly editable\" />");
         //myDiv.find(".title").append();
         var t = Editor.getAddressesObject();
         elementDiv.find(".title").append(t.find("option[value='" + elementData.textContent + "']").text());
@@ -653,9 +657,11 @@ var CometEditorHTMLLayer = function() {
             elementDiv.find(".variant").hide();
         }
         elementDiv.find(".readonly").append(elementData._attributes.readonly == "true" ? "readonly" : "")
+        elementDiv.find(".writeonly").append(elementData._attributes.writeonly == "true" ? "writeonly" : "")
 
         elementDiv.data("transform", elementData._attributes.transform)
             .data("readonly", elementData._attributes.readonly == "true" ? true : false)
+            .data("writeonly", elementData._attributes.writeonly == "true" ? true : false)
             .data("address", elementData.textContent);
 
         if (typeof options == "undefined" || typeof options.variant == "undefined" || options.variant == false) {

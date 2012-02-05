@@ -267,6 +267,13 @@ jQuery(document).ready(function() {
                         myElement.find("input").attr("checked", "checked");
                     }
                 }
+                if ($e.hasClass("writeonly")) {
+                    element.find("label").html("writeonly");
+                    myElement.append($("<input type=\"checkbox\" name=\"add_writeonly\" class=\"add_writeonly\" value=\"true\" />"));
+                    if (typeof $e.text() != "undefined" && $e.text() != "") {
+                        myElement.find("input").attr("checked", "checked");
+                    }
+                }
 
                 if ($e.hasClass("variant") && typeof options.variant != "undefined") {
                     // variants can be selected from a pre-defined list ONLY.
@@ -318,6 +325,7 @@ jQuery(document).ready(function() {
                         objData._attributes.transform = $e.find(".add_transform").val();
                         objData._attributes.variant = $e.find(".add_variant").val();
                         objData._attributes.readonly = $e.find(".add_readonly:checked").val();
+                        objData._attributes.writeonly = $e.find(".add_writeonly:checked").val();
 
                         var options = $e.data("options");
 
