@@ -32,13 +32,8 @@ VisuDesign_Custom.prototype.addCreator("jqclock", {
     var id = "jqclock_" + uniqid();
 
     var ret_val = $('<div class="widget clearfix jqclock" />');
-    if ($p.attr("rowspan")) {  // add rowspan only if not default
-      ret_val.addClass(rowspanClass($p.attr("rowspan")));
-    }
-    if ($p.attr("colspan")) {  // add colspan only if not default
-      ret_val.data("colspanClass", colspanClass($p.attr("colspan")));
-    }
-    
+    ret_val.setWidgetLayout($p);
+        
     var label = '<div class="label">' + page.textContent + '</div>';
     var actor = $("<div class=\"actor\"><div class=\"jqclock_inline\" id=\"" + id + "\"></div></div>");
     var jqclock = $("#"+id,actor);

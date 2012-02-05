@@ -42,7 +42,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
         var id = "rss_" + uniqid();
 
         var ret_val = $('<div class="widget clearfix rsslog" />');
-        ret_val.setWidgetStyle($p);
+        ret_val.setWidgetLayout($p);
         
         var labelElement = $p.find('label')[0];
         var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
