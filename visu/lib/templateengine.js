@@ -142,7 +142,7 @@ $( window ).bind( 'resize', handleResize );
 function rowspanClass(rowspan) {
   var className = 'rowspan'+ rowspan;
   
-  if ( $('<div class="' + className + '" />').height() == 0 ) { 
+  if ( !$('head').data(className) ) { 
     var dummyDiv = $('<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
       .appendTo(document.body).show();
     
@@ -152,7 +152,7 @@ function rowspanClass(rowspan) {
           
     // append css style
     
-    $('head').append('<style>.rowspan' + rowspan + ' { height: ' + rowspan*Math.round(singleHeight) + 'px; overflow:hidden;} </style>');
+    $('head').append('<style>.rowspan' + rowspan + ' { height: ' + rowspan*Math.round(singleHeight) + 'px; overflow:hidden;} </style>').data(className, 1);
   }
   
   return className;
@@ -161,7 +161,7 @@ function rowspanClass(rowspan) {
 function innerRowspanClass(rowspan) {
   var className = 'innerrowspan'+ rowspan;
   
-  if ( $('<div class="' + className + '" />').height() == 0 ) { 
+  if ( !$('head').data(className)) { 
     var dummyDiv = $('<div class="clearfix" id="calcinnerrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
       .appendTo(document.body).show();
     $('#containerDiv').addClass(rowspanClass(rowspan));
@@ -175,7 +175,8 @@ function innerRowspanClass(rowspan) {
     $('#calcinnerrowspan').remove();
           
     // append css style
-    $('head').append('<style>.innerrowspan' + rowspan + ' { height: ' + innerHeight + 'px;} </style>');
+    $('head').append('<style>.innerrowspan' + rowspan + ' { height: ' + innerHeight + 'px;} </style>').data(className, 1);
+
   }
   
   return className;
@@ -184,7 +185,7 @@ function innerRowspanClass(rowspan) {
 function colspanClass(colspan) {
   var className = 'colspan'+ colspan; 
   
-  if ( $('<div class="' + className + '" />').width() == 0 ) { 
+  if ( !$('head').data(className) ) { 
     var singleWidth=0;
   
     // loop over all stylesheets and classes and find .widget_container
@@ -211,7 +212,7 @@ function colspanClass(colspan) {
     }
     
     $('head').append('<style>.colspan' + colspan + ' { width: ' + 
-      totalWidth + '%; overflow:hidden;} </style>');
+      totalWidth + '%; overflow:hidden;} </style>').data(className, 1);
   } 
   
   return className;

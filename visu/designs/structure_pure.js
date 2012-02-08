@@ -186,6 +186,8 @@ function VisuDesign() {
       ga:       { type: 'addr', required: false   },
       visible:  { type: 'string', required: false },
       type:     { type: 'string', required: false },
+      colspan:  { type: 'numeric', required: false },
+      rowspan:  { type: 'numeric', required: false }
       backdrop: { type: 'string', required: false }
     },
     elements: {
