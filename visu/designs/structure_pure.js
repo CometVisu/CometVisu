@@ -187,7 +187,7 @@ function VisuDesign() {
       visible:  { type: 'string', required: false },
       type:     { type: 'string', required: false },
       colspan:  { type: 'numeric', required: false },
-      rowspan:  { type: 'numeric', required: false }
+      rowspan:  { type: 'numeric', required: false },
       backdrop: { type: 'string', required: false }
     },
     elements: {
