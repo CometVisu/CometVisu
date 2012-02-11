@@ -42,18 +42,17 @@ VisuDesign_Custom.prototype.addCreator("line", {
  */
 VisuDesign_Custom.prototype.addCreator("designtoggle", {
   create: function( page, path ) {
-             
-    var ret_val = $('<div class="widget clearfix" />');
-    ret_val.addClass( 'switch' );
-    var label = '<div class="label">' + page.textContent + '</div>';
+    var $p = $(page);             
+    var ret_val = $('<div class="widget clearfix switch" />');
+    ret_val.setWidgetLayout($p).makeWidgetLabel($p);
     var actor = '<div class="actor switchUnpressed">';
-    var value = $('link[href*="designs"]').attr('href').split('/')[1];
+    var value = $('link[href*="basic.css"]').attr('href').split('/')[1];
     actor += '<div class="value">' + value + '</div>';
     actor += '</div>';
-    ret_val.append(label).append($(actor)
+    ret_val.append($(actor)
       .data({
-        'mapping' : $(page).attr('mapping'),
-        'styling' : $(page).attr('styling'),
+        'mapping' : $p.attr('mapping'),
+        'styling' : $p.attr('styling'),
         'value'   : value,
         'type'    : 'toggle'
       })

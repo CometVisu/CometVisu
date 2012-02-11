@@ -74,8 +74,11 @@ div#top {
   vertical-align: middle;
 }
 
+.colspan0 { /* multiple of 8.33333% ! */
+  width: 49.9998%;
+}
+
 .widget_container {
-  width: 50%;
   float: left;
 }
 
