@@ -241,8 +241,11 @@ body hr {
   vertical-align: middle;
 }
 
-.widget_container {
+.colspan0 { /* multiple of 8.33333% ! */
   width: 8.33333%;
+}
+
+.widget_container {
 }
 
 .widget_container .widget_container, .link > div, .link a , .switchPressed,

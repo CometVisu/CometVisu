@@ -153,7 +153,7 @@ function rowspanClass(rowspan) {
     // append css style
     
     $('head').append('<style>.rowspan' + rowspan + ' { height: ' + rowspan*Math.round(singleHeight) + 'px; overflow:hidden;} </style>').data(className, 1);
-  }
+  } 
   
   return className;
 }
@@ -175,48 +175,13 @@ function innerRowspanClass(rowspan) {
     $('#calcinnerrowspan').remove();
           
     // append css style
-    $('head').append('<style>.innerrowspan' + rowspan + ' { height: ' + innerHeight + 'px;} </style>').data(className, 1);
+    $('head').append('<style>.innerrowspan' + rowspan + ' { height: ' + innerHeight + 'px;} </style>').data(className, 1); 
 
   }
   
   return className;
 }
 
-function colspanClass(colspan) {
-  var className = 'colspan'+ colspan; 
-  
-  if ( !$('head').data(className) ) { 
-    var singleWidth=0;
-  
-    // loop over all stylesheets and classes and find .widget_container
-    $.each(document.styleSheets, function(idx, sheet) {
-      if (sheet.href ? (sheet.href.search(/basic.css/) > 0) : false) {
-        $.each(sheet.cssRules, function(idx, cssclass) {
-          if (cssclass.selectorText=='.widget_container') {
-            singleWidth = parseFloat((cssclass.style.width).match(/[0-9.]*/)[0]); 
-            return;    
-          }
-        });
-      }
-      if (singleWidth > 0) { // match already found
-        return;
-      }
-    });
-      
-    var totalWidth = singleWidth * colspan;
-    
-    if (totalWidth>100) { // check if totalWidth is <=100
-      alert('colspan="'+colspan+'" leads to width:' + totalWidth +
-        '% which is >100% and not allowed. Corrected to 100%');
-      totalWidth=100;
-    }
-    
-    $('head').append('<style>.colspan' + colspan + ' { width: ' + 
-      totalWidth + '%; overflow:hidden;} </style>').data(className, 1);
-  } 
-  
-  return className;
-}
 function parseXML(xml) {
   // erst mal den Cache für AJAX-Requests wieder aktivieren
   $.ajaxSetup({cache: true});
@@ -243,7 +208,7 @@ function parseXML(xml) {
 	  selectDesign();
   }
   
-  
+  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/textglobal.css" />' );
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/basic.css" />' );
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/mobile.css" media="only screen and (max-device-width: 480px)" />' );
   
