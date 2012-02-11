@@ -1,7 +1,12 @@
 HEAD
 ====
 
--
+- New feature: colspan (column-width is 8.33333%, i.e. 1/12)
+- New feature: rowspan (row-height is height of <text>-widget)
+- Added rsslog-plugin
+- New design: pitchblack (needs config-rewrite)
+- diagram-Plugin: yaxismin, yaxismax, added diagram_info
+
 
 0.6.1
 =====
