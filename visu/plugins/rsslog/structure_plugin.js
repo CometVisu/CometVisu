@@ -1,5 +1,5 @@
 /* structure_plugin.js (c) 2011 by Michael Markstaller [devel@wiregate.de]
- *
+ * rsslog (c) 2012 by Jan N. Klug [jan.n.klug@rub.de]
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -14,17 +14,6 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
-
-/**
- * This plugins integrates zrssfeed to display RSS-Feeds via Google-API 
- * *and* a parser for local feeds using jQuery 1.5+ into CometVisu.
- * rssfeedlocal is derived from simplerss and zrssfeed
- * rssfeedlocal is mainly meant to be used with rsslog.php and plugins
- * Examples
- *   <rss src="/visu/plugins/rss/rsslog.php" refresh="300" link="false" title="false"></rss>
- *   <rss src="http://www.tagesschau.de/xml/rss2" refresh="300">Test API</rss>
- *   <rss src="/visu/plugins/rss/tagesschau-rss2.xml" refresh="300" header="true" date="true"></rss>
- */
 
 $.get("plugins/rsslog/rsslog.css", function(css) {
     $("head").append("<style>"+css+"</style>");
@@ -42,10 +31,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
         var id = "rss_" + uniqid();
 
         var ret_val = $('<div class="widget clearfix rsslog" />');
-        ret_val.setWidgetLayout($p);
-        
-        var labelElement = $p.find('label')[0];
-        var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+        ret_val.setWidgetLayout($p).makeWidgetLabel($p);
        
         var actor = $('<div class="actor rsslogBody"><div class="rsslog_inline" id="' + id + '"></div></div>');
         var rss = $("#" + id, actor);
@@ -57,11 +43,10 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
             rss.css("height", $p.attr("height"));
         }
 
-        ret_val.append(label).append(actor);
+        ret_val.append(actor);
 
         rss.data("id", id);
         rss.data("src", $p.attr("src"));
-        rss.data("label", labelElement ? labelElement.textContent : '' );
         rss.data("refresh", $p.attr("refresh"));
         rss.data("content", $p.attr("content")) || true;
         rss.data("datetime", $p.attr("datetime")) || true;
@@ -92,7 +77,6 @@ function refreshRSSlog(rss, data) {
     var rss = $(rss);
 
     var src = rss.data("src");
-    var label = rss.data("label");
     var refresh = rss.data("refresh");
     var limit = rss.data("limit");
     
@@ -155,7 +139,7 @@ function refreshRSSlog(rss, data) {
                           jQuery(c).html('');
                           
                           // get height of one entry, calc max num of display items in widget
-                          var dummyDiv = $('<' + o.wrapper + ' class="rssRow odd" id="dummydiv">').append('<li />').appendTo($(c));
+                          var dummyDiv = $('<' + o.wrapper + ' class="rsslogRow odd" id="dummydiv">').append('<li />').appendTo($(c));
                           var itemheight = dummyDiv.height();
                           dummyDiv.remove();
                           var widget=$(c).parent().parent(); // get the parent widget
@@ -164,10 +148,10 @@ function refreshRSSlog(rss, data) {
                                    
                           var items = $(feed).find('item');
                           var itemnum = items.length;
-                          var itemoffset = 0; // correct if mode='first' or itemnum<=displayrows
+                          var itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
                           
                           if (itemnum>displayrows) { // no need to check mode if items are less than rows
-                            if (o.mode=='last') {
+                            if (o.mode=='first') {
                               itemoffset=itemnum-displayrows;
                             }
                             if (o.mode=='rollover') {
@@ -188,12 +172,12 @@ function refreshRSSlog(rss, data) {
                             var idx = i;
                             idx = (i>=itemnum) ? (idx = idx - itemnum) : idx;
                             
-                            var item = items[idx];
+                            var item = $(items[idx]);
                             
                             var itemHtml=o.html;
                             
-                            itemHtml = itemHtml.replace(/{text}/, jQuery(item).find('description').text());
-                            var entryDate = new Date($(item).find('pubDate').text());
+                            itemHtml = itemHtml.replace(/{text}/, item.find('description').text());
+                            var entryDate = new Date(item.find('pubDate').text());
                             if (entryDate) {
                               itemHtml = (o.timeformat) ? 
                                 (itemHtml.replace(/{date}/, entryDate.strftime(o.timeformat) + '&nbsp;')) : 
@@ -201,8 +185,18 @@ function refreshRSSlog(rss, data) {
                             } else {
                               itemHtml = itemHtml.replace(/{date}/, '');
                             }
-
-                            jQuery(c).append(jQuery('<' + o.wrapper + ' class="rsslogRow ' + row + '">').append(itemHtml));
+                            
+                            var $row = $('<' + o.wrapper + ' class="rsslogRow ' + row + '">').append(itemHtml);
+                            
+                            var title = item.find('title').text();
+                            var itemClasses = title.substring(title.search(/\[/)+1,title.search(/\]/)).replace(/\,/g, ' ');
+                           
+                            if (itemClasses) {
+                              
+                              $row.addClass(itemClasses);
+                            }
+                            
+                            jQuery(c).append($row)
 
                             // Alternate row classes
                             row = (row == 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
