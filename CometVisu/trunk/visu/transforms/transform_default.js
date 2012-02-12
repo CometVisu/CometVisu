@@ -67,3 +67,13 @@ function addTransform( prefix, transforms )
     }
   }
 }
+
+/**
+ * Prepend zeros to the string s till the result has the length l.
+ */
+function zeroFillString( s, l )
+{
+  if( s.length >= l ) return s;
+  
+  return new Array(1 + l - s.length).join('0') + s;
+}

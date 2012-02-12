@@ -44,6 +44,7 @@ VisuDesign_Custom.prototype.addCreator("clock", {
     var datatype =  $(page).attr('datatype');
     var $actor = $(actor)
       .data({
+        'value'   : new Date(),
         'address' : address,
         'type'    : 'clock'
       });
@@ -82,7 +83,6 @@ VisuDesign_Custom.prototype.addCreator("clock", {
     var y = 50 - (event.originalEvent.pageY - $svg.offset().top);
     var angle = (Math.atan2( x, y ) * 180 / Math.PI + 360) % 360;
     var time = $container.data('value');
-    var told = time.toString();
     if( event.data.type == 'hour' )
     {
       var oldHours = time.getHours();
