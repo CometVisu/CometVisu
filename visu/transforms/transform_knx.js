@@ -216,7 +216,10 @@ addTransform( 'DPT', {
   '10.001' : {
     name  : 'DPT_TimeOfDay',
     encode: function( phy ){
-      // FIXME
+      var val = zeroFillString( ((phy.getDay() << 5) + phy.getHours()).toString(16), 2);
+      val += zeroFillString( phy.getMinutes().toString(16), 2 );
+      val += zeroFillString( phy.getSeconds().toString(16), 2 );
+      return '80' + val;
     },
     decode: function( hex ){ 
       var date = new Date(); // assume today
