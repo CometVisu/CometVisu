@@ -1,0 +1,135 @@
+/* 
+ * global CSS declarations for all designs 
+ */
+
+/* 
+ * colspans, each design needs to define a colspan0
+ * class, this class is the default widget size
+ */
+ 
+.colspan1 {
+  width: 8.33333%;
+}
+
+.colspan2 {
+  width: 16.66666%;
+}
+
+.colspan3 {
+ width: 24.99999%;
+}
+
+.colspan4 {
+  width: 33.33332%;
+}
+
+.colspan5 {
+  width: 41.66665%;
+}
+
+.colspan6 {
+  width: 49.99998%;
+}
+
+.colspan7 {
+  width: 58.33331%;
+}
+
+.colspan8 {
+  width: 66.66664%;
+}
+
+.colspan9 {
+  width: 74.99997%;
+}
+
+.colspan10 {
+  width: 83.33330%;
+}
+
+.colspan11 {
+  width: 91.66663%;
+}
+
+.colspan12 {
+  width: 99.99996%;
+}
+
+/*
+ * global color declarations for stylings in all designs
+ * may be overloaded by designs
+ */
+
+.red
+{
+  color:#FF0000;
+}
+.white
+{
+  color:#FFFFFF;
+}
+.cyan
+{
+  color:#00FFFF;
+}
+.silver
+{
+  color:#C0C0C0;
+}
+.blue
+{
+  color:#0000FF;
+}
+.grey
+{
+  color:#808080;
+}
+.darkblue
+{
+  color:#0000A0;
+}
+.black
+{
+  color:#000000;
+}
+.lightblue
+{
+  color:#ADD8E6;
+}
+.orange
+{
+  color:#FFA500;
+}
+.purple
+{
+  color:#800080;
+}
+.brown
+{
+  color:#A52A2A;
+}
+.yellow
+{
+  color:#FFFF00;
+}
+.maroon
+{
+  color:#800000;
+}
+.lime
+{
+  color:#00FF00;
+}
+.green
+{
+  color:#008000;
+}
+.fuchsia
+{
+  color:#FF00FF;
+}
+.olive
+{
+  color:#808000;
+}
+
