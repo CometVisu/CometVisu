@@ -16,61 +16,76 @@
 */
 
 $.get("plugins/rsslog/rsslog.css", function(css) {
-    $("head").append("<style>"+css+"</style>");
+  $("head").append("<style>"+css+"</style>");
 });
 
 VisuDesign_Custom.prototype.addCreator("rsslog", {
-    create: function( page, path ) {
-        var $p = $(page);
+  create: function( page, path ) {
+    var $p = $(page);
+    function uniqid() {
+      var newDate = new Date;
+      return newDate.getTime();
+    }
 
-        function uniqid() {
-            var newDate = new Date;
-            return newDate.getTime();
-        }
+    var id = "rss_" + uniqid();
 
-        var id = "rss_" + uniqid();
-
-        var ret_val = $('<div class="widget clearfix rsslog" />');
-        ret_val.setWidgetLayout($p).makeWidgetLabel($p);
+    var ret_val = $('<div class="widget clearfix rsslog" />');
+    ret_val.setWidgetLayout($p).makeWidgetLabel($p);
        
-        var actor = $('<div class="actor rsslogBody"><div class="rsslog_inline" id="' + id + '"></div></div>');
-        var rss = $("#" + id, actor);
+    var actor = $('<div class="actor rsslogBody"><div class="rsslog_inline" id="' + id + '"></div></div>');
+    var rss = $("#" + id, actor);
 
-        if ($p.attr("width")) {
-            rss.css("width", $p.attr("width"));
-        }
-        if ($p.attr("height")) {
-            rss.css("height", $p.attr("height"));
-        }
+    if ($p.attr("width")) {
+      rss.css("width", $p.attr("width"));
+    }
+    if ($p.attr("height")) {
+      rss.css("height", $p.attr("height"));
+    }
 
-        ret_val.append(actor);
+    ret_val.append(actor);
 
-        rss.data("id", id);
-        rss.data("src", $p.attr("src"));
-        rss.data("refresh", $p.attr("refresh"));
-        rss.data("content", $p.attr("content")) || true;
-        rss.data("datetime", $p.attr("datetime")) || true;
-        rss.data("mode", $p.attr("mode") || "last");
-        rss.data("timeformat", $p.attr("timeformat"));
+    rss.data("id", id);
+    rss.data("src", $p.attr("src"));
+    rss.data("refresh", $p.attr("refresh"));
+    rss.data("content", $p.attr("content")) || true;
+    rss.data("datetime", $p.attr("datetime")) || true;
+    rss.data("mode", $p.attr("mode") || "last");
+    rss.data("timeformat", $p.attr("timeformat"));
+    rss.data("itemoffset", 0);
+    rss.data("itemack", 0);
+    
+    var brss = $('<div class="rsslog_popup" id="' + id + '_big"/>');
+    var data = jQuery.extend({}, rss.data());
+    
+    ret_val.bind("click", function() {
+      showPopup("rsslog", {title: $('.label', ret_val).text() || '', content: brss});
+      brss.parent("div").css({height: "90%", width: "90%", margin: "auto"}); // define parent as 100%!
+      brss.data(data);
+      brss.data("refresh", "");
+      brss.data("itemack", 1);
+      $(brss).bind("click", function(event) {
+        // don't let the popup know about the click, or it will close on touch-displays
+        event.stopPropagation();
+      });
+      $(brss).parent().css("overflow", "auto");
+      refreshRSSlog(brss, {});
+    });
         
+    refreshRSSlog(rss, {});
 
-        rss.data("itemoffset", 0);
-        
-        refreshRSSlog(rss, {});
-
-        return ret_val;
-    },
-    attributes: {
-        src:        {type: "string", required: true},
-        width:      {type: "string", required: false},
-        height:     {type: "string", required: false},
-        refresh:    {type: "numeric", required: false},
-        content:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        datetime:   {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        mode:       {type: "list", required: false, list: {'first': 'first', 'last': 'last', 'rollover':'rollover' }},
-        timeformat: {type: "string", required: false},
-    },
-    content: false
+    return ret_val;
+  },
+  attributes: {
+    src:        {type: "string", required: true},
+    width:      {type: "string", required: false},
+    height:     {type: "string", required: false},
+    refresh:    {type: "numeric", required: false},
+    content:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
+    datetime:   {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
+    mode:       {type: "list", required: false, list: {'first': 'first', 'last': 'last', 'rollover':'rollover' }},
+    timeformat: {type: "string", required: false},
+  },
+  content: false
 });
 
 function refreshRSSlog(rss, data) {
@@ -88,6 +103,7 @@ function refreshRSSlog(rss, data) {
         datetime: eval(rss.data("datetime")),
         mode: rss.data("mode"),
         timeformat: rss.data("timeformat"),
+        itemack: rss.data("itemack"),
       });
     });
     
@@ -102,112 +118,126 @@ function refreshRSSlog(rss, data) {
 }
 
 (function($){
-    jQuery.fn.extend({
-        rssfeedlocal: function(options) {
+  jQuery.fn.extend({
+    rssfeedlocal: function(options) {
   
-            var defaults = {
-                src: '',
-                html: '{text}',
-                wrapper: 'li',
-                dataType: 'xml',
-                title: true,
-                datetime: true
-            }
-            var options = jQuery.extend(defaults, options);
+      var defaults = {
+        src: '',
+        html: '{text}',
+        wrapper: 'li',
+        dataType: 'xml',
+        datetime: true
+      }
+      var options = jQuery.extend(defaults, options);
             
-            if (options.datetime) {
-              options.html = '{date}: ' + options.html;
-            }
+      if (options.datetime) {
+        options.html = '{date}: ' + options.html;
+      }
 
-            return this.each(function() {
-                var o = options;
-                var c = jQuery(this);
+      return this.each(function() {
+        var o = options;
+        var c = jQuery(this);
 
-                if (o.src == '') {
-                    console.log('rssfeedlocal: no src URL');
-                    return; // avoid the request
-                }
-
-                jQuery.ajax({
-                    url: o.src,
-                    type: 'GET',
-                    dataType: o.dataType,
-                    error: function (xhr, status, e) {
-                        console.log('C: #%s, Error: %s, Feed: %s', $(c).attr('id'), e, o.src);
-                    },
-                    success: function(feed){
-                          jQuery(c).html('');
-                          
-                          // get height of one entry, calc max num of display items in widget
-                          var dummyDiv = $('<' + o.wrapper + ' class="rsslogRow odd" id="dummydiv">').append('<li />').appendTo($(c));
-                          var itemheight = dummyDiv.height();
-                          dummyDiv.remove();
-                          var widget=$(c).parent().parent(); // get the parent widget
-                          var displayheight = widget.height()-$('.label', widget).height(); // max. height of actor is widget-label(if exists)
-                          var displayrows = Math.floor(displayheight/itemheight);
-                                   
-                          var items = $(feed).find('item');
-                          var itemnum = items.length;
-                          var itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
-                          
-                          if (itemnum>displayrows) { // no need to check mode if items are less than rows
-                            if (o.mode=='first') {
-                              itemoffset=itemnum-displayrows;
-                            }
-                            if (o.mode=='rollover') {
-                              itemoffset = $(c).data("itemoffset") || 0;
-                              if (itemoffset==itemnum) {
-                                itemoffset = 0;
-                              }
-                              $(c).data("itemoffset", itemoffset+1);
-                            }
-                          }
-                          
-                          var row = 'rsslogodd';
-                          var last = itemoffset+displayrows;
-                          if (last>itemnum) {
-                            last=itemnum;
-                          }
-                          for (var i=itemoffset; i<last; i++) {  
-                            var idx = i;
-                            idx = (i>=itemnum) ? (idx = idx - itemnum) : idx;
-                            
-                            var item = $(items[idx]);
-                            
-                            var itemHtml=o.html;
-                            
-                            itemHtml = itemHtml.replace(/{text}/, item.find('description').text());
-                            var entryDate = new Date(item.find('pubDate').text());
-                            if (entryDate) {
-                              itemHtml = (o.timeformat) ? 
-                                (itemHtml.replace(/{date}/, entryDate.strftime(o.timeformat) + '&nbsp;')) : 
-                                (itemHtml.replace(/{date}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;'));
-                            } else {
-                              itemHtml = itemHtml.replace(/{date}/, '');
-                            }
-                            
-                            var $row = $('<' + o.wrapper + ' class="rsslogRow ' + row + '">').append(itemHtml);
-                            
-                            var title = item.find('title').text();
-                            var itemClasses = title.substring(title.search(/\[/)+1,title.search(/\]/)).replace(/\,/g, ' ');
-                           
-                            if (itemClasses) {
-                              
-                              $row.addClass(itemClasses);
-                            }
-                            
-                            jQuery(c).append($row)
-
-                            // Alternate row classes
-                            row = (row == 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
-                          };
-                          
-                          $('li', c).wrapAll("<ul>");                      
-                    }
-                });
-            });
-            return this;
+        if (o.src == '') {
+          console.log('rssfeedlocal: no src URL');
+          return; // avoid the request
         }
-    });
+
+        jQuery.ajax({
+          url: o.src,
+          type: 'GET',
+          dataType: o.dataType,
+          error: function (xhr, status, e) {
+          console.log('C: #%s, Error: %s, Feed: %s', $(c).attr('id'), e, o.src);
+          },
+          success: function(feed){
+            jQuery(c).html('');
+                         
+            // get height of one entry, calc max num of display items in widget
+            var dummyDiv = $('<' + o.wrapper + ' class="rsslogRow odd" id="dummydiv">').append('<li />').appendTo($(c));
+            var itemheight = dummyDiv.height();
+            dummyDiv.remove();
+            var widget=$(c).parent().parent(); // get the parent widget
+            var displayheight = widget.height()-$('.label', widget).height(); // max. height of actor is widget-label(if exists)
+            var displayrows = Math.floor(displayheight/itemheight);
+                                   
+            var items = $(feed).find('item');
+            var itemnum = items.length;
+                          
+            var itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
+                          
+            if (itemnum>displayrows) { // no need to check mode if items are less than rows
+              if (o.mode=='first') {
+                itemoffset=itemnum-displayrows;
+              }
+              if (o.mode=='rollover') {
+                itemoffset = $(c).data("itemoffset") || 0;
+                if (itemoffset==itemnum) {
+                  itemoffset = 0;
+                }
+                $(c).data("itemoffset", itemoffset+1);
+              }
+            }
+                          
+            var row = 'rsslogodd';
+            var last = itemoffset+displayrows;
+            last = (last>itemnum) ? itemnum : last;
+            
+            for (var i=itemoffset; i<last; i++) {  
+              var idx = i;
+              idx = (i>=itemnum) ? (idx = idx - itemnum) : idx;
+                            
+              var item = $(items[idx]);
+              var itemHtml=o.html;
+                            
+              itemHtml = itemHtml.replace(/{text}/, item.find('description').text());
+              var entryDate = new Date(item.find('pubDate').text());
+              if (entryDate) {
+                itemHtml = (o.timeformat) ? 
+                  (itemHtml.replace(/{date}/, entryDate.strftime(o.timeformat) + '&nbsp;')) : 
+                  (itemHtml.replace(/{date}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;'));
+              } else {
+                itemHtml = itemHtml.replace(/{date}/, '');
+              }
+                            
+              var $row = $('<' + o.wrapper + ' class="rsslogRow ' + row + '">').append(itemHtml);
+                            
+              var title = item.find('title').text();
+              var itemClasses = title.substring(title.search(/\[/)+1,title.search(/\]/)).replace(/\,/g, ' ');
+              if (itemClasses) {
+                $row.addClass(itemClasses);
+                var id = itemClasses.match(/id=[0-9]*/)[0].split('=')[1];
+                $row.data('id', id);
+              }
+              if (o.itemack) {
+                $row.bind("click", function() {
+                   var item = $(this);
+                   var id = item.data('id');
+                   item.toggleClass("rsslog_ack");
+                   var state = item.hasClass("rsslog_ack"); // the new state is the same as hasClass
+                   var url = o.src.split('?')[0] + '?u=' + id + '&state=' + Number(state);
+                   jQuery.ajax({
+                     url: url,
+                     type: 'GET',             
+                     error: function (xhr, status, e) {
+                       console.log('ID: #%s, Error: %s, URL: %s', id, e, url);
+                     },
+                   });
+                });
+              }
+                                          
+              jQuery(c).append($row);
+
+              // Alternate row classes
+              row = (row == 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
+            };
+                          
+            $('li', c).wrapAll("<ul>");                      
+          }
+        });
+      });
+      return this;
+    }
+  });
 })(jQuery);
 
