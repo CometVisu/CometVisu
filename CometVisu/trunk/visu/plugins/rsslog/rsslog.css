@@ -1,10 +1,41 @@
-.rssBody, .rsslog_inline {
+.rsslog_inline {
   padding-left:0.15em;
 }
 
-.rssBody>ul, .rsslog_inline>ul {
+.rsslog_inline>ul {
   margin: 0;
   padding: 0;
   list-style: none;
 
+}
+
+.rsslog_popup>ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rsslog_popup > ul > li {
+  line-height: 2em;
+}
+
+.rsslogBody {
+  clear: left;
+  width:100%;
+}
+
+.rsslogeven  {
+  color: #E6E6E6;
+}
+
+.rsslogodd {
+  color: #6E6E6E;
+}
+
+.rsslog_popup > ul > .rsslogRow {
+  font-size: 100%;
+}
+
+.rsslog_ack {
+  text-decoration: line-through;
 }
