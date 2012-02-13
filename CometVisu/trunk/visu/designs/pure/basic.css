@@ -189,6 +189,7 @@ body br
   padding: 3px;
   width: 5em;
   float: left;
+  text-align: center;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -212,6 +213,7 @@ body br
   padding: 3px;
   width: 5em;
   float: left;
+  text-align: center;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;

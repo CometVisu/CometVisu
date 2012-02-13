@@ -57,10 +57,33 @@
         <entry value="0">green</entry>
         <entry value="1">red</entry>
       </styling>
+      <styling name="Grey_Green">
+        <entry value="0">grey</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="Grey_Red">
+        <entry value="0">grey</entry>
+        <entry value="1">red</entry>
+      </styling>
+      <styling name="Grey_Blue">
+        <entry value="0">grey</entry>
+        <entry value="1">blue</entry>
+      </styling>
+      <styling name="Brown_Purple">
+        <entry value="0">brown</entry>
+        <entry value="1">purple</entry>
+      </styling>
       <styling name="Blue_Purple_Red">
         <entry range_min="-100" range_max="0">blue</entry>
         <entry value="0">purple</entry>
         <entry range_min="0" range_max="100">red</entry>
+      </styling>
+      <styling name="Blue_Lightblue_Green_Purple_Red">
+        <entry range_min="-10" range_max="-1">blue</entry>
+        <entry range_min="-1" range_max="10">lightblue</entry>
+        <entry range_min="10" range_max="18">green</entry>
+        <entry range_min="18" range_max="24">purple</entry>
+        <entry range_min="24" range_max="32">red</entry>
       </styling>
     </stylings>
     <statusbar>
@@ -325,6 +348,37 @@
         <label>Format "%+.2f":</label>
         <address transform="DPT:9">12/7/9</address>
       </info>
+    </page>
+    <page name="Stylings Test" align="center">
+        <switch mapping="On_Off" styling="Green_Red">
+          <label>Switch green/red</label>
+          <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        </switch>
+        <switch mapping="On_Off" styling="Grey_Green">
+          <label>Switch grey/green</label>
+          <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        </switch>
+        <switch mapping="On_Off" styling="Grey_Red">
+          <label>Switch grey/red</label>
+          <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        </switch>
+        <switch mapping="On_Off" styling="Grey_Blue">
+          <label>Switch grey/blue</label>
+          <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        </switch>
+        <switch mapping="On_Off" styling="Brown_Purple">
+          <label>Switch brown/purple</label>
+          <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        </switch>
+        <line/>
+        <info styling="Blue_Lightblue_Green_Purple_Red" format="%.1f °C">
+          <label>Info: with Styling/Ranges</label>
+          <address transform="DPT:9" type="">12/7/10</address>
+        </info>
+        <slide min="-10" max="32">
+          <label>Slider to show ranges in styling</label>
+          <address transform="DPT:9" type="">12/7/10</address>
+        </slide>
     </page>
     <line/>
     <text align="center">&lt;b&gt;Plugins&lt;/b&gt;</text>

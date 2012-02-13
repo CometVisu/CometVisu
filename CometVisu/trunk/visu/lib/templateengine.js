@@ -208,9 +208,10 @@ function parseXML(xml) {
 	  selectDesign();
   }
   
-  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/textglobal.css" />' );
+  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/designglobals.css" />' );
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/basic.css" />' );
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/mobile.css" media="only screen and (max-device-width: 480px)" />' );
+  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/custom.css" />' );
   
   // start with the plugins
   var pluginsToLoad = 0;
