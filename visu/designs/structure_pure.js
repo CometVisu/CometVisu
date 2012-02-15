@@ -155,7 +155,9 @@ function VisuDesign() {
       } else { // default is visible
         ret_val = $('<div class="widget clearfix link pagelink"/>');
         ret_val.setWidgetLayout($p);
-        ret_val.append( '<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>' );
+        var tst = $('<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>');
+        
+        ret_val.append(tst );
       }
 
       var childs = $p.children();
@@ -230,6 +232,7 @@ function VisuDesign() {
       var hstyle  = '';                                     // heading style
       if( $p.attr('align') ) hstyle += 'text-align:' + $p.attr('align') + ';';
       if( hstyle != '' ) hstyle = 'style="' + hstyle + '"';
+      ret_val.setWidgetLayout($p);
       var childs = $p.children();
       var container = $( '<div class="clearfix"/>' );
       if( $p.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $p.attr('name') + '</h2>' );
@@ -243,6 +246,8 @@ function VisuDesign() {
     attributes: {
       align:  { type: 'string', required: false },
       flavour:{ type: 'string', required: false },
+      colspan:    { type: 'numeric', required: false },
+      rowspan:    { type: 'numeric', required: false },
       name:   { type: 'string', required: true }
     },
     elements: {
