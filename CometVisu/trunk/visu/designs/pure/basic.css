@@ -62,16 +62,17 @@ body br
   vertical-align: middle;
 }
 
-.colspan0 { /* multiple of 8.33333% ! */
-  width: 49.9998%;
-}
 
 .widget_container {
    float: left;
 }
 
-.widget_container .widget_container {
+/*.widget_container .widget_container {
     width: 100%;
+}*/
+
+.colspan0 { /* multiple of 8.33333% ! */
+  width: 49.9998%;
 }
 
 .widget
