@@ -46,6 +46,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
 
     rss.data("id", id);
     rss.data("src", $p.attr("src"));
+    rss.data("filter", $p.attr("filter"));
     rss.data("refresh", $p.attr("refresh"));
     rss.data("content", $p.attr("content")) || true;
     rss.data("datetime", $p.attr("datetime")) || true;
@@ -77,6 +78,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
   },
   attributes: {
     src:        {type: "string", required: true},
+    filter:     {type: "string", required: false},
     width:      {type: "string", required: false},
     height:     {type: "string", required: false},
     refresh:    {type: "numeric", required: false},
@@ -92,6 +94,14 @@ function refreshRSSlog(rss, data) {
     var rss = $(rss);
 
     var src = rss.data("src");
+    var filter = rss.data("filter");
+    if (filter) {
+      if (src.match(/\?/)) {
+        src += '&f=' + filter;
+      } else {
+        src += '?f=' + filter;
+      }
+    }
     var refresh = rss.data("refresh");
     var limit = rss.data("limit");
     
@@ -123,7 +133,7 @@ function refreshRSSlog(rss, data) {
   
       var defaults = {
         src: '',
-        html: '{text}',
+        html: '<span>{text}</span>',
         wrapper: 'li',
         dataType: 'xml',
         datetime: true
@@ -183,6 +193,10 @@ function refreshRSSlog(rss, data) {
             var last = itemoffset+displayrows;
             last = (last>itemnum) ? itemnum : last;
             
+            var separatordate = new Date().strftime('%d');
+            var separatoradd = false;
+            var separatorprevday = false;
+            
             for (var i=itemoffset; i<last; i++) {  
               var idx = i;
               idx = (i>=itemnum) ? (idx = idx - itemnum) : idx;
@@ -196,19 +210,29 @@ function refreshRSSlog(rss, data) {
                 itemHtml = (o.timeformat) ? 
                   (itemHtml.replace(/{date}/, entryDate.strftime(o.timeformat) + '&nbsp;')) : 
                   (itemHtml.replace(/{date}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;'));
+                var thisday = entryDate.strftime('%d');
+                separatoradd = ((separatordate > 0) && (separatordate != thisday));
+                separatordate = thisday;  
               } else {
                 itemHtml = itemHtml.replace(/{date}/, '');
               }
                             
               var $row = $('<' + o.wrapper + ' class="rsslogRow ' + row + '">').append(itemHtml);
-                            
+              if (separatoradd) { 
+                $row.addClass('rsslog_separator'); separatorprevday = true; 
+              }
+              if (separatorprevday == true) { 
+                $row.addClass(' rsslog_prevday'); 
+              }
+              
               var title = item.find('title').text();
               var itemClasses = title.substring(title.search(/\[/)+1,title.search(/\]/)).replace(/\,/g, ' ');
               if (itemClasses) {
-                $row.addClass(itemClasses);
+                $('span', $row).addClass(itemClasses);
                 var id = itemClasses.match(/id=[0-9]*/)[0].split('=')[1];
                 $row.data('id', id);
               }
+              
               if (o.itemack) {
                 $row.bind("click", function() {
                    var item = $(this);
