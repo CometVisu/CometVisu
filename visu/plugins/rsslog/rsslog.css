@@ -39,3 +39,13 @@
 .rsslog_ack {
   text-decoration: line-through;
 }
+
+.rsslog_separator {
+  border-top-style: dotted;
+  border-color: #DDDDDD;
+}
+
+.rsslog_prevday {
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
