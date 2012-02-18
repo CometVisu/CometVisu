@@ -233,6 +233,9 @@ function VisuDesign() {
       if( $p.attr('align') ) hstyle += 'text-align:' + $p.attr('align') + ';';
       if( hstyle != '' ) hstyle = 'style="' + hstyle + '"';
       ret_val.setWidgetLayout($p);
+      if ($p.attr('nowidget')=='true') {
+        ret_val.removeClass('widget');
+      }
       var childs = $p.children();
       var container = $( '<div class="clearfix"/>' );
       if( $p.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $p.attr('name') + '</h2>' );
@@ -244,11 +247,12 @@ function VisuDesign() {
       return ret_val;
     },
     attributes: {
-      align:  { type: 'string', required: false },
-      flavour:{ type: 'string', required: false },
-      colspan:    { type: 'numeric', required: false },
-      rowspan:    { type: 'numeric', required: false },
-      name:   { type: 'string', required: true }
+      align:   { type: 'string', required: false },
+      flavour: { type: 'string', required: false },
+      colspan: { type: 'numeric', required: false },
+      rowspan: { type: 'numeric', required: false },
+      nowidget: {type: 'string', required: false },
+      name:    { type: 'string', required: true }
     },
     elements: {
     },
