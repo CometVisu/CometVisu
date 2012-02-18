@@ -25,11 +25,9 @@ var ga_list = [];
 var main_scroll;
 var old_scroll = '';
 
-visu = new CometVisu('/cgi-bin/');//{};
-visu.update = function( json ) // overload the handler
-{
-  for( key in json )
-  {
+visu = new CometVisu('/cgi-bin/');
+visu.update = function( json ) { // overload the handler
+  for( key in json ) {
     $.event.trigger( '_' + key, json[key] );
   }
 }
@@ -45,6 +43,7 @@ var clientDesign = "";
 if (typeof forceReload == "undefined") {
   var forceReload = false;
 }
+
 if( $.getUrlVar('forceReload') ) {
   forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set to false
 }
@@ -89,25 +88,21 @@ function transformEncode( transformation, value ) {
     (basetrans in Transform ? Transform[ basetrans ].encode( value ) : value);
 }
 
-function transformDecode( transformation, value )
-{
+function transformDecode( transformation, value ) {
   var basetrans = transformation.split('.')[0];
   return transformation in Transform ?
     Transform[ transformation ].decode( value ) : 
     (basetrans in Transform ? Transform[ basetrans ].decode( value ) : value);
 }
 
-function map( value, element )
-{
+function map( value, element ) {
   var map = element.data('mapping');
-  if( map && mappings[map] && (mappings[map][value] || mappings[map]['range']) )
-  {
+  if( map && mappings[map] && (mappings[map][value] || mappings[map]['range']) ) {
     if( mappings[map]['range'] ) value = parseFloat( value );
     if( mappings[map][value] ) return mappings[map][value];
 
     var range = mappings[map]['range'];
-    for( var min in range )
-    {
+    for( var min in range ) {
       if( min > value ) continue;
       if( range[min][0] < value ) continue; // check max
       return range[min][1];
@@ -120,20 +115,19 @@ function map( value, element )
  * Make sure everything looks right when the window gets resized.
  * This is necessary as the scroll effect requires a fixed element size
  */
-function handleResize()
-{
+function handleResize() {
   var uagent = navigator.userAgent.toLowerCase();
 
   if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
-      var width = $( window ).width();
-      $( '#main' ).css( 'width', width );
-      $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;}</style>' );
-      // do nothing
+    var width = $( window ).width();
+    $( '#main' ).css( 'width', width );
+    $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;}</style>' );
+    // do nothing
   } else {
-      var width = $( window ).width();
-      var height = $( window ).height() - $( '#top' ).outerHeight(true) - $( '#bottom' ).outerHeight(true) - 2;
-      $( '#main' ).css( 'width', width ).css( 'height', height );
-      $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;height:' + height + 'px;}</style>' );
+    var width = $( window ).width();
+    var height = $( window ).height() - $( '#top' ).outerHeight(true) - $( '#bottom' ).outerHeight(true) - 2;
+    $( '#main' ).css( 'width', width ).css( 'height', height );
+    $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;height:' + height + 'px;}</style>' );
   }
   main_scroll != undefined && main_scroll.seekTo( main_scroll.getIndex(), 0 ); // fix scroll
 }
@@ -197,15 +191,15 @@ function parseXML(xml) {
 
   // design by url
   if ($.getUrlVar("design")) {
-	  clientDesign = $.getUrlVar("design");
+    clientDesign = $.getUrlVar("design");
   }
   // design by config file
   else if (predefinedDesign){
-	  clientDesign = predefinedDesign; 
+    clientDesign = predefinedDesign; 
   }
   // selection dialog
   else {
-	  selectDesign();
+    selectDesign();
   }
   
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/designglobals.css" />' );
@@ -227,19 +221,19 @@ function parseXML(xml) {
     html_doc.appendChild(js);
 
     js.onreadystatechange = function () {
-        if (js.readyState == 'complete') {
-            pluginsToLoad -= 1;
-            if (pluginsToLoad <= 0) {
-                setup_page(xml);
-            }
+      if (js.readyState == 'complete') {
+        pluginsToLoad -= 1;
+        if (pluginsToLoad <= 0) {
+          setup_page(xml);
         }
+      }
     }
 
     js.onload = function () {
-        pluginsToLoad -= 1;
-        if (pluginsToLoad <= 0) {
-            setup_page(xml);
-        }
+      pluginsToLoad -= 1;
+      if (pluginsToLoad <= 0) {
+        setup_page(xml);
+      }
     }
   } );
 
@@ -308,10 +302,9 @@ function parseXML(xml) {
   // adapt width for pages to show
   handleResize();
 
-    if (pluginsToLoad <= 0) {
-        setup_page(xml);
-    }
-
+  if (pluginsToLoad <= 0) {
+    setup_page(xml);
+  }
 
 }
 
@@ -339,15 +332,13 @@ function setup_page( xml )
   
   // reaction on browser back button
   window.onpopstate = function(e) {
-	  
-	  // where do we come frome?
-	  lastpage = $('body').data("lastpage")
-	  if (lastpage) {
-		  // browser back button takes us one level higher
-		  scrollToPage(lastpage);
-	  }
+    // where do we come frome?
+    lastpage = $('body').data("lastpage")
+    if (lastpage) {
+      // browser back button takes us one level higher
+      scrollToPage(lastpage);
+    }
   }
-
   
   visu.subscribe( ga_list );
   $("#pages").triggerHandler("done");
@@ -355,90 +346,87 @@ function setup_page( xml )
 
 function create_pages( page, path, flavour ) {
 
-    var creator = design.getCreator(page.nodeName);
-    var retval = creator.create(page, path, flavour);
+  var creator = design.getCreator(page.nodeName);
+  var retval = creator.create(page, path, flavour);
 
-    node = $(page).get(0);
-    var attributes = {};
-    if (typeof node.attributes != "undefined") {
-        for(var i=0; i<node.attributes.length; i++)  {
-            if(node.attributes.item(i).specified) {
-                attributes[node.attributes.item(i).nodeName]=node.attributes.item(i).nodeValue
-            }
-        }
-    } else {
-        $.extend(attributes, node);
+  node = $(page).get(0);
+  var attributes = {};
+  if (typeof node.attributes != "undefined") {
+    for(var i=0; i<node.attributes.length; i++)  {
+      if(node.attributes.item(i).specified) {
+        attributes[node.attributes.item(i).nodeName]=node.attributes.item(i).nodeValue
+      }
     }
+  } else {
+    $.extend(attributes, node);
+  }
 
-    var configData = {attributes: {}, elements: {}}
-    if (typeof creator.attributes != "undefined") {
-        $.each(creator.attributes, function (index, e) {
-            if ($(page).attr(index)) {
-                configData.attributes[index] = $(page).attr(index);
-            }
-        });
-    }
+  var configData = {attributes: {}, elements: {}}
+  if (typeof creator.attributes != "undefined") {
+    $.each(creator.attributes, function (index, e) {
+      if ($(page).attr(index)) {
+        configData.attributes[index] = $(page).attr(index);
+      }
+    });
+  }
 
-    if (typeof creator.elements != "undefined") {
-        $.each(creator.elements, function (index, e) {
-            var elements = $(page).find(index);
-            configData.elements[index] = elements;
-        });
-    }
+  if (typeof creator.elements != "undefined") {
+    $.each(creator.elements, function (index, e) {
+      var elements = $(page).find(index);
+      configData.elements[index] = elements;
+    });
+  }
 
-    retval.data("configData", configData)
-        .data("path", path)
-        .data("nodeName", page.nodeName)
-        .data("textContent", page.textContent);
+  retval.data("configData", configData)
+    .data("path", path)
+    .data("nodeName", page.nodeName)
+    .data("textContent", page.textContent);
         
-    if (jQuery(retval).is(".widget")) {
-       retval = jQuery("<div class='widget_container "+(retval.data("colspanClass") ? retval.data("colspanClass") : '')+" "+(retval.data("rowspanClass") ? retval.data("rowspanClass") : '')+"' />").append(retval);
-    }
+  if (jQuery(retval).is(".widget") || (jQuery(retval).is(".group")) ) {
+    retval = jQuery("<div class='widget_container " + 
+      (retval.data("colspanClass") ? retval.data("colspanClass") : '') + " " +
+      (retval.data("rowspanClass") ? retval.data("rowspanClass") : '')+"' />")
+      .append(retval);
+  }
         
-    return retval;
+  return retval;
 }
 
-function scrollToPage( page_id, speed )
-{
+function scrollToPage( page_id, speed ) {
   $('#'+page_id).css( 'display', '' );                         // show new page
 
   // which is the parent of target page_id?
   // => set this id as lastpage in url for window.onpopstate handling
   var path = page_id.split( '_' );
-  if (path.length > 1){
-	  // above top level
-	  // everything besides the last number is the parent id
-	  path.pop();
-	  // store lastpage in body.data
-	  $('body').data("lastpage", path.join("_"));
+  if (path.length > 1) {
+    // above top level
+    // everything besides the last number is the parent id
+    path.pop();
+    // store lastpage in body.data
+    $('body').data("lastpage", path.join("_"));
   }
   else {
-	  // top level
-	  $('body').data("lastpage", page_id);
+    // top level
+    $('body').data("lastpage", page_id);
   }
   
   // push new state to history
   window.history.pushState(page_id, page_id, window.location.href);
-  
-  
+    
   main_scroll.seekTo( $('.page').index( $('#'+page_id)[0] ), speed ); // scroll to it
   var pagedivs=$('div', '#'+page_id); 
-  for( var i = 0; i<pagedivs.length; i++) //check for inline diagrams & refresh
-  {
-    if( pagedivs[i].className == 'diagram_inline') 
-    {
+  for( var i = 0; i<pagedivs.length; i++) { //check for inline diagrams & refresh
+    if( pagedivs[i].className == 'diagram_inline') {
       refreshDiagram(pagedivs[i]);
     }
   }
 }
 
-function updateTopNavigation()
-{
+function updateTopNavigation() {
   var path = $('.page').eq( this.getIndex() ).attr('id').split( '_' );
   var id = ''; //path[0];
   var nav = '';
-  for( var i = 0; i < path.length; i++ )
-  {
+  for( var i = 0; i < path.length; i++ ) {
     id  += path[i];
     nav += (0==i ? '' : ' &#x25ba; ')
         +  '<a href="javascript:scrollToPage(\'' +id+ '\')">'
@@ -450,8 +438,7 @@ function updateTopNavigation()
   var old_array = old_scroll;
   old_scroll = path;
   path = path.join('_');
-  for( var i = new_array.length; i < old_array.length; i++ )
-  {
+  for( var i = new_array.length; i < old_array.length; i++ ) {
     path += '_' + old_array[i]; // reuse of path...
     $('#'+path).css('display','none');
   }
@@ -463,8 +450,7 @@ function updateTopNavigation()
  * This function returnes a jQuery object that points to the whole popup,
  * so it's content can be easily extended
  */
-function showPopup( type, attributes )
-{
+function showPopup( type, attributes ) {
   //var retval = design.popups[ type ].create( attributes ); //page, path );
   //return retval;
   if( !design.popups[ type ] ) type = 'unknown';
@@ -476,8 +462,7 @@ function showPopup( type, attributes )
  * Remove the popup.
  * The parameter is the jQuery object returned by the showPopup function
  */
-function removePopup( jQuery_object )
-{
+function removePopup( jQuery_object ) {
   jQuery_object.remove();
 }
 
@@ -485,15 +470,12 @@ function removePopup( jQuery_object )
 /* FIXME - Question: should this belong to the VisuDesign object so that it */
 /* is possible to overload?!?                                               */
 /****************************************************************************/
-function refreshAction( target, src )
-{
+function refreshAction( target, src ) {
   target.src = src + '&' + new Date().getTime();
 }
-function setupRefreshAction()
-{
+function setupRefreshAction() {
   var refresh = $(this).data('refresh');
-  if( refresh && refresh > 0 )
-  {
+  if( refresh && refresh > 0 ) {
     var target = $('img', $(this) )[0] || $('iframe', $(this) )[0];
     var src = target.src;
     if( src.indexOf('?') < 0 ) src += '?';
@@ -503,58 +485,57 @@ function setupRefreshAction()
 
 
 function selectDesign() {
+  $body = $("body");
 
-    $body = $("body");
-
-    $("body > *").hide();
-    $body.css({backgroundColor: "black"});
+  $("body > *").hide();
+  $body.css({backgroundColor: "black"});
     
-    $div = $("<div id=\"designSelector\" />");
-    $div.css({background: "#808080", width: "400px", color: "white", margin: "auto", padding: "0.5em"});
-    $div.html("Loading ...");
+  $div = $("<div id=\"designSelector\" />");
+  $div.css({background: "#808080", width: "400px", color: "white", margin: "auto", padding: "0.5em"});
+  $div.html("Loading ...");
     
-    $body.append($div);
+  $body.append($div);
     
-    $.getJSON("edit/get_designs.php", function(data) {
-        $div.empty();
+  $.getJSON("edit/get_designs.php", function(data) {
+    $div.empty();
         
-        $div.append("<h1>Please select design</h1>");
-        $div.append("<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>");
+    $div.append("<h1>Please select design</h1>");
+    $div.append("<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>");
         
-        $.each(data, function(i, element) {
-            var $myDiv = $("<div />");
+    $.each(data, function(i, element) {
+      var $myDiv = $("<div />");
 
-            $myDiv.css({cursor: "pointer", padding: "0.5em 1em", borderBottom: "1px solid black", margin: "auto", width: "262px", position: "relative"});
+      $myDiv.css({cursor: "pointer", padding: "0.5em 1em", borderBottom: "1px solid black", margin: "auto", width: "262px", position: "relative"});
             
-            $myDiv.append("<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>");
-            $myDiv.append("<iframe src=\"designs/design_preview.html?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>");
-            $myDiv.append("<img width=\"60\" height=\"30\" src=\"media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>");
+      $myDiv.append("<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>");
+      $myDiv.append("<iframe src=\"designs/design_preview.html?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>");
+      $myDiv.append("<img width=\"60\" height=\"30\" src=\"media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>");
             
-            $div.append($myDiv);
+      $div.append($myDiv);
 
-            var $tDiv = $("<div />");
-            $tDiv.css({background: "transparent", position: "absolute", height: "90px", width: "160px", zIndex: 2})
-            var pos = $myDiv.find("iframe").position();
-            $tDiv.css({left: pos.left + "px", top: pos.top + "px"});
-            $myDiv.append($tDiv);
+      var $tDiv = $("<div />");
+      $tDiv.css({background: "transparent", position: "absolute", height: "90px", width: "160px", zIndex: 2})
+      var pos = $myDiv.find("iframe").position();
+      $tDiv.css({left: pos.left + "px", top: pos.top + "px"});
+      $myDiv.append($tDiv);
             
-            $myDiv.hover(function() {
-                // over
-                $myDiv.css({background: "#bbbbbb"});
-            },
-            function() {
-                // out
-                $myDiv.css({background: "transparent"});
-            });
+      $myDiv.hover(function() {
+        // over
+        $myDiv.css({background: "#bbbbbb"});
+      },
+      function() {
+        // out
+        $myDiv.css({background: "transparent"});
+      });
             
-            $myDiv.click(function() {
-                if (document.location.search == "") {
-                    document.location.href = document.location.href + "?design=" + element;
-                } else {
-                    document.location.href = document.location.href + "&design=" + element;
-                }
-            })
+      $myDiv.click(function() {
+        if (document.location.search == "") {
+          document.location.href = document.location.href + "?design=" + element;
+        } else {
+          document.location.href = document.location.href + "&design=" + element;
+        }
+      })
             
-        })
     })
+  })
 }
