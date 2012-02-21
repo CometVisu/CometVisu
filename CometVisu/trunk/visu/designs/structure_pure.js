@@ -55,10 +55,10 @@ $.fn.setWidgetStyling = function(value) {
  */
   
 $.fn.setWidgetLayout = function(page) { 
-   this.data('colspanClass', 'colspan'+(page.attr('colspan') || '0'));
+   this.data('colspan', page.attr('colspan') || $('head').data('colspanDefault'));
    if (page.attr('rowspan')) {
      this.data('rowspanClass', rowspanClass(page.attr('rowspan') || 1));
-     this.addClass(innerRowspanClass(page.attr('rowspan') || 1));
+     this.addClass('innerrowspan'); 
    }
    return this;
  }
