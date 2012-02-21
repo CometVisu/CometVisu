@@ -133,10 +133,11 @@ function handleResize() {
 }
 $( window ).bind( 'resize', handleResize );
 
+
 function rowspanClass(rowspan) {
   var className = 'rowspan'+ rowspan;
   
-  if ( !$('head').data(className) ) { 
+  if ( !$('#'+className+'Style').get(0) ) { 
     var dummyDiv = $('<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
       .appendTo(document.body).show();
     
@@ -146,32 +147,8 @@ function rowspanClass(rowspan) {
           
     // append css style
     
-    $('head').append('<style>.rowspan' + rowspan + ' { height: ' + rowspan*Math.round(singleHeight) + 'px; overflow:hidden;} </style>').data(className, 1);
+    $('head').append('<style id="'+className+'Style">.rowspan' + rowspan + ' { height: ' + rowspan*Math.round(singleHeight) + 'px; overflow:hidden; position:relative;} </style>').data(className, 1);
   } 
-  
-  return className;
-}
-
-function innerRowspanClass(rowspan) {
-  var className = 'innerrowspan'+ rowspan;
-  
-  if ( !$('head').data(className)) { 
-    var dummyDiv = $('<div class="clearfix" id="calcinnerrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
-      .appendTo(document.body).show();
-    $('#containerDiv').addClass(rowspanClass(rowspan));
-    
-    var outerHeight = parseFloat($('#containerDiv').css('height'));        
-    var innerDiv=$('#innerDiv');
-    var margin=Math.round(parseFloat(innerDiv.css('marginTop')))+Math.round(parseFloat(innerDiv.css('marginBottom')));
-    var padding=Math.round(parseFloat(innerDiv.css('paddingTop')))+Math.round(parseFloat(innerDiv.css('paddingBottom')));
-    var border=Math.round(parseFloat(innerDiv.css('borderTopWidth')))+Math.round(parseFloat(innerDiv.css('borderBottomWidth')));
-    var innerHeight=outerHeight-margin-padding-border;
-    $('#calcinnerrowspan').remove();
-          
-    // append css style
-    $('head').append('<style>.innerrowspan' + rowspan + ' { height: ' + innerHeight + 'px;} </style>').data(className, 1); 
-
-  }
   
   return className;
 }
@@ -313,8 +290,32 @@ function setup_page( xml )
   // and now setup the pages
   var page = $( 'pages > page', xml )[0]; // only one page element allowed...
 
+  $('head').append(($('<div class="colspandefault" id="colspandefault">')));
+  setTimeout(function() {
+  $('head').data('colspanDefault', parseInt($('#colspandefault').css('width')));
+  $('#colspandefault').remove();
+        
   create_pages(page, '0');
 
+  // all containers
+  if (!/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(navigator.userAgent.toLowerCase())) {
+    var allContainer = $('.widget_container');
+    allContainer.each(function(i, e) {
+      var ourColspan = $(e).children('*:first-child').data('colspan');
+      var ourWidth = ourColspan/12*100;
+      $(e).css('width', ourWidth+'%');
+    });
+  
+    // and elements inside groups
+    var adjustableElements = $('.group .widget_container');
+    adjustableElements.each(function(i, e) {
+      var groupColspan = $(e).parentsUntil('.widget_container', '.group').data('colspan');
+      var ourColspan = $(e).children('.widget').data('colspan');
+      var ourWidth = ourColspan/groupColspan*100;  // in percent
+      $(e).css('width', ourWidth+'%');
+    });
+  };
+  
   // setup the scrollable
   main_scroll = $('#main').scrollable({keyboard: false, touch: false}).data('scrollable');
   main_scroll.onSeek( updateTopNavigation );
@@ -342,6 +343,7 @@ function setup_page( xml )
   
   visu.subscribe( ga_list );
   $("#pages").triggerHandler("done");
+  }, 1);
 }
 
 function create_pages( page, path, flavour ) {
@@ -384,7 +386,6 @@ function create_pages( page, path, flavour ) {
         
   if (jQuery(retval).is(".widget") || (jQuery(retval).is(".group")) ) {
     retval = jQuery("<div class='widget_container " + 
-      (retval.data("colspanClass") ? retval.data("colspanClass") : '') + " " +
       (retval.data("rowspanClass") ? retval.data("rowspanClass") : '')+"' />")
       .append(retval);
   }

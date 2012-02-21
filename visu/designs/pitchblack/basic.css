@@ -39,7 +39,7 @@ div#top, .widget, .popup_background {
 div#top , .widget, .popup_background {
   border-color: /* border */ #202020; 
   border-style: solid;
-  border-width: 0 0.05em 0.05em 0.05em;
+  border-width: 0 1px 1px 1px;
 }
 
 #pages hr, body hr {
@@ -64,8 +64,15 @@ body , body hr, #pages hr{
   margin: 0;
 }
 
-div#top, .widget {
+div#top, .widget, .widget.group {
   margin: .2em .1em 0 .1em; 
+}
+
+.widget.group .widget {
+  background: #0D0D0D;
+  border: none;
+  margin: 0;
+  padding:0;
 }
 
 .nav_path , .widget .actor, .diagram_inline {
@@ -107,8 +114,16 @@ h2 {
   padding: 0.3em;
 }
 
+.widget.group {
+  padding: 0.3em 0 0.3em 0;
+}
+
 .text >div, .rsslog .label, .popup >div.head {
   padding-left: 0.3em;
+}
+
+.group .text>div, .group .rsslog .label {
+  padding-left: 0.6em;
 }
 
 #diagramTooltip {
@@ -133,8 +148,8 @@ h2 {
   font-size:80%;
 }
 
-.lighton > div, .lightoff > div, .jalup > div, .jaldown > div,  /* image-buttons */
-  .jalstop > div, .singlewindowopen > div, .singlewindowclosed > div, .doublewindowleftopen > div, 
+.lighton > div, .lightoff > div, .jalup, .jaldown,  /* image-buttons */
+  .jalstop, .singlewindowopen > div, .singlewindowclosed > div, .doublewindowleftopen > div, 
   .doublewindowrightopen >div, .doublewindowbothclosed >div, .doublewindowbothopen >div  {
   font-size:0%;
 }
@@ -241,15 +256,15 @@ body hr {
   vertical-align: middle;
 }
 
-.colspan0 { /* multiple of 8.33333% ! */
-  width: 8.33333%;
-}
-
 .widget_container {
 }
 
-.widget_container .widget_container, .link > div, .link a , .switchPressed,
-  .switchUnpressed, * html>body .clearfix, .info > div, .actor .value , .text>div{
+.colspan0 {
+  width: 8.33333%;
+}
+
+.link > div, .link a , .switchPressed, .switchUnpressed, * html>body .clearfix,
+  .info > div, .actor .value , .text>div {
   width: 100%;
 }
 
@@ -291,21 +306,20 @@ body hr {
   position: relative;
 }
 
- .ui-slider { position: relative; text-align: left; }
+.ui-slider { position: relative; text-align: left; }
 .ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: .4em; height: 1.2em; cursor: default; }
 .ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
 
- .ui-slider-horizontal { height: .8em; }
+.ui-slider-horizontal { height: .8em; }
 .ui-slider-horizontal .ui-slider-handle { top: -.40em; margin-left: -0.4em;}
 .ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
 .ui-slider-horizontal .ui-slider-range-min { left: 0; }
 .ui-slider-horizontal .ui-slider-range-max { right: 0; }
 
- .ui-widget-content { border: 1px solid #707070; background: #000000 ; color: #000000; }
- .ui-widget-content a { color: #333333; }
- .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #cccccc; background: #000 ; font-weight: bold; color: #1c94c4; }
- .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #1c94c4; text-decoration: none; }
- 
+.ui-widget-content { border: 1px solid #707070; background: #000000 ; color: #000000; }
+.ui-widget-content a { color: #333333; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #cccccc; background: #000 ; font-weight: bold; color: #1c94c4; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #1c94c4; text-decoration: none; }
 
 .widget .ui-slider
 {
@@ -408,3 +422,6 @@ div#demo_3 {
   background-color: #1d1d1d;
 }
 
+.colspandefault {
+  width: 1px;
+}
