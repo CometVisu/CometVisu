@@ -71,6 +71,10 @@ function createDiagram( page, path, oldType ) {
 
   if ($p.attr("width")) {
     diagram.css("width", $p.attr("width"));
+  } else {
+    if (oldType=="popup") {
+      diagram.removeClass("diagram_inline").addClass("diagram_preview");
+    }
   }
   if ($p.attr("height")) {
     diagram.css("height", $p.attr("height"));
