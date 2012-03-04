@@ -78,8 +78,17 @@
         <address transform="DPT:5.001" type="">12/7/52</address>
       </info>
     </page>
-    <page name="3D Demo" >
-      <text>not avialable at the moment...</text>
+    <page name="3D Demo" type="3d" backdrop="floorplan_demo.xml" azimut="12/7/53" elevation="12/7/54">
+      <slide min="0" max="6.283185307179586">
+        <layout x="0px" y="570px" width="600px" />
+        <label>Azimut</label>
+        <address transform="DPT:5.001" type="">12/7/53</address>
+      </slide>
+      <slide min="0" max="1.5707963267948966">
+        <layout x="400px" y="570px" width="600px" />
+        <label>Elevation</label>
+        <address transform="DPT:5.001" type="">12/7/54</address>
+      </slide>
     </page>
     <line/>
   </page>
