@@ -171,6 +171,19 @@ function VisuDesign() {
       if( '2d' == type )
       {
         container.append( '<embed src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;width:100%;height:100%;"/>' );
+      } else if( '3d' == type )
+      {
+        container.data( 'JSFloorPlan3D', JSFloorPlan3D( container, backdrop ) );
+        if ($p.attr('azimut')) {
+          ga_list.push($p.attr('azimut'));
+          address[ '_' + $p.attr('azimut') ] = [ 'DPT:5.001', 0, 'azimut' ];
+          container.bind( '_' + $p.attr('azimut'), this.update );
+        }
+        if ($p.attr('elevation')) {
+          ga_list.push($p.attr('elevation'));
+          address[ '_' + $p.attr('elevation') ] = [ 'DPT:5.001', 0, 'elevation' ];
+          container.bind( '_' + $p.attr('elevation'), this.update );
+        }; container.data( 'address', address );
       }
       $( childs ).each( function(i){
           container.append( create_pages( childs[i], path + '_' + i, flavour ) );
@@ -190,14 +203,31 @@ function VisuDesign() {
       type:     { type: 'string', required: false },
       colspan:  { type: 'numeric', required: false },
       rowspan:  { type: 'numeric', required: false },
-      backdrop: { type: 'string', required: false }
+      backdrop: { type: 'string', required: false },
+      azimut:   { type: 'addr', required: false   },
+      elevation:{ type: 'addr', required: false   }
     },
     elements: {
     },
     update: function(e, data) {
-      if (data==01) {
-        scrollToPage(this.attributes.path.nodeValue);
-        visu.write(e.type.substr(1), transformEncode("DPT:1.001", 0));
+      var element = $(this);
+      var value = defaultUpdate( e, data, element );
+      var type = element.data().address[ e.type ][2];
+      switch( type )
+      {
+        case 'azimut':
+          element.data().JSFloorPlan3D.setState('currentAzimut', value, true);
+          break;
+          
+        case 'elevation':
+          element.data().JSFloorPlan3D.setState('currentElevation', value, true);
+          break;
+          
+        default:
+          if (data==01) {
+            scrollToPage(this.attributes.path.nodeValue);
+            visu.write(e.type.substr(1), transformEncode("DPT:1.001", 0));
+          }
       }
     },
     content: true
