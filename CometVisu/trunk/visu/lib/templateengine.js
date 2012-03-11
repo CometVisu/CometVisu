@@ -74,7 +74,7 @@ if (isNaN(use_maturity)) {
 $(document).ready(function() {
   // get the data once the page was loaded
   $.ajaxSetup({cache: !forceReload});
-  window.setTimeout("$.get( 'visu_config" + configSuffix + ".xml', parseXML );", 200);
+  $.get( 'visu_config' + configSuffix + '.xml', parseXML );
 } );
 
 $(window).unload(function() {
@@ -276,13 +276,9 @@ function parseXML(xml) {
     $('.footer').html( $('.footer').html() + text );
   });
 
-  // adapt width for pages to show
-  handleResize();
-
   if (pluginsToLoad <= 0) {
     setup_page(xml);
   }
-
 }
 
 function setup_page( xml )
@@ -291,7 +287,6 @@ function setup_page( xml )
   var page = $( 'pages > page', xml )[0]; // only one page element allowed...
 
   $('head').append(($('<div class="colspandefault" id="colspandefault">')));
-  setTimeout(function() {
   $('head').data('colspanDefault', parseInt($('#colspandefault').css('width')));
   $('#colspandefault').remove();
         
@@ -342,8 +337,8 @@ function setup_page( xml )
   }
   
   visu.subscribe( ga_list );
+  $(window).trigger('resize');
   $("#pages").triggerHandler("done");
-  }, 1);
 }
 
 function create_pages( page, path, flavour ) {

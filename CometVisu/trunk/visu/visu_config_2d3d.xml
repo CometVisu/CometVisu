@@ -78,7 +78,7 @@
         <address transform="DPT:5.001" type="">12/7/52</address>
       </info>
     </page>
-    <page name="3D Demo" type="3d" backdrop="floorplan_demo.xml" azimut="12/7/53" elevation="12/7/54">
+    <page name="3D Demo" type="3d" backdrop="floorplan_demo.xml" azimut="12/7/53" elevation="12/7/54" floor="12/7/51">
       <slide min="0" max="6.283185307179586">
         <layout x="0px" y="570px" width="600px" />
         <label>Azimut</label>
@@ -89,6 +89,16 @@
         <label>Elevation</label>
         <address transform="DPT:5.001" type="">12/7/54</address>
       </slide>
+      <trigger value="0">
+        <layout x="0px" y="150px" width="600px" />
+        <label>Underground</label>
+        <address transform="DPT:5.004" readonly="false" type="">12/7/51</address>
+      </trigger>
+      <trigger value="1">
+        <layout x="0px" y="100px" width="600px" />
+        <label>Ground</label>
+        <address transform="DPT:5.004" readonly="false" type="">12/7/51</address>
+      </trigger>
     </page>
     <line/>
   </page>

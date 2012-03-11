@@ -173,7 +173,11 @@ function VisuDesign() {
         container.append( '<embed src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;width:100%;height:100%;"/>' );
       } else if( '3d' == type )
       {
-        container.data( 'JSFloorPlan3D', JSFloorPlan3D( container, backdrop ) );
+        var floorplan = JSFloorPlan3D( container, backdrop );
+        floorplan.moveToRoom( 'Underground', false, true, false );
+        container.data( 'JSFloorPlan3D', floorplan );
+        container.find('canvas').css({position: 'absolute', top: '0px', left: '0px', 'z-index':'-1', width:'100%',height:'100%'});
+        $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
         if ($p.attr('azimut')) {
           ga_list.push($p.attr('azimut'));
           address[ '_' + $p.attr('azimut') ] = [ 'DPT:5.001', 0, 'azimut' ];
@@ -183,7 +187,13 @@ function VisuDesign() {
           ga_list.push($p.attr('elevation'));
           address[ '_' + $p.attr('elevation') ] = [ 'DPT:5.001', 0, 'elevation' ];
           container.bind( '_' + $p.attr('elevation'), this.update );
-        }; container.data( 'address', address );
+        }; 
+        if ($p.attr('floor')) {
+          ga_list.push($p.attr('floor'));
+          address[ '_' + $p.attr('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
+          container.bind( '_' + $p.attr('floor'), this.update );
+        }; 
+        container.data( 'address', address );
       }
       $( childs ).each( function(i){
           container.append( create_pages( childs[i], path + '_' + i, flavour ) );
@@ -205,13 +215,14 @@ function VisuDesign() {
       rowspan:  { type: 'numeric', required: false },
       backdrop: { type: 'string', required: false },
       azimut:   { type: 'addr', required: false   },
-      elevation:{ type: 'addr', required: false   }
+      elevation:{ type: 'addr', required: false   },
+      floor:    { type: 'addr', required: false   }
     },
     elements: {
     },
     update: function(e, data) {
       var element = $(this);
-      var value = defaultUpdate( e, data, element );
+      var value = defaultValueHandling( e, data, element );
       var type = element.data().address[ e.type ][2];
       switch( type )
       {
@@ -221,6 +232,10 @@ function VisuDesign() {
           
         case 'elevation':
           element.data().JSFloorPlan3D.setState('currentElevation', value, true);
+          break;
+          
+        case 'floor':
+          element.data().JSFloorPlan3D.moveToRoom( value, false, true, true );
           break;
           
         default:
@@ -745,8 +760,10 @@ function VisuDesign() {
   this.addCreator('trigger', {
     create: function( page, path ) {
       var $p = $(page);
+      var layout = $p.find('layout')[0];
+      var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
       var value = $p.attr('value') ? $p.attr('value') : 0;
-      var ret_val = $('<div class="widget clearfix switch" />');
+      var ret_val = $('<div class="widget clearfix switch" ' + style + ' />');
       ret_val.setWidgetLayout($p);
       var labelElement = $p.find('label')[0];
       var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
@@ -794,7 +811,8 @@ function VisuDesign() {
     },
     elements: {
       label:      { type: 'string',    required: true, multi: false },
-      address:    { type: 'address',   required: true, multi: true }
+      address:    { type: 'address',   required: true, multi: true },
+      layout:     { type: 'layout',    required: false, multi: false }
     },
     content:      false
   });
@@ -1237,17 +1255,12 @@ function placementStrategy( anchor, popup, page, preference )
   return { x: 0, y: 0 }; // sanity return
 }
 
-function defaultUpdate( e, data, passedElement ) 
+function defaultValueHandling( e, data, passedElement )
 {
   var element = passedElement || $(this);
   var thisTransform = element.data().address[ e.type ][0];
   var value = transformDecode( element.data().address[ e.type ][0], data );
- 
-  element.setWidgetStyling(value);
   
-  if( element.data( 'align' ) )
-    element.addClass(element.data( 'align' ) );
-
   element.data( 'basicvalue', value );
   if( element.data( 'precision' ) )
     value = Number( value ).toPrecision( element.data( 'precision' ) );
@@ -1267,6 +1280,20 @@ function defaultUpdate( e, data, passedElement )
         break;
       }
   }
+  return value;
+}
+
+function defaultUpdate( e, data, passedElement ) 
+{
+//  var value = defaultValueHandling( e, data, passedElement )
+  var element = passedElement || $(this);
+  var value = defaultValueHandling( e, data, element );
+ 
+  element.setWidgetStyling( element.data( 'basicvalue' ) );
+  
+  if( element.data( 'align' ) )
+    element.addClass(element.data( 'align' ) );
+
   element.find('.value').text( value );
   
   return value;
