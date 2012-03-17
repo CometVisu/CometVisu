@@ -341,10 +341,10 @@ function setup_page( xml )
   $("#pages").triggerHandler("done");
 }
 
-function create_pages( page, path, flavour ) {
+function create_pages( page, path, flavour, type ) {
 
   var creator = design.getCreator(page.nodeName);
-  var retval = creator.create(page, path, flavour);
+  var retval = creator.create(page, path, flavour, type);
 
   node = $(page).get(0);
   var attributes = {};
