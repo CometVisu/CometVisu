@@ -196,7 +196,7 @@ function VisuDesign() {
         container.data( 'address', address );
       }
       $( childs ).each( function(i){
-          container.append( create_pages( childs[i], path + '_' + i, flavour ) );
+          container.append( create_pages( childs[i], path + '_' + i, flavour, type ) );
       } );
       var subpage = $( '<div class="page" id="' + path + '" style="'+pstyle+';"/>' );
       subpage.append(container);
@@ -228,14 +228,18 @@ function VisuDesign() {
       {
         case 'azimut':
           element.data().JSFloorPlan3D.setState('currentAzimut', value, true);
+          element.trigger( 'update3d', element.data().JSFloorPlan3D );
           break;
           
         case 'elevation':
           element.data().JSFloorPlan3D.setState('currentElevation', value, true);
+          element.trigger( 'update3d', element.data().JSFloorPlan3D );
           break;
           
         case 'floor':
-          element.data().JSFloorPlan3D.moveToRoom( value, false, true, true );
+          element.data().JSFloorPlan3D.moveToRoom( value, false, true, true, function(){
+            element.trigger( 'update3d', element.data().JSFloorPlan3D );
+          });
           break;
           
         default:
@@ -346,26 +350,30 @@ function VisuDesign() {
   });
 
   this.addCreator('info', {
-    create: function( page, path ) {
-      var $p = $(page);
-      var layout = $p.find('layout')[0];
+    create: function( element, path, flavour, type ) {
+      var $e = $(element);
+      var layout = $e.find('layout')[0];
       var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
       var ret_val = $('<div class="widget clearfix info" ' + style + ' />');
-      ret_val.setWidgetLayout($p).makeWidgetLabel($p);
-      var address = makeAddressList($p);
+      //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );
+      type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: extractLayout3d( layout )}, this.update3d );
+      
+      ret_val.setWidgetLayout($e).makeWidgetLabel($e);
+      var address = makeAddressList($e);
       
       var actor = '<div class="actor"><div class="value">-</div></div>';
       var $actor = $(actor).data({
         'address'  : address,
-        'format'   : $p.attr('format'),
-        'mapping'  : $p.attr('mapping'),
-        'styling'  : $p.attr('styling')
+        'format'   : $e.attr('format'),
+        'mapping'  : $e.attr('mapping'),
+        'styling'  : $e.attr('styling')
       });
       for( var addr in address ) $actor.bind( addr, this.update );
       ret_val.append( $actor );
       return ret_val;
     },
     update:       defaultUpdate,
+    update3d:     defaultUpdate3d,
     attributes: {
       format:     { type: 'format',    required: false },
       mapping:    { type: 'mapping',   required: false },
@@ -1400,6 +1408,16 @@ function defaultUpdate( e, data, passedElement )
   return value;
 }
 
+function defaultUpdate3d( e, data, passedElement )
+{
+  //var element = passedElement || $(this);
+  var l = e.data.layout;
+  var pos = data.building2screen( new THREE.Vector3( l.x, l.y, l.z ) );
+  e.data.element.css( 'left', pos.x + 'px' );
+  e.data.element.css( 'top' , pos.y + 'px' );
+  //console.log( e, data, e.data, pos.x, pos.y );
+}
+
 function extractLayout( layout )
 {
   var ret_val = 'position:absolute;';
@@ -1409,3 +1427,12 @@ function extractLayout( layout )
   return ret_val;
 }
 
+function extractLayout3d( layout )
+{
+  var ret_val = {};
+  if( layout.getAttribute('x'    ) ) ret_val.x     = layout.getAttribute('x'    );
+  if( layout.getAttribute('y'    ) ) ret_val.y     = layout.getAttribute('y'    );
+  if( layout.getAttribute('z'    ) ) ret_val.z     = layout.getAttribute('z'    );
+  if( layout.getAttribute('floor') ) ret_val.floor = layout.getAttribute('floor');
+  return ret_val;
+}
