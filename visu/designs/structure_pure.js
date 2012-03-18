@@ -161,9 +161,10 @@ function VisuDesign() {
       }
 
       var childs = $p.children();
-      var container = $( '<div class="clearfix" />' );
+      //var container = $( '<div class="clearfix" />' );
       
-      var $container = $( '<div class="clearfix" path="'+path+'"/>'); 
+      var subpage = $( '<div class="page" id="' + path + '" style="'+pstyle+';"/>' );
+      var $container = $( '<div class="clearfix" path="'+path+'" style="height:100%;position:relative;" />'); 
       for( var addr in address ) $container.bind( addr, this.update );
       var container=$container;
       
@@ -177,6 +178,12 @@ function VisuDesign() {
         floorplan.moveToRoom( 'Underground', false, true, false );
         container.data( 'JSFloorPlan3D', floorplan );
         container.find('canvas').css({position: 'absolute', top: '0px', left: '0px', 'z-index':'-1', width:'100%',height:'100%'});
+        subpage.click( {JSFloorPlan3D:floorplan,callback:function(event){
+          var j = this.JSFloorPlan3D;
+          j.moveToRoom( j.getState('showFloor'), event.room.room, true, true, function(){
+            container.trigger( 'update3d', j );
+          });
+        }}, floorplan.translateMouseEvent );
         $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
         if ($p.attr('azimut')) {
           ga_list.push($p.attr('azimut'));
@@ -198,7 +205,6 @@ function VisuDesign() {
       $( childs ).each( function(i){
           container.append( create_pages( childs[i], path + '_' + i, flavour, type ) );
       } );
-      var subpage = $( '<div class="page" id="' + path + '" style="'+pstyle+';"/>' );
       subpage.append(container);
       if( flavour ) subpage.addClass( 'flavour_' + flavour );
       $('#pages').prepend( subpage );
