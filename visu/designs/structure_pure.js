@@ -13,6 +13,12 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
+/**
+ * This module defines the widgets for the CometVisu visualisation.
+ * @module Structure Pure
+ * @title  CometVisu Structure "pure"
 */
 
 // Define ENUM of maturity levels for features, so that e.g. the editor can 
@@ -22,12 +28,11 @@ var Maturity = {
   development : 1
 };
 
-/**
+/*
  * this function implements widget stylings 
  *
  * implemented in: default_update, trigger-widget
  */
-
 $.fn.setWidgetStyling = function(value) {
   var styling = stylings[this.data('styling')];
   if (styling) {    
@@ -48,7 +53,7 @@ $.fn.setWidgetStyling = function(value) {
   return this;
 }
 
-/**
+/*
  * this function implements all widget layouts that are identical (JNK)
  *
  * implemented: rowspan, colspan
@@ -63,7 +68,7 @@ $.fn.setWidgetLayout = function(page) {
    return this;
  }
 
- /**
+/*
  * this function implements the widget label (JNK)
  */
  
@@ -75,9 +80,9 @@ $.fn.makeWidgetLabel = function(page) {
   return this;
 }
 
-/**
-  * this function extracts all addresses with attributes (JNK)
-  */
+/*
+ * this function extracts all addresses with attributes (JNK)
+ */
   
 function makeAddressList(page) {
   var address = {};
@@ -94,6 +99,7 @@ function makeAddressList(page) {
 
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
+ * @class VisuDesign
  */
    
 function VisuDesign() {
@@ -124,7 +130,7 @@ function VisuDesign() {
     return this.popups[name];
   }
 
-  /**
+  /*
    * The creators object contians all widgets creators and their mapping to the
    * XML config file tags
    */
@@ -457,7 +463,7 @@ function VisuDesign() {
         element.data( 'valueInternal', true );
       }
     },
-    /**
+    /*
     * Start a thread that regularily sends the silder position to the bus
     */
     slideStart:function(event,ui)
@@ -478,7 +484,7 @@ function VisuDesign() {
         data.value = actor.slider('value');
       }, 250 ) ); // update KNX every 250 ms 
     },
-    /**
+    /*
     * Delete the update thread and send the final value of the slider to the bus
     */
     slideChange:function(event,ui)
@@ -1297,7 +1303,7 @@ function VisuDesign() {
   }
 };
 
-/**
+/*
  * Figure out best placement of popup.
  * A preference can optionally be passed. The position is that of the numbers
  * on the numeric keypad. I.e. a value of "6" means centered above the anchor.

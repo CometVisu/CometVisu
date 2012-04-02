@@ -13,6 +13,9 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ * 
+ * @module Templateengine
+ * @title  CometVisu templateengine
 */
 
 var design = new VisuDesign_Custom();
@@ -111,7 +114,7 @@ function map( value, element ) {
   return value;
 }
 
-/**
+/*
  * Make sure everything looks right when the window gets resized.
  * This is necessary as the scroll effect requires a fixed element size
  */
@@ -440,7 +443,7 @@ function updateTopNavigation() {
   }
 }
 
-/**
+/*
  * Show a popup of type "type".
  * The attributes is an type dependend object
  * This function returnes a jQuery object that points to the whole popup,
@@ -454,7 +457,7 @@ function showPopup( type, attributes ) {
   return design.popups[ type ].create( attributes );
 }
 
-/**
+/*
  * Remove the popup.
  * The parameter is the jQuery object returned by the showPopup function
  */

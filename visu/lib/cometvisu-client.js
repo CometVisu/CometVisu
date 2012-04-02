@@ -13,14 +13,19 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
+ */
+
+/**
+ * The JavaScript library that implements the CometVisu protocol.
  * @module CometVisu Client
  * @title  CometVisu Client
+ * @reqires jQuery
 */
 
 /**
  * Class that handles the communicaton of the client
  * @class CometVisu
+ * @constructor foo
  * @param {String} urlPrefix The address of the service
  */
 function CometVisu( urlPrefix )
@@ -43,6 +48,7 @@ function CometVisu( urlPrefix )
   
   /**
    * This function gets called once the communication is established and session information is available
+   * @method handleSession
    */
   this.handleSession = function( json )
   {
@@ -59,6 +65,7 @@ function CometVisu( urlPrefix )
 
   /**
    * This function gets called once the communication is established and session information is available
+   * @method handleRead
    */
   this.handleRead = function( json )
   {
@@ -89,6 +96,7 @@ function CometVisu( urlPrefix )
   /**
    * This function gets called on an error
    * FIXME: this should be a prototype, so that the application developer can override it
+   * @method handleError
    */
   this.handleError=function(xhr,str,excptObj)
   {
@@ -113,6 +121,7 @@ function CometVisu( urlPrefix )
 
   /**
    * Build the URL part that contains the addresses and filters
+   * @method buildRequest
    */
   this.buildRequest = function()
   {
@@ -124,6 +133,7 @@ function CometVisu( urlPrefix )
   /**
    * Subscribe to the addresses in the parameter
    * The second parameter (filter) is optional
+   * @method subscribe
    */
   this.subscribe = function( addresses, filters )
   {
@@ -137,7 +147,8 @@ function CometVisu( urlPrefix )
 
   /**
    * This function starts the communication by a login and then runs the
-   * ongoing communication task 
+   * ongoing communication task
+   * @method login
    */
   this.login = function()
   {
@@ -150,6 +161,7 @@ function CometVisu( urlPrefix )
 
   /**
    * This function stops an ongoing connection
+   * @method stop
    */
   this.stop = function()
   {
@@ -160,6 +172,7 @@ function CometVisu( urlPrefix )
 
   /**
    * This function sends a value
+   * @method write
    */
   this.write = function( address, value )
   {
@@ -174,6 +187,7 @@ function CometVisu( urlPrefix )
   
   /**
    * Restart the read request, e.g. when the watchdog kicks in
+   * @method restart
    */
   this.restart = function()
   {
@@ -185,6 +199,7 @@ function CometVisu( urlPrefix )
   
   /**
    * The watchdog to recreate a read request when it stopped somehow
+   * @method watchdog
    */
   var watchdog = (function(){
     var last = new Date();

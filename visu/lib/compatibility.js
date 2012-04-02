@@ -136,7 +136,7 @@ sprintfWrapper = {
 
 sprintf = sprintfWrapper.init;
 
-/**
+/*
  * be able to access GET-Params
  */
 $.extend({
