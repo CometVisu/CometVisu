@@ -15,7 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-VisuDesign.prototype.addCreator('line', {
+basicdesign.addCreator('line', {
   create:     function( page, path ) {
     return $( '<hr />' );
   },
