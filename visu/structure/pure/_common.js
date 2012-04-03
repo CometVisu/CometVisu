@@ -371,3 +371,5 @@ function extractLayout3d( layout )
   if( layout.getAttribute('floor') ) ret_val.floor = layout.getAttribute('floor');
   return ret_val;
 }
+
+var basicdesign = new VisuDesign();
