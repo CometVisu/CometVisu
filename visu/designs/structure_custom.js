@@ -25,7 +25,7 @@
  * @class VisuDesign_Custom
  */
 function VisuDesign_Custom() {};                // do NOT change here
-VisuDesign_Custom.prototype = new VisuDesign(); // do NOT change here
+VisuDesign_Custom.prototype = basicdesign;      // do NOT change here
 
 /*
  * Custom changes could go here and look e.g. like

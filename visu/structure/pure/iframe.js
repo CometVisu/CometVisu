@@ -15,7 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-VisuDesign.prototype.addCreator('iframe', {
+basicdesign.addCreator('iframe', {
   create: function( page, path ) {
     var $p = $(page);
     var ret_val = $('<div class="widget iframe" />');

@@ -15,7 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-VisuDesign.prototype.addCreator('slide', {
+basicdesign.addCreator('slide', {
   create: function( page, path ) {
     var $p = $(page);
     var layout = $p.find('layout')[0];
