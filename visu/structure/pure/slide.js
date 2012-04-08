@@ -29,8 +29,9 @@ basicdesign.addCreator('slide', {
       var src = this.textContent;
       var transform = this.getAttribute('transform');
       var readonly  = this.getAttribute('readonly');
+      var writeonly = this.getAttribute('writeonly');
       ga_list.push( src ) 
-      address[ '_' + src ] = [ transform, readonly=='true' ];
+      address[ '_' + src ] = [ transform, readonly=='true', writeonly=='true' ];
       if( Transform[ transform ] && Transform[ transform ].range )
       {
         if( !( datatype_min > Transform[ transform ].range.min ) ) 
@@ -54,7 +55,10 @@ basicdesign.addCreator('slide', {
       'type'    : 'dim',
       'valueInternal': true
     });
-    for( var addr in address ) $actor.bind( addr, this.update );
+    for( var addr in address ) 
+    { 
+      if( !address[addr][2] ) $actor.bind( addr, this.update ); // no writeonly
+    }
     $actor.slider({
       step:    step,
       min:     min,
