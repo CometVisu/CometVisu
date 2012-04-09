@@ -1,12 +1,46 @@
 HEAD
 ====
 
+- New plugin: clock
+- New plugin: rsslog
+- New plugin: upnpcontroller
+- New widget: imagetrigger
+- New widget: include
+- New design: pitchblack (needs config-rewrite)
+- New feature: wirteonly attribute
+- New feature: 2D and 3D modes
 - New feature: colspan (column-width is 8.33333%, i.e. 1/12)
 - New feature: rowspan (row-height is height of <text>-widget)
-- Added rsslog-plugin
-- New design: pitchblack (needs config-rewrite)
+- New feature: Added handling for browser back button
+               => go one level higher in page hierarchy.
+- New feature: Option to show current status in multitrigger widget
+- change text-align in pure-design (switch/un/unpressed) to center
 - diagram-Plugin: yaxismin, yaxismax, added diagram_info
+- updated jQuery to 1.7.1
+- updated jQuery UI to 1.8.16
+- attribute "variant" for address is now a select-list on a per-widget-basis; 
+  will no longer be displayed when not available (declutter UI)
+- Bug fix: numbers between -1 and 0 didn't show a negative sign when the format 
+  string was used.
+- Bug fix for #3468526: Initial read is repeated after COMET Timeout
+- cometvisu-client: Force full reload before index might overflow during long
+  periods without interesting bus traffic
+- Added jquery.ui.touch-punch.js; script simulates touch events as mouse events
+  on jquery ui elements like a slider.
+- Cleaner file structure and automated build script:
+  * separation of CometVisu libraries and external dependencies
+  * initial support for automatic documentation generation (using YUIdoc)
+  * switch from big structure_pure.js to one file per widget
+  * switch from big structure_pure.js to one file per widget - part 2
+  * initial makefile that can reducde the multiple source files (e.g. for the widgets) into one to speed up network loading
+- lots of little bugfixes and improvements
+<Changes up to Revision 744 included>
 
+0.6.2
+=====
+
+This is a bug fix release to address bug 3465482 
+("Format string: wrong result for negative numbers above -1")
 
 0.6.1
 =====
