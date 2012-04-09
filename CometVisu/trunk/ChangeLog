@@ -32,7 +32,10 @@ HEAD
   * initial support for automatic documentation generation (using YUIdoc)
   * switch from big structure_pure.js to one file per widget
   * switch from big structure_pure.js to one file per widget - part 2
-  * initial makefile that can reducde the multiple source files (e.g. for the widgets) into one to speed up network loading
+  * initial makefile that can reducde the multiple source files (e.g. for the 
+    widgets) into one to speed up network loading
+  * create "release" directory for concatenated and (in future) minimized
+    version
 - lots of little bugfixes and improvements
 <Changes up to Revision 744 included>
 

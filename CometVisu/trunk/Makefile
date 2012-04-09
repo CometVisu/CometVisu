@@ -39,16 +39,24 @@ docs:
 lint:
 	${LINT} ${SRC}
 
-visu/designs/structure_pure.js: $(STRUCTURE_PURE_SRC)
-	cat $^ > visu/designs/structure_pure.jss
-	cp visu/index.html visu/index.min.html
+release: 
+	cp -rfp visu release
+	find release -path "*/.svn" -exec rm -rf {} +
+
+release/designs/structure_pure.js: release $(STRUCTURE_PURE_SRC)
+	cat $(STRUCTURE_PURE_SRC) > release/designs/structure_pure.js
+	cp visu/index.html release/index.html
+	cp visu/edit_config.html release/edit_config.html
 	for SRC_FILE in $^; do                                                                                       \
 		SRC2_FILE=`echo $$SRC_FILE | sed 's_visu/__'`;                                                       \
-		sed "s#.*<script src=\"$$SRC2_FILE\" type=\"text/javascript\"></script>.*##" -i visu/index.min.html; \
+		sed "s#.*<script src=\"$$SRC2_FILE\" type=\"text/javascript\"></script>.*##" -i release/index.html;  \
 	done
-	sed 's#<!-- Load the widgets: start -->#<script src="designs/structure_pure.js" type="text/javascript"></script>#' -i visu/index.min.html
+	sed 's#<!-- Load the widgets: start -->#<script src="designs/structure_pure.js" type="text/javascript"></script>#' -i release/index.html
+	sed 's#<!-- Load the widgets: start -->#<script src="designs/structure_pure.js" type="text/javascript"></script>#' -i release/edit_config.html
 	
-build: $(SRC)
-	echo $^
+build: release/designs/structure_pure.js
+	
+clean:
+	rm -rf release
 
 .PHONY: lint docs build
