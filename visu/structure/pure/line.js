@@ -16,7 +16,7 @@
  */
 
 basicdesign.addCreator('line', {
-  create:     function( page, path ) {
+  create:     function( element, path ) {
     return $( '<hr />' );
   },
   attributes: {},

@@ -16,16 +16,16 @@
  */
 
 basicdesign.addCreator('imagetrigger', {
-  create: function( page, path ) { 
-    var $p = $(page);
+  create: function( element, path ) { 
+    var $e = $(element);
     var ret_val = $('<div class="widget clearfix image" />');
-    ret_val.setWidgetLayout($p);
+    ret_val.setWidgetLayout($e);
     ret_val.addClass ('imagetrigger');
-    var value = $p.attr('value') ? $p.attr('value') : 0;
-    var labelElement = $p.find('label')[0];
+    var value = $e.attr('value') ? $e.attr('value') : 0;
+    var labelElement = $e.find('label')[0];
     ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
     var address = {};
-    $p.find('address').each( function(){
+    $e.find('address').each( function(){
       var src = this.textContent;
       ga_list.push( src )
       address[ '_' + src ] = [
@@ -39,22 +39,22 @@ basicdesign.addCreator('imagetrigger', {
     var style = layout ? 'style="' + extractLayout( layout, {width:'100%'} ) + '"' : '';
 
     var actor = '<div class="actor">';
-    if ( $p.attr('type')=='show' )
-      actor += '<img src="' + $p.attr('src') + '.' + $p.attr('suffix') + '" ' + style + ' />';
+    if ( $e.attr('type')=='show' )
+      actor += '<img src="' + $e.attr('src') + '.' + $e.attr('suffix') + '" ' + style + ' />';
     else
       actor += '<img src="" ' + style + ' />';
     actor += '</div>';
         
     actor += '</div>';
-    var refresh = $p.attr('refresh') ? $p.attr('refresh')*1000 : 0;
+    var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
     var $actor = $(actor).data( {
       'address':   address, 
       'refresh':   refresh,
-      'src':       $p.attr('src'),
-      'suffix':    $p.attr('suffix'),
-      'type':      $p.attr('type'),
+      'src':       $e.attr('src'),
+      'suffix':    $e.attr('suffix'),
+      'type':      $e.attr('type'),
       'mapping':   map,
-      'sendValue': $p.attr('sendValue') || ""
+      'sendValue': $e.attr('sendValue') || ""
     } )
       .each(setupRefreshAction) // abuse "each" to call in context... refresh is broken with select right now
       .bind( 'click', this.action );

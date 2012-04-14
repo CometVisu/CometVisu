@@ -16,26 +16,26 @@
  */
 
 basicdesign.addCreator('iframe', {
-  create: function( page, path ) {
-    var $p = $(page);
-    var layout = $p.find('layout')[0];
+  create: function( element, path ) {
+    var $e = $(element);
+    var layout = $e.find('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget iframe" ' + style + '/>');
-    ret_val.setWidgetLayout($p);
-    ret_val.append( '<div class="label">' + page.textContent + '</div>' );
+    ret_val.setWidgetLayout($e);
+    ret_val.append( '<div class="label">' + element.textContent + '</div>' );
     var iframeStyle = '';
-    if( $p.attr('width' ) ) {
-      iframeStyle += 'width:'  + $p.attr('width' ) + ';'; 
+    if( $e.attr('width' ) ) {
+      iframeStyle += 'width:'  + $e.attr('width' ) + ';'; 
     } else {  // default width is 100% of widget space (fix bug #3175343 part 1)
       iframeStyle += 'width: 100%;';
     }
-    if( $p.attr('height') ) iframeStyle += 'height:' + $p.attr('height') + ';';
-    if( $p.attr('frameborder') == 'false' ) style += 'border: 0px ;';
-    if( $p.attr('background') ) iframeStyle += 'background-color:' + $p.attr('background') + ';';
+    if( $e.attr('height') ) iframeStyle += 'height:' + $e.attr('height') + ';';
+    if( $e.attr('frameborder') == 'false' ) style += 'border: 0px ;';
+    if( $e.attr('background') ) iframeStyle += 'background-color:' + $e.attr('background') + ';';
     if( iframeStyle != '' ) iframeStyle = 'style="' + iframeStyle + '"';
-    var actor = '<div class="actor"><iframe src="' +$p.attr('src') + '" ' + iframeStyle + '></iframe></div>';
+    var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + iframeStyle + '></iframe></div>';
     
-    var refresh = $p.attr('refresh') ? $p.attr('refresh')*1000 : 0;
+    var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
     ret_val.append( $(actor).data( {
       'refresh': refresh
     } ).each(setupRefreshAction) ); // abuse "each" to call in context...

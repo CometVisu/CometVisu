@@ -16,20 +16,20 @@
  */
 
 basicdesign.addCreator('video', {
-  create: function( page, path ) {
-    var $p = $(page);
-    var layout = $p.find('layout')[0];
+  create: function( element, path ) {
+    var $e = $(element);
+    var layout = $e.find('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix video" ' + style + '/>');
-    ret_val.setWidgetLayout($p);
-    var labelElement = $p.find('label')[0];
+    ret_val.setWidgetLayout($e);
+    var labelElement = $e.find('label')[0];
     ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
-    var autoplay = ($p.attr('autoplay') && $p.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
+    var autoplay = ($e.attr('autoplay') && $e.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
     var style = '';
-    if( $p.attr('width' ) ) style += 'width:'  + $p.attr('width' ) + ';';
-    if( $p.attr('height') ) style += 'height:' + $p.attr('height') + ';';
+    if( $e.attr('width' ) ) style += 'width:'  + $e.attr('width' ) + ';';
+    if( $e.attr('height') ) style += 'height:' + $e.attr('height') + ';';
     if( style != '' ) style = 'style="' + style + '"';
-    var actor = '<div class="actor"><video src="' +$p.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>';
+    var actor = '<div class="actor"><video src="' +$e.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>';
     ret_val.append( $(actor).data( {} ) );
     return ret_val;
   },

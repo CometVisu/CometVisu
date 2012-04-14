@@ -16,24 +16,24 @@
  */
 
 basicdesign.addCreator('image', {
-  create: function( page, path ) {
-    var $p = $(page);
-    var layout = $p.find('layout')[0];
+  create: function( element, path ) {
+    var $e = $(element);
+    var layout = $e.find('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix image" ' + style + '/>');
-    ret_val.setWidgetLayout($p);
-    var labelElement = $p.find('label')[0];
+    ret_val.setWidgetLayout($e);
+    var labelElement = $e.find('label')[0];
     ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
     var imgStyle = '';
-    if( $p.attr('width' ) ) {
-      imgStyle += 'width:'  + $p.attr('width' ) + ';';
+    if( $e.attr('width' ) ) {
+      imgStyle += 'width:'  + $e.attr('width' ) + ';';
     } else {
       imgStyle += 'width: 100%;';
     }
-    if( $p.attr('height') ) imgStyle += 'height:' + $p.attr('height') + ';';
+    if( $e.attr('height') ) imgStyle += 'height:' + $e.attr('height') + ';';
     if( imgStyle != '' ) imgStyle = 'style="' + imgStyle + '"';
-    var actor = '<div class="actor"><img src="' +$p.attr('src') + '" ' + imgStyle + '/></div>';
-    var refresh = $p.attr('refresh') ? $p.attr('refresh')*1000 : 0;
+    var actor = '<div class="actor"><img src="' +$e.attr('src') + '" ' + imgStyle + '/></div>';
+    var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
     ret_val.append( $(actor).data( {
       'refresh': refresh
     } ).each(setupRefreshAction) ); // abuse "each" to call in context...

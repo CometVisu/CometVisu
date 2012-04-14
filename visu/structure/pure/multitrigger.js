@@ -16,35 +16,35 @@
  */
 
 basicdesign.addCreator('multitrigger', {
-  create: function( page, path ) {
-    var $p = $(page);
-    var layout = $p.find('layout')[0];
+  create: function( element, path ) {
+    var $e = $(element);
+    var layout = $e.find('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix switch" ' + style + '/>');
-    ret_val.setWidgetLayout($p)
-    var labelElement = $p.find('label')[0];
+    ret_val.setWidgetLayout($e)
+    var labelElement = $e.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-    var address = makeAddressList($p);
-    var showstatus = $p.attr("showstatus") || "false";
+    var address = makeAddressList($e);
+    var showstatus = $e.attr("showstatus") || "false";
     ret_val.append( label );
     var buttons = $('<div style="float:left"/>');
     var buttonCount = 0;
-    if( $p.attr('button1label') )
+    if( $e.attr('button1label') )
     {
       //buttonCount++;
       var actor = '<div class="actor switchUnpressed ';
-      if ( $p.attr( 'align' ) ) 
-        actor += $p.attr( 'align' ); 
+      if ( $e.attr( 'align' ) ) 
+        actor += $e.attr( 'align' ); 
       actor += '">';
       
-      actor += '<div class="value">' + $p.attr('button1label') + '</div>';
+      actor += '<div class="value">' + $e.attr('button1label') + '</div>';
       actor += '</div>';
       var $actor = $(actor).data( {
         'address' : address,
-        'mapping' : $p.attr('mapping'),
-        'styling' : $p.attr('styling'),
-        'value'   : $p.attr('button1value'),
-        'align'   : $p.attr('align'),
+        'mapping' : $e.attr('mapping'),
+        'styling' : $e.attr('styling'),
+        'value'   : $e.attr('button1value'),
+        'align'   : $e.attr('align'),
         'type'    : 'switch'
       } ).bind( 'click', this.action );
       if( showstatus == "true" ) {
@@ -53,21 +53,21 @@ basicdesign.addCreator('multitrigger', {
       buttons.append( $actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
-    if( $p.attr('button2label') )
+    if( $e.attr('button2label') )
     {
       var actor = '<div class="actor switchUnpressed ';
-      if ( $p.attr( 'align' ) ) 
-        actor += $p.attr( 'align' ); 
+      if ( $e.attr( 'align' ) ) 
+        actor += $e.attr( 'align' ); 
       actor += '">';
-      actor += '<div class="value">' + $p.attr('button2label') + '</div>';
+      actor += '<div class="value">' + $e.attr('button2label') + '</div>';
       actor += '</div>';
       var $actor = $(actor).data( {
         'address' : address,
-        'mapping' : $p.attr('mapping'),
-        'styling' : $p.attr('styling'),
-        'value'   : $p.attr('button2value'),
+        'mapping' : $e.attr('mapping'),
+        'styling' : $e.attr('styling'),
+        'value'   : $e.attr('button2value'),
         'type'    : 'switch',
-        'align'   : $p.attr('align')
+        'align'   : $e.attr('align')
       } ).bind( 'click', this.action );
       if( showstatus == "true" ) {
           for( var addr in address ) $actor.bind( addr, this.update );        
@@ -75,19 +75,19 @@ basicdesign.addCreator('multitrigger', {
       buttons.append( $actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
-    if( $p.attr('button3label') )
+    if( $e.attr('button3label') )
     {
       var actor = '<div class="actor switchUnpressed ';
-      if ( $p.attr( 'align' ) ) 
-        actor += $p.attr( 'align' ); 
+      if ( $e.attr( 'align' ) ) 
+        actor += $e.attr( 'align' ); 
       actor += '">';
-      actor += '<div class="value">' + $p.attr('button3label') + '</div>';
+      actor += '<div class="value">' + $e.attr('button3label') + '</div>';
       actor += '</div>';
       var $actor = $(actor).data( {
         'address' : address,
-        'mapping' : $p.attr('mapping'),
-        'styling' : $p.attr('styling'),
-        'value'   : $p.attr('button3value'),
+        'mapping' : $e.attr('mapping'),
+        'styling' : $e.attr('styling'),
+        'value'   : $e.attr('button3value'),
         'type'    : 'switch'
       } ).bind( 'click', this.action );
       if( showstatus == "true" ) {
@@ -96,19 +96,19 @@ basicdesign.addCreator('multitrigger', {
       buttons.append( $actor );
       if( 1 == buttonCount++ % 2 ) buttons.append( $('<br/>') );
     }
-    if( $p.attr('button4label') )
+    if( $e.attr('button4label') )
     {
       var actor = '<div class="actor switchUnpressed ';
-      if ( $p.attr( 'align' ) ) 
-        actor += $p.attr( 'align' ); 
+      if ( $e.attr( 'align' ) ) 
+        actor += $e.attr( 'align' ); 
       actor += '">';
-      actor += '<div class="value">' + $p.attr('button4label') + '</div>';
+      actor += '<div class="value">' + $e.attr('button4label') + '</div>';
       actor += '</div>';
       var $actor = $(actor).data( {
         'address' : address,
-        'mapping' : $p.attr('mapping'),
-        'styling' : $p.attr('styling'),
-        'value'   : $p.attr('button4value'),
+        'mapping' : $e.attr('mapping'),
+        'styling' : $e.attr('styling'),
+        'value'   : $e.attr('button4value'),
         'type'    : 'switch',
       } ).bind( 'click', this.action );
       if( showstatus == "true" ) {
