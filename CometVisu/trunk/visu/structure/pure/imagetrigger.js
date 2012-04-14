@@ -35,9 +35,8 @@ basicdesign.addCreator('imagetrigger', {
         }
       ];
     });
-    var style = ' style=" ';
-    style += $p.attr('width' ) ? 'width:'  + $p.attr('width' ) + ';' : 'width: 100%;';
-    style += $p.attr('height' ) ? 'height:'  + $p.attr('height' ) + ';"' : '"';
+    var layout = $e.find('layout')[0];
+    var style = layout ? 'style="' + extractLayout( layout, {width:'100%'} ) + '"' : '';
 
     var actor = '<div class="actor">';
     if ( $p.attr('type')=='show' )
@@ -99,8 +98,6 @@ basicdesign.addCreator('imagetrigger', {
   },
   attributes: {
     src:        { type: 'uri'    , required: true  },
-    width:      { type: 'string' , required: false },
-    height:     { type: 'string' , required: false },
     refresh:    { type: 'numeric', required: false },
     colspan:    { type: 'numeric', required: false },
     rowspan:    { type: 'numeric', required: false },
@@ -110,6 +107,7 @@ basicdesign.addCreator('imagetrigger', {
     suffix:     { type: 'list'   , required: false, list: {'png': '.png', 'jpg': '.jpg', 'gif': '.gif', 'svg': '.svg', 'bmp': '.bmp'} }
   },
   elements: {
+    layout:     { type: 'layout' , required: false, multi: false },
     label:      { type: 'string' , required: false, multi: false },
     address:    { type: 'address', required: true , multi: true  }
   },
