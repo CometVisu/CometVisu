@@ -18,7 +18,9 @@
 basicdesign.addCreator('text', {
   create: function( page, path ) {
     var $p = $(page);
-    var ret_val = $('<div class="widget clearfix text" />');
+    var layout = $p.find('layout')[0];
+    var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
+    var ret_val = $('<div class="widget clearfix text" ' + style + '/>');
     ret_val.setWidgetLayout($p);
     var style = '';
     if( $p.attr('align') ) style += 'text-align:' + $p.attr('align') + ';';
@@ -32,6 +34,7 @@ basicdesign.addCreator('text', {
     rowspan: { type: 'numeric', required: false }
   },
   elements: {
+    layout:  { type: 'layout' , required: false, multi: false }
   },
   content:   { type: 'string', required: true }
 });

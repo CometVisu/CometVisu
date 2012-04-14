@@ -16,7 +16,7 @@
  */
 
 basicdesign.addCreator('break', {
-  create: function( page, path ) {
+  create: function( element, path ) {
     return $( '<br />' );
   },
   attributes: {},
