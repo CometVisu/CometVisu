@@ -16,21 +16,21 @@
  */
 
 basicdesign.addCreator('trigger', {
-  create: function( page, path ) {
-    var $p = $(page);
-    var layout = $p.find('layout')[0];
+  create: function( element, path ) {
+    var $e = $(element);
+    var layout = $e.find('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
-    var value = $p.attr('value') ? $p.attr('value') : 0;
+    var value = $e.attr('value') ? $e.attr('value') : 0;
     var ret_val = $('<div class="widget clearfix switch" ' + style + ' />');
-    ret_val.setWidgetLayout($p);
-    var labelElement = $p.find('label')[0];
+    ret_val.setWidgetLayout($e);
+    var labelElement = $e.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-    var address = makeAddressList($p);
+    var address = makeAddressList($e);
     var actor = '<div class="actor switchUnpressed ';
-    if ( $p.attr( 'align' ) ) 
-      actor += $p.attr( 'align' ); 
+    if ( $e.attr( 'align' ) ) 
+      actor += $e.attr( 'align' ); 
     actor += '">';
-    var map = $p.attr('mapping');
+    var map = $e.attr('mapping');
     if( mappings[map] && mappings[map][value] )
       actor += '<div class="value">' + mappings[map][value] + '</div>';
     else
@@ -38,10 +38,10 @@ basicdesign.addCreator('trigger', {
     actor += '</div>';
     var $actor = $(actor).data( {
       'address' : address,
-      'mapping' : $(page).attr('mapping'),
-      'styling' : $(page).attr('styling'),
+      'mapping' : $(element).attr('mapping'),
+      'styling' : $(element).attr('styling'),
       'type'    : 'trigger',
-      'align'   : $p.attr('align'),
+      'align'   : $e.attr('align'),
       'sendValue': value
     } ).bind( 'click', this.action ).bind( 'mousedown', function(){
       $(this).removeClass('switchUnpressed').addClass('switchPressed');

@@ -16,16 +16,16 @@
  */
 
 basicdesign.addCreator('slide', {
-  create: function( page, path ) {
-    var $p = $(page);
-    var layout = $p.find('layout')[0];
+  create: function( element, path ) {
+    var $e = $(element);
+    var layout = $e.find('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix slide" ' + style + ' />');
-    ret_val.setWidgetLayout($p).makeWidgetLabel($p);
+    ret_val.setWidgetLayout($e).makeWidgetLabel($e);
     var address = {};
     var datatype_min = undefined;
     var datatype_max = undefined;
-    $p.find('address').each( function(){ 
+    $e.find('address').each( function(){ 
       var src = this.textContent;
       var transform = this.getAttribute('transform');
       var readonly  = this.getAttribute('readonly');
@@ -41,14 +41,14 @@ basicdesign.addCreator('slide', {
       }
     });
     var actor = $('<div class="actor">');
-    var min  = parseFloat( $p.attr('min')  || datatype_min || 0   );
-    var max  = parseFloat( $p.attr('max')  || datatype_max || 100 );
-    var step = parseFloat( $p.attr('step') || 0.5 );
+    var min  = parseFloat( $e.attr('min')  || datatype_min || 0   );
+    var max  = parseFloat( $e.attr('max')  || datatype_max || 100 );
+    var step = parseFloat( $e.attr('step') || 0.5 );
     var $actor = $(actor).data({
       'events':   $(actor).data( 'events' ),
       'address' : address,
-      'mapping' : $p.attr('mapping'),
-      'styling' : $p.attr('styling'),
+      'mapping' : $e.attr('mapping'),
+      'styling' : $e.attr('styling'),
       'min'     : min,
       'max'     : max,
       'step'    : step,

@@ -16,9 +16,9 @@
  */
 
 basicdesign.addCreator('unknown', {
-  create: function( page, path ) {
+  create: function( element, path ) {
     var ret_val = $('<div class="widget clearfix" />');
-    ret_val.append( '<pre>unknown: ' + page.nodeName + '</pre>' );
+    ret_val.append( '<pre>unknown: ' + element.nodeName + '</pre>' );
     return ret_val;
   },
   attributes: {},

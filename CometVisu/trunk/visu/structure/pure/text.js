@@ -16,16 +16,16 @@
  */
 
 basicdesign.addCreator('text', {
-  create: function( page, path ) {
-    var $p = $(page);
-    var layout = $p.find('layout')[0];
+  create: function( element, path ) {
+    var $e = $(element);
+    var layout = $e.find('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix text" ' + style + '/>');
-    ret_val.setWidgetLayout($p);
+    ret_val.setWidgetLayout($e);
     var style = '';
-    if( $p.attr('align') ) style += 'text-align:' + $p.attr('align') + ';';
+    if( $e.attr('align') ) style += 'text-align:' + $e.attr('align') + ';';
     if( style != '' ) style = 'style="' + style + '"';
-    ret_val.append( '<div ' + style + '>' + page.textContent + '</div>' );
+    ret_val.append( '<div ' + style + '>' + element.textContent + '</div>' );
     return ret_val;
   },
   attributes: {
