@@ -40,7 +40,9 @@ basicdesign.addCreator('page', {
     if ($p.attr('visible')=='false') {
       ret_val=$('');
     } else { // default is visible
-      ret_val = $('<div class="widget clearfix link pagelink"/>');
+      var layout = $p.find('layout')[0];
+      var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
+      ret_val = $('<div class="widget clearfix link pagelink" ' + style + '/>');
       ret_val.setWidgetLayout($p);
       var tst = $('<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>');
       
@@ -112,6 +114,7 @@ basicdesign.addCreator('page', {
     floor:     { type: 'addr'   , required: false }
   },
   elements: {
+    layout:  { type: 'layout' , required: false, multi: false }
   },
   update: function(e, data) {
     var element = $(this);

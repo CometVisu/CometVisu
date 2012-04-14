@@ -18,7 +18,9 @@
 basicdesign.addCreator('toggle', {
   create: function( page, path ) {
     var $p = $(page);
-    var ret_val = $('<div class="widget clearfix toggle" />');
+    var layout = $p.find('layout')[0];
+    var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
+    var ret_val = $('<div class="widget clearfix toggle" ' + style + '/>');
     ret_val.setWidgetLayout($p);
     var labelElement = $p.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
@@ -69,8 +71,9 @@ basicdesign.addCreator('toggle', {
     rowspan: { type: 'numeric', required: false }
   },
   elements: {
-    label:   { type: 'string' , required: true, multi: false },
-    address: { type: 'address', required: true, multi: true  }
+    layout:  { type: 'layout' , required: false, multi: false },
+    label:   { type: 'string' , required: true, multi: false  },
+    address: { type: 'address', required: true, multi: true   }
   },
   content: false
 });

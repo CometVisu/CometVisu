@@ -18,7 +18,9 @@
 basicdesign.addCreator('infotrigger', {
   create: function( page, path ) {
     var $p = $(page);
-    var ret_val = $('<div class="widget clearfix switch" />');
+    var layout = $p.find('layout')[0];
+    var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
+    var ret_val = $('<div class="widget clearfix switch" ' + style + '/>');
     ret_val.setWidgetLayout($p);
     // handle label
     var labelElement = $p.find('label')[0];
@@ -161,6 +163,7 @@ basicdesign.addCreator('infotrigger', {
     rowspan:      { type: 'numeric', required: false }
   },
   elements: {
+    layout:       { type: 'layout' , required: false, multi: false },
     label:        { type: 'string' , required: false, multi: false },
     address:      { type: 'address', required: true , multi: true , options: {variant: ['', 'isbutton']} }
   },

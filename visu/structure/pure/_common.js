@@ -353,12 +353,21 @@ function defaultUpdate3d( e, data, passedElement )
   //console.log( e, data, e.data, pos.x, pos.y );
 }
 
-function extractLayout( layout )
+function extractLayout( layout, defaultValues )
 {
   var ret_val = 'position:absolute;';
-  if( layout.getAttribute('x'    ) ) ret_val += 'left:'  + layout.getAttribute('x'    ) + ';';
-  if( layout.getAttribute('y'    ) ) ret_val += 'top:'   + layout.getAttribute('y'    ) + ';';
-  if( layout.getAttribute('width') ) ret_val += 'width:' + layout.getAttribute('width') + ';';
+  if( layout.getAttribute('x'     ) ) ret_val += 'left:'   + layout.getAttribute('x'     ) + ';';
+  else if( defaultValues[ 'x'     ] ) ret_val += 'left:'   + defaultValues[      'x'     ] + ';';
+  
+  if( layout.getAttribute('y'     ) ) ret_val += 'top:'    + layout.getAttribute('y'     ) + ';';
+  else if( defaultValues[ 'y'     ] ) ret_val += 'top:'    + defaultValues[      'y'     ] + ';';
+  
+  if( layout.getAttribute('width' ) ) ret_val += 'width:'  + layout.getAttribute('width' ) + ';';
+  else if( defaultValues[ 'width' ] ) ret_val += 'width:'  + defaultValues[      'width' ] + ';';
+  
+  if( layout.getAttribute('height') ) ret_val += 'height:' + layout.getAttribute('height') + ';';
+  else if( defaultValues[ 'height'] ) ret_val += 'height:' + defaultValues[      'height'] + ';';
+  
   return ret_val;
 }
 
