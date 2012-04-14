@@ -16,20 +16,20 @@
  */
 
 basicdesign.addCreator('infotrigger', {
-  create: function( page, path ) {
-    var $p = $(page);
-    var layout = $p.find('layout')[0];
+  create: function( element, path ) {
+    var $e = $(element);
+    var layout = $e.find('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix switch" ' + style + '/>');
-    ret_val.setWidgetLayout($p);
+    ret_val.setWidgetLayout($e);
     // handle label
-    var labelElement = $p.find('label')[0];
+    var labelElement = $e.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
     ret_val.append( label );
 
     // handle addresses
     var address = {};
-    $p.find('address').each( function(){ 
+    $e.find('address').each( function(){ 
       var src = this.textContent;
       var transform = this.getAttribute('transform');
       var readonly  = this.getAttribute('readonly' ) == 'true';
@@ -45,20 +45,20 @@ basicdesign.addCreator('infotrigger', {
     var buttonCount = 2;
 
     var actordown = '<div class="actor switchUnpressed '
-    if ( $p.attr( 'align' ) ) 
-      actordown += $p.attr( 'align' ); 
+    if ( $e.attr( 'align' ) ) 
+      actordown += $e.attr( 'align' ); 
     actordown += '">';
-    actordown += '<div class="value">' + ($p.attr('downlabel') ? $p.attr('downlabel') : '-') + '</div>';
+    actordown += '<div class="value">' + ($e.attr('downlabel') ? $e.attr('downlabel') : '-') + '</div>';
     actordown += '</div>';
     var $actordown = $(actordown).data( {
       'address' : address,
-      'mapping' : $p.attr('mapping'),
-      'styling' : $p.attr('styling'),
-      'value'   : $p.attr('downvalue') || 0,
-      'align'   : $p.attr('align'),
-      'change'  : $p.attr('change') || 'relative',
-      'min'     : parseFloat($p.attr('min')) || 0,
-      'max'     : parseFloat($p.attr('max')) || 255,
+      'mapping' : $e.attr('mapping'),
+      'styling' : $e.attr('styling'),
+      'value'   : $e.attr('downvalue') || 0,
+      'align'   : $e.attr('align'),
+      'change'  : $e.attr('change') || 'relative',
+      'min'     : parseFloat($e.attr('min')) || 0,
+      'max'     : parseFloat($e.attr('max')) || 255,
       'type'    : 'switch'
     } ).bind( 'click', this.action ).bind( 'mousedown', function(){
       $(this).removeClass('switchUnpressed').addClass('switchPressed');
@@ -67,20 +67,20 @@ basicdesign.addCreator('infotrigger', {
     } );
 
     var actorup = '<div class="actor switchUnpressed '
-    if ( $p.attr( 'align' ) ) 
-      actorup += $p.attr( 'align' ); 
+    if ( $e.attr( 'align' ) ) 
+      actorup += $e.attr( 'align' ); 
     actorup += '">';
-    actorup += '<div class="value">' + ($p.attr('uplabel') ? $p.attr('uplabel') : '+') + '</div>';
+    actorup += '<div class="value">' + ($e.attr('uplabel') ? $e.attr('uplabel') : '+') + '</div>';
     actorup += '</div>';
     var $actorup = $(actorup).data( {
       'address' : address,
-      'mapping' : $p.attr('mapping'),
-      'styling' : $p.attr('styling'),
-      'value'   : $p.attr('upvalue') || 1,
-      'align'   : $p.attr('align'),
-      'change'  : $p.attr('change') || 'relative',
-      'min'     : parseFloat($p.attr('min')) || 0,
-      'max'     : parseFloat($p.attr('max')) || 255,
+      'mapping' : $e.attr('mapping'),
+      'styling' : $e.attr('styling'),
+      'value'   : $e.attr('upvalue') || 1,
+      'align'   : $e.attr('align'),
+      'change'  : $e.attr('change') || 'relative',
+      'min'     : parseFloat($e.attr('min')) || 0,
+      'max'     : parseFloat($e.attr('max')) || 255,
       'type'    : 'switch'
     } ).bind( 'click', this.action ).bind( 'mousedown', function(){
       $(this).removeClass('switchUnpressed').addClass('switchPressed');
@@ -89,15 +89,15 @@ basicdesign.addCreator('infotrigger', {
     } );
 
     var actorinfo = '<div class="actor switchInvisible" ';
-    if ( $p.attr( 'align' ) ) 
-      actorinfo += 'style="text-align: '+$p.attr( 'align' )+'" '; 
+    if ( $e.attr( 'align' ) ) 
+      actorinfo += 'style="text-align: '+$e.attr( 'align' )+'" '; 
     actorinfo += '" ><div class="value">-</div></div>';
     var $actorinfo = $(actorinfo).data({
       'address'  : address,
-      'format'   : $p.attr('format'),
-      'mapping'  : $p.attr('mapping'),
-      'styling'  : $p.attr('styling'),
-      'align'    : $p.attr('align'),
+      'format'   : $e.attr('format'),
+      'mapping'  : $e.attr('mapping'),
+      'styling'  : $e.attr('styling'),
+      'align'    : $e.attr('align'),
     });
     for( var addr in address ) 
     {
@@ -105,11 +105,11 @@ basicdesign.addCreator('infotrigger', {
         $actorinfo.bind( addr, this.update );
     }
 
-    if ( $p.attr('infoposition' )==1 ) {
+    if ( $e.attr('infoposition' )==1 ) {
       buttons.append( $actordown );
       buttons.append( $actorinfo );
       buttons.append( $actorup );        
-    } else if ( $p.attr('infoposition' )==2 ) {
+    } else if ( $e.attr('infoposition' )==2 ) {
       buttons.append( $actordown );
       buttons.append( $actorup );        
       buttons.append( $actorinfo );

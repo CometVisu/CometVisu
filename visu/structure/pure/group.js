@@ -17,20 +17,20 @@
 
 basicdesign.addCreator('group', {
   maturity: Maturity.development,
-  create: function( page, path, flavour ) {
-    var $p = $(page);
+  create: function( element, path, flavour ) {
+    var $e = $(element);
     var ret_val = $('<div class="widget clearfix group" />');
-    if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     var hstyle  = '';                                     // heading style
-    if( $p.attr('align') ) hstyle += 'text-align:' + $p.attr('align') + ';';
+    if( $e.attr('align') ) hstyle += 'text-align:' + $e.attr('align') + ';';
     if( hstyle != '' ) hstyle = 'style="' + hstyle + '"';
-    ret_val.setWidgetLayout($p);
-    if ($p.attr('nowidget')=='true') {
+    ret_val.setWidgetLayout($e);
+    if ($e.attr('nowidget')=='true') {
       ret_val.removeClass('widget');
     }
-    var childs = $p.children();
+    var childs = $e.children();
     var container = $( '<div class="clearfix"/>' );
-    if( $p.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $p.attr('name') + '</h2>' );
+    if( $e.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $e.attr('name') + '</h2>' );
     $( childs ).each( function(i){
         container.append( create_pages( childs[i], path + '_' + i, flavour ) );
     } );

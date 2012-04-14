@@ -16,21 +16,21 @@
  */
 
 basicdesign.addCreator('toggle', {
-  create: function( page, path ) {
-    var $p = $(page);
-    var layout = $p.find('layout')[0];
+  create: function( element, path ) {
+    var $e = $(element);
+    var layout = $e.find('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix toggle" ' + style + '/>');
-    ret_val.setWidgetLayout($p);
-    var labelElement = $p.find('label')[0];
+    ret_val.setWidgetLayout($e);
+    var labelElement = $e.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-    var address = makeAddressList($p);
+    var address = makeAddressList($e);
     var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     var $actor = $(actor).data( {
       'address' : address,
-      'mapping' : $p.attr('mapping'),
-      'styling' : $p.attr('styling'),
-      'align'   : $p.attr('align'),
+      'mapping' : $e.attr('mapping'),
+      'styling' : $e.attr('styling'),
+      'align'   : $e.attr('align'),
       'type'    : 'switch'
     } ).bind( 'click', this.action );
     for( var addr in address ) $actor.bind( addr, this.update );
