@@ -89,8 +89,8 @@ basicdesign.addCreator('page', {
         address[ '_' + $p.attr('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
         container.bind( '_' + $p.attr('floor'), this.update );
       }; 
-      container.data( 'address', address );
     }
+    container.data( 'address', address );
     $( childs ).each( function(i){
         container.append( create_pages( childs[i], path + '_' + i, flavour, type ) );
     } );
