@@ -18,7 +18,7 @@
 basicdesign.addCreator('trigger', {
   create: function( element, path ) {
     var $e = $(element);
-    var layout = $e.find('layout')[0];
+    var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var value = $e.attr('value') ? $e.attr('value') : 0;
     var ret_val = $('<div class="widget clearfix switch" ' + style + ' />');
