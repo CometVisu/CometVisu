@@ -209,6 +209,10 @@
         <label>Polikarpov I-15bis - Ogg Theora</label>
       </video>
     </page>
+    <trigger value="1">
+      <label>Seitenwechsel per GA</label>
+      <address transform="DPT:1.001" readonly="false" type="">12/7/100</address>
+    </trigger>
     <line/>
     <page name="iframe Test" align="center" >
       <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
@@ -236,7 +240,7 @@
       <page name="Flavour: Boron" align="center" flavour="boron">
         <text align="center">CometVisu Boron flavour</text>
         <line/>
-        <page name="Subpage">
+        <page name="Subpage" ga="12/7/100">
           <text>An empty page</text>
           <line/>
         </page>
