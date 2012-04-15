@@ -18,7 +18,7 @@
 basicdesign.addCreator('multitrigger', {
   create: function( element, path ) {
     var $e = $(element);
-    var layout = $e.find('layout')[0];
+    var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix switch" ' + style + '/>');
     ret_val.setWidgetLayout($e)

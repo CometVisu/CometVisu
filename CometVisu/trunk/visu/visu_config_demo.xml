@@ -384,6 +384,51 @@
           <address transform="DPT:9" type="">12/7/10</address>
         </slide>
     </page>
+    <page name="2D fixed Bitmap" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.png" align="center">
+      <switch mapping="On_Off" styling="Red_Green">
+        <layout x="200px" y="300px" width="600px" />
+        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      </switch>
+      <trigger value="0" mapping="On_Off">
+        <layout x="0px" y="500px" width="600px" />
+        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      </trigger>
+      <trigger value="1" mapping="On_Off">
+        <layout x="360px" y="500px" width="600px" />
+        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      </trigger>
+    </page>
+    <page name="2D scaled Bitmap" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.png" align="center">
+      <switch mapping="On_Off" styling="Red_Green">
+        <layout x="45%" y="45%" width="600px" />
+        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      </switch>
+      <trigger value="0" mapping="On_Off">
+        <layout x="5%" y="70%" width="600px" />
+        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      </trigger>
+      <trigger value="1" mapping="On_Off">
+        <layout x="90%" y="70%" width="600px" />
+        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      </trigger>
+    </page>
+    <page name="2D SVG" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.svg" align="center">
+      <switch mapping="On_Off" styling="Red_Green">
+        <layout x="200px" y="300px" width="600px" />
+        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      </switch>
+      <trigger value="0" mapping="On_Off">
+        <layout x="0px" y="500px" width="600px" />
+        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      </trigger>
+      <trigger value="1" mapping="On_Off">
+        <layout x="360px" y="500px" width="600px" />
+        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      </trigger>
+    </page>
+    <page name="3D" align="center">
+      <text>Not in this demo yet...</text>
+    </page>
     <line/>
     <text align="center">&lt;b&gt;Plugins&lt;/b&gt;</text>
     <text>Diese Widgets sind Plugins und stehen dann zur Verfügung, wenn sie in

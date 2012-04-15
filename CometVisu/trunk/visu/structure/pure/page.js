@@ -40,7 +40,7 @@ basicdesign.addCreator('page', {
     if ($p.attr('visible')=='false') {
       ret_val=$('');
     } else { // default is visible
-      var layout = $p.find('layout')[0];
+      var layout = $p.children('layout')[0];
       var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
       ret_val = $('<div class="widget clearfix link pagelink" ' + style + '/>');
       ret_val.setWidgetLayout($p);
