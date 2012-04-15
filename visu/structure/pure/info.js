@@ -18,7 +18,7 @@
 basicdesign.addCreator('info', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.find('layout')[0];
+    var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix info" ' + style + ' />');
     //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );

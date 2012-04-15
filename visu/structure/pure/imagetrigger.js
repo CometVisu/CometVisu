@@ -35,7 +35,7 @@ basicdesign.addCreator('imagetrigger', {
         }
       ];
     });
-    var layout = $e.find('layout')[0];
+    var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, {width:'100%'} ) + '"' : '';
 
     var actor = '<div class="actor">';

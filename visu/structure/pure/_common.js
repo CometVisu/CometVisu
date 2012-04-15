@@ -355,6 +355,8 @@ function defaultUpdate3d( e, data, passedElement )
 
 function extractLayout( layout, defaultValues )
 {
+  if (typeof defaultValue === 'undefined') defaultValues = [];
+
   var ret_val = 'position:absolute;';
   if( layout.getAttribute('x'     ) ) ret_val += 'left:'   + layout.getAttribute('x'     ) + ';';
   else if( defaultValues[ 'x'     ] ) ret_val += 'left:'   + defaultValues[      'x'     ] + ';';
