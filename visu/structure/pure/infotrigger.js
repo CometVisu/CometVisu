@@ -28,17 +28,11 @@ basicdesign.addCreator('infotrigger', {
     ret_val.append( label );
 
     // handle addresses
-    var address = {};
-    $e.find('address').each( function(){ 
-      var src = this.textContent;
-      var transform = this.getAttribute('transform');
-      var readonly  = this.getAttribute('readonly' ) == 'true';
-      var isButton  = this.getAttribute('variant'  ) == 'button';
-      address[ '_' + src ] = [ transform, readonly, isButton ];
-      if( !isButton ) { // no need to listen to relative address
-        ga_list.push( src );
-      };
-    });
+    var address = makeAddressList($e, 
+      function( src, transform, mode, variant ) {
+        return [ variant != 'button', variant == 'button' ];
+      }
+    );
 
     // create buttons + info
     var buttons = $('<div style="float:left;"/>');
@@ -141,7 +135,7 @@ basicdesign.addCreator('infotrigger', {
     }
     for( var addr in data.address )
     {
-      if( data.address[addr][1] == true ) continue; // skip read only
+      if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
       if( data.address[addr][2] != relative ) continue; // skip when address mode doesn't fit action mode
       visu.write( addr.substr(1), transformEncode( data.address[addr][0], value ) );
     }

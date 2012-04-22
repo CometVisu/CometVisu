@@ -37,7 +37,7 @@ basicdesign.addCreator('switch', {
     } ).bind( 'click', this.action );
     for( var addr in address ) 
     { 
-      if( !address[addr][2] ) $actor.bind( addr, this.update ); // no writeonly
+      if( address[addr][1] & 1 ) $actor.bind( addr, this.update ); // only when read flag is set
     }
     ret_val.append( label ).append( $actor );
     return ret_val;
@@ -53,7 +53,7 @@ basicdesign.addCreator('switch', {
     var data = $(this).data();
     for( var addr in data.address )
     {
-      if( data.address[addr][1] == true ) continue; // skip read only
+      if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
       visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value == data.off_value ? data.on_value : data.off_value ) );
     }
   },

@@ -27,15 +27,11 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
     ret_val.setWidgetLayout($p);
     var labelElement = $p.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-    var address = {};
-    $p.find('address').each( function(){ 
-      var src = this.textContent;
-      var transform = this.getAttribute('transform');
-      var color     = this.getAttribute('variant'  );
-      var readonly  = this.getAttribute('readonly' );
-      ga_list.push( src ); 
-      address[ '_' + src ] = [ transform, color, readonly=='true' ];
-    });
+    var address = makeAddressList( $p,
+      function( src, transform, mode, variant ) {
+        return [ true, variant ];
+      }
+    );
 
     var actor = '<div class="actor">';
     actor += '</div>';
@@ -67,8 +63,8 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
           var bb = a.data( 'bus_b' );
           for( var addr in address )
           {
-            if( address[addr][2] == true ) continue; // skip read only
-            switch( address[addr][1] )
+            if( !(address[addr][1] & 2) ) continue; // skip when write flag not set
+            switch( address[addr][2] )
             {
               case 'r':
                 var v = Transform[address[addr][0]].encode( r );
@@ -112,7 +108,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
           rateLimitedSend( $actor ); 
       });
     for( var addr in address ) {
-      switch( address[addr][1] ) {
+      switch( address[addr][2] ) {
         case 'r':
           $actor.bind( addr, this.update_r );
           break;

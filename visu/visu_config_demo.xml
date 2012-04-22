@@ -115,21 +115,21 @@
     <break/>
     <switch mapping="On_Off" styling="Red_Green">
       <label>Switch</label>
-      <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      <address transform="DPT:1.001" type="">12/7/1</address>
     </switch>
     <break/>
     <trigger value="0" mapping="On_Off">
       <label>Trigger</label>
-      <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      <address transform="DPT:1.001" type="">12/7/1</address>
     </trigger>
     <trigger value="1" mapping="On_Off">
       <label>Trigger</label>
-      <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+      <address transform="DPT:1.001" type="">12/7/1</address>
     </trigger>
     <break/>
     <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy">
       <label>Multitrigger: KONNEX Betriebsart</label>
-      <address transform="DPT:20.102" readonly="false" type="">12/7/20</address>
+      <address transform="DPT:20.102" type="">12/7/20</address>
     </multitrigger>
     <info mapping="KonnexHVAC">
       <label>Info: Betriebsart</label>
@@ -138,7 +138,7 @@
     <break/>
     <multitrigger button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
       <label>Multitrigger: Szenenaufruf</label>
-      <address transform="DPT:5.010" readonly="false" type="">12/7/5</address>
+      <address transform="DPT:5.010" type="">12/7/5</address>
     </multitrigger>
     <break/>
     <infotrigger uplabel="wärmer" downlabel="kälter" upvalue="0.1" downvalue="-0.1" align="center" format="%.1f °C"  change="absolute" min="7" max="24">
@@ -156,8 +156,8 @@
       <break/>
       <infotrigger uplabel="+" upvalue="1" downlabel="-" downvalue="0" align="center" infoposition="1" change="relative">
         <label>Lautstärke</label>
-        <address transform="DPT:16.000" readonly="true" variant="display">12/7/16</address>
-        <address transform="DPT:1.001" readonly="false" variant="button">12/7/1</address>
+        <address transform="DPT:16.000" mode="read" variant="display">12/7/16</address>
+        <address transform="DPT:1.001" variant="button">12/7/1</address>
       </infotrigger>
       <break/>
       <info>
@@ -170,14 +170,14 @@
       </info>
       <multitrigger button1label="An" button1value="50%" button2label="Aus" button2value="0%" button3label="Leise" button3value="25%" button4label="Laut" button4value="100%">
         <label>Lautstärke-Text</label>
-        <address transform="DPT:16.000" readonly="false" type="">12/7/16</address>
+        <address transform="DPT:16.000" type="">12/7/16</address>
       </multitrigger>
       <line/>
       <text>Absolut</text>
       <break/>
       <infotrigger uplabel="+" upvalue="5" downlabel="-" downvalue="-5" align="center" infoposition="1" change="absolute" format="%.1f%%" max="100">
         <label>Lautstärke</label>
-        <address transform="DPT:5.001" readonly="false">12/7/5</address>
+        <address transform="DPT:5.001">12/7/5</address>
       </infotrigger>
     </page>
     <break/>
@@ -211,7 +211,7 @@
     </page>
     <trigger value="1">
       <label>Seitenwechsel per GA</label>
-      <address transform="DPT:1.001" readonly="false" type="">12/7/100</address>
+      <address transform="DPT:1.001" type="">12/7/100</address>
     </trigger>
     <line/>
     <page name="iframe Test" align="center" >
@@ -356,23 +356,23 @@
     <page name="Stylings Test" align="center">
         <switch mapping="On_Off" styling="Green_Red">
           <label>Switch green/red</label>
-          <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+          <address transform="DPT:1.001" type="">12/7/1</address>
         </switch>
         <switch mapping="On_Off" styling="Grey_Green">
           <label>Switch grey/green</label>
-          <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+          <address transform="DPT:1.001" type="">12/7/1</address>
         </switch>
         <switch mapping="On_Off" styling="Grey_Red">
           <label>Switch grey/red</label>
-          <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+          <address transform="DPT:1.001" type="">12/7/1</address>
         </switch>
         <switch mapping="On_Off" styling="Grey_Blue">
           <label>Switch grey/blue</label>
-          <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+          <address transform="DPT:1.001" type="">12/7/1</address>
         </switch>
         <switch mapping="On_Off" styling="Brown_Purple">
           <label>Switch brown/purple</label>
-          <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+          <address transform="DPT:1.001" type="">12/7/1</address>
         </switch>
         <line/>
         <info styling="Blue_Lightblue_Green_Purple_Red" format="%.1f °C">
@@ -387,43 +387,43 @@
     <page name="2D fixed Bitmap" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.png" align="center">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="200px" y="300px" width="600px" />
-        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        <address transform="DPT:1.001" type="">12/7/1</address>
       </switch>
       <trigger value="0" mapping="On_Off">
         <layout x="0px" y="500px" width="600px" />
-        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        <address transform="DPT:1.001" type="">12/7/1</address>
       </trigger>
       <trigger value="1" mapping="On_Off">
         <layout x="360px" y="500px" width="600px" />
-        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        <address transform="DPT:1.001" type="">12/7/1</address>
       </trigger>
     </page>
     <page name="2D scaled Bitmap" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.png" align="center">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="45%" y="45%" width="600px" />
-        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        <address transform="DPT:1.001" type="">12/7/1</address>
       </switch>
       <trigger value="0" mapping="On_Off">
         <layout x="5%" y="70%" width="600px" />
-        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        <address transform="DPT:1.001" type="">12/7/1</address>
       </trigger>
       <trigger value="1" mapping="On_Off">
         <layout x="90%" y="70%" width="600px" />
-        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        <address transform="DPT:1.001" type="">12/7/1</address>
       </trigger>
     </page>
     <page name="2D SVG" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.svg" align="center">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="200px" y="300px" width="600px" />
-        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        <address transform="DPT:1.001" type="">12/7/1</address>
       </switch>
       <trigger value="0" mapping="On_Off">
         <layout x="0px" y="500px" width="600px" />
-        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        <address transform="DPT:1.001" type="">12/7/1</address>
       </trigger>
       <trigger value="1" mapping="On_Off">
         <layout x="360px" y="500px" width="600px" />
-        <address transform="DPT:1.001" readonly="false" type="">12/7/1</address>
+        <address transform="DPT:1.001" type="">12/7/1</address>
       </trigger>
     </page>
     <page name="3D" align="center">

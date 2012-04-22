@@ -22,16 +22,11 @@ basicdesign.addCreator('slide', {
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix slide" ' + style + ' />');
     ret_val.setWidgetLayout($e).makeWidgetLabel($e);
-    var address = {};
+    var address = makeAddressList($e);
     var datatype_min = undefined;
     var datatype_max = undefined;
     $e.find('address').each( function(){ 
-      var src = this.textContent;
       var transform = this.getAttribute('transform');
-      var readonly  = this.getAttribute('readonly');
-      var writeonly = this.getAttribute('writeonly');
-      ga_list.push( src ) 
-      address[ '_' + src ] = [ transform, readonly=='true', writeonly=='true' ];
       if( Transform[ transform ] && Transform[ transform ].range )
       {
         if( !( datatype_min > Transform[ transform ].range.min ) ) 
@@ -57,7 +52,7 @@ basicdesign.addCreator('slide', {
     });
     for( var addr in address ) 
     { 
-      if( !address[addr][2] ) $actor.bind( addr, this.update ); // no writeonly
+      if( address[addr][1] & 1 ) $actor.bind( addr, this.update ); // only when read flag is set
     }
     $actor.slider({
       step:    step,
@@ -94,7 +89,7 @@ basicdesign.addCreator('slide', {
       var asv = actor.slider('value');
       for( var addr in data.address )
       {
-        if( data.address[addr][1] == true ) continue; // skip read only
+        if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
         var dv  = transformEncode( data.address[addr][0], asv );
         if( dv != transformEncode( data.address[addr][0], data.value ) )
           visu.write( addr.substr(1), dv );
@@ -112,7 +107,7 @@ basicdesign.addCreator('slide', {
     if( data.valueInternal && data.value != ui.value )
       for( var addr in data.address )
       {
-        if( data.address[addr][1] == true ) continue; // skip read only
+        if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
         var uv  = transformEncode( data.address[addr][0], ui.value );
         if( uv != transformEncode( data.address[addr][0], data.value ) )
           visu.write( addr.substr(1), uv );
