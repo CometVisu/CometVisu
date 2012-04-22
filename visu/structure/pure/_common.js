@@ -84,15 +84,31 @@ $.fn.makeWidgetLabel = function(page) {
  * this function extracts all addresses with attributes (JNK)
  */
   
-function makeAddressList(page) {
+function makeAddressList( page, handleVariant ) {
   var address = {};
   page.find('address').each( function(){ 
     var src = this.textContent;
     var transform = this.getAttribute('transform');
-    var readonly  = this.getAttribute('readonly');
-    var writeonly = this.getAttribute('writeonly');
-    ga_list.push( src ) 
-    address[ '_' + src ] = [ transform, readonly=='true', writeonly=='true' ];
+    var mode = 1|2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+    switch( this.getAttribute('mode') )
+    {
+      case 'disable':
+        mode = 0;
+        break;
+      case 'read':
+        mode = 1;
+        break;
+      case 'write':
+        mode = 2;
+        break;
+      case 'readwrite':
+        mode = 1|2;
+        break;
+    }
+    var variantInfo = handleVariant ? handleVariant( src, transform, mode, this.getAttribute('variant') ) : [true, undefined];
+    if( variantInfo[0] )
+      ga_list.push( src );
+    address[ '_' + src ] = [ transform, mode, variantInfo[1] ];
   });
   return address;
 }

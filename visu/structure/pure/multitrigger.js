@@ -133,7 +133,7 @@ basicdesign.addCreator('multitrigger', {
     var data = $(this).data();
     for( var addr in data.address )
     {
-      if( data.address[addr][1] == true ) continue; // skip read only
+      if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
       visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
     }
   },
