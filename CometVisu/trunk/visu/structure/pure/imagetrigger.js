@@ -24,17 +24,7 @@ basicdesign.addCreator('imagetrigger', {
     var value = $e.attr('value') ? $e.attr('value') : 0;
     var labelElement = $e.find('label')[0];
     ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
-    var address = {};
-    $e.find('address').each( function(){
-      var src = this.textContent;
-      ga_list.push( src )
-      address[ '_' + src ] = [
-        this.getAttribute('transform'), {
-          'readonly'  : this.getAttribute('readonly'),
-          'writeonly' : this.getAttribute('writeonly')
-        }
-      ];
-    });
+    var address = makeAddressList($e);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, {width:'100%'} ) + '"' : '';
 
@@ -89,8 +79,8 @@ basicdesign.addCreator('imagetrigger', {
     var data = $(this).data();
     sendValue = data.sendValue;
     for( var addr in data.address ) {
-      if( data.address[addr][1].readonly == "true" )
-        continue; // skip read only
+      if( !(data.address[addr][1] & 2) )
+        continue; // skip when write flag not set
       if( data.sendValue == "" )
         continue; // skip empty
       visu.write( addr.substr(1), transformEncode( data.address[addr][0], sendValue ) );

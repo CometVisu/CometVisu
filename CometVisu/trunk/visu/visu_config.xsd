@@ -26,8 +26,7 @@
     <xsd:simpleContent>
         <xsd:extension base="addr">
             <xsd:attribute ref="transform" use="required" />
-            <xsd:attribute ref="readonly" use="optional" />
-            <xsd:attribute ref="writeonly" use="optional" />
+            <xsd:attribute ref="mode" use="optional" />
             <xsd:attribute name="type" type="xsd:string" use="optional" />
             <xsd:attribute name="variant" type="xsd:string" use="optional" />
         </xsd:extension>
@@ -62,8 +61,7 @@
 <xsd:attribute name="styling" type="xsd:string" />
 <xsd:attribute name="value" type="xsd:string" />
 
-<xsd:attribute name="readonly" type="xsd:boolean" />
-<xsd:attribute name="writeonly" type="xsd:boolean" />
+<xsd:attribute name="mode" type="xsd:string" />
 <xsd:attribute name="align" type="xsd:string" />
 <xsd:attribute name="variant" type="xsd:string" />
 
