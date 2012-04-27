@@ -52,7 +52,6 @@
   
  
 $("body").append("<script type=\"text/javascript\" src=\"plugins/diagram/flot/jquery.flot.js\"></script>");
-
 function createDiagram( page, path, oldType ) {
   var $p = $(page);
 
@@ -62,6 +61,19 @@ function createDiagram( page, path, oldType ) {
   }
 
   var id = "diagram_" + uniqid();
+
+  var rrd = {};
+  var rrdnum = 0;
+  if ($p.attr('rrd')) {
+    rrd[ '_'+$p.attr('rrd') ] = [ $p.attr('linecolor') || "", ""];
+    rrdnum=1;
+  } else {
+    $p.find('rrd').each( function() {
+      var src = this.textContent;
+      rrd[ '_'+src ] = [ this.getAttribute('color'), this.getAttribute('label') || src ];
+      rrdnum ++;
+    });
+  }
 
   var ret_val = $('<div class="widget clearfix diagram" />');
   ret_val.setWidgetLayout($p).makeWidgetLabel($p);
@@ -83,7 +95,8 @@ function createDiagram( page, path, oldType ) {
   ret_val.append(actor);
 
   diagram.data("id", id);
-  diagram.data("rrd", $p.attr("rrd"));
+  diagram.data("rrd", rrd);
+  diagram.data("rrdnum", rrdnum);
   diagram.data("unit", $p.attr("unit") || "");
   diagram.data("series", $p.attr("series") || "day");
   diagram.data("period", $p.attr("period") || 1);
@@ -92,7 +105,6 @@ function createDiagram( page, path, oldType ) {
   diagram.data("refresh", $p.attr("refresh"));
   diagram.data("yaxismin", $p.attr("yaxismin"));
   diagram.data("yaxismax", $p.attr("yaxismax"));
-  diagram.data("linecolor", $p.attr("linecolor") || "");
   diagram.data("gridcolor", $p.attr("gridcolor") || "");
 
   var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
@@ -104,9 +116,9 @@ function createDiagram( page, path, oldType ) {
     diagram.bind("click", function() {
       bDiagram.data(data);
       bDiagram.css({height: "90%"});
-      showPopup("unknown", {title: page.textContent, content: bDiagram});
+      showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
       bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
- 
+      bDiagram.empty();
       var bDiagramOpts = {yaxis: {labelWidth: null}};
       if ($p.attr("tooltip") == "true") {
         // if we want to display a tooltip, we need to listen to the event
@@ -161,7 +173,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
     return createDiagram(page, path, "inline");    
   },
   attributes: {
-    rrd:        {type: "string", required: true},
+    rrd:        {type: "string", required: false},
     width:      {type: "string", required: false},
     height:     {type: "string", required: false},
     unit:       {type: "string", required: false},
@@ -177,7 +189,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
     gridcolor:  {type: "string", required: false}
   },
   elements: {
-    label:      { type: 'string',    required: false, multi: false }
+    label:      { type: 'string',    required: false, multi: false },
+    rrd:        { type: 'string', required: false, multi: true },
   },
   content:      false
 });
@@ -187,7 +200,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
     return createDiagram(page, path, "popup");
   },
   attributes: {
-    rrd:           {type: "string", required: true},
+    rrd:           {type: "string", required: false},
     unit:          {type: "string", required: false},
     series:        {type: "list", required: false, list: {hour: "hours", day: "days", week: "weeks", month: "months", year: "years"}},
     period:        {type: "numeric", required: false},
@@ -202,7 +215,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
     height:        {type: "string", required: false},
   },
   elements: {
-    label:      { type: 'string',    required: false, multi: false }
+    label:      { type: 'string',    required: false, multi: false },
+    rrd:        { type: 'string', required: false, multi: true },
   },
   content:      false
 });
@@ -212,7 +226,7 @@ VisuDesign_Custom.prototype.addCreator("diagram", {
     return createDiagram(page, path, "none");
   },
   attributes: {
-    rrd:           {type: "string", required: true},
+    rrd:           {type: "string", required: false},
     unit:          {type: "string", required: false},
     series:        {type: "list", required: false, list: {hour: "hours", day: "days", week: "weeks", month: "months", year: "years"}},
     period:        {type: "numeric", required: false},
@@ -229,7 +243,8 @@ VisuDesign_Custom.prototype.addCreator("diagram", {
     popup:         {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
   },
   elements: {
-    label:      { type: 'string',    required: false, multi: false }
+    label:      { type: 'string',    required: false, multi: false },
+    rrd:        { type: 'string', required: false, multi: true },
   },
   content:      false
 });
@@ -244,7 +259,20 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
       ga_list.push( src ) 
       address[ '_' + src ] = [ this.getAttribute('transform') ];
     });
-        
+    
+    var rrd = {};
+    var rrdnum = 0;
+    if ($p.attr('rrd')) {
+      rrd[ '_'+$p.attr('rrd') ] = [ $p.attr('linecolor') || "", ""];
+      rrdnum=1;
+    } else {
+      $p.find('rrd').each( function() {
+        var src = this.textContent;
+        rrd[ '_'+src ] = [ this.getAttribute('color'), this.getAttribute('label') || src ];
+        rrdnum ++;
+      });
+    }
+    
     function uniqid() {
       var newDate = new Date;
       return newDate.getTime();
@@ -281,7 +309,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
         
     bDiagram.data("id", id);
-    bDiagram.data("rrd", $p.attr("rrd"));
+    bDiagram.data("rrd", rrd);
+    bDiagram.data("rrdnum", rrdnum);
     bDiagram.data("unit", $p.attr("unit") || "");
     bDiagram.data("series", $p.attr("series") || "day");
     bDiagram.data("period", $p.attr("period") || 1);
@@ -290,7 +319,6 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     bDiagram.data("refresh", $p.attr("refresh"));
     bDiagram.data("yaxismin", $p.attr("yaxismin"));
     bDiagram.data("yaxismax", $p.attr("yaxismax"));
-    bDiagram.data("linecolor", $p.attr("linecolor") || "");
     bDiagram.data("gridcolor", $p.attr("gridcolor") || "");
                
     var data = jQuery.extend({}, bDiagram.data());
@@ -301,7 +329,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
 
       showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
       bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
- 
+      bDiagram.empty();
       var bDiagramOpts = {yaxis: {labelWidth: null}};
       if ($p.attr("tooltip") == "true") {
         // if we want to display a tooltip, we need to listen to the event
@@ -349,7 +377,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     element.addClass('switchUnpressed');
   },
   attributes: {
-    rrd:        {type: "string", required: true},
+    rrd:        {type: "string", required: false},
     unit:       {type: "string", required: false},
     series:     {type: "list", required: false, list: {hour: "hours", day: "days", week: "weeks", month: "months", year: "years"}},
     period:     {type: "numeric", required: false},
@@ -360,13 +388,14 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     gridcolor:  {type: "string", required: false},
     yaxismin:   {type: "numeric", required: false},
     yaxismax:   {type: "numeric", required: false},
-    format:     { type: 'format',    required: false },
-    mapping:    { type: 'mapping',   required: false },
-    styling:    { type: 'styling',   required: false }
+    format:     { type: 'format', required: false },
+    mapping:    { type: 'mapping', required: false },
+    styling:    { type: 'styling', required: false }
   },
   elements: {
-    label:      { type: 'string',    required: true, multi: false },
-    address:    { type: 'address',   required: true, multi: true }
+    label:      { type: 'string', required: false, multi: false },
+    address:    { type: 'address', required: true, multi: true },
+    rrd:        { type: 'string', required: false, multi: true },
   },
   content: {type: "string", required: true}
 });
@@ -390,11 +419,12 @@ function refreshDiagram(diagram, flotoptions, data) {
 
   var unit = diagram.data("unit");
   var rrd = diagram.data("rrd");
+  var rrdnum = diagram.data("rrdnum");
   var label = diagram.data("label");
   var refresh = diagram.data("refresh");
   var datasource = diagram.data("datasource") || "AVERAGE";
   var period = diagram.data("period") || 1;
-  var linecolor = diagram.data("linecolor") || diagramColors.data;
+  //var linecolor = diagram.data("linecolor") || diagramColors.data;
   var gridcolor = diagram.data("gridcolor") || "#81664B";
   var yaxismin = diagram.data("yaxismin") || null;
   var yaxismax = diagram.data("yaxismax") || null;
@@ -437,28 +467,51 @@ function refreshDiagram(diagram, flotoptions, data) {
 
   if (s) {
     // init
-    $.ajax({
-      url: "/cgi-bin/rrdfetch?rrd=" + rrd + ".rrd&ds=" + datasource + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
-      dataType: "json",
-      type: "GET",
-      success: function(data) {
-        var color = linecolor || options.grid.color;
-        var offset = new Date().getTimezoneOffset() * 60 * 1000;
-        //TODO: find a better way
-        for (var j = 0; j < data.length; j++) {
-          data[j][0] -= offset;
-          data[j][1] = parseFloat( data[j][1][0] );
+    var num = 0;
+    var fulldata = [];  
+    var rrdloaded = 0;
+    $.each(rrd, function(index, value) {
+      var src = index.slice(1);
+      var linecolor = value[0];
+      var label = value[1];
+      var idx = num;
+         
+      $.ajax({
+        url: "/cgi-bin/rrdfetch?rrd=" + src + ".rrd&ds=" + datasource + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
+        dataType: "json",
+        type: "GET",
+        success: function(data) {
+          var color = linecolor || options.grid.color;
+          var offset = new Date().getTimezoneOffset() * 60 * 1000;
+          //TODO: find a better way
+          for (var j = 0; j < data.length; j++) {
+            data[j][0] -= offset;
+            data[j][1] = parseFloat( data[j][1][0] );
+          }
+          fulldata[idx] = {label: label, color: color, data: data};
+          rrdloaded++;
+          if (rrdloaded==rrdnum) { 
+            if (!diagram.data("plotted")) {
+              diagram.data("PLOT", $.plot(diagram, fulldata, options));
+              diagram.data("plotted", true);
+            } else {
+              var PLOT = diagram.data("PLOT");
+              PLOT.setData(fulldata);
+              PLOT.setupGrid();
+              PLOT.draw();
+            }
+          }
+          //console.log( p, p.width(), p.height(), p.getPlotOffset() );
         }
-        p = $.plot(diagram, [{color: color, data: data}], options);
-        //console.log( p, p.width(), p.height(), p.getPlotOffset() );
-      }
+      });
+      num++;
     });
-
+    
     if (typeof (refresh) != "undefined" && refresh) {
       // reload regularly
       window.setTimeout(function(diagram, flotoptions, data) {
         refreshDiagram(diagram, flotoptions, data);
-      }, refresh * 1000, diagram, flotoptions, data);
+      }, refresh * 1000, diagram, flotoptions, data );
     }
   }
 
