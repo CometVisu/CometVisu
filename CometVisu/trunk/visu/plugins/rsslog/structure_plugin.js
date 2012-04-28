@@ -164,7 +164,7 @@ function refreshRSSlog(rss, data) {
             jQuery(c).html('');
                          
             // get height of one entry, calc max num of display items in widget
-            var dummyDiv = $('<' + o.wrapper + ' class="rsslogRow odd" id="dummydiv">').append('<li />').appendTo($(c));
+            var dummyDiv = $('<' + o.wrapper + ' class="rsslogRow odd" id="dummydiv">.</li>').appendTo($(c));
             var itemheight = dummyDiv.height();
             dummyDiv.remove();
             var widget=$(c).parent().parent(); // get the parent widget
