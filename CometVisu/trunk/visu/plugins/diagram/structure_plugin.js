@@ -52,6 +52,48 @@
   
  
 $("body").append("<script type=\"text/javascript\" src=\"plugins/diagram/flot/jquery.flot.js\"></script>");
+$("body").append("<script type=\"text/javascript\" src=\"plugins/diagram/flot/jquery.flot.axislabels.js\"></script>");
+
+function diagram_get_content( page ) {
+
+  var axes = []; // if yaxismin, yaxismax or unit-attributes exist: old behaviour, otherwise use axis-elements
+  var axesnames = {}
+  var axesnum = 0;
+  if (page.attr('yaxismin') || page.attr('yaxismax') || page.attr('unit')) {
+    axesnum=1;
+    axes[0] = { position: 'left', min: page.attr('yaxismin') || null, max: page.attr('yaxismax') || null,
+      tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals)+(page.attr('unit') || ""); } 
+    };
+  } else {
+    page.find('axis').each( function() { // defaults: left, auto range, no label
+      var name = this.textContent;
+      var unit = this.getAttribute('unit') || "";
+      axes[ axesnum ] = { axisLabel:this.getAttribute('label') || null, position: this.getAttribute('position') || "left", 
+        min: this.getAttribute('min') || null, max: this.getAttribute('max') || null,
+        tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals)+unit; } 
+      };
+      axesnames ['_'+name] = axesnum+1;
+      axesnum ++;
+    });
+  }
+    
+  var rrd = {}; // if rrd-attribute exists: old behaviour, otherwise use rrd-elements, default axis is (1)
+  var rrdnum = 0;
+  if (page.attr('rrd')) { 
+    rrd[ '_'+page.attr('rrd') ] = [ page.attr('linecolor') || "", "", "1"];
+    rrdnum=1;
+  } else {
+    page.find('rrd').each( function() {
+      var src = this.textContent;
+      rrd[ '_'+src ] = [ this.getAttribute('color'), this.getAttribute('label') || src, 
+      axesnames['_'+this.getAttribute('yaxis')] || "1" ];
+      rrdnum ++;
+    });
+  }
+
+  return { axes: axes, axesnum: axesnum, rrd: rrd, rrdnum: rrdnum };
+}
+
 function createDiagram( page, path, oldType ) {
   var $p = $(page);
 
@@ -62,19 +104,8 @@ function createDiagram( page, path, oldType ) {
 
   var id = "diagram_" + uniqid();
 
-  var rrd = {};
-  var rrdnum = 0;
-  if ($p.attr('rrd')) {
-    rrd[ '_'+$p.attr('rrd') ] = [ $p.attr('linecolor') || "", ""];
-    rrdnum=1;
-  } else {
-    $p.find('rrd').each( function() {
-      var src = this.textContent;
-      rrd[ '_'+src ] = [ this.getAttribute('color'), this.getAttribute('label') || src ];
-      rrdnum ++;
-    });
-  }
-
+  var content = diagram_get_content ( $p );
+  
   var ret_val = $('<div class="widget clearfix diagram" />');
   ret_val.setWidgetLayout($p).makeWidgetLabel($p);
         
@@ -95,16 +126,12 @@ function createDiagram( page, path, oldType ) {
   ret_val.append(actor);
 
   diagram.data("id", id);
-  diagram.data("rrd", rrd);
-  diagram.data("rrdnum", rrdnum);
-  diagram.data("unit", $p.attr("unit") || "");
+  diagram.data("content", content);
   diagram.data("series", $p.attr("series") || "day");
   diagram.data("period", $p.attr("period") || 1);
   diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
   diagram.data("label", $('.label', ret_val).text() || '');
   diagram.data("refresh", $p.attr("refresh"));
-  diagram.data("yaxismin", $p.attr("yaxismin"));
-  diagram.data("yaxismax", $p.attr("yaxismax"));
   diagram.data("gridcolor", $p.attr("gridcolor") || "");
 
   var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
@@ -119,7 +146,7 @@ function createDiagram( page, path, oldType ) {
       showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
       bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
       bDiagram.empty();
-      var bDiagramOpts = {yaxis: {labelWidth: null}};
+      var bDiagramOpts = {yaxis: {labelWidth: null}, yaxes: [{ticks: null}]}; 
       if ($p.attr("tooltip") == "true") {
         // if we want to display a tooltip, we need to listen to the event
         var previousPoint = null;
@@ -260,19 +287,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
       address[ '_' + src ] = [ this.getAttribute('transform') ];
     });
     
-    var rrd = {};
-    var rrdnum = 0;
-    if ($p.attr('rrd')) {
-      rrd[ '_'+$p.attr('rrd') ] = [ $p.attr('linecolor') || "", ""];
-      rrdnum=1;
-    } else {
-      $p.find('rrd').each( function() {
-        var src = this.textContent;
-        rrd[ '_'+src ] = [ this.getAttribute('color'), this.getAttribute('label') || src ];
-        rrdnum ++;
-      });
-    }
-    
+    var content = diagram_get_content ( $p );
+        
     function uniqid() {
       var newDate = new Date;
       return newDate.getTime();
@@ -309,16 +325,12 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
         
     bDiagram.data("id", id);
-    bDiagram.data("rrd", rrd);
-    bDiagram.data("rrdnum", rrdnum);
-    bDiagram.data("unit", $p.attr("unit") || "");
+    bDiagram.data("content", content);
     bDiagram.data("series", $p.attr("series") || "day");
     bDiagram.data("period", $p.attr("period") || 1);
     bDiagram.data("datasource", $p.attr("datasource") || "AVERAGE");
     bDiagram.data("label", $('.label', ret_val).text() || '');
     bDiagram.data("refresh", $p.attr("refresh"));
-    bDiagram.data("yaxismin", $p.attr("yaxismin"));
-    bDiagram.data("yaxismax", $p.attr("yaxismax"));
     bDiagram.data("gridcolor", $p.attr("gridcolor") || "");
                
     var data = jQuery.extend({}, bDiagram.data());
@@ -417,17 +429,18 @@ function refreshDiagram(diagram, flotoptions, data) {
   var diagram = $(diagram);
   var config = jQuery.extend(true, {series: diagram.data("series")}, data || {});
 
-  var unit = diagram.data("unit");
-  var rrd = diagram.data("rrd");
-  var rrdnum = diagram.data("rrdnum");
-  var label = diagram.data("label");
+  var content = diagram.data("content");
+
+  if (typeof (content) == "undefined") { // Fenster schon geschlossen oder keine Achsen und RRD konfiguriert
+    return;
+  }
+  
+  var label = diagram.data("label"); // title of diagram
   var refresh = diagram.data("refresh");
-  var datasource = diagram.data("datasource") || "AVERAGE";
+  var datasource = diagram.data("datasource") || "AVERAGE"; //FIXME: to be moved to rrd-definition
   var period = diagram.data("period") || 1;
-  //var linecolor = diagram.data("linecolor") || diagramColors.data;
+  
   var gridcolor = diagram.data("gridcolor") || "#81664B";
-  var yaxismin = diagram.data("yaxismin") || null;
-  var yaxismax = diagram.data("yaxismax") || null;
     
   var series = {
     hour:   {label: "hour", res: "60", start: "hour", end: "now"},
@@ -438,11 +451,7 @@ function refreshDiagram(diagram, flotoptions, data) {
   };
     
   var options = jQuery.extend(true, {
-    yaxes: [{
-      tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals) + unit; },
-      min: yaxismin,
-      max: yaxismax,
-    }],
+    yaxes: content.axes,
     xaxes: [{
       mode: "time"
     }],
@@ -462,7 +471,7 @@ function refreshDiagram(diagram, flotoptions, data) {
       borderColor: gridcolor
     }
   }, flotoptions);
-
+  
   var s = series[config.series];
 
   if (s) {
@@ -470,10 +479,11 @@ function refreshDiagram(diagram, flotoptions, data) {
     var num = 0;
     var fulldata = [];  
     var rrdloaded = 0;
-    $.each(rrd, function(index, value) {
+    $.each(content.rrd, function(index, value) {
       var src = index.slice(1);
       var linecolor = value[0];
       var label = value[1];
+      var yaxis = value[2]
       var idx = num;
          
       $.ajax({
@@ -488,13 +498,13 @@ function refreshDiagram(diagram, flotoptions, data) {
             data[j][0] -= offset;
             data[j][1] = parseFloat( data[j][1][0] );
           }
-          fulldata[idx] = {label: label, color: color, data: data};
+          fulldata[idx] = {label: label, color: color, data: data, yaxis: parseInt(yaxis)};
           rrdloaded++;
-          if (rrdloaded==rrdnum) { 
-            if (!diagram.data("plotted")) {
+          if (rrdloaded==content.rrdnum) { 
+            if (!diagram.data("plotted")) { // only plot if diagram does not exist
               diagram.data("PLOT", $.plot(diagram, fulldata, options));
               diagram.data("plotted", true);
-            } else {
+            } else { // otherwise replace data in plot
               var PLOT = diagram.data("PLOT");
               PLOT.setData(fulldata);
               PLOT.setupGrid();
