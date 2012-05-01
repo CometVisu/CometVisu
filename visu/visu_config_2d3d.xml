@@ -83,15 +83,15 @@
         <layout x="3.5" y="3.7" z="1.0"/>
         <address transform="DPT:5.001" type="">12/7/53</address>
       </info>
-      <slide min="0" max="6.283185307179586">
+      <slide min="0" max="6.283185307179586" step="0.01">
         <layout x="0px" y="570px" width="600px" />
         <label>Azimut</label>
-        <address transform="DPT:5.001" type="">12/7/53</address>
+        <address transform="DPT:9.001" type="">12/7/53</address>
       </slide>
-      <slide min="0" max="1.5707963267948966">
+      <slide min="0" max="1.5707963267948966" step="0.01">
         <layout x="400px" y="570px" width="600px" />
         <label>Elevation</label>
-        <address transform="DPT:5.001" type="">12/7/54</address>
+        <address transform="DPT:9.001" type="">12/7/54</address>
       </slide>
       <trigger value="0">
         <layout x="0px" y="150px" width="600px" />
