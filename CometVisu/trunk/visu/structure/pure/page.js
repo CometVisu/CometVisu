@@ -76,12 +76,12 @@ basicdesign.addCreator('page', {
       $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
       if ($p.attr('azimut')) {
         ga_list.push($p.attr('azimut'));
-        address[ '_' + $p.attr('azimut') ] = [ 'DPT:5.001', 0, 'azimut' ];
+        address[ '_' + $p.attr('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
         container.bind( '_' + $p.attr('azimut'), this.update );
       }
       if ($p.attr('elevation')) {
         ga_list.push($p.attr('elevation'));
-        address[ '_' + $p.attr('elevation') ] = [ 'DPT:5.001', 0, 'elevation' ];
+        address[ '_' + $p.attr('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
         container.bind( '_' + $p.attr('elevation'), this.update );
       }; 
       if ($p.attr('floor')) {
