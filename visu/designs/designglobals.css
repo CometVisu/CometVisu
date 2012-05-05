@@ -2,6 +2,36 @@
  * global CSS declarations for all designs 
  */
 
+/*
+ * create a three column layout in the middle of the page to allow navbars
+ * inspired by http://www.alistapart.com/articles/holygrail
+ */
+#centerContainer {
+  padding-left: 0px;   /* left bar width */
+  padding-right: 0px;  /* right bar width */
+}
+#centerContainer > div {
+  position: relative;
+  float: left;
+}
+#main {
+  width: 100%;
+}
+#navbarLeft {
+  width: 0px;          /* left bar width */
+  right: 0px;          /* left bar width */
+  margin-left: -100%;
+}
+#navbarRight {
+  width: 0px;          /* right bar width */
+  margin-right: 0px;   /* right bar width */
+}
+#navbarTop {
+}
+#navbarBottom {
+  clear: both;
+}
+
 /* 
  * colspans, each design needs to define a colspan0
  * class, this class is the default widget size
