@@ -366,7 +366,10 @@ function defaultUpdate3d( e, data, passedElement )
   var pos = data.building2screen( new THREE.Vector3( l.x, l.y, l.z ) );
   e.data.element.css( 'left', pos.x + 'px' );
   e.data.element.css( 'top' , pos.y + 'px' );
-  //console.log( e, data, e.data, pos.x, pos.y );
+  
+  var floorFilter = true;
+  if( l.floorFilter) floorFilter = data.getState('showFloor') == data.buildingProperties.floorNames[ l.floorFilter ];
+  e.data.element.css( 'display', floorFilter ? '' : 'none' );
 }
 
 function extractLayout( layout, defaultValues )
@@ -396,6 +399,8 @@ function extractLayout3d( layout )
   if( layout.getAttribute('y'    ) ) ret_val.y     = layout.getAttribute('y'    );
   if( layout.getAttribute('z'    ) ) ret_val.z     = layout.getAttribute('z'    );
   if( layout.getAttribute('floor') ) ret_val.floor = layout.getAttribute('floor');
+  if( layout.getAttribute('floorFilter') ) ret_val.floorFilter = layout.getAttribute('floorFilter');
+  if( layout.getAttribute('roomFilter')  ) ret_val.roomFilter  = layout.getAttribute('roomFilter' );
   return ret_val;
 }
 
