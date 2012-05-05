@@ -22,6 +22,12 @@ var design = new VisuDesign_Custom();
 
 var mappings = {}; // store the mappings
 var stylings = {}; // store the stylings
+var navbars  = {   // store informations about the nav bars
+  top:    { dynamic: false },
+  left:   { dynamic: false },
+  right:  { dynamic: false },
+  bottom: { dynamic: false }
+};
 
 var ga_list = [];
 
@@ -120,15 +126,20 @@ function map( value, element ) {
  */
 function handleResize() {
   var uagent = navigator.userAgent.toLowerCase();
-
+  var widthNavbarLeft  = $( '#navbarLeft'  ).width();
+  var widthNavbarRight = $( '#navbarRight' ).width();
+  var width = $( window ).width() - widthNavbarLeft - widthNavbarRight;
+  
   if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
-    var width = $( window ).width();
     $( '#main' ).css( 'width', width );
     $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;}</style>' );
     // do nothing
   } else {
-    var width = $( window ).width();
-    var height = $( window ).height() - $( '#top' ).outerHeight(true) - $( '#bottom' ).outerHeight(true) - 2;
+    var height = $( window ).height()
+                 - $( '#top'          ).outerHeight(true) 
+                 - $( '#navbarTop'    ).outerHeight(true)
+                 - $( '#navbarBottom' ).outerHeight(true)
+                 - $( '#bottom'       ).outerHeight(true) - 2;
     $( '#main' ).css( 'width', width ).css( 'height', height );
     $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;height:' + height + 'px;}</style>' );
   }
@@ -537,4 +548,27 @@ function selectDesign() {
             
     })
   })
+}
+
+/**
+ * Change the size of the selected navbar
+ * 
+ * currently only "left" and "right" are implemented
+ */
+function navbarSetSize( position, size )
+{
+  var cssSize = size + 'px';
+  switch( position )
+  {
+    case 'left':
+      $( '#centerContainer' ).css( 'padding-left', cssSize );
+      $( '#navbarLeft'      ).css( { width: cssSize, right: cssSize } );
+      break;
+      
+    case 'right':
+      $( '#centerContainer' ).css( 'padding-right', cssSize );
+      $( '#navbarRight'     ).css( { width: cssSize, 'margin-right': '-' + cssSize } );
+      break;
+  }
+  handleResize();
 }
