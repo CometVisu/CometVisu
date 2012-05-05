@@ -89,6 +89,19 @@ basicdesign.addCreator('page', {
         address[ '_' + $p.attr('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
         container.bind( '_' + $p.attr('floor'), this.update );
       }; 
+      
+      $( childs ).each( function(i,a){
+        if( this.tagName == 'filter' )
+        {
+          var floorFilter = $(this).attr('floor');
+          var roomFilter  = $(this).attr('room');
+          childs.splice( i, 1 );                 // remove filter element
+          $(this).children().each( function(j){  // and add it's children
+            $(this).find('layout').attr({floorFilter:floorFilter,roomFilter:roomFilter});
+            childs.splice( i+j, 0, this );
+          });
+        }
+      });
     }
     container.data( 'address', address );
     $( childs ).each( function(i){
