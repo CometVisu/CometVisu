@@ -106,15 +106,23 @@ function transformDecode( transformation, value ) {
 
 function map( value, element ) {
   var map = element.data('mapping');
-  if( map && mappings[map] && (mappings[map][value] || mappings[map]['range']) ) {
-    if( mappings[map]['range'] ) value = parseFloat( value );
-    if( mappings[map][value] ) return mappings[map][value];
-
-    var range = mappings[map]['range'];
-    for( var min in range ) {
-      if( min > value ) continue;
-      if( range[min][0] < value ) continue; // check max
-      return range[min][1];
+  if( map && mappings[map] )
+  {
+    var m = mappings[map];
+    
+    if( m.formula ) {
+      return m.formula( value );
+    } else if( m[value] ) {
+      return m[value];
+    } else if( m['range'] ) {
+      var valueFloat = parseFloat( value );
+  
+      var range = m['range'];
+      for( var min in range ) {
+        if( min > valueFloat ) continue;
+        if( range[min][0] < valueFloat ) continue; // check max
+        return range[min][1];
+      }
     }
   }
   return value;
@@ -230,18 +238,27 @@ function parseXML(xml) {
 
   // then the mappings
   $( 'meta > mappings mapping', xml ).each( function(i){
-    var name = $(this).attr('name');
+    var $this = $(this);
+    var name = $this.attr('name');
     mappings[ name ] = {};
-    $(this).find('entry').each( function(){
-      if( $(this).attr('value') )
-      {
-        mappings[ name ][ $(this).attr('value') ] = $(this).text();
-      } else {
-        if( ! mappings[ name ][ 'range' ] ) mappings[ name ][ 'range' ] = {};
-        mappings[ name ][ 'range' ][ parseFloat($(this).attr('range_min')) ] =
-          [ parseFloat( $(this).attr('range_max') ), $(this).text() ];
-      }
-    });
+    var formula = $this.find('formula');
+    if( formula.length > 0 )
+    {
+      eval( 'var func = function(x){' + formula.text() + '; return y;}' );
+      mappings[ name ][ 'formula' ] = func;
+    } else {
+      $this.find('entry').each( function(){
+        var $localThis = $(this);
+        if( $localThis.attr('value') )
+        {
+          mappings[ name ][ $localThis.attr('value') ] = $localThis.text();
+        } else {
+          if( ! mappings[ name ][ 'range' ] ) mappings[ name ][ 'range' ] = {};
+          mappings[ name ][ 'range' ][ parseFloat($localThis.attr('range_min')) ] =
+            [ parseFloat( $localThis.attr('range_max') ), $localThis.text() ];
+        }
+      });
+    }
   });
 
   // then the stylings

@@ -47,6 +47,9 @@
         <entry value="4">Sat</entry>
         <entry value="5">Kino</entry>
       </mapping>
+      <mapping name="One1000th">
+        <formula>y = x/1000;</formula>
+      </mapping>
     </mappings>
     <stylings>
       <styling name="Red_Green">
@@ -363,6 +366,11 @@
       <line/>
       <info format="%+.2f">
         <label>Format "%+.2f":</label>
+        <address transform="DPT:9">12/7/9</address>
+      </info>
+      <line/>
+      <info format="%.4f" mapping="One1000th">
+        <label>Format "%.4f + Formel":</label>
         <address transform="DPT:9">12/7/9</address>
       </info>
     </page>
