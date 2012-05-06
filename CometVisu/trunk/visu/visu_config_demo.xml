@@ -108,7 +108,15 @@
     <navbar position="left" dynamic="true" width="200px">
       <text>Test 1</text>
       <line/>
-      <text>Test 2</text>
+      <pagejump target="0_33_7" name="Lithium">
+        <label>Flavour</label>
+      </pagejump>
+      <pagejump target="0_33_8" name="Potassium">
+        <label>Flavour</label>
+      </pagejump>
+      <pagejump target="0_36">
+        <label>2D</label>
+      </pagejump>
     </navbar>
     <text align="center">Herzlich willkommen bei dem CometVisu Widget Demo!</text>
     <text>&lt;b&gt;Hinweis:&lt;/b&gt;&lt;br/&gt;Alle Widgets verwenden KNX-Addressen mit der Haupt- und Mittelgruppe 12/7, da diese meist unbenutzt sind und so beim Testen oft keine Nebenwirkungen auftreten können. Sollten diese Gruppe bei Ihnen verwendet werden, so sollten Sie diese Widgets hier nicht betätigen!</text>
