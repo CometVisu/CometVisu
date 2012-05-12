@@ -23,8 +23,7 @@ basicdesign.addCreator('trigger', {
     var value = $e.attr('value') ? $e.attr('value') : 0;
     var ret_val = $('<div class="widget clearfix switch" ' + style + ' />');
     ret_val.setWidgetLayout($e);
-    var labelElement = $e.find('label')[0];
-    var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+    var label = extractLabel( $e.find('label')[0] );
     var address = makeAddressList($e);
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
