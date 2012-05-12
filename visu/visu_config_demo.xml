@@ -50,6 +50,10 @@
       <mapping name="One1000th">
         <formula>y = x/1000;</formula>
       </mapping>
+      <mapping name="audio_mute">
+        <entry value="0"><icon name="audio_mute"/> Aus</entry>
+        <entry value="1"><icon name="audio_audio"/></entry>
+      </mapping>
     </mappings>
     <stylings>
       <styling name="Red_Green">
@@ -156,6 +160,10 @@
       <label>Multitrigger: Szenenaufruf</label>
       <address transform="DPT:5.010" type="">12/7/5</address>
     </multitrigger>
+    <switch mapping="audio_mute">
+      <label><icon name="audio_sound" />Switch Icon</label>
+      <address transform="DPT:1.001" type="">12/7/1</address>
+    </switch>
     <break/>
     <infotrigger uplabel="wärmer" downlabel="kälter" upvalue="0.1" downvalue="-0.1" align="center" format="%.1f °C"  change="absolute" min="7" max="24">
       <label>Infotrigger: Sollwert</label>
