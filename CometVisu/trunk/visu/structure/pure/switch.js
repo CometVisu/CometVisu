@@ -45,7 +45,7 @@ basicdesign.addCreator('switch', {
   update: function(e,d) { 
     var element = $(this);
     var value = defaultUpdate( e, d, element );
-    var off = map( element.data( 'off_value' ), element );
+    var off = map( element.data( 'off_value' ), element.data('mapping') );
     element.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     element.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },

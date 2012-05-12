@@ -19,6 +19,7 @@
 */
 
 var design = new VisuDesign_Custom();
+var icons  = new icon();
 
 var mappings = {}; // store the mappings
 var stylings = {}; // store the stylings
@@ -104,11 +105,10 @@ function transformDecode( transformation, value ) {
     (basetrans in Transform ? Transform[ basetrans ].decode( value ) : value);
 }
 
-function map( value, element ) {
-  var map = element.data('mapping');
-  if( map && mappings[map] )
+function map( value, this_map ) {
+  if( this_map && mappings[this_map] )
   {
-    var m = mappings[map];
+    var m = mappings[this_map];
     
     if( m.formula ) {
       return m.formula( value );
@@ -205,6 +205,7 @@ function parseXML(xml) {
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/basic.css" />' );
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/mobile.css" media="only screen and (max-device-width: 480px)" />' );
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/custom.css" />' );
+  $( 'head' ).append( '<script src="designs/' + clientDesign + '/design_setup.js" type="text/javascript" />' );
   
   // start with the plugins
   var pluginsToLoad = 0;
@@ -249,13 +250,21 @@ function parseXML(xml) {
     } else {
       $this.find('entry').each( function(){
         var $localThis = $(this);
+        var value = $localThis.contents();
+        for( var i = 0; i < value.length; i++ )
+        {
+          var $v = $(value[i]);
+          if( $v.is('icon') )
+            value[i] = icons.getIcon( $v.attr('name') );
+        }
+        
         if( $localThis.attr('value') )
         {
-          mappings[ name ][ $localThis.attr('value') ] = $localThis.text();
+          mappings[ name ][ $localThis.attr('value') ] = value;
         } else {
           if( ! mappings[ name ][ 'range' ] ) mappings[ name ][ 'range' ] = {};
           mappings[ name ][ 'range' ][ parseFloat($localThis.attr('range_min')) ] =
-            [ parseFloat( $localThis.attr('range_max') ), $localThis.text() ];
+            [ parseFloat( $localThis.attr('range_max') ), value ];
         }
       });
     }

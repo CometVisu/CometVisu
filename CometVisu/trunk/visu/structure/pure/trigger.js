@@ -29,14 +29,19 @@ basicdesign.addCreator('trigger', {
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
       actor += $e.attr( 'align' ); 
-    actor += '">';
-    var map = $e.attr('mapping');
-    if( mappings[map] && mappings[map][value] )
-      actor += '<div class="value">' + mappings[map][value] + '</div>';
-    else
-      actor += '<div class="value">' + value + '</div>';
-    actor += '</div>';
-    var $actor = $(actor).data( {
+    actor += '"><div class="value"></div></div>';
+    var $actor = $(actor);
+    var valueElement = $actor.find('.value');
+    var mappedValue = map( value, $e.attr('mapping') );
+    if( ('string' == typeof mappedValue) || ('number' == typeof mappedValue) )
+    {
+      valueElement.append( mappedValue );
+    } else 
+    for( var i = 0; i < mappedValue.length; i++ )
+    {
+      valueElement.append( $(mappedValue[i]).clone() );
+    }
+    $actor.data( {
       'address' : address,
       'mapping' : $(element).attr('mapping'),
       'styling' : $(element).attr('styling'),
