@@ -22,8 +22,7 @@ basicdesign.addCreator('video', {
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix video" ' + style + '/>');
     ret_val.setWidgetLayout($e);
-    var labelElement = $e.find('label')[0];
-    ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
+    ret_val.append( extractLabel( $e.find('label')[0] ) );
     var autoplay = ($e.attr('autoplay') && $e.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
     var style = '';
     if( $e.attr('width' ) ) style += 'width:'  + $e.attr('width' ) + ';';

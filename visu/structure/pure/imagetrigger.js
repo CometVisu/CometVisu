@@ -22,8 +22,7 @@ basicdesign.addCreator('imagetrigger', {
     ret_val.setWidgetLayout($e);
     ret_val.addClass ('imagetrigger');
     var value = $e.attr('value') ? $e.attr('value') : 0;
-    var labelElement = $e.find('label')[0];
-    ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
+    ret_val.append( extractLabel( $e.find('label')[0] ) );
     var address = makeAddressList($e);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, {width:'100%'} ) + '"' : '';

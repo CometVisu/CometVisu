@@ -75,7 +75,7 @@ $.fn.setWidgetLayout = function(page) {
 $.fn.makeWidgetLabel = function(page) { 
   var labelElement = page.find('label')[0]; // get first label element
   if (labelElement) { // if exists, add it
-    this.append($('<div class="label">' + labelElement.textContent + '</div>'));
+    this.append( extractLabel( labelElement ) );
   }
   return this;
 }
@@ -411,6 +411,21 @@ function extractLayout3d( layout )
   if( layout.getAttribute('floorFilter') ) ret_val.floorFilter = layout.getAttribute('floorFilter');
   if( layout.getAttribute('roomFilter')  ) ret_val.roomFilter  = layout.getAttribute('roomFilter' );
   return ret_val;
+}
+
+function extractLabel( label )
+{
+  if( !label ) return;
+  
+  var $div = $( '<div class="label"></div>' );
+  $( label ).contents().each( function(){
+    var $v = $(this);
+    if( $v.is('icon') )
+      $div.append( icons.getIcon( $v.attr('name') ).clone() );
+    else
+      $div.append( $v.clone() );
+  });
+  return $div;
 }
 
 var basicdesign = new VisuDesign();

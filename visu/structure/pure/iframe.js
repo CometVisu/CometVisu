@@ -22,7 +22,7 @@ basicdesign.addCreator('iframe', {
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget iframe" ' + style + '/>');
     ret_val.setWidgetLayout($e);
-    ret_val.append( '<div class="label">' + element.textContent + '</div>' );
+    ret_val.append( extractLabel( $e.find('label')[0] ) );
     var iframeStyle = '';
     if( $e.attr('width' ) ) {
       iframeStyle += 'width:'  + $e.attr('width' ) + ';'; 
