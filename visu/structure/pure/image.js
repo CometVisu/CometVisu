@@ -22,8 +22,7 @@ basicdesign.addCreator('image', {
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix image" ' + style + '/>');
     ret_val.setWidgetLayout($e);
-    var labelElement = $e.find('label')[0];
-    ret_val.append( labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '' );
+    ret_val.append( extractLabel( $e.find('label')[0] ) );
     var imgStyle = '';
     if( $e.attr('width' ) ) {
       imgStyle += 'width:'  + $e.attr('width' ) + ';';

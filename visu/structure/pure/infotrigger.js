@@ -22,10 +22,7 @@ basicdesign.addCreator('infotrigger', {
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix switch" ' + style + '/>');
     ret_val.setWidgetLayout($e);
-    // handle label
-    var labelElement = $e.find('label')[0];
-    var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-    ret_val.append( label );
+    ret_val.append( extractLabel( $e.find('label')[0] ) );
 
     // handle addresses
     var address = makeAddressList($e, 

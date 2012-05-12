@@ -22,11 +22,9 @@ basicdesign.addCreator('multitrigger', {
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix switch" ' + style + '/>');
     ret_val.setWidgetLayout($e)
-    var labelElement = $e.find('label')[0];
-    var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+    ret_val.append( extractLabel( $e.find('label')[0] ) );
     var address = makeAddressList($e);
     var showstatus = $e.attr("showstatus") || "false";
-    ret_val.append( label );
     var buttons = $('<div style="float:left"/>');
     var buttonCount = 0;
     if( $e.attr('button1label') )

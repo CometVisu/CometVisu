@@ -115,10 +115,10 @@
     <navbar position="left" dynamic="true" width="200px">
       <text>Test 1</text>
       <line/>
-      <pagejump target="0_33_7" name="Lithium">
+      <pagejump target="0_34_7" name="Lithium">
         <label>Flavour</label>
       </pagejump>
-      <pagejump target="0_33_8" name="Potassium">
+      <pagejump target="0_34_8" name="Potassium">
         <label>Flavour</label>
       </pagejump>
       <pagejump target="0_36">
@@ -161,7 +161,7 @@
       <address transform="DPT:5.010" type="">12/7/5</address>
     </multitrigger>
     <switch mapping="audio_mute">
-      <label><icon name="audio_sound" />Switch Icon</label>
+      <label><icon name="audio_sound" /> Switch Icon</label>
       <address transform="DPT:1.001" type="">12/7/1</address>
     </switch>
     <break/>

@@ -22,8 +22,7 @@ basicdesign.addCreator('toggle', {
     var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
     var ret_val = $('<div class="widget clearfix toggle" ' + style + '/>');
     ret_val.setWidgetLayout($e);
-    var labelElement = $e.find('label')[0];
-    var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+    var label = extractLabel( $e.find('label')[0] );
     var address = makeAddressList($e);
     var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     var $actor = $(actor).data( {
