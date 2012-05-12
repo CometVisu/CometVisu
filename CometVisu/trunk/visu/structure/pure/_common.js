@@ -421,8 +421,10 @@ function extractLabel( label )
   $( label ).contents().each( function(){
     var $v = $(this);
     if( $v.is('icon') )
-      $div.append( icons.getIcon( $v.attr('name') ).clone() );
-    else
+    {
+      var i = icons.getIcon( $v.attr('name') );
+      if( i ) $div.append( i.clone() );
+    } else
       $div.append( $v.clone() );
   });
   return $div;
