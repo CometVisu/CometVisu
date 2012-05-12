@@ -32,6 +32,10 @@
   clear: both;
 }
 
+.icon {
+  height: 2em;
+}
+
 /* 
  * colspans, each design needs to define a colspan0
  * class, this class is the default widget size

@@ -327,7 +327,7 @@ function defaultValueHandling( e, data, passedElement )
   if( element.data( 'format' ) )
     value = sprintf( element.data( 'format' ), value );
   element.data( 'value', value );
-  value = map( value, element );
+  value = map( value, element.data('mapping') );
   if( value.constructor == Date )
   {
     switch( thisTransform ) // special case for KNX
@@ -354,7 +354,16 @@ function defaultUpdate( e, data, passedElement )
   if( element.data( 'align' ) )
     element.addClass(element.data( 'align' ) );
 
-  element.find('.value').text( value );
+  var valueElement = element.find('.value');
+  valueElement.empty();
+  if( ('string' == typeof value) || ('number' == typeof value) )
+  {
+    valueElement.append( value );
+  } else 
+  for( var i = 0; i < value.length; i++ )
+  {
+    valueElement.append( $(value[i]).clone() );
+  }
   
   return value;
 }
