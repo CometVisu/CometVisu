@@ -377,6 +377,15 @@
         <address transform="DPT:9">12/7/9</address>
       </info>
       <line/>
+      <info format="%.2f°C">
+        <label>Format "%.2f°C":</label>
+        <address transform="DPT:9">12/7/9</address>
+      </info>
+      <info format="%.2f%%">
+        <label>Format "%.2f%%":</label>
+        <address transform="DPT:9">12/7/9</address>
+      </info>
+      <line/>
       <info format="%.4f" mapping="One1000th">
         <label>Format "%.4f + Formel":</label>
         <address transform="DPT:9">12/7/9</address>
