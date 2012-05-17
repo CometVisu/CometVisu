@@ -109,10 +109,15 @@
     this.get = function()
     {
       var name    = arguments[0];
-      var type    = arguments[1] || '*';
-      var flavour = arguments[2] || '*';
+      var type    = arguments[1];
+      var flavour = arguments[2];
       
-      if( !db[ name ] || !db[ name ][ type ] ) return undefined;
+      if( !db[ name ]                    ) return undefined;
+      if( !db[ name ][ type ]            ) type    = '*';                                              // undefined -> use default
+      if( typeof db[ name ][ type ]            === 'string' ) type    = db[ name ][ type ];            // redirect link
+      if( !db[ name ][ type ][ flavour ] ) flavour = '*';                                              // undefined -> use default
+      if( typeof db[ name ][ type ][ flavour ] === 'string' ) flavour = db[ name ][ type ][ flavour ]; // redirect link
+ 
       return db[ name ][ type ][ flavour ];
     }
     
@@ -130,7 +135,7 @@
         if( i.icon ) return i.icon;
  
         // fetch and cache image
-        i.icon = $( '<img class="icon" src="' + i.uri + '" />' );
+        i.icon = $( '<img class="icon" src="' + i.uri + '" ' + ( i.style ? 'style="' + i.style + '" ' : '' ) + '/>' );
         return i.icon;
       }
     }
