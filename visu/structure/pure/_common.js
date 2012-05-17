@@ -60,9 +60,9 @@ $.fn.setWidgetStyling = function(value) {
  */
   
 $.fn.setWidgetLayout = function(page) { 
-   this.data('colspan', page.attr('colspan') || $('head').data('colspanDefault'));
-   if (page.attr('rowspan')) {
-     this.data('rowspanClass', rowspanClass(page.attr('rowspan') || 1));
+   this.data('colspan', page.children('layout').attr('colspan') || $('head').data('colspanDefault'));
+   if (page.children('layout').attr('rowspan')) {
+     this.data('rowspanClass', rowspanClass(page.children('layout').attr('rowspan') || 1));
      this.addClass('innerrowspan'); 
    }
    return this;
@@ -425,7 +425,7 @@ function extractLabel( label )
       var i = icons.getIcon( $v.attr('name') );
       if( i ) $div.append( i.clone() );
     } else
-      $div.append( $v.clone() );
+      $div.append( this.textContent );
   });
   return $div;
 }
