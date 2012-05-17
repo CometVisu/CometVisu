@@ -260,6 +260,7 @@
           <text>An empty page</text>
           <line/>
         </page>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <page name="Flavour: Boron" align="center" flavour="boron">
         <text align="center">CometVisu Boron flavour</text>
@@ -268,6 +269,7 @@
           <text>An empty page</text>
           <line/>
         </page>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <page name="Flavour: Lithium" align="center" flavour="lithium">
         <text align="center">CometVisu Lithium flavour</text>
@@ -276,6 +278,7 @@
           <text>An empty page</text>
           <line/>
         </page>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <page name="Flavour: Potassium" align="center" flavour="potassium">
         <text align="center">CometVisu Potassium flavour</text>
@@ -284,6 +287,7 @@
           <text>An empty page</text>
           <line/>
         </page>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <page name="Flavour: Sodium" align="center" flavour="sodium">
         <text align="center">CometVisu Sodium flavour</text>
@@ -292,6 +296,7 @@
           <text>An empty page</text>
           <line/>
         </page>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <line />
       <page name="Flavour: black" align="center" flavour="black">
@@ -301,6 +306,7 @@
           <text>An empty page</text>
           <line/>
         </page>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <page name="Flavour: white" align="center" flavour="white">
         <text align="center">CometVisu white flavour</text>
@@ -309,6 +315,7 @@
           <text>An empty page</text>
           <line/>
         </page>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
     </page>
     <page name="Format Test" align="center">
@@ -422,6 +429,25 @@
           <address transform="DPT:9" type="">12/7/10</address>
         </slide>
     </page>
+    <page name="Icon Test" align="center">
+      <text><icon name="CometVisu" type="64" /> Icon links vom Text</text>
+      <text>Icon <icon name="CometVisu" type="64" /> mitten im Text</text>
+      <text>Icon rechts vom Text <icon name="CometVisu" type="64" /></text>
+      <text><icon name="CometVisu" type="64" /> Mehrere Icons <icon name="CometVisu" type="64" /></text>
+      <line />
+      <text><icon name="CometVisu" type="16" /> Icon mit type="16"</text>
+      <text><icon name="CometVisu" type="32" /> Icon mit type="32"</text>
+      <text><icon name="CometVisu" type="64" /> Icon mit type="64"</text>
+      <text><icon name="CometVisu" type="128" /> Icon mit type="128"</text>
+      <line />
+      <page name="Subpage mit Flavour" flavour="lithium" align="center" >
+        <text><icon name="CometVisu" type="64" /> Icon links vom Text</text>
+        <page name="Subpage mit anderem Flavour" flavour="antimony" align="center" >
+          <text><icon name="CometVisu" type="64" /> Icon links vom Text</text>
+        </page>
+      </page>
+    </page>
+    <break/>
     <page name="2D fixed Bitmap" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.png" align="center">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="200px" y="300px" width="600px" />
