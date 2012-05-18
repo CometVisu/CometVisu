@@ -464,7 +464,7 @@ function updateTopNavigation() {
   var nav = '';
   for( var i = 0; i < path.length; i++ ) {
     id  += path[i];
-    nav += (0==i ? '' : ' &#x25ba; ')
+    nav += (0==i ? '' : '<span> &#x25ba; </span>')
         +  '<a href="javascript:scrollToPage(\'' +id+ '\')">'
         + $('#' + id + ' h1').text() + '</a>';
     id  += '_';
