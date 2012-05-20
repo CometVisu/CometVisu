@@ -21,7 +21,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-//$('head').data('colspanDefault', 6 ); // 6 is already the default
+//$('head').data('colspanDefault', 1 ); // 6 is already the default
 $('#navbarLeft').data('columns', 1 );
 $('#main').data('columns', 12 );
 $('#navbarRight').data('columns', 1 );

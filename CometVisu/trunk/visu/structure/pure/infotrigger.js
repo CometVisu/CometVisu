@@ -20,7 +20,7 @@ basicdesign.addCreator('infotrigger', {
     var $e = $(element);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
-    var ret_val = $('<div class="widget clearfix switch" ' + style + '/>');
+    var ret_val = $('<div class="widget clearfix infotrigger" ' + style + '/>');
     ret_val.setWidgetLayout($e);
     ret_val.append( extractLabel( $e.find('label')[0] ) );
 
@@ -35,10 +35,10 @@ basicdesign.addCreator('infotrigger', {
     var buttons = $('<div style="float:left;"/>');
     var buttonCount = 2;
 
-    var actordown = '<div class="actor switchUnpressed '
+    var actordown = '<div class="actor switchUnpressed downlabel" '
     if ( $e.attr( 'align' ) ) 
-      actordown += $e.attr( 'align' ); 
-    actordown += '">';
+      actorinfo += 'style="text-align: '+$e.attr( 'align' )+'" '; 
+    actordown += '>';
     actordown += '<div class="value">' + ($e.attr('downlabel') ? $e.attr('downlabel') : '-') + '</div>';
     actordown += '</div>';
     var $actordown = $(actordown).data( {
@@ -57,10 +57,10 @@ basicdesign.addCreator('infotrigger', {
       $(this).removeClass('switchPressed').addClass('switchUnpressed');
     } );
 
-    var actorup = '<div class="actor switchUnpressed '
+    var actorup = '<div class="actor switchUnpressed uplabel" '
     if ( $e.attr( 'align' ) ) 
-      actorup += $e.attr( 'align' ); 
-    actorup += '">';
+      actorinfo += 'style="text-align: '+$e.attr( 'align' )+'" '; 
+    actorup += '>';
     actorup += '<div class="value">' + ($e.attr('uplabel') ? $e.attr('uplabel') : '+') + '</div>';
     actorup += '</div>';
     var $actorup = $(actorup).data( {
@@ -79,7 +79,7 @@ basicdesign.addCreator('infotrigger', {
       $(this).removeClass('switchPressed').addClass('switchUnpressed');
     } );
 
-    var actorinfo = '<div class="actor switchInvisible" ';
+    var actorinfo = '<div class="actor switchInvisible " ';
     if ( $e.attr( 'align' ) ) 
       actorinfo += 'style="text-align: '+$e.attr( 'align' )+'" '; 
     actorinfo += '" ><div class="value">-</div></div>';
