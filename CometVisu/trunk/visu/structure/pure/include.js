@@ -17,7 +17,7 @@
 
 basicdesign.addCreator('include', {
   maturity: Maturity.development,
-  create: function( page, path, flavour ) {
+  create: function( page, path, flavour, type ) {
     var p = $.get( $(page).attr('src') );
     var p = $.ajax({
       url: $(page).attr('src'),

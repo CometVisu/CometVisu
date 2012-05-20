@@ -381,11 +381,11 @@ function defaultUpdate3d( e, data, passedElement )
   e.data.element.css( 'display', floorFilter ? '' : 'none' );
 }
 
-function extractLayout( layout, defaultValues )
+function extractLayout( layout, type, defaultValues )
 {
   if (typeof defaultValue === 'undefined') defaultValues = [];
 
-  var ret_val = 'position:absolute;';
+  var ret_val = (type == '2d') ? 'position:absolute;' : '';
   if( layout.getAttribute('x'     ) ) ret_val += 'left:'   + layout.getAttribute('x'     ) + ';';
   else if( defaultValues[ 'x'     ] ) ret_val += 'left:'   + defaultValues[      'x'     ] + ';';
   
