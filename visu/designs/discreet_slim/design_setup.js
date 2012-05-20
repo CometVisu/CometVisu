@@ -1,5 +1,5 @@
 //
-//  Design setup for the planet design
+//  Design setup for the pure design
 //
 //   Copyright (C) 2012 by Christian Mayer
 //   cometvisu (at) ChristianMayer.de
@@ -20,8 +20,6 @@
 //   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //
 //////////////////////////////////////////////////////////////////////////////
-
-//$('head').data('colspanDefault', 6 ); // 6 is already the default
 
 icons.insert({
   'CometVisu'             : { '*'  : '128',

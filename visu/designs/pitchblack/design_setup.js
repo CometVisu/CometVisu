@@ -1,5 +1,5 @@
 //
-//  Design setup for the planet design
+//  Design setup for the pure design
 //
 //   Copyright (C) 2012 by Christian Mayer
 //   cometvisu (at) ChristianMayer.de
@@ -21,7 +21,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-//$('head').data('colspanDefault', 6 ); // 6 is already the default
+$('head').data('colspanDefault', 1 );
 
 icons.insert({
   'CometVisu'             : { '*'  : '128',
