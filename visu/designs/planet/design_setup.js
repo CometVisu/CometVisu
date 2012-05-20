@@ -22,6 +22,9 @@
 //////////////////////////////////////////////////////////////////////////////
 
 //$('head').data('colspanDefault', 6 ); // 6 is already the default
+$('#navbarLeft').data('columns', 1 );
+$('#main').data('columns', 12 );
+$('#navbarRight').data('columns', 1 );
 
 icons.insert({
   'CometVisu'             : { '*'  : '128',
