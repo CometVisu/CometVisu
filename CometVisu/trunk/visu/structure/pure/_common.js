@@ -60,7 +60,7 @@ $.fn.setWidgetStyling = function(value) {
  */
   
 $.fn.setWidgetLayout = function(page) { 
-   this.data('colspan', page.children('layout').attr('colspan') || $('head').data('colspanDefault'));
+   this.data('colspan', page.children('layout').attr('colspan') || $('head').data('colspanDefault') || 6);
    if (page.children('layout').attr('rowspan')) {
      this.data('rowspanClass', rowspanClass(page.children('layout').attr('rowspan') || 1));
      this.addClass('innerrowspan'); 

@@ -326,10 +326,6 @@ function setup_page( xml )
   // and now setup the pages
   var page = $( 'pages > page', xml )[0]; // only one page element allowed...
 
-  $('head').append(($('<div class="colspandefault" id="colspandefault">')));
-  $('head').data('colspanDefault', parseInt($('#colspandefault').css('width')));
-  $('#colspandefault').remove();
-        
   create_pages(page, '0');
 
   // all containers
