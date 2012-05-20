@@ -16,7 +16,7 @@
  */
 
 basicdesign.addCreator('navbar', {
-  create: function( navbar, path, flavour ) {
+  create: function( navbar, path, flavour, type ) {
     var $n = $(navbar);
     var childs = $n.children();
     var container = $( '<div class="clearfix"/>' );
@@ -25,7 +25,7 @@ basicdesign.addCreator('navbar', {
         container.append( create_pages( childs[i], path + '_' + i, flavour ) );
     } );
     
-    var dynamic  = $n.attr('dynamic') ? true : false;
+    var dynamic  = $n.attr('dynamic') == 'true' ? true : false;
     var position = $n.attr('position') || 'left';
     switch( position )
     {
@@ -35,12 +35,12 @@ basicdesign.addCreator('navbar', {
         
       case 'left':
         $('#navbarLeft').append( container );
-        navbarSetSize( 'left', 300 ); // FIXME - only a temporal solution
+        if( dynamic ) navbarSetSize( 'left', 300 ); // FIXME - only a temporal solution
         break;
         
       case 'right':
         $('#navbarRight').append( container );
-        navbarSetSize( 'right', 300 ); // FIXME - only a temporal solution
+        if( dynamic ) navbarSetSize( 'right', 300 ); // FIXME - only a temporal solution
         break;
         
       case 'bottom':

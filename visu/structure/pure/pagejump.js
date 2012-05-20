@@ -16,10 +16,10 @@
  */
 
 basicdesign.addCreator('pagejump', {
-  create: function( element, path ) {
+  create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
+    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     var target = $e.attr('target') ? $e.attr('target') : '0';
     var ret_val = $('<div class="widget clearfix switch" ' + style + ' />');
     ret_val.setWidgetLayout($e);

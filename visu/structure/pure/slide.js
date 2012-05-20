@@ -16,10 +16,10 @@
  */
 
 basicdesign.addCreator('slide', {
-  create: function( element, path ) {
+  create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
+    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget clearfix slide" ' + style + ' />');
     ret_val.setWidgetLayout($e).makeWidgetLabel($e);
     var address = makeAddressList($e);

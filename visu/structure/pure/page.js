@@ -16,7 +16,7 @@
  */
 
 basicdesign.addCreator('page', {
-  create: function( page, path, flavour ) {
+  create: function( page, path, flavour, type ) {
     var $p = $(page);
     
     var address = {};
@@ -41,7 +41,7 @@ basicdesign.addCreator('page', {
       ret_val=$('');
     } else { // default is visible
       var layout = $p.children('layout')[0];
-      var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
+      var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
       ret_val = $('<div class="widget clearfix link pagelink" ' + style + '/>');
       ret_val.setWidgetLayout($p);
       var tst = $('<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>');
