@@ -16,7 +16,7 @@
  */
 
 basicdesign.addCreator('imagetrigger', {
-  create: function( element, path ) { 
+  create: function( element, path, flavour, type ) { 
     var $e = $(element);
     var ret_val = $('<div class="widget clearfix image" />');
     ret_val.setWidgetLayout($e);
@@ -25,7 +25,7 @@ basicdesign.addCreator('imagetrigger', {
     ret_val.append( extractLabel( $e.find('label')[0] ) );
     var address = makeAddressList($e);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, {width:'100%'} ) + '"' : '';
+    var style = layout ? 'style="' + extractLayout( layout, type, {width:'100%'} ) + '"' : '';
 
     var actor = '<div class="actor">';
     if ( $e.attr('type')=='show' )

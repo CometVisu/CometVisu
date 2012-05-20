@@ -16,10 +16,10 @@
  */
 
 basicdesign.addCreator('text', {
-  create: function( element, path, flavour ) {
+  create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout ) + '"' : '';
+    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget clearfix text" ' + style + '/>');
     ret_val.setWidgetLayout($e);
     var style = '';

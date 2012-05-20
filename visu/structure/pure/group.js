@@ -17,7 +17,7 @@
 
 basicdesign.addCreator('group', {
   maturity: Maturity.development,
-  create: function( element, path, flavour ) {
+  create: function( element, path, flavour, type ) {
     var $e = $(element);
     var ret_val = $('<div class="widget clearfix group" />');
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
