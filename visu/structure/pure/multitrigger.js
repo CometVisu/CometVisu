@@ -20,7 +20,7 @@ basicdesign.addCreator('multitrigger', {
     var $e = $(element);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
-    var ret_val = $('<div class="widget clearfix switch" ' + style + '/>');
+    var ret_val = $('<div class="widget clearfix multitrigger" ' + style + '/>');
     ret_val.setWidgetLayout($e)
     ret_val.append( extractLabel( $e.find('label')[0] ) );
     var address = makeAddressList($e);

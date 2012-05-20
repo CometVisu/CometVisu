@@ -21,7 +21,7 @@ basicdesign.addCreator('trigger', {
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     var value = $e.attr('value') ? $e.attr('value') : 0;
-    var ret_val = $('<div class="widget clearfix switch" ' + style + ' />');
+    var ret_val = $('<div class="widget clearfix trigger" ' + style + ' />');
     ret_val.setWidgetLayout($e);
     var label = extractLabel( $e.find('label')[0] );
     var address = makeAddressList($e);
