@@ -333,7 +333,8 @@ function setup_page( xml )
     var allContainer = $('.widget_container');
     allContainer.each(function(i, e) {
       var ourColspan = $(e).children('*:first-child').data('colspan');
-      var ourWidth = ourColspan/12*100;
+      var areaColspan = $(e).parentsUntil('#centerContainer').last().data('columns') || 12;
+      var ourWidth = ourColspan/areaColspan*100;
       $(e).css('width', ourWidth+'%');
     });
   
