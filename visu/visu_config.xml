@@ -58,7 +58,7 @@
       <status type="html" condition="edit" hrefextend="all"><![CDATA[
           - <a href=".">normal Mode</a>
         ]]></status>
-      <status type="html"><![CDATA[
+      <status type="html" hrefextend="config"><![CDATA[
           - <a href="check_config.php">Check Config</a>
         ]]></status>
     </statusbar>
