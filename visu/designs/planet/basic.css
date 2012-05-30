@@ -130,12 +130,9 @@ div#loading {
 
 #navbarLeft {
   width: 10em;          /* left bar width */
-  right: 10em;          /* left bar width */
-  /*border: 2px solid red; FIXME */
   background-color: #cc6699;
 }
 #centerContainer {
-  padding-left: 10em;   /* left bar width */
 }
 
 /******************************************************************/
