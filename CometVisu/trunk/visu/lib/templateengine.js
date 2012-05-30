@@ -136,8 +136,8 @@ function handleResize() {
   var uagent = navigator.userAgent.toLowerCase();
   var widthNavbarLeft  = $( '#navbarLeft'  ).width();
   var widthNavbarRight = $( '#navbarRight' ).width();
-  var width = $( window ).width() - widthNavbarLeft - widthNavbarRight;
-  
+  var width = $( 'body' ).width() - widthNavbarLeft - widthNavbarRight;
+
   if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
     $( '#main' ).css( 'width', width );
     $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;}</style>' );
@@ -446,7 +446,7 @@ function scrollToPage( page_id, speed ) {
   // push new state to history
   window.history.pushState(page_id, page_id, window.location.href);
     
-  main_scroll.seekTo( $('.page').index( $('#'+page_id)[0] ), speed ); // scroll to it
+  main_scroll.seekTo( $('#'+page_id), speed ); // scroll to it
   var pagedivs=$('div', '#'+page_id); 
   for( var i = 0; i<pagedivs.length; i++) { //check for inline diagrams & refresh
     if( pagedivs[i].className == 'diagram_inline') {
@@ -456,7 +456,7 @@ function scrollToPage( page_id, speed ) {
 }
 
 function updateTopNavigation() {
-  var path = $('.page').eq( this.getIndex() ).attr('id').split( '_' );
+  var path = $('#main .page').eq( this.getIndex() ).attr('id').split( '_' );
   var id = ''; //path[0];
   var nav = '';
   for( var i = 0; i < path.length; i++ ) {
@@ -580,12 +580,11 @@ function selectDesign() {
  */
 function navbarSetSize( position, size )
 {
-  var cssSize = size + 'px';
+  var cssSize = size + (isFinite( size ) ? 'px' : '');
   switch( position )
   {
     case 'left':
-      $( '#centerContainer' ).css( 'padding-left', cssSize );
-      $( '#navbarLeft'      ).css( { width: cssSize, right: cssSize } );
+      $( '#navbarLeft'      ).css( { width: cssSize } );
       break;
       
     case 'right':
