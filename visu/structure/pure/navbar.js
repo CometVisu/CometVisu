@@ -35,12 +35,14 @@ basicdesign.addCreator('navbar', {
         
       case 'left':
         $('#navbarLeft').append( container );
-        if( dynamic ) navbarSetSize( 'left', 300 ); // FIXME - only a temporal solution
+        var thisSize = $('#navbarLeft').data('size') || 300; // FIXME - only a temporal solution
+        if( dynamic ) navbarSetSize( 'left', thisSize );
         break;
         
       case 'right':
         $('#navbarRight').append( container );
-        if( dynamic ) navbarSetSize( 'right', 300 ); // FIXME - only a temporal solution
+        var thisSize = $('#navbarRight').data('size') || 300; // FIXME - only a temporal solution
+        if( dynamic ) navbarSetSize( 'right', thisSize );
         break;
         
       case 'bottom':

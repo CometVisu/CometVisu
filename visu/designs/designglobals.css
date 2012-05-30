@@ -19,8 +19,6 @@
 }
 #navbarLeft {
   width: 0px;          /* left bar width */
-  right: 0px;          /* left bar width */
-  margin-left: -100%;
 }
 #navbarRight {
   width: 0px;          /* right bar width */

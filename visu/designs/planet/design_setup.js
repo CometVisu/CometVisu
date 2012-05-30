@@ -22,7 +22,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 //$('head').data('colspanDefault', 1 ); // 6 is already the default
-$('#navbarLeft').data('columns', 1 );
+$('#navbarLeft').data({'columns': 6, 'size': '10em'} );
 $('#main').data('columns', 12 );
 $('#navbarRight').data('columns', 1 );
 
