@@ -26,7 +26,6 @@ basicdesign.addCreator('page', {
       address[ '_' + $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
     }
 
-    var pstyle  = ( '0' != path ) ? 'display:none;' : ''; // subPage style
     var name    = $p.attr('name');
     var type    = $p.attr('type') || 'text';              //text, 2d or 3d
     var backdrop = $p.attr('backdrop');
@@ -52,7 +51,7 @@ basicdesign.addCreator('page', {
     var childs = $p.children();
     //var container = $( '<div class="clearfix" />' );
     
-    var subpage = $( '<div class="page" id="' + path + '" style="'+pstyle+';"/>' );
+    var subpage = $( '<div class="page" id="' + path + '"/>' );
     var $container = $( '<div class="clearfix" path="'+path+'" style="height:100%;position:relative;" />'); 
     for( var addr in address ) $container.bind( addr, this.update );
     var container=$container;
