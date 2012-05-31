@@ -163,7 +163,6 @@ h1 {
 .page
 {
   float:left;
-  width: 900px;
   overflow: auto;
   position: relative;
   margin-left: 1em; /* to stay out of the knee */
