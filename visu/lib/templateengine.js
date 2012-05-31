@@ -140,7 +140,7 @@ function handleResize() {
 
   if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
     $( '#main' ).css( 'width', width );
-    $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;}</style>' );
+    $( '#pageSize' ).text( '.page{width:' + (width-0) + 'px;}' );
     // do nothing
   } else {
     var height = $( window ).height()
@@ -149,7 +149,7 @@ function handleResize() {
                  - $( '#navbarBottom' ).outerHeight(true)
                  - $( '#bottom'       ).outerHeight(true) - 2;
     $( '#main' ).css( 'width', width ).css( 'height', height );
-    $( 'head' ).append( '<style type="text/css">.page{width:' + (width-0) + 'px;height:' + height + 'px;}</style>' );
+    $( '#pageSize' ).text( '.page{width:' + (width-0) + 'px;height:' + height + 'px;}' );
   }
   main_scroll != undefined && main_scroll.seekTo( main_scroll.getIndex(), 0 ); // fix scroll
 }

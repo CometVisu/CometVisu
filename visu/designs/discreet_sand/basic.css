@@ -175,7 +175,6 @@ div#top {
 .page
 {
   float:left;
-  width: 900px;
   overflow: auto;
   position: relative;
 }
