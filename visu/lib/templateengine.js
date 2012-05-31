@@ -426,7 +426,8 @@ function create_pages( page, path, flavour, type ) {
 }
 
 function scrollToPage( page_id, speed ) {
-  $('#'+page_id).css( 'display', '' );                         // show new page
+  $('.activePage').removeClass('activePage');
+  $('#'+page_id).addClass('pageActive activePage');                         // show new page
 
   // which is the parent of target page_id?
   // => set this id as lastpage in url for window.onpopstate handling
@@ -473,7 +474,7 @@ function updateTopNavigation() {
   path = path.join('_');
   for( var i = new_array.length; i < old_array.length; i++ ) {
     path += '_' + old_array[i]; // reuse of path...
-    $('#'+path).css('display','none');
+    $('#'+path).removeClass('pageActive');
   }
 }
 

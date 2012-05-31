@@ -44,6 +44,16 @@
 }
 
 /*
+ * Disable all pages except the active ones
+ */
+.page {
+  display: none;
+}
+
+.pageActive {
+  display: block;
+}
+/*
  * global color declarations for stylings in all designs
  * may be overloaded by designs
  */
