@@ -136,7 +136,7 @@ function handleResize() {
   var uagent = navigator.userAgent.toLowerCase();
   var widthNavbarLeft  = $( '#navbarLeft'  ).width();
   var widthNavbarRight = $( '#navbarRight' ).width();
-  var width = $( 'body' ).width() - widthNavbarLeft - widthNavbarRight;
+  var width = $( 'body' ).width() - widthNavbarLeft - widthNavbarRight - 1; // remove an additional pixel for Firefox
 
   if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
     $( '#main' ).css( 'width', width );
