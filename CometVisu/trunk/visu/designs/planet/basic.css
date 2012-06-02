@@ -160,8 +160,11 @@ div#loading {
 }
 
 /******************************************************************/
-h1 {
+h1, h2 {
   color: #999;
+}
+
+h1 {
   position: fixed;
   top: 0;
   right: 0.5em;
@@ -288,6 +291,40 @@ h1 {
 
 .widget.group {
   padding: 0.3em 0 0.3em 0;
+  /*margin: 0 1em 0 1em;*/
+  display: table-row !important;
+  background: none;
+}
+
+.widget.group:before {
+  content: "";
+  border: 0.3em solid #0f0;
+  border-right: none;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  display: table-cell;
+  height: 100%;
+  min-width: 0.3em;
+}
+
+.widget.group > .clearfix {
+  display: table-cell;
+  width: 100%;
+  border: 0.1em solid #121212; /* same color as background! */
+  border-top-width: 0.7em;
+  border-bottom-width: 0.7em;
+}
+
+.widget.group:after {
+  content: "";
+  border: 0.3em solid #0f0;
+  border-left: none;
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  display: table-cell;
+  height: 100%;
+  min-width: 0.3em;
+  visibility: visible;
 }
 
 body hr, body br, #pages hr {
