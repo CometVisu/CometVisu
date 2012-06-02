@@ -48,7 +48,7 @@ basicdesign.addCreator('page', {
       ret_val.append(tst );
     }
 
-    var childs = $p.children();
+    var childs = $p.children().not('layout');
     //var container = $( '<div class="clearfix" />' );
     
     var subpage = $( '<div class="page" id="' + path + '"/>' );
