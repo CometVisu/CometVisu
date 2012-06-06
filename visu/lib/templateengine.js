@@ -43,9 +43,9 @@ visu.update = function( json ) { // overload the handler
 }
 visu.user = 'demo_user'; // example for setting a user
 
-var configSuffix = "";
+var configSuffix;
 if ($.getUrlVar("config")) {
-  configSuffix = "_" + $.getUrlVar("config");
+  configSuffix = $.getUrlVar("config");
 }
 
 var clientDesign = "";
@@ -83,8 +83,21 @@ if (isNaN(use_maturity)) {
 
 $(document).ready(function() {
   // get the data once the page was loaded
-  $.ajaxSetup({cache: !forceReload});
-  $.get( 'visu_config' + configSuffix + '.xml', parseXML );
+  $.ajax({
+    url: 'visu_config' + (configSuffix ? '_' + configSuffix : '' ) + '.xml',
+    cache: !forceReload,
+    success: parseXML,
+    error: function(jqXHR, textStatus, errorThrown){ 
+      var message = 'Config-File Error! ';
+      switch( textStatus )
+      {
+        case 'parsererror':
+          message += '<br />Invalid config file!<br /><a href="check_config.php?config=' + configSuffix + '">Please check!</a>';
+      }
+      $('#loading').html( message );
+    },
+    dataType: 'xml'
+});
 } );
 
 $(window).unload(function() {
