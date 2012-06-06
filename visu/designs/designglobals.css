@@ -46,11 +46,11 @@
 /*
  * Disable all pages except the active ones
  */
-.page {
+.page, .navbar {
   display: none;
 }
 
-.pageActive {
+.pageActive, .navbarActive {
   display: block;
 }
 /*
