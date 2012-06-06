@@ -495,6 +495,22 @@
       <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
       <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
     </page>
+    <page name="Navbar Test" align="center">
+      <text>This subpage adds additional content to the navbar</text>
+      <navbar position="left" dynamic="true" width="200px">
+        <text>Test 2</text>
+        <line/>
+        <pagejump target="0_34_7" name="Lithium">
+          <label>Flavour</label>
+        </pagejump>
+        <pagejump target="0_34_8" name="Potassium">
+          <label>Flavour</label>
+        </pagejump>
+        <pagejump target="0_36">
+          <label>2D</label>
+        </pagejump>
+      </navbar>
+    </page>
     <break/>
     <page name="2D fixed Bitmap" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.png" align="center">
       <switch mapping="On_Off" styling="Red_Green">

@@ -19,7 +19,8 @@ basicdesign.addCreator('navbar', {
   create: function( navbar, path, flavour, type ) {
     var $n = $(navbar);
     var childs = $n.children();
-    var container = $( '<div class="clearfix"/>' );
+    var id = path.split('_'); id.pop();
+    var container = $( '<div class="navbar" id="' + id.join('_') + '_navbar" />' );
     if( $n.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $n.attr('name') + '</h2>' );
     $( childs ).each( function(i){
         container.append( create_pages( childs[i], path + '_' + i, flavour ) );
