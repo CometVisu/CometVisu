@@ -447,6 +447,54 @@
         </page>
       </page>
     </page>
+    <page name="colspan/rowspan Test" align="center">
+      <text><layout colspan="12" />Colspan 12, no Rowspan</text>
+      <text><layout colspan="6" />Colspan 6, no Rowspan</text><text><layout colspan="6" />Colspan 6, no Rowspan</text>
+      <text><layout colspan="4" />Colspan 4, no Rowspan</text><text><layout colspan="4" />Colspan 4, no Rowspan</text><text><layout colspan="4" />Colspan 4, no Rowspan</text>
+      <text><layout colspan="3" />Colspan 3, no Rowspan</text><text><layout colspan="3" />Colspan 3, no Rowspan</text>
+      <text><layout colspan="3" />Colspan 3, no Rowspan</text><text><layout colspan="3" />Colspan 3, no Rowspan</text>
+      <text><layout colspan="2" />Colspan 2, no Rowspan</text><text><layout colspan="2" />Colspan 2, no Rowspan</text>
+      <text><layout colspan="2" />Colspan 2, no Rowspan</text><text><layout colspan="2" />Colspan 2, no Rowspan</text>
+      <text><layout colspan="2" />Colspan 2, no Rowspan</text><text><layout colspan="2" />Colspan 2, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" rowspan="12" />Colspan 1, Rowspan 12</text>
+      <text><layout colspan="1" rowspan="6" />Colspan 1, Rowspan 6</text>
+      <text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text>
+      <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
+      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="6" rowspan="1" />Colspan 6, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="6" rowspan="1" />Colspan 6, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="6" rowspan="1" />Colspan 6, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="6" rowspan="1" />Colspan 6, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text>
+      <text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text>
+      <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
+      <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
+      <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
+      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
+      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
+      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
+      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="6" />Colspan 1, Rowspan 6</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+    </page>
     <break/>
     <page name="2D fixed Bitmap" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.png" align="center">
       <switch mapping="On_Off" styling="Red_Green">
