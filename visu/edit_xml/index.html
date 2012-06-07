@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CometVisu XML Editor</title>
+	<!-- jQuery UI stuff -->
+	<link rel="stylesheet" href="./themes/base/jquery.ui.all.css">
+	<script src="_lib/jquery-1.7.2.js"></script>
+	<script src="_lib/ui/jquery.ui.core.js"></script>
+	<script src="_lib/ui/jquery.ui.widget.js"></script>
+	<script src="_lib/ui/jquery.ui.tabs.js"></script>
+	<link rel="stylesheet" href="./edit_xml.css">
+
+	<!-- now the jsTree-stuff -->
+	<script type="text/javascript" src="_lib/jquery.cookie.js"></script>
+	<script type="text/javascript" src="_lib/jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="_lib/jquery.jstree.js"></script>
+	<script type="text/javascript" src="_lib/jquery.jstree.uimtreeprocessor.js"></script>
+
+	<script type="text/javascript" src="edit_xml.js"></script>
+	
+	<script>
+	/* main - init tabs and XML for jstree
+	 * What happens is:
+	 * - uimimporttree converts the xml to json so jsTree understands it 
+	 */
+	$(function() {
+		$( "#tabs" ).tabs({
+			event: "mouseover"
+		});
+        getXMLtree();
+	});
+	</script>
+</head>
+<body>
+
+<div class="xml_editor">
+<H1>CometVisu XML Editor</H1>
+<div id="tabs">
+	<ul>
+		<li><a href="#tab-tree">Tree</a></li>
+		<li><a href="#tab-source">Source</a></li>
+		<li><a href="#tab-preview">Preview</a></li>
+	</ul>
+	<div id="tab-tree">
+	    <p>WiP - There is no save or anything yet!</p>
+        <div id="jstree" class="demo" style=""></div>
+        <div style="height:30px; text-align:center;">
+	        <input type="button" style='width:170px; height:24px; margin:5px auto;' value="check" onclick="$.get('./check_config.php?reconstruct', function () { $('#jstree').jstree('refresh',-1); });" />
+	        <input type="button" style='width:170px; height:24px; margin:5px auto;' id="analyze" value="analyze" onclick="$('#alog').load('./check_config.php?analyze');" />
+	        <input type="button" style='width:170px; height:24px; margin:5px auto;' value="refresh" onclick="$('#jstree').jstree('refresh',-1);" />
+        </div>
+        <div id='alog' style="border:1px solid gray; padding:5px; height:100px; margin-top:15px; overflow:auto; font-family:Monospace;"></div>
+	</div>
+	<div id="tab-source">
+		<p>Nothing yet.<br>Should get an XML (Text) Editor with syntax-highlighting like CodeMirror, Bespin or EditArea. But this is the easy part..</p>
+	</div>
+	<div id="tab-preview">
+		<p>Nothing, only mockup yet: a CV-structure/templateengine/design using jQ UI and all the stuff like themes natively and go into .. then.</p>
+	</div>
+</div>
+
+</div>
+
+</body>
+</html>
+
