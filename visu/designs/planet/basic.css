@@ -340,6 +340,7 @@ h1 {
 
 .widget_container {
   margin-top: 0.1em; 
+  position: relative;
 }
 
 .widget, .widget.group {
@@ -397,4 +398,54 @@ body hr, body br, #pages hr {
   border: none;
   background: #9cf;
   height: 0.2em;
+}
+
+.widget.image {
+  margin-left: 0.7em;
+  margin-right: 0.7em;
+}
+.widget.image:before {
+  content: "";
+  display: block;
+  border: 0.3em solid #0f0;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  border-right-width: 0;
+  height: 100%;
+  min-width: 0.6em;
+  margin-left: -0.7em;
+  position: absolute;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+}
+
+.widget.image > .label {
+  position: static;
+  display: inline-block;
+  color: #999;
+}
+.widget.image > .actor {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  background: none;
+  display: inline-block;
+  float: none;
+}
+.widget.image:after {
+  content: "";
+  visibility: visible;
+  display: inline-block;
+  border: 0.3em solid #0f0;
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  border-left-width: 0;
+  height: 100%;
+  min-width: 0.6em;
+  margin-left: 0.1em;
+  position: absolute;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
