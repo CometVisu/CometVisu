@@ -4,6 +4,14 @@
  */
 
 /* define basic setup */
+/*
+* {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:        border-box;
+}
+*/
+
 body  {
   background: #121212; 
   font-family:'Arial Narrow','Nimbus Sans L',Helvetica,sans-serif;
@@ -159,6 +167,10 @@ div#loading {
   overflow-y: visible !important;
 }
 
+#pages {
+  overflow: hidden;
+}
+
 /******************************************************************/
 h1, h2 {
   color: #999;
@@ -189,10 +201,9 @@ h1 {
 
 .widget {
   /* border: 1px solid blue; */
-  background: #ffcc99;
   line-height: 1em;
 }
-.widget_container, .text > div, .widget .label, .widget .actor,
+.widget_container, .text > div, .widget .actor,
   .widget .actor div, .page {
   float:left;
 }
@@ -202,25 +213,31 @@ h1 {
   width: 100%;
 }
 
-.widget .label {
+.widget > .label {
   float: none;
+  width: auto;
   position: absolute;
   font-size: 0.75em;
   margin-left: 1em;
+  pointer-events: none;
 }
 
-.widget .actor {
+.widget .actor, .widget.pagelink > div > a, .widget.text > div {
   text-align: center;
-  /* background: #ffcc99; */
+  min-height: 2em;
+  background: #ffcc99;
   /* margin: 0.1em; */
 }
+.widget.pagelink > div > a {
+  display: block;
+}
 
-.switch {
+.switch > .actor {
   border-top-right-radius: 1em;
   border-bottom-right-radius: 1em;
 }
 
-.trigger, .multitrigger {
+.trigger > .actor, .multitrigger .actor {
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
   border-bottom-right-radius: 1em;
@@ -253,35 +270,81 @@ h1 {
   color: #999;
 }
 
-.slide .actor {
-  width: 50%;
-  margin-left: 25%;
+.widget.slide {
+  display: table-row !important;
 }
+
+.slide:before {
+  content: "";
+  display: block;
+  display: table-cell;
+  background-color: #fc9;
+  border-right-style: solid;
+  border-right-width: 0.1em;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+  height: 2em;
+  min-width: 2em;
+}
+
+.slide:after {
+  content: "";
+  display: block;
+  display: table-cell;
+  border-left-style: solid;
+  border-left-width: 2.1em;
+  border-left-color: #121212;
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+  background-color: #fc9;
+  height: 2em;
+  min-width: 2.1em;
+  visibility: visible;
+}
+
+.slide .label {
+  display: table-cell;
+  color: #999;
+  z-index: 3;
+}
+
+.slide .actor {
+  width: 100%;
+  float: none;
+  display: table-cell;
+  background: none;
+}
+
 .ui-slider { position: relative; text-align: left; }
 .ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 2em; height: 2em; cursor: default; }
 .ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
 
-.ui-slider-horizontal { height: 1em; border-radius: 0.5em; }
-.ui-slider-horizontal .ui-slider-handle { top: -0.5em; margin-left: -0.5em; }
+.ui-slider-horizontal { height: 1em; /*border-radius: 0.5em;*/ }
+.ui-slider-horizontal .ui-slider-handle { /*top: -0.5em; margin-left: -0.5em;*/ }
 .ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
 .ui-slider-horizontal .ui-slider-range-min { left: 0; }
 .ui-slider-horizontal .ui-slider-range-max { right: 0; }
 
 .ui-widget-content { /*border: 1px solid #dddddd;*/ background: #000 ; color: #000; }
 .ui-widget-content a { color: #333333; }
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { /*border: 1px solid #cccccc;*/ background: #ff9900 ; border-radius:1em; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { /*border: 1px solid #cccccc;*/ background: #ffffc9 ; /*border-radius:1em;*/ }
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #1c94c4; text-decoration: none; }
 /*.ui-corner-all { -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }*/
 
 
-.widget .label, .widget .info .actor, .text > div, .link > div, .link a, 
+.widget .info .actor, .text > div, .link > div, .link a, 
   .value, .popup >div.head {
-  /* line-height: 2.4em; */
+    width: 100%;
+}
+
+.widget_container {
+  margin-top: 0.1em; 
 }
 
 .widget, .widget.group {
-  margin: .1em .0em 0.0em .1em; 
-  padding: 0.1em;
+  /* margin: .1em .0em 0.0em .1em;  */
+  margin-left: 0.1em;
+  /* padding: 0.1em; */
   min-height: 2em;
 }
 
