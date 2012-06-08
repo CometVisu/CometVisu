@@ -17,8 +17,11 @@
 </xsd:simpleType>
 
 <xsd:complexType name="layout">
+  <xsd:attribute name="colspan" type="xsd:decimal" use="optional" />
+  <xsd:attribute name="rowspan" type="xsd:decimal" use="optional" />
   <xsd:attribute name="x" type="xsd:string" use="optional" />
   <xsd:attribute name="y" type="xsd:string" use="optional" />
+  <xsd:attribute name="z" type="xsd:string" use="optional" />
   <xsd:attribute name="width" type="xsd:string" use="optional" />
 </xsd:complexType>
 
@@ -233,6 +236,7 @@
 
 <xsd:complexType name="group">
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <!-- visual effects -->
         <xsd:element name="line" type="line" />			
         <xsd:element name="break" type="break" />
@@ -311,6 +315,7 @@
 <xsd:complexType name="text" mixed="true">
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
       <xsd:element ref="icon" />
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
     </xsd:choice>
     <xsd:attribute ref="align" use="optional"/>
 </xsd:complexType>
@@ -323,9 +328,9 @@
 
 <xsd:complexType name="switch">
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
-        <xsd:element name="label" type="text" />
-        <xsd:element name="layout" type="layout" />
-        <xsd:element name="address" type="address" minOccurs="1" />
+      <xsd:element name="label" type="text" />
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="address" type="address" minOccurs="1" />
     </xsd:choice>
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
@@ -337,7 +342,7 @@
 <xsd:complexType name="toogle">
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
         <xsd:element name="label" type="xsd:string" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="1" />
     </xsd:choice>
     <xsd:attribute ref="styling" use="optional" />
@@ -348,7 +353,7 @@
 <xsd:complexType name="trigger">
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
         <xsd:element name="label" type="xsd:string" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="1" />
     </xsd:choice>
     <xsd:attribute ref="value" use="required" />
@@ -359,7 +364,7 @@
 <xsd:complexType name="infotrigger">
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
         <xsd:element name="label" type="xsd:string" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:choice>
     <xsd:attribute name="upvalue" type="xsd:string" use="optional"/>
@@ -379,7 +384,7 @@
 <xsd:complexType name="multitrigger">
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
         <xsd:element name="label" type="xsd:string" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="1" />
     </xsd:choice>
     <xsd:attribute ref="mapping" use="optional" />
@@ -421,7 +426,7 @@
 
 <xsd:complexType name="image">
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <xsd:element name="label" type="xsd:string" />
     </xsd:choice>
     <xsd:attribute name="src" type="uri" use="required" />
@@ -433,7 +438,7 @@
 <xsd:complexType name="imagetrigger">
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
         <xsd:element name="label" type="xsd:string" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="1"/>
     </xsd:choice>
     <xsd:attribute name="src" type="xsd:string"/>
@@ -448,7 +453,7 @@
 
 <xsd:complexType name="video">
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <xsd:element name="label" type="xsd:string" maxOccurs="1" />
     </xsd:choice>
     <xsd:attribute name="src" type="uri" use="required" />
@@ -459,7 +464,7 @@
 
 <xsd:complexType name="iframe">
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <xsd:element name="label" type="xsd:string" maxOccurs="1" />
     </xsd:choice>
     <xsd:attribute name="src" type="uri" use="required" />
@@ -472,7 +477,7 @@
 
 <xsd:complexType name="pagejump">
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <xsd:element name="label" type="xsd:string" maxOccurs="1" />
     </xsd:choice>
     <xsd:attribute name="name" type="xsd:string" />
@@ -482,7 +487,7 @@
 <xsd:complexType name="colorchooser" >
     <xsd:choice maxOccurs="unbounded" minOccurs="0" >
         <xsd:element name="label" type="xsd:string" maxOccurs="1" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="3" maxOccurs="3"/>
     </xsd:choice>
 </xsd:complexType>
@@ -490,7 +495,7 @@
 <xsd:complexType name="diagram_inline">
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
       <xsd:element name="label" type="xsd:string" maxOccurs="1" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
     </xsd:choice>    
     <xsd:attribute name="rrd" type="xsd:string" use="required" />
     <xsd:attribute name="unit" type="xsd:string" use="optional" />
@@ -509,7 +514,7 @@
 <xsd:complexType name="diagram_popup" >
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
         <xsd:element name="label" type="xsd:string" maxOccurs="1" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
     </xsd:choice>    
     <xsd:attribute name="rrd" type="xsd:string" use="required" />
     <xsd:attribute name="unit" type="xsd:string" use="optional" />
@@ -527,7 +532,7 @@
 <xsd:complexType name="diagram_info" >
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
         <xsd:element name="label" type="xsd:string" maxOccurs="1" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
         <xsd:element name="address" type="address" minOccurs="1"/>
     </xsd:choice>
     <xsd:attribute ref="format" use="optional" />
@@ -549,7 +554,7 @@
 <xsd:complexType name="gweather" >
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
         <xsd:element name="label" type="xsd:string" maxOccurs="1" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
     </xsd:choice>    
     <xsd:attribute name="width" type="dimension" use="optional"/>
     <xsd:attribute name="height" type="dimension" use="optional"/>
@@ -564,7 +569,7 @@
 <xsd:complexType name="rss" >
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
         <xsd:element name="label" type="xsd:string" maxOccurs="1" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
     </xsd:choice>    
     <xsd:attribute name="src" type="xsd:string" use="required" />
     <xsd:attribute name="width" type="dimension" use="optional"/>
@@ -585,7 +590,7 @@
 <xsd:complexType name="jqclock" >
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
         <xsd:element name="label" type="xsd:string" maxOccurs="1" />
-        <xsd:element name="layout" type="layout" />
+        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
     </xsd:choice>    
     <xsd:attribute name="width" type="dimension" use="optional"/>
     <xsd:attribute name="height" type="dimension" use="optional"/>
