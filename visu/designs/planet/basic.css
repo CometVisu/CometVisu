@@ -271,13 +271,13 @@ h1 {
 }
 
 .widget.slide {
-  display: table-row !important;
+  margin-left: 2.1em;
+  margin-right: 4em;
 }
 
 .slide:before {
   content: "";
   display: block;
-  display: table-cell;
   background-color: #fc9;
   border-right-style: solid;
   border-right-width: 0.1em;
@@ -285,25 +285,25 @@ h1 {
   border-bottom-left-radius: 1em;
   height: 2em;
   min-width: 2em;
+  margin-left: -2.1em;
+  position: absolute;
 }
 
 .slide:after {
   content: "";
   display: block;
-  display: table-cell;
-  border-left-style: solid;
-  border-left-width: 2.1em;
-  border-left-color: #121212;
   border-top-right-radius: 1em;
   border-bottom-right-radius: 1em;
   background-color: #fc9;
   height: 2em;
-  min-width: 2.1em;
+  min-width: 2.0em;
   visibility: visible;
+  display: inline-block;
+  margin-left: 2.1em;
+  position: absolute;
 }
 
 .slide .label {
-  display: table-cell;
   color: #999;
   z-index: 3;
 }
@@ -311,8 +311,9 @@ h1 {
 .slide .actor {
   width: 100%;
   float: none;
-  display: table-cell;
   background: none;
+  float: left;
+  display: block;
 }
 
 .ui-slider { position: relative; text-align: left; }
@@ -327,7 +328,7 @@ h1 {
 
 .ui-widget-content { /*border: 1px solid #dddddd;*/ background: #000 ; color: #000; }
 .ui-widget-content a { color: #333333; }
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { /*border: 1px solid #cccccc;*/ background: #ffffc9 ; /*border-radius:1em;*/ }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { /*border: 1px solid #cccccc;*/ background: #fc9 ; /*border-radius:1em;*/ }
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #1c94c4; text-decoration: none; }
 /*.ui-corner-all { -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }*/
 
