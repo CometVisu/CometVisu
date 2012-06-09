@@ -271,8 +271,8 @@ h1 {
 }
 
 .widget.slide {
-  margin-left: 2.1em;
-  margin-right: 4em;
+  margin-left: 2.2em;
+  margin-right: 4.1em;
 }
 
 .slide:before {
@@ -400,11 +400,11 @@ body hr, body br, #pages hr {
   height: 0.2em;
 }
 
-.widget.image {
+.popup, .widget.image, .widget.video, .widget.diagram {
   margin-left: 0.7em;
   margin-right: 0.7em;
 }
-.widget.image:before {
+.popup:before, .widget.image:before, .widget.video:before, .widget.diagram:before {
   content: "";
   display: block;
   border: 0.3em solid #0f0;
@@ -421,19 +421,21 @@ body hr, body br, #pages hr {
 
 }
 
-.widget.image > .label {
+.popup > .head, .widget.image > .label, .widget.video > .label, .widget.diagram > .label {
   position: static;
   display: inline-block;
   color: #999;
 }
-.widget.image > .actor {
+
+.popup > .main, .widget.image > .actor, .widget.video > .actor, .widget.diagram > .actor {
   margin-top: 0.6em;
   margin-bottom: 0.6em;
   background: none;
   display: inline-block;
   float: none;
 }
-.widget.image:after {
+
+.popup:after, .widget.image:after, .widget.video:after, .widget.diagram:after {
   content: "";
   visibility: visible;
   display: inline-block;
@@ -445,7 +447,60 @@ body hr, body br, #pages hr {
   min-width: 0.6em;
   margin-left: 0.1em;
   position: absolute;
+  top: 0;
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+.diagram_inline {
+  width: 320px;
+  height: 180px;
+}
+
+.diagram_preview {
+    width: 240px;
+    height: 2em;
+}
+
+#diagramTooltip {
+  z-index: 1000;
+  color: black;
+  border: 1px solid #fdd;
+  padding: 2px;
+  background-color: #fee;
+  opacity: 0.80;
+}
+
+.popup,
+.popup_background {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  top: 5%;
+  left: 5%;
+}
+
+.popup {
+  z-index: 101;
+  background: transparent;
+}
+
+
+.popup_background {
+  z-index: 100;
+  -moz-border-radius: 0.6em; -webkit-border-radius: 0.6em; border-radius: 0.6em;
+  background: #000;
+  border: none;
+  opacity: 0.9;
+}
+
+.popup div.head {
+  border-bottom: 1px solid;
+}
+
+.popup_background.error {
+  background: #800000;
+  border: #f00;
+}
+

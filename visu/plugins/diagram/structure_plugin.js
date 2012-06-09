@@ -296,7 +296,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
 
     var id = "diagram_" + uniqid();
 
-    var ret_val = $('<div class="widget clearfix diagram" />');
+    var ret_val = $('<div class="widget clearfix diagram_info" />');
     ret_val.setWidgetLayout($p).makeWidgetLabel($p);
                 
     var actor = '<div class="actor switchUnpressed ';
