@@ -157,8 +157,7 @@ function handleResize() {
     // do nothing
   } else {
     var height = $( window ).height()
-                 - $( '#top'          ).outerHeight(true) 
-                 - $( '#navbarTop'    ).outerHeight(true)
+                 - $( '#main' ).position().top
                  - $( '#navbarBottom' ).outerHeight(true)
                  - $( '#bottom'       ).outerHeight(true) - 2;
     $( '#main' ).css( 'width', width ).css( 'height', height );

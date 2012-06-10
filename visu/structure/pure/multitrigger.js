@@ -25,7 +25,7 @@ basicdesign.addCreator('multitrigger', {
     ret_val.append( extractLabel( $e.find('label')[0] ) );
     var address = makeAddressList($e);
     var showstatus = $e.attr("showstatus") || "false";
-    var buttons = $('<div style="float:left"/>');
+    var buttons = $('<div class="actor_container" style="float:left"/>');
     var buttonCount = 0;
     if( $e.attr('button1label') )
     {
