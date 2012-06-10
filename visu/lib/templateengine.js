@@ -175,13 +175,14 @@ function rowspanClass(rowspan) {
     var dummyDiv = $('<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
       .appendTo(document.body).show();
     
-    var singleHeight = parseFloat($('#containerDiv').css('height'));        
+    var singleHeight       = $('#containerDiv').outerHeight(false);
+    var singleHeightMargin = $('#containerDiv').outerHeight(true );
 
     $('#calcrowspan').remove();
           
     // append css style
     
-    $('head').append('<style id="'+className+'Style">.rowspan' + rowspan + ' { height: ' + rowspan*Math.round(singleHeight) + 'px; overflow:hidden; position:relative;} </style>').data(className, 1);
+    $('head').append('<style id="'+className+'Style">.rowspan' + rowspan + ' { height: ' + ((rowspan-1)*singleHeightMargin+singleHeight) + 'px; overflow:hidden; position:relative;} </style>').data(className, 1);
   } 
   
   return className;
