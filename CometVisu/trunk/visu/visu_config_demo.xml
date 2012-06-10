@@ -463,37 +463,57 @@
       <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
       <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
       <text><layout colspan="1" rowspan="12" />Colspan 1, Rowspan 12</text>
-      <text><layout colspan="1" rowspan="6" />Colspan 1, Rowspan 6</text>
+      <group nowidget="true">
+        <layout colspan="1" />
+        <text><layout colspan="1" rowspan="6" />Colspan 1, Rowspan 6</text><text><layout colspan="1" rowspan="6" />Colspan 1, Rowspan 6</text>
+      </group>
+      <group nowidget="true">
+        <layout colspan="1" />
+        <text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text><text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text><text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text>
+      </group>
+      <group nowidget="true">
+        <layout colspan="1" />
+        <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text><text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
+        <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text><text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
+      </group>
+      <group nowidget="true">
+        <layout colspan="1" />
+        <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text><text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
+        <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text><text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
+        <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text><text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
+      </group>
+      <group nowidget="true">
+        <layout colspan="1" />
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      </group>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="4" rowspan="1" />Colspan 4, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
       <text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text>
-      <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
-      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
-      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
-      <text><layout colspan="6" rowspan="1" />Colspan 6, Rowspan 1</text>
-      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
-      <text><layout colspan="6" rowspan="1" />Colspan 6, Rowspan 1</text>
-      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
-      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
-      <text><layout colspan="6" rowspan="1" />Colspan 6, Rowspan 1</text>
-      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
-      <text><layout colspan="6" rowspan="1" />Colspan 6, Rowspan 1</text>
+      <text><layout colspan="4" rowspan="4" />Colspan 4, Rowspan 4</text>
       <text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text>
-      <text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text>
-      <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
-      <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
-      <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
-      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
-      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
-      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
-      <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
       <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="4" rowspan="1" />Colspan 4, Rowspan 1</text>
       <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
-      <text><layout colspan="1" rowspan="6" />Colspan 1, Rowspan 6</text>
-      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
-      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
-      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
-      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
-      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
-      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="3" rowspan="1" />Colspan 3, Rowspan 1</text>
+      <text><layout colspan="3" rowspan="1" />Colspan 3, Rowspan 1</text>
+      
+      <text><layout colspan="1" rowspan="5" />Colspan 1, Rowspan 5</text>
+      <group nowidget="true">
+        <layout colspan="4" />
+        <text><layout colspan="4" rowspan="2" />Colspan 4, Rowspan 2</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="4" rowspan="2" />Colspan 4, Rowspan 2</text>
+      </group>
+      <text><layout colspan="1" rowspan="5" />Colspan 1, Rowspan 5</text>
     </page>
     <page name="Navbar Test" align="center">
       <text>This subpage adds additional content to the navbar</text>
@@ -612,12 +632,15 @@
       </text>
       <line/>
       <group name="Gruppe" align="center">
-        <text align="center">Ohne Flavour</text>
+        <layout colspan="5" />
+        <text align="center"><layout colspan="5" />Ohne Flavour</text>
         <info styling="Blue_Purple_Red">
+          <layout colspan="5" />
           <label>Info</label>
           <address transform="DPT:9" type="">12/7/9</address>
         </info>
       </group>
+      <!-- <line /> -->
       <group name="Slider Gruppe mit Flavour" flavour="lithium" align="center">
         <info styling="Blue_Purple_Red">
           <label>Info: Slider</label>
