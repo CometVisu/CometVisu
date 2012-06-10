@@ -267,7 +267,8 @@
         <xsd:element name="upnpcontroller" type="upnpcontroller" />
         <xsd:element ref="page" />
     </xsd:choice>
-    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="name" type="xsd:string" use="optional" />
+    <xsd:attribute name="nowidget" type="xsd:boolean" use="optional" />
     <xsd:attribute name="flavour" type="xsd:string" use="optional" />
     <xsd:attribute ref="align" use="optional" />
 </xsd:complexType>
