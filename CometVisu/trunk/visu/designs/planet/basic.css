@@ -211,6 +211,10 @@ h1 {
   /*margin-left: 1rem;*/ /* to stay out of the knee */
 }
 
+.page > .clearfix {
+  margin-right: 0.1rem;
+}
+
 .colspan0 {
   width: 8.33333%;
 }
@@ -452,6 +456,7 @@ h1 {
 .widget .info .actor, .text > div, .link > div, .link a, 
   .value, .popup >div.head {
     width: 100%;
+    height: 100%;
 }
 
 .widget_container {
