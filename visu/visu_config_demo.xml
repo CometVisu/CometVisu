@@ -92,6 +92,26 @@
         <entry range_min="18" range_max="24">purple</entry>
         <entry range_min="24" range_max="32">red</entry>
       </styling>
+      <styling name="All_Colors">
+        <entry value="0">red</entry>
+        <entry value="1">white</entry>
+        <entry value="2">cyan</entry>
+        <entry value="3">silver</entry>
+        <entry value="4">blue</entry>
+        <entry value="5">grey</entry>
+        <entry value="6">darkblue</entry>
+        <entry value="7">black</entry>
+        <entry value="8">lightblue</entry>
+        <entry value="9">orange</entry>
+        <entry value="10">purple</entry>
+        <entry value="11">brown</entry>
+        <entry value="12">yellow</entry>
+        <entry value="13">maroon</entry>
+        <entry value="14">lime</entry>
+        <entry value="15">green</entry>
+        <entry value="16">fuchsia</entry>
+        <entry value="17">olive</entry>
+      </styling>
     </stylings>
     <statusbar>
       <status type="html"><![CDATA[
@@ -428,6 +448,63 @@
           <label>Slider to show ranges in styling</label>
           <address transform="DPT:9" type="">12/7/10</address>
         </slide>
+        <line/>
+        <text>All predefined colors:</text>
+        <break/>
+        <trigger value="0" styling="All_Colors">
+          <label>red</label>
+        </trigger>
+        <trigger value="1" styling="All_Colors">
+          <label>white</label>
+        </trigger>
+        <trigger value="2" styling="All_Colors">
+          <label>cyan</label>
+        </trigger>
+        <trigger value="3" styling="All_Colors">
+          <label>silver</label>
+        </trigger>
+        <trigger value="4" styling="All_Colors">
+          <label>blue</label>
+        </trigger>
+        <trigger value="5" styling="All_Colors">
+          <label>grey</label>
+        </trigger>
+        <trigger value="6" styling="All_Colors">
+          <label>darkblue</label>
+        </trigger>
+        <trigger value="7" styling="All_Colors">
+          <label>black</label>
+        </trigger>
+        <trigger value="8" styling="All_Colors">
+          <label>lightblue</label>
+        </trigger>
+        <trigger value="9" styling="All_Colors">
+          <label>orange</label>
+        </trigger>
+        <trigger value="10" styling="All_Colors">
+          <label>purple</label>
+        </trigger>
+        <trigger value="11" styling="All_Colors">
+          <label>brown</label>
+        </trigger>
+        <trigger value="12" styling="All_Colors">
+          <label>yellow</label>
+        </trigger>
+        <trigger value="13" styling="All_Colors">
+          <label>maroon</label>
+        </trigger>
+        <trigger value="14" styling="All_Colors">
+          <label>lime</label>
+        </trigger>
+        <trigger value="15" styling="All_Colors">
+          <label>green</label>
+        </trigger>
+        <trigger value="16" styling="All_Colors">
+          <label>fuchsia</label>
+        </trigger>
+        <trigger value="17" styling="All_Colors">
+          <label>olive</label>
+        </trigger>
     </page>
     <page name="Icon Test" align="center">
       <text><icon name="CometVisu" type="64" /> Icon links vom Text</text>

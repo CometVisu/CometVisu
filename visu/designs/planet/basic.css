@@ -160,6 +160,10 @@ div#loading {
   margin-right: 2rem;
 }
 
+#navbarLeft hr {
+  width: 11rem;
+}
+
 #navbarLeft .switch, #navbarLeft .trigger, #navbarLeft .multitrigger {
   margin-right: 1rem;
 }
@@ -529,12 +533,20 @@ h1 {
   line-height: 1.5rem;
 }
 
-body hr, body br, #pages hr {
+body br {
+  clear: both;
+}
+
+body hr {
   margin: .1rem .0rem 0.0rem .1rem; 
   clear: both;
   border: none;
   background: #9cf;
-  height: 0.2rem;
+  height: 1.0rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  float: left;
+  width: 100%;
 }
 
 .popup, .widget.image, .widget.video, .widget.diagram {
@@ -641,3 +653,93 @@ body hr, body br, #pages hr {
   border: #f00;
 }
 
+.actor.red
+{
+  background-color:#FF0000;
+  color: #000;
+}
+.actor.white
+{
+  background-color:#FFFFFF;
+  color: #000;
+}
+.actor.cyan
+{
+  background-color:#00FFFF;
+  color: #000;
+}
+.actor.silver
+{
+  background-color:#C0C0C0;
+  color: #000;
+}
+.actor.blue
+{
+  background-color:#0000FF;
+  color: #000;
+}
+.actor.grey
+{
+  background-color:#808080;
+  color: #000;
+}
+.actor.darkblue
+{
+  background-color:#0000A0;
+  color: #000;
+}
+.actor.black
+{
+  background-color:#000000;
+  color: #555;
+}
+.actor.lightblue
+{
+  background-color:#ADD8E6;
+  color: #000;
+}
+.actor.orange
+{
+  background-color:#FFA500;
+  color: #000;
+}
+.actor.purple
+{
+  background-color:#800080;
+  color: #000;
+}
+.actor.brown
+{
+  background-color:#A52A2A;
+  color: #000;
+}
+.actor.yellow
+{
+  background-color:#FFFF00;
+  color: #000;
+}
+.actor.maroon
+{
+  background-color:#800000;
+  color: #000;
+}
+.actor.lime
+{
+  background-color:#00FF00;
+  color: #000;
+}
+.actor.green
+{
+  background-color:#008000;
+  color: #000;
+}
+.actor.fuchsia
+{
+  background-color:#FF00FF;
+  color: #000;
+}
+.actor.olive
+{
+  background-color:#808000;
+  color: #000;
+}
