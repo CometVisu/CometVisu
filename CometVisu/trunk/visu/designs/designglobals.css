@@ -45,12 +45,15 @@
 
 /*
  * Disable all pages except the active ones
+ * 
+ * Note: the .navbar class needs all of this decoration to overwrite the 
+ * .clearfix class without using an !important qualifier
  */
-.page, .navbar {
+.page, html[xmlns] .navbar.clearfix {
   display: none;
 }
 
-.pageActive, .navbarActive {
+.pageActive, html[xmlns] .navbar.clearfix.navbarActive {
   display: block;
 }
 /*

@@ -1,16 +1,15 @@
 /*
+ * Styling of the Planet design for the CometVisu
+ * ==============================================
+ * 
+ * This design is inspired by the LCARS computer interface of the StarTrek
+ * universe.
+ */
+
+/*
  * Global definitions used:
  * navbarWidth: 10rem
  */
-
-/* define basic setup */
-/*
-* {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:        border-box;
-}
-*/
 
 html {
   font-size: 5.5mm;
@@ -33,6 +32,7 @@ body  {
 
 a {
   text-decoration: none;
+  color: #000000;
 }
 
 /* Clearfix */
@@ -87,7 +87,7 @@ div#loading {
 #top:before {
   width: 2rem;
   height: 2rem;
-  border: solid #9999cc;
+  border: solid #ff9966;
   border-top-width: 1.5rem;
   border-left-width: 10rem;
   border-top-left-radius: 4rem 4rem;
@@ -101,7 +101,7 @@ div#loading {
 .nav_path:before {
   width: 2rem;
   height: 2rem;
-  border: solid #9999cc;
+  border: solid #ff9966;
   border-top-width: 1.5rem;
   border-left-width: 10rem;
   border-top-left-radius: 12rem 3.5rem;
@@ -114,10 +114,10 @@ div#loading {
 }
 
 .nav_path  {
-  background: #9999cc;
+  background: #ff9966;
   margin-left: 12.1rem;
   margin-right: 0.1rem;
-  margin-bottom: 2.1rem;
+  margin-bottom: 2.0rem;
   border: 0px;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -125,7 +125,7 @@ div#loading {
 
 .nav_path a {
   color: #000;
-  background-color: #ff9900;
+  background-color: #cc6699;
   border-width: 0px 0.1rem 0px 0px;
   border-style: solid;
   border-color: #000;
@@ -150,7 +150,7 @@ div#loading {
   content: "";
   display: block;
   height: 100%;
-  background-color: #cc6699;
+  background-color: #cc6666;
   width: 10rem; /* size of the knee */
   margin-top: 0.1rem;
 }
@@ -184,7 +184,7 @@ div#loading {
 }
 
 #bottom > .footer {
-  background-color: #ff0;
+  background-color: #ff9966;
   height: 1.5rem;
   margin: 0.1rem 0.1rem 0.1rem 0;
   border-top-right-radius: 1rem;
@@ -249,8 +249,7 @@ h1 {
 .widget .actor, .widget.pagelink > div > a, .widget.text > div {
   text-align: center;
   min-height: 2rem;
-  background: #ffcc99;
-  /* margin: 0.1rem; */
+  background: #ffcc66;
 }
 .widget.pagelink > div > a {
   display: block;
@@ -284,7 +283,7 @@ h1 {
   content: "";
   height: 2rem;
   display: block;
-  border: 1rem solid #fc9;
+  border: 1rem solid #cc6699;
   border-bottom-style: none;
   border-right-style: none;
   -moz-box-sizing:    border-box;
@@ -295,7 +294,7 @@ h1 {
 }
 
 .multitrigger > .label {
-  background: #fc9;
+  background: #cc6699;
   width: 10rem;
   display: inline-block;
   margin-top: -2rem;
@@ -363,7 +362,7 @@ h1 {
   content: "";
   visibility: visible;
   height: 2rem;
-  border: 1rem solid #fc9;
+  border: 1rem solid #cc6699;
   border-top-style: none;
   border-right-style: none;
   -moz-box-sizing:    border-box;
@@ -395,7 +394,7 @@ h1 {
 }
 
 .text {
-  color: #999;
+  color: #000;
 }
 
 .widget.slide {
@@ -406,7 +405,7 @@ h1 {
 .slide:before {
   content: "";
   display: block;
-  background-color: #fc9;
+  background-color: #ffcc66;
   border-right-style: solid;
   border-right-width: 0.1rem;
   border-top-left-radius: 1rem;
@@ -422,7 +421,7 @@ h1 {
   display: block;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  background-color: #fc9;
+  background-color: #ffcc66;
   height: 2rem;
   min-width: 2.0rem;
   visibility: visible;
@@ -456,7 +455,7 @@ h1 {
 
 .ui-widget-content { /*border: 1px solid #dddddd;*/ background: #000 ; color: #000; }
 .ui-widget-content a { color: #333333; }
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { /*border: 1px solid #cccccc;*/ background: #fc9 ; /*border-radius:1rem;*/ }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { /*border: 1px solid #cccccc;*/ background: #ffcc66 ; /*border-radius:1rem;*/ }
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #1c94c4; text-decoration: none; }
 /*.ui-corner-all { -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }*/
 
@@ -489,7 +488,7 @@ h1 {
   content: "";
   content: "";
   display: block;
-  border: 0.3rem solid #0f0;
+  border: 0.3rem solid #9999ff;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   border-right-width: 0;
@@ -513,7 +512,7 @@ h1 {
   content: "";
   visibility: visible;
   display: inline-block;
-  border: 0.3rem solid #0f0;
+  border: 0.3rem solid #9999ff;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   border-left-width: 0;
@@ -541,7 +540,7 @@ body hr {
   margin: .1rem .0rem 0.0rem .1rem; 
   clear: both;
   border: none;
-  background: #9cf;
+  background: #cc99cc;
   height: 1.0rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -557,7 +556,7 @@ body hr {
 .popup:before, .widget.image:before, .widget.video:before, .widget.diagram:before {
   content: "";
   display: block;
-  border: 0.3rem solid #0f0;
+  border: 0.3rem solid #9999ff;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   border-right-width: 0;
@@ -588,7 +587,7 @@ body hr {
   content: "";
   visibility: visible;
   display: inline-block;
-  border: 0.3rem solid #0f0;
+  border: 0.3rem solid #9999ff;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   border-left-width: 0;
@@ -655,7 +654,7 @@ body hr {
 
 .actor.red
 {
-  background-color:#FF0000;
+  background-color:#CC0000;
   color: #000;
 }
 .actor.white
