@@ -164,7 +164,7 @@ div#loading {
   width: 11rem;
 }
 
-#navbarLeft .switch, #navbarLeft .trigger, #navbarLeft .multitrigger {
+#navbarLeft .switch, #navbarLeft .pagejump, #navbarLeft .trigger, #navbarLeft .multitrigger {
   margin-right: 1rem;
 }
 
@@ -255,7 +255,7 @@ h1 {
   display: block;
 }
 
-.switch > .actor {
+.switch > .actor, .pagejump > .actor {
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
