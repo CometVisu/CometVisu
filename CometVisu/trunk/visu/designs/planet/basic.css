@@ -14,14 +14,17 @@
 html {
   font-size: 5.5mm;
 }
+@font-face { font-family: Lcars; src:url(fonts/LCARSGTJ3.ttf); }
+
 
 body  {
   background: #121212; 
-  font-family:'Arial Narrow','Nimbus Sans L',Helvetica,sans-serif;
+ /* font-family:'Arial Narrow','Nimbus Sans L',Helvetica,sans-serif;
   font-family:Impact, Charcoal, sans-serif;
   font-family:'Lucida Sans Unicode','Lucida Grande','Lucida Sans','DejaVu Sans Condensed',sans-serif;
   font-family:'Helvetica LT UltraCompressed','Swiss911 UCm BT',OpenDinSchriftenEngshrift;
-  font-family:'Ubuntu Condensed';
+  font-family:'Ubuntu Condensed';*/
+  font-family:'Lcars';
   overflow: hidden;
   margin: 0.1rem 0 0.1rem 0.1rem;
   -moz-user-select: none;
@@ -87,7 +90,7 @@ div#loading {
 #top:before {
   width: 2rem;
   height: 2rem;
-  border: solid #ff9966;
+  border: solid #ce9e63;
   border-top-width: 1.5rem;
   border-left-width: 10rem;
   border-top-left-radius: 4rem 4rem;
@@ -101,7 +104,7 @@ div#loading {
 .nav_path:before {
   width: 2rem;
   height: 2rem;
-  border: solid #ff9966;
+  border: solid #ce9e63;
   border-top-width: 1.5rem;
   border-left-width: 10rem;
   border-top-left-radius: 12rem 3.5rem;
@@ -114,7 +117,7 @@ div#loading {
 }
 
 .nav_path  {
-  background: #ff9966;
+  background: #ce9e63;
   margin-left: 12.1rem;
   margin-right: 0.1rem;
   margin-bottom: 2.0rem;
@@ -125,7 +128,7 @@ div#loading {
 
 .nav_path a {
   color: #000;
-  background-color: #cc6699;
+  background-color: #9d625f;
   border-width: 0px 0.1rem 0px 0px;
   border-style: solid;
   border-color: #000;
@@ -173,6 +176,7 @@ div#loading {
 
 #main {
   overflow-y: visible !important;
+  
 }
 
 #pages {
@@ -184,11 +188,12 @@ div#loading {
 }
 
 #bottom > .footer {
-  background-color: #ff9966;
+  background-color: #ce9e63;
   height: 1.5rem;
   margin: 0.1rem 0.1rem 0.1rem 0;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  font-size: 3mm;
 }
 
 /******************************************************************/
@@ -204,7 +209,7 @@ h1 {
 }
 
 .activePage h1 {
-  display: block;
+  display: none;
 }
 
 .page
@@ -224,7 +229,7 @@ h1 {
 }
 
 .widget {
-  /* border: 1px solid blue; */
+  /* border: 1px solid blue;*/ 
   line-height: 1rem;
 }
 .widget_container, .text > div, .widget .actor,
@@ -232,10 +237,12 @@ h1 {
   float:left;
 }
 
+
 .link > div, .link a , .switchPressed, .switchUnpressed, * html>body .clearfix,
   .info > div, .actor .value , .text>div {
   width: 100%;
 }
+
 
 .widget > .label {
   float: none;
@@ -244,16 +251,20 @@ h1 {
   font-size: 0.75rem;
   margin-left: 1rem;
   pointer-events: none;
+  margin-top: 0.5rem;
+  font-size: 6mm;
 }
 
 .widget .actor, .widget.pagelink > div > a, .widget.text > div {
   text-align: center;
   min-height: 2rem;
-  background: #ffcc66;
+  background: #f6d26f;
 }
 .widget.pagelink > div > a {
   display: block;
 }
+
+
 
 .switch > .actor, .pagejump > .actor {
   border-top-right-radius: 1rem;
@@ -270,6 +281,8 @@ h1 {
 .infotrigger .label {
   /* text-align: center; */
 }
+
+
 
 .infotrigger > div {
   width: 100%;
@@ -464,7 +477,12 @@ h1 {
   .value, .popup >div.head {
     width: 100%;
     height: 100%;
+	
 }
+
+
+
+
 
 .widget_container {
   position: relative;
@@ -540,7 +558,7 @@ body hr {
   margin: .1rem .0rem 0.0rem .1rem; 
   clear: both;
   border: none;
-  background: #cc99cc;
+  background: #d8a8d3;
   height: 1.0rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -551,6 +569,7 @@ body hr {
 .popup, .widget.image, .widget.video, .widget.diagram {
   margin-left: 0.7rem;
   margin-right: 0.7rem;
+  text-align: center;
 }
 
 .popup:before, .widget.image:before, .widget.video:before, .widget.diagram:before {
@@ -581,9 +600,12 @@ body hr {
   background: none;
   display: inline-block;
   float: none;
+  position: absolute;
+  left: 2rem;
+  top: 1.7rem;
 }
 
-.popup:after, .widget.image:after, .widget.video:after, .widget.diagram:after {
+.popup:after, .widget.image:after, .widget.video:after, .widget.diagram:after{
   content: "";
   visibility: visible;
   display: inline-block;
@@ -593,13 +615,16 @@ body hr {
   border-left-width: 0;
   height: 100%;
   min-width: 0.6rem;
-  margin-left: 0.1rem;
+ 
   position: absolute;
   top: 0;
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  margin-left: -1.2rem;
+  right: 0.8%;
 }
+
 
 .diagram_inline {
   width: 320px;
@@ -609,6 +634,7 @@ body hr {
 .diagram_preview {
   width: 10rem;
   height: 2rem;
+
 }
 
 #diagramTooltip {
@@ -652,9 +678,26 @@ body hr {
   border: #f00;
 }
 
+/*
+Farbe Navbar
+*/
+.navbar .widget .actor {
+background-color: #ff9966; /*#cdcae5;*/
+
+
+		}
+
+.navbar .widget > .label {
+margin-left: 2rem;
+margin-top:0.5rem;
+font-size: 7mm;	
+}
+
+.value { margin-top: 0.5rem;}
+
 .actor.red
 {
-  background-color:#CC0000;
+  background-color:#cc6666;
   color: #000;
 }
 .actor.white
@@ -729,7 +772,7 @@ body hr {
 }
 .actor.green
 {
-  background-color:#008000;
+  background-color:#4f953f; /*#008000;*/
   color: #000;
 }
 .actor.fuchsia
