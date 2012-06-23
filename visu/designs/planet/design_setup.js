@@ -1,5 +1,5 @@
 //
-//  Design setup for the planet design
+//  Design setup for the pure design
 //
 //   Copyright (C) 2012 by Christian Mayer
 //   cometvisu (at) ChristianMayer.de
@@ -21,11 +21,11 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-//$('head').data('colspanDefault', 1 ); // 6 is already the default
-$('#navbarLeft').data({'columns': 6, 'size': '12rem'} );
+/*$('#navbarLeft').data('columns', 6 );
+*/
 $('#main').data('columns', 12 );
-$('#navbarRight').data('columns', 1 );
-
+$('#navbarRight').data('columns', 6 );
+$('#navbarLeft').data({'columns': 6, 'size': '12rem'} );
 icons.insert({
   'CometVisu'             : { '*'  : '128',
                               '16' : { '*'         : 'sodium'                                                              ,
@@ -101,6 +101,8 @@ icons.insert({
                                        'white'     : { 'uri': 'icon/knx-uf-iconset/128x128_ws/fts_tuer.png'               , 'style': 'height: 2em;' } } },
   'it_fernsehen'          : { '*':   { '*'         : 'white',
                                        'white'     : { 'uri': 'icon/knx-uf-iconset/128x128_ws/it_fernsehen.png'           , 'style': 'height: 2em;' } } },
+  'it_fernsehen_an'           : { '*':   { '*'         : 'white',
+                                       'white'     : { 'uri': 'icon/knx-uf-iconset/128x128_ws/it_fernsehen_an.png'        , 'style': 'height: 2em;' } } },
   'it_funk_dcf77'         : { '*':   { '*'         : 'white',
                                        'white'     : { 'uri': 'icon/knx-uf-iconset/128x128_ws/it_funk_dcf77.png'          , 'style': 'height: 2em;' } } },
   'it_internet'           : { '*':   { '*'         : 'white',
@@ -127,6 +129,8 @@ icons.insert({
                                        'white'     : { 'uri': 'icon/knx-uf-iconset/128x128_ws/it_telefon.png'             , 'style': 'height: 2em;' } } },
   'it_wlan'               : { '*':   { '*'         : 'white',
                                        'white'     : { 'uri': 'icon/knx-uf-iconset/128x128_ws/it_wlan.png'                , 'style': 'height: 2em;' } } },
+  'licht_an'              : { '*':   { '*'         : 'white',
+                                       'white'     : { 'uri': 'icon/knx-uf-iconset/128x128_ws/licht_an.png'               , 'style': 'height: 2em;' } } },
   'licht_esstisch'        : { '*':   { '*'         : 'white',
                                        'white'     : { 'uri': 'icon/knx-uf-iconset/128x128_ws/licht_esstisch.png'         , 'style': 'height: 2em;' } } },
   'licht_indirekt'        : { '*':   { '*'         : 'white',
@@ -137,6 +141,7 @@ icons.insert({
                                        'white'     : { 'uri': 'icon/knx-uf-iconset/128x128_ws/licht_lichterkette.png'     , 'style': 'height: 2em;' } } },
   'licht_licht'           : { '*':   { '*'         : 'white',
                                        'white'     : { 'uri': 'icon/knx-uf-iconset/128x128_ws/licht_licht.png'            , 'style': 'height: 2em;' } } },
+  
   'licht_party'           : { '*':   { '*'         : 'white',
                                        'white'     : { 'uri': 'icon/knx-uf-iconset/128x128_ws/licht_party.png'            , 'style': 'height: 2em;' } } },
   'licht_regelung'        : { '*':   { '*'         : 'white',
