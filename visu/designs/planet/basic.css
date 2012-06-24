@@ -14,17 +14,23 @@
 html {
   font-size: 5.5mm;
 }
-@font-face { font-family: Lcars; src:url(fonts/LCARSGTJ3.ttf); }
 
 
+@font-face {
+	font-family: Ubuntu Condensed;src:url(fonts/ubuntu-font-family/UbuntuMono-R.ttf);}
+@font-face {
+	font-family: Ubuntu Condensed Bold;src:url(fonts/ubuntu-font-family/UbuntuMono-B.ttf);}
+
+ 
 body  {
   background: #000; 
-  font-family:'Arial Narrow','Nimbus Sans L',Helvetica,sans-serif;
+ /* font-family:'Arial Narrow','Nimbus Sans L',Helvetica,sans-serif;
   font-family:Impact, Charcoal, sans-serif;
   font-family:'Lucida Sans Unicode','Lucida Grande','Lucida Sans','DejaVu Sans Condensed',sans-serif;
-  font-family:'Helvetica LT UltraCompressed','Swiss911 UCm BT',OpenDinSchriftenEngshrift;
+  font-family:'Helvetica LT UltraCompressed','Swiss911 UCm BT',OpenDinSchriftenEngshrift;*/
   font-family:'Ubuntu Condensed';
-  /*font-family:'Lcars';*/
+  
+  
   overflow: hidden;
   margin: 0.1rem 0 0.1rem 0.1rem;
   -moz-user-select: none;
@@ -269,17 +275,16 @@ h1 {
 .widget .actor {
 	  text-align: center;
   min-height: 2rem;
-  background: #000;
+/* background: black;*/
   /*#FDF2B3;*/
    border-top-right-radius: 0.6rem;
   border-bottom-right-radius: 0.6rem;
   border-top-left-radius: 0.2rem;
   border-bottom-left-radius: 0.2rem;
+
   
 	}
-	.widget .actor .value {
-		
-	}
+
 /* Farbe Pagelink*/
 .widget.pagelink > div > a {
   display: block;
@@ -504,7 +509,17 @@ h1 {
 	
 }
 
-
+.widget.info  {
+background: #FBF87D;
+border-top-left-radius: 0.5rem;
+border-top-right-radius: 0.7rem;
+border-top-left-width: 0.7rem;
+border-top-right-width: 0.3rem;
+border-bottom-right-radius:0.7rem;
+border-bottom-left-radius:0.2rem;
+border-bottom-right-width:0.1rem;
+border-bottom-left-width:0.1rem;	
+}
 
 .widget .actor {
 	color: #CA9029;
@@ -710,6 +725,7 @@ Farbe Navbar
 .navbar .widget .actor {
 background-color: #D3A879;
 /*#ff9966; #cdcae5;*/
+
 		}
 
 
@@ -725,7 +741,9 @@ font-weight:bold;
 .navbar .widget > .label {
 margin-left: 2rem;
 margin-top:0.5rem;
-font-size: 7mm;	
+font-size: 6mm;	
+font-family:'Ubuntu Condensed Bold';
+/*font-weight:bold;*/
 }
 
 .value { margin-top: 0.5rem;}
