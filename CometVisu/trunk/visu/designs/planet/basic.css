@@ -19,12 +19,12 @@ html {
 
 body  {
   background: #000; 
- /* font-family:'Arial Narrow','Nimbus Sans L',Helvetica,sans-serif;
+  font-family:'Arial Narrow','Nimbus Sans L',Helvetica,sans-serif;
   font-family:Impact, Charcoal, sans-serif;
   font-family:'Lucida Sans Unicode','Lucida Grande','Lucida Sans','DejaVu Sans Condensed',sans-serif;
   font-family:'Helvetica LT UltraCompressed','Swiss911 UCm BT',OpenDinSchriftenEngshrift;
-  font-family:'Ubuntu Condensed';*/
-  font-family:'Lcars';
+  font-family:'Ubuntu Condensed';
+  /*font-family:'Lcars';*/
   overflow: hidden;
   margin: 0.1rem 0 0.1rem 0.1rem;
   -moz-user-select: none;
