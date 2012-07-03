@@ -89,6 +89,8 @@ function makeAddressList( page, handleVariant ) {
   page.find('address').each( function(){ 
     var src = this.textContent;
     var transform = this.getAttribute('transform');
+    if ((!src) || (!transform)) // fix broken address-entries in config
+      return;
     var mode = 1|2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
     switch( this.getAttribute('mode') )
     {
@@ -109,6 +111,7 @@ function makeAddressList( page, handleVariant ) {
     if( variantInfo[0] )
       ga_list.push( src );
     address[ '_' + src ] = [ transform, mode, variantInfo[1] ];
+    return; // end of each-func
   });
   return address;
 }
