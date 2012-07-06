@@ -291,6 +291,8 @@ h1 {
   text-align: center;
   min-height: 2rem;
   background: #f6d26f;
+  color: black;
+  
 }
 
 
@@ -325,7 +327,7 @@ h1 {
   content: "";
   height: 2rem;
   display: block;
-  border: 1rem solid #cc6699;
+  border: 1rem solid #606060;
   border-bottom-style: none;
   border-right-style: none;
   -moz-box-sizing:    border-box;
@@ -336,7 +338,7 @@ h1 {
 }
 
 .multitrigger > .label {
-  background: #cc6699;
+  background: #606060;
   width: 10rem;
   display: inline-block;
   margin-top: -2rem;
@@ -350,6 +352,8 @@ h1 {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  margin-bottom: 2rem;
+ 
 }
 
 .multitrigger > .actor_container {
@@ -404,7 +408,8 @@ h1 {
   content: "";
   visibility: visible;
   height: 2rem;
-  border: 1rem solid #cc6699;
+  border: 1rem solid #606060;
+  /*#cc6699;*/
   border-top-style: none;
   border-right-style: none;
   -moz-box-sizing:    border-box;
@@ -511,6 +516,10 @@ h1 {
 
 .widget.info  {
 background: #FBF87D;
+
+
+background: -webkit-gradient(linear, 0% 40%, 0% 100%, from(#FBF87D), to( #969D0B));
+     background: -moz-linear-gradient(0% 6% 270deg,#FBF87D, #969D0B);
 border-top-left-radius: 0.5rem;
 border-top-right-radius: 0.7rem;
 border-top-left-width: 0.7rem;
@@ -724,6 +733,8 @@ Farbe Navbar
 */
 .navbar .widget .actor {
 background-color: #D3A879;
+background:-moz-linear-gradient(bottom, white, #D3A879); /* Firefox */
+background:-webkit-gradient(linear,left bottom,left top,from(white),to( #D3A879)); /* Chrome, Safari */
 /*#ff9966; #cdcae5;*/
 
 		}
@@ -736,6 +747,7 @@ background-color: #D3A879;
 font-size: 8mm;
 font-variant:small-caps;
 font-weight:bold;
+text-shadow: 0.06rem 0.06rem 0 #000;
 }
 
 .navbar .widget > .label {
@@ -744,17 +756,37 @@ margin-top:0.5rem;
 font-size: 6mm;	
 font-family:'Ubuntu Condensed Bold';
 /*font-weight:bold;*/
+color: black;
+/*#464647;*/
+font-weight: bold;
+}
+.group.widget .actor{
+    background: #0A7878;
+    border-bottom-left-radius: 1rem;
+    color: black;
+}
+.value { margin-top: 0.5rem;}
+.diagram_info { /* Radius, Farbe, Farbverlauf*/
+	color: white;
+	border-top-left-radius: 0.3rem;
+	border-top-right-radius: 1rem;
+	border-bottom-right-radius:0.4rem;
+	border-bottom-left-radius:0.4rem;
+	background:-moz-linear-gradient(top, #6647F5,#000); /* Firefox */
+background:-webkit-gradient(linear,left top,left bottom,from(#6647F5),to( #000)); /* Chrome, Safari */
+
 }
 
-.value { margin-top: 0.5rem;}
-.diagram_info {
-	color: white;}
-
+/*switch Farbe*/
+.page .widget.switch{color: white;}
 .actor.red
 {
-  background-color:#cc6666;
-  color: #000;
+color: white;
+
+  background:-moz-linear-gradient(bottom, #9F0000, #F00000); /* Firefox */
+background:-webkit-gradient(linear,right top,left bottom,from( #F00000),to( #9F0000)); /* Chrome, Safari */
 }
+.actor.red > .value {font-size: 0mm;}
 .actor.white
 {
   background-color:#FFFFFF;
@@ -829,6 +861,11 @@ font-family:'Ubuntu Condensed Bold';
 {
   background-color:#4f953f; /*#008000;*/
   color: #000;
+   background:-moz-linear-gradient(bottom, #18691F, #578B3F); /* Firefox */
+background:-webkit-gradient(linear,right top,left bottom,from( #578B3F),to( #18691F)); /* Chrome, Safari */
+}
+.actor.green > .value {
+	font-size: 0mm;}
 }
 .actor.fuchsia
 {
