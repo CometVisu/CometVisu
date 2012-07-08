@@ -568,7 +568,7 @@ function scrollToPage( page_id, speed ) {
   main_scroll.seekTo( $('#'+page_id), speed ); // scroll to it
   var pagedivs=$('div', '#'+page_id); 
   for( var i = 0; i<pagedivs.length; i++) { //check for inline diagrams & refresh
-    if( pagedivs[i].className == 'diagram_inline') {
+    if( /diagram_inline/.test(pagedivs[i].className)) {
       refreshDiagram(pagedivs[i]);
     }
   }
