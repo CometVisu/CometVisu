@@ -142,8 +142,8 @@ addTransform( 'DPT', {
   '7.001' : {
     name  : 'DPT_Value_2_Ucount',
     encode: function( phy ){
-      var val = phy.toString( 16 );
-      return (val.length == 1 ? '800' : '80') + val;
+      var val = zeroFillString( parseInt(phy).toString( 16 ), 4);
+      return '80' + val;
     },
     decode: function( hex ){ 
       return parseInt( hex, 16 );
@@ -156,8 +156,9 @@ addTransform( 'DPT', {
   '8.001' : {
     name  : 'DPT_Value_2_Count',
     encode: function( phy ){
-      var val = phy < 0 ? phy + 65536 : phy;
-      return '80' + val.toString( 16 );
+      var val = parseInt ( phy );
+      val = val < 0 ? val + 65536 : val;
+      return '80' + zeroFillString( val.toString( 16 ), 4);
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 );
@@ -254,8 +255,8 @@ addTransform( 'DPT', {
   '12.001' : {
     name  : 'DPT_Value_4_Ucount',
     encode: function( phy ){
-      var val = phy.toString( 16 );
-      return (val.length == 1 ? '800' : '80') + val;
+      var val = zeroFillString( parseInt(phy).toString( 16 ), 8);
+      return '80' + val;
     },
     decode: function( hex ){ 
       return parseInt( hex, 16 );
@@ -268,9 +269,9 @@ addTransform( 'DPT', {
   '13.001' : {
     name  : 'DPT_Value_4_Count',
     encode: function( phy ){
-      var val = phy < 0 ? phy + 4294967296 : phy;
-      val = val.toString( 16 );
-      return (val.length == 1 ? '800' : '80') + val;
+      var val = parseInt ( phy );
+      val = val < 0 ? val + 4294967296 : val;
+      return '80' + zeroFillString( val.toString( 16 ), 8);
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 );
@@ -284,7 +285,7 @@ addTransform( 'DPT', {
   '14.001' : {
     name  : 'DPT_Value_Acceleration_Angular',
     encode: function( phy ){
-      return '80' + phy;
+      //FIXME: unimplemented (jspack?)
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 );
