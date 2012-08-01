@@ -313,7 +313,7 @@ function parseXML(xml) {
     var editMode = 'edit_config.html' == sPage;
     if( editMode  && '!edit' == condition ) return;
     if( !editMode && 'edit'  == condition ) return;
-    var text = this.textContent;
+    var text = $(this).text();
     switch( extend )
     {
       case 'all':    // append all parameters
@@ -323,6 +323,11 @@ function parseXML(xml) {
       case 'config': // append config file info
         var search = window.location.search.replace( /\$/g, '$$$$' );
         search = search.replace( /.*(config=[^&]*).*|.*/, '?$1' );
+		
+
+// text = $(text).replaceWith( /(href="[^"]*)(")/g, '$1' + search + '$2' );
+
+
         text = text.replace( /(href="[^"]*)(")/g, '$1' + search + '$2' );
         break;
     }
