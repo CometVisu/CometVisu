@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	design="metal" xsi:noNamespaceSchemaLocation="visu_config.xsd">
+	<meta>
+		<plugins>
+			<plugin name="gweather" />
+		</plugins>
+		<mappings>
+			<mapping name="OpenClose">
+				<entry value="0">
+					<icon name="fts_fenster_offen" />
+				</entry>
+				<entry value="1">
+					<icon name="fts_fenster" />
+				</entry>
+				<entry value="2">
+					<icon name="fts_fenster_gekippt" />
+				</entry>
+			</mapping>
+			<mapping name="DoorOpenClose">
+				<entry value="0">
+					<icon name="fts_tuer_offen" />
+				</entry>
+				<entry value="1">
+					<icon name="fts_tuer" />
+				</entry>
+			</mapping>
+			<mapping name="UpDown">
+				<entry value="0">
+					<icon name="steuer_auf" />
+				</entry>
+				<entry value="Auf">
+					<icon name="steuer_auf" />
+				</entry>
+				<entry value="1">
+					<icon name="steuer_ab" />
+				</entry>
+				<entry value="Zu">
+					<icon name="steuer_ab" />
+				</entry>
+			</mapping>
+			<mapping name="DaWeg">
+				<entry value="0">Weg</entry>
+				<entry value="1">Da</entry>
+			</mapping>
+			<mapping name="OnOff">
+				<entry value="0">O</entry>
+				<entry value="1">I</entry>
+			</mapping>
+			<mapping name="AudioMute">
+				<entry value="0">
+					<icon name="audio_mute" />
+				</entry>
+				<entry value="1">
+					<icon name="audio_audio" />
+				</entry>
+			</mapping>
+			<mapping name="Sign">
+				<entry range_min="-1e99" range_max="0">Negativ</entry>
+				<entry value="0">Null</entry>
+				<entry range_min="0" range_max="1e99">Positiv</entry>
+			</mapping>
+		</mappings>
+		<stylings>
+			<styling name="RedGreen">
+				<entry value="Aus">red</entry>
+				<entry value="Weg">red</entry>
+				<entry value="Fehlt">red</entry>
+				<entry value="Offen">red</entry>
+				<entry value="An">green</entry>
+				<entry value="Da">green</entry>
+				<entry value="Zu">green</entry>
+				<entry value="Vorhanden">red</entry>
+				<entry value="0">red</entry>
+				<entry value="1">green</entry>
+			</styling>
+			<styling name="GreenRed">
+				<entry value="Aus">green</entry>
+				<entry value="An">red</entry>
+				<entry value="1">red</entry>
+				<entry value="0">green</entry>
+			</styling>
+			<styling name="BluePurpleRed">
+				<entry range_min="-100" range_max="0">blue</entry>
+				<entry value="0">purple</entry>
+				<entry range_min="0" range_max="100">red</entry>
+			</styling>
+			<styling name="BluePurpleRedTemp">
+				<entry range_min="0" range_max="18">blue</entry>
+				<entry range_min="18" range_max="21">purple</entry>
+				<entry range_min="21" range_max="100">red</entry>
+			</styling>
+		</stylings>
+		<statusbar> <status type="html"><![CDATA[ <img src="icon/comet_64_ff8000.png" 
+			alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a> 
+			- <a href=".?forceReload=true">Reload</a> - <a href="?config=demo">Widget 
+			Demo</a> ]]></status> <status type="html" condition="!edit" hrefextend="config"><![CDATA[ 
+			- <a href="edit_config.html">Edit</a> ]]></status> <status type="html" condition="edit" 
+			hrefextend="all"><![CDATA[ - <a href=".">normal Mode</a> ]]></status> <status 
+			type="html" hrefextend="config"><![CDATA[ - <a href="check_config.php">Check 
+			Config</a> ]]></status> </statusbar>
+	</meta>
+	<page name="Übersicht">
+		<navbar position="left" dynamic="true" width="200px">
+			<group name="Räume" nowidget="true">
+				<pagejump target="Wohnzimmer" name="Wohnen">
+					<label>
+						<icon name="it_fernsehen" />
+					</label>
+				</pagejump>
+				<pagejump target="Schlafzimmer" name="Schlafen">
+					<label>
+						<icon name="szene_schlafen" />
+					</label>
+				</pagejump>
+			</group>
+			<group name="Sonstiges" nowidget="true">
+				<pagejump target="Multiroom" name="Audio">
+					<label>
+						<icon name="audio_sound" />
+					</label>
+				</pagejump>
+				<pagejump target="Temperaturen" name="Temperatur">
+					<label>
+						<icon name="temp_temperatur" />
+					</label>
+				</pagejump>
+			</group>
+		</navbar>
+		<group name="Allgemein" nowidget="true">
+			<layout colspan="12" />
+			<info>
+				<label>Modus</label>
+				<address transform="DPT:16.001" variant="">12/1/3</address>
+			</info>
+			<info>
+				<label>Präsenz</label>
+				<address transform="DPT:16.001" variant="">12/1/0</address>
+			</info>
+			<switch mapping="OnOff" styling="RedGreen">
+				<layout colspan="3" />
+				<label>Follow me</label>
+				<address transform="DPT:1.001" variant="">12/1/6</address>
+			</switch>
+			<switch mapping="OnOff" styling="RedGreen">
+				<layout colspan="3" />
+				<label>Abwesend</label>
+				<address transform="DPT:1.001" variant="">12/1/2</address>
+			</switch>
+			<switch mapping="OnOff" styling="RedGreen">
+				<layout colspan="3" />
+				<label>Wecker</label>
+				<address transform="DPT:1.001" variant="">12/1/8</address>
+			</switch>
+			<page name="Multiroom">
+				<layout colspan="3" />
+				<group name="Allgemein" nowidget="true">
+					<layout colspan="12" />
+					<switch mapping="OnOff" styling="RedGreen">
+						<label>Webradio</label>
+						<address transform="DPT:1.001" variant="">12/1/7</address>
+					</switch>
+					<switch mapping="AudioMute" styling="RedGreen">
+						<layout colspan="3" />
+						<label>LS Schlafzimmer</label>
+						<address transform="DPT:1.001" variant="">13/5/1</address>
+					</switch>
+					<switch mapping="AudioMute" styling="RedGreen">
+						<layout colspan="3" />
+						<label>LS Wohnzimmer</label>
+						<address transform="DPT:1.001" variant="">14/1/3</address>
+					</switch>
+				</group>
+				<!-- iframe src="http://drake:9000" width="100%" height="600px"> <layout 
+					colspan="12"/> </iframe -->
+			</page>
+		</group>
+		<group name="Wetter" nowidget="true">
+			<layout colspan="12" />
+			<gweather city="Warstein" lang="de" current="true" forecast="true">
+				<layout colspan="7" />
+			</gweather>
+		</group>
+		<group nowidget="true">
+			<layout colspan="6" />
+			<page name="Test"><layout colspan="3" /></page>
+			<page name="Wohnzimmer">
+				<layout colspan="3" />
+				<group name="Licht" nowidget="true">
+					<layout colspan="12" />
+					<switch mapping="OnOff" styling="RedGreen">
+						<layout colspan="3" />
+						<label>Strahler</label>
+						<address transform="DPT:1.001" variant="">13/0/0</address>
+					</switch>
+					<switch mapping="OnOff" styling="RedGreen">
+						<layout colspan="3" />
+						<label>Spot</label>
+						<address transform="DPT:1.001" variant="">13/0/1</address>
+					</switch>
+					<switch mapping="OnOff" styling="RedGreen">
+						<layout colspan="3" />
+						<label>Schrank</label>
+						<address transform="DPT:1.001" variant="">13/0/2</address>
+					</switch>
+					<switch mapping="OnOff" styling="RedGreen">
+						<layout colspan="3" />
+						<label>Stehlampe</label>
+						<address transform="DPT:1.001" variant="">13/0/24</address>
+					</switch>
+				</group>
+				<group name="Jalousien" nowidget="true">
+					<layout colspan="12" />
+					<multitrigger button1label="&#8593;" button1value="0"
+						button2label="&#8595;" button2value="1" styling="RedGreen"
+						mapping="UpDown">
+						<label><icon name="fts_rollo" /> Fenster</label>
+						<address transform="DPT:1.001" variant="">13/0/3</address>
+					</multitrigger>
+					<multitrigger button1label="&#8593;" button1value="0"
+						button2label="&#8595;" button2value="1" styling="RedGreen"
+						mapping="UpDown">
+						<label><icon name="fts_rollo" /> Tür</label>
+						<address transform="DPT:1.001" variant="">13/0/4</address>
+					</multitrigger>
+				</group>
+				<group name="Steckdosen" nowidget="true">
+					<layout colspan="12" />
+					<switch mapping="OnOff" styling="RedGreen">
+						<layout colspan="3" />
+						<label>SD 1</label>
+						<address transform="DPT:1.001" variant="">10/0/0</address>
+					</switch>
+					<switch mapping="OnOff" styling="RedGreen">
+						<layout colspan="3" />
+						<label>SD 2</label>
+						<address transform="DPT:1.001" variant="">13/0/5</address>
+					</switch>
+					<switch mapping="OnOff" styling="RedGreen">
+						<layout colspan="3" />
+						<label>SD 3</label>
+						<address transform="DPT:1.001" variant="">13/0/6</address>
+					</switch>
+					<switch mapping="OnOff" styling="RedGreen">
+						<layout colspan="3" />
+						<label>SD 4</label>
+						<address transform="DPT:1.001" variant="">13/0/13</address>
+					</switch>
+				</group>
+				<group name="Heizung" nowidget="true">
+					<slide min="0" max="100">
+						<label><icon name="sani_heizung" />Heizung</label>
+						<address transform="DPT:5.001" variant="">13/0/38</address>
+					</slide>
+					<info format="%.1f °C">
+						<label><icon name="temp_temperatur" />Ist</label>
+						<address transform="DPT:9.001" variant="">13/0/14</address>
+					</info>
+					<infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+						downvalue="-0.5" styling="BluePurpleRedTemp" align="center"
+						infoposition="1" format="%.1f °C" change="absolute" min="15" max="25">
+						<label><icon name="temp_regelung" />Soll</label>
+						<address transform="DPT:9.001" variant="">13/0/39</address>
+					</infotrigger>
+				</group>
+				<group name="Sonstiges" nowidget="true">
+					<info mapping="OpenClose">
+						<layout colspan="3" />
+						<label>Fenster</label>
+						<address transform="DPT:1.001" variant="">13/0/34</address>
+					</info>
+					<info mapping="DoorOpenClose">
+						<layout colspan="3" />
+						<label>Tür</label>
+						<address transform="DPT:1.001" variant="">13/0/35</address>
+					</info>
+					<info mapping="OnOff" styling="RedGreen">
+						<label>Bewegung</label>
+						<address transform="DPT:1.001" variant="">13/0/36</address>
+					</info>
+				</group>
+			</page>
+			<page name="Schlafzimmer">
+				<layout colspan="3" />
+				<group name="Licht" nowidget="true">
+					<layout colspan="12" />
+					<switch mapping="OnOff" styling="RedGreen">
+						<label>Licht</label>
+						<address transform="DPT:1.001" variant="">13/1/0</address>
+					</switch>
+					<info format="%.2f Lux">
+						<label><icon name="licht_licht" />Helligkeit</label>
+						<address transform="DPT:9.001" variant="">13/1/25</address>
+					</info>
+				</group>
+				<group name="Jalousien + Fenster" nowidget="true">
+					<layout colspan="12" />
+					<multitrigger button1label="&#8593;" button1value="0"
+						button2label="&#8595;" button2value="1">
+						<label><icon name="fts_rollo" />Jalousien</label>
+						<address transform="DPT:1.001" variant="">13/1/1</address>
+					</multitrigger>
+					<info mapping="OpenClose">
+						<label>Fenster</label>
+						<address transform="DPT:1.001" variant="">13/1/17</address>
+					</info>
+				</group>
+				<group align="center" name="Heizung" nowidget="true">
+					<slide min="0" max="100">
+						<label><icon name="sani_heizung" />Heizung</label>
+						<address transform="DPT:5.001" variant="">13/1/27</address>
+					</slide>
+					<info format="%.1f °C">
+						<label><icon name="temp_temperatur" />Ist</label>
+						<address transform="DPT:9.001" variant="">13/1/12</address>
+					</info>
+					<infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+						downvalue="-0.5" styling="BluePurpleRedTemp" align="center"
+						infoposition="1" format="%.1f °C" change="absolute" min="15" max="25">
+						<label><icon name="temp_regelung" />Soll</label>
+						<address transform="DPT:9.001" variant="">13/1/28</address>
+					</infotrigger>
+				</group>
+				<group align="center" name="Verbraucher" nowidget="true">
+					<switch mapping="AudioMute" styling="RedGreen">
+						<label>Lautsprecher</label>
+						<address transform="DPT:1.001" variant="">13/5/1</address>
+					</switch>
+					<switch mapping="OnOff" styling="RedGreen">
+						<label>TV</label>
+						<address transform="DPT:1.001" variant="">13/1/4</address>
+					</switch>
+					<switch mapping="OnOff" styling="RedGreen">
+						<label>DVD</label>
+						<address transform="DPT:1.001" variant="">13/1/7</address>
+					</switch>
+					<switch mapping="OnOff" styling="RedGreen">
+						<label>IR</label>
+						<address transform="DPT:1.001" variant="">13/1/6</address>
+					</switch>
+				</group>
+			</page>
+			<page name="Temperaturen">
+				<layout colspan="3" />
+				<info format="%.1f °C">
+					<label><icon name="temp_aussen" />Aussen</label>
+					<address transform="DPT:9.001" variant="">13/6/1</address>
+				</info>
+				<info format="%.1f °C">
+					<label><icon name="temp_frost" />Kühlbox</label>
+					<address transform="DPT:9.001" variant="">13/5/4</address>
+				</info>
+				<info format="%.1f °C">
+					<label><icon name="temp_innen" />Innen</label>
+					<address transform="DPT:9.001" variant="">14/1/6</address>
+				</info>
+			</page>
+		</group>
+	</page>
+</pages>

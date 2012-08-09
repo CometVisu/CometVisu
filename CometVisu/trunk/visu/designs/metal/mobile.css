@@ -1,0 +1,20 @@
+.widget_container {
+    width: 100%;
+}
+
+#bottom {
+    display: none;
+}
+
+.page {
+    overflow: visible;
+}
+.group { 
+	margin: 0.2em 0.1em;
+}
+.navbar, #navbarLeft { display: none !important; width: 0 !important; }
+
+.widget .ui-slider
+{
+  width: 40%;
+}
