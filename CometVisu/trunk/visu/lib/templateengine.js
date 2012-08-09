@@ -549,6 +549,15 @@ function create_pages( page, path, flavour, type ) {
 
 function scrollToPage( page_id, speed ) {
   $('.activePage').removeClass('activePage');
+  $('.pagejump.active').removeClass('active');
+  if (page_id.match(/^[0-9_]+$/)==null) {
+	  // find Page-ID by name
+	  $('.page h1').each(function(i) {
+		  if ($(this).text()==page_id) {
+			  page_id = $(this).closest(".page").attr('id');
+		  }
+	  });
+  }
   $('#'+page_id).addClass('pageActive activePage');                         // show new page
   $('#'+page_id+'_navbar').addClass('navbarActive');
 
@@ -577,6 +586,19 @@ function scrollToPage( page_id, speed ) {
       refreshDiagram(pagedivs[i]);
     }
   }
+  // set pagejump for this page to active if it exists
+  $(".pagejump > .actor").each(function (i) {
+	  var data = $(this).data();
+	  if (data.target.match(/^[0-9_]+$/)==null) {
+		  // get page id by name
+		  if ($('#'+page_id+' h1').text()==data.target) {
+			  $(this).parent().addClass("active");
+		  }
+	  }
+	  else if (page_id==data.target) {
+		  $(this).parent().addClass("active");
+	  }
+  });
 }
 
 function updateTopNavigation() {

@@ -28,6 +28,7 @@ basicdesign.addCreator('navbar', {
     
     var dynamic  = $n.attr('dynamic') == 'true' ? true : false;
     var position = $n.attr('position') || 'left';
+	var size = $n.attr('width') || 300;
     switch( position )
     {
       case 'top':
@@ -36,13 +37,13 @@ basicdesign.addCreator('navbar', {
         
       case 'left':
         $('#navbarLeft').append( container );
-        var thisSize = $('#navbarLeft').data('size') || 300; // FIXME - only a temporal solution
+        var thisSize = $('#navbarLeft').data('size') || size; // FIXME - only a temporal solution
         if( dynamic ) navbarSetSize( 'left', thisSize );
         break;
         
       case 'right':
         $('#navbarRight').append( container );
-        var thisSize = $('#navbarRight').data('size') || 300; // FIXME - only a temporal solution
+        var thisSize = $('#navbarRight').data('size') || size; // FIXME - only a temporal solution
         if( dynamic ) navbarSetSize( 'right', thisSize );
         break;
         
