@@ -344,7 +344,7 @@ function setup_page( xml )
   // and now setup the pages
   var page = $( 'pages > page', xml )[0]; // only one page element allowed...
 
-  create_pages(page, '0');
+  create_pages(page, 'id_0');
 
   // all containers
   if (!/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(navigator.userAgent.toLowerCase())) {
@@ -371,9 +371,9 @@ function setup_page( xml )
   main_scroll.onSeek( updateTopNavigation );
   
   if ($.getUrlVar('startpage')) {
-    scrollToPage( $.getUrlVar('startpage'), 0 );
+    scrollToPage( 'id_'+$.getUrlVar('startpage'), 0 );
   } else {
-    scrollToPage( '0', 0 ); // simple solution to show page name on top at start
+    scrollToPage( 'id_0', 0 ); // simple solution to show page name on top at start
   }
 
   $('.fast').bind('click', function(){
@@ -603,13 +603,16 @@ function scrollToPage( page_id, speed ) {
 
 function updateTopNavigation() {
   var path = $('#main .page').eq( this.getIndex() ).attr('id').split( '_' );
-  var id = ''; //path[0];
+  var id = 'id_'; //path[0];
   var nav = '';
-  for( var i = 0; i < path.length; i++ ) {
+  for( var i = 1; i < path.length; i++ ) { // element 0 is id_ (JNK)
     id  += path[i];
-    nav += (0==i ? '' : '<span> &#x25ba; </span>')
+    if ($('#'+id).hasClass("page")) {
+    
+    nav += ((1==i) ? '' : '<span> &#x25ba; </span>')
         +  '<a href="javascript:scrollToPage(\'' +id+ '\')">'
-        + $('#' + id + ' h1').text() + '</a>';
+        +  $('#' + id + ' h1').text() + '</a>';
+    }
     id  += '_';
   }
   $('.nav_path').html( nav );
