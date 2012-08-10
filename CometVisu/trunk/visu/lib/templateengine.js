@@ -599,6 +599,7 @@ function scrollToPage( page_id, speed ) {
 		  $(this).parent().addClass("active");
 	  }
   });
+  $(window).trigger('scrolltopage',page_id);
 }
 
 function updateTopNavigation() {

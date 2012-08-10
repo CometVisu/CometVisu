@@ -23,6 +23,49 @@
 //$(".value < img").css("padding", "0");
 $('#navbarLeft').data({'columns': 6} );
 
+var rootPageJumpChanged = false;
+
+$(window).resize(function() {
+	if ($('.navbar').size()>0) {
+		// hide top navigation
+		if ($('#top').css('display')!='none') {
+			$('#top').css("display","none");
+			$('#top > .nav_path').css("display","none");
+			// because the #top bar is missing now we have to repositition the elements in order to fit the new page height
+			handleResize();
+		}
+		if (!rootPageJumpChanged) {
+			$('.navbar > .widget_container:first-child .group .pagejump:first-child .actor').each(function(i) {
+				var data = $(this).data();
+				var target = data.target;
+				if (target.match(/^id_[0-9_]+$/)==null) {
+					// find Page-ID by name
+					$('.page h1').each(function(i) {
+						if ($(this).text()==target) {
+							target = $(this).closest(".page").attr('id');
+							return;
+						}
+					});
+				}
+				if (target=="id_0") {
+					// pagejump to root-page found
+					$(this).closest(".group").css({
+						'border-top-right-radius': 0,
+						'border-bottom-left-radius': '1em',
+						'margin-top': 0,
+						'border-top': 'none',
+						'border-left': '2px solid #B3B3B3'
+					});
+					$('.navbar > .widget_container:first-child .group .widget_container:last-child, .navbar > .widget_container:first-child .group div.widget_container:last-child .widget').css({
+						'border-bottom-left-radius': '1em',
+						'border': 'none'
+					});	
+				}
+			});		
+			rootPageJumpChanged=true;
+		}
+	}
+});
 
 function getOffsetCorners(elem) {
 	return {
@@ -49,25 +92,25 @@ function roundCorners() {
 				if (roundUpperCorners) {
 					// upper left corner is done by regular css-rule
 					// upper right corner
-					if (Math.abs(elemCorners.top_right.top-groupCorners.top_right.top)<threshold && Math.abs(elemCorners.top_right.left-groupCorners.top_right.left)<threshold) {
-						$(this).css({'border-top-right-radius': '1em'});
-						$(this).children().css({'border-top-right-radius': '1em'});
+					if (group.css('border-top-right-radius')!="0px" && Math.abs(elemCorners.top_right.top-groupCorners.top_right.top)<threshold && Math.abs(elemCorners.top_right.left-groupCorners.top_right.left)<threshold) {
+						$(this).css({'border-top-right-radius': group.css('border-top-right-radius')});
+						$(this).children().css({'border-top-right-radius': group.css('border-top-right-radius')});
 					}
 				}
-				if (Math.abs(elemCorners.bottom_right.top-groupCorners.bottom_right.top)<threshold && Math.abs(elemCorners.bottom_right.left-groupCorners.bottom_right.left)<threshold) {
-					$(this).css({'border-bottom-right-radius': '1em'});
-					$(this).children().css({'border-bottom-right-radius': '1em'});
+				if (group.css('border-bottom-right-radius')!="0px" && Math.abs(elemCorners.bottom_right.top-groupCorners.bottom_right.top)<threshold && Math.abs(elemCorners.bottom_right.left-groupCorners.bottom_right.left)<threshold) {
+					$(this).css({'border-bottom-right-radius': group.css('border-bottom-right-radius')});
+					$(this).children().css({'border-bottom-right-radius': group.css('border-bottom-right-radius')});
 				}
-				if (Math.abs(elemCorners.bottom_left.top-groupCorners.bottom_left.top)<threshold && Math.abs(elemCorners.bottom_left.left-groupCorners.bottom_left.left)<threshold) {
-					$(this).css({'border-bottom-left-radius': '1em'});
-					$(this).children().css({'border-bottom-left-radius': '1em'});
+				if (group.css('border-bottom-left-radius')!="0px" && Math.abs(elemCorners.bottom_left.top-groupCorners.bottom_left.top)<threshold && Math.abs(elemCorners.bottom_left.left-groupCorners.bottom_left.left)<threshold) {
+					$(this).css({'border-bottom-left-radius': group.css('border-bottom-left-radius')});
+					$(this).children().css({'border-bottom-left-radius': group.css('border-bottom-left-radius')});
 				}
 			});		
 		});
 }
-//$(window).bind('resize',function() {
-//	roundCorners();
-//});
+$(window).bind('scrolltopage',function() {
+	roundCorners();
+});
 
 icons.insert({
   'CometVisu'             : { '*'  : '128',
