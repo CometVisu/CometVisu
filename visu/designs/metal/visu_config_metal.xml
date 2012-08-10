@@ -181,7 +181,7 @@
 				<layout colspan="7" />
 			</gweather>
 		</group>
-		<group nowidget="true">
+		<group name="Räume" nowidget="true">
 			<layout colspan="6" />
 			<page name="Test"><layout colspan="3" /></page>
 			<page name="Wohnzimmer">
