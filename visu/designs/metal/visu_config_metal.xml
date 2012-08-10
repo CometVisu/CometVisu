@@ -102,6 +102,13 @@
 	</meta>
 	<page name="Übersicht">
 		<navbar position="left" dynamic="true" width="200px">
+			<group nowidget="true">
+				<pagejump target="Übersicht">
+					<label>
+						<icon name="steuer_home" />
+					</label>
+				</pagejump>
+			</group>
 			<group name="Räume" nowidget="true">
 				<pagejump target="Wohnzimmer" name="Wohnen">
 					<label>
