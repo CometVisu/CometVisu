@@ -11,7 +11,7 @@ body
   font-size: 5.5mm;
   overflow: hidden;
   margin:0;
- color:   	#fff   /*{a-body-color}*/;
+  color:   	#fff   /*{a-body-color}*/;
 	text-shadow:   0   /*{a-body-shadow-x}*/   1px   /*{a-body-shadow-y}*/   1px   /*{a-body-shadow-radius}*/   #111   /*{a-body-shadow-color}*/;
 	background:   			#222   /*{a-body-background-color}*/;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(   #444   /*{a-body-background-start}*/), to(   #222   /*{a-body-background-end}*/)); /* Saf4+, Chrome */
@@ -107,7 +107,7 @@ div#top {
  /* border:yellow 1px solid; */
   border-color: #020202;
   border-style: solid;
-  border-width: 2px 0px 0px 2px;
+  border-width: 0 1px 1px 0;
   
   min-height: 2em;
   text-shadow: 0 1px 1px #111;
@@ -260,7 +260,7 @@ div#top {
 .switchUnpressed div, .switchPressed div
 {
   padding: 5px;
-  width: 3em;
+  min-width: 3em;
   float: left;
   background: transparent;
   text-align: center;
@@ -359,7 +359,7 @@ div#top {
 }
 
 .ui-slider { position: relative; text-align: left; }
-.ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.6em; height: 1.6em; cursor: default; }
+.ui-slider .ui-slider-handle { position: absolute; z-index: 2; min-width: 1.6em; height: 1.6em; cursor: default; }
 .ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
 
 .ui-slider-horizontal { height: .8em; }
@@ -401,9 +401,21 @@ div#top {
   -webkit-border-radius: 12px;
   border-radius: 12px;
   padding: 1px;
-  background: url(images/button_bg.png) #171717 repeat-x;
+  /*background: url(images/button_bg.png) #171717 repeat-x;*/
   border-width:  1px 2px 2px 1px;
   border-color: #282828 #010101 #010101 #282828;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#2d2d2d)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(#444444, #2d2d2d); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(#444444, #2d2d2d); /* FF3.6 */
+	background-image:     -ms-linear-gradient(#444444, #2d2d2d); /* IE10 */
+	background-image:      -o-linear-gradient(#444444, #2d2d2d); /* Opera 11.10+ */
+	background-image:         linear-gradient(#444444, #2d2d2d);
+}
+.widget .ui-slider-handle {
+	text-decoration: none;
+	color: #FFF;
+	text-align: center;
+	/*padding: 0 0.5em;*/
 }
 /* Clearfix */
 .clearfix:after {
