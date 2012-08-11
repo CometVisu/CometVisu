@@ -552,11 +552,7 @@ function scrollToPage( page_id, speed ) {
   $('.pagejump.active').removeClass('active');
   if (page_id.match(/^id_[0-9_]+$/)==null) {
 	  // find Page-ID by name
-	  $('.page h1').each(function(i) {
-		  if ($(this).text()==page_id) {
-			  page_id = $(this).closest(".page").attr('id');
-		  }
-	  });
+	  page_id = $('.page h1:contains('+page_id+')').closest(".page").attr("id");
   }
   $('#'+page_id).addClass('pageActive activePage');                         // show new page
   $('#'+page_id+'_navbar').addClass('navbarActive');
@@ -588,14 +584,13 @@ function scrollToPage( page_id, speed ) {
   }
   // set pagejump for this page to active if it exists
   $(".pagejump > .actor").each(function (i) {
-	  var data = $(this).data();
-	  if (data.target.match(/^id_[0-9_]+$/)==null) {
+	  if ($(this).data().target.match(/^id_[0-9_]+$/)==null) {
 		  // get page id by name
-		  if ($('#'+page_id+' h1').text()==data.target) {
+		  if ($('#'+page_id+' h1:contains('+$(this).data().target+')').size()>0) {
 			  $(this).parent().addClass("active");
 		  }
 	  }
-	  else if (page_id==data.target) {
+	  else if (page_id==$(this).data().target) {
 		  $(this).parent().addClass("active");
 	  }
   });
