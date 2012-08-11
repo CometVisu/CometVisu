@@ -63,7 +63,7 @@ VisuDesign_Custom.prototype.addCreator("designtoggle", {
         'type'    : 'toggle'
       })
       .bind('click', function() {
-        var designs     = [ 'pure', 'discreet', 'discreet_sand', 'discreet_slim', 'alaska', 'alaska_slim', 'planet' ];
+        var designs     = [ 'pure', 'discreet', 'discreet_sand', 'discreet_slim', 'alaska', 'alaska_slim', 'planet', 'metal' ];
         var oldDesign = $('.value',this).text();
         var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
         
