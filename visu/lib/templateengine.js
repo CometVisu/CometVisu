@@ -385,10 +385,10 @@ function setup_page( xml )
   // reaction on browser back button
   window.onpopstate = function(e) {
     // where do we come frome?
-    lastpage = $('body').data("lastpage")
+    lastpage = e.state;
     if (lastpage) {
-      // browser back button takes us one level higher
-      scrollToPage(lastpage);
+      // browser back button takes back to the last page
+      scrollToPage(lastpage,0,true);
     }
   }
   
@@ -548,7 +548,7 @@ function create_pages( page, path, flavour, type ) {
   return retval;
 }
 
-function scrollToPage( page_id, speed ) {
+function scrollToPage( page_id, speed, skipHistory ) {
   $('.activePage').removeClass('activePage');
   $('.pagejump.active').removeClass('active');
   if (page_id.match(/^id_[0-9_]+$/)==null) {
@@ -563,21 +563,9 @@ function scrollToPage( page_id, speed ) {
   $('#'+page_id).addClass('pageActive activePage');                         // show new page
   $('#'+page_id+'_navbar').addClass('navbarActive');
   
-  // which is the parent of target page_id?
-  // => set this id as lastpage in url for window.onpopstate handling
-  var path = page_id.split( '_' );
-  if (path.length > 2) {
-    var parentPage=getParentPage($('#'+page_id));
-    if (parentPage!=null)
-      $('body').data("lastpage", parentPage.attr("id"));
-  }
-  else {
-    // top level
-    $('body').data("lastpage", page_id);
-  }
-  
   // push new state to history
-  window.history.pushState(page_id, page_id, window.location.href);
+  if (skipHistory==undefined)
+    window.history.pushState(page_id, page_id, window.location.href);
     
   main_scroll.seekTo( $('#'+page_id), speed ); // scroll to it
   var pagedivs=$('div', '#'+page_id); 
