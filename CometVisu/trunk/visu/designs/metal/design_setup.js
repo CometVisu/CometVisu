@@ -23,25 +23,29 @@
 //$(".value < img").css("padding", "0");
 $('#navbarLeft').data({'columns': 6} );
 
+var started=true;
+
 $(window).resize(function() {
-	if ($('.navbar').size()>0) {
-		// hide top navigation
-		if ($('#top').css('display')!='none') {
-			$('#top').css("display","none");
-			$('#top > .nav_path').css("display","none");
-			// because the #top bar is missing now we have to reposition the elements in order to fit the new page height
-			handleResize();
+	// only execute on start
+	if (started) {
+		if ($('.navbar').size()>0) {
+			$('.navbar > .widget_container:first-child .group:not(.root) .pagejump:first-child .actor').each(function(i) {
+				var target = ($(this).data().target.match(/^id_[0-9_]+$/)==null) ? $('.page h1:contains('+$(this).data().target+')').closest(".page").attr("id") : $(this).data().target;
+				if (target=="id_0") {
+					// pagejump to root-page found
+					$(this).closest(".group").addClass("root");
+				}
+			});
 		}
-		$('.navbar > .widget_container:first-child .group:not(.root) .pagejump:first-child .actor').each(function(i) {
-			var target = ($(this).data().target.match(/^id_[0-9_]+$/)==null) ? $('.page h1:contains('+$(this).data().target+')').closest(".page").attr("id") : $(this).data().target;
-			if (target=="id_0") {
-				// pagejump to root-page found
-				$(this).closest(".group").addClass("root");
+		if (/(iphone|ipod)/i.test(navigator.userAgent.toLowerCase())) {
+			$('#top').css('margin-top','1em');
+		}
+		$('.navbar .widget .label > img').each(function(i) {
+			if ($(this).parent().text().trim()) {
+				$(this).css("position","relative");
 			}
 		});
-	}
-	if (/(iphone|ipod)/i.test(navigator.userAgent.toLowerCase())) {
-		 $('#top').css('margin-top','1em');
+		started=false;
 	}
 });
 

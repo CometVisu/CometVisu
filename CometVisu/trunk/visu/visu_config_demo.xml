@@ -135,13 +135,13 @@
     <navbar position="left" dynamic="true" width="200px">
       <text>Test 1</text>
       <line/>
-      <pagejump target="0_34_7" name="Lithium">
+      <pagejump target="id_0_34_7" name="Lithium">
         <label>Flavour</label>
       </pagejump>
-      <pagejump target="0_34_8" name="Potassium">
+      <pagejump target="id_0_34_8" name="Potassium">
         <label>Flavour</label>
       </pagejump>
-      <pagejump target="0_36">
+      <pagejump target="id_0_36">
         <label>2D</label>
       </pagejump>
     </navbar>
@@ -597,13 +597,13 @@
       <navbar position="left" dynamic="true" width="200px">
         <text>Test 2</text>
         <line/>
-        <pagejump target="0_34_7" name="Lithium">
+        <pagejump target="id_0_34_7" name="Lithium">
           <label>Flavour</label>
         </pagejump>
-        <pagejump target="0_34_8" name="Potassium">
+        <pagejump target="id_0_34_8" name="Potassium">
           <label>Flavour</label>
         </pagejump>
-        <pagejump target="0_36">
+        <pagejump target="id_0_36">
           <label>2D</label>
         </pagejump>
       </navbar>
