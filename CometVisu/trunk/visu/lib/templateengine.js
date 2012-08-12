@@ -552,13 +552,12 @@ function scrollToPage( page_id, speed ) {
   $('.activePage').removeClass('activePage');
   $('.pagejump.active').removeClass('active');
   if (page_id.match(/^id_[0-9_]+$/)==null) {
-	  // find Page-ID by name
-	  $('.page h1:contains('+page_id+')').each(function (i) {
-		  if ($(this).text()==page_id) {
-			  page_id = $(this).closest(".page").attr("id");
-		  }
-	  });
-	  
+    // find Page-ID by name
+    $('.page h1:contains('+page_id+')').each(function (i) {
+      if ($(this).text()==page_id) {
+       page_id = $(this).closest(".page").attr("id");
+      }
+    });  
   }
   updatePageParts($('#'+page_id));
   $('#'+page_id).addClass('pageActive activePage');                         // show new page
@@ -568,9 +567,9 @@ function scrollToPage( page_id, speed ) {
   // => set this id as lastpage in url for window.onpopstate handling
   var path = page_id.split( '_' );
   if (path.length > 2) {
-	  var parentPage=getParentPage($('#'+page_id));
-	  if (parentPage!=null)
-		  $('body').data("lastpage", parentPage.attr("id"));
+    var parentPage=getParentPage($('#'+page_id));
+    if (parentPage!=null)
+      $('body').data("lastpage", parentPage.attr("id"));
   }
   else {
     // top level
@@ -589,19 +588,19 @@ function scrollToPage( page_id, speed ) {
   }
   // set pagejump for this page to active if it exists
   $(".pagejump > .actor").each(function (i) {
-	  if ($(this).data().target.match(/^id_[0-9_]+$/)==null) {
-		  // get page id by name
-		  var actor = $(this);
-		  var target = $(this).data().target;
-		  $('#'+page_id+' h1:contains('+target+')').each(function(i) {
-			 if ($(this).text()==target) {
-				 actor.parent().addClass('active');
-			 }
-		  }); 
-	  }
-	  else if (page_id==$(this).data().target) {
-		  $(this).parent().addClass("active");
-	  }
+    if ($(this).data().target.match(/^id_[0-9_]+$/)==null) {
+      // get page id by name
+      var actor = $(this);
+      var target = $(this).data().target;
+      $('#'+page_id+' h1:contains('+target+')').each(function(i) {
+        if ($(this).text()==target) {
+          actor.parent().addClass('active');
+        }
+      }); 
+    }
+    else if (page_id==$(this).data().target) {
+      $(this).parent().addClass("active");
+    }
   });
   $(window).trigger('scrolltopage',page_id);
 }
@@ -755,104 +754,99 @@ function navbarSetSize( position, size )
  * @param page
  */
 function updatePageParts(page) {
-	// default values
-	var showtopnavigation=true;
-	var showfooter=true;
-	var shownavbar=true;
-	
-	if (page.data()!=null) {
-	if (page.data().showtopnavigation!=undefined) {
-		showtopnavigation = page.data().showtopnavigation!="false";
-	}
-	else {
-		// traverse up the page tree
-		var parentPage = getParentPage(page);
-		while (parentPage!=null) {
-			if (parentPage.data().showtopnavigation!=undefined) {
-				showtopnavigation = parentPage.data().showtopnavigation!="false";
-				break;
-			}
-			parentPage = getParentPage(parentPage);
-		}
-	}
-	if (page.data().showfooter!=undefined) {
-		showfooter = page.data().showfooter!="false";
-	}
-	else {
-		// traverse up the page tree
-		var parentPage = getParentPage(page);
-		while (parentPage!=null) {
-			if (parentPage.data().showfooter!=undefined) {
-				showfooter = parentPage.data().showfooter!="false";
-				break;
-			}
-			parentPage = getParentPage(parentPage);
-		}
-	}
-	if (page.data().shownavbar!=undefined) {
-		shownavbar = page.data().shownavbar!="false";
-	}
-	else {
-		// traverse up the page tree
-		var parentPage = getParentPage(page);
-		while (parentPage!=null) {
-			if (parentPage.data().shownavbar!=undefined) {
-				shownavbar = parentPage.data().shownavbar!="false";
-				break;
-			}
-			parentPage = getParentPage(parentPage);
-		}
-	}
-	}
-	if (showtopnavigation) {
-		$('#top, #top > *').css("display","block");
-	}
-	else {
-		$('#top, #top > *').css("display","none");
-	}
-	if (showfooter) {
-		$('#bottom, #bottom > *').css("display","block");
-	}
-	else {
-		$('#bottom, #bottom > *').css("display","none");
-	}
-	if (shownavbar) {
-		$.each(['Left','Top','Right','Bottom'], function (index, value) {
-			var size = $('#navbar'+value).data('size');
-			var cssSize = size + (isFinite( size ) ? 'px' : '');
-			$('#navbar'+value).css('width',cssSize);
-		});
-		// for some reason the handleResize() method has to be called here, without it the Navbar looks strange (has scrollbars even if they wouldn´t be neccessary)
-		handleResize();
-		$('.navbar').css("display","block");
-	}
-	else {
-		// store the navbar sizes
-		$.each(['Left','Top','Right','Bottom'], function (index, value) {
-			if ($('#navbar'+value).data('size')==undefined) {
-				$('#navbar'+value).data('size',$('#navbar'+value).css('width'));
-			}
-			$('#navbar'+value).css({
-				'display': 'none',
-				'width': 0
-			});
-		});
-		$('.navbar').css("display","none");
-	}
-	handleResize();
+  // default values
+  var showtopnavigation=true;
+  var showfooter=true;
+  var shownavbar=true;
+  
+  if (page.data()!=null) {
+    if (page.data().showtopnavigation!=undefined) {
+      showtopnavigation = page.data().showtopnavigation!="false";
+    }
+    else {
+      // traverse up the page tree
+      var parentPage = getParentPage(page);
+      while (parentPage!=null) {
+        if (parentPage.data().showtopnavigation!=undefined) {
+          showtopnavigation = parentPage.data().showtopnavigation!="false";
+          break;
+        }
+        parentPage = getParentPage(parentPage);
+      }
+    }
+    if (page.data().showfooter!=undefined) {
+      showfooter = page.data().showfooter!="false";
+    }
+    else {
+      // traverse up the page tree
+      var parentPage = getParentPage(page);
+      while (parentPage!=null) {
+        if (parentPage.data().showfooter!=undefined) {
+          showfooter = parentPage.data().showfooter!="false";
+          break;
+        }
+        parentPage = getParentPage(parentPage);
+      }
+    }
+    if (page.data().shownavbar!=undefined) {
+      shownavbar = page.data().shownavbar!="false";
+    }
+    else {
+      // traverse up the page tree
+      var parentPage = getParentPage(page);
+      while (parentPage!=null) {
+        if (parentPage.data().shownavbar!=undefined) {
+          shownavbar = parentPage.data().shownavbar!="false";
+          break;
+        }
+        parentPage = getParentPage(parentPage);
+      }
+    }
+  }
+  if (showtopnavigation) {
+    $('#top, #top > *').css("display","block");
+  }
+  else {
+    $('#top, #top > *').css("display","none");
+  }
+  if (showfooter) {
+    $('#bottom, #bottom > *').css("display","block");
+  }
+  else {
+    $('#bottom, #bottom > *').css("display","none");
+  }
+  if (shownavbar) {
+    $.each(['Left','Top','Right','Bottom'], function (index, value) {
+      var size = $('#navbar'+value).data('size');
+      var cssSize = size + (isFinite( size ) ? 'px' : '');
+      $('#navbar'+value).css('width',cssSize);
+    });
+    // for some reason the handleResize() method has to be called here, without it the Navbar looks strange (has scrollbars even if they wouldn´t be neccessary)
+    handleResize();
+  }
+  else {
+    // store the navbar sizes
+    $.each(['Left','Top','Right','Bottom'], function (index, value) {
+      if ($('#navbar'+value).data('size')==undefined) {
+        $('#navbar'+value).data('size',$('#navbar'+value).css('width'));
+      }
+      $('#navbar'+value).css('width', 0);
+    });
+  }
+  handleResize();
 }
 
 function getParentPage(page) {
-	var pathParts = page.attr('id').split('_');
-	if (pathParts.length==2) {
-		// top-level (id_x)-> no parent pages
-		return null;
-	}
-	while (pathParts.length>1) {
-		pathParts.pop();
-		var path = pathParts.join('_');
-		if ($('.page[id="'+path+'"]').size()==1) {
-			return $('.page[id="'+path+'"]');
-		}
-	}
+  var pathParts = page.attr('id').split('_');
+  if (pathParts.length==2) {
+    // top-level (id_x)-> no parent pages
+    return null;
+  }
+  while (pathParts.length>1) {
+    pathParts.pop();
+    var path = pathParts.join('_');
+    if ($('.page[id="'+path+'"]').size()==1) {
+      return $('.page[id="'+path+'"]');
+    }
+  }
 }
