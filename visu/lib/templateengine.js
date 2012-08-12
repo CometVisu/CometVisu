@@ -553,7 +553,12 @@ function scrollToPage( page_id, speed ) {
   $('.pagejump.active').removeClass('active');
   if (page_id.match(/^id_[0-9_]+$/)==null) {
 	  // find Page-ID by name
-	  page_id = $('.page h1:contains('+page_id+')').closest(".page").attr("id");
+	  $('.page h1:contains('+page_id+')').each(function (i) {
+		  if ($(this).text()==page_id) {
+			  page_id = $(this).closest(".page").attr("id");
+		  }
+	  });
+	  
   }
   updatePageParts($('#'+page_id));
   $('#'+page_id).addClass('pageActive activePage');                         // show new page
@@ -586,9 +591,13 @@ function scrollToPage( page_id, speed ) {
   $(".pagejump > .actor").each(function (i) {
 	  if ($(this).data().target.match(/^id_[0-9_]+$/)==null) {
 		  // get page id by name
-		  if ($('#'+page_id+' h1:contains('+$(this).data().target+')').size()>0) {
-			  $(this).parent().addClass("active");
-		  }
+		  var actor = $(this);
+		  var target = $(this).data().target;
+		  $('#'+page_id+' h1:contains('+target+')').each(function(i) {
+			 if ($(this).text()==target) {
+				 actor.parent().addClass('active');
+			 }
+		  }); 
 	  }
 	  else if (page_id==$(this).data().target) {
 		  $(this).parent().addClass("active");
