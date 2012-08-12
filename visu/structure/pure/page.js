@@ -29,6 +29,9 @@ basicdesign.addCreator('page', {
     var name    = $p.attr('name');
     var type    = $p.attr('type') || 'text';              //text, 2d or 3d
     var backdrop = $p.attr('backdrop');
+    var showtopnavigation = $p.attr('showtopnavigation');
+    var showfooter = $p.attr('showfooter');
+    var shownavbar = $p.attr('shownavbar');
     if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
     var wstyle  = '';                                     // widget style
     if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
@@ -52,6 +55,9 @@ basicdesign.addCreator('page', {
     //var container = $( '<div class="clearfix" />' );
     
     var subpage = $( '<div class="page" id="' + path + '"/>' );
+    subpage.data('showtopnavigation',showtopnavigation);
+    subpage.data('showfooter',showfooter);
+    subpage.data('shownavbar',shownavbar);
     var $container = $( '<div class="clearfix" path="'+path+'" style="height:100%;position:relative;" />'); 
     for( var addr in address ) $container.bind( addr, this.update );
     var container=$container;
@@ -123,7 +129,10 @@ basicdesign.addCreator('page', {
     backdrop:  { type: 'string' , required: false },
     azimut:    { type: 'addr'   , required: false },
     elevation: { type: 'addr'   , required: false },
-    floor:     { type: 'addr'   , required: false }
+    floor:     { type: 'addr'   , required: false },
+    topnavigation: { type: 'string', required: false},
+    footer:    { type: 'string', required: false},
+    navbar:    { type: 'string', required: false},
   },
   elements: {
     layout:  { type: 'layout' , required: false, multi: false }

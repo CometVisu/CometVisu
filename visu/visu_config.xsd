@@ -233,6 +233,9 @@
         </xsd:simpleType>
       </xsd:attribute>
       <xsd:attribute name="backdrop" type="uri" use="optional" />
+      <xsd:attribute name="showtopnavigation" type="xsd:boolean" use="optional"/>
+      <xsd:attribute name="showfooter" type="xsd:boolean" use="optional"/>
+      <xsd:attribute name="shownavbar" type="xsd:boolean" use="optional"/>
     </xsd:complexType>
   </xsd:element>
 

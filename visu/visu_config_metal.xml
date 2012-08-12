@@ -100,7 +100,7 @@
 			type="html" hrefextend="config"><![CDATA[ - <a href="check_config.php">Check 
 			Config</a> ]]></status> </statusbar>
 	</meta>
-	<page name="Übersicht">
+	<page name="Übersicht" showtopnavigation="false" showfooter="false">
 		<navbar position="left" dynamic="true" width="200px">
 			<group nowidget="true">
 				<pagejump target="Übersicht">
