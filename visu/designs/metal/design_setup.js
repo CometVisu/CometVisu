@@ -38,7 +38,7 @@ $(window).resize(function() {
 			});
 		}
 		if (/(iphone|ipod|ipad)/i.test(navigator.userAgent.toLowerCase())) {
-			$('#top').css('margin-top','0.9em');
+			$('#top').css('margin-top','1em');
 		}
 		$('.navbar .widget .label > img').each(function(i) {
 			if ($(this).parent().text().trim()) {
