@@ -37,8 +37,8 @@ $(window).resize(function() {
 				}
 			});
 		}
-		if (/(iphone|ipod)/i.test(navigator.userAgent.toLowerCase())) {
-			$('#top').css('margin-top','1em');
+		if (/(iphone|ipod|ipad)/i.test(navigator.userAgent.toLowerCase())) {
+			$('#top').css('margin-top','0.9em');
 		}
 		$('.navbar .widget .label > img').each(function(i) {
 			if ($(this).parent().text().trim()) {
