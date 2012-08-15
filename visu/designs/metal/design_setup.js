@@ -84,7 +84,7 @@ $(window).resize(function() {
        }
        if (/(iphone|ipod|ipad)/i.test(navigator.userAgent.toLowerCase())) {
          $('#top').css('margin-top','1em');
-		 handleResize();
+         handleResize(true);
        }
        $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
          if ($(this).text().trim()!="") {

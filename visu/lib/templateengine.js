@@ -574,16 +574,6 @@ function scrollToPage( page_id, speed, skipHistory ) {
   
   main_scroll.seekTo( $('#'+page_id), speed ); // scroll to it
   
-  // remove all navbars that do not belong to this page
-  $('.navbar.navbarActive').each(function(i) {
-    var navBarPath = $(this).attr('id').split('_');
-    // skip last 2 elements e.g. '_top_navbar'
-    navBarPath = navBarPath.slice(0,navBarPath.length-2).join('_');
-    var expr = new RegExp("^"+navBarPath+".*","i");
-    if (navBarPath!=page_id && !expr.test(page_id)) {
-      $(this).removeClass('navbarActive');
-    }
-  });
   // show the navbars for this page
   $('#'+page_id+'_top_navbar').addClass('navbarActive');
   $('#'+page_id+'_right_navbar').addClass('navbarActive');
@@ -916,17 +906,18 @@ function updatePageParts(page) {
     }
   }
   $.each(['Left','Top','Right','Bottom'], function (index, value) {
-    if (shownavbar[value.toLowerCase()]=="true") {
+    var key = value.toLowerCase();
+    if (shownavbar[key]=="true") {
       if ($('#navbar'+value).css("display")=="none") {
-        $('#navbar'+value).css('display','block');
+        fadeNavbar(value,"in");
         resize=true;
       }
     }
-    else if (shownavbar[value.toLowerCase()]=="false") {
+    else if (shownavbar[key]=="false") {
       // the loading class prevents any element from beeing disabled, we have to remove it
       $('#navbar'+value+'.loading').removeClass('loading');
       if ($('#navbar'+value).css("display")!="none") {
-        $('#navbar'+value).css("display","none");
+        fadeNavbar(value,"out");
         resize=true;
       }
     }
@@ -936,6 +927,73 @@ function updatePageParts(page) {
     handleResize(true);
     handleResize(true);      
   }
+  else {
+    removeInactiveNavbars(page.attr('id'));
+  }
+}
+
+/**
+ * fades in/out a navbar
+ * @param position [Top|Left|Right|Bottom]
+ * @param direction [in|out]
+ */
+function fadeNavbar(position,direction) {
+  var initCss={};
+  var targetCss={};
+  var navbar = $('#navbar'+position);
+  var key = position.toLowerCase();
+  var fn = null;
+  switch(direction) {
+    case "in":
+      if (navbar.css('display')=='none') {
+        initCss.display='block';
+      }
+      targetCss[key] = 0;
+      switch(position) {
+        case "Top":
+        case "Bottom":
+          initCss[key] = -navbar.height();
+          break;
+        case "Left":
+        case "Right":
+          initCss[key] = -navbar.width();
+          break;
+      }
+      break;
+    case "out":
+      if (navbar.css("display")!="none") {
+        fn = function() {
+          navbar.css("display","none");
+        };
+      }
+      switch(position) {
+        case "Top":
+        case "Bottom":
+          targetCss[key] = -navbar.height();
+          break;
+        case "Left":
+        case "Right":
+          targetCss[key] = -navbar.width();
+          break;
+      }
+      break;
+  }
+  navbar.css(initCss);
+  console.log(targetCss);
+  navbar.animate(targetCss,main_scroll.getConf().time,main_scroll.getConf().easing,fn);
+}
+
+function removeInactiveNavbars(page_id) {
+  // remove all navbars that do not belong to this page
+  $('.navbar.navbarActive').each(function(i) {
+    var navBarPath = $(this).attr('id').split('_');
+    // skip last 2 elements e.g. '_top_navbar'
+    navBarPath = navBarPath.slice(0,navBarPath.length-2).join('_');
+    var expr = new RegExp("^"+navBarPath+".*","i");
+    if (navBarPath!=page_id && !expr.test(page_id)) {
+      $(this).removeClass('navbarActive');
+    }
+  });
 }
 
 function getParentPage(page) {
