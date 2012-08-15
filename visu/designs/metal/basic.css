@@ -90,6 +90,7 @@ body br
 
 .widget_container {
    float: left;
+   width: 100%;
 }
 .widget
 {
@@ -98,7 +99,6 @@ body br
   border-color: #666;
   border-style: solid;
   border-width: 1px 1px 0 0;
-  
   min-height: 2em;
   text-shadow: 0 1px 1px #111;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#2d2d2d)); /* Saf4+, Chrome */
@@ -108,8 +108,9 @@ body br
 	background-image:      -o-linear-gradient(#444444, #2d2d2d); /* Opera 11.10+ */
 	background-image:         linear-gradient(#444444, #2d2d2d);
 }
+.navbar .pagejump { position: relative; }
 .pagejump:hover,.pagelink:hover,.pagejump.active {
-    background: #444444;
+    background-color: #444444;
 	font-weight: bold;
 	color: #fff;
 	text-shadow: 0 1px 1px #111;
@@ -120,7 +121,7 @@ body br
 	background-image:      -o-linear-gradient(#555555, #383838); /* Opera 11.10+ */
 	background-image:         linear-gradient(#555555, #383838);
 }
-.pagejump.active { background: url(images/active_page24.png) no-repeat center right; }
+.pagejump.active { background-image: url(images/active_page24.png); background-repeat: no-repeat; background-position: center right; }
 .text > div,
 .link > a {
   float:left;
@@ -162,7 +163,6 @@ body br
   float:left;
   /*white-space: pre-wrap;*/
 }
-.widget.group { padding: 0; }
 
  iframe { border: none; }
 
@@ -172,14 +172,13 @@ body br
 	width: auto;
 }
 .navbar .widget .label > img {
-	position: absolute;
 	left: 0.2em;
 }
 .navbar .switchPressed, .navbar .switchUnpressed {
   width: 100% !important;
 }
 .navbar .switchPressed .value, .navbar .switchUnpressed .value {
-	padding-left: 2em;
+	padding-left: 2.2em;
 }
 
 .green.switchPressed div, .green.switchUnpressed div {
@@ -189,12 +188,15 @@ body br
 	text-shadow: 0;
 }
 .red.switchPressed div, .red.switchUnpressed div{
+    background: transparent url(images/dot_red.png) no-repeat center center;
+    color: grey !important;
+}
+.grey.switchPressed div, .grey.switchUnpressed div{
     background: transparent url(images/dot_grey.png) no-repeat center center;
     color: grey !important;
 }
 
-
-.red 
+.red
 {
   color:#f44;
   font-weight:bold;
@@ -272,15 +274,16 @@ body br
 	text-align: left;
 	margin-left: 0.2em;
 }
-.group {
-	margin: 0.2em 0.5em;
-}
+
 .group.widget { 
-	border: 2px solid #B3B3B3;
+	border: 1px solid #B3B3B3;
 	border-radius: 1em;
 	-moz-border-radius: 1em;
   	-webkit-border-radius: 1em;
+  	-o-border-radius: 1em;
 	overflow: hidden;
+	margin: 0.2em 0.5em;
+	padding: 0;
 }
 .navbar .group { 
 	margin: 0.2em 0 0.1em 0;
@@ -311,8 +314,24 @@ body br
 	border-left: 2px solid #B3B3B3;
 }
 .navbar > .widget_container:first-child .group .widget_container:last-child, .navbar > .widget_container:first-child .group div.widget_container:last-child .widget {
-	border: none;
-}	
+	border-width: 1px 0 0 0;
+	border-bottom-right-radius: 1em;
+	border-bottom-left-radius: 1em;
+}
+.navbar .group .widget_container:last-child,.navbar .group .widget_container:last-child .widget {
+	border-bottom-right-radius: 1em;
+}
+.navbar .pagejump .actor {
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	vertical-align: middle;
+}
+.navbar .pagejump .actor .value {
+	line-height: 2em;
+}
 .group > div > h2 {
 	font-size: 0.8em;
 	padding: 0 1em;
@@ -356,16 +375,16 @@ body br
 	background-image:      -o-linear-gradient(#f0f0f0, #ddd); /* Opera 11.10+ */
 	background-image:         linear-gradient(#f0f0f0, #ddd);
 }
-.pagejump {
+/*.pagejump {
 	background: #333333;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(   #444444   /*{c-bar-background-start}*/), to(   #2D2D2D   /*{c-bar-background-end}*/)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient(  #444444  /*{c-bar-background-start}*/,   #2D2D2D   /*{c-bar-background-end}*/); /* Chrome 10+, Saf5.1+ */
-	background-image:    -moz-linear-gradient(   #444444   /*{c-bar-background-start}*/,   #2D2D2D   /*{c-bar-background-end}*/); /* FF3.6 */
-	background-image:     -ms-linear-gradient(   #444444   /*{c-bar-background-start}*/,   #2D2D2D  /*{c-bar-background-end}*/); /* IE10 */
-	background-image:      -o-linear-gradient(   #444444   /*{c-bar-background-start}*/,   #2D2D2D   /*{c-bar-background-end}*/); /* Opera 11.10+ */
-	background-image:         linear-gradient(   #444444   /*{c-bar-background-start}*/,   #2D2D2D   /*{c-bar-background-end}*/);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(   #444444), to(   #2D2D2D));
+	background-image: -webkit-linear-gradient(  #444444 ,   #2D2D2D; 
+	background-image:    -moz-linear-gradient(   #444444,   #2D2D2D);
+	background-image:     -ms-linear-gradient(   #444444,   #2D2D2D);
+	background-image:      -o-linear-gradient(   #444444,   #2D2D2D);
+	background-image:         linear-gradient(   #444444,   #2D2D2D);
 	margin: 0;
-}
+}*/
 
 .switchPressed
 {
@@ -571,3 +590,73 @@ div#demo_3 {
     background-color: #1d1d1d;
 }
 .iframe .actor { width: 98%; }
+
+.innerrowspan { /* test: Absolute Positionierung scheint in machen Browser das overflow: hidden der Group zu umgehen */
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+}
+.innerrowspan > div {
+	margin: 0.3em;
+}
+
+#navbarTop .navbar .widget_container, #navbarBottom .navbar .widget_container {
+	width: auto !important;
+}
+
+#navbarTop, #navbarTop .navbar .widget, #navbarBottom .navbar .widget {
+	background: #333333;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(   #666), to(   #000));
+	background-image: -webkit-linear-gradient(  #666 ,   #000); 
+	background-image:    -moz-linear-gradient(   #666,   #000);
+	background-image:     -ms-linear-gradient(   #666,   #000);
+	background-image:      -o-linear-gradient(   #666,   #000);
+	background-image:         linear-gradient(   #666,   #000);
+}
+#navbarTop .navbar .widget, #navbarBottom .navbar .widget {
+	margin: 0;
+	border-width:0;
+	padding: 0.3em 0.5em;
+	
+}
+#navbarTop .navbar .widget:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor {
+    background-color: #000;
+	font-weight: normal;
+	color: #fff;
+	text-shadow: 0 1px 1px #111;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#111), to(#666)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(#111, #666); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(#111, #666); /* FF3.6 */
+	background-image:     -ms-linear-gradient(#111, #666); /* IE10 */
+	background-image:      -o-linear-gradient(#111, #666); /* Opera 11.10+ */
+	background-image:         linear-gradient(#111, #666);
+}
+
+#navbarTop { border-bottom: 2px solid #666; }
+#navbarTop .navbar .widget { position: relative; min-width: 2em; min-height: 3em; }
+#navbarTop .navbar .pagejump .label > img { 
+	display: block;
+	margin: 0 auto;
+	height: 44px !important;
+}
+#navbarTop .navbar .pagejump .label {
+	text-align: center;
+	font-size: 0.7em;
+	width: 100%;
+	margin: 0 auto;
+	float: left;
+}
+#navbarTop .navbar .pagejump .actor .value { 
+	display: none;
+}
+#navbarTop .navbar .pagejump .actor { position: absolute; top:0;left:0;right:0;bottom:0 }
+#navbarTop hr, #navbarBottom hr {
+	clear: none;
+	float: left;
+	width: 1px;
+	height: 3.6em;
+	margin: 0;
+	padding: 0;
+	color: inherit;
+}
