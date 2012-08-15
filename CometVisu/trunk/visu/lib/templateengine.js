@@ -55,7 +55,7 @@ if (typeof forceReload == "undefined") {
 }
 
 if( $.getUrlVar('forceReload') ) {
-  forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set to false
+  forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set to  false
 }
 
 // "Bug"-Fix for ID: 3204682 "Caching on web server"
@@ -142,28 +142,31 @@ function map( value, this_map ) {
 }
 
 /*
- * Make sure everything looks right when the window gets resized.
+ * Make sure everything looks right when the window gets resized. 
  * This is necessary as the scroll effect requires a fixed element size
  */
-function handleResize() {
+function handleResize(skipScrollFix) {
   var uagent = navigator.userAgent.toLowerCase();
-  var widthNavbarLeft  = $( '#navbarLeft'  ).width();
-  var widthNavbarRight = $( '#navbarRight' ).width();
-  var width = $( 'body' ).width() - widthNavbarLeft - widthNavbarRight - 1; // remove an additional pixel for Firefox
+  var widthNavbarLeft  = $( '#navbarLeft' ).css('display')!='none' ? $( '#navbarLeft' ).width() : 0;
+  var widthNavbarRight = $( '#navbarRight' ).css('display')!='none' ? $( '#navbarRight' ).width() : 0;
+  var width = $( 'body' ).width() - widthNavbarLeft - widthNavbarRight - 1; // remove  an additional pixel for Firefox
 
   if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
     $( '#main' ).css( 'width', width );
     $( '#pageSize' ).text( '.page{width:' + (width-0) + 'px;}' );
     // do nothing
   } else {
-    var height = $( window ).height()
-                 - $( '#main' ).position().top
-                 - $( '#navbarBottom' ).outerHeight(true)
-                 - $( '#bottom'       ).outerHeight(true) - 2;
+    var height = $( window ).height() - $( '#main' ).position().top;
+    if ($( '#navbarBottom' ).css('display')!='none') {
+      height-= $( '#navbarBottom' ).outerHeight(true)-1;
+    }
+    if ($( '#bottom' ).css('display')!='none') {
+      height-= $( '#bottom'       ).outerHeight(true) - 1;
+    }
     $( '#main' ).css( 'width', width ).css( 'height', height );
     $( '#pageSize' ).text( '.page{width:' + (width-0) + 'px;height:' + height + 'px;}' );
   }
-  main_scroll != undefined && main_scroll.seekTo( main_scroll.getIndex(), 0 ); // fix scroll
+  skipScrollFix===undefined && main_scroll != undefined && main_scroll.seekTo( main_scroll.getIndex(), 0 ); // fix scroll
 }
 $( window ).bind( 'resize', handleResize );
 
@@ -193,9 +196,9 @@ function parseXML(xml) {
   $.ajaxSetup({cache: true});
 
   
-  /* First, we try to get a design by url
-   * Secondly, we try to get a predefined design in the config file
-   * Otherwise we show the design selection dialog
+  /*
+   * First, we try to get a design by url Secondly, we try to get a predefined
+   * design in the config file Otherwise we show the design selection dialog
    */
   
   // read predefined design in config
@@ -511,14 +514,14 @@ function create_pages( page, path, flavour, type ) {
   if (typeof node.attributes != "undefined") {
     for(var i=0; i<node.attributes.length; i++)  {
       if(node.attributes.item(i).specified) {
-        attributes[node.attributes.item(i).nodeName]=node.attributes.item(i).nodeValue
+        attributes[node.attributes.item(i).nodeName]=node.attributes.item(i).nodeValue;
       }
     }
   } else {
     $.extend(attributes, node);
   }
 
-  var configData = {attributes: {}, elements: {}}
+  var configData = {attributes: {}, elements: {}};
   if (typeof creator.attributes != "undefined") {
     $.each(creator.attributes, function (index, e) {
       if ($(page).attr(index)) {
@@ -551,6 +554,8 @@ function create_pages( page, path, flavour, type ) {
 function scrollToPage( page_id, speed, skipHistory ) {
   $('.activePage').removeClass('activePage');
   $('.pagejump.active').removeClass('active');
+  $('.pagejump.active_ancestor').removeClass('active_ancestor');
+
   if (page_id.match(/^id_[0-9_]+$/)==null) {
     // find Page-ID by name
     $('.page h1:contains('+page_id+')').each(function (i) {
@@ -559,64 +564,101 @@ function scrollToPage( page_id, speed, skipHistory ) {
       }
     });  
   }
+ 
+  $('#'+page_id).addClass('pageActive activePage');// show new page
+  // update visibility ob navbars, top-navigation, footer
   updatePageParts($('#'+page_id));
-  $('#'+page_id).addClass('pageActive activePage');                         // show new page
-  $('#'+page_id+'_navbar').addClass('navbarActive');
-  
   // push new state to history
   if (skipHistory==undefined)
     window.history.pushState(page_id, page_id, window.location.href);
-    
+  
   main_scroll.seekTo( $('#'+page_id), speed ); // scroll to it
+  
+  // remove all navbars that do not belong to this page
+  $('.navbar.navbarActive').each(function(i) {
+    var navBarPath = $(this).attr('id').split('_');
+    // skip last 2 elements e.g. '_top_navbar'
+    navBarPath = navBarPath.slice(0,navBarPath.length-2).join('_');
+    var expr = new RegExp("^"+navBarPath+".*","i");
+    if (navBarPath!=page_id && !expr.test(page_id)) {
+      $(this).removeClass('navbarActive');
+    }
+  });
+  // show the navbars for this page
+  $('#'+page_id+'_top_navbar').addClass('navbarActive');
+  $('#'+page_id+'_right_navbar').addClass('navbarActive');
+  $('#'+page_id+'_bottom_navbar').addClass('navbarActive');
+  $('#'+page_id+'_left_navbar').addClass('navbarActive');
+  
   var pagedivs=$('div', '#'+page_id); 
-  for( var i = 0; i<pagedivs.length; i++) { //check for inline diagrams & refresh
+  for( var i = 0; i<pagedivs.length; i++) { // check for inline diagrams & refresh
     if( /diagram_inline/.test(pagedivs[i].className)) {
       refreshDiagram(pagedivs[i]);
     }
   }
   // set pagejump for this page to active if it exists
   $(".pagejump > .actor").each(function (i) {
+    var activePageJump=null;
     if ($(this).data().target.match(/^id_[0-9_]+$/)==null) {
       // get page id by name
       var actor = $(this);
       var target = $(this).data().target;
       $('#'+page_id+' h1:contains('+target+')').each(function(i) {
         if ($(this).text()==target) {
-          actor.parent().addClass('active');
+          activePageJump = actor.parent();
+          return false;
         }
       }); 
     }
     else if (page_id==$(this).data().target) {
-      $(this).parent().addClass("active");
+      activePageJump = $(this).parent();
+    }
+    if (activePageJump!=null) {
+      activePageJump.addClass('active');
+      var parentPage = getParentPage($('#'+page_id));
+      while (parentPage!=null) {
+        if (parentPage.attr('id')=="id_0") {
+          // root is always an active ancestor, no need to specify that
+          break;
+        }
+        $(".pagejump > .actor").each(function (i) {
+          if ($(this).data().target.match(/^id_[0-9_]+$/)==null) {
+            // get page id by name
+            var actor = $(this);
+            var target = $(this).data().target;
+            $('#'+parentPage.attr('id')+' h1:contains('+target+')').each(function(i) {
+              if ($(this).text()==target) {
+                actor.parent().addClass('active_ancestor');
+                return false;
+              }
+            }); 
+          }
+          else if (parentPage.attr('id')==$(this).data().target) {
+            $(this).parent().addClass('active_ancestor');
+          }
+        });
+        parentPage = getParentPage(parentPage);
+      }
     }
   });
   $(window).trigger('scrolltopage',page_id);
+  
 }
 
 function updateTopNavigation() {
   var path = $('#main .page').eq( this.getIndex() ).attr('id').split( '_' );
-  var id = 'id_'; //path[0];
+  var id = 'id_'; // path[0];
   var nav = '';
   for( var i = 1; i < path.length; i++ ) { // element 0 is id_ (JNK)
     id  += path[i];
     if ($('#'+id).hasClass("page")) {
-    
-    nav += ((1==i) ? '' : '<span> &#x25ba; </span>')
+      nav += ((1==i) ? '' : '<span> &#x25ba; </span>')
         +  '<a href="javascript:scrollToPage(\'' +id+ '\')">'
         +  $('#' + id + ' h1').text() + '</a>';
     }
     id  += '_';
   }
   $('.nav_path').html( nav );
-  var new_array = path;
-  var old_array = old_scroll;
-  old_scroll = path;
-  path = path.join('_');
-  for( var i = new_array.length; i < old_array.length; i++ ) {
-    path += '_' + old_array[i]; // reuse of path...
-    $('#'+path).removeClass('pageActive');
-    $('#'+path+'_navbar').removeClass('navbarActive');
-  }
 }
 
 /*
@@ -626,8 +668,8 @@ function updateTopNavigation() {
  * so it's content can be easily extended
  */
 function showPopup( type, attributes ) {
-  //var retval = design.popups[ type ].create( attributes ); //page, path );
-  //return retval;
+  // var retval = design.popups[ type ].create( attributes ); //page, path );
+  // return retval;
   if( !design.popups[ type ] ) type = 'unknown';
 
   return design.popups[ type ].create( attributes );
@@ -641,10 +683,10 @@ function removePopup( jQuery_object ) {
   jQuery_object.remove();
 }
 
-/****************************************************************************/
+/** ************************************************************************* */
 /* FIXME - Question: should this belong to the VisuDesign object so that it */
-/* is possible to overload?!?                                               */
-/****************************************************************************/
+/* is possible to overload?!? */
+/** ************************************************************************* */
 function refreshAction( target, src ) {
   target.src = src + '&' + new Date().getTime();
 }
@@ -689,7 +731,7 @@ function selectDesign() {
       $div.append($myDiv);
 
       var $tDiv = $("<div />");
-      $tDiv.css({background: "transparent", position: "absolute", height: "90px", width: "160px", zIndex: 2})
+      $tDiv.css({background: "transparent", position: "absolute", height: "90px", width: "160px", zIndex: 2});
       var pos = $myDiv.find("iframe").position();
       $tDiv.css({left: pos.left + "px", top: pos.top + "px"});
       $myDiv.append($tDiv);
@@ -709,10 +751,9 @@ function selectDesign() {
         } else {
           document.location.href = document.location.href + "&design=" + element;
         }
-      })
-            
-    })
-  })
+      });   
+    });
+  });
 }
 
 /**
@@ -738,14 +779,44 @@ function navbarSetSize( position, size )
 }
 
 /**
+ * parse a string with up to four, space-separated values usage like css
+ * settings, e.g width: 1px 2px 3px 4px (top-, right-, bottom-, left-width)
+ * 
+ * @param value
+ */
+function parseTopRightBottomLeftString(value) {
+  var parts = value.split(" ");
+  if (parts.length==4) {
+    return {top: parts[0], right: parts[1], bottom: parts[2], left: parts[3]};
+  }
+  else if (parts.length==3) {
+    return {top: parts[0], right: parts[1], bottom: parts[2], left: parts[1]};
+  }
+  else if (parts.length==2) {
+    return {top: parts[0], right: parts[1], bottom: parts[0], left: parts[1]};
+  }
+  else if (parts.length==1) {
+    return {top: parts[0], right: parts[0], bottom: parts[0], left: parts[0]};
+  }
+  else
+    return {top: '', right: '', bottom: '', left: ''};
+}
+
+/**
  * update the visibility ob top-navigation, footer and navbar for this page
+ * 
  * @param page
  */
 function updatePageParts(page) {
   // default values
   var showtopnavigation=true;
   var showfooter=true;
-  var shownavbar=true;
+  var shownavbar={
+    top: "true",
+    right: "true",
+    bottom: "true",
+    left: "true"
+  };
   
   if (page.data()!=null) {
     if (page.data().showtopnavigation!=undefined) {
@@ -777,51 +848,94 @@ function updatePageParts(page) {
       }
     }
     if (page.data().shownavbar!=undefined) {
-      shownavbar = page.data().shownavbar!="false";
+      shownavbar = parseTopRightBottomLeftString(page.data().shownavbar);
     }
     else {
       // traverse up the page tree
+      var inheritedShowNavbar={
+          top: 'inherit',
+          right: 'inherit',
+          bottom: 'inherit',
+          left: 'inherit'
+        };
       var parentPage = getParentPage(page);
       while (parentPage!=null) {
         if (parentPage.data().shownavbar!=undefined) {
-          shownavbar = parentPage.data().shownavbar!="false";
-          break;
+          var pageShowNavBar = parseTopRightBottomLeftString(parentPage.data().shownavbar);
+          for (var pos in pageShowNavBar) {
+            if (pageShowNavBar[pos]!='inherit' && inheritedShowNavbar[pos]=='inherit') {
+              inheritedShowNavbar[pos]=pageShowNavBar[pos];
+            }
+          }
+          if (inheritedShowNavbar.top!='inherit' && inheritedShowNavbar.right!='inherit' && inheritedShowNavbar.bottom!='inherit' && inheritedShowNavbar.left!='inherit') {
+            // we are done
+            break;
+          }
         }
         parentPage = getParentPage(parentPage);
       }
+      // set default values if not set otherwise
+      for (var pos in inheritedShowNavbar) {
+        if (inheritedShowNavbar[pos]=='inherit') {
+          inheritedShowNavbar[pos]=shownavbar[pos];
+        }
+      }
+      shownavbar=inheritedShowNavbar;
     }
   }
+  var resize=false;
   if (showtopnavigation) {
-    $('#top, #top > *').css("display","block");
+    if ($('#top').css("display")=="none") {
+      $('#top, #top > *').css("display","block");
+      resize=true;
+      //console.log("#top hidden");
+    }
   }
   else {
-    $('#top, #top > *').css("display","none");
+    $('#top.loading').removeClass('loading');
+    if ($('#top').css("display")!="none") {
+      $('#top').css("display","none");
+      resize=true;
+      //console.log("#top visible");
+    }
   }
   if (showfooter) {
-    $('#bottom, #bottom > *').css("display","block");
+    if ($('#bottom').css("display")=="none") {
+      $('#bottom').css("display","block");
+      //console.log("#bottom hidden");
+      resize=true;
+    }
   }
   else {
-    $('#bottom, #bottom > *').css("display","none");
+    // the loading class prevents any element from beeing disabled, we have to remove it
+    $('#bottom.loading').removeClass('loading');
+    if ($('#bottom').css("display")!="none") {
+      $('#bottom').css("display","none");
+      //console.log("#bottom "+$('#bottom').css("display"));
+      resize=true;
+    }
   }
-  if (shownavbar) {
-    $.each(['Left','Top','Right','Bottom'], function (index, value) {
-      var size = $('#navbar'+value).data('size');
-      var cssSize = size + (isFinite( size ) ? 'px' : '');
-      $('#navbar'+value).css('width',cssSize);
-    });
-    // for some reason the handleResize() method has to be called here, without it the Navbar looks strange (has scrollbars even if they wouldn´t be neccessary)
-    handleResize();
-  }
-  else {
-    // store the navbar sizes
-    $.each(['Left','Top','Right','Bottom'], function (index, value) {
-      if ($('#navbar'+value).data('size')==undefined) {
-        $('#navbar'+value).data('size',$('#navbar'+value).css('width'));
+  $.each(['Left','Top','Right','Bottom'], function (index, value) {
+    if (shownavbar[value.toLowerCase()]=="true") {
+      if ($('#navbar'+value).css("display")=="none") {
+        $('#navbar'+value).css('display','block');
+        resize=true;
       }
-      $('#navbar'+value).css('width', 0);
-    });
+    }
+    else if (shownavbar[value.toLowerCase()]=="false") {
+      // the loading class prevents any element from beeing disabled, we have to remove it
+      $('#navbar'+value+'.loading').removeClass('loading');
+      if ($('#navbar'+value).css("display")!="none") {
+        $('#navbar'+value).css("display","none");
+        resize=true;
+      }
+    }
+  });
+  if (resize) {
+    // needs to be called twice to work
+    handleResize(true);
+    handleResize(true);      
   }
-  handleResize();
 }
 
 function getParentPage(page) {

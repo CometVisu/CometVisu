@@ -25,28 +25,75 @@ $('#navbarLeft').data({'columns': 6} );
 
 var started=true;
 
+function getOffsetCorners(elem) {
+  return {
+    top_left: {top: Math.round(elem.offset().top), left: Math.round(elem.offset().left) },
+    bottom_left: {top: Math.round(elem.offset().top+elem.height()), left: Math.round(elem.offset().left) },
+    top_right: {top: Math.round(elem.offset().top), left: Math.round(elem.offset().left+elem.width()) },
+    bottom_right: {top: Math.round(elem.offset().top+elem.height()), left: Math.round(elem.offset().left+elem.width()) },
+  };
+}
+function roundCorners() {
+  // find elements in each groups corners
+    $('.page.activePage .group:visible').each(function(i) {
+      var group = $(this);
+      // do not use this in navbars
+      if (group.parents('.navbar').size()>0) return;
+      var groupCorners = getOffsetCorners(group);
+      // if the group has a headline (=name) we must not round the upper corners
+      var roundUpperCorners =  ($(this).find('.widget_container:first-child').size()>0) && group.css('border-top-right-radius')!="0px";
+      var threshold=5;
+      $(this).find('.widget_container').each(function (i) {
+        var elemCorners = getOffsetCorners($(this));
+        if (roundUpperCorners) {
+          // upper left corner is done by regular  css-rule  upper right corner
+          if (Math.abs(elemCorners.top_right.top-groupCorners.top_right.top)<threshold && Math.abs(elemCorners.top_right.left-groupCorners.top_right.left)<threshold) {
+            $(this).css({'border-top-right-radius': group.css('border-top-right-radius')});
+            $(this).children().css({'border-top-right-radius': group.css('border-top-right-radius')});
+          }
+        }
+        if (group.css('border-bottom-right-radius')!="0px" && Math.abs(elemCorners.bottom_right.top-groupCorners.bottom_right.top)<threshold && Math.abs(elemCorners.bottom_right.left-groupCorners.bottom_right.left)<threshold) {
+          $(this).css({'border-bottom-right-radius': group.css('border-bottom-right-radius')});
+          $(this).children().css({'border-bottom-right-radius': group.css('border-bottom-right-radius')});
+        }
+        if (group.css('border-bottom-left-radius')!="0px" && Math.abs(elemCorners.bottom_left.top-groupCorners.bottom_left.top)<threshold && Math.abs(elemCorners.bottom_left.left-groupCorners.bottom_left.left)<threshold) {
+          $(this).css({'border-bottom-left-radius': group.css('border-bottom-left-radius')});
+          $(this).children().css({'border-bottom-left-radius': group.css('border-bottom-left-radius')});
+        }
+      });
+    });
+}
+$(window).bind('scrolltopage',function() {
+  //$('#id_0').append(navigator.userAgent.toLowerCase());
+  if (/(opera|chrome|safari)/i.test(navigator.userAgent.toLowerCase())) {
+    roundCorners();
+  }
+});
+
 $(window).resize(function() {
-	// only execute on start
-	if (started) {
-		if ($('.navbar').size()>0) {
-			$('.navbar > .widget_container:first-child .group:not(.root) .pagejump:first-child .actor').each(function(i) {
-				var target = ($(this).data().target.match(/^id_[0-9_]+$/)==null) ? $('.page h1:contains('+$(this).data().target+')').closest(".page").attr("id") : $(this).data().target;
-				if (target=="id_0") {
-					// pagejump to root-page found
-					$(this).closest(".group").addClass("root");
-				}
-			});
-		}
-		if (/(iphone|ipod|ipad)/i.test(navigator.userAgent.toLowerCase())) {
-			$('#top').css('margin-top','1em');
-		}
-		$('.navbar .widget .label > img').each(function(i) {
-			if ($(this).parent().text().trim()) {
-				$(this).css("position","relative");
-			}
-		});
-		started=false;
-	}
+  // only execute on start
+    if (started) {
+       if ($('.navbar').size()>0) {
+         $('.navbar > .widget_container:first-child .group:not(.root) .pagejump:first-child .actor').each(function(i) {
+           var target = ($(this).data().target.match(/^id_[0-9_]+$/)==null) ? $('.page h1:contains('+$(this).data().target+')').closest(".page").attr("id") : $(this).data().target;
+           if (target=="id_0") {
+             // pagejump to root-page found
+             $(this).closest(".group").addClass("root");
+           }
+         });
+       }
+       if (/(iphone|ipod|ipad)/i.test(navigator.userAgent.toLowerCase())) {
+         $('#top').css('margin-top','1em');
+		 handleResize();
+       }
+       $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
+         if ($(this).text().trim()!="") {
+           $(this).parent().css("height","3em");
+           $(this).siblings('.actor').css("padding-top","1.3em");
+         }
+       });
+       started=false;
+    }
 });
 
 icons.insert({

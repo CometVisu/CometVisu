@@ -12,7 +12,7 @@
 .group { 
 	margin: 0.2em 0.1em;
 }
-.navbar, #navbarLeft { display: none !important; width: 0 !important; }
+#navbarLeft, #navbarLeft > .navbar, #navbarRight, #navbarRight > .navbar { display: none !important; width: 0 !important; }
 
 .widget .ui-slider
 {
