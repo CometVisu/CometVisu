@@ -20,14 +20,15 @@ basicdesign.addCreator('navbar', {
     var $n = $(navbar);
     var childs = $n.children();
     var id = path.split('_'); id.pop();
-    var container = $( '<div class="navbar clearfix" id="' + id.join('_') + '_navbar" />' );
+    var position = $n.attr('position') || 'left';
+    var container = $( '<div class="navbar clearfix" id="' + id.join('_')+'_'+ position + '_navbar" />' );
     if( $n.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $n.attr('name') + '</h2>' );
     $( childs ).each( function(i){
         container.append( create_pages( childs[i], path + '_' + i, flavour ) );
     } );
     
     var dynamic  = $n.attr('dynamic') == 'true' ? true : false;
-    var position = $n.attr('position') || 'left';
+  
 	var size = $n.attr('width') || 300;
     switch( position )
     {
