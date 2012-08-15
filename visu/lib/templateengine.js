@@ -149,6 +149,7 @@ function handleResize(skipScrollFix) {
   var uagent = navigator.userAgent.toLowerCase();
   var widthNavbarLeft  = $( '#navbarLeft' ).css('display')!='none' ? $( '#navbarLeft' ).width() : 0;
   var widthNavbarRight = $( '#navbarRight' ).css('display')!='none' ? $( '#navbarRight' ).width() : 0;
+  
   var width = $( 'body' ).width() - widthNavbarLeft - widthNavbarRight - 1; // remove  an additional pixel for Firefox
 
   if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
@@ -326,7 +327,7 @@ function parseXML(xml) {
       case 'config': // append config file info
         var search = window.location.search.replace( /\$/g, '$$$$' );
         search = search.replace( /.*(config=[^&]*).*|.*/, '?$1' );
-		
+
 
 // text = $(text).replaceWith( /(href="[^"]*)(")/g, '$1' + search + '$2' );
 
@@ -910,6 +911,7 @@ function updatePageParts(page) {
     if (shownavbar[key]=="true") {
       if ($('#navbar'+value).css("display")=="none") {
         fadeNavbar(value,"in");
+        removeInactiveNavbars(page.attr('id'));
         resize=true;
       }
     }
@@ -979,7 +981,6 @@ function fadeNavbar(position,direction) {
       break;
   }
   navbar.css(initCss);
-  console.log(targetCss);
   navbar.animate(targetCss,main_scroll.getConf().time,main_scroll.getConf().easing,fn);
 }
 
