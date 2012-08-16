@@ -26,6 +26,7 @@
 $('#main').data('columns', 12 );
 $('#navbarRight').data('columns', 6 );
 $('#navbarLeft').data({'columns': 6, 'size': '12rem'} );
+
 icons.insert({
   'CometVisu'             : { '*'  : '128',
                               '16' : { '*'         : 'sodium'                                                              ,
