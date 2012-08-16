@@ -56,6 +56,7 @@ a {
 
 .clearfix {
     display: inline-block;
+
 }
 
 html[xmlns] .clearfix {
@@ -252,8 +253,9 @@ h1 {
 
 }
 
-
-
+.actor.switchUnpressed {background:-moz-linear-gradient(top, #d2a26e,#8d6d4a); /* Firefox */
+background:-webkit-gradient(linear,left top,left bottom,from(#d2a26e),to( #8d6d4a)); /* Chrome, Safari */}
+/*switch Farbe*/
 .widget > .label {
   float: none;
   width: auto;
@@ -275,8 +277,8 @@ h1 {
 .widget .actor {
 	  text-align: center;
   min-height: 2rem;
-/* background: black;*/
-  /*#FDF2B3;*/
+ /*background: white;
+  #FDF2B3;*/
    border-top-right-radius: 0.6rem;
   border-bottom-right-radius: 0.6rem;
   border-top-left-radius: 0.2rem;
@@ -576,6 +578,7 @@ border-bottom-left-width:0.1rem;
   width: 100%;
   margin-top: 0.6rem;
   margin-bottom: 0.6rem;
+ 
 }
 
 .widget.group:after {
@@ -697,6 +700,7 @@ body hr {
   background-color: #fee;
   opacity: 0.80;
 }
+
 
 .popup,
 .popup_background {
@@ -867,6 +871,8 @@ background:-webkit-gradient(linear,right top,left bottom,from( #F00000),to( #9F0
 background:-webkit-gradient(linear,right top,left bottom,from( #578B3F),to( #18691F)); /* Chrome, Safari */
 }
 
+
+
 .actor.fuchsia
 {
   background-color:#FF00FF;
@@ -876,4 +882,6 @@ background:-webkit-gradient(linear,right top,left bottom,from( #578B3F),to( #186
 {
   background-color:#808000;
   color: #000;
+  
 }
+
