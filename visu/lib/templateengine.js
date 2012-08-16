@@ -565,7 +565,7 @@ function scrollToPage( page_id, speed, skipHistory ) {
       }
     });  
   }
- 
+  
   $('#'+page_id).addClass('pageActive activePage');// show new page
   // update visibility ob navbars, top-navigation, footer
   updatePageParts($('#'+page_id));
@@ -574,7 +574,7 @@ function scrollToPage( page_id, speed, skipHistory ) {
     window.history.pushState(page_id, page_id, window.location.href);
   
   main_scroll.seekTo( $('#'+page_id), speed ); // scroll to it
-  
+
   // show the navbars for this page
   $('#'+page_id+'_top_navbar').addClass('navbarActive');
   $('#'+page_id+'_right_navbar').addClass('navbarActive');
@@ -650,6 +650,15 @@ function updateTopNavigation() {
     id  += '_';
   }
   $('.nav_path').html( nav );
+  var page_id = path.join('_');
+  // remove unnecessary pageActive´s
+  $('.pageActive').each(function(i) {
+    var pagePath = $(this).attr('id');
+    var expr = new RegExp("^"+pagePath+".*","i");
+    if (pagePath!=page_id && !expr.test(page_id)) {
+      $(this).removeClass('pageActive');
+    }
+  });
 }
 
 /*
