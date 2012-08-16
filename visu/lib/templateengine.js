@@ -559,7 +559,7 @@ function scrollToPage( page_id, speed, skipHistory ) {
 
   if (page_id.match(/^id_[0-9_]+$/)==null) {
     // find Page-ID by name
-    $('.page h1:contains('+page_id+')').each(function (i) {
+    $('.page h1:contains('+page_id+')','#pages').each(function (i) {
       if ($(this).text()==page_id) {
        page_id = $(this).closest(".page").attr("id");
       }
@@ -569,6 +569,14 @@ function scrollToPage( page_id, speed, skipHistory ) {
   $('#'+page_id).addClass('pageActive activePage');// show new page
   // update visibility ob navbars, top-navigation, footer
   updatePageParts($('#'+page_id));
+  // remove unnecessary pageActive´s
+  $('.pageActive','#pages').each(function(i) {
+    var pagePath = this.id;
+    var expr = new RegExp("^"+pagePath+".*","i");
+    if (pagePath!=page_id && !expr.test(page_id)) {
+      $(this).removeClass('pageActive');
+    }
+  });
   // push new state to history
   if (skipHistory==undefined)
     window.history.pushState(page_id, page_id, window.location.href);
@@ -594,7 +602,7 @@ function scrollToPage( page_id, speed, skipHistory ) {
       // get page id by name
       var actor = $(this);
       var target = $(this).data().target;
-      $('#'+page_id+' h1:contains('+target+')').each(function(i) {
+      $('h1:contains('+target+')','#'+page_id).each(function(i) {
         if ($(this).text()==target) {
           activePageJump = actor.parent();
           return false;
@@ -617,7 +625,7 @@ function scrollToPage( page_id, speed, skipHistory ) {
             // get page id by name
             var actor = $(this);
             var target = $(this).data().target;
-            $('#'+parentPage.attr('id')+' h1:contains('+target+')').each(function(i) {
+            $('h1:contains('+target+')','#'+parentPage.attr('id')).each(function(i) {
               if ($(this).text()==target) {
                 actor.parent().addClass('active_ancestor');
                 return false;
@@ -650,15 +658,6 @@ function updateTopNavigation() {
     id  += '_';
   }
   $('.nav_path').html( nav );
-  var page_id = path.join('_');
-  // remove unnecessary pageActive´s
-  $('.pageActive').each(function(i) {
-    var pagePath = $(this).attr('id');
-    var expr = new RegExp("^"+pagePath+".*","i");
-    if (pagePath!=page_id && !expr.test(page_id)) {
-      $(this).removeClass('pageActive');
-    }
-  });
 }
 
 /*
@@ -996,7 +995,7 @@ function fadeNavbar(position,direction) {
 function removeInactiveNavbars(page_id) {
   // remove all navbars that do not belong to this page
   $('.navbar.navbarActive').each(function(i) {
-    var navBarPath = $(this).attr('id').split('_');
+    var navBarPath = this.id.split('_');
     // skip last 2 elements e.g. '_top_navbar'
     navBarPath = navBarPath.slice(0,navBarPath.length-2).join('_');
     var expr = new RegExp("^"+navBarPath+".*","i");
@@ -1015,8 +1014,8 @@ function getParentPage(page) {
   while (pathParts.length>1) {
     pathParts.pop();
     var path = pathParts.join('_');
-    if ($('.page[id="'+path+'"]').size()==1) {
-      return $('.page[id="'+path+'"]');
+    if ($('#'+path).hasClass("page")) {
+      return $('#'+path);
     }
   }
 }
