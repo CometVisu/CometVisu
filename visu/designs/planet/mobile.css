@@ -1,5 +1,5 @@
 .widget_container {
-    width: 98%;
+    width: 100%;
 }
 
 #bottom {
@@ -8,4 +8,13 @@
 
 .page {
     overflow: visible;
+}
+.group { 
+	margin: 0.2em 0.1em;
+}
+#navbarLeft, #navbarLeft > .navbar, #navbarRight, #navbarRight > .navbar { display: none !important; width: 0 !important; }
+
+.widget .ui-slider
+{
+  width: 40%;
 }
