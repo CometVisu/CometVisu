@@ -87,9 +87,12 @@ $(window).resize(function() {
          handleResize(true);
        }
        $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
-         if ($(this).text().trim()!="") {
-           $(this).parent().css("height","3em");
-           $(this).siblings('.actor').css("padding-top","1.3em");
+         var label = $(this);
+         if (label.text().trim()!="") {
+           var actor = label.siblings('.actor');
+           if (label.children('img').size()==0 && actor.children('.value').text().trim()!="") {
+             actor.css('padding-top','0.5em');
+           }
          }
        });
        started=false;

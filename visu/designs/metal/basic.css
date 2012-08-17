@@ -225,7 +225,7 @@ body br
   padding-left: 0.2em;
 }
 
-.page
+#pages  > .page
 {
   float:left;
   overflow: auto;
@@ -272,7 +272,7 @@ body br
 .pagejump  .switchUnpressed div, .group .pagejump  .switchPressed div {
 	width: auto;
 	text-align: left;
-	margin-left: 0.2em;
+	margin-left: 0.3em;
 }
 
 .group.widget { 
@@ -605,7 +605,7 @@ div#demo_3 {
 	width: auto !important;
 }
 
-#navbarTop, #navbarTop .navbar .widget, #navbarBottom .navbar .widget {
+#navbarTop, #navbarTop .navbar .widget{
 	background: #333333;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(   #666), to(   #000));
 	background-image: -webkit-linear-gradient(  #666 ,   #000); 
@@ -614,13 +614,22 @@ div#demo_3 {
 	background-image:      -o-linear-gradient(   #666,   #000);
 	background-image:         linear-gradient(   #666,   #000);
 }
+#navbarBottom, #navbarBottom .navbar .widget  {
+	background: #333333;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(   #000), to(   #666));
+	background-image: -webkit-linear-gradient(  #000 ,   #666); 
+	background-image:    -moz-linear-gradient(   #000,   #666);
+	background-image:     -ms-linear-gradient(   #000,   #666);
+	background-image:      -o-linear-gradient(   #000,   #666);
+	background-image:         linear-gradient(   #000,   #666);
+}
 #navbarTop .navbar .widget, #navbarBottom .navbar .widget {
 	margin: 0;
 	border-width:0;
 	padding: 0.3em 0.5em;
 	
 }
-#navbarTop .navbar .widget:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor {
+#navbarTop .navbar .widget:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor  {
     background-color: #000;
 	font-weight: normal;
 	color: #fff;
@@ -632,25 +641,44 @@ div#demo_3 {
 	background-image:      -o-linear-gradient(#111, #666); /* Opera 11.10+ */
 	background-image:         linear-gradient(#111, #666);
 }
-
+#navbarBottom .navbar .widget:hover,#navbarBottom .navbar .pagejump.active,#navbarBottom .navbar .pagejump.active_ancestor {
+background-color: #000;
+	font-weight: normal;
+	color: #fff;
+	text-shadow: 0 1px 1px #111;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#666), to(#111)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(#666, #111); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(#666, #111); /* FF3.6 */
+	background-image:     -ms-linear-gradient(#666, #111); /* IE10 */
+	background-image:      -o-linear-gradient(#666, #111); /* Opera 11.10+ */
+	background-image:         linear-gradient(#666, #111);
+}
+#navbarBottom .navbar {
+	padding: 0 auto;
+	width: 100%;
+}
 #navbarTop { border-bottom: 2px solid #666; }
-#navbarTop .navbar .widget { position: relative; min-width: 2em; min-height: 3em; }
-#navbarTop .navbar .pagejump .label > img { 
-	display: block;
-	margin: 0 auto;
+#navbarBottom { border-top: 2px solid #666; }
+#navbarTop .navbar .widget, #navbarBottom .navbar .widget { position: relative; min-width: 2em; min-height: 3em; }
+.navbar .pagejump .label > img, .navbar .pagejump .label > img { 
 	height: 44px !important;
 }
-#navbarTop .navbar .pagejump .label {
+.navbar .pagejump .label > img, .navbar .pagejump .label > img {
+	display: block;
+	margin: 0 auto;
+}
+.navbar .pagejump .label, .navbar .pagejump .label {
 	text-align: center;
 	font-size: 0.7em;
-	width: 100%;
-	margin: 0 auto;
 	float: left;
+	margin: 0 auto;
 }
-#navbarTop .navbar .pagejump .actor .value { 
+#navbarTop .navbar .pagejump .actor .value , #navbarBottom.navbar .pagejump .actor .value {
 	display: none;
 }
-#navbarTop .navbar .pagejump .actor { position: absolute; top:0;left:0;right:0;bottom:0 }
+#navbarTop .navbar .pagejump .actor, #navbarBottom.navbar .pagejump .actor {
+	width: 100%; 	
+}
 #navbarTop hr, #navbarBottom hr {
 	clear: none;
 	float: left;
