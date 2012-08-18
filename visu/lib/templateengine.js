@@ -35,6 +35,8 @@ var ga_list = [];
 var main_scroll;
 var old_scroll = '';
 
+var resizeAfterScroll = false;
+
 visu = new CometVisu('/cgi-bin/');
 visu.update = function( json ) { // overload the handler
   for( key in json ) {
@@ -147,9 +149,8 @@ function map( value, this_map ) {
  */
 function handleResize(skipScrollFix) {
   var uagent = navigator.userAgent.toLowerCase();
-  var widthNavbarLeft  = $( '#navbarLeft' ).css('display')!='none' ? $( '#navbarLeft' ).width() : 0;
+  var widthNavbarLeft  = $( '#navbarLeft' ).css('display')!='none' ? $( '#navbarLeft' ).width(): 0;
   var widthNavbarRight = $( '#navbarRight' ).css('display')!='none' ? $( '#navbarRight' ).width() : 0;
-  
   var width = $( 'body' ).width() - widthNavbarLeft - widthNavbarRight - 1; // remove  an additional pixel for Firefox
 
   if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
@@ -553,10 +554,11 @@ function create_pages( page, path, flavour, type ) {
 }
 
 function scrollToPage( page_id, speed, skipHistory ) {
-  $('.activePage').removeClass('activePage');
+  $('.activePage','#pages').removeClass('activePage');
+  $('.pageActive','#pages').removeClass('pageActive');
   $('.pagejump.active').removeClass('active');
   $('.pagejump.active_ancestor').removeClass('active_ancestor');
-
+  
   if (page_id.match(/^id_[0-9_]+$/)==null) {
     // find Page-ID by name
     $('.page h1:contains('+page_id+')','#pages').each(function (i) {
@@ -565,23 +567,38 @@ function scrollToPage( page_id, speed, skipHistory ) {
       }
     });  
   }
+  var page = $('#'+page_id);  
   
-  $('#'+page_id).addClass('pageActive activePage');// show new page
+  page.addClass('pageActive activePage');// show new page
   // update visibility ob navbars, top-navigation, footer
-  updatePageParts($('#'+page_id));
-  // remove unnecessary pageActive´s
-  $('.pageActive','#pages').each(function(i) {
-    var pagePath = this.id;
-    var expr = new RegExp("^"+pagePath+".*","i");
-    if (pagePath!=page_id && !expr.test(page_id)) {
-      $(this).removeClass('pageActive');
+  updatePageParts(page);
+  
+  if (main_scroll.getConf().speed>0) {
+    var scrollLeft = true;
+    if (skipHistory) {
+      // moving back in history -> scroll right
+      scrollLeft = false;
     }
-  });
-  // push new state to history
+    else {
+      var expr = new RegExp("^"+page_id+".*","i");
+      if (expr.test(window.history.state)) {
+        // moving up the page tree -> scroll right
+        scrollLeft = false;
+      }
+    }
+    // jump to the page on the left of the page we need to scroll to
+    if (scrollLeft) {
+      $('#pages').css('left',-page.position().left+page.width());
+    }
+    else {
+      $('#pages').css('left',-page.position().left-page.width());
+    }
+  }
+  //push new state to history
   if (skipHistory==undefined)
     window.history.pushState(page_id, page_id, window.location.href);
   
-  main_scroll.seekTo( $('#'+page_id), speed ); // scroll to it
+  main_scroll.seekTo( page, speed ); // scroll to it
 
   // show the navbars for this page
   $('#'+page_id+'_top_navbar').addClass('navbarActive');
@@ -598,10 +615,10 @@ function scrollToPage( page_id, speed, skipHistory ) {
   // set pagejump for this page to active if it exists
   $(".pagejump > .actor").each(function (i) {
     var activePageJump=null;
-    if ($(this).data().target.match(/^id_[0-9_]+$/)==null) {
+    var actor = $(this);
+    var target = actor.data().target;
+    if (target.match(/^id_[0-9_]+$/)==null) {
       // get page id by name
-      var actor = $(this);
-      var target = $(this).data().target;
       $('h1:contains('+target+')','#'+page_id).each(function(i) {
         if ($(this).text()==target) {
           activePageJump = actor.parent();
@@ -609,31 +626,31 @@ function scrollToPage( page_id, speed, skipHistory ) {
         }
       }); 
     }
-    else if (page_id==$(this).data().target) {
-      activePageJump = $(this).parent();
+    else if (page_id==target) {
+      activePageJump = actor.parent();
     }
     if (activePageJump!=null) {
       activePageJump.addClass('active');
-      var parentPage = getParentPage($('#'+page_id));
+      var parentPage = getParentPage(page);
       while (parentPage!=null) {
         if (parentPage.attr('id')=="id_0") {
           // root is always an active ancestor, no need to specify that
           break;
         }
         $(".pagejump > .actor").each(function (i) {
-          if ($(this).data().target.match(/^id_[0-9_]+$/)==null) {
+          var parentActor = $(this);
+          var parentTarget = parentActor.data().target;
+          if (parentTarget.match(/^id_[0-9_]+$/)==null) {
             // get page id by name
-            var actor = $(this);
-            var target = $(this).data().target;
-            $('h1:contains('+target+')','#'+parentPage.attr('id')).each(function(i) {
-              if ($(this).text()==target) {
-                actor.parent().addClass('active_ancestor');
+            $('h1:contains('+parentTarget+')','#'+parentPage.attr('id')).each(function(i) {
+              if ($(this).text()==parentTarget) {
+                parentActor.parent().addClass('active_ancestor');
                 return false;
               }
             }); 
           }
-          else if (parentPage.attr('id')==$(this).data().target) {
-            $(this).parent().addClass('active_ancestor');
+          else if (parentPage.attr('id')==parentTarget) {
+            parentActor.parent().addClass('active_ancestor');
           }
         });
         parentPage = getParentPage(parentPage);
@@ -641,7 +658,10 @@ function scrollToPage( page_id, speed, skipHistory ) {
     }
   });
   $(window).trigger('scrolltopage',page_id);
-  
+  if (resizeAfterScroll) {
+    handleResize(true);
+    resizeAfterScroll=false;
+  } 
 }
 
 function updateTopNavigation() {
@@ -920,7 +940,7 @@ function updatePageParts(page) {
       if ($('#navbar'+value).css("display")=="none") {
         fadeNavbar(value,"in");
         removeInactiveNavbars(page.attr('id'));
-        resize=true;
+        //resize=true;
       }
     }
     else if (shownavbar[key]=="false") {
@@ -928,14 +948,12 @@ function updatePageParts(page) {
       $('#navbar'+value+'.loading').removeClass('loading');
       if ($('#navbar'+value).css("display")!="none") {
         fadeNavbar(value,"out");
-        resize=true;
+        //resize=true;
       }
     }
   });
   if (resize) {
-    // needs to be called twice to work
-    handleResize(true);
-    handleResize(true);      
+    resizeAfterScroll=true;
   }
   else {
     removeInactiveNavbars(page.attr('id'));
@@ -952,7 +970,9 @@ function fadeNavbar(position,direction) {
   var targetCss={};
   var navbar = $('#navbar'+position);
   var key = position.toLowerCase();
-  var fn = null;
+  var fn = function() {
+    handleResize(true);
+  };
   switch(direction) {
     case "in":
       if (navbar.css('display')=='none') {
@@ -974,6 +994,7 @@ function fadeNavbar(position,direction) {
       if (navbar.css("display")!="none") {
         fn = function() {
           navbar.css("display","none");
+          handleResize(true);
         };
       }
       switch(position) {
@@ -989,7 +1010,7 @@ function fadeNavbar(position,direction) {
       break;
   }
   navbar.css(initCss);
-  navbar.animate(targetCss,main_scroll.getConf().time,main_scroll.getConf().easing,fn);
+  navbar.animate(targetCss,main_scroll.getConf().speed,main_scroll.getConf().easing,fn);
 }
 
 function removeInactiveNavbars(page_id) {
