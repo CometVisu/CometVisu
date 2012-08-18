@@ -1,5 +1,5 @@
 //
-//  Design setup for the pure design
+//  Design setup for the metal design
 //
 //   Copyright (C) 2012 by Christian Mayer
 //   cometvisu (at) ChristianMayer.de
@@ -83,7 +83,9 @@ $(window).resize(function() {
          });
        }
        if (/(iphone|ipod|ipad)/i.test(navigator.userAgent.toLowerCase())) {
-         $('#top').css('margin-top','1em');
+         // disable scrolling
+         main_scroll.getConf().speed=0;
+         $('body').css('padding-top','1em');
          handleResize(true);
        }
        $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
