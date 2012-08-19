@@ -688,3 +688,6 @@ background-color: #000;
 	padding: 0;
 	color: inherit;
 }
+#pages .page .widget .ui-slider-horizontal:first-child  {
+  width: 95%;
+}
