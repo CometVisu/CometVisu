@@ -46,7 +46,6 @@ VisuDesign_Custom.prototype.addCreator("gweather", {
         }
 
         ret_val.append(label).append(actor);
-        console.log("loaded plugin gweather");
 
         gweather.data("id", id);
         gweather.data("label", page.textContent);
@@ -103,8 +102,8 @@ function refreshGweather(gweather, data) {
 	   data: "city="+encodeURI(city)+"&lang="+lang,
 	   url: "plugins/gweather/gweather.php",
       success: function(data){
-			$(gweather).text('');
 			if(eval(current)){
+                $(gweather).text('');
 				addForecastDiv(
 					//$(data).find('forecast_information').find('current_date_time').attr('data'),
 					'',
@@ -137,6 +136,6 @@ function refreshGweather(gweather, data) {
 	           refreshGweather(gweather, data)
 	         }, refresh * 1000, gweather, data);
 	 }
-    console.log("gweather end");
     return false;
 }
+
