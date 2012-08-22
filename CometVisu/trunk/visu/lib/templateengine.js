@@ -707,8 +707,23 @@ function removePopup( jQuery_object ) {
 /* is possible to overload?!? */
 /** ************************************************************************* */
 function refreshAction( target, src ) {
-  target.src = src + '&' + new Date().getTime();
+  /* Special treatment for (external) iframes:
+   * we need to clear it and reload it in another thread as otherwise stays
+   * blank for some targets/sites and src = src doesnt work anyway on external
+   * This creates though some "flickering" so we avoid to use it on images, 
+   * internal iframes and others
+   */
+  var parenthost = window.location.protocol + "//" + window.location.host
+  if (target.nodeName == "IFRAME" && src.indexOf(parenthost) != 0) {
+    target.src = '';
+    setTimeout( function () {
+      target.src = src;
+    }, 0);
+  } else {
+    target.src = src + '&' + new Date().getTime();
+  }
 }
+
 function setupRefreshAction() {
   var refresh = $(this).data('refresh');
   if( refresh && refresh > 0 ) {
