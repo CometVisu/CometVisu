@@ -35,6 +35,8 @@ var ga_list = [];
 var main_scroll;
 var old_scroll = '';
 
+var scrollSpeed;
+
 var resizeAfterScroll = false;
 
 visu = new CometVisu('/cgi-bin/');
@@ -205,6 +207,8 @@ function parseXML(xml) {
   
   // read predefined design in config
   predefinedDesign = $( 'pages', xml ).attr("design");
+  
+  scrollSpeed = $( 'pages', xml ).attr("scroll_speed");
 
   // design by url
   if ($.getUrlVar("design")) {
@@ -218,10 +222,11 @@ function parseXML(xml) {
   else {
     selectDesign();
   }
+  var maxMobileScreenWidth = $('pages',xml).attr('max_mobile_screen_width') || 480;
   
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/designglobals.css" />' );
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/basic.css" />' );
-  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/mobile.css" media="only screen and (max-device-width: 480px)" />' );
+  $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/mobile.css" media="only screen and (max-device-width: '+maxMobileScreenWidth+'px)" />' );
   $( 'head' ).append( '<link rel="stylesheet" type="text/css" href="designs/' + clientDesign + '/custom.css" />' );
   $( 'head' ).append( '<script src="designs/' + clientDesign + '/design_setup.js" type="text/javascript" />' );
   
@@ -375,6 +380,9 @@ function setup_page( xml )
   // setup the scrollable
   main_scroll = $('#main').scrollable({keyboard: false, touch: false}).data('scrollable');
   main_scroll.onSeek( updateTopNavigation );
+  if (scrollSpeed!=undefined) {
+    main_scroll.getConf().speed = scrollSpeed;
+  }
   
   if ($.getUrlVar('startpage')) {
     scrollToPage( 'id_'+$.getUrlVar('startpage'), 0 );
@@ -595,7 +603,7 @@ function scrollToPage( page_id, speed, skipHistory ) {
     }
   }
   //push new state to history
-  if (skipHistory==undefined)
+  if (skipHistory===undefined)
     window.history.pushState(page_id, page_id, window.location.href);
   
   main_scroll.seekTo( page, speed ); // scroll to it
@@ -1025,7 +1033,13 @@ function fadeNavbar(position,direction) {
       break;
   }
   navbar.css(initCss);
-  navbar.animate(targetCss,main_scroll.getConf().speed,main_scroll.getConf().easing,fn);
+  if (main_scroll.getConf().speed==0) {
+    navbar.css(targetCss);
+    fn();
+  }
+  else {
+    navbar.animate(targetCss,main_scroll.getConf().speed,main_scroll.getConf().easing,fn);
+  }
 }
 
 function removeInactiveNavbars(page_id) {
