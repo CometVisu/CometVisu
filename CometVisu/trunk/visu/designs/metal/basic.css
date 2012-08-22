@@ -90,7 +90,10 @@ body br
 
 .widget_container {
    float: left;
-   width: 100%;
+}
+.navbar .widget_container {
+	width: 100%;
+	display: block;
 }
 .widget
 {
