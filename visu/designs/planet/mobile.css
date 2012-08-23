@@ -1,5 +1,5 @@
 .widget_container {
-    width: 100%;
+    width: 98%;
 }
 
 #bottom {
@@ -16,5 +16,24 @@
 
 .widget .ui-slider
 {
-  width: 40%;
+  width: 99%;
+}
+
+
+
+.popup > .main, .widget.image > .actor, .widget.video > .actor, .widget.diagram > .actor {
+ 
+  left: 0rem;
+  right: -0.8rem;
+  
+}
+
+.popup_background {
+ width: 95%;
+  left: 1%;
+}
+.popup > .main, .widget.image > .actor, .widget.video > .actor, .widget.diagram > .actor {
+
+  left: -1rem;
+  
 }
