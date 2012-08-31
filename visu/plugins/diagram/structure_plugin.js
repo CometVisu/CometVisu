@@ -43,6 +43,7 @@
   *   - width, height:        optional, width and height of "inline"-diagram
   *   - previewlabels:        optional, show labels on "inline"-diagram
   *   - popup:                optional, make diagram clickable and open popup
+  *   - title:                optional, diagram title (overrides label-content)
   *
   * functions:
   *   - createDiagram(page, path, oldType)
@@ -130,7 +131,11 @@ function createDiagram( page, path, oldType ) {
   diagram.data("series", $p.attr("series") || "day");
   diagram.data("period", $p.attr("period") || 1);
   diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
-  diagram.data("label", $('.label', ret_val).text() || '');
+  if ($p.attr("title")) {
+    diagram.data("label", $p.attr("title"));
+  } else {
+	diagram.data("label", $('.label', ret_val).text() || '');
+  }
   diagram.data("refresh", $p.attr("refresh"));
   diagram.data("gridcolor", $p.attr("gridcolor") || "");
 
@@ -213,7 +218,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_inline", {
     linecolor:  {type: "string", required: false},
     colspan:    {type: "numeric", required: false},
     rowspan:    {type: "numeric", required: false},
-    gridcolor:  {type: "string", required: false}
+    gridcolor:  {type: "string", required: false},
+    title:      {type: "string", required: false}
   },
   elements: {
     label:      { type: 'string',    required: false, multi: false },
@@ -240,6 +246,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_popup", {
     tooltip:       {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
     width:         {type: "string", required: false},
     height:        {type: "string", required: false},
+    title:         {type: "string", required: false}
   },
   elements: {
     label:      { type: 'string',    required: false, multi: false },
@@ -268,6 +275,7 @@ VisuDesign_Custom.prototype.addCreator("diagram", {
     height:        {type: "string", required: false},
     previewlabels: {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
     popup:         {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
+    title:         {type: "string", required: false}
   },
   elements: {
     label:      { type: 'string',    required: false, multi: false },
@@ -329,7 +337,12 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     bDiagram.data("series", $p.attr("series") || "day");
     bDiagram.data("period", $p.attr("period") || 1);
     bDiagram.data("datasource", $p.attr("datasource") || "AVERAGE");
-    bDiagram.data("label", $('.label', ret_val).text() || '');
+    if ($p.attr("title")) {
+        bDiagram.data("label", $p.attr("title"));
+      } else {
+    	bDiagram.data("label", $('.label', ret_val).text() || '');
+      }
+    
     bDiagram.data("refresh", $p.attr("refresh"));
     bDiagram.data("gridcolor", $p.attr("gridcolor") || "");
                
@@ -402,7 +415,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     yaxismax:   {type: "numeric", required: false},
     format:     { type: 'format', required: false },
     mapping:    { type: 'mapping', required: false },
-    styling:    { type: 'styling', required: false }
+    styling:    { type: 'styling', required: false },
+    title:      {type: "string", required: false}
   },
   elements: {
     label:      { type: 'string', required: false, multi: false },
