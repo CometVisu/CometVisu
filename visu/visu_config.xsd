@@ -99,6 +99,9 @@
       <xsd:attribute name="design" type="xsd:string" use="required" />
       <xsd:attribute name="scroll_speed" type="xsd:decimal" use="optional" />
       <xsd:attribute name="max_mobile_screen_width" type="xsd:decimal" use="optional" />
+      <xsd:attribute name="min_column_width" type="xsd:decimal" use="optional" />
+      <xsd:attribute name="default_columns" type="xsd:decimal" use="optional" />
+      <xsd:attribute name="enable_column_adjustment" type="xsd:boolean" use="optional" />
     </xsd:complexType>
   </xsd:element>
 
