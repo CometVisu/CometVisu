@@ -161,6 +161,7 @@ body br
   margin-left:0.2em;
   text-align:left;
 }
+.widget .actor:first-child { margin-left: 0; }
 .widget .actor div
 {
   float:left;
@@ -434,8 +435,7 @@ body br
 {
   width: 45%;
   float: left;
-  margin-left: 10px;
-  margin-left: 1em;
+  margin-left: 0.6em;
   margin-top: 0.5em;
   border-color:  #010101 #282828 #282828 #010101;
   background: url(images/gradient.png) #a7a7a7 repeat-y;
