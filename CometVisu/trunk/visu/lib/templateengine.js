@@ -38,6 +38,9 @@ var old_scroll = '';
 var scrollSpeed;
 
 var resizeAfterScroll = false;
+var defaultColumns = 12;
+var minColumnWidth = 150;
+var enableColumnAdjustment = false;
 
 visu = new CometVisu('/cgi-bin/');
 visu.update = function( json ) { // overload the handler
@@ -145,32 +148,79 @@ function map( value, this_map ) {
   return value;
 }
 
+function adjustColumns() {
+  if (enableColumnAdjustment==false) return false;
+  
+  var factor = window.devicePixelRatio || 1;
+  var widthNavbarLeft  = $( '#navbarLeft' ).css('display')!='none' ? $( '#navbarLeft' ).width(): 0;
+  var widthNavbarRight = $( '#navbarRight' ).css('display')!='none' ? $( '#navbarRight' ).width() : 0;
+  var width = $( 'body' ).width() - widthNavbarLeft - widthNavbarRight - 1; // remove  an additional pixel for Firefox
+  width=width/factor;
+
+  var $main = $( '#main' );
+  var newColumns = $main.data('columns');
+  newColumns = (Math.ceil(width/minColumnWidth) % 2)>0 ? Math.ceil(width/minColumnWidth)+1 : Math.ceil(width/minColumnWidth); 
+  newColumns = Math.min(defaultColumns,newColumns);
+  if (newColumns>defaultColumns/2 && defaultColumns>newColumns) newColumns = defaultColumns;
+
+  if (newColumns!=$main.data('columns')) {
+    $main.data({'columns': newColumns} );
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 /*
  * Make sure everything looks right when the window gets resized. 
  * This is necessary as the scroll effect requires a fixed element size
  */
-function handleResize(skipScrollFix) {
+function handleResize(resize, skipScrollFix) {
   var uagent = navigator.userAgent.toLowerCase();
   var widthNavbarLeft  = $( '#navbarLeft' ).css('display')!='none' ? $( '#navbarLeft' ).width(): 0;
   var widthNavbarRight = $( '#navbarRight' ).css('display')!='none' ? $( '#navbarRight' ).width() : 0;
   var width = $( 'body' ).width() - widthNavbarLeft - widthNavbarRight - 1; // remove  an additional pixel for Firefox
 
+  var $main = $( '#main' );
   if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
-    $( '#main' ).css( 'width', width );
+    $main.css( 'width', width );
     $( '#pageSize' ).text( '.page{width:' + (width-0) + 'px;}' );
     // do nothing
   } else {
-    var height = $( window ).height() - $( '#main' ).position().top;
+    var height = $( window ).height() - $main.position().top;
     if ($( '#navbarBottom' ).css('display')!='none') {
       height-= $( '#navbarBottom' ).outerHeight(true)-1;
     }
     if ($( '#bottom' ).css('display')!='none') {
-      height-= $( '#bottom'       ).outerHeight(true) - 1;
+      height-= $( '#bottom' ).outerHeight(true) - 1;
     }
-    $( '#main' ).css( 'width', width ).css( 'height', height );
+    $main.css( 'width', width ).css( 'height', height );
     $( '#pageSize' ).text( '.page{width:' + (width-0) + 'px;height:' + height + 'px;}' );
   }
-  skipScrollFix===undefined && main_scroll != undefined && main_scroll.seekTo( main_scroll.getIndex(), 0 ); // fix scroll
+  if (skipScrollFix===undefined) {
+    if (adjustColumns()) {
+      var allContainer = $('.widget_container');
+      allContainer.each(function(i, e) {
+        var $e=$(e);
+        var ourColspan = $e.children('*:first-child').data('colspan');
+        var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || defaultColumns;
+        var ourWidth = Math.min(100,ourColspan/areaColspan*100);
+        $e.css('width', ourWidth+'%');
+      });
+      // and elements inside groups
+      var adjustableElements = $('.group .widget_container');
+      adjustableElements.each(function(i, e) {
+        var $e = $(e);
+        var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || defaultColumns;
+        var groupColspan = Math.min(areaColspan,$e.parentsUntil('.widget_container', '.group').data('colspan'));
+        var ourColspan = $e.children('.widget').data('colspan');
+        var ourWidth = Math.min(100,ourColspan/groupColspan*100);  // in percent
+        $e.css('width', ourWidth+'%');
+      });
+    }
+    // main_scroll != undefined && main_scroll.seekTo( main_scroll.getIndex(), 0 ); // fix scroll
+  }
 }
 $( window ).bind( 'resize', handleResize );
 
@@ -209,6 +259,18 @@ function parseXML(xml) {
   predefinedDesign = $( 'pages', xml ).attr("design");
   
   scrollSpeed = $( 'pages', xml ).attr("scroll_speed");
+  if ($('pages',xml).attr('enable_column_adjustment')=="true") {
+    enableColumnAdjustment = true;
+  }
+  else if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(navigator.userAgent.toLowerCase())) {
+    enableColumnAdjustment = true;
+  }
+  if ($('pages',xml).attr('default_columns')) {
+    defaultColumns = $('pages',xml).attr('default_columns');
+  }
+  if ($('pages',xml).attr('min_column_width')) {
+    minColumnWidth = $('pages',xml).attr('min_column_width');
+  }
 
   // design by url
   if ($.getUrlVar("design")) {
@@ -356,27 +418,27 @@ function setup_page( xml )
   
   create_pages(page, 'id_0');
   
-
+  adjustColumns();
   // all containers
-  if (!/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(navigator.userAgent.toLowerCase())) {
-    var allContainer = $('.widget_container');
-    allContainer.each(function(i, e) {
-      var ourColspan = $(e).children('*:first-child').data('colspan');
-      var areaColspan = $(e).parentsUntil('#centerContainer').last().data('columns') || 12;
-      var ourWidth = ourColspan/areaColspan*100;
-      $(e).css('width', ourWidth+'%');
-    });
-  
+  var allContainer = $('.widget_container');
+  allContainer.each(function(i, e) {
+    var $e = $(e);
+    var ourColspan = $e.children('*:first-child').data('colspan');
+    var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || defaultColumns;
+    var ourWidth = Math.min(100,ourColspan/areaColspan*100);
+    $e.css('width', ourWidth+'%');
+  });
     // and elements inside groups
     var adjustableElements = $('.group .widget_container');
     adjustableElements.each(function(i, e) {
-      var groupColspan = $(e).parentsUntil('.widget_container', '.group').data('colspan');
-      var ourColspan = $(e).children('.widget').data('colspan');
-      var ourWidth = ourColspan/groupColspan*100;  // in percent
-      $(e).css('width', ourWidth+'%');
+      var $e = $(e);
+      var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || defaultColumns;
+      var groupColspan = Math.min(areaColspan,$e.parentsUntil('.widget_container', '.group').data('colspan'));
+      var ourColspan = $e.children('.widget').data('colspan');
+      var ourWidth = Math.min(100,ourColspan/groupColspan*100);  // in percent
+      $e.css('width', ourWidth+'%');
     });
-  };
-  
+    
   // setup the scrollable
   main_scroll = $('#main').scrollable({keyboard: false, touch: false}).data('scrollable');
   main_scroll.onSeek( updateTopNavigation );
@@ -667,7 +729,7 @@ function scrollToPage( page_id, speed, skipHistory ) {
   });
   $(window).trigger('scrolltopage',page_id);
   if (resizeAfterScroll) {
-    handleResize(true);
+    //handleResize(null,true);
     resizeAfterScroll=false;
   } 
 }
