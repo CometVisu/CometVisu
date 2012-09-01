@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="metal"
-  xsi:noNamespaceSchemaLocation="visu_config.xsd">
+  xsi:noNamespaceSchemaLocation="visu_config.xsd" enable_column_adjustment="true">
   <meta>
     <plugins>
       <plugin name="gweather" />
@@ -141,7 +141,6 @@ Config</a> ]]></status>
         <address transform="DPT:16.001" variant="">12/1/0</address>
       </info>
       <switch mapping="OnOff" styling="GreyGreen">
-        <layout colspan="3" />
         <label>Follow me</label>
         <address transform="DPT:1.001" variant="">12/1/6</address>
       </switch>
