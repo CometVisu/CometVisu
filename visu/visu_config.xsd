@@ -238,9 +238,9 @@
         </xsd:simpleType>
       </xsd:attribute>
       <xsd:attribute name="backdrop" type="uri" use="optional" />
-      <xsd:attribute name="showtopnavigation" type="xsd:boolean" use="optional"/>
-      <xsd:attribute name="showfooter" type="xsd:boolean" use="optional"/>
-      <xsd:attribute name="shownavbar" type="xsd:string" use="optional"/>
+      <xsd:attribute name="showtopnavigation" type="xsd:boolean" use="optional" />
+      <xsd:attribute name="showfooter" type="xsd:boolean" use="optional" />
+      <xsd:attribute name="shownavbar" type="xsd:string" use="optional" />
     </xsd:complexType>
   </xsd:element>
 
@@ -289,10 +289,10 @@
       <!-- visual effects -->
       <xsd:element name="line" type="line" />
       <xsd:element name="break" type="break" />
+      <xsd:element name="group" type="group" />
       <!-- list all possbile widgets here -->
       <xsd:element name="text" type="text" />
       <xsd:element name="switch" type="switch" />
-      <xsd:element name="group" type="group" />
       <xsd:element name="toggle" type="switch" />
       <xsd:element name="trigger" type="trigger" />
       <xsd:element name="multitrigger" type="multitrigger" />
@@ -339,9 +339,15 @@
     </xsd:simpleContent>
   </xsd:complexType>
 
+  <xsd:complexType name="label" mixed="true">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element ref="icon" />
+    </xsd:choice>
+  </xsd:complexType>
+
   <xsd:complexType name="switch">
     <xsd:choice maxOccurs="unbounded" minOccurs="1">
-      <xsd:element name="label" type="text" />
+      <xsd:element name="label" type="label" />
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
       <xsd:element name="address" type="address" minOccurs="1" />
     </xsd:choice>
@@ -524,6 +530,7 @@
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
+    <xsd:attribute name="title" type="xsd:string" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="diagram_popup">
@@ -544,6 +551,7 @@
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
+    <xsd:attribute name="title" type="xsd:string" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="diagram_info">
@@ -568,6 +576,7 @@
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
+    <xsd:attribute name="title" type="xsd:string" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="gweather">
@@ -642,12 +651,6 @@
   <xsd:complexType name="break" />
 
   <xsd:complexType name="line" />
-  
-  <xsd:complexType name="label" mixed="true">
-    <xsd:choice minOccurs="0" maxOccurs="unbounded">
-      <xsd:element ref="icon" />
-    </xsd:choice>
-  </xsd:complexType>
 
   <!-- toggle is not yet implemented -->
 
