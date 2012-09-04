@@ -728,6 +728,14 @@
           <address transform="DPT:9" type="">12/7/9</address>
         </slide>
       </group>
+      <wgplugin_info variable="KNX-Watchdog_last">
+        <label>WireGate Plugin Variable</label>
+        <address transform="DPT:1.001">12/7/1</address>
+      </wgplugin_info>
+      <trigger value="Trigger" mapping="On_Off">
+        <label>Update Value</label>
+        <address transform="DPT:1.001" type="">12/7/1</address>
+      </trigger>
     </page>
   </page>
 </pages>
