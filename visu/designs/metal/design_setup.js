@@ -78,7 +78,11 @@ $(window).resize(function() {
            var target = ($(this).data().target.match(/^id_[0-9_]+$/)==null) ? $('.page h1:contains('+$(this).data().target+')').closest(".page").attr("id") : $(this).data().target;
            if (target=="id_0") {
              // pagejump to root-page found
-             $(this).closest(".group").addClass("root");
+             var group = $(this).closest(".group");
+             console.log(group);
+             console.log(group.find('.widget_container').size());
+             if (group.find('.widget_container').size()==1)
+               group.addClass("root");
            }
          });
        }
