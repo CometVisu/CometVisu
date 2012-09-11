@@ -97,11 +97,11 @@ body br
 }
 .widget
 {
-  margin: 0;
+  margin: -1px -1px 0 0;
   padding: 0.3em;
   border-color: #666;
   border-style: solid;
-  border-width: 1px 1px 0 0;
+  border-width: 1px;
   min-height: 2em;
   text-shadow: 0 1px 1px #111;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#2d2d2d)); /* Saf4+, Chrome */
@@ -146,7 +146,7 @@ body br
   text-align:left;
   padding-left: 0.2em;
 }
-.widget .label img { vertical-align: middle; margin-top: -0.3em; }
+.widget .label img { vertical-align: middle; margin-top: -0.35em; }
 .widget .switchPressed img.icon, .widget .switchUnpressed img.icon { height: 1.1em !important; }
 /*.widget .actor img.icon { height: 1.1em !important; }*/
 .widget_container > .pagejump > .label {
