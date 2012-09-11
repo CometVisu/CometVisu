@@ -109,24 +109,30 @@ Config</a> ]]></status>
   <page name="Übersicht" showtopnavigation="false" showfooter="false"
     shownavbar="true false">
     <navbar position="top">
-      <pagejump target="Übersicht" name=" ">
-        <label><icon name="steuer_home" />Start</label>
+      <pagejump target="Übersicht" name="Übersicht">
+      	<layout colspan="1"/>
+        <label><icon name="steuer_home" /></label>
       </pagejump>
       <line />
       <pagejump target="KNX" name=" ">
-        <label><icon name="steuer_alles_ein_aus" />KNX</label>
+      	<layout colspan="0"/>
+      	<label><icon name="steuer_alles_ein_aus" />KNX</label>
       </pagejump>
       <pagejump target="Video" name=" ">
-        <label><icon name="it_fernsehen" />Video</label>
+      	<layout colspan="0"/>
+      	<label><icon name="it_fernsehen" />Video</label>
       </pagejump>
       <pagejump target="Audio" name=" ">
+      	<layout colspan="0"/>
         <label><icon name="audio_audio" />Audio</label>
       </pagejump>
       <pagejump target="Web" name=" ">
+      	<layout colspan="0"/>
         <label><icon name="it_internet" />Web</label>
       </pagejump>
       <line />
       <pagejump target="Wetter" name=" ">
+      	<layout colspan="0"/>
         <label><icon name="wetter_sonne" />Wetter</label>
       </pagejump>
     </navbar>
@@ -206,7 +212,7 @@ Config</a> ]]></status>
           <layout colspan="12" />
           <multitrigger button1label="&#8593;" button1value="0"
             button2label="&#8595;" button2value="1" styling="GreyGreen" mapping="UpDown">
-            <label><icon name="fts_rollo" /> Fenster</label>
+            <label>Fenster</label>
             <address transform="DPT:1.001" variant="">13/0/3</address>
           </multitrigger>
           <multitrigger button1label="&#8593;" button1value="0"
