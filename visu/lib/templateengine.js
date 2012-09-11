@@ -204,6 +204,7 @@ function handleResize(resize, skipScrollFix) {
       allContainer.each(function(i, e) {
         var $e=$(e);
         var ourColspan = $e.children('*:first-child').data('colspan');
+        if (ourColspan<=0) return;
         var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || defaultColumns;
         var ourWidth = Math.min(100,ourColspan/areaColspan*100);
         $e.css('width', ourWidth+'%');
@@ -212,9 +213,10 @@ function handleResize(resize, skipScrollFix) {
       var adjustableElements = $('.group .widget_container');
       adjustableElements.each(function(i, e) {
         var $e = $(e);
+        var ourColspan = $e.children('.widget').data('colspan');
+        if (ourColspan<=0) return;
         var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || defaultColumns;
         var groupColspan = Math.min(areaColspan,$e.parentsUntil('.widget_container', '.group').data('colspan'));
-        var ourColspan = $e.children('.widget').data('colspan');
         var ourWidth = Math.min(100,ourColspan/groupColspan*100);  // in percent
         $e.css('width', ourWidth+'%');
       });
@@ -424,6 +426,7 @@ function setup_page( xml )
   allContainer.each(function(i, e) {
     var $e = $(e);
     var ourColspan = $e.children('*:first-child').data('colspan');
+    if (ourColspan<=0) return;  
     var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || defaultColumns;
     var ourWidth = Math.min(100,ourColspan/areaColspan*100);
     $e.css('width', ourWidth+'%');
@@ -432,9 +435,10 @@ function setup_page( xml )
     var adjustableElements = $('.group .widget_container');
     adjustableElements.each(function(i, e) {
       var $e = $(e);
+      var ourColspan = $e.children('.widget').data('colspan');
+      if (ourColspan<=0) return;
       var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || defaultColumns;
       var groupColspan = Math.min(areaColspan,$e.parentsUntil('.widget_container', '.group').data('colspan'));
-      var ourColspan = $e.children('.widget').data('colspan');
       var ourWidth = Math.min(100,ourColspan/groupColspan*100);  // in percent
       $e.css('width', ourWidth+'%');
     });
