@@ -146,7 +146,7 @@ body br
   text-align:left;
   padding-left: 0.2em;
 }
-.widget .label img { vertical-align: middle; }
+.widget .label img { vertical-align: middle; margin-top: -0.3em; }
 .widget .switchPressed img.icon, .widget .switchUnpressed img.icon { height: 1.1em !important; }
 /*.widget .actor img.icon { height: 1.1em !important; }*/
 .widget_container > .pagejump > .label {
@@ -183,6 +183,9 @@ body br
 }
 .navbar .switchPressed .value, .navbar .switchUnpressed .value {
 	padding-left: 2.2em;
+}
+#navbarTop .navbar .switchPressed .value, #navbarTop .navbar .switchUnpressed .value, #navbarBottom .navbar .switchPressed .value, #navbarBottom .navbar .switchUnpressed .value {
+	padding-left: 2.5em;
 }
 
 .green.switchPressed div, .green.switchUnpressed div {
@@ -605,7 +608,7 @@ div#demo_3 {
 }
 
 #navbarTop .navbar .widget_container, #navbarBottom .navbar .widget_container {
-	width: auto !important;
+	width: auto;
 }
 
 #navbarTop, #navbarTop .navbar .widget{
@@ -630,7 +633,9 @@ div#demo_3 {
 	margin: 0;
 	border-width:0;
 	padding: 0.3em 0.5em;
-	
+	position: relative; 
+	min-width: 2em; 
+	min-height: 3em;
 }
 #navbarTop .navbar .widget:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor  {
     background-color: #000;
@@ -662,7 +667,6 @@ background-color: #000;
 }
 #navbarTop { border-bottom: 2px solid #666; }
 #navbarBottom { border-top: 2px solid #666; }
-#navbarTop .navbar .widget, #navbarBottom .navbar .widget { position: relative; min-width: 2em; min-height: 3em; }
 .navbar .pagejump .label > img, .navbar .pagejump .label > img { 
 	height: 44px !important;
 }
@@ -670,14 +674,11 @@ background-color: #000;
 	display: block;
 	margin: 0 auto;
 }
-.navbar .pagejump .label, .navbar .pagejump .label {
+.navbar .pagejump .label {
 	text-align: center;
 	font-size: 0.7em;
 	float: left;
 	margin: 0 auto;
-}
-#navbarTop .navbar .pagejump .actor .value , #navbarBottom.navbar .pagejump .actor .value {
-	display: none;
 }
 #navbarTop .navbar .pagejump .actor, #navbarBottom.navbar .pagejump .actor {
 	width: 100%; 	
