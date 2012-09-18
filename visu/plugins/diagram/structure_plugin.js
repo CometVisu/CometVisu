@@ -35,7 +35,7 @@
   *   - rrd:                  required, name of RRD
   *   - unit:                 optional, unit for axis-labels
   *   - series:               optional, "hour", "day" (default), "week", "month", "year"
-  *   - period:               optional, ?
+  *   - period:               optional, number of "series" to be shown
   *   - datasource:           optional, RRD-datasource, "MIN", "AVERAGE" (default), "MAX"
   *   - refresh:              optional, refresh-rate in seconds, no refresh if missing
   *   - yaxismin, yaxismax:   optional, limits for y-axis
@@ -43,6 +43,7 @@
   *   - width, height:        optional, width and height of "inline"-diagram
   *   - previewlabels:        optional, show labels on "inline"-diagram
   *   - popup:                optional, make diagram clickable and open popup
+  *   - legend:               optional, "none", "both", "inline", "popup" select display of legend
   *   - title:                optional, diagram title (overrides label-content)
   *
   * functions:
@@ -131,6 +132,7 @@ function createDiagram( page, path, oldType ) {
   diagram.data("series", $p.attr("series") || "day");
   diagram.data("period", $p.attr("period") || 1);
   diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
+  diagram.data("legend", $p.attr("legend") || "both");
   if ($p.attr("title")) {
     diagram.data("label", $p.attr("title"));
   } else {
@@ -144,9 +146,12 @@ function createDiagram( page, path, oldType ) {
   diagram.addClass("clickable");
   var data = jQuery.extend({}, diagram.data());
 
+  diagram.data("ispopup", false);
+  
   if ((oldType=="popup") || ($p.attr("popup")=="true")) {
     diagram.bind("click", function() {
       bDiagram.data(data);
+      bDiagram.data("ispopup", true);
       bDiagram.css({height: "90%"});
       showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
       bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
@@ -275,6 +280,7 @@ VisuDesign_Custom.prototype.addCreator("diagram", {
     height:        {type: "string", required: false},
     previewlabels: {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
     popup:         {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
+    showlegend:    {type: "list", required: false, list: {'both': "both", 'inline': "inline", 'popup': "popup", 'none': "none"}},
     title:         {type: "string", required: false}
   },
   elements: {
@@ -337,6 +343,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     bDiagram.data("series", $p.attr("series") || "day");
     bDiagram.data("period", $p.attr("period") || 1);
     bDiagram.data("datasource", $p.attr("datasource") || "AVERAGE");
+    bDiagram.data("legend", $p.attr("legend") || "both");
     if ($p.attr("title")) {
         bDiagram.data("label", $p.attr("title"));
       } else {
@@ -345,13 +352,15 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     
     bDiagram.data("refresh", $p.attr("refresh"));
     bDiagram.data("gridcolor", $p.attr("gridcolor") || "");
-               
+  
+    
     var data = jQuery.extend({}, bDiagram.data());
 
     $actor.bind("click", function() {
       bDiagram.data(data);
       bDiagram.css({height: "90%"});
-
+      bDiagram.data("ispopup", true);
+      
       showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
       bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
       bDiagram.empty();
@@ -416,6 +425,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     format:     { type: 'format', required: false },
     mapping:    { type: 'mapping', required: false },
     styling:    { type: 'styling', required: false },
+    legend:     {type: "list", required: false, list: {'both': "both", 'inline': "inline", 'popup': "popup", 'none': "none"}},
     title:      {type: "string", required: false}
   },
   elements: {
@@ -448,6 +458,10 @@ function refreshDiagram(diagram, flotoptions, data) {
   if (typeof (content) == "undefined") { // Fenster schon geschlossen oder keine Achsen und RRD konfiguriert
     return;
   }
+ 
+  var showlegend = !((diagram.data("legend")=="none") 
+	  || (diagram.data("ispopup") && (diagram.data("legend")=="inline"))  
+	  || (!diagram.data("ispopup") && (diagram.data("legend")=="popup")));
   
   var label = diagram.data("label"); // title of diagram
   var refresh = diagram.data("refresh");
@@ -470,7 +484,7 @@ function refreshDiagram(diagram, flotoptions, data) {
       mode: "time"
     }],
     legend: {
-      show: 1,
+      show: showlegend,
       backgroundColor: "#101010"
     },
     series: {
