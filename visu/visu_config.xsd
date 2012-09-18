@@ -215,6 +215,7 @@
         <xsd:element name="diagram_popup" type="diagram_popup" />
         <xsd:element name="diagram_inline" type="diagram_inline" />
         <xsd:element name="diagram_info" type="diagram_info" />
+        <xsd:element name="diagram" type="diagram" />
         <xsd:element name="gweather" type="gweather" />
         <xsd:element name="rss" type="rss" />
         <xsd:element name="rsslog" type="rsslog" />
@@ -271,6 +272,7 @@
       <xsd:element name="diagram_popup" type="diagram_popup" />
       <xsd:element name="diagram_inline" type="diagram_inline" />
       <xsd:element name="diagram_info" type="diagram_info" />
+      <xsd:element name="diagram" type="diagram" />
       <xsd:element name="gweather" type="gweather" />
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
@@ -311,6 +313,7 @@
       <xsd:element name="diagram_popup" type="diagram_popup" />
       <xsd:element name="diagram_inline" type="diagram_inline" />
       <xsd:element name="diagram_info" type="diagram_info" />
+      <xsd:element name="diagram" type="diagram" />
       <xsd:element name="gweather" type="gweather" />
       <xsd:element name="rss" type="rss" />
       <xsd:element name="jqclock" type="jqclock" />
@@ -511,6 +514,31 @@
     </xsd:choice>
   </xsd:complexType>
 
+  <xsd:complexType name="diagram">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element name="label" type="label" maxOccurs="1" />
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="axis" type="axis"></xsd:element>
+      <xsd:element name="rrd" type="rrd"></xsd:element>
+    </xsd:choice>
+    <xsd:attribute name="rrd" type="xsd:string" use="optional" />
+    <xsd:attribute name="unit" type="xsd:string" use="optional" />
+    <xsd:attribute name="width" type="dimension" use="optional" />
+    <xsd:attribute name="series" type="xsd:string" use="optional" />
+    <xsd:attribute name="height" type="dimension" use="optional" />
+    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
+    <xsd:attribute name="period" type="xsd:string" use="optional" />
+    <xsd:attribute name="datasource" type="xsd:string" use="optional" />
+    <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
+    <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
+    <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
+    <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
+    <xsd:attribute name="legend" type="xsd:string" use="optional" />
+    <xsd:attribute name="popup" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="previewlabels" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="title" type="xsd:string" use="optional" />
+  </xsd:complexType>
+  
   <xsd:complexType name="diagram_inline">
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
       <xsd:element name="label" type="label" maxOccurs="1" />
@@ -518,7 +546,7 @@
       <xsd:element name="axis" type="axis"></xsd:element>
       <xsd:element name="rrd" type="rrd"></xsd:element>
     </xsd:choice>
-    <xsd:attribute name="rrd" type="xsd:string" use="required" />
+    <xsd:attribute name="rrd" type="xsd:string" use="optional" />
     <xsd:attribute name="unit" type="xsd:string" use="optional" />
     <xsd:attribute name="width" type="dimension" use="optional" />
     <xsd:attribute name="series" type="xsd:string" use="optional" />
@@ -540,7 +568,7 @@
       <xsd:element name="axis" type="axis"></xsd:element>
       <xsd:element name="rrd" type="rrd"></xsd:element>
     </xsd:choice>
-    <xsd:attribute name="rrd" type="xsd:string" use="required" />
+    <xsd:attribute name="rrd" type="xsd:string" use="optional" />
     <xsd:attribute name="unit" type="xsd:string" use="optional" />
     <xsd:attribute name="series" type="xsd:string" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
@@ -576,6 +604,7 @@
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
+    <xsd:attribute name="legend" type="xsd:string" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
   </xsd:complexType>
 
