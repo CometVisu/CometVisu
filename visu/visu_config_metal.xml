@@ -2,9 +2,6 @@
 <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="metal"
   xsi:noNamespaceSchemaLocation="visu_config.xsd" enable_column_adjustment="true">
   <meta>
-    <plugins>
-      <plugin name="gweather" />
-    </plugins>
     <mappings>
       <mapping name="OpenClose">
         <entry value="0">
@@ -12,9 +9,6 @@
         </entry>
         <entry value="1">
           <icon name="fts_fenster" />
-        </entry>
-        <entry value="2">
-          <icon name="fts_fenster_gekippt" />
         </entry>
       </mapping>
       <mapping name="DoorOpenClose">
@@ -29,19 +23,9 @@
         <entry value="0">
           <icon name="steuer_auf" />
         </entry>
-        <entry value="Auf">
-          <icon name="steuer_auf" />
-        </entry>
         <entry value="1">
           <icon name="steuer_ab" />
         </entry>
-        <entry value="Zu">
-          <icon name="steuer_ab" />
-        </entry>
-      </mapping>
-      <mapping name="DaWeg">
-        <entry value="0">Weg</entry>
-        <entry value="1">Da</entry>
       </mapping>
       <mapping name="OnOff">
         <entry value="0">O</entry>
@@ -55,39 +39,11 @@
           <icon name="audio_audio" />
         </entry>
       </mapping>
-      <mapping name="Sign">
-        <entry range_min="-1e99" range_max="0">Negativ</entry>
-        <entry value="0">Null</entry>
-        <entry range_min="0" range_max="1e99">Positiv</entry>
-      </mapping>
     </mappings>
     <stylings>
       <styling name="GreyGreen">
-        <entry value="Aus">grey</entry>
-        <entry value="Weg">grey</entry>
-        <entry value="Fehlt">grey</entry>
-        <entry value="Offen">grey</entry>
-        <entry value="An">green</entry>
-        <entry value="Da">green</entry>
-        <entry value="Zu">green</entry>
-        <entry value="Vorhanden">green</entry>
         <entry value="0">grey</entry>
         <entry value="1">green</entry>
-      </styling>
-      <styling name="RedGreen">
-        <entry value="0">red</entry>
-        <entry value="1">green</entry>
-      </styling>
-      <styling name="GreenRed">
-        <entry value="Aus">green</entry>
-        <entry value="An">red</entry>
-        <entry value="1">red</entry>
-        <entry value="0">green</entry>
-      </styling>
-      <styling name="BluePurpleRed">
-        <entry range_min="-100" range_max="0">blue</entry>
-        <entry value="0">purple</entry>
-        <entry range_min="0" range_max="100">red</entry>
       </styling>
       <styling name="BluePurpleRedTemp">
         <entry range_min="0" range_max="18">blue</entry>
@@ -163,9 +119,6 @@ Config</a> ]]></status>
     </group>
     <page name="Wetter" visible="false">
       <layout colspan="12" />
-      <gweather city="Warstein" lang="de" current="true" forecast="true">
-        <layout colspan="12" />
-      </gweather>
     </page>
     <page name="KNX" shownavbar="true" visible="false">
       <navbar position="left" dynamic="true" width="200px">
@@ -187,7 +140,7 @@ Config</a> ]]></status>
         <layout colspan="3" />
         <group name="Licht">
           <layout colspan="12" />
-          <switch mapping="OnOff" styling="RedGreen">
+          <switch mapping="OnOff" styling="GreyGreen">
             <layout colspan="3" />
             <label>Strahler</label>
             <address transform="DPT:1.001" variant="">13/0/0</address>
