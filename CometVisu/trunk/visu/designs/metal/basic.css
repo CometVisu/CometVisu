@@ -97,7 +97,7 @@ body br
 }
 .widget
 {
-  margin: -1px -1px 0 0;
+  margin: -1px 0 0 -1px;
   padding: 0.3em;
   border-color: #666;
   border-style: solid;
@@ -148,7 +148,7 @@ body br
 }
 .widget .label img { vertical-align: middle; margin-top: -0.3em; }
 .widget .switchPressed img.icon, .widget .switchUnpressed img.icon { height: 1.1em !important; }
-/*.widget .actor img.icon { height: 1.1em !important; }*/
+.widget.info img.icon, .widget.text img.icon { height: 1.5em !important; }
 .widget_container > .pagejump > .label {
 	width: auto;
 	display: inline;
@@ -187,18 +187,16 @@ body br
 #navbarTop .navbar .switchPressed .value, #navbarTop .navbar .switchUnpressed .value, #navbarBottom .navbar .switchPressed .value, #navbarBottom .navbar .switchUnpressed .value {
 	padding-left: 2.5em;
 }
-
 .green.switchPressed div, .green.switchUnpressed div {
-   background: transparent url(images/dot_green.png) no-repeat center center;
-	/*background: transparent url(images/dot_white.png) no-repeat center center;*/
-    color: white !important;
+   	background: transparent url(images/dot_green.png) no-repeat center center;
+	color: white !important;
 	text-shadow: 0;
 }
-.red.switchPressed div, .red.switchUnpressed div{
+.red.switchPressed div, .red.switchUnpressed div {
     background: transparent url(images/dot_red.png) no-repeat center center;
     color: grey !important;
 }
-.grey.switchPressed div, .grey.switchUnpressed div{
+.grey.switchPressed div, .grey.switchUnpressed div {
     background: transparent url(images/dot_grey.png) no-repeat center center;
     color: grey !important;
 }
@@ -237,6 +235,7 @@ body br
   float:left;
   overflow: auto;
   position: relative;
+  padding-left: 1px;
 }
 
 .switchPressed, .switchUnpressed {
