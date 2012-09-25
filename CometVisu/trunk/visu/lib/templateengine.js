@@ -451,6 +451,11 @@ function setup_page( xml )
   }
   
   if ($.getUrlVar('startpage')) {
+    // show the global navbars
+    $('#id_0_top_navbar').addClass('navbarActive');
+    $('#id_0_right_navbar').addClass('navbarActive');
+    $('#id_0_bottom_navbar').addClass('navbarActive');
+    $('#id_0_left_navbar').addClass('navbarActive');
     scrollToPage( 'id_'+$.getUrlVar('startpage'), 0 );
   } else {
     scrollToPage( 'id_0', 0 ); // simple solution to show page name on top at start
