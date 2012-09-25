@@ -324,6 +324,7 @@
     <xsd:attribute name="position" type="navbarPositionType" use="required" />
     <xsd:attribute name="dynamic" type="true_false" use="optional" />
     <xsd:attribute name="width" type="xsd:string" use="optional" />
+    <xsd:attribute name="scope" type="xsd:decimal" use="optional" />
   </xsd:complexType>
 
   <!-- more fun part - all widgets - if you add a new widget, you need to define it here -->
