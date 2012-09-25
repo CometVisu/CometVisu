@@ -47,7 +47,7 @@ visu.update = function( json ) { // overload the handler
   for( key in json ) {
     $.event.trigger( '_' + key, json[key] );
   }
-}
+};
 visu.user = 'demo_user'; // example for setting a user
 
 var configSuffix;
@@ -314,14 +314,14 @@ function parseXML(xml) {
           setup_page(xml);
         }
       }
-    }
+    };
 
     js.onload = function () {
       pluginsToLoad -= 1;
       if (pluginsToLoad <= 0) {
         setup_page(xml);
       }
-    }
+    };
   } );
 
   // then the mappings
@@ -451,11 +451,6 @@ function setup_page( xml )
   }
   
   if ($.getUrlVar('startpage')) {
-    // show the global navbars
-    $('#id_0_top_navbar').addClass('navbarActive');
-    $('#id_0_right_navbar').addClass('navbarActive');
-    $('#id_0_bottom_navbar').addClass('navbarActive');
-    $('#id_0_left_navbar').addClass('navbarActive');
     scrollToPage( 'id_'+$.getUrlVar('startpage'), 0 );
   } else {
     scrollToPage( 'id_0', 0 ); // simple solution to show page name on top at start
@@ -474,7 +469,7 @@ function setup_page( xml )
       // browser back button takes back to the last page
       scrollToPage(lastpage,0,true);
     }
-  }
+  };
   
   $('embed').each( function () {
     this.onload = function(){ 
@@ -680,10 +675,11 @@ function scrollToPage( page_id, speed, skipHistory ) {
   main_scroll.seekTo( page, speed ); // scroll to it
 
   // show the navbars for this page
-  $('#'+page_id+'_top_navbar').addClass('navbarActive');
+  /*$('#'+page_id+'_top_navbar').addClass('navbarActive');
   $('#'+page_id+'_right_navbar').addClass('navbarActive');
   $('#'+page_id+'_bottom_navbar').addClass('navbarActive');
-  $('#'+page_id+'_left_navbar').addClass('navbarActive');
+  $('#'+page_id+'_left_navbar').addClass('navbarActive');*/
+  initializeNavbars(page_id);
   
   var pagedivs=$('div', '#'+page_id); 
   for( var i = 0; i<pagedivs.length; i++) { // check for inline diagrams & refresh
@@ -792,7 +788,7 @@ function refreshAction( target, src ) {
    * This creates though some "flickering" so we avoid to use it on images, 
    * internal iframes and others
    */
-  var parenthost = window.location.protocol + "//" + window.location.host
+  var parenthost = window.location.protocol + "//" + window.location.host;
   if (target.nodeName == "IFRAME" && src.indexOf(parenthost) != 0) {
     target.src = '';
     setTimeout( function () {
@@ -1111,6 +1107,69 @@ function fadeNavbar(position,direction) {
   else {
     navbar.animate(targetCss,main_scroll.getConf().speed,main_scroll.getConf().easing,fn);
   }
+}
+
+/**
+ * traverse down the page tree from root page id_0 -> .. -> page_id
+ * activate all navbars in that path
+ * deactivate all others
+ * @param page_id
+ */
+function initializeNavbars(page_id) {
+  removeInactiveNavbars(page_id);
+  var tree = [$('#id_0').get(0)];
+  if (page_id!="id_0") {
+    var parts = page_id.split("_");
+    parts = parts.slice(2,parts.length);
+    for (var i=0; i<parts.length; i++) {
+      var item = $('#id_0_'+parts.slice(0,i+1).join('_')+".page",'#pages');
+      if (item.size()==1) {
+        tree.push(item.get(0));
+      }
+    }
+  }
+  var level = 1;
+  $(tree).each(function (i) {
+    var id = $(this).attr('id');
+    var topNav = $('#'+id+'_top_navbar');
+    var rightNav = $('#'+id+'_right_navbar');
+    var bottomNav = $('#'+id+'_bottom_navbar');
+    var leftNav = $('#'+id+'_left_navbar');
+    //console.log(tree.length+"-"+level+"<="+topNav.data('scope'));
+    if (topNav.size()>0) {
+      if (topNav.data('scope')==undefined || topNav.data('scope')<0 || tree.length-level<=topNav.data('scope')) {
+        topNav.addClass('navbarActive');
+      }
+      else {
+        topNav.removeClass('navbarActive');
+      }
+    }
+    if (rightNav.size()>0) {
+      if (rightNav.data('scope')==undefined || rightNav.data('scope')<0 || tree.length-level<=rightNav.data('scope')) {
+        rightNav.addClass('navbarActive');
+      }
+      else {
+        rightNav.removeClass('navbarActive');
+      }
+    }
+    if (bottomNav.size()>0) {
+      if (bottomNav.data('scope')==undefined || bottomNav.data('scope')<0 || tree.length-level<=bottomNav.data('scope')) {
+        bottomNav.addClass('navbarActive');
+      }
+      else {
+        bottomNav.removeClass('navbarActive');
+      }
+    }
+    if (leftNav.size()>0) {
+      if (leftNav.data('scope')==undefined || leftNav.data('scope')<0 || tree.length-level<=leftNav.data('scope')) {
+        leftNav.addClass('navbarActive');
+      }
+      else {
+        leftNav.removeClass('navbarActive');
+      }
+    }
+    level++;
+  });
 }
 
 function removeInactiveNavbars(page_id) {
