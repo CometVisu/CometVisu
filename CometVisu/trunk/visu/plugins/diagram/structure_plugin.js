@@ -72,7 +72,7 @@ function diagram_get_content( page ) {
       var unit = this.getAttribute('unit') || "";
       axes[ axesnum ] = { axisLabel:this.getAttribute('label') || null, position: this.getAttribute('position') || "left", 
         min: this.getAttribute('min') || null, max: this.getAttribute('max') || null,
-        tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals)+unit; } 
+        unit: unit, tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals)+unit; } 
       };
       axesnames ['_'+name] = axesnum+1;
       axesnum ++;
@@ -176,7 +176,7 @@ function createDiagram( page, path, oldType ) {
               var offset = new Date().getTimezoneOffset() * 60 * 1000;
               var dte = new Date(x + offset);
               showDiagramTooltip(item.pageX, item.pageY,
-              dte.toLocaleString() + ": " + y + jQuery(this).data("unit"));
+              dte.toLocaleString() + ": " + y + item.series.yaxis.options.unit);
             }
           } else {
             $("#diagramTooltip").remove();
@@ -384,7 +384,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
               var offset = new Date().getTimezoneOffset() * 60 * 1000;
               var dte = new Date(x + offset);
               showDiagramTooltip(item.pageX, item.pageY,
-              dte.toLocaleString() + ": " + y + jQuery(this).data("unit"));
+              dte.toLocaleString() + ": " + y + item.series.yaxis.options.unit);
             }
           } else {
             $("#diagramTooltip").remove();
