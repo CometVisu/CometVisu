@@ -80,12 +80,22 @@
     </xsd:restriction>
   </xsd:simpleType>
 
+  <xsd:simpleType name="legendposition">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="nw" />
+      <xsd:enumeration value="ne" />
+      <xsd:enumeration value="sw" />
+      <xsd:enumeration value="se" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
   <xsd:simpleType name="navbarPositionType">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="top" />
       <xsd:enumeration value="left" />
       <xsd:enumeration value="right" />
       <xsd:enumeration value="bottom" />
+      <xsd:attribute name="scope" type="xsd:decimal" use="optional" />
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -324,7 +334,6 @@
     <xsd:attribute name="position" type="navbarPositionType" use="required" />
     <xsd:attribute name="dynamic" type="true_false" use="optional" />
     <xsd:attribute name="width" type="xsd:string" use="optional" />
-    <xsd:attribute name="scope" type="xsd:decimal" use="optional" />
   </xsd:complexType>
 
   <!-- more fun part - all widgets - if you add a new widget, you need to define it here -->
@@ -535,9 +544,11 @@
     <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
     <xsd:attribute name="legend" type="xsd:string" use="optional" />
+    <xsd:attribute name="legendposition" type="legendposition" use="optional" />
     <xsd:attribute name="popup" type="xsd:boolean" use="optional" />
     <xsd:attribute name="previewlabels" type="xsd:boolean" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
+    <xsd:attribute name="tooltip" type="xsd:string" use="optional" />
   </xsd:complexType>
   
   <xsd:complexType name="diagram_inline">
@@ -606,6 +617,7 @@
     <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
     <xsd:attribute name="legend" type="xsd:string" use="optional" />
+    <xsd:attribute name="legendposition" type="legendposition" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
   </xsd:complexType>
 
@@ -693,6 +705,7 @@
         <xsd:attribute name="min" type="xsd:decimal"></xsd:attribute>
         <xsd:attribute name="max" type="xsd:decimal"></xsd:attribute>
         <xsd:attribute name="position" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="unit" type="xsd:string" use="optional" />
       </xsd:extension>
     </xsd:simpleContent>
 

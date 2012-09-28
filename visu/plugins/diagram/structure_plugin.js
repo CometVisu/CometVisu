@@ -133,6 +133,7 @@ function createDiagram( page, path, oldType ) {
   diagram.data("period", $p.attr("period") || 1);
   diagram.data("datasource", $p.attr("datasource") || "AVERAGE");
   diagram.data("legend", $p.attr("legend") || "both");
+  diagram.data("legendposition", $p.attr("legendposition") || "ne");
   if ($p.attr("title")) {
     diagram.data("label", $p.attr("title"));
   } else {
@@ -280,7 +281,8 @@ VisuDesign_Custom.prototype.addCreator("diagram", {
     height:        {type: "string", required: false},
     previewlabels: {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
     popup:         {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-    showlegend:    {type: "list", required: false, list: {'both': "both", 'inline': "inline", 'popup': "popup", 'none': "none"}},
+    legend:        {type: "list", required: false, list: {'both': "both", 'inline': "inline", 'popup': "popup", 'none': "none"}},
+    legendposition: {type: "list", rquired: false, list: {'se' : "bottomright", 'sw':"bottomleft", 'ne' : "topright", 'nw':"topleft"}},
     title:         {type: "string", required: false}
   },
   elements: {
@@ -344,6 +346,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     bDiagram.data("period", $p.attr("period") || 1);
     bDiagram.data("datasource", $p.attr("datasource") || "AVERAGE");
     bDiagram.data("legend", $p.attr("legend") || "both");
+    bDiagram.data("legendposition", $p.attr("legendposition") || "ne");
     if ($p.attr("title")) {
         bDiagram.data("label", $p.attr("title"));
       } else {
@@ -422,10 +425,11 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     gridcolor:  {type: "string", required: false},
     yaxismin:   {type: "numeric", required: false},
     yaxismax:   {type: "numeric", required: false},
-    format:     { type: 'format', required: false },
-    mapping:    { type: 'mapping', required: false },
-    styling:    { type: 'styling', required: false },
+    format:     {type: 'format', required: false },
+    mapping:    {type: 'mapping', required: false },
+    styling:    {type: 'styling', required: false },
     legend:     {type: "list", required: false, list: {'both': "both", 'inline': "inline", 'popup': "popup", 'none': "none"}},
+    legendposition: {type: "list", rquired: false, list: {'se' : "bottomright", 'sw':"bottomleft", 'ne' : "topright", 'nw':"topleft"}},
     title:      {type: "string", required: false}
   },
   elements: {
@@ -462,7 +466,7 @@ function refreshDiagram(diagram, flotoptions, data) {
   var showlegend = !((diagram.data("legend")=="none") 
 	  || (diagram.data("ispopup") && (diagram.data("legend")=="inline"))  
 	  || (!diagram.data("ispopup") && (diagram.data("legend")=="popup")));
-  
+  var legendposition = diagram.data("legendposition");
   var label = diagram.data("label"); // title of diagram
   var refresh = diagram.data("refresh");
   var datasource = diagram.data("datasource") || "AVERAGE"; //FIXME: to be moved to rrd-definition
@@ -485,7 +489,8 @@ function refreshDiagram(diagram, flotoptions, data) {
     }],
     legend: {
       show: showlegend,
-      backgroundColor: "#101010"
+      backgroundColor: "#101010",
+      position: legendposition
     },
     series: {
       points: { show: false, fill: false }
