@@ -278,6 +278,7 @@
       <xsd:element name="jqclock" type="jqclock" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="page" type="page" />
+      <xsd:element name="group" type="group" />
     </xsd:choice>
     <xsd:attribute name="name" type="xsd:string" use="optional" />
     <xsd:attribute name="nowidget" type="xsd:boolean" use="optional" />
