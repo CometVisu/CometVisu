@@ -55,6 +55,7 @@ basicdesign.addCreator('slide', {
     { 
       if( address[addr][1] & 1 ) $actor.bind( addr, this.update ); // only when read flag is set
     }
+	
     if ($(actor).data('format')!=null) {
       $actor.slider({
         step:    step,
@@ -89,7 +90,6 @@ basicdesign.addCreator('slide', {
       element.data( 'valueInternal', false );
       element.slider('value', value);
       element.data( 'valueInternal', true );
-      $(this).children('.ui-slider-handle').html(value);
     }
   },
   slideUpdateValue:function(event,ui) {
