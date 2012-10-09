@@ -113,11 +113,14 @@ body br
 }
 .widget.iframe
 {
-  margin: -1px 0 0 -1px;
-  padding: 0.3em;
   border: none;
   background-image: none;
 }
+/* in nowidget groups disable the inner borders and enable a border around the group */
+.group:not(.widget) { border: 1px solid #666;}
+.group:not(.widget) .widget { border: none; margin: 0}
+.group:not(.widget) > div > h2 { border-radius: 0;}
+
 .navbar .pagejump { position: relative; }
 .pagejump:hover,.pagelink:hover,.pagejump.active {
     background-color: #444444;
@@ -288,7 +291,7 @@ body br
 	margin-left: 0.3em;
 }
 
-.group.widget { 
+.group.widget {
 	border: 1px solid #B3B3B3;
 	border-radius: 1em;
 	-moz-border-radius: 1em;
