@@ -198,7 +198,7 @@ Config</a> ]]></status>
           </switch>
         </group>
         <group name="Heizung">
-          <slide min="0" max="100">
+          <slide min="0" max="100" format="%d%%">
             <label><icon name="sani_heizung" />Heizung</label>
             <address transform="DPT:5.001" variant="">13/0/38</address>
           </slide>
