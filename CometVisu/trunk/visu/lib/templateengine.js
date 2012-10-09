@@ -215,6 +215,10 @@ function handleResize(resize, skipScrollFix) {
         var $e = $(e);
         var ourColspan = $e.children('.widget').data('colspan');
         if (ourColspan<=0) return;
+        if (ourColspan==undefined) {
+          // workaround for nowidget groups
+          ourColspan = $e.children('.group').data('colspan');
+        }
         var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || defaultColumns;
         var groupColspan = Math.min(areaColspan,$e.parentsUntil('.widget_container', '.group').data('colspan'));
         var ourWidth = Math.min(100,ourColspan/groupColspan*100);  // in percent
@@ -435,8 +439,13 @@ function setup_page( xml )
     var adjustableElements = $('.group .widget_container');
     adjustableElements.each(function(i, e) {
       var $e = $(e);
+      //console.log($e);
       var ourColspan = $e.children('.widget').data('colspan');
       if (ourColspan<=0) return;
+      if (ourColspan==undefined) {
+        // workaround for nowidget groups
+        ourColspan = $e.children('.group').data('colspan');
+      }
       var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || defaultColumns;
       var groupColspan = Math.min(areaColspan,$e.parentsUntil('.widget_container', '.group').data('colspan'));
       var ourWidth = Math.min(100,ourColspan/groupColspan*100);  // in percent
