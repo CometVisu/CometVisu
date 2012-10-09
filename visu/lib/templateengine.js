@@ -439,7 +439,6 @@ function setup_page( xml )
     var adjustableElements = $('.group .widget_container');
     adjustableElements.each(function(i, e) {
       var $e = $(e);
-      //console.log($e);
       var ourColspan = $e.children('.widget').data('colspan');
       if (ourColspan<=0) return;
       if (ourColspan==undefined) {
