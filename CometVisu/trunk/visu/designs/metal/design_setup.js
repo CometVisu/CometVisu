@@ -79,8 +79,6 @@ $(window).resize(function() {
            if (target=="id_0") {
              // pagejump to root-page found
              var group = $(this).closest(".group");
-             console.log(group);
-             console.log(group.find('.widget_container').size());
              if (group.find('.widget_container').size()==1)
                group.addClass("root");
            }

@@ -434,6 +434,7 @@
     <xsd:attribute ref="step" />
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
+    <xsd:attribute ref="format" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="info">

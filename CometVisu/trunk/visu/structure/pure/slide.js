@@ -48,20 +48,35 @@ basicdesign.addCreator('slide', {
       'max'     : max,
       'step'    : step,
       'type'    : 'dim',
-      'valueInternal': true
+      'valueInternal': true,
+      'format'  : $e.attr('format') || null
     });
     for( var addr in address ) 
     { 
       if( address[addr][1] & 1 ) $actor.bind( addr, this.update ); // only when read flag is set
     }
-    $actor.slider({
-      step:    step,
-      min:     min,
-      max:     max, 
-      animate: true,
-      start:   this.slideStart,
-      change:  this.slideChange
-    });
+    if ($(actor).data('format')!=null) {
+      $actor.slider({
+        step:    step,
+        min:     min,
+        max:     max, 
+        animate: true,
+        start:   this.slideStart,
+        change:  this.slideChange,
+        slide:   this.slideUpdateValue
+      });
+      $actor.children('.ui-slider-handle').text($actor.slider('value'));
+    }
+    else {
+      $actor.slider({
+        step:    step,
+        min:     min,
+        max:     max, 
+        animate: true,
+        start:   this.slideStart,
+        change:  this.slideChange
+      });
+    }
     ret_val.append( $actor );
     return ret_val;
   },
@@ -74,7 +89,12 @@ basicdesign.addCreator('slide', {
       element.data( 'valueInternal', false );
       element.slider('value', value);
       element.data( 'valueInternal', true );
+      $(this).children('.ui-slider-handle').html(value);
     }
+  },
+  slideUpdateValue:function(event,ui) {
+    var actor = $( '.actor', $(this).parent() );
+    $(ui.handle).text(sprintf( actor.data( 'format' ), ui.value));
   },
   /*
   * Start a thread that regularily sends the silder position to the bus
@@ -120,7 +140,8 @@ basicdesign.addCreator('slide', {
     mapping: { type: 'mapping', required: false },
     styling: { type: 'styling', required: false },
     colspan: { type: 'numeric', required: false },
-    rowspan: { type: 'numeric', required: false }
+    rowspan: { type: 'numeric', required: false },
+    format:  { type: 'string' , required: false }
   },
   elements: {
     label:   { type: 'string' , required: true , multi: false },
