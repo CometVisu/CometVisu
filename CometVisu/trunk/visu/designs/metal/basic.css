@@ -647,7 +647,7 @@ div#demo_3 {
 	min-width: 2em; 
 	min-height: 3em;
 }
-#navbarTop .navbar .widget:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor  {
+#navbarTop .navbar .pagejump:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor  {
     background-color: #000;
 	font-weight: normal;
 	color: #fff;
@@ -659,7 +659,7 @@ div#demo_3 {
 	background-image:      -o-linear-gradient(#111, #666); /* Opera 11.10+ */
 	background-image:         linear-gradient(#111, #666);
 }
-#navbarBottom .navbar .widget:hover,#navbarBottom .navbar .pagejump.active,#navbarBottom .navbar .pagejump.active_ancestor {
+#navbarBottom .navbar .oagejump:hover,#navbarBottom .navbar .pagejump.active,#navbarBottom .navbar .pagejump.active_ancestor {
 background-color: #000;
 	font-weight: normal;
 	color: #fff;
@@ -705,3 +705,5 @@ background-color: #000;
 #pages .page .widget .ui-slider-horizontal:first-child  {
   width: 90%;
 }
+.jqclock .clockdate { float: left; }
+.jqclock .clocktime { min-width: 4em; display: block; float: left; margin: 0 0 0 0.4em; }
