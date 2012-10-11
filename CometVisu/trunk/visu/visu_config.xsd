@@ -220,6 +220,7 @@
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
       <xsd:element name="jqclock" type="jqclock" />
+      <xsd:element name="strftime" type="strftime" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="page" type="page" />
       <xsd:element name="layout" type="layout" />
@@ -276,6 +277,7 @@
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
       <xsd:element name="jqclock" type="jqclock" />
+      <xsd:element name="strftime" type="strftime" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="page" type="page" />
       <xsd:element name="group" type="group" />
@@ -317,6 +319,7 @@
       <xsd:element name="gweather" type="gweather" />
       <xsd:element name="rss" type="rss" />
       <xsd:element name="jqclock" type="jqclock" />
+      <xsd:element name="strftime" type="strftime" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="page" type="page" />
     </xsd:choice>
@@ -672,6 +675,19 @@
     <xsd:attribute name="height" type="dimension" use="optional" />
     <xsd:attribute name="lang" type="xsd:string" use="required" />
     <xsd:attribute name="date" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="strftime">
+	<xsd:attribute name="lang" use="optional">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="en" />
+				<xsd:enumeration value="de" />
+				<xsd:enumeration value="fr" />
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+    <xsd:attribute name="format" type="xsd:string" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="upnpcontroller">

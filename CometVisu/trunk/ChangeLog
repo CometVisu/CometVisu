@@ -1,6 +1,7 @@
 HEAD
 ====
 
+- New plugin: strftime
 - New plugin: clock
 - New plugin: rsslog
 - New plugin: upnpcontroller
