@@ -678,15 +678,15 @@
   </xsd:complexType>
 
   <xsd:complexType name="strftime">
-	<xsd:attribute name="lang" use="optional">
-		<xsd:simpleType>
-			<xsd:restriction base="xsd:string">
-				<xsd:enumeration value="en" />
-				<xsd:enumeration value="de" />
-				<xsd:enumeration value="fr" />
-			</xsd:restriction>
-		</xsd:simpleType>
-	</xsd:attribute>
+    <xsd:attribute name="lang" use="optional">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="en" />
+          <xsd:enumeration value="de" />
+          <xsd:enumeration value="fr" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
     <xsd:attribute name="format" type="xsd:string" use="optional" />
   </xsd:complexType>
 
