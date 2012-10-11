@@ -25,64 +25,64 @@
 $('head').append('<link rel="stylesheet" href="plugins/strftime/strftime.css" type="text/css" />');
 
 VisuDesign_Custom.prototype.addCreator("strftime", {
-	create : function(page, path) {
-		var $p = $(page);
-		function uniqid() {
-			var newDate = new Date;
-			return newDate.getTime();
-		}
-		var id = "strftime_" + uniqid();
+  create : function(page, path) {
+    var $p = $(page);
+    function uniqid() {
+      var newDate = new Date;
+      return newDate.getTime();
+    }
+    var id = "strftime_" + uniqid();
 
-		var ret_val = $('<div class="widget clearfix text strftime"/>');
-		ret_val.setWidgetLayout($p);
+    var ret_val = $('<div class="widget clearfix text strftime"/>');
+    ret_val.setWidgetLayout($p);
 
-		var actor = $('<div id="' + id + '"></div>');
-		ret_val.append(actor);
+    var actor = $('<div id="' + id + '"></div>');
+    ret_val.append(actor);
 
-		var locale = $p.attr('lang');
-		var format = '%c';
-		if ($p.attr('format')) {
-			format = $p.attr('format');
-		}
+    var locale = $p.attr('lang');
+    var format = '%c';
+    if ($p.attr('format')) {
+      format = $p.attr('format');
+    }
 
-		// extend locales by German and French
-		Date.ext.locales['de'] = {
-				a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-				A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-				b: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-				B: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-				c: '%a %d %b %Y %T %Z',
-				p: ['', ''],
-				P: ['', ''],
-				x: '%d.%m.%Y',
-				X: '%T'
-		};
-		Date.ext.locales['fr'] = {
-				a: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
-				A: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
-				b: ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoû', 'sep', 'oct', 'nov', 'déc'],
-				B: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
-				c: '%a %d %b %Y %T %Z',
-				p: ['', ''],
-				P: ['', ''],
-				x: '%d.%m.%Y',
-				X: '%T'
-		};
+    // extend locales by German and French
+    Date.ext.locales['de'] = {
+        a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+        A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+        b: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+        B: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+        c: '%a %d %b %Y %T %Z',
+        p: ['', ''],
+        P: ['', ''],
+        x: '%d.%m.%Y',
+        X: '%T'
+    };
+    Date.ext.locales['fr'] = {
+        a: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
+        A: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
+        b: ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoû', 'sep', 'oct', 'nov', 'déc'],
+        B: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+        c: '%a %d %b %Y %T %Z',
+        p: ['', ''],
+        P: ['', ''],
+        x: '%d.%m.%Y',
+        X: '%T'
+    };
 
-		f = function() {
-			var d = new Date();
-			d.locale = locale;
-			var iso = d.strftime(format);
-			$("#" + id).html(iso);
-			window.setTimeout(f, 1000);
-		};
-		f();
+    f = function() {
+      var d = new Date();
+      d.locale = locale;
+      var iso = d.strftime(format);
+      $("#" + id).html(iso);
+      window.setTimeout(f, 1000);
+    };
+    f();
 
-		return ret_val;
-	},
-	attributes : {
-		lang   : {type : "list"  , required : false, list : {en : "en", de : "de", fr : "fr"}},
-		format : {type : "string", required : false},
-	},
-	content : false
+    return ret_val;
+  },
+  attributes : {
+    lang   : {type : "list"  , required : false, list : {en : "en", de : "de", fr : "fr"}},
+    format : {type : "string", required : false},
+  },
+  content : false
 });
