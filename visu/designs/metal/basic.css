@@ -707,3 +707,4 @@ background-color: #000;
 }
 .jqclock .clockdate { float: left; }
 .jqclock .clocktime { min-width: 4em; display: block; float: left; margin: 0 0 0 0.4em; }
+.strftime { font-family: Helvetica, Arial, sans-serif; font-size: 5mm; }
