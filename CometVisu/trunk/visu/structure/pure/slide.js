@@ -66,7 +66,7 @@ basicdesign.addCreator('slide', {
         change:  this.slideChange,
         slide:   this.slideUpdateValue
       });
-      $actor.children('.ui-slider-handle').text($actor.slider('value'));
+      $actor.children('.ui-slider-handle').text(sprintf($actor.data( 'format' ),$actor.slider('value')));
     }
     else {
       $actor.slider({
