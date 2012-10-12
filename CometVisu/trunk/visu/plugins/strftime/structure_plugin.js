@@ -69,14 +69,14 @@ VisuDesign_Custom.prototype.addCreator("strftime", {
         X: '%T'
     };
 
-    f = function(id) {
+    f = function() {
       var d = new Date();
       d.locale = locale;
       var iso = d.strftime(format);
       $("#" + id).html(iso);
       window.setTimeout(f, 1000);
     };
-    f(id);
+    f();
 
     return ret_val;
   },
