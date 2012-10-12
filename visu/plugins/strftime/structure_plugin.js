@@ -36,7 +36,7 @@ VisuDesign_Custom.prototype.addCreator("strftime", {
     var ret_val = $('<div class="widget clearfix text strftime"/>');
     ret_val.setWidgetLayout($p);
 
-    var actor = $('<div id="' + id + '"></div>');
+    var actor = $('<div id="' + id + ' class="strftime_value""></div>');
     ret_val.append(actor);
 
     var locale = $p.attr('lang');
@@ -69,14 +69,14 @@ VisuDesign_Custom.prototype.addCreator("strftime", {
         X: '%T'
     };
 
-    f = function() {
+    f = function(id) {
       var d = new Date();
       d.locale = locale;
       var iso = d.strftime(format);
       $("#" + id).html(iso);
       window.setTimeout(f, 1000);
     };
-    f();
+    f(id);
 
     return ret_val;
   },
