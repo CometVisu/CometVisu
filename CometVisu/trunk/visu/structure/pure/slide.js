@@ -90,6 +90,7 @@ basicdesign.addCreator('slide', {
       element.data( 'valueInternal', false );
       element.slider('value', value);
       element.data( 'valueInternal', true );
+      element.children('.ui-slider-handle').text(sprintf(element.data( 'format' ),value));
     }
   },
   slideUpdateValue:function(event,ui) {
