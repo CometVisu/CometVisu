@@ -4,6 +4,7 @@
     <plugins>
       <plugin name="colorchooser"/>
       <plugin name="diagram"/>
+      <plugin name="strftime"/>
     </plugins>
     <mappings>
       <mapping name="Close_Open">
@@ -113,6 +114,9 @@
         <entry value="17">olive</entry>
       </styling>
     </stylings>
+    <topbar_datetime>
+      <strftime lang="de" format="%A, %d. %b  %H:%M"></strftime>  
+    </topbar_datetime>
     <statusbar>
       <status type="html"><![CDATA[
           <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
@@ -736,6 +740,7 @@
         <label>Update Value</label>
         <address transform="DPT:1.001" type="">12/7/1</address>
       </trigger>
+      <strftime lang="de" format="%A, %d. %B %Y %H:%M:%S"><layout colspan="0"/></strftime>
     </page>
   </page>
 </pages>
