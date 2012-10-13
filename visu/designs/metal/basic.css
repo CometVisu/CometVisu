@@ -76,6 +76,26 @@ body br
   text-decoration:none;
 }
 
+#top .nav_additional { 
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 15px;
+  float: right;
+}
+
+#top .nav_additional .widget {
+  padding: 0;
+  min-height: 0;
+  background: none;
+  border: 0;
+}
+
+#top .nav_additional .text > div { 
+  line-height: 1.3em;
+}
+
+
 .footer,
 .footer *
 {
