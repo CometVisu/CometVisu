@@ -69,7 +69,7 @@ VisuDesign_Custom.prototype.addCreator("strftime", {
         X: '%T'
     };
 
-    f = function() {
+    var f = function() {
       var d = new Date();
       d.locale = locale;
       var iso = d.strftime(format);
