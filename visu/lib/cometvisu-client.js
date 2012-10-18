@@ -138,7 +138,14 @@ function CometVisu( urlPrefix )
   this.subscribe = function( addresses, filters )
   {
     var startCommunication = !this.addresses.length; // start when addresses were empty
-    this.addresses = addresses;
+    this.addresses=[];
+    var obj={};
+    for (var i=0;i<addresses.length;i++) {
+      obj[addresses[i]]=0;
+    }
+    for (var i in obj) {
+      this.addresses.push(i);
+    }
     this.filters   = filters ? filters : []  ;
 
     if( !addresses.length ) this.stop();             // stop when new addresses are empty
