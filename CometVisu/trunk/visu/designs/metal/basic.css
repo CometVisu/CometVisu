@@ -163,23 +163,20 @@ body br
   padding-left: 0.2em;
 }
 
-.widget .label,
-.widget.info .actor,
-.text > div,
-.link > a {
-    line-height: 2em;
-}
-
 .widget .label
 {
   float:left; 
   width:49%;
   text-align:left;
   padding-left: 0.2em;
+  line-height: 2em;
+  vertical-align: middle;
 }
-.widget .label img { vertical-align: middle; margin-top: -0.3em; }
-.widget .switchPressed img.icon, .widget .switchUnpressed img.icon { height: 1.1em !important; }
-.widget.info img.icon, .widget.text img.icon { height: 1.5em !important; }
+.text > div { line-height: 2em; }
+.widget .label img.icon, .text img.icon { vertical-align: middle; margin-top: -0.3em; }
+.widget .pagejump img.icon { margin-top: -0; }
+.widget .actor img.icon { margin-bottom: -0.6em; }
+.widget .switchPressed img.icon, .widget .switchUnpressed img.icon { margin-top: -0.4em; margin-bottom: -0.6em;}
 .widget_container > .pagejump > .label {
 	width: auto;
 	display: inline;
@@ -191,6 +188,10 @@ body br
   float:left;
   margin-left:0.2em;
   text-align:left;
+  line-height: 2em;
+}
+.widget .switchPressed, .widget .switchUnpressed, .widget .ui-slider {
+	 line-height: normal; 
 }
 .widget .actor:first-child { margin-left: 0; }
 .widget .actor div
@@ -468,7 +469,6 @@ body br
 {
   width: 45%;
   float: left;
-  margin-left: 0.6em;
   margin-top: 0.5em;
   border-color:  #010101 #282828 #282828 #010101;
   background: url(images/gradient.png) #a7a7a7 repeat-y;
@@ -496,7 +496,8 @@ body br
 	text-align: center;
 	white-space:nowrap;
 	font-size: 0.8em;
-	padding: 0.2em;
+	padding: 0.4em 0.2em 0;
+	line-height: 1em;
 }
 /* Clearfix */
 .clearfix:after {
