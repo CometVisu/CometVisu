@@ -232,7 +232,28 @@ body br
     background: transparent url(images/dot_grey.png) no-repeat center center;
     color: grey !important;
 }
-
+.green_bg.actor div {
+	background: transparent url(images/dot_green.png) no-repeat center center;
+	color: white !important;
+	text-shadow: 0;
+	min-width: 117px;
+	min-height: 40px;
+	text-align: center;
+}
+.red_bg.actor div {
+	background: transparent url(images/dot_red.png) no-repeat center center;
+    color: grey !important;
+    min-width: 117px;
+	min-height: 40px;
+	text-align: center;
+}
+.grey_bg.actor div {
+	background: transparent url(images/dot_grey.png) no-repeat center center;
+    color: grey !important;
+    min-width: 117px;
+	min-height: 40px;
+	text-align: center;
+}
 .red
 {
   color:#f44;
