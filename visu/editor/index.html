@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="../dependencies/jquery.js" type="text/javascript"></script>
+        <script src="lib/Schema.js" type="text/javascript"></script>
+        <script src="lib/Configuration.js" type="text/javascript"></script>
+        <script src="lib/DumpConfig.js" type="text/javascript"></script>
+
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <h1>Editor</h1>
+        <p><b>all of this is work in progress</b></p>
+        <p>once this is ready, it will be an xsd-aware, form-driven editor for the CometVisu-configuration with a
+            tree-like representation of the configuration</p>
+        <p>WYSIWIG will be dropped in favour of the xsd-awareness, which will hopefully make this editor withstand
+            even massive changes to the visu, the templateengine or the configuration-schema. Any plugin and feature
+            which is well defined in the xsd will be supported out-of-the-box (as long as no Ninja-XSD is used...)</p>
+        
+        <pre>
+var config;
+var schema;
+
+$(document).unbind('configuration_loaded').bind('configuration_loaded', function () {
+    // configuration is loaded
+    var schemaFilename = config.getSchemaFilename();
+    console.log(schemaFilename);
+    schema = new Schema(schemaFilename);
+});
+
+// the good:
+var config = new Configuration('../visu_config_metal.xml'); // <== metal-config is valid
+// the bad:
+// var config = new Configuration('../visu_config_demo.xml'); // <== demo-config is invalid
+
+$(document).unbind('schema_loaded').bind('schema_loaded', function () {
+    try {
+        config.setSchema(schema);
+    } catch (e) {
+        console.error('configuration and schema do not mix (invalid config?), can not proceed');
+        return;
+    }
+
+    if (false === config.isValid()) {
+        console.error('configuration is not valid, can not proceed');
+    } else {
+        console.log('config loaded and valid');
+    }
+
+    // var dc = new DumpConfig(config);
+    // dc.dump();
+
+});
+        </pre>
+
+    </body>
+</html>
