@@ -1,0 +1,49 @@
+=== KNOWN BUGS AND LIMITATIONS ===
+* loading the XSD is done in Javascript. The Schema-Loader knows a certain set an structure of an XSD. If "unknown"
+  XSD-features are being used in the schema, the Schema-Loader may not know about them, and the editor will thus fail.
+* the Schema and the Editor do not care about bounds. This means it does not check if the schema only allows
+  for a certain number of children in an element.
+
+
+=== ROADMAP ===
+* MS1 - done
+ - OOP-representation of the schema/XSD
+ - OOP-representation of the configuration
+ - validate configuration against XSD
+
+* MS2 - week 46/47 2012
+ - browser loads configuration, checks it against an XSD, warns if not compliant
+ - editor is displayed in browser, nodes are shown as a tree
+ - node-attributes can be edited
+ - node children can be added, removed
+
+* MS3 - week 49/50 2012
+ - nodes have copy & paste, move.
+ - configuration can be saved
+ - attributes like rrd, addr can be selected from a list; said list is loaded from the server
+ - attributes like styling, mapping can be selected from a dynamic list; list is based on actual configuration
+
+* MS4 - week 52 2012
+ - preview for a selected node without the need of replacing the configuration on the server
+
+
+=== TODO ===
+* MS1:
+ - done
+
+* MS2:
+ - frontend: show tree
+ - frontend: make node attributes editable
+ - frontend: make node removeable
+ - frontend: make node children addable, removable
+
+* MS3:
+ - frontend: have copy&paste for nodes incl. children
+ - frontend: have move for nodes incl. children (drag&drop?; mind touch-devices!)
+ - frontend: save configuration
+ - backend (save the xml; php)
+ - cross-reference: have select-lists for mapping, stylings, ... defined by the config itself
+
+* MS4:
+ - frontend: preview node incl. children
+
