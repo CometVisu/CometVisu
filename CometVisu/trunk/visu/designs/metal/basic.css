@@ -156,12 +156,6 @@ body br
 	background-image:         linear-gradient(#555555, #383838);
 }
 .pagejump.active { background-image: url(images/active_page24.png); background-repeat: no-repeat; background-position: center right; }
-.text > div,
-.link > a {
-  float:left;
-  text-align:left;
-  padding-left: 0.2em;
-}
 
 .widget .label
 {
