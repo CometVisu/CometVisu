@@ -126,6 +126,8 @@ basicdesign.addCreator('infotrigger', {
     if( !relative )
     {
       value = parseFloat($(this).parent().find('.switchInvisible').data('basicvalue'));
+      if( isNaN( value ) )
+        value = 0; // anything is better than NaN...
       value = value + parseFloat(data.value);
       if (value < data.min ) value = data.min;
       if( value > data.max ) value = data.max;
