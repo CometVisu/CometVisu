@@ -138,7 +138,7 @@ body br
   background-image: none;
 }
 /* in nowidget groups disable the inner borders and enable a border around the group */
-.group:not(.widget) { border: 1px solid #666;}
+.group:not(.widget) { border: 1px solid #666; margin: -1px 0 0 -1px; }
 .group:not(.widget) .widget { border: none; margin: 0}
 .group:not(.widget) > div > h2 { border-radius: 0;}
 
@@ -230,23 +230,14 @@ body br
 	background: transparent url(images/dot_green.png) no-repeat center center;
 	color: white !important;
 	text-shadow: 0;
-	min-width: 117px;
-	min-height: 40px;
-	text-align: center;
 }
 .red_bg.actor div {
 	background: transparent url(images/dot_red.png) no-repeat center center;
-    color: grey !important;
-    min-width: 117px;
-	min-height: 40px;
-	text-align: center;
+    color: red !important;
 }
 .grey_bg.actor div {
 	background: transparent url(images/dot_grey.png) no-repeat center center;
     color: grey !important;
-    min-width: 117px;
-	min-height: 40px;
-	text-align: center;
 }
 .red
 {
