@@ -131,7 +131,6 @@ body br
 	background-image:      -o-linear-gradient(#444444, #2d2d2d); /* Opera 11.10+ */
 	background-image:         linear-gradient(#444444, #2d2d2d);
 }
-.widget.innerrowspan { border-width: 0; }
 .widget.iframe
 {
   border: none;
@@ -139,7 +138,8 @@ body br
 }
 /* in nowidget groups disable the inner borders and enable a border around the group */
 .group:not(.widget) { border: 1px solid #666; margin: -1px 0 0 -1px; }
-.group:not(.widget) .widget { border: none; margin: 0}
+.page > div > .widget_container > .group:not(.widget) { border: none; margin: 0; }
+.group:not(.widget) > div > .widget_container > .widget:not(.group) { border: none; margin: 0; }
 .group:not(.widget) > div > h2 { border-radius: 0;}
 
 .navbar .pagejump { position: relative; }
@@ -160,11 +160,15 @@ body br
 .widget .label
 {
   float:left; 
-  width:49%;
+  width:50%;
   text-align:left;
   padding-left: 0.2em;
   line-height: 2em;
   vertical-align: middle;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
 }
 .text > div { line-height: 2em; }
 .widget .label img.icon, .text img.icon { vertical-align: middle; margin-top: -0.3em; }
@@ -180,14 +184,13 @@ body br
 .widget .actor
 {
   float:left;
-  margin-left:0.2em;
   text-align:left;
   line-height: 2em;
 }
 .widget .switchPressed, .widget .switchUnpressed, .widget .ui-slider {
 	 line-height: normal; 
 }
-.widget .actor:first-child { margin-left: 0; }
+.widget > .actor:first-child { margin-left: 0; }
 .widget .actor div
 {
   float:left;
@@ -634,16 +637,6 @@ div#demo_3 {
     background-color: #1d1d1d;
 }
 .iframe .actor { width: 98%; }
-
-.innerrowspan { /* test: Absolute Positionierung scheint in machen Browser das overflow: hidden der Group zu umgehen */
-	position: relative;
-	width: 100%;
-	height: 100%;
-	padding: 0;
-}
-.innerrowspan > div {
-	margin: 0.3em;
-}
 
 #navbarTop .navbar .widget_container, #navbarBottom .navbar .widget_container {
 	width: auto;
