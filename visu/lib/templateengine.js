@@ -242,10 +242,18 @@ function rowspanClass(rowspan) {
     var singleHeightMargin = $('#containerDiv').outerHeight(true );
 
     $('#calcrowspan').remove();
-          
-    // append css style
     
-    $('head').append('<style id="'+className+'Style">.rowspan' + rowspan + ' { height: ' + ((rowspan-1)*singleHeightMargin+singleHeight) + 'px; overflow:hidden; position:relative;} </style>').data(className, 1);
+    if (clientDesign=="metal") {
+      // Ugly workaround for the metal-design until someone comes up with a better solution
+      singleHeightMargin--;
+      singleHeight--;
+      // append css style
+      $('head').append('<style id="'+className+'Style">.rowspan' + rowspan + ' { height: ' + ((rowspan-1)*singleHeightMargin+singleHeight) + 'px; position:relative;} </style>').data(className, 1);
+    }
+    else {
+      // append css style
+      $('head').append('<style id="'+className+'Style">.rowspan' + rowspan + ' { height: ' + ((rowspan-1)*singleHeightMargin+singleHeight) + 'px; overflow:hidden; position:relative;} </style>').data(className, 1);
+    }
   } 
   
   return className;
