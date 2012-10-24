@@ -244,9 +244,7 @@ function rowspanClass(rowspan) {
     $('#calcrowspan').remove();
     
     if (clientDesign=="metal") {
-      // Ugly workaround for the metal-design until someone comes up with a better solution
-      singleHeightMargin--;
-      singleHeight--;
+      // Workaround for the metal-design
       // append css style
       $('head').append('<style id="'+className+'Style">.rowspan' + rowspan + ' { height: ' + ((rowspan-1)*singleHeightMargin+singleHeight) + 'px; position:relative;} </style>').data(className, 1);
     }
