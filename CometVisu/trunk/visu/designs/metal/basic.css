@@ -124,12 +124,12 @@ body br
   border-width: 1px;
   min-height: 2.1em;
   text-shadow: 0 1px 1px #111;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#2d2d2d)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient(#444444, #2d2d2d); /* Chrome 10+, Saf5.1+ */
-	background-image:    -moz-linear-gradient(#444444, #2d2d2d); /* FF3.6 */
-	background-image:     -ms-linear-gradient(#444444, #2d2d2d); /* IE10 */
-	background-image:      -o-linear-gradient(#444444, #2d2d2d); /* Opera 11.10+ */
-	background-image:         linear-gradient(#444444, #2d2d2d);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#2d2d2d)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(#444444, #2d2d2d); /* Chrome 10+, Saf5.1+ */
+  background-image:    -moz-linear-gradient(#444444, #2d2d2d); /* FF3.6 */
+  background-image:     -ms-linear-gradient(#444444, #2d2d2d); /* IE10 */
+  background-image:      -o-linear-gradient(#444444, #2d2d2d); /* Opera 11.10+ */
+  background-image:         linear-gradient(#444444, #2d2d2d);
 }
 .widget.iframe
 {
@@ -138,22 +138,21 @@ body br
 }
 /* in nowidget groups disable the inner borders and enable a border around the group */
 .group:not(.widget) { border: 1px solid #666; margin: -1px 0 0 -1px; }
-.page > div > .widget_container > .group:not(.widget) { border: none; margin: 0; }
 .group:not(.widget) > div > .widget_container > .widget:not(.group) { border: none; margin: 0; }
 .group:not(.widget) > div > h2 { border-radius: 0;}
 
 .navbar .pagejump { position: relative; }
 .pagejump:hover,.pagelink:hover,.pagejump.active {
-    background-color: #444444;
-	font-weight: bold;
-	color: #fff;
-	text-shadow: 0 1px 1px #111;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#555555), to(#383838)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient(#555555, #383838); /* Chrome 10+, Saf5.1+ */
-	background-image:    -moz-linear-gradient(#555555, #383838); /* FF3.6 */
-	background-image:     -ms-linear-gradient(#555555, #383838); /* IE10 */
-	background-image:      -o-linear-gradient(#555555, #383838); /* Opera 11.10+ */
-	background-image:         linear-gradient(#555555, #383838);
+  background-color: #444444;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 1px #111;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#555555), to(#383838)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(#555555, #383838); /* Chrome 10+, Saf5.1+ */
+  background-image:    -moz-linear-gradient(#555555, #383838); /* FF3.6 */
+  background-image:     -ms-linear-gradient(#555555, #383838); /* IE10 */
+  background-image:      -o-linear-gradient(#555555, #383838); /* Opera 11.10+ */
+  background-image:         linear-gradient(#555555, #383838);
 }
 .pagejump.active { background-image: url(images/active_page24.png); background-repeat: no-repeat; background-position: center right; }
 
@@ -726,6 +725,7 @@ background-color: #000;
 #pages .page .widget .ui-slider-horizontal:first-child  {
   width: 90%;
 }
+.rowspan { overflow:none; }
 .jqclock .clockdate { float: left; }
 .jqclock .clocktime { min-width: 4em; display: block; float: left; margin: 0 0 0 0.4em; }
 .strftime { font-family: Helvetica, Arial, sans-serif; font-size: 5mm; }

@@ -232,9 +232,9 @@ $( window ).bind( 'resize', handleResize );
 
 
 function rowspanClass(rowspan) {
-  var className = 'rowspan'+ rowspan;
-  
-  if ( !$('#'+className+'Style').get(0) ) { 
+  var className = 'rowspan rowspan'+ rowspan;
+  var styleId = className.replace(" ","_")+'Style';
+  if ( !$('#'+styleId).get(0) ) { 
     var dummyDiv = $('<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
       .appendTo(document.body).show();
     
@@ -243,17 +243,9 @@ function rowspanClass(rowspan) {
 
     $('#calcrowspan').remove();
     
-    if (clientDesign=="metal") {
-      // Workaround for the metal-design
-      // append css style
-      $('head').append('<style id="'+className+'Style">.rowspan' + rowspan + ' { height: ' + ((rowspan-1)*singleHeightMargin+singleHeight) + 'px; position:relative;} </style>').data(className, 1);
-    }
-    else {
-      // append css style
-      $('head').append('<style id="'+className+'Style">.rowspan' + rowspan + ' { height: ' + ((rowspan-1)*singleHeightMargin+singleHeight) + 'px; overflow:hidden; position:relative;} </style>').data(className, 1);
-    }
-  } 
-  
+    // append css style
+    $('head').append('<style id="'+styleId+'">.rowspan.rowspan' + rowspan + ' { height: ' + ((rowspan-1)*singleHeightMargin+singleHeight) + 'px;} </style>').data(className, 1);
+  }
   return className;
 }
 

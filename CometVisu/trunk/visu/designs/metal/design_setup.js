@@ -99,6 +99,13 @@ $(window).resize(function() {
            }
          }
        });
+       // Disable borders for groups that contain widget-group as children
+       $('.page > div > .widget_container > .group:not(.widget)').each(function(i) {
+         var $this = $(this);
+         if ($this.find('.clearfix > .widget_container > .group.widget').size()>0) {
+           $this.css({'border': 'none', 'margin': 0});
+         }
+       });
        started=false;
     }
 });

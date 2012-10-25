@@ -60,7 +60,7 @@
  * global color declarations for stylings in all designs
  * may be overloaded by designs
  */
-
+.rowspan { overflow:hidden; position:relative; }
 .red
 {
   color:#FF0000;
