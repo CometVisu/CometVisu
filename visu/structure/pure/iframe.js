@@ -40,20 +40,5 @@ basicdesign.addCreator('iframe', {
       'refresh': refresh
     } ).each(setupRefreshAction) ); // abuse "each" to call in context...
     return ret_val;
-  },
-  attributes: {
-    src:         { type: 'uri'    , required: true  },
-    width:       { type: 'string' , required: false }, // only for the iframe - not the widget!
-    height:      { type: 'string' , required: false }, // only for the iframe - not the widget!
-    frameborder: { type: 'list'   , required: false, list: {'true': "yes", 'false': "no"} },
-    background:  { type: 'string' , required: false },
-    refresh:     { type: 'numeric', required: false },
-    colspan:     { type: 'numeric', required: false },
-    rowspan:     { type: 'numeric', required: false }
-  },
-  elements: {
-    layout:      { type: 'layout' , required: false, multi: false },
-    label:       { type: 'string' , required: false, multi: false }
-  },
-  content: false
+  }
 });

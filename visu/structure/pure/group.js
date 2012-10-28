@@ -37,15 +37,5 @@ basicdesign.addCreator('group', {
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     ret_val.append( container );
     return ret_val;
-  },
-  attributes: {
-    align:    { type: 'string' , required: false },
-    flavour:  { type: 'string' , required: false },
-    colspan:  { type: 'numeric', required: false },
-    rowspan:  { type: 'numeric', required: false },
-    nowidget: { type: 'string' , required: false },
-    name:     { type: 'string' , required: true  }
-  },
-  elements:   {},
-  content:    true
+  }
 });

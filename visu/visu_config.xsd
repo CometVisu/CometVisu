@@ -77,25 +77,78 @@
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
+
+  
+  <xsd:simpleType name="rss_mode">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="first" />
+      <xsd:enumeration value="last" />
+      <xsd:enumeration value="rollover" />
+    </xsd:restriction>
+  </xsd:simpleType>
+      
+  <xsd:attribute name="series">
+      <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="hour" />
+              <xsd:enumeration value="day" />
+              <xsd:enumeration value="week" />
+              <xsd:enumeration value="month" />
+              <xsd:enumeration value="year" />
+          </xsd:restriction>
+      </xsd:simpleType>
+  </xsd:attribute>
+  
+  <xsd:attribute name="datasource">
+      <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="MIN" />
+              <xsd:enumeration value="AVERAGE" />
+              <xsd:enumeration value="MAX" />
+          </xsd:restriction>
+      </xsd:simpleType>
+  </xsd:attribute>
   
   <xsd:attribute name="align" type="xsd:string" />
   <xsd:attribute name="variant" type="xsd:string" />
 
-  <xsd:simpleType name="true_false">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="true" />
-      <xsd:enumeration value="false" />
-    </xsd:restriction>
-  </xsd:simpleType>
+  <xsd:attribute name="legendposition">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="nw">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">topleft</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ne">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">topright</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="sw">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">bottomleft</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="se">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">bottomright</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
 
-  <xsd:simpleType name="legendposition">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="nw" />
-      <xsd:enumeration value="ne" />
-      <xsd:enumeration value="sw" />
-      <xsd:enumeration value="se" />
-    </xsd:restriction>
-  </xsd:simpleType>
+  <xsd:attribute name="legend">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="both" />
+        <xsd:enumeration value="inline" />
+        <xsd:enumeration value="popup" />
+        <xsd:enumeration value="none" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
 
   <xsd:simpleType name="navbarPositionType">
     <xsd:restriction base="xsd:string">
@@ -105,6 +158,55 @@
       <xsd:enumeration value="bottom" />
     </xsd:restriction>
   </xsd:simpleType>
+  
+
+  <xsd:attribute name="lang">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="de">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">german</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="en">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">english</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="es">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">spanish</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="fr">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">french</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="it">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">italian</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="ru">
+            <xsd:annotation>
+                <xsd:documentation xml:lang="en">russian</xsd:documentation>
+            </xsd:annotation>
+        </xsd:enumeration>
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
+  <xsd:attribute name="linktarget">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="_new" />
+        <xsd:enumeration value="_self" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+
+
 
   <!-- complex elements -->
   <xsd:element name="pages">
@@ -325,7 +427,7 @@
     </xsd:choice>
     <xsd:attribute name="name" type="xsd:string" use="optional" />
     <xsd:attribute name="position" type="navbarPositionType" use="required" />
-    <xsd:attribute name="dynamic" type="true_false" use="optional" />
+    <xsd:attribute name="dynamic" type="xsd:boolean" use="optional" />
     <xsd:attribute name="width" type="xsd:string" use="optional" />
     <xsd:attribute name="scope" type="xsd:decimal" use="optional" />
   </xsd:complexType>
@@ -529,21 +631,21 @@
     <xsd:attribute name="rrd" type="xsd:string" use="optional" />
     <xsd:attribute name="unit" type="xsd:string" use="optional" />
     <xsd:attribute name="width" type="dimension" use="optional" />
-    <xsd:attribute name="series" type="xsd:string" use="optional" />
+    <xsd:attribute ref="series" use="optional" />
     <xsd:attribute name="height" type="dimension" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="period" type="xsd:string" use="optional" />
-    <xsd:attribute name="datasource" type="xsd:string" use="optional" />
+    <xsd:attribute ref="datasource" use="optional" />
     <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
-    <xsd:attribute name="legend" type="xsd:string" use="optional" />
-    <xsd:attribute name="legendposition" type="legendposition" use="optional" />
+    <xsd:attribute ref="legend" use="optional" />
+    <xsd:attribute ref="legendposition" use="optional" />
     <xsd:attribute name="popup" type="xsd:boolean" use="optional" />
     <xsd:attribute name="previewlabels" type="xsd:boolean" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
-    <xsd:attribute name="tooltip" type="xsd:string" use="optional" />
+    <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
   </xsd:complexType>
   
   <xsd:complexType name="diagram_inline">
@@ -556,11 +658,11 @@
     <xsd:attribute name="rrd" type="xsd:string" use="optional" />
     <xsd:attribute name="unit" type="xsd:string" use="optional" />
     <xsd:attribute name="width" type="dimension" use="optional" />
-    <xsd:attribute name="series" type="xsd:string" use="optional" />
+    <xsd:attribute ref="series" use="optional" />
     <xsd:attribute name="height" type="dimension" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="period" type="xsd:string" use="optional" />
-    <xsd:attribute name="datasource" type="xsd:string" use="optional" />
+    <xsd:attribute ref="datasource" use="optional" />
     <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
@@ -577,11 +679,11 @@
     </xsd:choice>
     <xsd:attribute name="rrd" type="xsd:string" use="optional" />
     <xsd:attribute name="unit" type="xsd:string" use="optional" />
-    <xsd:attribute name="series" type="xsd:string" use="optional" />
+    <xsd:attribute ref="series" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="period" type="xsd:string" use="optional" />
-    <xsd:attribute name="datasource" type="xsd:string" use="optional" />
-    <xsd:attribute name="tooltip" type="xsd:string" use="optional" />
+    <xsd:attribute ref="datasource" use="optional" />
+    <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
     <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
@@ -602,17 +704,17 @@
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute name="rrd" type="xsd:string" use="optional" />
     <xsd:attribute name="unit" type="xsd:string" use="optional" />
-    <xsd:attribute name="series" type="xsd:string" use="optional" />
+    <xsd:attribute ref="series" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="period" type="xsd:string" use="optional" />
-    <xsd:attribute name="datasource" type="xsd:string" use="optional" />
-    <xsd:attribute name="tooltip" type="xsd:string" use="optional" />
+    <xsd:attribute ref="datasource" use="optional" />
+    <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
     <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
     <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
-    <xsd:attribute name="legend" type="xsd:string" use="optional" />
-    <xsd:attribute name="legendposition" type="legendposition" use="optional" />
+    <xsd:attribute ref="legend" use="optional" />
+    <xsd:attribute ref="legendposition" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
   </xsd:complexType>
 
@@ -627,8 +729,8 @@
     <xsd:attribute name="city" type="xsd:string" use="required" />
     <xsd:attribute name="lang" type="xsd:string" use="optional" />
     <xsd:attribute name="image_url" type="xsd:string" use="optional" />
-    <xsd:attribute name="current" type="xsd:string" use="optional" />
-    <xsd:attribute name="forecast" type="xsd:string" use="optional" />
+    <xsd:attribute name="current" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="forecast" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="rss">
@@ -641,15 +743,15 @@
     <xsd:attribute name="height" type="dimension" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="limit" type="xsd:integer" use="optional" />
-    <xsd:attribute name="header" type="xsd:string" use="required" />
-    <xsd:attribute name="date" type="xsd:string" use="optional" />
-    <xsd:attribute name="content" type="xsd:string" use="optional" />
-    <xsd:attribute name="snippet" type="xsd:integer" use="optional" />
-    <xsd:attribute name="showerror" type="xsd:string" use="optional" />
-    <xsd:attribute name="ssl" type="xsd:string" use="optional" />
-    <xsd:attribute name="linktarget" type="xsd:string" use="optional" />
-    <xsd:attribute name="link" type="xsd:string" use="optional" />
-    <xsd:attribute name="title" type="xsd:string" use="optional" />
+    <xsd:attribute name="header" type="xsd:boolean" use="required" />
+    <xsd:attribute name="date" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="content" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="snippet" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="showerror" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="ssl" type="xsd:boolean" use="optional" />
+    <xsd:attribute ref="linktarget" use="optional" />
+    <xsd:attribute name="link" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="title" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="rsslog">
@@ -660,8 +762,8 @@
     <xsd:attribute name="src" type="xsd:string" use="required" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="limit" type="xsd:integer" use="optional" />
-    <xsd:attribute name="mode" type="xsd:string" use="optional" />
-    <xsd:attribute name="datetime" type="xsd:string" use="optional" />
+    <xsd:attribute name="mode" type="rss_mode" use="optional" />
+    <xsd:attribute name="datetime" type="xsd:boolean" use="optional" />
     <xsd:attribute name="timeformat" type="xsd:string" use="optional" />
     <xsd:attribute name="filter" type="xsd:string" use="optional" />
   </xsd:complexType>
@@ -673,8 +775,8 @@
     </xsd:choice>
     <xsd:attribute name="width" type="dimension" use="optional" />
     <xsd:attribute name="height" type="dimension" use="optional" />
-    <xsd:attribute name="lang" type="xsd:string" use="required" />
-    <xsd:attribute name="date" type="xsd:string" use="optional" />
+    <xsd:attribute ref="lang" use="required" />
+    <xsd:attribute name="date" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="strftime">
@@ -695,7 +797,7 @@
     <xsd:attribute name="player_ip_addr" type="xsd:string" use="required" />
     <xsd:attribute name="player_port" type="xsd:string" use="optional" />
     <xsd:attribute name="refresh" type="xsd:string" use="required" />
-    <xsd:attribute name="debug" type="xsd:string" use="optional" />
+    <xsd:attribute name="debug" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="break" />

@@ -72,24 +72,7 @@ VisuDesign_Custom.prototype.addCreator("rss", {
         refreshRSS(rss, {});
 
         return ret_val;
-    },
-    attributes: {
-        src:        {type: "string", required: true},
-        width:      {type: "string", required: false},
-        height:     {type: "string", required: false},
-        refresh:    {type: "numeric", required: false},
-        limit:      {type: "numeric", required: false},
-        header:     {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        date:       {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        content:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        snippet:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        showerror:  {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        ssl:        {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        linktarget: {type: "list", required: false, list: {"_new": "_new", "_self": "_self"}},
-        link:       {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        title:      {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-    },
-    content: {type: "string", required: true}
+    }
 });
 
 function refreshRSS(rss, data) {

@@ -117,26 +117,6 @@ basicdesign.addCreator('page', {
     $('#pages').prepend( subpage );
     return ret_val;
   },
-  attributes: {
-    name:      { type: 'string' , required: true  },
-    align:     { type: 'string' , required: false },
-    flavour:   { type: 'string' , required: false },
-    ga:        { type: 'addr'   , required: false },
-    visible:   { type: 'string' , required: false },
-    type:      { type: 'string' , required: false },
-    colspan:   { type: 'numeric', required: false },
-    rowspan:   { type: 'numeric', required: false },
-    backdrop:  { type: 'string' , required: false },
-    azimut:    { type: 'addr'   , required: false },
-    elevation: { type: 'addr'   , required: false },
-    floor:     { type: 'addr'   , required: false },
-    topnavigation: { type: 'string', required: false},
-    footer:    { type: 'string', required: false},
-    navbar:    { type: 'string', required: false},
-  },
-  elements: {
-    layout:  { type: 'layout' , required: false, multi: false }
-  },
   update: function(e, data) {
     var element = $(this);
     var value = defaultValueHandling( e, data, element );
@@ -165,6 +145,5 @@ basicdesign.addCreator('page', {
           visu.write(e.type.substr(1), transformEncode('DPT:1.001', 0));
         }
     }
-  },
-  content: true
+  }
 });

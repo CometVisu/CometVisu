@@ -55,9 +55,6 @@
       <status type="html"><![CDATA[ <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a> 
 <a href=".?forceReload=true">Reload</a> - <a href="?config=demo">Widget 
 Demo</a> ]]></status>
-      <status type="html" condition="!edit" hrefextend="config"><![CDATA[ 
- <a href="edit_config.html">Edit</a> ]]></status>
-      <status type="html" condition="edit" hrefextend="all"><![CDATA[ - <a href=".">normal Mode</a> ]]></status>
       <status type="html" hrefextend="config"><![CDATA[ - <a href="check_config.php">Check 
 Config</a> ]]></status>
     </statusbar>

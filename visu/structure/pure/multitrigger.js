@@ -134,27 +134,5 @@ basicdesign.addCreator('multitrigger', {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
       visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
     }
-  },
-  attributes: {
-    button1label: { type: 'string' , required: false },
-    button1value: { type: 'string' , required: false },
-    button2label: { type: 'string' , required: false },
-    button2value: { type: 'string' , required: false },
-    button3label: { type: 'string' , required: false },
-    button3value: { type: 'string' , required: false },
-    button4label: { type: 'string' , required: false },
-    button4value: { type: 'string' , required: false },
-    mapping:      { type: 'mapping', required: false },
-    styling:      { type: 'styling', required: false },
-    align:        { type: 'string' , required: false },
-    showstatus:   { type: 'list'   , required: true , list: {'true': "yes", 'false': "no"}   },
-    colspan:      { type: 'numeric', required: false },
-    rowspan:      { type: 'numeric', required: false }
-  },
-  elements: {
-    layout:       { type: 'layout' , required: false, multi: false },
-    label:        { type: 'string' , required: false, multi: false },
-    address:      { type: 'address', required: true , multi: true  }
-  },
-  content:      false
+  }
 });

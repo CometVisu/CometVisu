@@ -133,21 +133,5 @@ basicdesign.addCreator('slide', {
         if( uv != transformEncode( data.address[addr][0], data.value ) )
           visu.write( addr.substr(1), uv );
       }
-  },
-  attributes: {
-    min:     { type: 'numeric', required: false },
-    max:     { type: 'numeric', required: false },
-    step:    { type: 'numeric', required: false },
-    mapping: { type: 'mapping', required: false },
-    styling: { type: 'styling', required: false },
-    colspan: { type: 'numeric', required: false },
-    rowspan: { type: 'numeric', required: false },
-    format:  { type: 'string' , required: false }
-  },
-  elements: {
-    label:   { type: 'string' , required: true , multi: false },
-    address: { type: 'address', required: true , multi: true  },
-    layout:  { type: 'layout' , required: false, multi: false }
-  },
-  content: false
+  }
 });

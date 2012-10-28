@@ -156,16 +156,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
             toHex( value*255/100 )+
             color.substring(7);
     jQuery.farbtastic( element ).setColor( color );
-  },
-    attributes: {
-      rowspan:    { type: 'numeric', required: false },
-      colspan:    { type: 'numeric', required: false }
-    },
-    elements: {
-      label:      { type: 'string',    required: true, multi: false },
-      address:    { type: 'address',   required: true, multi: true, options: {variant: ['r', 'g', 'b']} }
-    },
-    content:      false
+  }
 });
 
 /**

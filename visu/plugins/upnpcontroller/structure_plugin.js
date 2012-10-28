@@ -81,15 +81,7 @@ VisuDesign_Custom.prototype.addCreator("upnpcontroller", {
         refreshUpnpcontroller(upnpcontroller, {}, false);
 
         return ret_val;
-    },
-    attributes: {
-    	label: 				{type: "string", required: true},
-        player_ip_addr:  	{type: "string", required: true},
-        player_port:  	    {type: "string", required: false},
-        refresh:    		{type: "numeric", required: true},
-        debug:      		{type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-    },
-    content:      false
+    }
 });
 
 

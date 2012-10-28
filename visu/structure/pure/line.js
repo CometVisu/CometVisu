@@ -18,7 +18,5 @@
 basicdesign.addCreator('line', {
   create:     function( element, path, flavour, type ) {
     return $( '<hr />' );
-  },
-  attributes: {},
-  content:    false
+  }
 });

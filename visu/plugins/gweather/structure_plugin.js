@@ -58,18 +58,7 @@ VisuDesign_Custom.prototype.addCreator("gweather", {
         refreshGweather(gweather, {});
 
         return ret_val;
-    },
-    attributes: {
-        width:      {type: "string", required: false},
-        height:     {type: "string", required: false},
-        refresh:    {type: "numeric", required: false},
-        city:       {type: "string", required: true},
-        lang:       {type: "string", required: false},
-        image_url:  {type: "string", required: false},
-        current:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-        forecast:   {type: "list", required: false, list: {'true': "yes", 'false': "no"}}
-    },
-    content: {type: "string", required: true}
+    }
 });
 
 function refreshGweather(gweather, data) {

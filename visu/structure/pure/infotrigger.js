@@ -138,27 +138,5 @@ basicdesign.addCreator('infotrigger', {
       if( data.address[addr][2] != relative ) continue; // skip when address mode doesn't fit action mode
       visu.write( addr.substr(1), transformEncode( data.address[addr][0], value ) );
     }
-  },
-  attributes: {
-    uplabel:      { type: 'string' , required: false },
-    upvalue:      { type: 'string' , required: false },
-    downlabel:    { type: 'string' , required: false },
-    downvalue:    { type: 'string' , required: false },
-    mapping:      { type: 'mapping', required: false },
-    styling:      { type: 'styling', required: false },
-    align:        { type: 'string' , required: false },
-    infoposition: { type: 'list'   , required: true , list: {0: 'Info/Down/Up', 1: 'Down/Info/Up', 2: 'Down/Up/Info'} },
-    format:       { type: 'string' , required: false },
-    change:       { type: 'list'   , required: false, list: {'relative': 'Send relative/delta values', 'absolute': 'Send absolute values'} },
-    min:          { type: 'numeric', required: false },
-    max:          { type: 'numeric', required: false },
-    colspan:      { type: 'numeric', required: false },
-    rowspan:      { type: 'numeric', required: false }
-  },
-  elements: {
-    layout:       { type: 'layout' , required: false, multi: false },
-    label:        { type: 'string' , required: false, multi: false },
-    address:      { type: 'address', required: true , multi: true , options: {variant: ['', 'isbutton']} }
-  },
-  content:      false
+  }
 });
