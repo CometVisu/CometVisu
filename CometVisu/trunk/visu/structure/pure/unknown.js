@@ -20,7 +20,5 @@ basicdesign.addCreator('unknown', {
     var ret_val = $('<div class="widget clearfix" />');
     ret_val.append( '<pre>unknown: ' + element.nodeName + '</pre>' );
     return ret_val;
-  },
-  attributes: {},
-  content: {type: 'string', required: true}
+  }
 });

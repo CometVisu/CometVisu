@@ -61,18 +61,5 @@ basicdesign.addCreator('toggle', {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
       visu.write( addr.substr(1), transformEncode( data.address[addr][0], sendValue ) );
     }
-  },
-  attributes: {
-    mapping: { type: 'mapping', required: false },
-    styling: { type: 'styling', required: false },
-    align:   { type: 'string' , required: false },
-    colspan: { type: 'numeric', required: false },
-    rowspan: { type: 'numeric', required: false }
-  },
-  elements: {
-    layout:  { type: 'layout' , required: false, multi: false },
-    label:   { type: 'string' , required: true, multi: false  },
-    address: { type: 'address', required: true, multi: true   }
-  },
-  content: false
+  }
 });

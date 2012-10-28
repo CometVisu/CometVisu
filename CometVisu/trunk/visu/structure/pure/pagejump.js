@@ -50,18 +50,5 @@ basicdesign.addCreator('pagejump', {
   action: function() {
     var data = $(this).data();
     scrollToPage( data.target );
-  },
-  attributes: {
-    traget:  { type: 'string' , required: true  },
-    name:    { type: 'string' , required: false },
-    styling: { type: 'styling', required: false },
-    align:   { type: 'string' , required: false },
-    colspan: { type: 'numeric', required: false },
-    rowspan: { type: 'numeric', required: false }
-  },
-  elements: {
-    label:   { type: 'string' , required: true , multi: false },
-    layout:  { type: 'layout' , required: false, multi: false }
-  },
-  content: false
+  }
 });

@@ -37,18 +37,5 @@ basicdesign.addCreator('image', {
       'refresh': refresh
     } ).each(setupRefreshAction) ); // abuse "each" to call in context...
     return ret_val;
-  },
-  attributes: {
-    src:     { type: 'uri'    , required: true  },
-    width:   { type: 'string' , required: false }, // only for the image - not the widget!
-    height:  { type: 'string' , required: false }, // only for the image - not the widget!
-    refresh: { type: 'numeric', required: false },
-    colspan: { type: 'numeric', required: false },
-    rowspan: { type: 'numeric', required: false }
-  },
-  elements: {
-    layout:  { type: 'layout' , required: false, multi: false },
-    label:   { type: 'string' , required: false, multi: false }
-  },
-  content: false
+  }
 });

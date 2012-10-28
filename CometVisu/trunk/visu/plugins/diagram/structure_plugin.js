@@ -209,87 +209,19 @@ function createDiagram( page, path, oldType ) {
 VisuDesign_Custom.prototype.addCreator("diagram_inline", {
   create: function( page, path ) {
     return createDiagram(page, path, "inline");    
-  },
-  attributes: {
-    rrd:        {type: "string", required: false},
-    width:      {type: "string", required: false},
-    height:     {type: "string", required: false},
-    unit:       {type: "string", required: false},
-    series:     {type: "list", required: false, list: {hour: "hours", day: "days", week: "weeks", month: "months", year: "years"}},
-    period:     {type: "numeric", required: false},
-    datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
-    refresh:    {type: "numeric", required: false},
-    yaxismin:   {type: "numeric", required: false},
-    yaxismax:   {type: "numeric", required: false},
-    linecolor:  {type: "string", required: false},
-    colspan:    {type: "numeric", required: false},
-    rowspan:    {type: "numeric", required: false},
-    gridcolor:  {type: "string", required: false},
-    title:      {type: "string", required: false}
-  },
-  elements: {
-    label:      { type: 'string',    required: false, multi: false },
-    rrd:        { type: 'string', required: false, multi: true },
-  },
-  content:      false
+  }
 });
 
 VisuDesign_Custom.prototype.addCreator("diagram_popup", {
   create: function(page,path) {
     return createDiagram(page, path, "popup");
-  },
-  attributes: {
-    rrd:           {type: "string", required: false},
-    unit:          {type: "string", required: false},
-    series:        {type: "list", required: false, list: {hour: "hours", day: "days", week: "weeks", month: "months", year: "years"}},
-    period:        {type: "numeric", required: false},
-    datasource:    {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
-    refresh:       {type: "numeric", required: false},
-    yaxismin:      {type: "numeric", required: false},
-    yaxismax:      {type: "numeric", required: false},
-    linecolor:     {type: "string", required: false},
-    gridcolor:     {type: "string", required: false},
-    tooltip:       {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-    width:         {type: "string", required: false},
-    height:        {type: "string", required: false},
-    title:         {type: "string", required: false}
-  },
-  elements: {
-    label:      { type: 'string',    required: false, multi: false },
-    rrd:        { type: 'string', required: false, multi: true },
-  },
-  content:      false
+  }
 });
 
 VisuDesign_Custom.prototype.addCreator("diagram", {
   create: function(page,path) {
     return createDiagram(page, path, "none");
-  },
-  attributes: {
-    rrd:           {type: "string", required: false},
-    unit:          {type: "string", required: false},
-    series:        {type: "list", required: false, list: {hour: "hours", day: "days", week: "weeks", month: "months", year: "years"}},
-    period:        {type: "numeric", required: false},
-    datasource:    {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
-    refresh:       {type: "numeric", required: false},
-    yaxismin:      {type: "numeric", required: false},
-    yaxismax:      {type: "numeric", required: false},
-    linecolor:     {type: "string", required: false},
-    gridcolor:     {type: "string", required: false},
-    tooltip:       {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-    width:         {type: "string", required: false},
-    height:        {type: "string", required: false},
-    previewlabels: {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-    popup:         {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-    legend:        {type: "list", required: false, list: {'both': "both", 'inline': "inline", 'popup': "popup", 'none': "none"}},
-    legendposition: {type: "list", rquired: false, list: {'se' : "bottomright", 'sw':"bottomleft", 'ne' : "topright", 'nw':"topleft"}},
-    title:         {type: "string", required: false}
-  },
-  elements: {
-    label:      { type: 'string',    required: false, multi: false },
-    rrd:        { type: 'string', required: false, multi: true },
-  },
-  content:      false
+  }
 });
 
 VisuDesign_Custom.prototype.addCreator("diagram_info", {
@@ -412,32 +344,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     var element = $(this);
     var value = defaultUpdate( e, d, element );
     element.addClass('switchUnpressed');
-  },
-  attributes: {
-    rrd:        {type: "string", required: false},
-    unit:       {type: "string", required: false},
-    series:     {type: "list", required: false, list: {hour: "hours", day: "days", week: "weeks", month: "months", year: "years"}},
-    period:     {type: "numeric", required: false},
-    datasource: {type: "list", required: false, list: {'MIN': "Min", 'AVERAGE': "Avg", 'MAX': "Max"}},
-    refresh:    {type: "numeric", required: false},
-    tooltip:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-    linecolor:  {type: "string", required: false},
-    gridcolor:  {type: "string", required: false},
-    yaxismin:   {type: "numeric", required: false},
-    yaxismax:   {type: "numeric", required: false},
-    format:     {type: 'format', required: false },
-    mapping:    {type: 'mapping', required: false },
-    styling:    {type: 'styling', required: false },
-    legend:     {type: "list", required: false, list: {'both': "both", 'inline': "inline", 'popup': "popup", 'none': "none"}},
-    legendposition: {type: "list", rquired: false, list: {'se' : "bottomright", 'sw':"bottomleft", 'ne' : "topright", 'nw':"topleft"}},
-    title:      {type: "string", required: false}
-  },
-  elements: {
-    label:      { type: 'string', required: false, multi: false },
-    address:    { type: 'address', required: true, multi: true },
-    rrd:        { type: 'string', required: false, multi: true },
-  },
-  content: {type: "string", required: true}
+  }
 });
 
 diagramColors = {

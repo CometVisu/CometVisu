@@ -37,14 +37,5 @@ basicdesign.addCreator('text', {
     });
     ret_val.append( $div );
     return ret_val;
-  },
-  attributes: {
-    align:   { type: 'string' , required: false },
-    colspan: { type: 'numeric', required: false },
-    rowspan: { type: 'numeric', required: false }
-  },
-  elements: {
-    layout:  { type: 'layout' , required: false, multi: false }
-  },
-  content:   { type: 'string', required: true }
+  }
 });
