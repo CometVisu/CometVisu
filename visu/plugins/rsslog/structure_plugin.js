@@ -75,19 +75,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
     refreshRSSlog(rss, {});
 
     return ret_val;
-  },
-  attributes: {
-    src:        {type: "string", required: true},
-    filter:     {type: "string", required: false},
-    width:      {type: "string", required: false},
-    height:     {type: "string", required: false},
-    refresh:    {type: "numeric", required: false},
-    content:    {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-    datetime:   {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-    mode:       {type: "list", required: false, list: {'first': 'first', 'last': 'last', 'rollover':'rollover' }},
-    timeformat: {type: "string", required: false},
-  },
-  content: false
+  }
 });
 
 function refreshRSSlog(rss, data) {

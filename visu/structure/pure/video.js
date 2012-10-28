@@ -31,18 +31,5 @@ basicdesign.addCreator('video', {
     var actor = '<div class="actor"><video src="' +$e.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>';
     ret_val.append( $(actor).data( {} ) );
     return ret_val;
-  },
-  attributes: {
-    src:      { type: 'uri'    , required: true  },
-    width:    { type: 'string' , required: false },
-    height:   { type: 'string' , required: false },
-    autoplay: { type: 'list'   , required: true, list: {'true': "yes", 'false': "no"} },
-    colspan:  { type: 'numeric', required: false },
-    rowspan:  { type: 'numeric', required: false }
-  },
-  elements: {
-    layout:   { type: 'layout' , required: false, multi: false },
-    label:    { type: 'string' , required: false, multi: false }
-  },
-  content: false
+  }
 });

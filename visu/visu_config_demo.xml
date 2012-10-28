@@ -123,12 +123,6 @@
           - <a href=".?config=demo&forceReload=true">Reload</a>
           - <a href=".">Default Config</a>
         ]]></status>
-      <status type="html" condition="!edit" hrefextend="config"><![CDATA[
-          - <a href="edit_config.html">Edit</a>
-        ]]></status>
-      <status type="html" condition="edit" hrefextend="all"><![CDATA[
-          - <a href=".">normal Mode</a>
-        ]]></status>
       <status type="html" hrefextend="config"><![CDATA[
           - <a href="check_config.php">Check Config</a>
           <div style="float:right;padding-right:0.5em">Version: SVN</div>

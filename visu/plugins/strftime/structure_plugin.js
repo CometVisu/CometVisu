@@ -79,10 +79,5 @@ VisuDesign_Custom.prototype.addCreator("strftime", {
     f();
 
     return ret_val;
-  },
-  attributes : {
-    lang   : {type : "list"  , required : false, list : {en : "en", de : "de", fr : "fr"}},
-    format : {type : "string", required : false},
-  },
-  content : false
+  }
 });

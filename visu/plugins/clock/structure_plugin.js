@@ -123,14 +123,5 @@ VisuDesign_Custom.prototype.addCreator("clock", {
       if( data.address[addr][1] == true ) continue; // skip read only
       visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
     }
-  },
-  attributes: {
-    rowspan:    { type: 'numeric', required: false },
-    colspan:    { type: 'numeric', required: false }
-  },
-  elements: {
-    label:      { type: 'string',    required: true, multi: false },
-    address:    { type: 'address',   required: true, multi: true  }
-  },
-  content:      false
+  }
 });

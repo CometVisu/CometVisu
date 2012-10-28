@@ -84,21 +84,5 @@ basicdesign.addCreator('imagetrigger', {
         continue; // skip empty
       visu.write( addr.substr(1), transformEncode( data.address[addr][0], sendValue ) );
     }
-  },
-  attributes: {
-    src:        { type: 'uri'    , required: true  },
-    refresh:    { type: 'numeric', required: false },
-    colspan:    { type: 'numeric', required: false },
-    rowspan:    { type: 'numeric', required: false },
-    sendValue:  { type: 'numeric', required: false },
-    type:       { type: 'list'   , required: true , list: {'show': 'show', 'select': 'select' /* , 'bitmask': 'bitmask' */ } },
-    mapping:    { type: 'mapping', required: false },
-    suffix:     { type: 'list'   , required: false, list: {'png': '.png', 'jpg': '.jpg', 'gif': '.gif', 'svg': '.svg', 'bmp': '.bmp'} }
-  },
-  elements: {
-    layout:     { type: 'layout' , required: false, multi: false },
-    label:      { type: 'string' , required: false, multi: false },
-    address:    { type: 'address', required: true , multi: true  }
-  },
-  content:      false
+  }
 });

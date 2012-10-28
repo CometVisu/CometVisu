@@ -57,11 +57,5 @@ basicdesign.addCreator('navbar', {
     
     var ret_val = $('');
     return ret_val;
-  },
-  attributes: {
-    name:     { type: 'string', required: false },
-    position: { type: 'list'  , required: true , list: { top: 'top', left: 'left', right: 'right', bottom: 'bottom' } },
-    dynamic:  { type: 'list'  , required: true , list: { 'false': 'Fixed size', 'true': 'Dynamic' } }
-  },
-  content: true
+  }
 });

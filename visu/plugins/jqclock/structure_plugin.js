@@ -55,15 +55,6 @@ VisuDesign_Custom.prototype.addCreator("jqclock", {
 
     ret_val.append(label).append(actor);
     return ret_val;
-  },
-  attributes: {
-    width:      {type: "string", required: false},
-    height:     {type: "string", required: false},
-    lang:   {type: "list", required: true, list:  {'de':'Deutsch','en':'English','es':'Espanol','fr':'Francais','it':'Italiano','ru':'Ruski'}},
-    date:   {type: "list", required: false, list: {'true': "yes", 'false': "no"}},
-    colspan:    { type: 'numeric', required: false },
-    rowspan:    { type: 'numeric', required: false }
-  },
-  content: false
+  }
 });
 

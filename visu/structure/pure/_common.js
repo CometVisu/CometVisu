@@ -209,13 +209,6 @@ function VisuDesign() {
 
       ret_val.css( 'display', 'block' );
       return ret_val;
-    },
-    attributes: {
-      title:      {type: 'string', required: false},
-      content:    {type: 'string', required: false},
-      width:      {type: 'string', required: false},
-      height:     {type: 'string', required: false},
-      position:   {type: 'object', required: false}  // either {x:,y:} or an jQuery object
     }
   });
 

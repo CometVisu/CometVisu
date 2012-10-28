@@ -71,18 +71,5 @@ VisuDesign_Custom.prototype.addCreator('svg', {
       	element.find('#line'+(i+1)).attr('y1',9);
       	element.find('#line'+(i+1)).attr('y2',9);
     }
-  },
-  attributes: {
-    format:  { type: 'format' , required: false },
-    mapping: { type: 'mapping', required: false },
-    styling: { type: 'styling', required: false },
-    colspan: { type: 'numeric', required: false },
-    rowspan: { type: 'numeric', required: false }
-  },
-  elements:   {
-    label:   { type: 'string' , required: true , multi: false },
-    address: { type: 'address', required: true , multi: true  },
-    layout:  { type: 'layout' , required: false, multi: false }
-  },
-  content: false
+  }
 }); 

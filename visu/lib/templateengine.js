@@ -386,9 +386,14 @@ function parseXML(xml) {
     var extend    = $(this).attr('hrefextend');
     var sPath = window.location.pathname;
     var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+    
+    // @TODO: make this match once the new editor is finished-ish.
     var editMode = 'edit_config.html' == sPage;
+    
+    // skip this element if it's edit-only and we are non-edit, or the other way round
     if( editMode  && '!edit' == condition ) return;
     if( !editMode && 'edit'  == condition ) return;
+
     var text = $(this).text();
     switch( extend )
     {
@@ -606,39 +611,6 @@ function create_pages( page, path, flavour, type ) {
   var creator = design.getCreator(page.nodeName);
   var retval = creator.create(page, path, flavour, type);
 
-  node = $(page).get(0);
-  var attributes = {};
-  if (typeof node.attributes != "undefined") {
-    for(var i=0; i<node.attributes.length; i++)  {
-      if(node.attributes.item(i).specified) {
-        attributes[node.attributes.item(i).nodeName]=node.attributes.item(i).nodeValue;
-      }
-    }
-  } else {
-    $.extend(attributes, node);
-  }
-
-  var configData = {attributes: {}, elements: {}};
-  if (typeof creator.attributes != "undefined") {
-    $.each(creator.attributes, function (index, e) {
-      if ($(page).attr(index)) {
-        configData.attributes[index] = $(page).attr(index);
-      }
-    });
-  }
-
-  if (typeof creator.elements != "undefined") {
-    $.each(creator.elements, function (index, e) {
-      var elements = $(page).find(index);
-      configData.elements[index] = elements;
-    });
-  }
-
-  retval.data("configData", configData)
-    .data("path", path)
-    .data("nodeName", page.nodeName)
-    .data("textContent", page.textContent);
-        
   if (jQuery(retval).is(".widget") || (jQuery(retval).is(".group")) ) {
     retval = jQuery("<div class='widget_container " + 
       (retval.data("rowspanClass") ? retval.data("rowspanClass") : '')+"' />")
@@ -843,7 +815,7 @@ function selectDesign() {
     
   $body.append($div);
     
-  $.getJSON("edit/get_designs.php", function(data) {
+  $.getJSON("get_designs.php", function(data) {
     $div.empty();
         
     $div.append("<h1>Please select design</h1>");

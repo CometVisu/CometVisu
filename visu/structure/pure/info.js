@@ -39,18 +39,5 @@ basicdesign.addCreator('info', {
     return ret_val;
   },
   update:   defaultUpdate,
-  update3d: defaultUpdate3d,
-  attributes: {
-    format:  { type: 'format' , required: false },
-    mapping: { type: 'mapping', required: false },
-    styling: { type: 'styling', required: false },
-    colspan: { type: 'numeric', required: false },
-    rowspan: { type: 'numeric', required: false }
-  },
-  elements:   {
-    label:   { type: 'string' , required: true , multi: false },
-    address: { type: 'address', required: true , multi: true  },
-    layout:  { type: 'layout' , required: false, multi: false }
-  },
-  content: false
+  update3d: defaultUpdate3d
 });
