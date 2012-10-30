@@ -21,7 +21,11 @@ basicdesign.addCreator('pagejump', {
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     var target = $e.attr('target') ? $e.attr('target') : '0';
-    var ret_val = $('<div class="widget clearfix pagejump" ' + style + ' />');
+    var classes = 'widget clearfix pagejump';
+    if( $e.attr('align') ) {
+      classes+=" "+$e.attr('align');
+    }
+    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
     ret_val.setWidgetLayout($e);
     var label = extractLabel( $e.find('label')[0] );
     var address = makeAddressList($e);

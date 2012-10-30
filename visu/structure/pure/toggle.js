@@ -20,7 +20,11 @@ basicdesign.addCreator('toggle', {
     var $e = $(element);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
-    var ret_val = $('<div class="widget clearfix toggle" ' + style + '/>');
+    var classes = 'widget clearfix toggle';
+    if( $e.attr('align') ) {
+      classes+=" "+$e.attr('align');
+    }
+    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
     ret_val.setWidgetLayout($e);
     var label = extractLabel( $e.find('label')[0] );
     var address = makeAddressList($e);

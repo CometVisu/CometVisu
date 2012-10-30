@@ -20,7 +20,11 @@ basicdesign.addCreator('info', {
     var $e = $(element);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
-    var ret_val = $('<div class="widget clearfix info" ' + style + ' />');
+    var classes = 'widget clearfix info';
+    if( $e.attr('align') ) {
+      classes+=" "+$e.attr('align');
+    }
+    var ret_val = $('<div class="'+classes+'" ' + style + ' />');
     //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );
     type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: extractLayout3d( layout )}, this.update3d );
     
@@ -34,6 +38,7 @@ basicdesign.addCreator('info', {
       'mapping'  : $e.attr('mapping'),
       'styling'  : $e.attr('styling')
     });
+    
     for( var addr in address ) $actor.bind( addr, this.update );
     ret_val.append( $actor );
     return ret_val;

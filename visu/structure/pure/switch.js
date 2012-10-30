@@ -20,10 +20,15 @@ basicdesign.addCreator('switch', {
     var $e = $(element);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
-    var ret_val = $('<div class="widget clearfix switch" ' + style + '/>');
+    var classes = 'widget clearfix switch';
+    if( $e.attr('align') ) {
+      classes+=" "+$e.attr('align');
+    }
+    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
     ret_val.setWidgetLayout($e)
     var label = extractLabel( $e.find('label')[0] );
     var address = makeAddressList($e);
+    
     var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     var $actor = $(actor).data( {
       'address' : address,
