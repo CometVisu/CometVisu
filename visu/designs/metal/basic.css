@@ -729,3 +729,31 @@ background-color: #000;
 .jqclock .clockdate { float: left; }
 .jqclock .clocktime { min-width: 4em; display: block; float: left; margin: 0 0 0 0.4em; }
 .strftime { font-family: Helvetica, Arial, sans-serif; font-size: 5mm; }
+
+/* START: alignment of widgets */
+.widget.center:not(.switch):not(.toggle):not(.trigger) > div,
+.widget.right:not(.switch):not(.toggle):not(.trigger) > div { 
+	width: 50%;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box; 
+}
+.widget.center:not(.switch):not(.toggle):not(.trigger) > div { text-align: center; }
+.widget.right:not(.switch):not(.toggle):not(.trigger) > div { text-align: right; }
+
+.widget:not(.switch):not(.toggle):not(.trigger)  > .actor:first-child, 
+.widget:not(.switch):not(.toggle):not(.trigger)  > .actor:first-child > div { 
+	float: none; width: auto; 
+}
+.widget_container { position: relative; }
+.widget.center.toggle > .actor:first-child, 
+.widget.center.switch > .actor:first-child,
+.widget.center.trigger > .actor:first-child { 
+	position: absolute; left: 50%; margin-left: -2em; 
+}
+.widget.center > .actor > div, .widget.right > .actor > div { float: none; }
+
+#navbarTop .pagejump.center > div, #navbarBottom .pagejump.center > div { width: 100%; }
+#navbarTop .pagejump.right .label, #navbarBottom .pagejump.right .label { text-align: center !important; float: right; }
+/* END: alignment of widgets */
