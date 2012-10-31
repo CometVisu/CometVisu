@@ -35,7 +35,21 @@ basicdesign.addCreator('group', {
         container.append( create_pages( childs[i], path + '_' + i, flavour ) );
     } );
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
+
+    if ( $e.attr('pagejumptarget') )  {
+      var target = $e.attr('pagejumptarget') ? $e.attr('pagejumptarget') : '0';
+      ret_val.addClass('clickable');
+      ret_val.data( {
+        'type'    : 'pagejump',
+        'target'  : target
+      } ).bind( 'click', this.action ).setWidgetStyling(target);
+    }
+
     ret_val.append( container );
     return ret_val;
-  }
+  },
+  action: function () {
+    var data = $(this).data();
+    if (data.target != 0) scrollToPage( data.target );
+  } 
 });
