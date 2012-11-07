@@ -61,6 +61,7 @@ basicdesign.addCreator('slide', {
         step:    step,
         min:     min,
         max:     max, 
+        range:   "min", 
         animate: true,
         start:   this.slideStart,
         change:  this.slideChange,
@@ -73,6 +74,7 @@ basicdesign.addCreator('slide', {
         step:    step,
         min:     min,
         max:     max, 
+        range:   "min", 
         animate: true,
         start:   this.slideStart,
         change:  this.slideChange
