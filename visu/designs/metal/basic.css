@@ -759,6 +759,6 @@ background-color: #000;
 /* END: alignment of widgets */
 
 /* fixes for plugin line-heights */
-.widget .actor.rsslogBody, .widget .actor. .diagram_inline {
+.widget .actor.rsslogBody, .widget .actor .diagram_inline {
     line-height: normal;
 }
