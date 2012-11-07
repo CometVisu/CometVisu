@@ -321,7 +321,6 @@
       <xsd:element name="gweather" type="gweather" />
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
-      <xsd:element name="jqclock" type="jqclock" />
       <xsd:element name="strftime" type="strftime" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="page" type="page" />
@@ -378,7 +377,6 @@
       <xsd:element name="gweather" type="gweather" />
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
-      <xsd:element name="jqclock" type="jqclock" />
       <xsd:element name="strftime" type="strftime" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="page" type="page" />
@@ -421,7 +419,6 @@
       <xsd:element name="diagram" type="diagram" />
       <xsd:element name="gweather" type="gweather" />
       <xsd:element name="rss" type="rss" />
-      <xsd:element name="jqclock" type="jqclock" />
       <xsd:element name="strftime" type="strftime" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="page" type="page" />
@@ -770,17 +767,6 @@
     <xsd:attribute name="datetime" type="xsd:boolean" use="optional" />
     <xsd:attribute name="timeformat" type="xsd:string" use="optional" />
     <xsd:attribute name="filter" type="xsd:string" use="optional" />
-  </xsd:complexType>
-
-  <xsd:complexType name="jqclock">
-    <xsd:choice maxOccurs="unbounded" minOccurs="1">
-      <xsd:element name="label" type="label" maxOccurs="1" />
-      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
-    </xsd:choice>
-    <xsd:attribute name="width" type="dimension" use="optional" />
-    <xsd:attribute name="height" type="dimension" use="optional" />
-    <xsd:attribute ref="lang" use="required" />
-    <xsd:attribute name="date" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="strftime">

@@ -2,6 +2,7 @@ HEAD
 ====
 
 - New plugin: strftime
+- Obsolete plugin removed: jqclock
 - New plugin: clock
 - New plugin: rsslog
 - New plugin: upnpcontroller
