@@ -144,7 +144,7 @@ h2 {
   font-size: 1.25em;
 }
 
-.rsslogRow, div#jqclock_head, .footer, .footer * {
+.rsslogRow, .footer, .footer * {
   font-size:80%;
 }
 
