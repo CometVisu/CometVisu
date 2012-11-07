@@ -757,3 +757,8 @@ background-color: #000;
 #navbarTop .pagejump.center > div, #navbarBottom .pagejump.center > div { width: 100%; }
 #navbarTop .pagejump.right .label, #navbarBottom .pagejump.right .label { text-align: center !important; float: right; }
 /* END: alignment of widgets */
+
+/* fixes for plugin line-heights */
+.widget .actor.rsslogBody, .widget .actor. .diagram_inline {
+    line-height: normal;
+}
