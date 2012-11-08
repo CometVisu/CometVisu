@@ -427,31 +427,32 @@ function refreshDiagram(diagram, flotoptions, data) {
       var idx = num;
          
       $.ajax({
-        url: "/cgi-bin/rrdfetch?rrd=" + src + ".rrd&ds=" + datasource + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
+        url: backendConfig.baseUrl+"rrdfetch?rrd=" + src + ".rrd&ds=" + datasource + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
         dataType: "json",
         type: "GET",
+        context: this,
         success: function(data) {
-          var color = linecolor || options.grid.color;
-          var offset = new Date().getTimezoneOffset() * 60 * 1000;
-          //TODO: find a better way
-          for (var j = 0; j < data.length; j++) {
-            data[j][0] -= offset;
-            data[j][1] = parseFloat( data[j][1][0] );
-          }
-          fulldata[idx] = {label: label, color: color, data: data, yaxis: parseInt(yaxis)};
-          rrdloaded++;
-          if (rrdloaded==content.rrdnum) { 
-            if (!diagram.data("plotted")) { // only plot if diagram does not exist
-              diagram.data("PLOT", $.plot(diagram, fulldata, options));
-              diagram.data("plotted", true);
-            } else { // otherwise replace data in plot
-              var PLOT = diagram.data("PLOT");
-              PLOT.setData(fulldata);
-              PLOT.setupGrid();
-              PLOT.draw();
+        	var color = linecolor || options.grid.color;
+            var offset = new Date().getTimezoneOffset() * 60 * 1000;
+            //TODO: find a better way
+            for (var j = 0; j < data.length; j++) {
+              data[j][0] -= offset;
+              data[j][1] = parseFloat( data[j][1][0] );
             }
-          }
-          //console.log( p, p.width(), p.height(), p.getPlotOffset() );
+            fulldata[idx] = {label: label, color: color, data: data, yaxis: parseInt(yaxis)};
+            rrdloaded++;
+            if (rrdloaded==content.rrdnum) { 
+              if (!diagram.data("plotted")) { // only plot if diagram does not exist
+                diagram.data("PLOT", $.plot(diagram, fulldata, options));
+                diagram.data("plotted", true);
+              } else { // otherwise replace data in plot
+                var PLOT = diagram.data("PLOT");
+                PLOT.setData(fulldata);
+                PLOT.setupGrid();
+                PLOT.draw();
+              }
+            }
+            //console.log( p, p.width(), p.height(), p.getPlotOffset() );
         }
       });
       num++;
