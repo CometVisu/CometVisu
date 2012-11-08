@@ -4,7 +4,7 @@
   <!-- basic types -->
   <xsd:simpleType name="addr">
     <xsd:restriction base="xsd:string">
-      <xsd:pattern value="[0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}" />
+      <xsd:pattern value="([0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|[A-Za-z][A-Za-z0-9_\-\.]*)" />
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -149,6 +149,15 @@
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
+  
+    <xsd:attribute name="backend">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="cgi" />
+        <xsd:enumeration value="oh" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
 
   <xsd:simpleType name="navbarPositionType">
     <xsd:restriction base="xsd:string">
@@ -216,6 +225,7 @@
         <xsd:element name="page" type="page" minOccurs="1" />
       </xsd:choice>
       <xsd:attribute name="design" type="xsd:string" use="required" />
+      <xsd:attribute ref="backend" use="optional" />
       <xsd:attribute name="scroll_speed" type="xsd:decimal" use="optional" />
       <xsd:attribute name="max_mobile_screen_width" type="xsd:decimal" use="optional" />
       <xsd:attribute name="min_column_width" type="xsd:decimal" use="optional" />
