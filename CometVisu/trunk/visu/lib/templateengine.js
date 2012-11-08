@@ -41,14 +41,30 @@ var resizeAfterScroll = false;
 var defaultColumns = 12;
 var minColumnWidth = 150;
 var enableColumnAdjustment = false;
+if (backend==undefined) {
+  var backend = "cgi";
+}
+if ($.getUrlVar("backend")) {
+  backend = $.getUrlVar("backend");
+}
 
-visu = new CometVisu('/cgi-bin/');
-visu.update = function( json ) { // overload the handler
-  for( key in json ) {
-    $.event.trigger( '_' + key, json[key] );
-  }
+var backendConfig = {
+    baseUrl: '/cgi-bin/',
 };
-visu.user = 'demo_user'; // example for setting a user
+
+function initBackendClient(backend) {
+	if (backend.toLowerCase()=='oh') {
+	  backendConfig.baseUrl = '/cv/';
+	}
+
+	visu = new CometVisu(backendConfig.baseUrl);
+	visu.update = function( json ) { // overload the handler
+	  for( key in json ) {
+	    $.event.trigger( '_' + key, json[key] );
+	  }
+	};
+	visu.user = 'demo_user'; // example for setting a user
+}
 
 var configSuffix;
 if ($.getUrlVar("config")) {
@@ -261,6 +277,11 @@ function parseXML(xml) {
   
   // read predefined design in config
   predefinedDesign = $( 'pages', xml ).attr("design");
+  
+  if ($( 'pages', xml ).attr("backend")) {
+	  backend = $( 'pages', xml ).attr("backend");
+  }
+  initBackendClient(backend);
   
   scrollSpeed = $( 'pages', xml ).attr("scroll_speed");
   if ($('pages',xml).attr('enable_column_adjustment')=="true") {
