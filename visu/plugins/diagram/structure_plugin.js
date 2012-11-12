@@ -384,6 +384,7 @@ function refreshDiagram(diagram, flotoptions, data) {
   var series = {
     hour:   {label: "hour", res: "60", start: "hour", end: "now"},
     day:    {label: "day", res: "300", start: "day", end: "now"},
+    fullday:{label: "fullday", res: "300", start: "day", end: "midnight+24hour"},
     week:   {label: "week", res: "1800", start: "week", end: "now"},
     month:  {label: "month", res: "21600", start: "month", end: "now"},
     year:   {label: "year", res: "432000", start: "year", end: "now"},
