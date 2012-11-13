@@ -321,6 +321,7 @@
       <xsd:element name="imagetrigger" type="imagetrigger" />
       <xsd:element name="video" type="video" />
       <xsd:element name="iframe" type="iframe" />
+      <xsd:element name="rgb" type="rgb" />
       <xsd:element name="pagejump" type="pagejump" />
       <!-- available plugins - include not checked -->
       <xsd:element name="colorchooser" type="colorchooser" />
@@ -377,6 +378,7 @@
       <xsd:element name="imagetrigger" type="imagetrigger" />
       <xsd:element name="video" type="video" />
       <xsd:element name="iframe" type="iframe" />
+      <xsd:element name="rgb" type="rgb" />
       <xsd:element name="pagejump" type="pagejump" />
       <!-- available plugins - include not checked -->
       <xsd:element name="colorchooser" type="colorchooser" />
@@ -420,6 +422,7 @@
       <xsd:element name="imagetrigger" type="imagetrigger" />
       <xsd:element name="video" type="video" />
       <xsd:element name="iframe" type="iframe" />
+      <xsd:element name="rgb" type="rgb" />
       <xsd:element name="pagejump" type="pagejump" />
       <!-- available plugins - include not checked -->
       <xsd:element name="colorchooser" type="colorchooser" />
@@ -516,6 +519,14 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute name="infoposition" type="xsd:decimal" use="optional" />
+  </xsd:complexType>
+  
+  <xsd:complexType name="rgb">
+    <xsd:choice maxOccurs="unbounded" minOccurs="1">
+      <xsd:element name="label" type="label" />
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="address" type="address" minOccurs="3" maxOccurs="unbounded" />
+    </xsd:choice>
   </xsd:complexType>
 
   <xsd:complexType name="multitrigger">
