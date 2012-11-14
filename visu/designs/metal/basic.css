@@ -710,6 +710,7 @@ background-color: #000;
 	float: left;
 	margin: 0 auto;
 }
+
 #navbarTop .navbar .pagejump .actor, #navbarBottom.navbar .pagejump .actor {
 	width: 100%; 	
 }
@@ -740,6 +741,11 @@ background-color: #000;
 .widget.center:not(.switch):not(.toggle):not(.trigger) > div { text-align: center; }
 .widget.right:not(.switch):not(.toggle):not(.trigger) > div { text-align: right; }
 
+.widget.center:not(.switch):not(.toggle):not(.trigger) > div img.icon { margin-left: 0; }
+.widget.right:not(.switch):not(.toggle):not(.trigger) > div img.icon { margin-right: 35px; }
+.widget.left:not(.switch):not(.toggle):not(.trigger) > div img.icon,
+.widget:not(.switch):not(.toggle):not(.trigger) > div img.icon { margin-left: 10px; }
+
 .widget:not(.switch):not(.toggle):not(.trigger)  > .actor:first-child, 
 .widget:not(.switch):not(.toggle):not(.trigger)  > .actor:first-child > div { 
 	float: none; width: auto; 
@@ -754,7 +760,63 @@ background-color: #000;
 
 #navbarTop .pagejump.center > div, #navbarBottom .pagejump.center > div { width: 100%; }
 #navbarTop .pagejump.right .label, #navbarBottom .pagejump.right .label { text-align: center !important; float: right; }
+
+.widget.right .green_bg.actor div,
+.widget.right .red_bg.actor div,
+.widget.right .grey_bg.actor div,
+.widget.right .grey.switchPressed div, 
+.widget.right .grey.switchUnpressed div,
+.widget.right .green.switchPressed div, 
+.widget.right .green.switchUnpressed div,
+.widget.right .red.switchPressed div, 
+.widget.right .red.switchUnpressed div {
+	background-position: right center;
+}
+
+.widget.center .green_bg.actor div,
+.widget.center .red_bg.actor div,
+.widget.center .grey_bg.actor div,
+.widget.center .grey.switchPressed div, 
+.widget.center .grey.switchUnpressed div,
+.widget.center .green.switchPressed div, 
+.widget.center .green.switchUnpressed div,
+.widget.center .red.switchPressed div, 
+.widget.center .red.switchUnpressed div {
+	background-position: center center;
+}
+.widget.left .green_bg.actor div,
+.widget.left .red_bg.actor div,
+.widget.left .grey_bg.actor div,
+.widget.left .grey.switchPressed div, 
+.widget.left .grey.switchUnpressed div,
+.widget.left .green.switchPressed div, 
+.widget.left .green.switchUnpressed div,
+.widget.left .red.switchPressed div, 
+.widget.left .red.switchUnpressed div,
+.widget .green_bg.actor div,
+.widget .red_bg.actor div,
+.widget .grey_bg.actor div,
+.widget .grey.switchPressed div, 
+.widget .grey.switchUnpressed div,
+.widget .green.switchPressed div, 
+.widget .green.switchUnpressed div,
+.widget .red.switchPressed div, 
+.widget .red.switchUnpressed div {
+	background-position: -30px center;
+}
+
 /* END: alignment of widgets */
+
+/* prevent top/bottom navbar wrapping, use scrolling instead, if necessary */
+#navbarTop > .navbar > div, #navbarTop > .navbar > hr {
+	display: inline-block;
+	float: none;
+}
+#navbarTop > .navbar , #navbarBottom {
+	overflow-y: hidden;
+	overflow-x: auto;
+	white-space: nowrap;
+}
 
 /* fixes for plugin line-heights */
 .widget .actor.rsslogBody, .widget .actor .diagram_inline {
