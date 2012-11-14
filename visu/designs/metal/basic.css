@@ -741,13 +741,13 @@ background-color: #000;
 .widget.center:not(.switch):not(.toggle):not(.trigger) > div { text-align: center; }
 .widget.right:not(.switch):not(.toggle):not(.trigger) > div { text-align: right; }
 
-.widget.center:not(.switch):not(.toggle):not(.trigger) > div img.icon { margin-left: 0; }
-.widget.right:not(.switch):not(.toggle):not(.trigger) > div img.icon { margin-right: 35px; }
-.widget.left:not(.switch):not(.toggle):not(.trigger) > div img.icon,
-.widget:not(.switch):not(.toggle):not(.trigger) > div img.icon { margin-left: 10px; }
+.widget.center:not(.switch):not(.toggle):not(.trigger) > .actor img.icon { margin-left: 0; }
+.widget.right:not(.switch):not(.toggle):not(.trigger) > .actor img.icon { margin-right: 35px; }
+.widget.left:not(.switch):not(.toggle):not(.trigger) > .actor img.icon,
+.widget:not(.switch):not(.toggle):not(.trigger) > .actor img.icon { margin-left: 10px; }
 
-.widget:not(.switch):not(.toggle):not(.trigger)  > .actor:first-child, 
-.widget:not(.switch):not(.toggle):not(.trigger)  > .actor:first-child > div { 
+.widget:not(.switch):not(.toggle):not(.trigger) > .actor:first-child, 
+.widget:not(.switch):not(.toggle):not(.trigger) > .actor:first-child > div { 
 	float: none; width: auto; 
 }
 .widget_container { position: relative; }
