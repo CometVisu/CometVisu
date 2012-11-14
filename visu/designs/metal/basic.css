@@ -812,11 +812,13 @@ background-color: #000;
 	display: inline-block;
 	float: none;
 }
-#navbarTop > .navbar , #navbarBottom {
+#navbarTop > .navbar , #navbarBottom > .navbar {
 	overflow-y: hidden;
 	overflow-x: auto;
 	white-space: nowrap;
+	height: 3.6em;
 }
+
 
 /* fixes for plugin line-heights */
 .widget .actor.rsslogBody, .widget .actor .diagram_inline {
