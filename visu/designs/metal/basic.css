@@ -730,24 +730,24 @@ background-color: #000;
 .strftime { font-family: Helvetica, Arial, sans-serif; font-size: 5mm; }
 
 /* START: alignment of widgets */
-.widget.center:not(.switch):not(.toggle):not(.trigger) > div,
-.widget.right:not(.switch):not(.toggle):not(.trigger) > div { 
+.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div,
+.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { 
 	width: 50%;
 	box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -ms-box-sizing: border-box; 
 }
-.widget.center:not(.switch):not(.toggle):not(.trigger) > div { text-align: center; }
-.widget.right:not(.switch):not(.toggle):not(.trigger) > div { text-align: right; }
+.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { text-align: center; }
+.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { text-align: right; }
 
-.widget.center:not(.switch):not(.toggle):not(.trigger) > .actor img.icon { margin-left: 0; }
-.widget.right:not(.switch):not(.toggle):not(.trigger) > .actor img.icon { margin-right: 35px; }
-.widget.left:not(.switch):not(.toggle):not(.trigger) > .actor img.icon,
-.widget:not(.switch):not(.toggle):not(.trigger) > .actor img.icon { margin-left: 10px; }
+.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon { margin-left: 0; }
+.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon { margin-right: 35px; }
+.widget.left:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon,
+.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon { margin-left: 10px; }
 
-.widget:not(.switch):not(.toggle):not(.trigger) > .actor:first-child, 
-.widget:not(.switch):not(.toggle):not(.trigger) > .actor:first-child > div { 
+.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor:first-child, 
+.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor:first-child > div { 
 	float: none; width: auto; 
 }
 .widget_container { position: relative; }
