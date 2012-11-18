@@ -753,7 +753,8 @@ background-color: #000;
 .widget_container { position: relative; }
 .widget.center.toggle > .actor:first-child, 
 .widget.center.switch > .actor:first-child,
-.widget.center.trigger > .actor:first-child { 
+.widget.center.trigger > .actor:first-child,
+.widget.center.diagram_info > .actor:first-child { 
 	position: absolute; left: 50%; margin-left: -2em; 
 }
 .widget.center > .actor > div, .widget.right > .actor > div { float: none; }
