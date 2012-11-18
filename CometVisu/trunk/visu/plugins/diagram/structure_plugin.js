@@ -59,7 +59,7 @@ $("body").append("<script type=\"text/javascript\" src=\"plugins/diagram/flot/jq
 function diagram_get_content( page ) {
 
   var axes = []; // if yaxismin, yaxismax or unit-attributes exist: old behaviour, otherwise use axis-elements
-  var axesnames = {}
+  var axesnames = {};
   var axesnum = 0;
   if (page.attr('yaxismin') || page.attr('yaxismax') || page.attr('unit')) {
     axesnum=1;
@@ -231,7 +231,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     var address = {};
     $p.find('address').each( function(){ 
       var src = this.textContent;
-      ga_list.push( src ) 
+      ga_list.push( src ); 
       address[ '_' + src ] = [ this.getAttribute('transform') ];
     });
     
@@ -243,8 +243,11 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     }
 
     var id = "diagram_" + uniqid();
-
-    var ret_val = $('<div class="widget clearfix diagram_info" />');
+    var classes = 'widget clearfix diagram_info';
+    if( $p.attr('align') ) {
+      classes+=" "+$p.attr('align');
+    }
+    var ret_val = $('<div class="'+classes+'" />');
     ret_val.setWidgetLayout($p).makeWidgetLabel($p);
                 
     var actor = '<div class="actor switchUnpressed ';
@@ -424,7 +427,7 @@ function refreshDiagram(diagram, flotoptions, data) {
       var src = index.slice(1);
       var linecolor = value[0];
       var label = value[1];
-      var yaxis = value[2]
+      var yaxis = value[2];
       var idx = num;
          
       $.ajax({
