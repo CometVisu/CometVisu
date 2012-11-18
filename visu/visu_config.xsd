@@ -109,7 +109,15 @@
       </xsd:simpleType>
   </xsd:attribute>
   
-  <xsd:attribute name="align" type="xsd:string" />
+  <xsd:attribute name="align">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="left" />
+        <xsd:enumeration value="right" />
+        <xsd:enumeration value="center" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
   <xsd:attribute name="variant" type="xsd:string" />
 
   <xsd:attribute name="legendposition">
@@ -738,6 +746,7 @@
     <xsd:attribute ref="legend" use="optional" />
     <xsd:attribute ref="legendposition" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
+    <xsd:attribute ref="align" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="gweather">
