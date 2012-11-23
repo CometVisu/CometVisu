@@ -361,33 +361,37 @@ var ConfigurationElement = function (node, parent) {
             });
         }
         
-        // check all allowed and used elements against their personal bounds.
-        $.each(allSubElements, function (name, count) {
-            var bounds = _schemaElement.getSchemaElementForElementName(name).getBounds();
-            
-            if (bounds.min > count) {
-                // this element does not appear often enough
-                isValid = false;
-            }
-            
-            if (bounds.max < count) {
-                // this element does not appear often enough
-                isValid = false;
-            }
-        });
-
         // secondly, check with the bounds of their parent (i.e. their 'choice')
         // is NOT capable of multi-dimensional-choice-bounds (like in complexType mapping)
-        var bounds = _schemaElement.getChildBounds();
-        if (bounds != undefined) {
+        var childBounds = _schemaElement.getChildBounds();
+        if (childBounds != undefined) {
             // check bounds only if we have them :)
-            if (bounds.min > _element.children.length) {
+
+            // check all allowed and used elements against their personal bounds.
+            // only if the choice-bounds of our parent are not undefined! (undefined = no choice, or multi-dimensional)
+            $.each(allSubElements, function (name, count) {
+                var bounds = _schemaElement.getSchemaElementForElementName(name).getBounds();
+
+                if (bounds.min > count) {
+                    // this element does not appear often enough
+                    isValid = false;
+                }
+
+                if (bounds.max < count) {
+                    // this element does not appear often enough
+                    isValid = false;
+                }
+            });
+
+
+
+            if (childBounds.min > _element.children.length) {
                 // less elements than defined by the bounds
                 isValid = false;
             }
             
-            if (bounds.max != 'unbounded') {
-                if (bounds.max < _element.children.length) {
+            if (childBounds.max != 'unbounded') {
+                if (childBounds.max < _element.children.length) {
                     // more elements than defined by the bounds
                     isValid = false;
                 }
