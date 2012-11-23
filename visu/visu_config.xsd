@@ -230,7 +230,7 @@
     <xsd:complexType>
       <xsd:choice minOccurs="0" maxOccurs="unbounded">
         <xsd:element name="meta" type="meta" />
-        <xsd:element name="page" type="page" minOccurs="1" />
+        <xsd:element name="page" type="page" minOccurs="1" maxOccurs="1" />
       </xsd:choice>
       <xsd:attribute name="design" type="xsd:string" use="required" />
       <xsd:attribute ref="backend" use="optional" />
@@ -239,6 +239,11 @@
       <xsd:attribute name="min_column_width" type="xsd:decimal" use="optional" />
       <xsd:attribute name="default_columns" type="xsd:decimal" use="optional" />
       <xsd:attribute name="enable_column_adjustment" type="xsd:boolean" use="optional" />
+      <xsd:attribute name="lib_version" type="xsd:integer" use="optional">
+          <xsd:annotation>
+              <xsd:documentation xml:lang="en">version of the CometVisu-library this configuration is for.</xsd:documentation>
+          </xsd:annotation>
+      </xsd:attribute>
     </xsd:complexType>
   </xsd:element>
 

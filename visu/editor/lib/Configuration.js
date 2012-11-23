@@ -27,7 +27,7 @@
  * @version     SVN: $Id$
  * @link        http://cometvisu.de
  * @since       2012-10-10
- * @requires    Schema.js
+ * @requires    Schema.js, Messages.js, Result.js
  */
 
 /**
@@ -37,7 +37,7 @@
  */
 var Configuration = function (filename) {
     if (filename == undefined || filename == '' || !filename.match(/\.xml$/)) {
-        throw 'no, empty or invalid filename given, can not instantiate without one';
+        throw Messages.loader.filenameInvalid;
     }
     
     var _config = this;
@@ -68,6 +68,7 @@ var Configuration = function (filename) {
         $.ajax(_filename,
             {
                 dataType: 'xml',
+                cache: false, // never ever allow caching for the configuration
                 success: function (data) {
                     $xml = $(data);
                     
@@ -76,10 +77,14 @@ var Configuration = function (filename) {
                     
                     // tell everyone that we are done!
                     $(document).trigger('configuration_loaded');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var result = new Result(false, Messages.configuration.loadingError, [textStatus, errorThrown]);
+                    $(document).trigger('configuration_loading_error', [result]);
                 }
             }
         );
-    }
+    };
     
     /**
      * get the filename of the schema/xsd associated with this Configuration
@@ -91,17 +96,21 @@ var Configuration = function (filename) {
         var schemaName = $xml.children().attr('xsi:noNamespaceSchemaLocation');
         
         if (schemaName == undefined || schemaName == '') {
-            throw 'no schema/xsd found in root-level-element, can not run without one';
+            throw Messages.configuration.schemaNotFound;
         }
         
         // path is the same as the one from the configuration, so let's throw out the filename, and voila, path.
-        var schemaPath = _filename.replace(/\/[^\/]*$/, '');
+        // might not have a path component (aka no /), then throw out everything
+        var schemaPath = '';
+        if (-1 != _filename.indexOf('/')) {
+            schemaPath = _filename.replace(/\/[^\/]*$/, '');
+        }
         
-        var schemaFilename = schemaPath + '/' + schemaName;
+        var schemaFilename = schemaPath + schemaName;
         
         return schemaFilename;
         
-    }
+    };
     
     /**
      * set the Schema-object for this configuration
@@ -126,7 +135,7 @@ var Configuration = function (filename) {
             var childSchemaElement = _schema.allowedRootElements[elementName];
             element.setSchemaElement(childSchemaElement);
         });
-    }
+    };
     
     /**
      * check and report if the loaded configuration is valid by the standards of an already set schema
@@ -154,7 +163,7 @@ var Configuration = function (filename) {
         });
         
         return isValid;
-    }
+    };
     
     /**
      * Parse the already loaded XML
@@ -164,25 +173,23 @@ var Configuration = function (filename) {
         // start with the root-nodes, and then go down through all of the configuration ...
         // the going-down-part is done by ConfigurationElement itself
         $xml.children().each(function () {
-            var node = new ConfigurationElement(this, _config);
+            var node = new ConfigurationElement(this, undefined);
             _config.rootNodes.push(node);
         });
-    }
+    };
     
     _config.load();
     
 }
 
-// @TODO: need a way to find a SchemaElement for a ConfigurationElement, no matter where we are.
-// maybe make ConfigurationElement remember parent, and go up the tree?
 
 /**
  * a single element from a configuration
  * 
  * @param   node    object  DOMNode
- * @param   config  object  Configuration-object this node belongs to
+ * @param   parent  object  our parents ConfigurationElement
  */
-var ConfigurationElement = function (node, config) {
+var ConfigurationElement = function (node, parent) {
     var _element = this;
     
     /**
@@ -207,7 +214,7 @@ var ConfigurationElement = function (node, config) {
         }
         
         return attributes;
-    }
+    };
     
     /**
      * extract the children for this element.
@@ -219,13 +226,13 @@ var ConfigurationElement = function (node, config) {
         var children = [];
         
         $n.children().each(function () {
-            var child = new ConfigurationElement(this, _config);
+            var child = new ConfigurationElement(this, _element);
             
             children.push(child);
         });
         
         return children;
-    }
+    };
     
     /**
      * get the immediate text of this element
@@ -234,7 +241,7 @@ var ConfigurationElement = function (node, config) {
      */
     var getValue = function () {
         return $n.clone().find("*").remove().end().text();
-    }
+    };
     
     /**
      * set the SchemaElement for this ConfigurationElement.
@@ -257,14 +264,14 @@ var ConfigurationElement = function (node, config) {
                 
                 if (childSchemaElement == undefined) {
                     // the xsd does not match, we are invalid
-                    throw 'xsd does not match this configuration, or configuration is not valid';
+                    throw 'xsd does not match this configuration, or configuration is not valid for ' + childName;
                 }
                 
                 // and set it.
                 child.setSchemaElement(childSchemaElement);
             });
         }
-    }
+    };
     
     /**
      * get the current SchemaElement
@@ -273,7 +280,7 @@ var ConfigurationElement = function (node, config) {
      */
     _element.getSchemaElement = function () {
         return _schemaElement;
-    }
+    };
     
     /**
      * check if this element, its attributes and its children are valid, when compared to a given schemaElement
@@ -300,12 +307,38 @@ var ConfigurationElement = function (node, config) {
             // bail out, if we already know that we failed
             return false;
         }
+        
+        // check for missing required attributes
+        $.each(_schemaElement.allowedAttributes, function (name, attribute) {
+            if (false == attribute.isOptional) {
+                if (typeof _element.attributes[name] == 'undefined' || _element.attributes[name] == undefined) {
+                    // missing required attribute ... too bad ...
+                    isValid = false;
+                }
+            }
+        });
 
-        // if we have children, check them, too.
+        if (false === isValid) {
+            // bail out, if we already know that we failed
+            return false;
+        }
+        
+
+        // counting all our sub-elements
+        var allSubElements = {};
+
+        // populate this list with all allowed elements (with a counting of 0 (zero))
+        var allowedSubElements = _schemaElement.getAllowedElements();
+        if (allowedSubElements != undefined) {
+            $.each(allowedSubElements, function (name, item) {
+                allSubElements[name] = 0;
+            });
+        }
+        delete allowedSubElements;
+
+
         if (_element.children.length > 0) {
-            
-            // list of all of our children
-            var allSubElements = [];
+            // if we have children, check them
             
             // go over list of all elements, and see if some are not valid
             // that's it
@@ -317,11 +350,48 @@ var ConfigurationElement = function (node, config) {
                     return;
                 }
                 
+                // count the number of occurences for this element
+                if (undefined == allSubElements[childName]) {
+                    allSubElements[childName] = 0;
+                }
+                ++allSubElements[childName];
+                
                 // go recursive.
                 isValid = isValid && child.isValid();
             });
+        }
+        
+        // check all allowed and used elements against their personal bounds.
+        $.each(allSubElements, function (name, count) {
+            var bounds = _schemaElement.getSchemaElementForElementName(name).getBounds();
             
-            // @TODO: check bounds?
+            if (bounds.min > count) {
+                // this element does not appear often enough
+                isValid = false;
+            }
+            
+            if (bounds.max < count) {
+                // this element does not appear often enough
+                isValid = false;
+            }
+        });
+
+        // secondly, check with the bounds of their parent (i.e. their 'choice')
+        // is NOT capable of multi-dimensional-choice-bounds (like in complexType mapping)
+        var bounds = _schemaElement.getChildBounds();
+        if (bounds != undefined) {
+            // check bounds only if we have them :)
+            if (bounds.min > _element.children.length) {
+                // less elements than defined by the bounds
+                isValid = false;
+            }
+            
+            if (bounds.max != 'unbounded') {
+                if (bounds.max < _element.children.length) {
+                    // more elements than defined by the bounds
+                    isValid = false;
+                }
+            }
         }
         
         if (_element.children.length == 0 || _schemaElement.isMixed) {
@@ -333,19 +403,247 @@ var ConfigurationElement = function (node, config) {
             
             if (value != '') {
                 // only inspect elements with actual content. Empty nodes are deemed valid.
-                // @TODO: check if there might be nodes this does not apply for. sometime.
+                // @TODO: check if there might be nodes this does not apply for. sometime. MS4 or after bugreport.
                 isValid = isValid && _schemaElement.isValueValid(value);
             }
         }
         
         return isValid;
-    }
+    };
+    
+    /**
+     * set the value for an attribute
+     * 
+     * @param   name    string  name of the attribute to 'edit'
+     * @param   value   string  value to set for that attribute
+     * @return  boolean         was the value valid and set?
+     */
+    _element.setAttributeValue = function (name, value) {
+        var isValid = _schemaElement.allowedAttributes[name].isValueValid(value);
+        
+        if (false == isValid) {
+            // this value is not valid, so we do not accept it, and say so!
+            var typeDescription = _schemaElement.allowedAttributes[name].getTypeString();
+            return new Result(false, Messages.validity.valueInvalidForType, [typeDescription]);
+        }
+        
+        _element.attributes[name] = value;
+        
+        return new Result(true);
+    };
+    
+    
+    /**
+     * set the text-value for this element
+     * 
+     * @param   value   string  value to set for that attribute
+     * @return  boolean         was the value valid and set?
+     */
+    _element.setTextValue = function (value) {
+        value = $.trim(value);
+        
+        var isValid = _schemaElement.isValueValid(value);
+        
+        if (false == isValid) {
+            // this value is not valid, so we do not accept it, and say so!
+            return new Result(false, Messages.validity.valueInvalid);
+        }
+        
+        _element.value = value;
+        
+        return new Result(true);
+    };  
+    
+    /**
+     * remove a child-nodes
+     * 
+     * @param   child   object  the child-node to remove
+     */
+    _element.removeChildNode = function (child) {
+        var index = $.inArray(child, _element.children);
+        
+        if (index != -1) {
+            // remove the child ...
+            _element.children.splice(index, 1);
+        }
+    };
+    
+    /**
+     * remove this node for good.
+     */
+    _element.remove = function () {
+        _parentElement.removeChildNode(_element);
+    };
+    
+    /**
+     * create a new child, append it to this element
+     * auto-create necessary children recursive
+     * 
+     * @param   childName   string  type of the new element
+     * @return  object              new ConfigurationElement created
+     * @throws
+     */
+    _element.createChildNode = function (childName) {
+        if (false === _schemaElement.isChildElementAllowed(childName)) {
+            throw 'element ' + _element.name + ' does not allow child of type ' + childName;
+        }
+        
+        // create a pseudo-node to use with "new ConfigurationElement()"-call
+        var $pseudoNode = $('<' + childName + ' />', _schemaElement.getSchemaDOM());
+        
+        // create a new ConfigurationElement
+        var childNode = new ConfigurationElement($pseudoNode, _element);
+        
+        // give the element its schemaElement
+        childNode.setSchemaElement(_schemaElement.getSchemaElementForElementName(childName))
+        
+        // auto-populate the new child
+        childNode.initFromScratch();
+        
+        // add this new child-node to our list of children
+        _element.children.push(childNode);
+
+        // aaaand ... we're done.
+        return childNode;
+    };
+    
+    /**
+     * find out if an element of a certain type is creatable with us.
+     * This also checks bounds!
+     * 
+     * @param   childName   string  type of the child-to-be
+     * @return  boolean             is this allowed?
+     */
+    _element.isChildCreatable = function (childName) {
+        if (false === _schemaElement.isChildElementAllowed(childName)) {
+            // this child is not allowed AT ALL
+            return false;
+        }
+
+        // the bounds of ourself, this means the maximum number of children as defined by a choice
+        var myChildBounds = _schemaElement.getChildBounds();
+        if (myChildBounds != undefined && myChildBounds.max >= _element.children.length) {
+            // no more children are allowed.
+            // sorry, you can not enter
+            return false;
+        }
+
+        // the bounds of the specific element (child-to-be)
+        var typeBounds = _schemaElement.getSchemaElementForElementName(childName).getBounds();
+        
+        // count the number of elements of this type we already have
+        var count = 0;
+        $.each(_element.children, function (i, item) {
+            if (item.name == childName) {
+                ++count;
+            }
+        });
+        
+        if (count >= typeBounds.max) {
+            // if there are more elements of this type than allowed, then we're not ok
+            return false;
+        }
+        
+        // no reason why to disallow the child-to-be
+        return true;
+    };
+    
+    /**
+     * initialize a newly created ConfigurationElement.
+     * Only needed when an element was freshly created FROM SCRATCH.
+     * 
+     * creates children as needed.
+     */
+    _element.initFromScratch = function () {
+        
+        // empty our list of children (this is init, after all)
+        _element.children = [];
+        
+        // create a list of all elements that define their own min-occurences
+        var neededElements = {};
+        var allowedSubElements = _schemaElement.getAllowedElements();
+        if (allowedSubElements != undefined) {
+            $.each(allowedSubElements, function (name, item) {
+                var bounds = item.getBounds();
+                
+                if (bounds.min > 0) {
+                    neededElements[name] = bounds.min;
+                }
+            });
+        }
+        delete allowedSubElements;
+
+        // create elements for all items with min-occurences
+        $.each(neededElements, function (name, count) {
+            // create the appropriate amount of children of each needed type
+            for (var i = 0; i < count; ++i) {
+                // create a new child; this auto-recurses!
+                _element.createChildNode(name);
+            }
+        });
+    };
+    
+    /**
+     * get an object of allowed elements
+     * 
+     * @return  object  all allowed elements
+     */
+    _element.getAllowedElements = function () {
+        if (_schemaElement == undefined) {
+            return undefined;
+        }
+        
+        return _schemaElement.getAllowedElements();
+    };
+    
+    /**
+     * can this element be removed from the configuration, schema-wise speaking?
+     * 
+     * @return  boolean can it be removed?
+     */
+    _element.isRemovable = function () {
+        if (_parentElement == undefined) {
+            // we have no parent. do not remove us!
+            return false;
+        }
+        
+        
+        var siblingsAndSelf = _parentElement.children;
+
+        var parentBounds = _parentElement.getSchemaElement().getChildBounds();
+        
+        // check bounds of parents choice
+        if (parentBounds != undefined && parentBounds.min >= siblingsAndSelf.length) {
+            // our parent only has the necessary amount of elements, not more.
+            // this means, we can not be removed
+            return false;
+        }
+
+        var myBounds = _schemaElement.getBounds();
+        
+        // count the number of elements of this type our parent has
+        var count = 0;
+        $.each(siblingsAndSelf, function (i, item) {
+            if (item.name == _element.name) {
+                ++count;
+            }
+        });
+        
+        if (myBounds.min >= count) {
+            // there are less or exactly as many elements of this type as needed
+            // we can not allow even less! deny! deny!
+            return false;
+        }
+        
+        // if we had no reason to dis-allow it, we will allow
+        return true;
+    };    
     
     /**
      * the Configuration-object this element belongs to
      * @var object
      */
-    var _config = config;
+    var _parentElement = parent;
     
     /**
      * the node this element represents
@@ -377,4 +675,10 @@ var ConfigurationElement = function (node, config) {
      */
     _element.children = getChildren();
     
-}
+    /**
+     * the text-content of this node (if any)
+     * @var string
+     */
+    _element.value = getValue();
+    
+};

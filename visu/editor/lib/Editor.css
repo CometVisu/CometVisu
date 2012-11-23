@@ -1,0 +1,360 @@
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * The Browser-Represenation-Layer of the Editor.
+ *
+ *
+ * LICENSE: This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://opensource.org/licenses/gpl-license.php>;.
+ *
+ * @category    editor
+ * @package     CometVisu
+ * @author      Julian Makowski (julian at makowskis dot de)
+ * @copyright   2012 Julian Makowski
+ * @license     GPLv3 or later, http://opensource.org/licenses/gpl-license.php
+ * @version     SVN: $Id$
+ * @link        http://cometvisu.de
+ * @since       2012-10-28
+ */
+
+#config, #config input, #config select {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 5.5mm;
+    color: #3E3E3E;
+}
+
+ul#config,
+#config ul {
+    list-style-type: none;
+    list-style-image: none;
+    padding-left: 0;
+    margin-left: .5em;
+}
+
+#config li.element {
+    clear: both;
+    margin-bottom: .5em;
+    display: block;
+}
+
+#config li.element:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+#config li.element > .tree {
+    /* tree-indicator */
+    display: block;
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0em;
+    float: left;
+}
+
+/* hide some items for the topmost element */
+#config > li.element > .tree {
+    display: none;
+}
+
+
+#config li.element .tree .image {
+    background-image: url(editor_sprite.png);
+    background-repeat: no-repeat;
+    background-position: -18px -36px;
+    width: 18px;
+    height: 18px;
+    display: block;
+    position: relative;
+    top: -5px;
+}
+
+#config li.element > .element {
+    display: block;
+    float: left;
+}
+
+#config .element > .name {
+    font-size: 115%;
+    display: block;
+    width: 8em;
+    float: left;
+}
+
+#config .element .addChildContainer {
+    height: 1.5em;
+    display: inline-block;
+    padding: .2em;
+    border: 1px solid #6b6b6b;
+    border-radius: .2em;
+    vertical-align: middle;
+}
+
+#config .element .addChildContainer select {
+    display: inline-block;
+    float: left;
+}
+
+#config .element .buttons {
+    display: block;
+    float: left;
+}
+
+#config .element .button {
+    font-size: 5.5mm;
+    display: inline-block;
+    background-color: #d3d3d3;
+    border: 1px solid #a0a0a0;
+    border-radius: .2em;
+    margin: 0 0.25em;
+    padding: .2em;
+
+    background-image: linear-gradient(top, #dddddd, #c0c0c0);
+    background-image: -o-linear-gradient(top, #dddddd, #c0c0c0);
+    background-image: -moz-linear-gradient(top, #dddddd, #c0c0c0);
+    background-image: -webkit-linear-gradient(top, #dddddd, #c0c0c0);
+    background-image: -ms-linear-gradient(top, #dddddd, #c0c0c0);
+
+    background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            color-stop(0, #dddddd),
+            color-stop(1, #c0c0c0)
+    );
+}
+
+#config .element .button.disabled {
+    opacity: 0.4;
+}
+
+#config .element .button.active {
+    background-image: linear-gradient(top, #d3d3d3, #464646);
+    background-image: -o-linear-gradient(top, #d3d3d3, #464646);
+    background-image: -moz-linear-gradient(top, #d3d3d3, #464646);
+    background-image: -webkit-linear-gradient(top, #d3d3d3, #464646);
+    background-image: -ms-linear-gradient(top, #d3d3d3, #464646);
+
+    background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            color-stop(0, #d3d3d3),
+            color-stop(1, #464646)
+    );
+}
+
+#config .element .button.cancel {
+    background-image: linear-gradient(top, #d3d3d3, #8e7575);
+    background-image: -o-linear-gradient(top, #d3d3d3, #8e7575);
+    background-image: -moz-linear-gradient(top, #d3d3d3, #8e7575);
+    background-image: -webkit-linear-gradient(top, #d3d3d3, #8e7575);
+    background-image: -ms-linear-gradient(top, #d3d3d3, #8e7575);
+
+    background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            color-stop(0, #d3d3d3),
+            color-stop(1, #8e7575)
+    );
+}
+
+
+#config .element .buttons .button.addchild,
+#config .element .buttons .button.remove {
+    background-image: linear-gradient(top, #eaeaea, #b2b2b2);
+    background-image: -o-linear-gradient(top, #eaeaea, #b2b2b2);
+    background-image: -moz-linear-gradient(top, #eaeaea, #b2b2b2);
+    background-image: -webkit-linear-gradient(top, #eaeaea, #b2b2b2);
+    background-image: -ms-linear-gradient(top, #eaeaea, #b2b2b2);
+
+    background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            color-stop(0, #eaeaea),
+            color-stop(1, #b2b2b2)
+    );
+    
+    border: 1px solid #C0C0C0;
+}
+
+#config .element .button.spacer {
+    background-image: none;
+    background: transparent;
+    border: none;
+}
+
+#config .element .button .image {
+    width: 18px;
+    height: 18px;
+    display: block;
+    position: relative;
+    margin: auto;
+    background-image: url(editor_sprite.png);
+    background-repeat: no-repeat;
+}
+
+#config .element .buttons .button {
+}
+
+
+/* images for the buttons */
+#config .button.attributes .image {
+    background-position: 0 -18px;
+}
+
+#config .button.addchild .image {
+    background-position: 0 0;
+}
+
+#config .button.remove .image {
+    background-position: -18px 0;
+}
+
+#config .button.cancel .image {
+    background-position: -54px 0;
+}
+
+#config .button.children .image {
+    background-position: 0 -36px;
+}
+
+#config .element .button.spacer .image {
+    background: none !important;
+}
+/* end images for the buttons */
+
+
+#config .element .content {
+    display: block;
+    clear: both;
+    font-size: 90%;
+    color: #464646;
+    height: 1.2em;
+    background-color: #d3d3d3;
+    border-style: solid;
+    border-color: #464646;
+    border-width: 1px;
+    border-radius: .2em;
+    padding: .2em;
+    margin-left: 1.5em;
+    width: 35.7em;
+}
+    
+#config .element > ul.attributes {
+    clear: both;
+    display: block;
+    background-color: #d3d3d3;
+    border-style: solid;
+    border-color: #464646;
+    border-width: 1px;
+    border-radius: .2em;
+    padding: .2em;
+    margin-left: 1.5em;
+    width: 31.7em;
+}
+
+#config .element ul.attributes.visible.collapsed {
+}
+
+#config .element ul.attributes.visible.collapsed > .attribute {
+}
+
+#config .element > ul.attributes.visible.collapsed > .attribute .name {
+}
+
+
+#config .element > ul.attributes.visible.collapsed > .attribute .name.required:after {
+    content: '';
+}
+
+#config .element > .attributes > .attribute {
+    clear: both;
+    font-size: 90%;
+    color: #464646;
+    background-color: #C0C0C0;
+    margin: .05em;
+    padding: .2em;
+    border-radius: .05em;
+}
+
+#config .element > .attributes > .attribute input,
+#config .element .attributes .attribute select {
+    clear: both;
+    font-size: 90%;
+    color: #464646;
+    display: inline-block;
+    width: 19em;
+    border: none;
+    background-color: #dddddd;
+    padding: .2em;
+}
+
+
+#config .element > .attributes > .attribute .name {
+    display: inline-block;
+    width: 15em;
+    height: 1.1em;
+    margin: .1em 0;
+    padding: .2em 0;
+}
+
+#config .element > .attributes > .attribute .name.required {
+    
+}
+
+#config .element > .attributes > .attribute .name.required:after {
+    font-size: 60%;
+    color: #de898c;
+    content: ' required';
+}
+
+#config .element > .attributes > .attribute .name.optional {
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+
+#config .element > .attributes > .attribute .value {
+    display: inline-block;
+    width: 19em;
+    background-color: #d3d3d3;
+    margin: .1em;
+    padding: .2em;
+    height: 1.1em;
+}
+
+#config .element .value.notset {
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+#config .element .value.notset:after {
+    content: 'not set';
+}
+
+
+
+#config .element > ul.children {
+    clear: both;
+    display: block;
+    padding-top: .5em;
+}
+
+#config .element > .children > .element {
+    
+}
