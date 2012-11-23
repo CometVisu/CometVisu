@@ -61,8 +61,9 @@ $(document).ready(function () {
         }
 
         if (false === config.isValid()) {
-            $(targetSelector).html(Messages.validity.configurationInvalid, ['configuration not valid']);
-            alert(message);
+            var tmpResult = new Result(false, Messages.validity.configurationInvalid, ['configuration not valid']);
+            $(targetSelector).html(tmpResult.message);
+            alert(tmpResult.message);
             return;
         }
 

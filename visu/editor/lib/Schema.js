@@ -251,7 +251,7 @@ var SchemaSimpleType = function (node, schema) {
                     }
                     break;
                 case 'xsd:decimal':
-                    if (!value.match(/^[-+]?[0-9]+(\.[0-9]+)?$/)) {
+                    if (!value.match(/^[-+]?[0-9]*(\.[0-9]+)?$/)) {
                         return false;
                     }
                     break;
