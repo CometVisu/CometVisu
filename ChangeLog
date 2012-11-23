@@ -41,6 +41,9 @@ HEAD
 - lots of little bugfixes and improvements
 <Changes up to Revision 744 included>
 
+- Editor: old WYSIWYG-editor was removed due to existing and forseeable compatibility issues
+- updated jQuery to 1.8.2
+
 0.6.2
 =====
 

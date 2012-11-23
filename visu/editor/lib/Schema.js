@@ -29,8 +29,11 @@
  * @version     SVN: $Id$
  * @link        http://cometvisu.de
  * @since       2012-10-03
+ * @requires    Messages.js
  */
 
+
+// @TODO: read and parse annotations (documentation, xml: lang); use separate Class? (MS4+)
 
 /**
  * starting-point for a javascript-representation of the XSD
@@ -64,6 +67,7 @@ var Schema = function (filename) {
         $.ajax(_filename,
             {
                 dataType: 'xml',
+                cache: false, // do not allow caching of the xsd, it might have changed
                 success: function (data) {
                     $xsd = $(data);
                     
@@ -82,7 +86,8 @@ var Schema = function (filename) {
      */
     var parseXSD = function () {
         // make a list of root-level elements
-        $('xsd\\:schema > xsd\\:element', $xsd).each(function () {
+        var selector = fixNamespace('xsd\\:schema > xsd\\:element');
+        $(selector, $xsd).each(function () {
             var name = $(this).attr('name');
             _schema.allowedRootElements[name] = new SchemaElement(this, _schema);
         });
@@ -98,7 +103,9 @@ var Schema = function (filename) {
      * @return  object          jQuery-object of the ref'ed element
      */
     _schema.getReferencedNode = function (type, refName) {
-        var $ref = $('xsd\\:schema > xsd\\:' + type + '[name="' + refName + '"]', $xsd);
+        var selector = 'xsd\\:schema > xsd\\:' + type + '[name="' + refName + '"]';
+        selector = fixNamespace(selector);
+        var $ref = $(selector, $xsd);
 
         if ($ref.is('[ref]')) {
             // do it recursively, if necessary
@@ -115,13 +122,23 @@ var Schema = function (filename) {
      * @param   name    string  Name of the type to find
      */
     _schema.getTypeNode = function (type, name) {
-        var $type = $('xsd\\:' + type + 'Type[name="' + name + '"]', $xsd);
+        var selector = fixNamespace('xsd\\:' + type + 'Type[name="' + name + '"]');
+        var $type = $(selector, $xsd);
         
         if ($type.length != 1) {
             throw 'schema/xsd appears to be invalid, ' + type + 'Type "' + name + '" can not be found';
         }
         
         return $type;
+    }
+    
+    /**
+     * get the DOM for this Schema
+     * 
+     * @return  object  DOM
+     */
+    _schema.getSchemaDOM = function () {
+        return $xsd;
     }
     
     cacheXSD();
@@ -136,6 +153,10 @@ var Schema = function (filename) {
  * @param   schema  object  a Schema-object of where this node comes from
  */
 var SchemaSimpleType = function (node, schema) {
+    if (typeof node == 'undefined' || node == undefined) {
+        throw 'can not proceed, have problem with unset node';
+    }
+    
     var _type = this;
     
     /**
@@ -146,7 +167,7 @@ var SchemaSimpleType = function (node, schema) {
     var fillNodeData = function (node) {
         var $n = $(node);
         
-        if ($n.is('xsd\\:attribute[ref]')) {
+        if ($n.is(fixNamespace('xsd\\:attribute[ref]'))) {
             // it's a ref, seek other element!
             var refName = $n.attr('ref');
             $n = _schema.getReferencedNode('attribute', refName);
@@ -156,15 +177,19 @@ var SchemaSimpleType = function (node, schema) {
             }
         }
         
-        if ($n.is('xsd\\:attribute[type], xsd\\:element[type]')) {
+        if ($n.is(fixNamespace('xsd\\:attribute[type], xsd\\:element[type]'))) {
             // hacked: allow this to be used for attributes
             var baseType = $n.attr('type');
             nodeData.bases.push(baseType);
             _type.baseType = baseType;
+
+            // is this attribute optional?
+            nodeData.isOptional = $n.is('[use="optional"]');
+
             return;
         }
         
-        var subNodes = $n.find('> xsd\\:restriction, > xsd\\:extension');
+        var subNodes = $n.find(fixNamespace('> xsd\\:restriction, > xsd\\:extension, > xsd\\:simpleType > xsd\\:restriction, > xsd\\:simpleType > xsd\\:extension'));
         
         subNodes.each(function () {
             var baseType = $(this).attr('base');
@@ -180,13 +205,13 @@ var SchemaSimpleType = function (node, schema) {
 
         });
         
-        subNodes.find('> xsd\\:pattern').each(function () {
+        subNodes.find(fixNamespace('> xsd\\:pattern')).each(function () {
             var pattern = $(this).attr('value');
             nodeData.pattern.push(pattern);
         });
 
 
-        subNodes.find('> xsd\\:enumeration').each(function () {
+        subNodes.find(fixNamespace('> xsd\\:enumeration')).each(function () {
             var value = $(this).attr('value');
             nodeData.enumerations.push(value);
         });
@@ -201,6 +226,15 @@ var SchemaSimpleType = function (node, schema) {
      */
     _type.isValueValid = function (value) {
         
+        if (_type.baseType == undefined) {
+            throw 'something is wrong, do not have a baseType for type';
+        }
+        
+        if (value == '' && nodeData.isOptional == true) {
+            // empty values are valid if this node is optional!
+            return true;
+        }
+        
         if (-1 == _type.baseType.search(/^xsd:/)) {
             // created our own type, will need to find and use it.
             var typeNode = _schema.getTypeNode('simple', _type.baseType);
@@ -210,7 +244,7 @@ var SchemaSimpleType = function (node, schema) {
             // xsd:-namespaces types, those are the originals
             switch (_type.baseType) {
                 case 'xsd:string':
-                    if (! (typeof(value) == 'string')) {
+                    if (!(typeof(value) == 'string')) {
                         // it's not a string, but it should be.
                         // pretty much any input a user gives us is string, so this is pretty much moot.
                         return false;
@@ -276,6 +310,34 @@ var SchemaSimpleType = function (node, schema) {
     }
     
     /**
+     * get this elements enumeration (if there is any)
+     * 
+     * @return  array   list of allowed values (if there are any)
+     */
+    _type.getEnumeration = function () {
+        if (_type.baseType == 'xsd:boolean') {
+            // special handling for boolean, as we KNOW it to be an enumeration
+            return ['true', 'false'];
+        }
+        
+        return nodeData.enumerations;
+    }
+    
+    /**
+     * set this node to be optional.
+     * Will always activate optional if isOptional == true
+     * Will deactivate optional ONLY if this type itself is also not optional.
+     * 
+     * Needed if our parent is optional, thus we are optional too (e.g. with referenced attributes)
+     * 
+     * @param   isOptional  boolean isOptional?
+     */
+    _type.setIsOptional = function (isOptional) {
+        nodeData.isOptional = nodeData.isOptional || isOptional;
+    };
+
+
+    /**
      * this is us. well, our node.
      * @var object  jQuery-representation of our node
      */
@@ -298,6 +360,7 @@ var SchemaSimpleType = function (node, schema) {
                     pattern: [],
                     enumerations: [],
                     bases:  [],
+                    isOptional: undefined,
                     };
 
     /**
@@ -354,8 +417,32 @@ var SchemaAttribute = function (node, schema) {
      * @param   value   mixed   the value to check
      * @return  boolean         if the value is valid
      */
-    this.isValueValid = function (value) {
+    _attribute.isValueValid = function (value) {
         return type.isValueValid(value);
+    }
+    
+    /**
+     * get a simple string telling us, what type of content is allowed
+     * 
+     * @return  string  description of allowed values, almost user-readable :)
+     */
+    _attribute.getTypeString = function () {
+        var description = type.baseType;
+        
+        if (description.match(/xsd\:/)) {
+            return description.replace(/xsd\:/, '');
+        }
+        
+        return Messages.schema.complexType;
+    }
+    
+    /**
+     * get the list of values that are valid for this attribute, if it is an enumeration
+     * 
+     * @return  array   list of string of valid values
+     */
+    _attribute.getEnumeration = function () {
+        return type.getEnumeration();
     }
     
     /**
@@ -377,7 +464,7 @@ var SchemaAttribute = function (node, schema) {
      * is this attribute optional?
      * @var boolean is it optional?
      */
-    _attribute.isOptional = ($node.attr('use') == 'optional' ? true : false);
+    _attribute.isOptional = ($node.attr('use') == 'required' ? false : true);
     
     /**
      * the name of this attribute
@@ -390,6 +477,7 @@ var SchemaAttribute = function (node, schema) {
      * @var object  SchemaSimpleType of the attribute, for validating purposes
      */
     var type = new SchemaSimpleType($node, _schema);
+    type.setIsOptional(_attribute.isOptional);
 }
 
 /**
@@ -454,7 +542,7 @@ var SchemaElement = function (node, schema) {
             // be ref'ed
         } else {
             // the element is it's own type
-            $type = $e.find('xsd\\:complexType');
+            $type = $e.find(fixNamespace('> xsd\\:complexType'));
         }
         
         return $type;
@@ -474,19 +562,21 @@ var SchemaElement = function (node, schema) {
         // allowed sub-elements
         // can be either choice, simpleContent or sequence (the latter is not supported)
         
-        if ($type.children('xsd\\:simpleContent').length > 0) {
+        if ($type.children(fixNamespace('xsd\\:simpleContent')).length > 0) {
             // it's simpleContent? Then it's either extension or restriction
             // anyways, we will handle it, as if it were a simpleType
-            allowedContent._text = new SchemaSimpleType($type.children('xsd\\:simpleContent'), _schema);
-        } else if ($type.children('xsd\\:choice').length > 0) {
-            // we have a choice. or some choices. great
-            $type.children('xsd\\:choice').each(function () {
-                allowedContent._choice.push(new SchemaChoice(this, _schema));
-            });
+            allowedContent._text = new SchemaSimpleType($type.children(fixNamespace('xsd\\:simpleContent')), _schema);
+        } else if ($type.children(fixNamespace('xsd\\:choice')).length > 0) {
+            // we have a choice. great
+            // as per the W3C, choice may only appear once per element/type
+            var tmpDOMChoice = $type.children(fixNamespace('xsd\\:choice')).get(0);
+
+            allowedContent._choice = new SchemaChoice(tmpDOMChoice, _schema);
+            delete tmpDOMChoice;
         } else if ($type.is('[type]') && $type.attr('type').match(/^xsd:/)) {
             // this is a really simple node that defines its own baseType
             allowedContent._text = new SchemaSimpleType($type, _schema);
-        } else if ($type.children('xsd\\:sequence').length > 0) {
+        } else if ($type.children(fixNamespace('xsd\\:sequence')).length > 0) {
             // sequence is not yet supported
             throw 'schema/xsd is not compatible, unsupported node ' + $e;
         } else {
@@ -495,9 +585,11 @@ var SchemaElement = function (node, schema) {
         }
         
         
-        var children = $type.find('> xsd\\:element', $e);
+        var children = $type.find(fixNamespace('> xsd\\:element'), $e);
         children.each(function () {
-            allowedContent[name] = new SchemaElement(this);
+            var subElement = new SchemaElement(this);
+            var name = subElement.name;
+            allowedContent[name] = subElement;
         });
         
         // remember that we parsed it already!
@@ -515,15 +607,43 @@ var SchemaElement = function (node, schema) {
         var allowedContent = _element.getAllowedContent();
         
         var allowedElements = {};
-        if (allowedContent._choice.length > 0) {
-            $.each(allowedContent._choice, function (i, subChoice) {
-                $.extend(allowedElements, subChoice.getAllowedElements(true));
-            });
+        if (allowedContent._choice != undefined) {
+            $.extend(allowedElements, allowedContent._choice.getAllowedElements(true));
         }
         
         return allowedElements;
     }
     
+    /**
+     * get the bounds for this elements children (as defined by a choice)
+     * 
+     * @return  object  bounds ({min: x, max: y})
+     */
+    _element.getChildBounds = function () {
+        if (allowedContent._choice == undefined) {
+            // no choice = no idea about bounds
+            return undefined;
+        }
+        
+        if (true === allowedContent._choice.hasSubChoice()) {
+            // if our choice has sub-choices, then we have not fucking clue about bounds (or we can not process them)
+            return undefined;
+        }
+        
+        return allowedContent._choice.bounds;
+    }
+
+    
+    /**
+     * get this elements bounds (bounds defined FOR THIS ELEMENT)
+     * 
+     * @return  object  {min: x, max: y}
+     */
+    _element.getBounds = function () {
+        return bounds;
+    }
+    
+
     /**
      * get a list of allowed attributes for this element
      * 
@@ -533,10 +653,11 @@ var SchemaElement = function (node, schema) {
         var allowedAttributes = {};
         
         // allowed attributes
-        var attributes = $type.find('> xsd\\:attribute, > xsd\\:simpleContent > xsd\\:extension > xsd\\:attribute');
+        var attributes = $type.find(fixNamespace('> xsd\\:attribute, > xsd\\:simpleContent > xsd\\:extension > xsd\\:attribute'));
                
         // now add any attribute that comes from an attribute-group
-        var attributeGroups = $type.find('> xsd\\:attributeGroup, > xsd\\:simpleContent > xsd\\:extension > xsd\\:attributeGroup')
+        var attributeGroups = $type.find(fixNamespace('> xsd\\:attributeGroup, > xsd\\:simpleContent > xsd\\:extension > xsd\\:attributeGroup'));
+        
         attributeGroups.each(function () {
             // get get group itself, by reference if necessary
             // then extract all attributes, and add them to the list of already know attributes
@@ -549,7 +670,7 @@ var SchemaElement = function (node, schema) {
                 $attributeGroup = $(this);
             }
             
-            $attributeGroup.children('xsd\\:attribute').each(function () {
+            $attributeGroup.children(fixNamespace('xsd\\:attribute')).each(function () {
                 attributes.push(this);
             });
         });
@@ -574,18 +695,18 @@ var SchemaElement = function (node, schema) {
         // first, get a list of allowed content (don't worry, it's cached)
         var allowedContent = _element.getAllowedContent();
         
-        if (allowedContent._choice == undefined || allowedContent._choice.length == 0) {
+        if (allowedContent._choice == undefined) {
             // when there is no choice, then there is no allowed element
             return false;
         }
         
-        // go over all choices, and see, if this child is allowed
-        var result = false;
-        $.each(allowedContent._choice, function (i, choice) {
-            result = result || choice.isElementAllowed(child);
-        })
+        // see, if this child is allowed with our choice
+        if (allowedContent._choice != undefined) {
+            return allowedContent._choice.isElementAllowed(child);
+        }
         
-        return result;
+        // no reason why we should have allowed this element.
+        return false;
     }
 
     /**
@@ -599,28 +720,29 @@ var SchemaElement = function (node, schema) {
         // first, get a list of allowed content (don't worry, it's cached)
         var allowedContent = _element.getAllowedContent();
         
-        if (allowedContent._choice == undefined || allowedContent._choice.length == 0) {
+        if (allowedContent._choice == undefined) {
             // when there is no choice, then there is no allowed element
             return undefined;
         }
         
-        // go over the list of sub-choices and check, if the element is allowed with them
-        var element = undefined;
-        $.each(allowedContent._choice, function (i, choice) {
-            if (element) {
-                // don't look any further if we already have our element
-                return;
-            }
-            
-            if (choice.isElementAllowed(elementName)) {
-                // only look in this tree, if the element is allowed there.
-                element = choice.getSchemaElementForElementName(elementName);
-            }
-        });
+        // go over our choice, if the element is allowed with it
+        if (allowedContent._choice.isElementAllowed(elementName)) {
+            // only look in this tree, if the element is allowed there.
+            return allowedContent._choice.getSchemaElementForElementName(elementName);
+        }
         
-        return element;
+        return undefined;
+    };
+    
+    /**
+     * return the DOM this Schema is based on
+     * 
+     * @return  object  DOM of $xsd
+     */
+    _element.getSchemaDOM = function () {
+        return _schema.getSchemaDOM();
     }
-
+    
     /**
      * check if a given value is valid for this element
      * 
@@ -683,9 +805,14 @@ var SchemaElement = function (node, schema) {
      * @var object  list of allowed contents
      */
     var allowedContent = {
-                                _choice: [],
+                                _choice: undefined,
                                 _text: false,
                                 };
+                                
+    var bounds = {
+                    min: $e.attr('minOccurs') != undefined ? $e.attr('minOccurs') : 0,
+                    max: $e.attr('maxOccurs') != undefined ? $e.attr('maxOccurs') : 'unbounded',
+                    };
 
                                 
     /**
@@ -724,22 +851,22 @@ var SchemaChoice = function (node, schema) {
      */
     var parseChoice = function () {
         _choice.bounds = {
-                        min: $n.attr('minOccurs'),
-                        max: $n.attr('maxOccurs'),
+                        min: $n.attr('minOccurs') != undefined ? $n.attr('minOccurs') : 1, // default is 1
+                        max: $n.attr('maxOccurs') != undefined ? $n.attr('maxOccurs') : 1, // default is 1
                         };
         
-        var subElements = $n.find('> xsd\\:element');
+        var subElements = $n.find(fixNamespace('> xsd\\:element'));
         subElements.each(function () {
             var subElement = new SchemaElement(this, _schema);
             var name = subElement.name;
             allowedElements[name] = subElement;
         });
         
-        var subChoices = $n.find('> xsd\\:choice');
-        subChoices.each(function () {
-            var subChoice = new SchemaChoice(this, _schema);
-            allowedSubChoices.push(subChoice);
-        })
+        var subChoices = $n.find(fixNamespace('> xsd\\:choice'));
+        if (subChoices.length > 0) {
+            // choice may appear only once as per the recommendation of the W3C for XSD
+            subChoice = new SchemaChoice(subChoices.get(), _schema);
+        }
     }
     
     /**
@@ -758,9 +885,9 @@ var SchemaChoice = function (node, schema) {
         
         // go over the list of sub-choices and check, if the element is allowed with them
         var result = false;
-        $.each(allowedSubChoices, function (i, subChoice) {
+        if (subChoice != undefined) {
             result = result || subChoice.isElementAllowed(element);
-        });
+        }
         
         return result;
     }
@@ -779,20 +906,15 @@ var SchemaChoice = function (node, schema) {
         }
         
         // go over the list of sub-choices and check, if the element is allowed with them
-        var element = undefined;
-        $.each(allowedSubChoices, function (i, subChoice) {
-            if (element) {
-                // don't look any further if we already have our element
-                return;
-            }
-            
+        if (subChoice != undefined) {
             if (subChoice.isElementAllowed(elementName)) {
                 // only look in this tree, if the element is allowed there.
-                element = subChoice.getSchemaElementForElementName(elementName);
+                return subChoice.getSchemaElementForElementName(elementName);
             }
-        });
-        
-        return element;
+        }
+
+        // can not find any reason why elementName is allowed with us...
+        return undefined;
     }
     
     /**
@@ -805,14 +927,23 @@ var SchemaChoice = function (node, schema) {
         var myAllowedElements = allowedElements;
         
         if (true == recursive) {
-            $.each(allowedSubChoices, function (i, subChoice) {
+            if (subChoice != undefined) {
                 var subAllowedElements = subChoice.getAllowedElements(recursive);
-                
                 $.extend(myAllowedElements, subAllowedElements);
-            });
+            }
         }
         
         return myAllowedElements;
+    }
+    
+    /**
+     * tell us, if this choice has children.
+     * If so, other parts of the programming may need to change their behaviour concerning bounds
+     * 
+     * @return  boolean
+     */
+    _choice.hasSubChoice = function () {
+        return (subChoice != undefined);
     }
     
     /**
@@ -840,7 +971,7 @@ var SchemaChoice = function (node, schema) {
      * array of sub-choices that are defined
      * @var array
      */
-    var allowedSubChoices = [];
+    var subChoice = undefined;
     
     /**
      * bounds for this choice
@@ -864,10 +995,38 @@ var SchemaChoice = function (node, schema) {
  * @param   modifiers   string  modifiers, if any
  * @return  object              RegExp-object
  */
-function regexFromString(input, modifiers) {
+var regexFromString = function (input, modifiers) {
     if (modifiers == undefined) {
         modifiers = '';
     }
     
     return new RegExp(input, modifiers);
+}
+
+/**
+ * parse a selector and change it, if the underlying browser fiddles with namespaces.
+ * 
+ * This function will REMOVE the namespace from the selector, if the current browser expects no namespaces.
+ * Known for webkit. In some obscure circumstances.
+ * 
+ * @param   selector    string  the selector to parse
+ */
+var fixNamespace = function (selector) {
+    if (true == $.browser.webkit) {
+        // jquery 1.8.2 on webkit expects namespaces in selectors in some cases, and not in others.
+        // from my understanding, it expects none when jquery does take care of the selection.
+        // this goes for anything with ancestry (>-selector) and anything with defined attributes (e.g. [ref=name])
+        // and it is true for selectors with multiple selections, comma-separated.
+        // told you, it is bizarre.
+        // this is a test-driven result, not knowledge! prone to fail in a future version of jquery :(
+        
+        if (!selector.match(',')) {
+            // only rewrite selector if it is not a list of multiple selections
+            selector = selector.replace(/(>\s*)xsd\\:(\S*)/g, '$1$2');
+            selector = selector.replace(/xsd\\:(\S*[=]+[^\s,$]*)(\s|,|$)/g, '$1$2');
+        }
+        
+    }
+    
+    return selector;
 }
