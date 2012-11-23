@@ -1,8 +1,10 @@
 === KNOWN BUGS AND LIMITATIONS ===
 * loading the XSD is done in Javascript. The Schema-Loader knows a certain set an structure of an XSD. If "unknown"
   XSD-features are being used in the schema, the Schema-Loader may not know about them, and the editor will thus fail.
-* the Schema and the Editor do not care about bounds. This means it does not check if the schema only allows
-  for a certain number of children in an element.
+* the Schema care a little for bounds. It does, however, not support 'multi-dimensional'-bounds.
+* has no f'ing clue about mixed items - seriously, how are you supposed to display a mixed element in a tree?
+* user-feedback is done using window.alert() - this works accross all devices and browsers, has no ux-issues on small
+  screens, and enforces the users attention.
 
 
 === ROADMAP ===
@@ -32,10 +34,7 @@
  - done
 
 * MS2:
- - frontend: show tree
- - frontend: make node attributes editable
- - frontend: make node removeable
- - frontend: make node children addable, removable
+ - done
 
 * MS3:
  - frontend: have copy&paste for nodes incl. children
@@ -47,3 +46,6 @@
 * MS4:
  - frontend: preview node incl. children
 
+
+=== IDEAS ===
+* read xsd:annotation and xsd:documentation including xml:lang for tooltips/...
