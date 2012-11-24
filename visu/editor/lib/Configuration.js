@@ -405,7 +405,7 @@ var ConfigurationElement = function (node, parent) {
             
             var value = getValue();
             
-            if (value != '') {
+            if (value.trim() != '') {
                 // only inspect elements with actual content. Empty nodes are deemed valid.
                 // @TODO: check if there might be nodes this does not apply for. sometime. MS4 or after bugreport.
                 isValid = isValid && _schemaElement.isValueValid(value);
