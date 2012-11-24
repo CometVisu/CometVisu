@@ -200,6 +200,11 @@ var ConfigurationElement = function (node, parent) {
     var getAttributes = function () {
         var attributes = {};
         
+        if ($n[0].nodeType != 1) {
+            // this is a text-only node!
+            return attributes;
+        }
+        
         // get the node, and use plain-old-javascript to get a list of its attributes
         // there is jQuery-equivalent to this (as of 2012-10-10, that is)
         var node = $n.get(0);
@@ -224,10 +229,22 @@ var ConfigurationElement = function (node, parent) {
      */
     var getChildren = function () {
         var children = [];
-        
-        $n.children().each(function () {
+
+        if ($n[0].nodeType != 1) {
+            // this is a text-only node!
+            return children;
+        }
+
+        $n.contents().each(function () {
+            if (this.nodeType != 1) {
+                if (this.nodeValue.trim() == '') {
+                    // empty text elements are not interesting
+                    return;
+                }
+            }
+
             var child = new ConfigurationElement(this, _element);
-            
+
             children.push(child);
         });
         
@@ -493,7 +510,15 @@ var ConfigurationElement = function (node, parent) {
         }
         
         // create a pseudo-node to use with "new ConfigurationElement()"-call
-        var $pseudoNode = $('<' + childName + ' />', _schemaElement.getSchemaDOM());
+        var $pseudoNode;
+        
+        if (childName == '#text') {
+            // text-nodes are not actual nodes, they are strings, so we will work with a text-node.
+            $pseudoNode = document.createTextNode('');
+        } else {
+            // most nodes are actual nodes ...
+            $pseudoNode = $('<' + childName + ' />', _schemaElement.getSchemaDOM())
+        }
         
         // create a new ConfigurationElement
         var childNode = new ConfigurationElement($pseudoNode, _element);
@@ -611,7 +636,6 @@ var ConfigurationElement = function (node, parent) {
             return false;
         }
         
-        
         var siblingsAndSelf = _parentElement.children;
 
         var parentBounds = _parentElement.getSchemaElement().getChildBounds();
@@ -666,6 +690,11 @@ var ConfigurationElement = function (node, parent) {
      * @var string
      */
     _element.name = $n.get(0).nodeName;
+    
+    if ($n.get(0).nodeType != 1) {
+        // if this is not an element node, it must be a text-node!
+        _element.name = '#text';
+    }
     
     /**
      * get and store a list of this elements set attributes
