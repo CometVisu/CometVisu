@@ -177,7 +177,7 @@ var SchemaSimpleType = function (node, schema) {
             }
         }
         
-        if ($n.is(fixNamespace('xsd\\:attribute[type], xsd\\:element[type]'))) {
+        if ($n.is(fixNamespace('xsd\\:attribute[type], xsd\\:element[type], [name=#text][type]'))) {
             // hacked: allow this to be used for attributes
             var baseType = $n.attr('type');
             nodeData.bases.push(baseType);
@@ -489,7 +489,6 @@ var SchemaAttribute = function (node, schema) {
 var SchemaElement = function (node, schema) {
     var _element = this;
     
-    
     /**
      * Get the name of a schema-element
      * 
@@ -506,7 +505,8 @@ var SchemaElement = function (node, schema) {
         
         if ($e.is('[ref]')) {
             // it's a ref, seek other element!
-            var $ref = _schema.getReferencedNode('element', $e.attr('ref'));
+            var refName = $e.attr('ref');
+            var $ref = _schema.getReferencedNode('element', refName);
             
             if ($ref.length != 1) {
                 throw 'schema/xsd appears to be invalid, can not find element ' + refName;
@@ -610,7 +610,15 @@ var SchemaElement = function (node, schema) {
         if (allowedContent._choice != undefined) {
             $.extend(allowedElements, allowedContent._choice.getAllowedElements(true));
         }
+
         
+        if (true === _element.isMixed) {
+            // mixed elements are allowed to have #text-nodes
+            var tmpXML = $('<element />', _schema.getSchemaDOM()).attr({name: '#text', type: 'xsd:string'});
+            var tmpSchemaElement = new SchemaElement(tmpXML, _schema);
+            allowedElements['#text'] = tmpSchemaElement;
+        }
+
         return allowedElements;
     }
     
@@ -685,6 +693,29 @@ var SchemaElement = function (node, schema) {
     }
     
     /**
+     * check if a text-only-node is allowed ...
+     * 
+     * @return  boolean
+     */
+    var isTextContentAllowed = function () {
+        if (_element.isMixed == true) {
+            // mixed means that we allow for text-content
+            return true;
+        }
+        
+        // first, get a list of allowed content (don't worry, it's cached)
+        var allowedContent = _element.getAllowedContent();
+        
+        if (allowedContent._text != undefined && allowedContent._text != false) {
+            // if _text is defined and there, we assume that text-content is allowed
+            return true;
+        }
+        
+        // had no reason to allow text-content, so gtfoml!
+        return false;
+    }
+    
+    /**
      * check if an element (specified by its name) is allowed as one of our immediate children
      * Goes recursive if we have choices.
      * 
@@ -692,6 +723,11 @@ var SchemaElement = function (node, schema) {
      * @return  boolean         is this element allowed?
      */
     _element.isChildElementAllowed = function (child) {
+        if (child == '#text') {
+            // text-nodes are somewhat special :)
+            return isTextContentAllowed();
+        }
+        
         // first, get a list of allowed content (don't worry, it's cached)
         var allowedContent = _element.getAllowedContent();
         
@@ -717,6 +753,20 @@ var SchemaElement = function (node, schema) {
      * @return  object              SchemaElement-object, or undefined if none is found
      */
     _element.getSchemaElementForElementName = function (elementName) {
+        if (elementName == '#text') {
+            // no special handling for mixed nodes, they do have a #text-SchemaElement already!
+            // text-nodes may be allowed. we will see ...
+            if (false === isTextContentAllowed()) {
+                return undefined;
+            }
+
+            // text-content is always a simple string
+            var tmpXML = $('<element />', _schema.getSchemaDOM()).attr({name: '#text', type: 'xsd:string'});
+            var tmpSchemaElement = new SchemaElement(tmpXML, _schema);
+            return tmpSchemaElement;
+        }
+        
+        
         // first, get a list of allowed content (don't worry, it's cached)
         var allowedContent = _element.getAllowedContent();
         
@@ -750,21 +800,19 @@ var SchemaElement = function (node, schema) {
      * @return  boolean         is it valid?
      */
     _element.isValueValid = function (value) {
-        if (_element.isMixed == true) {
-            // mixed follows no rules!
+        if (false == isTextContentAllowed()) {
+            // if no text-content is allowed, then it can not be valid
+            return false;
+        }
+        
+        if (true === _element.isMixed) {
+            // mixed is always good!
             return true;
         }
         
-        // first, get a list of allowed content (don't worry, it's cached)
-        var allowedContent = _element.getAllowedContent();
-        
-        if (allowedContent._text == undefined || allowedContent._text == false) {
-            // if no text is allowed, the it can not be valid. period.
-            return false;
-        }
-
         return allowedContent._text.isValueValid(value);
     }
+    
     
     /**
      * the schema where this element comes from
@@ -779,7 +827,7 @@ var SchemaElement = function (node, schema) {
      * the original node from the Schema
      * @var object  jQuery-enhanced DOM-node
      */
-    var $e = $(node);
+    var $e = $(node);    
     
     /**
      * get and set the type-node for the element

@@ -42,6 +42,7 @@
  - frontend: save configuration
  - backend (save the xml; php)
  - cross-reference: have select-lists for mapping, stylings, ... defined by the config itself
+ - allow for multi-dimensional bounds, as well as sequence?
 
 * MS4:
  - frontend: preview node incl. children
