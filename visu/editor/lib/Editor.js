@@ -402,7 +402,7 @@ var EditorConfigurationElement = function (parent, element) {
 
                 // value of the attribute
                 var $value;
-                if (typeof value == 'string') {
+                if (typeof value == 'string' && value.trim() != '') {
                     $value = $('<span />').addClass('value').html(value);
                 } else {
                     // not set
@@ -791,7 +791,8 @@ var EditorConfigurationElement = function (parent, element) {
         delete buttonConfig;
         
         // does this element have text-value, and/or is it allowed to have?
-        if (schemaElement.isMixed || schemaElement.getAllowedContent()._text != false) {
+        // do not display this for mixed elements!
+        if (!schemaElement.isMixed && schemaElement.getAllowedContent()._text != false) {
             $innerHTML.append(TextContent.getAsHTML());
         }
 
