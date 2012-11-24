@@ -241,6 +241,11 @@ var ConfigurationElement = function (node, parent) {
                     // empty text elements are not interesting
                     return;
                 }
+                
+                if (this.nodeType == 8) {
+                    // comment-nodes are being dropped!
+                    return;
+                }
             }
 
             var child = new ConfigurationElement(this, _element);
