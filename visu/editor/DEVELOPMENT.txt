@@ -5,7 +5,7 @@
 * has no f'ing clue about mixed items - seriously, how are you supposed to display a mixed element in a tree?
 * user-feedback is done using window.alert() - this works accross all devices and browsers, has no ux-issues on small
   screens, and enforces the users attention.
-
+* XSD is fucked up. minOccurs on elements in a choice are ignored if said choice is bounded otherwise
 
 === ROADMAP ===
 * MS1 - done
@@ -49,3 +49,4 @@
 
 === IDEAS ===
 * read xsd:annotation and xsd:documentation including xml:lang for tooltips/...
+* allow for mixed nodes (see http://stackoverflow.com/questions/937640/how-to-access-xml-text-node-in-jquery)
