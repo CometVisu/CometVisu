@@ -18,3 +18,15 @@
 {
   width: 40%;
 }
+
+/* prevent top/bottom navbar wrapping, use scrolling instead, if necessary */
+#navbarTop > .navbar > div, #navbarTop > .navbar > hr {
+	display: inline-block;
+	float: none;
+}
+#navbarTop > .navbar , #navbarBottom > .navbar {
+	overflow-y: hidden;
+	overflow-x: auto;
+	white-space: nowrap;
+	height: 3.6em;
+}
