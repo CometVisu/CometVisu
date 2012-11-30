@@ -362,7 +362,6 @@ body br
 .navbar > .widget_container:first-child .group .widget_container:last-child, .navbar > .widget_container:first-child .group div.widget_container:last-child .widget {
 	border-width: 1px 0 0 0;
 	border-bottom-right-radius: 1em;
-	border-bottom-left-radius: 1em;
 }
 .navbar .group .widget_container:last-child,.navbar .group .widget_container:last-child .widget {
 	border-bottom-right-radius: 1em;
