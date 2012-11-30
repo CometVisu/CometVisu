@@ -67,24 +67,24 @@ Config</a> ]]></status>
         <label><icon name="steuer_home" /></label>
       </pagejump>
       <line />
-      <pagejump target="KNX" name=" ">
+      <pagejump target="KNX">
       	<layout colspan="0"/>
       	<label><icon name="steuer_alles_ein_aus" />KNX</label>
       </pagejump>
-      <pagejump target="Video" name=" ">
+      <pagejump target="Video">
       	<layout colspan="0"/>
       	<label><icon name="it_fernsehen" />Video</label>
       </pagejump>
-      <pagejump target="Audio" name=" ">
+      <pagejump target="Audio">
       	<layout colspan="0"/>
         <label><icon name="audio_audio" />Audio</label>
       </pagejump>
-      <pagejump target="Web" name=" ">
+      <pagejump target="Web">
       	<layout colspan="0"/>
         <label><icon name="it_internet" />Web</label>
       </pagejump>
       <line />
-      <pagejump target="Wetter" name=" ">
+      <pagejump target="Wetter">
       	<layout colspan="0"/>
         <label><icon name="wetter_sonne" />Wetter</label>
       </pagejump>

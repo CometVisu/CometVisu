@@ -35,8 +35,6 @@ basicdesign.addCreator('pagejump', {
     actor += '">';
     if( $e.attr( 'name' ) )
       actor += '<div class="value">' + $e.attr( 'name' ) + '</div>';
-    else
-      actor += '<div class="value">' + target + '</div>';
     actor += '</div>';
     var $actor = $(actor).data( {
       'styling' : $(element).attr('styling'),
