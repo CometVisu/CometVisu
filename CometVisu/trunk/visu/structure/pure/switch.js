@@ -25,7 +25,7 @@ basicdesign.addCreator('switch', {
       classes+=" "+$e.attr('align');
     }
     var ret_val = $('<div class="'+classes+'" ' + style + '/>');
-    ret_val.setWidgetLayout($e)
+    ret_val.setWidgetLayout($e);
     var label = extractLabel( $e.find('label')[0] );
     var address = makeAddressList($e);
     
