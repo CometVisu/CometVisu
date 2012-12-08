@@ -9,8 +9,10 @@
 // There are diffentent modes of operation
 // 1. Creating a new log line:
 //    URL parameter "c":   the content of the log
-//    URL parameter "t[]": a tag for later filtering. Multiple might be given
+//    URL parameter "t[]": a tag for later filtering. Multiple might be given, 
+//                          separated by COMMA, usage &t[]=tag1,tag2 
 //    URL parameter "h":   a header(title) for the entry; maybe empty 
+//    URL parameter "state": (optional) state
 // 2. Receive the log as RSS:
 //    URL parameter "f":   The (optional) filter, only log lines with a tag
 //                         that fit this string are sent
@@ -20,6 +22,10 @@
 // 4. Remove old content:
 //    URL parameter "r":   the timestamp (seconds since 1970) of the oldest log
 //                         line to keep
+//    URL parameter "f":   The (optional) filter, only log lines with a tag
+//                         that fit this string are deleted
+// 4a. Remove single line:
+//    URL parameter "d":   id of row to delete
 // 5. Get content as JSON:
 //    URL parameter "j"
 // 6. Update state:
@@ -52,6 +58,8 @@ if( isset($_GET['c']) )
   $store = true;
   $log_content = $_GET['c'] ? $_GET['c'] : '<no content>';
   $log_title = $_GET['h'] ? $_GET['h'] : '';
+  $log_state = $_GET['state'] ? $_GET['state'] : 0;
+  $log_state = $_GET['value'] ? $_GET['value'] : 0;
   if( mb_detect_encoding($log_content, 'UTF-8', true) != 'UTF-8' )
     $log_content = utf8_encode($log_content);
   if( mb_detect_encoding($log_title, 'UTF-8', true) != 'UTF-8' )
@@ -59,14 +67,15 @@ if( isset($_GET['c']) )
   $log_tags    = $_GET['t'] ? $_GET['t'] : array();
   if(! is_array($log_tags))
     die("wrong format - use one or more t[]= for tags");
-  insert( $db, $log_content, $log_title, $log_tags );
+  insert( $db, $log_content, $log_title, $log_tags, $log_state );
 } else if( isset($_GET['dump']) )
 {
-  $result = retrieve( $db, $log_filter, '' );
+  $result = retrieve( $db, $log_filter, NULL );
   ?>
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /></head><body>
 <table border="1">
   <?php
+  echo '<tr><th>ID</th><th>DateTime</th><th>Timestamp</th><th>Title</th><th>Content</th><th>Tags</th><th>State</th></tr>';
   while( sqlite_has_more($result) )
   {
     $row = sqlite_fetch_array($result, SQLITE_ASSOC ); 
@@ -87,7 +96,8 @@ if( isset($_GET['c']) )
 } else if( isset($_GET['r']) )
 {
   $timestamp  = $_GET['r'] ? $_GET['r'] : '';
-  delete( $db, $timestamp );
+  $filter  = $_GET['f'] ? $_GET['f'] : '';
+  delete( $db, $timestamp, $filter );
 } else if( isset($_GET['j']) )
 {
   ?>
@@ -133,6 +143,14 @@ if( isset($_GET['c']) )
   updatestate( $db, $id, $newstate );
 ?>
 Successfully updated ID=<?php echo $id; ?>.
+<?php
+} else if ( isset($_GET['d']) ) {
+  $id = $_GET['d'];
+  if (!is_numeric($id))
+    die("wrong format - id has to be numeric");
+  deleteentry( $db, $id );
+?>
+Successfully deleted ID=<?php echo $id; ?>.
 <?php
 } else {
   // send logs
@@ -197,14 +215,15 @@ function create( $db )
 }
 
 // insert a new log line
-function insert( $db, $content, $title, $tags )
+function insert( $db, $content, $title, $tags, $state )
 {
   // store a new log line
-  $q = 'INSERT INTO Logs(content, title, tags, t) VALUES( ' .
+  $q = 'INSERT INTO Logs(content, title, tags, t, state) VALUES( ' .
        "  '" . sqlite_escape_string( $content ) . "'," .
        "  '" . sqlite_escape_string( $title ) . "'," .
        "  '" . sqlite_escape_string( implode(",",$tags) ) . "'," .
-       "  datetime('now')" .
+       "  datetime('now')," .
+       "  $state" .
        ')';
   
   $ok = sqlite_exec($db, $q, $error);
@@ -227,14 +246,29 @@ function retrieve( $db, $filter, $state )
     $q .= " AND state=" . $state . " ";
   
   $q .= "ORDER by t DESC";
+  if (!isset($_GET['dump']))
+    $q .= " LIMIT 100";
   return sqlite_query( $db, $q, SQLITE_ASSOC );
 }
 
-// delete all log lines older than the timestamp
-function delete( $db, $timestamp )
+// delete all log lines older than the timestamp and optional a filter
+function delete( $db, $timestamp, $filter )
 {
-  //$q = "DELETE from Logs WHERE t < datetime($timestamp, 'unixepoch', 'localtime')";
-  $q = "DELETE from Logs WHERE t < datetime($timestamp, 'unixepoch')";
+  $filters = explode(',', $filter); // accept filters by separated by ,
+  foreach ($filters as $i => $val) {
+    $filters[$i] = " (tags LIKE '%" . sqlite_escape_string($val) . "%') ";
+  }
+
+  $q = "DELETE from Logs WHERE t < datetime($timestamp, 'unixepoch') AND " . implode('OR', $filters);
+  $ok = sqlite_exec($db, $q, $error);
+  
+  if (!$ok)
+    die("Cannot execute query. $error");
+}
+
+function deleteentry( $db, $id )
+{
+  $q = "DELETE from Logs WHERE id = $id";
   $ok = sqlite_exec($db, $q, $error);
   
   if (!$ok)
