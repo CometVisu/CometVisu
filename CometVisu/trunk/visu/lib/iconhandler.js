@@ -91,13 +91,14 @@
       var uri     = arguments[1];
       var type    = arguments[2] || '*';
       var flavour = arguments[3] || '*';
+      var style   = arguments[4];
       
       if( ! db[ name ]         ) db[ name ]         = {};
       if( ! db[ name ][ type ] ) db[ name ][ type ] = {};
  
-      db[ name ][ type ][ flavour ] = { uri: uri };
+      db[ name ][ type ][ flavour ] = { uri: uri, style: style };
     }
-    
+
     /**
      * Get the icon information for a name.
      * @method get

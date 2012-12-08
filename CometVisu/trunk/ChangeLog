@@ -1,6 +1,7 @@
 HEAD
 ====
 
+- New feature: individual icons can be added in the meta area
 - New plugin: strftime
 - Obsolete plugin removed: jqclock
 - New plugin: clock

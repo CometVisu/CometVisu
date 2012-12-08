@@ -250,6 +250,7 @@
   <xsd:complexType name="meta">
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
       <xsd:element name="plugins" type="plugins" />
+      <xsd:element name="icons" type="icons" />
       <xsd:element name="mappings" type="mappings" />
       <xsd:element name="stylings" type="stylings" />
       <xsd:element name="statusbar" type="statusbar" />
@@ -264,6 +265,20 @@
 
   <xsd:complexType name="plugin">
     <xsd:attribute name="name" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <xsd:complexType name="icons">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="icon-definition" type="icon-definition" />
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="icon-definition">
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="uri" type="xsd:string" use="required" />
+    <xsd:attribute name="style" type="xsd:string" use="optional" />
+    <xsd:attribute name="type" type="xsd:string" use="optional" />
+    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="mappings">
