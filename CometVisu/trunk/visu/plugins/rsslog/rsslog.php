@@ -59,7 +59,6 @@ if( isset($_GET['c']) )
   $log_content = $_GET['c'] ? $_GET['c'] : '<no content>';
   $log_title = $_GET['h'] ? $_GET['h'] : '';
   $log_state = $_GET['state'] ? $_GET['state'] : 0;
-  $log_state = $_GET['value'] ? $_GET['value'] : 0;
   if( mb_detect_encoding($log_content, 'UTF-8', true) != 'UTF-8' )
     $log_content = utf8_encode($log_content);
   if( mb_detect_encoding($log_title, 'UTF-8', true) != 'UTF-8' )
@@ -75,6 +74,7 @@ if( isset($_GET['c']) )
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /></head><body>
 <table border="1">
   <?php
+  $records = 0;
   echo '<tr><th>ID</th><th>DateTime</th><th>Timestamp</th><th>Title</th><th>Content</th><th>Tags</th><th>State</th></tr>';
   while( sqlite_has_more($result) )
   {
@@ -88,7 +88,9 @@ if( isset($_GET['c']) )
     echo '<td>' . $row['tags'] . '</td>';
     echo '<td>' . $row['state'] . '</td>';
     echo "</tr>\n";
+    $records++;
   }
+  echo '<tfoot><tr><td>Sum</td><td>' . $records . '</td></tr></tfoot>';
   ?>
 </table>
 </body></html>
@@ -229,7 +231,7 @@ function insert( $db, $content, $title, $tags, $state )
   $ok = sqlite_exec($db, $q, $error);
   
   if (!$ok)
-    die("Cannot execute query. $error (Content: $content Tags: $tags");
+    die("Cannot execute query. $error (Title: $itle Content: $content Tags: $tags State: $state)");
 }
 
 // return a handle to all the data
@@ -240,7 +242,7 @@ function retrieve( $db, $filter, $state )
     $filters[$i] = " (tags LIKE '%" . sqlite_escape_string($val) . "%') ";
   }
   
-  $q = "SELECT id, title, content, tags, state, strftime('%s', t) AS t FROM Logs WHERE" . implode('OR', $filters);;
+  $q = "SELECT id, title, content, tags, state, strftime('%s', t) AS t FROM Logs WHERE (" . implode('OR', $filters) . ")";
   
   if (isset($state))
     $q .= " AND state=" . $state . " ";
@@ -259,7 +261,7 @@ function delete( $db, $timestamp, $filter )
     $filters[$i] = " (tags LIKE '%" . sqlite_escape_string($val) . "%') ";
   }
 
-  $q = "DELETE from Logs WHERE t < datetime($timestamp, 'unixepoch') AND " . implode('OR', $filters);
+  $q = "DELETE from Logs WHERE t < datetime($timestamp, 'unixepoch') AND (" . implode('OR', $filters) . ")";
   $ok = sqlite_exec($db, $q, $error);
   
   if (!$ok)
