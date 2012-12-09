@@ -79,7 +79,7 @@ function CometVisu( urlPrefix )
       return;
     }
 
-    if( !this.doRestart )
+    if( json && !this.doRestart )
     {
       this.lastIndex = json.i;
       var data       = json.d;
