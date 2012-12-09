@@ -49,23 +49,14 @@ var resizeAfterScroll = false;
 var defaultColumns = 12;
 var minColumnWidth = 150;
 var enableColumnAdjustment = false;
-if (backend == undefined) {
-  var backend = "cgi";
-}
+var backend = 'cgi-bin'; // default path to backend
 if ($.getUrlVar("backend")) {
   backend = $.getUrlVar("backend");
 }
 
-var backendConfig = {
-  baseUrl : '/cgi-bin/',
-};
-
-function initBackendClient(backend) {
-  if (backend.toLowerCase() == 'oh') {
-    backendConfig.baseUrl = '/cv/';
-  }
-
-  visu = new CometVisu(backendConfig.baseUrl);
+function initBackendClient() {
+  backend = '/' + backend + '/';
+  visu = new CometVisu( backend );
   visu.update = function(json) { // overload the handler
     for (key in json) {
       $.event.trigger('_' + key, json[key]);
@@ -326,7 +317,7 @@ function parseXML(xml) {
   if ($('pages', xml).attr("backend")) {
     backend = $('pages', xml).attr("backend");
   }
-  initBackendClient(backend);
+  initBackendClient();
 
   scrollSpeed = $('pages', xml).attr("scroll_speed");
   if ($('pages', xml).attr('enable_column_adjustment') == "true") {
@@ -644,8 +635,7 @@ function setup_page(xml) {
                         var length = 0.0;
                         $(this)
                             .find('path')
-                            .each(
-                                function() {
+                            .each( function() {
                                   var path = this;
                                   if (path.className.animVal.split(' ')
                                       .indexOf('pipe-o-matic_clone') > 0)
@@ -705,7 +695,21 @@ function setup_page(xml) {
                                   }
                                   length += path.getTotalLength();
                                 });
-                      });
+                        if( this.attributes.getNamedItem('data-cometvisu-active') )
+                        {
+                          activeValues = this.attributes.getNamedItem('data-cometvisu-active').value;
+                          $( activeValues.split(' ') ).each( function() {
+                            $('body').bind( '_' + this, function( e, data, passedElement ){
+                              if( data == '01' )
+                                //pipe_group.classList.add('flow_active');
+                                pipe_group.setAttribute('class', pipe_group.getAttribute('class').replace(' flow_active','') + ' flow_active' );
+                              else
+                                pipe_group.setAttribute('class', pipe_group.getAttribute('class').replace(' flow_active','') );
+                                //pipe_group.classList.remove('flow_active');
+                            } );
+                          } );
+                        }
+                  });
 
               // Flow-O-Matic: add CSS
               // helper for multiple bowser support
