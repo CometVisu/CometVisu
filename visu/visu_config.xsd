@@ -339,6 +339,7 @@
       <xsd:element name="switch" type="switch" />
       <xsd:element name="toggle" type="switch" />
       <xsd:element name="trigger" type="trigger" />
+      <xsd:element name="urltrigger" type="urltrigger" />
       <xsd:element name="multitrigger" type="multitrigger" />
       <xsd:element name="infotrigger" type="infotrigger" />
       <xsd:element name="designtoggle" type="designtoggle" />
@@ -396,6 +397,7 @@
       <xsd:element name="switch" type="switch" />
       <xsd:element name="toggle" type="switch" />
       <xsd:element name="trigger" type="trigger" />
+      <xsd:element name="urltrigger" type="urltrigger" />
       <xsd:element name="multitrigger" type="multitrigger" />
       <xsd:element name="infotrigger" type="infotrigger" />
       <xsd:element name="designtoggle" type="designtoggle" />
@@ -440,6 +442,7 @@
       <xsd:element name="switch" type="switch" />
       <xsd:element name="toggle" type="switch" />
       <xsd:element name="trigger" type="trigger" />
+      <xsd:element name="urltrigger" type="urltrigger" />
       <xsd:element name="multitrigger" type="multitrigger" />
       <xsd:element name="infotrigger" type="infotrigger" />
       <xsd:element name="designtoggle" type="designtoggle" />
@@ -527,6 +530,19 @@
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="align" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="urltrigger">
+    <xsd:choice maxOccurs="unbounded" minOccurs="1">
+      <xsd:element name="label" type="label" />
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
+    </xsd:choice>
+    <xsd:attribute ref="value" use="optional" />
+    <xsd:attribute ref="mapping" use="optional" />
+    <xsd:attribute ref="styling" use="optional" />
+    <xsd:attribute ref="align" use="optional" />
+    <xsd:attribute name="url" type="xsd:string" use="required" />
+    <xsd:attribute name="params" type="xsd:string" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="infotrigger">
