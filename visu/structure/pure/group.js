@@ -28,6 +28,9 @@ basicdesign.addCreator('group', {
     if ($e.attr('nowidget')=='true') {
       ret_val.removeClass('widget');
     }
+    if ( $e.attr('class') ) {
+      ret_val.addClass($e.attr('class'));
+    }
     var childs = $e.children().not('layout');
     var container = $( '<div class="clearfix"/>' );
     if( $e.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $e.attr('name') + '</h2>' );
