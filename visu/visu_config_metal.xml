@@ -137,6 +137,8 @@ Config</a> ]]></status>
         <layout colspan="3" />
         <group name="Licht">
           <layout colspan="12" />
+          <group nowidget="true" flavour="lithium">
+           <layout colspan="12" />
           <switch mapping="OnOff" styling="GreyGreen">
             <layout colspan="3" />
             <label>Strahler</label>
@@ -157,6 +159,7 @@ Config</a> ]]></status>
             <label>Stehlampe</label>
             <address transform="DPT:1.001" variant="">13/0/24</address>
           </switch>
+        </group>
         </group>
         <group name="Jalousien">
           <layout colspan="12" />
@@ -194,8 +197,8 @@ Config</a> ]]></status>
             <address transform="DPT:1.001" variant="">13/0/13</address>
           </switch>
         </group>
-        <group name="Heizung">
-          <slide min="0" max="100" format="%d%%">
+        <group name="Heizung" flavour="sodium">
+          <slide min="0" max="100" format="%d%%" flavour="sodium">
             <label><icon name="sani_heizung" />Heizung</label>
             <address transform="DPT:5.001" variant="">13/0/38</address>
           </slide>
@@ -253,7 +256,7 @@ Config</a> ]]></status>
           </info>
         </group>
         <group align="center" name="Heizung">
-          <slide min="0" max="100">
+          <slide min="0" max="100" flavour="lithium">
             <label><icon name="sani_heizung" />Heizung</label>
             <address transform="DPT:5.001" variant="">13/1/27</address>
           </slide>
