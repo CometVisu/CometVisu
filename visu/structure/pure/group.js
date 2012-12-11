@@ -29,7 +29,7 @@ basicdesign.addCreator('group', {
       ret_val.removeClass('widget');
     }
     if ( $e.attr('class') ) {
-      ret_val.addClass($e.attr('class'));
+      ret_val.addClass('custom_'+$e.attr('class'));
     }
     var childs = $e.children().not('layout');
     var container = $( '<div class="clearfix"/>' );
