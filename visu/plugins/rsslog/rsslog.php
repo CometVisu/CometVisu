@@ -206,7 +206,7 @@ function create( $db )
         '  title TEXT,' . 
         '  content TEXT NOT NULL,' .
         '  tags TEXT,' .
-        '  t TIMESTAMP' .
+        '  t TIMESTAMP,' .
         '  state INT' .
         ');';
     $ok = sqlite_exec($db, $q, $error);
