@@ -4,7 +4,7 @@
 # Licenced under the GPLv3      
 #
 # add state-column to rsslog-database
-# use ONLY if your databse is created with rsslog.php before Rev. 703!
+# use ONLY if your databse is created with rsslog.php before SVN-Rev. 1203!
 #
 # usage: ./rsslog_correct.pl
 # change path to database !
