@@ -16,26 +16,28 @@
  */
 
 basicdesign.addCreator('text', {
-  create: function( element, path, flavour, type ) {
+  create : function(element, path, flavour, type) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + extractLayout(layout, type) + '"' : '';
     var ret_val = $('<div class="widget clearfix text" ' + style + '/>');
     ret_val.setWidgetLayout($e);
     var style = '';
-    if( $e.attr('align') ) style += 'text-align:' + $e.attr('align') + ';';
-    if( style != '' ) style = 'style="' + style + '"';
-    var $div = $( '<div ' + style + '></div>' );
-    $e.contents().each( function(){
+    if ($e.attr('align'))
+      style += 'text-align:' + $e.attr('align') + ';';
+    if (style != '')
+      style = 'style="' + style + '"';
+    var $div = $('<div ' + style + '></div>');
+    $e.contents().each(function() {
       var $v = $(this);
-      if( $v.is('icon') )
-      {
-        var i = icons.getIcon( $v.attr('name'), $v.attr('type'), flavour );
-        if( i ) $div.append( i.clone() );
+      if ($v.is('icon')) {
+        var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour);
+        if (i)
+          $div.append(i.clone());
       } else
-        $div.append( this.textContent );
+        $div.append(this.textContent);
     });
-    ret_val.append( $div );
+    ret_val.append($div);
     return ret_val;
   }
 });

@@ -418,7 +418,7 @@ function extractLabel( label )
     var $v = $(this);
     if( $v.is('icon') )
     {
-      var i = icons.getIcon( $v.attr('name') );
+      var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'));
       if( i ) $div.append( i.clone() );
     } else
       $div.append( this.textContent );
