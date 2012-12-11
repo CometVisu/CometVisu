@@ -424,7 +424,7 @@ function parseXML(xml) {
                 for ( var i = 0; i < value.length; i++) {
                   var $v = $(value[i]);
                   if ($v.is('icon'))
-                    value[i] = icons.getIcon($v.attr('name'));
+                    value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'));
                 }
 
                 if ($localThis.attr('value')) {
