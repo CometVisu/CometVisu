@@ -449,7 +449,7 @@ body br
 
 .ui-slider { position: relative; text-align: left; }
 .ui-slider .ui-slider-handle { position: absolute; z-index: 2; min-width: 1.6em; height: 1.6em; cursor: default; }
-.ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; background-color: #F7931E; }
+.ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0;  }
 
 .ui-slider-horizontal { height: .8em;  margin-left: 0.6em !important; }
 .ui-slider-horizontal .ui-slider-handle { top: -.5em; margin-left: -.8em; }
@@ -810,4 +810,121 @@ background-color: #000;
 /* fixes for plugin line-heights */
 .widget .actor.rsslogBody, .widget .actor .diagram_inline {
     line-height: normal;
+}
+
+ 
+ /*****************************************************************************/
+/* The definition of the flavours - overwrite the generic settings           */
+/*****************************************************************************/
+
+.flavour_black hr
+{
+  background-color: #000000;
+}
+.flavour_black .link a
+{
+  color: #000000;
+}
+.flavour_black.group.widget
+{
+  border: #000000 1px solid;
+}
+.flavour_black .ui-slider .ui-slider-range { 
+	background-color: #000000;
+}
+
+.flavour_white hr
+{
+  background-color: #ffffff;
+}
+.flavour_white .link a
+{
+  color: #ffffff;
+}
+.flavour_white.group.widget
+{
+  border: #ffffff 1px solid;
+}
+.flavour_white .ui-slider .ui-slider-range { 
+	background-color: #ffffff;
+}
+
+.flavour_antimony hr
+{
+  background-color: #00ddff;
+}
+.flavour_antimony .link a
+{
+  color: #00ddff;
+}
+.flavour_antimony.group.widget
+{
+  border: #00ddff 1px solid;
+}
+.flavour_antimony .ui-slider .ui-slider-range { 
+	background-color: #00ddff;
+}
+
+.flavour_boron hr
+{
+  background-color: #00ff11;
+}
+.flavour_boron .link a
+{
+  color: #00ff11;
+}
+.flavour_boron.group.widget
+{
+  border: #00ff11 1px solid;
+}
+.flavour_boron .ui-slider .ui-slider-range { 
+	background-color: #00ff11;
+}
+
+.flavour_lithium hr
+{
+  background-color: #ff0000;
+}
+.flavour_lithium .link a
+{
+  color: #ff0000;
+}
+.flavour_lithium.group.widget
+{
+  border: #ff0000 1px solid;
+}
+.flavour_lithium .ui-slider .ui-slider-range { 
+	background-color: #ff0000;
+}
+
+.flavour_potassium hr
+{
+  background-color: #d00055;
+}
+.flavour_potassium .link a
+{
+  color: #d00055;
+}
+.flavour_potassium.group.widget
+{
+  border: #d00055 1px solid;
+}
+.flavour_potassium .ui-slider .ui-slider-range { 
+	background-color: #d0055;
+}
+
+.flavour_sodium hr
+{
+  background-color: #ff8000;
+}
+.flavour_sodium .link a
+{
+  color: #ff8000;
+}
+.flavour_sodium.group.widget
+{
+  border: #ff8000 1px solid;
+}
+.flavour_sodium .ui-slider .ui-slider-range { 
+	background-color: #ff8000;
 }
