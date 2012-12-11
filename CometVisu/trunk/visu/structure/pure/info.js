@@ -26,7 +26,7 @@ basicdesign.addCreator('info', {
     }
     var ret_val = $('<div class="'+classes + '" ' + style + ' />');
     if ( $e.attr('class') ) {
-      ret_val.addClass($e.attr('class'));
+      ret_val.addClass('custom_'+$e.attr('class'));
     }
     //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );
     type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: extractLayout3d( layout )}, this.update3d );
