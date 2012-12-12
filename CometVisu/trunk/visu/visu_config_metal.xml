@@ -71,7 +71,7 @@ Config</a> ]]></status>
     shownavbar="true false">
     <navbar position="top">
       <pagejump target="Übersicht">
-      	<layout colspan="1"/>
+      	<layout colspan="0"/>
         <label><icon name="steuer_home" />Übersicht</label>
       </pagejump>
       <line />
