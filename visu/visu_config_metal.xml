@@ -31,6 +31,10 @@
         <entry value="0">O</entry>
         <entry value="1">I</entry>
       </mapping>
+      <mapping name="OnOff_Licht">
+        <entry value="0"><icon name="licht_licht" flavour="white"/></entry>
+        <entry value="1"><icon name="licht_licht" flavour="sodium"/></entry>
+     </mapping>
       <mapping name="AudioMute">
         <entry value="0">
           <icon name="audio_mute" />
@@ -44,6 +48,10 @@
       <styling name="GreyGreen">
         <entry value="0">grey</entry>
         <entry value="1">green</entry>
+      </styling>
+      <styling name="GreyGrey">
+        <entry value="0">grey</entry>
+        <entry value="1">grey</entry>
       </styling>
       <styling name="BluePurpleRedTemp">
         <entry range_min="0" range_max="18">blue</entry>
@@ -62,12 +70,12 @@ Config</a> ]]></status>
   <page name="Übersicht" showtopnavigation="false" showfooter="false"
     shownavbar="true false">
     <navbar position="top">
-      <pagejump target="Übersicht" name="Übersicht">
+      <pagejump target="Übersicht">
       	<layout colspan="1"/>
-        <label><icon name="steuer_home" /></label>
+        <label><icon name="steuer_home" />Übersicht</label>
       </pagejump>
       <line />
-      <pagejump target="KNX">
+      <pagejump target="Wohnzimmer">
       	<layout colspan="0"/>
       	<label><icon name="steuer_alles_ein_aus" />KNX</label>
       </pagejump>
@@ -138,39 +146,70 @@ Config</a> ]]></status>
         <group name="Licht">
           <layout colspan="12" />
           <group nowidget="true" flavour="lithium">
-           <layout colspan="12" />
-          <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan="3" />
-            <label>Strahler</label>
-            <address transform="DPT:1.001" variant="">13/0/0</address>
-          </switch>
-          <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan="3" />
-            <label>Spot</label>
-            <address transform="DPT:1.001" variant="">13/0/1</address>
-          </switch>
-          <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan="3" />
-            <label>Schrank</label>
-            <address transform="DPT:1.001" variant="">13/0/2</address>
-          </switch>
-          <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan="3" />
-            <label>Stehlampe</label>
-            <address transform="DPT:1.001" variant="">13/0/24</address>
-          </switch>
+            <layout colspan="12" />
+            <switch mapping="OnOff" styling="GreyGreen">
+              <layout colspan="3" />
+              <label>Strahler</label>
+              <address transform="DPT:1.001" variant="">13/0/0</address>
+            </switch>
+            <switch mapping="OnOff" styling="GreyGreen">
+              <layout colspan="3" />
+              <label>Spot</label>
+              <address transform="DPT:1.001" variant="">13/0/1</address>
+            </switch>
+            <switch mapping="OnOff" styling="GreyGreen">
+              <layout colspan="3" />
+              <label>Schrank</label>
+              <address transform="DPT:1.001" variant="">13/0/2</address>
+            </switch>
+            <switch mapping="OnOff" styling="GreyGreen">
+              <layout colspan="3" />
+              <label>Stehlampe</label>
+              <address transform="DPT:1.001" variant="">13/0/24</address>
+            </switch>
+          </group>
         </group>
+        <group name="Licht mit Icons">
+          <layout colspan="12" />
+          <group nowidget="true" flavour="lithium">
+            <layout colspan="12" />
+            <switch mapping="OnOff_Licht" styling="GreyGrey">
+              <layout colspan="3" />
+              <label>Strahler</label>
+              <address transform="DPT:1.001" variant="">13/0/0</address>
+            </switch>
+            <switch mapping="OnOff_Licht" styling="GreyGrey">
+              <layout colspan="3" />
+              <label>Spot</label>
+              <address transform="DPT:1.001" variant="">13/0/1</address>
+            </switch>
+            <switch mapping="OnOff_Licht" styling="GreyGrey">
+              <layout colspan="3" />
+              <label>Schrank</label>
+              <address transform="DPT:1.001" variant="">13/0/2</address>
+            </switch>
+            <switch mapping="OnOff_Licht" styling="GreyGrey">
+              <layout colspan="3" />
+              <label>Stehlampe</label>
+              <address transform="DPT:1.001" variant="">13/0/24</address>
+            </switch>
+          </group>
         </group>
         <group name="Jalousien">
           <layout colspan="12" />
           <multitrigger button1label="&#8593;" button1value="0"
-            button2label="&#8595;" button2value="1" styling="GreyGreen" mapping="UpDown">
+            button2label="&#8595;" button2value="1" styling="GreyGreen"
+            mapping="UpDown">
             <label>Fenster</label>
             <address transform="DPT:1.001" variant="">13/0/3</address>
           </multitrigger>
           <multitrigger button1label="&#8593;" button1value="0"
-            button2label="&#8595;" button2value="1" styling="GreyGreen" mapping="UpDown">
-            <label><icon name="fts_rollo" /> Tür</label>
+            button2label="&#8595;" button2value="1" styling="GreyGreen"
+            mapping="UpDown">
+            <label>
+              <icon name="fts_rollo" />
+              Tür
+            </label>
             <address transform="DPT:1.001" variant="">13/0/4</address>
           </multitrigger>
         </group>
@@ -199,17 +238,27 @@ Config</a> ]]></status>
         </group>
         <group name="Heizung" flavour="sodium">
           <slide min="0" max="100" format="%d%%" flavour="sodium">
-            <label><icon name="sani_heizung" />Heizung</label>
+            <label>
+              <icon name="sani_heizung" />
+              Heizung
+            </label>
             <address transform="DPT:5.001" variant="">13/0/38</address>
           </slide>
           <info format="%.1f °C">
-            <label><icon name="temp_temperatur" />Ist</label>
+            <label>
+              <icon name="temp_temperatur" />
+              Ist
+            </label>
             <address transform="DPT:9.001" variant="">13/0/14</address>
           </info>
           <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
             downvalue="-0.5" styling="BluePurpleRedTemp" align="center"
-            infoposition="1" format="%.1f °C" change="absolute" min="15" max="25">
-            <label><icon name="temp_regelung" />Soll</label>
+            infoposition="1" format="%.1f °C" change="absolute" min="15"
+            max="25">
+            <label>
+              <icon name="temp_regelung" />
+              Soll
+            </label>
             <address transform="DPT:9.001" variant="">13/0/39</address>
           </infotrigger>
         </group>
