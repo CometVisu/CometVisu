@@ -28,6 +28,8 @@ basicdesign.addCreator('urltrigger', {
     }
     var ret_val = $('<div class="'+classes+'" ' + style + '/>');
     ret_val.setWidgetLayout($e);
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = extractLabel( $e.find('label')[0] );
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 

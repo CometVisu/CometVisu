@@ -22,6 +22,8 @@ basicdesign.addCreator('text', {
     var style = layout ? 'style="' + extractLayout(layout, type) + '"' : '';
     var ret_val = $('<div class="widget clearfix text" ' + style + '/>');
     ret_val.setWidgetLayout($e);
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var style = '';
     if ($e.attr('align'))
       style += 'text-align:' + $e.attr('align') + ';';

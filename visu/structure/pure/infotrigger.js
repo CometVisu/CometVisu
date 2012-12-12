@@ -23,7 +23,9 @@ basicdesign.addCreator('infotrigger', {
     var ret_val = $('<div class="widget clearfix infotrigger" ' + style + '/>');
     ret_val.setWidgetLayout($e);
     ret_val.append( extractLabel( $e.find('label')[0] ) );
-
+    
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     // handle addresses
     var address = makeAddressList($e, 
       function( src, transform, mode, variant ) {
@@ -35,7 +37,7 @@ basicdesign.addCreator('infotrigger', {
     var buttons = $('<div style="float:left;"/>');
     var buttonCount = 2;
 
-    var actordown = '<div class="actor switchUnpressed downlabel" '
+    var actordown = '<div class="actor switchUnpressed downlabel" ';
     if ( $e.attr( 'align' ) ) 
       actorinfo += 'style="text-align: '+$e.attr( 'align' )+'" '; 
     actordown += '>';
@@ -57,7 +59,7 @@ basicdesign.addCreator('infotrigger', {
       $(this).removeClass('switchPressed').addClass('switchUnpressed');
     } );
 
-    var actorup = '<div class="actor switchUnpressed uplabel" '
+    var actorup = '<div class="actor switchUnpressed uplabel" ';
     if ( $e.attr( 'align' ) ) 
       actorinfo += 'style="text-align: '+$e.attr( 'align' )+'" '; 
     actorup += '>';

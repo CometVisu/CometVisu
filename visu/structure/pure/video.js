@@ -22,6 +22,8 @@ basicdesign.addCreator('video', {
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget clearfix video" ' + style + '/>');
     ret_val.setWidgetLayout($e);
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     ret_val.append( extractLabel( $e.find('label')[0] ) );
     var autoplay = ($e.attr('autoplay') && $e.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
     var style = '';
