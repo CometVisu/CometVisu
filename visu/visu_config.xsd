@@ -268,6 +268,21 @@
     <xsd:attribute name="name" type="xsd:string" use="required" />
   </xsd:complexType>
 
+  <xsd:group name="AvailablePlugins">
+    <xsd:choice>
+      <xsd:element name="colorchooser" type="colorchooser" />
+      <xsd:element name="diagram_popup" type="diagram_popup" />
+      <xsd:element name="diagram_inline" type="diagram_inline" />
+      <xsd:element name="diagram_info" type="diagram_info" />
+      <xsd:element name="diagram" type="diagram" />
+      <xsd:element name="gweather" type="gweather" />
+      <xsd:element name="rss" type="rss" />
+      <xsd:element name="rsslog" type="rsslog" />
+      <xsd:element name="strftime" type="strftime" />
+      <xsd:element name="upnpcontroller" type="upnpcontroller" />
+    </xsd:choice>
+  </xsd:group>
+
   <xsd:complexType name="icons">
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
       <xsd:element name="icon-definition" type="icon-definition" />
@@ -327,45 +342,15 @@
     </xsd:choice>
   </xsd:complexType>
 
-  <!-- define a page - if you add a new widget, you need to list it here -->
+  <!-- define a page -->
   <xsd:complexType name="page">
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
-      <!-- visual effects -->
-      <xsd:element name="line" type="line" />
-      <xsd:element name="break" type="break" />
+      <xsd:element name="layout" type="layout" />
+      <xsd:element name="page" type="page" />
       <xsd:element name="group" type="group" />
       <xsd:element name="navbar" type="navbar" />
-      <!-- list all possbile widgets here -->
-      <xsd:element name="text" type="text" />
-      <xsd:element name="switch" type="switch" />
-      <xsd:element name="toggle" type="switch" />
-      <xsd:element name="trigger" type="trigger" />
-      <xsd:element name="urltrigger" type="urltrigger" />
-      <xsd:element name="multitrigger" type="multitrigger" />
-      <xsd:element name="infotrigger" type="infotrigger" />
-      <xsd:element name="designtoggle" type="designtoggle" />
-      <xsd:element name="slide" type="slide" />
-      <xsd:element name="info" type="info" />
-      <xsd:element name="shade" type="info" />
-      <xsd:element name="image" type="image" />
-      <xsd:element name="imagetrigger" type="imagetrigger" />
-      <xsd:element name="video" type="video" />
-      <xsd:element name="iframe" type="iframe" />
-      <xsd:element name="rgb" type="rgb" />
-      <xsd:element name="pagejump" type="pagejump" />
-      <!-- available plugins - include not checked -->
-      <xsd:element name="colorchooser" type="colorchooser" />
-      <xsd:element name="diagram_popup" type="diagram_popup" />
-      <xsd:element name="diagram_inline" type="diagram_inline" />
-      <xsd:element name="diagram_info" type="diagram_info" />
-      <xsd:element name="diagram" type="diagram" />
-      <xsd:element name="gweather" type="gweather" />
-      <xsd:element name="rss" type="rss" />
-      <xsd:element name="rsslog" type="rsslog" />
-      <xsd:element name="strftime" type="strftime" />
-      <xsd:element name="upnpcontroller" type="upnpcontroller" />
-      <xsd:element name="page" type="page" />
-      <xsd:element name="layout" type="layout" />
+      <xsd:group ref="Widgets"/>
+      <xsd:group ref="AvailablePlugins"/>
     </xsd:choice>
     <xsd:attribute name="name" type="xsd:string" use="required" />
     <xsd:attribute name="flavour" type="xsd:string" use="optional" />
@@ -390,40 +375,10 @@
   <xsd:complexType name="group">
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
-      <!-- visual effects -->
-      <xsd:element name="line" type="line" />
-      <xsd:element name="break" type="break" />
-      <!-- list all possbile widgets here -->
-      <xsd:element name="text" type="text" />
-      <xsd:element name="switch" type="switch" />
-      <xsd:element name="toggle" type="switch" />
-      <xsd:element name="trigger" type="trigger" />
-      <xsd:element name="urltrigger" type="urltrigger" />
-      <xsd:element name="multitrigger" type="multitrigger" />
-      <xsd:element name="infotrigger" type="infotrigger" />
-      <xsd:element name="designtoggle" type="designtoggle" />
-      <xsd:element name="slide" type="slide" />
-      <xsd:element name="info" type="info" />
-      <xsd:element name="shade" type="info" />
-      <xsd:element name="image" type="image" />
-      <xsd:element name="imagetrigger" type="imagetrigger" />
-      <xsd:element name="video" type="video" />
-      <xsd:element name="iframe" type="iframe" />
-      <xsd:element name="rgb" type="rgb" />
-      <xsd:element name="pagejump" type="pagejump" />
-      <!-- available plugins - include not checked -->
-      <xsd:element name="colorchooser" type="colorchooser" />
-      <xsd:element name="diagram_popup" type="diagram_popup" />
-      <xsd:element name="diagram_inline" type="diagram_inline" />
-      <xsd:element name="diagram_info" type="diagram_info" />
-      <xsd:element name="diagram" type="diagram" />
-      <xsd:element name="gweather" type="gweather" />
-      <xsd:element name="rss" type="rss" />
-      <xsd:element name="rsslog" type="rsslog" />
-      <xsd:element name="strftime" type="strftime" />
-      <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="page" type="page" />
       <xsd:element name="group" type="group" />
+      <xsd:group ref="Widgets"/>
+      <xsd:group ref="AvailablePlugins"/>
     </xsd:choice>
     <xsd:attribute name="name" type="xsd:string" use="optional" />
     <xsd:attribute name="nowidget" type="xsd:boolean" use="optional" />
@@ -434,10 +389,25 @@
 
   <xsd:complexType name="navbar">
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="page" type="page" />
+      <xsd:element name="group" type="group" />
+      <xsd:group ref="Widgets"/>
+      <xsd:group ref="AvailablePlugins"/>
+    </xsd:choice>
+    <xsd:attribute name="name" type="xsd:string" use="optional" />
+    <xsd:attribute name="position" type="navbarPositionType" use="required" />
+    <xsd:attribute name="dynamic" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="width" type="xsd:string" use="optional" />
+    <xsd:attribute name="scope" type="xsd:decimal" use="optional" />
+  </xsd:complexType>
+
+  <!-- if you add a new widget, you need to list it here -->
+
+  <xsd:group name="Widgets">
+    <xsd:choice>
       <!-- visual effects -->
       <xsd:element name="line" type="line" />
       <xsd:element name="break" type="break" />
-      <xsd:element name="group" type="group" />
       <!-- list all possbile widgets here -->
       <xsd:element name="text" type="text" />
       <xsd:element name="switch" type="switch" />
@@ -456,24 +426,8 @@
       <xsd:element name="iframe" type="iframe" />
       <xsd:element name="rgb" type="rgb" />
       <xsd:element name="pagejump" type="pagejump" />
-      <!-- available plugins - include not checked -->
-      <xsd:element name="colorchooser" type="colorchooser" />
-      <xsd:element name="diagram_popup" type="diagram_popup" />
-      <xsd:element name="diagram_inline" type="diagram_inline" />
-      <xsd:element name="diagram_info" type="diagram_info" />
-      <xsd:element name="diagram" type="diagram" />
-      <xsd:element name="gweather" type="gweather" />
-      <xsd:element name="rss" type="rss" />
-      <xsd:element name="strftime" type="strftime" />
-      <xsd:element name="upnpcontroller" type="upnpcontroller" />
-      <xsd:element name="page" type="page" />
     </xsd:choice>
-    <xsd:attribute name="name" type="xsd:string" use="optional" />
-    <xsd:attribute name="position" type="navbarPositionType" use="required" />
-    <xsd:attribute name="dynamic" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="width" type="xsd:string" use="optional" />
-    <xsd:attribute name="scope" type="xsd:decimal" use="optional" />
-  </xsd:complexType>
+  </xsd:group>
 
   <!-- more fun part - all widgets - if you add a new widget, you need to define it here -->
 

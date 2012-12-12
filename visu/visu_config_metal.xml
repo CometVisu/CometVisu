@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="metal"
-  xsi:noNamespaceSchemaLocation="visu_config.xsd" enable_column_adjustment="true">
+  xsi:noNamespaceSchemaLocation="./visu_config.xsd" enable_column_adjustment="true">
   <meta>
     <mappings>
       <mapping name="OpenClose">
