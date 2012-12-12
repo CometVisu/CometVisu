@@ -25,6 +25,8 @@ basicdesign.addCreator('wgplugin_info', {
     type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: extractLayout3d( layout )}, this.update3d );
     
     ret_val.setWidgetLayout($e).makeWidgetLabel($e);
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var address = makeAddressList($e);
     
     var actor = '<div class="actor"><div class="value">-</div></div>';

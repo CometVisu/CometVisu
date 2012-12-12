@@ -92,9 +92,9 @@ Config</a> ]]></status>
         <label><icon name="it_internet" />Web</label>
       </pagejump>
       <line />
-      <pagejump target="Wetter">
+      <pagejump target="Flavour">
       	<layout colspan="0"/>
-        <label><icon name="wetter_sonne" />Wetter</label>
+        <label><icon name="wetter_sonne" />Flavour</label>
       </pagejump>
     </navbar>
     <group name="Allgemein">
@@ -122,8 +122,84 @@ Config</a> ]]></status>
         <address transform="DPT:1.001" variant="">12/1/8</address>
       </switch>
     </group>
-    <page name="Wetter" visible="false">
+    <page name="Flavour" visible="false">
       <layout colspan="12" />
+      <group name="Group with flavoured items">
+          <slide min="0" max="100" format="%d%%">
+            <label>Default Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+          <slide min="0" max="100" format="%d%%" flavour="sodium">
+            <label>Sodium Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+          <slide min="0" max="100" format="%d%%" flavour="potassium">
+            <label>Potassium Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+          <slide min="0" max="100" format="%d%%" flavour="lithium">
+            <label>Lithium Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+          <slide min="0" max="100" format="%d%%" flavour="boron">
+            <label>Boron Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+          <slide min="0" max="100" format="%d%%" flavour="antimony">
+            <label>Antimony Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+          <slide min="0" max="100" format="%d%%" flavour="white">
+            <label>White Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+          <slide min="0" max="100" format="%d%%" flavour="black">
+            <label>Black Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+        </group>
+      <group name="Sodium flavoured Group" flavour="sodium">
+          <slide min="0" max="100" format="%d%%">
+            <label>Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+        </group>
+        <group name="Potassium flavoured Group" flavour="potassium">
+        	 <slide min="0" max="100" format="%d%%">
+            <label>Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+        </group>
+        <group name="Lithium flavoured Group" flavour="lithium">
+        	 <slide min="0" max="100" format="%d%%">
+            <label>Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+        </group>
+         <group name="Boron flavoured Group" flavour="boron">
+        	 <slide min="0" max="100" format="%d%%">
+            <label>Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+        </group>
+         <group name="Antimony flavoured Group" flavour="antimony">
+        	 <slide min="0" max="100" format="%d%%">
+            <label>Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+        </group>
+         <group name="White flavoured Group" flavour="white">
+        	 <slide min="0" max="100" format="%d%%">
+            <label>Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+        </group>
+        <group name="Black flavoured Group" flavour="black">
+        	 <slide min="0" max="100" format="%d%%">
+            <label>Slider</label>
+            <address transform="DPT:5.001" variant="">13/0/38</address>
+          </slide>
+        </group>
     </page>
     <page name="KNX" shownavbar="true" visible="false">
       <navbar position="left" dynamic="true" width="200px">
@@ -236,7 +312,7 @@ Config</a> ]]></status>
             <address transform="DPT:1.001" variant="">13/0/13</address>
           </switch>
         </group>
-        <group name="Heizung" flavour="sodium">
+        <group name="Heizung">
           <slide min="0" max="100" format="%d%%" flavour="sodium">
             <label>
               <icon name="sani_heizung" />

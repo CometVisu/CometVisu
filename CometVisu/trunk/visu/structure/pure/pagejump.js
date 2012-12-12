@@ -26,6 +26,8 @@ basicdesign.addCreator('pagejump', {
       classes+=" "+$e.attr('align');
     }
     var ret_val = $('<div class="'+classes+'" ' + style + '/>');
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     ret_val.setWidgetLayout($e);
     var label = extractLabel( $e.find('label')[0] );
     var address = makeAddressList($e);

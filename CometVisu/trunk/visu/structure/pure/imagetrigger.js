@@ -21,6 +21,8 @@ basicdesign.addCreator('imagetrigger', {
     var ret_val = $('<div class="widget clearfix image" />');
     ret_val.setWidgetLayout($e);
     ret_val.addClass ('imagetrigger');
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var value = $e.attr('value') ? $e.attr('value') : 0;
     ret_val.append( extractLabel( $e.find('label')[0] ) );
     var address = makeAddressList($e);

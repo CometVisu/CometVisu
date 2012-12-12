@@ -21,9 +21,11 @@ basicdesign.addCreator('info', {
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     var classes = 'widget clearfix info';
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( $e.attr('align') ) {
       classes+=" "+$e.attr('align');
     }
+    if( flavour ) classes+=' flavour_' + flavour;
     var ret_val = $('<div class="'+classes + '" ' + style + ' />');
     if ( $e.attr('class') ) {
       ret_val.addClass('custom_'+$e.attr('class'));

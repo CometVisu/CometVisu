@@ -23,6 +23,8 @@ basicdesign.addCreator('multitrigger', {
     var ret_val = $('<div class="widget clearfix multitrigger" ' + style + '/>');
     ret_val.setWidgetLayout($e)
     ret_val.append( extractLabel( $e.find('label')[0] ) );
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var address = makeAddressList($e);
     var showstatus = $e.attr("showstatus") || "false";
     var buttons = $('<div class="actor_container" style="float:left"/>');
