@@ -22,6 +22,8 @@ basicdesign.addCreator('iframe', {
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget iframe" ' + style + '/>');
     ret_val.setWidgetLayout($e);
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     ret_val.append( extractLabel( $e.find('label')[0] ) );
     var iframeStyle = '';
     if( $e.attr('width' ) ) {

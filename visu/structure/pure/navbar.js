@@ -28,6 +28,8 @@ basicdesign.addCreator('navbar', {
         container.append( create_pages( childs[i], path + '_' + i, flavour ) );
     } );
     container.data('scope',scope);
+    if( $n.attr('flavour') ) flavour = $n.attr('flavour');// sub design choice
+    if( flavour ) container.addClass( 'flavour_' + flavour );
     var dynamic  = $n.attr('dynamic') == 'true' ? true : false;
   
     var size = $n.attr('width') || 300;
