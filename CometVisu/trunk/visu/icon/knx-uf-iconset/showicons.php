@@ -11,7 +11,7 @@
             if (! preg_match("/^\./", $file)) { 
               if (is_file($mydirs ."/". $file)) $result[$mydirs][] = $mydirs ."/". $file;
             }
-            sort($result[$mydirs]);
+            @sort($result[$mydirs]);
           }
         }
       }
