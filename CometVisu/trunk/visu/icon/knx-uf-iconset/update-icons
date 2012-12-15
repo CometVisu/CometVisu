@@ -40,13 +40,20 @@ resize_folder () {
 
 
 
+CONV=`which convert`
+if [ "x${CONV}" = "x" ]; then
+	echo
+	echo "Sorry, can't find ImageMagick's convert - make sure it is installed"
+	echo "You might want to run the following command to install ImageMagick:"
+	echo
+	echo "	apt-get install imagemagick"
+	echo
+
+	exit 0
+fi
+
 
 #rm -fr raw_480x480
-
-echo -n "Getting icons from SVN source..."
-svn co https://openautomation.svn.sourceforge.net/svnroot/openautomation/tools/knx-uf-iconset/trunk/raw_480x480/ > /dev/null 2>&1
-echo "done."
-
 
 
 if [ "$1" = "-f" ]; then
@@ -67,6 +74,11 @@ if [ "$1" = "-h" ]; then
 fi
 
 
+
+
+echo -n "Getting icons from SVN source..."
+svn co https://openautomation.svn.sourceforge.net/svnroot/openautomation/tools/knx-uf-iconset/trunk/raw_480x480/ > /dev/null 2>&1
+echo "done."
 
 
 resize_folder 128x128_white 
