@@ -30,8 +30,9 @@
         }
       }
     }
-    closedir($fh);      
-    
+    closedir($fh);
+    sort($result);
+
     return $result;
   }
 
@@ -42,7 +43,7 @@
   foreach ($colors as $i => $c) {
     if ($c == "white") { $foundwhite = true; }
   }
-  if (! $foundwhite) die("No 128x128_white found - this is need as an index for all icons\n");
+  if (! $foundwhite) die("No 128x128_white found - this is needed as an index for all icons\n");
 
 
   $icons = GetIcons("128x128_white");
@@ -50,11 +51,11 @@
   $outtxt = "";
   foreach ($icons as $i) {
     $name = preg_replace("/\.png$/", "", $i);
-    $outtxt .= sprintf("%-30s", "'". $name ."' : ") ."   { '*': { '*' : 'white',\n";
+    $outtxt .= sprintf("%-30s", "'". $name ."' : ") ."   { '*': { '*' : 'white', 'ws' : 'white', 'sodium' : 'orange',\n";
     $firstline = true;
     foreach ($colors as $c) {
       if (! $firstline) { $outtxt .= ",\n"; } else { $firstline = false; }
-      $color = $c; if ($color == "or") $color = "sodium";
+      $color = $c;
       $outtxt .= sprintf("%36s", "'". $color ."'") . " : { 'uri': 'icon/knx-uf-iconset/128x128_". $c ."/". $i ."', 'style': 'height: 2em;' }";
     }
     $outtxt .= " } },\n";
