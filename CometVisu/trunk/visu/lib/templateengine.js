@@ -400,10 +400,9 @@ function parseXML(xml) {
       var $this = $(this);
       var name = $this.attr('name');
       var uri = $this.attr('uri');
-      var style = $this.attr('style');
       var type = $this.attr('type');
       var flavour = $this.attr('flavour');
-      icons.insert(name, uri, type, flavour, style);
+      icons.insert(name, uri, type, flavour);
     });
 
   // then the mappings

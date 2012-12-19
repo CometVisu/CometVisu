@@ -3,6 +3,13 @@
  */
 
 /*
+ * Default height for all icons
+ +/
+img.icon {
+  height : 2em;
+}
+
+/*
  * create a three column layout in the middle of the page to allow navbars
  * inspired by http://www.alistapart.com/articles/holygrail
  */
