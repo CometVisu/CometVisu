@@ -511,19 +511,6 @@ function setup_page(xml) {
   // and now setup the pages
   var page = $('pages > page', xml)[0]; // only one page element allowed...
 
-  // read topbar datetime format
-  var topbar_datetime = $('meta > topbar_datetime > strftime', xml);
-
-  // if definition exists in xml
-  if (topbar_datetime.length) {
-    // get creator for strftime plugin
-    var creator = design.getCreator('strftime');
-    // get rendered datetime div
-    var retval = creator.create(topbar_datetime, 'id_0').html();
-    // show on top right corner
-    $('#top .nav_additional').html(retval);
-  }
-
   create_pages(page, 'id_0');
 
   adjustColumns();

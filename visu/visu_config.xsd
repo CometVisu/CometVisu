@@ -48,7 +48,7 @@
   <xsd:complexType name="icon">
     <xsd:attribute name="name" type="xsd:string" use="required" />
     <xsd:attribute name="type" type="xsd:string" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <!-- attributes -->
@@ -67,6 +67,7 @@
   <xsd:attribute name="mapping" type="xsd:string" />
   <xsd:attribute name="styling" type="xsd:string" />
   <xsd:attribute name="value" type="xsd:string" />
+  <xsd:attribute name="flavour" type="xsd:string" />
 
   <xsd:attribute name="mode">
     <xsd:simpleType>
@@ -293,7 +294,7 @@
     <xsd:attribute name="name" type="xsd:string" use="required" />
     <xsd:attribute name="uri" type="xsd:string" use="required" />
     <xsd:attribute name="type" type="xsd:string" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="mappings">
@@ -352,7 +353,7 @@
       <xsd:group ref="AvailablePlugins"/>
     </xsd:choice>
     <xsd:attribute name="name" type="xsd:string" use="required" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute name="ga" type="addr" use="optional" />
     <xsd:attribute name="visible" type="xsd:boolean" />
@@ -381,7 +382,7 @@
     </xsd:choice>
     <xsd:attribute name="name" type="xsd:string" use="optional" />
     <xsd:attribute name="nowidget" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute name="pagejumptarget" type="xsd:string" use="optional" />
     <xsd:attribute ref="align" use="optional" />
   </xsd:complexType>
@@ -425,6 +426,7 @@
       <xsd:element name="iframe" type="iframe" />
       <xsd:element name="rgb" type="rgb" />
       <xsd:element name="pagejump" type="pagejump" />
+      <xsd:element name="wgplugin_info" type="wgplugin_info"/>
     </xsd:choice>
   </xsd:group>
 
@@ -436,7 +438,7 @@
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
     </xsd:choice>
     <xsd:attribute ref="align" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="designtoggle">
@@ -462,7 +464,7 @@
     <xsd:attribute name="on_value" type="xsd:string" use="optional" />
     <xsd:attribute name="off_value" type="xsd:string" use="optional" />
     <xsd:attribute ref="align" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="toogle">
@@ -474,7 +476,7 @@
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="align" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="trigger">
@@ -487,7 +489,7 @@
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="align" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="urltrigger">
@@ -501,7 +503,7 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute name="url" type="xsd:string" use="required" />
     <xsd:attribute name="params" type="xsd:string" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="infotrigger">
@@ -522,7 +524,7 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute name="infoposition" type="xsd:decimal" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
   
   <xsd:complexType name="rgb">
@@ -531,7 +533,7 @@
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
       <xsd:element name="address" type="address" minOccurs="3" maxOccurs="unbounded" />
     </xsd:choice>
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="multitrigger">
@@ -551,7 +553,7 @@
     <xsd:attribute name="button3value" type="xsd:string" use="optional" />
     <xsd:attribute name="button4label" type="xsd:string" use="optional" />
     <xsd:attribute name="button4value" type="xsd:string" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="slide">
@@ -566,7 +568,7 @@
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="format" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="info">
@@ -579,7 +581,21 @@
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="align" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="wgplugin_info">
+    <xsd:choice maxOccurs="unbounded" minOccurs="1">
+      <xsd:element name="label" type="label" maxOccurs="1" />
+      <xsd:element name="address" type="address" minOccurs="1" />
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
+    </xsd:choice>
+    <xsd:attribute name="variable" type="xsd:string" />
+    <xsd:attribute ref="format" use="optional" />
+    <xsd:attribute ref="styling" use="optional" />
+    <xsd:attribute ref="mapping" use="optional" />
+    <xsd:attribute ref="align" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="image">
@@ -591,7 +607,7 @@
     <xsd:attribute name="width" type="dimension" />
     <xsd:attribute name="height" type="dimension" />
     <xsd:attribute name="refresh" type="xsd:decimal" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="imagetrigger">
@@ -608,7 +624,7 @@
     <xsd:attribute name="refresh" type="xsd:decimal" />
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute name="sendValue" type="xsd:string" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="video">
@@ -620,7 +636,7 @@
     <xsd:attribute name="width" type="dimension" />
     <xsd:attribute name="height" type="dimension" />
     <xsd:attribute name="autoplay" type="xsd:string" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="iframe">
@@ -634,7 +650,7 @@
     <xsd:attribute name="frameborder" type="xsd:string" />
     <xsd:attribute name="background" type="xsd:string" />
     <xsd:attribute name="refresh" type="xsd:decimal" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="pagejump">
@@ -645,7 +661,7 @@
     <xsd:attribute name="name" type="xsd:string" />
     <xsd:attribute name="target" type="xsd:string" />
     <xsd:attribute ref="align" use="optional" />
-    <xsd:attribute name="flavour" type="xsd:string" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="colorchooser">
