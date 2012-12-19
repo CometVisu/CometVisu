@@ -106,12 +106,12 @@
       <trigger value="0">
         <layout x="0px" y="150px" width="600px" />
         <label>Underground</label>
-        <address transform="DPT:5.004" readonly="false" type="">12/7/51</address>
+        <address transform="DPT:5.004" type="">12/7/51</address>
       </trigger>
       <trigger value="1">
         <layout x="0px" y="100px" width="600px" />
         <label>Ground</label>
-        <address transform="DPT:5.004" readonly="false" type="">12/7/51</address>
+        <address transform="DPT:5.004" type="">12/7/51</address>
       </trigger>
     </page>
     <line/>
