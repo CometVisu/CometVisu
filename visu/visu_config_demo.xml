@@ -114,9 +114,6 @@
         <entry value="17">olive</entry>
       </styling>
     </stylings>
-    <topbar_datetime>
-      <strftime lang="de" format="%A, %d. %b  %H:%M"></strftime>  
-    </topbar_datetime>
     <statusbar>
       <status type="html"><![CDATA[
           <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
