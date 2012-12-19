@@ -56,7 +56,7 @@
     foreach ($colors as $c) {
       if (! $firstline) { $outtxt .= ",\n"; } else { $firstline = false; }
       $color = $c;
-      $outtxt .= sprintf("%36s", "'". $color ."'") . " : { 'uri': 'icon/knx-uf-iconset/128x128_". $c ."/". $i ."', 'style': 'height: 2em;' }";
+      $outtxt .= sprintf("%36s", "'". $color ."'") . " : { 'uri': 'icon/knx-uf-iconset/128x128_". $c ."/". $i ."' }";
     }
     $outtxt .= " } },\n";
   }
