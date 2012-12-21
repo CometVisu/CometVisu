@@ -34,14 +34,13 @@ VisuDesign_Custom.prototype.addCreator("strftime", {
     var id = "strftime_" + uniqid();
 
     var ret_val = $('<div class="widget clearfix text strftime"/>');
-    ret_val.setWidgetLayout($p);
-
-    var actor = $('<div id="' + id + '" class="strftime_value"></div>');
-    ret_val.append(actor);
-
     if ( $p.attr('class') ) {
       ret_val.addClass('custom_'+$p.attr('class'));
     }
+
+    ret_val.setWidgetLayout($p);
+    var actor = $('<div id="' + id + '" class="strftime_value"></div>');
+    ret_val.append(actor);
 
     var locale = $p.attr('lang');
     var format = '%c';
