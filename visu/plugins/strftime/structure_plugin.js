@@ -39,6 +39,10 @@ VisuDesign_Custom.prototype.addCreator("strftime", {
     var actor = $('<div id="' + id + '" class="strftime_value"></div>');
     ret_val.append(actor);
 
+    if ( $p.attr('class') ) {
+      ret_val.addClass('custom_'+$p.attr('class'));
+    }
+
     var locale = $p.attr('lang');
     var format = '%c';
     if ($p.attr('format')) {
