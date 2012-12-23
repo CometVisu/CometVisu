@@ -3,13 +3,21 @@ HEAD
 
 - New feature: individual icons can be added in the meta area
 - New plugin: strftime
-- Obsolete plugin removed: jqclock
+- Obsolete plugin removed: jqclock (use strftime instead)
 - New plugin: clock
 - New plugin: rsslog
 - New plugin: upnpcontroller
+- New plugin: New plugin for displaying a blind-status with a svg-file.
+- Removed plugin: gweather
 - New widget: imagetrigger
 - New widget: include
+- New widget: pagejump
+- New widget: wgpluging_info
+- New widget: rgb
+- New widget: urltrigger
 - New design: pitchblack (needs config-rewrite)
+- New design: planet
+- New design: metal
 - New feature: wirteonly attribute
 - New feature: 2D and 3D modes
 - New feature: colspan (column-width is 8.33333%, i.e. 1/12)
@@ -17,9 +25,13 @@ HEAD
 - New feature: Added handling for browser back button
                => go one level higher in page hierarchy.
 - New feature: Option to show current status in multitrigger widget
+- New feature: navbars
+- New feature: allow full JavaScript formulas for a mapping
+- New feature: icons
 - change text-align in pure-design (switch/un/unpressed) to center
-- diagram-Plugin: yaxismin, yaxismax, added diagram_info
-- updated jQuery to 1.7.1
+- diagram-Plugin: yaxismin, yaxismax, added diagram_info, multiple graphs per
+  diagram, multiple axis, labels
+- updated jQuery to 1.8.2
 - updated jQuery UI to 1.8.16
 - attribute "variant" for address is now a select-list on a per-widget-basis; 
   will no longer be displayed when not available (declutter UI)
@@ -39,11 +51,27 @@ HEAD
     widgets) into one to speed up network loading
   * create "release" directory for concatenated and (in future) minimized
     version
+- Switch readonly/writeonly to the new, unified attribute "mode" which might be
+  set to "disable", "read", "write" or "readwrite" (which is the default).
+- Highly improved display of config file XML errors
+- enable and disable pages via classes and not via individual style-attribute
+  anymore - this allows designs to react to it
+- Added tools to automatically modify a SVG that is used as a backdrop in 2D 
+  pages:
+  Pipe-O-Matic and Flow-O-Matic
+- New new custom event "scrolltopage" is called at the end of each page scroll
+- Additional attributes in pages element:
+  * max_mobile_screen_width: defines the maximum screen width where the 
+    mobile.css is used
+  * scroll_speed: defines the page scrolling speed (setting to 0 disables
+    scrolling)
+- slider enhancement to add the possibility to show its value
+- extension added to support openHAB (http://code.google.com/p/openhab/) as backend
+- Added class parameter for additional styling
 - lots of little bugfixes and improvements
-<Changes up to Revision 744 included>
-
 - Editor: old WYSIWYG-editor was removed due to existing and forseeable compatibility issues
-- updated jQuery to 1.8.2
+<Changes up to Revision 1243 included>
+
 
 0.6.2
 =====
