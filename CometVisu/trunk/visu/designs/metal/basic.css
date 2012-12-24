@@ -221,12 +221,22 @@ body br
 	background: transparent url(images/dot_grey.png) no-repeat center center;
     color: grey !important;
 }
+/* revert color + background setting for diagram_info widgets 
+   TODO: check if this needs to be done with other widgets, that use
+   switch(Un)pressed classes (e.g. triggers)
+*/
+.diagram_info .red.switchPressed div, .diagram_info .red.switchUnpressed div,
+.diagram_info .green.switchPressed div, .diagram_info .green.switchUnpressed div,
+.diagram_info .grey.switchPressed div, .diagram_info .grey.switchUnpressed div
+{
+	background: none;
+	color: inherit !important;
+}
 .red
 {
   color:#f44;
   font-weight:bold;
 }
-
 .green
 {
   color:#4f4;
