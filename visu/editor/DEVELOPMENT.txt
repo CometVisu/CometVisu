@@ -2,7 +2,6 @@
 * loading the XSD is done in Javascript. The Schema-Loader knows a certain set an structure of an XSD. If "unknown"
   XSD-features are being used in the schema, the Schema-Loader may not know about them, and the editor will thus fail.
 * the Schema care a little for bounds. It does, however, not support 'multi-dimensional'-bounds.
-* has no f'ing clue about mixed items - seriously, how are you supposed to display a mixed element in a tree?
 * user-feedback is done using window.alert() - this works accross all devices and browsers, has no ux-issues on small
   screens, and enforces the users attention.
 * XSD is fucked up. minOccurs on elements in a choice are ignored if said choice is bounded otherwise
@@ -19,17 +18,19 @@
  - node-attributes can be edited
  - node children can be added, removed
 
-* MS3 - week 49/50 2012
- - nodes have copy & paste, move.
+* MS3 - week 52 2012
+ - nodes have copy&paste, move.
  - configuration can be saved
  - attributes like rrd, addr can be selected from a list; said list is loaded from the server
- - attributes like styling, mapping can be selected from a dynamic list; list is based on actual configuration
+ - attributes like styling, mapping can be selected from a dynamic list; list is based on current configuration
 
-* MS4 - week 52 2012
+* MS4 - early 2013
+ - better check bounds of configuration, including multi-dimensional bounds, sequences?
  - preview for a selected node without the need of replacing the configuration on the server
 
 
 === TODO ===
+
 * MS1:
  - done
 
@@ -37,17 +38,13 @@
  - done
 
 * MS3:
- - frontend: have copy&paste for nodes incl. children
- - frontend: have move for nodes incl. children (drag&drop?; mind touch-devices!)
- - frontend: save configuration
- - backend (save the xml; php)
- - cross-reference: have select-lists for mapping, stylings, ... defined by the config itself
- - allow for multi-dimensional bounds, as well as sequence?
+ - done
 
 * MS4:
+ - allow for multi-dimensional bounds, as well as sequence?
  - frontend: preview node incl. children
 
 
 === IDEAS ===
 * read xsd:annotation and xsd:documentation including xml:lang for tooltips/...
-* allow for mixed nodes (see http://stackoverflow.com/questions/937640/how-to-access-xml-text-node-in-jquery)
+* transparently exchange whitespaces with &nbsp; for text-nodes to make sure the user gets what he entered ...

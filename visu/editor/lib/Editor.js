@@ -27,7 +27,7 @@
  * @version     SVN: $Id$
  * @link        http://cometvisu.de
  * @since       2012-10-28
- * @requires    Schema.js, Configuration.js, Result.js, Messages.js
+ * @requires    Schema.js, Configuration.js, Result.js, Messages.js, DataProvider.js
  */
 
 /**
@@ -51,6 +51,20 @@ var Editor = function (config) {
     var _config = config;
     
     /**
+     * save the configuration, but validate it first
+     */
+    var saveHandler = function () {
+        if (false === _config.isValid()) {
+            // configuration is not valid
+            alert(Messages.editor.notSavingInvalidConfiguration);
+            return;
+        }
+        
+        // save the configuration
+        _config.save();
+    };
+    
+    /**
      * render the Editor.
      * Will render the editor in the specified DOMNode.
      * 
@@ -60,16 +74,75 @@ var Editor = function (config) {
         var $target = $(selector);
         
 
-        var container = $('<ul />').attr('id', 'config');
+        var $container = $('<ul />').attr('id', 'config');
         
         $.each(_config.rootNodes, function (i, node) {
             var element = new EditorConfigurationElement(_editor, node);
             
-            container.append(element.getAsHTML());
+            $container.append(element.getAsHTML());
         });
         
+        $container.click(function () {
+            // if no one else catched the event we hide all submenus; thats the least we can do :)
+            $('.submenu:visible').hide();
+            $('.toggleSubmenu.active').removeClass('active');
+        });
+        
+        var $editor = $('<div />').attr('id', 'editor');
+        
+        var $menu = $('<div />').addClass('menu');
+        var $save = $('<span />')
+                        .addClass('button')
+                        .addClass('save')
+                        .html(Messages.editor.ui.save.text)
+                        .attr('title', Messages.editor.ui.save.tooltip)
+                        .click(saveHandler);
+        $menu.append($save);
+        
+        $editor.append($menu);
+        
+        $editor.append($container);
+        
 
-        $target.append(container);
+        $target.append($editor);
+    };
+    
+    var rememberedElement = {
+                                element: undefined,
+                                options: undefined,
+                            };
+    
+    /**
+     * remember an element.
+     * 
+     * Used for cut, copy & paste
+     * 
+     * @param   element object  EditorConfigurationElement to remember
+     * @param   options object  options to remember additionally
+     */
+    _editor.rememberElement = function (element, options) {
+        rememberedElement.element = element;
+        rememberedElement.options = options;
+    }
+    
+    
+    /**
+     * get the remembered element
+     * 
+     * @return  object  the remembered element (or undefined if none)
+     */
+    _editor.getRememberedElement = function () {
+        return rememberedElement.element;
+    };
+    
+    
+    /**
+     * get the options that were stored alongside the remembered element
+     * 
+     * @return  object  the options
+     */
+    _editor.getRememberedElementOptions = function () {
+        return rememberedElement.options;
     };
 }
 
@@ -107,7 +180,19 @@ var EditorConfigurationElement = function (parent, element) {
      * everything to do with buttons
      * @var object
      */
-    var Buttons = {
+    var UIElements = {
+        /**
+         * element-cache
+         * @var object
+         */
+        cache: {
+            /**
+             * submenu
+             * @var object
+             */
+            $submenu: undefined,
+        },
+
         /**
          * return a generic button
          * 
@@ -116,94 +201,168 @@ var EditorConfigurationElement = function (parent, element) {
         getGenericButton: function () {
             return $('<span />').addClass('button').append($('<span />').addClass('image'));
         },
+
+        /**
+         * get a button of a specified type, like 'children'
+         * 
+         * @param   type    string  type of the button
+         * @return  jquery-object   the button
+         */
+        getButtonOfType: function (type) {
+            var $button;
+            switch (type) {
+                case 'children':
+                    $button = UIElements.getGenericButton().addClass('children').click(UIElements.clickHandler);
+                    $button.attr('title', Messages.editor.ui.children.tooltip);
+                    break;
+                case 'toggleSubmenu':
+                    $button = UIElements.getGenericButton().addClass('toggleSubmenu').click(UIElements.clickHandler);
+                    $button.attr('title', Messages.editor.ui.toggleSubmenu.tooltip);
+                    break;
+                default:
+                    throw 'programming error, no button of type known, type: ' + type;
+            }
+            
+            return $button;
+        },
+        
         /**
          * get the default buttons for an element
          * 
          * @param   settings    object  a hash of settings to obey
          * @return  jquery-object       the default top buttons for an element
          */
-        getTopButtonHTML: function (settings) {
-            var $html = $('<span />').addClass('buttons');
+        getSubMenuHTML: function (settings) {
+            if (UIElements.cache.$submenu != undefined) {
+                return UIElements.cache.$submenu;
+            }
+            
+            var $html = $('<span />').addClass('submenu');
 
             settings = $.extend({
                                 attributes: true,
-                                children: true,
                                 remove: true,
                                 },
                                 settings || {});
 
-            // @TODO: implement (preview,  select (copy/move/paste), show only this) (MS3+)
+            // @TODO: implement (preview,  show only this) (MS5+)
 
-            var $button = Buttons.getGenericButton();
+            var $button = UIElements.getGenericButton();
+            var $menuitem = $('<span />').addClass('menuitem');
 
+            var $tmpItem;
 
-            
-            var $buttonAddChild = $button.clone().addClass('addchild');
-            if (false === settings.children) {
-                $buttonAddChild.addClass('disabled');
-                $buttonAddChild.attr('title', Messages.editor.tooltips.buttons.disabled);
-            } else {
-                $buttonAddChild.click(Buttons.clickHandler);
-                $buttonAddChild.attr('title', Messages.editor.tooltips.buttons.addChild);
+            if (true === settings.children) {
+                $tmpItem = $menuitem.clone();
+                $tmpItem.addClass('addchild').click(UIElements.clickHandler);
+                $tmpItem.attr('title', Messages.editor.ui.addChild.tooltip);
+                $tmpItem.text(Messages.editor.ui.addChild.text);
+                $html.append($tmpItem);
+                delete $tmpItem;
             }
-            $html.append($buttonAddChild);
-            delete $buttonAddChild;
-
-            //$html.append($button.clone().addClass('select').click(Buttons.clickHandler));
             
-            var $buttonRemove = $button.clone().addClass('remove');
+            $tmpItem = $menuitem.clone();
+            $tmpItem.addClass('remove').click(UIElements.clickHandler);
+            $tmpItem.attr('title', Messages.editor.ui.remove.tooltip);
+            $tmpItem.text(Messages.editor.ui.remove.text);
             if (false === settings.remove) {
-                $buttonRemove.addClass('disabled');
-                $buttonRemove.attr('title', Messages.editor.tooltips.buttons.disabled);
-            } else {
-                $buttonRemove.click(Buttons.clickHandler);
-                $buttonRemove.attr('title', Messages.editor.tooltips.buttons.remove);
+                $tmpItem.addClass('disabled');
             }
-            $html.append($buttonRemove);
-            delete $buttonRemove;
-
+            $html.append($tmpItem);
+            delete $tmpItem;
+            
             // Spacer
-            $html.append($button.clone().addClass('spacer'));
+            $html.append($menuitem.clone().addClass('spacer'));
 
-            //$html.append($button.clone().addClass('preview').click(Buttons.clickHandler));
+            // cut, copy, paste, sort (like move with same parent)
+            $.each(['cut', 'copy', 'paste', 'sort'], function (i, item) {
+                $tmpItem = $menuitem.clone();
+                $tmpItem.addClass(item).click(UIElements.clickHandler);
+                $tmpItem.attr('title', Messages.editor.ui[item].tooltip);
+                $tmpItem.text(Messages.editor.ui[item].text);
+                $html.append($tmpItem);
+                delete $tmpItem;
+            });
 
-            if (settings.attributes) {
-                var $buttonAttributes = $button.clone().addClass('attributes').click(Buttons.clickHandler);
-                $buttonAttributes.attr('title', Messages.editor.tooltips.buttons.attributes);
-                $html.append($buttonAttributes);
-                delete $buttonAttributes;
+
+            // search for the paste-button, and tell it which elements to allow
+            var $paste = $html.find('.menuitem.paste');
+            $.each(_element.getAllowedElements(), function (name) {
+                $paste.addClass('paste_allows_' + name);
+            });
+
+
+            // disable the paste button if there is currently no remembered element
+            $paste.addClass('disabled');
+
+            var rememberedOptions = _parent.getRememberedElementOptions();
+            if (undefined != rememberedOptions) {
+                if (rememberedOptions.type == 'copy' || rememberedOptions.type == 'cut') {
+                    if (undefined != rememberedOptions && name == rememberedOptions.nodeType) {
+                        // if the remembered element matches a compatible element, remove the disabled-flag
+                        if ($paste.is('.paste_allows_' + rememberedOptions.nodeType)) {
+                            $paste.removeClass('disabled');
+                        }
+                    }
+                }
             }
 
 
-            if (settings.children) {
-                var $buttonChildren = $button.clone().addClass('children').click(Buttons.clickHandler);
-                $buttonChildren.attr('title', Messages.editor.tooltips.buttons.children);
-                $html.append($buttonChildren);
-                delete $buttonChildren;
-            }
+            delete $paste;
+            
+            $html.hide();
 
-            //$html.append($button.clone().addClass('clipview').click(Buttons.clickHandler));
-            delete $button;
+            UIElements.cache.$submenu = $html;
 
             return $html;
         },
+        
+        /**
+         * hide the submenu
+         */
+        hideSubMenu: function () {
+            UIElements.cache.$submenu.hide();
+        },
+        
+        /**
+         * hide any visible submenu
+         */
+        hideAllSubMenus: function () {
+            $('.submenu:visible').hide();
+            $('.toggleSubmenu.active').removeClass('active');
+        },
+        
+        /**
+         * toggle the submenu
+         */
+        toggleSubMenu: function () {
+            // hide all other submenus
+            $('.submenu:visible').not(UIElements.cache.$submenu).hide();
+            UIElements.cache.$submenu.slideToggle();
+        },
 
         /**
-         * Generic Click-Handler for the buttons
+         * Generic Click-Handler for the UIElements
          * 
          * @param   event   jQuery-event
          */
         clickHandler: function (event) {
-            var $button = $(this);
-
-            if ($button.is('.attributes')) {
-                // Attributes-button was clicked
-                $button.closest('span.element').find('> ul.attributes:not(.visible), > ul.attributes.visible li:not(.visible)').slideToggle('fast');
-                $button.closest('span.element').find('> ul.attributes.visible').toggleClass('collapsed');
-                $button.toggleClass('active');
+            var $uiElement = $(this);
+            
+            if ($uiElement.is('.toggleSubmenu')) {
+                // button to display/hide the submenu
+                UIElements.toggleSubMenu();
+                $uiElement.addClass('active');
+                event.stopPropagation();
             }
 
-            if ($button.is('.addchild')) {
+            if ($uiElement.is('.attributes')) {
+                // Attributes-button was clicked
+                Attributes.toggleDisplay();
+                $uiElement.toggleClass('active');
+            }
+
+            if ($uiElement.is('.addchild')) {
                 // add a child element
                 // we will need a list of valid child-elements to select from.
                 // then we add that node
@@ -214,32 +373,167 @@ var EditorConfigurationElement = function (parent, element) {
                     return;
                 }
                 
-                $button.closest('.buttons').hide();
-                $button.closest('span.element').find('> span.buttons').after($selector);
+                UIElements.cache.$submenu.hide();
+                
+                $uiElement.closest('span.element').find('> span.name').after($selector);
             }
 
-            if ($button.is('.remove')) {
+            if ($uiElement.is('.remove')) {
                 // remove this element
+                UIElements.hideSubMenu();
                 if (window.confirm('delete node?')) {
                     // check if remove is ok, maybe we have a problem with bounds?
-                    if (false === _element.isRemovable()) {
-                        // user-feedback
-                        alert(Messages.editor.elementNotRemovable);
-                        return;
-                    }
-                    
-                    _element.remove();
-                    $(_html).remove();
-                    _parent.redrawChildrenButton();
-                    delete _element;
+                    _self.remove();
                 }
             }
 
-            if ($button.is('.children')) {
+            if ($uiElement.is('.children')) {
                 // children-button, let's toggle display of this elements children
-                $button.closest('span.element').children('ul.children').slideToggle('fast');
-                $button.toggleClass('active');
+
+                if (true === $uiElement.is('.disabled')) {
+                    // nah!
+                    return;
+                }
+
+                $uiElement.closest('li').find('span.element').first().children('ul.children').slideToggle('fast');
+                $uiElement.toggleClass('active');
             }
+            
+            if ($uiElement.is('.copy')) {
+                _parent.rememberElement(_self, {type: 'copy', nodeType: _element.name});
+                // activate paste-buttons
+                $('ul#config .paste.paste_allows_' + _element.name).removeClass('disabled');
+                UIElements.hideSubMenu();
+            }
+            
+            if ($uiElement.is('.cut')) {
+                if (false === _element.isRemovable()) {
+                    // if the element can not be removed, it can not be cut either!
+                    // user-feedback
+                    alert(Messages.editor.elementNotCuttable);
+                    return;
+                }
+                
+                // first, clean up a previous cut/sort that was not finished
+                UIElements.cancelSort();
+                UIElements.cancelCut();
+                
+                _parent.rememberElement(_self, {type: 'cut', nodeType: _element.name});
+
+                // activate paste-buttons
+                $('ul#config .paste.paste_allows_' + _element.name).removeClass('disabled');
+
+                // mark this element as being cut-out, by css
+                _html.addClass('cutout');
+                UIElements.hideSubMenu();
+            }
+            
+            if ($uiElement.is('.paste')) {
+                if ($uiElement.is('.disabled')) {
+                    return;
+                }
+                
+                var originalEditorElement = _parent.getRememberedElement();
+                var options = _parent.getRememberedElementOptions();
+                
+                if (originalEditorElement == undefined || options == undefined) {
+                    return;
+                }
+                
+                var originalElement = originalEditorElement.getConfigurationElement();
+
+                // clone the ConfigurationElement, and create a new EditorConfigurationElement with that
+                var newElement = originalElement.getDuplicateForParent(_element);
+                _element.appendChildNode(newElement);
+                
+                var newEditorElement = new EditorConfigurationElement(_self, newElement);
+                _self.appendChildNode(newEditorElement);
+                
+                if (options.type == 'cut') {
+                    // remove the original element if type was cut
+                    originalEditorElement.remove();
+                }
+                
+                // clear rememberedElement afterwards
+                _parent.rememberElement(undefined, undefined);
+
+                // deactivate paste-buttons
+                $('ul#config .paste').addClass('disabled');
+                UIElements.hideSubMenu();
+            }
+            
+            if ($uiElement.is('.sort')) {
+                // sorting and cut may not happen at the same time! and no two sorting may happen at once
+                UIElements.cancelSort();
+                UIElements.cancelCut();
+                
+                // find my siblings
+                var $siblings = _html.siblings();
+                var $parent = _html.parent();
+                
+                // create and activate dropzones
+                var $dropzone = $('<li />').addClass('dropzone');
+                $dropzone.click(UIElements.clickHandler);
+
+                // add dropzones arround my siblings (not arround myself!)
+                $siblings.before($dropzone.clone(true));
+                $parent.append($dropzone.clone(true));
+                
+                $parent.find('.dropzone + .dropzone').remove();
+                _html.next('.dropzone').hide();
+                
+                _html.addClass('cutout');
+                UIElements.hideSubMenu();
+            }
+            
+            if ($uiElement.is('.dropzone')) {
+                // find out position
+                var position = $uiElement.parent().find('.dropzone').index($uiElement);
+                
+                // clean up immediately, or the re-positioning will fail, as there are still the dropzones in the DOM
+                UIElements.cancelSort();
+
+                // create ourselves a new _self, by using the configurationElement of the old self.
+                var sortableElement = _self.getConfigurationElement();
+
+                // clone the ConfigurationElement, and create a new EditorConfigurationElement with that
+                var sortedElement = $.extend(true, {}, sortableElement);
+                _parent.getConfigurationElement().addChildAtPosition(sortedElement, position);
+                
+                // then: remove ourselves (the old node), before re-arranging the DOM (or this will fail)
+                _self.remove();
+
+
+                var sortedEditorElement = new EditorConfigurationElement(_parent, sortedElement);
+                _parent.appendChildNodeAtPosition(sortedEditorElement, position);
+                
+                // clear rememberedElement afterwards
+                _parent.rememberElement(undefined, undefined);                
+            }
+        },
+        
+        /**
+         * cancel a previous sorting-action which has not yet been fulfilled
+         */
+        cancelSort: function () {
+            $('.cutout').removeClass('cutout');
+            $('.dropzone').remove();
+        },
+        
+        /**
+         * cancel a previous cut call which has not yet been pasted
+         */
+        cancelCut: function () {
+            var oldEditorElement = _parent.getRememberedElement();
+
+            if (oldEditorElement != undefined) {
+                // we had another element remembered
+                // remove any 'cut'-markings from it, if there are any
+                oldEditorElement.getAsHTML().removeClass('cutout');
+            }
+
+            // clear rememberedElement afterwards
+            _parent.rememberElement(undefined, undefined);                
         },
     };
     
@@ -292,14 +586,14 @@ var EditorConfigurationElement = function (parent, element) {
             $selector.append($select);
             
             // an "add"-button
-            var $addButton = Buttons.getGenericButton();
+            var $addButton = UIElements.getGenericButton();
             $addButton.addClass('addchild');
             $addButton.bind('click', AddChild.saveHandler);
             $selector.append($addButton);
             delete $addButton;
 
             // a "cancel"-button
-            var $cancelButton = Buttons.getGenericButton();
+            var $cancelButton = UIElements.getGenericButton();
             $cancelButton.addClass('cancel');
             $cancelButton.bind('click', AddChild.cancelHandler);
             $selector.append($cancelButton);
@@ -329,15 +623,11 @@ var EditorConfigurationElement = function (parent, element) {
             // create a new Editor-Node
             var childEditorNode = new EditorConfigurationElement(_self, childNode);
             
-            // append the EditorNodes HTML to the DOM
-            $select.closest('.element').children('ul.children').first().append(childEditorNode.getAsHTML());
-            
-            // show the normal top-buttons again...
-            $select.closest('.element').find('.buttons:hidden').first().show();
-            
             // and kill the messenger.. uh, remove the select-list from view
             $select.closest('span.' + AddChild.settings.cssClass).remove();
-            _self.redrawChildrenButton();
+
+            // append the EditorNodes HTML to the DOM
+            _self.appendChildNode(childEditorNode);
         },
 
         /**
@@ -346,9 +636,6 @@ var EditorConfigurationElement = function (parent, element) {
         cancelHandler: function () {
             var $select = $(this).closest('.' + AddChild.settings.cssClass).find('select');
 
-            // show the normal top-buttons again...
-            $select.closest('.element').find('.buttons:hidden').first().show();
-            
             // and kill the messenger.. uh, remove the select-list from view
             $select.closest('span.' + AddChild.settings.cssClass).remove();
         },
@@ -361,6 +648,11 @@ var EditorConfigurationElement = function (parent, element) {
      * @var object
      */
     var Attributes = {
+        /**
+         * cache the html of the attributes
+         */
+        $attributes: undefined,
+
         /**
          * get this elements HTML for its attributes
          * 
@@ -385,11 +677,8 @@ var EditorConfigurationElement = function (parent, element) {
                 }
                 
                 var $attribute = $('<li />').addClass('attribute');
+                $attribute.addClass('attributeType_' + key);
                 
-                if (key == 'name') {
-                    $attribute.addClass('visible');
-                }
-
                 // name of the attribute
                 var $name = $('<span />').addClass('name').html(key);
                 if (true === isOptional) {
@@ -408,7 +697,7 @@ var EditorConfigurationElement = function (parent, element) {
                     // not set
                     $value = $('<span />').addClass('value').addClass('notset');
                 }
-                $value.attr('title', Messages.editor.tooltips.clickToEdit);
+                $value.attr('title', Messages.editor.ui.clickToEdit.tooltip);
                 $attribute.append($value);
                 // attach a click-handler
                 $value.bind('click', Attributes.clickHandler);
@@ -422,13 +711,11 @@ var EditorConfigurationElement = function (parent, element) {
             if ($attributes.is(':empty')) {
                 return undefined;
             }
+
+            $attributes.hide();
             
-            if ($attributes.find('.visible').length > 0) {
-                $attributes.addClass('visible').addClass('collapsed');
-                $attributes.find('li:not(.visible)').hide();
-            } else {
-                $attributes.hide();
-            }
+            // store in cache
+            Attributes.$attributes = $attributes;
 
             return $attributes;
         },
@@ -442,20 +729,36 @@ var EditorConfigurationElement = function (parent, element) {
             var $value = $(this);
             var attributeValue = $value.html();
 
+            var width = $value.width();
+            var height = $value.height();
             $value.hide();
 
             var attributeName = $value.siblings('span.name').text();
             // get a list of valid values for this attribute, if it is an enumeration.
             var elementEnumeration = _element.getSchemaElement().allowedAttributes[attributeName].getEnumeration();
             var isOptional = _element.getSchemaElement().allowedAttributes[attributeName].isOptional;
+            var isUserInputAllowed = false;
 
-            // @TODO: this will be the place to use dataproviders! (MS3+)
-            // @TODO: type hinting or some kind of input-help (no MS yet)
+            // @TODO: type hinting or some kind of input-help? (no MS yet)
+            
+            // get the dataProvider for this element
+            if (elementEnumeration == undefined || elementEnumeration.length == 0) {
+                // only do this, if the XSD did not give us an enumeration!
+                var dataProvider = DataProviderManager.getProviderForAttribute(attributeName);
+                if (undefined != dataProvider) {
+                    elementEnumeration = dataProvider.getEnumeration();
+                    isUserInputAllowed = dataProvider.isUserInputAllowed();
+                }
+            }
 
             // build the input-element to be displayed.
-            var $input = getInputForValueAndEnumeration(attributeValue, elementEnumeration, false, isOptional);
+            var $input = getInputForValueAndEnumeration(attributeValue, elementEnumeration, isUserInputAllowed, isOptional);
             // insert input-field into the DOM
-            $value.after($input);
+            $value.before($input);
+            
+            $input.width(width);
+            $input.height(height);
+            
 
             // bind event handlers.
             $input.bind('cancel', Attributes.cancelHandler);
@@ -511,30 +814,153 @@ var EditorConfigurationElement = function (parent, element) {
             var $input = $(this);
             var $value = $input.siblings('span.value');
 
-            var inputValue = $input.val();
+            var inputValue = $input.find('input, select').andSelf().filter('input, select').val();
             var attributeName = $input.siblings('span.name').text();
 
-            // save the value of the attribute, and check if it is valid at the same time.
-            var tmpResult = _element.setAttributeValue(attributeName, inputValue);
-
-            if (tmpResult.success !== true) {
-                // the value is not valid, and thus could not be set.
-                alert(tmpResult.message);
+            if (false === Attributes.saveValue(attributeName, inputValue)) {
                 return;
-            }
-
-            // set the value to the display-element
-            $value.html(inputValue);
-
-            // if no value is set, it has to be displayed differently
-            if ($.trim(inputValue) == '') {
-                $value.addClass('notset');
-            } else {
-                $value.removeClass('notset');
             }
 
             $input.remove();
             $value.show();
+        },
+        
+        /**
+         * save the value of an attribute
+         * 
+         * @param   attributeName   string  name of the attribute to set
+         * @param   inputValue      string  the value to set the attribute to
+         * @return  boolean                 success
+         */
+        saveValue: function (attributeName, inputValue) {
+            var $attributes = Attributes.$attributes;
+            var $attributeValue = $attributes.find('li.attribute.attributeType_' + attributeName).find('.value');
+            
+            if ($attributeValue.length == 0) {
+                // we have not attribute of that name
+                return;
+            }
+            
+            // save the value of the attribute, and check if it is valid at the same time.
+            var tmpResult = _element.setAttributeValue(attributeName, inputValue);
+            
+            if (tmpResult.success !== true) {
+                // the value is not valid, and thus could not be set.
+                alert(tmpResult.message);
+                return false;
+            }
+            
+            // if no value is set, it has to be displayed differently
+            if ($.trim(inputValue) == '') {
+                $attributeValue.addClass('notset');
+            } else {
+                $attributeValue.removeClass('notset');
+            }
+            
+            $attributeValue.html(inputValue);
+            
+            return true;
+        },
+        
+        /**
+         * toggle show
+         */
+        toggleDisplay: function () {
+            var $attributes = Attributes.$attributes;
+            
+            // first hide
+            
+            if ($('ul.attributes:visible').not($attributes).length > 0) {
+                // some other attributes are visible, we need to hide them first
+                $('ul.attributes:visible').not($attributes)
+                    .slideToggle('fast', function () {
+                                $attributes.slideToggle('fast');
+                    });
+            } else {
+                // no other attributes are currently visible
+                $attributes.slideToggle('fast');
+            }
+            
+            
+            return;
+        },
+        
+        /**
+         * mark an attribute as invalid.
+         * 
+         * @param   attributeName   string  name of the attribute
+         */
+        markAttributeInvalid: function (attributeName) {
+            var $attributes = Attributes.$attributes;
+            
+            var $invalidAttribute = $attributes.find('span.name:contains(' + attributeName + ')').closest('li.attribute');
+            
+            $attributes.parents('li.element').addClass('invalidChildAttribute');
+            $attributes.closest('li.element').removeClass('invalidChildAttribute').addClass('invalidAttribute');
+            
+            $invalidAttribute.addClass('invalid');
+            
+            $invalidAttribute.bind('valid', Attributes.markAttributeValid);
+        },
+        
+        
+        /**
+         * mark an attribute as valid.
+         * 
+         * Will be called from jQuery via event-handlers
+         */
+        markValueChanged: function (attributeName) {
+            var $attributes = Attributes.$attributes;
+            var $changedAttribute = $attributes.find('span.name:contains(' + attributeName + ')').closest('li.attribute');
+            
+            if (false === $changedAttribute.is('.invalid')) {
+                // nothing to be done here
+                return;
+            }
+            
+            $changedAttribute.removeClass('invalid');
+            
+            if ($attributes.find('li.attribute.invalid').length > 0) {
+                // there are still invalid attributes
+                return;
+            }
+            
+            
+            // go over all parents, and check if the still need to have the 'invalid attributes'-class
+            $attributes.parents('li.element').each(function () {
+                if (0 == $(this).find('li.attribute.invalid').length) {
+                    $(this).removeClass('invalidChildAttribute').removeClass('invalidAttribute');
+                }
+            });
+        },    
+        
+        /**
+         * update hinted attributes.
+         * If an elements value was changed based on a dataProvider, the new value might carry hints
+         * on other elements and their new respective value.
+         * 
+         * @param   changedAttributeName    string  name of the element that changed
+         * @param   changedAttributeValue   string  the new value of the changed attribute
+         */
+        updateHintedAttributes: function (changedAttributeName, changedAttributeValue) {
+            var dataProvider = DataProviderManager.getProviderForAttribute(changedAttributeName);
+            if (undefined == dataProvider) {
+                // no dataProvider = nothing to hint
+                return;
+            }
+            
+            var hints = dataProvider.getHintsForValue(changedAttributeValue);
+            
+            if (undefined == hints) {
+                // no hints = no hints :)
+                return;
+            }
+            
+            
+            var $attributes = Attributes.$attributes;
+            $.each(hints, function (attributeName, attributeValue) {
+                Attributes.saveValue(attributeName, attributeValue);
+            });
         },
     };
     
@@ -556,7 +982,7 @@ var EditorConfigurationElement = function (parent, element) {
             if ($.trim(text) == '') {
                 $value.addClass('notset');
             }
-            $value.attr('title', Messages.editor.tooltips.clickToEdit);
+            $value.attr('title', Messages.editor.ui.clickToEdit.tooltip);
 
             $textContent.append($value);
 
@@ -574,20 +1000,39 @@ var EditorConfigurationElement = function (parent, element) {
             var $value = $(this);
             var nodeValue = $value.html();
 
+            var width = $value.width();
+            var height = $value.height();
             $value.hide();
 
             var elementEnumeration = [];
+            var isUserInputAllowed;
             if (false == _element.getSchemaElement().isMixed) {
                 // get a list of valid values for this node, if it is an enumeration.
                 // only if not mixed, because mixed is un-bounded!
                 elementEnumeration = _element.getSchemaElement().getAllowedContent()._text.getEnumeration();
+                isUserInputAllowed = false;
+            } else {
+                isUserInputAllowed = true;
             }
 
+            // get the dataProvider for this element
+            if (elementEnumeration == undefined || elementEnumeration.length == 0) {
+                // only do this, if the XSD did not give us an enumeration!
+                var dataProvider = DataProviderManager.getProviderForElement(_element.name);
+                if (undefined != dataProvider) {
+                    elementEnumeration = dataProvider.getEnumeration();
+                    isUserInputAllowed = dataProvider.isUserInputAllowed();
+                }
+            }
 
             // get the DOM for an input..
-            var $input = getInputForValueAndEnumeration(nodeValue, elementEnumeration);
+            var $input = getInputForValueAndEnumeration(nodeValue, elementEnumeration, isUserInputAllowed);
             // insert input-field into the DOM
             $value.after($input);
+            
+            // adjust the size of the input
+            $input.width(width);
+            $input.height(height);
 
             // bind event handlers.
             $input.bind('cancel', TextContent.cancelHandler);
@@ -643,7 +1088,7 @@ var EditorConfigurationElement = function (parent, element) {
             var $input = $(this);
             var $value = $input.siblings('span.value');
 
-            var inputValue = $input.val();
+            var inputValue = $input.find('input, select').andSelf().filter('input, select').val();
 
             // save the value of the attribute, and check if it is valid at the same time.
             var tmpResult = _element.setTextValue(inputValue);
@@ -667,6 +1112,37 @@ var EditorConfigurationElement = function (parent, element) {
             $input.remove();
             $value.show();
         },
+
+
+        /**
+         * update hinted attributes.
+         * If an elements value was changed based on a dataProvider, the new value might carry hints
+         * on other elements and their new respective value.
+         * 
+         * @param   changedElementValue     string  the new value of the changed element
+         */
+        updateHintedAttributes: function (changedElementValue) {
+            var changedElementName = _element.name;
+            
+            var dataProvider = DataProviderManager.getProviderForElement(changedElementName);
+            if (undefined == dataProvider) {
+                // no dataProvider = nothing to hint
+                return;
+            }
+            
+            var hints = dataProvider.getHintsForValue(changedElementValue);
+            
+            if (undefined == hints) {
+                // no hints = no hints :)
+                return;
+            }
+            
+            
+            var $attributes = Attributes.$attributes;
+            $.each(hints, function (attributeName, attributeValue) {
+                Attributes.saveValue(attributeName, attributeValue);
+            });
+        },
     };
     
     /**
@@ -683,46 +1159,235 @@ var EditorConfigurationElement = function (parent, element) {
         var $input;
         if (typeof enumeration == 'undefined' || enumeration == undefined || enumeration.length == 0) {
             // there is no enumeration for this element
-            $input = $('<input />').val(value);
-        } else {
-            // @TODO: obey userinput, make input user-definable (whoa, whoa! that means an input-field!) (MS3, dataproviders)
+            // simply present an input-field and pre-set its value.
+
+            if (value.length > 30) {
+                // 'long' text are better in textareas
+                $input = $('<textarea />');
+            } else {
+                $input = $('<input />');
+            }
             
-            // this attribute is an ENUM, so we need a select-list.
-            $input = $('<select />');
+            $input.val(value);
+        } else {
+            // this attribute is an ENUM, so we need a select-list
             
             var tmpEnumeration = $.extend([], enumeration);
             if (true === isOptional) {
                 tmpEnumeration.unshift('');
             }
+
+
+            if (true === userinput) {
+                // if user-input is allowed, use activeInput
+                var activeInput = new ActiveInput();
+                activeInput.setValue(value);
+                activeInput.setEnumeration(tmpEnumeration);
+                $input = activeInput.getAsHTML();
+            } else {
+                // otherwise use a dull select-list
+                $input = $('<select />');
+
+                var $options = getSelectGroupForValueAndEnumerationEntries(value, tmpEnumeration);
+            }
             
-            $.each(tmpEnumeration, function (i, enumEntry) {
-                var $option = $('<option />');
-                
-                var enumLabel;
-                var enumValue;
-                
-                if (typeof enumEntry == 'string') {
-                    enumLabel = enumValue = enumEntry;
-                }
-                // @TODO: dataproviders will give us an object of data instead of a string, use that then (MS3)
-                
-                $option.attr('value', enumValue);
-                $option.html(enumLabel);
-                
-                if (enumValue == value) {
-                    // pre-select this value
-                    $option.prop('selected', true);
-                }
-                
-                $input.append($option);
-            });
+            
+            $input.append($options);
         }
         
-        return $input
+        return $input;
     };
     
     
-    var defaultChildButtonDisplayStyle = undefined;
+    /**
+     * get entries for a drop-down selection by the user
+     * 
+     * @param   value       string  the original value (for pre-selectin)
+     * @param   enumeration mixed   object or array of entries
+     */
+    var getSelectGroupForValueAndEnumerationEntries = function (value, enumeration) {
+        var selectGroup = [];
+        
+        $.each(enumeration, function (i, enumEntry) {
+            var $option = $('<option />');
+
+            var enumLabel;
+            var enumValue;
+
+            if (typeof enumEntry == 'string') {
+                enumLabel = enumValue = enumEntry;
+            } else {
+                // dataproviders will give us an object of data instead of a string, use that
+                // this was provided by a dataProvider
+                if (typeof enumEntry.group != 'undefined') {
+                    // we have a group
+                    // groups will need to be broken down, and do create optgroups
+                    $.each(enumEntry.group, function (i, groupsEntry) {
+                        var groupName = groupsEntry.label;
+                        var groupElements = groupsEntry.elements;
+                        
+                        // create an optgroup for each group
+                        var $group = $('<optgroup />').attr('label', groupName);
+                        var groupEntries = getSelectGroupForValueAndEnumerationEntries(value, groupElements);
+                        $group.append(groupEntries);
+                        
+                        // and append the optgroup to the result
+                        selectGroup.push($group);
+                    });
+                    
+                    // continue with '.each', as we do not want to create an additional option after the group
+                    
+                    return;
+                } else {
+                    enumLabel = enumEntry.label;
+                    enumValue = enumEntry.value;
+                    
+                    if (enumValue != enumLabel) {
+                        // if label and value differ, we append the value to the label
+                        enumLabel += ' (' + enumEntry.value + ')'
+                    }
+                }
+                
+            }
+
+            $option.attr('value', enumValue);
+            $option.html(enumLabel);
+
+            if (enumValue == value) {
+                // pre-select this value
+                $option.prop('selected', true);
+            }
+
+            selectGroup.push($option);
+        });
+        
+        return selectGroup;
+    };
+    
+    /**
+     * toggle displaying this element as being 'the active one'
+     */
+    var toggleActive = function () {
+        if (Attributes.$attributes == undefined) {
+            // no attributes to be had
+            return;
+        }
+        
+        Attributes.toggleDisplay();
+        
+        var $name = _html.find('.name').first();
+        
+        // clean up!
+        $('.name.active').not($name).removeClass('active');
+        $name.toggleClass('active');
+    };
+    
+    /**
+     * clickhandler for the element-item itself (propably the type and name of the element)
+     * 
+     * @var event   jQuery-event    the event that occured
+     */
+    var clickHandler = function (event) {
+        switch (event.which) {
+            case 1:
+                // left mouse button
+                toggleActive();
+                break;
+            case 2:
+                // middle mouse button
+                break;
+            case 3:
+                // right mouse button
+                UIElements.toggleSubMenu();
+                // stop bubbling.
+                event.stopPropagation();
+                break;
+        }
+    };
+    
+    /**
+     * remember an element.
+     * 
+     * Used for cut, copy & paste. Will proxy this element and options to our topmost element, the Editor
+     * 
+     * @param   element object  EditorConfigurationElement to remember
+     * @param   options object  options to remember additionally
+     */
+    _self.rememberElement = function (element, options) {
+        _parent.rememberElement(element, options);
+    };
+    
+    
+    /**
+     * get the remembered element
+     * 
+     * @return  object  the remembered element (or undefined if none)
+     */
+    _self.getRememberedElement = function () {
+        return _parent.getRememberedElement();
+    };
+    
+    
+    /**
+     * get the options that were stored alongside the remembered element
+     * 
+     * @return  object  the options
+     */
+    _self.getRememberedElementOptions = function () {
+        return _parent.getRememberedElementOptions();
+    };
+    
+    /**
+     * append a child to the HTML-DOM
+     * 
+     * @param   childEditorNode object  EditorConfigurationElement to be added
+     */
+    _self.appendChildNode = function (childEditorNode) {
+        // append the EditorNodes HTML to the DOM
+        _html.find('ul.children').first().append(childEditorNode.getAsHTML());
+        _self.redrawChildrenButton();
+    };
+    
+    
+    /**
+     * append a child to the HTML-DOM at an arbitrary position
+     * 
+     * @param   childEditorNode object  EditorConfigurationElement to be added
+     * @param   position        integer array-index at which to insert said childEditorNode
+     */
+    _self.appendChildNodeAtPosition = function (childEditorNode, position) {
+        var $nodes = _html.find('ul.children').first().children('li');
+        if (position >= $nodes.length) {
+            // am not able to insert after the end of our list ...
+            // or at the end of the list (length - 1)
+            // append the EditorNodes HTML to the DOM
+            $nodes.last().after(childEditorNode.getAsHTML());
+        } else {
+            // add the EditorNodes HTML to the DOM
+            $nodes.eq(position).before(childEditorNode.getAsHTML());
+        }
+        
+        _self.redrawChildrenButton();
+    };    
+    
+    
+    /**
+     * remove this EditorConfigurationElement from the DOM, and remove the _element from its parent
+     */
+    _self.remove = function () {
+        if (false === _element.isRemovable()) {
+            // user-feedback
+            alert(Messages.editor.elementNotRemovable);
+            return;
+        }
+
+        _element.remove();
+        $(_html).remove();
+        _parent.redrawChildrenButton();
+        delete _element;
+    };
+    
+    
     /**
      * re-check if we have children, and show or hide the button accordingly
      */
@@ -730,18 +1395,13 @@ var EditorConfigurationElement = function (parent, element) {
         var hasChildren = _html.find('ul.children > li').length > 0;
         var buttonChildren = _html.find('.button.children').first();
         
-        if (false === defaultChildButtonDisplayStyle) {
-            // jQuery does not apply show() correctly on inline-block, and the code may not interfere with the layout
-            // so we find out the original display-style, and remember it.
-            defaultChildButtonDisplayStyle = buttonChildren.css('display');
-        }
-        
         if (hasChildren) {
-            buttonChildren.css({display: defaultChildButtonDisplayStyle});
+            buttonChildren.removeClass('disabled');
         } else {
-            buttonChildren.css({display: 'none'});
+            buttonChildren.addClass('disabled').removeClass('active');
+            _html.find('ul.children > li').hide();
         }
-    }
+    };
     
 
     /**
@@ -754,21 +1414,77 @@ var EditorConfigurationElement = function (parent, element) {
     };
     
     /**
+     * Event Listener for the ConfigurationElement (_element)
+     * 
+     * @param   listenerEvent   object  instance of ListenerEvent
+     */
+    _self.ConfigurationElementEventListener = function (listenerEvent) {
+        switch (listenerEvent.event) {
+            case 'invalid':
+                switch (listenerEvent.params.type) {
+                    case 'attribute_missing':
+                        // mark the attribute invalid
+                        Attributes.markAttributeInvalid(listenerEvent.params.item);
+                        break;
+                    default:
+                        // @TODO: find some generic feedback, and implement!
+                        alert('unknown invalidity: ' + listenerEvent.params.type);
+                }
+                break;
+            case 'attributeChangedValue':
+                if (listenerEvent.params.item == 'name') {
+                    // we need info when the name-attribute changed its value
+                    var $nameValue = _html.find('.name').first().find('.nameValue');
+                    if (listenerEvent.params.newValue.trim() != '') {
+                        $nameValue.addClass('set');
+                    } else {
+                        $nameValue.removeClass('set');
+                    }
+                    $nameValue.text(listenerEvent.params.newValue);
+                    delete $nameValue;
+                }
+                
+                Attributes.markValueChanged(listenerEvent.params.item);
+                Attributes.updateHintedAttributes(listenerEvent.params.item, listenerEvent.params.newValue);
+                
+                break;
+            case 'elementChangedValue':
+                TextContent.updateHintedAttributes(listenerEvent.params.newValue);
+                break;
+            default:
+                throw 'programmer error, unknown event: ' + listenerEvent.event;
+        }
+    };
+    
+    /**
      * create the html of us. recursive!
+     * caches the result
      * 
      * @return  jquery-object   the HTML to display for this node and its children
      */
     _self.getAsHTML = function () {
+        if (_html != undefined) {
+            return _html;
+        }
+        
         // create this elements markup, divided into outer shell (container, tree) and inner part (text, buttons, ...)
         _html = $('<li />').addClass('element');
-        _html.append($('<span />').addClass('tree').append($('<span />').addClass('image')));
+        _html.append($('<span />').addClass('tree').append(UIElements.getButtonOfType('children')));
         
         var $innerHTML = $('<span />').addClass('element');
         _html.append($innerHTML);
         
-        var $name = $('<span />').addClass('name').html(_element.name);
+        var $name = $('<span />').addClass('name').html(_element.name).addClass('nodeType_' + _element.name);
+        var $nameValue = $('<span />').addClass('nameValue');
+        
+        if (typeof _element.attributes.name != 'undefined' && _element.attributes.name.trim() != '') {
+            $nameValue.text(_element.attributes.name);
+            $nameValue.addClass('set');
+        }
+        $name.append($nameValue);
+        delete $nameValue;
+        
         $innerHTML.append($name);
-        delete $name;
 
         // get the html for our attributes (and those that are allowed but not set)
         // depending on that, we set/add buttons, that is why we do it so early
@@ -781,24 +1497,36 @@ var EditorConfigurationElement = function (parent, element) {
         var schemaElement = _element.getSchemaElement();
         var allowedChildren = schemaElement.getAllowedElements();
         
-        var buttonConfig = {
+        var menuConfig = {
                             attributes: ($attributes != undefined && $attributes.find('li:not(.visible)').length > 0),
                             children:   !$.isEmptyObject(allowedChildren),
                             remove:     _element.isRemovable(),
                             };
+
+        $innerHTML.append(UIElements.getButtonOfType('toggleSubmenu'));
         
-        $innerHTML.append(Buttons.getTopButtonHTML(buttonConfig));
-        delete buttonConfig;
+        $name.mouseup(clickHandler)
+            // and disable the normal context menu, as we wil replace it!
+            .bind("contextmenu", function(e) {
+                e.preventDefault();
+            });
+
+        var $submenu = UIElements.getSubMenuHTML(menuConfig);
+        $innerHTML.append($submenu);
+        delete menuConfig;
+        delete $submenu;
+        
         
         // does this element have text-value, and/or is it allowed to have?
         // do not display this for mixed elements!
         if (!schemaElement.isMixed && schemaElement.getAllowedContent()._text != false) {
             $innerHTML.append(TextContent.getAsHTML());
         }
-
-        if ($attributes != undefined) {
-            // this means we do have some attributes (set or unset)
+        
+        if ($attributes != undefined && $attributes.length > 0) {
+            // only append attributes if we have some
             $innerHTML.append($attributes);
+            $name.css({cursor: 'pointer'});
         }
 
         // append this elements children (immediate first, the recurse)
@@ -820,4 +1548,10 @@ var EditorConfigurationElement = function (parent, element) {
         
         return _html;
     };
+
+    
+    /**
+     * attach ourselves as an event-listener to our ConfigurationElement
+     */
+    _element.attachListener(_self);
 }
