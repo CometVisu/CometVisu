@@ -397,12 +397,15 @@ function parseXML(xml) {
   // then the icons
   $('meta > icons icon-definition', xml).each(
     function(i) {
-      var $this = $(this);
-      var name = $this.attr('name');
-      var uri = $this.attr('uri');
-      var type = $this.attr('type');
+      var $this   = $(this);
+      var name    = $this.attr('name');
+      var uri     = $this.attr('uri');
+      var type    = $this.attr('type');
       var flavour = $this.attr('flavour');
-      icons.insert(name, uri, type, flavour);
+      var color   = $this.attr('color');
+      var styling = $this.attr('styling');
+      var dynamic = $this.attr('dynamic');
+      icons.insert(name, uri, type, flavour, color, styling, dynamic);
     });
 
   // then the mappings
@@ -423,7 +426,7 @@ function parseXML(xml) {
                 for ( var i = 0; i < value.length; i++) {
                   var $v = $(value[i]);
                   if ($v.is('icon'))
-                    value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'));
+                    value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'));
                 }
 
                 if ($localThis.attr('value')) {

@@ -51,14 +51,14 @@
   $outtxt = "";
   foreach ($icons as $i) {
     $name = preg_replace("/\.png$/", "", $i);
-    $outtxt .= sprintf("%-30s", "'". $name ."' : ") ."   { '*': { '*' : 'white', 'ws' : 'white', 'sodium' : 'orange',\n";
+    $outtxt .= sprintf("%-30s", "'". $name ."' : ") ."   { '*': { '*' : { '*' : 'white', 'ws' : 'white', 'sodium' : 'orange',\n";
     $firstline = true;
     foreach ($colors as $c) {
       if (! $firstline) { $outtxt .= ",\n"; } else { $firstline = false; }
       $color = $c;
       $outtxt .= sprintf("%36s", "'". $color ."'") . " : { 'uri': 'icon/knx-uf-iconset/128x128_". $c ."/". $i ."' }";
     }
-    $outtxt .= " } },\n";
+    $outtxt .= " } } },\n";
   }
  
   $outtxt = preg_replace("/,\n$/", "", $outtxt);
