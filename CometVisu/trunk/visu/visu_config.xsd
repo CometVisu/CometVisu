@@ -423,7 +423,7 @@
       <xsd:element name="image" type="image" />
       <xsd:element name="imagetrigger" type="imagetrigger" />
       <xsd:element name="video" type="video" />
-      <xsd:element name="iframe" type="iframe" />
+      <xsd:element name="web" type="web" />
       <xsd:element name="rgb" type="rgb" />
       <xsd:element name="pagejump" type="pagejump" />
       <xsd:element name="wgplugin_info" type="wgplugin_info"/>
@@ -639,7 +639,7 @@
     <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
-  <xsd:complexType name="iframe">
+  <xsd:complexType name="web">
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
       <xsd:element name="label" type="label" maxOccurs="1" />
