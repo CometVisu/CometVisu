@@ -49,6 +49,23 @@ $(document).ready(function () {
         alert(result.message);
     });
 
+    
+    $(document).unbind('configuration_saving_error').bind('configuration_saving_error', function (event, result) {
+        // something went wrong
+        // we can not fix it, so let's simply inform the user, and leave.
+        alert(result.message);
+    });
+
+    
+    $(document).unbind('configuration_saving_success').bind('configuration_saving_success', function (event) {
+        // everything is cool, configuration was saved
+        // @TODO: maybe implement some sort of "traffic light" that goes to green when the configuration was saved?
+        var tmpResult = new Result(false, Messages.configuration.saved);
+        alert(tmpResult.message);
+    });
+
+
+
     $(document).unbind('schema_loaded').bind('schema_loaded', function () {
 
         try {
@@ -73,7 +90,6 @@ $(document).ready(function () {
         // start and render the editor
         editor = new Editor(config);
         editor.render(targetSelector);
-
     });
     
     // loading the Configuration and validation it WILL take a few seconds!
@@ -91,7 +107,31 @@ $(document).ready(function () {
     
     // and start loading the configuration
     config = new Configuration(configFilename);
+    
+    // attach the global event listener
+    config.attachGlobalListener(GlobalConfigurationElementEventListener);
 });
+
+var GlobalConfigurationElementEventListener = {
+    /**
+     * Event Listener for the ConfigurationElement (_element)
+     * 
+     * @param   listenerEvent   object  instance of ListenerEvent
+     */
+    ConfigurationElementEventListener: function (listenerEvent) {
+        switch (listenerEvent.event) {
+            case 'invalid':
+                // @TODO: implement
+                if (typeof console != 'undefined') {
+                    console.log(listenerEvent);
+                }
+                break;
+            default:
+                // do nothing
+        }
+    }
+};
+
 
 /*
  * be able to access GET-Params

@@ -27,10 +27,39 @@
  * @since       2012-10-28
  */
 
-#config, #config input, #config select {
+#config, #config input, #config select, #config textarea {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 5.5mm;
+    font-size: 14pt;
     color: #3E3E3E;
+}
+
+#editor {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+#editor > .menu {
+    display: block;
+    height: 35px;
+    background-color: #d3d3d3;
+    margin: 0;
+    padding: 5px;
+}
+
+#editor span.save {
+    
+}
+
+ul#config {
+    width: 590px;
+    height: 800px;
+    overflow-x: auto;
+    overflow-y: auto;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    padding: 5px;
 }
 
 ul#config,
@@ -38,13 +67,31 @@ ul#config,
     list-style-type: none;
     list-style-image: none;
     padding-left: 0;
-    margin-left: .5em;
+    margin-left: 5px;
+}
+
+#config ul {
+    margin-left: 15px;
 }
 
 #config li.element {
     clear: both;
-    margin-bottom: .5em;
+    margin-bottom: 9px;
     display: block;
+}
+
+#config li.dropzone {
+    clear: both;
+    margin: 9px;
+    display: block;
+    height: 18px;
+    background-color: lightyellow;
+    border: 1px dotted grey;
+}
+
+#config li.element.cutout {
+    opacity: 0.5;
+    border: 1px dashed black;
 }
 
 #config li.element:after {
@@ -56,50 +103,62 @@ ul#config,
 	height: 0;
 }
 
+#config li.element.invalidChildAttribute > .element > .name:after {
+    color: #8e7575;
+    content: '(child has invalid data)';
+    font-size: 9pt;
+}
+
+#config li.element.invalidAttribute > .element > .name:after {
+    color: red;
+    content: '(has invalid data)';
+    font-size: 9pt;
+}
+
 #config li.element > .tree {
     /* tree-indicator */
     display: block;
-    width: 1.2em;
-    height: 1.2em;
-    margin-right: 0em;
+    margin-right: 0;
     float: left;
-}
-
-/* hide some items for the topmost element */
-#config > li.element > .tree {
-    display: none;
-}
-
-
-#config li.element .tree .image {
-    background-image: url(editor_sprite.png);
-    background-repeat: no-repeat;
-    background-position: -18px -36px;
-    width: 18px;
-    height: 18px;
-    display: block;
-    position: relative;
-    top: -5px;
+    cursor: pointer;
+    padding: 4px;
 }
 
 #config li.element > .element {
     display: block;
-    float: left;
 }
 
 #config .element > .name {
     font-size: 115%;
     display: block;
-    width: 8em;
     float: left;
+    padding: 4px;
+    border: 1px solid transparent;
+    cursor: default;
 }
 
+#config .element .name.active {
+    background-color: #aad8ff;
+    border: 1px dotted #c0c0c0;
+}
+
+#config .element .name .nameValue {
+    margin-left: 18px;
+    font-size: 87%;
+}
+
+#config .element .name .nameValue.set:before,
+#config .element .name .nameValue.set:after {
+    content: '"';
+}
+
+
 #config .element .addChildContainer {
-    height: 1.5em;
+    height: 27px;
     display: inline-block;
-    padding: .2em;
+    padding: 4px;
     border: 1px solid #6b6b6b;
-    border-radius: .2em;
+    border-radius: 4px;
     vertical-align: middle;
 }
 
@@ -108,19 +167,50 @@ ul#config,
     float: left;
 }
 
-#config .element .buttons {
+#config .submenu {
     display: block;
     float: left;
+    border: 1px solid #a0a0a0;
+    border-radius: 4px;
+    padding: 4px;
+    margin: 4px;
+    position: absolute;
+    background-color: white;
 }
 
-#config .element .button {
-    font-size: 5.5mm;
+#config .submenu {
+    z-index: 5;
+}
+
+#config .name,
+#config .attributes,
+#config .children,
+#config .button {
+    z-index: 1;
+}
+
+#config .submenu .menuitem {
+    display: block;
+    margin: 4px;
+    cursor: pointer;
+}
+
+#config .submenu .menuitem.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#editor > .menu .button,
+#config .element .button,
+#config .tree .button {
+    cursor: pointer;
+    font-size: 14pt;
     display: inline-block;
     background-color: #d3d3d3;
     border: 1px solid #a0a0a0;
-    border-radius: .2em;
-    margin: 0 0.25em;
-    padding: .2em;
+    border-radius: 4px;
+    margin: 0 4px;
+    padding: 4px;
 
     background-image: linear-gradient(top, #dddddd, #c0c0c0);
     background-image: -o-linear-gradient(top, #dddddd, #c0c0c0);
@@ -137,10 +227,13 @@ ul#config,
     );
 }
 
+#editor > .menu .button.disabled,
 #config .element .button.disabled {
     opacity: 0.4;
+    cursor: not-allowed;
 }
 
+#editor > .menu .button.active,
 #config .element .button.active {
     background-image: linear-gradient(top, #d3d3d3, #464646);
     background-image: -o-linear-gradient(top, #d3d3d3, #464646);
@@ -156,6 +249,14 @@ ul#config,
             color-stop(1, #464646)
     );
 }
+
+#config .tree .button,
+#config .tree .button.active {
+    background-image: none;
+    background: transparent;
+    border: none;
+}
+
 
 #config .element .button.cancel {
     background-image: linear-gradient(top, #d3d3d3, #8e7575);
@@ -174,8 +275,7 @@ ul#config,
 }
 
 
-#config .element .buttons .button.addchild,
-#config .element .buttons .button.remove {
+#config .element .buttons .button.addchild {
     background-image: linear-gradient(top, #eaeaea, #b2b2b2);
     background-image: -o-linear-gradient(top, #eaeaea, #b2b2b2);
     background-image: -moz-linear-gradient(top, #eaeaea, #b2b2b2);
@@ -193,12 +293,6 @@ ul#config,
     border: 1px solid #C0C0C0;
 }
 
-#config .element .button.spacer {
-    background-image: none;
-    background: transparent;
-    border: none;
-}
-
 #config .element .button .image {
     width: 18px;
     height: 18px;
@@ -214,16 +308,17 @@ ul#config,
 
 
 /* images for the buttons */
-#config .button.attributes .image {
-    background-position: 0 -18px;
+#config .button.toggleSubmenu {
+    display: none;
 }
+
+#config .button.toggleSubmenu .image {
+    background-position: -36px 0;
+}
+
 
 #config .button.addchild .image {
     background-position: 0 0;
-}
-
-#config .button.remove .image {
-    background-position: -18px 0;
 }
 
 #config .button.cancel .image {
@@ -231,12 +326,13 @@ ul#config,
 }
 
 #config .button.children .image {
-    background-position: 0 -36px;
+    background-position: 0 0;
 }
 
-#config .element .button.spacer .image {
-    background: none !important;
+#config .button.children.active .image {
+    background-position: -18px 0;
 }
+
 /* end images for the buttons */
 
 
@@ -245,15 +341,25 @@ ul#config,
     clear: both;
     font-size: 90%;
     color: #464646;
-    height: 1.2em;
+    min-height: 22px;
     background-color: #d3d3d3;
     border-style: solid;
     border-color: #464646;
     border-width: 1px;
-    border-radius: .2em;
-    padding: .2em;
-    margin-left: 1.5em;
-    width: 35.7em;
+    border-radius: 4px;
+    padding: 4px 13px;
+    margin-left: 27px;
+}
+
+#config .element .content .value {
+    display: inline-block;
+    width: 100%;
+}
+
+
+#config .element .content input,
+#config .element .content textarea {
+    font-size: 90%;
 }
     
 #config .element > ul.attributes {
@@ -263,10 +369,13 @@ ul#config,
     border-style: solid;
     border-color: #464646;
     border-width: 1px;
-    border-radius: .2em;
-    padding: .2em;
-    margin-left: 1.5em;
-    width: 31.7em;
+    border-radius: 4px;
+    padding: 4px;
+    margin-left: 27px;
+    width: 600px;
+    position: fixed;
+    left: 620px;
+    top: 63px;
 }
 
 #config .element ul.attributes.visible.collapsed {
@@ -288,30 +397,32 @@ ul#config,
     font-size: 90%;
     color: #464646;
     background-color: #C0C0C0;
-    margin: .05em;
-    padding: .2em;
-    border-radius: .05em;
+    margin: 1px;
+    padding: 4px;
+    border-radius: 1px;
 }
 
 #config .element > .attributes > .attribute input,
+#config .element > .attributes > .attribute textarea,
 #config .element .attributes .attribute select {
     clear: both;
     font-size: 90%;
     color: #464646;
     display: inline-block;
-    width: 19em;
+    width: 300px;
     border: none;
     background-color: #dddddd;
-    padding: .2em;
+    padding: 4px;
+    margin: 0;
 }
 
 
 #config .element > .attributes > .attribute .name {
     display: inline-block;
-    width: 15em;
-    height: 1.1em;
-    margin: .1em 0;
-    padding: .2em 0;
+    width: 240px;
+    height: 20px;
+    margin: 2px 0;
+    padding: 4px 0;
 }
 
 #config .element > .attributes > .attribute .name.required {
@@ -333,9 +444,14 @@ ul#config,
     display: inline-block;
     width: 19em;
     background-color: #d3d3d3;
-    margin: .1em;
-    padding: .2em;
-    height: 1.1em;
+    margin: 2px;
+    padding: 4px;
+    height: 20px;
+    z-index: 1;
+}
+
+#config .element > .attributes > .attribute.invalid {
+    background-color: #D88F8F;
 }
 
 #config .element .value.notset {
@@ -352,9 +468,78 @@ ul#config,
 #config .element > ul.children {
     clear: both;
     display: block;
-    padding-top: .5em;
+    padding-top: 9px;
 }
 
 #config .element > .children > .element {
     
+}
+
+#config .activeInput {
+    position: relative;
+    display: inline-block;
+    z-index: 5;
+}
+
+#config .activeInput input {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+#config .activeInput .list {
+    width: 100%;
+    display: block;
+    position: absolute;
+    border: 1px solid #c0c0c0;
+    border-radius: 4px;
+    padding: 5px;
+    overflow-y: auto;
+    height: 7em;
+    background-color: white;
+    z-index: 5;
+}
+
+#config .activeInput .list .option {
+    cursor: default;
+    min-height: 1.2em;
+    border-bottom: 1px dotted #c0c0c0;
+    padding: 2px 0;
+}
+
+#config .activeInput .list .headline {
+    font-weight: bold;
+    border-bottom: 1px dotted #c0c0c0;
+    border-top: 1px solid #c0c0c0;
+    padding: 5px 0 2px 0;
+}
+
+#config .activeInput .list .option.selected {
+    background-color: #aad8ff;
+    border: 1px dotted #c0c0c0;
+}
+
+/* layout for small screens */
+@media handheld, only screen and (max-width: 1200px) {
+    ul#config {
+        width: auto;
+        height: auto;
+        overflow: visible;
+        border: none;
+    }
+    
+    #config .element > ul.attributes {
+        position: static;
+        left: auto;
+        top: auto;
+    }
+
+    #config .button.toggleSubmenu {
+        display: inline-block;
+    }
+    
+    #config .activeInput .list {
+        position: static;
+        overflow: visible;
+    }
 }

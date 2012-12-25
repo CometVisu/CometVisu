@@ -33,7 +33,7 @@
  */
 
 
-// @TODO: read and parse annotations (documentation, xml: lang); use separate Class? (MS4+)
+// @TODO: read and parse annotations (documentation, xml: lang); use separate Class? (MS5+)
 
 /**
  * starting-point for a javascript-representation of the XSD
@@ -573,6 +573,22 @@ var SchemaElement = function (node, schema) {
 
             allowedContent._choice = new SchemaChoice(tmpDOMChoice, _schema);
             delete tmpDOMChoice;
+        } else if ($type.children(fixNamespace('xsd\\:group')).length > 0) {
+            // we have a group
+            // as per the W3C, group may only appear once per element/type (not true for group in choices!)
+            // also, a group and a choice can not BOTH appear in an element/type
+
+            var tmpDOMGroup = $type.children(fixNamespace('xsd\\:group'))[0];
+            
+            var subGroup = new SchemaGroup(tmpDOMGroup, _schema);
+            
+            if (true === subGroup.hasChoice()) {
+                allowedContent._choice = subGroup.getChoice();
+            }
+
+            delete tmpDOMGroup;
+            delete subGroup;
+            
         } else if ($type.is('[type]') && $type.attr('type').match(/^xsd:/)) {
             // this is a really simple node that defines its own baseType
             allowedContent._text = new SchemaSimpleType($type, _schema);
@@ -876,6 +892,60 @@ var SchemaElement = function (node, schema) {
     var allowedContentLoaded = false;
 }
 
+/**
+ * a group of elements
+ * 
+ * @param   node    DOMNode the group-node
+ * @param   schema  Schema  the corresponding schema
+ */
+var SchemaGroup = function (node, schema) {
+    /*
+     * us
+     * @var object
+     */
+    var _group = this;
+    
+    /**
+     * our node
+     * @var object
+     */
+    var $n = $(node);
+    
+    /**
+     * the schema we belong to
+     * @var object
+     */
+    var _schema = schema;
+    if (_schema == undefined) {
+        throw 'programming error, schema is not defined';
+    }
+    
+    /**
+     * does this group have a choice?
+     * 
+     * @return  boolean
+     */
+    _group.hasChoice = function () {
+        return $n.children(fixNamespace('xsd\\:choice')).length == 1;
+    }
+    
+    /**
+     * get the SchemaChoice-Element of this group
+     * 
+     * @return  object  SchemaChoice-object, or undefined if none
+     */
+    _group.getChoice = function () {
+        if (false === _group.hasChoice) {
+            return undefined;
+        }
+        
+        var choiceNode = $n.children(fixNamespace('xsd\\:choice'))[0];
+        var choice = new SchemaChoice(choiceNode, _schema);
+        
+        return choice;
+    }
+}
+
 
 /**
  * a single choice.
@@ -915,6 +985,24 @@ var SchemaChoice = function (node, schema) {
             // choice may appear only once as per the recommendation of the W3C for XSD
             subChoice = new SchemaChoice(subChoices.get(), _schema);
         }
+        
+        // each choice may have elements of type group, which themselves may carry choices
+        var groups = $n.find(fixNamespace('> xsd\\:group'));
+        $.each(groups, function (k, groupNode) {
+            groupNode = $(groupNode);
+            if (groupNode.is('[ref]')) {
+                // find the node refereced by the element.
+                groupNode = _schema.getReferencedNode('group', groupNode.attr('ref'));
+            }
+            
+            var $group = new SchemaGroup(groupNode, _schema);
+            
+            if (true === $group.hasChoice()) {
+                // this group has a choice, so we need to add its elements to ourselves
+                // this is not really clean, but as we do not honour maxOccurs/minOccurs that closely, it is ok for now
+                $.extend(allowedElements, $group.getChoice().getAllowedElements(true));
+            }
+        });
     }
     
     /**

@@ -27,7 +27,7 @@
  * @version     SVN: $Id$
  * @link        http://cometvisu.de
  * @since       2012-10-10
- * @requires    Schema.js, Messages.js, Result.js
+ * @requires    Schema.js, Messages.js, Result.js, ListenerEvent.js
  */
 
 /**
@@ -62,6 +62,12 @@ var Configuration = function (filename) {
     _config.rootNodes = [];
     
     /**
+     * mark objects of this class as being the Master of a configuration
+     * @var boolean
+     */
+    _config.isMaster = true;
+    
+    /**
      * load and cache the configuration/xml from the server
      */
     _config.load = function () {
@@ -85,6 +91,57 @@ var Configuration = function (filename) {
             }
         );
     };
+    
+    /**
+     * send the configuration to the server for saving
+     * 
+     * @return  boolean success
+     */
+    _config.save = function () {
+        var data = _config.getAsSerializable();
+        $.ajax('editor/bin/save_config.php',
+                {
+                    dataType: 'json',
+                    data: {
+                        config: _filename,
+                        data: JSON.stringify(data),
+                    },
+                    type: 'POST',
+                    cache: false,
+                success: function (data) {
+                    if (data == undefined || typeof data.success == 'undefined') {
+                        // some weird generic error
+                        var result = new Result(false, Messages.configuration.savingErrorUnknown);
+                        $(document).trigger('configuration_saving_error', [result]);
+
+                        return;
+                    }
+                    
+                    if (data.success == false) {
+                        // we have an error.
+                        var message;
+                        
+                        if (typeof data.message != 'undefined') {
+                            message = data.message;
+                        }
+                        
+                        var result = new Result(false, Messages.configuration.savingError, [message]);
+                        $(document).trigger('configuration_saving_error', [result]);
+
+                        return;
+                    }
+                    
+                    // everything is pretty cool.
+                    $(document).trigger('configuration_saving_success');
+                    
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var result = new Result(false, Messages.configuration.savingErrorServer, [textStatus, errorThrown]);
+                    $(document).trigger('configuration_saving_error', [result]);
+                },
+            }
+        );
+    }
     
     /**
      * get the filename of the schema/xsd associated with this Configuration
@@ -166,6 +223,59 @@ var Configuration = function (filename) {
     };
     
     /**
+     * get a serializable object of this element, recursive
+     * 
+     * @return  object
+     */
+    _config.getAsSerializable = function () {
+        var data = [];
+        
+        //  parse children
+        $.each(_config.rootNodes, function (i, child) {
+            data.push(child.getAsSerializable());
+        });
+        
+        return data;
+    }    
+
+
+    /**
+     * append an event listener to this ConfigurationElement.
+     * The Listener must have a function called 'ConfigurationElementEventListener'
+     * That function gets called on any interesting event (like isValid = false)
+     * 
+     * @param   listener    object  Listener
+     */
+    _config.attachGlobalListener = function (listener) {
+        if (typeof listener.ConfigurationElementEventListener !== 'function') {
+            throw 'programming error: listener is not compatible';
+        }
+        
+        listeners.push(listener);
+    };
+
+    /**
+     * inform all attached listeners (if any) of an event.
+     * Events are instances of Result.
+     * 
+     * @param   event   string  name of the event
+     * @param   params  object  list of additional params, optional
+     */
+    _config.informGlobalListeners = function (event, params) {
+        if (listeners.length == 0) {
+            // no listeners means nothing to do.
+            return;
+        }
+        
+        var listenerEvent = new ListenerEvent(event, params);
+        
+        // go over all listeners and inform them
+        $.each(listeners, function (i, listener) {
+            listener.ConfigurationElementEventListener(listenerEvent);
+        });
+    };
+    
+    /**
      * Parse the already loaded XML
      */
     var parseXML = function () {
@@ -173,13 +283,14 @@ var Configuration = function (filename) {
         // start with the root-nodes, and then go down through all of the configuration ...
         // the going-down-part is done by ConfigurationElement itself
         $xml.children().each(function () {
-            var node = new ConfigurationElement(this, undefined);
+            var node = new ConfigurationElement(this, _config);
             _config.rootNodes.push(node);
         });
     };
     
     _config.load();
     
+    var listeners = [];
 }
 
 
@@ -214,6 +325,8 @@ var ConfigurationElement = function (node, parent) {
                 // attributes with a colon are ignored, we expect them to be of xsd-nature.
                 if (!e.name.match(/:/)) {
                     attributes[e.name] = e.value;
+                } else {
+                    _element.systemAttributes[e.name] = e.value;
                 }
             });
         }
@@ -317,6 +430,7 @@ var ConfigurationElement = function (node, parent) {
         $.each(_element.attributes, function (name, value) {
             // check if this attribute is allowed, at all
             if (typeof _schemaElement.allowedAttributes[name] == 'undefined') {
+                informListeners('invalid', {type: 'attribute_disallowed', item: name});
                 isValid = false;
                 return;
             }
@@ -335,6 +449,7 @@ var ConfigurationElement = function (node, parent) {
             if (false == attribute.isOptional) {
                 if (typeof _element.attributes[name] == 'undefined' || _element.attributes[name] == undefined) {
                     // missing required attribute ... too bad ...
+                    informListeners('invalid', {type: 'attribute_missing', item: name});
                     isValid = false;
                 }
             }
@@ -365,10 +480,15 @@ var ConfigurationElement = function (node, parent) {
             // go over list of all elements, and see if some are not valid
             // that's it
             $.each(_element.children, function (i, child) {
+                if (isValid == false) {
+                    return;
+                }
+
                 var childName = child.name;
                 isValid = isValid && _schemaElement.isChildElementAllowed(childName);
                 
                 if (isValid == false) {
+                    informListeners('invalid', {type: 'element_disallowed', item: childName});
                     return;
                 }
                 
@@ -382,7 +502,12 @@ var ConfigurationElement = function (node, parent) {
                 isValid = isValid && child.isValid();
             });
         }
-        
+
+        if (false === isValid) {
+            // bail out, if we already know that we failed
+            return false;
+        }
+
         // secondly, check with the bounds of their parent (i.e. their 'choice')
         // is NOT capable of multi-dimensional-choice-bounds (like in complexType mapping)
         var childBounds = _schemaElement.getChildBounds();
@@ -391,35 +516,45 @@ var ConfigurationElement = function (node, parent) {
 
             // check all allowed and used elements against their personal bounds.
             // only if the choice-bounds of our parent are not undefined! (undefined = no choice, or multi-dimensional)
-            $.each(allSubElements, function (name, count) {
-                var bounds = _schemaElement.getSchemaElementForElementName(name).getBounds();
-
-                if (bounds.min > count) {
-                    // this element does not appear often enough
-                    isValid = false;
-                }
-
-                if (bounds.max < count) {
-                    // this element does not appear often enough
-                    isValid = false;
-                }
-            });
+            // @FIXME: this is not how XSD-specifications say this works!
+//            $.each(allSubElements, function (name, count) {
+//                var bounds = _schemaElement.getSchemaElementForElementName(name).getBounds();
+//
+//                if (bounds.min > count) {
+//                    // this element does not appear often enough
+//                    informListeners('invalid', {type: 'element_bounds_under', item: name});
+//                    isValid = false;
+//                }
+//
+//                if (bounds.max < count) {
+//                    // this element does not appear often enough
+//                    informListeners('invalid', {type: 'element_bounds_over', item: name});
+//                    isValid = false;
+//                }
+//            });
 
 
 
             if (childBounds.min > _element.children.length) {
                 // less elements than defined by the bounds
+                informListeners('invalid', {type: 'element_bounds_under'});
                 isValid = false;
             }
             
             if (childBounds.max != 'unbounded') {
                 if (childBounds.max < _element.children.length) {
                     // more elements than defined by the bounds
+                    informListeners('invalid', {type: 'element_bounds_over'});
                     isValid = false;
                 }
             }
         }
-        
+
+        if (false === isValid) {
+            // bail out, if we already know that we failed
+            return false;
+        }
+
         if (_element.children.length == 0 || _schemaElement.isMixed) {
             // if this element has no children, it appears to be a text-node
             // also, if it may be of mixed value
@@ -429,8 +564,12 @@ var ConfigurationElement = function (node, parent) {
             
             if (value.trim() != '') {
                 // only inspect elements with actual content. Empty nodes are deemed valid.
-                // @TODO: check if there might be nodes this does not apply for. sometime. MS4 or after bugreport.
+                // @TODO: check if there might be nodes this does not apply for. sometime. MS5 or after bugreport.
                 isValid = isValid && _schemaElement.isValueValid(value);
+                
+                if (isValid == false) {
+                    informListeners('invalid', {type: 'value_invalid'});
+                }
             }
         }
         
@@ -455,6 +594,8 @@ var ConfigurationElement = function (node, parent) {
         
         _element.attributes[name] = value;
         
+        informListeners('attributeChangedValue', {item: name, newValue: value});
+        
         return new Result(true);
     };
     
@@ -477,6 +618,8 @@ var ConfigurationElement = function (node, parent) {
         
         _element.value = value;
         
+        informListeners('elementChangedValue', {newValue: value});
+        
         return new Result(true);
     };  
     
@@ -498,8 +641,64 @@ var ConfigurationElement = function (node, parent) {
      * remove this node for good.
      */
     _element.remove = function () {
+        if (typeof _parentElement.isMaster != 'undefined' && _parentElement.isMaster == true) {
+            // do not work on the Master
+            return;
+        }
         _parentElement.removeChildNode(_element);
     };
+
+    /**
+     * append a node
+     * 
+     * @param   childNode   object  new ConfigurationElement to be added at the end of the list
+     */
+    _element.appendChildNode = function (childNode) {
+        if (_element == childNode) {
+            throw 'programming error: self and new-node are identical';
+        }
+        
+        _element.children.push(childNode);
+        
+        // set the parent of the new child!
+        childNode.setParentNode(_element);
+    };
+    
+    /**
+     * set the parent of this element.
+     * Needed for duplication, as we need to re-set the parent
+     * 
+     * @param   parentNode  object  ConfigurationElement of the new parent
+     */
+    _element.setParentNode = function (parentNode) {
+        _parentElement = parentNode;
+    }
+    
+    /**
+     * set all child-nodes at once.
+     * This is necessary so an outside function can re-arrange our children
+     * 
+     * @param   children    array   list of children in new order
+     */
+    _element.setChildren = function (children) {
+        _element.children = children;
+    };
+    
+    /**
+     * insert a child at an arbitrary position.
+     * 
+     * @param   child       object  the child to insert
+     * @param   position    integer the array-index at which to insert the child
+     */
+    _element.addChildAtPosition = function (child, position) {
+        if (position > _element.children.length) {
+            // if the position is way behind what we have, we simply add it as last item
+            position = _element.children.length;
+        }
+        
+        // add the child
+        _element.children.splice(position, 0, child);
+    }
     
     /**
      * create a new child, append it to this element
@@ -535,7 +734,7 @@ var ConfigurationElement = function (node, parent) {
         childNode.initFromScratch();
         
         // add this new child-node to our list of children
-        _element.children.push(childNode);
+        _element.appendChildNode(childNode);
 
         // aaaand ... we're done.
         return childNode;
@@ -636,7 +835,7 @@ var ConfigurationElement = function (node, parent) {
      * @return  boolean can it be removed?
      */
     _element.isRemovable = function () {
-        if (_parentElement == undefined) {
+        if (_parentElement == undefined || (typeof _parentElement.isMaster != 'undefined' && _parentElement.isMaster == true)) {
             // we have no parent. do not remove us!
             return false;
         }
@@ -672,6 +871,151 @@ var ConfigurationElement = function (node, parent) {
         return true;
     };    
     
+    
+    /**
+     * append an event listener to this ConfigurationElement.
+     * The Listener must have a function called 'ConfigurationElementEventListener'
+     * That function gets called on any interesting event (like isValid = false)
+     * 
+     * @param   listener    object  Listener
+     */
+    _element.attachListener = function (listener) {
+        if (typeof listener.ConfigurationElementEventListener !== 'function') {
+            throw 'programming error: listener is not compatible';
+        }
+        
+        listeners.push(listener);
+    };
+    
+    /**
+     * clear the list of attached listeners; needed if you duplicate this element
+     */
+    _element.clearListeners = function () {
+        listeners = [];
+    };
+    
+    /**
+     * set self; after duplication, we need to re-set _element, otherwise we still reference our old instance!
+     * 
+     * @param   self    object  the new self
+     */
+    _element.setSelf = function (self) {
+        _element = self;
+    };
+    
+    /**
+     * inform all attached listeners (if any) of an event.
+     * Events are instances of Result.
+     * 
+     * @param   event   string  name of the event
+     * @param   params  object  list of additional params, optional
+     */
+    var informListeners = function (event, params) {
+        // inform global listeners, if there are any ...
+        _parentElement.informGlobalListeners(event, params);
+
+        if (listeners.length == 0) {
+            // no listeners means nothing to do.
+            return;
+        }
+        
+        var listenerEvent = new ListenerEvent(event, params);
+        
+        // go over all listeners and inform them
+        $.each(listeners, function (i, listener) {
+            listener.ConfigurationElementEventListener(listenerEvent);
+        });
+    };
+    
+    /**
+     * inform global listeners.
+     * Same idea as informListeners, but only walks up the tree to our root-node, and inform the listeners
+     * of the rootNode
+     * 
+     * @param   event   string  name of the event
+     * @param   params  object  list of additional params, optional
+     */
+    _element.informGlobalListeners = function (event, params) {
+        _parentElement.informGlobalListeners(event, params);
+    };
+    
+    /**
+     * get a duplicate of this element
+     * 
+     * Clear listeners for the duplicate, everything else is kept in shape
+     * 
+     * @param   parent  object      the parent of the newly created node
+     * @return  object  duplicate of this
+     */
+    _element.getDuplicateForParent = function (parent) {
+        // deep-copy this element on our own ...
+        
+        var duplicate;
+        // create new element
+
+        // create a pseudo-node to use with "new ConfigurationElement()"-call
+        var $pseudoNode;
+        
+        if (_element.name == '#text') {
+            // text-nodes are not actual nodes, they are strings, so we will work with a text-node.
+            $pseudoNode = document.createTextNode('');
+        } else {
+            // most nodes are actual nodes ...
+            $pseudoNode = $('<' + _element.name + ' />', _schemaElement.getSchemaDOM())
+        }
+        
+        // create a new ConfigurationElement
+        duplicate = new ConfigurationElement($pseudoNode, parent);
+        
+        // give the element its schemaElement
+        duplicate.setSchemaElement(_schemaElement);
+        
+        // add a copy of our attributes
+        duplicate.attributes = $.extend({}, _element.attributes);
+        
+        // the value (if there is such a thing)
+        duplicate.value = _element.value;
+        
+        // ignore SystemAttributes, they are only necessary for root-level elements
+        
+        // go over our children
+        $.each(_element.children, function (childName, childNode) {
+            // duplicate children
+            var duplicateChild = childNode.getDuplicateForParent(duplicate);
+            
+            // and append them to ourselves
+            duplicate.appendChildNode(duplicateChild);
+        });
+        
+        return duplicate;
+    };
+    
+    /**
+     * get a serializable object of this element, recursive
+     * 
+     * @return  object
+     */
+    _element.getAsSerializable = function () {
+        var data = {};
+        
+        data.nodeName = _element.name;
+        data.attributes = $.extend({}, _element.attributes, _element.systemAttributes);
+        
+        if (_element.children.length == 0) {
+            // append the nodeValue ONLY if this element has no children!
+            data.nodeValue = _element.value.trim();
+        }
+        
+        data.children = [];
+        
+        // also parse children
+        $.each(_element.children, function (i, child) {
+            data.children.push(child.getAsSerializable());
+        });
+        
+        return data;
+    }
+    
     /**
      * the Configuration-object this element belongs to
      * @var object
@@ -702,6 +1046,12 @@ var ConfigurationElement = function (node, parent) {
     }
     
     /**
+     * system-attributes. hidden from the user
+     * @var object
+     */
+    _element.systemAttributes = {};
+    
+    /**
      * get and store a list of this elements set attributes
      * @var object
      */
@@ -718,5 +1068,11 @@ var ConfigurationElement = function (node, parent) {
      * @var string
      */
     _element.value = getValue();
+    
+    /**
+     * list of listeners
+     * @var array
+     */
+    var listeners = [];
     
 };

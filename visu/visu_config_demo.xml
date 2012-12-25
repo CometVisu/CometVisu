@@ -253,8 +253,8 @@
       <address transform="DPT:1.001" type="">12/7/100</address>
     </trigger>
     <line/>
-    <page name="iframe Test" align="center" >
-      <iframe src="http://www.cometvisu.org" width="500px" height="500px"/>
+    <page name="web Test" align="center" >
+      <web src="http://www.cometvisu.org" width="500px" height="500px"/>
     </page>
     <page name="Flavour Test" align="center" >
       <text>
@@ -723,10 +723,6 @@
           <address transform="DPT:9" type="">12/7/9</address>
         </slide>
       </group>
-      <wgplugin_info variable="KNX-Watchdog_last">
-        <label>WireGate Plugin Variable</label>
-        <address transform="DPT:1.001">12/7/1</address>
-      </wgplugin_info>
       <trigger value="Trigger" mapping="On_Off">
         <label>Update Value</label>
         <address transform="DPT:1.001" type="">12/7/1</address>

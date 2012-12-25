@@ -44,18 +44,67 @@ var Messages = {
     configuration: {
         filenameInvalid: 'no, empty or invalid filename given, can not instantiate without one',
         loadingError: 'configuration could not be loaded, \'%s\' / \'%s\'',
+        savingError: 'configuration could not be saved, server responded with \'%s\'',
+        savingErrorUnknown: 'configuration could not be saved, server-response is not understood',
+        savingErrorServer: 'configuration could not be saved, server responded with \'%s\' / \'%s\'',
+        saved: 'configuration was saved.',
         schemaNotFound: 'no schema/xsd found in root-level-element, can not run without one',
+    },
+    dataProvider: {
+        loadingError: 'data-provider could not be loaded, \'%s\' / \'%s\'',
     },
     editor: {
         elementNotRemovable: 'This element can not be removed',
-        tooltips: {
-            clickToEdit: 'click to edit',
-            buttons: {
-                disabled: 'not avilable',
-                addChild: 'Add an element as a child',
-                remove: 'Remove this element and all of its children',
-                attributes: 'Toggle display of attributes for this element',
-                children: 'Toggle display of child-elements for this element',
+        elementNotCuttable: 'This element can not be cut - please use copy instead',
+        notSavingInvalidConfiguration: 'The configuration is not valid, and as such can not be saved.',
+        ui: {
+            disabled: {
+                tooltip: 'not avilable',
+                text: undefined,
+            },
+            addChild: {
+                tooltip: 'Add an element as a child',
+                text: 'add child',
+            },
+            remove: {
+                tooltip: 'Remove this element and all of its children',
+                text: 'remove',
+            },
+            attributes: {
+                tooltip: 'Display attributes for this element',
+                text: undefined,
+            },
+            children: {
+                tooltip: 'Toggle display of child-elements for this element',
+                text: undefined,
+            },
+            cut: {
+                tooltip: 'cut',
+                text: 'cut',
+            },
+            copy: {
+                tooltip: 'copy',
+                text: 'copy',
+            },
+            paste: {
+                tooltip: 'paste',
+                text: 'paste',
+            },
+            sort: {
+                tooltip: 'sort',
+                text: 'sort',
+            },
+            toggleSubmenu: {
+                tooltip: 'Toggle display of submenu/action-menu',
+                text: undefined,
+            },
+            clickToEdit: {
+                tooltip: 'click to edit',
+                text: undefined,
+            },
+            save: {
+                tooltip: 'validate config and save',
+                text: 'save',
             },
         },
     },
