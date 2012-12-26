@@ -71,6 +71,7 @@ HEAD
 - lots of little bugfixes and improvements
 - Editor: old WYSIWYG-editor was removed due to existing and forseeable compatibility issues
 <Changes up to Revision 1243 included>
+- iframe-widget was renamed to web
 
 
 0.6.2

@@ -111,7 +111,7 @@ body br
   background-image:      -o-linear-gradient(#444444, #2d2d2d); /* Opera 11.10+ */
   background-image:         linear-gradient(#444444, #2d2d2d);
 }
-.widget.iframe
+.widget.web
 {
   border: none;
   background-image: none;
@@ -624,7 +624,7 @@ div#demo_2 {
 div#demo_3 {
     background-color: #1d1d1d;
 }
-.iframe .actor { width: 98%; }
+.web .actor { width: 98%; }
 
 #navbarTop .navbar .widget_container, #navbarBottom .navbar .widget_container {
 	width: auto;
