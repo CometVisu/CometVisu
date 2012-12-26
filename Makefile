@@ -14,7 +14,7 @@ STRUCTURE_PURE_SRC = \
   ${STRUCTURE_PURE}/_common.js\
   ${STRUCTURE_PURE}/break.js\
   ${STRUCTURE_PURE}/group.js\
-  ${STRUCTURE_PURE}/iframe.js\
+  ${STRUCTURE_PURE}/web.js\
   ${STRUCTURE_PURE}/image.js\
   ${STRUCTURE_PURE}/imagetrigger.js\
   ${STRUCTURE_PURE}/include.js\
