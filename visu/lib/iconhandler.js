@@ -51,38 +51,79 @@ function icon() { // Konstruktor
    */
   var db = {
 'CometVisu' : { '*' : '128',
-        '16' : { '*': { '*'         : 'sodium',
-                 'black'     : { 'uri': 'icon/comet_16_000000.png'},
-                 'white'     : { 'uri': 'icon/comet_16_ffffff.png'},
-                 'antimony'  : { 'uri': 'icon/comet_16_00ddff.png'},
-                 'boron'     : { 'uri': 'icon/comet_16_00ff11.png'},
-                 'lithium'   : { 'uri': 'icon/comet_16_ff0000.png'},
-                 'potassium' : { 'uri': 'icon/comet_16_d00055.png'},
-                 'sodium'    : { 'uri': 'icon/comet_16_ff8000.png'} } },
-        '32' : { '*': { '*'         : 'sodium',
-                 'black'     : { 'uri': 'icon/comet_32_000000.png'},
-                 'white'     : { 'uri': 'icon/comet_32_ffffff.png'},
-                 'antimony'  : { 'uri': 'icon/comet_32_00ddff.png'},
-                 'boron'     : { 'uri': 'icon/comet_32_00ff11.png'},
-                 'lithium'   : { 'uri': 'icon/comet_32_ff0000.png'},
-                 'potassium' : { 'uri': 'icon/comet_32_d00055.png'},
-                 'sodium'    : { 'uri': 'icon/comet_32_ff8000.png'} } },
-        '64' : { '*': { '*'         : 'sodium',
-                 'black'     : { 'uri': 'icon/comet_64_000000.png'},
-                 'white'     : { 'uri': 'icon/comet_64_ffffff.png'},
-                 'antimony'  : { 'uri': 'icon/comet_64_00ddff.png'},
-                 'boron'     : { 'uri': 'icon/comet_64_00ff11.png'},
-                 'lithium'   : { 'uri': 'icon/comet_64_ff0000.png'},
-                 'potassium' : { 'uri': 'icon/comet_64_d00055.png'},
-                 'sodium'    : { 'uri': 'icon/comet_64_ff8000.png'} } },
-        '128': { '*': { '*'         : 'sodium',
-                 'black'     : { 'uri': 'icon/comet_128_000000.png'},
-                 'white'     : { 'uri': 'icon/comet_128_ffffff.png'},
-                 'antimony'  : { 'uri': 'icon/comet_128_00ddff.png'},
-                 'boron'     : { 'uri': 'icon/comet_128_00ff11.png'},
-                 'lithium'   : { 'uri': 'icon/comet_128_ff0000.png'},
-                 'potassium' : { 'uri': 'icon/comet_128_d00055.png'},
-                 'sodium'    : { 'uri': 'icon/comet_128_ff8000.png'} } } },
+  '16' : { 
+    'black'    : '*/000000',
+    'white'    : '*/ffffff',
+    'antimony' : '*/00ddff',
+    'boron'    : '*/00ff11',
+    'lithium'  : '*/ff0000',
+    'potassium': '*/d00055',
+    'orange  ' : '*/ff8000',
+    '*': { '*' : 'ff8000',
+      '000000': { 'uri': 'icon/comet_16_000000.png'},
+      'ffffff': { 'uri': 'icon/comet_16_ffffff.png'},
+      '00ddff': { 'uri': 'icon/comet_16_00ddff.png'},
+      '00ff11': { 'uri': 'icon/comet_16_00ff11.png'},
+      'ff0000': { 'uri': 'icon/comet_16_ff0000.png'},
+      'd00055': { 'uri': 'icon/comet_16_d00055.png'},
+      'ff8000': { 'uri': 'icon/comet_16_ff8000.png'}
+    }
+  },
+  '32' : { 
+    'black'    : '*/000000',
+    'white'    : '*/ffffff',
+    'antimony' : '*/00ddff',
+    'boron'    : '*/00ff11',
+    'lithium'  : '*/ff0000',
+    'potassium': '*/d00055',
+    'orange  ' : '*/ff8000',
+    '*': { '*' : 'ff8000',
+      '000000': { 'uri': 'icon/comet_32_000000.png'},
+      'ffffff': { 'uri': 'icon/comet_32_ffffff.png'},
+      '00ddff': { 'uri': 'icon/comet_32_00ddff.png'},
+      '00ff11': { 'uri': 'icon/comet_32_00ff11.png'},
+      'ff0000': { 'uri': 'icon/comet_32_ff0000.png'},
+      'd00055': { 'uri': 'icon/comet_32_d00055.png'},
+      'ff8000': { 'uri': 'icon/comet_32_ff8000.png'}
+    }
+  },
+  '64' : { 
+    'black'    : '*/000000',
+    'white'    : '*/ffffff',
+    'antimony' : '*/00ddff',
+    'boron'    : '*/00ff11',
+    'lithium'  : '*/ff0000',
+    'potassium': '*/d00055',
+    'orange  ' : '*/ff8000',
+    '*': { '*' : 'ff8000',
+      '000000': { 'uri': 'icon/comet_64_000000.png'},
+      'ffffff': { 'uri': 'icon/comet_64_ffffff.png'},
+      '00ddff': { 'uri': 'icon/comet_64_00ddff.png'},
+      '00ff11': { 'uri': 'icon/comet_64_00ff11.png'},
+      'ff0000': { 'uri': 'icon/comet_64_ff0000.png'},
+      'd00055': { 'uri': 'icon/comet_64_d00055.png'},
+      'ff8000': { 'uri': 'icon/comet_64_ff8000.png'}
+    }
+  },
+  '128' : { 
+    'black'    : '*/000000',
+    'white'    : '*/ffffff',
+    'antimony' : '*/00ddff',
+    'boron'    : '*/00ff11',
+    'lithium'  : '*/ff0000',
+    'potassium': '*/d00055',
+    'orange  ' : '*/ff8000',
+    '*': { '*' : 'ff8000',
+      '000000': { 'uri': 'icon/comet_128_000000.png'},
+      'ffffff': { 'uri': 'icon/comet_128_ffffff.png'},
+      '00ddff': { 'uri': 'icon/comet_128_00ddff.png'},
+      '00ff11': { 'uri': 'icon/comet_128_00ff11.png'},
+      'ff0000': { 'uri': 'icon/comet_128_ff0000.png'},
+      'd00055': { 'uri': 'icon/comet_128_d00055.png'},
+      'ff8000': { 'uri': 'icon/comet_128_ff8000.png'}
+    }
+  }
+},
 
 // Do not remove this line: Dynamic Icons Start
 
@@ -1864,11 +1905,29 @@ function icon() { // Konstruktor
     if (!db[name][type])
       type = '*'; // undefined -> use default
     if (typeof db[name][type] === 'string')
+    {
       type = db[name][type]; // redirect link
+      if( type.split('/').length > 1 )
+      {
+        var all = type.split('/');
+        type = all.shift();
+        if( flavour === undefined ) 
+          flavour = all.shift();
+      }
+    }
     if (!db[name][type][flavour])
       flavour = '*'; // undefined -> use default
     if (typeof db[name][type][flavour] === 'string')
+    {
       flavour = db[name][type][flavour]; // redirect link
+      if( flavour.split('/').length > 1 )
+      {
+        var all = flavour.split('/');
+        flavour = all.shift();
+        if( color === undefined ) 
+          color = all.shift();
+      }
+    }
     if (!db[name][type][flavour][color])
       color = '*'; // undefined -> use default
     if (typeof db[name][type][flavour][color] === 'string')
