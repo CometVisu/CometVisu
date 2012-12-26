@@ -37,6 +37,10 @@ img.icon {
   clear: both;
 }
 
+#pages, .page {
+  -webkit-transform: translateZ(0);
+}
+
 /* 
  * colspans, each design needs to define a colspan0
  * class, this class is the default widget size
