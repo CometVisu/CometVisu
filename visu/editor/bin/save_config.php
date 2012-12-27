@@ -38,7 +38,7 @@ $strConfig = (true === isset($_POST['config'])) ? $_POST['config'] : null;
 $strConfigSuffix = preg_replace('/^visu_config_?(.*?)\.xml$/', '$1', $strConfig);
 
 // clean-up filename, we want no security-holes. work with a whitelist.
-$strConfigCleaned = preg_replace("/[^\-\_0-9da-z]/i", "", $strConfigSuffix);
+$strConfigCleaned = preg_replace("/[^\-\_0-9a-z]/i", "", $strConfigSuffix);
 
 // generate the configurations filename
 $strConfigFilename = sprintf(CONFIG_FILENAME, $strConfigCleaned);
@@ -46,7 +46,7 @@ $strConfigFilename = sprintf(CONFIG_FILENAME, $strConfigCleaned);
 $strConfigFQFilename = realpath($strConfigFilename);
 
 if (false === is_writeable($strConfigFQFilename)) {
-    exitWithResponse(false, 'config-file is not writeable by webserver-process; please chmod/chown config-file \'' . $strConfigFQFilename . '\'.');
+    exitWithResponse(false, 'config-file is not writeable by webserver-process; please chmod/chown config-file \'' . $strConfigFQFilename . '\' (\'' . $strConfigFilename. '\').');
 }
 
 // bail out if no json/configuration-data was provided
