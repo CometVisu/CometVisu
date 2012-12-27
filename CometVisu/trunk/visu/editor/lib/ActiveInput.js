@@ -72,10 +72,13 @@ var ActiveInput = function () {
 //                break;
             case keys.enter:
                 // copy value to input, quit
-                var value = $list.find('.selected').data('activeInputValue');
-                if (typeof value != 'undefined') {
-                    $input.val(value);
-                }
+                if ($list.find('.selected').length > 0) {
+                    // only use list-entry if one is selected
+                    var value = $list.find('.selected').data('activeInputValue');
+                    if (value != undefined && value != 'undefined' && typeof value != 'undefined') {
+                        $input.val(value);
+                    }
+                } 
             default:
                 updateListContent()
                 break;
