@@ -35,7 +35,7 @@ define('CONFIG_FILENAME', '../../visu_config%s.xml');
 $strJson   = (true === isset($_POST['data']))   ? $_POST['data']   : null;
 $strConfig = (true === isset($_POST['config'])) ? $_POST['config'] : null;
 
-$strConfigSuffix = preg_replace('/^visu_config(_.*?)\.xml$/', '$1', $strConfig);
+$strConfigSuffix = preg_replace('/^visu_config(_?.*?)\.xml$/', '$1', $strConfig);
 
 // clean-up filename, we want no security-holes. work with a whitelist.
 $strConfigCleaned = preg_replace("/[^\-\_0-9a-z]/i", "", $strConfigSuffix);
