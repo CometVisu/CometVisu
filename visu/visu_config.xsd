@@ -491,6 +491,8 @@
       <xsd:element name="address" type="address" minOccurs="1" />
     </xsd:choice>
     <xsd:attribute ref="value" use="required" />
+    <xsd:attribute name="shortvalue" type="xsd:string" use="optional" />
+    <xsd:attribute name="shorttime" type="xsd:decimal" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="align" use="optional" />
