@@ -828,7 +828,7 @@
   </xsd:complexType>
 
   <xsd:complexType name="strftime">
-    <xsd:choice maxOccurs="unbounded" minOccurs="1">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
     </xsd:choice>
     <xsd:attribute name="lang" use="optional">
