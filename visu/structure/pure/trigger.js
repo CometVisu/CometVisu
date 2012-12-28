@@ -21,6 +21,7 @@ basicdesign.addCreator('trigger', {
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     var value = $e.attr('value') ? $e.attr('value') : 0;
+    var shortvalue = $e.attr('shortvalue') ? $e.attr('shortvalue') : 0;
     var classes = 'widget clearfix trigger';
     if( $e.attr('align') ) {
       classes+=" "+$e.attr('align');
@@ -30,7 +31,7 @@ basicdesign.addCreator('trigger', {
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = extractLabel( $e.find('label')[0] );
-    var address = makeAddressList($e);
+    var address = makeAddressList($e, function(src, transform, mode, variant){return [true, variant=='short'];});
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
       actor += $e.attr( 'align' ); 
@@ -47,26 +48,45 @@ basicdesign.addCreator('trigger', {
       valueElement.append( $(mappedValue[i]).clone() );
     }
     $actor.data( {
-      'address' : address,
-      'mapping' : $(element).attr('mapping'),
-      'styling' : $(element).attr('styling'),
-      'type'    : 'trigger',
-      'align'   : $e.attr('align'),
-      'sendValue': value
-    } ).bind( 'click', this.action ).bind( 'mousedown', function(){
-      $(this).removeClass('switchUnpressed').addClass('switchPressed');
-    } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
-      $(this).removeClass('switchPressed').addClass('switchUnpressed');
-    } ).setWidgetStyling(value);
+      'address'   : address,
+      'mapping'   : $(element).attr('mapping'),
+      'styling'   : $(element).attr('styling'),
+      'type'      : 'trigger',
+      'align'     : $e.attr('align'),
+      'sendValue' : value,
+      'shorttime' : parseFloat($e.attr('shorttime')) || -1,
+      'shortValue': shortvalue
+    } ).bind( 'mousedown touchstart', this.mousedown ).
+      bind( 'mouseup touchend', this.mouseup ).
+      bind( 'mouseout touchout', this.mouseout ).
+      setWidgetStyling(value);
     ret_val.append( label ).append( $actor );
     return ret_val;
   },
-  action: function() {
-    var data = $(this).data();
-    for( var addr in data.address )
-    {
-      if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.sendValue ) );
-    }
+  mousedown: function(event) {
+      $(this).removeClass('switchUnpressed').addClass('switchPressed').data( 'downtime', new Date().getTime() );
+      if( 'touchstart' == event.type )
+      {
+        // touchscreen => disable mouse emulation
+        $(this).unbind('mousedown').unbind('mouseup').unbind('mouseout');
+      }
+  },
+  mouseup: function(event) {
+      var $this = $(this);
+      if( $this.data( 'downtime' ) )
+      {
+        var data = $this.data();
+        var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
+        for( var addr in data.address )
+        {
+          if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
+          if( isShort == data.address[addr][2] )
+          visu.write( addr.substr(1), transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
+        }
+      }
+      $this.removeClass('switchPressed').addClass('switchUnpressed').removeData( 'downtime' );
+  },
+  mouseout: function(event) {
+      $(this).removeClass('switchPressed').addClass('switchUnpressed').removeData( 'downtime' );
   }
 });
