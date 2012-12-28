@@ -98,6 +98,7 @@
               <xsd:enumeration value="week" />
               <xsd:enumeration value="month" />
               <xsd:enumeration value="year" />
+              <xsd:enumeration value="fullday" />
           </xsd:restriction>
       </xsd:simpleType>
   </xsd:attribute>
