@@ -188,7 +188,7 @@
       <label>Infotrigger: Audioquelle</label>
       <address transform="DPT:5.010">12/7/105</address>
     </infotrigger>
-    <page name="Infotrigger: Erweitert..." align="center">
+    <page name="Trigger und Infotrigger: Erweitert..." align="center">
       <text>Ein Infotrigger lässt sich in zwei verschiedenen Betriebsarten betreiben: relativ und absolut</text>
       <line/>
       <text>Relativ</text>
@@ -218,6 +218,27 @@
         <label>Lautstärke</label>
         <address transform="DPT:5.001">12/7/5</address>
       </infotrigger>
+      <line/>
+      <text><layout colspan="12"/>Ein Trigger kann auch für Kurz- und Langzeit unterschiedliche Werte an unterschiedlich Adressen senden</text>
+      <break/>
+      <trigger value="1" shorttime="300" shortvalue="0">
+        <label>Trigger auf 300ms, sende Kurzzeit "0" und Langzeit "1"</label>
+        <address transform="DPT:1.001" type="">12/7/1</address>
+        <address transform="DPT:1.001" type="" variant="short">12/7/10</address>
+      </trigger>
+      <trigger value="0" shorttime="1000" shortvalue="1">
+        <label>Trigger auf 1000ms, sende Kurzzeit "1" und Langzeit "0"</label>
+        <address transform="DPT:1.001" type="">12/7/1</address>
+        <address transform="DPT:1.001" type="" variant="short">12/7/10</address>
+      </trigger>
+      <info mapping="KonnexHVAC">
+        <label>Info: Kurzzeit</label>
+        <address transform="DPT:1.001" type="">12/7/10</address>
+      </info>
+      <info mapping="KonnexHVAC">
+        <label>Info: Langzeit</label>
+        <address transform="DPT:1.001" type="">12/7/1</address>
+      </info>
     </page>
     <break/>
     <slide min="-18" max="26">
@@ -514,6 +535,7 @@
       <line />
       <page name="Subpage mit Flavour" flavour="lithium" align="center" >
         <text><icon name="CometVisu" type="64" /> Icon links vom Text</text>
+        <text><icon name="CometVisu" type="64" flavour="antimony" /> Icon mit flavour links vom Text</text>
         <page name="Subpage mit anderem Flavour" flavour="antimony" align="center" >
           <text><icon name="CometVisu" type="64" /> Icon links vom Text</text>
         </page>
