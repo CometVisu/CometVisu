@@ -78,6 +78,7 @@ ul#config,
     clear: both;
     margin-bottom: 9px;
     display: block;
+    position: relative;
 }
 
 #config li.dropzone {
