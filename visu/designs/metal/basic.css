@@ -823,7 +823,11 @@ background-color: #000;
 	background-color: #000000;
 }
 .flavour_black.group > div > h2 {
-  background-image: linear-gradient(#000000, #333);
+ /* background-image: linear-gradient(#000000, #333);*/
+  background-image: -moz-linear-gradient(top , #000000 , #333 );
+background-image: -webkit-linear-gradient(top , #000000 , #333 );
+background-image: -ms-linear-gradient(top , #000000 , #333 );
+background-image: -o-linear-gradient(top , #000000 , #333 );
 }
 
 .flavour_white hr
@@ -842,7 +846,11 @@ background-color: #000;
 	background-color: #ffffff;
 }
 .flavour_white.group > div > h2 {
-  background-image: linear-gradient(#ffffff, #333);
+/*  background-image: linear-gradient(#ffffff, #333);*/
+  background-image: -moz-linear-gradient(top , #ffffff , #333 );
+background-image: -webkit-linear-gradient(top , #ffffff , #333 );
+background-image: -ms-linear-gradient(top , #ffffff , #333 );
+background-image: -o-linear-gradient(top , #ffffff , #333 );
 }
 
 .flavour_antimony hr
@@ -861,7 +869,11 @@ background-color: #000;
 	background-color: #00ddff;
 }
 .flavour_antimony.group > div > h2 {
-  background-image: linear-gradient(#00ddff, #333);
+ /* background-image: linear-gradient(#00ddff, #333);*/
+ background-image: -moz-linear-gradient(top , #00ddff , #333 );
+background-image: -webkit-linear-gradient(top , #00ddff , #333 );
+background-image: -ms-linear-gradient(top , #00ddff , #333 );
+background-image: -o-linear-gradient(top , #00ddff , #333 );
 }
 
 .flavour_boron hr
@@ -880,7 +892,11 @@ background-color: #000;
 	background-color: #00ff11;
 }
 .flavour_boron.group > div > h2 {
-  background-image: linear-gradient(#00ff11, #333);
+ /* background-image: linear-gradient(#00ff11, #333);*/
+  background-image: -moz-linear-gradient(top , #00ff11 , #333 );
+background-image: -webkit-linear-gradient(top , #00ff11 , #333 );
+background-image: -ms-linear-gradient(top , #00ff11 , #333 );
+background-image: -o-linear-gradient(top , #00ff11 , #333 );
 }
 
 .flavour_lithium hr
@@ -895,11 +911,15 @@ background-color: #000;
 {
   border: #ff0000 1px solid;
 }
-.flavour_lithium .ui-slider .ui-slider-range { 
+ .flavour_lithium .ui-slider .ui-slider-range { 
 	background-color: #ff0000;
-}
+} 
 .flavour_lithium.group > div > h2 {
-  background-image: linear-gradient(#ff0000, #333);
+ /* background-image: linear-gradient(#ff0000, #333);*/
+  background-image: -moz-linear-gradient(top , #ff0000 , #333 );
+background-image: -webkit-linear-gradient(top , #ff0000 , #333 );
+background-image: -ms-linear-gradient(top , #ff0000 , #333 );
+background-image: -o-linear-gradient(top , #ff0000 , #333 );
 }
 
 .flavour_potassium hr
@@ -918,7 +938,11 @@ background-color: #000;
 	background-color: #d00055;
 }
 .flavour_potassium.group > div > h2 {
-  background-image: linear-gradient(#d00055, #333);
+ /* background-image: linear-gradient(#d00055, #333);*/
+   background-image: -moz-linear-gradient(top , #d00055 , #333 );
+background-image: -webkit-linear-gradient(top , #d00055 , #333 );
+background-image: -ms-linear-gradient(top , #d00055 , #333 );
+background-image: -o-linear-gradient(top , #d00055 , #333 );
 }
 
 .flavour_sodium hr
@@ -934,7 +958,11 @@ background-color: #000;
   border: #ff8000 1px solid;
 }
 .flavour_sodium.group > div > h2 {
-  background-image: linear-gradient(#ff8000, #333);
+  /*background-image: linear-gradient(#ff8000, #333);*/
+  background-image: -moz-linear-gradient(top , #ff8000 , #333 );
+background-image: -webkit-linear-gradient(top , #ff8000 , #333 );
+background-image: -ms-linear-gradient(top , #ff8000 , #333 );
+background-image: -o-linear-gradient(top , #ff8000 , #333 );
 }
 .flavour_sodium .ui-slider .ui-slider-range { 
 	background-color: #ff8000;
