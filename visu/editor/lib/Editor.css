@@ -508,6 +508,10 @@ ul#config,
     padding: 2px 0;
 }
 
+#config .activeInput .list .option:hover {
+    background-color: #beebff;
+}
+
 #config .activeInput .list .headline {
     font-weight: bold;
     border-bottom: 1px dotted #c0c0c0;

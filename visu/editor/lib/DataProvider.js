@@ -37,40 +37,40 @@ var DataProviderManager = {
     /**
      * get the DataProvider for a specified attribute
      * 
+     * @param   elementName     string  name of the attribute
      * @param   attributeName   string  name of the attribute
      * @return  object                  DataProvider for that attribute, or undefined if none
      */
-    getProviderForAttribute: function (attributeName) {
+    getProvider: function (elementName, attributeName) {
         if (typeof DataProviderManager._providers == 'undefined') {
             DataProviderManager.initialize();
         }
         
-        
-        if (typeof DataProviderManager._providers.attributes[attributeName] == 'undefined') {
+        if (typeof DataProviderManager._providers[elementName] == 'undefined') {
+            // no element-specific providers exist
+            
+            if (typeof DataProviderManager._providers['*'] == 'undefined') {
+                // no wildcard-providers exist
+                return undefined;
+            }
+            
+            if (typeof DataProviderManager._providers['*'][attributeName] != 'undefined') {
+                // we have a provider for the wildcard-provider and this attribute
+                return DataProviderManager._providers['*'][attributeName];
+            }
+            
+            
+            // nothing specific and nothing with wildcard-element - give up already.
             return undefined;
         }
         
-        return DataProviderManager._providers.attributes[attributeName];
-    },
-
-
-    /**
-     * get the DataProvider for a specified elements nodeValue
-     * 
-     * @param   elementName     string  name of the attribute
-     * @return  object                  DataProvider for that attribute, or undefined if none
-     */
-    getProviderForElement: function (elementName) {
-        if (typeof DataProviderManager._providers == 'undefined') {
-            DataProviderManager.initialize();
+        
+        if (typeof DataProviderManager._providers[elementName][attributeName] != 'undefined') {
+            // we have a provider for this very combination of element and attribute
+            return DataProviderManager._providers[elementName][attributeName];
         }
         
-        
-        if (typeof DataProviderManager._providers.elementValues[elementName] == 'undefined') {
-            return undefined;
-        }
-        
-        return DataProviderManager._providers.elementValues[elementName];
+        return undefined;
     },
 
 
@@ -90,24 +90,24 @@ var DataProviderManager = {
                                         };
 
         // go over all possible DataProviders, and create an instance
-        $.each(DataProviderConfig.attributes, function (name, config) {
-            var provider = new DataProvider(config);
+        $.each(DataProviderConfig, function (elementName, subConfigs) {
+            
+            $.each(subConfigs, function (attributeName, config) {
+                var provider = new DataProvider(config);
 
-            // preload Data, if possible (that method decides for itself!)
-            provider.preloadData();
+                // preload Data, if possible (that method decides for itself!)
+                provider.preloadData();
+                
+                if (typeof DataProviderManager._providers[elementName] == 'undefined') {
+                    // create a clean structure
+                    DataProviderManager._providers[elementName] = {};
+                }
 
-            DataProviderManager._providers.attributes[name] = provider;
+                DataProviderManager._providers[elementName][attributeName] = provider;
+            });
         });
         
-        // go over all possible DataProviders, and create an instance
-        $.each(DataProviderConfig.elementValues, function (name, config) {
-            var provider = new DataProvider(config);
-
-            // preload Data, if possible (that method decides for itself!)
-            provider.preloadData();
-
-            DataProviderManager._providers.elementValues[name] = provider;
-        });    },
+    },
     _providers: undefined
 };
 
@@ -125,7 +125,7 @@ var DataProvider = function (config) {
     var _provider = this;
 
     /**
-     * the cache for this providers data; will be empty for 'live' and for uncached-url
+     * the cache for this providers data; will be empty if caching is disabled
      * @var array
      */
     var dataCache = undefined;
@@ -296,25 +296,9 @@ var DataProvider = function (config) {
             // no caching = nothing to do for us
             return;
         }
-        if (typeof _providerConfig.url != 'string') {
-            // no url means no caching
-            return;
-        }
         
-        $.ajax(_providerConfig.url,
-            {
-                dataType: 'json',
-                cache: doCaching,
-                success: function (data) {
-                    // what we get from the server is exactly what we need (hopefully ...)
-                    dataCache = data;
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    var result = new Result(false, Messages.dataProvider.loadingError, [textStatus, errorThrown]);
-                    $(document).trigger('dataprovider_loading_error', [result]);
-                }
-            }
-        );
+        // getData will fill the cache for us
+        getData();
     };
     
     
@@ -329,14 +313,20 @@ var DataProvider = function (config) {
         }
         
         
+        // is caching enabled?
+        var doCaching = typeof _providerConfig.cache != 'undefined' ? _providerConfig.cache : true;
+
         var data = [];
         if (typeof _providerConfig.live == 'function') {
             data = _providerConfig.live();
+            
+            if (true == doCaching) {
+                dataCache = data;
+            }
         }
         
         if (typeof _providerConfig.url == 'string') {
             // load the data from the server
-            var doCaching = typeof _providerConfig.cache != 'undefined' ? _providerConfig.cache : true;
             
             $.ajax(_providerConfig.url,
                 {

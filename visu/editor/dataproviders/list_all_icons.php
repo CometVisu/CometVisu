@@ -2,17 +2,9 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Provide a list of all system-known rrd-files for the attribute 'rrd'.
+ * Provide a list of all icons.
+ * Uses the colorspace 'white' as a basis
  * 
- * 
- * This file will output a json-encoded object with multiple dimensions.
- * Each last node will have:
- * - value: the value for this node
- * - label: a user-readable description/title of this node
- * - hints: an object, defining a list of attributes that will be set on the same element in the editor, when this value
- *              is selected. There are NONE for this file
- *
- *
  * LICENSE: This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 3
@@ -36,36 +28,22 @@
  * @since       2012-10-17
  */
 
-define('FILE_GA', "/etc/wiregate/eibga.conf");
-define('FILE_OW', "/etc/wiregate/owsensors.conf");
-define('DIR_RRD', "/var/www/rrd/*.rrd");
+define('ICON_DIRECTORY', '../../icon/knx-uf-iconset/128x128_white/');
+define('ICON_SUFFIX', '.png');
+define('ICON_PATTERN', '*.png');
 
-// list of known one-wire-sensors
-$arrSensors = array();
-if (true === file_exists(FILE_OW)) {
-    $arrSensors = parse_ini_file(FILE_OW, true);
-}
-
-// list of all known group-addresses
-$arrGA = array();
-if (true === file_exists(FILE_GA)) {
-    $arrGA = parse_ini_file(FILE_GA, true);
-}
-
-$arrData = array();
-
-foreach (glob(DIR_RRD) as $strFilename) {
-    $strFileBasename = basename($strFilename, '.rrd');
-    $arrRRDParts = explode("_", $strFileBasename, 2);
+foreach (glob(ICON_DIRECTORY . ICON_PATTERN) as $strFilename) {
+    $strFileBasename = basename($strFilename, ICON_SUFFIX);
 
     $arrData[] = array(
                                         'value' => utf8_encode($strFileBasename),
-                                        'label' => utf8_encode($arrSensors[$arrRRDParts[0]]['name']),
+                                        'label' => utf8_encode($strFileBasename),
                                         );
 }
 
 Header("Content-type: application/json");
 print json_encode($arrData);
 exit;
+
 
 ?>

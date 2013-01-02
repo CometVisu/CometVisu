@@ -68,22 +68,18 @@ try {
     }
 
 
-    // stupid hacking. create the xml twice to receive nice newlines and indentation ...
-    $strXML = $objDOM->saveXML();
-    $objXML = new DOMDocument();
-    $objXML->preserveWhiteSpace = false;
-    $objXML->formatOutput = true;
-    $objXML->loadXML($strXML);
+    $objDOM->preserveWhiteSpace = false;
+    $objDOM->formatOutput = true;
 
     // save the XML to its configuration file
     $handle = fopen($strConfigFQFilename, "w");
-    fputs($handle, $objXML->saveXML());
+    fputs($handle, $objDOM->saveXML());
     fclose($handle);
 } catch (Exception $e) {
     exitWithResponse(false, 'error: ' . $e->getMessage());
 }
 
-exitWithResponse(true, 'all good');
+exitWithResponse(true, 'all good, file ' . $strConfigFQFilename . ' saved');
 
 /**
  * create the DOM from a node
