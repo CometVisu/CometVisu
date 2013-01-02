@@ -388,6 +388,17 @@ var ConfigurationElement = function (node, parent) {
         // set our own schemaElement
         _schemaElement = schemaElement;
 
+        if (schemaElement.isMixed == false) {
+            // clean up #text-nodes, they are not needed in a non-mixed node!
+            $.each(_element.children, function (i, child) {
+                if (child.name == '#text') {
+                    child.remove();
+                }
+            });
+        }
+        
+
+
         // if we have children, check them, too.
         if (_element.children.length > 0) {
 
@@ -672,6 +683,18 @@ var ConfigurationElement = function (node, parent) {
      */
     _element.setParentNode = function (parentNode) {
         _parentElement = parentNode;
+    }
+    
+    /**
+     * get the children of this element.
+     * 
+     * Returns a reference to the children-object!
+     * 
+     * @return  array   list of children
+     */
+    _element.getChildren = function () {
+        
+        return _element.children;
     }
     
     /**

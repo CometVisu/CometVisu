@@ -744,7 +744,7 @@ var EditorConfigurationElement = function (parent, element) {
             // get the dataProvider for this element
             if (elementEnumeration == undefined || elementEnumeration.length == 0) {
                 // only do this, if the XSD did not give us an enumeration!
-                var dataProvider = DataProviderManager.getProviderForAttribute(attributeName);
+                var dataProvider = DataProviderManager.getProvider(_element.name, attributeName);
                 if (undefined != dataProvider) {
                     elementEnumeration = dataProvider.getEnumeration();
                     isUserInputAllowed = dataProvider.isUserInputAllowed();
@@ -838,7 +838,7 @@ var EditorConfigurationElement = function (parent, element) {
             
             if ($attributeValue.length == 0) {
                 // we have not attribute of that name
-                return;
+                return false;
             }
             
             // save the value of the attribute, and check if it is valid at the same time.
@@ -943,7 +943,7 @@ var EditorConfigurationElement = function (parent, element) {
          * @param   changedAttributeValue   string  the new value of the changed attribute
          */
         updateHintedAttributes: function (changedAttributeName, changedAttributeValue) {
-            var dataProvider = DataProviderManager.getProviderForAttribute(changedAttributeName);
+            var dataProvider = DataProviderManager.getProvider(_element.name, changedAttributeName);
             if (undefined == dataProvider) {
                 // no dataProvider = nothing to hint
                 return;
@@ -956,8 +956,6 @@ var EditorConfigurationElement = function (parent, element) {
                 return;
             }
             
-            
-            var $attributes = Attributes.$attributes;
             $.each(hints, function (attributeName, attributeValue) {
                 Attributes.saveValue(attributeName, attributeValue);
             });
@@ -1018,7 +1016,7 @@ var EditorConfigurationElement = function (parent, element) {
             // get the dataProvider for this element
             if (elementEnumeration == undefined || elementEnumeration.length == 0) {
                 // only do this, if the XSD did not give us an enumeration!
-                var dataProvider = DataProviderManager.getProviderForElement(_element.name);
+                var dataProvider = DataProviderManager.getProvider(_element.name, '_nodeValue');
                 if (undefined != dataProvider) {
                     elementEnumeration = dataProvider.getEnumeration();
                     isUserInputAllowed = dataProvider.isUserInputAllowed();
@@ -1124,7 +1122,7 @@ var EditorConfigurationElement = function (parent, element) {
         updateHintedAttributes: function (changedElementValue) {
             var changedElementName = _element.name;
             
-            var dataProvider = DataProviderManager.getProviderForElement(changedElementName);
+            var dataProvider = DataProviderManager.getProvider(changedElementName, '_nodeValue');
             if (undefined == dataProvider) {
                 // no dataProvider = nothing to hint
                 return;
@@ -1174,7 +1172,7 @@ var EditorConfigurationElement = function (parent, element) {
             
             var tmpEnumeration = $.extend([], enumeration);
             if (true === isOptional) {
-                tmpEnumeration.unshift('');
+                tmpEnumeration.unshift({label: '- not set -', value: undefined});
             }
 
 
@@ -1532,7 +1530,7 @@ var EditorConfigurationElement = function (parent, element) {
         // append this elements children (immediate first, the recurse)
         var $children = $('<ul />').addClass('children').hide();
 
-        $.each(_element.children, function (i, node) {
+        $.each(_element.getChildren(), function (i, node) {
             var element = new EditorConfigurationElement(_self, node);
 
             $children.append(element.getAsHTML());
