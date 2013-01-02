@@ -30,21 +30,35 @@
  */
 
 var DataProviderConfig = {
-    'elementValues': {
-        'address':  {
+    'address': {
+        '_nodeValue':  {
                 url: 'editor/dataproviders/list_all_addresses.php',
                 cache: true,
                 userInputAllowed: true,
                 grouped: true,
             },
     },
-    'attributes': {
+    'rrd': {
+        '_nodeValue':  {
+                url: 'editor/dataproviders/list_all_rrds.php',
+                cache: true,
+                userInputAllowed: true,
+            },
+    },
+    'icon': {
+        'name':  {
+                url: 'editor/dataproviders/list_all_icons.php',
+                cache: true,
+                userInputAllowed: false,
+            },
+    },
+    // wildcard: will match ANY elements attribute (lower prio than an exact element-attribute-match)
+    '*': {
         'rrd':  {
                 url: 'editor/dataproviders/list_all_rrds.php',
                 cache: true,
                 userInputAllowed: true,
             },
-
         'ga':  {
                 url: 'editor/dataproviders/list_all_addresses.php',
                 cache: true,

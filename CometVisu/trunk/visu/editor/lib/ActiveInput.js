@@ -176,6 +176,9 @@ var ActiveInput = function () {
         } else {
             $list.show();
         }
+        
+        // set the oldValue, so we can actually notice changes :)
+        _oldValue = value;
     };
     
     
@@ -277,7 +280,7 @@ var ActiveInput = function () {
                     enumLabel = enumEntry.label;
                     enumValue = enumEntry.value;
                     
-                    if (enumValue != enumLabel) {
+                    if (enumValue != enumLabel && enumValue != '' && enumValue != undefined) {
                         // if label and value differ, we append the value to the label
                         enumLabel += ' (' + enumEntry.value + ')'
                     }
