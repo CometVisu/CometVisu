@@ -814,7 +814,7 @@ var EditorConfigurationElement = function (parent, element) {
             var $input = $(this);
             var $value = $input.siblings('span.value');
 
-            var inputValue = $input.find('input, select').andSelf().filter('input, select').val();
+            var inputValue = $input.find('input, textarea, select').andSelf().filter('input, textarea, select').val();
             var attributeName = $input.siblings('span.name').text();
 
             if (false === Attributes.saveValue(attributeName, inputValue)) {
@@ -1086,7 +1086,7 @@ var EditorConfigurationElement = function (parent, element) {
             var $input = $(this);
             var $value = $input.siblings('span.value');
 
-            var inputValue = $input.find('input, select').andSelf().filter('input, select').val();
+            var inputValue = $input.find('input, textarea, select').andSelf().filter('input, textarea, select').val();
 
             // save the value of the attribute, and check if it is valid at the same time.
             var tmpResult = _element.setTextValue(inputValue);
