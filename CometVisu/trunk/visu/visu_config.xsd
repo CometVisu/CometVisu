@@ -13,7 +13,7 @@
   </xsd:simpleType>
 
   <xsd:simpleType name="uri">
-    <xsd:restriction base="xsd:string" />
+    <xsd:restriction base="xsd:anyURI" />
   </xsd:simpleType>
 
   <xsd:complexType name="layout">
@@ -294,7 +294,7 @@
 
   <xsd:complexType name="icon-definition">
     <xsd:attribute name="name" type="xsd:string" use="required" />
-    <xsd:attribute name="uri" type="xsd:string" use="required" />
+    <xsd:attribute name="uri" type="uri" use="required" />
     <xsd:attribute name="type" type="xsd:string" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute name="color" type="xsd:string" use="optional" />
@@ -508,7 +508,7 @@
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="align" use="optional" />
-    <xsd:attribute name="url" type="xsd:string" use="required" />
+    <xsd:attribute name="url" type="uri" use="required" />
     <xsd:attribute name="params" type="xsd:string" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
@@ -623,7 +623,7 @@
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
       <xsd:element name="address" type="address" minOccurs="1" />
     </xsd:choice>
-    <xsd:attribute name="src" type="xsd:string" />
+    <xsd:attribute name="src" type="uri" />
     <xsd:attribute name="suffix" type="xsd:string" use="required" />
     <xsd:attribute name="type" type="xsd:string" use="optional" />
     <xsd:attribute name="width" type="dimension" />
