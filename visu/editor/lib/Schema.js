@@ -244,6 +244,7 @@ var SchemaSimpleType = function (node, schema) {
             // xsd:-namespaces types, those are the originals
             switch (_type.baseType) {
                 case 'xsd:string':
+                case 'xsd:anyURI':
                     if (!(typeof(value) == 'string')) {
                         // it's not a string, but it should be.
                         // pretty much any input a user gives us is string, so this is pretty much moot.
