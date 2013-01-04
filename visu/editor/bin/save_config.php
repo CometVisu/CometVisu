@@ -57,6 +57,10 @@ if (true === empty($strJson)) {
 // decode json
 $arrData = json_decode(stripslashes($strJson), true);
 
+if (false === is_array($arrData) || true ===  empty($arrData)) {
+    exitWithResponse(false, 'configuration-data could not be decoded');
+}
+
 try {
     /** die alten Mappings und stylings übernehmen */
     $objDOM = new DOMDocument('1.0', 'UTF-8');
