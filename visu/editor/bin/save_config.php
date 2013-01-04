@@ -58,7 +58,34 @@ if (true === empty($strJson)) {
 $arrData = json_decode(stripslashes($strJson), true);
 
 if (false === is_array($arrData) || true ===  empty($arrData)) {
-    exitWithResponse(false, 'configuration-data could not be decoded');
+    $strResponse = 'configuration-data could not be decoded';
+    if (true === function_exists('json_last_error')) {
+        // json_last_error is only available with PHP >= 5.3
+        switch (json_last_error()) {
+            case JSON_ERROR_NONE:
+                echo ' - No errors';
+                break;
+            case JSON_ERROR_DEPTH:
+                echo ' - Maximum stack depth exceeded';
+                break;
+            case JSON_ERROR_STATE_MISMATCH:
+                echo ' - Underflow or the modes mismatch';
+                break;
+            case JSON_ERROR_CTRL_CHAR:
+                echo ' - Unexpected control character found';
+                break;
+            case JSON_ERROR_SYNTAX:
+                echo ' - Syntax error, malformed JSON';
+                break;
+            case JSON_ERROR_UTF8:
+                echo ' - Malformed UTF-8 characters, possibly incorrectly encoded';
+                break;
+            default:
+                echo ' - Unknown error ' . json_last_error();
+                break;
+        }
+    }
+    exitWithResponse(false, $strResponse);
 }
 
 try {
