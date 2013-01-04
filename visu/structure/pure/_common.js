@@ -315,15 +315,20 @@ function defaultValueHandling( e, data, passedElement )
 {
   var element = passedElement || $(this);
   var thisTransform = element.data().address[ e.type ][0];
+  // #1: transform the raw value to a JavaScript type
   var value = transformDecode( element.data().address[ e.type ][0], data );
   
-  element.data( 'basicvalue', value );
+  element.data( 'basicvalue', value ); // store it to be able to supress sending of unchanged data
+  
+  // #2: map it to a value the user wants to see
+  value = map( value, element.data('mapping') );
+  
+  // #3: format it in a way the user understands the value
   if( element.data( 'precision' ) )
     value = Number( value ).toPrecision( element.data( 'precision' ) );
   if( element.data( 'format' ) )
     value = sprintf( element.data( 'format' ), value );
   element.data( 'value', value );
-  value = map( value, element.data('mapping') );
   if( value.constructor == Date )
   {
     switch( thisTransform ) // special case for KNX
@@ -336,6 +341,8 @@ function defaultValueHandling( e, data, passedElement )
         break;
       }
   }
+  
+  // #4 will happen outside: style the value to be pretty
   return value;
 }
 
