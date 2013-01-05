@@ -60,7 +60,7 @@ basicdesign.addCreator('switch', {
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value == data.off_value ? data.on_value : data.off_value ) );
+      visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.basicvalue == data.off_value ? data.on_value : data.off_value ) );
     }
   }
 });
