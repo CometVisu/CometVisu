@@ -360,12 +360,16 @@ function defaultUpdate( e, data, passedElement )
   var valueElement = element.find('.value');
   valueElement.empty();
   if( ('string' == typeof value) || ('number' == typeof value) )
-  {
     valueElement.append( value );
-  } else 
-  for( var i = 0; i < value.length; i++ )
+  else
   {
-    valueElement.append( $(value[i]).clone() );
+    for( var i = 0; i < value.length; i++ )
+    {
+      if( ('string' == typeof value[i]) || ('number' == typeof value[i]) )
+        valueElement.append( value[i] );
+      else
+        valueElement.append( $(value[i]).clone() );
+    }
   }
   
   return value;

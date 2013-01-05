@@ -422,15 +422,18 @@ function parseXML(xml) {
           $this.find('entry').each(
               function() {
                 var $localThis = $(this);
-                var value = $localThis.contents();
-                for ( var i = 0; i < value.length; i++) {
-                  var $v = $(value[i]);
+                var origin = $localThis.contents();
+                var value = [];
+                for ( var i = 0; i < origin.length; i++) {
+                  var $v = $(origin[i]);
                   if ($v.is('icon'))
                     value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'));
+                  else
+                    value[i] = $v.text();
                 }
 
                 if ($localThis.attr('value')) {
-                  mappings[name][$localThis.attr('value')] = value;
+                  mappings[name][$localThis.attr('value')] = value.length == 1 ? value[0] : value;
                 } else {
                   if (!mappings[name]['range'])
                     mappings[name]['range'] = {};
