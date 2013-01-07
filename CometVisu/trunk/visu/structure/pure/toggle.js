@@ -56,7 +56,7 @@ basicdesign.addCreator('toggle', {
         if(mappings[data.mapping].hasOwnProperty(e))
           {
               element_count++;
-              if (e > data.value && !next_element)
+              if (e > data.basicvalue && !next_element)
                   next_element = e;
               if (!first_element)
                   first_element = e;
