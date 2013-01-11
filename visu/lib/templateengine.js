@@ -219,8 +219,11 @@ function handleResize(resize, skipScrollFix) {
                                                                           // Firefox
 
   var $main = $('#main');
-  if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i
-      .test(uagent)) {
+//  if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i
+//      .test(uagent)) {
+  var mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
+  if (/(nexus 7|tablet)/i.test(uagent)) mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
+  if (mobileDevice) {
     $main.css('width', width);
     $('#pageSize').text('.page{width:' + (width - 0) + 'px;}');
     // do nothing
