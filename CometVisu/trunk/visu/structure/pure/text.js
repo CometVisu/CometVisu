@@ -24,22 +24,23 @@ basicdesign.addCreator('text', {
     ret_val.setWidgetLayout($e);
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var style = '';
+    var label = extractLabel( $e.find('label')[0] );
+    if (!label) {
+      label = $('<div/>');
+      $e.contents().each(function() {
+        var $v = $(this);
+        if ($v.is('icon')) {
+          var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour);
+          if (i)
+            label.append(i.clone());
+        } else
+          label.append(this.textContent);
+      });
+    }
+    label.removeAttr('class');
     if ($e.attr('align'))
-      style += 'text-align:' + $e.attr('align') + ';';
-    if (style != '')
-      style = 'style="' + style + '"';
-    var $div = $('<div ' + style + '></div>');
-    $e.contents().each(function() {
-      var $v = $(this);
-      if ($v.is('icon')) {
-        var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour);
-        if (i)
-          $div.append(i.clone());
-      } else
-        $div.append(this.textContent);
-    });
-    ret_val.append($div);
+      label.attr('style', 'text-align:' + $e.attr('align') + ';');
+    ret_val.append(label);
     return ret_val;
   }
 });
