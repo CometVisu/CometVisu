@@ -128,7 +128,7 @@
   </meta>
   <page name="CometVisu Widget Demo">
     <navbar position="left" dynamic="true" width="200px">
-      <text><label>Test 1</label></text>
+      <text>Test 1</text>
       <line/>
       <pagejump target="id_0_34_7" name="Lithium">
         <label>Flavour</label>
@@ -140,13 +140,13 @@
         <label>2D</label>
       </pagejump>
     </navbar>
-    <text align="center"><label>Herzlich willkommen bei dem CometVisu Widget Demo!</label></text>
-    <text><label>&lt;b&gt;Hinweis:&lt;/b&gt;&lt;br/&gt;Alle Widgets verwenden KNX-Addressen mit der Haupt- und Mittelgruppe 12/7, da diese meist unbenutzt sind und so beim Testen oft keine Nebenwirkungen auftreten können. Sollten diese Gruppe bei Ihnen verwendet werden, so sollten Sie diese Widgets hier nicht betätigen!</label></text>
+    <text align="center">Herzlich willkommen bei dem CometVisu Widget Demo!</text>
+    <text>&lt;b&gt;Hinweis:&lt;/b&gt;&lt;br/&gt;Alle Widgets verwenden KNX-Addressen mit der Haupt- und Mittelgruppe 12/7, da diese meist unbenutzt sind und so beim Testen oft keine Nebenwirkungen auftreten können. Sollten diese Gruppe bei Ihnen verwendet werden, so sollten Sie diese Widgets hier nicht betätigen!</text>
     <line/>
-    <text><label>Für die CometVisu gibt es verschiedene Designs.</label></text>
+    <text>Für die CometVisu gibt es verschiedene Designs.</text>
     <designtoggle>Wechsle Design</designtoggle>
     <line/>
-    <text align="center"><label>&lt;b&gt;Standard-Widgets&lt;/b&gt;</label></text>
+    <text align="center">&lt;b&gt;Standard-Widgets&lt;/b&gt;</text>
     <break/>
     <switch mapping="On_Off" styling="Red_Green">
       <label>Switch</label>
@@ -189,9 +189,9 @@
       <address transform="DPT:5.010">12/7/105</address>
     </infotrigger>
     <page name="Trigger und Infotrigger: Erweitert..." align="center">
-      <text><label>Ein Infotrigger lässt sich in zwei verschiedenen Betriebsarten betreiben: relativ und absolut</label></text>
+      <text>Ein Infotrigger lässt sich in zwei verschiedenen Betriebsarten betreiben: relativ und absolut</text>
       <line/>
-      <text><label>Relativ</label></text>
+      <text>Relativ</text>
       <break/>
       <infotrigger uplabel="+" upvalue="1" downlabel="-" downvalue="0" align="center" infoposition="1" change="relative">
         <label>Lautstärke</label>
@@ -212,14 +212,14 @@
         <address transform="DPT:16.000" type="">12/7/16</address>
       </multitrigger>
       <line/>
-      <text><label>Absolut</label></text>
+      <text>Absolut</text>
       <break/>
       <infotrigger uplabel="+" upvalue="5" downlabel="-" downvalue="-5" align="center" infoposition="1" change="absolute" format="%.1f%%" max="100">
         <label>Lautstärke</label>
         <address transform="DPT:5.001">12/7/5</address>
       </infotrigger>
       <line/>
-      <text><layout colspan="12"/><label>Ein Trigger kann auch für Kurz- und Langzeit unterschiedliche Werte an unterschiedlich Adressen senden</label></text>
+      <text><layout colspan="12"/>Ein Trigger kann auch für Kurz- und Langzeit unterschiedliche Werte an unterschiedlich Adressen senden</text>
       <break/>
       <trigger value="1" shorttime="300" shortvalue="0">
         <label>Trigger auf 300ms, sende Kurzzeit "0" und Langzeit "1"</label>
@@ -263,7 +263,7 @@
     </page>
     <break/>
     <page name="Video..." align="center">
-      <text><label>In dem Video-Element lassen sich Videos nach dem HTML5 Standard einbinden</label></text>
+      <text>In dem Video-Element lassen sich Videos nach dem HTML5 Standard einbinden</text>
       <break/>
       <video src="https://upload.wikimedia.org/wikipedia/commons/b/b5/I-15bis.ogg" autoplay="false">
         <label>Polikarpov I-15bis - Ogg Theora</label>
@@ -278,87 +278,87 @@
       <web src="http://www.cometvisu.org" width="500px" height="500px"/>
     </page>
     <page name="Flavour Test" align="center" >
-      <text><label>
+      <text>
         Die Flavour (englisch für Geschmacksrichtung) definieren eine, vom
         Design abhängige, Variation des Aussehens einzelner Sub-Seiten. 
-      </label></text>
+      </text>
       <line/>
-      <text align="center"><label>Design: &lt;b&gt;Pure&lt;/b&gt;</label></text>
-      <text><label>
+      <text align="center">Design: &lt;b&gt;Pure&lt;/b&gt;</text>
+      <text>
         Das Design "Pure" ist inspiriert von den Farben, in denen ein Komet
         scheinen würde, wenn er aus dem jeweiligen Element bestehen würde.
-      </label></text>
+      </text>
       <break/>
       <page name="Flavour: Antimony" align="center" flavour="antimony">
-        <text align="center"><label>CometVisu Antimony flavour</label></text>
+        <text align="center">CometVisu Antimony flavour</text>
         <line/>
         <page name="Subpage">
-          <text><label>An empty page</label></text>
+          <text>An empty page</text>
           <line/>
         </page>
-        <text><label><icon name="CometVisu" type="64" />Text with Icon</label></text>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <page name="Flavour: Boron" align="center" flavour="boron">
-        <text align="center"><label>CometVisu Boron flavour</label></text>
+        <text align="center">CometVisu Boron flavour</text>
         <line/>
         <page name="Subpage" ga="12/7/100">
-          <text><label>An empty page</label></text>
+          <text>An empty page</text>
           <line/>
         </page>
-        <text><label><icon name="CometVisu" type="64" />Text with Icon</label></text>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <page name="Flavour: Lithium" align="center" flavour="lithium">
-        <text align="center"><label>CometVisu Lithium flavour</label></text>
+        <text align="center">CometVisu Lithium flavour</text>
         <line/>
         <page name="Subpage">
-          <text><label>An empty page</label></text>
+          <text>An empty page</text>
           <line/>
         </page>
-        <text><label><icon name="CometVisu" type="64" />Text with Icon</label></text>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <page name="Flavour: Potassium" align="center" flavour="potassium">
-        <text align="center"><label>CometVisu Potassium flavour</label></text>
+        <text align="center">CometVisu Potassium flavour</text>
         <line/>
         <page name="Subpage">
-          <text><label>An empty page</label></text>
+          <text>An empty page</text>
           <line/>
         </page>
-        <text><label><icon name="CometVisu" type="64" />Text with Icon</label></text>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <page name="Flavour: Sodium" align="center" flavour="sodium">
-        <text align="center"><label>CometVisu Sodium flavour</label></text>
+        <text align="center">CometVisu Sodium flavour</text>
         <line/>
         <page name="Subpage">
-          <text><label>An empty page</label></text>
+          <text>An empty page</text>
           <line/>
         </page>
-        <text><label><icon name="CometVisu" type="64" />Text with Icon</label></text>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <line />
       <page name="Flavour: black" align="center" flavour="black">
-        <text align="center"><label>CometVisu black flavour</label></text>
+        <text align="center">CometVisu black flavour</text>
         <line/>
         <page name="Subpage">
-          <text><label>An empty page</label></text>
+          <text>An empty page</text>
           <line/>
         </page>
-        <text><label><icon name="CometVisu" type="64" />Text with Icon</label></text>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
       <page name="Flavour: white" align="center" flavour="white">
-        <text align="center"><label>CometVisu white flavour</label></text>
+        <text align="center">CometVisu white flavour</text>
         <line/>
         <page name="Subpage">
-          <text><label>An empty page</label></text>
+          <text>An empty page</text>
           <line/>
         </page>
-        <text><label><icon name="CometVisu" type="64" />Text with Icon</label></text>
+        <text><icon name="CometVisu" type="64" />Text with Icon</text>
       </page>
     </page>
     <page name="Format Test" align="center">
-      <text><label>
+      <text>
         Über das Format-Attribut kann die Anzeige von Werten variiert werden.
         Dazu wird die Synatx des vom "printf" bekannten Formatstrings benutzt.
-      </label></text>
+      </text>
       <break/>
       <slide min="-100" max="101">
         <label>Test-Slider</label>
@@ -465,7 +465,7 @@
           <address transform="DPT:9" type="">12/7/10</address>
         </slide>
         <line/>
-        <text><label>All predefined colors:</label></text>
+        <text>All predefined colors:</text>
         <break/>
         <trigger value="0" styling="All_Colors">
           <label>red</label>
@@ -523,96 +523,96 @@
         </trigger>
     </page>
     <page name="Icon Test" align="center">
-      <text><label><icon name="CometVisu" type="64" /> Icon links vom Text</label></text>
-      <text><label>Icon <icon name="CometVisu" type="64" /> mitten im Text</label></text>
-      <text><label>Icon rechts vom Text <icon name="CometVisu" type="64" /></label></text>
-      <text><label><icon name="CometVisu" type="64" /> Mehrere Icons <icon name="CometVisu" type="64" /></label></text>
+      <text><icon name="CometVisu" type="64" /> Icon links vom Text</text>
+      <text>Icon <icon name="CometVisu" type="64" /> mitten im Text</text>
+      <text>Icon rechts vom Text <icon name="CometVisu" type="64" /></text>
+      <text><icon name="CometVisu" type="64" /> Mehrere Icons <icon name="CometVisu" type="64" /></text>
       <line />
-      <text><label><icon name="CometVisu" type="16" /> Icon mit type="16"</label></text>
-      <text><label><icon name="CometVisu" type="32" /> Icon mit type="32"</label></text>
-      <text><label><icon name="CometVisu" type="64" /> Icon mit type="64"</label></text>
-      <text><label><icon name="CometVisu" type="128" /> Icon mit type="128"</label></text>
+      <text><icon name="CometVisu" type="16" /> Icon mit type="16"</text>
+      <text><icon name="CometVisu" type="32" /> Icon mit type="32"</text>
+      <text><icon name="CometVisu" type="64" /> Icon mit type="64"</text>
+      <text><icon name="CometVisu" type="128" /> Icon mit type="128"</text>
       <line />
       <page name="Subpage mit Flavour" flavour="lithium" align="center" >
-        <text><label><icon name="CometVisu" type="64" /> Icon links vom Text</label></text>
-        <text><label><icon name="CometVisu" type="64" flavour="antimony" /> Icon mit flavour links vom Text</label></text>
+        <text><icon name="CometVisu" type="64" /> Icon links vom Text</text>
+        <text><icon name="CometVisu" type="64" flavour="antimony" /> Icon mit flavour links vom Text</text>
         <page name="Subpage mit anderem Flavour" flavour="antimony" align="center" >
-          <text><label><icon name="CometVisu" type="64" /> Icon links vom Text</label></text>
+          <text><icon name="CometVisu" type="64" /> Icon links vom Text</text>
         </page>
       </page>
     </page>
     <page name="colspan/rowspan Test" align="center">
-      <text><layout colspan="12" /><label>Colspan 12, no Rowspan</label></text>
-      <text><layout colspan="6" /><label>Colspan 6, no Rowspan</label></text><text><layout colspan="6" /><label>Colspan 6, no Rowspan</label></text>
-      <text><layout colspan="4" /><label>Colspan 4, no Rowspan</label></text><text><layout colspan="4" /><label>Colspan 4, no Rowspan</label></text><text><layout colspan="4" /><label>Colspan 4, no Rowspan</label></text>
-      <text><layout colspan="3" /><label>Colspan 3, no Rowspan</label></text><text><layout colspan="3" /><label>Colspan 3, no Rowspan</label></text>
-      <text><layout colspan="3" /><label>Colspan 3, no Rowspan</label></text><text><layout colspan="3" /><label>Colspan 3, no Rowspan</label></text>
-      <text><layout colspan="2" /><label>Colspan 2, no Rowspan</label></text><text><layout colspan="2" /><label>Colspan 2, no Rowspan</label></text>
-      <text><layout colspan="2" /><label>Colspan 2, no Rowspan</label></text><text><layout colspan="2" /><label>Colspan 2, no Rowspan</label></text>
-      <text><layout colspan="2" /><label>Colspan 2, no Rowspan</label></text><text><layout colspan="2" /><label>Colspan 2, no Rowspan</label></text>
-      <text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text><text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text>
-      <text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text><text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text>
-      <text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text><text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text>
-      <text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text><text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text>
-      <text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text><text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text>
-      <text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text><text><layout colspan="1" /><label>Colspan 1, no Rowspan</label></text>
-      <text><layout colspan="1" rowspan="12" /><label>Colspan 1, Rowspan 12</label></text>
+      <text><layout colspan="12" />Colspan 12, no Rowspan</text>
+      <text><layout colspan="6" />Colspan 6, no Rowspan</text><text><layout colspan="6" />Colspan 6, no Rowspan</text>
+      <text><layout colspan="4" />Colspan 4, no Rowspan</text><text><layout colspan="4" />Colspan 4, no Rowspan</text><text><layout colspan="4" />Colspan 4, no Rowspan</text>
+      <text><layout colspan="3" />Colspan 3, no Rowspan</text><text><layout colspan="3" />Colspan 3, no Rowspan</text>
+      <text><layout colspan="3" />Colspan 3, no Rowspan</text><text><layout colspan="3" />Colspan 3, no Rowspan</text>
+      <text><layout colspan="2" />Colspan 2, no Rowspan</text><text><layout colspan="2" />Colspan 2, no Rowspan</text>
+      <text><layout colspan="2" />Colspan 2, no Rowspan</text><text><layout colspan="2" />Colspan 2, no Rowspan</text>
+      <text><layout colspan="2" />Colspan 2, no Rowspan</text><text><layout colspan="2" />Colspan 2, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" />Colspan 1, no Rowspan</text><text><layout colspan="1" />Colspan 1, no Rowspan</text>
+      <text><layout colspan="1" rowspan="12" />Colspan 1, Rowspan 12</text>
       <group nowidget="true">
         <layout colspan="1" />
-        <text><layout colspan="1" rowspan="6" /><label>Colspan 1, Rowspan 6</label></text><text><layout colspan="1" rowspan="6" /><label>Colspan 1, Rowspan 6</label></text>
+        <text><layout colspan="1" rowspan="6" />Colspan 1, Rowspan 6</text><text><layout colspan="1" rowspan="6" />Colspan 1, Rowspan 6</text>
       </group>
       <group nowidget="true">
         <layout colspan="1" />
-        <text><layout colspan="1" rowspan="4" /><label>Colspan 1, Rowspan 4</label></text><text><layout colspan="1" rowspan="4" /><label>Colspan 1, Rowspan 4</label></text><text><layout colspan="1" rowspan="4" /><label>Colspan 1, Rowspan 4</label></text>
+        <text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text><text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text><text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text>
       </group>
       <group nowidget="true">
         <layout colspan="1" />
-        <text><layout colspan="1" rowspan="3" /><label>Colspan 1, Rowspan 3</label></text><text><layout colspan="1" rowspan="3" /><label>Colspan 1, Rowspan 3</label></text>
-        <text><layout colspan="1" rowspan="3" /><label>Colspan 1, Rowspan 3</label></text><text><layout colspan="1" rowspan="3" /><label>Colspan 1, Rowspan 3</label></text>
+        <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text><text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
+        <text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text><text><layout colspan="1" rowspan="3" />Colspan 1, Rowspan 3</text>
       </group>
       <group nowidget="true">
         <layout colspan="1" />
-        <text><layout colspan="1" rowspan="2" /><label>Colspan 1, Rowspan 2</label></text><text><layout colspan="1" rowspan="2" /><label>Colspan 1, Rowspan 2</label></text>
-        <text><layout colspan="1" rowspan="2" /><label>Colspan 1, Rowspan 2</label></text><text><layout colspan="1" rowspan="2" /><label>Colspan 1, Rowspan 2</label></text>
-        <text><layout colspan="1" rowspan="2" /><label>Colspan 1, Rowspan 2</label></text><text><layout colspan="1" rowspan="2" /><label>Colspan 1, Rowspan 2</label></text>
+        <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text><text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
+        <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text><text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
+        <text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text><text><layout colspan="1" rowspan="2" />Colspan 1, Rowspan 2</text>
       </group>
       <group nowidget="true">
         <layout colspan="1" />
-        <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text><text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-        <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text><text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-        <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text><text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-        <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text><text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-        <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text><text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-        <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text><text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text><text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
       </group>
-      <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-      <text><layout colspan="4" rowspan="1" /><label>Colspan 4, Rowspan 1</label></text>
-      <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-      <text><layout colspan="1" rowspan="4" /><label>Colspan 1, Rowspan 4</label></text>
-      <text><layout colspan="4" rowspan="4" /><label>Colspan 4, Rowspan 4</label></text>
-      <text><layout colspan="1" rowspan="4" /><label>Colspan 1, Rowspan 4</label></text>
-      <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-      <text><layout colspan="4" rowspan="1" /><label>Colspan 4, Rowspan 1</label></text>
-      <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-      <text><layout colspan="3" rowspan="1" /><label>Colspan 3, Rowspan 1</label></text>
-      <text><layout colspan="3" rowspan="1" /><label>Colspan 3, Rowspan 1</label></text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="4" rowspan="1" />Colspan 4, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text>
+      <text><layout colspan="4" rowspan="4" />Colspan 4, Rowspan 4</text>
+      <text><layout colspan="1" rowspan="4" />Colspan 1, Rowspan 4</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="4" rowspan="1" />Colspan 4, Rowspan 1</text>
+      <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+      <text><layout colspan="3" rowspan="1" />Colspan 3, Rowspan 1</text>
+      <text><layout colspan="3" rowspan="1" />Colspan 3, Rowspan 1</text>
       
-      <text><layout colspan="1" rowspan="5" /><label>Colspan 1, Rowspan 5</label></text>
+      <text><layout colspan="1" rowspan="5" />Colspan 1, Rowspan 5</text>
       <group nowidget="true">
         <layout colspan="4" />
-        <text><layout colspan="4" rowspan="2" /><label>Colspan 4, Rowspan 2</label></text>
-        <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-        <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-        <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-        <text><layout colspan="1" rowspan="1" /><label>Colspan 1, Rowspan 1</label></text>
-        <text><layout colspan="4" rowspan="2" /><label>Colspan 4, Rowspan 2</label></text>
+        <text><layout colspan="4" rowspan="2" />Colspan 4, Rowspan 2</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="1" rowspan="1" />Colspan 1, Rowspan 1</text>
+        <text><layout colspan="4" rowspan="2" />Colspan 4, Rowspan 2</text>
       </group>
-      <text><layout colspan="1" rowspan="5" /><label>Colspan 1, Rowspan 5</label></text>
+      <text><layout colspan="1" rowspan="5" />Colspan 1, Rowspan 5</text>
     </page>
     <page name="Navbar Test" align="center">
-      <text><label>This subpage adds additional content to the navbar</label></text>
+      <text>This subpage adds additional content to the navbar</text>
       <navbar position="left" dynamic="true" width="200px">
-        <text><label>Test 2</label></text>
+        <text>Test 2</text>
         <line/>
         <pagejump target="id_0_34_7" name="Lithium">
           <label>Flavour</label>
@@ -669,13 +669,13 @@
       </trigger>
     </page>
     <page name="3D" align="center">
-      <text><label>Not in this demo yet...</label></text>
+      <text>Not in this demo yet...</text>
     </page>
     <line/>
-    <text align="center"><label>&lt;b&gt;Plugins&lt;/b&gt;</label></text>
-    <text><label>Diese Widgets sind Plugins und stehen dann zur Verfügung, wenn sie in
+    <text align="center">&lt;b&gt;Plugins&lt;/b&gt;</text>
+    <text>Diese Widgets sind Plugins und stehen dann zur Verfügung, wenn sie in
       der Config-Datei aktiviert werden.
-    </label></text>
+    </text>
     <break/>
     <colorchooser>
       <label>ColorChooser</label>
@@ -721,13 +721,13 @@
     </diagram_info>
     <line/>
     <page name="Erweiterte Widgets">
-      <text><label>Auf dieser Seite sind Widgets zu finden, die noch in Entwicklung
+      <text>Auf dieser Seite sind Widgets zu finden, die noch in Entwicklung
         sind und daher im Allgemeinen noch nicht verwendet werden sollten.
-      </label></text>
+      </text>
       <line/>
       <group name="Gruppe" align="center">
         <layout colspan="5" />
-        <text align="center"><layout colspan="5" /><label>Ohne Flavour</label></text>
+        <text align="center"><layout colspan="5" />Ohne Flavour</text>
         <info styling="Blue_Purple_Red">
           <layout colspan="5" />
           <label>Info</label>

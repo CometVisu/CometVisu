@@ -59,7 +59,7 @@
   </meta>
   <page name="Start">
     <line/>
-    <text align="center"><label>Welcome to the CometVisu!</label></text>
+    <text align="center">Welcome to the CometVisu!</text>
     <line/>
   </page>
 </pages>

@@ -432,7 +432,7 @@ Config</a> ]]></status>
       </page>
     </page>
     <page name="Video" visible="false">
-      <text><label>Video Page</label></text>
+      <text>Video Page</text>
     </page>
     <page name="Audio" shownavbar="true" visible="false">
       <navbar position="left" dynamic="true" width="200px">
@@ -463,7 +463,7 @@ Config</a> ]]></status>
       </group>
     </page>
     <page name="Web" visible="false">
-      <text><label>Web Page</label></text>
+      <text>Web Page</text>
     </page>
   </page>
 </pages>
