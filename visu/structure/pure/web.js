@@ -40,7 +40,7 @@ basicdesign.addCreator('web', {
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
     ret_val.append( $(actor).data( {
       'refresh': refresh
-    } ).each(setupRefreshAction) ); // abuse "each" to call in context...
+    } ).each(templateEngine.setupRefreshAction) ); // abuse "each" to call in context...
     return ret_val;
   }
 });

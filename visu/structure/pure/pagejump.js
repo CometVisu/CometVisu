@@ -53,6 +53,6 @@ basicdesign.addCreator('pagejump', {
   },
   action: function() {
     var data = $(this).data();
-    scrollToPage( data.target );
+    templateEngine.scrollToPage( data.target );
   }
 });

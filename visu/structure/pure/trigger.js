@@ -38,7 +38,7 @@ basicdesign.addCreator('trigger', {
     actor += '"><div class="value"></div></div>';
     var $actor = $(actor);
     var valueElement = $actor.find('.value');
-    var mappedValue = map( value, $e.attr('mapping') );
+    var mappedValue = templateEngine.map( value, $e.attr('mapping') );
     if( ('string' == typeof mappedValue) || ('number' == typeof mappedValue) )
     {
       valueElement.append( mappedValue );
@@ -81,7 +81,7 @@ basicdesign.addCreator('trigger', {
         {
           if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
           if( isShort == data.address[addr][2] )
-          visu.write( addr.substr(1), transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
+            templateEngine.visu.write( addr.substr(1), transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
         }
       }
       $this.removeClass('switchPressed').addClass('switchUnpressed').removeData( 'downtime' );

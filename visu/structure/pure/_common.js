@@ -34,7 +34,7 @@ var Maturity = {
  * implemented in: default_update, trigger-widget
  */
 $.fn.setWidgetStyling = function(value) {
-  var styling = stylings[this.data('styling')];
+  var styling = templateEngine.stylings[this.data('styling')];
   if (styling) {    
     this.removeClass(styling['classnames']); // remove only styling classes
     if (styling[value]) { // fixed value
@@ -62,7 +62,7 @@ $.fn.setWidgetStyling = function(value) {
 $.fn.setWidgetLayout = function(page) { 
    this.data('colspan', page.children('layout').attr('colspan') || $('head').data('colspanDefault') || 6);
    if (page.children('layout').attr('rowspan')) {
-     this.data('rowspanClass', rowspanClass(page.children('layout').attr('rowspan') || 1));
+     this.data('rowspanClass', templateEngine.rowspanClass(page.children('layout').attr('rowspan') || 1));
      this.addClass('innerrowspan'); 
    }
    return this;
@@ -109,7 +109,7 @@ function makeAddressList( page, handleVariant ) {
     }
     var variantInfo = handleVariant ? handleVariant( src, transform, mode, this.getAttribute('variant') ) : [true, undefined];
     if( variantInfo[0] )
-      ga_list.push( src );
+      templateEngine.ga_list.push( src );
     address[ '_' + src ] = [ transform, mode, variantInfo[1] ];
     return; // end of each-func
   });
@@ -224,7 +224,7 @@ function VisuDesign() {
     $( '.actor', $(this).parent() ).data( 'last', now );  
   //$(this).parent().data();
   //  alert( data.GA + ' = ' + data.value );
-    //visu.write( data.GA, data.value=='1' ? '0' : '1', data.datatype ); 
+    //templateEngine.visu.write( data.GA, data.value=='1' ? '0' : '1', data.datatype ); 
     //FIXME eigentlich richtig... visu.write( data.GA, ui.value, data.datatype ); 
   }
 
@@ -316,12 +316,12 @@ function defaultValueHandling( e, data, passedElement )
   var element = passedElement || $(this);
   var thisTransform = element.data().address[ e.type ][0];
   // #1: transform the raw value to a JavaScript type
-  var value = transformDecode( element.data().address[ e.type ][0], data );
+  var value = templateEngine.transformDecode( element.data().address[ e.type ][0], data );
   
   element.data( 'basicvalue', value ); // store it to be able to supress sending of unchanged data
   
   // #2: map it to a value the user wants to see
-  value = map( value, element.data('mapping') );
+  value = templateEngine.map( value, element.data('mapping') );
   
   // #3: format it in a way the user understands the value
   if( element.data( 'precision' ) )
@@ -429,7 +429,7 @@ function extractLabel( label )
     var $v = $(this);
     if( $v.is('icon') )
     {
-      var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'));
+      var i = templateEngine.icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'));
       if( i ) $div.append( i.clone() );
     } else
       $div.append( this.textContent );

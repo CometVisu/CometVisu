@@ -87,7 +87,7 @@ basicdesign.addCreator('slide', {
   },
   update: function( e, data ) { 
     var element = $(this);
-    var value = transformDecode( element.data().address[ e.type ][0], data );
+    var value = templateEngine.transformDecode( element.data().address[ e.type ][0], data );
     if( element.data( 'value' ) != value )
     {
       element.data( 'value', value );
@@ -117,7 +117,7 @@ basicdesign.addCreator('slide', {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
         var dv  = transformEncode( data.address[addr][0], asv );
         if( dv != transformEncode( data.address[addr][0], data.value ) )
-          visu.write( addr.substr(1), dv );
+          templateEngine.visu.write( addr.substr(1), dv );
       }
       data.value = actor.slider('value');
     }, 250 ) ); // update KNX every 250 ms 
@@ -135,7 +135,7 @@ basicdesign.addCreator('slide', {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
         var uv  = transformEncode( data.address[addr][0], ui.value );
         if( uv != transformEncode( data.address[addr][0], data.value ) )
-          visu.write( addr.substr(1), uv );
+          templateEngine.visu.write( addr.substr(1), uv );
       }
   }
 });
