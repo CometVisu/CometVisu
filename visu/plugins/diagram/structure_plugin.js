@@ -431,7 +431,7 @@ function refreshDiagram(diagram, flotoptions, data) {
       var idx = num;
          
       $.ajax({
-        url: templateEngine.backend+"rrdfetch?rrd=" + src + ".rrd&ds=" + datasource + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
+        url: templateEngine.backend+"/rrdfetch?rrd=" + src + ".rrd&ds=" + datasource + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
         dataType: "json",
         type: "GET",
         context: this,
