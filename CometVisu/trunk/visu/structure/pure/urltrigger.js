@@ -37,7 +37,7 @@ basicdesign.addCreator('urltrigger', {
     actor += '"><div class="value"></div></div>';
     var $actor = $(actor);
     var valueElement = $actor.find('.value');
-    var mappedValue = map( value, $e.attr('mapping') );
+    var mappedValue = templateEngine.map( value, $e.attr('mapping') );
     if( ('string' == typeof mappedValue) || ('number' == typeof mappedValue) )
     {
       valueElement.append( mappedValue );

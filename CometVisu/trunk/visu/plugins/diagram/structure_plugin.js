@@ -231,7 +231,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     var address = {};
     $p.find('address').each( function(){ 
       var src = this.textContent;
-      ga_list.push( src ); 
+      templateEngine.ga_list.push( src ); 
       address[ '_' + src ] = [ this.getAttribute('transform') ];
     });
     
@@ -255,8 +255,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
       actor += $p.attr( 'align' ); 
     actor += '">';
     var map = $p.attr('mapping');
-    if( mappings[map] && mappings[map][value] )
-      actor += '<div class="value">' + mappings[map][value] + '</div>';
+    if( templateEngine.mappings[map] && templateEngine.mappings[map][value] )
+      actor += '<div class="value">' + templateEngine.mappings[map][value] + '</div>';
     else
       actor += '<div class="value">-</div>';
     actor += '</div>';

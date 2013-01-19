@@ -45,7 +45,7 @@ basicdesign.addCreator('rgb', {
   },
   update: function(e,d) { 
     var element = $(this);
-    var value = transformDecode( element.data('address')[ e.type ][0], d );
+    var value = templateEngine.transformDecode( element.data('address')[ e.type ][0], d );
     var bg = element.css('background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
     switch (element.data('address')[e.type][2]) {
     case 'r' :  bg[0] = value; break;

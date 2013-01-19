@@ -22,7 +22,7 @@ basicdesign.addCreator('page', {
     var address = {};
     if ($p.attr('ga')) {
       src = $p.attr('ga');
-      ga_list.push($p.attr('ga'));
+      templateEngine.ga_list.push($p.attr('ga'));
       address[ '_' + $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
     }
 
@@ -46,7 +46,7 @@ basicdesign.addCreator('page', {
       var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
       ret_val = $('<div class="widget clearfix link pagelink" ' + style + '/>');
       ret_val.setWidgetLayout($p);
-      var tst = $('<div ' + wstyle + '><a href="javascript:scrollToPage(\''+path+'\')">' + name + '</a></div>');
+      var tst = $('<div ' + wstyle + '><a href="javascript:templateEngine.scrollToPage(\''+path+'\')">' + name + '</a></div>');
       
       ret_val.append(tst );
     }
@@ -80,17 +80,17 @@ basicdesign.addCreator('page', {
       }}, floorplan.translateMouseEvent );
       $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
       if ($p.attr('azimut')) {
-        ga_list.push($p.attr('azimut'));
+        templateEngine.ga_list.push($p.attr('azimut'));
         address[ '_' + $p.attr('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
         container.bind( '_' + $p.attr('azimut'), this.update );
       }
       if ($p.attr('elevation')) {
-        ga_list.push($p.attr('elevation'));
+        templateEngine.ga_list.push($p.attr('elevation'));
         address[ '_' + $p.attr('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
         container.bind( '_' + $p.attr('elevation'), this.update );
       }; 
       if ($p.attr('floor')) {
-        ga_list.push($p.attr('floor'));
+        templateEngine.ga_list.push($p.attr('floor'));
         address[ '_' + $p.attr('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
         container.bind( '_' + $p.attr('floor'), this.update );
       }; 
@@ -110,7 +110,7 @@ basicdesign.addCreator('page', {
     }
     container.data( 'address', address );
     $( childs ).each( function(i){
-        container.append( create_pages( childs[i], path + '_' + i, flavour, type ) );
+        container.append( templateEngine.create_pages( childs[i], path + '_' + i, flavour, type ) );
     } );
     subpage.append(container);
     if( flavour ) subpage.addClass( 'flavour_' + flavour );
@@ -141,8 +141,8 @@ basicdesign.addCreator('page', {
         
       default:
         if (data==01) {
-          scrollToPage(this.attributes.path.nodeValue);
-          visu.write(e.type.substr(1), transformEncode('DPT:1.001', 0));
+          templateEngine.scrollToPage(this.attributes.path.nodeValue);
+          templateEngine.visu.write(e.type.substr(1), transformEncode('DPT:1.001', 0));
         }
     }
   }

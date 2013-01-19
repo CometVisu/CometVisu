@@ -51,7 +51,7 @@ basicdesign.addCreator('switch', {
   update: function(e,d) { 
     var element = $(this);
     var value = defaultUpdate( e, d, element );
-    var off = map( element.data( 'off_value' ), element.data('mapping') );
+    var off = templateEngine.map( element.data( 'off_value' ), element.data('mapping') );
     element.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     element.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
@@ -60,7 +60,7 @@ basicdesign.addCreator('switch', {
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.basicvalue == data.off_value ? data.on_value : data.off_value ) );
+      templateEngine.visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.basicvalue == data.off_value ? data.on_value : data.off_value ) );
     }
   }
 });

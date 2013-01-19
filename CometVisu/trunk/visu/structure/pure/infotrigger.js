@@ -138,7 +138,7 @@ basicdesign.addCreator('infotrigger', {
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
       if( data.address[addr][2] != relative ) continue; // skip when address mode doesn't fit action mode
-      visu.write( addr.substr(1), transformEncode( data.address[addr][0], value ) );
+      templateEngine.visu.write( addr.substr(1), transformEncode( data.address[addr][0], value ) );
     }
   }
 });
