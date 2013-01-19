@@ -81,7 +81,7 @@ basicdesign.addCreator('trigger', {
         {
           if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
           if( isShort == data.address[addr][2] )
-            templateEngine.visu.write( addr.substr(1), transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
+            templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
         }
       }
       $this.removeClass('switchPressed').addClass('switchUnpressed').removeData( 'downtime' );

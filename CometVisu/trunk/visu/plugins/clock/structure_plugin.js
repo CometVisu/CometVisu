@@ -121,7 +121,7 @@ VisuDesign_Custom.prototype.addCreator("clock", {
     for( var addr in data.address )
     {
       if( data.address[addr][1] == true ) continue; // skip read only
-      visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
+      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], data.value ) );
     }
   }
 });

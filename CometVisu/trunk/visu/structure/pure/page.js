@@ -142,7 +142,7 @@ basicdesign.addCreator('page', {
       default:
         if (data==01) {
           templateEngine.scrollToPage(this.attributes.path.nodeValue);
-          templateEngine.visu.write(e.type.substr(1), transformEncode('DPT:1.001', 0));
+          templateEngine.visu.write(e.type.substr(1), templateEngine.transformEncode('DPT:1.001', 0));
         }
     }
   }
