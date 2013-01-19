@@ -25,6 +25,6 @@ basicdesign.addCreator('include', {
       async: false
     });
     var child = (p.responseXML.childNodes[0]);
-    return create_pages( child, path , flavour ); 
+    return templateEngine.create_pages( child, path , flavour ); 
   }
 });
