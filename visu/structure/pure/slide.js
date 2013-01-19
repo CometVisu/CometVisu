@@ -115,8 +115,8 @@ basicdesign.addCreator('slide', {
       for( var addr in data.address )
       {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-        var dv  = transformEncode( data.address[addr][0], asv );
-        if( dv != transformEncode( data.address[addr][0], data.value ) )
+        var dv  = templateEngine.transformEncode( data.address[addr][0], asv );
+        if( dv != templateEngine.transformEncode( data.address[addr][0], data.value ) )
           templateEngine.visu.write( addr.substr(1), dv );
       }
       data.value = actor.slider('value');
@@ -133,8 +133,8 @@ basicdesign.addCreator('slide', {
       for( var addr in data.address )
       {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-        var uv  = transformEncode( data.address[addr][0], ui.value );
-        if( uv != transformEncode( data.address[addr][0], data.value ) )
+        var uv  = templateEngine.transformEncode( data.address[addr][0], ui.value );
+        if( uv != templateEngine.transformEncode( data.address[addr][0], data.value ) )
           templateEngine.visu.write( addr.substr(1), uv );
       }
   }
