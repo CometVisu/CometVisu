@@ -30,7 +30,7 @@ basicdesign.addCreator('text', {
       $e.contents().each(function() {
         var $v = $(this);
         if ($v.is('icon')) {
-          var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour);
+          var i = templateEngine.icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour);
           if (i)
             label.append(i.clone());
         } else
