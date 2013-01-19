@@ -52,8 +52,8 @@ basicdesign.addCreator('toggle', {
     var element_count = 0;
     var next_element;
     var first_element;
-    for(var e in mappings[data.mapping])
-        if(mappings[data.mapping].hasOwnProperty(e))
+    for(var e in templateEngine.mappings[data.mapping])
+        if(templateEngine.mappings[data.mapping].hasOwnProperty(e))
           {
               element_count++;
               if (e > data.basicvalue && !next_element)
@@ -65,7 +65,7 @@ basicdesign.addCreator('toggle', {
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      visu.write( addr.substr(1), transformEncode( data.address[addr][0], sendValue ) );
+      templateEngine.visu.write( addr.substr(1), transformEncode( data.address[addr][0], sendValue ) );
     }
   }
 });

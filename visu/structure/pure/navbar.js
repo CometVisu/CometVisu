@@ -25,7 +25,7 @@ basicdesign.addCreator('navbar', {
     var container = $( '<div class="navbar clearfix" id="' + id.join('_')+'_'+ position + '_navbar" />' );
     if( $n.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $n.attr('name') + '</h2>' );
     $( childs ).each( function(i){
-        container.append( create_pages( childs[i], path + '_' + i, flavour ) );
+        container.append( templateEngine.create_pages( childs[i], path + '_' + i, flavour ) );
     } );
     container.data('scope',scope);
     if( $n.attr('flavour') ) flavour = $n.attr('flavour');// sub design choice
@@ -42,20 +42,20 @@ basicdesign.addCreator('navbar', {
       case 'left':
         $('#navbarLeft').append( container );
         var thisSize = $('#navbarLeft').data('size') || size; // FIXME - only a temporal solution
-        if( dynamic ) navbarSetSize( 'left', thisSize );
+        if( dynamic ) templateEngine.pagePartsHandler.navbarSetSize( 'left', thisSize );
         break;
         
       case 'right':
         $('#navbarRight').append( container );
         var thisSize = $('#navbarRight').data('size') || size; // FIXME - only a temporal solution
-        if( dynamic ) navbarSetSize( 'right', thisSize );
+        if( dynamic ) templateEngine.pagePartsHandler.navbarSetSize( 'right', thisSize );
         break;
         
       case 'bottom':
         $('#navbarBottom').append( container );
         break;
     }
-    navbars[position].dynamic |= dynamic;
+    templateEngine.pagePartsHandler.navbars[position].dynamic |= dynamic;
     
     var ret_val = $('');
     return ret_val;

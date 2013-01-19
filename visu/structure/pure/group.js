@@ -35,7 +35,7 @@ basicdesign.addCreator('group', {
     var container = $( '<div class="clearfix"/>' );
     if( $e.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $e.attr('name') + '</h2>' );
     $( childs ).each( function(i){
-        container.append( create_pages( childs[i], path + '_' + i, flavour ) );
+        container.append( templateEngine.create_pages( childs[i], path + '_' + i, flavour ) );
     } );
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
 
@@ -53,6 +53,6 @@ basicdesign.addCreator('group', {
   },
   action: function () {
     var data = $(this).data();
-    if (data.target != 0) scrollToPage( data.target );
+    if (data.target != 0) templateEngine.scrollToPage( data.target );
   } 
 });

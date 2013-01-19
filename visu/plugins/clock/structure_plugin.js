@@ -35,7 +35,7 @@ VisuDesign_Custom.prototype.addCreator("clock", {
       var transform = this.getAttribute('transform');
       var color     = this.getAttribute('variant'  );
       var readonly  = this.getAttribute('readonly' );
-      ga_list.push( src ); 
+      templateEngine.ga_list.push( src ); 
       address[ '_' + src ] = [ transform, color, readonly=='true' ];
     });
 

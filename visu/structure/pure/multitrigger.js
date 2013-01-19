@@ -125,7 +125,7 @@ basicdesign.addCreator('multitrigger', {
     var element = $(this);
     //var value = defaultUpdate( e, d, element );
     var thisTransform = element.data().address[ e.type ][0];
-    var value = transformDecode( element.data().address[ e.type ][0], d );
+    var value = templateEngine.transformDecode( element.data().address[ e.type ][0], d );
     element.removeClass( value == element.data().value ? 'switchUnpressed' : 'switchPressed' );
     element.addClass(    value == element.data().value ? 'switchPressed' : 'switchUnpressed' );
   },
@@ -134,7 +134,7 @@ basicdesign.addCreator('multitrigger', {
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
+      templateEngine.visu.write( addr.substr(1), transformEncode( data.address[addr][0], data.value ) );
     }
   }
 });

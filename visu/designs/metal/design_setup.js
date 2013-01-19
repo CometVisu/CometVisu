@@ -86,9 +86,9 @@ $(window).resize(function() {
        }
        if (/(iphone|ipod|ipad)/i.test(navigator.userAgent.toLowerCase())) {
          // disable scrolling
-         main_scroll.getConf().speed=0;
+         templateEngine.main_scroll.getConf().speed=0;
          $('body').css('padding-top','1em');
-         handleResize(true);
+         templateEngine.handleResize(true);
        }
        $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
          var label = $(this);

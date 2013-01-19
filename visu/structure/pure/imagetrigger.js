@@ -59,7 +59,7 @@ basicdesign.addCreator('imagetrigger', {
     var data = $(this).data();
     if ( data.address[e.type][1].writeonly == "true")
       return; // skip writeonly FIXME: writeonly shouldnt bind to update at all
-    var val = transformDecode(data.address[e.type][0], d);
+    var val = templateEngine.transformDecode(data.address[e.type][0], d);
     if (data.type == "show")
       if (val == 0)
         $(this).children().hide();
@@ -84,7 +84,7 @@ basicdesign.addCreator('imagetrigger', {
         continue; // skip when write flag not set
       if( data.sendValue == "" )
         continue; // skip empty
-      visu.write( addr.substr(1), transformEncode( data.address[addr][0], sendValue ) );
+      templateEngine.visu.write( addr.substr(1), transformEncode( data.address[addr][0], sendValue ) );
     }
   }
 });
