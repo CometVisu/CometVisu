@@ -84,7 +84,7 @@ basicdesign.addCreator('imagetrigger', {
         continue; // skip when write flag not set
       if( data.sendValue == "" )
         continue; // skip empty
-      templateEngine.visu.write( addr.substr(1), transformEncode( data.address[addr][0], sendValue ) );
+      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], sendValue ) );
     }
   }
 });
