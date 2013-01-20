@@ -47,7 +47,7 @@ basicdesign.addCreator('imagetrigger', {
       'mapping':   map,
       'sendValue': $e.attr('sendValue') || ""
     } )
-      .each(setupRefreshAction) // abuse "each" to call in context... refresh is broken with select right now
+      .each(templateEngine.setupRefreshAction) // abuse "each" to call in context... refresh is broken with select right now
       .bind( 'click', this.action );
     for( var addr in address ) {
       $actor.bind( addr, this.update );
