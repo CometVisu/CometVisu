@@ -49,7 +49,7 @@ VisuDesign_Custom.prototype.addCreator('svg', {
     $actor.data( {
       'address':   address, 
       'refresh':   refresh
-    } ).each(setupRefreshAction); // abuse "each" to call in context...
+    } ).each(templateEngine.setupRefreshAction); // abuse "each" to call in context...
     for( var addr in address ) {
       $actor.bind( addr, this.update );
     }
