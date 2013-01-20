@@ -70,7 +70,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 var v = Transform[address[addr][0]].encode( r );
                 if( v != Transform[address[addr][0]].encode( br ) )
                 {
-                  visu.write( addr.substr(1), v );
+                  templateEngine.visu.write( addr.substr(1), v );
                   modified = true;
                 }
                 break;
@@ -78,7 +78,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 var v = Transform[address[addr][0]].encode( g );
                 if( v != Transform[address[addr][0]].encode( bg ) )
                 {
-                  visu.write( addr.substr(1), v );
+                  templateEngine.visu.write( addr.substr(1), v );
                   modified = true;
                 }
                 break;
@@ -86,7 +86,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 var v = Transform[address[addr][0]].encode( b );
                 if( v != Transform[address[addr][0]].encode( bb ) )
                 {
-                  visu.write( addr.substr(1), v );
+                  templateEngine.visu.write( addr.substr(1), v );
                   modified = true;
                 }
                 break;
