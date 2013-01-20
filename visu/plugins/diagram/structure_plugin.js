@@ -154,7 +154,7 @@ function createDiagram( page, path, oldType ) {
       bDiagram.data(data);
       bDiagram.data("ispopup", true);
       bDiagram.css({height: "90%"});
-      showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
+      templateEngine.showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
       bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
       bDiagram.empty();
       var bDiagramOpts = {yaxis: {labelWidth: null}, yaxes: [{ticks: null}]}; 
@@ -299,7 +299,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
       bDiagram.css({height: "90%"});
       bDiagram.data("ispopup", true);
       
-      showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
+      templateEngine.showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
       bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
       bDiagram.empty();
       var bDiagramOpts = {yaxis: {labelWidth: null}};

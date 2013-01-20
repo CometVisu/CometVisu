@@ -59,7 +59,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
     var data = jQuery.extend({}, rss.data());
     
     ret_val.bind("click", function() {
-      showPopup("rsslog", {title: $('.label', ret_val).text() || '', content: brss});
+      templateEngine.showPopup("rsslog", {title: $('.label', ret_val).text() || '', content: brss});
       brss.parent("div").css({height: "90%", width: "90%", margin: "auto"}); // define parent as 100%!
       brss.data(data);
       brss.data("refresh", "");

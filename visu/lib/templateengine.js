@@ -86,7 +86,7 @@ function TemplateEngine() {
 
   this.clientDesign = "";
 
-  if (typeof forceReload == "undefined") {
+  if (typeof this.forceReload == "undefined") {
     this.forceReload = false;
   }
 
