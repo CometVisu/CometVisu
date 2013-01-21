@@ -69,8 +69,8 @@ function TemplateEngine() {
   }
 
   this.initBackendClient = function() {
-    var backend = '/' + thisTemplateEngine.backend + '/';
-    thisTemplateEngine.visu = new CometVisu(backend);
+    thisTemplateEngine.backend = '/' + thisTemplateEngine.backend + '/';
+    thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
     thisTemplateEngine.visu.update = function(json) { // overload the handler
       for (key in json) {
         $.event.trigger('_' + key, json[key]);
