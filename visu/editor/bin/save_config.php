@@ -30,6 +30,7 @@
  */
 
 define('CONFIG_FILENAME', '../../visu_config%s.xml');
+define('BACKUP_FILENAME', '../../backup/visu_config%s-%s.xml');
 
 // get everything the user has provided ...
 $strJson   = (true === isset($_POST['data']))   ? $_POST['data']   : null;
@@ -47,6 +48,20 @@ $strConfigFQFilename = realpath($strConfigFilename);
 
 if (false === is_writeable($strConfigFQFilename)) {
     exitWithResponse(false, 'config-file is not writeable by webserver-process; please chmod/chown config-file \'' . $strConfigFQFilename . '\' (\'' . $strConfigFilename. '\').');
+}
+
+// create a backup, but not for the previewtemp
+if ($strConfigCleaned !== '_previewtemp') {
+    // generate the backups filename
+    $strBackupFilename = sprintf(BACKUP_FILENAME, $strConfigCleaned, date('YmdHis'));
+    $strBackupFQDirname = realpath(dirname($strBackupFilename));
+
+    if (false === is_writeable($strBackupFQDirname)) {
+        exitWithResponse(false, 'backup-file is not writeable, please chmod/chown directory \'' . $strBackupFQDirname . '\'');
+    }
+
+    // make a copy of the file for backup-purposes
+    copy($strConfigFQFilename, $strBackupFilename);
 }
 
 // bail out if no json/configuration-data was provided

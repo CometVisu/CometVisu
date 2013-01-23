@@ -33,8 +33,6 @@
  */
 
 
-// @TODO: read and parse annotations (documentation, xml: lang); use separate Class? (MS5+)
-
 /**
  * starting-point for a javascript-representation of the XSD
  * 
@@ -94,6 +92,12 @@ var Schema = function (filename) {
     }
     
     /**
+     * cache for referenced nods
+     * @var object
+     */
+    var referencedNodeCache = {};
+    
+    /**
      * dive into the schema and find the element that is being pulled in by a ref.
      * Do so recursively.
      * referenced nodes can be top-level-nodes only!
@@ -103,6 +107,10 @@ var Schema = function (filename) {
      * @return  object          jQuery-object of the ref'ed element
      */
     _schema.getReferencedNode = function (type, refName) {
+        if (typeof referencedNodeCache[type] != 'undefined' && typeof referencedNodeCache[type][refName] != 'undefined') {
+            return referencedNodeCache[type][refName];
+        }
+        
         var selector = 'xsd\\:schema > xsd\\:' + type + '[name="' + refName + '"]';
         selector = fixNamespace(selector);
         var $ref = $(selector, $xsd);
@@ -112,8 +120,21 @@ var Schema = function (filename) {
             $ref = _schema.getReferencedNode(type, $ref.attr('ref'));
         }
 
+        if (typeof referencedNodeCache[type] == 'undefined') {
+            referencedNodeCache[type] = {};
+        }
+        
+        // fill the cache
+        referencedNodeCache[type][refName] = $ref;
+
         return $ref;
     }
+    
+    /**
+     * cache for getTypeNode
+     * @var object
+     */
+    var typeNodeCache = {};
     
     /**
      * get the definition of a type, be it complex or simple
@@ -122,14 +143,47 @@ var Schema = function (filename) {
      * @param   name    string  Name of the type to find
      */
     _schema.getTypeNode = function (type, name) {
+
+        if (typeof typeNodeCache[type] != 'undefined' && typeof typeNodeCache[type][name] != 'undefined') {
+            return typeNodeCache[type][name];
+        }
+
         var selector = fixNamespace('xsd\\:' + type + 'Type[name="' + name + '"]');
         var $type = $(selector, $xsd);
         
         if ($type.length != 1) {
             throw 'schema/xsd appears to be invalid, ' + type + 'Type "' + name + '" can not be found';
         }
-        
+
+        if (typeof typeNodeCache[type] == 'undefined') {
+            typeNodeCache[type] = {};
+        }
+
+        // fill the cache
+        typeNodeCache[type][name] = $type;
+
         return $type;
+    }
+    
+    /**
+     * cache for #text-SchemaElement
+     * @var object
+     */
+    var textNodeSchemaElement = undefined;
+    
+    /**
+     * get a SchemaElement for a #text-node
+     * 
+     * @return  object  SchemaElement for #text-node
+     */
+    _schema.getTextNodeSchemaElement = function () {
+        if (textNodeSchemaElement == undefined) {
+            // text-content is always a simple string
+            var tmpXML = $('<element />', _schema.getSchemaDOM()).attr({name: '#text', type: 'xsd:string'});
+            textNodeSchemaElement = new SchemaElement(tmpXML, _schema);
+        } 
+
+        return textNodeSchemaElement;
     }
     
     /**
@@ -437,6 +491,95 @@ var SchemaAttribute = function (node, schema) {
         return Messages.schema.complexType;
     }
     
+
+    /**
+     * cache for getAppinfo
+     * @var array
+     */
+    var appinfoCache = undefined;
+    
+    /**
+     * get the appinfo information from the attribute, if any
+     * 
+     * @return  array   list of texts, or empty list if none
+     */
+    _attribute.getAppinfo = function () {
+        if (undefined != appinfoCache) {
+            return appinfoCache;
+        }
+
+        var appinfo = [];
+        
+        // any appinfo this element itself might carry
+        $.each($node.find(fixNamespace('> xsd\\:annotation > xsd\\:appinfo')), function (i, appinfoNode) {
+            var appinfoNodeText = $(appinfoNode).text();
+            appinfo.push(appinfoNodeText);
+        });
+
+        if ($node.is('[ref]')) {
+            // the attribute is a reference, so take appinfo from there, too
+
+            var refName = $node.attr('ref');
+            var $ref = _schema.getReferencedNode('attribute', refName);
+
+            $.each($ref.find(fixNamespace('> xsd\\:annotation > xsd\\:appinfo')), function (i, appinfoNode) {
+                var appinfoNodeText = $(appinfoNode).text();
+                appinfo.push(appinfoNodeText);
+            });
+        }
+        
+        // fill the cache
+        appinfoCache = appinfo;
+        
+        return appinfo;
+    };  
+
+    /**
+     * cache for getDocumentation
+     * @var array
+     */
+    var documentationCache = undefined;
+   
+    /**
+     * get the documentation information from the attribute, if any
+     * 
+     * @return  array   list of texts, or empty list if none
+     */
+    _attribute.getDocumentation = function () {
+        if (undefined != documentationCache) {
+            return documentationCache;
+        }
+        
+        var documentation = [];
+        
+        var lang = Messages.language;
+        var selector = '> xsd\\:annotation > xsd\\:documentation[xml\\:lang=' + lang + ']';
+        
+        // any appinfo this element itself might carry
+        $.each($node.find(fixNamespace(selector)), function (i, documentationNode) {
+            var documentationNodeText = $(documentationNode).text();
+            documentation.push(documentationNodeText);
+        });
+
+        if ($node.is('[ref]')) {
+            // the attribute is a reference, so take appinfo from there, too
+
+            var refName = $node.attr('ref');
+            var $ref = _schema.getReferencedNode('attribute', refName);
+
+            $.each($ref.find(fixNamespace(selector)), function (i, documentationNode) {
+                var documentationNodeText = $(documentationNode).text();
+                documentation.push(documentationNodeText);
+            });
+        }
+            
+        // fill the cache
+        documentationCache = documentation;
+       
+        return documentation;
+    };  
+
+
     /**
      * get the list of values that are valid for this attribute, if it is an enumeration
      * 
@@ -472,7 +615,15 @@ var SchemaAttribute = function (node, schema) {
      * @var string  the name
      */
     _attribute.name = getAttributeName($node);
+
     
+    /**
+     * a default-value for this element
+     * defaults to undefined
+     * @var string
+     */
+    _attribute.defaultValue = $node.attr('default');
+
     /**
      * we have our own type
      * @var object  SchemaSimpleType of the attribute, for validating purposes
@@ -489,6 +640,12 @@ var SchemaAttribute = function (node, schema) {
  */
 var SchemaElement = function (node, schema) {
     var _element = this;
+
+    /**
+     * type of this object
+     * @var string
+     */
+    _element.type = 'element';
     
     /**
      * Get the name of a schema-element
@@ -561,41 +718,39 @@ var SchemaElement = function (node, schema) {
         }
         
         // allowed sub-elements
-        // can be either choice, simpleContent or sequence (the latter is not supported)
+        // can be either simpleContent, or (choice|sequence|group|all)?
+        // 'all' is not supported yet.
         
         if ($type.children(fixNamespace('xsd\\:simpleContent')).length > 0) {
             // it's simpleContent? Then it's either extension or restriction
             // anyways, we will handle it, as if it were a simpleType
             allowedContent._text = new SchemaSimpleType($type.children(fixNamespace('xsd\\:simpleContent')), _schema);
-        } else if ($type.children(fixNamespace('xsd\\:choice')).length > 0) {
-            // we have a choice. great
-            // as per the W3C, choice may only appear once per element/type
-            var tmpDOMChoice = $type.children(fixNamespace('xsd\\:choice')).get(0);
-
-            allowedContent._choice = new SchemaChoice(tmpDOMChoice, _schema);
-            delete tmpDOMChoice;
-        } else if ($type.children(fixNamespace('xsd\\:group')).length > 0) {
-            // we have a group
-            // as per the W3C, group may only appear once per element/type (not true for group in choices!)
-            // also, a group and a choice can not BOTH appear in an element/type
-
-            var tmpDOMGroup = $type.children(fixNamespace('xsd\\:group'))[0];
+        } else if ($type.children(fixNamespace('xsd\\:choice, xsd\\:sequence, xsd\\:group')).length > 0) {
+            // we have a choice, group or sequence. great
+            // as per the W3C, only one of these may appear per element/type
             
-            var subGroup = new SchemaGroup(tmpDOMGroup, _schema);
+            var tmpDOMGrouping = $type.children(fixNamespace('xsd\\:choice, xsd\\:sequence, xsd\\:group')).get(0);
             
-            if (true === subGroup.hasChoice()) {
-                allowedContent._choice = subGroup.getChoice();
+            // create the appropriate Schema*-object and append it to this very element
+            switch (tmpDOMGrouping.nodeName) {
+                case 'xsd:choice':
+                case 'choice':
+                    allowedContent._grouping = new SchemaChoice(tmpDOMGrouping, _schema);
+                    break;
+                case 'xsd:sequence':
+                case 'sequence':
+                    allowedContent._grouping = new SchemaSequence(tmpDOMGrouping, _schema);
+                    break;
+                case 'xsd:group':
+                case 'group':
+                    allowedContent._grouping = new SchemaGroup(tmpDOMGrouping, _schema);
+                    break;
             }
-
-            delete tmpDOMGroup;
-            delete subGroup;
             
+            delete tmpDOMGrouping;
         } else if ($type.is('[type]') && $type.attr('type').match(/^xsd:/)) {
             // this is a really simple node that defines its own baseType
             allowedContent._text = new SchemaSimpleType($type, _schema);
-        } else if ($type.children(fixNamespace('xsd\\:sequence')).length > 0) {
-            // sequence is not yet supported
-            throw 'schema/xsd is not compatible, unsupported node ' + $e;
         } else {
             // no type, no children, no choice - this is an element with NO allowed content/children
             return allowedContent;
@@ -616,6 +771,37 @@ var SchemaElement = function (node, schema) {
     }
     
     /**
+     * are this elements children sortable? this is not the case if a sequence is used, e.g.
+     * 
+     * @return  boolean     are children sortable?
+     */
+    _element.areChildrenSortable = function () {
+        if (allowedContent._grouping == undefined) {
+            return undefined;
+        }
+        
+        // the inverse of "do the elements have a given order?"
+        return !allowedContent._grouping.elementsHaveOrder;
+    };
+
+    
+    /**
+     * get a list of required elements.
+     * if an element is required multiple times, it is listed multiple times
+     * 
+     * @return  array   list of required elements
+     */
+    _element.getRequiredElements = function () {
+        if (allowedContent._grouping != undefined) {
+            // we do have a grouping as a child
+            return allowedContent._grouping.getRequiredElements();
+        }
+        
+        // there is no grouping, hence no elements defined as children
+        return [];
+    }; 
+
+    /**
      * get a list of all allowed elements for this element
      * 
      * @return  object  list of SchemaElement-elements, key is the name
@@ -624,20 +810,31 @@ var SchemaElement = function (node, schema) {
         var allowedContent = _element.getAllowedContent();
         
         var allowedElements = {};
-        if (allowedContent._choice != undefined) {
-            $.extend(allowedElements, allowedContent._choice.getAllowedElements(true));
+        if (allowedContent._grouping != undefined) {
+            $.extend(allowedElements, allowedContent._grouping.getAllowedElements());
         }
 
         
         if (true === _element.isMixed) {
             // mixed elements are allowed to have #text-nodes
-            var tmpXML = $('<element />', _schema.getSchemaDOM()).attr({name: '#text', type: 'xsd:string'});
-            var tmpSchemaElement = new SchemaElement(tmpXML, _schema);
-            allowedElements['#text'] = tmpSchemaElement;
+            allowedElements['#text'] = _schema.getTextNodeSchemaElement();
         }
 
         return allowedElements;
     }
+    
+    /**
+     * get the sorting of the allowed elements.
+     * 
+     * @return  object              list of allowed elements, with their sort-number as value
+     */
+    _element.getAllowedElementsSorting = function () {
+        if (allowedContent._grouping != undefined) {
+            return allowedContent._grouping.getAllowedElementsSorting();
+        }
+
+        return undefined;
+    }    
     
     /**
      * get the bounds for this elements children (as defined by a choice)
@@ -645,19 +842,29 @@ var SchemaElement = function (node, schema) {
      * @return  object  bounds ({min: x, max: y})
      */
     _element.getChildBounds = function () {
-        if (allowedContent._choice == undefined) {
+        if (allowedContent._grouping == undefined) {
             // no choice = no idea about bounds
             return undefined;
         }
         
-        if (true === allowedContent._choice.hasSubChoice()) {
+        if (true === allowedContent._grouping.hasMultiLevelBounds()) {
             // if our choice has sub-choices, then we have not fucking clue about bounds (or we can not process them)
             return undefined;
         }
         
-        return allowedContent._choice.bounds;
+        return allowedContent._grouping.getBounds();
     }
 
+    /**
+     * get the bounds for a specific element-name
+     * will go through all of the groupings-tree to find out, just how many elements of this may appear
+     * 
+     * @param   childName   string  name of the child-to-be
+     * @return  object              {min: x, max: y}
+     */
+    _element.getBoundsForElementName = function (childName) {
+        return allowedContent._grouping.getBoundsForElementName(childName);
+    };
     
     /**
      * get this elements bounds (bounds defined FOR THIS ELEMENT)
@@ -714,7 +921,7 @@ var SchemaElement = function (node, schema) {
      * 
      * @return  boolean
      */
-    var isTextContentAllowed = function () {
+    _element.isTextContentAllowed = function () {
         if (_element.isMixed == true) {
             // mixed means that we allow for text-content
             return true;
@@ -742,25 +949,104 @@ var SchemaElement = function (node, schema) {
     _element.isChildElementAllowed = function (child) {
         if (child == '#text') {
             // text-nodes are somewhat special :)
-            return isTextContentAllowed();
+            return _element.isTextContentAllowed();
         }
         
         // first, get a list of allowed content (don't worry, it's cached)
         var allowedContent = _element.getAllowedContent();
         
-        if (allowedContent._choice == undefined) {
+        if (allowedContent._grouping == undefined) {
             // when there is no choice, then there is no allowed element
             return false;
         }
         
         // see, if this child is allowed with our choice
-        if (allowedContent._choice != undefined) {
-            return allowedContent._choice.isElementAllowed(child);
+        if (allowedContent._grouping != undefined) {
+            return allowedContent._grouping.isElementAllowed(child);
         }
         
         // no reason why we should have allowed this element.
         return false;
     }
+    
+    /**
+     * cache for getAppinfo
+     * @var array
+     */
+    var appinfoCache = undefined;
+    
+    /**
+     * get the appinfo information from the element, if any
+     * 
+     * @return  array   list of texts, or empty list if none
+     */
+    _element.getAppinfo = function () {
+        if (undefined != appinfoCache) {
+            return appinfoCache;
+        }
+        
+        var appinfo = [];
+        
+        // any appinfo this element itself might carry
+        $.each($e.find(fixNamespace('> xsd\\:annotation > xsd\\:appinfo')), function (i, appinfoNode) {
+            var appinfoNodeText = $(appinfoNode).text();
+            appinfo.push(appinfoNodeText);
+        });
+        
+        // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
+        if ($e.find(fixNamespace('> xsd\\:complexType')).length == 0) {
+            $.each($type.find(fixNamespace('> xsd\\:annotation > xsd\\:appinfo')), function (i, appinfoNode) {
+                var appinfoNodeText = $(appinfoNode).text();
+                appinfo.push(appinfoNodeText);
+            });
+        }
+        
+        // fill the cache
+        appinfoCache = appinfo;
+        
+        return appinfo;
+    };
+
+
+    /**
+     * cache for getDocumentation
+     * @var array
+     */
+    var documentationCache = undefined;
+   
+    /**
+     * get the documentation information from the element, if any
+     * 
+     * @return  array   list of texts, or empty list if none
+     */
+    _element.getDocumentation = function () {
+        if (undefined != documentationCache) {
+            return documentationCache;
+        }
+        
+        var documentation = [];
+        
+        var lang = Messages.language;
+        var selector = '> xsd\\:annotation > xsd\\:documentation[xml\\:lang=' + lang + ']';
+
+        // any appinfo this element itself might carry
+        $.each($e.find(fixNamespace(selector)), function (i, documentationNode) {
+            var documentationNodeText = $(documentationNode).text();
+            documentation.push(documentationNodeText);
+        });
+        
+        // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
+        if ($e.find(fixNamespace('> xsd\\:complexType')).length == 0) {
+            $.each($type.find(fixNamespace(selector)), function (i, documentationNode) {
+                var documentationNodeText = $(documentationNode).text();
+                documentation.push(documentationNodeText);
+            });
+        }
+        
+        documentationCache = documentation;
+        
+        return documentation;        
+    };  
 
     /**
      * get the SchemaElement-object for a certain element-name.
@@ -773,29 +1059,26 @@ var SchemaElement = function (node, schema) {
         if (elementName == '#text') {
             // no special handling for mixed nodes, they do have a #text-SchemaElement already!
             // text-nodes may be allowed. we will see ...
-            if (false === isTextContentAllowed()) {
+            if (false === _element.isTextContentAllowed()) {
                 return undefined;
             }
 
-            // text-content is always a simple string
-            var tmpXML = $('<element />', _schema.getSchemaDOM()).attr({name: '#text', type: 'xsd:string'});
-            var tmpSchemaElement = new SchemaElement(tmpXML, _schema);
-            return tmpSchemaElement;
+            return _schema.getTextNodeSchemaElement();
         }
         
         
         // first, get a list of allowed content (don't worry, it's cached)
         var allowedContent = _element.getAllowedContent();
         
-        if (allowedContent._choice == undefined) {
+        if (allowedContent._grouping == undefined) {
             // when there is no choice, then there is no allowed element
             return undefined;
         }
         
         // go over our choice, if the element is allowed with it
-        if (allowedContent._choice.isElementAllowed(elementName)) {
+        if (allowedContent._grouping.isElementAllowed(elementName)) {
             // only look in this tree, if the element is allowed there.
-            return allowedContent._choice.getSchemaElementForElementName(elementName);
+            return allowedContent._grouping.getSchemaElementForElementName(elementName);
         }
         
         return undefined;
@@ -817,7 +1100,7 @@ var SchemaElement = function (node, schema) {
      * @return  boolean         is it valid?
      */
     _element.isValueValid = function (value) {
-        if (false == isTextContentAllowed()) {
+        if (false == _element.isTextContentAllowed()) {
             // if no text-content is allowed, then it can not be valid
             return false;
         }
@@ -829,6 +1112,71 @@ var SchemaElement = function (node, schema) {
         
         return allowedContent._text.isValueValid(value);
     }
+    
+    /**
+     * create and retrieve the part of a regular expression which describes this very element
+     * 
+     * @param   separator   string  the string used to separate different elements, e.g. ';'
+     * @return  string
+     */
+    _element.getRegex = function (separator) {
+        if (typeof separator == 'undefined' || separator == undefined) {
+            // default to an empty string
+            separator = '';
+        }
+
+        var regexString = '';
+        
+        // start with the name of the element
+        regexString = '(' + _element.name + separator + ')';
+        
+        // append bounds
+        var boundsMin = '';
+        var boundsMax = '';
+        
+        if (bounds.min != undefined) {
+            if (bounds.min != 'unbounded') {
+                boundsMin = bounds.min;
+            }
+        }
+        
+        if (bounds.max != undefined) {
+            if (bounds.max != 'unbounded') {
+                boundsMax = bounds.max;
+            }
+        }
+        
+        if (boundsMin != '' || boundsMax != '') {
+            // append bounds to the regex-string
+            regexString += '{' + boundsMin + ',' + boundsMax + '}';
+        }
+        
+        // and thats all
+        return regexString;
+    };
+    
+    /**
+     * create a full-blown regular expression that describes this elements immediate children
+     * 
+     * @param   separator   string  the string used to separate different elements, e.g. ';'
+     * @return  string              the regular expression
+     */
+    _element.getChildrenRegex = function(separator) {
+        if (typeof separator == 'undefined' || separator == undefined) {
+            // default to an empty string
+            separator = '';
+        }
+        
+        if (allowedContent._grouping == undefined) {
+            // not really something to match
+            return new RegExp(/^/);
+        }
+        
+        var regexString = allowedContent._grouping.getRegex(separator);
+
+        // now
+        return regexString;
+    };
     
     
     /**
@@ -870,7 +1218,7 @@ var SchemaElement = function (node, schema) {
      * @var object  list of allowed contents
      */
     var allowedContent = {
-                                _choice: undefined,
+                                _grouping: undefined,
                                 _text: false,
                                 };
                                 
@@ -885,6 +1233,13 @@ var SchemaElement = function (node, schema) {
      * @var boolean
      */
     _element.isMixed = $type.is('[mixed=true]');
+    
+    /**
+     * a default-value for this element
+     * defaults to undefined
+     * @var string
+     */
+    _element.defaultValue = $e.attr('default');
                                 
     /**
      * has allowedContent already been parsed?
@@ -893,59 +1248,6 @@ var SchemaElement = function (node, schema) {
     var allowedContentLoaded = false;
 }
 
-/**
- * a group of elements
- * 
- * @param   node    DOMNode the group-node
- * @param   schema  Schema  the corresponding schema
- */
-var SchemaGroup = function (node, schema) {
-    /*
-     * us
-     * @var object
-     */
-    var _group = this;
-    
-    /**
-     * our node
-     * @var object
-     */
-    var $n = $(node);
-    
-    /**
-     * the schema we belong to
-     * @var object
-     */
-    var _schema = schema;
-    if (_schema == undefined) {
-        throw 'programming error, schema is not defined';
-    }
-    
-    /**
-     * does this group have a choice?
-     * 
-     * @return  boolean
-     */
-    _group.hasChoice = function () {
-        return $n.children(fixNamespace('xsd\\:choice')).length == 1;
-    }
-    
-    /**
-     * get the SchemaChoice-Element of this group
-     * 
-     * @return  object  SchemaChoice-object, or undefined if none
-     */
-    _group.getChoice = function () {
-        if (false === _group.hasChoice) {
-            return undefined;
-        }
-        
-        var choiceNode = $n.children(fixNamespace('xsd\\:choice'))[0];
-        var choice = new SchemaChoice(choiceNode, _schema);
-        
-        return choice;
-    }
-}
 
 
 /**
@@ -963,13 +1265,24 @@ var SchemaChoice = function (node, schema) {
     var _choice = this;
     
     /**
-     * parse a list of elements in a choice, even go deep down for sub-choices
-     * 
-     * @param   choiceNode  object  the node to parse
-     * @return  object              the data of said choide-node
+     * type of this object
+     * @var string
      */
-    var parseChoice = function () {
-        _choice.bounds = {
+    _choice.type = 'choice';
+    
+    /**
+     * elements in a choice do not need to be in a specific order
+     * @var boolean
+     */
+    _choice.elementsHaveOrder = false;
+    
+    /**
+     * parse a list of elements in this choice.
+     * Choice is allowed (element|choice|sequence|group|any)* as per the definition.
+     * We do all of those (except for 'any')
+     */
+    var parse = function () {
+        bounds = {
                         min: $n.attr('minOccurs') != undefined ? $n.attr('minOccurs') : 1, // default is 1
                         max: $n.attr('maxOccurs') != undefined ? $n.attr('maxOccurs') : 1, // default is 1
                         };
@@ -980,29 +1293,21 @@ var SchemaChoice = function (node, schema) {
             var name = subElement.name;
             allowedElements[name] = subElement;
         });
+
+        // choices
+        $.each($n.find(fixNamespace('> xsd\\:choice')), function (i, grouping) {
+            subGroupings.push(new SchemaChoice(grouping, _schema));
+        });
         
-        var subChoices = $n.find(fixNamespace('> xsd\\:choice'));
-        if (subChoices.length > 0) {
-            // choice may appear only once as per the recommendation of the W3C for XSD
-            subChoice = new SchemaChoice(subChoices.get(), _schema);
-        }
-        
-        // each choice may have elements of type group, which themselves may carry choices
-        var groups = $n.find(fixNamespace('> xsd\\:group'));
-        $.each(groups, function (k, groupNode) {
-            groupNode = $(groupNode);
-            if (groupNode.is('[ref]')) {
-                // find the node refereced by the element.
-                groupNode = _schema.getReferencedNode('group', groupNode.attr('ref'));
-            }
-            
-            var $group = new SchemaGroup(groupNode, _schema);
-            
-            if (true === $group.hasChoice()) {
-                // this group has a choice, so we need to add its elements to ourselves
-                // this is not really clean, but as we do not honour maxOccurs/minOccurs that closely, it is ok for now
-                $.extend(allowedElements, $group.getChoice().getAllowedElements(true));
-            }
+
+        // sequences
+        $.each($n.find(fixNamespace('> xsd\\:sequence')), function (i, grouping) {
+            subGroupings.push(new SchemaSequence(grouping, _schema));
+        });
+
+        // groups
+        $.each($n.find(fixNamespace('> xsd\\:group')), function (i, grouping) {
+            subGroupings.push(new SchemaGroup(grouping, _schema));
         });
     }
     
@@ -1020,13 +1325,14 @@ var SchemaChoice = function (node, schema) {
             return true;
         }
         
-        // go over the list of sub-choices and check, if the element is allowed with them
-        var result = false;
-        if (subChoice != undefined) {
-            result = result || subChoice.isElementAllowed(element);
+        // go over the list of subGroupings and check, if the element is allowed with any of them
+        for (var i = 0; i < subGroupings.length; ++i) {
+            if (true == subGroupings[i].isElementAllowed(element)) {
+                return true;
+            }
         }
         
-        return result;
+        return false;
     }
     
     /**
@@ -1043,10 +1349,10 @@ var SchemaChoice = function (node, schema) {
         }
         
         // go over the list of sub-choices and check, if the element is allowed with them
-        if (subChoice != undefined) {
-            if (subChoice.isElementAllowed(elementName)) {
-                // only look in this tree, if the element is allowed there.
-                return subChoice.getSchemaElementForElementName(elementName);
+        for (var i = 0; i < subGroupings.length; ++i) {
+            if (true == subGroupings[i].isElementAllowed(elementName)) {
+                // this element is allowed
+                return subGroupings[i].getSchemaElementForElementName(elementName);
             }
         }
 
@@ -1055,33 +1361,162 @@ var SchemaChoice = function (node, schema) {
     }
     
     /**
+     * get a list of required elements.
+     * if an element is required multiple times, it is listed multiple times
+     * 
+     * @return  array   list of required elements
+     */
+    _choice.getRequiredElements = function () {
+        // a choice has no defined required elements
+        // if you want required elements, use sequence or all
+        return [];
+    };
+    
+    /**
      * get the elements allowed for this choice
      * 
-     * @param   recursive   boolean recursive?
      * @return  object      list of allowed elements, key is the name
      */
-    _choice.getAllowedElements = function (recursive) {
+    _choice.getAllowedElements = function () {
         var myAllowedElements = allowedElements;
         
-        if (true == recursive) {
-            if (subChoice != undefined) {
-                var subAllowedElements = subChoice.getAllowedElements(recursive);
-                $.extend(myAllowedElements, subAllowedElements);
-            }
-        }
+        // also the elements allowed by our sub-choices etc.
+        $.each(subGroupings, function (i, grouping) {
+            $.extend(myAllowedElements, grouping.getAllowedElements());
+        });
         
         return myAllowedElements;
     }
     
+    
     /**
-     * tell us, if this choice has children.
-     * If so, other parts of the programming may need to change their behaviour concerning bounds
+     * get the sorting of the allowed elements.
+     * For a choice, all elements have the same sorting, so they will all have the
+     * same sortnumber
      * 
-     * @return  boolean
+     * Warning: this only works if any element can have only ONE position in the parent.
+     * 
+     * @param   sortnumber  integer the sortnumber of a parent (only used when recursive)
+     * @return  object              list of allowed elements, with their sort-number as value
      */
-    _choice.hasSubChoice = function () {
-        return (subChoice != undefined);
+    _choice.getAllowedElementsSorting = function (sortnumber) {
+        
+        var namesWithSorting = {};
+        
+        $.each(allowedElements, function (i, item) {
+            var mySortnumber = 'x'; // for a choice, sortnumber is always the same
+            if (sortnumber !== undefined) {
+                mySortnumber = sortnumber + '.' + mySortnumber;
+            }
+            
+            if (item.type == 'element') {
+                namesWithSorting[item.name] = mySortnumber;
+            } else {
+                // go recursive
+                var subSortedElements = item.getAllowedElementsSorting(mySortnumber);
+                $.extend(namesWithSorting, subSortedElements);
+            }
+        });
+        
+        return namesWithSorting;
     }
+    
+    /**
+     * cache for getRegex
+     * @var string
+     */
+    var regexCache = undefined;
+
+    /**
+     * get a regex (string) describing this choice
+     * 
+     * @param   separator   string  the string used to separate different elements, e.g. ';'
+     * @return  string  regex
+     */
+    _choice.getRegex = function (separator) {
+        if (regexCache != undefined) {
+            // use the cache if primed
+            return regexCache;
+        }
+        
+        var regexString = '';
+        
+        
+        // create list of allowed elements
+        regexString = '(';
+        
+        var elementRegexes = [];
+        
+        $.each(allowedElements, function (name, element) {
+            elementRegexes.push(element.getRegex(separator));
+        });
+        
+        // also collect the regex for each and every grouping we might have
+        $.each(subGroupings, function (i, grouping) {
+            elementRegexes.push(grouping.getRegex(separator));
+        });
+
+        regexString += elementRegexes.join('|');
+        
+        regexString += ')';
+
+
+        // append bounds to regex
+        regexString += '{';
+        if (bounds.min != 'unbounded') {
+            regexString += bounds.min == undefined ? 1 : bounds.min;
+        }
+        regexString += ',';
+        if (bounds.max != 'unbounded') {
+            regexString += bounds.max == undefined ? 1 : bounds.max;
+        }
+        regexString += '}';
+        
+        // fill the cache
+        regexCache = regexString;
+        
+        // thats about it.
+        return regexString;
+    };
+    
+    /**
+     * find out if this Grouping has multi-level-bounds, i.e. sub-groupings with bounds.
+     * This makes it more or less impossible to know in advance which elements might be needed
+     * 
+     * @return  boolean does it?
+     */
+    _choice.hasMultiLevelBounds = function () {
+        if (subGroupings.length > 0) {
+            return true;
+        }
+        
+        return false;
+    };
+    
+    /**
+     * get the bounds of this very grouping
+     * 
+     * @return  object  like {min: x, max: y}
+     */
+    _choice.getBounds = function () {
+        return bounds;
+    }
+    
+    /**
+     * get bounds for a specific element.
+     * Take into account the bounds of the element and/or our own bounds
+     * 
+     * @param   childName   string  name of the child-to-be
+     * @return  object              {max: x, min: y}, or undefined if none found
+     */
+    _choice.getBoundsForElementName = function (childName) {
+        // we are a choice-element; there is no other saying than ours!
+        if (typeof allowedElements[childName] !== 'undefined') {
+            return _choice.getBounds();
+        }
+        
+        return undefined;
+    };
     
     /**
      * our node
@@ -1105,23 +1540,701 @@ var SchemaChoice = function (node, schema) {
     var allowedElements = {};
     
     /**
-     * array of sub-choices that are defined
+     * array of sub-choices, -sequences, -groups that are defined
      * @var array
      */
-    var subChoice = undefined;
+    var subGroupings = [];
     
     /**
      * bounds for this choice
      * @var object
      */
-    _choice.bounds = {  
+    var bounds = {  
                         min: undefined,
                         max: undefined
                     };
            
     // fill ourselves with data
-    parseChoice();
+    parse();
 }
+
+
+/**
+ * a single group.
+ * may be recursive
+ * 
+ * @param   node    DOMNode the group-node
+ * @param   schema  Schema  the corresponding schema
+ */
+var SchemaGroup = function (node, schema) {
+    /**
+     * us
+     * @var object
+     */
+    var _group = this;
+    
+    /**
+     * type of this object
+     * @var string
+     */
+    _group.type = 'group';
+    
+
+    
+    /**
+     * there are no elements in a group...
+     * @var boolean
+     */
+    _group.elementsHaveOrder = undefined;
+
+    /**
+     * parse a list of elements in this group.
+     * Group is allowed (all|choice|sequence)? as per the definition.
+     * We do all of those (except for 'all')
+     */
+    var parse = function () {
+        bounds = {
+                        min: $n.attr('minOccurs') != undefined ? $n.attr('minOccurs') : 1, // default is 1
+                        max: $n.attr('maxOccurs') != undefined ? $n.attr('maxOccurs') : 1, // default is 1
+                        };
+        
+        var $group = $n;
+        if ($group.is('[ref]')) {
+            // if this is a reference, unravel it.
+            $group = _schema.getReferencedNode('group', $group.attr('ref'));
+        }
+        
+        // we are allowed choice and sequence, but only ONE AT ALL is allowed
+        $.each($group.find(fixNamespace('> xsd\\:choice')), function (i, grouping) {
+            subGroupings.push(new SchemaChoice(grouping, _schema));
+        });
+        
+        // sequences
+        $.each($group.find(fixNamespace('> xsd\\:sequence')), function (i, grouping) {
+            subGroupings.push(new SchemaSequence(grouping, _schema));
+        });
+
+        // there may be only one, so we simply us the first we found
+        if (subGroupings.length > 0) {
+            subGroupings = [subGroupings[0]];
+        }
+    }
+    
+    /**
+     * is an element (specified by its name) allowed in this group?
+     * Goes recursive.
+     * Does NOT check bounds! Does NOT check dependencies!
+     * 
+     * @param   element string  the element we check for
+     * @return  boolean         is it allowed?
+     */
+    _group.isElementAllowed = function (element) {
+        // go over the list of subGroupings and check, if the element is allowed with any of them
+        for (var i = 0; i < subGroupings.length; ++i) {
+            if (true == subGroupings[i].isElementAllowed(element)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * get the SchemaElement-object for a certain element-name.
+     * May return undefined if no element is found, so you might be interested in checking isElementAllowed beforehand.
+     * 
+     * @param   elementName string  name of the element to find the SchemaElement for
+     * @return  object              SchemaElement-object, or undefined if none is found
+     */
+    _group.getSchemaElementForElementName = function (elementName) {
+        // go over the list of subGroupings and check, if the element is allowed with them
+        for (var i = 0; i < subGroupings.length; ++i) {
+            if (true == subGroupings[i].isElementAllowed(elementName)) {
+                // this element is allowed
+                return subGroupings[i].getSchemaElementForElementName(elementName);
+            }
+        }
+
+        // can not find any reason why elementName is allowed with us...
+        return undefined;
+    }
+    
+    
+    /**
+     * get a list of required elements.
+     * if an element is required multiple times, it is listed multiple times
+     * 
+     * @return  array   list of required elements
+     */
+    _group.getRequiredElements = function () {
+        // well, maybe a group has required elements, but we have not implemented that
+        // so we simple return what our child has to say
+        return subGroupings[0].getRequiredElements();
+    };    
+    
+    /**
+     * get the elements allowed for this group
+     * 
+     * @return  object      list of allowed elements, key is the name
+     */
+    _group.getAllowedElements = function () {
+        // we have non of ourselves, so we return what the child says
+        return subGroupings[0].getAllowedElements();
+    }
+
+    /**
+     * get the sorting of the allowed elements.
+     * For a group, all elements have the same sorting, so they will all have the
+     * same sortnumber
+     * 
+     * Warning: this only works if any element can have only ONE position in the parent.
+     * 
+     * @param   sortnumber  integer the sortnumber of a parent (only used when recursive)
+     * @return  object              list of allowed elements, with their sort-number as value
+     */
+    _group.getAllowedElementsSorting = function (sortnumber) {
+        
+        var namesWithSorting = {};
+        
+        $.each(_group.getAllowedElements(), function (i, item) {
+            var mySortnumber = 'x'; // for a group, sortnumber is always the same
+            if (sortnumber !== undefined) {
+                mySortnumber = sortnumber + '.' + mySortnumber;
+            }
+            
+            if (item.type == 'element') {
+                namesWithSorting[item.name] = mySortnumber;
+            } else {
+                // go recursive
+                var subSortedElements = item.getAllowedElementsSorting(mySortnumber);
+                $.extend(namesWithSorting, subSortedElements);
+            }
+        });
+        
+        return namesWithSorting;
+    }
+    
+    /**
+     * cache for getRegex
+     * @var string
+     */
+    var regexCache = undefined;
+
+    /**
+     * get a regex (string) describing this choice
+     * 
+     * @param   separator   string  the string used to separate different elements, e.g. ';'
+     * @return  string  regex
+     */
+    _group.getRegex = function (separator) {
+        if (regexCache != undefined) {
+            // use the cache if primed
+            return regexCache;
+        }
+
+        var regexString = '';
+        
+        // collect the regex for each and every grouping we might have;
+        // 'each and every' means 'the only ONE'
+        $.each(subGroupings, function (i, grouping) {
+            regexString = '(' + grouping.getRegex(separator) + ')';
+        });
+
+        // append bounds to regex
+        regexString += '{';
+         if (bounds.min != 'unbounded') {
+            regexString += bounds.min == undefined ? 1 : bounds.min;
+        }
+        regexString += ',';
+         if (bounds.max != 'unbounded') {
+            regexString += bounds.max == undefined ? 1 : bounds.max;
+        }
+        regexString += '}';
+        
+        // fill the cache
+        regexCache = regexString;
+        
+        // thats about it.
+        return regexString;
+    };
+    
+    
+    /**
+     * find out if this Grouping has multi-level-bounds, i.e. sub-groupings with bounds.
+     * This makes it more or less impossible to know in advance which elements might be needed
+     * 
+     * @return  boolean does it?
+     */
+    _group.hasMultiLevelBounds = function () {
+        if (subGroupings.length > 0) {
+            return true;
+        }
+        
+        return false;
+    };
+ 
+     
+    /**
+     * get the bounds of this very grouping
+     * 
+     * @return  object  like {min: x, max: y}
+     */
+    _group.getBounds = function () {
+        return bounds;
+    }
+
+    
+    /**
+     * get bounds for a specific element.
+     * Take into account the bounds of the element and/or our own bounds
+     * 
+     * @param   childName   string  name of the child-to-be
+     * @return  object              {max: x, min: y}, or undefined if none found
+     */
+    _group.getBoundsForElementName = function (childName) {
+        // we are a group. we have no saying of ourselves
+        // (@FIXME: by definition we do, but we do not take that into account)
+        return subGroupings[0].getBoundsForElementName(childName);
+    };
+
+    /**
+     * our node
+     * @var object
+     */
+    var $n = $(node);
+    
+    /**
+     * the schema we belong to
+     * @var object
+     */
+    var _schema = schema;
+    if (_schema == undefined) {
+        throw 'programming error, schema is not defined';
+    }
+    
+    /**
+     * array of sub-choices, -sequences, -groups that are defined
+     * @var array
+     */
+    var subGroupings = [];
+    
+    /**
+     * bounds for this choice
+     * @var object
+     */
+    var bounds = {  
+                        min: undefined,
+                        max: undefined
+                    };
+           
+    // fill ourselves with data
+    parse();
+}
+
+/**
+ * a single sequence.
+ * may be recursive
+ * 
+ * @param   node    DOMNode the sequence-node
+ * @param   schema  Schema  the corresponding schema
+ */
+var SchemaSequence = function (node, schema) {
+    /**
+     * us
+     * @var object
+     */
+    var _sequence = this;
+
+    /**
+     * type of this object
+     * @var string
+     */
+    _sequence.type = 'sequence';
+
+    
+    /**
+     * elements in a sequence do need a specific order!
+     * @var boolean
+     */
+    _sequence.elementsHaveOrder = true;
+
+
+    /**
+     * parse a list of elements in this sequence.
+     * Sequence is allowed (element|choice|sequence|group|any)* as per the definition.
+     * We do all of those (except for 'any')
+     */
+    var parse = function () {
+        bounds = {
+                        min: $n.attr('minOccurs') != undefined ? $n.attr('minOccurs') : 1, // default is 1
+                        max: $n.attr('maxOccurs') != undefined ? $n.attr('maxOccurs') : 1, // default is 1
+                        };
+        
+        // for a sequence, we need to keep the order of the elements
+        // so we have to use a 'mixed' approach in reading them
+        var subNodes = $n.children();
+        
+        subNodes.each(function () {
+            var $subNode = $(this);
+            
+            var subObject = undefined;
+            
+            switch (this.nodeName) {
+                case 'xsd:element':
+                case 'element':
+                    subObject = new SchemaElement(this, _schema);
+                    allowedElements[subObject.name] = subObject;
+                    break;
+                case 'xsd:choice':
+                case 'choice':
+                    subObject = new SchemaChoice(this, _schema)
+                    subGroupings.push(subObject);
+                    break;
+                case 'xsd:sequence':
+                case 'sequence':
+                    subObject = new SchemaSequence(this, _schema)
+                    subGroupings.push(subObject);
+                    break;
+                case 'xsd:group':
+                case 'group':
+                    subObject = new SchemaGroup(this, _schema)
+                    subGroupings.push(subObject);
+                    break;
+            }
+            
+            sortedContent.push(subObject);
+        });
+    };
+    
+    /**
+     * is an element (specified by its name) allowed in this choice?
+     * Goes recursive.
+     * Does NOT check bounds! Does NOT check dependencies!
+     * 
+     * @param   element string  the element we check for
+     * @return  boolean         is it allowed?
+     */
+    _sequence.isElementAllowed = function (element) {
+        if (typeof allowedElements[element] != 'undefined') {
+            // this element is immediately allowed
+            return true;
+        }
+        
+        // go over the list of subGroupings and check, if the element is allowed with any of them
+        for (var i = 0; i < subGroupings.length; ++i) {
+            if (true == subGroupings[i].isElementAllowed(element)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * get the SchemaElement-object for a certain element-name.
+     * May return undefined if no element is found, so you might be interested in checking isElementAllowed beforehand.
+     * 
+     * @param   elementName string  name of the element to find the SchemaElement for
+     * @return  object              SchemaElement-object, or undefined if none is found
+     */
+    _sequence.getSchemaElementForElementName = function (elementName) {
+        if (typeof allowedElements[elementName] != 'undefined') {
+            // this element is immediately allowed
+            return allowedElements[elementName];
+        }
+        
+        // go over the list of sub-choices and check, if the element is allowed with them
+        for (var i = 0; i < subGroupings.length; ++i) {
+            if (true == subGroupings[i].isElementAllowed(elementName)) {
+                // this element is allowed
+                return subGroupings[i].getSchemaElementForElementName(elementName);
+            }
+        }
+
+        // can not find any reason why elementName is allowed with us...
+        return undefined;
+    }
+    
+    /**
+     * get a list of required elements.
+     * if an element is required multiple times, it is listed multiple times.
+     * Attention: elements are NOT sorted.
+     * 
+     * @return  array   list of required elements
+     */
+    _sequence.getRequiredElements = function () {
+        // we do know what we require. might not be too easy to find out, but ok
+        
+        // if we have no lower bounds, then nothing is required
+        if (bounds.min == 0) {
+            return [];
+        }
+        
+        var requiredElements = [];
+        
+        // my own elements
+        $.each(allowedElements, function (name, item) {
+            if (item.getBounds().min > 0) {
+                for (var i = 0; i < item.getBounds().min; ++i) {
+                    requiredElements.push(name);
+                }
+            }
+        });
+        
+        // elements of our sub-groupings, if any
+        $.each(subGroupings, function (i, grouping) {
+            var subRequiredElements = grouping.getRequiredElements();
+            
+            if (subRequiredElements.length > 0) {
+                for (i = 0; i < subRequiredElements.length; ++i) {
+                    requiredElements.push(subRequiredElements[i]);
+                }
+            }
+        });
+        
+        return requiredElements;
+    };    
+    
+    /**
+     * get the elements allowed for this choice
+     * 
+     * @return  object      list of allowed elements, key is the name
+     */
+    _sequence.getAllowedElements = function () {
+        var myAllowedElements = allowedElements;
+        
+        // also go over the sub-choices etc.
+        $.each(subGroupings, function (i, grouping) {
+            $.extend(myAllowedElements, grouping.getAllowedElements());
+        });
+        
+        return myAllowedElements;
+    }
+    
+    /**
+     * get the sorting of the allowed elements
+     * 
+     * Warning: this only works if any element can have only ONE position in the parent.
+     * 
+     * @param   sortnumber  integer the sortnumber of a parent (only used when recursive)
+     * @return  object              list of allowed elements, with their sort-number as value
+     */
+    _sequence.getAllowedElementsSorting = function (sortnumber) {
+        
+        var namesWithSorting = {};
+        
+        $.each(sortedContent, function (i, item) {
+            var mySortnumber = i;
+            if (sortnumber !== undefined) {
+                mySortnumber = sortnumber + '.' + i;
+            }
+            
+            if (item.type == 'element') {
+                namesWithSorting[item.name] = mySortnumber;
+            } else {
+                // go recursive
+                var subSortedElements = item.getAllowedElementsSorting(mySortnumber);
+                $.extend(namesWithSorting, subSortedElements);
+            }
+        });
+        
+        return namesWithSorting;
+    };
+    
+    /**
+     * cache for getRegex
+     * @var string
+     */
+    var regexCache;
+    
+    /**
+     * get a regex (string) describing this sequence
+     * 
+     * @param   separator   string  the string used to separate different elements, e.g. ';'
+     * @return  string  regex
+     */
+    _sequence.getRegex = function (separator) {
+
+        if (regexCache != undefined) {
+            // use the cache if primed
+            return regexCache;
+        }
+        
+        var regexString = '';
+        
+        
+        // create list of allowed elements
+        regexString = '(';
+        
+        var elementRegexes = [];
+        
+        // this goes over ALL elements AND sub-groupings
+        $.each(sortedContent, function (i, element) {
+            elementRegexes.push(element.getRegex(separator));
+        });
+        
+        regexString += elementRegexes.join('');
+        
+        regexString += ')';
+
+
+        // append bounds to regex
+        regexString += '{';
+        if (bounds.min != 'unbounded') {
+            regexString += bounds.min == undefined ? 1 : bounds.min;
+        }
+        regexString += ',';
+        if (bounds.max != 'unbounded') {
+            regexString += bounds.max == undefined ? 1 : bounds.max;
+        }
+        regexString += '}';
+        
+        // fill the cache
+        regexCache = regexString;
+        
+        // thats about it.
+        return regexString;
+    };
+
+    
+    /**
+     * find out if this Grouping has multi-level-bounds, i.e. sub-groupings with bounds.
+     * This makes it more or less impossible to know in advance which elements might be needed
+     * 
+     * @return  boolean does it?
+     */
+    _sequence.hasMultiLevelBounds = function () {
+        if (subGroupings.length > 0) {
+            return true;
+        }
+        
+        return false;
+    };
+    
+    
+    /**
+     * get the bounds of this very grouping
+     * 
+     * @return  object  like {min: x, max: y}
+     */
+    _sequence.getBounds = function () {
+        return bounds;
+    }    
+
+    /**
+     * get bounds for a specific element.
+     * Take into account the bounds of the element and/or our own bounds
+     * 
+     * @param   childName   string  name of the child-to-be
+     * @return  object              {max: x, min: y}, or undefined if none found
+     */
+    _sequence.getBoundsForElementName = function (childName) {
+        // we are a sequence-element; there is actually a lot of sayings ...
+        if (typeof allowedElements[childName] !== 'undefined') {
+            var elementBounds = allowedElements[childName].getBounds();
+            var sequenceBounds = _sequence.getBounds();
+            
+            var resultBounds = {
+                                min: 1,
+                                max: 1
+                            };
+
+            if (elementBounds.min == 'unbounded' || sequenceBounds.min == 'unbounded') {
+                // unbounded is the highest possible value
+                resultBounds.min = 'unbounded';
+            } else {
+                // if it is bounded, we must duplicate element and sequence bounds
+                // (an element may appear as often as the number of sequences times the number of elements
+                // in each sequence - roughly)
+                if (elementBounds.min != 'undefined') {
+                    resultBounds.min = elementBounds.min;
+                }
+                
+                if (sequenceBounds.min != 'undefined') {
+                    resultBounds.min = resultBounds.min * sequenceBounds.min;
+                }
+            }
+
+            if (elementBounds.max == 'unbounded' || sequenceBounds.max == 'unbounded') {
+                resultBounds.max = 'unbounded';
+            } else {
+                if (elementBounds.max != 'undefined') {
+                    resultBounds.max = elementBounds.max;
+                }
+                
+                if (sequenceBounds.max != 'undefined') {
+                    resultBounds.max = resultBounds.max * sequenceBounds.max;
+                }
+            }
+
+            return resultBounds;
+        }
+        
+        var childBounds = undefined;
+
+        var tmpBounds;
+        
+        for (var i = 0; i < subGroupings.length; ++i) {
+            tmpBounds = subGroupings[i].getBoundsForElementName(childName);
+            
+            if (undefined !== tmpBounds) {
+                // once we find the first set of bounds, we return that
+                childBounds = tmpBounds;
+                break;
+            }
+        }
+        
+        return childBounds;
+    };
+
+    /**
+     * our node
+     * @var object
+     */
+    var $n = $(node);
+    
+    /**
+     * the schema we belong to
+     * @var object
+     */
+    var _schema = schema;
+    if (_schema == undefined) {
+        throw 'programming error, schema is not defined';
+    }
+    
+    /**
+     * list of elements that are allowed as per our own definition
+     * @var object
+     */
+    var allowedElements = {};
+    
+    /**
+     * the sorted listed of allowed elements and sub-groupings
+     * @var array
+     */
+    var sortedContent = [];
+    
+    /**
+     * array of sub-choices, -sequences, -groups that are defined
+     * @var array
+     */
+    var subGroupings = [];
+    
+    /**
+     * bounds for this choice
+     * @var object
+     */
+    var bounds = {  
+                        min: undefined,
+                        max: undefined
+                    };
+           
+    // fill ourselves with data
+    parse();
+}
+
+
+
 
 /**
  * create a regex-object from a pattern

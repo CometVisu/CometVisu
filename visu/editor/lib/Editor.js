@@ -50,18 +50,130 @@ var Editor = function (config) {
      */
     var _config = config;
     
+    
     /**
-     * save the configuration, but validate it first
+     * filename-suffix for the preview-configuration
+     * @var string
      */
-    var saveHandler = function () {
-        if (false === _config.isValid()) {
-            // configuration is not valid
-            alert(Messages.editor.notSavingInvalidConfiguration);
-            return;
+    var _previewSuffix = 'previewtemp';
+    
+    /**
+     * disable the feedback on a successful 'save configuration'
+     * will be honoured once only, and then reset!
+     * @var boolean
+     */
+    var savingPreview = false;
+    
+    /**
+     * is the expert-mode active?
+     * @var boolean
+     */
+    var isExpert = false;
+    
+    var clickHandler = function (event) {
+        var $button = $(this);
+        
+        if ($button.is('.save')) {
+            // save configuration
+            if (false === _config.isValid()) {
+                // configuration is not valid
+                alert(Messages.editor.notSavingInvalidConfiguration);
+                return;
+            }
+
+            // save the configuration
+            _config.save();
         }
         
-        // save the configuration
-        _config.save();
+        if ($button.is('.preview')) {
+            // preview configuration
+            
+            if ($('iframe#preview').length > 0) {
+                // there already is a preview - so toggle back and return to editing
+                $('iframe#preview').remove();
+                $('ul#config').show();
+                $('.menu .button.preview').removeClass('active');
+                return;
+            }
+
+            if (false === _config.isValid()) {
+                // configuration is not valid
+                alert(Messages.editor.notSavingInvalidConfiguration);
+                return;
+            }
+
+            savingPreview = true;
+            $(document).one('configuration_saving_success', previewShowHandler);
+
+            // save the configuration
+            _config.save('visu_config_' + _previewSuffix + '.xml');
+        }
+        
+        
+        if ($button.is('.expert')) {
+            // show/hide expert-attributes
+            $('#config').find('.expert').toggle();
+            $button.toggleClass('active');
+            
+            isExpert = $button.hasClass('active');
+        }
+    };
+   
+
+    /**
+     * eventHandler
+     * 
+     * @param   event   jQuery-Event
+     */
+    var eventHandler = function (event, result) {
+        switch (event.type) {
+            case 'configuration_saving_error':
+                // something went wrong
+                // we can not fix it, so let's simply inform the user, and leave.
+                alert(result.message);
+                break;
+            case 'configuration_saving_success':
+                // everything is cool, configuration was saved
+                // @TODO: maybe implement some sort of "traffic light" that goes to green when the configuration was saved?
+                
+                if (false === savingPreview) {
+                    // only show feedback if this is not saving a preview ...
+                    var tmpResult = new Result(false, Messages.configuration.saved);
+                    alert(tmpResult.message);
+                }
+                
+                break;
+        }
+        
+        // re-enable saving success feedback to 'true'
+        savingPreview = false;
+    };
+    
+    /**
+     * preview the configuration.
+     * this handler is called AFTER the preview-configuration has already been saved
+     */
+    var previewShowHandler = function () {
+        // remove a preview if there is one (should never happen, but better be safe than sorry)
+        $('iframe#preview').remove();
+        
+        // mark the button as being active
+        $('.menu .button.preview').addClass('active');
+
+
+        // hide the editing-view
+        $('ul#config').hide();
+        
+        // create, and render the preview
+        var $preview = $('<iframe />')
+        $preview.attr({id: 'preview', src: 'index.html?config=' + _previewSuffix});
+        
+        
+        var height = $(window).height() - $('#editor .menu').height() - $('#editor .menu').position().top;
+        
+        $preview.css({width: '100%', height: height + 'px', border: 'none'});
+        
+        $('#editor').append($preview);
     };
     
     /**
@@ -96,15 +208,35 @@ var Editor = function (config) {
                         .addClass('save')
                         .html(Messages.editor.ui.save.text)
                         .attr('title', Messages.editor.ui.save.tooltip)
-                        .click(saveHandler);
+                        .click(clickHandler);
         $menu.append($save);
-        
+
+        var $expert = $('<span />')
+                        .addClass('button')
+                        .addClass('expert')
+                        .html(Messages.editor.ui.expert.text)
+                        .attr('title', Messages.editor.ui.expert.tooltip)
+                        .click(clickHandler);
+        $menu.append($expert);
+
+        var $preview = $('<span />')
+                        .addClass('button')
+                        .addClass('preview')
+                        .html(Messages.editor.ui.preview.text)
+                        .attr('title', Messages.editor.ui.preview.tooltip)
+                        .click(clickHandler);
+        $menu.append($preview);
+
         $editor.append($menu);
         
         $editor.append($container);
         
 
         $target.append($editor);
+        
+        // register event-handlers
+        $(document).bind('configuration_saving_error', eventHandler);
+        $(document).bind('configuration_saving_success', eventHandler);
     };
     
     var rememberedElement = {
@@ -144,6 +276,15 @@ var Editor = function (config) {
     _editor.getRememberedElementOptions = function () {
         return rememberedElement.options;
     };
+
+    /**
+     * find out if expert attributes are to be visible
+     * 
+     * @return  boolean
+     */
+    _editor.areExpertAttributesVisible = function () {
+        return isExpert;
+    }
 }
 
 /**
@@ -175,6 +316,12 @@ var EditorConfigurationElement = function (parent, element) {
     
     var KEYCODE_ENTER = 13;
     var KEYCODE_ESCAPE = 27;
+    
+    /**
+     * cache of children
+     * @var array
+     */
+    var _childrenCache = {};
     
     /**
      * everything to do with buttons
@@ -274,8 +421,8 @@ var EditorConfigurationElement = function (parent, element) {
             // Spacer
             $html.append($menuitem.clone().addClass('spacer'));
 
-            // cut, copy, paste, sort (like move with same parent)
-            $.each(['cut', 'copy', 'paste', 'sort'], function (i, item) {
+            // cut, copy, paste
+            $.each(['cut', 'copy', 'paste'], function (i, item) {
                 $tmpItem = $menuitem.clone();
                 $tmpItem.addClass(item).click(UIElements.clickHandler);
                 $tmpItem.attr('title', Messages.editor.ui[item].tooltip);
@@ -283,6 +430,19 @@ var EditorConfigurationElement = function (parent, element) {
                 $html.append($tmpItem);
                 delete $tmpItem;
             });
+            
+            // sort (like move with same parent); only if the parent allows for sorting!
+            // (check tyepof getConfigurationElement, as the root-element has no such thing)
+            if (typeof _parent.getConfigurationElement == 'function'
+                && true === _parent.getConfigurationElement().getSchemaElement().areChildrenSortable()) {
+                $tmpItem = $menuitem.clone();
+                $tmpItem.addClass('sort').click(UIElements.clickHandler);
+                $tmpItem.attr('title', Messages.editor.ui['sort'].tooltip);
+                $tmpItem.text(Messages.editor.ui['sort'].text);
+                $html.append($tmpItem);
+                delete $tmpItem;
+
+            }
 
 
             // search for the paste-button, and tell it which elements to allow
@@ -446,8 +606,7 @@ var EditorConfigurationElement = function (parent, element) {
                 var newElement = originalElement.getDuplicateForParent(_element);
                 _element.appendChildNode(newElement);
                 
-                var newEditorElement = new EditorConfigurationElement(_self, newElement);
-                _self.appendChildNode(newEditorElement);
+                _self.redrawHTML();
                 
                 if (options.type == 'cut') {
                     // remove the original element if type was cut
@@ -497,16 +656,16 @@ var EditorConfigurationElement = function (parent, element) {
                 var sortableElement = _self.getConfigurationElement();
 
                 // clone the ConfigurationElement, and create a new EditorConfigurationElement with that
-                var sortedElement = $.extend(true, {}, sortableElement);
+                sortableElement.remove();
+                var sortedElement = sortableElement.getDuplicateForParent(_element);
                 _parent.getConfigurationElement().addChildAtPosition(sortedElement, position);
                 
                 // then: remove ourselves (the old node), before re-arranging the DOM (or this will fail)
                 _self.remove();
 
+                // redraw our parents HTML
+                _parent.redrawHTML();
 
-                var sortedEditorElement = new EditorConfigurationElement(_parent, sortedElement);
-                _parent.appendChildNodeAtPosition(sortedEditorElement, position);
-                
                 // clear rememberedElement afterwards
                 _parent.rememberElement(undefined, undefined);                
             }
@@ -582,6 +741,22 @@ var EditorConfigurationElement = function (parent, element) {
                 // user-feedback. there is nothing we could add ... (MS2)
                 return undefined;
             }
+            
+            // sort the elements in the select-list
+            var $options = $select.find('option');
+            
+            $options.sort(function (a, b) {
+                if (a.text > b.text) return 1;
+                if (a.text < b.text) return -1;
+                return 0;
+            });
+            
+            // we need to re-append the items to the select-list
+            $select.empty().append($options);
+            delete $options;
+            
+            // select the 'select one'-entry
+            $select.val(AddChild.settings.valueDefault);
 
             $selector.append($select);
             
@@ -618,16 +793,13 @@ var EditorConfigurationElement = function (parent, element) {
             }
             
             // create a new Configuration-Node
-            var childNode = _element.createChildNode(name);
-            
-            // create a new Editor-Node
-            var childEditorNode = new EditorConfigurationElement(_self, childNode);
+            _element.createChildNode(name);
             
             // and kill the messenger.. uh, remove the select-list from view
             $select.closest('span.' + AddChild.settings.cssClass).remove();
 
-            // append the EditorNodes HTML to the DOM
-            _self.appendChildNode(childEditorNode);
+            // redraw the HTML
+            _self.redrawHTML();
         },
 
         /**
@@ -652,6 +824,22 @@ var EditorConfigurationElement = function (parent, element) {
          * cache the html of the attributes
          */
         $attributes: undefined,
+        
+        /**
+         * placeholder
+         */
+        $htmlPlaceholder: undefined,
+        
+        /**
+         * get the placeholder so we can add the attributes later on to save time at startup
+         * 
+         * @return  jquery-object   the HTML-placeholder
+         */
+        getPlaceholderAsHTML: function () {
+            Attributes.$htmlPlaceholder = $('<span />');
+            
+            return Attributes.$htmlPlaceholder;
+        },
 
         /**
          * get this elements HTML for its attributes
@@ -670,14 +858,38 @@ var EditorConfigurationElement = function (parent, element) {
             var $attributes = $('<ul />').addClass('attributes');
             $.each(allAttributes, function (key, value) {
                 var isOptional = undefined;
+                var isExpert = false;
+                var attributeDocumentation = '';
                 
                 if (schemaElement != undefined) {
                     var schemaAttribute = schemaElement.allowedAttributes[key];
+                    
+                    if (typeof schemaAttribute == 'undefined') {
+                        throw 'unknown attribute ' + key + ' for element ' + schemaElement.name; 
+                    }
+                    
                     isOptional = schemaAttribute.isOptional;
+                    
+                    var properties = schemaAttribute.getAppinfo();
+                    isExpert = properties.indexOf('level:expert') != -1;
+                    delete properties;
+                    
+                    var documentation = schemaAttribute.getDocumentation();
+                    if (documentation.length > 0) {
+                        attributeDocumentation = documentation[0];
+                    }
+                    delete documentation;
                 }
                 
                 var $attribute = $('<li />').addClass('attribute');
                 $attribute.addClass('attributeType_' + key);
+                
+                if (true === isExpert) {
+                    $attribute.addClass('expert');
+                    if (_parent.areExpertAttributesVisible() == false) {
+                        $attribute.hide();
+                    }
+                }
                 
                 // name of the attribute
                 var $name = $('<span />').addClass('name').html(key);
@@ -686,6 +898,7 @@ var EditorConfigurationElement = function (parent, element) {
                 } else {
                     $name.addClass('required');
                 }
+
                 $attribute.append($name);
                 delete $name;
 
@@ -698,7 +911,18 @@ var EditorConfigurationElement = function (parent, element) {
                     $value = $('<span />').addClass('value').addClass('notset');
                 }
                 $value.attr('title', Messages.editor.ui.clickToEdit.tooltip);
+                
                 $attribute.append($value);
+                
+                // if we have documentation for this attribute, append it
+                if (attributeDocumentation != '') {
+                    var $attributeDocumentation = $('<span />');
+                    $attributeDocumentation.addClass('documentation');
+                    $attributeDocumentation.html(attributeDocumentation);
+                    $attribute.append($attributeDocumentation)
+                    delete $attributeDocumentation;
+                }
+                
                 // attach a click-handler
                 $value.bind('click', Attributes.clickHandler);
                 delete $value;
@@ -867,7 +1091,15 @@ var EditorConfigurationElement = function (parent, element) {
          */
         toggleDisplay: function () {
             var $attributes = Attributes.$attributes;
-            
+
+
+            if (typeof $attributes == 'undefined') {
+                // inject the actual HTML
+                $attributes = Attributes.getAsHTML();
+                Attributes.$htmlPlaceholder.replaceWith($attributes);
+                Attributes.$htmlPlaceholder = undefined;
+            }
+
             // first hide
             
             if ($('ul.attributes:visible').not($attributes).length > 0) {
@@ -881,8 +1113,14 @@ var EditorConfigurationElement = function (parent, element) {
                 $attributes.slideToggle('fast');
             }
             
-            
             return;
+        },
+        
+        /**
+         * hide all visible attributes, whoever they may belong to
+         */
+        hideAll: function () {
+            $('ul.attributes:visible').slideToggle('fast');
         },
         
         /**
@@ -1266,18 +1504,15 @@ var EditorConfigurationElement = function (parent, element) {
      * toggle displaying this element as being 'the active one'
      */
     var toggleActive = function () {
-        if (Attributes.$attributes == undefined) {
-            // no attributes to be had
-            return;
-        }
-        
-        Attributes.toggleDisplay();
-        
+
         var $name = _html.find('.name').first();
         
         // clean up!
         $('.name.active').not($name).removeClass('active');
         $name.toggleClass('active');
+
+        Attributes.toggleDisplay();
+        
     };
     
     /**
@@ -1325,6 +1560,15 @@ var EditorConfigurationElement = function (parent, element) {
         return _parent.getRememberedElement();
     };
     
+    /**
+     * find out if expert attributes are to be visible
+     * 
+     * @return  boolean
+     */
+    _self.areExpertAttributesVisible = function () {
+        return _parent.areExpertAttributesVisible();
+    }
+    
     
     /**
      * get the options that were stored alongside the remembered element
@@ -1334,40 +1578,6 @@ var EditorConfigurationElement = function (parent, element) {
     _self.getRememberedElementOptions = function () {
         return _parent.getRememberedElementOptions();
     };
-    
-    /**
-     * append a child to the HTML-DOM
-     * 
-     * @param   childEditorNode object  EditorConfigurationElement to be added
-     */
-    _self.appendChildNode = function (childEditorNode) {
-        // append the EditorNodes HTML to the DOM
-        _html.find('ul.children').first().append(childEditorNode.getAsHTML());
-        _self.redrawChildrenButton();
-    };
-    
-    
-    /**
-     * append a child to the HTML-DOM at an arbitrary position
-     * 
-     * @param   childEditorNode object  EditorConfigurationElement to be added
-     * @param   position        integer array-index at which to insert said childEditorNode
-     */
-    _self.appendChildNodeAtPosition = function (childEditorNode, position) {
-        var $nodes = _html.find('ul.children').first().children('li');
-        if (position >= $nodes.length) {
-            // am not able to insert after the end of our list ...
-            // or at the end of the list (length - 1)
-            // append the EditorNodes HTML to the DOM
-            $nodes.last().after(childEditorNode.getAsHTML());
-        } else {
-            // add the EditorNodes HTML to the DOM
-            $nodes.eq(position).before(childEditorNode.getAsHTML());
-        }
-        
-        _self.redrawChildrenButton();
-    };    
-    
     
     /**
      * remove this EditorConfigurationElement from the DOM, and remove the _element from its parent
@@ -1400,7 +1610,6 @@ var EditorConfigurationElement = function (parent, element) {
             _html.find('ul.children > li').hide();
         }
     };
-    
 
     /**
      * get the current ConigurationElement
@@ -1455,13 +1664,34 @@ var EditorConfigurationElement = function (parent, element) {
     };
     
     /**
+     * reset the HTML-Cache of this Editor-Node.
+     * This is needed as we are not in the position to decide which element to place where exactly -
+     * that is up to the configuration.
+     * So when we add a child to the configuration, we need to re-set and re-draw our HTML/DOM
+     */
+    _self.redrawHTML = function () {
+        _html.replaceWith(_self.getAsHTML(false, true));
+    };
+    
+    /**
      * create the html of us. recursive!
      * caches the result
      * 
-     * @return  jquery-object   the HTML to display for this node and its children
+     * @param   allowCache      boolean is it ok to ge the HTML from cache?
+     * @param   childrenVisible boolean shall the element be uncollapsed?
+     * @return  jquery-object           the HTML to display for this node and its children
      */
-    _self.getAsHTML = function () {
-        if (_html != undefined) {
+    _self.getAsHTML = function (allowCache, childrenVisible) {
+        if (typeof allowCache == 'undefined' || allowCache == undefined) {
+            allowCache = true;
+        }
+        
+        if (typeof childrenVisible == 'undefined' || childrenVisible == undefined) {
+            childrenVisible = false;
+        }
+        
+        if (true === allowCache && _html != undefined) {
+            // caching is allowed, so use it!
             return _html;
         }
         
@@ -1486,7 +1716,7 @@ var EditorConfigurationElement = function (parent, element) {
 
         // get the html for our attributes (and those that are allowed but not set)
         // depending on that, we set/add buttons, that is why we do it so early
-        var $attributes = Attributes.getAsHTML();
+        var $attributes = Attributes.getPlaceholderAsHTML();
 
         // define, which buttons to show
         // attributes only, if there are some that are not immediately visible
@@ -1496,7 +1726,6 @@ var EditorConfigurationElement = function (parent, element) {
         var allowedChildren = schemaElement.getAllowedElements();
         
         var menuConfig = {
-                            attributes: ($attributes != undefined && $attributes.find('li:not(.visible)').length > 0),
                             children:   !$.isEmptyObject(allowedChildren),
                             remove:     _element.isRemovable(),
                             };
@@ -1524,17 +1753,46 @@ var EditorConfigurationElement = function (parent, element) {
         if ($attributes != undefined && $attributes.length > 0) {
             // only append attributes if we have some
             $innerHTML.append($attributes);
-            $name.css({cursor: 'pointer'});
         }
+        
+        $name.css({cursor: 'pointer'});
 
-        // append this elements children (immediate first, the recurse)
-        var $children = $('<ul />').addClass('children').hide();
+        // append this elements children (immediate first, then recurse)
+        var $children = $('<ul />').addClass('children');
+        
+        var newChildrenCache = {};
 
         $.each(_element.getChildren(), function (i, node) {
-            var element = new EditorConfigurationElement(_self, node);
+            
+            var element;
+            
+            var nodeUID = node.getUID();
+            if (typeof _childrenCache[nodeUID] != 'undefined') {
+                // use the cached element
+                element = _childrenCache[nodeUID];
+            } else {
+                // go create a new element
+                element = new EditorConfigurationElement(_self, node);
+                
+                // get the configurationElements UID
+                nodeUID = element.getConfigurationElement().getUID();
+            }
 
-            $children.append(element.getAsHTML());
+            // get the elements HTML, and allow for caching
+            $children.append(element.getAsHTML(true));
+           
+            // fill the new cache
+            newChildrenCache[nodeUID] = element;
         });
+        
+        // replace the old cache with the new cache
+        _childrenCache = newChildrenCache;
+        delete newChildrenCache;
+        
+        if (false === childrenVisible) {
+            $children.hide();
+        }
+        
         $innerHTML.append($children);
         delete $children;
 

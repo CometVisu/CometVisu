@@ -1,10 +1,7 @@
 === KNOWN BUGS AND LIMITATIONS ===
 * loading the XSD is done in Javascript. The Schema-Loader knows a certain set an structure of an XSD. If "unknown"
   XSD-features are being used in the schema, the Schema-Loader may not know about them, and the editor will thus fail.
-* the Schema care a little for bounds. It does, however, not support 'multi-dimensional'-bounds.
-* user-feedback is done using window.alert() - this works accross all devices and browsers, has no ux-issues on small
-  screens, and enforces the users attention.
-* XSD is fucked up. minOccurs on elements in a choice are ignored if said choice is bounded otherwise
+
 
 === ROADMAP ===
 * MS1 - done
@@ -12,22 +9,28 @@
  - OOP-representation of the configuration
  - validate configuration against XSD
 
-* MS2 - week 46/47 2012
+* MS2 - done
  - browser loads configuration, checks it against an XSD, warns if not compliant
  - editor is displayed in browser, nodes are shown as a tree
  - node-attributes can be edited
  - node children can be added, removed
 
-* MS3 - week 52 2012
+* MS3 - done
  - nodes have copy&paste, move.
  - configuration can be saved
  - attributes like rrd, addr can be selected from a list; said list is loaded from the server
  - attributes like styling, mapping can be selected from a dynamic list; list is based on current configuration
 
-* MS4 - early 2013
- - better check bounds of configuration, including multi-dimensional bounds, sequences?
- - preview for a selected node without the need of replacing the configuration on the server
+* MS4 - done
+ - better check bounds of configuration, including multi-dimensional bounds, sequences
+ - preview of the complete configuration without the need of replacing the configuration on the server
+ - integrated sequences, force specific order of elements
+ - use xsd:appinfo to mark attributes as <xsd:appinfo>level:expert</xsd:appinfo> to hide them in non-complex mode
+ - use xsd:documentation, respecting xml:lang, to show documentation next to attributes
+ - configurationUpgrader for anything below version 1 to version 1.
 
+* no MS planned
+ - preview for a SINGLE node without the need of replacing the configuration on the server
 
 === TODO ===
 
@@ -41,10 +44,13 @@
  - done
 
 * MS4:
- - allow for multi-dimensional bounds, as well as sequence?
+ - done
+
+* future:
  - frontend: preview node incl. children
 
 
+
 === IDEAS ===
-* read xsd:annotation and xsd:documentation including xml:lang for tooltips/...
 * transparently exchange whitespaces with &nbsp; for text-nodes to make sure the user gets what he entered ...
+* backups on saving

@@ -95,15 +95,21 @@ var Configuration = function (filename) {
     /**
      * send the configuration to the server for saving
      * 
+     * @param   filename    string  the filename to save to (optional, e.g. for saving to a temporary file)
      * @return  boolean success
      */
-    _config.save = function () {
+    _config.save = function (filename) {
+        if (filename == undefined) {
+            // if no filename is given, use the one that we had for loading the file
+            filename = _filename;
+        }
+        
         var data = _config.getAsSerializable();
         $.ajax('editor/bin/save_config.php',
                 {
                     dataType: 'json',
                     data: {
-                        config: _filename,
+                        config: filename,
                         data: JSON.stringify(data),
                     },
                     type: 'POST',
@@ -379,6 +385,15 @@ var ConfigurationElement = function (node, parent) {
     };
     
     /**
+     * return an id unique to this element
+     * 
+     * @return  integer the unique id
+     */
+    _element.getUID = function () {
+        return _uid;
+    };
+    
+    /**
      * set the SchemaElement for this ConfigurationElement.
      * Goes recursive.
      * 
@@ -471,101 +486,32 @@ var ConfigurationElement = function (node, parent) {
             return false;
         }
         
-
-        // counting all our sub-elements
-        var allSubElements = {};
-
-        // populate this list with all allowed elements (with a counting of 0 (zero))
-        var allowedSubElements = _schemaElement.getAllowedElements();
-        if (allowedSubElements != undefined) {
-            $.each(allowedSubElements, function (name, item) {
-                allSubElements[name] = 0;
-            });
-        }
-        delete allowedSubElements;
-
-
-        if (_element.children.length > 0) {
-            // if we have children, check them
-            
-            // go over list of all elements, and see if some are not valid
-            // that's it
-            $.each(_element.children, function (i, child) {
-                if (isValid == false) {
-                    return;
-                }
-
-                var childName = child.name;
-                isValid = isValid && _schemaElement.isChildElementAllowed(childName);
-                
-                if (isValid == false) {
-                    informListeners('invalid', {type: 'element_disallowed', item: childName});
-                    return;
-                }
-                
-                // count the number of occurences for this element
-                if (undefined == allSubElements[childName]) {
-                    allSubElements[childName] = 0;
-                }
-                ++allSubElements[childName];
-                
-                // go recursive.
-                isValid = isValid && child.isValid();
-            });
-        }
-
-        if (false === isValid) {
-            // bail out, if we already know that we failed
-            return false;
-        }
-
-        // secondly, check with the bounds of their parent (i.e. their 'choice')
-        // is NOT capable of multi-dimensional-choice-bounds (like in complexType mapping)
-        var childBounds = _schemaElement.getChildBounds();
-        if (childBounds != undefined) {
-            // check bounds only if we have them :)
-
-            // check all allowed and used elements against their personal bounds.
-            // only if the choice-bounds of our parent are not undefined! (undefined = no choice, or multi-dimensional)
-            // @FIXME: this is not how XSD-specifications say this works!
-//            $.each(allSubElements, function (name, count) {
-//                var bounds = _schemaElement.getSchemaElementForElementName(name).getBounds();
-//
-//                if (bounds.min > count) {
-//                    // this element does not appear often enough
-//                    informListeners('invalid', {type: 'element_bounds_under', item: name});
-//                    isValid = false;
-//                }
-//
-//                if (bounds.max < count) {
-//                    // this element does not appear often enough
-//                    informListeners('invalid', {type: 'element_bounds_over', item: name});
-//                    isValid = false;
-//                }
-//            });
-
-
-
-            if (childBounds.min > _element.children.length) {
-                // less elements than defined by the bounds
-                informListeners('invalid', {type: 'element_bounds_under'});
-                isValid = false;
-            }
-            
-            if (childBounds.max != 'unbounded') {
-                if (childBounds.max < _element.children.length) {
-                    // more elements than defined by the bounds
-                    informListeners('invalid', {type: 'element_bounds_over'});
+      
+        var regexString = _schemaElement.getChildrenRegex(';');
+        var regExp = regexFromString(regexString);
+        
+        var childrenString = '';
+        $.each(_element.children, function (i, child) {
+            if (child.name == '#text') {
+                // this is a text
+                if (false === _schemaElement.isMixed && false === _schemaElement.isTextContentAllowed()) {
+                    informListeners('invalid', {type: 'text_not_allowed'});
                     isValid = false;
+                    return;
                 }
+                // #text-nodes are not part of the string to match
+                
+            } else {
+                childrenString += child.name + ';';
             }
-        }
-
-        if (false === isValid) {
-            // bail out, if we already know that we failed
+        });
+        
+        if (false == regExp.test(childrenString)) {
+            // the children of this element do not match what the regex says is valid
+            informListeners('invalid', {type: 'regex_not_matched', regex: regexString, children: childrenString});
             return false;
         }
-
+        
         if (_element.children.length == 0 || _schemaElement.isMixed) {
             // if this element has no children, it appears to be a text-node
             // also, if it may be of mixed value
@@ -673,6 +619,81 @@ var ConfigurationElement = function (node, parent) {
         
         // set the parent of the new child!
         childNode.setParentNode(_element);
+        
+        // sort the child-nodes
+        sortChildNodes();
+    };
+    
+    /**
+     * the list of sort-values for our children; needed and filled by sortChildNodes*
+     * @var object
+     */
+    var childSortValues = undefined;
+    
+    /**
+     * re-sort child-elements based on a given sorting we might have from our schema
+     */
+    var sortChildNodes = function () {
+        // make a copy of the children-list
+        var tmpChildren = $.extend([], _element.children);
+        
+        // get the sortValues once
+        if (childSortValues == undefined) {
+            childSortValues = _schemaElement.getAllowedElementsSorting();
+        }
+        
+        // do the actual sorting
+        tmpChildren.sort(sortChildNodesHelper);
+        
+        // set the children-list to the newly created, sorted, one
+        _element.children = tmpChildren;
+    };
+    
+    /**
+     * the comparison-function that helps the sorting
+     * 
+     * @param   a   mixed   whatever sort gives us
+     * @param   b   mixed   whatever sort gives us
+     * @return  integer     -1, 0, 1 - depending on sort-order
+     */
+    var sortChildNodesHelper = function (a, b) {
+        var aSortvalue = childSortValues[a.name];
+        var bSortvalue = childSortValues[b.name];
+        
+        if (aSortvalue == undefined || bSortvalue == undefined) {
+            // undefined means: no sorting available
+            return 0;
+        }
+        
+        if (aSortvalue == bSortvalue) {
+            // identical means 'no sorting necessary'
+            return 0;
+        }
+        
+        // we need to go through the complete list of values the sorting is composed of,
+        // to find the first one that distinguishes a from b
+
+        // first, typecast to string!
+        if (typeof aSortvalue != 'string') {
+            aSortvalue = aSortvalue.toString();
+        }
+        if (typeof bSortvalue != 'string') {
+            bSortvalue = bSortvalue.toString();
+        }
+        
+        var aSortvaluesList = aSortvalue.split('.');
+        var bSortvaluesList = bSortvalue.split('.');
+        
+        for (var i = 0; i < aSortvaluesList.length; ++i) {
+            if (aSortvaluesList[i] < bSortvaluesList[i]) {
+                return -1;
+            } else if (aSortvaluesList[i] > bSortvaluesList[i]) {
+                return 1;
+            }
+        }
+        
+        // if nothing else matched, then they are treated equal
+        return 0;
     };
     
     /**
@@ -721,6 +742,9 @@ var ConfigurationElement = function (node, parent) {
         
         // add the child
         _element.children.splice(position, 0, child);
+        
+        // we need to sort it afterwards, maybe the arbitrary position was too arbitrary :)
+        sortChildNodes();
     }
     
     /**
@@ -777,29 +801,22 @@ var ConfigurationElement = function (node, parent) {
         }
 
         // the bounds of ourself, this means the maximum number of children as defined by a choice
-        var myChildBounds = _schemaElement.getChildBounds();
-        if (myChildBounds != undefined && myChildBounds.max >= _element.children.length) {
+        var myChildBounds = _schemaElement.getBoundsForElementName(childName);
+        
+        var childCount = 0;
+        
+        $.each(_element.children, function (i, child) {
+            if (child.name == childName) {
+                ++childCount;
+            }
+        });
+
+        if (myChildBounds != undefined && myChildBounds.max <= childCount) {
             // no more children are allowed.
             // sorry, you can not enter
             return false;
         }
 
-        // the bounds of the specific element (child-to-be)
-        var typeBounds = _schemaElement.getSchemaElementForElementName(childName).getBounds();
-        
-        // count the number of elements of this type we already have
-        var count = 0;
-        $.each(_element.children, function (i, item) {
-            if (item.name == childName) {
-                ++count;
-            }
-        });
-        
-        if (count >= typeBounds.max) {
-            // if there are more elements of this type than allowed, then we're not ok
-            return false;
-        }
-        
         // no reason why to disallow the child-to-be
         return true;
     };
@@ -812,30 +829,27 @@ var ConfigurationElement = function (node, parent) {
      */
     _element.initFromScratch = function () {
         
+        // set the default-value, if one is given
+        if (_schemaElement.defaultValue != undefined) {
+            _element.setTextValue(_schemaElement.defaultValue);
+        }
+        
+        // set the default-value to the attributes, if given
+        $.each(_schemaElement.allowedAttributes, function (attributeName, attributeSchema) {
+            if (attributeSchema.defaultValue != undefined) {
+                _element.setAttributeValue(attributeName, attributeSchema.defaultValue);
+            }
+        });
+        
         // empty our list of children (this is init, after all)
         _element.children = [];
         
-        // create a list of all elements that define their own min-occurences
-        var neededElements = {};
-        var allowedSubElements = _schemaElement.getAllowedElements();
-        if (allowedSubElements != undefined) {
-            $.each(allowedSubElements, function (name, item) {
-                var bounds = item.getBounds();
-                
-                if (bounds.min > 0) {
-                    neededElements[name] = bounds.min;
-                }
-            });
-        }
-        delete allowedSubElements;
-
+        var requiredElements = _schemaElement.getRequiredElements();
+        
         // create elements for all items with min-occurences
-        $.each(neededElements, function (name, count) {
-            // create the appropriate amount of children of each needed type
-            for (var i = 0; i < count; ++i) {
-                // create a new child; this auto-recurses!
-                _element.createChildNode(name);
-            }
+        $.each(requiredElements, function (i, name) {
+            // create a new child; this auto-recurses!
+            _element.createChildNode(name);
         });
     };
     
@@ -1098,4 +1112,22 @@ var ConfigurationElement = function (node, parent) {
      */
     var listeners = [];
     
+    /**
+     * unique id
+     * @var integer
+     */
+    var _uid = uniqueID();
+    
 };
+
+/**
+ * creator of unique IDs
+ * source: http://arguments.callee.info/2008/10/31/generating-unique-ids-with-javascript/
+ * no license mentioned.
+ */
+var uniqueID = function() {
+    var id = 1; // initial value
+    return function() {
+        return id++;
+    }; // NOTE: return value is a function reference
+}(); // execute immediately

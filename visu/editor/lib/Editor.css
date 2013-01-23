@@ -455,6 +455,11 @@ ul#config,
     background-color: #D88F8F;
 }
 
+#config .element > .attributes > .attribute .documentation {
+    display: inline-block;
+    font-size: 85%;
+}
+
 #config .element .value.notset {
     opacity: 0.3;
     filter: alpha(opacity=30);

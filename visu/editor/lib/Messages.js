@@ -30,6 +30,7 @@
  */
 
 var Messages = {
+    language: 'en',
     validity: {
         configurationInvalid: 'The configuration appears to be not valid. ' +
                                 'Please check with \'check_config.php\' for details.\n' +
@@ -105,6 +106,14 @@ var Messages = {
             save: {
                 tooltip: 'validate config and save',
                 text: 'save',
+            },
+            preview: {
+                tooltip: 'validate config, save it temporarily, and preview it',
+                text: 'preview',
+            },
+            expert: {
+                tooltip: 'show/hide attributes for advanced configuration',
+                text: 'complex',
             },
         },
     },

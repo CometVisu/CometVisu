@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="./visu_config.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="./visu_config.xsd" lib_version="0">
   <meta>
     <plugins>
       <plugin name="colorchooser"/>
@@ -42,24 +42,26 @@
       </styling>
       <styling name="Blue_Green_Red">
         <entry range_min="-100" range_max="20">blue</entry>
-        <entry range_min="20"   range_max="22">green</entry>
-        <entry range_min="22"   range_max="100">red</entry>
+        <entry range_min="20" range_max="22">green</entry>
+        <entry range_min="22" range_max="100">red</entry>
       </styling>
     </stylings>
     <statusbar>
-      <status type="html"><![CDATA[
-          <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
-          - <a href=".?forceReload=true">Reload</a>
-          - <a href="?config=demo">Widget Demo</a>
-        ]]></status>
-      <status type="html" hrefextend="config"><![CDATA[
-          - <a href="check_config.php">Check Config</a>
-        ]]></status>
+      <status type="html">&lt;img src="icon/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="http://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
+          - &lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt;
+          - &lt;a href="?config=demo"&gt;Widget Demo&lt;/a&gt;</status>
+      <status type="html" hrefextend="config">- &lt;a href="check_config.php"&gt;Check Config&lt;/a&gt;</status>
     </statusbar>
   </meta>
   <page name="Start">
     <line/>
-    <text align="center">Welcome to the CometVisu!</text>
+    <text align="center">
+      <label>Welcome to the CometVisu!</label>
+    </text>
     <line/>
+    <colorchooser>
+      <label/>
+      <address transform="bla">1/2/3</address>
+    </colorchooser>
   </page>
 </pages>

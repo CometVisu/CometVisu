@@ -49,23 +49,6 @@ $(document).ready(function () {
         alert(result.message);
     });
 
-    
-    $(document).unbind('configuration_saving_error').bind('configuration_saving_error', function (event, result) {
-        // something went wrong
-        // we can not fix it, so let's simply inform the user, and leave.
-        alert(result.message);
-    });
-
-    
-    $(document).unbind('configuration_saving_success').bind('configuration_saving_success', function (event) {
-        // everything is cool, configuration was saved
-        // @TODO: maybe implement some sort of "traffic light" that goes to green when the configuration was saved?
-        var tmpResult = new Result(false, Messages.configuration.saved);
-        alert(tmpResult.message);
-    });
-
-
-
     $(document).unbind('schema_loaded').bind('schema_loaded', function () {
 
         try {
