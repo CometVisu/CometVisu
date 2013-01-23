@@ -63,7 +63,7 @@
     </statusbar>
   </meta>
   <page name="Start">
-    <text align="center">Welcome to the CometVisu - Demo for urltrigger, RSSlog and RSS Plugin</text>
+    <text align="center"><label>Welcome to the CometVisu - Demo for urltrigger, RSSlog and RSS Plugin</label></text>
     <line/>
     <urltrigger value="Ins Log" url="plugins/rsslog/rsslog.php" params="t[]=aquarium&amp;c=AQ1 Wasserwechsel">
         <label>Aquarium 1 Wasser gewechselt</label>
@@ -76,23 +76,23 @@
     </urltrigger>
     <urltrigger value="AQ2 WW" url="plugins/rsslog/rsslog.php" params="t[]=aquarium&amp;c=AQ2 Wasserwechsel"/>
     <line/>
-    <text align="center">rsslog filter: Aquarium - 6 lines</text>
+    <text align="center"><label>rsslog filter: Aquarium - 6 lines</label></text>
     <rsslog src="plugins/rsslog/rsslog.php?f=aqua" refresh="300" limit="5" mode="last">
         <layout rowspan="9" colspan="6"></layout>
     </rsslog>
     <line/>
-    <text align="center">rsslog filter: Sensoren - only last (click me!)</text>
+    <text align="center"><label>rsslog filter: Sensoren - only last (click me!)</label></text>
     <rsslog src="plugins/rsslog/rsslog.php?f=sensoren" mode="rollover"/>
     <line/>
-    <text align="center">rsslog filter: WP</text>
+    <text align="center"><label>rsslog filter: WP</label></text>
     <rsslog src="plugins/rsslog/rsslog.php?f=WP" mode="rollover"/>
     <rsslog src="plugins/rsslog/rsslog.php?state=1" filter="security" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
-        <label>Ereignisse state=1 Filter=security</label>
         <layout rowspan="9" colspan="6"></layout>
+        <label>Ereignisse state=1 Filter=security</label>
     </rsslog>
     <rsslog src="plugins/rsslog/rsslog.php?state=0" filter="security" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
-        <label>Ereignisse state=0 Filter=security</label>
         <layout rowspan="9" colspan="6"></layout>
+        <label>Ereignisse state=0 Filter=security</label>
     </rsslog>
     <line/>
     <page name="externe feeds">

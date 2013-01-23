@@ -59,7 +59,7 @@
   </meta>
   <page name="Start" type="text">
     <line/>
-    <text align="center">Welcome to the CometVisu!</text>
+    <text align="center"><label>Welcome to the CometVisu!</label></text>
     <break/>
     <page name="2D Demo" type="2d" backdrop="media/demo_2d_backdrop_red_pot.svg">
       <slide>
