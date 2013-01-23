@@ -153,7 +153,9 @@ function createDOMFromData($objMasterDOM, $arrConfig) {
     if (false === empty($arrConfig['attributes'])) {
         // add all of our attributes
         foreach ($arrConfig['attributes'] as $strName => $mixValue) {
-            $objXMLElement->setAttribute($strName, $mixValue);
+            if ($mixValue !== '') {
+                $objXMLElement->setAttribute($strName, $mixValue);
+            }
         }
     }
     
