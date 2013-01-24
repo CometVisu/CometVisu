@@ -504,6 +504,12 @@ var ConfigurationElement = function (node, parent) {
             } else {
                 childrenString += child.name + ';';
             }
+            
+            // do the recursion
+            if (false === child.isValid()) {
+                isValid = false;
+                return;
+            }
         });
         
         if (false == regExp.test(childrenString)) {

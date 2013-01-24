@@ -1087,9 +1087,9 @@ var EditorConfigurationElement = function (parent, element) {
         },
         
         /**
-         * toggle show
+         * actually insert the attributs-HTML into the DOM
          */
-        toggleDisplay: function () {
+        renderHTML: function () {
             var $attributes = Attributes.$attributes;
 
 
@@ -1099,18 +1099,29 @@ var EditorConfigurationElement = function (parent, element) {
                 Attributes.$htmlPlaceholder.replaceWith($attributes);
                 Attributes.$htmlPlaceholder = undefined;
             }
-
-            // first hide
+        },
+        
+        /**
+         * toggle show
+         */
+        toggleDisplay: function () {
+            Attributes.renderHTML();
+            var $attributes = Attributes.$attributes;
             
+            // first hide
             if ($('ul.attributes:visible').not($attributes).length > 0) {
                 // some other attributes are visible, we need to hide them first
                 $('ul.attributes:visible').not($attributes)
                     .slideToggle('fast', function () {
-                                $attributes.slideToggle('fast');
+                                if (typeof $attributes != 'undefined') {
+                                    $attributes.slideToggle('fast');
+                                }
                     });
             } else {
                 // no other attributes are currently visible
-                $attributes.slideToggle('fast');
+                if (typeof $attributes != 'undefined') {
+                    $attributes.slideToggle('fast');
+                }
             }
             
             return;
@@ -1129,6 +1140,7 @@ var EditorConfigurationElement = function (parent, element) {
          * @param   attributeName   string  name of the attribute
          */
         markAttributeInvalid: function (attributeName) {
+            Attributes.renderHTML();
             var $attributes = Attributes.$attributes;
             
             var $invalidAttribute = $attributes.find('span.name:contains(' + attributeName + ')').closest('li.attribute');

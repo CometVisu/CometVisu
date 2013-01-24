@@ -59,9 +59,5 @@
       <label>Welcome to the CometVisu!</label>
     </text>
     <line/>
-    <colorchooser>
-      <label/>
-      <address transform="bla">1/2/3</address>
-    </colorchooser>
   </page>
 </pages>

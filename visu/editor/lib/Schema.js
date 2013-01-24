@@ -1169,7 +1169,7 @@ var SchemaElement = function (node, schema) {
         
         if (allowedContent._grouping == undefined) {
             // not really something to match
-            return new RegExp(/^/);
+            return '^';
         }
         
         var regexString = allowedContent._grouping.getRegex(separator);

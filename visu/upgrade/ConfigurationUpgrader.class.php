@@ -117,6 +117,10 @@ class ConfigurationUpgrader {
         
         $objXPath = new DOMXPath($this->objDOM);
         
+        // append namespaces to schema
+        $this->objDOM->getElementsByTagName('pages')->item(0)->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
+        $this->objDOM->getElementsByTagName('pages')->item(0)->setAttribute('xsi:noNamespaceSchemaLocation', './visu_config.xsd');
+        
         // rename iframe to web
         $objElements = $objXPath->query('//iframe');
         $i = 0;
@@ -192,6 +196,26 @@ class ConfigurationUpgrader {
         }
         $this->log('encapsulated content of ' . $i . ' \'text\'-nodes in \'label\'-nodes');        
         
+        // encapsulate content of 'diagram_'-nodes in a label
+        $objElements = $objXPath->query('//diagram_inline[not(child::*)]|//diagram_popup[not(child::*)]');
+        $i = 0;
+        foreach ($objElements as $objElementNode) {
+            $objLabelNode = $objElementNode->ownerDocument->createElement('label');
+
+            // first, move all nodes to the childnode
+            if ($objElementNode->childNodes->length > 0) {
+                foreach ($objElementNode->childNodes as $objChildNode) {
+                    $objLabelNode->appendChild($objChildNode);
+                }
+            }
+            
+            $objElementNode->nodeValue = '';
+            
+            $objElementNode->appendChild($objLabelNode);
+            
+            ++$i;
+        }
+        $this->log('encapsulated content of ' . $i . ' \'diagram_*\'-nodes in \'label\'-nodes');  
         
         // FROM readonly / writeonly TO disable/read/write/readwrite
         $objElements = $objXPath->query('//address');
