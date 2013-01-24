@@ -34,14 +34,19 @@ outputHeader();
 
 require_once('ConfigurationUpgrader.class.php');
 
-define('CONFIG_FILENAME', '../visu_config_%s.xml');
-define('BACKUP_FILENAME', '../backup/visu_config_%s-%s.xml');
+define('CONFIG_FILENAME', '../visu_config%s.xml');
+define('BACKUP_FILENAME', '../backup/visu_config%s-%s.xml');
 
 // get everything the user has provided ...
 $strConfigSuffix = (true === isset($_GET['config'])) ? $_GET['config'] : null;
 
 // clean-up filename, we want no security-holes. work with a whitelist.
 $strConfigCleaned = preg_replace("/[^\-\_0-9a-z]/i", "", $strConfigSuffix);
+
+if (false === empty($strConfigCleaned)) {
+    // prefix the postfix with an underscore
+    $strConfigCleaned = '_' . $strConfigCleaned;
+}
 
 // generate the configurations filename
 $strConfigFilename = sprintf(CONFIG_FILENAME, $strConfigCleaned);
