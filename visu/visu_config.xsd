@@ -65,7 +65,12 @@
     <xsd:attribute name="range_max" type="xsd:float" />
   </xsd:attributeGroup>
 
-  <xsd:attribute name="mapping" type="xsd:string" />
+  <xsd:attribute name="mapping" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Map the bus value to a different value for displaying.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ordne den Werten vom Bus andere zur Anzeige zu.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
   <xsd:attribute name="styling" type="xsd:string" />
   <xsd:attribute name="value" type="xsd:string" />
   <xsd:attribute name="flavour" type="xsd:string">
@@ -531,7 +536,12 @@
     </xsd:sequence>
     <xsd:attribute ref="value" use="required" />
     <xsd:attribute name="shortvalue" type="xsd:string" use="optional" />
-    <xsd:attribute name="shorttime" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="shorttime" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Time in milliseconds that is accepted as shorttime.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeit in Millisekunden innerhalb der der Tastendruck als Kurzzeit interpretiert wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="align" use="optional" />
