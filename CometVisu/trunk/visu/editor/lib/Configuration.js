@@ -983,6 +983,15 @@ var ConfigurationElement = function (node, parent) {
     };
     
     /**
+     * get the parent element
+     * 
+     * @return  object  the parent element
+     */
+    _element.getParentElement = function () {
+        return _parentElement;
+    };
+    
+    /**
      * get a duplicate of this element
      * 
      * Clear listeners for the duplicate, everything else is kept in shape
