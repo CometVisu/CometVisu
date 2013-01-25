@@ -132,40 +132,21 @@ class ConfigurationUpgrader {
         unset($objElements, $i);
         
         // remove whitespace-attributes
-        $objElements = $objXPath->query('//*[*=\' \']');
+        $objAttributes = $objXPath->query('//@*[.=\' \']');
         $i = 0;
-        foreach ($objElements as $objElement) {
-            $arrAttributesToRemove = array();
-            foreach ($objElement->attributes as $objAttribute) {
-                if ($objAttribute->nodeValue === ' ') {
-                    $arrAttributesToRemove[] = $objAttribute;
-                }
-            }
-            
-            foreach ($arrAttributesToRemove as $objAttribute) {
-                $objElement->removeAttribute($objAttribute->nodeName);
-                ++$i;
-            }
-
+        foreach ($objAttributes as $objAttribute) {
+            $objAttribute->ownerElement->removeAttributeNode($objAttribute);
+            ++$i;
         }
         $this->log('removed ' . $i . ' empty-like attributes');
 
         
         // remove empty attributes
-        $objElements = $objXPath->query('//*[*=\'\']');
+        $objAttributes = $objXPath->query('//@*[.=\'\']');
         $i = 0;
-        foreach ($objElements as $objElement) {
-            $arrAttributesToRemove = array();
-            foreach ($objElement->attributes as $objAttribute) {
-                if ($objAttribute->nodeValue === '') {
-                    $arrAttributesToRemove[] = $objAttribute;
-                }
-            }
-            
-            foreach ($arrAttributesToRemove as $objAttribute) {
-                $objElement->removeAttribute($objAttribute->nodeName);
-                ++$i;
-            }
+        foreach ($objAttributes as $objAttribute) {
+            $objAttribute->ownerElement->removeAttributeNode($objAttribute);
+            ++$i;
         }
         $this->log('removed ' . $i . ' empty attributes');        
         
@@ -173,25 +154,43 @@ class ConfigurationUpgrader {
         $objElements = $objXPath->query('//text');
         $i = 0;
         foreach ($objElements as $objElementNode) {
-            $objLabelNode = $objElementNode->ownerDocument->createElement('label');
+            if ($objElementNode->getElementsByTagName('label')->length > 0) {
+                // text-elements that already have a label-element should be left untouched!
+                continue;
+            } 
 
-            // first, move all nodes to the childnode
+            // create a new label and a new text node, append the old elements nodes to them
+            $objLabelNode = $objElementNode->ownerDocument->createElement('label');
+            $objTextNode = $objElementNode->ownerDocument->createElement('text');
+            $objTextNode->appendChild($objLabelNode);
+            
+
+            // copy the old text-nodes' attributes tot the new one
+            if ($objElementNode->attributes->length > 0) {
+                foreach ($objElementNode->attributes as $objAttribute) {
+                    $objTextNode->setAttribute($objAttribute->nodeName, $objAttribute->nodeValue);
+                }
+            } 
+        
+            // clone-copy all nodes to the newly created nodes
             if ($objElementNode->childNodes->length > 0) {
                 foreach ($objElementNode->childNodes as $objChildNode) {
-                    $objLabelNode->appendChild($objChildNode);
-                }
-            }
-            
-            $objElementNode->nodeValue = '';
+                    // clone the node, so do not disturb the order of elements with the old parent
+                    $objNewChildNode = $objChildNode->cloneNode(true);
 
-            foreach ($objLabelNode->childNodes as $objChildNode) {
-                if ($objChildNode->nodeName == 'layout') {
-                    $objElementNode->appendChild($objChildNode);
+                    if ($objChildNode->nodeName == 'layout') {
+                        // layout goes right into the text node
+                        $objTextNode->appendChild($objNewChildNode);   
+                    } else {
+                        // all of the rest goes into the label-node
+                        $objLabelNode->appendChild($objNewChildNode);   
+                    }
                 }
             }
             
-            $objElementNode->appendChild($objLabelNode);
-            
+            // replace the old text-node with the new one
+            $objElementNode->parentNode->replaceChild($objTextNode, $objElementNode);
+
             ++$i;
         }
         $this->log('encapsulated content of ' . $i . ' \'text\'-nodes in \'label\'-nodes');        
@@ -203,13 +202,9 @@ class ConfigurationUpgrader {
             $objLabelNode = $objElementNode->ownerDocument->createElement('label');
 
             // first, move all nodes to the childnode
-            if ($objElementNode->childNodes->length > 0) {
-                foreach ($objElementNode->childNodes as $objChildNode) {
-                    $objLabelNode->appendChild($objChildNode);
-                }
+            while (true === isset($objElementNode->firstChild)) { 
+                $objLabelNode->appendChild($objElementNode->firstChild);
             }
-            
-            $objElementNode->nodeValue = '';
             
             $objElementNode->appendChild($objLabelNode);
             
@@ -255,7 +250,7 @@ class ConfigurationUpgrader {
         
 
         // rearrange elements based on new sequence-order
-        $arrOrderedElements = array('pages', 'page', 'group', 'text', 'switch', 'trigger', 'urltrigger', 'infotrigger',
+        $arrOrderedElements = array('page', 'group', 'text', 'switch', 'trigger', 'urltrigger', 'infotrigger',
                                     'rgb', 'multitrigger', 'slide', 'info', 'wgplugin_info', 'image', 'imagetrigger',
                                     'video', 'web', 'pagejump', 'colorchooser', 'diagram', 'diagram_inline',
                                     'diagram_popup', 'diagram_info', 'gweather', 'rss', 'rsslog', 'strftime');
@@ -304,7 +299,7 @@ class ConfigurationUpgrader {
     protected function upgrade0To1SortHelper($a, $b) {
         
         // the order in which certain elements should appear
-        $arrOrder = array('layout', 'label', 'axis', 'rrd', 'address', 'meta', 'page',);
+        $arrOrder = array('layout', 'label', 'axis', 'rrd', 'address',);
         
         if ($a->nodeName == $b->nodeName) {
             // same name == no re-ordering needed
@@ -371,10 +366,8 @@ class ConfigurationUpgrader {
             }
         }
         
-        if ($objNode->childNodes->length > 0) {
-            foreach ($objNode->childNodes as $objChildNode) {
-                $objNewNode->appendChild($objChildNode);
-            }
+        while (true === isset($objNode->firstChild)) { 
+            $objNewNode->appendChild($objNode->firstChild);
         }
         
         $objNode->parentNode->replaceChild($objNewNode, $objNode);
