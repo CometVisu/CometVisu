@@ -769,6 +769,26 @@ var SchemaElement = function (node, schema) {
         
         return allowedContent;
     }
+
+    /**
+     * is this element sortable?
+     * This is not the case if this element is an immediate child of a sequence.
+     * 
+     * @param   sortable    boolean is sortable?
+     */
+    _element.setIsSortable = function (sortable) {
+        isElementSortable = sortable;
+    };
+
+    /**
+     * is this element sortable?
+     * This is not the case if this element is an immediate child of a sequence.
+     * 
+     * @return  boolean is sortable?
+     */
+    _element.isSortable = function () {
+        return isElementSortable;
+    };
     
     /**
      * are this elements children sortable? this is not the case if a sequence is used, e.g.
@@ -1227,6 +1247,11 @@ var SchemaElement = function (node, schema) {
                     max: $e.attr('maxOccurs') != undefined ? $e.attr('maxOccurs') : 'unbounded',
                     };
 
+    /**
+     * is this element sortable?
+     * @var boolean
+     */
+    var isElementSortable = undefined;
                                 
     /**
      * is this element of mixed nature (text and nodes as value)
@@ -1290,6 +1315,7 @@ var SchemaChoice = function (node, schema) {
         var subElements = $n.find(fixNamespace('> xsd\\:element'));
         subElements.each(function () {
             var subElement = new SchemaElement(this, _schema);
+            subElement.setIsSortable(true);
             var name = subElement.name;
             allowedElements[name] = subElement;
         });
@@ -1883,6 +1909,8 @@ var SchemaSequence = function (node, schema) {
                 case 'xsd:element':
                 case 'element':
                     subObject = new SchemaElement(this, _schema);
+                    // sequences' children are non-sortable
+                    subObject.setIsSortable(false);
                     allowedElements[subObject.name] = subObject;
                     break;
                 case 'xsd:choice':

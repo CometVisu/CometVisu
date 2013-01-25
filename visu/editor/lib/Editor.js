@@ -387,7 +387,6 @@ var EditorConfigurationElement = function (parent, element) {
             var $html = $('<span />').addClass('submenu');
 
             settings = $.extend({
-                                attributes: true,
                                 remove: true,
                                 },
                                 settings || {});
@@ -433,15 +432,13 @@ var EditorConfigurationElement = function (parent, element) {
             
             // sort (like move with same parent); only if the parent allows for sorting!
             // (check tyepof getConfigurationElement, as the root-element has no such thing)
-            if (typeof _parent.getConfigurationElement == 'function'
-                && true === _parent.getConfigurationElement().getSchemaElement().areChildrenSortable()) {
+            if (true === element.getSchemaElement().isSortable()) {
                 $tmpItem = $menuitem.clone();
                 $tmpItem.addClass('sort').click(UIElements.clickHandler);
                 $tmpItem.attr('title', Messages.editor.ui['sort'].tooltip);
                 $tmpItem.text(Messages.editor.ui['sort'].text);
                 $html.append($tmpItem);
                 delete $tmpItem;
-
             }
 
 
@@ -627,7 +624,7 @@ var EditorConfigurationElement = function (parent, element) {
                 UIElements.cancelCut();
                 
                 // find my siblings
-                var $siblings = _html.siblings();
+                var $siblings = _html.siblings().filter('.sortable');
                 var $parent = _html.parent();
                 
                 // create and activate dropzones
@@ -657,7 +654,7 @@ var EditorConfigurationElement = function (parent, element) {
 
                 // clone the ConfigurationElement, and create a new EditorConfigurationElement with that
                 sortableElement.remove();
-                var sortedElement = sortableElement.getDuplicateForParent(_element);
+                var sortedElement = sortableElement.getDuplicateForParent(_element.getParentElement());
                 _parent.getConfigurationElement().addChildAtPosition(sortedElement, position);
                 
                 // then: remove ourselves (the old node), before re-arranging the DOM (or this will fail)
@@ -1710,6 +1707,11 @@ var EditorConfigurationElement = function (parent, element) {
         // create this elements markup, divided into outer shell (container, tree) and inner part (text, buttons, ...)
         _html = $('<li />').addClass('element');
         _html.append($('<span />').addClass('tree').append(UIElements.getButtonOfType('children')));
+        
+        // check if we are sortable
+        if (true === _element.getSchemaElement().isSortable()) {
+            _html.addClass('sortable');
+        }
         
         var $innerHTML = $('<span />').addClass('element');
         _html.append($innerHTML);
