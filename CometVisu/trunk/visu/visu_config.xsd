@@ -479,6 +479,7 @@
       <xsd:element name="infotrigger" type="infotrigger" />
       <xsd:element name="designtoggle" type="designtoggle" />
       <xsd:element name="slide" type="slide" />
+      <xsd:element name="include" type="include" />
       <xsd:element name="info" type="info" />
       <xsd:element name="shade" type="info" />
       <xsd:element name="image" type="image" />
@@ -631,6 +632,10 @@
     <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
+  <xsd:complexType name="include">
+    <xsd:attribute name="src" type="uri" use="required" />
+  </xsd:complexType>
+  
   <xsd:complexType name="info">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
