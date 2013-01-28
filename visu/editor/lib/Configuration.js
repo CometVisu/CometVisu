@@ -886,16 +886,18 @@ var ConfigurationElement = function (node, parent) {
         var siblingsAndSelf = _parentElement.children;
 
         var parentBounds = _parentElement.getSchemaElement().getChildBounds();
+        var elementBounds = _schemaElement.getBounds();
+        
+        var minBound = 1;
         
         // check bounds of parents choice
-        if (parentBounds != undefined && parentBounds.min >= siblingsAndSelf.length) {
-            // our parent only has the necessary amount of elements, not more.
-            // this means, we can not be removed
-            return false;
+        if (parentBounds != undefined) {
+            minBound = parentBounds.min
         }
-
-        var myBounds = _schemaElement.getBounds();
         
+        // we need at least as many elements as parent times element requires
+        minBound = minBound * elementBounds.min;
+
         // count the number of elements of this type our parent has
         var count = 0;
         $.each(siblingsAndSelf, function (i, item) {
@@ -904,7 +906,7 @@ var ConfigurationElement = function (node, parent) {
             }
         });
         
-        if (myBounds.min >= count) {
+        if (minBound >= count) {
             // there are less or exactly as many elements of this type as needed
             // we can not allow even less! deny! deny!
             return false;
