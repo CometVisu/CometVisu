@@ -1404,7 +1404,11 @@ var SchemaChoice = function (node, schema) {
      * @return  object      list of allowed elements, key is the name
      */
     _choice.getAllowedElements = function () {
-        var myAllowedElements = allowedElements;
+        var myAllowedElements = {};
+        
+        $.each(allowedElements, function (name, item) {
+            myAllowedElements[name] = item;
+        });
         
         // also the elements allowed by our sub-choices etc.
         $.each(subGroupings, function (i, grouping) {
@@ -1429,6 +1433,7 @@ var SchemaChoice = function (node, schema) {
         
         var namesWithSorting = {};
         
+        // all elements allowed directly
         $.each(allowedElements, function (i, item) {
             var mySortnumber = 'x'; // for a choice, sortnumber is always the same
             if (sortnumber !== undefined) {
@@ -1443,7 +1448,24 @@ var SchemaChoice = function (node, schema) {
                 $.extend(namesWithSorting, subSortedElements);
             }
         });
-        
+
+        // all elements allowed by subGroupings
+        $.each(subGroupings, function (i, item) {
+            var mySortnumber = 'x'; // for a choice, sortnumber is always the same
+            if (sortnumber !== undefined) {
+                mySortnumber = sortnumber + '.' + mySortnumber;
+            }
+            
+            if (item.type == 'element') {
+                namesWithSorting[item.name] = mySortnumber;
+            } else {
+                // go recursive
+                var subSortedElements = item.getAllowedElementsSorting(mySortnumber);
+                $.extend(namesWithSorting, subSortedElements);
+            }
+        });
+
+
         return namesWithSorting;
     }
     
@@ -1536,12 +1558,29 @@ var SchemaChoice = function (node, schema) {
      * @return  object              {max: x, min: y}, or undefined if none found
      */
     _choice.getBoundsForElementName = function (childName) {
-        // we are a choice-element; there is no other saying than ours!
+        // if this element is our immediate child, we have to say about bounds
         if (typeof allowedElements[childName] !== 'undefined') {
             return _choice.getBounds();
         }
+
+        // though we are a child-element, our sub-grouping might have another saying than we do about the bounds
+        var childBounds = undefined;
         
-        return undefined;
+        $.each(subGroupings, function (i, subGroup) {
+            if (typeof childBounds != 'undefined') {
+                // do not look further if we already have bounds
+                return;
+            }
+            
+            // if the subGroup allows this element, we get the bounds from there
+            if (true === subGroup.isElementAllowed(childName)) {
+                childBounds = subGroup.getBoundsForElementName(childName);
+            }
+            
+        });
+
+
+        return childBounds;
     };
     
     /**
@@ -2029,7 +2068,11 @@ var SchemaSequence = function (node, schema) {
      * @return  object      list of allowed elements, key is the name
      */
     _sequence.getAllowedElements = function () {
-        var myAllowedElements = allowedElements;
+        var myAllowedElements = {};
+        
+        $.each(allowedElements, function (name, item) {
+            myAllowedElements[name] = item;
+        });
         
         // also go over the sub-choices etc.
         $.each(subGroupings, function (i, grouping) {
