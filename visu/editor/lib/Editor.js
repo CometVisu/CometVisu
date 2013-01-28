@@ -506,6 +506,11 @@ var EditorConfigurationElement = function (parent, element) {
         clickHandler: function (event) {
             var $uiElement = $(this);
             
+            // disabled elements are non-clickable. period.
+            if ($uiElement.is('.disabled')) {
+                return;
+            }
+
             if ($uiElement.is('.toggleSubmenu')) {
                 // button to display/hide the submenu
                 UIElements.toggleSubMenu();
@@ -645,6 +650,10 @@ var EditorConfigurationElement = function (parent, element) {
             if ($uiElement.is('.dropzone')) {
                 // find out position
                 var position = $uiElement.parent().find('.dropzone').index($uiElement);
+
+                // as non-sortables do not have a dropzone, we need to add that to the count for correct positioning
+                var numberOfNonsortables = $uiElement.prevAll('.element:not(.sortable)').length;
+                position += numberOfNonsortables;
                 
                 // clean up immediately, or the re-positioning will fail, as there are still the dropzones in the DOM
                 UIElements.cancelSort();
@@ -833,6 +842,11 @@ var EditorConfigurationElement = function (parent, element) {
          * @return  jquery-object   the HTML-placeholder
          */
         getPlaceholderAsHTML: function () {
+            if (typeof Attributes.$attributes != 'undefined') {
+                // use the actual HTML if we have it already
+                return Attributes.$attributes;
+            }
+            
             Attributes.$htmlPlaceholder = $('<span />');
             
             return Attributes.$htmlPlaceholder;
