@@ -51,7 +51,7 @@ function TemplateEngine() {
   this.mappings = {}; // store the mappings
   this.stylings = {}; // store the stylings
  
-  this.ga_list = [];
+  var ga_list = {};
 
   this.main_scroll;
   this.old_scroll = '';
@@ -63,6 +63,9 @@ function TemplateEngine() {
   this.defaultColumns = 12;
   this.minColumnWidth = 150;
   this.enableColumnAdjustment = false;
+  
+  this.enableAddressQueue = $.getUrlVar('enableQueue') ? true : false;
+  
   this.backend = 'cgi-bin'; // default path to backend
   if ($.getUrlVar("backend")) {
     this.backend = $.getUrlVar("backend");
@@ -131,6 +134,14 @@ function TemplateEngine() {
     return transformation in Transform ? Transform[transformation]
         .decode(value) : (basetrans in Transform ? Transform[basetrans]
         .decode(value) : value);
+  };
+  
+  this.addAddress = function(address) {
+    ga_list[address]=1;
+  };
+  
+  this.getAddresses = function() {
+    return Object.keys(ga_list);
   };
 
   this.map = function(value, this_map) {
@@ -520,14 +531,11 @@ function TemplateEngine() {
     if (thisTemplateEngine.scrollSpeed != undefined) {
       thisTemplateEngine.main_scroll.getConf().speed = thisTemplateEngine.scrollSpeed;
     }
-
+    var startpage = 'id_0';
     if ($.getUrlVar('startpage')) {
-      thisTemplateEngine.scrollToPage('id_' + $.getUrlVar('startpage'), 0);
-    } else {
-      thisTemplateEngine.scrollToPage('id_0', 0); // simple solution to show
-                                                  // page name on top at
-      // start
+      startpage='id_' + $.getUrlVar('startpage');
     }
+    thisTemplateEngine.scrollToPage(startpage,0);
 
     $('.fast').bind('click', function() {
       thisTemplateEngine.main_scroll.seekTo($(this).text());
@@ -662,8 +670,18 @@ function TemplateEngine() {
         $('svg', svg).prepend(s);
       };
     });
-
-    thisTemplateEngine.visu.subscribe(thisTemplateEngine.ga_list);
+    if (thisTemplateEngine.enableAddressQueue) {
+      // identify addresses on startpage
+      var startPageAddresses = {};
+      $('.actor','#'+startpage).each(function() {
+        var address = $(this).data('address');
+        for (var ga in address) {
+          startPageAddresses[ga.substring(1)]=1;
+        }
+      });
+      thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
+    }
+    thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
     $(window).trigger('resize');
     $("#pages").triggerHandler("done");
   };

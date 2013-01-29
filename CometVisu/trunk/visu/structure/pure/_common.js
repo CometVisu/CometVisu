@@ -108,8 +108,8 @@ function makeAddressList( page, handleVariant ) {
         break;
     }
     var variantInfo = handleVariant ? handleVariant( src, transform, mode, this.getAttribute('variant') ) : [true, undefined];
-    if( variantInfo[0] )
-      templateEngine.ga_list.push( src );
+    if( variantInfo[0])
+      templateEngine.addAddress( src );
     address[ '_' + src ] = [ transform, mode, variantInfo[1] ];
     return; // end of each-func
   });
