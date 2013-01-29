@@ -19,14 +19,6 @@
           <icon name="fts_tuer" />
         </entry>
       </mapping>
-      <mapping name="UpDown">
-        <entry value="0">
-          <icon name="steuer_auf" />
-        </entry>
-        <entry value="1">
-          <icon name="steuer_ab" />
-        </entry>
-      </mapping>
       <mapping name="OnOff">
         <entry value="0">O</entry>
         <entry value="1">I</entry>
@@ -274,14 +266,12 @@ Config</a> ]]></status>
         <group name="Jalousien">
           <layout colspan="12" />
           <multitrigger button1label="&#8593;" button1value="0"
-            button2label="&#8595;" button2value="1" styling="GreyGreen"
-            mapping="UpDown">
+            button2label="&#8595;" button2value="1">
             <label>Fenster</label>
             <address transform="DPT:1.001" variant="">13/0/3</address>
           </multitrigger>
           <multitrigger button1label="&#8593;" button1value="0"
-            button2label="&#8595;" button2value="1" styling="GreyGreen"
-            mapping="UpDown">
+            button2label="&#8595;" button2value="1">
             <label>
               <icon name="fts_rollo" />
               Tür
