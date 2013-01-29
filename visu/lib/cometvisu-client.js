@@ -33,18 +33,23 @@ function CometVisu( urlPrefix )
   var thisCometVisu = this;
   this.urlPrefix = (null == urlPrefix) ? '' : urlPrefix; // the address of the service
   this.addresses = [];                                   // the subscribed addresses
+  this.initialAddresses = [];                            // the addresses which should be loaded before the subscribed addresses
   this.filters   = [];                                   // the subscribed filters
   this.user   = '';                                      // the current user
   this.pass   = '';                                      // the current password
   this.device = '';                                      // the current device ID
   this.running = false;                                  // is the communication running at the moment?
-  this.doRestart = false;                                // are we currently in a reastart, e.g. due to the watchdog
+  this.doRestart = false;                                // are we currently in a restart, e.g. due to the watchdog
   this.xhr     = false;                                  // the ongoing AJAX request
-  this.watchdogTimer = 5;                                // in Seconds - the alive check intervall of the watchdog
+  this.watchdogTimer = 5;                                // in Seconds - the alive check interval of the watchdog
   this.maxConnectionAge = 60;                            // in Seconds - restart if last read is older
-  this.maxDataAge       = 3200;                          // in Seconds - reload all data when last successfull read is older 
+  this.maxDataAge       = 3200;                          // in Seconds - reload all data when last successful read is older 
                                                          // (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
   this.lastIndex        = -1;                            // index returned by the last request
+    
+  this.setInitialAddresses = function(addresses) {
+    this.initialAddresses = addresses;
+  }
   
   /**
    * This function gets called once the communication is established and session information is available
@@ -60,7 +65,13 @@ function CometVisu( urlPrefix )
 
     // send first request
     this.running = true;
-    this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+    if (this.initialAddresses.length) {
+      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(this.initialAddresses)+'&t=0', success:this.handleReadStart} );
+    }
+    else {
+      // old behaviour -> start full query
+      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+    }
   };
 
   /**
@@ -89,6 +100,28 @@ function CometVisu( urlPrefix )
     if( this.running )
     { // keep the requests going
       this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&i='+this.lastIndex, success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+      watchdog.ping();
+    }
+  };
+  
+  this.handleReadStart = function( json )
+  {
+    if( !json && (-1 == this.lastIndex) )
+    {
+      if( this.running )
+      { // retry initial request
+        this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(this.startPageAddresses)+'&t=0', success:this.handleReadStart} );
+        watchdog.ping();
+      }
+      return;
+    }
+    if( json && !this.doRestart  )
+    {
+      this.update( json.d );
+    }
+    if( this.running )
+    { // keep the requests going
+      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
       watchdog.ping();
     }
   };
@@ -123,11 +156,12 @@ function CometVisu( urlPrefix )
    * Build the URL part that contains the addresses and filters
    * @method buildRequest
    */
-  this.buildRequest = function()
+  this.buildRequest = function(addresses)
   {
-    var requestAddresses = (this.addresses.length)?'a=' + this.addresses.join( '&a=' ):'';
+    addresses = addresses ? addresses : this.addresses;
+    var requestAddresses = (addresses.length)?'a=' + addresses.join( '&a=' ):'';
     var requestFilters   = (this.filters.length  )?'f=' + this.filters.join(   '&f=' ):'';
-    return 's=' + this.session + '&' + requestAddresses + ( (this.addresses.length&&this.filters.length)?'&':'' ) + requestFilters;
+    return 's=' + this.session + '&' + requestAddresses + ( (addresses.length&&this.filters.length)?'&':'' ) + requestFilters;
   }
 
   /**
@@ -138,14 +172,7 @@ function CometVisu( urlPrefix )
   this.subscribe = function( addresses, filters )
   {
     var startCommunication = !this.addresses.length; // start when addresses were empty
-    this.addresses=[];
-    var obj={};
-    for (var i=0;i<addresses.length;i++) {
-      obj[addresses[i]]=0;
-    }
-    for (var i in obj) {
-      this.addresses.push(i);
-    }
+    this.addresses= addresses ? addresses : [];
     this.filters   = filters ? filters : []  ;
 
     if( !addresses.length ) this.stop();             // stop when new addresses are empty

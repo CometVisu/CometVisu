@@ -35,7 +35,7 @@ VisuDesign_Custom.prototype.addCreator('svg', {
       var transform = this.getAttribute('transform');
       var color     = this.getAttribute('variant'  );
       var readonly  = this.getAttribute('readonly' );
-      templateEngine.ga_list.push( src ); 
+      templateEngine.addAddress( src );
       address[ '_' + src ] = [ transform, color, readonly=='true' ];
     });
 
