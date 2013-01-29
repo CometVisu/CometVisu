@@ -231,7 +231,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     var address = {};
     $p.find('address').each( function(){ 
       var src = this.textContent;
-      templateEngine.ga_list.push( src ); 
+      templateEngine.addAddress( src );
       address[ '_' + src ] = [ this.getAttribute('transform') ];
     });
     

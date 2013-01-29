@@ -22,7 +22,7 @@ basicdesign.addCreator('page', {
     var address = {};
     if ($p.attr('ga')) {
       src = $p.attr('ga');
-      templateEngine.ga_list.push($p.attr('ga'));
+      templateEngine.addAddress($p.attr('ga'));
       address[ '_' + $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
     }
 
@@ -80,17 +80,17 @@ basicdesign.addCreator('page', {
       }}, floorplan.translateMouseEvent );
       $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
       if ($p.attr('azimut')) {
-        templateEngine.ga_list.push($p.attr('azimut'));
+        templateEngine.addAddress($p.attr('azimut'));
         address[ '_' + $p.attr('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
         container.bind( '_' + $p.attr('azimut'), this.update );
       }
       if ($p.attr('elevation')) {
-        templateEngine.ga_list.push($p.attr('elevation'));
+        templateEngine.addAddress($p.attr('elevation'));
         address[ '_' + $p.attr('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
         container.bind( '_' + $p.attr('elevation'), this.update );
       }; 
       if ($p.attr('floor')) {
-        templateEngine.ga_list.push($p.attr('floor'));
+        templateEngine.addAddress($p.attr('floor'));
         address[ '_' + $p.attr('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
         container.bind( '_' + $p.attr('floor'), this.update );
       }; 
