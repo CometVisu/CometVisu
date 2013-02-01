@@ -24,7 +24,7 @@ basicdesign.addCreator('video', {
     ret_val.setWidgetLayout($e);
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    ret_val.append( extractLabel( $e.find('label')[0] ) );
+    ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
     var autoplay = ($e.attr('autoplay') && $e.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
     var style = '';
     if( $e.attr('width' ) ) style += 'width:'  + $e.attr('width' ) + ';';

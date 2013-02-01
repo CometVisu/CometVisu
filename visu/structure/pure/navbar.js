@@ -24,11 +24,12 @@ basicdesign.addCreator('navbar', {
     var scope = $n.attr('scope') || -1;
     var container = $( '<div class="navbar clearfix" id="' + id.join('_')+'_'+ position + '_navbar" />' );
     if( $n.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $n.attr('name') + '</h2>' );
+    if( $n.attr('flavour') ) flavour = $n.attr('flavour');// sub design choice
     $( childs ).each( function(i){
         container.append( templateEngine.create_pages( childs[i], path + '_' + i, flavour ) );
     } );
     container.data('scope',scope);
-    if( $n.attr('flavour') ) flavour = $n.attr('flavour');// sub design choice
+    
     if( flavour ) container.addClass( 'flavour_' + flavour );
     var dynamic  = $n.attr('dynamic') == 'true' ? true : false;
   

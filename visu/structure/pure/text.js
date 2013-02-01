@@ -24,13 +24,13 @@ basicdesign.addCreator('text', {
     ret_val.setWidgetLayout($e);
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var label = extractLabel( $e.find('label')[0] );
+    var label = extractLabel( $e.find('label')[0], flavour );
     if (!label) {
       label = $('<div/>');
       $e.contents().each(function() {
         var $v = $(this);
         if ($v.is('icon')) {
-          var i = templateEngine.icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour);
+          var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour);
           if (i)
             label.append(i.clone());
         } else
