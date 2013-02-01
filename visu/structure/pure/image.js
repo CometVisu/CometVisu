@@ -24,7 +24,7 @@ basicdesign.addCreator('image', {
     ret_val.setWidgetLayout($e);
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    ret_val.append( extractLabel( $e.find('label')[0] ) );
+    ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
     var imgStyle = '';
     if( $e.attr('width' ) ) {
       imgStyle += 'width:'  + $e.attr('width' ) + ';';

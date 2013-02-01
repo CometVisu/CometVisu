@@ -20,11 +20,10 @@ basicdesign.addCreator('infotrigger', {
     var $e = $(element);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     var ret_val = $('<div class="widget clearfix infotrigger" ' + style + '/>');
     ret_val.setWidgetLayout($e);
-    ret_val.append( extractLabel( $e.find('label')[0] ) );
-    
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     // handle addresses
     var address = makeAddressList($e, 

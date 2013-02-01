@@ -1002,13 +1002,14 @@ function icon() { // Konstruktor
                             'purple' : { 'uri': 'icon/knx-uf-iconset/128x128_purple/fts_markise.png' },
                                'red' : { 'uri': 'icon/knx-uf-iconset/128x128_red/fts_markise.png' },
                              'white' : { 'uri': 'icon/knx-uf-iconset/128x128_white/fts_markise.png' } } } },
-'fts_rollo' :                    { '*': { '*' : { '*' : 'white', 'ws' : 'white', 'sodium' : 'orange',
-                              'blue' : { 'uri': 'icon/knx-uf-iconset/128x128_blue/fts_rollo.png' },
-                             'green' : { 'uri': 'icon/knx-uf-iconset/128x128_green/fts_rollo.png' },
-                            'orange' : { 'uri': 'icon/knx-uf-iconset/128x128_orange/fts_rollo.png' },
-                            'purple' : { 'uri': 'icon/knx-uf-iconset/128x128_purple/fts_rollo.png' },
-                               'red' : { 'uri': 'icon/knx-uf-iconset/128x128_red/fts_rollo.png' },
-                             'white' : { 'uri': 'icon/knx-uf-iconset/128x128_white/fts_rollo.png' } } } },
+'fts_rollo' :                    { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange',
+                                     '*': {  '*'        : 'white',
+                                             'blue'     : { 'uri': 'icon/knx-uf-iconset/128x128_blue/fts_rollo.png' },
+                                             'green'    : { 'uri': 'icon/knx-uf-iconset/128x128_green/fts_rollo.png' },
+                                             'orange'   : { 'uri': 'icon/knx-uf-iconset/128x128_orange/fts_rollo.png' },
+                                             'purple'   : { 'uri': 'icon/knx-uf-iconset/128x128_purple/fts_rollo.png' },
+                                             'red'      : { 'uri': 'icon/knx-uf-iconset/128x128_red/fts_rollo.png' },
+                                             'white'    : { 'uri': 'icon/knx-uf-iconset/128x128_white/fts_rollo.png' } } } },
 'fts_rollo_10' :                 { '*': { '*' : { '*' : 'white', 'ws' : 'white', 'sodium' : 'orange',
                               'blue' : { 'uri': 'icon/knx-uf-iconset/128x128_blue/fts_rollo_10.png' },
                              'green' : { 'uri': 'icon/knx-uf-iconset/128x128_green/fts_rollo_10.png' },
@@ -3838,7 +3839,6 @@ function icon() { // Konstruktor
     var type    = arguments[1];
     var flavour = arguments[2];
     var color   = arguments[3];
-
     if (!db[name])
       return undefined;
     if (!db[name][type])
@@ -3916,3 +3916,4 @@ function icon() { // Konstruktor
     return db;
   }
 };
+var icons = new icon();

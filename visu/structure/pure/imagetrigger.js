@@ -24,7 +24,7 @@ basicdesign.addCreator('imagetrigger', {
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var value = $e.attr('value') ? $e.attr('value') : 0;
-    ret_val.append( extractLabel( $e.find('label')[0] ) );
+    ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
     var address = makeAddressList($e);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type, {width:'100%'} ) + '"' : '';

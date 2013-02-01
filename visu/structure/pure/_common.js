@@ -72,10 +72,10 @@ $.fn.setWidgetLayout = function(page) {
  * this function implements the widget label (JNK)
  */
  
-$.fn.makeWidgetLabel = function(page) { 
+$.fn.makeWidgetLabel = function(page, flavour) { 
   var labelElement = page.find('label')[0]; // get first label element
   if (labelElement) { // if exists, add it
-    this.append( extractLabel( labelElement ) );
+    this.append( extractLabel( labelElement, flavour ) );
   }
   return this;
 }
@@ -420,7 +420,7 @@ function extractLayout3d( layout )
   return ret_val;
 }
 
-function extractLabel( label )
+function extractLabel( label, flavour )
 {
   if( !label ) return;
   
@@ -429,7 +429,7 @@ function extractLabel( label )
     var $v = $(this);
     if( $v.is('icon') )
     {
-      var i = templateEngine.icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'));
+      var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour);
       if( i ) $div.append( i.clone() );
     } else
       $div.append( this.textContent );

@@ -45,7 +45,6 @@ $(document).ready(function() {
 function TemplateEngine() {
   var thisTemplateEngine = this;
   this.design = new VisuDesign_Custom();
-  this.icons = new icon();
   this.pagePartsHandler = new PagePartsHandler();
 
   this.mappings = {}; // store the mappings
@@ -388,7 +387,7 @@ function TemplateEngine() {
       var color = $this.attr('color');
       var styling = $this.attr('styling');
       var dynamic = $this.attr('dynamic');
-      thisTemplateEngine.icons.insert(name, uri, type, flavour, color, styling, dynamic);
+      icons.insert(name, uri, type, flavour, color, styling, dynamic);
     });
 
     // then the mappings
@@ -408,7 +407,7 @@ function TemplateEngine() {
           for ( var i = 0; i < origin.length; i++) {
              var $v = $(origin[i]);
              if ($v.is('icon'))
-               value[i] = thisTemplateEngine.icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'));
+               value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'));
              else
                value[i] = $v.text();
           }
@@ -763,7 +762,7 @@ function TemplateEngine() {
       }
     }
     // set pagejump for this page to active if it exists
-    $(".pagejump > .actor").each(
+    $(".pagejump").each(
         function(i) {
           var activePageJump = null;
           var actor = $(this);
@@ -772,12 +771,12 @@ function TemplateEngine() {
             // get page id by name
             $('h1:contains(' + target + ')', '#' + page_id).each(function(i) {
               if ($(this).text() == target) {
-                activePageJump = actor.parent();
+                activePageJump = actor;
                 return false;
               }
             });
           } else if (page_id == target) {
-            activePageJump = actor.parent();
+            activePageJump = actor;
           }
           if (activePageJump != null) {
             activePageJump.addClass('active');
@@ -787,7 +786,7 @@ function TemplateEngine() {
                 // root is always an active ancestor, no need to specify that
                 break;
               }
-              $(".pagejump > .actor").each(
+              $(".pagejump").each(
                   function(i) {
                     var parentActor = $(this);
                     var parentTarget = parentActor.data().target;
@@ -796,12 +795,12 @@ function TemplateEngine() {
                       $('h1:contains(' + parentTarget + ')',
                           '#' + parentPage.attr('id')).each(function(i) {
                         if ($(this).text() == parentTarget) {
-                          parentActor.parent().addClass('active_ancestor');
+                          parentActor.addClass('active_ancestor');
                           return false;
                         }
                       });
                     } else if (parentPage.attr('id') == parentTarget) {
-                      parentActor.parent().addClass('active_ancestor');
+                      parentActor.addClass('active_ancestor');
                     }
                   });
               parentPage = thisTemplateEngine.getParentPage(parentPage);
