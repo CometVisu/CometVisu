@@ -22,7 +22,7 @@ basicdesign.addCreator('slide', {
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     var ret_val = $('<div class="widget clearfix slide" ' + style + ' />');
-    ret_val.setWidgetLayout($e).makeWidgetLabel($e);
+    ret_val.setWidgetLayout($e).makeWidgetLabel($e, flavour);
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var address = makeAddressList($e);
     var datatype_min = undefined;

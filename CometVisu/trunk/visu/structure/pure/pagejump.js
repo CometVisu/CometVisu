@@ -29,7 +29,7 @@ basicdesign.addCreator('pagejump', {
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     ret_val.setWidgetLayout($e);
-    var label = extractLabel( $e.find('label')[0] );
+    var label = extractLabel( $e.find('label')[0], flavour );
     var address = makeAddressList($e);
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
@@ -41,13 +41,15 @@ basicdesign.addCreator('pagejump', {
     var $actor = $(actor).data( {
       'styling' : $(element).attr('styling'),
       'type'    : 'pagejump',
-      'align'   : $e.attr('align'),
-      'target'  : target
-    } ).bind( 'click', this.action ).bind( 'mousedown', function(){
-      $(this).removeClass('switchUnpressed').addClass('switchPressed');
-    } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
-      $(this).removeClass('switchPressed').addClass('switchUnpressed');
+      'align'   : $e.attr('align')
     } ).setWidgetStyling(target);
+
+    ret_val.bind( 'click', this.action ).bind( 'mousedown', function(){
+      $actor.removeClass('switchUnpressed').addClass('switchPressed');
+    } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
+      $actor.removeClass('switchPressed').addClass('switchUnpressed');
+    } );
+    ret_val.data('target',target);
     ret_val.append( label ).append( $actor );
     return ret_val;
   },
