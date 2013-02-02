@@ -424,7 +424,10 @@
     </xsd:attribute>
     <xsd:attribute name="showtopnavigation" type="xsd:boolean" use="optional" />
     <xsd:attribute name="showfooter" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="shownavbar" type="xsd:string" use="optional" />
+    <xsd:attribute name="shownavbar-top" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="shownavbar-bottom" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="shownavbar-left" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="shownavbar-right" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="group">
