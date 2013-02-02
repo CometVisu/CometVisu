@@ -52,9 +52,10 @@
   *
 */
   
- 
-$("body").append("<script type=\"text/javascript\" src=\"plugins/diagram/flot/jquery.flot.js\"></script>");
-$("body").append("<script type=\"text/javascript\" src=\"plugins/diagram/flot/jquery.flot.axislabels.js\"></script>");
+$.getOrderedScripts([
+  'plugins/diagram/flot/jquery.flot.js',
+  'plugins/diagram/flot/jquery.flot.axislabels.js'
+]);
 
 function diagram_get_content( page ) {
 

@@ -163,5 +163,15 @@ $.extend({
         ? function(){ $.getOrderedScripts(files, callback);}
         : callback
       );
+  },
+  // inspired by http://stackoverflow.com/questions/2685614/load-external-css-file-like-scripts-in-jquery-which-is-compatible-in-ie-also
+  getCSS: function( url, parameters ) {
+    var cssLink = $( '<link/>' );
+    $( 'head' ).append( cssLink ); //IE hack: append before setting href
+    cssLink.attr( $.extend( parameters, {
+      rel:  "stylesheet",
+      type: "text/css",
+      href: $.ajaxSettings.cache ? url : url + '?_=' + (new Date()).valueOf()
+    }) );
   }
 });
