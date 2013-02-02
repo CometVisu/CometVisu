@@ -231,14 +231,20 @@
         <address transform="DPT:1.001" type="">12/7/1</address>
         <address transform="DPT:1.001" type="" variant="short">12/7/10</address>
       </trigger>
-      <info mapping="KonnexHVAC">
+      <info>
         <label>Info: Kurzzeit</label>
         <address transform="DPT:1.001" type="">12/7/10</address>
       </info>
-      <info mapping="KonnexHVAC">
+      <info>
         <label>Info: Langzeit</label>
         <address transform="DPT:1.001" type="">12/7/1</address>
       </info>
+      <infotrigger uplabel="Sende 1" upvalue="1" shortupvalue="1" downlabel="Sende 0" downvalue="0" shortdownvalue="0" shorttime="300" align="center" infoposition="1" change="relative" format="%.1f%%">
+        <label>Infotrigger mit 300ms Kurzzeit</label>
+        <address transform="DPT:16.000" mode="read" variant="display">12/7/16</address>
+        <address transform="DPT:1.001" variant="button">12/7/1</address>
+        <address transform="DPT:1.001" variant="short">12/7/10</address>
+      </infotrigger>
     </page>
     <break/>
     <slide min="-18" max="26">
