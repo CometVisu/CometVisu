@@ -13,50 +13,52 @@
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0; webkit-user-select: none;" /> 
     <meta name="apple-mobile-web-app-capable" content="yes" /> 
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
     <script src="dependencies/jquery.js" type="text/javascript"></script>
     <script src="lib/compatibility.js" type="text/javascript"></script>
-    <script src="dependencies/jquery-ui.js" type="text/javascript"></script>
-    <script src="dependencies/strftime.js" type="text/javascript"></script>
-    <script src="dependencies/scrollable.js" type="text/javascript"></script>
-    <script src="dependencies/jquery.ui.touch-punch.js" type="text/javascript"></script>
-    <script src="dependencies/jquery.svg.min.js" type="text/javascript"></script>
-    <script src="lib/cometvisu-client.js" type="text/javascript"></script>
-    <script src="lib/iconhandler.js" type="text/javascript"></script>
-    <!-- Load the widgets: start -->
-    <script src="structure/pure/_common.js" type="text/javascript"></script>
-    <script src="structure/pure/break.js" type="text/javascript"></script>
-    <script src="structure/pure/group.js" type="text/javascript"></script>
-    <script src="structure/pure/rgb.js" type="text/javascript"></script>
-    <script src="structure/pure/web.js" type="text/javascript"></script>
-    <script src="structure/pure/image.js" type="text/javascript"></script>
-    <script src="structure/pure/imagetrigger.js" type="text/javascript"></script>
-    <script src="structure/pure/include.js" type="text/javascript"></script>
-    <script src="structure/pure/info.js" type="text/javascript"></script>
-    <script src="structure/pure/infotrigger.js" type="text/javascript"></script>
-    <script src="structure/pure/line.js" type="text/javascript"></script>
-    <script src="structure/pure/multitrigger.js" type="text/javascript"></script>
-    <script src="structure/pure/navbar.js" type="text/javascript"></script>
-    <script src="structure/pure/page.js" type="text/javascript"></script>
-    <script src="structure/pure/pagejump.js" type="text/javascript"></script>
-    <script src="structure/pure/slide.js" type="text/javascript"></script>
-    <script src="structure/pure/switch.js" type="text/javascript"></script>
-    <script src="structure/pure/text.js" type="text/javascript"></script>
-    <script src="structure/pure/toggle.js" type="text/javascript"></script>
-    <script src="structure/pure/trigger.js" type="text/javascript"></script>
-    <script src="structure/pure/urltrigger.js" type="text/javascript"></script>
-    <script src="structure/pure/unknown.js" type="text/javascript"></script>
-    <script src="structure/pure/video.js" type="text/javascript"></script>
-    <script src="structure/pure/wgplugin_info.js" type="text/javascript"></script>
-    <script src="designs/structure_custom.js" type="text/javascript"></script>
-    <!-- Load the widgets: end -->
-    <script src="lib/templateengine.js" type="text/javascript"></script>
-    <script src="transforms/transform_default.js" type="text/javascript"></script>
-    <script src="transforms/transform_knx.js" type="text/javascript"></script>
-    <script src="transforms/transform_oh.js" type="text/javascript"></script>
-    <script src="dependencies/Three.js" type="text/javascript"></script>
-    <script src="dependencies/poly2tri.js" type="text/javascript"></script>
-    <script src="dependencies/jsfloorplan.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $.ajaxSetup({ crossDomain: true }); // make scripts debugable
+      $.getOrderedScripts([
+        "dependencies/jquery-ui.js",
+        "dependencies/strftime.js",
+        "dependencies/scrollable.js",
+        "dependencies/jquery.ui.touch-punch.js",
+        "dependencies/jquery.svg.min.js",
+        "lib/cometvisu-client.js",
+        "lib/iconhandler.js",
+        "structure/pure/_common.js",
+        "structure/pure/break.js",
+        "structure/pure/group.js",
+        "structure/pure/rgb.js",
+        "structure/pure/web.js",
+        "structure/pure/image.js",
+        "structure/pure/imagetrigger.js",
+        "structure/pure/include.js",
+        "structure/pure/info.js",
+        "structure/pure/infotrigger.js",
+        "structure/pure/line.js",
+        "structure/pure/multitrigger.js",
+        "structure/pure/navbar.js",
+        "structure/pure/page.js",
+        "structure/pure/pagejump.js",
+        "structure/pure/slide.js",
+        "structure/pure/switch.js",
+        "structure/pure/text.js",
+        "structure/pure/toggle.js",
+        "structure/pure/trigger.js",
+        "structure/pure/urltrigger.js",
+        "structure/pure/unknown.js",
+        "structure/pure/video.js",
+        "structure/pure/wgplugin_info.js",
+        "designs/structure_custom.js",
+        "lib/templateengine.js",
+        "transforms/transform_default.js",
+        "transforms/transform_knx.js",
+        "transforms/transform_oh.js",
+        "dependencies/Three.js",
+        "dependencies/poly2tri.js",
+        "dependencies/jsfloorplan.js"
+      ]);
+    </script>
     <style type="text/css">
         .loading { display: none; }
     </style>
