@@ -570,10 +570,22 @@
       <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute name="upvalue" type="xsd:string" use="optional" />
+    <xsd:attribute name="shortupvalue" type="xsd:string" use="optional" />
     <xsd:attribute name="downvalue" type="xsd:string" use="optional" />
+    <xsd:attribute name="shortdownvalue" type="xsd:string" use="optional" />
     <xsd:attribute name="uplabel" type="xsd:string" use="optional" />
     <xsd:attribute name="downlabel" type="xsd:string" use="optional" />
-    <xsd:attribute name="change" type="xsd:string" use="optional" />
+    <xsd:attribute name="shorttime" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Time in milliseconds that is accepted as shorttime.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeit in Millisekunden innerhalb der der Tastendruck als Kurzzeit interpretiert wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="change" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Might be 'absolute' or 'relative'.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="min" />
     <xsd:attribute ref="max" />
     <xsd:attribute ref="mapping" use="optional" />

@@ -82,8 +82,12 @@ $.fn.makeWidgetLabel = function(page, flavour) {
 
 /*
  * this function extracts all addresses with attributes (JNK)
+ * 
+ * @param  handleVariant is a callback function that returns an array of two
+ *                       elements. The first is a boolean that determins if
+ *                       the visu should listen for that address. The second
+ *                       is added as it is to the returned object.
  */
-  
 function makeAddressList( page, handleVariant ) {
   var address = {};
   page.find('address').each( function(){ 

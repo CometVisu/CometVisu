@@ -28,7 +28,7 @@ basicdesign.addCreator('infotrigger', {
     // handle addresses
     var address = makeAddressList($e, 
       function( src, transform, mode, variant ) {
-        return [ variant != 'button', variant == 'button' ];
+        return [ variant != 'button' && variant != 'short', variant == 'button' ? 1 : (variant == 'short' ? 2 : 0) ];
       }
     );
 
@@ -43,20 +43,25 @@ basicdesign.addCreator('infotrigger', {
     actordown += '<div class="value">' + ($e.attr('downlabel') ? $e.attr('downlabel') : '-') + '</div>';
     actordown += '</div>';
     var $actordown = $(actordown).data( {
-      'address' : address,
-      'mapping' : $e.attr('mapping'),
-      'styling' : $e.attr('styling'),
-      'value'   : $e.attr('downvalue') || 0,
-      'align'   : $e.attr('align'),
-      'change'  : $e.attr('change') || 'relative',
-      'min'     : parseFloat($e.attr('min')) || 0,
-      'max'     : parseFloat($e.attr('max')) || 255,
-      'type'    : 'switch'
-    } ).bind( 'click', this.action ).bind( 'mousedown', function(){
+      'address'    : address,
+      'mapping'    : $e.attr('mapping'),
+      'styling'    : $e.attr('styling'),
+      'value'      : $e.attr('downvalue') || 0,
+      'shortvalue' : $e.attr('shortdownvalue') || 0,
+      'shorttime'  : parseFloat($e.attr('shorttime')) || -1,
+      'align'      : $e.attr('align'),
+      'change'     : $e.attr('change') || 'relative',
+      'min'        : parseFloat($e.attr('min')) || 0,
+      'max'        : parseFloat($e.attr('max')) || 255,
+      'type'       : 'switch'
+    } ).bind( 'mousedown touchstart', this.mousedown ).
+      bind( 'mouseup touchend', this.mouseup ).
+      bind( 'mouseout touchout', this.mouseout );/*.
+      .bind( 'click', this.action ).bind( 'mousedown', function(){
       $(this).removeClass('switchUnpressed').addClass('switchPressed');
     } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
       $(this).removeClass('switchPressed').addClass('switchUnpressed');
-    } );
+    } );*/
 
     var actorup = '<div class="actor switchUnpressed uplabel" ';
     if ( $e.attr( 'align' ) ) 
@@ -65,20 +70,24 @@ basicdesign.addCreator('infotrigger', {
     actorup += '<div class="value">' + ($e.attr('uplabel') ? $e.attr('uplabel') : '+') + '</div>';
     actorup += '</div>';
     var $actorup = $(actorup).data( {
-      'address' : address,
-      'mapping' : $e.attr('mapping'),
-      'styling' : $e.attr('styling'),
-      'value'   : $e.attr('upvalue') || 1,
-      'align'   : $e.attr('align'),
-      'change'  : $e.attr('change') || 'relative',
-      'min'     : parseFloat($e.attr('min')) || 0,
-      'max'     : parseFloat($e.attr('max')) || 255,
-      'type'    : 'switch'
-    } ).bind( 'click', this.action ).bind( 'mousedown', function(){
+      'address'    : address,
+      'mapping'    : $e.attr('mapping'),
+      'styling'    : $e.attr('styling'),
+      'value'      : $e.attr('upvalue') || 1,
+      'shortvalue' : $e.attr('shortupvalue') || 1,
+      'shorttime'  : parseFloat($e.attr('shorttime')) || -1,
+      'align'      : $e.attr('align'),
+      'change'     : $e.attr('change') || 'relative',
+      'min'        : parseFloat($e.attr('min')) || 0,
+      'max'        : parseFloat($e.attr('max')) || 255,
+      'type'       : 'switch'
+    } ).bind( 'mousedown touchstart', this.mousedown ).
+      bind( 'mouseup touchend', this.mouseup ).
+      bind( 'mouseout touchout', this.mouseout );/*..bind( 'click', this.action ).bind( 'mousedown', function(){
       $(this).removeClass('switchUnpressed').addClass('switchPressed');
     } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
       $(this).removeClass('switchPressed').addClass('switchUnpressed');
-    } );
+    } );*/
 
     var actorinfo = '<div class="actor switchInvisible " ';
     if ( $e.attr( 'align' ) ) 
@@ -120,24 +129,44 @@ basicdesign.addCreator('infotrigger', {
     var value = defaultUpdate( e, d, element );
     element.addClass('switchInvisible');
   },
-  action: function() {
-    var data = $(this).data();
-    var value = data.value;
-    var relative = ( data.change != 'absolute' );
-    if( !relative )
+  mousedown: function(event) {
+    $(this).removeClass('switchUnpressed').addClass('switchPressed').data( 'downtime', new Date().getTime() );
+    if( 'touchstart' == event.type )
     {
-      value = parseFloat($(this).parent().find('.switchInvisible').data('basicvalue'));
-      if( isNaN( value ) )
-        value = 0; // anything is better than NaN...
-      value = value + parseFloat(data.value);
-      if (value < data.min ) value = data.min;
-      if( value > data.max ) value = data.max;
+      // touchscreen => disable mouse emulation
+      $(this).unbind('mousedown').unbind('mouseup').unbind('mouseout');
     }
-    for( var addr in data.address )
+  },
+  mouseup: function(event) {
+    var $this = $(this);
+    if( $this.data( 'downtime' ) )
     {
-      if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      if( data.address[addr][2] != relative ) continue; // skip when address mode doesn't fit action mode
-      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], value ) );
+      var data = $this.data();
+      var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
+      var value = data.value;
+      var relative = ( data.change != 'absolute' );
+      if( !relative )
+      {
+        value = parseFloat($(this).parent().find('.switchInvisible').data('basicvalue'));
+        if( isNaN( value ) )
+          value = 0; // anything is better than NaN...
+        value = value + parseFloat(data.value);
+        if (value < data.min ) value = data.min;
+        if( value > data.max ) value = data.max;
+      }
+      for( var addr in data.address )
+      {
+        if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
+        if(   !isShort && 1 == data.address[addr][2] )
+          templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], data.shortvalue ) );
+        if( (  isShort && 2 == data.address[addr][2]) || 
+            (!relative && 0 == data.address[addr][2]) )
+          templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], value ) );
+      }
     }
+    $this.removeClass('switchPressed').addClass('switchUnpressed').removeData( 'downtime' );
+  },
+  mouseout: function(event) {
+    $(this).removeClass('switchPressed').addClass('switchUnpressed').removeData( 'downtime' );
   }
 });
