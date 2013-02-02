@@ -1025,52 +1025,7 @@ function PagePartsHandler() {
   };
 
   /**
-   * parse a string with up to four, space-separated values usage like css
-   * settings, e.g width: 1px 2px 3px 4px (top-, right-, bottom-, left-width)
-   * 
-   * @param value
-   */
-  this.parseTopRightBottomLeftString = function(value) {
-    var parts = value.split(" ");
-    if (parts.length == 4) {
-      return {
-        top : parts[0],
-        right : parts[1],
-        bottom : parts[2],
-        left : parts[3]
-      };
-    } else if (parts.length == 3) {
-      return {
-        top : parts[0],
-        right : parts[1],
-        bottom : parts[2],
-        left : parts[1]
-      };
-    } else if (parts.length == 2) {
-      return {
-        top : parts[0],
-        right : parts[1],
-        bottom : parts[0],
-        left : parts[1]
-      };
-    } else if (parts.length == 1) {
-      return {
-        top : parts[0],
-        right : parts[0],
-        bottom : parts[0],
-        left : parts[0]
-      };
-    } else
-      return {
-        top : '',
-        right : '',
-        bottom : '',
-        left : ''
-      };
-  };
-
-  /**
-   * update the visibility ob top-navigation, footer and navbar for this page
+   * update the visibility of top-navigation, footer and navbar for this page
    * 
    * @param page
    */
@@ -1078,12 +1033,18 @@ function PagePartsHandler() {
     // default values
     var showtopnavigation = true;
     var showfooter = true;
-    var shownavbar = {
-      top : "true",
-      right : "true",
-      bottom : "true",
-      left : "true"
-    };
+    var shownavbar = (page.data().shownavbar != undefined ? page.data().shownavbar : {
+      top : 'inherit',
+      bottom : 'inherit',
+      left : 'inherit',
+      right : 'inherit'
+    });
+    // set inherit for undefined 
+    for (var pos in shownavbar) {
+      if (shownavbar[pos] == undefined) {
+        shownavbar[pos] = 'inherit';
+      }
+    }
 
     if (page.data() != null) {
       if (page.data().showtopnavigation != undefined) {
@@ -1112,46 +1073,44 @@ function PagePartsHandler() {
           parentPage = templateEngine.getParentPage(parentPage);
         }
       }
-      if (page.data().shownavbar != undefined) {
-        shownavbar = thisPagePartsHandler.parseTopRightBottomLeftString(page.data().shownavbar);
-      } else {
-        // traverse up the page tree
-        var inheritedShowNavbar = {
-          top : 'inherit',
-          right : 'inherit',
-          bottom : 'inherit',
-          left : 'inherit'
-        };
-        var parentPage = templateEngine.getParentPage(page);
-        while (parentPage != null) {
+
+      // traverse up the page tree for shownavbar
+      var parentPage = templateEngine.getParentPage(page);
+      while (parentPage != null) {
+        // do we need to go further? Check for inheritance
+        var inherit = false;
+        for (var pos in shownavbar) {
+          if (shownavbar[pos] == 'inherit') {
+            inherit = true;
+            break;
+          }
+        }
+        if (inherit) {
           if (parentPage.data().shownavbar != undefined) {
-            var pageShowNavBar = thisPagePartsHandler.parseTopRightBottomLeftString(parentPage
-                .data().shownavbar);
-            for ( var pos in pageShowNavBar) {
-              if (pageShowNavBar[pos] != 'inherit'
-                  && inheritedShowNavbar[pos] == 'inherit') {
-                inheritedShowNavbar[pos] = pageShowNavBar[pos];
+            for (var pos in shownavbar) {
+              if (shownavbar[pos] == 'inherit') {
+                // set value of parent page
+                shownavbar[pos] = parentPage.data().shownavbar[pos];
+                if (shownavbar[pos] == undefined) {
+                  shownavbar[pos] = 'inherit';
+                }
               }
             }
-            if (inheritedShowNavbar.top != 'inherit'
-                && inheritedShowNavbar.right != 'inherit'
-                && inheritedShowNavbar.bottom != 'inherit'
-                && inheritedShowNavbar.left != 'inherit') {
-              // we are done
-              break;
-            }
           }
-          parentPage = templateEngine.getParentPage(parentPage);
+        } else {
+          // we are done
+          break;
         }
-        // set default values if not set otherwise
-        for ( var pos in inheritedShowNavbar) {
-          if (inheritedShowNavbar[pos] == 'inherit') {
-            inheritedShowNavbar[pos] = shownavbar[pos];
-          }
-        }
-        shownavbar = inheritedShowNavbar;
+        parentPage = templateEngine.getParentPage(parentPage);
       }
     }
+    // set default values for shownavbar if not set otherwise
+    for (var pos in shownavbar) {
+      if (shownavbar[pos] == undefined || shownavbar[pos] == 'inherit') {
+        shownavbar[pos] = true;
+      }
+    }
+
     var resize = false;
     if (showtopnavigation) {
       if ($('#top').css("display") == "none") {
@@ -1185,16 +1144,15 @@ function PagePartsHandler() {
     }
     $.each([ 'Left', 'Top', 'Right', 'Bottom' ], function(index, value) {
       var key = value.toLowerCase();
-      if (shownavbar[key] == "true") {
+      if (shownavbar[key] == true) {
         if ($('#navbar' + value).css("display") == "none") {
           thisPagePartsHandler.fadeNavbar(value, "in");
           thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
           // resize=true;
         }
-      } else if (shownavbar[key] == "false") {
-        // the loading class prevents any element from beeing disabled, we have
-        // to
-        // remove it
+      } else {
+        // the loading class prevents any element from being disabled, we have
+        // to remove it
         $('#navbar' + value + '.loading').removeClass('loading');
         if ($('#navbar' + value).css("display") != "none") {
           thisPagePartsHandler.fadeNavbar(value, "out");

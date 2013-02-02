@@ -31,7 +31,10 @@ basicdesign.addCreator('page', {
     var backdrop = $p.attr('backdrop');
     var showtopnavigation = $p.attr('showtopnavigation');
     var showfooter = $p.attr('showfooter');
-    var shownavbar = $p.attr('shownavbar');
+    var shownavbar_top = $p.attr('shownavbar-top');
+    var shownavbar_bottom = $p.attr('shownavbar-bottom');
+    var shownavbar_left = $p.attr('shownavbar-left');
+    var shownavbar_right = $p.attr('shownavbar-right');
     if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
     var wstyle  = '';                                     // widget style
     if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
@@ -57,7 +60,12 @@ basicdesign.addCreator('page', {
     var subpage = $( '<div class="page" id="' + path + '"/>' );
     subpage.data('showtopnavigation',showtopnavigation);
     subpage.data('showfooter',showfooter);
-    subpage.data('shownavbar',shownavbar);
+    subpage.data('shownavbar',{
+      top : shownavbar_top,
+      bottom : shownavbar_bottom,
+      left : shownavbar_left,
+      right : shownavbar_right
+    });
     var $container = $( '<div class="clearfix" path="'+path+'" style="height:100%;position:relative;" />'); 
     for( var addr in address ) $container.bind( addr, this.update );
     var container=$container;
