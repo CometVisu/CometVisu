@@ -44,6 +44,8 @@ $(document).ready(function() {
 
 function TemplateEngine() {
   var thisTemplateEngine = this;
+  this.pageReady = false;
+  this.pluginsReady = false;
   this.design = new VisuDesign_Custom();
   this.pagePartsHandler = new PagePartsHandler();
 
@@ -343,38 +345,16 @@ function TemplateEngine() {
     $('head').append(
         '<link rel="stylesheet" type="text/css" href="designs/' + thisTemplateEngine.clientDesign
             + '/custom.css" />');
-    $('head').append(
-        '<script src="designs/' + thisTemplateEngine.clientDesign
-            + '/design_setup.js" type="text/javascript" />');
+    $.getScript( 'designs/' + thisTemplateEngine.clientDesign + '/design_setup.js');
 
     // start with the plugins
-    var pluginsToLoad = 0;
+    var pluginsToLoad = [];
     $('meta > plugins plugin', xml).each(function(i) {
-      pluginsToLoad += 1;
-      var name = 'plugins/' + $(this).attr('name') + '/structure_plugin.js';
-      if (thisTemplateEngine.forceReload)
-        name += '?_=' + (new Date().getTime());
-      var html_doc = document.getElementsByTagName('body')[0];
-      js = document.createElement('script');
-      js.setAttribute('type', 'text/javascript');
-      js.setAttribute('src', name);
-      html_doc.appendChild(js);
-
-      js.onreadystatechange = function() {
-        if (js.readyState == 'complete') {
-          pluginsToLoad -= 1;
-          if (pluginsToLoad <= 0) {
-            thisTemplateEngine.setup_page(xml);
-          }
-        }
-      };
-
-      js.onload = function() {
-        pluginsToLoad -= 1;
-        if (pluginsToLoad <= 0) {
-          thisTemplateEngine.setup_page(xml);
-        }
-      };
+      pluginsToLoad.push( 'plugins/' + $(this).attr('name') + '/structure_plugin.js' );
+    });
+    $.getOrderedScripts( pluginsToLoad, function(){
+      thisTemplateEngine.pluginsReady = true;
+      thisTemplateEngine.setup_page(xml);
     });
 
     // then the icons
@@ -478,14 +458,18 @@ function TemplateEngine() {
       $('.footer').html($('.footer').html() + text);
     });
 
-    if (pluginsToLoad <= 0) {
-      thisTemplateEngine.setup_page(xml);
-    }
+    thisTemplateEngine.pageReady = true;
+    thisTemplateEngine.setup_page(xml);
   };
 
   
   this.setup_page = function(xml) {
     // and now setup the pages
+    
+    // check if the page and the plugins are ready now
+    if( !this.pageReady || !this.pluginsReady)
+      return; // we'll be called again...
+    
     var page = $('pages > page', xml)[0]; // only one page element allowed...
 
     thisTemplateEngine.create_pages(page, 'id_0');

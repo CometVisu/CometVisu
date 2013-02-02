@@ -153,5 +153,15 @@ $.extend({
   },
   getUrlVar: function(name){
     return $.getUrlVars()[name];
+  },
+  // heavily inspired by: http://stackoverflow.com/questions/13066712/how-to-load-a-list-of-javascript-files-and-call-a-callback-after-all-of-them-are
+  getOrderedScripts: function(files, callback) {
+    if( 'object' === typeof files && 0 == files.length && callback )
+      callback();
+    else
+      $.getScript( files.shift(), files.length
+        ? function(){ $.getOrderedScripts(files, callback);}
+        : callback
+      );
   }
 });
