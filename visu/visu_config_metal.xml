@@ -60,7 +60,7 @@ Config</a> ]]></status>
     </statusbar>
   </meta>
   <page name="Übersicht" showtopnavigation="false" showfooter="false"
-    shownavbar="true false">
+    shownavbar-top="true">
     <navbar position="top">
       <pagejump target="Übersicht">
       	<layout colspan="0"/>
@@ -193,7 +193,7 @@ Config</a> ]]></status>
           </slide>
         </group>
     </page>
-    <page name="KNX" shownavbar="true" visible="false">
+    <page name="KNX" shownavbar-left="true" visible="false">
       <navbar position="left" dynamic="true" width="200px">
         <group name="Räume">
           <pagejump target="Wohnzimmer" name="Wohnen">
@@ -424,7 +424,7 @@ Config</a> ]]></status>
     <page name="Video" visible="false">
       <text><label>Video Page</label></text>
     </page>
-    <page name="Audio" shownavbar="true" visible="false">
+    <page name="Audio" shownavbar-left="true" visible="false">
       <navbar position="left" dynamic="true" width="200px">
         <group name="Sonstiges">
           <pagejump target="Audio">
