@@ -57,7 +57,7 @@ basicdesign.addCreator('slide', {
     { 
       if( address[addr][1] & 1 ) $actor.bind( addr, this.update ); // only when read flag is set
     }
-	
+          
     if ($(actor).data('format')!=null) {
       $actor.slider({
         step:    step,
@@ -94,12 +94,14 @@ basicdesign.addCreator('slide', {
       element.data( 'valueInternal', false );
       element.slider('value', value);
       element.data( 'valueInternal', true );
-      element.children('.ui-slider-handle').text(sprintf(element.data( 'format' ),value));
+      if (element.data( 'format' )!=null)
+        element.children('.ui-slider-handle').text(sprintf(element.data( 'format' ),value));
     }
   },
   slideUpdateValue:function(event,ui) {
     var actor = $( '.actor', $(this).parent() );
-    $(ui.handle).text(sprintf( actor.data( 'format' ), ui.value));
+    if (actor.data( 'format' )!=null)
+      $(ui.handle).text(sprintf( actor.data( 'format' ), ui.value));
   },
   /*
   * Start a thread that regularily sends the silder position to the bus
