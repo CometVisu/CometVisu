@@ -16,7 +16,7 @@
     <script src="dependencies/jquery.js" type="text/javascript"></script>
     <script src="lib/compatibility.js" type="text/javascript"></script>
     <script type="text/javascript">
-      $.ajaxSetup({ crossDomain: true }); // make scripts debugable
+      $.ajaxSetup({ crossDomain: true, cache: 'true' != $.getUrlVar('forceReload') }); // make scripts debugable
       $.getOrderedScripts([
         "dependencies/jquery-ui.js",
         "dependencies/strftime.js",

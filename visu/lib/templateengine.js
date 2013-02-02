@@ -287,9 +287,11 @@ function TemplateEngine() {
 
   this.parseXML = function(xml) {
     // erst mal den Cache für AJAX-Requests wieder aktivieren
+    /*
     $.ajaxSetup({
       cache : true
     });
+    */
 
     /*
      * First, we try to get a design by url Secondly, we try to get a predefined
@@ -332,19 +334,12 @@ function TemplateEngine() {
     }
     var maxMobileScreenWidth = $('pages', xml).attr('max_mobile_screen_width') || 480;
 
-    $('head')
-        .append(
-            '<link rel="stylesheet" type="text/css" href="designs/designglobals.css" />');
-    $('head').append(
-        '<link rel="stylesheet" type="text/css" href="designs/' + thisTemplateEngine.clientDesign
-            + '/basic.css" />');
-    $('head').append(
-        '<link rel="stylesheet" type="text/css" href="designs/' + thisTemplateEngine.clientDesign
-            + '/mobile.css" media="only screen and (max-device-width: '
-            + maxMobileScreenWidth + 'px)" />');
-    $('head').append(
-        '<link rel="stylesheet" type="text/css" href="designs/' + thisTemplateEngine.clientDesign
-            + '/custom.css" />');
+    $.getCSS( 'designs/designglobals.css' );
+    $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css' );
+    $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/mobile.css',
+              {media: 'only screen and (max-device-width: '
+              + maxMobileScreenWidth + 'px)'} );
+    $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css' );
     $.getScript( 'designs/' + thisTemplateEngine.clientDesign + '/design_setup.js');
 
     // start with the plugins
