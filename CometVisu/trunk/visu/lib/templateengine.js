@@ -500,6 +500,14 @@ function TemplateEngine() {
       $e.css('width', ourWidth + '%');
     });
 
+    // Prevent elastic scrolling apart the main pane for iOS devices
+    $(document).bind( 'touchmove', function(e) {
+      e.preventDefault();
+    });
+    $('#main').bind( 'touchmove', function(e) {
+      e.stopPropagation();
+    });
+    
     // setup the scrollable
     thisTemplateEngine.main_scroll = $('#main').scrollable({
       keyboard : false,
