@@ -248,10 +248,14 @@ h1 {
 
 
 .link > div, .link a , .switchPressed, .switchUnpressed, * html>body .clearfix,
-  .info > div, .actor .value , .text>div {
+  .info > div, .text>div {
   width: 100%;
  text-align: right;
 # margin-left: -2rem;
+}
+
+.actor .value {
+margin-left: 20%;
 }
 .actor .value {
 margin-left: -3rem;
