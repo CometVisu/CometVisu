@@ -1107,7 +1107,7 @@ function PagePartsHandler() {
     // set default values for shownavbar if not set otherwise
     for (var pos in shownavbar) {
       if (shownavbar[pos] == undefined || shownavbar[pos] == 'inherit') {
-        shownavbar[pos] = true;
+        shownavbar[pos] = 'true';
       }
     }
 
