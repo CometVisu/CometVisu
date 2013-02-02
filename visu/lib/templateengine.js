@@ -1144,7 +1144,7 @@ function PagePartsHandler() {
     }
     $.each([ 'Left', 'Top', 'Right', 'Bottom' ], function(index, value) {
       var key = value.toLowerCase();
-      if (shownavbar[key] == true) {
+      if (shownavbar[key] == 'true') {
         if ($('#navbar' + value).css("display") == "none") {
           thisPagePartsHandler.fadeNavbar(value, "in");
           thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
