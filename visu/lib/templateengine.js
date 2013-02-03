@@ -49,6 +49,16 @@ function TemplateEngine() {
   this.designReady = false;
   this.design = new VisuDesign_Custom();
   this.pagePartsHandler = new PagePartsHandler();
+  
+  this.currentPage = null;
+  this.currentPageUnavailableWidth = -1;
+  this.currentPageUnavailableHeight = -1;
+  this.currentPageNavbarVisibility = null;
+    
+  // threshold where the mobile.css is loaded
+  this.maxMobileScreenWidth = 480;
+  // use to recognize if the screen width has crossed the maxMobileScreenWidth
+  var lastBodyWidth=0;
 
   this.mappings = {}; // store the mappings
   this.stylings = {}; // store the stylings
@@ -61,7 +71,6 @@ function TemplateEngine() {
 
   this.scrollSpeed;
 
-  this.resizeAfterScroll = false;
   this.defaultColumns = 12;
   this.minColumnWidth = 150;
   this.enableColumnAdjustment = false;
@@ -169,15 +178,27 @@ function TemplateEngine() {
     }
     return value;
   };
+  
+  this.resetPageValues = function() {
+    thisTemplateEngine.currentPage = null;
+    thisTemplateEngine.currentPageUnavailableWidth=-1;
+    thisTemplateEngine.currentPageUnavailableHeight=-1;
+    thisTemplateEngine.currentPageNavbarVisibility=null;
+  };
+  
+  this.getCurrentPageNavbarVisibility = function() {
+    if (thisTemplateEngine.currentPageNavbarVisibility==null) {
+      thisTemplateEngine.currentPageNavbarVisibility = thisTemplateEngine.pagePartsHandler.getNavbarsVisibility(thisTemplateEngine.currentPage);
+    }
+    return thisTemplateEngine.currentPageNavbarVisibility;
+  };
 
   this.adjustColumns = function() {
     if (thisTemplateEngine.enableColumnAdjustment == false)
       return false;
 
     var factor = window.devicePixelRatio || 1;
-    var widthNavbarLeft = $('#navbarLeft').css('display') != 'none' ? $('#navbarLeft').width() : 0;
-    var widthNavbarRight = $('#navbarRight').css('display') != 'none' ? $('#navbarRight').width() : 0;
-    var width = $('body').width() - widthNavbarLeft - widthNavbarRight - 1; // remove an additional pixel for Firefox
+    var width = thisTemplateEngine.getAvailableWidth();
     width = width / factor;
 
     var $main = $('#main');
@@ -197,17 +218,108 @@ function TemplateEngine() {
       return false;
     }
   };
+  
+  /**
+   * return the available width for a the currently visible page
+   * the available width is calculated by subtracting the following elements widths (if they are visible) from the body width
+   * - Left-Navbar
+   * - Right-Navbar
+   */
+  this.getAvailableWidth = function() {
+    // currently this calculation is done once after every page scroll (where thisTemplateEngine.currentPageUnavailableWidth is reseted)
+    // if the screen width falls below the threshold which activates/deactivates the mobile.css
+    // the calculation has to be done again, even if the page hasn´t changed (e.g. switching between portrait and landscape mode on a mobile can cause that)
+    var bodyWidth = $('body').width();
+    var mobileUseChanged = (lastBodyWidth<thisTemplateEngine.maxMobileScreenWidth)!=(bodyWidth<thisTemplateEngine.maxMobileScreenWidth);
+    if (thisTemplateEngine.currentPageUnavailableWidth<0 || mobileUseChanged) {
+//      console.log("Mobile.css use changed "+mobileUseChanged);
+      thisTemplateEngine.currentPageUnavailableWidth=0;
+      var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);
+      var widthNavbarLeft = navbarVisibility.left=="true" && $('#navbarLeft').css('display')!="none" ? $('#navbarLeft').width() : 0;
+      if (widthNavbarLeft>=bodyWidth) {
+        // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
+        // maybe there is a better solution to solve this problem
+        widthNavbarLeft = 0;
+      }
+      var widthNavbarRight = navbarVisibility.right=="true" && $('#navbarRight').css('display')!="none" ? $('#navbarRight').width() : 0;
+      if (widthNavbarRight>=bodyWidth) {
+        // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
+        // maybe there is a better solution to solve this problem
+        widthNavbarRight = 0;
+      }
+      thisTemplateEngine.currentPageUnavailableWidth = widthNavbarLeft + widthNavbarRight + 1; // remove an additional pixel for Firefox
+//      console.log("Width: "+bodyWidth+" - "+widthNavbarLeft+" - "+widthNavbarRight);
+    }
+    lastBodyWidth = bodyWidth;
+    return bodyWidth - thisTemplateEngine.currentPageUnavailableWidth;
+  };
+  
+  /**
+   * return the available height for a the currently visible page
+   * the available height is calculated by subtracting the following elements heights (if they are visible) from the window height
+   * - Top-Navigation
+   * - Top-Navbar
+   * - Bottom-Navbar
+   * - Statusbar
+   * 
+   * Notice: the former way to use the subtract the $main.position().top value from the total height leads to errors in certain cases
+   *         because the value of $main.position().top is not reliable all the time
+   */
+  this.getAvailableHeight = function() {
+    var windowHeight = $(window).height();
+    if (thisTemplateEngine.currentPageUnavailableHeight<0) {
+      thisTemplateEngine.currentPageUnavailableHeight=0;
+      var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);
+      console.log(thisTemplateEngine.designReady);
+      console.log(navbarVisibility);
+      var heightStr = "Height: "+windowHeight;
+      if ($('#top').css('display') != 'none' && $('#top').outerHeight(true)>0) {
+        thisTemplateEngine.currentPageUnavailableHeight+=$('#top').outerHeight(true);
+        heightStr+=" - "+$('#top').outerHeight(true);
+      }
+      else {
+        heightStr+=" - 0";
+      }
+      console.log($('#navbarTop').css('display')+": "+$('#navbarTop').outerHeight(true));
+      if ($('#navbarTop').css('display') != 'none' && navbarVisibility.top=="true" && $('#navbarTop').outerHeight(true)>0) {
+        thisTemplateEngine.currentPageUnavailableHeight+=$('#navbarTop').outerHeight(true);
+        heightStr+=" - "+$('#navbarTop').outerHeight(true);
+      }
+      else {
+        heightStr+=" - 0";
+      }
+      if ($('#navbarBottom').css('display') != 'none' && navbarVisibility.bottom=="true" && $('#navbarBottom').outerHeight(true)>0) {
+        thisTemplateEngine.currentPageUnavailableHeight+=$('#navbarBottom').outerHeight(true);
+        heightStr+=" - "+$('#navbarBottom').outerHeight(true);
+      }
+      else {
+        heightStr+=" - 0";
+      }
+      if ($('#bottom').css('display') != 'none' && $('#bottom').outerHeight(true)>0) {
+        thisTemplateEngine.currentPageUnavailableHeight+=$('#bottom').outerHeight(true);
+        heightStr+=" - "+$('#bottom').outerHeight(true);
+      }
+      else {
+        heightStr+=" - 0";
+      }
+      if (thisTemplateEngine.currentPageUnavailableHeight>0) {
+        thisTemplateEngine.currentPageUnavailableHeight+=1;// remove an additional pixel for Firefox
+      }
+      console.log(heightStr);
+      console.log(windowHeight+" - "+thisTemplateEngine.currentPageUnavailableHeight);
+    }
+    return windowHeight - thisTemplateEngine.currentPageUnavailableHeight;
+  };
 
   /*
    * Make sure everything looks right when the window gets resized. This is
    * necessary as the scroll effect requires a fixed element size
    */
   this.handleResize = function(resize, skipScrollFix) {
+    console.log("handleResize");
+//    console.trace();
     var uagent = navigator.userAgent.toLowerCase();
-    var widthNavbarLeft = $('#navbarLeft').css('display') != 'none' ? $('#navbarLeft').width() : 0;
-    var widthNavbarRight = $('#navbarRight').css('display') != 'none' ? $('#navbarRight').width() : 0;
-    var width = $('body').width() - widthNavbarLeft - widthNavbarRight - 1; // remove an additional pixel for Firefox
-
+    var width = thisTemplateEngine.getAvailableWidth();
     var $main = $('#main');
     // if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
     var mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
@@ -217,48 +329,15 @@ function TemplateEngine() {
       $('#pageSize').text('.page{width:' + (width - 0) + 'px;}');
       //do nothing
     } else {
-      var height = $(window).height() - $main.position().top;
-      if ($('#navbarBottom').css('display') != 'none') {
-        height -= $('#navbarBottom').outerHeight(true) - 1;
-      }
-      if ($('#bottom').css('display') != 'none') {
-        height -= $('#bottom').outerHeight(true) - 1;
-      }
+      var height = thisTemplateEngine.getAvailableHeight();
       $main.css('width', width).css('height', height);
       $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
-      if (skipScrollFix === undefined) {
-        if (thisTemplateEngine.adjustColumns()) {
-          var allContainer = $('.widget_container');
-          allContainer.each(function(i, e) {
-            var $e = $(e);
-            var ourColspan = $e.children('*:first-child').data('colspan');
-            if (ourColspan <= 0)
-              return;
-            var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || thisTemplateEngine.defaultColumns;
-            var ourWidth = Math.min(100, ourColspan / areaColspan * 100);
-            $e.css('width', ourWidth + '%');
-          });
-          // and elements inside groups
-          var adjustableElements = $('.group .widget_container');
-          adjustableElements.each(function(i, e) {
-            var $e = $(e);
-            var ourColspan = $e.children('.widget').data('colspan');
-            if (ourColspan <= 0)
-              return;
-            if (ourColspan == undefined) {
-              // workaround for nowidget groups
-              ourColspan = $e.children('.group').data('colspan');
-            }
-            var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || thisTemplateEngine.defaultColumns;
-            var groupColspan = Math.min(areaColspan, $e.parentsUntil('.widget_container', '.group').data('colspan'));
-            var ourWidth = Math.min(100, ourColspan / groupColspan * 100); // in percent
-            $e.css('width', ourWidth + '%');
-          });
-        }
+    }
+    if (skipScrollFix === undefined) {
+      if (thisTemplateEngine.adjustColumns()) {
+        // the amount of columns has changed -> recalculate the widgets widths
+        thisTemplateEngine.applyColumnWidths();
       }
-      // main_scroll != undefined && main_scroll.seekTo( main_scroll.getIndex(),
-      // 0
-      // ); // fix scroll
     }
   };
   
@@ -308,9 +387,13 @@ function TemplateEngine() {
     thisTemplateEngine.initBackendClient();
 
     thisTemplateEngine.scrollSpeed = $('pages', xml).attr("scroll_speed");
-    if ($('pages', xml).attr('enable_column_adjustment') == "true") {
+    var enableColumnAdjustment = null;
+    if ($('pages', xml).attr('enable_column_adjustment')!=undefined) {
+      enableColumnAdjustment = $('pages', xml).attr('enable_column_adjustment')=="true" ? true : false;
+    }
+    if (enableColumnAdjustment) {
       thisTemplateEngine.enableColumnAdjustment = true;
-    } else if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i
+    } else if (enableColumnAdjustment==null && /(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i
         .test(navigator.userAgent.toLowerCase())) {
       thisTemplateEngine.enableColumnAdjustment = true;
     }
@@ -333,13 +416,14 @@ function TemplateEngine() {
     else {
       thisTemplateEngine.selectDesign();
     }
-    var maxMobileScreenWidth = $('pages', xml).attr('max_mobile_screen_width') || 480;
+    if ($('pages', xml).attr('max_mobile_screen_width'))
+      thisTemplateEngine.maxMobileScreenWidth = $('pages', xml).attr('max_mobile_screen_width');
 
     $.getCSS( 'designs/designglobals.css' );
     $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css' );
     $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/mobile.css',
-              {media: 'only screen and (max-device-width: '
-              + maxMobileScreenWidth + 'px)'} );
+              {media: 'only screen and (max-width: '
+              + thisTemplateEngine.maxMobileScreenWidth + 'px)'} );
     $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css' );
     $.getScript( 'designs/' + thisTemplateEngine.clientDesign + '/design_setup.js',
       function(){
@@ -462,20 +546,11 @@ function TemplateEngine() {
     thisTemplateEngine.pageReady = true;
     thisTemplateEngine.setup_page(xml);
   };
-
   
-  this.setup_page = function(xml) {
-    // and now setup the pages
-    
-    // check if the page and the plugins are ready now
-    if( !this.pageReady || !this.pluginsReady || !this.designReady )
-      return; // we'll be called again...
-    
-    var page = $('pages > page', xml)[0]; // only one page element allowed...
-
-    thisTemplateEngine.create_pages(page, 'id_0');
-
-    thisTemplateEngine.adjustColumns();
+  /**
+   * applies the correct width to the widgets corresponding to the given colspan setting 
+   */
+  this.applyColumnWidths = function() {
     // all containers
     var allContainer = $('.widget_container');
     allContainer.each(function(i, e) {
@@ -505,12 +580,34 @@ function TemplateEngine() {
       // percent
       $e.css('width', ourWidth + '%');
     });
+  };
 
+  
+  this.setup_page = function(xml) {
+    // and now setup the pages
+    
+    // check if the page and the plugins are ready now
+    if( !this.pageReady || !this.pluginsReady || !this.designReady)
+      return; // we'll be called again...
+    
+    var page = $('pages > page', xml)[0]; // only one page element allowed...
+
+    thisTemplateEngine.create_pages(page, 'id_0');
+    
+    var startpage = 'id_0';
+    if ($.getUrlVar('startpage')) {
+      startpage='id_' + $.getUrlVar('startpage');
+    }
+    thisTemplateEngine.currentPage = $('#'+startpage);
+    
+    thisTemplateEngine.adjustColumns();
+    thisTemplateEngine.applyColumnWidths();
+    
     // Prevent elastic scrolling apart the main pane for iOS devices
     $(document).bind( 'touchmove', function(e) {
       e.preventDefault();
     });
-    $('#pages').bind( 'touchmove', function(e) {
+    $('#main').bind( 'touchmove', function(e) {
       e.stopPropagation();
     });
     
@@ -523,10 +620,7 @@ function TemplateEngine() {
     if (thisTemplateEngine.scrollSpeed != undefined) {
       thisTemplateEngine.main_scroll.getConf().speed = thisTemplateEngine.scrollSpeed;
     }
-    var startpage = 'id_0';
-    if ($.getUrlVar('startpage')) {
-      startpage='id_' + $.getUrlVar('startpage');
-    }
+   
     thisTemplateEngine.scrollToPage(startpage,0);
 
     $('.fast').bind('click', function() {
@@ -674,7 +768,7 @@ function TemplateEngine() {
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
     thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
-    $(window).trigger('resize');
+//    $(window).trigger('resize');
     $("#pages").triggerHandler("done");
   };
 
@@ -691,13 +785,14 @@ function TemplateEngine() {
     }
 
     return retval;
-  }
+  };
 
   this.scrollToPage = function(page_id, speed, skipHistory) {
     $('.activePage', '#pages').removeClass('activePage');
     $('.pageActive', '#pages').removeClass('pageActive');
     $('.pagejump.active').removeClass('active');
     $('.pagejump.active_ancestor').removeClass('active_ancestor');
+    thisTemplateEngine.resetPageValues();
 
     if (page_id.match(/^id_[0-9_]+$/) == null) {
       // find Page-ID by name
@@ -708,6 +803,7 @@ function TemplateEngine() {
       });
     }
     var page = $('#' + page_id);
+    thisTemplateEngine.currentPage = page;
 
     page.addClass('pageActive activePage');// show new page
     // update visibility ob navbars, top-navigation, footer
@@ -800,11 +896,7 @@ function TemplateEngine() {
             }
           }
         });
-    $(window).trigger('scrolltopage', page_id);
-    if (thisTemplateEngine.resizeAfterScroll) {
-      //thisTemplateEngine.handleResize(null,true);
-      thisTemplateEngine.resizeAfterScroll = false;
-    }
+    $(window).trigger('scrolltopage', page_id);    
   };
 
  
@@ -1003,6 +1095,7 @@ function PagePartsHandler() {
       id += '_';
     }
     $('.nav_path').html(nav);
+    templateEngine.handleResize();    
   };
 
   /**
@@ -1027,11 +1120,72 @@ function PagePartsHandler() {
       });
       break;
     }
-    templateEngine.handleResize();
+  };
+  
+  this.getNavbarsVisibility = function(page) {
+    if (templateEngine.currentPageNavbarVisibility==null) {
+      if (page==null) {
+        page = templateEngine.currentPage;
+      }
+      if (page==null || page.data()==null) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
+      var shownavbar = (page.data().shownavbar != undefined ? page.data().shownavbar : {
+        top : 'inherit',
+        bottom : 'inherit',
+        left : 'inherit',
+        right : 'inherit'
+      });
+      
+      // set inherit for undefined 
+      for (var pos in shownavbar) {
+        if (shownavbar[pos] == undefined) {
+          shownavbar[pos] = 'inherit';
+        }
+      }
+      if (page.data() != null) {
+        // traverse up the page tree for shownavbar
+        var parentPage = templateEngine.getParentPage(page);
+        while (parentPage != null) {
+          // do we need to go further? Check for inheritance
+          var inherit = false;
+          for (var pos in shownavbar) {
+            if (shownavbar[pos] == 'inherit') {
+              inherit = true;
+              break;
+            }
+          }
+          if (inherit) {
+            if (parentPage.data().shownavbar != undefined) {
+              for (var pos in shownavbar) {
+                if (shownavbar[pos] == 'inherit') {
+                  // set value of parent page
+                  shownavbar[pos] = parentPage.data().shownavbar[pos];
+                  if (shownavbar[pos] == undefined) {
+                    shownavbar[pos] = 'inherit';
+                  }
+                }
+              }
+            }
+          } else {
+            // we are done
+            break;
+          }
+          parentPage = templateEngine.getParentPage(parentPage);
+        }
+      }
+      // set default values for shownavbar if not set otherwise
+      for (var pos in shownavbar) {
+        if (shownavbar[pos] == undefined || shownavbar[pos] == 'inherit') {
+          shownavbar[pos] = 'true';
+        }
+      }
+      templateEngine.currentPageNavbarVisibility = shownavbar;
+//      console.log(shownavbar);
+    }
+    return templateEngine.currentPageNavbarVisibility;
   };
 
   /**
-   * update the visibility of top-navigation, footer and navbar for this page
+   * update the visibility ob top-navigation, footer and navbar for this page
    * 
    * @param page
    */
@@ -1039,19 +1193,7 @@ function PagePartsHandler() {
     // default values
     var showtopnavigation = true;
     var showfooter = true;
-    var shownavbar = (page.data().shownavbar != undefined ? page.data().shownavbar : {
-      top : 'inherit',
-      bottom : 'inherit',
-      left : 'inherit',
-      right : 'inherit'
-    });
-    // set inherit for undefined 
-    for (var pos in shownavbar) {
-      if (shownavbar[pos] == undefined) {
-        shownavbar[pos] = 'inherit';
-      }
-    }
-
+    var shownavbar = thisPagePartsHandler.getNavbarsVisibility(page);
     if (page.data() != null) {
       if (page.data().showtopnavigation != undefined) {
         showtopnavigation = page.data().showtopnavigation != "false";
@@ -1079,64 +1221,24 @@ function PagePartsHandler() {
           parentPage = templateEngine.getParentPage(parentPage);
         }
       }
-
-      // traverse up the page tree for shownavbar
-      var parentPage = templateEngine.getParentPage(page);
-      while (parentPage != null) {
-        // do we need to go further? Check for inheritance
-        var inherit = false;
-        for (var pos in shownavbar) {
-          if (shownavbar[pos] == 'inherit') {
-            inherit = true;
-            break;
-          }
-        }
-        if (inherit) {
-          if (parentPage.data().shownavbar != undefined) {
-            for (var pos in shownavbar) {
-              if (shownavbar[pos] == 'inherit') {
-                // set value of parent page
-                shownavbar[pos] = parentPage.data().shownavbar[pos];
-                if (shownavbar[pos] == undefined) {
-                  shownavbar[pos] = 'inherit';
-                }
-              }
-            }
-          }
-        } else {
-          // we are done
-          break;
-        }
-        parentPage = templateEngine.getParentPage(parentPage);
-      }
     }
-    // set default values for shownavbar if not set otherwise
-    for (var pos in shownavbar) {
-      if (shownavbar[pos] == undefined || shownavbar[pos] == 'inherit') {
-        shownavbar[pos] = 'true';
-      }
-    }
-
-    var resize = false;
+    
     if (showtopnavigation) {
       if ($('#top').css("display") == "none") {
         $('#top, #top > *').css("display", "block");
-        resize = true;
-        // console.log("#top hidden");
+        thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
       }
     } else {
       $('#top.loading').removeClass('loading');
       if ($('#top').css("display") != "none") {
         $('#top').css("display", "none");
-        resize = true;
-        // console.log("#top visible");
+        thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
       }
     }
     if (showfooter) {
       if ($('#bottom').css("display") == "none") {
         $('#bottom').css("display", "block");
-        // console.log("#bottom hidden");
-        resize = true;
+        thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
       }
     } else {
       // the loading class prevents any element from beeing disabled, we have to
@@ -1144,8 +1246,7 @@ function PagePartsHandler() {
       $('#bottom.loading').removeClass('loading');
       if ($('#bottom').css("display") != "none") {
         $('#bottom').css("display", "none");
-        // console.log("#bottom "+$('#bottom').css("display"));
-        resize = true;
+        thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
       }
     }
     $.each([ 'Left', 'Top', 'Right', 'Bottom' ], function(index, value) {
@@ -1154,7 +1255,6 @@ function PagePartsHandler() {
         if ($('#navbar' + value).css("display") == "none") {
           thisPagePartsHandler.fadeNavbar(value, "in");
           thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
-          // resize=true;
         }
       } else {
         // the loading class prevents any element from being disabled, we have
@@ -1162,15 +1262,10 @@ function PagePartsHandler() {
         $('#navbar' + value + '.loading').removeClass('loading');
         if ($('#navbar' + value).css("display") != "none") {
           thisPagePartsHandler.fadeNavbar(value, "out");
-          // resize=true;
         }
       }
     });
-    if (resize) {
-      templateEngine.resizeAfterScroll = true;
-    } else {
-      thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
-    }
+    console.log("updatePageParts");
   };
 
   /**
@@ -1187,7 +1282,7 @@ function PagePartsHandler() {
     var navbar = $('#navbar' + position);
     var key = position.toLowerCase();
     var fn = function() {
-      templateEngine.handleResize(true);
+      
     };
     switch (direction) {
     case "in":
@@ -1210,7 +1305,6 @@ function PagePartsHandler() {
       if (navbar.css("display") != "none") {
         fn = function() {
           navbar.css("display", "none");
-          templateEngine.handleResize(true);
         };
       }
       switch (position) {
