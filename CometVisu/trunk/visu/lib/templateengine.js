@@ -46,6 +46,7 @@ function TemplateEngine() {
   var thisTemplateEngine = this;
   this.pageReady = false;
   this.pluginsReady = false;
+  this.designReady = false;
   this.design = new VisuDesign_Custom();
   this.pagePartsHandler = new PagePartsHandler();
 
@@ -340,7 +341,12 @@ function TemplateEngine() {
               {media: 'only screen and (max-device-width: '
               + maxMobileScreenWidth + 'px)'} );
     $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css' );
-    $.getScript( 'designs/' + thisTemplateEngine.clientDesign + '/design_setup.js');
+    $.getScript( 'designs/' + thisTemplateEngine.clientDesign + '/design_setup.js',
+      function(){
+        thisTemplateEngine.designReady = true;
+        thisTemplateEngine.setup_page(xml);
+      }
+    );
 
     // start with the plugins
     var pluginsToLoad = [];
@@ -462,7 +468,7 @@ function TemplateEngine() {
     // and now setup the pages
     
     // check if the page and the plugins are ready now
-    if( !this.pageReady || !this.pluginsReady)
+    if( !this.pageReady || !this.pluginsReady || !this.designReady )
       return; // we'll be called again...
     
     var page = $('pages > page', xml)[0]; // only one page element allowed...
@@ -504,7 +510,7 @@ function TemplateEngine() {
     $(document).bind( 'touchmove', function(e) {
       e.preventDefault();
     });
-    $('#main').bind( 'touchmove', function(e) {
+    $('#pages').bind( 'touchmove', function(e) {
       e.stopPropagation();
     });
     
