@@ -32,7 +32,6 @@ basicdesign.addCreator('switch', {
     var address = makeAddressList($e);
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
-    console.log(bindClickToWidget+" "+$e.attr("bind_click_to_widget"));
     var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     var $actor = $(actor).data( {
       'address' : address,

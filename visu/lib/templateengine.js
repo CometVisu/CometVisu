@@ -396,7 +396,6 @@ function TemplateEngine() {
     if ($('pages', xml).attr('bind_click_to_widget')!=undefined) {
       thisTemplateEngine.bindClickToWidget = $('pages', xml).attr('bind_click_to_widget')=="true" ? true : false;
     }
-    console.log($('pages', xml).attr('bind_click_to_widget'));
     if (enableColumnAdjustment) {
       thisTemplateEngine.enableColumnAdjustment = true;
     } else if (enableColumnAdjustment==null && /(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i
