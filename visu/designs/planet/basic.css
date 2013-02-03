@@ -675,11 +675,14 @@ body hr {
   background: none;
   display: block;
   float: none;
- /* position: absolute; */
+  /*position: absolute;*/ 
   left: 2rem;
   top: 1.7rem;
 }
-
+.popup > .main {
+    
+    position: absolute;
+}
 /*.widget.diagram > .actor {
 position: relative;
 }*/
