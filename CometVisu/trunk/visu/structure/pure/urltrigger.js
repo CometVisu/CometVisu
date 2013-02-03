@@ -38,6 +38,8 @@ basicdesign.addCreator('urltrigger', {
     var $actor = $(actor);
     var valueElement = $actor.find('.value');
     var mappedValue = templateEngine.map( value, $e.attr('mapping') );
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
     if( ('string' == typeof mappedValue) || ('number' == typeof mappedValue) )
     {
       valueElement.append( mappedValue );
@@ -54,16 +56,18 @@ basicdesign.addCreator('urltrigger', {
       'align'   : $e.attr('align'),
       'params'  : $(element).attr('params'),
       'sendValue': value //value is currently ignored in XHR! maybe for multitrigger
-    } ).bind( 'click', this.action ).bind( 'mousedown', function(){
-      $(this).removeClass('switchUnpressed').addClass('switchPressed');
-    } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
-      $(this).removeClass('switchPressed').addClass('switchUnpressed');
     } ).setWidgetStyling(value);
+    var clickable = bindClickToWidget ? ret_val : $actor;
+    clickable.bind( 'click', this.action ).bind( 'mousedown', function(){
+      $actor.removeClass('switchUnpressed').addClass('switchPressed');
+    } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
+      $actor.removeClass('switchPressed').addClass('switchUnpressed');
+    } );
     ret_val.append( label ).append( $actor );
     return ret_val;
   },
   action: function() {
-    var data = $(this).data();
+    var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
     data.params = data.params ? data.params : '';
     $.ajax({
     type: "GET",

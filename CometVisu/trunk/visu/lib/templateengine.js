@@ -54,6 +54,10 @@ function TemplateEngine() {
   this.currentPageUnavailableWidth = -1;
   this.currentPageUnavailableHeight = -1;
   this.currentPageNavbarVisibility = null;
+  
+  // if true the whole widget reacts on click events
+  // if false only the actor in the widget reacts on click events
+  this.bindClickToWidget = false;
     
   // threshold where the mobile.css is loaded
   this.maxMobileScreenWidth = 480;
@@ -270,8 +274,6 @@ function TemplateEngine() {
     if (thisTemplateEngine.currentPageUnavailableHeight<0) {
       thisTemplateEngine.currentPageUnavailableHeight=0;
       var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);
-      console.log(thisTemplateEngine.designReady);
-      console.log(navbarVisibility);
       var heightStr = "Height: "+windowHeight;
       if ($('#top').css('display') != 'none' && $('#top').outerHeight(true)>0) {
         thisTemplateEngine.currentPageUnavailableHeight+=$('#top').outerHeight(true);
@@ -391,6 +393,10 @@ function TemplateEngine() {
     if ($('pages', xml).attr('enable_column_adjustment')!=undefined) {
       enableColumnAdjustment = $('pages', xml).attr('enable_column_adjustment')=="true" ? true : false;
     }
+    if ($('pages', xml).attr('bind_click_to_widget')!=undefined) {
+      thisTemplateEngine.bindClickToWidget = $('pages', xml).attr('bind_click_to_widget')=="true" ? true : false;
+    }
+    console.log($('pages', xml).attr('bind_click_to_widget'));
     if (enableColumnAdjustment) {
       thisTemplateEngine.enableColumnAdjustment = true;
     } else if (enableColumnAdjustment==null && /(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i
@@ -767,7 +773,7 @@ function TemplateEngine() {
       });
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
-    thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
+    //thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
 //    $(window).trigger('resize');
     $("#pages").triggerHandler("done");
   };
@@ -851,7 +857,7 @@ function TemplateEngine() {
       }
     }
     // set pagejump for this page to active if it exists
-    $(".pagejump").each(
+    $(".pagejump > .actor").each(
         function(i) {
           var activePageJump = null;
           var actor = $(this);
@@ -875,7 +881,7 @@ function TemplateEngine() {
                 // root is always an active ancestor, no need to specify that
                 break;
               }
-              $(".pagejump").each(
+              $(".pagejump > .actor").each(
                   function(i) {
                     var parentActor = $(this);
                     var parentTarget = parentActor.data().target;
@@ -1265,7 +1271,6 @@ function PagePartsHandler() {
         }
       }
     });
-    console.log("updatePageParts");
   };
 
   /**
