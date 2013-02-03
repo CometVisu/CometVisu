@@ -772,7 +772,7 @@ function TemplateEngine() {
       });
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
-    //thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
+    thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
 //    $(window).trigger('resize');
     $("#pages").triggerHandler("done");
   };
