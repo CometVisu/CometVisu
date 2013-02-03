@@ -76,8 +76,9 @@ $(window).resize(function() {
   // only execute on start
     if (started) {
       if ($('.navbar').size()>0) {
-         $('.navbar > .widget_container:first-child .group:not(.root) .pagejump:first-child').each(function(i) {
-           var target = ($(this).data().target.match(/^id_[0-9_]+$/)==null) ? $('.page h1:contains('+$(this).data().target+')').closest(".page").attr("id") : $(this).data().target;
+         $('.navbar > .widget_container:first-child .group:not(.root) .pagejump:first-child .actor').each(function(i) {
+           var data = $(this).data();
+           var target = (data.target.match(/^id_[0-9_]+$/)==null) ? $('.page h1:contains('+data.target+')').closest(".page").attr("id") : data.target;
            if (target=="id_0") {
              // pagejump to root-page found
              var group = $(this).closest(".group");

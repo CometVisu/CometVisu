@@ -31,6 +31,8 @@ basicdesign.addCreator('pagejump', {
     ret_val.setWidgetLayout($e);
     var label = extractLabel( $e.find('label')[0], flavour );
     var address = makeAddressList($e);
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
       actor += $e.attr( 'align' ); 
@@ -41,20 +43,20 @@ basicdesign.addCreator('pagejump', {
     var $actor = $(actor).data( {
       'styling' : $(element).attr('styling'),
       'type'    : 'pagejump',
-      'align'   : $e.attr('align')
+      'align'   : $e.attr('align'),
+      'target'  : target
     } ).setWidgetStyling(target);
-
-    ret_val.bind( 'click', this.action ).bind( 'mousedown', function(){
+    var clickable = bindClickToWidget ? ret_val : $actor;
+    clickable.bind( 'click', this.action ).bind( 'mousedown', function(){
       $actor.removeClass('switchUnpressed').addClass('switchPressed');
     } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
       $actor.removeClass('switchPressed').addClass('switchUnpressed');
     } );
-    ret_val.data('target',target);
     ret_val.append( label ).append( $actor );
     return ret_val;
   },
   action: function() {
-    var data = $(this).data();
+    var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
     templateEngine.scrollToPage( data.target );
   }
 });

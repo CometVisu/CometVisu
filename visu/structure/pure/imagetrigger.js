@@ -24,6 +24,8 @@ basicdesign.addCreator('imagetrigger', {
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var value = $e.attr('value') ? $e.attr('value') : 0;
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
     ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
     var address = makeAddressList($e);
     var layout = $e.children('layout')[0];
@@ -46,9 +48,9 @@ basicdesign.addCreator('imagetrigger', {
       'type':      $e.attr('type'),
       'mapping':   map,
       'sendValue': $e.attr('sendValue') || ""
-    } )
-      .each(templateEngine.setupRefreshAction) // abuse "each" to call in context... refresh is broken with select right now
-      .bind( 'click', this.action );
+    } ).each(templateEngine.setupRefreshAction); // abuse "each" to call in context... refresh is broken with select right now
+    var clickable = bindClickToWidget ? ret_val : $actor;
+    clickable.bind( 'click', this.action );
     for( var addr in address ) {
       $actor.bind( addr, this.update );
     }
@@ -77,7 +79,7 @@ basicdesign.addCreator('imagetrigger', {
     //FIXME: add SVG-magics
   },
   action: function() {
-    var data = $(this).data();
+    var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
     sendValue = data.sendValue;
     for( var addr in data.address ) {
       if( !(data.address[addr][1] & 2) )

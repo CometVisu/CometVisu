@@ -30,6 +30,8 @@ basicdesign.addCreator('toggle', {
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = extractLabel( $e.find('label')[0], flavour );
     var address = makeAddressList($e);
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
     var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     var $actor = $(actor).data( {
       'address' : address,
@@ -37,7 +39,9 @@ basicdesign.addCreator('toggle', {
       'styling' : $e.attr('styling'),
       'align'   : $e.attr('align'),
       'type'    : 'switch'
-    } ).bind( 'click', this.action );
+    } );
+    var clickable = bindClickToWidget ? ret_val : $actor;
+    clickable.bind( 'click', this.action );
     for( var addr in address ) $actor.bind( addr, this.update );
     ret_val.append( label ).append( $actor );
     return ret_val;
@@ -48,7 +52,7 @@ basicdesign.addCreator('toggle', {
     element.addClass('switchUnpressed');
   },
   action: function() {
-    var data = $(this).data();
+    var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
     var element_count = 0;
     var next_element;
     var first_element;
