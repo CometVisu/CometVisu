@@ -51,6 +51,7 @@ basicdesign.addCreator('slide', {
       'step'    : step,
       'type'    : 'dim',
       'valueInternal': true,
+      'inAction': false,
       'format'  : $e.attr('format') || null
     });
     for( var addr in address ) 
@@ -87,6 +88,10 @@ basicdesign.addCreator('slide', {
   },
   update: function( e, data ) { 
     var element = $(this);
+    
+    if( element.data('inAction') )
+      return;
+    
     var value = templateEngine.transformDecode( element.data().address[ e.type ][0], data );
     if( element.data( 'value' ) != value )
     {
@@ -109,6 +114,7 @@ basicdesign.addCreator('slide', {
   slideStart:function(event,ui)
   {
     var actor = $( '.actor', $(this).parent() );
+    actor.data( 'inAction', true );
     actor.data( 'valueInternal', true );
     actor.data( 'updateFn', setInterval( function(){
       var data = actor.data();
@@ -131,6 +137,7 @@ basicdesign.addCreator('slide', {
   {
     var data = $(this).data();
     clearInterval( data.updateFn, ui.value);
+    data.inAction = false;
     if( data.valueInternal && data.value != ui.value )
       for( var addr in data.address )
       {
