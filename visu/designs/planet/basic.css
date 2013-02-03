@@ -254,11 +254,9 @@ h1 {
 # margin-left: -2rem;
 }
 
+
 .actor .value {
-margin-left: 20%;
-}
-.actor .value {
-margin-left: -3rem;
+margin-left: 2rem;
 }
 .actor.switchUnpressed {background:-moz-linear-gradient(top, #d2a26e,#8d6d4a); /* Firefox */
 background:-webkit-gradient(linear,left top,left bottom,from(#d2a26e),to( #8d6d4a)); /* Chrome, Safari */}
@@ -321,8 +319,22 @@ background:-webkit-gradient(linear,left top,left bottom,from(#d2a26e),to( #8d6d4
 }
 
 .infotrigger .label {
-  /* text-align: center; */
+   font-size: 4.5mm;
+   color: white;
 }
+.infotrigger .value {
+color: white;
+margin-left: -0.6rem;
+text-align: right;
+}
+
+/*.infotrigger {
+    background: #d8a8d3;
+    border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}*/
 
 
 
@@ -434,9 +446,9 @@ background:-webkit-gradient(linear,left top,left bottom,from(#d2a26e),to( #8d6d4
 
 .infotrigger .actor {
   width: 33.33333333333%;
-  border-right-style: solid;
+ /* border-right-style: solid;
   border-right-width: 0.1rem;
-  border-right-color: #121212;
+  border-right-color: #121212;*/
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -775,7 +787,7 @@ font-weight: bold;
 }
 .group.widget .actor{
     background: #0A7878;
-    border-bottom-left-radius: 1rem;
+    border-bottom-left-radius: 0.3rem;
     color: black;
 }
 .value { margin-top: 0.5rem;}
