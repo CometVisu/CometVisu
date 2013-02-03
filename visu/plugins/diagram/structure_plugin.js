@@ -368,6 +368,12 @@ function showDiagramTooltip(x, y, contents) {
 }
 
 function refreshDiagram(diagram, flotoptions, data) {
+  window.setTimeout(function(diagram, flotoptions, data) {
+    doRefreshDiagram(diagram, flotoptions, data);
+  }, 100, diagram, flotoptions, data );
+};
+
+function doRefreshDiagram(diagram, flotoptions, data) {
   var diagram = $(diagram);
   var config = jQuery.extend(true, {series: diagram.data("series")}, data || {});
 
@@ -469,7 +475,7 @@ function refreshDiagram(diagram, flotoptions, data) {
     if (typeof (refresh) != "undefined" && refresh) {
       // reload regularly
       window.setTimeout(function(diagram, flotoptions, data) {
-        refreshDiagram(diagram, flotoptions, data);
+        doRefreshDiagram(diagram, flotoptions, data);
       }, refresh * 1000, diagram, flotoptions, data );
     }
   }
