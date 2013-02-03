@@ -13,13 +13,13 @@
 
 html {
   font-size: 5.5mm;
+  letter-spacing: 1px;
+  
 }
 
 
 @font-face {
-	font-family: Ubuntu Condensed;src:url(fonts/ubuntu-font-family/UbuntuMono-R.ttf);}
-@font-face {
-	font-family: Ubuntu Condensed Bold;src:url(fonts/ubuntu-font-family/UbuntuMono-B.ttf);}
+	font-family: OSP;src:url(fonts/OSP-foundry_DIN/OSP-DIN.ttf);}
 
  
 body  {
@@ -28,7 +28,7 @@ body  {
   font-family:Impact, Charcoal, sans-serif;
   font-family:'Lucida Sans Unicode','Lucida Grande','Lucida Sans','DejaVu Sans Condensed',sans-serif;
   font-family:'Helvetica LT UltraCompressed','Swiss911 UCm BT',OpenDinSchriftenEngshrift;*/
-  font-family:'Ubuntu Condensed';
+  font-family:'OSP';
   
   
   overflow: hidden;
@@ -269,7 +269,7 @@ background:-webkit-gradient(linear,left top,left bottom,from(#d2a26e),to( #8d6d4
   margin-left: 1rem;
   pointer-events: none;
   margin-top: 0.5rem;
-  font-size: 6mm;
+  font-size: 7.5mm;
 }
 
 .widget.text > div {
@@ -310,16 +310,19 @@ background:-webkit-gradient(linear,left top,left bottom,from(#d2a26e),to( #8d6d4
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
-
+.switch > .actor {
+    font-size: 8mm;
+}
 .trigger > .actor {
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   border-bottom-left-radius: 1rem;
+  font-size: 8mm;
 }
 
 .infotrigger .label {
-   font-size: 4.5mm;
+   font-size: 7mm;
    color: white;
 }
 .infotrigger .value {
@@ -778,20 +781,19 @@ background:-webkit-gradient(linear,right bottom,left top,from(#ecd1b4),to( #d2a2
 /*widget value*/
 .page .info .value {color: #0975E1; /*2383F8*/
 font-size: 8mm;
-font-variant:small-caps;
-font-weight:bold;
+
 text-shadow: 0.06rem 0.06rem 0 #000;
 }
 
 .navbar .widget > .label {
 margin-left: 2rem;
 margin-top:0.5rem;
-font-size: 6mm;	
-font-family:'Ubuntu Condensed Bold';
+font-size: 9mm;	
+font-family:'OSP';
 /*font-weight:bold;*/
 color: black;
 /*#464647;*/
-font-weight: bold;
+font-variant: small-caps;
 }
 .group.widget .actor{
     background: #0A7878;
