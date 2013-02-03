@@ -192,6 +192,12 @@
     </xsd:restriction>
   </xsd:simpleType>
   
+  <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">use the whole widget area to react on click events</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  
 
   <xsd:attribute name="lang">
     <xsd:simpleType>
@@ -250,6 +256,7 @@
       </xsd:sequence>
       <xsd:attribute name="design" type="xsd:string" use="required" />
       <xsd:attribute ref="backend" use="optional" />
+      <xsd:attribute ref="bind_click_to_widget" use="optional"/>
       <xsd:attribute name="scroll_speed" type="xsd:decimal" use="optional">
         <xsd:annotation>
             <xsd:appinfo>level:expert</xsd:appinfo>
@@ -428,6 +435,7 @@
     <xsd:attribute name="shownavbar-bottom" type="xsd:boolean" use="optional" />
     <xsd:attribute name="shownavbar-left" type="xsd:boolean" use="optional" />
     <xsd:attribute name="shownavbar-right" type="xsd:boolean" use="optional" />
+    <xsd:attribute ref="bind_click_to_widget" use="optional"/>
   </xsd:complexType>
 
   <xsd:complexType name="group">
@@ -530,6 +538,7 @@
     <xsd:attribute name="off_value" type="xsd:string" use="optional" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="bind_click_to_widget" use="optional"/>
   </xsd:complexType>
 
   <xsd:complexType name="trigger">
@@ -550,6 +559,7 @@
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="bind_click_to_widget" use="optional"/>
   </xsd:complexType>
 
   <xsd:complexType name="urltrigger">
@@ -564,6 +574,7 @@
     <xsd:attribute name="url" type="uri" use="required" />
     <xsd:attribute name="params" type="xsd:string" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="bind_click_to_widget" use="optional"/>
   </xsd:complexType>
 
   <xsd:complexType name="infotrigger">
@@ -705,6 +716,7 @@
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute name="sendValue" type="xsd:string" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="bind_click_to_widget" use="optional"/>
   </xsd:complexType>
 
   <xsd:complexType name="video">
@@ -742,6 +754,7 @@
     <xsd:attribute name="target" type="xsd:string" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="bind_click_to_widget" use="optional"/>
   </xsd:complexType>
 
   <xsd:complexType name="colorchooser">
@@ -848,6 +861,7 @@
     <xsd:attribute ref="legendposition" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
     <xsd:attribute ref="align" use="optional" />
+    <xsd:attribute ref="bind_click_to_widget" use="optional"/>
   </xsd:complexType>
 
   <xsd:complexType name="gweather">

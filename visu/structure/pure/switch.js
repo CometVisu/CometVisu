@@ -30,7 +30,9 @@ basicdesign.addCreator('switch', {
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = extractLabel( $e.find('label')[0], flavour );
     var address = makeAddressList($e);
-    
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
+    console.log(bindClickToWidget+" "+$e.attr("bind_click_to_widget"));
     var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     var $actor = $(actor).data( {
       'address' : address,
@@ -40,7 +42,9 @@ basicdesign.addCreator('switch', {
       'off_value' : $e.attr('off_value') || 0,
       'align'   : $e.attr('align'),
       'type'    : 'switch'
-    } ).bind( 'click', this.action );
+    } );
+    var clickable = bindClickToWidget ? ret_val : $actor;
+    clickable.bind( 'click', this.action );
     for( var addr in address ) 
     { 
       if( address[addr][1] & 1 ) $actor.bind( addr, this.update ); // only when read flag is set
@@ -56,7 +60,7 @@ basicdesign.addCreator('switch', {
     element.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
   action: function() {
-    var data = $(this).data();
+    var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set

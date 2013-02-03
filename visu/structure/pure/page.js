@@ -35,6 +35,8 @@ basicdesign.addCreator('page', {
     var shownavbar_bottom = $p.attr('shownavbar-bottom');
     var shownavbar_left = $p.attr('shownavbar-left');
     var shownavbar_right = $p.attr('shownavbar-right');
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ($p.attr("bind_click_to_widget")) bindClickToWidget = $p.attr("bind_click_to_widget")=="true";
     if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
     var wstyle  = '';                                     // widget style
     if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
@@ -49,9 +51,17 @@ basicdesign.addCreator('page', {
       var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
       ret_val = $('<div class="widget clearfix link pagelink" ' + style + '/>');
       ret_val.setWidgetLayout($p);
-      var tst = $('<div ' + wstyle + '><a href="javascript:templateEngine.scrollToPage(\''+path+'\')">' + name + '</a></div>');
-      
-      ret_val.append(tst );
+      if (bindClickToWidget) {
+        ret_val.bind('click', function() {
+          templateEngine.scrollToPage(path);
+        });
+        var tst = $('<div ' + wstyle + '><a href="#">' + name + '</a></div>');
+        ret_val.append(tst );
+      }
+      else {
+        var tst = $('<div ' + wstyle + '><a href="javascript:templateEngine.scrollToPage(\''+path+'\')">' + name + '</a></div>');
+        ret_val.append(tst );
+      }
     }
 
     var childs = $p.children().not('layout');

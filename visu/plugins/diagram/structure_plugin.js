@@ -248,6 +248,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     if( $p.attr('align') ) {
       classes+=" "+$p.attr('align');
     }
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ($p.attr("bind_click_to_widget")) bindClickToWidget = $p.attr("bind_click_to_widget")=="true";
     var ret_val = $('<div class="'+classes+'" />');
     ret_val.setWidgetLayout($p).makeWidgetLabel($p);
                 
@@ -294,8 +296,9 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
   
     
     var data = jQuery.extend({}, bDiagram.data());
-
-    $actor.bind("click", function() {
+    var clickable = bindClickToWidget ? ret_val : $actor;
+    
+    clickable.bind("click", function() {
       bDiagram.data(data);
       bDiagram.css({height: "90%"});
       bDiagram.data("ispopup", true);
