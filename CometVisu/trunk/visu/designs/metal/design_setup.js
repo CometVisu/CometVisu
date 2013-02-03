@@ -21,7 +21,9 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 //$(".value < img").css("padding", "0");
-$('#navbarLeft').data({'columns': 6} );
+$('#navbarLeft').data('columns', 6 );
+$('#main').data('columns', 12 );
+$('#navbarRight').data('columns', 6 );
 
 var started=true;
 
@@ -74,7 +76,7 @@ $(window).resize(function() {
   // only execute on start
     if (started) {
       if ($('.navbar').size()>0) {
-         $('.navbar > .widget_container:first-child .group:not(.root) .pagejump:first-child .actor').each(function(i) {
+         $('.navbar > .widget_container:first-child .group:not(.root) .pagejump:first-child').each(function(i) {
            var target = ($(this).data().target.match(/^id_[0-9_]+$/)==null) ? $('.page h1:contains('+$(this).data().target+')').closest(".page").attr("id") : $(this).data().target;
            if (target=="id_0") {
              // pagejump to root-page found
@@ -83,12 +85,6 @@ $(window).resize(function() {
                group.addClass("root");
            }
          });
-       }
-       if (/(iphone|ipod|ipad)/i.test(navigator.userAgent.toLowerCase())) {
-         // disable scrolling
-         templateEngine.main_scroll.getConf().speed=0;
-         $('body').css('padding-top','1em');
-         templateEngine.handleResize(true);
        }
        $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
          var label = $(this);
