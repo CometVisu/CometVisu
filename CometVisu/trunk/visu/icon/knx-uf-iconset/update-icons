@@ -6,7 +6,7 @@ resize_image () {
 	if [ "x${3}" = "x" ]; then
 		convert ${1} -shave '40x40' -resize 128 ${2}
 	else 
-		convert ${1} -fill ${3} -colorize "100%" -shave '40x40' -resize 128 ${2}
+		convert ${1} -fill ${3} -opaque white -shave '40x40' -resize 128 ${2}
 	fi
 }
 
