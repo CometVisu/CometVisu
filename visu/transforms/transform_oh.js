@@ -41,38 +41,27 @@ addTransform('OH', {
   'rollershutter' : {
     name : "OH_RollerShutter",
     encode : function(phy) {
-      if (phy == 1)
-        return 'DOWN';
-      else if (phy == 0)
-        return 'UP';
-      else
-        return phy;
+      if (phy == 1) return 'DOWN';
+      else if (phy == 0)  return 'UP';
+      else return phy;
     },
     decode : function(str) {
-      if (str == "NaN" || str == 'Uninitialized')
-        return 0;
-      else if (str == "UP")
-        return 0;
-      else if (str == "DOWN")
-        return 1;
-      else
-        return str;
+      if (str=="NaN" || str=='Uninitialized') return 0;
+      else if (str=="UP") return 0;
+      else if (str=="DOWN") return 1;
+      else return str;
     },
   },
   'dimmer' : {
     name : "OH_Dimmer",
     encode : function(phy) {
-      return parseInt(phy);
+      return parseInt(phy);  
     },
     decode : function(str) {
-      if (str == "NaN" || str == 'Uninitialized')
-        return 0;
-      else if (str == "ON")
-        return 100;
-      else if (str == "OFF")
-        return 0;
-      else
-        return parseInt(str);
+      if (str=="NaN" || str=='Uninitialized') return 0;
+      else if (str=="ON") return 100;
+      else if (str=="OFF") return 0;
+      else return parseInt(str);
     },
   },
   'number' : {
@@ -81,8 +70,7 @@ addTransform('OH', {
       return parseFloat(phy);
     },
     decode : function(str) {
-      if (str == "NaN" || str == 'Uninitialized')
-        return 0;
+      if (str=="NaN" || str=='Uninitialized') return 0;
       return parseFloat(str);
     },
   },
