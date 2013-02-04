@@ -67,7 +67,7 @@ function roundCorners() {
 }
 $(window).bind('scrolltopage',function() {
   //$('#id_0').append(navigator.userAgent.toLowerCase());
-  if (/(opera|chrome|safari|webkit)/i.test(navigator.userAgent.toLowerCase())) {
+  if (/(opera|chrome|safari)/i.test(navigator.userAgent.toLowerCase())) {
     roundCorners();
   }
 });
