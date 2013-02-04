@@ -87,6 +87,10 @@ function TemplateEngine() {
   }
 
   this.initBackendClient = function() {
+	if (thisTemplateEngine.backend=="oh") {
+		// the path to the openHAB cometvisu backend is cv 
+		thisTemplateEngine.backend = "cv";
+	}
     thisTemplateEngine.backend = '/' + thisTemplateEngine.backend + '/';
     thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
     thisTemplateEngine.visu.update = function(json) { // overload the handler
@@ -384,7 +388,7 @@ function TemplateEngine() {
     predefinedDesign = $('pages', xml).attr("design");
 
     if ($('pages', xml).attr("backend")) {
-      backend = $('pages', xml).attr("backend");
+      thisTemplateEngine.backend = $('pages', xml).attr("backend");
     }
     thisTemplateEngine.initBackendClient();
 
