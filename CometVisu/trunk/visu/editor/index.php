@@ -30,7 +30,7 @@
  * @since       2013-02-05
  */
 
-require_once('../lib/lib_version.inc.php');
+require_once('../lib/library_version.inc.php');
 
 define('CONFIG_FILENAME', '../visu_config%s.xml');
 define('SCHEMA_FILENAME', '../%s');
