@@ -869,7 +869,7 @@ function TemplateEngine() {
             // get page id by name
             $('h1:contains(' + target + ')', '#' + page_id).each(function(i) {
               if ($(this).text() == target) {
-                activePageJump = actor;
+            	activePageJump = actor.closest('.pagejump');
                 return false;
               }
             });
