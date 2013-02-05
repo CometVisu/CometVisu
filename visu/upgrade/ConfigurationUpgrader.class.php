@@ -28,11 +28,14 @@
  * @since       2013-01-22
  */
 
+// get the current library version
+require_once('../lib/lib_version.inc.php');
+
 /**
- * the current lib version
+ * the library-version the upgrader understands
  * @const   integer
  */
-define('LIBRARY_VERSION', 1);
+define('UPGRADER_LIBRARY_VERSION', 1);
 
 
 /**
