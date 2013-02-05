@@ -204,25 +204,24 @@ function TemplateEngine() {
   this.adjustColumns = function() {
     if (thisTemplateEngine.enableColumnAdjustment == false)
       return false;
-
-    var factor = window.devicePixelRatio || 1;
     var width = thisTemplateEngine.getAvailableWidth();
-//    width = width * factor;
 
     var $main = $('#main');
     var newColumns = Math.ceil(width / thisTemplateEngine.minColumnWidth);
-    // the value should be a divisor of defaultColumns-value
-    while ((thisTemplateEngine.defaultColumns % newColumns)>0 && newColumns < thisTemplateEngine.defaultColumns) {
-        newColumns++;
-    }
-    newColumns = Math.min(thisTemplateEngine.defaultColumns, newColumns);
-    if (newColumns > thisTemplateEngine.defaultColumns / 2 && thisTemplateEngine.defaultColumns > newColumns) {
+    if (newColumns > (thisTemplateEngine.defaultColumns / 2) && thisTemplateEngine.defaultColumns > newColumns) {
       // don´t accept values between 50% and 100% of defaultColumns
       // e.g if default is 12, then skip column-reduction to 10 and 8
       newColumns = thisTemplateEngine.defaultColumns;
     }
+    else {
+      // the value should be a divisor of defaultColumns-value
+      while ((thisTemplateEngine.defaultColumns % newColumns)>0 && newColumns < thisTemplateEngine.defaultColumns) {
+        newColumns++;
+      }
+      // make sure that newColumns does not exceed defaultColumns
+      newColumns = Math.min(thisTemplateEngine.defaultColumns, newColumns);
+    }
     if (newColumns != $main.data('columns')) {
-      console.log("changing columns to "+newColumns+" ("+width+"/"+thisTemplateEngine.minColumnWidth+"=="+Math.ceil(width / thisTemplateEngine.minColumnWidth)+")");
       $main.data({
         'columns' : newColumns
       });
