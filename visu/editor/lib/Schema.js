@@ -796,6 +796,8 @@ var SchemaElement = function (node, schema) {
      * @return  boolean     are children sortable?
      */
     _element.areChildrenSortable = function () {
+        var allowedContent = _element.getAllowedContent();
+        
         if (allowedContent._grouping == undefined) {
             return undefined;
         }
@@ -812,6 +814,8 @@ var SchemaElement = function (node, schema) {
      * @return  array   list of required elements
      */
     _element.getRequiredElements = function () {
+        var allowedContent = _element.getAllowedContent();
+        
         if (allowedContent._grouping != undefined) {
             // we do have a grouping as a child
             return allowedContent._grouping.getRequiredElements();
@@ -849,6 +853,8 @@ var SchemaElement = function (node, schema) {
      * @return  object              list of allowed elements, with their sort-number as value
      */
     _element.getAllowedElementsSorting = function () {
+        var allowedContent = _element.getAllowedContent();
+        
         if (allowedContent._grouping != undefined) {
             return allowedContent._grouping.getAllowedElementsSorting();
         }
@@ -862,6 +868,8 @@ var SchemaElement = function (node, schema) {
      * @return  object  bounds ({min: x, max: y})
      */
     _element.getChildBounds = function () {
+        var allowedContent = _element.getAllowedContent();
+        
         if (allowedContent._grouping == undefined) {
             // no choice = no idea about bounds
             return undefined;
@@ -883,6 +891,8 @@ var SchemaElement = function (node, schema) {
      * @return  object              {min: x, max: y}
      */
     _element.getBoundsForElementName = function (childName) {
+        var allowedContent = _element.getAllowedContent();
+        
         return allowedContent._grouping.getBoundsForElementName(childName);
     };
     
@@ -1130,6 +1140,8 @@ var SchemaElement = function (node, schema) {
             return true;
         }
         
+        var allowedContent = _element.getAllowedContent();
+        
         return allowedContent._text.isValueValid(value);
     }
     
@@ -1186,6 +1198,8 @@ var SchemaElement = function (node, schema) {
             // default to an empty string
             separator = '';
         }
+        
+        var allowedContent = _element.getAllowedContent();
         
         if (allowedContent._grouping == undefined) {
             // not really something to match
@@ -1558,29 +1572,37 @@ var SchemaChoice = function (node, schema) {
      * @return  object              {max: x, min: y}, or undefined if none found
      */
     _choice.getBoundsForElementName = function (childName) {
-        // if this element is our immediate child, we have to say about bounds
-        if (typeof allowedElements[childName] !== 'undefined') {
+        // as we are a choice, we can define the number of occurences for children of ANY level
+        if (true === _choice.isElementAllowed(childName)) {
             return _choice.getBounds();
         }
-
-        // though we are a child-element, our sub-grouping might have another saying than we do about the bounds
-        var childBounds = undefined;
         
-        $.each(subGroupings, function (i, subGroup) {
-            if (typeof childBounds != 'undefined') {
-                // do not look further if we already have bounds
-                return;
-            }
-            
-            // if the subGroup allows this element, we get the bounds from there
-            if (true === subGroup.isElementAllowed(childName)) {
-                childBounds = subGroup.getBoundsForElementName(childName);
-            }
-            
-        });
-
-
-        return childBounds;
+        return undefined;
+//        
+//        // if this element is our immediate child, we have to say about bounds
+//        if (typeof allowedElements[childName] !== 'undefined') {
+//            return _choice.getBounds();
+//        }
+//
+//        // though we are a child-element, our sub-grouping might have another saying than we do about the bounds
+//        var childBounds = undefined;
+//        
+//        $.each(subGroupings, function (i, subGroup) {
+//            if (typeof childBounds != 'undefined') {
+//                // do not look further if we already have bounds
+//                return;
+//            }
+//            
+//            // if the subGroup allows this element, we still use our own bounds, as they are superior, and we still
+//            // are a choice!
+//            if (true === subGroup.isElementAllowed(childName)) {
+//                childBounds = _choice.getBounds();
+//            }
+//            
+//        });
+//
+//
+//        return childBounds;
     };
     
     /**

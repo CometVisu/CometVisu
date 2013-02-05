@@ -34,6 +34,15 @@ outputHeader();
 
 require_once('ConfigurationUpgrader.class.php');
 
+if (LIBRARY_VERSION > UPGRADER_LIBRARY_VERSION) {
+    // the library moved faster than the upgrader
+    exitWithResponse(false, 'The upgrader itself is not up-to-date. ' .
+                            'Library is at version ' . LIBRARY_VERSION . ', ' .
+                            'upgrader at version ' . UPGRADER_LIBRARY_VERSION . '. ' .
+                            'Please report this problem at http://www.knx-user-forum.de/cometvisu/');
+}
+
+
 define('CONFIG_FILENAME', '../visu_config%s.xml');
 define('BACKUP_FILENAME', '../backup/visu_config%s-%s.xml');
 
@@ -132,7 +141,7 @@ exitWithResponse(true, 'configuration was upgraded to version ' . LIBRARY_VERSIO
  * @param   string  $strMessage     a message, if any
  */
 function exitWithResponse($boolSuccess, $strMessage = '') {
-    if ($boolSuccess == true) {
+    if (true === $boolSuccess) {
         print '<b style="color: green;">SUCCESS</b>';
     } else {
         print '<b style="color: red;">ERROR</b>';
@@ -141,6 +150,14 @@ function exitWithResponse($boolSuccess, $strMessage = '') {
     if (false === empty($strMessage)) {
         print ': ';
         print $strMessage;
+    }
+    
+    if (true === $boolSuccess) {
+        // despite globals being bad in general, this is way easier.
+        global $strConfigSuffix;
+
+        print '<p><a href="../editor/?config=' . $strConfigSuffix . '">open config in editor</a></p>';
+        print '<p><a href="../?config=' . $strConfigSuffix . '">show in CometVisu</a></p>';
     }
     
     outputFooter();

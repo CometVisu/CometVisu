@@ -70,6 +70,11 @@ var Editor = function (config) {
      */
     var isExpert = false;
     
+    if ($.cookie('editor_complex') == true || $.cookie('editor_complex') == 'true') {
+        // read the expert-cookie
+        isExpert = true;
+    }
+    
     var clickHandler = function (event) {
         var $button = $(this);
         
@@ -116,6 +121,9 @@ var Editor = function (config) {
             $button.toggleClass('active');
             
             isExpert = $button.hasClass('active');
+            
+            // save the current state to the cookie
+            $.cookie('editor_complex', isExpert, {expires: 365});
         }
     };
    
@@ -218,6 +226,10 @@ var Editor = function (config) {
                         .attr('title', Messages.editor.ui.expert.tooltip)
                         .click(clickHandler);
         $menu.append($expert);
+        if (isExpert == true) {
+            // add the active-class even at startup, it might be pre-set
+            $expert.addClass('active');
+        }
 
         var $preview = $('<span />')
                         .addClass('button')
@@ -1733,9 +1745,30 @@ var EditorConfigurationElement = function (parent, element) {
         var $name = $('<span />').addClass('name').html(_element.name).addClass('nodeType_' + _element.name);
         var $nameValue = $('<span />').addClass('nameValue');
         
-        if (typeof _element.attributes.name != 'undefined' && _element.attributes.name.trim() != '') {
-            $nameValue.text(_element.attributes.name);
-            $nameValue.addClass('set');
+        // find out which fields functions as descriptor for this element, if any
+        var properties = _element.getSchemaElement().getAppinfo();
+        
+        var descriptor = 'name'; // default to the field 'name' as descriptor
+        $.each(properties, function (i, value) {
+            if (/^descriptor:/.test(value)) {
+                descriptor = value.replace(/^descriptor:/, '');
+            }
+        });
+        delete properties;
+
+        if (descriptor == '#text') {
+            // we need to get the text-content as descriptor. do not abuse this, or you might get punched
+            // in the face by adding markup to the editor at places you did not expect
+            if (_element.value != undefined && _element.value.trim() != '') {
+                $nameValue.text(_element.value);
+                $nameValue.addClass('set');
+            }
+        } else {
+            // its an attribute
+            if (typeof _element.attributes[descriptor] != 'undefined' && _element.attributes[descriptor].trim() != '') {
+                $nameValue.text(_element.attributes[descriptor]);
+                $nameValue.addClass('set');
+            }
         }
         $name.append($nameValue);
         delete $nameValue;
