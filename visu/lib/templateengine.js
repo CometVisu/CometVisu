@@ -76,7 +76,7 @@ function TemplateEngine() {
   this.scrollSpeed;
 
   this.defaultColumns = 12;
-  this.minColumnWidth = 150;
+  this.minColumnWidth = 120;
   this.enableColumnAdjustment = false;
   
   this.enableAddressQueue = $.getUrlVar('enableQueue') ? true : false;
@@ -87,10 +87,10 @@ function TemplateEngine() {
   }
 
   this.initBackendClient = function() {
-	if (thisTemplateEngine.backend=="oh") {
-		// the path to the openHAB cometvisu backend is cv 
-		thisTemplateEngine.backend = "cv";
-	}
+    if (thisTemplateEngine.backend=="oh") {
+      // the path to the openHAB cometvisu backend is cv 
+      thisTemplateEngine.backend = "cv";
+    }
     thisTemplateEngine.backend = '/' + thisTemplateEngine.backend + '/';
     thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
     thisTemplateEngine.visu.update = function(json) { // overload the handler
@@ -207,17 +207,22 @@ function TemplateEngine() {
 
     var factor = window.devicePixelRatio || 1;
     var width = thisTemplateEngine.getAvailableWidth();
-    width = width / factor;
+//    width = width * factor;
 
     var $main = $('#main');
-    var newColumns = $main.data('columns');
-    newColumns = (Math.ceil(width / thisTemplateEngine.minColumnWidth) % 2) > 0 ? Math.ceil(width
-        / thisTemplateEngine.minColumnWidth) + 1 : Math.ceil(width / thisTemplateEngine.minColumnWidth);
+    var newColumns = Math.ceil(width / thisTemplateEngine.minColumnWidth);
+    // the value should be a divisor of defaultColumns-value
+    while ((thisTemplateEngine.defaultColumns % newColumns)>0 && newColumns < thisTemplateEngine.defaultColumns) {
+        newColumns++;
+    }
     newColumns = Math.min(thisTemplateEngine.defaultColumns, newColumns);
-    if (newColumns > thisTemplateEngine.defaultColumns / 2 && thisTemplateEngine.defaultColumns > newColumns)
+    if (newColumns > thisTemplateEngine.defaultColumns / 2 && thisTemplateEngine.defaultColumns > newColumns) {
+      // don´t accept values between 50% and 100% of defaultColumns
+      // e.g if default is 12, then skip column-reduction to 10 and 8
       newColumns = thisTemplateEngine.defaultColumns;
-
+    }
     if (newColumns != $main.data('columns')) {
+      console.log("changing columns to "+newColumns+" ("+width+"/"+thisTemplateEngine.minColumnWidth+"=="+Math.ceil(width / thisTemplateEngine.minColumnWidth)+")");
       $main.data({
         'columns' : newColumns
       });
@@ -322,8 +327,6 @@ function TemplateEngine() {
    * necessary as the scroll effect requires a fixed element size
    */
   this.handleResize = function(resize, skipScrollFix) {
-    console.log("handleResize");
-//    console.trace();
     var uagent = navigator.userAgent.toLowerCase();
     var width = thisTemplateEngine.getAvailableWidth();
     var $main = $('#main');
