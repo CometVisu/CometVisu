@@ -37,6 +37,9 @@
   </xsd:complexType>
 
   <xsd:complexType name="entry" mixed="true">
+    <xsd:annotation>
+        <xsd:appinfo>descriptor:#text</xsd:appinfo>
+    </xsd:annotation>
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
       <xsd:element name="icon" type="icon" />
     </xsd:choice>
