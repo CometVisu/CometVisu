@@ -51,7 +51,7 @@
   $outtxt = "";
   foreach ($icons as $i) {
     $name = preg_replace("/\.png$/", "", $i);
-    $outtxt .= sprintf("%-30s", "'". $name ."' : ") ."   { '*': { '*' : { '*' : 'white', 'ws' : 'white', 'sodium' : 'orange',\n";
+    $outtxt .= sprintf("%-30s", "'". $name ."' : ") ."   { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange',\n";
     $firstline = true;
     foreach ($colors as $c) {
       if (! $firstline) { $outtxt .= ",\n"; } else { $firstline = false; }
