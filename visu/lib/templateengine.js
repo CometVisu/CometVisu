@@ -874,10 +874,12 @@ function TemplateEngine() {
               }
             });
           } else if (page_id == target) {
-            activePageJump = actor;
+            activePageJump = actor.closest('.pagejump');
           }
           if (activePageJump != null) {
             activePageJump.addClass('active');
+          }
+          if (page.attr('id')!="id_0") {
             var parentPage = thisTemplateEngine.getParentPage(page);
             while (parentPage != null) {
               if (parentPage.attr('id') == "id_0") {
@@ -888,17 +890,18 @@ function TemplateEngine() {
                   function(i) {
                     var parentActor = $(this);
                     var parentTarget = parentActor.data().target;
+                    if (parentTarget==undefined) return true;
                     if (parentTarget.match(/^id_[0-9_]+$/) == null) {
                       // get page id by name
                       $('h1:contains(' + parentTarget + ')',
                           '#' + parentPage.attr('id')).each(function(i) {
                         if ($(this).text() == parentTarget) {
-                          parentActor.addClass('active_ancestor');
+                          parentActor.closest('.pagejump').addClass('active_ancestor');
                           return false;
                         }
                       });
                     } else if (parentPage.attr('id') == parentTarget) {
-                      parentActor.addClass('active_ancestor');
+                      parentActor.closest('.pagejump').addClass('active_ancestor');
                     }
                   });
               parentPage = thisTemplateEngine.getParentPage(parentPage);
