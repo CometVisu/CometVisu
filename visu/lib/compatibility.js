@@ -189,10 +189,21 @@ $.extend({
     if( 'object' === typeof files && 0 == files.length && callback )
       callback();
     else
+      /*
       $.getScript( files.shift(), files.length
         ? function(){ $.getOrderedScripts(files, callback);}
         : callback
       );
+      */
+      // temporary fix till a better solution could be implemented:
+      $.ajax({
+        url: files.shift(),
+        dataType: 'script',
+        async: false,
+        success: files.length
+          ? function(){ $.getOrderedScripts(files, callback);}
+          : callback
+      });
   },
   // inspired by http://stackoverflow.com/questions/2685614/load-external-css-file-like-scripts-in-jquery-which-is-compatible-in-ie-also
   getCSS: function( url, parameters ) {
