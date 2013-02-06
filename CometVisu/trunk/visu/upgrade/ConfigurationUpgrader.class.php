@@ -256,7 +256,7 @@ class ConfigurationUpgrader {
         $arrOrderedElements = array('page', 'group', 'text', 'switch', 'trigger', 'urltrigger', 'infotrigger',
                                     'rgb', 'multitrigger', 'slide', 'info', 'wgplugin_info', 'image', 'imagetrigger',
                                     'video', 'web', 'pagejump', 'colorchooser', 'diagram', 'diagram_inline',
-                                    'diagram_popup', 'diagram_info', 'gweather', 'rss', 'rsslog', 'strftime');
+                                    'diagram_popup', 'diagram_info', 'rss', 'rsslog', 'strftime');
         $i = 0;
         
         foreach ($arrOrderedElements as $strElementName) {
