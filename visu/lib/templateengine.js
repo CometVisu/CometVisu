@@ -618,7 +618,7 @@ function TemplateEngine() {
     $(document).bind( 'touchmove', function(e) {
       e.preventDefault();
     });
-    $('#main').bind( 'touchmove', function(e) {
+    $('#main,#navbarTop,#navbarBottom').bind( 'touchmove', function(e) {
       e.stopPropagation();
     });
     
