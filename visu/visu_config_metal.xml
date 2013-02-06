@@ -5,18 +5,18 @@
     <mappings>
       <mapping name="OpenClose">
         <entry value="0">
-          <icon name="fts_fenster_offen" />
+          <icon name="fts_window_1w_open" />
         </entry>
         <entry value="1">
-          <icon name="fts_fenster" />
+          <icon name="fts_window_1w" />
         </entry>
       </mapping>
       <mapping name="DoorOpenClose">
         <entry value="0">
-          <icon name="fts_tuer_offen" />
+          <icon name="fts_door_open" />
         </entry>
         <entry value="1">
-          <icon name="fts_tuer" />
+          <icon name="fts_door" />
         </entry>
       </mapping>
       <mapping name="OnOff">
@@ -24,8 +24,8 @@
         <entry value="1">I</entry>
       </mapping>
       <mapping name="OnOff_Licht">
-        <entry value="0"><icon name="licht_licht" flavour="white"/></entry>
-        <entry value="1"><icon name="licht_licht" flavour="sodium"/></entry>
+        <entry value="0"><icon name="light_light" flavour="white"/></entry>
+        <entry value="1"><icon name="light_light" flavour="sodium"/></entry>
      </mapping>
       <mapping name="AudioMute">
         <entry value="0">
@@ -64,16 +64,16 @@ Config</a> ]]></status>
     <navbar position="top">
       <pagejump target="Übersicht">
       	<layout colspan="0"/>
-        <label><icon name="steuer_home" />Übersicht</label>
+        <label><icon name="control_home" />Übersicht</label>
       </pagejump>
       <line />
       <pagejump target="Wohnzimmer">
       	<layout colspan="0"/>
-      	<label><icon name="steuer_alles_ein_aus" />KNX</label>
+      	<label><icon name="control_all_on_off" />KNX</label>
       </pagejump>
       <pagejump target="Video">
       	<layout colspan="0"/>
-      	<label><icon name="it_fernsehen" />Video</label>
+      	<label><icon name="it_television" />Video</label>
       </pagejump>
       <pagejump target="Audio">
       	<layout colspan="0"/>
@@ -86,7 +86,7 @@ Config</a> ]]></status>
       <line />
       <pagejump target="Flavour">
       	<layout colspan="0"/>
-        <label><icon name="wetter_sonne" />Flavour</label>
+        <label><icon name="weather_sun" />Flavour</label>
       </pagejump>
     </navbar>
     <group name="Allgemein">
@@ -197,15 +197,15 @@ Config</a> ]]></status>
       <navbar position="left" dynamic="true" width="200px">
         <group name="Räume">
           <pagejump target="Wohnzimmer" name="Wohnen">
-            <label><icon name="it_fernsehen" /></label>
+            <label><icon name="it_television" /></label>
           </pagejump>
           <pagejump target="Schlafzimmer" name="Schlafen">
-            <label><icon name="szene_schlafen" /></label>
+            <label><icon name="scene_sleeping" /></label>
           </pagejump>
         </group>
         <group name="Sonstiges">
           <pagejump target="Temperaturen" name="Temperatur">
-            <label><icon name="temp_temperatur" /></label>
+            <label><icon name="temp_temperature" /></label>
           </pagejump>
         </group>
       </navbar>
@@ -267,13 +267,13 @@ Config</a> ]]></status>
           <layout colspan="12" />
           <multitrigger button1label="&#8593;" button1value="0"
             button2label="&#8595;" button2value="1">
-            <label>Fenster</label>
+            <label><icon name="fts_shutter" />Fenster</label>
             <address transform="DPT:1.001" variant="">13/0/3</address>
           </multitrigger>
           <multitrigger button1label="&#8593;" button1value="0"
             button2label="&#8595;" button2value="1">
             <label>
-              <icon name="fts_rollo" />
+              <icon name="fts_shutter" />
               Tür
             </label>
             <address transform="DPT:1.001" variant="">13/0/4</address>
@@ -305,14 +305,14 @@ Config</a> ]]></status>
         <group name="Heizung">
           <slide min="0" max="100" format="%d%%" flavour="sodium">
             <label>
-              <icon name="sani_heizung" />
+              <icon name="sani_heating" />
               Heizung
             </label>
             <address transform="DPT:5.001" variant="">13/0/38</address>
           </slide>
           <info format="%.1f °C">
             <label>
-              <icon name="temp_temperatur" />
+              <icon name="temp_temperature" />
               Ist
             </label>
             <address transform="DPT:9.001" variant="">13/0/14</address>
@@ -322,7 +322,7 @@ Config</a> ]]></status>
             infoposition="1" format="%.1f °C" change="absolute" min="15"
             max="25">
             <label>
-              <icon name="temp_regelung" />
+              <icon name="temp_control" />
               Soll
             </label>
             <address transform="DPT:9.001" variant="">13/0/39</address>
@@ -354,7 +354,6 @@ Config</a> ]]></status>
             <address transform="DPT:1.001" variant="">13/1/0</address>
           </switch>
           <info format="%.2f Lux">
-            <label><icon name="licht_licht" />Helligkeit</label>
             <address transform="DPT:9.001" variant="">13/1/25</address>
           </info>
         </group>
@@ -362,27 +361,27 @@ Config</a> ]]></status>
           <layout colspan="12" />
           <multitrigger button1label="&#8593;" button1value="0"
             button2label="&#8595;" button2value="1">
-            <label><icon name="fts_rollo" />Jalousien</label>
+            <label><icon name="fts_shutter" />Jalousien</label>
             <address transform="DPT:1.001" variant="">13/1/1</address>
           </multitrigger>
           <info mapping="OpenClose">
-            <label>Fenster</label>
+            <label><icon name="fts_shutter" />Fenster</label>
             <address transform="DPT:1.001" variant="">13/1/17</address>
           </info>
         </group>
         <group align="center" name="Heizung">
           <slide min="0" max="100" flavour="lithium">
-            <label><icon name="sani_heizung" />Heizung</label>
+            <label><icon name="sani_heating" />Heizung</label>
             <address transform="DPT:5.001" variant="">13/1/27</address>
           </slide>
           <info format="%.1f °C">
-            <label><icon name="temp_temperatur" />Ist</label>
+            <label><icon name="temp_temperature" />Ist</label>
             <address transform="DPT:9.001" variant="">13/1/12</address>
           </info>
           <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
             downvalue="-0.5" styling="BluePurpleRedTemp" align="center"
             infoposition="1" format="%.1f °C" change="absolute" min="15" max="25">
-            <label><icon name="temp_regelung" />Soll</label>
+            <label><icon name="temp_control" />Soll</label>
             <address transform="DPT:9.001" variant="">13/1/28</address>
           </infotrigger>
         </group>
@@ -408,7 +407,7 @@ Config</a> ]]></status>
       <page name="Temperaturen">
         <layout colspan="3" />
         <info format="%.1f °C">
-          <label><icon name="temp_aussen" />Aussen</label>
+          <label><icon name="temp_outside" />Aussen</label>
           <address transform="DPT:9.001" variant="">13/6/1</address>
         </info>
         <info format="%.1f °C">
@@ -416,7 +415,7 @@ Config</a> ]]></status>
           <address transform="DPT:9.001" variant="">13/5/4</address>
         </info>
         <info format="%.1f °C">
-          <label><icon name="temp_innen" />Innen</label>
+          <label><icon name="temp_inside" />Innen</label>
           <address transform="DPT:9.001" variant="">14/1/6</address>
         </info>
       </page>
