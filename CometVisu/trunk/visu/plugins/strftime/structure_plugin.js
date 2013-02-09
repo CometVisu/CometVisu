@@ -22,7 +22,7 @@
  * Thanks to Michael Markstaller for implementing the jqclock as reference.
  */
 
-$('head').append('<link rel="stylesheet" href="plugins/strftime/strftime.css" type="text/css" />');
+$.getCSS( 'plugins/strftime/strftime.css' );
 
 VisuDesign_Custom.prototype.addCreator("strftime", {
   create : function(page, path) {
@@ -84,3 +84,5 @@ VisuDesign_Custom.prototype.addCreator("strftime", {
     return ret_val;
   }
 });
+
+templateEngine.pluginLoaded();
