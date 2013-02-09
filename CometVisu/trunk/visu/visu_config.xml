@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" lib_version="0" xsi:noNamespaceSchemaLocation="./visu_config.xsd">
+<pages design="pure" lib_version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./visu_config.xsd">
   <meta>
     <plugins>
       <plugin name="colorchooser"/>
@@ -48,9 +48,11 @@
     </stylings>
     <statusbar>
       <status type="html">&lt;img src="icon/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="http://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
-          - &lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt;
-          - &lt;a href="?config=demo"&gt;Widget Demo&lt;/a&gt;</status>
-      <status type="html" hrefextend="config">- &lt;a href="check_config.php"&gt;Check Config&lt;/a&gt;</status>
+        - &lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt;</status>
+      <status type="html" condition="!edit" hrefextend="config"> - &lt;a href="editor/"&gt;Edit&lt;/a&gt;</status>
+      <status type="html" condition="edit" hrefextend="config"> - &lt;a href="."&gt;normal Mode&lt;/a&gt;</status>
+      <status type="html"> - &lt;a href="?config=demo"&gt;Widget Demo&lt;/a&gt;</status>
+      <status type="html" hrefextend="config"> - &lt;a href="check_config.php"&gt;Check Config&lt;/a&gt;</status>
     </statusbar>
   </meta>
   <page name="Start">
