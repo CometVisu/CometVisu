@@ -373,7 +373,10 @@ function TemplateEngine() {
     return className;
   };
 
-  this.parseXML = function(xml) {
+  var pluginsToLoadCount = 0;
+  var xml;
+  this.parseXML = function(loaded_xml) {
+    xml = loaded_xml;
     // erst mal den Cache für AJAX-Requests wieder aktivieren
     /*
     $.ajaxSetup({
@@ -436,21 +439,18 @@ function TemplateEngine() {
               {media: 'only screen and (max-width: '
               + thisTemplateEngine.maxMobileScreenWidth + 'px)'} );
     $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css' );
-    $.getScript( 'designs/' + thisTemplateEngine.clientDesign + '/design_setup.js',
+    $.getOrderedScripts( ['designs/' + thisTemplateEngine.clientDesign + '/design_setup.js'],
       function(){
         thisTemplateEngine.designReady = true;
-        thisTemplateEngine.setup_page(xml);
+        thisTemplateEngine.setup_page();
       }
     );
 
     // start with the plugins
     var pluginsToLoad = [];
     $('meta > plugins plugin', xml).each(function(i) {
-      pluginsToLoad.push( 'plugins/' + $(this).attr('name') + '/structure_plugin.js' );
-    });
-    $.getOrderedScripts( pluginsToLoad, function(){
-      thisTemplateEngine.pluginsReady = true;
-      thisTemplateEngine.setup_page(xml);
+      pluginsToLoadCount++;
+      $.getOrderedScripts( ['plugins/' + $(this).attr('name') + '/structure_plugin.js'] );
     });
 
     // then the icons
@@ -555,7 +555,7 @@ function TemplateEngine() {
     });
 
     thisTemplateEngine.pageReady = true;
-    thisTemplateEngine.setup_page(xml);
+    thisTemplateEngine.setup_page();
   };
   
   /**
@@ -594,7 +594,7 @@ function TemplateEngine() {
   };
 
   
-  this.setup_page = function(xml) {
+  this.setup_page = function() {
     // and now setup the pages
     
     // check if the page and the plugins are ready now
@@ -651,7 +651,8 @@ function TemplateEngine() {
     $('embed').each(function() {
       this.onload = function() {
         var svg = this.getSVGDocument();
-
+        if( !svg ) return;
+        
         // Pipe-O-Matic:
         var pipes = svg.getElementsByClassName('pipe_group');
         $(pipes).each(function() {
@@ -779,6 +780,8 @@ function TemplateEngine() {
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
     thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
+    
+    delete xml; // not needed anymore - free the space
 //    $(window).trigger('resize');
     $("#pages").triggerHandler("done");
   };
@@ -1076,6 +1079,26 @@ function TemplateEngine() {
       }
     }
   };
+  
+  /**
+   * Load a script and run it before page setup.
+   * This is needed for plugin that depend on an external library.
+   */
+  this.getPluginDependency = function( url ){
+    $.getScriptSync( url );
+  }
+  
+  /**
+   * This has to be called by a plugin once it was loaded.
+   */
+  this.pluginLoaded = function(){
+    pluginsToLoadCount--;
+    if( 0 == pluginsToLoadCount )
+    {
+      thisTemplateEngine.pluginsReady = true;
+      thisTemplateEngine.setup_page();
+    }
+  }
 }
 
 function PagePartsHandler() {

@@ -125,3 +125,5 @@ VisuDesign_Custom.prototype.addCreator("clock", {
     }
   }
 });
+
+templateEngine.pluginLoaded();
