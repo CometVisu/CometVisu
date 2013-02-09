@@ -15,8 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
  
- 
-$( 'head' ).append( '<link rel="stylesheet" href="plugins/upnpcontroller/upnpcontroller.css" type="text/css" />' );
+$.getCSS( 'plugins/upnpcontroller/upnpcontroller.css' );
 
 var upnpcontroller_uid;
 var upnpcontroller_trace_flag;
@@ -393,3 +392,4 @@ function trace(msg){
  	}
 }
 
+templateEngine.pluginLoaded();

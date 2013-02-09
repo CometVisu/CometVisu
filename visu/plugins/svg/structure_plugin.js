@@ -73,3 +73,5 @@ VisuDesign_Custom.prototype.addCreator('svg', {
     }
   }
 }); 
+
+templateEngine.pluginLoaded();

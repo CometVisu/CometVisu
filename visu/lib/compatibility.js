@@ -177,25 +177,16 @@ $.extend({
   getUrlVar: function(name){
     return $.getUrlVars()[name];
   },
-  getScriptSync: function( url ) {
-    $.ajax({
-      url: url,
-      dataType: 'script',
-      async: false
-    });
-  },
-  // heavily inspired by: http://stackoverflow.com/questions/13066712/how-to-load-a-list-of-javascript-files-and-call-a-callback-after-all-of-them-are
+  /**
+   * heavily inspired by: http://stackoverflow.com/questions/13066712/how-to-load-a-list-of-javascript-files-and-call-a-callback-after-all-of-them-are
+   */
   getOrderedScripts: function(files, callback) {
     if( 'object' === typeof files && 0 == files.length && callback )
+    {
       callback();
-    else
-      /*
-      $.getScript( files.shift(), files.length
-        ? function(){ $.getOrderedScripts(files, callback);}
-        : callback
-      );
-      */
-      // temporary fix till a better solution could be implemented:
+    } else {
+      if( 'string' === typeof files )
+        files = [ files ];
       $.ajax({
         url: files.shift(),
         dataType: 'script',
@@ -204,6 +195,14 @@ $.extend({
           ? function(){ $.getOrderedScripts(files, callback);}
           : callback
       });
+    }
+  },
+  /**
+   * Include files on this place. This will be replaced by the content of the
+   * script during packaging
+   */
+  includeScripts: function(files, callback) {
+    this.getOrderedScripts(files, callback);
   },
   // inspired by http://stackoverflow.com/questions/2685614/load-external-css-file-like-scripts-in-jquery-which-is-compatible-in-ie-also
   getCSS: function( url, parameters ) {

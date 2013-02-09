@@ -52,10 +52,10 @@
   *
 */
   
-$.getOrderedScripts([
+$.includeScripts([
   'plugins/diagram/flot/jquery.flot.js',
   'plugins/diagram/flot/jquery.flot.axislabels.js'
-]);
+], templateEngine.pluginLoaded );
 
 function diagram_get_content( page ) {
 
