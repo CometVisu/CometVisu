@@ -248,9 +248,13 @@ function CometVisu( urlPrefix )
     var aliveHandler = setInterval( aliveCheckFunction, thisCometVisu.watchdogTimer * 1000 );
     return {
       ping: function(){
+        delete last;
         last = new Date();
         if( !thisCometVisu.doRestart )
+        {
+          delete hardLast;
           hardLast = last;
+        }
       }
     };
   })();
