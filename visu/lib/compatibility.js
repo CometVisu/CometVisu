@@ -172,7 +172,6 @@ $.extend({
       vars.push(hash[0]);
       vars[hash[0]] = hash[1];
     }
-    console.log( vars );
     return vars;
   },
   getUrlVar: function(name){
