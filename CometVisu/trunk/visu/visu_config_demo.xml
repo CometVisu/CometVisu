@@ -984,6 +984,26 @@
           <label>2D</label>
         </pagejump>
       </navbar>
+      <page name="Deeper Navbar Test" align="center">
+        <text>
+          <label>This subpage adds additional content to the navbar</label>
+        </text>
+        <navbar position="left" dynamic="true" width="200px">
+          <text>
+            <label>Test 3</label>
+          </text>
+          <line/>
+          <pagejump target="id_0_34_7" name="Lithium">
+            <label>Flavour</label>
+          </pagejump>
+          <pagejump target="id_0_34_8" name="Potassium">
+            <label>Flavour</label>
+          </pagejump>
+          <pagejump target="id_0_36">
+            <label>2D</label>
+          </pagejump>
+        </navbar>
+      </page>
     </page>
     <break/>
     <page name="2D fixed Bitmap" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.png" align="center">
