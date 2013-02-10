@@ -277,9 +277,9 @@ function TemplateEngine() {
    * Notice: the former way to use the subtract the $main.position().top value from the total height leads to errors in certain cases
    *         because the value of $main.position().top is not reliable all the time
    */
-  this.getAvailableHeight = function() {
+  this.getAvailableHeight = function(force) {
     var windowHeight = $(window).height();
-    if (thisTemplateEngine.currentPageUnavailableHeight<0) {
+    if (thisTemplateEngine.currentPageUnavailableHeight<0 || force==true) {
       thisTemplateEngine.currentPageUnavailableHeight=0;
       var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);
       var heightStr = "Height: "+windowHeight;
@@ -290,7 +290,7 @@ function TemplateEngine() {
       else {
         heightStr+=" - 0";
       }
-      console.log($('#navbarTop').css('display')+": "+$('#navbarTop').outerHeight(true));
+//      console.log($('#navbarTop').css('display')+": "+$('#navbarTop').outerHeight(true));
       if ($('#navbarTop').css('display') != 'none' && navbarVisibility.top=="true" && $('#navbarTop').outerHeight(true)>0) {
         thisTemplateEngine.currentPageUnavailableHeight+=$('#navbarTop').outerHeight(true);
         heightStr+=" - "+$('#navbarTop').outerHeight(true);
@@ -315,8 +315,8 @@ function TemplateEngine() {
       if (thisTemplateEngine.currentPageUnavailableHeight>0) {
         thisTemplateEngine.currentPageUnavailableHeight+=1;// remove an additional pixel for Firefox
       }
-      console.log(heightStr);
-      console.log(windowHeight+" - "+thisTemplateEngine.currentPageUnavailableHeight);
+//      console.log(heightStr);
+//      console.log(windowHeight+" - "+thisTemplateEngine.currentPageUnavailableHeight);
     }
     return windowHeight - thisTemplateEngine.currentPageUnavailableHeight;
   };
@@ -340,6 +340,12 @@ function TemplateEngine() {
       var height = thisTemplateEngine.getAvailableHeight();
       $main.css('width', width).css('height', height);
       $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
+      if (($('#navbarTop').css('display')!="none" && $('#navbarTop').outerHeight(true)<=2)
+          || ($('#navbarBottom').css('display')!="none" && $('#navbarBottom').innerHeight(true)<=2)) {
+        // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
+        // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
+        window.setTimeout("templateEngine.correctHeight()",100);
+      }
     }
     if (skipScrollFix === undefined) {
       if (thisTemplateEngine.adjustColumns()) {
@@ -347,6 +353,14 @@ function TemplateEngine() {
         thisTemplateEngine.applyColumnWidths();
       }
     }
+  };
+  
+  this.correctHeight = function() {
+    var width = thisTemplateEngine.getAvailableWidth();
+    var height = thisTemplateEngine.getAvailableHeight(true);
+//    console.log("Correcting Height to "+height);
+    $('#main').css('height', height);
+    $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
   };
   
 
