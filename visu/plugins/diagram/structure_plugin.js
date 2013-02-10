@@ -193,14 +193,14 @@ function createDiagram( page, path, oldType ) {
         bDiagramOpts = jQuery.extend(bDiagramOpts, { grid: {hoverable: true, clickable: true} });
       }
 
-      //refreshDiagram(bDiagram, bDiagramOpts);
+      doRefreshDiagram(bDiagram, bDiagramOpts);
       return false;
     });
   }
   if ((oldType=="inline") || ($p.attr("previewlabels") == "true")) {
     //refreshDiagram(diagram, {});
   } else {
-    //refreshDiagram(diagram, {xaxes: [{ticks: 0}], yaxes: [{ticks: 0}]});
+    refreshDiagram(diagram, {xaxes: [{ticks: 0}], yaxes: [{ticks: 0}]});
   }
 
   return ret_val;
@@ -341,7 +341,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
         bDiagramOpts = jQuery.extend(bDiagramOpts, { grid: {hoverable: true, clickable: true} });
       }
 
-      //refreshDiagram(bDiagram, bDiagramOpts);
+      doRefreshDiagram(bDiagram, bDiagramOpts);
       return false;
     });
 
