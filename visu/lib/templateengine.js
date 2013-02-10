@@ -646,8 +646,32 @@ function TemplateEngine() {
     $(document).bind( 'touchmove', function(e) {
       e.preventDefault();
     });
-    $('#main,#navbarTop,#navbarBottom').bind( 'touchmove', function(e) {
+    $('.page,#navbarTop>.navbar,#navbarBottom>.navbar').bind( 'touchmove', function(e) {
+      var elem = $(e.currentTarget);
+      var startTopScroll = elem.scrollTop();
+      var startLeftScroll = elem.scrollLeft();
+      
+      // prevent scrolling of an element that takes full height and width
+      // as it doesn't need scrolling
+      if( (startTopScroll  <= 0) && (startTopScroll  + elem[0].offsetHeight >= elem[0].scrollHeight) &&
+          (startLeftScroll <= 0) && (startLeftScroll + elem[0].offsetWidth  >= elem[0].scrollWidth ) )
+      {
+        return;
+      }
+      
       e.stopPropagation();
+    });
+    // stop the propagation if scrollable is at the end
+    // inspired by https://github.com/joelambert/ScrollFix
+    $('.page,#navbarTop>.navbar,#navbarBottom>.navbar').bind( 'touchstart', function(event) {
+      var elem = $(event.currentTarget);
+      var startTopScroll = elem.scrollTop();
+
+      if(startTopScroll <= 0)
+        elem.scrollTop(1);
+
+      if(startTopScroll + elem[0].offsetHeight >= elem[0].scrollHeight)
+        elem.scrollTop( elem[0].scrollHeight - elem[0].offsetHeight - 1 );
     });
     
     // setup the scrollable

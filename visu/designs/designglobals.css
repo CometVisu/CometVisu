@@ -23,7 +23,6 @@ img.icon {
 }
 #main {
   width: 100%;
-  -webkit-overflow-scrolling:touch;
 }
 #navbarLeft {
   width: 0px;          /* left bar width */
@@ -38,8 +37,9 @@ img.icon {
   clear: both;
 }
 
-#pages, .page {
+.page,  #navbarTop, #navbarBottom {
   -webkit-transform: translateZ(0);
+  -webkit-overflow-scrolling:touch;
 }
 
 /* 
