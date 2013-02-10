@@ -431,6 +431,8 @@ function TemplateEngine() {
     if ($('pages', xml).attr('min_column_width')) {
       thisTemplateEngine.minColumnWidth = $('pages', xml).attr('min_column_width');
     }
+    thisTemplateEngine.screensave_time = $('pages', xml).attr('screensave_time');
+    thisTemplateEngine.screensave_page = $('pages', xml).attr('screensave_page');
 
     // design by url
     if ($.getUrlVar("design")) {
@@ -803,6 +805,14 @@ function TemplateEngine() {
     delete xml; // not needed anymore - free the space
 //    $(window).trigger('resize');
     $("#pages").triggerHandler("done");
+    if( undefined !== thisTemplateEngine.screensave_time )
+    {
+      thisTemplateEngine.screensave = setTimeout( function(){thisTemplateEngine.scrollToPage();}, thisTemplateEngine.screensave_time*1000 );
+      $(document).click( function(){
+        clearInterval( thisTemplateEngine.screensave );
+        thisTemplateEngine.screensave = setTimeout( function(){thisTemplateEngine.scrollToPage();}, thisTemplateEngine.screensave_time*1000 );
+      });
+    }
   };
 
   this.create_pages = function(page, path, flavour, type) {
@@ -821,12 +831,9 @@ function TemplateEngine() {
   };
 
   this.scrollToPage = function(page_id, speed, skipHistory) {
-    $('.activePage', '#pages').removeClass('activePage');
-    $('.pageActive', '#pages').removeClass('pageActive');
-    $('.pagejump.active').removeClass('active');
-    $('.pagejump.active_ancestor').removeClass('active_ancestor');
-    thisTemplateEngine.resetPageValues();
-
+    if( undefined === page_id )
+      page_id = this.screensave_page;
+    
     if (page_id.match(/^id_[0-9_]+$/) == null) {
       // find Page-ID by name
       $('.page h1:contains(' + page_id + ')', '#pages').each(function(i) {
@@ -835,7 +842,19 @@ function TemplateEngine() {
         }
       });
     }
+    // don't scroll when target is already active
+    if( thisTemplateEngine.currentPageID == page_id )
+      return;
+    thisTemplateEngine.currentPageID = page_id;
+    
+    $('.activePage', '#pages').removeClass('activePage');
+    $('.pageActive', '#pages').removeClass('pageActive');
+    $('.pagejump.active').removeClass('active');
+    $('.pagejump.active_ancestor').removeClass('active_ancestor');
+    thisTemplateEngine.resetPageValues();
+    
     var page = $('#' + page_id);
+    
     thisTemplateEngine.currentPage = page;
 
     page.addClass('pageActive activePage');// show new page
