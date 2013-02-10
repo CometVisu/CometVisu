@@ -193,14 +193,14 @@ function createDiagram( page, path, oldType ) {
         bDiagramOpts = jQuery.extend(bDiagramOpts, { grid: {hoverable: true, clickable: true} });
       }
 
-      refreshDiagram(bDiagram, bDiagramOpts);
+      //refreshDiagram(bDiagram, bDiagramOpts);
       return false;
     });
   }
   if ((oldType=="inline") || ($p.attr("previewlabels") == "true")) {
-    refreshDiagram(diagram, {});
+    //refreshDiagram(diagram, {});
   } else {
-    refreshDiagram(diagram, {xaxes: [{ticks: 0}], yaxes: [{ticks: 0}]});
+    //refreshDiagram(diagram, {xaxes: [{ticks: 0}], yaxes: [{ticks: 0}]});
   }
 
   return ret_val;
@@ -341,7 +341,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
         bDiagramOpts = jQuery.extend(bDiagramOpts, { grid: {hoverable: true, clickable: true} });
       }
 
-      refreshDiagram(bDiagram, bDiagramOpts);
+      //refreshDiagram(bDiagram, bDiagramOpts);
       return false;
     });
 
@@ -482,3 +482,13 @@ function doRefreshDiagram(diagram, flotoptions, data) {
 
   return false;
 }
+
+$(window).bind( 'scrolltopage', function( event, page_id ){
+  var pagedivs = $('div', '#' + page_id);
+  for ( var i = 0; i < pagedivs.length; i++) { // check for inline diagrams &
+    // refresh
+    if (/diagram_inline/.test(pagedivs[i].className)) {
+      refreshDiagram(pagedivs[i]);
+    }
+  }
+});
