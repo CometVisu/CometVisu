@@ -452,6 +452,11 @@ function TemplateEngine() {
       pluginsToLoadCount++;
       $.getOrderedScripts( ['plugins/' + $(this).attr('name') + '/structure_plugin.js'] );
     });
+    if (pluginsToLoadCount==0) {
+      // there are no plugins to load
+      thisTemplateEngine.pluginsReady = true;
+      thisTemplateEngine.setup_page();
+    }
 
     // then the icons
     $('meta > icons icon-definition', xml).each(function(i) {
