@@ -114,8 +114,13 @@ function TemplateEngine() {
 
   if ($.getUrlVar('forceReload')) {
     this.forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set
-                                                              // to
-    // false
+                                                              // to false
+  }
+  
+  if ($.getUrlVar('forceMobile')) {
+    this.forceMobile = $.getUrlVar('forceMobile') != 'false'; // true unless set
+  } else {                                                    // to false
+    this.forceMobile = false;
   }
 
   // "Bug"-Fix for ID: 3204682 "Caching on web server"
@@ -332,6 +337,7 @@ function TemplateEngine() {
     // if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
     var mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
     if (/(nexus 7|tablet)/i.test(uagent)) mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
+    mobileDevice |= thisTemplateEngine.forceMobile;  // overwrite detection when set by URL
     if (mobileDevice) {
       $main.css('width', width);
       $('#pageSize').text('.page{width:' + (width - 0) + 'px;}');
@@ -452,6 +458,7 @@ function TemplateEngine() {
     $.getCSS( 'designs/designglobals.css' );
     $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css' );
     $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/mobile.css',
+              thisTemplateEngine.forceMobile ? {} : 
               {media: 'only screen and (max-width: '
               + thisTemplateEngine.maxMobileScreenWidth + 'px)'} );
     $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css' );
