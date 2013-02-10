@@ -88,6 +88,61 @@ Config</a> ]]></status>
       	<layout colspan="0"/>
         <label><icon name="weather_sun" />Flavour</label>
       </pagejump>
+      <!-- .... -->
+            <pagejump target="Übersicht">
+        <layout colspan="0"/>
+        <label><icon name="steuer_home" />Übersicht</label>
+      </pagejump>
+      <line />
+      <pagejump target="Wohnzimmer">
+        <layout colspan="0"/>
+        <label><icon name="steuer_alles_ein_aus" />KNX</label>
+      </pagejump>
+      <pagejump target="Video">
+        <layout colspan="0"/>
+        <label><icon name="it_fernsehen" />Video</label>
+      </pagejump>
+      <pagejump target="Audio">
+        <layout colspan="0"/>
+        <label><icon name="audio_audio" />Audio</label>
+      </pagejump>
+      <pagejump target="Web">
+        <layout colspan="0"/>
+        <label><icon name="it_internet" />Web</label>
+      </pagejump>
+      <line />
+      <pagejump target="Flavour">
+        <layout colspan="0"/>
+        <label><icon name="wetter_sonne" />Flavour</label>
+      </pagejump>
+      <pagejump target="Übersicht">
+        <layout colspan="0"/>
+        <label><icon name="steuer_home" />Übersicht</label>
+      </pagejump>
+      <line />
+      <pagejump target="Wohnzimmer">
+        <layout colspan="0"/>
+        <label><icon name="steuer_alles_ein_aus" />KNX</label>
+      </pagejump>
+      <pagejump target="Video">
+        <layout colspan="0"/>
+        <label><icon name="it_fernsehen" />Video</label>
+      </pagejump>
+      <pagejump target="Audio">
+        <layout colspan="0"/>
+        <label><icon name="audio_audio" />Audio</label>
+      </pagejump>
+      <pagejump target="Web">
+        <layout colspan="0"/>
+        <label><icon name="it_internet" />Web</label>
+      </pagejump>
+      <line />
+      <pagejump target="Flavour">
+        <layout colspan="0"/>
+        <label><icon name="wetter_sonne" />Flavour</label>
+      </pagejump>
+
+      <!-- .... -->
     </navbar>
     <group name="Allgemein">
       <layout colspan="12" />

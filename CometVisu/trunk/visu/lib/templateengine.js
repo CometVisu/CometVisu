@@ -895,13 +895,6 @@ function TemplateEngine() {
      */
     thisTemplateEngine.pagePartsHandler.initializeNavbars(page_id);
 
-    var pagedivs = $('div', '#' + page_id);
-    for ( var i = 0; i < pagedivs.length; i++) { // check for inline diagrams &
-      // refresh
-      if (/diagram_inline/.test(pagedivs[i].className)) {
-        refreshDiagram(pagedivs[i]);
-      }
-    }
     // set pagejump for this page to active if it exists
     $(".pagejump > .actor").each(
         function(i) {
