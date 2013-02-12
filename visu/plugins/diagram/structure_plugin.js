@@ -47,7 +47,7 @@
   *   - title:                optional, diagram title (overrides label-content)
   *
   * functions:
-  *   - createDiagram(page, path, oldType)
+  *   - createDiagram(page, path)
   *   - refreshDiagram(diagram, flotoptions, data)
   *
 */
@@ -97,7 +97,7 @@ function diagram_get_content( page ) {
   return { axes: axes, axesnum: axesnum, rrd: rrd, rrdnum: rrdnum };
 }
 
-function createDiagram( page, path, oldType ) {
+function createDiagram( page, path ) {
   var $p = $(page);
 
   function uniqid() {
@@ -117,10 +117,9 @@ function createDiagram( page, path, oldType ) {
 
   if ($p.attr("width")) {
     diagram.css("width", $p.attr("width"));
-  } else {
-    if (oldType=="popup") {
+  }
+  if ($p.attr("previewlabels")=="false") {
       diagram.removeClass("diagram_inline").addClass("diagram_preview");
-    }
   }
   if ($p.attr("height")) {
     diagram.css("height", $p.attr("height"));
@@ -150,7 +149,7 @@ function createDiagram( page, path, oldType ) {
 
   diagram.data("ispopup", false);
   
-  if ((oldType=="popup") || ($p.attr("popup")=="true")) {
+  if ($p.attr("popup")=="true") {
     diagram.bind("click", function() {
       bDiagram.data(data);
       bDiagram.data("ispopup", true);
@@ -197,7 +196,7 @@ function createDiagram( page, path, oldType ) {
       return false;
     });
   }
-  if ((oldType=="inline") || ($p.attr("previewlabels") == "true")) {
+  if ($p.attr("previewlabels") == "true") {
     //refreshDiagram(diagram, {});
   } else {
     refreshDiagram(diagram, {xaxes: [{ticks: 0}], yaxes: [{ticks: 0}]});
@@ -207,21 +206,10 @@ function createDiagram( page, path, oldType ) {
 }
   
 
-VisuDesign_Custom.prototype.addCreator("diagram_inline", {
-  create: function( page, path ) {
-    return createDiagram(page, path, "inline");    
-  }
-});
-
-VisuDesign_Custom.prototype.addCreator("diagram_popup", {
-  create: function(page,path) {
-    return createDiagram(page, path, "popup");
-  }
-});
 
 VisuDesign_Custom.prototype.addCreator("diagram", {
   create: function(page,path) {
-    return createDiagram(page, path, "none");
+    return createDiagram(page, path);
   }
 });
 

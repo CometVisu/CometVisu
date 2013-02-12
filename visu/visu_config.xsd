@@ -331,8 +331,6 @@
     <xsd:choice>
       <xsd:element name="clock" type="clock" />
       <xsd:element name="colorchooser" type="colorchooser" />
-      <xsd:element name="diagram_popup" type="diagram_popup" />
-      <xsd:element name="diagram_inline" type="diagram_inline" />
       <xsd:element name="diagram_info" type="diagram_info" />
       <xsd:element name="diagram" type="diagram" />
       <xsd:element name="rss" type="rss" />
@@ -816,49 +814,6 @@
     <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
   </xsd:complexType>
   
-  <xsd:complexType name="diagram_inline">
-    <xsd:sequence>
-      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="axis" type="axis" minOccurs="0" maxOccurs="unbounded"/>
-      <xsd:element name="rrd" type="rrd" minOccurs="0" maxOccurs="unbounded"/>
-    </xsd:sequence>
-    <xsd:attribute name="rrd" type="xsd:string" use="optional" />
-    <xsd:attribute name="unit" type="xsd:string" use="optional" />
-    <xsd:attribute name="width" type="dimension" use="optional" />
-    <xsd:attribute ref="series" use="optional" />
-    <xsd:attribute name="height" type="dimension" use="optional" />
-    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
-    <xsd:attribute name="period" type="xsd:string" use="optional" />
-    <xsd:attribute ref="datasource" use="optional" />
-    <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
-    <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
-    <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
-    <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
-    <xsd:attribute name="title" type="xsd:string" use="optional" />
-  </xsd:complexType>
-
-  <xsd:complexType name="diagram_popup">
-    <xsd:sequence>
-      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="axis" type="axis" minOccurs="0" maxOccurs="unbounded"/>
-      <xsd:element name="rrd" type="rrd" minOccurs="0" maxOccurs="unbounded"/>
-    </xsd:sequence>
-    <xsd:attribute name="rrd" type="xsd:string" use="optional" />
-    <xsd:attribute name="unit" type="xsd:string" use="optional" />
-    <xsd:attribute ref="series" use="optional" />
-    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
-    <xsd:attribute name="period" type="xsd:string" use="optional" />
-    <xsd:attribute ref="datasource" use="optional" />
-    <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
-    <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
-    <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
-    <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
-    <xsd:attribute name="title" type="xsd:string" use="optional" />
-  </xsd:complexType>
-
   <xsd:complexType name="diagram_info">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
@@ -951,7 +906,17 @@
 
   <xsd:complexType name="line" />
 
-  <!-- toggle is not yet implemented -->
+  <xsd:complexType name="toogle">  
+     <xsd:sequence>
+       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />  
+       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1" />       
+       <xsd:element name="address" type="address" minOccurs="1" />   
+     </xsd:sequence>   
+     <xsd:attribute ref="styling" use="optional" />  
+     <xsd:attribute ref="mapping" use="optional" />  
+     <xsd:attribute ref="align" use="optional" />  
+     <xsd:attribute ref="flavour" use="optional" />  
+   </xsd:complexType><!-- toggle is not yet implemented -->
 
   <xsd:complexType name="axis">
     <xsd:simpleContent>
