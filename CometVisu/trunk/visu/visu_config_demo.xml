@@ -1097,12 +1097,12 @@
       <address transform="DPT:5.001" mode="readwrite">12/7/52</address>
     </slide>
     <break/>
-    <diagram_popup rrd="eib_traffic" unit="tps" series="day" refresh="300">
+    <diagram rrd="eib_traffic" unit="tps" series="day" refresh="300" popup="true" previewlabels="false">
       <label>KNX traffic</label>
-    </diagram_popup>
-    <diagram_inline rrd="eib_traffic" width="600" height="400">
+    </diagram>
+    <diagram rrd="eib_traffic" width="600" height="400" popup="false" previewlabels="true">
       <label/>
-    </diagram_inline>
+    </diagram>
     <diagram_info rrd="eib_traffic" unit="tps" series="day" refresh="300">
       <label>KNX traffic</label>
       <address transform="DPT:9.021" mode="readwrite">12/7/9</address>

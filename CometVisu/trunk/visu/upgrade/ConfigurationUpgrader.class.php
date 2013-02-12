@@ -134,6 +134,31 @@ class ConfigurationUpgrader {
         $this->log('renamed ' . $i . ' nodes of type \'iframe\' to \'web\'');
         unset($objElements, $i);
         
+        // change diagram_popup to diagram
+        
+        $objElements = $objXPath->query('//diagram_popup');
+        $i = 0;
+        foreach ($objElements as $objElement) {
+        	$objElement->setAttribute('popup', 'true');
+        	$objElement->setAttribute('previewlabels', 'false');
+        	$this->renameNode($objElement, 'diagram');
+        	++$i;
+        }
+        $this->log('changed ' . $i . ' nodes of type \'diagram_popup\' to \'diagram\'');
+        unset($objElements);
+        
+        // change diagram_popup to diagram
+        $objElements = $objXPath->query('//diagram_inline');
+        $i = 0;
+        foreach ($objElements as $objElement) {
+        	$objElement->setAttribute('popup', 'false');
+        	$objElement->setAttribute('previewlabels', 'true');
+        	$this->renameNode($objElement, 'diagram');
+        	++$i;
+        }
+        $this->log('changed ' . $i . ' nodes of type \'diagram_inline\' to \'diagram\'');
+        unset($objElements);
+        
         // remove whitespace-attributes
         $objAttributes = $objXPath->query('//@*[.=\' \']');
         $i = 0;
