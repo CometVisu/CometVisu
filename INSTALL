@@ -1,3 +1,9 @@
 The installation of the CometVisu is very simple. You only need
-to copy the directroy "visu" on your web server and edit the
+to copy the directroy "release" on your web server and edit the
 file "visu_config.xml" to match your local requirements.
+
+Or if you want to see the unmodified (and thus unminimized) sources
+and run those (e.g. debugging) you can copy the directroy "src"
+onto you web server.
+But then you should try the development version out of the SVN 
+repository anyway.
