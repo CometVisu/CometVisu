@@ -33,7 +33,7 @@ STRUCTURE_PURE_SRC = \
 
 docs:
 	${YUIDOCPATH}/bin/yuidoc.py visu/lib visu/designs -p docs/parser -o docs -t build/template\
-         -v ${VERSION} -C "The CometVisu developers (please consult the AUTHORS file)" --showprivate -m ${PROJECT}\
+         -v ${VERSION} -C "The CometVisu developers (please consult the <a href=\"../AUTHORS\">AUTHORS</a> file)" --showprivate -m ${PROJECT}\
 	 -u "http://cometvisu.org/"
 
 lint:
