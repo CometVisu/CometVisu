@@ -3,6 +3,7 @@ CACHE MANIFEST
 
 CACHE:
 index.html
+icon/*
 
 NETWORK:
 editor/*
