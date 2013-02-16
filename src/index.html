@@ -17,47 +17,47 @@
     <script src="lib/compatibility.js" type="text/javascript"></script>
     <script type="text/javascript">
       $.ajaxSetup({ crossDomain: true, cache: 'true' != $.getUrlVar('forceReload') }); // make scripts debugable
-      $.includeScripts([
-        "dependencies/jquery-ui.js",
-        "dependencies/strftime.js",
-        "dependencies/scrollable.js",
-        "dependencies/jquery.ui.touch-punch.js",
-        "dependencies/jquery.svg.min.js",
-        "lib/cometvisu-client.js",
-        "lib/iconhandler.js",
-        "structure/pure/_common.js",
-        "designs/structure_custom.js",
-        "structure/pure/break.js",
-        "structure/pure/group.js",
-        "structure/pure/rgb.js",
-        "structure/pure/web.js",
-        "structure/pure/image.js",
-        "structure/pure/imagetrigger.js",
-        "structure/pure/include.js",
-        "structure/pure/info.js",
-        "structure/pure/infotrigger.js",
-        "structure/pure/line.js",
-        "structure/pure/multitrigger.js",
-        "structure/pure/navbar.js",
-        "structure/pure/page.js",
-        "structure/pure/pagejump.js",
-        "structure/pure/slide.js",
-        "structure/pure/switch.js",
-        "structure/pure/text.js",
-        "structure/pure/toggle.js",
-        "structure/pure/trigger.js",
-        "structure/pure/urltrigger.js",
-        "structure/pure/unknown.js",
-        "structure/pure/video.js",
-        "structure/pure/wgplugin_info.js",
-        "transforms/transform_default.js",
-        "transforms/transform_knx.js",
-        "transforms/transform_oh.js",
-        "dependencies/Three.js",
-        "dependencies/poly2tri.js",
-        "dependencies/jsfloorplan.js",
-        "lib/templateengine.js"
-      ]);
+      var ScriptsToInclude = [];
+      ScriptsToInclude.push( "dependencies/jquery-ui.js" );
+      ScriptsToInclude.push( "dependencies/strftime.js" );
+      ScriptsToInclude.push( "dependencies/scrollable.js" );
+      ScriptsToInclude.push( "dependencies/jquery.ui.touch-punch.js" );
+      ScriptsToInclude.push( "dependencies/jquery.svg.min.js" );
+      ScriptsToInclude.push( "lib/cometvisu-client.js" );
+      ScriptsToInclude.push( "lib/iconhandler.js" );
+      ScriptsToInclude.push( "structure/pure/_common.js" );
+      ScriptsToInclude.push( "designs/structure_custom.js" );
+      ScriptsToInclude.push( "structure/pure/break.js" );
+      ScriptsToInclude.push( "structure/pure/group.js" );
+      ScriptsToInclude.push( "structure/pure/rgb.js" );
+      ScriptsToInclude.push( "structure/pure/web.js" );
+      ScriptsToInclude.push( "structure/pure/image.js" );
+      ScriptsToInclude.push( "structure/pure/imagetrigger.js" );
+      ScriptsToInclude.push( "structure/pure/include.js" );
+      ScriptsToInclude.push( "structure/pure/info.js" );
+      ScriptsToInclude.push( "structure/pure/infotrigger.js" );
+      ScriptsToInclude.push( "structure/pure/line.js" );
+      ScriptsToInclude.push( "structure/pure/multitrigger.js" );
+      ScriptsToInclude.push( "structure/pure/navbar.js" );
+      ScriptsToInclude.push( "structure/pure/page.js" );
+      ScriptsToInclude.push( "structure/pure/pagejump.js" );
+      ScriptsToInclude.push( "structure/pure/slide.js" );
+      ScriptsToInclude.push( "structure/pure/switch.js" );
+      ScriptsToInclude.push( "structure/pure/text.js" );
+      ScriptsToInclude.push( "structure/pure/toggle.js" );
+      ScriptsToInclude.push( "structure/pure/trigger.js" );
+      ScriptsToInclude.push( "structure/pure/urltrigger.js" );
+      ScriptsToInclude.push( "structure/pure/unknown.js" );
+      ScriptsToInclude.push( "structure/pure/video.js" );
+      ScriptsToInclude.push( "structure/pure/wgplugin_info.js" );
+      ScriptsToInclude.push( "transforms/transform_default.js" );
+      ScriptsToInclude.push( "transforms/transform_knx.js" );
+      ScriptsToInclude.push( "transforms/transform_oh.js" );
+      ScriptsToInclude.push( "dependencies/Three.js" );
+      ScriptsToInclude.push( "dependencies/poly2tri.js" );
+      ScriptsToInclude.push( "dependencies/jsfloorplan.js" );
+      ScriptsToInclude.push( "lib/templateengine.js" );
+      $.includeScripts( ScriptsToInclude );
     </script>
     <style type="text/css">
         .loading { display: none; }
