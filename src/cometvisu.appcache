@@ -1,10 +1,10 @@
 CACHE MANIFEST
-# Version SVN:20130216-1420
+# Version SVN:20130216-2359
 
 CACHE:
 index.html
-icon/*
+icon/
 
 NETWORK:
-editor/*
+editor/
 *
