@@ -180,7 +180,7 @@ function createDiagram( page, path ) {
         bDiagramOpts = jQuery.extend(bDiagramOpts, { grid: {hoverable: true, clickable: true} });
       }
 
-      doRefreshDiagram(bDiagram, bDiagramOpts);
+      refreshDiagram(bDiagram, bDiagramOpts);
       return false;
     });
   }
@@ -317,7 +317,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
         bDiagramOpts = jQuery.extend(bDiagramOpts, { grid: {hoverable: true, clickable: true} });
       }
 
-      doRefreshDiagram(bDiagram, bDiagramOpts);
+      refreshDiagram(bDiagram, bDiagramOpts);
       return false;
     });
 
@@ -343,11 +343,26 @@ function showDiagramTooltip(x, y, contents) {
   }).appendTo("body").fadeIn(200);
 }
 
-function refreshDiagram(diagram, flotoptions, data) {
-  window.setTimeout(function(diagram, flotoptions, data) {
-    doRefreshDiagram(diagram, flotoptions, data);
-  }, 100, diagram, flotoptions, data );
-};
+refreshDiagram = (function(){
+  var self = this;
+  var done = false;
+  var refreshList = [];
+  $(document).on('firstdata', function(){ 
+    done = true;
+    for( i in refreshList )
+      doRefreshDiagram( refreshList[i][0], refreshList[i][1], refreshList[i][2] );
+    refreshList = null;
+  });
+  
+  return function(diagram, flotoptions, data) {
+    if( done )
+    {
+      doRefreshDiagram(diagram, flotoptions, data);
+    } else {
+      refreshList.push( [diagram, flotoptions, data] );
+    }
+  };
+})();
 
 function doRefreshDiagram(diagram, flotoptions, data) {
   var diagram = $(diagram);
@@ -451,7 +466,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
     if (typeof (refresh) != "undefined" && refresh) {
       // reload regularly
       window.setTimeout(function(diagram, flotoptions, data) {
-        doRefreshDiagram(diagram, flotoptions, data);
+        refreshDiagram(diagram, flotoptions, data);
       }, refresh * 1000, diagram, flotoptions, data );
     }
   }
