@@ -794,18 +794,13 @@
       <xsd:element name="axis" type="axis" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="rrd" type="rrd" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="rrd" type="xsd:string" use="optional" />
-    <xsd:attribute name="unit" type="xsd:string" use="optional" />
     <xsd:attribute name="width" type="dimension" use="optional" />
     <xsd:attribute ref="series" use="optional" />
     <xsd:attribute name="height" type="dimension" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="period" type="xsd:string" use="optional" />
     <xsd:attribute ref="datasource" use="optional" />
-    <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
-    <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
-    <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
     <xsd:attribute ref="legend" use="optional" />
     <xsd:attribute ref="legendposition" use="optional" />
     <xsd:attribute name="popup" type="xsd:boolean" use="optional" />
@@ -825,17 +820,12 @@
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
-    <xsd:attribute name="rrd" type="xsd:string" use="optional" />
-    <xsd:attribute name="unit" type="xsd:string" use="optional" />
     <xsd:attribute ref="series" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="period" type="xsd:string" use="optional" />
     <xsd:attribute ref="datasource" use="optional" />
     <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="linecolor" type="xsd:string" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
-    <xsd:attribute name="yaxismin" type="xsd:string" use="optional" />
-    <xsd:attribute name="yaxismax" type="xsd:string" use="optional" />
     <xsd:attribute ref="legend" use="optional" />
     <xsd:attribute ref="legendposition" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />

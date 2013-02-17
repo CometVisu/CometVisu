@@ -1097,14 +1097,19 @@
       <address transform="DPT:5.001" mode="readwrite">12/7/52</address>
     </slide>
     <break/>
-    <diagram rrd="eib_traffic" unit="tps" series="day" refresh="300" popup="true" previewlabels="false">
+    <diagram legend="popup" series="day" refresh="300" popup="true" previewlabels="false">
       <label>KNX traffic</label>
+      <axis unit="tps"/>
+      <rrd>eib_traffic</rrd>
     </diagram>
-    <diagram rrd="eib_traffic" width="600" height="400" popup="false" previewlabels="true">
+    <diagram width="600" height="400" popup="false" previewlabels="true">
       <label/>
+      <rrd>eib_traffic</rrd>
     </diagram>
-    <diagram_info rrd="eib_traffic" unit="tps" series="day" refresh="300">
+    <diagram_info series="day" refresh="300">
       <label>KNX traffic</label>
+      <axis unit="tps"/>
+      <rrd>eib_traffic</rrd>
       <address transform="DPT:9.021" mode="readwrite">12/7/9</address>
     </diagram_info>
     <line/>

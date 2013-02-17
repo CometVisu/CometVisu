@@ -32,14 +32,11 @@
   *   - diagram_popup (use diagram with option popup="true" instead)
   *
   * attributes:
-  *   - rrd:                  required, name of RRD
-  *   - unit:                 optional, unit for axis-labels
   *   - series:               optional, "hour", "day" (default), "week", "month", "year"
   *   - period:               optional, number of "series" to be shown
   *   - datasource:           optional, RRD-datasource, "MIN", "AVERAGE" (default), "MAX"
   *   - refresh:              optional, refresh-rate in seconds, no refresh if missing
-  *   - yaxismin, yaxismax:   optional, limits for y-axis
-  *   - linecolor, gridcolor: optional, color for dataline and grid, HTML-colorcode
+  *   - gridcolor: optional, color for dataline and grid, HTML-colorcode
   *   - width, height:        optional, width and height of "inline"-diagram
   *   - previewlabels:        optional, show labels on "inline"-diagram
   *   - popup:                optional, make diagram clickable and open popup
@@ -62,37 +59,28 @@ function diagram_get_content( page ) {
   var axes = []; // if yaxismin, yaxismax or unit-attributes exist: old behaviour, otherwise use axis-elements
   var axesnames = {};
   var axesnum = 0;
-  if (page.attr('yaxismin') || page.attr('yaxismax') || page.attr('unit')) {
-    axesnum=1;
-    axes[0] = { position: 'left', min: page.attr('yaxismin') || null, max: page.attr('yaxismax') || null,
-      tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals)+(page.attr('unit') || ""); } 
+  
+  page.find('axis').each( function() { // defaults: left, auto range, no label
+    var name = this.textContent;
+    var unit = this.getAttribute('unit') || "";
+    axes[ axesnum ] = { axisLabel:this.getAttribute('label') || null, position: this.getAttribute('position') || "left", 
+      min: this.getAttribute('min') || null, max: this.getAttribute('max') || null,
+      unit: unit, tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals)+unit; } 
     };
-  } else {
-    page.find('axis').each( function() { // defaults: left, auto range, no label
-      var name = this.textContent;
-      var unit = this.getAttribute('unit') || "";
-      axes[ axesnum ] = { axisLabel:this.getAttribute('label') || null, position: this.getAttribute('position') || "left", 
-        min: this.getAttribute('min') || null, max: this.getAttribute('max') || null,
-        unit: unit, tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals)+unit; } 
-      };
-      axesnames ['_'+name] = axesnum+1;
-      axesnum ++;
-    });
-  }
+    axesnames ['_'+name] = axesnum+1;
+    axesnum ++;
+  });
+  
     
   var rrd = {}; // if rrd-attribute exists: old behaviour, otherwise use rrd-elements, default axis is (1)
   var rrdnum = 0;
-  if (page.attr('rrd')) { 
-    rrd[ '_'+page.attr('rrd') ] = [ page.attr('linecolor') || "", "", "1"];
-    rrdnum=1;
-  } else {
-    page.find('rrd').each( function() {
-      var src = this.textContent;
-      rrd[ '_'+src ] = [ this.getAttribute('color'), this.getAttribute('label') || src, 
-      axesnames['_'+this.getAttribute('yaxis')] || "1" ];
-      rrdnum ++;
-    });
-  }
+  page.find('rrd').each( function() {
+    var src = this.textContent;
+    rrd[ '_'+src ] = [ this.getAttribute('color'), this.getAttribute('label') || src, 
+    axesnames['_'+this.getAttribute('yaxis')] || "1" ];
+    rrdnum ++;
+  });
+  
 
   return { axes: axes, axesnum: axesnum, rrd: rrd, rrdnum: rrdnum };
 }
