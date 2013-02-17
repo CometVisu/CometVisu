@@ -93,11 +93,16 @@ function TemplateEngine() {
     }
     thisTemplateEngine.backend = '/' + thisTemplateEngine.backend + '/';
     thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
-    thisTemplateEngine.visu.update = function(json) { // overload the handler
+    function update(json) {
       for (key in json) {
         $.event.trigger('_' + key, json[key]);
       }
     };
+    thisTemplateEngine.visu.update = function(json) { // overload the handler
+      $(document).trigger( 'firstdata', json );
+      update( json );
+      thisTemplateEngine.visu.update = update; // handle future requests directly
+    }
     thisTemplateEngine.visu.user = 'demo_user'; // example for setting a user
   };
 
@@ -831,8 +836,13 @@ function TemplateEngine() {
       });
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
-    thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
+    var addressesToSubscribe = thisTemplateEngine.getAddresses();
+    if( 0 == addressesToSubscribe.length )
+      $(document).trigger( 'firstdata' ); // no data to recive => send event now
+    else
+      thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
     
+    xml = null;
     delete xml; // not needed anymore - free the space
 //    $(window).trigger('resize');
     $("#pages").triggerHandler("done");
