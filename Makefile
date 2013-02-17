@@ -27,7 +27,8 @@ release:
 	find release -path "*/.svn" -exec rm -rf {} +
 
 release/structure/pure.$(TIMESTAMP).js: release $(STRUCTURE_PURE_SRC)
-	cat src/dependencies/jquery.js src/lib/compatibility.js $(STRUCTURE_PURE_SRC) > release/structure/pure.$(TIMESTAMP).js
+	cat src/dependencies/jquery.js src/lib/compatibility.js $(STRUCTURE_PURE_SRC) | \
+	  yui-compressor --type js > release/structure/pure.$(TIMESTAMP).js
 	cat src/cometvisu.appcache | \
 	  sed 's/# Version.*/# Version $(VERSION):$(TIMESTAMP)/' | \
 	  sed 's%# structure_pure.*%structure/pure.$(TIMESTAMP).js%' \
