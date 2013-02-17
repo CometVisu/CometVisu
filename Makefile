@@ -23,6 +23,8 @@ lint:
 	${LINT} ${SRC}
 
 release: 
+	chmod a+rw src/backup
+	chmod a+rw src/visu_config*.xml
 	cp -rfp src/* release
 	find release -path "*/.svn" -exec rm -rf {} +
 
