@@ -135,29 +135,78 @@ class ConfigurationUpgrader {
         unset($objElements, $i);
         
         // change diagram_popup to diagram
-        
-        $objElements = $objXPath->query('//diagram_popup');
-        $i = 0;
-        foreach ($objElements as $objElement) {
-        	$objElement->setAttribute('popup', 'true');
-        	$objElement->setAttribute('previewlabels', 'false');
-        	$this->renameNode($objElement, 'diagram');
-        	++$i;
-        }
-        $this->log('changed ' . $i . ' nodes of type \'diagram_popup\' to \'diagram\'');
-        unset($objElements);
-        
-        // change diagram_popup to diagram
-        $objElements = $objXPath->query('//diagram_inline');
-        $i = 0;
-        foreach ($objElements as $objElement) {
-        	$objElement->setAttribute('popup', 'false');
-        	$objElement->setAttribute('previewlabels', 'true');
-        	$this->renameNode($objElement, 'diagram');
-        	++$i;
-        }
-        $this->log('changed ' . $i . ' nodes of type \'diagram_inline\' to \'diagram\'');
-        unset($objElements);
+		$objElements = $objXPath->query('//diagram_popup');
+		$i = 0;
+		foreach ($objElements as $objElement) {
+			$objElement->setAttribute('popup', 'true');
+			$objElement->setAttribute('previewlabels', 'false');
+			$objElement->setAttribute('legend', 'popup');
+			$this->renameNode($objElement, 'diagram');
+			
+			++$i;
+		}
+		$this->log('changed ' . $i . ' nodes of type \'diagram_popup\' to \'diagram\'');
+		unset($objElements);
+
+		// change diagram_inline to diagram
+		$objElements = $objXPath->query('//diagram_inline');
+		$i = 0;
+		foreach ($objElements as $objElement) {
+			$objElement->setAttribute('popup', 'false');
+			$objElement->setAttribute('previewlabels', 'true');
+			$objElementNode->setAttribute('legend', 'none');
+			$this->renameNode($objElement, 'diagram');
+			++$i;
+		}
+		$this->log('changed ' . $i . ' nodes of type \'diagram_inline\' to \'diagram\'');
+		unset($objElements);
+
+		// move diagram attributes to child-nodes
+		$objElements = $objXPath->query('//diagram|//diagram_info');
+		$i = 0;
+		foreach ($objElements as $objElementNode) {						
+			if ($objElementNode->hasAttribute('rrd')) { // create rrdnode
+				$objRRDNode = $objElementNode->ownerDocument->createElement('rrd');
+				$rrdContent = $objElementNode->ownerDocument->createTextNode($objElementNode->getAttribute('rrd'));
+				$objRRDNode->appendChild($rrdContent);
+				if ($objElementNode->hasAttribute('linecolor')) {
+					$objRRDNode->setAttribute('color', $objElementNode->getAttribute('linecolor'));
+				}
+				$objElementNode->removeAttribute('rrd');
+				$objElementNode->appendChild($objRRDNode);
+			}
+			if ($objElementNode->hasAttribute('linecolor')) {
+				$objElementNode->removeAttribute('linecolor');
+			}
+			
+			$objAxisNode = $objElementNode->ownerDocument->createElement('axis');
+			$addAxis=false;
+			
+			if ($objElementNode->hasAttribute('yaxismin')) {
+				$objAxisNode->setAttribute('min', $objElementNode->getAttribute('yaxismin'));
+				$objElementNode->removeAttribute('yaxismin');
+				$addAxis=true;
+			}
+			
+			if ($objElementNode->hasAttribute('yaxismax')) {
+				$objAxisNode->setAttribute('max', $objElementNode->getAttribute('yaxismax'));
+				$objElementNode->removeAttribute('yaxismax');
+				$addAxis=true;
+			}
+			
+			if ($objElementNode->hasAttribute('unit')) {
+				$objAxisNode->setAttribute('unit', $objElementNode->getAttribute('unit'));
+				$objElementNode->removeAttribute('unit');
+				$addAxis=true;
+			}
+			
+			if ($addAxis) {
+				$objElementNode->appendChild($objAxisNode);
+			}
+			++$i;
+		}
+		$this->log('moved attributes to childs in  ' . $i . ' nodes of type \'diagram(_info)\' ');
+		unset($objElements);
         
         // remove whitespace-attributes
         $objAttributes = $objXPath->query('//@*[.=\' \']');
