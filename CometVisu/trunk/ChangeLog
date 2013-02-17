@@ -69,9 +69,26 @@ HEAD
 - extension added to support openHAB (http://code.google.com/p/openhab/) as backend
 - Added class parameter for additional styling
 - lots of little bugfixes and improvements
-- Editor: old WYSIWYG-editor was removed due to existing and forseeable compatibility issues
-<Changes up to Revision 1243 included>
+- Editor: old WYSIWYG-editor was removed due to existing and forseeable
+  compatibility issues and replaced by a future proof design
 - iframe-widget was renamed to web
+- improved performance for mobile devices by using their hardware acceleration
+- allow trigger and infotrigger widgets to distinguish between shorttime and
+  longtime clicks
+- improved performance for initial page loading by postponing the diagram
+  data retrieval
+- improved performance for initial page loading by using offline application 
+  caching
+- more reliable caching prevention by adding forceReload=true on the URL
+- new possibility to enable a simple status-update-queue, which loads the 
+  startpage items status first and then all other items status, can be enabled 
+  via URL-Parameter ?enableQueue=1
+- Implemented feature request #3203398: Make area for actions in 
+  switch/page-widgets bigger by using the new attribute bind_click_to_widget
+- show a waring alert if the user is using an unsupported browser
+- Implement feature request #3575661: "Screensaver Mode: Back to Home or
+  Slider through pages..."
+<Changes up to Revision 1496 included>
 
 
 0.6.2
