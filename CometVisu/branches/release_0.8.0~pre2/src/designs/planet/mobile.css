@@ -1,0 +1,39 @@
+.widget_container {
+    width: 98%;
+}
+
+#bottom {
+    display: none;
+}
+
+.page {
+    overflow: visible;
+}
+.group { 
+	margin: 0.2em 0.1em;
+}
+#navbarLeft, #navbarLeft > .navbar, #navbarRight, #navbarRight > .navbar { display: none !important; width: 0 !important; }
+
+.widget .ui-slider
+{
+  width: 99%;
+}
+
+
+
+.popup > .main, .widget.image > .actor, .widget.video > .actor, .widget.diagram > .actor {
+ 
+  left: 0rem;
+  right: -0.8rem;
+  
+}
+
+.popup_background {
+ width: 95%;
+  left: 1%;
+}
+.popup > .main, .widget.image > .actor, .widget.video > .actor, .widget.diagram > .actor {
+
+  left: -1rem;
+  
+}
