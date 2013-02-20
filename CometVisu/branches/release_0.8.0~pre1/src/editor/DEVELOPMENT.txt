@@ -1,0 +1,56 @@
+=== KNOWN BUGS AND LIMITATIONS ===
+* loading the XSD is done in Javascript. The Schema-Loader knows a certain set an structure of an XSD. If "unknown"
+  XSD-features are being used in the schema, the Schema-Loader may not know about them, and the editor will thus fail.
+
+
+=== ROADMAP ===
+* MS1 - done
+ - OOP-representation of the schema/XSD
+ - OOP-representation of the configuration
+ - validate configuration against XSD
+
+* MS2 - done
+ - browser loads configuration, checks it against an XSD, warns if not compliant
+ - editor is displayed in browser, nodes are shown as a tree
+ - node-attributes can be edited
+ - node children can be added, removed
+
+* MS3 - done
+ - nodes have copy&paste, move.
+ - configuration can be saved
+ - attributes like rrd, addr can be selected from a list; said list is loaded from the server
+ - attributes like styling, mapping can be selected from a dynamic list; list is based on current configuration
+
+* MS4 - done
+ - better check bounds of configuration, including multi-dimensional bounds, sequences
+ - preview of the complete configuration without the need of replacing the configuration on the server
+ - integrated sequences, force specific order of elements
+ - use xsd:appinfo to mark attributes as <xsd:appinfo>level:expert</xsd:appinfo> to hide them in non-complex mode
+ - use xsd:documentation, respecting xml:lang, to show documentation next to attributes
+ - configurationUpgrader for anything below version 1 to version 1.
+
+* no MS planned
+ - preview for a SINGLE node without the need of replacing the configuration on the server
+
+=== TODO ===
+
+* MS1:
+ - done
+
+* MS2:
+ - done
+
+* MS3:
+ - done
+
+* MS4:
+ - done
+
+* future:
+ - frontend: preview node incl. children
+
+
+
+=== IDEAS ===
+* transparently exchange whitespaces with &nbsp; for text-nodes to make sure the user gets what he entered ...
+* backups on saving
