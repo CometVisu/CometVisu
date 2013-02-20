@@ -28,6 +28,8 @@ $SVN_CMD copy --username $USER --password $PASS -m "Creating release branch $VER
   "https://openautomation.svn.sourceforge.net/svnroot/openautomation/CometVisu/trunk" \
   "https://openautomation.svn.sourceforge.net/svnroot/openautomation/CometVisu/branches/$RELEASE_DIR"
 
+$SVN_CMD propdel svn:ignore ../branches/$RELEASE_DIR
+
 # NOTE: the script assumes that the branches live at .../CometVisu/branches
 cd ../branches
 
