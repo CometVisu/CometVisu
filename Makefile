@@ -15,6 +15,7 @@ TIMESTAMP := $(shell date +%Y%m%d-%H%M%S)
 all: docs build
 
 docs:
+	ls -l
 	${YUIDOCPATH}/bin/yuidoc.py src/lib src/designs -p docs/parser -o docs -t build/template\
          -v ${VERSION} -C "The CometVisu developers (please consult the <a href=\"../AUTHORS\">AUTHORS</a> file)" --showprivate -m ${PROJECT}\
 	 -u "http://cometvisu.org/"
@@ -23,9 +24,11 @@ lint:
 	${LINT} ${SRC}
 
 release: 
+	ls -l
 	chmod a+rw src/backup
 	chmod a+rw src/visu_config*.xml
-	cp -rfp src/* release
+	mkdir ./release
+	cp -rfp ./src ./release
 	find release -path "*/.svn" -exec rm -rf {} +
 
 release/structure/pure.$(TIMESTAMP).js: release $(STRUCTURE_PURE_SRC)
