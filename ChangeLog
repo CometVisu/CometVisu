@@ -1,6 +1,11 @@
 HEAD
 ====
 
+- 
+
+0.8.0~pre1
+=====
+
 - New feature: individual icons can be added in the meta area
 - New plugin: strftime
 - Obsolete plugin removed: jqclock (use strftime instead)
@@ -88,8 +93,6 @@ HEAD
 - show a waring alert if the user is using an unsupported browser
 - Implement feature request #3575661: "Screensaver Mode: Back to Home or
   Slider through pages..."
-<Changes up to Revision 1496 included>
-
 
 0.6.2
 =====
