@@ -27,8 +27,8 @@ release:
 	ls -l
 	chmod a+rw src/backup
 	chmod a+rw src/visu_config*.xml
-	mkdir ./release
-	cp -rfp ./src ./release
+	mkdir -p ./release
+	cp -rfp ./src/* ./release
 	find release -path "*/.svn" -exec rm -rf {} +
 
 release/structure/pure.$(TIMESTAMP).js: release $(STRUCTURE_PURE_SRC)

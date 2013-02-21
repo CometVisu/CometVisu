@@ -28,8 +28,6 @@ $SVN_CMD copy --username $USER --password $PASS -m "Creating release branch $VER
   "https://openautomation.svn.sourceforge.net/svnroot/openautomation/CometVisu/trunk" \
   "https://openautomation.svn.sourceforge.net/svnroot/openautomation/CometVisu/branches/$RELEASE_DIR"
 
-$SVN_CMD propdel svn:ignore ../branches/$RELEASE_DIR
-
 # NOTE: the script assumes that the branches live at .../CometVisu/branches
 cd ../branches
 
@@ -45,6 +43,7 @@ if [ x"$4" = "x-dry" ]; then
 fi
 
 $SVN_CMD up
+$SVN_CMD propdel svn:ignore $RELEASE_DIR
 echo $VERSION > $RELEASE_DIR/VERSION
 sed -i "s/Version: SVN/Version: $VERSION/" $RELEASE_DIR/src/visu_config.xml 
 sed -i "s/Version: SVN/Version: $VERSION/" $RELEASE_DIR/src/visu_config_demo.xml 
