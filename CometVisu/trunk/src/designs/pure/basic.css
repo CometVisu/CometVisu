@@ -32,6 +32,8 @@ body hr
   clear:both;
   color: #ff8000;
   background-color: #ff8000;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000));
+  background: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2));
   height: 1px;
   border:none;
   padding:0px;
@@ -189,6 +191,8 @@ body br
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+  background: -webkit-gradient(linear, 100% 100%, 0 0, from(#000000), to(#0f0f0f));
+  background: linear-gradient(-10deg, #000000, #0f0f0f);
 }
 
 .switchPressed
@@ -213,6 +217,8 @@ body br
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(#000000), to(#0f0f0f));
+  background: linear-gradient(170deg, #000000, #0f0f0f);
 }
 
 .switchInvisible
@@ -379,6 +385,8 @@ div#loading {
 .flavour_black hr
 {
   background-color: #000000;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.2)), color-stop(33%, #000000), color-stop(67%, #000000));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgb(0, 0, 0) 33%, rgb(0, 0, 0) 67%, rgba(0, 0, 0, 0.2));
 }
 .flavour_black .link a
 {
@@ -392,6 +400,8 @@ div#loading {
 .flavour_white hr
 {
   background-color: #ffffff;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 255, 255, 0.2)), to(rgba(255, 255, 255, 0.2)), color-stop(33%, #ffffff), color-stop(67%, #ffffff));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgb(255, 255, 255) 33%, rgb(255, 255, 255) 67%, rgba(255, 255, 255, 0.2));
 }
 .flavour_white .link a
 {
@@ -405,6 +415,8 @@ div#loading {
 .flavour_antimony hr
 {
   background-color: #00ddff;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(0, 221, 255, 0.2)), to(rgba(0, 221, 255, 0.2)), color-stop(33%, #00ddff), color-stop(67%, #00ddff));
+  background: linear-gradient(to right, rgba(0, 221, 255, 0.2), rgb(0, 221, 255) 33%, rgb(0, 221, 255) 67%, rgba(0, 221, 255, 0.2));
 }
 .flavour_antimony .link a
 {
@@ -418,6 +430,8 @@ div#loading {
 .flavour_boron hr
 {
   background-color: #00ff11;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(0, 255, 17, 0.2)), to(rgba(0, 255, 17, 0.2)), color-stop(33%, #00ff11), color-stop(67%, #00ff11));
+  background: linear-gradient(to right, rgba(0, 255, 17, 0.2), rgb(0, 255, 17) 33%, rgb(0, 255, 17) 67%, rgba(0, 255, 17, 0.2));
 }
 .flavour_boron .link a
 {
@@ -431,6 +445,8 @@ div#loading {
 .flavour_lithium hr
 {
   background-color: #ff0000;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 0, 0, 0.2)), to(rgba(255, 0, 0, 0.2)), color-stop(33%, #ff0000), color-stop(67%, #ff0000));
+  background: linear-gradient(to right, rgba(255, 0, 0, 0.2), rgb(255, 0, 0) 33%, rgb(255, 0, 0) 67%, rgba(255, 0, 0, 0.2));
 }
 .flavour_lithium .link a
 {
@@ -444,6 +460,8 @@ div#loading {
 .flavour_potassium hr
 {
   background-color: #d00055;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(208, 0, 85, 0.2)), to(rgba(208, 0, 85, 0.2)), color-stop(33%, #d00055), color-stop(67%, #d00055));
+  background: linear-gradient(to right, rgba(208, 0, 85, 0.2), rgb(208, 0, 85) 33%, rgb(208, 0, 85) 67%, rgba(208, 0, 85, 0.2));
 }
 .flavour_potassium .link a
 {
@@ -457,6 +475,8 @@ div#loading {
 .flavour_sodium hr
 {
   background-color: #ff8000;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000));
+  background: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2));
 }
 .flavour_sodium .link a
 {
