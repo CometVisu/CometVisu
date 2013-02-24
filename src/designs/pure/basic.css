@@ -32,12 +32,46 @@ body hr
   clear:both;
   color: #ff8000;
   background-color: #ff8000;
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000));
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000));
   background: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2));
   height: 1px;
   border:none;
   padding:0px;
   margin:0.1em;
+}
+
+#navbarTop hr, #navbarBottom hr 
+{
+  clear: none;
+  float: left;
+  width: 1px;
+  height: 3.6em;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  background: linear-gradient(to bottom, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2));
+}
+
+#navbarTop
+{
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 1px solid #ff8000;
+  -webkit-border-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000)) 100% 1;
+  -moz-border-image: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 100% 1;
+  border-image: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 100% 1;
+}
+
+#navbarLeft
+{
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 1px solid #ff8000;
+  -webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000)) 1 100%;
+  -moz-border-image: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 1 100%;
+  border-image: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 1 100%;
 }
 
 body br
@@ -110,6 +144,16 @@ body br
 {
   float:left;
   margin-left:1em;
+}
+
+#navbarLeft .widget .label, #navbarRight .widget .label
+{
+  width: initial;
+}
+
+#navbarTop .widget .actor, #navbarBottom .widget .actor
+{
+  display: none;
 }
 
 .widget .actor div
@@ -385,7 +429,7 @@ div#loading {
 .flavour_black hr
 {
   background-color: #000000;
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.2)), color-stop(33%, #000000), color-stop(67%, #000000));
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.2)), color-stop(33%, #000000), color-stop(67%, #000000));
   background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgb(0, 0, 0) 33%, rgb(0, 0, 0) 67%, rgba(0, 0, 0, 0.2));
 }
 .flavour_black .link a
@@ -400,7 +444,7 @@ div#loading {
 .flavour_white hr
 {
   background-color: #ffffff;
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 255, 255, 0.2)), to(rgba(255, 255, 255, 0.2)), color-stop(33%, #ffffff), color-stop(67%, #ffffff));
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(255, 255, 255, 0.2)), to(rgba(255, 255, 255, 0.2)), color-stop(33%, #ffffff), color-stop(67%, #ffffff));
   background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgb(255, 255, 255) 33%, rgb(255, 255, 255) 67%, rgba(255, 255, 255, 0.2));
 }
 .flavour_white .link a
@@ -415,7 +459,7 @@ div#loading {
 .flavour_antimony hr
 {
   background-color: #00ddff;
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(0, 221, 255, 0.2)), to(rgba(0, 221, 255, 0.2)), color-stop(33%, #00ddff), color-stop(67%, #00ddff));
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(0, 221, 255, 0.2)), to(rgba(0, 221, 255, 0.2)), color-stop(33%, #00ddff), color-stop(67%, #00ddff));
   background: linear-gradient(to right, rgba(0, 221, 255, 0.2), rgb(0, 221, 255) 33%, rgb(0, 221, 255) 67%, rgba(0, 221, 255, 0.2));
 }
 .flavour_antimony .link a
@@ -430,7 +474,7 @@ div#loading {
 .flavour_boron hr
 {
   background-color: #00ff11;
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(0, 255, 17, 0.2)), to(rgba(0, 255, 17, 0.2)), color-stop(33%, #00ff11), color-stop(67%, #00ff11));
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(0, 255, 17, 0.2)), to(rgba(0, 255, 17, 0.2)), color-stop(33%, #00ff11), color-stop(67%, #00ff11));
   background: linear-gradient(to right, rgba(0, 255, 17, 0.2), rgb(0, 255, 17) 33%, rgb(0, 255, 17) 67%, rgba(0, 255, 17, 0.2));
 }
 .flavour_boron .link a
@@ -445,7 +489,7 @@ div#loading {
 .flavour_lithium hr
 {
   background-color: #ff0000;
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 0, 0, 0.2)), to(rgba(255, 0, 0, 0.2)), color-stop(33%, #ff0000), color-stop(67%, #ff0000));
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(255, 0, 0, 0.2)), to(rgba(255, 0, 0, 0.2)), color-stop(33%, #ff0000), color-stop(67%, #ff0000));
   background: linear-gradient(to right, rgba(255, 0, 0, 0.2), rgb(255, 0, 0) 33%, rgb(255, 0, 0) 67%, rgba(255, 0, 0, 0.2));
 }
 .flavour_lithium .link a
@@ -460,7 +504,7 @@ div#loading {
 .flavour_potassium hr
 {
   background-color: #d00055;
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(208, 0, 85, 0.2)), to(rgba(208, 0, 85, 0.2)), color-stop(33%, #d00055), color-stop(67%, #d00055));
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(208, 0, 85, 0.2)), to(rgba(208, 0, 85, 0.2)), color-stop(33%, #d00055), color-stop(67%, #d00055));
   background: linear-gradient(to right, rgba(208, 0, 85, 0.2), rgb(208, 0, 85) 33%, rgb(208, 0, 85) 67%, rgba(208, 0, 85, 0.2));
 }
 .flavour_potassium .link a
@@ -475,7 +519,7 @@ div#loading {
 .flavour_sodium hr
 {
   background-color: #ff8000;
-  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000));
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000));
   background: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2));
 }
 .flavour_sodium .link a
@@ -507,3 +551,7 @@ div#demo_3 {
     background-color: black;
 }
 
+img.icon
+{
+  vertical-align: middle;
+}
