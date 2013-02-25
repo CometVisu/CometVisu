@@ -1,0 +1,555 @@
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
+
+/**
+ * The Browser-Represenation-Layer of the Editor.
+ *
+ *
+ * LICENSE: This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://opensource.org/licenses/gpl-license.php>;.
+ *
+ * @category    editor
+ * @package     CometVisu
+ * @author      Julian Makowski (julian at makowskis dot de)
+ * @copyright   2012 Julian Makowski
+ * @license     GPLv3 or later, http://opensource.org/licenses/gpl-license.php
+ * @version     SVN: $Id$
+ * @link        http://cometvisu.de
+ * @since       2012-10-28
+ */
+
+#config, #config input, #config select, #config textarea {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14pt;
+    color: #3E3E3E;
+}
+
+#editor {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+#editor > .menu {
+    display: block;
+    height: 35px;
+    background-color: #d3d3d3;
+    margin: 0;
+    padding: 5px;
+}
+
+#editor span.save {
+    
+}
+
+ul#config {
+    width: 590px;
+    height: 800px;
+    overflow-x: auto;
+    overflow-y: auto;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+ul#config,
+#config ul {
+    list-style-type: none;
+    list-style-image: none;
+    padding-left: 0;
+    margin-left: 5px;
+}
+
+#config ul {
+    margin-left: 15px;
+}
+
+#config li.element {
+    clear: both;
+    margin-bottom: 9px;
+    display: block;
+    position: relative;
+}
+
+#config li.dropzone {
+    clear: both;
+    margin: 9px;
+    display: block;
+    height: 18px;
+    background-color: lightyellow;
+    border: 1px dotted grey;
+}
+
+#config li.element.cutout {
+    opacity: 0.5;
+    border: 1px dashed black;
+}
+
+#config li.element:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+#config li.element.invalidChildAttribute > .element > .name:after {
+    color: #8e7575;
+    content: '(child has invalid data)';
+    font-size: 9pt;
+}
+
+#config li.element.invalidAttribute > .element > .name:after {
+    color: red;
+    content: '(has invalid data)';
+    font-size: 9pt;
+}
+
+#config li.element > .tree {
+    /* tree-indicator */
+    display: block;
+    margin-right: 0;
+    float: left;
+    cursor: pointer;
+    padding: 4px;
+}
+
+#config li.element > .element {
+    display: block;
+}
+
+#config .element > .name {
+    font-size: 115%;
+    display: block;
+    float: left;
+    padding: 4px;
+    border: 1px solid transparent;
+    cursor: default;
+}
+
+#config .element .name.active {
+    background-color: #aad8ff;
+    border: 1px dotted #c0c0c0;
+}
+
+#config .element .name .nameValue {
+    margin-left: 18px;
+    font-size: 87%;
+}
+
+#config .element .name .nameValue.set:before,
+#config .element .name .nameValue.set:after {
+    content: '"';
+}
+
+
+#config .element .addChildContainer {
+    height: 27px;
+    display: inline-block;
+    padding: 4px;
+    border: 1px solid #6b6b6b;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+#config .element .addChildContainer select {
+    display: inline-block;
+    float: left;
+}
+
+#config .submenu {
+    display: block;
+    float: left;
+    border: 1px solid #a0a0a0;
+    border-radius: 4px;
+    padding: 4px;
+    margin: 4px;
+    position: absolute;
+    background-color: white;
+}
+
+#config .submenu {
+    z-index: 5;
+}
+
+#config .name,
+#config .attributes,
+#config .children,
+#config .button {
+    z-index: 1;
+}
+
+#config .submenu .menuitem {
+    display: block;
+    margin: 4px;
+    cursor: pointer;
+}
+
+#config .submenu .menuitem.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#editor > .menu .button,
+#config .element .button,
+#config .tree .button {
+    cursor: pointer;
+    font-size: 14pt;
+    display: inline-block;
+    background-color: #d3d3d3;
+    border: 1px solid #a0a0a0;
+    border-radius: 4px;
+    margin: 0 4px;
+    padding: 4px;
+
+    background-image: linear-gradient(top, #dddddd, #c0c0c0);
+    background-image: -o-linear-gradient(top, #dddddd, #c0c0c0);
+    background-image: -moz-linear-gradient(top, #dddddd, #c0c0c0);
+    background-image: -webkit-linear-gradient(top, #dddddd, #c0c0c0);
+    background-image: -ms-linear-gradient(top, #dddddd, #c0c0c0);
+
+    background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            color-stop(0, #dddddd),
+            color-stop(1, #c0c0c0)
+    );
+}
+
+#editor > .menu .button.disabled,
+#config .element .button.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#editor > .menu .button.active,
+#config .element .button.active {
+    background-image: linear-gradient(top, #d3d3d3, #464646);
+    background-image: -o-linear-gradient(top, #d3d3d3, #464646);
+    background-image: -moz-linear-gradient(top, #d3d3d3, #464646);
+    background-image: -webkit-linear-gradient(top, #d3d3d3, #464646);
+    background-image: -ms-linear-gradient(top, #d3d3d3, #464646);
+
+    background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            color-stop(0, #d3d3d3),
+            color-stop(1, #464646)
+    );
+}
+
+#config .tree .button,
+#config .tree .button.active {
+    background-image: none;
+    background: transparent;
+    border: none;
+}
+
+
+#config .element .button.cancel {
+    background-image: linear-gradient(top, #d3d3d3, #8e7575);
+    background-image: -o-linear-gradient(top, #d3d3d3, #8e7575);
+    background-image: -moz-linear-gradient(top, #d3d3d3, #8e7575);
+    background-image: -webkit-linear-gradient(top, #d3d3d3, #8e7575);
+    background-image: -ms-linear-gradient(top, #d3d3d3, #8e7575);
+
+    background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            color-stop(0, #d3d3d3),
+            color-stop(1, #8e7575)
+    );
+}
+
+
+#config .element .buttons .button.addchild {
+    background-image: linear-gradient(top, #eaeaea, #b2b2b2);
+    background-image: -o-linear-gradient(top, #eaeaea, #b2b2b2);
+    background-image: -moz-linear-gradient(top, #eaeaea, #b2b2b2);
+    background-image: -webkit-linear-gradient(top, #eaeaea, #b2b2b2);
+    background-image: -ms-linear-gradient(top, #eaeaea, #b2b2b2);
+
+    background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            color-stop(0, #eaeaea),
+            color-stop(1, #b2b2b2)
+    );
+    
+    border: 1px solid #C0C0C0;
+}
+
+#config .element .button .image {
+    width: 18px;
+    height: 18px;
+    display: block;
+    position: relative;
+    margin: auto;
+    background-image: url(editor_sprite.png);
+    background-repeat: no-repeat;
+}
+
+#config .element .buttons .button {
+}
+
+
+/* images for the buttons */
+#config .button.toggleSubmenu {
+    display: none;
+}
+
+#config .button.toggleSubmenu .image {
+    background-position: -36px 0;
+}
+
+
+#config .button.addchild .image {
+    background-position: 0 0;
+}
+
+#config .button.cancel .image {
+    background-position: -54px 0;
+}
+
+#config .button.children .image {
+    background-position: 0 0;
+}
+
+#config .button.children.active .image {
+    background-position: -18px 0;
+}
+
+/* end images for the buttons */
+
+
+#config .element .content {
+    display: block;
+    clear: both;
+    font-size: 90%;
+    color: #464646;
+    min-height: 22px;
+    background-color: #d3d3d3;
+    border-style: solid;
+    border-color: #464646;
+    border-width: 1px;
+    border-radius: 4px;
+    padding: 4px 13px;
+    margin-left: 27px;
+}
+
+#config .element .content .value {
+    display: inline-block;
+    width: 100%;
+}
+
+
+#config .element .content input,
+#config .element .content textarea {
+    font-size: 90%;
+}
+    
+#config .element > ul.attributes {
+    clear: both;
+    display: block;
+    background-color: #d3d3d3;
+    border-style: solid;
+    border-color: #464646;
+    border-width: 1px;
+    border-radius: 4px;
+    padding: 4px;
+    margin-left: 27px;
+    width: 600px;
+    position: fixed;
+    left: 620px;
+    top: 63px;
+}
+
+#config .element ul.attributes.visible.collapsed {
+}
+
+#config .element ul.attributes.visible.collapsed > .attribute {
+}
+
+#config .element > ul.attributes.visible.collapsed > .attribute .name {
+}
+
+
+#config .element > ul.attributes.visible.collapsed > .attribute .name.required:after {
+    content: '';
+}
+
+#config .element > .attributes > .attribute {
+    clear: both;
+    font-size: 90%;
+    color: #464646;
+    background-color: #C0C0C0;
+    margin: 1px;
+    padding: 4px;
+    border-radius: 1px;
+}
+
+#config .element > .attributes > .attribute input,
+#config .element > .attributes > .attribute textarea,
+#config .element .attributes .attribute select {
+    clear: both;
+    font-size: 90%;
+    color: #464646;
+    display: inline-block;
+    width: 300px;
+    border: none;
+    background-color: #dddddd;
+    padding: 4px;
+    margin: 0;
+}
+
+
+#config .element > .attributes > .attribute .name {
+    display: inline-block;
+    width: 240px;
+    height: 20px;
+    margin: 2px 0;
+    padding: 4px 0;
+}
+
+#config .element > .attributes > .attribute .name.required {
+    
+}
+
+#config .element > .attributes > .attribute .name.required:after {
+    font-size: 60%;
+    color: #de898c;
+    content: ' required';
+}
+
+#config .element > .attributes > .attribute .name.optional {
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+
+#config .element > .attributes > .attribute .value {
+    display: inline-block;
+    width: 19em;
+    background-color: #d3d3d3;
+    margin: 2px;
+    padding: 4px;
+    height: 20px;
+    z-index: 1;
+}
+
+#config .element > .attributes > .attribute.invalid {
+    background-color: #D88F8F;
+}
+
+#config .element > .attributes > .attribute .documentation {
+    display: inline-block;
+    font-size: 85%;
+}
+
+#config .element .value.notset {
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+#config .element .value.notset:after {
+    content: 'not set';
+}
+
+
+
+#config .element > ul.children {
+    clear: both;
+    display: block;
+    padding-top: 9px;
+}
+
+#config .element > .children > .element {
+    
+}
+
+#config .activeInput {
+    position: relative;
+    display: inline-block;
+    z-index: 5;
+}
+
+#config .activeInput input {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+#config .activeInput .list {
+    width: 100%;
+    display: block;
+    position: absolute;
+    border: 1px solid #c0c0c0;
+    border-radius: 4px;
+    padding: 5px;
+    overflow-y: auto;
+    height: 7em;
+    background-color: white;
+    z-index: 5;
+}
+
+#config .activeInput .list .option {
+    cursor: default;
+    min-height: 1.2em;
+    border-bottom: 1px dotted #c0c0c0;
+    padding: 2px 0;
+}
+
+#config .activeInput .list .option:hover {
+    background-color: #beebff;
+}
+
+#config .activeInput .list .headline {
+    font-weight: bold;
+    border-bottom: 1px dotted #c0c0c0;
+    border-top: 1px solid #c0c0c0;
+    padding: 5px 0 2px 0;
+}
+
+#config .activeInput .list .option.selected {
+    background-color: #aad8ff;
+    border: 1px dotted #c0c0c0;
+}
+
+/* layout for small screens */
+@media handheld, only screen and (max-width: 1200px) {
+    ul#config {
+        width: auto;
+        height: auto;
+        overflow: visible;
+        border: none;
+    }
+    
+    #config .element > ul.attributes {
+        position: static;
+        left: auto;
+        top: auto;
+    }
+
+    #config .button.toggleSubmenu {
+        display: inline-block;
+    }
+    
+    #config .activeInput .list {
+        position: static;
+        overflow: visible;
+    }
+}
