@@ -1,0 +1,90 @@
+<div class="highlight"><pre><span class="cm">/* structure_custom.js (c) 2010 by Christian Mayer [CometVisu at ChristianMayer dot de]</span>
+<span class="cm"> *</span>
+<span class="cm"> * This program is free software; you can redistribute it and/or modify it</span>
+<span class="cm"> * under the terms of the GNU General Public License as published by the Free</span>
+<span class="cm"> * Software Foundation; either version 3 of the License, or (at your option)</span>
+<span class="cm"> * any later version.</span>
+<span class="cm"> *</span>
+<span class="cm"> * This program is distributed in the hope that it will be useful, but WITHOUT</span>
+<span class="cm"> * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or</span>
+<span class="cm"> * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for</span>
+<span class="cm"> * more details.</span>
+<span class="cm"> *</span>
+<span class="cm"> * You should have received a copy of the GNU General Public License along</span>
+<span class="cm"> * with this program; if not, write to the Free Software Foundation, Inc.,</span>
+<span class="cm"> * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * This module defines the custom widget additions to the CometVisu visualisation.</span>
+<span class="cm"> * @module Structure custom</span>
+<span class="cm">*/</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * This class defines all the custom changes to the visu</span>
+<span class="cm"> * @class VisuDesign_Custom</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">VisuDesign_Custom</span><span class="p">()</span> <span class="p">{};</span>                <span class="c1">// do NOT change here</span>
+<span class="nx">VisuDesign_Custom</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">basicdesign</span><span class="p">;</span>      <span class="c1">// do NOT change here</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * Custom changes could go here and look e.g. like</span>
+<span class="cm">****************************************</span>
+<span class="cm">VisuDesign_Custom.prototype.addCreator(&quot;line&quot;, {</span>
+<span class="cm">      create: function( page, path ) {</span>
+<span class="cm">              return $( &#39;&lt;hr /&gt;&#39; );</span>
+<span class="cm">          },</span>
+<span class="cm">      attributes: {</span>
+<span class="cm">      },</span>
+<span class="cm">      content: false</span>
+<span class="cm">});</span>
+<span class="cm">****************************************</span>
+<span class="cm"> */</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * This is a custom function that extends the available widgets.</span>
+<span class="cm"> * It&#39;s purpose is to change the design of the visu during runtime</span>
+<span class="cm"> * to demonstrate all available</span>
+<span class="cm"> */</span>
+<span class="nx">VisuDesign_Custom</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">addCreator</span><span class="p">(</span><span class="s2">&quot;designtoggle&quot;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">page</span><span class="p">,</span> <span class="nx">path</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">$p</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">page</span><span class="p">);</span>             
+    <span class="kd">var</span> <span class="nx">ret_val</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&quot;widget clearfix switch&quot; /&gt;&#39;</span><span class="p">);</span>
+    <span class="nx">ret_val</span><span class="p">.</span><span class="nx">setWidgetLayout</span><span class="p">(</span><span class="nx">$p</span><span class="p">).</span><span class="nx">makeWidgetLabel</span><span class="p">(</span><span class="nx">$p</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">actor</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;actor switchUnpressed&quot;&gt;&#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;link[href*=&quot;basic.css&quot;]&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="nx">actor</span> <span class="o">+=</span> <span class="s1">&#39;&lt;div class=&quot;value&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">value</span> <span class="o">+</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">;</span>
+    <span class="nx">actor</span> <span class="o">+=</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">;</span>
+    <span class="nx">ret_val</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">actor</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">data</span><span class="p">({</span>
+        <span class="s1">&#39;mapping&#39;</span> <span class="o">:</span> <span class="nx">$p</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;mapping&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;styling&#39;</span> <span class="o">:</span> <span class="nx">$p</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;styling&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;value&#39;</span>   <span class="o">:</span> <span class="nx">value</span><span class="p">,</span>
+        <span class="s1">&#39;type&#39;</span>    <span class="o">:</span> <span class="s1">&#39;toggle&#39;</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">designs</span>     <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;pure&#39;</span><span class="p">,</span> <span class="s1">&#39;discreet&#39;</span><span class="p">,</span> <span class="s1">&#39;discreet_sand&#39;</span><span class="p">,</span> <span class="s1">&#39;discreet_slim&#39;</span><span class="p">,</span> <span class="s1">&#39;alaska&#39;</span><span class="p">,</span> <span class="s1">&#39;alaska_slim&#39;</span><span class="p">,</span> <span class="s1">&#39;planet&#39;</span><span class="p">,</span> <span class="s1">&#39;metal&#39;</span> <span class="p">];</span>
+        <span class="kd">var</span> <span class="nx">oldDesign</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.value&#39;</span><span class="p">,</span><span class="k">this</span><span class="p">).</span><span class="nx">text</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">newDesign</span> <span class="o">=</span> <span class="nx">designs</span><span class="p">[</span> <span class="p">(</span><span class="nx">designs</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">oldDesign</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nx">designs</span><span class="p">.</span><span class="nx">length</span> <span class="p">];</span>
+        
+        <span class="kd">var</span> <span class="nx">URL</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">regexp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&quot;design=&quot;</span><span class="o">+</span><span class="nx">oldDesign</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">URL</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">regexp</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// has URL-parameter design</span>
+          <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">=</span><span class="nx">URL</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">regexp</span><span class="p">,</span> <span class="s2">&quot;design=&quot;</span><span class="o">+</span><span class="nx">newDesign</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">URL</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// has other parameters, append design</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">=</span><span class="nx">URL</span><span class="o">+</span><span class="s2">&quot;&amp;design=&quot;</span><span class="o">+</span><span class="nx">newDesign</span><span class="p">;</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// has now parameters</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">=</span><span class="nx">URL</span><span class="o">+</span><span class="s2">&quot;?design=&quot;</span><span class="o">+</span><span class="nx">newDesign</span><span class="p">;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+        
+      <span class="p">})</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="nx">ret_val</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">attributes</span><span class="o">:</span> <span class="p">{</span>
+  <span class="p">},</span>
+  <span class="nx">content</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+</pre></div>
