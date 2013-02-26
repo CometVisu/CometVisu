@@ -71,8 +71,7 @@ function diagram_get_content( page ) {
     axesnum ++;
   });
   
-    
-  var rrd = {}; // if rrd-attribute exists: old behaviour, otherwise use rrd-elements, default axis is (1)
+  var rrd = {}; 
   var rrdnum = 0;
   page.find('rrd').each( function() {
     var src = this.textContent;
@@ -81,7 +80,6 @@ function diagram_get_content( page ) {
     rrdnum ++;
   });
   
-
   return { axes: axes, axesnum: axesnum, rrd: rrd, rrdnum: rrdnum };
 }
 
@@ -94,7 +92,6 @@ function createDiagram( page, path ) {
   }
 
   var id = "diagram_" + uniqid();
-
   var content = diagram_get_content ( $p );
   
   var ret_val = $('<div class="widget clearfix diagram" />');
@@ -133,10 +130,9 @@ function createDiagram( page, path ) {
   var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
         
   diagram.addClass("clickable");
-  var data = jQuery.extend({}, diagram.data());
+  var data = jQuery.extend(true, {}, diagram.data());
 
   diagram.data("ispopup", false);
-  
   if ($p.attr("popup")=="true") {
     diagram.bind("click", function() {
       bDiagram.data(data);
@@ -145,7 +141,7 @@ function createDiagram( page, path ) {
       templateEngine.showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
       bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
       bDiagram.empty();
-      var bDiagramOpts = {yaxis: {labelWidth: null}, yaxes: [{ticks: null}]}; 
+      var bDiagramOpts = {yaxis: {labelWidth: null}}; 
       if ($p.attr("tooltip") == "true") {
         // if we want to display a tooltip, we need to listen to the event
         var previousPoint = null;
@@ -181,13 +177,15 @@ function createDiagram( page, path ) {
       }
 
       refreshDiagram(bDiagram, bDiagramOpts);
+      
       return false;
     });
   }
   if ($p.attr("previewlabels") == "true") {
     //refreshDiagram(diagram, {});
   } else {
-    refreshDiagram(diagram, {xaxes: [{ticks: 0}], yaxes: [{ticks: 0}]});
+	diagram.data('nolabels', true);
+    refreshDiagram(diagram, {});
   }
 
   return ret_val;
@@ -393,7 +391,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
     month:  {label: "month", res: "21600", start: "month", end: "now"},
     year:   {label: "year", res: "432000", start: "year", end: "now"},
   };
-    
+  
   var options = jQuery.extend(true, {
     yaxes: content.axes,
     xaxes: [{
@@ -416,7 +414,14 @@ function doRefreshDiagram(diagram, flotoptions, data) {
       borderColor: gridcolor
     }
   }, flotoptions);
-  
+
+  if (diagram.data('nolabels')==true) {
+    $.extend(true, options, {xaxes : [ {ticks:0 } ]});
+	for (var i=0; i<content.axesnum; i++) {
+	  $.extend(true, options.yaxes[i], {ticks:0, axisLabel: null} );
+	}
+  }
+ 
   var s = series[config.series];
 
   if (s) {
