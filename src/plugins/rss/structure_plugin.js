@@ -26,7 +26,9 @@
  *   <rss src="/visu/plugins/rss/tagesschau-rss2.xml" refresh="300" header="true" date="true"></rss>
  */
 
-$("body").append("<script type=\"text/javascript\" src=\"plugins/rss/zrssfeed/jquery.zrssfeed.js\"></script>");
+$.includeScripts([
+  'plugins/rss/zrssfeed/jquery.zrssfeed.js'
+], templateEngine.pluginLoaded );
 
 VisuDesign_Custom.prototype.addCreator("rss", {
     create: function( page, path ) {
