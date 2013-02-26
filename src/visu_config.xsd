@@ -882,6 +882,13 @@
       </xsd:simpleType>
     </xsd:attribute>
     <xsd:attribute name="format" type="xsd:string" use="optional" />
+<xsd:attribute name="class" type="xsd:string" use="optional">
+   <xsd:annotation>
+     <xsd:documentation xml:lang="en">Add this value to the CSS class so that it can be formated by a user provided style sheet.</xsd:documentation>
+     <xsd:documentation xml:lang="de">Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</xsd:documentation>
+     <xsd:appinfo>level:expert</xsd:appinfo>
+  </xsd:annotation>
+</xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="upnpcontroller">
