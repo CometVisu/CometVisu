@@ -212,8 +212,14 @@ function TemplateEngine() {
   };
 
   this.adjustColumns = function() {
-    if (thisTemplateEngine.enableColumnAdjustment == false)
-      return false;
+    if (thisTemplateEngine.enableColumnAdjustment == false) {
+    	if (thisTemplateEngine.defaultColumns != $('#main').data('columns')) {
+    	  $('#main').data({'columns' : thisTemplateEngine.defaultColumns});
+    	  return true;
+    	} else {
+    	  return false;
+    	}
+    }
     var width = thisTemplateEngine.getAvailableWidth();
 
     var $main = $('#main');
