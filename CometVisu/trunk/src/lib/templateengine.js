@@ -122,9 +122,9 @@ function TemplateEngine() {
                                                               // to false
   }
   
-  if ($.getUrlVar('forceMobile')) {
-    this.forceMobile = $.getUrlVar('forceMobile') != 'false'; // true unless set
-  } else {                                                    // to false
+  if ($.getUrlVar('forceDevice')) {
+    this.forceMobile = $.getUrlVar('forceDevice') == 'mobile';
+  } else {
     this.forceMobile = false;
   }
 
