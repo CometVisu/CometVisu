@@ -150,7 +150,6 @@ body br
 {
   width: initial;
 }
-
 #navbarTop .widget .actor, #navbarBottom .widget .actor
 {
   display: none;
@@ -160,6 +159,32 @@ body br
 {
   float:left;
   white-space: pre-wrap;
+}
+
+#navbarTop .navbar .widget, #navbarBottom .navbar .widget,
+#navbarLeft .navbar .widget, #navbarRight .navbar .widget
+{
+  position: relative;
+}
+
+#navbarTop .navbar .pagejump .actor, 
+#navbarBottom .navbar .pagejump .actor 
+{
+  display: block !important;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  vertical-align: middle;
+}
+
+#navbarTop .navbar .pagejump .actor.switchUnpressed,
+#navbarBottom .navbar .pagejump .actor.switchUnpressed,
+#navbarTop .navbar .pagejump .actor.switchPressed, 
+#navbarBottom .navbar .pagejump .actor.switchPressed 
+{
+  border: none;
 }
 
 .center
