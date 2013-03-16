@@ -87,7 +87,8 @@ basicdesign.addCreator('page', {
       if( $p.attr('size') == 'fixed' )
         size = '';
       // else: assume scaled
-      container.append( '<embed src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>' );
+      var elemType = '.svg' == backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';
+      container.append( '<' + elemType + ' src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>' );
     } else if( '3d' == type )
     {
       var floorplan = JSFloorPlan3D( container, backdrop );
