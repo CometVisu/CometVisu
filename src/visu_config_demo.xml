@@ -34,11 +34,11 @@
         <entry range_min="0" range_max="1e99">Positiv</entry>
       </mapping>
       <mapping name="KonnexHVAC">
-        <entry value="auto">Auto</entry>
-        <entry value="comfort">Komfort</entry>
-        <entry value="standby">Stand By</entry>
-        <entry value="economy">Economy</entry>
-        <entry value="building_protection">Haus-Schutz</entry>
+        <entry value="auto"><icon name="status_automatic"/>Auto</entry>
+        <entry value="comfort"><icon name="status_comfort"/>Komfort</entry>
+        <entry value="standby"><icon name="status_standby"/>Stand By</entry>
+        <entry value="economy"><icon name="status_night"/>Economy</entry>
+        <entry value="building_protection"><icon name="status_frost"/>Haus-Schutz</entry>
       </mapping>
       <mapping name="AudioSource">
         <entry value="0">UKW</entry>
@@ -175,7 +175,7 @@
       <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </trigger>
     <break/>
-    <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy">
+    <multitrigger button1label="&lt;icon name=&quot;status_automatic&quot;/&gt;Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy">
       <label>Multitrigger: KONNEX Betriebsart</label>
       <address transform="DPT:20.102" mode="readwrite">12/7/20</address>
     </multitrigger>
@@ -1006,7 +1006,7 @@
       </page>
     </page>
     <break/>
-    <page name="2D fixed Bitmap" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.png" align="center">
+    <page name="2D fixed Bitmap" type="2d" backdrop="media/demo_2d_backdrop_floorplan.png" align="center" size="fixed">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="200px" y="300px" width="600px"/>
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
@@ -1020,7 +1020,7 @@
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </trigger>
     </page>
-    <page name="2D scaled Bitmap" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.png" align="center">
+    <page name="2D scaled Bitmap" type="2d" backdrop="media/demo_2d_backdrop_floorplan.png" align="center" size="scaled">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="45%" y="45%" width="600px"/>
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
@@ -1034,7 +1034,7 @@
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </trigger>
     </page>
-    <page name="2D SVG" type="2d" backdrop="media/demo_2d_backdrop_nikolaushaus.svg" align="center">
+    <page name="2D SVG" type="2d" backdrop="media/demo_2d_backdrop_floorplan.svg" align="center">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="200px" y="300px" width="600px"/>
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
