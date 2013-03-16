@@ -438,6 +438,17 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
+    <xsd:attribute name="size" use="optional">
+      <xsd:annotation>
+          <xsd:appinfo>level:expert</xsd:appinfo>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="fixed" />
+          <xsd:enumeration value="scaled" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
     <xsd:attribute name="backdrop" type="uri" use="optional">
         <xsd:annotation>
             <xsd:appinfo>level:expert</xsd:appinfo>
