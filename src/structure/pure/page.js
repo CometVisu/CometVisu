@@ -83,7 +83,11 @@ basicdesign.addCreator('page', {
     container.append( '<h1>' + name + '</h1>' );
     if( '2d' == type )
     {
-      container.append( '<embed src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;width:100%;height:100%;"/>' );
+      var size = 'width:100%;height:100%;';
+      if( $p.attr('size') == 'fixed' )
+        size = '';
+      // else: assume scaled
+      container.append( '<embed src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>' );
     } else if( '3d' == type )
     {
       var floorplan = JSFloorPlan3D( container, backdrop );
