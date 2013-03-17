@@ -72,7 +72,7 @@
   <xsd:attribute name="mapping" type="xsd:string">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">Map the bus value to a different value for displaying.</xsd:documentation>
-      <xsd:documentation xml:lang="de">Ordne den Werten vom Bus andere zur Anzeige zu.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere zur Anzeige zu.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
   <xsd:attribute name="styling" type="xsd:string" />
@@ -199,6 +199,7 @@
   <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">use the whole widget area to react on click events</xsd:documentation>
+	  <xsd:documentation xml:lang="de">Beim aktivieren dieser Option wird die gesammte Widget Fläche als Schaltfläche genutzt</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
   
@@ -258,7 +259,12 @@
         <xsd:element name="meta" type="meta" minOccurs="0" maxOccurs="1"/>
         <xsd:element name="page" type="page" minOccurs="1" maxOccurs="1"/>
       </xsd:sequence>
-      <xsd:attribute name="design" type="xsd:string" use="required" />
+      <xsd:attribute name="design" type="xsd:string" use="required" >
+		  <xsd:annotation>
+		  <xsd:documentation xml:lang="en">Select the main design.</xsd:documentation>
+		  <xsd:documentation xml:lang="de">Hier wird das Design für die Visu ausgewählt</xsd:documentation>
+		  </xsd:annotation>
+	  </xsd:attribute>
       <xsd:attribute ref="backend" use="optional" />
       <xsd:attribute ref="bind_click_to_widget" use="optional"/>
       <xsd:attribute name="scroll_speed" type="xsd:decimal" use="optional">
@@ -288,19 +294,22 @@
       </xsd:attribute>
       <xsd:attribute name="lib_version" type="xsd:integer" use="optional">
           <xsd:annotation>
-              <xsd:documentation xml:lang="en">version of the CometVisu-library this configuration is for.</xsd:documentation>
+              <xsd:documentation xml:lang="en">Version of the CometVisu-library. This value is for the Upgrade-Script</xsd:documentation>
+			  <xsd:documentation xml:lang="en">Version der CometVisu-library. Dieser Wert ist für das Upgrade-Script</xsd:documentation>
               <xsd:appinfo>level:expert</xsd:appinfo>
           </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="screensave_time" type="xsd:decimal" use="optional">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">Time in seconds till the screensave_page will be jumped to.</xsd:documentation>
+		    <xsd:documentation xml:lang="de">Zeit in Sekunden bis die Visu zur screensave_page zurück scrollt. </xsd:documentation>
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="screensave_page" type="xsd:string" use="optional">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">Page to jump to when after the screensave_time elapsed without user input.</xsd:documentation>
+		    <xsd:documentation xml:lang="de">Seite die als screensave_page genutzt werden soll. </xsd:documentation>
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
