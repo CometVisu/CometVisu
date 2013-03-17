@@ -70,7 +70,12 @@ if (true === empty($strJson)) {
 }
 
 // decode json
-$arrData = json_decode(stripslashes($strJson), true);
+if (true === function_exists("get_magic_quotes_gpc") && 1 == get_magic_quotes_gpc()) {
+    // magic_quotes are on, so we have to remove those unneccessary slashes from input
+    $arrData = json_decode(stripslashes($strJson), true);
+} else {
+    $arrData = json_decode($strJson, true);
+}
 
 if (false === is_array($arrData) || true ===  empty($arrData)) {
     $strResponse = 'configuration-data could not be decoded';
