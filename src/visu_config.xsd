@@ -260,11 +260,11 @@
         <xsd:element name="page" type="page" minOccurs="1" maxOccurs="1"/>
       </xsd:sequence>
       <xsd:attribute name="design" type="xsd:string" use="required" >
-		  <xsd:annotation>
-		  <xsd:documentation xml:lang="en">Select the main design.</xsd:documentation>
-		  <xsd:documentation xml:lang="de">Hier wird das Design für die Visu ausgewählt</xsd:documentation>
-		  </xsd:annotation>
-	  </xsd:attribute>
+          <xsd:annotation>
+          <xsd:documentation xml:lang="en">Select the main design.</xsd:documentation>
+          <xsd:documentation xml:lang="de">Hier wird das Design für die Visu ausgewählt</xsd:documentation>
+          </xsd:annotation>
+      </xsd:attribute>
       <xsd:attribute ref="backend" use="optional" />
       <xsd:attribute ref="bind_click_to_widget" use="optional"/>
       <xsd:attribute name="scroll_speed" type="xsd:decimal" use="optional">
@@ -295,21 +295,21 @@
       <xsd:attribute name="lib_version" type="xsd:integer" use="optional">
           <xsd:annotation>
               <xsd:documentation xml:lang="en">Version of the CometVisu-library. This value is for the Upgrade-Script</xsd:documentation>
-			  <xsd:documentation xml:lang="en">Version der CometVisu-library. Dieser Wert ist für das Upgrade-Script</xsd:documentation>
+              <xsd:documentation xml:lang="en">Version der CometVisu-library. Dieser Wert ist für das Upgrade-Script</xsd:documentation>
               <xsd:appinfo>level:expert</xsd:appinfo>
           </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="screensave_time" type="xsd:decimal" use="optional">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">Time in seconds till the screensave_page will be jumped to.</xsd:documentation>
-		    <xsd:documentation xml:lang="de">Zeit in Sekunden bis die Visu zur screensave_page zurück scrollt. </xsd:documentation>
+            <xsd:documentation xml:lang="de">Zeit in Sekunden bis die Visu zur screensave_page zurück scrollt. </xsd:documentation>
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="screensave_page" type="xsd:string" use="optional">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">Page to jump to when after the screensave_time elapsed without user input.</xsd:documentation>
-		    <xsd:documentation xml:lang="de">Seite die als screensave_page genutzt werden soll. </xsd:documentation>
+            <xsd:documentation xml:lang="de">Seite die als screensave_page genutzt werden soll. </xsd:documentation>
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
