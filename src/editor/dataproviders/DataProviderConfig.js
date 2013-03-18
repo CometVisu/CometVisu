@@ -39,14 +39,14 @@ var DataProviderConfig = {
             },
     },
     'rrd': {
-        '_nodeValue':  {icon
+        '_nodeValue':  {
                 url: 'editor/dataproviders/list_all_rrds.php',
                 cache: true,
                 userInputAllowed: true,
             },
     },
     'icon': {
-        'name':  {demo
+        'name':  {
                 url: 'editor/dataproviders/list_all_icons.php',
                 cache: true,
                 userInputAllowed: false,
