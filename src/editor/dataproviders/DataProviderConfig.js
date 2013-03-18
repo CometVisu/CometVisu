@@ -39,19 +39,26 @@ var DataProviderConfig = {
             },
     },
     'rrd': {
-        '_nodeValue':  {
+        '_nodeValue':  {icon
                 url: 'editor/dataproviders/list_all_rrds.php',
                 cache: true,
                 userInputAllowed: true,
             },
     },
     'icon': {
-        'name':  {
+        'name':  {demo
                 url: 'editor/dataproviders/list_all_icons.php',
                 cache: true,
                 userInputAllowed: false,
             },
     },
+    'pages': {
+      'design':  {
+              url: 'editor/dataproviders/list_all_designs.php',
+              cache: true,
+              userInputAllowed: false,
+          },
+  },
     // wildcard: will match ANY elements attribute (lower prio than an exact element-attribute-match)
     '*': {
         'rrd':  {
