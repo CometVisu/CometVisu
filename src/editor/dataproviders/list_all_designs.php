@@ -2,8 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
- * Provide a list of all icons.
- * Uses the colorspace 'white' as a basis
+ * Provide a list of all available designs.
  * 
  * LICENSE: This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
