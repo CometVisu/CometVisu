@@ -22,6 +22,7 @@ basicdesign.addCreator('web', {
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget web" ' + style + '/>');
     ret_val.setWidgetLayout($e);
+
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
@@ -35,7 +36,11 @@ basicdesign.addCreator('web', {
     if( $e.attr('frameborder') == 'false' ) style += 'border: 0px ;';
     if( $e.attr('background') ) webStyle += 'background-color:' + $e.attr('background') + ';';
     if( webStyle != '' ) webStyle = 'style="' + webStyle + '"';
-    var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + '></iframe></div>';
+
+    var scrolling = '';
+    if( $e.attr('scrolling') ) scrolling = 'scrolling="' + $e.attr('scrolling') +'"'; // add scrolling parameter to iframe
+
+    var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
     
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
     ret_val.append( $(actor).data( {
