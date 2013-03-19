@@ -790,6 +790,7 @@
     <xsd:attribute name="frameborder" type="xsd:string" />
     <xsd:attribute name="background" type="xsd:string" />
     <xsd:attribute name="refresh" type="xsd:decimal" />
+    <xsd:attribute name="scrolling" type="xsd:string" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
