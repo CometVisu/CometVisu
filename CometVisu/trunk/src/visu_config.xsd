@@ -346,6 +346,7 @@
       <xsd:element name="rsslog" type="rsslog" />
       <xsd:element name="strftime" type="strftime" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
+      <xsd:element name="timeout" type="timeout" />
     </xsd:choice>
   </xsd:group>
 
@@ -939,6 +940,12 @@
     <xsd:attribute name="player_ip_addr" type="xsd:string" use="required" />
     <xsd:attribute name="player_port" type="xsd:string" use="optional" />
     <xsd:attribute name="refresh" type="xsd:string" use="required" />
+    <xsd:attribute name="debug" type="xsd:boolean" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="timeout">
+    <xsd:attribute name="time" type="xsd:string" use="optional" />
+    <xsd:attribute name="target" type="xsd:string" use="required" />
     <xsd:attribute name="debug" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
