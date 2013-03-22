@@ -65,8 +65,9 @@ function diagram_get_content( page ) {
     var unit = this.getAttribute('unit') || "";
     axes[ axesnum ] = { axisLabel:this.getAttribute('label') || null, position: this.getAttribute('position') || "left", 
       min: this.getAttribute('min') || null, max: this.getAttribute('max') || null,
-      unit: unit, tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals)+unit; } 
+      unit: unit, tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals)+unit; },  
     };
+    
     axesnames ['_'+name] = axesnum+1;
     axesnum ++;
   });
@@ -76,7 +77,8 @@ function diagram_get_content( page ) {
   page.find('rrd').each( function() {
     var src = this.textContent;
     rrd[ '_'+src ] = [ this.getAttribute('color'), this.getAttribute('label') || src, 
-    axesnames['_'+this.getAttribute('yaxis')] || "1" ];
+    axesnames['_'+this.getAttribute('yaxis')] || "1", this.getAttribute('steps') || false,
+    parseFloat(this.getAttribute('scaling')) || 1.];
     rrdnum ++;
   });
   
@@ -434,6 +436,8 @@ function doRefreshDiagram(diagram, flotoptions, data) {
       var linecolor = value[0];
       var label = value[1];
       var yaxis = value[2];
+      var steps = value[3];
+      var scaling = value[4];
       var idx = num;
          
       $.ajax({
@@ -447,9 +451,9 @@ function doRefreshDiagram(diagram, flotoptions, data) {
             //TODO: find a better way
             for (var j = 0; j < data.length; j++) {
               data[j][0] -= offset;
-              data[j][1] = parseFloat( data[j][1][0] );
+              data[j][1] = parseFloat( data[j][1][0] )*scaling;
             }
-            fulldata[idx] = {label: label, color: color, data: data, yaxis: parseInt(yaxis)};
+            fulldata[idx] = {label: label, color: color, data: data, yaxis: parseInt(yaxis), lines: {steps: steps}};
             rrdloaded++;
             if (rrdloaded==content.rrdnum) { 
               if (!diagram.data("plotted")) { // only plot if diagram does not exist
