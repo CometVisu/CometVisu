@@ -983,6 +983,8 @@
         <xsd:attribute name="yaxis" type="xsd:string" />
         <xsd:attribute name="color" type="xsd:string" />
         <xsd:attribute name="label" type="xsd:string" />
+        <xsd:attribute name="scaling" type="xsd:decimal" />
+        <xsd:attribute name="steps" type="xsd:boolean" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
