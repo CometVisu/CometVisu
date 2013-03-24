@@ -21,9 +21,8 @@ if( /(msie)/i.test(navigator.userAgent.toLowerCase()) )
 {
   var IE_version = /MSIE\s([\d]+)/;
   if( IE_version.exec( navigator.userAgent ) != null ) 
-    if( 10 <= parseFloat( RegExp.$1 ) )
-      return; // Exit
-  alert( 'Sorry, but Internet Explorer prior version 10.0 is not supported!' );
+    if( 10 > parseFloat( RegExp.$1 ) )
+      alert( 'Sorry, but Internet Explorer prior version 10.0 is not supported!' );
 }
 
 if (typeof (console) == "undefined") {
