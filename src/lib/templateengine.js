@@ -522,7 +522,7 @@ function TemplateEngine( undefined ) {
           for ( var i = 0; i < origin.length; i++) {
              var $v = $(origin[i]);
              if ($v.is('icon'))
-               value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'));
+               value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'));
              else
                value[i] = $v.text();
           }
