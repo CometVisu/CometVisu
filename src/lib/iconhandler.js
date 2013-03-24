@@ -3180,11 +3180,16 @@ function icon() { // Konstruktor
   this.getIcon = function() {
     var i = this.get.apply(this, arguments);
     if (i) {
-      if (i.icon)
+      var styling = arguments[3];
+      if( i.icon && styling === undefined )
         return i.icon;
 
       // fetch and cache image
-      var styling = i.styling === undefined ? '' : ' style="' + i.styling + '"';
+      if( styling === undefined )
+        styling = i.styling === undefined ? '' : ' style="' + i.styling + '"';
+      else
+        styling = ' style="' + styling + '"';
+      
       i.icon = $('<img class="icon" src="' + i.uri + '"' + styling + '/>');
       return i.icon;
     }
