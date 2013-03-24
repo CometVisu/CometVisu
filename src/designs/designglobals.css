@@ -37,7 +37,9 @@ img.icon {
   clear: both;
 }
 
-.page,  #navbarTop, #navbarBottom {
+#pages,
+.page > .clearfix, 
+#navbarTop, #navbarBottom {
   -webkit-transform: translateZ(0);
   -webkit-overflow-scrolling:touch;
 }

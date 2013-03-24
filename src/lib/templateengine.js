@@ -42,7 +42,7 @@ $(document).ready(function() {
   });
 });
 
-function TemplateEngine() {
+function TemplateEngine( undefined ) {
   var thisTemplateEngine = this;
   this.pageReady = false;
   this.pluginsReady = false;
@@ -690,7 +690,15 @@ function TemplateEngine() {
       keyboard : false,
       touch : false
     }).data('scrollable');
-    thisTemplateEngine.main_scroll.onSeek(thisTemplateEngine.pagePartsHandler.updateTopNavigation);
+    thisTemplateEngine.main_scroll.onSeek( function(){
+      thisTemplateEngine.pagePartsHandler.updateTopNavigation( this );
+      $('.activePage', '#pages').removeClass('activePage');
+      $('.pageActive', '#pages').removeClass('pageActive');
+      $('.pagejump.active').removeClass('active');
+      $('.pagejump.active_ancestor').removeClass('active_ancestor');
+      thisTemplateEngine.currentPage.addClass('pageActive activePage');// show new page
+      $('#pages').css('left', 0 );
+    });
     if (thisTemplateEngine.scrollSpeed != undefined) {
       thisTemplateEngine.main_scroll.getConf().speed = thisTemplateEngine.scrollSpeed;
     }
@@ -894,14 +902,9 @@ function TemplateEngine() {
       return;
     thisTemplateEngine.currentPageID = page_id;
     
-    $('.activePage', '#pages').removeClass('activePage');
-    $('.pageActive', '#pages').removeClass('pageActive');
-    $('.pagejump.active').removeClass('active');
-    $('.pagejump.active_ancestor').removeClass('active_ancestor');
     thisTemplateEngine.resetPageValues();
     
     var page = $('#' + page_id);
-    
     thisTemplateEngine.currentPage = page;
 
     page.addClass('pageActive activePage');// show new page
@@ -909,17 +912,7 @@ function TemplateEngine() {
     thisTemplateEngine.pagePartsHandler.updatePageParts(page);
 
     if (thisTemplateEngine.main_scroll.getConf().speed > 0) {
-      var scrollLeft = true;
-      if (skipHistory) {
-        // moving back in history -> scroll right
-        scrollLeft = false;
-      } else {
-        var expr = new RegExp("^" + page_id + ".*", "i");
-        if (expr.test(window.history.state)) {
-          // moving up the page tree -> scroll right
-          scrollLeft = false;
-        }
-      }
+      var scrollLeft = page.position().left != 0;
       // jump to the page on the left of the page we need to scroll to
       if (scrollLeft) {
         $('#pages').css('left', -page.position().left + page.width());
@@ -1196,8 +1189,9 @@ function PagePartsHandler() {
       }
     };
   
-  this.updateTopNavigation = function() {
-    var path = $('#main .page').eq(this.getIndex()).attr('id').split('_');
+  this.updateTopNavigation = function( self ) {
+    if( self === undefined ) self = this;
+    var path = $('#main .page').eq(self.getIndex()).attr('id').split('_');
     var id = 'id_'; // path[0];
     var nav = '';
     for ( var i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
