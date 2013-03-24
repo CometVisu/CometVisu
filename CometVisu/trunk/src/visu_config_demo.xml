@@ -631,6 +631,19 @@
         <label><icon name="CometVisu" type="128"/> Icon mit type="128"</label>
       </text>
       <line/>
+      <text>
+        <label><icon name="CometVisu" type="16" styling="height:auto" /> Icon mit type="16" und styling</label>
+      </text>
+      <text>
+        <label><icon name="CometVisu" type="32" styling="height:auto" /> Icon mit type="32" und styling</label>
+      </text>
+      <text>
+        <label><icon name="CometVisu" type="64" styling="height:auto" /> Icon mit type="64" und styling</label>
+      </text>
+      <text>
+        <label><icon name="CometVisu" type="128" styling="height:auto" /> Icon mit type="128" und styling</label>
+      </text>
+      <line/>
       <page name="Subpage mit Flavour" flavour="lithium" align="center">
         <text>
           <label><icon name="CometVisu" type="64"/> Icon links vom Text</label>
