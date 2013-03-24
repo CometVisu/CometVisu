@@ -3180,7 +3180,7 @@ function icon() { // Konstruktor
   this.getIcon = function() {
     var i = this.get.apply(this, arguments);
     if (i) {
-      var styling = arguments[3];
+      var styling = arguments[4];
       if( i.icon && styling === undefined )
         return i.icon;
 
