@@ -18,6 +18,14 @@
 basicdesign.addCreator('web', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
+
+    var address = {};
+    if ($e.attr('ga')) {
+      src = $e.attr('ga');
+      templateEngine.addAddress($e.attr('ga'));
+      address[ '_' + $e.attr('ga') ] = [ 'DPT:1.001', 0 ];
+    }
+
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget web" ' + style + '/>');
@@ -40,12 +48,32 @@ basicdesign.addCreator('web', {
     var scrolling = '';
     if( $e.attr('scrolling') ) scrolling = 'scrolling="' + $e.attr('scrolling') +'"'; // add scrolling parameter to iframe
 
-    var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
-    
+ //   var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
+    var $actor = $('<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>');
+    for( var addr in address ) $actor.bind( addr, this.update );
+    var actor = $actor;
+    actor.data( 'address', address );
+  
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
     ret_val.append( $(actor).data( {
       'refresh': refresh
     } ).each(templateEngine.setupRefreshAction) ); // abuse "each" to call in context...
+
+
     return ret_val;
+  },
+  update: function(e, data) {
+    var element = $(this);
+    var value = defaultValueHandling( e, data, element );
+    var type = element.data().address[ e.type ][2];
+    switch( type )
+    {
+      default:
+        if (data==01) {
+          var iframe = element.find('iframe');
+          iframe.attr('src', iframe.attr('src'));
+        }
+    }
   }
+
 });
