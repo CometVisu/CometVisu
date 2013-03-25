@@ -72,6 +72,7 @@ basicdesign.addCreator('web', {
         if (data==01) {
           var iframe = element.find('iframe');
           iframe.attr('src', iframe.attr('src'));
+          templateEngine.visu.write(e.type.substr(1), templateEngine.transformEncode('DPT:1.001', 0));
         }
     }
   }
