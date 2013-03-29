@@ -43,6 +43,7 @@ if (LIBRARY_VERSION > UPGRADER_LIBRARY_VERSION) {
 }
 
 
+define('OLD_CONFIG_FILENAME', '../visu_config%s.xml');
 define('CONFIG_FILENAME', '../config/visu_config%s.xml');
 define('BACKUP_FILENAME', '../config/backup/visu_config%s-%s.xml');
 
@@ -61,6 +62,19 @@ if (false === empty($strConfigCleaned)) {
 $strConfigFilename = sprintf(CONFIG_FILENAME, $strConfigCleaned);
 // .. as a fully qualified filename
 $strConfigFQFilename = realpath($strConfigFilename);
+$strSrcConfigFQFilename = $strConfigFQFilename;
+
+if (false === file_exists($strConfigFQFilename)) {
+  $strSrcConfigFQFilename = realpath(sprintf(OLD_CONFIG_FILENAME, $strConfigCleaned));
+  if (false === file_exists($strSrcConfigFQFilename)) {
+    exitWithResponse(false, 'config-file does not exist \'' . $strConfigFilename. '\'.');
+  }
+  if (false === @touch($strConfigFilename)) {
+    exitWithResponse(false, 'config-file in new path could not be created: \'' . $strConfigFilename. '\'; please chmod/chown config directory.');
+  }
+  // recreate FQ as it couldn't work before due to the missing file
+  $strConfigFQFilename = realpath($strConfigFilename);
+}
 
 if (false === is_writeable($strConfigFQFilename)) {
     exitWithResponse(false, 'config-file is not writeable by webserver-process; please chmod/chown config-file \'' . $strConfigFQFilename . '\' (\'' . $strConfigFilename. '\').');
@@ -75,11 +89,11 @@ if (false === is_writeable($strBackupFQDirname)) {
 }
 
 // make a copy of the file for backup-purposes
-copy($strConfigFQFilename, $strBackupFilename);
+copy($strSrcConfigFQFilename, $strBackupFilename);
 
 // load the configuration
 $objDOM = new DOMDocument("1.0", "UTF-8");
-$objDOM->load($strConfigFQFilename);
+$objDOM->load($strSrcConfigFQFilename);
 $objDOM->formatOutput = true;
 
 // find out configurations lib_version, if any
