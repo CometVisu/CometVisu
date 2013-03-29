@@ -26,7 +26,7 @@ $(window).unload(function() {
 $(document).ready(function() {
   // get the data once the page was loaded
   $.ajax({
-    url : 'visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
+    url : 'config/visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
     cache : !templateEngine.forceReload,
     success : templateEngine.parseXML,
     error : function(jqXHR, textStatus, errorThrown) {

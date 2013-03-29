@@ -68,7 +68,7 @@ function libxml_display_error( $error )
 libxml_use_internal_errors(true); 
 
 $dom = new DomDocument();
-$conffile = 'visu_config';
+$conffile = 'config/visu_config';
 if ($_GET['config']) {
   $conffile .= "_" . $_GET['config'];
 }
