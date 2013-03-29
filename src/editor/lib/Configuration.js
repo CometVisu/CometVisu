@@ -168,6 +168,8 @@ var Configuration = function (filename) {
         if (-1 != _filename.indexOf('/')) {
             schemaPath = _filename.replace(/\/[^\/]*$/, '');
         }
+        // if the config file is in the config directory, move that out of the path as well
+        schemaPath = schemaPath.replace(/\/?config/, '');
         
         var schemaFilename = schemaPath + schemaName;
         

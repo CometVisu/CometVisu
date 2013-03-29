@@ -86,7 +86,7 @@ $(document).ready(function () {
     }
     
     // create configuration filename
-    var configFilename = 'visu_config' + (configSuffix ? '_' + configSuffix : '' ) + '.xml'
+    var configFilename = 'config/visu_config' + (configSuffix ? '_' + configSuffix : '' ) + '.xml'
     
     // and start loading the configuration
     config = new Configuration(configFilename);

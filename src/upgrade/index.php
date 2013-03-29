@@ -43,8 +43,8 @@ if (LIBRARY_VERSION > UPGRADER_LIBRARY_VERSION) {
 }
 
 
-define('CONFIG_FILENAME', '../visu_config%s.xml');
-define('BACKUP_FILENAME', '../backup/visu_config%s-%s.xml');
+define('CONFIG_FILENAME', '../config/visu_config%s.xml');
+define('BACKUP_FILENAME', '../config/backup/visu_config%s-%s.xml');
 
 // get everything the user has provided ...
 $strConfigSuffix = (true === isset($_GET['config'])) ? $_GET['config'] : null;
