@@ -74,6 +74,25 @@ if ($_GET['config']) {
 }
 $conffile .= '.xml';
 
+if( false === is_readable( $conffile ) )
+{
+  $old_conffile = 'visu_config';
+  if ($_GET['config']) {
+    $old_conffile .= "_" . $_GET['config'];
+  }
+  $old_conffile .= '.xml';
+
+  if( true === is_readable( $old_conffile ) )
+  {
+    $conffile = $old_conffile;
+    echo '<font color="#f00"><b>WARNING:</b> Depreciated position of config file!</font><hr/>';
+  } else {
+    echo "File <b>$conffile</b> (nor the depreciated <b>$old_conffile</b>) does not exitst!";
+    echo '</body></html>';
+    exit;
+  }
+}
+
 $lines = file( $conffile );
 $dom->load( $conffile );
 
