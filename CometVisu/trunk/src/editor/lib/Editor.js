@@ -111,7 +111,7 @@ var Editor = function (config) {
             $(document).one('configuration_saving_success', previewShowHandler);
 
             // save the configuration
-            _config.save('visu_config_' + _previewSuffix + '.xml');
+            _config.save('config/visu_config_' + _previewSuffix + '.xml');
         }
         
         
