@@ -36,7 +36,8 @@ release/structure/pure.$(TIMESTAMP).js: release $(STRUCTURE_PURE_SRC)
 	  yui-compressor --type js > release/structure/pure.$(TIMESTAMP).js
 	cat src/cometvisu.appcache | \
 	  sed 's/# Version.*/# Version $(VERSION):$(TIMESTAMP)/' | \
-	  sed 's%# structure_pure.*%structure/pure.$(TIMESTAMP).js%' \
+	  sed 's%# structure_pure.*%structure/pure.$(TIMESTAMP).js%' | \
+	  grep -v -E "`echo $(STRUCTURE_PURE_SRC) | sed 's%src/%%g' | sed 's/ /|/g'`" \
 	  > release/cometvisu.appcache
 	cat src/index.html | \
 	  egrep -v "jquery.js|compatibility.js|make scripts debugable|ScriptsToInclude" | \
