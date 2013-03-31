@@ -62,13 +62,14 @@ basicdesign.addCreator('pagejump', {
 });
 
 $(window).bind('scrolltopage', function( event, page_id ){
-  var name = $('#' + page_id).data('name');
+  var page = $('#' + page_id);
+  var name = page.data('name');
   
   // remove old active classes
   $('.pagejump.active').removeClass('active');
   $('.pagejump.active_ancestor').removeClass('active_ancestor');
   
-  // and set the new one
+  // and set the new active ones
   $('.pagejump').each( function(){
     var $pagejump = $(this);
     var target = $pagejump.find('.actor').data('target');
@@ -77,4 +78,21 @@ $(window).bind('scrolltopage', function( event, page_id ){
       $pagejump.addClass('active');
     }
   });
+
+  // now set the active ancestors
+  var parentPage = templateEngine.getParentPage(page);
+  // set for all parent pages apart from the root page
+  while (parentPage != null && templateEngine.getParentPage(parentPage) != null) {
+    var parentName = parentPage.data('name');
+    $('.pagejump').each( function(){
+      var $pagejump = $(this);
+      var target = $pagejump.find('.actor').data('target');
+      if( parentName == target )
+      {
+        $pagejump.addClass('active_ancestor');
+      }
+    });
+    // recursively find pagejumps for parent pages
+    parentPage = templateEngine.getParentPage(parentPage);
+  }
 });
