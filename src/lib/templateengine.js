@@ -428,7 +428,11 @@ function TemplateEngine( undefined ) {
     }
     thisTemplateEngine.initBackendClient();
 
-    thisTemplateEngine.scrollSpeed = $('pages', xml).attr("scroll_speed");
+    if( undefined === $('pages', xml).attr( 'scroll_speed' ) )
+      thisTemplateEngine.scrollSpeed = 400;
+    else
+      thisTemplateEngine.scrollSpeed = $('pages', xml).attr('scroll_speed') | 0;
+    
     var enableColumnAdjustment = null;
     if ($('pages', xml).attr('enable_column_adjustment')!=undefined) {
       enableColumnAdjustment = $('pages', xml).attr('enable_column_adjustment')=="true" ? true : false;
@@ -898,6 +902,10 @@ function TemplateEngine( undefined ) {
     // don't scroll when target is already active
     if( thisTemplateEngine.currentPageID == page_id )
       return;
+    
+    if( undefined === speed )
+      speed = thisTemplateEngine.scrollSpeed;
+    
     thisTemplateEngine.currentPageID = page_id;
     
     thisTemplateEngine.resetPageValues();
@@ -906,10 +914,11 @@ function TemplateEngine( undefined ) {
     thisTemplateEngine.currentPage = page;
 
     page.addClass('pageActive activePage');// show new page
+    
     // update visibility ob navbars, top-navigation, footer
     thisTemplateEngine.pagePartsHandler.updatePageParts(page);
 
-    if (thisTemplateEngine.main_scroll.getConf().speed > 0) {
+    if( speed > 0 ) {
       var scrollLeft = page.position().left != 0;
       // jump to the page on the left of the page we need to scroll to
       if (scrollLeft) {
@@ -921,7 +930,7 @@ function TemplateEngine( undefined ) {
     // push new state to history
     if (skipHistory === undefined)
       window.history.pushState(page_id, page_id, window.location.href);
-
+    
     thisTemplateEngine.main_scroll.seekTo(page, speed); // scroll to it
 
     // show the navbars for this page
@@ -935,8 +944,6 @@ function TemplateEngine( undefined ) {
 
     $(window).trigger('scrolltopage', page_id);    
   };
-
- 
 
   /*
    * Show a popup of type "type". The attributes is an type dependend object
