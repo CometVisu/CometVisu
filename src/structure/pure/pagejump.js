@@ -60,3 +60,21 @@ basicdesign.addCreator('pagejump', {
     templateEngine.scrollToPage( data.target );
   }
 });
+
+$(window).bind('scrolltopage', function( event, page_id ){
+  var name = $('#' + page_id).data('name');
+  
+  // remove old active classes
+  $('.pagejump.active').removeClass('active');
+  $('.pagejump.active_ancestor').removeClass('active_ancestor');
+  
+  // and set the new one
+  $('.pagejump').each( function(){
+    var $pagejump = $(this);
+    var target = $pagejump.find('.actor').data('target');
+    if( name == target )
+    {
+      $pagejump.addClass('active');
+    }
+  });
+});
