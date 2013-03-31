@@ -694,8 +694,6 @@ function TemplateEngine( undefined ) {
       thisTemplateEngine.pagePartsHandler.updateTopNavigation( this );
       $('.activePage', '#pages').removeClass('activePage');
       $('.pageActive', '#pages').removeClass('pageActive');
-      $('.pagejump.active').removeClass('active');
-      $('.pagejump.active_ancestor').removeClass('active_ancestor');
       thisTemplateEngine.currentPage.addClass('pageActive activePage');// show new page
       $('#pages').css('left', 0 );
     });
@@ -935,55 +933,6 @@ function TemplateEngine( undefined ) {
      */
     thisTemplateEngine.pagePartsHandler.initializeNavbars(page_id);
 
-    // set pagejump for this page to active if it exists
-    $(".pagejump > .actor").each(
-        function(i) {
-          var activePageJump = null;
-          var actor = $(this);
-          var target = actor.data().target;
-          if (target.match(/^id_[0-9_]+$/) == null) {
-            // get page id by name
-            $('h1:contains(' + target + ')', '#' + page_id).each(function(i) {
-              if ($(this).text() == target) {
-            	activePageJump = actor.closest('.pagejump');
-                return false;
-              }
-            });
-          } else if (page_id == target) {
-            activePageJump = actor.closest('.pagejump');
-          }
-          if (activePageJump != null) {
-            activePageJump.addClass('active');
-          }
-          if (page.attr('id')!="id_0") {
-            var parentPage = thisTemplateEngine.getParentPage(page);
-            while (parentPage != null) {
-              if (parentPage.attr('id') == "id_0") {
-                // root is always an active ancestor, no need to specify that
-                break;
-              }
-              $(".pagejump > .actor").each(
-                  function(i) {
-                    var parentActor = $(this);
-                    var parentTarget = parentActor.data().target;
-                    if (parentTarget==undefined) return true;
-                    if (parentTarget.match(/^id_[0-9_]+$/) == null) {
-                      // get page id by name
-                      $('h1:contains(' + parentTarget + ')',
-                          '#' + parentPage.attr('id')).each(function(i) {
-                        if ($(this).text() == parentTarget) {
-                          parentActor.closest('.pagejump').addClass('active_ancestor');
-                          return false;
-                        }
-                      });
-                    } else if (parentPage.attr('id') == parentTarget) {
-                      parentActor.closest('.pagejump').addClass('active_ancestor');
-                    }
-                  });
-              parentPage = thisTemplateEngine.getParentPage(parentPage);
-            }
-          }
-        });
     $(window).trigger('scrolltopage', page_id);    
   };
 

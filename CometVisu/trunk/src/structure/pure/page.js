@@ -68,13 +68,16 @@ basicdesign.addCreator('page', {
     //var container = $( '<div class="clearfix" />' );
     
     var subpage = $( '<div class="page" id="' + path + '"/>' );
-    subpage.data('showtopnavigation',showtopnavigation);
-    subpage.data('showfooter',showfooter);
-    subpage.data('shownavbar',{
-      top : shownavbar_top,
-      bottom : shownavbar_bottom,
-      left : shownavbar_left,
-      right : shownavbar_right
+    subpage.data({
+      name             : name,
+      showtopnavigation: showtopnavigation,
+      showfooter       : showfooter,
+      shownavbar       : {
+        top    : shownavbar_top,
+        bottom : shownavbar_bottom,
+        left   : shownavbar_left,
+        right  : shownavbar_right
+      }
     });
     var $container = $( '<div class="clearfix" path="'+path+'" style="height:100%;position:relative;" />'); 
     for( var addr in address ) $container.bind( addr, this.update );
