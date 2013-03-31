@@ -36,8 +36,7 @@
   *   - period:               optional, number of "series" to be shown
   *   - datasource:           optional, RRD-datasource, "MIN", "AVERAGE" (default), "MAX"
   *   - refresh:              optional, refresh-rate in seconds, no refresh if missing
-  *   - fill:				  optional, true or false - filling the space under the line
-  *   - gridcolor: 			  optional, color for dataline and grid, HTML-colorcode
+  *   - gridcolor: optional, color for dataline and grid, HTML-colorcode
   *   - width, height:        optional, width and height of "inline"-diagram
   *   - previewlabels:        optional, show labels on "inline"-diagram
   *   - popup:                optional, make diagram clickable and open popup
@@ -78,7 +77,7 @@ function diagram_get_content( page ) {
   page.find('rrd').each( function() {
     var src = this.textContent;
     rrd[ '_'+src ] = [ this.getAttribute('color'), this.getAttribute('label') || src, 
-    axesnames['_'+this.getAttribute('yaxis')] || "1", this.getAttribute('steps') || false, this.getAttribute('fill') || false,
+    axesnames['_'+this.getAttribute('yaxis')] || "1", this.getAttribute('steps') || false,
     parseFloat(this.getAttribute('scaling')) || 1.];
     rrdnum ++;
   });
@@ -129,7 +128,7 @@ function createDiagram( page, path ) {
   }
   diagram.data("refresh", $p.attr("refresh"));
   diagram.data("gridcolor", $p.attr("gridcolor") || "");
-  
+
   var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
         
   diagram.addClass("clickable");
@@ -270,7 +269,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     
     bDiagram.data("refresh", $p.attr("refresh"));
     bDiagram.data("gridcolor", $p.attr("gridcolor") || "");
-
+  
     
     var data = jQuery.extend({}, bDiagram.data());
     var clickable = bindClickToWidget ? ret_val : $actor;
@@ -385,7 +384,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
   var period = diagram.data("period") || 1;
   
   var gridcolor = diagram.data("gridcolor") || "#81664B";
-  
+    
   var series = {
     hour:   {label: "hour", res: "60", start: "hour", end: "now"},
     day:    {label: "day", res: "300", start: "day", end: "now"},
@@ -406,8 +405,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
       position: legendposition
     },
     series: {
-      lines: { show: true, fill: false, zero: false },
-	  points: { show: false, fill: false }
+      points: { show: false, fill: false }
     },
     grid: {
       show: true,
@@ -439,8 +437,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
       var label = value[1];
       var yaxis = value[2];
       var steps = value[3];
-	  var fill = value[4];
-      var scaling = value[5];
+      var scaling = value[4];
       var idx = num;
          
       $.ajax({
@@ -456,7 +453,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
               data[j][0] -= offset;
               data[j][1] = parseFloat( data[j][1][0] )*scaling;
             }
-            fulldata[idx] = {label: label, color: color, data: data, yaxis: parseInt(yaxis), lines: {steps: steps, fill: fill}}; 
+            fulldata[idx] = {label: label, color: color, data: data, yaxis: parseInt(yaxis), lines: {steps: steps}};
             rrdloaded++;
             if (rrdloaded==content.rrdnum) { 
               if (!diagram.data("plotted")) { // only plot if diagram does not exist
