@@ -25,8 +25,8 @@ lint:
 
 release: 
 	ls -l
-	chmod a+rw src/backup
-	chmod a+rw src/visu_config*.xml
+	chmod a+rw src/config/backup
+	chmod a+rw src/config/visu_config*.xml
 	mkdir -p ./release
 	cp -rfp ./src/* ./release
 	find release -path "*/.svn" -exec rm -rf {} +
@@ -42,6 +42,8 @@ release/structure/pure.$(TIMESTAMP).js: release $(STRUCTURE_PURE_SRC)
 	  egrep -v "jquery.js|compatibility.js|make scripts debugable|ScriptsToInclude" | \
 	  sed 's%<script type="text/javascript">%<script src="structure/pure.$(TIMESTAMP).js" type="text/javascript">%' \
 	  > release/index.html
+	echo src/dependencies/jquery.js src/lib/compatibility.js $(STRUCTURE_PURE_SRC) | \
+	  sed 's%src/%release/%g' | xargs rm
 	
 build: release/structure/pure.$(TIMESTAMP).js
 	
