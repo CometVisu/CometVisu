@@ -1019,7 +1019,7 @@
       </page>
     </page>
     <break/>
-    <page name="2D fixed Bitmap" type="2d" backdrop="media/demo_2d_backdrop_floorplan.png" align="center" size="fixed">
+    <page name="2D fixed Bitmap" type="2d" backdrop="config/media/demo_2d_backdrop_floorplan.png" align="center" size="fixed">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="525px" y="450px" />
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
@@ -1033,7 +1033,7 @@
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </trigger>
     </page>
-    <page name="2D scaled Bitmap" type="2d" backdrop="media/demo_2d_backdrop_floorplan.png" align="center" size="scaled">
+    <page name="2D scaled Bitmap" type="2d" backdrop="config/media/demo_2d_backdrop_floorplan.png" align="center" size="scaled">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="50%" y="70%" />
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
@@ -1047,7 +1047,7 @@
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </trigger>
     </page>
-    <page name="2D fixed SVG" type="2d" backdrop="media/demo_2d_backdrop_floorplan_inkscape.svg" align="center" size="fixed">
+    <page name="2D fixed SVG" type="2d" backdrop="config/media/demo_2d_backdrop_floorplan_inkscape.svg" align="center" size="fixed">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="525px" y="450px" />
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
@@ -1061,7 +1061,7 @@
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </trigger>
     </page>
-    <page name="2D scaled SVG" type="2d" backdrop="media/demo_2d_backdrop_floorplan_viewbox.svg" align="center">
+    <page name="2D scaled SVG" type="2d" backdrop="config/media/demo_2d_backdrop_floorplan_viewbox.svg" align="center">
       <switch mapping="On_Off" styling="Red_Green">
         <layout x="50%" y="70%" />
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
