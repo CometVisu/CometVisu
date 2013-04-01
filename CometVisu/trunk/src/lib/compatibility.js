@@ -218,3 +218,12 @@ $.extend({
     }) );
   }
 });
+
+// check if the applicationCache was modified - then reload itself to prevent
+// that the user has to do an additional reload
+if( "object" === typeof window.applicationCache )
+{
+  window.applicationCache.addEventListener( 'updateready', function(){
+    window.location.reload(false);
+  });
+}

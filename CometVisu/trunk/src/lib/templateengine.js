@@ -21,7 +21,7 @@ var templateEngine = new TemplateEngine();
 
 $(window).bind('resize', templateEngine.handleResize);
 $(window).unload(function() {
-  templateEngine.visu.stop();
+  if( templateEngine.visu ) templateEngine.visu.stop();
 });
 $(document).ready(function() {
   // get the data once the page was loaded
