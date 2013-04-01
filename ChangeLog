@@ -3,8 +3,25 @@ HEAD
 
 - 
 
+0.8.0~pre2
+==========
+
+- Move all the user configuration in separate subdirectory /config/.
+- Updated available icons
+- Modernisation of Pure design
+- Rename forceMobile to a more generic forceDevice
+- Implement fixed 2D pages.
+- Added scrolling parameter to iframe
+- Diagram-Plugin new features:
+  * steps: show steps instead of diagonal lines between data points
+  * scaling: multiply y-axis datapoints by scaling
+  * fill: fill the space below the line
+- Better handling of page transitions
+- Exclude IE 10 and following from the incompatability warning
+- Lots of bug fixes
+
 0.8.0~pre1
-=====
+==========
 
 - New feature: individual icons can be added in the meta area
 - New plugin: strftime
