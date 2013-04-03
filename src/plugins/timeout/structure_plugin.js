@@ -23,7 +23,7 @@
 var timeoutIdleCount   = 0;
 var timeoutCurrentPage = "";
 var timeoutTargetPage  = "";
-var timeoutDebug       = 'true';
+var timeoutDebug       = 'false';
 
 VisuDesign_Custom.prototype.addCreator("timeout", {
   create : function(page, path) {
@@ -72,6 +72,7 @@ VisuDesign_Custom.prototype.addCreator("timeout", {
     // Keep track of current page
     $(window).bind('scrolltopage', function(page, path) { 
       timeoutCurrentPage = path; 
+      timeoutIdleCount   = 0;
       /* We could trun on and off the above binds if we are already on the right page 
       
       if (timeoutCurrentPage == timeoutTargetPage) {
@@ -109,9 +110,11 @@ function timeoutTrigger() {
     if (timeoutCurrentPage != timeoutTargetPage) {
       timeoutPrintDebug("TIMEOUT: Got Timeout - Now Goto Page " + timeoutTargetPage); 
       templateEngine.scrollToPage(timeoutTargetPage);
+      $("#" + timeoutTargetPage).scrollTop(0);
       //templateEngine.updateTopNavigation();
     } else {
-      timeoutPrintDebug("TTIMEOUT: Already on page " + timeoutTargetPage); 
+      timeoutPrintDebug("TIMEOUT: Already on page " + timeoutTargetPage); 
+      $("#" + timeoutCurrentPage).scrollTop(0);
     }
   }
 }
