@@ -263,13 +263,13 @@ function TemplateEngine( undefined ) {
 //      console.log("Mobile.css use changed "+mobileUseChanged);
       thisTemplateEngine.currentPageUnavailableWidth=0;
       var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);
-      var widthNavbarLeft = navbarVisibility.left=="true" && $('#navbarLeft').css('display')!="none" ? $('#navbarLeft').width() : 0;
+      var widthNavbarLeft = navbarVisibility.left=="true" && $('#navbarLeft').css('display')!="none" ? Math.ceil( $('#navbarLeft').outerWidth() ) : 0;
       if (widthNavbarLeft>=bodyWidth) {
         // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
         // maybe there is a better solution to solve this problem
         widthNavbarLeft = 0;
       }
-      var widthNavbarRight = navbarVisibility.right=="true" && $('#navbarRight').css('display')!="none" ? $('#navbarRight').width() : 0;
+      var widthNavbarRight = navbarVisibility.right=="true" && $('#navbarRight').css('display')!="none" ? Math.ceil( $('#navbarRight').outerWidth() ) : 0;
       if (widthNavbarRight>=bodyWidth) {
         // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
         // maybe there is a better solution to solve this problem
