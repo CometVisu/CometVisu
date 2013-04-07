@@ -39,16 +39,6 @@ basicdesign.addCreator('trigger', {
       actor += $e.attr( 'align' ); 
     actor += '"><div class="value"></div></div>';
     var $actor = $(actor);
-    var valueElement = $actor.find('.value');
-    var mappedValue = templateEngine.map( value, $e.attr('mapping') );
-    if( ('string' == typeof mappedValue) || ('number' == typeof mappedValue) )
-    {
-      valueElement.append( mappedValue );
-    } else 
-    for( var i = 0; i < mappedValue.length; i++ )
-    {
-      valueElement.append( $(mappedValue[i]).clone() );
-    }
     $actor.data( {
       'address'   : address,
       'mapping'   : $(element).attr('mapping'),
@@ -59,6 +49,7 @@ basicdesign.addCreator('trigger', {
       'shorttime' : parseFloat($e.attr('shorttime')) || -1,
       'shortValue': shortvalue
     } ).setWidgetStyling(value);
+    defaultUpdate( undefined, value, $actor );
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'mousedown touchstart', this.mousedown ).bind( 'mouseup touchend', this.mouseup ).bind( 'mouseout touchout', this.mouseout );
     ret_val.append( label ).append( $actor );

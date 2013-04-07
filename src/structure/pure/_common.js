@@ -318,9 +318,15 @@ function placementStrategy( anchor, popup, page, preference )
 function defaultValueHandling( e, data, passedElement )
 {
   var element = passedElement || $(this);
-  var thisTransform = element.data().address[ e.type ][0];
-  // #1: transform the raw value to a JavaScript type
-  var value = templateEngine.transformDecode( element.data().address[ e.type ][0], data );
+  if( undefined !== e )
+  {
+    var thisTransform = element.data().address[ e.type ][0];
+    // #1: transform the raw value to a JavaScript type
+    var value = templateEngine.transformDecode( element.data().address[ e.type ][0], data );
+  } else {
+    var thisTransform = '';
+    var value = data;
+  }
   
   element.data( 'basicvalue', value ); // store it to be able to supress sending of unchanged data
   
@@ -352,10 +358,9 @@ function defaultValueHandling( e, data, passedElement )
 
 function defaultUpdate( e, data, passedElement ) 
 {
-//  var value = defaultValueHandling( e, data, passedElement )
   var element = passedElement || $(this);
   var value = defaultValueHandling( e, data, element );
- 
+  
   element.setWidgetStyling( element.data( 'basicvalue' ) );
   
   if( element.data( 'align' ) )
