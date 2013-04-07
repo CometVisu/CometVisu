@@ -141,8 +141,10 @@
       <pagejump target="id_0_34_8" name="Potassium">
         <label>Flavour</label>
       </pagejump>
-      <pagejump target="id_0_36">
+      <pagejump target="id_0_41" name="2D">
+        <!--
         <label>2D</label>
+        -->
       </pagejump>
     </navbar>
     <text align="center">
@@ -1129,16 +1131,17 @@
       <axis unit="tps"/>
       <rrd>eib_traffic</rrd>
     </diagram>
-    <diagram width="600" height="400" popup="false" previewlabels="true">
-      <label/>
-      <rrd>eib_traffic</rrd>
-    </diagram>
     <diagram_info series="day" refresh="300">
       <label>KNX traffic</label>
       <axis unit="tps"/>
       <rrd>eib_traffic</rrd>
       <address transform="DPT:9.021" mode="readwrite">12/7/9</address>
     </diagram_info>
+    <break/>
+    <diagram width="600" height="400" popup="false" previewlabels="true">
+      <label/>
+      <rrd>eib_traffic</rrd>
+    </diagram>
     <line/>
     <page name="Erweiterte Widgets">
       <text>
