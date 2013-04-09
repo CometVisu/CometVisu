@@ -22,16 +22,34 @@
     return $result;
   }
 
+$picsperrow = 6;
+$mywidth    = intval(100 / $picsperrow);
 
 echo "<body bgcolor=\"#333333\">\n";
+echo "<center>\n";
 
 $myfiles = GetFilesNew('.');
 foreach ($myfiles as $d => $k) {
-echo "<h2>Directory: ". $d ."</h2>";
+  //echo "<h2>Directory: ". $d ."</h2>";
 
+  echo "<table cellspacing=\"10\">\n";
+  echo "<tr>";
+  $c = 0;
   foreach ($k as $f) {
-    echo "<img src=\"". $f ."\" border=\"0\">". $f ."<br>\n";
+    echo "<td align=\"center\" width=\"". $mywidth ."\"><img src=\"". $f ."\" border=\"0\"><br/>";
+    echo "<span style=\"color: #dddddd; font-weight: bold;\">". basename($f) ."</span></td>\n";
+    $c++;
+    if ($c >= $picsperrow) {
+      echo "</tr>\n<tr>\n";
+      $c = 0;
+    }
   }
+  echo "</table>\n";
+
+  break;
 }
+
+echo "</center>\n";
+echo "</body>\n</html>\n";
 
 ?>
