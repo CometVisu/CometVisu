@@ -990,6 +990,7 @@
         <xsd:attribute name="label" type="xsd:string" />
         <xsd:attribute name="scaling" type="xsd:decimal" />
         <xsd:attribute name="steps" type="xsd:boolean" />
+        <xsd:attribute name="fill" type="xsd:boolean" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
