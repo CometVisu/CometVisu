@@ -88,5 +88,6 @@ resize_folder 128x128_green "#44ff44"
 resize_folder 128x128_blue "#4444ff"
 resize_folder 128x128_purple "#ff44ff"
 resize_folder 128x128_yellow "#ffff00"
+resize_folder 128x128_grey "#777777"
 
 
