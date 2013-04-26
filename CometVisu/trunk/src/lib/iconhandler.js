@@ -3846,12 +3846,12 @@ function icon() { // Konstruktor
       else
         styling = ' style="' + styling + '"';
      
+      var classes = 'icon'
       var iconclass = arguments[5];
-      if( iconclass === undefined) { 
-        i.icon = $('<img class="icon" src="' + i.uri + '"' + styling + '/>');
-      } else {
-        i.icon = $('<img class="icon custom_' + iconclass +'" src="' + i.uri + '"' + styling + '/>');
+      if( iconclass !== undefined) {
+        classes = classes + ' custom_' + iconclass;
       }
+      i.icon = $('<img class="' + classes + '" src="' + i.uri + '"' + styling + '/>');
       return i.icon;
     }
   }
