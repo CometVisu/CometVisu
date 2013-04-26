@@ -3845,8 +3845,13 @@ function icon() { // Konstruktor
         styling = i.styling === undefined ? '' : ' style="' + i.styling + '"';
       else
         styling = ' style="' + styling + '"';
-      
-      i.icon = $('<img class="icon" src="' + i.uri + '"' + styling + '/>');
+     
+      var iconclass = arguments[5];
+      if( iconclass === undefined) { 
+        i.icon = $('<img class="icon" src="' + i.uri + '"' + styling + '/>');
+      } else {
+        i.icon = $('<img class="icon custom_' + iconclass +'" src="' + i.uri + '"' + styling + '/>');
+      }
       return i.icon;
     }
   }
