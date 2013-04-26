@@ -54,6 +54,7 @@
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute name="color" type="xsd:string" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <!-- attributes -->
