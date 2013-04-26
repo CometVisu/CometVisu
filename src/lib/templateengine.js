@@ -346,7 +346,7 @@ function TemplateEngine( undefined ) {
     var width = thisTemplateEngine.getAvailableWidth();
     var $main = $('#main');
     // if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
-    var mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
+    var mobileDevice = (/(android|blackberry|ipone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
     if (/(nexus 7|tablet)/i.test(uagent)) mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
     mobileDevice |= thisTemplateEngine.forceMobile;  // overwrite detection when set by URL
     if (mobileDevice) {
@@ -526,7 +526,7 @@ function TemplateEngine( undefined ) {
           for ( var i = 0; i < origin.length; i++) {
              var $v = $(origin[i]);
              if ($v.is('icon'))
-               value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'));
+               value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
              else
                value[i] = $v.text();
           }
