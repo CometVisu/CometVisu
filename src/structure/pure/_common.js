@@ -374,10 +374,16 @@ function defaultUpdate( e, data, passedElement )
   {
     for( var i = 0; i < value.length; i++ )
     {
-      if( ('string' == typeof value[i]) || ('number' == typeof value[i]) )
-        valueElement.append( value[i] );
+      var thisValue = value[i];
+      if( !thisValue )
+        continue;
+      
+      if( ('string' == typeof thisValue) || ('number' == typeof thisValue) )
+        valueElement.append( thisValue );
+      else if( 'function' === typeof thisValue )
+        thisValue( valueElement );
       else
-        valueElement.append( $(value[i]).clone() );
+        valueElement.append( $(thisValue).clone() );
     }
   }
   
