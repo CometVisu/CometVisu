@@ -21,6 +21,130 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
+(function( window, undefined ){
+  // "global" functions (=> state less)
+  var hexColorRegEx = /#[0-9a-f]{6}/,
+      colorMapping = { // as a convenience, definition of a few colors
+        white:  '#ffffff', 
+        orange: '#ff8000',
+        red:    '#ff4444',
+        green:  '#44ff44',
+        blue:   '#4444ff',
+        purple: '#ff44ff',
+        yellow: '#ffff00',
+        grey:   '#777777',
+        black:  '#000000'
+      },
+      /**
+       * Append to the jQuery element a canvas element and return it.
+       */
+      appendCanvas = function( element, styling, classes )
+      {
+        var $c = $('<canvas class="' + classes + '" ' + styling + '/>');
+        element.append( $c );
+        return $c[0];
+      },
+      /**
+       * Fill the canvas element @param c with the ImageData. Also resize the 
+       * canvas at the same time.
+       */
+      fillCanvas = function( c, imageData )
+      {
+        c.width  = imageData.width;
+        c.height = imageData.height;
+        c.getContext('2d').putImageData( imageData, 0, 0 );
+      },
+      /**
+       * Do the recoloring based on @param thisIcon and store it in the 
+       * hash @param thisIconColors.
+       */
+      doRecolorNonTransparent = function( color, thisIcon, thisIconColors )
+      {
+        if( thisIconColors[color] )
+          return; // done, already recolored
+        
+        if( !hexColorRegEx.test( color ) )
+          alert( 'Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".' );
+        
+        var r      = parseInt( color.substr( 1, 2 ), 16 ),
+            g      = parseInt( color.substr( 3, 2 ), 16 ),
+            b      = parseInt( color.substr( 5, 2 ), 16 ),
+            canvas = $('<canvas/>')[0];
+        canvas.width  = thisIcon.width;
+        canvas.height = thisIcon.height;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage( thisIcon, 0, 0 );
+    
+        var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );
+        for( var i = 0, l = canvas.width * canvas.height * 4; i < l; i += 4 )
+        {
+          if( 0 != imageData.data[ i+3 ] )
+          {
+            imageData.data[ i   ] = r;
+            imageData.data[ i+1 ] = g;
+            imageData.data[ i+2 ] = b;
+          }
+        }
+        thisIconColors[color] = imageData;
+      };
+  
+  /**
+   * Funtion to call for each icon that should be dynamically recolored.
+   * This will be called for each known URL, so only remember the string but
+   * don't load the image yet as it might not be needed.
+   */
+  window.recolorNonTransparent = function( url ) {
+    var thisIcon,            // the original Image() of the icon
+        thisIconColors = {}, // cache all the transformed ImageDatas
+        toFill = [],         // all the icons to fill once the image was loaded
+        loadHandler = function(){
+          var thisFill;
+          while( thisFill = toFill.pop() )
+          {
+            doRecolorNonTransparent( thisFill.color, thisIcon, thisIconColors );
+            fillCanvas( thisFill.canvas, thisIconColors[thisFill.color] );
+          }
+        };
+  
+    /**
+     * will be called for each color that is actually used
+     * => load image for all colors
+     * => transform image
+     * @return {Function} a function that will append the recolored image to
+     *         the jQuery element passed to that function 
+     */
+    return function( color, styling, classes )
+    {
+      // load image only when needed
+      if( thisIcon === undefined )
+      {
+        thisIcon = new Image();
+        thisIcon.onload = loadHandler;
+        thisIcon.src = url;
+      }
+      
+      if( color in colorMapping )
+        color = colorMapping[ color ];
+      
+      /**
+       * The function to call to add the icon in the DOM.
+       * It will handle if the icon content isn't available yet.
+       */
+      return function( valueElement ){
+        var c = appendCanvas( valueElement, styling, classes );
+        if( thisIcon.complete )
+        {
+          doRecolorNonTransparent( color, thisIcon, thisIconColors );
+          fillCanvas( c, thisIconColors[color] );
+        } else {
+          // Icon not loaded yet - put on que
+          toFill.push( { canvas: c, color: color } );
+        }
+      };
+    }
+  };
+})(window);
+
 /**
  * The object "icon" contains the whole API necessary to handle the icons.
  * 
@@ -3821,6 +3945,11 @@ function icon() { // Konstruktor
     }
     if (!db[name][type][flavour][color])
       color = '*'; // undefined -> use default
+      
+    // handle a generic mapping function
+    if (typeof db[name][type][flavour]['*'] === 'function')
+      return db[name][type][flavour]['*'];
+    
     if (typeof db[name][type][flavour][color] === 'string')
       color = db[name][type][flavour][color]; // redirect link
 
@@ -3851,7 +3980,13 @@ function icon() { // Konstruktor
       if( iconclass !== undefined) {
         classes = classes + ' custom_' + iconclass;
       }
-      i.icon = $('<img class="' + classes + '" src="' + i.uri + '"' + styling + '/>');
+      
+      if( typeof i === 'function' )
+      {
+        i.icon = i( arguments[3], styling, classes );
+      } else {
+        i.icon = $('<img class="' + classes + '" src="' + i.uri + '"' + styling + '/>');
+      }
       return i.icon;
     }
   }
