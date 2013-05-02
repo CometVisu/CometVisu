@@ -445,7 +445,11 @@ function extractLabel( label, flavour )
     if( $v.is('icon') )
     {
       var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, undefined, $v.attr('styling') );
-      if( i ) $div.append( i.clone() );
+      
+      if( 'function' === typeof i )
+        i( $div );
+      else
+        if( i ) $div.append( i.clone() );
     } else
       $div.append( this.textContent );
   });
