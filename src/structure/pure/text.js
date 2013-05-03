@@ -31,8 +31,10 @@ basicdesign.addCreator('text', {
         var $v = $(this);
         if ($v.is('icon')) {
           var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour);
-          if (i)
-            label.append(i.clone());
+          if( 'function' === typeof i )
+            i( $div );
+          else
+            if (i) label.append(i.clone());
         } else
           label.append(this.textContent);
       });
