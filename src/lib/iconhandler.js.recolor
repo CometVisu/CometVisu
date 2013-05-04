@@ -62,27 +62,30 @@
       {
         if( thisIconColors[color] )
           return; // done, already recolored
-        
-        if( !hexColorRegEx.test( color ) )
-          alert( 'Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".' );
-        
-        var r      = parseInt( color.substr( 1, 2 ), 16 ),
-            g      = parseInt( color.substr( 3, 2 ), 16 ),
-            b      = parseInt( color.substr( 5, 2 ), 16 ),
-            canvas = $('<canvas/>')[0];
+          
+        var canvas = $('<canvas/>')[0];
         canvas.width  = thisIcon.width;
         canvas.height = thisIcon.height;
         var ctx = canvas.getContext('2d');
         ctx.drawImage( thisIcon, 0, 0 );
     
         var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );
-        for( var i = 0, l = canvas.width * canvas.height * 4; i < l; i += 4 )
+        if( color !== undefined )
         {
-          if( 0 != imageData.data[ i+3 ] )
+          if( !hexColorRegEx.test( color ) )
+            alert( 'Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".' );
+          
+          var r      = parseInt( color.substr( 1, 2 ), 16 ),
+              g      = parseInt( color.substr( 3, 2 ), 16 ),
+              b      = parseInt( color.substr( 5, 2 ), 16 );
+          for( var i = 0, l = canvas.width * canvas.height * 4; i < l; i += 4 )
           {
-            imageData.data[ i   ] = r;
-            imageData.data[ i+1 ] = g;
-            imageData.data[ i+2 ] = b;
+            if( 0 != imageData.data[ i+3 ] )
+            {
+              imageData.data[ i   ] = r;
+              imageData.data[ i+1 ] = g;
+              imageData.data[ i+2 ] = b;
+            }
           }
         }
         thisIconColors[color] = imageData;
