@@ -5,7 +5,7 @@
 /*
  * Default height for all icons
  */
-img.icon {
+img.icon, canvas.icon {
   height : 2em;
 }
 
