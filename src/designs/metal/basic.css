@@ -150,10 +150,10 @@ body br
   -ms-box-sizing: border-box;
 }
 .text > div { line-height: 2em; }
-.widget .label img.icon, .text img.icon { vertical-align: middle; margin-top: -0.3em; }
-.widget .pagejump img.icon { margin-top: -0; }
-.widget .actor img.icon { margin-bottom: -0.6em; }
-.widget .switchPressed img.icon, .widget .switchUnpressed img.icon { margin-top: -0.4em; margin-bottom: -0.6em;}
+.widget .label img.icon, .widget .label canvas.icon, .text img.icon, .text canvas.icon { vertical-align: middle; margin-top: -0.3em; }
+.widget .pagejump img.icon, .widget .pagejump canvas.icon { margin-top: -0; }
+.widget .actor img.icon, .widget .actor canvas.icon { margin-bottom: -0.6em; }
+.widget .switchPressed img.icon, .widget .switchPressed canvas.icon, .widget .switchUnpressed img.icon, .widget .switchUnpressed canvas.icon { margin-top: -0.4em; margin-bottom: -0.6em;}
 .widget_container > .pagejump > .label {
 	width: auto;
 	display: inline;
@@ -733,10 +733,14 @@ background-color: #000;
 .widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { text-align: center; }
 .widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { text-align: right; }
 
-.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon { margin-left: 0; }
-.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon { margin-right: 35px; }
+.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon,
+.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor canvas.icon { margin-left: 0; }
+.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon,
+.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor canvas.icon { margin-right: 35px; }
 .widget.left:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon,
-.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon { margin-left: 10px; }
+.widget.left:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor canvas.icon,
+.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon,
+.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor canvas.icon { margin-left: 10px; }
 
 .widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor:first-child, 
 .widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor:first-child > div { 
