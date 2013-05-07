@@ -183,7 +183,7 @@ body br
 	float: none;
 	width: auto;
 }
-.navbar .widget .label > img {
+.navbar .widget .label > img, .navbar .widget .label > canvas {
 	left: 0.2em;
 }
 .navbar .switchPressed, .navbar .switchUnpressed {
@@ -691,7 +691,7 @@ background-color: #000;
 }
 #navbarTop { border-bottom: 2px solid #666; }
 #navbarBottom { border-top: 2px solid #666; }
-.navbar .pagejump .label > img { 
+.navbar .pagejump .label > img, .navbar .pagejump .label > canvas { 
 	height: 44px !important;
 	display: block;
 	margin: 0 auto;
