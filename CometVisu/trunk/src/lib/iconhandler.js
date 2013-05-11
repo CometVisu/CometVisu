@@ -3969,7 +3969,7 @@ function icon() { // Konstruktor
     var i = this.get.apply(this, arguments);
     if (i) {
       var styling = arguments[4];
-      if( i.icon && styling === undefined )
+      if( i.icon && styling === undefined && typeof i !== 'function' )
         return i.icon;
 
       // fetch and cache image
