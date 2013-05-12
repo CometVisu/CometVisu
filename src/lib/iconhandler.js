@@ -23,7 +23,7 @@
 
 (function( window, undefined ){
   // "global" functions (=> state less)
-  var hexColorRegEx = /#[0-9a-f]{6}/,
+  var hexColorRegEx = /#[0-9a-fA-F]{6}/,
       colorMapping = { // as a convenience, definition of a few colors
         white:  '#ffffff', 
         orange: '#ff8000',
