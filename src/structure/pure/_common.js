@@ -370,6 +370,8 @@ function defaultUpdate( e, data, passedElement )
   valueElement.empty();
   if( ('string' == typeof value) || ('number' == typeof value) )
     valueElement.append( value );
+  else if( 'function' === typeof value )
+    value( valueElement );
   else
   {
     for( var i = 0; i < value.length; i++ )
