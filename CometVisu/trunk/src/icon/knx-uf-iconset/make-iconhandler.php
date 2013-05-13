@@ -80,4 +80,29 @@
     }
   }
 
+  $outtxt = "";
+  foreach ($icons as $i) {
+    $name = preg_replace("/\.png$/", "", $i);
+    $outtxt .= sprintf("%-30s", "'". $name ."' : ") ."   { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : recolorNonTransparent('icon/knx-uf-iconset/128x128_white/".$i."') } } },\n";
+  }
+ 
+  $outtxt = preg_replace("/,\n$/", "", $outtxt);
+
+
+  // Read Original File for Canvas implementation
+  $fn = fopen("../../lib/iconhandler.js.recolor", "r");
+  $show = true;
+  while(! feof($fn)) {
+    $line = fgets($fn);
+
+    if (preg_match("/Dynamic Icons End/", $line)) $show = true;
+
+    if ($show) echo $line;
+
+    if (preg_match("/Dynamic Icons Start/", $line)) {
+      $show = false;
+      echo "\n". $outtxt ."\n\n";
+    }
+  }
+
 ?>
