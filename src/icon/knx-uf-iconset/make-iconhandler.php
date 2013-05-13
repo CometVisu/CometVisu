@@ -63,22 +63,25 @@
  
   $outtxt = preg_replace("/,\n$/", "", $outtxt);
 
-
   // Read Original File
   $fn = fopen("../../lib/iconhandler.js", "r");
+  $fn_new = fopen("../../lib/iconhandler.js.NEW", "w");
   $show = true;
   while(! feof($fn)) {
     $line = fgets($fn);
 
     if (preg_match("/Dynamic Icons End/", $line)) $show = true;
 
-    if ($show) echo $line;
+    if ($show) fwrite($fn_new, $line);
 
     if (preg_match("/Dynamic Icons Start/", $line)) {
       $show = false;
-      echo "\n". $outtxt ."\n\n";
+      fwrite($fn_new, "\n". $outtxt ."\n\n");
     }
   }
+  fclose($fn);
+  fclose($fn_new);
+
 
   $outtxt = "";
   foreach ($icons as $i) {
@@ -88,21 +91,23 @@
  
   $outtxt = preg_replace("/,\n$/", "", $outtxt);
 
-
   // Read Original File for Canvas implementation
   $fn = fopen("../../lib/iconhandler.js.recolor", "r");
+  $fn_new = fopen("../../lib/iconhandler.js.recolor.NEW", "w");
   $show = true;
   while(! feof($fn)) {
     $line = fgets($fn);
 
     if (preg_match("/Dynamic Icons End/", $line)) $show = true;
 
-    if ($show) echo $line;
+    if ($show) fwrite($fn_new, $line);
 
     if (preg_match("/Dynamic Icons Start/", $line)) {
       $show = false;
-      echo "\n". $outtxt ."\n\n";
+      fwrite($fn_new, "\n". $outtxt ."\n\n");
     }
   }
+  fclose($fn);
+  fclose($fn_new);
 
 ?>
