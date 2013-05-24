@@ -165,15 +165,11 @@ var Configuration = function (filename) {
         // path is the same as the one from the configuration, so let's throw out the filename, and voila, path.
         // might not have a path component (aka no /), then throw out everything
         var schemaPath = '';
-        if (-1 != _filename.indexOf('/')) {
-            schemaPath = _filename.replace(/\/[^\/]*$/, '');
+        if (-1 != _filename.lastIndexOf('/')) {
+            schemaPath = _filename.substring(0, _filename.lastIndexOf('/') + 1);
         }
-        // if the config file is in the config directory, move that out of the path as well
-        schemaPath = schemaPath.replace(/\/?config/, '');
         
-        var schemaFilename = schemaPath + schemaName;
-        
-        return schemaFilename;
+        return schemaPath + schemaName;
         
     };
     

@@ -33,7 +33,7 @@
 require_once('../lib/library_version.inc.php');
 
 define('CONFIG_FILENAME', '../config/visu_config%s.xml');
-define('SCHEMA_FILENAME', '../%s');
+define('SCHEMA_FILENAME', './%s');
 
 // get everything the user has provided ...
 $strConfigSuffix = (true === isset($_GET['config'])) ? $_GET['config'] : null;
