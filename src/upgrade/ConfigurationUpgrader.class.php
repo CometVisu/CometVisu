@@ -122,7 +122,7 @@ class ConfigurationUpgrader {
         
         // append namespaces to schema
         $this->objDOM->getElementsByTagName('pages')->item(0)->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
-        $this->objDOM->getElementsByTagName('pages')->item(0)->setAttribute('xsi:noNamespaceSchemaLocation', './visu_config.xsd');
+        $this->objDOM->getElementsByTagName('pages')->item(0)->setAttribute('xsi:noNamespaceSchemaLocation', '../visu_config.xsd');
         
         // rename iframe to web
         $objElements = $objXPath->query('//iframe');
