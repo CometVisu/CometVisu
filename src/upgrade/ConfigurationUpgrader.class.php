@@ -154,7 +154,7 @@ class ConfigurationUpgrader {
 		foreach ($objElements as $objElement) {
 			$objElement->setAttribute('popup', 'false');
 			$objElement->setAttribute('previewlabels', 'true');
-			$objElementNode->setAttribute('legend', 'none');
+			$objElement->setAttribute('legend', 'none');
 			$this->renameNode($objElement, 'diagram');
 			++$i;
 		}
