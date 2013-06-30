@@ -33,10 +33,6 @@ body  {
   
   overflow: hidden;
   margin: 0.1rem 0 0.1rem 0.1rem;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 a {
