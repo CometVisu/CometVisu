@@ -7,10 +7,6 @@ body
   font-size: 5mm;
   overflow: hidden;
   margin:0;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 h1
