@@ -233,13 +233,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     var actor = '<div class="actor switchUnpressed ';
     if ( $p.attr( 'align' ) ) 
       actor += $p.attr( 'align' ); 
-    actor += '">';
-    var map = $p.attr('mapping');
-    if( templateEngine.mappings[map] && templateEngine.mappings[map][value] )
-      actor += '<div class="value">' + templateEngine.mappings[map][value] + '</div>';
-    else
-      actor += '<div class="value">-</div>';
-    actor += '</div>';
+    actor += '"><div class="value">-</div></div>';
                 
     var $actor = $(actor).data({
       'address'  : address,
