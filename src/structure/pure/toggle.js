@@ -65,7 +65,7 @@ basicdesign.addCreator('toggle', {
               if (!first_element)
                   first_element = e;
           }
-    sendValue = (next_element) ? next_element : first_element;
+    var sendValue = (next_element) ? next_element : first_element;
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set

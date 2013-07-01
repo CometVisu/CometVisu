@@ -80,13 +80,12 @@ basicdesign.addCreator('imagetrigger', {
   },
   action: function() {
     var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
-    sendValue = data.sendValue;
     for( var addr in data.address ) {
       if( !(data.address[addr][1] & 2) )
         continue; // skip when write flag not set
       if( data.sendValue == "" )
         continue; // skip empty
-      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], sendValue ) );
+      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], data.sendValue ) );
     }
   }
 });
