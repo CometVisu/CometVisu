@@ -53,13 +53,11 @@ basicdesign.addCreator('toggle', {
   },
   action: function() {
     var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
-    var element_count = 0;
     var next_element;
     var first_element;
     for(var e in templateEngine.mappings[data.mapping])
         if(templateEngine.mappings[data.mapping].hasOwnProperty(e))
           {
-              element_count++;
               if (e > data.basicvalue && !next_element)
                   next_element = e;
               if (!first_element)
