@@ -48,7 +48,7 @@ basicdesign.addCreator('trigger', {
       'sendValue' : value,
       'shorttime' : parseFloat($e.attr('shorttime')) || -1,
       'shortValue': shortvalue
-    } ).setWidgetStyling(value);
+    } );
     defaultUpdate( undefined, value, $actor );
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'mousedown touchstart', this.mousedown ).bind( 'mouseup touchend', this.mouseup ).bind( 'mouseout touchout', this.mouseout );

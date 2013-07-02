@@ -29,31 +29,6 @@ var Maturity = {
 };
 
 /*
- * this function implements widget stylings 
- *
- * implemented in: default_update, trigger-widget
- */
-$.fn.setWidgetStyling = function(value) {
-  var styling = templateEngine.stylings[this.data('styling')];
-  if (styling) {    
-    this.removeClass(styling['classnames']); // remove only styling classes
-    if (styling[value]) { // fixed value
-      this.addClass(styling[value]); 
-    } else { // 
-      value = parseFloat(value);
-      var range = styling['range'];
-      for( var min in range ) {
-        if( min > value ) continue;
-        if( range[min][0] < value ) continue; // check max
-        this.addClass( range[min][1] );
-        break;
-      } 
-    }
-  }
-  return this;
-}
-
-/*
  * this function implements all widget layouts that are identical (JNK)
  *
  * implemented: rowspan, colspan
@@ -361,7 +336,7 @@ function defaultUpdate( e, data, passedElement )
   var element = passedElement || $(this);
   var value = defaultValueHandling( e, data, element );
   
-  element.setWidgetStyling( element.data( 'basicvalue' ) );
+  templateEngine.setWidgetStyling(element, element.data( 'basicvalue' ) );
   
   if( element.data( 'align' ) )
     element.addClass(element.data( 'align' ) );

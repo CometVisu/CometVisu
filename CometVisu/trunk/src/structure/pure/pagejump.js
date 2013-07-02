@@ -45,7 +45,8 @@ basicdesign.addCreator('pagejump', {
       'type'    : 'pagejump',
       'align'   : $e.attr('align'),
       'target'  : target
-    } ).setWidgetStyling(target);
+    } );
+    templateEngine.setWidgetStyling($actor, target);
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'click', this.action ).bind( 'mousedown', function(){
       $actor.removeClass('switchUnpressed').addClass('switchPressed');
