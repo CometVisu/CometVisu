@@ -538,7 +538,7 @@
       <!-- list all possbile widgets here -->
       <xsd:element name="text" type="text" />
       <xsd:element name="switch" type="switch" />
-      <xsd:element name="toggle" type="switch" />
+      <xsd:element name="toggle" type="toggle" />
       <xsd:element name="trigger" type="trigger" />
       <xsd:element name="urltrigger" type="urltrigger" />
       <xsd:element name="multitrigger" type="multitrigger" />
@@ -959,7 +959,7 @@
 
   <xsd:complexType name="line" />
 
-  <xsd:complexType name="toogle">  
+  <xsd:complexType name="toggle">  
      <xsd:sequence>
        <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />  
        <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1" />       
