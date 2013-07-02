@@ -53,17 +53,7 @@ basicdesign.addCreator('toggle', {
   },
   action: function() {
     var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
-    var next_element;
-    var first_element;
-    for(var e in templateEngine.mappings[data.mapping])
-        if(templateEngine.mappings[data.mapping].hasOwnProperty(e))
-          {
-              if (e > data.basicvalue && !next_element)
-                  next_element = e;
-              if (!first_element)
-                  first_element = e;
-          }
-    var sendValue = (next_element) ? next_element : first_element;
+    var sendValue = templateEngine.getNextMappedValue(data.basicvalue, data.mapping);
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
