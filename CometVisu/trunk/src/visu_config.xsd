@@ -966,10 +966,10 @@
        <xsd:element name="address" type="address" minOccurs="1" />   
      </xsd:sequence>   
      <xsd:attribute ref="styling" use="optional" />  
-     <xsd:attribute ref="mapping" use="optional" />  
+     <xsd:attribute ref="mapping" />  
      <xsd:attribute ref="align" use="optional" />  
      <xsd:attribute ref="flavour" use="optional" />  
-   </xsd:complexType><!-- toggle is not yet implemented -->
+   </xsd:complexType>
 
   <xsd:complexType name="axis">
     <xsd:simpleContent>
