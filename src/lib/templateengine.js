@@ -65,7 +65,7 @@ function TemplateEngine( undefined ) {
   var lastBodyWidth=0;
 
   var mappings = {}; // store the mappings
-  this.stylings = {}; // store the stylings
+  var stylings = {}; // store the stylings
  
   var ga_list = {};
 
@@ -172,6 +172,30 @@ function TemplateEngine( undefined ) {
   this.getAddresses = function() {
     return Object.keys(ga_list);
   };
+
+  /*
+   * this function implements widget stylings 
+   */
+  this.setWidgetStyling = function(e, value) {
+    var styling = stylings[e.data('styling')];
+    if (styling) {    
+      e.removeClass(styling['classnames']); // remove only styling classes
+      if (styling[value]) { // fixed value
+        e.addClass(styling[value]); 
+      }
+      else { 
+        value = parseFloat(value);
+        var range = styling['range'];
+        for (var min in range) {
+          if (min > value) continue;
+          if (range[min][0] < value) continue; // check max
+          e.addClass(range[min][1]);
+          break;
+        } 
+      }
+    }
+    return this;
+  }
 
   this.map = function(value, this_map) {
     if (this_map && mappings[this_map]) {
@@ -564,18 +588,18 @@ function TemplateEngine( undefined ) {
     $('meta > stylings styling', xml).each(function(i) {
       var name = $(this).attr('name');
       var classnames = '';
-      thisTemplateEngine.stylings[name] = {};
+      stylings[name] = {};
       $(this).find('entry').each(function() {
         classnames += $(this).text() + ' ';
         if ($(this).attr('value')) {
-          thisTemplateEngine.stylings[name][$(this).attr('value')] = $(this).text();
+          stylings[name][$(this).attr('value')] = $(this).text();
         } else { // a range
-          if (!thisTemplateEngine.stylings[name]['range'])
-            thisTemplateEngine.stylings[name]['range'] = {};
-          thisTemplateEngine.stylings[name]['range'][parseFloat($(this).attr('range_min'))] = [parseFloat($(this).attr('range_max')),$(this).text()];
+          if (!stylings[name]['range'])
+            stylings[name]['range'] = {};
+          stylings[name]['range'][parseFloat($(this).attr('range_min'))] = [parseFloat($(this).attr('range_max')),$(this).text()];
         }
       });
-      thisTemplateEngine.stylings[name]['classnames'] = classnames;
+      stylings[name]['classnames'] = classnames;
     });
 
     // then the status bar

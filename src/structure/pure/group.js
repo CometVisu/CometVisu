@@ -45,7 +45,8 @@ basicdesign.addCreator('group', {
       ret_val.data( {
         'type'    : 'pagejump',
         'target'  : target
-      } ).bind( 'click', this.action ).setWidgetStyling(target);
+      } ).bind( 'click', this.action );
+      templateEngine.setWidgetStyling(ret_val, target);
     }
 
     ret_val.append( container );

@@ -56,7 +56,8 @@ basicdesign.addCreator('urltrigger', {
       'align'   : $e.attr('align'),
       'params'  : $(element).attr('params'),
       'sendValue': value //value is currently ignored in XHR! maybe for multitrigger
-    } ).setWidgetStyling(value);
+    } );
+    templateEngine.setWidgetStyling($actor, value);
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'click', this.action ).bind( 'mousedown', function(){
       $actor.removeClass('switchUnpressed').addClass('switchPressed');

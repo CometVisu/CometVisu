@@ -48,7 +48,7 @@ basicdesign.addCreator('wgplugin_info', {
     var variable = element.data( 'variable' );
     var valueElement = element.find('.value');
     $.getJSON('/wg-plugindb.pl?name=' + variable, function(data) {
-      element.setWidgetStyling( element.data( 'basicvalue' ) );
+      templateEngine.setWidgetStyling(element, element.data('basicvalue'));
       
       if( element.data( 'align' ) )
         element.addClass(element.data( 'align' ) );
