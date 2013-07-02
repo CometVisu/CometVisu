@@ -64,7 +64,7 @@ function TemplateEngine( undefined ) {
   // use to recognize if the screen width has crossed the maxMobileScreenWidth
   var lastBodyWidth=0;
 
-  this.mappings = {}; // store the mappings
+  var mappings = {}; // store the mappings
   this.stylings = {}; // store the stylings
  
   var ga_list = {};
@@ -174,8 +174,8 @@ function TemplateEngine( undefined ) {
   };
 
   this.map = function(value, this_map) {
-    if (this_map && thisTemplateEngine.mappings[this_map]) {
-      var m = thisTemplateEngine.mappings[this_map];
+    if (this_map && mappings[this_map]) {
+      var m = mappings[this_map];
 
       if (m.formula) {
         return m.formula(value);
@@ -196,7 +196,26 @@ function TemplateEngine( undefined ) {
     }
     return value;
   };
-  
+
+  this.getNextMappedValue = function(value, this_map) {
+    if (this_map && mappings[this_map]) {
+      var next_element;
+      var first_element;
+      for (var e in mappings[this_map]) {
+        if (mappings[this_map].hasOwnProperty(e)) {
+          if (e > value && !next_element) {
+            next_element = e;
+          }
+          if (!first_element) {
+            first_element = e;
+          }
+        }
+      }
+      return (next_element) ? next_element : first_element;
+    }
+    return value;
+  }
+
   this.resetPageValues = function() {
     thisTemplateEngine.currentPage = null;
     thisTemplateEngine.currentPageUnavailableWidth=-1;
@@ -513,11 +532,11 @@ function TemplateEngine( undefined ) {
     $('meta > mappings mapping', xml).each(function(i) {
       var $this = $(this);
       var name = $this.attr('name');
-      thisTemplateEngine.mappings[name] = {};
+      mappings[name] = {};
       var formula = $this.find('formula');
       if (formula.length > 0) {
         eval('var func = function(x){' + formula.text() + '; return y;}');
-        thisTemplateEngine.mappings[name]['formula'] = func;
+        mappings[name]['formula'] = func;
       } else {
         $this.find('entry').each(function() {
           var $localThis = $(this);
@@ -531,11 +550,11 @@ function TemplateEngine( undefined ) {
                value[i] = $v.text();
           }
           if ($localThis.attr('value')) {
-            thisTemplateEngine.mappings[name][$localThis.attr('value')] = value.length == 1 ? value[0] : value;
+            mappings[name][$localThis.attr('value')] = value.length == 1 ? value[0] : value;
           } else {
-            if (!thisTemplateEngine.mappings[name]['range'])
-              thisTemplateEngine.mappings[name]['range'] = {};
-            thisTemplateEngine.mappings[name]['range'][parseFloat($localThis.attr('range_min'))] = [ parseFloat($localThis.attr('range_max')), value ];
+            if (!mappings[name]['range'])
+              mappings[name]['range'] = {};
+            mappings[name]['range'][parseFloat($localThis.attr('range_min'))] = [ parseFloat($localThis.attr('range_max')), value ];
           }
         });
       }
