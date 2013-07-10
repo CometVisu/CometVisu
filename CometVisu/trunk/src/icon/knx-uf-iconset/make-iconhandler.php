@@ -75,8 +75,12 @@
       fwrite($fn_new, "\n". $outtxt ."\n\n");
     }
   }
+  $oldFileName = stream_get_meta_data($fn)["uri"];
+  $newFileName = stream_get_meta_data($fn_new)["uri"];
   fclose($fn);
   fclose($fn_new);
+  unlink($oldFileName);
+  rename($newFileName, $oldFileName);
 
 
   $outtxt = "";
@@ -103,7 +107,11 @@
       fwrite($fn_new, "\n". $outtxt ."\n\n");
     }
   }
+  $oldFileName = stream_get_meta_data($fn)["uri"];
+  $newFileName = stream_get_meta_data($fn_new)["uri"];
   fclose($fn);
   fclose($fn_new);
+  unlink($oldFileName);
+  rename($newFileName, $oldFileName);
 
 ?>
