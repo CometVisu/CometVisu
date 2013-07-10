@@ -22,15 +22,11 @@
 
   function GetColors($p) {
     $result = array();
-    $fh = opendir($p);
-    while ($mydirs = readdir($fh)) {
-      if (! preg_match("/^\./", $mydirs)) { 
-        if (is_dir($mydirs)) { 
-          if (preg_match("/^128.*/", $mydirs)) $result[] = preg_replace("/^128x128_/", "", $mydirs);
-        }
-      }
-    }
-    closedir($fh);
+    foreach (scandir($p) as $fh) {
+      if (is_dir($p."/".$fh)) {
+        if (preg_match("/^128.*/", $fh)) $result[] = preg_replace("/^128x128_/", "", $fh);
+      } 
+    };  
     sort($result);
 
     return $result;
@@ -38,7 +34,7 @@
 
 
 
-  $colors = GetColors(".");
+  $colors = GetColors(dirname(__FILE__));
   $foundwhite = false;
   foreach ($colors as $i => $c) {
     if ($c == "white") { $foundwhite = true; }
@@ -46,7 +42,7 @@
   if (! $foundwhite) die("No 128x128_white found - this is needed as an index for all icons\n");
 
 
-  $icons = GetIcons("128x128_white");
+  $icons = GetIcons(dirname(__FILE__)."/128x128_white");
 
   $outtxt = "";
   foreach ($icons as $i) {
@@ -62,10 +58,10 @@
   }
  
   $outtxt = preg_replace("/,\n$/", "", $outtxt);
-
+  
   // Read Original File
-  $fn = fopen("../../lib/iconhandler.js.OLD", "r");
-  $fn_new = fopen("../../lib/iconhandler.js.OLD.NEW", "w");
+  $fn = fopen(dirname(__FILE__)."/../../lib/iconhandler.js.OLD", "r");
+  $fn_new = fopen(dirname(__FILE__)."/../../lib/iconhandler.js.OLD.NEW", "w");
   $show = true;
   while(! feof($fn)) {
     $line = fgets($fn);
@@ -92,8 +88,8 @@
   $outtxt = preg_replace("/,\n$/", "", $outtxt);
 
   // Read Original File for Canvas implementation
-  $fn = fopen("../../lib/iconhandler.js", "r");
-  $fn_new = fopen("../../lib/iconhandler.js.NEW", "w");
+  $fn = fopen(dirname(__FILE__)."/../../lib/iconhandler.js", "r");
+  $fn_new = fopen(dirname(__FILE__)."/../../lib/iconhandler.js.NEW", "w");
   $show = true;
   while(! feof($fn)) {
     $line = fgets($fn);
