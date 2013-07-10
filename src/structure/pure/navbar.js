@@ -23,7 +23,7 @@ basicdesign.addCreator('navbar', {
     var position = $n.attr('position') || 'left';
     var scope = $n.attr('scope') || -1;
     var container = $( '<div class="navbar clearfix" id="' + id.join('_')+'_'+ position + '_navbar" />' );
-    if( $n.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $n.attr('name') + '</h2>' );
+    if( $n.attr('name') ) container.append( '<h2>' + $n.attr('name') + '</h2>' );
     if( $n.attr('flavour') ) flavour = $n.attr('flavour');// sub design choice
     $( childs ).each( function(i){
         container.append( templateEngine.create_pages( childs[i], path + '_' + i, flavour ) );
