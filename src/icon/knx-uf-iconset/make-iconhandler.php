@@ -64,8 +64,8 @@
   $outtxt = preg_replace("/,\n$/", "", $outtxt);
 
   // Read Original File
-  $fn = fopen("../../lib/iconhandler.js", "r");
-  $fn_new = fopen("../../lib/iconhandler.js.NEW", "w");
+  $fn = fopen("../../lib/iconhandler.js.OLD", "r");
+  $fn_new = fopen("../../lib/iconhandler.js.OLD.NEW", "w");
   $show = true;
   while(! feof($fn)) {
     $line = fgets($fn);
@@ -92,8 +92,8 @@
   $outtxt = preg_replace("/,\n$/", "", $outtxt);
 
   // Read Original File for Canvas implementation
-  $fn = fopen("../../lib/iconhandler.js.recolor", "r");
-  $fn_new = fopen("../../lib/iconhandler.js.recolor.NEW", "w");
+  $fn = fopen("../../lib/iconhandler.js", "r");
+  $fn_new = fopen("../../lib/iconhandler.js.NEW", "w");
   $show = true;
   while(! feof($fn)) {
     $line = fgets($fn);
