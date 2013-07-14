@@ -91,3 +91,7 @@ resize_folder 128x128_yellow "#ffff00"
 resize_folder 128x128_grey "#777777"
 
 
+echo -n "Creating Icon Handler ..."
+php -f ./make-iconhandler.php
+echo "done."
+
