@@ -70,7 +70,6 @@ basicdesign.addCreator('slide', {
         change:  this.slideChange,
         slide:   this.slideUpdateValue
       });
-      $actor.children('.ui-slider-handle').text(sprintf($actor.data( 'format' ),$actor.slider('value')));
     }
     else {
       $actor.slider({
@@ -100,13 +99,13 @@ basicdesign.addCreator('slide', {
       element.slider('value', value);
       element.data( 'valueInternal', true );
       if (element.data( 'format' )!=null)
-        element.children('.ui-slider-handle').text(sprintf(element.data( 'format' ),value));
+        element.children('.ui-slider-handle').text(sprintf(element.data( 'format' ),templateEngine.map( value, element.data('mapping') )));
     }
   },
   slideUpdateValue:function(event,ui) {
     var actor = $( '.actor', $(this).parent() );
     if (actor.data( 'format' )!=null)
-      $(ui.handle).text(sprintf( actor.data( 'format' ), ui.value));
+      $(ui.handle).text(sprintf( actor.data( 'format' ), templateEngine.map( ui.value, actor.data('mapping') )));
   },
   /*
   * Start a thread that regularily sends the silder position to the bus
