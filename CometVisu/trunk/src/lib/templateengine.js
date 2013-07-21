@@ -459,10 +459,9 @@ function TemplateEngine( undefined ) {
     */
 
     /*
-     * First, we try to get a design by url Secondly, we try to get a predefined
-     * design in the config file Otherwise we show the design selection dialog
+     * First, we try to get a design by url. Secondly, we try to get a predefined
+     * design in the config file. Otherwise we show the design selection dialog.
      */
-
     // read predefined design in config
     predefinedDesign = $('pages', xml).attr("design");
 
@@ -514,18 +513,20 @@ function TemplateEngine( undefined ) {
       thisTemplateEngine.maxMobileScreenWidth = $('pages', xml).attr('max_mobile_screen_width');
 
     $.getCSS( 'designs/designglobals.css' );
-    $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css' );
-    $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/mobile.css',
+    if (thisTemplateEngine.clientDesign) {
+      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css' );
+      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/mobile.css',
               thisTemplateEngine.forceMobile ? {} : 
               {media: 'only screen and (max-width: '
               + thisTemplateEngine.maxMobileScreenWidth + 'px)'} );
-    $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css' );
-    $.getOrderedScripts( ['designs/' + thisTemplateEngine.clientDesign + '/design_setup.js'],
-      function(){
-        thisTemplateEngine.designReady = true;
-        thisTemplateEngine.setup_page();
-      }
-    );
+      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css' );
+      $.getOrderedScripts( ['designs/' + thisTemplateEngine.clientDesign + '/design_setup.js'],
+        function(){
+          thisTemplateEngine.designReady = true;
+          thisTemplateEngine.setup_page();
+        }
+      );
+    }
 
     // start with the plugins
     var pluginsToLoad = [];
