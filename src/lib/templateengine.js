@@ -24,19 +24,28 @@ $(window).unload(function() {
   if( templateEngine.visu ) templateEngine.visu.stop();
 });
 $(document).ready(function() {
+  function configError(textStatus) {
+    var message = 'Config-File Error! ';
+    switch (textStatus) {
+      case 'parsererror':
+        message += '<br />Invalid config file!<br /><a href="check_config.php?config=' + templateEngine.configSuffix + '">Please check!</a>';
+    }
+    $('#loading').html(message);
+  };
   // get the data once the page was loaded
   $.ajax({
     url : 'config/visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
     cache : !templateEngine.forceReload,
-    success : templateEngine.parseXML,
-    error : function(jqXHR, textStatus, errorThrown) {
-      var message = 'Config-File Error! ';
-      switch (textStatus) {
-      case 'parsererror':
-        message += '<br />Invalid config file!<br /><a href="check_config.php?config='
-          + templateEngine.configSuffix + '">Please check!</a>';
+    success : function(xml) {
+      if (!xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length) {
+        configError("parsererror");
       }
-      $('#loading').html(message);
+      else {
+        templateEngine.parseXML(xml);
+      }
+    },
+    error : function(jqXHR, textStatus, errorThrown) {
+      configError(textStatus);
     },
     dataType : 'xml'
   });
