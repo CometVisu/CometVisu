@@ -45,6 +45,12 @@
     </xsd:choice>
     <xsd:attribute ref="value" />
     <xsd:attributeGroup ref="range" />
+    <xsd:attribute name="default" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Marks the entry as being the default entry in case of non-existing applicable entries.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Markiert den Entry als Standard-Entry für den Fall, dass kein anderer passender Entry gefunden werden kann.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <!-- simple elements -->
@@ -303,7 +309,7 @@
       <xsd:attribute name="lib_version" type="xsd:integer" use="optional">
           <xsd:annotation>
               <xsd:documentation xml:lang="en">Version of the CometVisu-library. This value is for the Upgrade-Script</xsd:documentation>
-              <xsd:documentation xml:lang="en">Version der CometVisu-library. Dieser Wert ist für das Upgrade-Script</xsd:documentation>
+              <xsd:documentation xml:lang="de">Version der CometVisu-library. Dieser Wert ist für das Upgrade-Script</xsd:documentation>
               <xsd:appinfo>level:expert</xsd:appinfo>
           </xsd:annotation>
       </xsd:attribute>

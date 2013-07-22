@@ -130,7 +130,7 @@ function TemplateEngine( undefined ) {
     this.forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set
                                                               // to false
   }
-  
+
   if ($.getUrlVar('forceDevice')) {
     this.forceMobile = $.getUrlVar('forceDevice') == 'mobile';
   } else {
@@ -189,18 +189,25 @@ function TemplateEngine( undefined ) {
     var styling = stylings[e.data('styling')];
     if (styling) {    
       e.removeClass(styling['classnames']); // remove only styling classes
-      if (styling[value]) { // fixed value
-        e.addClass(styling[value]); 
+      function findValue(v) {
+        if (styling[v]) { // fixed value
+          e.addClass(styling[v]);
+          return true;
+        }
+        else { 
+          var valueFloat = parseFloat(v);
+          var range = styling['range'];
+          for (var min in range) {
+            if (min > valueFloat) continue;
+            if (range[min][0] < value) continue; // check max
+            e.addClass(range[min][1]);
+            return true;
+          } 
+        }
+        return false;
       }
-      else { 
-        value = parseFloat(value);
-        var range = styling['range'];
-        for (var min in range) {
-          if (min > value) continue;
-          if (range[min][0] < value) continue; // check max
-          e.addClass(range[min][1]);
-          break;
-        } 
+      if (!findValue(value) && m['defaultValue']) {
+        findValue(m['defaultValue']);
       }
     }
     return this;
@@ -212,18 +219,26 @@ function TemplateEngine( undefined ) {
 
       if (m.formula) {
         return m.formula(value);
-      } else if (m[value]) {
-        return m[value];
-      } else if (m['range']) {
-        var valueFloat = parseFloat(value);
-
-        var range = m['range'];
-        for ( var min in range) {
-          if (min > valueFloat)
-            continue;
-          if (range[min][0] < valueFloat)
-            continue; // check max
-          return range[min][1];
+      } else {
+        function mapValue(v) {
+          if (m[v]) {
+            return m[v];
+          } else if (m['range']) {
+            var valueFloat = parseFloat(v);
+            var range = m['range'];
+            for (var min in range) {
+              if (min > valueFloat) continue;
+              if (range[min][0] < valueFloat) continue; // check max
+              return range[min][1];
+            }
+          }
+        }
+        var ret = mapValue(value);
+        if (!ret && m['defaultValue']) {
+          ret = mapValue(m['defaultValue']);
+        }
+        if (ret) {
+          return ret;
         }
       }
     }
@@ -583,12 +598,26 @@ function TemplateEngine( undefined ) {
              else
                value[i] = $v.text();
           }
+          // check for default entry
+          var isDefaultValue = $localThis.attr('default');
+          if (isDefaultValue != undefined) {
+            isDefaultValue = isDefaultValue == "true";
+          } else {
+            isDefaultValue = false;
+          }
+          // now set the mapped values
           if ($localThis.attr('value')) {
             mappings[name][$localThis.attr('value')] = value.length == 1 ? value[0] : value;
+            if (isDefaultValue) {
+              mappings[name]['defaultValue'] = $localThis.attr('value');
+            }
           } else {
             if (!mappings[name]['range'])
               mappings[name]['range'] = {};
             mappings[name]['range'][parseFloat($localThis.attr('range_min'))] = [ parseFloat($localThis.attr('range_max')), value ];
+            if (isDefaultValue) {
+              mappings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
+            }
           }
         });
       }
@@ -600,13 +629,28 @@ function TemplateEngine( undefined ) {
       var classnames = '';
       stylings[name] = {};
       $(this).find('entry').each(function() {
-        classnames += $(this).text() + ' ';
-        if ($(this).attr('value')) {
-          stylings[name][$(this).attr('value')] = $(this).text();
+        var $localThis = $(this);
+        classnames += $localThis.text() + ' ';
+        // check for default entry
+        var isDefaultValue = $localThis.attr('default');
+        if (isDefaultValue != undefined) {
+          isDefaultValue = isDefaultValue == "true";
+        } else {
+          isDefaultValue = false;
+        }
+        // now set the styling values
+        if ($localThis.attr('value')) {
+          stylings[name][$localThis.attr('value')] = $localThis.text();
+          if (isDefaultValue) {
+            stylings[name]['defaultValue'] = $localThis.attr('value');
+          }
         } else { // a range
           if (!stylings[name]['range'])
             stylings[name]['range'] = {};
-          stylings[name]['range'][parseFloat($(this).attr('range_min'))] = [parseFloat($(this).attr('range_max')),$(this).text()];
+          stylings[name]['range'][parseFloat($localThis.attr('range_min'))] = [parseFloat($localThis.attr('range_max')),$localThis.text()];
+          if (isDefaultValue) {
+            stylings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
+          }
         }
       });
       stylings[name]['classnames'] = classnames;
@@ -907,7 +951,7 @@ function TemplateEngine( undefined ) {
     }
     var addressesToSubscribe = thisTemplateEngine.getAddresses();
     if( 0 == addressesToSubscribe.length )
-      $(document).trigger( 'firstdata' ); // no data to recive => send event now
+      $(document).trigger( 'firstdata' ); // no data to receive => send event now
     else
       thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
     
