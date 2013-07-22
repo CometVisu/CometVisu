@@ -61,7 +61,7 @@ function CometVisu( urlPrefix )
     this.version = json.v.split( '.', 3 );
 
     if( 0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1]) ) 
-      alert( 'ERROR CometVisu Client: too new protocoll version (' + json.v + ') used!' );
+      alert( 'ERROR CometVisu Client: too new protocol version (' + json.v + ') used!' );
 
     // send first request
     this.running = true;
@@ -70,7 +70,7 @@ function CometVisu( urlPrefix )
     }
     else {
       // old behaviour -> start full query
-      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError } );
     }
   };
 
@@ -84,7 +84,7 @@ function CometVisu( urlPrefix )
     {
       if( this.running )
       { // retry initial request
-        this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+        this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError } );
         watchdog.ping();
       }
       return;
@@ -99,7 +99,7 @@ function CometVisu( urlPrefix )
 
     if( this.running )
     { // keep the requests going
-      this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&i='+this.lastIndex, success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+      this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&i='+this.lastIndex, success:this.handleRead ,error:this.handleError} );
       watchdog.ping();
     }
   };
@@ -121,7 +121,7 @@ function CometVisu( urlPrefix )
     }
     if( this.running )
     { // keep the requests going
-      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError/*,complete:this.handleComplete*/ } );
+      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError} );
       watchdog.ping();
     }
   };
@@ -146,10 +146,6 @@ function CometVisu( urlPrefix )
       }
       alert('Error! Type: "'+str+'" ExceptionObject: "'+excptObj+'" readyState: '+readyState);
     }
-  }
-  this.handleComplete=function(xhr,str)
-  {
-  //  alert('Complete:"'+str+'"');
   }
 
   /**
