@@ -202,12 +202,12 @@ function TemplateEngine( undefined ) {
             if (range[min][0] < value) continue; // check max
             e.addClass(range[min][1]);
             return true;
-          } 
+          }
         }
         return false;
       }
-      if (!findValue(value) && m['defaultValue']) {
-        findValue(m['defaultValue']);
+      if (!findValue(value) && styling['defaultValue']) {
+        findValue(styling['defaultValue']);
       }
     }
     return this;
