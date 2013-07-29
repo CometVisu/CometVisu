@@ -314,7 +314,7 @@ function defaultValueHandling( e, data, passedElement )
   if( element.data( 'format' ) )
     value = sprintf( element.data( 'format' ), value );
   element.data( 'value', value );
-  if( value.constructor == Date )
+  if (undefined !== value && value.constructor == Date)
   {
     switch( thisTransform ) // special case for KNX
       {
@@ -338,29 +338,28 @@ function defaultUpdate( e, data, passedElement )
   
   templateEngine.setWidgetStyling(element, element.data( 'basicvalue' ) );
   
-  if( element.data( 'align' ) )
-    element.addClass(element.data( 'align' ) );
+  if (element.data('align'))
+    element.addClass(element.data('align'));
 
   var valueElement = element.find('.value');
   valueElement.empty();
-  if( ('string' == typeof value) || ('number' == typeof value) )
-    valueElement.append( value );
-  else if( 'function' === typeof value )
-    value( valueElement );
-  else
-  {
-    for( var i = 0; i < value.length; i++ )
-    {
-      var thisValue = value[i];
-      if( !thisValue )
-        continue;
-      
-      if( ('string' == typeof thisValue) || ('number' == typeof thisValue) )
-        valueElement.append( thisValue );
-      else if( 'function' === typeof thisValue )
-        thisValue( valueElement );
-      else
-        valueElement.append( $(thisValue).clone() );
+  if (undefined !== value) {
+    if (('string' == typeof value) || ('number' == typeof value))
+      valueElement.append( value );
+    else if ('function' === typeof value)
+      value( valueElement );
+    else {
+      for (var i = 0; i < value.length; i++) {
+        var thisValue = value[i];
+        if (!thisValue) continue;
+
+        if( ('string' == typeof thisValue) || ('number' == typeof thisValue) )
+          valueElement.append( thisValue );
+        else if( 'function' === typeof thisValue )
+          thisValue(valueElement);
+        else
+          valueElement.append($(thisValue).clone());
+      }
     }
   }
   
