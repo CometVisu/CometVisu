@@ -48,6 +48,10 @@ basicdesign.addCreator('switch', {
     { 
       if( address[addr][1] & 1 ) $actor.bind( addr, this.update ); // only when read flag is set
     }
+
+    // initially setting a value
+    defaultUpdate(undefined, undefined, $actor);
+
     ret_val.append( label ).append( $actor );
     return ret_val;
   },

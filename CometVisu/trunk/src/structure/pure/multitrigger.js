@@ -41,8 +41,6 @@ basicdesign.addCreator('multitrigger', {
       actor += '</div>';
       var $actor = $(actor).data( {
         'address' : address,
-        'mapping' : $e.attr('mapping'),
-        'styling' : $e.attr('styling'),
         'value'   : $e.attr('button1value'),
         'align'   : $e.attr('align'),
         'type'    : 'switch'
@@ -63,8 +61,6 @@ basicdesign.addCreator('multitrigger', {
       actor += '</div>';
       var $actor = $(actor).data( {
         'address' : address,
-        'mapping' : $e.attr('mapping'),
-        'styling' : $e.attr('styling'),
         'value'   : $e.attr('button2value'),
         'type'    : 'switch',
         'align'   : $e.attr('align')
@@ -85,8 +81,6 @@ basicdesign.addCreator('multitrigger', {
       actor += '</div>';
       var $actor = $(actor).data( {
         'address' : address,
-        'mapping' : $e.attr('mapping'),
-        'styling' : $e.attr('styling'),
         'value'   : $e.attr('button3value'),
         'type'    : 'switch'
       } ).bind( 'click', this.action );
@@ -106,8 +100,6 @@ basicdesign.addCreator('multitrigger', {
       actor += '</div>';
       var $actor = $(actor).data( {
         'address' : address,
-        'mapping' : $e.attr('mapping'),
-        'styling' : $e.attr('styling'),
         'value'   : $e.attr('button4value'),
         'type'    : 'switch',
       } ).bind( 'click', this.action );

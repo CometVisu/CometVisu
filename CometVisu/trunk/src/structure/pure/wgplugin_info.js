@@ -34,7 +34,6 @@ basicdesign.addCreator('wgplugin_info', {
       'variable' : $e.attr('variable'),
       'address'  : address,
       'format'   : $e.attr('format'),
-      'mapping'  : $e.attr('mapping'),
       'styling'  : $e.attr('styling')
     });
     for( var addr in address ) $actor.bind( addr, this.update );
