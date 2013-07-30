@@ -44,8 +44,6 @@ basicdesign.addCreator('infotrigger', {
     actordown += '</div>';
     var $actordown = $(actordown).data( {
       'address'    : address,
-      'mapping'    : $e.attr('mapping'),
-      'styling'    : $e.attr('styling'),
       'value'      : $e.attr('downvalue') || 0,
       'shortvalue' : $e.attr('shortdownvalue') || 0,
       'shorttime'  : parseFloat($e.attr('shorttime')) || -1,
@@ -71,8 +69,6 @@ basicdesign.addCreator('infotrigger', {
     actorup += '</div>';
     var $actorup = $(actorup).data( {
       'address'    : address,
-      'mapping'    : $e.attr('mapping'),
-      'styling'    : $e.attr('styling'),
       'value'      : $e.attr('upvalue') || 1,
       'shortvalue' : $e.attr('shortupvalue') || 1,
       'shorttime'  : parseFloat($e.attr('shorttime')) || -1,
@@ -105,6 +101,9 @@ basicdesign.addCreator('infotrigger', {
       if( !address[addr][2] ) // if NOT relative
         $actorinfo.bind( addr, this.update );
     }
+
+    // initially setting a value
+    defaultUpdate(undefined, undefined, $actorinfo);
 
     if ( $e.attr('infoposition' )==1 ) {
       buttons.append( $actordown );

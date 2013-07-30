@@ -247,6 +247,9 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
 
     $actor.addClass("clickable");
 
+    // initially setting a value
+    defaultUpdate(undefined, undefined, $actor);
+
     var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
         
     bDiagram.data("id", id);

@@ -46,6 +46,10 @@ basicdesign.addCreator('info', {
     
     for( var addr in address ) $actor.bind( addr, this.update );
     ret_val.append( $actor );
+
+    // initially setting a value
+    defaultUpdate(undefined, undefined, $actor);
+
     return ret_val;
   },
   update:   defaultUpdate,

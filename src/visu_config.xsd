@@ -690,8 +690,6 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute ref="mapping" use="optional" />
-    <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute name="showstatus" type="xsd:string" use="optional" />
     <xsd:attribute name="button1label" type="xsd:string" use="optional" />
     <xsd:attribute name="button1value" type="xsd:string" use="optional" />
@@ -746,7 +744,6 @@
     <xsd:attribute name="variable" type="xsd:string" />
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
-    <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>

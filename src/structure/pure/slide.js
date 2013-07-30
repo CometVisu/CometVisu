@@ -58,7 +58,11 @@ basicdesign.addCreator('slide', {
     { 
       if( address[addr][1] & 1 ) $actor.bind( addr, this.update ); // only when read flag is set
     }
-          
+
+    // initially setting a value
+    if (element.data( 'format' )!=null)
+      element.children('.ui-slider-handle').text(sprintf(element.data( 'format' ),templateEngine.map( undefined, element.data('mapping') )));
+
     if ($(actor).data('format')!=null) {
       $actor.slider({
         step:    step,
