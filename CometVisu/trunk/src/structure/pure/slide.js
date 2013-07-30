@@ -60,8 +60,8 @@ basicdesign.addCreator('slide', {
     }
 
     // initially setting a value
-    if (element.data( 'format' )!=null)
-      element.children('.ui-slider-handle').text(sprintf(element.data( 'format' ),templateEngine.map( undefined, element.data('mapping') )));
+    if ($actor.data( 'format' )!=null)
+      $actor.children('.ui-slider-handle').text(sprintf($actor.data( 'format' ),templateEngine.map( undefined, $actor.data('mapping') )));
 
     if ($(actor).data('format')!=null) {
       $actor.slider({
