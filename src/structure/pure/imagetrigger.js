@@ -46,7 +46,6 @@ basicdesign.addCreator('imagetrigger', {
       'src':       $e.attr('src'),
       'suffix':    $e.attr('suffix'),
       'type':      $e.attr('type'),
-      'mapping':   map,
       'sendValue': $e.attr('sendValue') || ""
     } ).each(templateEngine.setupRefreshAction); // abuse "each" to call in context... refresh is broken with select right now
     var clickable = bindClickToWidget ? ret_val : $actor;

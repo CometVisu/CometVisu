@@ -40,6 +40,10 @@ basicdesign.addCreator('toggle', {
       'align'   : $e.attr('align'),
       'type'    : 'switch'
     } );
+
+    // initially setting a value
+    defaultUpdate(undefined, undefined, $actor);
+
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'click', this.action );
     for( var addr in address ) $actor.bind( addr, this.update );
