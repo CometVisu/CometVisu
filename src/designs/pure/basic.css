@@ -163,22 +163,23 @@ body br
   position: relative;
 }
 
+.navbar .pagejump .actor {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    vertical-align: middle;
+    margin: 0em;
+}
 #navbarTop .navbar .pagejump .actor, 
 #navbarBottom .navbar .pagejump .actor 
 {
   display: block !important;
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  vertical-align: middle;
 }
 
-#navbarTop .navbar .pagejump .actor.switchUnpressed,
-#navbarBottom .navbar .pagejump .actor.switchUnpressed,
-#navbarTop .navbar .pagejump .actor.switchPressed, 
-#navbarBottom .navbar .pagejump .actor.switchPressed 
+.navbar .pagejump .actor.switchUnpressed,
+.navbar .pagejump .actor.switchPressed
 {
   border: none;
 }
