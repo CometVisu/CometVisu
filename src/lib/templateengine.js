@@ -974,12 +974,15 @@ function TemplateEngine( undefined ) {
     var creator = thisTemplateEngine.design.getCreator(page.nodeName);
     var retval = creator.create(page, path, flavour, type);
 
-    if (jQuery(retval).is(".widget") || (jQuery(retval).is(".group"))) {
-      retval = jQuery(
-          "<div class='widget_container "
-              + (retval.data("rowspanClass") ? retval.data("rowspanClass") : '')
-              + "' />").append(retval);
-    }
+    if( undefined === retval )
+      return;
+    
+    retval = jQuery(
+      '<div class="widget_container '
+      + (retval.data('rowspanClass') ? retval.data('rowspanClass') : '')
+      + '" '
+      + (retval.data('forceWidth') ? 'style="width:' + retval.data('forceWidth') + '"' : '')
+      + '/>').append(retval);
 
     return retval;
   };
@@ -1189,6 +1192,16 @@ function TemplateEngine( undefined ) {
     });
   };
 
+  // tools for widget handling
+  /**
+   * Return a widget (to be precise: the widget_container) for the given path
+   */
+  this.lookupWidget = function( path ) {
+    var id = path.split( '_' );
+    var elementNumber = +id.pop();
+    return $( '.page#' + id.join('_') ).children().children()[ elementNumber+1 ];
+  };
+  
   this.getParentPage = function(page) {
     var pathParts = page.attr('id').split('_');
     if (pathParts.length == 2) {
@@ -1253,7 +1266,7 @@ function TemplateEngine( undefined ) {
             thisEntry[ i ] = {}
           }
           var thisWidget = $( this ).children()[0];
-          thisEntry[ i ].name = thisWidget.className;
+          thisEntry[ i ].name = ('className' in thisWidget) ? thisWidget.className : 'TODO';
           thisEntry[ i ].type = $('.actor',thisWidget).data('type');
         });
       }
@@ -1268,10 +1281,9 @@ function TemplateEngine( undefined ) {
     if( ! /^id(_[0-9]+)+$/.test( path ) )
       return 'bad path';
     
-    var id = path.split( '_' );
-    var elementNumber = +id.pop();
-    var widget = $( '.page#' + id.join('_') ).children().children()[ elementNumber+1 ];
-    return { name: $( '.widget', widget )[0].className };
+    var widget = this.lookupWidget( path );
+    var name   = (undefined !== $( '.widget', widget )[0] && 'className' in $( '.widget', widget )[0]) ? $( '.widget', widget )[0].className : 'DUMMY';
+    return { name: name };
   };
   
   /**
