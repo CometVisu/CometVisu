@@ -1223,6 +1223,87 @@ function TemplateEngine( undefined ) {
       thisTemplateEngine.setup_page();
     }
   }
+  
+  ////////// Reflection API for possible Editor communication: Start //////////
+  /**
+   * Return a list of all widgets.
+   */
+  this.list = function() {
+    var widgetTree = {};
+    $('.page').each( function(){
+      var id = this.id.split( '_' );
+      var thisEntry = widgetTree;
+      if( 'id' === id.shift() )
+      {
+        var thisNumber;
+        while( thisNumber = id.shift() )
+        {
+          if( !(thisNumber in thisEntry) )
+            thisEntry[ thisNumber ] = {};
+          
+          thisEntry = thisEntry[ thisNumber ];
+        }
+        // NOTE: this is buggy at the moment: widgets that are not inside of
+        // an widget_contianer (e.g. <line>) will break this code and create
+        // a bad output!
+        // FIXME!!!
+        $( this ).children().children( 'div.widget_container' ).each( function( i ){
+          if( undefined === thisEntry[ i ] )
+          {
+            thisEntry[ i ] = {}
+          }
+          var thisWidget = $( this ).children()[0];
+          thisEntry[ i ].name = thisWidget.className;
+          thisEntry[ i ].type = $('.actor',thisWidget).data('type');
+        });
+      }
+    });
+    return widgetTree;
+  };
+  
+  /**
+   * Return all attributes of a widget.
+   */
+  this.read = function( path ) {
+    if( ! /^id(_[0-9]+)+$/.test( path ) )
+      return 'bad path';
+    
+    var id = path.split( '_' );
+    var elementNumber = +id.pop();
+    var widget = $( '.page#' + id.join('_') ).children().children()[ elementNumber+1 ];
+    return { name: $( '.widget', widget )[0].className };
+  };
+  
+  /**
+   * Reflection API: communication
+   * Handle messages that might be sent by the editor
+   */
+  this.handleMessage = function( event ) {
+    // prevend bad or even illegal requests
+    if( event.origin  !== window.location.origin ||
+        'object'      !== typeof event.data      ||
+        !('command'    in event.data )           ||
+        !('parameters' in event.data )
+    )
+      return;
+    
+    var answer = undefined;
+    switch( event.data.command )
+    {
+      case 'list':
+        answer = thisTemplateEngine.list();
+        break;
+        
+      case 'read':
+        if( 'string' === typeof event.data.parameters )
+          answer = thisTemplateEngine.read( event.data.parameters );
+        break;
+    }
+    
+    event.source.postMessage( answer, event.origin );
+  };
+  window.addEventListener( 'message', this.handleMessage, false);
+  ////////// Reflection API for possible Editor communication: End //////////
 }
 
 function PagePartsHandler() {
