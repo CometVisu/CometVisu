@@ -982,7 +982,7 @@ function TemplateEngine( undefined ) {
       + (retval.data('rowspanClass') ? retval.data('rowspanClass') : '')
       + '" '
       + (retval.data('forceWidth') ? 'style="width:' + retval.data('forceWidth') + '"' : '')
-      + '/>').append(retval);
+      + '/>').data('type', page.nodeName).append(retval);
 
     return retval;
   };
@@ -1256,10 +1256,6 @@ function TemplateEngine( undefined ) {
           
           thisEntry = thisEntry[ thisNumber ];
         }
-        // NOTE: this is buggy at the moment: widgets that are not inside of
-        // an widget_contianer (e.g. <line>) will break this code and create
-        // a bad output!
-        // FIXME!!!
         $( this ).children().children( 'div.widget_container' ).each( function( i ){
           if( undefined === thisEntry[ i ] )
           {
@@ -1267,7 +1263,7 @@ function TemplateEngine( undefined ) {
           }
           var thisWidget = $( this ).children()[0];
           thisEntry[ i ].name = ('className' in thisWidget) ? thisWidget.className : 'TODO';
-          thisEntry[ i ].type = $('.actor',thisWidget).data('type');
+          thisEntry[ i ].type = $(this).data('type');
         });
       }
     });
@@ -1283,7 +1279,7 @@ function TemplateEngine( undefined ) {
     
     var widget = this.lookupWidget( path );
     var name   = (undefined !== $( '.widget', widget )[0] && 'className' in $( '.widget', widget )[0]) ? $( '.widget', widget )[0].className : 'DUMMY';
-    return { name: name };
+    return { name: name, type: $(widget).data('type') };
   };
   
   /**
