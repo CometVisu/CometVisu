@@ -57,8 +57,5 @@ basicdesign.addCreator('navbar', {
         break;
     }
     templateEngine.pagePartsHandler.navbars[position].dynamic |= dynamic;
-    
-    var ret_val = $('');
-    return ret_val;
   }
 });

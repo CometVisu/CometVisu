@@ -17,6 +17,9 @@
 
 basicdesign.addCreator('line', {
   create:     function( element, path, flavour, type ) {
-    return $( '<hr />' );
+    var $e = $(element);
+    var ret_val = $('<hr />');
+    ret_val.data( {colspan: 0, forceWidth: '100%'} );
+    return ret_val;
   }
 });
