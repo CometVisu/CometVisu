@@ -55,6 +55,34 @@
         c.getContext('2d').putImageData( imageData, 0, 0 );
       },
       /**
+       * Two versions of a recoloring funtion to work around an Android bug:
+       * http://stackoverflow.com/questions/14969496/html5-canvas-pixel-manipulation-problems-on-mobile-devices-when-setting-the-alph
+       * https://code.google.com/p/android/issues/detail?id=17565
+       * 
+       */
+      innerRecolorLoop = navigator.userAgent.toLowerCase().indexOf('android') > -1 ?
+        function( r, g, b, data, length ) // the Android version
+        {
+          for( var i = 0; i < length; i += 4 )
+          {
+            var a = data[ i+3 ];
+            data[ i   ] = r * a;
+            data[ i+1 ] = g * a;
+            data[ i+2 ] = b * a;
+            data[ i+3 ] = a > 0 ? 255 : 0;
+          }
+        } :
+        function( r, g, b, data, length ) // the normal version
+        {
+          for( var i = 0; i < length; i += 4 )
+          {
+            var a = data[ i+3 ];
+            data[ i   ] = r * a;
+            data[ i+1 ] = g * a;
+            data[ i+2 ] = b * a;
+          }
+        },
+      /**
        * Do the recoloring based on @param thisIcon and store it in the 
        * hash @param thisIconColors.
        */
@@ -78,15 +106,7 @@
           var r      = parseInt( color.substr( 1, 2 ), 16 ),
               g      = parseInt( color.substr( 3, 2 ), 16 ),
               b      = parseInt( color.substr( 5, 2 ), 16 );
-          for( var i = 0, l = canvas.width * canvas.height * 4; i < l; i += 4 )
-          {
-            if( 0 != imageData.data[ i+3 ] )
-            {
-              imageData.data[ i   ] = r;
-              imageData.data[ i+1 ] = g;
-              imageData.data[ i+2 ] = b;
-            }
-          }
+          innerRecolorLoop( r, g, b, imageData.data, canvas.width * canvas.height * 4 );
         }
         thisIconColors[color] = imageData;
       };
@@ -125,6 +145,9 @@
         thisIcon.onload = loadHandler;
         thisIcon.src = url;
       }
+      
+      if( color === undefined )
+        color = '#ffffff';
       
       if( color in colorMapping )
         color = colorMapping[ color ];
