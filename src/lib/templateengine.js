@@ -980,9 +980,7 @@ function TemplateEngine( undefined ) {
     retval = jQuery(
       '<div class="widget_container '
       + (retval.data('rowspanClass') ? retval.data('rowspanClass') : '')
-      + '" '
-      + (retval.data('forceWidth') ? 'style="width:' + retval.data('forceWidth') + '"' : '')
-      + '/>').data('type', page.nodeName).append(retval);
+      + '" />').data('type', page.nodeName).append(retval);
 
     return retval;
   };
