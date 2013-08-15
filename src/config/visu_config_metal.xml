@@ -66,7 +66,9 @@ Config</a> ]]></status>
       	<layout colspan="0"/>
         <label><icon name="control_home" />Übersicht</label>
       </pagejump>
-      <line />
+      <line>
+        <layout colspan="0"/>
+      </line>
       <pagejump target="Wohnzimmer">
       	<layout colspan="0"/>
       	<label><icon name="control_all_on_off" />KNX</label>
@@ -83,7 +85,9 @@ Config</a> ]]></status>
       	<layout colspan="0"/>
         <label><icon name="it_internet" />Web</label>
       </pagejump>
-      <line />
+      <line>
+        <layout colspan="0"/>
+      </line>
       <pagejump target="Flavour">
       	<layout colspan="0"/>
         <label><icon name="weather_sun" />Flavour</label>

@@ -134,7 +134,9 @@
       <text>
         <label>Test 1</label>
       </text>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <pagejump target="id_0_34_7" name="Lithium">
         <label>Flavour</label>
       </pagejump>
@@ -153,12 +155,16 @@
     <text>
       <label>&lt;b&gt;Hinweis:&lt;/b&gt;&lt;br/&gt;Alle Widgets verwenden KNX-Addressen mit der Haupt- und Mittelgruppe 12/7, da diese meist unbenutzt sind und so beim Testen oft keine Nebenwirkungen auftreten können. Sollten diese Gruppe bei Ihnen verwendet werden, so sollten Sie diese Widgets hier nicht betätigen!</label>
     </text>
-    <line/>
+    <line>
+      <layout colspan="12" />
+    </line>
     <text>
       <label>Für die CometVisu gibt es verschiedene Designs.</label>
     </text>
     <designtoggle>Wechsle Design</designtoggle>
-    <line/>
+    <line>
+      <layout colspan="12" />
+    </line>
     <text align="center">
       <label>&lt;b&gt;Standard-Widgets&lt;/b&gt;</label>
     </text>
@@ -207,7 +213,9 @@
       <text>
         <label>Ein Infotrigger lässt sich in zwei verschiedenen Betriebsarten betreiben: relativ und absolut</label>
       </text>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <text>
         <label>Relativ</label>
       </text>
@@ -230,7 +238,9 @@
         <label>Lautstärke-Text</label>
         <address transform="DPT:16.000" mode="readwrite">12/7/16</address>
       </multitrigger>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <text>
         <label>Absolut</label>
       </text>
@@ -239,7 +249,9 @@
         <label>Lautstärke</label>
         <address transform="DPT:5.001" mode="readwrite">12/7/5</address>
       </infotrigger>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <text>
         <layout colspan="12"/>
         <label>Ein Trigger kann auch für Kurz- und Langzeit unterschiedliche Werte an unterschiedlich Adressen senden</label>
@@ -305,7 +317,9 @@
       <label>Seitenwechsel per GA</label>
       <address transform="DPT:1.001" mode="readwrite">12/7/100</address>
     </trigger>
-    <line/>
+    <line>
+      <layout colspan="12" />
+    </line>
     <page name="web Test" align="center">
       <web src="http://www.cometvisu.org/" width="500px" height="500px"/>
     </page>
@@ -316,7 +330,9 @@
         Design abhängige, Variation des Aussehens einzelner Sub-Seiten. 
       </label>
       </text>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <text align="center">
         <label>Design: &lt;b&gt;Pure&lt;/b&gt;</label>
       </text>
@@ -331,12 +347,16 @@
         <text align="center">
           <label>CometVisu Antimony flavour</label>
         </text>
-        <line/>
+        <line>
+          <layout colspan="12" />
+        </line>
         <page name="Subpage">
           <text>
             <label>An empty page</label>
           </text>
-          <line/>
+          <line>
+            <layout colspan="12" />
+          </line>
         </page>
         <text>
           <label><icon name="CometVisu" type="64"/>Text with Icon</label>
@@ -346,12 +366,16 @@
         <text align="center">
           <label>CometVisu Boron flavour</label>
         </text>
-        <line/>
+        <line>
+          <layout colspan="12" />
+        </line>
         <page name="Subpage" ga="12/7/100">
           <text>
             <label>An empty page</label>
           </text>
-          <line/>
+          <line>
+            <layout colspan="12" />
+          </line>
         </page>
         <text>
           <label><icon name="CometVisu" type="64"/>Text with Icon</label>
@@ -361,12 +385,16 @@
         <text align="center">
           <label>CometVisu Lithium flavour</label>
         </text>
-        <line/>
+        <line>
+          <layout colspan="12" />
+        </line>
         <page name="Subpage">
           <text>
             <label>An empty page</label>
           </text>
-          <line/>
+          <line>
+            <layout colspan="12" />
+          </line>
         </page>
         <text>
           <label><icon name="CometVisu" type="64"/>Text with Icon</label>
@@ -376,12 +404,16 @@
         <text align="center">
           <label>CometVisu Potassium flavour</label>
         </text>
-        <line/>
+        <line>
+          <layout colspan="12" />
+        </line>
         <page name="Subpage">
           <text>
             <label>An empty page</label>
           </text>
-          <line/>
+          <line>
+            <layout colspan="12" />
+          </line>
         </page>
         <text>
           <label><icon name="CometVisu" type="64"/>Text with Icon</label>
@@ -391,28 +423,38 @@
         <text align="center">
           <label>CometVisu Sodium flavour</label>
         </text>
-        <line/>
+        <line>
+          <layout colspan="12" />
+        </line>
         <page name="Subpage">
           <text>
             <label>An empty page</label>
           </text>
-          <line/>
+          <line>
+            <layout colspan="12" />
+          </line>
         </page>
         <text>
           <label><icon name="CometVisu" type="64"/>Text with Icon</label>
         </text>
       </page>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <page name="Flavour: black" align="center" flavour="black">
         <text align="center">
           <label>CometVisu black flavour</label>
         </text>
-        <line/>
+        <line>
+          <layout colspan="12" />
+        </line>
         <page name="Subpage">
           <text>
             <label>An empty page</label>
           </text>
-          <line/>
+          <line>
+            <layout colspan="12" />
+          </line>
         </page>
         <text>
           <label><icon name="CometVisu" type="64"/>Text with Icon</label>
@@ -422,12 +464,16 @@
         <text align="center">
           <label>CometVisu white flavour</label>
         </text>
-        <line/>
+        <line>
+          <layout colspan="12" />
+        </line>
         <page name="Subpage">
           <text>
             <label>An empty page</label>
           </text>
-          <line/>
+          <line>
+            <layout colspan="12" />
+          </line>
         </page>
         <text>
           <label><icon name="CometVisu" type="64"/>Text with Icon</label>
@@ -450,7 +496,9 @@
         <label>Ohne Format</label>
         <address transform="DPT:9" mode="readwrite">12/7/9</address>
       </info>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <info format="%.0f">
         <label>Format "%.0f":</label>
         <address transform="DPT:9" mode="readwrite">12/7/9</address>
@@ -471,7 +519,9 @@
         <label>Format "%.4f":</label>
         <address transform="DPT:9" mode="readwrite">12/7/9</address>
       </info>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <info format="%01.2f">
         <label>Format "%01.2f":</label>
         <address transform="DPT:9" mode="readwrite">12/7/9</address>
@@ -496,12 +546,16 @@
         <label>Format "%06.2f":</label>
         <address transform="DPT:9" mode="readwrite">12/7/9</address>
       </info>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <info format="%+.2f">
         <label>Format "%+.2f":</label>
         <address transform="DPT:9" mode="readwrite">12/7/9</address>
       </info>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <info format="%.2f°C">
         <label>Format "%.2f°C":</label>
         <address transform="DPT:9" mode="readwrite">12/7/9</address>
@@ -510,7 +564,9 @@
         <label>Format "%.2f%%":</label>
         <address transform="DPT:9" mode="readwrite">12/7/9</address>
       </info>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <info format="%.4f" mapping="One1000th">
         <label>Format "%.4f + Formel":</label>
         <address transform="DPT:9" mode="readwrite">12/7/9</address>
@@ -537,7 +593,9 @@
         <label>Switch brown/purple</label>
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </switch>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <info styling="Blue_Lightblue_Green_Purple_Red" format="%.1f °C">
         <label>Info: with Styling/Ranges</label>
         <address transform="DPT:9" mode="readwrite">12/7/10</address>
@@ -546,7 +604,9 @@
         <label>Slider to show ranges in styling</label>
         <address transform="DPT:9" mode="readwrite">12/7/10</address>
       </slide>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <text>
         <label>All predefined colors:</label>
       </text>
@@ -619,7 +679,9 @@
       <text>
         <label><icon name="CometVisu" type="64"/> Mehrere Icons <icon name="CometVisu" type="64"/></label>
       </text>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <text>
         <label><icon name="CometVisu" type="16"/> Icon mit type="16"</label>
       </text>
@@ -632,7 +694,9 @@
       <text>
         <label><icon name="CometVisu" type="128"/> Icon mit type="128"</label>
       </text>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <text>
         <label><icon name="CometVisu" type="16" styling="height:auto" /> Icon mit type="16" und styling</label>
       </text>
@@ -645,7 +709,9 @@
       <text>
         <label><icon name="CometVisu" type="128" styling="height:auto" /> Icon mit type="128" und styling</label>
       </text>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <page name="Subpage mit Flavour" flavour="lithium" align="center">
         <text>
           <label><icon name="CometVisu" type="64"/> Icon links vom Text</label>
@@ -988,7 +1054,9 @@
         <text>
           <label>Test 2</label>
         </text>
-        <line/>
+        <line>
+          <layout colspan="12" />
+        </line>
         <pagejump target="id_0_34_7" name="Lithium">
           <label>Flavour</label>
         </pagejump>
@@ -1007,7 +1075,9 @@
           <text>
             <label>Test 3</label>
           </text>
-          <line/>
+          <line>
+            <layout colspan="12" />
+          </line>
           <pagejump target="id_0_34_7" name="Lithium">
             <label>Flavour</label>
           </pagejump>
@@ -1082,7 +1152,9 @@
         <label>Not in this demo yet...</label>
       </text>
     </page>
-    <line/>
+    <line>
+      <layout colspan="12" />
+    </line>
     <text align="center">
       <label>&lt;b&gt;Plugins&lt;/b&gt;</label>
     </text>
@@ -1142,14 +1214,18 @@
       <label/>
       <rrd>eib_traffic</rrd>
     </diagram>
-    <line/>
+    <line>
+      <layout colspan="12" />
+    </line>
     <page name="Erweiterte Widgets">
       <text>
         <label>Auf dieser Seite sind Widgets zu finden, die noch in Entwicklung
         sind und daher im Allgemeinen noch nicht verwendet werden sollten.
       </label>
       </text>
-      <line/>
+      <line>
+        <layout colspan="12" />
+      </line>
       <group name="Gruppe" align="center">
         <layout colspan="5"/>
         <text align="center">

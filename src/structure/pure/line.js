@@ -19,7 +19,7 @@ basicdesign.addCreator('line', {
   create:     function( element, path, flavour, type ) {
     var $e = $(element);
     var ret_val = $('<hr />');
-    ret_val.data( {colspan: 0, forceWidth: '100%'} );
+    ret_val.setWidgetLayout($e);
     return ret_val;
   }
 });
