@@ -89,6 +89,15 @@ div#top {
    float: left;
 }
 
+.widget_container.selected {
+  box-shadow: 0 0 30px white;
+}
+
+.widget_container.selected.focused,
+.widget_container.focused {
+  box-shadow: 0 0 30px #ff8000;
+}
+
 .widget
 {
   margin: .2em;
