@@ -99,6 +99,15 @@ body br
    float: left;
 }
 
+.widget_container.selected {
+  box-shadow: 0 0 30px white;
+}
+
+.widget_container.selected.focused,
+.widget_container.focused {
+  box-shadow: 0 0 30px #ff8000;
+}
+
 .colspandefault { /* in units of 1/12 screen width */
   width: 6px;
 }
