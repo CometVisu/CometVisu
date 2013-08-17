@@ -48,7 +48,7 @@ basicdesign.addCreator('page', {
       ret_val=$('');
     } else { // default is visible
       var layout = $p.children('layout')[0];
-      var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+      var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
       ret_val = $('<div class="widget clearfix link pagelink" ' + style + '/>');
       ret_val.setWidgetLayout($p);
       if (bindClickToWidget) {
@@ -145,7 +145,7 @@ basicdesign.addCreator('page', {
   },
   update: function(e, data) {
     var element = $(this);
-    var value = defaultValueHandling( e, data, element );
+    var value = basicdesign.defaultValueHandling( e, data, element );
     var type = element.data().address[ e.type ][2];
     switch( type )
     {

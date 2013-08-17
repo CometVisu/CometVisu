@@ -19,14 +19,14 @@ basicdesign.addCreator('infotrigger', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     var ret_val = $('<div class="widget clearfix infotrigger" ' + style + '/>');
     ret_val.setWidgetLayout($e);
-    ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
+    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     // handle addresses
-    var address = makeAddressList($e, 
+    var address = basicdesign.makeAddressList($e, 
       function( src, transform, mode, variant ) {
         return [ variant != 'button' && variant != 'short', variant == 'button' ? 1 : (variant == 'short' ? 2 : 0) ];
       }
@@ -103,7 +103,7 @@ basicdesign.addCreator('infotrigger', {
     }
 
     // initially setting a value
-    defaultUpdate(undefined, undefined, $actorinfo);
+    basicdesign.defaultUpdate(undefined, undefined, $actorinfo);
 
     if ( $e.attr('infoposition' )==1 ) {
       buttons.append( $actordown );
@@ -125,7 +125,7 @@ basicdesign.addCreator('infotrigger', {
 
   update: function(e,d) { 
     var element = $(this);
-    var value = defaultUpdate( e, d, element );
+    var value = basicdesign.defaultUpdate( e, d, element );
     element.addClass('switchInvisible');
   },
   mousedown: function(event) {

@@ -24,10 +24,10 @@ VisuDesign_Custom.prototype.addCreator('svg', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget clearfix image" ' + style + '/>');
     ret_val.setWidgetLayout($e);
-    ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
+    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
 
     var address = {};
     $e.find('address').each( function(){ 
@@ -58,7 +58,7 @@ VisuDesign_Custom.prototype.addCreator('svg', {
   },
   update: function(e,d) { 
     var element = $(this);
-    var h = defaultUpdate( e, d, element );
+    var h = basicdesign.defaultUpdate( e, d, element );
 	var linewidth=3;
     var space = 1;
 	var total = linewidth + space;

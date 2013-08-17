@@ -248,7 +248,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     $actor.addClass("clickable");
 
     // initially setting a value
-    defaultUpdate(undefined, undefined, $actor);
+    basicdesign.defaultUpdate(undefined, undefined, $actor);
 
     var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
         
@@ -323,7 +323,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
   },
   update:  function(e,d) { 
     var element = $(this);
-    var value = defaultUpdate( e, d, element );
+    var value = basicdesign.defaultUpdate( e, d, element );
     element.addClass('switchUnpressed');
   }
 });

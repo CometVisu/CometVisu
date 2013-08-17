@@ -19,15 +19,15 @@ basicdesign.addCreator('wgplugin_info', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget clearfix info" ' + style + ' />');
     //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );
-    type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: extractLayout3d( layout )}, this.update3d );
+    type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: basicdesign.extractLayout3d( layout )}, this.update3d );
     
     ret_val.setWidgetLayout($e).makeWidgetLabel($e, flavour);
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var address = makeAddressList($e);
+    var address = basicdesign.makeAddressList($e);
     
     var actor = '<div class="actor"><div class="value">-</div></div>';
     var $actor = $(actor).data({
@@ -55,5 +55,5 @@ basicdesign.addCreator('wgplugin_info', {
       valueElement.append( data[variable] );
     });
   },
-  update3d: defaultUpdate3d
+  update3d: basicdesign.defaultUpdate3d
 });

@@ -19,12 +19,12 @@ basicdesign.addCreator('video', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget clearfix video" ' + style + '/>');
     ret_val.setWidgetLayout($e);
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
+    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
     var autoplay = ($e.attr('autoplay') && $e.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
     var style = '';
     if( $e.attr('width' ) ) style += 'width:'  + $e.attr('width' ) + ';';
