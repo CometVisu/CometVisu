@@ -77,6 +77,12 @@ function TemplateEngine( undefined ) {
   var stylings = {}; // store the stylings
  
   var ga_list = {};
+  
+  /**
+   * Function to test if the path is in a valid form.
+   * Note: it doesn't check if it exists!
+   */
+  var pathRegEx = /^id(_[0-9]+)+$/;
 
   this.main_scroll;
   this.old_scroll = '';
@@ -1235,6 +1241,28 @@ function TemplateEngine( undefined ) {
     }
   }
   
+  /**
+   * Create a new widget.
+   */
+  this.create = function() {
+    return "created widget";
+  };
+  
+  /**
+   * Delete an existing widget.
+   */
+  this.delete = function( path ) {
+    return "deleted widget '" + path + "'";
+  };
+  
+  /**
+   * Focus a widget.
+   */
+  this.focus = function( path ) {
+    $('.focused').removeClass('focused')
+    $( this.lookupWidget( path ) ).addClass( 'focused' );
+  };
+  
   ////////// Reflection API for possible Editor communication: Start //////////
   /**
    * Return a list of all widgets.
@@ -1272,12 +1300,27 @@ function TemplateEngine( undefined ) {
    * Return all attributes of a widget.
    */
   this.read = function( path ) {
-    if( ! /^id(_[0-9]+)+$/.test( path ) )
-      return 'bad path';
-    
     var widget = this.lookupWidget( path );
     var name   = (undefined !== $( '.widget', widget )[0] && 'className' in $( '.widget', widget )[0]) ? $( '.widget', widget )[0].className : 'DUMMY';
     return { name: name, type: $(widget).data('type') };
+  };
+  
+  /**
+   * Set the selection state of a widget.
+   */
+  this.select = function( path, state ) {
+    var container = this.lookupWidget( path )
+    if( state )
+      $( container ).addClass( 'selected');
+    else
+      $( container ).removeClass( 'selected');
+  };
+  
+  /**
+   * Set all attributes of a widget.
+   */
+  this.write = function( path, attributes ) {
+    return { 'do': 'write', 'p': path, 'a': attributes };
   };
   
   /**
@@ -1293,16 +1336,56 @@ function TemplateEngine( undefined ) {
     )
       return;
     
-    var answer = undefined;
+    var answer     = 'bad command',
+        parameters = event.data.parameters;
+    
+    // note: as the commands are from external, we have to be a bit more
+    //       carefull for corectness testing
     switch( event.data.command )
     {
+      case 'create':
+        answer = thisTemplateEngine.create();
+        break;
+        
+      case 'delete':
+        if( pathRegEx.test( parameters ) ) 
+          answer = thisTemplateEngine.delete( parameters );
+        else 
+          answer = 'bad path';
+        break;
+        
+      case 'focus':
+        if( pathRegEx.test( parameters ) ) 
+          answer = thisTemplateEngine.focus( parameters );
+        else 
+          answer = 'bad path';
+        break;
+        
       case 'list':
         answer = thisTemplateEngine.list();
         break;
         
       case 'read':
-        if( 'string' === typeof event.data.parameters )
-          answer = thisTemplateEngine.read( event.data.parameters );
+        if( pathRegEx.test( parameters ) ) 
+          answer = thisTemplateEngine.read( parameters );
+        else 
+          answer = 'bad path';
+        break;
+        
+      case 'select':
+        if( 'object'  === typeof parameters   &&
+            pathRegEx.test( parameters.path ) &&
+            'boolean' === typeof parameters.state
+        )
+          answer = thisTemplateEngine.select( parameters.path, parameters.state );
+        break;
+        
+      case 'write':
+        if( 'object'  === typeof parameters   &&
+            pathRegEx.test( parameters.path ) &&
+            'object'  === typeof parameters.attributes 
+        )
+          answer = thisTemplateEngine.write( parameters.path, parameters.attributes );
         break;
     }
     
