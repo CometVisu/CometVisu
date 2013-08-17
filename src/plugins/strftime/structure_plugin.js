@@ -38,7 +38,7 @@ VisuDesign_Custom.prototype.addCreator("strftime", {
       ret_val.addClass('custom_'+$p.attr('class'));
     }
 
-    ret_val.setWidgetLayout($p);
+    basicdesign.setWidgetLayout( ret_val, $p );
     var actor = $('<div id="' + id + '" class="strftime_value"></div>');
     ret_val.append(actor);
 

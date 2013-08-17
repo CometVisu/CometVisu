@@ -26,7 +26,7 @@ VisuDesign_Custom.prototype.addCreator("clock", {
     var that = this;
     var $p = $(page);
     var ret_val = $('<div class="widget clearfix clock" />');
-    ret_val.setWidgetLayout($p);
+    basicdesign.setWidgetLayout( ret_val, $p );
     var labelElement = $p.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
     var address = {};

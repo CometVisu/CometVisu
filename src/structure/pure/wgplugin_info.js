@@ -24,7 +24,8 @@ basicdesign.addCreator('wgplugin_info', {
     //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );
     type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: basicdesign.extractLayout3d( layout )}, this.update3d );
     
-    ret_val.setWidgetLayout($e).makeWidgetLabel($e, flavour);
+    basicdesign.setWidgetLayout( ret_val, $e );
+    basicdesign.makeWidgetLabel( ret_val, $e, flavour );
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var address = basicdesign.makeAddressList($e);
