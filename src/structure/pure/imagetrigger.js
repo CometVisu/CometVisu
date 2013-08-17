@@ -19,7 +19,7 @@ basicdesign.addCreator('imagetrigger', {
   create: function( element, path, flavour, type ) { 
     var $e = $(element);
     var ret_val = $('<div class="widget clearfix image" />');
-    ret_val.setWidgetLayout($e);
+    basicdesign.setWidgetLayout( ret_val, $e );
     ret_val.addClass ('imagetrigger');
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );

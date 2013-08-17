@@ -50,7 +50,7 @@ basicdesign.addCreator('page', {
       var layout = $p.children('layout')[0];
       var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
       ret_val = $('<div class="widget clearfix link pagelink" ' + style + '/>');
-      ret_val.setWidgetLayout($p);
+      basicdesign.setWidgetLayout( ret_val, $p );
       if (bindClickToWidget) {
         ret_val.bind('click', function() {
           templateEngine.scrollToPage(path);

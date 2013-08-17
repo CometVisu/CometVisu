@@ -22,7 +22,7 @@ basicdesign.addCreator('infotrigger', {
     var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     var ret_val = $('<div class="widget clearfix infotrigger" ' + style + '/>');
-    ret_val.setWidgetLayout($e);
+    basicdesign.setWidgetLayout( ret_val, $e );
     ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     // handle addresses

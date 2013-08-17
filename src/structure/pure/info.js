@@ -33,7 +33,8 @@ basicdesign.addCreator('info', {
     //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );
     type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: basicdesign.extractLayout3d( layout )}, this.update3d );
     
-    ret_val.setWidgetLayout($e).makeWidgetLabel($e, flavour);
+    basicdesign.setWidgetLayout( ret_val, $e );
+    basicdesign.makeWidgetLabel( ret_val, $e, flavour );
     var address = basicdesign.makeAddressList($e);
     
     var actor = '<div class="actor"><div class="value">-</div></div>';

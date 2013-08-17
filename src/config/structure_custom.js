@@ -50,7 +50,8 @@ VisuDesign_Custom.prototype.addCreator("designtoggle", {
   create: function( page, path ) {
     var $p = $(page);             
     var ret_val = $('<div class="widget clearfix switch" />');
-    ret_val.setWidgetLayout($p).makeWidgetLabel($p);
+    basicdesign.setWidgetLayout( ret_val, $p );
+    basicdesign.makeWidgetLabel( ret_val, $p );
     var actor = '<div class="actor switchUnpressed">';
     var value = $('link[href*="basic.css"]').attr('href').split('/')[1];
     actor += '<div class="value">' + value + '</div>';

@@ -24,7 +24,7 @@ basicdesign.addCreator('group', {
     var hstyle  = '';                                     // heading style
     if( $e.attr('align') ) hstyle += 'text-align:' + $e.attr('align') + ';';
     if( hstyle != '' ) hstyle = 'style="' + hstyle + '"';
-    ret_val.setWidgetLayout($e);
+    basicdesign.setWidgetLayout( ret_val, $e );
     if ($e.attr('nowidget')=='true') {
       ret_val.removeClass('widget');
     }

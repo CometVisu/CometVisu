@@ -25,7 +25,7 @@ basicdesign.addCreator('toggle', {
       classes+=" "+$e.attr('align');
     }
     var ret_val = $('<div class="'+classes+'" ' + style + '/>');
-    ret_val.setWidgetLayout($e);
+    basicdesign.setWidgetLayout( ret_val, $e );
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
