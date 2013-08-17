@@ -19,7 +19,7 @@ basicdesign.addCreator('pagejump', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var target = $e.attr('target') ? $e.attr('target') : '0';
     var classes = 'widget clearfix pagejump';
     if( $e.attr('align') ) {
@@ -29,8 +29,8 @@ basicdesign.addCreator('pagejump', {
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     ret_val.setWidgetLayout($e);
-    var label = extractLabel( $e.find('label')[0], flavour );
-    var address = makeAddressList($e);
+    var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
+    var address = basicdesign.makeAddressList($e);
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
     var actor = '<div class="actor switchUnpressed ';

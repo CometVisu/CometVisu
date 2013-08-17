@@ -20,7 +20,7 @@ basicdesign.addCreator('urltrigger', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var value = $e.attr('value') ? $e.attr('value') : 0;
     var classes = 'widget clearfix trigger';
     if( $e.attr('align') ) {
@@ -30,7 +30,7 @@ basicdesign.addCreator('urltrigger', {
     ret_val.setWidgetLayout($e);
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var label = extractLabel( $e.find('label')[0], flavour );
+    var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
       actor += $e.attr( 'align' ); 

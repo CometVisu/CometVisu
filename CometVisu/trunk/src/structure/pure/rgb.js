@@ -19,7 +19,7 @@ basicdesign.addCreator('rgb', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     
     var classes = 'widget clearfix rgb';
     if( $e.attr('align') ) {
@@ -29,8 +29,8 @@ basicdesign.addCreator('rgb', {
     ret_val.setWidgetLayout($e);
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var label = extractLabel( $e.find('label')[0], flavour );
-    var address = makeAddressList($e, rgb_handleVariant);
+    var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
+    var address = basicdesign.makeAddressList($e, rgb_handleVariant);
     
     var actor = '<div class="actor" style="background: #ffffff;"></div>';
     var $actor = $(actor).data( {

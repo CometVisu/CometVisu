@@ -50,50 +50,11 @@ $.fn.setWidgetLayout = function(page) {
 $.fn.makeWidgetLabel = function(page, flavour) { 
   var labelElement = page.find('label')[0]; // get first label element
   if (labelElement) { // if exists, add it
-    this.append( extractLabel( labelElement, flavour ) );
+    this.append( basicdesign.extractLabel( labelElement, flavour ) );
   }
   return this;
 }
 
-/*
- * this function extracts all addresses with attributes (JNK)
- * 
- * @param  handleVariant is a callback function that returns an array of two
- *                       elements. The first is a boolean that determins if
- *                       the visu should listen for that address. The second
- *                       is added as it is to the returned object.
- */
-function makeAddressList( page, handleVariant ) {
-  var address = {};
-  page.find('address').each( function(){ 
-    var src = this.textContent;
-    var transform = this.getAttribute('transform');
-    if ((!src) || (!transform)) // fix broken address-entries in config
-      return;
-    var mode = 1|2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
-    switch( this.getAttribute('mode') )
-    {
-      case 'disable':
-        mode = 0;
-        break;
-      case 'read':
-        mode = 1;
-        break;
-      case 'write':
-        mode = 2;
-        break;
-      case 'readwrite':
-        mode = 1|2;
-        break;
-    }
-    var variantInfo = handleVariant ? handleVariant( src, transform, mode, this.getAttribute('variant') ) : [true, undefined];
-    if( variantInfo[0])
-      templateEngine.addAddress( src );
-    address[ '_' + src ] = [ transform, mode, variantInfo[1] ];
-    return; // end of each-func
-  });
-  return address;
-}
 
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
@@ -101,6 +62,8 @@ function makeAddressList( page, handleVariant ) {
  */
    
 function VisuDesign() {
+  var self = this;
+  
   this.creators = {};
 
   this.addCreator = function (name, object) {
@@ -195,6 +158,8 @@ function VisuDesign() {
   this.addPopup('warning', $.extend(true, {}, this.getPopup('unknown')) );
   this.addPopup('error'  , $.extend(true, {}, this.getPopup('unknown')) ) ;
 
+  // ######################## noch gebraucht??? FIXME TODO ####################
+  // ######################## noch gebraucht??? FIXME TODO ####################
   this.slideAction = function(event,ui) {
   //alert(ui.value);
     var now = new Date().getTime();
@@ -215,6 +180,190 @@ function VisuDesign() {
     var data = $(this).data();
     alert('this.refreshAction');
   }
+  // ######################## noch gebraucht??? FIXME TODO ####################
+  // ######################## noch gebraucht??? FIXME TODO ####################
+  
+  this.defaultValueHandling = function( e, data, passedElement )
+  {
+    var element = passedElement || $(this);
+    if( undefined !== e )
+    {
+      var thisTransform = element.data().address[ e.type ][0];
+      // #1: transform the raw value to a JavaScript type
+      var value = templateEngine.transformDecode( element.data().address[ e.type ][0], data );
+    } else {
+      var thisTransform = '';
+      var value = data;
+    }
+    
+    element.data( 'basicvalue', value ); // store it to be able to supress sending of unchanged data
+    
+    // #2: map it to a value the user wants to see
+    value = templateEngine.map( value, element.data('mapping') );
+    
+    // #3: format it in a way the user understands the value
+    if( element.data( 'precision' ) )
+      value = Number( value ).toPrecision( element.data( 'precision' ) );
+    if( element.data( 'format' ) )
+      value = sprintf( element.data( 'format' ), value );
+    element.data( 'value', value );
+    if (undefined !== value && value.constructor == Date)
+    {
+      switch( thisTransform ) // special case for KNX
+        {
+        case 'DPT:10.001':
+          value = value.toLocaleTimeString();
+          break;
+        case 'DPT:11.001':
+          value = value.toLocaleDateString();
+          break;
+        }
+    }
+    
+    // #4 will happen outside: style the value to be pretty
+    return value;
+  };
+  
+  this.defaultUpdate = function( e, data, passedElement ) 
+  {
+    var element = passedElement || $(this);
+    var value = self.defaultValueHandling( e, data, element );
+    
+    templateEngine.setWidgetStyling(element, element.data( 'basicvalue' ) );
+    
+    if (element.data('align'))
+      element.addClass(element.data('align'));
+  
+    var valueElement = element.find('.value');
+    valueElement.empty();
+    if (undefined !== value) {
+      if (('string' == typeof value) || ('number' == typeof value))
+        valueElement.append( value );
+      else if ('function' === typeof value)
+        value( valueElement );
+      else {
+        for (var i = 0; i < value.length; i++) {
+          var thisValue = value[i];
+          if (!thisValue) continue;
+  
+          if( ('string' == typeof thisValue) || ('number' == typeof thisValue) )
+            valueElement.append( thisValue );
+          else if( 'function' === typeof thisValue )
+            thisValue(valueElement);
+          else
+            valueElement.append($(thisValue).clone());
+        }
+      }
+    }
+    
+    return value;
+  }
+  
+  this.defaultUpdate3d = function( e, data, passedElement )
+  {
+    //var element = passedElement || $(this);
+    var l = e.data.layout;
+    var pos = data.building2screen( new THREE.Vector3( l.x, l.y, l.z ) );
+    e.data.element.css( 'left', pos.x + 'px' );
+    e.data.element.css( 'top' , pos.y + 'px' );
+    
+    var floorFilter = true;
+    if( l.floorFilter) floorFilter = data.getState('showFloor') == data.buildingProperties.floorNames[ l.floorFilter ];
+    e.data.element.css( 'display', floorFilter ? '' : 'none' );
+  }
+  
+  this.extractLayout = function( layout, type, defaultValues )
+  {
+    if (typeof defaultValue === 'undefined') defaultValues = [];
+  
+    var ret_val = (type == '2d') ? 'position:absolute;' : '';
+    if( layout.getAttribute('x'     ) ) ret_val += 'left:'   + layout.getAttribute('x'     ) + ';';
+    else if( defaultValues[ 'x'     ] ) ret_val += 'left:'   + defaultValues[      'x'     ] + ';';
+    
+    if( layout.getAttribute('y'     ) ) ret_val += 'top:'    + layout.getAttribute('y'     ) + ';';
+    else if( defaultValues[ 'y'     ] ) ret_val += 'top:'    + defaultValues[      'y'     ] + ';';
+    
+    if( layout.getAttribute('width' ) ) ret_val += 'width:'  + layout.getAttribute('width' ) + ';';
+    else if( defaultValues[ 'width' ] ) ret_val += 'width:'  + defaultValues[      'width' ] + ';';
+    
+    if( layout.getAttribute('height') ) ret_val += 'height:' + layout.getAttribute('height') + ';';
+    else if( defaultValues[ 'height'] ) ret_val += 'height:' + defaultValues[      'height'] + ';';
+    
+    return ret_val;
+  }
+  
+  this.extractLayout3d = function( layout )
+  {
+    var ret_val = {};
+    if( layout.getAttribute('x'    ) ) ret_val.x     = layout.getAttribute('x'    );
+    if( layout.getAttribute('y'    ) ) ret_val.y     = layout.getAttribute('y'    );
+    if( layout.getAttribute('z'    ) ) ret_val.z     = layout.getAttribute('z'    );
+    if( layout.getAttribute('floor') ) ret_val.floor = layout.getAttribute('floor');
+    if( layout.getAttribute('floorFilter') ) ret_val.floorFilter = layout.getAttribute('floorFilter');
+    if( layout.getAttribute('roomFilter')  ) ret_val.roomFilter  = layout.getAttribute('roomFilter' );
+    return ret_val;
+  }
+  
+  this.extractLabel = function( label, flavour )
+  {
+    if( !label ) return;
+    
+    var $div = $( '<div class="label"></div>' );
+    $( label ).contents().each( function(){
+      var $v = $(this);
+      if( $v.is('icon') )
+      {
+        var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling') );
+        
+        if( 'function' === typeof i )
+          i( $div );
+        else
+          if( i ) $div.append( i.clone() );
+      } else
+        $div.append( this.textContent );
+    });
+    return $div;
+  }
+  
+  /*
+  * this function extracts all addresses with attributes (JNK)
+  * 
+  * @param  handleVariant is a callback function that returns an array of two
+  *                       elements. The first is a boolean that determins if
+  *                       the visu should listen for that address. The second
+  *                       is added as it is to the returned object.
+  */
+  this.makeAddressList = function( page, handleVariant ) {
+    var address = {};
+    page.find('address').each( function(){ 
+      var src = this.textContent;
+      var transform = this.getAttribute('transform');
+      if ((!src) || (!transform)) // fix broken address-entries in config
+        return;
+      var mode = 1|2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+      switch( this.getAttribute('mode') )
+      {
+        case 'disable':
+          mode = 0;
+          break;
+        case 'read':
+          mode = 1;
+          break;
+        case 'write':
+          mode = 2;
+          break;
+        case 'readwrite':
+          mode = 1|2;
+          break;
+      }
+      var variantInfo = handleVariant ? handleVariant( src, transform, mode, this.getAttribute('variant') ) : [true, undefined];
+      if( variantInfo[0])
+        templateEngine.addAddress( src );
+      address[ '_' + src ] = [ transform, mode, variantInfo[1] ];
+      return; // end of each-func
+    });
+    return address;
+  };
 };
 
 /*
@@ -290,146 +439,5 @@ function placementStrategy( anchor, popup, page, preference )
   return { x: 0, y: 0 }; // sanity return
 }
 
-function defaultValueHandling( e, data, passedElement )
-{
-  var element = passedElement || $(this);
-  if( undefined !== e )
-  {
-    var thisTransform = element.data().address[ e.type ][0];
-    // #1: transform the raw value to a JavaScript type
-    var value = templateEngine.transformDecode( element.data().address[ e.type ][0], data );
-  } else {
-    var thisTransform = '';
-    var value = data;
-  }
-  
-  element.data( 'basicvalue', value ); // store it to be able to supress sending of unchanged data
-  
-  // #2: map it to a value the user wants to see
-  value = templateEngine.map( value, element.data('mapping') );
-  
-  // #3: format it in a way the user understands the value
-  if( element.data( 'precision' ) )
-    value = Number( value ).toPrecision( element.data( 'precision' ) );
-  if( element.data( 'format' ) )
-    value = sprintf( element.data( 'format' ), value );
-  element.data( 'value', value );
-  if (undefined !== value && value.constructor == Date)
-  {
-    switch( thisTransform ) // special case for KNX
-      {
-      case 'DPT:10.001':
-        value = value.toLocaleTimeString();
-        break;
-      case 'DPT:11.001':
-        value = value.toLocaleDateString();
-        break;
-      }
-  }
-  
-  // #4 will happen outside: style the value to be pretty
-  return value;
-}
-
-function defaultUpdate( e, data, passedElement ) 
-{
-  var element = passedElement || $(this);
-  var value = defaultValueHandling( e, data, element );
-  
-  templateEngine.setWidgetStyling(element, element.data( 'basicvalue' ) );
-  
-  if (element.data('align'))
-    element.addClass(element.data('align'));
-
-  var valueElement = element.find('.value');
-  valueElement.empty();
-  if (undefined !== value) {
-    if (('string' == typeof value) || ('number' == typeof value))
-      valueElement.append( value );
-    else if ('function' === typeof value)
-      value( valueElement );
-    else {
-      for (var i = 0; i < value.length; i++) {
-        var thisValue = value[i];
-        if (!thisValue) continue;
-
-        if( ('string' == typeof thisValue) || ('number' == typeof thisValue) )
-          valueElement.append( thisValue );
-        else if( 'function' === typeof thisValue )
-          thisValue(valueElement);
-        else
-          valueElement.append($(thisValue).clone());
-      }
-    }
-  }
-  
-  return value;
-}
-
-function defaultUpdate3d( e, data, passedElement )
-{
-  //var element = passedElement || $(this);
-  var l = e.data.layout;
-  var pos = data.building2screen( new THREE.Vector3( l.x, l.y, l.z ) );
-  e.data.element.css( 'left', pos.x + 'px' );
-  e.data.element.css( 'top' , pos.y + 'px' );
-  
-  var floorFilter = true;
-  if( l.floorFilter) floorFilter = data.getState('showFloor') == data.buildingProperties.floorNames[ l.floorFilter ];
-  e.data.element.css( 'display', floorFilter ? '' : 'none' );
-}
-
-function extractLayout( layout, type, defaultValues )
-{
-  if (typeof defaultValue === 'undefined') defaultValues = [];
-
-  var ret_val = (type == '2d') ? 'position:absolute;' : '';
-  if( layout.getAttribute('x'     ) ) ret_val += 'left:'   + layout.getAttribute('x'     ) + ';';
-  else if( defaultValues[ 'x'     ] ) ret_val += 'left:'   + defaultValues[      'x'     ] + ';';
-  
-  if( layout.getAttribute('y'     ) ) ret_val += 'top:'    + layout.getAttribute('y'     ) + ';';
-  else if( defaultValues[ 'y'     ] ) ret_val += 'top:'    + defaultValues[      'y'     ] + ';';
-  
-  if( layout.getAttribute('width' ) ) ret_val += 'width:'  + layout.getAttribute('width' ) + ';';
-  else if( defaultValues[ 'width' ] ) ret_val += 'width:'  + defaultValues[      'width' ] + ';';
-  
-  if( layout.getAttribute('height') ) ret_val += 'height:' + layout.getAttribute('height') + ';';
-  else if( defaultValues[ 'height'] ) ret_val += 'height:' + defaultValues[      'height'] + ';';
-  
-  return ret_val;
-}
-
-function extractLayout3d( layout )
-{
-  var ret_val = {};
-  if( layout.getAttribute('x'    ) ) ret_val.x     = layout.getAttribute('x'    );
-  if( layout.getAttribute('y'    ) ) ret_val.y     = layout.getAttribute('y'    );
-  if( layout.getAttribute('z'    ) ) ret_val.z     = layout.getAttribute('z'    );
-  if( layout.getAttribute('floor') ) ret_val.floor = layout.getAttribute('floor');
-  if( layout.getAttribute('floorFilter') ) ret_val.floorFilter = layout.getAttribute('floorFilter');
-  if( layout.getAttribute('roomFilter')  ) ret_val.roomFilter  = layout.getAttribute('roomFilter' );
-  return ret_val;
-}
-
-function extractLabel( label, flavour )
-{
-  if( !label ) return;
-  
-  var $div = $( '<div class="label"></div>' );
-  $( label ).contents().each( function(){
-    var $v = $(this);
-    if( $v.is('icon') )
-    {
-      var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling') );
-      
-      if( 'function' === typeof i )
-        i( $div );
-      else
-        if( i ) $div.append( i.clone() );
-    } else
-      $div.append( this.textContent );
-  });
-  return $div;
-}
 
 var basicdesign = new VisuDesign();
