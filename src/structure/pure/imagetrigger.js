@@ -26,10 +26,10 @@ basicdesign.addCreator('imagetrigger', {
     var value = $e.attr('value') ? $e.attr('value') : 0;
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
-    ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
-    var address = makeAddressList($e);
+    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
+    var address = basicdesign.makeAddressList($e);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type, {width:'100%'} ) + '"' : '';
+    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type, {width:'100%'} ) + '"' : '';
 
     var actor = '<div class="actor">';
     if ( $e.attr('type')=='show' )

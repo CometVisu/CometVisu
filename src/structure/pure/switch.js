@@ -19,7 +19,7 @@ basicdesign.addCreator('switch', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var classes = 'widget clearfix switch';
     if( $e.attr('align') ) {
       classes+=" "+$e.attr('align');
@@ -28,8 +28,8 @@ basicdesign.addCreator('switch', {
     ret_val.setWidgetLayout($e);
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var label = extractLabel( $e.find('label')[0], flavour );
-    var address = makeAddressList($e);
+    var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
+    var address = basicdesign.makeAddressList($e);
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
     var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
@@ -40,6 +40,7 @@ basicdesign.addCreator('switch', {
       'on_value'  : $e.attr('on_value' ) || 1,
       'off_value' : $e.attr('off_value') || 0,
       'align'   : $e.attr('align'),
+      'path'    : path,
       'type'    : 'switch'
     } );
     var clickable = bindClickToWidget ? ret_val : $actor;
@@ -50,14 +51,15 @@ basicdesign.addCreator('switch', {
     }
 
     // initially setting a value
-    defaultUpdate(undefined, undefined, $actor);
+    basicdesign.defaultUpdate(undefined, undefined, $actor);
 
     ret_val.append( label ).append( $actor );
+    ret_val.data( $actor.data() );
     return ret_val;
   },
   update: function(e,d) { 
     var element = $(this);
-    var value = defaultUpdate( e, d, element );
+    var value = basicdesign.defaultUpdate( e, d, element );
     var off = templateEngine.map( element.data( 'off_value' ), element.data('mapping') );
     element.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     element.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );

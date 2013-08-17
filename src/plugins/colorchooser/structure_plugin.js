@@ -27,7 +27,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
     ret_val.setWidgetLayout($p);
     var labelElement = $p.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-    var address = makeAddressList( $p,
+    var address = basicdesign.makeAddressList( $p,
       function( src, transform, mode, variant ) {
         return [ true, variant ];
       }

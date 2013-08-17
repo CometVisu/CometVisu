@@ -70,7 +70,7 @@ VisuDesign_Custom.prototype.addCreator("clock", {
   },
   update: function(e,d) { 
     var element = $(this);
-    var value = defaultUpdate( e, d, element );
+    var value = basicdesign.defaultUpdate( e, d, element );
     var $svg = element.find('svg');
     var time = value.split(':');
     $svg.children().find('#Hour'  ).attr('transform','rotate('+((time[0]%12)*360/12+time[1]*30/60)+',50,50)');

@@ -19,13 +19,13 @@ basicdesign.addCreator('multitrigger', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget clearfix multitrigger" ' + style + '/>');
     ret_val.setWidgetLayout($e)
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
+    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var address = makeAddressList($e);
+    var address = basicdesign.makeAddressList($e);
     var showstatus = $e.attr("showstatus") || "false";
     var buttons = $('<div class="actor_container" style="float:left"/>');
     var buttonCount = 0;
@@ -115,7 +115,6 @@ basicdesign.addCreator('multitrigger', {
   },
   update: function(e,d) { 
     var element = $(this);
-    //var value = defaultUpdate( e, d, element );
     var thisTransform = element.data().address[ e.type ][0];
     var value = templateEngine.transformDecode( element.data().address[ e.type ][0], d );
     element.removeClass( value == element.data().value ? 'switchUnpressed' : 'switchPressed' );

@@ -27,13 +27,13 @@ basicdesign.addCreator('web', {
     }
 
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget web" ' + style + '/>');
     ret_val.setWidgetLayout($e);
 
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    ret_val.append( extractLabel( $e.find('label')[0], flavour ) );
+    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
     var webStyle = '';
     if( $e.attr('width' ) ) {
       webStyle += 'width:'  + $e.attr('width' ) + ';'; 
@@ -64,7 +64,7 @@ basicdesign.addCreator('web', {
   },
   update: function(e, data) {
     var element = $(this);
-    var value = defaultValueHandling( e, data, element );
+    var value = basicdesign.defaultValueHandling( e, data, element );
     var type = element.data().address[ e.type ][2];
     switch( type )
     {
