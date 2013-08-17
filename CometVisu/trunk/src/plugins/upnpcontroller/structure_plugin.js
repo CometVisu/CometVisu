@@ -35,7 +35,7 @@ VisuDesign_Custom.prototype.addCreator("upnpcontroller", {
         upnpcontroller_uid = id;
 
         var ret_val = $('<div class="widget upnpcontroller" />');
-        ret_val.setWidgetLayout($p);
+        basicdesign.setWidgetLayout( ret_val, $p );
         var label = '<div class="label">' + $p.attr("label") + '</div>';
         var actor = $("<div class=\"actor\"><div class=\"upnpcontroller\" id=\"" + id + "\">loading</div></div>");
         var upnpcontroller = $("#" + id, actor);

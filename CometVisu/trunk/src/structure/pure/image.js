@@ -21,7 +21,7 @@ basicdesign.addCreator('image', {
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget clearfix image" ' + style + '/>');
-    ret_val.setWidgetLayout($e);
+    basicdesign.setWidgetLayout( ret_val, $e );
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );

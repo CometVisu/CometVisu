@@ -26,7 +26,7 @@ VisuDesign_Custom.prototype.addCreator('svg', {
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget clearfix image" ' + style + '/>');
-    ret_val.setWidgetLayout($e);
+    basicdesign.setWidgetLayout( ret_val, $e );
     ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
 
     var address = {};

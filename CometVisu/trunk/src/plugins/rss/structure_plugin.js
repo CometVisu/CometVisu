@@ -42,7 +42,7 @@ VisuDesign_Custom.prototype.addCreator("rss", {
         var id = "rss_" + uniqid();
 
         var ret_val = $('<div class="widget clearfix rss" />');
-        ret_val.setWidgetLayout($p);
+        basicdesign.setWidgetLayout( ret_val, $p );
         var label = '<div class="label">' + page.textContent + '</div>';
         var actor = $("<div class=\"actor\"><div class=\"rss_inline\" id=\"" + id + "\"></div>");
         var rss = $("#" + id, actor);

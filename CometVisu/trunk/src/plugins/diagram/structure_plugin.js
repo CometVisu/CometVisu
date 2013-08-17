@@ -98,7 +98,8 @@ function createDiagram( page, path ) {
   var content = diagram_get_content ( $p );
   
   var ret_val = $('<div class="widget clearfix diagram" />');
-  ret_val.setWidgetLayout($p).makeWidgetLabel($p);
+  basicdesign.setWidgetLayout( ret_val, $p );
+  basicdesign.makeWidgetLabel( ret_val, $p );
         
   var actor = $("<div class=\"actor\"><div class=\"diagram_inline\" id=\"" + id + "\">loading...</div></div>");
   var diagram = $("#" + id, actor);
@@ -228,7 +229,8 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ($p.attr("bind_click_to_widget")) bindClickToWidget = $p.attr("bind_click_to_widget")=="true";
     var ret_val = $('<div class="'+classes+'" />');
-    ret_val.setWidgetLayout($p).makeWidgetLabel($p);
+    basicdesign.setWidgetLayout( ret_val, $p );
+    basicdesign.makeWidgetLabel( ret_val, $p );
                 
     var actor = '<div class="actor switchUnpressed ';
     if ( $p.attr( 'align' ) ) 

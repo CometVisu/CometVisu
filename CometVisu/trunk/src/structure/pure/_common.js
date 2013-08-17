@@ -28,34 +28,6 @@ var Maturity = {
   development : 1
 };
 
-/*
- * this function implements all widget layouts that are identical (JNK)
- *
- * implemented: rowspan, colspan
- */
-  
-$.fn.setWidgetLayout = function(page) { 
-   this.data('colspan', page.children('layout').attr('colspan') || $('head').data('colspanDefault') || 6);
-   if (page.children('layout').attr('rowspan')) {
-     this.data('rowspanClass', templateEngine.rowspanClass(page.children('layout').attr('rowspan') || 1));
-     this.addClass('innerrowspan'); 
-   }
-   return this;
- }
-
-/*
- * this function implements the widget label (JNK)
- */
- 
-$.fn.makeWidgetLabel = function(page, flavour) { 
-  var labelElement = page.find('label')[0]; // get first label element
-  if (labelElement) { // if exists, add it
-    this.append( basicdesign.extractLabel( labelElement, flavour ) );
-  }
-  return this;
-}
-
-
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
  * @class VisuDesign
@@ -158,31 +130,6 @@ function VisuDesign() {
   this.addPopup('warning', $.extend(true, {}, this.getPopup('unknown')) );
   this.addPopup('error'  , $.extend(true, {}, this.getPopup('unknown')) ) ;
 
-  // ######################## noch gebraucht??? FIXME TODO ####################
-  // ######################## noch gebraucht??? FIXME TODO ####################
-  this.slideAction = function(event,ui) {
-  //alert(ui.value);
-    var now = new Date().getTime();
-    var data = $( '.actor', $(this).parent() ).data();
-    if( data.last &&  (now - data.last) < 1000 ) return; // too fast => early exit
-    $( '.actor', $(this).parent() ).data( 'last', now );  
-  //$(this).parent().data();
-  //  alert( data.GA + ' = ' + data.value );
-    //templateEngine.visu.write( data.GA, data.value=='1' ? '0' : '1', data.datatype ); 
-    //FIXME eigentlich richtig... visu.write( data.GA, ui.value, data.datatype ); 
-  }
-
-  /**
-   * Setup a refresh interval in seconds if the 'refresh' in the .data()
-   * ist bigger than 0
-   */
-  this.refreshAction = function(that) {
-    var data = $(this).data();
-    alert('this.refreshAction');
-  }
-  // ######################## noch gebraucht??? FIXME TODO ####################
-  // ######################## noch gebraucht??? FIXME TODO ####################
-  
   this.defaultValueHandling = function( e, data, passedElement )
   {
     var element = passedElement || $(this);
@@ -364,6 +311,31 @@ function VisuDesign() {
     });
     return address;
   };
+  
+  /**
+   * this function implements all widget layouts that are identical (JNK)
+   *
+   * implemented: rowspan, colspan
+   */
+  this.setWidgetLayout = function( element, page ) { 
+    element.data('colspan', page.children('layout').attr('colspan') || $('head').data('colspanDefault') || 6);
+    if (page.children('layout').attr('rowspan')) {
+      element.data('rowspanClass', templateEngine.rowspanClass(page.children('layout').attr('rowspan') || 1));
+      element.addClass('innerrowspan'); 
+    }
+    return element;
+  };
+  
+  /**
+   * this function implements the widget label (JNK)
+   */
+  this.makeWidgetLabel = function( element, page, flavour ) { 
+    var labelElement = page.find('label')[0]; // get first label element
+    if (labelElement) { // if exists, add it
+      element.append( basicdesign.extractLabel( labelElement, flavour ) );
+    }
+    return element;
+  };
 };
 
 /*
@@ -438,6 +410,5 @@ function placementStrategy( anchor, popup, page, preference )
   
   return { x: 0, y: 0 }; // sanity return
 }
-
 
 var basicdesign = new VisuDesign();
