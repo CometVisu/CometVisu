@@ -18,69 +18,68 @@
 basicdesign.addCreator('trigger', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    var value = $e.attr('value') ? $e.attr('value') : 0;
-    var shortvalue = $e.attr('shortvalue') ? $e.attr('shortvalue') : 0;
-    var classes = 'widget clearfix trigger';
-    if( $e.attr('align') ) {
-      classes+=" "+$e.attr('align');
+    
+    // create the main structure
+    var makeAddressListFn = function( src, transform, mode, variant ) {
+      return [true, variant=='short'];
     }
-    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e );
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
-    var address = basicdesign.makeAddressList($e, function(src, transform, mode, variant){return [true, variant=='short'];});
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
-    var actor = '<div class="actor switchUnpressed ';
-    if ( $e.attr( 'align' ) ) 
-      actor += $e.attr( 'align' ); 
-    actor += '"><div class="value"></div></div>';
-    var $actor = $(actor);
-    $actor.data( {
-      'address'   : address,
-      'mapping'   : $(element).attr('mapping'),
-      'styling'   : $(element).attr('styling'),
-      'type'      : 'trigger',
-      'align'     : $e.attr('align'),
-      'sendValue' : value,
-      'shorttime' : parseFloat($e.attr('shorttime')) || -1,
-      'shortValue': shortvalue
+    var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, this.update, makeAddressListFn );
+    // and fill in widget specific data
+    ret_val.data( {
+      'sendValue'  : $e.attr('value' )                || 0,
+      'shorttime'  : parseFloat($e.attr('shorttime')) || -1,
+      'shortValue' : $e.attr('shortvalue')            || 0
     } );
-    basicdesign.defaultUpdate( undefined, value, $actor );
+    
+    // create the actor
+    var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
+    ret_val.append( $actor );
+    
+    // bind to user action
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'mousedown touchstart', this.mousedown ).bind( 'mouseup touchend', this.mouseup ).bind( 'mouseout touchout', this.mouseout );
-    ret_val.append( label ).append( $actor );
+
+    // initially setting a value
+    basicdesign.defaultUpdate(undefined, ret_val.data('sendValue'), ret_val, true);
     return ret_val;
   },
   mousedown: function(event) {
-      var $this = $(this).find('.actor').size()==1 ? $(this).find('.actor') : $(this);
-      $this.removeClass('switchUnpressed').addClass('switchPressed').data( 'downtime', new Date().getTime() );
-      if( 'touchstart' == event.type )
-      {
-        // touchscreen => disable mouse emulation
-        $(this).unbind('mousedown').unbind('mouseup').unbind('mouseout');
-      }
+    var $this = $(this);
+    if( undefined === $this.data().address ) $this = $this.parent();
+    var $actor = $this.find('.actor');
+    
+    $actor.removeClass('switchUnpressed').addClass('switchPressed');
+    $this.data( 'downtime', new Date().getTime() );
+    if( 'touchstart' === event.type )
+    {
+      // touchscreen => disable mouse emulation
+      $this.unbind('mousedown').unbind('mouseup').unbind('mouseout');
+      $actor.unbind('mousedown').unbind('mouseup').unbind('mouseout');
+    }
   },
   mouseup: function(event) {
-      var $this = $(this).find('.actor').size()==1 ? $(this).find('.actor') : $(this);
-      if( $this.data( 'downtime' ) )
+    var $this = $(this);
+    if( undefined === $this.data().address ) $this = $this.parent();
+    var data = $this.data();
+
+    if( data.downtime )
+    {
+      var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
+      for( var addr in data.address )
       {
-        var data = $this.data();
-        var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
-        for( var addr in data.address )
-        {
-          if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-          if( isShort == data.address[addr][2] )
-            templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
-        }
+        if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
+        if( isShort == data.address[addr][2] )
+          templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
       }
-      $this.removeClass('switchPressed').addClass('switchUnpressed').removeData( 'downtime' );
+    }
+    $this.removeData( 'downtime' ).find('.actor').removeClass('switchPressed').addClass('switchUnpressed');
   },
   mouseout: function(event) {
-    var $this = $(this).find('.actor').size()==1 ? $(this).find('.actor') : $(this);
-    $this.removeClass('switchPressed').addClass('switchUnpressed').removeData( 'downtime' );
+    var $this = $(this);
+    if( undefined === $this.data().address ) $this = $this.parent();
+ 
+    $this.removeData( 'downtime' ).find('.actor').removeClass('switchPressed').addClass('switchUnpressed');
   }
 });

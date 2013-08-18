@@ -357,7 +357,7 @@ function VisuDesign() {
    * @param type       
    * @param updateFn   The callback function for updates
    */
-  this.createDefaultWidget = function( widgetType, $element, path, flavour, type, updateFn ) {
+  this.createDefaultWidget = function( widgetType, $element, path, flavour, type, updateFn, makeAddressListFn ) {
     var layout = $element.children('layout')[0];
     var style = layout ? 'style="' + this.extractLayout( layout, type ) + '"' : '';
     var classes = 'widget clearfix ' + widgetType;
@@ -369,7 +369,7 @@ function VisuDesign() {
     if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = this.extractLabel( $element.find('label')[0], flavour );
-    var address = this.makeAddressList($element);
+    var address = this.makeAddressList( $element, makeAddressListFn );
     //var bindClickToWidget = templateEngine.bindClickToWidget;
     //if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
 

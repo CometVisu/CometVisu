@@ -20,7 +20,10 @@ basicdesign.addCreator('text', {
     var $e = $(element);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + basicdesign.extractLayout(layout, type) + '"' : '';
-    var ret_val = $('<div class="widget clearfix text" ' + style + '/>');
+    var ret_val = $('<div class="widget clearfix text" ' + style + '/>').data({
+      path: path,
+      type: 'text'
+    });
     basicdesign.setWidgetLayout( ret_val, $e );
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
