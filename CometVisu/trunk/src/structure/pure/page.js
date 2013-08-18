@@ -145,7 +145,7 @@ basicdesign.addCreator('page', {
   },
   update: function(e, data) {
     var element = $(this);
-    var value = basicdesign.defaultValueHandling( e, data, element );
+    var value = basicdesign.defaultValueHandling( e, data, element.data() );
     var type = element.data().address[ e.type ][2];
     switch( type )
     {

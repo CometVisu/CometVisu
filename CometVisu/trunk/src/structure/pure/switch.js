@@ -18,54 +18,43 @@
 basicdesign.addCreator('switch', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    var classes = 'widget clearfix switch';
-    if( $e.attr('align') ) {
-      classes+=" "+$e.attr('align');
-    }
-    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e );
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
-    var address = basicdesign.makeAddressList($e);
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
-    var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
-    var $actor = $(actor).data( {
-      'address' : address,
-      'mapping' : $e.attr('mapping'),
-      'styling' : $e.attr('styling'),
+    
+    // create the main structure
+    var ret_val = basicdesign.createDefaultWidget( 'switch', $e, path, flavour, type, this.update );
+    // and fill in widget specific data
+    ret_val.data( {
       'on_value'  : $e.attr('on_value' ) || 1,
-      'off_value' : $e.attr('off_value') || 0,
-      'align'   : $e.attr('align'),
-      'path'    : path,
-      'type'    : 'switch'
+      'off_value' : $e.attr('off_value') || 0
     } );
+    
+    // create the actor
+    var $actor = $('<div class="actor switchUnpressed"><div class="value">-</div></div>');
+    ret_val.append( $actor );
+    
+    // bind to user action
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'click', this.action );
-    for( var addr in address ) 
-    { 
-      if( address[addr][1] & 1 ) $actor.bind( addr, this.update ); // only when read flag is set
-    }
-
+    
     // initially setting a value
-    basicdesign.defaultUpdate(undefined, undefined, $actor);
-
-    ret_val.append( label ).append( $actor );
-    ret_val.data( $actor.data() );
+    basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
+    
     return ret_val;
   },
   update: function(e,d) { 
     var element = $(this);
-    var value = basicdesign.defaultUpdate( e, d, element );
+    var actor   = element.find('.actor');
+    var value = basicdesign.defaultUpdate( e, d, element, true );
     var off = templateEngine.map( element.data( 'off_value' ), element.data('mapping') );
-    element.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
-    element.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
+    actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
+    actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
   action: function() {
-    var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
+    var $this = $(this),
+        data  = $this.data();
+    if( undefined === data.address ) data = $this.parent().data();
+                       
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
