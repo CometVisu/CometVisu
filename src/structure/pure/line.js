@@ -18,7 +18,10 @@
 basicdesign.addCreator('line', {
   create:     function( element, path, flavour, type ) {
     var $e = $(element);
-    var ret_val = $('<hr />');
+    var ret_val = $('<hr />').data({
+      path: path,
+      type: 'line'
+    });
     basicdesign.setWidgetLayout( ret_val, $e );
     return ret_val;
   }
