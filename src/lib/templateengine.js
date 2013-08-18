@@ -1322,7 +1322,7 @@ function TemplateEngine( undefined ) {
    * Set all attributes of a widget.
    */
   this.write = function( path, attributes ) {
-    return { 'do': 'write', 'p': path, 'a': attributes };
+    $( this.lookupWidget( path ) ).children().data( attributes );
   };
   
   /**
