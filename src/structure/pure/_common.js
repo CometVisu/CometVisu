@@ -130,30 +130,34 @@ function VisuDesign() {
   this.addPopup('warning', $.extend(true, {}, this.getPopup('unknown')) );
   this.addPopup('error'  , $.extend(true, {}, this.getPopup('unknown')) ) ;
 
-  this.defaultValueHandling = function( e, data, passedElement )
+  /**
+   * @param ev         event
+   * @param data       the raw value from the bus
+   * @param widgetData the data structure in the widget
+   */
+  this.defaultValueHandling = function( ev, data, widgetData )
   {
-    var element = passedElement || $(this);
-    if( undefined !== e )
+    if( undefined !== ev )
     {
-      var thisTransform = element.data().address[ e.type ][0];
+      var thisTransform = widgetData.address[ ev.type ][0];
       // #1: transform the raw value to a JavaScript type
-      var value = templateEngine.transformDecode( element.data().address[ e.type ][0], data );
+      var value = templateEngine.transformDecode( widgetData.address[ ev.type ][0], data );
     } else {
       var thisTransform = '';
       var value = data;
     }
     
-    element.data( 'basicvalue', value ); // store it to be able to supress sending of unchanged data
+    widgetData.basicvalue = value; // store it to be able to supress sending of unchanged data
     
     // #2: map it to a value the user wants to see
-    value = templateEngine.map( value, element.data('mapping') );
+    value = templateEngine.map( value, widgetData.mapping );
     
     // #3: format it in a way the user understands the value
-    if( element.data( 'precision' ) )
-      value = Number( value ).toPrecision( element.data( 'precision' ) );
-    if( element.data( 'format' ) )
-      value = sprintf( element.data( 'format' ), value );
-    element.data( 'value', value );
+    if( widgetData.precision )
+      value = Number( value ).toPrecision( widgetData.precision );
+    if( widgetData.format )
+      value = sprintf( widgetData.format, value );
+    widgetData.value = value;
     if (undefined !== value && value.constructor == Date)
     {
       switch( thisTransform ) // special case for KNX
@@ -171,10 +175,17 @@ function VisuDesign() {
     return value;
   };
   
-  this.defaultUpdate = function( e, data, passedElement ) 
+  /**
+   * ev:            event
+   * data:          the raw value from the bus
+   * passedElement: the element to update
+   */
+  this.defaultUpdate = function( ev, data, passedElement, newVersion ) 
   {
+    ///console.log(ev, data, passedElement, newVersion );
     var element = passedElement || $(this);
-    var value = self.defaultValueHandling( e, data, element );
+    var actor   = newVersion ? element.find('.actor') : element;
+    var value = self.defaultValueHandling( ev, data, element.data() );
     
     templateEngine.setWidgetStyling(element, element.data( 'basicvalue' ) );
     
@@ -206,17 +217,17 @@ function VisuDesign() {
     return value;
   }
   
-  this.defaultUpdate3d = function( e, data, passedElement )
+  this.defaultUpdate3d = function( ev, data, passedElement )
   {
     //var element = passedElement || $(this);
-    var l = e.data.layout;
+    var l = ev.data.layout;
     var pos = data.building2screen( new THREE.Vector3( l.x, l.y, l.z ) );
-    e.data.element.css( 'left', pos.x + 'px' );
-    e.data.element.css( 'top' , pos.y + 'px' );
+    ev.data.element.css( 'left', pos.x + 'px' );
+    ev.data.element.css( 'top' , pos.y + 'px' );
     
     var floorFilter = true;
     if( l.floorFilter) floorFilter = data.getState('showFloor') == data.buildingProperties.floorNames[ l.floorFilter ];
-    e.data.element.css( 'display', floorFilter ? '' : 'none' );
+    ev.data.element.css( 'display', floorFilter ? '' : 'none' );
   }
   
   this.extractLayout = function( layout, type, defaultValues )
@@ -332,9 +343,52 @@ function VisuDesign() {
   this.makeWidgetLabel = function( element, page, flavour ) { 
     var labelElement = page.find('label')[0]; // get first label element
     if (labelElement) { // if exists, add it
-      element.append( basicdesign.extractLabel( labelElement, flavour ) );
+      element.append( this.extractLabel( labelElement, flavour ) );
     }
     return element;
+  };
+  
+  /**
+   * Create a default widget to be filled by the creator afterwards.
+   * @param widgetType string of the widget type
+   * @param $element   jQuery object of the XML element
+   * @param path       string of the path ID
+   * @param flavour    
+   * @param type       
+   * @param updateFn   The callback function for updates
+   */
+  this.createDefaultWidget = function( widgetType, $element, path, flavour, type, updateFn ) {
+    var layout = $element.children('layout')[0];
+    var style = layout ? 'style="' + this.extractLayout( layout, type ) + '"' : '';
+    var classes = 'widget clearfix ' + widgetType;
+    if( $element.attr('align') ) {
+      classes+=" "+$element.attr('align');
+    }
+    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
+    this.setWidgetLayout( ret_val, $element );
+    if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
+    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
+    var label = this.extractLabel( $element.find('label')[0], flavour );
+    var address = this.makeAddressList($element);
+    //var bindClickToWidget = templateEngine.bindClickToWidget;
+    //if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
+
+    ret_val.data( {
+      'address' : address,
+      'bind_click_to_widget' : $element.attr('bind_click_to_widget'),
+      'mapping' : $element.attr('mapping'),
+      'styling' : $element.attr('styling'),
+      'align'   : $element.attr('align'),
+      'path'    : path,
+      'type'    : widgetType
+    } );
+    ret_val.append( label );
+    for( var addr in address ) 
+    { 
+      if( address[addr][1] & 1 ) ret_val.bind( addr, updateFn ); // only when read flag is set
+    }
+    
+    return ret_val;
   };
 };
 

@@ -1300,9 +1300,11 @@ function TemplateEngine( undefined ) {
    * Return all attributes of a widget.
    */
   this.read = function( path ) {
-    var widget = this.lookupWidget( path );
-    var name   = (undefined !== $( '.widget', widget )[0] && 'className' in $( '.widget', widget )[0]) ? $( '.widget', widget )[0].className : 'DUMMY';
-    return { name: name, type: $(widget).data('type') };
+    var widget = this.lookupWidget( path ),
+        data   = $.extend( {}, $( widget ).children().data() ); // copy
+    delete data.basicvalue;
+    delete data.value;
+    return data;
   };
   
   /**
