@@ -187,7 +187,7 @@ function VisuDesign() {
     var actor   = newVersion ? element.find('.actor') : element;
     var value = self.defaultValueHandling( ev, data, element.data() );
     
-    templateEngine.setWidgetStyling(element, element.data( 'basicvalue' ) );
+    templateEngine.setWidgetStyling( actor, element.data( 'basicvalue' ), element.data( 'styling' ) );
     
     if (element.data('align'))
       element.addClass(element.data('align'));

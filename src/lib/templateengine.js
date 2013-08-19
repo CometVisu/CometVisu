@@ -191,8 +191,9 @@ function TemplateEngine( undefined ) {
   /*
    * this function implements widget stylings 
    */
-  this.setWidgetStyling = function(e, value) {
-    var styling = stylings[e.data('styling')];
+  this.setWidgetStyling = function(e, value, styling) {
+    if( undefined === styling ) styling = e.data('styling');
+    var styling = stylings[styling];
     if (styling) {    
       e.removeClass(styling['classnames']); // remove only styling classes
       function findValue(v) {
