@@ -66,9 +66,12 @@
           for( var i = 0; i < length; i += 4 )
           {
             var a = data[ i+3 ];
-            data[ i   ] = r * a;
-            data[ i+1 ] = g * a;
-            data[ i+2 ] = b * a;
+            if( 0 != a )
+            {
+              data[ i   ] = r;
+              data[ i+1 ] = g;
+              data[ i+2 ] = b;
+            }
             data[ i+3 ] = a > 0 ? 255 : 0;
           }
         } :
