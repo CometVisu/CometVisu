@@ -213,6 +213,9 @@ function VisuDesign() {
         }
       }
     }
+    else {
+      valueElement.append('-');
+    }
     
     return value;
   }

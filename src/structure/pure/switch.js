@@ -28,7 +28,7 @@ basicdesign.addCreator('switch', {
     } );
     
     // create the actor
-    var $actor = $('<div class="actor switchUnpressed"><div class="value">-</div></div>');
+    var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
     ret_val.append( $actor );
     
     // bind to user action

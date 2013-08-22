@@ -37,7 +37,7 @@ basicdesign.addCreator('info', {
     basicdesign.makeWidgetLabel( ret_val, $e, flavour );
     var address = basicdesign.makeAddressList($e);
     
-    var actor = '<div class="actor"><div class="value">-</div></div>';
+    var actor = '<div class="actor"><div class="value"></div></div>';
     var $actor = $(actor).data({
       'address'  : address,
       'format'   : $e.attr('format'),
