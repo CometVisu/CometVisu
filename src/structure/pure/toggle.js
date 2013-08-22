@@ -32,7 +32,7 @@ basicdesign.addCreator('toggle', {
     var address = basicdesign.makeAddressList($e);
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
-    var actor = '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+    var actor = '<div class="actor switchUnpressed"><div class="value"></div></div>';
     var $actor = $(actor).data( {
       'address' : address,
       'mapping' : $e.attr('mapping'),

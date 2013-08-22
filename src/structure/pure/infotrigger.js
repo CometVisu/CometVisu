@@ -88,7 +88,7 @@ basicdesign.addCreator('infotrigger', {
     var actorinfo = '<div class="actor switchInvisible " ';
     if ( $e.attr( 'align' ) ) 
       actorinfo += 'style="text-align: '+$e.attr( 'align' )+'" '; 
-    actorinfo += '" ><div class="value">-</div></div>';
+    actorinfo += '" ><div class="value"></div></div>';
     var $actorinfo = $(actorinfo).data({
       'address'  : address,
       'format'   : $e.attr('format'),
