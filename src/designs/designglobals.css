@@ -156,3 +156,8 @@ img.icon, canvas.icon {
   color:#808000;
 }
 
+/* special case for the break widget as it wouldn't be possible otherwise */
+.widget_container.break_container
+{
+  clear: both;
+}
