@@ -18,14 +18,10 @@
 basicdesign.addCreator('slide', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    var ret_val = $('<div class="widget clearfix slide" ' + style + ' />');
-    basicdesign.setWidgetLayout( ret_val, $e );
-    basicdesign.makeWidgetLabel( ret_val, $e, flavour );
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var address = basicdesign.makeAddressList($e);
+    
+    // create the main structure
+    var ret_val = basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update );
+    // and fill in widget specific data
     var datatype_min = undefined;
     var datatype_max = undefined;
     $e.find('address').each( function(){ 
@@ -38,92 +34,82 @@ basicdesign.addCreator('slide', {
           datatype_max = Transform[ transform ].range.max;
       }
     });
-    var actor = $('<div class="actor">');
     var min  = parseFloat( $e.attr('min')  || datatype_min || 0   );
     var max  = parseFloat( $e.attr('max')  || datatype_max || 100 );
     var step = parseFloat( $e.attr('step') || 0.5 );
-    var $actor = $(actor).data({
-      'events':   $(actor).data( 'events' ),
-      'address' : address,
-      'mapping' : $e.attr('mapping'),
-      'styling' : $e.attr('styling'),
+    ret_val.data({
+      //???///'events':   $(actor).data( 'events' ),
       'min'     : min,
       'max'     : max,
       'step'    : step,
-      'type'    : 'dim',
       'valueInternal': true,
       'inAction': false,
       'format'  : $e.attr('format') || null
     });
-    for( var addr in address ) 
-    { 
-      if( address[addr][1] & 1 ) $actor.bind( addr, this.update ); // only when read flag is set
-    }
-
-    // initially setting a value
-    if ($actor.data( 'format' )!=null)
-      $actor.children('.ui-slider-handle').text(sprintf($actor.data( 'format' ),templateEngine.map( undefined, $actor.data('mapping') )));
-
-    if ($(actor).data('format')!=null) {
-      $actor.slider({
-        step:    step,
-        min:     min,
-        max:     max, 
-        range:   "min", 
-        animate: true,
-        start:   this.slideStart,
-        change:  this.slideChange,
-        slide:   this.slideUpdateValue
-      });
-    }
-    else {
-      $actor.slider({
-        step:    step,
-        min:     min,
-        max:     max, 
-        range:   "min", 
-        animate: true,
-        start:   this.slideStart,
-        change:  this.slideChange
-      });
-    }
+    
+    // create the actor
+    var $actor = $('<div class="actor">');
     ret_val.append( $actor );
+    
+    $actor.slider({
+      step:    step,
+      min:     min,
+      max:     max, 
+      range:   'min', 
+      animate: true,
+      start:   this.slideStart,
+      change:  this.slideChange
+    });
+    if( ret_val.data('format')!=null ) {
+      $actor.on( 'slide', this.slideUpdateValue );
+      
+      // initially setting a value
+      $actor.children('.ui-slider-handle').text(sprintf(ret_val.data( 'format' ),templateEngine.map( undefined, ret_val.data('mapping') )));
+    }
+    
     return ret_val;
   },
-  update: function( e, data ) { 
-    var element = $(this);
+  update: function( e, d ) { 
+    var element = $(this),
+        actor   = element.find('.actor'),
+        data    = element.data();
     
-    if( element.data('inAction') )
+    if( data.inAction )
       return;
     
-    var value = templateEngine.transformDecode( element.data().address[ e.type ][0], data );
-    if( element.data( 'value' ) != value )
+    var value = templateEngine.transformDecode( data.address[ e.type ][0], d );
+    if( data.value != value )
     {
-      element.data( 'value', value );
-      element.data( 'valueInternal', false );
-      element.slider('value', value);
-      element.data( 'valueInternal', true );
-      if (element.data( 'format' )!=null)
-        element.children('.ui-slider-handle').text(sprintf(element.data( 'format' ),templateEngine.map( value, element.data('mapping') )));
+      data.value         = value;
+      data.valueInternal = false;
+      actor.slider('value', value);
+      data.valueInternal = true;
+      if( data.format != null )
+        actor.children('.ui-slider-handle').text(sprintf( data.format, templateEngine.map( value, data.mapping )));
     }
   },
   slideUpdateValue:function(event,ui) {
-    var actor = $( '.actor', $(this).parent() );
-    if (actor.data( 'format' )!=null)
-      $(ui.handle).text(sprintf( actor.data( 'format' ), templateEngine.map( ui.value, actor.data('mapping') )));
+    var element = $(this).parent(),
+        actor   = element.find('.actor'),
+        data    = element.data();
+    if( data.format != null )
+      $(ui.handle).text(sprintf( data.format, templateEngine.map( ui.value, data.mapping )));
   },
   /*
   * Start a thread that regularily sends the silder position to the bus
   */
   slideStart:function(event,ui)
   {
-    var actor = $( '.actor', $(this).parent() );
-    actor.data( 'inAction', true );
-    actor.data( 'valueInternal', true );
-    actor.data( 'updateFn', setInterval( function(){
-      var data = actor.data();
-      if( data.value == actor.slider('value') ) return;
+    var element = $(this).parent(),
+        actor   = element.find('.actor'),
+        data    = element.data();
+    data.inAction      = true;
+    data.valueInternal = true;
+    data.updateFn      = setInterval( function(){
       var asv = actor.slider('value');
+      
+      if( data.value == asv ) return;
+      
       for( var addr in data.address )
       {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
@@ -131,15 +117,15 @@ basicdesign.addCreator('slide', {
         if( dv != templateEngine.transformEncode( data.address[addr][0], data.value ) )
           templateEngine.visu.write( addr.substr(1), dv );
       }
-      data.value = actor.slider('value');
-    }, 250 ) ); // update KNX every 250 ms 
+      data.value = asv;
+    }, 250 ); // update KNX every 250 ms 
   },
   /*
   * Delete the update thread and send the final value of the slider to the bus
   */
   slideChange:function(event,ui)
   {
-    var data = $(this).data();
+    var data = $(this).parent().data();
     clearInterval( data.updateFn, ui.value);
     data.inAction = false;
     if( data.valueInternal && data.value != ui.value )
