@@ -18,39 +18,21 @@
 basicdesign.addCreator('info', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    var classes = 'widget clearfix info';
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( $e.attr('align') ) {
-      classes+=" "+$e.attr('align');
-    }
-    if( flavour ) classes+=' flavour_' + flavour;
-    var ret_val = $('<div class="'+classes + '" ' + style + ' />');
-    if ( $e.attr('class') ) {
-      ret_val.addClass('custom_'+$e.attr('class'));
-    }
-    //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );
-    type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: basicdesign.extractLayout3d( layout )}, this.update3d );
     
-    basicdesign.setWidgetLayout( ret_val, $e );
-    basicdesign.makeWidgetLabel( ret_val, $e, flavour );
-    var address = basicdesign.makeAddressList($e);
+    // create the main structure
+    var ret_val = basicdesign.createDefaultWidget( 'info', $e, path, flavour, type, this.update );
+    // and fill in widget specific data
+    ret_val.data( {
+      'format'  : $e.attr('format')
+    } );
     
-    var actor = '<div class="actor"><div class="value"></div></div>';
-    var $actor = $(actor).data({
-      'address'  : address,
-      'format'   : $e.attr('format'),
-      'mapping'  : $e.attr('mapping'),
-      'styling'  : $e.attr('styling')
-    });
-    
-    for( var addr in address ) $actor.bind( addr, this.update );
+    // create the actor
+    var $actor = $('<div class="actor"><div class="value"></div></div>');
     ret_val.append( $actor );
-
+    
     // initially setting a value
-    basicdesign.defaultUpdate(undefined, undefined, $actor);
-
+    basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
+    
     return ret_val;
   },
   update:   basicdesign.defaultUpdate,

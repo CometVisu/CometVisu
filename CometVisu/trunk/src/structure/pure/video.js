@@ -18,20 +18,27 @@
 basicdesign.addCreator('video', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    var ret_val = $('<div class="widget clearfix video" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e );
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
-    var autoplay = ($e.attr('autoplay') && $e.attr('autoplay')=='true') ? ' autoplay="autoplay"' : '';
+    
+    // create the main structure
+    var ret_val = basicdesign.createDefaultWidget( 'video', $e, path, flavour, type );
+    // and fill in widget specific data
+    ret_val.data( {
+      'width'   : $e.attr('with'),
+      'height'  : $e.attr('height'),
+      'src'     : $e.attr('src'),
+      'autoplay': $e.attr('autoplay')
+    } );
+    var data = ret_val.data();
+    
+    // create the actor
     var style = '';
-    if( $e.attr('width' ) ) style += 'width:'  + $e.attr('width' ) + ';';
-    if( $e.attr('height') ) style += 'height:' + $e.attr('height') + ';';
+    if( data.width  ) style += 'width:'  + data.width  + ';';
+    if( data.height ) style += 'height:' + data.height + ';';
     if( style != '' ) style = 'style="' + style + '"';
-    var actor = '<div class="actor"><video src="' +$e.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>';
-    ret_val.append( $(actor).data( {} ) );
+    var autoplay = (data.autoplay === 'true') ? ' autoplay="autoplay"' : '';
+    var $actor = $('<div class="actor"><video src="' +$e.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>');
+    ret_val.append( $actor );
+    
     return ret_val;
   }
 });
