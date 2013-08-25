@@ -18,35 +18,24 @@
 basicdesign.addCreator('rgb', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     
-    var classes = 'widget clearfix rgb';
-    if( $e.attr('align') ) {
-      classes+=" "+$e.attr('align');
+    // create the main structure
+    function rgb_handleVariant(src, transform, mode, variant) {
+      return [true, variant];
     }
-    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e );
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
-    var address = basicdesign.makeAddressList($e, rgb_handleVariant);
+    var ret_val = basicdesign.createDefaultWidget( 'rgb', $e, path, flavour, type, this.update, rgb_handleVariant );
     
-    var actor = '<div class="actor" style="background: #ffffff;"></div>';
-    var $actor = $(actor).data( {
-      'address' : address,
-    } );
-    for( var addr in address ) 
-    { 
-      if( address[addr][1] & 1 ) $actor.bind( addr, this.update ); // only when read flag is set
-    }
-    ret_val.append( label ).append( $actor );
+    // create the actor
+    var $actor = $('<div class="actor"><div class="value"></div></div>');
+    ret_val.append( $actor );
+    
     return ret_val;
   },
   update: function(e,d) { 
-    var element = $(this);
+    var element = $(this),
+        valElem = element.find('.value');
     var value = templateEngine.transformDecode( element.data('address')[ e.type ][0], d );
-    var bg = element.css('background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
+    var bg = valElem.css('background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
     switch (element.data('address')[e.type][2]) {
     case 'r' :  bg[0] = value; break;
     case 'g' :  bg[1] = value; break;
@@ -54,12 +43,7 @@ basicdesign.addCreator('rgb', {
       default:
     }
     var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
-    element.css('background-color', bgs ); 
-    
-    
+    valElem.css('background-color', bgs ); 
   },
 });
 
-function rgb_handleVariant(src, transform, mode, variant) {
-	  return [true, variant];
-}

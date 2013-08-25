@@ -1170,6 +1170,13 @@
       <address transform="DPT:5.001" variant="g" mode="readwrite">12/7/51</address>
       <address transform="DPT:5.001" variant="b" mode="readwrite">12/7/52</address>
     </colorchooser>
+    <rgb>
+      <label>RGB Widget</label>
+        <!-- <layout colspan="1" /> -->
+      <address transform="DPT:5.004" variant="r" mode="readwrite">12/7/50</address>
+      <address transform="DPT:5.004" variant="g" mode="readwrite">12/7/51</address>
+      <address transform="DPT:5.004" variant="b" mode="readwrite">12/7/52</address>
+    </rgb>
     <break/>
     <info format="%.2f">
       <label>R</label>

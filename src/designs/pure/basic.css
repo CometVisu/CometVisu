@@ -244,7 +244,8 @@ body br
   position: relative;
 }
 
-.switchUnpressed
+.switchUnpressed,
+.widget.rgb > .actor
 {
   border-style:  solid;
   border-width:  1px;
@@ -254,7 +255,8 @@ body br
   border-radius: 7px;
   padding: 1px;
 }
-.switchUnpressed div
+.switchUnpressed div,
+.widget.rgb > .actor > .value
 {
   border-style:  solid;
   border-width:  1px;
@@ -349,6 +351,14 @@ body br
 {
   border-color:  #fff #666 #666 #fff;
 }
+
+.widget.rgb > .actor > .value
+{
+  min-height: 1.1em;
+  height:100%;
+  background: none;
+}
+
 /* Clearfix */
 .clearfix:after {
     content: ".";

@@ -18,26 +18,35 @@
 basicdesign.addCreator('image', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    var ret_val = $('<div class="widget clearfix image" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e );
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
+    
+    // create the main structure
+    var ret_val = basicdesign.createDefaultWidget( 'image', $e, path, flavour, type );
+    // and fill in widget specific data
+    ret_val.data( {
+      'width'  : $e.attr('with'),
+      'height' : $e.attr('height'),
+      'src'    : $e.attr('src'),
+      'refresh': $e.attr('refresh')
+    } );
+    var data = ret_val.data();
+    
+    // create the actor
     var imgStyle = '';
-    if( $e.attr('width' ) ) {
-      imgStyle += 'width:'  + $e.attr('width' ) + ';';
+    if( data.width ) {
+      imgStyle += 'width:'  + data.width + ';';
     } else {
       imgStyle += 'width: 100%;';
     }
-    if( $e.attr('height') ) imgStyle += 'height:' + $e.attr('height') + ';';
-    if( imgStyle != '' ) imgStyle = 'style="' + imgStyle + '"';
-    var actor = '<div class="actor"><img src="' +$e.attr('src') + '" ' + imgStyle + '/></div>';
-    var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
-    ret_val.append( $(actor).data( {
-      'refresh': refresh
-    } ).each(templateEngine.setupRefreshAction) ); // abuse "each" to call in context...
+    if( data.height ) imgStyle += 'height:' + data.height + ';';
+    var $actor = $('<div class="actor"><img src="' + data.src + '" style="' + imgStyle + '" /></div>');
+    ret_val.append( $actor );
+    
+    if( data.refresh )
+    {
+      $actor.data( 'refresh', data.refresh * 1000 );
+      $actor.each( templateEngine.setupRefreshAction );  // abuse "each" to call in context...
+    }
+    
     return ret_val;
   }
 });
