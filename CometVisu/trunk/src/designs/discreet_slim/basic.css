@@ -101,14 +101,14 @@ div#top {
   padding-left: 1em;
 }
 
-.widget .label,
+.widget > .label,
 .widget.info .actor,
 .text > div,
 .link > a {
     line-height: 2em;
 }
 
-.widget .label
+.widget > .label
 {
   float:left; 
   width:49%;

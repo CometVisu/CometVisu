@@ -183,7 +183,7 @@
       <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </trigger>
     <break/>
-    <multitrigger button1label="&lt;icon name=&quot;status_automatic&quot;/&gt;Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy">
+    <multitrigger button1label="&lt;icon name=&quot;status_automatic&quot;/&gt;Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy" showstatus="true">
       <label>Multitrigger: KONNEX Betriebsart</label>
       <address transform="DPT:20.102" mode="readwrite">12/7/20</address>
     </multitrigger>

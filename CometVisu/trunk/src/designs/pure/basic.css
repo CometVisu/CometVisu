@@ -128,14 +128,14 @@ body br
   border: 1px solid #444;
 }
 
-.widget .label,
+.widget > .label,
 .widget.info .actor,
 .text > div,
 .link > a {
   padding: 5px;
 }
 
-.widget .label
+.widget > .label
 {
   float:left; 
   width:49%;
@@ -151,7 +151,7 @@ body br
   margin-left:1em;
 }
 
-#navbarLeft .widget .label, #navbarRight .widget .label
+#navbarLeft .widget > .label, #navbarRight .widget > .label
 {
   width: initial;
 }

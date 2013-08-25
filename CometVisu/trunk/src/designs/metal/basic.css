@@ -136,7 +136,7 @@ body br
 }
 .pagejump.active { background-image: url(images/active_page24.png); background-repeat: no-repeat; background-position: center right; }
 
-.widget .label
+.widget > .label
 {
   float:left; 
   width:50%;
@@ -150,7 +150,7 @@ body br
   -ms-box-sizing: border-box;
 }
 .text > div { line-height: 2em; }
-.widget .label img.icon, .widget .label canvas.icon, .text img.icon, .text canvas.icon { vertical-align: middle; margin-top: -0.3em; }
+.widget > .label img.icon, .widget > .label canvas.icon, .text img.icon, .text canvas.icon { vertical-align: middle; margin-top: -0.3em; }
 .widget .pagejump img.icon, .widget .pagejump canvas.icon { margin-top: -0; }
 .widget .actor img.icon, .widget .actor canvas.icon { margin-bottom: -0.6em; }
 .widget .switchPressed img.icon, .widget .switchPressed canvas.icon, .widget .switchUnpressed img.icon, .widget .switchUnpressed canvas.icon { margin-top: -0.4em; margin-bottom: -0.6em;}
@@ -179,11 +179,11 @@ body br
  iframe { border: none; }
 
  
-.navbar .widget .label {
+.navbar .widget > .label {
 	float: none;
 	width: auto;
 }
-.navbar .widget .label > img, .navbar .widget .label > canvas {
+.navbar .widget > .label > img, .navbar .widget > .label > canvas {
 	left: 0.2em;
 }
 .navbar .switchPressed, .navbar .switchUnpressed {

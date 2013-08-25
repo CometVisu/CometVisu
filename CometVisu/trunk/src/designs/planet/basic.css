@@ -317,7 +317,7 @@ background:-webkit-gradient(linear,left top,left bottom,from(#d2a26e),to( #8d6d4
   font-size: 8mm;
 }
 
-.infotrigger .label {
+.infotrigger > .label {
    font-size: 7mm;
    color: white;
 }
