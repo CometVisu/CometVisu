@@ -107,12 +107,12 @@ div#top {
   text-decoration: none;
 }
 
-.widget .label, .widget.info .actor, .text > div, .link > a 
+.widget > .label, .widget.info .actor, .text > div, .link > a 
 {
   line-height: 2em;
 }
 
-.widget .label
+.widget > .label
 {
   float:left; 
   width:49%;

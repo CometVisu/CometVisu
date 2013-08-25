@@ -18,92 +18,61 @@
 basicdesign.addCreator('infotrigger', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    var ret_val = $('<div class="widget clearfix infotrigger" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e );
-    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    // handle addresses
-    var address = basicdesign.makeAddressList($e, 
-      function( src, transform, mode, variant ) {
-        return [ variant != 'button' && variant != 'short', variant == 'button' ? 1 : (variant == 'short' ? 2 : 0) ];
-      }
-    );
-
+    
+    // create the main structure
+    var makeAddressListFn = function( src, transform, mode, variant ) {
+      return [ variant != 'button' && variant != 'short', variant == 'button' ? 1 : (variant == 'short' ? 2 : 0) ];
+    }
+    var ret_val = basicdesign.createDefaultWidget( 'infotrigger', $e, path, flavour, type, this.update, makeAddressListFn );
+    // and fill in widget specific data
+    ret_val.data( {
+      'downvalue'     : $e.attr('downvalue' )            || 0,
+      'shortdownvalue': $e.attr('shortdownvalue')        || 0,
+      'downlabel'     : $e.attr('downlabel')                 ,
+      'upvalue'       : $e.attr('upvalue' )              || 0,
+      'shortupvalue'  : $e.attr('shortupvalue')          || 0,
+      'uplabel'       : $e.attr('uplabel')                   ,
+      'shorttime'     : parseFloat($e.attr('shorttime')) || -1,
+      'change'        : $e.attr('change')                || 'relative',
+      'min'           : parseFloat($e.attr('min'))       || 0,
+      'max'           : parseFloat($e.attr('max'))       || 255
+    } );
+    var data = ret_val.data();
+    
     // create buttons + info
     var buttons = $('<div style="float:left;"/>');
-    var buttonCount = 2;
 
     var actordown = '<div class="actor switchUnpressed downlabel" ';
-    if ( $e.attr( 'align' ) ) 
-      actorinfo += 'style="text-align: '+$e.attr( 'align' )+'" '; 
+    if ( data.align ) 
+      actordown += 'style="text-align: ' + data.align + '" '; 
     actordown += '>';
-    actordown += '<div class="value">' + ($e.attr('downlabel') ? $e.attr('downlabel') : '-') + '</div>';
+    actordown += '<div class="label">' + (data.downlabel || '-') + '</div>';
     actordown += '</div>';
-    var $actordown = $(actordown).data( {
-      'address'    : address,
-      'value'      : $e.attr('downvalue') || 0,
-      'shortvalue' : $e.attr('shortdownvalue') || 0,
-      'shorttime'  : parseFloat($e.attr('shorttime')) || -1,
-      'align'      : $e.attr('align'),
-      'change'     : $e.attr('change') || 'relative',
-      'min'        : parseFloat($e.attr('min')) || 0,
-      'max'        : parseFloat($e.attr('max')) || 255,
-      'type'       : 'switch'
-    } ).bind( 'mousedown touchstart', this.mousedown ).
-      bind( 'mouseup touchend', this.mouseup ).
-      bind( 'mouseout touchout', this.mouseout );/*.
-      .bind( 'click', this.action ).bind( 'mousedown', function(){
-      $(this).removeClass('switchUnpressed').addClass('switchPressed');
-    } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
-      $(this).removeClass('switchPressed').addClass('switchUnpressed');
-    } );*/
+    var $actordown = $(actordown).data({
+      'value'     : data.downvalue,
+      'shortvalue': data.shortdownvalue
+    }).bind( 'mousedown touchstart', this.mousedown )
+      .bind( 'mouseup   touchend'  , this.mouseup   )
+      .bind( 'mouseout  touchout'  , this.mouseout  );
 
     var actorup = '<div class="actor switchUnpressed uplabel" ';
-    if ( $e.attr( 'align' ) ) 
-      actorinfo += 'style="text-align: '+$e.attr( 'align' )+'" '; 
+    if ( data.align ) 
+      actorup += 'style="text-align: ' + data.align + '" '; 
     actorup += '>';
-    actorup += '<div class="value">' + ($e.attr('uplabel') ? $e.attr('uplabel') : '+') + '</div>';
+    actorup += '<div class="label">' + (data.uplabel || '+') + '</div>';
     actorup += '</div>';
-    var $actorup = $(actorup).data( {
-      'address'    : address,
-      'value'      : $e.attr('upvalue') || 1,
-      'shortvalue' : $e.attr('shortupvalue') || 1,
-      'shorttime'  : parseFloat($e.attr('shorttime')) || -1,
-      'align'      : $e.attr('align'),
-      'change'     : $e.attr('change') || 'relative',
-      'min'        : parseFloat($e.attr('min')) || 0,
-      'max'        : parseFloat($e.attr('max')) || 255,
-      'type'       : 'switch'
-    } ).bind( 'mousedown touchstart', this.mousedown ).
-      bind( 'mouseup touchend', this.mouseup ).
-      bind( 'mouseout touchout', this.mouseout );/*..bind( 'click', this.action ).bind( 'mousedown', function(){
-      $(this).removeClass('switchUnpressed').addClass('switchPressed');
-    } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
-      $(this).removeClass('switchPressed').addClass('switchUnpressed');
-    } );*/
+    var $actorup = $(actorup).data({
+      'value'     : data.upvalue,
+      'shortvalue': data.shortupvalue
+    }).bind( 'mousedown touchstart', this.mousedown )
+      .bind( 'mouseup   touchend'  , this.mouseup   )
+      .bind( 'mouseout  touchout'  , this.mouseout  );
 
     var actorinfo = '<div class="actor switchInvisible " ';
-    if ( $e.attr( 'align' ) ) 
-      actorinfo += 'style="text-align: '+$e.attr( 'align' )+'" '; 
-    actorinfo += '" ><div class="value"></div></div>';
-    var $actorinfo = $(actorinfo).data({
-      'address'  : address,
-      'format'   : $e.attr('format'),
-      'mapping'  : $e.attr('mapping'),
-      'styling'  : $e.attr('styling'),
-      'align'    : $e.attr('align'),
-    });
-    for( var addr in address ) 
-    {
-      if( !address[addr][2] ) // if NOT relative
-        $actorinfo.bind( addr, this.update );
-    }
-
-    // initially setting a value
-    basicdesign.defaultUpdate(undefined, undefined, $actorinfo);
+    if ( data.align ) 
+      actorinfo += 'style="text-align: ' + data.align + '" '; 
+    actorinfo += '" ><div class="value">-</div></div>';
+    var $actorinfo = $(actorinfo);
 
     if ( $e.attr('infoposition' )==1 ) {
       buttons.append( $actordown );
@@ -120,16 +89,20 @@ basicdesign.addCreator('infotrigger', {
     }
 
     ret_val.append( buttons );
+    
+    // initially setting a value
+    basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
+
     return ret_val;
   },
 
   update: function(e,d) { 
     var element = $(this);
-    var value = basicdesign.defaultUpdate( e, d, element );
-    element.addClass('switchInvisible');
+    var value = basicdesign.defaultUpdate( e, d, element, true );
   },
   mousedown: function(event) {
-    $(this).removeClass('switchUnpressed').addClass('switchPressed').data( 'downtime', new Date().getTime() );
+    $(this).removeClass('switchUnpressed').addClass('switchPressed')
+           .parent().parent().data( 'downtime', new Date().getTime() );
     if( 'touchstart' == event.type )
     {
       // touchscreen => disable mouse emulation
@@ -137,19 +110,20 @@ basicdesign.addCreator('infotrigger', {
     }
   },
   mouseup: function(event) {
-    var $this = $(this);
-    if( $this.data( 'downtime' ) )
+    var $this      = $(this),
+        buttonData = $this.data(),
+        data       = $this.parent().parent().data();
+    if( data.downtime )
     {
-      var data = $this.data();
       var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
-      var value = data.value;
+      var value = buttonData.value;
       var relative = ( data.change != 'absolute' );
       if( !relative )
       {
-        value = parseFloat($(this).parent().find('.switchInvisible').data('basicvalue'));
+        value = parseFloat(data.basicvalue);
         if( isNaN( value ) )
           value = 0; // anything is better than NaN...
-        value = value + parseFloat(data.value);
+        value = value + parseFloat(buttonData.value);
         if (value < data.min ) value = data.min;
         if( value > data.max ) value = data.max;
       }
@@ -157,7 +131,7 @@ basicdesign.addCreator('infotrigger', {
       {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
         if(   !isShort && 1 == data.address[addr][2] )
-          templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], data.shortvalue ) );
+          templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], buttonData.shortvalue ) );
         if( (  isShort && 2 == data.address[addr][2]) || 
             (!relative && 0 == data.address[addr][2]) )
           templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], value ) );
