@@ -23,7 +23,7 @@ basicdesign.addCreator('image', {
     var ret_val = basicdesign.createDefaultWidget( 'image', $e, path, flavour, type );
     // and fill in widget specific data
     ret_val.data( {
-      'width'  : $e.attr('with'),
+      'width'  : $e.attr('width'),
       'height' : $e.attr('height'),
       'src'    : $e.attr('src'),
       'refresh': $e.attr('refresh')
