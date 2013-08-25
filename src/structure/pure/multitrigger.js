@@ -18,114 +18,111 @@
 basicdesign.addCreator('multitrigger', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    var ret_val = $('<div class="widget clearfix multitrigger" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e );
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var address = basicdesign.makeAddressList($e);
-    var showstatus = $e.attr("showstatus") || "false";
+    
+    // create the main structure
+    var showstatus = $e.attr('showstatus') === 'true',
+        ret_val    = basicdesign.createDefaultWidget( 'multitrigger', $e, path, flavour, type, showstatus ? this.update : undefined );
+    // and fill in widget specific data
+    ret_val.data( {
+      showstatus  : showstatus,
+      button1label: $e.attr('button1label'),
+      button1value: $e.attr('button1value'),
+      button2label: $e.attr('button2label'),
+      button2value: $e.attr('button2value'),
+      button3label: $e.attr('button3label'),
+      button3value: $e.attr('button3value'),
+      button4label: $e.attr('button4label'),
+      button4value: $e.attr('button4value')
+    } );
+    var data = ret_val.data();
+    
+    // create the actor
     var buttons = $('<div class="actor_container" style="float:left"/>');
     var buttonCount = 0;
-    if( $e.attr('button1label') )
+    
+    if( data.button1label )
     {
-      //buttonCount++;
       var actor = '<div class="actor switchUnpressed ';
-      if ( $e.attr( 'align' ) ) 
-        actor += $e.attr( 'align' ); 
+      if( data.align ) 
+        actor += data.align; 
       actor += '">';
       
-      actor += '<div class="value">' + $e.attr('button1label') + '</div>';
+      actor += '<div class="value">' + data.button1label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).data( {
-        'address' : address,
-        'value'   : $e.attr('button1value'),
-        'align'   : $e.attr('align'),
-        'type'    : 'switch'
-      } ).bind( 'click', this.action );
-      if( showstatus == "true" ) {
-          for( var addr in address ) $actor.bind( addr, this.update );        
-      }
+      var $actor = $(actor).data( { value: data.button1value } )
+                           .bind( 'click', this.action );
       buttons.append( $actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
-    if( $e.attr('button2label') )
+    
+    if( data.button2label )
     {
       var actor = '<div class="actor switchUnpressed ';
-      if ( $e.attr( 'align' ) ) 
-        actor += $e.attr( 'align' ); 
+      if( data.align ) 
+        actor += data.align; 
       actor += '">';
-      actor += '<div class="value">' + $e.attr('button2label') + '</div>';
+      
+      actor += '<div class="value">' + data.button2label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).data( {
-        'address' : address,
-        'value'   : $e.attr('button2value'),
-        'type'    : 'switch',
-        'align'   : $e.attr('align')
-      } ).bind( 'click', this.action );
-      if( showstatus == "true" ) {
-          for( var addr in address ) $actor.bind( addr, this.update );        
-      }
+      var $actor = $(actor).data( { value: data.button2value } )
+                           .bind( 'click', this.action );
       buttons.append( $actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
-    if( $e.attr('button3label') )
+    
+    if( data.button3label )
     {
       var actor = '<div class="actor switchUnpressed ';
-      if ( $e.attr( 'align' ) ) 
-        actor += $e.attr( 'align' ); 
+      if( data.align ) 
+        actor += data.align; 
       actor += '">';
-      actor += '<div class="value">' + $e.attr('button3label') + '</div>';
+      
+      actor += '<div class="value">' + data.button3label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).data( {
-        'address' : address,
-        'value'   : $e.attr('button3value'),
-        'type'    : 'switch'
-      } ).bind( 'click', this.action );
-      if( showstatus == "true" ) {
-          for( var addr in address ) $actor.bind( addr, this.update );        
-      }
+      var $actor = $(actor).data( { value: data.button3value } )
+                           .bind( 'click', this.action );
       buttons.append( $actor );
-      if( 1 == buttonCount++ % 2 ) buttons.append( $('<br/>') );
+      if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
-    if( $e.attr('button4label') )
+    
+    if( data.button4label )
     {
       var actor = '<div class="actor switchUnpressed ';
-      if ( $e.attr( 'align' ) ) 
-        actor += $e.attr( 'align' ); 
+      if( data.align ) 
+        actor += data.align; 
       actor += '">';
-      actor += '<div class="value">' + $e.attr('button4label') + '</div>';
+      
+      actor += '<div class="value">' + data.button4label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).data( {
-        'address' : address,
-        'value'   : $e.attr('button4value'),
-        'type'    : 'switch',
-      } ).bind( 'click', this.action );
-      if( showstatus == "true" ) {
-          for( var addr in address ) $actor.bind( addr, this.update );        
-      }
+      var $actor = $(actor).data( { value: data.button4value } )
+                           .bind( 'click', this.action );
       buttons.append( $actor );
-      if( 1 == buttonCount++ % 2 ) buttons.append( $('<br/>') );
+      if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
-    //for( var addr in address ) $actor.bind( addr, this.update );
-    //            ret_val.append( label ).append( $actor );
+    
     return ret_val.append( buttons );
   },
   update: function(e,d) { 
-    var element = $(this);
-    var thisTransform = element.data().address[ e.type ][0];
-    var value = templateEngine.transformDecode( element.data().address[ e.type ][0], d );
-    element.removeClass( value == element.data().value ? 'switchUnpressed' : 'switchPressed' );
-    element.addClass(    value == element.data().value ? 'switchPressed' : 'switchUnpressed' );
+    var element = $(this),
+        data    = element.data(),
+        thisTransform = data.address[ e.type ][0],
+        value = templateEngine.transformDecode( thisTransform, d );
+        
+    element.find('.actor').each( function(){
+      var $this     = $(this),
+          isPressed = value === $this.data('value');
+      $this.removeClass( isPressed ? 'switchUnpressed' : 'switchPressed' )
+           .addClass(    isPressed ? 'switchPressed' : 'switchUnpressed' );
+    });
   },
   action: function() {
-    var data = $(this).data();
+    var $this = $(this),
+        data  = $this.parent().parent().data(),
+        value = $this.data('value');
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], data.value ) );
+      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], value ) );
     }
   }
 });
