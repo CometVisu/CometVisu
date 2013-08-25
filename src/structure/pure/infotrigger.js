@@ -35,7 +35,8 @@ basicdesign.addCreator('infotrigger', {
       'shorttime'     : parseFloat($e.attr('shorttime')) || -1,
       'change'        : $e.attr('change')                || 'relative',
       'min'           : parseFloat($e.attr('min'))       || 0,
-      'max'           : parseFloat($e.attr('max'))       || 255
+      'max'           : parseFloat($e.attr('max'))       || 255,
+      'format'        : $e.attr('format')
     } );
     var data = ret_val.data();
     
