@@ -197,7 +197,7 @@ function TemplateEngine( undefined ) {
     if (styling) {    
       e.removeClass(styling['classnames']); // remove only styling classes
       function findValue(v) {
-        if (undefined === value) {
+        if (undefined === v) {
           return false;
         }
         if (styling[v]) { // fixed value
