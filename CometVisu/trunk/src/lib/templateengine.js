@@ -196,7 +196,7 @@ function TemplateEngine( undefined ) {
     var sty = stylings[styling];
     if (sty) {    
       e.removeClass(sty['classnames']); // remove only styling classes
-      function findValue(v) {
+      function findValue(v, findExact) {
         if (undefined === v) {
           return false;
         }
@@ -205,8 +205,12 @@ function TemplateEngine( undefined ) {
           return true;
         }
         else { 
-          var valueFloat = parseFloat(v);
           var range = sty['range'];
+          if (findExact && range[v]) {
+            e.addClass(range[v][1]);
+            return true;
+          }
+          var valueFloat = parseFloat(v);
           for (var min in range) {
             if (min > valueFloat) continue;
             if (range[min][0] < valueFloat) continue; // check max
@@ -216,8 +220,8 @@ function TemplateEngine( undefined ) {
         }
         return false;
       }
-      if (!findValue(value) && sty['defaultValue']) {
-        findValue(sty['defaultValue']);
+      if (!findValue(value, false) && sty['defaultValue']) {
+        findValue(sty['defaultValue'], true);
       }
     }
     return this;
