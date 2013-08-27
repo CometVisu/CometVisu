@@ -220,7 +220,7 @@ function TemplateEngine( undefined ) {
         }
         return false;
       }
-      if (!findValue(value, false) && sty['defaultValue']) {
+      if (!findValue(value, false) && sty['defaultValue'] !== undefined) {
         findValue(sty['defaultValue'], true);
       }
     }
