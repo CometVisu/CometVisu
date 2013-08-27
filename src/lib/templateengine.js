@@ -193,31 +193,31 @@ function TemplateEngine( undefined ) {
    */
   this.setWidgetStyling = function(e, value, styling) {
     if( undefined === styling ) styling = e.data('styling');
-    var styling = stylings[styling];
-    if (styling) {    
-      e.removeClass(styling['classnames']); // remove only styling classes
+    var sty = stylings[styling];
+    if (sty) {    
+      e.removeClass(sty['classnames']); // remove only styling classes
       function findValue(v) {
         if (undefined === v) {
           return false;
         }
-        if (styling[v]) { // fixed value
-          e.addClass(styling[v]);
+        if (sty[v]) { // fixed value
+          e.addClass(sty[v]);
           return true;
         }
         else { 
           var valueFloat = parseFloat(v);
-          var range = styling['range'];
+          var range = sty['range'];
           for (var min in range) {
             if (min > valueFloat) continue;
-            if (range[min][0] < value) continue; // check max
+            if (range[min][0] < valueFloat) continue; // check max
             e.addClass(range[min][1]);
             return true;
           }
         }
         return false;
       }
-      if (!findValue(value) && styling['defaultValue']) {
-        findValue(styling['defaultValue']);
+      if (!findValue(value) && sty['defaultValue']) {
+        findValue(sty['defaultValue']);
       }
     }
     return this;
