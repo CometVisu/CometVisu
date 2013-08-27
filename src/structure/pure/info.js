@@ -35,6 +35,9 @@ basicdesign.addCreator('info', {
     
     return ret_val;
   },
-  update:   basicdesign.defaultUpdate,
+  update:   function(e,d) { 
+    var element = $(this);
+    basicdesign.defaultUpdate( e, d, element, true );
+  },
   update3d: basicdesign.defaultUpdate3d
 });
