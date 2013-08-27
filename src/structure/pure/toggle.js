@@ -42,7 +42,7 @@ basicdesign.addCreator('toggle', {
     } );
 
     // initially setting a value
-    basicdesign.defaultUpdate(undefined, undefined, $actor);
+    basicdesign.defaultUpdate(undefined, undefined, $actor, false);
 
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'click', this.action );
@@ -52,7 +52,7 @@ basicdesign.addCreator('toggle', {
   },
   update: function(e,d) { 
     var element = $(this);
-    var value = basicdesign.defaultUpdate( e, d, element );
+    var value = basicdesign.defaultUpdate( e, d, element, false );
     element.addClass('switchUnpressed');
   },
   action: function() {
