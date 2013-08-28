@@ -72,7 +72,7 @@ basicdesign.addCreator('infotrigger', {
     var actorinfo = '<div class="actor switchInvisible " ';
     if ( data.align ) 
       actorinfo += 'style="text-align: ' + data.align + '" '; 
-    actorinfo += '" ><div class="value">-</div></div>';
+    actorinfo += '" ><div class="value"></div></div>';
     var $actorinfo = $(actorinfo);
 
     if ( $e.attr('infoposition' )==1 ) {
