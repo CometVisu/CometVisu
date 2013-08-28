@@ -235,7 +235,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     var actor = '<div class="actor switchUnpressed ';
     if ( $p.attr( 'align' ) ) 
       actor += $p.attr( 'align' ); 
-    actor += '"><div class="value">-</div></div>';
+    actor += '"><div class="value"></div></div>';
                 
     var $actor = $(actor).data({
       'address'  : address,
