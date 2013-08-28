@@ -722,8 +722,8 @@ background-color: #000;
 .strftime { font-family: Helvetica, Arial, sans-serif; font-size: 5mm; }
 
 /* START: alignment of widgets */
-.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div,
-.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { 
+.widget.center:not(.div):not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div,
+.widget.right:not(.div):not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { 
 	width: 50%;
 	box-sizing: border-box;
     -moz-box-sizing: border-box;
