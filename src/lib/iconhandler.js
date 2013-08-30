@@ -72,7 +72,7 @@
               data[ i+1 ] = g;
               data[ i+2 ] = b;
             }
-            data[ i+3 ] = a > 0 ? 255 : 0;
+            data[ i+3 ] = a > 127 ? 255 : 0;
           }
         } :
         function( r, g, b, data, length ) // the normal version
