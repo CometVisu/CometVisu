@@ -30,7 +30,7 @@ basicdesign.addCreator('toggle', {
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
-    clickable.bind( 'mousedown touchstart', this.mousedown ).bind( 'mouseup touchend', this.mouseup ).bind( 'mouseout touchout', this.mouseout );
+    basicdesign.createDefaultButtonAction( clickable, false, this.action );
 
     // initially setting a value
     basicdesign.defaultUpdate( undefined, undefined, ret_val, true );
@@ -40,20 +40,7 @@ basicdesign.addCreator('toggle', {
     var element = $(this);
     basicdesign.defaultUpdate( e, d, element, true );
   },
-  mousedown: function(event) {
-    var $this = $(this);
-    if( undefined === $this.data().address ) $this = $this.parent();
-    var $actor = $this.find('.actor');
-    
-    $actor.removeClass('switchUnpressed').addClass('switchPressed');
-    if( 'touchstart' === event.type )
-    {
-      // touchscreen => disable mouse emulation
-      $this.unbind('mousedown').unbind('mouseup').unbind('mouseout');
-      $actor.unbind('mousedown').unbind('mouseup').unbind('mouseout');
-    }
-  },
-  mouseup: function(event) {
+  action: function(event) {
     var $this = $(this);
     if( undefined === $this.data().address ) $this = $this.parent();
     var data = $this.data();
@@ -64,12 +51,5 @@ basicdesign.addCreator('toggle', {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
       templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], sendValue ) );
     }
-    $this.find('.actor').removeClass('switchPressed').addClass('switchUnpressed');
-  },
-  mouseout: function(event) {
-    var $this = $(this);
-    if( undefined === $this.data().address ) $this = $this.parent();
- 
-    $this.find('.actor').removeClass('switchPressed').addClass('switchUnpressed');
   }
 });

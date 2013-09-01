@@ -39,31 +39,20 @@ basicdesign.addCreator('trigger', {
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
-    clickable.bind( 'mousedown touchstart', this.mousedown ).bind( 'mouseup touchend', this.mouseup ).bind( 'mouseout touchout', this.mouseout );
+    basicdesign.createDefaultButtonAction( clickable, this.downaction, this.action );
 
     // initially setting a value
     basicdesign.defaultUpdate(undefined, ret_val.data('sendValue'), ret_val, true);
     return ret_val;
   },
-  mousedown: function(event) {
-    var $this = $(this);
-    if( undefined === $this.data().address ) $this = $this.parent();
-    var $actor = $this.find('.actor');
-    
-    $actor.removeClass('switchUnpressed').addClass('switchPressed');
-    $this.data( 'downtime', new Date().getTime() );
-    if( 'touchstart' === event.type )
-    {
-      // touchscreen => disable mouse emulation
-      $this.unbind('mousedown').unbind('mouseup').unbind('mouseout');
-      $actor.unbind('mousedown').unbind('mouseup').unbind('mouseout');
-    }
+  downaction: function(event) {
+    $(this).parent().data( 'downtime', new Date().getTime() );
   },
-  mouseup: function(event) {
+  action: function(event) {
     var $this = $(this);
     if( undefined === $this.data().address ) $this = $this.parent();
     var data = $this.data();
-
+    
     if( data.downtime )
     {
       var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
@@ -74,12 +63,5 @@ basicdesign.addCreator('trigger', {
           templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
       }
     }
-    $this.removeData( 'downtime' ).find('.actor').removeClass('switchPressed').addClass('switchUnpressed');
-  },
-  mouseout: function(event) {
-    var $this = $(this);
-    if( undefined === $this.data().address ) $this = $this.parent();
- 
-    $this.removeData( 'downtime' ).find('.actor').removeClass('switchPressed').addClass('switchUnpressed');
   }
 });
