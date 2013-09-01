@@ -52,9 +52,8 @@ basicdesign.addCreator('infotrigger', {
     var $actordown = $(actordown).data({
       'value'     : data.downvalue,
       'shortvalue': data.shortdownvalue
-    }).bind( 'mousedown touchstart', this.mousedown )
-      .bind( 'mouseup   touchend'  , this.mouseup   )
-      .bind( 'mouseout  touchout'  , this.mouseout  );
+    });
+    basicdesign.createDefaultButtonAction( $actordown, this.downaction, this.action );
 
     var actorup = '<div class="actor switchUnpressed uplabel" ';
     if ( data.align ) 
@@ -65,9 +64,8 @@ basicdesign.addCreator('infotrigger', {
     var $actorup = $(actorup).data({
       'value'     : data.upvalue,
       'shortvalue': data.shortupvalue
-    }).bind( 'mousedown touchstart', this.mousedown )
-      .bind( 'mouseup   touchend'  , this.mouseup   )
-      .bind( 'mouseout  touchout'  , this.mouseout  );
+    });
+    basicdesign.createDefaultButtonAction( $actorup, this.downaction, this.action );
 
     var actorinfo = '<div class="actor switchInvisible " ';
     if ( data.align ) 
@@ -101,16 +99,10 @@ basicdesign.addCreator('infotrigger', {
     var element = $(this);
     var value = basicdesign.defaultUpdate( e, d, element, true );
   },
-  mousedown: function(event) {
-    $(this).removeClass('switchUnpressed').addClass('switchPressed')
-           .parent().parent().data( 'downtime', new Date().getTime() );
-    if( 'touchstart' == event.type )
-    {
-      // touchscreen => disable mouse emulation
-      $(this).unbind('mousedown').unbind('mouseup').unbind('mouseout');
-    }
+  downaction: function(event) {
+    $(this).parent().parent().data( 'downtime', new Date().getTime() );
   },
-  mouseup: function(event) {
+  action: function(event) {
     var $this      = $(this),
         buttonData = $this.data(),
         data       = $this.parent().parent().data();
@@ -138,9 +130,5 @@ basicdesign.addCreator('infotrigger', {
           templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], value ) );
       }
     }
-    $this.removeClass('switchPressed').addClass('switchUnpressed').removeData( 'downtime' );
-  },
-  mouseout: function(event) {
-    $(this).removeClass('switchPressed').addClass('switchUnpressed').removeData( 'downtime' );
   }
 });

@@ -393,6 +393,34 @@ function VisuDesign() {
     
     return ret_val;
   };
+  
+  /**
+   * Create an action handling that shows a button click animation, i.e. 
+   * pressing the mouse button will look like pressing the buttion and 
+   * releaseing the button will trigger the action. Pulling out will cancel
+   * the action.
+   */
+  this.createDefaultButtonAction = (function() {
+    // closure, the actions:
+    var isTouchDevice = !!('ontouchstart' in window) // works on most browsers 
+                     || !!('onmsgesturechange' in window), // works on ie10
+        mousedown = function( event ) {
+          if( event.data )
+            $.proxy( event.data, this )( event );
+          $(this).removeClass('switchUnpressed').addClass('switchPressed');
+        },
+        mouseaway = function( event ) {
+          if( event.data )
+            $.proxy( event.data, this )( event );
+          $(this).removeClass('switchPressed').addClass('switchUnpressed');
+        };
+    // the real function
+    return function( clickableElement, downAction, clickAction ) {
+      clickableElement.bind( isTouchDevice ? 'touchstart' : 'mousedown', downAction,  mousedown )
+                      .bind( isTouchDevice ? 'touchend'   : 'mouseup'  , clickAction, mouseaway )
+                      .bind( isTouchDevice ? 'touchout'   : 'mouseout' , mouseaway );
+    };
+  })();
 };
 
 /*
