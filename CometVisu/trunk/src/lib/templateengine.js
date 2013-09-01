@@ -259,21 +259,14 @@ function TemplateEngine( undefined ) {
     return value;
   };
 
+  /**
+   * Look up the entry for @param value in the mapping @param this_map and
+   * @return the next value in the list (including wrap around).
+   */
   this.getNextMappedValue = function(value, this_map) {
     if (this_map && mappings[this_map]) {
-      var next_element;
-      var first_element;
-      for (var e in mappings[this_map]) {
-        if (mappings[this_map].hasOwnProperty(e)) {
-          if (e > value && !next_element) {
-            next_element = e;
-          }
-          if (!first_element) {
-            first_element = e;
-          }
-        }
-      }
-      return (next_element) ? next_element : first_element;
+      var keys = Object.keys(mappings[this_map]);
+      return keys[ (keys.indexOf( value ) + 1) % keys.length ];
     }
     return value;
   }
