@@ -18,50 +18,58 @@
 basicdesign.addCreator('toggle', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    var classes = 'widget clearfix toggle';
-    if( $e.attr('align') ) {
-      classes+=" "+$e.attr('align');
-    }
-    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e );
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
-    var address = basicdesign.makeAddressList($e);
+    
+    // create the main structure
+    var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type, this.update );
+    
+    // create the actor
+    var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
+    ret_val.append( $actor );
+    
+    // bind to user action
     var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
-    var actor = '<div class="actor switchUnpressed"><div class="value"></div></div>';
-    var $actor = $(actor).data( {
-      'address' : address,
-      'mapping' : $e.attr('mapping'),
-      'styling' : $e.attr('styling'),
-      'align'   : $e.attr('align'),
-      'type'    : 'switch'
-    } );
+    if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
+    var clickable = bindClickToWidget ? ret_val : $actor;
+    clickable.bind( 'mousedown touchstart', this.mousedown ).bind( 'mouseup touchend', this.mouseup ).bind( 'mouseout touchout', this.mouseout );
 
     // initially setting a value
-    basicdesign.defaultUpdate(undefined, undefined, $actor, false);
-
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    clickable.bind( 'click', this.action );
-    for( var addr in address ) $actor.bind( addr, this.update );
-    ret_val.append( label ).append( $actor );
+    basicdesign.defaultUpdate( undefined, undefined, ret_val, true );
     return ret_val;
   },
-  update: function(e,d) { 
+  update: function( e, d ) { 
     var element = $(this);
-    var value = basicdesign.defaultUpdate( e, d, element, false );
-    element.addClass('switchUnpressed');
+    basicdesign.defaultUpdate( e, d, element, true );
   },
-  action: function() {
-    var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
-    var sendValue = templateEngine.getNextMappedValue(data.basicvalue, data.mapping);
+  mousedown: function(event) {
+    var $this = $(this);
+    if( undefined === $this.data().address ) $this = $this.parent();
+    var $actor = $this.find('.actor');
+    
+    $actor.removeClass('switchUnpressed').addClass('switchPressed');
+    if( 'touchstart' === event.type )
+    {
+      // touchscreen => disable mouse emulation
+      $this.unbind('mousedown').unbind('mouseup').unbind('mouseout');
+      $actor.unbind('mousedown').unbind('mouseup').unbind('mouseout');
+    }
+  },
+  mouseup: function(event) {
+    var $this = $(this);
+    if( undefined === $this.data().address ) $this = $this.parent();
+    var data = $this.data();
+
+    var sendValue = templateEngine.getNextMappedValue( data.basicvalue, data.mapping );
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
       templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], sendValue ) );
     }
+    $this.find('.actor').removeClass('switchPressed').addClass('switchUnpressed');
+  },
+  mouseout: function(event) {
+    var $this = $(this);
+    if( undefined === $this.data().address ) $this = $this.parent();
+ 
+    $this.find('.actor').removeClass('switchPressed').addClass('switchUnpressed');
   }
 });
