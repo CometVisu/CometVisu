@@ -192,6 +192,11 @@
       <address transform="DPT:20.102" mode="readwrite">12/7/20</address>
     </info>
     <break/>
+    <toggle mapping="KonnexHVAC">
+      <label>Toggle: Betriebsart</label>
+      <address transform="DPT:20.102" mode="readwrite">12/7/20</address>
+    </toggle>
+    <break/>
     <multitrigger button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
       <label>Multitrigger: Szenenaufruf</label>
       <address transform="DPT:5.010" mode="readwrite">12/7/5</address>
