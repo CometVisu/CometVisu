@@ -750,11 +750,11 @@ function TemplateEngine( undefined ) {
     
     var page = $('pages > page', xml)[0]; // only one page element allowed...
 
-    thisTemplateEngine.create_pages(page, 'id_0');
+    thisTemplateEngine.create_pages(page, 'id');
     
-    var startpage = 'id_0';
+    var startpage = 'id_';
     if ($.getUrlVar('startpage')) {
-      startpage='id_' + $.getUrlVar('startpage');
+      startpage = $.getUrlVar('startpage');
     }
     thisTemplateEngine.currentPage = $('#'+startpage);
     
@@ -988,8 +988,7 @@ function TemplateEngine( undefined ) {
       '<div class="widget_container '
       + (retval.data('rowspanClass') ? retval.data('rowspanClass') : '')
       + ('break' === retval.data('type') ? 'break_container' : '') // special case for break widget
-      + '" />').data('type', page.nodeName).append(retval);
-
+      + '" id="'+path+'"/>').data('type', page.nodeName).append(retval);
     return retval;
   };
 
@@ -997,7 +996,7 @@ function TemplateEngine( undefined ) {
     if( undefined === page_id )
       page_id = this.screensave_page;
     
-    if (page_id.match(/^id_[0-9_]+$/) == null) {
+    if (page_id.match(/^id_[0-9_]*$/) == null) {
       // find Page-ID by name
       $('.page h1:contains(' + page_id + ')', '#pages').each(function(i) {
         if ($(this).text() == page_id) {
@@ -1006,7 +1005,12 @@ function TemplateEngine( undefined ) {
       });
     }
     // don't scroll when target is already active
-    if( thisTemplateEngine.currentPageID == page_id )
+    if( thisTemplateEngine.currentPageID === page_id )
+      return;
+    
+    var page = $('#' + page_id);
+    
+    if( 0 === page.length ) // check if page does exist
       return;
     
     if( undefined === speed )
@@ -1016,12 +1020,11 @@ function TemplateEngine( undefined ) {
     
     thisTemplateEngine.resetPageValues();
     
-    var page = $('#' + page_id);
     thisTemplateEngine.currentPage = page;
 
     page.addClass('pageActive activePage');// show new page
     
-    // update visibility ob navbars, top-navigation, footer
+    // update visibility of navbars, top-navigation, footer
     thisTemplateEngine.pagePartsHandler.updatePageParts(page);
 
     if( speed > 0 ) {
@@ -1209,9 +1212,12 @@ function TemplateEngine( undefined ) {
   };
   
   this.getParentPage = function(page) {
+    if( 0 === page.length )
+      return null;
+    
     var pathParts = page.attr('id').split('_');
-    if (pathParts.length == 2) {
-      // top-level (id_x)-> no parent pages
+    if (pathParts.length == 3) {
+      // top-level (id_)-> no parent pages
       return null;
     }
     while (pathParts.length > 1) {
@@ -1246,14 +1252,17 @@ function TemplateEngine( undefined ) {
   /**
    * Create a new widget.
    */
-  this.create = function() {
-    return "created widget";
+  this.create = function( path, element ) {
+    return "created widget '" + path + "': '" + element + "'";
   };
   
   /**
-   * Delete an existing widget.
+   * Delete an existing path, i.e. widget, group or even page - including 
+   * child elements.
    */
   this.delete = function( path ) {
+    console.log( this.lookupWidget( path ), $( '#'+path ) );
+    //$( this.lookupWidget( path ) ).remove();
     return "deleted widget '" + path + "'";
   };
   
@@ -1348,7 +1357,13 @@ function TemplateEngine( undefined ) {
     switch( event.data.command )
     {
       case 'create':
-        answer = thisTemplateEngine.create();
+        if( 'object'  === typeof parameters   &&
+            pathRegEx.test( parameters.path ) &&
+            'string' === typeof parameters.element
+        )
+          answer = thisTemplateEngine.create( parameters.path, parameters.element );
+        else 
+          answer = 'bad path or element';
         break;
         
       case 'delete':
@@ -1420,18 +1435,18 @@ function PagePartsHandler() {
     if( self === undefined ) self = this;
     var path = $('#main .page').eq(self.getIndex()).attr('id').split('_');
     var id = 'id_'; // path[0];
-    var nav = '';
+    var nav = '<a href="javascript:templateEngine.scrollToPage(\'' + id + '\')">'
+            + $('#' + id + ' h1').text() + '</a>';
     for ( var i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
-      id += path[i];
-      if ($('#' + id).hasClass("page")) {
-        nav += ((1 == i) ? '' : '<span> &#x25ba; </span>')
+      id += path[i] + '_';
+      if ($('#' + id ).hasClass("page")) { // FIXME is this still needed?!?
+        nav += '<span> &#x25ba; </span>'
             + '<a href="javascript:templateEngine.scrollToPage(\'' + id + '\')">'
             + $('#' + id + ' h1').text() + '</a>';
       }
-      id += '_';
     }
     $('.nav_path').html(nav);
-    templateEngine.handleResize();    
+    templateEngine.handleResize();
   };
 
   /**
@@ -1664,19 +1679,20 @@ function PagePartsHandler() {
   };
 
   /**
-   * traverse down the page tree from root page id_0 -> .. -> page_id activate
+   * traverse down the page tree from root page id_ -> .. -> page_id activate
    * all navbars in that path deactivate all others
    * 
    * @param page_id
    */
   this.initializeNavbars = function(page_id) {
     thisPagePartsHandler.removeInactiveNavbars(page_id);
-    var tree = [ $('#id_0').get(0) ];
-    if (page_id != "id_0") {
+    var tree = [ $('#id_').get(0) ];
+    if (page_id != "id_") {
       var parts = page_id.split("_");
-      parts = parts.slice(2, parts.length);
+      parts.pop();
+      parts[0] = '';
       for ( var i = 0; i < parts.length; i++) {
-        var item = $('#id_0_' + parts.slice(0, i + 1).join('_') + ".page",
+        var item = $('#id' + parts.slice(0, i + 1).join('_') + "_.page",
             '#pages');
         if (item.size() == 1) {
           tree.push(item.get(0));
@@ -1686,10 +1702,10 @@ function PagePartsHandler() {
     var level = 1;
     $(tree).each(function(i) {
       var id = $(this).attr('id');
-      var topNav = $('#' + id + '_top_navbar');
-      var rightNav = $('#' + id + '_right_navbar');
-      var bottomNav = $('#' + id + '_bottom_navbar');
-      var leftNav = $('#' + id + '_left_navbar');
+      var topNav = $('#' + id + 'top_navbar');
+      var rightNav = $('#' + id + 'right_navbar');
+      var bottomNav = $('#' + id + 'bottom_navbar');
+      var leftNav = $('#' + id + 'left_navbar');
       // console.log(tree.length+"-"+level+"<="+topNav.data('scope'));
       if (topNav.size() > 0) {
         if (topNav.data('scope') == undefined || topNav.data('scope') < 0

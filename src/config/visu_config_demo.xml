@@ -137,13 +137,13 @@
       <line>
         <layout colspan="12" />
       </line>
-      <pagejump target="id_0_34_7" name="Lithium">
+      <pagejump target="id_36_7_" name="Lithium">
         <label>Flavour</label>
       </pagejump>
-      <pagejump target="id_0_34_8" name="Potassium">
+      <pagejump target="id_36_8_" name="Potassium">
         <label>Flavour</label>
       </pagejump>
-      <pagejump target="id_0_41" name="2D">
+      <pagejump target="2D fixed Bitmap" name="2D">
         <!--
         <label>2D</label>
         -->
@@ -1062,13 +1062,13 @@
         <line>
           <layout colspan="12" />
         </line>
-        <pagejump target="id_0_34_7" name="Lithium">
+        <pagejump target="id_0_36_7" name="Lithium">
           <label>Flavour</label>
         </pagejump>
-        <pagejump target="id_0_34_8" name="Potassium">
+        <pagejump target="id_0_36_8" name="Potassium">
           <label>Flavour</label>
         </pagejump>
-        <pagejump target="id_0_36">
+        <pagejump target="2D fixed Bitmap">
           <label>2D</label>
         </pagejump>
       </navbar>
@@ -1083,13 +1083,13 @@
           <line>
             <layout colspan="12" />
           </line>
-          <pagejump target="id_0_34_7" name="Lithium">
+          <pagejump target="id_0_36_7" name="Lithium">
             <label>Flavour</label>
           </pagejump>
-          <pagejump target="id_0_34_8" name="Potassium">
+          <pagejump target="id_0_36_8" name="Potassium">
             <label>Flavour</label>
           </pagejump>
-          <pagejump target="id_0_36">
+          <pagejump target="2D fixed Bitmap">
             <label>2D</label>
           </pagejump>
         </navbar>
