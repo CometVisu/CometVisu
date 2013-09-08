@@ -59,7 +59,7 @@ basicdesign.addCreator('page', {
         ret_val.append(tst );
       }
       else {
-        var tst = $('<div ' + wstyle + '><a href="javascript:templateEngine.scrollToPage(\''+path+'\')">' + name + '</a></div>');
+        var tst = $('<div ' + wstyle + '><a href="javascript:templateEngine.scrollToPage(\''+path+'_\')">' + name + '</a></div>');
         ret_val.append(tst );
       }
     }
@@ -67,7 +67,7 @@ basicdesign.addCreator('page', {
     var childs = $p.children().not('layout');
     //var container = $( '<div class="clearfix" />' );
     
-    var subpage = $( '<div class="page" id="' + path + '"/>' );
+    var subpage = $( '<div class="page" id="' + path + '_"/>' );
     subpage.data({
       name             : name,
       showtopnavigation: showtopnavigation,
@@ -79,7 +79,7 @@ basicdesign.addCreator('page', {
         right  : shownavbar_right
       }
     });
-    var $container = $( '<div class="clearfix" path="'+path+'" style="height:100%;position:relative;" />'); 
+    var $container = $( '<div class="clearfix" style="height:100%;position:relative;" />'); 
     for( var addr in address ) $container.bind( addr, this.update );
     var container=$container;
     
