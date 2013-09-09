@@ -1216,13 +1216,14 @@ function TemplateEngine( undefined ) {
       return null;
     
     var pathParts = page.attr('id').split('_');
-    if (pathParts.length == 3) {
+    pathParts.pop();
+    if (pathParts.length <= 1) {
       // top-level (id_)-> no parent pages
       return null;
     }
     while (pathParts.length > 1) {
       pathParts.pop();
-      var path = pathParts.join('_');
+      var path = pathParts.join('_') + '_';
       if ($('#' + path).hasClass("page")) {
         return $('#' + path);
       }
