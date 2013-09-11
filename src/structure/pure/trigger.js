@@ -39,7 +39,7 @@ basicdesign.addCreator('trigger', {
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
-    basicdesign.createDefaultButtonAction( clickable, this.downaction, this.action );
+    basicdesign.createDefaultButtonAction( clickable, $actor, this.downaction, this.action );
 
     // initially setting a value
     basicdesign.defaultUpdate(undefined, ret_val.data('sendValue'), ret_val, true);
