@@ -53,7 +53,7 @@ basicdesign.addCreator('infotrigger', {
       'value'     : data.downvalue,
       'shortvalue': data.shortdownvalue
     });
-    basicdesign.createDefaultButtonAction( $actordown, this.downaction, this.action );
+    basicdesign.createDefaultButtonAction( $actordown, $actordown, this.downaction, this.action );
 
     var actorup = '<div class="actor switchUnpressed uplabel" ';
     if ( data.align ) 
@@ -65,7 +65,7 @@ basicdesign.addCreator('infotrigger', {
       'value'     : data.upvalue,
       'shortvalue': data.shortupvalue
     });
-    basicdesign.createDefaultButtonAction( $actorup, this.downaction, this.action );
+    basicdesign.createDefaultButtonAction( $actorup, $actorup, this.downaction, this.action );
 
     var actorinfo = '<div class="actor switchInvisible " ';
     if ( data.align ) 

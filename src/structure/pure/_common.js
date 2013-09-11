@@ -405,20 +405,24 @@ function VisuDesign() {
     var isTouchDevice = !!('ontouchstart' in window) // works on most browsers 
                      || !!('onmsgesturechange' in window), // works on ie10
         mousedown = function( event ) {
-          if( event.data )
-            $.proxy( event.data, this )( event );
-          $(this).removeClass('switchUnpressed').addClass('switchPressed');
+          var action = event.data.action,
+              actor  = event.data.actor;
+          if( action )
+            $.proxy( action, actor )( event );
+          actor.removeClass('switchUnpressed').addClass('switchPressed');
         },
         mouseaway = function( event ) {
-          if( event.data )
-            $.proxy( event.data, this )( event );
-          $(this).removeClass('switchPressed').addClass('switchUnpressed');
+          var action = event.data.action,
+              actor  = event.data.actor;
+          if( action )
+            $.proxy( action, actor )( event );
+          actor.removeClass('switchPressed').addClass('switchUnpressed');
         };
     // the real function
-    return function( clickableElement, downAction, clickAction ) {
-      clickableElement.bind( isTouchDevice ? 'touchstart' : 'mousedown', downAction,  mousedown )
-                      .bind( isTouchDevice ? 'touchend'   : 'mouseup'  , clickAction, mouseaway )
-                      .bind( isTouchDevice ? 'touchout'   : 'mouseout' , mouseaway );
+    return function( clickableElement, $actorElement, downAction, clickAction ) {
+      clickableElement.bind( isTouchDevice ? 'touchstart' : 'mousedown', { actor: $actorElement, action: downAction  }, mousedown )
+                      .bind( isTouchDevice ? 'touchend'   : 'mouseup'  , { actor: $actorElement, action: clickAction }, mouseaway )
+                      .bind( isTouchDevice ? 'touchout'   : 'mouseout' , { actor: $actorElement }                     , mouseaway );
     };
   })();
 };

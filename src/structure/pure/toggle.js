@@ -30,7 +30,7 @@ basicdesign.addCreator('toggle', {
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
-    basicdesign.createDefaultButtonAction( clickable, false, this.action );
+    basicdesign.createDefaultButtonAction( clickable, $actor, false, this.action );
 
     // initially setting a value
     basicdesign.defaultUpdate( undefined, undefined, ret_val, true );
