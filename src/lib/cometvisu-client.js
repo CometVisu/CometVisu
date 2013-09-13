@@ -46,6 +46,7 @@ function CometVisu( urlPrefix )
   this.maxDataAge       = 3200;                          // in Seconds - reload all data when last successful read is older 
                                                          // (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
   this.lastIndex        = -1;                            // index returned by the last request
+  this.resendHeaders = [];							     // keep the e.g. atmosphere tracking-id id there is one
     
   this.setInitialAddresses = function(addresses) {
     this.initialAddresses = addresses;
@@ -66,11 +67,11 @@ function CometVisu( urlPrefix )
     // send first request
     this.running = true;
     if (this.initialAddresses.length) {
-      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(this.initialAddresses)+'&t=0', success:this.handleReadStart} );
+      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(this.initialAddresses)+'&t=0', success:this.handleReadStart, beforeSend:this.beforeSend} );
     }
     else {
       // old behaviour -> start full query
-      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError } );
+      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError, beforeSend:this.beforeSend } );
     }
   };
 
@@ -84,7 +85,7 @@ function CometVisu( urlPrefix )
     {
       if( this.running )
       { // retry initial request
-        this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError } );
+        this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError, beforeSend:this.beforeSend } );
         watchdog.ping();
       }
       return;
@@ -94,12 +95,13 @@ function CometVisu( urlPrefix )
     {
       this.lastIndex = json.i;
       var data       = json.d;
+	  this.readResendHeaderValues();
       this.update( data );
     }
 
     if( this.running )
     { // keep the requests going
-      this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&i='+this.lastIndex, success:this.handleRead ,error:this.handleError} );
+      this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&i='+this.lastIndex, success:this.handleRead ,error:this.handleError, beforeSend:this.beforeSend} );
       watchdog.ping();
     }
   };
@@ -110,18 +112,19 @@ function CometVisu( urlPrefix )
     {
       if( this.running )
       { // retry initial request
-        this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(this.startPageAddresses)+'&t=0', success:this.handleReadStart} );
+        this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(this.startPageAddresses)+'&t=0', success:this.handleReadStart, beforeSend:this.beforeSend} );
         watchdog.ping();
       }
       return;
     }
     if( json && !this.doRestart  )
     {
+	  this.readResendHeaderValues();
       this.update( json.d );
     }
     if( this.running )
     { // keep the requests going
-      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError} );
+      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError, beforeSend:this.beforeSend} );
       watchdog.ping();
     }
   };
@@ -145,6 +148,26 @@ function CometVisu( urlPrefix )
         case 4: readyState = 'COMPLETED'    ; break;
       }
       alert('Error! Type: "'+str+'" ExceptionObject: "'+excptObj+'" readyState: '+readyState);
+    }
+  }
+  
+  /**
+  * manipulates the header of the current ajax query before it is been send to the server
+  */
+  this.beforeSend = function( xhr ) {
+    for (var headerName in this.resendHeaders) {
+	  if (this.resendHeaders[headerName]!=undefined)
+		 xhr.setRequestHeader(headerName,this.resendHeaders[headerName]);
+	}
+  }
+  
+  /**
+  * read the header values of a response and stores them to the resendHeaders array
+  * @method readResendHeaderValues
+  */
+  this.readResendHeaderValues = function() {
+	for (var headerName in this.resendHeaders) {
+      this.resendHeaders[headerName] = this.xhr.getResponseHeader(headerName);
     }
   }
 
