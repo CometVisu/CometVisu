@@ -46,7 +46,7 @@ function CometVisu( urlPrefix )
   this.maxDataAge       = 3200;                          // in Seconds - reload all data when last successful read is older 
                                                          // (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
   this.lastIndex        = -1;                            // index returned by the last request
-  this.resendHeaders = [];							     // keep the e.g. atmosphere tracking-id id there is one
+  this.resendHeaders = [];                               // keep the e.g. atmosphere tracking-id id there is one
     
   this.setInitialAddresses = function(addresses) {
     this.initialAddresses = addresses;
@@ -95,7 +95,7 @@ function CometVisu( urlPrefix )
     {
       this.lastIndex = json.i;
       var data       = json.d;
-	  this.readResendHeaderValues();
+      this.readResendHeaderValues();
       this.update( data );
     }
 
@@ -119,7 +119,7 @@ function CometVisu( urlPrefix )
     }
     if( json && !this.doRestart  )
     {
-	  this.readResendHeaderValues();
+      this.readResendHeaderValues();
       this.update( json.d );
     }
     if( this.running )
@@ -156,9 +156,9 @@ function CometVisu( urlPrefix )
   */
   this.beforeSend = function( xhr ) {
     for (var headerName in this.resendHeaders) {
-	  if (this.resendHeaders[headerName]!=undefined)
-		 xhr.setRequestHeader(headerName,this.resendHeaders[headerName]);
-	}
+      if (this.resendHeaders[headerName]!=undefined)
+        xhr.setRequestHeader(headerName,this.resendHeaders[headerName]);
+   }
   }
   
   /**
@@ -166,7 +166,7 @@ function CometVisu( urlPrefix )
   * @method readResendHeaderValues
   */
   this.readResendHeaderValues = function() {
-	for (var headerName in this.resendHeaders) {
+    for (var headerName in this.resendHeaders) {
       this.resendHeaders[headerName] = this.xhr.getResponseHeader(headerName);
     }
   }
