@@ -52,6 +52,13 @@ var DataProviderConfig = {
                 userInputAllowed: false,
             },
     },
+    'plugin': {
+        'name':  {
+                url: 'editor/dataproviders/list_all_plugins.php',
+                cache: true,
+                userInputAllowed: false,
+            },
+    },
     'pages': {
       'design':  {
               url: 'editor/dataproviders/list_all_designs.php',
