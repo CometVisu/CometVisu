@@ -104,7 +104,8 @@ function TemplateEngine( undefined ) {
   this.initBackendClient = function() {
     if (thisTemplateEngine.backend=="oh") {
       // the path to the openHAB cometvisu backend is cv
-      thisTemplateEngine.visu = new CometVisu('/services/cv/');
+	  thisTemplateEngine.backend = '/services/cv/';
+      thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
       thisTemplateEngine.visu.resendHeaders = {'X-Atmosphere-tracking-id':null};
     } else {
       thisTemplateEngine.backend = '/' + thisTemplateEngine.backend + '/';
