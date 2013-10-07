@@ -25,8 +25,6 @@ $('#navbarLeft').data('columns', 6 );
 $('#main').data('columns', 12 );
 $('#navbarRight').data('columns', 6 );
 
-var started=true;
-
 function getOffsetCorners(elem) {
   return {
     top_left: {top: Math.round(elem.offset().top), left: Math.round(elem.offset().left) },
@@ -72,38 +70,34 @@ $(window).bind('scrolltopage',function() {
   }
 });
 
-$(window).resize(function() {
-  // only execute on start
-    if (started) {
-      if ($('.navbar').size()>0) {
-         $('.navbar > .widget_container:first-child .group:not(.root) .pagejump:first-child .actor').each(function(i) {
-           var data = $(this).data();
-           var target = (data.target.match(/^id_[0-9_]+$/)==null) ? $('.page h1:contains('+data.target+')').closest(".page").attr("id") : data.target;
-           if (target=="id_0") {
-             // pagejump to root-page found
-             var group = $(this).closest(".group");
-             if (group.find('.widget_container').size()==1)
-               group.addClass("root");
-           }
-         });
-       }
-       $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
-         var label = $(this);
-         if (label.text().trim()!="") {
-           var actor = label.siblings('.actor');
-           if (label.children('img').size()==0 && actor.children('.value').text().trim()!="") {
-             actor.css('padding-top','0.5em');
-           }
-         }
-       });
-       // Disable borders for groups that contain widget-group as children
-       $('.page > div > .widget_container > .group:not(.widget)').each(function(i) {
-         var $this = $(this);
-         if ($this.find('.clearfix > .widget_container > .group.widget').size()>0) {
-           $this.css({'border': 'none', 'margin': 0});
-         }
-       });
-       started=false;
+$("#pages").bind("done", function() {
+  if ($('.navbar').size()>0) {
+    $('.navbar > .widget_container:first-child .group:not(.root) .pagejump:first-child .actor').each(function(i) {
+      var data = $(this).data();
+      var target = (data.target.match(/^id_[0-9_]+$/)==null) ? $('.page h1:contains('+data.target+')').closest(".page").attr("id") : data.target;
+      if (target=="id_0") {
+        // pagejump to root-page found
+        var group = $(this).closest(".group");
+        if (group.find('.widget_container').size()==1)
+          group.addClass("root");
+      }
+    });
+  }
+  $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
+    var label = $(this);
+    if (label.text().trim()!="") {
+      var actor = label.siblings('.actor');
+      if (label.children('img').size()==0 && actor.children('.value').text().trim()!="") {
+        actor.css('padding-top','0.5em');
+      }
     }
+  });
+  // Disable borders for groups that contain widget-group as children
+  $('.page > div > .widget_container > .group:not(.widget)').each(function(i) {
+    var $this = $(this);
+    if ($this.find('.clearfix > .widget_container > .group.widget').size()>0) {
+      $this.css({'border': 'none', 'margin': 0});
+    }
+  });
 });
 
