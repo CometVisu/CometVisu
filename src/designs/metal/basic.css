@@ -337,18 +337,6 @@ body br
   	
 	border-left: none;
 }
-.navbar .group.root {
-	border-top-right-radius: 0;
-	-moz-border-top-right-radius: 0;
-  	-webkit-border-top-right-radius: 0;
-  	
-	border-bottom-left-radius: 1em;
-	-moz-border-bottom-left-radius: 1em;
-  	-webkit-border-bottom-left-radius: 1em;
-	margin-top: 0;
-	border-top: none;
-	border-left: 2px solid #B3B3B3;
-}
 .navbar > .widget_container:first-child .group .widget_container:last-child, .navbar > .widget_container:first-child .group div.widget_container:last-child .widget {
 	border-width: 1px 0 0 0;
 	border-bottom-right-radius: 1em;

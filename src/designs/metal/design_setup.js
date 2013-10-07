@@ -71,18 +71,6 @@ $(window).bind('scrolltopage',function() {
 });
 
 $("#pages").bind("done", function() {
-  if ($('.navbar').size()>0) {
-    $('.navbar > .widget_container:first-child .group:not(.root) .pagejump:first-child .actor').each(function(i) {
-      var data = $(this).data();
-      var target = (data.target.match(/^id_[0-9_]+$/)==null) ? $('.page h1:contains('+data.target+')').closest(".page").attr("id") : data.target;
-      if (target=="id_0") {
-        // pagejump to root-page found
-        var group = $(this).closest(".group");
-        if (group.find('.widget_container').size()==1)
-          group.addClass("root");
-      }
-    });
-  }
   $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
     var label = $(this);
     if (label.text().trim()!="") {
