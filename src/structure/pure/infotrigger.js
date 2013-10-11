@@ -109,14 +109,14 @@ basicdesign.addCreator('infotrigger', {
     if( data.downtime )
     {
       var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
-      var value = buttonData.value;
+      var value = isShort ? buttonData.shortvalue : buttonData.value;
       var relative = ( data.change != 'absolute' );
       if( !relative )
       {
         value = parseFloat(data.basicvalue);
         if( isNaN( value ) )
           value = 0; // anything is better than NaN...
-        value = value + parseFloat(buttonData.value);
+        value = value + parseFloat(isShort ? buttonData.shortvalue : buttonData.value);
         if (value < data.min ) value = data.min;
         if( value > data.max ) value = data.max;
       }
