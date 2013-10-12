@@ -1264,7 +1264,7 @@ function TemplateEngine( undefined ) {
    * Delete an existing path, i.e. widget, group or even page - including 
    * child elements.
    */
-  this.delete = function( path ) {
+  this.deleteCommand = function( path ) {
     console.log( this.lookupWidget( path ), $( '#'+path ) );
     //$( this.lookupWidget( path ) ).remove();
     return "deleted widget '" + path + "'";
@@ -1372,7 +1372,7 @@ function TemplateEngine( undefined ) {
         
       case 'delete':
         if( pathRegEx.test( parameters ) ) 
-          answer = thisTemplateEngine.delete( parameters );
+          answer = thisTemplateEngine.deleteCommand( parameters );
         else 
           answer = 'bad path';
         break;
