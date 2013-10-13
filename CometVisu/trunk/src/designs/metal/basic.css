@@ -89,11 +89,12 @@ body br
 }
 
 .widget_container {
-   float: left;
+  float: left;
+  width: 100%;
+  position: relative;
 }
 .navbar .widget_container {
-	width: 100%;
-	display: block;
+  display: block;
 }
 .widget
 {
@@ -734,7 +735,6 @@ background-color: #000;
 .widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor:first-child > div { 
 	float: none; width: auto; 
 }
-.widget_container { position: relative; }
 .widget.center.toggle > .actor:first-child, 
 .widget.center.switch > .actor:first-child,
 .widget.center.trigger > .actor:first-child,
