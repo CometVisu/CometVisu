@@ -210,7 +210,7 @@
       <label>Infotrigger: Sollwert</label>
       <address transform="DPT:9" mode="readwrite">12/7/9</address>
     </infotrigger>
-    <infotrigger uplabel="&gt;" downlabel="&lt;" upvalue="1" downvalue="-1" min="0" max="5" align="center" infoposition="1" change="absolute" mapping="AudioSource">
+    <infotrigger uplabel="&gt;" downlabel="&lt;" upvalue="1" downvalue="-1" min="0" max="5" align="center" infoposition="middle" change="absolute" mapping="AudioSource">
       <label>Infotrigger: Audioquelle</label>
       <address transform="DPT:5.010" mode="readwrite">12/7/105</address>
     </infotrigger>
@@ -225,7 +225,7 @@
         <label>Relativ</label>
       </text>
       <break/>
-      <infotrigger uplabel="+" upvalue="1" downlabel="-" downvalue="0" align="center" infoposition="1" change="relative">
+      <infotrigger uplabel="+" upvalue="1" downlabel="-" downvalue="0" align="center" infoposition="middle" change="relative">
         <label>Lautstärke</label>
         <address transform="DPT:16.000" mode="readwrite" variant="display">12/7/16</address>
         <address transform="DPT:1.001" variant="button" mode="readwrite">12/7/1</address>
@@ -250,7 +250,7 @@
         <label>Absolut</label>
       </text>
       <break/>
-      <infotrigger uplabel="+" upvalue="5" downlabel="-" downvalue="-5" align="center" infoposition="1" change="absolute" format="%.1f%%" max="100">
+      <infotrigger uplabel="+" upvalue="5" downlabel="-" downvalue="-5" align="center" infoposition="middle" change="absolute" format="%.1f%%" max="100">
         <label>Lautstärke</label>
         <address transform="DPT:5.001" mode="readwrite">12/7/5</address>
       </infotrigger>
@@ -280,7 +280,7 @@
         <label>Info: Langzeit</label>
         <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       </info>
-      <infotrigger uplabel="Sende 1" upvalue="1" shortupvalue="1" downlabel="Sende 0" downvalue="0" shortdownvalue="0" shorttime="300" align="center" infoposition="1" change="relative" format="%.1f%%">
+      <infotrigger uplabel="Sende 1" upvalue="1" shortupvalue="1" downlabel="Sende 0" downvalue="0" shortdownvalue="0" shorttime="300" align="center" infoposition="middle" change="relative" format="%.1f%%">
         <label>Infotrigger mit 300ms Kurzzeit</label>
         <address transform="DPT:16.000" mode="readwrite" variant="display">12/7/16</address>
         <address transform="DPT:1.001" variant="button" mode="readwrite">12/7/1</address>

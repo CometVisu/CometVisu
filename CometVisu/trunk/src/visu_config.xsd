@@ -656,10 +656,16 @@
         <xsd:documentation xml:lang="de">Zeit in Millisekunden innerhalb der der Tastendruck als Kurzzeit interpretiert wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="change" type="xsd:string" use="optional">
+    <xsd:attribute name="change" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Might be 'absolute' or 'relative'.</xsd:documentation>
       </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="absolute" />
+            <xsd:enumeration value="relative" />
+          </xsd:restriction>
+        </xsd:simpleType>
     </xsd:attribute>
     <xsd:attribute ref="min" />
     <xsd:attribute ref="max" />
@@ -667,10 +673,17 @@
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="format" use="optional" />
-    <xsd:attribute name="infoposition" type="xsd:decimal" use="optional">
+    <xsd:attribute name="infoposition" use="optional">
         <xsd:annotation>
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="left" />
+            <xsd:enumeration value="middle" />
+            <xsd:enumeration value="right" />
+          </xsd:restriction>
+        </xsd:simpleType>
     </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>

@@ -364,8 +364,27 @@ class ConfigurationUpgrader {
         }
         $this->log('checked and partially sorted ' . $i . ' nodes children');        
         
+        // modify infotrigger's infoposition attribute
+        $objElements = $objXPath->query('//infotrigger');
+        $i = 0;
+        foreach ($objElements as $objElementNode) {
+        	if ($objElementNode->hasAttribute('infoposition')) {
+        		$infopos = "left";
+            	switch ($objElementNode->getAttribute('infoposition')) {
+            		case "1":
+            			$infopos = "middle";
+            			break;
+            		case "2":
+            			$infopos = "right";
+            			break;
+            	}
+            	$objElementNode->setAttribute('infoposition', $infopos);
+            	++$i;
+        	}
+        }
+        $this->log('converted ' . $i . ' \'infotrigger\'-nodes with infoposition attribute');        
     }
-    
+
     /**
      * helper-function for sorting of elements
      * 
