@@ -379,8 +379,8 @@ function TemplateEngine( undefined ) {
       var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);
       var heightStr = "Height: "+windowHeight;
       if ($('#top').css('display') != 'none' && $('#top').outerHeight(true)>0) {
-        thisTemplateEngine.currentPageUnavailableHeight+=$('#top').outerHeight(true);
-        heightStr+=" - "+$('#top').outerHeight(true);
+        thisTemplateEngine.currentPageUnavailableHeight+= Math.max( $('#top').outerHeight(true), $('.nav_path').outerHeight(true) );
+        heightStr+=" - "+Math.max( $('#top').outerHeight(true), $('.nav_path').outerHeight(true) );
       }
       else {
         heightStr+=" - 0";
@@ -402,7 +402,7 @@ function TemplateEngine( undefined ) {
       }
       if ($('#bottom').css('display') != 'none' && $('#bottom').outerHeight(true)>0) {
         thisTemplateEngine.currentPageUnavailableHeight+=$('#bottom').outerHeight(true);
-        heightStr+=" - "+$('#bottom').outerHeight(true);
+        heightStr+=" - #bottom:"+$('#bottom').outerHeight(true);
       }
       else {
         heightStr+=" - 0";
@@ -410,8 +410,8 @@ function TemplateEngine( undefined ) {
       if (thisTemplateEngine.currentPageUnavailableHeight>0) {
         thisTemplateEngine.currentPageUnavailableHeight+=1;// remove an additional pixel for Firefox
       }
-//      console.log(heightStr);
-//      console.log(windowHeight+" - "+thisTemplateEngine.currentPageUnavailableHeight);
+      //console.log(heightStr);
+      //console.log(windowHeight+" - "+thisTemplateEngine.currentPageUnavailableHeight);
     }
     return windowHeight - thisTemplateEngine.currentPageUnavailableHeight;
   };
@@ -440,7 +440,7 @@ function TemplateEngine( undefined ) {
           || ($('#navbarBottom').css('display')!="none" && $('#navbarBottom').innerHeight(true)<=2)) {
         // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
         // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
-        window.setTimeout("templateEngine.correctHeight()",100);
+        window.setTimeout( this.handleResize, 100);
       }
     }
     if (skipScrollFix === undefined) {
@@ -451,15 +451,6 @@ function TemplateEngine( undefined ) {
     }
   };
   
-  this.correctHeight = function() {
-    var width = thisTemplateEngine.getAvailableWidth();
-    var height = thisTemplateEngine.getAvailableHeight(true);
-//    console.log("Correcting Height to "+height);
-    $('#main').css('height', height);
-    $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
-  };
-  
-
   this.rowspanClass = function(rowspan) {
     var className = 'rowspan rowspan' + rowspan;
     var styleId = className.replace(" ", "_") + 'Style';
@@ -970,6 +961,7 @@ function TemplateEngine( undefined ) {
     xml = null;
     delete xml; // not needed anymore - free the space
 //    $(window).trigger('resize');
+    $('.loading').removeClass('loading');
     $("#pages").triggerHandler("done");
     if( undefined !== thisTemplateEngine.screensave_time )
     {
@@ -1491,7 +1483,6 @@ function PagePartsHandler() {
         left : 'inherit',
         right : 'inherit'
       });
-      
       // set inherit for undefined 
       for (var pos in shownavbar) {
         if (shownavbar[pos] == undefined) {
@@ -1586,7 +1577,6 @@ function PagePartsHandler() {
         thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
       }
     } else {
-      $('#top.loading').removeClass('loading');
       if ($('#top').css("display") != "none") {
         $('#top').css("display", "none");
         thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
@@ -1598,9 +1588,6 @@ function PagePartsHandler() {
         thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
       }
     } else {
-      // the loading class prevents any element from beeing disabled, we have to
-      // remove it
-      $('#bottom.loading').removeClass('loading');
       if ($('#bottom').css("display") != "none") {
         $('#bottom').css("display", "none");
         thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
@@ -1614,9 +1601,6 @@ function PagePartsHandler() {
           thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
         }
       } else {
-        // the loading class prevents any element from being disabled, we have
-        // to remove it
-        $('#navbar' + value + '.loading').removeClass('loading');
         if ($('#navbar' + value).css("display") != "none") {
           thisPagePartsHandler.fadeNavbar(value, "out");
         }

@@ -78,10 +78,6 @@ html[xmlns] .clearfix {
     /* End hide from IE-mac */
 }
 
-.loading {
-    display: block !important;
-}
-
 div#loading {
     display: none !important;
 }

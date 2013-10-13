@@ -28,6 +28,7 @@ img.icon, canvas.icon {
 #centerContainer > div {
   position: relative;
   float: left;
+  display: block;
 }
 #main {
   width: 100%;
@@ -43,6 +44,11 @@ img.icon, canvas.icon {
 }
 #navbarBottom {
   clear: both;
+}
+#bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 #pages,
