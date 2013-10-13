@@ -33,13 +33,13 @@ basicdesign.addCreator('infotrigger', {
       'shortupvalue'  : $e.attr('shortupvalue')          || 0,
       'uplabel'       : $e.attr('uplabel')                   ,
       'shorttime'     : parseFloat($e.attr('shorttime')) || -1,
-      'change'        : $e.attr('change')                || 'relative',
+      'isAbsolute'    : ($e.attr('change')               || 'relative') == 'absolute',
       'min'           : parseFloat($e.attr('min'))       || 0,
       'max'           : parseFloat($e.attr('max'))       || 255,
       'format'        : $e.attr('format')
     } );
     var data = ret_val.data();
-    
+
     // create buttons + info
     var buttons = $('<div style="float:left;"/>');
 
@@ -73,22 +73,26 @@ basicdesign.addCreator('infotrigger', {
     actorinfo += '" ><div class="value"></div></div>';
     var $actorinfo = $(actorinfo);
 
-    if ( $e.attr('infoposition' )==1 ) {
-      buttons.append( $actordown );
-      buttons.append( $actorinfo );
-      buttons.append( $actorup );        
-    } else if ( $e.attr('infoposition' )==2 ) {
-      buttons.append( $actordown );
-      buttons.append( $actorup );        
-      buttons.append( $actorinfo );
-    } else {
-      buttons.append( $actorinfo );
-      buttons.append( $actordown );
-      buttons.append( $actorup );        
+    switch ($e.attr('infoposition')) {
+      case 'middle':
+        buttons.append( $actordown );
+        buttons.append( $actorinfo );
+        buttons.append( $actorup );        
+        break;
+      case 'right':
+        buttons.append( $actordown );
+        buttons.append( $actorup );        
+        buttons.append( $actorinfo );
+        break;
+      default:
+        buttons.append( $actorinfo );
+        buttons.append( $actordown );
+        buttons.append( $actorup );        
+        break;
     }
 
     ret_val.append( buttons );
-    
+
     // initially setting a value
     basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
 
@@ -110,8 +114,7 @@ basicdesign.addCreator('infotrigger', {
     {
       var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
       var value = isShort ? buttonData.shortvalue : buttonData.value;
-      var relative = ( data.change != 'absolute' );
-      if( !relative )
+      if( data.isAbsolute )
       {
         value = parseFloat(data.basicvalue);
         if( isNaN( value ) )
@@ -126,7 +129,7 @@ basicdesign.addCreator('infotrigger', {
         if(   !isShort && 1 == data.address[addr][2] )
           templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], buttonData.shortvalue ) );
         if( (  isShort && 2 == data.address[addr][2]) || 
-            (!relative && 0 == data.address[addr][2]) )
+            (data.isAbsolute && 0 == data.address[addr][2]) )
           templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], value ) );
       }
     }
