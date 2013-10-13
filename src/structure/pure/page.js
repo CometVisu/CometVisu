@@ -31,10 +31,22 @@ basicdesign.addCreator('page', {
     var backdrop = $p.attr('backdrop');
     var showtopnavigation = $p.attr('showtopnavigation');
     var showfooter = $p.attr('showfooter');
-    var shownavbar_top = $p.attr('shownavbar-top');
-    var shownavbar_bottom = $p.attr('shownavbar-bottom');
-    var shownavbar_left = $p.attr('shownavbar-left');
-    var shownavbar_right = $p.attr('shownavbar-right');
+    
+    // automatically set the navbars if not set in the config file
+    var shownavbar = {
+      top    : 'id' === path ? 'false' : 'inherit',
+      bottom : 'id' === path ? 'false' : 'inherit',
+      left   : 'id' === path ? 'false' : 'inherit',
+      right  : 'id' === path ? 'false' : 'inherit'
+    };
+    $p.children('navbar').each( function(){
+      shownavbar[ $(this).attr('position') || 'left' ] = 'true';
+    });
+    // overwrite default when set manually in the config
+    shownavbar.top = $p.attr('shownavbar-top') || shownavbar.top;
+    shownavbar.bottom = $p.attr('shownavbar-bottom') || shownavbar.bottom;
+    shownavbar.left = $p.attr('shownavbar-left') || shownavbar.left;
+    shownavbar.right = $p.attr('shownavbar-right') || shownavbar.right;
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ($p.attr("bind_click_to_widget")) bindClickToWidget = $p.attr("bind_click_to_widget")=="true";
     if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
@@ -65,19 +77,12 @@ basicdesign.addCreator('page', {
     }
 
     var childs = $p.children().not('layout');
-    //var container = $( '<div class="clearfix" />' );
-    
     var subpage = $( '<div class="page" id="' + path + '_"/>' );
     subpage.data({
       name             : name,
       showtopnavigation: showtopnavigation,
       showfooter       : showfooter,
-      shownavbar       : {
-        top    : shownavbar_top,
-        bottom : shownavbar_bottom,
-        left   : shownavbar_left,
-        right  : shownavbar_right
-      }
+      shownavbar       : shownavbar
     });
     var $container = $( '<div class="clearfix" style="height:100%;position:relative;" />'); 
     for( var addr in address ) $container.bind( addr, this.update );
