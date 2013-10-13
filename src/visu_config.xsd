@@ -306,7 +306,7 @@
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
       </xsd:attribute>
-      <xsd:attribute name="lib_version" type="xsd:integer" use="optional">
+      <xsd:attribute name="lib_version" type="xsd:integer" use="required">
           <xsd:annotation>
               <xsd:documentation xml:lang="en">Version of the CometVisu-library. This value is for the Upgrade-Script</xsd:documentation>
               <xsd:documentation xml:lang="de">Version der CometVisu-library. Dieser Wert ist für das Upgrade-Script</xsd:documentation>
