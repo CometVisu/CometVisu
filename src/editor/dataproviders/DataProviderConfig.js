@@ -61,7 +61,10 @@ var DataProviderConfig = {
     },
     'pages': {
       'design':  {
-              url: 'editor/dataproviders/list_all_designs.php',
+              url: 'designs/get_designs.php',
+              map: function(element) {
+                  return {value: element, label: element};
+              },
               cache: true,
               userInputAllowed: false,
           },
