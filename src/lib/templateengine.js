@@ -1134,7 +1134,7 @@ function TemplateEngine( undefined ) {
 
     $body.append($div);
 
-    $.getJSON("get_designs.php",function(data) {
+    $.getJSON("./designs/get_designs.php",function(data) {
       $div.empty();
 
       $div.append("<h1>Please select design</h1>");

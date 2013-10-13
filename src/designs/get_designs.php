@@ -1,5 +1,5 @@
 <?php
-define('FOLDER_DESIGNS', "../designs/");
+define('FOLDER_DESIGNS', "./");
 
 $arrDesigns = array();
 
