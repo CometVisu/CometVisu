@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Version SVN:20131013-0943
+# Version SVN:20131013-1617
 
 CACHE:
 index.html
@@ -97,7 +97,7 @@ designs/alaska/mobile.css
 NETWORK:
 index_external_editor_test.html
 check_config.php
-get_designs.php
+designs/get_designs.php
 config/structure_custom.js
 editor/index.php
 editor/bin/
