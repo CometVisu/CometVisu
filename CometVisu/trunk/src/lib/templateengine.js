@@ -60,6 +60,7 @@ function TemplateEngine( undefined ) {
   this.pagePartsHandler = new PagePartsHandler();
   
   this.currentPage = null;
+  this.currentPageID = -1;
   this.currentPageUnavailableWidth = -1;
   this.currentPageUnavailableHeight = -1;
   this.currentPageNavbarVisibility = null;
@@ -276,6 +277,7 @@ function TemplateEngine( undefined ) {
 
   this.resetPageValues = function() {
     thisTemplateEngine.currentPage = null;
+    thisTemplateEngine.currentPageID = -1;
     thisTemplateEngine.currentPageUnavailableWidth=-1;
     thisTemplateEngine.currentPageUnavailableHeight=-1;
     thisTemplateEngine.currentPageNavbarVisibility=null;
@@ -497,7 +499,7 @@ function TemplateEngine( undefined ) {
      * design in the config file. Otherwise we show the design selection dialog.
      */
     // read predefined design in config
-    predefinedDesign = $('pages', xml).attr("design");
+    var predefinedDesign = $('pages', xml).attr("design");
 
     if ($('pages', xml).attr("backend")) {
       thisTemplateEngine.backend = $('pages', xml).attr("backend");
