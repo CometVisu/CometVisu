@@ -33,21 +33,29 @@ basicdesign.addCreator('designtoggle', {
     var clickable = bindClickToWidget ? ret_val : $actor;
     basicdesign.createDefaultButtonAction( clickable, $actor, false, this.action );
 
+    $.getJSON("./designs/get_designs.php",function(data) {
+      ret_val.data('availableDesigns', data);
+    });
+
     return ret_val;
   },
-  action: function(event) {
-    var designs   = [ 'pure', 'discreet', 'discreet_sand', 'discreet_slim', 'alaska', 'alaska_slim', 'planet', 'metal' ];
-    var oldDesign = $('.value',this).text();
+  action: function() {
+    var $this = $(this);
+    var designs = $this.parent().data('availableDesigns');
+
+    var oldDesign = $('.value',$this).text();
     var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
 
     var URL = window.location.href;
     var regexp = new RegExp("design="+oldDesign)
     if (URL.search(regexp) != -1) { // has URL-parameter design
       window.location.href=URL.replace(regexp, "design="+newDesign);
-    } else {
+    }
+    else {
       if (URL.indexOf("?") != -1) { // has other parameters, append design
         window.location.href=URL+"&design="+newDesign;
-      } else { // has now parameters
+      }
+      else { // has now parameters
         window.location.href=URL+"?design="+newDesign;
       }
     }
