@@ -35,7 +35,7 @@ require_once('../lib/library_version.inc.php');
  * the library-version the upgrader understands
  * @const   integer
  */
-define('UPGRADER_LIBRARY_VERSION', 1);
+define('UPGRADER_LIBRARY_VERSION', 2);
 
 
 /**
@@ -82,12 +82,20 @@ class ConfigurationUpgrader {
      * start the upgrade
      */
     public function runUpgrade() {
-        switch ($this->intLibVersion) {
-            case 0:
-                $this->upgrade0To1();
-        }
-        
-        // 'we were here'
+        	$intVersionCounter = $this->intLibVersion;
+    	while ($intVersionCounter < LIBRARY_VERSION) {
+    		switch ($intVersionCounter) {
+    			case 0:
+    				$this->upgrade0To1();
+    				break;
+    			case 1:
+    				$this->upgrade1To2();
+    				break;
+    		}
+    		$intVersionCounter++;
+    	}
+
+    	// 'we were here'
         $this->objDOM->getElementsByTagName("pages")->item(0)->setAttribute('lib_version', LIBRARY_VERSION);
         
         return $this->boolSuccess;
@@ -363,6 +371,15 @@ class ConfigurationUpgrader {
             }
         }
         $this->log('checked and partially sorted ' . $i . ' nodes children');        
+    }
+
+    /**
+     * do all necessary changes from version 1 to version 2
+     */
+    protected function upgrade1To2() {
+        // @see http://cometvisu.de/wiki/index.php?title=CometVisu/Update
+        
+        $objXPath = new DOMXPath($this->objDOM);
         
         // modify infotrigger's infoposition attribute
         $objElements = $objXPath->query('//infotrigger');
