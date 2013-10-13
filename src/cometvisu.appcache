@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Version SVN:20131013-1708
+# Version SVN:20131013-2137
 
 CACHE:
 index.html
@@ -34,6 +34,7 @@ structure/pure/page.js
 structure/pure/web.js
 structure/pure/multitrigger.js
 structure/pure/infotrigger.js
+structure/pure/designtoggle.js
 structure/pure/toggle.js
 structure/pure/image.js
 structure/pure/include.js
