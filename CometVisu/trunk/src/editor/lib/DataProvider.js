@@ -349,6 +349,11 @@ var DataProvider = function (config) {
                 }
             );
         }
+        if (typeof _providerConfig.map == 'function') {
+          $.each(data, function(index, entry) {
+            data[index] = _providerConfig.map(entry);
+          });
+        }
         
         return data;
         
