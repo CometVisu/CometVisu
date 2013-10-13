@@ -323,7 +323,7 @@ Config</a> ]]></status>
           </info>
           <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
             downvalue="-0.5" styling="BluePurpleRedTemp" align="center"
-            infoposition="1" format="%.1f °C" change="absolute" min="15"
+            infoposition="middle" format="%.1f °C" change="absolute" min="15"
             max="25">
             <label>
               <icon name="temp_control" />
@@ -384,7 +384,7 @@ Config</a> ]]></status>
           </info>
           <infotrigger uplabel="+" upvalue="0.5" downlabel="-"
             downvalue="-0.5" styling="BluePurpleRedTemp" align="center"
-            infoposition="1" format="%.1f °C" change="absolute" min="15" max="25">
+            infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
             <label><icon name="temp_control" />Soll</label>
             <address transform="DPT:9.001" variant="">13/1/28</address>
           </infotrigger>
