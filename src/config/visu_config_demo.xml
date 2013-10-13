@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd" max_mobile_screen_width="480" lib_version="2">
+<pages lib_version="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd" max_mobile_screen_width="480">
   <meta>
     <plugins>
       <plugin name="colorchooser"/>
@@ -161,7 +161,7 @@
     <text>
       <label>Für die CometVisu gibt es verschiedene Designs.</label>
     </text>
-    <designtoggle>Wechsle Design</designtoggle>
+    <designtoggle><label>Wechsle Design</label></designtoggle>
     <line>
       <layout colspan="12" />
     </line>
