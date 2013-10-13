@@ -48,12 +48,12 @@ body hr
   background: linear-gradient(to bottom, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2));
 }
 
-#navbarTop
+#centerContainer
 {
-  border-top: 0;
+  border-bottom: 0;
   border-right: 0;
   border-left: 0;
-  border-bottom: 1px solid #ff8000;
+  border-top: 1px solid #ff8000;
   -webkit-border-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000)) 100% 1;
   -moz-border-image: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 100% 1;
   border-image: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 100% 1;
@@ -66,8 +66,8 @@ body hr
   border-left: 0;
   border-right: 1px solid #ff8000;
   -webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000)) 1 100%;
-  -moz-border-image: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 1 100%;
-  border-image: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 1 100%;
+  -moz-border-image: linear-gradient(to bottom, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 1 100%;
+  border-image: linear-gradient(to bottom, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2)) 1 100%;
 }
 
 body br
