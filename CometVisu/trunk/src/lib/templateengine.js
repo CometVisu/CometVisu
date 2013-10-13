@@ -1160,7 +1160,7 @@ function TemplateEngine( undefined ) {
             + element
             + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>");
         $myDiv
-        .append("<img width=\"60\" height=\"30\" src=\"/config/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>");
+        .append("<img width=\"60\" height=\"30\" src=\"./config/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>");
 
         $div.append($myDiv);
 
