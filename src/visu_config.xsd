@@ -576,9 +576,10 @@
   </xsd:complexType>
 
   <xsd:complexType name="designtoggle">
-    <xsd:simpleContent>
-      <xsd:extension base="xsd:string" />
-    </xsd:simpleContent>
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
   </xsd:complexType>
 
   <xsd:complexType name="label" mixed="true">

@@ -35,7 +35,7 @@ require_once('../lib/library_version.inc.php');
  * the library-version the upgrader understands
  * @const   integer
  */
-define('UPGRADER_LIBRARY_VERSION', 2);
+define('UPGRADER_LIBRARY_VERSION', 3);
 
 
 /**
@@ -90,6 +90,9 @@ class ConfigurationUpgrader {
     				break;
     			case 1:
     				$this->upgrade1To2();
+    				break;
+    			case 2:
+    				$this->upgrade2To3();
     				break;
     		}
     		$intVersionCounter++;
@@ -377,8 +380,6 @@ class ConfigurationUpgrader {
      * do all necessary changes from version 1 to version 2
      */
     protected function upgrade1To2() {
-        // @see http://cometvisu.de/wiki/index.php?title=CometVisu/Update
-        
         $objXPath = new DOMXPath($this->objDOM);
         
         // modify infotrigger's infoposition attribute
@@ -400,6 +401,35 @@ class ConfigurationUpgrader {
         	}
         }
         $this->log('converted ' . $i . ' \'infotrigger\'-nodes with infoposition attribute');        
+    }
+
+    /**
+     * do all necessary changes from version 2 to version 3
+     */
+    protected function upgrade2To3() {
+        $objXPath = new DOMXPath($this->objDOM);
+        
+        // modify infotrigger's infoposition attribute
+        $objElements = $objXPath->query('//designtoggle');
+        $i = 0;
+        foreach ($objElements as $objElementNode) {
+        	$textValue = $objElementNode->textContent;
+
+        	// next: clean up the element itself
+        	foreach ($objElementNode->childNodes as $objChildNode) {
+        		$objElementNode->removeChild($objChildNode);
+        	}
+
+        	// create a new label element in case of given text
+            if (strlen($textValue) > 0) {
+            	$objLabelNode = $objElementNode->ownerDocument->createElement('label');
+            	$objLabelNode->appendChild(new DOMText($textValue));
+            	$objElementNode->appendChild($objLabelNode);
+            }
+
+            ++$i;
+        }
+        $this->log('converted ' . $i . ' \'designtoggle\'-nodes with text content');        
     }
 
     /**
