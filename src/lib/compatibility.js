@@ -50,6 +50,7 @@ sprintfWrapper = {
     var string = arguments[0];
     var exp = new RegExp(/(%([%]|(\-)?(\+|\x20)?(0)?(\d+)?(\.(\d)?)?([bcdfosxX])))/g);
     var matches = new Array();
+    var substitution;
     var strings = new Array();
     var convCount = 0;
     var stringPosStart = 0;
