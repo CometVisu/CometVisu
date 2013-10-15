@@ -546,6 +546,7 @@
       <xsd:element name="switch" type="switch" />
       <xsd:element name="toggle" type="toggle" />
       <xsd:element name="trigger" type="trigger" />
+      <xsd:element name="pushbutton" type="pushbutton" />
       <xsd:element name="urltrigger" type="urltrigger" />
       <xsd:element name="multitrigger" type="multitrigger" />
       <xsd:element name="infotrigger" type="infotrigger" />
@@ -617,6 +618,21 @@
         <xsd:documentation xml:lang="de">Zeit in Millisekunden innerhalb der der Tastendruck als Kurzzeit interpretiert wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute ref="mapping" use="optional" />
+    <xsd:attribute ref="styling" use="optional" />
+    <xsd:attribute ref="align" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="bind_click_to_widget" use="optional"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="pushbutton">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="downValue" use="required" />
+    <xsd:attribute name="upValue" use="required" />
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="align" use="optional" />

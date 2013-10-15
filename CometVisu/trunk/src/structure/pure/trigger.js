@@ -23,7 +23,7 @@ basicdesign.addCreator('trigger', {
     var makeAddressListFn = function( src, transform, mode, variant ) {
       return [true, variant=='short'];
     }
-    var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, this.update, makeAddressListFn );
+    var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn );
     // and fill in widget specific data
     ret_val.data( {
       'sendValue'  : $e.attr('value' )                || 0,
