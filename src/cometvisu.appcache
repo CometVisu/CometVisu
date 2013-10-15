@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Version SVN:20131013-2321
+# Version SVN:20131015-1055
 
 CACHE:
 index.html
@@ -49,6 +49,7 @@ structure/pure/unknown.js
 structure/pure/slide.js
 structure/pure/switch.js
 structure/pure/trigger.js
+structure/pure/pushbutton.js
 transforms/transform_knx.js
 transforms/transform_default.js
 transforms/transform_oh.js
