@@ -386,9 +386,11 @@ function VisuDesign() {
       'type'    : widgetType
     } );
     ret_val.append( label );
-    for( var addr in address ) 
-    { 
-      if( address[addr][1] & 1 ) ret_val.bind( addr, updateFn ); // only when read flag is set
+    if (updateFn) {
+      for( var addr in address ) { 
+        // only when read flag is set
+        if( address[addr][1] & 1 ) ret_val.bind( addr, updateFn );
+      }
     }
     
     return ret_val;

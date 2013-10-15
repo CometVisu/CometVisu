@@ -1,4 +1,4 @@
-/* trigger.js (c) 2012 by Christian Mayer [CometVisu at ChristianMayer dot de]
+/* pagejump.js (c) 2012 by Christian Mayer [CometVisu at ChristianMayer dot de]
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
