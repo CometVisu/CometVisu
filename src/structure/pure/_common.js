@@ -371,6 +371,7 @@ function VisuDesign() {
     this.setWidgetLayout( ret_val, $element );
     if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
+    if ($element.attr('class')) ret_val.addClass('custom_' + $e.attr('class'));
     var label = this.extractLabel( $element.find('label')[0], flavour );
     var address = this.makeAddressList( $element, makeAddressListFn );
     //var bindClickToWidget = templateEngine.bindClickToWidget;
