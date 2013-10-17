@@ -437,8 +437,8 @@ function doRefreshDiagram(diagram, flotoptions, data) {
       var linecolor = value[0];
       var label = value[1];
       var yaxis = value[2];
-      var steps = value[3];
-      var fill = value[4];
+      var steps = value[3] == "true";
+      var fill = value[4] == "true";
       var scaling = value[5];
       var idx = num;
          
