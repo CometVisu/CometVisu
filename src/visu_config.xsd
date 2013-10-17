@@ -552,6 +552,7 @@
       <xsd:element name="infotrigger" type="infotrigger" />
       <xsd:element name="designtoggle" type="designtoggle" />
       <xsd:element name="slide" type="slide" />
+      <xsd:element name="reload" type="reload" />
       <xsd:element name="include" type="include" />
       <xsd:element name="info" type="info" />
       <xsd:element name="shade" type="info" />
@@ -749,6 +750,12 @@
 
   <xsd:complexType name="include">
     <xsd:attribute name="src" type="uri" use="required" />
+  </xsd:complexType>
+  
+  <xsd:complexType name="reload">
+    <xsd:sequence>
+      <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
   </xsd:complexType>
   
   <xsd:complexType name="info">

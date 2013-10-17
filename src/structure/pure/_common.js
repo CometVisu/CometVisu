@@ -129,6 +129,24 @@ function VisuDesign() {
   this.addPopup('info'   , $.extend(true, {}, this.getPopup('unknown')) );
   this.addPopup('warning', $.extend(true, {}, this.getPopup('unknown')) );
   this.addPopup('error'  , $.extend(true, {}, this.getPopup('unknown')) ) ;
+  this.addCreator('reload', {
+    create: function( element, path, flavour, type ) {
+      var e = $(element);
+      var addresses = self.makeAddressList(e, null);
+      var updateFn = function(event, data) {
+        var thisTransform = addresses[ event.type ][0];
+        var value = templateEngine.transformDecode( thisTransform, data );
+
+        if (value > 0) {
+          window.location.reload(true);
+        }
+      };
+      for (var addr in addresses) {
+        // only when read flag is set
+        if (addresses[addr][1] & 1) e.bind(addr, updateFn);
+      }
+    }
+  });
 
   /**
    * @param ev         event
@@ -141,7 +159,7 @@ function VisuDesign() {
     {
       var thisTransform = widgetData.address[ ev.type ][0];
       // #1: transform the raw value to a JavaScript type
-      var value = templateEngine.transformDecode( widgetData.address[ ev.type ][0], data );
+      var value = templateEngine.transformDecode( thisTransform, data );
     } else {
       var thisTransform = '';
       var value = data;
@@ -294,9 +312,9 @@ function VisuDesign() {
   *                       the visu should listen for that address. The second
   *                       is added as it is to the returned object.
   */
-  this.makeAddressList = function( page, handleVariant ) {
+  this.makeAddressList = function( element, handleVariant ) {
     var address = {};
-    page.find('address').each( function(){ 
+    element.find('address').each( function(){ 
       var src = this.textContent;
       var transform = this.getAttribute('transform');
       if ((!src) || (!transform)) // fix broken address-entries in config
