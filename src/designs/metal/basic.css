@@ -93,6 +93,9 @@ body br
   width: 100%;
   position: relative;
 }
+.widget_container.break_container {
+    line-height: 0px;
+}
 .navbar .widget_container {
   display: block;
 }
