@@ -21,7 +21,7 @@ basicdesign.addCreator('infotrigger', {
     
     // create the main structure
     var makeAddressListFn = function( src, transform, mode, variant ) {
-      return [ variant != 'button' && variant != 'short', variant == 'button' ? 1 : (variant == 'short' ? 2 : 0) ];
+      return [ true, variant == 'short' ? 1 : 0 ];
     }
     var ret_val = basicdesign.createDefaultWidget( 'infotrigger', $e, path, flavour, type, this.update, makeAddressListFn );
     // and fill in widget specific data
@@ -126,11 +126,9 @@ basicdesign.addCreator('infotrigger', {
       for( var addr in data.address )
       {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-        if(   !isShort && 1 == data.address[addr][2] )
-          templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], buttonData.shortvalue ) );
-        if( (  isShort && 2 == data.address[addr][2]) || 
-            (data.isAbsolute && 0 == data.address[addr][2]) )
+        if ((isShort && data.address[addr][2] == 1) || (!isShort && data.address[addr][2] == 0)) {
           templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], value ) );
+        }
       }
     }
   }
