@@ -58,22 +58,18 @@ basicdesign.addCreator('page', {
     
     if ($p.attr('visible')=='false') {
       ret_val=$('');
-    } else { // default is visible
+    }
+    else { // default is visible
       var layout = $p.children('layout')[0];
       var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
       ret_val = $('<div class="widget clearfix link pagelink" ' + style + '/>');
       basicdesign.setWidgetLayout( ret_val, $p );
-      if (bindClickToWidget) {
-        ret_val.bind('click', function() {
-          templateEngine.scrollToPage(path);
-        });
-        var tst = $('<div ' + wstyle + '><a href="#">' + name + '</a></div>');
-        ret_val.append(tst );
-      }
-      else {
-        var tst = $('<div ' + wstyle + '><a href="javascript:templateEngine.scrollToPage(\''+path+'_\')">' + name + '</a></div>');
-        ret_val.append(tst );
-      }
+      var actor = $('<div ' + wstyle + '><a href="#">' + name + '</a></div>');
+      var clickable = bindClickToWidget ? ret_val : actor;
+      clickable.bind( 'click', function() {
+        templateEngine.scrollToPage(name);
+      });
+      ret_val.append(actor);
     }
 
     var childs = $p.children().not('layout');
