@@ -270,7 +270,7 @@ function TemplateEngine( undefined ) {
   this.getNextMappedValue = function(value, this_map) {
     if (this_map && mappings[this_map]) {
       var keys = Object.keys(mappings[this_map]);
-      return keys[ (keys.indexOf( value ) + 1) % keys.length ];
+      return keys[ (keys.indexOf( "" + value ) + 1) % keys.length ];
     }
     return value;
   }
