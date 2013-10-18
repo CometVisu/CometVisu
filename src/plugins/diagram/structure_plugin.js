@@ -77,7 +77,7 @@ function diagram_get_content( page ) {
   var rrdnum = 0;
   page.find('rrd').each( function() {
     var src = this.textContent;
-    rrd[ '_'+src ] = [ this.getAttribute('color'), this.getAttribute('label') || src, 
+    rrd[ '_'+rrdnum ] = [ src, this.getAttribute('color'), this.getAttribute('label') || src, 
     axesnames['_'+this.getAttribute('yaxis')] || "1", this.getAttribute('steps') || false, this.getAttribute('fill') || false,
     parseFloat(this.getAttribute('scaling')) || 1.];
     rrdnum ++;
@@ -433,13 +433,13 @@ function doRefreshDiagram(diagram, flotoptions, data) {
     var fulldata = [];  
     var rrdloaded = 0;
     $.each(content.rrd, function(index, value) {
-      var src = index.slice(1);
-      var linecolor = value[0];
-      var label = value[1];
-      var yaxis = value[2];
-      var steps = value[3] == "true";
-      var fill = value[4] == "true";
-      var scaling = value[5];
+      var src = value[0];
+      var linecolor = value[1];
+      var label = value[2];
+      var yaxis = value[3];
+      var steps = value[4] == "true";
+      var fill = value[5] == "true";
+      var scaling = value[6];
       var idx = num;
          
       $.ajax({
