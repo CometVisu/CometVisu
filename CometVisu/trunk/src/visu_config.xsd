@@ -897,7 +897,6 @@
     <xsd:attribute ref="series" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="period" type="xsd:string" use="optional" />
-    <xsd:attribute ref="datasource" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute ref="legend" use="optional" />
     <xsd:attribute ref="legendposition" use="optional" />
@@ -921,7 +920,6 @@
     <xsd:attribute ref="series" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="period" type="xsd:string" use="optional" />
-    <xsd:attribute ref="datasource" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute ref="legend" use="optional" />
     <xsd:attribute ref="legendposition" use="optional" />
@@ -1036,6 +1034,7 @@
         <xsd:attribute name="scaling" type="xsd:decimal" />
         <xsd:attribute name="steps" type="xsd:boolean" />
         <xsd:attribute name="fill" type="xsd:boolean" />
+        <xsd:attribute ref="datasource" use="optional" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>

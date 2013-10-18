@@ -35,7 +35,7 @@ require_once('../lib/library_version.inc.php');
  * the library-version the upgrader understands
  * @const   integer
  */
-define('UPGRADER_LIBRARY_VERSION', 3);
+define('UPGRADER_LIBRARY_VERSION', 4);
 
 
 /**
@@ -93,6 +93,9 @@ class ConfigurationUpgrader {
     				break;
     			case 2:
     				$this->upgrade2To3();
+    				break;
+    			case 3:
+    				$this->upgrade3To4();
     				break;
     		}
     		$intVersionCounter++;
@@ -430,6 +433,29 @@ class ConfigurationUpgrader {
             ++$i;
         }
         $this->log('converted ' . $i . ' \'designtoggle\'-nodes with text content');        
+    }
+
+    /**
+     * do all necessary changes from version 3 to version 4
+     */
+    protected function upgrade3To4() {
+        $objXPath = new DOMXPath($this->objDOM);
+        
+        // move diagram's datasource attribute to the rrd
+		$objElements = $objXPath->query('//diagram|//diagram_info');
+        $i = 0;
+        foreach ($objElements as $objElementNode) {
+        	if ($objElementNode->hasAttribute('datasource')) {
+        		$datasource = $objElementNode->getAttribute('datasource') ;
+        		foreach ($objElementNode->childNodes as $objChildNode) {
+        			if ($objChildNode->nodeName == 'rrd' && !$objChildNode->hasAttribute('datasource')) {
+        				$objChildNode->setAttribute('datasource', $datasource);
+        				++$i;
+        			}
+        		}
+        	}
+        }
+        $this->log('converted ' . $i . ' \'rrd\'-nodes');        
     }
 
     /**
