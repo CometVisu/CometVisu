@@ -78,7 +78,7 @@ function diagram_get_content( page ) {
     var src = this.textContent;
     rrd[ '_'+rrdnum ] = [ src, this.getAttribute('color'), this.getAttribute('label') || src, 
                           axesnames['_'+this.getAttribute('yaxis')] || "1", this.getAttribute('steps') || false, this.getAttribute('fill') || false,
-                          parseFloat(this.getAttribute('scaling')) || 1., $p.attr("datasource") || "AVERAGE"];
+                          parseFloat(this.getAttribute('scaling')) || 1., this.attr("datasource") || "AVERAGE"];
     rrdnum ++;
   });
 
