@@ -891,16 +891,16 @@
       <xsd:element name="rrd" type="rrd" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute name="width" type="dimension" use="optional" />
-    <xsd:attribute ref="series" use="optional" />
     <xsd:attribute name="height" type="dimension" use="optional" />
+    <xsd:attribute name="popup" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="previewlabels" type="xsd:boolean" use="optional" />
+    <xsd:attribute ref="series" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="period" type="xsd:string" use="optional" />
     <xsd:attribute ref="datasource" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute ref="legend" use="optional" />
     <xsd:attribute ref="legendposition" use="optional" />
-    <xsd:attribute name="popup" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="previewlabels" type="xsd:boolean" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
     <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
   </xsd:complexType>
@@ -916,17 +916,17 @@
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
+    <xsd:attribute ref="align" use="optional" />
+    <xsd:attribute ref="bind_click_to_widget" use="optional"/>
     <xsd:attribute ref="series" use="optional" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
     <xsd:attribute name="period" type="xsd:string" use="optional" />
     <xsd:attribute ref="datasource" use="optional" />
-    <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
     <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
     <xsd:attribute ref="legend" use="optional" />
     <xsd:attribute ref="legendposition" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
-    <xsd:attribute ref="align" use="optional" />
-    <xsd:attribute ref="bind_click_to_widget" use="optional"/>
+    <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="rss">
