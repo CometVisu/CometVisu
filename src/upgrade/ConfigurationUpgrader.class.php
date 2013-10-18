@@ -447,6 +447,7 @@ class ConfigurationUpgrader {
         foreach ($objElements as $objElementNode) {
         	if ($objElementNode->hasAttribute('datasource')) {
         		$datasource = $objElementNode->getAttribute('datasource') ;
+				$objElementNode->removeAttribute('datasource');
         		foreach ($objElementNode->childNodes as $objChildNode) {
         			if ($objChildNode->nodeName == 'rrd' && !$objChildNode->hasAttribute('datasource')) {
         				$objChildNode->setAttribute('datasource', $datasource);
