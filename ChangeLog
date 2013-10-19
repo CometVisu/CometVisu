@@ -1,7 +1,18 @@
-HEAD
-====
+HEAD (up to commit #1943)
+=========================
 
-- 
+- Lots of bug fixes
+- Code clean up
+- Additonal icons
+- Dynamical recoloring of the icons to prevent need to supply each color
+- Feature Request #66: default mapping and styling
+- Reflection API that might end up in an interactive editor
+- Change to the internal page and widgets paths - this might have an effect
+  on user configs!
+- Feature Request #69 Infotrigger: infoposition und change attribute
+- new pushbutton widget
+- temporary disabling of 3D pages in preparation for the next release
+- New feature: reload widget
 
 0.8.0~pre2
 ==========
