@@ -33,6 +33,7 @@ release:
 	find release -path "*/.svn" -exec rm -rf {} +
 
 release/structure/pure.$(TIMESTAMP).js: release $(STRUCTURE_PURE_SRC)
+	cat $(SRC_FILES) > release/structure/pure.$(TIMESTAMP).raw.js
 	cat $(SRC_FILES) | \
 	  yui-compressor --type js > release/structure/pure.$(TIMESTAMP).js
 	cat src/cometvisu.appcache | \
