@@ -9,7 +9,7 @@ YUIDOCPATH = /home/cm/devel/yuidoc
 
 SRC = src/designs/structure_pure.js
 
-STRUCTURE_PURE_SRC = $(shell cat src/index.html | grep ScriptsToInclude.push | sed 's_ScriptsToInclude.push( "\(.*\)" );_src/\1_')
+STRUCTURE_PURE_SRC = $(shell cat src/index.html | grep ScriptsToInclude.push | grep -v "//" | sed 's_ScriptsToInclude.push( "\(.*\)" );_src/\1_')
 SRC_FILES          = $(shell echo src/dependencies/jquery.js src/lib/compatibility.js $(STRUCTURE_PURE_SRC))
 APPCACHE_KILL_LIST = "$(shell echo $(SRC_FILES) | sed 's%src/%%g' | sed 's/ /|/g')"
 TIMESTAMP := $(shell date +%Y%m%d-%H%M%S)
