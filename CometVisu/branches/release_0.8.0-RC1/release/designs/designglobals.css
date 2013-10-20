@@ -1,0 +1,169 @@
+/* 
+ * global CSS declarations for all designs 
+ */
+
+body 
+{ 
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/*
+ * Default height for all icons
+ */
+img.icon, canvas.icon {
+  height : 2em;
+}
+
+/*
+ * create a three column layout in the middle of the page to allow navbars
+ * inspired by http://www.alistapart.com/articles/holygrail
+ */
+#centerContainer {
+  padding-left: 0px;   /* left bar width */
+  padding-right: 0px;  /* right bar width */
+}
+#centerContainer > div {
+  position: relative;
+  float: left;
+  display: block;
+}
+#main {
+  width: 100%;
+}
+#navbarLeft {
+  width: 0px;          /* left bar width */
+}
+#navbarRight {
+  width: 0px;          /* right bar width */
+  margin-right: 0px;   /* right bar width */
+}
+#navbarTop {
+}
+#navbarBottom {
+  clear: both;
+}
+#bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+#pages,
+.page > .clearfix, 
+#navbarTop, #navbarBottom {
+  -webkit-transform: translateZ(0);
+  -webkit-overflow-scrolling:touch;
+}
+
+/* 
+ * colspans, each design needs to define a colspan0
+ * class, this class is the default widget size
+ */
+ 
+.innerrowspan {
+ position:absolute;
+ top:0;
+ bottom:0;
+ left:0;
+ right:0;
+}
+
+/*
+ * Disable all pages except the active ones
+ * 
+ * Note: the .navbar class needs all of this decoration to overwrite the 
+ * .clearfix class without using an !important qualifier
+ */
+.page, html[xmlns] .navbar.clearfix {
+  display: none;
+}
+
+.pageActive, html[xmlns] .navbar.clearfix.navbarActive {
+  display: block;
+}
+/*
+ * global color declarations for stylings in all designs
+ * may be overloaded by designs
+ */
+.rowspan { overflow:hidden; position:relative; }
+.red
+{
+  color:#FF0000;
+}
+.white
+{
+  color:#FFFFFF;
+}
+.cyan
+{
+  color:#00FFFF;
+}
+.silver
+{
+  color:#C0C0C0;
+}
+.blue
+{
+  color:#0000FF;
+}
+.grey
+{
+  color:#808080;
+}
+.darkblue
+{
+  color:#0000A0;
+}
+.black
+{
+  color:#000000;
+}
+.lightblue
+{
+  color:#ADD8E6;
+}
+.orange
+{
+  color:#FFA500;
+}
+.purple
+{
+  color:#800080;
+}
+.brown
+{
+  color:#A52A2A;
+}
+.yellow
+{
+  color:#FFFF00;
+}
+.maroon
+{
+  color:#800000;
+}
+.lime
+{
+  color:#00FF00;
+}
+.green
+{
+  color:#008000;
+}
+.fuchsia
+{
+  color:#FF00FF;
+}
+.olive
+{
+  color:#808000;
+}
+
+/* special case for the break widget as it wouldn't be possible otherwise */
+.widget_container.break_container
+{
+  clear: both;
+}
