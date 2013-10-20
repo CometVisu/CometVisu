@@ -279,5 +279,5 @@ function CometVisu( urlPrefix )
   })();
 };
 
-CometVisu.prototype.update = function( json ) {}
+CometVisu.prototype.update = function( json ) {};
 
