@@ -25,8 +25,8 @@ echo "Creating Release: '$VERSION' in '$RELEASE_DIR'"
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 $SVN_CMD copy --username $USER --password $PASS -m "Creating release branch $VERSION" \
-  "https://openautomation.svn.sourceforge.net/svnroot/openautomation/CometVisu/trunk" \
-  "https://openautomation.svn.sourceforge.net/svnroot/openautomation/CometVisu/branches/$RELEASE_DIR"
+  "svn+ssh://$USER@svn.code.sf.net/p/openautomation/code/CometVisu/trunk" \
+  "svn+ssh://$USER@svn.code.sf.net/p/openautomation/code/CometVisu/branches/$RELEASE_DIR"
 
 # NOTE: the script assumes that the branches live at .../CometVisu/branches
 cd ../branches
