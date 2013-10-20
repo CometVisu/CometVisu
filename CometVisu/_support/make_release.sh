@@ -11,7 +11,7 @@ if [[ -z $PASS ]]; then
 fi
 
 RELEASE_DIR="release_$VERSION"
-SVN_CMD="svn"
+SVN_CMD="svn --username $USER --password $PASS"
 
 if [ x"$4" = "x-dry" ]; then
   echo "Dry run!"
@@ -24,7 +24,7 @@ echo "Creating Release: '$VERSION' in '$RELEASE_DIR'"
 # NOTE: the script assumes to live at .../CometVisu/_support
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
-$SVN_CMD copy --username $USER --password $PASS -m "Creating release branch $VERSION" \
+$SVN_CMD copy -m "Creating release branch $VERSION" \
   "svn+ssh://$USER@svn.code.sf.net/p/openautomation/code/CometVisu/trunk" \
   "svn+ssh://$USER@svn.code.sf.net/p/openautomation/code/CometVisu/branches/$RELEASE_DIR"
 
@@ -43,9 +43,6 @@ if [ x"$4" = "x-dry" ]; then
 fi
 
 $SVN_CMD up
-$SVN_CMD propdel svn:ignore $RELEASE_DIR
-$SVN_CMD add $RELEASE_DIR/docs --depth infinity
-$SVN_CMD add $RELEASE_DIR/release --depth infinity
 echo $VERSION > $RELEASE_DIR/VERSION
 sed -i "s/Version: SVN/Version: $VERSION/" $RELEASE_DIR/src/config/visu_config.xml 
 sed -i "s/Version: SVN/Version: $VERSION/" $RELEASE_DIR/src/config/visu_config_demo.xml 
@@ -53,6 +50,9 @@ sed -i "s/comet_16x16_000000.png/comet_16x16_ff8000.png/" $RELEASE_DIR/src/index
 cd $RELEASE_DIR
 make
 cd ..
+$SVN_CMD propdel svn:ignore $RELEASE_DIR
+$SVN_CMD add $RELEASE_DIR/docs --depth infinity
+$SVN_CMD add $RELEASE_DIR/release --depth infinity
 $SVN_CMD ci -m "New release: $VERSION" 
 
 tar -cj --exclude-vcs  -f CometVisu_$VERSION.tar.bz2 $RELEASE_DIR
