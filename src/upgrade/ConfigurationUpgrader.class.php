@@ -35,7 +35,7 @@ require_once('../lib/library_version.inc.php');
  * the library-version the upgrader understands
  * @const   integer
  */
-define('UPGRADER_LIBRARY_VERSION', 4);
+define('UPGRADER_LIBRARY_VERSION', 5);
 
 
 /**
@@ -96,6 +96,9 @@ class ConfigurationUpgrader {
     				break;
     			case 3:
     				$this->upgrade3To4();
+    				break;
+    			case 4:
+    				$this->upgrade4To5();
     				break;
     		}
     		$intVersionCounter++;
@@ -457,6 +460,23 @@ class ConfigurationUpgrader {
         	}
         }
         $this->log('converted ' . $i . ' \'rrd\'-nodes');        
+    }
+
+    /**
+     * do all necessary changes from version 4 to version 5
+     */
+    protected function upgrade4To5() {
+        $objXPath = new DOMXPath($this->objDOM);
+        
+        // remove address' type attributes
+		$objElements = $objXPath->query('//address');
+        $i = 0;
+        foreach ($objElements as $objElementNode) {
+        	if ($objElementNode->hasAttribute('type')) {
+				$objElementNode->removeAttribute('type');
+        	}
+        }
+        $this->log('converted ' . $i . ' \'address\'-nodes');        
     }
 
     /**
