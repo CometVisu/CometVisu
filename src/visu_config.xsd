@@ -30,7 +30,6 @@
       <xsd:extension base="addr">
         <xsd:attribute ref="transform" use="required" />
         <xsd:attribute ref="mode" use="optional" />
-        <xsd:attribute name="type" type="xsd:string" use="optional" />
         <xsd:attribute name="variant" type="xsd:string" use="optional" />
       </xsd:extension>
     </xsd:simpleContent>
