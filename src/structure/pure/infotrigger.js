@@ -18,10 +18,11 @@
 basicdesign.addCreator('infotrigger', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    
+
     // create the main structure
     var makeAddressListFn = function( src, transform, mode, variant ) {
-      return [ true, variant == 'short' ? 1 : 0 ];
+      // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
+      return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
     }
     var ret_val = basicdesign.createDefaultWidget( 'infotrigger', $e, path, flavour, type, this.update, makeAddressListFn );
     // and fill in widget specific data
@@ -123,10 +124,11 @@ basicdesign.addCreator('infotrigger', {
         if (value < data.min ) value = data.min;
         if( value > data.max ) value = data.max;
       }
+      var bitMask = (isShort ? 1 : 2);
       for( var addr in data.address )
       {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-        if ((isShort && data.address[addr][2] == 1) || (!isShort && data.address[addr][2] == 0)) {
+        if (data.address[addr][2] & bitMask) {
           templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], value ) );
         }
       }
