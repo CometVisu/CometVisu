@@ -499,7 +499,7 @@ class ConfigurationUpgrader {
         $intAIndex = array_search($a->nodeName, $arrOrder);
         $intBIndex = array_search($b->nodeName, $arrOrder);
 
-        // make sure that neither a nor b have a value of false, which woul be a problem when comparing with 0
+        // make sure that neither a nor b have a value of false, which would be a problem when comparing with 0
         if ($intAIndex === false) {
             $intAIndex = PHP_INT_MAX;
         }        
