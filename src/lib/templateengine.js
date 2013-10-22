@@ -25,10 +25,23 @@ $(window).unload(function() {
 });
 $(document).ready(function() {
   function configError(textStatus) {
-    var message = 'Config-File Error! ';
+    var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
+    var message = 'Config-File Error!<br/>';
     switch (textStatus) {
       case 'parsererror':
-        message += '<br />Invalid config file!<br /><a href="check_config.php?config=' + templateEngine.configSuffix + '">Please check!</a>';
+        message += 'Invalid config file!<br/><a href="check_config.php?config=' + configSuffix + '">Please check!</a>';
+        break;
+      case 'libraryerror':
+        var link = window.location.href;
+        if (link.indexOf('?') <= 0) {
+          link = link + '?';
+        }
+        link = link + '&libraryCheck=false';
+        message += 'Config file has wrong library version!<br/>' +
+          'This can cause problems with your configuration</br>' + 
+          '<p>You can run the <a href="./upgrade/index.php?config=' + configSuffix + '">Configuration Upgrader</a>.</br>' +
+          'Or you can start without upgrading <a href="' + link + '">with possible configuration problems</a>.</p>';
+        break;
     }
     $('#loading').html(message);
   };
@@ -41,7 +54,17 @@ $(document).ready(function() {
         configError("parsererror");
       }
       else {
-        templateEngine.parseXML(xml);
+        // check the library version
+        var xmlLibVersion = $('pages', xml).attr("lib_version");
+        if (xmlLibVersion == undefined) {
+          xmlLibVersion = -1;
+        }
+        if (templateEngine.libraryCheck && xmlLibVersion < templateEngine.libraryVersion) {
+          configError("libraryerror");
+        }
+        else {
+          templateEngine.parseXML(xml);
+        }
       }
     },
     error : function(jqXHR, textStatus, errorThrown) {
@@ -53,6 +76,12 @@ $(document).ready(function() {
 
 function TemplateEngine( undefined ) {
   var thisTemplateEngine = this;
+  this.libraryVersion = 5;
+  this.libraryCheck = true;
+  if ($.getUrlVar('libraryCheck')) {
+    this.libraryCheck = $.getUrlVar('libraryCheck') != 'false'; // true unless set to false
+  }
+
   this.pageReady = false;
   this.pluginsReady = false;
   this.designReady = false;
@@ -105,7 +134,7 @@ function TemplateEngine( undefined ) {
   this.initBackendClient = function() {
     if (thisTemplateEngine.backend=="oh") {
       // the path to the openHAB cometvisu backend is cv
-	  thisTemplateEngine.backend = '/services/cv/';
+    thisTemplateEngine.backend = '/services/cv/';
       thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
       thisTemplateEngine.visu.resendHeaders = {'X-Atmosphere-tracking-id':null};
     } else {
@@ -292,12 +321,12 @@ function TemplateEngine( undefined ) {
 
   this.adjustColumns = function() {
     if (thisTemplateEngine.enableColumnAdjustment == false) {
-    	if (thisTemplateEngine.defaultColumns != $('#main').data('columns')) {
-    	  $('#main').data({'columns' : thisTemplateEngine.defaultColumns});
-    	  return true;
-    	} else {
-    	  return false;
-    	}
+      if (thisTemplateEngine.defaultColumns != $('#main').data('columns')) {
+        $('#main').data({'columns' : thisTemplateEngine.defaultColumns});
+        return true;
+      } else {
+        return false;
+      }
     }
     var width = thisTemplateEngine.getAvailableWidth();
 
