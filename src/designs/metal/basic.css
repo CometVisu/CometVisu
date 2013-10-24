@@ -91,13 +91,14 @@ body br
 .widget_container {
   float: left;
   width: 100%;
-  position: relative;
+  /* position: relative; // this setting breaks the 2D pages  */
 }
 .widget_container.break_container {
     line-height: 0px;
 }
 .navbar .widget_container {
   display: block;
+  position: relative;
 }
 .widget
 {
