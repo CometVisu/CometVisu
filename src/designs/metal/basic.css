@@ -93,10 +93,10 @@ body br
   width: 100%;
   position: relative;
 }
-.page > .clearfix > embed ~ .widget_container, .page > .clearfix > img ~ .widget_container {
+.page.type_2d .widget_container {
 	position: static;
 }
-.page > .clearfix > embed ~ .widget_container .widget, .page > .clearfix > img ~ .widget_container .widget {
+.page.type_2d .widget_container .widget {
 	background-image: none;
 	padding: 0;
 	border-width:0;
