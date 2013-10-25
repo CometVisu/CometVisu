@@ -31,6 +31,16 @@ basicdesign.addCreator('page', {
     var backdrop = $p.attr('backdrop');
     var showtopnavigation = $p.attr('showtopnavigation');
     var showfooter = $p.attr('showfooter');
+    // make sure the type has the correct value as we need to use it ass CSS class
+    switch (type) {
+      case '2d':
+      case '3d':
+        // do nothing, type has correct value
+        break;
+      default:
+        type = 'text';
+        break;
+    }
     
     // automatically set the navbars if not set in the config file
     var shownavbar = {
@@ -73,7 +83,7 @@ basicdesign.addCreator('page', {
     }
 
     var childs = $p.children().not('layout');
-    var subpage = $( '<div class="page" id="' + path + '_"/>' );
+    var subpage = $( '<div class="page type_' + type + '" id="' + path + '_"/>' );
     subpage.data({
       name             : name,
       showtopnavigation: showtopnavigation,
