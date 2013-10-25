@@ -98,8 +98,6 @@ body br
 	display: table-cell;
 }
 .page > .clearfix > embed ~ .widget_container .widget, .page > .clearfix > img ~ .widget_container .widget {
-	box-sizing: border-box;
-	display: box;
 	background-image: none;
 	padding: 0;
 	border-width:0;
