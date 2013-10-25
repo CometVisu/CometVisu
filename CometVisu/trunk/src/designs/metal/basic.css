@@ -91,14 +91,24 @@ body br
 .widget_container {
   float: left;
   width: 100%;
-  /* position: relative; // this setting breaks the 2D pages  */
+  position: relative;
+}
+.page > .clearfix > embed ~ .widget_container, .page > .clearfix > img ~ .widget_container {
+	position: static;
+	display: table-cell;
+}
+.page > .clearfix > embed ~ .widget_container .widget, .page > .clearfix > img ~ .widget_container .widget {
+	box-sizing: border-box;
+	display: box;
+	background-image: none;
+	padding: 0;
+	border-width:0;
 }
 .widget_container.break_container {
     line-height: 0px;
 }
 .navbar .widget_container {
   display: block;
-  position: relative;
 }
 .widget
 {
