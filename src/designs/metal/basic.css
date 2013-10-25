@@ -95,7 +95,6 @@ body br
 }
 .page > .clearfix > embed ~ .widget_container, .page > .clearfix > img ~ .widget_container {
 	position: static;
-	display: table-cell;
 }
 .page > .clearfix > embed ~ .widget_container .widget, .page > .clearfix > img ~ .widget_container .widget {
 	background-image: none;
