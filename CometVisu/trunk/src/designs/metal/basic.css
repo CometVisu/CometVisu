@@ -693,6 +693,7 @@ background-color: #000;
 #navbarBottom { border-top: 2px solid #666; }
 .navbar .pagejump .label > img, .navbar .pagejump .label > canvas { 
 	height: 44px !important;
+        width: 44px !important;
 	display: block;
 	margin: 0 auto;
 }
