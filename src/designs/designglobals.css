@@ -14,7 +14,8 @@ body
  * Default height for all icons
  */
 img.icon, canvas.icon {
-  height : 2em;
+  height: 2em;
+  width: 2em;
 }
 
 /*
