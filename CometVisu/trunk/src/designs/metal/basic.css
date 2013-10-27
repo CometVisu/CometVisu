@@ -93,12 +93,17 @@ body br
   width: 100%;
   position: relative;
 }
-.page.type_2d .widget_container {
+.page.type_2d .widget_container, .page.type_2d .widget_container .group:not(.widget) {
 	position: static;
 }
 .page.type_2d .widget_container .widget {
-	background-image: none;
 	padding: 0;
+}
+.page.type_2d .widget_container .widget > div { margin: 0.3em; }
+
+.page.type_2d .widget_container .group:not(.widget) { border-width:0; }
+.page.type_2d .widget_container .group:not(.widget) .widget {
+	background-image: none;
 	border-width:0;
 }
 .widget_container.break_container {
