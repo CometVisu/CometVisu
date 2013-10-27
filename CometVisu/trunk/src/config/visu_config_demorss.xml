@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages lib_version="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="5" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
   <meta>
     <plugins>
       <plugin name="rss"/>
@@ -63,36 +63,44 @@
     </statusbar>
   </meta>
   <page name="Start">
-    <text align="center"><label>Welcome to the CometVisu - Demo for urltrigger, RSSlog and RSS Plugin</label></text>
+    <text align="center">
+      <label>Welcome to the CometVisu - Demo for urltrigger, RSSlog and RSS Plugin</label>
+    </text>
     <line/>
     <urltrigger value="Ins Log" url="plugins/rsslog/rsslog.php" params="t[]=aquarium&amp;c=AQ1 Wasserwechsel">
-        <label>Aquarium 1 Wasser gewechselt</label>
+      <label>Aquarium 1 Wasser gewechselt</label>
     </urltrigger>
     <urltrigger value="Ins Log" url="plugins/rsslog/rsslog.php" params="t[]=WP&amp;c=Filter gereinigt">
-        <label>WP Filter gereinigt</label>
+      <label>WP Filter gereinigt</label>
     </urltrigger>
     <urltrigger value="Call me" url="/something/else.php">
-        <label>Any other local(!) URL/script</label>
+      <label>Any other local(!) URL/script</label>
     </urltrigger>
     <urltrigger value="AQ2 WW" url="plugins/rsslog/rsslog.php" params="t[]=aquarium&amp;c=AQ2 Wasserwechsel"/>
     <line/>
-    <text align="center"><label>rsslog filter: Aquarium - 6 lines</label></text>
+    <text align="center">
+      <label>rsslog filter: Aquarium - 6 lines</label>
+    </text>
     <rsslog src="plugins/rsslog/rsslog.php?f=aqua" refresh="300" limit="5" mode="last">
-        <layout rowspan="9" colspan="6"></layout>
+      <layout rowspan="9" colspan="6"/>
     </rsslog>
     <line/>
-    <text align="center"><label>rsslog filter: Sensoren - only last (click me!)</label></text>
+    <text align="center">
+      <label>rsslog filter: Sensoren - only last (click me!)</label>
+    </text>
     <rsslog src="plugins/rsslog/rsslog.php?f=sensoren" mode="rollover"/>
     <line/>
-    <text align="center"><label>rsslog filter: WP</label></text>
+    <text align="center">
+      <label>rsslog filter: WP</label>
+    </text>
     <rsslog src="plugins/rsslog/rsslog.php?f=WP" mode="rollover"/>
     <rsslog src="plugins/rsslog/rsslog.php?state=1" filter="security" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
-        <layout rowspan="9" colspan="6"></layout>
-        <label>Ereignisse state=1 Filter=security</label>
+      <layout rowspan="9" colspan="6"/>
+      <label>Ereignisse state=1 Filter=security</label>
     </rsslog>
     <rsslog src="plugins/rsslog/rsslog.php?state=0" filter="security" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
-        <layout rowspan="9" colspan="6"></layout>
-        <label>Ereignisse state=0 Filter=security</label>
+      <layout rowspan="9" colspan="6"/>
+      <label>Ereignisse state=0 Filter=security</label>
     </rsslog>
     <line/>
     <page name="externe feeds">
