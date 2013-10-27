@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages lib_version="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="5" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
   <meta>
     <plugins>
       <plugin name="colorchooser"/>
@@ -59,59 +59,61 @@
   </meta>
   <page name="Start" type="text">
     <line/>
-    <text align="center"><label>Welcome to the CometVisu!</label></text>
+    <text align="center">
+      <label>Welcome to the CometVisu!</label>
+    </text>
     <break/>
     <page name="2D Demo" type="2d" backdrop="config/media/demo_2d_backdrop_red_pot.svg">
       <slide>
-        <layout x="0px" y="470px" width="600px" />
+        <layout x="0px" y="470px" width="600px"/>
         <label>Level</label>
-        <address transform="DPT:5.001" type="">12/7/52</address>
+        <address transform="DPT:5.001">12/7/52</address>
       </slide>
       <info format="%.2f">
-        <layout x="350px" y="370px" />
-        <address transform="DPT:5.001" type="">12/7/52</address>
+        <layout x="350px" y="370px"/>
+        <address transform="DPT:5.001">12/7/52</address>
       </info>
     </page>
     <page name="3D Demo" type="3d" backdrop="config/floorplan_demo.xml" azimut="12/7/53" elevation="12/7/54" floor="12/7/51">
       <info format="%.2f">
         <layout x="3.5" y="3.7" z="1.0"/>
-        <address transform="DPT:5.001" type="">12/7/53</address>
+        <address transform="DPT:5.001">12/7/53</address>
       </info>
       <filter floor="Underground" room="Room2">
         <info format="%.2f">
           <layout x="7.5" y="3.7" z="1.0"/>
-          <address transform="DPT:5.001" type="">12/7/53</address>
+          <address transform="DPT:5.001">12/7/53</address>
         </info>
       </filter>
       <filter floor="Underground">
         <info format="%.2f">
           <layout x="3.5" y="7.7" z="1.0"/>
-          <address transform="DPT:5.001" type="">12/7/53</address>
+          <address transform="DPT:5.001">12/7/53</address>
         </info>
         <info format="%.2f">
           <layout x="7.5" y="7.7" z="2.0"/>
-          <address transform="DPT:5.001" type="">12/7/53</address>
+          <address transform="DPT:5.001">12/7/53</address>
         </info>
       </filter>
       <slide min="0" max="6.283185307179586" step="0.01">
-        <layout x="0px" y="570px" width="600px" />
+        <layout x="0px" y="570px" width="600px"/>
         <label>Azimut</label>
-        <address transform="DPT:9.001" type="">12/7/53</address>
+        <address transform="DPT:9.001">12/7/53</address>
       </slide>
       <slide min="0" max="1.5707963267948966" step="0.01">
-        <layout x="400px" y="570px" width="600px" />
+        <layout x="400px" y="570px" width="600px"/>
         <label>Elevation</label>
-        <address transform="DPT:9.001" type="">12/7/54</address>
+        <address transform="DPT:9.001">12/7/54</address>
       </slide>
       <trigger value="0">
-        <layout x="0px" y="150px" width="600px" />
+        <layout x="0px" y="150px" width="600px"/>
         <label>Underground</label>
-        <address transform="DPT:5.004" type="">12/7/51</address>
+        <address transform="DPT:5.004">12/7/51</address>
       </trigger>
       <trigger value="1">
-        <layout x="0px" y="100px" width="600px" />
+        <layout x="0px" y="100px" width="600px"/>
         <label>Ground</label>
-        <address transform="DPT:5.004" type="">12/7/51</address>
+        <address transform="DPT:5.004">12/7/51</address>
       </trigger>
     </page>
     <line/>
