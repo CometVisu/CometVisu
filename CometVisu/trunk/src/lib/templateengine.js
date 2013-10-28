@@ -739,29 +739,34 @@ function TemplateEngine( undefined ) {
     allContainer.each(function(i, e) {
       var $e = $(e);
       var ourColspan = $e.children('*:first-child').data('colspan');
-      if (ourColspan <= 0)
+      if (ourColspan < 0)
         return;
-      var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || thisTemplateEngine.defaultColumns;
-      var ourWidth = Math.min(100, ourColspan / areaColspan * 100);
-      $e.css('width', ourWidth + '%');
+      var w = 'auto';
+      if (ourColspan > 0) {
+        var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || thisTemplateEngine.defaultColumns;
+        w = Math.min(100, ourColspan / areaColspan * 100) + '%';
+      }
+      $e.css('width', w);
     });
     // and elements inside groups
     var adjustableElements = $('.group .widget_container');
     adjustableElements.each(function(i, e) {
       var $e = $(e);
       var ourColspan = $e.children('.widget').data('colspan');
-      if (ourColspan <= 0)
+      if (ourColspan < 0)
         return;
       if (ourColspan == undefined) {
         // workaround for nowidget groups
         ourColspan = $e.children('.group').data('colspan');
       }
-      var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || thisTemplateEngine.defaultColumns;
-      var groupColspan = Math.min(areaColspan, $e.parentsUntil(
-          '.widget_container', '.group').data('colspan'));
-      var ourWidth = Math.min(100, ourColspan / groupColspan * 100); // in
-      // percent
-      $e.css('width', ourWidth + '%');
+      var w = 'auto';
+      if (ourColspan > 0) {
+        var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || thisTemplateEngine.defaultColumns;
+        var groupColspan = Math.min(areaColspan, $e.parentsUntil(
+            '.widget_container', '.group').data('colspan'));
+        w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
+      }
+      $e.css('width', w);
     });
   };
 
