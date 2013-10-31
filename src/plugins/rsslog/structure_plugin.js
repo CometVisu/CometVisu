@@ -71,7 +71,9 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
       refreshRSSlog(brss, {});
     });
         
-    refreshRSSlog(rss, {});
+    templateEngine.bindActionForLoadingFinished(function() {
+      refreshRSSlog(rss, {});
+    });
 
     return ret_val;
   }
