@@ -70,7 +70,7 @@ $(window).bind('scrolltopage',function() {
   }
 });
 
-$("#pages").bind("done", function() {
+templateEngine.bindActionForLoadingFinished(function() {
   $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
     var label = $(this);
     if (label.text().trim()!="") {
