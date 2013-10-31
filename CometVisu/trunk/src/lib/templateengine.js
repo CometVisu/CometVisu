@@ -221,6 +221,14 @@ function TemplateEngine( undefined ) {
     return Object.keys(ga_list);
   };
 
+  this.bindActionForLoadingFinished = function(fn) {
+    $("#pages").bind("done", fn);
+  };
+  
+  function fireLoadingFinishedAction() {
+    $("#pages").triggerHandler("done");
+  };
+
   /*
    * this function implements widget stylings 
    */
@@ -996,7 +1004,7 @@ function TemplateEngine( undefined ) {
     delete xml; // not needed anymore - free the space
 //    $(window).trigger('resize');
     $('.loading').removeClass('loading');
-    $("#pages").triggerHandler("done");
+    fireLoadingFinishedAction();
     if( undefined !== thisTemplateEngine.screensave_time )
     {
       thisTemplateEngine.screensave = setTimeout( function(){thisTemplateEngine.scrollToPage();}, thisTemplateEngine.screensave_time*1000 );
