@@ -27,7 +27,15 @@ if( /(msie)/i.test(navigator.userAgent.toLowerCase()) )
 
 if (typeof (console) == "undefined") {
     console = {};
-    console.log = console.debug = console.info = console.warn = console.error = function() {}
+    console.log = console.debug = console.info = console.warn = console.error = console.stamp = function() {}
+} else {
+  console.stamp = (function(){
+    var thisStartTime = new Date();
+    return function( name ){
+      console.timeStamp( name );
+      console.log( name + ': ' + (Date.now() - thisStartTime ) );
+    };
+  })();
 }
 
 /**
