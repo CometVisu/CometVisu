@@ -1064,7 +1064,7 @@ function TemplateEngine( undefined ) {
     page.addClass('pageActive activePage');// show new page
     
     // update visibility of navbars, top-navigation, footer
-    thisTemplateEngine.pagePartsHandler.updatePageParts(page);
+    thisTemplateEngine.pagePartsHandler.updatePageParts( page, speed );
 
     if( speed > 0 ) {
       var scrollLeft = page.position().left != 0;
@@ -1579,7 +1579,7 @@ function PagePartsHandler() {
    * 
    * @param page
    */
-  this.updatePageParts = function(page) {
+  this.updatePageParts = function( page, speed ) {
     // default values
     var showtopnavigation = true;
     var showfooter = true;
@@ -1639,12 +1639,12 @@ function PagePartsHandler() {
       var key = value.toLowerCase();
       if (shownavbar[key] == 'true') {
         if ($('#navbar' + value).css("display") == "none") {
-          thisPagePartsHandler.fadeNavbar(value, "in");
+          thisPagePartsHandler.fadeNavbar( value, "in", speed );
           thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
         }
       } else {
         if ($('#navbar' + value).css("display") != "none") {
-          thisPagePartsHandler.fadeNavbar(value, "out");
+          thisPagePartsHandler.fadeNavbar( value, "out", speed );
         }
       }
     });
@@ -1657,8 +1657,11 @@ function PagePartsHandler() {
    *                [Top|Left|Right|Bottom]
    * @param direction
    *                [in|out]
+   * @param speed
+   *                time in milliseconds
    */
-  this.fadeNavbar = function(position, direction) {
+  this.fadeNavbar = function(position, direction, speed) {
+    speed = (speed !== undefined) ? speed : templateEngine.main_scroll.getConf().speed;
     var initCss = {};
     var targetCss = {};
     var navbar = $('#navbar' + position);
@@ -1702,11 +1705,11 @@ function PagePartsHandler() {
       break;
     }
     navbar.css(initCss);
-    if (templateEngine.main_scroll.getConf().speed == 0) {
+    if( speed == 0 ) {
       navbar.css(targetCss);
       fn();
     } else {
-      navbar.animate(targetCss, templateEngine.main_scroll.getConf().speed, templateEngine.main_scroll.getConf().easing, fn);
+      navbar.animate(targetCss, speed, templateEngine.main_scroll.getConf().easing, fn);
     }
   };
 
