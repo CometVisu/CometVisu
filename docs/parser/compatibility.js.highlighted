@@ -1,0 +1,239 @@
+<div class="highlight"><pre><span class="cm">/* compatability.js (c) 2013 by Christian Mayer [CometVisu at ChristianMayer dot de]</span>
+<span class="cm"> *</span>
+<span class="cm"> * This program is free software; you can redistribute it and/or modify it</span>
+<span class="cm"> * under the terms of the GNU General Public License as published by the Free</span>
+<span class="cm"> * Software Foundation; either version 3 of the License, or (at your option)</span>
+<span class="cm"> * any later version.</span>
+<span class="cm"> *</span>
+<span class="cm"> * This program is distributed in the hope that it will be useful, but WITHOUT</span>
+<span class="cm"> * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or</span>
+<span class="cm"> * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for</span>
+<span class="cm"> * more details.</span>
+<span class="cm"> *</span>
+<span class="cm"> * You should have received a copy of the GNU General Public License along</span>
+<span class="cm"> * with this program; if not, write to the Free Software Foundation, Inc.,</span>
+<span class="cm"> * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</span>
+<span class="cm"> * </span>
+<span class="cm"> * @module Compatability</span>
+<span class="cm"> * @title  CometVisu helper functions for compatability issues</span>
+<span class="cm"> */</span>
+<span class="k">if</span><span class="p">(</span> <span class="sr">/(msie)/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">())</span> <span class="p">)</span>
+<span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">IE_version</span> <span class="o">=</span> <span class="sr">/MSIE\s([\d]+)/</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span> <span class="nx">IE_version</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span> <span class="p">)</span> <span class="o">!=</span> <span class="kc">null</span> <span class="p">)</span> 
+    <span class="k">if</span><span class="p">(</span> <span class="mi">10</span> <span class="o">&gt;</span> <span class="nb">parseFloat</span><span class="p">(</span> <span class="nb">RegExp</span><span class="p">.</span><span class="nx">$1</span> <span class="p">)</span> <span class="p">)</span>
+      <span class="nx">alert</span><span class="p">(</span> <span class="s1">&#39;Sorry, but Internet Explorer prior version 10.0 is not supported!&#39;</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="p">(</span><span class="nx">console</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="o">=</span> <span class="nx">console</span><span class="p">.</span><span class="nx">debug</span> <span class="o">=</span> <span class="nx">console</span><span class="p">.</span><span class="nx">info</span> <span class="o">=</span> <span class="nx">console</span><span class="p">.</span><span class="nx">warn</span> <span class="o">=</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span> <span class="o">=</span> <span class="nx">console</span><span class="p">.</span><span class="nx">stamp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">stamp</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">thisStartTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">name</span> <span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">timeStamp</span><span class="p">(</span> <span class="nx">name</span> <span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">thisStartTime</span> <span class="p">)</span> <span class="p">);</span>
+    <span class="p">};</span>
+  <span class="p">})();</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * </span>
+<span class="cm"> *  Javascript sprintf</span>
+<span class="cm"> *  http://www.webtoolkit.info/</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> **/</span>
+
+<span class="nx">sprintfWrapper</span> <span class="o">=</span> <span class="p">{</span>
+  
+  <span class="nx">init</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">arguments</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">RegExp</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+    
+    <span class="kd">var</span> <span class="nx">string</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">exp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="sr">/(%([%]|(\-)?(\+|\x20)?(0)?(\d+)?(\.(\d)?)?([bcdfosxX])))/g</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">matches</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">substitution</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">strings</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">convCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">stringPosStart</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">stringPosEnd</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">matchPosEnd</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">newString</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">match</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    
+    <span class="k">while</span> <span class="p">(</span><span class="nx">match</span> <span class="o">=</span> <span class="nx">exp</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">string</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">match</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span> <span class="p">{</span> <span class="nx">convCount</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+      
+      <span class="nx">stringPosStart</span> <span class="o">=</span> <span class="nx">matchPosEnd</span><span class="p">;</span>
+      <span class="nx">stringPosEnd</span> <span class="o">=</span> <span class="nx">exp</span><span class="p">.</span><span class="nx">lastIndex</span> <span class="o">-</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span>
+      <span class="nx">strings</span><span class="p">[</span><span class="nx">strings</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="nx">string</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">stringPosStart</span><span class="p">,</span> <span class="nx">stringPosEnd</span><span class="p">);</span>
+      
+      <span class="nx">matchPosEnd</span> <span class="o">=</span> <span class="nx">exp</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">;</span>
+      <span class="nx">matches</span><span class="p">[</span><span class="nx">matches</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">match</span><span class="o">:</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="nx">left</span><span class="o">:</span> <span class="nx">match</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">sign</span><span class="o">:</span> <span class="nx">match</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="nx">pad</span><span class="o">:</span> <span class="nx">match</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">||</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>
+        <span class="nx">min</span><span class="o">:</span> <span class="nx">match</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">||</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">precision</span><span class="o">:</span> <span class="nx">match</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span>
+        <span class="nx">code</span><span class="o">:</span> <span class="nx">match</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">||</span> <span class="s1">&#39;%&#39;</span><span class="p">,</span>
+        <span class="nx">negative</span><span class="o">:</span> <span class="nb">parseFloat</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="nx">convCount</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">argument</span><span class="o">:</span> <span class="nb">String</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="nx">convCount</span><span class="p">])</span>
+      <span class="p">};</span>
+    <span class="p">}</span>
+    <span class="nx">strings</span><span class="p">[</span><span class="nx">strings</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="nx">string</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">matchPosEnd</span><span class="p">);</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">string</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nx">convCount</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+    
+    <span class="kd">var</span> <span class="nx">code</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">match</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    
+    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">matches</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      
+      <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">code</span> <span class="o">==</span> <span class="s1">&#39;%&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="nx">substitution</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span> <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">code</span> <span class="o">==</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span><span class="p">)).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+        <span class="nx">substitution</span> <span class="o">=</span> <span class="nx">sprintfWrapper</span><span class="p">.</span><span class="nx">convert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">code</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span><span class="p">)))));</span>
+        <span class="nx">substitution</span> <span class="o">=</span> <span class="nx">sprintfWrapper</span><span class="p">.</span><span class="nx">convert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">code</span> <span class="o">==</span> <span class="s1">&#39;d&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span><span class="p">)));</span>
+        <span class="nx">substitution</span> <span class="o">=</span> <span class="nx">sprintfWrapper</span><span class="p">.</span><span class="nx">convert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">code</span> <span class="o">==</span> <span class="s1">&#39;f&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span><span class="p">)).</span><span class="nx">toFixed</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">precision</span> <span class="o">?</span> <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">precision</span> <span class="o">:</span> <span class="mi">6</span><span class="p">));</span>
+        <span class="nx">substitution</span> <span class="o">=</span> <span class="nx">sprintfWrapper</span><span class="p">.</span><span class="nx">convert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">code</span> <span class="o">==</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span><span class="p">)).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">8</span><span class="p">));</span>
+        <span class="nx">substitution</span> <span class="o">=</span> <span class="nx">sprintfWrapper</span><span class="p">.</span><span class="nx">convert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">code</span> <span class="o">==</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span> <span class="o">=</span> <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">precision</span> <span class="o">?</span> <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">precision</span> <span class="o">:</span> <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+        <span class="nx">substitution</span> <span class="o">=</span> <span class="nx">sprintfWrapper</span><span class="p">.</span><span class="nx">convert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">code</span> <span class="o">==</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span><span class="p">)).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">));</span>
+        <span class="nx">substitution</span> <span class="o">=</span> <span class="nx">sprintfWrapper</span><span class="p">.</span><span class="nx">convert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">code</span> <span class="o">==</span> <span class="s1">&#39;X&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">argument</span><span class="p">)).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">));</span>
+        <span class="nx">substitution</span> <span class="o">=</span> <span class="nx">sprintfWrapper</span><span class="p">.</span><span class="nx">convert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">]).</span><span class="nx">toUpperCase</span><span class="p">();</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">substitution</span> <span class="o">=</span> <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">match</span><span class="p">;</span>
+      <span class="p">}</span>
+      
+      <span class="nx">newString</span> <span class="o">+=</span> <span class="nx">strings</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+      <span class="nx">newString</span> <span class="o">+=</span> <span class="nx">substitution</span><span class="p">;</span>
+      
+    <span class="p">}</span>
+    <span class="nx">newString</span> <span class="o">+=</span> <span class="nx">strings</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    
+    <span class="k">return</span> <span class="nx">newString</span><span class="p">;</span>
+    
+  <span class="p">},</span>
+  
+  <span class="nx">convert</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">match</span><span class="p">,</span> <span class="nx">nosign</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">nosign</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">match</span><span class="p">.</span><span class="nx">sign</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">match</span><span class="p">.</span><span class="nx">sign</span> <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">negative</span> <span class="o">?</span> <span class="s1">&#39;-&#39;</span> <span class="o">:</span> <span class="nx">match</span><span class="p">.</span><span class="nx">sign</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">min</span> <span class="o">-</span> <span class="nx">match</span><span class="p">.</span><span class="nx">argument</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="nx">match</span><span class="p">.</span><span class="nx">sign</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">pad</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">l</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="nx">l</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="nx">match</span><span class="p">.</span><span class="nx">pad</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">match</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">match</span><span class="p">.</span><span class="nx">pad</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="o">||</span> <span class="nx">nosign</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">match</span><span class="p">.</span><span class="nx">sign</span> <span class="o">+</span> <span class="nx">pad</span> <span class="o">+</span> <span class="nx">match</span><span class="p">.</span><span class="nx">argument</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">pad</span> <span class="o">+</span> <span class="nx">match</span><span class="p">.</span><span class="nx">sign</span> <span class="o">+</span> <span class="nx">match</span><span class="p">.</span><span class="nx">argument</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">match</span><span class="p">.</span><span class="nx">pad</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span> <span class="o">||</span> <span class="nx">nosign</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">match</span><span class="p">.</span><span class="nx">sign</span> <span class="o">+</span> <span class="nx">match</span><span class="p">.</span><span class="nx">argument</span> <span class="o">+</span> <span class="nx">pad</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/0/g</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">match</span><span class="p">.</span><span class="nx">sign</span> <span class="o">+</span> <span class="nx">match</span><span class="p">.</span><span class="nx">argument</span> <span class="o">+</span> <span class="nx">pad</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">sprintf</span> <span class="o">=</span> <span class="nx">sprintfWrapper</span><span class="p">.</span><span class="nx">init</span><span class="p">;</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * be able to access GET-Params</span>
+<span class="cm"> */</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="nx">getUrlVars</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">vars</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">hash</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">hashes</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&amp;&#39;</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">hashes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="nx">hash</span> <span class="o">=</span> <span class="nx">hashes</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">);</span>
+      <span class="nx">vars</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">hash</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+      <span class="nx">vars</span><span class="p">[</span><span class="nx">hash</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">hash</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">vars</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">getUrlVar</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">$</span><span class="p">.</span><span class="nx">getUrlVars</span><span class="p">()[</span><span class="nx">name</span><span class="p">];</span>
+  <span class="p">},</span>
+  <span class="cm">/**</span>
+<span class="cm">   * heavily inspired by: http://stackoverflow.com/questions/13066712/how-to-load-a-list-of-javascript-files-and-call-a-callback-after-all-of-them-are</span>
+<span class="cm">   */</span>
+  <span class="nx">getOrderedScripts</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">files</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="s1">&#39;object&#39;</span> <span class="o">===</span> <span class="k">typeof</span> <span class="nx">files</span> <span class="o">&amp;&amp;</span> <span class="mi">0</span> <span class="o">==</span> <span class="nx">files</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="nx">callback</span> <span class="p">)</span>
+    <span class="p">{</span>
+      <span class="nx">callback</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span> <span class="s1">&#39;string&#39;</span> <span class="o">===</span> <span class="k">typeof</span> <span class="nx">files</span> <span class="p">)</span>
+        <span class="nx">files</span> <span class="o">=</span> <span class="p">[</span> <span class="nx">files</span> <span class="p">];</span>
+      <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+        <span class="nx">url</span><span class="o">:</span> <span class="nx">files</span><span class="p">.</span><span class="nx">shift</span><span class="p">(),</span>
+        <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;script&#39;</span><span class="p">,</span>
+        <span class="nx">async</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">success</span><span class="o">:</span> <span class="nx">files</span><span class="p">.</span><span class="nx">length</span>
+          <span class="o">?</span> <span class="kd">function</span><span class="p">(){</span> <span class="nx">$</span><span class="p">.</span><span class="nx">getOrderedScripts</span><span class="p">(</span><span class="nx">files</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);}</span>
+          <span class="o">:</span> <span class="nx">callback</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="cm">/**</span>
+<span class="cm">   * Include files on this place. This will be replaced by the content of the</span>
+<span class="cm">   * script during packaging</span>
+<span class="cm">   */</span>
+  <span class="nx">includeScripts</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">files</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getOrderedScripts</span><span class="p">(</span><span class="nx">files</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="c1">// inspired by http://stackoverflow.com/questions/2685614/load-external-css-file-like-scripts-in-jquery-which-is-compatible-in-ie-also</span>
+  <span class="nx">getCSS</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">url</span><span class="p">,</span> <span class="nx">parameters</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">cssLink</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s1">&#39;&lt;link/&gt;&#39;</span> <span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span> <span class="s1">&#39;head&#39;</span> <span class="p">).</span><span class="nx">append</span><span class="p">(</span> <span class="nx">cssLink</span> <span class="p">);</span> <span class="c1">//IE hack: append before setting href</span>
+    <span class="nx">cssLink</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span> <span class="nx">parameters</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">rel</span><span class="o">:</span>  <span class="s2">&quot;stylesheet&quot;</span><span class="p">,</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;text/css&quot;</span><span class="p">,</span>
+      <span class="nx">href</span><span class="o">:</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajaxSettings</span><span class="p">.</span><span class="nx">cache</span> <span class="o">?</span> <span class="nx">url</span> <span class="o">:</span> <span class="nx">url</span> <span class="o">+</span> <span class="s1">&#39;?_=&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">valueOf</span><span class="p">()</span>
+    <span class="p">})</span> <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// check if the applicationCache was modified - then reload itself to prevent</span>
+<span class="c1">// that the user has to do an additional reload</span>
+<span class="k">if</span><span class="p">(</span> <span class="s2">&quot;object&quot;</span> <span class="o">===</span> <span class="k">typeof</span> <span class="nb">window</span><span class="p">.</span><span class="nx">applicationCache</span> <span class="p">)</span>
+<span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">applicationCache</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span> <span class="s1">&#39;updateready&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">reload</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
