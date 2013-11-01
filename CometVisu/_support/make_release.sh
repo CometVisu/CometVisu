@@ -49,6 +49,8 @@ sed -i "s/Version: SVN/Version: $VERSION/" $RELEASE_DIR/src/config/visu_config_d
 sed -i "s/comet_16x16_000000.png/comet_16x16_ff8000.png/" $RELEASE_DIR/src/index.html
 cd $RELEASE_DIR
 make
+chmod -R a+w src/config
+chmod -R a+w release/config
 cd ..
 $SVN_CMD propdel svn:ignore $RELEASE_DIR
 $SVN_CMD add $RELEASE_DIR/docs --depth infinity
