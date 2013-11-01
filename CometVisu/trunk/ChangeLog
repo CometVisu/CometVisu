@@ -1,11 +1,15 @@
-HEAD (up to 1967)
-=================
+0.8.0-RC2
+=========
 
 - Bug fixes:
   - #78 Infotrigger
   - remove type attribute of address element
+  - #79 for Pure design
   - #80 y-coordinates not considered on 2D pages in design Metal
   - bad icon display under old android versions (e.g. 2.3)
+  - prevent blocking of long runing RSS requests
+  - #81 iOS scrolling
+- Update of icons
 - Implemented check of library version before starting the visu
 - add type (text, 2d, 3d) as CSS class (type_text, type_2d, type_3d) to a page
 
