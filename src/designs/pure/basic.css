@@ -193,17 +193,17 @@ body br
   border: none;
 }
 
-.center
+.center, .center > .label
 { 
    text-align:center;
 }
 
-.left
+.left, .left > .label
 { 
    text-align:left;
 }
 
-.right
+.right, .right > .label
 { 
    text-align:right;
 }
