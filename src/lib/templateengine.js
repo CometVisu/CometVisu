@@ -458,21 +458,19 @@ function TemplateEngine( undefined ) {
    * necessary as the scroll effect requires a fixed element size
    */
   this.handleResize = function(resize, skipScrollFix) {
+    var $main = $('#main');
     var uagent = navigator.userAgent.toLowerCase();
     var width = thisTemplateEngine.getAvailableWidth();
-    var $main = $('#main');
+    var height = thisTemplateEngine.getAvailableHeight();
+    $main.css('width', width).css('height', height);
+    $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
     // if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
     var mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
     if (/(nexus 7|tablet)/i.test(uagent)) mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
     mobileDevice |= thisTemplateEngine.forceMobile;  // overwrite detection when set by URL
     if (mobileDevice) {
-      $main.css('width', width);
-      $('#pageSize').text('.page{width:' + (width - 0) + 'px;}');
       //do nothing
     } else {
-      var height = thisTemplateEngine.getAvailableHeight();
-      $main.css('width', width).css('height', height);
-      $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
       if (($('#navbarTop').css('display')!="none" && $('#navbarTop').outerHeight(true)<=2)
           || ($('#navbarBottom').css('display')!="none" && $('#navbarBottom').innerHeight(true)<=2)) {
         // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
