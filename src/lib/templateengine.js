@@ -721,10 +721,13 @@ function TemplateEngine( undefined ) {
         break;
       case 'config': // append config file info
         var search = window.location.search.replace(/\$/g, '$$$$');
-        search = search.replace(/.*(config=[^&]*).*|.*/, '?$1');
+        search = search.replace(/.*(config=[^&]*).*|.*/, '$1');
 
-        // text = $(text).replaceWith( /(href="[^"]*)(")/g, '$1' + search + '$2'
-        // );
+        var middle = text.replace(/.*href="([^"]*)".*/g, '{$1}');
+        if( 0 < middle.indexOf('?') )
+          search = '&' + search;
+        else
+          search = '?' + search;
 
         text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
         break;
