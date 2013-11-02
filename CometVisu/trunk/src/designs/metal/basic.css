@@ -758,6 +758,12 @@ background-color: #000;
 .widget.center.diagram_info > .actor:first-child { 
 	position: absolute; left: 50%; margin-left: -2em; 
 }
+.widget.right.toggle > .actor:first-child, 
+.widget.right.switch > .actor:first-child,
+.widget.right.trigger > .actor:first-child,
+.widget.right.diagram_info > .actor:first-child { 
+	position: absolute; right: 0%; 
+}
 .widget.center > .actor > div, .widget.right > .actor > div { float: none; }
 
 #navbarTop .pagejump.center > div, #navbarBottom .pagejump.center > div { width: 100%; }
