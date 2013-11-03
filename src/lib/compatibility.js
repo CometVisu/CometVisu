@@ -222,11 +222,11 @@ $.extend({
   // do only a final resize event
   getCSS: function( url, parameters ) {
     $( '<link>', 
-       {
+        $.extend( parameters, {
          rel   : 'stylesheet', 
          type  : 'text/css', 
          'href': $.ajaxSettings.cache ? url : url + '?_=' + (new Date()).valueOf()
-       }
+       })
     ).on( 'load', function() {
       $(window).trigger( 'resize' );
     }).appendTo( 'head' );
