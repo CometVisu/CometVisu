@@ -1003,7 +1003,6 @@ function TemplateEngine( undefined ) {
     
     xml = null;
     delete xml; // not needed anymore - free the space
-//    $(window).trigger('resize');
     $('.loading').removeClass('loading');
     fireLoadingFinishedAction();
     if( undefined !== thisTemplateEngine.screensave_time )
