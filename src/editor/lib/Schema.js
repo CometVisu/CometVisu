@@ -233,9 +233,7 @@ var SchemaSimpleType = function (node, schema) {
         
         if ($n.is(fixNamespace('xsd\\:attribute[type], xsd\\:element[type], [name=#text][type]'))) {
             // hacked: allow this to be used for attributes
-            var baseType = $n.attr('type');
-            nodeData.bases.push(baseType);
-            _type.baseType = baseType;
+            _type.baseType = $n.attr('type');
 
             // is this attribute optional?
             nodeData.isOptional = $n.is('[use="optional"]');
@@ -247,7 +245,6 @@ var SchemaSimpleType = function (node, schema) {
         
         subNodes.each(function () {
             var baseType = $(this).attr('base');
-            nodeData.bases.push(baseType);
             
             if (!baseType.match(/^xsd:/)) {
                 // don't dive in for default-types, they simply can not be found
@@ -270,6 +267,10 @@ var SchemaSimpleType = function (node, schema) {
             nodeData.enumerations.push(value);
         });
 
+        if (_type.baseType == undefined) {
+            _type.baseType = 'xsd:anyType';
+        }
+        nodeData.bases.push(_type.baseType);
     }
     
     /**
@@ -299,6 +300,7 @@ var SchemaSimpleType = function (node, schema) {
             switch (_type.baseType) {
                 case 'xsd:string':
                 case 'xsd:anyURI':
+                case 'xsd:anyType':
                     if (!(typeof(value) == 'string')) {
                         // it's not a string, but it should be.
                         // pretty much any input a user gives us is string, so this is pretty much moot.
