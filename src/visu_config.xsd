@@ -631,8 +631,8 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="downValue" use="required" />
-    <xsd:attribute name="upValue" use="required" />
+    <xsd:attribute name="downValue" type="xsd:string" use="required" />
+    <xsd:attribute name="upValue" type="xsd:string" use="required" />
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="align" use="optional" />
