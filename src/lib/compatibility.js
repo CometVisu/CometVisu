@@ -31,9 +31,9 @@ if (typeof (console) == "undefined") {
 } else {
   console.stamp = (function(){
     var thisStartTime = new Date();
-    return function( name ){
+    return function logTimeStamp( name ){
       console.timeStamp( name );
-      console.log( name + ': ' + (Date.now() - thisStartTime ) );
+      console.log( '[' + logTimeStamp.caller.name + '] ' + name + ': ' + (Date.now() - thisStartTime ) );
     };
   })();
 }
@@ -217,14 +217,19 @@ $.extend({
     this.getOrderedScripts(files, callback);
   },
   // inspired by http://stackoverflow.com/questions/2685614/load-external-css-file-like-scripts-in-jquery-which-is-compatible-in-ie-also
+  // and http://stackoverflow.com/questions/3498647/jquery-loading-css-on-demand-callback-if-done/17858428#17858428
+  // NOTE and FIXME: It should be enough to count the prending getCSS calls and 
+  // do only a final resize event
   getCSS: function( url, parameters ) {
-    var cssLink = $( '<link/>' );
-    $( 'head' ).append( cssLink ); //IE hack: append before setting href
-    cssLink.attr( $.extend( parameters, {
-      rel:  "stylesheet",
-      type: "text/css",
-      href: $.ajaxSettings.cache ? url : url + '?_=' + (new Date()).valueOf()
-    }) );
+    $( '<link>', 
+       {
+         rel   : 'stylesheet', 
+         type  : 'text/css', 
+         'href': $.ajaxSettings.cache ? url : url + '?_=' + (new Date()).valueOf()
+       }
+    ).on( 'load', function() {
+      $(window).trigger( 'resize' );
+    }).appendTo( 'head' );
   }
 });
 
