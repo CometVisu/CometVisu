@@ -426,6 +426,7 @@ function VisuDesign() {
     var isTouchDevice = !!('ontouchstart' in window) // works on most browsers 
                      || !!('onmsgesturechange' in window), // works on ie10
         mousedown = function( event ) {
+          event.preventDefault();
           var action = event.data.action,
               actor  = event.data.actor;
           if( action )
@@ -433,6 +434,7 @@ function VisuDesign() {
           actor.removeClass('switchUnpressed').addClass('switchPressed');
         },
         mouseaway = function( event ) {
+          event.preventDefault();
           var action = event.data.action,
               actor  = event.data.actor;
           if( action )
