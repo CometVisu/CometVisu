@@ -1,3 +1,14 @@
+0.8.0-RC3
+=========
+
+- Bug fixes:
+  - #79: right alignment for toggle, switch, trigger and diagram_info
+  - The page behaved differently under SVN version and release version due to 
+    different loading times of the CSS
+  - editor missed base type for some attributes
+  - sticking buttons (e.g. in the trigger widget) at least under Android 4.3
+  - a few minor ones
+
 0.8.0-RC2
 =========
 
