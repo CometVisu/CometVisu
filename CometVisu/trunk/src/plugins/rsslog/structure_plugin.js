@@ -158,15 +158,19 @@ function refreshRSSlog(rss) {
           console.log('C: #%s, Error: %s, Feed: %s', $(c).attr('id'), e, o.src);
           },
           success: function(result){
-            jQuery(c).html('');
-                         
+            c.html('');
+
             // get height of one entry, calc max num of display items in widget
-            var dummyDiv = $('<' + o.wrapper + ' class="rsslogRow odd" id="dummydiv">.</' + o.wrapper + '>').appendTo($(c));
+            var displayrows = c.data("last_rowcount") || 0;
+            var dummyDiv = $('<li class="rsslogRow odd" id="dummydiv">.</li>').appendTo(c);
             var itemheight = dummyDiv.height();
             dummyDiv.remove();
-            var widget=$(c).parent().parent(); // get the parent widget
-            var displayheight = widget.height()-$('.label', widget).height(); // max. height of actor is widget-label(if exists)
-            var displayrows = Math.floor(displayheight/itemheight);
+            if (itemheight != 0) {
+              var widget=c.parent().parent(); // get the parent widget
+              var displayheight = widget.height()-$('.label', widget).height(); // max. height of actor is widget-label(if exists)
+              displayrows = Math.floor(displayheight/itemheight);
+            }
+            c.data("last_rowcount", displayrows);
 
             var items = result.responseData.feed.entries;
             var itemnum = items.length;
@@ -178,11 +182,11 @@ function refreshRSSlog(rss) {
                 itemoffset=itemnum-displayrows;
               }
               if (o.mode=='rollover') {
-                itemoffset = $(c).data("itemoffset") || 0;
+                itemoffset = c.data("itemoffset") || 0;
                 if (itemoffset==itemnum) {
                   itemoffset = 0;
                 }
-                $(c).data("itemoffset", itemoffset+1);
+                c.data("itemoffset", itemoffset+1);
               }
             }
                           
@@ -210,18 +214,20 @@ function refreshRSSlog(rss) {
                 var thisday = entryDate.strftime('%d');
                 separatoradd = ((separatordate > 0) && (separatordate != thisday));
                 separatordate = thisday;  
-              } else {
+              }
+              else {
                 itemHtml = itemHtml.replace(/{date}/, '');
               }
                             
-              var $row = $('<' + o.wrapper + ' class="rsslogRow ' + row + '">').append(itemHtml);
+              var $row = $('<li class="rsslogRow ' + row + '">').append(itemHtml);
               if (separatoradd) { 
-                $row.addClass('rsslog_separator'); separatorprevday = true; 
+                $row.addClass('rsslog_separator');
+                separatorprevday = true; 
               }
               if (separatorprevday == true) { 
                 $row.addClass(' rsslog_prevday'); 
               }
-              
+
               $row.data('id', item.id);
               if (item.tags) {
                 var tmp = $('span', $row);
@@ -250,13 +256,13 @@ function refreshRSSlog(rss) {
                 });
               }
                                           
-              jQuery(c).append($row);
+              c.append($row);
 
               // Alternate row classes
               row = (row == 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
             };
                           
-            $(o.wrapper, c).wrapAll("<ul>");                      
+            $("li", c).wrapAll("<ul>");                      
           }
         });
       });
