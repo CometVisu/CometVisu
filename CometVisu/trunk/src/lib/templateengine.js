@@ -46,7 +46,8 @@ $(document).ready(function() {
     $('#loading').html(message);
   };
   // get the data once the page was loaded
-  $.ajax({
+  var ajaxRequest = {
+    noDemo: true,
     url : 'config/visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
     cache : !templateEngine.forceReload,
     success : function(xml) {
@@ -68,10 +69,18 @@ $(document).ready(function() {
       }
     },
     error : function(jqXHR, textStatus, errorThrown) {
+      if( 404 === jqXHR.status && ajaxRequest.noDemo )
+      {
+        ajaxRequest.noDemo = false;
+        ajaxRequest.url = ajaxRequest.url.replace('config/','config/demo/');
+        $.ajax( ajaxRequest );
+        return;
+      }
       configError(textStatus);
     },
     dataType : 'xml'
-  });
+  };
+  $.ajax( ajaxRequest );
 });
 
 function TemplateEngine( undefined ) {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="5" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+  <meta>
+    <plugins>
+    </plugins>
+    <mappings>
+    </mappings>
+    <stylings>
+    </stylings>
+    <statusbar>
+    </statusbar>
+  </meta>
+  <page name="Start">
+    <text align="center">
+      <label>Welcome to the CometVisu!</label>
+    </text>
+  </page>
+</pages>
