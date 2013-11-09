@@ -114,15 +114,24 @@ if( isset($_GET['c']) )
       "type": "rss20",
       "entries": [
 <?php
-  $result = retrieve( $db, $log_filter, '' );
+
+  // send logs
+  $log_filter  = $_GET['f'] ? $_GET['f'] : '';
+  $state = $_GET['state']; // ? $_GET['state'] : '';
+
+  // retrieve data
+  $result = retrieve( $db, $log_filter, $state );
   $first = true;
   while( sqlite_has_more($result) )
   {
     $row = sqlite_fetch_array($result, SQLITE_ASSOC ); 
     if( !$first ) echo ",\n";
     echo '{';
+    echo '"id": "' . $row['id'] . '",';
     echo '"title": "' . $row['title'] . '",';
     echo '"content": "' . $row['content'] . '",';
+    echo '"tags": ' . json_encode(explode(",", $row['tags'])) . ',';
+    echo '"state": "' . $row['state'] . '",';
     echo '"publishedDate": "' . date( DATE_ATOM, $row['t'] ) . '"';
     echo '}';
     $first = false;
