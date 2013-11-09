@@ -761,7 +761,7 @@ function TemplateEngine( undefined ) {
     var adjustableElements = $('.group .widget_container');
     adjustableElements.each(function(i, e) {
       var $e = $(e);
-      var ourColspan = $e.children('.widget').data('colspan');
+      var ourColspan = $e.children('*:first-child').data('colspan');
       if (ourColspan < 0)
         return;
       if (ourColspan == undefined) {
