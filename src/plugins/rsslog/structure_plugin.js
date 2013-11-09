@@ -66,20 +66,22 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
       $(brss).bind("click", function(event) {
         // don't let the popup know about the click, or it will close on touch-displays
         event.stopPropagation();
+      }).bind( "remove", function() {
+        refreshRSSlog(rss);
       });
       $(brss).parent().css("overflow", "auto");
-      refreshRSSlog(brss, {});
+      refreshRSSlog(brss);
     });
         
     templateEngine.bindActionForLoadingFinished(function() {
-      refreshRSSlog(rss, {});
+      refreshRSSlog(rss);
     });
 
     return ret_val;
   }
 });
 
-function refreshRSSlog(rss, data) {
+function refreshRSSlog(rss) {
     var rss = $(rss);
 
     var src = rss.data("src");
@@ -108,9 +110,9 @@ function refreshRSSlog(rss, data) {
     
     if (typeof (refresh) != "undefined" && refresh) {
       // reload regularly
-      window.setTimeout(function(rss, data) {
-        refreshRSSlog(rss, data)
-      }, refresh * 1000, rss, data);
+      window.setTimeout(function(rss) {
+        refreshRSSlog(rss)
+      }, refresh * 1000, rss);
     }
     
     return false;
@@ -124,7 +126,7 @@ function refreshRSSlog(rss, data) {
         src: '',
         html: '<span>{text}</span>',
         wrapper: 'li',
-        dataType: 'xml',
+        dataType: 'json',
         datetime: true
       }
       var options = jQuery.extend(defaults, options);
@@ -141,6 +143,12 @@ function refreshRSSlog(rss, data) {
           console.log('rssfeedlocal: no src URL');
           return; // avoid the request
         }
+        
+        if (o.src.match(/\?/)) {
+          o.src += '&j';
+        } else {
+          o.src += '?j';
+        }
 
         jQuery.ajax({
           url: o.src,
@@ -149,18 +157,18 @@ function refreshRSSlog(rss, data) {
           error: function (xhr, status, e) {
           console.log('C: #%s, Error: %s, Feed: %s', $(c).attr('id'), e, o.src);
           },
-          success: function(feed){
+          success: function(result){
             jQuery(c).html('');
                          
             // get height of one entry, calc max num of display items in widget
-            var dummyDiv = $('<' + o.wrapper + ' class="rsslogRow odd" id="dummydiv">.</li>').appendTo($(c));
+            var dummyDiv = $('<' + o.wrapper + ' class="rsslogRow odd" id="dummydiv">.</' + o.wrapper + '>').appendTo($(c));
             var itemheight = dummyDiv.height();
             dummyDiv.remove();
             var widget=$(c).parent().parent(); // get the parent widget
             var displayheight = widget.height()-$('.label', widget).height(); // max. height of actor is widget-label(if exists)
             var displayrows = Math.floor(displayheight/itemheight);
-                                   
-            var items = $(feed).find('item');
+
+            var items = result.responseData.feed.entries;
             var itemnum = items.length;
                           
             var itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
@@ -190,11 +198,11 @@ function refreshRSSlog(rss, data) {
               var idx = i;
               idx = (i>=itemnum) ? (idx = idx - itemnum) : idx;
                             
-              var item = $(items[idx]);
+              var item = items[idx];
               var itemHtml=o.html;
                             
-              itemHtml = itemHtml.replace(/{text}/, item.find('description').text());
-              var entryDate = new Date(item.find('pubDate').text());
+              itemHtml = itemHtml.replace(/{text}/, item.content);
+              var entryDate = new Date(item.publishedDate);
               if (entryDate) {
                 itemHtml = (o.timeformat) ? 
                   (itemHtml.replace(/{date}/, entryDate.strftime(o.timeformat) + '&nbsp;')) : 
@@ -214,14 +222,17 @@ function refreshRSSlog(rss, data) {
                 $row.addClass(' rsslog_prevday'); 
               }
               
-              var title = item.find('title').text();
-              var itemClasses = title.substring(title.search(/\[/)+1,title.search(/\]/)).replace(/\,/g, ' ');
-              if (itemClasses) {
-                $('span', $row).addClass(itemClasses);
-                var id = itemClasses.match(/id=[0-9]*/)[0].split('=')[1];
-                $row.data('id', id);
+              $row.data('id', item.id);
+              if (item.tags) {
+                var tmp = $('span', $row);
+                $.each(item.tags, function (i, tag) {
+                  tmp.addClass(tag);
+                });
               }
-              
+              if (item.state == 1) {
+                $row.addClass("rsslog_ack");
+              }
+
               if (o.itemack) {
                 $row.bind("click", function() {
                    var item = $(this);
@@ -245,7 +256,7 @@ function refreshRSSlog(rss, data) {
               row = (row == 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
             };
                           
-            $('li', c).wrapAll("<ul>");                      
+            $(o.wrapper, c).wrapAll("<ul>");                      
           }
         });
       });
