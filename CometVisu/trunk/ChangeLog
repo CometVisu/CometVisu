@@ -1,3 +1,14 @@
+0.8.0-RC4
+=========
+
+- Bug fixes:
+  - fixes for the RSS log plugin
+  - #83 Line-Widget don't shown in the metal Design
+  - editor: fix a problem where navbar had no select-list for position
+- Move demo configs in own directory to separate them from the user configs
+- Show in demo config how the icons can be recolored
+- Add litte additional information that might help debugging during initial load
+
 0.8.0-RC3
 =========
 
