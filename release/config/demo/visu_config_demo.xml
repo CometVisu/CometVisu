@@ -125,7 +125,7 @@
       <status type="html" condition="!edit" hrefextend="config"> - &lt;a href="editor/"&gt;Edit&lt;/a&gt;</status>
       <status type="html" hrefextend="config"><![CDATA[
           - <a href="check_config.php">Check Config</a>
-          <div style="float:right;padding-right:0.5em">Version: SVN</div>
+          <div style="float:right;padding-right:0.5em">Version: 0.8.0-RC4</div>
         ]]></status>
     </statusbar>
   </meta>
