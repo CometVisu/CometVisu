@@ -40,16 +40,18 @@ define('FILE_GA', "/etc/wiregate/eibga.conf");
 define('FILE_OW', "/etc/wiregate/owsensors.conf");
 define('DIR_RRD', "/var/www/rrd/*.rrd");
 
+require_once("parse_ini.inc.php");
+
 // list of known one-wire-sensors
 $arrSensors = array();
 if (true === file_exists(FILE_OW)) {
-    $arrSensors = parse_ini_file(FILE_OW, true);
+    $arrSensors = parse_ini(FILE_OW);
 }
 
 // list of all known group-addresses
 $arrGA = array();
 if (true === file_exists(FILE_GA)) {
-    $arrGA = parse_ini_file(FILE_GA, true);
+    $arrGA = parse_ini(FILE_GA);
 }
 
 $arrData = array();
