@@ -41,6 +41,8 @@ define('FILE_GA', "/etc/wiregate/eibga.conf");
 define('FILE_HG', "/etc/wiregate/eibga_hg.conf");
 define('FILE_MG', "/etc/wiregate/eibga_mg.conf");
 
+require_once("parse_ini.inc.php");
+
 // list of group-addresses, main-groups and middle-groups
 $arrGA = array();
 $arrHG = array();
@@ -48,15 +50,15 @@ $arrMG = array();
 
 if (true === file_exists(FILE_GA) && filesize(FILE_GA) > 0) {
     // read list of known group addresses
-    $arrGA = parse_ini_file(FILE_GA, true);
+    $arrGA = parse_ini(FILE_GA);
 }
 if (true === file_exists(FILE_HG) && filesize(FILE_HG) > 0) {
     // read list of known main groups
-    $arrHG = parse_ini_file(FILE_HG, true);
+    $arrHG = parse_ini(FILE_HG);
 }
 if (true === file_exists(FILE_MG) && filesize(FILE_MG) > 0) {
     // read list of known middle groups
-    $arrMG = parse_ini_file(FILE_MG, true);
+    $arrMG = parse_ini(FILE_MG);
 }
 
 
