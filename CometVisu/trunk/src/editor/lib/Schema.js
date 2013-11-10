@@ -233,8 +233,15 @@ var SchemaSimpleType = function (node, schema) {
         
         if ($n.is(fixNamespace('xsd\\:attribute[type], xsd\\:element[type], [name=#text][type]'))) {
             // hacked: allow this to be used for attributes
-            _type.baseType = $n.attr('type');
-
+            var baseType = $n.attr('type');
+            
+            if (!baseType.match(/^xsd:/)) {
+                // if it's not an xsd-default-basetype, we need to find out what it is
+                var subnode = _schema.getReferencedNode('simpleType', baseType)
+                fillNodeData(subnode);
+            } else {
+                _type.baseType = $n.attr('type');
+            }
             // is this attribute optional?
             nodeData.isOptional = $n.is('[use="optional"]');
 
