@@ -64,6 +64,8 @@ $(document).ready(function() {
           configError("libraryerror");
         }
         else {
+          var $loading = $('#loading');
+          $loading.html( $loading.text().trim() + '.' );
           templateEngine.parseXML(xml);
         }
       }
@@ -71,6 +73,8 @@ $(document).ready(function() {
     error : function(jqXHR, textStatus, errorThrown) {
       if( 404 === jqXHR.status && ajaxRequest.noDemo )
       {
+        var $loading = $('#loading');
+        $loading.html( $loading.text().trim() + '!' );
         ajaxRequest.noDemo = false;
         ajaxRequest.url = ajaxRequest.url.replace('config/','config/demo/');
         $.ajax( ajaxRequest );
