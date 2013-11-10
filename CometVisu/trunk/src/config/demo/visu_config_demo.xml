@@ -729,6 +729,33 @@
       <line>
         <layout colspan="12"/>
       </line>
+      <text>
+        <label><icon name="light_light_dim_100" color="#ff0000"/> Icon mit color #ff0000</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#00ff00"/> Icon mit color #00ff00</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#0000ff"/> Icon mit color #0000ff</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#00ffff"/> Icon mit color #00ffff</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#ff00ff"/> Icon mit color #ff00ff</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#ffff00"/> Icon mit color #ffff00</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#ffffff"/> Icon mit color #ffffff</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#ff8000"/> Icon mit color #ff8000</label>
+      </text>
+      <line>
+        <layout colspan="12"/>
+      </line>
       <page name="Subpage mit Flavour" flavour="lithium" align="center">
         <text>
           <label><icon name="CometVisu" type="64"/> Icon links vom Text</label>
