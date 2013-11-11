@@ -74,7 +74,7 @@ basicdesign.addCreator('page', {
       var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
       ret_val = $('<div class="widget clearfix link pagelink" ' + style + '/>');
       basicdesign.setWidgetLayout( ret_val, $p );
-      var actor = $('<div ' + wstyle + '><a href="#">' + name + '</a></div>');
+      var actor = $('<div ' + wstyle + '><a href="javascript:">' + name + '</a></div>');
       var clickable = bindClickToWidget ? ret_val : actor;
       clickable.bind( 'click', function() {
         templateEngine.scrollToPage(name);
