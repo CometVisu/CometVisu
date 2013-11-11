@@ -240,7 +240,7 @@ var SchemaSimpleType = function (node, schema) {
                 var subnode = _schema.getReferencedNode('simpleType', baseType)
                 fillNodeData(subnode);
             } else {
-                _type.baseType = $n.attr('type');
+                _type.baseType = baseType;
             }
             // is this attribute optional?
             nodeData.isOptional = $n.is('[use="optional"]');

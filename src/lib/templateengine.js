@@ -185,8 +185,10 @@ function TemplateEngine( undefined ) {
 
   if ($.getUrlVar('forceDevice')) {
     this.forceMobile = $.getUrlVar('forceDevice') == 'mobile';
+    this.forceNonMobile = !this.forceMobile;
   } else {
     this.forceMobile = false;
+    this.forceNonMobile = false;
   }
 
   // "Bug"-Fix for ID: 3204682 "Caching on web server"
@@ -590,17 +592,17 @@ function TemplateEngine( undefined ) {
     $.getCSS( 'designs/designglobals.css' );
     if (thisTemplateEngine.clientDesign) {
       $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css' );
-      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/mobile.css',
-              thisTemplateEngine.forceMobile ? {} : 
-              {media: 'only screen and (max-width: '
-              + thisTemplateEngine.maxMobileScreenWidth + 'px)'} );
+      if (!thisTemplateEngine.forceNonMobile) {
+        $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/mobile.css',
+            thisTemplateEngine.forceMobile ? {} : 
+            {media: 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)'} );
+      }
       $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css' );
       $.getOrderedScripts( ['designs/' + thisTemplateEngine.clientDesign + '/design_setup.js'],
-        function(){
-          thisTemplateEngine.designReady = true;
-          thisTemplateEngine.setup_page();
-        }
-      );
+          function() {
+        thisTemplateEngine.designReady = true;
+        thisTemplateEngine.setup_page();
+      });
     }
 
     // start with the plugins
