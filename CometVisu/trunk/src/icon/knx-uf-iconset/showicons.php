@@ -22,34 +22,39 @@
     return $result;
   }
 
-$picsperrow = 6;
-$mywidth    = intval(100 / $picsperrow);
-
-echo "<body bgcolor=\"#333333\">\n";
-echo "<center>\n";
+echo "<html>\n<head>\n<style type=\"text/css\">";
+echo "body { background-color:#333333; }\n";
+echo "td { color: #dddddd; font-weight: bold; }\n";
+echo ".filename { padding:10px; border: 3px solid #dddddd; border-right:0px; }\n";
+echo ".icon { align:center; border: 3px solid #dddddd; border-left:1px solid #dddddd; }\n";
+echo ".placeholder { width:30px; }\n";
+# echo "table { margin: 10px; padding: 0px; }\n";
+echo "</style>\n</head>\n<body>\n<center>\n";
 
 $myfiles = GetFilesNew('.');
 foreach ($myfiles as $d => $k) {
-  //echo "<h2>Directory: ". $d ."</h2>";
 
-  echo "<table cellspacing=\"10\">\n";
-  echo "<tr>";
+  echo "<table cellspacing=\"0\" cellpadding=\"0\">\n";
   $c = 0;
   foreach ($k as $f) {
-    echo "<td align=\"center\" width=\"". $mywidth ."\"><img src=\"". $f ."\" border=\"0\"><br/>";
-    echo "<span style=\"color: #dddddd; font-weight: bold;\">". basename($f) ."</span></td>\n";
-    $c++;
-    if ($c >= $picsperrow) {
-      echo "</tr>\n<tr>\n";
-      $c = 0;
+    if ($c % 2 == 0) {
+      echo "<tr>";
     }
+    echo "<td class=\"filename\">". basename($f) ."</td>\n";
+    echo "<td class=\"icon\"><img src=\"". $f ."\"></td>";
+    if ($c % 2 <> 0) {
+      echo "</tr>\n";
+    }
+    else {
+      echo "<td class=\"placeholder\"> </td>";
+    }
+    $c++;
   }
   echo "</table>\n";
 
   break;
 }
 
-echo "</center>\n";
-echo "</body>\n</html>\n";
+echo "</center>\n</body>\n</html>\n";
 
 ?>
