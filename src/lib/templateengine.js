@@ -1266,22 +1266,28 @@ function TemplateEngine( undefined ) {
   };
   
   this.getParentPage = function(page) {
-    if( 0 === page.length )
-      return null;
-    
-    var pathParts = page.attr('id').split('_');
-    pathParts.pop();
-    if (pathParts.length <= 1) {
-      // top-level (id_)-> no parent pages
-      return null;
-    }
-    while (pathParts.length > 1) {
-      pathParts.pop();
-      var path = pathParts.join('_') + '_';
-      if ($('#' + path).hasClass("page")) {
-        return $('#' + path);
+    if (0 === page.length) return null;
+
+    return getParentPageById(page.attr('id'), true);
+  };
+
+  function getParentPageById(path, isPageId) {
+    if (0 < path.length) {
+      var pathParts = path.split('_');
+      if (isPageId) pathParts.pop();
+      while (pathParts.length > 1) {
+        pathParts.pop();
+        var path = pathParts.join('_') + '_';
+        if ($('#' + path).hasClass("page")) {
+          return $('#' + path);
+        }
       }
     }
+    return null;
+  };
+
+  this.getParentPageFromPath = function(path) {
+    return getParentPageById(path, false);
   };
   
   /**

@@ -18,8 +18,9 @@
 $.getCSS( 'plugins/rsslog/rsslog.css' );
 
 VisuDesign_Custom.prototype.addCreator("rsslog", {
-  create: function( page, path ) {
-    var $p = $(page);
+  create: function( element, path, flavour, type ) { 
+    var $el = $(element);
+
     function uniqid() {
       var newDate = new Date;
       return newDate.getTime();
@@ -28,29 +29,28 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
     var id = "rss_" + uniqid();
 
     var ret_val = $('<div class="widget clearfix rsslog" />');
-    basicdesign.setWidgetLayout( ret_val, $p );
-    basicdesign.makeWidgetLabel( ret_val, $p );
+    basicdesign.setWidgetLayout( ret_val, $el );
+    basicdesign.makeWidgetLabel( ret_val, $el );
 
     var actor = $('<div class="actor rsslogBody"><div class="rsslog_inline" id="' + id + '"></div></div>');
     var rss = $("#" + id, actor);
 
-    if ($p.attr("width")) {
-      rss.css("width", $p.attr("width"));
+    if ($el.attr("width")) {
+      rss.css("width", $el.attr("width"));
     }
-    if ($p.attr("height")) {
-      rss.css("height", $p.attr("height"));
+    if ($el.attr("height")) {
+      rss.css("height", $el.attr("height"));
     }
 
     ret_val.append(actor);
 
     rss.data("id", id);
-    rss.data("src", $p.attr("src"));
-    rss.data("filter", $p.attr("filter"));
-    rss.data("refresh", $p.attr("refresh"));
-    rss.data("content", $p.attr("content")) || true;
-    rss.data("datetime", $p.attr("datetime")) || true;
-    rss.data("mode", $p.attr("mode") || "last");
-    rss.data("timeformat", $p.attr("timeformat"));
+    rss.data("src", $el.attr("src"));
+    rss.data("filter", $el.attr("filter"));
+    rss.data("refresh", $el.attr("refresh"));
+    rss.data("datetime", $el.attr("datetime")) || true;
+    rss.data("mode", $el.attr("mode") || "last");
+    rss.data("timeformat", $el.attr("timeformat"));
     rss.data("itemoffset", 0);
     rss.data("itemack", 0);
     
@@ -76,6 +76,12 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
     templateEngine.bindActionForLoadingFinished(function() {
       refreshRSSlog(rss);
     });
+    $(window).bind('scrolltopage', function( event, page_id ){
+      var page = templateEngine.getParentPageFromPath(path);
+      if (page != null && page_id == page.attr("id")) {
+        refreshRSSlog(rss);
+      }
+    });
 
     return ret_val;
   }
@@ -100,7 +106,6 @@ function refreshRSSlog(rss) {
     $(function() {
       $(rss).rssfeedlocal({
         src: src,
-        content: rss.data("content"),
         datetime: eval(rss.data("datetime")),
         mode: rss.data("mode"),
         timeformat: rss.data("timeformat"),
