@@ -1,0 +1,87 @@
+#!/bin/sh
+
+
+# Parameter: input-file output-file (optional: color)
+resize_image () {
+	if [ "x${3}" = "x" ]; then
+		convert ${1} -shave '40x40' -resize 128 ${2}
+	else 
+		convert ${1} -fill ${3} -opaque white -shave '40x40' -resize 128 ${2}
+	fi
+}
+
+
+# Parameters: Target-Folder Color
+resize_folder () {
+	echo "Creating Icons for folder ${1} in color ${2}"
+
+	if ! [ -d ${1} ]; then
+		mkdir -p ${1}
+	fi
+
+	for i in raw_480x480/*.png; do
+		OUT=${1}/`basename ${i}`
+		CREATE=1
+
+		if ! [ "x$FORCE" = "x1" ]; then
+			if [ -f ${OUT} ]; then
+				CREATE=0
+			fi
+		fi
+
+		if [ ${CREATE} = 1 ]; then
+			echo -n "	Processing `basename ${i}`..."
+			resize_image ${i} ${1}/`basename ${i}` ${2}
+			echo "done."
+		fi
+	done	
+	echo " "
+}
+
+
+
+CONV=`which convert`
+if [ "x${CONV}" = "x" ]; then
+	echo
+	echo "Sorry, can't find ImageMagick's convert - make sure it is installed"
+	echo "You might want to run the following command to install ImageMagick:"
+	echo
+	echo "	apt-get install imagemagick"
+	echo
+
+	exit 0
+fi
+
+
+if [ "$1" = "-f" ]; then
+	# Force creating of icons, even if already exists
+	FORCE=1
+	shift
+fi
+
+
+
+if [ "$1" = "-h" ]; then
+	# Print Help
+	echo "Usage: `basename $0` [options]"
+	echo
+	echo "Options:	-f	Overwrite icons even if already exists"
+
+	exit 0
+fi
+
+
+
+
+echo -n "Getting icons from SVN source..."
+svn checkout svn://svn.code.sf.net/p/openautomation/code/tools/knx-uf-iconset/trunk/raw_480x480/ > /dev/null 2>&1
+echo "done."
+
+
+resize_folder 128x128_white 
+
+
+echo -n "Creating Icon Handler ..."
+php -f ./make-iconhandler.php
+echo "done."
+
