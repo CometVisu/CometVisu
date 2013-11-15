@@ -258,6 +258,7 @@
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
         <xsd:enumeration value="_new" />
+        <xsd:enumeration value="_blank" />
         <xsd:enumeration value="_self" />
       </xsd:restriction>
     </xsd:simpleType>
@@ -358,6 +359,7 @@
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
       <xsd:element name="strftime" type="strftime" />
+      <xsd:element name="svg" type="svg" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="timeout" type="timeout" />
     </xsd:choice>
@@ -959,6 +961,15 @@
     <xsd:attribute name="datetime" type="xsd:boolean" use="optional" />
     <xsd:attribute name="timeformat" type="xsd:string" use="optional" />
     <xsd:attribute name="filter" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="svg">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="strftime">
