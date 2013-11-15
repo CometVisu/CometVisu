@@ -1,0 +1,1312 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="5" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd" max_mobile_screen_width="480">
+  <meta>
+    <plugins>
+      <plugin name="colorchooser"/>
+      <plugin name="diagram"/>
+      <plugin name="strftime"/>
+    </plugins>
+    <mappings>
+      <mapping name="Close_Open">
+        <entry value="0">zu</entry>
+        <entry value="1">offen</entry>
+      </mapping>
+      <mapping name="Open_Close">
+        <entry value="0">offen</entry>
+        <entry value="1">zu</entry>
+      </mapping>
+      <mapping name="Open_Tilted_Close">
+        <entry value="0">offen</entry>
+        <entry value="1">gekippt</entry>
+        <entry value="2">zu</entry>
+      </mapping>
+      <mapping name="Off_On">
+        <entry value="0">Aus</entry>
+        <entry value="1">An</entry>
+      </mapping>
+      <mapping name="On_Off">
+        <entry value="0">An</entry>
+        <entry value="1">Aus</entry>
+      </mapping>
+      <mapping name="Sign">
+        <entry range_min="-1e99" range_max="0">Negativ</entry>
+        <entry value="0">Null</entry>
+        <entry range_min="0" range_max="1e99">Positiv</entry>
+      </mapping>
+      <mapping name="KonnexHVAC">
+        <entry value="auto"><icon name="status_automatic"/>Auto</entry>
+        <entry value="comfort"><icon name="status_comfort"/>Komfort</entry>
+        <entry value="standby"><icon name="status_standby"/>Stand By</entry>
+        <entry value="economy"><icon name="status_night"/>Economy</entry>
+        <entry value="building_protection"><icon name="status_frost"/>Haus-Schutz</entry>
+      </mapping>
+      <mapping name="AudioSource">
+        <entry value="0">UKW</entry>
+        <entry value="1">Squeeze</entry>
+        <entry value="2">Denon</entry>
+        <entry value="3">iPod</entry>
+        <entry value="4">Sat</entry>
+        <entry value="5">Kino</entry>
+      </mapping>
+      <mapping name="One1000th">
+        <formula>y = x/1000;</formula>
+      </mapping>
+      <mapping name="audio_mute">
+        <entry value="0"><icon name="audio_mute"/> Aus</entry>
+        <entry value="1">
+          <icon name="audio_audio"/>
+        </entry>
+      </mapping>
+    </mappings>
+    <stylings>
+      <styling name="Red_Green">
+        <entry value="0">red</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="Green_Red">
+        <entry value="0">green</entry>
+        <entry value="1">red</entry>
+      </styling>
+      <styling name="Grey_Green">
+        <entry value="0">grey</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="Grey_Red">
+        <entry value="0">grey</entry>
+        <entry value="1">red</entry>
+      </styling>
+      <styling name="Grey_Blue">
+        <entry value="0">grey</entry>
+        <entry value="1">blue</entry>
+      </styling>
+      <styling name="Brown_Purple">
+        <entry value="0">brown</entry>
+        <entry value="1">purple</entry>
+      </styling>
+      <styling name="Blue_Purple_Red">
+        <entry range_min="-100" range_max="0">blue</entry>
+        <entry value="0">purple</entry>
+        <entry range_min="0" range_max="100">red</entry>
+      </styling>
+      <styling name="Blue_Lightblue_Green_Purple_Red">
+        <entry range_min="-10" range_max="-1">blue</entry>
+        <entry range_min="-1" range_max="10">lightblue</entry>
+        <entry range_min="10" range_max="18">green</entry>
+        <entry range_min="18" range_max="24">purple</entry>
+        <entry range_min="24" range_max="32">red</entry>
+      </styling>
+      <styling name="All_Colors">
+        <entry value="0">red</entry>
+        <entry value="1">white</entry>
+        <entry value="2">cyan</entry>
+        <entry value="3">silver</entry>
+        <entry value="4">blue</entry>
+        <entry value="5">grey</entry>
+        <entry value="6">darkblue</entry>
+        <entry value="7">black</entry>
+        <entry value="8">lightblue</entry>
+        <entry value="9">orange</entry>
+        <entry value="10">purple</entry>
+        <entry value="11">brown</entry>
+        <entry value="12">yellow</entry>
+        <entry value="13">maroon</entry>
+        <entry value="14">lime</entry>
+        <entry value="15">green</entry>
+        <entry value="16">fuchsia</entry>
+        <entry value="17">olive</entry>
+      </styling>
+    </stylings>
+    <statusbar>
+      <status type="html"><![CDATA[
+          <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          - <a href=".?config=demo&forceReload=true">Reload</a>
+          - <a href=".">Default Config</a>
+        ]]></status>
+      <status type="html" condition="!edit" hrefextend="config"> - &lt;a href="editor/"&gt;Edit&lt;/a&gt;</status>
+      <status type="html" hrefextend="config"><![CDATA[
+          - <a href="check_config.php">Check Config</a>
+          <div style="float:right;padding-right:0.5em">Version: SVN</div>
+        ]]></status>
+    </statusbar>
+  </meta>
+  <page name="CometVisu Widget Demo">
+    <navbar position="left" dynamic="true" width="200px">
+      <text>
+        <label>Test 1</label>
+      </text>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <pagejump target="id_36_7_" name="Lithium">
+        <label>Flavour</label>
+      </pagejump>
+      <pagejump target="id_36_8_" name="Potassium">
+        <label>Flavour</label>
+      </pagejump>
+      <pagejump target="2D fixed Bitmap" name="2D">
+        <!--
+        <label>2D</label>
+        -->
+      </pagejump>
+    </navbar>
+    <text align="center">
+      <label>Herzlich willkommen bei dem CometVisu Widget Demo!</label>
+    </text>
+    <text>
+      <label>&lt;b&gt;Hinweis:&lt;/b&gt;&lt;br/&gt;Alle Widgets verwenden KNX-Addressen mit der Haupt- und Mittelgruppe 12/7, da diese meist unbenutzt sind und so beim Testen oft keine Nebenwirkungen auftreten können. Sollten diese Gruppe bei Ihnen verwendet werden, so sollten Sie diese Widgets hier nicht betätigen!</label>
+    </text>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <text>
+      <label>Für die CometVisu gibt es verschiedene Designs.</label>
+    </text>
+    <designtoggle>
+      <label>Wechsle Design</label>
+    </designtoggle>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <text align="center">
+      <label>&lt;b&gt;Standard-Widgets&lt;/b&gt;</label>
+    </text>
+    <break/>
+    <switch mapping="On_Off" styling="Red_Green">
+      <label>Switch</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </switch>
+    <break/>
+    <trigger value="0" mapping="On_Off">
+      <label>Trigger</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </trigger>
+    <trigger value="1" mapping="On_Off">
+      <label>Trigger</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </trigger>
+    <break/>
+    <switch mapping="On_Off" styling="Red_Green">
+      <label>Switch</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/2</address>
+    </switch>
+    <break/>
+    <pushbutton downValue="1" upValue="0" mapping="On_Off">
+      <label>Pushbutton</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/2</address>
+    </pushbutton>
+    <break/>
+    <multitrigger button1label="&lt;icon name=&quot;status_automatic&quot;/&gt;Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy" showstatus="true">
+      <label>Multitrigger: KONNEX Betriebsart</label>
+      <address transform="DPT:20.102" mode="readwrite">12/7/20</address>
+    </multitrigger>
+    <info mapping="KonnexHVAC">
+      <label>Info: Betriebsart</label>
+      <address transform="DPT:20.102" mode="readwrite">12/7/20</address>
+    </info>
+    <break/>
+    <toggle mapping="KonnexHVAC">
+      <label>Toggle: Betriebsart</label>
+      <address transform="DPT:20.102" mode="readwrite">12/7/20</address>
+    </toggle>
+    <break/>
+    <multitrigger button1label="An" button1value="0" button2label="Aus" button2value="1" button3label="Essen" button3value="2" button4label="Fernsehen" button4value="3">
+      <label>Multitrigger: Szenenaufruf</label>
+      <address transform="DPT:5.010" mode="readwrite">12/7/5</address>
+    </multitrigger>
+    <switch mapping="audio_mute">
+      <label><icon name="audio_sound"/> Switch Icon</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </switch>
+    <break/>
+    <infotrigger uplabel="wärmer" downlabel="kälter" upvalue="0.1" downvalue="-0.1" align="center" format="%.1f °C" change="absolute" min="7" max="24">
+      <label>Infotrigger: Sollwert</label>
+      <address transform="DPT:9" mode="readwrite">12/7/9</address>
+    </infotrigger>
+    <infotrigger uplabel="&gt;" downlabel="&lt;" upvalue="1" downvalue="-1" min="0" max="5" align="center" infoposition="middle" change="absolute" mapping="AudioSource">
+      <label>Infotrigger: Audioquelle</label>
+      <address transform="DPT:5.010" mode="readwrite">12/7/105</address>
+    </infotrigger>
+    <page name="Trigger und Infotrigger: Erweitert..." align="center">
+      <text>
+        <label>Ein Infotrigger lässt sich in zwei verschiedenen Betriebsarten betreiben: relativ und absolut</label>
+      </text>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <text>
+        <label>Relativ</label>
+      </text>
+      <break/>
+      <infotrigger uplabel="+" upvalue="1" downlabel="-" downvalue="0" align="center" infoposition="middle" change="relative">
+        <label>Lautstärke</label>
+        <address transform="DPT:16.000" mode="readwrite" variant="display">12/7/16</address>
+        <address transform="DPT:1.001" variant="button" mode="readwrite">12/7/1</address>
+      </infotrigger>
+      <break/>
+      <info>
+        <label>Absolute GA</label>
+        <address transform="DPT:16.000" mode="readwrite">12/7/16</address>
+      </info>
+      <info>
+        <label>Relative GA</label>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </info>
+      <multitrigger button1label="An" button1value="50%" button2label="Aus" button2value="0%" button3label="Leise" button3value="25%" button4label="Laut" button4value="100%">
+        <label>Lautstärke-Text</label>
+        <address transform="DPT:16.000" mode="readwrite">12/7/16</address>
+      </multitrigger>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <text>
+        <label>Absolut</label>
+      </text>
+      <break/>
+      <infotrigger uplabel="+" upvalue="5" downlabel="-" downvalue="-5" align="center" infoposition="middle" change="absolute" format="%.1f%%" max="100">
+        <label>Lautstärke</label>
+        <address transform="DPT:5.001" mode="readwrite">12/7/5</address>
+      </infotrigger>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <text>
+        <layout colspan="12"/>
+        <label>Ein Trigger kann auch für Kurz- und Langzeit unterschiedliche Werte an unterschiedlich Adressen senden</label>
+      </text>
+      <break/>
+      <trigger value="1" shorttime="300" shortvalue="0">
+        <label>Trigger auf 300ms, sende Kurzzeit "0" und Langzeit "1"</label>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+        <address transform="DPT:1.001" variant="short" mode="readwrite">12/7/10</address>
+      </trigger>
+      <trigger value="0" shorttime="1000" shortvalue="1">
+        <label>Trigger auf 1000ms, sende Kurzzeit "1" und Langzeit "0"</label>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+        <address transform="DPT:1.001" variant="short" mode="readwrite">12/7/10</address>
+      </trigger>
+      <info>
+        <label>Info: Kurzzeit</label>
+        <address transform="DPT:1.001" mode="readwrite">12/7/10</address>
+      </info>
+      <info>
+        <label>Info: Langzeit</label>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </info>
+      <infotrigger uplabel="Sende 1" upvalue="1" shortupvalue="1" downlabel="Sende 0" downvalue="0" shortdownvalue="0" shorttime="300" align="center" infoposition="middle" change="relative" format="%.1f%%">
+        <label>Infotrigger mit 300ms Kurzzeit</label>
+        <address transform="DPT:16.000" mode="readwrite" variant="display">12/7/16</address>
+        <address transform="DPT:1.001" variant="button" mode="readwrite">12/7/1</address>
+        <address transform="DPT:1.001" variant="short" mode="readwrite">12/7/10</address>
+      </infotrigger>
+    </page>
+    <break/>
+    <slide min="-18" max="26">
+      <label>Slider</label>
+      <address transform="DPT:9" mode="readwrite">12/7/9</address>
+    </slide>
+    <info styling="Blue_Purple_Red">
+      <label>Info: Slider</label>
+      <address transform="DPT:9" mode="readwrite">12/7/9</address>
+    </info>
+    <break/>
+    <image src="icon/comet_128_ff8000.png">
+      <label>Image</label>
+    </image>
+    <page name="Image: Erweitert..." align="center">
+      <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
+        <label>Image: Update alle 10s</label>
+      </image>
+      <image src="icon/comet_128_ff8000.png" width="500px" height="46px">
+        <label>Image: mit Größenangabe</label>
+      </image>
+    </page>
+    <break/>
+    <page name="Video..." align="center">
+      <text>
+        <label>In dem Video-Element lassen sich Videos nach dem HTML5 Standard einbinden</label>
+      </text>
+      <break/>
+      <video src="https://upload.wikimedia.org/wikipedia/commons/b/b5/I-15bis.ogg" autoplay="false">
+        <label>Polikarpov I-15bis - Ogg Theora</label>
+      </video>
+    </page>
+    <trigger value="1">
+      <label>Seitenwechsel per GA</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/100</address>
+    </trigger>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <page name="web Test" align="center">
+      <web src="http://www.cometvisu.org/" width="500px" height="500px"/>
+    </page>
+    <page name="Flavour Test" align="center">
+      <text>
+        <label>
+        Die Flavour (englisch für Geschmacksrichtung) definieren eine, vom
+        Design abhängige, Variation des Aussehens einzelner Sub-Seiten. 
+      </label>
+      </text>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <text align="center">
+        <label>Design: &lt;b&gt;Pure&lt;/b&gt;</label>
+      </text>
+      <text>
+        <label>
+        Das Design "Pure" ist inspiriert von den Farben, in denen ein Komet
+        scheinen würde, wenn er aus dem jeweiligen Element bestehen würde.
+      </label>
+      </text>
+      <break/>
+      <page name="Flavour: Antimony" align="center" flavour="antimony">
+        <text align="center">
+          <label>CometVisu Antimony flavour</label>
+        </text>
+        <line>
+          <layout colspan="12"/>
+        </line>
+        <page name="Subpage">
+          <text>
+            <label>An empty page</label>
+          </text>
+          <line>
+            <layout colspan="12"/>
+          </line>
+        </page>
+        <text>
+          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+        </text>
+      </page>
+      <page name="Flavour: Boron" align="center" flavour="boron">
+        <text align="center">
+          <label>CometVisu Boron flavour</label>
+        </text>
+        <line>
+          <layout colspan="12"/>
+        </line>
+        <page name="Subpage" ga="12/7/100">
+          <text>
+            <label>An empty page</label>
+          </text>
+          <line>
+            <layout colspan="12"/>
+          </line>
+        </page>
+        <text>
+          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+        </text>
+      </page>
+      <page name="Flavour: Lithium" align="center" flavour="lithium">
+        <text align="center">
+          <label>CometVisu Lithium flavour</label>
+        </text>
+        <line>
+          <layout colspan="12"/>
+        </line>
+        <page name="Subpage">
+          <text>
+            <label>An empty page</label>
+          </text>
+          <line>
+            <layout colspan="12"/>
+          </line>
+        </page>
+        <text>
+          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+        </text>
+      </page>
+      <page name="Flavour: Potassium" align="center" flavour="potassium">
+        <text align="center">
+          <label>CometVisu Potassium flavour</label>
+        </text>
+        <line>
+          <layout colspan="12"/>
+        </line>
+        <page name="Subpage">
+          <text>
+            <label>An empty page</label>
+          </text>
+          <line>
+            <layout colspan="12"/>
+          </line>
+        </page>
+        <text>
+          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+        </text>
+      </page>
+      <page name="Flavour: Sodium" align="center" flavour="sodium">
+        <text align="center">
+          <label>CometVisu Sodium flavour</label>
+        </text>
+        <line>
+          <layout colspan="12"/>
+        </line>
+        <page name="Subpage">
+          <text>
+            <label>An empty page</label>
+          </text>
+          <line>
+            <layout colspan="12"/>
+          </line>
+        </page>
+        <text>
+          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+        </text>
+      </page>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <page name="Flavour: black" align="center" flavour="black">
+        <text align="center">
+          <label>CometVisu black flavour</label>
+        </text>
+        <line>
+          <layout colspan="12"/>
+        </line>
+        <page name="Subpage">
+          <text>
+            <label>An empty page</label>
+          </text>
+          <line>
+            <layout colspan="12"/>
+          </line>
+        </page>
+        <text>
+          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+        </text>
+      </page>
+      <page name="Flavour: white" align="center" flavour="white">
+        <text align="center">
+          <label>CometVisu white flavour</label>
+        </text>
+        <line>
+          <layout colspan="12"/>
+        </line>
+        <page name="Subpage">
+          <text>
+            <label>An empty page</label>
+          </text>
+          <line>
+            <layout colspan="12"/>
+          </line>
+        </page>
+        <text>
+          <label><icon name="CometVisu" type="64"/>Text with Icon</label>
+        </text>
+      </page>
+    </page>
+    <page name="Format Test" align="center">
+      <text>
+        <label>
+        Über das Format-Attribut kann die Anzeige von Werten variiert werden.
+        Dazu wird die Synatx des vom "printf" bekannten Formatstrings benutzt.
+      </label>
+      </text>
+      <break/>
+      <slide min="-100" max="101">
+        <label>Test-Slider</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </slide>
+      <info>
+        <label>Ohne Format</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <info format="%.0f">
+        <label>Format "%.0f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <info format="%.1f">
+        <label>Format "%.1f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <info format="%.2f">
+        <label>Format "%.2f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <info format="%.3f">
+        <label>Format "%.3f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <info format="%.4f">
+        <label>Format "%.4f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <info format="%01.2f">
+        <label>Format "%01.2f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <info format="%02.2f">
+        <label>Format "%02.2f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <info format="%03.2f">
+        <label>Format "%03.3f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <info format="%04.2f">
+        <label>Format "%04.3f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <info format="%05.2f">
+        <label>Format "%05.2f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <info format="%06.2f">
+        <label>Format "%06.2f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <info format="%+.2f">
+        <label>Format "%+.2f":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <info format="%.2f°C">
+        <label>Format "%.2f°C":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <info format="%.2f%%">
+        <label>Format "%.2f%%":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <info format="%.4f" mapping="One1000th">
+        <label>Format "%.4f + Formel":</label>
+        <address transform="DPT:9" mode="readwrite">12/7/9</address>
+      </info>
+    </page>
+    <page name="Stylings Test" align="center">
+      <switch mapping="On_Off" styling="Green_Red">
+        <label>Switch green/red</label>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <switch mapping="On_Off" styling="Grey_Green">
+        <label>Switch grey/green</label>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <switch mapping="On_Off" styling="Grey_Red">
+        <label>Switch grey/red</label>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <switch mapping="On_Off" styling="Grey_Blue">
+        <label>Switch grey/blue</label>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <switch mapping="On_Off" styling="Brown_Purple">
+        <label>Switch brown/purple</label>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <info styling="Blue_Lightblue_Green_Purple_Red" format="%.1f °C">
+        <label>Info: with Styling/Ranges</label>
+        <address transform="DPT:9" mode="readwrite">12/7/10</address>
+      </info>
+      <slide min="-10" max="32">
+        <label>Slider to show ranges in styling</label>
+        <address transform="DPT:9" mode="readwrite">12/7/10</address>
+      </slide>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <text>
+        <label>All predefined colors:</label>
+      </text>
+      <break/>
+      <trigger value="0" styling="All_Colors">
+        <label>red</label>
+      </trigger>
+      <trigger value="1" styling="All_Colors">
+        <label>white</label>
+      </trigger>
+      <trigger value="2" styling="All_Colors">
+        <label>cyan</label>
+      </trigger>
+      <trigger value="3" styling="All_Colors">
+        <label>silver</label>
+      </trigger>
+      <trigger value="4" styling="All_Colors">
+        <label>blue</label>
+      </trigger>
+      <trigger value="5" styling="All_Colors">
+        <label>grey</label>
+      </trigger>
+      <trigger value="6" styling="All_Colors">
+        <label>darkblue</label>
+      </trigger>
+      <trigger value="7" styling="All_Colors">
+        <label>black</label>
+      </trigger>
+      <trigger value="8" styling="All_Colors">
+        <label>lightblue</label>
+      </trigger>
+      <trigger value="9" styling="All_Colors">
+        <label>orange</label>
+      </trigger>
+      <trigger value="10" styling="All_Colors">
+        <label>purple</label>
+      </trigger>
+      <trigger value="11" styling="All_Colors">
+        <label>brown</label>
+      </trigger>
+      <trigger value="12" styling="All_Colors">
+        <label>yellow</label>
+      </trigger>
+      <trigger value="13" styling="All_Colors">
+        <label>maroon</label>
+      </trigger>
+      <trigger value="14" styling="All_Colors">
+        <label>lime</label>
+      </trigger>
+      <trigger value="15" styling="All_Colors">
+        <label>green</label>
+      </trigger>
+      <trigger value="16" styling="All_Colors">
+        <label>fuchsia</label>
+      </trigger>
+      <trigger value="17" styling="All_Colors">
+        <label>olive</label>
+      </trigger>
+    </page>
+    <page name="Icon Test" align="center">
+      <text>
+        <label><icon name="CometVisu" type="64"/> Icon links vom Text</label>
+      </text>
+      <text>
+        <label>Icon <icon name="CometVisu" type="64"/> mitten im Text</label>
+      </text>
+      <text>
+        <label>Icon rechts vom Text <icon name="CometVisu" type="64"/></label>
+      </text>
+      <text>
+        <label><icon name="CometVisu" type="64"/> Mehrere Icons <icon name="CometVisu" type="64"/></label>
+      </text>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <text>
+        <label><icon name="CometVisu" type="16"/> Icon mit type="16"</label>
+      </text>
+      <text>
+        <label><icon name="CometVisu" type="32"/> Icon mit type="32"</label>
+      </text>
+      <text>
+        <label><icon name="CometVisu" type="64"/> Icon mit type="64"</label>
+      </text>
+      <text>
+        <label><icon name="CometVisu" type="128"/> Icon mit type="128"</label>
+      </text>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <text>
+        <label><icon name="CometVisu" type="16" styling="height:auto"/> Icon mit type="16" und styling</label>
+      </text>
+      <text>
+        <label><icon name="CometVisu" type="32" styling="height:auto"/> Icon mit type="32" und styling</label>
+      </text>
+      <text>
+        <label><icon name="CometVisu" type="64" styling="height:auto"/> Icon mit type="64" und styling</label>
+      </text>
+      <text>
+        <label><icon name="CometVisu" type="128" styling="height:auto"/> Icon mit type="128" und styling</label>
+      </text>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <text>
+        <label><icon name="light_light_dim_100" color="#ff0000"/> Icon mit color #ff0000</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#00ff00"/> Icon mit color #00ff00</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#0000ff"/> Icon mit color #0000ff</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#00ffff"/> Icon mit color #00ffff</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#ff00ff"/> Icon mit color #ff00ff</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#ffff00"/> Icon mit color #ffff00</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#ffffff"/> Icon mit color #ffffff</label>
+      </text>
+      <text>
+        <label><icon name="light_light_dim_100" color="#ff8000"/> Icon mit color #ff8000</label>
+      </text>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <page name="Subpage mit Flavour" flavour="lithium" align="center">
+        <text>
+          <label><icon name="CometVisu" type="64"/> Icon links vom Text</label>
+        </text>
+        <text>
+          <label><icon name="CometVisu" type="64" flavour="antimony"/> Icon mit flavour links vom Text</label>
+        </text>
+        <page name="Subpage mit anderem Flavour" flavour="antimony" align="center">
+          <text>
+            <label><icon name="CometVisu" type="64"/> Icon links vom Text</label>
+          </text>
+        </page>
+      </page>
+    </page>
+    <page name="colspan/rowspan Test" align="center">
+      <text>
+        <layout colspan="12"/>
+        <label>Colspan 12, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="6"/>
+        <label>Colspan 6, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="6"/>
+        <label>Colspan 6, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="4"/>
+        <label>Colspan 4, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="4"/>
+        <label>Colspan 4, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="4"/>
+        <label>Colspan 4, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="3"/>
+        <label>Colspan 3, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="3"/>
+        <label>Colspan 3, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="3"/>
+        <label>Colspan 3, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="3"/>
+        <label>Colspan 3, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="2"/>
+        <label>Colspan 2, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="2"/>
+        <label>Colspan 2, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="2"/>
+        <label>Colspan 2, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="2"/>
+        <label>Colspan 2, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="2"/>
+        <label>Colspan 2, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="2"/>
+        <label>Colspan 2, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1"/>
+        <label>Colspan 1, no Rowspan</label>
+      </text>
+      <text>
+        <layout colspan="1" rowspan="12"/>
+        <label>Colspan 1, Rowspan 12</label>
+      </text>
+      <group nowidget="true">
+        <layout colspan="1"/>
+        <text>
+          <layout colspan="1" rowspan="6"/>
+          <label>Colspan 1, Rowspan 6</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="6"/>
+          <label>Colspan 1, Rowspan 6</label>
+        </text>
+      </group>
+      <group nowidget="true">
+        <layout colspan="1"/>
+        <text>
+          <layout colspan="1" rowspan="4"/>
+          <label>Colspan 1, Rowspan 4</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="4"/>
+          <label>Colspan 1, Rowspan 4</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="4"/>
+          <label>Colspan 1, Rowspan 4</label>
+        </text>
+      </group>
+      <group nowidget="true">
+        <layout colspan="1"/>
+        <text>
+          <layout colspan="1" rowspan="3"/>
+          <label>Colspan 1, Rowspan 3</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="3"/>
+          <label>Colspan 1, Rowspan 3</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="3"/>
+          <label>Colspan 1, Rowspan 3</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="3"/>
+          <label>Colspan 1, Rowspan 3</label>
+        </text>
+      </group>
+      <group nowidget="true">
+        <layout colspan="1"/>
+        <text>
+          <layout colspan="1" rowspan="2"/>
+          <label>Colspan 1, Rowspan 2</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="2"/>
+          <label>Colspan 1, Rowspan 2</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="2"/>
+          <label>Colspan 1, Rowspan 2</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="2"/>
+          <label>Colspan 1, Rowspan 2</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="2"/>
+          <label>Colspan 1, Rowspan 2</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="2"/>
+          <label>Colspan 1, Rowspan 2</label>
+        </text>
+      </group>
+      <group nowidget="true">
+        <layout colspan="1"/>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+      </group>
+      <text>
+        <layout colspan="1" rowspan="1"/>
+        <label>Colspan 1, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="4" rowspan="1"/>
+        <label>Colspan 4, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" rowspan="1"/>
+        <label>Colspan 1, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" rowspan="4"/>
+        <label>Colspan 1, Rowspan 4</label>
+      </text>
+      <text>
+        <layout colspan="4" rowspan="4"/>
+        <label>Colspan 4, Rowspan 4</label>
+      </text>
+      <text>
+        <layout colspan="1" rowspan="4"/>
+        <label>Colspan 1, Rowspan 4</label>
+      </text>
+      <text>
+        <layout colspan="1" rowspan="1"/>
+        <label>Colspan 1, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="4" rowspan="1"/>
+        <label>Colspan 4, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" rowspan="1"/>
+        <label>Colspan 1, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="3" rowspan="1"/>
+        <label>Colspan 3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="3" rowspan="1"/>
+        <label>Colspan 3, Rowspan 1</label>
+      </text>
+      <text>
+        <layout colspan="1" rowspan="5"/>
+        <label>Colspan 1, Rowspan 5</label>
+      </text>
+      <group nowidget="true">
+        <layout colspan="4"/>
+        <text>
+          <layout colspan="4" rowspan="2"/>
+          <label>Colspan 4, Rowspan 2</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="1" rowspan="1"/>
+          <label>Colspan 1, Rowspan 1</label>
+        </text>
+        <text>
+          <layout colspan="4" rowspan="2"/>
+          <label>Colspan 4, Rowspan 2</label>
+        </text>
+      </group>
+      <text>
+        <layout colspan="1" rowspan="5"/>
+        <label>Colspan 1, Rowspan 5</label>
+      </text>
+    </page>
+    <page name="Navbar Test" align="center">
+      <text>
+        <label>This subpage adds additional content to the navbar</label>
+      </text>
+      <navbar position="left" dynamic="true" width="200px">
+        <text>
+          <label>Test 2</label>
+        </text>
+        <line>
+          <layout colspan="12"/>
+        </line>
+        <pagejump target="id_0_36_7" name="Lithium">
+          <label>Flavour</label>
+        </pagejump>
+        <pagejump target="id_0_36_8" name="Potassium">
+          <label>Flavour</label>
+        </pagejump>
+        <pagejump target="2D fixed Bitmap">
+          <label>2D</label>
+        </pagejump>
+      </navbar>
+      <page name="Deeper Navbar Test" align="center">
+        <text>
+          <label>This subpage adds additional content to the navbar</label>
+        </text>
+        <navbar position="left" dynamic="true" width="200px">
+          <text>
+            <label>Test 3</label>
+          </text>
+          <line>
+            <layout colspan="12"/>
+          </line>
+          <pagejump target="id_0_36_7" name="Lithium">
+            <label>Flavour</label>
+          </pagejump>
+          <pagejump target="id_0_36_8" name="Potassium">
+            <label>Flavour</label>
+          </pagejump>
+          <pagejump target="2D fixed Bitmap">
+            <label>2D</label>
+          </pagejump>
+        </navbar>
+      </page>
+    </page>
+    <break/>
+    <page name="2D fixed Bitmap" type="2d" backdrop="config/media/demo_2d_backdrop_floorplan.png" align="center" size="fixed">
+      <switch mapping="On_Off" styling="Red_Green">
+        <layout x="525px" y="450px"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <trigger value="0" mapping="On_Off">
+        <layout x="400px" y="450px"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+      <trigger value="1" mapping="On_Off">
+        <layout x="650px" y="450px"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+    </page>
+    <page name="2D scaled Bitmap" type="2d" backdrop="config/media/demo_2d_backdrop_floorplan.png" align="center" size="scaled">
+      <switch mapping="On_Off" styling="Red_Green">
+        <layout x="50%" y="70%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <trigger value="0" mapping="On_Off">
+        <layout x="40%" y="70%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+      <trigger value="1" mapping="On_Off">
+        <layout x="60%" y="70%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+    </page>
+    <page name="2D fixed SVG" type="2d" backdrop="config/media/demo_2d_backdrop_floorplan_inkscape.svg" align="center" size="fixed">
+      <switch mapping="On_Off" styling="Red_Green">
+        <layout x="525px" y="450px"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <trigger value="0" mapping="On_Off">
+        <layout x="400px" y="450px"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+      <trigger value="1" mapping="On_Off">
+        <layout x="650px" y="450px"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+    </page>
+    <page name="2D scaled SVG" type="2d" backdrop="config/media/demo_2d_backdrop_floorplan_viewbox.svg" align="center">
+      <switch mapping="On_Off" styling="Red_Green">
+        <layout x="50%" y="70%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </switch>
+      <trigger value="0" mapping="On_Off">
+        <layout x="40%" y="70%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+      <trigger value="1" mapping="On_Off">
+        <layout x="60%" y="70%"/>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+    </page>
+    <page name="3D" align="center">
+      <text>
+        <label>Not in this demo yet...</label>
+      </text>
+    </page>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <text align="center">
+      <label>&lt;b&gt;Plugins&lt;/b&gt;</label>
+    </text>
+    <text>
+      <label>Diese Widgets sind Plugins und stehen dann zur Verfügung, wenn sie in
+      der Config-Datei aktiviert werden.
+    </label>
+    </text>
+    <break/>
+    <colorchooser>
+      <label>ColorChooser</label>
+      <address transform="DPT:5.001" variant="r" mode="readwrite">12/7/50</address>
+      <address transform="DPT:5.001" variant="g" mode="readwrite">12/7/51</address>
+      <address transform="DPT:5.001" variant="b" mode="readwrite">12/7/52</address>
+    </colorchooser>
+    <rgb>
+      <label>RGB Widget</label>
+      <!-- <layout colspan="1" /> -->
+      <address transform="DPT:5.004" variant="r" mode="readwrite">12/7/50</address>
+      <address transform="DPT:5.004" variant="g" mode="readwrite">12/7/51</address>
+      <address transform="DPT:5.004" variant="b" mode="readwrite">12/7/52</address>
+    </rgb>
+    <break/>
+    <info format="%.2f">
+      <label>R</label>
+      <address transform="DPT:5.001" mode="readwrite">12/7/50</address>
+    </info>
+    <slide>
+      <label>R</label>
+      <address transform="DPT:5.001" mode="readwrite">12/7/50</address>
+    </slide>
+    <break/>
+    <info format="%.2f">
+      <label>G</label>
+      <address transform="DPT:5.001" mode="readwrite">12/7/51</address>
+    </info>
+    <slide>
+      <label>G</label>
+      <address transform="DPT:5.001" mode="readwrite">12/7/51</address>
+    </slide>
+    <break/>
+    <info format="%.2f">
+      <label>B</label>
+      <address transform="DPT:5.001" mode="readwrite">12/7/52</address>
+    </info>
+    <slide>
+      <label>B</label>
+      <address transform="DPT:5.001" mode="readwrite">12/7/52</address>
+    </slide>
+    <break/>
+    <diagram legend="popup" series="day" refresh="300" popup="true" previewlabels="false">
+      <label>KNX traffic</label>
+      <axis unit="tps"/>
+      <rrd>eib_traffic</rrd>
+    </diagram>
+    <diagram_info series="day" refresh="300">
+      <label>KNX traffic</label>
+      <axis unit="tps"/>
+      <rrd>eib_traffic</rrd>
+      <address transform="DPT:9.021" mode="readwrite">12/7/9</address>
+    </diagram_info>
+    <break/>
+    <diagram width="600" height="400" popup="false" previewlabels="true">
+      <label/>
+      <rrd>eib_traffic</rrd>
+    </diagram>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <page name="Erweiterte Widgets">
+      <text>
+        <label>Auf dieser Seite sind Widgets zu finden, die noch in Entwicklung
+        sind und daher im Allgemeinen noch nicht verwendet werden sollten.
+      </label>
+      </text>
+      <line>
+        <layout colspan="12"/>
+      </line>
+      <group name="Gruppe" align="center">
+        <layout colspan="5"/>
+        <text align="center">
+          <layout colspan="5"/>
+          <label>Ohne Flavour</label>
+        </text>
+        <info styling="Blue_Purple_Red">
+          <layout colspan="5"/>
+          <label>Info</label>
+          <address transform="DPT:9" mode="readwrite">12/7/9</address>
+        </info>
+      </group>
+      <!-- <line /> -->
+      <group name="Slider Gruppe mit Flavour" flavour="lithium" align="center">
+        <info styling="Blue_Purple_Red">
+          <label>Info: Slider</label>
+          <address transform="DPT:9" mode="readwrite">12/7/9</address>
+        </info>
+        <slide min="-18" max="26">
+          <label>Slider</label>
+          <address transform="DPT:9" mode="readwrite">12/7/9</address>
+        </slide>
+      </group>
+      <trigger value="Trigger" mapping="On_Off">
+        <label>Update Value</label>
+        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+      </trigger>
+      <strftime lang="de" format="%A, %d. %B %Y %H:%M:%S">
+        <layout colspan="0"/>
+      </strftime>
+    </page>
+  </page>
+</pages>
