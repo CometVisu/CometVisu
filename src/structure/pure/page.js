@@ -101,7 +101,7 @@ basicdesign.addCreator('page', {
       if( $p.attr('size') == 'fixed' )
         size = '';
       // else: assume scaled
-      var elemType = '.svg' == backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';
+      var elemType = (undefined != backdrop && '.svg' == backdrop.substring( backdrop.length - 4 )) ? 'embed' : 'img';
       container.append( '<' + elemType + ' src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>' );
     } else if( '3d' == type && false ) //---Disable 3D for 0.8---
     {
