@@ -1,3 +1,17 @@
+0.8.0-RC5
+=========
+
+- Bug fixes:
+  - #88 forceDevice=Desktop does not work as expected
+  - #89 Browser Back-Button sometimes needs to be pressed twice
+  - #90 RSSLog plugin: rsslog widget on subpage is not shown correctly on switch
+    to the subpage
+  - make config check and editor know SVG plugin
+  - page-widget with missing backdrop-attribute
+- remove KNX-UF-Iconset PDF overview as it is always out of date
+- rework design of show-icons.php
+- update knx-uf-iconset
+
 0.8.0-RC4
 =========
 
