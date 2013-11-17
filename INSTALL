@@ -32,3 +32,12 @@ few simple steps:
    It will give everyone write permissions - so it's probably too permissive
    for a shared server, but assuming the typical useage of the WireGate it
    should be fine.
+   
+NOTE:
+=====
+
+Please allways also refer the online documentation at 
+
+     http://www.cometvisu.org/
+
+as it will contain the latest informations.
