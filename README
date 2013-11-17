@@ -22,3 +22,16 @@ The KNX-backend uses
 eibread/write-cgi are part of a modified eibd-clients package here:
 http://repo.wiregate.de/wiregate/pool/main/e/
 (source: bcusdk)
+
+NOTE:
+=====
+
+Please allways also refer the online documentation at 
+
+     http://www.cometvisu.org/
+
+as it will contain the latest informations.
+
+To discuss with the developers you can use the mailing list that is
+provided at the SourceForge project page or use the KNX User Forum
+at http://knx-user-forum.de/cometvisu/ (spoken languages are German and English)
