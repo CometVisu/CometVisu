@@ -87,7 +87,7 @@ if( false === is_readable( $conffile ) )
     $conffile = $old_conffile;
     echo '<font color="#f00"><b>WARNING:</b> Depreciated position of config file!</font><hr/>';
   } else {
-    echo "File <b>$conffile</b> (nor the depreciated <b>$old_conffile</b>) does not exitst!";
+    echo "File <b>$conffile</b> (nor the depreciated <b>$old_conffile</b>) does not exist!";
     echo '</body></html>';
     exit;
   }
