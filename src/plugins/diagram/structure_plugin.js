@@ -85,8 +85,8 @@ function diagram_get_content( page ) {
   return { axes: axes, axesnum: axesnum, rrd: rrd, rrdnum: rrdnum };
 }
 
-function createDiagram( page, path ) {
-  var $p = $(page);
+function createDiagram( element, path ) {
+  var $p = $(element);
 
   function uniqid() {
     var newDate = new Date;
@@ -190,20 +190,27 @@ function createDiagram( page, path ) {
     refreshDiagram(diagram, {});
   }
 
+  $(window).bind('scrolltopage', function( event, page_id ){
+    var page = templateEngine.getParentPageFromPath(path);
+    if (page != null && page_id == page.attr("id")) {
+      refreshDiagram(diagram);
+    }
+  });
+
   return ret_val;
 }
 
 
 
 VisuDesign_Custom.prototype.addCreator("diagram", {
-  create: function(page,path) {
-    return createDiagram(page, path);
+  create: function( element, path, flavour, type ) {
+    return createDiagram(element, path);
   }
 });
 
 VisuDesign_Custom.prototype.addCreator("diagram_info", {
-  create: function( page, path ) {
-    var $p = $(page);
+  create: function( element, path, flavour, type ) {
+    var $p = $(element);
 
     var address = {};
     $p.find('address').each( function(){ 
@@ -367,7 +374,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
 
   var content = diagram.data("content");
 
-  if (typeof (content) == "undefined") { // Fenster schon geschlossen oder keine Achsen und RRD konfiguriert
+  if (diagram.width() <= 0 || diagram.height() <= 0 || typeof (content) == "undefined") { // Fenster schon geschlossen oder keine Achsen und RRD konfiguriert
     return;
   }
 
@@ -477,16 +484,4 @@ function doRefreshDiagram(diagram, flotoptions, data) {
       }, refresh * 1000, diagram, flotoptions, data );
     }
   }
-
-  return false;
 }
-
-$(window).bind( 'scrolltopage', function( event, page_id ){
-  var pagedivs = $('div', '#' + page_id);
-  for ( var i = 0; i < pagedivs.length; i++) { // check for inline diagrams &
-    // refresh
-    if (/diagram_inline/.test(pagedivs[i].className)) {
-      refreshDiagram(pagedivs[i]);
-    }
-  }
-});
