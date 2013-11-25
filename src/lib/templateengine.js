@@ -490,7 +490,7 @@ function TemplateEngine( undefined ) {
           || ($('#navbarBottom').css('display')!="none" && $('#navbarBottom').innerHeight(true)<=2)) {
         // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
         // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
-        window.setTimeout( this.handleResize, 100);
+        setTimeout( thisTemplateEngine.handleResize, 100);
       }
     }
     if (skipScrollFix === undefined) {
