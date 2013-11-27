@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="5" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="5" design="pure" xsi:noNamespaceSchemaLocation="../../visu_config.xsd">
   <meta>
     <plugins>
       <plugin name="rss"/>
@@ -52,7 +52,7 @@
           - <a href="?config=demo">Widget Demo</a>
         ]]></status>
       <status type="html" condition="!edit" hrefextend="config"><![CDATA[
-          - <a href="edit_config.html">Edit</a>
+          - <a href="editor/">Edit</a>
         ]]></status>
       <status type="html" condition="edit" hrefextend="all"><![CDATA[
           - <a href=".">normal Mode</a>
