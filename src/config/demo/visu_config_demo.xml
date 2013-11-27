@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="5" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd" max_mobile_screen_width="480">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="5" design="pure" xsi:noNamespaceSchemaLocation="../../visu_config.xsd" max_mobile_screen_width="480">
   <meta>
     <plugins>
       <plugin name="colorchooser"/>
@@ -122,7 +122,9 @@
           - <a href=".?config=demo&forceReload=true">Reload</a>
           - <a href=".">Default Config</a>
         ]]></status>
-      <status type="html" condition="!edit" hrefextend="config"> - &lt;a href="editor/"&gt;Edit&lt;/a&gt;</status>
+      <status type="html" condition="!edit" hrefextend="config"><![CDATA[
+          - <a href="editor/">Edit</a>
+        ]]></status>
       <status type="html" hrefextend="config"><![CDATA[
           - <a href="check_config.php">Check Config</a>
           <div style="float:right;padding-right:0.5em">Version: SVN</div>
