@@ -249,6 +249,9 @@ body br
 	background: none;
 	color: inherit !important;
 }
+.widget.diagram {
+    white-space:nowrap;
+
 .red
 {
   color:#f44;
