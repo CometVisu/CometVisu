@@ -452,6 +452,11 @@ function doRefreshDiagram(diagram, flotoptions, data) {
         type: "GET",
         context: this,
         success: function(data) {
+          rrdloaded++;
+          if (data == null) {
+            return;
+          }
+
           var color = linecolor || options.grid.color;
           var offset = new Date().getTimezoneOffset() * 60 * 1000;
           //TODO: find a better way
@@ -460,7 +465,6 @@ function doRefreshDiagram(diagram, flotoptions, data) {
             data[j][1] = parseFloat( data[j][1][0] )*scaling;
           }
           fulldata[idx] = {label: label, color: color, data: data, yaxis: parseInt(yaxis), lines: {steps: steps, fill: fill}};
-          rrdloaded++;
           if (rrdloaded==content.rrdnum) { 
             if (!diagram.data("plotted")) { // only plot if diagram does not exist
               diagram.data("PLOT", $.plot(diagram, fulldata, options));
