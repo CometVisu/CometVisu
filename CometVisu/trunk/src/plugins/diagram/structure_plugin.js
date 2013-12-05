@@ -432,7 +432,6 @@ function doRefreshDiagram(diagram, flotoptions, data) {
 
   if (s) {
     // init
-    var num = 0;
     var fulldata = [];  
     var rrdloaded = 0;
     $.each(content.rrd, function(index, value) {
@@ -444,7 +443,6 @@ function doRefreshDiagram(diagram, flotoptions, data) {
       var fill = value[5] == "true";
       var scaling = value[6];
       var datasource = value[7];
-      var idx = num;
 
       $.ajax({
         url: templateEngine.backend+"rrdfetch?rrd=" + src + ".rrd&ds=" + datasource + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
@@ -464,7 +462,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
             data[j][0] -= offset;
             data[j][1] = parseFloat( data[j][1][0] )*scaling;
           }
-          fulldata[idx] = {label: label, color: color, data: data, yaxis: parseInt(yaxis), lines: {steps: steps, fill: fill}};
+          fulldata[fulldata.length] = {label: label, color: color, data: data, yaxis: parseInt(yaxis), lines: {steps: steps, fill: fill}};
           if (rrdloaded==content.rrdnum) { 
             if (!diagram.data("plotted")) { // only plot if diagram does not exist
               diagram.data("PLOT", $.plot(diagram, fulldata, options));
@@ -478,7 +476,6 @@ function doRefreshDiagram(diagram, flotoptions, data) {
           }
         }
       });
-      num++;
     });
 
     if (typeof (refresh) != "undefined" && refresh) {
