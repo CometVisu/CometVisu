@@ -21,9 +21,9 @@ $.includeScripts([
 ], templateEngine.pluginLoaded );
 
 VisuDesign_Custom.prototype.addCreator("gauge", {
-    create: function( page, path, element,type ) {
-        var $p = $(page);
-	    var $e = $(element);
+	create: function( element, path, flavour, type ) {
+        var $e = $(element);
+
 		console.log($e);
         // create the main structure
         var ret_val = basicdesign.createDefaultWidget( 'gauge', $e, path, type, this.update );
@@ -38,14 +38,14 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
 		
     	// and fill in widget specific data	
         ret_val.data( {
-		        'type' : $p.attr('type'),
-         'titleString' : $p.attr('titleString'),
-		  'unitString' : $p.attr('unitString'),
-		    'minValue' : $p.attr('minValue'),
-		    'maxValue' : $p.attr('maxValue'),
-          'lcdVisible' : $p.attr('lcdVisible' ) || 'false',
-	            'size' : $p.attr('size'),
-             'format'  : $p.attr('format')
+		        'type' : $e.attr('type'),
+         'titleString' : $e.attr('titleString'),
+		  'unitString' : $e.attr('unitString'),
+		    'minValue' : $e.attr('minValue'),
+		    'maxValue' : $e.attr('maxValue'),
+          'lcdVisible' : $e.attr('lcdVisible' ) || 'false',
+	            'size' : $e.attr('size'),
+             'format'  : $e.attr('format')
         } );	
 		var data = ret_val.data();
 		var titleString = data.titleString;	
@@ -55,7 +55,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
 		var lcdVisible = data.lcdVisible;	
 		var minValue = data.minValue;
 		var maxValue = data.maxValue;
-var address = basicdesign.makeAddressList($p);
+var address = basicdesign.makeAddressList($e);
 console.log("adress=",address);
 	    // create the actor
 		var $actor = $("<canvas id=" + id + "></canvas>");
