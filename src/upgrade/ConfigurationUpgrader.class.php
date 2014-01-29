@@ -477,6 +477,7 @@ class ConfigurationUpgrader {
         foreach ($objElements as $objElementNode) {
         	if ($objElementNode->hasAttribute('type')) {
 				$objElementNode->removeAttribute('type');
+				++$i;
         	}
         }
         $this->log('converted ' . $i . ' \'address\'-nodes');        
@@ -488,7 +489,7 @@ class ConfigurationUpgrader {
     protected function upgrade5To6() {
         $objXPath = new DOMXPath($this->objDOM);
         
-        // remove address' type attributes
+        // change rrd datasource attributes
 		$objElements = $objXPath->query('//rrd');
         $i = 0;
         foreach ($objElements as $objElementNode) {
@@ -496,7 +497,8 @@ class ConfigurationUpgrader {
         		$datasource = $objElementNode->getAttribute('datasource') ;
 				$objElementNode->removeAttribute('datasource');
 				$objElementNode->setAttribute('consolidationFunction', $datasource);
-        	}
+				++$i;
+            }
         }
         $this->log('converted ' . $i . ' \'rrd\'-nodes');        
     }
