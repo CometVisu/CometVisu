@@ -498,7 +498,7 @@ class ConfigurationUpgrader {
 				$objElementNode->setAttribute('consolidationFunction', $datasource);
         	}
         }
-        $this->log('converted ' . $i . ' \'address\'-nodes');        
+        $this->log('converted ' . $i . ' \'rrd\'-nodes');        
     }
 
     /**
