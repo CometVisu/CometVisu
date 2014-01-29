@@ -35,7 +35,7 @@ require_once('../lib/library_version.inc.php');
  * the library-version the upgrader understands
  * @const   integer
  */
-define('UPGRADER_LIBRARY_VERSION', 5);
+define('UPGRADER_LIBRARY_VERSION', 6);
 
 
 /**
