@@ -444,7 +444,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
       var scaling = value[6];
       var datasourceIndex = value[7];
       var consolidationFunction = value[8];
-      if (consolidationFunction < 0) consolidationFunction = 0;
+      if (datasourceIndex < 0) datasourceIndex = 0;
 
       $.ajax({
         url: templateEngine.backend+"rrdfetch?rrd=" + src + ".rrd&ds=" + consolidationFunction + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
@@ -462,7 +462,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
           //TODO: find a better way
           for (var j = 0; j < data.length; j++) {
             data[j][0] -= offset;
-            data[j][1] = parseFloat( data[j][1][consolidationFunction] )*scaling;
+            data[j][1] = parseFloat( data[j][1][datasourceIndex] )*scaling;
           }
           fulldata[fulldata.length] = {label: label, color: color, data: data, yaxis: parseInt(yaxis), lines: {steps: steps, fill: fill}};
           if (rrdloaded==content.rrdnum) { 
