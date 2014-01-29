@@ -78,7 +78,7 @@ function diagram_get_content( page ) {
     var src = this.textContent;
     rrd[ '_'+rrdnum ] = [ src, this.getAttribute('color'), this.getAttribute('label') || src, 
                           axesnames['_'+this.getAttribute('yaxis')] || "1", this.getAttribute('steps') || false, this.getAttribute('fill') || false,
-                          parseFloat(this.getAttribute('scaling')) || 1., this.getAttribute('datasource') || "AVERAGE"];
+                          parseFloat(this.getAttribute('scaling')) || 1., this.getAttribute('datasourceIndex') || 0, this.getAttribute('consolidationFunction') || "AVERAGE"];
     rrdnum ++;
   });
 
@@ -442,10 +442,12 @@ function doRefreshDiagram(diagram, flotoptions, data) {
       var steps = value[4] == "true";
       var fill = value[5] == "true";
       var scaling = value[6];
-      var datasource = value[7];
+      var datasourceIndex = value[7];
+      var consolidationFunction = value[8];
+      if (consolidationFunction < 0) consolidationFunction = 0;
 
       $.ajax({
-        url: templateEngine.backend+"rrdfetch?rrd=" + src + ".rrd&ds=" + datasource + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
+        url: templateEngine.backend+"rrdfetch?rrd=" + src + ".rrd&ds=" + consolidationFunction + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
         dataType: "json",
         type: "GET",
         context: this,
@@ -460,7 +462,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
           //TODO: find a better way
           for (var j = 0; j < data.length; j++) {
             data[j][0] -= offset;
-            data[j][1] = parseFloat( data[j][1][0] )*scaling;
+            data[j][1] = parseFloat( data[j][1][consolidationFunction] )*scaling;
           }
           fulldata[fulldata.length] = {label: label, color: color, data: data, yaxis: parseInt(yaxis), lines: {steps: steps, fill: fill}};
           if (rrdloaded==content.rrdnum) { 

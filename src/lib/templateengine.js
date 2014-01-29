@@ -89,7 +89,7 @@ $(document).ready(function() {
 
 function TemplateEngine( undefined ) {
   var thisTemplateEngine = this;
-  this.libraryVersion = 5;
+  this.libraryVersion = 6;
   this.libraryCheck = true;
   if ($.getUrlVar('libraryCheck')) {
     this.libraryCheck = $.getUrlVar('libraryCheck') != 'false'; // true unless set to false
