@@ -100,6 +100,9 @@ class ConfigurationUpgrader {
     			case 4:
     				$this->upgrade4To5();
     				break;
+    			case 5:
+    				$this->upgrade5To6();
+    				break;
     		}
     		$intVersionCounter++;
     	}
@@ -474,6 +477,25 @@ class ConfigurationUpgrader {
         foreach ($objElements as $objElementNode) {
         	if ($objElementNode->hasAttribute('type')) {
 				$objElementNode->removeAttribute('type');
+        	}
+        }
+        $this->log('converted ' . $i . ' \'address\'-nodes');        
+    }
+
+    /**
+     * do all necessary changes from version 5 to version 6
+     */
+    protected function upgrade5To6() {
+        $objXPath = new DOMXPath($this->objDOM);
+        
+        // remove address' type attributes
+		$objElements = $objXPath->query('//rrd');
+        $i = 0;
+        foreach ($objElements as $objElementNode) {
+            if ($objElementNode->hasAttribute('datasource')) {
+        		$datasource = $objElementNode->getAttribute('datasource') ;
+				$objElementNode->removeAttribute('datasource');
+				$objElementNode->setAttribute('consolidationFunction', $datasource);
         	}
         }
         $this->log('converted ' . $i . ' \'address\'-nodes');        

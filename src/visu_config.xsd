@@ -129,11 +129,12 @@
       </xsd:simpleType>
   </xsd:attribute>
   
-  <xsd:attribute name="datasource">
+  <xsd:attribute name="consolidationFunction">
       <xsd:simpleType>
           <xsd:restriction base="xsd:string">
-              <xsd:enumeration value="MIN" />
               <xsd:enumeration value="AVERAGE" />
+              <xsd:enumeration value="LAST" />
+              <xsd:enumeration value="MIN" />
               <xsd:enumeration value="MAX" />
           </xsd:restriction>
       </xsd:simpleType>
@@ -1044,7 +1045,18 @@
         <xsd:attribute name="scaling" type="xsd:decimal" />
         <xsd:attribute name="steps" type="xsd:boolean" />
         <xsd:attribute name="fill" type="xsd:boolean" />
-        <xsd:attribute ref="datasource" use="optional" />
+        <xsd:attribute name="datasourceIndex" type="xsd:integer" use="optional" default="0" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">If there are multiple datasources in the RRD file this index defines which one to show. Use "rrdtool info" to find the correct index.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Im Falle mehrerer Datenquellen in einer RRD-Datei kann hier der Index der Datenquelle angegeben werden, die angezeigt werden soll. Um den richtigen Index herauszufinden, kann "rrdtool info" verwendet werden.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ref="consolidationFunction" use="optional" default="AVERAGE" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Choose one of the consolidation functions of the RRDTool (see http://rrdtool.org).</xsd:documentation>
+            <xsd:documentation xml:lang="de">Auswählen einer der verfügbaren Consolidation Functions des RRDTools (http://rrdtool.org).</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
