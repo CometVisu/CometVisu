@@ -25,7 +25,9 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         create: function( element, path, flavour, type ) {
         var $e = $(element);
         // create the main structure
-        var ret_val = basicdesign.createDefaultWidget( 'gauge', $e, path, flavour, type, this.update);     
+        var ret_val = basicdesign.createDefaultWidget( 'gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant ) {
+          return [ true, variant ];
+        });     
         var id = "gauge_" + path;
 
         // and fill in widget specific data
@@ -88,7 +90,17 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
     var element = $(this);
     var value = basicdesign.defaultUpdate( e, d, element, true );
 	console.log("value= ",value);
-    if( element.data('radial') && element.data('radial').setValueAnimatedLatest )
-      element.data('radial').setValueAnimatedLatest( value );
+    var variant = element.data( 'address' )[ e.type ][2];
+    switch( variant )
+    {
+      case 'average':
+        if( element.data('radial') && element.data('radial').setValueAnimatedAverage )
+          element.data('radial').setValueAnimatedAverage( value );
+        break;
+        
+      default:
+        if( element.data('radial') && element.data('radial').setValueAnimatedLatest )
+          element.data('radial').setValueAnimatedLatest( value );
+    }
    }
 });
