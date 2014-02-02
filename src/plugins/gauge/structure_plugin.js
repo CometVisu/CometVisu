@@ -24,16 +24,9 @@ $.includeScripts([
 VisuDesign_Custom.prototype.addCreator("gauge", {
         create: function( element, path, flavour, type ) {
         var $e = $(element);
-        var radial = {};
         // create the main structure
         var ret_val = basicdesign.createDefaultWidget( 'gauge', $e, path, flavour, type, this.update);     
-		
-	   function uniqid() {
-            var newDate = new Date;
-            return newDate.getTime();
-        }
-        var id = "gauge_" + uniqid();
-        var radialid = uniqid();
+        var id = "gauge_" + path;
 
         // and fill in widget specific data
         ret_val.data( {
@@ -43,6 +36,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
            'minValue' : $e.attr('minValue') || 0, 
            'maxValue' : $e.attr('maxValue') || 100,
            'lcdVisible' : $e.attr('lcdVisible') || false,
+           radial        : undefined,
            'size' : $e.attr('size') || '150', 
            'format'  : $e.attr('format')
          } );	
@@ -61,30 +55,31 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
 				
         templateEngine.bindActionForLoadingFinished(function() {
-              radial[radialid] = new steelseries[type](id, {
+              var radial = new steelseries[type](id, {
                      titleString : [titleString],
                       unitString : [unitString],
                             size : [size],
                        lcdVisible: [lcdVisible]
               });
               if (type == 'Radial') {
-                   radial[radialid].setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
-                   radial[radialid].setBackgroundColor(steelseries.BackgroundColor.DARK_GRAY);
-                   radial[radialid].setForegroundType(steelseries.ForegroundType.TYPE1);
-                   radial[radialid].setPointerColor(steelseries.ColorDef.RED);
-				   radial[radialid].setPointerType(steelseries.PointerType.TYPE1);
-                   radial[radialid].setMinValue(minValue);
-                   radial[radialid].setMaxValue(maxValue);
-                   radial[radialid].setValueAnimated(10);
+                   radial.setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
+                   radial.setBackgroundColor(steelseries.BackgroundColor.DARK_GRAY);
+                   radial.setForegroundType(steelseries.ForegroundType.TYPE1);
+                   radial.setPointerColor(steelseries.ColorDef.RED);
+                   radial.setPointerType(steelseries.PointerType.TYPE1);
+                   radial.setMinValue(minValue);
+                   radial.setMaxValue(maxValue);
+                   radial.setValueAnimated(10);
               } else if(type == 'WindDirection'){
-                   radial[radialid].setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
-                   radial[radialid].setBackgroundColor(steelseries.BackgroundColor.DARK_GRAY);
-                   radial[radialid].setForegroundType(steelseries.ForegroundType.TYPE1);
-                   radial[radialid].setPointerColor(steelseries.ColorDef.RED);
-                   radial[radialid].setPointerTypeAverage(steelseries.PointerType.TYPE1);
-                   radial[radialid].setValueAnimatedLatest(80);
-                   radial[radialid].setValueAnimatedAverage(90);
+                   radial.setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
+                   radial.setBackgroundColor(steelseries.BackgroundColor.DARK_GRAY);
+                   radial.setForegroundType(steelseries.ForegroundType.TYPE1);
+                   radial.setPointerColor(steelseries.ColorDef.RED);
+                   radial.setPointerTypeAverage(steelseries.PointerType.TYPE1);
+                   radial.setValueAnimatedLatest(80);
+                   radial.setValueAnimatedAverage(90);
               }
+              ret_val.data( 'radial', radial );
 			//  $( '#' + id).css( {"height":"200px", "left":"50%"} );
         });
         return ret_val;	
@@ -93,5 +88,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
     var element = $(this);
     var value = basicdesign.defaultUpdate( e, d, element, true );
 	console.log("value= ",value);
+    if( element.data('radial') && element.data('radial').setValueAnimatedLatest )
+      element.data('radial').setValueAnimatedLatest( value );
    }
 });
