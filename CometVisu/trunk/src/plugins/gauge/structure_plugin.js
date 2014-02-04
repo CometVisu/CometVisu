@@ -1,4 +1,4 @@
-﻿/* structure_custom.js (c) 01/2014 by NetFritz [NetFritz at gmx dot de]
+/* structure_custom.js (c) 01/2014 by NetFritz [NetFritz at gmx dot de]
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -19,7 +19,6 @@ $.includeScripts([
   'plugins/gauge/lib/tween-min.js',
   'plugins/gauge/lib/steelseries-min.js'
 ], templateEngine.pluginLoaded );
-//$.getCSS( 'plugins/gauge/gauge.css' );
 
 VisuDesign_Custom.prototype.addCreator("gauge", {
         create: function( element, path, flavour, type ) {
@@ -32,7 +31,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
 
         // and fill in widget specific data
         ret_val.data( {
-         'type' : $e.attr('type'),
+           'type' : $e.attr('type'),
            'titleString' : $e.attr('titleString') || '', 
            'unitString' : $e.attr('unitString') || '', 
            'minValue' : $e.attr('minValue') || 0, 
@@ -41,7 +40,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
            radial        : undefined,
            'size' : $e.attr('size') || '150', 
            'format'  : $e.attr('format')
-         } );	
+         } );
         var data = ret_val.data();
         var titleString = data.titleString;
         var type = data.type;
@@ -52,16 +51,17 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         var maxValue = data.maxValue;
 
         // create the actor
-        var $actor = $('div class="actor"><div class="value"></div></div><canvas id=' + id + '></canvas>');  
-		ret_val.append( $actor ); 
+        //var $actor = $('div class="actor"><div class="value"></div></div><canvas id=' + id + '></canvas>');  
+        var $actor = $('div class="actor"></div><canvas id=' + id + '></canvas>');		
+        ret_val.append( $actor ); 
         basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
-				
+
         templateEngine.bindActionForLoadingFinished(function() {
               var radial = new steelseries[type](id, {
                      titleString : [titleString],
                       unitString : [unitString],
                             size : [size],
-                       lcdVisible: [lcdVisible]
+                      lcdVisible : [lcdVisible]
               });
               if (type == 'Radial') {
                    radial.setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
@@ -71,25 +71,23 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                    radial.setPointerType(steelseries.PointerType.TYPE1);
                    radial.setMinValue(minValue);
                    radial.setMaxValue(maxValue);
-                   radial.setValueAnimated(10);
+                   //radial.setValueAnimated(1000);
               } else if(type == 'WindDirection'){
                    radial.setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
                    radial.setBackgroundColor(steelseries.BackgroundColor.DARK_GRAY);
                    radial.setForegroundType(steelseries.ForegroundType.TYPE1);
                    radial.setPointerColor(steelseries.ColorDef.RED);
                    radial.setPointerTypeAverage(steelseries.PointerType.TYPE1);
-                   radial.setValueAnimatedLatest(80);
-                   radial.setValueAnimatedAverage(90);
+                   //radial.setValueAnimatedLatest(80);
+                   //radial.setValueAnimatedAverage(90);
               }
               ret_val.data( 'radial', radial );
-			//  $( '#' + id).css( {"height":"200px", "left":"50%"} );
         });
         return ret_val;	
         },
     update: function(e,d) { 
     var element = $(this);
     var value = basicdesign.defaultUpdate( e, d, element, true );
-	console.log("value= ",value);
     var variant = element.data( 'address' )[ e.type ][2];
     switch( variant )
     {
@@ -97,10 +95,12 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         if( element.data('radial') && element.data('radial').setValueAnimatedAverage )
           element.data('radial').setValueAnimatedAverage( value );
         break;
-        
+
       default:
         if( element.data('radial') && element.data('radial').setValueAnimatedLatest )
           element.data('radial').setValueAnimatedLatest( value );
+		if( element.data('radial') && element.data('radial').setValueAnimated )  
+		  element.data('radial').setValueAnimated( value );		  
     }
    }
 });
