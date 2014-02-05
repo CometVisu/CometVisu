@@ -1,3 +1,15 @@
+HEAD
+====
+
+- new plugin: gauge
+- Diagram plugin: Improve usage of RRDs with multiple datasources
+- Bug-fix: #91 Diagram plugin: previews not shown
+- other bugfixes for the diagram plugin
+- little bugfixes
+- updated icons
+- remove external dependencies (SVN feature)
+[changes up to #2060]
+
 0.8.0
 =====
 
