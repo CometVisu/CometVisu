@@ -39,6 +39,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
            'lcdVisible' : $e.attr('lcdVisible') || false,
            radial        : undefined,
            'size' : $e.attr('size') || '150', 
+		  'threshold' : $e.attr('threshold'),  
            'format'  : $e.attr('format')
          } );
         var data = ret_val.data();
@@ -49,6 +50,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         var lcdVisible = data.lcdVisible;
         var minValue = data.minValue;
         var maxValue = data.maxValue;
+		var threshold = data.threshold;
 
         // create the actor
         //var $actor = $('div class="actor"><div class="value"></div></div><canvas id=' + id + '></canvas>');  
@@ -63,6 +65,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                             size : [size],
                       lcdVisible : [lcdVisible]
               });
+			  
               if (type == 'Radial') {
                    radial.setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
                    radial.setBackgroundColor(steelseries.BackgroundColor.DARK_GRAY);
@@ -71,6 +74,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                    radial.setPointerType(steelseries.PointerType.TYPE1);
                    radial.setMinValue(minValue);
                    radial.setMaxValue(maxValue);
+				   radial.setThreshold(threshold);				   
                    //radial.setValueAnimated(1000);
               } else if(type == 'WindDirection'){
                    radial.setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
