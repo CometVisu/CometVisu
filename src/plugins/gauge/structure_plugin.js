@@ -21,7 +21,7 @@ $.includeScripts([
 ], templateEngine.pluginLoaded );
 
 VisuDesign_Custom.prototype.addCreator("gauge", {
-        create: function( element, path, flavour, type ) {
+    create: function( element, path, flavour, type ) {
         var $e = $(element);
         // create the main structure
         var ret_val = basicdesign.createDefaultWidget( 'gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant ) {
@@ -33,15 +33,15 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         ret_val.data( {
            'type' : $e.attr('type'),
            'titleString' : $e.attr('titleString') || '', 
-           'unitString' : $e.attr('unitString') || '', 
-           'minValue' : $e.attr('minValue') || 0, 
-           'maxValue' : $e.attr('maxValue') || 100,
-           'lcdVisible' : $e.attr('lcdVisible') || false,
+           'unitString'  : $e.attr('unitString') || '', 
+           'minValue'    : $e.attr('minValue') || 0, 
+           'maxValue'    : $e.attr('maxValue') || 100,
+           'lcdVisible'  : $e.attr('lcdVisible') || false,
            radial        : undefined,
-           'size' : $e.attr('size') || '150', 
-		  'threshold' : $e.attr('threshold'),  
-           'format'  : $e.attr('format')
-         } );
+           'size'        : $e.attr('size') || '150', 
+		       'threshold'   : $e.attr('threshold'),  
+           'format'      : $e.attr('format')
+        });
         var data = ret_val.data();
         var titleString = data.titleString;
         var type = data.type;
@@ -50,7 +50,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         var lcdVisible = data.lcdVisible;
         var minValue = data.minValue;
         var maxValue = data.maxValue;
-		var threshold = data.threshold;
+        var threshold = data.threshold;
 
         // create the actor
         //var $actor = $('div class="actor"><div class="value"></div></div><canvas id=' + id + '></canvas>');  
@@ -65,7 +65,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                             size : [size],
                       lcdVisible : [lcdVisible]
               });
-			  
+
               if (type == 'Radial') {
                    radial.setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
                    radial.setBackgroundColor(steelseries.BackgroundColor.DARK_GRAY);
@@ -74,7 +74,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                    radial.setPointerType(steelseries.PointerType.TYPE1);
                    radial.setMinValue(minValue);
                    radial.setMaxValue(maxValue);
-				   radial.setThreshold(threshold);				   
+                   radial.setThreshold(threshold);				   
                    //radial.setValueAnimated(1000);
               } else if(type == 'WindDirection'){
                    radial.setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
@@ -88,23 +88,23 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
               ret_val.data( 'radial', radial );
         });
         return ret_val;	
-        },
+    },
     update: function(e,d) { 
-    var element = $(this);
-    var value = basicdesign.defaultUpdate( e, d, element, true );
-    var variant = element.data( 'address' )[ e.type ][2];
-    switch( variant )
-    {
-      case 'average':
-        if( element.data('radial') && element.data('radial').setValueAnimatedAverage )
-          element.data('radial').setValueAnimatedAverage( value );
-        break;
+      var element = $(this);
+      var value = basicdesign.defaultUpdate( e, d, element, true );
+      var variant = element.data( 'address' )[ e.type ][2];
+      switch( variant )
+      {
+        case 'average':
+          if( element.data('radial') && element.data('radial').setValueAnimatedAverage )
+            element.data('radial').setValueAnimatedAverage( value );
+          break;
 
-      default:
-        if( element.data('radial') && element.data('radial').setValueAnimatedLatest )
-          element.data('radial').setValueAnimatedLatest( value );
-		if( element.data('radial') && element.data('radial').setValueAnimated )  
-		  element.data('radial').setValueAnimated( value );		  
-    }
+        default:
+          if( element.data('radial') && element.data('radial').setValueAnimatedLatest )
+            element.data('radial').setValueAnimatedLatest( value );
+          if( element.data('radial') && element.data('radial').setValueAnimated )
+            element.data('radial').setValueAnimated( value );
+      }
    }
 });
