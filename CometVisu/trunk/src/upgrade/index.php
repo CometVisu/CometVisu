@@ -44,6 +44,7 @@ if (LIBRARY_VERSION > UPGRADER_LIBRARY_VERSION) {
 
 
 define('OLD_CONFIG_FILENAME', '../visu_config%s.xml');
+define('DEMO_CONFIG_FILENAME', '../config/demo/visu_config%s.xml');
 define('CONFIG_FILENAME', '../config/visu_config%s.xml');
 define('BACKUP_FILENAME', '../config/backup/visu_config%s-%s.xml');
 
@@ -67,6 +68,10 @@ $strSrcConfigFQFilename = $strConfigFQFilename;
 if (false === file_exists($strConfigFQFilename)) {
   $strSrcConfigFQFilename = realpath(sprintf(OLD_CONFIG_FILENAME, $strConfigCleaned));
   if (false === file_exists($strSrcConfigFQFilename)) {
+    $strSrcConfigFQFilename = realpath(sprintf(DEMO_CONFIG_FILENAME, $strConfigCleaned));
+    if (true === file_exists($strSrcConfigFQFilename)) {
+      exitWithResponse(false, 'demo config should not be upgraded: \'' . $_GET['config'] . '\'.');
+    }
     exitWithResponse(false, 'config-file does not exist \'' . $strConfigFilename. '\'.');
   }
   if (false === @touch($strConfigFilename)) {
