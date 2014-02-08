@@ -1,5 +1,5 @@
-HEAD
-====
+0.8.1
+=====
 
 - new plugin: gauge
 - Diagram plugin: Improve usage of RRDs with multiple datasources
@@ -8,7 +8,6 @@ HEAD
 - little bugfixes
 - updated icons
 - remove external dependencies (SVN feature)
-[changes up to #2060]
 
 0.8.0
 =====
