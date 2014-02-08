@@ -1,0 +1,797 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: CometVisu Client  CometVisu   (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://cometvisu.org/" title="CometVisu">CometVisu</a></h1>
+        <h3>CometVisu Client&nbsp; <span class="subtitle">0.8.1</span></h3>
+        <a href="./index.html" title="CometVisu">CometVisu</a> 
+            &gt; <a href="./module_cometvisuclient.html" title="CometVisu Client">CometVisu Client</a>
+                 &gt; CometVisu 
+                
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <h2>
+                        
+
+                        
+                        
+                            Class <b property="yui:name">CometVisu</b>
+                        <span class="extends">
+                        </span>
+
+                    </h2>
+                    <!-- class tree goes here -->
+                    
+                
+  
+
+                    <div class="summary description" property="yui:description">
+                        Class that handles the communicaton of the client
+                    </div>
+
+                        <div class="section constructor details" rel="yui:constructor" resource="#constructor">
+                        <h3 id="constructor">Constructor</h3>
+                        <div class="content">
+                            <div class="detail">
+                                <strong property="yui:name">CometVisu</strong>
+                                <code>
+                                    (
+  
+                                        
+                                                
+                                                urlPrefix
+                                    )
+                                </code>
+                                <div class="description">
+                                        <dl rel="yui:parameters">
+                                            <dt>Parameters:</dt>
+                                                <dd rel="yui:parameter">
+                                                    <code><span property="yui:name">urlPrefix</span>
+                                                    &lt;<span property="yui:type">String</span>&gt;
+                                                    </code>
+                                                    <span property="yui:description"> The address of the service</span>
+                                                </dd>
+                                        </dl>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div rel="yui:properties" resource="#properties">
+                        <div class="section field details">
+                            <h3 id="properties">Properties</h3>
+                            <div class="content">
+                                    <div class="" rel="yui:property" resource="#property_innerRecolorLoop">
+                                    <h4><a name="property_innerRecolorLoop" property="yui:name">innerRecolorLoop</a>
+                                        - <code><span property="yui:type">object</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            Two versions of a recoloring funtion to work around an Android bug:
+http://stackoverflow.com/questions/14969496/html5-canvas-pixel-manipulation-problems-on-mobile-devices-when-setting-the-alph
+https://code.google.com/p/android/issues/detail?id=17565
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:property" resource="#property_sprintfWrapper">
+                                    <h4><a name="property_sprintfWrapper" property="yui:name">sprintfWrapper</a>
+                                        - <code><span property="yui:type">object</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            Javascript sprintf
+http://www.webtoolkit.info/
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:property" resource="#property_ts">
+                                    <h4><a name="property_ts" property="yui:name">ts</a>
+                                        - <code><span property="yui:type">object</span></code>
+                                    </h4>
+                                    <div class="detail">
+                                        <div class="description" property="yui:description">
+                                            ts is a quirk to fix wrong caching on some Android-tablets/Webkit;
+could maybe selective based on UserAgent but isn't that costly on writes
+                                        </div>
+                                    </div>
+     
+                                        
+
+
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div rel="yui:methods" resource="#methods">
+                        <div class="section method details">
+                            <h3 id="methods">Methods</h3>
+                            <div class="content">
+                                    <div class="" rel="yui:method" resource="#method_appendCanvas">
+                                    <h4>
+                                        <a name="method_appendCanvas">appendCanvas</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">appendCanvas</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Append to the jQuery element a canvas element and return it.
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_beforeSend">
+                                    <h4>
+                                        <a name="method_beforeSend">beforeSend</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">beforeSend</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            manipulates the header of the current ajax query before it is been send to the server
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_buildRequest">
+                                    <h4>
+                                        <a name="method_buildRequest">buildRequest</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">buildRequest</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Build the URL part that contains the addresses and filters
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_doRecolorNonTransparent">
+                                    <h4>
+                                        <a name="method_doRecolorNonTransparent">doRecolorNonTransparent</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">doRecolorNonTransparent</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Do the recoloring based on @param thisIcon and store it in the 
+hash @param thisIconColors.
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_fillCanvas">
+                                    <h4>
+                                        <a name="method_fillCanvas">fillCanvas</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">fillCanvas</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Fill the canvas element @param c with the ImageData. Also resize the 
+canvas at the same time.
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_getOrderedScripts">
+                                    <h4>
+                                        <a name="method_getOrderedScripts">getOrderedScripts</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">getOrderedScripts</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            heavily inspired by: http://stackoverflow.com/questions/13066712/how-to-load-a-list-of-javascript-files-and-call-a-callback-after-all-of-them-are
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_handleError">
+                                    <h4>
+                                        <a name="method_handleError">handleError</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">handleError</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            This function gets called on an error
+FIXME: this should be a prototype, so that the application developer can override it
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_handleRead">
+                                    <h4>
+                                        <a name="method_handleRead">handleRead</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">handleRead</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            This function gets called once the communication is established and session information is available
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_handleSession">
+                                    <h4>
+                                        <a name="method_handleSession">handleSession</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">handleSession</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            This function gets called once the communication is established and session information is available
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_includeScripts">
+                                    <h4>
+                                        <a name="method_includeScripts">includeScripts</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">includeScripts</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Include files on this place. This will be replaced by the content of the
+script during packaging
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_login">
+                                    <h4>
+                                        <a name="method_login">login</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">login</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            This function starts the communication by a login and then runs the
+ongoing communication task
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_readResendHeaderValues">
+                                    <h4>
+                                        <a name="method_readResendHeaderValues">readResendHeaderValues</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">readResendHeaderValues</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            read the header values of a response and stores them to the resendHeaders array
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_recolorNonTransparent">
+                                    <h4>
+                                        <a name="method_recolorNonTransparent">recolorNonTransparent</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">recolorNonTransparent</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Funtion to call for each icon that should be dynamically recolored.
+This will be called for each known URL, so only remember the string but
+don't load the image yet as it might not be needed.
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_restart">
+                                    <h4>
+                                        <a name="method_restart">restart</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">restart</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Restart the read request, e.g. when the watchdog kicks in
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_stop">
+                                    <h4>
+                                        <a name="method_stop">stop</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">stop</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            This function stops an ongoing connection
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_subscribe">
+                                    <h4>
+                                        <a name="method_subscribe">subscribe</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">subscribe</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            Subscribe to the addresses in the parameter
+The second parameter (filter) is optional
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_watchdog">
+                                    <h4>
+                                        <a name="method_watchdog">watchdog</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">watchdog</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            The watchdog to recreate a read request when it stopped somehow
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                                    <div class="" rel="yui:method" resource="#method_write">
+                                    <h4>
+                                        <a name="method_write">write</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">write</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            This function sends a value
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div rel="yui:events" resource="#events">
+
+
+                    </div>
+
+                    <div rel="yui:attributes" resource="#configattributes">
+
+                    </div>
+
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="module_cometvisuclient.html" title="CometVisu Client">CometVisu Client</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="CometVisu.html" title="CometVisu">CometVisu</a></li>
+                                <li class=""><a href="icon.html" title="icon">icon</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="cometvisu-client.js.html" title="cometvisu-client.js">cometvisu-client.js</a></li>
+                                <li class=""><a href="compatibility.js.html" title="compatibility.js">compatibility.js</a></li>
+                                <li class=""><a href="iconhandler.js.html" title="iconhandler.js">iconhandler.js</a></li>
+                                <li class=""><a href="templateengine.js.html" title="templateengine.js">templateengine.js</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="propertyList" class="module">
+                        <h4>Properties</h4>
+                        <ul class="content">        
+                                <li class=""><a href="#property_innerRecolorLoop" title="innerRecolorLoop">innerRecolorLoop</a></li>
+                                <li class=""><a href="#property_sprintfWrapper" title="sprintfWrapper">sprintfWrapper</a></li>
+                                <li class=""><a href="#property_ts" title="ts">ts</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="methodsList" class="module">
+                        <h4>Methods</h4>
+                        <ul class="content">        
+                                <li class=""><a href="#method_appendCanvas" title="appendCanvas">appendCanvas</a></li>
+                                <li class=""><a href="#method_beforeSend" title="beforeSend">beforeSend</a></li>
+                                <li class=""><a href="#method_buildRequest" title="buildRequest">buildRequest</a></li>
+                                <li class=""><a href="#method_doRecolorNonTransparent" title="doRecolorNonTransparent">doRecolorNonTransparent</a></li>
+                                <li class=""><a href="#method_fillCanvas" title="fillCanvas">fillCanvas</a></li>
+                                <li class=""><a href="#method_getOrderedScripts" title="getOrderedScripts">getOrderedScripts</a></li>
+                                <li class=""><a href="#method_handleError" title="handleError">handleError</a></li>
+                                <li class=""><a href="#method_handleRead" title="handleRead">handleRead</a></li>
+                                <li class=""><a href="#method_handleSession" title="handleSession">handleSession</a></li>
+                                <li class=""><a href="#method_includeScripts" title="includeScripts">includeScripts</a></li>
+                                <li class=""><a href="#method_login" title="login">login</a></li>
+                                <li class=""><a href="#method_readResendHeaderValues" title="readResendHeaderValues">readResendHeaderValues</a></li>
+                                <li class=""><a href="#method_recolorNonTransparent" title="recolorNonTransparent">recolorNonTransparent</a></li>
+                                <li class=""><a href="#method_restart" title="restart">restart</a></li>
+                                <li class=""><a href="#method_stop" title="stop">stop</a></li>
+                                <li class=""><a href="#method_subscribe" title="subscribe">subscribe</a></li>
+                                <li class=""><a href="#method_watchdog" title="watchdog">watchdog</a></li>
+                                <li class=""><a href="#method_write" title="write">write</a></li>
+                        </ul>
+                    </div>
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2014 The CometVisu developers (please consult the <a href="../AUTHORS">AUTHORS</a> file) All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "CometVisu.html#method_appendCanvas", "access": "", "host": "CometVisu", "type": "method", "name": "appendCanvas"}, {"url": "CometVisu.html#method_beforeSend", "access": "", "host": "CometVisu", "type": "method", "name": "beforeSend"}, {"url": "CometVisu.html#method_buildRequest", "access": "", "host": "CometVisu", "type": "method", "name": "buildRequest"}, {"url": "CometVisu.html#method_doRecolorNonTransparent", "access": "", "host": "CometVisu", "type": "method", "name": "doRecolorNonTransparent"}, {"url": "CometVisu.html#method_fillCanvas", "access": "", "host": "CometVisu", "type": "method", "name": "fillCanvas"}, {"url": "CometVisu.html#method_getOrderedScripts", "access": "", "host": "CometVisu", "type": "method", "name": "getOrderedScripts"}, {"url": "CometVisu.html#method_handleError", "access": "", "host": "CometVisu", "type": "method", "name": "handleError"}, {"url": "CometVisu.html#method_handleRead", "access": "", "host": "CometVisu", "type": "method", "name": "handleRead"}, {"url": "CometVisu.html#method_handleSession", "access": "", "host": "CometVisu", "type": "method", "name": "handleSession"}, {"url": "CometVisu.html#method_includeScripts", "access": "", "host": "CometVisu", "type": "method", "name": "includeScripts"}, {"url": "CometVisu.html#property_innerRecolorLoop", "access": "", "host": "CometVisu", "type": "property", "name": "innerRecolorLoop"}, {"url": "CometVisu.html#method_login", "access": "", "host": "CometVisu", "type": "method", "name": "login"}, {"url": "CometVisu.html#method_readResendHeaderValues", "access": "", "host": "CometVisu", "type": "method", "name": "readResendHeaderValues"}, {"url": "CometVisu.html#method_recolorNonTransparent", "access": "", "host": "CometVisu", "type": "method", "name": "recolorNonTransparent"}, {"url": "CometVisu.html#method_restart", "access": "", "host": "CometVisu", "type": "method", "name": "restart"}, {"url": "CometVisu.html#property_sprintfWrapper", "access": "", "host": "CometVisu", "type": "property", "name": "sprintfWrapper"}, {"url": "CometVisu.html#method_stop", "access": "", "host": "CometVisu", "type": "method", "name": "stop"}, {"url": "CometVisu.html#method_subscribe", "access": "", "host": "CometVisu", "type": "method", "name": "subscribe"}, {"url": "CometVisu.html#property_ts", "access": "", "host": "CometVisu", "type": "property", "name": "ts"}, {"url": "CometVisu.html#method_watchdog", "access": "", "host": "CometVisu", "type": "method", "name": "watchdog"}, {"url": "CometVisu.html#method_write", "access": "", "host": "CometVisu", "type": "method", "name": "write"}];
+</script>
+</body>
+</html>
