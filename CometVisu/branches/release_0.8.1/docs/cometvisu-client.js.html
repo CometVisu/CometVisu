@@ -1,0 +1,382 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: CometVisu Client   cometvisu-client.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://cometvisu.org/" title="CometVisu">CometVisu</a></h1>
+        <h3>CometVisu Client&nbsp; <span class="subtitle">0.8.1</span></h3>
+        <a href="./index.html" title="CometVisu">CometVisu</a> 
+            &gt; <a href="./module_cometvisuclient.html" title="CometVisu Client">CometVisu Client</a>
+                
+                 &gt; cometvisu-client.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="cm">/* cometvisu.js (c) 2010 by Christian Mayer [CometVisu at ChristianMayer dot de]</span>
+<span class="cm"> *</span>
+<span class="cm"> * This program is free software; you can redistribute it and/or modify it</span>
+<span class="cm"> * under the terms of the GNU General Public License as published by the Free</span>
+<span class="cm"> * Software Foundation; either version 3 of the License, or (at your option)</span>
+<span class="cm"> * any later version.</span>
+<span class="cm"> *</span>
+<span class="cm"> * This program is distributed in the hope that it will be useful, but WITHOUT</span>
+<span class="cm"> * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or</span>
+<span class="cm"> * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for</span>
+<span class="cm"> * more details.</span>
+<span class="cm"> *</span>
+<span class="cm"> * You should have received a copy of the GNU General Public License along</span>
+<span class="cm"> * with this program; if not, write to the Free Software Foundation, Inc.,</span>
+<span class="cm"> * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The JavaScript library that implements the CometVisu protocol.</span>
+<span class="cm"> * @module CometVisu Client</span>
+<span class="cm"> * @title  CometVisu Client</span>
+<span class="cm"> * @reqires jQuery</span>
+<span class="cm">*/</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Class that handles the communicaton of the client</span>
+<span class="cm"> * @class CometVisu</span>
+<span class="cm"> * @constructor foo</span>
+<span class="cm"> * @param {String} urlPrefix The address of the service</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">CometVisu</span><span class="p">(</span> <span class="nx">urlPrefix</span> <span class="p">)</span>
+<span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">thisCometVisu</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">urlPrefix</span> <span class="o">=</span> <span class="p">(</span><span class="kc">null</span> <span class="o">==</span> <span class="nx">urlPrefix</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;&#39;</span> <span class="o">:</span> <span class="nx">urlPrefix</span><span class="p">;</span> <span class="c1">// the address of the service</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">addresses</span> <span class="o">=</span> <span class="p">[];</span>                                   <span class="c1">// the subscribed addresses</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">initialAddresses</span> <span class="o">=</span> <span class="p">[];</span>                            <span class="c1">// the addresses which should be loaded before the subscribed addresses</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">filters</span>   <span class="o">=</span> <span class="p">[];</span>                                   <span class="c1">// the subscribed filters</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">user</span>   <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>                                      <span class="c1">// the current user</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">pass</span>   <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>                                      <span class="c1">// the current password</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">device</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>                                      <span class="c1">// the current device ID</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">running</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>                                  <span class="c1">// is the communication running at the moment?</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">doRestart</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>                                <span class="c1">// are we currently in a restart, e.g. due to the watchdog</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span>     <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>                                  <span class="c1">// the ongoing AJAX request</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">watchdogTimer</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>                                <span class="c1">// in Seconds - the alive check interval of the watchdog</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">maxConnectionAge</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>                            <span class="c1">// in Seconds - restart if last read is older</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">maxDataAge</span>       <span class="o">=</span> <span class="mi">3200</span><span class="p">;</span>                          <span class="c1">// in Seconds - reload all data when last successful read is older </span>
+                                                         <span class="c1">// (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">lastIndex</span>        <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>                            <span class="c1">// index returned by the last request</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">resendHeaders</span> <span class="o">=</span> <span class="p">[];</span>                               <span class="c1">// keep the e.g. atmosphere tracking-id id there is one</span>
+    
+  <span class="k">this</span><span class="p">.</span><span class="nx">setInitialAddresses</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">addresses</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">initialAddresses</span> <span class="o">=</span> <span class="nx">addresses</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="cm">/**</span>
+<span class="cm">   * This function gets called once the communication is established and session information is available</span>
+<span class="cm">   * @method handleSession</span>
+<span class="cm">   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">handleSession</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">json</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">session</span> <span class="o">=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">s</span><span class="p">;</span> 
+    <span class="k">this</span><span class="p">.</span><span class="nx">version</span> <span class="o">=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">v</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">version</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">||</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">version</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="p">)</span> 
+      <span class="nx">alert</span><span class="p">(</span> <span class="s1">&#39;ERROR CometVisu Client: too new protocol version (&#39;</span> <span class="o">+</span> <span class="nx">json</span><span class="p">.</span><span class="nx">v</span> <span class="o">+</span> <span class="s1">&#39;) used!&#39;</span> <span class="p">);</span>
+
+    <span class="c1">// send first request</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">running</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">initialAddresses</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="nx">url</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">urlPrefix</span> <span class="o">+</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="nx">context</span><span class="o">:</span><span class="k">this</span><span class="p">,</span><span class="nx">data</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">buildRequest</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">initialAddresses</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&amp;t=0&#39;</span><span class="p">,</span> <span class="nx">success</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">handleReadStart</span><span class="p">,</span> <span class="nx">beforeSend</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">beforeSend</span><span class="p">}</span> <span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="c1">// old behaviour -&gt; start full query</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="nx">url</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">urlPrefix</span> <span class="o">+</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="nx">context</span><span class="o">:</span><span class="k">this</span><span class="p">,</span><span class="nx">data</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">buildRequest</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&amp;t=0&#39;</span><span class="p">,</span> <span class="nx">success</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">handleRead</span> <span class="p">,</span><span class="nx">error</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">handleError</span><span class="p">,</span> <span class="nx">beforeSend</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">beforeSend</span> <span class="p">}</span> <span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * This function gets called once the communication is established and session information is available</span>
+<span class="cm">   * @method handleRead</span>
+<span class="cm">   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">handleRead</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">json</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">json</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">)</span> <span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">running</span> <span class="p">)</span>
+      <span class="p">{</span> <span class="c1">// retry initial request</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span> <span class="p">{</span><span class="nx">url</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">urlPrefix</span> <span class="o">+</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="nx">context</span><span class="o">:</span><span class="k">this</span><span class="p">,</span><span class="nx">data</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">buildRequest</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&amp;t=0&#39;</span><span class="p">,</span> <span class="nx">success</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">handleRead</span> <span class="p">,</span><span class="nx">error</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">handleError</span><span class="p">,</span> <span class="nx">beforeSend</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">beforeSend</span> <span class="p">}</span> <span class="p">);</span>
+        <span class="nx">watchdog</span><span class="p">.</span><span class="nx">ping</span><span class="p">();</span>
+      <span class="p">}</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="nx">json</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">doRestart</span> <span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">lastIndex</span> <span class="o">=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">i</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">data</span>       <span class="o">=</span> <span class="nx">json</span><span class="p">.</span><span class="nx">d</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">readResendHeaderValues</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span> <span class="nx">data</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">running</span> <span class="p">)</span>
+    <span class="p">{</span> <span class="c1">// keep the requests going</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span> <span class="p">{</span><span class="nx">url</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">urlPrefix</span> <span class="o">+</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="nx">context</span><span class="o">:</span><span class="k">this</span><span class="p">,</span><span class="nx">data</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">buildRequest</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&amp;i=&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">,</span> <span class="nx">success</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">handleRead</span> <span class="p">,</span><span class="nx">error</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">handleError</span><span class="p">,</span> <span class="nx">beforeSend</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">beforeSend</span><span class="p">}</span> <span class="p">);</span>
+      <span class="nx">watchdog</span><span class="p">.</span><span class="nx">ping</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  
+  <span class="k">this</span><span class="p">.</span><span class="nx">handleReadStart</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">json</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">json</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">)</span> <span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">running</span> <span class="p">)</span>
+      <span class="p">{</span> <span class="c1">// retry initial request</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="nx">url</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">urlPrefix</span> <span class="o">+</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="nx">context</span><span class="o">:</span><span class="k">this</span><span class="p">,</span><span class="nx">data</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">buildRequest</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">startPageAddresses</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&amp;t=0&#39;</span><span class="p">,</span> <span class="nx">success</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">handleReadStart</span><span class="p">,</span> <span class="nx">beforeSend</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">beforeSend</span><span class="p">}</span> <span class="p">);</span>
+        <span class="nx">watchdog</span><span class="p">.</span><span class="nx">ping</span><span class="p">();</span>
+      <span class="p">}</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span> <span class="nx">json</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">doRestart</span>  <span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">readResendHeaderValues</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span> <span class="nx">json</span><span class="p">.</span><span class="nx">d</span> <span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">running</span> <span class="p">)</span>
+    <span class="p">{</span> <span class="c1">// keep the requests going</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="nx">url</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">urlPrefix</span> <span class="o">+</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="nx">context</span><span class="o">:</span><span class="k">this</span><span class="p">,</span><span class="nx">data</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">buildRequest</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;&amp;t=0&#39;</span><span class="p">,</span> <span class="nx">success</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">handleRead</span> <span class="p">,</span><span class="nx">error</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">handleError</span><span class="p">,</span> <span class="nx">beforeSend</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">beforeSend</span><span class="p">}</span> <span class="p">);</span>
+      <span class="nx">watchdog</span><span class="p">.</span><span class="nx">ping</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * This function gets called on an error</span>
+<span class="cm">   * FIXME: this should be a prototype, so that the application developer can override it</span>
+<span class="cm">   * @method handleError</span>
+<span class="cm">   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">handleError</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span><span class="nx">str</span><span class="p">,</span><span class="nx">excptObj</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">running</span> <span class="o">&amp;&amp;</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">!=</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">doRestart</span> <span class="o">&amp;&amp;</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">!==</span><span class="mi">0</span> <span class="p">)</span> <span class="c1">// ignore error when connection is irrelevant</span>
+    <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">readyState</span> <span class="o">=</span> <span class="s1">&#39;UNKNOWN&#39;</span><span class="p">;</span>
+      <span class="k">switch</span><span class="p">(</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span> <span class="p">)</span>
+      <span class="p">{</span>
+        <span class="k">case</span> <span class="mi">0</span><span class="o">:</span> <span class="nx">readyState</span> <span class="o">=</span> <span class="s1">&#39;UNINITIALIZED&#39;</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="nx">readyState</span> <span class="o">=</span> <span class="s1">&#39;LOADING&#39;</span>      <span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">2</span><span class="o">:</span> <span class="nx">readyState</span> <span class="o">=</span> <span class="s1">&#39;LOADED&#39;</span>       <span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">3</span><span class="o">:</span> <span class="nx">readyState</span> <span class="o">=</span> <span class="s1">&#39;INTERACTIVE&#39;</span>  <span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="mi">4</span><span class="o">:</span> <span class="nx">readyState</span> <span class="o">=</span> <span class="s1">&#39;COMPLETED&#39;</span>    <span class="p">;</span> <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Error! Type: &quot;&#39;</span><span class="o">+</span><span class="nx">str</span><span class="o">+</span><span class="s1">&#39;&quot; ExceptionObject: &quot;&#39;</span><span class="o">+</span><span class="nx">excptObj</span><span class="o">+</span><span class="s1">&#39;&quot; readyState: &#39;</span><span class="o">+</span><span class="nx">readyState</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="cm">/**</span>
+<span class="cm">  * manipulates the header of the current ajax query before it is been send to the server</span>
+<span class="cm">  */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">beforeSend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">xhr</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">headerName</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">resendHeaders</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">resendHeaders</span><span class="p">[</span><span class="nx">headerName</span><span class="p">]</span><span class="o">!=</span><span class="kc">undefined</span><span class="p">)</span>
+        <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="nx">headerName</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">resendHeaders</span><span class="p">[</span><span class="nx">headerName</span><span class="p">]);</span>
+   <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="cm">/**</span>
+<span class="cm">  * read the header values of a response and stores them to the resendHeaders array</span>
+<span class="cm">  * @method readResendHeaderValues</span>
+<span class="cm">  */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">readResendHeaderValues</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">headerName</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">resendHeaders</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">resendHeaders</span><span class="p">[</span><span class="nx">headerName</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">getResponseHeader</span><span class="p">(</span><span class="nx">headerName</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Build the URL part that contains the addresses and filters</span>
+<span class="cm">   * @method buildRequest</span>
+<span class="cm">   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">buildRequest</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">addresses</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="nx">addresses</span> <span class="o">=</span> <span class="nx">addresses</span> <span class="o">?</span> <span class="nx">addresses</span> <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">addresses</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">requestAddresses</span> <span class="o">=</span> <span class="p">(</span><span class="nx">addresses</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="o">?</span><span class="s1">&#39;a=&#39;</span> <span class="o">+</span> <span class="nx">addresses</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span> <span class="s1">&#39;&amp;a=&#39;</span> <span class="p">)</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">requestFilters</span>   <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">filters</span><span class="p">.</span><span class="nx">length</span>  <span class="p">)</span><span class="o">?</span><span class="s1">&#39;f=&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">filters</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span>   <span class="s1">&#39;&amp;f=&#39;</span> <span class="p">)</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="s1">&#39;s=&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">session</span> <span class="o">+</span> <span class="s1">&#39;&amp;&#39;</span> <span class="o">+</span> <span class="nx">requestAddresses</span> <span class="o">+</span> <span class="p">(</span> <span class="p">(</span><span class="nx">addresses</span><span class="p">.</span><span class="nx">length</span><span class="o">&amp;&amp;</span><span class="k">this</span><span class="p">.</span><span class="nx">filters</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="o">?</span><span class="s1">&#39;&amp;&#39;</span><span class="o">:</span><span class="s1">&#39;&#39;</span> <span class="p">)</span> <span class="o">+</span> <span class="nx">requestFilters</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * Subscribe to the addresses in the parameter</span>
+<span class="cm">   * The second parameter (filter) is optional</span>
+<span class="cm">   * @method subscribe</span>
+<span class="cm">   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">subscribe</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">addresses</span><span class="p">,</span> <span class="nx">filters</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">startCommunication</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">addresses</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// start when addresses were empty</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">addresses</span><span class="o">=</span> <span class="nx">addresses</span> <span class="o">?</span> <span class="nx">addresses</span> <span class="o">:</span> <span class="p">[];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">filters</span>   <span class="o">=</span> <span class="nx">filters</span> <span class="o">?</span> <span class="nx">filters</span> <span class="o">:</span> <span class="p">[]</span>  <span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">addresses</span><span class="p">.</span><span class="nx">length</span> <span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>             <span class="c1">// stop when new addresses are empty</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="nx">startCommunication</span> <span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">login</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * This function starts the communication by a login and then runs the</span>
+<span class="cm">   * ongoing communication task</span>
+<span class="cm">   * @method login</span>
+<span class="cm">   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">login</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="k">if</span><span class="p">(</span> <span class="s1">&#39;&#39;</span> <span class="o">!=</span> <span class="k">this</span><span class="p">.</span><span class="nx">user</span>   <span class="p">)</span> <span class="nx">request</span><span class="p">.</span><span class="nx">u</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="s1">&#39;&#39;</span> <span class="o">!=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pass</span>   <span class="p">)</span> <span class="nx">request</span><span class="p">.</span><span class="nx">p</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pass</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="s1">&#39;&#39;</span> <span class="o">!=</span> <span class="k">this</span><span class="p">.</span><span class="nx">device</span> <span class="p">)</span> <span class="nx">request</span><span class="p">.</span><span class="nx">d</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">device</span><span class="p">;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span> <span class="p">{</span><span class="nx">url</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">urlPrefix</span> <span class="o">+</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span><span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="nx">context</span><span class="o">:</span><span class="k">this</span><span class="p">,</span><span class="nx">data</span><span class="o">:</span><span class="nx">request</span><span class="p">,</span> <span class="nx">success</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">handleSession</span><span class="p">}</span> <span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * This function stops an ongoing connection</span>
+<span class="cm">   * @method stop</span>
+<span class="cm">   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">stop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">running</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">abort</span> <span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">abort</span><span class="p">();</span>
+    <span class="c1">//alert(&#39;this.stop&#39;);</span>
+  <span class="p">};</span>
+
+  <span class="cm">/**</span>
+<span class="cm">   * This function sends a value</span>
+<span class="cm">   * @method write</span>
+<span class="cm">   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">write</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">address</span><span class="p">,</span> <span class="nx">value</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="cm">/**</span>
+<span class="cm">     * ts is a quirk to fix wrong caching on some Android-tablets/Webkit;</span>
+<span class="cm">     * could maybe selective based on UserAgent but isn&#39;t that costly on writes</span>
+<span class="cm">     */</span>
+    <span class="kd">var</span> <span class="nx">ts</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="s1">&#39;a=&#39;</span> <span class="o">+</span> <span class="nx">address</span> <span class="o">+</span> <span class="s1">&#39;&amp;v=&#39;</span> <span class="o">+</span> <span class="nx">value</span> <span class="o">+</span> <span class="s1">&#39;&amp;ts=&#39;</span> <span class="o">+</span> <span class="nx">ts</span><span class="p">;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span> <span class="p">{</span><span class="nx">url</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">urlPrefix</span> <span class="o">+</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="nx">context</span><span class="o">:</span><span class="k">this</span><span class="p">,</span><span class="nx">data</span><span class="o">:</span><span class="nx">request</span><span class="p">}</span> <span class="p">);</span>
+  <span class="p">}</span>
+  
+  <span class="cm">/**</span>
+<span class="cm">   * Restart the read request, e.g. when the watchdog kicks in</span>
+<span class="cm">   * @method restart</span>
+<span class="cm">   */</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">restart</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">doRestart</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">abort</span> <span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">abort</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">handleRead</span><span class="p">();</span> <span class="c1">// restart</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">doRestart</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="cm">/**</span>
+<span class="cm">   * The watchdog to recreate a read request when it stopped somehow</span>
+<span class="cm">   * @method watchdog</span>
+<span class="cm">   */</span>
+  <span class="kd">var</span> <span class="nx">watchdog</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">last</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">hardLast</span> <span class="o">=</span> <span class="nx">last</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">aliveCheckFunction</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="kd">var</span> <span class="nx">now</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+      <span class="k">if</span><span class="p">(</span> <span class="nx">now</span> <span class="o">-</span> <span class="nx">last</span> <span class="o">&lt;</span> <span class="nx">thisCometVisu</span><span class="p">.</span><span class="nx">maxConnectionAge</span> <span class="o">*</span> <span class="mi">1000</span> <span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span> <span class="nx">now</span> <span class="o">-</span> <span class="nx">hardLast</span> <span class="o">&gt;</span> <span class="nx">thisCometVisu</span><span class="p">.</span><span class="nx">maxDataAge</span> <span class="o">*</span> <span class="mi">1000</span> <span class="p">)</span> <span class="nx">thisCometVisu</span><span class="p">.</span><span class="nx">lastIndex</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// reload all data</span>
+      <span class="nx">thisCometVisu</span><span class="p">.</span><span class="nx">restart</span><span class="p">();</span>
+      <span class="nx">last</span> <span class="o">=</span> <span class="nx">now</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="kd">var</span> <span class="nx">aliveHandler</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span> <span class="nx">aliveCheckFunction</span><span class="p">,</span> <span class="nx">thisCometVisu</span><span class="p">.</span><span class="nx">watchdogTimer</span> <span class="o">*</span> <span class="mi">1000</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">ping</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="k">delete</span> <span class="nx">last</span><span class="p">;</span>
+        <span class="nx">last</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">thisCometVisu</span><span class="p">.</span><span class="nx">doRestart</span> <span class="p">)</span>
+        <span class="p">{</span>
+          <span class="k">delete</span> <span class="nx">hardLast</span><span class="p">;</span>
+          <span class="nx">hardLast</span> <span class="o">=</span> <span class="nx">last</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+  <span class="p">})();</span>
+<span class="p">};</span>
+
+<span class="nx">CometVisu</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">update</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">json</span> <span class="p">)</span> <span class="p">{};</span>
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="module_cometvisuclient.html" title="CometVisu Client">CometVisu Client</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="CometVisu.html" title="CometVisu">CometVisu</a></li>
+                                <li class=""><a href="icon.html" title="icon">icon</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="cometvisu-client.js.html" title="cometvisu-client.js">cometvisu-client.js</a></li>
+                                <li class=""><a href="compatibility.js.html" title="compatibility.js">compatibility.js</a></li>
+                                <li class=""><a href="iconhandler.js.html" title="iconhandler.js">iconhandler.js</a></li>
+                                <li class=""><a href="templateengine.js.html" title="templateengine.js">templateengine.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2014 The CometVisu developers (please consult the <a href="../AUTHORS">AUTHORS</a> file) All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "CometVisu.html#method_appendCanvas", "access": "", "host": "CometVisu", "type": "method", "name": "appendCanvas"}, {"url": "icon.html#method_applyColumnWidths", "access": "", "host": "icon", "type": "method", "name": "applyColumnWidths"}, {"url": "CometVisu.html#method_beforeSend", "access": "", "host": "CometVisu", "type": "method", "name": "beforeSend"}, {"url": "CometVisu.html#method_buildRequest", "access": "", "host": "CometVisu", "type": "method", "name": "buildRequest"}, {"url": "icon.html#method_create", "access": "", "host": "icon", "type": "method", "name": "create"}, {"url": "icon.html#property_db", "access": "private", "host": "icon", "type": "property", "name": "db"}, {"url": "icon.html#method_debug", "access": "", "host": "icon", "type": "method", "name": "debug"}, {"url": "icon.html#method_deleteCommand", "access": "", "host": "icon", "type": "method", "name": "deleteCommand"}, {"url": "CometVisu.html#method_doRecolorNonTransparent", "access": "", "host": "CometVisu", "type": "method", "name": "doRecolorNonTransparent"}, {"url": "icon.html#method_fadeNavbar", "access": "", "host": "icon", "type": "method", "name": "fadeNavbar"}, {"url": "CometVisu.html#method_fillCanvas", "access": "", "host": "CometVisu", "type": "method", "name": "fillCanvas"}, {"url": "icon.html#method_focus", "access": "", "host": "icon", "type": "method", "name": "focus"}, {"url": "icon.html#method_get", "access": "", "host": "icon", "type": "method", "name": "get"}, {"url": "icon.html#method_getAvailableHeight", "access": "", "host": "icon", "type": "method", "name": "getAvailableHeight"}, {"url": "icon.html#method_getAvailableWidth", "access": "", "host": "icon", "type": "method", "name": "getAvailableWidth"}, {"url": "icon.html#method_getNextMappedValue", "access": "", "host": "icon", "type": "method", "name": "getNextMappedValue"}, {"url": "CometVisu.html#method_getOrderedScripts", "access": "", "host": "CometVisu", "type": "method", "name": "getOrderedScripts"}, {"url": "icon.html#method_getPluginDependency", "access": "", "host": "icon", "type": "method", "name": "getPluginDependency"}, {"url": "CometVisu.html#method_handleError", "access": "", "host": "CometVisu", "type": "method", "name": "handleError"}, {"url": "icon.html#method_handleMessage", "access": "", "host": "icon", "type": "method", "name": "handleMessage"}, {"url": "CometVisu.html#method_handleRead", "access": "", "host": "CometVisu", "type": "method", "name": "handleRead"}, {"url": "CometVisu.html#method_handleSession", "access": "", "host": "CometVisu", "type": "method", "name": "handleSession"}, {"url": "CometVisu.html#method_includeScripts", "access": "", "host": "CometVisu", "type": "method", "name": "includeScripts"}, {"url": "icon.html#method_initializeNavbars", "access": "", "host": "icon", "type": "method", "name": "initializeNavbars"}, {"url": "CometVisu.html#property_innerRecolorLoop", "access": "", "host": "CometVisu", "type": "property", "name": "innerRecolorLoop"}, {"url": "icon.html#method_insert", "access": "", "host": "icon", "type": "method", "name": "insert"}, {"url": "icon.html#method_list", "access": "", "host": "icon", "type": "method", "name": "list"}, {"url": "CometVisu.html#method_login", "access": "", "host": "CometVisu", "type": "method", "name": "login"}, {"url": "icon.html#method_lookupWidget", "access": "", "host": "icon", "type": "method", "name": "lookupWidget"}, {"url": "icon.html#method_navbarSetSize", "access": "", "host": "icon", "type": "method", "name": "navbarSetSize"}, {"url": "icon.html#property_pathRegEx", "access": "", "host": "icon", "type": "property", "name": "pathRegEx"}, {"url": "icon.html#method_pluginLoaded", "access": "", "host": "icon", "type": "method", "name": "pluginLoaded"}, {"url": "icon.html#method_read", "access": "", "host": "icon", "type": "method", "name": "read"}, {"url": "CometVisu.html#method_readResendHeaderValues", "access": "", "host": "CometVisu", "type": "method", "name": "readResendHeaderValues"}, {"url": "CometVisu.html#method_recolorNonTransparent", "access": "", "host": "CometVisu", "type": "method", "name": "recolorNonTransparent"}, {"url": "icon.html#method_refreshAction", "access": "", "host": "icon", "type": "method", "name": "refreshAction"}, {"url": "CometVisu.html#method_restart", "access": "", "host": "CometVisu", "type": "method", "name": "restart"}, {"url": "icon.html#method_select", "access": "", "host": "icon", "type": "method", "name": "select"}, {"url": "CometVisu.html#property_sprintfWrapper", "access": "", "host": "CometVisu", "type": "property", "name": "sprintfWrapper"}, {"url": "CometVisu.html#method_stop", "access": "", "host": "CometVisu", "type": "method", "name": "stop"}, {"url": "CometVisu.html#method_subscribe", "access": "", "host": "CometVisu", "type": "method", "name": "subscribe"}, {"url": "CometVisu.html#property_ts", "access": "", "host": "CometVisu", "type": "property", "name": "ts"}, {"url": "icon.html#method_updatePageParts", "access": "", "host": "icon", "type": "method", "name": "updatePageParts"}, {"url": "CometVisu.html#method_watchdog", "access": "", "host": "CometVisu", "type": "method", "name": "watchdog"}, {"url": "CometVisu.html#method_write", "access": "", "host": "CometVisu", "type": "method", "name": "write"}, {"url": "icon.html#method_write", "access": "", "host": "icon", "type": "method", "name": "write"}];
+</script>
+</body>
+</html>
