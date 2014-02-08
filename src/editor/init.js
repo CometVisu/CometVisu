@@ -121,8 +121,8 @@ var GlobalConfigurationElementEventListener = {
  */
 $.extend({
   getUrlVars: function(){
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    var vars = [], hash, href = window.location.href;
+    var hashes = href.slice(href.indexOf('?') + 1, href.indexOf('#')).split('&');
     for(var i = 0; i < hashes.length; i++)
     {
       hash = hashes[i].split('=');
