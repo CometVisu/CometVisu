@@ -220,7 +220,7 @@ $.extend({
   // and http://stackoverflow.com/questions/3498647/jquery-loading-css-on-demand-callback-if-done/17858428#17858428
   // NOTE and FIXME: It should be enough to count the prending getCSS calls and 
   // do only a final resize event
-  getCSS: function( url, parameters ) {
+  getCSS: function( url, parameters, callback ) {
     $( '<link>', 
         $.extend( parameters, {
          rel   : 'stylesheet', 
@@ -228,7 +228,11 @@ $.extend({
          'href': $.ajaxSettings.cache ? url : url + '?_=' + (new Date()).valueOf()
        })
     ).on( 'load', function() {
-      $(window).trigger( 'resize' );
+      if( callback )
+      {
+        callback();
+      } else
+        $(window).trigger( 'resize' );
     }).appendTo( 'head' );
   }
 });
