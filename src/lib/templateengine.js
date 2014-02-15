@@ -42,6 +42,8 @@ $(document).ready(function() {
           '<p>You can run the <a href="./upgrade/index.php?config=' + configSuffix + '">Configuration Upgrader</a>.</br>' +
           'Or you can start without upgrading <a href="' + link + '">with possible configuration problems</a>.</p>';
         break;
+      default:
+        message += 'Unhandled error of type "' + textStatus + '"';
     }
     $('#loading').html(message);
   };
@@ -95,9 +97,15 @@ function TemplateEngine( undefined ) {
     this.libraryCheck = $.getUrlVar('libraryCheck') != 'false'; // true unless set to false
   }
 
-  this.pageReady = false;
-  this.pluginsReady = false;
-  this.designReady = false;
+  this.loadReady = { page: false, plugins: false };
+  this.delaySetup = function( id )
+  {
+    thisTemplateEngine.loadReady[ id ] = false;
+    return function() {
+      delete thisTemplateEngine.loadReady[ id ];
+      thisTemplateEngine.setup_page();
+    };
+  };
   this.design = new VisuDesign_Custom();
   this.pagePartsHandler = new PagePartsHandler();
   
@@ -589,33 +597,32 @@ function TemplateEngine( undefined ) {
     if ($('pages', xml).attr('max_mobile_screen_width'))
       thisTemplateEngine.maxMobileScreenWidth = $('pages', xml).attr('max_mobile_screen_width');
 
-    $.getCSS( 'designs/designglobals.css' );
+    $.getCSS( 'designs/designglobals.css', {}, thisTemplateEngine.delaySetup('designglobals') );
     if (thisTemplateEngine.clientDesign) {
-      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css' );
+      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css', {}, thisTemplateEngine.delaySetup('basic') );
       if (!thisTemplateEngine.forceNonMobile) {
         $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/mobile.css',
             thisTemplateEngine.forceMobile ? {} : 
-            {media: 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)'} );
+            {media: 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)'}, thisTemplateEngine.delaySetup('mobile') );
       }
-      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css' );
-      $.getOrderedScripts( ['designs/' + thisTemplateEngine.clientDesign + '/design_setup.js'],
-          function() {
-        thisTemplateEngine.designReady = true;
-        thisTemplateEngine.setup_page();
-      });
+      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css', {}, thisTemplateEngine.delaySetup('custom') );
+      $.getOrderedScripts( 
+        ['designs/' + thisTemplateEngine.clientDesign + '/design_setup.js'],
+        thisTemplateEngine.delaySetup('design')
+      );
     }
 
     // start with the plugins
-    var pluginsToLoad = [];
     $('meta > plugins plugin', xml).each(function(i) {
       pluginsToLoadCount++;
-      $.getOrderedScripts( ['plugins/' + $(this).attr('name') + '/structure_plugin.js'] );
+      var name = $(this).attr('name');
+      $.getOrderedScripts( 
+        ['plugins/' + name + '/structure_plugin.js'],
+        thisTemplateEngine.delaySetup( 'plugin_' + name )
+      );
     });
-    if (pluginsToLoadCount==0) {
-      // there are no plugins to load
-      thisTemplateEngine.pluginsReady = true;
-      thisTemplateEngine.setup_page();
-    }
+    if( 0 == pluginsToLoadCount )
+      delete thisTemplateEngine.loadReady.plugins;
 
     // then the icons
     $('meta > icons icon-definition', xml).each(function(i) {
@@ -750,7 +757,7 @@ function TemplateEngine( undefined ) {
       $('.footer').html($('.footer').html() + text);
     });
 
-    thisTemplateEngine.pageReady = true;
+    delete thisTemplateEngine.loadReady.page;
     thisTemplateEngine.setup_page();
   };
   
@@ -799,7 +806,7 @@ function TemplateEngine( undefined ) {
     // and now setup the pages
     
     // check if the page and the plugins are ready now
-    if( !this.pageReady || !this.pluginsReady || !this.designReady)
+    for( var key in this.loadReady )  // test for emptines
       return; // we'll be called again...
     
     var page = $('pages > page', xml)[0]; // only one page element allowed...
@@ -1297,7 +1304,7 @@ function TemplateEngine( undefined ) {
   this.getPluginDependency = function( url ){
     $.getScriptSync( url );
   }
-  
+
   /**
    * This has to be called by a plugin once it was loaded.
    */
@@ -1305,7 +1312,7 @@ function TemplateEngine( undefined ) {
     pluginsToLoadCount--;
     if( 0 == pluginsToLoadCount )
     {
-      thisTemplateEngine.pluginsReady = true;
+      delete thisTemplateEngine.loadReady.plugins;
       thisTemplateEngine.setup_page();
     }
   }
