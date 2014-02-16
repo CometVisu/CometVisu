@@ -15,6 +15,14 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+hueToRGB = function (m1, m2, h) {
+    h = (h < 0) ? h + 1 : ((h > 1) ? h - 1 : h);
+    if (h * 6 < 1) return m1 + (m2 - m1) * h * 6;
+    if (h * 2 < 1) return m2;
+    if (h * 3 < 2) return m1 + (m2 - m1) * (0.66666 - h) * 6;
+    return m1;
+  };
+
 /**
  * This class defines the default transforms: encode: transform JavaScript to
  * bus value decode: transform bus to JavaScript value
@@ -81,6 +89,39 @@ addTransform('OH', {
     },
     decode : function(str) {
       return str;
+    },
+  },
+  'color' : {
+    name : "OH_Color",
+    encode : function(rgb) {
+      var min, max, delta, h, s, l;
+      var r = rgb[0]/100, g = rgb[1]/100, b = rgb[2]/100;
+      console.log(rgb);
+      min = Math.min(r, Math.min(g, b));
+      max = Math.max(r, Math.max(g, b));
+      delta = max - min;
+      l = max;
+      s = delta/l;
+      h = 0;
+      if (delta > 0) {
+        if (max == r && max != g) h += (g - b) / delta;
+        if (max == g && max != b) h += (2 + (b - r) / delta);
+        if (max == b && max != r) h += (4 + (r - g) / delta);
+        h /= 6;
+      }
+      return [h*360, s*100, l*100];
+    },
+    decode : function(hsb) {
+      var m1, m2;
+      var h = hsb[0]/360, s = hsb[1]/100, b = hsb[2]/100;
+      console.log("HSB: "+hsb);
+      // convert from hsb to hsl
+      var l = 0.5*b*(2-s);
+      m2 = (l <= 0.5) ? l * (s + 1) : l + s - l*s;
+      m1 = l * 2 - m2;
+      return [hueToRGB(m1, m2, h+0.33333),
+          hueToRGB(m1, m2, h),
+          hueToRGB(m1, m2, h-0.33333)];
     },
   },
 });
