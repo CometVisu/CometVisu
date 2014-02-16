@@ -90,6 +90,16 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                   modified = true;
                 }
                 break;
+              case 'rgb':
+                var v = Transform[address[addr][0]].encode( [r,g,b] );
+                var b = Transform[address[addr][0]].encode( [br,bg,bb] );
+                console.log("Write-Value: "+v);
+                if( v[0] != b[0] || v[1] != b[1] || v[2] != b[2] )
+                {
+                  templateEngine.visu.write( addr.substr(1), v );
+                  modified = true;
+                }
+                break;
             }
           }
 
@@ -117,6 +127,9 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
           break;
         case 'b':
           $actor.bind( addr, this.update_b );
+          break;
+        case 'rgb':
+          $actor.bind( addr, this.update_rgb );
           break;
       }
     }
@@ -155,6 +168,17 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
     color = color.substring(0,5) +
             toHex( value*255/100 )+
             color.substring(7);
+    jQuery.farbtastic( element ).setColor( color );
+  },
+  update_rgb: function( e, data ) { 
+    var element = $(this);
+    var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
+    element.data( 'bus_r', value[0] );
+    element.data( 'bus_g', value[1] );
+    element.data( 'bus_b', value[2] );
+    function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
+    console.log("Value "+value);
+    var color = '#'+toHex( value[0]*255/100 )+toHex( value[1]*255/100 )+toHex( value[2]*255/100 );
     jQuery.farbtastic( element ).setColor( color );
   }
 });
