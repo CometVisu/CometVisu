@@ -558,6 +558,7 @@
     <xsd:attribute name="size" type="dimension" use="optional" />
 	<xsd:attribute name="threshold" type="dimension" use="optional" />
     <xsd:attribute name="lcdVisible" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="trendVisible" type="xsd:boolean" use="optional" />	
 	<xsd:attribute ref="format" use="optional" />
   </xsd:complexType>
   
