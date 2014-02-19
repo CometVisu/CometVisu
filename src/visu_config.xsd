@@ -553,13 +553,13 @@
     </xsd:attribute>
     <xsd:attribute name="titleString" type="xsd:string" use="optional" />
     <xsd:attribute name="unitString" type="xsd:string" use="optional" />
-    <xsd:attribute name="minValue" type="dimension" use="optional" />
-    <xsd:attribute name="maxValue" type="dimension" use="optional" />
-    <xsd:attribute name="size" type="dimension" use="optional" />
-	<xsd:attribute name="threshold" type="dimension" use="optional" />
+    <xsd:attribute name="minValue" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="maxValue" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="size" type="xsd:decimal" use="optional" />
+	<xsd:attribute name="threshold" type="xsd:decimal" use="optional" />
     <xsd:attribute name="lcdVisible" type="xsd:boolean" use="optional" />
     <xsd:attribute name="trendVisible" type="xsd:boolean" use="optional" />	
-	<xsd:attribute ref="format" use="optional" />
+	<xsd:attribute name="lcdDecimals" type="xsd:nonNegativeInteger" use="optional" />
   </xsd:complexType>
   
   <!-- if you add a new widget, you need to list it here -->
