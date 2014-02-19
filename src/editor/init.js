@@ -122,7 +122,11 @@ var GlobalConfigurationElementEventListener = {
 $.extend({
   getUrlVars: function(){
     var vars = [], hash, href = window.location.href;
-    var hashes = href.slice(href.indexOf('?') + 1, href.indexOf('#')).split('&');
+    var x = href.indexOf('#');
+    if (x == -1) {
+      x = href.length;
+    }
+    var hashes = href.slice(href.indexOf('?') + 1, x).split('&');
     for(var i = 0; i < hashes.length; i++)
     {
       hash = hashes[i].split('=');
