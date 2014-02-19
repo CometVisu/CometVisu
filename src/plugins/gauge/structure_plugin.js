@@ -63,7 +63,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
            radial        : undefined,
            'size'        : $e.attr('size') || '150',
            'threshold'   : $e.attr('threshold'),
-           'format'      : $e.attr('format')
+           'lcdDecimals' : $e.attr('lcdDecimals') || 0
         });
         var data = ret_val.data();
         var titleString = data.titleString;
@@ -89,6 +89,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                       unitString : [unitString],
                             size : [size],
                       lcdVisible : lcdVisible,
+                     lcdDecimals : data.lcdDecimals, 
                     trendVisible : trendVisible
                 });
                 radial.setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
