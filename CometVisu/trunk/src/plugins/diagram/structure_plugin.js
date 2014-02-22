@@ -121,6 +121,7 @@ function createDiagram( element, path ) {
   diagram.data("period", $p.attr("period") || 1);
   diagram.data("legend", $p.attr("legend") || "both");
   diagram.data("legendposition", $p.attr("legendposition") || "ne");
+  diagram.data("timeformat", $p.attr("timeformat") || null);
   if ($p.attr("title")) {
     diagram.data("label", $p.attr("title"));
   } else {
@@ -265,6 +266,7 @@ VisuDesign_Custom.prototype.addCreator("diagram_info", {
     bDiagram.data("period", $p.attr("period") || 1);
     bDiagram.data("legend", $p.attr("legend") || "both");
     bDiagram.data("legendposition", $p.attr("legendposition") || "ne");
+    bDiagram.data("timeformat", $p.attr("timeformat") || null);
     if ($p.attr("title")) {
       bDiagram.data("label", $p.attr("title"));
     } else {
@@ -385,6 +387,7 @@ function doRefreshDiagram(diagram, flotoptions, data) {
   var label = diagram.data("label"); // title of diagram
   var refresh = diagram.data("refresh");
   var period = diagram.data("period") || 1;
+  var timeformat = diagram.data("timeformat");
 
   var gridcolor = diagram.data("gridcolor") || "#81664B";
 
@@ -400,7 +403,8 @@ function doRefreshDiagram(diagram, flotoptions, data) {
   var options = jQuery.extend(true, {
     yaxes: content.axes,
     xaxes: [{
-      mode: "time"
+      mode: "time",
+      timeformat: timeformat
     }],
     legend: {
       show: showlegend,

@@ -70,6 +70,22 @@
   <xsd:attribute name="transform" type="xsd:string" />
   <xsd:attribute name="format" type="xsd:string" />
 
+  <xsd:attribute name="timeformat" type="xsd:string" >
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en"><![CDATA[The time format for formatting the x-axis of diagrams with following placeholders:<br/>
+        %b: month name (customizable)
+        %d: day of month, zero-padded (01-31)
+        %H: hours, 24-hour time, zero-padded (00-23)
+        %h: hours, 24-hour time (1-12)
+        %m: month (01-12)
+        %M: minutes, zero-padded (00-59)
+        %S: seconds, zero-padded (00-59)
+        %y: year (four digits)
+        %p: am/pm
+        %P: AM/PM (uppercase version of %p)]]></xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+
   <xsd:attributeGroup name="range">
     <xsd:attribute name="range_min" type="xsd:float" />
     <xsd:attribute name="range_max" type="xsd:float" />
@@ -930,6 +946,7 @@
     <xsd:attribute ref="legendposition" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
     <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
+    <xsd:attribute ref="timeformat" use="optional" />
   </xsd:complexType>
   
   <xsd:complexType name="diagram_info">
@@ -953,6 +970,7 @@
     <xsd:attribute ref="legendposition" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
     <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
+    <xsd:attribute ref="timeformat" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="rss">
