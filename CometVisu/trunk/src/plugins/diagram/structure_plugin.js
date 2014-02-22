@@ -76,7 +76,7 @@ function diagram_get_content( page ) {
   var rrdnum = 0;
   page.find('rrd').each( function() {
     var src = this.textContent;
-    rrd[ '_'+rrdnum ] = [ src, this.getAttribute('color'), this.getAttribute('label') || src, 
+    rrd[ rrdnum ] = [ src, this.getAttribute('color'), this.getAttribute('label') || src, 
                           axesnames['_'+this.getAttribute('yaxis')] || "1", this.getAttribute('steps') || false, this.getAttribute('fill') || false,
                           parseFloat(this.getAttribute('scaling')) || 1., this.getAttribute('datasourceIndex') || 0, this.getAttribute('consolidationFunction') || "AVERAGE"];
     rrdnum ++;
@@ -436,8 +436,9 @@ function doRefreshDiagram(diagram, flotoptions, data) {
 
   if (s) {
     // init
-    var fulldata = [];  
+    var loadedData = [];  
     var rrdloaded = 0;
+    var rrdSuccessful = 0;
     $.each(content.rrd, function(index, value) {
       var src = value[0];
       var linecolor = value[1];
@@ -457,19 +458,37 @@ function doRefreshDiagram(diagram, flotoptions, data) {
         context: this,
         success: function(data) {
           rrdloaded++;
-          if (data == null) {
-            return;
+          if (data != null) {
+            rrdSuccessful++;
+            var color = linecolor || options.grid.color;
+            var offset = new Date().getTimezoneOffset() * 60 * 1000;
+            //TODO: find a better way
+            for (var j = 0; j < data.length; j++) {
+              data[j][0] -= offset;
+              data[j][1] = parseFloat( data[j][1][datasourceIndex] )*scaling;
+            }
+            loadedData[index] = {label: label, color: color, data: data, yaxis: parseInt(yaxis), lines: {steps: steps, fill: fill}};
           }
-
-          var color = linecolor || options.grid.color;
-          var offset = new Date().getTimezoneOffset() * 60 * 1000;
-          //TODO: find a better way
-          for (var j = 0; j < data.length; j++) {
-            data[j][0] -= offset;
-            data[j][1] = parseFloat( data[j][1][datasourceIndex] )*scaling;
-          }
-          fulldata[fulldata.length] = {label: label, color: color, data: data, yaxis: parseInt(yaxis), lines: {steps: steps, fill: fill}};
-          if (rrdloaded==content.rrdnum) { 
+          if (rrdloaded == content.rrdnum) {
+            var fulldata;
+            // If all rrds were successfully loaded, no extra action is needed.
+            // Otherwise we need to reduce the array to the loaded data.
+            if (rrdSuccessful == rrdloaded) {
+              fulldata = loadedData;
+            }
+            else {
+              fulldata = [];
+              var loadedIndex = -1;
+              for (var j = 0; j < rrdSuccessful; j++) {
+                for (var k = loadedIndex + 1; k < loadedData.length; k++) {
+                  if (loadedData[k] != null) {
+                    fulldata[j] = loadedData[k];
+                    loadedIndex = k;
+                    break;
+                  }
+                }
+              }
+            }
             if (!diagram.data("plotted")) { // only plot if diagram does not exist
               diagram.data("PLOT", $.plot(diagram, fulldata, options));
               diagram.data("plotted", true);
