@@ -576,6 +576,47 @@
     <xsd:attribute name="lcdVisible" type="xsd:boolean" use="optional" />
     <xsd:attribute name="trendVisible" type="xsd:boolean" use="optional" />	
 	<xsd:attribute name="lcdDecimals" type="xsd:nonNegativeInteger" use="optional" />
+    <xsd:attribute name="background" use="optional" >              
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="DARK_GRAY" />
+          <xsd:enumeration value="SATIN_GRAY" />
+          <xsd:enumeration value="LIGHT_GRAY" />
+          <xsd:enumeration value="WHITE" />
+          <xsd:enumeration value="BLACK" />
+          <xsd:enumeration value="BEIGE" />
+          <xsd:enumeration value="BROWN" />
+          <xsd:enumeration value="RED" />
+          <xsd:enumeration value="GREEN" />
+          <xsd:enumeration value="BLUE" />
+          <xsd:enumeration value="ANTHRACITE" />
+          <xsd:enumeration value="MUD" />
+          <xsd:enumeration value="PUNCHED_SHEET" />
+          <xsd:enumeration value="CARBON" />
+          <xsd:enumeration value="STAINLESS" />
+          <xsd:enumeration value="BRUSHED_METAL" />
+          <xsd:enumeration value="BRUSHED_STAINLESS" />
+          <xsd:enumeration value="TURNED" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="framedesign" use="optional" >              
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="BLACK_METAL" />
+          <xsd:enumeration value="METAL" />
+          <xsd:enumeration value="SHINY_METAL" />
+          <xsd:enumeration value="BRASS" />
+          <xsd:enumeration value="STEEL" />
+          <xsd:enumeration value="CHROME" />
+          <xsd:enumeration value="GOLD" />
+          <xsd:enumeration value="ANTHRACITE" />
+          <xsd:enumeration value="TILTED_GRAY" />
+          <xsd:enumeration value="TILTED_BLACK" />
+          <xsd:enumeration value="GLOSSY_METAL" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
   
   <!-- if you add a new widget, you need to list it here -->

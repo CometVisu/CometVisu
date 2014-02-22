@@ -31,10 +31,13 @@
 * - minValue: optional, "measuring range"
 * - maxValue: optional, "measuring range"
 * - lcdVisible: optional, "true", "false" 
+* - lcdDecimals: optional, integer
 * - trendVisible: optional, "true" , "false"
 * - size: optional, preset "150" 
 * - threshold: optional, ""
 * - format: optional, ""
+* - background: optional
+* - framedesign: optional
 *
 */ 
 $.includeScripts([
@@ -63,7 +66,9 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
            radial        : undefined,
            'size'        : $e.attr('size') || '150',
            'threshold'   : $e.attr('threshold'),
-           'lcdDecimals' : $e.attr('lcdDecimals') || 0
+           'lcdDecimals' : $e.attr('lcdDecimals') || 0,
+           'background'  : $e.attr('background') || 'DARK_GRAY',
+           'framedesign' : $e.attr('framedesign') || 'BLACK_METAL'
         });
         var data = ret_val.data();
         var titleString = data.titleString;
@@ -73,10 +78,12 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         var minValue = data.minValue;
         var maxValue = data.maxValue;
         var threshold = data.threshold;
-        if(data.lcdVisible == 'false') var lcdVisible = false;
-        else if(data.lcdVisible == 'true') var lcdVisible = true;
-        if(data.trendVisible == 'false') var trendVisible = false;
-        if(data.trendVisible == 'true') var trendVisible = true;
+        var background = data.background;
+        var framedesign = data.framedesign;
+        if (data.lcdVisible == 'false') var lcdVisible = false;
+        else if (data.lcdVisible == 'true') var lcdVisible = true;
+        if (data.trendVisible == 'false') var trendVisible = false;
+        if (data.trendVisible == 'true') var trendVisible = true;
         // create the actor 
         var $actor = $('div class="actor"></div><canvas id=' + id + '></canvas>');
         ret_val.append( $actor ); 
@@ -92,8 +99,8 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                      lcdDecimals : data.lcdDecimals, 
                     trendVisible : trendVisible
                 });
-                radial.setFrameDesign(steelseries.FrameDesign.BLACK_METAL);
-                radial.setBackgroundColor(steelseries.BackgroundColor.DARK_GRAY);
+                radial.setFrameDesign(steelseries.FrameDesign[framedesign]);
+                radial.setBackgroundColor(steelseries.BackgroundColor[background]);
                 radial.setForegroundType(steelseries.ForegroundType.TYPE1);
                 radial.setPointerColor(steelseries.ColorDef.RED);
                 radial.setPointerType(steelseries.PointerType.TYPE1);
@@ -118,7 +125,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
             }
             ret_val.data( 'radial', radial );
         });
-        return ret_val;	
+        return ret_val;
     },
     update: function(e,d) {
         var element = $(this);
