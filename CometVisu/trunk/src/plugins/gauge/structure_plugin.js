@@ -35,9 +35,11 @@
 * - trendVisible: optional, "true" , "false"
 * - size: optional, preset "150" 
 * - threshold: optional, ""
+* - thresholdRising: optional, "true" , "false" - default is "true"
 * - format: optional, ""
 * - background: optional
 * - framedesign: optional
+* - valueColor: optional, default is "RED"
 *
 */ 
 $.includeScripts([
@@ -56,23 +58,24 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
 
         // and fill in widget specific data
         ret_val.data( {
-           'type'        : $e.attr('type'),
-           'titleString' : $e.attr('titleString') || '',
-           'unitString'  : $e.attr('unitString') || '',
-           'minValue'    : $e.attr('minValue') || 0, 
-           'maxValue'    : $e.attr('maxValue') || 100,
-           'lcdVisible'  : $e.attr('lcdVisible') || false,
-           'trendVisible': $e.attr('trendVisible') || false,
-           radial        : undefined,
-           linear        : undefined,
-           'size'        : $e.attr('size') || '150',
-           'threshold'   : $e.attr('threshold'),
-           'lcdDecimals' : $e.attr('lcdDecimals') || 0,
-           'background'  : $e.attr('background') || 'DARK_GRAY',
-           'framedesign' : $e.attr('framedesign') || 'STEEL',
-           'width'       : $e.attr('width') || 320,
-           'height'      : $e.attr('height') || 140,
-		   'bar'		 : $e.attr('bar') || 'RED'
+           'type'              : $e.attr('type'),
+           'titleString'       : $e.attr('titleString') || '',
+           'unitString'        : $e.attr('unitString') || '',
+           'minValue'          : $e.attr('minValue') || 0, 
+           'maxValue'          : $e.attr('maxValue') || 100,
+           'lcdVisible'        : $e.attr('lcdVisible') || false,
+           'trendVisible'      : $e.attr('trendVisible') || false,
+           radial              : undefined,
+           linear              : undefined,
+           'size'              : $e.attr('size') || '150',
+           'threshold'         : $e.attr('threshold'),
+           'thresholdRising'   : $e.attr('thresholdRising') || true,
+           'lcdDecimals'       : $e.attr('lcdDecimals') || 0,
+           'background'        : $e.attr('background') || 'DARK_GRAY',
+           'framedesign'       : $e.attr('framedesign') || 'STEEL',
+           'width'             : $e.attr('width') || 320,
+           'height'            : $e.attr('height') || 140,
+           'valueColor'        : $e.attr('valueColor') || 'RED'
         });
         var data = ret_val.data();
         var titleString = data.titleString;
@@ -82,11 +85,13 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         var minValue = data.minValue;
         var maxValue = data.maxValue;
         var threshold = data.threshold;
+        var thresholdRising = false;
+        if (data.thresholdRising == 'true') thresholdRising = true;
         var background = data.background;
         var framedesign = data.framedesign;
+        var valueColor = data.valueColor;
         var width = data.width;
         var height = data.height;
-		var bar = data.bar;
         if (data.lcdVisible == 'false') var lcdVisible = false;
         else if (data.lcdVisible == 'true') var lcdVisible = true;
         if (data.trendVisible == 'false') var trendVisible = false;
@@ -130,17 +135,18 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
             else if (type == 'Linear') {
                 var linear = new steelseries[type](id, {
                     titleString : [titleString],
+                           size : [size],
                      unitString : [unitString],
                     lcdDecimals : data.lcdDecimals, 
                           width : width,
                          height : height,
-						 bar	: bar
+                thresholdRising : thresholdRising
                 });
                 linear.setFrameDesign(steelseries.FrameDesign[framedesign]);
                 linear.setBackgroundColor(steelseries.BackgroundColor[background]);
-				linear.setValueColor(steelseries.ColorDef[bar]);
                 linear.setLcdColor(steelseries.LcdColor.STANDARD);
                 linear.setLedColor(steelseries.LedColor.RED_LED);
+                linear.setValueColor(steelseries.ColorDef[valueColor]);
                 linear.setMinValue(minValue);
                 linear.setMaxValue(maxValue);
                 linear.setThreshold(threshold);
