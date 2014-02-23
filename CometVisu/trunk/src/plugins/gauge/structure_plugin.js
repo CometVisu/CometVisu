@@ -35,7 +35,7 @@
 * - trendVisible: optional, "true" , "false"
 * - size: optional, preset "150" 
 * - threshold: optional, ""
-* - thresholdRising: optional, "true" , "false" - default is "true"
+* - thresholdRising: optional, "true" , "false" - default is "false"
 * - format: optional, ""
 * - background: optional
 * - framedesign: optional
@@ -69,7 +69,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
            linear              : undefined,
            'size'              : $e.attr('size') || '150',
            'threshold'         : $e.attr('threshold'),
-           'thresholdRising'   : $e.attr('thresholdRising') || true,
+           'thresholdRising'   : $e.attr('thresholdRising') || false,
            'lcdDecimals'       : $e.attr('lcdDecimals') || 0,
            'background'        : $e.attr('background') || 'DARK_GRAY',
            'framedesign'       : $e.attr('framedesign') || 'STEEL',
@@ -109,7 +109,8 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                             size : [size],
                       lcdVisible : lcdVisible,
                      lcdDecimals : data.lcdDecimals, 
-                    trendVisible : trendVisible
+                    trendVisible : trendVisible,
+                 thresholdRising : thresholdRising
                 });
                 radial.setFrameDesign(steelseries.FrameDesign[framedesign]);
                 radial.setBackgroundColor(steelseries.BackgroundColor[background]);
