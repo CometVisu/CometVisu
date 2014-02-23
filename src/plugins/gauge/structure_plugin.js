@@ -71,7 +71,8 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
            'background'  : $e.attr('background') || 'DARK_GRAY',
            'framedesign' : $e.attr('framedesign') || 'STEEL',
            'width'       : $e.attr('width') || 320,
-           'height'      : $e.attr('height') || 140
+           'height'      : $e.attr('height') || 140,
+		   'bar'		 : $e.attr('bar') || 'RED'
         });
         var data = ret_val.data();
         var titleString = data.titleString;
@@ -85,6 +86,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         var framedesign = data.framedesign;
         var width = data.width;
         var height = data.height;
+		var bar = data.bar;
         if (data.lcdVisible == 'false') var lcdVisible = false;
         else if (data.lcdVisible == 'true') var lcdVisible = true;
         if (data.trendVisible == 'false') var trendVisible = false;
@@ -132,10 +134,12 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                      unitString : [unitString],
                     lcdDecimals : data.lcdDecimals, 
                           width : width,
-                         height : height
+                         height : height,
+						 bar	: bar
                 });
                 linear.setFrameDesign(steelseries.FrameDesign[framedesign]);
                 linear.setBackgroundColor(steelseries.BackgroundColor[background]);
+				linear.setValueColor(steelseries.ColorDef[bar]);
                 linear.setLcdColor(steelseries.LcdColor.STANDARD);
                 linear.setLedColor(steelseries.LedColor.RED_LED);
                 linear.setMinValue(minValue);
