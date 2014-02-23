@@ -130,7 +130,6 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
             else if (type == 'Linear') {
                 var linear = new steelseries[type](id, {
                     titleString : [titleString],
-                           size : [size],
                      unitString : [unitString],
                     lcdDecimals : data.lcdDecimals, 
                           width : width,
