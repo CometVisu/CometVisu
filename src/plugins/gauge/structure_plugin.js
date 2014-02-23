@@ -130,6 +130,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                     titleString : [titleString],
                            size : [size],
                      unitString : [unitString],
+                    lcdDecimals : data.lcdDecimals, 
                           width : width,
                          height : height
                 });
