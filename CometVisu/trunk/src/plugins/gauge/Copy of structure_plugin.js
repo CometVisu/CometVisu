@@ -1,62 +1,22 @@
-﻿/* structure_custom.js (c) 01/2014 by NetFritz [NetFritz at gmx dot de]
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the Free
- * Software Foundation; either version 3 of the License, or (at your option)
- * any later version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
- * more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- */
- 
- /*
-* This plugins integrates Gauge (in canavas) into the visualization
-*
-*
-* short documentation
-*
-* recommended widgets:
-* - WindDirection
-* - Radial
-*
-* attributes:
-* - titleString: optional, "name"
-* - unitString: optional, "units"
-* - minValue: optional, "measuring range"
-* - maxValue: optional, "measuring range"
-* - lcdVisible: optional, "true", "false" 
-* - lcdDecimals: optional, integer
-* - trendVisible: optional, "true" , "false"
-* - size: optional, preset "150" 
-* - threshold: optional, ""
-* - format: optional, ""
-* - background: optional
-* - framedesign: optional
-*
-*/ 
+﻿
+
 $.includeScripts([
   'plugins/gauge/lib/tween-min.js',
   'plugins/gauge/lib/steelseries-min.js'
 ], templateEngine.pluginLoaded );
 
 VisuDesign_Custom.prototype.addCreator("gauge", {
-    create: function(element, path, flavour, type) {
+    create: function( element, path, flavour, type ) {
         var $e = $(element);
         // create the main structure
-        var ret_val = basicdesign.createDefaultWidget('gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant) {
-          return [true, variant];
+        var ret_val = basicdesign.createDefaultWidget( 'gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant ) {
+          return [ true, variant ];
         });     
         var id = "gauge_" + path;
 
         // and fill in widget specific data
         ret_val.data( {
-           'type'        : $e.attr('type'),
+           'type' : $e.attr('type'),
            'titleString' : $e.attr('titleString') || '',
            'unitString'  : $e.attr('unitString') || '',
            'minValue'    : $e.attr('minValue') || 0, 
@@ -112,69 +72,74 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                 radial.setMinValue(minValue);
                 radial.setMaxValue(maxValue);
                 radial.setThreshold(threshold);
-            }
-            else if (type == 'WindDirection') {
+                   //radial.setValueAnimated(1000);
+            } else if(type == 'WindDirection'){
                 var radial = new steelseries[type](id, {
                      titleString : [titleString],
                       unitString : [unitString],
-                            size : [size]
+                            size : [size],
+                    //lcdVisible : [lcdVisible]
                 });
                 radial.setFrameDesign(steelseries.FrameDesign[framedesign]);
                 radial.setBackgroundColor(steelseries.BackgroundColor[background]);
                 radial.setForegroundType(steelseries.ForegroundType.TYPE1);
                 radial.setPointerColor(steelseries.ColorDef.RED);
                 radial.setPointerTypeAverage(steelseries.PointerType.TYPE1);
+                //radial.setValueAnimatedLatest(80);
+                //radial.setValueAnimatedAverage(90);
             }
-            else if (type == 'Linear') {
-                var linear = new steelseries[type](id, {
-                    titleString : [titleString],
-                           size : [size],
-                     unitString : [unitString],
-                          width : width,
-                         height : height
-                });
-                linear.setFrameDesign(steelseries.FrameDesign[framedesign]);
-                linear.setBackgroundColor(steelseries.BackgroundColor[background]);
+      else if (type == 'Linear'){
+      var linear = new steelseries[type](id, {
+      titleString : [titleString],
+      size : [size],
+      unitString : [unitString],
+      background : background,
+      framedesign : framedesign,
+      width : width,
+      height : height
+      });
+      linear.setFrameDesign(steelseries.FrameDesign[framedesign]),
+      linear.setBackgroundColor(steelseries.BackgroundColor[background]);
+              //  linear.setValueColor(steelseries.ValueColor.STANDARD);
                 linear.setLcdColor(steelseries.LcdColor.STANDARD);
                 linear.setLedColor(steelseries.LedColor.RED_LED);
-                linear.setMinValue(minValue);
+        linear.setMinValue(minValue);
                 linear.setMaxValue(maxValue);
-                linear.setThreshold(threshold);
-            }
-
+        linear.setThreshold(threshold);
+      }
             ret_val.data( 'radial', radial );
             ret_val.data( 'linear', linear );
         });
         return ret_val;
     },
-
-    update: function(e, d) {
+    update: function(e,d) {
         var element = $(this);
-        var value = basicdesign.defaultUpdate(e, d, element, true);
-        var variant = element.data('address')[ e.type ][2];
+        var value = basicdesign.defaultUpdate( e, d, element, true );
+        var variant = element.data( 'address' )[ e.type ][2];
         switch( variant ){
         case 'average':
-            if (element.data('radial') && element.data('radial').setValueAnimatedAverage)
-                element.data('radial').setValueAnimatedAverage(value);
-            if (element.data('linear') && element.data('linear').setValueAnimatedAverage)
-                element.data('linear').setValueAnimatedAverage(value);
+            if( element.data('radial') && element.data('radial').setValueAnimatedAverage )
+                element.data('radial').setValueAnimatedAverage( value );
+        if( element.data('linear') && element.data('linear').setValueAnimatedAverage )
+                element.data('linear').setValueAnimatedAverage( value );
             break;
         case 'trend':
-           if (element.data('radial') && element.data('radial').setTrend) {
-                if (value > 0) element.data('radial').setTrend(steelseries.TrendState.UP);
+           if( element.data('radial') && element.data('radial').setTrend ){
+                if ( value > 0) element.data('radial').setTrend(steelseries.TrendState.UP);
                 else if (value < 0) element.data('radial').setTrend(steelseries.TrendState.DOWN);
                 else element.data('radial').setTrend(steelseries.TrendState.STEADY);
             }
         break;
         default:
-            if (element.data('radial') && element.data('radial').setValueAnimatedLatest)
-               element.data('radial').setValueAnimatedLatest(value);
-            if (element.data('radial') && element.data('radial').setValueAnimated)
-               element.data('radial').setValueAnimated(value);
-            if (element.data('linear') && element.data('linear').setValueAnimatedLatest)
-               element.data('linear').setValueAnimatedLatest(value);
-            if (element.data('linear') && element.data('linear').setValueAnimated)
-               element.data('linear').setValueAnimated(value);
+            if( element.data('radial') && element.data('radial').setValueAnimatedLatest )
+               element.data('radial').setValueAnimatedLatest( value );
+            if( element.data('radial') && element.data('radial').setValueAnimated )
+               element.data('radial').setValueAnimated( value );
+         
+         if( element.data('linear') && element.data('linear').setValueAnimatedLatest )
+               element.data('linear').setValueAnimatedLatest( value );
+            if( element.data('linear') && element.data('linear').setValueAnimated )
+               element.data('linear').setValueAnimated( value );
         }
     }
 });

@@ -564,6 +564,7 @@
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="Radial" />
           <xsd:enumeration value="WindDirection" />
+          <xsd:enumeration value="Linear" />
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
