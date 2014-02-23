@@ -573,7 +573,8 @@
     <xsd:attribute name="minValue" type="xsd:decimal" use="optional" />
     <xsd:attribute name="maxValue" type="xsd:decimal" use="optional" />
     <xsd:attribute name="size" type="xsd:decimal" use="optional" />
-	<xsd:attribute name="threshold" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="threshold" type="xsd:decimal" use="optional" />
+	<xsd:attribute name="thresholdRising" type="xsd:boolean" use="optional" />
     <xsd:attribute name="lcdVisible" type="xsd:boolean" use="optional" />
     <xsd:attribute name="trendVisible" type="xsd:boolean" use="optional" />	
 	<xsd:attribute name="lcdDecimals" type="xsd:nonNegativeInteger" use="optional" />
@@ -620,6 +621,25 @@
     </xsd:attribute>
     <xsd:attribute name="width" type="dimension" />
     <xsd:attribute name="height" type="dimension" />
+    <xsd:attribute name="valueColor" use="optional" >              
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="RED" />
+          <xsd:enumeration value="GREEN" />
+          <xsd:enumeration value="BLUE" />
+          <xsd:enumeration value="ORANGE" />
+          <xsd:enumeration value="YELLOW" />
+          <xsd:enumeration value="CYAN" />
+          <xsd:enumeration value="MAGENTA" />
+          <xsd:enumeration value="WHITE" />
+          <xsd:enumeration value="GRAY" />
+          <xsd:enumeration value="BLACK" />
+          <xsd:enumeration value="RAITH" />
+          <xsd:enumeration value="GREEN_LCD" />
+          <xsd:enumeration value="JUG_GREEN" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
   
   <!-- if you add a new widget, you need to list it here -->
