@@ -69,7 +69,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
            linear              : undefined,
            'size'              : $e.attr('size') || '150',
            'threshold'         : $e.attr('threshold'),
-           'thresholdRising'   : $e.attr('thresholdRising') || false,
+           'thresholdRising'   : $e.attr('thresholdRising') || true,
            'lcdDecimals'       : $e.attr('lcdDecimals') || 0,
            'background'        : $e.attr('background') || 'DARK_GRAY',
            'framedesign'       : $e.attr('framedesign') || 'STEEL',
