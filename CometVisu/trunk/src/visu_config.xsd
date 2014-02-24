@@ -563,8 +563,24 @@
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="Radial" />
-          <xsd:enumeration value="WindDirection" />
+          <xsd:enumeration value="RadialBargraph" />
+          <xsd:enumeration value="RadialVertical" />
           <xsd:enumeration value="Linear" />
+          <xsd:enumeration value="LinearBargraph" />
+          <xsd:enumeration value="DisplaySingle" />
+          <xsd:enumeration value="DisplayMulti" />
+          <xsd:enumeration value="Level" />
+          <xsd:enumeration value="Compass" />
+          <xsd:enumeration value="WindDirection" />
+          <xsd:enumeration value="Horizon" />
+          <xsd:enumeration value="Led" />
+          <xsd:enumeration value="Clock" />
+          <xsd:enumeration value="Battery" />
+          <xsd:enumeration value="StopWatch" />
+          <xsd:enumeration value="Altimeter" />
+          <xsd:enumeration value="TrafficLight" />
+          <xsd:enumeration value="LightBulb" />
+          <xsd:enumeration value="Odometer" />
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
