@@ -21,15 +21,14 @@
 *
 * short documentation
 *
-* recommended widgets:
-* - WindDirection
-* - Radial
-*
 * attributes:
+* - type: WindDirection | Radial | Linear
+* - subtype: type1 | type2 | type3 | type4 | type5
 * - titleString: optional, "name"
 * - unitString: optional, "units"
 * - minValue: optional, "measuring range"
 * - maxValue: optional, "measuring range"
+* - ledVisible: optional, "true", "false"
 * - lcdVisible: optional, "true", "false" 
 * - lcdDecimals: optional, integer
 * - trendVisible: optional, "true" , "false"
@@ -58,10 +57,12 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         // and fill in widget specific data
         ret_val.data( {
            'type'              : $e.attr('type'),
+           'subtype'           : $e.attr('subtype'),
            'titleString'       : $e.attr('titleString') || '',
            'unitString'        : $e.attr('unitString') || '',
            'minValue'          : $e.attr('minValue') || 0, 
            'maxValue'          : $e.attr('maxValue') || 100,
+           'ledVisible'        : $e.attr('ledVisible') || true,
            'lcdVisible'        : $e.attr('lcdVisible') || false,
            'trendVisible'      : $e.attr('trendVisible') || false,
            radial              : undefined,
@@ -79,6 +80,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         var data = ret_val.data();
         var titleString = data.titleString;
         var type = data.type;
+        var subtype = data.subtype;
         var size = data.size;
         var unitString = data.unitString;
         var minValue = data.minValue;
@@ -91,6 +93,8 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         var valueColor = data.valueColor;
         var width = data.width;
         var height = data.height;
+        if (data.ledVisible == 'false') var ledVisible = false;
+        else if (data.ledVisible == 'true') var ledVisible = true;
         if (data.lcdVisible == 'false') var lcdVisible = false;
         else if (data.lcdVisible == 'true') var lcdVisible = true;
         if (data.trendVisible == 'false') var trendVisible = false;
@@ -106,10 +110,12 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                      titleString : [titleString],
                       unitString : [unitString],
                             size : [size],
+                      ledVisible : ledVisible,
                       lcdVisible : lcdVisible,
                      lcdDecimals : data.lcdDecimals, 
                     trendVisible : trendVisible,
-                 thresholdRising : thresholdRising
+                 thresholdRising : thresholdRising,
+                       gaugeType : (undefined === subtype ? undefined : steelseries.GaugeType[subtype])
                 });
                 radial.setFrameDesign(steelseries.FrameDesign[framedesign]);
                 radial.setBackgroundColor(steelseries.BackgroundColor[background]);
@@ -130,7 +136,8 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                 var radial = new steelseries[type](id, {
                      titleString : [titleString],
                       unitString : [unitString],
-                            size : [size]
+                            size : [size],
+                       gaugeType : (undefined === subtype ? undefined : steelseries.GaugeType[subtype])
                 });
                 radial.setFrameDesign(steelseries.FrameDesign[framedesign]);
                 radial.setBackgroundColor(steelseries.BackgroundColor[background]);
@@ -143,10 +150,13 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                     titleString : [titleString],
                            size : [size],
                      unitString : [unitString],
+                     ledVisible : ledVisible,
+                     lcdVisible : lcdVisible,
                     lcdDecimals : data.lcdDecimals, 
                           width : width,
                          height : height,
-                thresholdRising : thresholdRising
+                thresholdRising : thresholdRising,
+                      gaugeType : (undefined === subtype ? undefined : steelseries.GaugeType[subtype])
                 });
                 linear.setFrameDesign(steelseries.FrameDesign[framedesign]);
                 linear.setBackgroundColor(steelseries.BackgroundColor[background]);
