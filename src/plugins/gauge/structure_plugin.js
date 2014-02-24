@@ -123,7 +123,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                   radial.setThresholdVisible(true);
                 }
                 else {
-                  radial.setThresholdVisible(true);
+                  radial.setThresholdVisible(false);
                 }
             }
             else if (type == 'WindDirection') {
@@ -160,7 +160,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                   linear.setThresholdVisible(true);
                 }
                 else {
-                  linear.setThresholdVisible(true);
+                  linear.setThresholdVisible(false);
                 }
             }
 
