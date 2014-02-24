@@ -588,7 +588,7 @@
 	<xsd:attribute name="thresholdRising" type="xsd:boolean" use="optional" />
     <xsd:attribute name="ledVisible" type="xsd:boolean" use="optional" />
     <xsd:attribute name="lcdVisible" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="trendVisible" type="xsd:boolean" use="optional" />	
+    <xsd:attribute name="trendVisible" type="xsd:boolean" use="optional" />
 	<xsd:attribute name="lcdDecimals" type="xsd:nonNegativeInteger" use="optional" />
     <xsd:attribute name="background" use="optional" >              
       <xsd:simpleType>
