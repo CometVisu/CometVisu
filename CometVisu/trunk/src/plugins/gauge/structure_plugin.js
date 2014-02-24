@@ -118,7 +118,9 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                 radial.setPointerType(steelseries.PointerType.TYPE1);
                 radial.setMinValue(minValue);
                 radial.setMaxValue(maxValue);
-                radial.setThreshold(threshold);
+                if (threshold) {
+                  radial.setThreshold(threshold);
+                }
             }
             else if (type == 'WindDirection') {
                 var radial = new steelseries[type](id, {
@@ -149,7 +151,9 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                 linear.setValueColor(steelseries.ColorDef[valueColor]);
                 linear.setMinValue(minValue);
                 linear.setMaxValue(maxValue);
-                linear.setThreshold(threshold);
+                if (threshold) {
+                  radial.setThreshold(threshold);
+                }
             }
 
             ret_val.data( 'radial', radial );
