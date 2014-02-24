@@ -152,7 +152,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                 linear.setMinValue(minValue);
                 linear.setMaxValue(maxValue);
                 if (threshold) {
-                  radial.setThreshold(threshold);
+                  linear.setThreshold(threshold);
                 }
             }
 
