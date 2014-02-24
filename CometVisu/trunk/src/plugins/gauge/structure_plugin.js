@@ -36,7 +36,6 @@
 * - size: optional, preset "150" 
 * - threshold: optional, ""
 * - thresholdRising: optional, "true" , "false" - default is "false"
-* - format: optional, ""
 * - background: optional
 * - framedesign: optional
 * - valueColor: optional, default is "RED"
