@@ -55,7 +55,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
 
         // create the actor 
         var id = "gauge_" + path;
-        var $actor = $('div class="actor"><canvas id=' + id + '></canvas></div>');
+        var $actor = $('<div class="actor"><canvas id=' + id + '></canvas></div>');
         ret_val.append( $actor ); 
 
         templateEngine.bindActionForLoadingFinished(function() {
