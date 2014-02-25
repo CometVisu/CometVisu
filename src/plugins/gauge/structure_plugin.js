@@ -120,6 +120,21 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
                 gaugeElement.setTrend(trend);
               }
               break;
+            case 'threshold':
+              if (gaugeElement.setThreshold) {
+                gaugeElement.setThreshold(value);
+              }
+              break;
+            case 'min':
+              if (gaugeElement.setMinValue) {
+                gaugeElement.setMinValue(value);
+              }
+              break;
+            case 'max':
+              if (gaugeElement.setMaxValue) {
+                gaugeElement.setMaxValue(value);
+              }
+              break;
             default:
                if (gaugeElement.setValueAnimatedLatest) {
                  gauageElement.setValueAnimatedLatest(value);
