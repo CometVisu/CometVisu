@@ -57,7 +57,6 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         var id = "gauge_" + path;
         var $actor = $('div class="actor"><canvas id=' + id + '></canvas></div>');
         ret_val.append( $actor ); 
-        basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
 
         templateEngine.bindActionForLoadingFinished(function() {
           var params = {
@@ -89,6 +88,8 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
           var gaugeElement = new steelseries[$e.attr('type') || 'Radial'](id, params);
 
           ret_val.data('gaugeElement', gaugeElement);
+
+          basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
         });
         return ret_val;
     },
@@ -137,7 +138,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
               break;
             default:
                if (gaugeElement.setValueAnimatedLatest) {
-                 gauageElement.setValueAnimatedLatest(value);
+                 gaugeElement.setValueAnimatedLatest(value);
                }
                if (gaugeElement.setValueAnimated) {
                  gaugeElement.setValueAnimated(value);
