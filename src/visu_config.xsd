@@ -104,6 +104,13 @@
         <xsd:appinfo>level:expert</xsd:appinfo>
     </xsd:annotation>
   </xsd:attribute>
+  <xsd:attribute name="target" type="xsd:string">
+    <xsd:annotation>
+      <xsd:appinfo>level:expert</xsd:appinfo>
+      <xsd:documentation xml:lang="en">The name of the page, that should be shown.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Der Name der Seite, die angezeigt werden soll.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
 
   <xsd:attribute name="mode">
     <xsd:simpleType>
@@ -530,11 +537,7 @@
     <xsd:attribute name="name" type="xsd:string" use="optional" />
     <xsd:attribute name="nowidget" type="xsd:boolean" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
-    <xsd:attribute name="pagejumptarget" type="xsd:string" use="optional">
-        <xsd:annotation>
-            <xsd:appinfo>level:expert</xsd:appinfo>
-        </xsd:annotation>
-    </xsd:attribute>
+    <xsd:attribute ref="target" use="optional" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
@@ -669,6 +672,7 @@
       </xsd:simpleType>
     </xsd:attribute>
     <xsd:attribute ref="mapping" use="optional" />
+    <xsd:attribute ref="target" use="optional" />
   </xsd:complexType>
   
   <!-- if you add a new widget, you need to list it here -->
@@ -998,7 +1002,7 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" />
-    <xsd:attribute name="target" type="xsd:string" />
+    <xsd:attribute ref="target" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
@@ -1137,7 +1141,7 @@
 
   <xsd:complexType name="timeout">
     <xsd:attribute name="time" type="xsd:string" use="optional" />
-    <xsd:attribute name="target" type="xsd:string" use="required" />
+    <xsd:attribute ref="target" use="required" />
     <xsd:attribute name="debug" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
