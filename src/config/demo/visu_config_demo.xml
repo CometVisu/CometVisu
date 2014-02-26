@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="6" design="pure" xsi:noNamespaceSchemaLocation="../../visu_config.xsd" max_mobile_screen_width="480">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="7" design="pure" xsi:noNamespaceSchemaLocation="../../visu_config.xsd" max_mobile_screen_width="480">
   <meta>
     <plugins>
       <plugin name="colorchooser"/>

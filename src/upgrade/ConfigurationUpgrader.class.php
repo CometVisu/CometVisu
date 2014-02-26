@@ -35,7 +35,7 @@ require_once('../lib/library_version.inc.php');
  * the library-version the upgrader understands
  * @const   integer
  */
-define('UPGRADER_LIBRARY_VERSION', 6);
+define('UPGRADER_LIBRARY_VERSION', 7);
 
 
 /**
@@ -102,6 +102,9 @@ class ConfigurationUpgrader {
     				break;
     			case 5:
     				$this->upgrade5To6();
+    				break;
+    		    case 6:
+    				$this->upgrade6To7();
     				break;
     		}
     		$intVersionCounter++;
@@ -501,6 +504,26 @@ class ConfigurationUpgrader {
             }
         }
         $this->log('converted ' . $i . ' \'rrd\'-nodes');        
+    }
+
+    /**
+     * do all necessary changes from version 6 to version 7
+     */
+    protected function upgrade6To7() {
+        $objXPath = new DOMXPath($this->objDOM);
+    
+        // change rrd datasource attributes
+        $objElements = $objXPath->query('//group');
+        $i = 0;
+        foreach ($objElements as $objElementNode) {
+            if ($objElementNode->hasAttribute('pagejumptarget')) {
+                $target = $objElementNode->getAttribute('pagejumptarget') ;
+                $objElementNode->removeAttribute('pagejumptarget');
+                $objElementNode->setAttribute('target', $target);
+                ++$i;
+            }
+        }
+        $this->log('converted ' . $i . ' \'group\'-nodes');
     }
 
     /**

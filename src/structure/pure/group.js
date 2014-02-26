@@ -39,8 +39,8 @@ basicdesign.addCreator('group', {
     } );
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
 
-    if ( $e.attr('pagejumptarget') )  {
-      var target = $e.attr('pagejumptarget') ? $e.attr('pagejumptarget') : '0';
+    if ( $e.attr('target') )  {
+      var target = $e.attr('target') ? $e.attr('target') : '0';
       ret_val.addClass('clickable');
       ret_val.data( {
         'type'    : 'pagejump',

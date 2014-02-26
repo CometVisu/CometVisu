@@ -38,6 +38,7 @@
 * - background: optional
 * - framedesign: optional
 * - valueColor: optional, default is "RED"
+* - target: optional, if defined jump to the page with the specified name
 *
 */ 
 $.includeScripts([
@@ -46,104 +47,117 @@ $.includeScripts([
 ], templateEngine.pluginLoaded );
 
 VisuDesign_Custom.prototype.addCreator("gauge", {
-    create: function(element, path, flavour, type) {
-        var $e = $(element);
-        // create the main structure
-        var ret_val = basicdesign.createDefaultWidget('gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant) {
-          return [true, variant];
-        });     
+  create: function(element, path, flavour, type) {
+    var $e = $(element);
+    // create the main structure
+    var ret_val = basicdesign.createDefaultWidget('gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant) {
+      return [true, variant];
+    });
 
-        // create the actor 
-        var id = "gauge_" + path;
-        var $actor = $('<div class="actor"><canvas id=' + id + '></canvas></div>');
-        ret_val.append( $actor ); 
+    // create the actor 
+    var id = "gauge_" + path;
+    var $actor = $('<div class="actor"><canvas id=' + id + '></canvas></div>');
+    ret_val.append($actor);
+    ret_val.data({
+      pagejumpTarget : $e.attr('target'),
+    });
 
-        templateEngine.bindActionForLoadingFinished(function() {
-          var params = {
-              gaugeType               : ($e.attr('subtype') ? steelseries.GaugeType[$e.attr('subtype')] : undefined),
-              titleString             : ($e.attr('titleString') ? $e.attr('titleString') : undefined),
-              unitString              : ($e.attr('unitString') ? $e.attr('unitString') : undefined),
-              size                    : ($e.attr('size') ? parseFloat($e.attr('size') || 150) : undefined),
-              width                   : ($e.attr('width') ? parseFloat($e.attr('width') || 320) : undefined),
-              height                  : ($e.attr('height') ? parseFloat($e.attr('height') || 140) : undefined),
-              minValue                : parseFloat($e.attr('minValue') || 0), 
-              maxValue                : parseFloat($e.attr('maxValue') || 100),
-              frameDesign             : ($e.attr('framedesign') ? steelseries.FrameDesign[$e.attr('framedesign')] : undefined),
-              backgroundColor         : ($e.attr('background') ? steelseries.BackgroundColor[$e.attr('background')] : undefined),
-              foregroundType          : steelseries.ForegroundType.TYPE1,
-              pointerType             : steelseries.PointerType.TYPE1,
-              pointerColor            : steelseries.ColorDef.RED,
-              lcdColor                : steelseries.LcdColor.STANDARD,
-              lcdVisible              : ($e.attr('lcdVisible') ? $e.attr('lcdVisible') == 'true' : undefined),
-              lcdDecimals             : ($e.attr('lcdDecimals') ? parseInt($e.attr('lcdDecimals')) : undefined),
-              ledVisible              : ($e.attr('ledVisible') ? $e.attr('ledVisible') == 'true' : undefined),
-              ledColor                : steelseries.LedColor.RED_LED,
-              valueColor              : ($e.attr('valueColor') ? steelseries.ColorDef[$e.attr('valueColor')] : steelseries.ColorDef.RED),
-              trendVisible            : ($e.attr('trendVisible') ? $e.attr('trendVisible') == 'true' : undefined),
-              thresholdRising         : ($e.attr('thresholdRising') ? $e.attr('thresholdRising') == 'true' : undefined),
-              threshold               : ($e.attr('threshold') ? parseFloat($e.attr('threshold')) : undefined),
-              thresholdVisible        : ($e.attr('threshold') !== undefined),
-          };
-          
-          var gaugeElement = new steelseries[$e.attr('type') || 'Radial'](id, params);
-
-          ret_val.data('gaugeElement', gaugeElement);
-
-          basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
-        });
-        return ret_val;
-    },
-
-    update: function(e, d) {
-        var element = $(this);
-        var value = basicdesign.defaultUpdate(e, d, element, true);
-        var variant = element.data('address')[ e.type ][2];
-        var gaugeElement = element.data('gaugeElement');
-        if (gaugeElement) {
-          switch (variant) {
-            case 'average':
-              if (gaugeElement.setValueAnimatedAverage) {
-                gaugeElement.setValueAnimatedAverage(value);
-              }
-              break;
-            case 'trend':
-              if (gaugeElement.setTrend) {
-                var trend;
-                if (value > 0) {
-                  trend = steelseries.TrendState.UP;
-                }
-                else if (value < 0) {
-                  trend = steelseries.TrendState.DOWN;
-                }
-                else {
-                  trend = steelseries.TrendState.STEADY;
-                }
-                gaugeElement.setTrend(trend);
-              }
-              break;
-            case 'threshold':
-              if (gaugeElement.setThreshold) {
-                gaugeElement.setThreshold(value);
-              }
-              break;
-            case 'min':
-              if (gaugeElement.setMinValue) {
-                gaugeElement.setMinValue(value);
-              }
-              break;
-            case 'max':
-              if (gaugeElement.setMaxValue) {
-                gaugeElement.setMaxValue(value);
-              }
-              break;
-            default:
-               if (gaugeElement.setValueAnimatedLatest) {
-                 gaugeElement.setValueAnimatedLatest(value);
-               }
-               if (gaugeElement.setValueAnimated) {
-                 gaugeElement.setValueAnimated(value);
-               }
-           }
-        }
+    // bind to user action
+    if (ret_val.data().pagejumpTarget) {
+      $actor.addClass("clickable");
+      var bindClickToWidget = templateEngine.bindClickToWidget;
+      if (ret_val.data('bind_click_to_widget')) bindClickToWidget = (ret_val.data('bind_click_to_widget') === 'true');
+      (bindClickToWidget ? ret_val : $actor).bind('click', function() {
+        templateEngine.scrollToPage(ret_val.data().pagejumpTarget);
+      });
     }
+
+    templateEngine.bindActionForLoadingFinished(function() {
+      var params = {
+          gaugeType               : ($e.attr('subtype') ? steelseries.GaugeType[$e.attr('subtype')] : undefined),
+          titleString             : ($e.attr('titleString') ? $e.attr('titleString') : undefined),
+          unitString              : ($e.attr('unitString') ? $e.attr('unitString') : undefined),
+          size                    : ($e.attr('size') ? parseFloat($e.attr('size') || 150) : undefined),
+          width                   : ($e.attr('width') ? parseFloat($e.attr('width') || 320) : undefined),
+          height                  : ($e.attr('height') ? parseFloat($e.attr('height') || 140) : undefined),
+          minValue                : parseFloat($e.attr('minValue') || 0), 
+          maxValue                : parseFloat($e.attr('maxValue') || 100),
+          frameDesign             : ($e.attr('framedesign') ? steelseries.FrameDesign[$e.attr('framedesign')] : undefined),
+          backgroundColor         : ($e.attr('background') ? steelseries.BackgroundColor[$e.attr('background')] : undefined),
+          foregroundType          : steelseries.ForegroundType.TYPE1,
+          pointerType             : steelseries.PointerType.TYPE1,
+          pointerColor            : steelseries.ColorDef.RED,
+          lcdColor                : steelseries.LcdColor.STANDARD,
+          lcdVisible              : ($e.attr('lcdVisible') ? $e.attr('lcdVisible') == 'true' : undefined),
+          lcdDecimals             : ($e.attr('lcdDecimals') ? parseInt($e.attr('lcdDecimals')) : undefined),
+          ledVisible              : ($e.attr('ledVisible') ? $e.attr('ledVisible') == 'true' : undefined),
+          ledColor                : steelseries.LedColor.RED_LED,
+          valueColor              : ($e.attr('valueColor') ? steelseries.ColorDef[$e.attr('valueColor')] : steelseries.ColorDef.RED),
+          trendVisible            : ($e.attr('trendVisible') ? $e.attr('trendVisible') == 'true' : undefined),
+          thresholdRising         : ($e.attr('thresholdRising') ? $e.attr('thresholdRising') == 'true' : undefined),
+          threshold               : ($e.attr('threshold') ? parseFloat($e.attr('threshold')) : undefined),
+          thresholdVisible        : ($e.attr('threshold') !== undefined),
+      };
+      
+      var gaugeElement = new steelseries[$e.attr('type') || 'Radial'](id, params);
+
+      ret_val.data('gaugeElement', gaugeElement);
+
+      basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
+    });
+    return ret_val;
+  },
+
+  update: function(e, d) {
+    var element = $(this);
+    var value = basicdesign.defaultUpdate(e, d, element, true);
+    var variant = element.data('address')[ e.type ][2];
+    var gaugeElement = element.data('gaugeElement');
+    if (gaugeElement) {
+      switch (variant) {
+        case 'average':
+          if (gaugeElement.setValueAnimatedAverage) {
+            gaugeElement.setValueAnimatedAverage(value);
+          }
+          break;
+        case 'trend':
+          if (gaugeElement.setTrend) {
+            var trend;
+            if (value > 0) {
+              trend = steelseries.TrendState.UP;
+            }
+            else if (value < 0) {
+              trend = steelseries.TrendState.DOWN;
+            }
+            else {
+              trend = steelseries.TrendState.STEADY;
+            }
+            gaugeElement.setTrend(trend);
+          }
+          break;
+        case 'threshold':
+          if (gaugeElement.setThreshold) {
+            gaugeElement.setThreshold(value);
+          }
+          break;
+        case 'min':
+          if (gaugeElement.setMinValue) {
+            gaugeElement.setMinValue(value);
+          }
+          break;
+        case 'max':
+          if (gaugeElement.setMaxValue) {
+            gaugeElement.setMaxValue(value);
+          }
+          break;
+        default:
+           if (gaugeElement.setValueAnimatedLatest) {
+             gaugeElement.setValueAnimatedLatest(value);
+           }
+           if (gaugeElement.setValueAnimated) {
+             gaugeElement.setValueAnimated(value);
+           }
+       }
+    }
+  }
 });
