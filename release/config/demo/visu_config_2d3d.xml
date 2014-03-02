@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="7" design="pure" xsi:noNamespaceSchemaLocation="../../visu_config.xsd">
+  <meta>
+    <plugins>
+      <plugin name="colorchooser"/>
+      <plugin name="diagram"/>
+    </plugins>
+    <mappings>
+      <mapping name="Open_Close">
+        <entry value="0">zu</entry>
+        <entry value="1">offen</entry>
+      </mapping>
+      <mapping name="Close_Open">
+        <entry value="0">offen</entry>
+        <entry value="1">zu</entry>
+      </mapping>
+      <mapping name="On_Off">
+        <entry value="0">Aus</entry>
+        <entry value="1">An</entry>
+      </mapping>
+      <mapping name="Off_On">
+        <entry value="0">An</entry>
+        <entry value="1">Aus</entry>
+      </mapping>
+      <mapping name="KonnexHVAC">
+        <entry value="auto">Auto</entry>
+        <entry value="comfort">Komfort</entry>
+        <entry value="standby">Stand By</entry>
+        <entry value="economy">Economy</entry>
+        <entry value="building_protection">Haus-Schutz</entry>
+      </mapping>
+    </mappings>
+    <stylings>
+      <styling name="Red_Green">
+        <entry value="0">red</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="Green_Red">
+        <entry value="0">green</entry>
+        <entry value="1">red</entry>
+      </styling>
+      <styling name="Blue_Green_Red">
+        <entry range_min="-100" range_max="20">blue</entry>
+        <entry range_min="20" range_max="22">green</entry>
+        <entry range_min="22" range_max="100">red</entry>
+      </styling>
+    </stylings>
+    <statusbar>
+      <status type="html"><![CDATA[
+          <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          - <a href=".?forceReload=true">Reload</a>
+          - <a href="?config=demo">Widget Demo</a>
+        ]]></status>
+      <status type="html"><![CDATA[
+          - <a href="check_config.php">Check Config</a>
+          <div style="float:right;padding-right:0.5em">Version: SVN</div>
+        ]]></status>
+    </statusbar>
+  </meta>
+  <page name="Start" type="text">
+    <line/>
+    <text align="center">
+      <label>Welcome to the CometVisu!</label>
+    </text>
+    <break/>
+    <page name="2D Demo" type="2d" backdrop="config/media/demo_2d_backdrop_red_pot.svg">
+      <slide>
+        <layout x="0px" y="470px" width="600px"/>
+        <label>Level</label>
+        <address transform="DPT:5.001">12/7/52</address>
+      </slide>
+      <info format="%.2f">
+        <layout x="350px" y="370px"/>
+        <address transform="DPT:5.001">12/7/52</address>
+      </info>
+    </page>
+    <page name="3D Demo" type="3d" backdrop="config/demo/floorplan_demo.xml" azimut="12/7/53" elevation="12/7/54" floor="12/7/51">
+      <info format="%.2f">
+        <layout x="3.5" y="3.7" z="1.0"/>
+        <address transform="DPT:5.001">12/7/53</address>
+      </info>
+      <filter floor="Underground" room="Room2">
+        <info format="%.2f">
+          <layout x="7.5" y="3.7" z="1.0"/>
+          <address transform="DPT:5.001">12/7/53</address>
+        </info>
+      </filter>
+      <filter floor="Underground">
+        <info format="%.2f">
+          <layout x="3.5" y="7.7" z="1.0"/>
+          <address transform="DPT:5.001">12/7/53</address>
+        </info>
+        <info format="%.2f">
+          <layout x="7.5" y="7.7" z="2.0"/>
+          <address transform="DPT:5.001">12/7/53</address>
+        </info>
+      </filter>
+      <slide min="0" max="6.283185307179586" step="0.01">
+        <layout x="0px" y="570px" width="600px"/>
+        <label>Azimut</label>
+        <address transform="DPT:9.001">12/7/53</address>
+      </slide>
+      <slide min="0" max="1.5707963267948966" step="0.01">
+        <layout x="400px" y="570px" width="600px"/>
+        <label>Elevation</label>
+        <address transform="DPT:9.001">12/7/54</address>
+      </slide>
+      <trigger value="0">
+        <layout x="0px" y="150px" width="600px"/>
+        <label>Underground</label>
+        <address transform="DPT:5.004">12/7/51</address>
+      </trigger>
+      <trigger value="1">
+        <layout x="0px" y="100px" width="600px"/>
+        <label>Ground</label>
+        <address transform="DPT:5.004">12/7/51</address>
+      </trigger>
+    </page>
+    <line/>
+  </page>
+</pages>
