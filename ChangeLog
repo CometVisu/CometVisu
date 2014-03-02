@@ -1,3 +1,13 @@
+0.8.2
+=====
+
+- Bug fix to ensure resource loading order
+- Improvements and feature enhancements to the gauge plugin
+- diagram plugin: new attribute timeformat for formatting x-axis
+- diagram plugin: order of rrd-series must be deterministic
+- group widget: renamed attribute pagejumpTarget to target to unify naming of 
+  pagejumps
+  
 0.8.1
 =====
 
