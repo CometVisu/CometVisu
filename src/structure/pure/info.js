@@ -21,10 +21,6 @@ basicdesign.addCreator('info', {
     
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'info', $e, path, flavour, type, this.update );
-    // and fill in widget specific data
-    ret_val.data( {
-      'format'  : $e.attr('format')
-    } );
     
     // create the actor
     var $actor = $('<div class="actor"><div class="value"></div></div>');

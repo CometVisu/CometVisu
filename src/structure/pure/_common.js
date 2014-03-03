@@ -400,6 +400,7 @@ function VisuDesign() {
       'bind_click_to_widget' : $element.attr('bind_click_to_widget'),
       'mapping' : $element.attr('mapping'),
       'styling' : $element.attr('styling'),
+      'format'  : $element.attr('format'),
       'align'   : $element.attr('align'),
       'path'    : path,
       'type'    : widgetType
