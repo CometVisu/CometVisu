@@ -69,20 +69,21 @@ $.includeScripts([
       // create the configuration
       var id = "diagram_" + path;
       var config = {
-        id             : id,
-        content        : getDiagramElements($e),
-        series         : $e.attr("series") || "day",
-        period         : $e.attr("period") || 1,
-        legendInline   : ($e.attr("legend") || "both") == "both" || ($e.attr("legend") || "both") == "inline",
-        legendPopup    : ($e.attr("legend") || "both") == "both" || ($e.attr("legend") || "both") == "popup",
-        legendposition : $e.attr("legendposition") || "ne",
-        timeformat     : $e.attr("timeformat") || null,
-        label          : ($e.attr("title") ? $e.attr("title") : $('.label', ret_val).text() || '') || null,
-        refresh        : $e.attr("refresh"),
-        gridcolor      : $e.attr("gridcolor") || "#81664B",
-        previewlabels  : ($e.attr("previewlabels") || "false") == "true",
-        isPopup        : false,
-        tooltip        : ($e.attr("tooltip") || "false") == "true"
+        id                : id,
+        content           : getDiagramElements($e),
+        series            : $e.attr("series") || "day",
+        period            : $e.attr("period") || 1,
+        legendInline      : ($e.attr("legend") || "both") == "both" || ($e.attr("legend") || "both") == "inline",
+        legendPopup       : ($e.attr("legend") || "both") == "both" || ($e.attr("legend") || "both") == "popup",
+        legendposition    : $e.attr("legendposition") || "ne",
+        timeformat        : $e.attr("timeformat") || null,
+        timeformatTooltip : $e.attr("timeformatTooltip"),
+        label             : ($e.attr("title") ? $e.attr("title") : $('.label', ret_val).text() || '') || null,
+        refresh           : $e.attr("refresh"),
+        gridcolor         : $e.attr("gridcolor") || "#81664B",
+        previewlabels     : ($e.attr("previewlabels") || "false") == "true",
+        isPopup           : false,
+        tooltip           : ($e.attr("tooltip") || "false") == "true"
       };
 
       // create the actor
@@ -130,7 +131,14 @@ $.includeScripts([
 
                   //This is a mess but toLocaleString expects UTC again
                   var dte = new Date(x);
-                  showDiagramTooltip(item.pageX, item.pageY, dte.toLocaleString() + ": " + y + item.series.yaxis.options.unit);
+                  var dateString;
+                  if (config.timeformatTooltip) {
+                    dateString = $.plot.formatDate(dte, config.timeformatTooltip);
+                  }
+                  else {
+                    dateString = dte.toLocaleString();
+                  }
+                  showDiagramTooltip(item.pageX, item.pageY, dateString + ": " + y + item.series.yaxis.options.unit);
                 }
               }
               else {
