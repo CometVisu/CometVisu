@@ -1,4 +1,4 @@
-/* structure_plugin.js (c) 2010 by Julian Hartmann [julian dot hartmann at gmail dot com]
+/* structure_plugin.js (c) 2014 by Michael Hausl [michael at hausl dot com]
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -23,13 +23,9 @@
 /**
  * short documentation
  *
- * recommended widgets:
+ * widgets:
  *   - diagram
  *   - diagram_info
- *
- * deprecated widgets:
- *   - diagram_inline (use diagram with option previewlabels="true" instead)
- *   - diagram_popup (use diagram with option popup="true" instead)
  *
  * attributes:
  *   - series:               optional, "hour", "day" (default), "week", "month", "year"
@@ -42,472 +38,347 @@
  *   - popup:                optional, make diagram clickable and open popup
  *   - legend:               optional, "none", "both", "inline", "popup" select display of legend
  *   - title:                optional, diagram title (overrides label-content)
- *
- * functions:
- *   - createDiagram(page, path)
- *   - refreshDiagram(diagram, flotoptions, data)
- *
  */
 
 $.includeScripts([
-                  'plugins/diagram/flot/jquery.flot.js',
-                  'plugins/diagram/flot/jquery.flot.axislabels.js'
-                  ], templateEngine.pluginLoaded );
+                  'plugins/diagram_new/flot/jquery.flot.min.js',
+                  'plugins/diagram_new/flot/jquery.flot.canvas.min.js',
+                  'plugins/diagram_new/flot/jquery.flot.resize.min.js',
+                  'plugins/diagram_new/flot/jquery.flot.time.min.js',
+                  'plugins/diagram_new/flot/jquery.flot.axislabels.js'
+                 ], templateEngine.pluginLoaded );
 
-function diagram_get_content( page ) {
+(function() {
+    VisuDesign_Custom.prototype.addCreator("diagram", {
+      create: function(element, path, flavour, type) {
+        return createDiagram(false, element, path, flavour, type);
+      }
+    });
+    VisuDesign_Custom.prototype.addCreator("diagram_info", {
+      create: function(element, path, flavour, type) {
+        return createDiagram(true, element, path, flavour, type);
+      }
+    });
 
-  var axes = []; // if yaxismin, yaxismax or unit-attributes exist: old behaviour, otherwise use axis-elements
-  var axesnames = {};
-  var axesnum = 0;
+    function createDiagram(isInfo, element, path, flavour, type) {
+      var $e = $(element);
 
-  page.find('axis').each( function() { // defaults: left, auto range, no label
-    var name = this.textContent;
-    var unit = this.getAttribute('unit') || "";
-    axes[ axesnum ] = { axisLabel:this.getAttribute('label') || null, position: this.getAttribute('position') || "left", 
-        min: this.getAttribute('min') || null, max: this.getAttribute('max') || null,
-        unit: unit, tickFormatter: function (v, axis) { return v.toFixed(axis.tickDecimals)+unit; },  
-    };
+      // create the main structure
+      var ret_val = basicdesign.createDefaultWidget((isInfo ? 'diagram_info' : 'diagram'), $e, path, flavour, type, update);
 
-    axesnames ['_'+name] = axesnum+1;
-    axesnum ++;
-  });
+      // create the configuration
+      var id = "diagram_" + path;
+      var config = {
+        id             : id,
+        content        : getDiagramElements($e),
+        series         : $e.attr("series") || "day",
+        period         : $e.attr("period") || 1,
+        legendInline   : ($e.attr("legend") || "both") == "both" || ($e.attr("legend") || "both") == "inline",
+        legendPopup    : ($e.attr("legend") || "both") == "both" || ($e.attr("legend") || "both") == "popup",
+        legendposition : $e.attr("legendposition") || "ne",
+        timeformat     : $e.attr("timeformat") || null,
+        label          : ($e.attr("title") ? $e.attr("title") : $('.label', ret_val).text() || '') || null,
+        refresh        : $e.attr("refresh"),
+        gridcolor      : $e.attr("gridcolor") || "#81664B",
+        previewlabels  : ($e.attr("previewlabels") || "false") == "true",
+        isPopup        : false,
+        tooltip        : ($e.attr("tooltip") || "false") == "true"
+      };
 
-  var rrd = {}; 
-  var rrdnum = 0;
-  page.find('rrd').each( function() {
-    var src = this.textContent;
-    rrd[ rrdnum ] = [ src, this.getAttribute('color'), this.getAttribute('label') || src, 
-                          axesnames['_'+this.getAttribute('yaxis')] || "1", this.getAttribute('steps') || false, this.getAttribute('fill') || false,
-                          parseFloat(this.getAttribute('scaling')) || 1., this.getAttribute('datasourceIndex') || 0, this.getAttribute('consolidationFunction') || "AVERAGE"];
-    rrdnum ++;
-  });
+      // create the actor
+      var $actor;
+      var diagram = undefined;
+      if (isInfo) {
+        $actor = $('<div class="actor clickable switchUnpressed"><div class="value"></div></div>');
+      }
+      else {
+        var classStr = 'diagram_inline';
+        if ($e.attr("previewlabels") == "false") {
+          classStr = 'diagram_preview';
+        }
+        $actor = $('<div class="actor clickable"><div class="' + classStr + '" id="' + id + '">loading...</div></div>');
+        diagram = $("#" + id, $actor);
+      }
+      ret_val.append($actor);
 
-  return { axes: axes, axesnum: axesnum, rrd: rrd, rrdnum: rrdnum };
-}
+      // bind to user action
+      if (isInfo || $e.attr("popup") == "true") {
+        var bindClickToWidget = templateEngine.bindClickToWidget;
+        if (ret_val.data('bind_click_to_widget')) bindClickToWidget = (ret_val.data('bind_click_to_widget') === 'true');
+        (bindClickToWidget ? ret_val : $actor).bind('click', function() {
+          var bigId = id + '_big';
+          var popupDiagram = $('<div class="diagram" id="' + bigId + '"/>');
+          popupDiagram.data().config = $.extend(true, {}, config, {id : bigId, isPopup : true});
+          popupDiagram.css({height: "90%"});
+          templateEngine.showPopup("unknown", {title: popupDiagram.data().config.label, content: popupDiagram});
+          popupDiagram.parent("div").css({height: "100%", width: "100%", margin: "auto"}); // define parent as 100%!
+          popupDiagram.empty();
+          if (config.tooltip) {
+            var previousPoint = null;
+            // if we want to display a tooltip, we need to listen to the event
+            popupDiagram.bind("plothover", function (event, pos, item) {
+              $("#x").text(pos.x.toFixed(2));
+              $("#y").text(pos.y.toFixed(2));
 
-function createDiagram( element, path ) {
-  var $p = $(element);
+              if (item) {
+                if (previousPoint != item.datapoint) {
+                  previousPoint = item.datapoint;
 
-  function uniqid() {
-    var newDate = new Date;
-    return newDate.getTime();
-  }
+                  $("#diagramTooltip").remove();
+                  var x = item.datapoint[0],
+                  y = item.datapoint[1].toFixed(2);
 
-  var id = "diagram_" + uniqid();
-  var content = diagram_get_content ( $p );
-
-  var ret_val = $('<div class="widget clearfix diagram" />');
-  basicdesign.setWidgetLayout( ret_val, $p );
-  basicdesign.makeWidgetLabel( ret_val, $p );
-
-  var actor = $("<div class=\"actor\"><div class=\"diagram_inline\" id=\"" + id + "\">loading...</div></div>");
-  var diagram = $("#" + id, actor);
-
-  if ($p.attr("width")) {
-    diagram.css("width", $p.attr("width"));
-  }
-  if ($p.attr("previewlabels")=="false") {
-    diagram.removeClass("diagram_inline").addClass("diagram_preview");
-  }
-  if ($p.attr("height")) {
-    diagram.css("height", $p.attr("height"));
-  }
-
-  ret_val.append(actor);
-
-  diagram.data("id", id);
-  diagram.data("content", content);
-  diagram.data("series", $p.attr("series") || "day");
-  diagram.data("period", $p.attr("period") || 1);
-  diagram.data("legend", $p.attr("legend") || "both");
-  diagram.data("legendposition", $p.attr("legendposition") || "ne");
-  diagram.data("timeformat", $p.attr("timeformat") || null);
-  if ($p.attr("title")) {
-    diagram.data("label", $p.attr("title"));
-  } else {
-    diagram.data("label", $('.label', ret_val).text() || '');
-  }
-  diagram.data("refresh", $p.attr("refresh"));
-  diagram.data("gridcolor", $p.attr("gridcolor") || "");
-
-  var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
-
-  diagram.addClass("clickable");
-  var data = jQuery.extend(true, {}, diagram.data());
-
-  diagram.data("ispopup", false);
-  if ($p.attr("popup")=="true") {
-    diagram.bind("click", function() {
-      bDiagram.data(data);
-      bDiagram.data("ispopup", true);
-      bDiagram.css({height: "90%"});
-      templateEngine.showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
-      bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
-      bDiagram.empty();
-      var bDiagramOpts = {yaxis: {labelWidth: null}}; 
-      if ($p.attr("tooltip") == "true") {
-        // if we want to display a tooltip, we need to listen to the event
-        var previousPoint = null;
-        jQuery(bDiagram).bind("plothover", function (event, pos, item) {
-          jQuery("#x").text(pos.x.toFixed(2));
-          jQuery("#y").text(pos.y.toFixed(2));
-
-          if (item) {
-            if (previousPoint != item.datapoint) {
-              previousPoint = item.datapoint;
-
-              $("#diagramTooltip").remove();
-              var x = item.datapoint[0],
-              y = item.datapoint[1].toFixed(2);
-
-              //This is a mess but toLocaleString expects UTC again
-              var offset = new Date().getTimezoneOffset() * 60 * 1000;
-              var dte = new Date(x + offset);
-              showDiagramTooltip(item.pageX, item.pageY,
-                  dte.toLocaleString() + ": " + y + item.series.yaxis.options.unit);
-            }
-          } else {
-            $("#diagramTooltip").remove();
-            previousPoint = null;            
+                  //This is a mess but toLocaleString expects UTC again
+                  var dte = new Date(x);
+                  showDiagramTooltip(item.pageX, item.pageY, dte.toLocaleString() + ": " + y + item.series.yaxis.options.unit);
+                }
+              }
+              else {
+                $("#diagramTooltip").remove();
+                previousPoint = null;            
+              }
+            })
+            .bind("click", function(event) {
+                $("#diagramTooltip").remove();
+            });
           }
-        })
-        .bind("click", function(event) {
-          // don't let the popup know about the click, or it will close on touch-displays
-          event.stopPropagation();
-        });
 
-        bDiagramOpts = jQuery.extend(bDiagramOpts, { grid: {hoverable: true, clickable: true} });
+          refreshDiagram(popupDiagram);
+          return false;
+        });
       }
 
-      refreshDiagram(bDiagram, bDiagramOpts);
-
-      return false;
-    });
-  }
-  if ($p.attr("previewlabels") == "true") {
-    //refreshDiagram(diagram, {});
-  } else {
-    diagram.data('nolabels', true);
-    refreshDiagram(diagram, {});
-  }
-
-  $(window).bind('scrolltopage', function( event, page_id ){
-    var page = templateEngine.getParentPageFromPath(path);
-    if (page != null && page_id == page.attr("id")) {
-      refreshDiagram(diagram);
-    }
-  });
-
-  return ret_val;
-}
-
-
-
-VisuDesign_Custom.prototype.addCreator("diagram", {
-  create: function( element, path, flavour, type ) {
-    return createDiagram(element, path);
-  }
-});
-
-VisuDesign_Custom.prototype.addCreator("diagram_info", {
-  create: function( element, path, flavour, type ) {
-    var $p = $(element);
-
-    var address = {};
-    $p.find('address').each( function(){ 
-      var src = this.textContent;
-      templateEngine.addAddress( src );
-      address[ '_' + src ] = [ this.getAttribute('transform') ];
-    });
-
-    var content = diagram_get_content ( $p );
-
-    function uniqid() {
-      var newDate = new Date;
-      return newDate.getTime();
-    }
-
-    var id = "diagram_" + uniqid();
-    var classes = 'widget clearfix diagram_info';
-    if( $p.attr('align') ) {
-      classes+=" "+$p.attr('align');
-    }
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ($p.attr("bind_click_to_widget")) bindClickToWidget = $p.attr("bind_click_to_widget")=="true";
-    var ret_val = $('<div class="'+classes+'" />');
-    basicdesign.setWidgetLayout( ret_val, $p );
-    basicdesign.makeWidgetLabel( ret_val, $p );
-
-    var actor = '<div class="actor switchUnpressed ';
-    if ( $p.attr( 'align' ) ) 
-      actor += $p.attr( 'align' ); 
-    actor += '"><div class="value"></div></div>';
-
-    var $actor = $(actor).data({
-      'address'  : address,
-      'format'   : $p.attr('format'),
-      'mapping'  : $p.attr('mapping'),
-      'styling'  : $p.attr('styling')
-    });
-    for( var addr in address ) $actor.bind( addr, this.update );
-
-    ret_val.append($actor);
-
-    $actor.addClass("clickable");
-
-    // initially setting a value
-    basicdesign.defaultUpdate(undefined, undefined, $actor);
-
-    var bDiagram = $("<div class=\"diagram\" id=\"" + id + "_big\"/>");
-
-    bDiagram.data("id", id);
-    bDiagram.data("content", content);
-    bDiagram.data("series", $p.attr("series") || "day");
-    bDiagram.data("period", $p.attr("period") || 1);
-    bDiagram.data("legend", $p.attr("legend") || "both");
-    bDiagram.data("legendposition", $p.attr("legendposition") || "ne");
-    bDiagram.data("timeformat", $p.attr("timeformat") || null);
-    if ($p.attr("title")) {
-      bDiagram.data("label", $p.attr("title"));
-    } else {
-      bDiagram.data("label", $('.label', ret_val).text() || '');
-    }
-
-    bDiagram.data("refresh", $p.attr("refresh"));
-    bDiagram.data("gridcolor", $p.attr("gridcolor") || "");
-
-
-    var data = jQuery.extend({}, bDiagram.data());
-    var clickable = bindClickToWidget ? ret_val : $actor;
-
-    clickable.bind("click", function() {
-      bDiagram.data(data);
-      bDiagram.css({height: "90%"});
-      bDiagram.data("ispopup", true);
-
-      templateEngine.showPopup("unknown", {title: bDiagram.data('label'), content: bDiagram});
-      bDiagram.parent("div").css({height: "100%", width: "90%", margin: "auto"}); // define parent as 100%!
-      bDiagram.empty();
-      var bDiagramOpts = {yaxis: {labelWidth: null}};
-      if ($p.attr("tooltip") == "true") {
-        // if we want to display a tooltip, we need to listen to the event
-        var previousPoint = null;
-        jQuery(bDiagram).bind("plothover", function (event, pos, item) {
-          jQuery("#x").text(pos.x.toFixed(2));
-          jQuery("#y").text(pos.y.toFixed(2));
-
-          if (item) {
-            if (previousPoint != item.datapoint) {
-              previousPoint = item.datapoint;
-
-              $("#diagramTooltip").remove();
-              var x = item.datapoint[0],
-              y = item.datapoint[1].toFixed(2);
-
-              //This is a mess but toLocaleString expects UTC again
-              var offset = new Date().getTimezoneOffset() * 60 * 1000;
-              var dte = new Date(x + offset);
-              showDiagramTooltip(item.pageX, item.pageY,
-                  dte.toLocaleString() + ": " + y + item.series.yaxis.options.unit);
-            }
-          } else {
-            $("#diagramTooltip").remove();
-            previousPoint = null;            
+      if (diagram !== undefined) {
+        if ($e.attr("width")) {
+          diagram.css("width", $e.attr("width"));
+        }
+        if ($e.attr("height")) {
+          diagram.css("height", $e.attr("height"));
+        }
+        diagram.data().config = config;
+        $(window).bind('scrolltopage', function(event, page_id) {
+          var page = templateEngine.getParentPageFromPath(path);
+          if (page != null && page_id == page.attr("id")) {
+            refreshDiagram(diagram);
           }
-        })
-        .bind("click", function(event) {
-          // don't let the popup know about the click, or it will close on touch-displays
-          event.stopPropagation();
         });
-
-        bDiagramOpts = jQuery.extend(bDiagramOpts, { grid: {hoverable: true, clickable: true} });
       }
 
-      refreshDiagram(bDiagram, bDiagramOpts);
-      return false;
-    });
+      // initially setting a value
+      basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
 
-    return ret_val;
-  },
-  update:  function(e,d) { 
-    var element = $(this);
-    var value = basicdesign.defaultUpdate( e, d, element );
-    element.addClass('switchUnpressed');
-  }
-});
-
-diagramColors = {
-    data: $("<span class='link'><a href='#' /></a>").find("a").css("color")
-};
-
-function showDiagramTooltip(x, y, contents) {
-  $('<div id="diagramTooltip">' + contents + '</div>').css( {
-    position: 'absolute',
-    display: 'none',
-    top: y + 5,
-    left: x + 5,
-  }).appendTo("body").fadeIn(200);
-}
-
-refreshDiagram = (function(){
-  var self = this;
-  var done = false;
-  var refreshList = [];
-  $(document).on('firstdata', function(){ 
-    done = true;
-    for( i in refreshList )
-      doRefreshDiagram( refreshList[i][0], refreshList[i][1], refreshList[i][2] );
-    refreshList = null;
-  });
-
-  return function(diagram, flotoptions, data) {
-    if( done )
-    {
-      doRefreshDiagram(diagram, flotoptions, data);
-    } else {
-      refreshList.push( [diagram, flotoptions, data] );
+      return ret_val;
     }
-  };
-})();
 
-function doRefreshDiagram(diagram, flotoptions, data) {
-  var diagram = $(diagram);
-  var config = jQuery.extend(true, {series: diagram.data("series")}, data || {});
-
-  var content = diagram.data("content");
-
-  if (diagram.width() <= 0 || diagram.height() <= 0 || typeof (content) == "undefined") { // Fenster schon geschlossen oder keine Achsen und RRD konfiguriert
-    return;
-  }
-
-  var showlegend = !((diagram.data("legend")=="none") 
-      || (diagram.data("ispopup") && (diagram.data("legend")=="inline"))  
-      || (!diagram.data("ispopup") && (diagram.data("legend")=="popup")));
-  var legendposition = diagram.data("legendposition");
-  var label = diagram.data("label"); // title of diagram
-  var refresh = diagram.data("refresh");
-  var period = diagram.data("period") || 1;
-  var timeformat = diagram.data("timeformat");
-
-  var gridcolor = diagram.data("gridcolor") || "#81664B";
-
-  var series = {
-      hour:   {label: "hour", res: "60", start: "hour", end: "now"},
-      day:    {label: "day", res: "300", start: "day", end: "now"},
-      fullday:{label: "fullday", res: "300", start: "day", end: "midnight+24hour"},
-      week:   {label: "week", res: "1800", start: "week", end: "now"},
-      month:  {label: "month", res: "21600", start: "month", end: "now"},
-      year:   {label: "year", res: "432000", start: "year", end: "now"},
-  };
-
-  var options = jQuery.extend(true, {
-    yaxes: content.axes,
-    xaxes: [{
-      mode: "time",
-      timeformat: timeformat
-    }],
-    legend: {
-      show: showlegend,
-      backgroundColor: "#101010",
-      position: legendposition
-    },
-    series: {
-      lines: { show: true, fill: false, zero: false },
-      points: { show: false, fill: false }
-    },
-    grid: {
-      show: true,
-      aboveData: false,
-      color: gridcolor,
-      backgroundColor: "black",
-      tickColor: gridcolor,
-      borderColor: gridcolor
+    function update(e, d) {
+      var element = $(this);
+      basicdesign.defaultUpdate(e, d, element, true);
     }
-  }, flotoptions);
 
-  if (diagram.data('nolabels')==true) {
-    $.extend(true, options, {xaxes : [ {ticks:0 } ]});
-    for (var i=0; i<content.axesnum; i++) {
-      $.extend(true, options.yaxes[i], {ticks:0, axisLabel: null} );
+    function showDiagramTooltip(x, y, contents) {
+      $('<div id="diagramTooltip">' + contents + '</div>').css({
+        position : 'absolute',
+        display  : 'none',
+        top      : y + 5,
+        left     : x + 5
+      }).appendTo("body").fadeIn(200);
     }
-  }
 
-  var s = series[config.series];
+    function getDiagramElements(xmlElement) {
+      var retVal = {
+        axes    : [],
+        axesnum : 0,
+        rrd     : [],
+        rrdnum  : 0
+      };
+      var axesNameIndex = [];
 
-  if (s) {
-    // init
-    var loadedData = [];  
-    var rrdloaded = 0;
-    var rrdSuccessful = 0;
-    $.each(content.rrd, function(index, value) {
-      var src = value[0];
-      var linecolor = value[1];
-      var label = value[2];
-      var yaxis = value[3];
-      var steps = value[4] == "true";
-      var fill = value[5] == "true";
-      var scaling = value[6];
-      var datasourceIndex = value[7];
-      var consolidationFunction = value[8];
-      if (datasourceIndex < 0) datasourceIndex = 0;
+      xmlElement.find('axis').each(function() {
+        var unit = this.getAttribute('unit') || "";
+        retVal.axes[retVal.axesnum] = {
+          axisLabel     : this.getAttribute('label') || null,
+          position      : this.getAttribute('position') || "left",
+          min           : this.getAttribute('min') || null,
+          max           : this.getAttribute('max') || null,
+          unit          : unit,
+          tickFormatter : function (v, axis) { return v.toFixed(axis.tickDecimals) + unit; }
+        };
+        retVal.axesnum++;
+        axesNameIndex[this.textContent] = retVal.axesnum;
+      });
 
-      $.ajax({
-        url: templateEngine.backend+"rrdfetch?rrd=" + src + ".rrd&ds=" + consolidationFunction + "&start=end-" + period + s.start + "&end=" + s.end + "&res=" + s.res,
-        dataType: "json",
-        type: "GET",
-        context: this,
-        success: function(data) {
-          rrdloaded++;
-          if (data != null) {
-            rrdSuccessful++;
-            var color = linecolor || options.grid.color;
-            var offset = new Date().getTimezoneOffset() * 60 * 1000;
-            //TODO: find a better way
-            for (var j = 0; j < data.length; j++) {
-              data[j][0] -= offset;
-              data[j][1] = parseFloat( data[j][1][datasourceIndex] )*scaling;
+      xmlElement.find('rrd').each(function() {
+        var src = this.textContent;
+        retVal.rrd[retVal.rrdnum] = {
+          src       : src,
+          color     : this.getAttribute('color'),
+          label     : this.getAttribute('label') || src,
+          axisIndex : axesNameIndex[this.getAttribute('yaxis')] || 1,
+          steps     : this.getAttribute('steps') || false,
+          fill      : this.getAttribute('fill') || false,
+          scaling   : parseFloat(this.getAttribute('scaling')) || 1.,
+          dsIndex   : this.getAttribute('datasourceIndex') || 0,
+          cFunc     : this.getAttribute('consolidationFunction') || "AVERAGE"
+        };
+        if (retVal.rrd[retVal.rrdnum].dsIndex < 0) {
+          retVal.rrd[retVal.rrdnum].dsIndex = 0;
+        }
+        retVal.rrdnum++;
+      });
+
+      return retVal;
+    }
+
+    function getSeries(config) {
+      var series = {
+        hour    : {res: "60",     start: "hour",  end: "now"},
+        day     : {res: "300",    start: "day",   end: "now"},
+        fullday : {res: "300",    start: "day",   end: "midnight+24hour"},
+        week    : {res: "1800",   start: "week",  end: "now"},
+        month   : {res: "21600",  start: "month", end: "now"},
+        year    : {res: "432000", start: "year",  end: "now"},
+      };
+      return series[config.series];
+    }
+
+    function refreshDiagram(dgrm) {
+      var diagram = $(dgrm);
+      var config = diagram.data().config;
+      if (config === undefined) {
+        return;
+      }
+
+      var series = getSeries(config);
+      if (!series) {
+        return
+      }
+
+      var options = {
+        canvas: true,
+        yaxes : config.content.axes,
+        xaxes : [{
+          mode       : "time",
+          timeformat : config.timeformat
+        }],
+        legend : {
+          show            : (config.isPopup && config.legendPopup) || (!config.isPopup && config.legendInline),
+          backgroundColor : "#101010",
+          position        : config.legendposition
+        },
+        series : {
+          lines  : { show: true,  fill: false, zero: false },
+          points : { show: false, fill: false }
+        },
+        grid : {
+          show            : true,
+          aboveData       : false,
+          color           : config.gridcolor,
+          backgroundColor : "#000000",
+          tickColor       : config.gridcolor,
+          markingsColor   : config.gridcolor,
+          borderColor     : config.gridcolor,
+          hoverable       : true
+        }
+      };
+      $.each(options.yaxes, function(index, val) {
+        $.extend(true, val, {axisLabelColour: config.gridcolor, color: config.gridcolor});
+      });
+      $.each(options.xaxes, function(index, val) {
+        $.extend(true, val, {axisLabelColour: config.gridcolor, color: config.gridcolor});
+      });
+      if (config.isPopup) {
+        $.extend(true, options, {yaxis : {isPopup : true}});
+      }
+      if (config.tooltip) {
+        $.extend(true, options, {grid: {hoverable: true, clickable: true}});
+      }
+
+      if (!config.isPopup && !config.previewlabels) {
+        $.extend(true, options, {xaxes: [ {ticks: 0} ]});
+        $.each(options.yaxes, function(index, val) {
+          $.extend(true, val, {ticks:0, axisLabel: null});
+        });
+      }
+
+      // init
+      var loadedData = [];  
+      var rrdloaded = 0;
+      var rrdSuccessful = 0;
+      // get all rrd data
+      $.each(config.content.rrd, function(index, rrd) {
+        $.ajax({
+          url: templateEngine.backend+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=end-" + config.period + series.start + "&end=" + series.end + "&res=" + series.res,
+          dataType: "json",
+          type: "GET",
+          context: this,
+          success: function(data) {
+            rrdloaded++;
+            if (data != null) {
+              rrdSuccessful++;
+
+              // calculate offset and scaling
+              for (var j = 0; j < data.length; j++) {
+                data[j][1] = parseFloat(data[j][1][rrd.dsIndex]) * rrd.scaling;
+              }
+
+              // store the data for diagram plotting
+              loadedData[index] = {
+                label: rrd.label,
+                color: rrd.color || options.grid.color,
+                data: data,
+                yaxis: parseInt(rrd.axisIndex),
+                lines: {steps: rrd.steps, fill: rrd.fill}
+              };
             }
-            loadedData[index] = {label: label, color: color, data: data, yaxis: parseInt(yaxis), lines: {steps: steps, fill: fill}};
-          }
-          if (rrdloaded == content.rrdnum) {
-            var fulldata;
-            // If all rrds were successfully loaded, no extra action is needed.
-            // Otherwise we need to reduce the array to the loaded data.
-            if (rrdSuccessful == rrdloaded) {
-              fulldata = loadedData;
-            }
-            else {
-              fulldata = [];
-              var loadedIndex = -1;
-              for (var j = 0; j < rrdSuccessful; j++) {
-                for (var k = loadedIndex + 1; k < loadedData.length; k++) {
-                  if (loadedData[k] != null) {
-                    fulldata[j] = loadedData[k];
-                    loadedIndex = k;
-                    break;
+
+            // if loading has finished, i.e. all rrds have been retrieved,
+            // go on and plot the diagram
+            if (rrdloaded == config.content.rrdnum) {
+              var fulldata;
+              // If all rrds were successfully loaded, no extra action is needed.
+              // Otherwise we need to reduce the array to the loaded data.
+              if (rrdSuccessful == rrdloaded) {
+                fulldata = loadedData;
+              }
+              else {
+                fulldata = [];
+                var loadedIndex = -1;
+                for (var j = 0; j < rrdSuccessful; j++) {
+                  for (var k = loadedIndex + 1; k < loadedData.length; k++) {
+                    if (loadedData[k] != null) {
+                      fulldata[j] = loadedData[k];
+                      loadedIndex = k;
+                      break;
+                    }
                   }
                 }
               }
-            }
-            if (!diagram.data("plotted")) { // only plot if diagram does not exist
-              diagram.data("PLOT", $.plot(diagram, fulldata, options));
-              diagram.data("plotted", true);
-            } else { // otherwise replace data in plot
-              var PLOT = diagram.data("PLOT");
-              PLOT.setData(fulldata);
-              PLOT.setupGrid();
-              PLOT.draw();
+
+              // plot
+              if (!diagram.data("plotted")) {
+                // only plot if diagram does not exist
+                diagram.empty();
+                diagram.data("PLOT", $.plot(diagram, fulldata, options));
+                diagram.data("plotted", true);
+              }
+              else {
+                // otherwise replace data in plot
+                var PLOT = diagram.data("PLOT");
+                PLOT.setData(fulldata);
+                PLOT.setupGrid();
+                PLOT.draw();
+              }
             }
           }
-        }
+        });
       });
-    });
 
-    if (typeof (refresh) != "undefined" && refresh) {
-      // reload regularly
-      window.setTimeout(function(diagram, flotoptions, data) {
-        refreshDiagram(diagram, flotoptions, data);
-      }, refresh * 1000, diagram, flotoptions, data );
+
+      if (config.refresh) {
+        // reload regularly
+        window.setTimeout(function(diagram) {
+          refreshDiagram(diagram);
+        }, config.refresh * 1000, diagram);
+      }
     }
-  }
-}
+})();
