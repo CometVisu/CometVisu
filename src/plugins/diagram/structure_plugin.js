@@ -41,11 +41,11 @@
  */
 
 $.includeScripts([
-                  'plugins/diagram_new/flot/jquery.flot.min.js',
-                  'plugins/diagram_new/flot/jquery.flot.canvas.min.js',
-                  'plugins/diagram_new/flot/jquery.flot.resize.min.js',
-                  'plugins/diagram_new/flot/jquery.flot.time.min.js',
-                  'plugins/diagram_new/flot/jquery.flot.axislabels.js'
+                  'plugins/diagram/flot/jquery.flot.min.js',
+                  'plugins/diagram/flot/jquery.flot.canvas.min.js',
+                  'plugins/diagram/flot/jquery.flot.resize.min.js',
+                  'plugins/diagram/flot/jquery.flot.time.min.js',
+                  'plugins/diagram/flot/jquery.flot.axislabels.js'
                  ], templateEngine.pluginLoaded );
 
 (function() {
