@@ -44,7 +44,6 @@ basicdesign.addCreator('slide', {
       'step'    : step,
       'valueInternal': true,
       'inAction': false,
-      'format'  : $e.attr('format') || null
     });
     
     // create the actor
@@ -60,7 +59,7 @@ basicdesign.addCreator('slide', {
       start:   this.slideStart,
       change:  this.slideChange
     });
-    if( ret_val.data('format')!=null ) {
+    if( ret_val.data('format')) {
       $actor.on( 'slide', this.slideUpdateValue );
       
       // initially setting a value
@@ -92,7 +91,7 @@ basicdesign.addCreator('slide', {
     var element = $(this).parent(),
         actor   = element.find('.actor'),
         data    = element.data();
-    if( data.format != null )
+    if( data.format)
       $(ui.handle).text(sprintf( data.format, templateEngine.map( ui.value, data.mapping )));
   },
   /*

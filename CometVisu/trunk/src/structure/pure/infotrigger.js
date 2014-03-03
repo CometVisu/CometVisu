@@ -37,7 +37,6 @@ basicdesign.addCreator('infotrigger', {
       'isAbsolute'    : ($e.attr('change')               || 'relative') == 'absolute',
       'min'           : parseFloat($e.attr('min'))       || 0,
       'max'           : parseFloat($e.attr('max'))       || 255,
-      'format'        : $e.attr('format')
     } );
     var data = ret_val.data();
 
