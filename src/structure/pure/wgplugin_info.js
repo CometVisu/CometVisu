@@ -34,8 +34,6 @@ basicdesign.addCreator('wgplugin_info', {
     var $actor = $(actor).data({
       'variable' : $e.attr('variable'),
       'address'  : address,
-      'format'   : $e.attr('format'),
-      'styling'  : $e.attr('styling')
     });
     for( var addr in address ) $actor.bind( addr, this.update );
     ret_val.append( $actor );
