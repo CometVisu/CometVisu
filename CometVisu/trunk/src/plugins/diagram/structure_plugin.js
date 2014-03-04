@@ -306,7 +306,7 @@ $.includeScripts([
       diagram.data("PLOT", $.plot(diagram, [], options));
       diagram.data("plotted", true);
       var updateFN = function(event, plot) {
-        loadDiagram(diagram);
+        loadDiagramData(diagram);
       };
       diagram.bind("plotpan", updateFN).bind("plotzoom", updateFN);
 
