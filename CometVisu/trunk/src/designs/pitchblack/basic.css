@@ -6,7 +6,7 @@ body, .nav_path a, .link > div, .link a {
   color: /* normaltext */ #D0D0D0;
 }
 
-.footer, .footer *, #diagramTooltip {
+.footer, .footer *, #diagramTooltip, #flotTip {
   color: /* black */ #000000;
 }
 
@@ -24,9 +24,12 @@ body, body hr, #pages hr  {
   background: #800000;
 }
 
-#diagramTooltip {
+#diagramTooltip, #flotTip {
   background: #fee;
   opacity: 0.80;
+  border: 1px solid #fdd;
+  padding: 2px;
+  z-index: 1000;
 }
 
 div#top, .widget, .popup_background {
@@ -52,10 +55,6 @@ div#top , .widget, .popup_background {
 
 .popup_background.error {
   border: #f00;
-}
-
-#diagramTooltip {
-  border: 1px solid #fdd;
 }
 
 /* margins */
@@ -124,10 +123,6 @@ h2 {
 
 .group .text>div, .group .rsslog .label {
   padding-left: 0.6em;
-}
-
-#diagramTooltip {
-  padding: 2px;
 }
 
 /* 
@@ -396,10 +391,6 @@ html[xmlns] .clearfix, .clearfix:after {
 .diagram_preview {
   width: 240px;
   height: 2em;
-}
-
-#diagramTooltip {
-  z-index: 1000;
 }
 
 /* styles for the preview */

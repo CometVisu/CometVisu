@@ -385,7 +385,7 @@ div#loading {
     height: 2em;
 }
 
-#diagramTooltip {
+#diagramTooltip, #flotTip {
 	z-index: 1000;
 	color: black;
 	border: 1px solid #fdd;
