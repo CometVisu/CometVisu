@@ -167,12 +167,12 @@ body, div#top, .switchUnpressed, .switchPressed:active, .widget .ui-slider-handl
 }
 
 /* border */
-div#top, .ui-state-default, .ui-widget-content, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, #pages .hr, .widget, .switchPressed, .switchUnpressed, .widget .ui-slider, .widget .ui-slider-handle, .popup_background, #diagramTooltip, .widget IFRAME, .clearfix, .widget.link.pagelink div a
+div#top, .ui-state-default, .ui-widget-content, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, #pages .hr, .widget, .switchPressed, .switchUnpressed, .widget .ui-slider, .widget .ui-slider-handle, .popup_background, #diagramTooltip, #flotTip, .widget IFRAME, .clearfix, .widget.link.pagelink div a
 {
   border-color: #686868;
 }
 
-.ui-widget-content, .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, #diagramTooltip 
+.ui-widget-content, .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, #diagramTooltip, #flotTip
 {
   background: #ececec;
 }
