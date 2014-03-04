@@ -373,7 +373,7 @@ div#loading {
     color: #453420;
 }
 
-#diagramTooltip {
+#diagramTooltip, #flotTip {
 	z-index: 1000;
 	color: black;
 	border: 1px solid #fdd;
