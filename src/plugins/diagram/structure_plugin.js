@@ -121,7 +121,7 @@ $.includeScripts([
             event.stopPropagation();
           });
 
-          refreshDiagram(popupDiagram);
+          initDiagram(popupDiagram);
           return false;
         });
       }
@@ -137,7 +137,7 @@ $.includeScripts([
         $(window).bind('scrolltopage', function(event, page_id) {
           var page = templateEngine.getParentPageFromPath(path);
           if (page != null && page_id == page.attr("id")) {
-            refreshDiagram(diagram);
+            initDiagram(diagram);
           }
         });
       }
@@ -213,7 +213,7 @@ $.includeScripts([
       return series[config.series];
     }
 
-    function refreshDiagram(dgrm) {
+    function initDiagram(dgrm) {
       var diagram = $(dgrm);
       var config = diagram.data().config;
       if (config === undefined) {
@@ -301,6 +301,34 @@ $.includeScripts([
         });
       }
 
+      // plot diagram initially with empty values
+      diagram.empty();
+      diagram.data("PLOT", $.plot(diagram, [], options));
+      diagram.data("plotted", true);
+      var updateFN = function(event, plot) {
+        loadDiagram(diagram);
+      };
+      diagram.bind("plotpan", updateFN).bind("plotzoom", updateFN);
+
+      loadDiagramData(diagram);
+    }
+
+    function loadDiagramData(dgrm) {
+      var diagram = $(dgrm);
+      var config = diagram.data().config;
+      if (config === undefined) {
+        return;
+      }
+
+      var axes = plot.getAxes();
+      var xMin = axes.xaxis.min.toFixed(2);
+      var xMax = axes.xaxis.max.toFixed(2);
+
+      var series = getSeries(config);
+      if (!series) {
+        return
+      }
+
       // init
       var loadedData = [];  
       var rrdloaded = 0;
@@ -325,7 +353,7 @@ $.includeScripts([
               // store the data for diagram plotting
               loadedData[index] = {
                 label: rrd.label,
-                color: rrd.color || options.grid.color,
+                color: rrd.color,
                 data: data,
                 yaxis: parseInt(rrd.axisIndex),
                 lines: {steps: rrd.steps, fill: rrd.fill}
@@ -356,19 +384,10 @@ $.includeScripts([
               }
 
               // plot
-              if (!diagram.data("plotted")) {
-                // only plot if diagram does not exist
-                diagram.empty();
-                diagram.data("PLOT", $.plot(diagram, fulldata, options));
-                diagram.data("plotted", true);
-              }
-              else {
-                // otherwise replace data in plot
-                var PLOT = diagram.data("PLOT");
-                PLOT.setData(fulldata);
-                PLOT.setupGrid();
-                PLOT.draw();
-              }
+              var PLOT = diagram.data("PLOT");
+              PLOT.setData(fulldata);
+              PLOT.setupGrid();
+              PLOT.draw();
             }
           }
         });
@@ -378,7 +397,7 @@ $.includeScripts([
       if (config.refresh) {
         // reload regularly
         window.setTimeout(function(diagram) {
-          refreshDiagram(diagram);
+          loadDiagramData(diagram);
         }, config.refresh * 1000, diagram);
       }
     }
