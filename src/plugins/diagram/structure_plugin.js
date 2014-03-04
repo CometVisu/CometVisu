@@ -45,7 +45,9 @@ $.includeScripts([
                   'plugins/diagram/flot/jquery.flot.canvas.min.js',
                   'plugins/diagram/flot/jquery.flot.resize.min.js',
                   'plugins/diagram/flot/jquery.flot.time.min.js',
-                  'plugins/diagram/flot/jquery.flot.axislabels.js'
+                  'plugins/diagram/flot/jquery.flot.axislabels.js',
+                  'plugins/diagram/flot/jquery.flot.tooltip.min.js',
+                  'plugins/diagram/flot/jquery.flot.navigate.min.js',
                  ], templateEngine.pluginLoaded );
 
 (function() {
@@ -112,44 +114,12 @@ $.includeScripts([
           popupDiagram.data().config = $.extend(true, {}, config, {id : bigId, isPopup : true});
           popupDiagram.css({height: "90%"});
           templateEngine.showPopup("unknown", {title: popupDiagram.data().config.label, content: popupDiagram});
-          popupDiagram.parent("div").css({height: "100%", width: "100%", margin: "auto"}); // define parent as 100%!
+          popupDiagram.parent("div").css({height: "100%", width: "95%", margin: "auto"}); // define parent as 100%!
           popupDiagram.empty();
-          if (config.tooltip) {
-            var previousPoint = null;
-            // if we want to display a tooltip, we need to listen to the event
-            popupDiagram.bind("plothover", function (event, pos, item) {
-              $("#x").text(pos.x.toFixed(2));
-              $("#y").text(pos.y.toFixed(2));
-
-              if (item) {
-                if (previousPoint != item.datapoint) {
-                  previousPoint = item.datapoint;
-
-                  $("#diagramTooltip").remove();
-                  var x = item.datapoint[0],
-                  y = item.datapoint[1].toFixed(2);
-
-                  //This is a mess but toLocaleString expects UTC again
-                  var dte = new Date(x);
-                  var dateString;
-                  if (config.timeformatTooltip) {
-                    dateString = $.plot.formatDate(dte, config.timeformatTooltip);
-                  }
-                  else {
-                    dateString = dte.toLocaleString();
-                  }
-                  showDiagramTooltip(item.pageX, item.pageY, dateString + ": " + y + item.series.yaxis.options.unit);
-                }
-              }
-              else {
-                $("#diagramTooltip").remove();
-                previousPoint = null;            
-              }
-            })
-            .bind("click", function(event) {
-                $("#diagramTooltip").remove();
-            });
-          }
+          popupDiagram.bind("click", function(event) {
+            // don't let the popup know about the click, or it will close
+            event.stopPropagation();
+          });
 
           refreshDiagram(popupDiagram);
           return false;
@@ -183,15 +153,6 @@ $.includeScripts([
       basicdesign.defaultUpdate(e, d, element, true);
     }
 
-    function showDiagramTooltip(x, y, contents) {
-      $('<div id="diagramTooltip">' + contents + '</div>').css({
-        position : 'absolute',
-        display  : 'none',
-        top      : y + 5,
-        left     : x + 5
-      }).appendTo("body").fadeIn(200);
-    }
-
     function getDiagramElements(xmlElement) {
       var retVal = {
         axes    : [],
@@ -209,7 +170,10 @@ $.includeScripts([
           min           : this.getAttribute('min') || null,
           max           : this.getAttribute('max') || null,
           unit          : unit,
-          tickFormatter : function (v, axis) { return v.toFixed(axis.tickDecimals) + unit; }
+          tickDecimals  : this.getAttribute('decimals') || null,
+          tickFormatter : function (v, axis) {
+            return v.toFixed(axis.tickDecimals) + unit;
+          },
         };
         retVal.axesnum++;
         axesNameIndex[this.textContent] = retVal.axesnum;
@@ -262,9 +226,29 @@ $.includeScripts([
       }
 
       var options = {
-        canvas: true,
-        yaxes : config.content.axes,
-        xaxes : [{
+        canvas  : true,
+        tooltip : config.tooltip,
+        tooltipOpts : {
+          content      : "<center>%x<br/>%y</center>",
+          xDateFormat  : config.timeformatTooltip,
+          shifts       : {
+            x : 5,
+            y : 5,
+          },
+          defaultTheme : false,
+        },
+        zoom    : {
+          interactive: true,
+          trigger: "dblclick",
+          amount: 1.5,
+        },
+        pan     : {
+          interactive: true,
+          cursor: "move",
+          frameRate: 15,
+        },
+        yaxes  : config.content.axes,
+        xaxes  : [{
           mode       : "time",
           timeformat : config.timeformat
         }],
@@ -295,7 +279,16 @@ $.includeScripts([
         $.extend(true, val, {axisLabelColour: config.gridcolor, color: config.gridcolor});
       });
       if (config.isPopup) {
-        $.extend(true, options, {yaxis : {isPopup : true}});
+        $.extend(true, options, {
+          yaxis : {
+            isPopup   : true,
+            zoomRange : [null, null],
+          },
+          xaxis : {
+            zoomRange : [null, null],
+            panRange  : [null, null],
+          }
+        });
       }
       if (config.tooltip) {
         $.extend(true, options, {grid: {hoverable: true, clickable: true}});
