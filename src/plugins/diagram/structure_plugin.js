@@ -228,7 +228,8 @@ $.includeScripts([
         pan     : {
           interactive: true,
           cursor: "move",
-          frameRate: null,
+          frameRate: 20,
+          triggerOnDrag : false,
         },
         yaxes  : config.content.axes,
         xaxes  : [{
