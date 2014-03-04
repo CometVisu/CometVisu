@@ -1185,8 +1185,16 @@
         <xsd:attribute name="label" type="xsd:string" />
         <xsd:attribute name="min" type="xsd:decimal" />
         <xsd:attribute name="max" type="xsd:decimal" />
-        <xsd:attribute name="position" type="xsd:string" />
+        <xsd:attribute name="position" >
+          <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:enumeration value="left" />
+                <xsd:enumeration value="right" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:attribute>
         <xsd:attribute name="unit" type="xsd:string" use="optional" />
+        <xsd:attribute name="decimals" type="xsd:integer" use="optional" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
