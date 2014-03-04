@@ -320,7 +320,7 @@ $.includeScripts([
         return;
       }
 
-      var axes = plot.getAxes();
+      var axes = diagram.data().plot.getAxes();
       var xMin = axes.xaxis.min.toFixed(2);
       var xMax = axes.xaxis.max.toFixed(2);
 
