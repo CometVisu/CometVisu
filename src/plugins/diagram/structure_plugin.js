@@ -201,28 +201,11 @@ $.includeScripts([
       return retVal;
     }
 
-    function getSeries(config) {
-      var series = {
-        hour    : {res: "60",     start: "hour",  end: "now"},
-        day     : {res: "300",    start: "day",   end: "now"},
-        fullday : {res: "300",    start: "day",   end: "midnight+24hour"},
-        week    : {res: "1800",   start: "week",  end: "now"},
-        month   : {res: "21600",  start: "month", end: "now"},
-        year    : {res: "432000", start: "year",  end: "now"},
-      };
-      return series[config.series];
-    }
-
     function initDiagram(dgrm) {
       var diagram = $(dgrm);
       var config = diagram.data().config;
       if (config === undefined) {
         return;
-      }
-
-      var series = getSeries(config);
-      if (!series) {
-        return
       }
 
       var options = {
@@ -245,7 +228,7 @@ $.includeScripts([
         pan     : {
           interactive: true,
           cursor: "move",
-          frameRate: 15,
+          frameRate: null,
         },
         yaxes  : config.content.axes,
         xaxes  : [{
@@ -313,6 +296,37 @@ $.includeScripts([
       loadDiagramData(diagram);
     }
 
+    function getSeries(config, xAxis) {
+      var series = {
+        hour    : {res: "60",     start: "hour",  end: "now"},
+        day     : {res: "300",    start: "day",   end: "now"},
+        fullday : {res: "300",    start: "day",   end: "midnight+24hour"},
+        week    : {res: "1800",   start: "week",  end: "now"},
+        month   : {res: "21600",  start: "month", end: "now"},
+        year    : {res: "432000", start: "year",  end: "now"},
+      };
+      
+      var selectedSeries = series[config.series];
+      if (!selectedSeries) {
+        return;
+      }
+
+      if (!xAxis.datamin || !xAxis.datamax) {
+        // initial load, take parameters from configuration
+        return {
+          start : "end-" + config.period + selectedSeries.start,
+          end   : selectedSeries.end,
+          res   : selectedSeries.res,
+        };
+      }
+
+      return {
+        start : (xAxis.min / 1000).toFixed(0),
+        end   : (xAxis.max / 1000).toFixed(0),
+        res   : selectedSeries.res,
+      };
+    }
+
     function loadDiagramData(dgrm) {
       var diagram = $(dgrm);
       var config = diagram.data().config;
@@ -320,11 +334,7 @@ $.includeScripts([
         return;
       }
 
-      var axes = diagram.data().plot.getAxes();
-      var xMin = axes.xaxis.min.toFixed(2);
-      var xMax = axes.xaxis.max.toFixed(2);
-
-      var series = getSeries(config);
+      var series = getSeries(config, diagram.data().plot.getAxes().xaxis);
       if (!series) {
         return
       }
@@ -336,7 +346,7 @@ $.includeScripts([
       // get all rrd data
       $.each(config.content.rrd, function(index, rrd) {
         $.ajax({
-          url: templateEngine.backend+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=end-" + config.period + series.start + "&end=" + series.end + "&res=" + series.res,
+          url: templateEngine.backend+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + series.start + "&end=" + series.end + "&res=" + series.res,
           dataType: "json",
           type: "GET",
           context: this,
