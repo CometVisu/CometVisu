@@ -79,7 +79,7 @@ $.includeScripts([
         legendPopup       : ($e.attr("legend") || "both") == "both" || ($e.attr("legend") || "both") == "popup",
         legendposition    : $e.attr("legendposition") || "ne",
         timeformat        : $e.attr("timeformat") || null,
-        timeformatTooltip : $e.attr("timeformatTooltip"),
+        timeformatTooltip : $e.attr("timeformatTooltip") || "%d.%m.%Y %H:%M",
         label             : ($e.attr("title") ? $e.attr("title") : $('.label', ret_val).text() || '') || null,
         refresh           : $e.attr("refresh"),
         gridcolor         : $e.attr("gridcolor") || "#81664B",
@@ -96,7 +96,7 @@ $.includeScripts([
       }
       else {
         var classStr = 'diagram_inline';
-        if ($e.attr("previewlabels") == "false") {
+        if (!config.previewlabels) {
           classStr = 'diagram_preview';
         }
         $actor = $('<div class="actor clickable"><div class="' + classStr + '" id="' + id + '">loading...</div></div>');
@@ -106,14 +106,14 @@ $.includeScripts([
 
       // bind to user action
       if (isInfo || $e.attr("popup") == "true") {
+        var configCopy = $.extend(true, {}, config, {id : id + '_big', isPopup : true});
         var bindClickToWidget = templateEngine.bindClickToWidget;
         if (ret_val.data('bind_click_to_widget')) bindClickToWidget = (ret_val.data('bind_click_to_widget') === 'true');
         (bindClickToWidget ? ret_val : $actor).bind('click', function() {
-          var bigId = id + '_big';
-          var popupDiagram = $('<div class="diagram" id="' + bigId + '"/>');
-          popupDiagram.data().config = $.extend(true, {}, config, {id : bigId, isPopup : true});
+          var popupDiagram = $('<div class="diagram" id="' + configCopy.id + '"/>');
+          popupDiagram.data().config = configCopy;
           popupDiagram.css({height: "90%"});
-          templateEngine.showPopup("unknown", {title: popupDiagram.data().config.label, content: popupDiagram});
+          templateEngine.showPopup("unknown", {title: configCopy.label, content: popupDiagram});
           popupDiagram.parent("div").css({height: "100%", width: "95%", margin: "auto"}); // define parent as 100%!
           popupDiagram.empty();
           popupDiagram.bind("click", function(event) {
@@ -221,12 +221,12 @@ $.includeScripts([
           defaultTheme : false,
         },
         zoom    : {
-          interactive: true,
+          interactive: config.isPopup,
           trigger: "dblclick",
           amount: 1.5,
         },
         pan     : {
-          interactive: true,
+          interactive: config.isPopup,
           cursor: "move",
           frameRate: 20,
           triggerOnDrag : false,
