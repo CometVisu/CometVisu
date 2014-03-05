@@ -20,7 +20,7 @@ $types = '';
 for ($x = 0; $x <= 100; $x++) {
     if (isset($_POST['type' . $x])) {
         if ($_POST['type' . $x] == 'google') {
-            ReadCalendar($_POST['calendarname' . $x], $_POST['userid' . $x], $_POST['magiccokie' . $x], 30);
+            ReadCalendar($_POST['calendarname' . $x], $_POST['userid' . $x], $_POST['magiccookie' . $x], 30);
         }
     }
 }

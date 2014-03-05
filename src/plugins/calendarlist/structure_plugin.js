@@ -92,11 +92,11 @@ function refreshcalendarList(calendarList) {
                     var calendarname = 'calendarname' + i;
                     var type = 'type' + i;
                     var userid = 'userid' + i;
-                    var magiccokie = 'magiccokie' + i;
+                    var magiccookie = 'magiccookie' + i;
                     formData[calendarname] = o.calendar[i].textContent;
                     formData[type] = o.calendar[i].getAttribute('type');
                     formData[userid] = o.calendar[i].getAttribute('userid');
-                    formData[magiccokie] = o.calendar[i].getAttribute('magiccokie');
+                    formData[magiccookie] = o.calendar[i].getAttribute('magiccookie');
                 }
 
                 jQuery.ajax({
