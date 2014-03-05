@@ -20,7 +20,6 @@ The plugin supports these options:
 		interactive: false
 		cursor: "move"      // CSS mouse cursor value used when dragging, e.g. "pointer"
 		frameRate: 20
-		triggerOnDrag: true // trigger the callback during dragging
 	}
 
 	xaxis, yaxis, x2axis, y2axis: {
@@ -120,8 +119,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
         pan: {
             interactive: false,
             cursor: "move",
-            frameRate: 20,
-            triggerOnDrag: true // trigger the callback during dragging
+            frameRate: 20
         }
     };
 
@@ -161,11 +159,10 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
             if (panTimeout || !frameRate)
                 return;
 
-            var callTrigger = plot.getOptions().pan.triggerOnDrag;
             panTimeout = setTimeout(function () {
                 plot.pan({ left: prevPageX - e.pageX,
                            top: prevPageY - e.pageY,
-                           preventEvent: !callTrigger });
+                           dragEnded: false });
                 prevPageX = e.pageX;
                 prevPageY = e.pageY;
                                                     
@@ -181,7 +178,8 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
                     
             plot.getPlaceholder().css('cursor', prevCursor);
             plot.pan({ left: prevPageX - e.pageX,
-                       top: prevPageY - e.pageY });
+                       top: prevPageY - e.pageY,
+                       dragEnded: true });
         }
         
         function bindEvents(plot, eventHolder) {
