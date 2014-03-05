@@ -1065,7 +1065,7 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="axis" type="axis" minOccurs="0" maxOccurs="unbounded"/>
       <xsd:element name="rrd" type="rrd" minOccurs="0" maxOccurs="unbounded"/>
-      <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
+      <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
