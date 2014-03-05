@@ -399,6 +399,7 @@
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="timeout" type="timeout" />
 	  <xsd:element name="gauge" type="gauge" />
+	  <xsd:element name="calendarlist" type="calendarlist" />
     </xsd:choice>
   </xsd:group>
 
@@ -686,7 +687,27 @@
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="target" use="optional" />
   </xsd:complexType>
+
+  <xsd:complexType name="calendar">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="type" type="xsd:string" use="required" />
+        <xsd:attribute name="userid" type="xsd:string" use="required" />
+        <xsd:attribute name="magiccookie" type="xsd:string" use="required" />
+        <xsd:attribute name="color" type="xsd:string" use="required" />
+      </xsd:extension>
+	</xsd:simpleContent>
+  </xsd:complexType>
   
+  <xsd:complexType name="calendarlist">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="calendar" type="calendar" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="maxquantity" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="refresh" type="xsd:decimal" use="required" />
+  </xsd:complexType>
+
   <!-- if you add a new widget, you need to list it here -->
 
   <xsd:group name="Widgets">
