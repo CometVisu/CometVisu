@@ -289,10 +289,13 @@ $.includeScripts([
       diagram.empty();
       diagram.data("PLOT", $.plot(diagram, [], options));
       diagram.data("plotted", true);
-      var updateFN = function(event, plot) {
+      diagram.bind("plotpan", function(event, plot, args) {
+        if (args.dragEnded) {
+          loadDiagramData(diagram);
+        }
+      }).bind("plotzoom", function() {
         loadDiagramData(diagram);
-      };
-      diagram.bind("plotpan", updateFN).bind("plotzoom", updateFN);
+      });
 
       loadDiagramData(diagram);
     }
