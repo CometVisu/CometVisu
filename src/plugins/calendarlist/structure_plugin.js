@@ -96,7 +96,11 @@ function refreshcalendarList(calendarList) {
                     formData[calendarname] = o.calendar[i].textContent;
                     formData[type] = o.calendar[i].getAttribute('type');
                     formData[userid] = o.calendar[i].getAttribute('userid');
-                    formData[magiccookie] = o.calendar[i].getAttribute('magiccookie');
+					if (o.calendar[i].hasAttribute('magiccookie') === true) {
+                      formData[magiccookie] = o.calendar[i].getAttribute('magiccookie');
+					} else {
+                      formData[magiccookie] = '';
+					}
                 }
 
                 jQuery.ajax({
@@ -114,7 +118,6 @@ function refreshcalendarList(calendarList) {
                         var date = '';
                         var time = '';
 
-                        var row = 'calendarListodd';
                         for (var i = 0; i < itemnum; i++) {
                             var item = items[i];
                             var itemHtml = o.html;
@@ -122,7 +125,18 @@ function refreshcalendarList(calendarList) {
                             color = '#FFFFFF';
                             for (var ix = 0; ix < o.calendar.length; ix++) {
                                 if (o.calendar[ix].textContent == item.calendarName) {
-                                    color = o.calendar[ix].getAttribute('color') || '#FFFFFF';
+									if (o.calendar[ix].hasAttribute('color') === true) {
+                                      color = o.calendar[ix].getAttribute('color');
+									} else {
+                                      color = '#FFFFFF';
+									}
+
+									if (o.calendar[ix].hasAttribute('format') === true) {
+                                      format = o.calendar[ix].getAttribute('format');
+									} else {
+									  format = '{date}: {text}{where}';
+									}
+									itemHtml = '<span>' + format + '</span>'
                                 }
                             }
 
@@ -152,9 +166,6 @@ function refreshcalendarList(calendarList) {
                             //console.log('%i: %s', i, $row);
 
                             c.append($row);
-
-                            // Alternate row classes
-                            row = (row == 'calendarListodd') ? 'calendarListeven' : 'calendarListodd';
                         }
                     }
                 });
