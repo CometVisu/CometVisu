@@ -693,8 +693,9 @@
       <xsd:extension base="xsd:string">
         <xsd:attribute name="type" type="xsd:string" use="required" />
         <xsd:attribute name="userid" type="xsd:string" use="required" />
-        <xsd:attribute name="magiccookie" type="xsd:string" use="required" />
-        <xsd:attribute name="color" type="xsd:string" use="required" />
+        <xsd:attribute name="magiccookie" type="xsd:string" use="optional" />
+        <xsd:attribute name="color" type="xsd:string" use="optional" />
+		<xsd:attribute name="format" type="xsd:string" use="optional" />
       </xsd:extension>
 	</xsd:simpleContent>
   </xsd:complexType>
