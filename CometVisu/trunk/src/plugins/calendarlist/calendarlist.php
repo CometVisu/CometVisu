@@ -2,13 +2,6 @@
 // Hier die GoogleKalender eintragen
 // ReadCalendar(Userid, MagicCookie, Tage die abgerufen werden, ShortCut für farbige Sortierung)
 
-// Private Kalender
-//ReadCalendar('mclb1982@googlemail.com', 'f3820c21c9ca9360e0a56dc487f7c527', 30); 		# Kalender Marcus
-//ReadCalendar('moenhmnlfimcirsl2132okvfg4@group.calendar.google.com', '55b158fde1b0879958eefd9ff0c288f0', 30); 		# Kalender Marcus Arbeit
-//ReadCalendar('a1q9tek28g02qi3d34t40onsd0%40group.calendar.google.com', '06aaba455b1e150258d8963312cd8575', 30); 		# Kalender Lichtenbergers
-// Öffentliche Kalender
-//ReadCalendar('de.austrian%23holiday@group.v.calendar.google.com', '', 30); 					# Österreichische Feiertage
-
 if (isset($_POST['maxquantity'])) {
     $maxQuantity = $_POST['maxquantity'];
 } else {
