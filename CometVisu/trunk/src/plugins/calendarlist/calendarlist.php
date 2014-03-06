@@ -13,7 +13,7 @@ $types = '';
 for ($x = 0; $x <= 100; $x++) {
     if (isset($_POST['type' . $x])) {
         if ($_POST['type' . $x] == 'google') {
-            ReadCalendar($_POST['calendarname' . $x], $_POST['userid' . $x], $_POST['magiccookie' . $x], 30);
+            ReadCalendar($_POST['calendarname' . $x], $_POST['userid' . $x], $_POST['magiccookie' . $x], $_POST['days' . $x]);
         }
     }
 }
@@ -68,9 +68,8 @@ function ReadCalendar($calendarName, $userid, $magicCookie, $maxDays)
         $thisData['Ort']         = utf8_decode($gd->where->attributes()->valueString);
         if ($thisData['ZeitTxt'] == "00:00" && $thisData['EndZeitTxt'] == "00:00")
             $thisData['EndDatumTxt'] = date("d.m.Y", strtotime($thisData['EndDatumTxt'] . "-1 day"));
-        $thisData['calendarName'] = $calendarName;
-        
-        
+        $thisData['calendarName'] = stripslashes(utf8_decode($calendarName));
+                
         $calcData[count($calcData) + 1] = $thisData;
     }
 }
