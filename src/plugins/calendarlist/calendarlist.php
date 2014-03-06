@@ -46,7 +46,7 @@ function ReadCalendar($calendarName, $userid, $magicCookie, $maxDays)
         //echo $feedURL;
     }
     
-    $feedParams = "?singleevents=true&max-results=20&orderby=starttime&start-min=" . urlencode(date("c", strtotime("today"))) . "&start-max=" . urlencode(date("c", strtotime("+" . $maxDays . " day"))) . "&sortorder=a";
+    $feedParams = "?singleevents=true&max-results=20&orderby=starttime&start-min=" . urlencode(date("c", strtotime("now"))) . "&start-max=" . urlencode(date("c", strtotime("+" . $maxDays . " day"))) . "&sortorder=a";
     //echo $feedURL.$feedParams."<br>";
     $sxml       = simplexml_load_file($feedURL . $feedParams);
     
