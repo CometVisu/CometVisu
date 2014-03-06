@@ -28,6 +28,7 @@ VisuDesign_Custom.prototype.addCreator("calendarlist", {
         calendarList.data("maxquantity", $el.attr("maxquantity"));
         calendarList.data("refresh", $el.attr("refresh"));
         calendarList.data("calendar", $el.find('calendar'));
+		calendarList.data("days", $el.find('days'));
 
         templateEngine.bindActionForLoadingFinished(function () {
             refreshcalendarList(calendarList);
@@ -40,10 +41,11 @@ VisuDesign_Custom.prototype.addCreator("calendarlist", {
 function refreshcalendarList(calendarList) {
     var calendarList = $(calendarList);
 
-    var refresh = calendarList.data("refresh");
-    var src = calendarList.data("src");
-    var maxquantity = calendarList.data("maxquantity");
+    var refresh = calendarList.data('refresh');
+    var src = calendarList.data('src');
+    var maxquantity = calendarList.data('maxquantity');
     var calendar = calendarList.data('calendar');
+	var days = calendarList.data('days');
 
     $(function () {
         $(calendarList).calendarListlocal({
@@ -68,6 +70,7 @@ function refreshcalendarList(calendarList) {
         calendarListlocal: function (options) {
             var defaults = {
                 src: '',
+				days: 30,
                 html: '<span>{date}: {text}{where}</span>',
                 wrapper: 'li',
                 dataType: 'json',
@@ -93,13 +96,19 @@ function refreshcalendarList(calendarList) {
                     var type = 'type' + i;
                     var userid = 'userid' + i;
                     var magiccookie = 'magiccookie' + i;
-                    formData[calendarname] = o.calendar[i].textContent;
+					var days = 'days' + i;
+                    formData[calendarname] = i; //o.calendar[i].textContent;
                     formData[type] = o.calendar[i].getAttribute('type');
                     formData[userid] = o.calendar[i].getAttribute('userid');
 					if (o.calendar[i].hasAttribute('magiccookie') === true) {
                       formData[magiccookie] = o.calendar[i].getAttribute('magiccookie');
 					} else {
                       formData[magiccookie] = '';
+					}
+					if (o.calendar[i].hasAttribute('days') === true) {
+					  formData[days] = o.calendar[i].getAttribute('days');
+					} else {
+					  formData[days] = o.days;
 					}
                 }
 
@@ -124,7 +133,7 @@ function refreshcalendarList(calendarList) {
 
                             color = '#FFFFFF';
                             for (var ix = 0; ix < o.calendar.length; ix++) {
-                                if (o.calendar[ix].textContent == item.calendarName) {
+                                if (item.calendarName == ix) {
 									if (o.calendar[ix].hasAttribute('color') === true) {
                                       color = o.calendar[ix].getAttribute('color');
 									} else {
@@ -140,7 +149,10 @@ function refreshcalendarList(calendarList) {
                                 }
                             }
 
-                            date = item.StartDate + ', ' + item.StartTime;
+                            date = item.StartDate;
+							if (item.StartTime != '00:00') {
+								date = date + ', ' + item.StartTime;
+							}
                             if (item.StartDate != item.EndDate || item.StartTime != item.EndTime) {
                                 date = date + ' - ';
                             }
