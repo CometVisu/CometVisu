@@ -696,6 +696,7 @@
         <xsd:attribute name="magiccookie" type="xsd:string" use="optional" />
         <xsd:attribute name="color" type="xsd:string" use="optional" />
 		<xsd:attribute name="format" type="xsd:string" use="optional" />
+		<xsd:attribute name="days" type="xsd:decimal" use="optional" />
       </xsd:extension>
 	</xsd:simpleContent>
   </xsd:complexType>
@@ -707,6 +708,7 @@
     </xsd:sequence>
     <xsd:attribute name="maxquantity" type="xsd:decimal" use="optional" />
     <xsd:attribute name="refresh" type="xsd:decimal" use="required" />
+	<xsd:attribute name="days" type="xsd:decimal" use="optional" />
   </xsd:complexType>
 
   <!-- if you add a new widget, you need to list it here -->
