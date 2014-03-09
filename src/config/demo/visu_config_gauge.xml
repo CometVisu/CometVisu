@@ -65,51 +65,65 @@
       <layout colspan="12"/>
       <group>
         <layout colspan="5.1"/>
-        <gauge type="RadialBargraph" titleString="Temp" unitString="°C" minValue="-20" maxValue="40" size="200" threshold="3" lcdVisible="true" trendVisible="true" lcdDecimals="2" thresholdRising="true" ledVisible="true" background="BLACK" framedesign="BLACK_METAL" valueColor="RED">
+        <gauge type="RadialBargraph" titleString="Title" unitString="Unit" minValue="0" maxValue="100" size="200" threshold="30" lcdVisible="true" trendVisible="true" lcdDecimals="2" thresholdRising="true" ledVisible="true" background="DARK_GRAY" framedesign="BLACK_METAL" valueColor="RED">
           <layout colspan="1.7"/>
-          <address transform="DPT:9.001" mode="read">0/2/1</address>
-          <address transform="DPT:9.001" mode="read" variant="trend">0/2/11</address>
+          <address transform="DPT:9" mode="read">12/7/90</address>
+          <address transform="DPT:9" mode="read" variant="trend">12/7/92</address>
         </gauge>
-        <gauge type="WindDirection" subtype="type1" titleString="Windrichtung" unitString="km/h" minValue="0" maxValue="100" size="200" background="DARK_GRAY" framedesign="BLACK_METAL" ledVisible="true">
+        <gauge type="WindDirection" subtype="type1" titleString="Windrichtung" unitString="km/h" minValue="0" maxValue="100" size="200" background="DARK_GRAY" framedesign="BLACK_METAL" ledVisible="true" trendVisible="true" lcdVisible="true" lcdDecimals="2">
           <layout colspan="1.7"/>
-          <address transform="DPT:9.001" mode="read">0/2/5</address>
-          <address transform="DPT:9.001" variant="last" mode="read">0/2/7</address>
+          <address transform="DPT:9" mode="read">12/7/90</address>
+          <address transform="DPT:9" variant="average" mode="read">12/7/91</address>
         </gauge>
-        <gauge type="RadialVertical" subtype="type1" size="200" background="DARK_GRAY" framedesign="BLACK_METAL" lcdVisible="false" ledVisible="false">
+        <gauge type="RadialVertical" subtype="type1" size="200" background="DARK_GRAY" framedesign="BLACK_METAL" lcdVisible="false" ledVisible="true" titleString="Title" unitString="Unit" minValue="0" maxValue="100" threshold="30" trendVisible="true">
           <layout colspan="1.7"/>
-          <address transform="DPT:9.001" mode="read">0/2/4</address>
+          <address transform="DPT:9" mode="read">12/7/90</address>
         </gauge>
         <gauge type="Compass" subtype="type1" background="DARK_GRAY" framedesign="BLACK_METAL" size="200">
           <layout colspan="1.7"/>
-          <address transform="DPT:9.001" mode="read">0/2/8</address>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
         </gauge>
-        <gauge type="Radial" subtype="type1" ledVisible="true" lcdVisible="true" background="DARK_GRAY" framedesign="BLACK_METAL" size="200">
+        <gauge type="Radial" subtype="type1" ledVisible="true" lcdVisible="true" background="DARK_GRAY" framedesign="BLACK_METAL" size="200" titleString="Title" unitString="Unit" minValue="0" maxValue="100" threshold="30" trendVisible="true" lcdDecimals="1">
           <layout colspan="1.7"/>
-          <address transform="DPT:9.001" mode="read">0/2/3</address>
+          <address transform="DPT:9" mode="read">12/7/90</address>
+          <address transform="DPT:9" mode="read" variant="trend">12/7/92</address>
         </gauge>
-        <gauge type="Radial" subtype="type1" ledVisible="true" lcdVisible="true" background="DARK_GRAY" framedesign="BLACK_METAL" size="200">
+        <gauge type="Radial" subtype="type1" ledVisible="true" lcdVisible="true" background="DARK_GRAY" framedesign="BLACK_METAL" size="200" titleString="Title" unitString="Unit" minValue="0" maxValue="100" threshold="30" trendVisible="true" lcdDecimals="1">
           <layout colspan="1.7"/>
-          <address transform="DPT:9.001" mode="read">0/2/3</address>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
+          <address transform="DPT:9" mode="read" variant="trend">12/7/92</address>
         </gauge>
+        <slide min="0" max="100" step="5" format="%d%%">
+          <label>Last</label>
+          <address transform="DPT:9" mode="readwrite">12/7/90</address>
+        </slide>
+        <slide format="%d%%" min="0" max="100" step="5">
+          <label>AVG</label>
+          <address transform="DPT:9" mode="readwrite">12/7/91</address>
+        </slide>
+        <slide format="%d%%" min="-1" max="1">
+          <label>Trend</label>
+          <address transform="DPT:9" mode="readwrite">12/7/92</address>
+        </slide>
         <gauge type="Linear" subtype="type1" background="DARK_GRAY" framedesign="BLACK_METAL" width="150" height="300" lcdVisible="true" threshold="5" trendVisible="true" titleString="Title" unitString="Unit">
           <layout colspan="1.3"/>
-          <address transform="DPT:9.001" mode="read">0/2/1</address>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
         </gauge>
         <gauge type="LinearBargraph" subtype="type2" background="DARK_GRAY" framedesign="BLACK_METAL" width="150" height="300" lcdVisible="true" threshold="5" titleString="Title" unitString="Unit">
           <layout colspan="1.3"/>
-          <address transform="DPT:9.001" mode="read">0/2/1</address>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
         </gauge>
         <gauge type="Linear" subtype="type1" background="DARK_GRAY" framedesign="BLACK_METAL" width="300" height="150" lcdVisible="true" threshold="5" titleString="Title" unitString="Unit">
           <layout colspan="2.5"/>
-          <address transform="DPT:9.001" mode="read">0/2/1</address>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
         </gauge>
         <gauge type="LinearBargraph" subtype="type2" background="DARK_GRAY" framedesign="BLACK_METAL" width="300" height="150" lcdVisible="true" threshold="5" titleString="Title" unitString="Unit">
           <layout colspan="2.5"/>
-          <address transform="DPT:9.001" mode="read">0/2/1</address>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
         </gauge>
       </group>
       <group>
-      <text align="left">
+        <text align="left">
           <layout colspan="7"/>
           <label>&lt;b&gt;atributes&lt;/b&gt;&lt;br&gt;
 * - type: WindDirection | Radial | Linear &lt;br&gt;
@@ -128,7 +142,7 @@
 * - background: optional &lt;br&gt;
 * - framedesign: optional &lt;br&gt;
 * - valueColor: optional, default is "RED" &lt;br&gt;
-* - target: optional, if defined jump to the page with the specified name! &lt;br&gt;&lt;br&gt;</label>
+* - target: optional, if defined jump to the page with the specified name! &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</label>
         </text>
       </group>
     </group>
