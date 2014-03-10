@@ -74,7 +74,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
 
     templateEngine.bindActionForLoadingFinished(function() {
       var params = {
-          gaugeType               : ($e.attr('subtype') ? steelseries.GaugeType[$e.attr('subtype')] : undefined),
+          gaugeType               : ($e.attr('subtype') ? steelseries.GaugeType[$e.attr('subtype').toUpperCase()] : undefined),
           titleString             : ($e.attr('titleString') ? $e.attr('titleString') : undefined),
           unitString              : ($e.attr('unitString') ? $e.attr('unitString') : undefined),
           size                    : ($e.attr('size') ? parseFloat($e.attr('size') || 150) : undefined),
@@ -82,8 +82,8 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
           height                  : ($e.attr('height') ? parseFloat($e.attr('height') || 140) : undefined),
           minValue                : parseFloat($e.attr('minValue') || 0), 
           maxValue                : parseFloat($e.attr('maxValue') || 100),
-          frameDesign             : ($e.attr('framedesign') ? steelseries.FrameDesign[$e.attr('framedesign')] : undefined),
-          backgroundColor         : ($e.attr('background') ? steelseries.BackgroundColor[$e.attr('background')] : undefined),
+          frameDesign             : ($e.attr('framedesign') ? steelseries.FrameDesign[$e.attr('framedesign').toUpperCase()] : undefined),
+          backgroundColor         : ($e.attr('background') ? steelseries.BackgroundColor[$e.attr('background').toUpperCase()] : undefined),
           foregroundType          : steelseries.ForegroundType.TYPE1,
           pointerType             : steelseries.PointerType.TYPE1,
           pointerColor            : steelseries.ColorDef.RED,
@@ -92,7 +92,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
           lcdDecimals             : ($e.attr('lcdDecimals') ? parseInt($e.attr('lcdDecimals')) : undefined),
           ledVisible              : ($e.attr('ledVisible') ? $e.attr('ledVisible') == 'true' : undefined),
           ledColor                : steelseries.LedColor.RED_LED,
-          valueColor              : ($e.attr('valueColor') ? steelseries.ColorDef[$e.attr('valueColor')] : steelseries.ColorDef.RED),
+          valueColor              : ($e.attr('valueColor') ? steelseries.ColorDef[$e.attr('valueColor').toUpperCase()] : steelseries.ColorDef.RED),
           trendVisible            : ($e.attr('trendVisible') ? $e.attr('trendVisible') == 'true' : undefined),
           thresholdRising         : ($e.attr('thresholdRising') ? $e.attr('thresholdRising') == 'true' : undefined),
           threshold               : ($e.attr('threshold') ? parseFloat($e.attr('threshold')) : undefined),
