@@ -105,7 +105,7 @@
           <label>Trend</label>
           <address transform="DPT:9" mode="readwrite">12/7/92</address>
         </slide>
-        <gauge type="Linear" subtype="TYPE2" background="DARK_GRAY" framedesign="BLACK_METAL" width="150" height="300" lcdVisible="true" threshold="5" trendVisible="true" titleString="Title" unitString="Unit">
+        <gauge type="Linear" subtype="type2" background="DARK_GRAY" framedesign="BLACK_METAL" width="150" height="300" lcdVisible="true" threshold="5" trendVisible="true" titleString="Title" unitString="Unit">
           <layout colspan="1.3"/>
           <address transform="DPT:9.001" mode="read">12/7/90</address>
         </gauge>
@@ -127,7 +127,7 @@
           <layout colspan="7"/>
           <label>&lt;b&gt;atributes&lt;/b&gt;&lt;br&gt;
 * - type: WindDirection | Radial | Linear &lt;br&gt;
-* - subtype: type1 | type2 | TYPE2 | type3 | type4 | type5 &lt;br&gt;
+* - subtype: type1 | type2 | type3 | type4 | type5 &lt;br&gt;
 * - titleString: optional, "name" &lt;br&gt;
 * - unitString: optional, "units" &lt;br&gt;
 * - minValue: optional, "measuring range" &lt;br&gt;
