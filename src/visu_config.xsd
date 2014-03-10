@@ -605,6 +605,7 @@
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="type1" />
           <xsd:enumeration value="type2" />
+          <xsd:enumeration value="TYPE2" />
           <xsd:enumeration value="type3" />
           <xsd:enumeration value="type4" />
           <xsd:enumeration value="type5" />
