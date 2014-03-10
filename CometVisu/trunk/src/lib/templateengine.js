@@ -613,16 +613,23 @@ function TemplateEngine( undefined ) {
     }
 
     // start with the plugins
+    var pluginsToLoad = [];
     $('meta > plugins plugin', xml).each(function(i) {
-      pluginsToLoadCount++;
       var name = $(this).attr('name');
-      $.getOrderedScripts( 
-        ['plugins/' + name + '/structure_plugin.js'],
-        thisTemplateEngine.delaySetup( 'plugin_' + name )
-      );
+      if (name) {
+        if (!pluginsToLoad[name]) {
+          pluginsToLoadCount++;
+          $.getOrderedScripts( 
+              ['plugins/' + name + '/structure_plugin.js'],
+              thisTemplateEngine.delaySetup( 'plugin_' + name)
+            );
+          pluginsToLoad[name] = true;
+        }
+      }
     });
-    if( 0 == pluginsToLoadCount )
+    if (0 == pluginsToLoadCount) {
       delete thisTemplateEngine.loadReady.plugins;
+    }
 
     // then the icons
     $('meta > icons icon-definition', xml).each(function(i) {
