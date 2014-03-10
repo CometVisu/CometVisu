@@ -16,35 +16,37 @@
  */
 
 basicdesign.addCreator('image', {
-  create: function( element, path, flavour, type ) {
+  create: function(element, path, flavour, type) {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'image', $e, path, flavour, type );
+    var ret_val = basicdesign.createDefaultWidget('image', $e, path, flavour, type);
     // and fill in widget specific data
-    ret_val.data( {
+    ret_val.data({
       'width'  : $e.attr('width'),
       'height' : $e.attr('height'),
       'src'    : $e.attr('src'),
       'refresh': $e.attr('refresh')
-    } );
+    });
     var data = ret_val.data();
-    
+
     // create the actor
     var imgStyle = '';
-    if( data.width ) {
+    if (data.width) {
       imgStyle += 'width:'  + data.width + ';';
-    } else {
+    }
+    else {
       imgStyle += 'width: 100%;';
     }
-    if( data.height ) imgStyle += 'height:' + data.height + ';';
+    if (data.height) {
+      imgStyle += 'height:' + data.height + ';';
+    }
     var $actor = $('<div class="actor"><img src="' + data.src + '" style="' + imgStyle + '" /></div>');
-    ret_val.append( $actor );
-    
-    if( data.refresh )
-    {
-      $actor.data( 'refresh', data.refresh * 1000 );
-      $actor.each( templateEngine.setupRefreshAction );  // abuse "each" to call in context...
+    ret_val.append($actor);
+
+    if (data.refresh) {
+      $actor.data('refresh', data.refresh * 1000);
+      $actor.each(templateEngine.setupRefreshAction);  // abuse "each" to call in context...
     }
     
     return ret_val;
