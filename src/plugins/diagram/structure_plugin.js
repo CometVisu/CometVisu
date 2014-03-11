@@ -99,7 +99,7 @@ $.includeScripts([
         if (!config.previewlabels) {
           classStr = 'diagram_preview';
         }
-        $actor = $('<div class="actor clickable"><div class="' + classStr + '" id="' + id + '">loading...</div></div>');
+        $actor = $('<div class="actor clickable" style="height: 100%;"><div class="' + classStr + '" id="' + id + '">loading...</div></div>');
         diagram = $("#" + id, $actor);
       }
       ret_val.append($actor);
