@@ -348,13 +348,13 @@ div#loading
 .diagram_inline 
 {
   width: 320px; 
-  height: 100%;
+  height: 180px;
 }
 
 .diagram_preview 
 {
   width: 240px;
-  height: 100%;
+  height: 2em;
 }
 
 #diagramTooltip, #flotTip
