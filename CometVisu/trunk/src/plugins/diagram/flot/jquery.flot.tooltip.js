@@ -170,16 +170,8 @@
         var xPatternWithoutPrecision = "%x";
         var yPatternWithoutPrecision = "%y";
 
-        var x, y;
-
-        // for threshold plugin we need to read data from different place
-        if (typeof item.series.threshold !== "undefined") {
-            x = item.datapoint[0];
-            y = item.datapoint[1];
-        } else {
-            x = item.series.data[item.dataIndex][0];
-            y = item.series.data[item.dataIndex][1];
-        }
+        var x = item.datapoint[0];
+        var y = item.datapoint[1];
 
         // I think this is only in case of threshold plugin
         if (item.series.label === null && item.series.originSeries) {
