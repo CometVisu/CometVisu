@@ -215,8 +215,8 @@ $.includeScripts([
           content      : "<center>%x<br/>%y</center>",
           xDateFormat  : config.timeformatTooltip,
           shifts       : {
-            x : 5,
-            y : 5,
+            x : 20,
+            y : 10,
           },
           defaultTheme : false,
         },
