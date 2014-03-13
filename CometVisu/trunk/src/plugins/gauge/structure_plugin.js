@@ -97,7 +97,9 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
           thresholdRising         : ($e.attr('thresholdRising') ? $e.attr('thresholdRising') == 'true' : undefined),
           threshold               : ($e.attr('threshold') ? parseFloat($e.attr('threshold')) : undefined),
           thresholdVisible        : ($e.attr('threshold') !== undefined),
-      };
+          autoScroll              : ($e.attr('autoScroll') ? $e.attr('autoScroll') == 'true' : undefined),
+          valuesNumeric           : ($e.attr('valuesNumeric') ? $e.attr('valuesNumeric') == 'true' : undefined),
+     };
       
       var gaugeElement = new steelseries[$e.attr('type') || 'Radial'](id, params);
 
@@ -118,6 +120,11 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
         case 'average':
           if (gaugeElement.setValueAnimatedAverage) {
             gaugeElement.setValueAnimatedAverage(value);
+          }
+          break;
+        case 'setValue':
+          if (gaugeElement.setValue) {
+            gaugeElement.setValue(value);
           }
           break;
         case 'trend':
