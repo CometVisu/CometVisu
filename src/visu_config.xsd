@@ -605,6 +605,7 @@
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="type1" />
           <xsd:enumeration value="type2" />
+          <xsd:enumeration value="TYPE2" />
           <xsd:enumeration value="type3" />
           <xsd:enumeration value="type4" />
           <xsd:enumeration value="type5" />
@@ -621,7 +622,9 @@
     <xsd:attribute name="ledVisible" type="xsd:boolean" use="optional" />
     <xsd:attribute name="lcdVisible" type="xsd:boolean" use="optional" />
     <xsd:attribute name="trendVisible" type="xsd:boolean" use="optional" />
-	<xsd:attribute name="lcdDecimals" type="xsd:nonNegativeInteger" use="optional" />
+    <xsd:attribute name="autoScroll" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="valuesNumeric" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="lcdDecimals" type="xsd:nonNegativeInteger" use="optional" />
     <xsd:attribute name="background" use="optional" >              
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
