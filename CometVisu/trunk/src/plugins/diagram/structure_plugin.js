@@ -186,8 +186,8 @@ $.includeScripts([
           color     : this.getAttribute('color'),
           label     : this.getAttribute('label') || src,
           axisIndex : axesNameIndex[this.getAttribute('yaxis')] || 1,
-          steps     : this.getAttribute('steps') || false,
-          fill      : this.getAttribute('fill') || false,
+          steps     : (this.getAttribute("steps") || "false") == "true",
+          fill      : (this.getAttribute("fill") || "false") == "true",
           scaling   : parseFloat(this.getAttribute('scaling')) || 1.,
           dsIndex   : this.getAttribute('datasourceIndex') || 0,
           cFunc     : this.getAttribute('consolidationFunction') || "AVERAGE"
