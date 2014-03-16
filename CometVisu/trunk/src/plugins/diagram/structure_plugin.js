@@ -111,6 +111,7 @@ $.includeScripts([
         if (ret_val.data('bind_click_to_widget')) bindClickToWidget = (ret_val.data('bind_click_to_widget') === 'true');
         (bindClickToWidget ? ret_val : $actor).bind('click', function() {
           var popupDiagram = $('<div class="diagram" id="' + configCopy.id + '"/>');
+          popupDiagram.data().init = true;
           popupDiagram.data().config = configCopy;
           popupDiagram.css({height: "90%"});
           templateEngine.showPopup("unknown", {title: configCopy.label, content: popupDiagram});
@@ -133,6 +134,7 @@ $.includeScripts([
         if ($e.attr("height")) {
           diagram.css("height", $e.attr("height"));
         }
+        diagram.data().init = true;
         diagram.data().config = config;
         $(window).bind('scrolltopage', function(event, page_id) {
           var page = templateEngine.getParentPageFromPath(path);
@@ -203,10 +205,12 @@ $.includeScripts([
 
     function initDiagram(dgrm) {
       var diagram = $(dgrm);
+      var init = diagram.data().init;
       var config = diagram.data().config;
-      if (config === undefined) {
+      if (!init || config === undefined) {
         return;
       }
+      diagram.data().init = false;
 
       var options = {
         canvas  : true,
