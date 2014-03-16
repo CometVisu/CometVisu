@@ -27,6 +27,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
     }
 
     var id = "rss_" + uniqid();
+    var extsource = false;
 
     var ret_val = $('<div class="widget clearfix rsslog" />');
     basicdesign.setWidgetLayout( ret_val, $el );
@@ -149,11 +150,17 @@ function refreshRSSlog(rss) {
           return; // avoid the request
         }
         
-        if (o.src.match(/\?/)) {
-          o.src += '&j';
-        } else {
-          o.src += '?j';
-        }
+	if (!o.src.match(/rsslog\.php/)) {
+	  extsource = true; // for later changes to tell if internal or external source being used
+	  var wrapper = "plugins/rsslog/rsslog_external.php?url="
+          o.src = wrapper.concat(o.src);
+	} else {
+	  if (o.src.match(/\?/)) {
+            o.src += '&j';
+          } else {
+            o.src += '?j';
+          }
+	}
 
         jQuery.ajax({
           url: o.src,
@@ -163,6 +170,7 @@ function refreshRSSlog(rss) {
           console.log('C: #%s, Error: %s, Feed: %s', $(c).attr('id'), e, o.src);
           },
           success: function(result){
+            //console.log('C: #%s, Success, Feed: %s', $(c).attr('id'), o.src);
             c.html('');
 
             // get height of one entry, calc max num of display items in widget
@@ -179,6 +187,7 @@ function refreshRSSlog(rss) {
 
             var items = result.responseData.feed.entries;
             var itemnum = items.length;
+	    //console.log('C: #%s, %i element(s) found, %i displayrow(s) available', $(c).attr('id'), itemnum, displayrows);
                           
             var itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
                           
@@ -204,6 +213,7 @@ function refreshRSSlog(rss) {
             var separatorprevday = false;
             
             for (var i=itemoffset; i<last; i++) {  
+              //console.log('C: #%s, processing item: %i of %i', $(c).attr('id'), i, itemnum);
               var idx = i;
               idx = (i>=itemnum) ? (idx = idx - itemnum) : idx;
                             
