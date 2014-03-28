@@ -354,7 +354,7 @@ $.includeScripts([
       // get all rrd data
       $.each(config.content.rrd, function(index, rrd) {
         $.ajax({
-          url: templateEngine.backend+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + series.start + "&end=" + series.end + "&res=" + series.res,
+          url: templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + series.start + "&end=" + series.end + "&res=" + series.res,
           dataType: "json",
           type: "GET",
           context: this,
