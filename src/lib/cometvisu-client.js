@@ -47,6 +47,7 @@ function CometVisu( urlPrefix )
                                                          // (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
   this.lastIndex        = -1;                            // index returned by the last request
   this.resendHeaders = [];                               // keep the e.g. atmosphere tracking-id id there is one
+  this.headers = [];                                     // fixed headers that are send everytime
     
   this.setInitialAddresses = function(addresses) {
     this.initialAddresses = addresses;
@@ -158,7 +159,11 @@ function CometVisu( urlPrefix )
     for (var headerName in this.resendHeaders) {
       if (this.resendHeaders[headerName]!=undefined)
         xhr.setRequestHeader(headerName,this.resendHeaders[headerName]);
-   }
+    }
+    for (var headerName in this.headers) {
+      if (this.headers[headerName]!=undefined)
+        xhr.setRequestHeader(headerName,this.headers[headerName]);
+    }
   }
   
   /**
@@ -219,7 +224,7 @@ function CometVisu( urlPrefix )
   this.stop = function()
   {
     this.running = false;
-    if( this.xhr.abort ) this.xhr.abort();
+    this.abort();
     //alert('this.stop');
   };
 
@@ -245,9 +250,28 @@ function CometVisu( urlPrefix )
   this.restart = function()
   {
     this.doRestart = true;
-    if( this.xhr.abort ) this.xhr.abort();
+    this.abort();
     this.handleRead(); // restart
     this.doRestart = false;
+  }
+   /**
+   * Abort the read request properly
+   * @method restart
+   */
+  this.abort=function() {
+    if( this.xhr.abort ) {
+      this.xhr.abort();
+      if (this.urlPrefix=="/services/cv/") {
+        // send an close request to the openHAB server
+        var oldValue = this.headers["X-Atmosphere-Transport"];
+        this.headers["X-Atmosphere-Transport"]="close";
+        $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,beforeSend:this.beforeSend } );
+        if (oldValue!=undefined)
+          this.headers["X-Atmosphere-Transport"]=oldValue;
+        else
+          delete this.headers["X-Atmosphere-Transport"];
+      }
+    }
   }
   
   /**
