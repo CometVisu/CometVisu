@@ -613,11 +613,12 @@
     </xsd:attribute>
     <xsd:attribute name="titleString" type="xsd:string" use="optional" />
     <xsd:attribute name="unitString" type="xsd:string" use="optional" />
+    <xsd:attribute name="unitStringVisible" type="xsd:boolean" use="optional" />
     <xsd:attribute name="minValue" type="xsd:decimal" use="optional" />
     <xsd:attribute name="maxValue" type="xsd:decimal" use="optional" />
     <xsd:attribute name="size" type="xsd:decimal" use="optional" />
     <xsd:attribute name="threshold" type="xsd:decimal" use="optional" />
-	<xsd:attribute name="thresholdRising" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="thresholdRising" type="xsd:boolean" use="optional" />
     <xsd:attribute name="ledVisible" type="xsd:boolean" use="optional" />
     <xsd:attribute name="lcdVisible" type="xsd:boolean" use="optional" />
     <xsd:attribute name="trendVisible" type="xsd:boolean" use="optional" />
