@@ -45,7 +45,7 @@ $.includeScripts([
   'plugins/gauge/lib/tween-min.js',
   'plugins/gauge/lib/steelseries-min.js'
 ], templateEngine.pluginLoaded );
-
+$.getCSS( 'plugins/gauge/gauge.css' );
 VisuDesign_Custom.prototype.addCreator("gauge", {
   create: function(element, path, flavour, type) {
     var $e = $(element);
@@ -77,6 +77,7 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
           gaugeType               : ($e.attr('subtype') ? steelseries.GaugeType[$e.attr('subtype').toUpperCase()] : undefined),
           titleString             : ($e.attr('titleString') ? $e.attr('titleString') : undefined),
           unitString              : ($e.attr('unitString') ? $e.attr('unitString') : undefined),
+          unitStringVisible       : ($e.attr('unitStringVisible') ? $e.attr('unitStringVisible') == 'true' : undefined),
           size                    : ($e.attr('size') ? parseFloat($e.attr('size') || 150) : undefined),
           width                   : ($e.attr('width') ? parseFloat($e.attr('width') || 320) : undefined),
           height                  : ($e.attr('height') ? parseFloat($e.attr('height') || 140) : undefined),
