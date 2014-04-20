@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages design="discreet" lib_version="6" screensave_time="500000" screensave_page="id_" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+  <meta>
+    <plugins>
+      <plugin name="colorchooser"/>
+      <plugin name="clock"/>
+      <plugin name="diagram"/>
+      <plugin name="gauge"/>
+    </plugins>
+    <icons/>
+    <mappings>
+      <mapping name="Weather">
+        <entry value="0">0:<icon name="weather_test" styling="height:8em;"/></entry>
+        <entry value="1">Off</entry>
+      </mapping>
+      <mapping name="OnOff">
+        <entry value="0">On</entry>
+        <entry value="1">Off</entry>
+      </mapping>
+      <mapping name="OffOn">
+        <entry value="0">Off</entry>
+        <entry value="1">On</entry>
+      </mapping>
+      <mapping name="OpenClose">
+        <entry value="0">Open</entry>
+        <entry value="1">Close</entry>
+      </mapping>
+      <mapping name="CloseOpen">
+        <entry value="0">Close</entry>
+        <entry value="1">Open</entry>
+      </mapping>
+      <mapping name="Sign">
+        <entry range_min="-1e99" range_max="0">Negative</entry>
+        <entry value="0">Zero</entry>
+        <entry range_min="0" range_max="1e99">Positive</entry>
+      </mapping>
+      <mapping name="LichtEG">
+        <entry value="0">
+          <icon name="control_building_modern_s_eg" color="white" type="64" styling="height:auto"/>
+        </entry>
+        <entry value="1">
+          <icon name="control_building_modern_s_eg" color="red" type="64" styling="height:auto"/>
+        </entry>
+      </mapping>
+      <mapping name="OnOff_Licht">
+        <entry value="0">
+          <icon name="light_light" color="white"/>
+        </entry>
+        <entry value="1">
+          <icon name="light_light_dim_100" color="orange"/>
+        </entry>
+      </mapping>
+      <mapping name="DaWegIcon">
+        <entry value="0">
+          <icon name="user_awayX" color="white"/>
+        </entry>
+        <entry value="1">
+          <icon name="user_available" color="#64e92c"/>
+        </entry>
+      </mapping>
+      <mapping name="Jetzt">
+        <entry value="0">
+          <icon name="control_on_off" color="orange"/>
+        </entry>
+      </mapping>
+    </mappings>
+    <stylings>
+      <styling name="RedGreen">
+        <entry value="0">red</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="GreenRed">
+        <entry value="0">green</entry>
+        <entry value="1">red</entry>
+      </styling>
+      <styling name="BluePurpleRed_Temp">
+        <entry range_min="-100" range_max="0">blue</entry>
+        <entry value="0">purple</entry>
+        <entry range_min="0" range_max="100">red</entry>
+      </styling>
+      <styling name="BlueRed_Humi">
+        <entry range_min="0" range_max="60">blue</entry>
+        <entry range_min="61" range_max="100">red</entry>
+      </styling>
+      <styling name="GreyGrey">
+        <entry value="0">grey</entry>
+        <entry value="1">grey</entry>
+      </styling>
+    </stylings>
+    <statusbar>
+      <status type="html">&lt;img src="icon/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="http://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
+                                - &lt;a href="."&gt;Reload&lt;/a&gt;
+                                - &lt;a href="?config=demo"&gt;Widget Demo&lt;/a&gt;</status>
+      <status type="html" condition="!edit" hrefextend="config">- &lt;a href="editor/"&gt;Edit&lt;/a&gt;</status>
+      <status type="html" condition="edit" hrefextend="all">- &lt;a href="."&gt;normal Mode&lt;/a&gt;</status>
+    </statusbar>
+  </meta>
+  <page name="Übersicht" showtopnavigation="false" showfooter="false" shownavbar-left="false">
+    <page name="OG" visible="false" shownavbar-left="true">
+      <page name="Diele_OG" visible="false"/>
+      <page name="Kind West" visible="false"/>
+      <page name="Kind Sued" visible="false"/>
+      <page name="Schlafzimmer" visible="false"/>
+      <page name="Bad" visible="false"/>
+      <page name="Dachboden" visible="false"/>
+    </page>
+    <navbar position="top">
+      <pagejump target="Übersicht">
+        <layout colspan="0"/>
+        <label><icon name="control_home"/>Übersicht</label>
+      </pagejump>
+      <pagejump target="EG">
+        <layout colspan="0"/>
+        <label><icon name="control_building_s_eg"/>EG</label>
+      </pagejump>
+      <pagejump target="OG">
+        <layout colspan="0"/>
+        <label><icon name="control_building_s_og"/>OG</label>
+      </pagejump>
+      <pagejump target="Außen">
+        <layout colspan="0"/>
+        <label><icon name="control_building_outside"/>Außen</label>
+      </pagejump>
+      <pagejump target="Garage">
+        <layout colspan="0"/>
+        <label><icon name="fts_garage"/>Garage</label>
+      </pagejump>
+      <pagejump target="Audio">
+        <layout colspan="0"/>
+        <label><icon name="audio_audio"/>Audio</label>
+      </pagejump>
+      <pagejump target="TV">
+        <layout colspan="0"/>
+        <label><icon name="it_television"/>TV</label>
+      </pagejump>
+      <pagejump target="Technik">
+        <layout colspan="0"/>
+        <label><icon name="message_service"/>Technik</label>
+      </pagejump>
+      <pagejump target="Alarm">
+        <layout colspan="0"/>
+        <label><icon name="secur_alarm"/>Alarm</label>
+      </pagejump>
+      <pagejump target="Meldungen">
+        <layout colspan="0"/>
+        <label><icon name="message_notice"/>Meldungen</label>
+      </pagejump>
+      <pagejump target="Status">
+        <layout colspan="0"/>
+        <label><icon name="message_ok"/>Status</label>
+      </pagejump>
+      <pagejump target="Test">
+        <layout colspan="0"/>
+        <label><icon name="message_stop"/>Test</label>
+      </pagejump>
+    </navbar>
+    <gauge type="Radial" titleString="Windstaerke" unitString="km/h" minValue="0" maxValue="100" size="200" lcdVisible="true" format="%.1f C">
+      <layout colspan="2" rowspan="4"/>
+      <address transform="DPT:9.001" mode="read">12/7/9</address>
+    </gauge>
+    <line>
+      <layout colspan="12"/>
+    </line>
+    <info styling="Blue_Purple_Red">
+      <label>Info: Slider</label>
+      <address transform="DPT:9" mode="readwrite">12/7/9</address>
+    </info>
+    <slide min="-18" max="26">
+      <label>Slider</label>
+      <address transform="DPT:9" mode="readwrite">12/7/9</address>
+    </slide>
+    <info styling="Blue_Purple_Red">
+      <label>Info: Slider 2</label>
+      <address transform="DPT:9" mode="readwrite">12/7/91</address>
+    </info>
+    <slide min="-18" max="26">
+      <label>Slider 2</label>
+      <address transform="DPT:9" mode="readwrite">12/7/91</address>
+    </slide>
+    <group name="gauge" nowidget="true">
+      <layout colspan="12"/>
+      <gauge type="WindDirection" titleString="Wind" size="200">
+        <layout colspan="1.7"/>
+        <address transform="DPT:9.001" mode="read">12/7/9</address>
+        <address transform="DPT:9.001" mode="read" variant="average">12/7/91</address>
+      </gauge>
+      <gauge type="Radial" titleString="Windstaerke" unitString="km/h" minValue="0" maxValue="100" size="200" lcdVisible="true">
+        <layout colspan="1.7"/>
+        <address transform="DPT:9.001" mode="read">12/7/9</address>
+      </gauge>
+    </group>
+    <page name="Allgemein" visible="false" shownavbar-left="true"/>
+    <page name="EG" visible="false" shownavbar-left="true">
+      <navbar position="left" dynamic="true" width="240px">
+        <pagejump target="EG_Uebers" name="Erdg">
+          <label>
+            <icon name="scene_stairs"/>
+          </label>
+        </pagejump>
+        <pagejump target="EG_Uebers" name="Erdgeschoss">
+          <label>
+            <icon name="scene_stairs"/>
+          </label>
+        </pagejump>
+        <pagejump target="EG_Uebers" name="Erdgeschoss">
+          <label>
+            <icon name="control_building_s_eg"/>
+          </label>
+        </pagejump>
+        <pagejump target="EG_Uebers" name="  Erdgeschoss">
+          <label>
+            <icon name="control_building_s_eg"/>
+          </label>
+        </pagejump>
+        <pagejump target="Diele_EG" name="Diele">
+          <label>
+            <icon name="scene_stairs"/>
+          </label>
+        </pagejump>
+        <pagejump target="Kueche/Wohn-/Esszimmer" name="  Kueche/Wohnzi.">
+          <label>
+            <icon name="scene_livingroom"/>
+          </label>
+        </pagejump>
+        <pagejump target="Buero" name="Büro">
+          <label>
+            <icon name="scene_livingroom"/>
+          </label>
+        </pagejump>
+        <pagejump target="WC" name="WC">
+          <label>
+            <icon name="scene_livingroom"/>
+          </label>
+        </pagejump>
+        <pagejump target="SPK" name="Speißekammer">
+          <label>
+            <icon name="scene_livingroom"/>
+          </label>
+        </pagejump>
+        <pagejump target="Technik" name="Technik">
+          <label>
+            <icon name="scene_livingroom"/>
+          </label>
+        </pagejump>
+        <page name="EG_Uebers" visible="false"/>
+        <page name="Diele_EG" visible="false"/>
+        <page name="Kueche/Wohn-/Esszimmer" visible="false"/>
+        <page name="Buero" visible="false"/>
+        <page name="WC" visible="false"/>
+        <page name="SPK" visible="false"/>
+        <page name="Technik" visible="false"/>
+      </navbar>
+    </page>
+    <gauge type="WindDirection" titleString="Wind" size="200" format="%.1f C">
+      <layout colspan="2" rowspan="4"/>
+      <address transform="DPT:9.001" mode="read">12/7/9</address>
+    </gauge>
+    <page name="Außen" visible="false" shownavbar-left="true"/>
+    <page name="Garage" visible="false" shownavbar-left="true"/>
+    <page name="Audio" visible="false" shownavbar-left="true"/>
+    <page name="TV" visible="false" shownavbar-left="true"/>
+    <page name="Technik" visible="false" shownavbar-left="true"/>
+    <page name="Alarm" visible="false" shownavbar-left="true"/>
+    <page name="Meldungen" visible="false" shownavbar-left="true"/>
+    <page name="Status" visible="false" shownavbar-left="true"/>
+    <page name="Test" visible="false" shownavbar-left="true"/>
+    <urltrigger url="http://Benutzername:Passwort@IP-XBMC/jsonrpc?request=%7B%22jsonrpc%22%3A%222.0%22%2C%22method%22%3A%22Player.PlayPause%22%2C%22id%22%3A1%2C%22params%22%3A%7B%22playerid%22%3A0%7D%7D" value="url trigger"/>
+  </page>
+</pages>
