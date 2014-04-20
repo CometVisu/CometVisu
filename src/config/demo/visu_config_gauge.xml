@@ -32,8 +32,8 @@
         <entry value="building_protection">Haus-Schutz</entry>
       </mapping>
       <mapping name="Text_Scroll">
-        <entry value="0">Muelltonne</entry>
-        <entry value="1">Inspektion</entry>
+        <entry value="0">Muelltonne übermorgen leeren</entry>
+        <entry value="1">Inspektion heute nach Autohaus Meyer</entry>
       </mapping>
     </mappings>
     <stylings>
@@ -109,7 +109,7 @@
           <label>Trend</label>
           <address transform="DPT:9" mode="readwrite">12/7/92</address>
         </slide>
-        <gauge type="Linear" subtype="TYPE2" background="DARK_GRAY" framedesign="BLACK_METAL" width="150" height="300" lcdVisible="true" threshold="5" trendVisible="true" titleString="Title" unitString="Unit">
+        <gauge type="Linear" subtype="type2" background="DARK_GRAY" framedesign="BLACK_METAL" width="150" height="300" lcdVisible="true" threshold="5" trendVisible="true" titleString="Title" unitString="Unit">
           <layout colspan="1.3"/>
           <address transform="DPT:9.001" mode="read">12/7/90</address>
         </gauge>
@@ -117,7 +117,7 @@
           <layout colspan="1.3"/>
           <address transform="DPT:9.001" mode="read">12/7/90</address>
         </gauge>
-        <gauge type="Linear" subtype="TYPE2" background="DARK_GRAY" framedesign="BLACK_METAL" width="300" height="150" lcdVisible="true" threshold="5" titleString="Title" unitString="Unit">
+        <gauge type="Linear" subtype="type2" background="DARK_GRAY" framedesign="BLACK_METAL" width="300" height="150" lcdVisible="true" threshold="5" titleString="Title" unitString="Unit">
           <layout colspan="2.5"/>
           <address transform="DPT:9.001" mode="read">12/7/90</address>
         </gauge>
@@ -125,7 +125,8 @@
           <layout colspan="2.5"/>
           <address transform="DPT:9.001" mode="read">12/7/90</address>
         </gauge>
-        <gauge type="DisplaySingle" width="120" height="50">
+ 
+        <gauge type="DisplaySingle" width="120" height="50" lcdDecimals="1" unitStringVisible= "true" unitString="°C">
           <layout colspan="1.3"/>
           <address transform="DPT:9" mode="read" variant="setValue">12/7/90</address>
         </gauge>
@@ -150,7 +151,8 @@
 * - maxValue: optional, "measuring range" &lt;br&gt;
 * - ledVisible: optional, "true", "false" &lt;br&gt;
 * - lcdVisible: optional, "true", "false"  &lt;br&gt;
-* - lcdDecimals: optional, integer &lt;br&gt;
+* - lcdDecimals: optional, integer &lt;br&gt; 
+* - unitStringVisible: optional, "true, "false" &lt;br&gt;
 * - trendVisible: optional, "true" , "false" &lt;br&gt;
 * - size: optional, preset "150"  &lt;br&gt;
 * - threshold: optional, "" &lt;br&gt;
