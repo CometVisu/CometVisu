@@ -74,7 +74,7 @@ fi
 
 
 echo -n "Getting icons from SVN source..."
-svn checkout svn://svn.code.sf.net/p/openautomation/code/tools/knx-uf-iconset/trunk/raw_480x480/ > /dev/null 2>&1
+svn checkout http://svn.code.sf.net/p/openautomation/code/tools/knx-uf-iconset/trunk/raw_480x480/ > /dev/null 2>&1
 echo "done."
 
 
