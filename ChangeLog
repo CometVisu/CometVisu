@@ -1,3 +1,16 @@
+0.8.3
+=====
+
+- openHAB backend: improvements
+- icons updated to the latest version upstream
+- diagram plugin: new attribute timeformatTooltip for formatting the date string in the tooltip
+- diagram plugin: use flot tooltip plugin and implement basic panning and zooming
+- diagram plugin: Made address optional in diagram_info
+- diagram plugin: reworked and updated flot library
+- gauge plugin: demo config added (visu_config_gauge.xml)
+- rsslog plugin: add external sources for rsslog via php-fetcher
+- new plugin: calendarlist
+
 0.8.2
 =====
 
