@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="7" design="pure" xsi:noNamespaceSchemaLocation="../../visu_config.xsd">
+  <meta>
+    <plugins>
+      <plugin name="rss"/>
+      <plugin name="rsslog"/>
+    </plugins>
+    <mappings>
+      <mapping name="Open_Close">
+        <entry value="0">zu</entry>
+        <entry value="1">offen</entry>
+      </mapping>
+      <mapping name="Close_Open">
+        <entry value="0">offen</entry>
+        <entry value="1">zu</entry>
+      </mapping>
+      <mapping name="On_Off">
+        <entry value="0">Aus</entry>
+        <entry value="1">An</entry>
+      </mapping>
+      <mapping name="Off_On">
+        <entry value="0">An</entry>
+        <entry value="1">Aus</entry>
+      </mapping>
+      <mapping name="KonnexHVAC">
+        <entry value="auto">Auto</entry>
+        <entry value="comfort">Komfort</entry>
+        <entry value="standby">Stand By</entry>
+        <entry value="economy">Economy</entry>
+        <entry value="building_protection">Haus-Schutz</entry>
+      </mapping>
+    </mappings>
+    <stylings>
+      <styling name="Red_Green">
+        <entry value="0">red</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="Green_Red">
+        <entry value="0">green</entry>
+        <entry value="1">red</entry>
+      </styling>
+      <styling name="Blue_Green_Red">
+        <entry range_min="-100" range_max="20">blue</entry>
+        <entry range_min="20" range_max="22">green</entry>
+        <entry range_min="22" range_max="100">red</entry>
+      </styling>
+    </stylings>
+    <statusbar>
+      <status type="html"><![CDATA[
+          <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          - <a href=".?forceReload=true">Reload</a>
+          - <a href="?config=demo">Widget Demo</a>
+        ]]></status>
+      <status type="html" condition="!edit" hrefextend="config"><![CDATA[
+          - <a href="editor/">Edit</a>
+        ]]></status>
+      <status type="html" condition="edit" hrefextend="all"><![CDATA[
+          - <a href=".">normal Mode</a>
+        ]]></status>
+      <status type="html" hrefextend="config"><![CDATA[
+          - <a href="check_config.php">Check Config</a>
+        ]]></status>
+    </statusbar>
+  </meta>
+  <page name="Start">
+    <text align="center">
+      <label>Welcome to the CometVisu - Demo for urltrigger, RSSlog and RSS Plugin</label>
+    </text>
+    <line/>
+    <urltrigger value="Ins Log" url="plugins/rsslog/rsslog.php" params="t[]=aquarium&amp;c=AQ1 Wasserwechsel">
+      <label>Aquarium 1 Wasser gewechselt</label>
+    </urltrigger>
+    <urltrigger value="Ins Log" url="plugins/rsslog/rsslog.php" params="t[]=WP&amp;c=Filter gereinigt">
+      <label>WP Filter gereinigt</label>
+    </urltrigger>
+    <urltrigger value="Call me" url="/something/else.php">
+      <label>Any other local(!) URL/script</label>
+    </urltrigger>
+    <urltrigger value="AQ2 WW" url="plugins/rsslog/rsslog.php" params="t[]=aquarium&amp;c=AQ2 Wasserwechsel"/>
+    <line/>
+    <text align="center">
+      <label>rsslog filter: Aquarium - 6 lines</label>
+    </text>
+    <rsslog src="plugins/rsslog/rsslog.php?f=aqua" refresh="300" limit="5" mode="last">
+      <layout rowspan="9" colspan="6"/>
+    </rsslog>
+    <line/>
+    <text align="center">
+      <label>rsslog filter: Sensoren - only last (click me!)</label>
+    </text>
+    <rsslog src="plugins/rsslog/rsslog.php?f=sensoren" mode="rollover"/>
+    <line/>
+    <text align="center">
+      <label>rsslog filter: WP</label>
+    </text>
+    <rsslog src="plugins/rsslog/rsslog.php?f=WP" mode="rollover"/>
+    <rsslog src="plugins/rsslog/rsslog.php?state=1" filter="security" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
+      <layout rowspan="9" colspan="6"/>
+      <label>Ereignisse state=1 Filter=security</label>
+    </rsslog>
+    <rsslog src="plugins/rsslog/rsslog.php?state=0" filter="security" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
+      <layout rowspan="9" colspan="6"/>
+      <label>Ereignisse state=0 Filter=security</label>
+    </rsslog>
+    <line/>
+    <page name="externe feeds">
+      <rss src="http://www.tagesschau.de/xml/rss2" refresh="3600" header="true"/>
+    </page>
+  </page>
+</pages>
