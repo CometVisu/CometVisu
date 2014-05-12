@@ -738,6 +738,7 @@
       <xsd:element name="shade" type="info" />
       <xsd:element name="image" type="image" />
       <xsd:element name="imagetrigger" type="imagetrigger" />
+      <xsd:element name="audio" type="audio" />
       <xsd:element name="video" type="video" />
       <xsd:element name="web" type="web" />
       <xsd:element name="rgb" type="rgb" />
@@ -993,6 +994,23 @@
     <xsd:attribute name="sendValue" type="xsd:string" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="audio">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="label" type="label" maxOccurs="1" />
+      <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="src" type="uri" use="required" />
+    <xsd:attribute name="id" type="xsd:string" use="required" />
+    <xsd:attribute name="threshold_value" type="xsd:string" use="optional" />
+    <xsd:attribute name="width" type="dimension" />
+    <xsd:attribute name="height" type="dimension" />
+    <xsd:attribute name="volume" type="xsd:string" />
+    <xsd:attribute name="autoplay" type="xsd:string" />
+    <xsd:attribute name="loop" type="xsd:string" />
+    <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="video">
