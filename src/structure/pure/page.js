@@ -179,8 +179,9 @@ basicdesign.addCreator('page', {
         break;
         
       default:
+        // TODO: data comparision has to be refactored to use DPT and a value
         if (data==01) {
-          templateEngine.scrollToPage(this.attributes.path.nodeValue);
+          templateEngine.scrollToPage(element.context.firstChild.textContent);
           templateEngine.visu.write(e.type.substr(1), templateEngine.transformEncode('DPT:1.001', 0));
         }
     }
