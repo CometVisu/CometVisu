@@ -32,6 +32,6 @@
  * the current lib version
  * @const   integer
  */
-define('LIBRARY_VERSION', 7);
+define('LIBRARY_VERSION', 8);
 
 ?>
