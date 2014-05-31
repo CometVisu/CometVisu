@@ -7,6 +7,8 @@
   <body>
 <?php
 
+require_once('lib/library_version.inc.php');
+
 $error_array = array();
 
 // this function was inspired by:
@@ -64,6 +66,17 @@ function libxml_display_error( $error )
   return $return; 
 }
 
+function checkVersion( $dom )
+{
+  echo '<hr />';
+  $fileVersion = $dom->getElementsByTagName("pages")->item(0)->getAttribute('lib_version');
+  echo "The config file uses a library version of '" . $fileVersion . "', current version is '"
+       . LIBRARY_VERSION . "', so this is " . ($fileVersion==LIBRARY_VERSION?'':'NOT ') . "up to date.";
+  if( $fileVersion != LIBRARY_VERSION )
+    echo ' Pleiase run <a href="upgrade/index.php?config='.$_GET['config'].
+      '">Configuration Upgrade</a> when you are sure that the config file is valid XML.';
+}
+
 // Enable user error handling 
 libxml_use_internal_errors(true); 
 
@@ -106,9 +119,13 @@ $dom->load( $conffile );
 
 if( $dom->schemaValidate( 'visu_config.xsd' ) )
 {
-  print ("config <b>" . $conffile . " is valid </b> XML");
+  print ("config <b>" . $conffile . " is valid </b> XML<br/>");
+
+  checkVersion( $dom );
 } else {
   print ("config <b>" . $conffile . " is NOT </b> valid XML");
+
+  checkVersion( $dom );
 
   echo '<hr />';
 
