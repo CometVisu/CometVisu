@@ -35,7 +35,7 @@ require_once('../lib/library_version.inc.php');
  * the library-version the upgrader understands
  * @const   integer
  */
-define('UPGRADER_LIBRARY_VERSION', 7);
+define('UPGRADER_LIBRARY_VERSION', 8);
 
 
 /**
@@ -103,8 +103,11 @@ class ConfigurationUpgrader {
     			case 5:
     				$this->upgrade5To6();
     				break;
-    		    case 6:
-    				$this->upgrade6To7();
+                        case 6:
+                                $this->upgrade6To7();
+                                break;
+                        case 7:
+    				$this->upgrade7To8();
     				break;
     		}
     		$intVersionCounter++;
@@ -526,6 +529,23 @@ class ConfigurationUpgrader {
         $this->log('converted ' . $i . ' \'group\'-nodes');
     }
 
+    /**
+     * do all necessary changes from version 7 to version 8
+     */
+    protected function upgrade7To8() {
+        $objXPath = new DOMXPath($this->objDOM);
+        
+        // delete obsolete gweather plguin
+        $objElements = $objXPath->query('//plugins')->item(0);
+        $i = 0;
+        foreach ($objElements->childNodes as $objElementNode) {
+          if( $objElementNode->nodeName == 'plugin' && 'gweather' == $objElementNode->getAttribute('name') ) {
+            $objElements->removeChild($objElementNode);
+            ++$i;
+          }
+        }
+        $this->log('removed ' . $i . ' \'plugin\'-nodes with obsolete plugin (gweather)');
+    }
     /**
      * helper-function for sorting of elements
      * 
