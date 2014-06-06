@@ -396,6 +396,41 @@ addTransform( 'DPT', {
       }
     },
   },
+  /* DPT24.001 is probably not fully correct as it can also hold 
+     multiple strings sep. by \x00 as array according to 3.7.2 DPT v1.07
+     but there is no other reference, even not in ETS4
+     so this gives basic support for now, there is also missing a max-length 
+     check in encode.
+     In wiregate DPT24.001 has the same basic support with PL38
+  */
+  '24.001' : {
+    name  : 'DPT_VarString_8859_1',
+    lname : {
+      'de': 'variable String ISO-8859-1'
+    },
+    encode: function( phy ){
+      var val = '80';
+      for( var i = 0; i < phy.length; i++ )
+      {
+        var c = phy.charCodeAt( i );
+        val += c ? ( (c < 16 ? '0' : '') + c.toString( 16 ) ) : '00';
+      }
+      /* terminating \x00 */
+      val += '00'; 
+      return val;
+    },
+    decode: function( hex ){
+      var val="";        
+      var chars;
+      for (var i=0;i<hex.length;i=i+2) {
+          chars=parseInt(hex.substr(i,2),16);
+          if (chars>0) {
+            val+=String.fromCharCode(chars);
+          }
+      }
+      return val;
+    }
+  },
   /* 9 Zeilen:
   },
   '.001' : {
