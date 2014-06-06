@@ -150,7 +150,7 @@ function refreshRSSlog(rss) {
           return; // avoid the request
         }
         
-	if (!o.src.match(/rsslog\.php/)) {
+	if (!o.src.match(/rsslog\.php/) && !o.src.match(/rsslog_mysql\.php/)) {
 	  extsource = true; // for later changes to tell if internal or external source being used
 	  var wrapper = "plugins/rsslog/rsslog_external.php?url="
           o.src = wrapper.concat(o.src);
