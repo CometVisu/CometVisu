@@ -89,12 +89,12 @@ if(isset($_GET['c']))
 	$log_tags    = $_GET['t'] ? $_GET['t'] : array();
 	if(! is_array($log_tags))
 		die("wrong format - use one or more t[]= for tags");
-	insert($log_content, $log_title, $log_tags, $log_state );
+	insert($mysql_table, $log_content, $log_title, $log_tags, $log_state );
 } 
 else if(isset($_GET['dump']))
 {
 	// dump database in HTML table
-	$result = retrieve( $log_filter, NULL );
+	$result = retrieve($mysql_table, $log_filter, NULL);
 	?>
 	<html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /></head><body>
 	<table border="1">
@@ -105,7 +105,6 @@ else if(isset($_GET['dump']))
 	{
 		echo '<tr>';
 		echo '<td>' . $row['id'] . '</td>';
-		echo '<td>' . $row['t'] . '</td>';
 		echo '<td>' . $row['t'] . '</td>';
 		echo '<td>' . $row['title'] . '</td>';
 		echo '<td>' . $row['content'] . '</td>';
@@ -125,7 +124,7 @@ else if(isset($_GET['r']))
 {
 	$timestamp  = $_GET['r'] ? $_GET['r'] : '';
 	$filter  = $_GET['f'] ? $_GET['f'] : '';
-	delete($timestamp, $filter);
+	delete($mysql_table, $timestamp, $filter);
 } 
 // JSON dump function
 else if(isset($_GET['j']))
@@ -148,7 +147,7 @@ else if(isset($_GET['j']))
 	$state = $_GET['state']; // ? $_GET['state'] : '';
 
 	// retrieve data
-	$result = retrieve($log_filter, $state);
+	$result = retrieve($mysql_table, $log_filter, $state);
 	$first = true;
 	while($row = mysql_fetch_array($result))
 	{
@@ -185,7 +184,7 @@ else if (isset($_GET['u']))
 	{
 		die("wrong format - state is required and has to be numeric");
 	}
-	updatestate($id, $newstate);
+	updatestate($mysql_table, $id, $newstate);
 	?>
 	Successfully updated ID=<?php echo $id; ?>.
 	<?php
@@ -197,7 +196,7 @@ else if (isset($_GET['d'])) {
 	{
 		die("wrong format - id has to be numeric");
 	}
-	deleteentry( $db, $id );
+	deleteentry($mysql_table, $db, $id);
 	?>
 	Successfully deleted ID=<?php echo $id; ?>.
 	<?php
@@ -215,7 +214,7 @@ else
 	$state = $_GET['state']; // ? $_GET['state'] : '';
 
 	// retrieve data
-	$result = retrieve( $log_filter, $state );
+	$result = retrieve($mysql_table, $log_filter, $state);
 	echo '<?xml version="1.0"?>';
 	?>
 	<rss version="2.0">
@@ -247,14 +246,13 @@ else
 mysql_close();
 
 // insert a new log entry
-function insert($content, $title, $tags, $state)
+function insert($mysql_table, $content, $title, $tags, $state)
 {
-	global $mysql_table;
 	$q = 'INSERT INTO '.$mysql_table.'(content, title, tags, t, state) VALUES ( ' .
 	   "  '" . mysql_escape_string( $content ) . "'," .
 	   "  '" . mysql_escape_string( $title ) . "'," .
 	   "  '" . mysql_escape_string( implode(",",$tags) ) . "'," .
-	   "  DATE_FORMAT(NOW(), '%Y-%m-%dT%T')," .
+	   "  '" . date(DATE_ATOM, time()) . "'," .
 	   "  $state" .
 	   ')';
 	print $q;
@@ -267,9 +265,8 @@ function insert($content, $title, $tags, $state)
 }
 
 // return a handle to all the data
-function retrieve($filter, $state)
+function retrieve($mysql_table, $filter, $state)
 {
-	global $mysql_table;
 	$filters = explode(',', $filter); // accept filters by separated by ,
 	foreach ($filters as $i => $val) {
 		$filters[$i] = " (tags LIKE '%" . mysql_escape_string($val) . "%') ";
@@ -290,9 +287,8 @@ function retrieve($filter, $state)
 }
 
 // delete all log lines older than the timestamp and optional a filter
-function delete($timestamp, $filter)
+function delete($mysql_table, $timestamp, $filter)
 {
-	global $mysql_table;
 	$filters = explode(',', $filter); // accept filters by separated by ,
 	foreach ($filters as $i => $val) {
 		$filters[$i] = " (tags LIKE '%" . mysql_escape_string($val) . "%') ";
@@ -308,9 +304,8 @@ function delete($timestamp, $filter)
 }
 
 // delete a single entry
-function deleteentry($id)
+function deleteentry($mysql_table, $id)
 {
-	global $mysql_table;
 	$q = "DELETE from " . $mysql_table . " WHERE id = $id";
 	$ok = mysql_query($q);
   
@@ -321,9 +316,8 @@ function deleteentry($id)
 }
 
 // update an entry (visible/crossed out)
-function updatestate($id, $newstate)
+function updatestate($mysql_table, $id, $newstate)
 {
-	global $mysql_table;
 	$q = 'UPDATE ' . $mysql_table . ' SET state=' . $newstate . ' WHERE id=' . $id . ';';
 	$ok = mysql_query($q);
   
@@ -344,7 +338,7 @@ function createtable($mysql_table)
 		"`t` varchar(50) NOT NULL," . 
 		"`state` int(3) unsigned DEFAULT NULL," . 
 		"UNIQUE KEY `ID` (`id`)" . 
-		") TYPE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COMMENT='RSSlog plugin entries';";
+		") TYPE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1 COMMENT='RSSlog plugin entries';";
 	$ok = mysql_query($q);
 	if (!$ok)
 	{
