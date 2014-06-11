@@ -19,7 +19,7 @@ CREATE TABLE `rsslog` (
   `t` varchar(50) NOT NULL,
   `state` int(3) unsigned DEFAULT NULL,
   UNIQUE KEY `ID` (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COMMENT='RSSlog plugin entries';
+) TYPE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1 COMMENT='RSSlog plugin entries';
 
 */
 
