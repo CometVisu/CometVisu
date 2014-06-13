@@ -74,7 +74,8 @@ mysql_connect($mysql_srv, $mysql_user, $mysql_pass) or
 	die ("database connection failed!" . mysql_error());
 mysql_select_db($mysql_db) or
 	die ("database cannot be located!" . mysql_error());
-
+mysql_set_charset('utf8'); 
+	
 if(isset($_GET['c']))
 { 
 	// store a new log
