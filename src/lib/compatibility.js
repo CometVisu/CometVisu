@@ -190,50 +190,20 @@ $.extend({
     return $.getUrlVars()[name];
   },
   /**
-   * heavily inspired by: http://stackoverflow.com/questions/13066712/how-to-load-a-list-of-javascript-files-and-call-a-callback-after-all-of-them-are
-   */
-  getOrderedScripts: function(files, callback) {
-    if( 'object' === typeof files && 0 == files.length && callback )
-    {
-      callback();
-    } else {
-      if( 'string' === typeof files )
-        files = [ files ];
-      $.ajax({
-        url: files.shift(),
-        dataType: 'script',
-        async: false,
-        success: files.length
-          ? function(){ $.getOrderedScripts(files, callback);}
-          : callback
-      });
-    }
-  },
-  /**
    * Include files on this place. This will be replaced by the content of the
    * script during packaging
    */
   includeScripts: function(files, callback) {
-    this.getOrderedScripts(files, callback);
+    LazyLoad.js(files, callback);
   },
-  // inspired by http://stackoverflow.com/questions/2685614/load-external-css-file-like-scripts-in-jquery-which-is-compatible-in-ie-also
-  // and http://stackoverflow.com/questions/3498647/jquery-loading-css-on-demand-callback-if-done/17858428#17858428
-  // NOTE and FIXME: It should be enough to count the prending getCSS calls and 
-  // do only a final resize event
   getCSS: function( url, parameters, callback ) {
-    $( '<link>', 
-        $.extend( parameters, {
-         rel   : 'stylesheet', 
-         type  : 'text/css', 
-         'href': $.ajaxSettings.cache ? url : url + '?_=' + (new Date()).valueOf()
-       })
-    ).on( 'load', function() {
-      if( callback )
-      {
+    LazyLoad.css($.ajaxSettings.cache ? url : url + '?_=' + (new Date()).valueOf(), function () {
+      if (callback) {
         callback();
-      } else
-        $(window).trigger( 'resize' );
-    }).appendTo( 'head' );
+      } else {
+        $(window).trigger('resize');
+      }
+    }, undefined, undefined, parameters);
   }
 });
 
