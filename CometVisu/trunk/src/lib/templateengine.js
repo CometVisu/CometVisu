@@ -97,13 +97,12 @@ function TemplateEngine( undefined ) {
     this.libraryCheck = $.getUrlVar('libraryCheck') != 'false'; // true unless set to false
   }
 
-  this.loadReady = { page: false, plugins: false };
-  this.delaySetup = function( id )
-  {
-    thisTemplateEngine.loadReady[ id ] = false;
+  var loadReady = { page: false, plugins: false };
+  function delaySetup( id ) {
+    loadReady[ id ] = false;
     return function() {
-      delete thisTemplateEngine.loadReady[ id ];
-      thisTemplateEngine.setup_page();
+      delete loadReady[ id ];
+      setup_page();
     };
   };
   this.design = new VisuDesign_Custom();
@@ -598,18 +597,18 @@ function TemplateEngine( undefined ) {
     if ($('pages', xml).attr('max_mobile_screen_width'))
       thisTemplateEngine.maxMobileScreenWidth = $('pages', xml).attr('max_mobile_screen_width');
 
-    $.getCSS( 'designs/designglobals.css', {}, thisTemplateEngine.delaySetup('designglobals') );
+    $.getCSS( 'designs/designglobals.css', {}, delaySetup('designglobals') );
     if (thisTemplateEngine.clientDesign) {
-      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css', {}, thisTemplateEngine.delaySetup('basic') );
+      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css', {}, delaySetup('basic') );
       if (!thisTemplateEngine.forceNonMobile) {
         $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/mobile.css',
             thisTemplateEngine.forceMobile ? {} : 
-            {media: 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)'}, thisTemplateEngine.delaySetup('mobile') );
+            {media: 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)'}, delaySetup('mobile') );
       }
-      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css', {}, thisTemplateEngine.delaySetup('custom') );
-      $.getOrderedScripts( 
+      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css', {}, delaySetup('custom') );
+      $.includeScripts( 
         ['designs/' + thisTemplateEngine.clientDesign + '/design_setup.js'],
-        thisTemplateEngine.delaySetup('design')
+        delaySetup('design')
       );
     }
 
@@ -620,16 +619,16 @@ function TemplateEngine( undefined ) {
       if (name) {
         if (!pluginsToLoad[name]) {
           pluginsToLoadCount++;
-          $.getOrderedScripts( 
+          $.includeScripts( 
               ['plugins/' + name + '/structure_plugin.js'],
-              thisTemplateEngine.delaySetup( 'plugin_' + name)
+              delaySetup( 'plugin_' + name)
             );
           pluginsToLoad[name] = true;
         }
       }
     });
     if (0 == pluginsToLoadCount) {
-      delete thisTemplateEngine.loadReady.plugins;
+      delete loadReady.plugins;
     }
 
     // then the icons
@@ -765,8 +764,8 @@ function TemplateEngine( undefined ) {
       $('.footer').html($('.footer').html() + text);
     });
 
-    delete thisTemplateEngine.loadReady.page;
-    thisTemplateEngine.setup_page();
+    delete loadReady.page;
+    setup_page();
   };
   
   /**
@@ -810,11 +809,11 @@ function TemplateEngine( undefined ) {
   };
 
   
-  this.setup_page = function() {
+  function setup_page() {
     // and now setup the pages
     
     // check if the page and the plugins are ready now
-    for( var key in this.loadReady )  // test for emptines
+    for( var key in loadReady )  // test for emptines
       return; // we'll be called again...
     
     var page = $('pages > page', xml)[0]; // only one page element allowed...
@@ -1318,10 +1317,10 @@ function TemplateEngine( undefined ) {
    */
   this.pluginLoaded = function(){
     pluginsToLoadCount--;
-    if( 0 == pluginsToLoadCount )
+    if( 0 >= pluginsToLoadCount )
     {
-      delete thisTemplateEngine.loadReady.plugins;
-      thisTemplateEngine.setup_page();
+      delete loadReady.plugins;
+      setup_page();
     }
   }
   
