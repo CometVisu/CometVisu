@@ -194,16 +194,19 @@ $.extend({
    * script during packaging
    */
   includeScripts: function(files, callback) {
-    LazyLoad.js(files, callback);
+    yepnope({
+      load: files,
+      callback: callback
+    });
   },
   getCSS: function( url, parameters, callback ) {
-    LazyLoad.css($.ajaxSettings.cache ? url : url + '?_=' + (new Date()).valueOf(), function () {
+    yepnope.injectCss($.ajaxSettings.cache ? url : url + '?_=' + (new Date()).valueOf(), function () {
       if (callback) {
         callback();
       } else {
         $(window).trigger('resize');
       }
-    }, undefined, undefined, parameters);
+    }, parameters);
   }
 });
 
