@@ -152,7 +152,7 @@ var docElement            = doc.documentElement,
             for(var j=0, k=sheets.length; j<k; j++) {
                 if(sheets[j].ownerNode.id == id) {
                     // this throws an exception, I believe, if not full loaded (was originally just "sheets[j].cssRules;")
-                    if (sheets[j].cssRules.length)
+                    if (sheets[j].cssRules.length >= 0)
                         return onload();
                 }
             }
