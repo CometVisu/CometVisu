@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Version SVN:20140716-2115
+# Version SVN:20140722-1105
 
 CACHE:
 index.html
@@ -20,6 +20,7 @@ dependencies/scrollable.js
 dependencies/jsfloorplan.js
 dependencies/Three.js
 dependencies/poly2tri.js
+dependencies/yepnope.1.5.4.js
 lib/iconhandler.js
 lib/compatibility.js
 lib/cometvisu-client.js
