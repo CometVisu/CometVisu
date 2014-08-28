@@ -21,7 +21,8 @@ basicdesign.addCreator('trigger', {
     
     // create the main structure
     var makeAddressListFn = function( src, transform, mode, variant ) {
-      return [true, variant=='short'];
+      // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
+      return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
     }
     var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn );
     // and fill in widget specific data
@@ -56,11 +57,13 @@ basicdesign.addCreator('trigger', {
     if( data.downtime )
     {
       var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
+      var bitMask = (isShort ? 1 : 2);
       for( var addr in data.address )
       {
-        if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-        if( isShort == data.address[addr][2] )
+        if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
+        if (data.address[addr][2] & bitMask) {
           templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
+        }
       }
     }
   }
