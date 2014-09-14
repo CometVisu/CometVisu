@@ -25,12 +25,12 @@
 $.getCSS( 'plugins/strftime/strftime.css' );
 
 VisuDesign_Custom.prototype.addCreator("strftime", {
+  internalCounter: 0,
   create : function(page, path) {
     var $p = $(page);
     function uniqid() {
-      var newDate = new Date;
-      return newDate.getTime();
-    }
+      return VisuDesign_Custom.prototype.creators.strftime.internalCounter++;
+    };
     var id = "strftime_" + uniqid();
 
     var ret_val = $('<div class="widget clearfix text strftime"/>');
