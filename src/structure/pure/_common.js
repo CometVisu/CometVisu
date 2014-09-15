@@ -129,24 +129,6 @@ function VisuDesign() {
   this.addPopup('info'   , $.extend(true, {}, this.getPopup('unknown')) );
   this.addPopup('warning', $.extend(true, {}, this.getPopup('unknown')) );
   this.addPopup('error'  , $.extend(true, {}, this.getPopup('unknown')) ) ;
-  this.addCreator('reload', {
-    create: function( element, path, flavour, type ) {
-      var e = $(element);
-      var addresses = self.makeAddressList(e, null);
-      var updateFn = function(event, data) {
-        var thisTransform = addresses[ event.type ][0];
-        var value = templateEngine.transformDecode( thisTransform, data );
-
-        if (value > 0) {
-          window.location.reload(true);
-        }
-      };
-      for (var addr in addresses) {
-        // only when read flag is set
-        if (addresses[addr][1] & 1) e.bind(addr, updateFn);
-      }
-    }
-  });
 
   /**
    * @param ev         event
