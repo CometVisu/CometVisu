@@ -295,29 +295,30 @@ function TemplateEngine( undefined ) {
     if (this_map && mappings[this_map]) {
       var m = mappings[this_map];
 
+      var ret = value;
       if (m.formula) {
-        return m.formula(value);
-      } else {
-        function mapValue(v) {
-          if (m[v]) {
-            return m[v];
-          } else if (m['range']) {
-            var valueFloat = parseFloat(v);
-            var range = m['range'];
-            for (var min in range) {
-              if (min > valueFloat) continue;
-              if (range[min][0] < valueFloat) continue; // check max
-              return range[min][1];
-            }
+        ret = m.formula(ret);
+      }
+
+      function mapValue(v) {
+        if (m[v]) {
+          return m[v];
+        } else if (m['range']) {
+          var valueFloat = parseFloat(v);
+          var range = m['range'];
+          for (var min in range) {
+            if (min > valueFloat) continue;
+            if (range[min][0] < valueFloat) continue; // check max
+            return range[min][1];
           }
         }
-        var ret = mapValue(value);
-        if (!ret && m['defaultValue']) {
-          ret = mapValue(m['defaultValue']);
-        }
-        if (ret) {
-          return ret;
-        }
+      }
+      var ret = mapValue(ret);
+      if (!ret && m['defaultValue']) {
+        ret = mapValue(m['defaultValue']);
+      }
+      if (ret) {
+        return ret;
       }
     }
     return value;
@@ -653,41 +654,45 @@ function TemplateEngine( undefined ) {
       if (formula.length > 0) {
         eval('var func = function(x){' + formula.text() + '; return y;}');
         mappings[name]['formula'] = func;
-      } else {
-        $this.find('entry').each(function() {
-          var $localThis = $(this);
-          var origin = $localThis.contents();
-          var value = [];
-          for ( var i = 0; i < origin.length; i++) {
-             var $v = $(origin[i]);
-             if ($v.is('icon'))
-               value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
-             else
-               value[i] = $v.text();
-          }
-          // check for default entry
-          var isDefaultValue = $localThis.attr('default');
-          if (isDefaultValue != undefined) {
-            isDefaultValue = isDefaultValue == "true";
-          } else {
-            isDefaultValue = false;
-          }
-          // now set the mapped values
-          if ($localThis.attr('value')) {
-            mappings[name][$localThis.attr('value')] = value.length == 1 ? value[0] : value;
-            if (isDefaultValue) {
-              mappings[name]['defaultValue'] = $localThis.attr('value');
-            }
-          } else {
-            if (!mappings[name]['range'])
-              mappings[name]['range'] = {};
-            mappings[name]['range'][parseFloat($localThis.attr('range_min'))] = [ parseFloat($localThis.attr('range_max')), value ];
-            if (isDefaultValue) {
-              mappings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
-            }
-          }
-        });
       }
+      $this.find('entry').each(function() {
+        var $localThis = $(this);
+        var origin = $localThis.contents();
+        var value = [];
+        for (var i = 0; i < origin.length; i++) {
+           var $v = $(origin[i]);
+           if ($v.is('icon')) {
+             value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
+           }
+           else {
+             value[i] = $v.text();
+           }
+        }
+        // check for default entry
+        var isDefaultValue = $localThis.attr('default');
+        if (isDefaultValue != undefined) {
+          isDefaultValue = isDefaultValue == "true";
+        }
+        else {
+          isDefaultValue = false;
+        }
+        // now set the mapped values
+        if ($localThis.attr('value')) {
+          mappings[name][$localThis.attr('value')] = value.length == 1 ? value[0] : value;
+          if (isDefaultValue) {
+            mappings[name]['defaultValue'] = $localThis.attr('value');
+          }
+        }
+        else {
+          if (!mappings[name]['range']) {
+            mappings[name]['range'] = {};
+          }
+          mappings[name]['range'][parseFloat($localThis.attr('range_min'))] = [ parseFloat($localThis.attr('range_max')), value ];
+          if (isDefaultValue) {
+            mappings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
+          }
+        }
+      });
     });
 
     // then the stylings

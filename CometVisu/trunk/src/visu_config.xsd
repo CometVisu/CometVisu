@@ -433,19 +433,6 @@
     <xsd:attribute name="name" type="xsd:string" use="required" />
   </xsd:complexType>
 
-<!--
- Due to editor limitation the following actual correct version cannot be used.
- see bug #75 at http://sourceforge.net/p/openautomation/bugs/75/
- 
-  <xsd:complexType name="mapping">
-    <xsd:choice>
-      <xsd:element name="formula" type="xsd:string" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="entry" type="entry" minOccurs="0" maxOccurs="unbounded" />
-    </xsd:choice>
-    <xsd:attribute name="name" type="xsd:string" use="required" />
-  </xsd:complexType>
--->
-
   <xsd:complexType name="stylings">
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
       <xsd:element name="styling" type="styling_entry" />
