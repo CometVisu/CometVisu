@@ -16,73 +16,83 @@
  */
 
 /**
- * This plugins integrates formated date and clock strings into CometVisu based
- * on strftime.
+ * This plugins integrates formated date and clock strings into based on strftime.
  * 
- * Thanks to Michael Markstaller for implementing the jqclock as reference.
+ * Thanks to Michael Markstaller for implementing the jqclock plugin as reference.
  */
 
-$.getCSS( 'plugins/strftime/strftime.css' );
+$.getCSS('plugins/strftime/strftime.css', templateEngine.pluginLoaded);
 
-VisuDesign_Custom.prototype.addCreator("strftime", {
-  internalCounter: 0,
-  create : function(page, path) {
-    var $p = $(page);
-    function uniqid() {
-      return VisuDesign_Custom.prototype.creators.strftime.internalCounter++;
-    };
-    var id = "strftime_" + uniqid();
+(function() {
+  VisuDesign_Custom.prototype.addCreator("strftime", {
+    create : function(page, path) {
+      var $p = $(page);
+      var id = "strftime_" + uniqid();
 
-    var ret_val = $('<div class="widget clearfix text strftime"/>');
-    if ( $p.attr('class') ) {
-      ret_val.addClass('custom_'+$p.attr('class'));
+      var ret_val = $('<div class="widget clearfix text strftime"/>');
+      if ($p.attr('class')) {
+        ret_val.addClass('custom_'+$p.attr('class'));
+      }
+
+      basicdesign.setWidgetLayout(ret_val, $p);
+      var actor = $('<div id="' + id + '" class="strftime_value"></div>');
+      ret_val.append(actor);
+
+      actor.data({
+        'locale' : $p.attr('lang'),
+        'format' : $p.attr('format') || '%c'
+      });
+
+      elements[id] = actor;
+      startTimer();
+
+      return ret_val;
     }
+  });
 
-    basicdesign.setWidgetLayout( ret_val, $p );
-    var actor = $('<div id="' + id + '" class="strftime_value"></div>');
-    ret_val.append(actor);
-
-    var locale = $p.attr('lang');
-    var format = '%c';
-    if ($p.attr('format')) {
-      format = $p.attr('format');
-    }
-
-    // extend locales by German and French
-    Date.ext.locales['de'] = {
-        a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-        A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-        b: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-        B: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
-        c: '%a %d %b %Y %T %Z',
-        p: ['', ''],
-        P: ['', ''],
-        x: '%d.%m.%Y',
-        X: '%T'
-    };
-    Date.ext.locales['fr'] = {
-        a: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
-        A: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
-        b: ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoû', 'sep', 'oct', 'nov', 'déc'],
-        B: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
-        c: '%a %d %b %Y %T %Z',
-        p: ['', ''],
-        P: ['', ''],
-        x: '%d.%m.%Y',
-        X: '%T'
-    };
-
-    var f = function() {
-      var d = new Date();
-      d.locale = locale;
-      var iso = d.strftime(format);
-      $("#" + id).html(iso);
-      window.setTimeout(f, 1000);
-    };
-    f();
-
-    return ret_val;
+  var internalCounter = 0;
+  function uniqid() {
+    return internalCounter++;
   }
-});
+  var elements = {};
+  var timerStarted = false;
 
-templateEngine.pluginLoaded();
+  function startTimer() {
+    if (!timerStarted) {
+      var f = function() {
+        var d = new Date();
+        $.each(elements, function(index, actor) {
+          d.locale = actor.data('locale');
+          actor.html(d.strftime(actor.data('format')));
+        });
+        window.setTimeout(f, 1000);
+      };
+      f();
+      timerStarted = true;
+    }
+  }
+
+  // extend locales by German and French
+  Date.ext.locales['de'] = {
+      a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+      A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+      b: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+      B: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+      c: '%a %d %b %Y %T %Z',
+      p: ['', ''],
+      P: ['', ''],
+      x: '%d.%m.%Y',
+      X: '%T'
+  };
+  Date.ext.locales['fr'] = {
+      a: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
+      A: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
+      b: ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoû', 'sep', 'oct', 'nov', 'déc'],
+      B: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+      c: '%a %d %b %Y %T %Z',
+      p: ['', ''],
+      P: ['', ''],
+      x: '%d.%m.%Y',
+      X: '%T'
+  };
+})();
