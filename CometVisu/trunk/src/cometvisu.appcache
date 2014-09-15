@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Version SVN:20140914-1130
+# Version SVN:20140915-0925
 
 CACHE:
 index.html
@@ -40,7 +40,7 @@ structure/pure/navbar.js
 structure/pure/page.js
 structure/pure/pagejump.js
 structure/pure/pushbutton.js
-structure/pure/reload.js
+structure/pure/refresh.js
 structure/pure/rgb.js
 structure/pure/slide.js
 structure/pure/switch.js
