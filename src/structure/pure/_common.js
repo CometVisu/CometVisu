@@ -63,7 +63,7 @@ function VisuDesign() {
     return popups[name];
   }
 
-  addPopup('unknown', {
+  this.addPopup('unknown', {
     create: function( attributes ) {
       var repositon = false;
       var ret_val = $('<div class="popup" style="display:none"/><div class="popup_background" style="display:none" />').appendTo('body');
