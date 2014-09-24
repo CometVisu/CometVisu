@@ -49,21 +49,21 @@ function VisuDesign() {
     return this.creators[name];
   }
 
-  this.popups = {};
+  var popups = {};
 
   this.addPopup = function (name, object) {
-    this.popups[name] = object;
-    this.popups[name].type = name;
+    popups[name] = object;
+    popups[name].type = name;
   }
 
   this.getPopup = function(name) {
-    if (typeof this.popups[name] == undefined) {
-        return this.popups.unknown;
+    if (typeof popups[name] == undefined) {
+        return popups.unknown;
     }
-    return this.popups[name];
+    return popups[name];
   }
 
-  this.addPopup('unknown', {
+  addPopup('unknown', {
     create: function( attributes ) {
       var repositon = false;
       var ret_val = $('<div class="popup" style="display:none"/><div class="popup_background" style="display:none" />').appendTo('body');
