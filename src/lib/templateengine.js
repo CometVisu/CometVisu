@@ -1133,12 +1133,7 @@ function TemplateEngine( undefined ) {
    * it's content can be easily extended
    */
   this.showPopup = function(type, attributes) {
-    // var retval = design.popups[ type ].create( attributes ); //page, path );
-    // return retval;
-    if (!thisTemplateEngine.design.popups[type])
-      type = 'unknown';
-
-    return thisTemplateEngine.design.popups[type].create(attributes);
+    return thisTemplateEngine.design.getPopup(type).create(attributes);
   };
 
   /*

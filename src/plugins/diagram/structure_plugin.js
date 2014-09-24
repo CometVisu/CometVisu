@@ -114,7 +114,7 @@ $.includeScripts([
           popupDiagram.data().init = true;
           popupDiagram.data().config = configCopy;
           popupDiagram.css({height: "90%"});
-          templateEngine.showPopup("unknown", {title: configCopy.label, content: popupDiagram});
+          templateEngine.showPopup("diagram", {title: configCopy.label, content: popupDiagram});
           popupDiagram.parent("div").css({height: "100%", width: "95%", margin: "auto"}); // define parent as 100%!
           popupDiagram.empty();
           popupDiagram.bind("click", function(event) {
