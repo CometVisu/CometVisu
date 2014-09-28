@@ -57,7 +57,8 @@ function VisuDesign() {
   }
 
   this.getPopup = function(name) {
-    if (typeof popups[name] == undefined) {
+    var p = popups[name];
+    if (p === undefined) {
         return popups.unknown;
     }
     return popups[name];
