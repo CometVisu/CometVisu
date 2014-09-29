@@ -1103,6 +1103,7 @@
     <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
     <xsd:attribute ref="timeformat" use="optional" />
     <xsd:attribute ref="timeformatTooltip" use="optional" />
+    <xsd:attribute name="zoomYAxis" type="xsd:boolean" use="optional" />
   </xsd:complexType>
   
   <xsd:complexType name="diagram_info">
@@ -1128,6 +1129,7 @@
     <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
     <xsd:attribute ref="timeformat" use="optional" />
     <xsd:attribute ref="timeformatTooltip" use="optional" />
+    <xsd:attribute name="zoomYAxis" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="rss">

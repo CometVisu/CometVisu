@@ -80,6 +80,7 @@ $.includeScripts([
         legendposition    : $e.attr("legendposition") || "ne",
         timeformat        : $e.attr("timeformat") || null,
         timeformatTooltip : $e.attr("timeformatTooltip") || "%d.%m.%Y %H:%M",
+        zoomYAxis         : ($e.attr("zoomYAxis") || "false") == "true",
         label             : ($e.attr("title") ? $e.attr("title") : $('.label', ret_val).text() || '') || null,
         refresh           : $e.attr("refresh"),
         gridcolor         : $e.attr("gridcolor") || "#81664B",
@@ -270,7 +271,7 @@ $.includeScripts([
         $.extend(true, options, {
           yaxis : {
             isPopup   : true,
-            zoomRange : [null, null],
+            zoomRange : config.zoomYAxis ? [null, null] : false,
           },
           xaxis : {
             zoomRange : [null, null],
