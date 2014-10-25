@@ -15,7 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
-$.getCSS( 'plugins/rsslog/rsslog.css' );
+$.getCSS( 'plugins/rsslog/rsslog.css', templateEngine.pluginLoaded );
 
 VisuDesign_Custom.prototype.addCreator("rsslog", {
   create: function( element, path, flavour, type ) { 
@@ -285,5 +285,3 @@ function refreshRSSlog(rss) {
     }
   });
 })(jQuery);
-
-templateEngine.pluginLoaded();
