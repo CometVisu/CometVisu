@@ -485,11 +485,12 @@ var ConfigurationElement = function (node, parent) {
         }
         
       
-        var regexString = _schemaElement.getChildrenRegex(';');
+        var regexString = _schemaElement.getChildrenRegex(';',true); // nocaputure = true as we will only test()
         var regExp = regexFromString(regexString);
         
         var childrenString = '';
-        $.each(_element.children, function (i, child) {
+        for( var i = 0, len = _element.children.length; i < len; i++ ) {
+            var child = _element.children[i];
             if (child.name == '#text') {
                 // this is a text
                 if (false === _schemaElement.isMixed && false === _schemaElement.isTextContentAllowed()) {
@@ -508,7 +509,7 @@ var ConfigurationElement = function (node, parent) {
                 isValid = false;
                 return;
             }
-        });
+        };
         
         if (false == regExp.test(childrenString)) {
             // the children of this element do not match what the regex says is valid
