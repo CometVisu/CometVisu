@@ -1163,18 +1163,21 @@ var SchemaElement = function (node, schema) {
      * create and retrieve the part of a regular expression which describes this very element
      * 
      * @param   separator   string  the string used to separate different elements, e.g. ';'
+     * @param   nocapture   bool    when set to true non capturing groups are used
      * @return  string
      */
-    _element.getRegex = function (separator) {
+    _element.getRegex = function (separator, nocapture) {
         if (typeof separator == 'undefined' || separator == undefined) {
             // default to an empty string
             separator = '';
         }
 
-        var regexString = '';
+        var regexString = '(';
+        if( nocapture )
+          regexString += '?:';
         
         // start with the name of the element
-        regexString = '(' + _element.name + separator + ')';
+        regexString += _element.name + separator + ')';
         
         // append bounds
         var boundsMin = '';
@@ -1207,7 +1210,7 @@ var SchemaElement = function (node, schema) {
      * @param   separator   string  the string used to separate different elements, e.g. ';'
      * @return  string              the regular expression
      */
-    _element.getChildrenRegex = function(separator) {
+    _element.getChildrenRegex = function(separator, nocapture) {
         if (typeof separator == 'undefined' || separator == undefined) {
             // default to an empty string
             separator = '';
@@ -1220,7 +1223,7 @@ var SchemaElement = function (node, schema) {
             return '^';
         }
         
-        var regexString = allowedContent._grouping.getRegex(separator);
+        var regexString = allowedContent._grouping.getRegex(separator, nocapture);
 
         // now
         return regexString;
@@ -1507,9 +1510,10 @@ var SchemaChoice = function (node, schema) {
      * get a regex (string) describing this choice
      * 
      * @param   separator   string  the string used to separate different elements, e.g. ';'
+     * @param   nocapture   bool    when set to true non capturing groups are used
      * @return  string  regex
      */
-    _choice.getRegex = function (separator) {
+    _choice.getRegex = function (separator, nocapture) {
         if (regexCache != undefined) {
             // use the cache if primed
             return regexCache;
@@ -1520,16 +1524,18 @@ var SchemaChoice = function (node, schema) {
         
         // create list of allowed elements
         regexString = '(';
+        if( nocapture )
+          regexString += '?:';
         
         var elementRegexes = [];
         
         $.each(allowedElements, function (name, element) {
-            elementRegexes.push(element.getRegex(separator));
+            elementRegexes.push(element.getRegex(separator, nocapture));
         });
         
         // also collect the regex for each and every grouping we might have
         $.each(subGroupings, function (i, grouping) {
-            elementRegexes.push(grouping.getRegex(separator));
+            elementRegexes.push(grouping.getRegex(separator, nocapture));
         });
 
         regexString += elementRegexes.join('|');
@@ -1825,9 +1831,10 @@ var SchemaGroup = function (node, schema) {
      * get a regex (string) describing this choice
      * 
      * @param   separator   string  the string used to separate different elements, e.g. ';'
+     * @param   nocapture   bool    when set to true non capturing groups are used
      * @return  string  regex
      */
-    _group.getRegex = function (separator) {
+    _group.getRegex = function (separator, nocapture) {
         if (regexCache != undefined) {
             // use the cache if primed
             return regexCache;
@@ -1838,7 +1845,10 @@ var SchemaGroup = function (node, schema) {
         // collect the regex for each and every grouping we might have;
         // 'each and every' means 'the only ONE'
         $.each(subGroupings, function (i, grouping) {
-            regexString = '(' + grouping.getRegex(separator) + ')';
+            regexString = '(';
+            if( nocapture )
+              regexString += '?:';
+            regexString += grouping.getRegex(separator, nocapture) + ')';
         });
 
         // append bounds to regex
@@ -2158,9 +2168,10 @@ var SchemaSequence = function (node, schema) {
      * get a regex (string) describing this sequence
      * 
      * @param   separator   string  the string used to separate different elements, e.g. ';'
+     * @param   nocapture   bool    when set to true non capturing groups are used
      * @return  string  regex
      */
-    _sequence.getRegex = function (separator) {
+    _sequence.getRegex = function (separator, nocapture) {
 
         if (regexCache != undefined) {
             // use the cache if primed
@@ -2172,12 +2183,14 @@ var SchemaSequence = function (node, schema) {
         
         // create list of allowed elements
         regexString = '(';
+        if( nocapture )
+          regexString += '?:';
         
         var elementRegexes = [];
         
         // this goes over ALL elements AND sub-groupings
         $.each(sortedContent, function (i, element) {
-            elementRegexes.push(element.getRegex(separator));
+            elementRegexes.push(element.getRegex(separator, nocapture));
         });
         
         regexString += elementRegexes.join('');
