@@ -13,9 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> 
     <meta name="apple-mobile-web-app-capable" content="yes" /> 
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <script src="dependencies/jquery.js" type="text/javascript"></script>
-    <script src="dependencies/yepnope.1.5.4.js" type="text/javascript"></script>
-    <script src="lib/compatibility.js" type="text/javascript"></script>
+    <script data-main="lib/templateengine" src="dependencies/require-2.1.15.min.js" type="text/javascript"></script>
+    <!--
     <script type="text/javascript">
       $.ajaxSetup({ crossDomain: true, cache: 'true' != $.getUrlVar('forceReload') }); // make scripts debugable
       var ScriptsToInclude = [];
@@ -65,6 +64,7 @@
       ScriptsToInclude.push( "lib/templateengine.js" );
       $.includeScripts( ScriptsToInclude );
     </script>
+    -->
     <style type="text/css">
         .loading { display: none; }
     </style>

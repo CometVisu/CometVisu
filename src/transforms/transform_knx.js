@@ -15,12 +15,13 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
+define( ['transform_default'], function( Transform ) {
 /**
  * This class defines the default transforms:
  *   encode: transform JavaScript to bus value
  *   decode: transform bus to JavaScript value
  */
-addTransform( 'DPT', {
+Transform.addTransform( 'DPT', {
   '1.001': {
     name  : 'DPT_Switch',
     encode: function( phy ){
@@ -480,3 +481,5 @@ function TEST( DPT, Bytes )
     }
   }
 }
+
+}); // end define

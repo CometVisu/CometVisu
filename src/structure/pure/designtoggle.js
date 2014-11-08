@@ -15,7 +15,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-basicdesign.addCreator('designtoggle', {
+define( ['_common'], function( design ) {
+   var basicdesign = design.basicdesign;
+ 
+design.basicdesign.addCreator('designtoggle', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
 
@@ -23,7 +26,7 @@ basicdesign.addCreator('designtoggle', {
     var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type );
 
     // create the actor
-    var value = $('link[href*="basic.css"]').attr('href').split('/')[1];
+    var value = $('link[href*="basic.css"]').attr('href').split('/')[2];
     var $actor = $('<div class="actor switchUnpressed"><div class="value">' + value + '</div></div>');
     ret_val.append( $actor );
 
@@ -61,3 +64,5 @@ basicdesign.addCreator('designtoggle', {
     }
   }
 });
+
+}); // end define

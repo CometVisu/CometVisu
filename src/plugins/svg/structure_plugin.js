@@ -15,6 +15,8 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
+define( ['structure_custom' ], function( VisuDesign_Custom ) {
+
 /**
  * This is a custom function that extends the available widgets.
  * It's purpose is to change the design of the visu during runtime
@@ -24,10 +26,10 @@ VisuDesign_Custom.prototype.addCreator('svg', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
+    var style = layout ? 'style="' + templateEngine.design.extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget clearfix image" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e );
-    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
+    templateEngine.design.setWidgetLayout( ret_val, $e );
+    ret_val.append( templateEngine.design.extractLabel( $e.find('label')[0], flavour ) );
 
     var address = {};
     $e.find('address').each( function(){ 
@@ -58,7 +60,7 @@ VisuDesign_Custom.prototype.addCreator('svg', {
   },
   update: function(e,d) { 
     var element = $(this);
-    var h = basicdesign.defaultUpdate( e, d, element );
+    var h = templateEngine.design.defaultUpdate( e, d, element );
 	var linewidth=3;
     var space = 1;
 	var total = linewidth + space;
@@ -74,4 +76,4 @@ VisuDesign_Custom.prototype.addCreator('svg', {
   }
 }); 
 
-templateEngine.pluginLoaded();
+});

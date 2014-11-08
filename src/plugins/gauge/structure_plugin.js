@@ -41,16 +41,14 @@
 * - target: optional, if defined jump to the page with the specified name
 *
 */ 
-$.includeScripts([
-  'plugins/gauge/lib/tween-min.js',
-  'plugins/gauge/lib/steelseries-min.js'
-], templateEngine.pluginLoaded );
-$.getCSS( 'plugins/gauge/gauge.css' );
+ 
+define( ['structure_custom', 'plugins/gauge/lib/tween-min', 'plugins/gauge/lib/steelseries-min', 'css!plugins/gauge/gauge' ], function( VisuDesign_Custom ) {
+  
 VisuDesign_Custom.prototype.addCreator("gauge", {
   create: function(element, path, flavour, type) {
     var $e = $(element);
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget('gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant) {
+    var ret_val = templateEngine.design.createDefaultWidget('gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant) {
       return [true, variant];
     });
 
@@ -106,14 +104,14 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
 
       ret_val.data('gaugeElement', gaugeElement);
 
-      basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
+      templateEngine.design.defaultUpdate(undefined, undefined, ret_val, true);
     });
     return ret_val;
   },
 
   update: function(e, d) {
     var element = $(this);
-    var value = basicdesign.defaultUpdate(e, d, element, true);
+    var value = templateEngine.design.defaultUpdate(e, d, element, true);
     var variant = element.data('address')[ e.type ][2];
     var gaugeElement = element.data('gaugeElement');
     if (gaugeElement) {
@@ -168,4 +166,6 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
        }
     }
   }
+});
+
 });

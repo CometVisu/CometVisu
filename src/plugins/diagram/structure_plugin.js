@@ -40,15 +40,27 @@
  *   - title:                optional, diagram title (overrides label-content)
  */
 
-$.includeScripts([
-                  'plugins/diagram/flot/jquery.flot.min.js',
-                  'plugins/diagram/flot/jquery.flot.canvas.min.js',
-                  'plugins/diagram/flot/jquery.flot.resize.min.js',
-                  'plugins/diagram/flot/jquery.flot.time.min.js',
-                  'plugins/diagram/flot/jquery.flot.axislabels.js',
-                  'plugins/diagram/flot/jquery.flot.tooltip.min.js',
-                  'plugins/diagram/flot/jquery.flot.navigate.min.js',
-                 ], templateEngine.pluginLoaded );
+require.config({
+  shim: {
+    'plugins/diagram/flot/jquery.flot.min':          ['jquery'],
+    'plugins/diagram/flot/jquery.flot.canvas.min':   ['plugins/diagram/flot/jquery.flot.min'],
+    'plugins/diagram/flot/jquery.flot.resize.min':   ['plugins/diagram/flot/jquery.flot.min'],
+    'plugins/diagram/flot/jquery.flot.time.min':     ['plugins/diagram/flot/jquery.flot.min'],
+    'plugins/diagram/flot/jquery.flot.axislabels':   ['plugins/diagram/flot/jquery.flot.min'],
+    'plugins/diagram/flot/jquery.flot.tooltip.min':  ['plugins/diagram/flot/jquery.flot.min'],
+    'plugins/diagram/flot/jquery.flot.navigate.min': ['plugins/diagram/flot/jquery.flot.min']
+  }
+});
+
+define( ['structure_custom',
+                  'plugins/diagram/flot/jquery.flot.min',
+                  'plugins/diagram/flot/jquery.flot.canvas.min',
+                  'plugins/diagram/flot/jquery.flot.resize.min',
+                  'plugins/diagram/flot/jquery.flot.time.min',
+                  'plugins/diagram/flot/jquery.flot.axislabels',
+                  'plugins/diagram/flot/jquery.flot.tooltip.min',
+                  'plugins/diagram/flot/jquery.flot.navigate.min'
+  ], function( VisuDesign_Custom ) {
 
 (function() {
     VisuDesign_Custom.prototype.addCreator("diagram", {
@@ -66,7 +78,7 @@ $.includeScripts([
       var $e = $(element);
 
       // create the main structure
-      var ret_val = basicdesign.createDefaultWidget((isInfo ? 'diagram_info' : 'diagram'), $e, path, flavour, type, update);
+      var ret_val = templateEngine.design.createDefaultWidget((isInfo ? 'diagram_info' : 'diagram'), $e, path, flavour, type, update);
 
       // create the configuration
       var id = "diagram_" + path;
@@ -146,14 +158,14 @@ $.includeScripts([
       }
 
       // initially setting a value
-      basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
+      templateEngine.design.defaultUpdate(undefined, undefined, ret_val, true);
 
       return ret_val;
     }
 
     function update(e, d) {
       var element = $(this);
-      basicdesign.defaultUpdate(e, d, element, true);
+      templateEngine.design.defaultUpdate(e, d, element, true);
     }
 
     function getDiagramElements(xmlElement) {
@@ -421,3 +433,5 @@ $.includeScripts([
       }
     }
 })();
+
+});

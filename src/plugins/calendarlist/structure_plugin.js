@@ -1,3 +1,5 @@
+define( ['structure_custom' ], function( VisuDesign_Custom ) {
+
 VisuDesign_Custom.prototype.addCreator("calendarlist", {
     create: function (element, path, flavour, type) {
         var $el = $(element);
@@ -9,8 +11,8 @@ VisuDesign_Custom.prototype.addCreator("calendarlist", {
         var id = "calendarList_" + uniqid();
 
         var ret_val = $('<div class="widget clearfix calendarList" />');
-        basicdesign.setWidgetLayout(ret_val, $el);
-        basicdesign.makeWidgetLabel(ret_val, $el);
+        templateEngine.design.setWidgetLayout(ret_val, $el);
+        templateEngine.design.makeWidgetLabel(ret_val, $el);
 
         var actor = $('<div class="actor calendarListBody"><div class="calendarList_inline" id="' + id + '"></div></div>');
         var calendarList = $("#" + id, actor);
@@ -186,4 +188,4 @@ function refreshcalendarList(calendarList) {
     });
 })(jQuery);
 
-templateEngine.pluginLoaded();
+});

@@ -15,6 +15,8 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
+define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic', 'plugins/colorchooser/farbtastic/farbtastic' ], function( VisuDesign_Custom ) {
+
 /**
  * This is a custom function that extends the available widgets.
  * It's purpose is to change the design of the visu during runtime
@@ -24,10 +26,10 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
   create: function( page, path ) {
     var $p = $(page);
     var ret_val = $('<div class="widget clearfix colorChooser" />');
-    basicdesign.setWidgetLayout( ret_val, $p );
+    templateEngine.design.setWidgetLayout( ret_val, $p );
     var labelElement = $p.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-    var address = basicdesign.makeAddressList( $p,
+    var address = templateEngine.design.makeAddressList( $p,
       function( src, transform, mode, variant ) {
         return [ true, variant ];
       }
@@ -186,6 +188,8 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
 /**
  * Include the needed stuff
  */
-$.getCSS('plugins/colorchooser/farbtastic/farbtastic.css', {}, function() {
-    $.includeScripts('plugins/colorchooser/farbtastic/farbtastic.js', templateEngine.pluginLoaded);
+//$.getCSS('plugins/colorchooser/farbtastic/farbtastic.css', {}, function() {
+//    $.includeScripts('plugins/colorchooser/farbtastic/farbtastic.js', templateEngine.pluginLoaded);
+//});
+
 });
