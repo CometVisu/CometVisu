@@ -17,7 +17,93 @@
  * @module Templateengine
  * @title  CometVisu templateengine
  */
-var templateEngine = new TemplateEngine();
+
+///////////////////////////////////////////////////////////////////////
+//
+//  Configuration of RequireJS:
+//
+
+require.config({
+  baseUrl: './',
+  waitSeconds: 30, // default: 7 seconds
+  paths: {
+    'css':                      'dependencies/css',
+    'jquery':                   'dependencies/jquery',
+    'compatibility':            'lib/compatibility',
+    'jquery-ui':                'dependencies/jquery-ui',
+    'strftime':                 'dependencies/strftime',
+    'scrollable':               'dependencies/scrollable',
+    'jquery.ui.touch-punch':    'dependencies/jquery.ui.touch-punch',
+    'jquery.svg.min':           'dependencies/jquery.svg.min',
+    'cometvisu-client':         'lib/cometvisu-client',
+    'iconhandler':              'lib/iconhandler',
+    '_common':                  'structure/pure/_common',
+    'structure_custom':         'config/structure_custom',
+    'widget_break':             'structure/pure/break',
+    'widget_designtoggle':      'structure/pure/designtoggle',
+    'widget_group':             'structure/pure/group',
+    'widget_rgb':               'structure/pure/rgb',
+    'widget_web':               'structure/pure/web',
+    'widget_image':             'structure/pure/image',
+    'widget_imagetrigger':      'structure/pure/imagetrigger',
+    'widget_include':           'structure/pure/include',
+    'widget_info':              'structure/pure/info',
+    'widget_infotrigger':       'structure/pure/infotrigger',
+    'widget_line':              'structure/pure/line',
+    'widget_multitrigger':      'structure/pure/multitrigger',
+    'widget_navbar':            'structure/pure/navbar',
+    'widget_page':              'structure/pure/page',
+    'widget_pagejump':          'structure/pure/pagejump',
+    'widget_refresh':           'structure/pure/refresh',
+    'widget_reload':            'structure/pure/reload',
+    'widget_slide':             'structure/pure/slide',
+    'widget_switch':            'structure/pure/switch',
+    'widget_text':              'structure/pure/text',
+    'widget_toggle':            'structure/pure/toggle',
+    'widget_trigger':           'structure/pure/trigger',
+    'widget_pushbutton':        'structure/pure/pushbutton',
+    'widget_urltrigger':        'structure/pure/urltrigger',
+    'widget_unknown':           'structure/pure/unknown',
+    'widget_audio':             'structure/pure/audio',
+    'widget_video':             'structure/pure/video',
+    'widget_wgplugin_info':     'structure/pure/wgplugin_info',
+    'transform_default':        'transforms/transform_default',
+    'transform_knx':            'transforms/transform_knx',
+    'transform_oh':             'transforms/transform_oh',
+  },
+  'shim': {
+    'scrollable':            ['jquery'],
+    'jquery-ui':             ['jquery'],
+    'jquery.ui.touch-punch': ['jquery', 'jquery-ui'],
+    'jquery.svg.min':        ['jquery']
+    /*
+    '': ['jquery'],
+    'jquery-i18n': ['jquery'],
+    'superfish':   ['jquery']
+    */
+  }
+});
+
+///////////////////////////////////////////////////////////////////////
+//
+//  Main:
+//
+var templateEngine;
+require([
+  'jquery', '_common', 'structure_custom', 'compatibility', 'jquery-ui', 'strftime', 'scrollable', 
+  'jquery.ui.touch-punch', 'jquery.svg.min', 'cometvisu-client', 'iconhandler', 
+  'widget_break', 'widget_designtoggle',
+  'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
+  'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infotrigger', 
+  'widget_line', 'widget_multitrigger', 'widget_navbar', 'widget_page', 
+  'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide', 
+  'widget_switch', 'widget_text', 'widget_toggle', 'widget_trigger', 
+  'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
+  'widget_video', 'widget_wgplugin_info', 
+  'transform_default', 'transform_knx', 'transform_oh'
+], function( $, design, VisuDesign_Custom ) {
+  
+templateEngine = new TemplateEngine();
 
 $(window).bind('resize', templateEngine.handleResize);
 $(window).unload(function() {
@@ -219,7 +305,7 @@ function TemplateEngine( undefined ) {
   }
 
   if (isNaN(this.use_maturity)) {
-    this.use_maturity = Maturity.release; // default to release
+    this.use_maturity = design.Maturity.release; // default to release
   }
 
   this.transformEncode = function(transformation, value) {
@@ -599,7 +685,19 @@ function TemplateEngine( undefined ) {
     if ($('pages', xml).attr('max_mobile_screen_width'))
       thisTemplateEngine.maxMobileScreenWidth = $('pages', xml).attr('max_mobile_screen_width');
 
+    var getCSSlist = [ 'css!designs/designglobals.css'];
+    if (thisTemplateEngine.clientDesign) {
+      getCSSlist.push( 'css!designs/' + thisTemplateEngine.clientDesign + '/basic.css' );
+      if (!thisTemplateEngine.forceNonMobile) {
+        getCSSlist.push( 'css!designs/' + thisTemplateEngine.clientDesign + '/mobile.css' );
+        // TODO - put this here as well: thisTemplateEngine.forceMobile ? {} : {media: 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)'}, delaySetup('mobile') );
+      }
+      getCSSlist.push( 'css!designs/' + thisTemplateEngine.clientDesign + '/custom.css' );
+      getCSSlist.push( 'designs/' + thisTemplateEngine.clientDesign + '/design_setup' );
+    }
+    /*
     $.getCSS( 'designs/designglobals.css', {}, delaySetup('designglobals') );
+    define( ['css!designs/designglobals.css'], function(){} );
     if (thisTemplateEngine.clientDesign) {
       $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css', {}, delaySetup('basic') );
       if (!thisTemplateEngine.forceNonMobile) {
@@ -613,6 +711,8 @@ function TemplateEngine( undefined ) {
         delaySetup('design')
       );
     }
+    */
+    require( getCSSlist, delaySetup('design') );
 
     // start with the plugins
     var pluginsToLoad = [];
@@ -620,19 +720,25 @@ function TemplateEngine( undefined ) {
       var name = $(this).attr('name');
       if (name) {
         if (!pluginsToLoad[name]) {
+          /*
           pluginsToLoadCount++;
           $.includeScripts( 
               ['plugins/' + name + '/structure_plugin.js'],
               delaySetup( 'plugin_' + name)
             );
           pluginsToLoad[name] = true;
+          */
+          pluginsToLoad.push( 'plugins/' + name + '/structure_plugin' );
         }
       }
     });
+    /*
     if (0 == pluginsToLoadCount) {
       delete loadReady.plugins;
     }
-
+    */
+    require( pluginsToLoad, delaySetup('plugins') );
+    
     // then the icons
     $('meta > icons icon-definition', xml).each(function(i) {
       var $this = $(this);
@@ -817,10 +923,17 @@ function TemplateEngine( undefined ) {
   
   function setup_page() {
     // and now setup the pages
-    
+
     // check if the page and the plugins are ready now
     for( var key in loadReady )  // test for emptines
       return; // we'll be called again...
+ 
+    // as we are sure that the default CSS were loaded now:
+    $('link').each(function(){
+      if( this.href.substr(-10) === 'mobile.css' ){
+        this.media = 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)';
+      };
+    });
     
     var page = $('pages > page', xml)[0]; // only one page element allowed...
 
@@ -1829,3 +1942,5 @@ function PagePartsHandler() {
     });
   };
 }
+
+  }); // end require

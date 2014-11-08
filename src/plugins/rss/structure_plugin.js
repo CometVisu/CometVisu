@@ -26,9 +26,13 @@
  *   <rss src="/visu/plugins/rss/tagesschau-rss2.xml" refresh="300" header="true" date="true"></rss>
  */
 
-$.includeScripts([
-  'plugins/rss/zrssfeed/jquery.zrssfeed.js'
-], templateEngine.pluginLoaded );
+require.config({
+  shim: {
+    'plugins/rss/zrssfeed/jquery.zrssfeed': ['jquery']
+  }
+});
+
+define( ['structure_custom', 'plugins/rss/zrssfeed/jquery.zrssfeed' ], function( VisuDesign_Custom ) {
 
 VisuDesign_Custom.prototype.addCreator("rss", {
     create: function( page, path ) {
@@ -42,7 +46,7 @@ VisuDesign_Custom.prototype.addCreator("rss", {
         var id = "rss_" + uniqid();
 
         var ret_val = $('<div class="widget clearfix rss" />');
-        basicdesign.setWidgetLayout( ret_val, $p );
+        templateEngine.design.setWidgetLayout( ret_val, $p );
         var label = '<div class="label">' + page.textContent + '</div>';
         var actor = $("<div class=\"actor\"><div class=\"rss_inline\" id=\"" + id + "\"></div>");
         var rss = $("#" + id, actor);
@@ -107,3 +111,5 @@ function refreshRSS(rss, data) {
     //rss.data("itemoffset") = itemoffset;
     return false;
 }
+
+});

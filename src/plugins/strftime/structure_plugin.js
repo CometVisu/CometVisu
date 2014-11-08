@@ -21,7 +21,7 @@
  * Thanks to Michael Markstaller for implementing the jqclock plugin as reference.
  */
 
-$.getCSS('plugins/strftime/strftime.css', templateEngine.pluginLoaded);
+define( ['structure_custom', 'css!plugins/strftime/strftime' ], function( VisuDesign_Custom ) {
 
 (function() {
   VisuDesign_Custom.prototype.addCreator("strftime", {
@@ -34,7 +34,7 @@ $.getCSS('plugins/strftime/strftime.css', templateEngine.pluginLoaded);
         ret_val.addClass('custom_'+$p.attr('class'));
       }
 
-      basicdesign.setWidgetLayout(ret_val, $p);
+      templateEngine.design.setWidgetLayout(ret_val, $p);
       var actor = $('<div id="' + id + '" class="strftime_value"></div>');
       ret_val.append(actor);
 
@@ -96,3 +96,5 @@ $.getCSS('plugins/strftime/strftime.css', templateEngine.pluginLoaded);
       X: '%T'
   };
 })();
+
+});

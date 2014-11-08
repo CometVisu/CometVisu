@@ -20,12 +20,13 @@
  * @module Structure custom
 */
 
+define( ['_common'], function( design ) {
 /**
  * This class defines all the custom changes to the visu
  * @class VisuDesign_Custom
  */
-function VisuDesign_Custom() {};                // do NOT change here
-VisuDesign_Custom.prototype = basicdesign;      // do NOT change here
+function VisuDesign_Custom() {};                  // do NOT change here
+VisuDesign_Custom.prototype = design.basicdesign; // do NOT change here
 
 /*
  * Custom changes could go here and look e.g. like
@@ -40,3 +41,6 @@ VisuDesign_Custom.prototype.addCreator("line", {
 });
 ****************************************
  */
+
+  return VisuDesign_Custom;
+}); // end define

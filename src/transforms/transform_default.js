@@ -15,6 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
+define(['jquery'], function($) {
 /**
  * This class defines the default transforms:
  *   encode: transform JavaScript to bus value
@@ -77,3 +78,10 @@ function zeroFillString( s, l )
   
   return new Array(1 + l - s.length).join('0') + s;
 }
+
+  return {
+    Transform: Transform,
+    addTransform: addTransform,
+    zeroFillString: zeroFillString
+  };
+});

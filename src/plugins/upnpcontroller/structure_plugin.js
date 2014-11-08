@@ -15,7 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
  
-$.getCSS( 'plugins/upnpcontroller/upnpcontroller.css' );
+define( ['structure_custom', 'css!plugins/upnpcontroller/upnpcontroller' ], function( VisuDesign_Custom ) {
 
 var upnpcontroller_uid;
 var upnpcontroller_trace_flag;
@@ -35,7 +35,7 @@ VisuDesign_Custom.prototype.addCreator("upnpcontroller", {
         upnpcontroller_uid = id;
 
         var ret_val = $('<div class="widget upnpcontroller" />');
-        basicdesign.setWidgetLayout( ret_val, $p );
+        templateEngine.design.setWidgetLayout( ret_val, $p );
         var label = '<div class="label">' + $p.attr("label") + '</div>';
         var actor = $("<div class=\"actor\"><div class=\"upnpcontroller\" id=\"" + id + "\">loading</div></div>");
         var upnpcontroller = $("#" + id, actor);
@@ -392,4 +392,4 @@ function trace(msg){
  	}
 }
 
-templateEngine.pluginLoaded();
+});

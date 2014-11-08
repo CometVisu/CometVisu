@@ -19,6 +19,7 @@
  * This plugins jumps back to a defined page after a given timeout period
  */
 
+define( ['structure_custom' ], function( VisuDesign_Custom ) {
 
 var timeoutIdleCount   = 0;
 var timeoutCurrentPage = "";
@@ -123,6 +124,5 @@ function timeoutPrintDebug(s) {
   if (timeoutDebug == 'true') console.log(s);
 }
 
-
-templateEngine.pluginLoaded();
+});
 
