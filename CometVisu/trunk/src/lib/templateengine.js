@@ -312,6 +312,7 @@ function TemplateEngine( undefined ) {
             return range[min][1];
           }
         }
+        return v; // pass through when nothing was found
       }
       var ret = mapValue(ret);
       if (!ret && m['defaultValue']) {
