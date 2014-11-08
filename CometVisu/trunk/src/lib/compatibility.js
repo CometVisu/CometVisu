@@ -17,6 +17,7 @@
  * @module Compatability
  * @title  CometVisu helper functions for compatability issues
  */
+define( ['jquery'], function( $ ) {
 if( /(msie)/i.test(navigator.userAgent.toLowerCase()) )
 {
   var IE_version = /MSIE\s([\d]+)/;
@@ -193,6 +194,7 @@ $.extend({
    * Include files on this place. This will be replaced by the content of the
    * script during packaging
    */
+  /* removed - use AMD instread!
   includeScripts: function(files, callback) {
     yepnope({
       load: files,
@@ -208,6 +210,7 @@ $.extend({
       }
     }, parameters);
   }
+  */
 });
 
 // check if the applicationCache was modified - then reload itself to prevent
@@ -218,3 +221,5 @@ if( "object" === typeof window.applicationCache )
     window.location.reload(false);
   });
 }
+
+}); // end define

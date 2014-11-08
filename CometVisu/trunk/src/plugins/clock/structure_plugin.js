@@ -15,6 +15,8 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
+define( ['structure_custom' ], function( VisuDesign_Custom ) {
+
 /**
  * This is a custom function that extends the available widgets.
  * It's purpose is to change the design of the visu during runtime
@@ -26,7 +28,7 @@ VisuDesign_Custom.prototype.addCreator("clock", {
     var that = this;
     var $p = $(page);
     var ret_val = $('<div class="widget clearfix clock" />');
-    basicdesign.setWidgetLayout( ret_val, $p );
+    templateEngine.design.setWidgetLayout( ret_val, $p );
     var labelElement = $p.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
     var address = {};
@@ -70,7 +72,7 @@ VisuDesign_Custom.prototype.addCreator("clock", {
   },
   update: function(e,d) { 
     var element = $(this);
-    var value = basicdesign.defaultUpdate( e, d, element );
+    var value = templateEngine.design.defaultUpdate( e, d, element );
     var $svg = element.find('svg');
     var time = value.split(':');
     $svg.children().find('#Hour'  ).attr('transform','rotate('+((time[0]%12)*360/12+time[1]*30/60)+',50,50)');
@@ -126,4 +128,4 @@ VisuDesign_Custom.prototype.addCreator("clock", {
   }
 });
 
-templateEngine.pluginLoaded();
+});

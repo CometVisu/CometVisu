@@ -15,7 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
-$.getCSS( 'plugins/rsslog/rsslog.css', templateEngine.pluginLoaded );
+define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign_Custom ) {
 
 VisuDesign_Custom.prototype.addCreator("rsslog", {
   create: function( element, path, flavour, type ) { 
@@ -30,8 +30,8 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
     var extsource = false;
 
     var ret_val = $('<div class="widget clearfix rsslog" />');
-    basicdesign.setWidgetLayout( ret_val, $el );
-    basicdesign.makeWidgetLabel( ret_val, $el );
+    templateEngine.design.setWidgetLayout( ret_val, $el );
+    templateEngine.design.makeWidgetLabel( ret_val, $el );
 
     var actor = $('<div class="actor rsslogBody"><div class="rsslog_inline" id="' + id + '"></div></div>');
     var rss = $("#" + id, actor);
@@ -285,3 +285,5 @@ function refreshRSSlog(rss) {
     }
   });
 })(jQuery);
+
+});

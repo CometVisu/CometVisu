@@ -15,7 +15,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-basicdesign.addCreator('web', {
+define( ['_common'], function( design ) {
+  var basicdesign = design.basicdesign;
+  
+design.basicdesign.addCreator('web', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
 
@@ -78,3 +81,5 @@ basicdesign.addCreator('web', {
   }
 
 });
+
+}); // end define

@@ -15,6 +15,8 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+define( ['transform_default'], function( Transform ) {
+  
 hueToRGB = function (m1, m2, h) {
     h = (h < 0) ? h + 1 : ((h > 1) ? h - 1 : h);
     if (h * 6 < 1) return m1 + (m2 - m1) * h * 6;
@@ -27,7 +29,7 @@ hueToRGB = function (m1, m2, h) {
  * This class defines the default transforms: encode: transform JavaScript to
  * bus value decode: transform bus to JavaScript value
  */
-addTransform('OH', {
+Transform.addTransform('OH', {
   'switch' : {
     name : 'OH_Switch',
     encode : function(phy) {
@@ -125,3 +127,5 @@ addTransform('OH', {
     },
   },
 });
+
+}); // end define

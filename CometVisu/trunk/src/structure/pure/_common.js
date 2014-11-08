@@ -20,6 +20,7 @@
  * @module Structure Pure
  * @title  CometVisu Structure "pure"
 */
+define( ['jquery'], function($) {
 
 // Define ENUM of maturity levels for features, so that e.g. the editor can 
 // ignore some widgets when they are not supported yet
@@ -508,3 +509,10 @@ function placementStrategy( anchor, popup, page, preference )
 }
 
 var basicdesign = new VisuDesign();
+
+  return {
+    basicdesign: basicdesign,
+    Maturity: Maturity,
+    placementStrategy: placementStrategy
+  }
+}); // end define
