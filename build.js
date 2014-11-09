@@ -8,8 +8,8 @@
   // config options to handle required CSS files:
   separateCSS: true,
   paths: {
-    'css-builder': '../../_support/css-builder',
-    'normalize': '../../_support/normalize'
+    'css-builder': '../../../_support/css-builder',
+    'normalize': '../../../_support/normalize'
   },
  
   modules: [ 
