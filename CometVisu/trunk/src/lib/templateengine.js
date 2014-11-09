@@ -24,6 +24,7 @@
 //
 
 require.config({
+  urlArgs: (typeof window === 'undefined') || window.location.href.indexOf('forceReload=true') < 0 ? '' : '_=' + (+new Date),
   baseUrl: './',
   waitSeconds: 30, // default: 7 seconds
   paths: {

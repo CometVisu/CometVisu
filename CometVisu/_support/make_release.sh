@@ -38,6 +38,8 @@ if [ x"$4" = "x-dry" ]; then
     rm -rf /tmp/branches
   fi
   mkdir /tmp/branches
+  mkdir /tmp/branches/_support
+  cp ../_support/* /tmp/branches/_support
   cp -r ../trunk /tmp/branches/$RELEASE_DIR
   cd /tmp/branches
 fi
@@ -48,7 +50,21 @@ sed -i "s/Version: SVN/Version: $VERSION/" $RELEASE_DIR/src/config/visu_config.x
 sed -i "s/Version: SVN/Version: $VERSION/" $RELEASE_DIR/src/config/demo/visu_config_demo.xml 
 sed -i "s/comet_16x16_000000.png/comet_16x16_ff8000.png/" $RELEASE_DIR/src/index.html
 cd $RELEASE_DIR
-make
+
+#make
+JS_ENGINE=`which node nodejs 2>/dev/null`
+TIMESTAMP=`date +%Y%m%d-%H%M%S`
+STATIC_FILES_PRE=$(cat src/cometvisu.appcache  | sed '0,/T MODIFY!$/{//!b};d')
+STATIC_FILES_POST=$(cat src/cometvisu.appcache  | sed '/^NETWORK:$/,/^$/{//!b};d')
+PLUGIN_FILES=$(find src | grep plugins | grep -E "structure_plugin.js|\.css" | sed 's%src/%%')
+DESIGN_FILES=$(find src | grep designs | grep -E "\.js|\.css|\.ttf" | sed 's%src/%%')
+mkdir -p ./release
+$JS_ENGINE ../_support/r.js -o build.js
+find release -path "*/.svn" -exec rm -rf {} +
+echo -e "$STATIC_FILES_PRE\n$DESIGN_FILES\n$PLUGIN_FILES\n\nNETWORK:\n$STATIC_FILES_POST" | \
+  sed "s/# Version.*/# Version $VERSION:$TIMESTAMP/"  \
+  > release/cometvisu.appcache
+
 chmod -R a+w src/config
 chmod -R a+w release/config
 cd ..
