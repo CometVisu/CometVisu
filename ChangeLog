@@ -1,3 +1,23 @@
+0.8.4
+=====
+
+- switch to AMD and new loading system
+- new widget: audio
+- new widget: refresh
+- updated icons
+- rsslog: mysql backend
+- basic support for KNX DPT 24.001
+- feature request #95: Formula and mapping can be combined 
+- diagram plugin: Added attribute "zoomYAxis" to enable/disable zooming on Y
+  axis, by default it is disabled
+- little bug fixes
+
+NOTE:
+-----
+
+Due to the new loading system it might be that custom scripts must be modfied!
+
+
 0.8.3
 =====
 
