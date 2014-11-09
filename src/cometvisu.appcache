@@ -3,6 +3,8 @@ CACHE MANIFEST
 
 CACHE:
 index.html
+dependencies/require-2.1.15.min.js
+lib/templateengine.js
 visu_config.xsd
 # structure_pure will be inserted here during the release process !DON'T MODIFY!
 dependencies/scrollable.min.js
@@ -24,7 +26,6 @@ dependencies/yepnope.1.5.4.js
 lib/iconhandler.js
 lib/compatibility.js
 lib/cometvisu-client.js
-lib/templateengine.js
 structure/pure/_common.js
 structure/pure/break.js
 structure/pure/designtoggle.js
