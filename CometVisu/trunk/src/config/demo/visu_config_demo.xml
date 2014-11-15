@@ -278,12 +278,12 @@
       <break/>
       <trigger value="1" shorttime="300" shortvalue="0">
         <label>Trigger auf 300ms, sende Kurzzeit "0" und Langzeit "1"</label>
-        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+        <address transform="DPT:1.001" variant="button" mode="readwrite">12/7/1</address>
         <address transform="DPT:1.001" variant="short" mode="readwrite">12/7/10</address>
       </trigger>
       <trigger value="0" shorttime="1000" shortvalue="1">
         <label>Trigger auf 1000ms, sende Kurzzeit "1" und Langzeit "0"</label>
-        <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+        <address transform="DPT:1.001" variant="button" mode="readwrite">12/7/1</address>
         <address transform="DPT:1.001" variant="short" mode="readwrite">12/7/10</address>
       </trigger>
       <info>
