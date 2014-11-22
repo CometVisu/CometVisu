@@ -67,6 +67,9 @@ echo -e "$STATIC_FILES_PRE\n$DESIGN_FILES\n$PLUGIN_FILES\n\nNETWORK:\n$STATIC_FI
 
 chmod -R a+w src/config
 chmod -R a+w release/config
+# why do I need this?!? I'd expect r.js to create that dir already...
+mkdir -p release/config/backup
+chmod -R a+w release/config/backup
 cd ..
 $SVN_CMD propdel svn:ignore $RELEASE_DIR
 $SVN_CMD add $RELEASE_DIR/docs --depth infinity
