@@ -230,7 +230,7 @@
     </xsd:annotation>
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
-        <xsd:enumeration value="cgi" />
+        <xsd:enumeration value="cgi-bin" />
         <xsd:enumeration value="oh" />
       </xsd:restriction>
     </xsd:simpleType>
