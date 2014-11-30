@@ -15,7 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
-define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic', 'plugins/colorchooser/farbtastic/farbtastic' ], function( VisuDesign_Custom ) {
+define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css', 'plugins/colorchooser/farbtastic/farbtastic' ], function( VisuDesign_Custom ) {
 
 /**
  * This is a custom function that extends the available widgets.

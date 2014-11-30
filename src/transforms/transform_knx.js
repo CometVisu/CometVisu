@@ -143,7 +143,7 @@ Transform.addTransform( 'DPT', {
   '7.001' : {
     name  : 'DPT_Value_2_Ucount',
     encode: function( phy ){
-      var val = zeroFillString( parseInt(phy).toString( 16 ), 4);
+      var val = Transform.zeroFillString( parseInt(phy).toString( 16 ), 4);
       return '80' + val;
     },
     decode: function( hex ){ 
@@ -159,7 +159,7 @@ Transform.addTransform( 'DPT', {
     encode: function( phy ){
       var val = parseInt ( phy );
       val = val < 0 ? val + 65536 : val;
-      return '80' + zeroFillString( val.toString( 16 ), 4);
+      return '80' + Transform.zeroFillString( val.toString( 16 ), 4);
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 );
@@ -218,9 +218,9 @@ Transform.addTransform( 'DPT', {
   '10.001' : {
     name  : 'DPT_TimeOfDay',
     encode: function( phy ){
-      var val = zeroFillString( ((phy.getDay() << 5) + phy.getHours()).toString(16), 2);
-      val += zeroFillString( phy.getMinutes().toString(16), 2 );
-      val += zeroFillString( phy.getSeconds().toString(16), 2 );
+      var val = Transform.zeroFillString( ((phy.getDay() << 5) + phy.getHours()).toString(16), 2);
+      val += Transform.zeroFillString( phy.getMinutes().toString(16), 2 );
+      val += Transform.zeroFillString( phy.getSeconds().toString(16), 2 );
       return '80' + val;
     },
     decode: function( hex ){ 
@@ -256,7 +256,7 @@ Transform.addTransform( 'DPT', {
   '12.001' : {
     name  : 'DPT_Value_4_Ucount',
     encode: function( phy ){
-      var val = zeroFillString( parseInt(phy).toString( 16 ), 8);
+      var val = Transform.zeroFillString( parseInt(phy).toString( 16 ), 8);
       return '80' + val;
     },
     decode: function( hex ){ 
@@ -272,7 +272,7 @@ Transform.addTransform( 'DPT', {
     encode: function( phy ){
       var val = parseInt ( phy );
       val = val < 0 ? val + 4294967296 : val;
-      return '80' + zeroFillString( val.toString( 16 ), 8);
+      return '80' + Transform.zeroFillString( val.toString( 16 ), 8);
     },
     decode: function( hex ){
       var val = parseInt( hex, 16 );
