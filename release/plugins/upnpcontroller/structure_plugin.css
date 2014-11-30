@@ -1,0 +1,35 @@
+.upnpController {
+}
+.upnpController div.name {
+	font-weight: bold;
+	height: 24px;
+	padding: 4px 4px 4px 4px;
+}
+.upnpControllerList { 
+    margin: 0; 
+    padding: 0; 
+    position: relative; 
+} 
+  
+.upnpControllerList li { 
+    background-color:#eeeeee; 
+    display: inline; 
+    list-style: none outside none; 
+    padding-left: 2px; 
+    padding-right: 2px; 
+    margin-bottom: 2px; 
+    position: relative; 
+} 
+.upnplabelgroup {
+    float: left;
+    padding-left: 1em;
+    text-align: left;
+    width: 100%;
+    line-height: 2em;
+}
+.upnplabel {
+    text-align: left;
+    float: left;
+    width: 14%;
+    line-height: 2em;
+}
