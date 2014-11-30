@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages lib_version="7" design="metal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+  <meta>
+    <plugins>
+      <plugin name="colorchooser"/>
+      <plugin name="diagram"/>
+      <plugin name="upnpcontroller"/>
+      <plugin name="gauge"/>
+    </plugins>
+    <mappings>
+      <mapping name="Close_Open">
+        <entry value="0">zu</entry>
+        <entry value="1">offen</entry>
+      </mapping>
+      <mapping name="Open_Close">
+        <entry value="0">offen</entry>
+        <entry value="1">zu</entry>
+      </mapping>
+      <mapping name="Off_On">
+        <entry value="0">Aus</entry>
+        <entry value="1">An</entry>
+      </mapping>
+      <mapping name="On_Off">
+        <entry value="0">An</entry>
+        <entry value="1">Aus</entry>
+      </mapping>
+      <mapping name="KonnexHVAC">
+        <entry value="auto">Auto</entry>
+        <entry value="comfort">Komfort</entry>
+        <entry value="standby">Stand By</entry>
+        <entry value="economy">Economy</entry>
+        <entry value="building_protection">Haus-Schutz</entry>
+      </mapping>
+      <mapping name="Text_Scroll">
+        <entry value="0">Muelltonne übermorgen leeren</entry>
+        <entry value="1">Inspektion heute nach Autohaus Meyer</entry>
+      </mapping>
+    </mappings>
+    <stylings>
+      <styling name="Red_Green">
+        <entry value="0">red</entry>
+        <entry value="1">green</entry>
+      </styling>
+      <styling name="Green_Red">
+        <entry value="0">green</entry>
+        <entry value="1">red</entry>
+      </styling>
+      <styling name="Blue_Green_Red">
+        <entry range_min="-100" range_max="20">blue</entry>
+        <entry range_min="20" range_max="22">green</entry>
+        <entry range_min="22" range_max="100">red</entry>
+      </styling>
+    </stylings>
+    <statusbar>
+      <status type="html">&lt;img src="icon/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="http://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
+          - &lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt;</status>
+      <status type="html" condition="!edit" hrefextend="config">- &lt;a href="editor/"&gt;Edit&lt;/a&gt;</status>
+      <status type="html" condition="edit" hrefextend="config">- &lt;a href="."&gt;normal Mode&lt;/a&gt;</status>
+      <status type="html">- &lt;a href="?config=demo"&gt;Widget Demo&lt;/a&gt;</status>
+      <status type="html" hrefextend="config">- &lt;a href="check_config.php"&gt;Check Config&lt;/a&gt;</status>
+    </statusbar>
+  </meta>
+  <page name="Start">
+    <text align="center">
+      <layout colspan="12"/>
+      <label>Welcome to the CometVisu! Gauge Demo Config.</label>
+    </text>
+    <group name="Radial Linear">
+      <layout colspan="12"/>
+      <group>
+        <layout colspan="5.1"/>
+        <gauge type="RadialBargraph" titleString="Title" unitString="Unit" minValue="0" maxValue="100" size="200" threshold="30" lcdVisible="true" trendVisible="true" lcdDecimals="2" thresholdRising="true" ledVisible="true" background="DARK_GRAY" framedesign="BLACK_METAL" valueColor="RED">
+          <layout colspan="1.7"/>
+          <address transform="DPT:9" mode="read">12/7/90</address>
+          <address transform="DPT:9" mode="read" variant="trend">12/7/92</address>
+        </gauge>
+        <gauge type="WindDirection" subtype="type1" titleString="Windrichtung" unitString="km/h" minValue="0" maxValue="100" size="200" background="DARK_GRAY" framedesign="BLACK_METAL" ledVisible="true" trendVisible="true" lcdVisible="true" lcdDecimals="2">
+          <layout colspan="1.7"/>
+          <address transform="DPT:9" mode="read">12/7/90</address>
+          <address transform="DPT:9" variant="average" mode="read">12/7/91</address>
+        </gauge>
+        <gauge type="RadialVertical" subtype="type1" size="200" background="DARK_GRAY" framedesign="BLACK_METAL" lcdVisible="false" ledVisible="true" titleString="Title" unitString="Unit" minValue="0" maxValue="100" threshold="30" trendVisible="true">
+          <layout colspan="1.7"/>
+          <address transform="DPT:9" mode="read">12/7/90</address>
+        </gauge>
+        <gauge type="Compass" subtype="type1" background="DARK_GRAY" framedesign="BLACK_METAL" size="200">
+          <layout colspan="1.7"/>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
+        </gauge>
+        <gauge type="Radial" subtype="type1" ledVisible="true" lcdVisible="true" background="DARK_GRAY" framedesign="BLACK_METAL" size="200" titleString="Title" unitString="Unit" minValue="0" maxValue="100" threshold="30" trendVisible="true" lcdDecimals="1">
+          <layout colspan="1.7"/>
+          <address transform="DPT:9" mode="read">12/7/90</address>
+          <address transform="DPT:9" mode="read" variant="trend">12/7/92</address>
+        </gauge>
+        <gauge type="Radial" subtype="type1" ledVisible="true" lcdVisible="true" background="DARK_GRAY" framedesign="BLACK_METAL" size="200" titleString="Title" unitString="Unit" minValue="0" maxValue="100" threshold="30" trendVisible="true" lcdDecimals="1">
+          <layout colspan="1.7"/>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
+          <address transform="DPT:9" mode="read" variant="trend">12/7/92</address>
+        </gauge>
+        <slide min="0" max="100" step="5" format="%d%%">
+          <label>Last</label>
+          <address transform="DPT:9" mode="readwrite">12/7/90</address>
+        </slide>
+        <slide format="%d%%" min="0" max="100" step="5">
+          <label>AVG</label>
+          <address transform="DPT:9" mode="readwrite">12/7/91</address>
+        </slide>
+        <slide format="%d%%" min="-1" max="1">
+          <label>Trend</label>
+          <address transform="DPT:9" mode="readwrite">12/7/92</address>
+        </slide>
+        <gauge type="Linear" subtype="type2" background="DARK_GRAY" framedesign="BLACK_METAL" width="150" height="300" lcdVisible="true" threshold="5" trendVisible="true" titleString="Title" unitString="Unit">
+          <layout colspan="1.3"/>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
+        </gauge>
+        <gauge type="LinearBargraph" subtype="type2" background="DARK_GRAY" framedesign="BLACK_METAL" width="150" height="300" lcdVisible="true" threshold="5" titleString="Title" unitString="Unit">
+          <layout colspan="1.3"/>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
+        </gauge>
+        <gauge type="Linear" subtype="type2" background="DARK_GRAY" framedesign="BLACK_METAL" width="300" height="150" lcdVisible="true" threshold="5" titleString="Title" unitString="Unit">
+          <layout colspan="2.5"/>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
+        </gauge>
+        <gauge type="LinearBargraph" subtype="type1" background="DARK_GRAY" framedesign="BLACK_METAL" width="300" height="150" lcdVisible="true" threshold="5" titleString="Title" unitString="Unit">
+          <layout colspan="2.5"/>
+          <address transform="DPT:9.001" mode="read">12/7/90</address>
+        </gauge>
+ 
+        <gauge type="DisplaySingle" width="120" height="50" lcdDecimals="1" unitStringVisible= "true" unitString="°C">
+          <layout colspan="1.3"/>
+          <address transform="DPT:9" mode="read" variant="setValue">12/7/90</address>
+        </gauge>
+        <gauge type="DisplaySingle" width="150" height="50" autoScroll="true" valuesNumeric="false">
+          <layout colspan="1.3"/>
+          <address transform="DPT:16" mode="read" variant="setValue">12/7/95</address>
+        </gauge>
+        <switch mapping="Text_Scroll" styling="- not set - (undefined)" on_value="CometVisu Geil" off_value="AUS" bind_click_to_widget="true">
+          <layout colspan="2.3"/>
+          <address transform="DPT:16" mode="readwrite">12/7/95</address>
+        </switch>
+      </group>
+      <group>
+        <text align="left">
+          <layout colspan="7"/>
+          <label>&lt;b&gt;atributes&lt;/b&gt;&lt;br&gt;
+* - type: WindDirection | Radial | Linear | DisplaySingle &lt;br&gt;
+* - subtype: type1 | type2 | TYPE2 | type3 | type4 | type5 &lt;br&gt;
+* - titleString: optional, "name" &lt;br&gt;
+* - unitString: optional, "units" &lt;br&gt;
+* - minValue: optional, "measuring range" &lt;br&gt;
+* - maxValue: optional, "measuring range" &lt;br&gt;
+* - ledVisible: optional, "true", "false" &lt;br&gt;
+* - lcdVisible: optional, "true", "false"  &lt;br&gt;
+* - lcdDecimals: optional, integer &lt;br&gt; 
+* - unitStringVisible: optional, "true, "false" &lt;br&gt;
+* - trendVisible: optional, "true" , "false" &lt;br&gt;
+* - size: optional, preset "150"  &lt;br&gt;
+* - threshold: optional, "" &lt;br&gt;
+* - autoScroll: optional "true" , "false" &lt;br&gt;
+* - valuesNumeric: optional "true" , "false" &lt;br&gt; 
+* - thresholdRising: optional, "true" , "false" - default is "false" &lt;br&gt;
+* - background: optional &lt;br&gt;
+* - framedesign: optional &lt;br&gt;
+* - valueColor: optional, default is "RED" &lt;br&gt;
+* - target: optional, if defined jump to the page with the specified name! &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</label>
+        </text>
+      </group>
+    </group>
+  </page>
+</pages>

@@ -1,0 +1,11 @@
+﻿ /* entfernt an allen widget den Rahmen = border-width:0px */
+ .widget.gauge {
+    background-image: linear-gradient(#444444, #2D2D2D);
+    border-color: #666666;
+    border-style: solid;
+    border-width: 0;
+    margin: -1px 0 0 -1px;
+    min-height: 2.1em;
+    padding: 0.3em;
+    text-shadow: 0 1px 1px #111111;
+}
