@@ -52,7 +52,7 @@ sed -i "s/comet_16x16_000000.png/comet_16x16_ff8000.png/" $RELEASE_DIR/src/index
 cd $RELEASE_DIR
 
 #make
-JS_ENGINE=`which node nodejs 2>/dev/null`
+JS_ENGINE=`which node nodejs 2>/dev/null | head -n 1`
 TIMESTAMP=`date +%Y%m%d-%H%M%S`
 STATIC_FILES_PRE=$(cat src/cometvisu.appcache  | sed '0,/T MODIFY!$/{//!b};d')
 STATIC_FILES_POST=$(cat src/cometvisu.appcache  | sed '/^NETWORK:$/,/^$/{//!b};d')
@@ -64,6 +64,7 @@ find release -path "*/.svn" -exec rm -rf {} +
 echo -e "$STATIC_FILES_PRE\n$DESIGN_FILES\n$PLUGIN_FILES\n\nNETWORK:\n$STATIC_FILES_POST" | \
   sed "s/# Version.*/# Version $VERSION:$TIMESTAMP/"  \
   > release/cometvisu.appcache
+rm release/build.txt
 
 chmod -R a+w src/config
 chmod -R a+w release/config
@@ -76,5 +77,5 @@ $SVN_CMD add $RELEASE_DIR/docs --depth infinity
 $SVN_CMD add $RELEASE_DIR/release --depth infinity
 $SVN_CMD ci -m "New release: $VERSION" 
 
-tar -cj --exclude-vcs  -f CometVisu_$VERSION.tar.bz2 $RELEASE_DIR
+tar -cjp --exclude-vcs  -f CometVisu_$VERSION.tar.bz2 $RELEASE_DIR
 

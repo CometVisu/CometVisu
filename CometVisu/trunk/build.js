@@ -4,9 +4,11 @@
   appDir: 'src/',  // relative to baseUrl
   dir: 'release/',
   mainConfigFile: 'src/lib/templateengine.js',
+  //optimize: 'none',  // don't minimize when set
  
   // config options to handle required CSS files:
   separateCSS: true,
+  buildCSS: false,
   paths: {
     'css-builder': '../../../_support/css-builder',
     'normalize': '../../../_support/normalize'
