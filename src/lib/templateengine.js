@@ -24,7 +24,6 @@
 //
 
 require.config({
-  urlArgs: (typeof window === 'undefined') || window.location.href.indexOf('forceReload=true') < 0 ? '' : '_=' + (+new Date),
   baseUrl: './',
   waitSeconds: 30, // default: 7 seconds
   paths: {
@@ -285,6 +284,11 @@ function TemplateEngine( undefined ) {
     this.forceMobile = false;
     this.forceNonMobile = false;
   }
+  var uagent = navigator.userAgent.toLowerCase();
+  this.mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
+  if (/(nexus 7|tablet)/i.test(uagent)) this.mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
+  this.mobileDevice |= this.forceMobile;  // overwrite detection when set by URL
+
 
   // "Bug"-Fix for ID: 3204682 "Caching on web server"
   // This isn't a real fix for the problem as that's part of the web browser,
@@ -571,16 +575,11 @@ function TemplateEngine( undefined ) {
    */
   this.handleResize = function(resize, skipScrollFix) {
     var $main = $('#main');
-    var uagent = navigator.userAgent.toLowerCase();
     var width = thisTemplateEngine.getAvailableWidth();
     var height = thisTemplateEngine.getAvailableHeight();
     $main.css('width', width).css('height', height);
     $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
-    // if (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent)) {
-    var mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
-    if (/(nexus 7|tablet)/i.test(uagent)) mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
-    mobileDevice |= thisTemplateEngine.forceMobile;  // overwrite detection when set by URL
-    if (mobileDevice) {
+    if (this.mobileDevice) {
       //do nothing
     } else {
       if (($('#navbarTop').css('display')!="none" && $('#navbarTop').outerHeight(true)<=2)
@@ -691,28 +690,10 @@ function TemplateEngine( undefined ) {
       getCSSlist.push( 'css!designs/' + thisTemplateEngine.clientDesign + '/basic.css' );
       if (!thisTemplateEngine.forceNonMobile) {
         getCSSlist.push( 'css!designs/' + thisTemplateEngine.clientDesign + '/mobile.css' );
-        // TODO - put this here as well: thisTemplateEngine.forceMobile ? {} : {media: 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)'}, delaySetup('mobile') );
       }
       getCSSlist.push( 'css!designs/' + thisTemplateEngine.clientDesign + '/custom.css' );
       getCSSlist.push( 'designs/' + thisTemplateEngine.clientDesign + '/design_setup' );
     }
-    /*
-    $.getCSS( 'designs/designglobals.css', {}, delaySetup('designglobals') );
-    define( ['css!designs/designglobals.css'], function(){} );
-    if (thisTemplateEngine.clientDesign) {
-      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/basic.css', {}, delaySetup('basic') );
-      if (!thisTemplateEngine.forceNonMobile) {
-        $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/mobile.css',
-            thisTemplateEngine.forceMobile ? {} : 
-            {media: 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)'}, delaySetup('mobile') );
-      }
-      $.getCSS( 'designs/' + thisTemplateEngine.clientDesign + '/custom.css', {}, delaySetup('custom') );
-      $.includeScripts( 
-        ['designs/' + thisTemplateEngine.clientDesign + '/design_setup.js'],
-        delaySetup('design')
-      );
-    }
-    */
     require( getCSSlist, delaySetup('design') );
 
     // start with the plugins
@@ -930,10 +911,8 @@ function TemplateEngine( undefined ) {
       return; // we'll be called again...
  
     // as we are sure that the default CSS were loaded now:
-    $('link').each(function(){
-      if( this.href.substr(-10) === 'mobile.css' ){
-        this.media = 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)';
-      };
+    $('link[href*="mobile.css"]').each(function(){
+      this.media = 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)';
     });
     
     var page = $('pages > page', xml)[0]; // only one page element allowed...

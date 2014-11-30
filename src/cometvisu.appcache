@@ -1,11 +1,13 @@
 CACHE MANIFEST
-# Version SVN:20141108-2327
+# Version SVN:20141130-1901
 
 CACHE:
 index.html
-dependencies/require-2.1.15.min.js
-lib/templateengine.js
 visu_config.xsd
+dependencies/require-2.1.15.min.js
+dependencies/css.js
+icon/comet_64_ff8000.png
+lib/templateengine.js
 # structure_pure will be inserted here during the release process !DON'T MODIFY!
 dependencies/scrollable.min.js
 dependencies/jquery.ui.touch-punch.js
@@ -27,6 +29,7 @@ lib/iconhandler.js
 lib/compatibility.js
 lib/cometvisu-client.js
 structure/pure/_common.js
+structure/pure/audio.js
 structure/pure/break.js
 structure/pure/designtoggle.js
 structure/pure/group.js
