@@ -332,7 +332,7 @@ define( ['structure_custom',
         return;
       }
 
-      if (!xAxis.datamin || !xAxis.datamax) {
+      if (true || !xAxis.datamin || !xAxis.datamax) { // FIXME: test to see if http://knx-user-forum.de/cometvisu/39137-problem-mit-diagramm-aktualisierung-svn-version.html is fixed
         // initial load, take parameters from configuration
         return {
           start : "end-" + config.period + selectedSeries.start,
