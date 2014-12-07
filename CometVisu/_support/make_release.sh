@@ -57,7 +57,7 @@ TIMESTAMP=`date +%Y%m%d-%H%M%S`
 STATIC_FILES_PRE=$(cat src/cometvisu.appcache  | sed '0,/T MODIFY!$/{//!b};d')
 STATIC_FILES_POST=$(cat src/cometvisu.appcache  | sed '/^NETWORK:$/,/^$/{//!b};d')
 PLUGIN_FILES=$(find src | grep plugins | grep -E "structure_plugin.js|\.css" | sed 's%src/%%')
-DESIGN_FILES=$(find src | grep designs | grep -E "\.js|\.css|\.ttf" | sed 's%src/%%')
+DESIGN_FILES=$(find src | grep designs | grep -E "\.js|\.css|\.ttf" | grep -v "custom.css" | sed 's%src/%%')
 mkdir -p ./release
 $JS_ENGINE ../../_support/r.js -o build.js
 find release -path "*/.svn" -exec rm -rf {} +
