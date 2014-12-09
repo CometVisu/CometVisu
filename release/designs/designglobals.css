@@ -1,0 +1,138 @@
+
+body 
+{ 
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+img.icon, canvas.icon {
+  height: 2em;
+  width: 2em;
+}
+#centerContainer {
+  padding-left: 0px;   
+  padding-right: 0px;  
+}
+#centerContainer > div {
+  position: relative;
+  float: left;
+  display: block;
+}
+#main {
+  width: 100%;
+}
+#navbarLeft {
+  width: 0px;          
+}
+#navbarRight {
+  width: 0px;          
+  margin-right: 0px;   
+}
+#navbarTop {
+}
+#navbarBottom {
+  clear: both;
+}
+#bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+#pages,
+.page > .clearfix, 
+#navbarTop, #navbarBottom {
+  -webkit-transform: translateZ(0);
+  -webkit-overflow-scrolling:touch;
+}
+ 
+.innerrowspan {
+ position:absolute;
+ top:0;
+ bottom:0;
+ left:0;
+ right:0;
+}
+.page, html[xmlns] .navbar.clearfix {
+  display: none;
+}
+.pageActive, html[xmlns] .navbar.clearfix.navbarActive {
+  display: block;
+}
+.rowspan { overflow:hidden; position:relative; }
+.red
+{
+  color:#FF0000;
+}
+.white
+{
+  color:#FFFFFF;
+}
+.cyan
+{
+  color:#00FFFF;
+}
+.silver
+{
+  color:#C0C0C0;
+}
+.blue
+{
+  color:#0000FF;
+}
+.grey
+{
+  color:#808080;
+}
+.darkblue
+{
+  color:#0000A0;
+}
+.black
+{
+  color:#000000;
+}
+.lightblue
+{
+  color:#ADD8E6;
+}
+.orange
+{
+  color:#FFA500;
+}
+.purple
+{
+  color:#800080;
+}
+.brown
+{
+  color:#A52A2A;
+}
+.yellow
+{
+  color:#FFFF00;
+}
+.maroon
+{
+  color:#800000;
+}
+.lime
+{
+  color:#00FF00;
+}
+.green
+{
+  color:#008000;
+}
+.fuchsia
+{
+  color:#FF00FF;
+}
+.olive
+{
+  color:#808000;
+}
+.widget_container.break_container
+{
+  clear: both;
+}

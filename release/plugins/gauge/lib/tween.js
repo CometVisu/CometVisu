@@ -1,0 +1,36 @@
+/**********************************************************************
+TERMS OF USE - EASING EQUATIONS
+Open source under the BSD License.
+Copyright (c) 2001 Robert Penner
+JavaScript version copyright (C) 2006 by Philippe Maegerman
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of the author nor the names of contributors may
+be used to endorse or promote products derived from this software
+without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+*****************************************/
+
+function Delegate(){}Delegate.create=function(e,t){var n=[],r,i=arguments.length;for(r=2;r<i;r++)n[r-2]=arguments[r];return function(){var r=[].concat(arguments,n);t.apply(e,r)}};var Tween=function(e,t,n,r,i,s,o){this.init(e,t,n,r,i,s,o)},t=Tween.prototype;t.obj={},t.prop="",t.func=function(e,t,n,r){return n*e/r+t},t.begin=0,t.change=0,t.prevTime=0,t.prevPos=0,t.looping=!1,t._duration=0,t._time=0,t._pos=0,t._position=0,t._startTime=0,t._finish=0,t.name="",t.suffixe="",t._listeners=[],t.setTime=function(e){this.prevTime=this._time,e>this.getDuration()?this.looping?(this.rewind(e-this._duration),this.update(),this.broadcastMessage("onMotionLooped",{target:this,type:"onMotionLooped"})):(this._time=this._duration,this.update(),this.stop(),this.broadcastMessage("onMotionFinished",{target:this,type:"onMotionFinished"})):e<0?(this.rewind(),this.update()):(this._time=e,this.update())},t.getTime=function(){return this._time},t.setDuration=function(e){this._duration=e===null||e<=0?1e5:e},t.getDuration=function(){return this._duration},t.setPosition=function(e){this.prevPos=this._pos;var t=this.suffixe!==""?this.suffixe:"";this.obj[this.prop]=Math.round(e)+t,this._pos=e,this.broadcastMessage("onMotionChanged",{target:this,type:"onMotionChanged"})},t.getPosition=function(e){return e===undefined&&(e=this._time),this.func(e,this.begin,this.change,this._duration)},t.setFinish=function(e){this.change=e-this.begin},t.getFinish=function(){return this.begin+this.change},t.init=function(e,t,n,r,i,s,o){if(!arguments.length)return;this._listeners=[],this.addListener(this),o&&(this.suffixe=o),this.obj=e,this.prop=t,this.begin=r,this._pos=r,this.setDuration(s),n!==null&&n!==""&&(this.func=n),this.setFinish(i)},t.start=function(){this.rewind(),this.startEnterFrame(),this.broadcastMessage("onMotionStarted",{target:this,type:"onMotionStarted"})},t.rewind=function(e){this.stop(),this._time=e===undefined?0:e,this.fixTime(),this.update()},t.fforward=function(){this._time=this._duration,this.fixTime(),this.update()},t.update=function(){this.setPosition(this.getPosition(this._time))},t.startEnterFrame=function(){this.stopEnterFrame(),this.isPlaying=!0,this.onEnterFrame()},t.onEnterFrame=function(){this.isPlaying&&(this.nextFrame(),setTimeout(Delegate.create(this,this.onEnterFrame),25))},t.nextFrame=function(){this.setTime((this.getTimer()-this._startTime)/1e3)},t.stop=function(){this.stopEnterFrame(),this.broadcastMessage("onMotionStopped",{target:this,type:"onMotionStopped"})},t.stopEnterFrame=function(){this.isPlaying=!1},t.playing=function(){return this.isPlaying},t.continueTo=function(e,t){this.begin=this._pos,this.setFinish(e),this._duration!==undefined&&this.setDuration(t),this.start()},t.resume=function(){this.fixTime(),this.startEnterFrame(),this.broadcastMessage("onMotionResumed",{target:this,type:"onMotionResumed"})},t.yoyo=function(){this.continueTo(this.begin,this._time)},t.addListener=function(e){return this.removeListener(e),this._listeners.push(e)},t.removeListener=function(e){var t=this._listeners,n=t.length;while(n--)if(t[n]===e)return t.splice(n,1),!0;return!1},t.broadcastMessage=function(){var e=[],t,n,r=this._listeners,i=r.length;for(t=0;t<arguments.length;t++)e.push(arguments[t]);n=e.shift();for(t=0;t<i;t++)r[t][n]&&r[t][n].apply(r[t],e)},t.fixTime=function(){this._startTime=this.getTimer()-this._time*1e3},t.getTimer=function(){return(new Date).getTime()-this._time},Tween.backEaseIn=function(e,t,n,r,i,s){var o=1.70158;return n*(e/=r)*e*((o+1)*e-o)+t},Tween.backEaseOut=function(e,t,n,r,i,s){var o=1.70158;return n*((e=e/r-1)*e*((o+1)*e+o)+1)+t},Tween.backEaseInOut=function(e,t,n,r,i,s){var o=1.70158;return(e/=r/2)<1?n/2*e*e*(((o*=1.525)+1)*e-o)+t:n/2*((e-=2)*e*(((o*=1.525)+1)*e+o)+2)+t},Tween.elasticEaseIn=function(e,t,n,r,i,s){var o;return e===0?t:(e/=r)===1?t+n:(s||(s=r*.3),!i||i<Math.abs(n)?(i=n,o=s/4):o=s/(2*Math.PI)*Math.asin(n/i),-(i*Math.pow(2,10*(e-=1))*Math.sin((e*r-o)*2*Math.PI/s))+t)},Tween.elasticEaseOut=function(e,t,n,r,i,s){var o;return e===0?t:(e/=r)===1?t+n:(s||(s=r*.3),!i||i<Math.abs(n)?(i=n,o=s/4):o=s/(2*Math.PI)*Math.asin(n/i),i*Math.pow(2,-10*e)*Math.sin((e*r-o)*2*Math.PI/s)+n+t)},Tween.elasticEaseInOut=function(e,t,n,r,i,s){var o;return e===0?t:(e/=r/2)===2?t+n:(s||(s=r*.3*1.5),!i||i<Math.abs(n)?(i=n,o=s/4):o=s/(2*Math.PI)*Math.asin(n/i),e<1?-0.5*i*Math.pow(2,10*(e-=1))*Math.sin((e*r-o)*2*Math.PI/s)+t:i*Math.pow(2,-10*(e-=1))*Math.sin((e*r-o)*2*Math.PI/s)*.5+n+t)},Tween.bounceEaseOut=function(e,t,n,r){return(e/=r)<1/2.75?n*7.5625*e*e+t:e<2/2.75?n*(7.5625*(e-=1.5/2.75)*e+.75)+t:e<2.5/2.75?n*(7.5625*(e-=2.25/2.75)*e+.9375)+t:n*(7.5625*(e-=2.625/2.75)*e+.984375)+t},Tween.bounceEaseIn=function(e,t,n,r){return n-Tween.bounceEaseOut(r-e,0,n,r)+t},Tween.bounceEaseInOut=function(e,t,n,r){return e<r/2?Tween.bounceEaseIn(e*2,0,n,r)*.5+t:Tween.bounceEaseOut(e*2-r,0,n,r)*.5+n*.5+t},Tween.strongEaseInOut=function(e,t,n,r){return n*(e/=r)*e*e*e*e+t},Tween.regularEaseIn=function(e,t,n,r){return n*(e/=r)*e+t},Tween.regularEaseOut=function(e,t,n,r){return-n*(e/=r)*(e-2)+t},Tween.regularEaseInOut=function(e,t,n,r){return(e/=r/2)<1?n/2*e*e+t:-n/2*(--e*(e-2)-1)+t},Tween.strongEaseIn=function(e,t,n,r){return n*(e/=r)*e*e*e*e+t},Tween.strongEaseOut=function(e,t,n,r){return n*((e=e/r-1)*e*e*e*e+1)+t},Tween.strongEaseInOut=function(e,t,n,r){return(e/=r/2)<1?n/2*e*e*e*e*e+t:n/2*((e-=2)*e*e*e*e+2)+t};
