@@ -35,7 +35,7 @@
  * 
  * @param   filename    string  full name of the configuration file
  */
-var Configuration = function (filename) {
+var Configuration = function (filename, isDemo) {
     if (filename == undefined || filename == '' || !filename.match(/\.xml$/)) {
         throw Messages.loader.filenameInvalid;
     }
@@ -99,6 +99,13 @@ var Configuration = function (filename) {
      * @return  boolean success
      */
     _config.save = function (filename) {
+        if( isDemo ) {
+            var message = 'demo configs can not be saved';
+            var result = new Result(false, Messages.configuration.savingError, [message]);
+            $(document).trigger('configuration_saving_error', [result]);
+            return;
+        }
+        
         if (filename == undefined) {
             // if no filename is given, use the one that we had for loading the file
             filename = _filename;
