@@ -78,6 +78,11 @@ $(document).ready(function () {
     // loading the Configuration and validation it WILL take a few seconds!
     $(targetSelector).html(Messages.loader.loading);
 
+    // check if we are showing a demo config
+    var isDemo = false;
+    if( $.getUrlVar("demo")) {
+        isDemo = 'true' === $.getUrlVar("demo");
+    }
     
     // check if we have a user-defined param to load a specific config
     var configSuffix = '';
@@ -86,10 +91,10 @@ $(document).ready(function () {
     }
     
     // create configuration filename
-    var configFilename = 'config/visu_config' + (configSuffix ? '_' + configSuffix : '' ) + '.xml'
+    var configFilename = 'config/' + (isDemo?'demo/':'') + 'visu_config' + (configSuffix ? '_' + configSuffix : '' ) + '.xml'
     
     // and start loading the configuration
-    config = new Configuration(configFilename);
+    config = new Configuration(configFilename, isDemo);
     
     // attach the global event listener
     config.attachGlobalListener(GlobalConfigurationElementEventListener);

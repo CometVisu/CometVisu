@@ -33,7 +33,11 @@
 require_once('../lib/library_version.inc.php');
 
 define('CONFIG_FILENAME', '../config/visu_config%s.xml');
+define('DEMO_FILENAME', '../config/demo/visu_config%s.xml');
 define('SCHEMA_FILENAME', './%s');
+
+// flag to define if a real config file or a demo is opened
+$isDemo = false;
 
 // get everything the user has provided ...
 $strConfigSuffix = (true === isset($_GET['config'])) ? $_GET['config'] : null;
@@ -48,11 +52,22 @@ if (false === empty($strConfigCleaned)) {
 
 // generate the configurations filename
 $strConfigFilename = sprintf(CONFIG_FILENAME, $strConfigCleaned);
+$strDemoConfigFilename = sprintf(DEMO_FILENAME, $strConfigCleaned);
 // .. as a fully qualified filename
 $strConfigFQFilename = realpath($strConfigFilename);
+$strDemoConfigFQFilename = realpath($strDemoConfigFilename);
 
-if (false === is_writeable($strConfigFQFilename)) {
-    exitWithError('config-file is not writeable by webserver-process; please chmod/chown config-file \'' . $strConfigFQFilename . '\' (\'' . $strConfigFilename. '\').');
+if (false === is_readable($strConfigFQFilename)) {
+    if( false === is_readable($strDemoConfigFQFilename)) {
+        exitWithError('config-file does not exist nor demo is known with that name \'' . $strConfigFQFilename . '\' (\'' . $strConfigFilename. '\').');
+    } else {
+      $isDemo = true;
+      $strConfigFQFilename = $strDemoConfigFQFilename;
+    }
+} else {
+    if (false === is_writeable($strConfigFQFilename)) {
+        exitWithError('config-file is not writeable by webserver-process; please chmod/chown config-file \'' . $strConfigFQFilename . '\' (\'' . $strConfigFilename. '\').');
+    }
 }
 
 // load the configuration
@@ -77,7 +92,11 @@ if ($intConfigurationVersion < LIBRARY_VERSION) {
 
 $strSchemaFilename = sprintf(SCHEMA_FILENAME, $strSchemaFile);
 // .. as a fully qualified filename
-$strSchemaFQFilename = realpath($strSchemaFilename);
+$strSchemaFQFilename = realpath(pathinfo($strConfigFQFilename, PATHINFO_DIRNAME) . '/' . $strSchemaFilename);
+
+if (false === is_readable($strSchemaFQFilename)) {
+    exitWithError('schema-file of config-file does not exist \'' . $strSchemaFQFilename . '\' (\'' . $strSchemaFilename. '\').');
+}
 
 // disable output of validator
 ob_start();
@@ -90,7 +109,7 @@ ob_end_clean();
 
 if (true === $boolValid) {
     // everything is good
-    header('Location: editor.html?config=' . $strConfigSuffix);
+    header('Location: editor.html?config=' . $strConfigSuffix . ($isDemo?'&demo=true':''));
     exit;
 } else {
     // not everything is good, have check_config look at it.
