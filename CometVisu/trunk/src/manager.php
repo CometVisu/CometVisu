@@ -28,43 +28,57 @@ define( 'DEMO_FILENAME', 'config/demo/visu_config%s.xml');
 // strings
 $_STRINGS = array(
   'en' => array(
+    'A configuration with that name does already exist' => 'A configuration with that name does already exist',
     'Available Configurations:' => 'Available %s Configurations:',
     'Check' => 'Check',
     'CometVisu Manager' => 'CometVisu Manager',
+    'Configuration file could not be created' => 'Configuration file (%s) could not be created',
     'Configuration file could not be deleted' => 'Configuration file (%s) could not be deleted',
     'Configuration file deleted' => 'Configuration file (%s) deleted.',
     'Configuration file not writeable' => 'Configuration file (%s) not writeable. Please check permissions!',
     'Configuration file to delete not found' => 'Configuration file to delete (%s) not found.',
     'Configuration successfully replaced' => 'Configuration successfully replaced (%s).',
     'Could not replace configuraion' => 'Could not replace configuraion (%s).',
+    'Create new config' => 'Create new config',
     'Delete' => 'Delete',
     'deleteConfig(displayName,name)' => '"Do you really want to delete config \"" + displayName + "\"?"',
     'Demo config' => 'Demo config',
     'Download' => 'Download',
     'Edit' => 'Edit',
+    'Empty configuration is not readable -> CometVisu installation is badly broken!' => 'Empty configuration is not readable -> CometVisu installation is badly broken!',
     'Name' => 'Name',
+    'New configuration file successfully created' => 'New configuration file (%s) successfully created',
+    'new_name' => 'new_name',
     'Replace' => 'Replace',
     'View' => 'View',
+    'What name shall the new config have (please use only letters, numbers and the underscore)' => 'What name shall the new config have (please use only letters, numbers and the underscore)?',
     'dummy' => 'dummy' // hanlde last comma gracefully
   ),
   'de' => array(
+    'A configuration with that name does already exist' => 'Eine Konfigurationsdatei mit diesem Namen existiert bereits!',
     'Available Configurations:' => 'Verfügbare %s Konfigurationen:',
     'Check' => 'Überprüfen',
     'CometVisu Manager' => 'CometVisu Manager',
+    'Configuration file could not be created' => 'Konfigurationsdatei (%s) konnte nicht erstellt werden.',
     'Configuration file could not be deleted' => 'Konfigurationsdatei (%s) konnte nicht gelöscht werden.',
     'Configuration file deleted' => 'Konfigurationsdatei (%s) gelöscht.',
     'Configuration file not writeable' => 'Konfigurationsdatei (%s) nicht schreibbar. Bitte Berechtigungen überprüfen!',
     'Configuration file to delete not found' => 'Konfigurationsdatei zum Löschen (%s) nicht gefunden.',
     'Configuration successfully replaced' => 'Konfigurationsdatei (%s) erfolgreich ersetzt.',
     'Could not replace configuraion' => 'Konnte Konfigurationsdatei (%s) nicht ersetzen.',
+    'Create new config' => 'Erstelle neue Konfigurationsdatei',
     'Delete' => 'Löschen',
     'deleteConfig(displayName,name)' => '"Wollen Sie wirklich Konfiguration \"" + displayName + "\" endgültig löschen?"',
     'Demo config' => 'Demo Konfiguration',
     'Download' => 'Herunterladen',
     'Edit' => 'Editieren',
+    'Empty configuration is not readable -> CometVisu installation is badly broken!' => 'Die leere Konfigurationsdatei konnte nicht gelesen werden -> CometVisu-Installation ist defekt!',
     'Name' => 'Name',
+    'New configuration file successfully created' => 'Neue Konfigurationsdatei (%s) erfolgreich erstellt.',
+    'new_name' => 'neuer_name',
     'Replace' => 'Ersetzen',
     'View' => 'Öffnen',
+    'What name shall the new config have (please use only letters, numbers and the underscore)' => 'Welchen Namen soll die neue Konfigurationsdatei haben (bitte nur Buchstaben, Zahlen und den Unterstrich verwenden)?',
     'dummy' => 'dummy' // hanlde last comma gracefully
   )
 );
@@ -92,7 +106,7 @@ define( 'DEMO_TABLE_ROW', '<tr class="visuline">'
  */
 function icon( $name )
 {
-  return '<img src="icon/knx-uf-iconset/128x128_white/' . $name . '.png" />';
+  return '<img src="icon/knx-uf-iconset/128x128_white/' . $name . '.png" class="icon" />';
 }
 
 // very simple i18n:
@@ -115,10 +129,30 @@ $action = array_key_exists( 'action', $_GET  ) ? $_GET ['action'] :
 if( ($config != false) && ($action != false) )
 {
   $configFile = sprintf( CONFIG_FILENAME, (''==$config ? '' : '_') . $config );
-  if( !is_writeable( $configFile ) )
+  if( !is_writeable( $configFile ) && 'create' != $action )
     $actionDone = sprintf( $_['Configuration file not writeable'], $configFile );
   else switch( $action )
   {
+    case 'create':
+      if( !is_readable( 'config/demo/visu_config_empty.xml' ) )
+      {
+        $actionDone = $_['Empty configuration is not readable -> CometVisu installation is badly broken!'];
+        break;
+      }
+      if( is_readable( $configFile ) )
+      {
+        $actionDone = $_['A configuration with that name does already exist'] . " ($configFile)";
+        break;
+      }
+      
+      if( copy( 'config/demo/visu_config_empty.xml', $configFile ) ) {
+        $actionDone = sprintf( $_['New configuration file successfully created'], $configFile );
+        $availVisu = glob( sprintf( CONFIG_FILENAME, '*' ) );
+        $resetUrl = true;
+      } else
+        $actionDone = sprintf( $_['Configuration file could not be created'], $configFile );
+      break;
+      
     case 'delete':
       if( in_array( $configFile, $availVisu ) ) {
         if( unlink( $configFile ) ) {
@@ -148,7 +182,7 @@ if( ($config != false) && ($action != false) )
   <head>
     <title><?php echo $_['CometVisu Manager'] ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="icon" href="icon/comet_16x16_000000.png" type="image/png" />
+    <link rel="icon" href="icon/comet_16x16_ff8000.png" type="image/png" />
     <link rel="apple-touch-icon" sizes="57x57" href="icon/comet_webapp_icon_114.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="icon/comet_webapp_icon_114.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="icon/comet_webapp_icon_144.png" />
@@ -162,6 +196,21 @@ function deleteConfig( displayName, name )
     var myUrl = window.location.href.split('?')[0];
     window.location.href = myUrl + '?config=' + name + '&action=delete';
   }
+}
+
+function newConfig()
+{
+  var newName = prompt( "<?php echo $_['What name shall the new config have (please use only letters, numbers and the underscore)'] ?>", "<?php echo $_['new_name'] ?>" );
+  newName = newName.replace(/([^a-z0-9_]+)/gi, ''); // remove unwanted chars
+  
+  if( 0 < $('tr > td:nth-child(2) > a[href=".?config=' + newName + '"]').length )
+  {
+    alert( "<?php echo $_['A configuration with that name does already exist'] ?> (" + newName + ')' );
+    return;
+  }
+  
+  var myUrl = window.location.href.split('?')[0];
+  window.location.href = myUrl + '?config=' + newName + '&action=create';
 }
 
 <?php
@@ -218,10 +267,10 @@ if( $resetUrl )
     td > input {
       display: none;
     }
-    .visuline:hover {
+    .visuline:hover, #newConfig:hover {
       background: #999;
     }
-    td img {
+    img.icon {
       width: 32px;
     }
     .footnote {
@@ -235,6 +284,30 @@ if( $resetUrl )
       display: inline-block;
       padding: 8px;
     }
+    #newConfig {
+      display: inline-block;
+      text-decoration: none;
+      color:black;
+      background: #ccc;
+      padding: 4px;
+      padding-right: 16px;
+    }
+    #newConfig .icon {
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+    #newConfig:hover .icon {
+      background-color: #6d6;
+    }
+    hr {
+      height: 1px;
+      border: none;
+      color: #000;
+      background-color: #000;
+    }
+    #footer img {
+      vertical-align: middle;
+    }
     </style>
   </head>
   <body>
@@ -242,7 +315,7 @@ if( $resetUrl )
     if( $actionDone )
       echo '<div class="actionDone">'.$actionDone.'</div>';
     ?>
-    <h1><?php printf( $_['Available Configurations:'], '<img src="icon/comet_50_ff8000.png" />') ?></h1>
+    <h1><?php printf( $_['Available Configurations:'], '<img src="icon/comet_64_ff8000.png" />') ?></h1>
     <form enctype="multipart/form-data" action="manager.php" method="post">
     <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
     <table>
@@ -284,6 +357,15 @@ if( $resetUrl )
     </form>
     <span class="footnote">*)</span>: <?php echo $_['Demo config'] ?>
     
+    <p>
+    <a href="javascript:newConfig()" id="newConfig"><?php echo icon('control_plus') . $_['Create new config'] ?></a>
+    </p>
+    
+    <hr />
+    <div id="footer">
+      <img src="icon/comet_50_ff8000.png" alt="CometVisu"> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+      <div style="float:right;padding-right:0.5em">Version: SVN</div>
+    </div>
     <script>
       $('input[type=file]').change(function( ev ){ 
         $('#input_config').val( this.id.replace(/_xml$/,''));
