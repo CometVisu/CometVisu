@@ -109,6 +109,17 @@ function icon( $name )
   return '<img src="icon/knx-uf-iconset/128x128_white/' . $name . '.png" class="icon" />';
 }
 
+/**
+ * Filter away the visu_config_previewtemp.xml that is needed by the editor.
+ */
+function filterPreview( $name )
+{
+  if( 'config/visu_config_previewtemp.xml' == $name )
+    return false;
+  
+  return true;
+}
+
 // very simple i18n:
 $userLang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
 if( !array_key_exists( $userLang, $_STRINGS ) )
@@ -116,11 +127,12 @@ if( !array_key_exists( $userLang, $_STRINGS ) )
 $_ = $_STRINGS[ $userLang ];
 
 // fill global variables
-$availVisu = glob( sprintf( CONFIG_FILENAME, '*' ) );
+$availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), filterPreview );
 $availDemo = glob( sprintf( DEMO_FILENAME  , '*' ) );
 
 // check if we have to do something:
 $actionDone = false;
+$actionSuccess = false;
 $resetUrl = false;
 $config = array_key_exists( 'config', $_GET  ) ? $_GET ['config'] :
         ( array_key_exists( 'config', $_POST ) ? $_POST['config'] : false );
@@ -147,8 +159,9 @@ if( ($config != false) && ($action != false) )
       
       if( copy( 'config/demo/visu_config_empty.xml', $configFile ) ) {
         $actionDone = sprintf( $_['New configuration file successfully created'], $configFile );
-        $availVisu = glob( sprintf( CONFIG_FILENAME, '*' ) );
+        $availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), filterPreview );
         $resetUrl = true;
+        $actionSuccess = true;
       } else
         $actionDone = sprintf( $_['Configuration file could not be created'], $configFile );
       break;
@@ -157,8 +170,9 @@ if( ($config != false) && ($action != false) )
       if( in_array( $configFile, $availVisu ) ) {
         if( unlink( $configFile ) ) {
           $actionDone = sprintf( $_['Configuration file deleted'], $configFile );
-          $availVisu = glob( sprintf( CONFIG_FILENAME, '*' ) );
+          $availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), filterPreview );
           $resetUrl = true;
+          $actionSuccess = true;
         } else
           $actionDone = sprintf( $_['Configuration file could not be deleted'], $configFile );
       } else {
@@ -168,10 +182,11 @@ if( ($config != false) && ($action != false) )
     
     case 'replace':
       if( move_uploaded_file( $_FILES[$config.'_xml']['tmp_name'], $configFile ) )
+      {
         $actionDone = sprintf( $_['Configuration successfully replaced'], $configFile );
-      else
+        $actionSuccess = true;
+      } else
         $actionDone = sprintf( $_['Could not replace configuraion'], $configFile );
-      //$actionDone = 'cp ' . $_FILES[$config.'_xml']['tmp_name'] . ' -> ' . $configFile;
       break;
   }
 }
@@ -284,6 +299,10 @@ if( $resetUrl )
       display: inline-block;
       padding: 8px;
     }
+    .actionDone.actionSuccess {
+      border-color: #0c0;
+      background-color: #cfc;
+    }
     #newConfig {
       display: inline-block;
       text-decoration: none;
@@ -313,7 +332,7 @@ if( $resetUrl )
   <body>
     <?php
     if( $actionDone )
-      echo '<div class="actionDone">'.$actionDone.'</div>';
+      echo '<div class="actionDone' . ($actionSuccess?' actionSuccess':'') . '">'.$actionDone.'</div>';
     ?>
     <h1><?php printf( $_['Available Configurations:'], '<img src="icon/comet_64_ff8000.png" />') ?></h1>
     <form enctype="multipart/form-data" action="manager.php" method="post">
