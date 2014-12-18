@@ -46,6 +46,7 @@ $_STRINGS = array(
     'Download' => 'Download',
     'Edit' => 'Edit',
     'Empty configuration is not readable -> CometVisu installation is badly broken!' => 'Empty configuration is not readable -> CometVisu installation is badly broken!',
+    'Installation error - please check file permissions!' => 'Installation error - please check file permissions!',
     'Name' => 'Name',
     'New configuration file successfully created' => 'New configuration file (%s) successfully created',
     'new_name' => 'new_name',
@@ -73,6 +74,7 @@ $_STRINGS = array(
     'Download' => 'Herunterladen',
     'Edit' => 'Editieren',
     'Empty configuration is not readable -> CometVisu installation is badly broken!' => 'Die leere Konfigurationsdatei konnte nicht gelesen werden -> CometVisu-Installation ist defekt!',
+    'Installation error - please check file permissions!' => 'Installationsfehler - bitte die Datei-Berechtigungen überprüfen!',
     'Name' => 'Name',
     'New configuration file successfully created' => 'Neue Konfigurationsdatei (%s) erfolgreich erstellt.',
     'new_name' => 'neuer_name',
@@ -189,6 +191,16 @@ if( ($config != false) && ($action != false) )
         $actionDone = sprintf( $_['Could not replace configuraion'], $configFile );
       break;
   }
+} else {
+  // nothing special to do - so at least do a few sanity checks
+  if( !is_writeable( 'config/visu_config.xml' ) )
+    $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
+  
+  if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
+    $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+  
+  if( !is_readable( 'config/demo/visu_config_empty.xml' ) )
+    $actionDone = $_['Installation error - please check file permissions!'].' (config/demo/visu_config_empty.xml)';
 }
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
