@@ -383,7 +383,7 @@ if( $resetUrl )
     <hr />
     <div id="footer">
       <img src="icon/comet_50_ff8000.png" alt="CometVisu"> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
-      <div style="float:right;padding-right:0.5em">Version: SVN</div>
+      <div style="float:right;padding-right:0.5em">Version: <?php include('version') ?></div>
     </div>
     <script>
       $('input[type=file]').change(function( ev ){ 
