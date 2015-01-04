@@ -160,10 +160,26 @@
               <xsd:enumeration value="month" />
               <xsd:enumeration value="year" />
               <xsd:enumeration value="fullday" />
+              <xsd:enumeration value="custom" />
           </xsd:restriction>
       </xsd:simpleType>
   </xsd:attribute>
-  
+  <xsd:attribute name="seriesStart" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">In case series attribute is of type "custom" the value of this attribute is used for the start of the series.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="seriesEnd" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">In case series attribute is of type "custom" the value of this attribute is used for the end of the series.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+  <xsd:attribute name="seriesResolution" type="xsd:integer">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">In case series attribute is of type "custom" the value of this attribute is used for the resolution of the series.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:attribute>
+
   <xsd:attribute name="consolidationFunction">
       <xsd:simpleType>
           <xsd:restriction base="xsd:string">
@@ -1104,6 +1120,9 @@
     <xsd:attribute ref="timeformat" use="optional" />
     <xsd:attribute ref="timeformatTooltip" use="optional" />
     <xsd:attribute name="zoomYAxis" type="xsd:boolean" use="optional" />
+    <xsd:attribute ref="seriesStart" use="optional" />
+    <xsd:attribute ref="seriesEnd" use="optional" />
+    <xsd:attribute ref="seriesResolution" use="optional" />
   </xsd:complexType>
   
   <xsd:complexType name="diagram_info">
@@ -1130,6 +1149,9 @@
     <xsd:attribute ref="timeformat" use="optional" />
     <xsd:attribute ref="timeformatTooltip" use="optional" />
     <xsd:attribute name="zoomYAxis" type="xsd:boolean" use="optional" />
+    <xsd:attribute ref="seriesStart" use="optional" />
+    <xsd:attribute ref="seriesEnd" use="optional" />
+    <xsd:attribute ref="seriesResolution" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="rss">
