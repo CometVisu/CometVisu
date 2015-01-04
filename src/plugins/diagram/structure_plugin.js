@@ -86,6 +86,9 @@ define( ['structure_custom',
         id                : id,
         content           : getDiagramElements($e),
         series            : $e.attr("series") || "day",
+        seriesStart       : $e.attr("seriesStart") || "end-month",
+        seriesEnd         : $e.attr("seriesEnd") || "now",
+        seriesResolution  : parseInt($e.attr("seriesResolution")) || 300,
         period            : $e.attr("period") || 1,
         legendInline      : ($e.attr("legend") || "both") == "both" || ($e.attr("legend") || "both") == "inline",
         legendPopup       : ($e.attr("legend") || "both") == "both" || ($e.attr("legend") || "both") == "popup",
@@ -327,26 +330,40 @@ define( ['structure_custom',
         month   : {res: "21600",  start: "month", end: "now"},
         year    : {res: "432000", start: "year",  end: "now"},
       };
-      
-      var selectedSeries = series[config.series];
-      if (!selectedSeries) {
-        return;
-      }
 
-      if (!xAxis.datamin || !xAxis.datamax) {
-        // initial load, take parameters from configuration
-        return {
-          start : "end-" + config.period + selectedSeries.start,
-          end   : selectedSeries.end,
-          res   : selectedSeries.res,
-        };
+      if (config.series == "custom") {
+  	    return {
+  	      start : config.seriesStart,
+  	      end   : config.seriesEnd,
+  	      res   : config.seriesResolution,
+  	    };
       }
+      else {
+        var selectedSeries = series[config.series];
+        if (!selectedSeries) {
+          return;
+        }
 
-      return {
-        start : (xAxis.min / 1000).toFixed(0),
-        end   : selectedSeries.end,
-        res   : selectedSeries.res,
-      };
+        var ret = {
+	      start : null,
+	      end   : null,
+	      res   : null,
+	    };
+	    if (!xAxis.datamin || !xAxis.datamax) {
+	      // initial load, take parameters from configuration
+	      return {
+	        start : "end-" + config.period + selectedSeries.start,
+	        end   : selectedSeries.end,
+	        res   : selectedSeries.res,
+	      };
+	    }
+
+	    return {
+	      start : (xAxis.min / 1000).toFixed(0),
+	      end   : selectedSeries.end,
+	      res   : selectedSeries.res,
+	    };
+      }
     }
 
     function loadDiagramData(dgrm) {
