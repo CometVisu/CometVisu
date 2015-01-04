@@ -205,7 +205,8 @@ define( ['structure_custom',
           fill      : (this.getAttribute("fill") || "false") == "true",
           scaling   : parseFloat(this.getAttribute('scaling')) || 1.,
           dsIndex   : this.getAttribute('datasourceIndex') || 0,
-          cFunc     : this.getAttribute('consolidationFunction') || "AVERAGE"
+          cFunc     : this.getAttribute('consolidationFunction') || "AVERAGE",
+          resol     : parseInt(this.getAttribute('resolution')),
         };
         if (retVal.rrd[retVal.rrdnum].dsIndex < 0) {
           retVal.rrd[retVal.rrdnum].dsIndex = 0;
@@ -367,7 +368,7 @@ define( ['structure_custom',
       // get all rrd data
       $.each(config.content.rrd, function(index, rrd) {
         $.ajax({
-          url: templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + series.start + "&end=" + series.end + "&res=" + series.res,
+          url: templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + series.start + "&end=" + series.end + "&res=" + (rrd.resol ? rrd.resol : series.res),
           dataType: "json",
           type: "GET",
           context: this,
