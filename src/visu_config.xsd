@@ -1268,6 +1268,12 @@
             <xsd:documentation xml:lang="de">Auswählen einer der verfügbaren Consolidation Functions des RRDTools (http://rrdtool.org).</xsd:documentation>
           </xsd:annotation>
         </xsd:attribute>
+        <xsd:attribute name="resolution" type="xsd:integer" use="optional">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">The standard resolution for retrieving data from the RRD file can be overriden with a custom value in seconds.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Die Standard-Auflösung für die Daten aus der RRD-Datei kann überschrieben werden mit einem eigenen Sekunden-Wert.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
