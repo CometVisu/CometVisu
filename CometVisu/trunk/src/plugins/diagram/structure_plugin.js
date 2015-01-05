@@ -210,6 +210,7 @@ define( ['structure_custom',
           dsIndex   : this.getAttribute('datasourceIndex') || 0,
           cFunc     : this.getAttribute('consolidationFunction') || "AVERAGE",
           resol     : parseInt(this.getAttribute('resolution')),
+          offset    : parseInt(this.getAttribute('offset')),
         };
         if (retVal.rrd[retVal.rrdnum].dsIndex < 0) {
           retVal.rrd[retVal.rrdnum].dsIndex = 0;
@@ -394,8 +395,10 @@ define( ['structure_custom',
             if (data != null) {
               rrdSuccessful++;
 
-              // calculate offset and scaling
+              // calculate timestamp offset and scaling
+              var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
               for (var j = 0; j < data.length; j++) {
+                data[j][0] = data[j][0] + millisOffset;
                 data[j][1] = parseFloat(data[j][1][rrd.dsIndex]) * rrd.scaling;
               }
 
