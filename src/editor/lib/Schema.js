@@ -320,14 +320,14 @@ var SchemaSimpleType = function (node, schema) {
                     }
                     break;
                 case 'xsd:nonNegativeInteger':
-                    if (!value.match(/^[-+]?[0-9]+$/)) {
+                    if (!value.match(/^[+]?[0-9]+$/)) {
                         return false;
                     }
                     break;
                 case 'xsd:integer':
-                  if (!value.match(/^[+]?[0-9]+$/)) {
-                      return false;
-                  }
+                    if (!value.match(/^[-+]?[0-9]+$/)) {
+                        return false;
+                    }
                   break;
                 case 'xsd:float':
                     if (!value.match(/^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/)) {
