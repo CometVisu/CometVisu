@@ -194,6 +194,7 @@ function TemplateEngine( undefined ) {
   this.design = new VisuDesign_Custom();
   this.pagePartsHandler = new PagePartsHandler();
   
+  var rememberLastPage = false;
   this.currentPage = null;
   this.currentPageID = -1;
   this.currentPageUnavailableWidth = -1;
@@ -922,6 +923,22 @@ function TemplateEngine( undefined ) {
     var startpage = 'id_';
     if ($.getUrlVar('startpage')) {
       startpage = $.getUrlVar('startpage');
+      if( typeof(Storage) !== 'undefined' )
+      {
+        if( 'remember' === startpage )
+        {
+          startpage = localStorage.getItem( 'lastpage' );
+          rememberLastPage = true;
+          if( 'string' !== typeof( startpage ) || 'id_' !== startpage.substr( 0, 3 ) )
+            startpage = 'id_'; // fix obvious wrong data
+        } else
+        if( 'noremember' === startpage )
+        {
+          localStorage.removeItem( 'lastpage' );
+          startpage = 'id_';
+          rememberLastPage = false;
+        }
+      }
     }
     thisTemplateEngine.currentPage = $('#'+startpage);
     
@@ -1184,6 +1201,8 @@ function TemplateEngine( undefined ) {
       speed = thisTemplateEngine.scrollSpeed;
     
     thisTemplateEngine.currentPageID = page_id;
+    if( rememberLastPage )
+      localStorage.lastpage = page_id;
     
     thisTemplateEngine.resetPageValues();
     
