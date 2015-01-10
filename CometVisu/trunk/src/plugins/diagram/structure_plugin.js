@@ -332,12 +332,16 @@ define( ['structure_custom',
         year    : {res: "432000", start: "year",  end: "now"},
       };
 
+      var ret = {
+        start : null,
+        end   : null,
+        res   : null,
+      };
       if (config.series == "custom") {
-  	    return {
-  	      start : config.seriesStart,
-  	      end   : config.seriesEnd,
-  	      res   : config.seriesResolution,
-  	    };
+        // initial load, take parameters from custom configuration
+  	    ret.start = config.seriesStart;
+  	    ret.end = config.seriesEnd;
+  	    ret.res = config.seriesResolution;
       }
       else {
         var selectedSeries = series[config.series];
@@ -345,26 +349,15 @@ define( ['structure_custom',
           return;
         }
 
-        var ret = {
-	      start : null,
-	      end   : null,
-	      res   : null,
-	    };
-	    if (!xAxis.datamin || !xAxis.datamax) {
-	      // initial load, take parameters from configuration
-	      return {
-	        start : "end-" + config.period + selectedSeries.start,
-	        end   : selectedSeries.end,
-	        res   : selectedSeries.res,
-	      };
-	    }
-
-	    return {
-	      start : (xAxis.min / 1000).toFixed(0),
-	      end   : selectedSeries.end,
-	      res   : selectedSeries.res,
-	    };
+        // initial load, take parameters from configuration
+  	    ret.start = "end-" + config.period + selectedSeries.start;
+  	    ret.end = selectedSeries.end;
+  	    ret.res = selectedSeries.res;
       }
+      if (xAxis.datamin && xAxis.datamax) {
+        ret.start = (xAxis.min / 1000).toFixed(0);
+      }
+      return ret;
     }
 
     function loadDiagramData(dgrm) {
