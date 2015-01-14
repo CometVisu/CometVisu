@@ -1,3 +1,18 @@
+0.8.5
+=====
+
+- new feature: management interface to handle different configuration files
+- new feature: posibity to remember last page for next startup
+- better support for Android to add visu to the start screen. This includes
+  better icons to follow the latest Android style
+- diagram plugin: add attribute "resolution" to rrd definitions to allow custom 
+  resolution values
+- diagram plugin: allow custom start, end and resolution parameters
+- diagram plugin: allow offset for single RRDs
+- diagram plugin: bugfixes
+- editor: bugfix: xsd:integer did not allow negative values in editor
+- Update to latest KNX user forum iconset
+
 0.8.4
 =====
 
