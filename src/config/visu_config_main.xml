@@ -1,0 +1,1519 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	design="metal" xsi:noNamespaceSchemaLocation="visu_config.xsd" backend="oh"
+	scroll_speed="0" enable_column_adjustment="true" lib_version="7">
+	<meta>
+		<plugins>
+			<plugin name="diagram" />
+		</plugins>
+		<mappings>
+			<mapping name="OpenClose">
+				<entry value="1">
+					<icon name="fts_window_1w_open" color="red" />
+				</entry>
+				<entry value="0">
+					<icon name="fts_window_1w" />
+				</entry>
+			</mapping>
+			<mapping name="DoorOpenClose">
+				<entry value="1">
+					<icon name="fts_door_open" color="red" />
+				</entry>
+				<entry value="0">
+					<icon name="fts_door" />
+				</entry>
+			</mapping>
+			<mapping name="UpDown">
+				<entry value="0">
+					<icon name="control_up" />
+				</entry>
+				<entry value="1">
+					<icon name="conrol_down" />
+				</entry>
+			</mapping>
+			<mapping name="DaWeg">
+				<entry value="0">Weg</entry>
+				<entry value="1">Da</entry>
+			</mapping>
+			<mapping name="OnOff">
+				<entry value="0">O</entry>
+				<entry value="1">I</entry>
+			</mapping>
+			<mapping name="AudioMute">
+				<entry value="0">
+					<icon name="audio_audio" />
+				</entry>
+				<entry value="1">
+					<icon name="audio_volume_mute" />
+				</entry>
+			</mapping>
+			<mapping name="PlayStop">
+				<entry value="0">
+					<icon name="audio_stop" />
+				</entry>
+				<entry value="1">
+					<icon name="audio_play" />
+				</entry>
+			</mapping>
+			<mapping name="AudioNextPrev">
+				<entry value="0">
+					<icon name="audio_rew" />
+				</entry>
+				<entry value="1">
+					<icon name="audio_ff" />
+				</entry>
+			</mapping>
+			<mapping name="Socket">
+				<entry value="0">
+					<icon name="message_socket" />
+				</entry>
+				<entry value="1">
+					<icon name="message_socket" />
+				</entry>
+			</mapping>
+			<mapping name="Shutter">
+				<entry value="UP">&#8593;</entry>
+				<entry value="STOP">o</entry>
+				<entry value="DOWN">&#8595;</entry>
+			</mapping>
+			<mapping name="Sign">
+				<entry range_min="-1e99" range_max="0">Negativ</entry>
+				<entry value="0">Null</entry>
+				<entry range_min="0" range_max="1e99">Positiv</entry>
+			</mapping>
+			<mapping name="IR_RECEIVER">
+				<entry value="ON">An</entry>
+				<entry value="OFF">Aus</entry>
+				<entry value="VOL_UP">Vol+</entry>
+				<entry value="VOL_DOWN">Vol-</entry>
+				<entry value="INP_VAUX">Multiroom</entry>
+				<entry value="INP_VCR">TV</entry>
+			</mapping>
+			<mapping name="AudioSinks">
+				<entry value="combined-music">Alle</entry>
+				<entry value="busmaster">Badezimmer</entry>
+				<entry value="raspberrypi">Schlafzimmer</entry>
+				<entry value="dockstar">Schlafzimmer</entry>
+			</mapping>
+			<mapping name="RadioStations">
+				<entry value="0">Aus</entry>
+				<entry value="1">Hellweg Radio</entry>
+				<entry value="2">1Live</entry>
+				<entry value="3">WDR2</entry>
+				<entry value="4">Antenne Bayern</entry>
+				<entry value="5">MPD-Stream</entry>
+			</mapping>
+			<mapping name="RadioStationsShort">
+				<entry value="0">Aus</entry>
+				<entry value="1">Hellweg</entry>
+				<entry value="2">1Live</entry>
+				<entry value="3">WDR2</entry>
+				<entry value="4">Bayern</entry>
+				<entry value="5">MPD</entry>
+			</mapping>
+			<!--mapping name="Modus">
+				<entry value="0">Tag</entry>
+				<entry value="1">Abend</entry>
+				<entry value="2">Nacht</entry>
+			</mapping-->
+			<mapping name="Weather">
+				<entry value="Thunder">Gewitter</entry>
+				<entry value="Storm">Sturm</entry>
+				<entry value="Rain and snow">Regen und Schnee</entry>
+				<entry value="Rain and Sleet">Regen und Schneeregen</entry>
+				<entry value="Snow and Sleet">Schnee und Schneeregen</entry>
+				<entry value="Freezing Drizzle">Gefrierender Nieselregen</entry>
+				<entry value="Few Showers">Nieselregen</entry>
+				<entry value="Freezing Rain">Gefrierender Regen</entry>
+				<entry value="Light Freezing Rain">leicht gefrierender Regen</entry>
+				<entry value="Rain">Regen</entry>
+				<entry value="Snow Flurries">Schneegestöber</entry>
+				<entry value="Light Snow">Leichter Schneeschauer</entry>
+				<entry value="Blowing Snow">Schneetreiben</entry>
+				<entry value="Snow">Starker Schneefall</entry>
+				<entry value="Sleet">Schneeregen</entry>
+				<entry value="Dust">Staub</entry>
+				<entry value="Fog">Neblig</entry>
+				<entry value="Wind">Stürmisch</entry>
+				<entry value="Cold">Kalt</entry>
+				<entry value="Cloudy">Bewölkt</entry>
+				<entry value="Mostly Cloudy Night">Überwiegend Bewölkt (Nacht)</entry>
+				<entry value="Mostly Cloudy Day">Überwiegend Bewölkt</entry>
+				<entry value="Partly Cloudy Night">teilweise Bewölkt (Nacht)</entry>
+				<entry value="Partly Cloudy Day">teilweise Bewölkt</entry>
+				<entry value="Clear Night">Klare Nacht</entry>
+				<entry value="Sunny">Sonnig</entry>
+				<entry value="Hot">Heiß</entry>
+				<entry value="Scattered Thunder">Vereinzelte Gewitter</entry>
+				<entry value="Scattered Showers">Vereinzelt Niederschlag</entry>
+				<entry value="Thundershowers">Gewitterregen</entry>
+				<entry value="Snow-Showers">Schneefall</entry>
+				<entry value="Scattered Thundershowers">Vereinzelter Gewitterregen</entry>
+			</mapping>
+			<mapping name="Modus">
+				<entry value="0">
+					<icon name="scene_day" />Tag
+				</entry>
+				<entry value="1">
+					<icon name="scene_night" color="orange" />Abend
+				</entry>
+				<entry value="2">
+					<icon name="scene_sleeping" color="blue" />Nacht
+				</entry>
+			</mapping>
+			<mapping name="Presence">
+				<entry value="Wohnzimmer">
+					<icon name="scene_livingroom"/>
+					Wohnen
+				</entry>
+				<entry value="Schlafzimmer">
+					<icon name="scene_sleeping"/>
+					Schlafen
+				</entry>
+				<entry value="Büro">
+					<icon name="scene_office"/>
+					Büro
+				</entry>
+				<entry value="Flur OG">
+					<icon name="scene_hall"/>
+					OG
+				</entry>
+				<entry value="Treppenhaus">
+					<icon name="scene_stairs"/>
+					DG
+				</entry>
+				<entry value="Badezimmer">
+					<icon name="scene_bathroom"/>
+					Bad
+				</entry>
+				<entry value="Küche">
+					<icon name="scene_kitchen"/>
+					Küche
+				</entry>
+			</mapping>
+		</mappings>
+		<stylings>
+			<styling name="RedGreen">
+				<entry value="0">red</entry>
+				<entry value="1">green</entry>
+			</styling>
+			<styling name="GreenRed">
+				<entry value="1">red</entry>
+				<entry value="0">green</entry>
+			</styling>
+			<styling name="GreyGreen">
+				<entry value="0">grey</entry>
+				<entry value="1">green</entry>
+			</styling>
+			<styling name="GreenGrey">
+				<entry value="1">grey</entry>
+				<entry value="0">green</entry>
+			</styling>
+			<styling name="GreyGreenBg">
+				<entry value="0">grey_bg</entry>
+				<entry value="1">green_bg</entry>
+			</styling>
+			<styling name="BluePurpleRed">
+				<entry range_min="-100" range_max="0">blue</entry>
+				<entry value="0">purple</entry>
+				<entry range_min="0" range_max="100">red</entry>
+			</styling>
+			<styling name="BluePurpleRedTemp">
+				<entry range_min="0" range_max="18">blue</entry>
+				<entry range_min="18" range_max="21">purple</entry>
+				<entry range_min="21" range_max="100">red</entry>
+			</styling>
+		</stylings>
+		<!--statusbar>
+      <status type="html"><![CDATA[
+          <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          - <a href=".?config=demo&forceReload=true">Reload</a>
+          - <a href=".">Default Config</a>
+        ]]></status>
+      <status type="html" hrefextend="config"><![CDATA[
+          - <a href="check_config.php">Check Config</a>
+          <div style="float:right;padding-right:0.5em">Version: SVN</div>
+        ]]></status>
+    </statusbar-->
+	</meta>
+	<page name="Übersicht" showtopnavigation="false" shownavbar-left="false" showfooter="false">
+		<navbar position="top" dynamic="true" width="200px">
+			<pagejump target="Übersicht">
+				<layout colspan="0" />
+				<label>
+					<icon name="control_building_empty" />
+					Übersicht
+				</label>
+			</pagejump>
+			<line>
+				<layout colspan="0" />
+			</line>
+			<pagejump target="Wohnzimmer">
+				<layout colspan="0" />
+				<label>
+					<icon name="scene_livingroom" />
+					Wohnen
+				</label>
+			</pagejump>
+			<pagejump target="Schlafzimmer">
+				<layout colspan="0" />
+				<label>
+					<icon name="scene_sleeping" />
+					Schlafen
+				</label>
+			</pagejump>
+			<pagejump target="Büro">
+				<layout colspan="0" />
+				<label>
+					<icon name="it_pc" />
+					Büro
+				</label>
+			</pagejump>
+			<pagejump target="Küche">
+				<layout colspan="0" />
+				<label>
+					<icon name="scene_dinner" />
+					Küche
+				</label>
+			</pagejump>
+			<pagejump target="Bad">
+				<layout colspan="0" />
+				<label>
+					<icon name="scene_bath" />
+					Bad
+				</label>
+			</pagejump>
+			<pagejump target="Flure">
+				<layout colspan="0" />
+				<label>
+					<icon name="scene_hall" />
+					Flure
+				</label>
+			</pagejump>
+			<pagejump target="Garage">
+				<layout colspan="0" />
+				<label>
+					<icon name="fts_garage" />
+					Garage
+				</label>
+			</pagejump>
+			<line>
+				<layout colspan="0" />
+			</line>
+			<pagejump target="Multiroom">
+				<layout colspan="0" />
+				<label>
+					<icon name="audio_sound" />
+					Audio
+				</label>
+			</pagejump>
+			<pagejump target="Media">
+			<layout colspan="0" />
+				<label>
+					<icon name="it_television" />
+					Media
+				</label>
+			</pagejump>
+			<pagejump target="Temperaturen">
+				<layout colspan="0" />
+				<label>
+					<icon name="temp_temperature" />
+					Temperatur
+				</label>
+			</pagejump>
+			<pagejump target="Netzwerk">
+				<layout colspan="0" />
+				<label>
+					<icon name="it_network" />
+					Netzwerk
+				</label>
+			</pagejump>
+		</navbar>
+		<group name="Allgemein">
+			<layout colspan="6" />
+			<info  align="center" mapping="Modus">
+				<layout colspan="2" />
+				<address transform="OH:number" variant="">Scene_General</address>
+			</info>
+			<info  align="center" mapping="Presence">
+				<layout colspan="2" />
+				<address transform="OH:string" variant="">GLOB_Praesenz</address>
+			</info>
+			<info align="center">
+				<layout colspan="2" />
+				<address transform="OH:string" variant="">TimeOfArrival</address>
+			</info>
+			<switch mapping="OnOff" styling="GreyGreen">
+				<layout colspan="2" />
+				<label>Anwesend</label>
+				<address transform="OH:switch" variant="">Present</address>
+			</switch>
+			<switch mapping="OnOff" styling="GreyGreen">
+				<layout colspan="2" />
+				<label>Arbeitstag</label>
+				<address transform="OH:switch" variant="">Workday</address>
+			</switch>
+			<switch mapping="OnOff" styling="GreyGreen">
+				<layout colspan="2" />
+				<label>Wecker</label>
+				<address transform="OH:switch" variant="">GLOB_Wecker</address>
+			</switch>
+			<group nowidget="true">
+				<layout colspan="4" />
+				<text>
+					<layout colspan="2" />
+					<label><icon name="temp_outside" />Außen</label>
+				</text>
+				<info format="%.1f °C" class="bottom_label">
+					<layout colspan="1" />
+					<label>Aktuell</label>
+					<address transform="OH:number" variant="">Weather_Temperature</address>
+				</info>
+				<info format="%s °C" class="bottom_label">
+					<layout colspan="1" />
+					<label>Prognose</label>
+					<address transform="OH:string" variant="">Weather_Forecast_Temp</address>
+				</info>
+			</group>
+			<info mapping="Weather">
+				<layout colspan="2" />
+				<address transform="OH:string" variant="">Weather_Text</address>
+			</info>
+		</group>
+		<group name="Gruppen">
+			<layout colspan="6" />
+			<!-- gauge type="Radial" titleString="Strom" lcdDecimals="0" unitString="W" minValue="0" maxValue="2000" size="150" lcdVisible="true">
+            	<layout colspan="3" rowspan="3"/>
+            	<address transform="OH:number" mode="read" variant="setValue">Current</address>
+            </gauge-->
+            <info format="%.1f W">
+            	<layout colspan="3" />
+            	<label>Strom</label>
+            	<address transform="OH:number" mode="read">Current</address>
+            </info>
+            <group nowidget="true">
+	            <layout colspan="3" />
+	            <info format="%d">
+	            	<layout colspan="0.15" />
+	            	<address transform="OH:number" mode="read" variant="">LightsOn</address>
+	            </info>
+	            <switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="2.85" />
+					<label>Lampen</label>
+					<address transform="OH:switch" variant="">Lights</address>
+				</switch>
+			</group>
+			<switch mapping="OnOff" styling="GreyGreen">
+				<layout colspan="3" />
+				<label>Lautsprecher</label>
+				<address transform="OH:switch" variant="">Speakers</address>
+			</switch>
+			<trigger align="center" mapping="RadioStationsShort" value="0"
+						flavour="nobg">
+				<layout colspan="3" />
+				<label>Radio</label>
+					<address transform="OH:number" mode="readwrite" variant="">Radio_Station</address>
+			</trigger>
+			<info mapping="OpenClose" styling="GreyGreen">
+				<layout colspan="3" />
+				<label>Fenster</label>
+				<address transform="OH:contact" variant="">Windows</address>
+			</info>
+			<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Türöffner</label>
+					<address transform="OH:switch" variant="">Switch_GF_FrontDoor</address>
+				</switch>
+		</group>
+		<group name="Sonnenschutz">
+			<layout colspan="6" />
+			<switch mapping="OnOff" styling="GreyGreen">
+				<layout colspan="3" />
+				<label><icon name="secur_heat_protection" />Vorne</label>
+				<address transform="OH:switch" variant="">Shutter_Sun_Protection_Front</address>
+			</switch>
+			<switch mapping="OnOff" styling="GreyGreen">
+				<layout colspan="3" />
+				<label><icon name="secur_heat_protection" />Hinten</label>
+				<address transform="OH:switch" variant="">Shutter_Sun_Protection_Back</address>
+			</switch>
+		</group>
+		<!-- group name="Tür">
+				<layout colspan="2" />
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="2" />
+					<label>Türöffner</label>
+					<address transform="OH:switch" variant="">Switch_GF_FrontDoor</address>
+				</switch>
+			</group-->
+			<!-- group name="Schlüssel">
+				<layout colspan="6" />
+				<info mapping="DaWeg" styling="GreyGreen">
+					<layout colspan="2" />
+					<label>Autoschlüssel</label>
+					<address transform="OH:switch" variant="">Key_Car</address>
+				</info>
+				<info mapping="DaWeg" styling="GreyGreen">
+					<layout colspan="2" />
+					<label>Haustürschlüssel</label>
+					<address transform="OH:switch" variant="">Key_House</address>
+				</info>
+				<info mapping="DaWeg" styling="GreyGreen">
+					<layout colspan="2" />
+					<label>Dummy</label>
+					<address transform="OH:switch" variant="">Key_Dummy</address>
+				</info>
+			</group-->
+		
+		<group name="Besucher + Wetter">
+			<layout colspan="12" />
+			<image src="http://192.168.178.24/Streaming/channels/1/picture?snapShotImageType=JPEG&amp;auth=dmlld2VyOnZpZXdlcg=="
+				refresh="5" >
+				<layout colspan="4" />
+			</image>
+			<web
+				src="http://jarvis/eingang/index.php?show=visitors&amp;vm=small"
+				refresh="180" width="100%" height="590px" frameborder="false">
+				<layout colspan="8" />
+			</web>
+		</group>
+		<page name="Media" visible="false">
+			<layout colspan="12" />
+			<web src="http://jarvis:32400/web/index.html" width="100%" height="1280px" frameborder="false">
+				<layout colspan="12" />
+			</web>
+		</page>
+		<page name="Wohnzimmer" visible="false">
+			<layout colspan="3" />
+			<group name="Licht">
+				<layout colspan="12" />
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Strahler</label>
+					<address transform="OH:switch" variant="">Light_FF_Living</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Spot</label>
+					<address transform="OH:switch" variant="">Light_FF_Living_Spot</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Schrank</label>
+					<address transform="OH:switch" variant="">Light_FF_Living_Closet</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Stehlampe</label>
+					<address transform="OH:switch" variant="">Light_FF_Living_FloorLamp</address>
+				</switch>
+			</group>
+			<group name="Jalousien">
+				<layout colspan="12" />
+				<group nowidget="true">
+					<layout colspan="6" />
+					<text>
+						<layout colspan="3" />
+						<label>
+							<icon name="fts_shutter" />
+							Fenster
+						</label>
+					</text>
+					<trigger value="UP" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Living_Window</address>
+					</trigger>
+					<trigger value="STOP" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Living_Window</address>
+					</trigger>
+					<trigger value="DOWN" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Living_Window</address>
+					</trigger>
+					<slide min="0" max="100" format="%d%%">
+					<label>
+						<icon name="fts_shutter" />
+                        Position
+                    </label>
+                    <address transform="OH:dimmer" variant="">Shutter_Pos_FF_Living_Window</address>
+					</slide>
+				</group>
+				<group nowidget="true">
+					<layout colspan="6" />
+					<text>
+						<layout colspan="3" />
+						<label>
+							<icon name="fts_shutter" />
+							Tür
+						</label>
+					</text>
+					<trigger value="UP" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Living_Door</address>
+					</trigger>
+					<trigger value="STOP" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Living_Door</address>
+					</trigger>
+					<trigger value="DOWN" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Living_Door</address>
+					</trigger>
+					<slide min="0" max="100" format="%d%%">
+					<label>
+						<icon name="fts_shutter" />
+                        Position
+                    </label>
+                    <address transform="OH:dimmer" variant="">Shutter_Pos_FF_Living_Door</address>
+					</slide>
+				</group>
+			</group>
+			<group name="Steckdosen">
+				<layout colspan="12" />
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>YaVDR</label>
+					<address transform="OH:switch" variant="">Network_Yavdr</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Fernseher</label>
+					<address transform="OH:switch" variant="">Socket_FF_Living_TV</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Receiver</label>
+					<address transform="OH:switch" variant="">Socket_FF_Living_Receiver</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Wii</label>
+					<address transform="OH:switch" variant="">Socket_FF_Living_Wii</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>IR</label>
+					<address transform="OH:switch" variant="">Socket_FF_Living_IR</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Kopfhoerer</label>
+					<address transform="OH:switch" variant="">Socket_FF_Living_Kopfhoerer</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>CD</label>
+					<address transform="OH:switch" variant="">Socket_FF_Living_CD</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Video</label>
+					<address transform="OH:switch" variant="">Socket_FF_Living_Video</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Tape</label>
+					<address transform="OH:switch" variant="">Socket_FF_Living_Tape</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Navibot</label>
+					<address transform="OH:switch" variant="">Socket_FF_Living_19</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>SD 17</label>
+					<address transform="OH:switch" variant="">Socket_FF_Living_17</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>SD 18</label>
+					<address transform="OH:switch" variant="">Socket_FF_Living_18</address>
+				</switch>
+			</group>
+			<group name="Heizung">
+				<slide min="0" max="100" format="%d%%">
+					<label>
+						<icon name="sani_heating" />
+						Heizung
+					</label>
+					<address transform="OH:dimmer" variant="">Heating_FF_Living</address>
+				</slide>
+				<info format="%.1f °C">
+					<label>
+						<icon name="temp_temperature" />
+						Ist
+					</label>
+					<address transform="OH:number" variant="">Temperature_FF_Living</address>
+				</info>
+				<infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+					downvalue="-0.5" styling="BluePurpleRedTemp"
+					infoposition="1" format="%.1f °C" change="absolute" min="15" max="25">
+					<label>
+						<icon name="temp_control" />
+						Soll
+					</label>
+					<address transform="OH:number" variant="">Temperature_FF_Living_Target</address>
+				</infotrigger>
+			</group>
+			<group name="Sonstiges">
+				<info mapping="OpenClose">
+					<layout colspan="3" />
+					<label>Fenster</label>
+					<address transform="OH:contact" variant="">Contact_FF_Living_Lower</address>
+				</info>
+				<info mapping="DoorOpenClose">
+					<layout colspan="3" />
+					<label>Tür</label>
+					<address transform="OH:contact" variant="">Contact_FF_Living_Door</address>
+				</info>
+				<info mapping="OnOff" styling="GreyGreen">
+					<label>Bewegung</label>
+					<address transform="OH:switch" variant="">Motion_FF_Living</address>
+				</info>
+			</group>
+		</page>
+		<page name="Küche" visible="false">
+			<layout colspan="3" />
+			<group align="center" name="Licht">
+				<layout colspan="12" />
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Licht</label>
+					<address transform="OH:switch" variant="">Light_FF_Kitchen</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Arbeitsfläche</label>
+					<address transform="OH:switch" variant="">Light_FF_Kitchen_Work</address>
+				</switch>
+				<info mapping="OnOff" styling="GreyGreen">
+					<layout colspan="3" />
+					<label>Bewegung</label>
+					<address transform="OH:switch" variant="">Motion_FF_Kitchen</address>
+				</info>
+				<info format="%.2f Lux">
+					<layout colspan="3" />
+					<label>
+						<icon name="light_light" />
+						Helligkeit
+					</label>
+					<address transform="OH:number" variant="">Luminance_FF_Kitchen</address>
+				</info>
+			</group>
+			<group align="center" name="Jalousien + Fenster">
+				<layout colspan="12" />
+				<group nowidget="true">
+					<layout colspan="6" />
+					<text>
+						<layout colspan="3" />
+						<label>
+							<icon name="fts_shutter" />
+							Jalousien
+						</label>
+					</text>
+					<trigger value="UP" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Kitchen</address>
+					</trigger>
+					<trigger value="STOP" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Kitchen</address>
+					</trigger>
+					<trigger value="DOWN" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Kitchen</address>
+					</trigger>
+					<slide min="0" max="100" format="%d%%">
+					<label>
+						<icon name="fts_shutter" />
+                        Position
+                    </label>
+                    <address transform="OH:dimmer" variant="">Shutter_Pos_FF_Kitchen</address>
+					</slide>
+				</group>
+				<info mapping="OpenClose">
+					<label>Fenster</label>
+					<address transform="OH:contact" variant="">Contact_FF_Kitchen_Upper</address>
+				</info>
+			</group>
+			<group align="center" name="Heizung">
+				<slide min="0" max="100" format="%d%%">
+					<label>
+						<icon name="sani_heating" />
+						Heizung
+					</label>
+					<address transform="OH:dimmer" variant="">Heating_FF_Kitchen</address>
+				</slide>
+				<info format="%.1f °C">
+					<label>
+						<icon name="temp_temperature" />
+						Ist
+					</label>
+					<address transform="OH:number" variant="">Temperature_FF_Kitchen</address>
+				</info>
+				<infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+					downvalue="-0.5" styling="BluePurpleRedTemp"
+					infoposition="1" format="%.1f °C" change="absolute" min="15" max="25">
+					<label>
+						<icon name="temp_control" />
+						Soll
+					</label>
+					<address transform="OH:number" variant="">Temperature_FF_Kitchen_Target</address>
+				</infotrigger>
+			</group>
+		</page>
+		<page name="Schlafzimmer" visible="false">
+			<layout colspan="3" />
+			<group name="Licht">
+				<layout colspan="12" />
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Licht</label>
+					<address transform="OH:switch" variant="">Light_SF_Bed</address>
+				</switch>
+				<info format="%.2f Lux">
+					<label>
+						<icon name="light_light" />
+						Helligkeit
+					</label>
+					<address transform="OH:number" variant="">Luminance_SF_Bed</address>
+				</info>
+			</group>
+			<group name="Jalousien + Fenster">
+				<layout colspan="12" />
+				<group nowidget="true">
+					<layout colspan="6" />
+					<text>
+						<layout colspan="3" />
+						<label>
+							<icon name="fts_shutter" />
+							Jalousien
+						</label>
+					</text>
+					<trigger value="UP" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_SF_Bed</address>
+					</trigger>
+					<trigger value="STOP" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_SF_Bed</address>
+					</trigger>
+					<trigger value="DOWN" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_SF_Bed</address>
+					</trigger>
+				</group>
+				<info mapping="OpenClose">
+					<label>Fenster</label>
+					<address transform="OH:contact" mode="read" variant="">Contact_SF_Bed</address>
+				</info>
+				 <slide min="0" max="100" format="%d%%">
+					<label>
+						<icon name="fts_shutter" />
+                        Jalousie Position
+                    </label>
+                    <address transform="OH:dimmer" variant="">Shutter_Pos_SF_Bed</address>
+                </slide>
+			</group>
+			<group align="center" name="Heizung">
+				<slide min="0" max="100" format="%d%%">
+					<label>
+						<icon name="sani_heating" />
+						Heizung
+					</label>
+					<address transform="OH:dimmer" variant="">Heating_SF_Bed</address>
+				</slide>
+				<info format="%.1f °C">
+					<label>
+						<icon name="temp_temperature" />
+						Ist
+					</label>
+					<address transform="OH:number" variant="">Temperature_SF_Bed</address>
+				</info>
+				<infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+					downvalue="-0.5" styling="BluePurpleRedTemp"
+					infoposition="1" format="%.1f °C" change="absolute" min="15" max="25">
+					<label>
+						<icon name="temp_control" />
+						Soll
+					</label>
+					<address transform="OH:number" variant="">Temperature_SF_Bed_Target</address>
+				</infotrigger>
+			</group>
+			<group align="center" name="Verbraucher">
+				<switch mapping="Socket" styling="GreyGreen">
+					<label>Lautsprecher</label>
+					<address transform="OH:switch" variant="">Socket_SF_Server_8</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>TV</label>
+					<address transform="OH:switch" variant="">Socket_SF_Bed_Tv</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>SD Nexus</label>
+					<address transform="OH:switch" variant="">Socket_SF_Bed_Mobile</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Nexus lädt</label>
+					<address transform="OH:switch" variant="">Nexus_Mobile_Loading</address>
+				</switch>
+			</group>
+		</page>
+		<page name="Büro" visible="false">
+			<layout colspan="3" />
+			<group name="Licht">
+				<layout colspan="12" />
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Licht</label>
+					<address transform="OH:switch" variant="">Light_FF_Office</address>
+				</switch>
+			</group>
+			<group name="Verbraucher">
+				<layout colspan="12" />
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>PC</label>
+					<address transform="OH:switch" variant="">Network_Hannibal</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Drucker</label>
+					<address transform="OH:switch" variant="">Socket_FF_Office_Print</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Schaltleiste</label>
+					<address transform="OH:switch" variant="">Socket_FF_Office_Schalt</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Lautsprecher</label>
+					<address transform="OH:switch" variant="">Socket_FF_Office_Box</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Handy</label>
+					<address transform="OH:switch" variant="">Socket_FF_Office_Handy</address>
+				</switch>
+			</group>
+			<group align="center" name="Heizung">
+				<slide min="0" max="100" format="%d%%">
+					<label>
+						<icon name="sani_heating" />
+						Heizung
+					</label>
+					<address transform="OH:dimmer" variant="">Heating_FF_Office</address>
+				</slide>
+				<info format="%.1f °C">
+					<label>
+						<icon name="temp_temperature" />
+						Ist
+					</label>
+					<address transform="OH:number" variant="">Temperature_FF_Office</address>
+				</info>
+				<infotrigger uplabel="+" upvalue="0.5" downlabel="-"
+					downvalue="-0.5" styling="BluePurpleRedTemp"
+					infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+					<label>
+						<icon name="temp_control" />
+						Soll
+					</label>
+					<address transform="OH:number" variant="">Temperature_FF_Office_Target</address>
+				</infotrigger>
+			</group>
+			
+			<group name="Jalousien">
+				<group nowidget="true">
+					<layout colspan="6" />
+					<text>
+						<layout colspan="3" />
+						<label>
+							<icon name="fts_shutter" />
+							Jalousien
+						</label>
+					</text>
+					<trigger value="UP" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Office</address>
+					</trigger>
+					<trigger value="STOP" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Office</address>
+					</trigger>
+					<trigger value="DOWN" styling="GreyGreen" mapping="Shutter">
+						<layout colspan="1" />
+						<address transform="OH:rollershutter" variant="">Shutter_FF_Office</address>
+					</trigger>
+					<slide min="0" max="100" format="%d%%">
+					<label>
+						<icon name="fts_shutter" />
+                        Position
+                    </label>
+                    <address transform="OH:dimmer" variant="">Shutter_Pos_FF_Office</address>
+					</slide>
+					<info mapping="OpenClose">
+					<label>Fenster</label>
+					<address transform="OH:contact" mode="read" variant="">Contact_FF_Office_Upper</address>
+					</info>
+				</group>
+			</group>
+		</page>
+		<page name="Flure" visible="false">
+			<layout colspan="3" />
+			<group name="Flur">
+				<layout colspan="12" />
+				<slide mapping="OnOff" styling="GreyGreen">
+					<label>Licht</label>
+					<address transform="OH:dimmer" variant="">Light_FF_Corridor</address>
+				</slide>
+				<info format="%.2f Lux">
+					<layout colspan="2" />
+					<label>
+						<icon name="light_light" />
+					</label>
+					<address transform="OH:number" variant="">Luminance_SF_Corridor</address>
+				</info>
+				<info format="%.1f °C">
+					<layout colspan="2" />
+					<label>
+						<icon name="temp_temperature" />
+					</label>
+					<address transform="OH:number" variant="">Temperature_SF_Corridor</address>
+				</info>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="2" />
+					<label>Bewegung</label>
+					<address transform="OH:switch" variant="">Motion_FF_Corridor</address>
+				</switch>
+			</group>
+			<group name="Treppenhaus">
+				<layout colspan="12" />
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Licht Decke</label>
+					<address transform="OH:switch" variant="">Light_SF_Corridor</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Licht Treppe</label>
+					<address transform="OH:switch" variant="">Light_SF_Corridor_Stairs</address>
+				</switch>
+				<info format="%.2f Lux">
+					<label>
+						<icon name="light_light" />
+					</label>
+					<address transform="OH:number" variant="">Luminance_FF_Corridor</address>
+				</info>
+			</group>
+		</page>
+		<page name="Bad" visible="false">
+			<layout colspan="3" />
+			<switch mapping="OnOff" styling="GreyGreen">
+				<label>Licht</label>
+				<address transform="OH:switch" variant="">Light_FF_Toilet</address>
+			</switch>
+			<switch mapping="Socket" styling="GreyGreen">
+				<label>Lautsprecher</label>
+				<address transform="OH:switch" variant="">Socket_SF_Server_6</address>
+			</switch>
+			<info mapping="OnOff" styling="GreyGreen">
+				<label>Bewegung</label>
+				<address transform="OH:switch" variant="">Motion_FF_Toilet</address>
+			</info>
+			<info format="%.2f Lux">
+				<label>
+					<icon name="light_light" />
+					Helligkeit
+				</label>
+				<address transform="OH:number" variant="">Luminance_FF_Toilet</address>
+			</info>
+		</page>
+		<page name="Garage" visible="false">
+			<layout colspan="3" />
+			<group align="center" name="Linke Seite">
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Licht</label>
+					<address transform="OH:switch" variant="">Light_GF_Garage_2</address>
+				</switch>
+				<info mapping="OpenClose">
+					<label>Tor</label>
+					<address transform="OH:contact" mode="read" variant="">Contact_GF_Garage_2</address>
+				</info>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Torantrieb</label>
+					<address transform="OH:switch" variant="">GateSwitch_GF_Garage_2</address>
+				</switch>
+				<info mapping="DaWeg" styling="GreyGreen">
+					<label>Polo</label>
+					<address transform="OH:switch" variant="">Car_GF_Garage_2</address>
+				</info>
+			</group>
+			<group align="center" name="Rechte Seite">
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Licht</label>
+					<address transform="OH:switch" variant="">Light_GF_Garage_1</address>
+				</switch>
+				<info mapping="OpenClose" styling="GreyGreen">
+					<label>Tor</label>
+					<address transform="OH:contact" mode="read" variant="">Contact_GF_Garage_1</address>
+				</info>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<label>Torantrieb</label>
+					<address transform="OH:switch" variant="">GateSwitch_GF_Garage_1</address>
+				</switch>
+			</group>
+		</page>
+		<page name="Multiroom" visible="false">
+			<layout colspan="12" />
+			<group name="Allgemein">
+				<layout colspan="12" />
+				<group nowidget="true" flavour="bg">
+					<layout colspan="6" />
+					<info mapping="RadioStations">
+						<layout colspan="3" rowspan="2" />
+						<label>
+							<icon name="it_radio" />
+							Webradio
+						</label>
+						<address transform="OH:number" mode="read" variant="">Radio_Station</address>
+					</info>
+					<trigger align="center" mapping="RadioStationsShort" value="0"
+						flavour="nobg">
+						<layout colspan="1" />
+						<address transform="OH:number" mode="readwrite" variant="">Radio_Station</address>
+					</trigger>
+					<trigger align="center" mapping="RadioStationsShort" value="1"
+						flavour="nobg">
+						<layout colspan="1" />
+						<address transform="OH:number" mode="readwrite" variant="">Radio_Station</address>
+					</trigger>
+					<trigger align="center" mapping="RadioStationsShort" value="2"
+						flavour="nobg">
+						<layout colspan="1" />
+						<address transform="OH:number" mode="readwrite" variant="">Radio_Station</address>
+					</trigger>
+					<trigger align="center" mapping="RadioStationsShort" value="3"
+						flavour="nobg">
+						<layout colspan="1" />
+						<address transform="OH:number" mode="readwrite" variant="">Radio_Station</address>
+					</trigger>
+					<trigger align="center" mapping="RadioStationsShort" value="4"
+						flavour="nobg">
+						<layout colspan="1" />
+						<address transform="OH:number" mode="readwrite" variant="">Radio_Station</address>
+					</trigger>
+					<trigger align="center" mapping="RadioStationsShort" value="5"
+						flavour="nobg">
+						<layout colspan="1" />
+						<address transform="OH:number" mode="readwrite" variant="">Radio_Station</address>
+					</trigger>
+				</group>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="6" rowspan="1" />
+					<label>
+						<icon name="audio_sound" />
+						MPD
+					</label>
+					<address transform="OH:switch" mode="readwrite" variant="">Mpd_Main</address>
+				</switch>
+				<switch mapping="OnOff" styling="GreyGreen">
+					<layout colspan="6" />
+					<label>Follow me</label>
+					<address transform="OH:switch" variant="">GLOB_Follow_Me</address>
+				</switch>
+			</group>
+			<group name="Music Player Daemon">
+				<layout colspan="12" />
+				<group nowidget="true">
+					<layout colspan="6" rowspan="2"/>
+					<trigger value="0" mapping="AudioNextPrev">
+						<layout colspan="1"/>
+						<address transform="OH:switch" variant="">Mpd_Main_NextPrev</address>
+					</trigger>
+					<switch mapping="PlayStop" styling="GreyGreen">
+						<layout colspan="1"/>
+						<address transform="OH:switch" mode="readwrite" variant="">Mpd_Main</address>
+					</switch>
+					<trigger value="1" mapping="AudioNextPrev">
+						<layout colspan="1"/>
+						<address transform="OH:switch" variant="">Mpd_Main_NextPrev</address>
+					</trigger>
+				</group>
+				<group nowidget="true">
+					<layout colspan="6" rowspan="2"/>
+					<info>
+						<layout colspan="6" />
+						<label>Titel</label>
+						<address transform="OH:string" variant="">Mpd_Track</address>
+					</info>
+					<info>
+						<layout colspan="6" />
+						<label>Interpret</label>
+						<address transform="OH:string" variant="">Mpd_Artist</address>
+					</info>
+				</group>
+			</group>
+			<group name="Audio-Stationen">
+				<layout colspan="12" />
+				<group nowidget="true">
+					<layout colspan="12" />
+					<text>
+						<layout colspan="3" />
+						<label>
+							<icon name="control_building_empty"/>
+							Wohnung
+						</label>
+					</text>
+					<info mapping="OnOff" styling="GreyGreenBg" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="read" variant="">Sink_FF_Multiroom_Exists</address>
+					</info>
+					<switch mapping="Socket" styling="GreyGreen" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">Speakers</address>
+					</switch>
+					<switch mapping="AudioMute" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">Sink_FF_Multiroom_Mute</address>
+					</switch>
+					<slide min="0" max="100" step="5" format="%d%%">
+						<layout colspan="6" />
+						<address transform="OH:dimmer" variant="">Sink_FF_Multiroom_Volume</address>
+					</slide>
+				</group>
+				<group nowidget="true">
+					<layout colspan="12" />
+					<text>
+						<layout colspan="3" />
+						<label>
+							<icon name="it_television" />
+							Wohnen
+						</label>
+					</text>
+					<info mapping="OnOff" styling="GreyGreenBg" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="read" variant="">Sink_FF_Livingroom_Exists</address>
+					</info>
+					<switch mapping="Socket" styling="GreyGreen" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">Socket_FF_Living_Receiver</address>
+					</switch>
+					<switch mapping="AudioMute" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">Sink_FF_Livingroom_Mute</address>
+					</switch>
+					<slide min="0" max="100" step="5" format="%d%%">
+						<layout colspan="6" />
+						<address transform="OH:dimmer" variant="">Sink_FF_Livingroom_Volume</address>
+					</slide>
+				</group>
+				<group nowidget="true">
+					<layout colspan="12" />
+					<text>
+						<layout colspan="3" />
+						<label>
+							<icon name="scene_dinner" />
+							Küche
+						</label>
+					</text>
+					<info mapping="OnOff" styling="GreyGreenBg" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="read" variant="">Sink_FF_Kitchen_Exists</address>
+					</info>
+					<switch mapping="Socket" styling="GreyGreen" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">Socket_SF_Server_7</address>
+					</switch>
+					<switch mapping="AudioMute" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">Sink_FF_Kitchen_Mute</address>
+					</switch>
+
+					<slide min="0" max="100" step="5" format="%d%%">
+						<layout colspan="6" />
+						<address transform="OH:dimmer" variant="">Sink_FF_Kitchen_Volume</address>
+					</slide>
+
+				</group>
+				<group nowidget="true">
+					<layout colspan="12" />
+					<text>
+						<layout colspan="3" />
+						<label>
+							<icon name="scene_bath" />
+							Bad
+						</label>
+					</text>
+					<info mapping="OnOff" styling="GreyGreenBg" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="read" variant="">Sink_FF_Toilet_Exists</address>
+					</info>
+					<switch mapping="Socket" styling="GreyGreen" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">Socket_SF_Server_6</address>
+					</switch>
+					<switch mapping="AudioMute" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">Sink_FF_Toilet_Mute</address>
+					</switch>
+
+					<slide min="0" max="100" step="5" format="%d%%">
+						<layout colspan="6" />
+						<address transform="OH:dimmer" variant="">Sink_FF_Toilet_Volume</address>
+					</slide>
+				</group>
+				<group nowidget="true">
+					<layout colspan="12" />
+					<text>
+						<layout colspan="3" />
+						<label>
+							<icon name="scene_sleeping" />
+							Schlafen
+						</label>
+					</text>
+					<info mapping="OnOff" styling="GreyGreenBg" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="read" variant="">Sink_SF_Bed_Exists</address>
+					</info>
+					<switch mapping="Socket" styling="GreyGreen" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" variant="">Socket_SF_Server_8</address>
+					</switch>
+					<switch mapping="AudioMute" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">Sink_SF_Bed_Mute</address>
+					</switch>
+					<slide min="0" max="100" step="5" format="%d%%">
+						<layout colspan="6" />
+						<address transform="OH:dimmer" variant="">Sink_SF_Bed_Volume</address>
+					</slide>
+				</group>
+				<group nowidget="true">
+					<layout colspan="12" />
+					<text>
+						<layout colspan="3" />
+						<label>
+							<icon name="it_pc" />
+							Büro
+						</label>
+					</text>
+					<info mapping="OnOff" styling="GreyGreenBg" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="read" variant="">Sink_FF_Office_Exists</address>
+					</info>
+					<switch mapping="Socket" styling="GreyGreen" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" variant="">Socket_SF_Server_9</address>
+					</switch>
+					<switch mapping="AudioMute" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">Sink_FF_Office_Mute</address>
+					</switch>
+					<slide min="0" max="100" step="5" format="%d%%">
+						<layout colspan="6" />
+						<address transform="OH:dimmer" variant="">Sink_FF_Office_Volume</address>
+					</slide>
+				</group>
+			</group>
+			<group name="Audio-Quellen">
+				<layout colspan="12" />
+				<group nowidget="true">
+					<layout colspan="6" />
+					<text>
+						<layout colspan="1" />
+						<label>MPD</label>
+					</text>
+					<info mapping="OnOff" styling="GreyGreenBg" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="read" variant="">SinkInput_FF_MPD_Exists</address>
+					</info>
+					<switch mapping="AudioMute" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">SinkInput_FF_MPD_Mute</address>
+					</switch>
+					<slide min="0" max="100" step="5" format="%d%%">
+						<layout colspan="3" />
+						<address transform="OH:dimmer" variant="">SinkInput_FF_MPD_Volume</address>
+					</slide>
+				</group>
+				<group nowidget="true">
+					<layout colspan="6" />
+					<info mapping="OnOff" styling="GreyGreenBg" align="center">
+						<layout colspan="2" />
+						<label>
+							Stream
+						</label>
+						<address transform="OH:switch" mode="read" variant="">SinkInput_FF_Stream_Exists</address>
+					</info>
+					<switch mapping="AudioMute" align="center">
+						<layout colspan="1" />
+						<address transform="OH:switch" mode="readwrite" variant="">SinkInput_FF_Stream_Mute</address>
+					</switch>
+					<slide min="0" max="100" step="5" format="%d%%">
+						<layout colspan="3" />
+						<address transform="OH:dimmer" variant="">SinkInput_FF_Stream_Volume</address>
+					</slide>
+				</group>
+			</group>
+		</page>
+		<page name="Temperaturen" visible="false">
+			<layout colspan="3" />
+			<group name="Wohnräume">
+				<layout colspan="6" />
+				<diagram_info format="%.1f °C" series="day"	refresh="300">
+					<label> <icon name="temp_temperature" /> Temperatur SZ </label> 
+					<axis unit="°C"/>
+					<rrd>Temperature_SF_Bed</rrd>
+					<address transform="OH:number" variant="">Temperature_SF_Bed</address>
+				</diagram_info>
+				<diagram_info format="%.1f °C" series="day" 
+					refresh="300">
+					<label> <icon name="temp_temperature" /> Temperatur WZ </label> 
+					<axis unit="°C"/>
+					<rrd>Temperature_FF_Living</rrd>
+					<address transform="OH:number" variant="">Temperature_FF_Living</address>
+				</diagram_info>
+				
+				<diagram_info format="%.1f °C" series="day" 
+					refresh="300"> <label> <icon name="temp_temperature" /> Temperatur Küche </label> 
+					<axis unit="°C"/>
+					<rrd>Temperature_FF_Kitchen</rrd>
+					<address transform="OH:number" variant="">Temperature_FF_Kitchen</address>
+				</diagram_info>
+				<info format="%.1f °C">
+					<label>
+						<icon name="temp_inside" />
+						Bad
+					</label>
+					<address transform="OH:number" variant="">Temperature_FF_Toilet</address>
+				</info>
+				<diagram_info format="%.1f °C" series="day" 
+					refresh="300"> <label> <icon name="temp_temperature" /> Temperatur Büro </label> 
+					<axis unit="°C"/>
+					<rrd>Temperature_FF_Office</rrd>
+					<address transform="OH:number" variant="">Temperature_FF_Office</address>
+				</diagram_info>
+			</group>
+			<group name="Sonstige Räume">
+				<diagram_info format="%.1f °C" series="day" 
+					refresh="300">
+					<label> <icon name="temp_temperature" /> Serverraum </label> 
+					<axis unit="°C"/>
+					<rrd>Temperature_SF_Server</rrd>
+					<address transform="OH:number" variant="">Temperature_SF_Server</address>
+				</diagram_info>
+				<diagram_info format="%.1f °C" series="day" 
+					refresh="300">
+					<label> <icon name="temp_temperature" /> Werkstatt </label> 
+					<axis unit="°C"/>
+					<rrd>Temperature_SF_Workshop</rrd>
+					<address transform="OH:number" variant="">Temperature_SF_Workshop</address>
+				</diagram_info>
+				<diagram_info format="%.1f °C" series="day" 
+					refresh="300">
+					<label> <icon name="temp_temperature" /> Flur DG</label> 
+					<axis unit="°C"/>
+					<rrd>Temperature_SF_Corridor</rrd>
+					<address transform="OH:number" variant="">Temperature_SF_Corridor</address>
+				</diagram_info>
+				<diagram_info format="%.1f °C" series="day" 
+					refresh="300">
+					<label> <icon name="temp_temperature" /> Dachboden </label> 
+					<axis unit="°C"/>
+					<rrd>Temperature_SF_Attic</rrd>
+					<address transform="OH:number" variant="">Temperature_SF_Attic</address>
+				</diagram_info>
+				<diagram_info format="%.1f °C" series="day" 
+					refresh="300">
+					<label> <icon name="temp_temperature" /> Spitzboden</label> 
+					<axis unit="°C"/>
+					<rrd>Temperature_TF_CockLoft</rrd>
+					<address transform="OH:number" variant="">Temperature_TF_CockLoft</address>
+				</diagram_info>
+				<diagram_info format="%.1f °C" series="day" 
+					refresh="300">
+					<label> <icon name="temp_temperature" /> Abstellkammer</label> 
+					<axis unit="°C"/>
+					<rrd>Temperature_FF_Store</rrd>
+					<address transform="OH:number" variant="">Temperature_FF_Store</address>
+				</diagram_info>
+			</group>
+			<group name="Sonstiges">
+				<info format="%.1f °C">
+					<label>
+						<icon name="temp_outside" />
+						Aussen
+					</label>
+					<address transform="OH:number" variant="">Weather_Temperature</address>
+				</info>
+				<info format="%.1f °C">
+					<label>
+						<icon name="temp_outside" />
+						Erwartet max.
+					</label>
+					<address transform="OH:number" variant="">Weather_Forecast_Temp_Max</address>
+				</info>
+				<info mapping="Weather">
+					<label>
+						Vorhersage
+					</label>
+					<address transform="OH:string" variant="">Weather_Text</address>
+				</info>
+			</group>
+		</page>
+		<page name="Netzwerk" visible="false">
+			<group name="Computer">
+			<layout colspan="12" />
+			<switch mapping="OnOff" styling="GreyGreen">
+				<label>Hannibal</label>
+				<address transform="OH:switch" variant="">Network_Hannibal</address>
+			</switch>
+			<switch mapping="OnOff" styling="GreyGreen">
+				<label>VDR WZ</label>
+				<address transform="OH:switch" variant="">Network_Yavdr</address>
+			</switch>
+			<switch mapping="OnOff" styling="GreyGreen">
+				<label>Touch-PC</label>
+				<address transform="OH:switch" variant="">Network_Touch</address>
+			</switch>
+			<switch mapping="OnOff" styling="GreyGreen">
+				<label>Jarvis</label>
+				<address transform="OH:switch" variant="">Network_Jarvis</address>
+			</switch>
+			</group>
+			<group name="Fernseher">
+			<layout colspan="12" />
+			<info mapping="OnOff" styling="GreyGreen">
+				<label>TV Wohnzimmer</label>
+				<address transform="OH:switch" variant="">Network_TV</address>
+			</info>
+			<info mapping="OnOff" styling="GreyGreen">
+				<label>TV Schlafzimmer</label>
+				<address transform="OH:switch" variant="">Network_Bed_TV</address>
+			</info>
+			</group>
+			<group name="Sonstige">
+			<layout colspan="12" />
+			<info mapping="OnOff" styling="GreyGreen">
+                <label>Kamera vorne</label>
+                <address transform="OH:switch" variant="">Network_Frontcam</address>
+            </info>
+			<info mapping="OnOff" styling="GreyGreen">
+                <label>Handy</label>
+                <address transform="OH:switch" variant="">Network_Mobile</address>
+            </info>
+			<info mapping="OnOff" styling="GreyGreen">
+                <label>Galaxytab</label>
+                <address transform="OH:switch" variant="">Network_GalaxyTab</address>
+            </info>
+			<info mapping="OnOff" styling="GreyGreen">
+                <label>WZ Tablet</label>
+                <address transform="OH:switch" variant="">Network_Yoga2</address>
+            </info>
+			</group>
+		<group name="FritzBox">
+			<layout colspan="12" />
+			<switch mapping="OnOff" styling="GreyGreen">
+				<label>WLAN</label>
+				<address transform="OH:switch" variant="">WIFI</address>
+			</switch>
+			<switch mapping="OnOff" styling="GreyGreen">
+				<label>DECT</label>
+				<address transform="OH:switch" variant="">DECT</address>
+			</switch>
+		</group>
+		</page>
+	</page>
+</pages>
