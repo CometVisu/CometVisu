@@ -1133,10 +1133,13 @@ function TemplateEngine( undefined ) {
       // identify addresses on startpage
       var startPageAddresses = {};
       $('.actor','#'+startpage).each(function() {
-        var address = $(this).data('address');
-        for (var ga in address) {
-          startPageAddresses[ga.substring(1)]=1;
-        }
+    	  var $this = $(this),
+          data  = $this.data();
+    	  if( undefined === data.address ) data = $this.parent().data();
+          for( var addr in data.address )
+          {
+            startPageAddresses[addr.substring(1)]=1;
+          }
       });
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
