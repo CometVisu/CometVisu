@@ -113,7 +113,7 @@ function CometVisu( urlPrefix )
     {
       if( this.running )
       { // retry initial request
-        this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(this.startPageAddresses)+'&t=0', success:this.handleReadStart, beforeSend:this.beforeSend} );
+        this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(this.initialAddresses)+'&t=0', success:this.handleReadStart, beforeSend:this.beforeSend} );
         watchdog.ping();
       }
       return;
@@ -124,8 +124,13 @@ function CometVisu( urlPrefix )
       this.update( json.d );
     }
     if( this.running )
-    { // keep the requests going
-      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError, beforeSend:this.beforeSend} );
+    { // keep the requests going, but only request addresses-startPageAddresses
+      var diffAddresses = [];
+      for(var i=0;i<this.addresses.length;i++) {
+        if ($.inArray(this.addresses[i],this.initialAddresses)<0)
+          diffAddresses.push(this.addresses[i]);
+      }
+      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(diffAddresses)+'&t=0', success:this.handleRead ,error:this.handleError, beforeSend:this.beforeSend} );
       watchdog.ping();
     }
   };
