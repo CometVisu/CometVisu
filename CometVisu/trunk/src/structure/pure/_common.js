@@ -320,7 +320,7 @@ function VisuDesign() {
           break;
       }
       var variantInfo = handleVariant ? handleVariant( src, transform, mode, this.getAttribute('variant') ) : [true, undefined];
-      if( variantInfo[0])
+      if( (mode&1) && variantInfo[0]) // add only addresses when reading from them
         templateEngine.addAddress( src );
       address[ '_' + src ] = [ transform, mode, variantInfo[1] ];
       return; // end of each-func
