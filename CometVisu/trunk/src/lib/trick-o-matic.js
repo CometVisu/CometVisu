@@ -137,4 +137,4 @@ define([ 'jquery' ], function( $ ) {
     s.textContent = keyframes;
     $('svg', svg).prepend(s);
   };
-}); // end require
+}); // end define
