@@ -68,11 +68,26 @@ function CometVisu( urlPrefix )
     // send first request
     this.running = true;
     if (this.initialAddresses.length) {
-      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(this.initialAddresses)+'&t=0', success:this.handleReadStart, beforeSend:this.beforeSend} );
+      this.xhr = $.ajax({
+        url:        this.urlPrefix + 'r',
+        dataType:   'json',
+        context:    this,
+        data:       this.buildRequest( this.initialAddresses ) + '&t=0',
+        success:    this.handleReadStart,
+        beforeSend: this.beforeSend
+      });
     }
     else {
       // old behaviour -> start full query
-      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError, beforeSend:this.beforeSend } );
+      this.xhr = $.ajax({
+        url:        this.urlPrefix + 'r',
+        dataType:   'json',
+        context:    this,
+        data:       this.buildRequest() + '&t=0',
+        success:    this.handleRead,
+        error:      this.handleError,
+        beforeSend: this.beforeSend
+      });
     }
   };
 
@@ -86,7 +101,15 @@ function CometVisu( urlPrefix )
     {
       if( this.running )
       { // retry initial request
-        this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&t=0', success:this.handleRead ,error:this.handleError, beforeSend:this.beforeSend } );
+        this.xhr = $.ajax({
+          url:this.urlPrefix + 'r',
+          dataType:   'json',
+          context:    this,
+          data:       this.buildRequest() + '&t=0',
+          success:    this.handleRead,
+          error:      this.handleError,
+          beforeSend: this.beforeSend
+        });
         watchdog.ping();
       }
       return;
@@ -102,7 +125,15 @@ function CometVisu( urlPrefix )
 
     if( this.running )
     { // keep the requests going
-      this.xhr = $.ajax( {url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest()+'&i='+this.lastIndex, success:this.handleRead ,error:this.handleError, beforeSend:this.beforeSend} );
+      this.xhr = $.ajax({
+        url:        this.urlPrefix + 'r',
+        dataType:   'json',
+        context:    this,
+        data:       this.buildRequest() + '&i=' + this.lastIndex,
+        success:    this.handleRead,
+        error:      this.handleError,
+        beforeSend: this.beforeSend
+      });
       watchdog.ping();
     }
   };
@@ -113,7 +144,14 @@ function CometVisu( urlPrefix )
     {
       if( this.running )
       { // retry initial request
-        this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(this.initialAddresses)+'&t=0', success:this.handleReadStart, beforeSend:this.beforeSend} );
+        this.xhr = $.ajax({
+          url:        this.urlPrefix + 'r',
+          dataType:   'json',
+          context:    this,
+          data:       this.buildRequest( this.initialAddresses ) + '&t=0',
+          success:    this.handleReadStart,
+          beforeSend: this.beforeSend
+        });
         watchdog.ping();
       }
       return;
@@ -130,7 +168,15 @@ function CometVisu( urlPrefix )
         if ($.inArray(this.addresses[i],this.initialAddresses)<0)
           diffAddresses.push(this.addresses[i]);
       }
-      this.xhr = $.ajax({url:this.urlPrefix + 'r',dataType: 'json',context:this,data:this.buildRequest(diffAddresses)+'&t=0', success:this.handleRead ,error:this.handleError, beforeSend:this.beforeSend} );
+      this.xhr = $.ajax({
+        url:        this.urlPrefix + 'r',
+        dataType:   'json',
+        context:    this,
+        data:       this.buildRequest( diffAddresses ) + '&t=0',
+        success:    this.handleRead,
+        error:      this.handleError,
+        beforeSend: this.beforeSend
+      });
       watchdog.ping();
     }
   };
@@ -219,7 +265,13 @@ function CometVisu( urlPrefix )
     if( '' != this.user   ) request.u = this.user;
     if( '' != this.pass   ) request.p = this.pass;
     if( '' != this.device ) request.d = this.device;
-    $.ajax( {url:this.urlPrefix + 'l',dataType: 'json',context:this,data:request, success:this.handleSession} );
+    $.ajax({
+      url:      this.urlPrefix + 'l',
+      dataType: 'json',
+      context:  this,
+      data:     request,
+      success:  this.handleSession
+    });
   };
 
   /**
@@ -244,8 +296,12 @@ function CometVisu( urlPrefix )
      * could maybe selective based on UserAgent but isn't that costly on writes
      */
     var ts = new Date().getTime();
-    var request = 'a=' + address + '&v=' + value + '&ts=' + ts;
-    $.ajax( {url:this.urlPrefix + 'w',dataType: 'json',context:this,data:request} );
+    $.ajax({
+      url:      this.urlPrefix + 'w',
+      dataType: 'json',
+      context:  this,
+      data:     'a=' + address + '&v=' + value + '&ts=' + ts
+    });
   }
   
   /**
