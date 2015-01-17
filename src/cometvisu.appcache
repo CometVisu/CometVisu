@@ -36,6 +36,7 @@ dependencies/yepnope.1.5.4.js
 lib/iconhandler.js
 lib/compatibility.js
 lib/cometvisu-client.js
+lib/pagepartshandler.js
 lib/trick-o-matic.js
 structure/pure/_common.js
 structure/pure/audio.js
