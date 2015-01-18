@@ -15,6 +15,46 @@
     <meta name="apple-mobile-web-app-capable" content="yes" /> 
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <script>
+      // instrumenting for profiling
+      if( window && /profile/.test( window.location.href ) )
+      {
+        profileCV = (function(){
+          var
+            isNotHidden = !/profile=hidden/.test( window.location.href ) && console !== undefined,
+            nowBase = window.performance || Date,
+            eventList = [];
+          return function( event ){
+            var 
+              now   = nowBase.now(),
+              delta = eventList.length 
+                ? now - eventList[ eventList.length - 1 ].now
+                : '-';
+            
+            if( 'list' === event )
+            {
+              var list = isNotHidden ? '%c' : '';
+              eventList.forEach( function( entry, i ){
+                list += entry.now + ' (' + entry.delta + ' ms): ' + entry.event + "\n";
+              });
+              if( isNotHidden )
+                console.log( list, 'color:green' );
+              else
+                alert( list );
+            } else {
+              eventList.push( { event: event, delta: delta, now: now } );
+              if( isNotHidden )
+              {
+                console.timeStamp( event );
+                console.log( '%c### Profile ###: %f (%s ms): %s', 'color:green', now, delta, event );
+              }
+            }
+          };
+        })();
+      } else
+        profileCV = function(){};
+      profileCV( 'JavaScript start' );
+      
+      // first info for RequireJS to handle forceReload properly
       var require = {
         urlArgs: 
           (typeof window === 'undefined') || 
