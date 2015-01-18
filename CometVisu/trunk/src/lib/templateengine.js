@@ -105,6 +105,7 @@ require([
   'widget_video', 'widget_wgplugin_info', 
   'transform_default', 'transform_knx', 'transform_oh'
 ], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler ) {
+  profileCV( 'templateEngine start' );
   
 templateEngine = new TemplateEngine();
 
@@ -259,7 +260,9 @@ function TemplateEngine( undefined ) {
     };
     thisTemplateEngine.visu.update = function(json) { // overload the handler
       $(document).trigger( 'firstdata', json );
+      profileCV( 'firstdata start' );
       update( json );
+      profileCV( 'firstdata updated' );
       thisTemplateEngine.visu.update = update; // handle future requests directly
     }
     thisTemplateEngine.visu.user = 'demo_user'; // example for setting a user
@@ -627,6 +630,7 @@ function TemplateEngine( undefined ) {
   var pluginsToLoadCount = 0;
   var xml;
   this.parseXML = function(loaded_xml) {
+    profileCV( 'parseXML' );
     xml = loaded_xml;
     // erst mal den Cache für AJAX-Requests wieder aktivieren
     /*
@@ -909,10 +913,13 @@ function TemplateEngine( undefined ) {
   
   function setup_page() {
     // and now setup the pages
+    profileCV( 'setup_page start' );
 
     // check if the page and the plugins are ready now
     for( var key in loadReady )  // test for emptines
       return; // we'll be called again...
+      
+    profileCV( 'setup_page running' );
  
     // as we are sure that the default CSS were loaded now:
     $('link[href*="mobile.css"]').each(function(){
@@ -922,6 +929,7 @@ function TemplateEngine( undefined ) {
     var page = $('pages > page', xml)[0]; // only one page element allowed...
 
     thisTemplateEngine.create_pages(page, 'id');
+    profileCV( 'setup_page created pages' );
     
     var startpage = 'id_';
     if ($.getUrlVar('startpage')) {
@@ -1047,10 +1055,10 @@ function TemplateEngine( undefined ) {
         thisTemplateEngine.screensave = setTimeout( function(){thisTemplateEngine.scrollToPage();}, thisTemplateEngine.screensave_time*1000 );
       });
     }
+    profileCV( 'setup_page finish' );
   };
 
   this.create_pages = function(page, path, flavour, type) {
-
     var creator = thisTemplateEngine.design.getCreator(page.nodeName);
     var retval = creator.create(page, path, flavour, type);
 
