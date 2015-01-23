@@ -22,7 +22,7 @@ design.basicdesign.addCreator('imagetrigger', {
   create: function( element, path, flavour, type ) { 
     var $e = $(element);
     var ret_val = $('<div class="widget clearfix image" />');
-    basicdesign.setWidgetLayout( ret_val, $e );
+    basicdesign.setWidgetLayout( ret_val, $e, path );
     ret_val.addClass ('imagetrigger');
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
@@ -43,14 +43,15 @@ design.basicdesign.addCreator('imagetrigger', {
         
     actor += '</div>';
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
-    var $actor = $(actor).data( {
+    var $actor = $(actor).each(templateEngine.setupRefreshAction); // abuse "each" to call in context... refresh is broken with select right now
+    var data = templateEngine.widgetDataInsert( path, {
       'address':   address, 
       'refresh':   refresh,
       'src':       $e.attr('src'),
       'suffix':    $e.attr('suffix'),
       'type':      $e.attr('type'),
       'sendValue': $e.attr('sendValue') || ""
-    } ).each(templateEngine.setupRefreshAction); // abuse "each" to call in context... refresh is broken with select right now
+    } );
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'click', this.action );
     for( var addr in address ) {
@@ -60,7 +61,7 @@ design.basicdesign.addCreator('imagetrigger', {
     return ret_val;
   },
   update: function(e,d) {
-    var data = $(this).data();
+    var data  = templateEngine.widgetDataGetByElement( element );
     if ( data.address[e.type][1].writeonly == "true")
       return; // skip writeonly FIXME: writeonly shouldnt bind to update at all
     var val = templateEngine.transformDecode(data.address[e.type][0], d);
@@ -81,7 +82,8 @@ design.basicdesign.addCreator('imagetrigger', {
     //FIXME: add SVG-magics
   },
   action: function() {
-    var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
+    var 
+      data = templateEngine.widgetDataGetByElement( this );
     for( var addr in data.address ) {
       if( !(data.address[addr][1] & 2) )
         continue; // skip when write flag not set

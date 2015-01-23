@@ -40,7 +40,7 @@ design.basicdesign.addCreator('slide', {
     var min  = parseFloat( $e.attr('min')  || datatype_min || 0   );
     var max  = parseFloat( $e.attr('max')  || datatype_max || 100 );
     var step = parseFloat( $e.attr('step') || 0.5 );
-    ret_val.data({
+    var data = templateEngine.widgetDataInsert( path, {
       //???///'events':   $(actor).data( 'events' ),
       'min'     : min,
       'max'     : max,
@@ -62,11 +62,11 @@ design.basicdesign.addCreator('slide', {
       start:   this.slideStart,
       change:  this.slideChange
     });
-    if( ret_val.data('format')) {
+    if( data['format']) {
       $actor.on( 'slide', this.slideUpdateValue );
       
       // initially setting a value
-      $actor.children('.ui-slider-handle').text(sprintf(ret_val.data( 'format' ),templateEngine.map( undefined, ret_val.data('mapping') )));
+      $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
     }
     
     return ret_val;
@@ -74,7 +74,7 @@ design.basicdesign.addCreator('slide', {
   update: function( e, d ) { 
     var element = $(this),
         actor   = element.find('.actor'),
-        data    = element.data();
+        data    = templateEngine.widgetDataGetByElement( this );
     
     if( data.inAction )
       return;
@@ -93,7 +93,7 @@ design.basicdesign.addCreator('slide', {
   slideUpdateValue:function(event,ui) {
     var element = $(this).parent(),
         actor   = element.find('.actor'),
-        data    = element.data();
+        data    = templateEngine.widgetDataGetByElement( this );
     if( data.format)
       $(ui.handle).text(sprintf( data.format, templateEngine.map( ui.value, data.mapping )));
   },
@@ -104,7 +104,7 @@ design.basicdesign.addCreator('slide', {
   {
     var element = $(this).parent(),
         actor   = element.find('.actor'),
-        data    = element.data();
+        data    = templateEngine.widgetDataGetByElement( this );
     data.inAction      = true;
     data.valueInternal = true;
     data.updateFn      = setInterval( function(){
@@ -127,7 +127,7 @@ design.basicdesign.addCreator('slide', {
   */
   slideChange:function(event,ui)
   {
-    var data = $(this).parent().data();
+    var data    = templateEngine.widgetDataGetByElement( this );
     clearInterval( data.updateFn, ui.value);
     data.inAction = false;
     if( data.valueInternal && data.value != ui.value )

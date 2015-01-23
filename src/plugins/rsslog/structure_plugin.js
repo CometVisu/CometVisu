@@ -30,7 +30,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
     var extsource = false;
 
     var ret_val = $('<div class="widget clearfix rsslog" />');
-    templateEngine.design.setWidgetLayout( ret_val, $el );
+    templateEngine.design.setWidgetLayout( ret_val, $el, path );
     templateEngine.design.makeWidgetLabel( ret_val, $el );
 
     var actor = $('<div class="actor rsslogBody"><div class="rsslog_inline" id="' + id + '"></div></div>');

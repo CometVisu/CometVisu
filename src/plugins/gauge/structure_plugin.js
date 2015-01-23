@@ -56,17 +56,17 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
     var id = "gauge_" + path;
     var $actor = $('<div class="actor"><canvas id=' + id + '></canvas></div>');
     ret_val.append($actor);
-    ret_val.data({
+    var data = templateEngine.widgetDataInsert( path, {
       pagejumpTarget : $e.attr('target'),
     });
 
     // bind to user action
-    if (ret_val.data().pagejumpTarget) {
+    if (data.pagejumpTarget) {
       $actor.addClass("clickable");
       var bindClickToWidget = templateEngine.bindClickToWidget;
-      if (ret_val.data('bind_click_to_widget')) bindClickToWidget = (ret_val.data('bind_click_to_widget') === 'true');
+      if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
       (bindClickToWidget ? ret_val : $actor).bind('click', function() {
-        templateEngine.scrollToPage(ret_val.data().pagejumpTarget);
+        templateEngine.scrollToPage(data.pagejumpTarget);
       });
     }
 
@@ -102,16 +102,16 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
       
       var gaugeElement = new steelseries[$e.attr('type') || 'Radial'](id, params);
 
-      ret_val.data('gaugeElement', gaugeElement);
+      data['gaugeElement'] = gaugeElement;
 
-      templateEngine.design.defaultUpdate(undefined, undefined, ret_val, true);
+      templateEngine.design.defaultUpdate( undefined, undefined, ret_val, true, path );
     });
     return ret_val;
   },
 
   update: function(e, d) {
     var element = $(this);
-    var value = templateEngine.design.defaultUpdate(e, d, element, true);
+    var value = templateEngine.design.defaultUpdate( e, d, element, true, element.parent().attr('id') );
     var variant = element.data('address')[ e.type ][2];
     var gaugeElement = element.data('gaugeElement');
     if (gaugeElement) {

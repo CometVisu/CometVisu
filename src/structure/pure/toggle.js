@@ -29,24 +29,25 @@ design.basicdesign.addCreator('toggle', {
     var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
     ret_val.append( $actor );
     
+    var data = templateEngine.widgetDataGet( path );
+    
     // bind to user action
     var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
+    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
     basicdesign.createDefaultButtonAction( clickable, $actor, false, this.action );
 
     // initially setting a value
-    basicdesign.defaultUpdate( undefined, undefined, ret_val, true );
+    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
     return ret_val;
   },
   update: function( e, d ) { 
     var element = $(this);
-    basicdesign.defaultUpdate( e, d, element, true );
+    basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
   },
   action: function(event) {
-    var $this = $(this);
-    if( undefined === $this.data().address ) $this = $this.parent();
-    var data = $this.data();
+    var 
+      data  = templateEngine.widgetDataGetByElement( this );
 
     var sendValue = templateEngine.getNextMappedValue( data.basicvalue, data.mapping );
     for( var addr in data.address )

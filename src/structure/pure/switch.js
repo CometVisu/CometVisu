@@ -25,7 +25,7 @@ design.basicdesign.addCreator('switch', {
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'switch', $e, path, flavour, type, this.update );
     // and fill in widget specific data
-    ret_val.data( {
+    var data = templateEngine.widgetDataInsert( path, {
       'on_value'  : $e.attr('on_value' ) || 1,
       'off_value' : $e.attr('off_value') || 0
     } );
@@ -36,32 +36,33 @@ design.basicdesign.addCreator('switch', {
     
     // bind to user action
     var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
+    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'click', this.action );
     
     // initially setting a value
-    basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
+    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
     
     return ret_val;
   },
   update: function(e,d) { 
-    var element = $(this);
-    var actor   = element.find('.actor');
-    var value = basicdesign.defaultUpdate( e, d, element, true );
-    var off = templateEngine.map( element.data( 'off_value' ), element.data('mapping') );
+    var 
+      element = $(this),
+      data  = templateEngine.widgetDataGetByElement( element ),
+      actor = element.find('.actor'),
+      value = basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') ),
+      off   = templateEngine.map( data['off_value'], data['mapping'] );
     actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
   action: function() {
-    var $this = $(this),
-        data  = $this.data();
-    if( undefined === data.address ) data = $this.parent().data();
+    var 
+      widgetData  = templateEngine.widgetDataGetByElement( this );
                        
-    for( var addr in data.address )
+    for( var addr in widgetData.address )
     {
-      if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], data.basicvalue == data.off_value ? data.on_value : data.off_value ) );
+      if( !(widgetData.address[addr][1] & 2) ) continue; // skip when write flag not set
+      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( widgetData.address[addr][0], widgetData.basicvalue == widgetData.off_value ? widgetData.on_value : widgetData.off_value ) );
     }
   }
 });

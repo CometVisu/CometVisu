@@ -29,14 +29,16 @@ design.basicdesign.addCreator('refresh', {
     var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
     ret_val.append( $actor );
     
+    var data = templateEngine.widgetDataGet( path );
+    
     // bind to user action
     var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
+    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
     basicdesign.createDefaultButtonAction( clickable, $actor, undefined, this.action );
 
     // initially setting a value
-    basicdesign.defaultUpdate(undefined, $e.attr('value'), ret_val, true);
+    basicdesign.defaultUpdate( undefined, $e.attr('value'), ret_val, true, path );
     return ret_val;
   },
   action: function(event) {

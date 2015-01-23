@@ -123,8 +123,9 @@ define( ['structure_custom',
       // bind to user action
       if (isInfo || $e.attr("popup") == "true") {
         var configCopy = $.extend(true, {}, config, {id : id + '_big', isPopup : true});
+        var data = templateEngine.widgetDataGet( path );
         var bindClickToWidget = templateEngine.bindClickToWidget;
-        if (ret_val.data('bind_click_to_widget')) bindClickToWidget = (ret_val.data('bind_click_to_widget') === 'true');
+        if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
         (bindClickToWidget ? ret_val : $actor).bind('click', function() {
           var popupDiagram = $('<div class="diagram" id="' + configCopy.id + '"/>');
           popupDiagram.data().init = true;
@@ -161,14 +162,14 @@ define( ['structure_custom',
       }
 
       // initially setting a value
-      templateEngine.design.defaultUpdate(undefined, undefined, ret_val, true);
+      templateEngine.design.defaultUpdate( undefined, undefined, ret_val, true, path );
 
       return ret_val;
     }
 
     function update(e, d) {
       var element = $(this);
-      templateEngine.design.defaultUpdate(e, d, element, true);
+      templateEngine.design.defaultUpdate( e, d, element, true, element.parent().attr('id') );
     }
 
     function getDiagramElements(xmlElement) {

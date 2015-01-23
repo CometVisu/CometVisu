@@ -11,7 +11,7 @@ VisuDesign_Custom.prototype.addCreator("calendarlist", {
         var id = "calendarList_" + uniqid();
 
         var ret_val = $('<div class="widget clearfix calendarList" />');
-        templateEngine.design.setWidgetLayout(ret_val, $el);
+        templateEngine.design.setWidgetLayout(ret_val, $el, path);
         templateEngine.design.makeWidgetLabel(ret_val, $el);
 
         var actor = $('<div class="actor calendarListBody"><div class="calendarList_inline" id="' + id + '"></div></div>');

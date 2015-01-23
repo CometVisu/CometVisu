@@ -27,34 +27,37 @@ design.basicdesign.addCreator('wgplugin_info', {
     //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );
     type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: basicdesign.extractLayout3d( layout )}, this.update3d );
     
-    basicdesign.setWidgetLayout( ret_val, $e );
+    basicdesign.setWidgetLayout( ret_val, $e, path );
     basicdesign.makeWidgetLabel( ret_val, $e, flavour );
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var address = basicdesign.makeAddressList($e);
     
     var actor = '<div class="actor"><div class="value">-</div></div>';
-    var $actor = $(actor).data({
+    templateEngine.widgetDataInsert( path, {
       'variable' : $e.attr('variable'),
       'address'  : address,
-    });
+    } );
+    var $actor = $(actor);
     for( var addr in address ) $actor.bind( addr, this.update );
     ret_val.append( $actor );
     return ret_val;
   },
-  update: function( e, data, passedElement )
+  update: function( e, d, passedElement )
   {
-    var element = passedElement || $(this);
-    
-    var variable = element.data( 'variable' );
-    var valueElement = element.find('.value');
-    $.getJSON('/wg-plugindb.pl?name=' + variable, function(data) {
-      templateEngine.setWidgetStyling(element, element.data('basicvalue'));
+    var 
+      element = passedElement || $(this),
+      widgetData = templateEngine.widgetDataGetByElement( element ),
+      variable = widgetData[ 'variable' ],
+      valueElement = element.find('.value');
       
-      if( element.data( 'align' ) )
-        element.addClass(element.data( 'align' ) );
+    $.getJSON('/wg-plugindb.pl?name=' + variable, function(data) {
+      templateEngine.setWidgetStyling( element, widgetData.basicvalue, widgetData.styling );
+      
+      if( widgetData[ 'align' ] )
+        element.addClass(widgetData[ 'align' ] );
       valueElement.empty();
-      valueElement.append( data[variable] );
+      valueElement.append( widgetData[variable] );
     });
   },
   update3d: design.basicdesign.defaultUpdate3d

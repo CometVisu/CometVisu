@@ -76,7 +76,7 @@ design.basicdesign.addCreator('page', {
       var layout = $p.children('layout')[0];
       var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
       ret_val = $('<div class="widget clearfix link pagelink" ' + style + '/>');
-      basicdesign.setWidgetLayout( ret_val, $p );
+      basicdesign.setWidgetLayout( ret_val, $p, path );
       var actor = $('<div ' + wstyle + '><a href="javascript:">' + name + '</a></div>');
       var clickable = bindClickToWidget ? ret_val : actor;
       clickable.bind( 'click', function() {
@@ -87,7 +87,7 @@ design.basicdesign.addCreator('page', {
 
     var childs = $p.children().not('layout');
     var subpage = $( '<div class="page type_' + type + '" id="' + path + '_"/>' );
-    subpage.data({
+    var data = templateEngine.widgetDataInsert( path, {
       name             : name,
       showtopnavigation: showtopnavigation,
       showfooter       : showfooter,
@@ -150,7 +150,9 @@ design.basicdesign.addCreator('page', {
         }
       });
     }
-    container.data( 'address', address );
+    templateEngine.widgetDataInsert( path + '_', {
+      'address': address
+    });
     $( childs ).each( function(i){
         container.append( templateEngine.create_pages( childs[i], path + '_' + i, flavour, type ) );
     } );
@@ -160,24 +162,26 @@ design.basicdesign.addCreator('page', {
     return ret_val;
   },
   update: function(e, data) {
-    var element = $(this);
-    var value = basicdesign.defaultValueHandling( e, data, element.data() );
-    var type = element.data().address[ e.type ][2];
+    var 
+      element = $(this),
+      widgetData  = templateEngine.widgetDataGetByElement( element );
+    var value = basicdesign.defaultValueHandling( e, data, widgetData );
+    var type = widgetData.address[ e.type ][2];
     switch( type )
     {
       case 'azimut':
-        element.data().JSFloorPlan3D.setState('currentAzimut', value, true);
-        element.trigger( 'update3d', element.data().JSFloorPlan3D );
+        widgetData.JSFloorPlan3D.setState('currentAzimut', value, true);
+        element.trigger( 'update3d', widgetData.JSFloorPlan3D );
         break;
         
       case 'elevation':
-        element.data().JSFloorPlan3D.setState('currentElevation', value, true);
-        element.trigger( 'update3d', element.data().JSFloorPlan3D );
+        widgetData.JSFloorPlan3D.setState('currentElevation', value, true);
+        element.trigger( 'update3d', widgetData.JSFloorPlan3D );
         break;
         
       case 'floor':
-        element.data().JSFloorPlan3D.moveToRoom( value, false, true, true, function(){
-          element.trigger( 'update3d', element.data().JSFloorPlan3D );
+        widgetData.JSFloorPlan3D.moveToRoom( value, false, true, true, function(){
+          element.trigger( 'update3d', widgetData.JSFloorPlan3D );
         });
         break;
         

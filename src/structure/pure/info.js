@@ -30,13 +30,13 @@ design.basicdesign.addCreator('info', {
     ret_val.append( $actor );
     
     // initially setting a value
-    basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
+    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
     
     return ret_val;
   },
   update:   function(e,d) { 
     var element = $(this);
-    basicdesign.defaultUpdate( e, d, element, true );
+    basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
   },
   update3d: design.basicdesign.defaultUpdate3d
 });

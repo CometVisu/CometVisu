@@ -30,7 +30,7 @@ design.basicdesign.addCreator('urltrigger', {
       classes+=" "+$e.attr('align');
     }
     var ret_val = $('<div class="'+classes+'" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e );
+    basicdesign.setWidgetLayout( ret_val, $e, path );
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
@@ -51,7 +51,7 @@ design.basicdesign.addCreator('urltrigger', {
     {
       valueElement.append( $(mappedValue[i]).clone() );
     }
-    $actor.data( {
+    var data = templateEngine.widgetDataInsert( path, {
       'url'     : $(element).attr('url'), 
       'mapping' : $(element).attr('mapping'),
       'styling' : $(element).attr('styling'),
@@ -60,7 +60,7 @@ design.basicdesign.addCreator('urltrigger', {
       'params'  : $(element).attr('params'),
       'sendValue': value //value is currently ignored in XHR! maybe for multitrigger
     } );
-    templateEngine.setWidgetStyling($actor, value);
+    templateEngine.setWidgetStyling( $actor, value, data.styling );
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'click', this.action ).bind( 'mousedown', function(){
       $actor.removeClass('switchUnpressed').addClass('switchPressed');
@@ -71,13 +71,14 @@ design.basicdesign.addCreator('urltrigger', {
     return ret_val;
   },
   action: function() {
-    var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
-    data.params = data.params ? data.params : '';
+    var 
+      widgetData  = templateEngine.widgetDataGetByElement( this );
+    widgetData.params = widgetData.params ? widgetData.params : '';
     $.ajax({
     type: "GET",
     datatype: "html",
-    data: encodeURI(data.params),
-    url: data.url,
+    data: encodeURI(widgetData.params),
+    url: widgetData.url,
     success: function(data){
             //maybe do something useful with the response?
         }

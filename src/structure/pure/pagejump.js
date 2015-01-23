@@ -31,7 +31,7 @@ design.basicdesign.addCreator('pagejump', {
     var ret_val = $('<div class="'+classes+'" ' + style + '/>');
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    basicdesign.setWidgetLayout( ret_val, $e );
+    basicdesign.setWidgetLayout( ret_val, $e, path );
     var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
     var address = basicdesign.makeAddressList($e);
     var bindClickToWidget = templateEngine.bindClickToWidget;
@@ -43,13 +43,14 @@ design.basicdesign.addCreator('pagejump', {
     if( $e.attr( 'name' ) )
       actor += '<div class="value">' + $e.attr( 'name' ) + '</div>';
     actor += '</div>';
-    var $actor = $(actor).data( {
+    var $actor = $(actor);
+    var data = templateEngine.widgetDataInsert( path, {
       'styling' : $(element).attr('styling'),
       'type'    : 'pagejump',
       'align'   : $e.attr('align'),
       'target'  : target
     } );
-    templateEngine.setWidgetStyling($actor, target);
+    templateEngine.setWidgetStyling($actor, target, data.styling );
     var clickable = bindClickToWidget ? ret_val : $actor;
     clickable.bind( 'click', this.action ).bind( 'mousedown', function(){
       $actor.removeClass('switchUnpressed').addClass('switchPressed');
@@ -60,14 +61,14 @@ design.basicdesign.addCreator('pagejump', {
     return ret_val;
   },
   action: function() {
-    var data = $(this).find('.actor').size()==1 ? $(this).find('.actor').data() : $(this).data();
+    var data = templateEngine.widgetDataGetByElement( this );
     templateEngine.scrollToPage( data.target );
   }
 });
 
 $(window).bind('scrolltopage', function( event, page_id ){
   var page = $('#' + page_id);
-  var name = page.data('name');
+  var name = templateEngine.widgetData[page_id.substr(0,page_id.length-1)].name;
   
   // remove old active classes
   $('.pagejump.active').removeClass('active');
@@ -76,8 +77,8 @@ $(window).bind('scrolltopage', function( event, page_id ){
   // and set the new active ones
   $('.pagejump').each( function(){
     var $pagejump = $(this);
-    var target = $pagejump.find('.actor').data('target');
-    if( name == target )
+    var data = templateEngine.widgetDataGetByElement( this );
+    if( name == data.target )
     {
       $pagejump.addClass('active');
     }
@@ -87,11 +88,13 @@ $(window).bind('scrolltopage', function( event, page_id ){
   var parentPage = templateEngine.getParentPage(page);
   // set for all parent pages apart from the root page
   while (parentPage != null && templateEngine.getParentPage(parentPage) != null) {
-    var parentName = parentPage.data('name');
+    var 
+      parentId   = parentPage.attr('id'),
+      parentName = templateEngine.widgetData[ parentId.substr(0,parentId.length-1) ].name;
     $('.pagejump').each( function(){
       var $pagejump = $(this);
-      var target = $pagejump.find('.actor').data('target');
-      if( parentName == target )
+      var data = templateEngine.widgetDataGetByElement( this );
+      if( parentName == data.target )
       {
         $pagejump.addClass('active_ancestor');
       }

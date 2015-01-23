@@ -27,7 +27,7 @@ design.basicdesign.addCreator('group', {
     var hstyle  = '';                                     // heading style
     if( $e.attr('align') ) hstyle += 'text-align:' + $e.attr('align') + ';';
     if( hstyle != '' ) hstyle = 'style="' + hstyle + '"';
-    basicdesign.setWidgetLayout( ret_val, $e );
+    basicdesign.setWidgetLayout( ret_val, $e, path );
     if ($e.attr('nowidget')=='true') {
       ret_val.removeClass('widget');
     }
@@ -45,18 +45,18 @@ design.basicdesign.addCreator('group', {
     if ( $e.attr('target') )  {
       var target = $e.attr('target') ? $e.attr('target') : '0';
       ret_val.addClass('clickable');
-      ret_val.data( {
+    var data = templateEngine.widgetDataInsert( path, {
         'type'    : 'pagejump',
         'target'  : target
       } ).bind( 'click', this.action );
-      templateEngine.setWidgetStyling(ret_val, target);
+      templateEngine.setWidgetStyling(ret_val, target, data.styling );
     }
 
     ret_val.append( container );
     return ret_val;
   },
   action: function () {
-    var data = $(this).data();
+    var data = templateEngine.widgetDataGetByElement( this );
     if (data.target != 0) templateEngine.scrollToPage( data.target );
   } 
 });
