@@ -29,7 +29,7 @@ design.basicdesign.addCreator('infotrigger', {
     }
     var ret_val = basicdesign.createDefaultWidget( 'infotrigger', $e, path, flavour, type, this.update, makeAddressListFn );
     // and fill in widget specific data
-    ret_val.data( {
+    var data = templateEngine.widgetDataInsert( path, {
       'downvalue'     : $e.attr('downvalue' )            || 0,
       'shortdownvalue': $e.attr('shortdownvalue')        || 0,
       'downlabel'     : $e.attr('downlabel')                 ,
@@ -41,7 +41,6 @@ design.basicdesign.addCreator('infotrigger', {
       'min'           : parseFloat($e.attr('min'))       || 0,
       'max'           : parseFloat($e.attr('max'))       || 255,
     } );
-    var data = ret_val.data();
 
     // create buttons + info
     var buttons = $('<div style="float:left;"/>');
@@ -97,22 +96,22 @@ design.basicdesign.addCreator('infotrigger', {
     ret_val.append( buttons );
 
     // initially setting a value
-    basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
+    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
 
     return ret_val;
   },
 
   update: function(e,d) { 
     var element = $(this);
-    var value = basicdesign.defaultUpdate( e, d, element, true );
+    var value = basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
   },
   downaction: function(event) {
-    $(this).parent().parent().data( 'downtime', new Date().getTime() );
+     templateEngine.widgetDataGetByElement( this )['downtime'] = new Date().getTime();
   },
   action: function(event) {
     var $this      = $(this),
         buttonData = $this.data(),
-        data       = $this.parent().parent().data();
+        data       = templateEngine.widgetDataGetByElement( this );
     if( data.downtime )
     {
       var isShort = (new Date().getTime()) - data.downtime < data.shorttime;

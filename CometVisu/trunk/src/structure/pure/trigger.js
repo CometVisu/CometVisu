@@ -20,7 +20,8 @@ define( ['_common'], function( design ) {
   
 design.basicdesign.addCreator('trigger', {
   create: function( element, path, flavour, type ) {
-    var $e = $(element);
+    var 
+      $e = $(element);
     
     // create the main structure
     var makeAddressListFn = function( src, transform, mode, variant ) {
@@ -29,7 +30,7 @@ design.basicdesign.addCreator('trigger', {
     }
     var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn );
     // and fill in widget specific data
-    ret_val.data( {
+    var data = templateEngine.widgetDataInsert( path, {
       'sendValue'  : $e.attr('value' )                || 0,
       'shorttime'  : parseFloat($e.attr('shorttime')) || -1,
       'shortValue' : $e.attr('shortvalue')            || 0
@@ -41,21 +42,20 @@ design.basicdesign.addCreator('trigger', {
     
     // bind to user action
     var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
+    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
     basicdesign.createDefaultButtonAction( clickable, $actor, this.downaction, this.action );
 
     // initially setting a value
-    basicdesign.defaultUpdate(undefined, ret_val.data('sendValue'), ret_val, true);
+    basicdesign.defaultUpdate( undefined, data['sendValue'], ret_val, true, path );
     return ret_val;
   },
   downaction: function(event) {
-    $(this).parent().data( 'downtime', new Date().getTime() );
+     templateEngine.widgetDataGetByElement( this )['downtime'] = new Date().getTime();
   },
   action: function(event) {
-    var $this = $(this);
-    if( undefined === $this.data().address ) $this = $this.parent();
-    var data = $this.data();
+    var 
+      data  = templateEngine.widgetDataGetByElement( this );
     
     if( data.downtime )
     {

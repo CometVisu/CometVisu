@@ -21,11 +21,12 @@ define( ['_common'], function( design ) {
 design.basicdesign.addCreator('line', {
   create:     function( element, path, flavour, type ) {
     var $e = $(element);
-    var ret_val = $('<hr />').data({
+    var ret_val = $('<hr />');
+    var data = templateEngine.widgetDataInsert( path, {
       path: path,
       type: 'line'
     });
-    basicdesign.setWidgetLayout( ret_val, $e );
+    basicdesign.setWidgetLayout( ret_val, $e, path );
     return ret_val;
   }
 });

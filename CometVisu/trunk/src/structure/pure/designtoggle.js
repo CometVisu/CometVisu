@@ -30,21 +30,23 @@ design.basicdesign.addCreator('designtoggle', {
     var $actor = $('<div class="actor switchUnpressed"><div class="value">' + value + '</div></div>');
     ret_val.append( $actor );
 
+    var data = templateEngine.widgetDataGet( path );
+    
     // bind to user action
     var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
+    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
     basicdesign.createDefaultButtonAction( clickable, $actor, false, this.action );
 
     $.getJSON("./designs/get_designs.php",function(data) {
-      ret_val.data('availableDesigns', data);
+      data['availableDesigns'] = data;
     });
 
     return ret_val;
   },
   action: function() {
     var $this = $(this);
-    var designs = $this.parent().data('availableDesigns');
+    var designs = templateEngine.widgetDataGetByElement( this )['availableDesigns'];
 
     var oldDesign = $('.value',$this).text();
     var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];

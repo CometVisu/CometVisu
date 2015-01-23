@@ -25,7 +25,7 @@ design.basicdesign.addCreator('audio', {
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'audio', $e, path, flavour, type, this.update);
     // and fill in widget specific data
-    ret_val.data( {
+    var data = templateEngine.widgetDataInsert( path, {
       'src'     : $e.attr('src'),
       'id'      : $e.attr('id'),
       'width'   : $e.attr('width'),
@@ -34,7 +34,6 @@ design.basicdesign.addCreator('audio', {
       'loop'    : $e.attr('loop'),
       'threshold_value'  : $e.attr('threshold_value' ) || 1
     } );
-    var data = ret_val.data();
 
     // create the actor
     var style = '';
@@ -47,7 +46,7 @@ design.basicdesign.addCreator('audio', {
     ret_val.append( $actor );
 	
     // initially setting a value
-    basicdesign.defaultUpdate(undefined, undefined, ret_val, true);	
+    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
 
     return ret_val;
   },
@@ -55,10 +54,11 @@ design.basicdesign.addCreator('audio', {
   update: function(e,d) {
     var element = $(this);
     var actor   = element.find('.actor');
-    var value = basicdesign.defaultUpdate( e, d, element, true );
-    var on = templateEngine.map( element.data( 'threshold_value' ), element.data('mapping') );
+    var value = basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
+    var data  = templateEngine.widgetDataGetByElement( element );
+    var on = templateEngine.map( data[ 'threshold_value' ], data['mapping'] );
     if (value >= on){
-	var audioWidget = document.getElementById(element.data('id'));
+	var audioWidget = document.getElementById(data['id']);
 	if (audioWidget.paused == true)
 	   audioWidget.play();
     };

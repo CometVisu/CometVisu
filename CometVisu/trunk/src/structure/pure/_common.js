@@ -182,17 +182,18 @@ function VisuDesign() {
    * data:          the raw value from the bus
    * passedElement: the element to update
    */
-  this.defaultUpdate = function( ev, data, passedElement, newVersion ) 
+  this.defaultUpdate = function( ev, data, passedElement, newVersion, path ) 
   {
     ///console.log(ev, data, passedElement, newVersion );
     var element = passedElement || $(this);
+    var elementData = templateEngine.widgetData[ path ];
     var actor   = newVersion ? element.find('.actor:has(".value")') : element;
-    var value = self.defaultValueHandling( ev, data, element.data() );
+    var value = self.defaultValueHandling( ev, data, elementData );
     
-    templateEngine.setWidgetStyling( actor, element.data( 'basicvalue' ), element.data( 'styling' ) );
+    templateEngine.setWidgetStyling( actor, elementData.basicvalue, elementData.styling );
     
-    if (element.data('align'))
-      element.addClass(element.data('align'));
+    if (elementData['align'])
+      element.addClass(elementData['align']);
   
     var valueElement = element.find('.value');
     valueElement.empty();
@@ -333,10 +334,11 @@ function VisuDesign() {
    *
    * implemented: rowspan, colspan
    */
-  this.setWidgetLayout = function( element, page ) { 
-    element.data('colspan', page.children('layout').attr('colspan') || $('head').data('colspanDefault') || 6);
+  this.setWidgetLayout = function( element, page, path ) { 
+    var elementData = templateEngine.widgetDataGet( path );
+    elementData['colspan'] = page.children('layout').attr('colspan') || $('head').data('colspanDefault') || 6;
     if (page.children('layout').attr('rowspan')) {
-      element.data('rowspanClass', templateEngine.rowspanClass(page.children('layout').attr('rowspan') || 1));
+      elementData['rowspanClass'] = templateEngine.rowspanClass(page.children('layout').attr('rowspan') || 1);
       element.addClass('innerrowspan'); 
     }
     return element;
@@ -370,7 +372,7 @@ function VisuDesign() {
       classes+=" "+$element.attr('align');
     }
     var ret_val = $('<div class="'+classes+'" ' + style + '/>');
-    this.setWidgetLayout( ret_val, $element );
+    this.setWidgetLayout( ret_val, $element, path );
     if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     if($element.attr('class')) ret_val.addClass('custom_' + $element.attr('class'));
@@ -379,7 +381,7 @@ function VisuDesign() {
     //var bindClickToWidget = templateEngine.bindClickToWidget;
     //if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
 
-    ret_val.data( {
+    templateEngine.widgetDataInsert( path, {
       'address' : address,
       'bind_click_to_widget' : $element.attr('bind_click_to_widget'),
       'mapping' : $element.attr('mapping'),
@@ -388,7 +390,7 @@ function VisuDesign() {
       'align'   : $element.attr('align'),
       'path'    : path,
       'type'    : widgetType
-    } );
+    });
     ret_val.append( label );
     if (updateFn) {
       for( var addr in address ) { 

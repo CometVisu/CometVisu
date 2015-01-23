@@ -28,7 +28,7 @@ VisuDesign_Custom.prototype.addCreator("clock", {
     var that = this;
     var $p = $(page);
     var ret_val = $('<div class="widget clearfix clock" />');
-    templateEngine.design.setWidgetLayout( ret_val, $p );
+    templateEngine.design.setWidgetLayout( ret_val, $p, path );
     var labelElement = $p.find('label')[0];
     var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
     var address = {};
@@ -72,7 +72,7 @@ VisuDesign_Custom.prototype.addCreator("clock", {
   },
   update: function(e,d) { 
     var element = $(this);
-    var value = templateEngine.design.defaultUpdate( e, d, element );
+    var value = templateEngine.design.defaultUpdate( e, d, element, undefined, element.parent().attr('id') );
     var $svg = element.find('svg');
     var time = value.split(':');
     $svg.children().find('#Hour'  ).attr('transform','rotate('+((time[0]%12)*360/12+time[1]*30/60)+',50,50)');

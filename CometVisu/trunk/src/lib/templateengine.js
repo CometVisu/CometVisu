@@ -218,6 +218,37 @@ function TemplateEngine( undefined ) {
   var stylings = {}; // store the stylings
  
   var ga_list = {};
+  this.widgetData = {}; // hash to store all widget specific data
+  /**
+   * Return (reference to) widgetData object by path.
+   */
+  this.widgetDataGet = function( path ) {
+    return this.widgetData[ path ] || (this.widgetData[ path ] = {});
+  };
+  /**
+   * Return (reference to) widget data by element
+   */
+  this.widgetDataGetByElement = function( element ) {
+    var
+      parent = $(element).parent(),
+      path = parent.attr('id');
+      
+    if( path === undefined )
+      path = parent.parent().attr('id');
+    
+    return this.widgetDataGet( path );
+  };
+  /**
+   * Merge obj in the widgetData.
+   */
+  this.widgetDataInsert = function( path, obj ) {
+    var thisWidgetData = this.widgetDataGet( path );
+    
+    for( var attrname in obj )
+      thisWidgetData[ attrname ] = obj[ attrname ];
+    
+    return thisWidgetData;
+  };
   
   /**
    * Function to test if the path is in a valid form.
@@ -354,7 +385,6 @@ function TemplateEngine( undefined ) {
    * this function implements widget stylings 
    */
   this.setWidgetStyling = function(e, value, styling) {
-    if( undefined === styling ) styling = e.data('styling');
     var sty = stylings[styling];
     if (sty) {    
       e.removeClass(sty['classnames']); // remove only styling classes
@@ -451,9 +481,10 @@ function TemplateEngine( undefined ) {
   };
 
   this.adjustColumns = function() {
+    var $main = $('#main');
     if (thisTemplateEngine.enableColumnAdjustment == false) {
-      if (thisTemplateEngine.defaultColumns != $('#main').data('columns')) {
-        $('#main').data({'columns' : thisTemplateEngine.defaultColumns});
+      if (thisTemplateEngine.defaultColumns != $main.data('columns')) {
+        $main.data({'columns' : thisTemplateEngine.defaultColumns});
         return true;
       } else {
         return false;
@@ -461,7 +492,6 @@ function TemplateEngine( undefined ) {
     }
     var width = thisTemplateEngine.getAvailableWidth();
 
-    var $main = $('#main');
     var newColumns = Math.ceil(width / thisTemplateEngine.minColumnWidth);
     if (newColumns > (thisTemplateEngine.defaultColumns / 2) && thisTemplateEngine.defaultColumns > newColumns) {
       // don´t accept values between 50% and 100% of defaultColumns
@@ -877,8 +907,10 @@ function TemplateEngine( undefined ) {
     // all containers
     var allContainer = $('.widget_container');
     allContainer.each(function(i, e) {
-      var $e = $(e);
-      var ourColspan = $e.children('*:first-child').data('colspan');
+      var
+        $e = $(e),
+        data = thisTemplateEngine.widgetData[ e.id ],
+        ourColspan = data.colspan;
       if (ourColspan < 0)
         return;
       var w = 'auto';
@@ -891,8 +923,10 @@ function TemplateEngine( undefined ) {
     // and elements inside groups
     var adjustableElements = $('.group .widget_container');
     adjustableElements.each(function(i, e) {
-      var $e = $(e);
-      var ourColspan = $e.children('*:first-child').data('colspan');
+      var 
+        $e = $(e),
+        data = thisTemplateEngine.widgetData[ e.id ],
+        ourColspan = data.colspan;
       if (ourColspan < 0)
         return;
       if (ourColspan == undefined) {

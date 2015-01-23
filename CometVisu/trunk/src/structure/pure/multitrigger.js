@@ -26,7 +26,7 @@ design.basicdesign.addCreator('multitrigger', {
     var showstatus = $e.attr('showstatus') === 'true',
         ret_val    = basicdesign.createDefaultWidget( 'multitrigger', $e, path, flavour, type, showstatus ? this.update : undefined );
     // and fill in widget specific data
-    ret_val.data( {
+    var data = templateEngine.widgetDataInsert( path, {
       showstatus  : showstatus,
       button1label: $e.attr('button1label'),
       button1value: $e.attr('button1value'),
@@ -37,7 +37,6 @@ design.basicdesign.addCreator('multitrigger', {
       button4label: $e.attr('button4label'),
       button4value: $e.attr('button4value')
     } );
-    var data = ret_val.data();
     
     // create the actor
     var buttons = $('<div class="actor_container" style="float:left"/>');
@@ -107,7 +106,7 @@ design.basicdesign.addCreator('multitrigger', {
   },
   update: function(e,d) { 
     var element = $(this),
-        data    = element.data(),
+        data  = templateEngine.widgetDataGetByElement( element ),
         thisTransform = data.address[ e.type ][0],
         value = templateEngine.transformDecode( thisTransform, d );
         
@@ -120,8 +119,8 @@ design.basicdesign.addCreator('multitrigger', {
   },
   action: function() {
     var $this = $(this),
-        data  = $this.parent().parent().data(),
-        value = $this.data('value');
+        data  = templateEngine.widgetDataGetByElement( this ),
+        value = data['value'];
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set

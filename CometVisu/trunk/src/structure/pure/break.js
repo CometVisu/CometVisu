@@ -20,10 +20,11 @@ define( ['_common'], function( design ) {
   
 design.basicdesign.addCreator('break', {
   create: function( element, path, flavour, type ) {
-    return $( '<br />' ).data({
+    var data = templateEngine.widgetDataInsert( path, {
       path: path,
       type: 'break'
     });
+    return $( '<br />' );
   }
 });
 

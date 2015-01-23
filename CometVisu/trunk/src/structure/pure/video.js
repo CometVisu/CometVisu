@@ -25,13 +25,12 @@ design.basicdesign.addCreator('video', {
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'video', $e, path, flavour, type );
     // and fill in widget specific data
-    ret_val.data( {
+    var data = templateEngine.widgetDataInsert( path, {
       'width'   : $e.attr('with'),
       'height'  : $e.attr('height'),
       'src'     : $e.attr('src'),
       'autoplay': $e.attr('autoplay')
     } );
-    var data = ret_val.data();
     
     // create the actor
     var style = '';

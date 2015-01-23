@@ -25,7 +25,7 @@ design.basicdesign.addCreator('pushbutton', {
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'pushbutton', $e, path, flavour, type, this.update );
     // and fill in widget specific data
-    ret_val.data( {
+    var data = templateEngine.widgetDataInsert( path, {
       'downValue'  : $e.attr('downValue' ) || 1,
       'upValue' : $e.attr('upValue') || 0
     } );
@@ -36,27 +36,26 @@ design.basicdesign.addCreator('pushbutton', {
 
     // bind to user action
     var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( ret_val.data('bind_click_to_widget') ) bindClickToWidget = ret_val.data('bind_click_to_widget')==='true';
+    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
     var clickable = bindClickToWidget ? ret_val : $actor;
     basicdesign.createDefaultButtonAction( clickable, $actor, this.downAction, this.upAction );
 
     // initially setting a value
-    basicdesign.defaultUpdate(undefined, undefined, ret_val, true);
+    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
 
     return ret_val;
   },
   update: function(e,d) { 
-    var element = $(this);
+    var element = $(this),
+        data  = templateEngine.widgetDataGetByElement( element );
     var actor   = element.find('.actor');
-    var value = basicdesign.defaultUpdate( e, d, element, true );
-    var off = templateEngine.map( element.data( 'upValue' ), element.data('mapping') );
+    var value = basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
+    var off = templateEngine.map( data['upValue'], data['mapping'] );
     actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
   downAction: function() {
-    var $this = $(this);
-    var data  = $this.data();
-    if (undefined === data.address) data = $this.parent().data();
+    var data = templateEngine.widgetDataGetByElement( this );
 
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
@@ -64,9 +63,7 @@ design.basicdesign.addCreator('pushbutton', {
     }
   },
   upAction: function() {
-    var $this = $(this);
-    var data  = $this.data();
-    if (undefined === data.address) data = $this.parent().data();
+    var data = templateEngine.widgetDataGetByElement( this );
 
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set

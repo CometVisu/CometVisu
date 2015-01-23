@@ -34,7 +34,7 @@ define( ['structure_custom', 'css!plugins/strftime/strftime' ], function( VisuDe
         ret_val.addClass('custom_'+$p.attr('class'));
       }
 
-      templateEngine.design.setWidgetLayout(ret_val, $p);
+      templateEngine.design.setWidgetLayout(ret_val, $p, path);
       var actor = $('<div id="' + id + '" class="strftime_value"></div>');
       ret_val.append(actor);
 

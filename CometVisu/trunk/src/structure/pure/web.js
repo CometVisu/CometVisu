@@ -32,7 +32,7 @@ design.basicdesign.addCreator('web', {
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var ret_val = $('<div class="widget web" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e );
+    basicdesign.setWidgetLayout( ret_val, $e, path );
 
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
@@ -55,20 +55,23 @@ design.basicdesign.addCreator('web', {
     var $actor = $('<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>');
     for( var addr in address ) $actor.bind( addr, this.update );
     var actor = $actor;
-    actor.data( 'address', address );
   
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
-    ret_val.append( $(actor).data( {
+    var data = templateEngine.widgetDataInsert( path, {
+      'address': address,
       'refresh': refresh
-    } ).each(templateEngine.setupRefreshAction) ); // abuse "each" to call in context...
+    } );
+    ret_val.append( $(actor).each(templateEngine.setupRefreshAction) ); // abuse "each" to call in context...
 
 
     return ret_val;
   },
   update: function(e, data) {
-    var element = $(this);
-    var value = basicdesign.defaultValueHandling( e, data, element.data() );
-    var type = element.data().address[ e.type ][2];
+    var 
+      element    = $(this),
+      widgetData = templateEngine.widgetDataGetByElement( element ),
+      value      = basicdesign.defaultValueHandling( e, data, widgetData ),
+      type       = widgetData.address[ e.type ][2];
     switch( type )
     {
       default:
