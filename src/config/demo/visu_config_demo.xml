@@ -139,10 +139,10 @@
       <line>
         <layout colspan="12"/>
       </line>
-      <pagejump target="id_36_7_" name="Lithium">
+      <pagejump target="id_40_7_" name="Lithium">
         <label>Flavour</label>
       </pagejump>
-      <pagejump target="id_36_8_" name="Potassium">
+      <pagejump target="id_40_8_" name="Potassium">
         <label>Flavour</label>
       </pagejump>
       <pagejump target="2D fixed Bitmap" name="2D">
@@ -1103,10 +1103,10 @@
         <line>
           <layout colspan="12"/>
         </line>
-        <pagejump target="id_0_36_7" name="Lithium">
+        <pagejump target="id_0_40_7" name="Lithium">
           <label>Flavour</label>
         </pagejump>
-        <pagejump target="id_0_36_8" name="Potassium">
+        <pagejump target="id_0_40_8" name="Potassium">
           <label>Flavour</label>
         </pagejump>
         <pagejump target="2D fixed Bitmap">
@@ -1124,10 +1124,10 @@
           <line>
             <layout colspan="12"/>
           </line>
-          <pagejump target="id_0_36_7" name="Lithium">
+          <pagejump target="id_0_40_7" name="Lithium">
             <label>Flavour</label>
           </pagejump>
-          <pagejump target="id_0_36_8" name="Potassium">
+          <pagejump target="id_0_40_8" name="Potassium">
             <label>Flavour</label>
           </pagejump>
           <pagejump target="2D fixed Bitmap">
