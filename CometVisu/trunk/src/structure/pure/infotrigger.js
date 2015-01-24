@@ -106,22 +106,25 @@ design.basicdesign.addCreator('infotrigger', {
     var value = basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
   },
   downaction: function(event) {
-     templateEngine.widgetDataGetByElement( this )['downtime'] = new Date().getTime();
+     templateEngine.widgetDataGetByElement( $(this).parent() )['downtime'] = new Date().getTime();
   },
   action: function(event) {
     var $this      = $(this),
-        buttonData = $this.data(),
-        data       = templateEngine.widgetDataGetByElement( this );
+        isDown     = $this.hasClass('downlabel'),
+        //buttonData = $this.data(),
+        data       = templateEngine.widgetDataGetByElement( $this.parent() ),
+        buttonDataValue      = data[ isDown ? 'downvalue'      : 'upvalue'      ],
+        buttonDataShortvalue = data[ isDown ? 'shortdownvalue' : 'shortupvalue' ];
     if( data.downtime )
     {
       var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
-      var value = isShort ? buttonData.shortvalue : buttonData.value;
+      var value = isShort ? buttonDataShortvalue : buttonDataValue;
       if( data.isAbsolute )
       {
         value = parseFloat(data.basicvalue);
         if( isNaN( value ) )
           value = 0; // anything is better than NaN...
-        value = value + parseFloat(isShort ? buttonData.shortvalue : buttonData.value);
+        value = value + parseFloat(isShort ? buttonDataShortvalue : buttonDataValue);
         if (value < data.min ) value = data.min;
         if( value > data.max ) value = data.max;
       }
