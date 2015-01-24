@@ -149,28 +149,31 @@ define([ 'jquery' ], function( $ ) {
     var showtopnavigation = true;
     var showfooter = true;
     var shownavbar = thisPagePartsHandler.getNavbarsVisibility(page);
-    if (page.data() != null) {
-      if (page.data().showtopnavigation != undefined) {
-        showtopnavigation = page.data().showtopnavigation != "false";
+    var pageData = templateEngine.widgetDataGet(page.attr('id'));
+    if (pageData != null) {
+      if (pageData.showtopnavigation != undefined) {
+        showtopnavigation = pageData.showtopnavigation != "false";
       } else {
         // traverse up the page tree
         var parentPage = templateEngine.getParentPage(page);
         while (parentPage != null) {
-          if (parentPage.data().showtopnavigation != undefined) {
-            showtopnavigation = parentPage.data().showtopnavigation != "false";
+          var parentData = templateEngine.widgetDataGet(parentPage.attr('id'));
+          if (parentData.showtopnavigation != undefined) {
+            showtopnavigation = parentData != "false";
             break;
           }
           parentPage = templateEngine.getParentPage(parentPage);
         }
       }
-      if (page.data().showfooter != undefined) {
-        showfooter = page.data().showfooter != "false";
+      if (pageData.showfooter != undefined) {
+        showfooter = pageData.showfooter != "false";
       } else {
         // traverse up the page tree
         var parentPage = templateEngine.getParentPage(page);
         while (parentPage != null) {
-          if (parentPage.data().showfooter != undefined) {
-            showfooter = parentPage.data().showfooter != "false";
+          var parentData = templateEngine.widgetDataGet(parentPage.attr('id'));
+          if (parentData.showfooter != undefined) {
+            showfooter = parentData.showfooter != "false";
             break;
           }
           parentPage = templateEngine.getParentPage(parentPage);
