@@ -481,10 +481,12 @@ function TemplateEngine( undefined ) {
   };
 
   this.adjustColumns = function() {
-    var $main = $('#main');
+    var $mainData = templateEngine.widgetDataGet('main');
     if (thisTemplateEngine.enableColumnAdjustment == false) {
-      if (thisTemplateEngine.defaultColumns != $main.data('columns')) {
-        $main.data({'columns' : thisTemplateEngine.defaultColumns});
+      if (thisTemplateEngine.defaultColumns != $mainData.columns) {
+        templateEngine.widgetDataInsert('main', {
+          columns : thisTemplateEngine.defaultColumns
+        });
         return true;
       } else {
         return false;
@@ -506,9 +508,9 @@ function TemplateEngine( undefined ) {
       // make sure that newColumns does not exceed defaultColumns
       newColumns = Math.min(thisTemplateEngine.defaultColumns, newColumns);
     }
-    if (newColumns != $main.data('columns')) {
-      $main.data({
-        'columns' : newColumns
+    if (newColumns != $mainData.columns) {
+      templateEngine.widgetDataInsert('main', {
+        columns : newColumns
       });
       return true;
     } else {
@@ -671,7 +673,6 @@ function TemplateEngine( undefined ) {
 
     /*
      * First, we try to get a design by url. Secondly, we try to get a predefined
-     * design in the config file. Otherwise we show the design selection dialog.
      */
     // read predefined design in config
     var predefinedDesign = $('pages', xml).attr("design");
@@ -909,13 +910,13 @@ function TemplateEngine( undefined ) {
     allContainer.each(function(i, e) {
       var
         $e = $(e),
-        data = thisTemplateEngine.widgetData[ e.id ],
+        data = thisTemplateEngine.widgetDataGet( e.id ),
         ourColspan = data.colspan;
       if (ourColspan < 0)
         return;
       var w = 'auto';
       if (ourColspan > 0) {
-        var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || thisTemplateEngine.defaultColumns;
+        var areaColspan = thisTemplateEngine.widgetDataGet('main').columns || thisTemplateEngine.defaultColumns;
         w = Math.min(100, ourColspan / areaColspan * 100) + '%';
       }
       $e.css('width', w);
@@ -931,13 +932,13 @@ function TemplateEngine( undefined ) {
         return;
       if (ourColspan == undefined) {
         // workaround for nowidget groups
-        ourColspan = $e.children('.group').data('colspan');
+        ourColspan =  thisTemplateEngine.widgetDataGetByElement($e.children('.group')).colspan;
       }
       var w = 'auto';
       if (ourColspan > 0) {
-        var areaColspan = $e.parentsUntil('#centerContainer').last().data('columns') || thisTemplateEngine.defaultColumns;
-        var groupColspan = Math.min(areaColspan, $e.parentsUntil(
-            '.widget_container', '.group').data('colspan'));
+        var areaColspan = thisTemplateEngine.widgetDataGet('main').columns || thisTemplateEngine.defaultColumns;
+        var groupColspan = Math.min(areaColspan, thisTemplateEngine.widgetDataGetByElement($e.parentsUntil(
+            '.widget_container', '.group')).colspan);
         w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
       }
       $e.css('width', w);

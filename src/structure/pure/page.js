@@ -87,7 +87,7 @@ design.basicdesign.addCreator('page', {
 
     var childs = $p.children().not('layout');
     var subpage = $( '<div class="page type_' + type + '" id="' + path + '_"/>' );
-    var data = templateEngine.widgetDataInsert( path, {
+    var data = templateEngine.widgetDataInsert( path + '_', {
       name             : name,
       showtopnavigation: showtopnavigation,
       showfooter       : showfooter,
