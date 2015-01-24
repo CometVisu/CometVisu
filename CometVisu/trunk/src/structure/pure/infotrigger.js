@@ -51,10 +51,6 @@ design.basicdesign.addCreator('infotrigger', {
     actordown += '>';
     actordown += '<div class="label">' + (data.downlabel || '-') + '</div>';
     actordown += '</div>';
-    var $actordown = $(actordown).data({
-      'value'     : data.downvalue,
-      'shortvalue': data.shortdownvalue
-    });
     basicdesign.createDefaultButtonAction( $actordown, $actordown, this.downaction, this.action );
 
     var actorup = '<div class="actor switchUnpressed uplabel" ';
@@ -63,10 +59,6 @@ design.basicdesign.addCreator('infotrigger', {
     actorup += '>';
     actorup += '<div class="label">' + (data.uplabel || '+') + '</div>';
     actorup += '</div>';
-    var $actorup = $(actorup).data({
-      'value'     : data.upvalue,
-      'shortvalue': data.shortupvalue
-    });
     basicdesign.createDefaultButtonAction( $actorup, $actorup, this.downaction, this.action );
 
     var actorinfo = '<div class="actor switchInvisible " ';
@@ -111,7 +103,6 @@ design.basicdesign.addCreator('infotrigger', {
   action: function(event) {
     var $this      = $(this),
         isDown     = $this.hasClass('downlabel'),
-        //buttonData = $this.data(),
         data       = templateEngine.widgetDataGetByElement( $this.parent() ),
         buttonDataValue      = data[ isDown ? 'downvalue'      : 'upvalue'      ],
         buttonDataShortvalue = data[ isDown ? 'shortdownvalue' : 'shortupvalue' ];
