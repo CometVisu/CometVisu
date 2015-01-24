@@ -51,8 +51,7 @@ design.basicdesign.addCreator('multitrigger', {
       
       actor += '<div class="value">' + data.button1label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).data( { value: data.button1value } )
-                           .bind( 'click', this.action );
+      var $actor = $(actor).bind( 'click', this.action );
       buttons.append( $actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
@@ -66,8 +65,7 @@ design.basicdesign.addCreator('multitrigger', {
       
       actor += '<div class="value">' + data.button2label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).data( { value: data.button2value } )
-                           .bind( 'click', this.action );
+      var $actor = $(actor).bind( 'click', this.action );
       buttons.append( $actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
@@ -81,8 +79,7 @@ design.basicdesign.addCreator('multitrigger', {
       
       actor += '<div class="value">' + data.button3label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).data( { value: data.button3value } )
-                           .bind( 'click', this.action );
+      var $actor = $(actor).bind( 'click', this.action );
       buttons.append( $actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
@@ -96,8 +93,7 @@ design.basicdesign.addCreator('multitrigger', {
       
       actor += '<div class="value">' + data.button4label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).data( { value: data.button4value } )
-                           .bind( 'click', this.action );
+      var $actor = $(actor).bind( 'click', this.action );
       buttons.append( $actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
@@ -106,21 +102,23 @@ design.basicdesign.addCreator('multitrigger', {
   },
   update: function(e,d) { 
     var element = $(this),
-        data  = templateEngine.widgetDataGetByElement( element ),
+        data  = templateEngine.widgetDataGetByElement( this ),
         thisTransform = data.address[ e.type ][0],
         value = templateEngine.transformDecode( thisTransform, d );
         
     element.find('.actor').each( function(){
       var $this     = $(this),
-          isPressed = value === $this.data('value');
+          index = $this.index() < 3 ? $this.index()+1 : $this.index(),
+          isPressed = value === data['button'+index+'value'];
       $this.removeClass( isPressed ? 'switchUnpressed' : 'switchPressed' )
            .addClass(    isPressed ? 'switchPressed' : 'switchUnpressed' );
     });
   },
   action: function() {
     var $this = $(this),
-        data  = templateEngine.widgetDataGetByElement( this ),
-        value = data['value'];
+        data  = templateEngine.widgetDataGetByElement( $this.parent() ),
+        index = $this.index() < 3 ? $this.index()+1 : $this.index(),
+        value = data['button'+index+'value'];
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
