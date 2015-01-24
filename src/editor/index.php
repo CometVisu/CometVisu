@@ -36,6 +36,24 @@ define('CONFIG_FILENAME', '../config/visu_config%s.xml');
 define('DEMO_FILENAME', '../config/demo/visu_config%s.xml');
 define('SCHEMA_FILENAME', './%s');
 
+// helper function to simplify a path in itself
+function simplifyPath( $path ) {
+  $ret = array();
+  foreach( explode( '/', $path ) as $p )
+  {
+    if( $p == '..' )
+      array_pop( $ret );
+    else if( $p != '.' && strlen( $p ) )
+      array_push( $ret, $p );
+  }
+  $ret = implode( '/', $ret );
+  
+  if( $path[0] == '/' )
+    $ret = '/' . $ret;
+  
+  return $ret;
+}
+
 // flag to define if a real config file or a demo is opened
 $isDemo = false;
 
@@ -49,6 +67,9 @@ if (false === empty($strConfigCleaned)) {
     // prefix the postfix with an underscore
     $strConfigCleaned = '_' . $strConfigCleaned;
 }
+
+// relative path (not affected by symlinks)
+$strConfigPath = realpath( '.' ) . '/../config/';
 
 // generate the configurations filename
 $strConfigFilename = sprintf(CONFIG_FILENAME, $strConfigCleaned);
@@ -91,8 +112,13 @@ if ($intConfigurationVersion < LIBRARY_VERSION) {
 }
 
 $strSchemaFilename = sprintf(SCHEMA_FILENAME, $strSchemaFile);
+
+if( '.xsd' !== substr( $strSchemaFilename, -4 ) ) {
+    exitWithError('schema-filename of config-file is not compliant \'' . $strSchemaFilename. '\'.');
+}
+
 // .. as a fully qualified filename
-$strSchemaFQFilename = realpath(pathinfo($strConfigFQFilename, PATHINFO_DIRNAME) . '/' . $strSchemaFilename);
+$strSchemaFQFilename = realpath( simplifyPath( $strConfigPath . $strSchemaFilename) );
 
 if (false === is_readable($strSchemaFQFilename)) {
     exitWithError('schema-file of config-file does not exist \'' . $strSchemaFQFilename . '\' (\'' . $strSchemaFilename. '\').');
