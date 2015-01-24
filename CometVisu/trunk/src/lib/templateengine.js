@@ -481,12 +481,10 @@ function TemplateEngine( undefined ) {
   };
 
   this.adjustColumns = function() {
-    var $mainData = templateEngine.widgetDataGet('main');
+    var data = $('#main').data();
     if (thisTemplateEngine.enableColumnAdjustment == false) {
-      if (thisTemplateEngine.defaultColumns != $mainData.columns) {
-        templateEngine.widgetDataInsert('main', {
-          columns : thisTemplateEngine.defaultColumns
-        });
+      if (thisTemplateEngine.defaultColumns != data.columns) {
+        data.columns = thisTemplateEngine.defaultColumns;
         return true;
       } else {
         return false;
@@ -508,10 +506,8 @@ function TemplateEngine( undefined ) {
       // make sure that newColumns does not exceed defaultColumns
       newColumns = Math.min(thisTemplateEngine.defaultColumns, newColumns);
     }
-    if (newColumns != $mainData.columns) {
-      templateEngine.widgetDataInsert('main', {
-        columns : newColumns
-      });
+    if (newColumns != data.columns) {
+        data.columns = newColumns;
       return true;
     } else {
       return false;
@@ -906,7 +902,10 @@ function TemplateEngine( undefined ) {
    */
   this.applyColumnWidths = function() {
     // all containers
-    var allContainer = $('.widget_container');
+    ['#navbarTop', '#navbarLeft', '#main', '#navbarRight', '#navbarBottom'].forEach( function( area ){
+      var 
+        allContainer = $(area + ' .widget_container'),
+        areaColumns = $( area ).data( 'columns' );
     allContainer.each(function(i, e) {
       var
         $e = $(e),
@@ -916,7 +915,7 @@ function TemplateEngine( undefined ) {
         return;
       var w = 'auto';
       if (ourColspan > 0) {
-        var areaColspan = thisTemplateEngine.widgetDataGet('main').columns || thisTemplateEngine.defaultColumns;
+        var areaColspan = areaColumns || thisTemplateEngine.defaultColumns;
         w = Math.min(100, ourColspan / areaColspan * 100) + '%';
       }
       $e.css('width', w);
@@ -936,12 +935,13 @@ function TemplateEngine( undefined ) {
       }
       var w = 'auto';
       if (ourColspan > 0) {
-        var areaColspan = thisTemplateEngine.widgetDataGet('main').columns || thisTemplateEngine.defaultColumns;
+        var areaColspan = areaColumns || thisTemplateEngine.defaultColumns;
         var groupColspan = Math.min(areaColspan, thisTemplateEngine.widgetDataGetByElement($e.parentsUntil(
             '.widget_container', '.group')).colspan);
         w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
       }
       $e.css('width', w);
+    });
     });
   };
 

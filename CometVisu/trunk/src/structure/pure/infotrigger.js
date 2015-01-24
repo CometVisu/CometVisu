@@ -51,6 +51,7 @@ design.basicdesign.addCreator('infotrigger', {
     actordown += '>';
     actordown += '<div class="label">' + (data.downlabel || '-') + '</div>';
     actordown += '</div>';
+    var $actordown = $(actordown);
     basicdesign.createDefaultButtonAction( $actordown, $actordown, this.downaction, this.action );
 
     var actorup = '<div class="actor switchUnpressed uplabel" ';
@@ -59,6 +60,7 @@ design.basicdesign.addCreator('infotrigger', {
     actorup += '>';
     actorup += '<div class="label">' + (data.uplabel || '+') + '</div>';
     actorup += '</div>';
+    var $actorup = $(actorup);
     basicdesign.createDefaultButtonAction( $actorup, $actorup, this.downaction, this.action );
 
     var actorinfo = '<div class="actor switchInvisible " ';
