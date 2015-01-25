@@ -20,14 +20,15 @@ define( ['_common'], function( design ) {
   
 design.basicdesign.addCreator('line', {
   create:     function( element, path, flavour, type ) {
-    var $e = $(element);
-    var ret_val = $('<hr />');
-    var data = templateEngine.widgetDataInsert( path, {
+    var 
+      $e = $(element),
+      classes = basicdesign.setWidgetLayout( $e, path ),
+      ret_val = '<hr ' + (classes ? 'class="'+classes+'"' : '') + '/>';
+    templateEngine.widgetDataInsert( path, {
       path: path,
       type: 'line'
     });
-    basicdesign.setWidgetLayout( ret_val, $e, path );
-    return ret_val;
+    return $(ret_val);
   }
 });
 

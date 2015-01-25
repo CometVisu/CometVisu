@@ -22,12 +22,12 @@ design.basicdesign.addCreator('group', {
   maturity: design.Maturity.development,
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var ret_val = $('<div class="widget clearfix group" />');
+    var classes = basicdesign.setWidgetLayout( $e, path );
+    var ret_val = $('<div class="widget clearfix group '+(classes?classes:'')+'" />');
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     var hstyle  = '';                                     // heading style
     if( $e.attr('align') ) hstyle += 'text-align:' + $e.attr('align') + ';';
     if( hstyle != '' ) hstyle = 'style="' + hstyle + '"';
-    basicdesign.setWidgetLayout( ret_val, $e, path );
     if ($e.attr('nowidget')=='true') {
       ret_val.removeClass('widget');
     }

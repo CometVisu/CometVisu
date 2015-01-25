@@ -29,8 +29,9 @@ design.basicdesign.addCreator('urltrigger', {
     if( $e.attr('align') ) {
       classes+=" "+$e.attr('align');
     }
+    var layoutClass = basicdesign.setWidgetLayout( $e, path );
+    if( layoutClass ) classes += ' ' + layoutClass;
     var ret_val = $('<div class="'+classes+'" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e, path );
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = basicdesign.extractLabel( $e.find('label')[0], flavour );

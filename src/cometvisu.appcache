@@ -1,7 +1,7 @@
 CACHE MANIFEST
 # Version SVN:20150125-0009
 
-CACHE:
+#CACHE:
 index.html
 visu_config.xsd
 dependencies/require-2.1.15.min.js
