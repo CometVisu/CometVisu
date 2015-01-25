@@ -159,7 +159,7 @@ define([ 'jquery' ], function( $ ) {
         while (parentPage != null) {
           var parentData = templateEngine.widgetDataGet(parentPage.attr('id'));
           if (parentData.showtopnavigation != undefined) {
-            showtopnavigation = parentData != "false";
+            showtopnavigation = parentData.showtopnavigation != "false";
             break;
           }
           parentPage = templateEngine.getParentPage(parentPage);
