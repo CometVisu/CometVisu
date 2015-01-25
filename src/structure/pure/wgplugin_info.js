@@ -23,11 +23,11 @@ design.basicdesign.addCreator('wgplugin_info', {
     var $e = $(element);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    var ret_val = $('<div class="widget clearfix info" ' + style + ' />');
+    var classes = basicdesign.setWidgetLayout( $e, path );
+    var ret_val = $('<div class="widget clearfix info '+(classes?classes:'')+'" ' + style + ' />');
     //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );
     type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: basicdesign.extractLayout3d( layout )}, this.update3d );
     
-    basicdesign.setWidgetLayout( ret_val, $e, path );
     basicdesign.makeWidgetLabel( ret_val, $e, flavour );
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );

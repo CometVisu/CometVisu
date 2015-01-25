@@ -20,9 +20,10 @@ define( ['_common'], function( design ) {
   
 design.basicdesign.addCreator('imagetrigger', {
   create: function( element, path, flavour, type ) { 
-    var $e = $(element);
-    var ret_val = $('<div class="widget clearfix image" />');
-    basicdesign.setWidgetLayout( ret_val, $e, path );
+    var 
+      $e = $(element),
+      classes = basicdesign.setWidgetLayout( $e, path ),
+      ret_val = $('<div class="widget clearfix image '+(classes?classes:'')+'" />');
     ret_val.addClass ('imagetrigger');
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );

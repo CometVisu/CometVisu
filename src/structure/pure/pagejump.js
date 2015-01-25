@@ -28,10 +28,11 @@ design.basicdesign.addCreator('pagejump', {
     if( $e.attr('align') ) {
       classes+=" "+$e.attr('align');
     }
+    var layoutClass = basicdesign.setWidgetLayout( $e, path );
+    if( layoutClass ) classes += ' ' + layoutClass;
     var ret_val = $('<div class="'+classes+'" ' + style + '/>');
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    basicdesign.setWidgetLayout( ret_val, $e, path );
     var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
     var address = basicdesign.makeAddressList($e);
     var bindClickToWidget = templateEngine.bindClickToWidget;

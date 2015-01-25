@@ -31,8 +31,8 @@ design.basicdesign.addCreator('web', {
 
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    var ret_val = $('<div class="widget web" ' + style + '/>');
-    basicdesign.setWidgetLayout( ret_val, $e, path );
+    var classes = basicdesign.setWidgetLayout( $e, path );
+    var ret_val = $('<div class="widget web '+(classes?classes:'')+'" ' + style + '/>');
 
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );

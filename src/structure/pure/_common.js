@@ -333,15 +333,18 @@ function VisuDesign() {
    * this function implements all widget layouts that are identical (JNK)
    *
    * implemented: rowspan, colspan
+   * @return String to add to classes
    */
-  this.setWidgetLayout = function( element, page, path ) { 
-    var elementData = templateEngine.widgetDataGet( path );
+  this.setWidgetLayout = function( page, path ) { 
+    var 
+      elementData = templateEngine.widgetDataGet( path ),
+      ret_val = '';
     elementData['colspan'] = page.children('layout').attr('colspan') || $('head').data('colspanDefault') || 6;
     if (page.children('layout').attr('rowspan')) {
       elementData['rowspanClass'] = templateEngine.rowspanClass(page.children('layout').attr('rowspan') || 1);
-      element.addClass('innerrowspan'); 
+      ret_val = 'innerrowspan'; 
     }
-    return element;
+    return ret_val;
   };
   
   /**
@@ -371,8 +374,8 @@ function VisuDesign() {
     if( $element.attr('align') ) {
       classes+=" "+$element.attr('align');
     }
+    classes += ' ' + this.setWidgetLayout( $element, path );
     var ret_val = $('<div class="'+classes+'" ' + style + '/>');
-    this.setWidgetLayout( ret_val, $element, path );
     if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     if($element.attr('class')) ret_val.addClass('custom_' + $element.attr('class'));
