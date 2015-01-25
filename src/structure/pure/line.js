@@ -25,8 +25,7 @@ design.basicdesign.addCreator('line', {
       classes = basicdesign.setWidgetLayout( $e, path ),
       ret_val = '<hr ' + (classes ? 'class="'+classes+'"' : '') + '/>';
     templateEngine.widgetDataInsert( path, {
-      path: path,
-      type: 'line'
+      path: path
     });
     return ret_val;
   }

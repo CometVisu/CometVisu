@@ -391,8 +391,7 @@ function VisuDesign() {
       'styling' : $element.attr('styling'),
       'format'  : $element.attr('format'),
       'align'   : $element.attr('align'),
-      'path'    : path,
-      'type'    : widgetType
+      'path'    : path
     });
     ret_val.append( label );
     if (updateFn) {

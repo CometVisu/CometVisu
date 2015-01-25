@@ -50,7 +50,6 @@ design.basicdesign.addCreator('imagetrigger', {
       'refresh':   refresh,
       'src':       $e.attr('src'),
       'suffix':    $e.attr('suffix'),
-      'type':      $e.attr('type'),
       'sendValue': $e.attr('sendValue') || ""
     } );
     var clickable = bindClickToWidget ? ret_val : $actor;

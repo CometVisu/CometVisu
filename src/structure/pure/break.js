@@ -21,8 +21,7 @@ define( ['_common'], function( design ) {
 design.basicdesign.addCreator('break', {
   create: function( element, path, flavour, type ) {
     var data = templateEngine.widgetDataInsert( path, {
-      path: path,
-      type: 'break'
+      path: path
     });
     return '<br />';
   }
