@@ -28,7 +28,7 @@ design.basicdesign.addCreator('line', {
       path: path,
       type: 'line'
     });
-    return $(ret_val);
+    return ret_val;
   }
 });
 
