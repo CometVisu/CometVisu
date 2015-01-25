@@ -22,7 +22,6 @@ design.basicdesign.addCreator('break', {
   create: function( element, path, flavour, type ) {
     var data = templateEngine.widgetDataInsert( path, {
       path: path,
-      type: 'break'
     });
     return $( '<br />' );
   }

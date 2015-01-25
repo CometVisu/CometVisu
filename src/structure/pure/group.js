@@ -46,7 +46,6 @@ design.basicdesign.addCreator('group', {
       var target = $e.attr('target') ? $e.attr('target') : '0';
       ret_val.addClass('clickable');
     var data = templateEngine.widgetDataInsert( path, {
-        'type'    : 'pagejump',
         'target'  : target
       } ).bind( 'click', this.action );
       templateEngine.setWidgetStyling(ret_val, target, data.styling );

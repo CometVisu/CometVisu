@@ -26,8 +26,7 @@ design.basicdesign.addCreator('text', {
     var classes = basicdesign.setWidgetLayout( $e, path );
     var ret_val = $('<div class="widget clearfix text '+(classes?classes:'')+'" ' + style + '/>');
     var data = templateEngine.widgetDataInsert( path, {
-      path: path,
-      type: 'text'
+      path: path
     });
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );

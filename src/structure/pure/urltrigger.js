@@ -56,7 +56,6 @@ design.basicdesign.addCreator('urltrigger', {
       'url'     : $(element).attr('url'), 
       'mapping' : $(element).attr('mapping'),
       'styling' : $(element).attr('styling'),
-      'type'    : 'urltrigger',
       'align'   : $e.attr('align'),
       'params'  : $(element).attr('params'),
       'sendValue': value //value is currently ignored in XHR! maybe for multitrigger
