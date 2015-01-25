@@ -1097,12 +1097,14 @@ function TemplateEngine( undefined ) {
 
     if( undefined === retval )
       return;
-    var data = thisTemplateEngine.widgetDataGet(path);
+    
+    var data = thisTemplateEngine.widgetDataGet( path );
+    data.type = page.nodeName;
     retval = jQuery(
       '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
       + ('break' === data.type ? 'break_container' : '') // special case for break widget
-      + '" id="'+path+'"/>').data('type', page.nodeName).append(retval);
+      + '" id="'+path+'"/>').append(retval);
     return retval;
   };
 
