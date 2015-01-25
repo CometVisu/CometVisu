@@ -24,7 +24,7 @@ design.basicdesign.addCreator('break', {
       path: path,
       type: 'break'
     });
-    return $( '<br />' );
+    return '<br />';
   }
 });
 
