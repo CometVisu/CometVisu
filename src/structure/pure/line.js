@@ -27,7 +27,7 @@ design.basicdesign.addCreator('line', {
     templateEngine.widgetDataInsert( path, {
       path: path
     });
-    return $(ret_val);
+    return ret_val;
   }
 });
 

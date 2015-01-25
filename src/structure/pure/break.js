@@ -23,7 +23,7 @@ design.basicdesign.addCreator('break', {
     var data = templateEngine.widgetDataInsert( path, {
       path: path
     });
-    return $( '<br />' );
+    return '<br />';
   }
 });
 

@@ -1097,7 +1097,8 @@ function TemplateEngine( undefined ) {
 
     if( undefined === retval )
       return;
-    var data = thisTemplateEngine.widgetDataGet(path);
+    
+    var data = thisTemplateEngine.widgetDataGet( path );
     data.type = page.nodeName;
     retval = jQuery(
       '<div class="widget_container '
