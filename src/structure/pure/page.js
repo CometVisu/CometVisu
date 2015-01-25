@@ -75,8 +75,8 @@ design.basicdesign.addCreator('page', {
     else { // default is visible
       var layout = $p.children('layout')[0];
       var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-      ret_val = $('<div class="widget clearfix link pagelink" ' + style + '/>');
-      basicdesign.setWidgetLayout( ret_val, $p, path );
+      var classes = basicdesign.setWidgetLayout( $p, path );
+      ret_val = $('<div class="widget clearfix link pagelink '+(classes?classes:'')+'" ' + style + '/>');
       var actor = $('<div ' + wstyle + '><a href="javascript:">' + name + '</a></div>');
       var clickable = bindClickToWidget ? ret_val : actor;
       clickable.bind( 'click', function() {
