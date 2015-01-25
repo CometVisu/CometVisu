@@ -200,7 +200,6 @@ function TemplateEngine( undefined ) {
   
   var rememberLastPage = false;
   this.currentPage = null;
-  this.currentPageID = -1;
   this.currentPageUnavailableWidth = -1;
   this.currentPageUnavailableHeight = -1;
   this.currentPageNavbarVisibility = null;
@@ -467,7 +466,6 @@ function TemplateEngine( undefined ) {
 
   this.resetPageValues = function() {
     thisTemplateEngine.currentPage = null;
-    thisTemplateEngine.currentPageID = -1;
     thisTemplateEngine.currentPageUnavailableWidth=-1;
     thisTemplateEngine.currentPageUnavailableHeight=-1;
     thisTemplateEngine.currentPageNavbarVisibility=null;
@@ -1114,15 +1112,57 @@ function TemplateEngine( undefined ) {
     
     if (page_id.match(/^id_[0-9_]*$/) == null) {
       // find Page-ID by name
-      $('.page h1:contains(' + page_id + ')', '#pages').each(function(i) {
-        if ($(this).text() == page_id) {
-          page_id = $(this).closest(".page").attr("id");
+      var pages = $('.page h1:contains(' + page_id + ')', '#pages');
+      if (pages.length>1 && thisTemplateEngine.currentPage!=null) {
+        // More than one Page found -> search in the current pages descendants first
+        var fallback = true;
+        pages.each(function(i) {
+          var p = $(this).closest(".page");
+          if ($(this).text() == page_id) {
+            if (p.attr('id').length<thisTemplateEngine.currentPage.attr('id').length) {
+              // found pages path is shorter the the current pages -> must be an ancestor
+              if (thisTemplateEngine.currentPage.attr('id').indexOf(p.attr('id'))==0) {
+                // found page is an ancenstor of the current page -> we take this one
+                page_id = p.attr("id");
+                fallback = false;
+                //break loop
+                return false;
+              }
+            } else {
+              if (p.attr('id').indexOf(thisTemplateEngine.currentPage.attr('id'))==0) {
+                // found page is an descendant of the current page -> we take this one
+                page_id = p.attr("id");
+                fallback = false;
+                //break loop
+                return false;
+              }
+            }
+          }
+        });
+        if (fallback) {
+          // take the first page that fits (old behaviour)
+          pages.each(function(i) {
+            if ($(this).text() == page_id) {
+              page_id = $(this).closest(".page").attr("id");
+              // break loop
+              return false;
+            }
+          });
         }
-      });
+      } else {
+        pages.each(function(i) {
+          if ($(this).text() == page_id) {
+            page_id = $(this).closest(".page").attr("id");
+            // break loop
+            return false;
+          }
+        });
+      }
     }
-    // don't scroll when target is already active
-    if( thisTemplateEngine.currentPageID === page_id )
-      return;
+//    console.log(thisTemplateEngine.currentPage);
+//    // don't scroll when target is already active
+//    if( thisTemplateEngine.currentPage!=null && thisTemplateEngine.currentPage.attr('id') === page_id )
+//      return;
     
     var page = $('#' + page_id);
     
@@ -1132,7 +1172,6 @@ function TemplateEngine( undefined ) {
     if( undefined === speed )
       speed = thisTemplateEngine.scrollSpeed;
     
-    thisTemplateEngine.currentPageID = page_id;
     if( rememberLastPage )
       localStorage.lastpage = page_id;
     
