@@ -47,7 +47,6 @@ design.basicdesign.addCreator('pagejump', {
     var $actor = $(actor);
     var data = templateEngine.widgetDataInsert( path, {
       'styling' : $(element).attr('styling'),
-      'type'    : 'pagejump',
       'align'   : $e.attr('align'),
       'target'  : target
     } );
