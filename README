@@ -1,7 +1,7 @@
 The CometVisu is a package that contains two important parts.
 
 One is the CometVisu Client, a JavaScript file that establishes the
-communication to a Backend on a server that talks the CometVisu Protocoll.
+communication to a Backend on a server that talks the CometVisu Protocol.
 This file might be used on its own together with a custom visualisation.
 
 The other part is the CometVisu Visualisation. It is a template engine
@@ -26,11 +26,11 @@ http://repo.wiregate.de/wiregate/pool/main/e/
 NOTE:
 =====
 
-Please allways also refer the online documentation at 
+Please always also refer the online documentation at 
 
      http://www.cometvisu.org/
 
-as it will contain the latest informations.
+as it will contain the latest information.
 
 To discuss with the developers you can use the mailing list that is
 provided at the SourceForge project page or use the KNX User Forum
