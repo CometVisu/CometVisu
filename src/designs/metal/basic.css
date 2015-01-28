@@ -364,7 +364,7 @@ body br
 .navbar .group .widget_container:last-child,.navbar .group .widget_container:last-child .widget {
 	border-bottom-right-radius: 1em;
 }
-.pagejump .actor {
+.navbar .pagejump .actor {
 	position: absolute;
 	top:0;
 	left:0;
