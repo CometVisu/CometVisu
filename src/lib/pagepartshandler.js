@@ -80,11 +80,12 @@ define([ 'jquery' ], function( $ ) {
   
   this.getNavbarsVisibility = function(page) {
     if (templateEngine.currentPageNavbarVisibility==null) {
+      var pageData=templateEngine.widgetDataGet(page.attr('id'));
       if (page==null) {
         page = templateEngine.currentPage;
       }
-      if (page==null || page.data()==null) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
-      var shownavbar = (page.data().shownavbar != undefined ? page.data().shownavbar : {
+      if (page==null || pageData==null) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
+      var shownavbar = (pageData.shownavbar != undefined ? pageData.shownavbar : {
         top : 'inherit',
         bottom : 'inherit',
         left : 'inherit',
@@ -96,7 +97,7 @@ define([ 'jquery' ], function( $ ) {
           shownavbar[pos] = 'inherit';
         }
       }
-      if (page.data() != null) {
+      if (pageData != null) {
         // traverse up the page tree for shownavbar
         var parentPage = templateEngine.getParentPage(page);
         while (parentPage != null) {
@@ -109,11 +110,12 @@ define([ 'jquery' ], function( $ ) {
             }
           }
           if (inherit) {
-            if (parentPage.data().shownavbar != undefined) {
+        	var parentPageData=templateEngine.widgetDataGet(page.attr('id'));
+            if (parentPageData.shownavbar != undefined) {
               for (var pos in shownavbar) {
                 if (shownavbar[pos] == 'inherit') {
                   // set value of parent page
-                  shownavbar[pos] = parentPage.data().shownavbar[pos];
+                  shownavbar[pos] = parentPageData.shownavbar[pos];
                   if (shownavbar[pos] == undefined) {
                     shownavbar[pos] = 'inherit';
                   }
@@ -203,6 +205,7 @@ define([ 'jquery' ], function( $ ) {
         thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
       }
     }
+    console.log(shownavbar);
     $.each([ 'Left', 'Top', 'Right', 'Bottom' ], function(index, value) {
       var key = value.toLowerCase();
       if (shownavbar[key] == 'true') {
