@@ -364,14 +364,6 @@ body br
 .navbar .group .widget_container:last-child,.navbar .group .widget_container:last-child .widget {
 	border-bottom-right-radius: 1em;
 }
-.pagejump .actor {
-	position: absolute;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	vertical-align: middle;
-}
 .navbar .pagejump .actor .value {
 	line-height: 2em;
 }
