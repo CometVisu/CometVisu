@@ -110,7 +110,7 @@ define([ 'jquery' ], function( $ ) {
             }
           }
           if (inherit) {
-        	var parentPageData=templateEngine.widgetDataGet(page.attr('id'));
+            var parentPageData=templateEngine.widgetDataGet(page.attr('id'));
             if (parentPageData.shownavbar != undefined) {
               for (var pos in shownavbar) {
                 if (shownavbar[pos] == 'inherit') {
@@ -205,7 +205,6 @@ define([ 'jquery' ], function( $ ) {
         thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
       }
     }
-    console.log(shownavbar);
     $.each([ 'Left', 'Top', 'Right', 'Bottom' ], function(index, value) {
       var key = value.toLowerCase();
       if (shownavbar[key] == 'true') {
