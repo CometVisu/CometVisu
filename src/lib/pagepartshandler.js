@@ -110,7 +110,7 @@ define([ 'jquery' ], function( $ ) {
             }
           }
           if (inherit) {
-            var parentPageData=templateEngine.widgetDataGet(page.attr('id'));
+            var parentPageData=templateEngine.widgetDataGet(parentPage.attr('id'));
             if (parentPageData.shownavbar != undefined) {
               for (var pos in shownavbar) {
                 if (shownavbar[pos] == 'inherit') {
