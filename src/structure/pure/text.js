@@ -24,23 +24,20 @@ design.basicdesign.addCreator('text', {
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + basicdesign.extractLayout(layout, type) + '"' : '';
     var classes = basicdesign.setWidgetLayout( $e, path );
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) classes += ' flavour_' + flavour;
     var ret_val = $('<div class="widget clearfix text '+(classes?classes:'')+'" ' + style + '/>');
     var data = templateEngine.widgetDataInsert( path, {
       path: path
     });
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
     if (!label) {
       label = $('<div/>');
       $e.contents().each(function() {
         var $v = $(this);
         if ($v.is('icon')) {
-          var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling'));
-          if( 'function' === typeof i )
-            i( $div );
-          else
-            if (i) label.append(i.clone());
+          var i = icons.getIconText($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling'));
+          label.append(i);
         } else
           label.append(this.textContent);
       });

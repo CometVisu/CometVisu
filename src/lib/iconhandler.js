@@ -35,24 +35,47 @@
         grey:   '#777777',
         black:  '#000000'
       },
-      /**
-       * Append to the jQuery element a canvas element and return it.
-       */
-      appendCanvas = function( element, styling, classes )
-      {
-        var $c = $('<canvas class="' + classes + '" ' + styling + '/>');
-        element.append( $c );
-        return $c[0];
+      iconCache = {},    // the Image() of all knows (i.e. used) icons
+      iconCacheMap = [], // mapping of ID to Cache entry (URL)
+      iconDelay = [],    // array of all icons to fill where the Image is not ready yet
+      iconDelayFn,       // handler for dealy function
+      iconDelayed = function( icon, colors, color ) {
+        iconDelay.push( [ icon, colors, color ] );
+        if( !iconDelayFn )
+          iconDelayFn = setInterval( function(){
+            while( iconDelay.length )
+            {
+              // it should be enough to test only the first element - the other
+              // elements will be covered anyway...
+              if( iconDelay[0][2] in iconDelay[0][1] )
+                window.fillRecoloredIcon( iconDelay.shift()[0] ); 
+              else
+                break;
+            }
+            
+            if( 0 === iconDelay.length )
+            {
+              clearInterval( iconDelayFn );
+              iconDelayFn = 0;
+            }
+          }, 10 );
       },
       /**
-       * Fill the canvas element @param c with the ImageData. Also resize the 
+       * Create the HTML for the canvas element and return it.
+       */
+      createCanvas = function( iconId, styling, classes )
+      {
+        return '<canvas class="' + iconId + ' ' + classes + '" ' + styling + '/>';
+      },
+      /**
+       * Fill the canvas with the ImageData. Also resize the 
        * canvas at the same time.
        */
-      fillCanvas = function( c, imageData )
+      fillCanvas = function( canvas, imageData )
       {
-        c.width  = imageData.width;
-        c.height = imageData.height;
-        c.getContext('2d').putImageData( imageData, 0, 0 );
+        canvas.width  = imageData.width;
+        canvas.height = imageData.height;
+        canvas.getContext('2d').putImageData( imageData, 0, 0 );
       },
       /**
        * Two versions of a recoloring funtion to work around an Android bug:
@@ -92,6 +115,8 @@
             }
           }
         },
+      tmpCanvas = $('<canvas/>')[0],
+      tmpCtx    = tmpCanvas.getContext('2d'),
       /**
        * Do the recoloring based on @param thisIcon and store it in the 
        * hash @param thisIconColors.
@@ -101,13 +126,12 @@
         if( thisIconColors[color] )
           return; // done, already recolored
           
-        var canvas = $('<canvas/>')[0];
-        canvas.width  = thisIcon.width;
-        canvas.height = thisIcon.height;
-        var ctx = canvas.getContext('2d');
-        ctx.drawImage( thisIcon, 0, 0 );
+        var
+          width  = tmpCanvas.width  = thisIcon.width;
+          height = tmpCanvas.height = thisIcon.height;
+        tmpCtx.drawImage( thisIcon, 0, 0 );
     
-        var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );
+        var imageData = tmpCtx.getImageData( 0, 0, width, height );
         if( color !== undefined )
         {
           if( !hexColorRegEx.test( color ) )
@@ -116,7 +140,7 @@
           var r      = parseInt( color.substr( 1, 2 ), 16 ),
               g      = parseInt( color.substr( 3, 2 ), 16 ),
               b      = parseInt( color.substr( 5, 2 ), 16 );
-          innerRecolorLoop( r, g, b, imageData.data, canvas.width * canvas.height * 4 );
+          innerRecolorLoop( r, g, b, imageData.data, width * height * 4 );
         }
         thisIconColors[color] = imageData;
       };
@@ -127,18 +151,19 @@
    * don't load the image yet as it might not be needed.
    */
   window.recolorNonTransparent = function( url ) {
-    var thisIcon,            // the original Image() of the icon
-        thisIconColors = {}, // cache all the transformed ImageDatas
-        toFill = [],         // all the icons to fill once the image was loaded
-        loadHandler = function(){
-          var thisFill;
-          while( thisFill = toFill.pop() )
-          {
-            doRecolorNonTransparent( thisFill.color, thisIcon, thisIconColors );
-            fillCanvas( thisFill.canvas, thisIconColors[thisFill.color] );
-          }
-        };
-  
+    var
+      loadHandler = function(){
+        var
+          toFill         = iconCache[url].toFill,
+          thisIcon       = iconCache[url].icon,
+          thisIconColors = iconCache[url].colors,
+          thisFillColor;
+        while( thisFillColor = toFill.pop() )
+        {
+          doRecolorNonTransparent( thisFillColor, thisIcon, thisIconColors );
+        }
+      };
+
     /**
      * will be called for each color that is actually used
      * => load image for all colors
@@ -146,37 +171,66 @@
      * @return {Function} a function that will append the recolored image to
      *         the jQuery element passed to that function 
      */
-    return function( color, styling, classes )
+    return function( color, styling, classes, asText )
     {
-      // load image only when needed
-      if( thisIcon === undefined )
+      if( undefined === iconCache[url] )
       {
-        thisIcon = new Image();
+        var thisIcon = new Image();
         thisIcon.onload = loadHandler;
         thisIcon.src = url;
+        
+        iconCache[url] = {
+          icon  : thisIcon,            // the original Image() of the icon
+          id    : iconCacheMap.length, // the unique ID for this icon
+          colors: {},                  // cache all the transformed ImageDatas
+          toFill: []                   // all the icon colors to fill once the image was loaded
+        };
+        iconCacheMap.push( url );
       }
-      
+
       if( color === undefined )
         color = '#ffffff';
       
       if( color in colorMapping )
         color = colorMapping[ color ];
       
-      /**
-       * The function to call to add the icon in the DOM.
-       * It will handle if the icon content isn't available yet.
-       */
-      return function( valueElement ){
-        var c = appendCanvas( valueElement, styling, classes );
-        if( thisIcon.complete )
-        {
-          doRecolorNonTransparent( color, thisIcon, thisIconColors );
-          fillCanvas( c, thisIconColors[color] );
-        } else {
-          // Icon not loaded yet - put on que
-          toFill.push( { canvas: c, color: color } );
-        }
-      };
+      var c = 'icon' + iconCache[url].id + '_' + color.substr( 1, 6 );
+      iconCache[url].toFill.push( color );
+      
+      // when already available - fill it now. Otherwise the onLoad will do it.
+      if( iconCache[url].icon.complete )
+        loadHandler();
+      
+      var newCanvas = createCanvas( c, styling, classes );
+      if( asText )
+        return newCanvas;
+      
+      var newElement = $(newCanvas)[0];
+      if( iconCache[url].icon.complete )
+        fillCanvas( newElement );
+      else
+        iconDelayed( newElement, iconCache[url].colors, color );
+      
+      return newElement;
+    }
+  };
+  
+  /**
+   * This function must be called to fill a specific icon that was created
+   */
+  window.fillRecoloredIcon = function( icon ) {
+    var 
+      parameters = icon.className.split(' ')[0].substring(4).split('_');
+    if( 2 === parameters.length )
+    { 
+      var 
+        cacheEntry = iconCache[ iconCacheMap[ parameters[0] ] ],
+        coloredIcon = cacheEntry.colors[ '#' + parameters[1] ];
+        
+      if( undefined === coloredIcon )
+        iconDelayed( icon, cacheEntry.colors, '#' + parameters[1] );
+      else
+        fillCanvas( icon, coloredIcon );
     }
   };
 })(window);
@@ -1172,7 +1226,10 @@ function icon() { // Konstruktor
       return i.uri;
   }
 
-  this.getIcon = function() {
+  /**
+   * Return an icon DOM element.
+   */
+  this.getIconElement = function() {
     var i = this.get.apply(this, arguments);
     if (i) {
       var styling = arguments[4];
@@ -1193,13 +1250,65 @@ function icon() { // Konstruktor
       
       if( typeof i === 'function' )
       {
-        i.icon = i( arguments[3], styling, classes );
+        i.icon = i( arguments[3], styling, classes, false );
       } else {
-        i.icon = $('<img class="' + classes + '" src="' + i.uri + '"' + styling + '/>');
+        i.icon = $('<img class="' + classes + '" src="' + i.uri + '"' + styling + '/>')[0];
       }
       return i.icon;
     }
   }
+  
+  /**
+   * Return a String for the icon, e.g. build a DOM tree in a string before
+   * passing it to ParseHTML. After the content was added to the DOM the
+   * fillIcons method must be called to fill missing content (e.g. the <canvas>
+   * icons.
+   * @param {String}
+   *          name Name
+   * @param {String}
+   *          type Type (optional)
+   * @param {String}
+   *          flavour Flavour (optional)
+   * @param {String}
+   *          color Color (optional, only relevant for monochrome icons)
+   * @param {String}
+   *          styling
+   * @param {String}
+   *          iconclass
+   */
+  this.getIconText = function() {
+    var i = this.get.apply(this, arguments);
+    if (i) {
+      var styling = arguments[4];
+
+      if( styling === undefined )
+        styling = i.styling === undefined ? '' : ' style="' + i.styling + '"';
+      else
+        styling = ' style="' + styling + '"';
+     
+      var classes = 'icon'
+      var iconclass = arguments[5];
+      if( iconclass !== undefined) {
+        classes = classes + ' custom_' + iconclass;
+      }
+      
+      if( typeof i === 'function' )
+      {
+        return i( arguments[3], styling, classes, true );
+      } else {
+        return '<img class="' + classes + '" src="' + i.uri + '"' + styling + '/>';
+      }
+    }
+  }
+  
+  /**
+   * Fill the icons in the array.
+   */
+  this.fillIcons = function( array ) {
+    array.each( function( thisIcon ){
+      window.fillRecoloredIcon( thisIcon );
+    });
+  };
 
   /**
    * List all known icons

@@ -211,8 +211,14 @@ function VisuDesign() {
             valueElement.append( thisValue );
           else if( 'function' === typeof thisValue )
             thisValue(valueElement);
-          else
-            valueElement.append($(thisValue).clone());
+          else {
+            var element = thisValue.cloneNode();
+            if( thisValue.getContext )
+            {
+              fillRecoloredIcon( element );
+            }
+            valueElement.append( element );
+          }
         }
       }
     }
@@ -277,12 +283,8 @@ function VisuDesign() {
       var $v = $(this);
       if( $v.is('icon') )
       {
-        var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling') );
-        
-        if( 'function' === typeof i )
-          i( $div );
-        else
-          if( i ) $div.append( i.clone() );
+        var i = icons.getIconText($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling') );
+        $div.append( i );
       } else
         $div.append( this.textContent );
     });
