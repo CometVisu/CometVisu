@@ -1,0 +1,5 @@
+# ignoring text configs
+visu_*
+
+# but keep default configs
+!visu_config.xml
