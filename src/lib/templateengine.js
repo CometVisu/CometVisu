@@ -1101,12 +1101,18 @@ function TemplateEngine( undefined ) {
     
     var data = thisTemplateEngine.widgetDataGet( path );
     data.type = page.nodeName;
-    retval = jQuery(
-      '<div class="widget_container '
+    if( 'string' === typeof retval )
+    {
+      return '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
       + ('break' === data.type ? 'break_container' : '') // special case for break widget
+      + '" id="'+path+'">' + retval + '</div>';
+    } else {
+      return jQuery(
+      '<div class="widget_container '
+      + (data.rowspanClass ? data.rowspanClass : '')
       + '" id="'+path+'"/>').append(retval);
-    return retval;
+    }
   };
 
   this.scrollToPage = function(page_id, speed, skipHistory) {
