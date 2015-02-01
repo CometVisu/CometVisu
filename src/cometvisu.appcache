@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Version SVN:20150201-1347
+# Version SVN:20150201-1448
 
 CACHE:
 index.html
@@ -15,6 +15,7 @@ icon/comet_webapp_icon_android_72.png
 icon/comet_webapp_icon_android_96.png
 icon/comet_webapp_icon_android_144.png
 icon/comet_webapp_icon_android_192.png
+icon/iconconfig.js
 lib/templateengine.js
 # structure_pure will be inserted here during the release process !DON'T MODIFY!
 dependencies/scrollable.min.js
@@ -34,6 +35,7 @@ dependencies/Three.js
 dependencies/poly2tri.js
 dependencies/yepnope.1.5.4.js
 lib/iconhandler.js
+lib/icontools.js
 lib/compatibility.js
 lib/cometvisu-client.js
 lib/pagepartshandler.js
