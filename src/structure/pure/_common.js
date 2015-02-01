@@ -379,10 +379,9 @@ function VisuDesign() {
       classes+=" "+$element.attr('align');
     }
     classes += ' ' + this.setWidgetLayout( $element, path );
-    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
     if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    if($element.attr('class')) ret_val.addClass('custom_' + $element.attr('class'));
+    if( flavour ) classes += ' flavour_' + flavour;
+    if($element.attr('class')) classes += ' custom_' + $element.attr('class');
     var label = this.extractLabel( $element.find('label')[0], flavour );
     var address = this.makeAddressList( $element, makeAddressListFn );
     //var bindClickToWidget = templateEngine.bindClickToWidget;
@@ -397,7 +396,7 @@ function VisuDesign() {
       'align'   : $element.attr('align'),
       'path'    : path
     });
-    ret_val.append( label );
+    var ret_val = $('<div class="'+classes+'" ' + style + '>' + label + '</div>');
     if (updateFn) {
       for( var addr in address ) { 
         // only when read flag is set
