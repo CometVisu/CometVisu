@@ -784,7 +784,7 @@ function TemplateEngine( undefined ) {
         for (var i = 0; i < origin.length; i++) {
            var $v = $(origin[i]);
            if ($v.is('icon')) {
-             value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
+             value[i] = icons.getIconElement($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
            }
            else {
              value[i] = $v.text();
@@ -1078,6 +1078,7 @@ function TemplateEngine( undefined ) {
     
     xml = null;
     delete xml; // not needed anymore - free the space
+    $('.icon').each(function(){ fillRecoloredIcon(this);});
     $('.loading').removeClass('loading');
     fireLoadingFinishedAction();
     if( undefined !== thisTemplateEngine.screensave_time )

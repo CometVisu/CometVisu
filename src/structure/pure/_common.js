@@ -211,8 +211,14 @@ function VisuDesign() {
             valueElement.append( thisValue );
           else if( 'function' === typeof thisValue )
             thisValue(valueElement);
-          else
-            valueElement.append($(thisValue).clone());
+          else {
+            var element = thisValue.cloneNode();
+            if( thisValue.getContext )
+            {
+              fillRecoloredIcon( element );
+            }
+            valueElement.append( element );
+          }
         }
       }
     }
@@ -268,25 +274,23 @@ function VisuDesign() {
     return ret_val;
   }
   
-  this.extractLabel = function( label, flavour )
+  this.extractLabel = function( label, flavour, labelClass, style )
   {
     if( !label ) return;
     
-    var $div = $( '<div class="label"></div>' );
+    if( !labelClass )
+    var ret_val = '<div class="' + (undefined===labelClass ? 'label' : labelClass) + '"'
+      + ( style ? (' style="' + style + '"') : '' ) + '>';
+      
     $( label ).contents().each( function(){
       var $v = $(this);
       if( $v.is('icon') )
       {
-        var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling') );
-        
-        if( 'function' === typeof i )
-          i( $div );
-        else
-          if( i ) $div.append( i.clone() );
+        ret_val += icons.getIconText($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling') );
       } else
-        $div.append( this.textContent );
+        ret_val += this.textContent;
     });
-    return $div;
+    return ret_val + '</div>';
   }
   
   /*
