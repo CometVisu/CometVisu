@@ -285,7 +285,26 @@ function TemplateEngine( undefined ) {
     }
     function update(json) {
       for (key in json) {
-        $.event.trigger('_' + key, json[key]);
+        //$.event.trigger('_' + key, json[key]);
+        var data = json[ key ];
+        ga_list[ key ].forEach( function( id ){
+          if( id )
+          {
+            var 
+              element = document.getElementById( id ),
+              type = element.dataset.type,
+              updateFn = thisTemplateEngine.design.creators[ type ].update;
+            if( updateFn )
+            {
+              var children = element.children;
+              if( children[0] )
+                updateFn.call( children[0], key, data );
+              else
+                console.log( element, children, type ); // DEBUG FIXME
+            }
+            //console.log( element, type, updateFn );
+          }
+        });
       }
     };
     thisTemplateEngine.visu.update = function(json) { // overload the handler
@@ -364,8 +383,11 @@ function TemplateEngine( undefined ) {
         .decode(value) : value);
   };
   
-  this.addAddress = function(address) {
-    ga_list[address]=1;
+  this.addAddress = function( address, id ) {
+    if( address in ga_list )
+      ga_list[ address ].push( id );
+    else
+      ga_list[ address ] = [ id ];
   };
   
   this.getAddresses = function() {
@@ -1106,12 +1128,12 @@ function TemplateEngine( undefined ) {
       return '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
       + ('break' === data.type ? 'break_container' : '') // special case for break widget
-      + '" id="'+path+'">' + retval + '</div>';
+      + '" id="'+path+'" data-type="'+data.type+'">' + retval + '</div>';
     } else {
       return jQuery(
       '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
-      + '" id="'+path+'"/>').append(retval);
+      + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
     }
   };
 

@@ -100,10 +100,10 @@ design.basicdesign.addCreator('multitrigger', {
     
     return ret_val.append( buttons );
   },
-  update: function(e,d) { 
+  update: function( ga, d ) { 
     var element = $(this),
         data  = templateEngine.widgetDataGetByElement( this ),
-        thisTransform = data.address[ e.type ][0],
+        thisTransform = data.address[ ga ][0],
         value = templateEngine.transformDecode( thisTransform, d );
         
     element.find('.actor').each( function(){
@@ -122,7 +122,7 @@ design.basicdesign.addCreator('multitrigger', {
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], value ) );
+      templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], value ) );
     }
   }
 });

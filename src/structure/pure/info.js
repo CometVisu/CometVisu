@@ -34,9 +34,9 @@ design.basicdesign.addCreator('info', {
     
     return ret_val;
   },
-  update:   function(e,d) { 
+  update:   function( ga, d ) { 
     var element = $(this);
-    basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
+    basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
   },
   update3d: design.basicdesign.defaultUpdate3d
 });

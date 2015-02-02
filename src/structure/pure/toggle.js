@@ -41,9 +41,9 @@ design.basicdesign.addCreator('toggle', {
     basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
     return ret_val;
   },
-  update: function( e, d ) { 
+  update: function( ga, d ) { 
     var element = $(this);
-    basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
+    basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
   },
   action: function(event) {
     var 
@@ -53,7 +53,7 @@ design.basicdesign.addCreator('toggle', {
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], sendValue ) );
+      templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], sendValue ) );
     }
   }
 });

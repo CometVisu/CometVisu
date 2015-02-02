@@ -45,12 +45,12 @@ design.basicdesign.addCreator('switch', {
     
     return ret_val;
   },
-  update: function(e,d) { 
+  update: function( ga, d ) { 
     var 
       element = $(this),
       data  = templateEngine.widgetDataGetByElement( element ),
       actor = element.find('.actor'),
-      value = basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') ),
+      value = basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') ),
       off   = templateEngine.map( data['off_value'], data['mapping'] );
     actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
@@ -62,7 +62,7 @@ design.basicdesign.addCreator('switch', {
     for( var addr in widgetData.address )
     {
       if( !(widgetData.address[addr][1] & 2) ) continue; // skip when write flag not set
-      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( widgetData.address[addr][0], widgetData.basicvalue == widgetData.off_value ? widgetData.on_value : widgetData.off_value ) );
+      templateEngine.visu.write( addr, templateEngine.transformEncode( widgetData.address[addr][0], widgetData.basicvalue == widgetData.off_value ? widgetData.on_value : widgetData.off_value ) );
     }
   }
 });
