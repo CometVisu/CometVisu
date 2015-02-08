@@ -276,7 +276,7 @@ function VisuDesign() {
   
   this.extractLabel = function( label, flavour, labelClass, style )
   {
-    if( !label ) return;
+    if( !label ) return '';
     
     if( !labelClass )
     var ret_val = '<div class="' + (undefined===labelClass ? 'label' : labelClass) + '"'
@@ -365,6 +365,8 @@ function VisuDesign() {
   
   /**
    * Create a default widget to be filled by the creator afterwards.
+   * Note: the reciever of the returned string must add an </div> closing element!
+   * 
    * @param widgetType string of the widget type
    * @param $element   jQuery object of the XML element
    * @param path       string of the path ID
@@ -397,13 +399,7 @@ function VisuDesign() {
       'align'   : $element.attr('align'),
       'path'    : path
     });
-    var ret_val = $('<div class="'+classes+'" ' + style + '>' + label + '</div>');
-    if (updateFn) {
-      for( var addr in address ) { 
-        // only when read flag is set
-        if( address[addr][1] & 1 ) ret_val.bind( addr, updateFn );
-      }
-    }
+    var ret_val = '<div class="'+classes+'" ' + style + '>' + label;
     
     return ret_val;
   };

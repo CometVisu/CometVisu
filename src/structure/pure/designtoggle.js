@@ -23,7 +23,7 @@ design.basicdesign.addCreator('designtoggle', {
     var $e = $(element);
 
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type );
+    var ret_val = $( basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type ) + '</div>' );
 
     // create the actor
     var value = $('link[href*="basic.css"]').attr('href').split('/')[2];

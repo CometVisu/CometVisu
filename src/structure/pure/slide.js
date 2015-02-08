@@ -23,7 +23,7 @@ design.basicdesign.addCreator('slide', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update );
+    var ret_val = $( basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update ) + '</div>' );
     // and fill in widget specific data
     var datatype_min = undefined;
     var datatype_max = undefined;

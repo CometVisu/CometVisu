@@ -28,7 +28,7 @@ design.basicdesign.addCreator('trigger', {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
       return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
     }
-    var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn );
+    var ret_val = $( basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn ) + '</div>' );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'sendValue'  : $e.attr('value' )                || 0,

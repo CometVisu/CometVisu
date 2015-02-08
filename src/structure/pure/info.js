@@ -26,13 +26,10 @@ design.basicdesign.addCreator('info', {
     var ret_val = basicdesign.createDefaultWidget( 'info', $e, path, flavour, type, this.update );
     
     // create the actor
-    var $actor = $('<div class="actor"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    var actor = '<div class="actor"><div class="value">-</div></div>';
+    ret_val += actor;
     
-    // initially setting a value
-    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
-    
-    return ret_val;
+    return ret_val + '</div>';
   },
   update:   function( ga, d ) { 
     var element = $(this);
