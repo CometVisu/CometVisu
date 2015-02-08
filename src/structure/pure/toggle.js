@@ -23,7 +23,7 @@ design.basicdesign.addCreator('toggle', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type, this.update );
+    var ret_val = $( basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type, this.update ) + '</div>' );
     
     // create the actor
     var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');

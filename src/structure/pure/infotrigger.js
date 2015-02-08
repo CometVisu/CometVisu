@@ -27,7 +27,7 @@ design.basicdesign.addCreator('infotrigger', {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
       return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
     }
-    var ret_val = basicdesign.createDefaultWidget( 'infotrigger', $e, path, flavour, type, this.update, makeAddressListFn );
+    var ret_val = $( basicdesign.createDefaultWidget( 'infotrigger', $e, path, flavour, type, this.update, makeAddressListFn ) + '</div>' );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'downvalue'     : $e.attr('downvalue' )            || 0,

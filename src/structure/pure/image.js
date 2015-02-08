@@ -23,7 +23,7 @@ design.basicdesign.addCreator('image', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget('image', $e, path, flavour, type);
+    var ret_val = $( basicdesign.createDefaultWidget('image', $e, path, flavour, type) + '</div>' );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'width'  : $e.attr('width'),

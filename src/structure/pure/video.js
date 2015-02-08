@@ -38,8 +38,8 @@ design.basicdesign.addCreator('video', {
     if( data.height ) style += 'height:' + data.height + ';';
     if( style != '' ) style = 'style="' + style + '"';
     var autoplay = (data.autoplay === 'true') ? ' autoplay="autoplay"' : '';
-    var $actor = $('<div class="actor"><video src="' +$e.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>');
-    ret_val.append( $actor );
+    var actor = '<div class="actor"><video src="' +$e.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>';
+    ret_val += actor + '</div>';
     
     return ret_val;
   }

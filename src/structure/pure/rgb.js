@@ -29,8 +29,8 @@ design.basicdesign.addCreator('rgb', {
     var ret_val = basicdesign.createDefaultWidget( 'rgb', $e, path, flavour, type, this.update, rgb_handleVariant );
     
     // create the actor
-    var $actor = $('<div class="actor"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    var actor = '<div class="actor"><div class="value"></div></div>';
+    ret_val += actor + '</div>';
     
     return ret_val;
   },
