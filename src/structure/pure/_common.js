@@ -133,15 +133,15 @@ function VisuDesign() {
   this.addPopup('error'  , $.extend(true, {}, this.getPopup('unknown')) ) ;
 
   /**
-   * @param ev         event
+   * @param ga         address
    * @param data       the raw value from the bus
    * @param widgetData the data structure in the widget
    */
-  this.defaultValueHandling = function( ev, data, widgetData )
+  this.defaultValueHandling = function( ga, data, widgetData )
   {
-    if( undefined !== ev )
+    if( undefined !== ga )
     {
-      var thisTransform = widgetData.address[ ev.type ][0];
+      var thisTransform = widgetData.address[ ga ][0];
       // #1: transform the raw value to a JavaScript type
       var value = templateEngine.transformDecode( thisTransform, data );
     } else {
@@ -178,17 +178,17 @@ function VisuDesign() {
   };
   
   /**
-   * ev:            event
+   * ga:            address
    * data:          the raw value from the bus
    * passedElement: the element to update
    */
-  this.defaultUpdate = function( ev, data, passedElement, newVersion, path ) 
+  this.defaultUpdate = function( ga, data, passedElement, newVersion, path ) 
   {
-    ///console.log(ev, data, passedElement, newVersion );
+    ///console.log(ga, data, passedElement, newVersion );
     var element = passedElement || $(this);
     var elementData = templateEngine.widgetData[ path ];
     var actor   = newVersion ? element.find('.actor:has(".value")') : element;
-    var value = self.defaultValueHandling( ev, data, elementData );
+    var value = self.defaultValueHandling( ga, data, elementData );
     
     templateEngine.setWidgetStyling( actor, elementData.basicvalue, elementData.styling );
     
@@ -211,8 +211,14 @@ function VisuDesign() {
             valueElement.append( thisValue );
           else if( 'function' === typeof thisValue )
             thisValue(valueElement);
-          else
-            valueElement.append($(thisValue).clone());
+          else {
+            var element = thisValue.cloneNode();
+            if( thisValue.getContext )
+            {
+              fillRecoloredIcon( element );
+            }
+            valueElement.append( element );
+          }
         }
       }
     }
@@ -268,36 +274,35 @@ function VisuDesign() {
     return ret_val;
   }
   
-  this.extractLabel = function( label, flavour )
+  this.extractLabel = function( label, flavour, labelClass, style )
   {
     if( !label ) return;
     
-    var $div = $( '<div class="label"></div>' );
+    if( !labelClass )
+    var ret_val = '<div class="' + (undefined===labelClass ? 'label' : labelClass) + '"'
+      + ( style ? (' style="' + style + '"') : '' ) + '>';
+      
     $( label ).contents().each( function(){
       var $v = $(this);
       if( $v.is('icon') )
       {
-        var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling') );
-        
-        if( 'function' === typeof i )
-          i( $div );
-        else
-          if( i ) $div.append( i.clone() );
+        ret_val += icons.getIconText($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling') );
       } else
-        $div.append( this.textContent );
+        ret_val += this.textContent;
     });
-    return $div;
+    return ret_val + '</div>';
   }
   
-  /*
+  /**
   * this function extracts all addresses with attributes (JNK)
   * 
   * @param  handleVariant is a callback function that returns an array of two
   *                       elements. The first is a boolean that determins if
   *                       the visu should listen for that address. The second
   *                       is added as it is to the returned object.
+  * @param id             id / path to the widget
   */
-  this.makeAddressList = function( element, handleVariant ) {
+  this.makeAddressList = function( element, handleVariant, id ) {
     var address = {};
     element.find('address').each( function(){ 
       var src = this.textContent;
@@ -322,8 +327,8 @@ function VisuDesign() {
       }
       var variantInfo = handleVariant ? handleVariant( src, transform, mode, this.getAttribute('variant') ) : [true, undefined];
       if( (mode&1) && variantInfo[0]) // add only addresses when reading from them
-        templateEngine.addAddress( src );
-      address[ '_' + src ] = [ transform, mode, variantInfo[1] ];
+        templateEngine.addAddress( src, id );
+      address[ src ] = [ transform, mode, variantInfo[1] ];
       return; // end of each-func
     });
     return address;
@@ -375,12 +380,11 @@ function VisuDesign() {
       classes+=" "+$element.attr('align');
     }
     classes += ' ' + this.setWidgetLayout( $element, path );
-    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
     if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    if($element.attr('class')) ret_val.addClass('custom_' + $element.attr('class'));
+    if( flavour ) classes += ' flavour_' + flavour;
+    if($element.attr('class')) classes += ' custom_' + $element.attr('class');
     var label = this.extractLabel( $element.find('label')[0], flavour );
-    var address = this.makeAddressList( $element, makeAddressListFn );
+    var address = this.makeAddressList( $element, makeAddressListFn, path );
     //var bindClickToWidget = templateEngine.bindClickToWidget;
     //if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
 
@@ -393,7 +397,7 @@ function VisuDesign() {
       'align'   : $element.attr('align'),
       'path'    : path
     });
-    ret_val.append( label );
+    var ret_val = $('<div class="'+classes+'" ' + style + '>' + label + '</div>');
     if (updateFn) {
       for( var addr in address ) { 
         // only when read flag is set

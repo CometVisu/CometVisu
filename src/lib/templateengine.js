@@ -285,7 +285,26 @@ function TemplateEngine( undefined ) {
     }
     function update(json) {
       for (key in json) {
-        $.event.trigger('_' + key, json[key]);
+        //$.event.trigger('_' + key, json[key]);
+        var data = json[ key ];
+        ga_list[ key ].forEach( function( id ){
+          if( id )
+          {
+            var 
+              element = document.getElementById( id ),
+              type = element.dataset.type,
+              updateFn = thisTemplateEngine.design.creators[ type ].update;
+            if( updateFn )
+            {
+              var children = element.children;
+              if( children[0] )
+                updateFn.call( children[0], key, data );
+              else
+                console.log( element, children, type ); // DEBUG FIXME
+            }
+            //console.log( element, type, updateFn );
+          }
+        });
       }
     };
     thisTemplateEngine.visu.update = function(json) { // overload the handler
@@ -364,8 +383,11 @@ function TemplateEngine( undefined ) {
         .decode(value) : value);
   };
   
-  this.addAddress = function(address) {
-    ga_list[address]=1;
+  this.addAddress = function( address, id ) {
+    if( address in ga_list )
+      ga_list[ address ].push( id );
+    else
+      ga_list[ address ] = [ id ];
   };
   
   this.getAddresses = function() {
@@ -784,7 +806,7 @@ function TemplateEngine( undefined ) {
         for (var i = 0; i < origin.length; i++) {
            var $v = $(origin[i]);
            if ($v.is('icon')) {
-             value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
+             value[i] = icons.getIconElement($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
            }
            else {
              value[i] = $v.text();
@@ -1078,6 +1100,7 @@ function TemplateEngine( undefined ) {
     
     xml = null;
     delete xml; // not needed anymore - free the space
+    $('.icon').each(function(){ fillRecoloredIcon(this);});
     $('.loading').removeClass('loading');
     fireLoadingFinishedAction();
     if( undefined !== thisTemplateEngine.screensave_time )
@@ -1100,12 +1123,18 @@ function TemplateEngine( undefined ) {
     
     var data = thisTemplateEngine.widgetDataGet( path );
     data.type = page.nodeName;
-    retval = jQuery(
-      '<div class="widget_container '
+    if( 'string' === typeof retval )
+    {
+      return '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
       + ('break' === data.type ? 'break_container' : '') // special case for break widget
-      + '" id="'+path+'"/>').append(retval);
-    return retval;
+      + '" id="'+path+'" data-type="'+data.type+'">' + retval + '</div>';
+    } else {
+      return jQuery(
+      '<div class="widget_container '
+      + (data.rowspanClass ? data.rowspanClass : '')
+      + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
+    }
   };
 
   this.scrollToPage = function(page_id, speed, skipHistory) {

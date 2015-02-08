@@ -65,7 +65,7 @@ design.basicdesign.addCreator('trigger', {
       {
         if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
         if (data.address[addr][2] & bitMask) {
-          templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
+          templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
         }
       }
     }

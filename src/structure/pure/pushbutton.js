@@ -45,11 +45,11 @@ design.basicdesign.addCreator('pushbutton', {
 
     return ret_val;
   },
-  update: function(e,d) { 
+  update: function( ga, d ) { 
     var element = $(this),
         data  = templateEngine.widgetDataGetByElement( element );
     var actor   = element.find('.actor');
-    var value = basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
+    var value = basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
     var off = templateEngine.map( data['upValue'], data['mapping'] );
     actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
@@ -59,7 +59,7 @@ design.basicdesign.addCreator('pushbutton', {
 
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
-      templateEngine.visu.write(addr.substr(1), templateEngine.transformEncode(data.address[addr][0], data.downValue));
+      templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.downValue));
     }
   },
   upAction: function() {
@@ -67,7 +67,7 @@ design.basicdesign.addCreator('pushbutton', {
 
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
-      templateEngine.visu.write(addr.substr(1), templateEngine.transformEncode(data.address[addr][0], data.upValue));
+      templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.upValue));
     }
   }
 });

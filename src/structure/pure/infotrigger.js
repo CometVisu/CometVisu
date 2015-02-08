@@ -95,9 +95,9 @@ design.basicdesign.addCreator('infotrigger', {
     return ret_val;
   },
 
-  update: function(e,d) { 
+  update: function( ga, d ) { 
     var element = $(this);
-    var value = basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
+    var value = basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
   },
   downaction: function(event) {
      templateEngine.widgetDataGetByElement( $(this).parent() )['downtime'] = new Date().getTime();
@@ -126,7 +126,7 @@ design.basicdesign.addCreator('infotrigger', {
       {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
         if (data.address[addr][2] & bitMask) {
-          templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], value ) );
+          templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], value ) );
         }
       }
     }
