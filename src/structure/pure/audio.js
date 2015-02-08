@@ -42,13 +42,14 @@ design.basicdesign.addCreator('audio', {
     if( style != '' ) style = 'style="' + style + '"';
     var autoplay = (data.autoplay == 'true') ? ' autoplay ' : '';
     var loop = (data.loop == 'true') ? ' loop ' : '';
-    var $actor = $('<div class="actor"><audio id="' + $e.attr('id') + '" ' + autoplay + loop + style + ' controls> <source src="' +$e.attr('src') + '" > </audio> </div>');
-    ret_val.append( $actor );
+    var actor = '<div class="actor"><audio id="' + $e.attr('id') + '" ' + autoplay + loop + style + ' controls> <source src="' +$e.attr('src') + '" > </audio> </div>';
+    ret_val + actor + '</div>';
 	
+    var $ret_val = $(ret_val);
     // initially setting a value
-    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
+    basicdesign.defaultUpdate( undefined, undefined, $ret_val, true, path );
 
-    return ret_val;
+    return $ret_val;
   },
   
   update: function(e,d) {

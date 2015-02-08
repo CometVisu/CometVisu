@@ -23,7 +23,7 @@ design.basicdesign.addCreator('refresh', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'refresh', $e, path, flavour, type, null );
+    var ret_val = $( basicdesign.createDefaultWidget( 'refresh', $e, path, flavour, type, null ) + '</div>' );
     
     // create the actor
     var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');

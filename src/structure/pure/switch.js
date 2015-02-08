@@ -23,7 +23,7 @@ design.basicdesign.addCreator('switch', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'switch', $e, path, flavour, type, this.update );
+    var ret_val = $( basicdesign.createDefaultWidget( 'switch', $e, path, flavour, type, this.update ) + '</div>' );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'on_value'  : $e.attr('on_value' ) || 1,

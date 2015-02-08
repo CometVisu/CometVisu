@@ -23,7 +23,7 @@ design.basicdesign.addCreator('pushbutton', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'pushbutton', $e, path, flavour, type, this.update );
+    var ret_val = $( basicdesign.createDefaultWidget( 'pushbutton', $e, path, flavour, type, this.update ) + '</div>' );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'downValue'  : $e.attr('downValue' ) || 1,

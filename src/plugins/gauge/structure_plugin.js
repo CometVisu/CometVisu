@@ -48,9 +48,9 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
   create: function(element, path, flavour, type) {
     var $e = $(element);
     // create the main structure
-    var ret_val = templateEngine.design.createDefaultWidget('gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant) {
+    var ret_val = $( templateEngine.design.createDefaultWidget('gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant) {
       return [true, variant];
-    });
+    }) + '</div>' );
 
     // create the actor 
     var id = "gauge_" + path;

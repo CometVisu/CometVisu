@@ -24,7 +24,7 @@ design.basicdesign.addCreator('multitrigger', {
     
     // create the main structure
     var showstatus = $e.attr('showstatus') === 'true',
-        ret_val    = basicdesign.createDefaultWidget( 'multitrigger', $e, path, flavour, type, showstatus ? this.update : undefined );
+        ret_val    = $( basicdesign.createDefaultWidget( 'multitrigger', $e, path, flavour, type, showstatus ? this.update : undefined ) + '</div>' );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       showstatus  : showstatus,
