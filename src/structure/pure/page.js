@@ -161,12 +161,12 @@ design.basicdesign.addCreator('page', {
     $('#pages').prepend( subpage );
     return ret_val;
   },
-  update: function(e, data) {
+  update: function( ga, data) {
     var 
       element = $(this),
       widgetData  = templateEngine.widgetDataGetByElement( element );
-    var value = basicdesign.defaultValueHandling( e, data, widgetData );
-    var type = widgetData.address[ e.type ][2];
+    var value = basicdesign.defaultValueHandling( ga, data, widgetData );
+    var type = widgetData.address[ ga ][2];
     switch( type )
     {
       case 'azimut':
@@ -189,7 +189,7 @@ design.basicdesign.addCreator('page', {
         // TODO: data comparision has to be refactored to use DPT and a value
         if (data==01) {
           templateEngine.scrollToPage(element.context.firstChild.textContent);
-          templateEngine.visu.write(e.type.substr(1), templateEngine.transformEncode('DPT:1.001', 0));
+          templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));
         }
     }
   }

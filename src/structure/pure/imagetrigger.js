@@ -60,11 +60,11 @@ design.basicdesign.addCreator('imagetrigger', {
     ret_val.append( $actor );
     return ret_val;
   },
-  update: function(e,d) {
+  update: function( ga, d ) {
     var data  = templateEngine.widgetDataGetByElement( element );
     if ( data.address[e.type][1].writeonly == "true")
       return; // skip writeonly FIXME: writeonly shouldnt bind to update at all
-    var val = templateEngine.transformDecode(data.address[e.type][0], d);
+    var val = templateEngine.transformDecode(data.address[ ga ][0], d);
     if (data.type == "show")
       if (val == 0)
         $(this).children().hide();
@@ -89,7 +89,7 @@ design.basicdesign.addCreator('imagetrigger', {
         continue; // skip when write flag not set
       if( data.sendValue == "" )
         continue; // skip empty
-      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], data.sendValue ) );
+      templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], data.sendValue ) );
     }
   }
 });
