@@ -276,7 +276,7 @@ function VisuDesign() {
   
   this.extractLabel = function( label, flavour, labelClass, style )
   {
-    if( !label ) return;
+    if( !label ) return '';
     
     if( !labelClass )
     var ret_val = '<div class="' + (undefined===labelClass ? 'label' : labelClass) + '"'
