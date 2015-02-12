@@ -203,7 +203,7 @@ define( [], function() {
       
       var newElement = $(newCanvas)[0];
       if( iconCache[url].icon.complete )
-        fillCanvas( newElement );
+        fillCanvas( newElement, iconCache[url].colors[ color ] );
       else
         iconDelayed( newElement, iconCache[url].colors, color );
       
