@@ -173,7 +173,7 @@
       <label>&lt;b&gt;Standard-Widgets&lt;/b&gt;</label>
     </text>
     <break/>
-    <switch mapping="On_Off" styling="Red_Green">
+    <switch mapping="Off_On" styling="Red_Green">
       <label>Switch</label>
       <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </switch>
@@ -187,7 +187,7 @@
       <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </trigger>
     <break/>
-    <switch mapping="On_Off" styling="Red_Green">
+    <switch mapping="Off_On" styling="Red_Green">
       <label>Switch</label>
       <address transform="DPT:1.001" mode="readwrite">12/7/2</address>
     </switch>
