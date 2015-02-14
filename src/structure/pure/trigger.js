@@ -40,23 +40,20 @@ design.basicdesign.addCreator('trigger', {
     var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
     ret_val.append( $actor );
     
-    // bind to user action
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    basicdesign.createDefaultButtonAction( clickable, $actor, this.downaction, this.action );
-
     // initially setting a value
     basicdesign.defaultUpdate( undefined, data['sendValue'], ret_val, true, path );
     return ret_val;
   },
-  downaction: function(event) {
-     templateEngine.widgetDataGetByElement( this )['downtime'] = new Date().getTime();
+  downaction: function( path, actor ) {
+    templateEngine.widgetDataGet( path )['downtime'] = new Date().getTime();
   },
-  action: function(event) {
+  action: function( path, actor ) {
     var 
-      data  = templateEngine.widgetDataGetByElement( this );
+      data = templateEngine.widgetDataGet( path );
     
+    if( !data.bind_click_to_widget && actor === undefined )
+      return;
+
     if( data.downtime )
     {
       var isShort = (new Date().getTime()) - data.downtime < data.shorttime;

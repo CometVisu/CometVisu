@@ -34,12 +34,6 @@ design.basicdesign.addCreator('switch', {
     var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
     ret_val.append( $actor );
     
-    // bind to user action
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    clickable.bind( 'click', this.action );
-    
     // initially setting a value
     basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
     
@@ -55,10 +49,13 @@ design.basicdesign.addCreator('switch', {
     actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
-  action: function() {
+  action: function( path, actor ) {
     var 
-      widgetData  = templateEngine.widgetDataGetByElement( this );
+      widgetData  = templateEngine.widgetDataGet( path );
                        
+    if( !widgetData.bind_click_to_widget && actor === undefined )
+      return;
+    
     for( var addr in widgetData.address )
     {
       if( !(widgetData.address[addr][1] & 2) ) continue; // skip when write flag not set

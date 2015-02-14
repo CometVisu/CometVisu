@@ -387,12 +387,12 @@ function VisuDesign() {
     if($element.attr('class')) classes += ' custom_' + $element.attr('class');
     var label = this.extractLabel( $element.find('label')[0], flavour );
     var address = this.makeAddressList( $element, makeAddressListFn, path );
-    //var bindClickToWidget = templateEngine.bindClickToWidget;
-    //if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
 
     templateEngine.widgetDataInsert( path, {
       'address' : address,
-      'bind_click_to_widget' : $element.attr('bind_click_to_widget'),
+      'bind_click_to_widget': bindClickToWidget,
       'mapping' : $element.attr('mapping'),
       'styling' : $element.attr('styling'),
       'format'  : $element.attr('format'),

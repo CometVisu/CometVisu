@@ -402,6 +402,72 @@ function TemplateEngine( undefined ) {
     $("#pages").triggerHandler("done");
   };
 
+  /**
+   * General handler for all mouse and touch actions.
+   */
+  (function( outerThis ){ // closure to keep namespace clean
+    var mouseEvent = outerThis.handleMouseEvent = { 
+      isWidget:       false,
+      actor:          undefined,
+      widget:         undefined,
+      type:           '',
+      mouseOutIgnore: true 
+    };
+    window.addEventListener( 'mousedown', function( event ){
+      var 
+        element = event.target;
+        
+      // reset before the search
+      mouseEvent.isWidget = false;
+      mouseEvent.actor = undefined;
+      
+      // search if a widget was hit
+      while( element )
+      {
+        if( element.classList.contains( 'actor' ) )
+          mouseEvent.actor = element;
+        
+        if( element.classList.contains( 'widget_container' ) )
+        {
+          mouseEvent.isWidget = true;
+          mouseEvent.widget = element;
+          mouseEvent.type = element.dataset.type;
+          break;
+        }
+        
+        element = element.parentElement;
+      }
+      
+      if( mouseEvent.isWidget )
+      {
+        var
+          actionFn = thisTemplateEngine.design.creators[ mouseEvent.type ].downaction;
+          
+        if( actionFn !== undefined )
+        {
+          actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor );
+        }
+      }
+    });
+    window.addEventListener( 'mouseup', function( event ){
+      if( mouseEvent.isWidget )
+      {
+        var
+          actionFn = thisTemplateEngine.design.creators[ mouseEvent.type ].action;
+        
+        if( actionFn !== undefined )
+        {
+          actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor );
+        }
+      }
+    });
+    window.addEventListener( 'mouseout', function( event ){
+      if( mouseEvent.mouseOutIgnore )
+        return;
+    console.log( 'o', event, event.target );
+    });
+  })( this );
+  
   /*
    * this function implements widget stylings 
    */
