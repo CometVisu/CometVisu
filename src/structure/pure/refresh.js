@@ -23,17 +23,13 @@ design.basicdesign.addCreator('refresh', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = $( basicdesign.createDefaultWidget( 'refresh', $e, path, flavour, type, null ) + '</div>' );
+    var ret_val = basicdesign.createDefaultWidget( 'refresh', $e, path, flavour, type, null );
     
-    // create the actor
-    var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     
     var data = templateEngine.widgetDataGet( path );
     
-    // initially setting a value
-    basicdesign.defaultUpdate( undefined, $e.attr('value'), ret_val, true, path );
-    return ret_val;
+    return ret_val + '</div>';
   },
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
   action: function( path, actor, isCanceled ) {

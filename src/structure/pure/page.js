@@ -149,8 +149,16 @@ design.basicdesign.addCreator('page', {
     templateEngine.widgetDataInsert( path + '_', {
       'address': address
     });
+    var collector = '';
     $( childs ).each( function(i){
-        container.append( templateEngine.create_pages( childs[i], path + '_' + i, flavour, type ) );
+        var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour, type );
+        if( 'string' === typeof subelement )
+          collector += subelement;
+        else
+        {
+          container.append( collector ).append( subelement );
+          collector = '';
+        }
     } );
     subpage.append(container);
     if( flavour ) subpage.addClass( 'flavour_' + flavour );
