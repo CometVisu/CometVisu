@@ -51,8 +51,7 @@ design.basicdesign.addCreator('multitrigger', {
       
       actor += '<div class="value">' + data.button1label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).bind( 'click', this.action );
-      buttons.append( $actor );
+      buttons.append( actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
     
@@ -65,8 +64,7 @@ design.basicdesign.addCreator('multitrigger', {
       
       actor += '<div class="value">' + data.button2label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).bind( 'click', this.action );
-      buttons.append( $actor );
+      buttons.append( actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
     
@@ -79,8 +77,7 @@ design.basicdesign.addCreator('multitrigger', {
       
       actor += '<div class="value">' + data.button3label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).bind( 'click', this.action );
-      buttons.append( $actor );
+      buttons.append( actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
     
@@ -93,8 +90,7 @@ design.basicdesign.addCreator('multitrigger', {
       
       actor += '<div class="value">' + data.button4label + '</div>';
       actor += '</div>';
-      var $actor = $(actor).bind( 'click', this.action );
-      buttons.append( $actor );
+      buttons.append( actor );
       if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
     }
     
@@ -114,11 +110,16 @@ design.basicdesign.addCreator('multitrigger', {
            .addClass(    isPressed ? 'switchPressed' : 'switchUnpressed' );
     });
   },
-  action: function() {
-    var $this = $(this),
-        data  = templateEngine.widgetDataGetByElement( $this.parent() ),
-        index = $this.index() < 3 ? $this.index()+1 : $this.index(),
-        value = data['button'+index+'value'];
+  downaction: basicdesign.defaultButtonDownAnimation,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimation( path, actor );
+    if( isCanceled ) return;
+    
+    var
+      $actor = $(actor),
+      data  = templateEngine.widgetDataGet( path ),
+      index = $actor.index() < 3 ? $actor.index()+1 : $actor.index(),
+      value = data['button'+index+'value'];
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set

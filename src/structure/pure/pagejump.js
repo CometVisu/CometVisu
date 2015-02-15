@@ -35,8 +35,6 @@ design.basicdesign.addCreator('pagejump', {
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
     var address = basicdesign.makeAddressList($e);
-    // for pagejumps this is mandatory
-    var bindClickToWidget = true;
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
       actor += $e.attr( 'align' ); 
@@ -46,22 +44,21 @@ design.basicdesign.addCreator('pagejump', {
     actor += '</div>';
     var $actor = $(actor);
     var data = templateEngine.widgetDataInsert( path, {
+      'bind_click_to_widget': true, // for pagejumps this is mandatory
       'styling' : $(element).attr('styling'),
       'align'   : $e.attr('align'),
       'target'  : target
     } );
     templateEngine.setWidgetStyling($actor, target, data.styling );
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    clickable.bind( 'click', this.action ).bind( 'mousedown', function(){
-      $actor.removeClass('switchUnpressed').addClass('switchPressed');
-    } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
-      $actor.removeClass('switchPressed').addClass('switchUnpressed');
-    } );
     ret_val.append( label ).append( $actor );
     return ret_val;
   },
-  action: function() {
-    var data = templateEngine.widgetDataGetByElement( this );
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if( isCanceled ) return;
+    
+    var data = templateEngine.widgetDataGet( path );
     templateEngine.scrollToPage( data.target );
   }
 });

@@ -47,15 +47,15 @@ design.basicdesign.addCreator('group', {
       ret_val.addClass('clickable');
     var data = templateEngine.widgetDataInsert( path, {
         'target'  : target
-      } ).bind( 'click', this.action );
+      } );
       templateEngine.setWidgetStyling(ret_val, target, data.styling );
     }
 
     ret_val.append( container );
     return ret_val;
   },
-  action: function () {
-    var data = templateEngine.widgetDataGetByElement( this );
+  action: function( path, actor, isCaneled ) {
+    var data = templateEngine.widgetDataGet( path );
     if (data.target != 0) templateEngine.scrollToPage( data.target );
   } 
 });
