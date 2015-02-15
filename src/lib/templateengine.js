@@ -292,7 +292,7 @@ function TemplateEngine( undefined ) {
           {
             var 
               element = document.getElementById( id ),
-              type = element.dataset.type,
+              type = element.dataset.type || 'page', // only pages have no datatype set
               updateFn = thisTemplateEngine.design.creators[ type ].update;
             if( updateFn )
             {

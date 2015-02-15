@@ -25,8 +25,8 @@ design.basicdesign.addCreator('page', {
     var address = {};
     if ($p.attr('ga')) {
       src = $p.attr('ga');
-      templateEngine.addAddress($p.attr('ga'));
-      address[ '_' + $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
+      templateEngine.addAddress( $p.attr('ga'), path + '_' );
+      address[ $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
     }
 
     var name    = $p.attr('name');
@@ -94,7 +94,6 @@ design.basicdesign.addCreator('page', {
       shownavbar       : shownavbar
     });
     var $container = $( '<div class="clearfix" style="height:100%;position:relative;" />'); 
-    for( var addr in address ) $container.bind( addr, this.update );
     var container=$container;
     
     container.append( '<h1>' + name + '</h1>' );
@@ -122,19 +121,16 @@ design.basicdesign.addCreator('page', {
       }}, floorplan.translateMouseEvent );
       $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
       if ($p.attr('azimut')) {
-        templateEngine.addAddress($p.attr('azimut'));
-        address[ '_' + $p.attr('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
-        container.bind( '_' + $p.attr('azimut'), this.update );
+        templateEngine.addAddress( $p.attr('azimut'), path + '_' );
+        address[ $p.attr('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
       }
       if ($p.attr('elevation')) {
-        templateEngine.addAddress($p.attr('elevation'));
-        address[ '_' + $p.attr('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
-        container.bind( '_' + $p.attr('elevation'), this.update );
+        templateEngine.addAddress( $p.attr('elevation'), path + '_' );
+        address[ $p.attr('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
       }; 
       if ($p.attr('floor')) {
-        templateEngine.addAddress($p.attr('floor'));
-        address[ '_' + $p.attr('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
-        container.bind( '_' + $p.attr('floor'), this.update );
+        templateEngine.addAddress( $p.attr('floor'), path + '_' );
+        address[ $p.attr('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
       }; 
       
       $( childs ).each( function(i,a){
@@ -161,7 +157,7 @@ design.basicdesign.addCreator('page', {
     $('#pages').prepend( subpage );
     return ret_val;
   },
-  update: function( ga, data) {
+  update: function( ga, data ) {
     var 
       element = $(this),
       widgetData  = templateEngine.widgetDataGetByElement( element );
