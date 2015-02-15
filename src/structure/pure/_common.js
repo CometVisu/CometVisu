@@ -198,7 +198,7 @@ function VisuDesign() {
     var valueElement = element.find('.value');
     valueElement.empty();
     if (undefined !== value) {
-      if (('string' == typeof value) || ('number' == typeof value))
+      if (('string' === typeof value) || ('number' === typeof value) || ('object' === typeof value) )
         valueElement.append( value );
       else if ('function' === typeof value)
         value( valueElement );
@@ -207,7 +207,7 @@ function VisuDesign() {
           var thisValue = value[i];
           if (!thisValue) continue;
   
-          if( ('string' == typeof thisValue) || ('number' == typeof thisValue) )
+          if( ('string' === typeof thisValue) || ('number' === typeof thisValue) || ('object' === typeof value) )
             valueElement.append( thisValue );
           else if( 'function' === typeof thisValue )
             thisValue(valueElement);
