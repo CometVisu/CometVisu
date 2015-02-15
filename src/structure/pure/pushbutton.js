@@ -34,12 +34,6 @@ design.basicdesign.addCreator('pushbutton', {
     var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
     ret_val.append( $actor );
 
-    // bind to user action
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    basicdesign.createDefaultButtonAction( clickable, $actor, this.downAction, this.upAction );
-
     // initially setting a value
     basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
 
@@ -54,16 +48,16 @@ design.basicdesign.addCreator('pushbutton', {
     actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
-  downAction: function() {
-    var data = templateEngine.widgetDataGetByElement( this );
+  downaction: function( path, actor ) {
+    var data = templateEngine.widgetDataGet( path );
 
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
       templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.downValue));
     }
   },
-  upAction: function() {
-    var data = templateEngine.widgetDataGetByElement( this );
+  action: function( path, actor, isCanceled ) {
+    var data = templateEngine.widgetDataGet( path );
 
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set

@@ -173,21 +173,21 @@
       <label>&lt;b&gt;Standard-Widgets&lt;/b&gt;</label>
     </text>
     <break/>
-    <switch mapping="On_Off" styling="Red_Green">
+    <switch mapping="Off_On" styling="Red_Green">
       <label>Switch</label>
       <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </switch>
     <break/>
-    <trigger value="0" mapping="On_Off">
+    <trigger value="0" mapping="Off_On">
       <label>Trigger</label>
       <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </trigger>
-    <trigger value="1" mapping="On_Off">
-      <label>Trigger</label>
+    <trigger value="1" mapping="Off_On" bind_click_to_widget="true">
+      <label>Trigger (bind_click_to_widget="true")</label>
       <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </trigger>
     <break/>
-    <switch mapping="On_Off" styling="Red_Green">
+    <switch mapping="Off_On" styling="Red_Green">
       <label>Switch</label>
       <address transform="DPT:1.001" mode="readwrite">12/7/2</address>
     </switch>

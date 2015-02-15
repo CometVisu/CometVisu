@@ -53,7 +53,6 @@ design.basicdesign.addCreator('web', {
 
  //   var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
     var $actor = $('<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>');
-    for( var addr in address ) $actor.bind( addr, this.update );
     var actor = $actor;
   
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;

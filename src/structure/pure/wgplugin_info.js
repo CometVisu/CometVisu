@@ -25,8 +25,6 @@ design.basicdesign.addCreator('wgplugin_info', {
     var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
     var classes = basicdesign.setWidgetLayout( $e, path );
     var ret_val = $('<div class="widget clearfix info '+(classes?classes:'')+'" ' + style + ' />');
-    //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );
-    type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: basicdesign.extractLayout3d( layout )}, this.update3d );
     
     basicdesign.makeWidgetLabel( ret_val, $e, flavour );
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
@@ -39,7 +37,6 @@ design.basicdesign.addCreator('wgplugin_info', {
       'address'  : address,
     } );
     var $actor = $(actor);
-    for( var addr in address ) $actor.bind( addr, this.update );
     ret_val.append( $actor );
     return ret_val;
   },

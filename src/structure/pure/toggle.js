@@ -31,12 +31,6 @@ design.basicdesign.addCreator('toggle', {
     
     var data = templateEngine.widgetDataGet( path );
     
-    // bind to user action
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    basicdesign.createDefaultButtonAction( clickable, $actor, false, this.action );
-
     // initially setting a value
     basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
     return ret_val;
@@ -45,9 +39,13 @@ design.basicdesign.addCreator('toggle', {
     var element = $(this);
     basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
   },
-  action: function(event) {
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if( isCanceled ) return;
+    
     var 
-      data  = templateEngine.widgetDataGetByElement( this );
+      data  = templateEngine.widgetDataGet( path );
 
     var sendValue = templateEngine.getNextMappedValue( data.basicvalue, data.mapping );
     for( var addr in data.address )

@@ -387,12 +387,12 @@ function VisuDesign() {
     if($element.attr('class')) classes += ' custom_' + $element.attr('class');
     var label = this.extractLabel( $element.find('label')[0], flavour );
     var address = this.makeAddressList( $element, makeAddressListFn, path );
-    //var bindClickToWidget = templateEngine.bindClickToWidget;
-    //if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
 
     templateEngine.widgetDataInsert( path, {
       'address' : address,
-      'bind_click_to_widget' : $element.attr('bind_click_to_widget'),
+      'bind_click_to_widget': bindClickToWidget,
       'mapping' : $element.attr('mapping'),
       'styling' : $element.attr('styling'),
       'format'  : $element.attr('format'),
@@ -405,38 +405,57 @@ function VisuDesign() {
   };
   
   /**
-   * Create an action handling that shows a button click animation, i.e. 
-   * pressing the mouse button will look like pressing the buttion and 
-   * releaseing the button will trigger the action. Pulling out will cancel
-   * the action.
+   * Create an action handling that shows a button press animation.
+   * Note: use this function when multiple action elements are used and thus
+   * bind_click_to_widget is not available.
    */
-  this.createDefaultButtonAction = (function() {
-    // closure, the actions:
-    var isTouchDevice = !!('ontouchstart' in window) // works on most browsers 
-                     || !!('onmsgesturechange' in window), // works on ie10
-        mousedown = function( event ) {
-          event.preventDefault();
-          var action = event.data.action,
-              actor  = event.data.actor;
-          if( action )
-            $.proxy( action, actor )( event );
-          actor.removeClass('switchUnpressed').addClass('switchPressed');
-        },
-        mouseaway = function( event ) {
-          event.preventDefault();
-          var action = event.data.action,
-              actor  = event.data.actor;
-          if( action )
-            $.proxy( action, actor )( event );
-          actor.removeClass('switchPressed').addClass('switchUnpressed');
-        };
-    // the real function
-    return function( clickableElement, $actorElement, downAction, clickAction ) {
-      clickableElement.bind( isTouchDevice ? 'touchstart' : 'mousedown', { actor: $actorElement, action: downAction  }, mousedown )
-                      .bind( isTouchDevice ? 'touchend'   : 'mouseup'  , { actor: $actorElement, action: clickAction }, mouseaway )
-                      .bind( isTouchDevice ? 'touchout'   : 'mouseout' , { actor: $actorElement }                     , mouseaway );
-    };
-  })();
+  this.defaultButtonDownAnimation = function( path, actor )
+  {
+    if( actor )
+    {
+      actor.classList.remove('switchUnpressed');
+      actor.classList.add('switchPressed');
+    }
+  };
+  /**
+   * Create an action handling that shows a button press animation.
+   * When the action is not set, it will be searched for - so that widgets
+   * with bind_click_to_widget will also work.
+   */
+  this.defaultButtonDownAnimationInheritAction = function( path, actor )
+  {
+    if( !actor )
+      actor = templateEngine.handleMouseEvent.widget.getElementsByClassName('actor')[0];
+    
+    actor.classList.remove('switchUnpressed');
+    actor.classList.add('switchPressed');
+  };
+  /**
+   * Create an action handling that shows a button unpress animation.
+   * Note: use this function when multiple action elements are used and thus
+   * bind_click_to_widget is not available.
+   */
+  this.defaultButtonUpAnimation = function( path, actor )
+  {
+    if( actor )
+    {
+      actor.classList.remove('switchPressed');
+      actor.classList.add('switchUnpressed');
+    }
+  };
+  /**
+   * Create an action handling that shows a button unpress animation.
+   * When the action is not set, it will be searched for - so that widgets
+   * with bind_click_to_widget will also work.
+   */
+  this.defaultButtonUpAnimationInheritAction = function( path, actor )
+  {
+    if( !actor )
+      actor = templateEngine.handleMouseEvent.widget.getElementsByClassName('actor')[0];
+    
+    actor.classList.remove('switchPressed');
+    actor.classList.add('switchUnpressed');
+  };
 };
 
 /*
