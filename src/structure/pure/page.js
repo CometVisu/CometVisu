@@ -156,10 +156,14 @@ design.basicdesign.addCreator('page', {
           collector += subelement;
         else
         {
-          container.append( collector ).append( subelement );
+          if( '' !== collector )
+            container.append( collector );
+          container.append( subelement );
           collector = '';
         }
     } );
+    if( '' !== collector )
+      container.append( collector );
     subpage.append(container);
     if( flavour ) subpage.addClass( 'flavour_' + flavour );
     $('#pages').prepend( subpage );
