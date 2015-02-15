@@ -23,17 +23,14 @@ design.basicdesign.addCreator('toggle', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = $( basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type, this.update ) + '</div>' );
+    var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type, this.update );
     
     // create the actor
-    var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     
     var data = templateEngine.widgetDataGet( path );
     
-    // initially setting a value
-    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
-    return ret_val;
+    return ret_val + '</div>';
   },
   update: function( ga, d ) { 
     var element = $(this);
