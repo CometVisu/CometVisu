@@ -49,12 +49,11 @@ design.basicdesign.addCreator('switch', {
     actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
-  action: function( path, actor ) {
+  action: function( path, actor, isCaneled ) {
+    if( isCaneled ) return;
+    
     var 
       widgetData  = templateEngine.widgetDataGet( path );
-                       
-    if( !widgetData.bind_click_to_widget && actor === undefined )
-      return;
     
     for( var addr in widgetData.address )
     {

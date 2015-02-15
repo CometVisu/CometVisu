@@ -44,26 +44,22 @@ design.basicdesign.addCreator('trigger', {
     basicdesign.defaultUpdate( undefined, data['sendValue'], ret_val, true, path );
     return ret_val;
   },
-  downaction: function( path, actor ) {
-    templateEngine.widgetDataGet( path )['downtime'] = new Date().getTime();
-  },
-  action: function( path, actor ) {
-    var 
-      data = templateEngine.widgetDataGet( path );
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
     
-    if( !data.bind_click_to_widget && actor === undefined )
-      return;
+    if( isCanceled ) return;
 
-    if( data.downtime )
+    var 
+      data = templateEngine.widgetDataGet( path ),
+      isShort = Date.now() - templateEngine.handleMouseEvent.downtime < data.shorttime,
+      bitMask = (isShort ? 1 : 2);
+      
+    for( var addr in data.address )
     {
-      var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
-      var bitMask = (isShort ? 1 : 2);
-      for( var addr in data.address )
-      {
-        if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
-        if (data.address[addr][2] & bitMask) {
-          templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
-        }
+      if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
+      if (data.address[addr][2] & bitMask) {
+        templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
       }
     }
   }

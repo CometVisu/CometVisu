@@ -38,13 +38,14 @@ design.basicdesign.addCreator('designtoggle', {
 
     return ret_val;
   },
-  action: function( path, actor ) {
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCaneled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if( isCaneled ) return;
+
     var 
       data = templateEngine.widgetDataGet( path );
     
-    if( !data.bind_click_to_widget && actor === undefined )
-      return;
-
     var $this = $(this);
     var designs = data.availableDesigns;
 

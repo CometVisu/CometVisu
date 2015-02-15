@@ -437,6 +437,58 @@ function VisuDesign() {
                       .bind( isTouchDevice ? 'touchout'   : 'mouseout' , { actor: $actorElement }                     , mouseaway );
     };
   })();
+  /**
+   * Create an action handling that shows a button press animation.
+   * Note: use this function when multiple action elements are used and thus
+   * bind_click_to_widget is not available.
+   */
+  this.defaultButtonDownAnimation = function( path, actor )
+  {
+    if( actor )
+    {
+      actor.classList.remove('switchUnpressed');
+      actor.classList.add('switchPressed');
+    }
+  };
+  /**
+   * Create an action handling that shows a button press animation.
+   * When the action is not set, it will be searched for - so that widgets
+   * with bind_click_to_widget will also work.
+   */
+  this.defaultButtonDownAnimationInheritAction = function( path, actor )
+  {
+    if( !actor )
+      actor = templateEngine.handleMouseEvent.widget.getElementsByClassName('actor')[0];
+    
+    actor.classList.remove('switchUnpressed');
+    actor.classList.add('switchPressed');
+  };
+  /**
+   * Create an action handling that shows a button unpress animation.
+   * Note: use this function when multiple action elements are used and thus
+   * bind_click_to_widget is not available.
+   */
+  this.defaultButtonUpAnimation = function( path, actor )
+  {
+    if( actor )
+    {
+      actor.classList.remove('switchPressed');
+      actor.classList.add('switchUnpressed');
+    }
+  };
+  /**
+   * Create an action handling that shows a button unpress animation.
+   * When the action is not set, it will be searched for - so that widgets
+   * with bind_click_to_widget will also work.
+   */
+  this.defaultButtonUpAnimationInheritAction = function( path, actor )
+  {
+    if( !actor )
+      actor = templateEngine.handleMouseEvent.widget.getElementsByClassName('actor')[0];
+    
+    actor.classList.remove('switchPressed');
+    actor.classList.add('switchUnpressed');
+  };
 };
 
 /*

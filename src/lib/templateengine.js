@@ -404,67 +404,129 @@ function TemplateEngine( undefined ) {
 
   /**
    * General handler for all mouse and touch actions.
+   * 
+   * The general flow of actions are:
+   * 1. mousedown                           - "button pressed"
+   * 2. mouseout                            - "button released"
+   * 3. mouseout (mouse moved inside again) - "button pressed"
+   * 4. mouseup                             - "button released"
+   * 
+   * 2. gets mapped to a action cancel event
+   * 3. gets mapped to a mousedown event
+   * 2. and 3. can be repeated unlimited - or also be left out.
+   * 4. triggers the real action
    */
   (function( outerThis ){ // closure to keep namespace clean
-    var mouseEvent = outerThis.handleMouseEvent = { 
-      isWidget:       false,
-      actor:          undefined,
-      widget:         undefined,
-      type:           '',
-      mouseOutIgnore: true 
-    };
-    window.addEventListener( 'mousedown', function( event ){
-      var 
-        element = event.target;
-        
-      // reset before the search
-      mouseEvent.isWidget = false;
-      mouseEvent.actor = undefined;
+    // helper function to get the current actor and widget out of an event:
+    function getWidgetActor( element )
+    {
+      var actor, widget;
       
-      // search if a widget was hit
       while( element )
       {
         if( element.classList.contains( 'actor' ) )
-          mouseEvent.actor = element;
+          actor = element;
         
         if( element.classList.contains( 'widget_container' ) )
         {
-          mouseEvent.isWidget = true;
-          mouseEvent.widget = element;
-          mouseEvent.type = element.dataset.type;
-          break;
+          widget = element;
+          return { actor: actor, widget: widget };
         }
         
         element = element.parentElement;
       }
       
-      if( mouseEvent.isWidget )
+      return false;
+    }
+    
+    var 
+      isTouchDevice = !!('ontouchstart' in window) ||    // works on most browsers 
+                      !!('onmsgesturechange' in window), // works on ie10
+      isWidget = false,
+      // object to hold the coordinated of the current mouse / touch event
+      mouseEvent = outerThis.handleMouseEvent = { 
+        actor:           undefined,
+        widget:          undefined,
+        widgetCreator:   undefined,
+        downtime:        0,
+        alreadyCanceled: false
+      };
+    
+    window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
+      var 
+        element = event.target;
+        
+      // search if a widget was hit
+      var 
+        widgetActor = getWidgetActor( event.target ),
+        bindWidget  = widgetActor.widget ? thisTemplateEngine.widgetDataGet( widgetActor.widget.id ).bind_click_to_widget : false;
+      
+      isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
+      
+      if( isWidget )
       {
+        mouseEvent.actor         = widgetActor.actor;
+        mouseEvent.widget        = widgetActor.widget;
+        mouseEvent.widgetCreator = thisTemplateEngine.design.creators[ widgetActor.widget.dataset.type ];
+        mouseEvent.downtime      = Date.now();
+        
         var
-          actionFn = thisTemplateEngine.design.creators[ mouseEvent.type ].downaction;
+          actionFn = mouseEvent.widgetCreator.downaction;
           
         if( actionFn !== undefined )
         {
           actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor );
+          mouseEvent.alreadyCanceled = false;
         }
+      } else {
+        mouseEvent.actor = undefined;
       }
     });
-    window.addEventListener( 'mouseup', function( event ){
-      if( mouseEvent.isWidget )
+    window.addEventListener( isTouchDevice ? 'touchend' : 'mouseup', function( event ){
+      if( isWidget )
       {
         var
-          actionFn = thisTemplateEngine.design.creators[ mouseEvent.type ].action;
+          widgetActor = getWidgetActor( event.target ),
+          widget      = mouseEvent.widget,
+          isCanceled  = widgetActor.widget !== widget || widgetActor.actor !== mouseEvent.actor,
+          actionFn    = mouseEvent.widgetCreator.action,
+          bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
+          inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
         
-        if( actionFn !== undefined )
+        if( 
+          actionFn !== undefined && 
+          inCurrent &&
+          !mouseEvent.alreadyCanceled
+        )
         {
-          actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor );
+          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent );
         }
+        isWidget = false;
       }
     });
-    window.addEventListener( 'mouseout', function( event ){
-      if( mouseEvent.mouseOutIgnore )
-        return;
-    console.log( 'o', event, event.target );
+    window.addEventListener( isTouchDevice ? 'touchmove' : 'mousemove', function( event ){
+      if( isWidget )
+      {
+        var
+          widgetActor = getWidgetActor( event.target ),
+          widget      = mouseEvent.widget,
+          bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
+          inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
+          
+        if( inCurrent && mouseEvent.alreadyCanceled )
+        { // reactivate
+          mouseEvent.alreadyCanceled = false;
+          var
+            actionFn  = mouseEvent.widgetCreator.downaction;
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor );
+        } else if( !inCurrent && !mouseEvent.alreadyCanceled )
+        { // cancel
+          mouseEvent.alreadyCanceled = true;
+          var
+            actionFn  = mouseEvent.widgetCreator.action;
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+        }
+      }
     });
   })( this );
   
