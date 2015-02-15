@@ -23,12 +23,11 @@ design.basicdesign.addCreator('designtoggle', {
     var $e = $(element);
 
     // create the main structure
-    var ret_val = $( basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type ) + '</div>' );
+    var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type );
 
     // create the actor
     var value = $('link[href*="basic.css"]').attr('href').split('/')[2];
-    var $actor = $('<div class="actor switchUnpressed"><div class="value">' + value + '</div></div>');
-    ret_val.append( $actor );
+    var actor = '<div class="actor switchUnpressed"><div class="value">' + value + '</div></div>';
 
     var data = templateEngine.widgetDataGet( path );
     
@@ -36,7 +35,7 @@ design.basicdesign.addCreator('designtoggle', {
       data['availableDesigns'] = d;
     });
 
-    return ret_val;
+    return ret_val + actor + '</div>';
   },
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
   action: function( path, actor, isCaneled ) {

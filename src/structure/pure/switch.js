@@ -23,21 +23,16 @@ design.basicdesign.addCreator('switch', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = $( basicdesign.createDefaultWidget( 'switch', $e, path, flavour, type, this.update ) + '</div>' );
+    var ret_val = basicdesign.createDefaultWidget( 'switch', $e, path, flavour, type, this.update );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'on_value'  : $e.attr('on_value' ) || 1,
       'off_value' : $e.attr('off_value') || 0
     } );
     
-    // create the actor
-    var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     
-    // initially setting a value
-    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
-    
-    return ret_val;
+    return ret_val + '</div>';
   },
   update: function( ga, d ) { 
     var 
