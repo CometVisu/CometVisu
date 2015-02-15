@@ -35,8 +35,6 @@ design.basicdesign.addCreator('pagejump', {
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
     var address = basicdesign.makeAddressList($e);
-    // for pagejumps this is mandatory
-    var bindClickToWidget = true;
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
       actor += $e.attr( 'align' ); 
@@ -46,6 +44,7 @@ design.basicdesign.addCreator('pagejump', {
     actor += '</div>';
     var $actor = $(actor);
     var data = templateEngine.widgetDataInsert( path, {
+      'bind_click_to_widget': true, // for pagejumps this is mandatory
       'styling' : $(element).attr('styling'),
       'align'   : $e.attr('align'),
       'target'  : target

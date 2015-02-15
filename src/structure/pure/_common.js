@@ -405,40 +405,6 @@ function VisuDesign() {
   };
   
   /**
-   * Create an action handling that shows a button click animation, i.e. 
-   * pressing the mouse button will look like pressing the buttion and 
-   * releaseing the button will trigger the action. Pulling out will cancel
-   * the action.
-   */
-  this.createDefaultButtonAction = (function() {
-    // closure, the actions:
-    var isTouchDevice = !!('ontouchstart' in window) // works on most browsers 
-                     || !!('onmsgesturechange' in window), // works on ie10
-        mousedown = function( event ) {
-          event.preventDefault();
-          var action = event.data.action,
-              actor  = event.data.actor;
-          if( action )
-            $.proxy( action, actor )( event );
-          actor.removeClass('switchUnpressed').addClass('switchPressed');
-        },
-        mouseaway = function( event ) {
-          event.preventDefault();
-          var action = event.data.action,
-              actor  = event.data.actor;
-          if( action )
-            $.proxy( action, actor )( event );
-          actor.removeClass('switchPressed').addClass('switchUnpressed');
-        };
-    // the real function
-    return function( clickableElement, $actorElement, downAction, clickAction ) {
-      console.error( 'createDefaultButtonAction is depreciated!' );
-      clickableElement.bind( isTouchDevice ? 'touchstart' : 'mousedown', { actor: $actorElement, action: downAction  }, mousedown )
-                      .bind( isTouchDevice ? 'touchend'   : 'mouseup'  , { actor: $actorElement, action: clickAction }, mouseaway )
-                      .bind( isTouchDevice ? 'touchout'   : 'mouseout' , { actor: $actorElement }                     , mouseaway );
-    };
-  })();
-  /**
    * Create an action handling that shows a button press animation.
    * Note: use this function when multiple action elements are used and thus
    * bind_click_to_widget is not available.

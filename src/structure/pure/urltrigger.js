@@ -42,8 +42,6 @@ design.basicdesign.addCreator('urltrigger', {
     var $actor = $(actor);
     var valueElement = $actor.find('.value');
     var mappedValue = templateEngine.map( value, $e.attr('mapping') );
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
     if( ('string' == typeof mappedValue) || ('number' == typeof mappedValue) )
     {
       valueElement.append( mappedValue );
