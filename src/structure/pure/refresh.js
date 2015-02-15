@@ -31,17 +31,15 @@ design.basicdesign.addCreator('refresh', {
     
     var data = templateEngine.widgetDataGet( path );
     
-    // bind to user action
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    basicdesign.createDefaultButtonAction( clickable, $actor, undefined, this.action );
-
     // initially setting a value
     basicdesign.defaultUpdate( undefined, $e.attr('value'), ret_val, true, path );
     return ret_val;
   },
-  action: function(event) {
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if( isCanceled ) return;
+    
     templateEngine.visu.restart();
   }
 });

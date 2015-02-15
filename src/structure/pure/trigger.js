@@ -47,7 +47,6 @@ design.basicdesign.addCreator('trigger', {
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
   action: function( path, actor, isCanceled ) {
     basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
-    
     if( isCanceled ) return;
 
     var 

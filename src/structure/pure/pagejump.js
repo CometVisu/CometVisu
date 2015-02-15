@@ -51,17 +51,15 @@ design.basicdesign.addCreator('pagejump', {
       'target'  : target
     } );
     templateEngine.setWidgetStyling($actor, target, data.styling );
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    clickable.bind( 'click', this.action ).bind( 'mousedown', function(){
-      $actor.removeClass('switchUnpressed').addClass('switchPressed');
-    } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
-      $actor.removeClass('switchPressed').addClass('switchUnpressed');
-    } );
     ret_val.append( label ).append( $actor );
     return ret_val;
   },
-  action: function() {
-    var data = templateEngine.widgetDataGetByElement( this );
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if( isCanceled ) return;
+    
+    var data = templateEngine.widgetDataGet( path );
     templateEngine.scrollToPage( data.target );
   }
 });

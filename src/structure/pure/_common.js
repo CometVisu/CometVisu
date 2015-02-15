@@ -432,6 +432,7 @@ function VisuDesign() {
         };
     // the real function
     return function( clickableElement, $actorElement, downAction, clickAction ) {
+      console.error( 'createDefaultButtonAction is depreciated!' );
       clickableElement.bind( isTouchDevice ? 'touchstart' : 'mousedown', { actor: $actorElement, action: downAction  }, mousedown )
                       .bind( isTouchDevice ? 'touchend'   : 'mouseup'  , { actor: $actorElement, action: clickAction }, mouseaway )
                       .bind( isTouchDevice ? 'touchout'   : 'mouseout' , { actor: $actorElement }                     , mouseaway );

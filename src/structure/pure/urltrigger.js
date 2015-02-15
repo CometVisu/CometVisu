@@ -61,24 +61,23 @@ design.basicdesign.addCreator('urltrigger', {
       'sendValue': value //value is currently ignored in XHR! maybe for multitrigger
     } );
     templateEngine.setWidgetStyling( $actor, value, data.styling );
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    clickable.bind( 'click', this.action ).bind( 'mousedown', function(){
-      $actor.removeClass('switchUnpressed').addClass('switchPressed');
-    } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
-      $actor.removeClass('switchPressed').addClass('switchUnpressed');
-    } );
     ret_val.append( label ).append( $actor );
     return ret_val;
   },
-  action: function() {
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if( isCanceled ) return;
+    
     var 
-      widgetData  = templateEngine.widgetDataGetByElement( this );
-    widgetData.params = widgetData.params ? widgetData.params : '';
+      data  = templateEngine.widgetDataGet( path );
+      
+    data.params = data.params ? data.params : '';
     $.ajax({
     type: "GET",
     datatype: "html",
-    data: encodeURI(widgetData.params),
-    url: widgetData.url,
+    data: encodeURI(data.params),
+    url: data.url,
     success: function(data){
             //maybe do something useful with the response?
         }
