@@ -38,8 +38,8 @@ design.basicdesign.addCreator('designtoggle', {
     var clickable = bindClickToWidget ? ret_val : $actor;
     basicdesign.createDefaultButtonAction( clickable, $actor, false, this.action );
 
-    $.getJSON("./designs/get_designs.php",function(data) {
-      data['availableDesigns'] = data;
+    $.getJSON("./designs/get_designs.php",function(d) {
+      data['availableDesigns'] = d;
     });
 
     return ret_val;
