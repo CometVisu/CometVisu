@@ -66,10 +66,14 @@
     </statusbar>
   </meta>
   <page name="Start">
-    <line/>
+    <line>
+      <layout colspan="12"/>
+    </line>
     <text align="center">
       <label>Welcome to the CometVisu!</label>
     </text>
-    <line/>
+    <line>
+      <layout colspan="12"/>
+    </line>
   </page>
 </pages>

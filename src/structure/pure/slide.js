@@ -23,7 +23,7 @@ design.basicdesign.addCreator('slide', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update );
+    var ret_val = $( basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update ) + '</div>' );
     // and fill in widget specific data
     var datatype_min = undefined;
     var datatype_max = undefined;
@@ -71,7 +71,7 @@ design.basicdesign.addCreator('slide', {
     
     return ret_val;
   },
-  update: function( e, d ) { 
+  update: function( ga, d ) { 
     var element = $(this),
         actor   = element.find('.actor'),
         data    = templateEngine.widgetDataGetByElement( this );
@@ -79,7 +79,7 @@ design.basicdesign.addCreator('slide', {
     if( data.inAction )
       return;
     
-    var value = templateEngine.transformDecode( data.address[ e.type ][0], d );
+    var value = templateEngine.transformDecode( data.address[ ga ][0], d );
     if( data.value != value )
     {
       data.value         = value;
@@ -117,7 +117,7 @@ design.basicdesign.addCreator('slide', {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
         var dv  = templateEngine.transformEncode( data.address[addr][0], asv );
         if( dv != templateEngine.transformEncode( data.address[addr][0], data.value ) )
-          templateEngine.visu.write( addr.substr(1), dv );
+          templateEngine.visu.write( addr, dv );
       }
       data.value = asv;
     }, 250 ); // update KNX every 250 ms 
@@ -136,7 +136,7 @@ design.basicdesign.addCreator('slide', {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
         var uv  = templateEngine.transformEncode( data.address[addr][0], ui.value );
         if( uv != templateEngine.transformEncode( data.address[addr][0], data.value ) )
-          templateEngine.visu.write( addr.substr(1), uv );
+          templateEngine.visu.write( addr, uv );
       }
   }
 });

@@ -25,8 +25,8 @@ design.basicdesign.addCreator('page', {
     var address = {};
     if ($p.attr('ga')) {
       src = $p.attr('ga');
-      templateEngine.addAddress($p.attr('ga'));
-      address[ '_' + $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
+      templateEngine.addAddress( $p.attr('ga'), path + '_' );
+      address[ $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
     }
 
     var name    = $p.attr('name');
@@ -94,7 +94,6 @@ design.basicdesign.addCreator('page', {
       shownavbar       : shownavbar
     });
     var $container = $( '<div class="clearfix" style="height:100%;position:relative;" />'); 
-    for( var addr in address ) $container.bind( addr, this.update );
     var container=$container;
     
     container.append( '<h1>' + name + '</h1>' );
@@ -122,19 +121,16 @@ design.basicdesign.addCreator('page', {
       }}, floorplan.translateMouseEvent );
       $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
       if ($p.attr('azimut')) {
-        templateEngine.addAddress($p.attr('azimut'));
-        address[ '_' + $p.attr('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
-        container.bind( '_' + $p.attr('azimut'), this.update );
+        templateEngine.addAddress( $p.attr('azimut'), path + '_' );
+        address[ $p.attr('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
       }
       if ($p.attr('elevation')) {
-        templateEngine.addAddress($p.attr('elevation'));
-        address[ '_' + $p.attr('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
-        container.bind( '_' + $p.attr('elevation'), this.update );
+        templateEngine.addAddress( $p.attr('elevation'), path + '_' );
+        address[ $p.attr('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
       }; 
       if ($p.attr('floor')) {
-        templateEngine.addAddress($p.attr('floor'));
-        address[ '_' + $p.attr('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
-        container.bind( '_' + $p.attr('floor'), this.update );
+        templateEngine.addAddress( $p.attr('floor'), path + '_' );
+        address[ $p.attr('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
       }; 
       
       $( childs ).each( function(i,a){
@@ -153,20 +149,32 @@ design.basicdesign.addCreator('page', {
     templateEngine.widgetDataInsert( path + '_', {
       'address': address
     });
+    var collector = '';
     $( childs ).each( function(i){
-        container.append( templateEngine.create_pages( childs[i], path + '_' + i, flavour, type ) );
+        var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour, type );
+        if( 'string' === typeof subelement )
+          collector += subelement;
+        else
+        {
+          if( '' !== collector )
+            container.append( collector );
+          container.append( subelement );
+          collector = '';
+        }
     } );
+    if( '' !== collector )
+      container.append( collector );
     subpage.append(container);
     if( flavour ) subpage.addClass( 'flavour_' + flavour );
     $('#pages').prepend( subpage );
     return ret_val;
   },
-  update: function(e, data) {
+  update: function( ga, data ) {
     var 
       element = $(this),
       widgetData  = templateEngine.widgetDataGetByElement( element );
-    var value = basicdesign.defaultValueHandling( e, data, widgetData );
-    var type = widgetData.address[ e.type ][2];
+    var value = basicdesign.defaultValueHandling( ga, data, widgetData );
+    var type = widgetData.address[ ga ][2];
     switch( type )
     {
       case 'azimut':
@@ -189,7 +197,7 @@ design.basicdesign.addCreator('page', {
         // TODO: data comparision has to be refactored to use DPT and a value
         if (data==01) {
           templateEngine.scrollToPage(element.context.firstChild.textContent);
-          templateEngine.visu.write(e.type.substr(1), templateEngine.transformEncode('DPT:1.001', 0));
+          templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));
         }
     }
   }

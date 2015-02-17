@@ -78,7 +78,7 @@ define( ['structure_custom',
       var $e = $(element);
 
       // create the main structure
-      var ret_val = templateEngine.design.createDefaultWidget((isInfo ? 'diagram_info' : 'diagram'), $e, path, flavour, type, update);
+      var ret_val = $( templateEngine.design.createDefaultWidget((isInfo ? 'diagram_info' : 'diagram'), $e, path, flavour, type, update) + '</div>' );
 
       // create the configuration
       var id = "diagram_" + path;

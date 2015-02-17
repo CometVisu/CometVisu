@@ -1,4 +1,4 @@
-/* text.js (c) 2012 by Christian Mayer [CometVisu at ChristianMayer dot de]
+/* text.js (c) 2012-2015 by Christian Mayer [CometVisu at ChristianMayer dot de]
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -24,32 +24,27 @@ design.basicdesign.addCreator('text', {
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + basicdesign.extractLayout(layout, type) + '"' : '';
     var classes = basicdesign.setWidgetLayout( $e, path );
-    var ret_val = $('<div class="widget clearfix text '+(classes?classes:'')+'" ' + style + '/>');
+    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) classes += ' flavour_' + flavour;
+    var ret_val = '<div class="widget clearfix text '+(classes?classes:'')+'" ' + style + '>';
     var data = templateEngine.widgetDataInsert( path, {
       path: path
     });
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
+    var labelStyle = $e.attr('align') ? 'text-align:' + $e.attr('align') + ';' : undefined;
+    var label = basicdesign.extractLabel( $e.find('label')[0], flavour, '', labelStyle );
     if (!label) {
-      label = $('<div/>');
+      label = '<div' + (labelStyle ? ' style="' + labelStyle + '"' : '') + '>';
       $e.contents().each(function() {
         var $v = $(this);
         if ($v.is('icon')) {
-          var i = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling'));
-          if( 'function' === typeof i )
-            i( $div );
-          else
-            if (i) label.append(i.clone());
+          label += icons.getIconText($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling'));
         } else
-          label.append(this.textContent);
+          label += this.textContent;
       });
+      label += '</div>';
     }
-    label.removeAttr('class');
-    if ($e.attr('align'))
-      label.attr('style', 'text-align:' + $e.attr('align') + ';');
-    ret_val.append(label);
-    return ret_val;
+    ret_val += label;
+    return ret_val + '</div>';
   }
 });
 
