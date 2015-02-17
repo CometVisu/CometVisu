@@ -919,6 +919,7 @@ function TemplateEngine( undefined ) {
       $e.css('width', w);
     });
     // and elements inside groups
+    var areaColumns = $('#main').data('columns');
     var adjustableElements = $('.group .widget_container');
     adjustableElements.each(function(i, e) {
       var 
