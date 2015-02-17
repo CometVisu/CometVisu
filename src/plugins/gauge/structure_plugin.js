@@ -48,9 +48,9 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
   create: function(element, path, flavour, type) {
     var $e = $(element);
     // create the main structure
-    var ret_val = templateEngine.design.createDefaultWidget('gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant) {
+    var ret_val = $( templateEngine.design.createDefaultWidget('gauge', $e, path, flavour, type, this.update, function( src, transform, mode, variant) {
       return [true, variant];
-    });
+    }) + '</div>' );
 
     // create the actor 
     var id = "gauge_" + path;
@@ -109,11 +109,11 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
     return ret_val;
   },
 
-  update: function(e, d) {
+  update: function( ga, d ) {
     var element = $(this);
     var data  = templateEngine.widgetDataGetByElement( element );
-    var value = templateEngine.design.defaultUpdate( e, d, element, true, element.parent().attr('id') );
-    var variant = data['address'][ e.type ][2];
+    var value = templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
+    var variant = data.address[ ga ][2];
     var gaugeElement = data['gaugeElement'];
     if (gaugeElement) {
       switch (variant) {

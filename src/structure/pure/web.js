@@ -53,7 +53,6 @@ design.basicdesign.addCreator('web', {
 
  //   var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
     var $actor = $('<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>');
-    for( var addr in address ) $actor.bind( addr, this.update );
     var actor = $actor;
   
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
@@ -66,19 +65,19 @@ design.basicdesign.addCreator('web', {
 
     return ret_val;
   },
-  update: function(e, data) {
+  update: function( ga, data) {
     var 
       element    = $(this),
       widgetData = templateEngine.widgetDataGetByElement( element ),
-      value      = basicdesign.defaultValueHandling( e, data, widgetData ),
-      type       = widgetData.address[ e.type ][2];
+      value      = basicdesign.defaultValueHandling( ga, data, widgetData ),
+      type       = widgetData.address[ ga ][2];
     switch( type )
     {
       default:
         if (data==01) {
           var iframe = element.find('iframe');
           iframe.attr('src', iframe.attr('src'));
-          templateEngine.visu.write(e.type.substr(1), templateEngine.transformEncode('DPT:1.001', 0));
+          templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));
         }
     }
   }

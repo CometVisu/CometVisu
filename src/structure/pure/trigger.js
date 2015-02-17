@@ -28,7 +28,8 @@ design.basicdesign.addCreator('trigger', {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
       return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
     }
-    var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn );
+    var ret_val = $( basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn ) + '</div>' );
+    //var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'sendValue'  : $e.attr('value' )                || 0,
@@ -37,36 +38,29 @@ design.basicdesign.addCreator('trigger', {
     } );
     
     // create the actor
-    var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    var actor = '<div class="actor switchUnpressed"><div class="value"></div></div>';
+    ret_val.append( actor );
     
-    // bind to user action
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    basicdesign.createDefaultButtonAction( clickable, $actor, this.downaction, this.action );
-
     // initially setting a value
     basicdesign.defaultUpdate( undefined, data['sendValue'], ret_val, true, path );
     return ret_val;
+    //return ret_val + actor + '</div>';
   },
-  downaction: function(event) {
-     templateEngine.widgetDataGetByElement( this )['downtime'] = new Date().getTime();
-  },
-  action: function(event) {
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if( isCanceled ) return;
+
     var 
-      data  = templateEngine.widgetDataGetByElement( this );
-    
-    if( data.downtime )
+      data = templateEngine.widgetDataGet( path ),
+      isShort = Date.now() - templateEngine.handleMouseEvent.downtime < data.shorttime,
+      bitMask = (isShort ? 1 : 2);
+      
+    for( var addr in data.address )
     {
-      var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
-      var bitMask = (isShort ? 1 : 2);
-      for( var addr in data.address )
-      {
-        if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
-        if (data.address[addr][2] & bitMask) {
-          templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
-        }
+      if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
+      if (data.address[addr][2] & bitMask) {
+        templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
       }
     }
   }

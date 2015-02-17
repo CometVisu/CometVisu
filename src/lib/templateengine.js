@@ -285,7 +285,26 @@ function TemplateEngine( undefined ) {
     }
     function update(json) {
       for (key in json) {
-        $.event.trigger('_' + key, json[key]);
+        //$.event.trigger('_' + key, json[key]);
+        var data = json[ key ];
+        ga_list[ key ].forEach( function( id ){
+          if( id )
+          {
+            var 
+              element = document.getElementById( id ),
+              type = element.dataset.type || 'page', // only pages have no datatype set
+              updateFn = thisTemplateEngine.design.creators[ type ].update;
+            if( updateFn )
+            {
+              var children = element.children;
+              if( children[0] )
+                updateFn.call( children[0], key, data );
+              else
+                console.log( element, children, type ); // DEBUG FIXME
+            }
+            //console.log( element, type, updateFn );
+          }
+        });
       }
     };
     thisTemplateEngine.visu.update = function(json) { // overload the handler
@@ -364,8 +383,11 @@ function TemplateEngine( undefined ) {
         .decode(value) : value);
   };
   
-  this.addAddress = function(address) {
-    ga_list[address]=1;
+  this.addAddress = function( address, id ) {
+    if( address in ga_list )
+      ga_list[ address ].push( id );
+    else
+      ga_list[ address ] = [ id ];
   };
   
   this.getAddresses = function() {
@@ -380,6 +402,134 @@ function TemplateEngine( undefined ) {
     $("#pages").triggerHandler("done");
   };
 
+  /**
+   * General handler for all mouse and touch actions.
+   * 
+   * The general flow of actions are:
+   * 1. mousedown                           - "button pressed"
+   * 2. mouseout                            - "button released"
+   * 3. mouseout (mouse moved inside again) - "button pressed"
+   * 4. mouseup                             - "button released"
+   * 
+   * 2. gets mapped to a action cancel event
+   * 3. gets mapped to a mousedown event
+   * 2. and 3. can be repeated unlimited - or also be left out.
+   * 4. triggers the real action
+   */
+  (function( outerThis ){ // closure to keep namespace clean
+    // helper function to get the current actor and widget out of an event:
+    function getWidgetActor( element )
+    {
+      var actor, widget;
+      
+      while( element )
+      {
+        if( element.classList.contains( 'actor' ) )
+          actor = element;
+        
+        if( element.classList.contains( 'widget_container' ) )
+        {
+          widget = element;
+          return { actor: actor, widget: widget };
+        }
+        
+        element = element.parentElement;
+      }
+      
+      return false;
+    }
+    
+    var 
+      isTouchDevice = !!('ontouchstart' in window) ||    // works on most browsers 
+                      !!('onmsgesturechange' in window), // works on ie10
+      isWidget = false,
+      // object to hold the coordinated of the current mouse / touch event
+      mouseEvent = outerThis.handleMouseEvent = { 
+        actor:           undefined,
+        widget:          undefined,
+        widgetCreator:   undefined,
+        downtime:        0,
+        alreadyCanceled: false
+      };
+    
+    window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
+      var 
+        element = event.target;
+        
+      // search if a widget was hit
+      var 
+        widgetActor = getWidgetActor( event.target ),
+        bindWidget  = widgetActor.widget ? thisTemplateEngine.widgetDataGet( widgetActor.widget.id ).bind_click_to_widget : false;
+      
+      isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
+      
+      if( isWidget )
+      {
+        mouseEvent.actor         = widgetActor.actor;
+        mouseEvent.widget        = widgetActor.widget;
+        mouseEvent.widgetCreator = thisTemplateEngine.design.creators[ widgetActor.widget.dataset.type ];
+        mouseEvent.downtime      = Date.now();
+        
+        var
+          actionFn = mouseEvent.widgetCreator.downaction;
+          
+        if( actionFn !== undefined )
+        {
+          actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor );
+          mouseEvent.alreadyCanceled = false;
+        }
+      } else {
+        mouseEvent.actor = undefined;
+      }
+    });
+    window.addEventListener( isTouchDevice ? 'touchend' : 'mouseup', function( event ){
+      if( isWidget )
+      {
+        var
+          widgetActor = getWidgetActor( event.target ),
+          widget      = mouseEvent.widget,
+          isCanceled  = widgetActor.widget !== widget || widgetActor.actor !== mouseEvent.actor,
+          actionFn    = mouseEvent.widgetCreator.action,
+          bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
+          inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
+        
+        if( 
+          actionFn !== undefined && 
+          inCurrent &&
+          !mouseEvent.alreadyCanceled
+        )
+        {
+          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent );
+        }
+        isWidget = false;
+      }
+    });
+    window.addEventListener( isTouchDevice ? 'touchmove' : 'mousemove', function( event ){
+      if( isWidget )
+      {
+        var
+          widgetActor = getWidgetActor( event.target ),
+          widget      = mouseEvent.widget,
+          bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
+          inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
+          
+        if( inCurrent && mouseEvent.alreadyCanceled )
+        { // reactivate
+          mouseEvent.alreadyCanceled = false;
+          var
+            actionFn  = mouseEvent.widgetCreator.downaction;
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor );
+        } else if( !inCurrent && !mouseEvent.alreadyCanceled )
+        { // cancel
+          mouseEvent.alreadyCanceled = true;
+          var
+            actionFn  = mouseEvent.widgetCreator.action;
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+        }
+      }
+    });
+  })( this );
+  
   /*
    * this function implements widget stylings 
    */
@@ -784,7 +934,7 @@ function TemplateEngine( undefined ) {
         for (var i = 0; i < origin.length; i++) {
            var $v = $(origin[i]);
            if ($v.is('icon')) {
-             value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
+             value[i] = icons.getIconElement($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
            }
            else {
              value[i] = $v.text();
@@ -1078,6 +1228,7 @@ function TemplateEngine( undefined ) {
     
     xml = null;
     delete xml; // not needed anymore - free the space
+    $('.icon').each(function(){ fillRecoloredIcon(this);});
     $('.loading').removeClass('loading');
     fireLoadingFinishedAction();
     if( undefined !== thisTemplateEngine.screensave_time )
@@ -1100,12 +1251,18 @@ function TemplateEngine( undefined ) {
     
     var data = thisTemplateEngine.widgetDataGet( path );
     data.type = page.nodeName;
-    retval = jQuery(
-      '<div class="widget_container '
+    if( 'string' === typeof retval )
+    {
+      return '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
       + ('break' === data.type ? 'break_container' : '') // special case for break widget
-      + '" id="'+path+'"/>').append(retval);
-    return retval;
+      + '" id="'+path+'" data-type="'+data.type+'">' + retval + '</div>';
+    } else {
+      return jQuery(
+      '<div class="widget_container '
+      + (data.rowspanClass ? data.rowspanClass : '')
+      + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
+    }
   };
 
   this.scrollToPage = function(page_id, speed, skipHistory) {

@@ -28,8 +28,6 @@ design.basicdesign.addCreator('imagetrigger', {
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var value = $e.attr('value') ? $e.attr('value') : 0;
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
     ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
     var address = basicdesign.makeAddressList($e);
     var layout = $e.children('layout')[0];
@@ -52,19 +50,14 @@ design.basicdesign.addCreator('imagetrigger', {
       'suffix':    $e.attr('suffix'),
       'sendValue': $e.attr('sendValue') || ""
     } );
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    clickable.bind( 'click', this.action );
-    for( var addr in address ) {
-      $actor.bind( addr, this.update );
-    }
     ret_val.append( $actor );
     return ret_val;
   },
-  update: function(e,d) {
+  update: function( ga, d ) {
     var data  = templateEngine.widgetDataGetByElement( element );
     if ( data.address[e.type][1].writeonly == "true")
       return; // skip writeonly FIXME: writeonly shouldnt bind to update at all
-    var val = templateEngine.transformDecode(data.address[e.type][0], d);
+    var val = templateEngine.transformDecode(data.address[ ga ][0], d);
     if (data.type == "show")
       if (val == 0)
         $(this).children().hide();
@@ -81,15 +74,15 @@ design.basicdesign.addCreator('imagetrigger', {
     //FIXME: add bitmask for multiple images
     //FIXME: add SVG-magics
   },
-  action: function() {
+  action: function( path, actor, isCanceled ) {
     var 
-      data = templateEngine.widgetDataGetByElement( this );
+      data = templateEngine.widgetDataGet( path );
     for( var addr in data.address ) {
       if( !(data.address[addr][1] & 2) )
         continue; // skip when write flag not set
       if( data.sendValue == "" )
         continue; // skip empty
-      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], data.sendValue ) );
+      templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], data.sendValue ) );
     }
   }
 });
