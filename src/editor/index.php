@@ -118,7 +118,7 @@ if( '.xsd' !== substr( $strSchemaFilename, -4 ) ) {
 }
 
 // .. as a fully qualified filename
-$strSchemaFQFilename = realpath( simplifyPath( $strConfigPath . $strSchemaFilename) );
+$strSchemaFQFilename = realpath( simplifyPath( $strConfigPath . ($isDemo?'demo/':'') . $strSchemaFilename) );
 
 if (false === is_readable($strSchemaFQFilename)) {
     exitWithError('schema-file of config-file does not exist \'' . $strSchemaFQFilename . '\' (\'' . $strSchemaFilename. '\').');
