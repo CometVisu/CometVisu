@@ -1094,6 +1094,11 @@ function TemplateEngine( undefined ) {
     });
   };
 
+  /**
+   * Array with all functions that need to be called once the DOM tree was set
+   * up.
+   */
+  this.postDOMSetupFns = [];
   
   function setup_page() {
     // and now setup the pages
@@ -1114,6 +1119,11 @@ function TemplateEngine( undefined ) {
 
     thisTemplateEngine.create_pages(page, 'id');
     profileCV( 'setup_page created pages' );
+    
+    thisTemplateEngine.postDOMSetupFns.forEach( function( thisFn ){
+      thisFn();
+    });
+    profileCV( 'setup_page finished postDOMSetupFns' );
     
     var startpage = 'id_';
     if ($.getUrlVar('startpage')) {
@@ -1410,16 +1420,17 @@ function TemplateEngine( undefined ) {
     }
   };
 
-  this.setupRefreshAction = function() {
-    var refresh = $(this).data('refresh');
+  this.setupRefreshAction = function( path, refresh ) {
     if (refresh && refresh > 0) {
-      var target = $('img', $(this))[0] || $('iframe', $(this))[0];
-      var src = target.src;
+      var
+        element = $( '#' + path ),
+        target = $('img', element)[0] || $('iframe', element)[0],
+        src = target.src;
       if (src.indexOf('?') < 0)
         src += '?';
-      $(this).data('interval', setInterval(function() {
+      thisTemplateEngine.widgetDataGet( path ).internal = setInterval(function() {
         thisTemplateEngine.refreshAction(target, src);
-      }, refresh));
+      }, refresh);
     }
   };
 

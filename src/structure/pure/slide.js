@@ -23,7 +23,7 @@ design.basicdesign.addCreator('slide', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = $( basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update ) + '</div>' );
+    var ret_val = basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update );
     // and fill in widget specific data
     var datatype_min = undefined;
     var datatype_max = undefined;
@@ -50,26 +50,26 @@ design.basicdesign.addCreator('slide', {
     });
     
     // create the actor
-    var $actor = $('<div class="actor">');
-    ret_val.append( $actor );
-    
-    $actor.slider({
-      step:    step,
-      min:     min,
-      max:     max, 
-      range:   'min', 
-      animate: true,
-      start:   this.slideStart,
-      change:  this.slideChange
+    templateEngine.postDOMSetupFns.push( function(){
+      var $actor = $( '#' + path + ' .actor' );
+      $actor.slider({
+        step:    step,
+        min:     min,
+        max:     max, 
+        range:   'min', 
+        animate: true,
+        start:   this.slideStart,
+        change:  this.slideChange
+      });
+      if( data['format']) {
+        $actor.on( 'slide', this.slideUpdateValue );
+        
+        // initially setting a value
+        $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
+      }
     });
-    if( data['format']) {
-      $actor.on( 'slide', this.slideUpdateValue );
-      
-      // initially setting a value
-      $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
-    }
     
-    return ret_val;
+    return ret_val + '<div class="actor"></div>';
   },
   update: function( ga, d ) { 
     var element = $(this),

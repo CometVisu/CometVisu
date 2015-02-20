@@ -152,10 +152,13 @@ design.basicdesign.addCreator('page', {
     var collector = '';
     $( childs ).each( function(i){
         var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour, type );
-        if( 'string' === typeof subelement )
+        if( undefined === subelement )
+          return;
+        else if( 'string' === typeof subelement )
           collector += subelement;
         else
         {
+          console.log( path, subelement );
           if( '' !== collector )
             container.append( collector );
           container.append( subelement );

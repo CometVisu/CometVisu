@@ -33,37 +33,26 @@ design.basicdesign.addCreator('group', {
     if( $e.attr('align') ) hstyle += 'text-align:' + $e.attr('align') + ';';
     if( hstyle != '' ) hstyle = 'style="' + hstyle + '"';
     var childs = $e.children().not('layout');
-    var container = $( '<div class="clearfix"/>' );
-    if( $e.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $e.attr('name') + '</h2>' );
+    var container = '<div class="clearfix">';
+    if( $e.attr('name') ) container += '<h2 ' + hstyle + '>' + $e.attr('name') + '</h2>';
                               
-    var collector = '';
     $( childs ).each( function(i){
       var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour );
       if( 'string' === typeof subelement )
-        collector += subelement;
+        container += subelement;
       else
-      {
-        if( '' !== collector )
-          container.append( collector );
-        container.append( subelement );
-        collector = '';
-      }
+        container += subelement[0].outerHTML;
     } );
-    if( '' !== collector )
-      container.append( collector );
+    container += '</div>';
 
-    var ret_val = $('<div class="' + classes + '" />');
     if ( $e.attr('target') )  {
-      var target = $e.attr('target') ? $e.attr('target') : '0';
-      ret_val.addClass('clickable');
+      var target = $e.attr('target') ;
+      classes += ' clickable';
       var data = templateEngine.widgetDataInsert( path, {
         'target'  : target
       } );
-      templateEngine.setWidgetStyling(ret_val, target, data.styling );
     }
-
-    ret_val.append( container );
-    return ret_val;
+    return '<div class="' + classes + '">' + container + '</div>';
   },
   action: function( path, actor, isCaneled ) {
     var data = templateEngine.widgetDataGet( path );
