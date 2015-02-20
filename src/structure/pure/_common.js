@@ -198,16 +198,23 @@ function VisuDesign() {
     var valueElement = element.find('.value');
     valueElement.empty();
     if (undefined !== value) {
-      if (('string' === typeof value) || ('number' === typeof value) || ('object' === typeof value) )
+      if (('string' === typeof value) || ('number' === typeof value))
         valueElement.append( value );
       else if ('function' === typeof value)
         value( valueElement );
-      else {
+      else if( !Array.isArray( value ) ) {
+        var element = value.cloneNode();
+        if( value.getContext )
+        {
+          fillRecoloredIcon( element );
+        }
+        valueElement.append( element );
+      } else {
         for (var i = 0; i < value.length; i++) {
           var thisValue = value[i];
           if (!thisValue) continue;
   
-          if( ('string' === typeof thisValue) || ('number' === typeof thisValue) || ('object' === typeof value) )
+          if( ('string' === typeof thisValue) || ('number' === typeof thisValue)  )
             valueElement.append( thisValue );
           else if( 'function' === typeof thisValue )
             thisValue(valueElement);
