@@ -20,7 +20,9 @@ define( ['_common'], function( design ) {
  
 design.basicdesign.addCreator('slide', {
   create: function( element, path, flavour, type ) {
-    var $e = $(element);
+    var
+      self = this,
+      $e = $(element);
     
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update );
@@ -58,18 +60,19 @@ design.basicdesign.addCreator('slide', {
         max:     max, 
         range:   'min', 
         animate: true,
-        start:   this.slideStart,
-        change:  this.slideChange
+        start:   self.slideStart,
+        change:  self.slideChange
       });
+      
       if( data['format']) {
-        $actor.on( 'slide', this.slideUpdateValue );
+        $actor.on( 'slide', self.slideUpdateValue );
         
         // initially setting a value
         $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
       }
     });
     
-    return ret_val + '<div class="actor"></div>';
+    return ret_val + '<div class="actor"/></div>';
   },
   update: function( ga, d ) { 
     var element = $(this),

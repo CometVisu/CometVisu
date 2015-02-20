@@ -16,7 +16,12 @@
  */
 
 define( ['_common'], function( design ) {
-   var basicdesign = design.basicdesign;
+   var 
+     basicdesign   = design.basicdesign,
+     $navbarTop    = $('#navbarTop'),
+     $navbarLeft   = $('#navbarLeft'),
+     $navbarRight  = $('#navbarRight'),
+     $navbarBottom = $('#navbarBottom');
  
 design.basicdesign.addCreator('navbar', {
   create: function( navbar, path, flavour, type ) {
@@ -25,41 +30,55 @@ design.basicdesign.addCreator('navbar', {
     var id = path.split('_'); id.pop();
     var position = $n.attr('position') || 'left';
     var scope = $n.attr('scope') || -1;
-    var container = $( '<div class="navbar clearfix" id="' + id.join('_')+'_'+ position + '_navbar" />' );
-    if( $n.attr('name') ) container.append( '<h2>' + $n.attr('name') + '</h2>' );
+    var container = '<div class="navbar clearfix" id="' + id.join('_')+'_'+ position + '_navbar">';
+    var $container;
+    if( $n.attr('name') ) container += '<h2>' + $n.attr('name') + '</h2>';
     if( $n.attr('flavour') ) flavour = $n.attr('flavour');// sub design choice
     $( childs ).each( function(i){
-        container.append( templateEngine.create_pages( childs[i], path + '_' + i, flavour ) );
+      var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour );
+      if( !$container )
+      {
+        if( 'string' === typeof subelement )
+        {
+          container += subelement;
+          return;
+        }
+        $container = $(container);
+      }
+      $container.append( subelement );
     } );
-    container.data('scope',scope);
+    if( !$container )
+      $container = $(container);
+    $container.data('scope',scope);
     
-    if( flavour ) container.addClass( 'flavour_' + flavour );
+    if( flavour ) $container.addClass( 'flavour_' + flavour );
     var dynamic  = $n.attr('dynamic') == 'true' ? true : false;
   
     var size = $n.attr('width') || 300;
     switch( position )
     {
       case 'top':
-        $('#navbarTop').append( container );
+        $navbarTop.append( $container );
         break;
         
       case 'left':
-        $('#navbarLeft').append( container );
-        var thisSize = $('#navbarLeft').data('size') || size; // FIXME - only a temporal solution
+        $navbarLeft.append( $container );
+        var thisSize = $navbarLeft.data('size') || size; // FIXME - only a temporal solution
         if( dynamic ) templateEngine.pagePartsHandler.navbarSetSize( 'left', thisSize );
         break;
         
       case 'right':
-        $('#navbarRight').append( container );
-        var thisSize = $('#navbarRight').data('size') || size; // FIXME - only a temporal solution
+        $navbarRight.append( $container );
+        var thisSize = $navbarRight.data('size') || size; // FIXME - only a temporal solution
         if( dynamic ) templateEngine.pagePartsHandler.navbarSetSize( 'right', thisSize );
         break;
         
       case 'bottom':
-        $('#navbarBottom').append( container );
+        $navbarBottom.append( $container );
         break;
     }
     templateEngine.pagePartsHandler.navbars[position].dynamic |= dynamic;
+    return '';
   }
 });
 
