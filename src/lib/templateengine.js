@@ -778,31 +778,35 @@ function TemplateEngine( undefined ) {
         thisTemplateEngine.applyColumnWidths();
       }
     }
-  };
-  
-  this.rowspanClass = function(rowspan) {
-    var className = 'rowspan rowspan' + rowspan;
-    var styleId = className.replace(" ", "_") + 'Style';
-    if (!$('#' + styleId).get(0)) {
-      var dummyDiv = $(
-          '<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
-          .appendTo(document.body).show();
+    
+    var 
+      dummyDiv = $(
+        '<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
+        .appendTo(document.body).show(),
+      singleHeight = $('#containerDiv').outerHeight(false),
+      singleHeightMargin = $('#containerDiv').outerHeight(true),
+      styles = '';
 
-      var singleHeight = $('#containerDiv').outerHeight(false);
-      var singleHeightMargin = $('#containerDiv').outerHeight(true);
-
-      $('#calcrowspan').remove();
-
-      // append css style
-      $('head').append(
-          '<style id="' + styleId + '">.rowspan.rowspan' + rowspan
+    for( rowspan in usedRowspans )
+    {
+      styles += '.rowspan.rowspan' + rowspan
               + ' { height: '
               + ((rowspan - 1) * singleHeightMargin + singleHeight)
-              + 'px;} </style>').data(className, 1);
+              + "px;}\n";
     }
-    return className;
-  };
+    
+    $('#calcrowspan').remove();
 
+    // set css style
+    $('#rowspanStyle').text( styles );
+  };
+  
+  var usedRowspans = {};
+  this.rowspanClass = function(rowspan) {
+    usedRowspans[ rowspan ] = true;
+    return 'rowspan rowspan' + rowspan;
+  };
+    
   var pluginsToLoadCount = 0;
   var xml;
   this.parseXML = function(loaded_xml) {
