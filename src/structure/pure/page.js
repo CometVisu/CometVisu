@@ -70,33 +70,35 @@ design.basicdesign.addCreator('page', {
     var ret_val;
     
     if ($p.attr('visible')=='false') {
-      ret_val=$('');
+      ret_val='';
     }
     else { // default is visible
       var layout = $p.children('layout')[0];
       var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
       var classes = basicdesign.setWidgetLayout( $p, path );
-      ret_val = $('<div class="widget clearfix link pagelink '+(classes?classes:'')+'" ' + style + '/>');
-      var actor = $('<div ' + wstyle + '><a href="javascript:">' + name + '</a></div>');
+      ret_val = '<div class="widget clearfix link pagelink '+(classes?classes:'')+'" ' + style + '>';
+      ret_val += '<div class="actor" ' + wstyle + '><a href="javascript:">' + name + '</a></div>';
+      ret_val += '</div>';
+      /*
       var clickable = bindClickToWidget ? ret_val : actor;
       clickable.bind( 'click', function() {
         templateEngine.scrollToPage(name);
       });
-      ret_val.append(actor);
+      */
     }
 
     var childs = $p.children().not('layout');
-    var subpage = $( '<div class="page type_' + type + '" id="' + path + '_"/>' );
+    var subpageClass = flavour ? (' flavour_' + flavour) : '';
+    var subpage = '<div class="page type_' + type + subpageClass + '" id="' + path + '_">';
     var data = templateEngine.widgetDataInsert( path + '_', {
       name             : name,
       showtopnavigation: showtopnavigation,
       showfooter       : showfooter,
       shownavbar       : shownavbar
     });
-    var $container = $( '<div class="clearfix" style="height:100%;position:relative;" />'); 
-    var container=$container;
+    var container = '<div class="clearfix" style="height:100%;position:relative;"><h1>' + name + '</h1>'; 
+    var $container;
     
-    container.append( '<h1>' + name + '</h1>' );
     if( '2d' == type )
     {
       var size = 'width:100%;height:100%;';
@@ -105,10 +107,11 @@ design.basicdesign.addCreator('page', {
       // else: assume scaled
       if (undefined != backdrop) {
         var elemType = '.svg' == backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';
-        container.append( '<' + elemType + ' src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>' );
+        container += '<' + elemType + ' src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
       }
     } else if( '3d' == type && false ) //---Disable 3D for 0.8---
     {
+      /*
       var floorplan = JSFloorPlan3D( container, backdrop );
       floorplan.moveToRoom( 'Underground', false, true, false );
       container.data( 'JSFloorPlan3D', floorplan );
@@ -145,6 +148,7 @@ design.basicdesign.addCreator('page', {
           });
         }
       });
+      */
     }
     templateEngine.widgetDataInsert( path + '_', {
       'address': address
@@ -152,20 +156,33 @@ design.basicdesign.addCreator('page', {
     var collector = '';
     $( childs ).each( function(i){
         var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour, type );
-        if( 'string' === typeof subelement )
+        if( undefined === subelement )
+          return;
+        else if( 'string' === typeof subelement )
           collector += subelement;
         else
         {
+          // collector += subelement[0].outerHTML; -- will be actived in the future
+          if( !$container )
+            $container = $(container + '</div>');
+          
           if( '' !== collector )
-            container.append( collector );
-          container.append( subelement );
+            $container.append( collector );
+          $container.append( subelement );
           collector = '';
         }
     } );
-    if( '' !== collector )
-      container.append( collector );
-    subpage.append(container);
-    if( flavour ) subpage.addClass( 'flavour_' + flavour );
+    if( $container )
+    {
+      if( '' !== collector )
+        $container.append( collector );
+      subpage = $(subpage + '</div>').append( $container );
+      subpage.attr('data-jq','true');
+    } else {
+      if( '' !== collector )
+        container += collector;
+      subpage += container + '</div>';
+    }
     $('#pages').prepend( subpage );
     return ret_val;
   },
@@ -200,6 +217,11 @@ design.basicdesign.addCreator('page', {
           templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));
         }
     }
+  },
+  action: function( path, actor, isCaneled ) {
+    if( isCaneled ) return;
+    
+    templateEngine.scrollToPage( path + '_' );
   }
 });
 
