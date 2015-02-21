@@ -38,13 +38,7 @@ design.basicdesign.addCreator('navbar', {
     var container = '<div class="navbar clearfix' + flavourClass + '" id="' + id.join('_')+'_'+ position + '_navbar">';
     if( $n.attr('name') ) container += '<h2>' + $n.attr('name') + '</h2>';
     $( childs ).each( function(i){
-      var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour );
-      if( 'string' === typeof subelement )
-        container += subelement;
-      else {
-        console.warn( 'non string subelement', subelement );
-        container += subelement[0].outerHTML;
-      }
+      container += templateEngine.create_pages( childs[i], path + '_' + i, flavour );
     } );
     //$container.data('scope',scope); ???
     

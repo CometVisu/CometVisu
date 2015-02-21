@@ -37,13 +37,7 @@ design.basicdesign.addCreator('group', {
     if( $e.attr('name') ) container += '<h2 ' + hstyle + '>' + $e.attr('name') + '</h2>';
                               
     $( childs ).each( function(i){
-      var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour );
-      if( 'string' === typeof subelement )
-        container += subelement;
-      else {
-        console.warn( 'non string subelement', subelement );
-        container += subelement[0].outerHTML;
-      }
+      container += templateEngine.create_pages( childs[i], path + '_' + i, flavour );
     } );
     container += '</div>';
 

@@ -158,20 +158,8 @@ design.basicdesign.addCreator('page', {
         var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour, type );
         if( undefined === subelement )
           return;
-        else if( 'string' === typeof subelement )
-          collector += subelement;
-        else
-        {
-          // collector += subelement[0].outerHTML; -- will be actived in the future
-          console.warn( 'non string subelement', subelement );
-          if( !$container )
-            $container = $(container + '</div>');
-          
-          if( '' !== collector )
-            $container.append( collector );
-          $container.append( subelement );
-          collector = '';
-        }
+        
+        collector += subelement;
     } );
     if( $container )
     {
