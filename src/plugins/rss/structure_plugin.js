@@ -36,77 +36,54 @@ define( ['structure_custom', 'plugins/rss/zrssfeed/jquery.zrssfeed' ], function(
 
 VisuDesign_Custom.prototype.addCreator("rss", {
     create: function( page, path ) {
-        var $p = $(page);
+        var 
+          $p = $(page),
+          id = "rss_" + path,
+          classes = templateEngine.design.setWidgetLayout( $p, path ),
+          ret_val = '<div class="widget clearfix rss ' + classes + '">',
+          label = '<div class="label">' + page.textContent + '</div>',
+          rssstyle = ''
+            + $p.attr('width' ) ? 'width:'  + $p.attr('width' ) : ''
+            + $p.attr('height') ? 'height:' + $p.attr('height') : '',
+          actor = '<div class="actor"><div class="rss_inline" id="' + id + '" style="' + rssstyle + '"></div>';
 
-        function uniqid() {
-            var newDate = new Date;
-            return newDate.getTime();
-        }
+        var data = templateEngine.widgetDataInsert( path, {
+          id:         id,
+          src:        $p.attr("src"),
+          label:      page.textContent,
+          refresh:    $p.attr("refresh")*1000 || 0,
+          limit:      $p.attr("limit") || 10,
+          header:     $p.attr("header") || true,
+          date:       $p.attr("date") || true,
+          content:    $p.attr("content") || true,
+          snippet:    $p.attr("snippet") || true,
+          showerror:  $p.attr("showerror") || true,
+          ssl:        $p.attr("ssl") || false,
+          linktarget: $p.attr("linktarget") || "_new",
+          link:       $p.attr("link") || true,
+          title:      $p.attr("title") || true
+        });
+          
+        templateEngine.postDOMSetupFns.push( function(){
+          refreshRSS( path );
+        });
 
-        var id = "rss_" + uniqid();
-
-        var ret_val = $('<div class="widget clearfix rss" />');
-        templateEngine.design.setWidgetLayout( ret_val, $p, path );
-        var label = '<div class="label">' + page.textContent + '</div>';
-        var actor = $("<div class=\"actor\"><div class=\"rss_inline\" id=\"" + id + "\"></div>");
-        var rss = $("#" + id, actor);
-
-        if ($p.attr("width")) {
-            rss.css("width", $p.attr("width"));
-        }
-        if ($p.attr("height")) {
-            rss.css("height", $p.attr("height"));
-        }
-
-        ret_val.append(label).append(actor);
-
-        rss.data("id", id);
-        rss.data("src", $p.attr("src"));
-        rss.data("label", page.textContent);
-        rss.data("refresh", $p.attr("refresh"));
-        rss.data("limit", $p.attr("limit")) || 10;
-        rss.data("header", $p.attr("header")) || true;
-        rss.data("date", $p.attr("date")) || true;
-        rss.data("content", $p.attr("content")) || true;
-        rss.data("snippet", $p.attr("snippet")) || true;
-        rss.data("showerror", $p.attr("showerror")) || true;
-        rss.data("ssl", $p.attr("ssl")) || false;
-        rss.data("linktarget", $p.attr("linktarget")) || "_new";
-        rss.data("link", $p.attr("link")) || true;
-        rss.data("title", $p.attr("title")) || true;
-        
-        refreshRSS(rss, {});
-
-        return ret_val;
+        return ret_val + label + actor + '</div>';
     }
 });
 
-function refreshRSS(rss, data) {
-    var rss = $(rss);
-
-    var src = rss.data("src");
-    var label = rss.data("label");
-    var refresh = rss.data("refresh");
-    var limit = rss.data("limit");
-    //FIXME: eval really needed?? to convert string true/false to bool?
+function refreshRSS( path ) {
+    var
+      data = templateEngine.widgetDataGet( path ),
+      src = data.src;
     
-        jQuery(function() {
-          $(rss).rssfeed(src, {
-            limit: rss.data("limit"),
-            header: eval(rss.data("header")),
-            date: eval(rss.data("date")),
-            content: rss.data("content"),
-            snippet: eval(rss.data("snippet")),
-            showerror: eval(rss.data("showerror")),
-            ssl: eval(rss.data("ssl")),
-            linktarget: rss.data("linktarget"),
-          });
-        });
-        if (typeof (refresh) != "undefined" && refresh) {
+      $('#'+path+' .rss_inline').rssfeed( src, data )
+      
+      if( data.refresh ) {
       // reload regularly
-      window.setTimeout(function(rss, data) {
-        refreshRSS(rss, data)
-      }, refresh * 1000, rss, data);
+      window.setTimeout( function( path ) {
+        refreshRSS( path )
+      }, data.refresh, path );
     }
     //rss.data("itemoffset") = itemoffset;
     return false;

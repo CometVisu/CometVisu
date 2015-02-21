@@ -84,6 +84,7 @@ VisuDesign_Custom.prototype.addCreator("timeout", {
       */
     });
 
+    return '';
   }
 });
 

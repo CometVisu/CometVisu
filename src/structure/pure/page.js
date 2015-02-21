@@ -16,7 +16,9 @@
  */
 
 define( ['_common'], function( design ) {
-   var basicdesign = design.basicdesign;
+  var 
+    basicdesign = design.basicdesign,
+    allPages = '';
  
 design.basicdesign.addCreator('page', {
   create: function( page, path, flavour, type ) {
@@ -97,7 +99,6 @@ design.basicdesign.addCreator('page', {
       shownavbar       : shownavbar
     });
     var container = '<div class="clearfix" style="height:100%;position:relative;"><h1>' + name + '</h1>'; 
-    var $container;
     
     if( '2d' == type )
     {
@@ -153,38 +154,19 @@ design.basicdesign.addCreator('page', {
     templateEngine.widgetDataInsert( path + '_', {
       'address': address
     });
-    var collector = '';
     $( childs ).each( function(i){
         var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour, type );
         if( undefined === subelement )
           return;
-        else if( 'string' === typeof subelement )
-          collector += subelement;
-        else
-        {
-          // collector += subelement[0].outerHTML; -- will be actived in the future
-          if( !$container )
-            $container = $(container + '</div>');
-          
-          if( '' !== collector )
-            $container.append( collector );
-          $container.append( subelement );
-          collector = '';
-        }
+        
+        container += subelement;
     } );
-    if( $container )
-    {
-      if( '' !== collector )
-        $container.append( collector );
-      subpage = $(subpage + '</div>').append( $container );
-      subpage.attr('data-jq','true');
-    } else {
-      if( '' !== collector )
-        container += collector;
-      subpage += container + '</div>';
-    }
-    $('#pages').prepend( subpage );
+    subpage += container + '</div></div>';
+    allPages = subpage + allPages;
     return ret_val;
+  },
+  createFinal: function() { // special function - only for pages!
+    $('#pages').prepend( allPages );
   },
   update: function( ga, data ) {
     var 
