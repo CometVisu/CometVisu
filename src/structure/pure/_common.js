@@ -360,17 +360,6 @@ function VisuDesign() {
   };
   
   /**
-   * this function implements the widget label (JNK)
-   */
-  this.makeWidgetLabel = function( element, page, flavour ) { 
-    var labelElement = page.find('label')[0]; // get first label element
-    if (labelElement) { // if exists, add it
-      element.append( this.extractLabel( labelElement, flavour ) );
-    }
-    return element;
-  };
-  
-  /**
    * Create a default widget to be filled by the creator afterwards.
    * Note: the reciever of the returned string must add an </div> closing element!
    * 
