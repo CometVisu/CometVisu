@@ -24,12 +24,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
       classes = templateEngine.design.setWidgetLayout( $el, path ),
       label = templateEngine.design.extractLabel( $el.find('label')[0], flavour );
 
-    function uniqid() {
-      var newDate = new Date;
-      return newDate.getTime();
-    }
-
-    var id = "rss_" + uniqid();
+    var id = "rss_" + path;
     var extsource = false;
 
     var ret_val = '<div class="widget clearfix rsslog '+classes+'" >';
@@ -58,24 +53,6 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
       itemack:    0
     });
     
-    var brss = $('<div class="rsslog_popup" id="' + id + '_big"/>');
-    
-    var $ret_val = $(ret_val);
-    $ret_val.bind("click", function() {
-      templateEngine.showPopup("rsslog", {title: $('.label', $ret_val).text() || '', content: brss});
-      brss.parent("div").css({height: "90%", width: "90%", margin: "auto"}); // define parent as 100%!
-      data.refresh = "";
-      data.itemack = 1;
-      $(brss).bind("click", function(event) {
-        // don't let the popup know about the click, or it will close on touch-displays
-        event.stopPropagation();
-      }).bind( "remove", function() {
-        refreshRSSlog( data );
-      });
-      $(brss).parent().css("overflow", "auto");
-      refreshRSSlog( data, true );
-    });
-        
     templateEngine.bindActionForLoadingFinished(function() {
       refreshRSSlog( data );
     });
@@ -86,7 +63,27 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
       }
     });
 
-    return $ret_val;
+    return ret_val;
+  },
+  action: function( path, actor, isCanceled ) {
+    if( isCanceled ) return;
+
+    var 
+      widgetData = templateEngine.widgetDataGet( path ),
+      brss = $('<div class="rsslog_popup" id="'+widgetData.id+'_big"/>');
+      
+    templateEngine.showPopup("rsslog", {title: $('#'+path+' .label').text() || '', content: brss});
+    brss.parent("div").css({height: "90%", width: "90%", margin: "auto"}); // define parent as 100%!
+    widgetData.refresh = "";
+    widgetData.itemack = 1;
+    $(brss).bind("click", function(event) {
+      // don't let the popup know about the click, or it will close on touch-displays
+      event.stopPropagation();
+    }).bind( "remove", function() {
+      refreshRSSlog( widgetData );
+    });
+    $(brss).parent().css("overflow", "auto");
+    refreshRSSlog( widgetData, true );
   }
 });
 

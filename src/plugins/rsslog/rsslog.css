@@ -21,7 +21,7 @@
 
 .rsslogBody {
   clear: left;
-  width:100%;
+  /* width:100%; CM: why was this needed? */
 }
 
 .rsslogeven  {
