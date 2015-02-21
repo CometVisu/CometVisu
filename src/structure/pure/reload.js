@@ -26,6 +26,7 @@ design.basicdesign.addCreator('reload', {
       data = templateEngine.widgetDataInsert( path, {
         address: address
       });
+    return '';
   },
   update: function( ga, d ) {
     var
