@@ -163,6 +163,7 @@ design.basicdesign.addCreator('page', {
         else
         {
           // collector += subelement[0].outerHTML; -- will be actived in the future
+          console.warn( 'non string subelement', subelement );
           if( !$container )
             $container = $(container + '</div>');
           

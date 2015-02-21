@@ -41,8 +41,10 @@ design.basicdesign.addCreator('navbar', {
       var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour );
       if( 'string' === typeof subelement )
         container += subelement;
-      else
+      else {
+        console.warn( 'non string subelement', subelement );
         container += subelement[0].outerHTML;
+      }
     } );
     //$container.data('scope',scope); ???
     
