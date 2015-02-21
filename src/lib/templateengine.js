@@ -1122,6 +1122,7 @@ function TemplateEngine( undefined ) {
     var page = $('pages > page', xml)[0]; // only one page element allowed...
 
     thisTemplateEngine.create_pages(page, 'id');
+    thisTemplateEngine.design.getCreator('page').createFinal();
     profileCV( 'setup_page created pages' );
     
     thisTemplateEngine.postDOMSetupFns.forEach( function( thisFn ){
