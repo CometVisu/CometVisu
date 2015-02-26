@@ -124,8 +124,8 @@ define( ['structure_custom',
         var 
           classStr = data.previewlabels ? 'diagram_inline' : 'diagram_preview',
           styleStr = 'min-height: 40px'
-                   + $e.attr("width" ) ? (';width:'  + $e.attr("width" )) : ''
-                   + $e.attr("height") ? (';height:' + $e.attr("height")) : ';height: 100%';
+                   + ($e.attr("width" ) ? (';width:'  + $e.attr("width" )) : '')
+                   + ($e.attr("height") ? (';height:' + $e.attr("height")) : ';height: 100%');
 
         actor = '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
         
