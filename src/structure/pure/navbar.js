@@ -40,6 +40,7 @@ design.basicdesign.addCreator('navbar', {
     $( childs ).each( function(i){
       container += templateEngine.create_pages( childs[i], path + '_' + i, flavour );
     } );
+    container+='</div>';
     //$container.data('scope',scope); ???
     
     var dynamic  = $n.attr('dynamic') == 'true' ? true : false;
