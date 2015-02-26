@@ -28,8 +28,7 @@ design.basicdesign.addCreator('trigger', {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
       return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
     }
-    var ret_val = $( basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn ) + '</div>' );
-    //var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn );
+    var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'sendValue'  : $e.attr('value' )                || 0,
@@ -39,12 +38,12 @@ design.basicdesign.addCreator('trigger', {
     
     // create the actor
     var actor = '<div class="actor switchUnpressed"><div class="value"></div></div>';
-    ret_val.append( actor );
     
     // initially setting a value
-    basicdesign.defaultUpdate( undefined, data['sendValue'], ret_val, true, path );
-    return ret_val;
-    //return ret_val + actor + '</div>';
+    templateEngine.postDOMSetupFns.push( function(){
+      basicdesign.defaultUpdate( undefined, data['sendValue'], $('#'+path), true, path );
+    });
+    return ret_val + actor + '</div>';
   },
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
   action: function( path, actor, isCanceled ) {

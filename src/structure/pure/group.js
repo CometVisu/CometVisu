@@ -22,37 +22,33 @@ design.basicdesign.addCreator('group', {
   maturity: design.Maturity.development,
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var classes = basicdesign.setWidgetLayout( $e, path );
-    var ret_val = $('<div class="widget clearfix group '+(classes?classes:'')+'" />');
+    var classes = 'clearfix group ' + basicdesign.setWidgetLayout( $e, path );
+    if ( $e.attr('class') ) {
+      classes += ' custom_' + $e.attr( 'class' );
+    }
+    if ($e.attr('nowidget')!=='true') classes = 'widget ' + classes;
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+    if( flavour ) classes += ' flavour_' + flavour;
     var hstyle  = '';                                     // heading style
     if( $e.attr('align') ) hstyle += 'text-align:' + $e.attr('align') + ';';
     if( hstyle != '' ) hstyle = 'style="' + hstyle + '"';
-    if ($e.attr('nowidget')=='true') {
-      ret_val.removeClass('widget');
-    }
-    if ( $e.attr('class') ) {
-      ret_val.addClass('custom_'+$e.attr('class'));
-    }
     var childs = $e.children().not('layout');
-    var container = $( '<div class="clearfix"/>' );
-    if( $e.attr('name') ) container.append( '<h2 ' + hstyle + '>' + $e.attr('name') + '</h2>' );
+    var container = '<div class="clearfix">';
+    if( $e.attr('name') ) container += '<h2 ' + hstyle + '>' + $e.attr('name') + '</h2>';
+                              
     $( childs ).each( function(i){
-        container.append( templateEngine.create_pages( childs[i], path + '_' + i, flavour ) );
+      container += templateEngine.create_pages( childs[i], path + '_' + i, flavour );
     } );
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
+    container += '</div>';
 
     if ( $e.attr('target') )  {
-      var target = $e.attr('target') ? $e.attr('target') : '0';
-      ret_val.addClass('clickable');
-    var data = templateEngine.widgetDataInsert( path, {
+      var target = $e.attr('target') ;
+      classes += ' clickable';
+      var data = templateEngine.widgetDataInsert( path, {
         'target'  : target
       } );
-      templateEngine.setWidgetStyling(ret_val, target, data.styling );
     }
-
-    ret_val.append( container );
-    return ret_val;
+    return '<div class="' + classes + '">' + container + '</div>';
   },
   action: function( path, actor, isCaneled ) {
     var data = templateEngine.widgetDataGet( path );

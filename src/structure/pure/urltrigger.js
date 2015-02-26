@@ -31,25 +31,14 @@ design.basicdesign.addCreator('urltrigger', {
     }
     var layoutClass = basicdesign.setWidgetLayout( $e, path );
     if( layoutClass ) classes += ' ' + layoutClass;
-    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
+    if( flavour ) classes += ' flavour_' + flavour;
+    var ret_val = '<div class="'+classes+'" ' + style + '>';
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
       actor += $e.attr( 'align' ); 
     actor += '"><div class="value"></div></div>';
-    var $actor = $(actor);
-    var valueElement = $actor.find('.value');
-    var mappedValue = templateEngine.map( value, $e.attr('mapping') );
-    if( ('string' == typeof mappedValue) || ('number' == typeof mappedValue) )
-    {
-      valueElement.append( mappedValue );
-    } else 
-    for( var i = 0; i < mappedValue.length; i++ )
-    {
-      valueElement.append( $(mappedValue[i]).clone() );
-    }
     var data = templateEngine.widgetDataInsert( path, {
       'url'     : $(element).attr('url'), 
       'mapping' : $(element).attr('mapping'),
@@ -58,9 +47,13 @@ design.basicdesign.addCreator('urltrigger', {
       'params'  : $(element).attr('params'),
       'sendValue': value //value is currently ignored in XHR! maybe for multitrigger
     } );
-    templateEngine.setWidgetStyling( $actor, value, data.styling );
-    ret_val.append( label ).append( $actor );
-    return ret_val;
+    
+    // initially setting a value
+    templateEngine.postDOMSetupFns.push( function(){
+      basicdesign.defaultUpdate( undefined, value, $('#'+path), true, path );
+    });
+
+    return ret_val + label + actor + '</div>';
   },
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
   action: function( path, actor, isCanceled ) {

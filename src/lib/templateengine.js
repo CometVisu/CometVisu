@@ -778,31 +778,35 @@ function TemplateEngine( undefined ) {
         thisTemplateEngine.applyColumnWidths();
       }
     }
-  };
-  
-  this.rowspanClass = function(rowspan) {
-    var className = 'rowspan rowspan' + rowspan;
-    var styleId = className.replace(" ", "_") + 'Style';
-    if (!$('#' + styleId).get(0)) {
-      var dummyDiv = $(
-          '<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
-          .appendTo(document.body).show();
+    
+    var 
+      dummyDiv = $(
+        '<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
+        .appendTo(document.body).show(),
+      singleHeight = $('#containerDiv').outerHeight(false),
+      singleHeightMargin = $('#containerDiv').outerHeight(true),
+      styles = '';
 
-      var singleHeight = $('#containerDiv').outerHeight(false);
-      var singleHeightMargin = $('#containerDiv').outerHeight(true);
-
-      $('#calcrowspan').remove();
-
-      // append css style
-      $('head').append(
-          '<style id="' + styleId + '">.rowspan.rowspan' + rowspan
+    for( rowspan in usedRowspans )
+    {
+      styles += '.rowspan.rowspan' + rowspan
               + ' { height: '
               + ((rowspan - 1) * singleHeightMargin + singleHeight)
-              + 'px;} </style>').data(className, 1);
+              + "px;}\n";
     }
-    return className;
-  };
+    
+    $('#calcrowspan').remove();
 
+    // set css style
+    $('#rowspanStyle').text( styles );
+  };
+  
+  var usedRowspans = {};
+  this.rowspanClass = function(rowspan) {
+    usedRowspans[ rowspan ] = true;
+    return 'rowspan rowspan' + rowspan;
+  };
+    
   var pluginsToLoadCount = 0;
   var xml;
   this.parseXML = function(loaded_xml) {
@@ -1094,6 +1098,11 @@ function TemplateEngine( undefined ) {
     });
   };
 
+  /**
+   * Array with all functions that need to be called once the DOM tree was set
+   * up.
+   */
+  this.postDOMSetupFns = [];
   
   function setup_page() {
     // and now setup the pages
@@ -1113,7 +1122,13 @@ function TemplateEngine( undefined ) {
     var page = $('pages > page', xml)[0]; // only one page element allowed...
 
     thisTemplateEngine.create_pages(page, 'id');
+    thisTemplateEngine.design.getCreator('page').createFinal();
     profileCV( 'setup_page created pages' );
+    
+    thisTemplateEngine.postDOMSetupFns.forEach( function( thisFn ){
+      thisFn();
+    });
+    profileCV( 'setup_page finished postDOMSetupFns' );
     
     var startpage = 'id_';
     if ($.getUrlVar('startpage')) {
@@ -1410,16 +1425,17 @@ function TemplateEngine( undefined ) {
     }
   };
 
-  this.setupRefreshAction = function() {
-    var refresh = $(this).data('refresh');
+  this.setupRefreshAction = function( path, refresh ) {
     if (refresh && refresh > 0) {
-      var target = $('img', $(this))[0] || $('iframe', $(this))[0];
-      var src = target.src;
+      var
+        element = $( '#' + path ),
+        target = $('img', element)[0] || $('iframe', element)[0],
+        src = target.src;
       if (src.indexOf('?') < 0)
         src += '?';
-      $(this).data('interval', setInterval(function() {
+      thisTemplateEngine.widgetDataGet( path ).internal = setInterval(function() {
         thisTemplateEngine.refreshAction(target, src);
-      }, refresh));
+      }, refresh);
     }
   };
 

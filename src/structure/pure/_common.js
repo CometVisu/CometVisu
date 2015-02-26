@@ -198,16 +198,23 @@ function VisuDesign() {
     var valueElement = element.find('.value');
     valueElement.empty();
     if (undefined !== value) {
-      if (('string' === typeof value) || ('number' === typeof value) || ('object' === typeof value) )
+      if (('string' === typeof value) || ('number' === typeof value))
         valueElement.append( value );
       else if ('function' === typeof value)
         value( valueElement );
-      else {
+      else if( !Array.isArray( value ) ) {
+        var element = value.cloneNode();
+        if( value.getContext )
+        {
+          fillRecoloredIcon( element );
+        }
+        valueElement.append( element );
+      } else {
         for (var i = 0; i < value.length; i++) {
           var thisValue = value[i];
           if (!thisValue) continue;
   
-          if( ('string' === typeof thisValue) || ('number' === typeof thisValue) || ('object' === typeof value) )
+          if( ('string' === typeof thisValue) || ('number' === typeof thisValue)  )
             valueElement.append( thisValue );
           else if( 'function' === typeof thisValue )
             thisValue(valueElement);
@@ -350,17 +357,6 @@ function VisuDesign() {
       ret_val = 'innerrowspan'; 
     }
     return ret_val;
-  };
-  
-  /**
-   * this function implements the widget label (JNK)
-   */
-  this.makeWidgetLabel = function( element, page, flavour ) { 
-    var labelElement = page.find('label')[0]; // get first label element
-    if (labelElement) { // if exists, add it
-      element.append( this.extractLabel( labelElement, flavour ) );
-    }
-    return element;
   };
   
   /**

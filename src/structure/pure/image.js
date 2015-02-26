@@ -23,13 +23,13 @@ design.basicdesign.addCreator('image', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = $( basicdesign.createDefaultWidget('image', $e, path, flavour, type) + '</div>' );
+    var ret_val = basicdesign.createDefaultWidget('image', $e, path, flavour, type);
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'width'  : $e.attr('width'),
       'height' : $e.attr('height'),
       'src'    : $e.attr('src'),
-      'refresh': $e.attr('refresh')
+      'refresh': $e.attr('refresh') ? $e.attr('refresh') * 1000 : 0
     });
 
     // create the actor
@@ -43,15 +43,15 @@ design.basicdesign.addCreator('image', {
     if (data.height) {
       imgStyle += 'height:' + data.height + ';';
     }
-    var $actor = $('<div class="actor"><img src="' + data.src + '" style="' + imgStyle + '" /></div>');
-    ret_val.append($actor);
+    var actor = '<div class="actor"><img src="' + data.src + '" style="' + imgStyle + '" /></div>';
 
     if (data.refresh) {
-      data['refresh'] = data.refresh * 1000;
-      $actor.each(templateEngine.setupRefreshAction);  // abuse "each" to call in context...
+      templateEngine.postDOMSetupFns.push( function(){
+        templateEngine.setupRefreshAction( path, data.refresh );
+      });
     }
     
-    return ret_val;
+    return ret_val + actor + '</div>';
   }
 });
 
