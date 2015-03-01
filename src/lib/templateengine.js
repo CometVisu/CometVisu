@@ -308,10 +308,9 @@ function TemplateEngine( undefined ) {
       }
     };
     thisTemplateEngine.visu.update = function(json) { // overload the handler
-      $(document).trigger( 'firstdata', json );
-      profileCV( 'firstdata start' );
+      profileCV( 'first data start (' + thisTemplateEngine.visu.retryCounter + ')' );
       update( json );
-      profileCV( 'firstdata updated' );
+      profileCV( 'first data updated', true );
       thisTemplateEngine.visu.update = update; // handle future requests directly
     }
     thisTemplateEngine.visu.user = 'demo_user'; // example for setting a user
@@ -1274,9 +1273,7 @@ function TemplateEngine( undefined ) {
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
     var addressesToSubscribe = thisTemplateEngine.getAddresses();
-    if( 0 == addressesToSubscribe.length )
-      $(document).trigger( 'firstdata' ); // no data to receive => send event now
-    else
+    if( 0 !== addressesToSubscribe.length )
       thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
     
     xml = null;
