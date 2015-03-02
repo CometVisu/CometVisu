@@ -48,6 +48,7 @@ function CometVisu( urlPrefix )
   this.lastIndex        = -1;                            // index returned by the last request
   this.resendHeaders = [];                               // keep the e.g. atmosphere tracking-id id there is one
   this.headers = [];                                     // fixed headers that are send everytime
+  this.retryCounter = 0;                                 // count number of retries (reset with each valid response)
     
   this.setInitialAddresses = function(addresses) {
     this.initialAddresses = addresses;
@@ -101,6 +102,7 @@ function CometVisu( urlPrefix )
     {
       if( this.running )
       { // retry initial request
+        this.retryCounter++;
         this.xhr = $.ajax({
           url:this.urlPrefix + 'r',
           dataType:   'json',
@@ -121,10 +123,12 @@ function CometVisu( urlPrefix )
       var data       = json.d;
       this.readResendHeaderValues();
       this.update( data );
+      this.retryCounter = 0;
     }
 
     if( this.running )
     { // keep the requests going
+      this.retryCounter++;
       this.xhr = $.ajax({
         url:        this.urlPrefix + 'r',
         dataType:   'json',

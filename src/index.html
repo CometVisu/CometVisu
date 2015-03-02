@@ -21,9 +21,10 @@
         profileCV = (function(){
           var
             isNotHidden = !/profile=hidden/.test( window.location.href ) && console !== undefined,
+            isBrowserProfiler = /profile=browser/.test( window.location.href ) && console !== undefined,
             nowBase = window.performance || Date,
             eventList = [];
-          return function( event ){
+          return function( event, lastEvent ){
             var 
               now   = nowBase.now(),
               delta = eventList.length 
@@ -41,12 +42,18 @@
               else
                 alert( list );
             } else {
+              if( isBrowserProfiler && 0 !== eventList.length )
+                console.profileEnd();
+              
               eventList.push( { event: event, delta: delta, now: now } );
               if( isNotHidden )
               {
                 console.timeStamp( event );
                 console.log( '%c### Profile ###: %f (%s ms): %s', 'color:green', now, delta, event );
               }
+              
+              if( isBrowserProfiler && !lastEvent )
+                console.profile( event );
             }
           };
         })();

@@ -205,15 +205,19 @@ define([ 'jquery' ], function( $ ) {
         thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
       }
     }
-    $.each([ 'Left', 'Top', 'Right', 'Bottom' ], function(index, value) {
-      var key = value.toLowerCase();
+    [ 'Left', 'Top', 'Right', 'Bottom' ].forEach( function(value) {
+      var 
+        key = value.toLowerCase(),
+        $navbar = $('#navbar' + value),
+        display = $navbar.css("display"),
+        isLoading = $navbar[0].classList.contains('loading');
       if (shownavbar[key] == 'true') {
-        if ($('#navbar' + value).css("display") == "none") {
+        if (display == "none" || isLoading) {
           thisPagePartsHandler.fadeNavbar( value, "in", speed );
           thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
         }
       } else {
-        if ($('#navbar' + value).css("display") != "none") {
+        if (display != "none" || isLoading) {
           thisPagePartsHandler.fadeNavbar( value, "out", speed );
         }
       }
@@ -257,11 +261,9 @@ define([ 'jquery' ], function( $ ) {
       }
       break;
     case "out":
-      if (navbar.css("display") != "none") {
-        fn = function() {
-          navbar.css("display", "none");
-        };
-      }
+      fn = function() {
+        navbar.css("display", "none");
+      };
       switch (position) {
       case "Top":
       case "Bottom":
