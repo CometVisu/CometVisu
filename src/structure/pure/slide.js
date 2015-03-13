@@ -70,6 +70,8 @@ design.basicdesign.addCreator('slide', {
         // initially setting a value
         $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
       }
+      // Mark all horizontal sliders for correct transformation
+      $actor.children('.ui-slider-horizontal .ui-slider-handle').addClass('untransformed');
     });
     
     return ret_val + '<div class="actor"/></div>';
@@ -99,6 +101,7 @@ design.basicdesign.addCreator('slide', {
         data    = templateEngine.widgetDataGetByElement( this );
     if( data.format)
       $(ui.handle).text(sprintf( data.format, templateEngine.map( ui.value, data.mapping )));
+    basicdesign.transformSlider(ui);
   },
   /*
   * Start a thread that regularily sends the silder position to the bus
@@ -134,6 +137,7 @@ design.basicdesign.addCreator('slide', {
     clearInterval( data.updateFn, ui.value);
     data.inAction = false;
     if( data.valueInternal && data.value != ui.value )
+    {
       for( var addr in data.address )
       {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
@@ -141,7 +145,9 @@ design.basicdesign.addCreator('slide', {
         if( uv != templateEngine.transformEncode( data.address[addr][0], data.value ) )
           templateEngine.visu.write( addr, uv );
       }
-  }
+    }
+    basicdesign.transformSlider(ui);
+  },
 });
 
 }); // end define
