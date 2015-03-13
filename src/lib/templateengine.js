@@ -308,10 +308,9 @@ function TemplateEngine( undefined ) {
       }
     };
     thisTemplateEngine.visu.update = function(json) { // overload the handler
-      $(document).trigger( 'firstdata', json );
-      profileCV( 'firstdata start' );
+      profileCV( 'first data start (' + thisTemplateEngine.visu.retryCounter + ')' );
       update( json );
-      profileCV( 'firstdata updated' );
+      profileCV( 'first data updated', true );
       thisTemplateEngine.visu.update = update; // handle future requests directly
     }
     thisTemplateEngine.visu.user = 'demo_user'; // example for setting a user
@@ -405,7 +404,7 @@ function TemplateEngine( undefined ) {
   /**
    * General handler for all mouse and touch actions.
    * 
-   * The general flow of actions are:
+   * The general flow of mouse actions are:
    * 1. mousedown                           - "button pressed"
    * 2. mouseout                            - "button released"
    * 3. mouseout (mouse moved inside again) - "button pressed"
@@ -415,6 +414,9 @@ function TemplateEngine( undefined ) {
    * 3. gets mapped to a mousedown event
    * 2. and 3. can be repeated unlimited - or also be left out.
    * 4. triggers the real action
+   * 
+   * For touch it's a little different as a touchmove cancels the current
+   * action and translates into a scroll.
    */
   (function( outerThis ){ // closure to keep namespace clean
     // helper function to get the current actor and widget out of an event:
@@ -438,11 +440,32 @@ function TemplateEngine( undefined ) {
       
       return false;
     }
+    // helper function to determine the element to scroll (or undefined)
+    function getScrollElement( element )
+    {
+      while( element )
+      {
+        if( element.classList.contains( 'page' ) )
+          return navbarRegEx.test( element.id ) ? undefined : element;
+        
+        if( element.classList.contains( 'navbar' ) )
+        {
+          var parent = element.parentElement;
+          if( 'navbarTop' === parent.id || 'navbarBottom' === parent.id )
+            return element;
+          return;
+        }
+        
+        element = element.parentElement;
+      }
+    }
     
     var 
+      navbarRegEx = /navbar/,
       isTouchDevice = !!('ontouchstart' in window) ||    // works on most browsers 
                       !!('onmsgesturechange' in window), // works on ie10
       isWidget = false,
+      scrollElement,
       // object to hold the coordinated of the current mouse / touch event
       mouseEvent = outerThis.handleMouseEvent = { 
         actor:           undefined,
@@ -454,21 +477,19 @@ function TemplateEngine( undefined ) {
     
     window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
       var 
-        element = event.target;
-        
-      // search if a widget was hit
-      var 
+        element = event.target,
+        // search if a widget was hit
         widgetActor = getWidgetActor( event.target ),
         bindWidget  = widgetActor.widget ? thisTemplateEngine.widgetDataGet( widgetActor.widget.id ).bind_click_to_widget : false;
       
       isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
-      
       if( isWidget )
       {
         mouseEvent.actor         = widgetActor.actor;
         mouseEvent.widget        = widgetActor.widget;
         mouseEvent.widgetCreator = thisTemplateEngine.design.creators[ widgetActor.widget.dataset.type ];
         mouseEvent.downtime      = Date.now();
+        mouseEvent.alreadyCanceled = false;
         
         var
           actionFn = mouseEvent.widgetCreator.downaction;
@@ -476,11 +497,24 @@ function TemplateEngine( undefined ) {
         if( actionFn !== undefined )
         {
           actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor );
-          mouseEvent.alreadyCanceled = false;
         }
       } else {
         mouseEvent.actor = undefined;
       }
+      
+      scrollElement = getScrollElement( event.target );
+      // stop the propagation if scrollable is at the end
+      // inspired by 
+      if( scrollElement )
+      {
+        var startTopScroll = scrollElement.scrollTop;
+
+        if( startTopScroll <= 0 )
+          scrollElement.scrollTop = 1;
+
+        if( startTopScroll + scrollElement.offsetHeight >= scrollElement.scrollHeight)
+          scrollElement.scrollTop = scrollElement.scrollHeight - scrollElement.offsetHeight - 1;
+      } 
     });
     window.addEventListener( isTouchDevice ? 'touchend' : 'mouseup', function( event ){
       if( isWidget )
@@ -504,7 +538,10 @@ function TemplateEngine( undefined ) {
         isWidget = false;
       }
     });
-    window.addEventListener( isTouchDevice ? 'touchmove' : 'mousemove', function( event ){
+    // different handling for move
+    // mouse move: let the user cancel an action by dragging the mouse outside
+    // and reactivate it when the dragged cursor is returning
+    !isTouchDevice && window.addEventListener( 'mousemove', function( event ){
       if( isWidget )
       {
         var
@@ -512,14 +549,13 @@ function TemplateEngine( undefined ) {
           widget      = mouseEvent.widget,
           bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
           inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
-          
         if( inCurrent && mouseEvent.alreadyCanceled )
         { // reactivate
           mouseEvent.alreadyCanceled = false;
           var
             actionFn  = mouseEvent.widgetCreator.downaction;
           actionFn && actionFn.call( widget, widget.id, mouseEvent.actor );
-        } else if( !inCurrent && !mouseEvent.alreadyCanceled )
+        } else if( (!inCurrent && !mouseEvent.alreadyCanceled) )
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
@@ -527,6 +563,38 @@ function TemplateEngine( undefined ) {
           actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
         }
       }
+    });
+    // touch move: scroll when the finger is moving and cancel any pending 
+    // actions at the same time
+    isTouchDevice && window.addEventListener( 'touchmove', function( event ){
+      if( isWidget )
+      {
+        var
+          widget      = mouseEvent.widget;
+          
+        if( !mouseEvent.alreadyCanceled )
+        { // cancel
+          mouseEvent.alreadyCanceled = true;
+          var
+            actionFn  = mouseEvent.widgetCreator.action;
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+        }
+      }
+      
+      // take care to prevent overscroll
+      if( scrollElement )
+      {
+        var 
+          scrollTop  = scrollElement.scrollTop,
+          scrollLeft = scrollElement.scrollLeft;
+        // prevent scrolling of an element that takes full height and width
+        // as it doesn't need scrolling
+        if( (scrollTop  <= 0) && (scrollTop  + scrollElement.offsetHeight >= scrollElement.scrollHeight) &&
+            (scrollLeft <= 0) && (scrollLeft + scrollElement.offsetWidth  >= scrollElement.scrollWidth ) )
+          return;
+        event.stopPropagation();
+      } else
+        event.preventDefault();
     });
   })( this );
   
@@ -1155,38 +1223,6 @@ function TemplateEngine( undefined ) {
     thisTemplateEngine.adjustColumns();
     thisTemplateEngine.applyColumnWidths();
     
-    // Prevent elastic scrolling apart the main pane for iOS devices
-    $(document).bind( 'touchmove', function(e) {
-      e.preventDefault();
-    });
-    $('.page,#navbarTop>.navbar,#navbarBottom>.navbar').bind( 'touchmove', function(e) {
-      var elem = $(e.currentTarget);
-      var startTopScroll = elem.scrollTop();
-      var startLeftScroll = elem.scrollLeft();
-      
-      // prevent scrolling of an element that takes full height and width
-      // as it doesn't need scrolling
-      if( (startTopScroll  <= 0) && (startTopScroll  + elem[0].offsetHeight >= elem[0].scrollHeight) &&
-          (startLeftScroll <= 0) && (startLeftScroll + elem[0].offsetWidth  >= elem[0].scrollWidth ) )
-      {
-        return;
-      }
-      
-      e.stopPropagation();
-    });
-    // stop the propagation if scrollable is at the end
-    // inspired by https://github.com/joelambert/ScrollFix
-    $('.page,#navbarTop>.navbar,#navbarBottom>.navbar').bind( 'touchstart', function(event) {
-      var elem = $(event.currentTarget);
-      var startTopScroll = elem.scrollTop();
-
-      if(startTopScroll <= 0)
-        elem.scrollTop(1);
-
-      if(startTopScroll + elem[0].offsetHeight >= elem[0].scrollHeight)
-        elem.scrollTop( elem[0].scrollHeight - elem[0].offsetHeight - 1 );
-    });
-    
     // setup the scrollable
     thisTemplateEngine.main_scroll = $('#main').scrollable({
       keyboard : false,
@@ -1237,9 +1273,7 @@ function TemplateEngine( undefined ) {
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
     var addressesToSubscribe = thisTemplateEngine.getAddresses();
-    if( 0 == addressesToSubscribe.length )
-      $(document).trigger( 'firstdata' ); // no data to receive => send event now
-    else
+    if( 0 !== addressesToSubscribe.length )
       thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
     
     xml = null;
