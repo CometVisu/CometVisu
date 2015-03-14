@@ -17,12 +17,20 @@
 
 function transformSlider(ui) 
 {
-  if (!isNaN(ui.value)) {
-    var handleWidth = $(ui.handle).outerWidth();
-    var sliderMax = $(ui.handle).parent().slider("option","max");
-    var percent = (sliderMax/100)*ui.value;
-    var translate = Math.round(handleWidth * percent/100);
-    $(ui.handle).css('transform', 'translateX(-'+translate+'px)');
+  if (!$('#main').data('disableSliderTransform')) {
+    if (!isNaN(ui.value)) {
+      var handleWidth = $(ui.handle).outerWidth();
+      console.log();
+      var sliderMax = $(ui.handle).parent().slider("option","max")+Math.abs($(ui.handle).parent().slider("option","min"));
+      var percent = Math.round((100/sliderMax)*(ui.value+Math.abs($(ui.handle).parent().slider("option","min"))));
+      var translate = Math.round(handleWidth * percent/100);
+      if (percent==100)
+        translate-=1; // fix for visible slider bar right border, when handle is at 100%
+      console.log("Width: "+handleWidth+", Value: "+ui.value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
+      $(ui.handle).css('transform', 'translateX(-'+translate+'px)');
+    } else {
+      console.log(ui);
+    }
   }
 }
 
@@ -137,7 +145,8 @@ design.basicdesign.addCreator('slide', {
           templateEngine.visu.write( addr, dv );
       }
       data.value = asv;
-    }, 250 ); // update KNX every 250 ms 
+    }, 250 ); // update KNX every 250 ms
+    transformSlider(ui);
   },
   /*
   * Delete the update thread and send the final value of the slider to the bus
