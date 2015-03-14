@@ -15,14 +15,24 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+function transformSlider(ui) 
+{
+  if (!isNaN(ui.value)) {
+    var handleWidth = $(ui.handle).outerWidth();
+    var sliderMax = $(ui.handle).parent().slider("option","max");
+    var percent = (sliderMax/100)*ui.value;
+    var translate = Math.round(handleWidth * percent/100);
+    $(ui.handle).css('transform', 'translateX(-'+translate+'px)');
+  }
+}
+
 define( ['_common'], function( design ) {
    var basicdesign = design.basicdesign;
- 
+   
 design.basicdesign.addCreator('slide', {
   create: function( element, path, flavour, type ) {
-    var
-      self = this,
-      $e = $(element);
+    var self = this,
+        $e = $(element);
     
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update );
@@ -72,6 +82,7 @@ design.basicdesign.addCreator('slide', {
       }
       // Mark all horizontal sliders for correct transformation
       $actor.children('.ui-slider-horizontal .ui-slider-handle').addClass('untransformed');
+      $(window).bind("scrolltopage",self.sliderVisible);
     });
     
     return ret_val + '<div class="actor"/></div>';
@@ -101,7 +112,7 @@ design.basicdesign.addCreator('slide', {
         data    = templateEngine.widgetDataGetByElement( this );
     if( data.format)
       $(ui.handle).text(sprintf( data.format, templateEngine.map( ui.value, data.mapping )));
-    basicdesign.transformSlider(ui);
+    transformSlider(ui);
   },
   /*
   * Start a thread that regularily sends the silder position to the bus
@@ -146,8 +157,19 @@ design.basicdesign.addCreator('slide', {
           templateEngine.visu.write( addr, uv );
       }
     }
-    basicdesign.transformSlider(ui);
+    transformSlider(ui);
   },
+  sliderVisible:function(event,page_id)
+  {
+    $('.ui-slider-handle.untransformed', '#'+page_id).each(function(i) {
+      $(this).removeClass('untransformed');
+      var actor = $(this).parent();
+      var val = actor.slider("value");
+      var ui = { value: val, handle: this};
+      transformSlider(ui);
+    });
+  },
+  
 });
 
 }); // end define

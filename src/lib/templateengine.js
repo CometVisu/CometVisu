@@ -1416,14 +1416,6 @@ function TemplateEngine( undefined ) {
      * $('#'+page_id+'_left_navbar').addClass('navbarActive');
      */
     thisTemplateEngine.pagePartsHandler.initializeNavbars(page_id);
-
-    $('.ui-slider-handle.untransformed', '#'+page_id).each(function(i) {
-    	$(this).removeClass('untransformed');
-    	var actor = $(this).parent();
-        var val = actor.slider("value");
-    	var ui = { value: val , handle: this};
-    	thisTemplateEngine.design.transformSlider(ui);
-    });
     
     $(window).trigger('scrolltopage', page_id);    
   };

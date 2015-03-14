@@ -452,19 +452,6 @@ function VisuDesign() {
     actor.classList.remove('switchPressed');
     actor.classList.add('switchUnpressed');
   };
-  /**
-   * avoid overlapping of the slider handle
-   */
-  this.transformSlider = function(ui) 
-  {
-    if (!isNaN(ui.value)) {
-      var handleWidth = $(ui.handle).outerWidth();
-      var sliderMax = $(ui.handle).parent().slider("option","max");
-      var percent = (sliderMax/100)*ui.value;
-      var translate = Math.round(handleWidth * percent/100);
-      $(ui.handle).css('transform', 'translateX(-'+translate+'px)');
-    }
-  }
 };
 
 /*
