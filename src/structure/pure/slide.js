@@ -15,21 +15,18 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-function transformSlider(ui) 
+function transformSlider(value,handle) 
 {
   if (!$('#main').data('disableSliderTransform')) {
-    if (!isNaN(ui.value)) {
-      var handleWidth = $(ui.handle).outerWidth();
-      console.log();
-      var sliderMax = $(ui.handle).parent().slider("option","max")+Math.abs($(ui.handle).parent().slider("option","min"));
-      var percent = Math.round((100/sliderMax)*(ui.value+Math.abs($(ui.handle).parent().slider("option","min"))));
+    if (!isNaN(value)) {
+      var handleWidth = $(handle).outerWidth();
+      var sliderMax = $(handle).parent().slider("option","max")+Math.abs($(handle).parent().slider("option","min"));
+      var percent = Math.round((100/sliderMax)*(value+Math.abs($(handle).parent().slider("option","min"))));
       var translate = Math.round(handleWidth * percent/100);
       if (percent==100)
         translate-=1; // fix for visible slider bar right border, when handle is at 100%
-      console.log("Width: "+handleWidth+", Value: "+ui.value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
-      $(ui.handle).css('transform', 'translateX(-'+translate+'px)');
-    } else {
-      console.log(ui);
+      console.log("Width: "+handleWidth+", Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
+      $(handle).css('transform', 'translateX(-'+translate+'px)');
     }
   }
 }
@@ -120,7 +117,7 @@ design.basicdesign.addCreator('slide', {
         data    = templateEngine.widgetDataGetByElement( this );
     if( data.format)
       $(ui.handle).text(sprintf( data.format, templateEngine.map( ui.value, data.mapping )));
-    transformSlider(ui);
+    transformSlider(ui.value,ui.handle);
   },
   /*
   * Start a thread that regularily sends the silder position to the bus
@@ -146,7 +143,6 @@ design.basicdesign.addCreator('slide', {
       }
       data.value = asv;
     }, 250 ); // update KNX every 250 ms
-    transformSlider(ui);
   },
   /*
   * Delete the update thread and send the final value of the slider to the bus
@@ -166,7 +162,7 @@ design.basicdesign.addCreator('slide', {
           templateEngine.visu.write( addr, uv );
       }
     }
-    transformSlider(ui);
+    transformSlider(ui.value,ui.handle);
   },
   sliderVisible:function(event,page_id)
   {
@@ -174,8 +170,7 @@ design.basicdesign.addCreator('slide', {
       $(this).removeClass('untransformed');
       var actor = $(this).parent();
       var val = actor.slider("value");
-      var ui = { value: val, handle: this};
-      transformSlider(ui);
+      transformSlider(val,this);
     });
   },
   
