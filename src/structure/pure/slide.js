@@ -78,10 +78,9 @@ design.basicdesign.addCreator('slide', {
         start:   self.slideStart,
         change:  self.slideChange
       });
+      $actor.on( 'slide', self.slideUpdateValue );
       
       if( data['format']) {
-        $actor.on( 'slide', self.slideUpdateValue );
-        
         // initially setting a value
         $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
       }
@@ -114,10 +113,11 @@ design.basicdesign.addCreator('slide', {
   },
   slideUpdateValue:function(event,ui) {
     var element = $(this).parent(),
-        actor   = element.find('.actor'),
-        data    = templateEngine.widgetDataGetByElement( this );
-    if( data.format)
+      actor   = element.find('.actor'),
+      data    = templateEngine.widgetDataGetByElement( this );
+    if( data.format) {
       $(ui.handle).text(sprintf( data.format, templateEngine.map( ui.value, data.mapping )));
+    }
     transformSlider(ui.value,ui.handle);
   },
   /*
@@ -143,7 +143,6 @@ design.basicdesign.addCreator('slide', {
           templateEngine.visu.write( addr, dv );
       }
       data.value = asv;
-      transformSlider(asv,ui.handle);
     }, 250 ); // update KNX every 250 ms
   },
   /*
