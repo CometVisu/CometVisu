@@ -23,9 +23,7 @@ function transformSlider(value,handle)
       var sliderMax = $(handle).parent().slider("option","max")+Math.abs($(handle).parent().slider("option","min"));
       var percent = Math.round((100/sliderMax)*(value+Math.abs($(handle).parent().slider("option","min"))));
       var translate = Math.round(handleWidth * percent/100);
-      if (percent==100)
-        translate-=1; // fix for visible slider bar right border, when handle is at 100%
-      console.log("Width: "+handleWidth+", Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
+      //console.log("Width: "+handleWidth+", Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
       $(handle).css('transform', 'translateX(-'+translate+'px)');
     }
   }
@@ -110,6 +108,7 @@ design.basicdesign.addCreator('slide', {
       if( data.format != null )
         actor.children('.ui-slider-handle').text(sprintf( data.format, templateEngine.map( value, data.mapping )));
     }
+    transformSlider(value,actor.children('.ui-slider-handle'));
   },
   slideUpdateValue:function(event,ui) {
     var element = $(this).parent(),
@@ -142,6 +141,7 @@ design.basicdesign.addCreator('slide', {
           templateEngine.visu.write( addr, dv );
       }
       data.value = asv;
+      transformSlider(asv,ui.handle);
     }, 250 ); // update KNX every 250 ms
   },
   /*
