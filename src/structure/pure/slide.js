@@ -15,23 +15,25 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-function transformSlider(value,handle) 
-{
-  if (!$('#main').data('disableSliderTransform')) {
-    if (!isNaN(value)) {
-      var handleWidth = $(handle).outerWidth();
-      var sliderMax = $(handle).parent().slider("option","max")+Math.abs($(handle).parent().slider("option","min"));
-      var percent = Math.round((100/sliderMax)*(value+Math.abs($(handle).parent().slider("option","min"))));
-      var translate = Math.round(handleWidth * percent/100);
-      //console.log("Width: "+handleWidth+", Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
-      $(handle).css('transform', 'translateX(-'+translate+'px)');
+define( ['_common'], function( design ) {
+  var 
+    basicdesign = design.basicdesign,
+    $main = $('#main');
+
+  function transformSlider( value, handle )
+  {
+    if (!$main.data('disableSliderTransform')) {
+      if (!isNaN(value)) {
+        var handleWidth = $(handle).outerWidth();
+        var sliderMax = $(handle).parent().slider("option","max")+Math.abs($(handle).parent().slider("option","min"));
+        var percent = Math.round((100/sliderMax)*(value+Math.abs($(handle).parent().slider("option","min"))));
+        var translate = Math.round(handleWidth * percent/100);
+        //console.log("Width: "+handleWidth+", Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
+        $(handle).css('transform', 'translateX(-'+translate+'px)');
+      }
     }
   }
-}
 
-define( ['_common'], function( design ) {
-   var basicdesign = design.basicdesign;
-   
 design.basicdesign.addCreator('slide', {
   create: function( element, path, flavour, type ) {
     var self = this,
