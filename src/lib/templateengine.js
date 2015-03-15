@@ -1416,7 +1416,7 @@ function TemplateEngine( undefined ) {
      * $('#'+page_id+'_left_navbar').addClass('navbarActive');
      */
     thisTemplateEngine.pagePartsHandler.initializeNavbars(page_id);
-
+    
     $(window).trigger('scrolltopage', page_id);    
   };
 

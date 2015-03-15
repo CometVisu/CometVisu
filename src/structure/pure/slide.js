@@ -16,13 +16,28 @@
  */
 
 define( ['_common'], function( design ) {
-   var basicdesign = design.basicdesign;
- 
+  var 
+    basicdesign = design.basicdesign,
+    $main = $('#main');
+
+  function transformSlider( value, handle )
+  {
+    if (!$main.data('disableSliderTransform')) {
+      if (!isNaN(value)) {
+        var handleWidth = $(handle).outerWidth();
+        var sliderMax = $(handle).parent().slider("option","max")+Math.abs($(handle).parent().slider("option","min"));
+        var percent = Math.round((100/sliderMax)*(value+Math.abs($(handle).parent().slider("option","min"))));
+        var translate = Math.round(handleWidth * percent/100);
+        //console.log("Width: "+handleWidth+", Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
+        $(handle).css('transform', 'translateX(-'+translate+'px)');
+      }
+    }
+  }
+
 design.basicdesign.addCreator('slide', {
   create: function( element, path, flavour, type ) {
-    var
-      self = this,
-      $e = $(element);
+    var self = this,
+        $e = $(element);
     
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update );
@@ -70,6 +85,9 @@ design.basicdesign.addCreator('slide', {
         // initially setting a value
         $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
       }
+      // Mark all horizontal sliders for correct transformation
+      $actor.children('.ui-slider-horizontal .ui-slider-handle').addClass('untransformed');
+      $(window).bind("scrolltopage",self.sliderVisible);
     });
     
     return ret_val + '<div class="actor"/></div>';
@@ -92,6 +110,7 @@ design.basicdesign.addCreator('slide', {
       if( data.format != null )
         actor.children('.ui-slider-handle').text(sprintf( data.format, templateEngine.map( value, data.mapping )));
     }
+    transformSlider(value,actor.children('.ui-slider-handle'));
   },
   slideUpdateValue:function(event,ui) {
     var element = $(this).parent(),
@@ -99,6 +118,7 @@ design.basicdesign.addCreator('slide', {
         data    = templateEngine.widgetDataGetByElement( this );
     if( data.format)
       $(ui.handle).text(sprintf( data.format, templateEngine.map( ui.value, data.mapping )));
+    transformSlider(ui.value,ui.handle);
   },
   /*
   * Start a thread that regularily sends the silder position to the bus
@@ -123,7 +143,8 @@ design.basicdesign.addCreator('slide', {
           templateEngine.visu.write( addr, dv );
       }
       data.value = asv;
-    }, 250 ); // update KNX every 250 ms 
+      transformSlider(asv,ui.handle);
+    }, 250 ); // update KNX every 250 ms
   },
   /*
   * Delete the update thread and send the final value of the slider to the bus
@@ -134,6 +155,7 @@ design.basicdesign.addCreator('slide', {
     clearInterval( data.updateFn, ui.value);
     data.inAction = false;
     if( data.valueInternal && data.value != ui.value )
+    {
       for( var addr in data.address )
       {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
@@ -141,7 +163,19 @@ design.basicdesign.addCreator('slide', {
         if( uv != templateEngine.transformEncode( data.address[addr][0], data.value ) )
           templateEngine.visu.write( addr, uv );
       }
-  }
+    }
+    transformSlider(ui.value,ui.handle);
+  },
+  sliderVisible:function(event,page_id)
+  {
+    $('.ui-slider-handle.untransformed', '#'+page_id).each(function(i) {
+      $(this).removeClass('untransformed');
+      var actor = $(this).parent();
+      var val = actor.slider("value");
+      transformSlider(val,this);
+    });
+  },
+  
 });
 
 }); // end define
