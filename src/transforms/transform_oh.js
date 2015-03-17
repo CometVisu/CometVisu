@@ -93,6 +93,34 @@ Transform.addTransform('OH', {
       return str;
     },
   },
+  'datetime' : {
+    name : "OH_DateTime",
+    encode : function(phy) {
+      if (phy instanceof Date) {
+        return phy.toISOString();
+      } else {
+        return phy;
+      }
+    },
+    decode : function(str) {
+      var date = new Date(str);
+      return date.toLocaleString();
+    },
+  },
+  'time' : {
+    name : "OH_Time",
+    encode : function(phy) {
+      if (phy instanceof Date) {
+        return phy.toISOString();
+    } else {
+      return phy;
+      }
+    },
+    decode : function(str) {
+      var date = new Date(str);
+      return date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+    },
+   },
   'color' : {
     name : "OH_Color",
     encode : function(rgb) {
