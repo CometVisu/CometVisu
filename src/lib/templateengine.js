@@ -1318,12 +1318,14 @@ function TemplateEngine( undefined ) {
     {
       return '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
+      + (data.containerClass ? data.containerClass : '')
       + ('break' === data.type ? 'break_container' : '') // special case for break widget
       + '" id="'+path+'" data-type="'+data.type+'">' + retval + '</div>';
     } else {
       return jQuery(
       '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
+      + (data.containerClass ? data.containerClass : '')
       + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
     }
   };

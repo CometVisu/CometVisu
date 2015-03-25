@@ -56,6 +56,7 @@ function CometVisuOh( urlPrefix )
   this.handleMessage = function (e) {
 	  var json = JSON.parse(e.data);
 	  var data = json.d;
+	  console.log(data);
 	  thisVisu.lastIndex = e.lastEventId;
 	  thisVisu.update( data );
   }

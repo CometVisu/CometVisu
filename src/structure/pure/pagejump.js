@@ -48,7 +48,15 @@ design.basicdesign.addCreator('pagejump', {
       'align'   : $e.attr('align'),
       'target'  : target
     } );
-    return ret_val + actor + '</div>';
+    var info = '';
+    var infoWidget = $('infowidget > *', $e).first()[0];
+    if (infoWidget!=undefined) {
+      var data = templateEngine.widgetDataInsert( path+"_0", {
+        containerClass           : "infowidget"
+      } );
+      info = templateEngine.create_pages(infoWidget, path+"_0", flavour, infoWidget.nodeName);
+    }
+    return ret_val + actor + info +'</div>';
   },
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
   action: function( path, actor, isCanceled ) {
