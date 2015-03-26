@@ -653,7 +653,7 @@ div#demo_3 {
 	background-image:      -o-linear-gradient(   #666,   #000);
 	background-image:         linear-gradient(   #666,   #000);
 }
-#navbarTop .navbar .widget, #navbarBottom .navbar .widget { background: none; }
+#navbarTop .navbar .widget:not(.info), #navbarBottom .navbar .widget:not(.info) { background: none; }
 #navbarBottom  {
 	background: #333333;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(   #000), to(   #666));
@@ -671,46 +671,6 @@ div#demo_3 {
 	min-width: 2em; 
 	min-height: 3em;
 }
-.navbar .pagejump .info {
-	font-size: 0.8em;
-	width: 20px;
-  	border-radius: 20px;
-  	background-color: #FFFFFF;
-  	background-image: none;
-  	color: black;
-  	height: 20px;
-  	padding: 0;
-  	min-height: 0;
-  	text-shadow: none;
-}
-.navbar .pagejump .info .actor {
-	line-height: 20px;
-	padding: 0;
-	margin: 0;
-	text-align: center;
-}
-.navbar .pagejump .infowidget {
-	transform: translateX(-10px);
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-
-#navbarLeft .navbar .pagejump .infowidget, #navbarRight .navbar .pagejump .infowidget {
-	transform: translateX(0px);
-}
-#navbarRight .navbar .pagejump .infowidget  { left: 0; }
-#navbarLeft .navbar .pagejump .info  {
-	border-radius: 0 0 0 30px;
-	height: 30px;
-	width: 30px;
-}
-#navbarRight .navbar .pagejump .info {
-	border-radius: 0 0 30px 0;
-	height: 30px;
-	width: 30px;
-}
-
 #navbarTop .navbar .pagejump:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor  {
     background-color: #000;
 	font-weight: normal;
@@ -1026,4 +986,53 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 }
 .flavour_sodium .ui-slider .ui-slider-range { 
 	background-color: #ff8000;
+}
+/* infowidget in pagejumps */
+.navbar .pagejump .info {
+	font-size: 0.8em;
+	width: 20px;
+  	border-radius: 20px;
+  	background-color: #FFFFFF;
+  	background-image: none;
+  	color: black;
+  	height: 20px;
+  	padding: 0;
+  	min-height: 0;
+  	text-shadow: none;
+}
+.navbar .pagejump .info .actor {
+	line-height: 20px;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+.navbar .pagejump .infowidget {
+	position: absolute;
+	top: 2px;
+	right: 0;
+}
+#navbarRight .navbar .pagejump .infowidget  { left: 0; }
+#navbarLeft .navbar .pagejump .info  {
+	border-radius: 0 0 0 30px;
+	height: 30px;
+	width: 30px;
+}
+#navbarRight .navbar .pagejump .info {
+	border-radius: 0 0 30px 0;
+	height: 30px;
+	width: 30px;
+}
+
+/* infoaction plugin */
+.infoaction { padding: 1px 0 0 0; }
+.infoaction > .label { padding: 0.3em; }
+.infoaction .widget_container.actionwidget .widget { padding-left:0; }
+.infoaction .widget_container.infowidget .widget {
+	background-color: #666 !important;
+	color: #999 !important;
+}
+.infoaction .widget_container.infowidget .widget .actor {
+	line-height: normal;
+	text-shadow: none;
+	padding: 2px 14px; 
 }

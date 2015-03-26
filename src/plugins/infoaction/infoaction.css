@@ -1,4 +1,4 @@
-.infoaction { position: relative; padding: 1px 0; }
+.infoaction { position: relative; }
 .infoaction .widget_container.infowidget { 
   width: auto !important;
   position: absolute;
@@ -14,7 +14,7 @@
 .infoaction .widget_container.infowidget .widget { 
 	font-size: 0.8em;
 	width: 30px;
-  	border-radius: 30px;
+  	border-radius: 0 0 0 30px;
   	background-color: #FFFFFF;
   	background-image: none;
   	color: black;
@@ -29,8 +29,11 @@
 
 .infoaction .widget_container.infowidget .widget .actor { 
 	text-align: center;
-	line-height: 30px;
+	width: 100%;
+	margin: 0;
 }
+
+.infoaction .widget_container.infowidget .widget .actor div { float: none; }
 
 .navbar .infoaction .label {
 	text-align: center;

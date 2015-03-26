@@ -95,6 +95,7 @@ Transform.addTransform('OH', {
       }
     },
     decode : function(str) {
+      if (str=="NaN" || str=='Uninitialized') return '-';
       var date = new Date(str);
       return date.toLocaleString();
     },
@@ -109,6 +110,7 @@ Transform.addTransform('OH', {
       }
     },
     decode : function(str) {
+      if (str=="NaN" || str=='Uninitialized') return '-';
       var date = new Date(str);
       return date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
     },

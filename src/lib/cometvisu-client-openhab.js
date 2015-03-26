@@ -20,85 +20,93 @@
  * @module CometVisu Client
  * @title  CometVisu Client
  * @requires jQuery
-*/
+ */
 
 /**
  * Class that handles the communicaton of the client
+ * 
  * @class CometVisu
  * @constructor foo
- * @param {String} urlPrefix The address of the service
+ * @param {String}
+ *          urlPrefix The address of the service
  */
-function CometVisuOh( urlPrefix )
-{
-  thisVisu = this;
-  this.urlPrefix = "/rest/cv/";
-  this.eventSource = null; // the EventSource
-  
-  /**
-   * This function gets called once the communication is established and session information is available
-   * @method handleSession
-   */
-  this.handleSession = function( json )
-  {
-    this.session = json.s; 
-    this.version = json.v.split( '.', 3 );
 
-    if( 0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1]) ) 
-      alert( 'ERROR CometVisu Client: too new protocol version (' + json.v + ') used!' );
+require([ 'cometvisu-client' ], function(foo) {
+  function CometVisuOh(urlPrefix) {
+    thisVisu = this;
+    this.urlPrefix = "/rest/cv/";
+    this.eventSource = null; // the EventSource
 
-    // send first request
-    this.running = true;
-    this.eventSource = new EventSource(this.urlPrefix + 'r?'+this.buildRequest());
-    this.eventSource.addEventListener('message',this.handleMessage,false);
-    this.eventSource.addEventListener('error',this.handleError,false);
-  };
-  
-  this.handleMessage = function (e) {
-	  var json = JSON.parse(e.data);
-	  var data = json.d;
-	  console.log(data);
-	  thisVisu.lastIndex = e.lastEventId;
-	  thisVisu.update( data );
-  }
-    
-  this.handleError = function (e) {
-	if (e.readyState == EventSource.CLOSED) {
-	  // Connection was closed.
-	  thisVisu.running = false;
-	}
-  }
-  
-  /**
-   * Abort the read request properly
-   * @method restart
-   */
-  this.abort=function() {
-    if( thisVisu.eventSource ) {
-      thisVisu.eventSource.close();
+    /**
+     * This function gets called once the communication is established and
+     * session information is available
+     * 
+     * @method handleSession
+     */
+    this.handleSession = function(json) {
+      this.session = json.s;
+      this.version = json.v.split('.', 3);
+
+      if (0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1]))
+        alert('ERROR CometVisu Client: too new protocol version (' + json.v
+            + ') used!');
+
+      // send first request
+      this.running = true;
+      this.eventSource = new EventSource(this.urlPrefix + 'r?'
+          + this.buildRequest());
+      this.eventSource.addEventListener('message', this.handleMessage, false);
+      this.eventSource.addEventListener('error', this.handleError, false);
+    };
+
+    this.handleMessage = function(e) {
+      var json = JSON.parse(e.data);
+      var data = json.d;
+      console.log(data);
+      thisVisu.lastIndex = e.lastEventId;
+      thisVisu.update(data);
+    }
+
+    this.handleError = function(e) {
+      if (e.readyState == EventSource.CLOSED) {
+        // Connection was closed.
+        thisVisu.running = false;
+      }
+    }
+
+    /**
+     * Abort the read request properly
+     * 
+     * @method restart
+     */
+    this.abort = function() {
+      if (thisVisu.eventSource) {
+        thisVisu.eventSource.close();
+      }
+    }
+
+    /**
+     * This function stops an ongoing connection
+     * 
+     * @method stop
+     */
+    this.stop = function() {
+      this.running = false;
+      this.abort();
+      // alert('this.stop');
+    };
+
+    /**
+     * prevent the watchdog from restarting
+     * 
+     * @method restart
+     */
+    this.restart = function() {
     }
   }
-  
-  /**
-   * This function stops an ongoing connection
-   * @method stop
-   */
-  this.stop = function()
-  {
-    this.running = false;
-    this.abort();
-    //alert('this.stop');
+  ;
+  CometVisuOh.prototype = new CometVisu('/rest/cv/');
+  CometVisuOh.prototype.constructor = CometVisuOh;
+  CometVisuOh.prototype.update = function(json) {
   };
-  
-  /**
-   * prevent the watchdog from restarting
-   * @method restart
-   */
-  this.restart = function()
-  {
-  }
-  
-};
-
-CometVisuOh.prototype = new CometVisu('/rest/cv/');
-CometVisuOh.prototype.constructor = CometVisuOh;
-CometVisuOh.prototype.update = function( json ) {};
+});
