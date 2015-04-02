@@ -34,7 +34,6 @@ design.basicdesign.addCreator('pagejump', {
     if( flavour ) classes += ' flavour_' + flavour;
     var ret_val = '<div class="'+classes+'" ' + style + '>';
     ret_val += basicdesign.extractLabel( $e.find('label')[0], flavour );
-    var address = basicdesign.makeAddressList($e);
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
       actor += $e.attr( 'align' ); 
