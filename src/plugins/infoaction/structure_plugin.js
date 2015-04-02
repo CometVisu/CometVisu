@@ -52,7 +52,6 @@
 define( ['structure_custom', 'css!plugins/infoaction/infoaction.css'  ], function( VisuDesign_Custom ) {
   VisuDesign_Custom.prototype.addCreator("infoaction", {
       create: function(element, path, flavour, type) {
-        console.log(type);
         return createWidget(false, element, path, flavour, type);
       },
     });
@@ -65,7 +64,6 @@ define( ['structure_custom', 'css!plugins/infoaction/infoaction.css'  ], functio
       var data = templateEngine.widgetDataInsert( path, {
         content           : getWidgetElements($e, path)
       } );
-console.log(data.content);
       ret_val += data.content;
       return ret_val + '</div>';
     }

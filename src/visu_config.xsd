@@ -1351,6 +1351,7 @@
       <xsd:element name="image" type="image" />
       <xsd:element name="imagetrigger" type="imagetrigger" />
       <xsd:element name="pagejump" type="pagejump" />
+      <xsd:element name="info" type="info" />
     </xsd:choice>
   </xsd:group>
 </xsd:schema>

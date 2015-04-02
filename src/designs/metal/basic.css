@@ -990,13 +990,13 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 /* infowidget in pagejumps */
 .navbar .pagejump .info {
 	font-size: 0.8em;
-	width: 20px;
+	min-width: 20px;
   	border-radius: 20px;
   	background-color: #FFFFFF;
   	background-image: none;
   	color: black;
   	height: 20px;
-  	padding: 0;
+  	padding: 0 0.3em;
   	min-height: 0;
   	text-shadow: none;
 }
@@ -1034,5 +1034,4 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 .infoaction .widget_container.infowidget .widget .actor {
 	line-height: normal;
 	text-shadow: none;
-	padding: 2px 14px; 
 }

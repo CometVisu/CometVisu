@@ -13,7 +13,7 @@
 
 .infoaction .widget_container.infowidget .widget { 
 	font-size: 0.8em;
-	width: 30px;
+	min-width: 30px;
   	border-radius: 0 0 0 30px;
   	background-color: #FFFFFF;
   	background-image: none;

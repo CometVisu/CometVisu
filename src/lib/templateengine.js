@@ -300,6 +300,7 @@ function TemplateEngine( undefined ) {
       for (key in json) {
         //$.event.trigger('_' + key, json[key]);
         var data = json[ key ];
+        if (ga_list[ key ]==undefined) continue;
         ga_list[ key ].forEach( function( id ){
           if( id )
           {
