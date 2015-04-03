@@ -34,7 +34,6 @@ design.basicdesign.addCreator('pagejump', {
     if( flavour ) classes += ' flavour_' + flavour;
     var ret_val = '<div class="'+classes+'" ' + style + '>';
     ret_val += basicdesign.extractLabel( $e.find('label')[0], flavour );
-    var address = basicdesign.makeAddressList($e);
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
       actor += $e.attr( 'align' ); 
@@ -48,7 +47,15 @@ design.basicdesign.addCreator('pagejump', {
       'align'   : $e.attr('align'),
       'target'  : target
     } );
-    return ret_val + actor + '</div>';
+    var info = '';
+    var infoWidget = $('infowidget > *', $e).first()[0];
+    if (infoWidget!=undefined) {
+      var data = templateEngine.widgetDataInsert( path+"_0", {
+        containerClass           : "infowidget"
+      } );
+      info = templateEngine.create_pages(infoWidget, path+"_0", flavour, infoWidget.nodeName);
+    }
+    return ret_val + actor + info +'</div>';
   },
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
   action: function( path, actor, isCanceled ) {

@@ -36,6 +36,7 @@ require.config({
     'jquery.ui.touch-punch':    'dependencies/jquery.ui.touch-punch',
     'jquery.svg.min':           'dependencies/jquery.svg.min',
     'cometvisu-client':         'lib/cometvisu-client',
+    'cometvisu-client-openhab': 'lib/cometvisu-client-openhab',
     'iconhandler':              'lib/iconhandler',
     'pagepartshandler':         'lib/pagepartshandler',
     'trick-o-matic':            'lib/trick-o-matic',
@@ -94,7 +95,7 @@ var templateEngine;
 require([
   'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagepartshandler', 
   'compatibility', 'jquery-ui', 'strftime', 'scrollable', 
-  'jquery.ui.touch-punch', 'jquery.svg.min', 'cometvisu-client', 'iconhandler', 
+  'jquery.ui.touch-punch', 'jquery.svg.min', 'cometvisu-client', 'cometvisu-client-openhab', 'iconhandler', 
   'widget_break', 'widget_designtoggle',
   'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
   'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infotrigger', 
@@ -274,11 +275,23 @@ function TemplateEngine( undefined ) {
 
   this.initBackendClient = function() {
     if (thisTemplateEngine.backend=="oh") {
-      // the path to the openHAB cometvisu backend is cv
       thisTemplateEngine.backend = '/services/cv/';
       thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
       thisTemplateEngine.visu.resendHeaders = {'X-Atmosphere-tracking-id':null};
       thisTemplateEngine.visu.headers= {'X-Atmosphere-Transport':'long-polling'};
+    }
+    else if (thisTemplateEngine.backend=="oh2") {
+      // openHAB2 uses SSE and need a new client implementation
+      if(window.EventSource !== undefined){
+    	// browser supports EventSource object
+        thisTemplateEngine.visu = new CometVisuOh();
+      } else {
+    	// browser does no support EventSource => fallback to classic
+    	thisTemplateEngine.backend = '/rest/cv/';
+        thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
+        thisTemplateEngine.visu.resendHeaders = {'X-Atmosphere-tracking-id':null};
+        thisTemplateEngine.visu.headers= {'X-Atmosphere-Transport':'long-polling'};
+      }
     } else {
       thisTemplateEngine.backend = '/' + thisTemplateEngine.backend + '/';
       thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
@@ -1305,12 +1318,14 @@ function TemplateEngine( undefined ) {
     {
       return '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
+      + (data.containerClass ? data.containerClass : '')
       + ('break' === data.type ? 'break_container' : '') // special case for break widget
       + '" id="'+path+'" data-type="'+data.type+'">' + retval + '</div>';
     } else {
       return jQuery(
       '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
+      + (data.containerClass ? data.containerClass : '')
       + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
     }
   };
@@ -1321,6 +1336,8 @@ function TemplateEngine( undefined ) {
     
     if (page_id.match(/^id_[0-9_]*$/) == null) {
       // find Page-ID by name
+      // decode html code (e.g. like &apos; => ')
+      page_id = $("<textarea/>").html(page_id).val();
       var pages = $('.page h1:contains(' + page_id + ')', '#pages');
       if (pages.length>1 && thisTemplateEngine.currentPage!=null) {
         // More than one Page found -> search in the current pages descendants first
