@@ -1,4 +1,4 @@
-/* cometvisu.js (c) 2010 by Christian Mayer [CometVisu at ChristianMayer dot de]
+/* cometvisu-client-openhab.js (c) 2015 by Tobias Bräutigam [tbraeutigam at gmail dot com]
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
