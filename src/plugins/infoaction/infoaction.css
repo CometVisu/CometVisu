@@ -1,0 +1,43 @@
+.infoaction { position: relative; }
+.infoaction .widget_container.infowidget { 
+  width: auto !important;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 2;
+}
+
+.infoaction .widget_container.actionwidget { 
+  z-index: 1;
+}
+
+.infoaction .widget_container.infowidget .widget { 
+	font-size: 0.8em;
+	min-width: 30px;
+  	border-radius: 0 0 0 30px;
+  	background-color: #FFFFFF;
+  	background-image: none;
+  	color: black;
+  	height: 30px;
+  	padding: 0;
+  	min-height: 0;
+}
+
+.infoaction .widget_container.actionwidget .widget { 
+	border: none;
+}
+
+.infoaction .widget_container.infowidget .widget .actor { 
+	text-align: center;
+	width: 100%;
+	margin: 0;
+}
+
+.infoaction .widget_container.infowidget .widget .actor div { float: none; }
+
+.navbar .infoaction .label {
+	text-align: center;
+	font-size: 0.7em;
+	float: left;
+	margin: 0 auto;
+}
