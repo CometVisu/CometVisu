@@ -74,6 +74,12 @@ Config</a> ]]></status>
       <pagejump target="Wohnzimmer">
         <layout colspan="0"/>
         <label><icon name="control_all_on_off"/>KNX</label>
+        <infowidget>
+          <info format="%d">
+          <layout colspan="0" />
+            <address transform="DPT:9.001" variant="">13/1/28</address>
+          </info>
+        </infowidget>
       </pagejump>
       <pagejump target="Video">
         <layout colspan="0"/>
@@ -211,6 +217,12 @@ Config</a> ]]></status>
             <label>
               <icon name="scene_sleeping"/>
             </label>
+            <infowidget>
+              <info format="%d">
+              <layout colspan="0" />
+                <address transform="DPT:9.001" variant="">13/1/28</address>
+              </info>
+            </infowidget>
           </pagejump>
         </group>
         <group name="Sonstiges">
