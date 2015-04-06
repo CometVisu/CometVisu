@@ -127,7 +127,7 @@
         ]]></status>
       <status type="html" hrefextend="config"><![CDATA[
           - <a href="check_config.php">Check Config</a>
-          <div style="float:right;padding-right:0.5em">Version: SVN</div>
+          <div style="float:right;padding-right:0.5em">Version: Git</div>
         ]]></status>
     </statusbar>
   </meta>
