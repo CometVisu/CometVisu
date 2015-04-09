@@ -24,50 +24,36 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
  */
 VisuDesign_Custom.prototype.addCreator("clock", {
   that: this,
-  create: function( page, path ) {
+  create: function( page, path, flavour, type ) {
     var that = this;
     var $p = $(page);
-    var ret_val = $('<div class="widget clearfix clock" />');
-    templateEngine.design.setWidgetLayout( ret_val, $p, path );
-    var labelElement = $p.find('label')[0];
-    var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-    var address = {};
-    $p.find('address').each( function(){ 
-      var src = this.textContent;
-      var transform = this.getAttribute('transform');
-      var color     = this.getAttribute('variant'  );
-      var readonly  = this.getAttribute('readonly' );
-      templateEngine.addAddress( src ); 
-      address[ '_' + src ] = [ transform, color, readonly=='true' ];
-    });
+    var classes = templateEngine.design.setWidgetLayout( $p, path );
+    var ret_val = '<div class="widget clearfix clock '+(classes?classes:'')+'">';
+    ret_val+=templateEngine.design.extractLabel( $p.find('label')[0], flavour );
+    var address = templateEngine.design.makeAddressList($p,false,path);
 
-    var actor = '<div class="actor" style="width:200px;">';
-    actor += '</div>';
-    var datatype =  $(page).attr('datatype');
-    var $actor = $(actor)
-      .data({
+    ret_val+='<div class="actor" style="width:200px;"></div>';
+    
+    var data = templateEngine.widgetDataInsert( path, {
         'value'   : new Date(),
         'address' : address,
         'type'    : 'clock'
-      });
-    $actor.svg({loadURL:'plugins/clock/clock_pure.svg',onLoad:function(svg){
-      $( svg.getElementById('HotSpotHour'  ) )
-        .draggable()
-        .bind('drag', {type: 'hour'  ,actor:$actor}, that.dragHelper )
-        .bind('dragstop', {actor:$actor}, that.action );
-      $( svg.getElementById('HotSpotMinute') )
-        .draggable()
-        .bind('drag', {type: 'minute',actor:$actor}, that.dragHelper )
-        .bind('dragstop', {actor:$actor}, that.action );
-    }});
+    });
     
-    for( var addr in address ) 
-    { 
-      if( !address[addr][2] ) $actor.bind( addr, this.update ); // no writeonly
-      $actor.bind( addr, this.update ); // no writeonly
-    }
-    
-    ret_val.append(label).append( $actor );
+    templateEngine.postDOMSetupFns.push(function() {
+      var $actor = $("#"+path+" .actor");
+      $actor.svg({loadURL:'plugins/clock/clock_pure.svg',onLoad:function(svg){
+        $( svg.getElementById('HotSpotHour'  ) )
+          .draggable()
+          .bind('drag', {type: 'hour'  ,actor:$actor}, that.dragHelper )
+          .bind('dragstop', {actor:$actor}, that.action );
+        $( svg.getElementById('HotSpotMinute') )
+          .draggable()
+          .bind('drag', {type: 'minute',actor:$actor}, that.dragHelper )
+          .bind('dragstop', {actor:$actor}, that.action );
+      }});
+    });
+    ret_val+="</div>";
     return ret_val;
   },
   update: function(e,d) { 
