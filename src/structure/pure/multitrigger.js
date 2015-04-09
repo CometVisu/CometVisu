@@ -37,7 +37,7 @@ design.basicdesign.addCreator('multitrigger', {
       button4label: $e.attr('button4label'),
       button4value: $e.attr('button4value')
     } );
-    console.log(data);
+    
     // create the actor
     ret_val += '<div class="actor_container" style="float:left">';
     var buttonCount = 0;
