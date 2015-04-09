@@ -48,12 +48,12 @@ design.basicdesign.addCreator('pagejump', {
       'target'  : target
     } );
     var info = '';
-    var infoWidget = $('infowidget > *', $e).first()[0];
-    if (infoWidget!=undefined) {
+    var widgetInfo = $('widgetinfo > *', $e).first()[0];
+    if (widgetInfo!=undefined) {
       var data = templateEngine.widgetDataInsert( path+"_0", {
-        containerClass           : "infowidget"
+        containerClass           : "widgetinfo"
       } );
-      info = templateEngine.create_pages(infoWidget, path+"_0", flavour, infoWidget.nodeName);
+      info = templateEngine.create_pages(widgetInfo, path+"_0", flavour, widgetInfo.nodeName);
     }
     return ret_val + actor + info +'</div>';
   },
