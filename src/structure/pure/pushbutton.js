@@ -23,7 +23,9 @@ design.basicdesign.addCreator('pushbutton', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'pushbutton', $e, path, flavour, type, this.update );
+    var ret_val = basicdesign.createDefaultWidget( 'pushbutton', $e, path, flavour, type, this.update, function( src, transform, mode, variant ) {
+      return [ true, variant ];
+    } );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'downValue'  : $e.attr('downValue' ) || 1,
@@ -48,6 +50,8 @@ design.basicdesign.addCreator('pushbutton', {
 
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
+      if (data.address[addr][2]!=undefined && data.address[addr][2]!="down") continue; // skip when not down-variant
+      console.log(data.address[addr][2]);
       templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.downValue));
     }
   },
@@ -56,6 +60,8 @@ design.basicdesign.addCreator('pushbutton', {
 
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
+      if (data.address[addr][2]!=undefined && data.address[addr][2]!="up") continue; // skip when not up-variant
+      console.log(data.address[addr][2]);
       templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.upValue));
     }
   }
