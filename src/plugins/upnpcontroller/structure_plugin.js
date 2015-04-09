@@ -33,66 +33,65 @@ VisuDesign_Custom.prototype.addCreator("upnpcontroller", {
 
         var id = "upnpcontroller_" + uniqid();
         upnpcontroller_uid = id;
+        
+        var classes = templateEngine.design.setWidgetLayout( $p, path );
+        var ret_val = '<div class="widget upnpcontroller '+(classes?classes:'')+'">';
+        ret_val += '<div class="label">' + $p.attr("label") + '</div>';
+        ret_val += "<div class=\"actor\"><div class=\"upnpcontroller\" id=\"" + id + "\">";
+//        var upnpcontroller = $("#" + id, actor);
 
-        var ret_val = $('<div class="widget upnpcontroller" />');
-        templateEngine.design.setWidgetLayout( ret_val, $p, path );
-        var label = '<div class="label">' + $p.attr("label") + '</div>';
-        var actor = $("<div class=\"actor\"><div class=\"upnpcontroller\" id=\"" + id + "\">loading</div></div>");
-        var upnpcontroller = $("#" + id, actor);
-
-		controller = $("<div></div>");
+		var controller = "<div>";
 		
-		controller.append( "<div id='" + id + "_title' class='upnplabelgroup'><div class='upnplabel'>Title</div><div class='value'>-</div></div>");
-		controller.append( "<div id='" + id + "_artist' class='upnplabelgroup'><div class='upnplabel'>Artist</div><div class='value'>-</div></div>");
-		controller.append( "<div id='" + id + "_album' class='upnplabelgroup'><div class='upnplabel'>Album</div><div class='value'>-</div></div>");
-		controller.append( "<div id='" + id + "_time' class='upnplabelgroup'><div class='upnplabel'></div><div class='value'>-</div></div>");
-		controller.append( "<div style='float: left;'><progress id='" + id + "_progress'  max='100' value='0'></progress></div>" );
-		controller.append( "<div style='float: left;'><div id='" + id + "_volumedown' class='actor center switchUnpressed'><div class='value'>-</div></div>"
+		var data = templateEngine.widgetDataInsert( path, {
+		  "id": id,
+      "eventsRegistered": 0,
+      "label": $p.attr("label"),
+      "refresh": $p.attr("refresh"),
+      "player_ip": $p.attr("player_ip_addr"),
+      "debug": $p.attr("debug"),
+      "player_port": ($p.attr("player_port") != undefined) ? $p.attr("player_port") : 1440
+		});
+    		
+		controller+="<div id='" + id + "_title' class='upnplabelgroup'><div class='upnplabel'>Title</div><div class='value'>-</div></div>";
+		controller+="<div id='" + id + "_artist' class='upnplabelgroup'><div class='upnplabel'>Artist</div><div class='value'>-</div></div>";
+		controller+="<div id='" + id + "_album' class='upnplabelgroup'><div class='upnplabel'>Album</div><div class='value'>-</div></div>";
+		controller+="<div id='" + id + "_time' class='upnplabelgroup'><div class='upnplabel'></div><div class='value'>-</div></div>";
+		controller+="<div style='float: left;'><progress id='" + id + "_progress'  max='100' value='0'></progress></div>";
+		controller+="<div style='float: left;'><div id='" + id + "_volumedown' class='actor center switchUnpressed'><div class='value'>-</div></div>"
 					+ "<div id='" + id + "_volume' class='actor center switchInvisible' style='text-align: center;'><div class='value'>20</div></div>"
-					+ "<div id='" + id + "_volumeup' class='actor center switchUnpressed'><div class='value'>+</div></div></div>" );
-		controller.append( "<div style='float: left;'><div id='" + id + "_playButton' class='actor switchUnpressed center'><div class='value'>-</div></div>"
-					+ "<div id='" + id + "_muteButton' class='actor switchUnpressed center'><div class='value'>-</div></div>" );
-		controller.append( "<div style='float: left;'><div id='" + id + "_prev' class='actor switchUnpressed center'><div class='value'>prev</div></div>"
-					+ "<div id='" + id + "_next' class='actor switchUnpressed center'><div class='value'>next</div></div></div>" );
-		controller.append( "<div style='float: left;'><div id='" + id + "_getplaylists' class='actor switchUnpressed center'><div class='value'>play lists</div></div></div>" );
-		controller.append( "<div style='float: left;'><div id='" + id + "_playlistsresult'><div class='value'></div></div></div>" );
+					+ "<div id='" + id + "_volumeup' class='actor center switchUnpressed'><div class='value'>+</div></div></div>";
+		controller+="<div style='float: left;'><div id='" + id + "_playButton' class='actor switchUnpressed center'><div class='value'>-</div></div>"
+					+ "<div id='" + id + "_muteButton' class='actor switchUnpressed center'><div class='value'>-</div></div>";
+		controller+="<div style='float: left;'><div id='" + id + "_prev' class='actor switchUnpressed center'><div class='value'>prev</div></div>"
+					+ "<div id='" + id + "_next' class='actor switchUnpressed center'><div class='value'>next</div></div></div>";
+		controller+="<div style='float: left;'><div id='" + id + "_getplaylists' class='actor switchUnpressed center'><div class='value'>play lists</div></div></div>";
+		controller+="<div style='float: left;'><div id='" + id + "_playlistsresult'><div class='value'></div></div></div>";
 
-		upnpcontroller.html(controller);
+		controller+="</div>";
+		
+		ret_val+=controller+"</div></div>";
 
-        ret_val.append(label).append(actor);
+    ret_val +="</div>";
 //        console.log("loaded plugin upnpcontroller");
+    upnpcontroller_trace_flag = $p.attr("debug");
+    templateEngine.postDOMSetupFns.push(function() {
+      refreshUpnpcontroller(path, $("#"+id), {}, false);
+    });
 
-        upnpcontroller.data("id", id);
-        upnpcontroller.data("eventsRegistered", 0);
-        upnpcontroller.data("label", $p.attr("label"));
-        upnpcontroller.data("refresh", $p.attr("refresh"));
-        upnpcontroller.data("player_ip", $p.attr("player_ip_addr"));
-        upnpcontroller.data("debug", $p.attr("debug"));
-
-		if($p.attr("player_port") != undefined){
-        	upnpcontroller.data("player_port", $p.attr("player_port"));
-		}else{
-        	upnpcontroller.data("player_port", '1400');
-		}
-        
-        upnpcontroller_trace_flag = $p.attr("debug");
-        
-        refreshUpnpcontroller(upnpcontroller, {}, false);
-
-        return ret_val;
-    }
+    return ret_val;
+  }
 });
 
 
-function refreshUpnpcontroller(upnpcontroller, data, oneTimeCall) {
+function refreshUpnpcontroller(path, upnpcontroller, data, oneTimeCall) {
     var upnpcontroller = $(upnpcontroller);
-
-    var playerIp = upnpcontroller.data("player_ip");
-    var playerPort = upnpcontroller.data("player_port");
-    var id = upnpcontroller.data("id");
-    var eventsRegistered = upnpcontroller.data("eventsRegistered");
-    var label = upnpcontroller.data("label");
-    var refresh = upnpcontroller.data("refresh");
+    var data = templateEngine.widgetDataGet(path);
+    var playerIp = data.player_ip;
+    var playerPort = data.player_port;
+    var id = data.id;
+    var eventsRegistered = data.eventsRegistered;
+    var label = data.label;
+    var refresh = data.refresh;
 
 	trace("debug     : " + upnpcontroller_trace_flag);
 	trace("playerIp  : " + playerIp);
