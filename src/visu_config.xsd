@@ -1076,7 +1076,7 @@
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="infowidget" type="infowidget" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="widgetinfo" type="widgetinfo" minOccurs="0" maxOccurs="1" />
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" />
     <xsd:attribute ref="target" />
@@ -1313,34 +1313,34 @@
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="infowidget" type="infowidget" />
-      <xsd:element name="actionwidget" type="actionwidget" />
+      <xsd:element name="widgetinfo" type="widgetinfo" />
+      <xsd:element name="widgetaction" type="widgetaction" />
     </xsd:sequence>
   </xsd:complexType>
   
-  <xsd:complexType name="infowidget">
+  <xsd:complexType name="widgetinfo">
     <xsd:sequence>
       <xsd:choice minOccurs="1" maxOccurs="1">
-      	<xsd:group ref="Infoaction_InfoWidgets"/>
+      	<xsd:group ref="Infoaction_WidgetInfos"/>
       </xsd:choice>     
     </xsd:sequence>
   </xsd:complexType>
-  <xsd:complexType name="actionwidget">
+  <xsd:complexType name="widgetaction">
     <xsd:sequence>
       <xsd:choice minOccurs="1" maxOccurs="1">
-      	<xsd:group ref="Infoaction_ActionWidgets"/>
+      	<xsd:group ref="Infoaction_WidgetActions"/>
       </xsd:choice>     
     </xsd:sequence>
   </xsd:complexType>
   
-    <xsd:group name="Infoaction_InfoWidgets">
+    <xsd:group name="Infoaction_WidgetInfos">
     <xsd:choice>
       <xsd:element name="text" type="text" />
       <xsd:element name="info" type="info" />
     </xsd:choice>
   </xsd:group>
   
-  <xsd:group name="Infoaction_ActionWidgets">
+  <xsd:group name="Infoaction_WidgetActions">
     <xsd:choice>
       <xsd:element name="switch" type="switch" />
       <xsd:element name="toggle" type="toggle" />
