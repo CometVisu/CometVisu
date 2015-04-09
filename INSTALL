@@ -8,13 +8,13 @@ few simple steps:
 1. Install the backend, i.e. the dynamic interface to the web server that is
    connecting to the KNX bus.
    Detailed instructions are given on the web page at:
-       http://cometvisu.de/wiki/index.php?title=CometVisu/Install_from_Source
+       http://cometvisu.de/wiki/CometVisu/Installation/Backend/en
   
    When you use the WireGate it should be already installed for you.
    
    When you use any other x86 based debian system, you can get the package
    out of the WireGate repository. It is contained in the package "eibd-clients"
-   at http://repo.wiregate.de/wiregate/pool/main/e/
+   at http://repo.wiregate.de/wiregate/pool/wiregate-1.0/main/e/
    
 2. Copy the directroy "release" on your web server in the web root.
    
