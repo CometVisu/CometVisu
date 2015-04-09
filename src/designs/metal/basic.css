@@ -1007,15 +1007,15 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 	margin: 0;
 	text-align: center;
 }
-.navbar .pagejump .infowidget {
+.navbar .pagejump .widgetinfo {
 	position: absolute;
 	top: 2px;
 	right: 0;
 }
-#navbarLeft .navbar .pagejump .infowidget  { top: 0; border-width: 0; right: -1px; }
-#navbarRight .navbar .pagejump .infowidget  { left: 0;  top: 0; border-width:0; left: -1px; }
-#navbarLeft .navbar .pagejump.active .infowidget  { right: -8px; }
-#navbarRight .navbar .pagejump.active .infowidget  { left: -8px; }
+#navbarLeft .navbar .pagejump .widgetinfo  { top: 0; border-width: 0; right: -1px; }
+#navbarRight .navbar .pagejump .widgetinfo  { left: 0;  top: 0; border-width:0; left: -1px; }
+#navbarLeft .navbar .pagejump.active .widgetinfo  { right: -8px; }
+#navbarRight .navbar .pagejump.active .widgetinfo  { left: -8px; }
 
 #navbarLeft .navbar .pagejump .info  {
 	border-radius: 0 0 0 30px;
@@ -1034,12 +1034,12 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 /* infoaction plugin */
 .infoaction { padding: 1px 0 0 0; }
 .infoaction > .label { padding: 0.3em; }
-.infoaction .widget_container.actionwidget .widget { padding-left:0; }
-.infoaction .widget_container.infowidget .widget {
+.infoaction .widget_container.widgetaction .widget { padding-left:0; }
+.infoaction .widget_container.widgetinfo .widget {
 	background-color: #666 !important;
 	color: #999 !important;
 }
-.infoaction .widget_container.infowidget .widget .actor {
+.infoaction .widget_container.widgetinfo .widget .actor {
 	line-height: normal;
 	text-shadow: none;
 }

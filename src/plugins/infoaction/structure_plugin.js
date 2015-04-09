@@ -17,17 +17,17 @@
 
 /**
  * This plugin add a infoaction widget, which is a combination of an info/text widget
- * and a page/pagejump/switch/trigger/... widget
+ * and a "action"-widget
  * 
  * use case: if you have a group of lights, you can show the number of turned on lights
  * 		and control the whole group in one widget
  * <infoaction>
- * 	<infowidget>
+ * 	<widgetinfo>
  * 
- *  </infowidget>
- *  <actionwiget>
+ *  </widgetinfo>
+ *  <widgetaction>
  *  
- *  </actionwidget>
+ *  </widgetaction>
  * </infoaction>
  */
 
@@ -38,16 +38,6 @@
  *   - infoaction
  *
  * attributes:
- *   - series:               optional, "hour", "day" (default), "week", "month", "year"
- *   - period:               optional, number of "series" to be shown
- *   - refresh:              optional, refresh-rate in seconds, no refresh if missing
- *   - fill:                 optional, true or false - filling the space under the line
- *   - gridcolor:            optional, color for dataline and grid, HTML-colorcode
- *   - width, height:        optional, width and height of "inline"-diagram
- *   - previewlabels:        optional, show labels on "inline"-diagram
- *   - popup:                optional, make diagram clickable and open popup
- *   - legend:               optional, "none", "both", "inline", "popup" select display of legend
- *   - title:                optional, diagram title (overrides label-content)
  */
 define( ['structure_custom', 'css!plugins/infoaction/infoaction.css'  ], function( VisuDesign_Custom ) {
   VisuDesign_Custom.prototype.addCreator("infoaction", {
@@ -69,13 +59,13 @@ define( ['structure_custom', 'css!plugins/infoaction/infoaction.css'  ], functio
     }
    
     function getWidgetElements(xmlElement, path, flavour, type) {
-      var infoWidget = $('infowidget > *', xmlElement).first()[0];
-      var actionWidget = $('actionwidget > *', xmlElement).first()[0];
+      var infoWidget = $('widgetinfo > *', xmlElement).first()[0];
+      var actionWidget = $('widgetaction > *', xmlElement).first()[0];
       var data = templateEngine.widgetDataInsert( path+"_0", {
-        containerClass           : "infowidget"
+        containerClass           : "widgetinfo"
       } );
       data = templateEngine.widgetDataInsert( path+"_1", {
-        containerClass           : "actionwidget"
+        containerClass           : "widgetaction"
       } );
       
       var ret_val = templateEngine.create_pages(infoWidget, path+"_0", flavour, infoWidget.nodeName);
