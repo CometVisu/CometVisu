@@ -45,13 +45,15 @@ design.basicdesign.addCreator('group', {
       var target = $e.attr('target') ;
       classes += ' clickable';
       var data = templateEngine.widgetDataInsert( path, {
+        'bind_click_to_widget': true, // for groups with pagejumps this is mandatory
         'target'  : target
       } );
     }
     return '<div class="' + classes + '">' + container + '</div>';
   },
-  action: function( path, actor, isCaneled ) {
+  action: function( path, actor, isCanceled ) {
     var data = templateEngine.widgetDataGet( path );
+    if( isCanceled ) return;
     if (data.target != 0) templateEngine.scrollToPage( data.target );
   } 
 });
