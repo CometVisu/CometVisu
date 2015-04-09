@@ -396,7 +396,12 @@ function VisuDesign() {
       'path'    : path
     });
     var ret_val = '<div class="'+classes+'" ' + style + '>' + label;
-    
+    if (address && updateFn!=undefined) {
+      templateEngine.postDOMSetupFns.push( function() {
+        // initially setting a value
+        basicdesign.defaultUpdate( undefined, undefined, $("#"+path), true, path );
+      });
+    }
     return ret_val;
   };
   
