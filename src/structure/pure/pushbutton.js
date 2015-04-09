@@ -51,7 +51,6 @@ design.basicdesign.addCreator('pushbutton', {
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
       if (data.address[addr][2]!=undefined && data.address[addr][2]!="down") continue; // skip when not down-variant
-      console.log(data.address[addr][2]);
       templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.downValue));
     }
   },
@@ -61,7 +60,6 @@ design.basicdesign.addCreator('pushbutton', {
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
       if (data.address[addr][2]!=undefined && data.address[addr][2]!="up") continue; // skip when not up-variant
-      console.log(data.address[addr][2]);
       templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.upValue));
     }
   }
