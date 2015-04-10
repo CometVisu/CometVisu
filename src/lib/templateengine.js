@@ -439,15 +439,20 @@ function TemplateEngine( undefined ) {
       
       while( element )
       {
-        if( element.classList.contains( 'actor' ) )
+        if( element.classList.contains( 'actor' ) || (element.classList.contains( 'group' ) && element.classList.contains( 'clickable' )) )
           actor = element;
         
         if( element.classList.contains( 'widget_container' ) )
         {
           widget = element;
+          if (thisTemplateEngine.design.creators[ widget.dataset.type ].action!=undefined) {
+            return { actor: actor, widget: widget };
+          }
+        }
+        if( element.classList.contains( 'page' ) ) {
+          // abort traversal
           return { actor: actor, widget: widget };
         }
-        
         element = element.parentElement;
       }
       

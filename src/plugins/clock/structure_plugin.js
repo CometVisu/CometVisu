@@ -46,11 +46,11 @@ VisuDesign_Custom.prototype.addCreator("clock", {
         $( svg.getElementById('HotSpotHour'  ) )
           .draggable()
           .bind('drag', {type: 'hour'  ,actor:$actor}, that.dragHelper )
-          .bind('dragstop', {actor:$actor}, that.action );
+          .bind('dragstop', {actor:$actor}, that.dragAction );
         $( svg.getElementById('HotSpotMinute') )
           .draggable()
           .bind('drag', {type: 'minute',actor:$actor}, that.dragHelper )
-          .bind('dragstop', {actor:$actor}, that.action );
+          .bind('dragstop', {actor:$actor}, that.dragAction );
       }});
     });
     ret_val+="</div>";
@@ -67,10 +67,13 @@ VisuDesign_Custom.prototype.addCreator("clock", {
   dragHelper:function(event,ui) {
     var $container = event.data.actor;
     var $svg = $container.find('svg');
+    var widget = $container.parents('.widget_container')[0];
+    var path = widget.id;
+    var widgetData  = templateEngine.widgetDataGet( path );
     var x = event.originalEvent.pageX - $svg.offset().left - 50; 
     var y = 50 - (event.originalEvent.pageY - $svg.offset().top);
     var angle = (Math.atan2( x, y ) * 180 / Math.PI + 360) % 360;
-    var time = $container.data('value');
+    var time = widgetData.value;
     if( event.data.type == 'hour' )
     {
       var oldHours = time.getHours();
@@ -104,13 +107,18 @@ VisuDesign_Custom.prototype.addCreator("clock", {
     $container.find('#Hour'  ).attr('transform','rotate('+((time.getHours()%12)*360/12+time.getMinutes()*30/60)+',50,50)');
     $container.find('#Minute').attr('transform','rotate('+(time.getMinutes()*6)+',50,50)');
   },
-  action: function( event, ui ) {
-    var data = event.data.actor.data(); //$(this).data();
-    for( var addr in data.address )
+ dragAction: function(event,ui) {
+    var widget = event.data.actor.parents('.widget_container')[0];
+    var 
+      widgetData  = templateEngine.widgetDataGet( widget.id );
+    for( var addr in widgetData.address )
     {
-      if( data.address[addr][1] == true ) continue; // skip read only
-      templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], data.value ) );
+      if( widgetData.address[addr][1] == true ) continue; // skip read only
+      templateEngine.visu.write( addr, templateEngine.transformEncode( widgetData.address[addr][0], widgetData.value ) );
     }
+  },
+  action: function(path,actor,isCanceled) {
+    // override system action-function
   }
 });
 

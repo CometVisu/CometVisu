@@ -89,7 +89,7 @@ Transform.addTransform('OH', {
     name : "OH_DateTime",
     encode : function(phy) {
       if (phy instanceof Date) {
-        return phy.toISOString();
+        return phy.toLocaleDateString();
       } else {
         return phy;
       }
@@ -97,14 +97,14 @@ Transform.addTransform('OH', {
     decode : function(str) {
       if (str=="NaN" || str=='Uninitialized') return '-';
       var date = new Date(str);
-      return date.toLocaleString();
+      return date;
     },
   },
   'time' : {
     name : "OH_Time",
     encode : function(phy) {
       if (phy instanceof Date) {
-        return phy.toISOString();
+        return phy.toLocaleTimeString();
     } else {
       return phy;
       }
@@ -112,7 +112,7 @@ Transform.addTransform('OH', {
     decode : function(str) {
       if (str=="NaN" || str=='Uninitialized') return '-';
       var date = new Date(str);
-      return date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+      return date;
     },
    },
   'color' : {
