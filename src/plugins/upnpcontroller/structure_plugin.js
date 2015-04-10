@@ -61,7 +61,7 @@ VisuDesign_Custom.prototype.addCreator("upnpcontroller", {
 					+ "<div id='" + id + "_volume' class='actor center switchInvisible' style='text-align: center;'><div class='value'>20</div></div>"
 					+ "<div id='" + id + "_volumeup' class='actor center switchUnpressed'><div class='value'>+</div></div></div>";
 		controller+="<div style='float: left;'><div id='" + id + "_playButton' class='actor switchUnpressed center'><div class='value'>-</div></div>"
-					+ "<div id='" + id + "_muteButton' class='actor switchUnpressed center'><div class='value'>-</div></div>";
+					+ "<div id='" + id + "_muteButton' class='actor switchUnpressed center'><div class='value'>-</div></div></div>";
 		controller+="<div style='float: left;'><div id='" + id + "_prev' class='actor switchUnpressed center'><div class='value'>prev</div></div>"
 					+ "<div id='" + id + "_next' class='actor switchUnpressed center'><div class='value'>next</div></div></div>";
 		controller+="<div style='float: left;'><div id='" + id + "_getplaylists' class='actor switchUnpressed center'><div class='value'>play lists</div></div></div>";
