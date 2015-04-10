@@ -537,7 +537,6 @@ function TemplateEngine( undefined ) {
     window.addEventListener( isTouchDevice ? 'touchend' : 'mouseup', function( event ){
       if( isWidget )
       {
-        console.log(mouseEvent);
         var
           widgetActor = getWidgetActor( event.target ),
           widget      = mouseEvent.widget,
