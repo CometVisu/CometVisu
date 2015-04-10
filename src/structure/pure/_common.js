@@ -170,6 +170,12 @@ function VisuDesign() {
         case 'DPT:11.001':
           value = value.toLocaleDateString();
           break;
+        case 'OH:datetime':
+          value = value.toLocaleDateString();
+          break;
+        case 'OH:time':
+          value = value.toLocaleTimeString();
+          break;
         }
     }
     
