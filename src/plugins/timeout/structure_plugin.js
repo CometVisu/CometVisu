@@ -20,7 +20,6 @@
  */
 
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
-
 var timeoutIdleCount   = 0;
 var timeoutCurrentPage = "";
 var timeoutTargetPage  = "";
@@ -30,13 +29,13 @@ VisuDesign_Custom.prototype.addCreator("timeout", {
   create : function(page, path) {
     var $p = $(page);
 
-    var target  = "id_0";   // Set default go back to Start Page
+    var target  = "id_";   // Set default go back to Start Page
     var timeout = 600;      // Set default to 10 Minutes
     var debug   = 'false';  // Set debug off by default
 
     if ( $p.attr('target') ) { target       = $p.attr('target'); }
     if ( $p.attr('time')   ) { timeout      = $p.attr('time');   }
-    //if ( $p.attr('debug')  ) { timeoutDebug = $p.attr('debug');  }
+//    if ( $p.attr('debug')  ) { timeoutDebug = $p.attr('debug');  }
 
 
     timeoutPrintDebug("AAAAAA: Before Find-by-id: " + target); 
@@ -56,8 +55,8 @@ VisuDesign_Custom.prototype.addCreator("timeout", {
     timeoutTargetPage = target;
 
     var deltaT = timeout * 100;
-    var idleInterval = setInterval("timeoutTrigger()", deltaT); 
-
+    var idleInterval = setInterval(function() {timeoutTrigger();}, deltaT);
+    
     // Reset Counter on every interaction
     $(document).bind('scroll',      function(e) { timeoutIdleCount = 0; });
     $(document).bind('mousemove',   function(e) { timeoutIdleCount = 0; });
