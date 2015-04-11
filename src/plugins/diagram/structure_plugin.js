@@ -247,7 +247,7 @@ define( ['structure_custom',
           frameRate: 20,
           triggerOnDrag : false,
         },
-        yaxes  : $.extend( true, {}, data.content.axes ), // copy to prevent side effects
+        yaxes  : $.extend( true, [], data.content.axes ), // copy to prevent side effects
         xaxes  : [{
           mode       : "time",
           timeformat : data.timeformat
