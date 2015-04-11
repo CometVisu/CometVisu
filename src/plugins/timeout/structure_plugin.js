@@ -22,6 +22,7 @@
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
 var timeoutIdleCount   = 0;
 var timeoutCurrentPage = "";
+var timeoutCurrentPageTitle = "";
 var timeoutTargetPage  = "";
 var timeoutDebug       = 'false';
 
@@ -35,20 +36,8 @@ VisuDesign_Custom.prototype.addCreator("timeout", {
 
     if ( $p.attr('target') ) { target       = $p.attr('target'); }
     if ( $p.attr('time')   ) { timeout      = $p.attr('time');   }
-//    if ( $p.attr('debug')  ) { timeoutDebug = $p.attr('debug');  }
+    if ( $p.attr('debug')  ) { timeoutDebug = $p.attr('debug');  }
 
-
-    timeoutPrintDebug("AAAAAA: Before Find-by-id: " + target); 
-    if (target.match(/^id_[0-9_]+$/) == null) {
-      $('.page h1:contains(' + target + ')', '#pages').each(function(i) {
-        timeoutPrintDebug("In find-id" + $(this).text());
-        if ($(this).text() == target) {
-          target = $(this).closest(".page").attr("id");
-        }
-      });
-    }
-
-    timeoutPrintDebug("AAAAAA: After Find-by-id: " + target);
     timeoutPrintDebug("TIMEOUT: Timeout Set to : " + timeout);
     timeoutPrintDebug("TIMEOUT: Target Page: " + target);
 
@@ -70,8 +59,9 @@ VisuDesign_Custom.prototype.addCreator("timeout", {
     $(document).bind('touchend',    function(e) { timeoutIdleCount = 0; });
 
     // Keep track of current page
-    $(window).bind('scrolltopage', function(page, path) { 
+    $(window).bind('scrolltopage', function(page, path) {
       timeoutCurrentPage = path; 
+      timeoutCurrentPageTitle = $("div > h1","#"+path).text();
       timeoutIdleCount   = 0;
       /* We could trun on and off the above binds if we are already on the right page 
       
@@ -96,26 +86,14 @@ function timeoutTrigger() {
 
     var page_id = timeoutTargetPage;
 
-    timeoutPrintDebug("XXXXX Before Find-by-id: " + timeoutTargetPage);
-    if (timeoutTargetPage.match(/^id_[0-9_]+$/) == null) {
-      $('.page h1:contains(' + timeoutTargetPage + ')', '#pages').each(function(i) { 
-        timeoutPrintDebug("In find-id" + $(this).text());
-        if ($(this).text() == timeoutTargetPage) {         
-          timeoutTargetPage = $(this).closest(".page").attr("id");       
-        }     
-      });   
-    }
-    timeoutPrintDebug("XXXXXX After Find-by-id: " + timeoutTargetPage); 
-
-
-    if (timeoutCurrentPage != timeoutTargetPage) {
+    if (timeoutCurrentPage != timeoutTargetPage && timeoutCurrentPageTitle != timeoutTargetPage) {
       timeoutPrintDebug("TIMEOUT: Got Timeout - Now Goto Page " + timeoutTargetPage); 
       templateEngine.scrollToPage(timeoutTargetPage);
-      $("#" + timeoutTargetPage).scrollTop(0);
+      templateEngine.currentPage.scrollTop(0);
       //templateEngine.updateTopNavigation();
     } else {
       timeoutPrintDebug("TIMEOUT: Already on page " + timeoutTargetPage); 
-      $("#" + timeoutCurrentPage).scrollTop(0);
+      templateEngine.currentPage.scrollTop(0);
     }
   }
 }
