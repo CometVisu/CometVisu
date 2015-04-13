@@ -39,66 +39,58 @@ design.basicdesign.addCreator('multitrigger', {
     } );
     
     // create the actor
-    var buttons = $('<div class="actor_container" style="float:left"/>');
+    ret_val += '<div class="actor_container" style="float:left">';
     var buttonCount = 0;
     
     if( data.button1label )
     {
-      var actor = '<div class="actor switchUnpressed ';
+      ret_val += '<div class="actor switchUnpressed ';
       if( data.align ) 
-        actor += data.align; 
-      actor += '">';
+        ret_val += data.align; 
+      ret_val += '">';
       
-      actor += '<div class="value">' + data.button1label + '</div>';
-      actor += '</div>';
-      var $actor = $(actor).bind( 'click', this.action );
-      buttons.append( $actor );
-      if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
+      ret_val += '<div class="value">' + data.button1label + '</div>';
+      ret_val += '</div>';
+      if( 1 == (buttonCount++ % 2) ) ret_val += '<br/>';
     }
     
     if( data.button2label )
     {
-      var actor = '<div class="actor switchUnpressed ';
+      ret_val += '<div class="actor switchUnpressed ';
       if( data.align ) 
-        actor += data.align; 
-      actor += '">';
+        ret_val += data.align; 
+      ret_val += '">';
       
-      actor += '<div class="value">' + data.button2label + '</div>';
-      actor += '</div>';
-      var $actor = $(actor).bind( 'click', this.action );
-      buttons.append( $actor );
-      if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
+      ret_val += '<div class="value">' + data.button2label + '</div>';
+      ret_val += '</div>';
+      if( 1 == (buttonCount++ % 2) ) ret_val += '<br/>';
     }
     
     if( data.button3label )
     {
-      var actor = '<div class="actor switchUnpressed ';
+      ret_val += '<div class="actor switchUnpressed ';
       if( data.align ) 
-        actor += data.align; 
-      actor += '">';
+        ret_val += data.align; 
+      ret_val += '">';
       
-      actor += '<div class="value">' + data.button3label + '</div>';
-      actor += '</div>';
-      var $actor = $(actor).bind( 'click', this.action );
-      buttons.append( $actor );
-      if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
+      ret_val += '<div class="value">' + data.button3label + '</div>';
+      ret_val += '</div>';
+      if( 1 == (buttonCount++ % 2) ) ret_val += '<br/>';
     }
     
     if( data.button4label )
     {
-      var actor = '<div class="actor switchUnpressed ';
+      ret_val += '<div class="actor switchUnpressed ';
       if( data.align ) 
-        actor += data.align; 
-      actor += '">';
+        ret_val += data.align; 
+      ret_val += '">';
       
-      actor += '<div class="value">' + data.button4label + '</div>';
-      actor += '</div>';
-      var $actor = $(actor).bind( 'click', this.action );
-      buttons.append( $actor );
-      if( 1 == (buttonCount++ % 2) ) buttons.append( $('<br/>') );
+      ret_val += '<div class="value">' + data.button4label + '</div>';
+      ret_val += '</div>';
+      if( 1 == (buttonCount++ % 2) ) ret_val += '<br/>';
     }
     
-    return ret_val.append( buttons );
+    return ret_val + '</div></div>';
   },
   update: function( ga, d ) { 
     var element = $(this),
@@ -114,11 +106,16 @@ design.basicdesign.addCreator('multitrigger', {
            .addClass(    isPressed ? 'switchPressed' : 'switchUnpressed' );
     });
   },
-  action: function() {
-    var $this = $(this),
-        data  = templateEngine.widgetDataGetByElement( $this.parent() ),
-        index = $this.index() < 3 ? $this.index()+1 : $this.index(),
-        value = data['button'+index+'value'];
+  downaction: basicdesign.defaultButtonDownAnimation,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimation( path, actor );
+    if( isCanceled ) return;
+    
+    var
+      $actor = $(actor),
+      data  = templateEngine.widgetDataGet( path ),
+      index = $actor.index() < 3 ? $actor.index()+1 : $actor.index(),
+      value = data['button'+index+'value'];
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set

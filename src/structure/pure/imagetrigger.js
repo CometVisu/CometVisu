@@ -22,15 +22,13 @@ design.basicdesign.addCreator('imagetrigger', {
   create: function( element, path, flavour, type ) { 
     var 
       $e = $(element),
-      classes = basicdesign.setWidgetLayout( $e, path ),
-      ret_val = $('<div class="widget clearfix image '+(classes?classes:'')+'" />');
-    ret_val.addClass ('imagetrigger');
+      classes = basicdesign.setWidgetLayout( $e, path );
+    classes += ' imagetrigger';
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
+    if( flavour ) classes += ' flavour_' + flavour;
+    var ret_val = '<div class="widget clearfix image '+(classes?classes:'')+'">';
     var value = $e.attr('value') ? $e.attr('value') : 0;
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
-    ret_val.append( basicdesign.extractLabel( $e.find('label')[0], flavour ) );
+    ret_val += basicdesign.extractLabel( $e.find('label')[0], flavour );
     var address = basicdesign.makeAddressList($e);
     var layout = $e.children('layout')[0];
     var style = layout ? 'style="' + basicdesign.extractLayout( layout, type, {width:'100%'} ) + '"' : '';
@@ -44,7 +42,6 @@ design.basicdesign.addCreator('imagetrigger', {
         
     actor += '</div>';
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
-    var $actor = $(actor).each(templateEngine.setupRefreshAction); // abuse "each" to call in context... refresh is broken with select right now
     var data = templateEngine.widgetDataInsert( path, {
       'address':   address, 
       'refresh':   refresh,
@@ -52,13 +49,14 @@ design.basicdesign.addCreator('imagetrigger', {
       'suffix':    $e.attr('suffix'),
       'sendValue': $e.attr('sendValue') || ""
     } );
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    clickable.bind( 'click', this.action );
-    for( var addr in address ) {
-      $actor.bind( addr, this.update );
+    
+    if (data.refresh) {
+      templateEngine.postDOMSetupFns.push( function(){
+        templateEngine.setupRefreshAction( path, data.refresh );
+      });
     }
-    ret_val.append( $actor );
-    return ret_val;
+    
+    return ret_val + actor + '</div>';
   },
   update: function( ga, d ) {
     var data  = templateEngine.widgetDataGetByElement( element );
@@ -81,9 +79,9 @@ design.basicdesign.addCreator('imagetrigger', {
     //FIXME: add bitmask for multiple images
     //FIXME: add SVG-magics
   },
-  action: function() {
+  action: function( path, actor, isCanceled ) {
     var 
-      data = templateEngine.widgetDataGetByElement( this );
+      data = templateEngine.widgetDataGet( path );
     for( var addr in data.address ) {
       if( !(data.address[addr][1] & 2) )
         continue; // skip when write flag not set

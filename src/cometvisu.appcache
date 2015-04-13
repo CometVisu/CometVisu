@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Version SVN:20150208-1541
+# Version SVN:2015031-1934
 
 CACHE:
 index.html
@@ -33,7 +33,6 @@ dependencies/scrollable.js
 dependencies/jsfloorplan.js
 dependencies/Three.js
 dependencies/poly2tri.js
-dependencies/yepnope.1.5.4.js
 lib/iconhandler.js
 lib/icontools.js
 lib/compatibility.js

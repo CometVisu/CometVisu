@@ -25,10 +25,10 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
 VisuDesign_Custom.prototype.addCreator("colorchooser", {
   create: function( page, path ) {
     var $p = $(page);
-    var ret_val = $('<div class="widget clearfix colorChooser" />');
-    templateEngine.design.setWidgetLayout( ret_val, $p, path );
+    var layout = templateEngine.design.setWidgetLayout( $p, path );
+    var ret_val = '<div class="widget clearfix colorChooser' + layout + '">';
     var labelElement = $p.find('label')[0];
-    var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+    ret_val += labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
     var address = templateEngine.design.makeAddressList( $p,
       function( src, transform, mode, variant ) {
         return [ true, variant ];
@@ -36,10 +36,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
       path
     );
 
-    var actor = '<div class="actor">';
-    actor += '</div>';
-    var datatype =  $(page).attr('datatype');
-    var $actor = $(actor);
+    var actor = '<div class="actor" />';
     var data = templateEngine.widgetDataInsert( path, {
         'address' : address,
         'value_r' : 0, // The currenty displayed value
@@ -51,6 +48,9 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
         'rateLimiter' : false, // is the rate limiter active?
         'type'    : 'colorChooser'
       });
+    
+    templateEngine.postDOMSetupFns.push( function(){
+      var $actor = $( '#' + path + ' .actor' );
       $actor.farbtastic( function(color){
         data.value_r = parseInt(color.substring(1, 3), 16) * 100 / 255.0;
         data.value_g = parseInt(color.substring(3, 5), 16) * 100 / 255.0;
@@ -94,9 +94,10 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 }
                 break;
               case 'rgb':
-                var v = Transform[address[addr][0]].encode( [r,g,b] );
-                var b = Transform[address[addr][0]].encode( [br,bg,bb] );
-                console.log("Write-Value: "+v);
+            	var rgb = [r*255/100.0,g*255/100.0,b*255/100.0];
+            	var brgb = [br*255/100.0,bg*255/100.0,bb*255/100.0];
+                var v = Transform[address[addr][0]].encode( rgb );
+                var b = Transform[address[addr][0]].encode( brgb );
                 if( v[0] != b[0] || v[1] != b[1] || v[2] != b[2] )
                 {
                   templateEngine.visu.write( addr, v );
@@ -120,9 +121,9 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
         if( data.rateLimiter == false ) // already requests going?
           rateLimitedSend( $actor ); 
       });
+    });
 
-    ret_val.append(label).append( $actor );
-    return ret_val;
+    return ret_val + actor + '</div>';
   },
   update: function( ga, data ) {
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
@@ -155,6 +156,16 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 toHex( value*255/100 )+
                 color.substring(7);
         break;
+      case 'rgb':
+    	  wData.bus_r = value[0];
+    	  wData.bus_g = value[1];
+          wData.bus_b = value[2];
+          color = color.substring(0,1) +
+          		toHex( value[0] )+
+          		toHex( value[1] )+
+          		toHex( value[2] )+
+          		color.substring(7);
+          break;
     }
     farbtastic.setColor( color );
   }

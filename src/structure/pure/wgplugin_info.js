@@ -21,27 +21,20 @@ define( ['_common'], function( design ) {
 design.basicdesign.addCreator('wgplugin_info', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
-    var classes = basicdesign.setWidgetLayout( $e, path );
-    var ret_val = $('<div class="widget clearfix info '+(classes?classes:'')+'" ' + style + ' />');
-    //type == '3d' && ret_val.data( extractLayout3d( layout ) ).bind( 'update3d', this.update3d );
-    type == '3d' && $(document).bind( 'update3d', {element: ret_val, layout: basicdesign.extractLayout3d( layout )}, this.update3d );
     
-    basicdesign.makeWidgetLabel( ret_val, $e, flavour );
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
-    var address = basicdesign.makeAddressList($e);
+    // create the main structure
+    var ret_val = basicdesign.createDefaultWidget( 'info', $e, path, flavour, type, this.update );
     
-    var actor = '<div class="actor"><div class="value">-</div></div>';
     templateEngine.widgetDataInsert( path, {
-      'variable' : $e.attr('variable'),
-      'address'  : address,
+      'variable' : $e.attr('variable')
     } );
-    var $actor = $(actor);
-    for( var addr in address ) $actor.bind( addr, this.update );
-    ret_val.append( $actor );
-    return ret_val;
+    
+    // create the actor
+    var actor = '<div class="actor"><div class="value">-</div></div>';
+    ret_val += actor;
+    
+    return ret_val + '</div>';
+
   },
   update: function( e, d, passedElement )
   {

@@ -27,26 +27,26 @@ design.basicdesign.addCreator('designtoggle', {
 
     // create the actor
     var value = $('link[href*="basic.css"]').attr('href').split('/')[2];
-    var $actor = $('<div class="actor switchUnpressed"><div class="value">' + value + '</div></div>');
-    ret_val.append( $actor );
+    var actor = '<div class="actor switchUnpressed"><div class="value">' + value + '</div></div>';
 
     var data = templateEngine.widgetDataGet( path );
     
-    // bind to user action
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    basicdesign.createDefaultButtonAction( clickable, $actor, false, this.action );
-
-    $.getJSON("./designs/get_designs.php",function(data) {
-      data['availableDesigns'] = data;
+    $.getJSON("./designs/get_designs.php",function(d) {
+      data['availableDesigns'] = d;
     });
 
-    return ret_val;
+    return ret_val + actor + '</div>';
   },
-  action: function() {
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCaneled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if( isCaneled ) return;
+
+    var 
+      data = templateEngine.widgetDataGet( path );
+    
     var $this = $(this);
-    var designs = templateEngine.widgetDataGetByElement( this )['availableDesigns'];
+    var designs = data.availableDesigns;
 
     var oldDesign = $('.value',$this).text();
     var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];

@@ -43,7 +43,7 @@ design.basicdesign.addCreator('infotrigger', {
     } );
 
     // create buttons + info
-    var buttons = $('<div style="float:left;"/>');
+    ret_val += '<div style="float:left;">';
 
     var actordown = '<div class="actor switchUnpressed downlabel" ';
     if ( data.align ) 
@@ -51,8 +51,6 @@ design.basicdesign.addCreator('infotrigger', {
     actordown += '>';
     actordown += '<div class="label">' + (data.downlabel || '-') + '</div>';
     actordown += '</div>';
-    var $actordown = $(actordown);
-    basicdesign.createDefaultButtonAction( $actordown, $actordown, this.downaction, this.action );
 
     var actorup = '<div class="actor switchUnpressed uplabel" ';
     if ( data.align ) 
@@ -60,74 +58,65 @@ design.basicdesign.addCreator('infotrigger', {
     actorup += '>';
     actorup += '<div class="label">' + (data.uplabel || '+') + '</div>';
     actorup += '</div>';
-    var $actorup = $(actorup);
-    basicdesign.createDefaultButtonAction( $actorup, $actorup, this.downaction, this.action );
 
     var actorinfo = '<div class="actor switchInvisible " ';
     if ( data.align ) 
       actorinfo += 'style="text-align: ' + data.align + '" '; 
-    actorinfo += '" ><div class="value"></div></div>';
-    var $actorinfo = $(actorinfo);
+    actorinfo += '" ><div class="value">-</div></div>';
 
     switch ($e.attr('infoposition')) {
       case 'middle':
-        buttons.append( $actordown );
-        buttons.append( $actorinfo );
-        buttons.append( $actorup );        
+        ret_val += actordown;
+        ret_val += actorinfo;
+        ret_val += actorup;
         break;
       case 'right':
-        buttons.append( $actordown );
-        buttons.append( $actorup );        
-        buttons.append( $actorinfo );
+        ret_val += actordown;
+        ret_val += actorup;
+        ret_val += actorinfo;
         break;
       default:
-        buttons.append( $actorinfo );
-        buttons.append( $actordown );
-        buttons.append( $actorup );        
+        ret_val += actorinfo;
+        ret_val += actordown;
+        ret_val += actorup;
         break;
     }
 
-    ret_val.append( buttons );
-
-    // initially setting a value
-    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
-
-    return ret_val;
+    return ret_val+ '</div></div>';
   },
 
   update: function( ga, d ) { 
     var element = $(this);
     var value = basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
   },
-  downaction: function(event) {
-     templateEngine.widgetDataGetByElement( $(this).parent() )['downtime'] = new Date().getTime();
-  },
-  action: function(event) {
-    var $this      = $(this),
-        isDown     = $this.hasClass('downlabel'),
-        data       = templateEngine.widgetDataGetByElement( $this.parent() ),
-        buttonDataValue      = data[ isDown ? 'downvalue'      : 'upvalue'      ],
-        buttonDataShortvalue = data[ isDown ? 'shortdownvalue' : 'shortupvalue' ];
-    if( data.downtime )
+  downaction: basicdesign.defaultButtonDownAnimation,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimation( path, actor );
+    if( isCanceled ) return;
+
+    var
+      isDown     = actor.classList.contains('downlabel'),
+      data       = templateEngine.widgetDataGet( path ),
+      buttonDataValue      = data[ isDown ? 'downvalue'      : 'upvalue'      ],
+      buttonDataShortvalue = data[ isDown ? 'shortdownvalue' : 'shortupvalue' ],
+      isShort = Date.now() - templateEngine.handleMouseEvent.downtime < data.shorttime,
+      value = isShort ? buttonDataShortvalue : buttonDataValue,
+      bitMask = (isShort ? 1 : 2);
+      
+    if( data.isAbsolute )
     {
-      var isShort = (new Date().getTime()) - data.downtime < data.shorttime;
-      var value = isShort ? buttonDataShortvalue : buttonDataValue;
-      if( data.isAbsolute )
-      {
-        value = parseFloat(data.basicvalue);
-        if( isNaN( value ) )
-          value = 0; // anything is better than NaN...
-        value = value + parseFloat(isShort ? buttonDataShortvalue : buttonDataValue);
-        if (value < data.min ) value = data.min;
-        if( value > data.max ) value = data.max;
-      }
-      var bitMask = (isShort ? 1 : 2);
-      for( var addr in data.address )
-      {
-        if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-        if (data.address[addr][2] & bitMask) {
-          templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], value ) );
-        }
+      value = parseFloat(data.basicvalue);
+      if( isNaN( value ) )
+        value = 0; // anything is better than NaN...
+      value = value + parseFloat(isShort ? buttonDataShortvalue : buttonDataValue);
+      if (value < data.min ) value = data.min;
+      if( value > data.max ) value = data.max;
+    }
+    for( var addr in data.address )
+    {
+      if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
+      if (data.address[addr][2] & bitMask) {
+        templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], value ) );
       }
     }
   }

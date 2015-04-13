@@ -4,50 +4,44 @@ VisuDesign_Custom.prototype.addCreator("calendarlist", {
     create: function (element, path, flavour, type) {
         var $el = $(element);
 
-        function uniqid() {
-            var newDate = new Date;
-            return newDate.getTime();
-        }
-        var id = "calendarList_" + uniqid();
+        var id = "calendarList_" + path;
 
-        var ret_val = $('<div class="widget clearfix calendarList" />');
-        templateEngine.design.setWidgetLayout(ret_val, $el, path);
-        templateEngine.design.makeWidgetLabel(ret_val, $el);
+       var classes = templateEngine.design.setWidgetLayout( $el, path );
+        var ret_val = '<div class="widget clearfix calendarList ' + classes + '">';
+        
+        ret_val += templateEngine.design.extractLabel( page.find('label')[0], flavour );
+      
+        var style = ''
+          + $el.attr("width" ) ? ("width:"  + $el.attr("width") + ';') : ''
+          + $el.attr("height") ? ("height:" + $el.attr("height")     ) : '';
+        var actor = '<div class="actor calendarListBody"><div class="calendarList_inline" id="' + id + '" style="'+style+'"></div></div>';
 
-        var actor = $('<div class="actor calendarListBody"><div class="calendarList_inline" id="' + id + '"></div></div>');
-        var calendarList = $("#" + id, actor);
-
-        if ($el.attr("width")) {
-            calendarList.css("width", $el.attr("width"));
-        }
-        if ($el.attr("height")) {
-            calendarList.css("height", $el.attr("height"));
-        }
-
-        ret_val.append(actor);
-
-        calendarList.data("src", "plugins/calendarlist/calendarlist.php");
-        calendarList.data("maxquantity", $el.attr("maxquantity"));
-        calendarList.data("refresh", $el.attr("refresh"));
-        calendarList.data("calendar", $el.find('calendar'));
-		calendarList.data("days", $el.find('days'));
-
-        templateEngine.bindActionForLoadingFinished(function () {
-            refreshcalendarList(calendarList);
+        var data = templateEngine.widgetDataInsert( path, {
+          src:         "plugins/calendarlist/calendarlist.php",
+          maxquantity: $el.attr("maxquantity"),
+          refresh:     $el.attr("refresh"),
+          calendar:    $el.find('calendar'),
+          days:        $el.find('days')
         });
 
-        return ret_val;
+        templateEngine.bindActionForLoadingFinished(function () {
+            refreshcalendarList( path );
+        });
+
+        return ret_val + actor + '</div>';
     }
 });
 
-function refreshcalendarList(calendarList) {
-    var calendarList = $(calendarList);
+function refreshcalendarList( path ) {
+    var 
+      calendarList = $('#' + path + ' .actor'),
+      data = templateEngine.widgetDataGet( path );
 
-    var refresh = calendarList.data('refresh');
-    var src = calendarList.data('src');
-    var maxquantity = calendarList.data('maxquantity');
-    var calendar = calendarList.data('calendar');
-	var days = calendarList.data('days');
+    var refresh = data.refresh;
+    var src = data.src;
+    var maxquantity = data.maxquantity;
+    var calendar = data.calendar;
+    var days = data.days;
 
     $(function () {
         $(calendarList).calendarListlocal({
