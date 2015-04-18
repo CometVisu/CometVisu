@@ -57,9 +57,15 @@ design.basicdesign.addCreator('pagejump', {
     }
     return ret_val + actor + info +'</div>';
   },
-  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  downaction: function( path, actor, isCanceled ) {
+    if (!$(actor).parent().hasClass("info")) {
+      basicdesign.defaultButtonDownAnimationInheritAction( path, actor );
+    }
+  },
   action: function( path, actor, isCanceled ) {
-    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if (!$(actor).parent().hasClass("info")) {
+      basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    }
     if( isCanceled ) return;
     
     var data = templateEngine.widgetDataGet( path );
