@@ -78,7 +78,11 @@ require.config({
     'scrollable':            ['jquery'],
     'jquery-ui':             ['jquery'],
     'jquery.ui.touch-punch': ['jquery', 'jquery-ui'],
-    'jquery.svg.min':        ['jquery']
+    'jquery.svg.min':        ['jquery'],
+    'cometvisu-client-openhab': {
+      deps: ['cometvisu-client'],
+      exports: 'CometVisuOh'
+    }
     /*
     '': ['jquery'],
     'jquery-i18n': ['jquery'],
