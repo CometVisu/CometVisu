@@ -31,8 +31,7 @@
  *          urlPrefix The address of the service
  */
 
-require([ 'cometvisu-client' ], function(foo) {
-  function CometVisuOh(urlPrefix) {
+function CometVisuOh(urlPrefix) {
     thisVisu = this;
     this.urlPrefix = "/rest/cv/";
     this.eventSource = null; // the EventSource
@@ -103,10 +102,8 @@ require([ 'cometvisu-client' ], function(foo) {
      */
     this.restart = function() {
     }
-  }
-  ;
-  CometVisuOh.prototype = new CometVisu('/rest/cv/');
-  CometVisuOh.prototype.constructor = CometVisuOh;
-  CometVisuOh.prototype.update = function(json) {
-  };
-});
+};
+CometVisuOh.prototype = new CometVisu('/rest/cv/');
+CometVisuOh.prototype.constructor = CometVisuOh;
+CometVisuOh.prototype.update = function(json) {
+};
