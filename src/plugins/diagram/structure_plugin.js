@@ -135,7 +135,7 @@ define( ['structure_custom',
         $(window).bind('scrolltopage', function(event, page_id) {
           var page = templateEngine.getParentPageFromPath(path);
           if (page != null && page_id == page.attr("id")) {
-            initDiagram( path );
+            initDiagram( path, false );
           }
         });
       }
@@ -307,16 +307,16 @@ define( ['structure_custom',
       data.plotted = true;
       diagram.bind("plotpan", function(event, plot, args) {
         if (args.dragEnded) {
-          loadDiagramData( id );
+          loadDiagramData( id, isPopup );
         }
       }).bind("plotzoom", function() {
-        loadDiagramData( id );
+        loadDiagramData( id, isPopup );
       });
 
-      loadDiagramData( id );
+      loadDiagramData( id, isPopup );
     }
 
-    function getSeries(data, xAxis) {
+    function getSeries(data, xAxis, isInteractive) {
       var series = {
         hour    : {res: "60",     start: "hour",  end: "now"},
         day     : {res: "300",    start: "day",   end: "now"},
@@ -348,19 +348,20 @@ define( ['structure_custom',
   	    ret.end = selectedSeries.end;
   	    ret.res = selectedSeries.res;
       }
-      if (xAxis.datamin && xAxis.datamax) {
+
+      if (xAxis.datamin && xAxis.datamax && isInteractive) {
         ret.start = (xAxis.min / 1000).toFixed(0);
       }
       return ret;
     }
 
-    function loadDiagramData( id ) {
+    function loadDiagramData( id, isInteractive ) {
       var data = templateEngine.widgetDataGet( id );
       if (data === undefined) {
         return;
       }
 
-      var series = getSeries(data, data.plot.getAxes().xaxis);
+      var series = getSeries(data, data.plot.getAxes().xaxis, isInteractive);
       if (!series) {
         return
       }
@@ -434,9 +435,9 @@ define( ['structure_custom',
 
       if (data.refresh) {
         // reload regularly
-        window.setTimeout(function( id ) {
-          loadDiagramData( id );
-        }, data.refresh * 1000, id );
+        window.setTimeout(function( id, isInteractive ) {
+          loadDiagramData( id, isInteractive );
+        }, data.refresh * 1000, id, isInteractive );
       }
     }
 });
