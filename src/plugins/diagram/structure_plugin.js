@@ -303,17 +303,17 @@ define( ['structure_custom',
 
       // plot diagram initially with empty values
       diagram.empty();
-      data.plot = $.plot(diagram, [], options);
+      var plot = $.plot(diagram, [], options);
       data.plotted = true;
       diagram.bind("plotpan", function(event, plot, args) {
         if (args.dragEnded) {
-          loadDiagramData( id, isPopup );
+          loadDiagramData( id, plot, isPopup );
         }
       }).bind("plotzoom", function() {
-        loadDiagramData( id, isPopup );
+        loadDiagramData( id, plot, isPopup );
       });
 
-      loadDiagramData( id, isPopup );
+      loadDiagramData( id, plot, isPopup );
     }
 
     function getSeries(data, xAxis, isInteractive) {
@@ -355,13 +355,13 @@ define( ['structure_custom',
       return ret;
     }
 
-    function loadDiagramData( id, isInteractive ) {
+    function loadDiagramData( id, plot, isInteractive ) {
       var data = templateEngine.widgetDataGet( id );
       if (data === undefined) {
         return;
       }
 
-      var series = getSeries(data, data.plot.getAxes().xaxis, isInteractive);
+      var series = getSeries(data, plot.getAxes().xaxis, isInteractive);
       if (!series) {
         return
       }
@@ -423,10 +423,9 @@ define( ['structure_custom',
               }
 
               // plot
-              var PLOT = data.plot;
-              PLOT.setData(fulldata);
-              PLOT.setupGrid();
-              PLOT.draw();
+              plot.setData(fulldata);
+              plot.setupGrid();
+              plot.draw();
             }
           }
         });
@@ -435,9 +434,9 @@ define( ['structure_custom',
 
       if (data.refresh) {
         // reload regularly
-        window.setTimeout(function( id, isInteractive ) {
-          loadDiagramData( id, isInteractive );
-        }, data.refresh * 1000, id, isInteractive );
+        window.setTimeout(function( id, plot, isInteractive ) {
+          loadDiagramData( id, plot, isInteractive );
+        }, data.refresh * 1000, id, plot, isInteractive );
       }
     }
 });
