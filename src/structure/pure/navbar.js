@@ -73,7 +73,7 @@ design.basicdesign.addCreator('navbar', {
     if( isNotSubscribed )
     {
       isNotSubscribed = false;
-      templateEngine.postDOMSetupFns.push( function(){
+      templateEngine.postDOMSetupFns.unshift( function(){
         if( navbarTop    ) $( '#navbarTop'    ).append( navbarTop    );
         if( navbarLeft   ) $( '#navbarLeft'   ).append( navbarLeft   );
         if( navbarRight  ) $( '#navbarRight'  ).append( navbarRight  );
