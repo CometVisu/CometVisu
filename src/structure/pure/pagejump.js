@@ -98,7 +98,7 @@ $(window).bind('scrolltopage', function( event, page_id ){
   while (parentPage != null && templateEngine.getParentPage(parentPage) != null) {
     var 
       parentId   = parentPage.attr('id'),
-      parentName = templateEngine.widgetData[ parentId.substr(0,parentId.length-1) ].name;
+      parentName = templateEngine.widgetData[ parentId ].name;
     $('.pagejump').each( function(){
       var $pagejump = $(this);
       var data = templateEngine.widgetDataGetByElement( this );
