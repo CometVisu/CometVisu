@@ -39,6 +39,7 @@ define('SCHEMA_FILENAME', './%s');
 // helper function to simplify a path in itself
 function simplifyPath( $path ) {
   $ret = array();
+  $path = str_replace(DIRECTORY_SEPARATOR,'/',$path); // windows fix
   foreach( explode( '/', $path ) as $p )
   {
     if( $p == '..' )
@@ -132,8 +133,7 @@ if( '.xsd' !== substr( $strSchemaFilename, -4 ) ) {
 }
 
 // .. as a fully qualified filename
-// $strSchemaFQFilename = realpath( simplifyPath( $strConfigPath . ($isDemo?'demo/':'') . $strSchemaFilename) );
-$strSchemaFQFilename = realpath($strConfigPath . ($isDemo?'demo/':'') . $strSchemaFilename );
+$strSchemaFQFilename = realpath( simplifyPath( $strConfigPath . ($isDemo?'demo/':'') . $strSchemaFilename) );
 
 if (false === is_readable($strSchemaFQFilename)) {
     exitWithError('schema-file of config-file does not exist \'' . $strSchemaFQFilename . '\' (\'' . $strSchemaFilename. '\').');
