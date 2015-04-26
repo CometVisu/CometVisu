@@ -152,12 +152,7 @@ define( ['structure_custom',
       var popupDiagram = $('<div class="diagram" id="' + path + '_big"/>');
       data.init = true;
       popupDiagram.css({height: "90%"});
-      var popup = templateEngine.showPopup("diagram", {title: data.label, content: popupDiagram});
-      popup.bind( 'close', function(){
-        // this will be called when the popup is being closed.
-        // NOTE: this will be called twice, one time for the foreground and one
-        //       time for the background.
-      });
+      templateEngine.showPopup("diagram", {title: data.label, content: popupDiagram});
       popupDiagram.parent("div").css({height: "100%", width: "95%", margin: "auto"}); // define parent as 100%!
       popupDiagram.empty();
       popupDiagram.bind("click", function(event) {
