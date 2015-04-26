@@ -2,13 +2,31 @@ The CometVisu was originally written by Christian Mayer with additions by
 other developers.
 
 The list of contributors is:
-Patrik Häni         - swiss1    - paede (dot) haeni (at) bluewin (dot) ch
-Jan N. Klug         - j-n-k     - jan.n.klug (at) rub (dot) de
-Julian Makowski     - netzkind  - julian (at) makowskis (dot) de
-Michael Markstaller - makki1    - mm (at) elabnet (dot) de
-Christian Mayer     - mayerch   - CometVisu (at) ChristianMayer (dot) de
-Axel Otterstätter   - panzaeron - Mr.O (at) gmx (dot) de
-Christian           - chris_ace - chris_ace (at) users (dot) sourceforge (dot) net
-David               - daviid5   - daviid5 (at) users (dot) sourceforge (dot) net
-Tobias Bräutigam    - peuter    - tbraeutigam (at) gmail (dot) com
-Michael Hausl       - hausl     - michael (at) hausl (dot) com
+
+Name                - SourceForge / GitHub         - email address
+-----------------------------------------------------------------------------------------------------
+Christian           - chris_ace   / ctr49          - chris_ace (at) users (dot) sourceforge (dot) net
+David               - daviid5     / daviid5        - daviid5 (at) users (dot) sourceforge (dot) net
+Hannes Loehr        - hannesloehr / hannes-loehr   - hannes.loehr (at) googlemail (dot) com
+Michael Hausl       - hausl       / MHWallaby      - michael (at) hausl (dot) com
+                    - jensgulow1  /                - jensgulow (at) aol (dot) com
+Jan N. Klug         - j-n-k       / J-N-K          - jan.n.klug (at) rub (dot) de
+                    - jumi2006    / JuMi2006       -
+Michael Markstaller - makki1      / Makki1         - mm (at) elabnet (dot) de
+Marco Fuchs         - manoficons  / manoficons     - mfd.gfx (at) gmail (dot) com
+Christian Mayer     - mayerch     / ChristianMayer - CometVisu (at) ChristianMayer (dot) de
+                    - mclb        / mclb           - 
+                    - netfritz    / netfritz59     -
+                    - netsrac69   / ctschach       -
+Julian Makowski     - netzkind    / netzkind       - julian (at) makowskis (dot) de
+Axel Otterstätter   - panzaeron   / panzaeron      - Mr.O (at) gmx (dot) de
+Tobias Bräutigam    - peuter      / peuter         - tbraeutigam (at) gmail (dot) com
+A. Pilgrim          - pelnet      / PelNet         - administrator (at) pelnet (dot) eu
+Patrik Häni         - swiss1      /                - paede (dot) haeni (at) bluewin (dot) ch
+Volker Lamers       - vlamers     / vlamers        - Lamers.volker (at) gmail (dot) com
+
+On the Subversion repository commits were also done by:
+mrremy <mrremy@b3ce15a5-05c3-4bc8-b6eb-98bdc3a999cb>
+bubo08 <bubo08@b3ce15a5-05c3-4bc8-b6eb-98bdc3a999cb>
+christian523 <christian523@b3ce15a5-05c3-4bc8-b6eb-98bdc3a999cb>
+cschleiffer <cschleiffer@b3ce15a5-05c3-4bc8-b6eb-98bdc3a999cb>
