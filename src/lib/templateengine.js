@@ -110,6 +110,7 @@ require([
   'widget_video', 'widget_wgplugin_info', 
   'transform_default', 'transform_knx', 'transform_oh'
 ], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler ) {
+  "use strict";
   profileCV( 'templateEngine start' );
   
 templateEngine = new TemplateEngine();
@@ -301,7 +302,7 @@ function TemplateEngine( undefined ) {
       thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
     }
     function update(json) {
-      for (key in json) {
+      for( var key in json ) {
         //$.event.trigger('_' + key, json[key]);
         var data = json[ key ];
         ga_list[ key ].forEach( function( id ){
@@ -627,7 +628,7 @@ function TemplateEngine( undefined ) {
     var sty = stylings[styling];
     if (sty) {    
       e.removeClass(sty['classnames']); // remove only styling classes
-      function findValue(v, findExact) {
+      var findValue = function(v, findExact) {
         if (undefined === v) {
           return false;
         }
@@ -667,7 +668,7 @@ function TemplateEngine( undefined ) {
         ret = m.formula(ret);
       }
 
-      function mapValue(v) {
+      var mapValue = function(v) {
         if (m[v]) {
           return m[v];
         } else if (m['range']) {
@@ -877,7 +878,7 @@ function TemplateEngine( undefined ) {
       singleHeightMargin = $('#containerDiv').outerHeight(true),
       styles = '';
 
-    for( rowspan in usedRowspans )
+    for( var rowspan in usedRowspans )
     {
       styles += '.rowspan.rowspan' + rowspan
               + ' { height: '
@@ -1018,7 +1019,7 @@ function TemplateEngine( undefined ) {
       mappings[name] = {};
       var formula = $this.find('formula');
       if (formula.length > 0) {
-        eval('var func = function(x){' + formula.text() + '; return y;}');
+        var func = eval('var func = function(x){var y;' + formula.text() + '; return y;}; func');
         mappings[name]['formula'] = func;
       }
       $this.find('entry').each(function() {
@@ -1298,8 +1299,8 @@ function TemplateEngine( undefined ) {
     if( 0 !== addressesToSubscribe.length )
       thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
     
-    xml = null;
-    delete xml; // not needed anymore - free the space
+    xml = null; // not needed anymore - free the space
+    
     $('.icon').each(function(){ fillRecoloredIcon(this);});
     $('.loading').removeClass('loading');
     fireLoadingFinishedAction();

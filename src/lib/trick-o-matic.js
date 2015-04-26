@@ -19,6 +19,8 @@
  */
 
 define([ 'jquery' ], function( $ ) {
+  "use strict";
+
   return function() {
     var svg = this.getSVGDocument();
     if( !svg ) return;

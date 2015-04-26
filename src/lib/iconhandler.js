@@ -22,6 +22,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 define( ['icon/iconconfig'], function( iconconfig ) {
+  "use strict";
 
 /**
  * The object "icon" contains the whole API necessary to handle the icons.

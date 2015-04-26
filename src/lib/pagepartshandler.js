@@ -19,6 +19,7 @@
  */
 
 define([ 'jquery' ], function( $ ) {
+  "use strict";
   return function PagePartsHandler() {
   var thisPagePartsHandler = this;
   this.navbars = { // store informations about the nav bars
