@@ -69,11 +69,18 @@ function libxml_display_error( $error )
 function checkVersion( $dom )
 {
   echo '<hr />';
-  $fileVersion = $dom->getElementsByTagName("pages")->item(0)->getAttribute('lib_version');
+  $pages = $dom->getElementsByTagName("pages");
+  if( 1 != $pages->length )
+  {
+    echo 'Fatal error: Could not find &lt;pages&gt; element in config file!<br/>';
+    echo '(Note: this can also be caused by unbalanced elements, bad quotation marks, ...)';
+    return;
+  }
+  $fileVersion = $pages->item(0)->getAttribute('lib_version');
   echo "The config file uses a library version of '" . $fileVersion . "', current version is '"
        . LIBRARY_VERSION . "', so this is " . ($fileVersion==LIBRARY_VERSION?'':'NOT ') . "up to date.";
   if( $fileVersion != LIBRARY_VERSION )
-    echo ' Pleiase run <a href="upgrade/index.php?config='.$_GET['config'].
+    echo ' Please run <a href="upgrade/index.php?config='.$_GET['config'].
       '">Configuration Upgrade</a> when you are sure that the config file is valid XML.';
 }
 

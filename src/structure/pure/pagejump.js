@@ -34,7 +34,6 @@ design.basicdesign.addCreator('pagejump', {
     if( flavour ) classes += ' flavour_' + flavour;
     var ret_val = '<div class="'+classes+'" ' + style + '>';
     ret_val += basicdesign.extractLabel( $e.find('label')[0], flavour );
-    var address = basicdesign.makeAddressList($e);
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
       actor += $e.attr( 'align' ); 
@@ -48,11 +47,25 @@ design.basicdesign.addCreator('pagejump', {
       'align'   : $e.attr('align'),
       'target'  : target
     } );
-    return ret_val + actor + '</div>';
+    var info = '';
+    var widgetInfo = $('widgetinfo > *', $e).first()[0];
+    if (widgetInfo!=undefined) {
+      var data = templateEngine.widgetDataInsert( path+"_0", {
+        containerClass           : "widgetinfo"
+      } );
+      info = templateEngine.create_pages(widgetInfo, path+"_0", flavour, widgetInfo.nodeName);
+    }
+    return ret_val + actor + info +'</div>';
   },
-  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  downaction: function( path, actor, isCanceled ) {
+    if (!$(actor).parent().hasClass("info")) {
+      basicdesign.defaultButtonDownAnimationInheritAction( path, actor );
+    }
+  },
   action: function( path, actor, isCanceled ) {
-    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if (!$(actor).parent().hasClass("info")) {
+      basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    }
     if( isCanceled ) return;
     
     var data = templateEngine.widgetDataGet( path );
