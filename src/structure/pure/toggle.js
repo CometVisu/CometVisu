@@ -26,34 +26,29 @@ design.basicdesign.addCreator('toggle', {
     var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type, this.update );
     
     // create the actor
-    var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     
     var data = templateEngine.widgetDataGet( path );
     
-    // bind to user action
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    basicdesign.createDefaultButtonAction( clickable, $actor, false, this.action );
-
-    // initially setting a value
-    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
-    return ret_val;
+    return ret_val + '</div>';
   },
-  update: function( e, d ) { 
+  update: function( ga, d ) { 
     var element = $(this);
-    basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
+    basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
   },
-  action: function(event) {
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if( isCanceled ) return;
+    
     var 
-      data  = templateEngine.widgetDataGetByElement( this );
+      data  = templateEngine.widgetDataGet( path );
 
     var sendValue = templateEngine.getNextMappedValue( data.basicvalue, data.mapping );
     for( var addr in data.address )
     {
       if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      templateEngine.visu.write( addr.substr(1), templateEngine.transformEncode( data.address[addr][0], sendValue ) );
+      templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], sendValue ) );
     }
   }
 });

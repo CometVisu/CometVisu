@@ -31,27 +31,14 @@ design.basicdesign.addCreator('urltrigger', {
     }
     var layoutClass = basicdesign.setWidgetLayout( $e, path );
     if( layoutClass ) classes += ' ' + layoutClass;
-    var ret_val = $('<div class="'+classes+'" ' + style + '/>');
+    if( flavour ) classes += ' flavour_' + flavour;
+    var ret_val = '<div class="'+classes+'" ' + style + '>';
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) ret_val.addClass( 'flavour_' + flavour );
     var label = basicdesign.extractLabel( $e.find('label')[0], flavour );
     var actor = '<div class="actor switchUnpressed ';
     if ( $e.attr( 'align' ) ) 
       actor += $e.attr( 'align' ); 
     actor += '"><div class="value"></div></div>';
-    var $actor = $(actor);
-    var valueElement = $actor.find('.value');
-    var mappedValue = templateEngine.map( value, $e.attr('mapping') );
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ($e.attr("bind_click_to_widget")) bindClickToWidget = $e.attr("bind_click_to_widget")=="true";
-    if( ('string' == typeof mappedValue) || ('number' == typeof mappedValue) )
-    {
-      valueElement.append( mappedValue );
-    } else 
-    for( var i = 0; i < mappedValue.length; i++ )
-    {
-      valueElement.append( $(mappedValue[i]).clone() );
-    }
     var data = templateEngine.widgetDataInsert( path, {
       'url'     : $(element).attr('url'), 
       'mapping' : $(element).attr('mapping'),
@@ -60,25 +47,28 @@ design.basicdesign.addCreator('urltrigger', {
       'params'  : $(element).attr('params'),
       'sendValue': value //value is currently ignored in XHR! maybe for multitrigger
     } );
-    templateEngine.setWidgetStyling( $actor, value, data.styling );
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    clickable.bind( 'click', this.action ).bind( 'mousedown', function(){
-      $actor.removeClass('switchUnpressed').addClass('switchPressed');
-    } ).bind( 'mouseup mouseout', function(){ // not perfect but simple
-      $actor.removeClass('switchPressed').addClass('switchUnpressed');
-    } );
-    ret_val.append( label ).append( $actor );
-    return ret_val;
+    
+    // initially setting a value
+    templateEngine.postDOMSetupFns.push( function(){
+      basicdesign.defaultUpdate( undefined, value, $('#'+path), true, path );
+    });
+
+    return ret_val + label + actor + '</div>';
   },
-  action: function() {
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if( isCanceled ) return;
+    
     var 
-      widgetData  = templateEngine.widgetDataGetByElement( this );
-    widgetData.params = widgetData.params ? widgetData.params : '';
+      data  = templateEngine.widgetDataGet( path );
+      
+    data.params = data.params ? data.params : '';
     $.ajax({
     type: "GET",
     datatype: "html",
-    data: encodeURI(widgetData.params),
-    url: widgetData.url,
+    data: encodeURI(data.params),
+    url: data.url,
     success: function(data){
             //maybe do something useful with the response?
         }

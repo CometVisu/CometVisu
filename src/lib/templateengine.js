@@ -285,14 +285,32 @@ function TemplateEngine( undefined ) {
     }
     function update(json) {
       for (key in json) {
-        $.event.trigger('_' + key, json[key]);
+        //$.event.trigger('_' + key, json[key]);
+        var data = json[ key ];
+        ga_list[ key ].forEach( function( id ){
+          if( id )
+          {
+            var 
+              element = document.getElementById( id ),
+              type = element.dataset.type || 'page', // only pages have no datatype set
+              updateFn = thisTemplateEngine.design.creators[ type ].update;
+            if( updateFn )
+            {
+              var children = element.children;
+              if( children[0] )
+                updateFn.call( children[0], key, data );
+              else
+                console.log( element, children, type ); // DEBUG FIXME
+            }
+            //console.log( element, type, updateFn );
+          }
+        });
       }
     };
     thisTemplateEngine.visu.update = function(json) { // overload the handler
-      $(document).trigger( 'firstdata', json );
-      profileCV( 'firstdata start' );
+      profileCV( 'first data start (' + thisTemplateEngine.visu.retryCounter + ')' );
       update( json );
-      profileCV( 'firstdata updated' );
+      profileCV( 'first data updated', true );
       thisTemplateEngine.visu.update = update; // handle future requests directly
     }
     thisTemplateEngine.visu.user = 'demo_user'; // example for setting a user
@@ -364,8 +382,11 @@ function TemplateEngine( undefined ) {
         .decode(value) : value);
   };
   
-  this.addAddress = function(address) {
-    ga_list[address]=1;
+  this.addAddress = function( address, id ) {
+    if( address in ga_list )
+      ga_list[ address ].push( id );
+    else
+      ga_list[ address ] = [ id ];
   };
   
   this.getAddresses = function() {
@@ -380,6 +401,203 @@ function TemplateEngine( undefined ) {
     $("#pages").triggerHandler("done");
   };
 
+  /**
+   * General handler for all mouse and touch actions.
+   * 
+   * The general flow of mouse actions are:
+   * 1. mousedown                           - "button pressed"
+   * 2. mouseout                            - "button released"
+   * 3. mouseout (mouse moved inside again) - "button pressed"
+   * 4. mouseup                             - "button released"
+   * 
+   * 2. gets mapped to a action cancel event
+   * 3. gets mapped to a mousedown event
+   * 2. and 3. can be repeated unlimited - or also be left out.
+   * 4. triggers the real action
+   * 
+   * For touch it's a little different as a touchmove cancels the current
+   * action and translates into a scroll.
+   */
+  (function( outerThis ){ // closure to keep namespace clean
+    // helper function to get the current actor and widget out of an event:
+    function getWidgetActor( element )
+    {
+      var actor, widget;
+      
+      while( element )
+      {
+        if( element.classList.contains( 'actor' ) )
+          actor = element;
+        
+        if( element.classList.contains( 'widget_container' ) )
+        {
+          widget = element;
+          return { actor: actor, widget: widget };
+        }
+        
+        element = element.parentElement;
+      }
+      
+      return false;
+    }
+    // helper function to determine the element to scroll (or undefined)
+    function getScrollElement( element )
+    {
+      while( element )
+      {
+        if( element.classList.contains( 'page' ) )
+          return navbarRegEx.test( element.id ) ? undefined : element;
+        
+        if( element.classList.contains( 'navbar' ) )
+        {
+          var parent = element.parentElement;
+          if( 'navbarTop' === parent.id || 'navbarBottom' === parent.id )
+            return element;
+          return;
+        }
+        
+        element = element.parentElement;
+      }
+    }
+    
+    var 
+      navbarRegEx = /navbar/,
+      isTouchDevice = !!('ontouchstart' in window) ||    // works on most browsers 
+                      !!('onmsgesturechange' in window), // works on ie10
+      isWidget = false,
+      scrollElement,
+      // object to hold the coordinated of the current mouse / touch event
+      mouseEvent = outerThis.handleMouseEvent = { 
+        actor:           undefined,
+        widget:          undefined,
+        widgetCreator:   undefined,
+        downtime:        0,
+        alreadyCanceled: false
+      };
+    
+    window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
+      var 
+        element = event.target,
+        // search if a widget was hit
+        widgetActor = getWidgetActor( event.target ),
+        bindWidget  = widgetActor.widget ? thisTemplateEngine.widgetDataGet( widgetActor.widget.id ).bind_click_to_widget : false;
+      
+      isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
+      if( isWidget )
+      {
+        mouseEvent.actor         = widgetActor.actor;
+        mouseEvent.widget        = widgetActor.widget;
+        mouseEvent.widgetCreator = thisTemplateEngine.design.creators[ widgetActor.widget.dataset.type ];
+        mouseEvent.downtime      = Date.now();
+        mouseEvent.alreadyCanceled = false;
+        
+        var
+          actionFn = mouseEvent.widgetCreator.downaction;
+          
+        if( actionFn !== undefined )
+        {
+          actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor );
+        }
+      } else {
+        mouseEvent.actor = undefined;
+      }
+      
+      scrollElement = getScrollElement( event.target );
+      // stop the propagation if scrollable is at the end
+      // inspired by 
+      if( scrollElement )
+      {
+        var startTopScroll = scrollElement.scrollTop;
+
+        if( startTopScroll <= 0 )
+          scrollElement.scrollTop = 1;
+
+        if( startTopScroll + scrollElement.offsetHeight >= scrollElement.scrollHeight)
+          scrollElement.scrollTop = scrollElement.scrollHeight - scrollElement.offsetHeight - 1;
+      } 
+    });
+    window.addEventListener( isTouchDevice ? 'touchend' : 'mouseup', function( event ){
+      if( isWidget )
+      {
+        var
+          widgetActor = getWidgetActor( event.target ),
+          widget      = mouseEvent.widget,
+          isCanceled  = widgetActor.widget !== widget || widgetActor.actor !== mouseEvent.actor,
+          actionFn    = mouseEvent.widgetCreator.action,
+          bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
+          inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
+        
+        if( 
+          actionFn !== undefined && 
+          inCurrent &&
+          !mouseEvent.alreadyCanceled
+        )
+        {
+          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent );
+        }
+        isWidget = false;
+      }
+    });
+    // different handling for move
+    // mouse move: let the user cancel an action by dragging the mouse outside
+    // and reactivate it when the dragged cursor is returning
+    !isTouchDevice && window.addEventListener( 'mousemove', function( event ){
+      if( isWidget )
+      {
+        var
+          widgetActor = getWidgetActor( event.target ),
+          widget      = mouseEvent.widget,
+          bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
+          inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
+        if( inCurrent && mouseEvent.alreadyCanceled )
+        { // reactivate
+          mouseEvent.alreadyCanceled = false;
+          var
+            actionFn  = mouseEvent.widgetCreator.downaction;
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor );
+        } else if( (!inCurrent && !mouseEvent.alreadyCanceled) )
+        { // cancel
+          mouseEvent.alreadyCanceled = true;
+          var
+            actionFn  = mouseEvent.widgetCreator.action;
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+        }
+      }
+    });
+    // touch move: scroll when the finger is moving and cancel any pending 
+    // actions at the same time
+    isTouchDevice && window.addEventListener( 'touchmove', function( event ){
+      if( isWidget )
+      {
+        var
+          widget      = mouseEvent.widget;
+          
+        if( !mouseEvent.alreadyCanceled )
+        { // cancel
+          mouseEvent.alreadyCanceled = true;
+          var
+            actionFn  = mouseEvent.widgetCreator.action;
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+        }
+      }
+      
+      // take care to prevent overscroll
+      if( scrollElement )
+      {
+        var 
+          scrollTop  = scrollElement.scrollTop,
+          scrollLeft = scrollElement.scrollLeft;
+        // prevent scrolling of an element that takes full height and width
+        // as it doesn't need scrolling
+        if( (scrollTop  <= 0) && (scrollTop  + scrollElement.offsetHeight >= scrollElement.scrollHeight) &&
+            (scrollLeft <= 0) && (scrollLeft + scrollElement.offsetWidth  >= scrollElement.scrollWidth ) )
+          return;
+        event.stopPropagation();
+      } else
+        event.preventDefault();
+    });
+  })( this );
+  
   /*
    * this function implements widget stylings 
    */
@@ -628,31 +846,35 @@ function TemplateEngine( undefined ) {
         thisTemplateEngine.applyColumnWidths();
       }
     }
-  };
-  
-  this.rowspanClass = function(rowspan) {
-    var className = 'rowspan rowspan' + rowspan;
-    var styleId = className.replace(" ", "_") + 'Style';
-    if (!$('#' + styleId).get(0)) {
-      var dummyDiv = $(
-          '<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
-          .appendTo(document.body).show();
+    
+    var 
+      dummyDiv = $(
+        '<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
+        .appendTo(document.body).show(),
+      singleHeight = $('#containerDiv').outerHeight(false),
+      singleHeightMargin = $('#containerDiv').outerHeight(true),
+      styles = '';
 
-      var singleHeight = $('#containerDiv').outerHeight(false);
-      var singleHeightMargin = $('#containerDiv').outerHeight(true);
-
-      $('#calcrowspan').remove();
-
-      // append css style
-      $('head').append(
-          '<style id="' + styleId + '">.rowspan.rowspan' + rowspan
+    for( rowspan in usedRowspans )
+    {
+      styles += '.rowspan.rowspan' + rowspan
               + ' { height: '
               + ((rowspan - 1) * singleHeightMargin + singleHeight)
-              + 'px;} </style>').data(className, 1);
+              + "px;}\n";
     }
-    return className;
-  };
+    
+    $('#calcrowspan').remove();
 
+    // set css style
+    $('#rowspanStyle').text( styles );
+  };
+  
+  var usedRowspans = {};
+  this.rowspanClass = function(rowspan) {
+    usedRowspans[ rowspan ] = true;
+    return 'rowspan rowspan' + rowspan;
+  };
+    
   var pluginsToLoadCount = 0;
   var xml;
   this.parseXML = function(loaded_xml) {
@@ -784,7 +1006,7 @@ function TemplateEngine( undefined ) {
         for (var i = 0; i < origin.length; i++) {
            var $v = $(origin[i]);
            if ($v.is('icon')) {
-             value[i] = icons.getIcon($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
+             value[i] = icons.getIconElement($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
            }
            else {
              value[i] = $v.text();
@@ -919,6 +1141,7 @@ function TemplateEngine( undefined ) {
       $e.css('width', w);
     });
     // and elements inside groups
+    var areaColumns = $('#main').data('columns');
     var adjustableElements = $('.group .widget_container');
     adjustableElements.each(function(i, e) {
       var 
@@ -943,6 +1166,11 @@ function TemplateEngine( undefined ) {
     });
   };
 
+  /**
+   * Array with all functions that need to be called once the DOM tree was set
+   * up.
+   */
+  this.postDOMSetupFns = [];
   
   function setup_page() {
     // and now setup the pages
@@ -962,7 +1190,13 @@ function TemplateEngine( undefined ) {
     var page = $('pages > page', xml)[0]; // only one page element allowed...
 
     thisTemplateEngine.create_pages(page, 'id');
+    thisTemplateEngine.design.getCreator('page').createFinal();
     profileCV( 'setup_page created pages' );
+    
+    thisTemplateEngine.postDOMSetupFns.forEach( function( thisFn ){
+      thisFn();
+    });
+    profileCV( 'setup_page finished postDOMSetupFns' );
     
     var startpage = 'id_';
     if ($.getUrlVar('startpage')) {
@@ -988,38 +1222,6 @@ function TemplateEngine( undefined ) {
     
     thisTemplateEngine.adjustColumns();
     thisTemplateEngine.applyColumnWidths();
-    
-    // Prevent elastic scrolling apart the main pane for iOS devices
-    $(document).bind( 'touchmove', function(e) {
-      e.preventDefault();
-    });
-    $('.page,#navbarTop>.navbar,#navbarBottom>.navbar').bind( 'touchmove', function(e) {
-      var elem = $(e.currentTarget);
-      var startTopScroll = elem.scrollTop();
-      var startLeftScroll = elem.scrollLeft();
-      
-      // prevent scrolling of an element that takes full height and width
-      // as it doesn't need scrolling
-      if( (startTopScroll  <= 0) && (startTopScroll  + elem[0].offsetHeight >= elem[0].scrollHeight) &&
-          (startLeftScroll <= 0) && (startLeftScroll + elem[0].offsetWidth  >= elem[0].scrollWidth ) )
-      {
-        return;
-      }
-      
-      e.stopPropagation();
-    });
-    // stop the propagation if scrollable is at the end
-    // inspired by https://github.com/joelambert/ScrollFix
-    $('.page,#navbarTop>.navbar,#navbarBottom>.navbar').bind( 'touchstart', function(event) {
-      var elem = $(event.currentTarget);
-      var startTopScroll = elem.scrollTop();
-
-      if(startTopScroll <= 0)
-        elem.scrollTop(1);
-
-      if(startTopScroll + elem[0].offsetHeight >= elem[0].scrollHeight)
-        elem.scrollTop( elem[0].scrollHeight - elem[0].offsetHeight - 1 );
-    });
     
     // setup the scrollable
     thisTemplateEngine.main_scroll = $('#main').scrollable({
@@ -1071,13 +1273,12 @@ function TemplateEngine( undefined ) {
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
     var addressesToSubscribe = thisTemplateEngine.getAddresses();
-    if( 0 == addressesToSubscribe.length )
-      $(document).trigger( 'firstdata' ); // no data to receive => send event now
-    else
+    if( 0 !== addressesToSubscribe.length )
       thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
     
     xml = null;
     delete xml; // not needed anymore - free the space
+    $('.icon').each(function(){ fillRecoloredIcon(this);});
     $('.loading').removeClass('loading');
     fireLoadingFinishedAction();
     if( undefined !== thisTemplateEngine.screensave_time )
@@ -1100,12 +1301,18 @@ function TemplateEngine( undefined ) {
     
     var data = thisTemplateEngine.widgetDataGet( path );
     data.type = page.nodeName;
-    retval = jQuery(
-      '<div class="widget_container '
+    if( 'string' === typeof retval )
+    {
+      return '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
       + ('break' === data.type ? 'break_container' : '') // special case for break widget
-      + '" id="'+path+'"/>').append(retval);
-    return retval;
+      + '" id="'+path+'" data-type="'+data.type+'">' + retval + '</div>';
+    } else {
+      return jQuery(
+      '<div class="widget_container '
+      + (data.rowspanClass ? data.rowspanClass : '')
+      + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
+    }
   };
 
   this.scrollToPage = function(page_id, speed, skipHistory) {
@@ -1209,7 +1416,7 @@ function TemplateEngine( undefined ) {
      * $('#'+page_id+'_left_navbar').addClass('navbarActive');
      */
     thisTemplateEngine.pagePartsHandler.initializeNavbars(page_id);
-
+    
     $(window).trigger('scrolltopage', page_id);    
   };
 
@@ -1252,16 +1459,17 @@ function TemplateEngine( undefined ) {
     }
   };
 
-  this.setupRefreshAction = function() {
-    var refresh = $(this).data('refresh');
+  this.setupRefreshAction = function( path, refresh ) {
     if (refresh && refresh > 0) {
-      var target = $('img', $(this))[0] || $('iframe', $(this))[0];
-      var src = target.src;
+      var
+        element = $( '#' + path ),
+        target = $('img', element)[0] || $('iframe', element)[0],
+        src = target.src;
       if (src.indexOf('?') < 0)
         src += '?';
-      $(this).data('interval', setInterval(function() {
+      thisTemplateEngine.widgetDataGet( path ).internal = setInterval(function() {
         thisTemplateEngine.refreshAction(target, src);
-      }, refresh));
+      }, refresh);
     }
   };
 

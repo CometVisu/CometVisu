@@ -54,21 +54,11 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
 
     // create the actor 
     var id = "gauge_" + path;
-    var $actor = $('<div class="actor"><canvas id=' + id + '></canvas></div>');
-    ret_val.append($actor);
     var data = templateEngine.widgetDataInsert( path, {
       pagejumpTarget : $e.attr('target'),
     });
-
-    // bind to user action
-    if (data.pagejumpTarget) {
-      $actor.addClass("clickable");
-      var bindClickToWidget = templateEngine.bindClickToWidget;
-      if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-      (bindClickToWidget ? ret_val : $actor).bind('click', function() {
-        templateEngine.scrollToPage(data.pagejumpTarget);
-      });
-    }
+    
+    var actor = '<div class="actor' + (data.pagejumpTarget?'clickable':'') + '"><canvas id=' + id + '></canvas></div>';
 
     templateEngine.bindActionForLoadingFinished(function() {
       var params = {
@@ -100,20 +90,17 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
           valuesNumeric           : ($e.attr('valuesNumeric') ? $e.attr('valuesNumeric') == 'true' : undefined),
      };
       
-      var gaugeElement = new steelseries[$e.attr('type') || 'Radial'](id, params);
-
-      data['gaugeElement'] = gaugeElement;
-
-      templateEngine.design.defaultUpdate( undefined, undefined, ret_val, true, path );
+      data.gaugeElement = new steelseries[$e.attr('type') || 'Radial'](id, params);
     });
-    return ret_val;
+    
+    return ret_val + actor + '</div>';
   },
 
-  update: function(e, d) {
+  update: function( ga, d ) {
     var element = $(this);
     var data  = templateEngine.widgetDataGetByElement( element );
-    var value = templateEngine.design.defaultUpdate( e, d, element, true, element.parent().attr('id') );
-    var variant = data['address'][ e.type ][2];
+    var value = templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
+    var variant = data.address[ ga ][2];
     var gaugeElement = data['gaugeElement'];
     if (gaugeElement) {
       switch (variant) {
@@ -165,6 +152,16 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
              gaugeElement.setValueAnimated(value);
            }
        }
+    }
+  },
+  action: function( path, actor, isCaneled ) {
+    if( isCaneled ) return;
+    
+    var 
+      widgetData  = templateEngine.widgetDataGet( path );
+      
+    if( widgetData.pagejumpTarget ) {
+      templateEngine.scrollToPage( widgetData.pagejumpTarget );
     }
   }
 });

@@ -25,21 +25,19 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
 VisuDesign_Custom.prototype.addCreator("colorchooser", {
   create: function( page, path ) {
     var $p = $(page);
-    var ret_val = $('<div class="widget clearfix colorChooser" />');
-    templateEngine.design.setWidgetLayout( ret_val, $p, path );
+    var layout = templateEngine.design.setWidgetLayout( $p, path );
+    var ret_val = '<div class="widget clearfix colorChooser' + layout + '">';
     var labelElement = $p.find('label')[0];
-    var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
+    ret_val += labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
     var address = templateEngine.design.makeAddressList( $p,
       function( src, transform, mode, variant ) {
         return [ true, variant ];
-      }
+      },
+      path
     );
 
-    var actor = '<div class="actor">';
-    actor += '</div>';
-    var datatype =  $(page).attr('datatype');
-    var $actor = $(actor)
-      .data({
+    var actor = '<div class="actor" />';
+    var data = templateEngine.widgetDataInsert( path, {
         'address' : address,
         'value_r' : 0, // The currenty displayed value
         'value_g' : 0, // The currenty displayed value
@@ -50,19 +48,22 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
         'rateLimiter' : false, // is the rate limiter active?
         'type'    : 'colorChooser'
       });
+    
+    templateEngine.postDOMSetupFns.push( function(){
+      var $actor = $( '#' + path + ' .actor' );
       $actor.farbtastic( function(color){
-        $actor.data( 'value_r', parseInt(color.substring(1, 3), 16) * 100 / 255.0 );
-        $actor.data( 'value_g', parseInt(color.substring(3, 5), 16) * 100 / 255.0 );
-        $actor.data( 'value_b', parseInt(color.substring(5, 7), 16) * 100 / 255.0 );
+        data.value_r = parseInt(color.substring(1, 3), 16) * 100 / 255.0;
+        data.value_g = parseInt(color.substring(3, 5), 16) * 100 / 255.0;
+        data.value_b = parseInt(color.substring(5, 7), 16) * 100 / 255.0;
         function rateLimitedSend( a ) {
           var modified = false;
-          var address = a.data( 'address' );
-          var r  = a.data( 'value_r' );
-          var g  = a.data( 'value_g' );
-          var b  = a.data( 'value_b' );
-          var br = a.data( 'bus_r' );
-          var bg = a.data( 'bus_g' );
-          var bb = a.data( 'bus_b' );
+          var address = data.address;
+          var r  = data.value_r;
+          var g  = data.value_g;
+          var b  = data.value_b;
+          var br = data.bus_r;
+          var bg = data.bus_g;
+          var bb = data.bus_b;
           for( var addr in address )
           {
             if( !(address[addr][1] & 2) ) continue; // skip when write flag not set
@@ -72,7 +73,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 var v = Transform[address[addr][0]].encode( r );
                 if( v != Transform[address[addr][0]].encode( br ) )
                 {
-                  templateEngine.visu.write( addr.substr(1), v );
+                  templateEngine.visu.write( addr, v );
                   modified = true;
                 }
                 break;
@@ -80,7 +81,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 var v = Transform[address[addr][0]].encode( g );
                 if( v != Transform[address[addr][0]].encode( bg ) )
                 {
-                  templateEngine.visu.write( addr.substr(1), v );
+                  templateEngine.visu.write( addr, v );
                   modified = true;
                 }
                 break;
@@ -88,7 +89,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 var v = Transform[address[addr][0]].encode( b );
                 if( v != Transform[address[addr][0]].encode( bb ) )
                 {
-                  templateEngine.visu.write( addr.substr(1), v );
+                  templateEngine.visu.write( addr, v );
                   modified = true;
                 }
                 break;
@@ -98,7 +99,7 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 console.log("Write-Value: "+v);
                 if( v[0] != b[0] || v[1] != b[1] || v[2] != b[2] )
                 {
-                  templateEngine.visu.write( addr.substr(1), v );
+                  templateEngine.visu.write( addr, v );
                   modified = true;
                 }
                 break;
@@ -107,81 +108,55 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
 
           if( modified ) 
           {
-            a.data( 'bus_r', a.data( 'value_r' ) );
-            a.data( 'bus_g', a.data( 'value_g' ) );
-            a.data( 'bus_b', a.data( 'value_b' ) );
-            a.data( 'rateLimiter', true );
+            data.bus_r = data.value_r;
+            data.bus_g = data.value_g;
+            data.bus_b = data.value_b;
+            data.rateLimiter = true;
             setTimeout( function(){rateLimitedSend( a );}, 250 ); // next call in 250ms
           } else {
-            a.data( 'rateLimiter', false );
+            data.rateLimiter = false;
           }
         }
-        if( $actor.data( 'rateLimiter' ) == false ) // already requests going?
+        if( data.rateLimiter == false ) // already requests going?
           rateLimitedSend( $actor ); 
       });
-    for( var addr in address ) {
-      switch( address[addr][2] ) {
-        case 'r':
-          $actor.bind( addr, this.update_r );
-          break;
-        case 'g':
-          $actor.bind( addr, this.update_g );
-          break;
-        case 'b':
-          $actor.bind( addr, this.update_b );
-          break;
-        case 'rgb':
-          $actor.bind( addr, this.update_rgb );
-          break;
-      }
-    }
+    });
 
-    ret_val.append(label).append( $actor );
-    return ret_val;
+    return ret_val + actor + '</div>';
   },
-  update_r: function( e, data ) { 
-    var element = $(this);
-    var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
-    element.data( 'bus_r', value );
+  update: function( ga, data ) {
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
-    var color = jQuery.farbtastic( element ).color || '#000000';
-    color = color.substring(0,1) +
-            toHex( value*255/100 )+
-            color.substring(3);
-    jQuery.farbtastic( element ).setColor( color );
-  },
-  update_g: function( e, data ) { 
-    var element = $(this);
-    var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
-    element.data( 'bus_g', value );
-    function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
-    var color = jQuery.farbtastic( element ).color || '#000000';
-    color = color.substring(0,3) +
-            toHex( value*255/100 )+
-            color.substring(5);
-    jQuery.farbtastic( element ).setColor( color );
-  },
-  update_b: function( e, data ) { 
-    var element = $(this);
-    var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
-    element.data( 'bus_b', value );
-    function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
-    var color = jQuery.farbtastic( element ).color || '#000000';
-    color = color.substring(0,5) +
-            toHex( value*255/100 )+
-            color.substring(7);
-    jQuery.farbtastic( element ).setColor( color );
-  },
-  update_rgb: function( e, data ) { 
-    var element = $(this);
-    var value = Transform[ element.data().address[ e.type ][0] ].decode( data );
-    element.data( 'bus_r', value[0] );
-    element.data( 'bus_g', value[1] );
-    element.data( 'bus_b', value[2] );
-    function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
-    console.log("Value "+value);
-    var color = '#'+toHex( value[0]*255/100 )+toHex( value[1]*255/100 )+toHex( value[2]*255/100 );
-    jQuery.farbtastic( element ).setColor( color );
+    var 
+      element    = $(this),
+      wData      = templateEngine.widgetDataGetByElement( this ),
+      value      = templateEngine.transformDecode( wData.address[ ga ][0], data ),
+      farbtastic = jQuery.farbtastic( element.find('.actor') ),
+      color      = farbtastic.color || '#000000';
+      
+    switch( wData.address[ ga ][2] )
+    {
+      case 'r':
+        wData.bus_r = value;
+        color = color.substring(0,1) +
+                toHex( value*255/100 )+
+                color.substring(3);
+        break;
+        
+      case 'g':
+        wData.bus_g = value;
+        color = color.substring(0,3) +
+                toHex( value*255/100 )+
+                color.substring(5);
+        break;
+        
+      case 'b':
+        wData.bus_b = value;
+        color = color.substring(0,5) +
+                toHex( value*255/100 )+
+                color.substring(7);
+        break;
+    }
+    farbtastic.setColor( color );
   }
 });
 

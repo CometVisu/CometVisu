@@ -19,80 +19,77 @@ define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign
 
 VisuDesign_Custom.prototype.addCreator("rsslog", {
   create: function( element, path, flavour, type ) { 
-    var $el = $(element);
+    var 
+      $el = $(element),
+      classes = templateEngine.design.setWidgetLayout( $el, path ),
+      label = templateEngine.design.extractLabel( $el.find('label')[0], flavour );
 
-    function uniqid() {
-      var newDate = new Date;
-      return newDate.getTime();
-    }
-
-    var id = "rss_" + uniqid();
+    var id = "rss_" + path;
     var extsource = false;
 
-    var ret_val = $('<div class="widget clearfix rsslog" />');
-    templateEngine.design.setWidgetLayout( ret_val, $el, path );
-    templateEngine.design.makeWidgetLabel( ret_val, $el );
+    var ret_val = '<div class="widget clearfix rsslog '+classes+'" >';
+    if( label )
+      ret_val += label;
 
-    var actor = $('<div class="actor rsslogBody"><div class="rsslog_inline" id="' + id + '"></div></div>');
-    var rss = $("#" + id, actor);
-
+    ret_val += '<div class="actor rsslogBody"><div class="rsslog_inline" id="' + id + '" style="'
     if ($el.attr("width")) {
-      rss.css("width", $el.attr("width"));
+      ret_val += "width:" + $el.attr("width") + ';';
     }
     if ($el.attr("height")) {
-      rss.css("height", $el.attr("height"));
+      ret_val += "height:" + $el.attr("height");
     }
+    ret_val += '"></div></div>';
+    ret_val += '</div>';
 
-    ret_val.append(actor);
-
-    rss.data("id", id);
-    rss.data("src", $el.attr("src"));
-    rss.data("filter", $el.attr("filter"));
-    rss.data("refresh", $el.attr("refresh"));
-    rss.data("datetime", $el.attr("datetime")) || true;
-    rss.data("mode", $el.attr("mode") || "last");
-    rss.data("timeformat", $el.attr("timeformat"));
-    rss.data("itemoffset", 0);
-    rss.data("itemack", 0);
-    
-    var brss = $('<div class="rsslog_popup" id="' + id + '_big"/>');
-    var data = jQuery.extend({}, rss.data());
-    
-    ret_val.bind("click", function() {
-      templateEngine.showPopup("rsslog", {title: $('.label', ret_val).text() || '', content: brss});
-      brss.parent("div").css({height: "90%", width: "90%", margin: "auto"}); // define parent as 100%!
-      brss.data(data);
-      brss.data("refresh", "");
-      brss.data("itemack", 1);
-      $(brss).bind("click", function(event) {
-        // don't let the popup know about the click, or it will close on touch-displays
-        event.stopPropagation();
-      }).bind( "remove", function() {
-        refreshRSSlog(rss);
-      });
-      $(brss).parent().css("overflow", "auto");
-      refreshRSSlog(brss);
+    var data = templateEngine.widgetDataInsert( path, {
+      id:         id,
+      src:        $el.attr("src"),
+      filter:     $el.attr("filter"),
+      refresh:    $el.attr("refresh"),
+      datetime:   $el.attr("datetime") || true,
+      mode:       $el.attr("mode") || "last",
+      timeformat: $el.attr("timeformat"),
+      itemoffset: 0,
+      itemack:    0
     });
-        
+    
     templateEngine.bindActionForLoadingFinished(function() {
-      refreshRSSlog(rss);
+      refreshRSSlog( data );
     });
     $(window).bind('scrolltopage', function( event, page_id ){
       var page = templateEngine.getParentPageFromPath(path);
       if (page != null && page_id == page.attr("id")) {
-        refreshRSSlog(rss);
+        refreshRSSlog( data );
       }
     });
 
     return ret_val;
+  },
+  action: function( path, actor, isCanceled ) {
+    if( isCanceled ) return;
+
+    var 
+      widgetData = templateEngine.widgetDataGet( path ),
+      brss = $('<div class="rsslog_popup" id="'+widgetData.id+'_big"/>');
+      
+    templateEngine.showPopup("rsslog", {title: $('#'+path+' .label').text() || '', content: brss});
+    brss.parent("div").css({height: "90%", width: "90%", margin: "auto"}); // define parent as 100%!
+    widgetData.refresh = "";
+    widgetData.itemack = 1;
+    $(brss).bind("click", function(event) {
+      // don't let the popup know about the click, or it will close on touch-displays
+      event.stopPropagation();
+    }).bind( "remove", function() {
+      refreshRSSlog( widgetData );
+    });
+    $(brss).parent().css("overflow", "auto");
+    refreshRSSlog( widgetData, true );
   }
 });
 
-function refreshRSSlog(rss) {
-    var rss = $(rss);
-
-    var src = rss.data("src");
-    var filter = rss.data("filter");
+function refreshRSSlog( data, isBig ) {
+    var src = data.src;
+    var filter = data.filter;
     if (filter) {
       if (src.match(/\?/)) {
         src += '&f=' + filter;
@@ -100,25 +97,22 @@ function refreshRSSlog(rss) {
         src += '?f=' + filter;
       }
     }
-    var refresh = rss.data("refresh");
-    var limit = rss.data("limit");
+    var refresh = data.refresh;
+    var limit = data.limit;
     
-
-    $(function() {
-      $(rss).rssfeedlocal({
-        src: src,
-        datetime: eval(rss.data("datetime")),
-        mode: rss.data("mode"),
-        timeformat: rss.data("timeformat"),
-        itemack: rss.data("itemack"),
-      });
+    $('#'+data.id+(isBig?'_big':'')).rssfeedlocal({
+      src: src,
+      datetime: eval(data.datetime),
+      mode: data.mode,
+      timeformat: data.timeformat,
+      itemack: data.itemack,
     });
     
     if (typeof (refresh) != "undefined" && refresh) {
       // reload regularly
-      window.setTimeout(function(rss) {
-        refreshRSSlog(rss)
-      }, refresh * 1000, rss);
+      window.setTimeout(function() {
+        refreshRSSlog( data, isBig )
+      }, refresh * 1000 );
     }
     
     return false;
