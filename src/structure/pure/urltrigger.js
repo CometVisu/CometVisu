@@ -17,6 +17,7 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
   var basicdesign = design.basicdesign;
   
 design.basicdesign.addCreator('urltrigger', {
