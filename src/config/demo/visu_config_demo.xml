@@ -144,12 +144,12 @@
       </pagejump>
       <pagejump target="Flavour: Potassium" name="Potassium">
         <label>Flavour</label>
-        <infowidget>
+        <widgetinfo>
           <info format="%d">
           <layout colspan="0" />
             <address transform="DPT:9.001" variant="">12/7/9</address>
           </info>
-        </infowidget>
+        </widgetinfo>
       </pagejump>
       <pagejump target="2D fixed Bitmap" name="2D">
         <!--
