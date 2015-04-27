@@ -45,7 +45,9 @@ design.basicdesign.addCreator('pagejump', {
       'bind_click_to_widget': true, // for pagejumps this is mandatory
       'styling' : $(element).attr('styling'),
       'align'   : $e.attr('align'),
-      'target'  : target
+      'target'  : target,
+      'path'    : $(element).attr('path'),
+      'active_scope': $(element).attr('active_scope') ? $(element).attr('active_scope') : 'target'
     } );
     var info = '';
     var widgetInfo = $('widgetinfo > *', $e).first()[0];
@@ -69,7 +71,11 @@ design.basicdesign.addCreator('pagejump', {
     if( isCanceled ) return;
     
     var data = templateEngine.widgetDataGet( path );
-    templateEngine.scrollToPage( data.target );
+    var target = data.target;
+    if (data.path!=undefined) {
+      target = templateEngine.getPageIdByPath(data.target,data.path);
+    }
+    templateEngine.scrollToPage( target );
   }
 });
 
@@ -85,7 +91,7 @@ $(window).bind('scrolltopage', function( event, page_id ){
   $('.pagejump').each( function(){
     var $pagejump = $(this);
     var data = templateEngine.widgetDataGetByElement( this );
-    if( name == data.target )
+    if( name == data.target)
     {
       $pagejump.addClass('active');
     }
@@ -98,10 +104,11 @@ $(window).bind('scrolltopage', function( event, page_id ){
     var 
       parentId   = parentPage.attr('id'),
       parentName = templateEngine.widgetData[ parentId ].name;
+    
     $('.pagejump').each( function(){
       var $pagejump = $(this);
       var data = templateEngine.widgetDataGetByElement( this );
-      if( parentName == data.target )
+      if( parentName == data.target || (data.active_scope=="path" && data.path!=undefined && data.path.match(parentName+"$")) )
       {
         $pagejump.addClass('active_ancestor');
       }

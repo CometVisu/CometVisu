@@ -151,6 +151,9 @@
           </info>
         </widgetinfo>
       </pagejump>
+      <pagejump path="Flavour Test/Flavour: Boron" target="Subpage" name="Subpage">
+      <label>Flavour: Boron</label>
+      </pagejump>
       <pagejump target="2D fixed Bitmap" name="2D">
         <!--
         <label>2D</label>
