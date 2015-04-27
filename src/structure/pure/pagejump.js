@@ -75,7 +75,6 @@ design.basicdesign.addCreator('pagejump', {
 
 $(window).bind('scrolltopage', function( event, page_id ){
   var page = $('#' + page_id);
-  //var name = templateEngine.widgetData[page_id.substr(0,page_id.length-1)].name;
   var name = templateEngine.widgetData[page_id].name;
   
   // remove old active classes
@@ -98,7 +97,7 @@ $(window).bind('scrolltopage', function( event, page_id ){
   while (parentPage != null && templateEngine.getParentPage(parentPage) != null) {
     var 
       parentId   = parentPage.attr('id'),
-      parentName = templateEngine.widgetData[ parentId.substr(0,parentId.length-1) ].name;
+      parentName = templateEngine.widgetData[ parentId ].name;
     $('.pagejump').each( function(){
       var $pagejump = $(this);
       var data = templateEngine.widgetDataGetByElement( this );
