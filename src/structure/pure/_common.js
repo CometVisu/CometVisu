@@ -118,13 +118,17 @@ function VisuDesign() {
       ret_val.css( 'left', placement.x );
       ret_val.css( 'top' , placement.y );
 
-      ret_val.bind("click", function() {
-          ret_val.remove();
-          return false;
+      ret_val.bind( 'close', this.close );
+      ret_val.bind( 'click', function() {
+        ret_val.trigger( 'close' );
+        return false;
       });
 
       ret_val.css( 'display', 'block' );
       return ret_val;
+    },
+    close: function( event ) {
+      event.currentTarget.remove();
     }
   });
 

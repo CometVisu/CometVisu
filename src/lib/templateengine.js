@@ -1339,22 +1339,77 @@ function TemplateEngine( undefined ) {
       + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
     }
   };
-
-  this.scrollToPage = function(page_id, speed, skipHistory) {
-    if( undefined === page_id )
-      page_id = this.screensave_page;
-    
-    if (page_id.match(/^id_[0-9_]*$/) == null) {
+  
+  this.getPageIdByPath = function(page_name, path) {
+    if (page_name==null) return null;
+    if (page_name.match(/^id_[0-9_]*$/) != null) {
+      // already a page_id
+      return page_name;
+    } else {
+      if (path!=undefined) {
+        var scope = templateEngine.traversePath(path);
+        if (scope==null) {
+          // path is wrong
+          console.error("path '"+path+"' could not be traversed, no page found");
+          return null;
+        }
+        return templateEngine.getPageIdByName(page_name,scope);
+      } else {
+        return templateEngine.getPageIdByName(page_name);
+      }
+    }
+  }
+  
+  this.traversePath = function(path,root_page_id) {
+    var path_scope=null;
+    var index = path.indexOf("/");
+    if (index>=1) {
+      // skip escaped slashes like \/
+      while (path.substr(index-1,1)=="\\") {
+        var next = path.indexOf("/",index+1);
+        if (next>=0) {
+          index=next;
+        }
+      }
+    }
+//    console.log("traversePath("+path+","+root_page_id+")");
+    if (index>=0) {
+      // traverse path one level down
+      var path_page_name = path.substr(0,index);
+      path_scope = templateEngine.getPageIdByName(path_page_name,root_page_id);
+      path = path.substr(path_page_name.length+1);
+      path_scope = templateEngine.traversePath(path,path_scope);
+//      console.log(path_page_name+"=>"+path_scope);
+      return path_scope;
+    } else {
+      // bottom path level reached
+      path_scope = templateEngine.getPageIdByName(path,root_page_id);
+      return path_scope;
+    }
+    return null;
+  }
+  
+  this.getPageIdByName = function(page_name,scope) {
+    if (page_name.match(/^id_[0-9_]*$/) != null) {
+      // already a page_id
+      return page_name;
+    } else {
+      var page_id=null;
       // find Page-ID by name
       // decode html code (e.g. like &apos; => ')
-      page_id = $("<textarea/>").html(page_id).val();
-      var pages = $('.page h1:contains(' + page_id + ')', '#pages');
+      page_name = $("<textarea/>").html(page_name).val();
+      // remove escaped slashes
+      page_name = page_name.replace("\\\/","/");
+      
+//      console.log("Page: "+page_name+", Scope: "+scope);
+      var selector = (scope!=undefined && scope!=null) ? '.page[id^="'+scope+'"] h1:contains(' + page_name + ')' :  '.page h1:contains(' + page_name + ')';
+      var pages = $(selector, '#pages');
       if (pages.length>1 && thisTemplateEngine.currentPage!=null) {
         // More than one Page found -> search in the current pages descendants first
         var fallback = true;
         pages.each(function(i) {
           var p = $(this).closest(".page");
-          if ($(this).text() == page_id) {
+          if ($(this).text() == page_name) {
             if (p.attr('id').length<thisTemplateEngine.currentPage.attr('id').length) {
               // found pages path is shorter the the current pages -> must be an ancestor
               if (thisTemplateEngine.currentPage.attr('id').indexOf(p.attr('id'))==0) {
@@ -1378,7 +1433,7 @@ function TemplateEngine( undefined ) {
         if (fallback) {
           // take the first page that fits (old behaviour)
           pages.each(function(i) {
-            if ($(this).text() == page_id) {
+            if ($(this).text() == page_name) {
               page_id = $(this).closest(".page").attr("id");
               // break loop
               return false;
@@ -1387,13 +1442,28 @@ function TemplateEngine( undefined ) {
         }
       } else {
         pages.each(function(i) {
-          if ($(this).text() == page_id) {
+          if ($(this).text() == page_name) {
             page_id = $(this).closest(".page").attr("id");
             // break loop
             return false;
           }
         });
       }
+    }
+    if (page_id!=null && page_id.match(/^id_[0-9_]*$/) != null) {
+      return page_id;
+    } else {
+      // not found
+      return null;
+    }
+  }
+
+  this.scrollToPage = function(target, speed, skipHistory) {
+    if( undefined === target )
+      target = this.screensave_page;
+    var page_id = thisTemplateEngine.getPageIdByPath(target);
+    if (page_id==null) {
+      return;
     }
 //    console.log(thisTemplateEngine.currentPage);
 //    // don't scroll when target is already active
