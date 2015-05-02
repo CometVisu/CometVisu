@@ -16,12 +16,13 @@
 */
 
 define(['jquery'], function($) {
+  "use strict";
 /**
  * This class defines the default transforms:
  *   encode: transform JavaScript to bus value
  *   decode: transform bus to JavaScript value
  */
-Transform = {
+window.Transform = {
   'raw': {
     name  : 'Only the RAW value',
     encode: function( i ){
@@ -58,7 +59,7 @@ Transform = {
 
 function addTransform( prefix, transforms )
 {
-  for( trans in transforms )
+  for( var trans in transforms )
   {
     if( transforms[trans].link )
     {

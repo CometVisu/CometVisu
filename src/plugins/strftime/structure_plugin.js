@@ -22,6 +22,7 @@
  */
 
 define( ['structure_custom', 'css!plugins/strftime/strftime' ], function( VisuDesign_Custom ) {
+  "use strict";
 
 (function() {
   VisuDesign_Custom.prototype.addCreator("strftime", {

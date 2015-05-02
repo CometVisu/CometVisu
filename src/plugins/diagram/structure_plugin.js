@@ -61,6 +61,7 @@ define( ['structure_custom',
                   'plugins/diagram/flot/jquery.flot.tooltip.min',
                   'plugins/diagram/flot/jquery.flot.navigate.min'
   ], function( VisuDesign_Custom ) {
+    "use strict";
 
     VisuDesign_Custom.prototype.addCreator("diagram", {
       create: function(element, path, flavour, type) {
