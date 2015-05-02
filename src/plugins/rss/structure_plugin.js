@@ -33,6 +33,7 @@ require.config({
 });
 
 define( ['structure_custom', 'plugins/rss/zrssfeed/jquery.zrssfeed' ], function( VisuDesign_Custom ) {
+  "use strict";
 
 VisuDesign_Custom.prototype.addCreator("rss", {
     create: function( page, path ) {

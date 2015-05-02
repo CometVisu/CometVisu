@@ -98,8 +98,9 @@ require.config({
 var templateEngine;
 require([
   'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagepartshandler', 
+  'cometvisu-client', 'cometvisu-client-openhab',
   'compatibility', 'jquery-ui', 'strftime', 'scrollable', 
-  'jquery.ui.touch-punch', 'jquery.svg.min', 'cometvisu-client', 'cometvisu-client-openhab', 'iconhandler', 
+  'jquery.ui.touch-punch', 'jquery.svg.min', 'iconhandler', 
   'widget_break', 'widget_designtoggle',
   'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
   'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infotrigger', 
@@ -109,7 +110,7 @@ require([
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
   'widget_video', 'widget_wgplugin_info', 
   'transform_default', 'transform_knx', 'transform_oh'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler ) {
+], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu ) {
   "use strict";
   profileCV( 'templateEngine start' );
   

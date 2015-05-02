@@ -16,6 +16,7 @@
 */
 
 define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign_Custom ) {
+  "use strict";
 
 VisuDesign_Custom.prototype.addCreator("rsslog", {
   create: function( element, path, flavour, type ) { 
