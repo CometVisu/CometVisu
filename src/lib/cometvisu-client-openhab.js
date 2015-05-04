@@ -35,7 +35,7 @@ define( ['cometvisu-client'], function( CometVisu ) {
  */
 
 function CometVisuOh(urlPrefix) {
-    thisVisu = this;
+    var thisVisu = this;
     this.urlPrefix = "/rest/cv/";
     this.eventSource = null; // the EventSource
 
