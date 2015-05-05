@@ -16,6 +16,7 @@
 */
 
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
+  "use strict";
 
 /**
  * This is a custom function that extends the available widgets.

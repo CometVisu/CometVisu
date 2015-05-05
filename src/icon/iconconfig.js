@@ -16,6 +16,7 @@
  */
 
 define( ['lib/icontools'], function() {
+  "use strict";
   /**
    * Internal database of the known icons.
    * Initially filled with the default icons.

@@ -40,6 +40,8 @@
  * attributes:
  */
 define( ['structure_custom', 'css!plugins/infoaction/infoaction.css'  ], function( VisuDesign_Custom ) {
+  "use strict";
+ 
   VisuDesign_Custom.prototype.addCreator("infoaction", {
       create: function(element, path, flavour, type) {
         return createWidget(false, element, path, flavour, type);

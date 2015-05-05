@@ -43,6 +43,7 @@
 */ 
  
 define( ['structure_custom', 'plugins/gauge/lib/tween-min', 'plugins/gauge/lib/steelseries-min', 'css!plugins/gauge/gauge' ], function( VisuDesign_Custom ) {
+  "use strict";
   
 VisuDesign_Custom.prototype.addCreator("gauge", {
   create: function(element, path, flavour, type) {

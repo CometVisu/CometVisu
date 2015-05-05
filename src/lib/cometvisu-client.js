@@ -21,7 +21,9 @@
  * @title  CometVisu Client
  * @reqires jQuery
 */
-
+define( [], function() {
+  "use strict";
+  
 /**
  * Class that handles the communicaton of the client
  * @class CometVisu
@@ -356,11 +358,11 @@ function CometVisu( urlPrefix )
     var aliveHandler = setInterval( aliveCheckFunction, thisCometVisu.watchdogTimer * 1000 );
     return {
       ping: function(){
-        delete last;
+        //delete last;
         last = new Date();
         if( !thisCometVisu.doRestart )
         {
-          delete hardLast;
+          //delete hardLast;
           hardLast = last;
         }
       }
@@ -370,3 +372,5 @@ function CometVisu( urlPrefix )
 
 CometVisu.prototype.update = function( json ) {};
 
+  return CometVisu;
+});

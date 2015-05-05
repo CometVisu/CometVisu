@@ -21,6 +21,7 @@
  * @title  CometVisu Structure "pure"
 */
 define( ['jquery'], function($) {
+  "use strict";
 
 // Define ENUM of maturity levels for features, so that e.g. the editor can 
 // ignore some widgets when they are not supported yet

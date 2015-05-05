@@ -18,6 +18,7 @@
  * @title  CometVisu helper functions for compatability issues
  */
 define( ['jquery'], function( $ ) {
+  "use strict";
 if( /(msie)/i.test(navigator.userAgent.toLowerCase()) )
 {
   var IE_version = /MSIE\s([\d]+)/;
@@ -47,7 +48,7 @@ if (typeof (console) == "undefined") {
  *
  **/
 
-sprintfWrapper = {
+var sprintfWrapper = {
   
   init : function () {
     
@@ -170,7 +171,7 @@ sprintfWrapper = {
   }
 }
 
-sprintf = sprintfWrapper.init;
+window.sprintf = sprintfWrapper.init;
 
 /*
  * be able to access GET-Params
