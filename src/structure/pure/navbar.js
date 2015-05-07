@@ -42,7 +42,9 @@ design.basicdesign.addCreator('navbar', {
       container += templateEngine.create_pages( childs[i], path + '_' + i, flavour );
     } );
     container+='</div>';
-    //$container.data('scope',scope); ???
+    var data = templateEngine.widgetDataInsert( id.join('_')+'_'+ position + '_navbar', {
+      'scope': scope
+    });
     
     var dynamic  = $n.attr('dynamic') == 'true' ? true : false;
   

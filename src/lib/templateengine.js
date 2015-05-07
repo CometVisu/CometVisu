@@ -848,20 +848,21 @@ function TemplateEngine( undefined ) {
    * Make sure everything looks right when the window gets resized. This is
    * necessary as the scroll effect requires a fixed element size
    */
-  this.handleResize = function(resize, skipScrollFix) {
+  this.handleResize = function(resize, skipScrollFix, force) {
     var $main = $('#main');
+    var forceHeight = force==undefined ? false : force; 
     var width = thisTemplateEngine.getAvailableWidth();
-    var height = thisTemplateEngine.getAvailableHeight();
+    var height = thisTemplateEngine.getAvailableHeight(forceHeight);
     $main.css('width', width).css('height', height);
     $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
     if (this.mobileDevice) {
       //do nothing
     } else {
       if (($('#navbarTop').css('display')!="none" && $('#navbarTop').outerHeight(true)<=2)
-          || ($('#navbarBottom').css('display')!="none" && $('#navbarBottom').innerHeight(true)<=2)) {
+          || ($('#navbarBottom').css('display')!="none" && $('#navbarBottom').innerHeight()<=2)) {
         // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
         // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
-        setTimeout( thisTemplateEngine.handleResize, 100);
+        setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,true); }, 100);
       }
     }
     if (skipScrollFix === undefined) {
