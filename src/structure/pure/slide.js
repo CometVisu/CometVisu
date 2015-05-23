@@ -55,16 +55,18 @@ design.basicdesign.addCreator('slide', {
           datatype_max = Transform[ transform ].range.max;
       }
     });
-    var min  = parseFloat( $e.attr('min')  || datatype_min || 0   );
-    var max  = parseFloat( $e.attr('max')  || datatype_max || 100 );
-    var step = parseFloat( $e.attr('step') || 0.5 );
+    var min            = parseFloat( $e.attr('min')  || datatype_min || 0   );
+    var max            = parseFloat( $e.attr('max')  || datatype_max || 100 );
+    var step           = parseFloat( $e.attr('step') || 0.5 );
+	var send_on_finish = $e.attr('send_on_finish') || 'false';
     var data = templateEngine.widgetDataInsert( path, {
       //???///'events':   $(actor).data( 'events' ),
-      'min'     : min,
-      'max'     : max,
-      'step'    : step,
-      'valueInternal': true,
-      'inAction': false,
+      'min'            : min,
+      'max'            : max,
+      'step'           : step,
+	  'send_on_finish' : send_on_finish,
+      'valueInternal'  : true,
+      'inAction'       : false,
     });
     
     // create the actor
@@ -76,6 +78,7 @@ design.basicdesign.addCreator('slide', {
         max:     max, 
         range:   'min', 
         animate: true,
+		send_on_finish : send_on_finish,
         start:   self.slideStart,
         change:  self.slideChange
       });
@@ -129,6 +132,10 @@ design.basicdesign.addCreator('slide', {
     var element = $(this).parent(),
         actor   = element.find('.actor'),
         data    = templateEngine.widgetDataGetByElement( this );
+		
+	if ( data.send_on_finish == 'true')
+		return;
+		
     data.inAction      = true;
     data.valueInternal = true;
     data.updateFn      = setInterval( function(){
