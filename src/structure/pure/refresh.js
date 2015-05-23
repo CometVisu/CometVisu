@@ -29,6 +29,12 @@ design.basicdesign.addCreator('refresh', {
     ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     
     var data = templateEngine.widgetDataGet( path );
+    data.value = $e.attr('value');
+    
+    // initially setting a value
+    templateEngine.postDOMSetupFns.push( function(){
+      basicdesign.defaultUpdate( undefined, data.value, $('#'+path), true, path );
+    });
     
     return ret_val + '</div>';
   },
