@@ -27,7 +27,7 @@ VisuDesign_Custom.prototype.addCreator('svg', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var $self = $(this);
-    classes = templateEngine.design.setWidgetLayout( $e, path );
+    var classes = templateEngine.design.setWidgetLayout( $e, path );
     var ret_val = '<div class="widget clearfix image '+(classes?classes:'')+'">';
     templateEngine.design.setWidgetLayout( $e, $e, path );
     ret_val+=templateEngine.design.extractLabel( $e.find('label')[0], flavour );
