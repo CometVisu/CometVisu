@@ -139,6 +139,7 @@ function refreshRSSlog( data, isBig ) {
       return this.each(function() {
         var o = options;
         var c = jQuery(this);
+        var extsource = false;
 
         if (o.src == '') {
           console.log('rssfeedlocal: no src URL');
