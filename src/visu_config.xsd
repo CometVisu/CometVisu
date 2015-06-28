@@ -946,6 +946,7 @@
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute name="send_on_finish" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="include">
