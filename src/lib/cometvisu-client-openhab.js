@@ -22,6 +22,9 @@
  * @requires jQuery
  */
 
+define( ['cometvisu-client'], function( CometVisu ) {
+  "use strict";
+  
 /**
  * Class that handles the communicaton of the client
  * 
@@ -32,7 +35,7 @@
  */
 
 function CometVisuOh(urlPrefix) {
-    thisVisu = this;
+    var thisVisu = this;
     this.urlPrefix = "/rest/cv/";
     this.eventSource = null; // the EventSource
 
@@ -106,3 +109,6 @@ CometVisuOh.prototype = new CometVisu('/rest/cv/');
 CometVisuOh.prototype.constructor = CometVisuOh;
 CometVisuOh.prototype.update = function(json) {
 };
+
+  return CometVisuOh;
+});

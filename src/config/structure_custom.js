@@ -21,6 +21,7 @@
 */
 
 define( ['_common'], function( design ) {
+  "use strict";
 /**
  * This class defines all the custom changes to the visu
  * @class VisuDesign_Custom

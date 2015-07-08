@@ -16,6 +16,7 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
   var 
     basicdesign = design.basicdesign,
     allPages = '';
@@ -26,9 +27,9 @@ design.basicdesign.addCreator('page', {
     
     var address = {};
     if ($p.attr('ga')) {
-      src = $p.attr('ga');
-      templateEngine.addAddress( $p.attr('ga'), path + '_' );
-      address[ $p.attr('ga') ] = [ 'DPT:1.001', 0 ];
+      var src = $p.attr('ga');
+      templateEngine.addAddress( src, path + '_' );
+      address[ src ] = [ 'DPT:1.001', 0 ];
     }
 
     var name    = $p.attr('name');
@@ -194,7 +195,7 @@ design.basicdesign.addCreator('page', {
         
       default:
         // TODO: data comparision has to be refactored to use DPT and a value
-        if (data==01) {
+        if (data==1) {
           templateEngine.scrollToPage(element.context.firstChild.textContent);
           templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));
         }

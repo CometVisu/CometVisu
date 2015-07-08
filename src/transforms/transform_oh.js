@@ -16,6 +16,7 @@
  */
 
 define( ['transform_default'], function( Transform ) {
+  "use strict";
   
 /**
  * This class defines the default transforms: encode: transform JavaScript to

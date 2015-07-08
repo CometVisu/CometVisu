@@ -21,6 +21,7 @@
  * @title  CometVisu Structure "pure"
 */
 define( ['jquery'], function($) {
+  "use strict";
 
 // Define ENUM of maturity levels for features, so that e.g. the editor can 
 // ignore some widgets when they are not supported yet
@@ -480,7 +481,7 @@ function placementStrategy( anchor, popup, page, preference )
   var position_order = [ 8, 2, 6, 4, 9, 3, 7, 1, 5, 0 ];
   if( preference !== undefined ) position_order.unshift( preference );
   
-  for( pos in position_order )
+  for( var pos in position_order )
   {
     var xy = {};
     switch(position_order[pos])

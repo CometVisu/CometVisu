@@ -61,6 +61,7 @@ define( ['structure_custom',
                   'plugins/diagram/flot/jquery.flot.tooltip.min',
                   'plugins/diagram/flot/jquery.flot.navigate.min'
   ], function( VisuDesign_Custom ) {
+    "use strict";
 
     VisuDesign_Custom.prototype.addCreator("diagram", {
       create: function(element, path, flavour, type) {
@@ -78,7 +79,7 @@ define( ['structure_custom',
     });
     VisuDesign_Custom.prototype.addCreator("diagram_info", {
       create: function(element, path, flavour, type) {
-        return createDiagram(true, element, path, flavour, type);
+        return createDiagram(true, element, path, flavour, type, this.update);
       },
       update: function( ga, d ) { 
         var element = $(this);
@@ -87,11 +88,11 @@ define( ['structure_custom',
       action: action
     });
 
-    function createDiagram(isInfo, element, path, flavour, type) {
+    function createDiagram(isInfo, element, path, flavour, type, updateFn) {
       var $e = $(element);
 
       // create the main structure
-      var ret_val = templateEngine.design.createDefaultWidget((isInfo ? 'diagram_info' : 'diagram'), $e, path, flavour, type);
+      var ret_val = templateEngine.design.createDefaultWidget((isInfo ? 'diagram_info' : 'diagram'), $e, path, flavour, type, updateFn);
       // and fill in widget specific data
       var data = templateEngine.widgetDataInsert( path, {
         content           : getDiagramElements($e),
@@ -139,7 +140,6 @@ define( ['structure_custom',
           }
         });
       }
-
       return ret_val + actor + '</div>';
     }
     

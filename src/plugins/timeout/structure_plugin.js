@@ -20,6 +20,7 @@
  */
 
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
+  "use strict";
 var timeoutIdleCount   = 0;
 var timeoutCurrentPage = "";
 var timeoutCurrentPageTitle = "";

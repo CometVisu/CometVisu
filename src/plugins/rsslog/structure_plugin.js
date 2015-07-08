@@ -16,6 +16,7 @@
 */
 
 define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign_Custom ) {
+  "use strict";
 
 VisuDesign_Custom.prototype.addCreator("rsslog", {
   create: function( element, path, flavour, type ) { 
@@ -138,6 +139,7 @@ function refreshRSSlog( data, isBig ) {
       return this.each(function() {
         var o = options;
         var c = jQuery(this);
+        var extsource = false;
 
         if (o.src == '') {
           console.log('rssfeedlocal: no src URL');

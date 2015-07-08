@@ -946,6 +946,7 @@
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute name="send_on_finish" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="include">
@@ -1083,6 +1084,15 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
+    <xsd:attribute name="path" type="xsd:string" use="optional"/>
+    <xsd:attribute name="active_scope" use="optional">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="path" />
+          <xsd:enumeration value="target" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="clock">

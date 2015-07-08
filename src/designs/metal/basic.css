@@ -172,7 +172,7 @@ body br
 .widget .pagejump img.icon, .widget .pagejump canvas.icon { margin-top: -0; }
 .widget .actor img.icon, .widget .actor canvas.icon { margin-bottom: -0.6em; }
 .widget .switchPressed img.icon, .widget .switchPressed canvas.icon, .widget .switchUnpressed img.icon, .widget .switchUnpressed canvas.icon { margin-top: -0.4em; margin-bottom: -0.6em;}
-.widget_container > .pagejump > .label {
+.widget_container > .pagejump > .label, .widget_container > .refresh > .label {
 	width: auto;
 	display: inline;
 	padding-left: 0;
@@ -316,7 +316,8 @@ body br
   cursor: pointer;
 }
 
-.pagejump > .switchUnpressed, .pagejump > .switchPressed {
+.pagejump > .switchUnpressed, .pagejump > .switchPressed,
+.navbar .refresh > .switchUnpressed, .navbar .refresh > .switchPressed {
 	width: auto;
 	background-color: transparent;
 	border: none;
@@ -365,7 +366,7 @@ body br
 .navbar .group .widget_container:last-child,.navbar .group .widget_container:last-child .widget {
 	border-bottom-right-radius: 1em;
 }
-.navbar .pagejump > .actor {
+.navbar .pagejump > .actor, .navbar .refresh > .actor {
 	position: absolute;
 	top:0;
 	left:0;
@@ -373,6 +374,7 @@ body br
 	bottom:0;
 	vertical-align: middle;
 }
+.navbar .refresh > .actor .value { padding: 47px 0 0 0.6em !important; }
 .navbar .pagejump > .actor .value {
 	line-height: 2em;
 }
@@ -672,7 +674,7 @@ div#demo_3 {
 	min-width: 2em; 
 	min-height: 3em;
 }
-#navbarTop .navbar .pagejump:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor  {
+#navbarTop .navbar .pagejump:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor,#navbarTop .navbar .refresh:hover {
     background-color: #000;
 	font-weight: normal;
 	color: #fff;
@@ -684,7 +686,7 @@ div#demo_3 {
 	background-image:      -o-linear-gradient(#111, #666); /* Opera 11.10+ */
 	background-image:         linear-gradient(#111, #666);
 }
-#navbarBottom .navbar .pagejump:hover,#navbarBottom .navbar .pagejump.active,#navbarBottom .navbar .pagejump.active_ancestor {
+#navbarBottom .navbar .pagejump:hover,#navbarBottom .navbar .pagejump.active,#navbarBottom .navbar .pagejump.active_ancestor, #navbarBottom .navbar .refresh:hover {
 background-color: #000;
 	font-weight: normal;
 	color: #fff;
@@ -702,20 +704,24 @@ background-color: #000;
 }
 #navbarTop { border-bottom: 2px solid #666; }
 #navbarBottom { border-top: 2px solid #666; }
-.navbar .pagejump .label > img, .navbar .pagejump .label > canvas { 
+.navbar .pagejump .label > img, .navbar .pagejump .label > canvas,
+.navbar .refresh .label > img, .navbar .refresh .label > canvas { 
 	height: 44px !important;
         width: 44px !important;
 	display: block;
 	margin: 0 auto;
 }
-.navbar .pagejump .label {
+.navbar .pagejump .label, .navbar .refresh .label, .navbar .refresh .value {
 	text-align: center;
 	font-size: 0.7em;
 	float: left;
 	margin: 0 auto;
 }
 
-#navbarTop .navbar .pagejump .actor, #navbarBottom.navbar .pagejump .actor {
+#navbarTop .navbar .pagejump .actor, 
+#navbarBottom.navbar .pagejump .actor,
+#navbarTop .navbar .refresh .actor, 
+#navbarBottom.navbar .refresh .actor {
 	width: 100%; 	
 }
 #navbarTop hr, #navbarBottom hr {

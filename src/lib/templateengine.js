@@ -98,8 +98,9 @@ require.config({
 var templateEngine;
 require([
   'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagepartshandler', 
+  'cometvisu-client', 'cometvisu-client-openhab',
   'compatibility', 'jquery-ui', 'strftime', 'scrollable', 
-  'jquery.ui.touch-punch', 'jquery.svg.min', 'cometvisu-client', 'cometvisu-client-openhab', 'iconhandler', 
+  'jquery.ui.touch-punch', 'jquery.svg.min', 'iconhandler', 
   'widget_break', 'widget_designtoggle',
   'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
   'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infotrigger', 
@@ -109,7 +110,8 @@ require([
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
   'widget_video', 'widget_wgplugin_info', 
   'transform_default', 'transform_knx', 'transform_oh'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler ) {
+], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu, CometVisuOh ) {
+  "use strict";
   profileCV( 'templateEngine start' );
   
 templateEngine = new TemplateEngine();
@@ -301,7 +303,7 @@ function TemplateEngine( undefined ) {
       thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
     }
     function update(json) {
-      for (key in json) {
+      for( var key in json ) {
         //$.event.trigger('_' + key, json[key]);
         var data = json[ key ];
         ga_list[ key ].forEach( function( id ){
@@ -627,7 +629,7 @@ function TemplateEngine( undefined ) {
     var sty = stylings[styling];
     if (sty) {    
       e.removeClass(sty['classnames']); // remove only styling classes
-      function findValue(v, findExact) {
+      var findValue = function(v, findExact) {
         if (undefined === v) {
           return false;
         }
@@ -667,7 +669,7 @@ function TemplateEngine( undefined ) {
         ret = m.formula(ret);
       }
 
-      function mapValue(v) {
+      var mapValue = function(v) {
         if (m[v]) {
           return m[v];
         } else if (m['range']) {
@@ -846,20 +848,21 @@ function TemplateEngine( undefined ) {
    * Make sure everything looks right when the window gets resized. This is
    * necessary as the scroll effect requires a fixed element size
    */
-  this.handleResize = function(resize, skipScrollFix) {
+  this.handleResize = function(resize, skipScrollFix, force) {
     var $main = $('#main');
+    var forceHeight = force==undefined ? false : force; 
     var width = thisTemplateEngine.getAvailableWidth();
-    var height = thisTemplateEngine.getAvailableHeight();
+    var height = thisTemplateEngine.getAvailableHeight(forceHeight);
     $main.css('width', width).css('height', height);
     $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
     if (this.mobileDevice) {
       //do nothing
     } else {
       if (($('#navbarTop').css('display')!="none" && $('#navbarTop').outerHeight(true)<=2)
-          || ($('#navbarBottom').css('display')!="none" && $('#navbarBottom').innerHeight(true)<=2)) {
+          || ($('#navbarBottom').css('display')!="none" && $('#navbarBottom').innerHeight()<=2)) {
         // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
         // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
-        setTimeout( thisTemplateEngine.handleResize, 100);
+        setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,true); }, 100);
       }
     }
     if (skipScrollFix === undefined) {
@@ -877,7 +880,7 @@ function TemplateEngine( undefined ) {
       singleHeightMargin = $('#containerDiv').outerHeight(true),
       styles = '';
 
-    for( rowspan in usedRowspans )
+    for( var rowspan in usedRowspans )
     {
       styles += '.rowspan.rowspan' + rowspan
               + ' { height: '
@@ -1018,7 +1021,7 @@ function TemplateEngine( undefined ) {
       mappings[name] = {};
       var formula = $this.find('formula');
       if (formula.length > 0) {
-        eval('var func = function(x){' + formula.text() + '; return y;}');
+        var func = eval('var func = function(x){var y;' + formula.text() + '; return y;}; func');
         mappings[name]['formula'] = func;
       }
       $this.find('entry').each(function() {
@@ -1298,8 +1301,8 @@ function TemplateEngine( undefined ) {
     if( 0 !== addressesToSubscribe.length )
       thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
     
-    xml = null;
-    delete xml; // not needed anymore - free the space
+    xml = null; // not needed anymore - free the space
+    
     $('.icon').each(function(){ fillRecoloredIcon(this);});
     $('.loading').removeClass('loading');
     fireLoadingFinishedAction();
@@ -1338,22 +1341,77 @@ function TemplateEngine( undefined ) {
       + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
     }
   };
-
-  this.scrollToPage = function(page_id, speed, skipHistory) {
-    if( undefined === page_id )
-      page_id = this.screensave_page;
-    
-    if (page_id.match(/^id_[0-9_]*$/) == null) {
+  
+  this.getPageIdByPath = function(page_name, path) {
+    if (page_name==null) return null;
+    if (page_name.match(/^id_[0-9_]*$/) != null) {
+      // already a page_id
+      return page_name;
+    } else {
+      if (path!=undefined) {
+        var scope = templateEngine.traversePath(path);
+        if (scope==null) {
+          // path is wrong
+          console.error("path '"+path+"' could not be traversed, no page found");
+          return null;
+        }
+        return templateEngine.getPageIdByName(page_name,scope);
+      } else {
+        return templateEngine.getPageIdByName(page_name);
+      }
+    }
+  }
+  
+  this.traversePath = function(path,root_page_id) {
+    var path_scope=null;
+    var index = path.indexOf("/");
+    if (index>=1) {
+      // skip escaped slashes like \/
+      while (path.substr(index-1,1)=="\\") {
+        var next = path.indexOf("/",index+1);
+        if (next>=0) {
+          index=next;
+        }
+      }
+    }
+//    console.log("traversePath("+path+","+root_page_id+")");
+    if (index>=0) {
+      // traverse path one level down
+      var path_page_name = path.substr(0,index);
+      path_scope = templateEngine.getPageIdByName(path_page_name,root_page_id);
+      path = path.substr(path_page_name.length+1);
+      path_scope = templateEngine.traversePath(path,path_scope);
+//      console.log(path_page_name+"=>"+path_scope);
+      return path_scope;
+    } else {
+      // bottom path level reached
+      path_scope = templateEngine.getPageIdByName(path,root_page_id);
+      return path_scope;
+    }
+    return null;
+  }
+  
+  this.getPageIdByName = function(page_name,scope) {
+    if (page_name.match(/^id_[0-9_]*$/) != null) {
+      // already a page_id
+      return page_name;
+    } else {
+      var page_id=null;
       // find Page-ID by name
       // decode html code (e.g. like &apos; => ')
-      page_id = $("<textarea/>").html(page_id).val();
-      var pages = $('.page h1:contains(' + page_id + ')', '#pages');
+      page_name = $("<textarea/>").html(page_name).val();
+      // remove escaped slashes
+      page_name = page_name.replace("\\\/","/");
+      
+//      console.log("Page: "+page_name+", Scope: "+scope);
+      var selector = (scope!=undefined && scope!=null) ? '.page[id^="'+scope+'"] h1:contains(' + page_name + ')' :  '.page h1:contains(' + page_name + ')';
+      var pages = $(selector, '#pages');
       if (pages.length>1 && thisTemplateEngine.currentPage!=null) {
         // More than one Page found -> search in the current pages descendants first
         var fallback = true;
         pages.each(function(i) {
           var p = $(this).closest(".page");
-          if ($(this).text() == page_id) {
+          if ($(this).text() == page_name) {
             if (p.attr('id').length<thisTemplateEngine.currentPage.attr('id').length) {
               // found pages path is shorter the the current pages -> must be an ancestor
               if (thisTemplateEngine.currentPage.attr('id').indexOf(p.attr('id'))==0) {
@@ -1377,7 +1435,7 @@ function TemplateEngine( undefined ) {
         if (fallback) {
           // take the first page that fits (old behaviour)
           pages.each(function(i) {
-            if ($(this).text() == page_id) {
+            if ($(this).text() == page_name) {
               page_id = $(this).closest(".page").attr("id");
               // break loop
               return false;
@@ -1386,13 +1444,28 @@ function TemplateEngine( undefined ) {
         }
       } else {
         pages.each(function(i) {
-          if ($(this).text() == page_id) {
+          if ($(this).text() == page_name) {
             page_id = $(this).closest(".page").attr("id");
             // break loop
             return false;
           }
         });
       }
+    }
+    if (page_id!=null && page_id.match(/^id_[0-9_]*$/) != null) {
+      return page_id;
+    } else {
+      // not found
+      return null;
+    }
+  }
+
+  this.scrollToPage = function(target, speed, skipHistory) {
+    if( undefined === target )
+      target = this.screensave_page;
+    var page_id = thisTemplateEngine.getPageIdByPath(target);
+    if (page_id==null) {
+      return;
     }
 //    console.log(thisTemplateEngine.currentPage);
 //    // don't scroll when target is already active

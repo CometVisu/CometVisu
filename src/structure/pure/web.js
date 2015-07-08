@@ -16,6 +16,7 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
   var basicdesign = design.basicdesign;
   
 design.basicdesign.addCreator('web', {
@@ -77,7 +78,7 @@ design.basicdesign.addCreator('web', {
     switch( type )
     {
       default:
-        if (data==01) {
+        if (data==1) {
           var iframe = element.find('iframe');
           iframe.attr('src', iframe.attr('src'));
           templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));

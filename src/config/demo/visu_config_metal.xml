@@ -71,7 +71,7 @@ Config</a> ]]></status>
       <line>
         <layout colspan="0"/>
       </line>
-      <pagejump target="Wohnzimmer">
+      <pagejump path="Übersicht/KNX" target="Wohnzimmer" active_scope="path">
         <layout colspan="0"/>
         <label><icon name="control_all_on_off"/>KNX</label>
         <widgetinfo>
@@ -100,6 +100,10 @@ Config</a> ]]></status>
         <layout colspan="0"/>
         <label><icon name="weather_sun"/>Flavour</label>
       </pagejump>
+      <refresh value="Refresh">
+        <layout colspan="0"/>
+      	<label><icon name="audio_repeat"/></label>
+      </refresh>
     </navbar>
     <group name="Allgemein" target="KNX">
       <layout colspan="12"/>

@@ -16,6 +16,7 @@
 */
  
 define( ['structure_custom', 'css!plugins/upnpcontroller/upnpcontroller' ], function( VisuDesign_Custom ) {
+  "use strict";
 
 var upnpcontroller_uid;
 var upnpcontroller_trace_flag;
