@@ -190,7 +190,7 @@ $.extend({
   },
   getUrlVar: function(name){
     return $.getUrlVars()[name];
-  },
+  }
   /**
    * Include files on this place. This will be replaced by the content of the
    * script during packaging

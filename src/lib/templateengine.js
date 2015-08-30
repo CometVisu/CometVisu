@@ -72,7 +72,7 @@ require.config({
     'widget_wgplugin_info':     'structure/pure/wgplugin_info',
     'transform_default':        'transforms/transform_default',
     'transform_knx':            'transforms/transform_knx',
-    'transform_oh':             'transforms/transform_oh',
+    'transform_oh':             'transforms/transform_oh'
   },
   'shim': {
     'scrollable':            ['jquery'],

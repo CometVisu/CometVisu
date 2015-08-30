@@ -64,7 +64,7 @@ design.basicdesign.addCreator('slide', {
       'max'     : max,
       'step'    : step,
       'valueInternal': true,
-      'inAction': false,
+      'inAction': false
     });
     
     // create the actor
@@ -174,7 +174,7 @@ design.basicdesign.addCreator('slide', {
       var val = actor.slider("value");
       transformSlider(val,this);
     });
-  },
+  }
   
 });
 

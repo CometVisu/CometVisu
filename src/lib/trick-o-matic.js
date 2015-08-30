@@ -98,7 +98,7 @@ define([ 'jquery' ], function( $ ) {
         length += path.getTotalLength();
       });
       if (this.attributes.getNamedItem('data-cometvisu-active')) {
-        activeValues = this.attributes.getNamedItem('data-cometvisu-active').value;
+        var activeValues = this.attributes.getNamedItem('data-cometvisu-active').value;
         $(activeValues.split(' ')).each(function() {
           $('body').bind('_' + this,function(e, data, passedElement) {
             if (data == '01')

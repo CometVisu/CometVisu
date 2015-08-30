@@ -40,7 +40,7 @@ design.basicdesign.addCreator('infotrigger', {
       'shorttime'     : parseFloat($e.attr('shorttime')) || -1,
       'isAbsolute'    : ($e.attr('change')               || 'relative') == 'absolute',
       'min'           : parseFloat($e.attr('min'))       || 0,
-      'max'           : parseFloat($e.attr('max'))       || 255,
+      'max'           : parseFloat($e.attr('max'))       || 255
     } );
 
     // create buttons + info
