@@ -86,9 +86,6 @@ design.basicdesign.addCreator('slide', {
         // initially setting a value
         $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
       }
-      // Mark all horizontal sliders for correct transformation
-      $actor.children('.ui-slider-horizontal .ui-slider-handle').addClass('untransformed');
-      $(window).bind("scrolltopage",self.sliderVisible);
     });
     
     return ret_val + '<div class="actor"/></div>';
@@ -169,15 +166,6 @@ design.basicdesign.addCreator('slide', {
       }
     }
     transformSlider(ui.value,ui.handle);
-  },
-  sliderVisible:function(event,page_id)
-  {
-    $('.ui-slider-handle.untransformed', '#'+page_id).each(function(i) {
-      $(this).removeClass('untransformed');
-      var actor = $(this).parent();
-      var val = actor.slider("value");
-      transformSlider(val,this);
-    });
   },
   
 });
