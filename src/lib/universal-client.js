@@ -185,7 +185,7 @@ function CometVisu( backend )
     $.ajax({
       url:      this.getResourcePath("login"),
       dataType: 'json',
-      context:  this,
+      context:  this.transport[this.config.transport],
       data:     request,
       success:  this.transport[this.config.transport].handleSession
     });
@@ -200,7 +200,9 @@ function CometVisu( backend )
   this.stop = function()
   {
     this.running = false;
-    this.abort();
+    if (this.transport[this.config.transport].abort) { 
+    	this.transport[this.config.transport].abort();
+    }
     //alert('this.stop');
   };
 
@@ -236,6 +238,7 @@ function CometVisu( backend )
          * @method handleSession
          */
         handleSession : function(json) {
+		console.log("handleSession");
           thisCometVisu.session = json.s; 
           thisCometVisu.version = json.v.split( '.', 3 );
 
@@ -248,7 +251,7 @@ function CometVisu( backend )
             this.xhr = $.ajax({
               url:        thisCometVisu.getResourcePath("read"),
               dataType:   'json',
-              context:    thisCometVisu,
+              context:    this,
               data:       thisCometVisu.buildRequest( thisCometVisu.initialAddresses ) + '&t=0',
               success:    this.handleReadStart,
               beforeSend: this.beforeSend
@@ -259,7 +262,7 @@ function CometVisu( backend )
             this.xhr = $.ajax({
               url:        thisCometVisu.getResourcePath("read"),
               dataType:   'json',
-              context:    thisCometVisu,
+              context:    this,
               data:       thisCometVisu.buildRequest() + '&t=0',
               success:    this.handleRead,
               error:      this.handleError,
@@ -274,6 +277,7 @@ function CometVisu( backend )
          */
         handleRead : function( json )
         {
+		console.log("handleRead");
           if( !json && (-1 == this.lastIndex) )
           {
             if( thisCometVisu.running )
@@ -282,13 +286,13 @@ function CometVisu( backend )
               this.xhr = $.ajax({
                 url:        thisCometVisu.getResourcePath("read"),
                 dataType:   'json',
-                context:    thisCometVisu,
+                context:    this,
                 data:       thisCometVisu.buildRequest() + '&t=0',
                 success:    this.handleRead,
                 error:      this.handleError,
                 beforeSend: this.beforeSend
               });
-              watchdog.ping();
+              this.watchdog.ping();
             }
             return;
           }
@@ -308,18 +312,19 @@ function CometVisu( backend )
             this.xhr = $.ajax({
               url:        thisCometVisu.getResourcePath("read"),
               dataType:   'json',
-              context:    thisCometVisu,
+              context:    this,
               data:       thisCometVisu.buildRequest() + '&i=' + this.lastIndex,
               success:    this.handleRead,
               error:      this.handleError,
               beforeSend: this.beforeSend
             });
-            watchdog.ping();
+            this.watchdog.ping();
           }
         },
         
         handleReadStart : function( json )
         {
+		console.log("handleReadStart");
           if( !json && (-1 == this.lastIndex) )
           {
             if( thisCometVisu.running )
@@ -327,12 +332,12 @@ function CometVisu( backend )
               this.xhr = $.ajax({
                 url:        thisCometVisu.getResourcePath("read"),
                 dataType:   'json',
-                context:    thisCometVisu,
+                context:    this,
                 data:       thisCometVisu.buildRequest( thisCometVisu.initialAddresses ) + '&t=0',
                 success:    this.handleReadStart,
                 beforeSend: this.beforeSend
               });
-              watchdog.ping();
+              this.watchdog.ping();
             }
             return;
           }
@@ -351,13 +356,13 @@ function CometVisu( backend )
             this.xhr = $.ajax({
               url:        thisCometVisu.getResourcePath("read"),
               dataType:   'json',
-              context:    thisCometVisu,
+              context:    this,
               data:       thisCometVisu.buildRequest( diffAddresses ) + '&t=0',
               success:    this.handleRead,
               error:      this.handleError,
               beforeSend: this.beforeSend
             });
-            watchdog.ping();
+            this.watchdog.ping();
           }
         },
 
@@ -428,10 +433,10 @@ function CometVisu( backend )
          * @method restart
          */
         abort : function() {
-          if( this.xhr.abort ) {
+          if( this.xhr && this.xhr.abort ) {
             this.xhr.abort();
             
-            if (this.config.hooks.onClose) {
+            if (this.config && this.config.hooks.onClose) {
               this.config.hooks.onClose.bind(this);
             }
           }
