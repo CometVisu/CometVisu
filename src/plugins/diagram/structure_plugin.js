@@ -378,7 +378,7 @@ define( ['structure_custom',
       // get all rrd data
       $.each(data.content.rrd, function(index, rrd) {
         $.ajax({
-          url: templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + series.start + "&end=" + series.end + "&res=" + (rrd.resol ? rrd.resol : series.res),
+          url: templateEngine.visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + series.start + "&end=" + series.end + "&res=" + (rrd.resol ? rrd.resol : series.res),
           dataType: "json",
           type: "GET",
           context: this,
