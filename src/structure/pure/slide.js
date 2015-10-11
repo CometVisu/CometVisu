@@ -25,12 +25,10 @@ define( ['_common'], function( design ) {
   {
     if (!$main.data('disableSliderTransform')) {
       if (!isNaN(value)) {
-        var handleWidth = $(handle).outerWidth();
         var sliderMax = $(handle).parent().slider("option","max")+($(handle).parent().slider("option","min")*-1);
         var percent = Math.round((100/sliderMax)*(value+($(handle).parent().slider("option","min")*-1)));
-        var translate = Math.round(handleWidth * percent/100);
-        //console.log("Width: "+handleWidth+", Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
-        $(handle).css('transform', 'translateX(-'+translate+'px)');
+        //console.log("Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
+        $(handle).css('transform', 'translateX(-'+percent+'%)');
       }
     }
   }
@@ -88,9 +86,6 @@ design.basicdesign.addCreator('slide', {
         // initially setting a value
         $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
       }
-      // Mark all horizontal sliders for correct transformation
-      $actor.children('.ui-slider-horizontal .ui-slider-handle').addClass('untransformed');
-      $(window).bind("scrolltopage",self.sliderVisible);
     });
     
     return ret_val + '<div class="actor"/></div>';
@@ -171,15 +166,6 @@ design.basicdesign.addCreator('slide', {
       }
     }
     transformSlider(ui.value,ui.handle);
-  },
-  sliderVisible:function(event,page_id)
-  {
-    $('.ui-slider-handle.untransformed', '#'+page_id).each(function(i) {
-      $(this).removeClass('untransformed');
-      var actor = $(this).parent();
-      var val = actor.slider("value");
-      transformSlider(val,this);
-    });
   },
   
 });
