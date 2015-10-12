@@ -76,11 +76,9 @@ echo -n "Getting icons from github..."
 git clone git@github.com:OpenAutomationProject/knx-uf-iconset.git > /dev/null 2>&1
 echo "done."
 
-cd knx-uf-iconset/
+cp -rf knx-uf-iconset/raw_480x480 .
 resize_folder 128x128_white
-cd - > /dev/null 2>&1
 
-cp knx-uf-iconset/128x128_white/* 128x128_white/
 echo "Updated/Added icons:"
 git status
 echo
