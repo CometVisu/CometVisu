@@ -1,10 +1,12 @@
 /**
  * Plugin: jquery.OWM
  *
- * Version: 0.0.1
- * (c) Copyright 2015, Stefan Borchert
+ * jQuery plugin to display data from OpenWeatherMap.
  *
- * Description: jQuery plugin to display data from OpenWeatherMap.
+ * Version: 0.0.1
+ * Copyright (c) 2015, Stefan Borchert
+ *
+ * Licensed under the GPLv3 license.
 **/
 
 var jOWM = jOWM || {};
