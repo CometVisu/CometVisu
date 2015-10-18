@@ -1,0 +1,27 @@
+.widget_container {
+    width: 100%;
+}
+#bottom {
+    display: none !important;
+}
+.page {
+    overflow: visible;
+}
+.group { 
+	margin: 0.2em 0.1em;
+}
+#navbarLeft, #navbarLeft > .navbar, #navbarRight, #navbarRight > .navbar { display: none !important; width: 0 !important; }
+.widget .ui-slider
+{
+  width: 40%;
+}
+#navbarTop > .navbar > div, #navbarTop > .navbar > hr {
+	display: inline-block;
+	float: none;
+}
+#navbarTop > .navbar , #navbarBottom > .navbar {
+	overflow-y: hidden;
+	overflow-x: auto;
+	white-space: nowrap;
+	height: 3.6em;
+}

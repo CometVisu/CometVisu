@@ -1,0 +1,18 @@
+/* slide.js (c) 2012 by Christian Mayer [CometVisu at ChristianMayer dot de]
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
+define(["_common"],function(e){function r(e,t){if(!n.data("disableSliderTransform")&&!isNaN(e)){var r=$(t).parent().slider("option","max")+$(t).parent().slider("option","min")*-1,i=Math.round(100/r*(e+$(t).parent().slider("option","min")*-1));$(t).css("transform","translateX(-"+i+"%)")}}var t=e.basicdesign,n=$("#main");e.basicdesign.addCreator("slide",{create:function(e,n,r,i){var s=this,o=$(e),u=t.createDefaultWidget("slide",o,n,r,i,this.update),a=undefined,f=undefined;o.find("address").each(function(){var e=this.getAttribute("transform");Transform[e]&&Transform[e].range&&(a>Transform[e].range.min||(a=Transform[e].range.min),f<Transform[e].range.max||(f=Transform[e].range.max))});var l=parseFloat(o.attr("min")||a||0),c=parseFloat(o.attr("max")||f||100),h=parseFloat(o.attr("step")||.5),p=o.attr("send_on_finish")||"false",d=templateEngine.widgetDataInsert(n,{min:l,max:c,step:h,send_on_finish:p,valueInternal:!0,inAction:!1});return templateEngine.postDOMSetupFns.push(function(){var e=$("#"+n+" .actor");e.slider({step:h,min:l,max:c,range:"min",animate:!0,send_on_finish:p,start:s.slideStart,change:s.slideChange}),e.on("slide",s.slideUpdateValue),d.format&&e.children(".ui-slider-handle").text(sprintf(d.format,templateEngine.map(undefined,d.mapping)))}),u+'<div class="actor"/></div>'},update:function(e,t){var n=$(this),i=n.find(".actor"),s=templateEngine.widgetDataGetByElement(this);if(s.inAction)return;var o=templateEngine.transformDecode(s.address[e][0],t);s.value!=o&&(s.value=o,s.valueInternal=!1,i.slider("value",o),s.valueInternal=!0,s.format!=null&&i.children(".ui-slider-handle").text(sprintf(s.format,templateEngine.map(o,s.mapping)))),r(o,i.children(".ui-slider-handle"))},slideUpdateValue:function(e,t){var n=$(this).parent(),i=n.find(".actor"),s=templateEngine.widgetDataGetByElement(this);s.format&&$(t.handle).text(sprintf(s.format,templateEngine.map(t.value,s.mapping))),r(t.value,t.handle)},slideStart:function(e,t){var n=$(this).parent(),r=n.find(".actor"),i=templateEngine.widgetDataGetByElement(this);if(i.send_on_finish=="true")return;i.inAction=!0,i.valueInternal=!0,i.updateFn=setInterval(function(){var e=r.slider("value");if(i.value==e)return;for(var t in i.address){if(!(i.address[t][1]&2))continue;var n=templateEngine.transformEncode(i.address[t][0],e);n!=templateEngine.transformEncode(i.address[t][0],i.value)&&templateEngine.visu.write(t,n)}i.value=e},250)},slideChange:function(e,t){var n=templateEngine.widgetDataGetByElement(this);clearInterval(n.updateFn,t.value),n.inAction=!1;if(n.valueInternal&&n.value!=t.value)for(var i in n.address){if(!(n.address[i][1]&2))continue;var s=templateEngine.transformEncode(n.address[i][0],t.value);s!=templateEngine.transformEncode(n.address[i][0],n.value)&&templateEngine.visu.write(i,s)}r(t.value,t.handle)}})});

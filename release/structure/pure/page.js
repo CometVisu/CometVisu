@@ -1,0 +1,18 @@
+/* page.js (c) 2012 by Christian Mayer [CometVisu at ChristianMayer dot de]
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
+define(["_common"],function(e){var t=e.basicdesign,n="";e.basicdesign.addCreator("page",{create:function(e,r,i,s){var o=$(e),u={};if(o.attr("ga")){var a=o.attr("ga");templateEngine.addAddress(a,r+"_"),u[a]=["DPT:1.001",0]}var f=o.attr("name"),s=o.attr("type")||"text",l=o.attr("backdrop"),c=o.attr("showtopnavigation"),h=o.attr("showfooter");switch(s){case"2d":case"3d":break;default:s="text"}var p={top:"id"===r?"false":"inherit",bottom:"id"===r?"false":"inherit",left:"id"===r?"false":"inherit",right:"id"===r?"false":"inherit"};o.children("navbar").each(function(){p[$(this).attr("position")||"left"]="true"}),p.top=o.attr("shownavbar-top")||p.top,p.bottom=o.attr("shownavbar-bottom")||p.bottom,p.left=o.attr("shownavbar-left")||p.left,p.right=o.attr("shownavbar-right")||p.right;var d=templateEngine.bindClickToWidget;o.attr("bind_click_to_widget")&&(d=o.attr("bind_click_to_widget")=="true"),o.attr("flavour")&&(i=o.attr("flavour"));var v="";o.attr("align")&&(v+="text-align:"+o.attr("align")+";"),v!=""&&(v='style="'+v+'"');var m;if(o.attr("visible")=="false")m="";else{var g=o.children("layout")[0],y=g?'style="'+t.extractLayout(g,s)+'"':"",b=t.setWidgetLayout(o,r);m='<div class="widget clearfix link pagelink '+(b?b:"")+'" '+y+">",m+='<div class="actor" '+v+'><a href="javascript:">'+f+"</a></div>",m+="</div>"}var w=o.children().not("layout"),E=i?" flavour_"+i:"",S='<div class="page type_'+s+E+'" id="'+r+'_">',x=templateEngine.widgetDataInsert(r+"_",{name:f,showtopnavigation:c,showfooter:h,shownavbar:p}),T='<div class="clearfix" style="height:100%;position:relative;"><h1>'+f+"</h1>";if("2d"==s){var N="width:100%;height:100%;";o.attr("size")=="fixed"&&(N="");if(undefined!=l){var C=".svg"==l.substring(l.length-4)?"embed":"img";T+="<"+C+' src="'+l+'" style="position: absolute; top: 0px; left: 0px;z-index:-1;'+N+'"/>'}}else"3d"==s&&!1;return templateEngine.widgetDataInsert(r+"_",{address:u}),$(w).each(function(e){var t=templateEngine.create_pages(w[e],r+"_"+e,i,s);if(undefined===t)return;T+=t}),S+=T+"</div></div>",n=S+n,m},createFinal:function(){$("#pages").prepend(n)},update:function(e,n){var r=$(this),i=templateEngine.widgetDataGetByElement(r),s=t.defaultValueHandling(e,n,i),o=i.address[e][2];switch(o){case"azimut":i.JSFloorPlan3D.setState("currentAzimut",s,!0),r.trigger("update3d",i.JSFloorPlan3D);break;case"elevation":i.JSFloorPlan3D.setState("currentElevation",s,!0),r.trigger("update3d",i.JSFloorPlan3D);break;case"floor":i.JSFloorPlan3D.moveToRoom(s,!1,!0,!0,function(){r.trigger("update3d",i.JSFloorPlan3D)});break;default:n==1&&(templateEngine.scrollToPage(r.context.firstChild.textContent),templateEngine.visu.write(e,templateEngine.transformEncode("DPT:1.001",0)))}},action:function(e,t,n){if(n)return;templateEngine.scrollToPage(e+"_")}})});
