@@ -304,11 +304,13 @@ function TemplateEngine( undefined ) {
     }
     function update(json) {
       for( var key in json ) {
-        //$.event.trigger('_' + key, json[key]);
         var data = json[ key ];
         ga_list[ key ].forEach( function( id ){
-          if( id )
+          if( id && id == 'svg')
           {
+            $.event.trigger('_' + key, json[key]);
+          }
+          else if ( id ) {
             var 
               element = document.getElementById( id ),
               type = element.dataset.type || 'page', // only pages have no datatype set
@@ -1281,7 +1283,10 @@ function TemplateEngine( undefined ) {
     };
 
     // run the Trick-O-Matic scripts for great SVG backdrops
-    $('embed').each(function() { this.onload =  Trick_O_Matic });
+    $('embed').each(function() { 
+      initgas.call(this);
+      this.onload =  Trick_O_Matic 
+    });
     
     if (thisTemplateEngine.enableAddressQueue) {
       // identify addresses on startpage
