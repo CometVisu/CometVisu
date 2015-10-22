@@ -404,10 +404,10 @@ function TemplateEngine( undefined ) {
   };
   
   this.addAddress = function( address, id ) {
-    if( address in ga_list )
-      ga_list[ address ].push( id );
-    else
+    if ( !(address in ga_list) )
       ga_list[ address ] = [ id ];
+    else if ( $.inArray(id,ga_list[address]) == -1 )
+      ga_list[ address ].push( id );
   };
   
   this.getAddresses = function() {
@@ -1284,7 +1284,7 @@ function TemplateEngine( undefined ) {
 
     // run the Trick-O-Matic scripts for great SVG backdrops
     $('embed').each(function() { 
-      initgas.call(this);
+      trickomatic_initGAs.call(this);
       this.onload =  Trick_O_Matic 
     });
     

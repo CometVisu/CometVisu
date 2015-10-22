@@ -146,21 +146,21 @@ define([ 'jquery' ], function( $ ) {
   
 }); // end define
 
-function initgas() {
+function trickomatic_initGAs() {
   var src = this.src;
-  $.get(this.src).then(function(svg){
+  jQuery.ajaxSetup({async:false});
+  $.get(this.src, function(svg) { 
     if( !svg ) return;  
-    
     // pipe-o-matic:
     var pipes = svg.getElementsByClassName('pipe_group');
     $(pipes).each(function(idx, pipe) {
-      //var activeValues = this.attributes.getNamedItem('data-cometvisu-active').value;
       var activeValues = $(pipe).data('cometvisu-active');
       if ( !activeValues ) { return true; }
       $(activeValues.split(' ')).each(function(idx, ga) {
         templateEngine.addAddress(ga, 'svg');
       });
-    });  
+    });    
   });
+  jQuery.ajaxSetup({async:true});
 };
   
