@@ -281,7 +281,7 @@ function TemplateEngine( undefined ) {
     else if (thisTemplateEngine.backend=="oh2") {
       thisTemplateEngine.visu = new CometVisu('openhab2');
     } else {
-      thisTemplateEngine.visu = new CometVisu();
+      thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backendConfig);
     }
     function update(json) {
       for( var key in json ) {
@@ -898,9 +898,19 @@ function TemplateEngine( undefined ) {
      */
     // read predefined design in config
     var predefinedDesign = $('pages', xml).attr("design");
-
+    
+    thisTemplateEngine.backendConfig = {};
+    
     if ($('pages', xml).attr("backend")) {
       thisTemplateEngine.backend = $('pages', xml).attr("backend");
+    }
+    else {
+      if ($('pages', xml).attr("backend_prefix")) {
+        thisTemplateEngine.backendConfig.urlPrefix = $('pages', xml).attr("backend_prefix");
+      }
+      if ($('pages', xml).attr("backend_transport")) {
+        thisTemplateEngine.backendConfig.transport = $('pages', xml).attr("backend_transport");
+      }
     }
     thisTemplateEngine.initBackendClient();
 

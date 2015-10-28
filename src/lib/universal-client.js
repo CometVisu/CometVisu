@@ -34,75 +34,76 @@ function CometVisu( backend )
 {
   this.backends = {
 	  'default' : {
-		name 	  : 'default',
-		urlPrefix : '/cgi-bin/',
-		transport : 'long-polling',
-		resources : {
-		  login : 'l',
-		  read 	: 'r',
-		  write : 'w',
-		  rrd 	: 'rrdfetch'
-		},
-		hooks : {}
+  		name 	  : 'default',
+  		urlPrefix : '/cgi-bin/',
+  		transport : 'long-polling',
+  		resources : {
+  		  login : 'l',
+  		  read 	: 'r',
+  		  write : 'w',
+  		  rrd 	: 'rrdfetch'
+  		},
+  		hooks : {}
 	  },
 	  'openhab' : {
-		name 		: 'openHAB',
-		urlPrefix 	: '/services/cv/',
-		// keep the e.g. atmosphere tracking-id id there is one
-		resendHeaders : {
-		  'X-Atmosphere-tracking-id' : null
-		},
-		// fixed headers that are send everytime
-		headers : {
-		  'X-Atmosphere-Transport' : 'long-polling'
-		},
-		hooks : {
-		  onClose : function() {
-			// send an close request to the openHAB server
-	        var oldValue = this.headers["X-Atmosphere-Transport"];
-	        this.headers["X-Atmosphere-Transport"]="close";
-	        $.ajax( {url:this.config.urlPrefix + this.config.resources.read, dataType: 'json', context:this, beforeSend:this.beforeSend } );
-	        if (oldValue!=undefined)
-	          this.headers["X-Atmosphere-Transport"]=oldValue;
-	        else
-	          delete this.headers["X-Atmosphere-Transport"];
-		  }
-		}
+  		name 		: 'openHAB',
+  		urlPrefix 	: '/services/cv/',
+  		// keep the e.g. atmosphere tracking-id if there is one
+  		resendHeaders : {
+  		  'X-Atmosphere-tracking-id' : null
+  		},
+  		// fixed headers that are send everytime
+  		headers : {
+  		  'X-Atmosphere-Transport' : 'long-polling'
+  		},
+  		hooks : {
+  		  onClose : function() {
+  		    // send an close request to the openHAB server
+  	      var oldValue = this.headers["X-Atmosphere-Transport"];
+  	      this.headers["X-Atmosphere-Transport"]="close";
+  	      $.ajax( {url:this.config.urlPrefix + this.config.resources.read, dataType: 'json', context:this, beforeSend:this.beforeSend } );
+  	      if (oldValue!=undefined) {
+  	        this.headers["X-Atmosphere-Transport"]=oldValue;
+  	      }
+  	      else {
+  	        delete this.headers["X-Atmosphere-Transport"];
+  	      }
+  		  }
+  		}
 	  },
 	  'openhab2' : {
-		name		: 'openHAB2',
-		urlPrefix 	: '/rest/cv/',
-		transport 	: 'sse',
-		transportFallback : {
-		  transport : 'long-polling',
-		  // keep the e.g. atmosphere tracking-id id there is one
-		  resendHeaders : {
-			'X-Atmosphere-tracking-id' : null
-		  },
-		  // fixed headers that are send everytime
-		  headers : {
-			'X-Atmosphere-Transport' : 'long-polling'
-		  }
-		}
+  		name		: 'openHAB2',
+  		urlPrefix 	: '/rest/cv/',
+  		transport 	: 'sse',
+  		transportFallback : {
+  		  transport : 'long-polling',
+  		  // keep the e.g. atmosphere tracking-id id there is one
+  		  resendHeaders : {
+  		    'X-Atmosphere-tracking-id' : null
+  		  },
+  		  // fixed headers that are send everytime
+  		  headers : {
+  		    'X-Atmosphere-Transport' : 'long-polling'
+  		  }
+  		}
 	  }
   };
   // init default settings
   this.config = this.backends['default'];
   if (backend && backend !== 'default') {
-	if ($.isPlainObject(backend)) {
-	  // override default settings
-	  $.extend(this.config, backend);
-	}
-	else if (this.backends[backend]) {
-	  // merge backend settings into this.config
-	  $.extend(this.config, this.backends[backend]);
-	} else {
-	  console.error("unknown backend setting '%s', using default", backend);
-	}
+  	if ($.isPlainObject(backend)) {
+  	  // override default settings
+  	  $.extend(this.config, backend);
+  	}
+  	else if (this.backends[backend]) {
+  	  // merge backend settings into this.config
+  	  $.extend(this.config, this.backends[backend]);
+  	} else {
+  	  console.error("unknown backend setting '%s', using default", backend);
+  	}
   }
   
   var thisCometVisu = this;
-  //this.urlPrefix = (null == urlPrefix) ? '' : urlPrefix; // the address of the service
   this.addresses = [];                                   // the subscribed addresses
   this.initialAddresses = [];                            // the addresses which should be loaded before the subscribed addresses
   this.filters   = [];                                   // the subscribed filters
@@ -110,16 +111,6 @@ function CometVisu( backend )
   this.pass   = '';                                      // the current password
   this.device = '';                                      // the current device ID
   this.running = false;                                  // is the communication running at the moment?
-  this.doRestart = false;                                // are we currently in a restart, e.g. due to the watchdog
-  this.xhr     = false;                                  // the ongoing AJAX request
-  this.watchdogTimer = 5;                                // in Seconds - the alive check interval of the watchdog
-  this.maxConnectionAge = 60;                            // in Seconds - restart if last read is older
-  this.maxDataAge       = 3200;                          // in Seconds - reload all data when last successful read is older 
-                                                         // (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
-  this.lastIndex        = -1;                            // index returned by the last request
-//  this.resendHeaders = [];                               // keep the e.g. atmosphere tracking-id id there is one
-//  this.headers = [];                                     // fixed headers that are send everytime
-  this.retryCounter = 0;                                 // count number of retries (reset with each valid response)
     
   this.setInitialAddresses = function(addresses) {
     this.initialAddresses = addresses;
@@ -208,22 +199,31 @@ function CometVisu( backend )
 
   this.transport = {
       'long-polling': {
+        doRestart         : false,           // are we currently in a restart, e.g. due to the watchdog
+        xhr               : false,           // the ongoing AJAX request
+        watchdogTimer     : 5,               // in Seconds - the alive check interval of the watchdog
+        maxConnectionAge  : 60,             // in Seconds - restart if last read is older
+        maxDataAge        : 3200,            // in Seconds - reload all data when last successful read is older 
+                                           // (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
+        lastIndex         : -1,              // index returned by the last request
+        retryCounter      : 0,             // count number of retries (reset with each valid response)
+        
         watchdog : (function(){
           var last = new Date();
           var hardLast = last;
           var aliveCheckFunction = function(){
             var now = new Date();
-            if( now - last < thisCometVisu.maxConnectionAge * 1000 ) return;
-            if( now - hardLast > thisCometVisu.maxDataAge * 1000 ) thisCometVisu.lastIndex = -1; // reload all data
-            thisCometVisu.transport['long-polling'].restart();
+            if( now - last < this.maxConnectionAge * 1000 ) return;
+            if( now - hardLast > this.maxDataAge * 1000 ) thislastIndex = -1; // reload all data
+            this.restart();
             last = now;
           };
-          setInterval( aliveCheckFunction, thisCometVisu.watchdogTimer * 1000 );
+          setInterval( aliveCheckFunction, this.watchdogTimer * 1000 );
           return {
             ping: function(){
               //delete last;
               last = new Date();
-              if( !thisCometVisu.doRestart )
+              if( !this.doRestart )
               {
                 //delete hardLast;
                 hardLast = last;
@@ -238,7 +238,6 @@ function CometVisu( backend )
          * @method handleSession
          */
         handleSession : function(json) {
-		console.log("handleSession");
           thisCometVisu.session = json.s; 
           thisCometVisu.version = json.v.split( '.', 3 );
 
@@ -277,7 +276,6 @@ function CometVisu( backend )
          */
         handleRead : function( json )
         {
-		console.log("handleRead");
           if( !json && (-1 == this.lastIndex) )
           {
             if( thisCometVisu.running )
@@ -324,7 +322,6 @@ function CometVisu( backend )
         
         handleReadStart : function( json )
         {
-		console.log("handleReadStart");
           if( !json && (-1 == this.lastIndex) )
           {
             if( thisCometVisu.running )
@@ -456,26 +453,40 @@ function CometVisu( backend )
           if (0 < parseInt(thisCometVisu.version[0]) || 1 < parseInt(thisCometVisu.version[1]))
             alert('ERROR CometVisu Client: too new protocol version (' + json.v
                 + ') used!');
-
-          // send first request
+          
+          this.connect();         
+        },
+        
+        /**
+         * Establish the SSE connection
+         */
+        connect : function() {
+          //  send first request
           thisCometVisu.running = true;
           this.eventSource = new EventSource(thisCometVisu.getResourcePath("read") + "?"
               + thisCometVisu.buildRequest());
           this.eventSource.addEventListener('message', this.handleMessage, false);
-          this.eventSource.addEventListener('error', this.handleError, false);
+          this.eventSource.addEventListener('error', this.handleError, false); 
         },
 
+        /**
+         * Handle messages send from server as Server-Sent-Event
+         */
         handleMessage : function(e) {
           var json = JSON.parse(e.data);
           var data = json.d;
-          thisCometVisu.lastIndex = e.lastEventId;
           thisCometVisu.update(data);
         },
 
+        /**
+         * Handle errors
+         */
         handleError : function(e) {
           if (e.readyState == EventSource.CLOSED) {
             // Connection was closed.
             thisCometVisu.running = false;
+            // reconnect
+            connect();
           }
         }
       }
@@ -509,7 +520,7 @@ function CometVisu( backend )
      */
     var ts = new Date().getTime();
     $.ajax({
-      url:      this.config.urlPrefix + this.config.resources.write,
+      url:      this.getResourcePath("write"),
       dataType: 'json',
       context:  this,
       data:     'a=' + address + '&v=' + value + '&ts=' + ts
