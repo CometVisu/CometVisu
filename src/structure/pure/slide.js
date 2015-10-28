@@ -57,7 +57,6 @@ design.basicdesign.addCreator('slide', {
     var max  = parseFloat( $e.attr('max')  || datatype_max || 100 );
     var step = parseFloat( $e.attr('step') || 0.5 );
     var send_on_finish = $e.attr('send_on_finish') || 'false';
-    var readonly = $e.attr('readonly') || 'false';
     var data = templateEngine.widgetDataInsert( path, {
       //???///'events':   $(actor).data( 'events' ),
       'min'            : min,
@@ -67,6 +66,16 @@ design.basicdesign.addCreator('slide', {
       'valueInternal'  : true,
       'inAction'       : false,
     });
+    
+    // check provided address-items for at least one address which has write-access
+    var readonly = true;
+    for (var addrIdx in data.address) {
+        if (data.address[addrIdx][1] & 2) {
+            // write-access detected --> no read-only mode
+            readonly = false;
+            break;
+        }
+    }
     
     // create the actor
     templateEngine.postDOMSetupFns.push( function(){
