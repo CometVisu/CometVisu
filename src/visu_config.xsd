@@ -248,9 +248,21 @@
     </xsd:annotation>
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
-        <xsd:enumeration value="cgi-bin" />
-        <xsd:enumeration value="oh" />
-        <xsd:enumeration value="oh2" />
+        <xsd:enumeration value="default" />
+        <xsd:enumeration value="openhab" />
+        <xsd:enumeration value="openhab2" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+  
+  <xsd:attribute name="backend_transport">
+    <xsd:annotation>
+        <xsd:appinfo>level:expert</xsd:appinfo>
+    </xsd:annotation>
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="long-polling" />
+        <xsd:enumeration value="sse" />
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
@@ -335,6 +347,8 @@
           </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute ref="backend" use="optional" />
+      <xsd:attribute name="backend_prefix" type="xsd:string" use="optional" />
+      <xsd:attribute ref="backend_transport" use="optional" />
       <xsd:attribute ref="bind_click_to_widget" use="optional"/>
       <xsd:attribute name="scroll_speed" type="xsd:decimal" use="optional">
         <xsd:annotation>
