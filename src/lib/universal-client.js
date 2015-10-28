@@ -152,6 +152,9 @@ function CometVisu( backend )
    */
   this.subscribe = function( addresses, filters )
   {   
+    // initialize transport and use the transport object as context for itself
+    this.transport[this.config.transport].init.bind(this.transport[this.config.transport]);
+    
     var startCommunication = !this.addresses.length; // start when addresses were empty
     this.addresses= addresses ? addresses : [];
     this.filters   = filters ? filters : []  ;
@@ -208,29 +211,34 @@ function CometVisu( backend )
         lastIndex         : -1,              // index returned by the last request
         retryCounter      : 0,             // count number of retries (reset with each valid response)
         
-//        watchdog : (function(self){
-//          var last = new Date();
-//          var hardLast = last;
-//          var aliveCheckFunction = function(){
-//            var now = new Date();
-//            if( now - last < self.maxConnectionAge * 1000 ) return;
-//            if( now - hardLast > self.maxDataAge * 1000 ) thislastIndex = -1; // reload all data
-//            self.restart();
-//            last = now;
-//          };
-//          setInterval( aliveCheckFunction, self.watchdogTimer * 1000 );
-//          return {
-//            ping: function(){
-//              //delete last;
-//              last = new Date();
-//              if( !self.doRestart )
-//              {
-//                //delete hardLast;
-//                hardLast = last;
-//              }
-//            }
-//          };
-//        })(this),
+        init : function() {
+          this.watchdog();
+        },
+        
+        watchdog : function(){
+          console.log(this);
+          var last = new Date();
+          var hardLast = last;
+          var aliveCheckFunction = function(){
+            var now = new Date();
+            if( now - last < this.maxConnectionAge * 1000 ) return;
+            if( now - hardLast > this.maxDataAge * 1000 ) thislastIndex = -1; // reload all data
+            this.restart();
+            last = now;
+          };
+          setInterval( aliveCheckFunction, this.watchdogTimer * 1000 );
+          return {
+            ping: function(){
+              //delete last;
+              last = new Date();
+              if( !this.doRestart )
+              {
+                //delete hardLast;
+                hardLast = last;
+              }
+            }
+          };
+        },
         
         /**
          * This function gets called once the communication is established and session information is available.
@@ -440,6 +448,8 @@ function CometVisu( backend )
         }       
       },
       'sse' : {
+        init : function() {
+        },
         /**
          * This function gets called once the communication is established and
          * session information is available

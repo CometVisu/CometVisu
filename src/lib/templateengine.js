@@ -907,6 +907,9 @@ function TemplateEngine( undefined ) {
     else {
       if ($('pages', xml).attr("backend_prefix")) {
         thisTemplateEngine.backendConfig.urlPrefix = $('pages', xml).attr("backend_prefix");
+        if (!thisTemplateEngine.backendConfig.urlPrefix.endsWith("/")) {
+          thisTemplateEngine.backendConfig.urlPrefix += "/";
+        }
       }
       if ($('pages', xml).attr("backend_transport")) {
         thisTemplateEngine.backendConfig.transport = $('pages', xml).attr("backend_transport");
