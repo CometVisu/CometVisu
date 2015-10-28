@@ -57,6 +57,7 @@ design.basicdesign.addCreator('slide', {
     var max  = parseFloat( $e.attr('max')  || datatype_max || 100 );
     var step = parseFloat( $e.attr('step') || 0.5 );
     var send_on_finish = $e.attr('send_on_finish') || 'false';
+    var readonly = $e.attr('readonly') || 'false';
     var data = templateEngine.widgetDataInsert( path, {
       //???///'events':   $(actor).data( 'events' ),
       'min'            : min,
@@ -80,6 +81,10 @@ design.basicdesign.addCreator('slide', {
         start:   self.slideStart,
         change:  self.slideChange
       });
+      // disable slider interaction if in read-only mode --> just show the value
+      if (readonly) {
+          $actor.slider({ disabled: true });
+      }
       $actor.on( 'slide', self.slideUpdateValue );
       
       if( data['format']) {
