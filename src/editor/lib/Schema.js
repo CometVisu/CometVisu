@@ -32,6 +32,13 @@
  * @requires    Messages.js
  */
 
+var xsdNamespaceResolver = function(prefix) {
+  if (prefix == "xsd")
+    return "http://www.w3.org/2001/XMLSchema";
+  if (prefix == "xml")
+    return "http://www.w3.org/XML/1998/namespace";
+  console.log("Unknown prefix: " + prefix);
+}
 
 /**
  * starting-point for a javascript-representation of the XSD
@@ -525,7 +532,7 @@ var SchemaAttribute = function (node, schema) {
         var appinfo = [];
         
         // any appinfo this element itself might carry
-        $.each($node.find(fixNamespace('> xsd\\:annotation > xsd\\:appinfo')), function (i, appinfoNode) {
+        $.each($node.xpath('xsd:annotation/xsd:appinfo', xsdNamespaceResolver), function (i, appinfoNode) {
             var appinfoNodeText = $(appinfoNode).text();
             appinfo.push(appinfoNodeText);
         });
@@ -536,7 +543,7 @@ var SchemaAttribute = function (node, schema) {
             var refName = $node.attr('ref');
             var $ref = _schema.getReferencedNode('attribute', refName);
 
-            $.each($ref.find(fixNamespace('> xsd\\:annotation > xsd\\:appinfo')), function (i, appinfoNode) {
+            $.each($ref.xpath('xsd:annotation/xsd:appinfo', xsdNamespaceResolver), function (i, appinfoNode) {
                 var appinfoNodeText = $(appinfoNode).text();
                 appinfo.push(appinfoNodeText);
             });
@@ -567,10 +574,10 @@ var SchemaAttribute = function (node, schema) {
         var documentation = [];
         
         var lang = Messages.language;
-        var selector = '> xsd\\:annotation > xsd\\:documentation[xml\\:lang=' + lang + ']';
+        var selector = 'xsd:annotation/xsd:documentation[@xml:lang=\'' + lang + '\']';
         
         // any appinfo this element itself might carry
-        $.each($node.find(fixNamespace(selector)), function (i, documentationNode) {
+        $.each($node.xpath(selector, xsdNamespaceResolver), function (i, documentationNode) {
             var documentationNodeText = $(documentationNode).text();
             documentation.push(documentationNodeText);
         });
@@ -581,7 +588,7 @@ var SchemaAttribute = function (node, schema) {
             var refName = $node.attr('ref');
             var $ref = _schema.getReferencedNode('attribute', refName);
 
-            $.each($ref.find(fixNamespace(selector)), function (i, documentationNode) {
+            $.each($ref.xpath(selector, xsdNamespaceResolver), function (i, documentationNode) {
                 var documentationNodeText = $(documentationNode).text();
                 documentation.push(documentationNodeText);
             });
@@ -1032,14 +1039,14 @@ var SchemaElement = function (node, schema) {
         var appinfo = [];
         
         // any appinfo this element itself might carry
-        $.each($e.find(fixNamespace('> xsd\\:annotation > xsd\\:appinfo')), function (i, appinfoNode) {
+        $.each($e.xpath(fixNamespace('xsd:annotation/xsd:appinfo', xsdNamespaceResolver)), function (i, appinfoNode) {
             var appinfoNodeText = $(appinfoNode).text();
             appinfo.push(appinfoNodeText);
         });
         
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
         if ($e.find(fixNamespace('> xsd\\:complexType')).length == 0) {
-            $.each($type.find(fixNamespace('> xsd\\:annotation > xsd\\:appinfo')), function (i, appinfoNode) {
+            $.each($type.xpath(fixNamespace('xsd:annotation/xsd:appinfo', xsdNamespaceResolver)), function (i, appinfoNode) {
                 var appinfoNodeText = $(appinfoNode).text();
                 appinfo.push(appinfoNodeText);
             });
@@ -1071,17 +1078,17 @@ var SchemaElement = function (node, schema) {
         var documentation = [];
         
         var lang = Messages.language;
-        var selector = '> xsd\\:annotation > xsd\\:documentation[xml\\:lang=' + lang + ']';
+        var selector = 'xsd:annotation/xsd:documentation[@xml:lang=\'' + lang + '\']';
 
         // any appinfo this element itself might carry
-        $.each($e.find(fixNamespace(selector)), function (i, documentationNode) {
+        $.each($e.xpath(selector, xsdNamespaceResolver), function (i, documentationNode) {
             var documentationNodeText = $(documentationNode).text();
             documentation.push(documentationNodeText);
         });
         
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
         if ($e.find(fixNamespace('> xsd\\:complexType')).length == 0) {
-            $.each($type.find(fixNamespace(selector)), function (i, documentationNode) {
+            $.each($type.xpath(selector, xsdNamespaceResolver), function (i, documentationNode) {
                 var documentationNodeText = $(documentationNode).text();
                 documentation.push(documentationNodeText);
             });
