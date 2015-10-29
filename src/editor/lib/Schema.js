@@ -1039,14 +1039,14 @@ var SchemaElement = function (node, schema) {
         var appinfo = [];
         
         // any appinfo this element itself might carry
-        $.each($e.xpath(fixNamespace('xsd:annotation/xsd:appinfo', xsdNamespaceResolver)), function (i, appinfoNode) {
+        $.each($e.xpath('xsd:annotation/xsd:appinfo', xsdNamespaceResolver), function (i, appinfoNode) {
             var appinfoNodeText = $(appinfoNode).text();
             appinfo.push(appinfoNodeText);
         });
         
         // only aggregate types appinfo if it is not an immediate child of the element-node, but referenced/typed
         if ($e.find(fixNamespace('> xsd\\:complexType')).length == 0) {
-            $.each($type.xpath(fixNamespace('xsd:annotation/xsd:appinfo', xsdNamespaceResolver)), function (i, appinfoNode) {
+            $.each($type.xpath('xsd:annotation/xsd:appinfo', xsdNamespaceResolver), function (i, appinfoNode) {
                 var appinfoNodeText = $(appinfoNode).text();
                 appinfo.push(appinfoNodeText);
             });
