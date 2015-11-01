@@ -23,6 +23,12 @@ f9cc09a Sun, 1 Feb 2015 15:18:36 +0100 Textify CV to improve performance
 
 Bug fixes:
 
+af9ec61 Sun, 1 Nov 2015 22:52:34 +0100 Fix editor documentation / complex mode for webKit browsers
+9245fcf Sun, 1 Nov 2015 18:08:15 +0100 added missing session to write-command
+3e689f5 Sun, 1 Nov 2015 18:04:39 +0100 Fix wrong slider position due to wrong number type.
+6750762 Wed, 28 Oct 2015 17:51:03 +0100 fixed wrong comment in css
+38b2bd9 Mon, 12 Oct 2015 23:14:00 +0200 Fixed icon update Script to work with github and updated knx-uf-iconset
+8deecc4 Mon, 12 Oct 2015 23:13:43 +0200 Fixed missing var declaration and pragmatic solution regarding OH integration
 1499862 Mon, 21 Sep 2015 11:48:43 +0200 Fix position when slider is updatd while hidden
 a2e94b0 Fri, 29 May 2015 10:32:51 +0200 - fix for updates in diagram_info  (also fixes missing default mapping in diagram_info) see:http://knx-user-forum.de/forum/supportforen/cometvisu/829798-darstellungsprobleme-mit-git-version?p=835404#post835404
 4689fd1 Sat, 23 May 2015 23:46:36 +0200 Fix refresh widgetThe value attribute was not respected (cf. report at http://knx-user-forum.de/forum/supportforen/cometvisu/829798-darstellungsprobleme-mit-git-version?p=833726#post833726)
