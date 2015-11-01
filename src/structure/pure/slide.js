@@ -25,6 +25,7 @@ define( ['_common'], function( design ) {
   {
     if (!$main.data('disableSliderTransform')) {
       if (!isNaN(value)) {
+        value = parseFloat(value); // force any (string) value to float
         var sliderMax = $(handle).parent().slider("option","max")+($(handle).parent().slider("option","min")*-1);
         var percent = Math.round((100/sliderMax)*(value+($(handle).parent().slider("option","min")*-1)));
         //console.log("Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
