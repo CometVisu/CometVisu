@@ -68,6 +68,16 @@ design.basicdesign.addCreator('slide', {
       'inAction'       : false,
     });
     
+    // check provided address-items for at least one address which has write-access
+    var readonly = true;
+    for (var addrIdx in data.address) {
+        if (data.address[addrIdx][1] & 2) {
+            // write-access detected --> no read-only mode
+            readonly = false;
+            break;
+        }
+    }
+    
     // create the actor
     templateEngine.postDOMSetupFns.push( function(){
       var $actor = $( '#' + path + ' .actor' );
@@ -81,6 +91,10 @@ design.basicdesign.addCreator('slide', {
         start:   self.slideStart,
         change:  self.slideChange
       });
+      // disable slider interaction if in read-only mode --> just show the value
+      if (readonly) {
+          $actor.slider({ disabled: true });
+      }
       $actor.on( 'slide', self.slideUpdateValue );
       
       if( data['format']) {
