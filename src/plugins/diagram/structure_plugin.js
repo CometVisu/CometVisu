@@ -27,17 +27,22 @@
  *   - diagram
  *   - diagram_info
  *
- * attributes:
+ * attributes (per diagram):
  *   - series:               optional, "hour", "day" (default), "week", "month", "year"
  *   - period:               optional, number of "series" to be shown
  *   - refresh:              optional, refresh-rate in seconds, no refresh if missing
- *   - fill:                 optional, true or false - filling the space under the line
  *   - gridcolor:            optional, color for dataline and grid, HTML-colorcode
  *   - width, height:        optional, width and height of "inline"-diagram
  *   - previewlabels:        optional, show labels on "inline"-diagram
  *   - popup:                optional, make diagram clickable and open popup
  *   - legend:               optional, "none", "both", "inline", "popup" select display of legend
  *   - title:                optional, diagram title (overrides label-content)
+ *
+ * attributes (per graph):
+ *   - style:                optional, "lines" (default), "bars", "points" select graph type
+ *   - fill:                 optional, true or false - fill the space under the line / within the bar (line / bar style graphs)
+ *   - barWidth:             optional, width of bars (bar style graphs)
+ *   - align:                optional, "left" (default), "center", "right" select qlignemnt of bars (bar style graphs)
  */
 
 require.config({
@@ -209,6 +214,9 @@ define( ['structure_custom',
           cFunc     : this.getAttribute('consolidationFunction') || "AVERAGE",
           resol     : parseInt(this.getAttribute('resolution')),
           offset    : parseInt(this.getAttribute('offset')),
+          style     : this.getAttribute('style') || "lines",
+          align     : this.getAttribute('align') || "center",
+          barWidth  : this.getAttribute('barWidth') || 1
         };
         if (retVal.rrd[retVal.rrdnum].dsIndex < 0) {
           retVal.rrd[retVal.rrdnum].dsIndex = 0;
@@ -261,10 +269,6 @@ define( ['structure_custom',
           show            : (isPopup && data.legendPopup) || (!isPopup && data.legendInline),
           backgroundColor : "#101010",
           position        : data.legendposition
-        },
-        series : {
-          lines  : { show: true,  fill: false, zero: false },
-          points : { show: false, fill: false }
         },
         grid : {
           show            : true,
@@ -400,7 +404,9 @@ define( ['structure_custom',
                 color: rrd.color,
                 data: rrddata,
                 yaxis: parseInt(rrd.axisIndex),
-                lines: {steps: rrd.steps, fill: rrd.fill}
+                bars: { show: rrd.style == "bars", fill: rrd.fill, barWidth: parseInt(rrd.barWidth), align: rrd.align },
+                lines: { show: rrd.style == "lines", steps: rrd.steps, fill: rrd.fill, zero: false },
+                points: { show: rrd.style == "points", fill: rrd.fill }
               };
             }
 
