@@ -16,6 +16,7 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
   var basicdesign = design.basicdesign;
   
 design.basicdesign.addCreator('refresh', {
@@ -25,23 +26,23 @@ design.basicdesign.addCreator('refresh', {
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'refresh', $e, path, flavour, type, null );
     
-    // create the actor
-    var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     
     var data = templateEngine.widgetDataGet( path );
+    data.value = $e.attr('value');
     
-    // bind to user action
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    basicdesign.createDefaultButtonAction( clickable, $actor, undefined, this.action );
-
     // initially setting a value
-    basicdesign.defaultUpdate( undefined, $e.attr('value'), ret_val, true, path );
-    return ret_val;
+    templateEngine.postDOMSetupFns.push( function(){
+      basicdesign.defaultUpdate( undefined, data.value, $('#'+path), true, path );
+    });
+    
+    return ret_val + '</div>';
   },
-  action: function(event) {
+  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if( isCanceled ) return;
+    
     templateEngine.visu.restart();
   }
 });

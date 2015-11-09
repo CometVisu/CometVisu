@@ -22,8 +22,8 @@
   $outtxt = preg_replace("/,\n$/", "", $outtxt);
 
   // Read Original File for Canvas implementation
-  $fn = fopen(dirname(__FILE__)."/../../lib/iconhandler.js", "r");
-  $fn_new = fopen(dirname(__FILE__)."/../../lib/iconhandler.js.NEW", "w");
+  $fn = fopen(dirname(__FILE__)."/../iconconfig.js", "r");
+  $fn_new = fopen(dirname(__FILE__)."/../iconconfig.js.NEW", "w");
   $show = true;
   while(! feof($fn)) {
     $line = fgets($fn);

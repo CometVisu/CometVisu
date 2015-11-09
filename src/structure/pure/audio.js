@@ -16,6 +16,7 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
   var basicdesign = design.basicdesign;
   
 design.basicdesign.addCreator('audio', {
@@ -42,13 +43,8 @@ design.basicdesign.addCreator('audio', {
     if( style != '' ) style = 'style="' + style + '"';
     var autoplay = (data.autoplay == 'true') ? ' autoplay ' : '';
     var loop = (data.loop == 'true') ? ' loop ' : '';
-    var $actor = $('<div class="actor"><audio id="' + $e.attr('id') + '" ' + autoplay + loop + style + ' controls> <source src="' +$e.attr('src') + '" > </audio> </div>');
-    ret_val.append( $actor );
-	
-    // initially setting a value
-    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
-
-    return ret_val;
+    var actor = '<div class="actor"><audio id="' + $e.attr('id') + '" ' + autoplay + loop + style + ' controls> <source src="' +$e.attr('src') + '" > </audio> </div>';
+    return ret_val + actor + '</div>';
   },
   
   update: function(e,d) {

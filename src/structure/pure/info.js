@@ -16,6 +16,7 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
    var basicdesign = design.basicdesign;
  
 design.basicdesign.addCreator('info', {
@@ -26,17 +27,14 @@ design.basicdesign.addCreator('info', {
     var ret_val = basicdesign.createDefaultWidget( 'info', $e, path, flavour, type, this.update );
     
     // create the actor
-    var $actor = $('<div class="actor"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    var actor = '<div class="actor"><div class="value">-</div></div>';
+    ret_val += actor;
     
-    // initially setting a value
-    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
-    
-    return ret_val;
+    return ret_val + '</div>';
   },
-  update:   function(e,d) { 
+  update:   function( ga, d ) { 
     var element = $(this);
-    basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
+    basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
   },
   update3d: design.basicdesign.defaultUpdate3d
 });

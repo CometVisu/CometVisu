@@ -16,15 +16,8 @@
  */
 
 define( ['transform_default'], function( Transform ) {
+  "use strict";
   
-hueToRGB = function (m1, m2, h) {
-    h = (h < 0) ? h + 1 : ((h > 1) ? h - 1 : h);
-    if (h * 6 < 1) return m1 + (m2 - m1) * h * 6;
-    if (h * 2 < 1) return m2;
-    if (h * 3 < 2) return m1 + (m2 - m1) * (0.66666 - h) * 6;
-    return m1;
-  };
-
 /**
  * This class defines the default transforms: encode: transform JavaScript to
  * bus value decode: transform bus to JavaScript value
@@ -93,37 +86,94 @@ Transform.addTransform('OH', {
       return str;
     },
   },
+  'datetime' : {
+    name : "OH_DateTime",
+    encode : function(phy) {
+      if (phy instanceof Date) {
+        return phy.toLocaleDateString();
+      } else {
+        return phy;
+      }
+    },
+    decode : function(str) {
+      if (str=="NaN" || str=='Uninitialized') return '-';
+      var date = new Date(str);
+      return date;
+    },
+  },
+  'time' : {
+    name : "OH_Time",
+    encode : function(phy) {
+      if (phy instanceof Date) {
+        return phy.toLocaleTimeString();
+    } else {
+      return phy;
+      }
+    },
+    decode : function(str) {
+      if (str=="NaN" || str=='Uninitialized') return '-';
+      var date = new Date(str);
+      return date;
+    },
+   },
   'color' : {
     name : "OH_Color",
     encode : function(rgb) {
-      var min, max, delta, h, s, l;
-      var r = rgb[0]/100, g = rgb[1]/100, b = rgb[2]/100;
-      console.log(rgb);
-      min = Math.min(r, Math.min(g, b));
-      max = Math.max(r, Math.max(g, b));
-      delta = max - min;
-      l = max;
-      s = delta/l;
-      h = 0;
-      if (delta > 0) {
-        if (max == r && max != g) h += (g - b) / delta;
-        if (max == g && max != b) h += (2 + (b - r) / delta);
-        if (max == b && max != r) h += (4 + (r - g) / delta);
+      var max, min, h, s, v, d;
+      var r = rgb[0]/255, g = rgb[1]/255, b = rgb[2]/255;
+      max = Math.max(r, g, b);
+      min = Math.min(r, g, b);
+      v = max;
+      d = max - min;
+      s = max === 0 ? 0 : d / max;
+      if (max === min) {
+        h = 0; // achromatic
+      } else {
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
         h /= 6;
       }
-      return [h*360, s*100, l*100];
+      // map top 360,100,100
+      h = h * 360;
+      s = s * 100;
+      v = v * 100;
+      return [h, s, v];
     },
-    decode : function(hsb) {
-      var m1, m2;
-      var h = hsb[0]/360, s = hsb[1]/100, b = hsb[2]/100;
-      console.log("HSB: "+hsb);
-      // convert from hsb to hsl
-      var l = 0.5*b*(2-s);
-      m2 = (l <= 0.5) ? l * (s + 1) : l + s - l*s;
-      m1 = l * 2 - m2;
-      return [hueToRGB(m1, m2, h+0.33333),
-          hueToRGB(m1, m2, h),
-          hueToRGB(m1, m2, h-0.33333)];
+    decode : function(hsbString) {
+      // decode HSV/HSB to RGB
+      var hsb = hsbString.split(",");
+      var h = hsb[0], s = hsb[1], v = hsb[2];
+      var r, g, b, i, f, p, q, t;
+	  // h = h / 360;
+	  if (v === 0) { return [0, 0, 0]; }
+	  s = s / 100;
+	  v = v / 100;
+	  h = h / 60;
+	  i = Math.floor(h);
+	  f = h - i;
+	  p = v * (1 - s);
+	  q = v * (1 - (s * f));
+	  t = v * (1 - (s * (1 - f)));
+	  if (i === 0) {
+	    r = v; g = t; b = p;
+	  } else if (i === 1) {
+	    r = q; g = v; b = p;
+	  } else if (i === 2) {
+	    r = p; g = v; b = t;
+	  } else if (i === 3) {
+	    r = p; g = q; b = v;
+	  } else if (i === 4) {
+	    r = t; g = p; b = v;
+	  } else if (i === 5) {
+	    r = v; g = p; b = q;
+	  }
+	  r = Math.floor(r * 255);
+	  g = Math.floor(g * 255);
+	  b = Math.floor(b * 255);
+	  return [r, g, b];
     },
   },
 });

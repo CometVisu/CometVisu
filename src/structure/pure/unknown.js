@@ -16,13 +16,14 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
   var basicdesign = design.basicdesign;
   
 design.basicdesign.addCreator('unknown', {
   create: function( element, path, flavour, type ) {
-    var ret_val = $('<div class="widget clearfix" />');
-    ret_val.append( '<pre>unknown: ' + element.nodeName + '</pre>' );
-    return ret_val;
+    return '<div class="widget clearfix">'
+      + '<pre>unknown: ' + element.nodeName + '</pre>'
+      + '</div>';
   }
 });
 

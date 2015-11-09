@@ -16,6 +16,7 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
   var basicdesign = design.basicdesign;
   
 design.basicdesign.addCreator('rgb', {
@@ -29,21 +30,21 @@ design.basicdesign.addCreator('rgb', {
     var ret_val = basicdesign.createDefaultWidget( 'rgb', $e, path, flavour, type, this.update, rgb_handleVariant );
     
     // create the actor
-    var $actor = $('<div class="actor"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    var actor = '<div class="actor"><div class="value"></div></div>';
+    ret_val += actor + '</div>';
     
     return ret_val;
   },
-  update: function(e,d) { 
+  update: function( ga, d ) { 
     var
       element = $(this),
       valElem = element.find('.value'),
       data    = templateEngine.widgetDataGetByElement( this );
-    var value = templateEngine.transformDecode( data['address'][ e.type ][0], d );
+    var value = templateEngine.transformDecode( data['address'][ ga ][0], d );
     var bg = valElem.css('background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
     if( 3 !== bg.length )
       bg = [0, 0, 0];
-    switch (data['address'][e.type][2]) {
+    switch (data['address'][ ga ][2]) {
     case 'r' :  bg[0] = value; break;
     case 'g' :  bg[1] = value; break;
     case 'b' :  bg[2] = value; break;

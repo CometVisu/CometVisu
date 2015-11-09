@@ -16,6 +16,7 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
   var basicdesign = design.basicdesign;
   
 design.basicdesign.addCreator('pushbutton', {
@@ -23,51 +24,44 @@ design.basicdesign.addCreator('pushbutton', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'pushbutton', $e, path, flavour, type, this.update );
+    var ret_val = basicdesign.createDefaultWidget( 'pushbutton', $e, path, flavour, type, this.update, function( src, transform, mode, variant ) {
+      return [ true, variant ];
+    } );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'downValue'  : $e.attr('downValue' ) || 1,
       'upValue' : $e.attr('upValue') || 0
     } );
 
-    // create the actor
-    var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
 
-    // bind to user action
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    basicdesign.createDefaultButtonAction( clickable, $actor, this.downAction, this.upAction );
-
-    // initially setting a value
-    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
-
-    return ret_val;
+    return ret_val + '</div>';
   },
-  update: function(e,d) { 
+  update: function( ga, d ) { 
     var element = $(this),
         data  = templateEngine.widgetDataGetByElement( element );
     var actor   = element.find('.actor');
-    var value = basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
+    var value = basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
     var off = templateEngine.map( data['upValue'], data['mapping'] );
     actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
-  downAction: function() {
-    var data = templateEngine.widgetDataGetByElement( this );
+  downaction: function( path, actor ) {
+    var data = templateEngine.widgetDataGet( path );
 
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
-      templateEngine.visu.write(addr.substr(1), templateEngine.transformEncode(data.address[addr][0], data.downValue));
+      if (data.address[addr][2]!=undefined && data.address[addr][2]!="down") continue; // skip when not down-variant
+      templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.downValue));
     }
   },
-  upAction: function() {
-    var data = templateEngine.widgetDataGetByElement( this );
+  action: function( path, actor, isCanceled ) {
+    var data = templateEngine.widgetDataGet( path );
 
     for (var addr in data.address) {
       if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
-      templateEngine.visu.write(addr.substr(1), templateEngine.transformEncode(data.address[addr][0], data.upValue));
+      if (data.address[addr][2]!=undefined && data.address[addr][2]!="up") continue; // skip when not up-variant
+      templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.upValue));
     }
   }
 });

@@ -19,6 +19,7 @@
  */
 
 define([ 'jquery' ], function( $ ) {
+  "use strict";
   return function PagePartsHandler() {
   var thisPagePartsHandler = this;
   this.navbars = { // store informations about the nav bars
@@ -205,15 +206,19 @@ define([ 'jquery' ], function( $ ) {
         thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
       }
     }
-    $.each([ 'Left', 'Top', 'Right', 'Bottom' ], function(index, value) {
-      var key = value.toLowerCase();
+    [ 'Left', 'Top', 'Right', 'Bottom' ].forEach( function(value) {
+      var 
+        key = value.toLowerCase(),
+        $navbar = $('#navbar' + value),
+        display = $navbar.css("display"),
+        isLoading = $navbar[0].classList.contains('loading');
       if (shownavbar[key] == 'true') {
-        if ($('#navbar' + value).css("display") == "none") {
+        if (display == "none" || isLoading) {
           thisPagePartsHandler.fadeNavbar( value, "in", speed );
           thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
         }
       } else {
-        if ($('#navbar' + value).css("display") != "none") {
+        if (display != "none" || isLoading) {
           thisPagePartsHandler.fadeNavbar( value, "out", speed );
         }
       }
@@ -257,11 +262,9 @@ define([ 'jquery' ], function( $ ) {
       }
       break;
     case "out":
-      if (navbar.css("display") != "none") {
-        fn = function() {
-          navbar.css("display", "none");
-        };
-      }
+      fn = function() {
+        navbar.css("display", "none");
+      };
       switch (position) {
       case "Top":
       case "Bottom":
@@ -308,39 +311,43 @@ define([ 'jquery' ], function( $ ) {
     $(tree).each(function(i) {
       var id = $(this).attr('id');
       var topNav = $('#' + id + 'top_navbar');
+      var topData = templateEngine.widgetDataGet( id + 'top_navbar' );
       var rightNav = $('#' + id + 'right_navbar');
+      var rightData = templateEngine.widgetDataGet( id + 'right_navbar' );
       var bottomNav = $('#' + id + 'bottom_navbar');
+      var bottomData = templateEngine.widgetDataGet( id + 'bottom_navbar' );
       var leftNav = $('#' + id + 'left_navbar');
-      // console.log(tree.length+"-"+level+"<="+topNav.data('scope'));
+      var leftData = templateEngine.widgetDataGet( id + 'left_navbar' );
+      // console.log(tree.length+"-"+level+"<="+topData.scope);
       if (topNav.size() > 0) {
-        if (topNav.data('scope') == undefined || topNav.data('scope') < 0
-            || tree.length - level <= topNav.data('scope')) {
+        if (topData.scope == undefined || topData.scope < 0
+            || tree.length - level <= topData.scope) {
           topNav.addClass('navbarActive');
         } else {
           topNav.removeClass('navbarActive');
         }
       }
       if (rightNav.size() > 0) {
-        if (rightNav.data('scope') == undefined
-            || rightNav.data('scope') < 0
-            || tree.length - level <= rightNav.data('scope')) {
+        if (rightData.scope == undefined
+            || rightData.scope < 0
+            || tree.length - level <= rightData.scope) {
           rightNav.addClass('navbarActive');
         } else {
           rightNav.removeClass('navbarActive');
         }
       }
       if (bottomNav.size() > 0) {
-        if (bottomNav.data('scope') == undefined
-            || bottomNav.data('scope') < 0
-            || tree.length - level <= bottomNav.data('scope')) {
+        if (bottomData.scope == undefined
+            || bottomData.scope < 0
+            || tree.length - level <= bottomData.scope) {
           bottomNav.addClass('navbarActive');
         } else {
           bottomNav.removeClass('navbarActive');
         }
       }
       if (leftNav.size() > 0) {
-        if (leftNav.data('scope') == undefined || leftNav.data('scope') < 0
-            || tree.length - level <= leftNav.data('scope')) {
+        if (leftData.scope == undefined || leftData.scope < 0
+            || tree.length - level <= leftData.scope) {
           leftNav.addClass('navbarActive');
         } else {
           leftNav.removeClass('navbarActive');

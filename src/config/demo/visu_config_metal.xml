@@ -19,7 +19,7 @@
         </entry>
       </mapping>
       <mapping name="OnOff">
-        <entry value="0">O</entry>
+        <entry default="true" value="0">O</entry>
         <entry value="1">I</entry>
       </mapping>
       <mapping name="OnOff_Licht">
@@ -71,9 +71,15 @@ Config</a> ]]></status>
       <line>
         <layout colspan="0"/>
       </line>
-      <pagejump target="Wohnzimmer">
+      <pagejump path="Übersicht/KNX" target="Wohnzimmer" active_scope="path">
         <layout colspan="0"/>
         <label><icon name="control_all_on_off"/>KNX</label>
+        <widgetinfo>
+          <info format="%d">
+          <layout colspan="0" />
+            <address transform="DPT:9.001" variant="">13/1/28</address>
+          </info>
+        </widgetinfo>
       </pagejump>
       <pagejump target="Video">
         <layout colspan="0"/>
@@ -94,8 +100,12 @@ Config</a> ]]></status>
         <layout colspan="0"/>
         <label><icon name="weather_sun"/>Flavour</label>
       </pagejump>
+      <refresh value="Refresh">
+        <layout colspan="0"/>
+      	<label><icon name="audio_repeat"/></label>
+      </refresh>
     </navbar>
-    <group name="Allgemein">
+    <group name="Allgemein" target="KNX">
       <layout colspan="12"/>
       <info>
         <label>Modus</label>
@@ -211,6 +221,12 @@ Config</a> ]]></status>
             <label>
               <icon name="scene_sleeping"/>
             </label>
+            <widgetinfo>
+              <info format="%d">
+              <layout colspan="0" />
+                <address transform="DPT:9.001" variant="">13/1/28</address>
+              </info>
+            </widgetinfo>
           </pagejump>
         </group>
         <group name="Sonstiges">

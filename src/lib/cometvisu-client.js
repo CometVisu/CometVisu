@@ -21,7 +21,9 @@
  * @title  CometVisu Client
  * @reqires jQuery
 */
-
+define( [], function() {
+  "use strict";
+  
 /**
  * Class that handles the communicaton of the client
  * @class CometVisu
@@ -48,6 +50,7 @@ function CometVisu( urlPrefix )
   this.lastIndex        = -1;                            // index returned by the last request
   this.resendHeaders = [];                               // keep the e.g. atmosphere tracking-id id there is one
   this.headers = [];                                     // fixed headers that are send everytime
+  this.retryCounter = 0;                                 // count number of retries (reset with each valid response)
     
   this.setInitialAddresses = function(addresses) {
     this.initialAddresses = addresses;
@@ -101,6 +104,7 @@ function CometVisu( urlPrefix )
     {
       if( this.running )
       { // retry initial request
+        this.retryCounter++;
         this.xhr = $.ajax({
           url:this.urlPrefix + 'r',
           dataType:   'json',
@@ -121,10 +125,12 @@ function CometVisu( urlPrefix )
       var data       = json.d;
       this.readResendHeaderValues();
       this.update( data );
+      this.retryCounter = 0;
     }
 
     if( this.running )
     { // keep the requests going
+      this.retryCounter++;
       this.xhr = $.ajax({
         url:        this.urlPrefix + 'r',
         dataType:   'json',
@@ -300,7 +306,7 @@ function CometVisu( urlPrefix )
       url:      this.urlPrefix + 'w',
       dataType: 'json',
       context:  this,
-      data:     'a=' + address + '&v=' + value + '&ts=' + ts
+      data:     's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts
     });
   }
   
@@ -352,11 +358,11 @@ function CometVisu( urlPrefix )
     var aliveHandler = setInterval( aliveCheckFunction, thisCometVisu.watchdogTimer * 1000 );
     return {
       ping: function(){
-        delete last;
+        //delete last;
         last = new Date();
         if( !thisCometVisu.doRestart )
         {
-          delete hardLast;
+          //delete hardLast;
           hardLast = last;
         }
       }
@@ -366,3 +372,5 @@ function CometVisu( urlPrefix )
 
 CometVisu.prototype.update = function( json ) {};
 
+  return CometVisu;
+});

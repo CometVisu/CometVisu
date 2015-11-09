@@ -22,6 +22,7 @@
  */
 
 define( ['structure_custom', 'css!plugins/strftime/strftime' ], function( VisuDesign_Custom ) {
+  "use strict";
 
 (function() {
   VisuDesign_Custom.prototype.addCreator("strftime", {
@@ -29,24 +30,24 @@ define( ['structure_custom', 'css!plugins/strftime/strftime' ], function( VisuDe
       var $p = $(page);
       var id = "strftime_" + uniqid();
 
-      var ret_val = $('<div class="widget clearfix text strftime"/>');
+      var classes = 'widget clearfix text strftime';
       if ($p.attr('class')) {
-        ret_val.addClass('custom_'+$p.attr('class'));
+        classes += ' custom_'+$p.attr('class');
       }
+      classes += templateEngine.design.setWidgetLayout( $p, path );
+      var ret_val = '<div class="'+ classes + '">';
 
-      templateEngine.design.setWidgetLayout(ret_val, $p, path);
-      var actor = $('<div id="' + id + '" class="strftime_value"></div>');
-      ret_val.append(actor);
+      ret_val += '<div id="' + id + '" class="strftime_value"></div>';
 
-      actor.data({
+      var data = templateEngine.widgetDataInsert( path, {
         'locale' : $p.attr('lang'),
         'format' : $p.attr('format') || '%c'
-      });
+      } );
 
-      elements[id] = actor;
+      elements[id] = path;
       startTimer();
 
-      return ret_val;
+      return ret_val + '</div>';
     }
   });
 
@@ -61,9 +62,19 @@ define( ['structure_custom', 'css!plugins/strftime/strftime' ], function( VisuDe
     if (!timerStarted) {
       var f = function() {
         var d = new Date();
-        $.each(elements, function(index, actor) {
-          d.locale = actor.data('locale');
-          actor.html(d.strftime(actor.data('format')));
+        $.each(elements, function(index, path ) {
+          var data = templateEngine.widgetDataGet( path );
+          d.locale = data.locale;
+          if( undefined === data.actor )
+          {
+            data.actor = $('#' + index );
+            if( 0 === data.actor.length )
+            {
+              data.actor = undefined;
+              return;
+            } 
+          }
+          data.actor.html(d.strftime( data.format ));
         });
         window.setTimeout(f, 1000);
       };
