@@ -161,12 +161,11 @@ $(document).ready(function() {
           var $loading = $('#loading');
           $loading.html( $loading.text().trim() + '.' );
           // load backend header
-          if (jqXHR.getResponseHeader("X-CometVisu-Backend")) {
-            var parts = jqXHR.getResponseHeader("X-CometVisu-Backend").split(";");
-            templateEngine.backendUrl = parts[0];          
-            if (parts.length === 2) {
-              templateEngine.backend = parts[1];
-            }
+          if (jqXHR.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
+            templateEngine.backendUrl = jqXHR.getResponseHeader("X-CometVisu-Backend-LoginUrl");
+          }
+          if (jqXHR.getResponseHeader("X-CometVisu-Backend-Name")) {
+            templateEngine.backend = jqXHR.getResponseHeader("X-CometVisu-Backend-Name");
           }
           templateEngine.parseXML(xml);
         }
