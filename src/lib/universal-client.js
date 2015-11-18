@@ -30,8 +30,13 @@ define( [], function() {
  * @constructor foo
  * @param backend
  */
-function CometVisu( backend )
+function CometVisu( backend, initPath )
 {
+  this.initPath = initPath ? initPath : null;
+  if (this.initPath && !this.initPath.endsWith("/")) {
+    this.initPath += "/";
+  }
+  
   this.backends = {
 	  'default' : {
   		name 	  : 'default',
@@ -70,22 +75,6 @@ function CometVisu( backend )
   	      }
   		  }
   		}
-	  },
-	  'openhab2' : {
-  		name		: 'openHAB2',
-  		urlPrefix 	: '/rest/cv/',
-  		transport 	: 'sse',
-  		transportFallback : {
-  		  transport : 'long-polling',
-  		  // keep the e.g. atmosphere tracking-id id there is one
-  		  resendHeaders : {
-  		    'X-Atmosphere-tracking-id' : null
-  		  },
-  		  // fixed headers that are send everytime
-  		  headers : {
-  		    'X-Atmosphere-Transport' : 'long-polling'
-  		  }
-  		}
 	  }
   };
   // init default settings
@@ -98,8 +87,6 @@ function CometVisu( backend )
   	else if (this.backends[backend]) {
   	  // merge backend settings into this.config
   	  $.extend(this.config, this.backends[backend]);
-  	} else {
-  	  console.error("unknown backend setting '%s', using default", backend);
   	}
   }
   
@@ -177,12 +164,30 @@ function CometVisu( backend )
    
     
     $.ajax({
-      url:      this.getResourcePath("login"),
+      url:      this.initPath ? this.initPath : this.getResourcePath("login"),
       dataType: 'json',
-      context:  this.transport[this.config.transport],
+      context : this,
       data:     request,
-      success:  this.transport[this.config.transport].handleSession
+      success:  this.handleLogin
     });
+  };
+  
+  /**
+   * Handles login response, applies backend configuration if send by backend
+   * and forwards to the configurated transport handleSession function
+   * 
+   * @param json
+   */
+  this.handleLogin = function(json) {
+    // read backend configuration if send by backend
+    if (json.c) {
+      $.extend(this.config, json.c);
+      this.checkSettings();
+    }
+    // bind context object (this) to the handleSession function
+    var bound = this.transport[this.config.transport].handleSession.bind(this.transport[this.config.transport]);
+    // call the bound function
+    bound(json);
   };
   
   
@@ -252,6 +257,7 @@ function CometVisu( backend )
           if( 0 < parseInt(thisCometVisu.version[0]) || 1 < parseInt(thisCometVisu.version[1]) ) 
             alert( 'ERROR CometVisu Client: too new protocol version (' + json.v + ') used!' );
 
+          
           // send first request
           thisCometVisu.running = true;
           if (thisCometVisu.initialAddresses.length) {
