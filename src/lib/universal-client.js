@@ -220,8 +220,7 @@ function CometVisu( backend, initPath )
           this.watchdog();
         },
         
-        watchdog : function(){
-          console.log(this);
+        watchdog : function() {
           var last = new Date();
           var hardLast = last;
           var aliveCheckFunction = function(){
@@ -454,7 +453,19 @@ function CometVisu( backend, initPath )
         }       
       },
       'sse' : {
+        watchdogTimer     : 5,               // in Seconds - the alive check interval of the watchdog
+        
         init : function() {
+        },
+        
+        watchdog : function() {
+          var aliveCheckFunction = function() {
+            if (this.eventSource.readyState === EventSource.CLOSED) {
+              console.log("connection closed => restarting");
+              this.connect(); 
+            }
+          };
+          setInterval( aliveCheckFunction.bind(this), this.watchdogTimer * 1000 );
         },
         /**
          * This function gets called once the communication is established and
@@ -483,6 +494,13 @@ function CometVisu( backend, initPath )
               + thisCometVisu.buildRequest());
           this.eventSource.addEventListener('message', this.handleMessage, false);
           this.eventSource.addEventListener('error', this.handleError, false); 
+          this.eventSource.onerror = function(event) {
+            console.log("connection lost");
+          };
+          this.eventSource.onopen = function(event) {
+            console.log("connection established");         
+          };
+          this.watchdog();
         },
 
         /**
