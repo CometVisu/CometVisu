@@ -153,7 +153,7 @@ $(document).ready(function() {
     noDemo: true,
     url : 'config/visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
     cache : !templateEngine.forceReload,
-    success : function(xml) {
+    success : function(xml, textStatus, jqXHR) {
       if (!xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length) {
         configError("parsererror");
       }
@@ -169,6 +169,14 @@ $(document).ready(function() {
         else {
           var $loading = $('#loading');
           $loading.html( $loading.text().trim() + '.' );
+          // load backend header
+          if (jqXHR.getResponseHeader("X-CometVisu-Backend")) {
+            var parts = jqXHR.getResponseHeader("X-CometVisu-Backend").split(";");
+            templateEngine.backendUrl = parts[0];          
+            if (parts.length === 2) {
+              templateEngine.backend = parts[1];
+            }
+          }
           templateEngine.parseXML(xml);
         }
       }
@@ -297,18 +305,19 @@ function TemplateEngine( undefined ) {
   this.enableAddressQueue = $.getUrlVar('enableQueue') ? true : false;
   
   this.backend = 'default';
+  this.backendUrl = null;
   if ($.getUrlVar("backend")) {
     this.backend = $.getUrlVar("backend");
   }
 
   this.initBackendClient = function() {
     if (thisTemplateEngine.backend=="oh") {
-      thisTemplateEngine.visu = new CometVisu('openhab');
+      thisTemplateEngine.visu = new CometVisu('openhab', this.backendUrl);
     }
     else if (thisTemplateEngine.backend=="oh2") {
-      thisTemplateEngine.visu = new CometVisu('openhab2');
+      thisTemplateEngine.visu = new CometVisu('openhab2', this.backendUrl);
     } else {
-      thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backendConfig);
+      thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend, this.backendUrl);
     }
     function update(json) {
       for( var key in json ) {
@@ -954,22 +963,9 @@ function TemplateEngine( undefined ) {
      */
     // read predefined design in config
     var predefinedDesign = $('pages', xml).attr("design");
-    
-    thisTemplateEngine.backendConfig = {};
-    
+        
     if ($('pages', xml).attr("backend")) {
       thisTemplateEngine.backend = $('pages', xml).attr("backend");
-    }
-    else {
-      if ($('pages', xml).attr("backend_prefix")) {
-        thisTemplateEngine.backendConfig.urlPrefix = $('pages', xml).attr("backend_prefix");
-        if (!thisTemplateEngine.backendConfig.urlPrefix.endsWith("/")) {
-          thisTemplateEngine.backendConfig.urlPrefix += "/";
-        }
-      }
-      if ($('pages', xml).attr("backend_transport")) {
-        thisTemplateEngine.backendConfig.transport = $('pages', xml).attr("backend_transport");
-      }
     }
     thisTemplateEngine.initBackendClient();
 
