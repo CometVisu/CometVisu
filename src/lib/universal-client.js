@@ -33,14 +33,11 @@ define( [], function() {
 function CometVisu( backend, initPath )
 {
   this.initPath = initPath ? initPath : null;
-  if (this.initPath && !this.initPath.endsWith("/")) {
-    this.initPath += "/";
-  }
   
   this.backends = {
 	  'default' : {
   		name 	  : 'default',
-  		urlPrefix : '/cgi-bin/',
+  		baseURL : '/cgi-bin/',
   		transport : 'long-polling',
   		resources : {
   		  login : 'l',
@@ -52,7 +49,7 @@ function CometVisu( backend, initPath )
 	  },
 	  'openhab' : {
   		name 		: 'openHAB',
-  		urlPrefix 	: '/services/cv/',
+  		baseURL 	: '/services/cv/',
   		// keep the e.g. atmosphere tracking-id if there is one
   		resendHeaders : {
   		  'X-Atmosphere-tracking-id' : null
@@ -66,7 +63,7 @@ function CometVisu( backend, initPath )
   		    // send an close request to the openHAB server
   	      var oldValue = this.headers["X-Atmosphere-Transport"];
   	      this.headers["X-Atmosphere-Transport"]="close";
-  	      $.ajax( {url:this.config.urlPrefix + this.config.resources.read, dataType: 'json', context:this, beforeSend:this.beforeSend } );
+  	      $.ajax( {url:this.config.baseURL + this.config.resources.read, dataType: 'json', context:this, beforeSend:this.beforeSend } );
   	      if (oldValue!=undefined) {
   	        this.headers["X-Atmosphere-Transport"]=oldValue;
   	      }
@@ -112,7 +109,7 @@ function CometVisu( backend, initPath )
    */
   this.getResourcePath = function(name) 
   {
-    return this.config.urlPrefix + this.config.resources[name];
+    return this.config.baseURL + this.config.resources[name];
   };
   
   /**
@@ -127,6 +124,10 @@ function CometVisu( backend, initPath )
           $.extend(this.config, this.config.transportFallback);
         }
   	}
+  	// add trailing slash to baseURL if not set
+  	if (this.config.baseURL && !this.config.baseURL.endsWith("/")) {
+      this.config.baseURL += "/";
+    }
   };
   this.checkSettings();
   
