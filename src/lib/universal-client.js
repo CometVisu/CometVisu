@@ -558,7 +558,7 @@ function CometVisu( backend, initPath )
       url:      this.getResourcePath("write"),
       dataType: 'json',
       context:  this,
-      data:     'a=' + address + '&v=' + value + '&ts=' + ts
+      data:     's=' + session + '&a=' + address + '&v=' + value + '&ts=' + ts
     });
   };
 };
