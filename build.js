@@ -10,8 +10,8 @@
   separateCSS: true,
   buildCSS: false,
   paths: {
-    'css-builder': '../../../_support/css-builder',
-    'normalize': '../../../_support/normalize'
+    'css-builder': '../build/css-builder',
+    'normalize': '../build/normalize'
   },
  
   modules: [ 

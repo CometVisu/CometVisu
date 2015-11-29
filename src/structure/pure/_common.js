@@ -152,6 +152,8 @@ function VisuDesign() {
     } else {
       var thisTransform = '';
       var value = data;
+
+      widgetData["formatValueCache"] = {};
     }
     
     widgetData.basicvalue = value; // store it to be able to supress sending of unchanged data
@@ -162,8 +164,15 @@ function VisuDesign() {
     // #3: format it in a way the user understands the value
     if( widgetData.precision )
       value = Number( value ).toPrecision( widgetData.precision );
-    if( widgetData.format )
-      value = sprintf( widgetData.format, value );
+    if( widgetData.format ) {
+      widgetData.formatValueCache[ga] = value;
+      var argList = [widgetData.format];
+
+      for (var addr in widgetData.address)
+        argList.push(widgetData.formatValueCache[addr]);
+
+      value = sprintf.apply(this, argList);
+    }
     widgetData.value = value;
     if (undefined !== value && value.constructor == Date)
     {
