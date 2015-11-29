@@ -307,7 +307,7 @@ function TemplateEngine( undefined ) {
         //$.event.trigger('_' + key, json[key]);
         var data = json[ key ];
         ga_list[ key ].forEach( function( id ){
-          if( id )
+          if( typeof id === 'string' )
           {
             var 
               element = document.getElementById( id ),
@@ -322,6 +322,8 @@ function TemplateEngine( undefined ) {
                 console.log( element, children, type ); // DEBUG FIXME
             }
             //console.log( element, type, updateFn );
+          } else if( typeof id === 'function' ) {
+            id.call( key, data );
           }
         });
       }
