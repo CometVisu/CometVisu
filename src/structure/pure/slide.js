@@ -25,6 +25,7 @@ define( ['_common'], function( design ) {
   {
     if (!$main.data('disableSliderTransform')) {
       if (!isNaN(value)) {
+        value = parseFloat(value); // force any (string) value to float
         var sliderMax = $(handle).parent().slider("option","max")+($(handle).parent().slider("option","min")*-1);
         var percent = Math.round((100/sliderMax)*(value+($(handle).parent().slider("option","min")*-1)));
         //console.log("Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
@@ -67,6 +68,16 @@ design.basicdesign.addCreator('slide', {
       'inAction'       : false,
     });
     
+    // check provided address-items for at least one address which has write-access
+    var readonly = true;
+    for (var addrIdx in data.address) {
+        if (data.address[addrIdx][1] & 2) {
+            // write-access detected --> no read-only mode
+            readonly = false;
+            break;
+        }
+    }
+    
     // create the actor
     templateEngine.postDOMSetupFns.push( function(){
       var $actor = $( '#' + path + ' .actor' );
@@ -80,6 +91,10 @@ design.basicdesign.addCreator('slide', {
         start:   self.slideStart,
         change:  self.slideChange
       });
+      // disable slider interaction if in read-only mode --> just show the value
+      if (readonly) {
+          $actor.slider({ disabled: true });
+      }
       $actor.on( 'slide', self.slideUpdateValue );
       
       if( data['format']) {

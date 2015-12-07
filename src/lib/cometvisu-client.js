@@ -306,7 +306,7 @@ function CometVisu( urlPrefix )
       url:      this.urlPrefix + 'w',
       dataType: 'json',
       context:  this,
-      data:     'a=' + address + '&v=' + value + '&ts=' + ts
+      data:     's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts
     });
   }
   
