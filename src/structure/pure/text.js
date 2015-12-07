@@ -26,29 +26,10 @@ design.basicdesign.addCreator('text', {
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'text', $e, path, flavour, type, this.update );
     
-    //var layout = $e.children('layout')[0];
-    //var style = layout ? 'style="' + basicdesign.extractLayout(layout, type) + '"' : '';
-    //var classes = basicdesign.setWidgetLayout( $e, path );
-    //if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    //if( flavour ) classes += ' flavour_' + flavour;
-    //var ret_val = '<div class="widget clearfix text '+(classes?classes:'')+$e.?classes:'')+'" ' + style + '>';
     var data = templateEngine.widgetDataInsert( path, {
       path: path
     });
-    // var labelStyle = $e.attr('align') ? 'text-align:' + $e.attr('align') + ';' : undefined;
-    // var label = basicdesign.extractLabel( $e.find('label')[0], flavour, '', labelStyle );
-    // if (!label) {
-      // label = '<div' + (labelStyle ? ' style="' + labelStyle + '"' : '') + '>';
-      // $e.contents().each(function() {
-        // var $v = $(this);
-        // if ($v.is('icon')) {
-          // label += icons.getIconText($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling'));
-        // } else
-          // label += this.textContent;
-      // });
-      // label += '</div>';
-    // }
-    // ret_val += label;
+
     return ret_val + '</div>';
   }
 });
