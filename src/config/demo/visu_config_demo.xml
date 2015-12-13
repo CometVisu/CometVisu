@@ -127,7 +127,7 @@
         ]]></status>
       <status type="html" hrefextend="config"><![CDATA[
           - <a href="check_config.php">Check Config</a>
-          <div style="float:right;padding-right:0.5em">Version: SVN</div>
+          <div style="float:right;padding-right:0.5em">Version: Git</div>
         ]]></status>
     </statusbar>
   </meta>
@@ -144,6 +144,15 @@
       </pagejump>
       <pagejump target="Flavour: Potassium" name="Potassium">
         <label>Flavour</label>
+        <widgetinfo>
+          <info format="%d">
+          <layout colspan="0" />
+            <address transform="DPT:9.001" variant="">12/7/9</address>
+          </info>
+        </widgetinfo>
+      </pagejump>
+      <pagejump path="Flavour Test/Flavour: Boron" target="Subpage" name="Subpage">
+      <label>Flavour: Boron</label>
       </pagejump>
       <pagejump target="2D fixed Bitmap" name="2D">
         <!--

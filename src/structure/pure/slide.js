@@ -16,13 +16,28 @@
  */
 
 define( ['_common'], function( design ) {
-   var basicdesign = design.basicdesign;
- 
+  "use strict";
+  var 
+    basicdesign = design.basicdesign,
+    $main = $('#main');
+
+  function transformSlider( value, handle )
+  {
+    if (!$main.data('disableSliderTransform')) {
+      if (!isNaN(value)) {
+        value = parseFloat(value); // force any (string) value to float
+        var sliderMax = $(handle).parent().slider("option","max")+($(handle).parent().slider("option","min")*-1);
+        var percent = Math.round((100/sliderMax)*(value+($(handle).parent().slider("option","min")*-1)));
+        //console.log("Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
+        $(handle).css('transform', 'translateX(-'+percent+'%)');
+      }
+    }
+  }
+
 design.basicdesign.addCreator('slide', {
   create: function( element, path, flavour, type ) {
-    var
-      self = this,
-      $e = $(element);
+    var self = this,
+        $e = $(element);
     
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update );
@@ -42,14 +57,26 @@ design.basicdesign.addCreator('slide', {
     var min  = parseFloat( $e.attr('min')  || datatype_min || 0   );
     var max  = parseFloat( $e.attr('max')  || datatype_max || 100 );
     var step = parseFloat( $e.attr('step') || 0.5 );
+    var send_on_finish = $e.attr('send_on_finish') || 'false';
     var data = templateEngine.widgetDataInsert( path, {
       //???///'events':   $(actor).data( 'events' ),
-      'min'     : min,
-      'max'     : max,
-      'step'    : step,
-      'valueInternal': true,
-      'inAction': false,
+      'min'            : min,
+      'max'            : max,
+      'step'           : step,
+      'send_on_finish' : send_on_finish,
+      'valueInternal'  : true,
+      'inAction'       : false,
     });
+    
+    // check provided address-items for at least one address which has write-access
+    var readonly = true;
+    for (var addrIdx in data.address) {
+        if (data.address[addrIdx][1] & 2) {
+            // write-access detected --> no read-only mode
+            readonly = false;
+            break;
+        }
+    }
     
     // create the actor
     templateEngine.postDOMSetupFns.push( function(){
@@ -60,13 +87,17 @@ design.basicdesign.addCreator('slide', {
         max:     max, 
         range:   'min', 
         animate: true,
+        send_on_finish : send_on_finish,
         start:   self.slideStart,
         change:  self.slideChange
       });
+      // disable slider interaction if in read-only mode --> just show the value
+      if (readonly) {
+          $actor.slider({ disabled: true });
+      }
+      $actor.on( 'slide', self.slideUpdateValue );
       
       if( data['format']) {
-        $actor.on( 'slide', self.slideUpdateValue );
-        
         // initially setting a value
         $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
       }
@@ -92,13 +123,16 @@ design.basicdesign.addCreator('slide', {
       if( data.format != null )
         actor.children('.ui-slider-handle').text(sprintf( data.format, templateEngine.map( value, data.mapping )));
     }
+    transformSlider(value,actor.children('.ui-slider-handle'));
   },
   slideUpdateValue:function(event,ui) {
     var element = $(this).parent(),
-        actor   = element.find('.actor'),
-        data    = templateEngine.widgetDataGetByElement( this );
-    if( data.format)
+      actor   = element.find('.actor'),
+      data    = templateEngine.widgetDataGetByElement( this );
+    if( data.format) {
       $(ui.handle).text(sprintf( data.format, templateEngine.map( ui.value, data.mapping )));
+    }
+    transformSlider(ui.value,ui.handle);
   },
   /*
   * Start a thread that regularily sends the silder position to the bus
@@ -108,6 +142,9 @@ design.basicdesign.addCreator('slide', {
     var element = $(this).parent(),
         actor   = element.find('.actor'),
         data    = templateEngine.widgetDataGetByElement( this );
+
+    if ( data.send_on_finish == 'true') return;
+
     data.inAction      = true;
     data.valueInternal = true;
     data.updateFn      = setInterval( function(){
@@ -123,7 +160,7 @@ design.basicdesign.addCreator('slide', {
           templateEngine.visu.write( addr, dv );
       }
       data.value = asv;
-    }, 250 ); // update KNX every 250 ms 
+    }, 250 ); // update KNX every 250 ms
   },
   /*
   * Delete the update thread and send the final value of the slider to the bus
@@ -134,6 +171,7 @@ design.basicdesign.addCreator('slide', {
     clearInterval( data.updateFn, ui.value);
     data.inAction = false;
     if( data.valueInternal && data.value != ui.value )
+    {
       for( var addr in data.address )
       {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
@@ -141,7 +179,10 @@ design.basicdesign.addCreator('slide', {
         if( uv != templateEngine.transformEncode( data.address[addr][0], data.value ) )
           templateEngine.visu.write( addr, uv );
       }
-  }
+    }
+    transformSlider(ui.value,ui.handle);
+  },
+  
 });
 
 }); // end define

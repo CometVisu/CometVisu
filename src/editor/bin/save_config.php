@@ -38,20 +38,26 @@ $strConfig = (true === isset($_POST['config'])) ? $_POST['config'] : null;
 
 $strConfigSuffix = preg_replace('/^config\/visu_config(_?.*?)\.xml$/', '$1', $strConfig);
 
-// clean-up filename, we want no security-holes. work with a whitelist.
-$strConfigCleaned = preg_replace("/[^\-\_0-9a-z]/i", "", $strConfigSuffix);
-
+$isOhGenerated = false;
+if (substr($strConfigSuffix,1,3)=="oh_") {
+  $isOhGenerated = true;
+  $strConfigCleaned = preg_replace("/[^\-0-9a-z]/i", "", $strConfigSuffix);
+  $saveUrl = "http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT'].$_SERVER['SCRIPT_URL'];
+} else {
+  // clean-up filename, we want no security-holes. work with a whitelist. 
+  $strConfigCleaned = preg_replace("/[^\-\_0-9a-z]/i", "", $strConfigSuffix);
+}
 // generate the configurations filename
 $strConfigFilename = sprintf(CONFIG_FILENAME, $strConfigCleaned);
 // .. as a fully qualified filename
 $strConfigFQFilename = realpath($strConfigFilename);
 
-if (false === is_writeable($strConfigFQFilename)) {
+if ($isOhGenerated === false && false === is_writeable($strConfigFQFilename)) {
     exitWithResponse(false, 'config-file is not writeable by webserver-process; please chmod/chown config-file \'' . $strConfigFQFilename . '\' (\'' . $strConfigFilename. '\').');
 }
 
 // create a backup, but not for the previewtemp
-if ($strConfigCleaned !== '_previewtemp') {
+if ($strConfigCleaned !== '_previewtemp' && $isOhGenerated === false) {
     // generate the backups filename
     $strBackupFilename = sprintf(BACKUP_FILENAME, $strConfigCleaned, date('YmdHis'));
     $strBackupFQDirname = realpath(dirname($strBackupFilename));
@@ -122,10 +128,35 @@ try {
     $objDOM->preserveWhiteSpace = false;
     $objDOM->formatOutput = true;
 
-    // save the XML to its configuration file
-    $handle = fopen($strConfigFQFilename, "w");
-    fputs($handle, $objDOM->saveXML());
-    fclose($handle);
+    if ($isOhGenerated === false) {
+        // save the XML to its configuration file
+        $handle = fopen($strConfigFQFilename, "w");
+        fputs($handle, $objDOM->saveXML());
+        fclose($handle);
+    } else {
+        // send generated data to openhab
+        $data = array(
+            'config' => $strConfig,
+            'data' => $objDOM->saveXML(),
+            'type' => 'xml'
+        );
+
+        $options = array(
+            'http' => array(
+                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($data)
+            )
+        );
+        $context  = stream_context_create($options);
+        $result = file_get_contents($saveUrl, false, $context);
+
+        if ($result === false) {
+            exitWithResponse(false, 'error: ' . $resp);
+        } else {
+            exitWithResponse(true, 'all good, file ' . $strConfigFQFilename . ' saved');
+        }
+    }
 } catch (Exception $e) {
     exitWithResponse(false, 'error: ' . $e->getMessage());
 }

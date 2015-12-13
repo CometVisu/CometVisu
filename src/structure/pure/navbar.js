@@ -16,6 +16,7 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
    var 
      basicdesign     = design.basicdesign,
      isNotSubscribed = true,
@@ -40,7 +41,10 @@ design.basicdesign.addCreator('navbar', {
     $( childs ).each( function(i){
       container += templateEngine.create_pages( childs[i], path + '_' + i, flavour );
     } );
-    //$container.data('scope',scope); ???
+    container+='</div>';
+    var data = templateEngine.widgetDataInsert( id.join('_')+'_'+ position + '_navbar', {
+      'scope': scope
+    });
     
     var dynamic  = $n.attr('dynamic') == 'true' ? true : false;
   
@@ -72,7 +76,7 @@ design.basicdesign.addCreator('navbar', {
     if( isNotSubscribed )
     {
       isNotSubscribed = false;
-      templateEngine.postDOMSetupFns.push( function(){
+      templateEngine.postDOMSetupFns.unshift( function(){
         if( navbarTop    ) $( '#navbarTop'    ).append( navbarTop    );
         if( navbarLeft   ) $( '#navbarLeft'   ).append( navbarLeft   );
         if( navbarRight  ) $( '#navbarRight'  ).append( navbarRight  );

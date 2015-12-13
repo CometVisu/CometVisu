@@ -16,6 +16,7 @@
 */
 
 define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css', 'plugins/colorchooser/farbtastic/farbtastic' ], function( VisuDesign_Custom ) {
+  "use strict";
 
 /**
  * This is a custom function that extends the available widgets.
@@ -94,9 +95,10 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 }
                 break;
               case 'rgb':
-                var v = Transform[address[addr][0]].encode( [r,g,b] );
-                var b = Transform[address[addr][0]].encode( [br,bg,bb] );
-                console.log("Write-Value: "+v);
+            	var rgb = [r*255/100.0,g*255/100.0,b*255/100.0];
+            	var brgb = [br*255/100.0,bg*255/100.0,bb*255/100.0];
+                var v = Transform[address[addr][0]].encode( rgb );
+                var b = Transform[address[addr][0]].encode( brgb );
                 if( v[0] != b[0] || v[1] != b[1] || v[2] != b[2] )
                 {
                   templateEngine.visu.write( addr, v );
@@ -155,6 +157,16 @@ VisuDesign_Custom.prototype.addCreator("colorchooser", {
                 toHex( value*255/100 )+
                 color.substring(7);
         break;
+      case 'rgb':
+    	  wData.bus_r = value[0];
+    	  wData.bus_g = value[1];
+          wData.bus_b = value[2];
+          color = color.substring(0,1) +
+          		toHex( value[0] )+
+          		toHex( value[1] )+
+          		toHex( value[2] )+
+          		color.substring(7);
+          break;
     }
     farbtastic.setColor( color );
   }

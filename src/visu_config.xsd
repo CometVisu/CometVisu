@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace">
 
   <!-- basic types -->
   <xsd:simpleType name="addr">
     <xsd:restriction base="xsd:string">
-      <xsd:pattern value="([0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|[A-Za-z][A-Za-z0-9_\-\.]*)" />
+      <xsd:pattern value="([0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|[A-Za-z][A-Za-z0-9_\-\.:]*)" />
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -248,6 +248,7 @@
       <xsd:restriction base="xsd:string">
         <xsd:enumeration value="cgi-bin" />
         <xsd:enumeration value="oh" />
+        <xsd:enumeration value="oh2" />
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
@@ -416,6 +417,7 @@
       <xsd:element name="timeout" type="timeout" />
 	  <xsd:element name="gauge" type="gauge" />
 	  <xsd:element name="calendarlist" type="calendarlist" />
+	  <xsd:element name="infoaction" type="infoaction" />
     </xsd:choice>
   </xsd:group>
 
@@ -944,6 +946,7 @@
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute name="send_on_finish" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="include">
@@ -1074,12 +1077,22 @@
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="widgetinfo" type="widgetinfo" minOccurs="0" maxOccurs="1" />
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" />
     <xsd:attribute ref="target" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
+    <xsd:attribute name="path" type="xsd:string" use="optional"/>
+    <xsd:attribute name="active_scope" use="optional">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="path" />
+          <xsd:enumeration value="target" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="clock">
@@ -1094,7 +1107,7 @@
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="address" type="address" minOccurs="3" maxOccurs="unbounded"/>
+      <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:sequence>
   </xsd:complexType>
 
@@ -1278,6 +1291,22 @@
         <xsd:attribute name="scaling" type="xsd:decimal" />
         <xsd:attribute name="steps" type="xsd:boolean" />
         <xsd:attribute name="fill" type="xsd:boolean" />
+        <xsd:attribute name="style" use="optional" >
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="lines" />
+              <xsd:enumeration value="bars" />
+              <xsd:enumeration value="points" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="barWidth" type="xsd:integer" use="optional" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Width of the bars in units of the x axis, contrary to most other measures that are specified in pixels. For instance, for time series the unit is milliseconds so 24 * 60 * 60 * 1000 produces bars with the width of a day.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ref="align" use="optional" />
         <xsd:attribute name="datasourceIndex" type="xsd:integer" use="optional" default="0" >
           <xsd:annotation>
             <xsd:documentation xml:lang="en">If there are multiple datasources in the RRD file this index defines which one to show. Use "rrdtool info" to find the correct index.</xsd:documentation>
@@ -1305,4 +1334,50 @@
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
+  
+  <xsd:complexType name="infoaction">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="widgetinfo" type="widgetinfo" />
+      <xsd:element name="widgetaction" type="widgetaction" />
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="widgetinfo">
+    <xsd:sequence>
+      <xsd:choice minOccurs="1" maxOccurs="1">
+      	<xsd:group ref="Infoaction_WidgetInfos"/>
+      </xsd:choice>     
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="widgetaction">
+    <xsd:sequence>
+      <xsd:choice minOccurs="1" maxOccurs="1">
+      	<xsd:group ref="Infoaction_WidgetActions"/>
+      </xsd:choice>     
+    </xsd:sequence>
+  </xsd:complexType>
+  
+    <xsd:group name="Infoaction_WidgetInfos">
+    <xsd:choice>
+      <xsd:element name="text" type="text" />
+      <xsd:element name="info" type="info" />
+    </xsd:choice>
+  </xsd:group>
+  
+  <xsd:group name="Infoaction_WidgetActions">
+    <xsd:choice>
+      <xsd:element name="switch" type="switch" />
+      <xsd:element name="toggle" type="toggle" />
+      <xsd:element name="trigger" type="trigger" />
+      <xsd:element name="pushbutton" type="pushbutton" />
+      <xsd:element name="urltrigger" type="urltrigger" />
+      <xsd:element name="multitrigger" type="multitrigger" />
+      <xsd:element name="image" type="image" />
+      <xsd:element name="imagetrigger" type="imagetrigger" />
+      <xsd:element name="pagejump" type="pagejump" />
+      <xsd:element name="info" type="info" />
+    </xsd:choice>
+  </xsd:group>
 </xsd:schema>

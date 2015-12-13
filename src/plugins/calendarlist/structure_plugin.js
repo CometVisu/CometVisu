@@ -1,4 +1,5 @@
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
+  "use strict";
 
 VisuDesign_Custom.prototype.addCreator("calendarlist", {
     create: function (element, path, flavour, type) {

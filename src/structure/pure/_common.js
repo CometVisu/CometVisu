@@ -21,6 +21,7 @@
  * @title  CometVisu Structure "pure"
 */
 define( ['jquery'], function($) {
+  "use strict";
 
 // Define ENUM of maturity levels for features, so that e.g. the editor can 
 // ignore some widgets when they are not supported yet
@@ -118,13 +119,17 @@ function VisuDesign() {
       ret_val.css( 'left', placement.x );
       ret_val.css( 'top' , placement.y );
 
-      ret_val.bind("click", function() {
-          ret_val.remove();
-          return false;
+      ret_val.bind( 'close', this.close );
+      ret_val.bind( 'click', function() {
+        ret_val.trigger( 'close' );
+        return false;
       });
 
       ret_val.css( 'display', 'block' );
       return ret_val;
+    },
+    close: function( event ) {
+      event.currentTarget.remove();
     }
   });
 
@@ -147,6 +152,8 @@ function VisuDesign() {
     } else {
       var thisTransform = '';
       var value = data;
+
+      widgetData["formatValueCache"] = {};
     }
     
     widgetData.basicvalue = value; // store it to be able to supress sending of unchanged data
@@ -157,8 +164,15 @@ function VisuDesign() {
     // #3: format it in a way the user understands the value
     if( widgetData.precision )
       value = Number( value ).toPrecision( widgetData.precision );
-    if( widgetData.format )
-      value = sprintf( widgetData.format, value );
+    if( widgetData.format ) {
+      widgetData.formatValueCache[ga] = value;
+      var argList = [widgetData.format];
+
+      for (var addr in widgetData.address)
+        argList.push(widgetData.formatValueCache[addr]);
+
+      value = sprintf.apply(this, argList);
+    }
     widgetData.value = value;
     if (undefined !== value && value.constructor == Date)
     {
@@ -169,6 +183,12 @@ function VisuDesign() {
           break;
         case 'DPT:11.001':
           value = value.toLocaleDateString();
+          break;
+        case 'OH:datetime':
+          value = value.toLocaleDateString();
+          break;
+        case 'OH:time':
+          value = value.toLocaleTimeString();
           break;
         }
     }
@@ -396,7 +416,12 @@ function VisuDesign() {
       'path'    : path
     });
     var ret_val = '<div class="'+classes+'" ' + style + '>' + label;
-    
+    if (address && updateFn!=undefined) {
+      templateEngine.postDOMSetupFns.push( function() {
+        // initially setting a value
+        basicdesign.defaultUpdate( undefined, undefined, $("#"+path), true, path );
+      });
+    }
     return ret_val;
   };
   
@@ -465,7 +490,7 @@ function placementStrategy( anchor, popup, page, preference )
   var position_order = [ 8, 2, 6, 4, 9, 3, 7, 1, 5, 0 ];
   if( preference !== undefined ) position_order.unshift( preference );
   
-  for( pos in position_order )
+  for( var pos in position_order )
   {
     var xy = {};
     switch(position_order[pos])

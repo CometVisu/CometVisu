@@ -16,6 +16,7 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
   var basicdesign = design.basicdesign;
   
 design.basicdesign.addCreator('wgplugin_info', {
@@ -36,7 +37,7 @@ design.basicdesign.addCreator('wgplugin_info', {
     return ret_val + '</div>';
 
   },
-  update: function( e, d, passedElement )
+  update: function( ga, d, passedElement )
   {
     var 
       element = passedElement || $(this),
@@ -45,12 +46,7 @@ design.basicdesign.addCreator('wgplugin_info', {
       valueElement = element.find('.value');
       
     $.getJSON('/wg-plugindb.pl?name=' + variable, function(data) {
-      templateEngine.setWidgetStyling( element, widgetData.basicvalue, widgetData.styling );
-      
-      if( widgetData[ 'align' ] )
-        element.addClass(widgetData[ 'align' ] );
-      valueElement.empty();
-      valueElement.append( widgetData[variable] );
+      basicdesign.defaultUpdate( undefined, data[variable], element, true, element.parent().attr('id') );
     });
   },
   update3d: design.basicdesign.defaultUpdate3d

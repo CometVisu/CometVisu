@@ -27,17 +27,22 @@
  *   - diagram
  *   - diagram_info
  *
- * attributes:
+ * attributes (per diagram):
  *   - series:               optional, "hour", "day" (default), "week", "month", "year"
  *   - period:               optional, number of "series" to be shown
  *   - refresh:              optional, refresh-rate in seconds, no refresh if missing
- *   - fill:                 optional, true or false - filling the space under the line
  *   - gridcolor:            optional, color for dataline and grid, HTML-colorcode
  *   - width, height:        optional, width and height of "inline"-diagram
  *   - previewlabels:        optional, show labels on "inline"-diagram
  *   - popup:                optional, make diagram clickable and open popup
  *   - legend:               optional, "none", "both", "inline", "popup" select display of legend
  *   - title:                optional, diagram title (overrides label-content)
+ *
+ * attributes (per graph):
+ *   - style:                optional, "lines" (default), "bars", "points" select graph type
+ *   - fill:                 optional, true or false - fill the space under the line / within the bar (line / bar style graphs)
+ *   - barWidth:             optional, width of bars (bar style graphs)
+ *   - align:                optional, "left" (default), "center", "right" select qlignemnt of bars (bar style graphs)
  */
 
 require.config({
@@ -61,6 +66,7 @@ define( ['structure_custom',
                   'plugins/diagram/flot/jquery.flot.tooltip.min',
                   'plugins/diagram/flot/jquery.flot.navigate.min'
   ], function( VisuDesign_Custom ) {
+    "use strict";
 
     VisuDesign_Custom.prototype.addCreator("diagram", {
       create: function(element, path, flavour, type) {
@@ -78,7 +84,7 @@ define( ['structure_custom',
     });
     VisuDesign_Custom.prototype.addCreator("diagram_info", {
       create: function(element, path, flavour, type) {
-        return createDiagram(true, element, path, flavour, type);
+        return createDiagram(true, element, path, flavour, type, this.update);
       },
       update: function( ga, d ) { 
         var element = $(this);
@@ -87,11 +93,11 @@ define( ['structure_custom',
       action: action
     });
 
-    function createDiagram(isInfo, element, path, flavour, type) {
+    function createDiagram(isInfo, element, path, flavour, type, updateFn) {
       var $e = $(element);
 
       // create the main structure
-      var ret_val = templateEngine.design.createDefaultWidget((isInfo ? 'diagram_info' : 'diagram'), $e, path, flavour, type);
+      var ret_val = templateEngine.design.createDefaultWidget((isInfo ? 'diagram_info' : 'diagram'), $e, path, flavour, type, updateFn);
       // and fill in widget specific data
       var data = templateEngine.widgetDataInsert( path, {
         content           : getDiagramElements($e),
@@ -123,9 +129,11 @@ define( ['structure_custom',
       else {
         var 
           classStr = data.previewlabels ? 'diagram_inline' : 'diagram_preview',
+          width    = $e.attr("width" ) ? ($e.attr("width" ) + (/[0-9]$/.test($e.attr("width" )) ? 'px' : '')) : undefined,
+          height   = $e.attr("height") ? ($e.attr("height") + (/[0-9]$/.test($e.attr("height")) ? 'px' : '')) : undefined,
           styleStr = 'min-height: 40px'
-                   + $e.attr("width" ) ? (';width:'  + $e.attr("width" )) : ''
-                   + $e.attr("height") ? (';height:' + $e.attr("height")) : ';height: 100%';
+                   + (width  ? (';width:'  + width ) : ''             )
+                   + (height ? (';height:' + height) : ';height: 100%');
 
         actor = '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
         
@@ -133,11 +141,10 @@ define( ['structure_custom',
         $(window).bind('scrolltopage', function(event, page_id) {
           var page = templateEngine.getParentPageFromPath(path);
           if (page != null && page_id == page.attr("id")) {
-            initDiagram( path );
+            initDiagram( path, false );
           }
         });
       }
-
       return ret_val + actor + '</div>';
     }
     
@@ -150,7 +157,12 @@ define( ['structure_custom',
       var popupDiagram = $('<div class="diagram" id="' + path + '_big"/>');
       data.init = true;
       popupDiagram.css({height: "90%"});
-      templateEngine.showPopup("diagram", {title: data.label, content: popupDiagram});
+      var popup = templateEngine.showPopup("diagram", {title: data.label, content: popupDiagram});
+      popup.bind( 'close', function(){
+        // this will be called when the popup is being closed.
+        // NOTE: this will be called twice, one time for the foreground and one
+        //       time for the background.
+      });
       popupDiagram.parent("div").css({height: "100%", width: "95%", margin: "auto"}); // define parent as 100%!
       popupDiagram.empty();
       popupDiagram.bind("click", function(event) {
@@ -202,6 +214,9 @@ define( ['structure_custom',
           cFunc     : this.getAttribute('consolidationFunction') || "AVERAGE",
           resol     : parseInt(this.getAttribute('resolution')),
           offset    : parseInt(this.getAttribute('offset')),
+          style     : this.getAttribute('style') || "lines",
+          align     : this.getAttribute('align') || "center",
+          barWidth  : this.getAttribute('barWidth') || 1
         };
         if (retVal.rrd[retVal.rrdnum].dsIndex < 0) {
           retVal.rrd[retVal.rrdnum].dsIndex = 0;
@@ -245,7 +260,7 @@ define( ['structure_custom',
           frameRate: 20,
           triggerOnDrag : false,
         },
-        yaxes  : $.extend( true, {}, data.content.axes ), // copy to prevent side effects
+        yaxes  : $.extend( true, [], data.content.axes ), // copy to prevent side effects
         xaxes  : [{
           mode       : "time",
           timeformat : data.timeformat
@@ -254,10 +269,6 @@ define( ['structure_custom',
           show            : (isPopup && data.legendPopup) || (!isPopup && data.legendInline),
           backgroundColor : "#101010",
           position        : data.legendposition
-        },
-        series : {
-          lines  : { show: true,  fill: false, zero: false },
-          points : { show: false, fill: false }
         },
         grid : {
           show            : true,
@@ -301,20 +312,20 @@ define( ['structure_custom',
 
       // plot diagram initially with empty values
       diagram.empty();
-      data.plot = $.plot(diagram, [], options);
+      var plot = $.plot(diagram, [], options);
       data.plotted = true;
       diagram.bind("plotpan", function(event, plot, args) {
         if (args.dragEnded) {
-          loadDiagramData( id );
+          loadDiagramData( id, plot, isPopup );
         }
       }).bind("plotzoom", function() {
-        loadDiagramData( id );
+        loadDiagramData( id, plot, isPopup );
       });
 
-      loadDiagramData( id );
+      loadDiagramData( id, plot, isPopup );
     }
 
-    function getSeries(data, xAxis) {
+    function getSeries(data, xAxis, isInteractive) {
       var series = {
         hour    : {res: "60",     start: "hour",  end: "now"},
         day     : {res: "300",    start: "day",   end: "now"},
@@ -346,19 +357,20 @@ define( ['structure_custom',
   	    ret.end = selectedSeries.end;
   	    ret.res = selectedSeries.res;
       }
-      if (xAxis.datamin && xAxis.datamax) {
+
+      if (xAxis.datamin && xAxis.datamax && isInteractive) {
         ret.start = (xAxis.min / 1000).toFixed(0);
       }
       return ret;
     }
 
-    function loadDiagramData( id ) {
+    function loadDiagramData( id, plot, isInteractive ) {
       var data = templateEngine.widgetDataGet( id );
       if (data === undefined) {
         return;
       }
 
-      var series = getSeries(data, data.plot.getAxes().xaxis);
+      var series = getSeries(data, plot.getAxes().xaxis, isInteractive);
       if (!series) {
         return
       }
@@ -392,7 +404,9 @@ define( ['structure_custom',
                 color: rrd.color,
                 data: rrddata,
                 yaxis: parseInt(rrd.axisIndex),
-                lines: {steps: rrd.steps, fill: rrd.fill}
+                bars: { show: rrd.style == "bars", fill: rrd.fill, barWidth: parseInt(rrd.barWidth), align: rrd.align },
+                lines: { show: rrd.style == "lines", steps: rrd.steps, fill: rrd.fill, zero: false },
+                points: { show: rrd.style == "points", fill: rrd.fill }
               };
             }
 
@@ -420,10 +434,9 @@ define( ['structure_custom',
               }
 
               // plot
-              var PLOT = data.plot;
-              PLOT.setData(fulldata);
-              PLOT.setupGrid();
-              PLOT.draw();
+              plot.setData(fulldata);
+              plot.setupGrid();
+              plot.draw();
             }
           }
         });
@@ -432,9 +445,9 @@ define( ['structure_custom',
 
       if (data.refresh) {
         // reload regularly
-        window.setTimeout(function( id ) {
-          loadDiagramData( id );
-        }, data.refresh * 1000, id );
+        window.setTimeout(function( id, plot, isInteractive ) {
+          loadDiagramData( id, plot, isInteractive );
+        }, data.refresh * 1000, id, plot, isInteractive );
       }
     }
 });
