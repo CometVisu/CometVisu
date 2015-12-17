@@ -34,6 +34,16 @@ function CometVisu( backend, initPath )
 {
   this.initPath = initPath ? initPath : null;
   
+  //used for backwards compability
+  this.aliases = {
+      'cgi-bin' : 'default',
+      'oh'      : 'openhab',
+      'oh2'     : 'openhab2'
+  };
+  if (this.aliases[backend]) {
+    backend = this.aliases[backend];
+  }
+  
   this.backends = {
 	  'default' : {
   		name 	  : 'default',
