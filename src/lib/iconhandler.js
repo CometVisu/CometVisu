@@ -87,10 +87,12 @@ function icon() { // Konstruktor
     if (!db[name][type][flavour])
       db[name][type][flavour] = {};
 
+    if( dynamic && window[ dynamic ] )
+      db[name][type][flavour][color] = window[ dynamic ]( uri );
+    else
     db[name][type][flavour][color] = {
       uri    : uri,
-      styling: styling,
-      dynamic: dynamic
+      styling: styling
     };
   }
 
