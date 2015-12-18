@@ -277,7 +277,7 @@ function TemplateEngine( undefined ) {
   this.enableAddressQueue = $.getUrlVar('enableQueue') ? true : false;
   
   this.backend = 'default';
-  this.backendUrl = null;
+  this.backendUrl;
   if ($.getUrlVar("backend")) {
     this.backend = $.getUrlVar("backend");
   }
