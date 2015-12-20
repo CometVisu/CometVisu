@@ -26,7 +26,7 @@ define([], function() {
   "use strict";
 
   /**
-   * Class that handles the communicaton of the client *
+   * Class that handles the communicaton of the client
    * 
    * @class CometVisu
    * @constructor foo
