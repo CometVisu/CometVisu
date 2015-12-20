@@ -35,7 +35,7 @@ require.config({
     'scrollable':               'dependencies/scrollable',
     'jquery.ui.touch-punch':    'dependencies/jquery.ui.touch-punch',
     'jquery.svg.min':           'dependencies/jquery.svg.min',
-    'cometvisu-client':         'lib/universal-client',
+    'cometvisu-client':         'lib/cometvisu-client',
     'iconhandler':              'lib/iconhandler',
     'pagepartshandler':         'lib/pagepartshandler',
     'trick-o-matic':            'lib/trick-o-matic',
