@@ -246,9 +246,14 @@
     </xsd:annotation>
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
+      	<!-- Old values, kept for backwards compability -->
         <xsd:enumeration value="cgi-bin" />
         <xsd:enumeration value="oh" />
         <xsd:enumeration value="oh2" />
+       	<!-- New values, should be used now -->
+        <xsd:enumeration value="default" />
+        <xsd:enumeration value="openhab" />
+        <xsd:enumeration value="openhab2" />
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
