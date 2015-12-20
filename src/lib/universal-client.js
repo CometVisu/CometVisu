@@ -22,9 +22,7 @@
  * @title CometVisu Client
  * @reqires jQuery
  */
-define(
-    [],
-    function() {
+define([], function() {
       "use strict";
 
       /**
@@ -41,8 +39,8 @@ define(
         // used for backwards compability
         this.aliases = {
           'cgi-bin' : 'default',
-          'oh' : 'openhab',
-          'oh2' : 'openhab2'
+          'oh'      : 'openhab',
+          'oh2'     : 'openhab2'
         };
         if (this.aliases[backend]) {
           backend = this.aliases[backend];
@@ -50,38 +48,38 @@ define(
 
         this.backends = {
           'default' : {
-            name : 'default',
-            baseURL : '/cgi-bin/',
+            name      : 'default',
+            baseURL   : '/cgi-bin/',
             transport : 'long-polling',
             resources : {
-              login : 'l',
-              read : 'r',
-              write : 'w',
-              rrd : 'rrdfetch'
+              login     : 'l',
+              read      : 'r',
+              write     : 'w',
+              rrd       : 'rrdfetch'
             },
-            hooks : {}
+            hooks     : {}
           },
           'openhab' : {
-            name : 'openHAB',
-            baseURL : '/services/cv/',
+            name          : 'openHAB',
+            baseURL       : '/services/cv/',
             // keep the e.g. atmosphere tracking-id if there is one
             resendHeaders : {
               'X-Atmosphere-tracking-id' : undefined
             },
             // fixed headers that are send everytime
-            headers : {
+            headers       : {
               'X-Atmosphere-Transport' : 'long-polling'
             },
-            hooks : {
+            hooks         : {
               onClose : function() {
                 // send an close request to the openHAB server
                 var oldValue = this.headers["X-Atmosphere-Transport"];
                 this.headers["X-Atmosphere-Transport"] = "close";
                 $.ajax({
-                  url : this.config.baseURL + this.config.resources.read,
-                  dataType : 'json',
-                  context : this,
-                  beforeSend : this.beforeSend
+                  url         : this.config.baseURL + this.config.resources.read,
+                  dataType    : 'json',
+                  context     : this,
+                  beforeSend  : this.beforeSend
                 });
                 if (oldValue != undefined) {
                   this.headers["X-Atmosphere-Transport"] = oldValue;
@@ -107,12 +105,13 @@ define(
         var thisCometVisu = this;
         this.addresses = []; // the subscribed addresses
         this.initialAddresses = []; // the addresses which should be loaded
-                                    // before the subscribed addresses
+        // before the subscribed addresses
         this.filters = []; // the subscribed filters
         this.user = ''; // the current user
         this.pass = ''; // the current password
         this.device = ''; // the current device ID
         this.running = false; // is the communication running at the moment?
+        this.currentTransport; // the currently used transport layer
 
         this.setInitialAddresses = function(addresses) {
           this.initialAddresses = addresses;
@@ -149,11 +148,12 @@ define(
           if (this.config.baseURL && !this.config.baseURL.endsWith("/")) {
             this.config.baseURL += "/";
           }
+          this.currentTransport = this.transport[this.config.transport];
         };
         this.checkSettings();
 
         /**
-         * Subscribe to the addresses in the parameter The second parameter
+         * Subscribe to the addresses in the parameter. The second parameter
          * (filter) is optional
          * 
          * @param addresses
@@ -163,12 +163,11 @@ define(
         this.subscribe = function(addresses, filters) {
           // initialize transport and use the transport object as context for
           // itself
-          this.transport[this.config.transport].init
-              .bind(this.transport[this.config.transport]);
+          this.currentTransport.init.bind(this.currentTransport);
 
           var startCommunication = !this.addresses.length; // start when
-                                                            // addresses were
-                                                            // empty
+          // addresses were
+          // empty
           this.addresses = addresses ? addresses : [];
           this.filters = filters ? filters : [];
 
@@ -194,13 +193,12 @@ define(
             request.d = this.device;
 
           $.ajax({
-              url : this.initPath ? this.initPath : this
-                  .getResourcePath("login"),
-              dataType : 'json',
-              context : this,
-              data : request,
-              success : this.handleLogin
-            });
+              url       : this.initPath ? this.initPath : this.getResourcePath("login"),
+              dataType  : 'json',
+              context   : this,
+              data      : request,
+              success   : this.handleLogin
+          });
         };
 
         /**
@@ -217,8 +215,7 @@ define(
             this.checkSettings();
           }
           // bind context object (this) to the handleSession function
-          var bound = this.transport[this.config.transport].handleSession
-              .bind(this.transport[this.config.transport]);
+          var bound = this.currentTransport.handleSession.bind(this.currentTransport);
           // call the bound function
           bound(json);
         };
@@ -230,28 +227,20 @@ define(
          */
         this.stop = function() {
           this.running = false;
-          if (this.transport[this.config.transport].abort) {
-            this.transport[this.config.transport].abort();
+          if (this.currentTransport.abort) {
+            this.currentTransport.abort();
           }
-          // alert('this.stop');
         };
 
         this.transport = {
           'long-polling' : {
-            doRestart : false, // are we currently in a restart, e.g. due to
-                                // the watchdog
-            xhr : false, // the ongoing AJAX request
-            watchdogTimer : 5, // in Seconds - the alive check interval of the
-                                // watchdog
-            maxConnectionAge : 60, // in Seconds - restart if last read is
-                                    // older
-            maxDataAge : 3200, // in Seconds - reload all data when last
-                                // successful read is older
-            // (should be faster than the index overflow at max data rate, i.e.
-            // 2^16 @ 20 tps for KNX TP)
-            lastIndex : -1, // index returned by the last request
-            retryCounter : 0, // count number of retries (reset with each valid
-                              // response)
+            doRestart         : false, // are we currently in a restart, e.g. due to the watchdog
+            xhr               : false, // the ongoing AJAX request
+            watchdogTimer     : 5, // in Seconds - the alive check interval of the watchdog
+            maxConnectionAge  : 60, // in Seconds - restart if last read is older
+            maxDataAge        : 3200, // in Seconds - reload all data when last successful read is older (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
+            lastIndex         : -1, // index returned by the last request
+            retryCounter      : 0, // count number of retries (reset with each valid response)
 
             init : function() {
               this.watchdog();
@@ -269,7 +258,7 @@ define(
                 this.restart();
                 last = now;
               };
-              setInterval(aliveCheckFunction, this.watchdogTimer * 1000);
+              setInterval(aliveCheckFunction.bind(this), this.watchdogTimer * 1000);
               return {
                 ping : function() {
                   // delete last;
@@ -278,7 +267,7 @@ define(
                     // delete hardLast;
                     hardLast = last;
                   }
-                }
+                }.bind(this)
               };
             },
 
@@ -302,25 +291,23 @@ define(
               thisCometVisu.running = true;
               if (thisCometVisu.initialAddresses.length) {
                 this.xhr = $.ajax({
-                  url : thisCometVisu.getResourcePath("read"),
-                  dataType : 'json',
-                  context : this,
-                  data : thisCometVisu
-                      .buildRequest(thisCometVisu.initialAddresses)
-                      + '&t=0',
-                  success : this.handleReadStart,
-                  beforeSend : this.beforeSend
+                  url         : thisCometVisu.getResourcePath("read"),
+                  dataType    : 'json',
+                  context     : this,
+                  data        : thisCometVisu.buildRequest(thisCometVisu.initialAddresses) + '&t=0',
+                  success     : this.handleReadStart,
+                  beforeSend  : this.beforeSend
                 });
               } else {
                 // old behaviour -> start full query
                 this.xhr = $.ajax({
-                  url : thisCometVisu.getResourcePath("read"),
-                  dataType : 'json',
-                  context : this,
-                  data : thisCometVisu.buildRequest() + '&t=0',
-                  success : this.handleRead,
-                  error : this.handleError,
-                  beforeSend : this.beforeSend
+                  url         : thisCometVisu.getResourcePath("read"),
+                  dataType    : 'json',
+                  context     : this,
+                  data        : thisCometVisu.buildRequest() + '&t=0',
+                  success     : this.handleRead,
+                  error       : this.handleError,
+                  beforeSend  : this.beforeSend
                 });
               }
             },
@@ -360,13 +347,13 @@ define(
               if (thisCometVisu.running) { // keep the requests going
                 this.retryCounter++;
                 this.xhr = $.ajax({
-                  url : thisCometVisu.getResourcePath("read"),
-                  dataType : 'json',
-                  context : this,
-                  data : thisCometVisu.buildRequest() + '&i=' + this.lastIndex,
-                  success : this.handleRead,
-                  error : this.handleError,
-                  beforeSend : this.beforeSend
+                  url         : thisCometVisu.getResourcePath("read"),
+                  dataType    : 'json',
+                  context     : this,
+                  data        : thisCometVisu.buildRequest() + '&i=' + this.lastIndex,
+                  success     : this.handleRead,
+                  error       : this.handleError,
+                  beforeSend  : this.beforeSend
                 });
                 this.watchdog.ping();
               }
@@ -376,14 +363,12 @@ define(
               if (!json && (-1 == this.lastIndex)) {
                 if (thisCometVisu.running) { // retry initial request
                   this.xhr = $.ajax({
-                    url : thisCometVisu.getResourcePath("read"),
-                    dataType : 'json',
-                    context : this,
-                    data : thisCometVisu
-                        .buildRequest(thisCometVisu.initialAddresses)
-                        + '&t=0',
-                    success : this.handleReadStart,
-                    beforeSend : this.beforeSend
+                    url         : thisCometVisu.getResourcePath("read"),
+                    dataType    : 'json',
+                    context     : this,
+                    data        : thisCometVisu.buildRequest(thisCometVisu.initialAddresses) + '&t=0',
+                    success     : this.handleReadStart,
+                    beforeSend  : this.beforeSend
                   });
                   this.watchdog.ping();
                 }
@@ -394,8 +379,8 @@ define(
                 thisCometVisu.update(json.d);
               }
               if (thisCometVisu.running) { // keep the requests going, but only
-                                            // request
-                                            // addresses-startPageAddresses
+                // request
+                // addresses-startPageAddresses
                 var diffAddresses = [];
                 for (var i = 0; i < thisCometVisu.addresses.length; i++) {
                   if ($.inArray(thisCometVisu.addresses[i],
@@ -403,13 +388,13 @@ define(
                     diffAddresses.push(thisCometVisu.addresses[i]);
                 }
                 this.xhr = $.ajax({
-                  url : thisCometVisu.getResourcePath("read"),
-                  dataType : 'json',
-                  context : this,
-                  data : thisCometVisu.buildRequest(diffAddresses) + '&t=0',
-                  success : this.handleRead,
-                  error : this.handleError,
-                  beforeSend : this.beforeSend
+                  url         : thisCometVisu.getResourcePath("read"),
+                  dataType    : 'json',
+                  context     : this,
+                  data        : thisCometVisu.buildRequest(diffAddresses) + '&t=0',
+                  success     : this.handleRead,
+                  error       : this.handleError,
+                  beforeSend  : this.beforeSend
                 });
                 this.watchdog.ping();
               }
@@ -427,26 +412,26 @@ define(
             handleError : function(xhr, str, excptObj) {
               if (thisCometVisu.running && xhr.readyState != 4
                   && !this.doRestart && xhr.status !== 0) // ignore error when
-                                                          // connection is
-                                                          // irrelevant
+              // connection is
+              // irrelevant
               {
                 var readyState = 'UNKNOWN';
                 switch (xhr.readyState) {
-                case 0:
-                  readyState = 'UNINITIALIZED';
-                  break;
-                case 1:
-                  readyState = 'LOADING';
-                  break;
-                case 2:
-                  readyState = 'LOADED';
-                  break;
-                case 3:
-                  readyState = 'INTERACTIVE';
-                  break;
-                case 4:
-                  readyState = 'COMPLETED';
-                  break;
+                  case 0:
+                    readyState = 'UNINITIALIZED';
+                    break;
+                  case 1:
+                    readyState = 'LOADING';
+                    break;
+                  case 2:
+                    readyState = 'LOADED';
+                    break;
+                  case 3:
+                    readyState = 'INTERACTIVE';
+                    break;
+                  case 4:
+                    readyState = 'COMPLETED';
+                    break;
                 }
                 alert('Error! Type: "' + str + '" ExceptionObject: "'
                     + excptObj + '" readyState: ' + readyState);
@@ -512,8 +497,7 @@ define(
             }
           },
           'sse' : {
-            watchdogTimer : 5, // in Seconds - the alive check interval of the
-                                // watchdog
+            watchdogTimer : 5, // in Seconds - the alive check interval of the watchdog
 
             init : function() {
             },
@@ -621,18 +605,16 @@ define(
            */
           var ts = new Date().getTime();
           $.ajax({
-            url : this.getResourcePath("write"),
-            dataType : 'json',
-            context : this,
-            data : 's=' + session + '&a=' + address + '&v=' + value + '&ts='
-                + ts
+            url       : this.getResourcePath("write"),
+            dataType  : 'json',
+            context   : this,
+            data      : 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts
           });
         };
-      }
-      ;
+      };
 
       CometVisu.prototype.update = function(json) {
       };
 
       return CometVisu;
-    });
+   });
