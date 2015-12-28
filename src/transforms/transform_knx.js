@@ -396,7 +396,7 @@ Transform.addTransform( 'DPT', {
         default: // actually "case 0:"
           return 'auto';
       }
-    },
+    }
   },
   /* DPT24.001 is probably not fully correct as it can also hold 
      multiple strings sep. by \x00 as array according to 3.7.2 DPT v1.07

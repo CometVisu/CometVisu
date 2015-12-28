@@ -65,7 +65,7 @@ design.basicdesign.addCreator('slide', {
       'step'           : step,
       'send_on_finish' : send_on_finish,
       'valueInternal'  : true,
-      'inAction'       : false,
+      'inAction'       : false
     });
     
     // check provided address-items for at least one address which has write-access
@@ -181,7 +181,7 @@ design.basicdesign.addCreator('slide', {
       }
     }
     transformSlider(ui.value,ui.handle);
-  },
+  }
   
 });
 

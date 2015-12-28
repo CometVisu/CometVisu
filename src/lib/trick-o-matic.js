@@ -100,7 +100,7 @@ define([ 'jquery' ], function( $ ) {
       if (this.attributes.getNamedItem('data-cometvisu-active')) {
         var activeValues = this.attributes.getNamedItem('data-cometvisu-active').value;
         $(activeValues.split(' ')).each(function() {
-          $('body').bind('_' + this,function(e, data, passedElement) {
+          templateEngine.addAddress( this, function( data ){
             if (data == '01' || data == 'ON')
               // pipe_group.classList.add('flow_active');
               pipe_group.setAttribute('class',pipe_group.getAttribute('class').replace(' flow_active', '')+ ' flow_active');

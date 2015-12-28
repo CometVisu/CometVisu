@@ -72,7 +72,7 @@ require.config({
     'widget_wgplugin_info':     'structure/pure/wgplugin_info',
     'transform_default':        'transforms/transform_default',
     'transform_knx':            'transforms/transform_knx',
-    'transform_oh':             'transforms/transform_oh',
+    'transform_oh':             'transforms/transform_oh'
   },
   'shim': {
     'scrollable':            ['jquery'],
@@ -307,7 +307,7 @@ function TemplateEngine( undefined ) {
         //$.event.trigger('_' + key, json[key]);
         var data = json[ key ];
         ga_list[ key ].forEach( function( id ){
-          if( id )
+          if( typeof id === 'string' )
           {
             var 
               element = document.getElementById( id ),
@@ -322,6 +322,8 @@ function TemplateEngine( undefined ) {
                 console.log( element, children, type ); // DEBUG FIXME
             }
             //console.log( element, type, updateFn );
+          } else if( typeof id === 'function' ) {
+            id.call( key, data );
           }
         });
       }

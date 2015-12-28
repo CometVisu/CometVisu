@@ -401,7 +401,7 @@ function VisuDesign() {
     if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
     if( flavour ) classes += ' flavour_' + flavour;
     if($element.attr('class')) classes += ' custom_' + $element.attr('class');
-    var label = this.extractLabel( $element.find('label')[0], flavour );
+    var label = (widgetType==='text')?this.extractLabel( $element.find('label')[0], flavour, '' ):this.extractLabel( $element.find('label')[0], flavour );
     var address = this.makeAddressList( $element, makeAddressListFn, path );
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
