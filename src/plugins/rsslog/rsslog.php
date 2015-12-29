@@ -361,4 +361,17 @@ function updatestate( $db, $id, $newstate)
   if (!$ok)
     die("Cannot execute query. $error");
 }
+
+/*
+  History:
+  
+  logschema 0:
+    No previous database
+    
+  logschema 1:
+    database version till end 2015
+    
+  logschema 2:
+    - icon support
+*/
 ?>
