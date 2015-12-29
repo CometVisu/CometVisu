@@ -204,25 +204,83 @@ sqlite_close($db);
 // create tables if they don't exist
 function create( $db )
 {
-  $q = "SELECT name FROM sqlite_master WHERE type='table' AND name='Logs';";
+  $logschema = 0;  // default: nothing exists yet
+  
+  // check: do we have a version information?
+  $q = "SELECT name FROM sqlite_master WHERE type='table' AND name='Version';";
   $result = sqlite_query( $db, $q, SQLITE_NUM );
   if (!$result) die("Cannot execute query. $q");
   if( !sqlite_has_more($result) )
   {
     // no table found - create it
-    $q = 'CREATE TABLE Logs(' .
-        '  id INTEGER PRIMARY KEY,' .
-        '  title TEXT,' . 
-        '  content TEXT NOT NULL,' .
-        '  tags TEXT,' .
-        '  t TIMESTAMP,' .
-        '  state INT' .
-        ');';
+    $q = 'CREATE TABLE Version(' .
+        '  logschema INT' .
+        ');' . 
+        'INSERT INTO Version( logschema ) VALUES( 0 );';
     $ok = sqlite_exec($db, $q, $error);
     
     if (!$ok)
       die("Cannot execute query $q. $error");
+    
+    $q = "SELECT name FROM sqlite_master WHERE type='table' AND name='Logs';";
+    $result = sqlite_query( $db, $q, SQLITE_NUM );
+    if (!$result) die("Cannot execute query. $q");
+    if( sqlite_has_more($result) )
+    {
+      // no Version table but Log table
+      // => database version prior 2016
+      $logschema = 1;
+    }
+  } else {
+    $q = "SELECT logschema FROM Version";
+    $res = sqlite_query( $db, $q, SQLITE_ASSOC );
+    $logschema = sqlite_fetch_single( $res );
   }
+  
+  $currentSchema = 
+    '(' .
+    '  id INTEGER PRIMARY KEY,' .
+    '  title TEXT,' . 
+    '  content TEXT NOT NULL,' .
+    '  tags TEXT,' .
+    '  mapping TEXT,' .
+    '  t TIMESTAMP,' .
+    '  state INT' .
+    ');';
+    
+  switch( $logschema )
+  {
+    case 0:  // inital setup of database
+      // no table found - create it
+      $q = 'CREATE TABLE Logs' . $currentSchema;
+      $ok = sqlite_exec($db, $q, $error);
+      if (!$ok) die("Cannot execute query $q. $error");
+        
+      $logschema = 2;
+      break;
+      
+    case 1:  // version without mapping
+      // note: SQLite2 has no ALTER TABLE - so do it the hard way
+      $q = 'CREATE TEMPORARY TABLE TempLogs' . $currentSchema .
+        'INSERT INTO TempLogs SELECT id, title, content, tags, "", t, state FROM Logs;' .
+        'DROP TABLE Logs;' .
+        'CREATE TABLE Logs' . $currentSchema .
+        'INSERT INTO Logs SELECT id, title, content, tags, mapping, t, state FROM TempLogs;' .
+        'DROP TABLE TempLogs;';
+      $ok = sqlite_exec($db, $q, $error);
+      if (!$ok) die("Cannot execute query $q. $error");
+    
+      $logschema = 2;
+      break;
+      
+    case 2:  // current
+      return; 
+  }
+  
+  // bump logschema
+  $q = 'UPDATE Version SET logschema=' . $logschema . ';';
+  $ok = sqlite_exec($db, $q, $error);
+  if (!$ok) die("Cannot execute query. $error");
 }
 
 // insert a new log line
@@ -294,4 +352,17 @@ function updatestate( $db, $id, $newstate)
   if (!$ok)
     die("Cannot execute query. $error");
 }
+
+/*
+  History:
+  
+  logschema 0:
+    No previous database
+    
+  logschema 1:
+    database version till end 2015
+    
+  logschema 2:
+    - icon support
+*/
 ?>
