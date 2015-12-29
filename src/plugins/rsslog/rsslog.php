@@ -13,6 +13,7 @@
 //                          separated by COMMA, usage &t[]=tag1,tag2 
 //    URL parameter "h":   a header(title) for the entry; maybe empty 
 //    URL parameter "state": (optional) state
+//    URL parameter "mapping": (optional) mapping - used for displaying
 // 2. Receive the log as RSS:
 //    URL parameter "f":   The (optional) filter, only log lines with a tag
 //                         that fit this string are sent
@@ -59,6 +60,7 @@ if( isset($_GET['c']) )
   $log_content = $_GET['c'] ? $_GET['c'] : '<no content>';
   $log_title = $_GET['h'] ? $_GET['h'] : '';
   $log_state = $_GET['state'] ? $_GET['state'] : 0;
+  $log_mapping = $_GET['mapping'] ? $_GET['mapping'] : '';
   if( mb_detect_encoding($log_content, 'UTF-8', true) != 'UTF-8' )
     $log_content = utf8_encode($log_content);
   if( mb_detect_encoding($log_title, 'UTF-8', true) != 'UTF-8' )
@@ -66,7 +68,7 @@ if( isset($_GET['c']) )
   $log_tags    = $_GET['t'] ? $_GET['t'] : array();
   if(! is_array($log_tags))
     die("wrong format - use one or more t[]= for tags");
-  insert( $db, $log_content, $log_title, $log_tags, $log_state );
+  insert( $db, $log_content, $log_title, $log_tags, $log_mapping, $log_state );
 } else if( isset($_GET['dump']) )
 {
   $result = retrieve( $db, $log_filter, NULL );
@@ -75,7 +77,7 @@ if( isset($_GET['c']) )
 <table border="1">
   <?php
   $records = 0;
-  echo '<tr><th>ID</th><th>DateTime</th><th>Timestamp</th><th>Title</th><th>Content</th><th>Tags</th><th>State</th></tr>';
+  echo '<tr><th>ID</th><th>DateTime</th><th>Timestamp</th><th>Title</th><th>Content</th><th>Tags</th><th>Mapping</th><th>State</th></tr>';
   while( sqlite_has_more($result) )
   {
     $row = sqlite_fetch_array($result, SQLITE_ASSOC ); 
@@ -86,6 +88,7 @@ if( isset($_GET['c']) )
     echo '<td>' . $row['title'] . '</td>';
     echo '<td>' . $row['content'] . '</td>';
     echo '<td>' . $row['tags'] . '</td>';
+    echo '<td>' . $row['mapping'] . '</td>';
     echo '<td>' . $row['state'] . '</td>';
     echo "</tr>\n";
     $records++;
@@ -131,6 +134,7 @@ if( isset($_GET['c']) )
     echo '"title": "' . $row['title'] . '",';
     echo '"content": "' . $row['content'] . '",';
     echo '"tags": ' . json_encode(explode(",", $row['tags'])) . ',';
+    echo '"mapping": "' . $row['mapping'] . '",';
     echo '"state": "' . $row['state'] . '",';
     echo '"publishedDate": "' . date( DATE_ATOM, $row['t'] ) . '"';
     echo '}';
@@ -284,13 +288,14 @@ function create( $db )
 }
 
 // insert a new log line
-function insert( $db, $content, $title, $tags, $state )
+function insert( $db, $content, $title, $tags, $mapping, $state )
 {
   // store a new log line
-  $q = 'INSERT INTO Logs(content, title, tags, t, state) VALUES( ' .
+  $q = 'INSERT INTO Logs(content, title, tags, mapping, t, state) VALUES( ' .
        "  '" . sqlite_escape_string( $content ) . "'," .
        "  '" . sqlite_escape_string( $title ) . "'," .
        "  '" . sqlite_escape_string( implode(",",$tags) ) . "'," .
+       "  '" . sqlite_escape_string( $mapping ) . "'," .
        "  datetime('now')," .
        "  $state" .
        ')';
@@ -309,7 +314,7 @@ function retrieve( $db, $filter, $state )
     $filters[$i] = " (tags LIKE '%" . sqlite_escape_string($val) . "%') ";
   }
   
-  $q = "SELECT id, title, content, tags, state, strftime('%s', t) AS t FROM Logs WHERE (" . implode('OR', $filters) . ")";
+  $q = "SELECT id, title, content, tags, mapping, state, strftime('%s', t) AS t FROM Logs WHERE (" . implode('OR', $filters) . ")";
   
   if (isset($state))
     $q .= " AND state=" . $state . " ";
@@ -352,17 +357,4 @@ function updatestate( $db, $id, $newstate)
   if (!$ok)
     die("Cannot execute query. $error");
 }
-
-/*
-  History:
-  
-  logschema 0:
-    No previous database
-    
-  logschema 1:
-    database version till end 2015
-    
-  logschema 2:
-    - icon support
-*/
 ?>
