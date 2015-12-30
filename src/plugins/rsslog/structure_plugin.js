@@ -23,7 +23,8 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
     var 
       $el = $(element),
       classes = templateEngine.design.setWidgetLayout( $el, path ),
-      label = templateEngine.design.extractLabel( $el.find('label')[0], flavour );
+      label = templateEngine.design.extractLabel( $el.find('label')[0], flavour ),
+      address = templateEngine.design.makeAddressList( $el, false, path );
 
     var id = "rss_" + path;
     var extsource = false;
@@ -44,6 +45,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
 
     var data = templateEngine.widgetDataInsert( path, {
       id:         id,
+      address:    address,
       src:        $el.attr("src"),
       filter:     $el.attr("filter"),
       refresh:    $el.attr("refresh"),
@@ -67,6 +69,13 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
 
     return ret_val;
   },
+  update:   function( ga, d ) { 
+    var 
+      element = $(this),
+      path = element.parent().attr('id'),
+      widgetData = templateEngine.widgetDataGet( path );
+    refreshRSSlog( widgetData );
+  },
   action: function( path, actor, isCanceled ) {
     if( isCanceled ) return;
 
@@ -86,8 +95,15 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
       // here). 
       // But delay it so that any change done to the data has a chance to 
       // arrive here.
-      if( $(this).hasClass('popup') )
+      if( $(this).hasClass('popup') && widgetData.itemack === 'modify' )
+      {
         window.setTimeout( function(){ refreshRSSlog( widgetData ); }, 100 );
+        for( var addr in widgetData.address )
+        {
+          if( !(widgetData.address[addr][1] & 2) ) continue; // skip when write flag not set
+          templateEngine.visu.write( addr, templateEngine.transformEncode( widgetData.address[addr][0], 0 ) );
+        }
+      }
     });
     popup.find('.main').css("overflow", "auto");
     refreshRSSlog( widgetData, true );
@@ -119,7 +135,7 @@ function refreshRSSlog( data, isBig ) {
       datetime: eval(data.datetime),
       mode: data.mode,
       timeformat: data.timeformat,
-      itemack: isBig ? data.itemack : ( 'modify' === data.itemack ? 'display' : data.itemack ),
+      itemack: isBig ? data.itemack : ( 'modify' === data.itemack ? 'display' : data.itemack )
     });
     
     if (typeof (refresh) != "undefined" && refresh) {

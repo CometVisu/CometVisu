@@ -98,6 +98,10 @@
     <urltrigger value="Call me" url="/something/else.php">
       <label>Any other local(!) URL/script</label>
     </urltrigger>
+    <trigger value="0">
+      <label>Trigger RSSLog Reload</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </trigger>
     <line>
       <layout colspan="12"/>
     </line>
@@ -106,6 +110,7 @@
     </text>
     <rsslog src="plugins/rsslog/rsslog.php" refresh="300" limit="6" mode="last">
       <layout rowspan="6" colspan="6"/>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </rsslog>
     <line>
       <layout colspan="12"/>
@@ -113,23 +118,29 @@
     <text align="center">
       <label>rsslog filter: fish - only last (click log!)</label>
     </text>
-    <rsslog src="plugins/rsslog/rsslog.php" filter="fish" mode="last"/>
+    <rsslog src="plugins/rsslog/rsslog.php" filter="fish" mode="last">
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </rsslog>
     <line>
       <layout colspan="12"/>
     </line>
     <text align="center">
       <label>rsslog filter: ventilation - mode: rollover</label>
     </text>
-    <rsslog src="plugins/rsslog/rsslog.php" filter="ventilation" mode="rollover"/>
+    <rsslog src="plugins/rsslog/rsslog.php" filter="ventilation" mode="rollover">
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
+    </rsslog>
     <line>
       <layout colspan="12"/>
     </line>
     <rsslog src="plugins/rsslog/rsslog.php?state=1" filter="fish" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
       <layout rowspan="9" colspan="6"/>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       <label>Ereignisse state=1 Filter=fish</label>
     </rsslog>
     <rsslog src="plugins/rsslog/rsslog.php?state=0" filter="fish" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
       <layout rowspan="9" colspan="6"/>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       <label>Ereignisse state=0 Filter=fish</label>
     </rsslog>
     <line>
@@ -137,14 +148,17 @@
     </line>
     <rsslog src="plugins/rsslog/rsslog.php" refresh="300" limit="5" mode="last" itemack="modify">
       <layout rowspan="3" colspan="4"/>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       <label>itemack: Modify</label>
     </rsslog>
     <rsslog src="plugins/rsslog/rsslog.php" refresh="300" limit="5" mode="last" itemack="display">
       <layout rowspan="3" colspan="4"/>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       <label>itemack: Display</label>
     </rsslog>
     <rsslog src="plugins/rsslog/rsslog.php" refresh="300" limit="5" mode="last" itemack="disable">
       <layout rowspan="3" colspan="4"/>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       <label>itemack: Disable</label>
     </rsslog>
     <line>
