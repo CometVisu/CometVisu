@@ -18,6 +18,7 @@
 //    URL parameter "f":   The (optional) filter, only log lines with a tag
 //                         that fit this string are sent
 //    URL parameter "state": get only rows with state=value
+//    URL parameter "limit": only get the latest "limit" entries
 // 3. Dump all the content in a HTML page:
 //    URL parameter "dump" - no value needed
 // 4. Remove old content:
@@ -321,7 +322,10 @@ function retrieve( $db, $filter, $state )
   
   $q .= "ORDER by t DESC";
   if (!isset($_GET['dump']))
-    $q .= " LIMIT 100";
+    if( !isset($_GET['limit']) || !is_numeric($_GET['limit']) || '0' == $_GET['limit'] )
+      $q .= " LIMIT 100";
+    else
+      $q .= " LIMIT " . $_GET['limit'];
   return sqlite_query( $db, $q, SQLITE_ASSOC );
 }
 

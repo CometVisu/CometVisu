@@ -121,6 +121,8 @@ function VisuDesign() {
 
       ret_val.bind( 'close', this.close );
       ret_val.bind( 'click', function() {
+        // note: this will call two events - one for the popup itself and 
+        //       one for the popup_background.
         ret_val.trigger( 'close' );
         return false;
       });
@@ -198,6 +200,48 @@ function VisuDesign() {
   };
   
   /**
+   * Method to handle all special cases for the value. The might come from
+   * the mapping where it can be quite complex as it can contain icons.
+   * value: the value that will be inserted
+   * modifyFn: callback function that modifies the DOM
+   */
+  this.defaultValue2DOM = function( value, modifyFn )
+  {
+    if (('string' === typeof value) || ('number' === typeof value))
+      modifyFn( value );
+    else if ('function' === typeof value)
+      // thisValue(valueElement);
+      console.error( 'typeof value === function - special case not handled anymore!' );
+    else if( !Array.isArray( value ) ) {
+      var element = value.cloneNode();
+      if( value.getContext )
+      {
+        fillRecoloredIcon( element );
+      }
+      modifyFn( element );
+    } else {
+      for (var i = 0; i < value.length; i++) {
+        var thisValue = value[i];
+        if (!thisValue) continue;
+
+        if( ('string' === typeof thisValue) || ('number' === typeof thisValue)  )
+          modifyFn( thisValue );
+        else if( 'function' === typeof thisValue )
+          // thisValue(valueElement);
+          console.error( 'typeof value === function - special case not handled anymore!' );
+        else {
+          var element = thisValue.cloneNode();
+          if( thisValue.getContext )
+          {
+            fillRecoloredIcon( element );
+          }
+          modifyFn( element );
+        }
+      }
+    }
+  }
+  
+  /**
    * ga:            address
    * data:          the raw value from the bus
    * passedElement: the element to update
@@ -217,41 +261,10 @@ function VisuDesign() {
   
     var valueElement = element.find('.value');
     valueElement.empty();
-    if (undefined !== value) {
-      if (('string' === typeof value) || ('number' === typeof value))
-        valueElement.append( value );
-      else if ('function' === typeof value)
-        value( valueElement );
-      else if( !Array.isArray( value ) ) {
-        var element = value.cloneNode();
-        if( value.getContext )
-        {
-          fillRecoloredIcon( element );
-        }
-        valueElement.append( element );
-      } else {
-        for (var i = 0; i < value.length; i++) {
-          var thisValue = value[i];
-          if (!thisValue) continue;
-  
-          if( ('string' === typeof thisValue) || ('number' === typeof thisValue)  )
-            valueElement.append( thisValue );
-          else if( 'function' === typeof thisValue )
-            thisValue(valueElement);
-          else {
-            var element = thisValue.cloneNode();
-            if( thisValue.getContext )
-            {
-              fillRecoloredIcon( element );
-            }
-            valueElement.append( element );
-          }
-        }
-      }
-    }
-    else {
+    if (undefined !== value)
+      self.defaultValue2DOM( value, function(e){ valueElement.append( e ) } );
+    else
       valueElement.append('-');
-    }
     
     return value;
   }
