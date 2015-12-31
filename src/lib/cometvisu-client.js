@@ -30,7 +30,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
 
   var
     // used for backwards compability
-    backendAliases = {
+    backendNameAliases = {
       'cgi-bin' : 'default',
       'oh'      : 'openhab',
       'oh2'     : 'openhab2'
@@ -85,10 +85,10 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
    * @class CometVisuClient
    * @constructor 
    * @alias module:cometvisu-client
-   * @param backend {String} name of the backend (cgi-bin|default|oh|openhab|oh2|openhab2)
-   * @param initPath {String|null} optional path to login ressource
+   * @param {String}      backendName name of the backend (cgi-bin|default|oh|openhab|oh2|openhab2)
+   * @param {String|null} initPath    optional path to login ressource
    */
-  function CometVisuClient(backend, initPath) { // Constructor
+  function CometVisuClient( backendName, initPath ) { // Constructor
 
     // ////////////////////////////////////////////////////////////////////////
     // private static variables and methods:
@@ -108,6 +108,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the public variables
     
+    this.config = backends['default'];
     this.addresses = []; // the subscribed addresses
     this.initialAddresses = []; // the addresses which should be loaded
     // before the subscribed addresses
@@ -117,22 +118,6 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     this.device = ''; // the current device ID
     this.running = false; // is the communication running at the moment?
     this.currentTransport; // the currently used transport layer
-
-    if (backendAliases[backend]) {
-      backend = backendAliases[backend];
-    }
-
-    // init default settings
-    this.config = backends['default'];
-    if (backend && backend !== 'default') {
-      if ($.isPlainObject(backend)) {
-        // override default settings
-        $.extend(this.config, backend);
-      } else if (backends[backend]) {
-        // merge backend settings into this.config
-        $.extend(this.config, backends[backend]);
-      }
-    }
 
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the private methods
@@ -637,6 +622,21 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     
     // ////////////////////////////////////////////////////////////////////////
     // Constructor
+    
+    // init default settings
+    if (backendNameAliases[backendName]) {
+      backendName = backendNameAliases[backendName];
+    }
+
+    if (backendName && backendName !== 'default') {
+      if ($.isPlainObject(backendName)) {
+        // override default settings
+        $.extend(this.config, backendName);
+      } else if (backends[backendName]) {
+        // merge backend settings into this.config
+        $.extend(this.config, backends[backendName]);
+      }
+    }
 
     checkSettings();
   };
