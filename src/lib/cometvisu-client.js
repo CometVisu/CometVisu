@@ -33,9 +33,26 @@ define([], function() {
    * @param backend {String} name of the backend (cgi-bin|default|oh|openhab|oh2|openhab2)
    * @param initPath {String|null} optional path to login ressource
    */
-  function CometVisu(backend, initPath) {
+  function CometVisu(backend, initPath) { // Constructor
+
+    // ////////////////////////////////////////////////////////////////////////
+    // private static variables and methods:
+
+    // ... none ...
+
+    // check and fix if the user forgot the "new" keyword
+    if (!(this instanceof CometVisu)) {
+      return new CometVisu();
+    }
+
+    // ////////////////////////////////////////////////////////////////////////
+    // Definition of the private variables
+
     var thisCometVisu = this;
-    this.initPath = initPath;
+    
+    // ////////////////////////////////////////////////////////////////////////
+    // Definition of the public variables
+    
     this.addresses = []; // the subscribed addresses
     this.initialAddresses = []; // the addresses which should be loaded
     // before the subscribed addresses
@@ -112,12 +129,14 @@ define([], function() {
       }
     }
 
-    this.setInitialAddresses = function(addresses) {
-      this.initialAddresses = addresses;
-    },
+    // ////////////////////////////////////////////////////////////////////////
+    // Definition of the private methods
+    /* ... */
 
-    /**
-     * return the relative path to a resource on the currently used backend
+    // ////////////////////////////////////////////////////////////////////////
+    // Definition of the public methods
+
+    /* return the relative path to a resource on the currently used backend
      * 
      * @method getResourcePath
      * 
