@@ -128,9 +128,11 @@ function VisuDesign() {
       });
 
       ret_val.css( 'display', 'block' );
+      $('#centerContainer').addClass('inactiveMain');
       return ret_val;
     },
     close: function( event ) {
+      $('#centerContainer').removeClass('inactiveMain');
       event.currentTarget.remove();
     }
   });

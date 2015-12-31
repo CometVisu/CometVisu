@@ -31,6 +31,10 @@ img.icon, canvas.icon {
   float: left;
   display: block;
 }
+#centerContainer.inactiveMain {
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
 #main {
   width: 100%;
 }
