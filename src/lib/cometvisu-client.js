@@ -28,58 +28,15 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
   // ////////////////////////////////////////////////////////////////////////
   // module global static variables and methods:
 
-  // ... none ...
-  
-  /**
-   * Class that handles the communicaton of the client
-   * 
-   * @class CometVisuClient
-   * @constructor 
-   * @alias module:cometvisu-client
-   * @param backend {String} name of the backend (cgi-bin|default|oh|openhab|oh2|openhab2)
-   * @param initPath {String|null} optional path to login ressource
-   */
-  function CometVisuClient(backend, initPath) { // Constructor
-
-    // ////////////////////////////////////////////////////////////////////////
-    // private static variables and methods:
-
-    // ... none ...
-
-    // check and fix if the user forgot the "new" keyword
-    if (!(this instanceof CometVisuClient)) {
-      return new CometVisuClient();
-    }
-
-    // ////////////////////////////////////////////////////////////////////////
-    // Definition of the private variables
-
-    var self = this;
-    
-    // ////////////////////////////////////////////////////////////////////////
-    // Definition of the public variables
-    
-    this.addresses = []; // the subscribed addresses
-    this.initialAddresses = []; // the addresses which should be loaded
-    // before the subscribed addresses
-    this.filters = []; // the subscribed filters
-    this.user = ''; // the current user
-    this.pass = ''; // the current password
-    this.device = ''; // the current device ID
-    this.running = false; // is the communication running at the moment?
-    this.currentTransport; // the currently used transport layer
-
+  var
     // used for backwards compability
-    this.aliases = {
+    backendAliases = {
       'cgi-bin' : 'default',
       'oh'      : 'openhab',
       'oh2'     : 'openhab2'
-    };
-    if (this.aliases[backend]) {
-      backend = this.aliases[backend];
-    }
-
-    this.backends = {
+    },
+    // setup of the different known backends
+    backends = {
       'default' : {
         name      : 'default',
         baseURL   : '/cgi-bin/',
@@ -123,21 +80,83 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         }
       }
     };
+    
+  /**
+   * @class CometVisuClient
+   * @constructor 
+   * @alias module:cometvisu-client
+   * @param backend {String} name of the backend (cgi-bin|default|oh|openhab|oh2|openhab2)
+   * @param initPath {String|null} optional path to login ressource
+   */
+  function CometVisuClient(backend, initPath) { // Constructor
+
+    // ////////////////////////////////////////////////////////////////////////
+    // private static variables and methods:
+
+    // ... none ...
+
+    // check and fix if the user forgot the "new" keyword
+    if (!(this instanceof CometVisuClient)) {
+      return new CometVisuClient();
+    }
+
+    // ////////////////////////////////////////////////////////////////////////
+    // Definition of the private variables
+
+    var self = this;
+    
+    // ////////////////////////////////////////////////////////////////////////
+    // Definition of the public variables
+    
+    this.addresses = []; // the subscribed addresses
+    this.initialAddresses = []; // the addresses which should be loaded
+    // before the subscribed addresses
+    this.filters = []; // the subscribed filters
+    this.user = ''; // the current user
+    this.pass = ''; // the current password
+    this.device = ''; // the current device ID
+    this.running = false; // is the communication running at the moment?
+    this.currentTransport; // the currently used transport layer
+
+    if (backendAliases[backend]) {
+      backend = backendAliases[backend];
+    }
+
     // init default settings
-    this.config = this.backends['default'];
+    this.config = backends['default'];
     if (backend && backend !== 'default') {
       if ($.isPlainObject(backend)) {
         // override default settings
         $.extend(this.config, backend);
-      } else if (this.backends[backend]) {
+      } else if (backends[backend]) {
         // merge backend settings into this.config
-        $.extend(this.config, this.backends[backend]);
+        $.extend(this.config, backends[backend]);
       }
     }
 
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the private methods
-    /* ... */
+    
+    /**
+     * Called once after backend setting is created to do some custom
+     * settings if neccessary
+     * 
+     * @method checkSettings
+     */
+    var checkSettings = function() {
+      if (self.config.transport === 'sse' && self.config.transportFallback) {
+        if (window.EventSource === undefined) {
+          // browser does not support EventSource object => use fallback
+          // transport + settings
+          $.extend(self.config, self.config.transportFallback);
+        }
+      }
+      // add trailing slash to baseURL if not set
+      if (self.config.baseURL && !self.config.baseURL.endsWith("/")) {
+        self.config.baseURL += "/";
+      }
+      self.currentTransport = self.transport[self.config.transport];
+    };
 
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the public methods
@@ -154,27 +173,6 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
       return this.config.baseURL + this.config.resources[name];
     };
 
-    /**
-     * Called once after backend setting is created to do some custom
-     * settings if neccessary
-     * 
-     * @method checkSettings
-     */
-    this.checkSettings = function() {
-      if (this.config.transport === 'sse' && this.config.transportFallback) {
-        if (window.EventSource === undefined) {
-          // browser does not support EventSource object => use fallback
-          // transport + settings
-          $.extend(this.config, this.config.transportFallback);
-        }
-      }
-      // add trailing slash to baseURL if not set
-      if (this.config.baseURL && !this.config.baseURL.endsWith("/")) {
-        this.config.baseURL += "/";
-      }
-      this.currentTransport = this.transport[this.config.transport];
-    };
-    this.checkSettings();
 
     /**
      * Subscribe to the addresses in the parameter. The second parameter
@@ -236,7 +234,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
       // read backend configuration if send by backend
       if (json.c) {
         $.extend(this.config, json.c);
-        this.checkSettings();
+        checkSettings();
       }
       // bind context object (this) to the handleSession function
       var bound = this.currentTransport.handleSession.bind(this.currentTransport);
@@ -636,6 +634,11 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         data      : 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts
       });
     };
+    
+    // ////////////////////////////////////////////////////////////////////////
+    // Constructor
+
+    checkSettings();
   };
 
   CometVisuClient.prototype.update = function(json) {
