@@ -104,12 +104,13 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the private variables
 
-    var self = this;
+    var 
+      self = this,
+      backend = backends['default'];
     
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the public variables
     
-    this.config = backends['default'];
     this.addresses = []; // the subscribed addresses
     this.initialAddresses = []; // the addresses which should be loaded
     // before the subscribed addresses
@@ -130,18 +131,18 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
      * @method checkSettings
      */
     var checkSettings = function() {
-      if (self.config.transport === 'sse' && self.config.transportFallback) {
+      if (backend.transport === 'sse' && backend.transportFallback) {
         if (window.EventSource === undefined) {
           // browser does not support EventSource object => use fallback
           // transport + settings
-          $.extend(self.config, self.config.transportFallback);
+          $.extend(backend, backend.transportFallback);
         }
       }
       // add trailing slash to baseURL if not set
-      if (self.config.baseURL && !self.config.baseURL.endsWith("/")) {
-        self.config.baseURL += "/";
+      if (backend.baseURL && !backend.baseURL.endsWith("/")) {
+        backend.baseURL += "/";
       }
-      self.currentTransport = self.transport[self.config.transport];
+      self.currentTransport = self.transport[backend.transport];
     };
 
     // ////////////////////////////////////////////////////////////////////////
@@ -156,7 +157,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
      * @returns {String} relative path to the resource
      */
     this.getResourcePath = function(name) {
-      return this.config.baseURL + this.config.resources[name];
+      return backend.baseURL + backend.resources[name];
     };
 
 
@@ -219,7 +220,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     this.handleLogin = function(json) {
       // read backend configuration if send by backend
       if (json.c) {
-        $.extend(this.config, json.c);
+        $.extend(backend, json.c);
         checkSettings();
       }
       // bind context object (this) to the handleSession function
@@ -498,8 +499,8 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           if (this.xhr && this.xhr.abort) {
             this.xhr.abort();
 
-            if (this.config && this.config.hooks.onClose) {
-              this.config.hooks.onClose.bind(this);
+            if (backend && backend.hooks.onClose) {
+              backend.hooks.onClose.bind(this);
             }
           }
         }
@@ -632,10 +633,10 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     if (backendName && backendName !== 'default') {
       if ($.isPlainObject(backendName)) {
         // override default settings
-        $.extend(this.config, backendName);
+        $.extend(backend, backendName);
       } else if (backends[backendName]) {
-        // merge backend settings into this.config
-        $.extend(this.config, backends[backendName]);
+        // merge backend settings into backend
+        $.extend(backend, backends[backendName]);
       }
     }
 
