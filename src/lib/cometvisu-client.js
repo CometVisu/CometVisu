@@ -20,20 +20,27 @@
  * 
  * @module CometVisu Client
  * @title CometVisu Client
+ * @exports comentvisu-client
  * @reqires jQuery
  */
-define([], function() {
+define( 'cometvisu-client', ['jquery'], function( $ ) {
   "use strict";
 
+  // ////////////////////////////////////////////////////////////////////////
+  // module global static variables and methods:
+
+  // ... none ...
+  
   /**
    * Class that handles the communicaton of the client
    * 
-   * @class CometVisu
-   * @constructor foo
+   * @class CometVisuClient
+   * @constructor 
+   * @alias module:cometvisu-client
    * @param backend {String} name of the backend (cgi-bin|default|oh|openhab|oh2|openhab2)
    * @param initPath {String|null} optional path to login ressource
    */
-  function CometVisu(backend, initPath) { // Constructor
+  function CometVisuClient(backend, initPath) { // Constructor
 
     // ////////////////////////////////////////////////////////////////////////
     // private static variables and methods:
@@ -41,8 +48,8 @@ define([], function() {
     // ... none ...
 
     // check and fix if the user forgot the "new" keyword
-    if (!(this instanceof CometVisu)) {
-      return new CometVisu();
+    if (!(this instanceof CometVisuClient)) {
+      return new CometVisuClient();
     }
 
     // ////////////////////////////////////////////////////////////////////////
@@ -238,12 +245,6 @@ define([], function() {
       bound(json);
     };
 
-  /**
-   * This function sends a value
-   * @method write
-   */
-  this.write = function( address, value )
-  {
     /**
      * This function stops an ongoing connection
      * 
@@ -638,8 +639,8 @@ define([], function() {
     };
   };
 
-  CometVisu.prototype.update = function(json) {
+  CometVisuClient.prototype.update = function(json) {
   };
 
-  return CometVisu;
+  return CometVisuClient;
 });
