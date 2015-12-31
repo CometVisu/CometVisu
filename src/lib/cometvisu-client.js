@@ -54,7 +54,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the private variables
 
-    var thisCometVisu = this;
+    var self = this;
     
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the public variables
@@ -303,32 +303,32 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           * @method handleSession
           */
         handleSession : function(json) {
-          thisCometVisu.session = json.s;
-          thisCometVisu.version = json.v.split('.', 3);
+          self.session = json.s;
+          self.version = json.v.split('.', 3);
 
-          if (0 < parseInt(thisCometVisu.version[0])
-              || 1 < parseInt(thisCometVisu.version[1]))
+          if (0 < parseInt(self.version[0])
+              || 1 < parseInt(self.version[1]))
             alert('ERROR CometVisu Client: too new protocol version ('
                 + json.v + ') used!');
 
           // send first request
-          thisCometVisu.running = true;
-          if (thisCometVisu.initialAddresses.length) {
+          self.running = true;
+          if (self.initialAddresses.length) {
             this.xhr = $.ajax({
-              url         : thisCometVisu.getResourcePath("read"),
+              url         : self.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : thisCometVisu.buildRequest(thisCometVisu.initialAddresses) + '&t=0',
+              data        : self.buildRequest(self.initialAddresses) + '&t=0',
               success     : this.handleReadStart,
               beforeSend  : this.beforeSend
             });
           } else {
             // old behaviour -> start full query
             this.xhr = $.ajax({
-              url         : thisCometVisu.getResourcePath("read"),
+              url         : self.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : thisCometVisu.buildRequest() + '&t=0',
+              data        : self.buildRequest() + '&t=0',
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -344,13 +344,13 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           */
         handleRead : function(json) {
           if (!json && (-1 == this.lastIndex)) {
-            if (thisCometVisu.running) { // retry initial request
+            if (self.running) { // retry initial request
               this.retryCounter++;
               this.xhr = $.ajax({
-                url : thisCometVisu.getResourcePath("read"),
+                url : self.getResourcePath("read"),
                 dataType : 'json',
                 context : this,
-                data : thisCometVisu.buildRequest() + '&t=0',
+                data : self.buildRequest() + '&t=0',
                 success : this.handleRead,
                 error : this.handleError,
                 beforeSend : this.beforeSend
@@ -364,17 +364,17 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
             this.lastIndex = json.i;
             var data = json.d;
             this.readResendHeaderValues();
-            thisCometVisu.update(data);
+            self.update(data);
             this.retryCounter = 0;
           }
 
-          if (thisCometVisu.running) { // keep the requests going
+          if (self.running) { // keep the requests going
             this.retryCounter++;
             this.xhr = $.ajax({
-              url         : thisCometVisu.getResourcePath("read"),
+              url         : self.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : thisCometVisu.buildRequest() + '&i=' + this.lastIndex,
+              data        : self.buildRequest() + '&i=' + this.lastIndex,
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -385,12 +385,12 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
 
         handleReadStart : function(json) {
           if (!json && (-1 == this.lastIndex)) {
-            if (thisCometVisu.running) { // retry initial request
+            if (self.running) { // retry initial request
               this.xhr = $.ajax({
-                url         : thisCometVisu.getResourcePath("read"),
+                url         : self.getResourcePath("read"),
                 dataType    : 'json',
                 context     : this,
-                data        : thisCometVisu.buildRequest(thisCometVisu.initialAddresses) + '&t=0',
+                data        : self.buildRequest(self.initialAddresses) + '&t=0',
                 success     : this.handleReadStart,
                 beforeSend  : this.beforeSend
               });
@@ -400,22 +400,22 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           }
           if (json && !this.doRestart) {
             this.readResendHeaderValues();
-            thisCometVisu.update(json.d);
+            self.update(json.d);
           }
-          if (thisCometVisu.running) { // keep the requests going, but only
+          if (self.running) { // keep the requests going, but only
             // request
             // addresses-startPageAddresses
             var diffAddresses = [];
-            for (var i = 0; i < thisCometVisu.addresses.length; i++) {
-              if ($.inArray(thisCometVisu.addresses[i],
-                  thisCometVisu.initialAddresses) < 0)
-                diffAddresses.push(thisCometVisu.addresses[i]);
+            for (var i = 0; i < self.addresses.length; i++) {
+              if ($.inArray(self.addresses[i],
+                  self.initialAddresses) < 0)
+                diffAddresses.push(self.addresses[i]);
             }
             this.xhr = $.ajax({
-              url         : thisCometVisu.getResourcePath("read"),
+              url         : self.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : thisCometVisu.buildRequest(diffAddresses) + '&t=0',
+              data        : self.buildRequest(diffAddresses) + '&t=0',
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -434,7 +434,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           * @param excptObj
           */
         handleError : function(xhr, str, excptObj) {
-          if (thisCometVisu.running && xhr.readyState != 4
+          if (self.running && xhr.readyState != 4
               && !this.doRestart && xhr.status !== 0) // ignore error when
             // connection is
             // irrelevant
@@ -543,11 +543,11 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           * @method handleSession
           */
         handleSession : function(json) {
-          thisCometVisu.session = json.s;
-          thisCometVisu.version = json.v.split('.', 3);
+          self.session = json.s;
+          self.version = json.v.split('.', 3);
 
-          if (0 < parseInt(thisCometVisu.version[0])
-              || 1 < parseInt(thisCometVisu.version[1]))
+          if (0 < parseInt(self.version[0])
+              || 1 < parseInt(self.version[1]))
             alert('ERROR CometVisu Client: too new protocol version ('
                 + json.v + ') used!');
 
@@ -559,10 +559,10 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           */
         connect : function() {
           // send first request
-          thisCometVisu.running = true;
-          this.eventSource = new EventSource(thisCometVisu
+          self.running = true;
+          this.eventSource = new EventSource(self
               .getResourcePath("read")
-              + "?" + thisCometVisu.buildRequest());
+              + "?" + self.buildRequest());
           this.eventSource.addEventListener('message', this.handleMessage,
               false);
           this.eventSource.addEventListener('error', this.handleError,
@@ -582,7 +582,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         handleMessage : function(e) {
           var json = JSON.parse(e.data);
           var data = json.d;
-          thisCometVisu.update(data);
+          self.update(data);
         },
 
         /**
@@ -591,7 +591,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         handleError : function(e) {
           if (e.readyState == EventSource.CLOSED) {
             // Connection was closed.
-            thisCometVisu.running = false;
+            self.running = false;
             // reconnect
             connect();
           }
