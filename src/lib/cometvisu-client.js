@@ -316,9 +316,8 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           if (this.xhr && this.xhr.abort) {
             this.xhr.abort();
 
-            var backend = session.getBackend();
-            if (backend && backend.hooks.onClose) {
-              backend.hooks.onClose.bind(this);
+            if (session.backend && session.backend.hooks.onClose) {
+              session.backend.hooks.onClose.bind(this);
             }
           }
         };
@@ -431,7 +430,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
 
     var 
       self = this,
-      backend = backends['default'],
+      backend,
       watchdog = (function() {
         var 
           last = new Date(),
@@ -477,30 +476,32 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     this.running = false; // is the communication running at the moment?
     this.currentTransport; // the currently used transport layer
 
+    Object.defineProperty( this, 'backend', {
+      get: function() {
+        return backend;
+      },
+      set: function( newBackend ) {
+        backend = newBackend;
+        if (backend.transport === 'sse' && backend.transportFallback) {
+          if (window.EventSource === undefined) {
+            // browser does not support EventSource object => use fallback
+            // transport + settings
+            $.extend(backend, backend.transportFallback);
+          }
+        }
+        // add trailing slash to baseURL if not set
+        if (backend.baseURL && !backend.baseURL.endsWith("/")) {
+          backend.baseURL += "/";
+        }
+        self.currentTransport = new transportLayers[backend.transport]( self, watchdog );
+      }
+    });
+
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the private methods
     
-    /**
-     * Called once after backend setting is created to do some custom
-     * settings if neccessary
-     * 
-     * @method checkSettings
-     */
-    var checkSettings = function() {
-      if (backend.transport === 'sse' && backend.transportFallback) {
-        if (window.EventSource === undefined) {
-          // browser does not support EventSource object => use fallback
-          // transport + settings
-          $.extend(backend, backend.transportFallback);
-        }
-      }
-      // add trailing slash to baseURL if not set
-      if (backend.baseURL && !backend.baseURL.endsWith("/")) {
-        backend.baseURL += "/";
-      }
-      self.currentTransport = new transportLayers[backend.transport]( self, watchdog );
-    };
-
+    // ... none ...
+    
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the public methods
 
@@ -514,13 +515,6 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
      */
     this.getResourcePath = function(name) {
       return backend.baseURL + backend.resources[name];
-    };
-
-    /**
-     * Return the configured backend for this session
-     */
-    this.getBackend = function() {
-      return backend;
     };
 
     /**
@@ -582,8 +576,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     this.handleLogin = function(json) {
       // read backend configuration if send by backend
       if (json.c) {
-        $.extend(backend, json.c);
-        checkSettings();
+        self.backend = $.extend(self.backend, json.c); // assign itself to run setter
       }
       // bind context object (this) to the handleSession function
       var bound = this.currentTransport.handleSession.bind(this.currentTransport);
@@ -652,14 +645,14 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     if (backendName && backendName !== 'default') {
       if ($.isPlainObject(backendName)) {
         // override default settings
-        $.extend(backend, backendName);
+        self.backend = $.extend({}, backends['default'], backendName);
       } else if (backends[backendName]) {
-        // merge backend settings into backend
-        $.extend(backend, backends[backendName]);
+        // merge backend settings into default backend
+        self.backend = $.extend({}, backends['default'], backends[backendName]);
       }
+    } else {
+      self.backend = backends['default'];
     }
-
-    checkSettings();
   };
 
   CometVisuClient.prototype.update = function(json) {
