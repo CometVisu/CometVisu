@@ -67,7 +67,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
             var oldValue = this.headers["X-Atmosphere-Transport"];
             this.headers["X-Atmosphere-Transport"] = "close";
             $.ajax({
-              url         : this.config.baseURL + this.config.resources.read,
+              url         : this.getResourcePath('read'),
               dataType    : 'json',
               context     : this,
               beforeSend  : this.beforeSend
@@ -80,9 +80,334 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           }
         }
       }
+    },
+    // definition of the different supported transport layers (OSI layer 4).
+    transportLayers = {
+      'long-polling' : function( session, watchdog ){
+        var self = this;
+        this.doRestart         = false; // are we currently in a restart, e.g. due to the watchdog
+        this.xhr               = false; // the ongoing AJAX request
+        this.watchdogTimer     = 5; // in Seconds - the alive check interval of the watchdog
+        this.maxConnectionAge  = 60; // in Seconds - restart if last read is older
+        this.maxDataAge        = 3200; // in Seconds - reload all data when last successful read is older (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
+        this.lastIndex         = -1; // index returned by the last request
+        this.retryCounter      = 0; // count number of retries (reset with each valid response)
+
+        this.init = function() {
+          watchdog.start( /*watchdogTimer, maxConnectionAge, maxDataAge,*/ 5, 60*1000,3200*1000,this.restart );
+        };
+
+        /**
+          * This function gets called once the communication is established
+          * and session information is available.
+          * 
+          * @param json
+          * @method handleSession
+          */
+        this.handleSession = function(json) {
+          self.session = json.s;
+          self.version = json.v.split('.', 3);
+
+          if (0 < parseInt(self.version[0])
+              || 1 < parseInt(self.version[1]))
+            alert('ERROR CometVisu Client: too new protocol version ('
+                + json.v + ') used!');
+
+          // send first request
+          self.running = true;
+          if (session.initialAddresses.length) {
+            this.xhr = $.ajax({
+              url         : session.getResourcePath("read"),
+              dataType    : 'json',
+              context     : this,
+              data        : session.buildRequest(session.initialAddresses) + '&t=0',
+              success     : this.handleReadStart,
+              beforeSend  : this.beforeSend
+            });
+          } else {
+            // old behaviour -> start full query
+            this.xhr = $.ajax({
+              url         : session.getResourcePath("read"),
+              dataType    : 'json',
+              context     : this,
+              data        : session.buildRequest() + '&t=0',
+              success     : this.handleRead,
+              error       : this.handleError,
+              beforeSend  : this.beforeSend
+            });
+          }
+        };
+        /**
+          * This function gets called once the communication is established
+          * and session information is available
+          * 
+          * @method handleRead
+          * @param json
+          */
+        this.handleRead = function(json) {
+          if (!json && (-1 == this.lastIndex)) {
+            if (session.running) { // retry initial request
+              this.retryCounter++;
+              this.xhr = $.ajax({
+                url : session.getResourcePath("read"),
+                dataType : 'json',
+                context : this,
+                data : self.buildRequest() + '&t=0',
+                success : this.handleRead,
+                error : this.handleError,
+                beforeSend : this.beforeSend
+              });
+              watchdog.ping( true );
+            }
+            return;
+          }
+
+          if (json && !this.doRestart) {
+            this.lastIndex = json.i;
+            var data = json.d;
+            this.readResendHeaderValues();
+            session.update(data);
+            this.retryCounter = 0;
+          }
+
+          if (self.running) { // keep the requests going
+            this.retryCounter++;
+            this.xhr = $.ajax({
+              url         : session.getResourcePath("read"),
+              dataType    : 'json',
+              context     : this,
+              data        : session.buildRequest() + '&i=' + this.lastIndex,
+              success     : this.handleRead,
+              error       : this.handleError,
+              beforeSend  : this.beforeSend
+            });
+            watchdog.ping();
+          }
+        };
+
+        this.handleReadStart = function(json) {
+          if (!json && (-1 == this.lastIndex)) {
+            if (self.running) { // retry initial request
+              this.xhr = $.ajax({
+                url         : session.getResourcePath("read"),
+                dataType    : 'json',
+                context     : this,
+                data        : session.buildRequest(session.initialAddresses) + '&t=0',
+                success     : this.handleReadStart,
+                beforeSend  : this.beforeSend
+              });
+              watchdog.ping();
+            }
+            return;
+          }
+          if (json && !this.doRestart) {
+            this.readResendHeaderValues();
+            session.update(json.d);
+          }
+          if (self.running) { // keep the requests going, but only
+            // request
+            // addresses-startPageAddresses
+            var diffAddresses = [];
+            for (var i = 0; i < session.addresses.length; i++) {
+              if ($.inArray(self.addresses[i],
+                  session.initialAddresses) < 0)
+                diffAddresses.push(session.addresses[i]);
+            }
+            this.xhr = $.ajax({
+              url         : session.getResourcePath("read"),
+              dataType    : 'json',
+              context     : this,
+              data        : session.buildRequest(diffAddresses) + '&t=0',
+              success     : this.handleRead,
+              error       : this.handleError,
+              beforeSend  : this.beforeSend
+            });
+            watchdog.ping();
+          }
+        };
+
+        /**
+          * This function gets called on an error FIXME: this should be a
+          * prototype, so that the application developer can override it
+          * 
+          * @method handleError
+          * @param xhr
+          * @param str
+          * @param excptObj
+          */
+        this.handleError = function(xhr, str, excptObj) {
+          if (session.running && xhr.readyState != 4
+              && !this.doRestart && xhr.status !== 0) // ignore error when
+            // connection is
+            // irrelevant
+          {
+            var readyState = 'UNKNOWN';
+            switch (xhr.readyState) {
+              case 0:
+                readyState = 'UNINITIALIZED';
+                break;
+              case 1:
+                readyState = 'LOADING';
+                break;
+              case 2:
+                readyState = 'LOADED';
+                break;
+              case 3:
+                readyState = 'INTERACTIVE';
+                break;
+              case 4:
+                readyState = 'COMPLETED';
+                break;
+            }
+            alert('Error! Type: "' + str + '" ExceptionObject: "'
+                + excptObj + '" readyState: ' + readyState);
+          }
+        };
+
+        /**
+          * manipulates the header of the current ajax query before it is
+          * been send to the server
+          * 
+          * @param xhr
+          * @method beforeSend
+          */
+        this.beforeSend = function(xhr) {
+          for ( var headerName in this.resendHeaders) {
+            if (this.resendHeaders[headerName] != undefined)
+              xhr.setRequestHeader(headerName,
+                  this.resendHeaders[headerName]);
+          }
+          for ( var headerName in this.headers) {
+            if (this.headers[headerName] != undefined)
+              xhr.setRequestHeader(headerName, this.headers[headerName]);
+          }
+        };
+
+        /**
+          * read the header values of a response and stores them to the
+          * resendHeaders array
+          * 
+          * @method readResendHeaderValues
+          */
+        this.readResendHeaderValues = function() {
+          for ( var headerName in this.resendHeaders) {
+            this.resendHeaders[headerName] = this.xhr
+            .getResponseHeader(headerName);
+          }
+        };
+
+        /**
+          * Restart the read request, e.g. when the watchdog kicks in
+          * 
+          * @method restart
+          */
+        this.restart = function() {
+          self.doRestart = true;
+          self.abort();
+          self.handleRead(); // restart
+          self.doRestart = false;
+        };
+        /**
+          * Abort the read request properly
+          * 
+          * @method restart
+          */
+        this.abort = function() {
+          if (this.xhr && this.xhr.abort) {
+            this.xhr.abort();
+
+            var backend = session.getBackend();
+            if (backend && backend.hooks.onClose) {
+              backend.hooks.onClose.bind(this);
+            }
+          }
+        };
+      },
+      'sse' : function( session, watchdog ){
+        this.watchdogTimer = 5, // in Seconds - the alive check interval of the watchdog
+
+        this.init = function() {
+        };
+
+        this.watchdog = function() {
+          var aliveCheckFunction = function() {
+            if (this.eventSource.readyState === EventSource.CLOSED) {
+              console.log("connection closed => restarting");
+              this.connect();
+            }
+          };
+          setInterval(aliveCheckFunction.bind(this),
+              this.watchdogTimer * 1000);
+        };
+        /**
+          * This function gets called once the communication is established
+          * and session information is available
+          * 
+          * @method handleSession
+          */
+        this.handleSession = function(json) {
+          self.session = json.s;
+          self.version = json.v.split('.', 3);
+
+          if (0 < parseInt(self.version[0])
+              || 1 < parseInt(self.version[1]))
+            alert('ERROR CometVisu Client: too new protocol version ('
+                + json.v + ') used!');
+
+          this.connect();
+        };
+
+        /**
+          * Establish the SSE connection
+          */
+        this.connect = function() {
+          // send first request
+          self.running = true;
+          this.eventSource = new EventSource(self
+              .getResourcePath("read")
+              + "?" + self.buildRequest());
+          this.eventSource.addEventListener('message', this.handleMessage,
+              false);
+          this.eventSource.addEventListener('error', this.handleError,
+              false);
+          this.eventSource.onerror = function(event) {
+            console.log("connection lost");
+          };
+          this.eventSource.onopen = function(event) {
+            console.log("connection established");
+          };
+          this.watchdog();
+        };
+
+        /**
+          * Handle messages send from server as Server-Sent-Event
+          */
+        this.handleMessage = function(e) {
+          var json = JSON.parse(e.data);
+          var data = json.d;
+          session.update(data);
+        };
+
+        /**
+          * Handle errors
+          */
+        this.handleError = function(e) {
+          if (e.readyState == EventSource.CLOSED) {
+            // Connection was closed.
+            self.running = false;
+            // reconnect
+            connect();
+          }
+        };
+      }
     };
-    
+
   /**
+   * The CometVisuClient handles all communication issues to supply the user
+   * ob this object with reliable realtime data.
+   * Itself it can be seens as the session layer (layer 5) according to the OSI
+   * model. 
+   * 
    * @class CometVisuClient
    * @constructor 
    * @alias module:cometvisu-client
@@ -106,7 +431,38 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
 
     var 
       self = this,
-      backend = backends['default'];
+      backend = backends['default'],
+      watchdog = (function() {
+        var 
+          last = new Date(),
+          hardLast = last,
+          _maxConnectionAge,
+          _maxDataAge,
+          _restartCallbackFn,
+          aliveCheckFunction = function() {
+            var now = new Date();
+            if (now - last < _maxConnectionAge )
+              return;
+            if (now - hardLast > _maxDataAge )
+              thislastIndex = -1; // reload all data
+            _restartCallbackFn();
+            last = now;
+          };
+        return {
+          start: function( watchdogTimer, maxConnectionAge, maxDataAge, restartCallbackFn ) {
+            _maxConnectionAge = maxConnectionAge;
+            _maxDataAge = maxDataAge;
+            _restartCallbackFn = restartCallbackFn;
+            setInterval( aliveCheckFunction, watchdogTimer * 1000 );
+          },
+          ping : function( fullReload ) {
+            last = new Date();
+            if( fullReload ) {
+              hardLast = last;
+            }
+          }
+        };
+      })();
     
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the public variables
@@ -142,7 +498,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
       if (backend.baseURL && !backend.baseURL.endsWith("/")) {
         backend.baseURL += "/";
       }
-      self.currentTransport = self.transport[backend.transport];
+      self.currentTransport = new transportLayers[backend.transport]( self, watchdog );
     };
 
     // ////////////////////////////////////////////////////////////////////////
@@ -160,6 +516,12 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
       return backend.baseURL + backend.resources[name];
     };
 
+    /**
+     * Return the configured backend for this session
+     */
+    this.getBackend = function() {
+      return backend;
+    };
 
     /**
      * Subscribe to the addresses in the parameter. The second parameter
@@ -172,7 +534,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     this.subscribe = function(addresses, filters) {
       // initialize transport and use the transport object as context for
       // itself
-      this.currentTransport.init.bind(this.currentTransport);
+      self.currentTransport.init();
 
       var startCommunication = !this.addresses.length; // start when
       // addresses were
@@ -241,349 +603,6 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
       }
     };
 
-    this.transport = {
-      'long-polling' : {
-        doRestart         : false, // are we currently in a restart, e.g. due to the watchdog
-        xhr               : false, // the ongoing AJAX request
-        watchdogTimer     : 5, // in Seconds - the alive check interval of the watchdog
-        maxConnectionAge  : 60, // in Seconds - restart if last read is older
-        maxDataAge        : 3200, // in Seconds - reload all data when last successful read is older (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
-        lastIndex         : -1, // index returned by the last request
-        retryCounter      : 0, // count number of retries (reset with each valid response)
-
-        init : function() {
-          this.watchdog();
-        },
-
-        watchdog : function() {
-          var last = new Date();
-          var hardLast = last;
-          var aliveCheckFunction = function() {
-            var now = new Date();
-            if (now - last < this.maxConnectionAge * 1000)
-              return;
-            if (now - hardLast > this.maxDataAge * 1000)
-              thislastIndex = -1; // reload all data
-            this.restart();
-            last = now;
-          };
-          setInterval(aliveCheckFunction.bind(this), this.watchdogTimer * 1000);
-          return {
-            ping : function() {
-              // delete last;
-              last = new Date();
-              if (!this.doRestart) {
-                // delete hardLast;
-                hardLast = last;
-              }
-            }.bind(this)
-          };
-        },
-
-        /**
-          * This function gets called once the communication is established
-          * and session information is available.
-          * 
-          * @param json
-          * @method handleSession
-          */
-        handleSession : function(json) {
-          self.session = json.s;
-          self.version = json.v.split('.', 3);
-
-          if (0 < parseInt(self.version[0])
-              || 1 < parseInt(self.version[1]))
-            alert('ERROR CometVisu Client: too new protocol version ('
-                + json.v + ') used!');
-
-          // send first request
-          self.running = true;
-          if (self.initialAddresses.length) {
-            this.xhr = $.ajax({
-              url         : self.getResourcePath("read"),
-              dataType    : 'json',
-              context     : this,
-              data        : self.buildRequest(self.initialAddresses) + '&t=0',
-              success     : this.handleReadStart,
-              beforeSend  : this.beforeSend
-            });
-          } else {
-            // old behaviour -> start full query
-            this.xhr = $.ajax({
-              url         : self.getResourcePath("read"),
-              dataType    : 'json',
-              context     : this,
-              data        : self.buildRequest() + '&t=0',
-              success     : this.handleRead,
-              error       : this.handleError,
-              beforeSend  : this.beforeSend
-            });
-          }
-        },
-        /**
-          * This function gets called once the communication is established
-          * and session information is available
-          * 
-          * @method handleRead
-          * @param json
-          */
-        handleRead : function(json) {
-          if (!json && (-1 == this.lastIndex)) {
-            if (self.running) { // retry initial request
-              this.retryCounter++;
-              this.xhr = $.ajax({
-                url : self.getResourcePath("read"),
-                dataType : 'json',
-                context : this,
-                data : self.buildRequest() + '&t=0',
-                success : this.handleRead,
-                error : this.handleError,
-                beforeSend : this.beforeSend
-              });
-              this.watchdog.ping();
-            }
-            return;
-          }
-
-          if (json && !this.doRestart) {
-            this.lastIndex = json.i;
-            var data = json.d;
-            this.readResendHeaderValues();
-            self.update(data);
-            this.retryCounter = 0;
-          }
-
-          if (self.running) { // keep the requests going
-            this.retryCounter++;
-            this.xhr = $.ajax({
-              url         : self.getResourcePath("read"),
-              dataType    : 'json',
-              context     : this,
-              data        : self.buildRequest() + '&i=' + this.lastIndex,
-              success     : this.handleRead,
-              error       : this.handleError,
-              beforeSend  : this.beforeSend
-            });
-            this.watchdog.ping();
-          }
-        },
-
-        handleReadStart : function(json) {
-          if (!json && (-1 == this.lastIndex)) {
-            if (self.running) { // retry initial request
-              this.xhr = $.ajax({
-                url         : self.getResourcePath("read"),
-                dataType    : 'json',
-                context     : this,
-                data        : self.buildRequest(self.initialAddresses) + '&t=0',
-                success     : this.handleReadStart,
-                beforeSend  : this.beforeSend
-              });
-              this.watchdog.ping();
-            }
-            return;
-          }
-          if (json && !this.doRestart) {
-            this.readResendHeaderValues();
-            self.update(json.d);
-          }
-          if (self.running) { // keep the requests going, but only
-            // request
-            // addresses-startPageAddresses
-            var diffAddresses = [];
-            for (var i = 0; i < self.addresses.length; i++) {
-              if ($.inArray(self.addresses[i],
-                  self.initialAddresses) < 0)
-                diffAddresses.push(self.addresses[i]);
-            }
-            this.xhr = $.ajax({
-              url         : self.getResourcePath("read"),
-              dataType    : 'json',
-              context     : this,
-              data        : self.buildRequest(diffAddresses) + '&t=0',
-              success     : this.handleRead,
-              error       : this.handleError,
-              beforeSend  : this.beforeSend
-            });
-            this.watchdog.ping();
-          }
-        },
-
-        /**
-          * This function gets called on an error FIXME: this should be a
-          * prototype, so that the application developer can override it
-          * 
-          * @method handleError
-          * @param xhr
-          * @param str
-          * @param excptObj
-          */
-        handleError : function(xhr, str, excptObj) {
-          if (self.running && xhr.readyState != 4
-              && !this.doRestart && xhr.status !== 0) // ignore error when
-            // connection is
-            // irrelevant
-          {
-            var readyState = 'UNKNOWN';
-            switch (xhr.readyState) {
-              case 0:
-                readyState = 'UNINITIALIZED';
-                break;
-              case 1:
-                readyState = 'LOADING';
-                break;
-              case 2:
-                readyState = 'LOADED';
-                break;
-              case 3:
-                readyState = 'INTERACTIVE';
-                break;
-              case 4:
-                readyState = 'COMPLETED';
-                break;
-            }
-            alert('Error! Type: "' + str + '" ExceptionObject: "'
-                + excptObj + '" readyState: ' + readyState);
-          }
-        },
-
-        /**
-          * manipulates the header of the current ajax query before it is
-          * been send to the server
-          * 
-          * @param xhr
-          * @method beforeSend
-          */
-        beforeSend : function(xhr) {
-          for ( var headerName in this.resendHeaders) {
-            if (this.resendHeaders[headerName] != undefined)
-              xhr.setRequestHeader(headerName,
-                  this.resendHeaders[headerName]);
-          }
-          for ( var headerName in this.headers) {
-            if (this.headers[headerName] != undefined)
-              xhr.setRequestHeader(headerName, this.headers[headerName]);
-          }
-        },
-
-        /**
-          * read the header values of a response and stores them to the
-          * resendHeaders array
-          * 
-          * @method readResendHeaderValues
-          */
-        readResendHeaderValues : function() {
-          for ( var headerName in this.resendHeaders) {
-            this.resendHeaders[headerName] = this.xhr
-            .getResponseHeader(headerName);
-          }
-        },
-
-        /**
-          * Restart the read request, e.g. when the watchdog kicks in
-          * 
-          * @method restart
-          */
-        restart : function() {
-          this.doRestart = true;
-          this.abort();
-          this.handleRead(); // restart
-          this.doRestart = false;
-        },
-        /**
-          * Abort the read request properly
-          * 
-          * @method restart
-          */
-        abort : function() {
-          if (this.xhr && this.xhr.abort) {
-            this.xhr.abort();
-
-            if (backend && backend.hooks.onClose) {
-              backend.hooks.onClose.bind(this);
-            }
-          }
-        }
-      },
-      'sse' : {
-        watchdogTimer : 5, // in Seconds - the alive check interval of the watchdog
-
-        init : function() {
-        },
-
-        watchdog : function() {
-          var aliveCheckFunction = function() {
-            if (this.eventSource.readyState === EventSource.CLOSED) {
-              console.log("connection closed => restarting");
-              this.connect();
-            }
-          };
-          setInterval(aliveCheckFunction.bind(this),
-              this.watchdogTimer * 1000);
-        },
-        /**
-          * This function gets called once the communication is established
-          * and session information is available
-          * 
-          * @method handleSession
-          */
-        handleSession : function(json) {
-          self.session = json.s;
-          self.version = json.v.split('.', 3);
-
-          if (0 < parseInt(self.version[0])
-              || 1 < parseInt(self.version[1]))
-            alert('ERROR CometVisu Client: too new protocol version ('
-                + json.v + ') used!');
-
-          this.connect();
-        },
-
-        /**
-          * Establish the SSE connection
-          */
-        connect : function() {
-          // send first request
-          self.running = true;
-          this.eventSource = new EventSource(self
-              .getResourcePath("read")
-              + "?" + self.buildRequest());
-          this.eventSource.addEventListener('message', this.handleMessage,
-              false);
-          this.eventSource.addEventListener('error', this.handleError,
-              false);
-          this.eventSource.onerror = function(event) {
-            console.log("connection lost");
-          };
-          this.eventSource.onopen = function(event) {
-            console.log("connection established");
-          };
-          this.watchdog();
-        },
-
-        /**
-          * Handle messages send from server as Server-Sent-Event
-          */
-        handleMessage : function(e) {
-          var json = JSON.parse(e.data);
-          var data = json.d;
-          self.update(data);
-        },
-
-        /**
-          * Handle errors
-          */
-        handleError : function(e) {
-          if (e.readyState == EventSource.CLOSED) {
-            // Connection was closed.
-            self.running = false;
-            // reconnect
-            connect();
-          }
-        }
-      }
-    };
-
     /**
      * Build the URL part that contains the addresses and filters
      * @method buildRequest
@@ -592,14 +611,14 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
      */
     this.buildRequest = function(addresses) {
       addresses = addresses ? addresses : this.addresses;
-      var requestAddresses = (addresses.length) ? 'a='
-          + addresses.join('&a=') : '';
-      var requestFilters = (this.filters.length) ? 'f='
+      var 
+        requestAddresses = (addresses.length) ? 'a='
+          + addresses.join('&a=') : '',
+        requestFilters = (this.filters.length) ? 'f='
           + this.filters.join('&f=') : '';
-          return 's=' + this.session + '&' + requestAddresses
+      return 's=' + this.session + '&' + requestAddresses
           + ((addresses.length && this.filters.length) ? '&' : '')
           + requestFilters;
-      // TODO: CM311215: What is the intention of this function? It does nothing...
     };
 
     /**
