@@ -48,6 +48,8 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           write     : 'w',
           rrd       : 'rrdfetch'
         },
+        maxConnectionAge: 60 * 1000, // in milliseconds - restart if last read is older
+        maxDataAge: 3200 * 1000, // in milliseconds - reload all data when last successful read is older (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
         hooks     : {}
       },
       'openhab' : {
@@ -83,19 +85,12 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     },
     // definition of the different supported transport layers (OSI layer 4).
     transportLayers = {
-      'long-polling' : function( session, watchdog ){
+      'long-polling' : function( session ){
         var self = this;
         this.doRestart         = false; // are we currently in a restart, e.g. due to the watchdog
         this.xhr               = false; // the ongoing AJAX request
-        this.watchdogTimer     = 5; // in Seconds - the alive check interval of the watchdog
-        this.maxConnectionAge  = 60; // in Seconds - restart if last read is older
-        this.maxDataAge        = 3200; // in Seconds - reload all data when last successful read is older (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
         this.lastIndex         = -1; // index returned by the last request
         this.retryCounter      = 0; // count number of retries (reset with each valid response)
-
-        this.init = function() {
-          watchdog.start( /*watchdogTimer, maxConnectionAge, maxDataAge,*/ 5, 60*1000,3200*1000,this.restart );
-        };
 
         /**
           * This function gets called once the communication is established
@@ -105,7 +100,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           * @method handleSession
           */
         this.handleSession = function(json) {
-          self.session = json.s;
+          self.sessionId = json.s;
           self.version = json.v.split('.', 3);
 
           if (0 < parseInt(self.version[0])
@@ -157,7 +152,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
                 error : this.handleError,
                 beforeSend : this.beforeSend
               });
-              watchdog.ping( true );
+              session.watchdog.ping( true );
             }
             return;
           }
@@ -181,7 +176,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
               error       : this.handleError,
               beforeSend  : this.beforeSend
             });
-            watchdog.ping();
+            session.watchdog.ping();
           }
         };
 
@@ -196,7 +191,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
                 success     : this.handleReadStart,
                 beforeSend  : this.beforeSend
               });
-              watchdog.ping();
+              session.watchdog.ping();
             }
             return;
           }
@@ -222,7 +217,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
               error       : this.handleError,
               beforeSend  : this.beforeSend
             });
-            watchdog.ping();
+            session.watchdog.ping();
           }
         };
 
@@ -297,11 +292,22 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         };
 
         /**
+         * Check if the connection is still running.
+         */
+        this.isConnectionRunning = function() {
+          return true;
+        }
+        
+        /**
           * Restart the read request, e.g. when the watchdog kicks in
           * 
           * @method restart
+          * @param {bool} doFullReload reload all data and not only restart connection
           */
-        this.restart = function() {
+        this.restart = function( doFullReload ) {
+          if( doFullReload )
+            thislastIndex = -1; // reload all data
+            
           self.doRestart = true;
           self.abort();
           self.handleRead(); // restart
@@ -322,22 +328,9 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           }
         };
       },
-      'sse' : function( session, watchdog ){
-        this.watchdogTimer = 5, // in Seconds - the alive check interval of the watchdog
-
-        this.init = function() {
-        };
-
-        this.watchdog = function() {
-          var aliveCheckFunction = function() {
-            if (this.eventSource.readyState === EventSource.CLOSED) {
-              console.log("connection closed => restarting");
-              this.connect();
-            }
-          };
-          setInterval(aliveCheckFunction.bind(this),
-              this.watchdogTimer * 1000);
-        };
+      'sse' : function( session ){
+        var self = this;
+        
         /**
           * This function gets called once the communication is established
           * and session information is available
@@ -345,7 +338,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           * @method handleSession
           */
         this.handleSession = function(json) {
-          self.session = json.s;
+          self.sessionId = json.s;
           self.version = json.v.split('.', 3);
 
           if (0 < parseInt(self.version[0])
@@ -375,7 +368,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           this.eventSource.onopen = function(event) {
             console.log("connection established");
           };
-          this.watchdog();
+          session.watchdog.ping();
         };
 
         /**
@@ -384,6 +377,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         this.handleMessage = function(e) {
           var json = JSON.parse(e.data);
           var data = json.d;
+          session.watchdog.ping();
           session.update(data);
         };
 
@@ -395,9 +389,25 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
             // Connection was closed.
             self.running = false;
             // reconnect
-            connect();
+            self.connect();
           }
         };
+        
+        /**
+         * Check if the connection is still running.
+         */
+        this.isConnectionRunning = function() {
+          return this.eventSource.readyState === EventSource.CLOSED;
+        }
+        
+        /**
+          * Restart the read request, e.g. when the watchdog kicks in
+          * 
+          * @method restart
+          */
+        this.restart = function( doFullReload ) {
+          self.connect();
+        }
       }
     };
 
@@ -435,23 +445,19 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         var 
           last = new Date(),
           hardLast = last,
-          _maxConnectionAge,
-          _maxDataAge,
-          _restartCallbackFn,
+          maxConnectionAge,
+          maxDataAge,
           aliveCheckFunction = function() {
             var now = new Date();
-            if (now - last < _maxConnectionAge )
+            if( now - last < maxConnectionAge && self.currentTransport.isConnectionRunning() )
               return;
-            if (now - hardLast > _maxDataAge )
-              thislastIndex = -1; // reload all data
-            _restartCallbackFn();
+            self.currentTransport.restart( now - hardLast > maxDataAge );
             last = now;
           };
         return {
-          start: function( watchdogTimer, maxConnectionAge, maxDataAge, restartCallbackFn ) {
-            _maxConnectionAge = maxConnectionAge;
-            _maxDataAge = maxDataAge;
-            _restartCallbackFn = restartCallbackFn;
+          start: function( watchdogTimer ) {
+            maxConnectionAge = backend.maxConnectionAge;
+            maxDataAge = backend.maxDataAge;
             setInterval( aliveCheckFunction, watchdogTimer * 1000 );
           },
           ping : function( fullReload ) {
@@ -493,8 +499,13 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         if (backend.baseURL && !backend.baseURL.endsWith("/")) {
           backend.baseURL += "/";
         }
-        self.currentTransport = new transportLayers[backend.transport]( self, watchdog );
+        self.currentTransport = new transportLayers[backend.transport]( self );
       }
+    });
+    
+    Object.defineProperty( this, 'watchdog', {
+      get: function(){ return watchdog; },
+      writeable: false
     });
 
     // ////////////////////////////////////////////////////////////////////////
@@ -526,9 +537,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
      * @method subscribe
      */
     this.subscribe = function(addresses, filters) {
-      // initialize transport and use the transport object as context for
-      // itself
-      self.currentTransport.init();
+      watchdog.start( 5 );
 
       var startCommunication = !this.addresses.length; // start when
       // addresses were
@@ -576,7 +585,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     this.handleLogin = function(json) {
       // read backend configuration if send by backend
       if (json.c) {
-        self.backend = $.extend(self.backend, json.c); // assign itself to run setter
+        self.backend = $.extend( self.backend, json.c); // assign itself to run setter
       }
       // bind context object (this) to the handleSession function
       var bound = this.currentTransport.handleSession.bind(this.currentTransport);
