@@ -18,7 +18,6 @@
 /**
  * The JavaScript library that implements the CometVisu protocol.
  * 
- * @module CometVisu Client
  * @title CometVisu Client
  * @exports comentvisu-client
  * @reqires jQuery
@@ -385,7 +384,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           * Handle errors
           */
         this.handleError = function(e) {
-          if (e.readyState === EventSource.CLOSED) {
+          if (e.readyState == EventSource.CLOSED) {
             // Connection was closed.
             self.running = false;
             // reconnect
