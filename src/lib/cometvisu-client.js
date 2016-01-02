@@ -536,8 +536,6 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
      * @method subscribe
      */
     this.subscribe = function(addresses, filters) {
-      watchdog.start( 5 );
-
       var startCommunication = !this.addresses.length; // start when
       // addresses were
       // empty
@@ -586,10 +584,10 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
       if (json.c) {
         self.backend = $.extend( self.backend, json.c); // assign itself to run setter
       }
-      // bind context object (this) to the handleSession function
-      var bound = this.currentTransport.handleSession.bind(this.currentTransport);
-      // call the bound function
-      bound(json);
+      this.currentTransport.handleSession( json );
+      
+      // once the connection is set up, start the watchdog
+      watchdog.start( 5 );
     };
 
     /**
