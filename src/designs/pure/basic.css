@@ -153,7 +153,8 @@ body br
 
 #navbarLeft .widget > .label, #navbarRight .widget > .label
 {
-  width: initial;
+  width: 90%;
+  text-align: left;
 }
 #navbarTop .widget .actor, #navbarBottom .widget .actor
 {
@@ -172,8 +173,12 @@ body br
   position: relative;
 }
 
+.navbar .pagejump .label {
+  font-size: 75%;
+}
+
 .navbar .pagejump .actor {
-    position: absolute;
+    /*position: absolute;*/
     top:0;
     left:0;
     right:0;
@@ -181,6 +186,12 @@ body br
     vertical-align: middle;
     margin: 0em;
 }
+
+.navbar .widgetinfo {
+  right: 0;
+  position: absolute;
+}
+
 #navbarTop .navbar .pagejump .actor, 
 #navbarBottom .navbar .pagejump .actor 
 {
