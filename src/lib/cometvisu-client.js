@@ -355,9 +355,9 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         this.connect = function() {
           // send first request
           self.running = true;
-          this.eventSource = new EventSource(self
+          this.eventSource = new EventSource(session
               .getResourcePath("read")
-              + "?" + self.buildRequest());
+              + "?" + session.buildRequest());
           this.eventSource.addEventListener('message', this.handleMessage,
               false);
           this.eventSource.addEventListener('error', this.handleError,
@@ -565,7 +565,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         request.d = this.device;
 
       $.ajax({
-        url       : this.initPath ? this.initPath : this.getResourcePath("login"),
+        url       : initPath ? initPath : this.getResourcePath("login"),
         dataType  : 'json',
         context   : this,
         data      : request,
