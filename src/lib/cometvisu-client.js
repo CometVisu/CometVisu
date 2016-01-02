@@ -384,7 +384,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           * Handle errors
           */
         this.handleError = function(e) {
-          if (e.readyState == EventSource.CLOSED) {
+          if (e.readyState === EventSource.CLOSED) {
             // Connection was closed.
             self.running = false;
             // reconnect
