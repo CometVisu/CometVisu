@@ -105,7 +105,7 @@ require([
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
   'widget_video', 'widget_wgplugin_info', 
   'transform_default', 'transform_knx', 'transform_oh'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu, CometVisuOh ) {
+], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu ) {
   "use strict";
   profileCV( 'templateEngine start' );
   
