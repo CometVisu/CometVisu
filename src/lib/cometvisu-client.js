@@ -395,19 +395,34 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         
         /**
          * Check if the connection is still running.
+         * 
+         * @returns {Boolean}
          */
         this.isConnectionRunning = function() {
           return this.eventSource.readyState === EventSource.CLOSED;
-        }
+        };
         
         /**
           * Restart the read request, e.g. when the watchdog kicks in
           * 
           * @method restart
           */
-        this.restart = function( doFullReload ) {
-          self.connect();
-        }
+        this.restart = function() {
+          if (self.isConnectionRunning() === true) {
+            self.connect();
+          }
+        };
+        
+        /**
+         * Abort the read request properly
+         * 
+         * @method restart
+         */
+        this.abort = function() {
+          if (self.isConnectionRunning() === true) {
+            this.eventSource.close();
+          }
+        };
       }
     };
 
