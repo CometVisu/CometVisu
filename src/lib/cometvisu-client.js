@@ -385,7 +385,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           * Handle errors
           */
         this.handleError = function(e) {
-          if (e.readyState == EventSource.CLOSED) {
+          if (e.readyState === EventSource.CLOSED) {
             // Connection was closed.
             self.running = false;
             // reconnect
@@ -399,7 +399,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
          * @returns {Boolean}
          */
         this.isConnectionRunning = function() {
-          return this.eventSource.readyState === EventSource.CLOSED;
+          return this.eventSource.readyState === EventSource.OPEN;
         };
         
         /**
@@ -408,9 +408,8 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           * @method restart
           */
         this.restart = function() {
-          if (self.isConnectionRunning() === true) {
-            self.connect();
-          }
+          self.abort();
+          self.connect();
         };
         
         /**
@@ -502,7 +501,8 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         return backend;
       },
       set: function( newBackend ) {
-        backend = newBackend;
+        // override default settings
+        backend = $.extend({}, backends['default'], newBackend);
         if (backend.transport === 'sse' && backend.transportFallback) {
           if (window.EventSource === undefined) {
             // browser does not support EventSource object => use fallback
