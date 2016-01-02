@@ -500,7 +500,8 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         return backend;
       },
       set: function( newBackend ) {
-        backend = newBackend;
+        // override default settings
+        backend = $.extend({}, backends['default'], newBackend);
         if (backend.transport === 'sse' && backend.transportFallback) {
           if (window.EventSource === undefined) {
             // browser does not support EventSource object => use fallback
