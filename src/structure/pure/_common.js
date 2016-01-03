@@ -69,7 +69,7 @@ function VisuDesign() {
   this.addPopup('unknown', {
     create: function( attributes ) {
       var repositon = false;
-      var ret_val = $('<div class="popup" style="display:none"/><div class="popup_background" style="display:none" />').appendTo('body');
+      var ret_val = $('<div class="popup" style="display:none"><div class="popup_close">X</div></div><div class="popup_background" style="display:none" />').appendTo('body');
       ret_val.addClass( this.type );
 
       if (attributes.title) {
@@ -126,9 +126,11 @@ function VisuDesign() {
       });
 
       ret_val.css( 'display', 'block' );
+      $('#centerContainer').addClass('inactiveMain');
       return ret_val;
     },
     close: function( event ) {
+      $('#centerContainer').removeClass('inactiveMain');
       event.currentTarget.remove();
     }
   });
