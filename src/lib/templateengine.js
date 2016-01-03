@@ -121,7 +121,7 @@ $(window).unload(function() {
   if( templateEngine.visu ) templateEngine.visu.stop();
 });
 $(document).ready(function() {
-  function configError(textStatus) {
+  function configError( textStatus, additionalErrorInfo ) {
     var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
     var message = 'Config-File Error!<br/>';
     switch (textStatus) {
@@ -139,8 +139,17 @@ $(document).ready(function() {
           '<p>You can run the <a href="./upgrade/index.php?config=' + configSuffix + '">Configuration Upgrader</a>.</br>' +
           'Or you can start without upgrading <a href="' + link + '">with possible configuration problems</a>.</p>';
         break;
+      case 'filenotfound':
+        message += '404: Config file not found. Neither as normal config ('
+          + additionalErrorInfo[0] + ') nor as demo config ('
+          + additionalErrorInfo[1] + ').';
+        break;
       default:
         message += 'Unhandled error of type "' + textStatus + '"';
+        if( additionalErrorInfo )
+          message += ': ' + additionalErrorInfo;
+        else
+          message += '.';
     }
     $('#loading').html(message);
   };
@@ -175,11 +184,15 @@ $(document).ready(function() {
         var $loading = $('#loading');
         $loading.html( $loading.text().trim() + '!' );
         ajaxRequest.noDemo = false;
+        ajaxRequest.origUrl = ajaxRequest.url;
         ajaxRequest.url = ajaxRequest.url.replace('config/','config/demo/');
         $.ajax( ajaxRequest );
         return;
       }
-      configError(textStatus);
+      else if( 404 === jqXHR.status )
+        configError( "filenotfound", [ajaxRequest.origUrl, ajaxRequest.url] );
+      else
+        configError( textStatus, errorThrown );
     },
     dataType : 'xml'
   };
