@@ -768,7 +768,7 @@ function TemplateEngine( undefined ) {
     // the calculation has to be done again, even if the page hasn´t changed (e.g. switching between portrait and landscape mode on a mobile can cause that)
     var bodyWidth = $('body').width();
     var mobileUseChanged = (lastBodyWidth<thisTemplateEngine.maxMobileScreenWidth)!=(bodyWidth<thisTemplateEngine.maxMobileScreenWidth);
-    if (thisTemplateEngine.currentPageUnavailableWidth<0 || mobileUseChanged) {
+    if (thisTemplateEngine.currentPageUnavailableWidth<0 || mobileUseChanged || true) {
 //      console.log("Mobile.css use changed "+mobileUseChanged);
       thisTemplateEngine.currentPageUnavailableWidth=0;
       var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);
