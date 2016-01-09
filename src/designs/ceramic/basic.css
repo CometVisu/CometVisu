@@ -1,6 +1,6 @@
 body 
 { 
-  background: url(Starsinthesky.jpg) no-repeat center center fixed black; 
+  background: url(background.png) no-repeat center center fixed black; 
   background-size: cover;
   color: white;
   font-family: Verdana, Helvetica, sans-serif;
@@ -117,6 +117,10 @@ body br
 {
   margin:0.20em;
   padding:0.1em;
+  margin: 1px;
+  padding: 0px;
+  background: #558;
+  
   border: none;
   border-radius: 2px;
   box-shadow: 2px 2px 3px -1px #555;
@@ -125,8 +129,19 @@ body br
   background: radial-gradient(ellipse 250% 100% at 100% 100%, #aaa, #0a0 10%, #0f0 49%, #8f8 51%, #8c8);
   -webkit-filter: blur(3px);
   */
-  -webkit-backdrop-filter: blur(10px);
+  /*
+   * -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  */
+}
+
+.widget.group
+{
+  background: none;
+  margin: 10px;
+  box-shadow: 6px 6px 23px -1px #000;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .editmode .widget
