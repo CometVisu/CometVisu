@@ -173,7 +173,9 @@ function VisuDesign() {
       for (var addr in widgetData.address)
         argList.push(widgetData.formatValueCache[addr]);
 
-      value = sprintf.apply(this, argList);
+      try {
+        value = sprintf.apply(this, argList);
+      } catch( err ) {}
     }
     widgetData.value = value;
     if (undefined !== value && value.constructor == Date)
