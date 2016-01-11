@@ -48,7 +48,11 @@ window.sprintf = function() {
       return "<UNDEF>";
   }
 
-  return sprintfOrg.apply(this, arguments);
+  try {
+    return sprintfOrg.apply(this, arguments);
+  } catch( Err ) {
+    return 'sprintf Error';
+  }
 }
 
 /*
