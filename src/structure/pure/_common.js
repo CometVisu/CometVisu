@@ -170,7 +170,8 @@ function VisuDesign() {
     if( widgetData.precision )
       value = Number( value ).toPrecision( widgetData.precision );
     if( widgetData.format ) {
-      widgetData.formatValueCache[ga] = value;
+      if( undefined !== ga )
+        widgetData.formatValueCache[ga] = value;
       var argList = [widgetData.format];
 
       for (var addr in widgetData.address)
