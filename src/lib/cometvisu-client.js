@@ -510,7 +510,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           }
         }
         // add trailing slash to baseURL if not set
-        if (backend.baseURL && !backend.baseURL.endsWith("/")) {
+        if (backend.baseURL && backend.baseURL.substr(-1) !== "/") {
           backend.baseURL += "/";
         }
         self.currentTransport = new transportLayers[backend.transport]( self );
