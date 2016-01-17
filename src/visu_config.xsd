@@ -932,6 +932,7 @@
     <xsd:attribute name="button4label" type="xsd:string" use="optional" />
     <xsd:attribute name="button4value" type="xsd:string" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="mapping" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="slide">
