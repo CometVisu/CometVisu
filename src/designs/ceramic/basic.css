@@ -451,6 +451,7 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
 .multitrigger.widget
 {
   background: none;
+  overflow: visible;
 }
 .multitrigger .label, .multitrigger .actor
 {
@@ -465,6 +466,7 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
 {
   width: 100%;
   text-align: left;
+  box-sizing: border-box;
 }
 .multitrigger .actor_container
 {
@@ -492,6 +494,7 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
   padding-top: 0.3em;
   background-color: #eee;
   box-shadow: 5px 0px 10px rgba(0,0,0,0.5);
+  box-shadow: 6px 2px 10px 2px rgba(0,0,0,0.4);
   z-index: 5;
 }
 
