@@ -140,7 +140,7 @@ $config = array_key_exists( 'config', $_GET  ) ? $_GET ['config'] :
         ( array_key_exists( 'config', $_POST ) ? $_POST['config'] : false );
 $action = array_key_exists( 'action', $_GET  ) ? $_GET ['action'] :
         ( array_key_exists( 'action', $_POST ) ? $_POST['action'] : false );
-if( ($config != false) && ($action != false) )
+if( ($config == '' || $config != false) && ($action != false) )
 {
   $configFile = sprintf( CONFIG_FILENAME, (''==$config ? '' : '_') . $config );
   if( !is_writeable( $configFile ) && 'create' != $action )
