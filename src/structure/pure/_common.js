@@ -156,9 +156,10 @@ function VisuDesign() {
     } else {
       var thisTransform = '';
       var value = data;
-
-      widgetData["formatValueCache"] = {};
     }
+    
+    if( !('formatValueCache' in widgetData) )
+      widgetData["formatValueCache"] = {};
     
     widgetData.basicvalue = value; // store it to be able to supress sending of unchanged data
     
@@ -434,7 +435,7 @@ function VisuDesign() {
     if (address && updateFn!=undefined) {
       templateEngine.postDOMSetupFns.push( function() {
         // initially setting a value
-        basicdesign.defaultUpdate( undefined, undefined, $("#"+path), true, path );
+        updateFn.bind( $("#"+path), undefined, undefined );
       });
     }
     return ret_val;
