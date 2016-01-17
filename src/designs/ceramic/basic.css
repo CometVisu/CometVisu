@@ -336,7 +336,7 @@ body br
 {
   position:relative;
 }
-.switchPressed::before, .switchUnpressed::before
+.switch .switchPressed::before, .switch .switchUnpressed::before
 {
   display: block;
   width: 10px;
@@ -386,10 +386,10 @@ body br
 }
 
 .ui-slider { position: relative; text-align: left; }
-.ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.6em; height: 1.6em; cursor: default; 
+.ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.6em; height: 1.3em; cursor: default; 
   background: #eee;
   box-shadow: 2px 3px 7px #000;
-  width: 0.4em;
+  width: 2.4em;
 }
 .ui-slider .ui-slider-handle:focus, .ui-slider .ui-slider-handle:hover { outline: none; box-shadow: 3px 4px 8px -1px #000; background: #fff; }
 .ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
@@ -409,11 +409,12 @@ body br
 .ui-widget-content { background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(254,191,1,1) 100%) }
 .ui-widget-content a { color: #333333; }
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { /*border: 1px solid #cccccc; background: #000 ; font-weight: bold;*/ color: #1c94c4; }
-.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #1c94c4; text-decoration: none; }
-a.ui-slider-handle::after
-{
-  content: inherit;
-  left: 0%;
+a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited { 
+  color: #000; 
+  text-decoration: none;
+  text-align: center;
+  text-shadow: none;
+  padding-top: 0.3em;
 }
 .ui-corner-all { -moz-border-radius: 1px; -webkit-border-radius: 1px; border-radius: 1px; }
 
@@ -445,6 +446,53 @@ a.ui-slider-handle::after
   min-height: 1.1em;
   height:100%;
   background: none;
+}
+
+.multitrigger.widget
+{
+  background: none;
+}
+.multitrigger .label, .multitrigger .actor
+{
+  background: #558;
+}
+
+.multitrigger br
+{
+  display: none;
+}
+.multitrigger .label
+{
+  width: 100%;
+  text-align: left;
+}
+.multitrigger .actor_container
+{
+  display: flex;
+  flex-wrap: nowrap;
+  jusitfy-content: space-between;
+  width: calc(100% + 2px);
+  margin-left: -2px;
+}
+.multitrigger .actor
+{
+  margin-left: 2px;
+  margin-top: 2px;
+  width: 100%;
+}
+.multitrigger .actor div, .multitrigger div
+{
+  box-shadow: none;
+  width: 100%;
+}
+
+.multitrigger .switchPressed
+{
+  margin-top: -0.3em;
+  padding-top: 0.3em;
+  background-color: #eee;
+  box-shadow: 5px 0px 10px rgba(0,0,0,0.5);
+  z-index: 5;
 }
 
 /* Clearfix */
