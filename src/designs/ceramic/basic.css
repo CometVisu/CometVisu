@@ -10,7 +10,9 @@ body
   font-size: 5mm;
   overflow: hidden;
   margin:0;
+  /*
   text-shadow: 1px 1px 1px #000;
+  */
 }
 
 h1
@@ -31,13 +33,12 @@ body hr
 {
   clear:both;
   color: #ff8000;
-  background-color: #ff8000;
-  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000));
-  background: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2));
+  background-color: #558;
+  background: linear-gradient(to right, rgba(85, 85, 136, 0.2), rgb(85, 85, 136) 33%, rgb(85, 85, 136) 67%, rgba(85, 85, 136, 0.2));
   height: 1px;
   border:none;
   padding:0px;
-  margin:0.1em;
+  margin:0;
 }
 
 #navbarTop hr, #navbarBottom hr 
@@ -175,7 +176,7 @@ body br
 .widget .actor
 {
   float:left;
-  margin-left:1em;
+ /* margin-left:1em;*/
   margin-top: 0.2em;
 }
 
@@ -256,6 +257,7 @@ body br
 .green
 {
   color:#4f4;
+  background-color:#4f4;
 }
 
 .blue
@@ -268,12 +270,28 @@ body br
   color:#f4f;
 }
 
+.link > div
+{
+  position: relative;
+  width: 100%;
+}
+
 .link a
 {
-  color: #ff8000;
+  color: #eee;
   text-align: right;
-  width: 49%;
+  width: 100%;
   padding: 5px;
+  text-decoration: none;
+}
+.link a::after
+{
+  display: inline-block;
+  content: "\22EE";
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  color: rgba( 0,0,0, 0.6 );
 }
 
 .page
@@ -314,9 +332,10 @@ body br
   /*
   background: -webkit-gradient(linear, 100% 100%, 0 0, from(#000000), to(#0f0f0f));
   background: linear-gradient(-10deg, #000000, #0f0f0f);
-  */
   box-shadow: 0 -1px 1px #666666, 0 1px 1px #FFFFFF;
   box-shadow: 0 2px 5px #000;
+  */
+  border: 1px solid #fff;
 }
 
 .switchPressed
@@ -339,13 +358,20 @@ body br
 .switch .switchPressed::before, .switch .switchUnpressed::before
 {
   display: block;
-  width: 10px;
-  height: 1em;
+  width: 33%;
+  height: 4px;
+  /*
   border: 1px solid #f00;
+  */
+  background-color: #f00;
+  margin-top: -3px;
   content: "";
   position: absolute;
+  -webkit-transition: right 1s;
+  right: 67%;
+  transition: right 0.5s;
 }
-.switchPressed::before
+.switch .switchPressed::before
 {
   right: 0px;
 }
@@ -367,8 +393,11 @@ body br
   /*
   background: -webkit-gradient(linear, 0 0, 100% 100%, from(#000000), to(#0f0f0f));
   background: linear-gradient(170deg, #000000, #0f0f0f);
-  */
   box-shadow: 0 -1px 1px #666666, 0 1px 1px #FFFFFF;
+  */
+  border: 1px solid #eee;
+  background: #eee;
+  color: #558;
 }
 
 .switchInvisible
@@ -486,6 +515,8 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
 {
   box-shadow: none;
   width: 100%;
+  border: none;
+  background: none;
 }
 
 .multitrigger .switchPressed
