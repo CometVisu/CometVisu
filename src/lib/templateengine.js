@@ -72,7 +72,7 @@ require.config({
     'widget_wgplugin_info':     'structure/pure/wgplugin_info',
     'transform_default':        'transforms/transform_default',
     'transform_knx':            'transforms/transform_knx',
-    'transform_oh':             'transforms/transform_oh',
+    'transform_oh':             'transforms/transform_oh'
   },
   'shim': {
     'scrollable':            ['jquery'],
@@ -121,7 +121,7 @@ $(window).unload(function() {
   if( templateEngine.visu ) templateEngine.visu.stop();
 });
 $(document).ready(function() {
-  function configError(textStatus) {
+  function configError( textStatus, additionalErrorInfo ) {
     var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
     var message = 'Config-File Error!<br/>';
     switch (textStatus) {
@@ -139,8 +139,17 @@ $(document).ready(function() {
           '<p>You can run the <a href="./upgrade/index.php?config=' + configSuffix + '">Configuration Upgrader</a>.</br>' +
           'Or you can start without upgrading <a href="' + link + '">with possible configuration problems</a>.</p>';
         break;
+      case 'filenotfound':
+        message += '404: Config file not found. Neither as normal config ('
+          + additionalErrorInfo[0] + ') nor as demo config ('
+          + additionalErrorInfo[1] + ').';
+        break;
       default:
         message += 'Unhandled error of type "' + textStatus + '"';
+        if( additionalErrorInfo )
+          message += ': ' + additionalErrorInfo;
+        else
+          message += '.';
     }
     $('#loading').html(message);
   };
@@ -175,11 +184,15 @@ $(document).ready(function() {
         var $loading = $('#loading');
         $loading.html( $loading.text().trim() + '!' );
         ajaxRequest.noDemo = false;
+        ajaxRequest.origUrl = ajaxRequest.url;
         ajaxRequest.url = ajaxRequest.url.replace('config/','config/demo/');
         $.ajax( ajaxRequest );
         return;
       }
-      configError(textStatus);
+      else if( 404 === jqXHR.status )
+        configError( "filenotfound", [ajaxRequest.origUrl, ajaxRequest.url] );
+      else
+        configError( textStatus, errorThrown );
     },
     dataType : 'xml'
   };
@@ -307,7 +320,7 @@ function TemplateEngine( undefined ) {
         //$.event.trigger('_' + key, json[key]);
         var data = json[ key ];
         ga_list[ key ].forEach( function( id ){
-          if( id )
+          if( typeof id === 'string' )
           {
             var 
               element = document.getElementById( id ),
@@ -322,6 +335,8 @@ function TemplateEngine( undefined ) {
                 console.log( element, children, type ); // DEBUG FIXME
             }
             //console.log( element, type, updateFn );
+          } else if( typeof id === 'function' ) {
+            id.call( key, data );
           }
         });
       }
@@ -687,7 +702,7 @@ function TemplateEngine( undefined ) {
       if (!ret && m['defaultValue']) {
         ret = mapValue(m['defaultValue']);
       }
-      if (ret) {
+      if( ret !== undefined ) {
         return ret;
       }
     }
@@ -766,7 +781,7 @@ function TemplateEngine( undefined ) {
     // the calculation has to be done again, even if the page hasn´t changed (e.g. switching between portrait and landscape mode on a mobile can cause that)
     var bodyWidth = $('body').width();
     var mobileUseChanged = (lastBodyWidth<thisTemplateEngine.maxMobileScreenWidth)!=(bodyWidth<thisTemplateEngine.maxMobileScreenWidth);
-    if (thisTemplateEngine.currentPageUnavailableWidth<0 || mobileUseChanged) {
+    if (thisTemplateEngine.currentPageUnavailableWidth<0 || mobileUseChanged || true) {
 //      console.log("Mobile.css use changed "+mobileUseChanged);
       thisTemplateEngine.currentPageUnavailableWidth=0;
       var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);

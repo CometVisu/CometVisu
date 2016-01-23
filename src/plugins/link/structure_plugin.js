@@ -1,4 +1,4 @@
-/* text.js (c) 2012-2015 by Christian Mayer [CometVisu at ChristianMayer dot de]
+/* structure_plugin.js (c) 2015 by Stefan Borchert [stefan@borchert.cc]
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -15,23 +15,27 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define( ['_common'], function( design ) {
-  "use strict";
-  var basicdesign = design.basicdesign;
-  
-design.basicdesign.addCreator('text', {
-  create : function(element, path, flavour, type) {
-    var $e = $(element);
-    
-    // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'text', $e, path, flavour, type, this.update );
-    
-    var data = templateEngine.widgetDataInsert( path, {
-      path: path
-    });
+/**
+ * This plugins integrates a simple link.
+ */
 
-    return ret_val + '</div>';
-  }
+define(['structure_custom'], function(VisuDesign_Custom) {
+  VisuDesign_Custom.prototype.addCreator("link", {
+    create : function(page, path) {
+      var $p = $(page);
+
+      var ret_val = $('<a class="link"/>');
+      if ( $p.attr('class') ) {
+        ret_val.addClass($p.attr('class'));
+      }
+      if ( $p.attr('text') ) {
+        ret_val.html($p.attr('text'));
+      }
+      if ( $p.attr('href') ) {
+        ret_val.attr('href', $p.attr('href'));
+      }
+
+      return ret_val;
+    }
+  });
 });
-
-}); // end define

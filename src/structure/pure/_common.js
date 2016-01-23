@@ -69,7 +69,7 @@ function VisuDesign() {
   this.addPopup('unknown', {
     create: function( attributes ) {
       var repositon = false;
-      var ret_val = $('<div class="popup" style="display:none"/><div class="popup_background" style="display:none" />').appendTo('body');
+      var ret_val = $('<div class="popup" style="display:none"><div class="popup_close">X</div></div><div class="popup_background" style="display:none" />').appendTo('body');
       ret_val.addClass( this.type );
 
       if (attributes.title) {
@@ -121,14 +121,18 @@ function VisuDesign() {
 
       ret_val.bind( 'close', this.close );
       ret_val.bind( 'click', function() {
+        // note: this will call two events - one for the popup itself and 
+        //       one for the popup_background.
         ret_val.trigger( 'close' );
         return false;
       });
 
       ret_val.css( 'display', 'block' );
+      $('#centerContainer').addClass('inactiveMain');
       return ret_val;
     },
     close: function( event ) {
+      $('#centerContainer').removeClass('inactiveMain');
       event.currentTarget.remove();
     }
   });
@@ -154,6 +158,9 @@ function VisuDesign() {
       var value = data;
     }
     
+    if( !('formatValueCache' in widgetData) )
+      widgetData["formatValueCache"] = {};
+    
     widgetData.basicvalue = value; // store it to be able to supress sending of unchanged data
     
     // #2: map it to a value the user wants to see
@@ -162,8 +169,16 @@ function VisuDesign() {
     // #3: format it in a way the user understands the value
     if( widgetData.precision )
       value = Number( value ).toPrecision( widgetData.precision );
-    if( widgetData.format )
-      value = sprintf( widgetData.format, value );
+    if( widgetData.format ) {
+      if( undefined !== ga )
+        widgetData.formatValueCache[ga] = value;
+      var argList = [widgetData.format];
+
+      for (var addr in widgetData.address)
+        argList.push(widgetData.formatValueCache[addr]);
+
+      value = sprintf.apply(this, argList);
+    }
     widgetData.value = value;
     if (undefined !== value && value.constructor == Date)
     {
@@ -189,6 +204,48 @@ function VisuDesign() {
   };
   
   /**
+   * Method to handle all special cases for the value. The might come from
+   * the mapping where it can be quite complex as it can contain icons.
+   * value: the value that will be inserted
+   * modifyFn: callback function that modifies the DOM
+   */
+  this.defaultValue2DOM = function( value, modifyFn )
+  {
+    if (('string' === typeof value) || ('number' === typeof value))
+      modifyFn( value );
+    else if ('function' === typeof value)
+      // thisValue(valueElement);
+      console.error( 'typeof value === function - special case not handled anymore!' );
+    else if( !Array.isArray( value ) ) {
+      var element = value.cloneNode();
+      if( value.getContext )
+      {
+        fillRecoloredIcon( element );
+      }
+      modifyFn( element );
+    } else {
+      for (var i = 0; i < value.length; i++) {
+        var thisValue = value[i];
+        if (!thisValue) continue;
+
+        if( ('string' === typeof thisValue) || ('number' === typeof thisValue)  )
+          modifyFn( thisValue );
+        else if( 'function' === typeof thisValue )
+          // thisValue(valueElement);
+          console.error( 'typeof value === function - special case not handled anymore!' );
+        else {
+          var element = thisValue.cloneNode();
+          if( thisValue.getContext )
+          {
+            fillRecoloredIcon( element );
+          }
+          modifyFn( element );
+        }
+      }
+    }
+  }
+  
+  /**
    * ga:            address
    * data:          the raw value from the bus
    * passedElement: the element to update
@@ -208,41 +265,10 @@ function VisuDesign() {
   
     var valueElement = element.find('.value');
     valueElement.empty();
-    if (undefined !== value) {
-      if (('string' === typeof value) || ('number' === typeof value))
-        valueElement.append( value );
-      else if ('function' === typeof value)
-        value( valueElement );
-      else if( !Array.isArray( value ) ) {
-        var element = value.cloneNode();
-        if( value.getContext )
-        {
-          fillRecoloredIcon( element );
-        }
-        valueElement.append( element );
-      } else {
-        for (var i = 0; i < value.length; i++) {
-          var thisValue = value[i];
-          if (!thisValue) continue;
-  
-          if( ('string' === typeof thisValue) || ('number' === typeof thisValue)  )
-            valueElement.append( thisValue );
-          else if( 'function' === typeof thisValue )
-            thisValue(valueElement);
-          else {
-            var element = thisValue.cloneNode();
-            if( thisValue.getContext )
-            {
-              fillRecoloredIcon( element );
-            }
-            valueElement.append( element );
-          }
-        }
-      }
-    }
-    else {
+    if (undefined !== value)
+      self.defaultValue2DOM( value, function(e){ valueElement.append( e ) } );
+    else
       valueElement.append('-');
-    }
     
     return value;
   }
@@ -392,7 +418,7 @@ function VisuDesign() {
     if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
     if( flavour ) classes += ' flavour_' + flavour;
     if($element.attr('class')) classes += ' custom_' + $element.attr('class');
-    var label = this.extractLabel( $element.find('label')[0], flavour );
+    var label = (widgetType==='text')?this.extractLabel( $element.find('label')[0], flavour, '' ):this.extractLabel( $element.find('label')[0], flavour );
     var address = this.makeAddressList( $element, makeAddressListFn, path );
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
@@ -410,7 +436,7 @@ function VisuDesign() {
     if (address && updateFn!=undefined) {
       templateEngine.postDOMSetupFns.push( function() {
         // initially setting a value
-        basicdesign.defaultUpdate( undefined, undefined, $("#"+path), true, path );
+        updateFn.bind( $("#"+path), undefined, undefined );
       });
     }
     return ret_val;

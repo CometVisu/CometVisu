@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Version SVN:20150523-2349
+# Version SVN:20151217-2200
 
 CACHE:
 index.html
@@ -23,6 +23,8 @@ dependencies/jquery.ui.touch-punch.js
 dependencies/jquery.ui.touch-punch.min.js
 dependencies/jquery-ui.js
 dependencies/jquery-ui.min.js
+dependencies/sprintf.js
+dependencies/sprintf.min.js
 dependencies/strftime.js
 dependencies/strftime-min.js
 dependencies/jquery.js
