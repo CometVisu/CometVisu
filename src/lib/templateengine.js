@@ -793,6 +793,16 @@ function TemplateEngine( undefined ) {
     }
     var width = thisTemplateEngine.getAvailableWidth();
 
+    var newColumns = Math.floor(width / thisTemplateEngine.minColumnWidth);
+    if( newColumns <= 4 )
+      newColumns = 4;
+    else if( newColumns <= 6 )
+      newColumns = 6;
+    else if( newColumns <= 8 )
+      newColumns = 8;
+    else
+      newColumns = 12;
+    /*
     var newColumns = Math.ceil(width / thisTemplateEngine.minColumnWidth);
     if (newColumns > (thisTemplateEngine.defaultColumns / 2) && thisTemplateEngine.defaultColumns > newColumns) {
       // don´t accept values between 50% and 100% of defaultColumns
@@ -807,6 +817,7 @@ function TemplateEngine( undefined ) {
       // make sure that newColumns does not exceed defaultColumns
       newColumns = Math.min(thisTemplateEngine.defaultColumns, newColumns);
     }
+    */
     if (newColumns != data.columns) {
         data.columns = newColumns;
       return true;
@@ -1216,7 +1227,13 @@ function TemplateEngine( undefined ) {
       var
         $e = $(e),
         data = thisTemplateEngine.widgetDataGet( e.id ),
-        ourColspan = data.colspan;
+        ourColspan = data.colspan,
+        ourColspanS = data.colspanS,
+        ourColspanM = data.colspanM;
+      var width = thisTemplateEngine.getAvailableWidth();
+      // FIXME TODO
+      if( ourColspan != ourColspanM || ourColspan != ourColspanS )
+        console.log( ourColspan, ourColspanM, ourColspanS );
       if (ourColspan < 0)
         return;
       var w = 'auto';
