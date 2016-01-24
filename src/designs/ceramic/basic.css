@@ -1,3 +1,31 @@
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Josefin Sans Thin'), local('JosefinSans-Thin'), url('font/JosefinSans-Thin.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Josefin Sans Light'), local('JosefinSans-Light'), url('font/JosefinSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Josefin Sans'), local('JosefinSans'), url('font/JosefinSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Josefin Sans Bold'), local('JosefinSans-Bold'), url('font/JosefinSans-Bold.ttf') format('truetype');
+}
+
 body 
 { 
   background: url(background.png) no-repeat center center fixed black; 
@@ -7,6 +35,7 @@ body
   font-family: 'URW Gothic L','Century Gothic','Apple Gothic',Arial,sans-serif;
   font-family: Impact, Charcoal, sans-serif;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: 'Josefin Sans', Helvetica, sans-serif;
   font-size: 5mm;
   overflow: hidden;
   margin:0;
@@ -19,6 +48,7 @@ h1
 {
   font-size: 2em;
   margin-left: 15px;
+  font-kerning: normal;
 }
 
 h2
@@ -27,6 +57,7 @@ h2
   margin-left: 15px;
   margin-top: 5px;
   margin-bottom: 5px;
+  font-kerning: normal;
 }
 
 body hr
