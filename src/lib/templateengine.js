@@ -440,6 +440,10 @@ function TemplateEngine( undefined ) {
    * 
    * For touch it's a little different as a touchmove cancels the current
    * action and translates into a scroll.
+   * 
+   * All of this is the default or when the mousemove callback is returning
+   * restrict=true (or undefined).
+   * When restrict=false the widget captures the mouse until it is released.
    */
   (function( outerThis ){ // closure to keep namespace clean
     // helper function to get the current actor and widget out of an event:
@@ -496,6 +500,8 @@ function TemplateEngine( undefined ) {
       scrollElement,
       // object to hold the coordinated of the current mouse / touch event
       mouseEvent = outerThis.handleMouseEvent = { 
+        moveFn:          undefined,
+        moveRestrict:    true,
         actor:           undefined,
         widget:          undefined,
         widgetCreator:   undefined,
@@ -524,13 +530,19 @@ function TemplateEngine( undefined ) {
           
         if( actionFn !== undefined )
         {
-          actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor, false, event );
+          var moveFnInfo = actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor, false, event );
+          if( moveFnInfo )
+          {
+            mouseEvent.moveFn       = moveFnInfo.callback;
+            mouseEvent.moveRestrict = moveFnInfo.restrict !== undefined ? moveFnInfo.restrict : true;
+          }
         }
       } else {
         mouseEvent.actor = undefined;
       }
-      
-      scrollElement = getScrollElement( event.target );
+
+      if( mouseEvent.moveRestrict )
+        scrollElement = getScrollElement( event.target );
       // stop the propagation if scrollable is at the end
       // inspired by 
       if( scrollElement )
@@ -563,6 +575,9 @@ function TemplateEngine( undefined ) {
         {
           actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent, event );
         }
+        mouseEvent.moveFn = undefined;
+        mouseEvent.moveRestrict = true;
+        scrollElement = undefined;
         isWidget = false;
       }
     });
@@ -576,7 +591,11 @@ function TemplateEngine( undefined ) {
           widgetActor = getWidgetActor( event.target ),
           widget      = mouseEvent.widget,
           bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
-          inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
+          inCurrent   = !mouseEvent.moveRestrict || (widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor));
+          
+        if( inCurrent && mouseEvent.moveFn )
+          mouseEvent.moveFn( event );
+        
         if( inCurrent && mouseEvent.alreadyCanceled )
         { // reactivate
           mouseEvent.alreadyCanceled = false;
@@ -600,7 +619,10 @@ function TemplateEngine( undefined ) {
         var
           widget      = mouseEvent.widget;
           
-        if( !mouseEvent.alreadyCanceled )
+        if( mouseEvent.moveFn )
+          mouseEvent.moveFn( event );
+        
+        if( mouseEvent.moveRestrict && !mouseEvent.alreadyCanceled )
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
@@ -608,7 +630,7 @@ function TemplateEngine( undefined ) {
           actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
-      
+
       // take care to prevent overscroll
       if( scrollElement )
       {
