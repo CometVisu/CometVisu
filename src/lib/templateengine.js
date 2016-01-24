@@ -535,7 +535,7 @@ function TemplateEngine( undefined ) {
           
         if( actionFn !== undefined )
         {
-          actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor );
+          actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor, false, event );
         }
       } else {
         mouseEvent.actor = undefined;
@@ -572,7 +572,7 @@ function TemplateEngine( undefined ) {
           !mouseEvent.alreadyCanceled
         )
         {
-          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent );
+          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent, event );
         }
         isWidget = false;
       }
@@ -593,13 +593,13 @@ function TemplateEngine( undefined ) {
           mouseEvent.alreadyCanceled = false;
           var
             actionFn  = mouseEvent.widgetCreator.downaction;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, false, event );
         } else if( (!inCurrent && !mouseEvent.alreadyCanceled) )
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
             actionFn  = mouseEvent.widgetCreator.action;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
     });
@@ -616,7 +616,7 @@ function TemplateEngine( undefined ) {
           mouseEvent.alreadyCanceled = true;
           var
             actionFn  = mouseEvent.widgetCreator.action;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
       
