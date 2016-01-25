@@ -1,0 +1,44 @@
+.controllerinput .actor {
+  position: relative;
+  min-width: 8em;
+  min-height: 4em;
+}
+
+.controllerinput .actor div {
+  float: none;
+  position: absolute;
+}
+
+.controllerinput .handler {
+  width: 1em;
+  height: 2em;
+  border: 1px solid white;
+  box-sizing: border-box;
+  margin-top: 0px;
+  /* 2nd value of transform-origin must be inverted vertical margin! */
+  transform-origin: 0px -0px;
+  background: #ff0;
+}
+
+.controllerinput .handlervalue {
+}
+
+.controllerinput .roundbar {
+  width: 100%;
+  /* CSS trick to force 2:1 aspect ratio to parent: */ 
+  padding-bottom: 50%;
+  border: 6px solid #f00;
+  border-bottom: none;
+  border-radius: 1000em;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  -webkit-clip-path: polygon(50% 100%, -10% 100%, -10% -10%, 0% 100%);
+  transition: -webkit-clip-path 0.5s;
+}
+
+.controllerinput .value {
+  width: 100%;
+  text-align: center;
+  padding-top: 50%;
+  padding-top: calc(50% - 1em );
+}
