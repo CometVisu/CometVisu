@@ -173,15 +173,18 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
       handlerVal = $actor.find( '.handlervalue' ),
       
       moveaction = function( e ) {
-        var
-          cX = e.touches ? e.touches[0].clientX : e.clientX,
-          cY = e.touches ? e.touches[0].clientY : e.clientY,
-          dx = cX - actorOffset.left - actorWidth/2,
-          dy = -cY + (actorOffset.top + actorHeight),
-          percentageRaw = Math.atan2(dx,dy)/Math.PI+0.5,
-          percentage = Math.min( Math.max( percentageRaw, 0 ), 1 ),
-          value = 999;
-        updateSetpoint( handler, handlerVal, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
+        if( e !== undefined )
+        {
+          var
+            cX = e.touches ? e.touches[0].clientX : e.clientX,
+            cY = e.touches ? e.touches[0].clientY : e.clientY,
+            dx = cX - actorOffset.left - actorWidth/2,
+            dy = -cY + (actorOffset.top + actorHeight),
+            percentageRaw = Math.atan2(dx,dy)/Math.PI+0.5,
+            percentage = Math.min( Math.max( percentageRaw, 0 ), 1 ),
+            value = 999;
+          updateSetpoint( handler, handlerVal, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
+        }
       };
         
     //$(window).mousemove( moveaction ).mouseup( function(){
