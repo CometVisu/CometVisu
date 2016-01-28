@@ -76,7 +76,7 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
     });
 
     // create the actor
-    var actor = '<div class="actor"><div class="roundbar"></div><div class="handler"><div class="handlervalue"></div></div><div class="value">-</div></div>';
+    var actor = '<div class="actor"><div class="roundbarbackground"></div><div class="roundbar"></div><div class="handler"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'</div><div class="smallvalue right">'+max+'</div><div class="sparkline"></div></div>';
     ret_val += actor;
     
     templateEngine.bindActionForLoadingFinished(function() {
@@ -109,6 +109,55 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
           mouseDown = false;
       });
       */
+      function createSparkline(){
+var data1 = [ [0, 1], [1, 2], [2, 2], [3, 2], [4, 2], [5, 3], [6, 4], [7, 2], [8, 2], [9, 3], [10, 5], [11, 5], [12, 4] ];
+var data2 = [ [0, 2], [1, 4], [2, 3], [3, 3], [4, 1], [5, 2], [6, 3], [7, 3], [8, 3], [9, 2], [10, 3], [11, 5], [12, 5] ];
+
+  var options = {
+    xaxis: {
+      // extend graph to fit the last point
+      max: data1[data1.length - 1][0] + 1
+    },
+    grid: {
+      show: false
+    }
+  };
+
+  // main series
+  var series = [{
+    data: data1,
+    color: '#000000',
+    lines: {
+      lineWidth: 0.8
+    },
+    shadowSize: 0
+  },
+  {
+    data: data2,
+    color: '#f00000',
+    lines: {
+      lineWidth: 0.8
+    },
+    shadowSize: 0
+  }
+  ];
+
+  // colour the last point red.
+  series.push({
+    data: [ data1[data1.length - 1] ],
+    points: {
+     show: true,
+     radius: 1,
+     fillColor: '#ff0000'
+    },
+    color: '#ff0000'
+  });
+
+  // draw the sparkline
+  var plot = $.plot('.sparkline', series, options);
+      }
+      //setTimeout( createSparkline, 3000 );
+      createSparkline();
     });
 
     return ret_val + '</div>';
