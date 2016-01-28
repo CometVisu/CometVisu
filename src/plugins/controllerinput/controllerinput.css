@@ -23,6 +23,17 @@
 .controllerinput .handlervalue {
 }
 
+.controllerinput .roundbarbackground {
+  width: 100%;
+  /* CSS trick to force 2:1 aspect ratio to parent: */ 
+  padding-bottom: 50%;
+  border: 8px solid #00f;
+  margin: -2px;
+  border-bottom: none;
+  border-radius: 1000em;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
 .controllerinput .roundbar {
   width: 100%;
   /* CSS trick to force 2:1 aspect ratio to parent: */ 
@@ -41,4 +52,25 @@
   text-align: center;
   padding-top: 50%;
   padding-top: calc(50% - 1em );
+}
+
+
+.controllerinput .smallvalue {
+  padding-top: calc(50% + 0.75em);
+  font-size: 75%;
+}
+
+.controllerinput .smallvalue.left {
+  color: #ff0;
+}
+
+.controllerinput .smallvalue.right {
+  color: #0ff;
+  left: 100%;
+}
+
+.controllerinput .sparkline {
+  height: 2em;
+  width: 100%;
+  margin-top: calc(50% + 1.75em);
 }
