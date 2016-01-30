@@ -25,3 +25,6 @@ $('#navbarLeft').data('columns', 6 );
 $('#main').data('columns', 12 );
 $('#navbarRight').data('columns', 6 );
 
+templateEngine.default = { plugin: { controllerinput: {
+  colorActual: '000000'
+}}};

@@ -42,7 +42,8 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
   create: function( element, path, flavour, type ) {
     var 
       $e = $(element),
-      id = "roundSlider_" + path;;
+      id = "roundSlider_" + path,
+      standard = templateEngine.default && templateEngine.default.plugin ? (templateEngine.default.plugin.controllerinput || {}) : {};
     
     // create the main structure
       //( widgetType, $element, path, flavour, type, updateFn, makeAddressListFn )
@@ -72,11 +73,14 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
       'step'           : step,
       'send_on_finish' : send_on_finish,
       'valueInternal'  : true,
-      'inAction'       : false
+      'inAction'       : false,
+      'colorActual'    : $e.attr('colorActual'  ) || standard.colorActual   || '#0000f0',
+      'colorSetpoint'  : $e.attr('colorSetpoint') || standard.colorSetpoint || '#f0f000',
+      'colorControl'   : $e.attr('colorControl' ) || standard.colorControl  || '#f00000'
     });
 
     // create the actor
-    var actor = '<div class="actor"><div class="roundbarbackground"></div><div class="roundbar"></div><div class="handler"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'</div><div class="smallvalue right">'+max+'</div><div class="sparkline"></div></div>';
+    var actor = '<div class="actor"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div><div class="handler"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'XXX</div><div class="smallvalue right">'+max+'XXX</div><div class="sparkline"></div></div>';
     ret_val += actor;
     
     templateEngine.bindActionForLoadingFinished(function() {
@@ -110,56 +114,98 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
       });
       */
       function createSparkline(){
-var data1 = [ [0, 1], [1, 2], [2, 2], [3, 2], [4, 2], [5, 3], [6, 4], [7, 2], [8, 2], [9, 3], [10, 5], [11, 5], [12, 4] ];
-var data2 = [ [0, 2], [1, 4], [2, 3], [3, 3], [4, 1], [5, 2], [6, 3], [7, 3], [8, 3], [9, 2], [10, 3], [11, 5], [12, 5] ];
-
+var dataActual   = [ [0, 21], [1, 12], [2, 32], [3, 32], [4, 22], [5, 23], [6, 24], [7, 22], [8, 28], [9, 23], [10, 25], [11, 25], [12, 24] ];
+var dataControl  = [ [0, 22], [1, 24], [2, 23], [3, 23], [4, 21], [5, 22], [6, 23], [7, 23], [8, 23], [9, 22], [10, 23], [11, 25], [12, 25] ];
+var dataSetpoint = [ [0, 24], [1, 23], [2, 22], [3, 21], [4, 20], [5, 22], [6, 24], [7, 24], [8, 20], [9, 22], [10, 25], [11, 22], [12, 22] ];
+//debugger;
+console.log( path );
+var 
+  dataLastX = dataActual[dataActual.length - 1][0],
+  $element = $('#' + path),
+  XcolorActual = $element.find('.roundbar').css('border-top-color'),
+  XcolorSet    = $element.find('.roundbar').css('border-top-color');
+  
   var options = {
     xaxis: {
       // extend graph to fit the last point
-      max: data1[data1.length - 1][0] + 1
+      max: dataLastX 
     },
+    yaxes: [
+      { min: min, max: max },
+      { min: 0, max: 100 }
+    ],
     grid: {
-      show: false
+      show: false,
+      margin: 2 // make space for the round dots
     }
   };
+  console.log( options );
 
   // main series
   var series = [{
-    data: data1,
-    color: '#000000',
+    data: dataActual,
+    color: data.colorActual,
     lines: {
-      lineWidth: 0.8
+      fill: true,
+      zero: false,
+      lineWidth: 1//0.8
     },
     shadowSize: 0
   },
   {
-    data: data2,
-    color: '#f00000',
+    data: dataControl,
+    color: data.colorControl,
     lines: {
-      lineWidth: 0.8
+      lineWidth: 1//0.8
+    },
+    shadowSize: 0,
+    yaxis: 2
+  },
+  {
+    data: dataSetpoint,
+    color: data.colorSetpoint,
+    lines: {
+      lineWidth: 1//0.8
     },
     shadowSize: 0
-  }
-  ];
-
-  // colour the last point red.
-  series.push({
-    data: [ data1[data1.length - 1] ],
+  },
+  // show the last points extra
+  {
+    data: [ [dataLastX, dataActual[dataActual.length - 1][1]] ],
     points: {
      show: true,
      radius: 1,
-     fillColor: '#ff0000'
+     fillColor: data.colorActual
     },
-    color: '#ff0000'
-  });
+    color: data.colorActual
+  },
+  {
+    data: [ [dataLastX, dataControl[dataControl.length - 1][1]] ],
+    points: {
+     show: true,
+     radius: 1,
+     fillColor: data.colorControl
+    },
+    color: data.colorControl,
+    yaxis: 2
+  },
+  {
+    data: [ [dataLastX, dataSetpoint[dataSetpoint.length - 1][1]] ],
+    points: {
+     show: true,
+     radius: 1,
+     fillColor: data.colorSetpoint
+    },
+    color: data.colorSetpoint
+  }
+  ];
 
   // draw the sparkline
-  var plot = $.plot('.sparkline', series, options);
+  data.plot = $.plot('.sparkline', series, options);
       }
       //setTimeout( createSparkline, 3000 );
       createSparkline();
     });
-
     return ret_val + '</div>';
   },
   update:   function( ga, d ) { 
@@ -174,7 +220,8 @@ var data2 = [ [0, 2], [1, 4], [2, 3], [3, 3], [4, 1], [5, 2], [6, 3], [7, 3], [8
       handler    = $('#'+element.parent().attr('id') + ' .handler'),
       handlerOH  = handler.outerHeight(true), // including margin to be able to move handler inside or outside
       handlerOW  = handler.outerWidth(),
-      handlerVal = $('#'+element.parent().attr('id') + ' .handlervalue');
+      handlerVal = $('#'+element.parent().attr('id') + ' .handlervalue'),
+      plotData   = data.plot.getData();
       
     //templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
     console.log( data.address[ ga ][2] );
@@ -198,17 +245,30 @@ var data2 = [ [0, 2], [1, 4], [2, 3], [3, 3], [4, 1], [5, 2], [6, 3], [7, 3], [8
           
         clip += ', ' + lastX + '% ' + lastY + '%';
         roundbar.css({'webkit-clip-path':'polygon('+clip+')'});
+        roundbar.css({'webkit-clip-path':'none','transform':'rotate('+(180+180*percentage)+'deg)'});
         templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
+        plotData[0].data[ plotData[2].data.length-1 ][1] = value;
+        plotData[3].data[ 0                         ][1] = value;
+        break;
+        
+      case 'control':
+        plotData[1].data[ plotData[2].data.length-1 ][1] = value;
+        plotData[4].data[ 0                         ][1] = value;
         break;
         
       case 'setpoint':
         updateSetpoint( handler, handlerVal, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
+        plotData[2].data[ plotData[2].data.length-1 ][1] = value;
+        plotData[5].data[ 0                         ][1] = value;
         break;
     }
+    data.plot.setData( plotData );
+    data.plot.draw();
   },
   downaction: function( path, actor, isCanceled, event ) {
     var
       $actor = $(this).find('.actor'), //$(actor),
+      data = templateEngine.widgetDataGetByElement( $actor ),
       actorOffset = $actor.offset(),
       actorWidth = $actor.width(),
       actorHeight = $actor.height(),
@@ -231,7 +291,7 @@ var data2 = [ [0, 2], [1, 4], [2, 3], [3, 3], [4, 1], [5, 2], [6, 3], [7, 3], [8
             dy = -cY + (actorOffset.top + actorHeight),
             percentageRaw = Math.atan2(dx,dy)/Math.PI+0.5,
             percentage = Math.min( Math.max( percentageRaw, 0 ), 1 ),
-            value = 999;
+            value = data.min + percentage * (data.max - data.min);
           updateSetpoint( handler, handlerVal, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
         }
       };
@@ -239,7 +299,7 @@ var data2 = [ [0, 2], [1, 4], [2, 3], [3, 3], [4, 1], [5, 2], [6, 3], [7, 3], [8
     //$(window).mousemove( moveaction ).mouseup( function(){
     //  $(window).unbind( 'mousemove', moveaction ); 
     //});
-    
+   console.log($actor.data(), data); 
     moveaction( event );
     
     return { callback: moveaction, restrict: false };
