@@ -751,3 +751,7 @@ img.icon, canvas.icon
 {
   vertical-align: middle;
 }
+
+.controllerinput .value {
+  font-size: 200%;
+}
