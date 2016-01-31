@@ -229,8 +229,7 @@ function TemplateEngine( undefined ) {
   this.bindClickToWidget = false;
     
   // threshold where the mobile.css is loaded
-	// this.maxMobileScreenWidth = 480; // modified for Menu Plugin!
-  this.maxMobileScreenWidth = 780;
+  this.maxMobileScreenWidth = 480;
   // use to recognize if the screen width has crossed the maxMobileScreenWidth
   var lastBodyWidth=0;
 
@@ -519,10 +518,9 @@ function TemplateEngine( undefined ) {
         widgetCreator:   undefined,
         downtime:        0,
         alreadyCanceled: false
-      };
-
-    var touchStartX = null;
-    var touchStartY = null;
+      },
+      touchStartX = null,
+      touchStartY = null;
 
     window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
       var 
