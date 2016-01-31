@@ -26,9 +26,9 @@ $('#main').data('columns', 12 );
 $('#navbarRight').data('columns', 6 );
 
 templateEngine.defaults = { plugin: { controllerinput: {
-  sparklineWidth: 1,
+  sparklineWidth: 1.5,
   sparklineSpotradius: 3,
-  colorActual:   '#0000f0',
-  colorSetpoint: '#f0f000',
-  colorControl:  '#f00000'
+  colorActual:   '#3030d0',
+  colorSetpoint: '#d0d030',
+  colorControl:  '#d03030'
 }}};

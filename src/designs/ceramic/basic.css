@@ -752,21 +752,45 @@ img.icon, canvas.icon
   vertical-align: middle;
 }
 
-.controllerinput .value {
+/* use body to make sure these rules are more specific and thus win */
+body .controllerinput .roundbarbackground.border {
+  display: none;
+}
+
+body .controllerinput .roundbarbackground.color {
+  border: 3px solid rgba(0,0,128,0.5);
+  border-bottom: none;
+}
+
+body .controllerinput .roundbar {
+  border-color: #FEBF01;
+}
+
+body .controllerinput .value {
   font-size: 200%;
 }
 
-.controllerinput .handler {
-  overflow: visible !important;
-  background: #eee !important;
-  width: 0.5em !important;
+body .controllerinput .handler {
+  overflow: visible;
+  background: #eee;
+  width: 0.5em;
+  height: 1.6em;
+  /*margin-top: -1.3em;*/
+  border: none;
 }
 
-.controllerinput .handler.shadow {
-  display: block !important;
-  background: #000 !important;
+body .controllerinput .handler.shadow {
+  display: block;
+  background: #000;
+  margin-left: 4px;
+  margin-top: 5px;
+  box-shadow: 0px 0px 7px 2px #000;
+  width: calc(0.5em - 4px);
+  height: calc(1.6em - 4px);
+  -webkit-filter: none;
 }
 
-.controllerinput .handlervalue {
-  margin-top: -1.5em !important;
+body .controllerinput .handlervalue {
+  margin-top: -1.5em;
+  font-size: 75%;
 }
