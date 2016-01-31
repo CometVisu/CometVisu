@@ -45,7 +45,7 @@ var sprintfOrg = window.sprintf;
 window.sprintf = function() {
   for (var arg in arguments) {
     if (typeof arguments[arg] == "undefined")
-      return "<UNDEF>";
+      arguments[arg] = "<UNDEF>";
   }
 
   try {
