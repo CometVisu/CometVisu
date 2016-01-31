@@ -229,7 +229,8 @@ function TemplateEngine( undefined ) {
   this.bindClickToWidget = false;
     
   // threshold where the mobile.css is loaded
-  this.maxMobileScreenWidth = 480;
+	// this.maxMobileScreenWidth = 480; // modified for Menu Plugin!
+  this.maxMobileScreenWidth = 780;
   // use to recognize if the screen width has crossed the maxMobileScreenWidth
   var lastBodyWidth=0;
 
@@ -519,13 +520,25 @@ function TemplateEngine( undefined ) {
         downtime:        0,
         alreadyCanceled: false
       };
-    
+
+    var touchStartX = null;
+    var touchStartY = null;
+
     window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
       var 
         element = event.target,
         // search if a widget was hit
         widgetActor = getWidgetActor( event.target ),
         bindWidget  = widgetActor.widget ? thisTemplateEngine.widgetDataGet( widgetActor.widget.id ).bind_click_to_widget : false;
+      
+      var touchobj;
+      
+      if (isTouchDevice){
+        touchobj = event.changedTouches[0];
+        
+        touchStartX = parseInt(touchobj.clientX);
+        touchStartY = parseInt(touchobj.clientY);
+      }
       
       isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
       if( isWidget )
@@ -628,12 +641,15 @@ function TemplateEngine( undefined ) {
       if( isWidget )
       {
         var
-          widget      = mouseEvent.widget;
+          widget      = mouseEvent.widget,
+          touchobj = event.changedTouches[0];
           
         if( mouseEvent.moveFn )
           mouseEvent.moveFn( event );
         
-        if( mouseEvent.moveRestrict && !mouseEvent.alreadyCanceled )
+        if( mouseEvent.moveRestrict && !mouseEvent.alreadyCanceled
+          && ((touchStartX + 5 < parseInt(touchobj.clientX) || touchStartX - 5 > parseInt(touchobj.clientX))
+            ||(touchStartY + 5 < parseInt(touchobj.clientY) || touchStartY - 5 > parseInt(touchobj.clientY))))
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
