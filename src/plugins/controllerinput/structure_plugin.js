@@ -80,7 +80,7 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
     });
 
     // create the actor
-    var actor = '<div class="actor"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div><div class="handler"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'</div><div class="smallvalue right">'+max+'</div><div class="sparkline"></div></div>';
+    var actor = '<div class="actor"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow"></div><div class="handler"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'</div><div class="smallvalue right">'+max+'</div><div class="sparkline"></div></div>';
     ret_val += actor;
     
     templateEngine.bindActionForLoadingFinished(function() {
