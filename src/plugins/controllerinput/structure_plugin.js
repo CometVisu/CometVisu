@@ -76,9 +76,17 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
       'inAction'       : false,
       'colorActual'    : $e.attr('colorActual'  ) || defaults.colorActual   || '#0000f0',
       'colorSetpoint'  : $e.attr('colorSetpoint') || defaults.colorSetpoint || '#f0f000',
-      'colorControl'   : $e.attr('colorControl' ) || defaults.colorControl  || '#f00000'
+      'colorControl'   : $e.attr('colorControl' ) || defaults.colorControl  || '#f00000',
+      'rrd'            : {}
     });
 
+    $e.find('rrd').each( function(){
+      var variant = this.getAttribute('variant');
+      if( variant )
+        data.rrd[ variant ] = this.textContent;
+    });
+    console.log( data.rrd);
+    
     // create the actor
     var actor = '<div class="actor"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow" style="transform:translate(-999cm,0)"></div><div class="handler" style="transform:translate(-999cm,0)"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'</div><div class="smallvalue right">'+max+'</div><div class="sparkline"></div></div>';
     ret_val += actor;
@@ -201,7 +209,9 @@ var
   ];
 
   // draw the sparkline
-  data.plot = $.plot('.sparkline', series, options);
+ // data.plot = $.plot('.sparkline', series, options);
+  data.plot = $element.find('.sparkline').plot( series, options).data('plot');
+  console.log(data.plot);
       }
       //setTimeout( createSparkline, 3000 );
       createSparkline();
