@@ -38,6 +38,48 @@ define( ['structure_custom', 'css!plugins/controllerinput/controllerinput' ], fu
     handlerVal.text( format ? sprintf( format, value ) : value );
   };
   
+  function getRRDData( data ) 
+  {
+    for( var variant in data.rrd )
+    {
+      var
+        rrd = data.rrd[ variant ];
+        
+      $.ajax({
+        url: templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + rrd.start + "&end=" + rrd.end + "&res=" + rrd.resol,
+        dataType: "json",
+        type: "GET",
+        context: this,
+        variant: variant,
+        success: function( rrdContent,aaa ) { 
+          if( !rrdContent )
+            return;
+          
+          var plotData = data.plot.getData();
+          rrdContent.forEach(function(a){a[1]=+a[1][0];});
+          switch( this.variant )
+          {
+            case 'actual':
+              plotData[0].data = rrdContent;
+              plotData[3].data[0][0] = rrdContent[rrdContent.length-1][0];
+            break;
+            case 'control':
+              plotData[1].data = rrdContent;
+              plotData[4].data[0][0] = rrdContent[rrdContent.length-1][0];
+            break;
+            case 'setpoint':
+              plotData[2].data = rrdContent;
+              plotData[5].data[0][0] = rrdContent[rrdContent.length-1][0];
+            break;
+          }
+          data.plot.setData( plotData );
+          data.plot.setupGrid();
+          data.plot.draw();
+        }
+      });
+    }
+  };
+  
 VisuDesign_Custom.prototype.addCreator("controllerinput", {
   create: function( element, path, flavour, type ) {
     var 
@@ -83,9 +125,15 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
     $e.find('rrd').each( function(){
       var variant = this.getAttribute('variant');
       if( variant )
-        data.rrd[ variant ] = this.textContent;
+        data.rrd[ variant ] = {
+          src: this.textContent,
+          cFunc: 'AVERAGE',
+          start: 'end-1day',
+          end: 'now',
+          resol: 300
+        }
     });
-    console.log( data.rrd);
+    //console.log( data.rrd);
     
     // create the actor
     var actor = '<div class="actor"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow" style="transform:translate(-999cm,0)"></div><div class="handler" style="transform:translate(-999cm,0)"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'</div><div class="smallvalue right">'+max+'</div><div class="sparkline"></div></div>';
@@ -122,11 +170,17 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
       });
       */
       function createSparkline(){
+        /*
 var dataActual   = [ [0, 21], [1, 12], [2, 32], [3, 32], [4, 22], [5, 23], [6, 24], [7, 22], [8, 28], [9, 23], [10, 25], [11, 25], [12, 24] ];
 var dataControl  = [ [0, 22], [1, 24], [2, 23], [3, 23], [4, 21], [5, 22], [6, 23], [7, 23], [8, 23], [9, 22], [10, 23], [11, 25], [12, 25] ];
 var dataSetpoint = [ [0, 24], [1, 23], [2, 22], [3, 21], [4, 20], [5, 22], [6, 24], [7, 24], [8, 20], [9, 22], [10, 25], [11, 22], [12, 22] ];
+*/
+var
+  dataActual   = [ [0,0] ],
+  dataControl  = [ [0,0] ],
+  dataSetpoint = [ [0,0] ];
 //debugger;
-console.log( path );
+//console.log( path );
 var 
   dataLastX = dataActual[dataActual.length - 1][0],
   $element = $('#' + path),
@@ -136,7 +190,7 @@ var
   var options = {
     xaxis: {
       // extend graph to fit the last point
-      max: dataLastX 
+      //max: dataLastX 
     },
     yaxes: [
       { min: min, max: max },
@@ -147,11 +201,12 @@ var
       margin: 2*(defaults.sparklineSpotradius || 1) // make space for the round dots
     }
   };
-  console.log( options );
+  //console.log( options );
 
   // main series
   var series = [{
-    data: dataActual,
+    //data: dataActual,
+    data: [[0,0]],
     color: data.colorActual,
     lines: {
       fill: true,
@@ -161,7 +216,8 @@ var
     shadowSize: 0
   },
   {
-    data: dataControl,
+    //data: dataControl,
+    data: [[0,0]],
     color: data.colorControl,
     lines: {
       lineWidth: defaults.sparklineWidth || 1//0.8
@@ -170,7 +226,8 @@ var
     yaxis: 2
   },
   {
-    data: dataSetpoint,
+    //data: dataSetpoint,
+    data: [[0,0]],
     color: data.colorSetpoint,
     lines: {
       lineWidth: defaults.sparklineWidth || 1//0.8
@@ -179,7 +236,8 @@ var
   },
   // show the last points extra
   {
-    data: [ [dataLastX, dataActual[dataActual.length - 1][1]] ],
+    //data: [ [dataLastX, dataActual[dataActual.length - 1][1]] ],
+    data: [[0,0]],
     points: {
      show: true,
      radius: defaults.sparklineSpotradius || 1,
@@ -188,17 +246,19 @@ var
     color: data.colorActual
   },
   {
-    data: [ [dataLastX, dataControl[dataControl.length - 1][1]] ],
+    //data: [ [dataLastX, dataControl[dataControl.length - 1][1]] ],
+    data: [[0,0]],
     points: {
      show: true,
      radius: defaults.sparklineSpotradius || 1,
      fillColor: data.colorControl
     },
     color: data.colorControl,
-    yaxis: defaults.sparklineSpotradius || 2
+    yaxis: 2
   },
   {
-    data: [ [dataLastX, dataSetpoint[dataSetpoint.length - 1][1]] ],
+    //data: [ [dataLastX, dataSetpoint[dataSetpoint.length - 1][1]] ],
+    data: [[0,0]],
     points: {
      show: true,
      radius: defaults.sparklineSpotradius || 1,
@@ -211,10 +271,11 @@ var
   // draw the sparkline
  // data.plot = $.plot('.sparkline', series, options);
   data.plot = $element.find('.sparkline').plot( series, options).data('plot');
-  console.log(data.plot);
+  //console.log(data.plot);
       }
       //setTimeout( createSparkline, 3000 );
       createSparkline();
+      getRRDData( data );
     });
     return ret_val + '</div>';
   },
@@ -240,29 +301,18 @@ var
       showValue = Math.min( Math.max( data.min, value ), data.max ),
       percentage = (showValue - data.min)/(data.max - data.min);
     
+    console.log( data.address[ ga ][2], value );
     switch( data.address[ ga ][2] )
     {
       case 'actual':
-        var
-          lastX =  50 * (1-Math.cos( Math.PI * percentage )*1.1), // *1.1 to be bigger than the unity circle
-          lastY = 100 * (1-Math.sin( Math.PI * percentage )*1.1),
-          clip = '50% 100%, -1% 100%, -1% -1%';
-          
-        if( percentage > 0.5 )
-          clip += ', 100% -1%'; 
-        else
-          clip += ', -1% -1%'; // needed to keep point number stable for transition animation
-          
-        clip += ', ' + lastX + '% ' + lastY + '%';
-        roundbar.css({'webkit-clip-path':'polygon('+clip+')'});
-        roundbar.css({'webkit-clip-path':'none','transform':'rotate('+(180+180*percentage)+'deg)'});
+        roundbar.css({'transform':'rotate('+(180+180*percentage)+'deg)'});
         templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
-        plotData[0].data[ plotData[2].data.length-1 ][1] = value;
+        plotData[0].data[ plotData[0].data.length-1 ][1] = value;
         plotData[3].data[ 0                         ][1] = value;
         break;
         
       case 'control':
-        plotData[1].data[ plotData[2].data.length-1 ][1] = value;
+        plotData[1].data[ plotData[1].data.length-1 ][1] = value;
         plotData[4].data[ 0                         ][1] = value;
         break;
         
@@ -273,6 +323,7 @@ var
         break;
     }
     data.plot.setData( plotData );
+    data.plot.setupGrid();
     data.plot.draw();
   },
   downaction: function( path, actor, isCanceled, event ) {
