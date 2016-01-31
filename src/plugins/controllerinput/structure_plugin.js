@@ -26,7 +26,7 @@
 define( ['structure_custom', 'css!plugins/controllerinput/controllerinput' ], function( VisuDesign_Custom ) {
   "use strict";
   
-  function updateSetpoint( handler, handlerVal, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH )
+  function updateSetpoint( handler, handlerVal, format, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH )
   {
     var
       handlerTranslate = 'translate(' + roundbarOW/2 + 'px, ' + roundbarOH + 'px) '
@@ -35,7 +35,7 @@ define( ['structure_custom', 'css!plugins/controllerinput/controllerinput' ], fu
     
     handler.css( 'transform', handlerTranslate );
     handlerVal.css( 'transform', 'rotate(' + (90-percentage*180) + 'deg)' );
-    handlerVal.text( value );
+    handlerVal.text( format ? sprintf( format, value ) : value );
   };
   
 VisuDesign_Custom.prototype.addCreator("controllerinput", {
@@ -80,7 +80,7 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
     });
 
     // create the actor
-    var actor = '<div class="actor"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div><div class="handler"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'XXX</div><div class="smallvalue right">'+max+'XXX</div><div class="sparkline"></div></div>';
+    var actor = '<div class="actor"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div><div class="handler"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'</div><div class="smallvalue right">'+max+'</div><div class="sparkline"></div></div>';
     ret_val += actor;
     
     templateEngine.bindActionForLoadingFinished(function() {
@@ -224,7 +224,7 @@ var
       plotData   = data.plot.getData();
       
     //templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
-    console.log( data.address[ ga ][2] );
+    //console.log( data.address[ ga ][2] );
     
     var
       showValue = Math.min( Math.max( data.min, value ), data.max ),
@@ -257,7 +257,7 @@ var
         break;
         
       case 'setpoint':
-        updateSetpoint( handler, handlerVal, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
+        updateSetpoint( handler, handlerVal, data.format, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
         plotData[2].data[ plotData[2].data.length-1 ][1] = value;
         plotData[5].data[ 0                         ][1] = value;
         break;
@@ -292,14 +292,13 @@ var
             percentageRaw = Math.atan2(dx,dy)/Math.PI+0.5,
             percentage = Math.min( Math.max( percentageRaw, 0 ), 1 ),
             value = data.min + percentage * (data.max - data.min);
-          updateSetpoint( handler, handlerVal, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
+          updateSetpoint( handler, handlerVal, data.format, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
         }
       };
         
     //$(window).mousemove( moveaction ).mouseup( function(){
     //  $(window).unbind( 'mousemove', moveaction ); 
     //});
-   console.log($actor.data(), data); 
     moveaction( event );
     
     return { callback: moveaction, restrict: false };
