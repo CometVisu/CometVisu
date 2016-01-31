@@ -270,6 +270,16 @@ function TemplateEngine( undefined ) {
   };
   
   /**
+   * Structure where a design can set a default value that a widget or plugin
+   * can use.
+   * This is especially important for design relevant information like colors
+   * that can not be set though CSS.
+   * 
+   * Useage: templateEngine.defaults.plugin.foo = {bar: 'baz'};
+   */
+  this.defaults = { widget: {}, plugin: {} };
+
+  /**
    * Function to test if the path is in a valid form.
    * Note: it doesn't check if it exists!
    */
