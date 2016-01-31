@@ -43,7 +43,7 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
     var 
       $e = $(element),
       id = "roundSlider_" + path,
-      standard = templateEngine.default && templateEngine.default.plugin ? (templateEngine.default.plugin.controllerinput || {}) : {};
+      defaults = templateEngine.defaults.plugin.controllerinput || {};
     
     // create the main structure
       //( widgetType, $element, path, flavour, type, updateFn, makeAddressListFn )
@@ -74,13 +74,13 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
       'send_on_finish' : send_on_finish,
       'valueInternal'  : true,
       'inAction'       : false,
-      'colorActual'    : $e.attr('colorActual'  ) || standard.colorActual   || '#0000f0',
-      'colorSetpoint'  : $e.attr('colorSetpoint') || standard.colorSetpoint || '#f0f000',
-      'colorControl'   : $e.attr('colorControl' ) || standard.colorControl  || '#f00000'
+      'colorActual'    : $e.attr('colorActual'  ) || defaults.colorActual   || '#0000f0',
+      'colorSetpoint'  : $e.attr('colorSetpoint') || defaults.colorSetpoint || '#f0f000',
+      'colorControl'   : $e.attr('colorControl' ) || defaults.colorControl  || '#f00000'
     });
 
     // create the actor
-    var actor = '<div class="actor"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow"></div><div class="handler"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'</div><div class="smallvalue right">'+max+'</div><div class="sparkline"></div></div>';
+    var actor = '<div class="actor"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow" style="transform:translate(-999cm,0)"></div><div class="handler" style="transform:translate(-999cm,0)"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'</div><div class="smallvalue right">'+max+'</div><div class="sparkline"></div></div>';
     ret_val += actor;
     
     templateEngine.bindActionForLoadingFinished(function() {
@@ -136,7 +136,7 @@ var
     ],
     grid: {
       show: false,
-      margin: 2 // make space for the round dots
+      margin: 2*(defaults.sparklineSpotradius || 1) // make space for the round dots
     }
   };
   console.log( options );
@@ -148,7 +148,7 @@ var
     lines: {
       fill: true,
       zero: false,
-      lineWidth: 1//0.8
+      lineWidth: defaults.sparklineWidth || 1//0.8
     },
     shadowSize: 0
   },
@@ -156,7 +156,7 @@ var
     data: dataControl,
     color: data.colorControl,
     lines: {
-      lineWidth: 1//0.8
+      lineWidth: defaults.sparklineWidth || 1//0.8
     },
     shadowSize: 0,
     yaxis: 2
@@ -165,7 +165,7 @@ var
     data: dataSetpoint,
     color: data.colorSetpoint,
     lines: {
-      lineWidth: 1//0.8
+      lineWidth: defaults.sparklineWidth || 1//0.8
     },
     shadowSize: 0
   },
@@ -174,7 +174,7 @@ var
     data: [ [dataLastX, dataActual[dataActual.length - 1][1]] ],
     points: {
      show: true,
-     radius: 1,
+     radius: defaults.sparklineSpotradius || 1,
      fillColor: data.colorActual
     },
     color: data.colorActual
@@ -183,17 +183,17 @@ var
     data: [ [dataLastX, dataControl[dataControl.length - 1][1]] ],
     points: {
      show: true,
-     radius: 1,
+     radius: defaults.sparklineSpotradius || 1,
      fillColor: data.colorControl
     },
     color: data.colorControl,
-    yaxis: 2
+    yaxis: defaults.sparklineSpotradius || 2
   },
   {
     data: [ [dataLastX, dataSetpoint[dataSetpoint.length - 1][1]] ],
     points: {
      show: true,
-     radius: 1,
+     radius: defaults.sparklineSpotradius || 1,
      fillColor: data.colorSetpoint
     },
     color: data.colorSetpoint
