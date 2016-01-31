@@ -7,8 +7,8 @@
     </plugins>
     <mappings>
       <mapping name="StateConfirm">
-        <entry value="0"><icon name="message_attention" color="#A00000"/> </entry>
-        <entry value="1"><icon name="control_clear" color="#00A000"/> </entry>
+        <entry value="0"><icon name="info_warning" color="#A00000"/> </entry>
+        <entry value="1"><icon name="info_ack" color="#00A000"/> </entry>
       </mapping>
     </mappings>
     <stylings>
