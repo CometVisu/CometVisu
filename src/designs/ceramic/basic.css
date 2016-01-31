@@ -755,3 +755,18 @@ img.icon, canvas.icon
 .controllerinput .value {
   font-size: 200%;
 }
+
+.controllerinput .handler {
+  overflow: visible !important;
+  background: #eee !important;
+  width: 0.5em !important;
+}
+
+.controllerinput .handler.shadow {
+  display: block !important;
+  background: #000 !important;
+}
+
+.controllerinput .handlervalue {
+  margin-top: -1.5em !important;
+}

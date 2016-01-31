@@ -13,16 +13,18 @@
 }
 
 .controllerinput .handler {
-  width: 1em;
+  width: 2em;
   height: 2em;
   border: 1px solid white;
   box-sizing: border-box;
   margin-top: 0px;
   /* 2nd value of transform-origin must be inverted vertical margin! */
   transform-origin: 0px -0px;
-  background: #ff0;
+  overflow: hidden;
+  background-color: black;
 }
 .controllerinput .handler.shadow {
+  display: none;
   margin-top: 5px;
   margin-left: 5px;
   background: black;
@@ -31,9 +33,9 @@
 }
 
 .controllerinput .handlervalue {
-  margin-left: 50%;
-  margin-top: -1em;
-  border: 1px solid black;
+  margin-left: calc(50% - 10em); /* assume the value will fit in 20em */
+  width: 20em;
+  text-align: center;
 }
 
 .controllerinput .roundbarbox {
@@ -43,10 +45,6 @@
 
 .controllerinput .roundbarbackground {
   width: 100%;
-  /* CSS trick to force 2:1 aspect ratio to parent: */ 
-  /*
-  padding-bottom: 50%;
-  */
   height: 100%;
   margin: -2px;
   border-radius: 1000em;
@@ -110,11 +108,9 @@
 
 .controllerinput .smallvalue.left {
   margin-left: -4px;
-  color: #ff0;
 }
 
 .controllerinput .smallvalue.right {
-  color: #0ff;
   right: 0;
 }
 
