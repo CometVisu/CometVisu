@@ -270,6 +270,16 @@ function TemplateEngine( undefined ) {
   };
   
   /**
+   * Structure where a design can set a default value that a widget or plugin
+   * can use.
+   * This is especially important for design relevant information like colors
+   * that can not be set though CSS.
+   * 
+   * Useage: templateEngine.defaults.plugin.foo = {bar: 'baz'};
+   */
+  this.defaults = { widget: {}, plugin: {} };
+
+  /**
    * Function to test if the path is in a valid form.
    * Note: it doesn't check if it exists!
    */
@@ -518,14 +528,25 @@ function TemplateEngine( undefined ) {
         widgetCreator:   undefined,
         downtime:        0,
         alreadyCanceled: false
-      };
-    
+      },
+      touchStartX = null,
+      touchStartY = null;
+
     window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
       var 
         element = event.target,
         // search if a widget was hit
         widgetActor = getWidgetActor( event.target ),
         bindWidget  = widgetActor.widget ? thisTemplateEngine.widgetDataGet( widgetActor.widget.id ).bind_click_to_widget : false;
+      
+      var touchobj;
+      
+      if (isTouchDevice){
+        touchobj = event.changedTouches[0];
+        
+        touchStartX = parseInt(touchobj.clientX);
+        touchStartY = parseInt(touchobj.clientY);
+      }
       
       isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
       if( isWidget )
@@ -628,12 +649,15 @@ function TemplateEngine( undefined ) {
       if( isWidget )
       {
         var
-          widget      = mouseEvent.widget;
+          widget      = mouseEvent.widget,
+          touchobj = event.changedTouches[0];
           
         if( mouseEvent.moveFn )
           mouseEvent.moveFn( event );
         
-        if( mouseEvent.moveRestrict && !mouseEvent.alreadyCanceled )
+        if( mouseEvent.moveRestrict && !mouseEvent.alreadyCanceled
+          && ((touchStartX + 5 < parseInt(touchobj.clientX) || touchStartX - 5 > parseInt(touchobj.clientX))
+            ||(touchStartY + 5 < parseInt(touchobj.clientY) || touchStartY - 5 > parseInt(touchobj.clientY))))
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
