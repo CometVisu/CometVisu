@@ -230,6 +230,9 @@ function TemplateEngine( undefined ) {
     
   // threshold where the mobile.css is loaded
   this.maxMobileScreenWidth = 480;
+  // threshold where different colspans are used
+  this.maxScreenWidthColspanS = 599;
+  this.maxScreenWidthColspanM = 839;
   // use to recognize if the screen width has crossed the maxMobileScreenWidth
   var lastBodyWidth=0;
 
@@ -293,7 +296,6 @@ function TemplateEngine( undefined ) {
 
   this.defaultColumns = 12;
   this.minColumnWidth = 120;
-  this.enableColumnAdjustment = false;
   
   this.enableAddressQueue = $.getUrlVar('enableQueue') ? true : false;
   
@@ -781,49 +783,26 @@ function TemplateEngine( undefined ) {
     return thisTemplateEngine.currentPageNavbarVisibility;
   };
 
+  // return S, M or L depening on the passed width
+  function getColspanClass( width )
+  {
+    if( width <= thisTemplateEngine.maxScreenWidthColspanS )
+      return 'S';
+    if( width <= thisTemplateEngine.maxScreenWidthColspanM )
+      return 'M';
+    return 'L';
+  }
+  
+  var oldWidth = -1;
   this.adjustColumns = function() {
-    var data = $('#main').data();
-    if (thisTemplateEngine.enableColumnAdjustment == false) {
-      if (thisTemplateEngine.defaultColumns != data.columns) {
-        data.columns = thisTemplateEngine.defaultColumns;
-        return true;
-      } else {
-        return false;
-      }
-    }
-    var width = thisTemplateEngine.getAvailableWidth();
-
-    var newColumns = Math.floor(width / thisTemplateEngine.minColumnWidth);
-    if( newColumns <= 4 )
-      newColumns = 4;
-    else if( newColumns <= 6 )
-      newColumns = 6;
-    else if( newColumns <= 8 )
-      newColumns = 8;
-    else
-      newColumns = 12;
-    /*
-    var newColumns = Math.ceil(width / thisTemplateEngine.minColumnWidth);
-    if (newColumns > (thisTemplateEngine.defaultColumns / 2) && thisTemplateEngine.defaultColumns > newColumns) {
-      // don´t accept values between 50% and 100% of defaultColumns
-      // e.g if default is 12, then skip column-reduction to 10 and 8
-      newColumns = thisTemplateEngine.defaultColumns;
-    }
-    else {
-      // the value should be a divisor of defaultColumns-value
-      while ((thisTemplateEngine.defaultColumns % newColumns)>0 && newColumns < thisTemplateEngine.defaultColumns) {
-        newColumns++;
-      }
-      // make sure that newColumns does not exceed defaultColumns
-      newColumns = Math.min(thisTemplateEngine.defaultColumns, newColumns);
-    }
-    */
-    if (newColumns != data.columns) {
-        data.columns = newColumns;
-      return true;
-    } else {
-      return false;
-    }
+    var
+      width = thisTemplateEngine.getAvailableWidth(),
+      oldClass = getColspanClass( oldWidth ),
+      newClass = getColspanClass( width );
+      
+    oldWidth = width;
+    
+    return oldClass != newClass;
   };
   
   /**
@@ -1000,18 +979,8 @@ function TemplateEngine( undefined ) {
     else
       thisTemplateEngine.scrollSpeed = $('pages', xml).attr('scroll_speed') | 0;
     
-    var enableColumnAdjustment = null;
-    if ($('pages', xml).attr('enable_column_adjustment')!=undefined) {
-      enableColumnAdjustment = $('pages', xml).attr('enable_column_adjustment')=="true" ? true : false;
-    }
     if ($('pages', xml).attr('bind_click_to_widget')!=undefined) {
       thisTemplateEngine.bindClickToWidget = $('pages', xml).attr('bind_click_to_widget')=="true" ? true : false;
-    }
-    if (enableColumnAdjustment) {
-      thisTemplateEngine.enableColumnAdjustment = true;
-    } else if (enableColumnAdjustment==null && /(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i
-        .test(navigator.userAgent.toLowerCase())) {
-      thisTemplateEngine.enableColumnAdjustment = true;
     }
     if ($('pages', xml).attr('default_columns')) {
       thisTemplateEngine.defaultColumns = $('pages', xml).attr('default_columns');
@@ -1218,6 +1187,17 @@ function TemplateEngine( undefined ) {
    * applies the correct width to the widgets corresponding to the given colspan setting 
    */
   this.applyColumnWidths = function() {
+    var
+      width = thisTemplateEngine.getAvailableWidth();
+    function dataColspan( data )
+    {
+      if( width <= thisTemplateEngine.maxScreenWidthColspanS )
+        return data.colspanS;
+      if( width <= thisTemplateEngine.maxScreenWidthColspanM )
+        return data.colspanM;
+      return data.colspan;
+    }
+    
     // all containers
     ['#navbarTop', '#navbarLeft', '#main', '#navbarRight', '#navbarBottom'].forEach( function( area ){
       var 
@@ -1227,15 +1207,8 @@ function TemplateEngine( undefined ) {
       var
         $e = $(e),
         data = thisTemplateEngine.widgetDataGet( e.id ),
-        ourColspan = data.colspan,
-        ourColspanS = data.colspanS,
-        ourColspanM = data.colspanM;
-      var width = thisTemplateEngine.getAvailableWidth();
-      // FIXME TODO
-      if( ourColspan != ourColspanM || ourColspan != ourColspanS )
-        console.log( ourColspan, ourColspanM, ourColspanS );
-      if (ourColspan < 0)
-        return;
+        ourColspan = dataColspan( data );
+        
       var w = 'auto';
       if (ourColspan > 0) {
         var areaColspan = areaColumns || thisTemplateEngine.defaultColumns;
@@ -1250,18 +1223,16 @@ function TemplateEngine( undefined ) {
       var 
         $e = $(e),
         data = thisTemplateEngine.widgetData[ e.id ],
-        ourColspan = data.colspan;
-      if (ourColspan < 0)
-        return;
+        ourColspan = dataColspan( data );
       if (ourColspan == undefined) {
         // workaround for nowidget groups
-        ourColspan =  thisTemplateEngine.widgetDataGetByElement($e.children('.group')).colspan;
+        ourColspan = dataColspan( thisTemplateEngine.widgetDataGetByElement($e.children('.group')) );
       }
       var w = 'auto';
       if (ourColspan > 0) {
         var areaColspan = areaColumns || thisTemplateEngine.defaultColumns;
-        var groupColspan = Math.min(areaColspan, thisTemplateEngine.widgetDataGetByElement($e.parentsUntil(
-            '.widget_container', '.group')).colspan);
+        var groupColspan = Math.min(areaColspan, dataColspan(thisTemplateEngine.widgetDataGetByElement($e.parentsUntil(
+            '.widget_container', '.group'))));
         w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
       }
       $e.css('width', w);

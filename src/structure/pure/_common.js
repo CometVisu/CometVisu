@@ -388,10 +388,12 @@ function VisuDesign() {
     var 
       elementData = templateEngine.widgetDataGet( path ),
       layout      = page.children('layout'),
+      lookupM     = [ 0, 2, 4,  6,  6,  6,  6, 12, 12, 12, 12, 12, 12 ],
+      lookupS     = [ 0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],
       ret_val = '';
     elementData.colspan = layout.attr('colspan') || $('head').data('colspanDefault') || 6;
-    elementData.colspanS = layout.attr('colspan-s') || elementData.colspan;
-    elementData.colspanM = layout.attr('colspan-m') || elementData.colspan;
+    elementData.colspanM = layout.attr('colspan-m') || lookupM[Math.floor(elementData.colspan)] || elementData.colspan;
+    elementData.colspanS = layout.attr('colspan-s') || lookupS[Math.floor(elementData.colspan)] || elementData.colspan;
     if( layout.attr('rowspan') )
     {
       elementData.rowspanClass = templateEngine.rowspanClass( layout.attr('rowspan') || 1 );
