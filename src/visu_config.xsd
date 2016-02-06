@@ -18,6 +18,8 @@
 
   <xsd:complexType name="layout">
     <xsd:attribute name="colspan" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="colspan-m" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="colspan-s" type="xsd:decimal" use="optional" />
     <xsd:attribute name="rowspan" type="xsd:decimal" use="optional" />
     <xsd:attribute name="x" type="xsd:string" use="optional" />
     <xsd:attribute name="y" type="xsd:string" use="optional" />
@@ -350,11 +352,6 @@
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="default_columns" type="xsd:decimal" use="optional">
-        <xsd:annotation>
-            <xsd:appinfo>level:expert</xsd:appinfo>
-        </xsd:annotation>
-      </xsd:attribute>
-      <xsd:attribute name="enable_column_adjustment" type="xsd:boolean" use="optional">
         <xsd:annotation>
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
