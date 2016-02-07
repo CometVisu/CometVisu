@@ -619,3 +619,8 @@ img.icon, canvas.icon
 {
   vertical-align: middle;
 }
+
+.controllerinput .handler
+{
+  border-radius: 5px;
+}
