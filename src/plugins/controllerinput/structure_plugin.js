@@ -26,17 +26,6 @@
 define( ['structure_custom', 'css!plugins/controllerinput/controllerinput' ], function( VisuDesign_Custom ) {
   "use strict";
   
-  function updateSetpoint2( handler, handlerVal, format, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH )
-  {
-    var
-      handlerTranslate = 'translate(' + roundbarOW/2 + 'px, ' + roundbarOH + 'px) '
-        + 'rotate(' + (percentage*180-90) + 'deg) '
-        + 'translate( -' + handlerOW/2 + 'px, -' + (handlerOH/2+roundbarOH-0.5*(roundbarOH-roundbarIH)) + 'px)';
-    
-    handler.css( 'transform', handlerTranslate );
-    handlerVal.css( 'transform', 'rotate(' + (90-percentage*180) + 'deg)' );
-    handlerVal.text( format ? sprintf( format, value ) : value );
-  };
   function updateSetpoint( id, format, value, percentage )
   {
     var
@@ -47,9 +36,15 @@ define( ['structure_custom', 'css!plugins/controllerinput/controllerinput' ], fu
       handler    = $('#' + id + ' .handler'),
       handlerOH  = handler.outerHeight(true), // including margin to be able to move handler inside or outside
       handlerOW  = handler.outerWidth(),
-      handlerVal = $('#' + id + ' .handlervalue');
+      handlerVal = $('#' + id + ' .handlervalue'),
+      handlerTranslate = 'translate(' + roundbarOW/2 + 'px, ' + roundbarOH + 'px) '
+        + 'rotate(' + (percentage*180-90) + 'deg) '
+        + 'translate( -' + handlerOW/2 + 'px, -' + (handlerOH/2+roundbarOH-0.5*(roundbarOH-roundbarIH)) + 'px)';
     
-    updateSetpoint2( handler, handlerVal, format, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
+    console.log( 'uSP', $('#' + id +' .actor')[0].className );
+    handler.css( 'transform', handlerTranslate );
+    handlerVal.css( 'transform', 'rotate(' + (90-percentage*180) + 'deg)' );
+    handlerVal.text( format ? sprintf( format, value ) : value );
   }
   
   function getRRDData( data ) 
@@ -156,6 +151,7 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
     
     templateEngine.bindActionForLoadingFinished(function() {
       updateSetpoint( path, '-', 0, 0 );
+      $('#' + path + ' .actor').removeClass('notransition');
       /*
       var 
         handler = $('#' + path + ' .handler' ),
@@ -343,14 +339,6 @@ var
       actorOffset = $actor.offset(),
       actorWidth = $actor.width(),
       actorHeight = $actor.height(),
-      //roundbar   = $actor.find( '.roundbar' ),
-      //roundbarOH = roundbar.outerHeight(),
-      //roundbarIH = roundbar.innerHeight(),
-      //roundbarOW = roundbar.outerWidth(),
-      //handler    = $actor.find( '.handler' ),
-      //handlerOH  = handler.outerHeight(true), // including margin to be able to move handler inside or outside
-      //handlerOW  = handler.outerWidth(),
-      //handlerVal = $actor.find( '.handlervalue' ),
       moveaction = function( e ) {
         if( e !== undefined )
         {
@@ -364,36 +352,14 @@ var
             value = data.min + percentage * (data.max - data.min);
           updateSetpoint( data.path, data.format, value, percentage );
           
-          // limit send rate to 250ms
-          /*
-          if( now - data.lastTransmission > 250 )
-          {
-            if( data.value == value ) return;
-            
-            for( var addr in data.address )
-            {
-              if( data.address[addr][2] !== 'setpoint' || !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-              var dv  = templateEngine.transformEncode( data.address[addr][0], value );
-              if( dv != templateEngine.transformEncode( data.address[addr][0], data.value ) )
-                templateEngine.visu.write( addr, dv );
-            }
-            console.log( 'send', value, data.value, dv );
-            data.value = value;
-            data.lastTransmission = now;
-          }*/
           data.value = value;
         }
       };
         
-    //$(window).mousemove( moveaction ).mouseup( function(){
-    //  $(window).unbind( 'mousemove', moveaction ); 
-    //});
-    
-    //data.lastTransmission = -1;
     data.inAction = true;
     data.lastValue = undefined;
-    $actor.addClass('notransition');
     moveaction( event );
+    $actor.addClass('notransition');
     
     data.inAction      = true;
     //data.valueInternal = true;
