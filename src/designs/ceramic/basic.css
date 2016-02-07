@@ -1,22 +1,54 @@
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Josefin Sans Thin'), local('JosefinSans-Thin'), url('font/JosefinSans-Thin.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Josefin Sans Light'), local('JosefinSans-Light'), url('font/JosefinSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Josefin Sans'), local('JosefinSans'), url('font/JosefinSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Josefin Sans Bold'), local('JosefinSans-Bold'), url('font/JosefinSans-Bold.ttf') format('truetype');
+}
+
 body 
 { 
-  background: url(background.png) no-repeat center center fixed black; 
+  background: url(background2.png) no-repeat center center fixed black; 
   background-size: cover;
   color: white;
   font-family: Verdana, Helvetica, sans-serif;
   font-family: 'URW Gothic L','Century Gothic','Apple Gothic',Arial,sans-serif;
   font-family: Impact, Charcoal, sans-serif;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-family: 'Josefin Sans', Helvetica, sans-serif;
   font-size: 5mm;
   overflow: hidden;
   margin:0;
+  /*
   text-shadow: 1px 1px 1px #000;
+  */
 }
 
 h1
 {
   font-size: 2em;
   margin-left: 15px;
+  font-kerning: normal;
 }
 
 h2
@@ -25,19 +57,19 @@ h2
   margin-left: 15px;
   margin-top: 5px;
   margin-bottom: 5px;
+  font-kerning: normal;
 }
 
 body hr
 {
   clear:both;
   color: #ff8000;
-  background-color: #ff8000;
-  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000));
-  background: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2));
+  background-color: hsl(345,10%,20%);
+  background: linear-gradient(to right, rgba(85, 85, 136, 0.2), rgb(85, 85, 136) 33%, rgb(85, 85, 136) 67%, rgba(85, 85, 136, 0.2));
   height: 1px;
   border:none;
   padding:0px;
-  margin:0.1em;
+  margin:0;
 }
 
 #navbarTop hr, #navbarBottom hr 
@@ -122,7 +154,7 @@ body br
   padding:0.1em;
   margin: 1px;
   padding: 0px;
-  background: #558;
+  background: hsl(345,10%,20%);
   
   border: none;
   border-radius: 2px;
@@ -175,7 +207,7 @@ body br
 .widget .actor
 {
   float:left;
-  margin-left:1em;
+ /* margin-left:1em;*/
   margin-top: 0.2em;
 }
 
@@ -249,31 +281,48 @@ body br
 
 .red 
 {
-  color:#f44;
+  color:hsl(345,80%,50%);
   
 }
 
 .green
 {
-  color:#4f4;
+  color:hsl(105,80%,50%);
+  background-color:hsl(105,80%,50%);
 }
 
 .blue
 {
-  color:#44f;
+  color:hsl(225,80%,50%);
 }
 
 .purple
 {
-  color:#f4f;
+  color:hsl(285,80%,50%);
+}
+
+.link > div
+{
+  position: relative;
+  width: 100%;
 }
 
 .link a
 {
-  color: #ff8000;
+  color: hsl(345,35%,95%);
   text-align: right;
-  width: 49%;
+  width: 100%;
   padding: 5px;
+  text-decoration: none;
+}
+.link a::after
+{
+  display: inline-block;
+  content: "\22EE";
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  color: rgba( 0,0,0, 0.6 );
 }
 
 .page
@@ -314,9 +363,10 @@ body br
   /*
   background: -webkit-gradient(linear, 100% 100%, 0 0, from(#000000), to(#0f0f0f));
   background: linear-gradient(-10deg, #000000, #0f0f0f);
-  */
   box-shadow: 0 -1px 1px #666666, 0 1px 1px #FFFFFF;
   box-shadow: 0 2px 5px #000;
+  */
+  border: 1px solid hsl(345,35%,95%);
 }
 
 .switchPressed
@@ -339,13 +389,20 @@ body br
 .switch .switchPressed::before, .switch .switchUnpressed::before
 {
   display: block;
-  width: 10px;
-  height: 1em;
+  width: 33%;
+  height: 4px;
+  /*
   border: 1px solid #f00;
+  */
+  background-color: hsl(345,80%,50%);
+  margin-top: -3px;
   content: "";
   position: absolute;
+  -webkit-transition: right 1s;
+  right: 67%;
+  transition: right 0.5s;
 }
-.switchPressed::before
+.switch .switchPressed::before
 {
   right: 0px;
 }
@@ -367,8 +424,11 @@ body br
   /*
   background: -webkit-gradient(linear, 0 0, 100% 100%, from(#000000), to(#0f0f0f));
   background: linear-gradient(170deg, #000000, #0f0f0f);
-  */
   box-shadow: 0 -1px 1px #666666, 0 1px 1px #FFFFFF;
+  */
+  border: 1px solid hsl(345,35%,95%);
+  background: hsl(345,35%,95%);
+  color: hsl(345,10%,20%);
 }
 
 .switchInvisible
@@ -387,7 +447,7 @@ body br
 
 .ui-slider { position: relative; text-align: left; }
 .ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.6em; height: 1.3em; cursor: default; 
-  background: #eee;
+  background: hsl(345,35%,95%);
   box-shadow: 2px 3px 7px #000;
   width: 2.4em;
 }
@@ -455,7 +515,7 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
 }
 .multitrigger .label, .multitrigger .actor
 {
-  background: #558;
+  background: hsl(345,10%,20%);
 }
 
 .multitrigger br
@@ -486,13 +546,15 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
 {
   box-shadow: none;
   width: 100%;
+  border: none;
+  background: none;
 }
 
 .multitrigger .switchPressed
 {
   margin-top: -0.3em;
   padding-top: 0.3em;
-  background-color: #eee;
+  background-color: hsl(345,35%,95%);
   box-shadow: 5px 0px 10px rgba(0,0,0,0.5);
   box-shadow: 6px 2px 10px 2px rgba(0,0,0,0.4);
   z-index: 5;
@@ -633,98 +695,119 @@ div#loading {
   border: #000000 1px solid;
 }
 
+body hr,
 .flavour_white hr
 {
-  background-color: #ffffff;
-  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(255, 255, 255, 0.2)), to(rgba(255, 255, 255, 0.2)), color-stop(33%, #ffffff), color-stop(67%, #ffffff));
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgb(255, 255, 255) 33%, rgb(255, 255, 255) 67%, rgba(255, 255, 255, 0.2));
+  background-color: hsl(345,35%,95%);
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(hsla(345,35%,95%,0.2)), to(hsla(345,35%,95%,0.2)), color-stop(33%, hsl(345,35%,95%)), color-stop(67%, hsl(345,35%,95%)));
+  background: linear-gradient(to right, hsla(345,35%,95%,0.2), hsl(345,35%,95%) 33%, hsl(345,35%,95%) 67%, hsla(345,35%,95%,0.2));
 }
 .flavour_white .link a
 {
-  color: #ffffff;
+  color: hsl(345,35%,95%);
 }
 .flavour_white.group
 {
-  border: #ffffff 1px solid;
+  border: hsl(345,35%,95%) 1px solid;
+}
+.flavour_white .widget
+{
+  background-color: hsl(345,35%,95%);
 }
 
 .flavour_antimony hr
 {
-  background-color: #00ddff;
-  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(0, 221, 255, 0.2)), to(rgba(0, 221, 255, 0.2)), color-stop(33%, #00ddff), color-stop(67%, #00ddff));
-  background: linear-gradient(to right, rgba(0, 221, 255, 0.2), rgb(0, 221, 255) 33%, rgb(0, 221, 255) 67%, rgba(0, 221, 255, 0.2));
+  background-color: hsl(165,80%,50%);
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(hsla(165,80%,50%,0.2)), to(hsla(165,80%,50%,0.2)), color-stop(33%, hsl(165,80%,50%)), color-stop(67%, hsl(165,80%,50%)));
+  background: linear-gradient(to right, hsla(165,80%,50%,0.2), hsl(165,80%,50%) 33%, hsl(165,80%,50%) 67%, hsla(165,80%,50%,0.2));
 }
 .flavour_antimony .link a
 {
-  color: #00ddff;
+  color: hsl(165,80%,50%);
 }
 .flavour_antimony.group
 {
-  border: #00ddff 1px solid;
+  border: hsl(165,80%,50%) 1px solid;
+}
+.flavour_antimony .widget
+{
+  background-color: hsl(165,35%,40%);
 }
 
 .flavour_boron hr
 {
-  background-color: #00ff11;
-  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(0, 255, 17, 0.2)), to(rgba(0, 255, 17, 0.2)), color-stop(33%, #00ff11), color-stop(67%, #00ff11));
-  background: linear-gradient(to right, rgba(0, 255, 17, 0.2), rgb(0, 255, 17) 33%, rgb(0, 255, 17) 67%, rgba(0, 255, 17, 0.2));
+  background-color: hsl(105,80%,50%);
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(hsla(105,80%,50%,0.2)), to(hsla(105,80%,50%,0.2)), color-stop(33%, hsl(105,80%,50%)), color-stop(67%, hsl(105,80%,50%)));
+  background: linear-gradient(to right, hsla(105,80%,50%,0.2), hsl(105,80%,50%) 33%, hsl(105,80%,50%) 67%, hsla(105,80%,50%,0.2));
 }
 .flavour_boron .link a
 {
-  color: #00ff11;
+  color: hsl(105,80%,50%);
 }
 .flavour_boron.group
 {
-  border: #00ff11 1px solid;
+  border: hsl(105,80%,50%) 1px solid;
+}
+.flavour_boron .widget
+{
+  background-color: hsl(105,35%,40%);
 }
 
 .flavour_lithium hr
 {
-  background-color: #ff0000;
-  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(255, 0, 0, 0.2)), to(rgba(255, 0, 0, 0.2)), color-stop(33%, #ff0000), color-stop(67%, #ff0000));
-  background: linear-gradient(to right, rgba(255, 0, 0, 0.2), rgb(255, 0, 0) 33%, rgb(255, 0, 0) 67%, rgba(255, 0, 0, 0.2));
+  background-color: hsl(345,80%,50%);
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(hsla(345,80%,50%,0.2)), to(hsla(345,80%,50%,0.2)), color-stop(33%, hsl(345,80%,50%)), color-stop(67%, hsl(345,80%,50%)));
+  background: linear-gradient(to right, hsla(345,80%,50%,0.2), hsl(345,80%,50%) 33%, hsl(345,80%,50%) 67%, hsla(345,80%,50%,0.2));
 }
 .flavour_lithium .link a
 {
-  color: #ff0000;
+  color: hsl(345,80%,50%);
 }
 .flavour_lithium.group
 {
-  border: #ff0000 1px solid;
+  border: hsl(345,80%,50%) 1px solid;
 }
 .flavour_lithium .widget
 {
-  background-color: #A94785;
+  background-color: hsl(345,35%,40%);
 }
 
 .flavour_potassium hr
 {
-  background-color: #d00055;
-  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(208, 0, 85, 0.2)), to(rgba(208, 0, 85, 0.2)), color-stop(33%, #d00055), color-stop(67%, #d00055));
-  background: linear-gradient(to right, rgba(208, 0, 85, 0.2), rgb(208, 0, 85) 33%, rgb(208, 0, 85) 67%, rgba(208, 0, 85, 0.2));
+  background-color: hsl(285,80%,50%);
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(hsla(285,80%,50%,0.2)), to(hsla(285,80%,50%,0.2)), color-stop(33%, hsl(285,80%,50%)), color-stop(67%, hsl(285,80%,50%)));
+  background: linear-gradient(to right, hsla(285,80%,50%,0.2), hsl(285,80%,50%) 33%, hsl(285,80%,50%) 67%, hsla(285,80%,50%,0.2));
 }
 .flavour_potassium .link a
 {
-  color: #d00055;
+  color: hsl(285,80%,50%);
 }
 .flavour_potassium.group
 {
-  border: #d00055 1px solid;
+  border: hsl(285,80%,50%) 1px solid;
+}
+.flavour_potassium .widget
+{
+  background-color: hsl(285,35%,40%);
 }
 
 .flavour_sodium hr
 {
-  background-color: #ff8000;
-  background: -webkit-gradient(linear, 0 0, 100% 100%, from(rgba(255, 128, 0, 0.2)), to(rgba(255, 128, 0, 0.2)), color-stop(33%, #ff8000), color-stop(67%, #ff8000));
-  background: linear-gradient(to right, rgba(255, 128, 0, 0.2), rgb(255, 128, 0) 33%, rgb(255, 128, 0) 67%, rgba(255, 128, 0, 0.2));
+  background-color: hsl(45,80%,50%);
+  background: -webkit-gradient(linear, 0 0, 100% 100%, from(hsla(45,80%,50%,0.2)), to(hsla(45,80%,50%,0.2)), color-stop(33%, hsl(45,80%,50%)), color-stop(67%, hsl(45,80%,50%)));
+  background: linear-gradient(to right, hsla(45,80%,50%,0.2), hsl(45,80%,50%) 33%, hsl(45,80%,50%) 67%, hsla(45,80%,50%,0.2));
 }
 .flavour_sodium .link a
 {
-  color: #ff8000;
+  color: hsl(45,80%,50%);
 }
 .flavour_sodium.group
 {
-  border: #ff8000 1px solid;
+  border: hsl(45,80%,50%) 1px solid;
+}
+.flavour_sodium .widget
+{
+  background-color: hsl(45,35%,40%);
 }
 
 /* styles for the preview */
@@ -772,7 +855,7 @@ body .controllerinput .value {
 
 body .controllerinput .handler {
   overflow: visible;
-  background: #eee;
+  background: hsl(345,35%,95%);
   width: 0.5em;
   height: 1.6em;
   /*margin-top: -1.3em;*/
