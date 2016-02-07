@@ -80,7 +80,7 @@ define( [], function() {
        * https://code.google.com/p/android/issues/detail?id=17565
        * 
        */
-      innerRecolorLoop = navigator.userAgent.toLowerCase().indexOf('android') > -1 && parseFloat(navigator.userAgent.slice(navigator.userAgent.indexOf("Android")+8)) < 4.4 ?
+      innerRecolorLoop = navigator.userAgent.toLowerCase().indexOf('android') > -1 && parseFloat(navigator.userAgent.slice(navigator.userAgent.toLowerCase().indexOf('android')+8)) < 4.4 ?
         function( r, g, b, data, length ) // for Android version < 4.4
         {
           for( var i = 0; i < length; i += 4 )
