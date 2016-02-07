@@ -80,27 +80,7 @@ define( [], function() {
        * https://code.google.com/p/android/issues/detail?id=17565
        * 
        */
-      innerRecolorLoop = navigator.userAgent.toLowerCase().indexOf('android') > -1 ?
-        function( r, g, b, data, length ) // the Android version
-        {
-          for( var i = 0; i < length; i += 4 )
-          {
-            var a = data[ i+3 ];
-            if( a > 127 )
-            {
-              data[ i   ] = r;
-              data[ i+1 ] = g;
-              data[ i+2 ] = b;
-              data[ i+3 ] = 255;
-            } else { // brute force it...
-              data[ i   ] = 0;
-              data[ i+1 ] = 0;
-              data[ i+2 ] = 0;
-              data[ i+3 ] = 0;
-            }
-          }
-        } :
-        function( r, g, b, data, length ) // the normal version
+      innerRecolorLoop = function( r, g, b, data, length )
         {
           for( var i = 0; i < length; i += 4 )
           {
