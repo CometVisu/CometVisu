@@ -20,6 +20,7 @@
   margin-top: 0px;
   /* 2nd value of transform-origin must be inverted vertical margin! */
   transform-origin: 0px -0px;
+  transition: transform 0.5s;
   overflow: hidden;
   background-color: black;
 }
@@ -36,6 +37,7 @@
   margin-left: calc(50% - 10em); /* assume the value will fit in 20em */
   width: 20em;
   text-align: center;
+  transition: transform 0.5s;
 }
 
 .controllerinput .roundbarbox {

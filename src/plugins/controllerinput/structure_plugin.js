@@ -26,7 +26,7 @@
 define( ['structure_custom', 'css!plugins/controllerinput/controllerinput' ], function( VisuDesign_Custom ) {
   "use strict";
   
-  function updateSetpoint( handler, handlerVal, format, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH )
+  function updateSetpoint2( handler, handlerVal, format, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH )
   {
     var
       handlerTranslate = 'translate(' + roundbarOW/2 + 'px, ' + roundbarOH + 'px) '
@@ -37,6 +37,20 @@ define( ['structure_custom', 'css!plugins/controllerinput/controllerinput' ], fu
     handlerVal.css( 'transform', 'rotate(' + (90-percentage*180) + 'deg)' );
     handlerVal.text( format ? sprintf( format, value ) : value );
   };
+  function updateSetpoint( id, format, value, percentage )
+  {
+    var
+      roundbar   = $('#' + id + ' .roundbar'),
+      roundbarOH = roundbar.outerHeight(),
+      roundbarIH = roundbar.innerHeight(),
+      roundbarOW = roundbar.outerWidth(),
+      handler    = $('#' + id + ' .handler'),
+      handlerOH  = handler.outerHeight(true), // including margin to be able to move handler inside or outside
+      handlerOW  = handler.outerWidth(),
+      handlerVal = $('#' + id + ' .handlervalue');
+    
+    updateSetpoint2( handler, handlerVal, format, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
+  }
   
   function getRRDData( data ) 
   {
@@ -119,7 +133,8 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
       'colorActual'    : $e.attr('colorActual'  ) || defaults.colorActual   || '#0000f0',
       'colorSetpoint'  : $e.attr('colorSetpoint') || defaults.colorSetpoint || '#f0f000',
       'colorControl'   : $e.attr('colorControl' ) || defaults.colorControl  || '#f00000',
-      'rrd'            : {}
+      'rrd'            : {},
+      'inAction'       : false
     });
 
     $e.find('rrd').each( function(){
@@ -136,10 +151,11 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
     //console.log( data.rrd);
     
     // create the actor
-    var actor = '<div class="actor"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow" style="transform:translate(-999cm,0)"></div><div class="handler" style="transform:translate(-999cm,0)"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'</div><div class="smallvalue right">'+max+'</div><div class="sparkline"></div></div>';
+    var actor = '<div class="actor notransition"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow" style="transform:translate(-999cm,0)"></div><div class="handler" style="transform:translate(-999cm,0)"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">'+min+'</div><div class="smallvalue right">'+max+'</div><div class="sparkline"></div></div>';
     ret_val += actor;
     
     templateEngine.bindActionForLoadingFinished(function() {
+      updateSetpoint( path, '-', 0, 0 );
       /*
       var 
         handler = $('#' + path + ' .handler' ),
@@ -282,16 +298,9 @@ var
   update:   function( ga, d ) { 
     var 
       element    = $(this),
+      id         = element.parent().attr('id'),
       data       = templateEngine.widgetDataGetByElement( this ),
       value      = templateEngine.transformDecode( data.address[ ga ][0], d ),
-      roundbar   = $('#'+element.parent().attr('id') + ' .roundbar'),
-      roundbarOH = roundbar.outerHeight(),
-      roundbarIH = roundbar.innerHeight(),
-      roundbarOW = roundbar.outerWidth(),
-      handler    = $('#'+element.parent().attr('id') + ' .handler'),
-      handlerOH  = handler.outerHeight(true), // including margin to be able to move handler inside or outside
-      handlerOW  = handler.outerWidth(),
-      handlerVal = $('#'+element.parent().attr('id') + ' .handlervalue'),
       plotData   = data.plot.getData();
       
     //templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
@@ -301,11 +310,11 @@ var
       showValue = Math.min( Math.max( data.min, value ), data.max ),
       percentage = (showValue - data.min)/(data.max - data.min);
     
-    console.log( data.address[ ga ][2], value );
+    (data.address[ ga ][2]==='setpoint') && console.log( data.address[ ga ][2], value, data.inAction );
     switch( data.address[ ga ][2] )
     {
       case 'actual':
-        roundbar.css({'transform':'rotate('+(180+180*percentage)+'deg)'});
+        $('#' + id + ' .roundbar').css({'transform':'rotate('+(180+180*percentage)+'deg)'});
         templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
         plotData[0].data[ plotData[0].data.length-1 ][1] = value;
         plotData[3].data[ 0                         ][1] = value;
@@ -317,7 +326,8 @@ var
         break;
         
       case 'setpoint':
-        updateSetpoint( handler, handlerVal, data.format, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
+        if( !data.inAction )
+          updateSetpoint( data.path, data.format, value, percentage );
         plotData[2].data[ plotData[2].data.length-1 ][1] = value;
         plotData[5].data[ 0                         ][1] = value;
         break;
@@ -333,15 +343,14 @@ var
       actorOffset = $actor.offset(),
       actorWidth = $actor.width(),
       actorHeight = $actor.height(),
-      roundbar   = $actor.find( '.roundbar' ),
-      roundbarOH = roundbar.outerHeight(),
-      roundbarIH = roundbar.innerHeight(),
-      roundbarOW = roundbar.outerWidth(),
-      handler    = $actor.find( '.handler' ),
-      handlerOH  = handler.outerHeight(true), // including margin to be able to move handler inside or outside
-      handlerOW  = handler.outerWidth(),
-      handlerVal = $actor.find( '.handlervalue' ),
-      
+      //roundbar   = $actor.find( '.roundbar' ),
+      //roundbarOH = roundbar.outerHeight(),
+      //roundbarIH = roundbar.innerHeight(),
+      //roundbarOW = roundbar.outerWidth(),
+      //handler    = $actor.find( '.handler' ),
+      //handlerOH  = handler.outerHeight(true), // including margin to be able to move handler inside or outside
+      //handlerOW  = handler.outerWidth(),
+      //handlerVal = $actor.find( '.handlervalue' ),
       moveaction = function( e ) {
         if( e !== undefined )
         {
@@ -353,18 +362,72 @@ var
             percentageRaw = Math.atan2(dx,dy)/Math.PI+0.5,
             percentage = Math.min( Math.max( percentageRaw, 0 ), 1 ),
             value = data.min + percentage * (data.max - data.min);
-          updateSetpoint( handler, handlerVal, data.format, value, percentage, roundbarOW, roundbarOH, roundbarIH, handlerOW, handlerOH );
+          updateSetpoint( data.path, data.format, value, percentage );
+          
+          // limit send rate to 250ms
+          /*
+          if( now - data.lastTransmission > 250 )
+          {
+            if( data.value == value ) return;
+            
+            for( var addr in data.address )
+            {
+              if( data.address[addr][2] !== 'setpoint' || !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
+              var dv  = templateEngine.transformEncode( data.address[addr][0], value );
+              if( dv != templateEngine.transformEncode( data.address[addr][0], data.value ) )
+                templateEngine.visu.write( addr, dv );
+            }
+            console.log( 'send', value, data.value, dv );
+            data.value = value;
+            data.lastTransmission = now;
+          }*/
+          data.value = value;
         }
       };
         
     //$(window).mousemove( moveaction ).mouseup( function(){
     //  $(window).unbind( 'mousemove', moveaction ); 
     //});
+    
+    //data.lastTransmission = -1;
+    data.inAction = true;
+    data.lastValue = undefined;
+    $actor.addClass('notransition');
     moveaction( event );
+    
+    data.inAction      = true;
+    //data.valueInternal = true;
+    data.updateFn      = setInterval( function(){
+      if( data.lastValue === data.value )
+        return;
+      data.lastValue = data.value;
+      
+      console.log('updatafn');
+      for( var addr in data.address )
+      {
+        if( data.address[addr][2] !== 'setpoint' || !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
+        var dv  = templateEngine.transformEncode( data.address[addr][0], data.value );
+        templateEngine.visu.write( addr, dv );
+      }
+    }, 250 ); // update KNX every 250 ms
     
     return { callback: moveaction, restrict: false };
   },
   action: function( path, actor, isCanceled ) {
+    var
+      $actor = $(this).find('.actor'), //$(actor),
+      data = templateEngine.widgetDataGetByElement( $actor ),
+      dummy;
+    console.log( 'ci action', isCanceled, data.inAction );
+    clearInterval( data.updateFn );
+    data.inAction = false;
+    $actor.removeClass('notransition');
+            for( var addr in data.address )
+            {
+              if( data.address[addr][2] !== 'setpoint' || !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
+              var dv  = templateEngine.transformEncode( data.address[addr][0], data.value );
+              templateEngine.visu.write( addr, dv );
+            }
   },
   createX: function(element, path, flavour, type) {
   }
