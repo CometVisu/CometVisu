@@ -328,6 +328,9 @@ function TemplateEngine( undefined ) {
     function update(json) {
       for( var key in json ) {
         //$.event.trigger('_' + key, json[key]);
+        if( !(key in ga_list) )
+          continue;
+        
         var data = json[ key ];
         ga_list[ key ].forEach( function( id ){
           if( typeof id === 'string' )
