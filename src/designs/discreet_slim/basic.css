@@ -349,6 +349,19 @@ div#loading {
 }
 
 
+.popup_close {
+  position: absolute;
+  z-index: 102;
+  right: 1em;
+  top: -0.8em;
+  width: 1.2em;
+  text-align: center;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 2px solid #81664b;
+  cursor: default;
+}
+
 .popup_background {
   z-index: 100;
   border-color: #020202;
@@ -381,7 +394,7 @@ div#loading {
 }
 
 .diagram_preview {
-    width: 100%;
+    width: 240px;
     height: 2em;
 }
 

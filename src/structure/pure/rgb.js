@@ -52,7 +52,7 @@ design.basicdesign.addCreator('rgb', {
     }
     var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
     valElem.css('background-color', bgs ); 
-  },
+  }
 });
 
 }); // end define
