@@ -653,3 +653,8 @@ div#demo_3 {
   width: 100%;
   margin-left: 0;
 }
+
+.controllerinput .handler
+{
+  border-radius: 5px;
+}
