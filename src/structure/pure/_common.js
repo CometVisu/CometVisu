@@ -175,7 +175,10 @@ function VisuDesign() {
       var argList = [widgetData.format];
 
       for (var addr in widgetData.address)
-        argList.push(widgetData.formatValueCache[addr]);
+      {
+        if(widgetData.address[addr][1] & 1)
+          argList.push(widgetData.formatValueCache[addr]);
+      }
 
       value = sprintf.apply(this, argList);
     }
