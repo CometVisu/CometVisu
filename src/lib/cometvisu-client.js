@@ -100,7 +100,7 @@ function CometVisu( urlPrefix )
    */
   this.handleRead = function( json )
   {
-    if( !json && (-1 == this.lastIndex) )
+    if( this.doRestart || (!json && (-1 == this.lastIndex)) )
     {
       if( this.running )
       { // retry initial request
@@ -306,7 +306,7 @@ function CometVisu( urlPrefix )
       url:      this.urlPrefix + 'w',
       dataType: 'json',
       context:  this,
-      data:     'a=' + address + '&v=' + value + '&ts=' + ts
+      data:     's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts
     });
   }
   

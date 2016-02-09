@@ -573,6 +573,18 @@ div#loading {
   background: transparent;
 }
 
+.popup_close {
+  position: absolute;
+  z-index: 102;
+  right: 1em;
+  top: -0.8em;
+  width: 1.2em;
+  text-align: center;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 1px solid #666;
+  cursor: default;
+}
 
 .popup_background {
   z-index: 100;
