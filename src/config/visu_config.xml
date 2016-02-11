@@ -49,6 +49,7 @@
     <statusbar>
       <status type="html"><![CDATA[
           <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          - <a href="manager.php">Config-Manager</a>
           - <a href=".?forceReload=true">Reload</a>
         ]]></status>
       <status type="html" condition="!edit" hrefextend="config"><![CDATA[

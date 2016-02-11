@@ -53,7 +53,7 @@ Transform.addTransform('OH', {
       else if (str=="UP") return 0;
       else if (str=="DOWN") return 1;
       else return str;
-    },
+    }
   },
   'dimmer' : {
     name : "OH_Dimmer",
@@ -65,7 +65,7 @@ Transform.addTransform('OH', {
       else if (str=="ON") return 100;
       else if (str=="OFF") return 0;
       else return parseInt(str);
-    },
+    }
   },
   'number' : {
     name : "OH_Number",
@@ -75,7 +75,7 @@ Transform.addTransform('OH', {
     decode : function(str) {
       if (str=="NaN" || str=='Uninitialized') return 0;
       return parseFloat(str);
-    },
+    }
   },
   'string' : {
     name : "OH_String",
@@ -84,7 +84,7 @@ Transform.addTransform('OH', {
     },
     decode : function(str) {
       return str;
-    },
+    }
   },
   'datetime' : {
     name : "OH_DateTime",
@@ -99,7 +99,7 @@ Transform.addTransform('OH', {
       if (str=="NaN" || str=='Uninitialized') return '-';
       var date = new Date(str);
       return date;
-    },
+    }
   },
   'time' : {
     name : "OH_Time",
@@ -114,7 +114,7 @@ Transform.addTransform('OH', {
       if (str=="NaN" || str=='Uninitialized') return '-';
       var date = new Date(str);
       return date;
-    },
+    }
    },
   'color' : {
     name : "OH_Color",
@@ -174,8 +174,8 @@ Transform.addTransform('OH', {
 	  g = Math.floor(g * 255);
 	  b = Math.floor(b * 255);
 	  return [r, g, b];
-    },
-  },
+    }
+  }
 });
 
 }); // end define

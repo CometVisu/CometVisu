@@ -65,8 +65,18 @@ design.basicdesign.addCreator('slide', {
       'step'           : step,
       'send_on_finish' : send_on_finish,
       'valueInternal'  : true,
-      'inAction'       : false,
+      'inAction'       : false
     });
+    
+    // check provided address-items for at least one address which has write-access
+    var readonly = true;
+    for (var addrIdx in data.address) {
+        if (data.address[addrIdx][1] & 2) {
+            // write-access detected --> no read-only mode
+            readonly = false;
+            break;
+        }
+    }
     
     // create the actor
     templateEngine.postDOMSetupFns.push( function(){
@@ -81,6 +91,10 @@ design.basicdesign.addCreator('slide', {
         start:   self.slideStart,
         change:  self.slideChange
       });
+      // disable slider interaction if in read-only mode --> just show the value
+      if (readonly) {
+          $actor.slider({ disabled: true });
+      }
       $actor.on( 'slide', self.slideUpdateValue );
       
       if( data['format']) {
@@ -167,7 +181,7 @@ design.basicdesign.addCreator('slide', {
       }
     }
     transformSlider(ui.value,ui.handle);
-  },
+  }
   
 });
 

@@ -100,7 +100,7 @@ function CometVisu( urlPrefix )
    */
   this.handleRead = function( json )
   {
-    if( !json && (-1 == this.lastIndex) )
+    if( this.doRestart || (!json && (-1 == this.lastIndex)) )
     {
       if( this.running )
       { // retry initial request
