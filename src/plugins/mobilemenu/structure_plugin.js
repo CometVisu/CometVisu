@@ -35,10 +35,12 @@ define( ['structure_custom', 'css!plugins/mobilemenu/mobilemenu.css'  ], functio
             $('#navbarLeft .navbar').hide("slide", { direction: "left" }, 200);
             $('#navbarLeft').hide();
           });
+          
+          return '<div class="clearfix mobilemenuTrigger">' + data.content + '</div>';
+        } else {
+          return '<div style="display: none"/>';
         }
       }
-      
-      return '<div class="clearfix mobilemenuTrigger">' + data.content + '</div>';
     },
     action: function( path, actor, isCanceled ) {
       if (window.innerWidth <= templateEngine.maxMobileScreenWidth){
