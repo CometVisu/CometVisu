@@ -28,18 +28,18 @@ define( ['structure_custom', 'css!plugins/mobilemenu/mobilemenu.css'  ], functio
       
       if(isTouchDevice()){
         touchScroll("navbarLeft");
-        if (window.innerWidth <= templateEngine.maxMobileScreenWidth){
-          $('#navbarLeft').addClass('mobilemenu');
+      }
+      if (window.innerWidth <= templateEngine.maxMobileScreenWidth){
+        $('#navbarLeft').addClass('mobilemenu');
+        $('#navbarLeft').hide();
+        $(window).bind('scrolltopage', function(){
+          $('#navbarLeft .navbar').hide("slide", { direction: "left" }, 200);
           $('#navbarLeft').hide();
-          $(window).bind('scrolltopage', function(){
-            $('#navbarLeft .navbar').hide("slide", { direction: "left" }, 200);
-            $('#navbarLeft').hide();
-          });
-          
-          return '<div class="clearfix mobilemenuTrigger">' + data.content + '</div>';
-        } else {
-          return '<div style="display: none"/>';
-        }
+        });
+        
+        return '<div class="clearfix mobilemenuTrigger">' + data.content + '</div>';
+      } else {
+        return '<div class="clearfix mobilemenuTrigger" style="display: none"/>';
       }
     },
     action: function( path, actor, isCanceled ) {
