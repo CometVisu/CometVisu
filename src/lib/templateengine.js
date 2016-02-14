@@ -1378,6 +1378,7 @@ function TemplateEngine( undefined ) {
     var creator = thisTemplateEngine.design.getCreator(page.nodeName);
     
     thisTemplateEngine.callbacks[ path + '_' ] = {
+      exitingPageChange: [],// called when the current page is left
       beforePageChange: [], // called as soon as a page change is known
       duringPageChange: [], // called when the page is theoretical visible, i.e. "display:none" is removed - CSS calculations shoud work now
       afterPageChange: []   // called together with the global event when the transition is finished
@@ -1542,6 +1543,11 @@ function TemplateEngine( undefined ) {
     
     if( 0 === page.length ) // check if page does exist
       return;
+    
+    
+    currentPath !== '' &&  thisTemplateEngine.callbacks[currentPath].exitingPageChange.forEach( function( callback ){
+      callback( currentPath, page_id );
+    });
     
     currentPath = page_id;
     
