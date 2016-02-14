@@ -70,9 +70,10 @@ h1
 h2
 {
   font-size: 1.25em;
-  margin-left: 15px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin: 0;
+  padding-left: 0.3em;
+  padding-top: 0.3em;
+  padding-bottom: 0.1em;
   font-kerning: normal;
 }
 
@@ -189,11 +190,15 @@ body br
 
 .widget, h2
 {
+  background: hsl(345,10%,20%);
+}
+
+.widget
+{
   margin:0.20em;
   padding:0.1em;
   margin: 1px;
   padding: 0px;
-  background: hsl(345,10%,20%);
   
   border: none;
   border-radius: 2px;
