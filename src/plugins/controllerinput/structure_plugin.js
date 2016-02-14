@@ -26,14 +26,47 @@
 define( ['structure_custom', 'css!plugins/controllerinput/controllerinput', 'plugins/diagram/structure_plugin' ], function( VisuDesign_Custom ) {
   "use strict";
   
+  function createDataLine( axis, color )
+  {
+    var defaults = templateEngine.defaults.plugin.controllerinput || {};
+    return {
+      data: [[0,0]],
+      yaxis: axis,
+      color: color,
+      lines: {
+        lineWidth: defaults.sparklineWidth || 1
+      },
+      shadowSize: 0
+    };
+  }
+  
+  function createDataPoint( axis, color )
+  {
+    var defaults = templateEngine.defaults.plugin.controllerinput || {};
+    return {
+      data: [[0,0]],
+      yaxis: axis,
+      points: {
+        show: true,
+        radius: defaults.sparklineSpotradius || 1,
+        fillColor: color
+      },
+      color: color
+    };
+  }
+  
   function updateSetpoint( id, format, value, percentage )
   {
     var
       roundbar   = $('#' + id + ' .roundbar'),
+      roundbarStyle = roundbar.attr('style'),
+      isHidden   = roundbar.outerHeight() === 0 ? (roundbar.css({'position':'absolute','visibility':'hidden', 'display':'block'}), true) : false,
       roundbarOH = roundbar.outerHeight(),
       roundbarIH = roundbar.innerHeight(),
       roundbarOW = roundbar.outerWidth(),
       handler    = $('#' + id + ' .handler'),
+      handlerStyle = handler.attr('style'),
+      handlerDummy = isHidden ? handler.css({'position':'absolute','visibility':'hidden', 'display':'block'}) : undefined,
       handlerOH  = handler.outerHeight(true), // including margin to be able to move handler inside or outside
       handlerOW  = handler.outerWidth(),
       handlerVal = $('#' + id + ' .handlervalue'),
@@ -41,7 +74,13 @@ define( ['structure_custom', 'css!plugins/controllerinput/controllerinput', 'plu
         + 'rotate(' + (percentage*180-90) + 'deg) '
         + 'translate( -' + handlerOW/2 + 'px, -' + (handlerOH/2+roundbarOH-0.5*(roundbarOH-roundbarIH)) + 'px)';
     
-    console.log( 'uSP', $('#' + id +' .actor')[0].className );
+    if( isHidden )
+    {
+      roundbar.attr( 'style', roundbarStyle );
+      handler.attr( 'style', handlerStyle );
+    }
+    
+    console.log( 'uSP', $('#' + id +' .actor')[0].className, isHidden );
     handler.css( 'transform', handlerTranslate );
     handlerVal.css( 'transform', 'rotate(' + (90-percentage*180) + 'deg)' );
     handlerVal.text( format ? sprintf( format, value ) : value );
@@ -216,68 +255,13 @@ var
   //console.log( options );
 
   // main series
-  var series = [{
-    //data: dataActual,
-    data: [[0,0]],
-    color: data.colorActual,
-    lines: {
-      fill: true,
-      zero: false,
-      lineWidth: defaults.sparklineWidth || 1//0.8
-    },
-    shadowSize: 0
-  },
-  {
-    //data: dataControl,
-    data: [[0,0]],
-    color: data.colorControl,
-    lines: {
-      lineWidth: defaults.sparklineWidth || 1//0.8
-    },
-    shadowSize: 0,
-    yaxis: 2
-  },
-  {
-    //data: dataSetpoint,
-    data: [[0,0]],
-    color: data.colorSetpoint,
-    lines: {
-      lineWidth: defaults.sparklineWidth || 1//0.8
-    },
-    shadowSize: 0
-  },
-  // show the last points extra
-  {
-    //data: [ [dataLastX, dataActual[dataActual.length - 1][1]] ],
-    data: [[0,0]],
-    points: {
-     show: true,
-     radius: defaults.sparklineSpotradius || 1,
-     fillColor: data.colorActual
-    },
-    color: data.colorActual
-  },
-  {
-    //data: [ [dataLastX, dataControl[dataControl.length - 1][1]] ],
-    data: [[0,0]],
-    points: {
-     show: true,
-     radius: defaults.sparklineSpotradius || 1,
-     fillColor: data.colorControl
-    },
-    color: data.colorControl,
-    yaxis: 2
-  },
-  {
-    //data: [ [dataLastX, dataSetpoint[dataSetpoint.length - 1][1]] ],
-    data: [[0,0]],
-    points: {
-     show: true,
-     radius: defaults.sparklineSpotradius || 1,
-     fillColor: data.colorSetpoint
-    },
-    color: data.colorSetpoint
-  }
+  var series = [
+    createDataLine( 1, data.colorActual ),
+    createDataLine( 2, data.colorControl ),
+    createDataLine( 1, data.colorSetpoint ),
+    createDataPoint( 1, data.colorActual ),
+    createDataPoint( 2, data.colorControl ),
+    createDataPoint( 1, data.colorSetpoint )
   ];
 
   // draw the sparkline
