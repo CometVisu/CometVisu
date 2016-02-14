@@ -288,6 +288,8 @@ function TemplateEngine( undefined ) {
    */
   var pathRegEx = /^id(_[0-9]+)+$/;
 
+  var currentPath = '';
+  this.callbacks = {}; // Hash of functions to call during page change
   this.main_scroll;
   this.old_scroll = '';
   this.visu;
@@ -1311,6 +1313,9 @@ function TemplateEngine( undefined ) {
       $('.pageActive', '#pages').removeClass('pageActive');
       thisTemplateEngine.currentPage.addClass('pageActive activePage');// show new page
       $('#pages').css('left', 0 );
+      thisTemplateEngine.callbacks[currentPath].afterPageChange.forEach( function( callback ){
+        callback( currentPath );
+      });
     });
     if (thisTemplateEngine.scrollSpeed != undefined) {
       thisTemplateEngine.main_scroll.getConf().speed = thisTemplateEngine.scrollSpeed;
@@ -1371,6 +1376,13 @@ function TemplateEngine( undefined ) {
 
   this.create_pages = function(page, path, flavour, type) {
     var creator = thisTemplateEngine.design.getCreator(page.nodeName);
+    
+    thisTemplateEngine.callbacks[ path + '_' ] = {
+      beforePageChange: [], // called as soon as a page change is known
+      duringPageChange: [], // called when the page is theoretical visible, i.e. "display:none" is removed - CSS calculations shoud work now
+      afterPageChange: []   // called together with the global event when the transition is finished
+    };
+    
     var retval = creator.create(page, path, flavour, type);
 
     if( undefined === retval )
@@ -1524,10 +1536,18 @@ function TemplateEngine( undefined ) {
 //    if( thisTemplateEngine.currentPage!=null && thisTemplateEngine.currentPage.attr('id') === page_id )
 //      return;
     
-    var page = $('#' + page_id);
+    var 
+      page = $('#' + page_id),
+      callbacks = thisTemplateEngine.callbacks[page_id];
     
     if( 0 === page.length ) // check if page does exist
       return;
+    
+    currentPath = page_id;
+    
+    callbacks.beforePageChange.forEach( function( callback ){
+      callback( page_id );
+    });
     
     if( undefined === speed )
       speed = thisTemplateEngine.scrollSpeed;
@@ -1540,6 +1560,10 @@ function TemplateEngine( undefined ) {
     thisTemplateEngine.currentPage = page;
 
     page.addClass('pageActive activePage');// show new page
+    
+    callbacks.duringPageChange.forEach( function( callback ){
+      callback( page_id );
+    });
     
     // update visibility of navbars, top-navigation, footer
     thisTemplateEngine.pagePartsHandler.updatePageParts( page, speed );
@@ -1567,7 +1591,6 @@ function TemplateEngine( undefined ) {
      * $('#'+page_id+'_left_navbar').addClass('navbarActive');
      */
     thisTemplateEngine.pagePartsHandler.initializeNavbars(page_id);
-    
     $(window).trigger('scrolltopage', page_id);    
   };
 
