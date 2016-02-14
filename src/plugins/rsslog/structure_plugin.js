@@ -57,14 +57,8 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
       itemack:    $el.attr("itemack") || "modify" // allowed: modify, display, disable
     });
     
-    templateEngine.bindActionForLoadingFinished(function() {
+    templateEngine.callbacks[ path.replace( /[0-9]*$/, '' ) ].beforePageChange.push( function(){
       refreshRSSlog( data );
-    });
-    $(window).bind('scrolltopage', function( event, page_id ){
-      var page = templateEngine.getParentPageFromPath(path);
-      if (page != null && page_id == page.attr("id")) {
-        refreshRSSlog( data );
-      }
     });
 
     return ret_val;
