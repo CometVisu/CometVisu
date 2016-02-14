@@ -125,6 +125,11 @@ var Editor = function (config) {
             // save the current state to the cookie
             $.cookie('editor_complex', isExpert, {expires: 365});
         }
+        
+        if ($button.is('.manager')) {
+          if( confirm( Messages.editor.ui.manager.exitpage ) )
+            window.location = window.location.toString().replace(/editor\/editor.*/, 'manager.php' );
+        }
     };
    
 
@@ -238,6 +243,14 @@ var Editor = function (config) {
                         .attr('title', Messages.editor.ui.preview.tooltip)
                         .click(clickHandler);
         $menu.append($preview);
+
+        var $manager = $('<span />')
+                        .addClass('button')
+                        .addClass('manager')
+                        .html(Messages.editor.ui.manager.text)
+                        .attr('title', Messages.editor.ui.manager.tooltip)
+                        .click(clickHandler);
+        $menu.append($manager);
 
         $editor.append($menu);
         
