@@ -23,6 +23,7 @@
   transition: transform 0.5s;
   overflow: hidden;
   background-color: black;
+  z-index: 1;
 }
 .controllerinput .handler.shadow {
   display: none;
@@ -110,7 +111,6 @@
 .controllerinput .smallvalue {
   padding-top: calc(50% + 0.1em);
   font-size: 75%;
-  z-index: -1;
 }
 
 .controllerinput .smallvalue.left {

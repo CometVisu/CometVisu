@@ -23,7 +23,7 @@
  * -
  */ 
  
-define( ['structure_custom', 'css!plugins/controllerinput/controllerinput' ], function( VisuDesign_Custom ) {
+define( ['structure_custom', 'css!plugins/controllerinput/controllerinput', 'plugins/diagram/structure_plugin' ], function( VisuDesign_Custom ) {
   "use strict";
   
   function updateSetpoint( id, format, value, percentage )
