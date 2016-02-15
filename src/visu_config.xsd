@@ -1361,7 +1361,7 @@
     </xsd:sequence>
   </xsd:complexType>
   
-  <xsd:group name="Infoaction_WidgetInfos">
+    <xsd:group name="Infoaction_WidgetInfos">
     <xsd:choice>
       <xsd:element name="text" type="text" />
       <xsd:element name="info" type="info" />
