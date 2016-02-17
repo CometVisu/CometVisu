@@ -45,10 +45,14 @@ var sprintfOrg = window.sprintf;
 window.sprintf = function() {
   for (var arg in arguments) {
     if (typeof arguments[arg] == "undefined")
-      return "<UNDEF>";
+      arguments[arg] = "<UNDEF>";
   }
 
-  return sprintfOrg.apply(this, arguments);
+  try {
+    return sprintfOrg.apply(this, arguments);
+  } catch( Err ) {
+    return 'sprintf Error';
+  }
 }
 
 /*

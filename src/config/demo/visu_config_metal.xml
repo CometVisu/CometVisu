@@ -56,7 +56,8 @@
     </stylings>
     <statusbar>
       <status type="html"><![CDATA[ <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a> 
-<a href=".?forceReload=true">Reload</a> - <a href="?config=demo">Widget 
+          - <a href="manager.php">Config-Manager</a>
+- <a href=".?forceReload=true">Reload</a> - <a href="?config=demo">Widget 
 Demo</a> ]]></status>
       <status type="html" hrefextend="config"><![CDATA[ - <a href="check_config.php">Check 
 Config</a> ]]></status>

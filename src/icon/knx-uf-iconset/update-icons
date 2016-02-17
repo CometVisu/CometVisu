@@ -73,7 +73,7 @@ fi
 
 
 echo -n "Getting icons from github..."
-git clone git@github.com:OpenAutomationProject/knx-uf-iconset.git > /dev/null 2>&1
+git clone https://github.com/OpenAutomationProject/knx-uf-iconset.git > /dev/null 2>&1
 echo "done."
 
 cp -rf knx-uf-iconset/raw_480x480 .

@@ -18,6 +18,8 @@
 
   <xsd:complexType name="layout">
     <xsd:attribute name="colspan" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="colspan-m" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="colspan-s" type="xsd:decimal" use="optional" />
     <xsd:attribute name="rowspan" type="xsd:decimal" use="optional" />
     <xsd:attribute name="x" type="xsd:string" use="optional" />
     <xsd:attribute name="y" type="xsd:string" use="optional" />
@@ -350,11 +352,6 @@
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="default_columns" type="xsd:decimal" use="optional">
-        <xsd:annotation>
-            <xsd:appinfo>level:expert</xsd:appinfo>
-        </xsd:annotation>
-      </xsd:attribute>
-      <xsd:attribute name="enable_column_adjustment" type="xsd:boolean" use="optional">
         <xsd:annotation>
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
@@ -932,6 +929,7 @@
     <xsd:attribute name="button4label" type="xsd:string" use="optional" />
     <xsd:attribute name="button4value" type="xsd:string" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="mapping" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="slide">
@@ -1193,6 +1191,7 @@
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute name="src" type="xsd:string" use="required" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
@@ -1201,6 +1200,7 @@
     <xsd:attribute name="datetime" type="xsd:boolean" use="optional" />
     <xsd:attribute name="timeformat" type="xsd:string" use="optional" />
     <xsd:attribute name="filter" type="xsd:string" use="optional" />
+    <xsd:attribute name="itemack" type="xsd:string" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="svg">

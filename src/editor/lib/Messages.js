@@ -115,6 +115,11 @@ var Messages = {
                 tooltip: 'show/hide attributes for advanced configuration',
                 text: 'complex',
             },
+            manager: {
+                tooltip: 'close the editor and open the config manager',
+                text: 'manager',
+                exitpage: 'Go to the config manager? Any changes since last save will be be lost!',
+            },
         },
     },
     schema: {
