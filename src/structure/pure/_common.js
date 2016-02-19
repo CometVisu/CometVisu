@@ -387,10 +387,16 @@ function VisuDesign() {
   this.setWidgetLayout = function( page, path ) { 
     var 
       elementData = templateEngine.widgetDataGet( path ),
+      layout      = page.children('layout'),
+      lookupM     = [ 0, 2, 4,  6,  6,  6,  6, 12, 12, 12, 12, 12, 12 ],
+      lookupS     = [ 0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],
       ret_val = '';
-    elementData['colspan'] = page.children('layout').attr('colspan') || $('head').data('colspanDefault') || 6;
-    if (page.children('layout').attr('rowspan')) {
-      elementData['rowspanClass'] = templateEngine.rowspanClass(page.children('layout').attr('rowspan') || 1);
+    elementData.colspan = layout.attr('colspan') || $('head').data('colspanDefault') || 6;
+    elementData.colspanM = layout.attr('colspan-m') || lookupM[Math.floor(elementData.colspan)] || elementData.colspan;
+    elementData.colspanS = layout.attr('colspan-s') || lookupS[Math.floor(elementData.colspan)] || elementData.colspan;
+    if( layout.attr('rowspan') )
+    {
+      elementData.rowspanClass = templateEngine.rowspanClass( layout.attr('rowspan') || 1 );
       ret_val = 'innerrowspan'; 
     }
     return ret_val;
