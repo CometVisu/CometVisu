@@ -72,7 +72,7 @@ if( isset($_GET['c']) )
   insert( $db, $log_content, $log_title, $log_tags, $log_mapping, $log_state );
 } else if( isset($_GET['dump']) )
 {
-  $result = retrieve( $db, $log_filter, NULL );
+  $result = retrieve( $db, $log_filter, NULL, NULL );
   ?>
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /></head><body>
 <table border="1">
@@ -122,9 +122,10 @@ if( isset($_GET['c']) )
   // send logs
   $log_filter  = $_GET['f'] ? $_GET['f'] : '';
   $state = $_GET['state']; // ? $_GET['state'] : '';
+  $future = $_GET['future'];
 
   // retrieve data
-  $result = retrieve( $db, $log_filter, $state );
+  $result = retrieve( $db, $log_filter, $state, $future );
   $first = true;
   while( sqlite_has_more($result) )
   {
@@ -172,9 +173,10 @@ Successfully deleted ID=<?php echo $id; ?>.
   // send logs
   $log_filter  = $_GET['f'] ? $_GET['f'] : '';
   $state = $_GET['state']; // ? $_GET['state'] : '';
+  $future = $_GET['future'];
 
   // retrieve data
-  $result = retrieve( $db, $log_filter, $state );
+  $result = retrieve( $db, $log_filter, $state, $future );
   echo '<?xml version="1.0"?>';
   ?>
 <rss version="2.0">
@@ -308,7 +310,7 @@ function insert( $db, $content, $title, $tags, $mapping, $state )
 }
 
 // return a handle to all the data
-function retrieve( $db, $filter, $state )
+function retrieve( $db, $filter, $state, $future )
 {
   $filters = explode(',', $filter); // accept filters by separated by ,
   foreach ($filters as $i => $val) {
@@ -319,6 +321,11 @@ function retrieve( $db, $filter, $state )
   
   if (isset($state))
     $q .= " AND state=" . $state . " ";
+
+  if (isset($future))
+    $q .= " AND ((t  <= datetime('now','+" . $future . " hour') )) ";
+  else
+	$q .= " AND ((t  <= datetime('now') ))";
   
   $q .= "ORDER by t DESC";
   if (!isset($_GET['dump']))

@@ -1201,6 +1201,12 @@
     <xsd:attribute name="timeformat" type="xsd:string" use="optional" />
     <xsd:attribute name="filter" type="xsd:string" use="optional" />
     <xsd:attribute name="itemack" type="xsd:string" use="optional" />
+    <xsd:attribute name="future" type="xsd:integer" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Hours for coming events.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeit in Stunden für zukünftige Ereignisse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="svg">
