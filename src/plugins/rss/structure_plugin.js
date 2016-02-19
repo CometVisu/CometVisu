@@ -28,11 +28,11 @@
 
 require.config({
   shim: {
-    'plugins/rss/zrssfeed/jquery.zrssfeed': ['jquery']
+    'plugins/rss/dep/zrssfeed/jquery.zrssfeed': ['jquery']
   }
 });
 
-define( ['structure_custom', 'plugins/rss/zrssfeed/jquery.zrssfeed' ], function( VisuDesign_Custom ) {
+define( ['structure_custom', 'plugins/rss/dep/zrssfeed/jquery.zrssfeed' ], function( VisuDesign_Custom ) {
   "use strict";
 
 VisuDesign_Custom.prototype.addCreator("rss", {
