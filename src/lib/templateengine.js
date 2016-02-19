@@ -1407,6 +1407,26 @@ function TemplateEngine( undefined ) {
     }
   };
   
+  /**
+   * Little helper to find the relevant page path for a given widget.
+   * @param element The XML element
+   * @param widgetpath The path / ID of the widget
+   * @return The path of the parent
+   */
+  this.getPageIdForWidgetId = function( element, widgetpath )
+  {
+    var
+      parent = element.parentNode,
+      parentpath = widgetpath.replace( /[0-9]*$/, '' );
+    
+    while( parent && parent.nodeName !== 'page' )
+    {
+      parent = parent.parentNode;
+      parentpath = parentpath.replace( /[0-9]*_$/, '' );
+    }
+    return parentpath;
+  };
+  
   this.getPageIdByPath = function(page_name, path) {
     if (page_name==null) return null;
     if (page_name.match(/^id_[0-9_]*$/) != null) {
