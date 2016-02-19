@@ -1419,7 +1419,7 @@ function TemplateEngine( undefined ) {
       parent = element.parentNode,
       parentpath = widgetpath.replace( /[0-9]*$/, '' );
     
-    while( parent.nodeName === 'group' )
+    while( parent && parent.nodeName !== 'page' )
     {
       parent = parent.parentNode;
       parentpath = parentpath.replace( /[0-9]*_$/, '' );
