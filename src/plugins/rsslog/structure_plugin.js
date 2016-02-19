@@ -169,17 +169,17 @@ function refreshRSSlog( data, isBig ) {
           return; // avoid the request
         }
         
-	if (!o.src.match(/rsslog\.php/) && !o.src.match(/rsslog_mysql\.php/)) {
-	  extsource = true; // for later changes to tell if internal or external source being used
-	  var wrapper = "plugins/rsslog/rsslog_external.php?url="
+    if (!o.src.match(/rsslog\.php/) && !o.src.match(/rsslog_mysql\.php/)) {
+      extsource = true; // for later changes to tell if internal or external source being used
+      var wrapper = "plugins/rsslog/rsslog_external.php?url="
           o.src = wrapper.concat(o.src);
-	} else {
-	  if (o.src.match(/\?/)) {
+    } else {
+      if (o.src.match(/\?/)) {
             o.src += '&j';
           } else {
             o.src += '?j';
           }
-	}
+    }
 
         jQuery.ajax({
           url: o.src,
@@ -206,7 +206,7 @@ function refreshRSSlog( data, isBig ) {
 
             var items = result.responseData.feed.entries;
             var itemnum = items.length;
-	    //console.log('C: #%s, %i element(s) found, %i displayrow(s) available', $(c).attr('id'), itemnum, displayrows);
+        //console.log('C: #%s, %i element(s) found, %i displayrow(s) available', $(c).attr('id'), itemnum, displayrows);
                           
             var itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
                           

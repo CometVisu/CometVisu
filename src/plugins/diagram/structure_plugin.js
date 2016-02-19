@@ -47,24 +47,24 @@
 
 require.config({
   shim: {
-    'plugins/diagram/flot/jquery.flot.min':          ['jquery'],
-    'plugins/diagram/flot/jquery.flot.canvas.min':   ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.resize.min':   ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.time.min':     ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.axislabels':   ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.tooltip.min':  ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.navigate.min': ['plugins/diagram/flot/jquery.flot.min']
+    'plugins/diagram/dep/flot/jquery.flot.min':          ['jquery'],
+    'plugins/diagram/dep/flot/jquery.flot.canvas.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.resize.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.time.min':     ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.axislabels':   ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.tooltip.min':  ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.navigate.min': ['plugins/diagram/dep/flot/jquery.flot.min']
   }
 });
 
 define( ['structure_custom',
-                  'plugins/diagram/flot/jquery.flot.min',
-                  'plugins/diagram/flot/jquery.flot.canvas.min',
-                  'plugins/diagram/flot/jquery.flot.resize.min',
-                  'plugins/diagram/flot/jquery.flot.time.min',
-                  'plugins/diagram/flot/jquery.flot.axislabels',
-                  'plugins/diagram/flot/jquery.flot.tooltip.min',
-                  'plugins/diagram/flot/jquery.flot.navigate.min'
+                  'plugins/diagram/dep/flot/jquery.flot.min',
+                  'plugins/diagram/dep/flot/jquery.flot.canvas.min',
+                  'plugins/diagram/dep/flot/jquery.flot.resize.min',
+                  'plugins/diagram/dep/flot/jquery.flot.time.min',
+                  'plugins/diagram/dep/flot/jquery.flot.axislabels',
+                  'plugins/diagram/dep/flot/jquery.flot.tooltip.min',
+                  'plugins/diagram/dep/flot/jquery.flot.navigate.min'
   ], function( VisuDesign_Custom ) {
     "use strict";
 

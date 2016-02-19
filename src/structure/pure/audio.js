@@ -54,9 +54,9 @@ design.basicdesign.addCreator('audio', {
     var data  = templateEngine.widgetDataGetByElement( element );
     var on = templateEngine.map( data[ 'threshold_value' ], data['mapping'] );
     if (value >= on){
-	var audioWidget = document.getElementById(data['id']);
-	if (audioWidget.paused == true)
-	   audioWidget.play();
+      var audioWidget = document.getElementById(data['id']);
+      if (audioWidget.paused == true)
+        audioWidget.play();
     };
   }
 });
