@@ -1,0 +1,125 @@
+.controllerinput .actor {
+  position: relative;
+  min-width: 8em;
+  min-height: 4em;
+  margin-top: 2em;
+}
+
+.controllerinput .actor div {
+  float: none;
+  position: absolute;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.controllerinput .handler {
+  width: 2em;
+  height: 2em;
+  border: 1px solid white;
+  box-sizing: border-box;
+  margin-top: 0px;
+  /* 2nd value of transform-origin must be inverted vertical margin! */
+  transform-origin: 0px -0px;
+  transition: transform 0.5s;
+  overflow: hidden;
+  background-color: black;
+}
+.controllerinput .handler.shadow {
+  display: none;
+  margin-top: 5px;
+  margin-left: 5px;
+  background: black;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.controllerinput .handlervalue {
+  margin-left: calc(50% - 10em); /* assume the value will fit in 20em */
+  width: 20em;
+  text-align: center;
+  transition: transform 0.5s;
+}
+
+.controllerinput .roundbarbox {
+  width: 100%;
+  height: 100%;
+}
+
+.controllerinput .roundbarbackground {
+  width: 100%;
+  height: 100%;
+  margin: -2px;
+  border-radius: 1000em;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.controllerinput .roundbarbackground.border {
+  border: 10px solid #f0f;
+  border-bottom: none;
+}
+.controllerinput .roundbarbackground.color {
+  border: 8px solid #00f;
+  border-bottom: none;
+  margin: -1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+}
+
+.controllerinput .roundbarclip {
+  overflow: hidden;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+}
+.controllerinput .roundbar {
+  width: 100%;
+  /* CSS trick to force 2:1 aspect ratio to parent: */ 
+  /*
+  padding-bottom: 50%;
+  margin: -1px;
+  padding: 1px;
+  */
+  border: 6px solid #f00;
+  border-bottom: none;
+  border-radius: 1000em;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  /*
+  -webkit-clip-path: polygon(50% 100%, -10% 100%, -10% -10%, 0% 100%);
+  transition: -webkit-clip-path 0.5s;
+  */
+  transform: rotate(180deg);
+  transform-origin: 50% 100%;
+  transition: transform 0.5s;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  width: 100%;
+  height: 100%;
+  height: calc(100% + 2px);
+}
+
+.controllerinput .value {
+  width: 100%;
+  text-align: center;
+  padding-top: 50%;
+  padding-top: calc(50% - 1em );
+}
+
+
+.controllerinput .smallvalue {
+  padding-top: calc(50% + 0.1em);
+  font-size: 75%;
+}
+
+.controllerinput .smallvalue.left {
+  margin-left: -4px;
+}
+
+.controllerinput .smallvalue.right {
+  right: 0;
+}
+
+.controllerinput .sparkline {
+  height: 2em;
+  width: 100%;
+  margin-top: calc(50% + 1.75em);
+}

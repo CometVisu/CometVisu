@@ -172,3 +172,10 @@ img.icon, canvas.icon {
 {
   clear: both;
 }
+
+/* special class to be able to temporarily disable any transition effects */
+.notransition *
+{
+  -webkit-transition: none !important; 
+  transition: none !important; 
+}
