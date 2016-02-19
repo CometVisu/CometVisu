@@ -147,33 +147,33 @@ Transform.addTransform('OH', {
       var hsb = hsbString.split(",");
       var h = hsb[0], s = hsb[1], v = hsb[2];
       var r, g, b, i, f, p, q, t;
-	  // h = h / 360;
-	  if (v === 0) { return [0, 0, 0]; }
-	  s = s / 100;
-	  v = v / 100;
-	  h = h / 60;
-	  i = Math.floor(h);
-	  f = h - i;
-	  p = v * (1 - s);
-	  q = v * (1 - (s * f));
-	  t = v * (1 - (s * (1 - f)));
-	  if (i === 0) {
-	    r = v; g = t; b = p;
-	  } else if (i === 1) {
-	    r = q; g = v; b = p;
-	  } else if (i === 2) {
-	    r = p; g = v; b = t;
-	  } else if (i === 3) {
-	    r = p; g = q; b = v;
-	  } else if (i === 4) {
-	    r = t; g = p; b = v;
-	  } else if (i === 5) {
-	    r = v; g = p; b = q;
-	  }
-	  r = Math.floor(r * 255);
-	  g = Math.floor(g * 255);
-	  b = Math.floor(b * 255);
-	  return [r, g, b];
+      // h = h / 360;
+      if (v === 0) { return [0, 0, 0]; }
+      s = s / 100;
+      v = v / 100;
+      h = h / 60;
+      i = Math.floor(h);
+      f = h - i;
+      p = v * (1 - s);
+      q = v * (1 - (s * f));
+      t = v * (1 - (s * (1 - f)));
+      if (i === 0) {
+        r = v; g = t; b = p;
+      } else if (i === 1) {
+        r = q; g = v; b = p;
+      } else if (i === 2) {
+        r = p; g = v; b = t;
+      } else if (i === 3) {
+        r = p; g = q; b = v;
+      } else if (i === 4) {
+        r = t; g = p; b = v;
+      } else if (i === 5) {
+        r = v; g = p; b = q;
+      }
+      r = Math.floor(r * 255);
+      g = Math.floor(g * 255);
+      b = Math.floor(b * 255);
+      return [r, g, b];
     }
   }
 });
