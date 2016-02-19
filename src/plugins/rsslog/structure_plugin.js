@@ -57,7 +57,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
       itemack:    $el.attr("itemack") || "modify" // allowed: modify, display, disable
     });
     
-    templateEngine.callbacks[ path.replace( /[0-9]*$/, '' ) ].beforePageChange.push( function(){
+    templateEngine.callbacks[ templateEngine.getPageIdForWidgetId( element, path ) ].beforePageChange.push( function(){
       refreshRSSlog( data );
     });
 
