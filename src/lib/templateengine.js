@@ -232,6 +232,9 @@ function TemplateEngine( undefined ) {
     
   // threshold where the mobile.css is loaded
   this.maxMobileScreenWidth = 480;
+  // threshold where different colspans are used
+  this.maxScreenWidthColspanS = 599;
+  this.maxScreenWidthColspanM = 839;
   // use to recognize if the screen width has crossed the maxMobileScreenWidth
   var lastBodyWidth=0;
 
@@ -272,11 +275,23 @@ function TemplateEngine( undefined ) {
   };
   
   /**
+   * Structure where a design can set a default value that a widget or plugin
+   * can use.
+   * This is especially important for design relevant information like colors
+   * that can not be set though CSS.
+   * 
+   * Useage: templateEngine.defaults.plugin.foo = {bar: 'baz'};
+   */
+  this.defaults = { widget: {}, plugin: {} };
+
+  /**
    * Function to test if the path is in a valid form.
    * Note: it doesn't check if it exists!
    */
   var pathRegEx = /^id(_[0-9]+)+$/;
 
+  var currentPath = '';
+  this.callbacks = {}; // Hash of functions to call during page change
   this.main_scroll;
   this.old_scroll = '';
   this.visu;
@@ -285,7 +300,6 @@ function TemplateEngine( undefined ) {
 
   this.defaultColumns = 12;
   this.minColumnWidth = 120;
-  this.enableColumnAdjustment = false;
   
   this.enableAddressQueue = $.getUrlVar('enableQueue') ? true : false;
   
@@ -307,6 +321,9 @@ function TemplateEngine( undefined ) {
     function update(json) {
       for( var key in json ) {
         //$.event.trigger('_' + key, json[key]);
+        if( !(key in ga_list) )
+          continue;
+        
         var data = json[ key ];
         ga_list[ key ].forEach( function( id ){
           if( typeof id === 'string' )
@@ -507,14 +524,25 @@ function TemplateEngine( undefined ) {
         widgetCreator:   undefined,
         downtime:        0,
         alreadyCanceled: false
-      };
-    
+      },
+      touchStartX = null,
+      touchStartY = null;
+
     window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
       var 
         element = event.target,
         // search if a widget was hit
         widgetActor = getWidgetActor( event.target ),
         bindWidget  = widgetActor.widget ? thisTemplateEngine.widgetDataGet( widgetActor.widget.id ).bind_click_to_widget : false;
+      
+      var touchobj;
+      
+      if (isTouchDevice){
+        touchobj = event.changedTouches[0];
+        
+        touchStartX = parseInt(touchobj.clientX);
+        touchStartY = parseInt(touchobj.clientY);
+      }
       
       isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
       if( isWidget )
@@ -617,12 +645,15 @@ function TemplateEngine( undefined ) {
       if( isWidget )
       {
         var
-          widget      = mouseEvent.widget;
+          widget      = mouseEvent.widget,
+          touchobj = event.changedTouches[0];
           
         if( mouseEvent.moveFn )
           mouseEvent.moveFn( event );
         
-        if( mouseEvent.moveRestrict && !mouseEvent.alreadyCanceled )
+        if( mouseEvent.moveRestrict && !mouseEvent.alreadyCanceled
+          && ((touchStartX + 5 < parseInt(touchobj.clientX) || touchStartX - 5 > parseInt(touchobj.clientX))
+            ||(touchStartY + 5 < parseInt(touchobj.clientY) || touchStartY - 5 > parseInt(touchobj.clientY))))
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
@@ -746,38 +777,26 @@ function TemplateEngine( undefined ) {
     return thisTemplateEngine.currentPageNavbarVisibility;
   };
 
+  // return S, M or L depening on the passed width
+  function getColspanClass( width )
+  {
+    if( width <= thisTemplateEngine.maxScreenWidthColspanS )
+      return 'S';
+    if( width <= thisTemplateEngine.maxScreenWidthColspanM )
+      return 'M';
+    return 'L';
+  }
+  
+  var oldWidth = -1;
   this.adjustColumns = function() {
-    var data = $('#main').data();
-    if (thisTemplateEngine.enableColumnAdjustment == false) {
-      if (thisTemplateEngine.defaultColumns != data.columns) {
-        data.columns = thisTemplateEngine.defaultColumns;
-        return true;
-      } else {
-        return false;
-      }
-    }
-    var width = thisTemplateEngine.getAvailableWidth();
-
-    var newColumns = Math.ceil(width / thisTemplateEngine.minColumnWidth);
-    if (newColumns > (thisTemplateEngine.defaultColumns / 2) && thisTemplateEngine.defaultColumns > newColumns) {
-      // don´t accept values between 50% and 100% of defaultColumns
-      // e.g if default is 12, then skip column-reduction to 10 and 8
-      newColumns = thisTemplateEngine.defaultColumns;
-    }
-    else {
-      // the value should be a divisor of defaultColumns-value
-      while ((thisTemplateEngine.defaultColumns % newColumns)>0 && newColumns < thisTemplateEngine.defaultColumns) {
-        newColumns++;
-      }
-      // make sure that newColumns does not exceed defaultColumns
-      newColumns = Math.min(thisTemplateEngine.defaultColumns, newColumns);
-    }
-    if (newColumns != data.columns) {
-        data.columns = newColumns;
-      return true;
-    } else {
-      return false;
-    }
+    var
+      width = thisTemplateEngine.getAvailableWidth(),
+      oldClass = getColspanClass( oldWidth ),
+      newClass = getColspanClass( width );
+      
+    oldWidth = width;
+    
+    return oldClass != newClass;
   };
   
   /**
@@ -954,18 +973,8 @@ function TemplateEngine( undefined ) {
     else
       thisTemplateEngine.scrollSpeed = $('pages', xml).attr('scroll_speed') | 0;
     
-    var enableColumnAdjustment = null;
-    if ($('pages', xml).attr('enable_column_adjustment')!=undefined) {
-      enableColumnAdjustment = $('pages', xml).attr('enable_column_adjustment')=="true" ? true : false;
-    }
     if ($('pages', xml).attr('bind_click_to_widget')!=undefined) {
       thisTemplateEngine.bindClickToWidget = $('pages', xml).attr('bind_click_to_widget')=="true" ? true : false;
-    }
-    if (enableColumnAdjustment) {
-      thisTemplateEngine.enableColumnAdjustment = true;
-    } else if (enableColumnAdjustment==null && /(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i
-        .test(navigator.userAgent.toLowerCase())) {
-      thisTemplateEngine.enableColumnAdjustment = true;
     }
     if ($('pages', xml).attr('default_columns')) {
       thisTemplateEngine.defaultColumns = $('pages', xml).attr('default_columns');
@@ -1172,6 +1181,17 @@ function TemplateEngine( undefined ) {
    * applies the correct width to the widgets corresponding to the given colspan setting 
    */
   this.applyColumnWidths = function() {
+    var
+      width = thisTemplateEngine.getAvailableWidth();
+    function dataColspan( data )
+    {
+      if( width <= thisTemplateEngine.maxScreenWidthColspanS )
+        return data.colspanS;
+      if( width <= thisTemplateEngine.maxScreenWidthColspanM )
+        return data.colspanM;
+      return data.colspan;
+    }
+    
     // all containers
     ['#navbarTop', '#navbarLeft', '#main', '#navbarRight', '#navbarBottom'].forEach( function( area ){
       var 
@@ -1181,9 +1201,8 @@ function TemplateEngine( undefined ) {
       var
         $e = $(e),
         data = thisTemplateEngine.widgetDataGet( e.id ),
-        ourColspan = data.colspan;
-      if (ourColspan < 0)
-        return;
+        ourColspan = dataColspan( data );
+        
       var w = 'auto';
       if (ourColspan > 0) {
         var areaColspan = areaColumns || thisTemplateEngine.defaultColumns;
@@ -1198,18 +1217,16 @@ function TemplateEngine( undefined ) {
       var 
         $e = $(e),
         data = thisTemplateEngine.widgetData[ e.id ],
-        ourColspan = data.colspan;
-      if (ourColspan < 0)
-        return;
+        ourColspan = dataColspan( data );
       if (ourColspan == undefined) {
         // workaround for nowidget groups
-        ourColspan =  thisTemplateEngine.widgetDataGetByElement($e.children('.group')).colspan;
+        ourColspan = dataColspan( thisTemplateEngine.widgetDataGetByElement($e.children('.group')) );
       }
       var w = 'auto';
       if (ourColspan > 0) {
         var areaColspan = areaColumns || thisTemplateEngine.defaultColumns;
-        var groupColspan = Math.min(areaColspan, thisTemplateEngine.widgetDataGetByElement($e.parentsUntil(
-            '.widget_container', '.group')).colspan);
+        var groupColspan = Math.min(areaColspan, dataColspan(thisTemplateEngine.widgetDataGetByElement($e.parentsUntil(
+            '.widget_container', '.group'))));
         w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
       }
       $e.css('width', w);
@@ -1285,6 +1302,9 @@ function TemplateEngine( undefined ) {
       $('.pageActive', '#pages').removeClass('pageActive');
       thisTemplateEngine.currentPage.addClass('pageActive activePage');// show new page
       $('#pages').css('left', 0 );
+      thisTemplateEngine.callbacks[currentPath].afterPageChange.forEach( function( callback ){
+        callback( currentPath );
+      });
     });
     if (thisTemplateEngine.scrollSpeed != undefined) {
       thisTemplateEngine.main_scroll.getConf().speed = thisTemplateEngine.scrollSpeed;
@@ -1345,6 +1365,14 @@ function TemplateEngine( undefined ) {
 
   this.create_pages = function(page, path, flavour, type) {
     var creator = thisTemplateEngine.design.getCreator(page.nodeName);
+    
+    thisTemplateEngine.callbacks[ path + '_' ] = {
+      exitingPageChange: [],// called when the current page is left
+      beforePageChange: [], // called as soon as a page change is known
+      duringPageChange: [], // called when the page is theoretical visible, i.e. "display:none" is removed - CSS calculations shoud work now
+      afterPageChange: []   // called together with the global event when the transition is finished
+    };
+    
     var retval = creator.create(page, path, flavour, type);
 
     if( undefined === retval )
@@ -1366,6 +1394,26 @@ function TemplateEngine( undefined ) {
       + (data.containerClass ? data.containerClass : '')
       + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
     }
+  };
+  
+  /**
+   * Little helper to find the relevant page path for a given widget.
+   * @param element The XML element
+   * @param widgetpath The path / ID of the widget
+   * @return The path of the parent
+   */
+  this.getPageIdForWidgetId = function( element, widgetpath )
+  {
+    var
+      parent = element.parentNode,
+      parentpath = widgetpath.replace( /[0-9]*$/, '' );
+    
+    while( parent && parent.nodeName !== 'page' )
+    {
+      parent = parent.parentNode;
+      parentpath = parentpath.replace( /[0-9]*_$/, '' );
+    }
+    return parentpath;
   };
   
   this.getPageIdByPath = function(page_name, path) {
@@ -1498,10 +1546,23 @@ function TemplateEngine( undefined ) {
 //    if( thisTemplateEngine.currentPage!=null && thisTemplateEngine.currentPage.attr('id') === page_id )
 //      return;
     
-    var page = $('#' + page_id);
+    var 
+      page = $('#' + page_id),
+      callbacks = thisTemplateEngine.callbacks[page_id];
     
     if( 0 === page.length ) // check if page does exist
       return;
+    
+    
+    currentPath !== '' &&  thisTemplateEngine.callbacks[currentPath].exitingPageChange.forEach( function( callback ){
+      callback( currentPath, page_id );
+    });
+    
+    currentPath = page_id;
+    
+    callbacks.beforePageChange.forEach( function( callback ){
+      callback( page_id );
+    });
     
     if( undefined === speed )
       speed = thisTemplateEngine.scrollSpeed;
@@ -1514,6 +1575,10 @@ function TemplateEngine( undefined ) {
     thisTemplateEngine.currentPage = page;
 
     page.addClass('pageActive activePage');// show new page
+    
+    callbacks.duringPageChange.forEach( function( callback ){
+      callback( page_id );
+    });
     
     // update visibility of navbars, top-navigation, footer
     thisTemplateEngine.pagePartsHandler.updatePageParts( page, speed );
@@ -1541,7 +1606,6 @@ function TemplateEngine( undefined ) {
      * $('#'+page_id+'_left_navbar').addClass('navbarActive');
      */
     thisTemplateEngine.pagePartsHandler.initializeNavbars(page_id);
-    
     $(window).trigger('scrolltopage', page_id);    
   };
 

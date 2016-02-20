@@ -67,7 +67,7 @@ function refreshcalendarList( path ) {
         calendarListlocal: function (options) {
             var defaults = {
                 src: '',
-				days: 30,
+                days: 30,
                 html: '<span>{date}: {text}{where}</span>',
                 wrapper: 'li',
                 dataType: 'json',
@@ -93,20 +93,20 @@ function refreshcalendarList( path ) {
                     var type = 'type' + i;
                     var userid = 'userid' + i;
                     var magiccookie = 'magiccookie' + i;
-					var days = 'days' + i;
+                    var days = 'days' + i;
                     formData[calendarname] = i; //o.calendar[i].textContent;
                     formData[type] = o.calendar[i].getAttribute('type');
                     formData[userid] = o.calendar[i].getAttribute('userid');
-					if (o.calendar[i].hasAttribute('magiccookie') === true) {
+                    if (o.calendar[i].hasAttribute('magiccookie') === true) {
                       formData[magiccookie] = o.calendar[i].getAttribute('magiccookie');
-					} else {
+                    } else {
                       formData[magiccookie] = '';
-					}
-					if (o.calendar[i].hasAttribute('days') === true) {
-					  formData[days] = o.calendar[i].getAttribute('days');
-					} else {
-					  formData[days] = o.days;
-					}
+                    }
+                    if (o.calendar[i].hasAttribute('days') === true) {
+                      formData[days] = o.calendar[i].getAttribute('days');
+                    } else {
+                      formData[days] = o.days;
+                    }
                 }
 
                 jQuery.ajax({
@@ -131,25 +131,25 @@ function refreshcalendarList( path ) {
                             color = '#FFFFFF';
                             for (var ix = 0; ix < o.calendar.length; ix++) {
                                 if (item.calendarName == ix) {
-									if (o.calendar[ix].hasAttribute('color') === true) {
+                                    if (o.calendar[ix].hasAttribute('color') === true) {
                                       color = o.calendar[ix].getAttribute('color');
-									} else {
+                                    } else {
                                       color = '#FFFFFF';
-									}
+                                    }
 
-									if (o.calendar[ix].hasAttribute('format') === true) {
+                                    if (o.calendar[ix].hasAttribute('format') === true) {
                                       format = o.calendar[ix].getAttribute('format');
-									} else {
-									  format = '{date}: {text}{where}';
-									}
-									itemHtml = '<span>' + format + '</span>'
+                                    } else {
+                                      format = '{date}: {text}{where}';
+                                    }
+                                    itemHtml = '<span>' + format + '</span>'
                                 }
                             }
 
                             date = item.StartDate;
-							if (item.StartTime != '00:00') {
-								date = date + ', ' + item.StartTime;
-							}
+                            if (item.StartTime != '00:00') {
+                                date = date + ', ' + item.StartTime;
+                            }
                             if (item.StartDate != item.EndDate || item.StartTime != item.EndTime) {
                                 date = date + ' - ';
                             }

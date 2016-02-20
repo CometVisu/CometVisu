@@ -139,7 +139,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           * @param json
           */
         this.handleRead = function(json) {
-          if (!json && (-1 == this.lastIndex)) {
+          if( this.doRestart || (!json && (-1 == this.lastIndex)) ) {
             if (session.running) { // retry initial request
               this.retryCounter++;
               this.xhr = $.ajax({

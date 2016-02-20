@@ -47,27 +47,69 @@
 
 require.config({
   shim: {
-    'plugins/diagram/flot/jquery.flot.min':          ['jquery'],
-    'plugins/diagram/flot/jquery.flot.canvas.min':   ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.resize.min':   ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.time.min':     ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.axislabels':   ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.tooltip.min':  ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.navigate.min': ['plugins/diagram/flot/jquery.flot.min']
+    'plugins/diagram/dep/flot/jquery.flot.min':          ['jquery'],
+    'plugins/diagram/dep/flot/jquery.flot.canvas.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.resize.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.time.min':     ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.axislabels':   ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.tooltip.min':  ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.navigate.min': ['plugins/diagram/dep/flot/jquery.flot.min']
   }
 });
 
 define( ['structure_custom',
-                  'plugins/diagram/flot/jquery.flot.min',
-                  'plugins/diagram/flot/jquery.flot.canvas.min',
-                  'plugins/diagram/flot/jquery.flot.resize.min',
-                  'plugins/diagram/flot/jquery.flot.time.min',
-                  'plugins/diagram/flot/jquery.flot.axislabels',
-                  'plugins/diagram/flot/jquery.flot.tooltip.min',
-                  'plugins/diagram/flot/jquery.flot.navigate.min'
+                  'plugins/diagram/dep/flot/jquery.flot.min',
+                  'plugins/diagram/dep/flot/jquery.flot.canvas.min',
+                  'plugins/diagram/dep/flot/jquery.flot.resize.min',
+                  'plugins/diagram/dep/flot/jquery.flot.time.min',
+                  'plugins/diagram/dep/flot/jquery.flot.axislabels',
+                  'plugins/diagram/dep/flot/jquery.flot.tooltip.min',
+                  'plugins/diagram/dep/flot/jquery.flot.navigate.min'
   ], function( VisuDesign_Custom ) {
     "use strict";
 
+    var cache = {};
+    
+    /**
+     * Get the rrd and put it's content in the cache.
+     * @param Number   refresh  time is seconds to refresh the data
+     * @param bool     force    Update even when the cache is still valid
+     * @param Function callback call when the data has arrived
+     */
+    function lookupRRDcache( rrd, start, end, res, refresh, force, callback )
+    {
+      var
+        url = templateEngine.visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
+        doLoad = force || !(url in cache) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
+        
+      if( doLoad )
+      {
+        $.ajax({
+          url: url,
+          dataType: "json",
+          type: "GET",
+          context: this,
+          success: function( rrddata ) {
+            if (rrddata != null) {
+              // calculate timestamp offset and scaling
+              var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
+              for (var j = 0; j < rrddata.length; j++) {
+                rrddata[j][0] = rrddata[j][0] + millisOffset;
+                rrddata[j][1] = parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling;
+              }
+            }
+            cache[url] = { data: rrddata, timestamp: Date.now() };
+            callback( cache[url].data );
+          }
+        });
+      } else {
+        callback( cache[url].data );
+      }
+    }
+    
+    // export for universal use in other plugins that also need to read RRDs
+    templateEngine.lookupRRDcache = lookupRRDcache;
+    
     VisuDesign_Custom.prototype.addCreator("diagram", {
       create: function(element, path, flavour, type) {
         return createDiagram(false, element, path, flavour, type);
@@ -80,7 +122,7 @@ define( ['structure_custom',
           
         if( widgetData.popup )
           action( path, actor, isCaneled );
-      }
+      },
     });
     VisuDesign_Custom.prototype.addCreator("diagram_info", {
       create: function(element, path, flavour, type) {
@@ -128,6 +170,7 @@ define( ['structure_custom',
       }
       else {
         var 
+          pageId = templateEngine.getPageIdForWidgetId( element, path ),
           classStr = data.previewlabels ? 'diagram_inline' : 'diagram_preview',
           width    = $e.attr("width" ) ? ($e.attr("width" ) + (/[0-9]$/.test($e.attr("width" )) ? 'px' : '')) : undefined,
           height   = $e.attr("height") ? ($e.attr("height") + (/[0-9]$/.test($e.attr("height")) ? 'px' : '')) : undefined,
@@ -138,10 +181,27 @@ define( ['structure_custom',
         actor = '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
         
         data.init = true;
-        $(window).bind('scrolltopage', function(event, page_id) {
-          var page = templateEngine.getParentPageFromPath(path);
-          if (page != null && page_id == page.attr("id")) {
+        
+        templateEngine.callbacks[ pageId ].exitingPageChange.push( function(a,b){
+          if( data.refresh ) {
+            clearInterval( data.refreshFn );
+          }
+        });
+        
+        templateEngine.callbacks[ pageId ].beforePageChange.push( function(){
+          // update diagram data
+          if( !data.init )
+            loadDiagramData( path, data.plot, false, false );
+        });
+        templateEngine.callbacks[ pageId ].duringPageChange.push( function(){
+          // create diagram when it's not already existing
+          if( data.init )
             initDiagram( path, false );
+          
+          if( data.refresh ) {
+            data.refreshFn = window.setInterval(function() {
+              loadDiagramData( path, data.plot, false, true );
+            }, data.refresh * 1000 );
           }
         });
       }
@@ -152,7 +212,8 @@ define( ['structure_custom',
       if( isCaneled ) return;
 
       var 
-        data = templateEngine.widgetDataGet( path );
+        data = templateEngine.widgetDataGet( path ),
+        popupRefreshFn;
           
       var popupDiagram = $('<div class="diagram" id="' + path + '_big"/>');
       data.init = true;
@@ -162,6 +223,11 @@ define( ['structure_custom',
         // this will be called when the popup is being closed.
         // NOTE: this will be called twice, one time for the foreground and one
         //       time for the background.
+        if( popupRefreshFn )
+        {
+          clearInterval( popupRefreshFn );
+          popupRefreshFn = 0;
+        }
       });
       popupDiagram.parent("div").css({height: "100%", width: "95%", margin: "auto"}); // define parent as 100%!
       popupDiagram.empty();
@@ -171,8 +237,13 @@ define( ['structure_custom',
       });
 
       initDiagram( path, true );
+      
+      if( data.refresh ) {
+        popupRefreshFn = window.setInterval(function() {
+          loadDiagramData( path, data.popupplot, false, true );
+        }, data.refresh * 1000 );
+      }
     }
-
 
     function getDiagramElements(xmlElement) {
       var retVal = {
@@ -231,9 +302,10 @@ define( ['structure_custom',
       var 
         diagram = isPopup ? $( '#' + id + '_big' ) : $( '#' + id + ' .actor div' ),
         data = templateEngine.widgetDataGet( id );
-      if (!data.init || data === undefined) {
+        
+      if( data === undefined ) 
         return;
-      }
+      
       data.init = false;
       isPopup |= data.isPopup;
 
@@ -313,16 +385,20 @@ define( ['structure_custom',
       // plot diagram initially with empty values
       diagram.empty();
       var plot = $.plot(diagram, [], options);
+      if( isPopup )
+        data.popupplot = plot;
+      else
+        data.plot = plot;
       data.plotted = true;
       diagram.bind("plotpan", function(event, plot, args) {
         if (args.dragEnded) {
-          loadDiagramData( id, plot, isPopup );
+          loadDiagramData( id, plot, isPopup, false );
         }
       }).bind("plotzoom", function() {
-        loadDiagramData( id, plot, isPopup );
+        loadDiagramData( id, plot, isPopup, false );
       });
 
-      loadDiagramData( id, plot, isPopup );
+      loadDiagramData( id, plot, isPopup, false );
     }
 
     function getSeries(data, xAxis, isInteractive) {
@@ -364,7 +440,7 @@ define( ['structure_custom',
       return ret;
     }
 
-    function loadDiagramData( id, plot, isInteractive ) {
+    function loadDiagramData( id, plot, isInteractive, forceReload ) {
       var data = templateEngine.widgetDataGet( id );
       if (data === undefined) {
         return;
@@ -381,73 +457,57 @@ define( ['structure_custom',
       var rrdSuccessful = 0;
       // get all rrd data
       $.each(data.content.rrd, function(index, rrd) {
-        $.ajax({
-          url: templateEngine.visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + series.start + "&end=" + series.end + "&res=" + (rrd.resol ? rrd.resol : series.res),
-          dataType: "json",
-          type: "GET",
-          context: this,
-          success: function(rrddata) {
-            rrdloaded++;
-            if (rrddata != null) {
-              rrdSuccessful++;
+        var
+          res = rrd.resol ? rrd.resol : series.res,
+          refresh = data.refresh ? data.refresh : res;
+        
+        lookupRRDcache( rrd, series.start, series.end, res, refresh, forceReload, function( rrddata ){
+          rrdloaded++;
+          if (rrddata != null) {
+            rrdSuccessful++;
 
-              // calculate timestamp offset and scaling
-              var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
-              for (var j = 0; j < rrddata.length; j++) {
-                rrddata[j][0] = rrddata[j][0] + millisOffset;
-                rrddata[j][1] = parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling;
-              }
+            // store the data for diagram plotting
+            loadedData[index] = {
+              label: rrd.label,
+              color: rrd.color,
+              data: rrddata,
+              yaxis: parseInt(rrd.axisIndex),
+              bars: { show: rrd.style == "bars", fill: rrd.fill, barWidth: parseInt(rrd.barWidth), align: rrd.align },
+              lines: { show: rrd.style == "lines", steps: rrd.steps, fill: rrd.fill, zero: false },
+              points: { show: rrd.style == "points", fill: rrd.fill }
+            };
+          }
 
-              // store the data for diagram plotting
-              loadedData[index] = {
-                label: rrd.label,
-                color: rrd.color,
-                data: rrddata,
-                yaxis: parseInt(rrd.axisIndex),
-                bars: { show: rrd.style == "bars", fill: rrd.fill, barWidth: parseInt(rrd.barWidth), align: rrd.align },
-                lines: { show: rrd.style == "lines", steps: rrd.steps, fill: rrd.fill, zero: false },
-                points: { show: rrd.style == "points", fill: rrd.fill }
-              };
+          // if loading has finished, i.e. all rrds have been retrieved,
+          // go on and plot the diagram
+          if (rrdloaded == data.content.rrdnum) {
+            var fulldata;
+            // If all rrds were successfully loaded, no extra action is needed.
+            // Otherwise we need to reduce the array to the loaded data.
+            if (rrdSuccessful == rrdloaded) {
+              fulldata = loadedData;
             }
-
-            // if loading has finished, i.e. all rrds have been retrieved,
-            // go on and plot the diagram
-            if (rrdloaded == data.content.rrdnum) {
-              var fulldata;
-              // If all rrds were successfully loaded, no extra action is needed.
-              // Otherwise we need to reduce the array to the loaded data.
-              if (rrdSuccessful == rrdloaded) {
-                fulldata = loadedData;
-              }
-              else {
-                fulldata = [];
-                var loadedIndex = -1;
-                for (var j = 0; j < rrdSuccessful; j++) {
-                  for (var k = loadedIndex + 1; k < loadedData.length; k++) {
-                    if (loadedData[k] != null) {
-                      fulldata[j] = loadedData[k];
-                      loadedIndex = k;
-                      break;
-                    }
+            else {
+              fulldata = [];
+              var loadedIndex = -1;
+              for (var j = 0; j < rrdSuccessful; j++) {
+                for (var k = loadedIndex + 1; k < loadedData.length; k++) {
+                  if (loadedData[k] != null) {
+                    fulldata[j] = loadedData[k];
+                    loadedIndex = k;
+                    break;
                   }
                 }
               }
-
-              // plot
-              plot.setData(fulldata);
-              plot.setupGrid();
-              plot.draw();
             }
+
+            // plot
+            plot.setData(fulldata);
+            plot.setupGrid();
+            plot.draw();
           }
+        
         });
       });
-
-
-      if (data.refresh) {
-        // reload regularly
-        window.setTimeout(function( id, plot, isInteractive ) {
-          loadDiagramData( id, plot, isInteractive );
-        }, data.refresh * 1000, id, plot, isInteractive );
-      }
     }
 });
