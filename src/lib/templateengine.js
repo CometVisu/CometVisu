@@ -185,7 +185,7 @@ $(document).ready(function() {
         $loading.html( $loading.text().trim() + '!' );
         ajaxRequest.noDemo = false;
         ajaxRequest.origUrl = ajaxRequest.url;
-        ajaxRequest.url = ajaxRequest.url.replace('config/','config/demo/');
+        ajaxRequest.url = ajaxRequest.url.replace('config/','demo/');
         $.ajax( ajaxRequest );
         return;
       }
