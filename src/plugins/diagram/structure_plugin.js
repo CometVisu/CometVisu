@@ -79,7 +79,7 @@ define( ['structure_custom',
     function lookupRRDcache( rrd, start, end, res, refresh, force, callback )
     {
       var
-        url = templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
+        url = templateEngine.visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
         doLoad = force || !(url in cache) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
         
       if( doLoad )
