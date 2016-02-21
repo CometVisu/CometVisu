@@ -88,11 +88,40 @@ define( ['structure_custom', 'css!plugins/controllerinput/controllerinput', 'plu
   
   function getRRDData( data ) 
   {
+    //templateEngine.lookupRRDcache( rrd, start, end, res, refresh, force, callback );
     for( var variant in data.rrd )
     {
       var
         rrd = data.rrd[ variant ];
+      var thisVariant = variant, thisSrc = rrd.src;
         
+      templateEngine.lookupRRDcache( rrd, rrd.start, rrd.end, rrd.resol, undefined, false, function( rrdContent, thisVariant ) {
+          if( !rrdContent )
+            return;
+          
+          var plotData = data.plot.getData();
+          //rrdContent.forEach(function(a){a[1]=+a[1][0];});
+          switch( thisVariant )
+          {
+            case 'actual':
+              plotData[0].data = rrdContent;
+              plotData[3].data[0][0] = rrdContent[rrdContent.length-1][0];
+            break;
+            case 'control':
+              plotData[1].data = rrdContent;
+              plotData[4].data[0][0] = rrdContent[rrdContent.length-1][0];
+            break;
+            case 'setpoint':
+              plotData[2].data = rrdContent;
+              plotData[5].data[0][0] = rrdContent[rrdContent.length-1][0];
+            break;
+          }
+          data.plot.setData( plotData );
+          data.plot.setupGrid();
+          data.plot.draw();
+         
+      }, variant );
+      /*
       $.ajax({
         url: templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + rrd.start + "&end=" + rrd.end + "&res=" + rrd.resol,
         dataType: "json",
@@ -124,7 +153,7 @@ define( ['structure_custom', 'css!plugins/controllerinput/controllerinput', 'plu
           data.plot.setupGrid();
           data.plot.draw();
         }
-      });
+      });*/
     }
   };
   
@@ -179,7 +208,9 @@ VisuDesign_Custom.prototype.addCreator("controllerinput", {
           cFunc: 'AVERAGE',
           start: 'end-1day',
           end: 'now',
-          resol: 300
+          resol: 300,
+          scaling: 1.0,
+          dsIndex: 0
         }
     });
     //console.log( data.rrd);
@@ -272,6 +303,7 @@ var
       //setTimeout( createSparkline, 3000 );
       createSparkline();
       getRRDData( data );
+      //templateEngine.lookupRRDcache( rrd, start, end, res, refresh, force, callback );
     });
     return ret_val + '</div>';
   },
