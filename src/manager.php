@@ -23,7 +23,7 @@
 
 // global definitions
 define( 'CONFIG_FILENAME', 'config/visu_config%s.xml');
-define( 'DEMO_FILENAME', 'config/demo/visu_config%s.xml');
+define( 'DEMO_FILENAME', 'demo/visu_config%s.xml');
 
 // strings
 $_STRINGS = array(
@@ -148,7 +148,7 @@ if( ($config == '' || $config != false) && ($action != false) )
   else switch( $action )
   {
     case 'create':
-      if( !is_readable( 'config/demo/visu_config_empty.xml' ) )
+      if( !is_readable( 'demo/visu_config_empty.xml' ) )
       {
         $actionDone = $_['Empty configuration is not readable -> CometVisu installation is badly broken!'];
         break;
@@ -159,7 +159,7 @@ if( ($config == '' || $config != false) && ($action != false) )
         break;
       }
       
-      if( copy( 'config/demo/visu_config_empty.xml', $configFile ) ) {
+      if( copy( 'demo/visu_config_empty.xml', $configFile ) ) {
         $actionDone = sprintf( $_['New configuration file successfully created'], $configFile );
         $availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), filterPreview );
         $resetUrl = true;
@@ -199,8 +199,8 @@ if( ($config == '' || $config != false) && ($action != false) )
   if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
     $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
   
-  if( !is_readable( 'config/demo/visu_config_empty.xml' ) )
-    $actionDone = $_['Installation error - please check file permissions!'].' (config/demo/visu_config_empty.xml)';
+  if( !is_readable( 'demo/visu_config_empty.xml' ) )
+    $actionDone = $_['Installation error - please check file permissions!'].' (demo/visu_config_empty.xml)';
 }
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
