@@ -103,7 +103,7 @@ if ($_GET['config']) {
 $conffile .= '.xml';
 
 if ( false === is_readable( $conffile ) ) {
-  $conffile = 'config/demo/visu_config';
+  $conffile = 'demo/visu_config';
   if ($_GET['config']) {
     $conffile .= "_" . $_GET['config'];
   }
