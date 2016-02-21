@@ -58,7 +58,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
       future:     $el.attr("future"),
     });
     
-    templateEngine.callbacks[ path.replace( /[0-9]*$/, '' ) ].beforePageChange.push( function(){
+    templateEngine.callbacks[ templateEngine.getPageIdForWidgetId( element, path ) ].beforePageChange.push( function(){
       refreshRSSlog( data );
     });
 
