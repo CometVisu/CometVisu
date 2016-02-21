@@ -33,7 +33,7 @@
 require_once('../lib/library_version.inc.php');
 
 define('CONFIG_FILENAME', '../config/visu_config%s.xml');
-define('DEMO_FILENAME', '../config/demo/visu_config%s.xml');
+define('DEMO_FILENAME', '../demo/visu_config%s.xml');
 define('SCHEMA_FILENAME', './%s');
 
 // helper function to simplify a path in itself
@@ -133,7 +133,7 @@ if( '.xsd' !== substr( $strSchemaFilename, -4 ) ) {
 }
 
 // .. as a fully qualified filename
-$strSchemaFQFilename = realpath( simplifyPath( $strConfigPath . ($isDemo?'demo/':'') . $strSchemaFilename) );
+$strSchemaFQFilename = realpath( simplifyPath( $strConfigPath . $strSchemaFilename) );
 
 if (false === is_readable($strSchemaFQFilename)) {
     exitWithError('schema-file of config-file does not exist \'' . $strSchemaFQFilename . '\' (\'' . $strSchemaFilename. '\').');

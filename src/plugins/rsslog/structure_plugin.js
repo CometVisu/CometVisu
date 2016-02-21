@@ -54,7 +54,8 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
       limit:      $el.attr("limit") ? +$el.attr("limit") : 0,
       timeformat: $el.attr("timeformat"),
       itemoffset: 0,
-      itemack:    $el.attr("itemack") || "modify" // allowed: modify, display, disable
+      itemack:    $el.attr("itemack") || "modify", // allowed: modify, display, disable
+      future:     $el.attr("future"),
     });
     
     templateEngine.callbacks[ templateEngine.getPageIdForWidgetId( element, path ) ].beforePageChange.push( function(){
@@ -123,6 +124,14 @@ function refreshRSSlog( data, isBig ) {
         src += '?limit=' + limit;
       }
     }
+    var future = data.future;
+    if (future) {
+      if (src.match(/\?/)) {
+        src += '&future=' + future;
+      } else {
+        src += '?future=' + future;
+      }
+    }
     
     $('#'+data.id+(isBig?'_big':'')).rssfeedlocal({
       src: src,
@@ -169,17 +178,17 @@ function refreshRSSlog( data, isBig ) {
           return; // avoid the request
         }
         
-    if (!o.src.match(/rsslog\.php/) && !o.src.match(/rsslog_mysql\.php/)) {
-      extsource = true; // for later changes to tell if internal or external source being used
-      var wrapper = "plugins/rsslog/rsslog_external.php?url="
+  if (!o.src.match(/rsslog\.php/) && !o.src.match(/rsslog_mysql\.php/)) {
+    extsource = true; // for later changes to tell if internal or external source being used
+    var wrapper = "plugins/rsslog/rsslog_external.php?url="
           o.src = wrapper.concat(o.src);
-    } else {
-      if (o.src.match(/\?/)) {
+  } else {
+    if (o.src.match(/\?/)) {
             o.src += '&j';
           } else {
             o.src += '?j';
           }
-    }
+  }
 
         jQuery.ajax({
           url: o.src,
@@ -230,6 +239,7 @@ function refreshRSSlog( data, isBig ) {
             var separatordate = new Date().strftime('%d');
             var separatoradd = false;
             var separatorprevday = false;
+            var isFuture = false;
             
             for (var i=itemoffset; i<last; i++) {  
               //console.log('C: #%s, processing item: %i of %i', $(c).attr('id'), i, itemnum);
@@ -248,6 +258,7 @@ function refreshRSSlog( data, isBig ) {
                 var thisday = entryDate.strftime('%d');
                 separatoradd = ((separatordate > 0) && (separatordate != thisday));
                 separatordate = thisday;  
+                isFuture = (entryDate > new Date() );
               }
               else {
                 itemHtml = itemHtml.replace(/{date}/, '');
@@ -260,12 +271,20 @@ function refreshRSSlog( data, isBig ) {
                 var $span = $row.find('.mappedValue');
                 templateEngine.design.defaultValue2DOM( mappedValue, function(e){ $span.append(e); } );
               }
-              if (separatoradd) { 
+              if (separatoradd & idx !== 0) { 
                 $row.addClass('rsslog_separator');
                 separatorprevday = true; 
               }
+        else {
+                separatorprevday = false;
+        }
+        
               if (separatorprevday == true) { 
                 $row.addClass(' rsslog_prevday'); 
+              }
+        
+              if (isFuture) {
+                $row.addClass((row == 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
               }
 
               $row.data({ 'id': item.id, 'mapping': item.mapping });

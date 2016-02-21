@@ -69,41 +69,54 @@ define( ['structure_custom',
     "use strict";
 
     var cache = {};
-    
+
     /**
      * Get the rrd and put it's content in the cache.
      * @param Number   refresh  time is seconds to refresh the data
      * @param bool     force    Update even when the cache is still valid
      * @param Function callback call when the data has arrived
      */
-    function lookupRRDcache( rrd, start, end, res, refresh, force, callback )
+    function lookupRRDcache( rrd, start, end, res, refresh, force, callback, callbackParameter )
     {
       var
         url = templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
-        doLoad = force || !(url in cache) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
-        
+        urlNotInCache = !(url in cache),
+        doLoad = force || urlNotInCache || !('data' in cache[ url ]) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
+
       if( doLoad )
       {
-        $.ajax({
-          url: url,
-          dataType: "json",
-          type: "GET",
-          context: this,
-          success: function( rrddata ) {
-            if (rrddata != null) {
-              // calculate timestamp offset and scaling
-              var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
-              for (var j = 0; j < rrddata.length; j++) {
-                rrddata[j][0] = rrddata[j][0] + millisOffset;
-                rrddata[j][1] = parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling;
+        if( urlNotInCache )
+          cache[ url ] = { waitingCallbacks: [] };
+
+        cache[ url ].waitingCallbacks.push( [ callback, callbackParameter ] );
+
+        if( cache[ url ].waitingCallbacks.length === 1 ) {
+          $.ajax( {
+            url:      url,
+            dataType: 'json',
+            type:     'GET',
+            context:  this,
+            success:  function( rrddata ) {
+              if( rrddata != null ) {
+                // calculate timestamp offset and scaling
+                var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
+                for( var j = 0; j < rrddata.length; j++ ) {
+                  rrddata[ j ][ 0 ] = rrddata[ j ][ 0 ] + millisOffset;
+                  rrddata[ j ][ 1 ] = parseFloat( rrddata[ j ][ 1 ][ rrd.dsIndex ] ) * rrd.scaling;
+                }
               }
+              cache[ url ].data      = rrddata;
+              cache[ url ].timestamp = Date.now();
+
+              cache[ url ].waitingCallbacks.forEach( function( waitingCallback ) {
+                waitingCallback[0]( cache[ url ].data, waitingCallback[1] );
+              } );
+              cache[ url ].waitingCallbacks.length = 0; // empty array
             }
-            cache[url] = { data: rrddata, timestamp: Date.now() };
-            callback( cache[url].data );
-          }
-        });
+          } );
+        }
       } else {
-        callback( cache[url].data );
+        callback( cache[url].data, callbackParameter );
       }
     }
     
