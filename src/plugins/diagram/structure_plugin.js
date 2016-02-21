@@ -76,7 +76,7 @@ define( ['structure_custom',
      * @param bool     force    Update even when the cache is still valid
      * @param Function callback call when the data has arrived
      */
-    function lookupRRDcache( rrd, start, end, res, refresh, force, callback )
+    function lookupRRDcache( rrd, start, end, res, refresh, force, callback, callbackParameter )
     {
       var
         url = templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
@@ -99,11 +99,11 @@ define( ['structure_custom',
               }
             }
             cache[url] = { data: rrddata, timestamp: Date.now() };
-            callback( cache[url].data );
+            callback( cache[url].data, callbackParameter );
           }
         });
       } else {
-        callback( cache[url].data );
+        callback( cache[url].data, callbackParameter );
       }
     }
     
