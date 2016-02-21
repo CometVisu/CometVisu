@@ -55,7 +55,7 @@ VisuDesign_Custom.prototype.addCreator("rsslog", {
       timeformat: $el.attr("timeformat"),
       itemoffset: 0,
       itemack:    $el.attr("itemack") || "modify", // allowed: modify, display, disable
-	  future:     $el.attr("future"),
+      future:     $el.attr("future"),
     });
     
     templateEngine.callbacks[ path.replace( /[0-9]*$/, '' ) ].beforePageChange.push( function(){
@@ -124,7 +124,7 @@ function refreshRSSlog( data, isBig ) {
         src += '?limit=' + limit;
       }
     }
-	var future = data.future;
+    var future = data.future;
     if (future) {
       if (src.match(/\?/)) {
         src += '&future=' + future;
@@ -178,17 +178,17 @@ function refreshRSSlog( data, isBig ) {
           return; // avoid the request
         }
         
-	if (!o.src.match(/rsslog\.php/) && !o.src.match(/rsslog_mysql\.php/)) {
-	  extsource = true; // for later changes to tell if internal or external source being used
-	  var wrapper = "plugins/rsslog/rsslog_external.php?url="
+  if (!o.src.match(/rsslog\.php/) && !o.src.match(/rsslog_mysql\.php/)) {
+    extsource = true; // for later changes to tell if internal or external source being used
+    var wrapper = "plugins/rsslog/rsslog_external.php?url="
           o.src = wrapper.concat(o.src);
-	} else {
-	  if (o.src.match(/\?/)) {
+  } else {
+    if (o.src.match(/\?/)) {
             o.src += '&j';
           } else {
             o.src += '?j';
           }
-	}
+  }
 
         jQuery.ajax({
           url: o.src,
@@ -275,14 +275,14 @@ function refreshRSSlog( data, isBig ) {
                 $row.addClass('rsslog_separator');
                 separatorprevday = true; 
               }
-			  else {
+        else {
                 separatorprevday = false;
-			  }
-			  
+        }
+        
               if (separatorprevday == true) { 
                 $row.addClass(' rsslog_prevday'); 
               }
-			  
+        
               if (isFuture) {
                 $row.addClass((row == 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
               }

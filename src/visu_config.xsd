@@ -1354,7 +1354,7 @@
   <xsd:complexType name="widgetinfo">
     <xsd:sequence>
       <xsd:choice minOccurs="1" maxOccurs="1">
-      	<xsd:group ref="Infoaction_WidgetInfos"/>
+        <xsd:group ref="Infoaction_WidgetInfos"/>
       </xsd:choice>     
     </xsd:sequence>
   </xsd:complexType>

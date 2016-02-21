@@ -319,13 +319,13 @@ function retrieve( $db, $filter, $state, $future )
   
   $q = "SELECT id, title, content, tags, mapping, state, strftime('%s', t) AS t FROM Logs WHERE (" . implode('OR', $filters) . ")";
   
-  if (isset($state))
+  if (isset($state) AND is_numeric($state))
     $q .= " AND state=" . $state . " ";
 
-  if (isset($future))
+  if (isset($future) AND is_numeric($future))
     $q .= " AND ((t  <= datetime('now','+" . $future . " hour') )) ";
   else
-	$q .= " AND ((t  <= datetime('now') ))";
+    $q .= " AND ((t  <= datetime('now') ))";
   
   $q .= "ORDER by t DESC";
   if (!isset($_GET['dump']))
