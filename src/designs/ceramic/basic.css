@@ -85,7 +85,7 @@ body hr
   height: 1px;
   border:none;
   padding:0px;
-  margin:0;
+  margin:1px;
 }
 
 #navbarTop hr, #navbarBottom hr 
@@ -184,6 +184,10 @@ body br
   box-shadow: 0 0 30px #ff8000;
 }
 
+.rowspan {
+  overflow: visible;
+}
+
 .colspandefault { /* in units of 1/12 screen width */
   width: 6px;
 }
@@ -220,10 +224,14 @@ body br
 .widget.group
 {
   background: none;
-  margin: 10px;
+  margin: 5px;
   box-shadow: 6px 6px 23px -1px #000;
   border-radius: 10px;
   overflow: hidden;
+  border-left: 1px solid hsla(345,35%,95%,0.3);
+  border-top: 1px solid hsla(345,35%,95%,0.3);
+  border-right: 1px solid hsla(345,10%,10%,1);
+  border-bottom: 1px solid hsla(345,10%,10%,1);
 }
 
 .editmode .widget
