@@ -47,24 +47,24 @@
 
 require.config({
   shim: {
-    'plugins/diagram/flot/jquery.flot.min':          ['jquery'],
-    'plugins/diagram/flot/jquery.flot.canvas.min':   ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.resize.min':   ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.time.min':     ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.axislabels':   ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.tooltip.min':  ['plugins/diagram/flot/jquery.flot.min'],
-    'plugins/diagram/flot/jquery.flot.navigate.min': ['plugins/diagram/flot/jquery.flot.min']
+    'plugins/diagram/dep/flot/jquery.flot.min':          ['jquery'],
+    'plugins/diagram/dep/flot/jquery.flot.canvas.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.resize.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.time.min':     ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.axislabels':   ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.tooltip.min':  ['plugins/diagram/dep/flot/jquery.flot.min'],
+    'plugins/diagram/dep/flot/jquery.flot.navigate.min': ['plugins/diagram/dep/flot/jquery.flot.min']
   }
 });
 
 define( ['structure_custom',
-                  'plugins/diagram/flot/jquery.flot.min',
-                  'plugins/diagram/flot/jquery.flot.canvas.min',
-                  'plugins/diagram/flot/jquery.flot.resize.min',
-                  'plugins/diagram/flot/jquery.flot.time.min',
-                  'plugins/diagram/flot/jquery.flot.axislabels',
-                  'plugins/diagram/flot/jquery.flot.tooltip.min',
-                  'plugins/diagram/flot/jquery.flot.navigate.min'
+                  'plugins/diagram/dep/flot/jquery.flot.min',
+                  'plugins/diagram/dep/flot/jquery.flot.canvas.min',
+                  'plugins/diagram/dep/flot/jquery.flot.resize.min',
+                  'plugins/diagram/dep/flot/jquery.flot.time.min',
+                  'plugins/diagram/dep/flot/jquery.flot.axislabels',
+                  'plugins/diagram/dep/flot/jquery.flot.tooltip.min',
+                  'plugins/diagram/dep/flot/jquery.flot.navigate.min'
   ], function( VisuDesign_Custom ) {
     "use strict";
 
@@ -170,7 +170,7 @@ define( ['structure_custom',
       }
       else {
         var 
-          pageId = path.replace( /[0-9]*$/, '' ),
+          pageId = templateEngine.getPageIdForWidgetId( element, path ),
           classStr = data.previewlabels ? 'diagram_inline' : 'diagram_preview',
           width    = $e.attr("width" ) ? ($e.attr("width" ) + (/[0-9]$/.test($e.attr("width" )) ? 'px' : '')) : undefined,
           height   = $e.attr("height") ? ($e.attr("height") + (/[0-9]$/.test($e.attr("height")) ? 'px' : '')) : undefined,
