@@ -68,7 +68,9 @@ define( ['structure_custom',
   ], function( VisuDesign_Custom ) {
     "use strict";
 
-    var cache = {};
+    var
+      cache = {},
+      cacheWaitingCallbacks = {};
     
     /**
      * Get the rrd and put it's content in the cache.
@@ -81,27 +83,43 @@ define( ['structure_custom',
       var
         url = templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
         doLoad = force || !(url in cache) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
-        
+
       if( doLoad )
       {
-        $.ajax({
-          url: url,
-          dataType: "json",
-          type: "GET",
-          context: this,
-          success: function( rrddata ) {
-            if (rrddata != null) {
-              // calculate timestamp offset and scaling
-              var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
-              for (var j = 0; j < rrddata.length; j++) {
-                rrddata[j][0] = rrddata[j][0] + millisOffset;
-                rrddata[j][1] = parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling;
+        if( !(url in cacheWaitingCallbacks))
+          cacheWaitingCallbacks[url] = [];
+        cacheWaitingCallbacks[url].push(callback);
+
+        if( !(url in cache) )
+          cache[ url ] = { notInLoad: true };
+
+        if( cache[ url ].notInLoad ) {
+          cache[ url ].notInLoad = false;
+          $.ajax( {
+            url:      url,
+            dataType: 'json',
+            type:     'GET',
+            context:  this,
+            success:  function( rrddata ) {
+              if( rrddata != null ) {
+                // calculate timestamp offset and scaling
+                var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
+                for( var j = 0; j < rrddata.length; j++ ) {
+                  rrddata[ j ][ 0 ] = rrddata[ j ][ 0 ] + millisOffset;
+                  rrddata[ j ][ 1 ] = parseFloat( rrddata[ j ][ 1 ][ rrd.dsIndex ] ) * rrd.scaling;
+                }
               }
+              cache[ url ].data      = rrddata;
+              cache[ url ].timestamp = Date.now();
+
+              cacheWaitingCallbacks[ url ].forEach( function( waitingCallback ) {
+                waitingCallback( cache[ url ].data, callbackParameter );
+              } );
+              cacheWaitingCallbacks[ url ].length = 0; // empty array
+              cache[ url ].notInLoad = true;
             }
-            cache[url] = { data: rrddata, timestamp: Date.now() };
-            callback( cache[url].data, callbackParameter );
-          }
-        });
+          } );
+        }
       } else {
         callback( cache[url].data, callbackParameter );
       }
