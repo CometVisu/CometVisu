@@ -282,8 +282,7 @@ module.exports = function(grunt) {
   grunt.registerTask('update-demo-config', function() {
     var filename = 'release/config/demo/visu_config_demo.xml';
     var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
-    var newConfig = config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version);
-    grunt.file.write(filename, newConfig);
+    grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
   });
 
   // Load the plugin tasks
