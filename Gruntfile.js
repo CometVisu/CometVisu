@@ -195,7 +195,7 @@ module.exports = function(grunt) {
           mode: 'tgz',
           level: 9,
           archive: function() {
-            return "Cometvisu-"+pkg.version+".tar.gz"
+            return "Cometvisu-"+pkg.version+".tar.gz";
           }
         },
         files: [
@@ -207,7 +207,7 @@ module.exports = function(grunt) {
           mode: 'zip',
           level: 9,
           archive: function() {
-            return "Cometvisu-"+pkg.version+".zip"
+            return "Cometvisu-"+pkg.version+".zip";
           }
         },
         files: [
@@ -218,7 +218,7 @@ module.exports = function(grunt) {
 
     'github-release': {
       options: {
-        repository: 'peuter/cometvisu',
+        repository: 'cometvisu/cometvisu',
         release: {
           tag_name: pkg.version,
           name: pkg.version,
