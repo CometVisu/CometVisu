@@ -1,0 +1,39 @@
+{
+  "name": "Cometvisu",
+  "description": "The CometVisu is an interactive, realtime, web based visualization. It can be used to access the KNX bus or with the OpenHAB backend everything in the OpenHAB world.",
+  "version": "0.9.1-dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cometvisu/cometvisu.git"
+  },
+  "scripts": {},
+  "license": "GPL",
+  "authors": [
+    {
+      "name": "Christian Mayer (ChristianMayer)",
+      "email": "CometVisu at ChristianMayer dot de"
+    },
+    {
+      "name": "Tobias Bräutigam (Peuter)",
+      "email": "tbraeutigam at gmail dot com"
+    }
+  ],
+  "devDependencies": {
+    "csso": "^1.5.4",
+    "grunt": "latest",
+    "grunt-banner": "^0.6.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-compress": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-requirejs": "^0.4.4",
+    "grunt-contrib-uglify": "^0.11.1",
+    "grunt-github-releaser": "^0.1.18",
+    "grunt-jscs": "^2.7.0",
+    "grunt-jsdoc": "^1.1.0",
+    "grunt-manifest": "^0.4.4",
+    "grunt-prompt": "^1.3.3",
+    "ink-docstrap": "^1.1.2",
+    "jshint-stylish": "^2.1.0",
+    "rjs-build-analysis": "0.0.3"
+  }
+}
