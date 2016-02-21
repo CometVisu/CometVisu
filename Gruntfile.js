@@ -266,6 +266,15 @@ module.exports = function(grunt) {
     clean: {
       archives : ['*.zip', '*.gz'],
       release: ['release/']
+    },
+
+    "file-creator": {
+      version: {
+        "src/version": function(fs, fd, done) {
+          fs.writeSync(fd, pkg.version);
+          done();
+        }
+      }
     }
   });
 
@@ -280,10 +289,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-prompt');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-jsdoc');
+  grunt.loadNpmTasks('grunt-file-creator');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'jscs', 'usebanner', 'requirejs', 'manifest', 'file-creator', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
 
   grunt.registerTask('release', [ 'clean', 'prompt', 'default', 'github-release' ]);
