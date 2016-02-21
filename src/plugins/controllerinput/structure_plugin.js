@@ -93,12 +93,11 @@ define( ['structure_custom', 'css!plugins/controllerinput/controllerinput', 'plu
     {
       var
         rrd = data.rrd[ variant ];
-      var thisVariant = variant, thisSrc = rrd.src;
-        
+
       templateEngine.lookupRRDcache( rrd, rrd.start, rrd.end, rrd.resol, undefined, false, function( rrdContent, thisVariant ) {
           if( !rrdContent )
             return;
-          
+
           var plotData = data.plot.getData();
           //rrdContent.forEach(function(a){a[1]=+a[1][0];});
           switch( thisVariant )
