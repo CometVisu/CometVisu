@@ -68,10 +68,8 @@ define( ['structure_custom',
   ], function( VisuDesign_Custom ) {
     "use strict";
 
-    var
-      cache = {},
-      cacheWaitingCallbacks = {};
-    
+    var cache = {};
+
     /**
      * Get the rrd and put it's content in the cache.
      * @param Number   refresh  time is seconds to refresh the data
@@ -82,19 +80,17 @@ define( ['structure_custom',
     {
       var
         url = templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
-        doLoad = force || !(url in cache) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
+        urlNotInCache = !(url in cache),
+        doLoad = force || urlNotInCache || !('data' in cache[ url ]) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
 
       if( doLoad )
       {
-        if( !(url in cacheWaitingCallbacks))
-          cacheWaitingCallbacks[url] = [];
-        cacheWaitingCallbacks[url].push(callback);
+        if( urlNotInCache )
+          cache[ url ] = { waitingCallbacks: [] };
 
-        if( !(url in cache) )
-          cache[ url ] = { notInLoad: true };
+        cache[ url ].waitingCallbacks.push( [ callback, callbackParameter ] );
 
-        if( cache[ url ].notInLoad ) {
-          cache[ url ].notInLoad = false;
+        if( cache[ url ].waitingCallbacks.length === 1 ) {
           $.ajax( {
             url:      url,
             dataType: 'json',
@@ -112,11 +108,10 @@ define( ['structure_custom',
               cache[ url ].data      = rrddata;
               cache[ url ].timestamp = Date.now();
 
-              cacheWaitingCallbacks[ url ].forEach( function( waitingCallback ) {
-                waitingCallback( cache[ url ].data, callbackParameter );
+              cache[ url ].waitingCallbacks.forEach( function( waitingCallback ) {
+                waitingCallback[0]( cache[ url ].data, waitingCallback[1] );
               } );
-              cacheWaitingCallbacks[ url ].length = 0; // empty array
-              cache[ url ].notInLoad = true;
+              cache[ url ].waitingCallbacks.length = 0; // empty array
             }
           } );
         }
