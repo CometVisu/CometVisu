@@ -17,17 +17,17 @@
 
 define( ['_common'], function( design ) {
   "use strict";
-   var 
-     basicdesign     = design.basicdesign,
-     isNotSubscribed = true,
-     navbarTop       = '',
-     navbarLeft      = '',
-     navbarRight     = '',
-     navbarBottom    = '',
-     $navbarLeftSize  = $( '#navbarLeft'  ).data('size'),
-     $navbarRightSize = $( '#navbarRight' ).data('size');
+  var 
+    basicdesign     = design.basicdesign,
+    isNotSubscribed = true,
+    navbarTop       = '',
+    navbarLeft      = '',
+    navbarRight     = '',
+    navbarBottom    = '',
+    $navbarLeftSize  = $( '#navbarLeft'  ).data('size'),
+    $navbarRightSize = $( '#navbarRight' ).data('size');
  
-design.basicdesign.addCreator('navbar', {
+  design.basicdesign.addCreator('navbar', {
   create: function( navbar, path, flavour, type ) {
     var $n = $(navbar);
     var childs = $n.children();

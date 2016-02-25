@@ -24,54 +24,54 @@
 define( [], function() {
   "use strict";
   
-/**
- * Class that handles the communicaton of the client
- * @class CometVisu
- * @constructor foo
- * @param {String} urlPrefix The address of the service
- */
-function CometVisu( urlPrefix )
-{
-  var thisCometVisu = this;
-  this.urlPrefix = (null == urlPrefix) ? '' : urlPrefix; // the address of the service
-  this.addresses = [];                                   // the subscribed addresses
-  this.initialAddresses = [];                            // the addresses which should be loaded before the subscribed addresses
-  this.filters   = [];                                   // the subscribed filters
-  this.user   = '';                                      // the current user
-  this.pass   = '';                                      // the current password
-  this.device = '';                                      // the current device ID
-  this.running = false;                                  // is the communication running at the moment?
-  this.doRestart = false;                                // are we currently in a restart, e.g. due to the watchdog
-  this.xhr     = false;                                  // the ongoing AJAX request
-  this.watchdogTimer = 5;                                // in Seconds - the alive check interval of the watchdog
-  this.maxConnectionAge = 60;                            // in Seconds - restart if last read is older
-  this.maxDataAge       = 3200;                          // in Seconds - reload all data when last successful read is older 
-                                                         // (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
-  this.lastIndex        = -1;                            // index returned by the last request
-  this.resendHeaders = [];                               // keep the e.g. atmosphere tracking-id id there is one
-  this.headers = [];                                     // fixed headers that are send everytime
-  this.retryCounter = 0;                                 // count number of retries (reset with each valid response)
+  /**
+   * Class that handles the communicaton of the client
+   * @class CometVisu
+   * @constructor foo
+   * @param {String} urlPrefix The address of the service
+   */
+  function CometVisu( urlPrefix )
+  {
+    var thisCometVisu = this;
+    this.urlPrefix = (null == urlPrefix) ? '' : urlPrefix; // the address of the service
+    this.addresses = [];                                   // the subscribed addresses
+    this.initialAddresses = [];                            // the addresses which should be loaded before the subscribed addresses
+    this.filters   = [];                                   // the subscribed filters
+    this.user   = '';                                      // the current user
+    this.pass   = '';                                      // the current password
+    this.device = '';                                      // the current device ID
+    this.running = false;                                  // is the communication running at the moment?
+    this.doRestart = false;                                // are we currently in a restart, e.g. due to the watchdog
+    this.xhr     = false;                                  // the ongoing AJAX request
+    this.watchdogTimer = 5;                                // in Seconds - the alive check interval of the watchdog
+    this.maxConnectionAge = 60;                            // in Seconds - restart if last read is older
+    this.maxDataAge       = 3200;                          // in Seconds - reload all data when last successful read is older 
+    // (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
+    this.lastIndex        = -1;                            // index returned by the last request
+    this.resendHeaders = [];                               // keep the e.g. atmosphere tracking-id id there is one
+    this.headers = [];                                     // fixed headers that are send everytime
+    this.retryCounter = 0;                                 // count number of retries (reset with each valid response)
     
-  this.setInitialAddresses = function(addresses) {
+    this.setInitialAddresses = function(addresses) {
     this.initialAddresses = addresses;
   }
   
-  /**
-   * This function gets called once the communication is established and session information is available
-   * @method handleSession
-   */
-  this.handleSession = function( json )
-  {
-    this.session = json.s; 
-    this.version = json.v.split( '.', 3 );
+    /**
+     * This function gets called once the communication is established and session information is available
+     * @method handleSession
+     */
+    this.handleSession = function( json )
+    {
+      this.session = json.s; 
+      this.version = json.v.split( '.', 3 );
 
-    if( 0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1]) ) 
-      alert( 'ERROR CometVisu Client: too new protocol version (' + json.v + ') used!' );
+      if( 0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1]) ) 
+        alert( 'ERROR CometVisu Client: too new protocol version (' + json.v + ') used!' );
 
-    // send first request
-    this.running = true;
-    if (this.initialAddresses.length) {
-      this.xhr = $.ajax({
+      // send first request
+      this.running = true;
+      if (this.initialAddresses.length) {
+        this.xhr = $.ajax({
         url:        this.urlPrefix + 'r',
         dataType:   'json',
         context:    this,
@@ -79,10 +79,10 @@ function CometVisu( urlPrefix )
         success:    this.handleReadStart,
         beforeSend: this.beforeSend
       });
-    }
-    else {
-      // old behaviour -> start full query
-      this.xhr = $.ajax({
+      }
+      else {
+        // old behaviour -> start full query
+        this.xhr = $.ajax({
         url:        this.urlPrefix + 'r',
         dataType:   'json',
         context:    this,
@@ -91,21 +91,21 @@ function CometVisu( urlPrefix )
         error:      this.handleError,
         beforeSend: this.beforeSend
       });
-    }
-  };
+      }
+    };
 
-  /**
-   * This function gets called once the communication is established and session information is available
-   * @method handleRead
-   */
-  this.handleRead = function( json )
-  {
-    if( this.doRestart || (!json && (-1 == this.lastIndex)) )
+    /**
+     * This function gets called once the communication is established and session information is available
+     * @method handleRead
+     */
+    this.handleRead = function( json )
     {
-      if( this.running )
-      { // retry initial request
-        this.retryCounter++;
-        this.xhr = $.ajax({
+      if( this.doRestart || (!json && (-1 == this.lastIndex)) )
+      {
+        if( this.running )
+        { // retry initial request
+          this.retryCounter++;
+          this.xhr = $.ajax({
           url:this.urlPrefix + 'r',
           dataType:   'json',
           context:    this,
@@ -114,24 +114,24 @@ function CometVisu( urlPrefix )
           error:      this.handleError,
           beforeSend: this.beforeSend
         });
-        watchdog.ping();
+          watchdog.ping();
+        }
+        return;
       }
-      return;
-    }
 
-    if( json && !this.doRestart )
-    {
-      this.lastIndex = json.i;
-      var data       = json.d;
-      this.readResendHeaderValues();
-      this.update( data );
-      this.retryCounter = 0;
-    }
+      if( json && !this.doRestart )
+      {
+        this.lastIndex = json.i;
+        var data       = json.d;
+        this.readResendHeaderValues();
+        this.update( data );
+        this.retryCounter = 0;
+      }
 
-    if( this.running )
-    { // keep the requests going
-      this.retryCounter++;
-      this.xhr = $.ajax({
+      if( this.running )
+      { // keep the requests going
+        this.retryCounter++;
+        this.xhr = $.ajax({
         url:        this.urlPrefix + 'r',
         dataType:   'json',
         context:    this,
@@ -140,17 +140,17 @@ function CometVisu( urlPrefix )
         error:      this.handleError,
         beforeSend: this.beforeSend
       });
-      watchdog.ping();
-    }
-  };
+        watchdog.ping();
+      }
+    };
   
-  this.handleReadStart = function( json )
-  {
-    if( !json && (-1 == this.lastIndex) )
+    this.handleReadStart = function( json )
     {
-      if( this.running )
-      { // retry initial request
-        this.xhr = $.ajax({
+      if( !json && (-1 == this.lastIndex) )
+      {
+        if( this.running )
+        { // retry initial request
+          this.xhr = $.ajax({
           url:        this.urlPrefix + 'r',
           dataType:   'json',
           context:    this,
@@ -158,23 +158,23 @@ function CometVisu( urlPrefix )
           success:    this.handleReadStart,
           beforeSend: this.beforeSend
         });
-        watchdog.ping();
+          watchdog.ping();
+        }
+        return;
       }
-      return;
-    }
-    if( json && !this.doRestart  )
-    {
-      this.readResendHeaderValues();
-      this.update( json.d );
-    }
-    if( this.running )
-    { // keep the requests going, but only request addresses-startPageAddresses
-      var diffAddresses = [];
-      for(var i=0;i<this.addresses.length;i++) {
-        if ($.inArray(this.addresses[i],this.initialAddresses)<0)
-          diffAddresses.push(this.addresses[i]);
+      if( json && !this.doRestart  )
+      {
+        this.readResendHeaderValues();
+        this.update( json.d );
       }
-      this.xhr = $.ajax({
+      if( this.running )
+      { // keep the requests going, but only request addresses-startPageAddresses
+        var diffAddresses = [];
+        for(var i=0;i<this.addresses.length;i++) {
+          if ($.inArray(this.addresses[i],this.initialAddresses)<0)
+            diffAddresses.push(this.addresses[i]);
+        }
+        this.xhr = $.ajax({
         url:        this.urlPrefix + 'r',
         dataType:   'json',
         context:    this,
@@ -183,36 +183,36 @@ function CometVisu( urlPrefix )
         error:      this.handleError,
         beforeSend: this.beforeSend
       });
-      watchdog.ping();
-    }
-  };
-
-  /**
-   * This function gets called on an error
-   * FIXME: this should be a prototype, so that the application developer can override it
-   * @method handleError
-   */
-  this.handleError=function(xhr,str,excptObj)
-  {
-    if( this.running && xhr.readyState != 4 && !this.doRestart && xhr.status!==0 ) // ignore error when connection is irrelevant
-    {
-      var readyState = 'UNKNOWN';
-      switch( xhr.readyState )
-      {
-        case 0: readyState = 'UNINITIALIZED'; break;
-        case 1: readyState = 'LOADING'      ; break;
-        case 2: readyState = 'LOADED'       ; break;
-        case 3: readyState = 'INTERACTIVE'  ; break;
-        case 4: readyState = 'COMPLETED'    ; break;
+        watchdog.ping();
       }
-      alert('Error! Type: "'+str+'" ExceptionObject: "'+excptObj+'" readyState: '+readyState);
+    };
+
+    /**
+     * This function gets called on an error
+     * FIXME: this should be a prototype, so that the application developer can override it
+     * @method handleError
+     */
+    this.handleError=function(xhr,str,excptObj)
+    {
+      if( this.running && xhr.readyState != 4 && !this.doRestart && xhr.status!==0 ) // ignore error when connection is irrelevant
+      {
+        var readyState = 'UNKNOWN';
+        switch( xhr.readyState )
+        {
+          case 0: readyState = 'UNINITIALIZED'; break;
+          case 1: readyState = 'LOADING'      ; break;
+          case 2: readyState = 'LOADED'       ; break;
+          case 3: readyState = 'INTERACTIVE'  ; break;
+          case 4: readyState = 'COMPLETED'    ; break;
+        }
+        alert('Error! Type: "'+str+'" ExceptionObject: "'+excptObj+'" readyState: '+readyState);
+      }
     }
-  }
   
-  /**
-  * manipulates the header of the current ajax query before it is been send to the server
-  */
-  this.beforeSend = function( xhr ) {
+    /**
+    * manipulates the header of the current ajax query before it is been send to the server
+    */
+    this.beforeSend = function( xhr ) {
     for (var headerName in this.resendHeaders) {
       if (this.resendHeaders[headerName]!=undefined)
         xhr.setRequestHeader(headerName,this.resendHeaders[headerName]);
@@ -223,109 +223,109 @@ function CometVisu( urlPrefix )
     }
   }
   
-  /**
-  * read the header values of a response and stores them to the resendHeaders array
-  * @method readResendHeaderValues
-  */
-  this.readResendHeaderValues = function() {
+    /**
+    * read the header values of a response and stores them to the resendHeaders array
+    * @method readResendHeaderValues
+    */
+    this.readResendHeaderValues = function() {
     for (var headerName in this.resendHeaders) {
       this.resendHeaders[headerName] = this.xhr.getResponseHeader(headerName);
     }
   }
 
-  /**
-   * Build the URL part that contains the addresses and filters
-   * @method buildRequest
-   */
-  this.buildRequest = function(addresses)
-  {
-    addresses = addresses ? addresses : this.addresses;
-    var requestAddresses = (addresses.length)?'a=' + addresses.join( '&a=' ):'';
-    var requestFilters   = (this.filters.length  )?'f=' + this.filters.join(   '&f=' ):'';
-    return 's=' + this.session + '&' + requestAddresses + ( (addresses.length&&this.filters.length)?'&':'' ) + requestFilters;
-  }
+    /**
+     * Build the URL part that contains the addresses and filters
+     * @method buildRequest
+     */
+    this.buildRequest = function(addresses)
+    {
+      addresses = addresses ? addresses : this.addresses;
+      var requestAddresses = (addresses.length)?'a=' + addresses.join( '&a=' ):'';
+      var requestFilters   = (this.filters.length  )?'f=' + this.filters.join(   '&f=' ):'';
+      return 's=' + this.session + '&' + requestAddresses + ( (addresses.length&&this.filters.length)?'&':'' ) + requestFilters;
+    }
 
-  /**
-   * Subscribe to the addresses in the parameter
-   * The second parameter (filter) is optional
-   * @method subscribe
-   */
-  this.subscribe = function( addresses, filters )
-  {
-    var startCommunication = !this.addresses.length; // start when addresses were empty
-    this.addresses= addresses ? addresses : [];
-    this.filters   = filters ? filters : []  ;
+    /**
+     * Subscribe to the addresses in the parameter
+     * The second parameter (filter) is optional
+     * @method subscribe
+     */
+    this.subscribe = function( addresses, filters )
+    {
+      var startCommunication = !this.addresses.length; // start when addresses were empty
+      this.addresses= addresses ? addresses : [];
+      this.filters   = filters ? filters : []  ;
 
-    if( !addresses.length ) this.stop();             // stop when new addresses are empty
-    else if( startCommunication ) this.login();
-  }
+      if( !addresses.length ) this.stop();             // stop when new addresses are empty
+      else if( startCommunication ) this.login();
+    }
 
-  /**
-   * This function starts the communication by a login and then runs the
-   * ongoing communication task
-   * @method login
-   */
-  this.login = function()
-  {
-    var request = {};
-    if( '' != this.user   ) request.u = this.user;
-    if( '' != this.pass   ) request.p = this.pass;
-    if( '' != this.device ) request.d = this.device;
-    $.ajax({
+    /**
+     * This function starts the communication by a login and then runs the
+     * ongoing communication task
+     * @method login
+     */
+    this.login = function()
+    {
+      var request = {};
+      if( '' != this.user   ) request.u = this.user;
+      if( '' != this.pass   ) request.p = this.pass;
+      if( '' != this.device ) request.d = this.device;
+      $.ajax({
       url:      this.urlPrefix + 'l',
       dataType: 'json',
       context:  this,
       data:     request,
       success:  this.handleSession
     });
-  };
+    };
 
-  /**
-   * This function stops an ongoing connection
-   * @method stop
-   */
-  this.stop = function()
-  {
-    this.running = false;
-    this.abort();
-    //alert('this.stop');
-  };
-
-  /**
-   * This function sends a value
-   * @method write
-   */
-  this.write = function( address, value )
-  {
     /**
-     * ts is a quirk to fix wrong caching on some Android-tablets/Webkit;
-     * could maybe selective based on UserAgent but isn't that costly on writes
+     * This function stops an ongoing connection
+     * @method stop
      */
-    var ts = new Date().getTime();
-    $.ajax({
+    this.stop = function()
+    {
+      this.running = false;
+      this.abort();
+      //alert('this.stop');
+    };
+
+    /**
+     * This function sends a value
+     * @method write
+     */
+    this.write = function( address, value )
+    {
+      /**
+       * ts is a quirk to fix wrong caching on some Android-tablets/Webkit;
+       * could maybe selective based on UserAgent but isn't that costly on writes
+       */
+      var ts = new Date().getTime();
+      $.ajax({
       url:      this.urlPrefix + 'w',
       dataType: 'json',
       context:  this,
       data:     's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts
     });
-  }
+    }
   
-  /**
-   * Restart the read request, e.g. when the watchdog kicks in
-   * @method restart
-   */
-  this.restart = function()
-  {
-    this.doRestart = true;
-    this.abort();
-    this.handleRead(); // restart
-    this.doRestart = false;
-  }
-   /**
-   * Abort the read request properly
-   * @method restart
-   */
-  this.abort=function() {
+    /**
+     * Restart the read request, e.g. when the watchdog kicks in
+     * @method restart
+     */
+    this.restart = function()
+    {
+      this.doRestart = true;
+      this.abort();
+      this.handleRead(); // restart
+      this.doRestart = false;
+    }
+    /**
+    * Abort the read request properly
+    * @method restart
+    */
+    this.abort=function() {
     if( this.xhr.abort ) {
       this.xhr.abort();
       if (this.urlPrefix=="/services/cv/") {
@@ -341,11 +341,11 @@ function CometVisu( urlPrefix )
     }
   }
   
-  /**
-   * The watchdog to recreate a read request when it stopped somehow
-   * @method watchdog
-   */
-  var watchdog = (function(){
+    /**
+     * The watchdog to recreate a read request when it stopped somehow
+     * @method watchdog
+     */
+    var watchdog = (function(){
     var last = new Date();
     var hardLast = last;
     var aliveCheckFunction = function(){
@@ -368,9 +368,9 @@ function CometVisu( urlPrefix )
       }
     };
   })();
-};
+  };
 
-CometVisu.prototype.update = function( json ) {};
+  CometVisu.prototype.update = function( json ) {};
 
   return CometVisu;
 });

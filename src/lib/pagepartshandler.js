@@ -137,7 +137,7 @@ define([ 'jquery' ], function( $ ) {
         }
       }
       templateEngine.currentPageNavbarVisibility = shownavbar;
-//      console.log(shownavbar);
+      //      console.log(shownavbar);
     }
     return templateEngine.currentPageNavbarVisibility;
   };

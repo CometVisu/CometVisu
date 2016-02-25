@@ -19,30 +19,30 @@
  */
 define( ['jquery', 'dependencies/sprintf'], function( $ ) {
   "use strict";
-if( /(msie)/i.test(navigator.userAgent.toLowerCase()) )
-{
-  var IE_version = /MSIE\s([\d]+)/;
-  if( IE_version.exec( navigator.userAgent ) != null ) 
-    if( 10 > parseFloat( RegExp.$1 ) )
-      alert( 'Sorry, but Internet Explorer prior version 10.0 is not supported!' );
-}
+  if( /(msie)/i.test(navigator.userAgent.toLowerCase()) )
+  {
+    var IE_version = /MSIE\s([\d]+)/;
+    if( IE_version.exec( navigator.userAgent ) != null ) 
+      if( 10 > parseFloat( RegExp.$1 ) )
+        alert( 'Sorry, but Internet Explorer prior version 10.0 is not supported!' );
+  }
 
-if (typeof (console) == "undefined") {
+  if (typeof (console) == "undefined") {
     console = {};
     console.log = console.debug = console.info = console.warn = console.error = console.stamp = function() {}
-} else {
-  console.stamp = (function(){
+  } else {
+    console.stamp = (function(){
     var thisStartTime = new Date();
     return function logTimeStamp( name ){
       console.timeStamp( name );
       console.log( '[' + logTimeStamp.caller.name + '] ' + name + ': ' + (Date.now() - thisStartTime ) );
     };
   })();
-}
+  }
 
-var sprintfOrg = window.sprintf;
+  var sprintfOrg = window.sprintf;
 
-window.sprintf = function() {
+  window.sprintf = function() {
   for (var arg in arguments) {
     if (typeof arguments[arg] == "undefined")
       arguments[arg] = "<UNDEF>";
@@ -55,10 +55,10 @@ window.sprintf = function() {
   }
 }
 
-/*
- * be able to access GET-Params
- */
-$.extend({
+  /*
+   * be able to access GET-Params
+   */
+  $.extend({
   getUrlVars: function(){
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('#')[0].split('&');
@@ -96,13 +96,13 @@ $.extend({
   */
 });
 
-// check if the applicationCache was modified - then reload itself to prevent
-// that the user has to do an additional reload
-if( "object" === typeof window.applicationCache )
-{
-  window.applicationCache.addEventListener( 'updateready', function(){
+  // check if the applicationCache was modified - then reload itself to prevent
+  // that the user has to do an additional reload
+  if( "object" === typeof window.applicationCache )
+  {
+    window.applicationCache.addEventListener( 'updateready', function(){
     window.location.reload(false);
   });
-}
+  }
 
 }); // end define

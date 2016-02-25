@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('web', {
+  design.basicdesign.addCreator('web', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
 
@@ -52,7 +52,7 @@ design.basicdesign.addCreator('web', {
     var scrolling = '';
     if( $e.attr('scrolling') ) scrolling = 'scrolling="' + $e.attr('scrolling') +'"'; // add scrolling parameter to iframe
 
- //   var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
+    //   var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
     var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
   
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
