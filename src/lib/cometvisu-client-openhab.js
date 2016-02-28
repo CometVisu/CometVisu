@@ -25,16 +25,16 @@
 define( ['cometvisu-client'], function( CometVisu ) {
   "use strict";
   
-/**
- * Class that handles the communicaton of the client
- * 
- * @class CometVisu
- * @constructor foo
- * @param {String}
- *          urlPrefix The address of the service
- */
-
-function CometVisuOh(urlPrefix) {
+  /**
+   * Class that handles the communicaton of the client
+   * 
+   * @class CometVisu
+   * @constructor foo
+   * @param {String}
+   *          urlPrefix The address of the service
+   */
+   
+  function CometVisuOh(urlPrefix) {
     var thisVisu = this;
     this.urlPrefix = "/rest/cv/";
     this.eventSource = null; // the EventSource
@@ -104,10 +104,10 @@ function CometVisuOh(urlPrefix) {
      */
     this.restart = function() {
     }
-};
-CometVisuOh.prototype = new CometVisu('/rest/cv/');
-CometVisuOh.prototype.constructor = CometVisuOh;
-CometVisuOh.prototype.update = function(json) {
+  };
+  CometVisuOh.prototype = new CometVisu('/rest/cv/');
+  CometVisuOh.prototype.constructor = CometVisuOh;
+  CometVisuOh.prototype.update = function(json) {
 };
 
   return CometVisuOh;

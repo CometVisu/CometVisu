@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('break', {
+  design.basicdesign.addCreator('break', {
   create: function( element, path, flavour, type ) {
     var data = templateEngine.widgetDataInsert( path, {
       path: path

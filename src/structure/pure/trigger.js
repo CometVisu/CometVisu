@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('trigger', {
+  design.basicdesign.addCreator('trigger', {
   create: function( element, path, flavour, type ) {
     var 
       $e = $(element);

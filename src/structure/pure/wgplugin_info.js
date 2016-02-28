@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('wgplugin_info', {
+  design.basicdesign.addCreator('wgplugin_info', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     

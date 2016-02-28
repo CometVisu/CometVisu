@@ -23,19 +23,19 @@
 define( ['jquery'], function($) {
   "use strict";
 
-// Define ENUM of maturity levels for features, so that e.g. the editor can 
-// ignore some widgets when they are not supported yet
-var Maturity = {
+  // Define ENUM of maturity levels for features, so that e.g. the editor can 
+  // ignore some widgets when they are not supported yet
+  var Maturity = {
   release     : 0,
   development : 1
 };
 
-/**
- * This class defines all the building blocks for a Visu in the "Pure" design
- * @class VisuDesign
- */
+  /**
+   * This class defines all the building blocks for a Visu in the "Pure" design
+   * @class VisuDesign
+   */
    
-function VisuDesign() {
+  function VisuDesign() {
   var self = this;
   
   this.creators = {};
@@ -61,7 +61,7 @@ function VisuDesign() {
   this.getPopup = function(name) {
     var p = popups[name];
     if (p === undefined) {
-        return popups.unknown;
+      return popups.unknown;
     }
     return popups[name];
   }
@@ -73,11 +73,11 @@ function VisuDesign() {
       ret_val.addClass( this.type );
 
       if (attributes.title) {
-          ret_val.filter(".popup").append( $('<div class="head" />').append(attributes.title));
+        ret_val.filter(".popup").append( $('<div class="head" />').append(attributes.title));
       }
 
       if( attributes.content) {
-          ret_val.filter(".popup").append( $('<div class="main" />').append(attributes.content));
+        ret_val.filter(".popup").append( $('<div class="main" />').append(attributes.content));
       }
 
       if( attributes.width ) {
@@ -196,7 +196,7 @@ function VisuDesign() {
         case 'OH:time':
           value = value.toLocaleTimeString();
           break;
-        }
+      }
     }
     
     // #4 will happen outside: style the value to be pretty
@@ -502,80 +502,80 @@ function VisuDesign() {
   };
 };
 
-/*
- * Figure out best placement of popup.
- * A preference can optionally be passed. The position is that of the numbers
- * on the numeric keypad. I.e. a value of "6" means centered above the anchor.
- * A value of "0" means centered to the page
- */
-function placementStrategy( anchor, popup, page, preference )
-{
-  var position_order = [ 8, 2, 6, 4, 9, 3, 7, 1, 5, 0 ];
-  if( preference !== undefined ) position_order.unshift( preference );
-  
-  for( var pos in position_order )
+  /*
+   * Figure out best placement of popup.
+   * A preference can optionally be passed. The position is that of the numbers
+   * on the numeric keypad. I.e. a value of "6" means centered above the anchor.
+   * A value of "0" means centered to the page
+   */
+  function placementStrategy( anchor, popup, page, preference )
   {
-    var xy = {};
-    switch(position_order[pos])
-    {
-      case 0: // page center - will allways work
-        return { x: (page.w-popup.w)/2, y: (page.h-popup.h)/2 };
-      
-      case 1:
-        xy.x = anchor.x - popup.w;
-        xy.y = anchor.y + anchor.h;
-        break;
-      
-      case 2:
-        xy.x = anchor.x + anchor.w/2 - popup.w/2;
-        xy.y = anchor.y + anchor.h;
-        break;
-      
-      case 3:
-        xy.x = anchor.x + anchor.w;
-        xy.y = anchor.y + anchor.h;
-        break;
-      
-      case 4:
-        xy.x = anchor.x - popup.w;
-        xy.y = anchor.y + anchor.h/2 - popup.h/2;
-        break;
-      
-      case 5:
-        xy.x = anchor.x + anchor.w/2 - popup.w/2;
-        xy.y = anchor.y + anchor.h/2 - popup.h/2;
-        break;
-      
-      case 6:
-        xy.x = anchor.x + anchor.w;
-        xy.y = anchor.y + anchor.h/2 - popup.h/2;
-        break;
-      
-      case 7:
-        xy.x = anchor.x - popup.w;
-        xy.y = anchor.y - popup.h;
-        break;
-      
-      case 8:
-        xy.x = anchor.x + anchor.w/2 - popup.w/2;
-        xy.y = anchor.y - popup.h;
-        break;
-      
-      case 9:
-        xy.x = anchor.x + anchor.w;
-        xy.y = anchor.y - popup.h;
-        break;
-    }
-    
-    // test if that solution is valid
-    if( xy.x >= 0 && xy.y >= 0 && xy.x+popup.w<=page.w && xy.y+popup.h<=page.h )
-      return xy;
-  }
+    var position_order = [ 8, 2, 6, 4, 9, 3, 7, 1, 5, 0 ];
+    if( preference !== undefined ) position_order.unshift( preference );
   
-  return { x: 0, y: 0 }; // sanity return
-}
+    for( var pos in position_order )
+    {
+      var xy = {};
+      switch(position_order[pos])
+      {
+        case 0: // page center - will allways work
+          return { x: (page.w-popup.w)/2, y: (page.h-popup.h)/2 };
+      
+        case 1:
+          xy.x = anchor.x - popup.w;
+          xy.y = anchor.y + anchor.h;
+          break;
+      
+        case 2:
+          xy.x = anchor.x + anchor.w/2 - popup.w/2;
+          xy.y = anchor.y + anchor.h;
+          break;
+      
+        case 3:
+          xy.x = anchor.x + anchor.w;
+          xy.y = anchor.y + anchor.h;
+          break;
+      
+        case 4:
+          xy.x = anchor.x - popup.w;
+          xy.y = anchor.y + anchor.h/2 - popup.h/2;
+          break;
+      
+        case 5:
+          xy.x = anchor.x + anchor.w/2 - popup.w/2;
+          xy.y = anchor.y + anchor.h/2 - popup.h/2;
+          break;
+      
+        case 6:
+          xy.x = anchor.x + anchor.w;
+          xy.y = anchor.y + anchor.h/2 - popup.h/2;
+          break;
+      
+        case 7:
+          xy.x = anchor.x - popup.w;
+          xy.y = anchor.y - popup.h;
+          break;
+      
+        case 8:
+          xy.x = anchor.x + anchor.w/2 - popup.w/2;
+          xy.y = anchor.y - popup.h;
+          break;
+      
+        case 9:
+          xy.x = anchor.x + anchor.w;
+          xy.y = anchor.y - popup.h;
+          break;
+      }
+    
+      // test if that solution is valid
+      if( xy.x >= 0 && xy.y >= 0 && xy.x+popup.w<=page.w && xy.y+popup.h<=page.h )
+        return xy;
+    }
+  
+    return { x: 0, y: 0 }; // sanity return
+  }
 
-var basicdesign = new VisuDesign();
+  var basicdesign = new VisuDesign();
 
   return {
     basicdesign: basicdesign,

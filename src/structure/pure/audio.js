@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('audio', {
+  design.basicdesign.addCreator('audio', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
 
