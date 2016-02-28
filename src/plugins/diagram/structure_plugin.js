@@ -69,7 +69,7 @@ define( ['structure_custom',
     "use strict";
 
     var cache = {};
-
+    
     /**
      * Get the rrd and put it's content in the cache.
      * @param Number   refresh  time is seconds to refresh the data
@@ -257,7 +257,6 @@ define( ['structure_custom',
         }, data.refresh * 1000 );
       }
     }
-
 
     function getDiagramElements(xmlElement) {
       var retVal = {

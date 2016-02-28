@@ -139,7 +139,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           * @param json
           */
         this.handleRead = function(json) {
-          if (!json && (-1 == this.lastIndex)) {
+          if( this.doRestart || (!json && (-1 == this.lastIndex)) ) {
             if (session.running) { // retry initial request
               this.retryCounter++;
               this.xhr = $.ajax({
@@ -447,6 +447,31 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     if (!(this instanceof CometVisuClient)) {
       return new CometVisuClient();
     }
+  }
+  
+  /**
+  * manipulates the header of the current ajax query before it is been send to the server
+  */
+  this.beforeSend = function( xhr ) {
+    for (var headerName in this.resendHeaders) {
+      if (this.resendHeaders[headerName]!=undefined)
+        xhr.setRequestHeader(headerName,this.resendHeaders[headerName]);
+    }
+    for (var headerName in this.headers) {
+      if (this.headers[headerName]!=undefined)
+        xhr.setRequestHeader(headerName,this.headers[headerName]);
+    }
+  }
+  
+  /**
+  * read the header values of a response and stores them to the resendHeaders array
+  * @method readResendHeaderValues
+  */
+  this.readResendHeaderValues = function() {
+    for (var headerName in this.resendHeaders) {
+      this.resendHeaders[headerName] = this.xhr.getResponseHeader(headerName);
+    }
+  }
 
     // ////////////////////////////////////////////////////////////////////////
     // Definition of the private variables
@@ -616,6 +641,8 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         this.currentTransport.abort();
       }
     };
+  })();
+};
 
     /**
      * Build the URL part that contains the addresses and filters
