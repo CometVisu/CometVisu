@@ -116,7 +116,7 @@ module.exports = function(grunt) {
           optimize: 'uglify2',
           generateSourceMaps: true,
           preserveLicenseComments: false,
-
+          removeCombined: true,
           // config options to handle required CSS files:
           separateCSS: true,
           buildCSS: false,
@@ -266,7 +266,23 @@ module.exports = function(grunt) {
     clean: {
       archives : ['*.zip', '*.gz'],
       release: ['release/']
+    },
+
+    "file-creator": {
+      version: {
+        "src/version": function(fs, fd, done) {
+          fs.writeSync(fd, pkg.version);
+          done();
+        }
+      }
     }
+  });
+
+  // custom task to update the version in the releases demo config
+  grunt.registerTask('update-demo-config', function() {
+    var filename = 'release/config/demo/visu_config_demo.xml';
+    var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+    grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
   });
 
   // Load the plugin tasks
@@ -280,13 +296,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-prompt');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-jsdoc');
+  grunt.loadNpmTasks('grunt-file-creator');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'jscs', 'clean', 'usebanner', 'requirejs', 'manifest', 'file-creator', 'update-demo-config', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
 
-  grunt.registerTask('release', [ 'clean', 'prompt', 'default', 'github-release' ]);
+  grunt.registerTask('release', [ 'prompt', 'default', 'github-release' ]);
 
   grunt.registerTask('default', 'build');
 };
