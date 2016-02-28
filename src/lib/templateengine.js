@@ -114,13 +114,13 @@ require([
   "use strict";
   profileCV( 'templateEngine start' );
   
-templateEngine = new TemplateEngine();
+  templateEngine = new TemplateEngine();
 
-$(window).bind('resize', templateEngine.handleResize);
-$(window).unload(function() {
+  $(window).bind('resize', templateEngine.handleResize);
+  $(window).unload(function() {
   if( templateEngine.visu ) templateEngine.visu.stop();
 });
-$(document).ready(function() {
+  $(document).ready(function() {
   function configError( textStatus, additionalErrorInfo ) {
     var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
     var message = 'Config-File Error!<br/>';
@@ -199,7 +199,7 @@ $(document).ready(function() {
   $.ajax( ajaxRequest );
 });
 
-function TemplateEngine( undefined ) {
+  function TemplateEngine( undefined ) {
   var thisTemplateEngine = this;
   this.libraryVersion = 7;
   this.libraryCheck = true;
@@ -316,11 +316,11 @@ function TemplateEngine( undefined ) {
     else if (thisTemplateEngine.backend=="oh2") {
       // openHAB2 uses SSE and need a new client implementation
       if(window.EventSource !== undefined){
-    	// browser supports EventSource object
+        // browser supports EventSource object
         thisTemplateEngine.visu = new CometVisuOh();
       } else {
-    	// browser does no support EventSource => fallback to classic
-    	thisTemplateEngine.backend = '/rest/cv/';
+        // browser does no support EventSource => fallback to classic
+        thisTemplateEngine.backend = '/rest/cv/';
         thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
         thisTemplateEngine.visu.resendHeaders = {'X-Atmosphere-tracking-id':null};
         thisTemplateEngine.visu.headers= {'X-Atmosphere-Transport':'long-polling'};
@@ -380,7 +380,7 @@ function TemplateEngine( undefined ) {
 
   if ($.getUrlVar('forceReload')) {
     this.forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set
-                                                              // to false
+    // to false
   }
 
   if ($.getUrlVar('forceDevice')) {
@@ -823,7 +823,7 @@ function TemplateEngine( undefined ) {
     var bodyWidth = $('body').width();
     var mobileUseChanged = (lastBodyWidth<thisTemplateEngine.maxMobileScreenWidth)!=(bodyWidth<thisTemplateEngine.maxMobileScreenWidth);
     if (thisTemplateEngine.currentPageUnavailableWidth<0 || mobileUseChanged || true) {
-//      console.log("Mobile.css use changed "+mobileUseChanged);
+      //      console.log("Mobile.css use changed "+mobileUseChanged);
       thisTemplateEngine.currentPageUnavailableWidth=0;
       var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);
       var widthNavbarLeft = navbarVisibility.left=="true" && $('#navbarLeft').css('display')!="none" ? Math.ceil( $('#navbarLeft').outerWidth() ) : 0;
@@ -839,7 +839,7 @@ function TemplateEngine( undefined ) {
         widthNavbarRight = 0;
       }
       thisTemplateEngine.currentPageUnavailableWidth = widthNavbarLeft + widthNavbarRight + 1; // remove an additional pixel for Firefox
-//      console.log("Width: "+bodyWidth+" - "+widthNavbarLeft+" - "+widthNavbarRight);
+      //      console.log("Width: "+bodyWidth+" - "+widthNavbarLeft+" - "+widthNavbarRight);
     }
     lastBodyWidth = bodyWidth;
     return bodyWidth - thisTemplateEngine.currentPageUnavailableWidth;
@@ -869,7 +869,7 @@ function TemplateEngine( undefined ) {
       else {
         heightStr+=" - 0";
       }
-//      console.log($('#navbarTop').css('display')+": "+$('#navbarTop').outerHeight(true));
+      //      console.log($('#navbarTop').css('display')+": "+$('#navbarTop').outerHeight(true));
       if ($('#navbarTop').css('display') != 'none' && navbarVisibility.top=="true" && $('#navbarTop').outerHeight(true)>0) {
         thisTemplateEngine.currentPageUnavailableHeight+=$('#navbarTop').outerHeight(true);
         heightStr+=" - "+$('#navbarTop').outerHeight(true);
@@ -1075,13 +1075,13 @@ function TemplateEngine( undefined ) {
         var origin = $localThis.contents();
         var value = [];
         for (var i = 0; i < origin.length; i++) {
-           var $v = $(origin[i]);
-           if ($v.is('icon')) {
-             value[i] = icons.getIconElement($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
-           }
-           else {
-             value[i] = $v.text();
-           }
+          var $v = $(origin[i]);
+          if ($v.is('icon')) {
+            value[i] = icons.getIconElement($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
+          }
+          else {
+            value[i] = $v.text();
+          }
         }
         // check for default entry
         var isDefaultValue = $localThis.attr('default');
@@ -1208,7 +1208,7 @@ function TemplateEngine( undefined ) {
       var 
         allContainer = $(area + ' .widget_container'),
         areaColumns = $( area ).data( 'columns' );
-    allContainer.each(function(i, e) {
+      allContainer.each(function(i, e) {
       var
         $e = $(e),
         data = thisTemplateEngine.widgetDataGet( e.id ),
@@ -1221,10 +1221,10 @@ function TemplateEngine( undefined ) {
       }
       $e.css('width', w);
     });
-    // and elements inside groups
-    var areaColumns = $('#main').data('columns');
-    var adjustableElements = $('.group .widget_container');
-    adjustableElements.each(function(i, e) {
+      // and elements inside groups
+      var areaColumns = $('#main').data('columns');
+      var adjustableElements = $('.group .widget_container');
+      adjustableElements.each(function(i, e) {
       var 
         $e = $(e),
         data = thisTemplateEngine.widgetData[ e.id ],
@@ -1344,13 +1344,13 @@ function TemplateEngine( undefined ) {
       // identify addresses on startpage
       var startPageAddresses = {};
       $('.actor','#'+startpage).each(function() {
-    	  var $this = $(this),
-          data  = $this.data();
-    	  if( undefined === data.address ) data = $this.parent().data();
-          for( var addr in data.address )
-          {
-            startPageAddresses[addr.substring(1)]=1;
-          }
+        var $this = $(this),
+              data  = $this.data();
+        if( undefined === data.address ) data = $this.parent().data();
+        for( var addr in data.address )
+        {
+          startPageAddresses[addr.substring(1)]=1;
+        }
       });
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
@@ -1459,14 +1459,14 @@ function TemplateEngine( undefined ) {
         }
       }
     }
-//    console.log("traversePath("+path+","+root_page_id+")");
+    //    console.log("traversePath("+path+","+root_page_id+")");
     if (index>=0) {
       // traverse path one level down
       var path_page_name = path.substr(0,index);
       path_scope = templateEngine.getPageIdByName(path_page_name,root_page_id);
       path = path.substr(path_page_name.length+1);
       path_scope = templateEngine.traversePath(path,path_scope);
-//      console.log(path_page_name+"=>"+path_scope);
+      //      console.log(path_page_name+"=>"+path_scope);
       return path_scope;
     } else {
       // bottom path level reached
@@ -1488,7 +1488,7 @@ function TemplateEngine( undefined ) {
       // remove escaped slashes
       page_name = page_name.replace("\\\/","/");
       
-//      console.log("Page: "+page_name+", Scope: "+scope);
+      //      console.log("Page: "+page_name+", Scope: "+scope);
       var selector = (scope!=undefined && scope!=null) ? '.page[id^="'+scope+'"] h1:contains(' + page_name + ')' :  '.page h1:contains(' + page_name + ')';
       var pages = $(selector, '#pages');
       if (pages.length>1 && thisTemplateEngine.currentPage!=null) {
@@ -1552,10 +1552,10 @@ function TemplateEngine( undefined ) {
     if (page_id==null) {
       return;
     }
-//    console.log(thisTemplateEngine.currentPage);
-//    // don't scroll when target is already active
-//    if( thisTemplateEngine.currentPage!=null && thisTemplateEngine.currentPage.attr('id') === page_id )
-//      return;
+    //    console.log(thisTemplateEngine.currentPage);
+    //    // don't scroll when target is already active
+    //    if( thisTemplateEngine.currentPage!=null && thisTemplateEngine.currentPage.attr('id') === page_id )
+    //      return;
     
     var 
       page = $('#' + page_id),
@@ -1983,4 +1983,4 @@ function TemplateEngine( undefined ) {
   ////////// Reflection API for possible Editor communication: End //////////
 }
 
-  }); // end require
+}); // end require

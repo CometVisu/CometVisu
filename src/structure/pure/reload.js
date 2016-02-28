@@ -19,12 +19,12 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('reload', {
+  design.basicdesign.addCreator('reload', {
   create: function( element, path, flavour, type ) {
     var 
       e = $(element);
-      address = basicdesign.makeAddressList(e, null);
-      data = templateEngine.widgetDataInsert( path, {
+    address = basicdesign.makeAddressList(e, null);
+    data = templateEngine.widgetDataInsert( path, {
         address: address
       });
     return '';

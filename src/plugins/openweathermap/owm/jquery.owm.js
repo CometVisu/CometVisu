@@ -55,10 +55,10 @@ var jOWM = jOWM || {};
 
     // extend locales by German and French
     Date.ext.locales['de'] = {
-        a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-        A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
-        b: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
-        B: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+      a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+      A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+      b: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+      B: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
     };
 
     return this.each(function(i, e) {

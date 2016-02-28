@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('line', {
+  design.basicdesign.addCreator('line', {
   create:     function( element, path, flavour, type ) {
     var 
       $e = $(element),

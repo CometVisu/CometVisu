@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('rgb', {
+  design.basicdesign.addCreator('rgb', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     
@@ -48,7 +48,7 @@ design.basicdesign.addCreator('rgb', {
     case 'r' :  bg[0] = value; break;
     case 'g' :  bg[1] = value; break;
     case 'b' :  bg[2] = value; break;
-      default:
+    default:
     }
     var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
     valElem.css('background-color', bgs ); 

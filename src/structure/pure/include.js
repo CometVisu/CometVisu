@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('include', {
+  design.basicdesign.addCreator('include', {
   maturity: design.Maturity.development,
   create: function( page, path, flavour, type ) {
     var p = $.get( $(page).attr('src') );

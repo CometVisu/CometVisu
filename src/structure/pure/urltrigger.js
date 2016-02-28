@@ -20,7 +20,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('urltrigger', {
+  design.basicdesign.addCreator('urltrigger', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
@@ -66,13 +66,13 @@ design.basicdesign.addCreator('urltrigger', {
       
     data.params = data.params ? data.params : '';
     $.ajax({
-    type: "GET",
-    datatype: "html",
-    data: encodeURI(data.params),
-    url: data.url,
-    success: function(data){
-            //maybe do something useful with the response?
-        }
+      type: "GET",
+      datatype: "html",
+      data: encodeURI(data.params),
+      url: data.url,
+      success: function(data){
+        //maybe do something useful with the response?
+      }
     });
   }
 });

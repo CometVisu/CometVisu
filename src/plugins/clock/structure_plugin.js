@@ -18,12 +18,12 @@
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
   "use strict";
 
-/**
- * This is a custom function that extends the available widgets.
- * It's purpose is to change the design of the visu during runtime
- * to demonstrate all available
- */
-VisuDesign_Custom.prototype.addCreator("clock", {
+  /**
+   * This is a custom function that extends the available widgets.
+   * It's purpose is to change the design of the visu during runtime
+   * to demonstrate all available
+   */
+  VisuDesign_Custom.prototype.addCreator("clock", {
   that: this,
   create: function( page, path, flavour, type ) {
     var that = this;
@@ -36,9 +36,9 @@ VisuDesign_Custom.prototype.addCreator("clock", {
     ret_val+='<div class="actor" style="width:200px;"></div>';
     
     var data = templateEngine.widgetDataInsert( path, {
-        'value'   : new Date(),
-        'address' : address,
-        'type'    : 'clock'
+      'value'   : new Date(),
+      'address' : address,
+      'type'    : 'clock'
     });
     
     templateEngine.postDOMSetupFns.push(function() {
@@ -108,7 +108,7 @@ VisuDesign_Custom.prototype.addCreator("clock", {
     $container.find('#Hour'  ).attr('transform','rotate('+((time.getHours()%12)*360/12+time.getMinutes()*30/60)+',50,50)');
     $container.find('#Minute').attr('transform','rotate('+(time.getMinutes()*6)+',50,50)');
   },
- dragAction: function(event,ui) {
+  dragAction: function(event,ui) {
     var widget = event.data.actor.parents('.widget_container')[0];
     var 
       widgetData  = templateEngine.widgetDataGet( widget.id );
