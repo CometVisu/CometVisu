@@ -109,13 +109,13 @@ require([
   "use strict";
   profileCV( 'templateEngine start' );
   
-templateEngine = new TemplateEngine();
+  templateEngine = new TemplateEngine();
 
-$(window).bind('resize', templateEngine.handleResize);
-$(window).unload(function() {
+  $(window).bind('resize', templateEngine.handleResize);
+  $(window).unload(function() {
   if( templateEngine.visu ) templateEngine.visu.stop();
 });
-$(document).ready(function() {
+  $(document).ready(function() {
   function configError(textStatus) {
     var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
     var message = 'Config-File Error!<br/>';
@@ -201,7 +201,7 @@ $(document).ready(function() {
   $.ajax( ajaxRequest );
 });
 
-function TemplateEngine( undefined ) {
+  function TemplateEngine( undefined ) {
   var thisTemplateEngine = this;
   this.libraryVersion = 7;
   this.libraryCheck = true;

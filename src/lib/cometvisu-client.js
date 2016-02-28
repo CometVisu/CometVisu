@@ -473,12 +473,12 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     }
   }
 
-    // ////////////////////////////////////////////////////////////////////////
-    // Definition of the private variables
+  // ////////////////////////////////////////////////////////////////////////
+  // Definition of the private variables
 
-    var 
-      self = this,
-      backend,
+  var 
+    self = this,
+    backend,
       watchdog = (function() {
         var 
           last = new Date(),
@@ -507,20 +507,20 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         };
       })();
     
-    // ////////////////////////////////////////////////////////////////////////
-    // Definition of the public variables
+  // ////////////////////////////////////////////////////////////////////////
+  // Definition of the public variables
     
-    this.addresses = []; // the subscribed addresses
-    this.initialAddresses = []; // the addresses which should be loaded
-    // before the subscribed addresses
-    this.filters = []; // the subscribed filters
-    this.user = ''; // the current user
-    this.pass = ''; // the current password
-    this.device = ''; // the current device ID
-    this.running = false; // is the communication running at the moment?
-    this.currentTransport; // the currently used transport layer
+  this.addresses = []; // the subscribed addresses
+  this.initialAddresses = []; // the addresses which should be loaded
+  // before the subscribed addresses
+  this.filters = []; // the subscribed filters
+  this.user = ''; // the current user
+  this.pass = ''; // the current password
+  this.device = ''; // the current device ID
+  this.running = false; // is the communication running at the moment?
+  this.currentTransport; // the currently used transport layer
 
-    Object.defineProperty( this, 'backend', {
+  Object.defineProperty( this, 'backend', {
       get: function() {
         return backend;
       },
@@ -542,40 +542,40 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
       }
     });
     
-    Object.defineProperty( this, 'watchdog', {
+  Object.defineProperty( this, 'watchdog', {
       get: function(){ return watchdog; },
       writeable: false
     });
 
-    // ////////////////////////////////////////////////////////////////////////
-    // Definition of the private methods
+  // ////////////////////////////////////////////////////////////////////////
+  // Definition of the private methods
     
-    // ... none ...
+  // ... none ...
     
-    // ////////////////////////////////////////////////////////////////////////
-    // Definition of the public methods
+  // ////////////////////////////////////////////////////////////////////////
+  // Definition of the public methods
 
-    /* return the relative path to a resource on the currently used backend
-     * 
-     * @method getResourcePath
-     * 
-     * @param name
-     *          {String} Name of the resource (e.g. login, read, write, rrd)
-     * @returns {String} relative path to the resource
-     */
-    this.getResourcePath = function(name) {
+  /* return the relative path to a resource on the currently used backend
+   * 
+   * @method getResourcePath
+   * 
+   * @param name
+   *          {String} Name of the resource (e.g. login, read, write, rrd)
+   * @returns {String} relative path to the resource
+   */
+  this.getResourcePath = function(name) {
       return backend.baseURL + backend.resources[name];
     };
 
-    /**
-     * Subscribe to the addresses in the parameter. The second parameter
-     * (filter) is optional
-     * 
-     * @param addresses
-     * @param filters
-     * @method subscribe
-     */
-    this.subscribe = function(addresses, filters) {
+  /**
+   * Subscribe to the addresses in the parameter. The second parameter
+   * (filter) is optional
+   * 
+   * @param addresses
+   * @param filters
+   * @method subscribe
+   */
+  this.subscribe = function(addresses, filters) {
       var startCommunication = !this.addresses.length; // start when
       // addresses were
       // empty
@@ -588,13 +588,13 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         this.login();
     };
 
-    /**
-     * This function starts the communication by a login and then runs the
-     * ongoing communication task
-     * 
-     * @method login
-     */
-    this.login = function() {
+  /**
+   * This function starts the communication by a login and then runs the
+   * ongoing communication task
+   * 
+   * @method login
+   */
+  this.login = function() {
       var request = {};
       if ('' !== this.user)
         request.u = this.user;
@@ -612,14 +612,14 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
       });
     };
 
-    /**
-     * Handles login response, applies backend configuration if send by
-     * backend and forwards to the configurated transport handleSession
-     * function
-     * 
-     * @param json
-     */
-    this.handleLogin = function(json) {
+  /**
+   * Handles login response, applies backend configuration if send by
+   * backend and forwards to the configurated transport handleSession
+   * function
+   * 
+   * @param json
+   */
+  this.handleLogin = function(json) {
       // read backend configuration if send by backend
       if (json.c) {
         self.backend = $.extend( self.backend, json.c); // assign itself to run setter
@@ -630,27 +630,25 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
       watchdog.start( 5 );
     };
 
-    /**
-     * This function stops an ongoing connection
-     * 
-     * @method stop
-     */
-    this.stop = function() {
+  /**
+   * This function stops an ongoing connection
+   * 
+   * @method stop
+   */
+  this.stop = function() {
       this.running = false;
       if (this.currentTransport.abort) {
         this.currentTransport.abort();
       }
     };
-  })();
-};
 
-    /**
-     * Build the URL part that contains the addresses and filters
-     * @method buildRequest
-     * @param addresses
-     * @return {String} 
-     */
-    this.buildRequest = function(addresses) {
+  /**
+   * Build the URL part that contains the addresses and filters
+   * @method buildRequest
+   * @param addresses
+   * @return {String} 
+   */
+  this.buildRequest = function(addresses) {
       addresses = addresses ? addresses : this.addresses;
       var 
         requestAddresses = (addresses.length) ? 'a='
@@ -662,13 +660,13 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           + requestFilters;
     };
 
-    /**
-     * This function sends a value
-     * @param address
-     * @param value
-     * @method write
-     */
-    this.write = function(address, value) {
+  /**
+   * This function sends a value
+   * @param address
+   * @param value
+   * @method write
+   */
+  this.write = function(address, value) {
       /**
        * ts is a quirk to fix wrong caching on some Android-tablets/Webkit;
        * could maybe selective based on UserAgent but isn't that costly on writes
@@ -682,27 +680,25 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
       });
     };
     
-    // ////////////////////////////////////////////////////////////////////////
-    // Constructor
+  // ////////////////////////////////////////////////////////////////////////
+  // Constructor
     
-    // init default settings
-    if (backendNameAliases[backendName]) {
-      backendName = backendNameAliases[backendName];
-    }
+  // init default settings
+  if (backendNameAliases[backendName]) {
+    backendName = backendNameAliases[backendName];
+  }
 
-    if (backendName && backendName !== 'default') {
-      if ($.isPlainObject(backendName)) {
-        // override default settings
-        self.backend = $.extend({}, backends['default'], backendName);
-      } else if (backends[backendName]) {
-        // merge backend settings into default backend
-        self.backend = $.extend({}, backends['default'], backends[backendName]);
-      }
-    } else {
-      self.backend = backends['default'];
+  if (backendName && backendName !== 'default') {
+    if ($.isPlainObject(backendName)) {
+      // override default settings
+      self.backend = $.extend({}, backends['default'], backendName);
+    } else if (backends[backendName]) {
+      // merge backend settings into default backend
+      self.backend = $.extend({}, backends['default'], backends[backendName]);
     }
-  };
-
+  } else {
+    self.backend = backends['default'];
+  }
   CometVisuClient.prototype.update = function(json) {
   };
 
