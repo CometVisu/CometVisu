@@ -431,9 +431,9 @@ define( ['structure_custom',
       };
       if (data.series == "custom") {
         // initial load, take parameters from custom configuration
-  	    ret.start = data.seriesStart;
-  	    ret.end = data.seriesEnd;
-  	    ret.res = data.seriesResolution;
+        ret.start = data.seriesStart;
+        ret.end = data.seriesEnd;
+        ret.res = data.seriesResolution;
       }
       else {
         var selectedSeries = series[data.series];
@@ -442,9 +442,9 @@ define( ['structure_custom',
         }
 
         // initial load, take parameters from configuration
-  	    ret.start = "end-" + data.period + selectedSeries.start;
-  	    ret.end = selectedSeries.end;
-  	    ret.res = selectedSeries.res;
+        ret.start = "end-" + data.period + selectedSeries.start;
+        ret.end = selectedSeries.end;
+        ret.res = selectedSeries.res;
       }
 
       if (xAxis.datamin && xAxis.datamax && isInteractive) {
@@ -523,4 +523,4 @@ define( ['structure_custom',
         });
       });
     }
-});
+  });

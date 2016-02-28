@@ -21,7 +21,7 @@ define( ['_common'], function( design ) {
     basicdesign = design.basicdesign,
     allPages = '';
  
-design.basicdesign.addCreator('page', {
+  design.basicdesign.addCreator('page', {
   create: function( page, path, flavour, type ) {
     var $p = $(page);
     
@@ -156,11 +156,11 @@ design.basicdesign.addCreator('page', {
       'address': address
     });
     $( childs ).each( function(i){
-        var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour, type );
-        if( undefined === subelement )
-          return;
+      var subelement = templateEngine.create_pages( childs[i], path + '_' + i, flavour, type );
+      if( undefined === subelement )
+        return;
         
-        container += subelement;
+      container += subelement;
     } );
     subpage += container + '</div></div>';
     allPages = subpage + allPages;

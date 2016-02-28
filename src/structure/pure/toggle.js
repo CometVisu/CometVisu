@@ -17,9 +17,9 @@
 
 define( ['_common'], function( design ) {
   "use strict";
-   var basicdesign = design.basicdesign;
+  var basicdesign = design.basicdesign;
  
-design.basicdesign.addCreator('toggle', {
+  design.basicdesign.addCreator('toggle', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     

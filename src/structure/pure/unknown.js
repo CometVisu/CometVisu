@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('unknown', {
+  design.basicdesign.addCreator('unknown', {
   create: function( element, path, flavour, type ) {
     return '<div class="widget clearfix">'
       + '<pre>unknown: ' + element.nodeName + '</pre>'

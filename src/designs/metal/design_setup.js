@@ -35,7 +35,7 @@ function getOffsetCorners(elem) {
 }
 function roundCorners() {
   // find elements in each groups corners
-    $('.page.activePage .group:visible').each(function(i) {
+  $('.page.activePage .group:visible').each(function(i) {
       var group = $(this);
       // do not use this in navbars
       if (group.parents('.navbar').size()>0) return;

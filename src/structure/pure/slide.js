@@ -34,7 +34,7 @@ define( ['_common'], function( design ) {
     }
   }
 
-design.basicdesign.addCreator('slide', {
+  design.basicdesign.addCreator('slide', {
   create: function( element, path, flavour, type ) {
     var self = this,
         $e = $(element);
@@ -71,11 +71,11 @@ design.basicdesign.addCreator('slide', {
     // check provided address-items for at least one address which has write-access
     var readonly = true;
     for (var addrIdx in data.address) {
-        if (data.address[addrIdx][1] & 2) {
-            // write-access detected --> no read-only mode
-            readonly = false;
-            break;
-        }
+      if (data.address[addrIdx][1] & 2) {
+        // write-access detected --> no read-only mode
+        readonly = false;
+        break;
+      }
     }
     
     // create the actor
@@ -93,7 +93,7 @@ design.basicdesign.addCreator('slide', {
       });
       // disable slider interaction if in read-only mode --> just show the value
       if (readonly) {
-          $actor.slider({ disabled: true });
+        $actor.slider({ disabled: true });
       }
       $actor.on( 'slide', self.slideUpdateValue );
       

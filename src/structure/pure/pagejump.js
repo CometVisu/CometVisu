@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('pagejump', {
+  design.basicdesign.addCreator('pagejump', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
@@ -80,7 +80,7 @@ design.basicdesign.addCreator('pagejump', {
   }
 });
 
-$(window).bind('scrolltopage', function( event, page_id ){
+  $(window).bind('scrolltopage', function( event, page_id ){
   var page = $('#' + page_id);
   var name = templateEngine.widgetData[page_id].name;
   

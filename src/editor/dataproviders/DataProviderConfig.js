@@ -30,102 +30,102 @@
  */
 
 var DataProviderConfig = {
-    'address': {
-        '_nodeValue':  {
-                url: 'editor/dataproviders/list_all_addresses.php',
-                cache: true,
-                userInputAllowed: true,
-                grouped: true,
-            },
+  'address': {
+    '_nodeValue':  {
+      url: 'editor/dataproviders/list_all_addresses.php',
+      cache: true,
+      userInputAllowed: true,
+      grouped: true,
     },
-    'rrd': {
-        '_nodeValue':  {
-                url: 'editor/dataproviders/list_all_rrds.php',
-                cache: true,
-                userInputAllowed: true,
-            },
-    },
-    'icon': {
-        'name':  {
-                url: 'editor/dataproviders/list_all_icons.php',
-                cache: true,
-                userInputAllowed: false,
-            },
-    },
-    'plugin': {
-        'name':  {
-                url: 'editor/dataproviders/list_all_plugins.php',
-                cache: true,
-                userInputAllowed: false,
-            },
-    },
-    'pages': {
-      'design':  {
-              url: 'designs/get_designs.php',
-              map: function(element) {
-                  return {value: element, label: element};
-              },
-              cache: true,
-              userInputAllowed: false,
-          },
   },
-    // wildcard: will match ANY elements attribute (lower prio than an exact element-attribute-match)
-    '*': {
-        'rrd':  {
-                url: 'editor/dataproviders/list_all_rrds.php',
-                cache: true,
-                userInputAllowed: true,
-            },
-        'ga':  {
-                url: 'editor/dataproviders/list_all_addresses.php',
-                cache: true,
-                userInputAllowed: true,
-                grouped: true,
-            },
-        'transform':  {
-                url: 'editor/dataproviders/dpt_list.json',
-                cache: true,
-                userInputAllowed: false,
-            },
-        'styling': {
-                live: function() {
-                                var stylings = [];
-                                // find all current stylings and their names
-                                $('#config').find('.element > .name.nodeType_styling .nameValue').each(function () {
-                                    var text = $(this).text();
-
-                                    // create an object for this styling
-                                    var styling = {value: text, label: text};
-
-                                    // push it to the stack
-                                    stylings.push(styling);
-                                });
-
-                                // and off we go.
-                                return stylings;
-                            },
-                cache: false,
-                userInputAllowed: false,
-            },
-        'mapping': {
-                live: function() {
-                                var stylings = [];
-                                // find all current mappings and their names
-                                $('#config').find('.element > .name.nodeType_mapping .nameValue').each(function () {
-                                    var text = $(this).text();
-
-                                    // create an object for this styling
-                                    var styling = {value: text, label: text};
-
-                                    // push it to the stack
-                                    stylings.push(styling);
-                                });
-
-                                // and off we go.
-                                return stylings;
-                            },
-                cache: false,
-                userInputAllowed: false,
-            },
+  'rrd': {
+    '_nodeValue':  {
+      url: 'editor/dataproviders/list_all_rrds.php',
+      cache: true,
+      userInputAllowed: true,
     },
+  },
+  'icon': {
+    'name':  {
+      url: 'editor/dataproviders/list_all_icons.php',
+      cache: true,
+      userInputAllowed: false,
+    },
+  },
+  'plugin': {
+    'name':  {
+      url: 'editor/dataproviders/list_all_plugins.php',
+      cache: true,
+      userInputAllowed: false,
+    },
+  },
+  'pages': {
+    'design':  {
+      url: 'designs/get_designs.php',
+      map: function(element) {
+        return {value: element, label: element};
+      },
+      cache: true,
+      userInputAllowed: false,
+    },
+  },
+  // wildcard: will match ANY elements attribute (lower prio than an exact element-attribute-match)
+  '*': {
+    'rrd':  {
+      url: 'editor/dataproviders/list_all_rrds.php',
+      cache: true,
+      userInputAllowed: true,
+    },
+    'ga':  {
+      url: 'editor/dataproviders/list_all_addresses.php',
+      cache: true,
+      userInputAllowed: true,
+      grouped: true,
+    },
+    'transform':  {
+      url: 'editor/dataproviders/dpt_list.json',
+      cache: true,
+      userInputAllowed: false,
+    },
+    'styling': {
+      live: function() {
+        var stylings = [];
+        // find all current stylings and their names
+        $('#config').find('.element > .name.nodeType_styling .nameValue').each(function () {
+          var text = $(this).text();
+
+          // create an object for this styling
+          var styling = {value: text, label: text};
+
+          // push it to the stack
+          stylings.push(styling);
+        });
+
+        // and off we go.
+        return stylings;
+      },
+      cache: false,
+      userInputAllowed: false,
+    },
+    'mapping': {
+      live: function() {
+        var stylings = [];
+        // find all current mappings and their names
+        $('#config').find('.element > .name.nodeType_mapping .nameValue').each(function () {
+          var text = $(this).text();
+
+          // create an object for this styling
+          var styling = {value: text, label: text};
+
+          // push it to the stack
+          stylings.push(styling);
+        });
+
+        // and off we go.
+        return stylings;
+      },
+      cache: false,
+      userInputAllowed: false,
+    },
+  },
 };

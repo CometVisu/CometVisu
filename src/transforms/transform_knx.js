@@ -17,12 +17,12 @@
 
 define( ['transform_default'], function( Transform ) {
   "use strict";
-/**
- * This class defines the default transforms:
- *   encode: transform JavaScript to bus value
- *   decode: transform bus to JavaScript value
- */
-Transform.addTransform( 'DPT', {
+  /**
+   * This class defines the default transforms:
+   *   encode: transform JavaScript to bus value
+   *   decode: transform bus to JavaScript value
+   */
+  Transform.addTransform( 'DPT', {
   '1.001': {
     name  : 'DPT_Switch',
     encode: function( phy ){
@@ -323,10 +323,10 @@ Transform.addTransform( 'DPT', {
       var val="";        
       var chars;
       for (var i=0;i<28;i=i+2) {
-          chars=parseInt(hex.substr(i,2),16);
-          if (chars>0) {
-            val+=String.fromCharCode(chars);
-          }
+        chars=parseInt(hex.substr(i,2),16);
+        if (chars>0) {
+          val+=String.fromCharCode(chars);
+        }
       }
       return val;
     }
@@ -425,10 +425,10 @@ Transform.addTransform( 'DPT', {
       var val="";        
       var chars;
       for (var i=0;i<hex.length;i=i+2) {
-          chars=parseInt(hex.substr(i,2),16);
-          if (chars>0) {
-            val+=String.fromCharCode(chars);
-          }
+        chars=parseInt(hex.substr(i,2),16);
+        if (chars>0) {
+          val+=String.fromCharCode(chars);
+        }
       }
       return val;
     }
@@ -454,33 +454,33 @@ Transform.addTransform( 'DPT', {
   'temp dummy' : {link:'1.001'}
 } );
 
-//////
-// To be deleted later: a test function to check if the coding is consistent
-function TEST( DPT, Bytes )
-{
-  var maxErr = 5;
-  DPT = 'DPT:' + DPT;
-  for( i = 0; i < Math.pow(2,8*Bytes); i++ )
+  //////
+  // To be deleted later: a test function to check if the coding is consistent
+  function TEST( DPT, Bytes )
   {
-    var v = i.toString( 16 );
-    v = new Array(2*Bytes - v.length + 1).join('0') + v;
-    var test = Transform[DPT].encode(
-      Transform[DPT].decode(v)
-    );
-    //console.log(i,v,test);
-    if( v != test )
+    var maxErr = 5;
+    DPT = 'DPT:' + DPT;
+    for( i = 0; i < Math.pow(2,8*Bytes); i++ )
     {
-      var v2 = Transform[DPT].decode(v);
-      var test2 = Transform[DPT].decode(
-        Transform[DPT].encode(v2)
+      var v = i.toString( 16 );
+      v = new Array(2*Bytes - v.length + 1).join('0') + v;
+      var test = Transform[DPT].encode(
+        Transform[DPT].decode(v)
       );
-      if( v2 != test2 )
+      //console.log(i,v,test);
+      if( v != test )
       {
-        console.log( i, v, test, Transform[DPT].decode(v), v2, test2, maxErr );
-        if( (--maxErr) < 0 ) return maxErr;
+        var v2 = Transform[DPT].decode(v);
+        var test2 = Transform[DPT].decode(
+          Transform[DPT].encode(v2)
+        );
+        if( v2 != test2 )
+        {
+          console.log( i, v, test, Transform[DPT].decode(v), v2, test2, maxErr );
+          if( (--maxErr) < 0 ) return maxErr;
+        }
       }
     }
   }
-}
 
 }); // end define
