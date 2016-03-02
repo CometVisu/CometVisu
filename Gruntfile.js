@@ -280,8 +280,11 @@ module.exports = function(grunt) {
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
-    var filename = 'release/config/demo/visu_config_demo.xml';
+    var filename = 'release/demo/visu_config_demo.xml';
     var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+    grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
+    filename = 'release/demo/visu_config_2d3d.xml';
+    config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
   });
 
