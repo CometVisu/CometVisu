@@ -134,6 +134,10 @@ module.exports = function(grunt) {
             { name: 'plugins/colorchooser/structure_plugin',   exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/diagram/structure_plugin',        exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/gauge/structure_plugin',          exclude: ['structure_custom', 'css', 'normalize']  },
+            { name: 'plugins/infoaction/structure_plugin',     exclude: ['structure_custom', 'css', 'normalize']  },
+            { name: 'plugins/link/structure_plugin',           exclude: ['structure_custom', 'css', 'normalize']  },
+            { name: 'plugins/mobilemenu/structure_plugin',     exclude: ['structure_custom', 'css', 'normalize']  },
+            { name: 'plugins/openweathermap/structure_plugin', exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/rss/structure_plugin',            exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/rsslog/structure_plugin',         exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/strftime/structure_plugin',       exclude: ['structure_custom', 'css', 'normalize']  },
@@ -280,8 +284,11 @@ module.exports = function(grunt) {
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
-    var filename = 'release/config/demo/visu_config_demo.xml';
+    var filename = 'release/demo/visu_config_demo.xml';
     var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+    grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
+    filename = 'release/demo/visu_config_2d3d.xml';
+    config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
   });
 
