@@ -1,13 +1,13 @@
 {
   "name": "CometVisu",
   "description": "The CometVisu is an interactive, realtime, web based visualization. It can be used to access the KNX bus or with the OpenHAB backend everything in the OpenHAB world.",
-  "version": "0.9.1-RC1",
+  "version": "0.9.1-rc.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/cometvisu/cometvisu.git"
   },
   "scripts": {},
-  "license": "GPL",
+  "license": "GPL-3.0",
   "authors": [
     {
       "name": "Christian Mayer (ChristianMayer)",
@@ -22,6 +22,7 @@
     "csso": "^1.5.4",
     "grunt": "latest",
     "grunt-banner": "^0.6.0",
+    "grunt-bump": "^0.7.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-compress": "^1.0.0",
     "grunt-contrib-jshint": "^1.0.0",

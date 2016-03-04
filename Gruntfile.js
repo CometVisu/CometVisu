@@ -279,6 +279,26 @@ module.exports = function(grunt) {
           done();
         }
       }
+    },
+
+    bump: {
+      options: {
+        files: ['package.json'],
+        updateConfigs: [],
+        commit: true,
+        commitMessage: 'Release v%VERSION%',
+        commitFiles: ['package.json'],
+        createTag: true,
+        tagName: 'v%VERSION%',
+        tagMessage: 'Version %VERSION%',
+        push: true,
+        pushTo: 'upstream',
+        gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d',
+        globalReplace: false,
+        prereleaseName: "rc",
+        metadata: '',
+        regExp: false
+      }
     }
   });
 
@@ -304,13 +324,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-file-creator');
+  grunt.loadNpmTasks('grunt-bump');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('build', [ 'jscs', 'clean', 'requirejs', 'manifest', 'file-creator', 'update-demo-config', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
-
-  grunt.registerTask('release', [ 'prompt', 'default', 'github-release' ]);
+  grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
 
   grunt.registerTask('default', 'build');
 };
