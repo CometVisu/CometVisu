@@ -25,4 +25,12 @@ describe('cometvisu demo config tests', function () {
     cvDemo.goToPage("Format Test");
     expect(cvDemo.getPageTitle()).toEqual('Format Test');
   });
+
+  it('should click a switch', function() {
+    var widget = element.all(by.css(".activePage .switch .actor")).first();
+    widget.click();
+    expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+    widget.click();
+    expect(widget.element(by.css(".value")).getText()).toEqual('An');
+  });
 });

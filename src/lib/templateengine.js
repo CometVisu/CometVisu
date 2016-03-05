@@ -28,9 +28,11 @@
 // global var
 var templateEngine;
 
+
+
 define( [
   'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagepartshandler',
-  'cometvisu-client', 'cometvisu-client-openhab',
+  'cometvisu-client', 'cometvisu-mockup', 'cometvisu-client-openhab',
   'compatibility', 'jquery-ui', 'strftime', 'scrollable',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'iconhandler',
   'widget_break', 'widget_designtoggle',
@@ -41,8 +43,8 @@ define( [
   'widget_switch', 'widget_text', 'widget_toggle', 'widget_trigger',
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio',
   'widget_video', 'widget_wgplugin_info',
-  'transform_default', 'transform_knx', 'transform_oh'
-], function($, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu, CometVisuOh) {
+  'transform_default'
+], function($, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu, ClientMockup, CometVisuOh) {
 
   var instance;
 
@@ -154,13 +156,19 @@ define( [
     }
 
     this.initBackendClient = function () {
-      if (thisTemplateEngine.backend == "oh") {
+      if ($.getUrlVar('testMode')) {
+        thisTemplateEngine.visu = new ClientMockup();
+        require(['transform_mockup'], function() {});
+      }
+      else if (thisTemplateEngine.backend == "oh") {
+        require(['transform_oh'], function() {});
         thisTemplateEngine.backend = '/services/cv/';
         thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
         thisTemplateEngine.visu.resendHeaders = {'X-Atmosphere-tracking-id': null};
         thisTemplateEngine.visu.headers = {'X-Atmosphere-Transport': 'long-polling'};
       }
       else if (thisTemplateEngine.backend == "oh2") {
+        require(['transform_oh'], function() {});
         // openHAB2 uses SSE and need a new client implementation
         if (window.EventSource !== undefined) {
           // browser supports EventSource object
@@ -173,6 +181,7 @@ define( [
           thisTemplateEngine.visu.headers = {'X-Atmosphere-Transport': 'long-polling'};
         }
       } else {
+        require(['transform_knx'], function() {});
         thisTemplateEngine.backend = '/' + thisTemplateEngine.backend + '/';
         thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
       }
