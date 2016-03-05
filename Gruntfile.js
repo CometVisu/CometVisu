@@ -1,15 +1,50 @@
 
 module.exports = function(grunt) {
-  var pkg = grunt.file.readJSON('package.json') || {};
+  var 
+    pkg = grunt.file.readJSON('package.json') || {},
+    isDirectoryRegEx = /\/$/,
+    filesToCompress = [ {
+      expand: true, 
+      cwd: '.', 
+      src: [
+        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 
+        'release/config', 
+        'release/config/visu_config.xml', 
+        'release/config/visu_config_previewtemp.xml', 
+        'release/config/structure_custom.js', 
+        'release/config/backup', 
+        'release/config/media',
+        'release/demo/**',
+        'release/dependencies/**',
+        'release/designs/**',
+        'release/editor/**',
+        'release/icon/**',
+        '!release/icon/knx-uf-iconset/raw_480x480/**',
+        '!release/icon/knx-uf-iconset/knx-uf-iconset/**',
+        'release/lib/**',
+        'release/plugins/**',
+        'release/upgrade/**',
+        'release/*',
+        '!release/build.txt'
+      ], 
+      dest: 'cometvisu/', 
+      mode: function( filename ){
+        var isConfig = filename.indexOf( 'release/config' ) > -1;
+        
+        if( isDirectoryRegEx.test( filename ) )
+          return isConfig ? 0777 : 0755;
+        return isConfig ? 0666 : 0644;
+      }
+    } ];
 
-  // Project configuration.
-  grunt.initConfig({
-    pkg : grunt.file.readJSON('package.json') || {},
+    // Project configuration.
+    grunt.initConfig({
+      pkg : grunt.file.readJSON('package.json') || {},
 
-    // license header adding
-    usebanner: {
-      dist: {
-        options: {
+      // license header adding
+      usebanner: {
+        dist: {
+          options: {
           position: 'top',
           replace: true,
           linebreak: true,
@@ -193,24 +228,7 @@ module.exports = function(grunt) {
             return "CometVisu-"+pkg.version+".tar.gz";
           }
         },
-        files: [
-          { expand: true, cwd: '.', src: [
-            'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 
-            'release/config/visu_config.xml', 'release/config/visu_config_previewtemp.xml', 'release/config/structure_custom.js', 'release/config/backup', 'release/config/media',
-            'release/demo/**',
-            'release/dependencies/**',
-            'release/designs/**',
-            'release/editor/**',
-            'release/icon/**',
-            '!release/icon/knx-uf-iconset/raw_480x480/**',
-            '!release/icon/knx-uf-iconset/knx-uf-iconset/**',
-            'release/lib/**',
-            'release/plugins/**',
-            'release/upgrade/**',
-            'release/*',
-            '!release/build.txt'
-          ], dest: 'cometvisu/' } // includes files in path
-        ]
+        files: filesToCompress
       },
       zip: {
         options: {
@@ -220,24 +238,7 @@ module.exports = function(grunt) {
             return "CometVisu-"+pkg.version+".zip";
           }
         },
-        files: [
-          { expand: true, cwd: '.', src: [
-            'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 
-            'release/config/visu_config.xml', 'release/config/visu_config_previewtemp.xml', 'release/config/structure_custom.js', 'release/config/backup', 'release/config/media',
-            'release/demo/**',
-            'release/dependencies/**',
-            'release/designs/**',
-            'release/editor/**',
-            'release/icon/**',
-            '!release/icon/knx-uf-iconset/raw_480x480/**',
-            '!release/icon/knx-uf-iconset/knx-uf-iconset/**',
-            'release/lib/**',
-            'release/plugins/**',
-            'release/upgrade/**',
-            'release/*',
-            '!release/build.txt'
-          ], dest: 'cometvisu/' } // includes files in path
-        ]
+        files: filesToCompress
       }
     },
 
