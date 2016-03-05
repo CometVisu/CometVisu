@@ -86,7 +86,7 @@ require([
   "use strict";
   profileCV( 'templateEngine start' );
 
-  templateEngine = new TemplateEngine();
+  templateEngine = TemplateEngine.getInstance();
 
   $(window).bind('resize', templateEngine.handleResize);
   $(window).unload(function() {
@@ -163,7 +163,6 @@ require([
           ajaxRequest.origUrl = ajaxRequest.url;
           ajaxRequest.url = ajaxRequest.url.replace('config/','demo/');
           $.ajax( ajaxRequest );
-          return;
         }
         else if( 404 === jqXHR.status ) {
           configError("filenotfound", [ajaxRequest.origUrl, ajaxRequest.url]);
