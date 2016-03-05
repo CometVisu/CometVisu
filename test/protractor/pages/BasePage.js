@@ -74,5 +74,41 @@ var BasePage = function () {
     'xxl': 15000
   };
 
+  this.getPageTitle = function () {
+    return element(by.css(".activePage")).element(by.tagName("h1")).getText();
+  };
+
+  this.getPages = function () {
+    return element.all(by.css(".page"));
+  };
+
+  this.getPage = function(name) {
+    return element.all(by.css(".page")).then(function(pages) {
+      return pages.find(function(page) {
+        if (page.element(by.tagName("h1")).getText() === name) {
+          return page;
+        }
+      });
+    });
+  };
+
+  /**
+   * Navigate to a page by name
+   * @param name {String}
+   */
+  this.goToPage = function(name) {
+    element.all(by.css("div.pagelink")).then(function(links) {
+      links.some(function(link) {
+        var actor = link.element(by.css(".actor"));
+        actor.element(by.tagName("a")).getText().then(function(linkName) {
+          if (linkName === name) {
+            actor.click();
+            return true;
+          }
+        });
+      });
+    });
+  };
+
 };
 module.exports = new BasePage();
