@@ -23,6 +23,7 @@
     "grunt": "latest",
     "grunt-banner": "^0.6.0",
     "grunt-bump": "^0.7.0",
+    "grunt-chmod": "latest",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-compress": "^1.0.0",
     "grunt-contrib-jshint": "^1.0.0",

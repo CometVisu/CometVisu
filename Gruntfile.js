@@ -290,7 +290,18 @@ module.exports = function(grunt) {
         metadata: '',
         regExp: false
       }
+    },
+    
+    chmod: {
+      options: {
+        mode: 'a+w'
+      },
+      configFiles: {
+        // Target-specific file/dir lists and/or options go here.
+        src: ['release/config', 'release/config/**']
+      }
     }
+
   });
 
   // custom task to update the version in the releases demo config
@@ -301,6 +312,9 @@ module.exports = function(grunt) {
     filename = 'release/demo/visu_config_2d3d.xml';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
+    filename = 'release/index.html';
+    config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+    grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
   // Load the plugin tasks
@@ -316,10 +330,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-file-creator');
   grunt.loadNpmTasks('grunt-bump');
+  grunt.loadNpmTasks('grunt-chmod');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'jscs', 'clean', 'requirejs', 'manifest', 'file-creator', 'update-demo-config', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'jscs', 'clean', 'requirejs', 'manifest', 'file-creator', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
 
