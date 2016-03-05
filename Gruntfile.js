@@ -194,7 +194,22 @@ module.exports = function(grunt) {
           }
         },
         files: [
-          { expand: true, cwd: '.', src: ['AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 'release/**', '!release/config/**', 'release/config/visu_config.xml', 'release/config/visu_config_previewtemp.xml', 'release/config/structure_custom.js', 'release/config/backup' ], dest: 'cometvisu/' } // includes files in path
+          { expand: true, cwd: '.', src: [
+            'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 
+            'release/config/visu_config.xml', 'release/config/visu_config_previewtemp.xml', 'release/config/structure_custom.js', 'release/config/backup', 'release/config/media',
+            'release/demo/**',
+            'release/dependencies/**',
+            'release/designs/**',
+            'release/editor/**',
+            'release/icon/**',
+            '!release/icon/knx-uf-iconset/raw_480x480/**',
+            '!release/icon/knx-uf-iconset/knx-uf-iconset/**',
+            'release/lib/**',
+            'release/plugins/**',
+            'release/upgrade/**',
+            'release/*',
+            '!release/build.txt'
+          ], dest: 'cometvisu/' } // includes files in path
         ]
       },
       zip: {
@@ -206,7 +221,22 @@ module.exports = function(grunt) {
           }
         },
         files: [
-          { expand: true, cwd: '.', src: ['AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 'release/**', '!release/config/**', 'release/config/visu_config.xml', 'release/config/visu_config_previewtemp.xml', 'release/config/structure_custom.js', 'release/config/backup' ], dest: 'cometvisu/' } // includes files in path
+          { expand: true, cwd: '.', src: [
+            'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 
+            'release/config/visu_config.xml', 'release/config/visu_config_previewtemp.xml', 'release/config/structure_custom.js', 'release/config/backup', 'release/config/media',
+            'release/demo/**',
+            'release/dependencies/**',
+            'release/designs/**',
+            'release/editor/**',
+            'release/icon/**',
+            '!release/icon/knx-uf-iconset/raw_480x480/**',
+            '!release/icon/knx-uf-iconset/knx-uf-iconset/**',
+            'release/lib/**',
+            'release/plugins/**',
+            'release/upgrade/**',
+            'release/*',
+            '!release/build.txt'
+          ], dest: 'cometvisu/' } // includes files in path
         ]
       }
     },
