@@ -21,7 +21,8 @@ describe('cometvisu demo config tests', function () {
     expect(cvDemo.getPageTitle()).toEqual('CometVisu Widget Demo');
   });
 
-  it('should navigate to a page and back', function() {
-    element(by.id("id_0"))
+  it('should navigate to a page', function() {
+    cvDemo.goToPage("Format Test");
+    expect(cvDemo.getPageTitle()).toEqual('Format Test');
   });
 });
