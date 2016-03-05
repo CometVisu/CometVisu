@@ -97,7 +97,7 @@ define( ['transform_default'], function( Transform ) {
     },
     decode : function(str) {
       if (str=="NaN" || str=='Uninitialized') return '-';
-      var date = new Date(str);
+      var date = new Date(Date.parse(str));
       return date;
     }
   },
@@ -112,7 +112,11 @@ define( ['transform_default'], function( Transform ) {
     },
     decode : function(str) {
       if (str=="NaN" || str=='Uninitialized') return '-';
-      var date = new Date(str);
+      var date = new Date();
+      var parts = str.split(":");
+      date.setHours(parseInt(parts[0]));
+      date.setMinutes(parseInt(parts[1]));
+      date.setSeconds(parseInt(parts[2]));
       return date;
     }
   },
@@ -137,9 +141,9 @@ define( ['transform_default'], function( Transform ) {
         h /= 6;
       }
       // map top 360,100,100
-      h = h * 360;
-      s = s * 100;
-      v = v * 100;
+      h = Math.round(h * 3600)/10;
+      s = Math.round(s * 1000)/10;
+      v = Math.round(v * 1000)/10;
       return [h, s, v];
     },
     decode : function(hsbString) {
@@ -147,6 +151,7 @@ define( ['transform_default'], function( Transform ) {
       var hsb = hsbString.split(",");
       var h = hsb[0], s = hsb[1], v = hsb[2];
       var r, g, b, i, f, p, q, t;
+
       // h = h / 360;
       if (v === 0) { return [0, 0, 0]; }
       s = s / 100;
