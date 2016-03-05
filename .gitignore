@@ -1,2 +1,5 @@
+release/
+CometVisu-*.tar.gz
+CometVisu-*.zip
 node_modules/
 .idea

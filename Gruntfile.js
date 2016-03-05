@@ -67,7 +67,6 @@ module.exports = function(grunt) {
           timestamp: true,
           hash: true,
           network: [
-            'index_external_editor_test.html',
             'check_config.php',
             'designs/get_designs.php',
             'config/structure_custom.js',
@@ -87,19 +86,11 @@ module.exports = function(grunt) {
           'visu_config.xsd',
           'dependencies/require-2.1.15.min.js',
           'dependencies/css.js',
-          'icon/comet_64_ff8000.png',
-          'icon/comet_webapp_icon_114.png',
-          'icon/comet_webapp_icon_144.png',
-          'icon/comet_webapp_icon_android_36.png',
-          'icon/comet_webapp_icon_android_48.png',
-          'icon/comet_webapp_icon_android_72.png',
-          'icon/comet_webapp_icon_android_96.png',
-          'icon/comet_webapp_icon_android_144.png',
-          'icon/comet_webapp_icon_android_192.png',
-          'icon/iconconfig.js',
+          'icon/*.png',
+          //'icon/iconconfig.js',
           'lib/templateengine.js',
           'designs/**/*.*',
-          'plugins/**/*.{js,css,png,jpf,ttf,svg,map}'
+          'plugins/**/*.{js,css,png,jpf,ttf,svg}'
         ],
         dest: 'release/cometvisu.appcache'
       }
@@ -199,11 +190,11 @@ module.exports = function(grunt) {
           mode: 'tgz',
           level: 9,
           archive: function() {
-            return "Cometvisu-"+pkg.version+".tar.gz";
+            return "CometVisu-"+pkg.version+".tar.gz";
           }
         },
         files: [
-          { expand: true, cwd: 'release', src: ['./**'], dest: 'cometvisu/' } // includes files in path
+          { expand: true, cwd: '.', src: ['AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 'release/**', '!release/config/**', 'release/config/visu_config.xml', 'release/config/visu_config_previewtemp.xml', 'release/config/structure_custom.js', 'release/config/backup' ], dest: 'cometvisu/' } // includes files in path
         ]
       },
       zip: {
@@ -211,11 +202,11 @@ module.exports = function(grunt) {
           mode: 'zip',
           level: 9,
           archive: function() {
-            return "Cometvisu-"+pkg.version+".zip";
+            return "CometVisu-"+pkg.version+".zip";
           }
         },
         files: [
-          { expand: true, cwd: 'release', src: ['./**'], dest: 'cometvisu/' } // includes files in path
+          { expand: true, cwd: '.', src: ['AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 'release/**', '!release/config/**', 'release/config/visu_config.xml', 'release/config/visu_config_previewtemp.xml', 'release/config/structure_custom.js', 'release/config/backup' ], dest: 'cometvisu/' } // includes files in path
         ]
       }
     },
@@ -230,7 +221,7 @@ module.exports = function(grunt) {
         }
       },
       files: {
-        src: [ "Cometvisu-"+pkg.version+".zip", "Cometvisu-"+pkg.version+".tar.gz" ]
+        src: [ "CometVisu-"+pkg.version+".zip", "CometVisu-"+pkg.version+".tar.gz" ]
       }
     },
     prompt: {
