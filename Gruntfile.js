@@ -37,14 +37,14 @@ module.exports = function(grunt) {
       }
     } ];
 
-    // Project configuration.
-    grunt.initConfig({
-      pkg : grunt.file.readJSON('package.json') || {},
+  // Project configuration.
+  grunt.initConfig({
+    pkg : grunt.file.readJSON('package.json') || {},
 
-      // license header adding
-      usebanner: {
-        dist: {
-          options: {
+    // license header adding
+    usebanner: {
+      dist: {
+        options: {
           position: 'top',
           replace: true,
           linebreak: true,
@@ -125,7 +125,7 @@ module.exports = function(grunt) {
           //'icon/iconconfig.js',
           'lib/templateengine.js',
           'designs/**/*.*',
-          'plugins/**/*.{js,css,png,jpf,ttf,svg}'
+          'plugins/**/*.{js,css,png,jpf,ttf,svg,map}'
         ],
         dest: 'release/cometvisu.appcache'
       }
@@ -350,6 +350,29 @@ module.exports = function(grunt) {
       }
     }
 
+    // karma unit testing
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      },
+      //continuous integration mode: run tests once in PhantomJS browser.
+      continuous: {
+        configFile: 'karma.conf.js',
+        singleRun: true,
+        browsers: ['PhantomJS']
+      }
+    },
+
+    // protractor tests (selenium)
+    protractor: {
+      options: {
+        configFile: "test/protractor/conf.js", // Default config file
+        args: {
+          // Arguments passed to the command
+        }
+      },
+      all: {}
+    }
   });
 
   // custom task to update the version in the releases demo config
@@ -380,6 +403,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-chmod');
   grunt.loadNpmTasks('grunt-github-changes');
+  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-protractor-runner');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
