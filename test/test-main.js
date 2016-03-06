@@ -26,6 +26,7 @@ require.config({
     'jquery.ui.touch-punch':    'dependencies/jquery.ui.touch-punch',
     'jquery.svg.min':           'dependencies/jquery.svg.min',
     'cometvisu-client':         'lib/cometvisu-client',
+    'cometvisu-mockup':         'lib/mockup/Client',
     'cometvisu-client-openhab': 'lib/cometvisu-client-openhab',
     'iconhandler':              'lib/iconhandler',
     'pagepartshandler':         'lib/pagepartshandler',
@@ -63,6 +64,7 @@ require.config({
     'widget_wgplugin_info':     'structure/pure/wgplugin_info',
     'transform_default':        'transforms/transform_default',
     'transform_knx':            'transforms/transform_knx',
+    'transform_mockup':         'lib/mockup/transform_knx',
     'transform_oh':             'transforms/transform_oh'
   },
   'shim': {

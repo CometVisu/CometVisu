@@ -59,7 +59,7 @@ define(['transform_default', 'transform_oh'], function(Transform) {
     });
 
     it('should transform datetime values', function() {
-      var dateString = "12 24, 2016 16:13:52";
+      var dateString = "2016-12-24T16:13:52Z";
       var date = new Date(dateString);
       expect(Transform.Transform['OH:datetime'].encode(date)).toEqual(date.toLocaleDateString());
       expect(Transform.Transform['OH:datetime'].decode(dateString)).toEqual(date);
@@ -69,13 +69,13 @@ define(['transform_default', 'transform_oh'], function(Transform) {
     });
 
     it('should transform time values', function() {
-      var date = new Date("12 24, 2016 16:13:52");
+      var date = new Date("2016-12-24T16:13:52Z");
       expect(Transform.Transform['OH:time'].encode(date)).toEqual(date.toLocaleTimeString());
       date = new Date();
       date.setHours(12);
       date.setMinutes(53);
       date.setSeconds(13);
-      expect(Transform.Transform['OH:time'].decode("12:53:13")).toEqual(date);
+      expect(Transform.Transform['OH:time'].decode("12:53:13").getTime()).toEqual(date.getTime());
 
       expect(Transform.Transform['OH:time'].decode('NaN')).toEqual("-");
       expect(Transform.Transform['OH:time'].decode('Uninitialized')).toEqual("-");
