@@ -363,7 +363,18 @@ module.exports = function(grunt) {
       }
     },
 
-    // protractor tests (selenium)
+    // start a simple webserver to serve the cometvisu
+    connect: {
+      server: {
+        options: {
+          port: 8000,
+          hostname: '*',
+          base: "src"
+        }
+      }
+    },
+
+    // protractor end-to-end tests
     protractor: {
       options: {
         configFile: "test/protractor/conf.js", // Default config file
@@ -376,6 +387,7 @@ module.exports = function(grunt) {
         options: {
           args: {
             capabilities: {
+              // phantomjs is not recommended by the protractor team, and chrome seems not wo work on travis
               browserName: 'firefox'
             }
           }
@@ -414,12 +426,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-github-changes');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
+
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
+  grunt.registerTask('e2e', ['connect', 'protractor:travis'])
 
   grunt.registerTask('default', 'build');
 };
