@@ -373,9 +373,11 @@ module.exports = function(grunt) {
       },
       all: {},
       travis: {
-        args: {
-          capabilities: {
-            'browserName': 'firefox'
+        options: {
+          args: {
+            capabilities: {
+              browserName: 'firefox'
+            }
           }
         }
       }
