@@ -356,7 +356,7 @@ module.exports = function(grunt) {
         configFile: 'karma.conf.js'
       },
       //continuous integration mode: run tests once in PhantomJS browser.
-      continuous: {
+      travis: {
         configFile: 'karma.conf.js',
         singleRun: true,
         browsers: ['PhantomJS']
@@ -371,7 +371,14 @@ module.exports = function(grunt) {
           // Arguments passed to the command
         }
       },
-      all: {}
+      all: {},
+      travis: {
+        args: {
+          capabilities: {
+            'browserName': 'firefox'
+          }
+        }
+      }
     }
   });
 

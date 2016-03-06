@@ -75,7 +75,7 @@ define(['transform_default', 'transform_oh'], function(Transform) {
       date.setHours(12);
       date.setMinutes(53);
       date.setSeconds(13);
-      expect(Transform.Transform['OH:time'].decode("12:53:13").getTime()).toEqual(date.getTime());
+      expect(Transform.Transform['OH:time'].decode("12:53:13").toLocaleTimeString("de-DE")).toEqual(date.toLocaleTimeString("de-DE"));
 
       expect(Transform.Transform['OH:time'].decode('NaN')).toEqual("-");
       expect(Transform.Transform['OH:time'].decode('Uninitialized')).toEqual("-");
