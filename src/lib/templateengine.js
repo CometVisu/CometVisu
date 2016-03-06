@@ -28,8 +28,6 @@
 // global var
 var templateEngine;
 
-
-
 define( [
   'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagepartshandler',
   'cometvisu-client', 'cometvisu-mockup', 'cometvisu-client-openhab',
