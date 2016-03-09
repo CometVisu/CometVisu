@@ -110,5 +110,44 @@ var BasePage = function () {
     });
   };
 
+  /**
+   * Get the last message that has been send to the backend (aka write message)
+   * @returns {*}
+   */
+  this.getLastWrite = function() {
+    return browser.executeScript('return window.lastWrite;');
+  };
+
+  /**
+   * Send an update to the backend
+   * @param update
+   */
+  this.sendUpdate = function(address, value) {
+    var data = {
+      i: new Date().getTime(),
+      d: {}
+    };
+    data.d[address] = value;
+    browser.executeScript('window._receive('+JSON.stringify(data)+')');
+  };
+
+  /**
+   * Get widget data
+   * @param path
+   * @returns {Map}
+   */
+  this.getWidgetData = function(path) {
+    return browser.executeScript('return window._widgetDataGet("'+path+'");');
+  };
+
+  this.getWidgetAddress = function(path) {
+    this.getWidgetData(path).then(function(data) {
+      var address;
+      for (var addr in data.address) {
+        return addr;
+      }
+    });
+
+  };
 };
 module.exports = new BasePage();

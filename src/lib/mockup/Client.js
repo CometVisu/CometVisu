@@ -18,10 +18,13 @@ define( [], function() {
     {
       if( json )
       {
-        console.log(json.d);
         this.update( json.d );
       }
     };
+
+    // make some functions accessible for the protactor runner
+    window._receive = this.receive.bind(this);
+    window._widgetDataGet = templateEngine.widgetDataGet.bind(templateEngine);
 
     /**
      * Subscribe to the addresses in the parameter
@@ -39,7 +42,8 @@ define( [], function() {
     this.write = function( address, value )
     {
       var ts = new Date().getTime();
-      this.lastWrite = {
+      // store in window, to make it accessible for protractor
+      window.lastWrite = {
         address: address,
         value:  value,
         ts: ts
