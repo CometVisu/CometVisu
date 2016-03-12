@@ -81,10 +81,10 @@ define([ 'jquery' ], function( $ ) {
   
   this.getNavbarsVisibility = function(page) {
     if (templateEngine.currentPageNavbarVisibility==null) {
-      var pageData=templateEngine.widgetDataGet(page.attr('id'));
       if (page==null) {
         page = templateEngine.currentPage;
       }
+      var pageData=templateEngine.widgetDataGet(page.attr('id'));
       if (page==null || pageData==null) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
       var shownavbar = (pageData.shownavbar != undefined ? pageData.shownavbar : {
         top : 'inherit',
