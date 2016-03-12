@@ -1,4 +1,9 @@
-// conf.js
+/**
+ * Protractor end-to-end test settings
+ *
+ * @author Tobias Bräutigam
+ * @since 2016
+ */
 exports.config = {
   framework: 'jasmine',
   //seleniumAddress: 'http://localhost:4444/wd/hub',

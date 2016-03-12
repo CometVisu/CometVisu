@@ -1,4 +1,8 @@
-
+/**
+ * The basic PageObject supplies generic helerp functions needed for testing the CometVisu app
+ * @author Tobias Bräutigam
+ * @since 2016
+ */
 var BasePage = function () {
   /**
    * wait and verify that a page is loaded
