@@ -929,3 +929,30 @@ body .controllerinput .handlervalue {
   margin-top: -1.5em;
   font-size: 75%;
 }
+
+body .infoaction .widget_container.widgetinfo .widget {
+  border-radius: 0 0 0 2px;
+  background: hsl(345,35%,95%);
+  box-shadow: 0px 1px 5px 0px #000;
+}
+
+.infoaction .widgetinfo .widget .label {
+  white-space: nowrap;
+  display: inline-block;
+  width: inherit;
+}
+
+body .infoaction .widget_container.widgetinfo .widget .actor {
+  float: none;
+  display: inline-block;
+  width: inherit;
+}
+
+.navbar .pagejump .info {
+  background: hsl(345,35%,95%);
+  color: hsl(345,10%,20%);
+}
+
+#navbarLeft .navbar .pagejump .info,
+#navbarRight .navbar .pagejump .info {
+}
