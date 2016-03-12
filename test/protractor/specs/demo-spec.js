@@ -105,4 +105,52 @@ describe('cometvisu demo config test:', function () {
       });
     });
   });
+
+  it('should use a slider', function() {
+    var widget = element.all(by.css(".activePage .slide .actor")).first();
+
+    // get widget data from parent
+    widget.element(by.xpath("parent::div/parent::div")).getAttribute("id").then(function(id) {
+      cvDemo.getWidgetData(id).then(function (data) {
+        var address;
+        for (var addr in data.address) {
+          address = addr;
+          break;
+        }
+
+        // find the slider knob
+        var knob = widget.element(by.css(".ui-slider-handle"));
+        browser.actions().mouseDown(knob).mouseMove(knob, {x: 20, y:0}).mouseUp(knob).perform();
+
+        cvDemo.getLastWrite().then(function (lastWrite) {
+          expect(lastWrite.value).toEqual(5.5);
+        });
+
+        var borderWith = 1; // depending from design, but as the demo is in pure design, we use a hardcoded value here
+
+        widget.getLocation().then(function(rangePosition) {
+          // move the slider by updates from backend
+          knob.getLocation().then(function (pos) {
+            // slider min
+            cvDemo.sendUpdate(address, data.min);
+            // give the slider some time to reach its position
+            browser.sleep(1000);
+            knob.getLocation().then(function (newPos) {
+              expect(newPos.x).toEqual(rangePosition.x+borderWith);
+              expect(newPos.y).toEqual(pos.y);
+            });
+
+            // slider max
+            cvDemo.sendUpdate(address, data.max);
+            // give the slider some time to reach its position
+            browser.sleep(1000);
+            knob.getLocation().then(function (newPos) {
+              expect(newPos.x).toEqual(rangePosition.x + rangePosition.width - pos.width - borderWith);
+              expect(newPos.y).toEqual(pos.y);
+            });
+          });
+        });
+      });
+    });
+  });
 });
