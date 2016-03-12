@@ -1,4 +1,9 @@
-// create the demo PageObject
+/**
+ * Create the Demo page test object
+ * @type {BasePage|*|exports|module.exports}
+ * @author Tobias Bräutigam
+ * @since 2016
+ */
 var basePage = require("../pages/BasePage.js");
 
 var CometVisuDemo = function () {

@@ -1,3 +1,9 @@
+/**
+ * Karma configuration
+ *
+ * @author Tobias Bräutigam
+ * @since 2016
+ */
 var allTestFiles = [];
 var TEST_REGEXP = /(spec|rest)\.js$/i;
 

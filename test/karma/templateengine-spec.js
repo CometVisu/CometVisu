@@ -1,3 +1,9 @@
+/**
+ * Unit tests for the templateengine
+ *
+ * @author Tobias Bräutigam
+ * @since 2016
+ */
 define(['jquery', 'templateengine'], function($, TemplateEngine) {
 
   describe('just checking', function() {
