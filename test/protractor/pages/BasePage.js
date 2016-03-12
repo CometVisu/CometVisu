@@ -112,10 +112,18 @@ var BasePage = function () {
 
   /**
    * Get the last message that has been send to the backend (aka write message)
-   * @returns {*}
+   * @returns {Map}
    */
   this.getLastWrite = function() {
-    return browser.executeScript('return window.lastWrite;');
+    return browser.executeScript('return window.writeHistory[window.writeHistory.length-1];');
+  };
+
+  /**
+   * Get the compelte list of write messages, which have been send to the backend
+   * @returns {Array}
+   */
+  this.getWriteHistory = function() {
+    return browser.executeScript('return window.writeHistory;');
   };
 
   /**
