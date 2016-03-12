@@ -25,6 +25,7 @@ define( [], function() {
     // make some functions accessible for the protactor runner
     window._receive = this.receive.bind(this);
     window._widgetDataGet = templateEngine.widgetDataGet.bind(templateEngine);
+    window.writeHistory = [];
 
     /**
      * Subscribe to the addresses in the parameter
@@ -43,11 +44,11 @@ define( [], function() {
     {
       var ts = new Date().getTime();
       // store in window, to make it accessible for protractor
-      window.lastWrite = {
+      window.writeHistory.push({
         address: address,
         value:  value,
         ts: ts
-      };
+      });
 
       // send update
       var answer = {
@@ -56,10 +57,6 @@ define( [], function() {
       };
       answer.d[address] = value;
       this.receive(answer);
-    };
-
-    this.getLastWrite = function() {
-      return this.lastWrite;
     };
   }
 

@@ -26,7 +26,7 @@ describe('cometvisu demo config test:', function () {
     expect(cvDemo.getPageTitle()).toEqual('Format Test');
   });
 
-  it('should click a switch', function() {
+  it('should use a switch', function() {
     var widget = element.all(by.css(".activePage .switch .actor")).first();
 
     // get widget data from parent
@@ -52,6 +52,56 @@ describe('cometvisu demo config test:', function () {
         // send update via backend
         cvDemo.sendUpdate(address, 0);
         expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+      });
+    });
+  });
+
+  it('should use a trigger', function() {
+    var widget = element.all(by.css(".activePage .trigger .actor")).first();
+
+    // get widget data from parent
+    widget.element(by.xpath("parent::div/parent::div")).getAttribute("id").then(function(id) {
+      cvDemo.getWidgetData(id).then(function (data) {
+        var sendValue = data.sendValue;
+
+        widget.click();
+        expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+        cvDemo.getLastWrite().then(function (lastWrite) {
+          expect(lastWrite.value).toEqual(sendValue);
+        });
+        widget.click();
+        expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+        cvDemo.getLastWrite().then(function (lastWrite) {
+          expect(lastWrite.value).toEqual(sendValue);
+        });
+      });
+    });
+  });
+
+  it('should use a pushbutton', function() {
+    var widget = element.all(by.css(".activePage .pushbutton .actor")).first();
+
+    // get widget data from parent
+    widget.element(by.xpath("parent::div/parent::div")).getAttribute("id").then(function(id) {
+      cvDemo.getWidgetData(id).then(function (data) {
+        var address;
+        for (var addr in data.address) {
+          address = addr;
+          break;
+        }
+
+        browser.actions().mouseDown(widget).perform();
+
+        expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
+        cvDemo.getLastWrite().then(function (lastWrite) {
+          expect(lastWrite.value).toEqual(data.downValue);
+        });
+
+        browser.actions().mouseUp(widget).perform();
+        expect(widget.element(by.css(".value")).getText()).toEqual('An');
+        cvDemo.getLastWrite().then(function (lastWrite) {
+          expect(lastWrite.value).toEqual(data.upValue);
+        });
       });
     });
   });
