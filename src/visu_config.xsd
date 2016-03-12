@@ -33,6 +33,7 @@
         <xsd:attribute ref="transform" use="required" />
         <xsd:attribute ref="mode" use="optional" />
         <xsd:attribute name="variant" type="xsd:string" use="optional" />
+        <xsd:attribute name="format-pos" type="xsd:decimal" use="optional" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>

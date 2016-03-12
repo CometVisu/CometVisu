@@ -158,9 +158,6 @@ define( ['jquery'], function($) {
       var value = data;
     }
     
-    if( !('formatValueCache' in widgetData) )
-      widgetData["formatValueCache"] = {};
-    
     widgetData.basicvalue = value; // store it to be able to supress sending of unchanged data
     
     // #2: map it to a value the user wants to see
@@ -170,14 +167,14 @@ define( ['jquery'], function($) {
     if( widgetData.precision )
       value = Number( value ).toPrecision( widgetData.precision );
     if( widgetData.format ) {
-      if( undefined !== ga )
-        widgetData.formatValueCache[ga] = value;
-      var argList = [widgetData.format];
+      if( !('formatValueCache' in widgetData) )
+        widgetData.formatValueCache = [widgetData.format];
+      
+      var argListPos = (widgetData.address && widgetData.address[ga])? widgetData.address[ga][3] : 1;
+      
+      widgetData.formatValueCache[argListPos] = value;
 
-      for (var addr in widgetData.address)
-        argList.push(widgetData.formatValueCache[addr]);
-
-      value = sprintf.apply(this, argList);
+      value = sprintf.apply(this, widgetData.formatValueCache);
     }
     widgetData.value = value;
     if (undefined !== value && value.constructor == Date)
@@ -349,11 +346,15 @@ define( ['jquery'], function($) {
   this.makeAddressList = function( element, handleVariant, id ) {
     var address = {};
     element.find('address').each( function(){ 
-      var src = this.textContent;
-      var transform = this.getAttribute('transform');
+      var 
+        src = this.textContent,
+        transform = this.getAttribute('transform'),
+        formatPos = +(this.getAttribute('format-pos') || 1)|0, // force integer
+        mode = 1|2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+      
       if ((!src) || (!transform)) // fix broken address-entries in config
         return;
-      var mode = 1|2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+      
       switch( this.getAttribute('mode') )
       {
         case 'disable':
@@ -372,7 +373,7 @@ define( ['jquery'], function($) {
       var variantInfo = handleVariant ? handleVariant( src, transform, mode, this.getAttribute('variant') ) : [true, undefined];
       if( (mode&1) && variantInfo[0]) // add only addresses when reading from them
         templateEngine.addAddress( src, id );
-      address[ src ] = [ transform, mode, variantInfo[1] ];
+      address[ src ] = [ transform, mode, variantInfo[1], formatPos ];
       return; // end of each-func
     });
     return address;

@@ -1,15 +1,50 @@
 
 module.exports = function(grunt) {
-  var pkg = grunt.file.readJSON('package.json') || {};
+  var 
+    pkg = grunt.file.readJSON('package.json') || {},
+    isDirectoryRegEx = /\/$/,
+    filesToCompress = [ {
+      expand: true, 
+      cwd: '.', 
+      src: [
+        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 
+        'release/config', 
+        'release/config/visu_config.xml', 
+        'release/config/visu_config_previewtemp.xml', 
+        'release/config/structure_custom.js', 
+        'release/config/backup', 
+        'release/config/media',
+        'release/demo/**',
+        'release/dependencies/**',
+        'release/designs/**',
+        'release/editor/**',
+        'release/icon/**',
+        '!release/icon/knx-uf-iconset/raw_480x480/**',
+        '!release/icon/knx-uf-iconset/knx-uf-iconset/**',
+        'release/lib/**',
+        'release/plugins/**',
+        'release/upgrade/**',
+        'release/*',
+        '!release/build.txt'
+      ], 
+      dest: 'cometvisu/', 
+      mode: function( filename ){
+        var isConfig = filename.indexOf( 'release/config' ) > -1;
+        
+        if( isDirectoryRegEx.test( filename ) )
+          return isConfig ? 0777 : 0755;
+        return isConfig ? 0666 : 0644;
+      }
+    } ];
 
-  // Project configuration.
-  grunt.initConfig({
-    pkg : grunt.file.readJSON('package.json') || {},
+    // Project configuration.
+    grunt.initConfig({
+      pkg : grunt.file.readJSON('package.json') || {},
 
-    // license header adding
-    usebanner: {
-      dist: {
-        options: {
+      // license header adding
+      usebanner: {
+        dist: {
+          options: {
           position: 'top',
           replace: true,
           linebreak: true,
@@ -67,7 +102,6 @@ module.exports = function(grunt) {
           timestamp: true,
           hash: true,
           network: [
-            'index_external_editor_test.html',
             'check_config.php',
             'designs/get_designs.php',
             'config/structure_custom.js',
@@ -87,19 +121,11 @@ module.exports = function(grunt) {
           'visu_config.xsd',
           'dependencies/require-2.1.15.min.js',
           'dependencies/css.js',
-          'icon/comet_64_ff8000.png',
-          'icon/comet_webapp_icon_114.png',
-          'icon/comet_webapp_icon_144.png',
-          'icon/comet_webapp_icon_android_36.png',
-          'icon/comet_webapp_icon_android_48.png',
-          'icon/comet_webapp_icon_android_72.png',
-          'icon/comet_webapp_icon_android_96.png',
-          'icon/comet_webapp_icon_android_144.png',
-          'icon/comet_webapp_icon_android_192.png',
-          'icon/iconconfig.js',
+          'icon/*.png',
+          //'icon/iconconfig.js',
           'lib/templateengine.js',
           'designs/**/*.*',
-          'plugins/**/*.{js,css,png,jpf,ttf,svg,map}'
+          'plugins/**/*.{js,css,png,jpf,ttf,svg}'
         ],
         dest: 'release/cometvisu.appcache'
       }
@@ -134,6 +160,10 @@ module.exports = function(grunt) {
             { name: 'plugins/colorchooser/structure_plugin',   exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/diagram/structure_plugin',        exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/gauge/structure_plugin',          exclude: ['structure_custom', 'css', 'normalize']  },
+            { name: 'plugins/infoaction/structure_plugin',     exclude: ['structure_custom', 'css', 'normalize']  },
+            { name: 'plugins/link/structure_plugin',           exclude: ['structure_custom', 'css', 'normalize']  },
+            { name: 'plugins/mobilemenu/structure_plugin',     exclude: ['structure_custom', 'css', 'normalize']  },
+            { name: 'plugins/openweathermap/structure_plugin', exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/rss/structure_plugin',            exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/rsslog/structure_plugin',         exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/strftime/structure_plugin',       exclude: ['structure_custom', 'css', 'normalize']  },
@@ -195,24 +225,20 @@ module.exports = function(grunt) {
           mode: 'tgz',
           level: 9,
           archive: function() {
-            return "Cometvisu-"+pkg.version+".tar.gz";
+            return "CometVisu-"+pkg.version+".tar.gz";
           }
         },
-        files: [
-          { expand: true, cwd: 'release', src: ['./**'], dest: 'cometvisu/' } // includes files in path
-        ]
+        files: filesToCompress
       },
       zip: {
         options: {
           mode: 'zip',
           level: 9,
           archive: function() {
-            return "Cometvisu-"+pkg.version+".zip";
+            return "CometVisu-"+pkg.version+".zip";
           }
         },
-        files: [
-          { expand: true, cwd: 'release', src: ['./**'], dest: 'cometvisu/' } // includes files in path
-        ]
+        files: filesToCompress
       }
     },
 
@@ -226,7 +252,7 @@ module.exports = function(grunt) {
         }
       },
       files: {
-        src: [ "Cometvisu-"+pkg.version+".zip", "Cometvisu-"+pkg.version+".tar.gz" ]
+        src: [ "CometVisu-"+pkg.version+".zip", "CometVisu-"+pkg.version+".tar.gz" ]
       }
     },
     prompt: {
@@ -275,14 +301,51 @@ module.exports = function(grunt) {
           done();
         }
       }
+    },
+
+    bump: {
+      options: {
+        files: ['package.json'],
+        updateConfigs: [],
+        commit: true,
+        commitMessage: 'Release v%VERSION%',
+        commitFiles: ['package.json'],
+        createTag: true,
+        tagName: 'v%VERSION%',
+        tagMessage: 'Version %VERSION%',
+        push: true,
+        pushTo: 'upstream',
+        gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d',
+        globalReplace: false,
+        prereleaseName: "rc",
+        metadata: '',
+        regExp: false
+      }
+    },
+    
+    chmod: {
+      options: {
+        mode: 'a+w'
+      },
+      configFiles: {
+        // Target-specific file/dir lists and/or options go here.
+        src: ['release/config', 'release/config/**']
+      }
     }
+
   });
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
-    var filename = 'release/config/demo/visu_config_demo.xml';
+    var filename = 'release/demo/visu_config_demo.xml';
     var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
+    filename = 'release/demo/visu_config_2d3d.xml';
+    config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+    grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
+    filename = 'release/index.html';
+    config = grunt.file.read(filename, { encoding: "utf8" }).toString();
+    grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
   // Load the plugin tasks
@@ -297,13 +360,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-file-creator');
+  grunt.loadNpmTasks('grunt-bump');
+  grunt.loadNpmTasks('grunt-chmod');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'jscs', 'clean', 'usebanner', 'requirejs', 'manifest', 'file-creator', 'update-demo-config', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
-
-  grunt.registerTask('release', [ 'prompt', 'default', 'github-release' ]);
+  grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
 
   grunt.registerTask('default', 'build');
 };

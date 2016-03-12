@@ -194,10 +194,24 @@ if( ($config == '' || $config != false) && ($action != false) )
 } else {
   // nothing special to do - so at least do a few sanity checks
   if( !is_writeable( 'config/visu_config.xml' ) )
+  {
+    if( chmod( 'config/visu_config.xml', 0666 ) ) // try to fix it
+    {
+      if( !is_writeable( 'config/visu_config.xml' ) )
+        $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
+    } else
     $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
+  }
   
   if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
-    $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+  { 
+    if( chmod( 'config/visu_config_previewtemp.xml', 0666 ) ) // try to fix it
+    {
+      if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
+        $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+    } else
+      $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+  }
   
   if( !is_readable( 'demo/visu_config_empty.xml' ) )
     $actionDone = $_['Installation error - please check file permissions!'].' (demo/visu_config_empty.xml)';
