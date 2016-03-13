@@ -1,6 +1,6 @@
 /**
  * Create the Demo page test object
- * @type {BasePage|*|exports|module.exports}
+ *
  * @author Tobias Bräutigam
  * @since 2016
  */
