@@ -4,7 +4,6 @@
  * @author Tobias Bräutigam
  * @since 2016
  */
-
 var cvDemo = require('../pages/Demo');
 
 describe('cometvisu demo config test:', function () {

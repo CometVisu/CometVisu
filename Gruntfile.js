@@ -1,3 +1,46 @@
+var mocks = [];
+function captureMock() {
+  return function (req, res, next) {
+
+    // match on POST requests starting with /mock
+    if (req.method === 'POST' && req.url.indexOf('/mock') === 0) {
+
+      // everything after /mock is the path that we need to mock
+      var path = req.url.substring(5);
+
+      var body = '';
+      req.on('data', function (data) {
+        body += data;
+      });
+      req.on('end', function () {
+
+        mocks[path] = body;
+
+        res.writeHead(200);
+        res.end();
+      });
+    } else {
+      next();
+    }
+  };
+}
+
+function mock() {
+  return function (req, res, next) {
+    var url = req.url;
+    var found = url.match(/(\?_=[0-9]+)$/);
+    if (found) {
+      url = url.replace(found[1],"");
+    }
+    var mockedResponse = mocks[url];
+    if (mockedResponse) {
+      res.write(mockedResponse);
+      res.end();
+    } else {
+      next();
+    }
+  };
+}
 
 module.exports = function(grunt) {
   var 
@@ -369,7 +412,13 @@ module.exports = function(grunt) {
         options: {
           port: 8000,
           hostname: '*',
-          base: "src"
+          base: "src",
+          middleware : function(connect, options, middlewares) {
+            // inject out mockup middlewares before the default ones
+            middlewares.unshift(captureMock());
+            middlewares.unshift(mock());
+            return middlewares;
+          }
         }
       }
     },
