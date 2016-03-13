@@ -331,6 +331,23 @@ module.exports = function(grunt) {
         // Target-specific file/dir lists and/or options go here.
         src: ['release/config', 'release/config/**']
       }
+    },
+
+    githubChanges: {
+      dist : {
+        options: {
+          // Owner and Repository options are mandatory
+          owner : 'CometVisu',
+          repository : 'CometVisu',
+          branch: 'develop',
+          // betweenTags: 'master...develop', // seems to be not supported at the moment
+          onlyPulls: true,
+          useCommitBody: true,
+          // auth: true, // auth creates a stall for me :(
+          file: 'ChangeLog.tmp',
+          verbose: true
+        }
+      }
     }
 
   });
@@ -362,6 +379,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-file-creator');
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-chmod');
+  grunt.loadNpmTasks('grunt-github-changes');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
