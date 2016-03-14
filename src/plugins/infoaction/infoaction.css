@@ -11,7 +11,7 @@
   z-index: 1;
 }
 
-.infoaction .widget_container.widgetinfo .widget { 
+.infoaction .widgetinfo .widget {
 	font-size: 0.8em;
 	min-width: 30px;
   	border-radius: 0 0 0 30px;
