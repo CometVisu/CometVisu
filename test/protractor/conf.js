@@ -7,7 +7,7 @@
 exports.config = {
   framework: 'jasmine',
   //seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['**/metal-spec.js'],
+  specs: ['**/*spec.js'],
 
   // so not use a selenium server
   directConnect: true,
