@@ -3,8 +3,33 @@
  */
 define([], function() {
   'use strict';
-  this.icons = {};
-  <% for (var i = 0; i < glyphs.length; i++) { %>
-  this.icons['<%= glyphs[i] %>'] = '<%= codepoints[i] %>'; <% } %>
-  return icons;
+  var __instance;
+
+  function IconSet() {
+    this.icons = {
+    <% for (var i = 0; i < glyphs.length; i++) { %>
+      '<%= glyphs[i] %>' : '<%= codepoints[i] %>', <% } %>
+    };
+
+    /**
+    * Returns the character in the webfont which represents the icon
+    */
+    this.getIcon = function(name) {
+      if (this.icons.hasOwnProperty(name)) {
+        return String.fromCodePoint("0x"+this.icons[name]);
+      }
+      else {
+        return null;
+      }
+    };
+  }
+  return {
+    // simulate a singleton
+    getInstance : function() {
+      if (!__instance) {
+        __instance = new IconSet();
+      }
+      return __instance;
+    }
+  };
 });
