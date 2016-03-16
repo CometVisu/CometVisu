@@ -126,7 +126,8 @@ module.exports = function(grunt) {
           //'icon/iconconfig.js',
           'lib/templateengine.js',
           'designs/**/*.*',
-          'plugins/**/*.{js,css,png,jpf,ttf,svg}'
+          'plugins/**/*.{js,css,png,jpf,ttf,svg}',
+          'icon/font/*.{ttf,eot,woff}'
         ],
         dest: 'release/cometvisu.appcache'
       }
