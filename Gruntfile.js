@@ -424,12 +424,12 @@ module.exports = function(grunt) {
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'jscs', 'clean', 'generate-font', 'file-creator', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'jscs', 'clean:release', 'clean:archives', 'file-creator', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
 
   // create a chained task for webfont generation
-  grunt.registerTask('generate-font', ['svgmin', 'webfont', 'exec:make_woff', 'exec:make_eot']);
+  grunt.registerTask('generate-font', ['clean:font', 'svgmin', 'webfont', 'exec:make_woff', 'exec:make_eot']);
 
   grunt.registerTask('default', 'build');
 };
