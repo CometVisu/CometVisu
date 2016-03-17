@@ -17,7 +17,7 @@
 
 /**
  * The JavaScript library that implements the CometVisu protocol.
- * 
+ *
  * @title CometVisu Client
  * @exports comentvisu-client
  * @reqires jQuery
@@ -29,13 +29,13 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
   // module global static variables and methods:
 
   var
-    // used for backwards compability
+  // used for backwards compability
     backendNameAliases = {
       'cgi-bin' : 'default',
       'oh'      : 'openhab',
       'oh2'     : 'openhab2'
     },
-    // setup of the different known backends
+  // setup of the different known backends
     backends = {
       'default' : {
         name      : 'default',
@@ -82,7 +82,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         }
       }
     },
-    // definition of the different supported transport layers (OSI layer 4).
+  // definition of the different supported transport layers (OSI layer 4).
     transportLayers = {
       'long-polling' : function( session ){
         var self = this;
@@ -92,20 +92,20 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         this.retryCounter      = 0; // count number of retries (reset with each valid response)
 
         /**
-          * This function gets called once the communication is established
-          * and session information is available.
-          * 
-          * @param json
-          * @method handleSession
-          */
+         * This function gets called once the communication is established
+         * and session information is available.
+         *
+         * @param json
+         * @method handleSession
+         */
         this.handleSession = function(json) {
           self.sessionId = json.s;
           self.version = json.v.split('.', 3);
 
           if (0 < parseInt(self.version[0])
-              || 1 < parseInt(self.version[1]))
+            || 1 < parseInt(self.version[1]))
             alert('ERROR CometVisu Client: too new protocol version ('
-                + json.v + ') used!');
+              + json.v + ') used!');
 
           // send first request
           self.running = true;
@@ -132,12 +132,12 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
           }
         };
         /**
-          * This function gets called once the communication is established
-          * and session information is available
-          * 
-          * @method handleRead
-          * @param json
-          */
+         * This function gets called once the communication is established
+         * and session information is available
+         *
+         * @method handleRead
+         * @param json
+         */
         this.handleRead = function(json) {
           if( this.doRestart || (!json && (-1 == this.lastIndex)) ) {
             if (session.running) { // retry initial request
@@ -221,19 +221,19 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         };
 
         /**
-          * This function gets called on an error FIXME: this should be a
-          * prototype, so that the application developer can override it
-          * 
-          * @method handleError
-          * @param xhr
-          * @param str
-          * @param excptObj
-          */
+         * This function gets called on an error FIXME: this should be a
+         * prototype, so that the application developer can override it
+         *
+         * @method handleError
+         * @param xhr
+         * @param str
+         * @param excptObj
+         */
         this.handleError = function(xhr, str, excptObj) {
           if (session.running && xhr.readyState != 4
-              && !this.doRestart && xhr.status !== 0) // ignore error when
-            // connection is
-            // irrelevant
+            && !this.doRestart && xhr.status !== 0) // ignore error when
+          // connection is
+          // irrelevant
           {
             var readyState = 'UNKNOWN';
             switch (xhr.readyState) {
@@ -254,22 +254,22 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
                 break;
             }
             alert('Error! Type: "' + str + '" ExceptionObject: "'
-                + excptObj + '" readyState: ' + readyState);
+              + excptObj + '" readyState: ' + readyState);
           }
         };
 
         /**
-          * manipulates the header of the current ajax query before it is
-          * been send to the server
-          * 
-          * @param xhr
-          * @method beforeSend
-          */
+         * manipulates the header of the current ajax query before it is
+         * been send to the server
+         *
+         * @param xhr
+         * @method beforeSend
+         */
         this.beforeSend = function(xhr) {
           for ( var headerName in this.resendHeaders) {
             if (this.resendHeaders[headerName] != undefined)
               xhr.setRequestHeader(headerName,
-                  this.resendHeaders[headerName]);
+                this.resendHeaders[headerName]);
           }
           for ( var headerName in this.headers) {
             if (this.headers[headerName] != undefined)
@@ -278,15 +278,15 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         };
 
         /**
-          * read the header values of a response and stores them to the
-          * resendHeaders array
-          * 
-          * @method readResendHeaderValues
-          */
+         * read the header values of a response and stores them to the
+         * resendHeaders array
+         *
+         * @method readResendHeaderValues
+         */
         this.readResendHeaderValues = function() {
           for ( var headerName in this.resendHeaders) {
             this.resendHeaders[headerName] = this.xhr
-            .getResponseHeader(headerName);
+              .getResponseHeader(headerName);
           }
         };
 
@@ -296,27 +296,27 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         this.isConnectionRunning = function() {
           return true;
         }
-        
+
         /**
-          * Restart the read request, e.g. when the watchdog kicks in
-          * 
-          * @method restart
-          * @param {bool} doFullReload reload all data and not only restart connection
-          */
+         * Restart the read request, e.g. when the watchdog kicks in
+         *
+         * @method restart
+         * @param {bool} doFullReload reload all data and not only restart connection
+         */
         this.restart = function( doFullReload ) {
           if( doFullReload )
             thislastIndex = -1; // reload all data
-            
+
           self.doRestart = true;
           self.abort();
           self.handleRead(); // restart
           self.doRestart = false;
         };
         /**
-          * Abort the read request properly
-          * 
-          * @method restart
-          */
+         * Abort the read request properly
+         *
+         * @method restart
+         */
         this.abort = function() {
           if (this.xhr && this.xhr.abort) {
             this.xhr.abort();
@@ -329,38 +329,38 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
       },
       'sse' : function( session ){
         var self = this;
-        
+
         /**
-          * This function gets called once the communication is established
-          * and session information is available
-          * 
-          * @method handleSession
-          */
+         * This function gets called once the communication is established
+         * and session information is available
+         *
+         * @method handleSession
+         */
         this.handleSession = function(json) {
           self.sessionId = json.s;
           self.version = json.v.split('.', 3);
 
           if (0 < parseInt(self.version[0])
-              || 1 < parseInt(self.version[1]))
+            || 1 < parseInt(self.version[1]))
             alert('ERROR CometVisu Client: too new protocol version ('
-                + json.v + ') used!');
+              + json.v + ') used!');
 
           this.connect();
         };
 
         /**
-          * Establish the SSE connection
-          */
+         * Establish the SSE connection
+         */
         this.connect = function() {
           // send first request
           self.running = true;
           this.eventSource = new EventSource(session
               .getResourcePath("read")
-              + "?" + session.buildRequest());
+            + "?" + session.buildRequest());
           this.eventSource.addEventListener('message', this.handleMessage,
-              false);
+            false);
           this.eventSource.addEventListener('error', this.handleError,
-              false);
+            false);
           this.eventSource.onerror = function(event) {
             console.log("connection lost");
           };
@@ -371,8 +371,8 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         };
 
         /**
-          * Handle messages send from server as Server-Sent-Event
-          */
+         * Handle messages send from server as Server-Sent-Event
+         */
         this.handleMessage = function(e) {
           var json = JSON.parse(e.data);
           var data = json.d;
@@ -381,8 +381,8 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         };
 
         /**
-          * Handle errors
-          */
+         * Handle errors
+         */
         this.handleError = function(e) {
           if (e.readyState === EventSource.CLOSED) {
             // Connection was closed.
@@ -391,29 +391,29 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
             self.connect();
           }
         };
-        
+
         /**
          * Check if the connection is still running.
-         * 
+         *
          * @returns {Boolean}
          */
         this.isConnectionRunning = function() {
           return this.eventSource.readyState === EventSource.OPEN;
         };
-        
+
         /**
-          * Restart the read request, e.g. when the watchdog kicks in
-          * 
-          * @method restart
-          */
+         * Restart the read request, e.g. when the watchdog kicks in
+         *
+         * @method restart
+         */
         this.restart = function() {
           self.abort();
           self.connect();
         };
-        
+
         /**
          * Abort the read request properly
-         * 
+         *
          * @method restart
          */
         this.abort = function() {
@@ -428,10 +428,10 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
    * The CometVisuClient handles all communication issues to supply the user
    * ob this object with reliable realtime data.
    * Itself it can be seens as the session layer (layer 5) according to the OSI
-   * model. 
-   * 
+   * model.
+   *
    * @class CometVisuClient
-   * @constructor 
+   * @constructor
    * @alias module:cometvisu-client
    * @param {String}      backendName name of the backend (cgi-bin|default|oh|openhab|oh2|openhab2)
    * @param {String|null} initPath    optional path to login ressource
@@ -447,84 +447,83 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
     if (!(this instanceof CometVisuClient)) {
       return new CometVisuClient();
     }
-  }
-  
-  /**
-  * manipulates the header of the current ajax query before it is been send to the server
-  */
-  this.beforeSend = function( xhr ) {
-    for (var headerName in this.resendHeaders) {
-      if (this.resendHeaders[headerName]!=undefined)
-        xhr.setRequestHeader(headerName,this.resendHeaders[headerName]);
-    }
-    for (var headerName in this.headers) {
-      if (this.headers[headerName]!=undefined)
-        xhr.setRequestHeader(headerName,this.headers[headerName]);
-    }
-  }
-  
-  /**
-  * read the header values of a response and stores them to the resendHeaders array
-  * @method readResendHeaderValues
-  */
-  this.readResendHeaderValues = function() {
-    for (var headerName in this.resendHeaders) {
-      this.resendHeaders[headerName] = this.xhr.getResponseHeader(headerName);
-    }
-  }
 
-  // ////////////////////////////////////////////////////////////////////////
-  // Definition of the private variables
+    /**
+     * manipulates the header of the current ajax query before it is been send to the server
+     */
+    this.beforeSend = function (xhr) {
+      for (var headerName in this.resendHeaders) {
+        if (this.resendHeaders[headerName] != undefined)
+          xhr.setRequestHeader(headerName, this.resendHeaders[headerName]);
+      }
+      for (var headerName in this.headers) {
+        if (this.headers[headerName] != undefined)
+          xhr.setRequestHeader(headerName, this.headers[headerName]);
+      }
+    }
 
-  var 
-    self = this,
-    backend,
-      watchdog = (function() {
-        var 
+    /**
+     * read the header values of a response and stores them to the resendHeaders array
+     * @method readResendHeaderValues
+     */
+    this.readResendHeaderValues = function () {
+      for (var headerName in this.resendHeaders) {
+        this.resendHeaders[headerName] = this.xhr.getResponseHeader(headerName);
+      }
+    }
+
+    // ////////////////////////////////////////////////////////////////////////
+    // Definition of the private variables
+
+    var
+      self = this,
+      backend,
+      watchdog = (function () {
+        var
           last = new Date(),
           hardLast = last,
           maxConnectionAge,
           maxDataAge,
-          aliveCheckFunction = function() {
+          aliveCheckFunction = function () {
             var now = new Date();
-            if( now - last < maxConnectionAge && self.currentTransport.isConnectionRunning() )
+            if (now - last < maxConnectionAge && self.currentTransport.isConnectionRunning())
               return;
-            self.currentTransport.restart( now - hardLast > maxDataAge );
+            self.currentTransport.restart(now - hardLast > maxDataAge);
             last = now;
           };
         return {
-          start: function( watchdogTimer ) {
+          start: function (watchdogTimer) {
             maxConnectionAge = backend.maxConnectionAge;
             maxDataAge = backend.maxDataAge;
-            setInterval( aliveCheckFunction, watchdogTimer * 1000 );
+            setInterval(aliveCheckFunction, watchdogTimer * 1000);
           },
-          ping : function( fullReload ) {
+          ping: function (fullReload) {
             last = new Date();
-            if( fullReload ) {
+            if (fullReload) {
               hardLast = last;
             }
           }
         };
       })();
-    
-  // ////////////////////////////////////////////////////////////////////////
-  // Definition of the public variables
-    
-  this.addresses = []; // the subscribed addresses
-  this.initialAddresses = []; // the addresses which should be loaded
-  // before the subscribed addresses
-  this.filters = []; // the subscribed filters
-  this.user = ''; // the current user
-  this.pass = ''; // the current password
-  this.device = ''; // the current device ID
-  this.running = false; // is the communication running at the moment?
-  this.currentTransport; // the currently used transport layer
 
-  Object.defineProperty( this, 'backend', {
-      get: function() {
+    // ////////////////////////////////////////////////////////////////////////
+    // Definition of the public variables
+
+    this.addresses = []; // the subscribed addresses
+    this.initialAddresses = []; // the addresses which should be loaded
+    // before the subscribed addresses
+    this.filters = []; // the subscribed filters
+    this.user = ''; // the current user
+    this.pass = ''; // the current password
+    this.device = ''; // the current device ID
+    this.running = false; // is the communication running at the moment?
+    this.currentTransport; // the currently used transport layer
+
+    Object.defineProperty(this, 'backend', {
+      get: function () {
         return backend;
       },
-      set: function( newBackend ) {
+      set: function (newBackend) {
         // override default settings
         backend = $.extend({}, backends['default'], newBackend);
         if (backend.transport === 'sse' && backend.transportFallback) {
@@ -538,44 +537,46 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         if (backend.baseURL && backend.baseURL.substr(-1) !== "/") {
           backend.baseURL += "/";
         }
-        self.currentTransport = new transportLayers[backend.transport]( self );
+        self.currentTransport = new transportLayers[backend.transport](self);
       }
     });
-    
-  Object.defineProperty( this, 'watchdog', {
-      get: function(){ return watchdog; },
+
+    Object.defineProperty(this, 'watchdog', {
+      get: function () {
+        return watchdog;
+      },
       writeable: false
     });
 
-  // ////////////////////////////////////////////////////////////////////////
-  // Definition of the private methods
-    
-  // ... none ...
-    
-  // ////////////////////////////////////////////////////////////////////////
-  // Definition of the public methods
+    // ////////////////////////////////////////////////////////////////////////
+    // Definition of the private methods
 
-  /* return the relative path to a resource on the currently used backend
-   * 
-   * @method getResourcePath
-   * 
-   * @param name
-   *          {String} Name of the resource (e.g. login, read, write, rrd)
-   * @returns {String} relative path to the resource
-   */
-  this.getResourcePath = function(name) {
+    // ... none ...
+
+    // ////////////////////////////////////////////////////////////////////////
+    // Definition of the public methods
+
+    /* return the relative path to a resource on the currently used backend
+     *
+     * @method getResourcePath
+     *
+     * @param name
+     *          {String} Name of the resource (e.g. login, read, write, rrd)
+     * @returns {String} relative path to the resource
+     */
+    this.getResourcePath = function (name) {
       return backend.baseURL + backend.resources[name];
     };
 
-  /**
-   * Subscribe to the addresses in the parameter. The second parameter
-   * (filter) is optional
-   * 
-   * @param addresses
-   * @param filters
-   * @method subscribe
-   */
-  this.subscribe = function(addresses, filters) {
+    /**
+     * Subscribe to the addresses in the parameter. The second parameter
+     * (filter) is optional
+     *
+     * @param addresses
+     * @param filters
+     * @method subscribe
+     */
+    this.subscribe = function (addresses, filters) {
       var startCommunication = !this.addresses.length; // start when
       // addresses were
       // empty
@@ -588,13 +589,13 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         this.login();
     };
 
-  /**
-   * This function starts the communication by a login and then runs the
-   * ongoing communication task
-   * 
-   * @method login
-   */
-  this.login = function() {
+    /**
+     * This function starts the communication by a login and then runs the
+     * ongoing communication task
+     *
+     * @method login
+     */
+    this.login = function () {
       var request = {};
       if ('' !== this.user)
         request.u = this.user;
@@ -604,103 +605,103 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
         request.d = this.device;
 
       $.ajax({
-        url       : initPath ? initPath : this.getResourcePath("login"),
-        dataType  : 'json',
-        context   : this,
-        data      : request,
-        success   : this.handleLogin
+        url: initPath ? initPath : this.getResourcePath("login"),
+        dataType: 'json',
+        context: this,
+        data: request,
+        success: this.handleLogin
       });
     };
 
-  /**
-   * Handles login response, applies backend configuration if send by
-   * backend and forwards to the configurated transport handleSession
-   * function
-   * 
-   * @param json
-   */
-  this.handleLogin = function(json) {
+    /**
+     * Handles login response, applies backend configuration if send by
+     * backend and forwards to the configurated transport handleSession
+     * function
+     *
+     * @param json
+     */
+    this.handleLogin = function (json) {
       // read backend configuration if send by backend
       if (json.c) {
-        self.backend = $.extend( self.backend, json.c); // assign itself to run setter
+        self.backend = $.extend(self.backend, json.c); // assign itself to run setter
       }
-      this.currentTransport.handleSession( json );
-      
+      this.currentTransport.handleSession(json);
+
       // once the connection is set up, start the watchdog
-      watchdog.start( 5 );
+      watchdog.start(5);
     };
 
-  /**
-   * This function stops an ongoing connection
-   * 
-   * @method stop
-   */
-  this.stop = function() {
+    /**
+     * This function stops an ongoing connection
+     *
+     * @method stop
+     */
+    this.stop = function () {
       this.running = false;
       if (this.currentTransport.abort) {
         this.currentTransport.abort();
       }
     };
 
-  /**
-   * Build the URL part that contains the addresses and filters
-   * @method buildRequest
-   * @param addresses
-   * @return {String} 
-   */
-  this.buildRequest = function(addresses) {
+    /**
+     * Build the URL part that contains the addresses and filters
+     * @method buildRequest
+     * @param addresses
+     * @return {String}
+     */
+    this.buildRequest = function (addresses) {
       addresses = addresses ? addresses : this.addresses;
-      var 
+      var
         requestAddresses = (addresses.length) ? 'a='
-          + addresses.join('&a=') : '',
+        + addresses.join('&a=') : '',
         requestFilters = (this.filters.length) ? 'f='
-          + this.filters.join('&f=') : '';
+        + this.filters.join('&f=') : '';
       return 's=' + this.session + '&' + requestAddresses
-          + ((addresses.length && this.filters.length) ? '&' : '')
-          + requestFilters;
+        + ((addresses.length && this.filters.length) ? '&' : '')
+        + requestFilters;
     };
 
-  /**
-   * This function sends a value
-   * @param address
-   * @param value
-   * @method write
-   */
-  this.write = function(address, value) {
+    /**
+     * This function sends a value
+     * @param address
+     * @param value
+     * @method write
+     */
+    this.write = function (address, value) {
       /**
        * ts is a quirk to fix wrong caching on some Android-tablets/Webkit;
        * could maybe selective based on UserAgent but isn't that costly on writes
        */
       var ts = new Date().getTime();
       $.ajax({
-        url       : this.getResourcePath("write"),
-        dataType  : 'json',
-        context   : this,
-        data      : 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts
+        url: this.getResourcePath("write"),
+        dataType: 'json',
+        context: this,
+        data: 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts
       });
     };
-    
-  // ////////////////////////////////////////////////////////////////////////
-  // Constructor
-    
-  // init default settings
-  if (backendNameAliases[backendName]) {
-    backendName = backendNameAliases[backendName];
-  }
 
-  if (backendName && backendName !== 'default') {
-    if ($.isPlainObject(backendName)) {
-      // override default settings
-      self.backend = $.extend({}, backends['default'], backendName);
-    } else if (backends[backendName]) {
-      // merge backend settings into default backend
-      self.backend = $.extend({}, backends['default'], backends[backendName]);
+    // ////////////////////////////////////////////////////////////////////////
+    // Constructor
+
+    // init default settings
+    if (backendNameAliases[backendName]) {
+      backendName = backendNameAliases[backendName];
     }
-  } else {
-    self.backend = backends['default'];
-  }
-  CometVisuClient.prototype.update = function(json) {
-  };
 
+    if (backendName && backendName !== 'default') {
+      if ($.isPlainObject(backendName)) {
+        // override default settings
+        self.backend = $.extend({}, backends['default'], backendName);
+      } else if (backends[backendName]) {
+        // merge backend settings into default backend
+        self.backend = $.extend({}, backends['default'], backends[backendName]);
+      }
+    } else {
+      self.backend = backends['default'];
+    }
+    CometVisuClient.prototype.update = function (json) {
+    };
+  }
   return CometVisuClient;
 });
