@@ -62,8 +62,7 @@ define( ['_common'], function( design ) {
    * @return BinaryExpression
    */
   create: function( element, path, flavour, type ) {
-    var self = this,
-        $e = $(element);
+    var $e = $(element);
     
     // create the main structure
     var ret_val = basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update );
@@ -84,7 +83,7 @@ define( ['_common'], function( design ) {
     var max  = parseFloat( $e.attr('max')  || datatype_max || 100 );
     var step = parseFloat( $e.attr('step') || 0.5 );
     var send_on_finish = $e.attr('send_on_finish') || 'false';
-    var data = templateEngine.widgetDataInsert( path, {
+    templateEngine.widgetDataInsert( path, {
       //???///'events':   $(actor).data( 'events' ),
       'min'            : min,
       'max'            : max,
@@ -93,44 +92,47 @@ define( ['_common'], function( design ) {
       'valueInternal'  : true,
       'inAction'       : false
     });
-    
-    // check provided address-items for at least one address which has write-access
-    var readonly = true;
-    for (var addrIdx in data.address) {
-      if (data.address[addrIdx][1] & 2) {
-        // write-access detected --> no read-only mode
-        readonly = false;
-        break;
-      }
-    }
-    
-    // create the actor
-    templateEngine.postDOMSetupFns.push( function(){
-      var $actor = $( '#' + path + ' .actor' );
-      $actor.slider({
-        step:    step,
-        min:     min,
-        max:     max, 
-        range:   'min', 
-        animate: true,
-        send_on_finish : send_on_finish,
-        start:   self.slideStart,
-        change:  self.slideChange
-      });
-      // disable slider interaction if in read-only mode --> just show the value
-      if (readonly) {
-        $actor.slider({ disabled: true });
-      }
-      $actor.on( 'slide', self.slideUpdateValue );
-      
-      if( data['format']) {
-        // initially setting a value
-        $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
-      }
-    });
-    
+    this.construct(path);
     return ret_val + '<div class="actor"/></div>';
   },
+
+    construct: function(path) {
+      var data = templateEngine.widgetDataGet(path);
+      // check provided address-items for at least one address which has write-access
+      var readonly = true;
+      for (var addrIdx in data.address) {
+        if (data.address[addrIdx][1] & 2) {
+          // write-access detected --> no read-only mode
+          readonly = false;
+          break;
+        }
+      }
+
+      // create the actor
+      templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+        var $actor = $( '#' + path + ' .actor' );
+        $actor.slider({
+          step:    data.step,
+          min:     data.min,
+          max:     data.max,
+          range:   'min',
+          animate: true,
+          send_on_finish : data.send_on_finish,
+          start:   this.slideStart,
+          change:  this.slideChange
+        });
+        // disable slider interaction if in read-only mode --> just show the value
+        if (readonly) {
+          $actor.slider({ disabled: true });
+        }
+        $actor.on( 'slide', this.slideUpdateValue );
+
+        if( data['format']) {
+          // initially setting a value
+          $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
+        }
+      }, this);
+    },
   /**
    * Description
    * @method update

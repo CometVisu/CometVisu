@@ -52,9 +52,9 @@ define( ['_common'], function( design ) {
     data.value = $e.attr('value');
     
     // initially setting a value
-    templateEngine.postDOMSetupFns.push( function(){
+    templateEngine.messageBroker.subscribeOnce("setup.dom.finished", function() {
       basicdesign.defaultUpdate( undefined, data.value, $('#'+path), true, path );
-    });
+    }, this);
     
     return ret_val + '</div>';
   },

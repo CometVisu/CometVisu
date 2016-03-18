@@ -115,7 +115,7 @@ define( ['_common'], function( design ) {
 
       actor += '</div>';
       var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
-      var data = templateEngine.widgetDataInsert( path, {
+      templateEngine.widgetDataInsert( path, {
         'path'    : path,
         'address':   address,
         'refresh':   refresh,
@@ -127,14 +127,17 @@ define( ['_common'], function( design ) {
         'sendValue': $e.attr('sendValue') || "",
         'update_type':      $e.attr('type')
       } );
+      this.construct(path);
+      return ret_val + actor + '</div>';
+    },
 
+    construct : function(path) {
+      var data = templateEngine.widgetDataGet(path);
       if (data.refresh) {
-        templateEngine.postDOMSetupFns.push( function(){
+        templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
           templateEngine.setupRefreshAction( path, data.refresh );
         });
       }
-
-      return ret_val + actor + '</div>';
     },
 
     /**

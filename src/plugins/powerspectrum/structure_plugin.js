@@ -195,7 +195,7 @@ define( ['structure_custom',
       }
     
       var ret_val = templateEngine.design.createDefaultWidget( 'powerspectrum', $e, path, flavour, type, this.update, handleVariant );
-      var data = templateEngine.widgetDataInsert( path, {
+      templateEngine.widgetDataInsert( path, {
         displayType: displayType,
         singlePhase: singlePhase,
         spectrum: singlePhase ? [ setupSpectrum() ] : [ setupSpectrum(-0.26), setupSpectrum(0), setupSpectrum(0.26) ],
@@ -204,43 +204,48 @@ define( ['structure_custom',
         name2: $e.attr('name2') || 'L2',
         name3: $e.attr('name3') || 'L3',
         curve: singlePhase ? [ setupCurve() ] : [ setupCurve(), setupCurve(), setupCurve() ],
-        current: []
-      });
-
-      var 
-        pageId = templateEngine.getPageIdForWidgetId( element, path ),
-        showCurve = $e.attr('spectrumonly') === 'true' ? false : true,
-        colors = [
+        current: [],
+        showCurve: $e.attr('spectrumonly') === 'true' ? false : true,
+        showLegend: $e.attr('showlegend') === 'true' ? true : false,
+        colors: [
           $e.attr('limitcolor') || "#edc240", // default directly from flot code
           $e.attr('color1')     || "#afd8f8",
           $e.attr('color2')     || "#cb4b4b",
           $e.attr('color3')     || "#4da74d"
-        ];
-      
+        ]
+      });
+
       // create the actor
       var actor = '<div class="actor clickable">';
       if( showCurve )
         actor += '<div class="diagram_inline curve">loading...</div>';
       actor += '<div class="diagram_inline spectrum">loading...</div></div>';
+
+      this.construct(path);
       
-      templateEngine.postDOMSetupFns.push( function(){
-        var 
-          diagramCurve = showCurve && $( '#' + path + ' .actor div.curve' ).empty(),
-          optionsCurve = showCurve && {
-            colors: colors,
-            legend: {
-              show: $e.attr('showlegend') === 'true' ? true : false // default to false
+      return ret_val + actor + '</div>';
+    },
+
+    construct: function(path) {
+      var data = templateEngine.widgetDataGet(path);
+      templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+        var
+          diagramCurve = data.showCurve && $( '#' + path + ' .actor div.curve' ).empty(),
+          optionsCurve = data.showCurve && {
+              colors: data.colors,
+              legend: {
+                show: data.showLegend // default to false
+              },
+              xaxis: {
+                show: false
+              },
+              yaxis: {
+                show: false
+              }
             },
-            xaxis: {
-              show: false
-            },
-            yaxis: {
-              show: false
-            }
-          },
           diagramSpectrum = $( '#' + path + ' .actor div.spectrum' ).empty(),
           optionsSpectrum = {
-            colors: colors,
+            colors: data.colors,
             series: {
               bars: {
                 show: true,
@@ -251,24 +256,23 @@ define( ['structure_custom',
             },
             bars: {
               align: "center",
-              barWidth: singlePhase ? 0.75 : 0.25
+              barWidth: data.singlePhase ? 0.75 : 0.25
             },
             legend: {
-              show: $e.attr('showlegend') === 'false' ? false : true // default to true
+              show: data.showLegend // default to true
             },
             xaxis: {
               show: false
             },
             yaxis: {
               show: false
-            },
+            }
           };
-        data.plotCurve = showCurve && $.plot(diagramCurve, createDatasetCurve( data ), optionsCurve);
+        data.plotCurve = data.showCurve && $.plot(diagramCurve, createDatasetCurve( data ), optionsCurve);
         data.plot = $.plot(diagramSpectrum, createDatasetSpectrum( data ), optionsSpectrum);
       });
-      
-      return ret_val + actor + '</div>';
     },
+
     update: function( ga, data ) {
       var 
         element = $(this),

@@ -58,7 +58,7 @@ require.config({
   }
 });
 
-define( ['structure_custom',
+define( ['structure_custom', 'MessageBroker',
                   'plugins/diagram/dep/flot/jquery.flot.min',
                   'plugins/diagram/dep/flot/jquery.flot.touch.min',
                   'plugins/diagram/dep/flot/jquery.flot.canvas.min',
@@ -67,7 +67,7 @@ define( ['structure_custom',
                   'plugins/diagram/dep/flot/jquery.flot.axislabels',
                   'plugins/diagram/dep/flot/jquery.flot.tooltip.min',
                   'plugins/diagram/dep/flot/jquery.flot.navigate.min'
-  ], function( VisuDesign_Custom ) {
+  ], function( VisuDesign_Custom, MessageBroker ) {
     "use strict";
 
     var cache = {};
@@ -196,19 +196,18 @@ define( ['structure_custom',
         actor = '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
         
         data.init = true;
-        
-        templateEngine.callbacks[ pageId ].exitingPageChange.push( function(a,b){
+
+        MessageBroker.getInstance().subscribe("path."+pageId+".exitingPageChange", function(a,b) {
           if( data.refresh ) {
             clearInterval( data.refreshFn );
           }
-        });
-        
-        templateEngine.callbacks[ pageId ].beforePageChange.push( function(){
+        }, this);
+        MessageBroker.getInstance().subscribe("path."+pageId+".beforePageChange", function() {
           // update diagram data
           if( !data.init )
             loadDiagramData( path, data.plot, false, false );
-        });
-        templateEngine.callbacks[ pageId ].duringPageChange.push( function(){
+        }, this);
+        MessageBroker.getInstance().subscribe("path."+pageId+".duringPageChange", function() {
           // create diagram when it's not already existing
           if( data.init )
             initDiagram( path, false );

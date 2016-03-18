@@ -60,7 +60,7 @@ define( ['_common'], function( design ) {
     }
     var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn );
     // and fill in widget specific data
-    var data = templateEngine.widgetDataInsert( path, {
+    templateEngine.widgetDataInsert( path, {
       'sendValue'  : $e.attr('value' )                || 0,
       'shorttime'  : parseFloat($e.attr('shorttime')) || -1,
       'shortValue' : $e.attr('shortvalue')            || 0
@@ -68,14 +68,16 @@ define( ['_common'], function( design ) {
     
     // create the actor
     var actor = '<div class="actor switchUnpressed"><div class="value"></div></div>';
-    
-    // initially setting a value
-    templateEngine.postDOMSetupFns.push( function(){
-      basicdesign.defaultUpdate( undefined, data['sendValue'], $('#'+path), true, path );
-    });
+
     return ret_val + actor + '</div>';
   },
-  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+    construct : function(path) {
+      var data = templateEngine.widgetDataGet(path);
+      // initially setting a value
+      templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+        basicdesign.defaultUpdate( undefined, data['sendValue'], $('#'+path), true, path );
+      });
+    },
   /**
    * Description
    * @method action

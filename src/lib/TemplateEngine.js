@@ -41,7 +41,7 @@
 //
 define([
   'jquery', '_common', 'structure_custom', 'TrickOMatic', 'PageHandler', 'PagePartsHandler',
-  'CometVisuClient', 'CometVisuMockup', 'EventHandler',
+  'CometVisuClient', 'CometVisuMockup', 'EventHandler', 'MessageBroker',
   'Compatibility', 'jquery-ui', 'strftime',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'IconHandler', 
   'widget_break', 'widget_designtoggle',
@@ -53,7 +53,7 @@ define([
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
   'widget_video', 'widget_wgplugin_info', 
   'TransformDefault', 'TransformKnx', 'TransformOpenHab'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup, EventHandler ) {
+], function( $, design, VisuDesign_Custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup, EventHandler, MessageBroker ) {
   "use strict";
 
   var instance;
@@ -78,6 +78,7 @@ define([
   this.pagePartsHandler = new PagePartsHandler();
     
   this.eventHandler = new EventHandler(this);
+  this.messageBroker = MessageBroker.getInstance();
   
   var rememberLastPage = false;
   this.currentPage = null;
@@ -100,7 +101,7 @@ define([
   var mappings = {}; // store the mappings
   var stylings = {}; // store the stylings
  
-  var ga_list = {};
+  this.ga_list = {};
   this.widgetData = {}; // hash to store all widget specific data
   /**
    * Return (reference to) widgetData object by path.
@@ -149,7 +150,6 @@ define([
    */
   var pathRegEx = /^id(_[0-9]+)+$/;
 
-  this.callbacks = {}; // Hash of functions to call during page change
   this.main_scroll;
   this.old_scroll = '';
   this.visu;
@@ -183,25 +183,26 @@ define([
     function update(json) {
       for( var key in json ) {
         //$.event.trigger('_' + key, json[key]);
-        if( !(key in ga_list) )
+        if( !(key in thisTemplateEngine.ga_list) )
           continue;
         
         var data = json[ key ];
-        ga_list[ key ].forEach( function( id ){
+        thisTemplateEngine.ga_list[ key ].forEach( function( id ){
           if( typeof id === 'string' )
           {
-            var 
-              element = document.getElementById( id ),
-              type = element.dataset.type || 'page', // only pages have no datatype set
-              updateFn = thisTemplateEngine.design.creators[ type ].update;
-            if( updateFn )
-            {
-              var children = element.children;
-              if( children[0] )
-                updateFn.call( children[0], key, data );
-              else {
-                updateFn.call( element, key, data );
+            var element = document.getElementById( id );
+            if (element) {
+              var type = element.dataset.type || 'page'; // only pages have no datatype set
+              var updateFn = thisTemplateEngine.design.creators[type].update;
+              if (updateFn) {
+                var children = element.children;
+                if (children[0])
+                  updateFn.call(children[0], key, data);
+                else
+                  console.log(element, children, type); // DEBUG FIXME
               }
+            } else {
+              console.error("no element with id %s found", id);
             }
             //console.log( element, type, updateFn );
           } else if( typeof id === 'function' ) {
@@ -286,14 +287,14 @@ define([
   };
   
   this.addAddress = function( address, id ) {
-    if( address in ga_list )
-      ga_list[ address ].push( id );
+    if( address in thisTemplateEngine.ga_list )
+      thisTemplateEngine.ga_list[ address ].push( id );
     else
-      ga_list[ address ] = [ id ];
+      thisTemplateEngine.ga_list[ address ] = [ id ];
   };
   
   this.getAddresses = function() {
-    return Object.keys(ga_list);
+    return Object.keys(thisTemplateEngine.ga_list);
   };
 
   this.bindActionForLoadingFinished = function(fn) {
@@ -1014,12 +1015,6 @@ define([
     });
     });
   };
-
-  /**
-   * Array with all functions that need to be called once the DOM tree was set
-   * up.
-   */
-  this.postDOMSetupFns = [];
   
   function setup_page() {
     // and now setup the pages
@@ -1037,17 +1032,49 @@ define([
       $('link[href*="mobile.css"]').each(function(){
         this.media = 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)';
       });
-      
-      var page = $('pages > page', xml)[0]; // only one page element allowed...
-  
-      thisTemplateEngine.create_pages(page, 'id');
-      thisTemplateEngine.design.getCreator('page').createFinal();
+
+      var cache = localStorage.getItem(thisTemplateEngine.configSuffix+".dom");
+      var body = $('body');
+      var configHash = (new XMLSerializer()).serializeToString(xml).hashCode();
+
+      if (cache) {
+        // check if cache is still valid
+        if (localStorage.getItem(thisTemplateEngine.configSuffix+".configHash") != configHash) {
+          console.log("invalidating cache");
+          // cache invalid
+          cache = null;
+          localStorage.removeItem(thisTemplateEngine.configSuffix+".dom");
+          localStorage.removeItem(thisTemplateEngine.configSuffix+".configHash");
+          localStorage.removeItem(thisTemplateEngine.configSuffix+".data");
+          localStorage.removeItem(thisTemplateEngine.configSuffix+".addresses");
+        }
+      }
+
+      if (cache) {
+        console.log("using cache");
+        thisTemplateEngine.widgetData = JSON.parse(localStorage.getItem(thisTemplateEngine.configSuffix+".data"));
+        thisTemplateEngine.ga_list = JSON.parse(localStorage.getItem(thisTemplateEngine.configSuffix+".addresses"));
+        body.empty();
+        body.prepend( cache );
+        thisTemplateEngine.create_objects();
+      } else {
+        console.log("not using cache");
+        var page = $('pages > page', xml)[0]; // only one page element allowed...
+
+        thisTemplateEngine.create_pages(page, 'id');
+        thisTemplateEngine.design.getCreator('page').createFinal();
+      }
       profileCV( 'setup_page created pages' );
-      
-      thisTemplateEngine.postDOMSetupFns.forEach( function( thisFn ){
-        thisFn();
-      });
-      profileCV( 'setup_page finished postDOMSetupFns' );
+
+      thisTemplateEngine.messageBroker.publish("setup.dom.finished");
+      if (!cache) {
+        // cache dom + data
+        localStorage.setItem(thisTemplateEngine.configSuffix+".dom", body.html());
+        localStorage.setItem(thisTemplateEngine.configSuffix+".configHash", configHash);
+        localStorage.setItem(thisTemplateEngine.configSuffix+".data", JSON.stringify(thisTemplateEngine.widgetData));
+        localStorage.setItem(thisTemplateEngine.configSuffix+".addresses", JSON.stringify(thisTemplateEngine.ga_list));
+      }
+      profileCV( 'setup_page finished setup.dom.finished' );
       
       var startpage = 'id_';
       if ($.getUrlVar('startpage')) {
@@ -1095,7 +1122,7 @@ define([
       // reaction on browser back button
       window.onpopstate = function(e) {
         // where do we come frome?
-        lastpage = e.state;
+        var lastpage = e.state;
         if (lastpage) {
           // browser back button takes back to the last page
           thisTemplateEngine.scrollToPage(lastpage, 0, true);
@@ -1121,7 +1148,7 @@ define([
       }
       var addressesToSubscribe = thisTemplateEngine.getAddresses();
       if( 0 !== addressesToSubscribe.length )
-        thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
+        thisTemplateEngine.visu.subscribe(addressesToSubscribe);
       
       xml = null; // not needed anymore - free the space
       
@@ -1143,13 +1170,6 @@ define([
   this.create_pages = function(page, path, flavour, type) {
     var creator = thisTemplateEngine.design.getCreator(page.nodeName);
     
-    thisTemplateEngine.callbacks[ path + '_' ] = {
-      exitingPageChange: [],// called when the current page is left
-      beforePageChange: [], // called as soon as a page change is known
-      duringPageChange: [], // called when the page is theoretical visible, i.e. "display:none" is removed - CSS calculations shoud work now
-      afterPageChange: []   // called together with the global event when the transition is finished
-    };
-    
     var retval = creator.create(page, path, flavour, type);
 
     if( undefined === retval )
@@ -1170,6 +1190,19 @@ define([
       + (data.rowspanClass ? data.rowspanClass : '')
       + (data.containerClass ? data.containerClass : '')
       + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
+    }
+  };
+
+  this.create_objects = function() {
+    for (var path in thisTemplateEngine.widgetData) {
+      var data = thisTemplateEngine.widgetData[path];
+      if (data.address && data.updateFn) {
+        thisTemplateEngine.design.constructDefaultObject(path);
+      }
+      var creator = thisTemplateEngine.design.getCreator(data.type);
+      if (creator.construct) {
+        creator.construct(path);
+      }
     }
   };
   
@@ -1389,14 +1422,14 @@ define([
   };
 
   this.selectDesign = function() {
-    $body = $("body");
+    var $body = $("body");
 
     $("body > *").hide();
     $body.css({
       backgroundColor : "black"
     });
 
-    $div = $("<div id=\"designSelector\" />");
+    var $div = $("<div id=\"designSelector\" />");
     $div.css({
       background : "#808080",
       width : "400px",

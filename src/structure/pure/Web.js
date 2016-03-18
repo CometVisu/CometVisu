@@ -76,21 +76,25 @@ define( ['_common'], function( design ) {
     var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
   
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
-    var data = templateEngine.widgetDataInsert( path, {
+    templateEngine.widgetDataInsert( path, {
       'path'    : path,
       'address': address,
       'layout' : layout,
       'refresh': refresh
     } );
     
-    if (data.refresh) {
-      templateEngine.postDOMSetupFns.push( function(){
-        templateEngine.setupRefreshAction( path, data.refresh );
-      });
-    }
+    this.construct(path);
 
     return ret_val + actor + '</div>';
   },
+    construct : function(path) {
+      var data = templateEngine.widgetDataGet(path);
+      if (data.refresh) {
+        templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+          templateEngine.setupRefreshAction( path, data.refresh );
+        });
+      }
+    },
   /**
    * Description
    * @method update

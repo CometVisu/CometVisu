@@ -65,12 +65,15 @@ define( ['structure_custom', 'plugins/rss/dep/zrssfeed/jquery.zrssfeed' ], funct
           link:       $p.attr("link") || true,
           title:      $p.attr("title") || true
         });
-          
-      templateEngine.postDOMSetupFns.push( function(){
-          refreshRSS( path );
-        });
+
+      this.construct(path);
 
       return ret_val + label + actor + '</div>';
+    },
+    construct: function(path) {
+      templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+        refreshRSS( path );
+      });
     }
   });
 

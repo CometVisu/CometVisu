@@ -25,7 +25,7 @@
 // FIXME and TODO: This class is currently just a quick hack to get rid
 // of the jQuery-Tools Scrollable. It should be enhanced to allow different
 // page transition animations like blending, etc. pp.
-define([ 'jquery' ], function( $ ) {
+define([ 'jquery', 'MessageBroker' ], function( $, MessageBroker ) {
   "use strict";
   
   var
@@ -39,31 +39,24 @@ define([ 'jquery' ], function( $ ) {
     
     this.seekTo = function( target, speed )
     {
-      currentPath !== '' && templateEngine.callbacks[currentPath].exitingPageChange.forEach( function( callback ){
-        callback( currentPath, target );
-      });      
-      
-      var 
-        page = $('#' + target),
-        callbacks = templateEngine.callbacks[target];
-      
+
+      currentPath !== '' && MessageBroker.getInstance().publish("path."+currentPath+".exitingPageChange", currentPath, target);
+
+      var page = $('#' + target);
+
       if( 0 === page.length ) // check if page does exist
         return;
-    
-      callbacks.beforePageChange.forEach( function( callback ){
-        callback( target );
-      });
+
+      MessageBroker.getInstance().publish("path."+target+".beforePageChange", target);
 
       templateEngine.resetPageValues();
       
       templateEngine.currentPage = page;
 
       page.addClass('pageActive activePage');// show new page
-      
-      callbacks.duringPageChange.forEach( function( callback ){
-        callback( target );
-      });
-      
+
+      MessageBroker.getInstance().publish("path."+target+".duringPageChange", target);
+
       // update visibility of navbars, top-navigation, footer
       templateEngine.pagePartsHandler.updatePageParts( page, speed );
 
@@ -87,9 +80,7 @@ define([ 'jquery' ], function( $ ) {
         $('.pageActive', '#pages').removeClass('pageActive');
         templateEngine.currentPage.addClass('pageActive activePage');// show new page
         $('#pages').css('left', 0 );
-        currentPath !== '' && templateEngine.callbacks[currentPath].afterPageChange.forEach( function( callback ){
-          callback( currentPath );
-        });
+        currentPath !== '' && MessageBroker.getInstance().publish("path."+currentPath+".afterPageChange", currentPath);
       });
     };
     

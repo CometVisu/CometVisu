@@ -554,16 +554,22 @@ define( ['jquery'], function($) {
       'format'  : $element.attr('format'),
       'align'   : $element.attr('align'),
       'layout'  : layout,
-      'path'    : path
+      'path'    : path,
+      'updateFn': updateFn
     });
     var ret_val = '<div class="'+classes+'" ' + style + '>' + label;
-    if (address && updateFn!=undefined) {
-      templateEngine.postDOMSetupFns.push( function() {
-        // initially setting a value
-        updateFn.bind( $("#"+path), undefined, undefined );
-      });
-    }
+    this.constructDefaultObject(path);
     return ret_val;
+  };
+
+  this.constructDefaultObject = function(path) {
+    var data = templateEngine.widgetDataGet(path);
+    if (data.address && data.updateFn) {
+      templateEngine.messageBroker.subscribeOnce("setup.dom.finished", function() {
+        // initially setting a value
+        data.updateFn.bind( $("#"+path), undefined, undefined );
+      }, this);
+    }
   };
   
   /**

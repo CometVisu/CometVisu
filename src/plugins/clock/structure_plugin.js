@@ -26,7 +26,6 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
   VisuDesign_Custom.prototype.addCreator("clock", {
   that: this,
   create: function( page, path, flavour, type ) {
-    var that = this;
     var $p = $(page);
     var classes = templateEngine.design.setWidgetLayout( $p, path );
     var ret_val = '<div class="widget clearfix clock '+(classes?classes:'')+'">';
@@ -35,28 +34,32 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
 
     ret_val+='<div class="actor" style="width:200px;"></div>';
     
-    var data = templateEngine.widgetDataInsert( path, {
+    templateEngine.widgetDataInsert( path, {
       'value'   : new Date(),
       'address' : address,
       'type'    : 'clock'
     });
-    
-    templateEngine.postDOMSetupFns.push(function() {
-      var $actor = $("#"+path+" .actor");
-      $actor.svg({loadURL:'plugins/clock/clock_pure.svg',onLoad:function(svg){
-        $( svg.getElementById('HotSpotHour'  ) )
-          .draggable()
-          .bind('drag', {type: 'hour'  ,actor:$actor}, that.dragHelper )
-          .bind('dragstop', {actor:$actor}, that.dragAction );
-        $( svg.getElementById('HotSpotMinute') )
-          .draggable()
-          .bind('drag', {type: 'minute',actor:$actor}, that.dragHelper )
-          .bind('dragstop', {actor:$actor}, that.dragAction );
-      }});
-    });
+
+    this.construct(path);
+
     ret_val+="</div>";
     return ret_val;
   },
+    construct: function(path) {
+      templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+        var $actor = $("#"+path+" .actor");
+        $actor.svg({loadURL:'plugins/clock/clock_pure.svg',onLoad:function(svg){
+          $( svg.getElementById('HotSpotHour'  ) )
+            .draggable()
+            .bind('drag', {type: 'hour'  ,actor:$actor}, this.dragHelper )
+            .bind('dragstop', {actor:$actor}, this.dragAction );
+          $( svg.getElementById('HotSpotMinute') )
+            .draggable()
+            .bind('drag', {type: 'minute',actor:$actor}, this.dragHelper )
+            .bind('dragstop', {actor:$actor}, this.dragAction );
+        }});
+      }, this);
+    },
   update: function(e,d) { 
     var element = $(this);
     var value = templateEngine.design.defaultUpdate( e, d, element, undefined, element.parent().attr('id') );
