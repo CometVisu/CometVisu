@@ -391,7 +391,7 @@ module.exports = function(grunt) {
           verbose: true
         }
       }
-    }
+    },
 
     // karma unit testing
     karma: {
@@ -483,7 +483,7 @@ module.exports = function(grunt) {
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
 
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
-  grunt.registerTask('e2e', ['connect', 'protractor:travis'])
+  grunt.registerTask('e2e', ['connect', 'protractor:travis']);
 
   grunt.registerTask('default', 'build');
 };
