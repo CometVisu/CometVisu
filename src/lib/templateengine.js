@@ -151,6 +151,7 @@ require([
         else
           message += '.';
     }
+    message += '<br/><br/><a href="">Retry</a>';
     $('#loading').html(message);
   };
   // get the data once the page was loaded
