@@ -351,7 +351,7 @@ module.exports = function(grunt) {
           verbose: true
         }
       }
-    }
+    },
 
     // webfont generation
     webfont: {
