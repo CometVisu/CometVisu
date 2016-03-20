@@ -2,33 +2,6 @@
  * global CSS declarations for all designs 
  */
 
-@font-face {
-  font-family:"KNX-UF-Webfont";
-  src:url("../icon/font/KNX-UF-Webfont.eot?2e79de12a20743e15b07b2cbd7e08458");
-  src:url("../icon/font/KNX-UF-Webfont.eot?#iefix") format("embedded-opentype"),
-  url("../icon/font/KNX-UF-Webfont.woff?2e79de12a20743e15b07b2cbd7e08458") format("woff"),
-  url("../icon/font/KNX-UF-Webfont.ttf?2e79de12a20743e15b07b2cbd7e08458") format("truetype");
-  font-weight:normal;
-  font-style:normal;
-}
-
-.icon {
-
-  font-family:"KNX-UF-Webfont";
-
-  display:inline-block;
-  vertical-align:middle;
-  line-height:1;
-  font-weight:normal;
-  font-style:normal;
-  speak:none;
-  text-decoration:inherit;
-  text-transform:none;
-  text-rendering:auto;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
-
 body 
 { 
   -moz-user-select: none;
