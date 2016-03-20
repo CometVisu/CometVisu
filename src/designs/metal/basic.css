@@ -1007,7 +1007,7 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 	background-color: #ff8000;
 }
 /* infowidget in pagejumps */
-.navbar .pagejump .info {
+.navbar .infoaction.pagejump .widget_container.widgetinfo .widget.info {
 	font-size: 0.8em;
 	min-width: 20px;
   	border-radius: 20px;
@@ -1054,8 +1054,8 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 .infoaction > .label { padding: 0.3em; }
 .infoaction .widget_container.widgetaction .widget { padding-left:0; }
 .infoaction .widget_container.widgetinfo .widget {
-	background-color: #666 !important;
-	color: #999 !important;
+	background-color: #666;
+	color: #999;
 }
 .infoaction .widget_container.widgetinfo .widget .actor {
 	line-height: normal;
