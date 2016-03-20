@@ -1,18 +1,19 @@
 
 module.exports = function(grunt) {
-  var 
+  var
     pkg = grunt.file.readJSON('package.json') || {},
     isDirectoryRegEx = /\/$/,
+    fontName = "KNX-UF-Webfont",
     filesToCompress = [ {
-      expand: true, 
-      cwd: '.', 
+      expand: true,
+      cwd: '.',
       src: [
-        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 
-        'release/config', 
-        'release/config/visu_config.xml', 
-        'release/config/visu_config_previewtemp.xml', 
-        'release/config/structure_custom.js', 
-        'release/config/backup', 
+        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README',
+        'release/config',
+        'release/config/visu_config.xml',
+        'release/config/visu_config_previewtemp.xml',
+        'release/config/structure_custom.js',
+        'release/config/backup',
         'release/config/media',
         'release/demo/**',
         'release/dependencies/**',
@@ -26,25 +27,25 @@ module.exports = function(grunt) {
         'release/upgrade/**',
         'release/*',
         '!release/build.txt'
-      ], 
-      dest: 'cometvisu/', 
+      ],
+      dest: 'cometvisu/',
       mode: function( filename ){
         var isConfig = filename.indexOf( 'release/config' ) > -1;
-        
+
         if( isDirectoryRegEx.test( filename ) )
           return isConfig ? 0777 : 0755;
         return isConfig ? 0666 : 0644;
       }
     } ];
 
-    // Project configuration.
-    grunt.initConfig({
-      pkg : grunt.file.readJSON('package.json') || {},
+  // Project configuration.
+  grunt.initConfig({
+    pkg : grunt.file.readJSON('package.json') || {},
 
-      // license header adding
-      usebanner: {
-        dist: {
-          options: {
+    // license header adding
+    usebanner: {
+      dist: {
+        options: {
           position: 'top',
           replace: true,
           linebreak: true,
@@ -74,13 +75,13 @@ module.exports = function(grunt) {
               ' * @title  <%= title %> \n'+
               ' * @version <%= version %>\n'+
               ' */\n', {
-                  data: {
-                    filename: filename,
-                    modulename: modulename,
-                    title: "CometVisu " + modulename,
-                    author: pkg.authors[0].name+ " ["+pkg.authors[0].email+"]",
-                    version: pkg.version
-                  }
+                data: {
+                  filename: filename,
+                  modulename: modulename,
+                  title: "CometVisu " + modulename,
+                  author: pkg.authors[0].name+ " ["+pkg.authors[0].email+"]",
+                  version: pkg.version
+                }
               }
             );
           }
@@ -125,7 +126,8 @@ module.exports = function(grunt) {
           //'icon/iconconfig.js',
           'lib/templateengine.js',
           'designs/**/*.*',
-          'plugins/**/*.{js,css,png,jpf,ttf,svg}'
+          'plugins/**/*.{js,css,png,jpf,ttf,svg}',
+          'icon/font/*.{ttf,eot,woff}'
         ],
         dest: 'release/cometvisu.appcache'
       }
@@ -189,7 +191,7 @@ module.exports = function(grunt) {
     // javascript syntax checker
     jshint: {
       options: {
-       // reporter: require('jshint-stylish'),
+        // reporter: require('jshint-stylish'),
         ignores: [ "**/dependencies/**", "**/dep/**"]
       },
       all: [ 'src/**/*.js' ]
@@ -291,7 +293,8 @@ module.exports = function(grunt) {
 
     clean: {
       archives : ['*.zip', '*.gz'],
-      release: ['release/']
+      release: ['release/'],
+      font: ['src/icon/font/*']
     },
 
     "file-creator": {
@@ -322,7 +325,7 @@ module.exports = function(grunt) {
         regExp: false
       }
     },
-    
+
     chmod: {
       options: {
         mode: 'a+w'
@@ -347,6 +350,60 @@ module.exports = function(grunt) {
           file: 'ChangeLog.tmp',
           verbose: true
         }
+      }
+    },
+
+    // webfont generation
+    webfont: {
+      icons: {
+        src: [
+          'cache/icons/*.svg'
+        ],
+        dest: 'src/icon/font',
+        options: {
+          font: fontName,
+          normalize: true,
+          customOutputs: [{
+            template: 'src/lib/template/iconset.template',
+            dest: 'src/lib/iconset.js'
+          }],
+          autoHint: false
+        },
+        types: "ttf"
+      }
+    },
+
+    svgmin: {
+      options: {
+        plugins: [
+          {convertTransform: false}
+        ]
+      },
+      dist: {
+        files: [
+          {
+            expand: true,
+            cwd: 'external/knx-uf-iconset/raw_svg/',
+            src: '*.svg',
+            dest: 'cache/icons/'
+          },
+          {
+            expand: true,
+            cwd: 'src/icon/',
+            src: '*.svg',
+            dest: 'cache/icons/'
+          }
+        ]
+      }
+    },
+
+    // woff and eot generation is done with sfntool as it creates significantly smaller files
+    exec: {
+      make_woff: {
+        cmd: 'java -jar tools/sfnttool.jar -w src/icon/font/'+fontName+'.ttf src/icon/font/'+fontName+'.woff'
+      },
+      make_eot: {
+        cmd: 'java -jar tools/sfnttool.jar -e -x src/icon/font/'+fontName+'.ttf src/icon/font/'+fontName+'.eot'
       }
     }
 
@@ -380,12 +437,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-chmod');
   grunt.loadNpmTasks('grunt-github-changes');
+  grunt.loadNpmTasks('grunt-svgmin');
+  grunt.loadNpmTasks('grunt-webfont');
+  grunt.loadNpmTasks('grunt-exec');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'jscs', 'clean:release', 'clean:archives', 'file-creator', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
+
+  // create a chained task for webfont generation
+  grunt.registerTask('generate-font', ['clean:font', 'svgmin', 'webfont', 'exec:make_woff', 'exec:make_eot']);
 
   grunt.registerTask('default', 'build');
 };
