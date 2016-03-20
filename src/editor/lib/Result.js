@@ -30,18 +30,18 @@
  */
 
 var Result = function (success, message, params) {
-    var _result = this;
+  var _result = this;
     
-    _result.success = success;
-    _result.message = message;
+  _result.success = success;
+  _result.message = message;
     
-    if (typeof params == 'object' && params instanceof Array) {
-        $.each(params, function (i, param) {
-            _result.message = _result.message.replace(/%s/, param);
-        });
-    }
+  if (typeof params == 'object' && params instanceof Array) {
+    $.each(params, function (i, param) {
+      _result.message = _result.message.replace(/%s/, param);
+    });
+  }
     
-    _result.toString = function () {
-        return _result.message;
-    }
+  _result.toString = function () {
+    return _result.message;
+  }
 }

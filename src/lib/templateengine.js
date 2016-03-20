@@ -72,7 +72,7 @@ require.config({
     'widget_wgplugin_info':     'structure/pure/wgplugin_info',
     'transform_default':        'transforms/transform_default',
     'transform_knx':            'transforms/transform_knx',
-    'transform_oh':             'transforms/transform_oh',
+    'transform_oh':             'transforms/transform_oh'
   },
   'shim': {
     'scrollable':            ['jquery'],
@@ -114,14 +114,14 @@ require([
   "use strict";
   profileCV( 'templateEngine start' );
   
-templateEngine = new TemplateEngine();
+  templateEngine = new TemplateEngine();
 
-$(window).bind('resize', templateEngine.handleResize);
-$(window).unload(function() {
+  $(window).bind('resize', templateEngine.handleResize);
+  $(window).unload(function() {
   if( templateEngine.visu ) templateEngine.visu.stop();
 });
-$(document).ready(function() {
-  function configError(textStatus) {
+  $(document).ready(function() {
+  function configError( textStatus, additionalErrorInfo ) {
     var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
     var message = 'Config-File Error!<br/>';
     switch (textStatus) {
@@ -139,9 +139,19 @@ $(document).ready(function() {
           '<p>You can run the <a href="./upgrade/index.php?config=' + configSuffix + '">Configuration Upgrader</a>.</br>' +
           'Or you can start without upgrading <a href="' + link + '">with possible configuration problems</a>.</p>';
         break;
+      case 'filenotfound':
+        message += '404: Config file not found. Neither as normal config ('
+          + additionalErrorInfo[0] + ') nor as demo config ('
+          + additionalErrorInfo[1] + ').';
+        break;
       default:
         message += 'Unhandled error of type "' + textStatus + '"';
+        if( additionalErrorInfo )
+          message += ': ' + additionalErrorInfo;
+        else
+          message += '.';
     }
+    message += '<br/><br/><a href="">Retry</a>';
     $('#loading').html(message);
   };
   // get the data once the page was loaded
@@ -175,18 +185,22 @@ $(document).ready(function() {
         var $loading = $('#loading');
         $loading.html( $loading.text().trim() + '!' );
         ajaxRequest.noDemo = false;
-        ajaxRequest.url = ajaxRequest.url.replace('config/','config/demo/');
+        ajaxRequest.origUrl = ajaxRequest.url;
+        ajaxRequest.url = ajaxRequest.url.replace('config/','demo/');
         $.ajax( ajaxRequest );
         return;
       }
-      configError(textStatus);
+      else if( 404 === jqXHR.status )
+        configError( "filenotfound", [ajaxRequest.origUrl, ajaxRequest.url] );
+      else
+        configError( textStatus, errorThrown );
     },
     dataType : 'xml'
   };
   $.ajax( ajaxRequest );
 });
 
-function TemplateEngine( undefined ) {
+  function TemplateEngine( undefined ) {
   var thisTemplateEngine = this;
   this.libraryVersion = 7;
   this.libraryCheck = true;
@@ -217,6 +231,9 @@ function TemplateEngine( undefined ) {
     
   // threshold where the mobile.css is loaded
   this.maxMobileScreenWidth = 480;
+  // threshold where different colspans are used
+  this.maxScreenWidthColspanS = 599;
+  this.maxScreenWidthColspanM = 839;
   // use to recognize if the screen width has crossed the maxMobileScreenWidth
   var lastBodyWidth=0;
 
@@ -257,11 +274,23 @@ function TemplateEngine( undefined ) {
   };
   
   /**
+   * Structure where a design can set a default value that a widget or plugin
+   * can use.
+   * This is especially important for design relevant information like colors
+   * that can not be set though CSS.
+   * 
+   * Useage: templateEngine.defaults.plugin.foo = {bar: 'baz'};
+   */
+  this.defaults = { widget: {}, plugin: {} };
+
+  /**
    * Function to test if the path is in a valid form.
    * Note: it doesn't check if it exists!
    */
   var pathRegEx = /^id(_[0-9]+)+$/;
 
+  var currentPath = '';
+  this.callbacks = {}; // Hash of functions to call during page change
   this.main_scroll;
   this.old_scroll = '';
   this.visu;
@@ -270,7 +299,6 @@ function TemplateEngine( undefined ) {
 
   this.defaultColumns = 12;
   this.minColumnWidth = 120;
-  this.enableColumnAdjustment = false;
   
   this.enableAddressQueue = $.getUrlVar('enableQueue') ? true : false;
   
@@ -289,11 +317,11 @@ function TemplateEngine( undefined ) {
     else if (thisTemplateEngine.backend=="oh2") {
       // openHAB2 uses SSE and need a new client implementation
       if(window.EventSource !== undefined){
-    	// browser supports EventSource object
+        // browser supports EventSource object
         thisTemplateEngine.visu = new CometVisuOh();
       } else {
-    	// browser does no support EventSource => fallback to classic
-    	thisTemplateEngine.backend = '/rest/cv/';
+        // browser does no support EventSource => fallback to classic
+        thisTemplateEngine.backend = '/rest/cv/';
         thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
         thisTemplateEngine.visu.resendHeaders = {'X-Atmosphere-tracking-id':null};
         thisTemplateEngine.visu.headers= {'X-Atmosphere-Transport':'long-polling'};
@@ -305,9 +333,12 @@ function TemplateEngine( undefined ) {
     function update(json) {
       for( var key in json ) {
         //$.event.trigger('_' + key, json[key]);
+        if( !(key in ga_list) )
+          continue;
+        
         var data = json[ key ];
         ga_list[ key ].forEach( function( id ){
-          if( id )
+          if( typeof id === 'string' )
           {
             var 
               element = document.getElementById( id ),
@@ -322,6 +353,8 @@ function TemplateEngine( undefined ) {
                 console.log( element, children, type ); // DEBUG FIXME
             }
             //console.log( element, type, updateFn );
+          } else if( typeof id === 'function' ) {
+            id.call( key, data );
           }
         });
       }
@@ -348,7 +381,7 @@ function TemplateEngine( undefined ) {
 
   if ($.getUrlVar('forceReload')) {
     this.forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set
-                                                              // to false
+    // to false
   }
 
   if ($.getUrlVar('forceDevice')) {
@@ -436,6 +469,10 @@ function TemplateEngine( undefined ) {
    * 
    * For touch it's a little different as a touchmove cancels the current
    * action and translates into a scroll.
+   * 
+   * All of this is the default or when the mousemove callback is returning
+   * restrict=true (or undefined).
+   * When restrict=false the widget captures the mouse until it is released.
    */
   (function( outerThis ){ // closure to keep namespace clean
     // helper function to get the current actor and widget out of an event:
@@ -492,19 +529,32 @@ function TemplateEngine( undefined ) {
       scrollElement,
       // object to hold the coordinated of the current mouse / touch event
       mouseEvent = outerThis.handleMouseEvent = { 
+        moveFn:          undefined,
+        moveRestrict:    true,
         actor:           undefined,
         widget:          undefined,
         widgetCreator:   undefined,
         downtime:        0,
         alreadyCanceled: false
-      };
-    
+      },
+      touchStartX = null,
+      touchStartY = null;
+
     window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
       var 
         element = event.target,
         // search if a widget was hit
         widgetActor = getWidgetActor( event.target ),
         bindWidget  = widgetActor.widget ? thisTemplateEngine.widgetDataGet( widgetActor.widget.id ).bind_click_to_widget : false;
+      
+      var touchobj;
+      
+      if (isTouchDevice){
+        touchobj = event.changedTouches[0];
+        
+        touchStartX = parseInt(touchobj.clientX);
+        touchStartY = parseInt(touchobj.clientY);
+      }
       
       isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
       if( isWidget )
@@ -520,13 +570,19 @@ function TemplateEngine( undefined ) {
           
         if( actionFn !== undefined )
         {
-          actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor );
+          var moveFnInfo = actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor, false, event );
+          if( moveFnInfo )
+          {
+            mouseEvent.moveFn       = moveFnInfo.callback;
+            mouseEvent.moveRestrict = moveFnInfo.restrict !== undefined ? moveFnInfo.restrict : true;
+          }
         }
       } else {
         mouseEvent.actor = undefined;
       }
-      
-      scrollElement = getScrollElement( event.target );
+
+      if( mouseEvent.moveRestrict )
+        scrollElement = getScrollElement( event.target );
       // stop the propagation if scrollable is at the end
       // inspired by 
       if( scrollElement )
@@ -557,8 +613,11 @@ function TemplateEngine( undefined ) {
           !mouseEvent.alreadyCanceled
         )
         {
-          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent );
+          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent, event );
         }
+        mouseEvent.moveFn = undefined;
+        mouseEvent.moveRestrict = true;
+        scrollElement = undefined;
         isWidget = false;
       }
     });
@@ -572,19 +631,23 @@ function TemplateEngine( undefined ) {
           widgetActor = getWidgetActor( event.target ),
           widget      = mouseEvent.widget,
           bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
-          inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
+          inCurrent   = !mouseEvent.moveRestrict || (widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor));
+          
+        if( inCurrent && mouseEvent.moveFn )
+          mouseEvent.moveFn( event );
+        
         if( inCurrent && mouseEvent.alreadyCanceled )
         { // reactivate
           mouseEvent.alreadyCanceled = false;
           var
             actionFn  = mouseEvent.widgetCreator.downaction;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, false, event );
         } else if( (!inCurrent && !mouseEvent.alreadyCanceled) )
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
             actionFn  = mouseEvent.widgetCreator.action;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
     });
@@ -594,17 +657,23 @@ function TemplateEngine( undefined ) {
       if( isWidget )
       {
         var
-          widget      = mouseEvent.widget;
+          widget      = mouseEvent.widget,
+          touchobj = event.changedTouches[0];
           
-        if( !mouseEvent.alreadyCanceled )
+        if( mouseEvent.moveFn )
+          mouseEvent.moveFn( event );
+        
+        if( mouseEvent.moveRestrict && !mouseEvent.alreadyCanceled
+          && ((touchStartX + 5 < parseInt(touchobj.clientX) || touchStartX - 5 > parseInt(touchobj.clientX))
+            ||(touchStartY + 5 < parseInt(touchobj.clientY) || touchStartY - 5 > parseInt(touchobj.clientY))))
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
             actionFn  = mouseEvent.widgetCreator.action;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
-      
+
       // take care to prevent overscroll
       if( scrollElement )
       {
@@ -687,7 +756,7 @@ function TemplateEngine( undefined ) {
       if (!ret && m['defaultValue']) {
         ret = mapValue(m['defaultValue']);
       }
-      if (ret) {
+      if( ret !== undefined ) {
         return ret;
       }
     }
@@ -720,38 +789,26 @@ function TemplateEngine( undefined ) {
     return thisTemplateEngine.currentPageNavbarVisibility;
   };
 
+  // return S, M or L depening on the passed width
+  function getColspanClass( width )
+  {
+    if( width <= thisTemplateEngine.maxScreenWidthColspanS )
+      return 'S';
+    if( width <= thisTemplateEngine.maxScreenWidthColspanM )
+      return 'M';
+    return 'L';
+  }
+  
+  var oldWidth = -1;
   this.adjustColumns = function() {
-    var data = $('#main').data();
-    if (thisTemplateEngine.enableColumnAdjustment == false) {
-      if (thisTemplateEngine.defaultColumns != data.columns) {
-        data.columns = thisTemplateEngine.defaultColumns;
-        return true;
-      } else {
-        return false;
-      }
-    }
-    var width = thisTemplateEngine.getAvailableWidth();
-
-    var newColumns = Math.ceil(width / thisTemplateEngine.minColumnWidth);
-    if (newColumns > (thisTemplateEngine.defaultColumns / 2) && thisTemplateEngine.defaultColumns > newColumns) {
-      // don´t accept values between 50% and 100% of defaultColumns
-      // e.g if default is 12, then skip column-reduction to 10 and 8
-      newColumns = thisTemplateEngine.defaultColumns;
-    }
-    else {
-      // the value should be a divisor of defaultColumns-value
-      while ((thisTemplateEngine.defaultColumns % newColumns)>0 && newColumns < thisTemplateEngine.defaultColumns) {
-        newColumns++;
-      }
-      // make sure that newColumns does not exceed defaultColumns
-      newColumns = Math.min(thisTemplateEngine.defaultColumns, newColumns);
-    }
-    if (newColumns != data.columns) {
-        data.columns = newColumns;
-      return true;
-    } else {
-      return false;
-    }
+    var
+      width = thisTemplateEngine.getAvailableWidth(),
+      oldClass = getColspanClass( oldWidth ),
+      newClass = getColspanClass( width );
+      
+    oldWidth = width;
+    
+    return oldClass != newClass;
   };
   
   /**
@@ -766,8 +823,8 @@ function TemplateEngine( undefined ) {
     // the calculation has to be done again, even if the page hasn´t changed (e.g. switching between portrait and landscape mode on a mobile can cause that)
     var bodyWidth = $('body').width();
     var mobileUseChanged = (lastBodyWidth<thisTemplateEngine.maxMobileScreenWidth)!=(bodyWidth<thisTemplateEngine.maxMobileScreenWidth);
-    if (thisTemplateEngine.currentPageUnavailableWidth<0 || mobileUseChanged) {
-//      console.log("Mobile.css use changed "+mobileUseChanged);
+    if (thisTemplateEngine.currentPageUnavailableWidth<0 || mobileUseChanged || true) {
+      //      console.log("Mobile.css use changed "+mobileUseChanged);
       thisTemplateEngine.currentPageUnavailableWidth=0;
       var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);
       var widthNavbarLeft = navbarVisibility.left=="true" && $('#navbarLeft').css('display')!="none" ? Math.ceil( $('#navbarLeft').outerWidth() ) : 0;
@@ -783,7 +840,7 @@ function TemplateEngine( undefined ) {
         widthNavbarRight = 0;
       }
       thisTemplateEngine.currentPageUnavailableWidth = widthNavbarLeft + widthNavbarRight + 1; // remove an additional pixel for Firefox
-//      console.log("Width: "+bodyWidth+" - "+widthNavbarLeft+" - "+widthNavbarRight);
+      //      console.log("Width: "+bodyWidth+" - "+widthNavbarLeft+" - "+widthNavbarRight);
     }
     lastBodyWidth = bodyWidth;
     return bodyWidth - thisTemplateEngine.currentPageUnavailableWidth;
@@ -813,7 +870,7 @@ function TemplateEngine( undefined ) {
       else {
         heightStr+=" - 0";
       }
-//      console.log($('#navbarTop').css('display')+": "+$('#navbarTop').outerHeight(true));
+      //      console.log($('#navbarTop').css('display')+": "+$('#navbarTop').outerHeight(true));
       if ($('#navbarTop').css('display') != 'none' && navbarVisibility.top=="true" && $('#navbarTop').outerHeight(true)>0) {
         thisTemplateEngine.currentPageUnavailableHeight+=$('#navbarTop').outerHeight(true);
         heightStr+=" - "+$('#navbarTop').outerHeight(true);
@@ -928,18 +985,8 @@ function TemplateEngine( undefined ) {
     else
       thisTemplateEngine.scrollSpeed = $('pages', xml).attr('scroll_speed') | 0;
     
-    var enableColumnAdjustment = null;
-    if ($('pages', xml).attr('enable_column_adjustment')!=undefined) {
-      enableColumnAdjustment = $('pages', xml).attr('enable_column_adjustment')=="true" ? true : false;
-    }
     if ($('pages', xml).attr('bind_click_to_widget')!=undefined) {
       thisTemplateEngine.bindClickToWidget = $('pages', xml).attr('bind_click_to_widget')=="true" ? true : false;
-    }
-    if (enableColumnAdjustment) {
-      thisTemplateEngine.enableColumnAdjustment = true;
-    } else if (enableColumnAdjustment==null && /(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i
-        .test(navigator.userAgent.toLowerCase())) {
-      thisTemplateEngine.enableColumnAdjustment = true;
     }
     if ($('pages', xml).attr('default_columns')) {
       thisTemplateEngine.defaultColumns = $('pages', xml).attr('default_columns');
@@ -1029,13 +1076,13 @@ function TemplateEngine( undefined ) {
         var origin = $localThis.contents();
         var value = [];
         for (var i = 0; i < origin.length; i++) {
-           var $v = $(origin[i]);
-           if ($v.is('icon')) {
-             value[i] = icons.getIconElement($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
-           }
-           else {
-             value[i] = $v.text();
-           }
+          var $v = $(origin[i]);
+          if ($v.is('icon')) {
+            value[i] = icons.getIconElement($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
+          }
+          else {
+            value[i] = $v.text();
+          }
         }
         // check for default entry
         var isDefaultValue = $localThis.attr('default');
@@ -1146,18 +1193,28 @@ function TemplateEngine( undefined ) {
    * applies the correct width to the widgets corresponding to the given colspan setting 
    */
   this.applyColumnWidths = function() {
+    var
+      width = thisTemplateEngine.getAvailableWidth();
+    function dataColspan( data )
+    {
+      if( width <= thisTemplateEngine.maxScreenWidthColspanS )
+        return data.colspanS;
+      if( width <= thisTemplateEngine.maxScreenWidthColspanM )
+        return data.colspanM;
+      return data.colspan;
+    }
+    
     // all containers
     ['#navbarTop', '#navbarLeft', '#main', '#navbarRight', '#navbarBottom'].forEach( function( area ){
       var 
         allContainer = $(area + ' .widget_container'),
         areaColumns = $( area ).data( 'columns' );
-    allContainer.each(function(i, e) {
+      allContainer.each(function(i, e) {
       var
         $e = $(e),
         data = thisTemplateEngine.widgetDataGet( e.id ),
-        ourColspan = data.colspan;
-      if (ourColspan < 0)
-        return;
+        ourColspan = dataColspan( data );
+        
       var w = 'auto';
       if (ourColspan > 0) {
         var areaColspan = areaColumns || thisTemplateEngine.defaultColumns;
@@ -1165,25 +1222,23 @@ function TemplateEngine( undefined ) {
       }
       $e.css('width', w);
     });
-    // and elements inside groups
-    var areaColumns = $('#main').data('columns');
-    var adjustableElements = $('.group .widget_container');
-    adjustableElements.each(function(i, e) {
+      // and elements inside groups
+      var areaColumns = $('#main').data('columns');
+      var adjustableElements = $('.group .widget_container');
+      adjustableElements.each(function(i, e) {
       var 
         $e = $(e),
         data = thisTemplateEngine.widgetData[ e.id ],
-        ourColspan = data.colspan;
-      if (ourColspan < 0)
-        return;
+        ourColspan = dataColspan( data );
       if (ourColspan == undefined) {
         // workaround for nowidget groups
-        ourColspan =  thisTemplateEngine.widgetDataGetByElement($e.children('.group')).colspan;
+        ourColspan = dataColspan( thisTemplateEngine.widgetDataGetByElement($e.children('.group')) );
       }
       var w = 'auto';
       if (ourColspan > 0) {
         var areaColspan = areaColumns || thisTemplateEngine.defaultColumns;
-        var groupColspan = Math.min(areaColspan, thisTemplateEngine.widgetDataGetByElement($e.parentsUntil(
-            '.widget_container', '.group')).colspan);
+        var groupColspan = Math.min(areaColspan, dataColspan(thisTemplateEngine.widgetDataGetByElement($e.parentsUntil(
+            '.widget_container', '.group'))));
         w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
       }
       $e.css('width', w);
@@ -1259,6 +1314,9 @@ function TemplateEngine( undefined ) {
       $('.pageActive', '#pages').removeClass('pageActive');
       thisTemplateEngine.currentPage.addClass('pageActive activePage');// show new page
       $('#pages').css('left', 0 );
+      thisTemplateEngine.callbacks[currentPath].afterPageChange.forEach( function( callback ){
+        callback( currentPath );
+      });
     });
     if (thisTemplateEngine.scrollSpeed != undefined) {
       thisTemplateEngine.main_scroll.getConf().speed = thisTemplateEngine.scrollSpeed;
@@ -1287,13 +1345,13 @@ function TemplateEngine( undefined ) {
       // identify addresses on startpage
       var startPageAddresses = {};
       $('.actor','#'+startpage).each(function() {
-    	  var $this = $(this),
-          data  = $this.data();
-    	  if( undefined === data.address ) data = $this.parent().data();
-          for( var addr in data.address )
-          {
-            startPageAddresses[addr.substring(1)]=1;
-          }
+        var $this = $(this),
+              data  = $this.data();
+        if( undefined === data.address ) data = $this.parent().data();
+        for( var addr in data.address )
+        {
+          startPageAddresses[addr.substring(1)]=1;
+        }
       });
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
@@ -1319,6 +1377,14 @@ function TemplateEngine( undefined ) {
 
   this.create_pages = function(page, path, flavour, type) {
     var creator = thisTemplateEngine.design.getCreator(page.nodeName);
+    
+    thisTemplateEngine.callbacks[ path + '_' ] = {
+      exitingPageChange: [],// called when the current page is left
+      beforePageChange: [], // called as soon as a page change is known
+      duringPageChange: [], // called when the page is theoretical visible, i.e. "display:none" is removed - CSS calculations shoud work now
+      afterPageChange: []   // called together with the global event when the transition is finished
+    };
+    
     var retval = creator.create(page, path, flavour, type);
 
     if( undefined === retval )
@@ -1340,6 +1406,26 @@ function TemplateEngine( undefined ) {
       + (data.containerClass ? data.containerClass : '')
       + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
     }
+  };
+  
+  /**
+   * Little helper to find the relevant page path for a given widget.
+   * @param element The XML element
+   * @param widgetpath The path / ID of the widget
+   * @return The path of the parent
+   */
+  this.getPageIdForWidgetId = function( element, widgetpath )
+  {
+    var
+      parent = element.parentNode,
+      parentpath = widgetpath.replace( /[0-9]*$/, '' );
+    
+    while( parent && parent.nodeName !== 'page' )
+    {
+      parent = parent.parentNode;
+      parentpath = parentpath.replace( /[0-9]*_$/, '' );
+    }
+    return parentpath;
   };
   
   this.getPageIdByPath = function(page_name, path) {
@@ -1374,14 +1460,14 @@ function TemplateEngine( undefined ) {
         }
       }
     }
-//    console.log("traversePath("+path+","+root_page_id+")");
+    //    console.log("traversePath("+path+","+root_page_id+")");
     if (index>=0) {
       // traverse path one level down
       var path_page_name = path.substr(0,index);
       path_scope = templateEngine.getPageIdByName(path_page_name,root_page_id);
       path = path.substr(path_page_name.length+1);
       path_scope = templateEngine.traversePath(path,path_scope);
-//      console.log(path_page_name+"=>"+path_scope);
+      //      console.log(path_page_name+"=>"+path_scope);
       return path_scope;
     } else {
       // bottom path level reached
@@ -1403,7 +1489,7 @@ function TemplateEngine( undefined ) {
       // remove escaped slashes
       page_name = page_name.replace("\\\/","/");
       
-//      console.log("Page: "+page_name+", Scope: "+scope);
+      //      console.log("Page: "+page_name+", Scope: "+scope);
       var selector = (scope!=undefined && scope!=null) ? '.page[id^="'+scope+'"] h1:contains(' + page_name + ')' :  '.page h1:contains(' + page_name + ')';
       var pages = $(selector, '#pages');
       if (pages.length>1 && thisTemplateEngine.currentPage!=null) {
@@ -1467,15 +1553,28 @@ function TemplateEngine( undefined ) {
     if (page_id==null) {
       return;
     }
-//    console.log(thisTemplateEngine.currentPage);
-//    // don't scroll when target is already active
-//    if( thisTemplateEngine.currentPage!=null && thisTemplateEngine.currentPage.attr('id') === page_id )
-//      return;
+    //    console.log(thisTemplateEngine.currentPage);
+    //    // don't scroll when target is already active
+    //    if( thisTemplateEngine.currentPage!=null && thisTemplateEngine.currentPage.attr('id') === page_id )
+    //      return;
     
-    var page = $('#' + page_id);
+    var 
+      page = $('#' + page_id),
+      callbacks = thisTemplateEngine.callbacks[page_id];
     
     if( 0 === page.length ) // check if page does exist
       return;
+    
+    
+    currentPath !== '' &&  thisTemplateEngine.callbacks[currentPath].exitingPageChange.forEach( function( callback ){
+      callback( currentPath, page_id );
+    });
+    
+    currentPath = page_id;
+    
+    callbacks.beforePageChange.forEach( function( callback ){
+      callback( page_id );
+    });
     
     if( undefined === speed )
       speed = thisTemplateEngine.scrollSpeed;
@@ -1488,6 +1587,10 @@ function TemplateEngine( undefined ) {
     thisTemplateEngine.currentPage = page;
 
     page.addClass('pageActive activePage');// show new page
+    
+    callbacks.duringPageChange.forEach( function( callback ){
+      callback( page_id );
+    });
     
     // update visibility of navbars, top-navigation, footer
     thisTemplateEngine.pagePartsHandler.updatePageParts( page, speed );
@@ -1515,7 +1618,6 @@ function TemplateEngine( undefined ) {
      * $('#'+page_id+'_left_navbar').addClass('navbarActive');
      */
     thisTemplateEngine.pagePartsHandler.initializeNavbars(page_id);
-    
     $(window).trigger('scrolltopage', page_id);    
   };
 
@@ -1618,7 +1720,7 @@ function TemplateEngine( undefined ) {
             + element
             + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>");
         $myDiv
-        .append("<img width=\"60\" height=\"30\" src=\"./config/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>");
+        .append("<img width=\"60\" height=\"30\" src=\"./demo/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>");
 
         $div.append($myDiv);
 
@@ -1882,4 +1984,4 @@ function TemplateEngine( undefined ) {
   ////////// Reflection API for possible Editor communication: End //////////
 }
 
-  }); // end require
+}); // end require

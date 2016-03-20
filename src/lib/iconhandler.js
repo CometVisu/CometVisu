@@ -24,54 +24,54 @@
 define( ['icon/iconconfig'], function( iconconfig ) {
   "use strict";
 
-/**
- * The object "icon" contains the whole API necessary to handle the icons.
- * 
- * @class icon
- * @constructor FOO
- */
-function icon() { // Konstruktor
-
-  // //////////////////////////////////////////////////////////////////////////
-  // private static variables and methods:
-
-  // ... none ...
-
-  // check and fix if the user forgot the "new" keyword
-  if (!(this instanceof icon)) {
-    return new icon();
-  }
-
-  // //////////////////////////////////////////////////////////////////////////
-  // Definition of the private variables
-
   /**
-   * Internal database of the known icons.
-   * Initially filled with the default icons.
+   * The object "icon" contains the whole API necessary to handle the icons.
    * 
-   * @property db
-   * @private
+   * @class icon
+   * @constructor FOO
    */
-  var db = iconconfig;
+  function icon() { // Konstruktor
 
-  // //////////////////////////////////////////////////////////////////////////
-  // Definition of the public variables
+    // //////////////////////////////////////////////////////////////////////////
+    // private static variables and methods:
 
-  /* ... */
+    // ... none ...
 
-  // //////////////////////////////////////////////////////////////////////////
-  // Definition of the private methods
-  /* ... */
+    // check and fix if the user forgot the "new" keyword
+    if (!(this instanceof icon)) {
+      return new icon();
+    }
 
-  // //////////////////////////////////////////////////////////////////////////
-  // Definition of the public methods
-  /**
-   * Insert or overwrite one or many icons into the database. The parameter
-   * might be a full hash of icon definitions or a single one consisting out of
-   * a name and a URI path. Optional further parameters are a "type" and a
-   * flavour.
-   */
-  this.insert = function() {
+    // //////////////////////////////////////////////////////////////////////////
+    // Definition of the private variables
+
+    /**
+     * Internal database of the known icons.
+     * Initially filled with the default icons.
+     * 
+     * @property db
+     * @private
+     */
+    var db = iconconfig;
+
+    // //////////////////////////////////////////////////////////////////////////
+    // Definition of the public variables
+
+    /* ... */
+
+    // //////////////////////////////////////////////////////////////////////////
+    // Definition of the private methods
+    /* ... */
+
+    // //////////////////////////////////////////////////////////////////////////
+    // Definition of the public methods
+    /**
+     * Insert or overwrite one or many icons into the database. The parameter
+     * might be a full hash of icon definitions or a single one consisting out of
+     * a name and a URI path. Optional further parameters are a "type" and a
+     * flavour.
+     */
+    this.insert = function() {
     var name    = arguments[0];
     var uri     = arguments[1];
     var type    = arguments[2] || '*';
@@ -87,28 +87,30 @@ function icon() { // Konstruktor
     if (!db[name][type][flavour])
       db[name][type][flavour] = {};
 
+    if( dynamic && window[ dynamic ] )
+      db[name][type][flavour][color] = window[ dynamic ]( uri );
+    else
     db[name][type][flavour][color] = {
       uri    : uri,
-      styling: styling,
-      dynamic: dynamic
+      styling: styling
     };
   }
 
-  /**
-   * Get the icon information for a name.
-   * 
-   * @method get
-   * @param {String}
-   *          name Name
-   * @param {String}
-   *          type Type (optional)
-   * @param {String}
-   *          flavour Flavour (optional)
-   * @param {String}
-   *          color Color (optional, only relevant for monochrome icons)
-   * @return {URI} The URI for the icon - or "undefined" if not known
-   */
-  this.get = function() {
+    /**
+     * Get the icon information for a name.
+     * 
+     * @method get
+     * @param {String}
+     *          name Name
+     * @param {String}
+     *          type Type (optional)
+     * @param {String}
+     *          flavour Flavour (optional)
+     * @param {String}
+     *          color Color (optional, only relevant for monochrome icons)
+     * @return {URI} The URI for the icon - or "undefined" if not known
+     */
+    this.get = function() {
     var name    = arguments[0];
     var type    = arguments[1];
     var flavour = arguments[2];
@@ -154,16 +156,16 @@ function icon() { // Konstruktor
     return db[name][type][flavour][color];
   }
 
-  this.getURI = function() {
+    this.getURI = function() {
     var i = this.get.apply(this, arguments);
     if (i)
       return i.uri;
   }
 
-  /**
-   * Return an icon DOM element.
-   */
-  this.getIconElement = function() {
+    /**
+     * Return an icon DOM element.
+     */
+    this.getIconElement = function() {
     var i = this.get.apply(this, arguments);
     if (i) {
       var styling = arguments[4];
@@ -192,25 +194,25 @@ function icon() { // Konstruktor
     }
   }
   
-  /**
-   * Return a String for the icon, e.g. build a DOM tree in a string before
-   * passing it to ParseHTML. After the content was added to the DOM the
-   * fillIcons method must be called to fill missing content (e.g. the <canvas>
-   * icons.
-   * @param {String}
-   *          name Name
-   * @param {String}
-   *          type Type (optional)
-   * @param {String}
-   *          flavour Flavour (optional)
-   * @param {String}
-   *          color Color (optional, only relevant for monochrome icons)
-   * @param {String}
-   *          styling
-   * @param {String}
-   *          iconclass
-   */
-  this.getIconText = function() {
+    /**
+     * Return a String for the icon, e.g. build a DOM tree in a string before
+     * passing it to ParseHTML. After the content was added to the DOM the
+     * fillIcons method must be called to fill missing content (e.g. the <canvas>
+     * icons.
+     * @param {String}
+     *          name Name
+     * @param {String}
+     *          type Type (optional)
+     * @param {String}
+     *          flavour Flavour (optional)
+     * @param {String}
+     *          color Color (optional, only relevant for monochrome icons)
+     * @param {String}
+     *          styling
+     * @param {String}
+     *          iconclass
+     */
+    this.getIconText = function() {
     var i = this.get.apply(this, arguments);
     if (i) {
       var styling = arguments[4];
@@ -235,38 +237,38 @@ function icon() { // Konstruktor
     }
   }
   
-  /**
-   * Fill the icons in the array.
-   */
-  this.fillIcons = function( array ) {
+    /**
+     * Fill the icons in the array.
+     */
+    this.fillIcons = function( array ) {
     array.each( function( thisIcon ){
       window.fillRecoloredIcon( thisIcon );
     });
   };
 
-  /**
-   * List all known icons
-   * 
-   * @method list
-   * @return {Array} List of all known icon names
-   */
-  this.list = function() {
+    /**
+     * List all known icons
+     * 
+     * @method list
+     * @return {Array} List of all known icon names
+     */
+    this.list = function() {
     return Object.keys(db);
   }
 
-  /**
-   * Return icon database for debuging purposes - use ONLY for debugging as it's
-   * circumventing the data hiding and exposes a writeable reference to the
-   * database object!
-   * 
-   * @method debug
-   * @return {Object} The icon database
-   */
-  this.debug = function() {
+    /**
+     * Return icon database for debuging purposes - use ONLY for debugging as it's
+     * circumventing the data hiding and exposes a writeable reference to the
+     * database object!
+     * 
+     * @method debug
+     * @return {Object} The icon database
+     */
+    this.debug = function() {
     return db;
   }
-};
+  };
 
-window.icons = new icon();
+  window.icons = new icon();
 
 });

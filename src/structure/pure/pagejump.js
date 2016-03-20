@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('pagejump', {
+  design.basicdesign.addCreator('pagejump', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
@@ -33,6 +33,15 @@ design.basicdesign.addCreator('pagejump', {
     if( layoutClass ) classes += ' ' + layoutClass;
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) classes += ' flavour_' + flavour;
+    var widgetInfo = $('widgetinfo > *', $e).first()[0];
+    var info = '';
+    if (widgetInfo!=undefined) {
+      classes+=" infoaction";
+      var data = templateEngine.widgetDataInsert( path+"_0", {
+        containerClass           : "widgetinfo"
+      } );
+      info = templateEngine.create_pages(widgetInfo, path+"_0", flavour, widgetInfo.nodeName);
+    }
     var ret_val = '<div class="'+classes+'" ' + style + '>';
     ret_val += basicdesign.extractLabel( $e.find('label')[0], flavour );
     var actor = '<div class="actor switchUnpressed ';
@@ -50,14 +59,6 @@ design.basicdesign.addCreator('pagejump', {
       'path'    : $(element).attr('path'),
       'active_scope': $(element).attr('active_scope') ? $(element).attr('active_scope') : 'target'
     } );
-    var info = '';
-    var widgetInfo = $('widgetinfo > *', $e).first()[0];
-    if (widgetInfo!=undefined) {
-      var data = templateEngine.widgetDataInsert( path+"_0", {
-        containerClass           : "widgetinfo"
-      } );
-      info = templateEngine.create_pages(widgetInfo, path+"_0", flavour, widgetInfo.nodeName);
-    }
     return ret_val + actor + info +'</div>';
   },
   downaction: function( path, actor, isCanceled ) {
@@ -80,7 +81,7 @@ design.basicdesign.addCreator('pagejump', {
   }
 });
 
-$(window).bind('scrolltopage', function( event, page_id ){
+  $(window).bind('scrolltopage', function( event, page_id ){
   var page = $('#' + page_id);
   var name = templateEngine.widgetData[page_id].name;
   

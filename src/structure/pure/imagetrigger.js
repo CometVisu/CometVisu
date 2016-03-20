@@ -19,7 +19,7 @@ define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('imagetrigger', {
+  design.basicdesign.addCreator('imagetrigger', {
   create: function( element, path, flavour, type ) { 
     var 
       $e = $(element),
@@ -67,13 +67,13 @@ design.basicdesign.addCreator('imagetrigger', {
     if (data.type == "show")
       if (val == 0)
         $(this).children().hide();
-      else
-        $(this).children().attr("src", data.src + '.' + data.suffix ).show();
+    else
+      $(this).children().attr("src", data.src + '.' + data.suffix ).show();
     else if (data.type == "select")
       if (val == 0)
         $(this).children().hide();
-      else
-        $(this).children().attr("src", data.src + val + '.' + data.suffix ).show();
+    else
+      $(this).children().attr("src", data.src + val + '.' + data.suffix ).show();
         
     //FIXME: add value if mapping exists 
     //FIXME: get image name from mapping

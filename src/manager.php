@@ -23,7 +23,7 @@
 
 // global definitions
 define( 'CONFIG_FILENAME', 'config/visu_config%s.xml');
-define( 'DEMO_FILENAME', 'config/demo/visu_config%s.xml');
+define( 'DEMO_FILENAME', 'demo/visu_config%s.xml');
 
 // strings
 $_STRINGS = array(
@@ -140,7 +140,7 @@ $config = array_key_exists( 'config', $_GET  ) ? $_GET ['config'] :
         ( array_key_exists( 'config', $_POST ) ? $_POST['config'] : false );
 $action = array_key_exists( 'action', $_GET  ) ? $_GET ['action'] :
         ( array_key_exists( 'action', $_POST ) ? $_POST['action'] : false );
-if( ($config != false) && ($action != false) )
+if( ($config == '' || $config != false) && ($action != false) )
 {
   $configFile = sprintf( CONFIG_FILENAME, (''==$config ? '' : '_') . $config );
   if( !is_writeable( $configFile ) && 'create' != $action )
@@ -148,7 +148,7 @@ if( ($config != false) && ($action != false) )
   else switch( $action )
   {
     case 'create':
-      if( !is_readable( 'config/demo/visu_config_empty.xml' ) )
+      if( !is_readable( 'demo/visu_config_empty.xml' ) )
       {
         $actionDone = $_['Empty configuration is not readable -> CometVisu installation is badly broken!'];
         break;
@@ -159,7 +159,7 @@ if( ($config != false) && ($action != false) )
         break;
       }
       
-      if( copy( 'config/demo/visu_config_empty.xml', $configFile ) ) {
+      if( copy( 'demo/visu_config_empty.xml', $configFile ) ) {
         $actionDone = sprintf( $_['New configuration file successfully created'], $configFile );
         $availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), filterPreview );
         $resetUrl = true;
@@ -194,13 +194,27 @@ if( ($config != false) && ($action != false) )
 } else {
   // nothing special to do - so at least do a few sanity checks
   if( !is_writeable( 'config/visu_config.xml' ) )
+  {
+    if( chmod( 'config/visu_config.xml', 0666 ) ) // try to fix it
+    {
+      if( !is_writeable( 'config/visu_config.xml' ) )
+        $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
+    } else
     $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
+  }
   
   if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
-    $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+  { 
+    if( chmod( 'config/visu_config_previewtemp.xml', 0666 ) ) // try to fix it
+    {
+      if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
+        $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+    } else
+      $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+  }
   
-  if( !is_readable( 'config/demo/visu_config_empty.xml' ) )
-    $actionDone = $_['Installation error - please check file permissions!'].' (config/demo/visu_config_empty.xml)';
+  if( !is_readable( 'demo/visu_config_empty.xml' ) )
+    $actionDone = $_['Installation error - please check file permissions!'].' (demo/visu_config_empty.xml)';
 }
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"

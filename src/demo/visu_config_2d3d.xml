@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="pure" xsi:noNamespaceSchemaLocation="../../visu_config.xsd">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="pure" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
   <meta>
     <plugins>
       <plugin name="colorchooser"/>
@@ -48,12 +48,13 @@
     <statusbar>
       <status type="html"><![CDATA[
           <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          - <a href="manager.php">Config-Manager</a>
           - <a href=".?forceReload=true">Reload</a>
           - <a href="?config=demo">Widget Demo</a>
         ]]></status>
       <status type="html"><![CDATA[
           - <a href="check_config.php">Check Config</a>
-          <div style="float:right;padding-right:0.5em">Version: SVN</div>
+          <div style="float:right;padding-right:0.5em">Version: Git</div>
         ]]></status>
     </statusbar>
   </meta>
@@ -63,7 +64,7 @@
       <label>Welcome to the CometVisu!</label>
     </text>
     <break/>
-    <page name="2D Demo" type="2d" backdrop="config/media/demo_2d_backdrop_red_pot.svg">
+    <page name="2D Demo" type="2d" backdrop="demo/media/demo_2d_backdrop_red_pot.svg">
       <slide>
         <layout x="0px" y="470px" width="600px"/>
         <label>Level</label>

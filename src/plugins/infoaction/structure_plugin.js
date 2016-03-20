@@ -47,7 +47,7 @@ define( ['structure_custom', 'css!plugins/infoaction/infoaction.css'  ], functio
         return createWidget(false, element, path, flavour, type);
       },
     });
-    function createWidget(isInfo, element, path, flavour, type) {
+  function createWidget(isInfo, element, path, flavour, type) {
       var $e = $(element);
 
       // create the main structure
@@ -60,7 +60,7 @@ define( ['structure_custom', 'css!plugins/infoaction/infoaction.css'  ], functio
       return ret_val + '</div>';
     }
    
-    function getWidgetElements(xmlElement, path, flavour, type) {
+  function getWidgetElements(xmlElement, path, flavour, type) {
       var infoWidget = $('widgetinfo > *', xmlElement).first()[0];
       var actionWidget = $('widgetaction > *', xmlElement).first()[0];
       var data = templateEngine.widgetDataInsert( path+"_0", {

@@ -17,9 +17,9 @@
 
 define( ['_common'], function( design ) {
   "use strict";
-   var basicdesign = design.basicdesign;
+  var basicdesign = design.basicdesign;
  
-design.basicdesign.addCreator('infotrigger', {
+  design.basicdesign.addCreator('infotrigger', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
 
@@ -40,7 +40,7 @@ design.basicdesign.addCreator('infotrigger', {
       'shorttime'     : parseFloat($e.attr('shorttime')) || -1,
       'isAbsolute'    : ($e.attr('change')               || 'relative') == 'absolute',
       'min'           : parseFloat($e.attr('min'))       || 0,
-      'max'           : parseFloat($e.attr('max'))       || 255,
+      'max'           : parseFloat($e.attr('max'))       || 255
     } );
 
     // create buttons + info

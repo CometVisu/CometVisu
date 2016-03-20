@@ -17,9 +17,9 @@
 
 define( ['_common'], function( design ) {
   "use strict";
-   var basicdesign = design.basicdesign;
+  var basicdesign = design.basicdesign;
  
-design.basicdesign.addCreator('multitrigger', {
+  design.basicdesign.addCreator('multitrigger', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     
@@ -89,6 +89,31 @@ design.basicdesign.addCreator('multitrigger', {
       ret_val += '<div class="value">' + data.button4label + '</div>';
       ret_val += '</div>';
       if( 1 == (buttonCount++ % 2) ) ret_val += '<br/>';
+    }
+    
+    // replace button labels by mapped values 
+    if( undefined !== data.mapping )
+    {
+      templateEngine.postDOMSetupFns.push( function(){
+        var
+          $actor = $( '#' + path + ' .actor .value' ),
+          v0 = basicdesign.defaultValueHandling( undefined, data.button1value, data ),
+          $v0 = $actor.filter(':eq(0)'),
+          v1 = basicdesign.defaultValueHandling( undefined, data.button2value, data ),
+          $v1 = $actor.filter(':eq(1)'),
+          v2 = basicdesign.defaultValueHandling( undefined, data.button3value, data ),
+          $v2 = $actor.filter(':eq(2)'),
+          v3 = basicdesign.defaultValueHandling( undefined, data.button4value, data ),
+          $v3 = $actor.filter(':eq(3)');
+        $v0.empty();
+        basicdesign.defaultValue2DOM( v0, function(e){ $v0.append( e ) } );
+        $v1.empty();
+        basicdesign.defaultValue2DOM( v1, function(e){ $v1.append( e ) } );
+        $v2.empty();
+        basicdesign.defaultValue2DOM( v2, function(e){ $v2.append( e ) } );
+        $v3.empty();
+        basicdesign.defaultValue2DOM( v3, function(e){ $v3.append( e ) } );
+      });
     }
     
     return ret_val + '</div></div>';
