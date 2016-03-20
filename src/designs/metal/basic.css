@@ -728,6 +728,7 @@ background-color: #000;
 	font-size: 0.7em;
 	float: left;
 	margin: 0 auto;
+    padding: 0;
 }
 
 #navbarTop .navbar .pagejump .actor, 
