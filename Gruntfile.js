@@ -336,6 +336,23 @@ module.exports = function(grunt) {
       }
     },
 
+    githubChanges: {
+      dist : {
+        options: {
+          // Owner and Repository options are mandatory
+          owner : 'CometVisu',
+          repository : 'CometVisu',
+          branch: 'develop',
+          // betweenTags: 'master...develop', // seems to be not supported at the moment
+          onlyPulls: true,
+          useCommitBody: true,
+          // auth: true, // auth creates a stall for me :(
+          file: 'ChangeLog.tmp',
+          verbose: true
+        }
+      }
+    }
+
     // webfont generation
     webfont: {
       icons: {
@@ -419,6 +436,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-file-creator');
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-chmod');
+  grunt.loadNpmTasks('grunt-github-changes');
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-webfont');
   grunt.loadNpmTasks('grunt-exec');
