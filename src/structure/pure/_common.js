@@ -26,9 +26,9 @@ define( ['jquery'], function($) {
   // Define ENUM of maturity levels for features, so that e.g. the editor can 
   // ignore some widgets when they are not supported yet
   var Maturity = {
-  release     : 0,
-  development : 1
-};
+    release     : 0,
+    development : 1
+  };
 
   /**
    * This class defines all the building blocks for a Visu in the "Pure" design

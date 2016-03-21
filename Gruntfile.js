@@ -1,3 +1,46 @@
+var mocks = [];
+function captureMock() {
+  return function (req, res, next) {
+
+    // match on POST requests starting with /mock
+    if (req.method === 'POST' && req.url.indexOf('/mock') === 0) {
+
+      // everything after /mock is the path that we need to mock
+      var path = req.url.substring(5);
+
+      var body = '';
+      req.on('data', function (data) {
+        body += data;
+      });
+      req.on('end', function () {
+
+        mocks[path] = body;
+
+        res.writeHead(200);
+        res.end();
+      });
+    } else {
+      next();
+    }
+  };
+}
+
+function mock() {
+  return function (req, res, next) {
+    var url = req.url;
+    var found = url.match(/(\?_=[0-9]+)$/);
+    if (found) {
+      url = url.replace(found[1],"");
+    }
+    var mockedResponse = mocks[url];
+    if (mockedResponse) {
+      res.write(mockedResponse);
+      res.end();
+    } else {
+      next();
+    }
+  };
+}
 
 module.exports = function(grunt) {
   var 
@@ -37,14 +80,14 @@ module.exports = function(grunt) {
       }
     } ];
 
-    // Project configuration.
-    grunt.initConfig({
-      pkg : grunt.file.readJSON('package.json') || {},
+  // Project configuration.
+  grunt.initConfig({
+    pkg : grunt.file.readJSON('package.json') || {},
 
-      // license header adding
-      usebanner: {
-        dist: {
-          options: {
+    // license header adding
+    usebanner: {
+      dist: {
+        options: {
           position: 'top',
           replace: true,
           linebreak: true,
@@ -125,7 +168,7 @@ module.exports = function(grunt) {
           //'icon/iconconfig.js',
           'lib/templateengine.js',
           'designs/**/*.*',
-          'plugins/**/*.{js,css,png,jpf,ttf,svg}'
+          'plugins/**/*.{js,css,png,jpf,ttf,svg,map}'
         ],
         dest: 'release/cometvisu.appcache'
       }
@@ -348,8 +391,58 @@ module.exports = function(grunt) {
           verbose: true
         }
       }
-    }
+    },
 
+    // karma unit testing
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      },
+      //continuous integration mode: run tests once in PhantomJS browser.
+      travis: {
+        configFile: 'karma.conf.js',
+        singleRun: true,
+        browsers: ['PhantomJS']
+      }
+    },
+
+    // start a simple webserver to serve the cometvisu
+    connect: {
+      server: {
+        options: {
+          port: 8000,
+          hostname: '*',
+          base: "src",
+          middleware : function(connect, options, middlewares) {
+            // inject out mockup middlewares before the default ones
+            middlewares.unshift(captureMock());
+            middlewares.unshift(mock());
+            return middlewares;
+          }
+        }
+      }
+    },
+
+    // protractor end-to-end tests
+    protractor: {
+      options: {
+        configFile: "test/protractor/conf.js", // Default config file
+        args: {
+          // Arguments passed to the command
+        }
+      },
+      all: {},
+      travis: {
+        options: {
+          args: {
+            capabilities: {
+              // phantomjs is not recommended by the protractor team, and chrome seems not wo work on travis
+              browserName: 'firefox'
+            }
+          }
+        }
+      }
+    }
   });
 
   // custom task to update the version in the releases demo config
@@ -380,12 +473,17 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-chmod');
   grunt.loadNpmTasks('grunt-github-changes');
+  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
+
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
+  grunt.registerTask('e2e', ['connect', 'protractor:travis']);
 
   grunt.registerTask('default', 'build');
 };
