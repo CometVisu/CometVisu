@@ -116,7 +116,7 @@ require([
   if( templateEngine.visu ) templateEngine.visu.stop();
 });
   $(document).ready(function() {
-  function configError(textStatus) {
+  function configError(textStatus, additionalErrorInfo) {
     var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
     var message = 'Config-File Error!<br/>';
     switch (textStatus) {
