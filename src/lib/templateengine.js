@@ -36,7 +36,6 @@ require.config({
     'jquery.ui.touch-punch':    'dependencies/jquery.ui.touch-punch',
     'jquery.svg.min':           'dependencies/jquery.svg.min',
     'cometvisu-client':         'lib/cometvisu-client',
-    'cometvisu-client-openhab': 'lib/cometvisu-client-openhab',
     'iconhandler':              'lib/iconhandler',
     'pagepartshandler':         'lib/pagepartshandler',
     'trick-o-matic':            'lib/trick-o-matic',
@@ -79,10 +78,6 @@ require.config({
     'jquery-ui':             ['jquery'],
     'jquery.ui.touch-punch': ['jquery', 'jquery-ui'],
     'jquery.svg.min':        ['jquery'],
-    'cometvisu-client-openhab': {
-      deps: ['cometvisu-client'],
-      exports: 'CometVisuOh'
-    }
     /*
     '': ['jquery'],
     'jquery-i18n': ['jquery'],
@@ -98,7 +93,7 @@ require.config({
 var templateEngine;
 require([
   'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagepartshandler', 
-  'cometvisu-client', 'cometvisu-client-openhab',
+  'cometvisu-client',
   'compatibility', 'jquery-ui', 'strftime', 'scrollable', 
   'jquery.ui.touch-punch', 'jquery.svg.min', 'iconhandler', 
   'widget_break', 'widget_designtoggle',
@@ -110,7 +105,7 @@ require([
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
   'widget_video', 'widget_wgplugin_info', 
   'transform_default', 'transform_knx', 'transform_oh'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu, CometVisuOh ) {
+], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu ) {
   "use strict";
   profileCV( 'templateEngine start' );
   
@@ -121,7 +116,7 @@ require([
   if( templateEngine.visu ) templateEngine.visu.stop();
 });
   $(document).ready(function() {
-  function configError( textStatus, additionalErrorInfo ) {
+  function configError(textStatus, additionalErrorInfo) {
     var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
     var message = 'Config-File Error!<br/>';
     switch (textStatus) {
@@ -159,7 +154,7 @@ require([
     noDemo: true,
     url : 'config/visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
     cache : !templateEngine.forceReload,
-    success : function(xml) {
+    success : function(xml, textStatus, jqXHR) {
       if (!xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length) {
         configError("parsererror");
       }
@@ -175,6 +170,13 @@ require([
         else {
           var $loading = $('#loading');
           $loading.html( $loading.text().trim() + '.' );
+          // load backend header
+          if (jqXHR.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
+            templateEngine.backendUrl = jqXHR.getResponseHeader("X-CometVisu-Backend-LoginUrl");
+          }
+          if (jqXHR.getResponseHeader("X-CometVisu-Backend-Name")) {
+            templateEngine.backend = jqXHR.getResponseHeader("X-CometVisu-Backend-Name");
+          }
           templateEngine.parseXML(xml);
         }
       }
@@ -302,33 +304,20 @@ require([
   
   this.enableAddressQueue = $.getUrlVar('enableQueue') ? true : false;
   
-  this.backend = 'cgi-bin'; // default path to backend
+  this.backend = 'default';
+  this.backendUrl;
   if ($.getUrlVar("backend")) {
     this.backend = $.getUrlVar("backend");
   }
 
   this.initBackendClient = function() {
     if (thisTemplateEngine.backend=="oh") {
-      thisTemplateEngine.backend = '/services/cv/';
-      thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
-      thisTemplateEngine.visu.resendHeaders = {'X-Atmosphere-tracking-id':null};
-      thisTemplateEngine.visu.headers= {'X-Atmosphere-Transport':'long-polling'};
+      thisTemplateEngine.visu = new CometVisu('openhab', this.backendUrl);
     }
     else if (thisTemplateEngine.backend=="oh2") {
-      // openHAB2 uses SSE and need a new client implementation
-      if(window.EventSource !== undefined){
-        // browser supports EventSource object
-        thisTemplateEngine.visu = new CometVisuOh();
-      } else {
-        // browser does no support EventSource => fallback to classic
-        thisTemplateEngine.backend = '/rest/cv/';
-        thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
-        thisTemplateEngine.visu.resendHeaders = {'X-Atmosphere-tracking-id':null};
-        thisTemplateEngine.visu.headers= {'X-Atmosphere-Transport':'long-polling'};
-      }
+      thisTemplateEngine.visu = new CometVisu('openhab2', this.backendUrl);
     } else {
-      thisTemplateEngine.backend = '/' + thisTemplateEngine.backend + '/';
-      thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
+      thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend, this.backendUrl);
     }
     function update(json) {
       for( var key in json ) {
@@ -673,7 +662,7 @@ require([
           actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
-
+      
       // take care to prevent overscroll
       if( scrollElement )
       {
@@ -974,7 +963,7 @@ require([
      */
     // read predefined design in config
     var predefinedDesign = $('pages', xml).attr("design");
-
+        
     if ($('pages', xml).attr("backend")) {
       thisTemplateEngine.backend = $('pages', xml).attr("backend");
     }
