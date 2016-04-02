@@ -198,3 +198,10 @@ img.icon, canvas.icon {
   float: left;
   margin: 0 auto;
 }
+
+/* special class to be able to temporarily disable any transition effects */
+.notransition *
+{
+  -webkit-transition: none !important; 
+  transition: none !important; 
+}
