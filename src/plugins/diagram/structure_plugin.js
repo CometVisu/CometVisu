@@ -69,7 +69,7 @@ define( ['structure_custom',
     "use strict";
 
     var cache = {};
-
+    
     /**
      * Get the rrd and put it's content in the cache.
      * @param Number   refresh  time is seconds to refresh the data
@@ -79,7 +79,7 @@ define( ['structure_custom',
     function lookupRRDcache( rrd, start, end, res, refresh, force, callback, callbackParameter )
     {
       var
-        url = templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
+        url = templateEngine.visu.getResourcePath('rrd')+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
         urlNotInCache = !(url in cache),
         doLoad = force || urlNotInCache || !('data' in cache[ url ]) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
 
@@ -315,10 +315,9 @@ define( ['structure_custom',
       var 
         diagram = isPopup ? $( '#' + id + '_big' ) : $( '#' + id + ' .actor div' ),
         data = templateEngine.widgetDataGet( id );
-        
-      if( data === undefined ) 
+      if (!data.init || data === undefined) {
         return;
-      
+      }
       data.init = false;
       isPopup |= data.isPopup;
 
