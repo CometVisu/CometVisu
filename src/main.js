@@ -23,7 +23,6 @@ require.config({
     'jquery.svg.min':           'dependencies/jquery.svg.min',
     'cometvisu-client':         'lib/cometvisu-client',
     'cometvisu-mockup':         'lib/mockup/Client',
-    'cometvisu-client-openhab': 'lib/cometvisu-client-openhab',
     'iconhandler':              'lib/iconhandler',
     'pagepartshandler':         'lib/pagepartshandler',
     'trick-o-matic':            'lib/trick-o-matic',
@@ -40,6 +39,7 @@ require.config({
     'widget_include':           'structure/pure/include',
     'widget_info':              'structure/pure/info',
     'widget_infotrigger':       'structure/pure/infotrigger',
+    'widget_infoaction':        'structure/pure/infoaction',
     'widget_line':              'structure/pure/line',
     'widget_multitrigger':      'structure/pure/multitrigger',
     'widget_navbar':            'structure/pure/navbar',
@@ -67,11 +67,7 @@ require.config({
     'scrollable':            ['jquery'],
     'jquery-ui':             ['jquery'],
     'jquery.ui.touch-punch': ['jquery', 'jquery-ui'],
-    'jquery.svg.min':        ['jquery'],
-    'cometvisu-client-openhab': {
-      deps: ['cometvisu-client'],
-      exports: 'CometVisuOh'
-    }
+    'jquery.svg.min':        ['jquery']
   }
 });
 

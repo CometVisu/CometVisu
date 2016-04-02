@@ -203,7 +203,6 @@ module.exports = function(grunt) {
             { name: 'plugins/colorchooser/structure_plugin',   exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/diagram/structure_plugin',        exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/gauge/structure_plugin',          exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/infoaction/structure_plugin',     exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/link/structure_plugin',           exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/mobilemenu/structure_plugin',     exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/openweathermap/structure_plugin', exclude: ['structure_custom', 'css', 'normalize']  },

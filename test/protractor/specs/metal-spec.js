@@ -86,9 +86,9 @@ describe('cometvisu metal design config test:', function () {
     expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
   });
 
-  // infoaction plugin
+  // infoaction widget
   mockupConfig.push(configParts.start +
-    '<meta><plugins><plugin name="infoaction"/></plugins></meta>'+
+    '<meta/>'+
     '<page name="Start">'+
     ' <infoaction>'+
     '   <layout colspan="3" />'+
@@ -130,13 +130,8 @@ describe('cometvisu metal design config test:', function () {
   });
 
   // see: https://knx-user-forum.de/forum/supportforen/cometvisu/824414-vorstellung-infoaction-plugin?p=922987#post922987
-  // notice that currently we need to load the infoaction plugin to have the correct css rules for this
   mockupConfig.push(configParts.start +
-    '<meta>' +
-    ' <plugins>' +
-    '  <plugin name="infoaction"/>' +
-    ' </plugins>' +
-    '</meta>' +
+    '<meta/>' +
     '<page>' +
     ' <pagejump target="Netzwerk">'+
     '   <label><icon name="it_network"/></label>'+

@@ -58,6 +58,12 @@ define( [], function() {
       answer.d[address] = value;
       this.receive(answer);
     };
+
+    this.stop = function() {};
+    
+    this.getResourcePath = function(name) {
+      return name;
+    };
   }
 
   CometVisu.prototype.update = function( json ) {};
