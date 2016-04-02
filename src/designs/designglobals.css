@@ -172,3 +172,29 @@ img.icon, canvas.icon {
 {
   clear: both;
 }
+
+/* infoaction widget basic styling, just positioning no fancy stuff */
+.infoaction { position: relative; }
+.infoaction .widget_container.widgetinfo {
+  width: auto !important;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 2;
+}
+
+.infoaction .widget_container.widgetaction {
+  z-index: 1;
+}
+
+.infoaction .widget_container.widgetinfo .widget .actor {
+  width: 100%;
+  margin: 0;
+}
+
+.infoaction .widget_container.widgetinfo .widget .actor div { float: none; }
+
+.navbar .infoaction .label {
+  float: left;
+  margin: 0 auto;
+}
