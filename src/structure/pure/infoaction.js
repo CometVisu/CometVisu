@@ -1,4 +1,4 @@
-/* structure_plugin.js (c) 2015 by Tobias Bräutigam [tbraeutigam at gmail dot com]
+/* infoaction.js (c) 2015 by Tobias Bräutigam [tbraeutigam at gmail dot com]
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -16,8 +16,8 @@
  */
 
 /**
- * This plugin add a infoaction widget, which is a combination of an info/text widget
- * and a "action"-widget
+ * Thieinfoaction widget is a combination of an info/text widget
+ * and an "action"-widget
  * 
  * use case: if you have a group of lights, you can show the number of turned on lights
  * 		and control the whole group in one widget
@@ -29,23 +29,17 @@
  *  
  *  </widgetaction>
  * </infoaction>
- */
-
-/**
- * short documentation
  *
- * widgets:
- *   - infoaction
- *
- * attributes:
+ * @author Tobias Bräutigam
+ * @since 2015
  */
-define( ['structure_custom', 'css!plugins/infoaction/infoaction.css'  ], function( VisuDesign_Custom ) {
+define( ['_common' ], function( design ) {
   "use strict";
- 
-  VisuDesign_Custom.prototype.addCreator("infoaction", {
+
+  design.basicdesign.addCreator("infoaction", {
       create: function(element, path, flavour, type) {
         return createWidget(false, element, path, flavour, type);
-      },
+      }
     });
   function createWidget(isInfo, element, path, flavour, type) {
       var $e = $(element);
