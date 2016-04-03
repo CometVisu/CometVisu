@@ -142,6 +142,7 @@ define([
    */
   var pathRegEx = /^id(_[0-9]+)+$/;
 
+  var currentPath = '';
   this.callbacks = {}; // Hash of functions to call during page change
   this.main_scroll;
   this.old_scroll = '';
@@ -383,7 +384,7 @@ define([
       touchStartX = null,
       touchStartY = null;
 
-    window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
+    window.addEventListener( 'pointerdown', function( event ){
       var 
         element = event.target,
         // search if a widget was hit
@@ -392,11 +393,15 @@ define([
       
       var touchobj;
       
-      if (isTouchDevice){
-        touchobj = event.changedTouches[0];
-        
-        touchStartX = parseInt(touchobj.clientX);
-        touchStartY = parseInt(touchobj.clientY);
+      if (isTouchDevice) {
+        if (event.changedTouches) {
+          touchobj = event.changedTouches[0];
+          touchStartX = parseInt(touchobj.clientX);
+          touchStartY = parseInt(touchobj.clientY);
+        } else {
+          touchStartX = parseInt(event.clientX);
+          touchStartY = parseInt(event.clientY);
+        }
       }
       
       isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
@@ -439,7 +444,7 @@ define([
           scrollElement.scrollTop = scrollElement.scrollHeight - scrollElement.offsetHeight - 1;
       } 
     });
-    window.addEventListener( isTouchDevice ? 'touchend' : 'mouseup', function( event ){
+    window.addEventListener( 'pointerup', function( event ){
       if( isWidget )
       {
         var
@@ -467,7 +472,7 @@ define([
     // different handling for move
     // mouse move: let the user cancel an action by dragging the mouse outside
     // and reactivate it when the dragged cursor is returning
-    !isTouchDevice && window.addEventListener( 'mousemove', function( event ){
+    !isTouchDevice && window.addEventListener( 'pointermove', function( event ){
       if( isWidget )
       {
         var
@@ -496,7 +501,7 @@ define([
     });
     // touch move: scroll when the finger is moving and cancel any pending 
     // actions at the same time
-    isTouchDevice && window.addEventListener( 'touchmove', function( event ){
+    isTouchDevice && window.addEventListener( 'pointermove', function( event ){
       if( isWidget )
       {
         var
