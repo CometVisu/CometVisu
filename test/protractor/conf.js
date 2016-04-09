@@ -20,4 +20,4 @@ exports.config = {
     // set browser size...
     browser.manage().window().setSize(1024, 800);
   }
-}
+};
