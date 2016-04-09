@@ -38,10 +38,10 @@ function roundCorners() {
   $('.page.activePage .group:visible').each(function(i) {
       var group = $(this);
       // do not use this in navbars
-      if (group.parents('.navbar').size()>0) return;
+      if (group.parents('.navbar').length>0) return;
       var groupCorners = getOffsetCorners(group);
       // if the group has a headline (=name) we must not round the upper corners
-      var roundUpperCorners =  ($(this).find('.widget_container:first-child').size()>0) && group.css('border-top-right-radius')!="0px";
+      var roundUpperCorners =  ($(this).find('.widget_container:first-child').length>0) && group.css('border-top-right-radius')!="0px";
       var threshold=5;
       $(this).find('.widget_container').each(function (i) {
         var elemCorners = getOffsetCorners($(this));
@@ -75,7 +75,7 @@ templateEngine.bindActionForLoadingFinished(function() {
     var label = $(this);
     if (label.text().trim()!="") {
       var actor = label.siblings('.actor');
-      if (label.children('img').size()==0 && actor.children('.value').text().trim()!="") {
+      if (label.children('img').length==0 && actor.children('.value').text().trim()!="") {
         actor.css('padding-top','0.5em');
       }
     }
@@ -83,7 +83,7 @@ templateEngine.bindActionForLoadingFinished(function() {
   // Disable borders for groups that contain widget-group as children
   $('.page > div > .widget_container > .group:not(.widget)').each(function(i) {
     var $this = $(this);
-    if ($this.find('.clearfix > .widget_container > .group.widget').size()>0) {
+    if ($this.find('.clearfix > .widget_container > .group.widget').length>0) {
       $this.css({'border': 'none', 'margin': 0});
     }
   });
