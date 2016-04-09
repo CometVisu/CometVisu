@@ -181,7 +181,7 @@ module.exports = function(grunt) {
           baseUrl: './',
           appDir: 'src/',  // relative to baseUrl
           dir: 'release/',
-          mainConfigFile: 'src/lib/templateengine.js',
+          mainConfigFile: 'src/main.js',
           optimize: 'uglify2',
           generateSourceMaps: true,
           preserveLicenseComments: false,
@@ -435,7 +435,7 @@ module.exports = function(grunt) {
         options: {
           args: {
             capabilities: {
-              // phantomjs is not recommended by the protractor team, and chrome seems not wo work on travis
+              // phantomjs is not recommended by the protractor team, and chrome seems not to work on travis
               browserName: 'firefox'
             }
           }
