@@ -13,88 +13,25 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- * 
+ *
+ */
+
+/**
+ * Main Template engine
+ *
+ * @author Christian Mayer
+ * @since 2010
  * @module Templateengine
  * @title  CometVisu templateengine
  */
 
 ///////////////////////////////////////////////////////////////////////
 //
-//  Configuration of RequireJS:
-//
-
-require.config({
-  baseUrl: './',
-  waitSeconds: 30, // default: 7 seconds
-  paths: {
-    'css':                      'dependencies/css',
-    'jquery':                   'dependencies/jquery',
-    'compatibility':            'lib/compatibility',
-    'jquery-ui':                'dependencies/jquery-ui',
-    'strftime':                 'dependencies/strftime',
-    'scrollable':               'dependencies/scrollable',
-    'jquery.ui.touch-punch':    'dependencies/jquery.ui.touch-punch',
-    'jquery.svg.min':           'dependencies/jquery.svg.min',
-    'cometvisu-client':         'lib/cometvisu-client',
-    'iconhandler':              'lib/iconhandler',
-    'pagepartshandler':         'lib/pagepartshandler',
-    'trick-o-matic':            'lib/trick-o-matic',
-    '_common':                  'structure/pure/_common',
-    'structure_custom':         'config/structure_custom',
-    'widget_break':             'structure/pure/break',
-    'widget_designtoggle':      'structure/pure/designtoggle',
-    'widget_group':             'structure/pure/group',
-    'widget_rgb':               'structure/pure/rgb',
-    'widget_web':               'structure/pure/web',
-    'widget_image':             'structure/pure/image',
-    'widget_imagetrigger':      'structure/pure/imagetrigger',
-    'widget_include':           'structure/pure/include',
-    'widget_info':              'structure/pure/info',
-    'widget_infoaction':        'structure/pure/infoaction',
-    'widget_infotrigger':       'structure/pure/infotrigger',
-    'widget_line':              'structure/pure/line',
-    'widget_multitrigger':      'structure/pure/multitrigger',
-    'widget_navbar':            'structure/pure/navbar',
-    'widget_page':              'structure/pure/page',
-    'widget_pagejump':          'structure/pure/pagejump',
-    'widget_refresh':           'structure/pure/refresh',
-    'widget_reload':            'structure/pure/reload',
-    'widget_slide':             'structure/pure/slide',
-    'widget_switch':            'structure/pure/switch',
-    'widget_text':              'structure/pure/text',
-    'widget_toggle':            'structure/pure/toggle',
-    'widget_trigger':           'structure/pure/trigger',
-    'widget_pushbutton':        'structure/pure/pushbutton',
-    'widget_urltrigger':        'structure/pure/urltrigger',
-    'widget_unknown':           'structure/pure/unknown',
-    'widget_audio':             'structure/pure/audio',
-    'widget_video':             'structure/pure/video',
-    'widget_wgplugin_info':     'structure/pure/wgplugin_info',
-    'transform_default':        'transforms/transform_default',
-    'transform_knx':            'transforms/transform_knx',
-    'transform_oh':             'transforms/transform_oh'
-  },
-  'shim': {
-    'scrollable':            ['jquery'],
-    'jquery-ui':             ['jquery'],
-    'jquery.ui.touch-punch': ['jquery', 'jquery-ui'],
-    'jquery.svg.min':        ['jquery'],
-    /*
-    '': ['jquery'],
-    'jquery-i18n': ['jquery'],
-    'superfish':   ['jquery']
-    */
-  }
-});
-
-///////////////////////////////////////////////////////////////////////
-//
 //  Main:
 //
-var templateEngine;
-require([
+define([
   'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagepartshandler', 
-  'cometvisu-client',
+  'cometvisu-client', 'cometvisu-mockup',
   'compatibility', 'jquery-ui', 'strftime', 'scrollable', 
   'jquery.ui.touch-punch', 'jquery.svg.min', 'iconhandler', 
   'widget_break', 'widget_designtoggle',
@@ -106,102 +43,10 @@ require([
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
   'widget_video', 'widget_wgplugin_info', 
   'transform_default', 'transform_knx', 'transform_oh'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu ) {
+], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu, ClientMockup ) {
   "use strict";
-  profileCV( 'templateEngine start' );
-  
-  templateEngine = new TemplateEngine();
 
-  $(window).bind('resize', templateEngine.handleResize);
-  $(window).unload(function() {
-  if( templateEngine.visu ) templateEngine.visu.stop();
-});
-  $(document).ready(function() {
-  function configError(textStatus, additionalErrorInfo) {
-    var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
-    var message = 'Config-File Error!<br/>';
-    switch (textStatus) {
-      case 'parsererror':
-        message += 'Invalid config file!<br/><a href="check_config.php?config=' + configSuffix + '">Please check!</a>';
-        break;
-      case 'libraryerror':
-        var link = window.location.href;
-        if (link.indexOf('?') <= 0) {
-          link = link + '?';
-        }
-        link = link + '&libraryCheck=false';
-        message += 'Config file has wrong library version!<br/>' +
-          'This can cause problems with your configuration</br>' + 
-          '<p>You can run the <a href="./upgrade/index.php?config=' + configSuffix + '">Configuration Upgrader</a>.</br>' +
-          'Or you can start without upgrading <a href="' + link + '">with possible configuration problems</a>.</p>';
-        break;
-      case 'filenotfound':
-        message += '404: Config file not found. Neither as normal config ('
-          + additionalErrorInfo[0] + ') nor as demo config ('
-          + additionalErrorInfo[1] + ').';
-        break;
-      default:
-        message += 'Unhandled error of type "' + textStatus + '"';
-        if( additionalErrorInfo )
-          message += ': ' + additionalErrorInfo;
-        else
-          message += '.';
-    }
-    message += '<br/><br/><a href="">Retry</a>';
-    $('#loading').html(message);
-  };
-  // get the data once the page was loaded
-  var ajaxRequest = {
-    noDemo: true,
-    url : 'config/visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
-    cache : !templateEngine.forceReload,
-    success : function(xml, textStatus, jqXHR) {
-      if (!xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length) {
-        configError("parsererror");
-      }
-      else {
-        // check the library version
-        var xmlLibVersion = $('pages', xml).attr("lib_version");
-        if (xmlLibVersion == undefined) {
-          xmlLibVersion = -1;
-        }
-        if (templateEngine.libraryCheck && xmlLibVersion < templateEngine.libraryVersion) {
-          configError("libraryerror");
-        }
-        else {
-          var $loading = $('#loading');
-          $loading.html( $loading.text().trim() + '.' );
-          // load backend header
-          if (jqXHR.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
-            templateEngine.backendUrl = jqXHR.getResponseHeader("X-CometVisu-Backend-LoginUrl");
-          }
-          if (jqXHR.getResponseHeader("X-CometVisu-Backend-Name")) {
-            templateEngine.backend = jqXHR.getResponseHeader("X-CometVisu-Backend-Name");
-          }
-          templateEngine.parseXML(xml);
-        }
-      }
-    },
-    error : function(jqXHR, textStatus, errorThrown) {
-      if( 404 === jqXHR.status && ajaxRequest.noDemo )
-      {
-        var $loading = $('#loading');
-        $loading.html( $loading.text().trim() + '!' );
-        ajaxRequest.noDemo = false;
-        ajaxRequest.origUrl = ajaxRequest.url;
-        ajaxRequest.url = ajaxRequest.url.replace('config/','demo/');
-        $.ajax( ajaxRequest );
-        return;
-      }
-      else if( 404 === jqXHR.status )
-        configError( "filenotfound", [ajaxRequest.origUrl, ajaxRequest.url] );
-      else
-        configError( textStatus, errorThrown );
-    },
-    dataType : 'xml'
-  };
-  $.ajax( ajaxRequest );
-});
+  var instance;
 
   function TemplateEngine( undefined ) {
   var thisTemplateEngine = this;
@@ -312,7 +157,11 @@ require([
   }
 
   this.initBackendClient = function() {
-    if (thisTemplateEngine.backend=="oh") {
+    if ($.getUrlVar('testMode')) {
+      thisTemplateEngine.visu = new ClientMockup();
+      require(['transform_mockup'], function() {});
+    }
+    else if (thisTemplateEngine.backend=="oh") {
       thisTemplateEngine.visu = new CometVisu('openhab', this.backendUrl);
     }
     else if (thisTemplateEngine.backend=="oh2") {
@@ -663,7 +512,7 @@ require([
           actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
-      
+
       // take care to prevent overscroll
       if( scrollElement )
       {
@@ -964,7 +813,7 @@ require([
      */
     // read predefined design in config
     var predefinedDesign = $('pages', xml).attr("design");
-        
+
     if ($('pages', xml).attr("backend")) {
       thisTemplateEngine.backend = $('pages', xml).attr("backend");
     }
@@ -1974,4 +1823,13 @@ require([
   ////////// Reflection API for possible Editor communication: End //////////
 }
 
+  return {
+    // simulate a singleton
+    getInstance : function() {
+      if (!instance) {
+        instance = new TemplateEngine();
+      }
+      return instance;
+    }
+  };
 }); // end require
