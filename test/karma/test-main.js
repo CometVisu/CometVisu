@@ -86,3 +86,11 @@ require.config({
   // we have to kickoff jasmine, as it is asynchronous
   callback: window.__karma__.start
 });
+
+var templateEngine;
+require([
+  'jquery', 'templateengine'
+], function( $, TemplateEngine ) {
+  "use strict";
+  templateEngine = TemplateEngine.getInstance();
+}); // end require
