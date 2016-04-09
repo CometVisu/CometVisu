@@ -19,15 +19,10 @@ icon/iconconfig.js
 lib/templateengine.js
 # structure_pure will be inserted here during the release process !DON'T MODIFY!
 dependencies/jquery.ui.touch-punch.js
-dependencies/jquery.ui.touch-punch.min.js
 dependencies/jquery-ui.js
-dependencies/jquery-ui.min.js
 dependencies/sprintf.js
-dependencies/sprintf.min.js
 dependencies/strftime.js
-dependencies/strftime-min.js
 dependencies/jquery.js
-dependencies/jquery.svg.min.js
 dependencies/jquery.min.js
 dependencies/jsfloorplan.js
 dependencies/Three.js
