@@ -1,9 +1,8 @@
-
 require.config({
   baseUrl: './',
   waitSeconds: 30, // default: 7 seconds
   paths: {
-    'jquery':            '../../dependencies/jquery-2.2.2',
+    'jquery':            '../../dependencies/jquery',
     'cometvisu-client':  '../../lib/cometvisu-client',
     'transform_default': '../../transforms/transform_default',
     'transform_knx':     '../../transforms/transform_knx'
@@ -11,16 +10,28 @@ require.config({
 });
 
 require([
-  'jquery', 'cometvisu-client'//, 'transform_default', 'transform_knx'
+  'jquery', 'cometvisu-client', 'transform_default', 'transform_knx'
 ], function( jq, CometVisu ) {
-  console.log('innen!', {j:jq, cv:CometVisu});
-});
+  "use strict";
+  
+  var 
+    thisGA = '12/7/52',
+    thisTransform = 'DPT:5.001',
+    visu = new CometVisu('cgi-bin');
 
-/*
- * 
-   <script xlink:href="../../lib/jquery.js" type="text/javascript"></script>
-   <script xlink:href="../../dependencies/jquery.js" type="text/javascript"></script>
-   <script xlink:href="../../lib/cometvisu-client.js" type="text/javascript"></script>
-   <script xlink:href="../../transforms/transform_default.js" type="text/javascript"></script>
-   <script xlink:href="../../transforms/transform_knx.js" type="text/javascript"></script>
-*/
+  visu.update = function( json ) // overload the handler
+  {
+    var h = Transform[thisTransform].decode( json[thisGA] );
+    var filling = $('#rect3855')[0];
+    filling.y.baseVal.value=200.57388 + (100-h)*2;
+    filling.height.baseVal.value = h*2;
+    $('#path3029-4')[0].setAttribute('d', 'm 524.85653,'+(200.57388+ (100-h)*2)+' a 100,37.795274 0 0 1 -200,0 100,37.795274 0 1 1 200,0 z')
+  }
+  
+  $(window).unload(function() {
+    visu.stop();
+  });
+  
+  visu.user = 'demo_user'; // example for setting a user
+  visu.subscribe( [thisGA] );
+});
