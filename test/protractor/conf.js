@@ -6,10 +6,14 @@
  */
 exports.config = {
   framework: 'jasmine',
-  specs: ['**/*spec.js'],
 
   // so not use a selenium server
   directConnect: true,
+
+  suites: {
+    common: ['specs/*spec.js'],
+    widgets: ['specs/widgets/*spec.js']
+  },
 
   onPrepare: function(){
     browser.ignoreSynchronization = true;
