@@ -24,6 +24,7 @@ require.config({
     'cometvisu-client':         'lib/cometvisu-client',
     'cometvisu-mockup':         'lib/mockup/Client',
     'iconhandler':              'lib/iconhandler',
+    'pagehandler':              'lib/pagehandler',
     'pagepartshandler':         'lib/pagepartshandler',
     'trick-o-matic':            'lib/trick-o-matic',
     'templateengine':           'lib/templateengine',

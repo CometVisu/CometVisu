@@ -1,4 +1,4 @@
-/* templateengine.js (c) 2010-2015 by Christian Mayer [CometVisu at ChristianMayer dot de]
+/* templateengine.js (c) 2010-2016 by Christian Mayer [CometVisu at ChristianMayer dot de]
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -30,9 +30,9 @@
 //  Main:
 //
 define([
-  'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagepartshandler', 
+  'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagehandler', 'pagepartshandler', 
   'cometvisu-client', 'cometvisu-mockup',
-  'compatibility', 'jquery-ui', 'strftime', 'scrollable', 
+  'compatibility', 'jquery-ui', 'strftime',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'iconhandler', 
   'widget_break', 'widget_designtoggle',
   'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
@@ -43,7 +43,7 @@ define([
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
   'widget_video', 'widget_wgplugin_info', 
   'transform_default', 'transform_knx', 'transform_oh'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu, ClientMockup ) {
+], function( $, design, VisuDesign_Custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup ) {
   "use strict";
 
   var instance;
@@ -137,7 +137,6 @@ define([
    */
   var pathRegEx = /^id(_[0-9]+)+$/;
 
-  var currentPath = '';
   this.callbacks = {}; // Hash of functions to call during page change
   this.main_scroll;
   this.old_scroll = '';
@@ -1142,30 +1141,23 @@ define([
     thisTemplateEngine.adjustColumns();
     thisTemplateEngine.applyColumnWidths();
     
-    // setup the scrollable
-    thisTemplateEngine.main_scroll = $('#main').scrollable({
-      keyboard : false,
-      touch : false
-    }).data('scrollable');
-    thisTemplateEngine.main_scroll.onSeek( function(){
-      thisTemplateEngine.pagePartsHandler.updateTopNavigation( this );
-      $('.activePage', '#pages').removeClass('activePage');
-      $('.pageActive', '#pages').removeClass('pageActive');
-      thisTemplateEngine.currentPage.addClass('pageActive activePage');// show new page
-      $('#pages').css('left', 0 );
-      thisTemplateEngine.callbacks[currentPath].afterPageChange.forEach( function( callback ){
-        callback( currentPath );
-      });
-    });
+    thisTemplateEngine.main_scroll = new PageHandler();
     if (thisTemplateEngine.scrollSpeed != undefined) {
-      thisTemplateEngine.main_scroll.getConf().speed = thisTemplateEngine.scrollSpeed;
+      thisTemplateEngine.main_scroll.setSpeed( thisTemplateEngine.scrollSpeed );
     }
    
     thisTemplateEngine.scrollToPage(startpage,0);
 
+    /* CM, 9.4.16:
+     * TODO: Is this really needed?
+     * I can't find any source for setting .fast - and when it's set, it's
+     * most likely not working as scrollToPage should have been used instead
+     * anyway...
+     * 
     $('.fast').bind('click', function() {
       thisTemplateEngine.main_scroll.seekTo($(this).text());
     });
+   */
 
     // reaction on browser back button
     window.onpopstate = function(e) {
@@ -1392,28 +1384,6 @@ define([
     if (page_id==null) {
       return;
     }
-    //    console.log(thisTemplateEngine.currentPage);
-    //    // don't scroll when target is already active
-    //    if( thisTemplateEngine.currentPage!=null && thisTemplateEngine.currentPage.attr('id') === page_id )
-    //      return;
-    
-    var 
-      page = $('#' + page_id),
-      callbacks = thisTemplateEngine.callbacks[page_id];
-    
-    if( 0 === page.length ) // check if page does exist
-      return;
-    
-    
-    currentPath !== '' &&  thisTemplateEngine.callbacks[currentPath].exitingPageChange.forEach( function( callback ){
-      callback( currentPath, page_id );
-    });
-    
-    currentPath = page_id;
-    
-    callbacks.beforePageChange.forEach( function( callback ){
-      callback( page_id );
-    });
     
     if( undefined === speed )
       speed = thisTemplateEngine.scrollSpeed;
@@ -1421,41 +1391,12 @@ define([
     if( rememberLastPage )
       localStorage.lastpage = page_id;
     
-    thisTemplateEngine.resetPageValues();
-    
-    thisTemplateEngine.currentPage = page;
-
-    page.addClass('pageActive activePage');// show new page
-    
-    callbacks.duringPageChange.forEach( function( callback ){
-      callback( page_id );
-    });
-    
-    // update visibility of navbars, top-navigation, footer
-    thisTemplateEngine.pagePartsHandler.updatePageParts( page, speed );
-
-    if( speed > 0 ) {
-      var scrollLeft = page.position().left != 0;
-      // jump to the page on the left of the page we need to scroll to
-      if (scrollLeft) {
-        $('#pages').css('left', -page.position().left + page.width());
-      } else {
-        $('#pages').css('left', -page.position().left - page.width());
-      }
-    }
     // push new state to history
     if (skipHistory === undefined)
       window.history.pushState(page_id, page_id, window.location.href);
     
-    thisTemplateEngine.main_scroll.seekTo(page, speed); // scroll to it
+    thisTemplateEngine.main_scroll.seekTo(page_id, speed); // scroll to it
 
-    // show the navbars for this page
-    /*
-     * $('#'+page_id+'_top_navbar').addClass('navbarActive');
-     * $('#'+page_id+'_right_navbar').addClass('navbarActive');
-     * $('#'+page_id+'_bottom_navbar').addClass('navbarActive');
-     * $('#'+page_id+'_left_navbar').addClass('navbarActive');
-     */
     thisTemplateEngine.pagePartsHandler.initializeNavbars(page_id);
     $(window).trigger('scrolltopage', page_id);    
   };

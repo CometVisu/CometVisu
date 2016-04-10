@@ -236,7 +236,7 @@ define([ 'jquery' ], function( $ ) {
    *                time in milliseconds
    */
   this.fadeNavbar = function(position, direction, speed) {
-    speed = (speed !== undefined) ? speed : templateEngine.main_scroll.getConf().speed;
+    speed = (speed !== undefined) ? speed : templateEngine.main_scroll.getSpeed();
     var initCss = {};
     var targetCss = {};
     var navbar = $('#navbar' + position);
@@ -282,7 +282,7 @@ define([ 'jquery' ], function( $ ) {
       navbar.css(targetCss);
       fn();
     } else {
-      navbar.animate(targetCss, speed, templateEngine.main_scroll.getConf().easing, fn);
+      navbar.animate(targetCss, speed, templateEngine.main_scroll.getEasing(), fn);
     }
   };
 
@@ -302,7 +302,7 @@ define([ 'jquery' ], function( $ ) {
       for ( var i = 0; i < parts.length; i++) {
         var item = $('#id' + parts.slice(0, i + 1).join('_') + "_.page",
             '#pages');
-        if (item.size() == 1) {
+        if (item.length == 1) {
           tree.push(item.get(0));
         }
       }
@@ -319,7 +319,7 @@ define([ 'jquery' ], function( $ ) {
       var leftNav = $('#' + id + 'left_navbar');
       var leftData = templateEngine.widgetDataGet( id + 'left_navbar' );
       // console.log(tree.length+"-"+level+"<="+topData.scope);
-      if (topNav.size() > 0) {
+      if (topNav.length > 0) {
         if (topData.scope == undefined || topData.scope < 0
             || tree.length - level <= topData.scope) {
           topNav.addClass('navbarActive');
@@ -327,7 +327,7 @@ define([ 'jquery' ], function( $ ) {
           topNav.removeClass('navbarActive');
         }
       }
-      if (rightNav.size() > 0) {
+      if (rightNav.length > 0) {
         if (rightData.scope == undefined
             || rightData.scope < 0
             || tree.length - level <= rightData.scope) {
@@ -336,7 +336,7 @@ define([ 'jquery' ], function( $ ) {
           rightNav.removeClass('navbarActive');
         }
       }
-      if (bottomNav.size() > 0) {
+      if (bottomNav.length > 0) {
         if (bottomData.scope == undefined
             || bottomData.scope < 0
             || tree.length - level <= bottomData.scope) {
@@ -345,7 +345,7 @@ define([ 'jquery' ], function( $ ) {
           bottomNav.removeClass('navbarActive');
         }
       }
-      if (leftNav.size() > 0) {
+      if (leftNav.length > 0) {
         if (leftData.scope == undefined || leftData.scope < 0
             || tree.length - level <= leftData.scope) {
           leftNav.addClass('navbarActive');
