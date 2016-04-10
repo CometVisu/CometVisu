@@ -68,7 +68,7 @@ define( ['jquery'], function($) {
 
   this.addPopup('unknown', {
     create: function( attributes ) {
-      var repositon = false;
+      var reposition = false;
       var ret_val = $('<div class="popup" style="display:none"><div class="popup_close">X</div></div><div class="popup_background" style="display:none" />').appendTo('body');
       ret_val.addClass( this.type );
 
@@ -148,14 +148,13 @@ define( ['jquery'], function($) {
    */
   this.defaultValueHandling = function( ga, data, widgetData )
   {
+    var thisTransform = '';
+    var value = data;
     if( undefined !== ga )
     {
-      var thisTransform = widgetData.address[ ga ][0];
+      thisTransform = widgetData.address[ ga ][0];
       // #1: transform the raw value to a JavaScript type
-      var value = templateEngine.transformDecode( thisTransform, data );
-    } else {
-      var thisTransform = '';
-      var value = data;
+      value = templateEngine.transformDecode( thisTransform, data );
     }
     
     widgetData.basicvalue = value; // store it to be able to supress sending of unchanged data
