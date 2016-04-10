@@ -129,7 +129,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          src: [ 'src/lib/*.js', 'src/structure/pure/*.js' ]
+          src: [ 'src/lib/**.js', 'src/structure/**.js', 'src/transforms/**.js', 'src/designs/*/*.js' ]
         }
       }
     },
