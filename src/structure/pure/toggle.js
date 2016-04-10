@@ -18,8 +18,8 @@
  *
  * @module Toggle 
  * @title  CometVisu Toggle 
- * @version 0.9.1-RC2
  */
+
 
 /**
  * @author Christian Mayer

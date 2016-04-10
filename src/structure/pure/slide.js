@@ -18,8 +18,8 @@
  *
  * @module Slide 
  * @title  CometVisu Slide 
- * @version 0.9.1-RC2
  */
+
 
 /* slide.js (c) 2012 by Christian Mayer [CometVisu at ChristianMayer dot de]
  *

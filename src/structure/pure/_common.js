@@ -18,8 +18,8 @@
  *
  * @module _common 
  * @title  CometVisu _common 
- * @version 0.9.1-RC2
  */
+
 
 /**
  * This module defines the widgets for the CometVisu visualisation.

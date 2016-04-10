@@ -18,8 +18,8 @@
  *
  * @module Break 
  * @title  CometVisu Break 
- * @version 0.9.1-RC2
  */
+
 
 /**
  * @author Christian Mayer

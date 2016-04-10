@@ -18,8 +18,8 @@
  *
  * @module Pushbutton 
  * @title  CometVisu Pushbutton 
- * @version 0.9.1-RC2
  */
+
 
 /**
  * @since 2013

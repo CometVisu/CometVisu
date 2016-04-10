@@ -18,8 +18,8 @@
  *
  * @module Info 
  * @title  CometVisu Info 
- * @version 0.9.1-RC2
  */
+
 
 /**
  * @author Christian Mayer

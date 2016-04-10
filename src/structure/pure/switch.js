@@ -18,8 +18,8 @@
  *
  * @module Switch 
  * @title  CometVisu Switch 
- * @version 0.9.1-RC2
  */
+
 
 /* switch.js (c) 2012 by Christian Mayer [CometVisu at ChristianMayer dot de]
  *

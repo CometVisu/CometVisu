@@ -18,7 +18,6 @@
  *
  * @module Unknown 
  * @title  CometVisu Unknown 
- * @version 0.9.1-RC2
  */
 
 

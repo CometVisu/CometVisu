@@ -18,8 +18,8 @@
  *
  * @module Wgplugin_info 
  * @title  CometVisu Wgplugin_info 
- * @version 0.9.1-RC2
  */
+
 
 /**
  * @author Christian Mayer

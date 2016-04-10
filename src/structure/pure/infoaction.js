@@ -18,8 +18,8 @@
  *
  * @module Infoaction 
  * @title  CometVisu Infoaction 
- * @version 0.9.1-RC2
  */
+
 
 /**
  * The infoaction widget is a combination of an info/text widget

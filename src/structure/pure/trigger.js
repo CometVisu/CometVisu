@@ -18,8 +18,8 @@
  *
  * @module Trigger 
  * @title  CometVisu Trigger 
- * @version 0.9.1-RC2
  */
+
 
 /**
  * @author Christian Mayer

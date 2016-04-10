@@ -128,7 +128,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          src: [ 'src/lib/**/*.js', 'src/structure/**/*.js', 'src/transforms/**.js', 'src/designs/*/*.js' ]
+          src: [ 'src/lib/**/*.js', 'src/structure/**/*.js', 'src/transforms/**/*.js', 'src/designs/*/design_setup.js' ]
         }
       }
     },

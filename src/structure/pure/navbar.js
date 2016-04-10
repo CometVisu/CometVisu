@@ -18,8 +18,8 @@
  *
  * @module Navbar 
  * @title  CometVisu Navbar 
- * @version 0.9.1-RC2
  */
+
 
 /**
  * @author Christian Mayer

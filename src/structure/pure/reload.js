@@ -18,8 +18,8 @@
  *
  * @module Reload 
  * @title  CometVisu Reload 
- * @version 0.9.1-RC2
  */
+
 
 /* refresh.js (c) 2014 by Christian Mayer [CometVisu at ChristianMayer dot de]
  *

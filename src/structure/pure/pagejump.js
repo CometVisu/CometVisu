@@ -18,8 +18,8 @@
  *
  * @module Pagejump 
  * @title  CometVisu Pagejump 
- * @version 0.9.1-RC2
  */
+
 
 /**
  * @author Christian Mayer

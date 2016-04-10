@@ -18,8 +18,8 @@
  *
  * @module Audio 
  * @title  CometVisu Audio 
- * @version 0.9.1-RC2
  */
+
 
 /**
  * @author Markus Damman
