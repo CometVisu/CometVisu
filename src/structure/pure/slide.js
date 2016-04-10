@@ -15,7 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define( ['_common'], function( design ) {
+define( ['_common', 'jquery-ui/slider'], function( design ) {
   "use strict";
   var 
     basicdesign = design.basicdesign,

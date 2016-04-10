@@ -32,7 +32,7 @@
 define([
   'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagehandler', 'pagepartshandler', 
   'cometvisu-client', 'cometvisu-mockup',
-  'compatibility', 'jquery-ui', 'strftime',
+  'compatibility', 'strftime',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'iconhandler', 
   'widget_break', 'widget_designtoggle',
   'widget_group', 'widget_rgb', 'widget_web', 'widget_image',

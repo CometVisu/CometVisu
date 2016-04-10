@@ -18,7 +18,6 @@ require.config({
     'compatibility':            'lib/compatibility',
     'jquery-ui':                'dependencies/jquery-ui',
     'strftime':                 'dependencies/strftime',
-    'scrollable':               'dependencies/scrollable',
     'jquery.ui.touch-punch':    'dependencies/jquery.ui.touch-punch',
     'jquery.svg.min':           'dependencies/jquery.svg.min',
     'cometvisu-client':         'lib/cometvisu-client',
@@ -67,7 +66,7 @@ require.config({
   'shim': {
     'scrollable':            ['jquery'],
     'jquery-ui':             ['jquery'],
-    'jquery.ui.touch-punch': ['jquery', 'jquery-ui'],
+    'jquery.ui.touch-punch': ['jquery', 'jquery-ui/widget', 'jquery-ui/mouse'],
     'jquery.svg.min':        ['jquery']
   }
 });
