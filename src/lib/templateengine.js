@@ -1,5 +1,7 @@
-/* templateengine.js (c) 2010-2015 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* templateengine.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,95 +9,35 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- * 
+ *
+ * @module Templateengine 
+ * @title  CometVisu Templateengine 
+ */
+
+
+/**
+ * Main Template engine
+ *
+ * @author Christian Mayer
+ * @since 2010
  * @module Templateengine
  * @title  CometVisu templateengine
  */
 
 ///////////////////////////////////////////////////////////////////////
 //
-//  Configuration of RequireJS:
-//
-
-require.config({
-  baseUrl: './',
-  waitSeconds: 30, // default: 7 seconds
-  paths: {
-    'css':                      'dependencies/css',
-    'jquery':                   'dependencies/jquery',
-    'compatibility':            'lib/compatibility',
-    'jquery-ui':                'dependencies/jquery-ui',
-    'strftime':                 'dependencies/strftime',
-    'scrollable':               'dependencies/scrollable',
-    'jquery.ui.touch-punch':    'dependencies/jquery.ui.touch-punch',
-    'jquery.svg.min':           'dependencies/jquery.svg.min',
-    'cometvisu-client':         'lib/cometvisu-client',
-    'iconhandler':              'lib/iconhandler',
-    'pagepartshandler':         'lib/pagepartshandler',
-    'trick-o-matic':            'lib/trick-o-matic',
-    '_common':                  'structure/pure/_common',
-    'structure_custom':         'config/structure_custom',
-    'widget_break':             'structure/pure/break',
-    'widget_designtoggle':      'structure/pure/designtoggle',
-    'widget_group':             'structure/pure/group',
-    'widget_rgb':               'structure/pure/rgb',
-    'widget_web':               'structure/pure/web',
-    'widget_image':             'structure/pure/image',
-    'widget_imagetrigger':      'structure/pure/imagetrigger',
-    'widget_include':           'structure/pure/include',
-    'widget_info':              'structure/pure/info',
-    'widget_infoaction':        'structure/pure/infoaction',
-    'widget_infotrigger':       'structure/pure/infotrigger',
-    'widget_line':              'structure/pure/line',
-    'widget_multitrigger':      'structure/pure/multitrigger',
-    'widget_navbar':            'structure/pure/navbar',
-    'widget_page':              'structure/pure/page',
-    'widget_pagejump':          'structure/pure/pagejump',
-    'widget_refresh':           'structure/pure/refresh',
-    'widget_reload':            'structure/pure/reload',
-    'widget_slide':             'structure/pure/slide',
-    'widget_switch':            'structure/pure/switch',
-    'widget_text':              'structure/pure/text',
-    'widget_toggle':            'structure/pure/toggle',
-    'widget_trigger':           'structure/pure/trigger',
-    'widget_pushbutton':        'structure/pure/pushbutton',
-    'widget_urltrigger':        'structure/pure/urltrigger',
-    'widget_unknown':           'structure/pure/unknown',
-    'widget_audio':             'structure/pure/audio',
-    'widget_video':             'structure/pure/video',
-    'widget_wgplugin_info':     'structure/pure/wgplugin_info',
-    'transform_default':        'transforms/transform_default',
-    'transform_knx':            'transforms/transform_knx',
-    'transform_oh':             'transforms/transform_oh'
-  },
-  'shim': {
-    'scrollable':            ['jquery'],
-    'jquery-ui':             ['jquery'],
-    'jquery.ui.touch-punch': ['jquery', 'jquery-ui'],
-    'jquery.svg.min':        ['jquery'],
-    /*
-    '': ['jquery'],
-    'jquery-i18n': ['jquery'],
-    'superfish':   ['jquery']
-    */
-  }
-});
-
-///////////////////////////////////////////////////////////////////////
-//
 //  Main:
 //
-var templateEngine;
-require([
-  'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagepartshandler', 
-  'cometvisu-client',
-  'compatibility', 'jquery-ui', 'strftime', 'scrollable', 
+define([
+  'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagehandler', 'pagepartshandler', 
+  'cometvisu-client', 'cometvisu-mockup',
+  'compatibility', 'jquery-ui', 'strftime',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'iconhandler', 
   'widget_break', 'widget_designtoggle',
   'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
@@ -106,102 +48,10 @@ require([
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
   'widget_video', 'widget_wgplugin_info', 
   'transform_default', 'transform_knx', 'transform_oh'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler, CometVisu ) {
+], function( $, design, VisuDesign_Custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup ) {
   "use strict";
-  profileCV( 'templateEngine start' );
-  
-  templateEngine = new TemplateEngine();
 
-  $(window).bind('resize', templateEngine.handleResize);
-  $(window).unload(function() {
-  if( templateEngine.visu ) templateEngine.visu.stop();
-});
-  $(document).ready(function() {
-  function configError(textStatus, additionalErrorInfo) {
-    var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
-    var message = 'Config-File Error!<br/>';
-    switch (textStatus) {
-      case 'parsererror':
-        message += 'Invalid config file!<br/><a href="check_config.php?config=' + configSuffix + '">Please check!</a>';
-        break;
-      case 'libraryerror':
-        var link = window.location.href;
-        if (link.indexOf('?') <= 0) {
-          link = link + '?';
-        }
-        link = link + '&libraryCheck=false';
-        message += 'Config file has wrong library version!<br/>' +
-          'This can cause problems with your configuration</br>' + 
-          '<p>You can run the <a href="./upgrade/index.php?config=' + configSuffix + '">Configuration Upgrader</a>.</br>' +
-          'Or you can start without upgrading <a href="' + link + '">with possible configuration problems</a>.</p>';
-        break;
-      case 'filenotfound':
-        message += '404: Config file not found. Neither as normal config ('
-          + additionalErrorInfo[0] + ') nor as demo config ('
-          + additionalErrorInfo[1] + ').';
-        break;
-      default:
-        message += 'Unhandled error of type "' + textStatus + '"';
-        if( additionalErrorInfo )
-          message += ': ' + additionalErrorInfo;
-        else
-          message += '.';
-    }
-    message += '<br/><br/><a href="">Retry</a>';
-    $('#loading').html(message);
-  };
-  // get the data once the page was loaded
-  var ajaxRequest = {
-    noDemo: true,
-    url : 'config/visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
-    cache : !templateEngine.forceReload,
-    success : function(xml, textStatus, jqXHR) {
-      if (!xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length) {
-        configError("parsererror");
-      }
-      else {
-        // check the library version
-        var xmlLibVersion = $('pages', xml).attr("lib_version");
-        if (xmlLibVersion == undefined) {
-          xmlLibVersion = -1;
-        }
-        if (templateEngine.libraryCheck && xmlLibVersion < templateEngine.libraryVersion) {
-          configError("libraryerror");
-        }
-        else {
-          var $loading = $('#loading');
-          $loading.html( $loading.text().trim() + '.' );
-          // load backend header
-          if (jqXHR.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
-            templateEngine.backendUrl = jqXHR.getResponseHeader("X-CometVisu-Backend-LoginUrl");
-          }
-          if (jqXHR.getResponseHeader("X-CometVisu-Backend-Name")) {
-            templateEngine.backend = jqXHR.getResponseHeader("X-CometVisu-Backend-Name");
-          }
-          templateEngine.parseXML(xml);
-        }
-      }
-    },
-    error : function(jqXHR, textStatus, errorThrown) {
-      if( 404 === jqXHR.status && ajaxRequest.noDemo )
-      {
-        var $loading = $('#loading');
-        $loading.html( $loading.text().trim() + '!' );
-        ajaxRequest.noDemo = false;
-        ajaxRequest.origUrl = ajaxRequest.url;
-        ajaxRequest.url = ajaxRequest.url.replace('config/','demo/');
-        $.ajax( ajaxRequest );
-        return;
-      }
-      else if( 404 === jqXHR.status )
-        configError( "filenotfound", [ajaxRequest.origUrl, ajaxRequest.url] );
-      else
-        configError( textStatus, errorThrown );
-    },
-    dataType : 'xml'
-  };
-  $.ajax( ajaxRequest );
-});
+  var instance;
 
   function TemplateEngine( undefined ) {
   var thisTemplateEngine = this;
@@ -292,7 +142,6 @@ require([
    */
   var pathRegEx = /^id(_[0-9]+)+$/;
 
-  var currentPath = '';
   this.callbacks = {}; // Hash of functions to call during page change
   this.main_scroll;
   this.old_scroll = '';
@@ -312,7 +161,11 @@ require([
   }
 
   this.initBackendClient = function() {
-    if (thisTemplateEngine.backend=="oh") {
+    if ($.getUrlVar('testMode')) {
+      thisTemplateEngine.visu = new ClientMockup();
+      require(['transform_mockup'], function() {});
+    }
+    else if (thisTemplateEngine.backend=="oh") {
       thisTemplateEngine.visu = new CometVisu('openhab', this.backendUrl);
     }
     else if (thisTemplateEngine.backend=="oh2") {
@@ -663,7 +516,7 @@ require([
           actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
-      
+
       // take care to prevent overscroll
       if( scrollElement )
       {
@@ -964,7 +817,7 @@ require([
      */
     // read predefined design in config
     var predefinedDesign = $('pages', xml).attr("design");
-        
+
     if ($('pages', xml).attr("backend")) {
       thisTemplateEngine.backend = $('pages', xml).attr("backend");
     }
@@ -1293,30 +1146,23 @@ require([
     thisTemplateEngine.adjustColumns();
     thisTemplateEngine.applyColumnWidths();
     
-    // setup the scrollable
-    thisTemplateEngine.main_scroll = $('#main').scrollable({
-      keyboard : false,
-      touch : false
-    }).data('scrollable');
-    thisTemplateEngine.main_scroll.onSeek( function(){
-      thisTemplateEngine.pagePartsHandler.updateTopNavigation( this );
-      $('.activePage', '#pages').removeClass('activePage');
-      $('.pageActive', '#pages').removeClass('pageActive');
-      thisTemplateEngine.currentPage.addClass('pageActive activePage');// show new page
-      $('#pages').css('left', 0 );
-      thisTemplateEngine.callbacks[currentPath].afterPageChange.forEach( function( callback ){
-        callback( currentPath );
-      });
-    });
+    thisTemplateEngine.main_scroll = new PageHandler();
     if (thisTemplateEngine.scrollSpeed != undefined) {
-      thisTemplateEngine.main_scroll.getConf().speed = thisTemplateEngine.scrollSpeed;
+      thisTemplateEngine.main_scroll.setSpeed( thisTemplateEngine.scrollSpeed );
     }
    
     thisTemplateEngine.scrollToPage(startpage,0);
 
+    /* CM, 9.4.16:
+     * TODO: Is this really needed?
+     * I can't find any source for setting .fast - and when it's set, it's
+     * most likely not working as scrollToPage should have been used instead
+     * anyway...
+     * 
     $('.fast').bind('click', function() {
       thisTemplateEngine.main_scroll.seekTo($(this).text());
     });
+   */
 
     // reaction on browser back button
     window.onpopstate = function(e) {
@@ -1543,28 +1389,6 @@ require([
     if (page_id==null) {
       return;
     }
-    //    console.log(thisTemplateEngine.currentPage);
-    //    // don't scroll when target is already active
-    //    if( thisTemplateEngine.currentPage!=null && thisTemplateEngine.currentPage.attr('id') === page_id )
-    //      return;
-    
-    var 
-      page = $('#' + page_id),
-      callbacks = thisTemplateEngine.callbacks[page_id];
-    
-    if( 0 === page.length ) // check if page does exist
-      return;
-    
-    
-    currentPath !== '' &&  thisTemplateEngine.callbacks[currentPath].exitingPageChange.forEach( function( callback ){
-      callback( currentPath, page_id );
-    });
-    
-    currentPath = page_id;
-    
-    callbacks.beforePageChange.forEach( function( callback ){
-      callback( page_id );
-    });
     
     if( undefined === speed )
       speed = thisTemplateEngine.scrollSpeed;
@@ -1572,41 +1396,12 @@ require([
     if( rememberLastPage )
       localStorage.lastpage = page_id;
     
-    thisTemplateEngine.resetPageValues();
-    
-    thisTemplateEngine.currentPage = page;
-
-    page.addClass('pageActive activePage');// show new page
-    
-    callbacks.duringPageChange.forEach( function( callback ){
-      callback( page_id );
-    });
-    
-    // update visibility of navbars, top-navigation, footer
-    thisTemplateEngine.pagePartsHandler.updatePageParts( page, speed );
-
-    if( speed > 0 ) {
-      var scrollLeft = page.position().left != 0;
-      // jump to the page on the left of the page we need to scroll to
-      if (scrollLeft) {
-        $('#pages').css('left', -page.position().left + page.width());
-      } else {
-        $('#pages').css('left', -page.position().left - page.width());
-      }
-    }
     // push new state to history
     if (skipHistory === undefined)
       window.history.pushState(page_id, page_id, window.location.href);
     
-    thisTemplateEngine.main_scroll.seekTo(page, speed); // scroll to it
+    thisTemplateEngine.main_scroll.seekTo(page_id, speed); // scroll to it
 
-    // show the navbars for this page
-    /*
-     * $('#'+page_id+'_top_navbar').addClass('navbarActive');
-     * $('#'+page_id+'_right_navbar').addClass('navbarActive');
-     * $('#'+page_id+'_bottom_navbar').addClass('navbarActive');
-     * $('#'+page_id+'_left_navbar').addClass('navbarActive');
-     */
     thisTemplateEngine.pagePartsHandler.initializeNavbars(page_id);
     $(window).trigger('scrolltopage', page_id);    
   };
@@ -1974,4 +1769,13 @@ require([
   ////////// Reflection API for possible Editor communication: End //////////
 }
 
+  return {
+    // simulate a singleton
+    getInstance : function() {
+      if (!instance) {
+        instance = new TemplateEngine();
+      }
+      return instance;
+    }
+  };
 }); // end require

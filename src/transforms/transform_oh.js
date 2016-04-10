@@ -1,5 +1,7 @@
-/* transform_knx.js (c) 2010 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* transform_oh.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,14 +9,24 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ *
+ * @module Transform_oh 
+ * @title  CometVisu Transform_oh 
  */
 
+
+/**
+ * Transformations for the openHAB backend
+ * 
+ * @author Tobias Bräutigam
+ * @since 2012
+ */
 define( ['transform_default'], function( Transform ) {
   "use strict";
   
@@ -97,7 +109,7 @@ define( ['transform_default'], function( Transform ) {
     },
     decode : function(str) {
       if (str=="NaN" || str=='Uninitialized') return '-';
-      var date = new Date(str);
+      var date = new Date(Date.parse(str));
       return date;
     }
   },
@@ -112,7 +124,11 @@ define( ['transform_default'], function( Transform ) {
     },
     decode : function(str) {
       if (str=="NaN" || str=='Uninitialized') return '-';
-      var date = new Date(str);
+      var date = new Date();
+      var parts = str.split(":");
+      date.setHours(parseInt(parts[0]));
+      date.setMinutes(parseInt(parts[1]));
+      date.setSeconds(parseInt(parts[2]));
       return date;
     }
   },
@@ -137,9 +153,9 @@ define( ['transform_default'], function( Transform ) {
         h /= 6;
       }
       // map top 360,100,100
-      h = h * 360;
-      s = s * 100;
-      v = v * 100;
+      h = Math.round(h * 3600)/10;
+      s = Math.round(s * 1000)/10;
+      v = Math.round(v * 1000)/10;
       return [h, s, v];
     },
     decode : function(hsbString) {
@@ -147,6 +163,7 @@ define( ['transform_default'], function( Transform ) {
       var hsb = hsbString.split(",");
       var h = hsb[0], s = hsb[1], v = hsb[2];
       var r, g, b, i, f, p, q, t;
+
       // h = h / 360;
       if (v === 0) { return [0, 0, 0]; }
       s = s / 100;

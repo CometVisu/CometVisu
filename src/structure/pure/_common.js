@@ -1,5 +1,7 @@
-/* _common.js (c) 2010 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* _common.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,18 +9,24 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ *
+ * @module _common 
+ * @title  CometVisu _common 
  */
+
 
 /**
  * This module defines the widgets for the CometVisu visualisation.
  * @module Structure Pure
  * @title  CometVisu Structure "pure"
+ * @author Christian Mayer [CometVisu at ChristianMayer dot de]
+ * @since 2010
 */
 define( ['jquery'], function($) {
   "use strict";
@@ -26,9 +34,9 @@ define( ['jquery'], function($) {
   // Define ENUM of maturity levels for features, so that e.g. the editor can 
   // ignore some widgets when they are not supported yet
   var Maturity = {
-  release     : 0,
-  development : 1
-};
+    release     : 0,
+    development : 1
+  };
 
   /**
    * This class defines all the building blocks for a Visu in the "Pure" design
@@ -68,7 +76,7 @@ define( ['jquery'], function($) {
 
   this.addPopup('unknown', {
     create: function( attributes ) {
-      var repositon = false;
+      var reposition = false;
       var ret_val = $('<div class="popup" style="display:none"><div class="popup_close">X</div></div><div class="popup_background" style="display:none" />').appendTo('body');
       ret_val.addClass( this.type );
 
@@ -148,14 +156,13 @@ define( ['jquery'], function($) {
    */
   this.defaultValueHandling = function( ga, data, widgetData )
   {
+    var thisTransform = '';
+    var value = data;
     if( undefined !== ga )
     {
-      var thisTransform = widgetData.address[ ga ][0];
+      thisTransform = widgetData.address[ ga ][0];
       // #1: transform the raw value to a JavaScript type
-      var value = templateEngine.transformDecode( thisTransform, data );
-    } else {
-      var thisTransform = '';
-      var value = data;
+      value = templateEngine.transformDecode( thisTransform, data );
     }
     
     widgetData.basicvalue = value; // store it to be able to supress sending of unchanged data
