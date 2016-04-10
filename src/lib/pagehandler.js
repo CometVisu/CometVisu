@@ -1,5 +1,7 @@
-/* pagehandler.js (c) 2016 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* pagehandler.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,17 +9,22 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- * 
- * @module Pagehandler
- * @title  CometVisu handler to show and hide the different pages
+ *
+ * @module Pagehandler 
+ * @title  CometVisu Pagehandler 
  */
 
+
+/**
+ * @author Christian Mayer
+ * @since 2016
+ */
 // FIXME and TODO: This class is currently just a quick hack to get rid
 // of the jQuery-Tools Scrollable. It should be enhanced to allow different
 // page transition animations like blending, etc. pp.

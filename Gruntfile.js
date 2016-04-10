@@ -97,7 +97,7 @@ module.exports = function(grunt) {
 
             return grunt.template.process('/* <%= filename %> \n'+
               ' * \n'+
-              ' * copyright (c) 2010-<%= grunt.template.today("yyyy") %> by <%= author %>\n'+
+              ' * copyright (c) 2010-<%= grunt.template.today("yyyy") %>, Christian Mayer and the CometVisu contributers.\n'+
               ' * \n'+
               ' * This program is free software; you can redistribute it and/or modify it\n'+
               ' * under the terms of the GNU General Public License as published by the Free\n'+
@@ -115,7 +115,6 @@ module.exports = function(grunt) {
               ' *\n'+
               ' * @module <%= modulename %> \n'+
               ' * @title  <%= title %> \n'+
-              ' * @version <%= version %>\n'+
               ' */\n', {
                   data: {
                     filename: filename,
@@ -129,7 +128,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          src: [ 'src/lib/*.js', 'src/structure/pure/*.js' ]
+          src: [ 'src/lib/**/*.js', 'src/structure/**/*.js', 'src/transforms/**/*.js', 'src/designs/*/design_setup.js' ]
         }
       }
     },
