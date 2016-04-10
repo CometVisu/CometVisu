@@ -77,7 +77,7 @@ require.config({
   'shim': {
     'scrollable': ['jquery'],
     'jquery-ui': ['jquery'],
-    'jquery.ui.touch-punch': ['jquery', 'jquery-ui'],
+    'jquery.ui.touch-punch': ['jquery', 'jquery-ui/widget', 'jquery-ui/mouse'],
     'jquery.svg.min': ['jquery']
   },
 
