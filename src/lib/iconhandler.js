@@ -18,7 +18,6 @@
  *
  * @module Iconhandler 
  * @title  CometVisu Iconhandler 
- * @version 0.9.1-RC2
  */
 
 

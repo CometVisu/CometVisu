@@ -18,7 +18,6 @@
  *
  * @module Transform_default 
  * @title  CometVisu Transform_default 
- * @version 0.9.1-RC2
  */
 
 

@@ -115,7 +115,6 @@ module.exports = function(grunt) {
               ' *\n'+
               ' * @module <%= modulename %> \n'+
               ' * @title  <%= title %> \n'+
-              ' * @version <%= version %>\n'+
               ' */\n', {
                   data: {
                     filename: filename,
@@ -129,7 +128,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          src: [ 'src/lib/**.js', 'src/structure/**.js', 'src/transforms/**.js', 'src/designs/*/*.js' ]
+          src: [ 'src/lib/**/*.js', 'src/structure/**/*.js', 'src/transforms/**.js', 'src/designs/*/*.js' ]
         }
       }
     },

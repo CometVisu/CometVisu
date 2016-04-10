@@ -18,7 +18,6 @@
  *
  * @module Icontools 
  * @title  CometVisu Icontools 
- * @version 0.9.1-RC2
  */
 
 

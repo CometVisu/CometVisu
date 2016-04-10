@@ -18,7 +18,6 @@
  *
  * @module Design_setup 
  * @title  CometVisu Design_setup 
- * @version 0.9.1-RC2
  */
 
 

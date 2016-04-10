@@ -18,7 +18,6 @@
  *
  * @module Pagepartshandler 
  * @title  CometVisu Pagepartshandler 
- * @version 0.9.1-RC2
  */
 
 

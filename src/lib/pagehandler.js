@@ -18,7 +18,6 @@
  *
  * @module Pagehandler 
  * @title  CometVisu Pagehandler 
- * @version 0.9.1-RC2
  */
 
 

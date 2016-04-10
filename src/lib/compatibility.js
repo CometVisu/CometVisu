@@ -18,7 +18,6 @@
  *
  * @module Compatibility 
  * @title  CometVisu Compatibility 
- * @version 0.9.1-RC2
  */
 
 

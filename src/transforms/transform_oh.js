@@ -18,7 +18,6 @@
  *
  * @module Transform_oh 
  * @title  CometVisu Transform_oh 
- * @version 0.9.1-RC2
  */
 
 

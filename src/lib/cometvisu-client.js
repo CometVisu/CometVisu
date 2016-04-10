@@ -18,7 +18,6 @@
  *
  * @module Cometvisu-client 
  * @title  CometVisu Cometvisu-client 
- * @version 0.9.1-RC2
  */
 
 

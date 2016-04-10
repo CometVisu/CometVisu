@@ -18,7 +18,6 @@
  *
  * @module Trick-o-matic 
  * @title  CometVisu Trick-o-matic 
- * @version 0.9.1-RC2
  */
 
 

@@ -18,7 +18,6 @@
  *
  * @module Templateengine 
  * @title  CometVisu Templateengine 
- * @version 0.9.1-RC2
  */
 
 

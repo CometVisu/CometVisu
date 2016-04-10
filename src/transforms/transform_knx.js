@@ -18,7 +18,6 @@
  *
  * @module Transform_knx 
  * @title  CometVisu Transform_knx 
- * @version 0.9.1-RC2
  */
 
 
