@@ -21,6 +21,7 @@
  * @version 0.9.1-RC2
  */
 
+
 /**
  * The JavaScript library that implements the CometVisu protocol.
  *

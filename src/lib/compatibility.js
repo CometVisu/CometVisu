@@ -21,6 +21,7 @@
  * @version 0.9.1-RC2
  */
 
+
 /**
  * CometVisu helper functions for compatability issues
  * 
