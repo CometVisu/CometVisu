@@ -14,6 +14,7 @@ require.config({
   waitSeconds: 30, // default: 7 seconds
   paths: {
     'css':                      'dependencies/css',
+    'pep':                      'dependencies/pep',
     'jquery':                   'dependencies/jquery',
     'compatibility':            'lib/compatibility',
     'jquery-ui':                'dependencies/jquery-ui',

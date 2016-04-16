@@ -47,7 +47,7 @@ define([
   'widget_switch', 'widget_text', 'widget_toggle', 'widget_trigger', 
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
   'widget_video', 'widget_wgplugin_info', 
-  'transform_default', 'transform_knx', 'transform_oh'
+  'transform_default', 'transform_knx', 'transform_oh', 'pep'
 ], function( $, design, VisuDesign_Custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup ) {
   "use strict";
 
@@ -142,7 +142,6 @@ define([
    */
   var pathRegEx = /^id(_[0-9]+)+$/;
 
-  var currentPath = '';
   this.callbacks = {}; // Hash of functions to call during page change
   this.main_scroll;
   this.old_scroll = '';
