@@ -314,7 +314,7 @@ define( 'cometvisu-client', ['jquery'], function( $ ) {
          */
         this.restart = function( doFullReload ) {
           if( doFullReload )
-            thislastIndex = -1; // reload all data
+            this.lastIndex = -1; // reload all data
 
           self.doRestart = true;
           self.abort();
