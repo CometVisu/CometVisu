@@ -23,7 +23,6 @@ dependencies/jquery-ui.js
 dependencies/sprintf.js
 dependencies/strftime.js
 dependencies/jquery.js
-dependencies/jquery.min.js
 dependencies/jsfloorplan.js
 dependencies/Three.js
 dependencies/poly2tri.js
