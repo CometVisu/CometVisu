@@ -17,6 +17,17 @@
 
 define( ['transform_default'], function( Transform ) {
   "use strict";
+  
+  /**
+   * Enforce that value stays within range
+   * When value is not a valid number, the min value is returned
+   */
+  function clip( min, value, max )
+  {
+    value = +value; // enforce number
+    return value > min ? (value > max ? max : value) : min;
+  }
+  
   /**
    * This class defines the default transforms:
    *   encode: transform JavaScript to bus value
@@ -108,7 +119,7 @@ define( ['transform_default'], function( Transform ) {
       max: 255.0
     },
     encode: function( phy ){
-      var val = parseInt( phy ).toString( 16 );
+      var val = parseInt( clip( 0, phy, 255 ) ).toString( 16 );
       return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){
@@ -128,6 +139,7 @@ define( ['transform_default'], function( Transform ) {
   '6.001' : {
     name  : 'DPT_Percent_V8',
     encode: function( phy ){
+      phy = parseInt( clip( -128, phy, 127) );
       var val = phy < 0 ? phy + 256 : phy;
       val = val.toString( 16 );
       return (val.length == 1 ? '800' : '80') + val;
