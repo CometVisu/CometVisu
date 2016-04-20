@@ -22,25 +22,25 @@ define([], function() {
    * When restrict=false the widget captures the mouse until it is released.
    */
   function EventHandler(templateEngine) {
-    
+
     this._navbarRegEx = /navbar/;
     this._isTouchDevice = !!('ontouchstart' in window) ||    // works on most browsers
-     !!('onmsgesturechange' in window); // works on ie10
+      !!('onmsgesturechange' in window); // works on ie10
     this._isWidget = false;
     this._scrollElement = null;
     // object to hold the coordinated of the current mouse / touch event
     this._mouseEvent = templateEngine.handleMouseEvent = {
-        moveFn: undefined,
-        moveRestrict: true,
-        actor: undefined,
-        widget: undefined,
-        widgetCreator: undefined,
-        downtime: 0,
-        alreadyCanceled: false
+      moveFn: undefined,
+      moveRestrict: true,
+      actor: undefined,
+      widget: undefined,
+      widgetCreator: undefined,
+      downtime: 0,
+      alreadyCanceled: false
     };
     this._touchStartX = null;
     this._touchStartY = null;
-    
+
     // helper function to get the current actor and widget out of an event:
     this.getWidgetActor = function (element) {
       var actor, widget;
