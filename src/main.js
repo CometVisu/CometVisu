@@ -14,7 +14,6 @@ require.config({
   waitSeconds: 30, // default: 7 seconds
   paths: {
     'css':                      'dependencies/css',
-    'pep':                      'dependencies/pep',
     'jquery':                   'dependencies/jquery',
     'compatibility':            'lib/compatibility',
     'jquery-ui':                'dependencies/jquery-ui',
@@ -29,6 +28,7 @@ require.config({
     'pagepartshandler':         'lib/pagepartshandler',
     'trick-o-matic':            'lib/trick-o-matic',
     'templateengine':           'lib/templateengine',
+    'EventHandler':             'lib/EventHandler',
     '_common':                  'structure/pure/_common',
     'structure_custom':         'config/structure_custom',
     'widget_break':             'structure/pure/break',

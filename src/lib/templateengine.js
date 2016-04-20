@@ -35,20 +35,20 @@
 //  Main:
 //
 define([
-  'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagehandler', 'pagepartshandler', 
-  'cometvisu-client', 'cometvisu-mockup',
+  'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagehandler', 'pagepartshandler',
+  'cometvisu-client', 'cometvisu-mockup', 'EventHandler',
   'compatibility', 'jquery-ui', 'strftime',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'iconhandler', 
   'widget_break', 'widget_designtoggle',
   'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
   'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infoaction', 'widget_infotrigger',
-  'widget_line', 'widget_multitrigger', 'widget_navbar', 'widget_page', 
-  'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide', 
-  'widget_switch', 'widget_text', 'widget_toggle', 'widget_trigger', 
-  'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
-  'widget_video', 'widget_wgplugin_info', 
-  'transform_default', 'transform_knx', 'transform_oh', 'pep'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup ) {
+  'widget_line', 'widget_multitrigger', 'widget_navbar', 'widget_page',
+  'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide',
+  'widget_switch', 'widget_text', 'widget_toggle', 'widget_trigger',
+  'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio',
+  'widget_video', 'widget_wgplugin_info',
+  'transform_default', 'transform_knx', 'transform_oh'
+], function( $, design, VisuDesign_Custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup, EventHandler ) {
   "use strict";
 
   var instance;
@@ -71,6 +71,8 @@ define([
   };
   this.design = new VisuDesign_Custom();
   this.pagePartsHandler = new PagePartsHandler();
+    
+  this.eventHandler = new EventHandler(this);
   
   var rememberLastPage = false;
   this.currentPage = null;
@@ -294,250 +296,8 @@ define([
   
   function fireLoadingFinishedAction() {
     $("#pages").triggerHandler("done");
-  };
+  }
 
-  /**
-   * General handler for all mouse and touch actions.
-   * 
-   * The general flow of mouse actions are:
-   * 1. mousedown                           - "button pressed"
-   * 2. mouseout                            - "button released"
-   * 3. mouseout (mouse moved inside again) - "button pressed"
-   * 4. mouseup                             - "button released"
-   * 
-   * 2. gets mapped to a action cancel event
-   * 3. gets mapped to a mousedown event
-   * 2. and 3. can be repeated unlimited - or also be left out.
-   * 4. triggers the real action
-   * 
-   * For touch it's a little different as a touchmove cancels the current
-   * action and translates into a scroll.
-   * 
-   * All of this is the default or when the mousemove callback is returning
-   * restrict=true (or undefined).
-   * When restrict=false the widget captures the mouse until it is released.
-   */
-  (function( outerThis ){ // closure to keep namespace clean
-    // helper function to get the current actor and widget out of an event:
-    function getWidgetActor( element )
-    {
-      var actor, widget;
-      
-      while( element )
-      {
-        if( element.classList.contains( 'actor' ) || (element.classList.contains( 'group' ) && element.classList.contains( 'clickable' )) )
-          actor = element;
-        
-        if( element.classList.contains( 'widget_container' ) )
-        {
-          widget = element;
-          if (thisTemplateEngine.design.creators[ widget.dataset.type ].action!=undefined) {
-            return { actor: actor, widget: widget };
-          }
-        }
-        if( element.classList.contains( 'page' ) ) {
-          // abort traversal
-          return { actor: actor, widget: widget };
-        }
-        element = element.parentElement;
-      }
-      
-      return false;
-    }
-    // helper function to determine the element to scroll (or undefined)
-    function getScrollElement( element )
-    {
-      while( element )
-      {
-        if( element.classList.contains( 'page' ) )
-          return navbarRegEx.test( element.id ) ? undefined : element;
-        
-        if( element.classList.contains( 'navbar' ) )
-        {
-          var parent = element.parentElement;
-          if( 'navbarTop' === parent.id || 'navbarBottom' === parent.id )
-            return element;
-          return;
-        }
-        
-        element = element.parentElement;
-      }
-    }
-    
-    var 
-      navbarRegEx = /navbar/,
-      isTouchDevice = !!('ontouchstart' in window) ||    // works on most browsers 
-                      !!('onmsgesturechange' in window), // works on ie10
-      isWidget = false,
-      scrollElement,
-      // object to hold the coordinated of the current mouse / touch event
-      mouseEvent = outerThis.handleMouseEvent = { 
-        moveFn:          undefined,
-        moveRestrict:    true,
-        actor:           undefined,
-        widget:          undefined,
-        widgetCreator:   undefined,
-        downtime:        0,
-        alreadyCanceled: false
-      },
-      touchStartX = null,
-      touchStartY = null;
-
-    window.addEventListener( 'pointerdown', function( event ){
-      var 
-        element = event.target,
-        // search if a widget was hit
-        widgetActor = getWidgetActor( event.target ),
-        bindWidget  = widgetActor.widget ? thisTemplateEngine.widgetDataGet( widgetActor.widget.id ).bind_click_to_widget : false;
-      
-      var touchobj;
-      
-      if (isTouchDevice) {
-        if (event.changedTouches) {
-          touchobj = event.changedTouches[0];
-          touchStartX = parseInt(touchobj.clientX);
-          touchStartY = parseInt(touchobj.clientY);
-        } else {
-          touchStartX = parseInt(event.clientX);
-          touchStartY = parseInt(event.clientY);
-        }
-      }
-      
-      isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
-      if( isWidget )
-      {
-        mouseEvent.actor         = widgetActor.actor;
-        mouseEvent.widget        = widgetActor.widget;
-        mouseEvent.widgetCreator = thisTemplateEngine.design.creators[ widgetActor.widget.dataset.type ];
-        mouseEvent.downtime      = Date.now();
-        mouseEvent.alreadyCanceled = false;
-        
-        var
-          actionFn = mouseEvent.widgetCreator.downaction;
-          
-        if( actionFn !== undefined )
-        {
-          var moveFnInfo = actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor, false, event );
-          if( moveFnInfo )
-          {
-            mouseEvent.moveFn       = moveFnInfo.callback;
-            mouseEvent.moveRestrict = moveFnInfo.restrict !== undefined ? moveFnInfo.restrict : true;
-          }
-        }
-      } else {
-        mouseEvent.actor = undefined;
-      }
-
-      if( mouseEvent.moveRestrict )
-        scrollElement = getScrollElement( event.target );
-      // stop the propagation if scrollable is at the end
-      // inspired by 
-      if( scrollElement )
-      {
-        var startTopScroll = scrollElement.scrollTop;
-
-        if( startTopScroll <= 0 )
-          scrollElement.scrollTop = 1;
-
-        if( startTopScroll + scrollElement.offsetHeight >= scrollElement.scrollHeight)
-          scrollElement.scrollTop = scrollElement.scrollHeight - scrollElement.offsetHeight - 1;
-      } 
-    });
-    window.addEventListener( 'pointerup', function( event ){
-      if( isWidget )
-      {
-        var
-          widgetActor = getWidgetActor( event.target ),
-          widget      = mouseEvent.widget,
-          isCanceled  = widgetActor.widget !== widget || widgetActor.actor !== mouseEvent.actor,
-          actionFn    = mouseEvent.widgetCreator.action,
-          bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
-          inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
-        
-        if( 
-          actionFn !== undefined && 
-          inCurrent &&
-          !mouseEvent.alreadyCanceled
-        )
-        {
-          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent, event );
-        }
-        mouseEvent.moveFn = undefined;
-        mouseEvent.moveRestrict = true;
-        scrollElement = undefined;
-        isWidget = false;
-      }
-    });
-    // different handling for move
-    // mouse move: let the user cancel an action by dragging the mouse outside
-    // and reactivate it when the dragged cursor is returning
-    !isTouchDevice && window.addEventListener( 'pointermove', function( event ){
-      if( isWidget )
-      {
-        var
-          widgetActor = getWidgetActor( event.target ),
-          widget      = mouseEvent.widget,
-          bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
-          inCurrent   = !mouseEvent.moveRestrict || (widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor));
-          
-        if( inCurrent && mouseEvent.moveFn )
-          mouseEvent.moveFn( event );
-        
-        if( inCurrent && mouseEvent.alreadyCanceled )
-        { // reactivate
-          mouseEvent.alreadyCanceled = false;
-          var
-            actionFn  = mouseEvent.widgetCreator.downaction;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, false, event );
-        } else if( (!inCurrent && !mouseEvent.alreadyCanceled) )
-        { // cancel
-          mouseEvent.alreadyCanceled = true;
-          var
-            actionFn  = mouseEvent.widgetCreator.action;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
-        }
-      }
-    });
-    // touch move: scroll when the finger is moving and cancel any pending 
-    // actions at the same time
-    isTouchDevice && window.addEventListener( 'pointermove', function( event ){
-      if( isWidget )
-      {
-        var
-          widget      = mouseEvent.widget,
-          touchobj = event.changedTouches[0];
-          
-        if( mouseEvent.moveFn )
-          mouseEvent.moveFn( event );
-        
-        if( mouseEvent.moveRestrict && !mouseEvent.alreadyCanceled
-          && ((touchStartX + 5 < parseInt(touchobj.clientX) || touchStartX - 5 > parseInt(touchobj.clientX))
-            ||(touchStartY + 5 < parseInt(touchobj.clientY) || touchStartY - 5 > parseInt(touchobj.clientY))))
-        { // cancel
-          mouseEvent.alreadyCanceled = true;
-          var
-            actionFn  = mouseEvent.widgetCreator.action;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
-        }
-      }
-
-      // take care to prevent overscroll
-      if( scrollElement )
-      {
-        var 
-          scrollTop  = scrollElement.scrollTop,
-          scrollLeft = scrollElement.scrollLeft;
-        // prevent scrolling of an element that takes full height and width
-        // as it doesn't need scrolling
-        if( (scrollTop  <= 0) && (scrollTop  + scrollElement.offsetHeight >= scrollElement.scrollHeight) &&
-            (scrollLeft <= 0) && (scrollLeft + scrollElement.offsetWidth  >= scrollElement.scrollWidth ) )
-          return;
-        event.stopPropagation();
-      } else
-        event.preventDefault();
-    });
-  })( this );
-  
   /*
    * this function implements widget stylings 
    */
