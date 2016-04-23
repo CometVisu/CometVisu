@@ -42,9 +42,10 @@
 *
 */ 
  
-define( ['structure_custom', 'plugins/gauge/lib/tween-min', 'plugins/gauge/lib/steelseries-min', 'css!plugins/gauge/gauge' ], function( VisuDesign_Custom ) {
+define( ['structure_custom', 'plugins/gauge/dep/tween-min', 'plugins/gauge/dep/steelseries-min', 'css!plugins/gauge/gauge' ], function( VisuDesign_Custom ) {
+  "use strict";
   
-VisuDesign_Custom.prototype.addCreator("gauge", {
+  VisuDesign_Custom.prototype.addCreator("gauge", {
   create: function(element, path, flavour, type) {
     var $e = $(element);
     // create the main structure
@@ -62,33 +63,33 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
 
     templateEngine.bindActionForLoadingFinished(function() {
       var params = {
-          gaugeType               : ($e.attr('subtype') ? steelseries.GaugeType[$e.attr('subtype').toUpperCase()] : undefined),
-          titleString             : ($e.attr('titleString') ? $e.attr('titleString') : undefined),
-          unitString              : ($e.attr('unitString') ? $e.attr('unitString') : undefined),
-          unitStringVisible       : ($e.attr('unitStringVisible') ? $e.attr('unitStringVisible') == 'true' : undefined),
-          size                    : ($e.attr('size') ? parseFloat($e.attr('size') || 150) : undefined),
-          width                   : ($e.attr('width') ? parseFloat($e.attr('width') || 320) : undefined),
-          height                  : ($e.attr('height') ? parseFloat($e.attr('height') || 140) : undefined),
-          minValue                : parseFloat($e.attr('minValue') || 0), 
-          maxValue                : parseFloat($e.attr('maxValue') || 100),
-          frameDesign             : ($e.attr('framedesign') ? steelseries.FrameDesign[$e.attr('framedesign').toUpperCase()] : undefined),
-          backgroundColor         : ($e.attr('background') ? steelseries.BackgroundColor[$e.attr('background').toUpperCase()] : undefined),
-          foregroundType          : steelseries.ForegroundType.TYPE1,
-          pointerType             : steelseries.PointerType.TYPE1,
-          pointerColor            : steelseries.ColorDef.RED,
-          lcdColor                : steelseries.LcdColor.STANDARD,
-          lcdVisible              : ($e.attr('lcdVisible') ? $e.attr('lcdVisible') == 'true' : undefined),
-          lcdDecimals             : ($e.attr('lcdDecimals') ? parseInt($e.attr('lcdDecimals')) : undefined),
-          ledVisible              : ($e.attr('ledVisible') ? $e.attr('ledVisible') == 'true' : undefined),
-          ledColor                : steelseries.LedColor.RED_LED,
-          valueColor              : ($e.attr('valueColor') ? steelseries.ColorDef[$e.attr('valueColor').toUpperCase()] : steelseries.ColorDef.RED),
-          trendVisible            : ($e.attr('trendVisible') ? $e.attr('trendVisible') == 'true' : undefined),
-          thresholdRising         : ($e.attr('thresholdRising') ? $e.attr('thresholdRising') == 'true' : undefined),
-          threshold               : ($e.attr('threshold') ? parseFloat($e.attr('threshold')) : undefined),
-          thresholdVisible        : ($e.attr('threshold') !== undefined),
-          autoScroll              : ($e.attr('autoScroll') ? $e.attr('autoScroll') == 'true' : undefined),
-          valuesNumeric           : ($e.attr('valuesNumeric') ? $e.attr('valuesNumeric') == 'true' : undefined),
-     };
+        gaugeType               : ($e.attr('subtype') ? steelseries.GaugeType[$e.attr('subtype').toUpperCase()] : undefined),
+        titleString             : ($e.attr('titleString') ? $e.attr('titleString') : undefined),
+        unitString              : ($e.attr('unitString') ? $e.attr('unitString') : undefined),
+        unitStringVisible       : ($e.attr('unitStringVisible') ? $e.attr('unitStringVisible') == 'true' : undefined),
+        size                    : ($e.attr('size') ? parseFloat($e.attr('size') || 150) : undefined),
+        width                   : ($e.attr('width') ? parseFloat($e.attr('width') || 320) : undefined),
+        height                  : ($e.attr('height') ? parseFloat($e.attr('height') || 140) : undefined),
+        minValue                : parseFloat($e.attr('minValue') || 0), 
+        maxValue                : parseFloat($e.attr('maxValue') || 100),
+        frameDesign             : ($e.attr('framedesign') ? steelseries.FrameDesign[$e.attr('framedesign').toUpperCase()] : undefined),
+        backgroundColor         : ($e.attr('background') ? steelseries.BackgroundColor[$e.attr('background').toUpperCase()] : undefined),
+        foregroundType          : steelseries.ForegroundType.TYPE1,
+        pointerType             : steelseries.PointerType.TYPE1,
+        pointerColor            : steelseries.ColorDef.RED,
+        lcdColor                : steelseries.LcdColor.STANDARD,
+        lcdVisible              : ($e.attr('lcdVisible') ? $e.attr('lcdVisible') == 'true' : undefined),
+        lcdDecimals             : ($e.attr('lcdDecimals') ? parseInt($e.attr('lcdDecimals')) : undefined),
+        ledVisible              : ($e.attr('ledVisible') ? $e.attr('ledVisible') == 'true' : undefined),
+        ledColor                : steelseries.LedColor.RED_LED,
+        valueColor              : ($e.attr('valueColor') ? steelseries.ColorDef[$e.attr('valueColor').toUpperCase()] : steelseries.ColorDef.RED),
+        trendVisible            : ($e.attr('trendVisible') ? $e.attr('trendVisible') == 'true' : undefined),
+        thresholdRising         : ($e.attr('thresholdRising') ? $e.attr('thresholdRising') == 'true' : undefined),
+        threshold               : ($e.attr('threshold') ? parseFloat($e.attr('threshold')) : undefined),
+        thresholdVisible        : ($e.attr('threshold') !== undefined),
+        autoScroll              : ($e.attr('autoScroll') ? $e.attr('autoScroll') == 'true' : undefined),
+        valuesNumeric           : ($e.attr('valuesNumeric') ? $e.attr('valuesNumeric') == 'true' : undefined),
+      };
       
       data.gaugeElement = new steelseries[$e.attr('type') || 'Radial'](id, params);
     });
@@ -145,13 +146,13 @@ VisuDesign_Custom.prototype.addCreator("gauge", {
           }
           break;
         default:
-           if (gaugeElement.setValueAnimatedLatest) {
-             gaugeElement.setValueAnimatedLatest(value);
-           }
-           if (gaugeElement.setValueAnimated) {
-             gaugeElement.setValueAnimated(value);
-           }
-       }
+          if (gaugeElement.setValueAnimatedLatest) {
+            gaugeElement.setValueAnimatedLatest(value);
+          }
+          if (gaugeElement.setValueAnimated) {
+            gaugeElement.setValueAnimated(value);
+          }
+      }
     }
   },
   action: function( path, actor, isCaneled ) {

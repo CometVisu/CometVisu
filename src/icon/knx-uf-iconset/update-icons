@@ -72,16 +72,17 @@ fi
 
 
 
-
-echo -n "Getting icons from SVN source..."
-svn checkout http://svn.code.sf.net/p/openautomation/code/tools/knx-uf-iconset/trunk/raw_480x480/ > /dev/null 2>&1
+echo -n "Getting icons from github..."
+git clone https://github.com/OpenAutomationProject/knx-uf-iconset.git > /dev/null 2>&1
 echo "done."
 
+cp -rf knx-uf-iconset/raw_480x480 .
+resize_folder 128x128_white
 
-resize_folder 128x128_white 
-
+echo "Updated/Added icons:"
+git status
+echo
 
 echo -n "Creating Icon Handler ..."
 php -f ./make-iconhandler.php
 echo "done."
-

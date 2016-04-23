@@ -1,5 +1,7 @@
-/* pagejump.js (c) 2012 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* pagejump.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,18 +9,27 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ *
+ * @module Pagejump 
+ * @title  CometVisu Pagejump 
  */
 
+
+/**
+ * @author Christian Mayer
+ * @since 2012
+ */
 define( ['_common'], function( design ) {
+  "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('pagejump', {
+  design.basicdesign.addCreator('pagejump', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = $e.children('layout')[0];
@@ -32,6 +43,15 @@ design.basicdesign.addCreator('pagejump', {
     if( layoutClass ) classes += ' ' + layoutClass;
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) classes += ' flavour_' + flavour;
+    var widgetInfo = $('widgetinfo > *', $e).first()[0];
+    var info = '';
+    if (widgetInfo!=undefined) {
+      classes+=" infoaction";
+      var data = templateEngine.widgetDataInsert( path+"_0", {
+        containerClass           : "widgetinfo"
+      } );
+      info = templateEngine.create_pages(widgetInfo, path+"_0", flavour, widgetInfo.nodeName);
+    }
     var ret_val = '<div class="'+classes+'" ' + style + '>';
     ret_val += basicdesign.extractLabel( $e.find('label')[0], flavour );
     var actor = '<div class="actor switchUnpressed ';
@@ -45,31 +65,34 @@ design.basicdesign.addCreator('pagejump', {
       'bind_click_to_widget': true, // for pagejumps this is mandatory
       'styling' : $(element).attr('styling'),
       'align'   : $e.attr('align'),
-      'target'  : target
+      'target'  : target,
+      'path'    : $(element).attr('path'),
+      'active_scope': $(element).attr('active_scope') ? $(element).attr('active_scope') : 'target'
     } );
-    var info = '';
-    var infoWidget = $('infowidget > *', $e).first()[0];
-    if (infoWidget!=undefined) {
-      var data = templateEngine.widgetDataInsert( path+"_0", {
-        containerClass           : "infowidget"
-      } );
-      info = templateEngine.create_pages(infoWidget, path+"_0", flavour, infoWidget.nodeName);
-    }
     return ret_val + actor + info +'</div>';
   },
-  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  downaction: function( path, actor, isCanceled ) {
+    if (!$(actor).parent().hasClass("info")) {
+      basicdesign.defaultButtonDownAnimationInheritAction( path, actor );
+    }
+  },
   action: function( path, actor, isCanceled ) {
-    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    if (!$(actor).parent().hasClass("info")) {
+      basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+    }
     if( isCanceled ) return;
     
     var data = templateEngine.widgetDataGet( path );
-    templateEngine.scrollToPage( data.target );
+    var target = data.target;
+    if (data.path!=undefined) {
+      target = templateEngine.getPageIdByPath(data.target,data.path);
+    }
+    templateEngine.scrollToPage( target );
   }
 });
 
-$(window).bind('scrolltopage', function( event, page_id ){
+  $(window).bind('scrolltopage', function( event, page_id ){
   var page = $('#' + page_id);
-  //var name = templateEngine.widgetData[page_id.substr(0,page_id.length-1)].name;
   var name = templateEngine.widgetData[page_id].name;
   
   // remove old active classes
@@ -80,7 +103,7 @@ $(window).bind('scrolltopage', function( event, page_id ){
   $('.pagejump').each( function(){
     var $pagejump = $(this);
     var data = templateEngine.widgetDataGetByElement( this );
-    if( name == data.target )
+    if( name == data.target)
     {
       $pagejump.addClass('active');
     }
@@ -92,11 +115,12 @@ $(window).bind('scrolltopage', function( event, page_id ){
   while (parentPage != null && templateEngine.getParentPage(parentPage) != null) {
     var 
       parentId   = parentPage.attr('id'),
-      parentName = templateEngine.widgetData[ parentId.substr(0,parentId.length-1) ].name;
+      parentName = templateEngine.widgetData[ parentId ].name;
+    
     $('.pagejump').each( function(){
       var $pagejump = $(this);
       var data = templateEngine.widgetDataGetByElement( this );
-      if( parentName == data.target )
+      if( parentName == data.target || (data.active_scope=="path" && data.path!=undefined && data.path.match(parentName+"$")) )
       {
         $pagejump.addClass('active_ancestor');
       }

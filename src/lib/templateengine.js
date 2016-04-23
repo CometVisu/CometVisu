@@ -1,5 +1,7 @@
-/* templateengine.js (c) 2010-2015 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* templateengine.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,180 +9,51 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- * 
+ *
+ * @module Templateengine 
+ * @title  CometVisu Templateengine 
+ */
+
+
+/**
+ * Main Template engine
+ *
+ * @author Christian Mayer
+ * @since 2010
  * @module Templateengine
  * @title  CometVisu templateengine
  */
 
 ///////////////////////////////////////////////////////////////////////
 //
-//  Configuration of RequireJS:
-//
-
-require.config({
-  baseUrl: './',
-  waitSeconds: 30, // default: 7 seconds
-  paths: {
-    'css':                      'dependencies/css',
-    'jquery':                   'dependencies/jquery',
-    'compatibility':            'lib/compatibility',
-    'jquery-ui':                'dependencies/jquery-ui',
-    'strftime':                 'dependencies/strftime',
-    'scrollable':               'dependencies/scrollable',
-    'jquery.ui.touch-punch':    'dependencies/jquery.ui.touch-punch',
-    'jquery.svg.min':           'dependencies/jquery.svg.min',
-    'cometvisu-client':         'lib/cometvisu-client',
-    'cometvisu-client-openhab': 'lib/cometvisu-client-openhab',
-    'iconhandler':              'lib/iconhandler',
-    'pagepartshandler':         'lib/pagepartshandler',
-    'trick-o-matic':            'lib/trick-o-matic',
-    '_common':                  'structure/pure/_common',
-    'structure_custom':         'config/structure_custom',
-    'widget_break':             'structure/pure/break',
-    'widget_designtoggle':      'structure/pure/designtoggle',
-    'widget_group':             'structure/pure/group',
-    'widget_rgb':               'structure/pure/rgb',
-    'widget_web':               'structure/pure/web',
-    'widget_image':             'structure/pure/image',
-    'widget_imagetrigger':      'structure/pure/imagetrigger',
-    'widget_include':           'structure/pure/include',
-    'widget_info':              'structure/pure/info',
-    'widget_infotrigger':       'structure/pure/infotrigger',
-    'widget_line':              'structure/pure/line',
-    'widget_multitrigger':      'structure/pure/multitrigger',
-    'widget_navbar':            'structure/pure/navbar',
-    'widget_page':              'structure/pure/page',
-    'widget_pagejump':          'structure/pure/pagejump',
-    'widget_refresh':           'structure/pure/refresh',
-    'widget_reload':            'structure/pure/reload',
-    'widget_slide':             'structure/pure/slide',
-    'widget_switch':            'structure/pure/switch',
-    'widget_text':              'structure/pure/text',
-    'widget_toggle':            'structure/pure/toggle',
-    'widget_trigger':           'structure/pure/trigger',
-    'widget_pushbutton':        'structure/pure/pushbutton',
-    'widget_urltrigger':        'structure/pure/urltrigger',
-    'widget_unknown':           'structure/pure/unknown',
-    'widget_audio':             'structure/pure/audio',
-    'widget_video':             'structure/pure/video',
-    'widget_wgplugin_info':     'structure/pure/wgplugin_info',
-    'transform_default':        'transforms/transform_default',
-    'transform_knx':            'transforms/transform_knx',
-    'transform_oh':             'transforms/transform_oh',
-  },
-  'shim': {
-    'scrollable':            ['jquery'],
-    'jquery-ui':             ['jquery'],
-    'jquery.ui.touch-punch': ['jquery', 'jquery-ui'],
-    'jquery.svg.min':        ['jquery']
-    /*
-    '': ['jquery'],
-    'jquery-i18n': ['jquery'],
-    'superfish':   ['jquery']
-    */
-  }
-});
-
-///////////////////////////////////////////////////////////////////////
-//
 //  Main:
 //
-var templateEngine;
-require([
-  'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagepartshandler', 
-  'compatibility', 'jquery-ui', 'strftime', 'scrollable', 
-  'jquery.ui.touch-punch', 'jquery.svg.min', 'cometvisu-client', 'cometvisu-client-openhab', 'iconhandler', 
+define([
+  'jquery', '_common', 'structure_custom', 'trick-o-matic', 'pagehandler', 'pagepartshandler', 
+  'cometvisu-client', 'cometvisu-mockup',
+  'compatibility', 'jquery-ui', 'strftime',
+  'jquery.ui.touch-punch', 'jquery.svg.min', 'iconhandler', 
   'widget_break', 'widget_designtoggle',
   'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
-  'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infotrigger', 
+  'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infoaction', 'widget_infotrigger',
   'widget_line', 'widget_multitrigger', 'widget_navbar', 'widget_page', 
   'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide', 
   'widget_switch', 'widget_text', 'widget_toggle', 'widget_trigger', 
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
   'widget_video', 'widget_wgplugin_info', 
   'transform_default', 'transform_knx', 'transform_oh'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PagePartsHandler ) {
-  profileCV( 'templateEngine start' );
-  
-templateEngine = new TemplateEngine();
+], function( $, design, VisuDesign_Custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup ) {
+  "use strict";
 
-$(window).bind('resize', templateEngine.handleResize);
-$(window).unload(function() {
-  if( templateEngine.visu ) templateEngine.visu.stop();
-});
-$(document).ready(function() {
-  function configError(textStatus) {
-    var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
-    var message = 'Config-File Error!<br/>';
-    switch (textStatus) {
-      case 'parsererror':
-        message += 'Invalid config file!<br/><a href="check_config.php?config=' + configSuffix + '">Please check!</a>';
-        break;
-      case 'libraryerror':
-        var link = window.location.href;
-        if (link.indexOf('?') <= 0) {
-          link = link + '?';
-        }
-        link = link + '&libraryCheck=false';
-        message += 'Config file has wrong library version!<br/>' +
-          'This can cause problems with your configuration</br>' + 
-          '<p>You can run the <a href="./upgrade/index.php?config=' + configSuffix + '">Configuration Upgrader</a>.</br>' +
-          'Or you can start without upgrading <a href="' + link + '">with possible configuration problems</a>.</p>';
-        break;
-      default:
-        message += 'Unhandled error of type "' + textStatus + '"';
-    }
-    $('#loading').html(message);
-  };
-  // get the data once the page was loaded
-  var ajaxRequest = {
-    noDemo: true,
-    url : 'config/visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
-    cache : !templateEngine.forceReload,
-    success : function(xml) {
-      if (!xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length) {
-        configError("parsererror");
-      }
-      else {
-        // check the library version
-        var xmlLibVersion = $('pages', xml).attr("lib_version");
-        if (xmlLibVersion == undefined) {
-          xmlLibVersion = -1;
-        }
-        if (templateEngine.libraryCheck && xmlLibVersion < templateEngine.libraryVersion) {
-          configError("libraryerror");
-        }
-        else {
-          var $loading = $('#loading');
-          $loading.html( $loading.text().trim() + '.' );
-          templateEngine.parseXML(xml);
-        }
-      }
-    },
-    error : function(jqXHR, textStatus, errorThrown) {
-      if( 404 === jqXHR.status && ajaxRequest.noDemo )
-      {
-        var $loading = $('#loading');
-        $loading.html( $loading.text().trim() + '!' );
-        ajaxRequest.noDemo = false;
-        ajaxRequest.url = ajaxRequest.url.replace('config/','config/demo/');
-        $.ajax( ajaxRequest );
-        return;
-      }
-      configError(textStatus);
-    },
-    dataType : 'xml'
-  };
-  $.ajax( ajaxRequest );
-});
+  var instance;
 
-function TemplateEngine( undefined ) {
+  function TemplateEngine( undefined ) {
   var thisTemplateEngine = this;
   this.libraryVersion = 7;
   this.libraryCheck = true;
@@ -211,6 +84,9 @@ function TemplateEngine( undefined ) {
     
   // threshold where the mobile.css is loaded
   this.maxMobileScreenWidth = 480;
+  // threshold where different colspans are used
+  this.maxScreenWidthColspanS = 599;
+  this.maxScreenWidthColspanM = 839;
   // use to recognize if the screen width has crossed the maxMobileScreenWidth
   var lastBodyWidth=0;
 
@@ -251,11 +127,22 @@ function TemplateEngine( undefined ) {
   };
   
   /**
+   * Structure where a design can set a default value that a widget or plugin
+   * can use.
+   * This is especially important for design relevant information like colors
+   * that can not be set though CSS.
+   * 
+   * Useage: templateEngine.defaults.plugin.foo = {bar: 'baz'};
+   */
+  this.defaults = { widget: {}, plugin: {} };
+
+  /**
    * Function to test if the path is in a valid form.
    * Note: it doesn't check if it exists!
    */
   var pathRegEx = /^id(_[0-9]+)+$/;
 
+  this.callbacks = {}; // Hash of functions to call during page change
   this.main_scroll;
   this.old_scroll = '';
   this.visu;
@@ -264,44 +151,37 @@ function TemplateEngine( undefined ) {
 
   this.defaultColumns = 12;
   this.minColumnWidth = 120;
-  this.enableColumnAdjustment = false;
   
   this.enableAddressQueue = $.getUrlVar('enableQueue') ? true : false;
   
-  this.backend = 'cgi-bin'; // default path to backend
+  this.backend = 'default';
+  this.backendUrl;
   if ($.getUrlVar("backend")) {
     this.backend = $.getUrlVar("backend");
   }
 
   this.initBackendClient = function() {
-    if (thisTemplateEngine.backend=="oh") {
-      thisTemplateEngine.backend = '/services/cv/';
-      thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
-      thisTemplateEngine.visu.resendHeaders = {'X-Atmosphere-tracking-id':null};
-      thisTemplateEngine.visu.headers= {'X-Atmosphere-Transport':'long-polling'};
+    if ($.getUrlVar('testMode')) {
+      thisTemplateEngine.visu = new ClientMockup();
+      require(['transform_mockup'], function() {});
+    }
+    else if (thisTemplateEngine.backend=="oh") {
+      thisTemplateEngine.visu = new CometVisu('openhab', this.backendUrl);
     }
     else if (thisTemplateEngine.backend=="oh2") {
-      // openHAB2 uses SSE and need a new client implementation
-      if(window.EventSource !== undefined){
-    	// browser supports EventSource object
-        thisTemplateEngine.visu = new CometVisuOh();
-      } else {
-    	// browser does no support EventSource => fallback to classic
-    	thisTemplateEngine.backend = '/rest/cv/';
-        thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
-        thisTemplateEngine.visu.resendHeaders = {'X-Atmosphere-tracking-id':null};
-        thisTemplateEngine.visu.headers= {'X-Atmosphere-Transport':'long-polling'};
-      }
+      thisTemplateEngine.visu = new CometVisu('openhab2', this.backendUrl);
     } else {
-      thisTemplateEngine.backend = '/' + thisTemplateEngine.backend + '/';
-      thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend);
+      thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend, this.backendUrl);
     }
     function update(json) {
-      for (key in json) {
+      for( var key in json ) {
         //$.event.trigger('_' + key, json[key]);
+        if( !(key in ga_list) )
+          continue;
+        
         var data = json[ key ];
         ga_list[ key ].forEach( function( id ){
-          if( id )
+          if( typeof id === 'string' )
           {
             var 
               element = document.getElementById( id ),
@@ -316,6 +196,8 @@ function TemplateEngine( undefined ) {
                 console.log( element, children, type ); // DEBUG FIXME
             }
             //console.log( element, type, updateFn );
+          } else if( typeof id === 'function' ) {
+            id.call( key, data );
           }
         });
       }
@@ -342,7 +224,7 @@ function TemplateEngine( undefined ) {
 
   if ($.getUrlVar('forceReload')) {
     this.forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set
-                                                              // to false
+    // to false
   }
 
   if ($.getUrlVar('forceDevice')) {
@@ -430,6 +312,10 @@ function TemplateEngine( undefined ) {
    * 
    * For touch it's a little different as a touchmove cancels the current
    * action and translates into a scroll.
+   * 
+   * All of this is the default or when the mousemove callback is returning
+   * restrict=true (or undefined).
+   * When restrict=false the widget captures the mouse until it is released.
    */
   (function( outerThis ){ // closure to keep namespace clean
     // helper function to get the current actor and widget out of an event:
@@ -439,15 +325,20 @@ function TemplateEngine( undefined ) {
       
       while( element )
       {
-        if( element.classList.contains( 'actor' ) )
+        if( element.classList.contains( 'actor' ) || (element.classList.contains( 'group' ) && element.classList.contains( 'clickable' )) )
           actor = element;
         
         if( element.classList.contains( 'widget_container' ) )
         {
           widget = element;
+          if (thisTemplateEngine.design.creators[ widget.dataset.type ].action!=undefined) {
+            return { actor: actor, widget: widget };
+          }
+        }
+        if( element.classList.contains( 'page' ) ) {
+          // abort traversal
           return { actor: actor, widget: widget };
         }
-        
         element = element.parentElement;
       }
       
@@ -481,19 +372,32 @@ function TemplateEngine( undefined ) {
       scrollElement,
       // object to hold the coordinated of the current mouse / touch event
       mouseEvent = outerThis.handleMouseEvent = { 
+        moveFn:          undefined,
+        moveRestrict:    true,
         actor:           undefined,
         widget:          undefined,
         widgetCreator:   undefined,
         downtime:        0,
         alreadyCanceled: false
-      };
-    
+      },
+      touchStartX = null,
+      touchStartY = null;
+
     window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
       var 
         element = event.target,
         // search if a widget was hit
         widgetActor = getWidgetActor( event.target ),
         bindWidget  = widgetActor.widget ? thisTemplateEngine.widgetDataGet( widgetActor.widget.id ).bind_click_to_widget : false;
+      
+      var touchobj;
+      
+      if (isTouchDevice){
+        touchobj = event.changedTouches[0];
+        
+        touchStartX = parseInt(touchobj.clientX);
+        touchStartY = parseInt(touchobj.clientY);
+      }
       
       isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
       if( isWidget )
@@ -509,13 +413,19 @@ function TemplateEngine( undefined ) {
           
         if( actionFn !== undefined )
         {
-          actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor );
+          var moveFnInfo = actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor, false, event );
+          if( moveFnInfo )
+          {
+            mouseEvent.moveFn       = moveFnInfo.callback;
+            mouseEvent.moveRestrict = moveFnInfo.restrict !== undefined ? moveFnInfo.restrict : true;
+          }
         }
       } else {
         mouseEvent.actor = undefined;
       }
-      
-      scrollElement = getScrollElement( event.target );
+
+      if( mouseEvent.moveRestrict )
+        scrollElement = getScrollElement( event.target );
       // stop the propagation if scrollable is at the end
       // inspired by 
       if( scrollElement )
@@ -546,8 +456,11 @@ function TemplateEngine( undefined ) {
           !mouseEvent.alreadyCanceled
         )
         {
-          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent );
+          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent, event );
         }
+        mouseEvent.moveFn = undefined;
+        mouseEvent.moveRestrict = true;
+        scrollElement = undefined;
         isWidget = false;
       }
     });
@@ -561,19 +474,23 @@ function TemplateEngine( undefined ) {
           widgetActor = getWidgetActor( event.target ),
           widget      = mouseEvent.widget,
           bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
-          inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
+          inCurrent   = !mouseEvent.moveRestrict || (widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor));
+          
+        if( inCurrent && mouseEvent.moveFn )
+          mouseEvent.moveFn( event );
+        
         if( inCurrent && mouseEvent.alreadyCanceled )
         { // reactivate
           mouseEvent.alreadyCanceled = false;
           var
             actionFn  = mouseEvent.widgetCreator.downaction;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, false, event );
         } else if( (!inCurrent && !mouseEvent.alreadyCanceled) )
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
             actionFn  = mouseEvent.widgetCreator.action;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
     });
@@ -583,17 +500,23 @@ function TemplateEngine( undefined ) {
       if( isWidget )
       {
         var
-          widget      = mouseEvent.widget;
+          widget      = mouseEvent.widget,
+          touchobj = event.changedTouches[0];
           
-        if( !mouseEvent.alreadyCanceled )
+        if( mouseEvent.moveFn )
+          mouseEvent.moveFn( event );
+        
+        if( mouseEvent.moveRestrict && !mouseEvent.alreadyCanceled
+          && ((touchStartX + 5 < parseInt(touchobj.clientX) || touchStartX - 5 > parseInt(touchobj.clientX))
+            ||(touchStartY + 5 < parseInt(touchobj.clientY) || touchStartY - 5 > parseInt(touchobj.clientY))))
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
             actionFn  = mouseEvent.widgetCreator.action;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
-      
+
       // take care to prevent overscroll
       if( scrollElement )
       {
@@ -618,7 +541,7 @@ function TemplateEngine( undefined ) {
     var sty = stylings[styling];
     if (sty) {    
       e.removeClass(sty['classnames']); // remove only styling classes
-      function findValue(v, findExact) {
+      var findValue = function(v, findExact) {
         if (undefined === v) {
           return false;
         }
@@ -658,7 +581,7 @@ function TemplateEngine( undefined ) {
         ret = m.formula(ret);
       }
 
-      function mapValue(v) {
+      var mapValue = function(v) {
         if (m[v]) {
           return m[v];
         } else if (m['range']) {
@@ -676,7 +599,7 @@ function TemplateEngine( undefined ) {
       if (!ret && m['defaultValue']) {
         ret = mapValue(m['defaultValue']);
       }
-      if (ret) {
+      if( ret !== undefined ) {
         return ret;
       }
     }
@@ -709,38 +632,26 @@ function TemplateEngine( undefined ) {
     return thisTemplateEngine.currentPageNavbarVisibility;
   };
 
+  // return S, M or L depening on the passed width
+  function getColspanClass( width )
+  {
+    if( width <= thisTemplateEngine.maxScreenWidthColspanS )
+      return 'S';
+    if( width <= thisTemplateEngine.maxScreenWidthColspanM )
+      return 'M';
+    return 'L';
+  }
+  
+  var oldWidth = -1;
   this.adjustColumns = function() {
-    var data = $('#main').data();
-    if (thisTemplateEngine.enableColumnAdjustment == false) {
-      if (thisTemplateEngine.defaultColumns != data.columns) {
-        data.columns = thisTemplateEngine.defaultColumns;
-        return true;
-      } else {
-        return false;
-      }
-    }
-    var width = thisTemplateEngine.getAvailableWidth();
-
-    var newColumns = Math.ceil(width / thisTemplateEngine.minColumnWidth);
-    if (newColumns > (thisTemplateEngine.defaultColumns / 2) && thisTemplateEngine.defaultColumns > newColumns) {
-      // don´t accept values between 50% and 100% of defaultColumns
-      // e.g if default is 12, then skip column-reduction to 10 and 8
-      newColumns = thisTemplateEngine.defaultColumns;
-    }
-    else {
-      // the value should be a divisor of defaultColumns-value
-      while ((thisTemplateEngine.defaultColumns % newColumns)>0 && newColumns < thisTemplateEngine.defaultColumns) {
-        newColumns++;
-      }
-      // make sure that newColumns does not exceed defaultColumns
-      newColumns = Math.min(thisTemplateEngine.defaultColumns, newColumns);
-    }
-    if (newColumns != data.columns) {
-        data.columns = newColumns;
-      return true;
-    } else {
-      return false;
-    }
+    var
+      width = thisTemplateEngine.getAvailableWidth(),
+      oldClass = getColspanClass( oldWidth ),
+      newClass = getColspanClass( width );
+      
+    oldWidth = width;
+    
+    return oldClass != newClass;
   };
   
   /**
@@ -755,8 +666,8 @@ function TemplateEngine( undefined ) {
     // the calculation has to be done again, even if the page hasn´t changed (e.g. switching between portrait and landscape mode on a mobile can cause that)
     var bodyWidth = $('body').width();
     var mobileUseChanged = (lastBodyWidth<thisTemplateEngine.maxMobileScreenWidth)!=(bodyWidth<thisTemplateEngine.maxMobileScreenWidth);
-    if (thisTemplateEngine.currentPageUnavailableWidth<0 || mobileUseChanged) {
-//      console.log("Mobile.css use changed "+mobileUseChanged);
+    if (thisTemplateEngine.currentPageUnavailableWidth<0 || mobileUseChanged || true) {
+      //      console.log("Mobile.css use changed "+mobileUseChanged);
       thisTemplateEngine.currentPageUnavailableWidth=0;
       var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);
       var widthNavbarLeft = navbarVisibility.left=="true" && $('#navbarLeft').css('display')!="none" ? Math.ceil( $('#navbarLeft').outerWidth() ) : 0;
@@ -772,7 +683,7 @@ function TemplateEngine( undefined ) {
         widthNavbarRight = 0;
       }
       thisTemplateEngine.currentPageUnavailableWidth = widthNavbarLeft + widthNavbarRight + 1; // remove an additional pixel for Firefox
-//      console.log("Width: "+bodyWidth+" - "+widthNavbarLeft+" - "+widthNavbarRight);
+      //      console.log("Width: "+bodyWidth+" - "+widthNavbarLeft+" - "+widthNavbarRight);
     }
     lastBodyWidth = bodyWidth;
     return bodyWidth - thisTemplateEngine.currentPageUnavailableWidth;
@@ -802,7 +713,7 @@ function TemplateEngine( undefined ) {
       else {
         heightStr+=" - 0";
       }
-//      console.log($('#navbarTop').css('display')+": "+$('#navbarTop').outerHeight(true));
+      //      console.log($('#navbarTop').css('display')+": "+$('#navbarTop').outerHeight(true));
       if ($('#navbarTop').css('display') != 'none' && navbarVisibility.top=="true" && $('#navbarTop').outerHeight(true)>0) {
         thisTemplateEngine.currentPageUnavailableHeight+=$('#navbarTop').outerHeight(true);
         heightStr+=" - "+$('#navbarTop').outerHeight(true);
@@ -837,20 +748,21 @@ function TemplateEngine( undefined ) {
    * Make sure everything looks right when the window gets resized. This is
    * necessary as the scroll effect requires a fixed element size
    */
-  this.handleResize = function(resize, skipScrollFix) {
+  this.handleResize = function(resize, skipScrollFix, force) {
     var $main = $('#main');
+    var forceHeight = force==undefined ? false : force; 
     var width = thisTemplateEngine.getAvailableWidth();
-    var height = thisTemplateEngine.getAvailableHeight();
+    var height = thisTemplateEngine.getAvailableHeight(forceHeight);
     $main.css('width', width).css('height', height);
     $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
     if (this.mobileDevice) {
       //do nothing
     } else {
       if (($('#navbarTop').css('display')!="none" && $('#navbarTop').outerHeight(true)<=2)
-          || ($('#navbarBottom').css('display')!="none" && $('#navbarBottom').innerHeight(true)<=2)) {
+          || ($('#navbarBottom').css('display')!="none" && $('#navbarBottom').innerHeight()<=2)) {
         // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
         // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
-        setTimeout( thisTemplateEngine.handleResize, 100);
+        setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,true); }, 100);
       }
     }
     if (skipScrollFix === undefined) {
@@ -868,7 +780,7 @@ function TemplateEngine( undefined ) {
       singleHeightMargin = $('#containerDiv').outerHeight(true),
       styles = '';
 
-    for( rowspan in usedRowspans )
+    for( var rowspan in usedRowspans )
     {
       styles += '.rowspan.rowspan' + rowspan
               + ' { height: '
@@ -916,18 +828,8 @@ function TemplateEngine( undefined ) {
     else
       thisTemplateEngine.scrollSpeed = $('pages', xml).attr('scroll_speed') | 0;
     
-    var enableColumnAdjustment = null;
-    if ($('pages', xml).attr('enable_column_adjustment')!=undefined) {
-      enableColumnAdjustment = $('pages', xml).attr('enable_column_adjustment')=="true" ? true : false;
-    }
     if ($('pages', xml).attr('bind_click_to_widget')!=undefined) {
       thisTemplateEngine.bindClickToWidget = $('pages', xml).attr('bind_click_to_widget')=="true" ? true : false;
-    }
-    if (enableColumnAdjustment) {
-      thisTemplateEngine.enableColumnAdjustment = true;
-    } else if (enableColumnAdjustment==null && /(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i
-        .test(navigator.userAgent.toLowerCase())) {
-      thisTemplateEngine.enableColumnAdjustment = true;
     }
     if ($('pages', xml).attr('default_columns')) {
       thisTemplateEngine.defaultColumns = $('pages', xml).attr('default_columns');
@@ -1009,7 +911,7 @@ function TemplateEngine( undefined ) {
       mappings[name] = {};
       var formula = $this.find('formula');
       if (formula.length > 0) {
-        eval('var func = function(x){' + formula.text() + '; return y;}');
+        var func = eval('var func = function(x){var y;' + formula.text() + '; return y;}; func');
         mappings[name]['formula'] = func;
       }
       $this.find('entry').each(function() {
@@ -1017,13 +919,13 @@ function TemplateEngine( undefined ) {
         var origin = $localThis.contents();
         var value = [];
         for (var i = 0; i < origin.length; i++) {
-           var $v = $(origin[i]);
-           if ($v.is('icon')) {
-             value[i] = icons.getIconElement($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
-           }
-           else {
-             value[i] = $v.text();
-           }
+          var $v = $(origin[i]);
+          if ($v.is('icon')) {
+            value[i] = icons.getIconElement($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
+          }
+          else {
+            value[i] = $v.text();
+          }
         }
         // check for default entry
         var isDefaultValue = $localThis.attr('default');
@@ -1134,18 +1036,28 @@ function TemplateEngine( undefined ) {
    * applies the correct width to the widgets corresponding to the given colspan setting 
    */
   this.applyColumnWidths = function() {
+    var
+      width = thisTemplateEngine.getAvailableWidth();
+    function dataColspan( data )
+    {
+      if( width <= thisTemplateEngine.maxScreenWidthColspanS )
+        return data.colspanS;
+      if( width <= thisTemplateEngine.maxScreenWidthColspanM )
+        return data.colspanM;
+      return data.colspan;
+    }
+    
     // all containers
     ['#navbarTop', '#navbarLeft', '#main', '#navbarRight', '#navbarBottom'].forEach( function( area ){
       var 
         allContainer = $(area + ' .widget_container'),
         areaColumns = $( area ).data( 'columns' );
-    allContainer.each(function(i, e) {
+      allContainer.each(function(i, e) {
       var
         $e = $(e),
         data = thisTemplateEngine.widgetDataGet( e.id ),
-        ourColspan = data.colspan;
-      if (ourColspan < 0)
-        return;
+        ourColspan = dataColspan( data );
+        
       var w = 'auto';
       if (ourColspan > 0) {
         var areaColspan = areaColumns || thisTemplateEngine.defaultColumns;
@@ -1153,25 +1065,23 @@ function TemplateEngine( undefined ) {
       }
       $e.css('width', w);
     });
-    // and elements inside groups
-    var areaColumns = $('#main').data('columns');
-    var adjustableElements = $('.group .widget_container');
-    adjustableElements.each(function(i, e) {
+      // and elements inside groups
+      var areaColumns = $('#main').data('columns');
+      var adjustableElements = $('.group .widget_container');
+      adjustableElements.each(function(i, e) {
       var 
         $e = $(e),
         data = thisTemplateEngine.widgetData[ e.id ],
-        ourColspan = data.colspan;
-      if (ourColspan < 0)
-        return;
+        ourColspan = dataColspan( data );
       if (ourColspan == undefined) {
         // workaround for nowidget groups
-        ourColspan =  thisTemplateEngine.widgetDataGetByElement($e.children('.group')).colspan;
+        ourColspan = dataColspan( thisTemplateEngine.widgetDataGetByElement($e.children('.group')) );
       }
       var w = 'auto';
       if (ourColspan > 0) {
         var areaColspan = areaColumns || thisTemplateEngine.defaultColumns;
-        var groupColspan = Math.min(areaColspan, thisTemplateEngine.widgetDataGetByElement($e.parentsUntil(
-            '.widget_container', '.group')).colspan);
+        var groupColspan = Math.min(areaColspan, dataColspan(thisTemplateEngine.widgetDataGetByElement($e.parentsUntil(
+            '.widget_container', '.group'))));
         w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
       }
       $e.css('width', w);
@@ -1236,27 +1146,23 @@ function TemplateEngine( undefined ) {
     thisTemplateEngine.adjustColumns();
     thisTemplateEngine.applyColumnWidths();
     
-    // setup the scrollable
-    thisTemplateEngine.main_scroll = $('#main').scrollable({
-      keyboard : false,
-      touch : false
-    }).data('scrollable');
-    thisTemplateEngine.main_scroll.onSeek( function(){
-      thisTemplateEngine.pagePartsHandler.updateTopNavigation( this );
-      $('.activePage', '#pages').removeClass('activePage');
-      $('.pageActive', '#pages').removeClass('pageActive');
-      thisTemplateEngine.currentPage.addClass('pageActive activePage');// show new page
-      $('#pages').css('left', 0 );
-    });
+    thisTemplateEngine.main_scroll = new PageHandler();
     if (thisTemplateEngine.scrollSpeed != undefined) {
-      thisTemplateEngine.main_scroll.getConf().speed = thisTemplateEngine.scrollSpeed;
+      thisTemplateEngine.main_scroll.setSpeed( thisTemplateEngine.scrollSpeed );
     }
    
     thisTemplateEngine.scrollToPage(startpage,0);
 
+    /* CM, 9.4.16:
+     * TODO: Is this really needed?
+     * I can't find any source for setting .fast - and when it's set, it's
+     * most likely not working as scrollToPage should have been used instead
+     * anyway...
+     * 
     $('.fast').bind('click', function() {
       thisTemplateEngine.main_scroll.seekTo($(this).text());
     });
+   */
 
     // reaction on browser back button
     window.onpopstate = function(e) {
@@ -1275,13 +1181,13 @@ function TemplateEngine( undefined ) {
       // identify addresses on startpage
       var startPageAddresses = {};
       $('.actor','#'+startpage).each(function() {
-    	  var $this = $(this),
-          data  = $this.data();
-    	  if( undefined === data.address ) data = $this.parent().data();
-          for( var addr in data.address )
-          {
-            startPageAddresses[addr.substring(1)]=1;
-          }
+        var $this = $(this),
+              data  = $this.data();
+        if( undefined === data.address ) data = $this.parent().data();
+        for( var addr in data.address )
+        {
+          startPageAddresses[addr.substring(1)]=1;
+        }
       });
       thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
     }
@@ -1289,8 +1195,8 @@ function TemplateEngine( undefined ) {
     if( 0 !== addressesToSubscribe.length )
       thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
     
-    xml = null;
-    delete xml; // not needed anymore - free the space
+    xml = null; // not needed anymore - free the space
+    
     $('.icon').each(function(){ fillRecoloredIcon(this);});
     $('.loading').removeClass('loading');
     fireLoadingFinishedAction();
@@ -1307,6 +1213,14 @@ function TemplateEngine( undefined ) {
 
   this.create_pages = function(page, path, flavour, type) {
     var creator = thisTemplateEngine.design.getCreator(page.nodeName);
+    
+    thisTemplateEngine.callbacks[ path + '_' ] = {
+      exitingPageChange: [],// called when the current page is left
+      beforePageChange: [], // called as soon as a page change is known
+      duringPageChange: [], // called when the page is theoretical visible, i.e. "display:none" is removed - CSS calculations shoud work now
+      afterPageChange: []   // called together with the global event when the transition is finished
+    };
+    
     var retval = creator.create(page, path, flavour, type);
 
     if( undefined === retval )
@@ -1329,22 +1243,97 @@ function TemplateEngine( undefined ) {
       + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
     }
   };
-
-  this.scrollToPage = function(page_id, speed, skipHistory) {
-    if( undefined === page_id )
-      page_id = this.screensave_page;
+  
+  /**
+   * Little helper to find the relevant page path for a given widget.
+   * @param element The XML element
+   * @param widgetpath The path / ID of the widget
+   * @return The path of the parent
+   */
+  this.getPageIdForWidgetId = function( element, widgetpath )
+  {
+    var
+      parent = element.parentNode,
+      parentpath = widgetpath.replace( /[0-9]*$/, '' );
     
-    if (page_id.match(/^id_[0-9_]*$/) == null) {
+    while( parent && parent.nodeName !== 'page' )
+    {
+      parent = parent.parentNode;
+      parentpath = parentpath.replace( /[0-9]*_$/, '' );
+    }
+    return parentpath;
+  };
+  
+  this.getPageIdByPath = function(page_name, path) {
+    if (page_name==null) return null;
+    if (page_name.match(/^id_[0-9_]*$/) != null) {
+      // already a page_id
+      return page_name;
+    } else {
+      if (path!=undefined) {
+        var scope = templateEngine.traversePath(path);
+        if (scope==null) {
+          // path is wrong
+          console.error("path '"+path+"' could not be traversed, no page found");
+          return null;
+        }
+        return templateEngine.getPageIdByName(page_name,scope);
+      } else {
+        return templateEngine.getPageIdByName(page_name);
+      }
+    }
+  }
+  
+  this.traversePath = function(path,root_page_id) {
+    var path_scope=null;
+    var index = path.indexOf("/");
+    if (index>=1) {
+      // skip escaped slashes like \/
+      while (path.substr(index-1,1)=="\\") {
+        var next = path.indexOf("/",index+1);
+        if (next>=0) {
+          index=next;
+        }
+      }
+    }
+    //    console.log("traversePath("+path+","+root_page_id+")");
+    if (index>=0) {
+      // traverse path one level down
+      var path_page_name = path.substr(0,index);
+      path_scope = templateEngine.getPageIdByName(path_page_name,root_page_id);
+      path = path.substr(path_page_name.length+1);
+      path_scope = templateEngine.traversePath(path,path_scope);
+      //      console.log(path_page_name+"=>"+path_scope);
+      return path_scope;
+    } else {
+      // bottom path level reached
+      path_scope = templateEngine.getPageIdByName(path,root_page_id);
+      return path_scope;
+    }
+    return null;
+  }
+  
+  this.getPageIdByName = function(page_name,scope) {
+    if (page_name.match(/^id_[0-9_]*$/) != null) {
+      // already a page_id
+      return page_name;
+    } else {
+      var page_id=null;
       // find Page-ID by name
       // decode html code (e.g. like &apos; => ')
-      page_id = $("<textarea/>").html(page_id).val();
-      var pages = $('.page h1:contains(' + page_id + ')', '#pages');
+      page_name = $("<textarea/>").html(page_name).val();
+      // remove escaped slashes
+      page_name = page_name.replace("\\\/","/");
+      
+      //      console.log("Page: "+page_name+", Scope: "+scope);
+      var selector = (scope!=undefined && scope!=null) ? '.page[id^="'+scope+'"] h1:contains(' + page_name + ')' :  '.page h1:contains(' + page_name + ')';
+      var pages = $(selector, '#pages');
       if (pages.length>1 && thisTemplateEngine.currentPage!=null) {
         // More than one Page found -> search in the current pages descendants first
         var fallback = true;
         pages.each(function(i) {
           var p = $(this).closest(".page");
-          if ($(this).text() == page_id) {
+          if ($(this).text() == page_name) {
             if (p.attr('id').length<thisTemplateEngine.currentPage.attr('id').length) {
               // found pages path is shorter the the current pages -> must be an ancestor
               if (thisTemplateEngine.currentPage.attr('id').indexOf(p.attr('id'))==0) {
@@ -1368,7 +1357,7 @@ function TemplateEngine( undefined ) {
         if (fallback) {
           // take the first page that fits (old behaviour)
           pages.each(function(i) {
-            if ($(this).text() == page_id) {
+            if ($(this).text() == page_name) {
               page_id = $(this).closest(".page").attr("id");
               // break loop
               return false;
@@ -1377,7 +1366,7 @@ function TemplateEngine( undefined ) {
         }
       } else {
         pages.each(function(i) {
-          if ($(this).text() == page_id) {
+          if ($(this).text() == page_name) {
             page_id = $(this).closest(".page").attr("id");
             // break loop
             return false;
@@ -1385,15 +1374,21 @@ function TemplateEngine( undefined ) {
         });
       }
     }
-//    console.log(thisTemplateEngine.currentPage);
-//    // don't scroll when target is already active
-//    if( thisTemplateEngine.currentPage!=null && thisTemplateEngine.currentPage.attr('id') === page_id )
-//      return;
-    
-    var page = $('#' + page_id);
-    
-    if( 0 === page.length ) // check if page does exist
+    if (page_id!=null && page_id.match(/^id_[0-9_]*$/) != null) {
+      return page_id;
+    } else {
+      // not found
+      return null;
+    }
+  }
+
+  this.scrollToPage = function(target, speed, skipHistory) {
+    if( undefined === target )
+      target = this.screensave_page;
+    var page_id = thisTemplateEngine.getPageIdByPath(target);
+    if (page_id==null) {
       return;
+    }
     
     if( undefined === speed )
       speed = thisTemplateEngine.scrollSpeed;
@@ -1401,39 +1396,13 @@ function TemplateEngine( undefined ) {
     if( rememberLastPage )
       localStorage.lastpage = page_id;
     
-    thisTemplateEngine.resetPageValues();
-    
-    thisTemplateEngine.currentPage = page;
-
-    page.addClass('pageActive activePage');// show new page
-    
-    // update visibility of navbars, top-navigation, footer
-    thisTemplateEngine.pagePartsHandler.updatePageParts( page, speed );
-
-    if( speed > 0 ) {
-      var scrollLeft = page.position().left != 0;
-      // jump to the page on the left of the page we need to scroll to
-      if (scrollLeft) {
-        $('#pages').css('left', -page.position().left + page.width());
-      } else {
-        $('#pages').css('left', -page.position().left - page.width());
-      }
-    }
     // push new state to history
     if (skipHistory === undefined)
       window.history.pushState(page_id, page_id, window.location.href);
     
-    thisTemplateEngine.main_scroll.seekTo(page, speed); // scroll to it
+    thisTemplateEngine.main_scroll.seekTo(page_id, speed); // scroll to it
 
-    // show the navbars for this page
-    /*
-     * $('#'+page_id+'_top_navbar').addClass('navbarActive');
-     * $('#'+page_id+'_right_navbar').addClass('navbarActive');
-     * $('#'+page_id+'_bottom_navbar').addClass('navbarActive');
-     * $('#'+page_id+'_left_navbar').addClass('navbarActive');
-     */
     thisTemplateEngine.pagePartsHandler.initializeNavbars(page_id);
-    
     $(window).trigger('scrolltopage', page_id);    
   };
 
@@ -1536,7 +1505,7 @@ function TemplateEngine( undefined ) {
             + element
             + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>");
         $myDiv
-        .append("<img width=\"60\" height=\"30\" src=\"./config/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>");
+        .append("<img width=\"60\" height=\"30\" src=\"./demo/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>");
 
         $div.append($myDiv);
 
@@ -1800,4 +1769,13 @@ function TemplateEngine( undefined ) {
   ////////// Reflection API for possible Editor communication: End //////////
 }
 
-  }); // end require
+  return {
+    // simulate a singleton
+    getInstance : function() {
+      if (!instance) {
+        instance = new TemplateEngine();
+      }
+      return instance;
+    }
+  };
+}); // end require

@@ -1,5 +1,7 @@
-/* slide.js (c) 2012 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* slide.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,15 +9,24 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ *
+ * @module Slide 
+ * @title  CometVisu Slide 
  */
 
+
+/**
+ * @author Christian Mayer
+ * @since 2012
+ */
 define( ['_common'], function( design ) {
+  "use strict";
   var 
     basicdesign = design.basicdesign,
     $main = $('#main');
@@ -24,17 +35,16 @@ define( ['_common'], function( design ) {
   {
     if (!$main.data('disableSliderTransform')) {
       if (!isNaN(value)) {
-        var handleWidth = $(handle).outerWidth();
+        value = parseFloat(value); // force any (string) value to float
         var sliderMax = $(handle).parent().slider("option","max")+($(handle).parent().slider("option","min")*-1);
         var percent = Math.round((100/sliderMax)*(value+($(handle).parent().slider("option","min")*-1)));
-        var translate = Math.round(handleWidth * percent/100);
-        //console.log("Width: "+handleWidth+", Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
-        $(handle).css('transform', 'translateX(-'+translate+'px)');
+        //console.log("Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
+        $(handle).css('transform', 'translateX(-'+percent+'%)');
       }
     }
   }
 
-design.basicdesign.addCreator('slide', {
+  design.basicdesign.addCreator('slide', {
   create: function( element, path, flavour, type ) {
     var self = this,
         $e = $(element);
@@ -57,14 +67,26 @@ design.basicdesign.addCreator('slide', {
     var min  = parseFloat( $e.attr('min')  || datatype_min || 0   );
     var max  = parseFloat( $e.attr('max')  || datatype_max || 100 );
     var step = parseFloat( $e.attr('step') || 0.5 );
+    var send_on_finish = $e.attr('send_on_finish') || 'false';
     var data = templateEngine.widgetDataInsert( path, {
       //???///'events':   $(actor).data( 'events' ),
-      'min'     : min,
-      'max'     : max,
-      'step'    : step,
-      'valueInternal': true,
-      'inAction': false,
+      'min'            : min,
+      'max'            : max,
+      'step'           : step,
+      'send_on_finish' : send_on_finish,
+      'valueInternal'  : true,
+      'inAction'       : false
     });
+    
+    // check provided address-items for at least one address which has write-access
+    var readonly = true;
+    for (var addrIdx in data.address) {
+      if (data.address[addrIdx][1] & 2) {
+        // write-access detected --> no read-only mode
+        readonly = false;
+        break;
+      }
+    }
     
     // create the actor
     templateEngine.postDOMSetupFns.push( function(){
@@ -75,18 +97,20 @@ design.basicdesign.addCreator('slide', {
         max:     max, 
         range:   'min', 
         animate: true,
+        send_on_finish : send_on_finish,
         start:   self.slideStart,
         change:  self.slideChange
       });
+      // disable slider interaction if in read-only mode --> just show the value
+      if (readonly) {
+        $actor.slider({ disabled: true });
+      }
       $actor.on( 'slide', self.slideUpdateValue );
       
       if( data['format']) {
         // initially setting a value
         $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
       }
-      // Mark all horizontal sliders for correct transformation
-      $actor.children('.ui-slider-horizontal .ui-slider-handle').addClass('untransformed');
-      $(window).bind("scrolltopage",self.sliderVisible);
     });
     
     return ret_val + '<div class="actor"/></div>';
@@ -128,6 +152,9 @@ design.basicdesign.addCreator('slide', {
     var element = $(this).parent(),
         actor   = element.find('.actor'),
         data    = templateEngine.widgetDataGetByElement( this );
+
+    if ( data.send_on_finish == 'true') return;
+
     data.inAction      = true;
     data.valueInternal = true;
     data.updateFn      = setInterval( function(){
@@ -164,16 +191,7 @@ design.basicdesign.addCreator('slide', {
       }
     }
     transformSlider(ui.value,ui.handle);
-  },
-  sliderVisible:function(event,page_id)
-  {
-    $('.ui-slider-handle.untransformed', '#'+page_id).each(function(i) {
-      $(this).removeClass('untransformed');
-      var actor = $(this).parent();
-      var val = actor.slider("value");
-      transformSlider(val,this);
-    });
-  },
+  }
   
 });
 

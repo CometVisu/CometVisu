@@ -31,93 +31,93 @@
 var config;
 
 $(document).ready(function () {
-    var targetSelector = 'body';
+  var targetSelector = 'body';
     
-    var schema;
-    var editor;
+  var schema;
+  var editor;
 
-    $(document).unbind('configuration_loaded').bind('configuration_loaded', function () {
-        // configuration is loaded
-        var schemaFilename = config.getSchemaFilename();
-        schema = new Schema(schemaFilename);
-    });
+  $(document).unbind('configuration_loaded').bind('configuration_loaded', function () {
+    // configuration is loaded
+    var schemaFilename = config.getSchemaFilename();
+    schema = new Schema(schemaFilename);
+  });
     
-    $(document).unbind('configuration_loading_error').bind('configuration_loading_error', function (event, result) {
-        // something went wrong
-        // we can not fix it, so let's simply inform the user, and leave.
-        $(targetSelector).html(result.message);
-        alert(result.message);
-    });
+  $(document).unbind('configuration_loading_error').bind('configuration_loading_error', function (event, result) {
+    // something went wrong
+    // we can not fix it, so let's simply inform the user, and leave.
+    $(targetSelector).html(result.message);
+    alert(result.message);
+  });
 
-    $(document).unbind('schema_loaded').bind('schema_loaded', function () {
+  $(document).unbind('schema_loaded').bind('schema_loaded', function () {
 
-        try {
-            config.setSchema(schema);
-        } catch (e) {
-            var tmpResult = new Result(false, Messages.validity.configurationInvalid, [e]);
-            $(targetSelector).html(tmpResult.message);
-            alert(tmpResult.message);
-            return;
-        }
+    try {
+      config.setSchema(schema);
+    } catch (e) {
+      var tmpResult = new Result(false, Messages.validity.configurationInvalid, [e]);
+      $(targetSelector).html(tmpResult.message);
+      alert(tmpResult.message);
+      return;
+    }
 
-        if (false === config.isValid()) {
-            var tmpResult = new Result(false, Messages.validity.configurationInvalid, ['configuration not valid']);
-            $(targetSelector).html(tmpResult.message);
-            alert(tmpResult.message);
-            return;
-        }
+    if (false === config.isValid()) {
+      var tmpResult = new Result(false, Messages.validity.configurationInvalid, ['configuration not valid']);
+      $(targetSelector).html(tmpResult.message);
+      alert(tmpResult.message);
+      return;
+    }
 
-        // remove loading-message
-        $(targetSelector).empty();
+    // remove loading-message
+    $(targetSelector).empty();
         
-        // start and render the editor
-        editor = new Editor(config);
-        editor.render(targetSelector);
-    });
+    // start and render the editor
+    editor = new Editor(config);
+    editor.render(targetSelector);
+  });
     
-    // loading the Configuration and validation it WILL take a few seconds!
-    $(targetSelector).html(Messages.loader.loading);
+  // loading the Configuration and validation it WILL take a few seconds!
+  $(targetSelector).html(Messages.loader.loading);
 
-    // check if we are showing a demo config
-    var isDemo = false;
-    if( $.getUrlVar("demo")) {
-        isDemo = 'true' === $.getUrlVar("demo");
-    }
+  // check if we are showing a demo config
+  var isDemo = false;
+  if( $.getUrlVar("demo")) {
+    isDemo = 'true' === $.getUrlVar("demo");
+  }
     
-    // check if we have a user-defined param to load a specific config
-    var configSuffix = '';
-    if ($.getUrlVar("config")) {
-        configSuffix = $.getUrlVar("config");
-    }
+  // check if we have a user-defined param to load a specific config
+  var configSuffix = '';
+  if ($.getUrlVar("config")) {
+    configSuffix = $.getUrlVar("config");
+  }
     
-    // create configuration filename
-    var configFilename = 'config/' + (isDemo?'demo/':'') + 'visu_config' + (configSuffix ? '_' + configSuffix : '' ) + '.xml'
+  // create configuration filename
+  var configFilename = (isDemo?'demo/':'config/') + 'visu_config' + (configSuffix ? '_' + configSuffix : '' ) + '.xml'
     
-    // and start loading the configuration
-    config = new Configuration(configFilename, isDemo);
+  // and start loading the configuration
+  config = new Configuration(configFilename, isDemo);
     
-    // attach the global event listener
-    config.attachGlobalListener(GlobalConfigurationElementEventListener);
+  // attach the global event listener
+  config.attachGlobalListener(GlobalConfigurationElementEventListener);
 });
 
 var GlobalConfigurationElementEventListener = {
-    /**
-     * Event Listener for the ConfigurationElement (_element)
-     * 
-     * @param   listenerEvent   object  instance of ListenerEvent
-     */
-    ConfigurationElementEventListener: function (listenerEvent) {
-        switch (listenerEvent.event) {
-            case 'invalid':
-                // @TODO: implement
-                if (typeof console != 'undefined') {
-                    console.log(listenerEvent);
-                }
-                break;
-            default:
-                // do nothing
+  /**
+   * Event Listener for the ConfigurationElement (_element)
+   * 
+   * @param   listenerEvent   object  instance of ListenerEvent
+   */
+  ConfigurationElementEventListener: function (listenerEvent) {
+    switch (listenerEvent.event) {
+      case 'invalid':
+        // @TODO: implement
+        if (typeof console != 'undefined') {
+          console.log(listenerEvent);
         }
+        break;
+      default:
+      // do nothing
     }
+  }
 };
 
 

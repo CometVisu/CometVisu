@@ -1,5 +1,7 @@
-/* web.js (c) 2012 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* web.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,18 +9,27 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ *
+ * @module Web 
+ * @title  CometVisu Web 
  */
 
+
+/**
+ * @author Christian Mayer
+ * @since 2012
+ */
 define( ['_common'], function( design ) {
+  "use strict";
   var basicdesign = design.basicdesign;
   
-design.basicdesign.addCreator('web', {
+  design.basicdesign.addCreator('web', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
 
@@ -51,7 +62,7 @@ design.basicdesign.addCreator('web', {
     var scrolling = '';
     if( $e.attr('scrolling') ) scrolling = 'scrolling="' + $e.attr('scrolling') +'"'; // add scrolling parameter to iframe
 
- //   var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
+    //   var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
     var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
   
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
@@ -77,7 +88,7 @@ design.basicdesign.addCreator('web', {
     switch( type )
     {
       default:
-        if (data==01) {
+        if (data==1) {
           var iframe = element.find('iframe');
           iframe.attr('src', iframe.attr('src'));
           templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));

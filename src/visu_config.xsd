@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace">
 
   <!-- basic types -->
   <xsd:simpleType name="addr">
@@ -18,6 +18,8 @@
 
   <xsd:complexType name="layout">
     <xsd:attribute name="colspan" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="colspan-m" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="colspan-s" type="xsd:decimal" use="optional" />
     <xsd:attribute name="rowspan" type="xsd:decimal" use="optional" />
     <xsd:attribute name="x" type="xsd:string" use="optional" />
     <xsd:attribute name="y" type="xsd:string" use="optional" />
@@ -31,6 +33,7 @@
         <xsd:attribute ref="transform" use="required" />
         <xsd:attribute ref="mode" use="optional" />
         <xsd:attribute name="variant" type="xsd:string" use="optional" />
+        <xsd:attribute name="format-pos" type="xsd:decimal" use="optional" />
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -246,9 +249,14 @@
     </xsd:annotation>
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
+      	<!-- Old values, kept for backwards compability -->
         <xsd:enumeration value="cgi-bin" />
         <xsd:enumeration value="oh" />
         <xsd:enumeration value="oh2" />
+       	<!-- New values, should be used now -->
+        <xsd:enumeration value="default" />
+        <xsd:enumeration value="openhab" />
+        <xsd:enumeration value="openhab2" />
       </xsd:restriction>
     </xsd:simpleType>
   </xsd:attribute>
@@ -350,11 +358,6 @@
         </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute name="default_columns" type="xsd:decimal" use="optional">
-        <xsd:annotation>
-            <xsd:appinfo>level:expert</xsd:appinfo>
-        </xsd:annotation>
-      </xsd:attribute>
-      <xsd:attribute name="enable_column_adjustment" type="xsd:boolean" use="optional">
         <xsd:annotation>
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
@@ -750,6 +753,7 @@
       <xsd:element name="rgb" type="rgb" />
       <xsd:element name="pagejump" type="pagejump" />
       <xsd:element name="wgplugin_info" type="wgplugin_info"/>
+      <xsd:element name="mobilemenu" type="mobilemenu"/>
     </xsd:choice>
   </xsd:group>
 
@@ -762,6 +766,7 @@
     </xsd:sequence>
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+	<xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="designtoggle">
@@ -931,6 +936,7 @@
     <xsd:attribute name="button4label" type="xsd:string" use="optional" />
     <xsd:attribute name="button4value" type="xsd:string" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="mapping" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="slide">
@@ -946,6 +952,7 @@
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute name="send_on_finish" type="xsd:boolean" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="include">
@@ -1076,13 +1083,22 @@
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="infowidget" type="infowidget" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="widgetinfo" type="widgetinfo" minOccurs="0" maxOccurs="1" />
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" />
     <xsd:attribute ref="target" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
+    <xsd:attribute name="path" type="xsd:string" use="optional"/>
+    <xsd:attribute name="active_scope" use="optional">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="path" />
+          <xsd:enumeration value="target" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="clock">
@@ -1182,6 +1198,7 @@
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
     <xsd:attribute name="src" type="xsd:string" use="required" />
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
@@ -1190,6 +1207,13 @@
     <xsd:attribute name="datetime" type="xsd:boolean" use="optional" />
     <xsd:attribute name="timeformat" type="xsd:string" use="optional" />
     <xsd:attribute name="filter" type="xsd:string" use="optional" />
+    <xsd:attribute name="itemack" type="xsd:string" use="optional" />
+    <xsd:attribute name="future" type="xsd:integer" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Hours for coming events.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeit in Stunden für zukünftige Ereignisse.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="svg">
@@ -1281,6 +1305,22 @@
         <xsd:attribute name="scaling" type="xsd:decimal" />
         <xsd:attribute name="steps" type="xsd:boolean" />
         <xsd:attribute name="fill" type="xsd:boolean" />
+        <xsd:attribute name="style" use="optional" >
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="lines" />
+              <xsd:enumeration value="bars" />
+              <xsd:enumeration value="points" />
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute name="barWidth" type="xsd:integer" use="optional" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Width of the bars in units of the x axis, contrary to most other measures that are specified in pixels. For instance, for time series the unit is milliseconds so 24 * 60 * 60 * 1000 produces bars with the width of a day.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Breite der Balken in Einheiten der X Achse, im Gegensatz zu anderen Werten die in Pixel angegeben werden. Für Zeitverläufe z.B. ist die Einheit Millisekunden, sodass 24 * 60 * 60 * 1000 Balken in der Breite von einem Tag erzeugt.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ref="align" use="optional" />
         <xsd:attribute name="datasourceIndex" type="xsd:integer" use="optional" default="0" >
           <xsd:annotation>
             <xsd:documentation xml:lang="en">If there are multiple datasources in the RRD file this index defines which one to show. Use "rrdtool info" to find the correct index.</xsd:documentation>
@@ -1313,34 +1353,34 @@
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="infowidget" type="infowidget" />
-      <xsd:element name="actionwidget" type="actionwidget" />
+      <xsd:element name="widgetinfo" type="widgetinfo" />
+      <xsd:element name="widgetaction" type="widgetaction" />
     </xsd:sequence>
   </xsd:complexType>
   
-  <xsd:complexType name="infowidget">
+  <xsd:complexType name="widgetinfo">
     <xsd:sequence>
       <xsd:choice minOccurs="1" maxOccurs="1">
-      	<xsd:group ref="Infoaction_InfoWidgets"/>
+        <xsd:group ref="Infoaction_WidgetInfos"/>
       </xsd:choice>     
     </xsd:sequence>
   </xsd:complexType>
-  <xsd:complexType name="actionwidget">
+  <xsd:complexType name="widgetaction">
     <xsd:sequence>
       <xsd:choice minOccurs="1" maxOccurs="1">
-      	<xsd:group ref="Infoaction_ActionWidgets"/>
+      	<xsd:group ref="Infoaction_WidgetActions"/>
       </xsd:choice>     
     </xsd:sequence>
   </xsd:complexType>
   
-    <xsd:group name="Infoaction_InfoWidgets">
+    <xsd:group name="Infoaction_WidgetInfos">
     <xsd:choice>
       <xsd:element name="text" type="text" />
       <xsd:element name="info" type="info" />
     </xsd:choice>
   </xsd:group>
   
-  <xsd:group name="Infoaction_ActionWidgets">
+  <xsd:group name="Infoaction_WidgetActions">
     <xsd:choice>
       <xsd:element name="switch" type="switch" />
       <xsd:element name="toggle" type="toggle" />
@@ -1354,4 +1394,20 @@
       <xsd:element name="info" type="info" />
     </xsd:choice>
   </xsd:group>
+  
+  <xsd:complexType name="mobilemenu">
+    <xsd:choice>
+      <xsd:element name="switch" type="switch" />
+      <xsd:element name="text" type="text" />
+      <xsd:element name="toggle" type="toggle" />
+      <xsd:element name="trigger" type="trigger" />
+      <xsd:element name="pushbutton" type="pushbutton" />
+      <xsd:element name="urltrigger" type="urltrigger" />
+      <xsd:element name="multitrigger" type="multitrigger" />
+      <xsd:element name="image" type="image" />
+      <xsd:element name="imagetrigger" type="imagetrigger" />
+      <xsd:element name="pagejump" type="pagejump" />
+      <xsd:element name="info" type="info" />
+    </xsd:choice>
+  </xsd:complexType>
 </xsd:schema>

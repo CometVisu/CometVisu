@@ -1,5 +1,7 @@
-/* icontools.js (c) 2015 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* icontools.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,17 +9,26 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ *
+ * @module Icontools 
+ * @title  CometVisu Icontools 
  */
 
-define( [], function() {
 
-(function( window, undefined ){
+/**
+ * @author Christian Mayer
+ * @since 2015
+ */
+define([ 'jquery' ], function( $ ) {
+  "use strict";
+
+  (function( window, undefined ){
   // "global" functions (=> state less)
   var hexColorRegEx = /#[0-9a-fA-F]{6}/,
       colorMapping = { // as a convenience, definition of a few colors
@@ -79,8 +90,8 @@ define( [], function() {
        * https://code.google.com/p/android/issues/detail?id=17565
        * 
        */
-      innerRecolorLoop = navigator.userAgent.toLowerCase().indexOf('android') > -1 ?
-        function( r, g, b, data, length ) // the Android version
+      innerRecolorLoop = navigator.userAgent.toLowerCase().indexOf('android') > -1 && parseFloat(navigator.userAgent.slice(navigator.userAgent.toLowerCase().indexOf('android')+8)) < 4.4 ?
+        function( r, g, b, data, length ) // for Android version < 4.4
         {
           for( var i = 0; i < length; i += 4 )
           {
@@ -123,7 +134,7 @@ define( [], function() {
           return; // done, already recolored
           
         var
-          width  = tmpCanvas.width  = thisIcon.width;
+          width  = tmpCanvas.width  = thisIcon.width,
           height = tmpCanvas.height = thisIcon.height;
         tmpCtx.drawImage( thisIcon, 0, 0 );
     

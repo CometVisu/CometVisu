@@ -16,58 +16,45 @@
 */
 
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
+  "use strict";
 
-/**
- * This is a custom function that extends the available widgets.
- * It's purpose is to change the design of the visu during runtime
- * to demonstrate all available
- */
-VisuDesign_Custom.prototype.addCreator("clock", {
+  /**
+   * This is a custom function that extends the available widgets.
+   * It's purpose is to change the design of the visu during runtime
+   * to demonstrate all available
+   */
+  VisuDesign_Custom.prototype.addCreator("clock", {
   that: this,
-  create: function( page, path ) {
+  create: function( page, path, flavour, type ) {
     var that = this;
     var $p = $(page);
-    var ret_val = $('<div class="widget clearfix clock" />');
-    templateEngine.design.setWidgetLayout( ret_val, $p, path );
-    var labelElement = $p.find('label')[0];
-    var label = labelElement ? '<div class="label">' + labelElement.textContent + '</div>' : '';
-    var address = {};
-    $p.find('address').each( function(){ 
-      var src = this.textContent;
-      var transform = this.getAttribute('transform');
-      var color     = this.getAttribute('variant'  );
-      var readonly  = this.getAttribute('readonly' );
-      templateEngine.addAddress( src ); 
-      address[ '_' + src ] = [ transform, color, readonly=='true' ];
-    });
+    var classes = templateEngine.design.setWidgetLayout( $p, path );
+    var ret_val = '<div class="widget clearfix clock '+(classes?classes:'')+'">';
+    ret_val+=templateEngine.design.extractLabel( $p.find('label')[0], flavour );
+    var address = templateEngine.design.makeAddressList($p,false,path);
 
-    var actor = '<div class="actor" style="width:200px;">';
-    actor += '</div>';
-    var datatype =  $(page).attr('datatype');
-    var $actor = $(actor)
-      .data({
-        'value'   : new Date(),
-        'address' : address,
-        'type'    : 'clock'
-      });
-    $actor.svg({loadURL:'plugins/clock/clock_pure.svg',onLoad:function(svg){
-      $( svg.getElementById('HotSpotHour'  ) )
-        .draggable()
-        .bind('drag', {type: 'hour'  ,actor:$actor}, that.dragHelper )
-        .bind('dragstop', {actor:$actor}, that.action );
-      $( svg.getElementById('HotSpotMinute') )
-        .draggable()
-        .bind('drag', {type: 'minute',actor:$actor}, that.dragHelper )
-        .bind('dragstop', {actor:$actor}, that.action );
-    }});
+    ret_val+='<div class="actor" style="width:200px;"></div>';
     
-    for( var addr in address ) 
-    { 
-      if( !address[addr][2] ) $actor.bind( addr, this.update ); // no writeonly
-      $actor.bind( addr, this.update ); // no writeonly
-    }
+    var data = templateEngine.widgetDataInsert( path, {
+      'value'   : new Date(),
+      'address' : address,
+      'type'    : 'clock'
+    });
     
-    ret_val.append(label).append( $actor );
+    templateEngine.postDOMSetupFns.push(function() {
+      var $actor = $("#"+path+" .actor");
+      $actor.svg({loadURL:'plugins/clock/clock_pure.svg',onLoad:function(svg){
+        $( svg.getElementById('HotSpotHour'  ) )
+          .draggable()
+          .bind('drag', {type: 'hour'  ,actor:$actor}, that.dragHelper )
+          .bind('dragstop', {actor:$actor}, that.dragAction );
+        $( svg.getElementById('HotSpotMinute') )
+          .draggable()
+          .bind('drag', {type: 'minute',actor:$actor}, that.dragHelper )
+          .bind('dragstop', {actor:$actor}, that.dragAction );
+      }});
+    });
+    ret_val+="</div>";
     return ret_val;
   },
   update: function(e,d) { 
@@ -81,10 +68,13 @@ VisuDesign_Custom.prototype.addCreator("clock", {
   dragHelper:function(event,ui) {
     var $container = event.data.actor;
     var $svg = $container.find('svg');
+    var widget = $container.parents('.widget_container')[0];
+    var path = widget.id;
+    var widgetData  = templateEngine.widgetDataGet( path );
     var x = event.originalEvent.pageX - $svg.offset().left - 50; 
     var y = 50 - (event.originalEvent.pageY - $svg.offset().top);
     var angle = (Math.atan2( x, y ) * 180 / Math.PI + 360) % 360;
-    var time = $container.data('value');
+    var time = widgetData.value;
     if( event.data.type == 'hour' )
     {
       var oldHours = time.getHours();
@@ -118,13 +108,18 @@ VisuDesign_Custom.prototype.addCreator("clock", {
     $container.find('#Hour'  ).attr('transform','rotate('+((time.getHours()%12)*360/12+time.getMinutes()*30/60)+',50,50)');
     $container.find('#Minute').attr('transform','rotate('+(time.getMinutes()*6)+',50,50)');
   },
-  action: function( event, ui ) {
-    var data = event.data.actor.data(); //$(this).data();
-    for( var addr in data.address )
+  dragAction: function(event,ui) {
+    var widget = event.data.actor.parents('.widget_container')[0];
+    var 
+      widgetData  = templateEngine.widgetDataGet( widget.id );
+    for( var addr in widgetData.address )
     {
-      if( data.address[addr][1] == true ) continue; // skip read only
-      templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], data.value ) );
+      if( widgetData.address[addr][1] == true ) continue; // skip read only
+      templateEngine.visu.write( addr, templateEngine.transformEncode( widgetData.address[addr][0], widgetData.value ) );
     }
+  },
+  action: function(path,actor,isCanceled) {
+    // override system action-function
   }
 });
 

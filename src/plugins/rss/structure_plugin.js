@@ -28,26 +28,27 @@
 
 require.config({
   shim: {
-    'plugins/rss/zrssfeed/jquery.zrssfeed': ['jquery']
+    'plugins/rss/dep/zrssfeed/jquery.zrssfeed': ['jquery']
   }
 });
 
-define( ['structure_custom', 'plugins/rss/zrssfeed/jquery.zrssfeed' ], function( VisuDesign_Custom ) {
+define( ['structure_custom', 'plugins/rss/dep/zrssfeed/jquery.zrssfeed' ], function( VisuDesign_Custom ) {
+  "use strict";
 
-VisuDesign_Custom.prototype.addCreator("rss", {
+  VisuDesign_Custom.prototype.addCreator("rss", {
     create: function( page, path ) {
-        var 
-          $p = $(page),
-          id = "rss_" + path,
-          classes = templateEngine.design.setWidgetLayout( $p, path ),
-          ret_val = '<div class="widget clearfix rss ' + classes + '">',
-          label = '<div class="label">' + page.textContent + '</div>',
-          rssstyle = ''
-            + $p.attr('width' ) ? 'width:'  + $p.attr('width' ) : ''
-            + $p.attr('height') ? 'height:' + $p.attr('height') : '',
-          actor = '<div class="actor"><div class="rss_inline" id="' + id + '" style="' + rssstyle + '"></div>';
+      var 
+        $p = $(page),
+        id = "rss_" + path,
+        classes = templateEngine.design.setWidgetLayout( $p, path ),
+        ret_val = '<div class="widget clearfix rss ' + classes + '">',
+        label = '<div class="label">' + page.textContent + '</div>',
+        rssstyle = ''
+          + $p.attr('width' ) ? 'width:'  + $p.attr('width' ) : ''
+          + $p.attr('height') ? 'height:' + $p.attr('height') : '',
+        actor = '<div class="actor"><div class="rss_inline" id="' + id + '" style="' + rssstyle + '"></div>';
 
-        var data = templateEngine.widgetDataInsert( path, {
+      var data = templateEngine.widgetDataInsert( path, {
           id:         id,
           src:        $p.attr("src"),
           label:      page.textContent,
@@ -64,22 +65,22 @@ VisuDesign_Custom.prototype.addCreator("rss", {
           title:      $p.attr("title") || true
         });
           
-        templateEngine.postDOMSetupFns.push( function(){
+      templateEngine.postDOMSetupFns.push( function(){
           refreshRSS( path );
         });
 
-        return ret_val + label + actor + '</div>';
+      return ret_val + label + actor + '</div>';
     }
-});
+  });
 
-function refreshRSS( path ) {
+  function refreshRSS( path ) {
     var
       data = templateEngine.widgetDataGet( path ),
       src = data.src;
     
-      $('#'+path+' .rss_inline').rssfeed( src, data )
+    $('#'+path+' .rss_inline').rssfeed( src, data )
       
-      if( data.refresh ) {
+    if( data.refresh ) {
       // reload regularly
       window.setTimeout( function( path ) {
         refreshRSS( path )
@@ -87,6 +88,6 @@ function refreshRSS( path ) {
     }
     //rss.data("itemoffset") = itemoffset;
     return false;
-}
+  }
 
 });

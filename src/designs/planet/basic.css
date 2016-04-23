@@ -243,7 +243,7 @@ h1 {
   .info > div, .text>div {
   width: 100%;
  text-align: right;
-# margin-left: -2rem;
+/* margin-left: -2rem; */
 }
 
 
@@ -642,7 +642,7 @@ body hr {
   text-align: center;
 }
 
-.popup:before, .widget.image:before, .widget.video:before, .widget.diagram:before {
+.popup:before, .popup_close:before, .widget.image:before, .widget.video:before, .widget.diagram:before {
   content: "";
   display: block;
   border: 0.3rem solid #9999ff;
@@ -682,7 +682,7 @@ body hr {
 position: relative;
 }*/
 
-.popup:after, .widget.image:after, .widget.video:after, .widget.diagram:after{
+.popup:after, .popup_close:after, .widget.image:after, .widget.video:after, .widget.diagram:after{
   content: "";
   visibility: visible;
   display: inline-block;
@@ -738,6 +738,26 @@ position: relative;
   background: transparent;
 }
 
+.popup_close {
+  position: absolute;
+  z-index: 102;
+  right: 2rem;
+  top: -0.5rem;
+  width: 2.0rem;
+  height: 1.5rem;
+  text-align: center;
+  -moz-border-radius: 0.6rem; -webkit-border-radius: 0.6rem; border-radius: 0.6rem;
+  background: #000;
+  border: none;
+  cursor: default;
+  color: #999;
+  padding-top: 0.4rem;
+}
+
+.popup_close:before {
+  margin-left: 0.0rem;
+  margin-top: -0.4rem;
+}
 
 .popup_background {
   z-index: 100;

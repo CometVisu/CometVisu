@@ -1,5 +1,7 @@
-/* pagepartshandler.js (c) 2010-2015 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* pagepartshandler.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,18 +9,24 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- * 
- * @module PagePartsHandler
- * @title  CometVisu templateengine
+ *
+ * @module Pagepartshandler 
+ * @title  CometVisu Pagepartshandler 
  */
 
+
+/**
+ * @author Christian Mayer
+ * @since 2010
+ */
 define([ 'jquery' ], function( $ ) {
+  "use strict";
   return function PagePartsHandler() {
   var thisPagePartsHandler = this;
   this.navbars = { // store informations about the nav bars
@@ -80,10 +88,10 @@ define([ 'jquery' ], function( $ ) {
   
   this.getNavbarsVisibility = function(page) {
     if (templateEngine.currentPageNavbarVisibility==null) {
-      var pageData=templateEngine.widgetDataGet(page.attr('id'));
       if (page==null) {
         page = templateEngine.currentPage;
       }
+      var pageData=templateEngine.widgetDataGet(page.attr('id'));
       if (page==null || pageData==null) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
       var shownavbar = (pageData.shownavbar != undefined ? pageData.shownavbar : {
         top : 'inherit',
@@ -136,7 +144,7 @@ define([ 'jquery' ], function( $ ) {
         }
       }
       templateEngine.currentPageNavbarVisibility = shownavbar;
-//      console.log(shownavbar);
+      //      console.log(shownavbar);
     }
     return templateEngine.currentPageNavbarVisibility;
   };
@@ -235,7 +243,7 @@ define([ 'jquery' ], function( $ ) {
    *                time in milliseconds
    */
   this.fadeNavbar = function(position, direction, speed) {
-    speed = (speed !== undefined) ? speed : templateEngine.main_scroll.getConf().speed;
+    speed = (speed !== undefined) ? speed : templateEngine.main_scroll.getSpeed();
     var initCss = {};
     var targetCss = {};
     var navbar = $('#navbar' + position);
@@ -281,7 +289,7 @@ define([ 'jquery' ], function( $ ) {
       navbar.css(targetCss);
       fn();
     } else {
-      navbar.animate(targetCss, speed, templateEngine.main_scroll.getConf().easing, fn);
+      navbar.animate(targetCss, speed, templateEngine.main_scroll.getEasing(), fn);
     }
   };
 
@@ -301,7 +309,7 @@ define([ 'jquery' ], function( $ ) {
       for ( var i = 0; i < parts.length; i++) {
         var item = $('#id' + parts.slice(0, i + 1).join('_') + "_.page",
             '#pages');
-        if (item.size() == 1) {
+        if (item.length == 1) {
           tree.push(item.get(0));
         }
       }
@@ -310,39 +318,43 @@ define([ 'jquery' ], function( $ ) {
     $(tree).each(function(i) {
       var id = $(this).attr('id');
       var topNav = $('#' + id + 'top_navbar');
+      var topData = templateEngine.widgetDataGet( id + 'top_navbar' );
       var rightNav = $('#' + id + 'right_navbar');
+      var rightData = templateEngine.widgetDataGet( id + 'right_navbar' );
       var bottomNav = $('#' + id + 'bottom_navbar');
+      var bottomData = templateEngine.widgetDataGet( id + 'bottom_navbar' );
       var leftNav = $('#' + id + 'left_navbar');
-      // console.log(tree.length+"-"+level+"<="+topNav.data('scope'));
-      if (topNav.size() > 0) {
-        if (topNav.data('scope') == undefined || topNav.data('scope') < 0
-            || tree.length - level <= topNav.data('scope')) {
+      var leftData = templateEngine.widgetDataGet( id + 'left_navbar' );
+      // console.log(tree.length+"-"+level+"<="+topData.scope);
+      if (topNav.length > 0) {
+        if (topData.scope == undefined || topData.scope < 0
+            || tree.length - level <= topData.scope) {
           topNav.addClass('navbarActive');
         } else {
           topNav.removeClass('navbarActive');
         }
       }
-      if (rightNav.size() > 0) {
-        if (rightNav.data('scope') == undefined
-            || rightNav.data('scope') < 0
-            || tree.length - level <= rightNav.data('scope')) {
+      if (rightNav.length > 0) {
+        if (rightData.scope == undefined
+            || rightData.scope < 0
+            || tree.length - level <= rightData.scope) {
           rightNav.addClass('navbarActive');
         } else {
           rightNav.removeClass('navbarActive');
         }
       }
-      if (bottomNav.size() > 0) {
-        if (bottomNav.data('scope') == undefined
-            || bottomNav.data('scope') < 0
-            || tree.length - level <= bottomNav.data('scope')) {
+      if (bottomNav.length > 0) {
+        if (bottomData.scope == undefined
+            || bottomData.scope < 0
+            || tree.length - level <= bottomData.scope) {
           bottomNav.addClass('navbarActive');
         } else {
           bottomNav.removeClass('navbarActive');
         }
       }
-      if (leftNav.size() > 0) {
-        if (leftNav.data('scope') == undefined || leftNav.data('scope') < 0
-            || tree.length - level <= leftNav.data('scope')) {
+      if (leftNav.length > 0) {
+        if (leftData.scope == undefined || leftData.scope < 0
+            || tree.length - level <= leftData.scope) {
           leftNav.addClass('navbarActive');
         } else {
           leftNav.removeClass('navbarActive');

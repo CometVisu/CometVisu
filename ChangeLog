@@ -1,3 +1,134 @@
+0.9.1
+=====
+
+### upcoming (2016/03/13 21:29 +00:00)
+- [#288](https://github.com/CometVisu/CometVisu/pull/288) fix flavours not gettings applied in groups (@peuter)
+
+### v0.9.1-RC1 (2016/03/01 17:42 +00:00)
+- [#281](https://github.com/CometVisu/CometVisu/pull/281) Fix sprintf format position (@ChristianMayer)
+- [#261](https://github.com/CometVisu/CometVisu/pull/261) enable scrollable navbarLeft on mobile devices (@alltime84, @ChristianMayer, @peuter)
+- [#280](https://github.com/CometVisu/CometVisu/pull/280) auto-indentation (@peuter)
+- [#278](https://github.com/CometVisu/CometVisu/pull/278) write version to file during release (@peuter)
+- [#275](https://github.com/CometVisu/CometVisu/pull/275) Clean config demo dir (@ChristianMayer)
+- [#279](https://github.com/CometVisu/CometVisu/pull/279) Get rrd callback parameter (@ChristianMayer)
+- [#277](https://github.com/CometVisu/CometVisu/pull/277) some minor fixes (@peuter)
+- [#276](https://github.com/CometVisu/CometVisu/pull/276) implement grunt-based build system (@peuter)
+- [#269](https://github.com/CometVisu/CometVisu/pull/269) Add display of future events to rsslog (@cool-runnings)
+- [#272](https://github.com/CometVisu/CometVisu/pull/272) Fix tabs (@ChristianMayer)
+- [#270](https://github.com/CometVisu/CometVisu/pull/270) Fix widgets with callback in groups (@ChristianMayer)
+- [#267](https://github.com/CometVisu/CometVisu/pull/267) Page change callbacks (@ChristianMayer)
+- [#266](https://github.com/CometVisu/CometVisu/pull/266) Add link in editor to the manager (@ChristianMayer)
+- [#260](https://github.com/CometVisu/CometVisu/pull/260) Iconfix for coloring only for android < 4.4 required (@alltime84, @ChristianMayer, @peuter)
+- [#258](https://github.com/CometVisu/CometVisu/pull/258) Make GA update more robust (@ChristianMayer)
+- [#256](https://github.com/CometVisu/CometVisu/pull/256) New colspan system (@ChristianMayer)
+- [#257](https://github.com/CometVisu/CometVisu/pull/257) Fix refresh (@ChristianMayer)
+- [#247](https://github.com/CometVisu/CometVisu/pull/247) Structure where a design can set a default value (@ChristianMayer)
+- [#248](https://github.com/CometVisu/CometVisu/pull/248) Icon sync (@ChristianMayer)
+- [#246](https://github.com/CometVisu/CometVisu/pull/246) Sprintf undef fix (@ChristianMayer)
+- [#242](https://github.com/CometVisu/CometVisu/pull/242) mousehandler events (@ChristianMayer)
+- [#240](https://github.com/CometVisu/CometVisu/pull/240) multitrigger fix and improvement (@ChristianMayer)
+- [#239](https://github.com/CometVisu/CometVisu/pull/239) Fix to replace default config in manager (@ChristianMayer)
+- [#230](https://github.com/CometVisu/CometVisu/pull/230) Rsslog improvements (@ChristianMayer)
+- [#235](https://github.com/CometVisu/CometVisu/pull/235) Fix sprintf calling (@ChristianMayer)
+- [#237](https://github.com/CometVisu/CometVisu/pull/237) Add link to Manager in demo configs (@ChristianMayer)
+- [#234](https://github.com/CometVisu/CometVisu/pull/234) Fix throwing sprintf (@ChristianMayer)
+- [#231](https://github.com/CometVisu/CometVisu/pull/231) Better popups (@ChristianMayer)
+- [#229](https://github.com/CometVisu/CometVisu/pull/229) Better config file error handling. (@ChristianMayer)
+- [#233](https://github.com/CometVisu/CometVisu/pull/233) Navbar fix pure (@ChristianMayer)
+- [#232](https://github.com/CometVisu/CometVisu/pull/232) Fix demo with metal (@ChristianMayer)
+- [#201](https://github.com/CometVisu/CometVisu/pull/201) Allow custom class definition for text item (@cool-runnings)
+- [#224](https://github.com/CometVisu/CometVisu/pull/224) Comma cleanup (@ChristianMayer)
+- [#226](https://github.com/CometVisu/CometVisu/pull/226) Fix flow animation for svg backdrop (trick-o-matic) (@ChristianMayer)
+- [#228](https://github.com/CometVisu/CometVisu/pull/228) Allow icons added through the config file to be dynamic. (@ChristianMayer)
+- [#222](https://github.com/CometVisu/CometVisu/pull/222) Enable storing of config files which are server from external user folder (@peuter)
+- [#225](https://github.com/CometVisu/CometVisu/pull/225) Bugfix for bad mapping (@ChristianMayer)
+- [#211](https://github.com/CometVisu/CometVisu/pull/211) Support for bar / point style graphs (@joltcoke)
+- [#210](https://github.com/CometVisu/CometVisu/pull/210) Multi GA support for info widget (@joltcoke)
+- [#205](https://github.com/CometVisu/CometVisu/pull/205) added readonly mode for slider (@tuxedo0801)
+
+0.9.0
+=====
+
+Features / Improvements:
+
+81e6ba2 Mon, 1 Jun 2015 11:26:57 +0200 redesign of refresh-widget in top/bottom-navbars. Looks like Pagejumps now
+3fcdf23 Sun, 24 May 2015 21:16:24 +0200 Added optional parameter send_on_finish to slide
+fd25012 Tue, 28 Apr 2015 14:00:35 +0200 adding possibility to define a path for a pagejump and a scope where the pagejump is marked as active
+a4f9d9b Sun, 26 Apr 2015 19:38:38 +0200 Make all widgets use strict
+5743280 Sun, 26 Apr 2015 17:55:51 +0200 New feature: popup eventsThis will call a "close" event when a popup is being clicked.This close event can be also called externally to close a popup.Or you can listen externally to a close event for your own actions at that time. E.g. a diagram could listen to it to stop data fetching.
+af91486 Thu, 9 Apr 2015 08:55:43 +0200 renamed infowidget to widgetinfo and actionwidget to widgetaction
+0e80cd0 Sun, 29 Mar 2015 17:51:48 +0200 Make check_config a bit more robust against badly formed files.
+32eaca3 Wed, 25 Mar 2015 16:59:06 +0100 - plugin infoaction added (combine a info and an action widget) - pagejumps augmented to hold an info-widget
+c580956 Sun, 22 Mar 2015 13:04:20 +0100 - new client for openHAB2: using Server Side Events (SSE)
+e1d753c Mon, 16 Mar 2015 08:45:21 +0100 add support for openHAB DateTime items
+663f909 Sun, 1 Mar 2015 18:14:27 +0100 Update to latest icon set
+1047ae7 Sun, 1 Mar 2015 17:54:57 +0100 Two changes: - Remove firstdata event as nobody seems to use it. - Improve profiling by counting read-retries and supporting the browser profiling (add to URL: ...&profile=browser)
+7c0f8b9 Thu, 19 Feb 2015 22:46:25 +0100 Change make-iconhandler to respect the split of the icon config into iconconfig.js. Add latest kuf icons
+af826e6 Fri, 13 Feb 2015 22:28:59 +0100 Remove obsolete yepnope
+8715aee Mon, 9 Feb 2015 21:56:46 +0100 Added manoficons
+f9cc09a Sun, 1 Feb 2015 15:18:36 +0100 Textify CV to improve performance
+546809d Sun, 18 Jan 2015 18:07:53 +0000 New "feature": profiling instrumentation
+
+Bug fixes:
+
+af9ec61 Sun, 1 Nov 2015 22:52:34 +0100 Fix editor documentation / complex mode for webKit browsers
+9245fcf Sun, 1 Nov 2015 18:08:15 +0100 added missing session to write-command
+3e689f5 Sun, 1 Nov 2015 18:04:39 +0100 Fix wrong slider position due to wrong number type.
+6750762 Wed, 28 Oct 2015 17:51:03 +0100 fixed wrong comment in css
+38b2bd9 Mon, 12 Oct 2015 23:14:00 +0200 Fixed icon update Script to work with github and updated knx-uf-iconset
+8deecc4 Mon, 12 Oct 2015 23:13:43 +0200 Fixed missing var declaration and pragmatic solution regarding OH integration
+1499862 Mon, 21 Sep 2015 11:48:43 +0200 Fix position when slider is updatd while hidden
+a2e94b0 Fri, 29 May 2015 10:32:51 +0200 - fix for updates in diagram_info  (also fixes missing default mapping in diagram_info) see:http://knx-user-forum.de/forum/supportforen/cometvisu/829798-darstellungsprobleme-mit-git-version?p=835404#post835404
+4689fd1 Sat, 23 May 2015 23:46:36 +0200 Fix refresh widgetThe value attribute was not respected (cf. report at http://knx-user-forum.de/forum/supportforen/cometvisu/829798-darstellungsprobleme-mit-git-version?p=833726#post833726)
+34fdea0 Thu, 14 May 2015 18:13:04 +0200 Fix wgplugin_infoBug: values didn't get shownFeature: use default value handling as this allows styling and mapping
+449883a Thu, 7 May 2015 09:30:26 +0200 fix for height calculation on initial loading of visu (bottom navbar wasn´t visible)
+6466f92 Thu, 7 May 2015 09:05:01 +0200 reenable scope attribute for navbars
+4fdef6b Sat, 25 Apr 2015 00:03:43 +0200 Fix pagejump active state
+a016e79 Fri, 24 Apr 2015 18:09:04 +0200 Fix diagrams not redrawing after popup open+close
+540bb61 Fri, 24 Apr 2015 13:42:35 +0200 Fix diagrams not updating properly
+9d96284 Sat, 11 Apr 2015 12:08:35 +0200 fixes #162 axis-config was ignored completely
+b654b70 Sat, 11 Apr 2015 11:25:42 +0200 fixes #163
+75c77e2 Fri, 10 Apr 2015 10:45:08 +0200 - fix for clock-plugin dragging - fix for OH:date(time) transform handling
+13b8939 Fri, 10 Apr 2015 08:50:14 +0200 - added default mapping to metal-config - fix for default value handling (fixes #153)
+08334d3 Fri, 10 Apr 2015 08:50:01 +0200 fixes #152
+595e6d4 Thu, 9 Apr 2015 17:47:46 +0200 separate addresses for up/down action possible
+15c3e7f Thu, 9 Apr 2015 14:20:09 +0200 layout handlung fixed in SVG plugin
+ddb4f2e Thu, 9 Apr 2015 14:13:10 +0200 change svg-plugin creator to return string: fixes #151
+8f3ec4a Thu, 9 Apr 2015 09:49:55 +0200 - added default mapping to metal-config - fix for default value handling (fixes #153)
+0c549da Thu, 9 Apr 2015 09:14:26 +0200 fixes #152
+c580956 Sun, 22 Mar 2015 13:04:20 +0100 - Bugfixes for the color-transform calculation from HSV to RGB - Bugfixes for RGB-mode in colorshooser - changed XSD because colorchooser can work with only one address (which sends/reads rgb data)
+4ca3660 Mon, 16 Mar 2015 11:55:12 +0100 fix for sliders with min>0
+b1f86bd Sun, 15 Mar 2015 12:35:02 +0100 fix for slides without value
+cabacdd Fri, 13 Mar 2015 18:27:33 +0100 - fix for correct placement of the horizontal slider handle
+7ba196b Sun, 1 Mar 2015 17:13:53 +0100 Fix display / hide of navbar during setup time
+166f53e Sun, 1 Mar 2015 16:24:18 +0100 Differ in handling of touch+move by switching to scroll mode and stopping action mode.
+291a17c Sat, 28 Feb 2015 19:46:11 +0100 Fix active marking for pagejump in the navbars
+ef1079c Sat, 28 Feb 2015 18:48:32 +0100 Fix to respect size when raw numbers (instead ob number + 'px') were given
+9a09a85 Thu, 26 Feb 2015 22:40:13 +0100 Test fix for http://knx-user-forum.de/467025-post87.html
+e325f08 Sun, 22 Feb 2015 00:10:31 +0100 Possible fix for http://knx-user-forum.de/465733-post60.html
+a971317 Fri, 20 Feb 2015 18:15:05 +0100 Fix for http://knx-user-forum.de/cometvisu/41197-dev-mapping-icon-wird-nicht-geladen.html
+5e275c9 Tue, 17 Feb 2015 14:42:18 +0100 fix for automatic column adjustment inside groups
+403254d Sun, 15 Feb 2015 22:56:59 +0100 Fix for missing elements on a page end
+adf4ab2 Sun, 15 Feb 2015 22:39:50 +0100 Fix http://knx-user-forum.de/463835-post47.html
+1a541d3 Sun, 15 Feb 2015 17:10:29 +0100 Fix page switch by GA
+a03210f Thu, 12 Feb 2015 21:35:53 +0100 Fix for http://knx-user-forum.de/462242-post39.html
+825b75c Sun, 8 Feb 2015 22:33:38 +0100 Fix for https://github.com/CometVisu/CometVisu/issues/17
+feedc4e Thu, 29 Jan 2015 17:47:22 +0100 fixes missing inheritance of navbar visibility
+6d242ee Wed, 28 Jan 2015 17:47:07 +0100 changed bind_click_to_widget to always true for pagejumps, otherwise some strange CSS tricks are necessary to get pagejumps working in navbars and in pages at the same time
+28733c5 Sun, 25 Jan 2015 16:48:01 +0100 rowspan fix
+6f416c3 Sun, 25 Jan 2015 12:02:03 +0000 Fix for pagejumps to pages with not unique names: take the ancestor/descendant of th current page if there is one
+f6b02ff Sun, 25 Jan 2015 11:02:34 +0000 fix for showtopnavigation=false on subpages
+a4edf94 Sat, 24 Jan 2015 23:10:24 +0000 Fix column display in the navbars
+95875b4 Sat, 24 Jan 2015 20:31:20 +0000 Switch from absolute IDs to Page Names
+ffc6785 Sat, 24 Jan 2015 20:01:19 +0000 Fix for http://knx-user-forum.de/cometvisu/40537-visu_config-xsd-existiert-nicht.html
+a345ab1 Sat, 24 Jan 2015 10:22:07 +0000 bugfix Gauge plugin: adapt to new data hash
+c0d3e60 Sat, 24 Jan 2015 09:59:37 +0000 - fixes correct amount of columns in groups - some date for the root page was misplaced and therefore a couple of parameters could not be found (showtopnavigation, etc.)
+9c95111 Fri, 23 Jan 2015 21:22:10 +0000 Fix pagejumps where the ID had changed
+dacd7b5 Fri, 23 Jan 2015 13:55:45 +0000 fix for pagejumps that are not part of navbars
+7bb098c Fri, 16 Jan 2015 22:53:18 +0000 Bugfix and performance improvement for big configurations: only read GAs where the read flag is set (i.e. ignore write only GAs)
+9954d67 Thu, 15 Jan 2015 18:03:55 +0000 only query the skipped addresses in second request when enableQueue is active
+acc8c18 Thu, 15 Jan 2015 15:40:50 +0000 Fix for enableAddressQueue parameter, which loads the states on the start page first
+
 0.8.5
 =====
 

@@ -1,5 +1,7 @@
-/* transform_knx.js (c) 2010 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* transform_knx.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,21 +9,41 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
-
-define( ['transform_default'], function( Transform ) {
-/**
- * This class defines the default transforms:
- *   encode: transform JavaScript to bus value
- *   decode: transform bus to JavaScript value
+ *
+ * @module Transform_knx 
+ * @title  CometVisu Transform_knx 
  */
-Transform.addTransform( 'DPT', {
+
+
+/**
+ * @author Christian Mayer
+ * @since 2010
+ */
+define( ['transform_default'], function( Transform ) {
+  "use strict";
+  
+  /**
+   * Enforce that value stays within range
+   * When value is not a valid number, the min value is returned
+   */
+  function clip( min, value, max )
+  {
+    value = +value; // enforce number
+    return value > min ? (value > max ? max : value) : min;
+  }
+  
+  /**
+   * This class defines the default transforms:
+   *   encode: transform JavaScript to bus value
+   *   decode: transform bus to JavaScript value
+   */
+  Transform.addTransform( 'DPT', {
   '1.001': {
     name  : 'DPT_Switch',
     encode: function( phy ){
@@ -107,7 +129,7 @@ Transform.addTransform( 'DPT', {
       max: 255.0
     },
     encode: function( phy ){
-      var val = parseInt( phy ).toString( 16 );
+      var val = parseInt( clip( 0, phy, 255 ) ).toString( 16 );
       return (val.length == 1 ? '800' : '80') + val;
     },
     decode: function( hex ){
@@ -127,6 +149,7 @@ Transform.addTransform( 'DPT', {
   '6.001' : {
     name  : 'DPT_Percent_V8',
     encode: function( phy ){
+      phy = parseInt( clip( -128, phy, 127) );
       var val = phy < 0 ? phy + 256 : phy;
       val = val.toString( 16 );
       return (val.length == 1 ? '800' : '80') + val;
@@ -322,10 +345,10 @@ Transform.addTransform( 'DPT', {
       var val="";        
       var chars;
       for (var i=0;i<28;i=i+2) {
-          chars=parseInt(hex.substr(i,2),16);
-          if (chars>0) {
-            val+=String.fromCharCode(chars);
-          }
+        chars=parseInt(hex.substr(i,2),16);
+        if (chars>0) {
+          val+=String.fromCharCode(chars);
+        }
       }
       return val;
     }
@@ -395,7 +418,7 @@ Transform.addTransform( 'DPT', {
         default: // actually "case 0:"
           return 'auto';
       }
-    },
+    }
   },
   /* DPT24.001 is probably not fully correct as it can also hold 
      multiple strings sep. by \x00 as array according to 3.7.2 DPT v1.07
@@ -424,10 +447,10 @@ Transform.addTransform( 'DPT', {
       var val="";        
       var chars;
       for (var i=0;i<hex.length;i=i+2) {
-          chars=parseInt(hex.substr(i,2),16);
-          if (chars>0) {
-            val+=String.fromCharCode(chars);
-          }
+        chars=parseInt(hex.substr(i,2),16);
+        if (chars>0) {
+          val+=String.fromCharCode(chars);
+        }
       }
       return val;
     }
@@ -453,33 +476,33 @@ Transform.addTransform( 'DPT', {
   'temp dummy' : {link:'1.001'}
 } );
 
-//////
-// To be deleted later: a test function to check if the coding is consistent
-function TEST( DPT, Bytes )
-{
-  var maxErr = 5;
-  DPT = 'DPT:' + DPT;
-  for( i = 0; i < Math.pow(2,8*Bytes); i++ )
+  //////
+  // To be deleted later: a test function to check if the coding is consistent
+  function TEST( DPT, Bytes )
   {
-    var v = i.toString( 16 );
-    v = new Array(2*Bytes - v.length + 1).join('0') + v;
-    var test = Transform[DPT].encode(
-      Transform[DPT].decode(v)
-    );
-    //console.log(i,v,test);
-    if( v != test )
+    var maxErr = 5;
+    DPT = 'DPT:' + DPT;
+    for( i = 0; i < Math.pow(2,8*Bytes); i++ )
     {
-      var v2 = Transform[DPT].decode(v);
-      var test2 = Transform[DPT].decode(
-        Transform[DPT].encode(v2)
+      var v = i.toString( 16 );
+      v = new Array(2*Bytes - v.length + 1).join('0') + v;
+      var test = Transform[DPT].encode(
+        Transform[DPT].decode(v)
       );
-      if( v2 != test2 )
+      //console.log(i,v,test);
+      if( v != test )
       {
-        console.log( i, v, test, Transform[DPT].decode(v), v2, test2, maxErr );
-        if( (--maxErr) < 0 ) return maxErr;
+        var v2 = Transform[DPT].decode(v);
+        var test2 = Transform[DPT].decode(
+          Transform[DPT].encode(v2)
+        );
+        if( v2 != test2 )
+        {
+          console.log( i, v, test, Transform[DPT].decode(v), v2, test2, maxErr );
+          if( (--maxErr) < 0 ) return maxErr;
+        }
       }
     }
   }
-}
 
 }); // end define

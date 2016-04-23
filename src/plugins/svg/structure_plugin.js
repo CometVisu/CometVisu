@@ -16,55 +16,48 @@
 */
 
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
+  "use strict";
 
-/**
- * This is a custom function that extends the available widgets.
- * It's purpose is to change the design of the visu during runtime
- * to demonstrate all available
- */
-VisuDesign_Custom.prototype.addCreator('svg', {
+  /**
+   * This is a custom function that extends the available widgets.
+   * It's purpose is to change the design of the visu during runtime
+   * to demonstrate all available
+   */
+  VisuDesign_Custom.prototype.addCreator('svg', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + templateEngine.design.extractLayout( layout, type ) + '"' : '';
-    var ret_val = $('<div class="widget clearfix image" ' + style + '/>');
-    templateEngine.design.setWidgetLayout( ret_val, $e, path );
-    ret_val.append( templateEngine.design.extractLabel( $e.find('label')[0], flavour ) );
+    var $self = $(this);
+    var classes = templateEngine.design.setWidgetLayout( $e, path );
+    var ret_val = '<div class="widget clearfix image '+(classes?classes:'')+'">';
+    templateEngine.design.setWidgetLayout( $e, $e, path );
+    ret_val+=templateEngine.design.extractLabel( $e.find('label')[0], flavour );
 
-    var address = {};
-    $e.find('address').each( function(){ 
-      var src = this.textContent;
-      var transform = this.getAttribute('transform');
-      var color     = this.getAttribute('variant'  );
-      var readonly  = this.getAttribute('readonly' );
-      templateEngine.addAddress( src );
-      address[ '_' + src ] = [ transform, color, readonly=='true' ];
-    });
-
-    var actor = '<div class="actor"></div>';
-
-    var $actor = $(actor);
-    $actor.svg({loadURL:'plugins/svg/rollo.svg'});
-
-
+    var address = templateEngine.design.makeAddressList($e,false,path);
+    ret_val += '<div class="actor"></div>';
+    
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
-    $actor.data( {
+    var data = templateEngine.widgetDataInsert( path, {
       'address':   address, 
       'refresh':   refresh
-    } ).each(templateEngine.setupRefreshAction); // abuse "each" to call in context...
-    for( var addr in address ) {
-      $actor.bind( addr, this.update );
+    } );
+
+    templateEngine.postDOMSetupFns.push(function() {
+      var $actor = $("#"+path+" .actor");
+      $actor.svg({loadURL:'plugins/svg/rollo.svg'});
+    });
+    if (data.refresh) {
+      templateEngine.setupRefreshAction( path, data.refresh );
     }
-    ret_val.append( $actor );
+    ret_val +="</div>";
     return ret_val;
   },
-  update: function(e,d) { 
+  update: function(e,d) {
     var element = $(this);
     var h = templateEngine.design.defaultUpdate( e, d, element, undefined, element.parent().attr('id') );
-	var linewidth=3;
+    var linewidth=3;
     var space = 1;
-	var total = linewidth + space;
-	var line_qty = 48 / total;
+    var total = linewidth + space;
+    var line_qty = 48 / total;
     for(var i = 0; i<=Math.floor(h/line_qty);i++) {
       	element.find('#line'+(i+1)).attr('y1',9+total*(i)+((h%line_qty)/line_qty)*total);
       	element.find('#line'+(i+1)).attr('y2',9+total*(i)+((h%line_qty)/line_qty)*total);

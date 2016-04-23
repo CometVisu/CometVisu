@@ -1,5 +1,7 @@
-/* transform_knx.js (c) 2010 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* transform_oh.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,21 +9,32 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ *
+ * @module Transform_oh 
+ * @title  CometVisu Transform_oh 
  */
 
-define( ['transform_default'], function( Transform ) {
-  
+
 /**
- * This class defines the default transforms: encode: transform JavaScript to
- * bus value decode: transform bus to JavaScript value
+ * Transformations for the openHAB backend
+ * 
+ * @author Tobias Bräutigam
+ * @since 2012
  */
-Transform.addTransform('OH', {
+define( ['transform_default'], function( Transform ) {
+  "use strict";
+  
+  /**
+   * This class defines the default transforms: encode: transform JavaScript to
+   * bus value decode: transform bus to JavaScript value
+   */
+  Transform.addTransform('OH', {
   'switch' : {
     name : 'OH_Switch',
     encode : function(phy) {
@@ -52,7 +65,7 @@ Transform.addTransform('OH', {
       else if (str=="UP") return 0;
       else if (str=="DOWN") return 1;
       else return str;
-    },
+    }
   },
   'dimmer' : {
     name : "OH_Dimmer",
@@ -64,7 +77,7 @@ Transform.addTransform('OH', {
       else if (str=="ON") return 100;
       else if (str=="OFF") return 0;
       else return parseInt(str);
-    },
+    }
   },
   'number' : {
     name : "OH_Number",
@@ -74,7 +87,7 @@ Transform.addTransform('OH', {
     decode : function(str) {
       if (str=="NaN" || str=='Uninitialized') return 0;
       return parseFloat(str);
-    },
+    }
   },
   'string' : {
     name : "OH_String",
@@ -83,38 +96,42 @@ Transform.addTransform('OH', {
     },
     decode : function(str) {
       return str;
-    },
+    }
   },
   'datetime' : {
     name : "OH_DateTime",
     encode : function(phy) {
       if (phy instanceof Date) {
-        return phy.toISOString();
+        return phy.toLocaleDateString();
       } else {
         return phy;
       }
     },
     decode : function(str) {
       if (str=="NaN" || str=='Uninitialized') return '-';
-      var date = new Date(str);
-      return date.toLocaleString();
-    },
+      var date = new Date(Date.parse(str));
+      return date;
+    }
   },
   'time' : {
     name : "OH_Time",
     encode : function(phy) {
       if (phy instanceof Date) {
-        return phy.toISOString();
-    } else {
-      return phy;
+        return phy.toLocaleTimeString();
+      } else {
+        return phy;
       }
     },
     decode : function(str) {
       if (str=="NaN" || str=='Uninitialized') return '-';
-      var date = new Date(str);
-      return date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-    },
-   },
+      var date = new Date();
+      var parts = str.split(":");
+      date.setHours(parseInt(parts[0]));
+      date.setMinutes(parseInt(parts[1]));
+      date.setSeconds(parseInt(parts[2]));
+      return date;
+    }
+  },
   'color' : {
     name : "OH_Color",
     encode : function(rgb) {
@@ -136,9 +153,9 @@ Transform.addTransform('OH', {
         h /= 6;
       }
       // map top 360,100,100
-      h = h * 360;
-      s = s * 100;
-      v = v * 100;
+      h = Math.round(h * 3600)/10;
+      s = Math.round(s * 1000)/10;
+      v = Math.round(v * 1000)/10;
       return [h, s, v];
     },
     decode : function(hsbString) {
@@ -146,35 +163,36 @@ Transform.addTransform('OH', {
       var hsb = hsbString.split(",");
       var h = hsb[0], s = hsb[1], v = hsb[2];
       var r, g, b, i, f, p, q, t;
-	  // h = h / 360;
-	  if (v === 0) { return [0, 0, 0]; }
-	  s = s / 100;
-	  v = v / 100;
-	  h = h / 60;
-	  i = Math.floor(h);
-	  f = h - i;
-	  p = v * (1 - s);
-	  q = v * (1 - (s * f));
-	  t = v * (1 - (s * (1 - f)));
-	  if (i === 0) {
-	    r = v; g = t; b = p;
-	  } else if (i === 1) {
-	    r = q; g = v; b = p;
-	  } else if (i === 2) {
-	    r = p; g = v; b = t;
-	  } else if (i === 3) {
-	    r = p; g = q; b = v;
-	  } else if (i === 4) {
-	    r = t; g = p; b = v;
-	  } else if (i === 5) {
-	    r = v; g = p; b = q;
-	  }
-	  r = Math.floor(r * 255);
-	  g = Math.floor(g * 255);
-	  b = Math.floor(b * 255);
-	  return [r, g, b];
-    },
-  },
+
+      // h = h / 360;
+      if (v === 0) { return [0, 0, 0]; }
+      s = s / 100;
+      v = v / 100;
+      h = h / 60;
+      i = Math.floor(h);
+      f = h - i;
+      p = v * (1 - s);
+      q = v * (1 - (s * f));
+      t = v * (1 - (s * (1 - f)));
+      if (i === 0) {
+        r = v; g = t; b = p;
+      } else if (i === 1) {
+        r = q; g = v; b = p;
+      } else if (i === 2) {
+        r = p; g = v; b = t;
+      } else if (i === 3) {
+        r = p; g = q; b = v;
+      } else if (i === 4) {
+        r = t; g = p; b = v;
+      } else if (i === 5) {
+        r = v; g = p; b = q;
+      }
+      r = Math.floor(r * 255);
+      g = Math.floor(g * 255);
+      b = Math.floor(b * 255);
+      return [r, g, b];
+    }
+  }
 });
 
 }); // end define

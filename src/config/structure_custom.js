@@ -21,26 +21,27 @@
 */
 
 define( ['_common'], function( design ) {
-/**
- * This class defines all the custom changes to the visu
- * @class VisuDesign_Custom
- */
-function VisuDesign_Custom() {};                  // do NOT change here
-VisuDesign_Custom.prototype = design.basicdesign; // do NOT change here
+  "use strict";
+  /**
+   * This class defines all the custom changes to the visu
+   * @class VisuDesign_Custom
+   */
+  function VisuDesign_Custom() {};                  // do NOT change here
+  VisuDesign_Custom.prototype = design.basicdesign; // do NOT change here
 
-/*
- * Custom changes could go here and look e.g. like
-****************************************
-VisuDesign_Custom.prototype.addCreator("line", {
-      create: function( page, path ) {
-              return $( '<hr />' );
-          },
-      attributes: {
-      },
-      content: false
-});
-****************************************
- */
-
+  /*
+   * Custom changes could go here and look e.g. like
+  ****************************************
+  VisuDesign_Custom.prototype.addCreator("line", {
+        create: function( page, path ) {
+                return $( '<hr />' );
+            },
+        attributes: {
+        },
+        content: false
+  });
+  ****************************************
+   */
+   
   return VisuDesign_Custom;
 }); // end define
