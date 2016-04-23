@@ -15,7 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define( ['lib/icontools'], function() {
+define( ['lib/IconTools'], function() {
   "use strict";
   /**
    * Internal database of the known icons.
