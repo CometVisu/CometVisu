@@ -402,7 +402,11 @@ module.exports = function(grunt) {
         singleRun: true,
         browsers: ['PhantomJS'],
         coverageReporter : {
-          type : 'text-summary'
+          dir: 'coverage',
+          reporters: [
+            { type : 'lcov' },
+            { type : 'text-summary' }
+          ]
         }
       }
     },
@@ -443,6 +447,16 @@ module.exports = function(grunt) {
           }
         }
       }
+    },
+
+    coveralls: {
+      options: {
+        debug: true,
+        coverageDir: 'coverage',
+        dryRun: false,
+        force: true,
+        recursive: true
+      }
     }
   });
 
@@ -477,6 +491,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-karma-coveralls');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
