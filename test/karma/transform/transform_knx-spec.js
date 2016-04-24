@@ -7,14 +7,12 @@
 define(['transform_default', 'transform_knx'], function(Transform) {
   
   var testcases = {
-    'DPT:1': {
-      [
-        { transform: 'DPT:1', type: 'encode', source: 0, target: '80' },
-        { transform: 'DPT:1', type: 'encode', source: 1, target: '81' },
-        { transform: 'DPT:1', type: 'encode', source: 2, target: '81' },
-        { transform: 'DPT:1', type: 'decode', source: 0, target: 0 }
-      ]
-    }
+    'DPT:1': [
+      { transform: 'DPT:1', type: 'encode', source: 0, target: '80' },
+      { transform: 'DPT:1', type: 'encode', source: 1, target: '81' },
+      { transform: 'DPT:1', type: 'encode', source: 2, target: '81' },
+      { transform: 'DPT:1', type: 'decode', source: 0, target: 0 }
+    ]
   };
 
   describe('checking knx transforms', function() {
