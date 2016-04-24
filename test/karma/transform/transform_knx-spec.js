@@ -11,10 +11,11 @@ define(['transform_default', 'transform_knx'], function(Transform) {
     it('should transform DPT 1', function() {
       expect(Transform.Transform['DPT:1'].encode(0)).toEqual('80');
       expect(Transform.Transform['DPT:1'].encode('0')).toEqual('80');
+      expect(Transform.Transform['DPT:1'].encode(1)).toEqual('81');
+      expect(Transform.Transform['DPT:1'].encode('1')).toEqual('81');
       expect(Transform.Transform['DPT:1'].decode(0)).toEqual(0);
-      expect(Transform.Transform['DPT:1'].decode(0)).toEqual('0');
-      // bewusst falsch:
-      expect(Transform.Transform['DPT:1'].decode(0)).toEqual(10);
+      expect(Transform.Transform['DPT:1'].decode(1)).toEqual(1);
+      expect(Transform.Transform['DPT:1.001'].encode(0)).toEqual('80');
     });
     /*
     it('should transform switch values', function() {
