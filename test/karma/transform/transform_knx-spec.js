@@ -19,23 +19,23 @@ define(['transform_default', 'transform_knx'], function(Transform) {
     // run testcases
     for( var DPT in testcases )
     {
-      it( 'should transform ' + DPT, function(){
-        testcases[ DPT ].forEach( function( testcase ){
-          switch( testcase.type ) {
-            case 'encode':
+      testcases[ DPT ].forEach( function( testcase ){
+        switch( testcase.type ) {
+          case 'encode':
+            it( 'should transform ' + testcase.transform + ' ' + testcase.type, function(){
               // test integer
               expect(Transform.Transform[ testcase.transform ].encode( testcase.source|0  )).toEqual( testcase.target );
               // test float
               expect(Transform.Transform[ testcase.transform ].encode( +testcase.source   )).toEqual( testcase.target );
               // test string
               expect(Transform.Transform[ testcase.transform ].encode( testcase.source+'' )).toEqual( testcase.target );
-              break;
-              
-            case 'decode':
-              expect(Transform.Transform[ testcase.transform ].decode( testcase.source )).toEqual( testcase.target );
-              break;
-          }
-        });
+            });
+            break;
+            
+          case 'decode':
+            expect(Transform.Transform[ testcase.transform ].decode( testcase.source )).toEqual( testcase.target );
+            break;
+        }
       });
     }
 
