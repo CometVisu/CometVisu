@@ -5,8 +5,41 @@
  * @since 2016
  */
 define(['transform_default', 'transform_knx'], function(Transform) {
+  
+  var testcases = {
+    'DPT:1': {
+      [
+        { transform: 'DPT:1', type: 'encode', source: 0, target: '80' },
+        { transform: 'DPT:1', type: 'encode', source: 1, target: '81' },
+        { transform: 'DPT:1', type: 'encode', source: 2, target: '81' },
+        { transform: 'DPT:1', type: 'decode', source: 0, target: 0 }
+      ]
+    }
+  };
 
   describe('checking knx transforms', function() {
+    // run testcases
+    for( var DPT in testcases )
+    {
+      it( 'should transform ' + DPT, function(){
+        testcases[ DPT ].forEach( function( testcase ){
+          switch( testcase.type ) {
+            case 'encode':
+              // test integer
+              expect(Transform.Transform[ testcase.transform ].encode( testcase.source|0  )).toEqual( testcase.target );
+              // test float
+              expect(Transform.Transform[ testcase.transform ].encode( +testcase.source   )).toEqual( testcase.target );
+              // test string
+              expect(Transform.Transform[ testcase.transform ].encode( testcase.source+'' )).toEqual( testcase.target );
+              break;
+              
+            case 'decode':
+              expect(Transform.Transform[ testcase.transform ].decode( testcase.source )).toEqual( testcase.target );
+              break;
+          }
+        });
+      });
+    }
 
     it('should transform DPT 1', function() {
       expect(Transform.Transform['DPT:1'].encode(0)).toEqual('80');
