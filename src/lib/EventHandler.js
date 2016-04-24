@@ -90,15 +90,13 @@ define([], function() {
 
       var touchobj;
 
-      if (this._isTouchDevice) {
-        if (event.changedTouches) {
-          touchobj = event.changedTouches[0];
-          this._touchStartX = parseInt(touchobj.clientX);
-          this._touchStartY = parseInt(touchobj.clientY);
-        } else {
-          this._touchStartX = parseInt(event.clientX);
-          this._touchStartY = parseInt(event.clientY);
-        }
+      if (event.changedTouches) {
+        touchobj = event.changedTouches[0];
+        this._touchStartX = parseInt(touchobj.clientX);
+        this._touchStartY = parseInt(touchobj.clientY);
+      } else {
+        this._touchStartX = parseInt(event.clientX);
+        this._touchStartY = parseInt(event.clientY);
       }
 
       this._isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
@@ -212,10 +210,10 @@ define([], function() {
         if (this._mouseEvent.moveFn) {
           this._mouseEvent.moveFn(event);
         }
-
+        // cancel when finger moved more than 5px
         if (this._mouseEvent.moveRestrict && !this._mouseEvent.alreadyCanceled &&
-          ((this._touchStartX + 5 < parseInt(touchobj.clientX) || this._touchStartX - 5 > parseInt(touchobj.clientX)) ||
-          (this._touchStartY + 5 < parseInt(touchobj.clientY) || this._touchStartY - 5 > parseInt(touchobj.clientY)))) { // cancel
+          (Math.abs(this._touchStartX - parseInt(touchobj.clientX)) > 5 ||
+          Math.abs(this._touchStartY - parseInt(touchobj.clientY)) > 5 )) { // cancel
           this._mouseEvent.alreadyCanceled = true;
           var actionFn = this._mouseEvent.widgetCreator.action;
           if (actionFn) {
@@ -261,7 +259,7 @@ define([], function() {
         window.addEventListener('touchend', this._onUp);
 
         window.addEventListener('mousemove', this._onMove);
-        window.addEventListener('pointermove', this._onMove);
+        window.addEventListener('touchmove', this._onMove);
       };
 
       this._onDown = function(event) {
