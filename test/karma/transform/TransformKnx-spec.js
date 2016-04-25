@@ -27,29 +27,27 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
 
   describe('checking knx transforms', function() {
     // run testcases
-    for( var DPT in testcases )
-    {
-      testcases[ DPT ].forEach( function( testcase ){
-        switch( testcase.type ) {
-          case 'encode':
-            it( 'should transform ' + testcase.transform + ' ' + testcase.type + ' "' + testcase.source + '"', function(){
-              // test direct
+    testcases[ DPT ].forEach( function( testcase ){
+      switch( testcase.type ) {
+        case 'encode':
+          it( 'should transform ' + testcase.transform + ' ' + testcase.type + ' "' + testcase.source + '"', function(){
+            // test direct
+            expect(Transform.Transform[ testcase.transform ].encode( testcase.source )).toEqual( testcase.target );
+            if( !testcase.noNumber )
+            {
+              // test integer
               expect(Transform.Transform[ testcase.transform ].encode( testcase.source|0  )).toEqual( testcase.target );
-              if( !testcase.noNumber )
-              {
-                // test integer
-                expect(Transform.Transform[ testcase.transform ].encode( testcase.source|0  )).toEqual( testcase.target );
-                // test float
-                expect(Transform.Transform[ testcase.transform ].encode( +testcase.source   )).toEqual( testcase.target );
-                // test string
-                expect(Transform.Transform[ testcase.transform ].encode( testcase.source+'' )).toEqual( testcase.target );
-              }
-            });
-            break;
-            
-          case 'decode':
-            expect(Transform.Transform[ testcase.transform ].decode( testcase.source )).toEqual( testcase.target );
-            break;
+              // test float
+              expect(Transform.Transform[ testcase.transform ].encode( +testcase.source   )).toEqual( testcase.target );
+              // test string
+              expect(Transform.Transform[ testcase.transform ].encode( testcase.source+'' )).toEqual( testcase.target );
+            }
+          });
+          break;
+          
+        case 'decode':
+          expect(Transform.Transform[ testcase.transform ].decode( testcase.source )).toEqual( testcase.target );
+          break;
         }
       });
     }
