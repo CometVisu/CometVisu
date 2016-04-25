@@ -48,9 +48,8 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
         case 'decode':
           expect(Transform.Transform[ testcase.transform ].decode( testcase.source )).toEqual( testcase.target );
           break;
-        }
-      });
-    }
+      }
+    });
 
     it('should transform DPT 1', function() {
       expect(Transform.Transform['DPT:1'].encode(0)).toEqual('80');
