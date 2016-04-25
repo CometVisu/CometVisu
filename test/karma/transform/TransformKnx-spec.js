@@ -4,7 +4,7 @@
  * @author Christian Mayer
  * @since 2016
  */
-define(['transform_default', 'transform_knx'], function(Transform) {
+define(['TransformDefault', 'TransformKnx'], function(Transform) {
   
   var testcases = [
     { transform: 'DPT:1',     type: 'encode', source: 0, target: '80' },
