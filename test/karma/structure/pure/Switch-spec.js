@@ -75,6 +75,8 @@ define( ['TemplateEngine', '_common', 'CometVisuMockup', 'widget_switch'], funct
       creator.update.call(container.children[0],'12/7/37', 0);
       expect(actor).toHaveClass("switchUnpressed");
       expect(actor).not.toHaveClass("switchPressed");
+
+      document.body.removeChild(container);
     });
 
     it('should trigger the switch action', function() {
@@ -105,6 +107,8 @@ define( ['TemplateEngine', '_common', 'CometVisuMockup', 'widget_switch'], funct
 
       creator.action('id_0', actor, false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '80');
+      
+      document.body.removeChild(container);
     });
   });
 });

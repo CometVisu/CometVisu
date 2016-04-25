@@ -5,7 +5,7 @@
  * @since 2016
  */
 
-define( ['jquery', 'templateengine', '_common', 'cometvisu-mockup', 'widget_switch'], function($, engine, design, ClientMockup) {
+define( ['jquery', 'TemplateEngine', '_common', 'CometVisuMockup', 'widget_switch'], function($, engine, design, ClientMockup) {
 
   describe("testing a trigger", function() {
     var templateEngine = engine.getInstance();
@@ -20,7 +20,7 @@ define( ['jquery', 'templateengine', '_common', 'cometvisu-mockup', 'widget_swit
       xml = xml.firstChild;
       var triggerString = creator.create(xml, 'id_0', null, 'trigger');
 
-      container =document.createElement('div');
+      container = document.createElement('div');
       container.setAttribute("class","widget_container");
       container.setAttribute("id", 'id_0');
       container.innerHTML = triggerString;
