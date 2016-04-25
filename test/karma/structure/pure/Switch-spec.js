@@ -8,6 +8,7 @@
 define( ['TemplateEngine', '_common', 'CometVisuMockup', 'widget_switch'], function(engine, design, ClientMockup) {
 
   describe("testing a switch", function() {
+
     var templateEngine = engine.getInstance();
     templateEngine.visu = new ClientMockup();
 
@@ -17,8 +18,21 @@ define( ['TemplateEngine', '_common', 'CometVisuMockup', 'widget_switch'], funct
       var xml = document.createElement('template');
       xml.innerHTML = '<switch><label>Test</label><address transform="DPT:1.001" mode="readwrite">12/7/37</address></switch>';
       xml = xml.firstChild;
-      var switchString = creator.create(xml, 'id_0', 'potassium', 'switch');
-      expect(switchString).toBe('<div class="widget clearfix switch  flavour_potassium" ><div class="label">Test</div><div class="actor switchUnpressed"><div class="value">-</div></div></div>');
+      var switchWidget = $(creator.create(xml, 'id_0', 'potassium', 'switch'));
+
+      expect(switchWidget).toHaveFlavour('potassium');
+      var actor = switchWidget.find(".actor");
+      expect(actor).not.toBeNull();
+      expect(actor).toHaveClass("switchUnpressed");
+      expect(actor).not.toHaveClass("switchPressed");
+
+      var value = actor.find(".value");
+      expect(value).not.toBeNull();
+      expect(value.text()).toBe("-");
+      
+      var label = switchWidget.find(".label");
+      expect(label).not.toBeNull();
+      expect(label.text()).toBe("Test");
 
       var data = templateEngine.widgetDataGet('id_0');
       expect(data.on_value).toBe(1);
@@ -31,8 +45,7 @@ define( ['TemplateEngine', '_common', 'CometVisuMockup', 'widget_switch'], funct
       var xml = document.createElement('template');
       xml.innerHTML = '<switch on_value="turn_on" off_value="turn_off"><label>Test</label><address transform="DPT:1.001" mode="readwrite">12/7/37</address></switch>';
       xml = xml.firstChild;
-      var switchString = creator.create(xml, 'id_0', 'potassium', 'switch');
-      expect(switchString).toBe('<div class="widget clearfix switch  flavour_potassium" ><div class="label">Test</div><div class="actor switchUnpressed"><div class="value">-</div></div></div>');
+      creator.create(xml, 'id_0', 'potassium', 'switch');
 
       var data = templateEngine.widgetDataGet('id_0');
       expect(data.on_value).toBe('turn_on');
@@ -56,12 +69,12 @@ define( ['TemplateEngine', '_common', 'CometVisuMockup', 'widget_switch'], funct
       var actor = $(container.children[0].querySelectorAll('.actor')[0]);
       expect(actor).not.toBe(null);
 
-      expect(actor.hasClass('switchPressed')).toBeTruthy();
-      expect(actor.hasClass('switchUnpressed')).toBeFalsy();
+      expect(actor).toHaveClass("switchPressed");
+      expect(actor).not.toHaveClass("switchUnpressed");
 
       creator.update.call(container.children[0],'12/7/37', 0);
-      expect(actor.hasClass('switchPressed')).toBeFalsy();
-      expect(actor.hasClass('switchUnpressed')).toBeTruthy();
+      expect(actor).toHaveClass("switchUnpressed");
+      expect(actor).not.toHaveClass("switchPressed");
     });
 
     it('should trigger the switch action', function() {
