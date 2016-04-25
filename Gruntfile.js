@@ -165,7 +165,7 @@ module.exports = function(grunt) {
           'dependencies/css.js',
           'icon/*.png',
           //'icon/iconconfig.js',
-          'lib/templateengine.js',
+          'lib/TemplateEngine.js',
           'designs/**/*.{js,css,png,ttf,svg}',
           'plugins/**/*.{js,css,png,ttf,svg}'
         ],
