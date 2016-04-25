@@ -36,7 +36,7 @@
 //
 define([
   'jquery', '_common', 'structure_custom', 'TrickOMatic', 'PageHandler', 'PagePartsHandler',
-  'CometVisuClient', 'CometVisuMockup',
+  'CometVisuClient', 'CometVisuMockup', 'EventHandler',
   'Compatibility', 'jquery-ui', 'strftime',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'IconHandler', 
   'widget_break', 'widget_designtoggle',
@@ -48,7 +48,7 @@ define([
   'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
   'widget_video', 'widget_wgplugin_info', 
   'TransformDefault', 'TransformKnx', 'TransformOpenHab'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup ) {
+], function( $, design, VisuDesign_Custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup, EventHandler ) {
   "use strict";
 
   var instance;
@@ -165,7 +165,7 @@ define([
   this.initBackendClient = function() {
     if ($.getUrlVar('testMode')) {
       thisTemplateEngine.visu = new ClientMockup();
-      require(['transform_mockup'], function() {});
+      require(['TransformMockup'], function() {});
     }
     else if (thisTemplateEngine.backend=="oh") {
       thisTemplateEngine.visu = new CometVisu('openhab', this.backendUrl);

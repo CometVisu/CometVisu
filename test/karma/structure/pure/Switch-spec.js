@@ -5,7 +5,7 @@
  * @since 2016
  */
 
-define( ['TemplateEngine', '_common', 'cometvisu-mockup', 'widget_switch'], function(engine, design, ClientMockup) {
+define( ['TemplateEngine', '_common', 'CometVisuMockup', 'widget_switch'], function(engine, design, ClientMockup) {
 
   describe("testing a switch", function() {
     var templateEngine = engine.getInstance();
