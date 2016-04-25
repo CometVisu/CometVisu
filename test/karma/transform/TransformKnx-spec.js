@@ -6,14 +6,24 @@
  */
 define(['transform_default', 'transform_knx'], function(Transform) {
   
-  var testcases = {
-    'DPT:1': [
-      { transform: 'DPT:1', type: 'encode', source: 0, target: '80' },
-      { transform: 'DPT:1', type: 'encode', source: 1, target: '81' },
-      { transform: 'DPT:1', type: 'encode', source: 2, target: '81' },
-      { transform: 'DPT:1', type: 'decode', source: 0, target: 0 }
-    ]
-  };
+  var testcases = [
+    { transform: 'DPT:1',     type: 'encode', source: 0, target: '80' },
+    { transform: 'DPT:1',     type: 'encode', source: 1, target: '81' },
+    { transform: 'DPT:1.001', type: 'encode', source: 1, target: '81' },
+    { transform: 'DPT:1',     type: 'decode', source: 0, target: 0    },
+    { transform: 'DPT:1',     type: 'decode', source: 1, target: 1    },
+    
+    // dummy tests for dummy implementation
+    { transform: 'DPT:2',     type: 'encode', source: 0, target: '80' },
+    { transform: 'DPT:2',     type: 'decode', source: 0, target: 0    },
+    
+    // dummy tests for dummy implementation
+    { transform: 'DPT:3',     type: 'encode', source: 0, target: '80' },
+    { transform: 'DPT:3',     type: 'decode', source: 0, target: 0    },
+    
+    { transform: 'DPT:4',     type: 'encode', source: 'a',  target: '8061', noNumber: true },
+    { transform: 'DPT:4',     type: 'decode', source: 0x61, target: 'a'    },
+  ];
 
   describe('checking knx transforms', function() {
     // run testcases
@@ -22,13 +32,18 @@ define(['transform_default', 'transform_knx'], function(Transform) {
       testcases[ DPT ].forEach( function( testcase ){
         switch( testcase.type ) {
           case 'encode':
-            it( 'should transform ' + testcase.transform + ' ' + testcase.type, function(){
-              // test integer
+            it( 'should transform ' + testcase.transform + ' ' + testcase.type + ' "' + testcase.source + '"', function(){
+              // test direct
               expect(Transform.Transform[ testcase.transform ].encode( testcase.source|0  )).toEqual( testcase.target );
-              // test float
-              expect(Transform.Transform[ testcase.transform ].encode( +testcase.source   )).toEqual( testcase.target );
-              // test string
-              expect(Transform.Transform[ testcase.transform ].encode( testcase.source+'' )).toEqual( testcase.target );
+              if( !testcase.noNumber )
+              {
+                // test integer
+                expect(Transform.Transform[ testcase.transform ].encode( testcase.source|0  )).toEqual( testcase.target );
+                // test float
+                expect(Transform.Transform[ testcase.transform ].encode( +testcase.source   )).toEqual( testcase.target );
+                // test string
+                expect(Transform.Transform[ testcase.transform ].encode( testcase.source+'' )).toEqual( testcase.target );
+              }
             });
             break;
             
