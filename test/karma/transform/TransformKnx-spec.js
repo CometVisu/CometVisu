@@ -28,9 +28,9 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
   describe('checking knx transforms', function() {
     // run testcases
     testcases.forEach( function( testcase ){
-      switch( testcase.type ) {
-        case 'encode':
-          it( 'should transform ' + testcase.transform + ' ' + testcase.type + ' "' + testcase.source + '"', function(){
+      it( 'should transform ' + testcase.transform + ' ' + testcase.type + ' "' + testcase.source + '"', function(){
+        switch( testcase.type ) {
+          case 'encode':
             // test direct
             expect(Transform.Transform[ testcase.transform ].encode( testcase.source )).toEqual( testcase.target );
             if( !testcase.noNumber )
@@ -42,13 +42,13 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
               // test string
               expect(Transform.Transform[ testcase.transform ].encode( testcase.source+'' )).toEqual( testcase.target );
             }
-          });
           break;
           
         case 'decode':
           expect(Transform.Transform[ testcase.transform ].decode( testcase.source )).toEqual( testcase.target );
           break;
-      }
+        }
+      });
     });
 
     it('should transform DPT 1', function() {
