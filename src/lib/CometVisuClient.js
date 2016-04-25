@@ -31,7 +31,7 @@
  * @author Tobias Bräutigam
  * @since 2010
  */
-define( 'CometvisuClient', ['jquery'], function( $ ) {
+define( ['jquery'], function( $ ) {
   "use strict";
 
   // ////////////////////////////////////////////////////////////////////////
