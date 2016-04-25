@@ -27,7 +27,7 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
 
   describe('checking knx transforms', function() {
     // run testcases
-    testcases[ DPT ].forEach( function( testcase ){
+    testcases.forEach( function( testcase ){
       switch( testcase.type ) {
         case 'encode':
           it( 'should transform ' + testcase.transform + ' ' + testcase.type + ' "' + testcase.source + '"', function(){
