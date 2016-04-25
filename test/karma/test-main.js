@@ -38,6 +38,7 @@ require.config({
     'pagehandler':              'lib/pagehandler',
     'trick-o-matic':            'lib/trick-o-matic',
     'templateengine':           'lib/templateengine',
+    'EventHandler':             'lib/EventHandler',
     '_common':                  'structure/pure/_common',
     'structure_custom':         'config/structure_custom',
     'widget_break':             'structure/pure/break',
