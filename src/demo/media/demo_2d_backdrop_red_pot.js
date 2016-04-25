@@ -3,14 +3,14 @@ require.config({
   waitSeconds: 30, // default: 7 seconds
   paths: {
     'jquery':            '../../dependencies/jquery',
-    'cometvisu-client':  '../../lib/cometvisu-client',
-    'transform_default': '../../transforms/transform_default',
-    'transform_knx':     '../../transforms/transform_knx'
+    'CometvisuClient':  '../../lib/CometVisuClient',
+    'TransformDefault': '../../transforms/TransformDefault',
+    'TransformKnx':     '../../transforms/TransformKnx'
   }
 });
 
 require([
-  'jquery', 'cometvisu-client', 'transform_default', 'transform_knx'
+  'jquery', 'cometvisu-client', 'TransformDefault', 'TransformKnx'
 ], function( jq, CometVisu ) {
   "use strict";
   
