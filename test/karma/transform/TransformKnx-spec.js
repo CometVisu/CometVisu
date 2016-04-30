@@ -171,7 +171,7 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:13'    , type: 'decode', source: '00000064',  target: 100          },
     
     { transform: 'DPT:14.001', type: 'decode', source: 'bf800000', target: -1   },
-    { transform: 'DPT:14.001', type: 'decode', source: '00000000', target: 0    },
+    { transform: 'DPT:14.001', type: 'decode', source: '00000000', target: Math.pow(2,-127) },
     { transform: 'DPT:14.001', type: 'decode', source: '3f800000', target: 1    },
     { transform: 'DPT:14.001', type: 'decode', source: '501502f9', target: 1e10 },
     { transform: 'DPT:14',     type: 'decode', source: '3f800000', target: 1    },
@@ -187,8 +187,8 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:16'    , type: 'decode', source: '6162636465666768696a6b6c6d6e', target: 'abcdefghijklmn' },
     { transform: 'DPT:16.000', type: 'decode', source: '6162636465666768696a6b6c6d6e', target: 'abcdefghijklmn' },
     
-    { transform: 'DPT:20.102', type: 'encode', source: 'auto',                target: '00', noNumber: true },
-    { transform: 'DPT:20.102', type: 'encode', source: 'building_protection', target: '04', noNumber: true },
+    { transform: 'DPT:20.102', type: 'encode', source: 'auto',                target: '8000', noNumber: true },
+    { transform: 'DPT:20.102', type: 'encode', source: 'building_protection', target: '8004', noNumber: true },
     { transform: 'DPT:20.102', type: 'decode', source: '00', target: 'auto'                },
     { transform: 'DPT:20.102', type: 'decode', source: '04', target: 'building_protection' }
   ];
