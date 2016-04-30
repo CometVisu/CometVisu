@@ -108,14 +108,14 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:10.001', type: 'encode', source: new Date(0,0,0,0,0,0), target: '80000000', noNumber: true },
     { transform: 'DPT:10.001', type: 'encode', source: new Date(0,0,0,1,2,3), target: '80010203', noNumber: true },
     { transform: 'DPT:10.001', type: 'encode', source: new Date(2,0,0,0,0,0), target: '80400000', noNumber: true },
-    { transform: 'DPT:10.001', type: 'decode', source: '000000',  target: targetTime( 0, 0, 0, 0 ), noNumber: true },
-    { transform: 'DPT:10.001', type: 'decode', source: '010203',  target: targetTime( 0, 1, 2, 3 ), noNumber: true },
-    { transform: 'DPT:10.001', type: 'decode', source: '400000',  target: targetTime( 2, 0, 0, 0 ), noNumber: true },
+    { transform: 'DPT:10.001', type: 'decode', source: '000000',  target: targetTime( 0, 0, 0, 0 ), isDate: true },
+    { transform: 'DPT:10.001', type: 'decode', source: '010203',  target: targetTime( 0, 1, 2, 3 ), isDate: true },
+    { transform: 'DPT:10.001', type: 'decode', source: '400000',  target: targetTime( 2, 0, 0, 0 ), isDate: true },
        
-    { transform: 'DPT:11.001', type: 'decode', source: '01015a',  target: targetDate( 1, 1, 1990 ), noNumber: true },
-    { transform: 'DPT:11.001', type: 'decode', source: '010163',  target: targetDate( 1, 1, 1999 ), noNumber: true },
-    { transform: 'DPT:11.001', type: 'decode', source: '010100',  target: targetDate( 1, 1, 2000 ), noNumber: true },
-    { transform: 'DPT:11.001', type: 'decode', source: '010159',  target: targetDate( 1, 1, 2089 ), noNumber: true },
+    { transform: 'DPT:11.001', type: 'decode', source: '01015a',  target: targetDate( 1, 1, 1990 ), isDate: true },
+    { transform: 'DPT:11.001', type: 'decode', source: '010163',  target: targetDate( 1, 1, 1999 ), isDate: true },
+    { transform: 'DPT:11.001', type: 'decode', source: '010100',  target: targetDate( 1, 1, 2000 ), isDate: true },
+    { transform: 'DPT:11.001', type: 'decode', source: '010159',  target: targetDate( 1, 1, 2089 ), isDate: true },
   ];
 
   describe('checking knx transforms', function() {
@@ -139,7 +139,10 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
           break;
           
         case 'decode':
-          expect(Transform.Transform[ testcase.transform ].decode( testcase.source )).toEqual( testcase.target );
+          if( testcase.isDate )
+            expect(Transform.Transform[ testcase.transform ].decode( testcase.source+'' )).toEqual( testcase.target+'' );
+          else
+            expect(Transform.Transform[ testcase.transform ].decode( testcase.source )).toEqual( testcase.target );
           break;
         }
       });
