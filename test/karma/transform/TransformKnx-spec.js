@@ -28,8 +28,17 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:1',     type: 'encode', source: 0,    target: '80' },
     { transform: 'DPT:1',     type: 'encode', source: 1,    target: '81' },
     { transform: 'DPT:1.001', type: 'encode', source: 1,    target: '81' },
+    { transform: 'DPT:1.002', type: 'encode', source: 1,    target: '81' },
+    { transform: 'DPT:1.003', type: 'encode', source: 1,    target: '81' },
+    { transform: 'DPT:1.008', type: 'encode', source: 1,    target: '81' },
+    { transform: 'DPT:1.009', type: 'encode', source: 1,    target: '81' },
     { transform: 'DPT:1',     type: 'decode', source: '00', target: 0    },
     { transform: 'DPT:1',     type: 'decode', source: '01', target: 1    },
+    { transform: 'DPT:1.001', type: 'decode', source: '01', target: 1    },
+    { transform: 'DPT:1.002', type: 'decode', source: '01', target: 1    },
+    { transform: 'DPT:1.003', type: 'decode', source: '01', target: 1    },
+    { transform: 'DPT:1.008', type: 'decode', source: '01', target: 1    },
+    { transform: 'DPT:1.009', type: 'decode', source: '01', target: 1    },
     
     // dummy tests for dummy implementation
     { transform: 'DPT:2',     type: 'encode', source: 0,    target: '80' },
@@ -40,7 +49,9 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:3',     type: 'decode', source: '00', target: 0    },
     
     { transform: 'DPT:4',     type: 'encode', source: 'a',  target: '8061', noNumber: true },
+    { transform: 'DPT:4.001', type: 'encode', source: 'a',  target: '8061', noNumber: true },
     { transform: 'DPT:4',     type: 'decode', source: '61', target: 'a'    },
+    { transform: 'DPT:4.001', type: 'decode', source: '61', target: 'a'    },
     
     { transform: 'DPT:5.001', type: 'encode', source: 0,    target: '8000' },
     { transform: 'DPT:5.001', type: 'encode', source: 100,  target: '80ff' },
@@ -56,6 +67,8 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:5.004', type: 'encode', source: 255,  target: '80ff' },
     { transform: 'DPT:5.004', type: 'decode', source: '00', target: 0      },
     { transform: 'DPT:5.004', type: 'decode', source: 'ff', target: 255    },
+    { transform: 'DPT:5'    , type: 'encode', source: 100,  target: '8064' },
+    { transform: 'DPT:5'    , type: 'decode', source: 'ff', target: 255    },
     { transform: 'DPT:5.010', type: 'encode', source: 0,    target: '8000' },
     { transform: 'DPT:5.010', type: 'encode', source: 100,  target: '8064' },
     { transform: 'DPT:5.010', type: 'encode', source: 255,  target: '80ff' },
@@ -72,6 +85,8 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:6.001', type: 'decode', source: '00', target: 0      },
     { transform: 'DPT:6.001', type: 'decode', source: '64', target: 100    },
     { transform: 'DPT:6.001', type: 'decode', source: '7f', target: 127    },
+    { transform: 'DPT:6'    , type: 'encode', source: 100,  target: '8064' },
+    { transform: 'DPT:6'    , type: 'decode', source: '64', target: 100    },
     
     { transform: 'DPT:7.001', type: 'encode', source: 0,      target: '800000' },
     { transform: 'DPT:7.001', type: 'encode', source: 100,    target: '800064' },
@@ -79,6 +94,8 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:7.001', type: 'decode', source: '0000', target: 0        },
     { transform: 'DPT:7.001', type: 'decode', source: '0064', target: 100      },
     { transform: 'DPT:7.001', type: 'decode', source: 'ffff', target: 65535    },
+    { transform: 'DPT:7'    , type: 'encode', source: 100,    target: '800064' },
+    { transform: 'DPT:7'    , type: 'decode', source: '0064', target: 100      },
     
     { transform: 'DPT:8.001', type: 'encode', source: -32768, target: '808000' },
     { transform: 'DPT:8.001', type: 'encode', source: -1,     target: '80ffff' },
@@ -90,6 +107,8 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:8.001', type: 'decode', source: '0000', target: 0        },
     { transform: 'DPT:8.001', type: 'decode', source: '0064', target: 100      },
     { transform: 'DPT:8.001', type: 'decode', source: '7fff', target: 32767    },
+    { transform: 'DPT:8'    , type: 'encode', source: 100,    target: '800064' },
+    { transform: 'DPT:8'    , type: 'decode', source: '0064', target: 100      },
     
     { transform: 'DPT:9.001', type: 'encode', source: -272.96,    target: '80a156', noInt: true },
     { transform: 'DPT:9.001', type: 'encode', source: -1,         target: '80879c'  },
@@ -103,6 +122,8 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:9.001', type: 'decode', source: '0001',     target: 0.01      },
     { transform: 'DPT:9.001', type: 'decode', source: '0064',     target: 1         },
     { transform: 'DPT:9.001', type: 'decode', source: '7ffe',     target: 670433.28 },
+    { transform: 'DPT:9'    , type: 'encode', source: 1,          target: '800064'  },
+    { transform: 'DPT:9'    , type: 'decode', source: '0064',     target: 1         },
     { transform: 'DPT:9.020', type: 'encode', source: -670433.28, target: '80f802', noInt: true },
     
     { transform: 'DPT:10.001', type: 'encode', source: new Date(0,0,0,0,0,0), target: '80000000', noNumber: true },
