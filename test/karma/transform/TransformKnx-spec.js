@@ -72,6 +72,20 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:8.001', type: 'decode', source: '0000', target: 0        },
     { transform: 'DPT:8.001', type: 'decode', source: '0064', target: 100      },
     { transform: 'DPT:8.001', type: 'decode', source: '7fff', target: 32767    },
+    
+    { transform: 'DPT:9.001', type: 'encode', source: -273,    target: '80a156' },
+    { transform: 'DPT:9.001', type: 'encode', source: -1,      target: '80879c' },
+    { transform: 'DPT:9.001', type: 'encode', source: 0,       target: '800000' },
+    { transform: 'DPT:9.001', type: 'encode', source: 0.01,    target: '800001', noInt: true },
+    { transform: 'DPT:9.001', type: 'encode', source: 1,       target: '800064' },
+    { transform: 'DPT:9.001', type: 'encode', source: 670760,  target: '807ffe' },
+    { transform: 'DPT:9.001', type: 'decode', source: 'a156',  target: -273     },
+    { transform: 'DPT:9.001', type: 'decode', source: '879c',  target: -1       },
+    { transform: 'DPT:9.001', type: 'decode', source: '0000',  target: 0        },
+    { transform: 'DPT:9.001', type: 'decode', source: '0001',  target: 0.01     },
+    { transform: 'DPT:9.001', type: 'decode', source: '0064',  target: 1        },
+    { transform: 'DPT:9.001', type: 'decode', source: '7ffe',  target: 670760   },
+    { transform: 'DPT:9.020', type: 'encode', source: -670760, target: '80f802' },
   ];
 
   describe('checking knx transforms', function() {
@@ -85,7 +99,8 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
             if( !testcase.noNumber )
             {
               // test integer
-              expect(Transform.Transform[ testcase.transform ].encode( testcase.source|0  )).toEqual( testcase.target );
+              if( !testcase.noInt )
+                expect(Transform.Transform[ testcase.transform ].encode( testcase.source|0  )).toEqual( testcase.target );
               // test float
               expect(Transform.Transform[ testcase.transform ].encode( +testcase.source   )).toEqual( testcase.target );
               // test string
