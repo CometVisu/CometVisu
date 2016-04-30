@@ -144,13 +144,31 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:12.001', type: 'encode', source: 0,          target: '8000000000' },
     { transform: 'DPT:12.001', type: 'encode', source: 100,        target: '8000000064' },
     { transform: 'DPT:12.001', type: 'encode', source: 65535,      target: '800000ffff' },
-    { transform: 'DPT:12.001', type: 'encode', source: 4294967295, target: '80ffffffff' },
+    { transform: 'DPT:12.001', type: 'encode', source: 4294967295, target: '80ffffffff', noInt: true }, // for Int this equals -1
     { transform: 'DPT:12.001', type: 'decode', source: '00000000', target: 0            },
     { transform: 'DPT:12.001', type: 'decode', source: '00000064', target: 100          },
     { transform: 'DPT:12.001', type: 'decode', source: '0000ffff', target: 65535        },
     { transform: 'DPT:12.001', type: 'decode', source: 'ffffffff', target: 4294967295   },
     { transform: 'DPT:12'    , type: 'encode', source: 100,        target: '8000000064' },
     { transform: 'DPT:12'    , type: 'decode', source: '00000064', target: 100          },
+    
+    { transform: 'DPT:13.001', type: 'encode', source: -2147483648, target: '8080000000' },
+    { transform: 'DPT:13.001', type: 'encode', source: -32768,      target: '8000008000' },
+    { transform: 'DPT:13.001', type: 'encode', source: -1,          target: '80ffffffff' },
+    { transform: 'DPT:13.001', type: 'encode', source: 0,           target: '8000000000' },
+    { transform: 'DPT:13.001', type: 'encode', source: 100,         target: '8000000064' },
+    { transform: 'DPT:13.001', type: 'encode', source: 32767,       target: '8000007fff' },
+    { transform: 'DPT:13.001', type: 'encode', source: 65535,       target: '800000ffff' },
+    { transform: 'DPT:13.001', type: 'encode', source: 2147483647,  target: '807fffffff' },
+    { transform: 'DPT:13.001', type: 'decode', source: '80000000',  target: -2147483648  },
+    { transform: 'DPT:13.001', type: 'decode', source: '00008000',  target: -32768       },
+    { transform: 'DPT:13.001', type: 'decode', source: 'ffffffff',  target: -1           },
+    { transform: 'DPT:13.001', type: 'decode', source: '00000000',  target: 0            },
+    { transform: 'DPT:13.001', type: 'decode', source: '00000064',  target: 100          },
+    { transform: 'DPT:13.001', type: 'decode', source: '00007fff',  target: 32767        },
+    { transform: 'DPT:13.001', type: 'decode', source: '7fffffff',  target: 2147483647   },
+    { transform: 'DPT:13'    , type: 'encode', source: 100,         target: '8000000064' },
+    { transform: 'DPT:13'    , type: 'decode', source: '00000064',  target: 100          },
   ];
 
   describe('checking knx transforms', function() {
