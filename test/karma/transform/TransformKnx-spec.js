@@ -6,6 +6,24 @@
  */
 define(['TransformDefault', 'TransformKnx'], function(Transform) {
   
+  function targetTime( day, hour, minute, second )
+  {
+    var date = new Date(); // assume today as in the original transform code
+    date.setHours  ( hour   );
+    date.setMinutes( minute );
+    date.setSeconds( second );
+    if( day > 0 )
+    {
+      var dayShift = (day - date.getDay()) % 7;
+      date.setDate( date.getDate() + dayShift );
+    }
+    return date;
+  }
+  function targetDate( day, month, year )
+  {
+    return new Date( year, month, day );
+  }
+  
   var testcases = [
     { transform: 'DPT:1',     type: 'encode', source: 0,    target: '80' },
     { transform: 'DPT:1',     type: 'encode', source: 1,    target: '81' },
@@ -86,6 +104,18 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:9.001', type: 'decode', source: '0064',     target: 1         },
     { transform: 'DPT:9.001', type: 'decode', source: '7ffe',     target: 670433.28 },
     { transform: 'DPT:9.020', type: 'encode', source: -670433.28, target: '80f802', noInt: true },
+    
+    { transform: 'DPT:10.001', type: 'encode', source: new Date(0,0,0,0,0,0), target: '80000000', noNumber: true },
+    { transform: 'DPT:10.001', type: 'encode', source: new Date(0,0,0,1,2,3), target: '80010203', noNumber: true },
+    { transform: 'DPT:10.001', type: 'encode', source: new Date(2,0,0,0,0,0), target: '80400000', noNumber: true },
+    { transform: 'DPT:10.001', type: 'decode', source: '000000',  target: targetTime( 0, 0, 0, 0 ), noNumber: true },
+    { transform: 'DPT:10.001', type: 'decode', source: '010203',  target: targetTime( 0, 1, 2, 3 ), noNumber: true },
+    { transform: 'DPT:10.001', type: 'decode', source: '400000',  target: targetTime( 2, 0, 0, 0 ), noNumber: true },
+       
+    { transform: 'DPT:11.001', type: 'decode', source: '01015a',  target: targetDate( 1, 1, 1990 ), noNumber: true },
+    { transform: 'DPT:11.001', type: 'decode', source: '010163',  target: targetDate( 1, 1, 1999 ), noNumber: true },
+    { transform: 'DPT:11.001', type: 'decode', source: '010100',  target: targetDate( 1, 1, 2000 ), noNumber: true },
+    { transform: 'DPT:11.001', type: 'decode', source: '010159',  target: targetDate( 1, 1, 2089 ), noNumber: true },
   ];
 
   describe('checking knx transforms', function() {
