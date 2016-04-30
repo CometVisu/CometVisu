@@ -19,9 +19,12 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     }
     return date;
   }
+  /**
+   * @param month 1 based, i.e. 1 === Jan, 2 == Feb
+   */
   function targetDate( day, month, year )
   {
-    return new Date( year, month, day );
+    return new Date( year, month-1, day );
   }
   
   var testcases = [
@@ -137,6 +140,17 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:11.001', type: 'decode', source: '010163',  target: targetDate( 1, 1, 1999 ), isDate: true },
     { transform: 'DPT:11.001', type: 'decode', source: '010100',  target: targetDate( 1, 1, 2000 ), isDate: true },
     { transform: 'DPT:11.001', type: 'decode', source: '010159',  target: targetDate( 1, 1, 2089 ), isDate: true },
+    
+    { transform: 'DPT:12.001', type: 'encode', source: 0,          target: '8000000000' },
+    { transform: 'DPT:12.001', type: 'encode', source: 100,        target: '8000000064' },
+    { transform: 'DPT:12.001', type: 'encode', source: 65535,      target: '800000ffff' },
+    { transform: 'DPT:12.001', type: 'encode', source: 4294967295, target: '80ffffffff' },
+    { transform: 'DPT:12.001', type: 'decode', source: '00000000', target: 0            },
+    { transform: 'DPT:12.001', type: 'decode', source: '00000064', target: 100          },
+    { transform: 'DPT:12.001', type: 'decode', source: '0000ffff', target: 65535        },
+    { transform: 'DPT:12.001', type: 'decode', source: 'ffffffff', target: 4294967295   },
+    { transform: 'DPT:12'    , type: 'encode', source: 100,        target: '8000000064' },
+    { transform: 'DPT:12'    , type: 'decode', source: '00000064', target: 100          },
   ];
 
   describe('checking knx transforms', function() {
