@@ -153,7 +153,7 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:12'    , type: 'decode', source: '00000064', target: 100          },
     
     { transform: 'DPT:13.001', type: 'encode', source: -2147483648, target: '8080000000' },
-    { transform: 'DPT:13.001', type: 'encode', source: -32768,      target: '8000008000' },
+    { transform: 'DPT:13.001', type: 'encode', source: -32768,      target: '80ffff8000' },
     { transform: 'DPT:13.001', type: 'encode', source: -1,          target: '80ffffffff' },
     { transform: 'DPT:13.001', type: 'encode', source: 0,           target: '8000000000' },
     { transform: 'DPT:13.001', type: 'encode', source: 100,         target: '8000000064' },
@@ -161,7 +161,7 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:13.001', type: 'encode', source: 65535,       target: '800000ffff' },
     { transform: 'DPT:13.001', type: 'encode', source: 2147483647,  target: '807fffffff' },
     { transform: 'DPT:13.001', type: 'decode', source: '80000000',  target: -2147483648  },
-    { transform: 'DPT:13.001', type: 'decode', source: '00008000',  target: -32768       },
+    { transform: 'DPT:13.001', type: 'decode', source: 'ffff8000',  target: -32768       },
     { transform: 'DPT:13.001', type: 'decode', source: 'ffffffff',  target: -1           },
     { transform: 'DPT:13.001', type: 'decode', source: '00000000',  target: 0            },
     { transform: 'DPT:13.001', type: 'decode', source: '00000064',  target: 100          },
@@ -169,6 +169,28 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:13.001', type: 'decode', source: '7fffffff',  target: 2147483647   },
     { transform: 'DPT:13'    , type: 'encode', source: 100,         target: '8000000064' },
     { transform: 'DPT:13'    , type: 'decode', source: '00000064',  target: 100          },
+    
+    { transform: 'DPT:14.001', type: 'decode', source: 'bf800000', target: -1   },
+    { transform: 'DPT:14.001', type: 'decode', source: '00000000', target: 0    },
+    { transform: 'DPT:14.001', type: 'decode', source: '3f800000', target: 1    },
+    { transform: 'DPT:14.001', type: 'decode', source: '501502f9', target: 1e10 },
+    { transform: 'DPT:14',     type: 'decode', source: '3f800000', target: 1    },
+    
+    { transform: 'DPT:16.001', type: 'encode', source: '',               target: '800000000000000000000000000000', noNumber: true },
+    { transform: 'DPT:16.001', type: 'encode', source: 'abc',            target: '806162630000000000000000000000', noNumber: true },
+    { transform: 'DPT:16.001', type: 'encode', source: 'abcdefghijklmn', target: '806162636465666768696a6b6c6d6e', noNumber: true },
+    { transform: 'DPT:16.001', type: 'decode', source: '0000000000000000000000000000', target: ''               },
+    { transform: 'DPT:16.001', type: 'decode', source: '6162630000000000000000000000', target: 'abc'            },
+    { transform: 'DPT:16.001', type: 'decode', source: '6162636465666768696a6b6c6d6e', target: 'abcdefghijklmn' },
+    { transform: 'DPT:16'    , type: 'encode', source: 'abcdefghijklmn', target: '806162636465666768696a6b6c6d6e', noNumber: true },
+    { transform: 'DPT:16.000', type: 'encode', source: 'abcdefghijklmn', target: '806162636465666768696a6b6c6d6e', noNumber: true },
+    { transform: 'DPT:16'    , type: 'decode', source: '6162636465666768696a6b6c6d6e', target: 'abcdefghijklmn' },
+    { transform: 'DPT:16.000', type: 'decode', source: '6162636465666768696a6b6c6d6e', target: 'abcdefghijklmn' },
+    
+    { transform: 'DPT:20.102', type: 'encode', source: 'auto',                target: '00', noNumber: true },
+    { transform: 'DPT:20.102', type: 'encode', source: 'building_protection', target: '04', noNumber: true },
+    { transform: 'DPT:20.102', type: 'decode', source: '00', target: 'auto'                },
+    { transform: 'DPT:20.102', type: 'decode', source: '04', target: 'building_protection' }
   ];
 
   describe('checking knx transforms', function() {
