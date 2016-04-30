@@ -161,7 +161,7 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
           
         case 'decode':
           if( testcase.isDate )
-            expect(Transform.Transform[ testcase.transform ].decode( testcase.source+'' )).toEqual( testcase.target+'' );
+            expect(Transform.Transform[ testcase.transform ].decode( testcase.source )+'').toEqual( testcase.target+'' );
           else
             expect(Transform.Transform[ testcase.transform ].decode( testcase.source )).toEqual( testcase.target );
           break;
