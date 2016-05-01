@@ -144,7 +144,7 @@ body br
 
 .nav_path 
 {
-  color: #ff8000;
+  color: hsl(345,35%,95%);
   margin-left: 15px;
 }
 .nav_path a
@@ -195,6 +195,8 @@ body br
 .widget, h2
 {
   background: hsl(345,10%,20%);
+  background: linear-gradient( hsl(345,10%,18%), hsl(345,10%,22%) );
+  background: linear-gradient( hsl(345,10%,22%), hsl(345,10%,18%) );
 }
 
 .widget
@@ -283,6 +285,20 @@ body br
 #navbarLeft .navbar .widget, #navbarRight .navbar .widget
 {
   position: relative;
+}
+
+.navbar .pagejump .label > img, .navbar .pagejump .label > canvas, .navbar .refresh .label > img, .navbar .refresh .label > canvas
+{
+  height: 44px !important;
+  width: 44px !important;
+  margin: 0 auto;
+  display: block;
+}
+
+#navbarTop .navbar .pagejump:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor,#navbarTop .navbar .refresh:hover {
+  color: hsl(345,10%,20%);
+  background: hsl(345,35%,95%);
+  box-shadow: 2px 3px 7px rgba(0,0,0,0.5) inset;
 }
 
 .navbar .pagejump .label {
@@ -419,6 +435,7 @@ body br
   box-shadow: 0 2px 5px #000;
   */
   border: 1px solid hsl(345,35%,95%);
+  box-shadow: 2px 3px 7px rgba(0,0,0,0.5);
 }
 
 .switchPressed
@@ -432,6 +449,7 @@ body br
  border-radius: 7px;
   padding: 1px;
   */
+  color: hsl(345,10%,20%);
 }
 
 .switchPressed, .switchUnpressed
@@ -480,7 +498,7 @@ body br
   */
   border: 1px solid hsl(345,35%,95%);
   background: hsl(345,35%,95%);
-  color: hsl(345,10%,20%);
+  box-shadow: 2px 3px 7px rgba(0,0,0,0.5) inset;
 }
 
 .switchInvisible
@@ -507,7 +525,7 @@ body br
 .ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
 
 .ui-slider-horizontal { height: 1.3em; }
-.ui-slider-horizontal .ui-slider-handle { top: -.3em; }
+.ui-slider-horizontal .ui-slider-handle { top: -.3em; bottom: 0; height: auto; }
 .ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
 .ui-slider-horizontal .ui-slider-range-min { left: 0; }
 .ui-slider-horizontal .ui-slider-range-max { right: 0; }
@@ -955,4 +973,13 @@ body .infoaction .widget_container.widgetinfo .widget .actor {
 
 #navbarLeft .navbar .pagejump .info,
 #navbarRight .navbar .pagejump .info {
+}
+
+/* define own colors */
+.switch .red.switchPressed::before, .switch .red.switchUnpressed::before {
+  background-color: hsl(345,80%,50%);
+}
+
+.switch .green.switchPressed::before, .switch .green.switchUnpressed::before {
+  background-color: hsl(105,80%,50%);
 }
