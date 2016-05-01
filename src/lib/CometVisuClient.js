@@ -149,13 +149,13 @@ define( ['jquery'], function( $ ) {
          */
         this.handleRead = function(json) {
           if( this.doRestart || (!json && (-1 == this.lastIndex)) ) {
-            if (session.running) { // retry initial request
+            if (self.running) { // retry initial request
               this.retryCounter++;
               this.xhr = $.ajax({
                 url : session.getResourcePath("read"),
                 dataType : 'json',
                 context : this,
-                data : self.buildRequest() + '&t=0',
+                data : session.buildRequest() + '&t=0',
                 success : this.handleRead,
                 error : this.handleError,
                 beforeSend : this.beforeSend
@@ -239,7 +239,7 @@ define( ['jquery'], function( $ ) {
          * @param excptObj
          */
         this.handleError = function(xhr, str, excptObj) {
-          if (session.running && xhr.readyState != 4
+          if (self.running && xhr.readyState != 4
             && !this.doRestart && xhr.status !== 0) // ignore error when
           // connection is
           // irrelevant
