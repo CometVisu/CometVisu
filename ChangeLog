@@ -1,3 +1,9 @@
+0.9.2
+=====
+
+- [#322](https://github.com/CometVisu/CometVisu/pull/322) another minor style fix for pagejump->widgetinfo usage in navbars (@peuter)
+- [#319](https://github.com/CometVisu/CometVisu/pull/319) Fix DPT6.010 (@ChristianMayer)
+
 0.9.1
 =====
 
