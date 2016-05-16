@@ -556,6 +556,85 @@ define([
 
     // set css style
     $('#rowspanStyle').text( styles );
+    
+    var widgetData = templateEngine.widgetData[  templateEngine.currentPage.attr('id') ];
+    if( '2d' === widgetData.type )
+    {
+      var
+        cssPosRegEx = /(\d*)(.*)/,
+        backdrop = templateEngine.currentPage.children().children().filter('img')[0],
+        backdropNWidth   = backdrop.naturalWidth  || width,
+        backdropNHeight  = backdrop.naturalHeight || height,
+        backdropScale    = Math.min( width/backdropNWidth, height/backdropNHeight ),
+        backdropWidth    = backdropNWidth  * backdropScale,
+        backdropHeight   = backdropNHeight * backdropScale,
+        backdropPos      = widgetData.backdropalign.split(' '),
+        backdropLeftRaw  = backdropPos[0].match( cssPosRegEx ),
+        backdropTopRaw   = backdropPos[1].match( cssPosRegEx ),
+        backdropLeft     = backdropLeftRaw[2] === '%' ? (width >backdropWidth  ? ((width -backdropWidth )*(+backdropLeftRaw[1])/100) : 0) : +backdropLeftRaw[1],
+        backdropTop      = backdropTopRaw[2]  === '%' ? (height>backdropHeight ? ((height-backdropHeight)*(+backdropTopRaw[1] )/100) : 0) : +backdropTopRaw[1];
+        
+      if( !backdrop.complete )
+      {
+        // backdrop not available yet - reload
+        setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,true); }, 100);
+        return;
+      }
+      
+      // Note: this here is a work around for older browsers that can't use
+      // the object-fit property yet. Unless such browsers do surface it's
+      // commented out
+      /*
+      $( backdrop ).css({
+        width:  backdropWidth  + 'px',
+        height: backdropHeight + 'px',
+        left:   backdropLeft   + 'px',
+        top:    backdropTop    + 'px'
+      });
+      */
+      
+      templateEngine.currentPage.find('.widget_container').each( function(){ 
+        var widgetData = templateEngine.widgetDataGet( this.id );
+        if( widgetData.layout )
+        {
+          var 
+            layout = widgetData.layout,
+            style = 'position:absolute;';
+          
+          if( 'x' in layout )
+          {
+            var value = layout.x.match( cssPosRegEx );
+            if( 'px' === value[2] )
+            {
+              style += 'left:' + (backdropLeft + value[1]*backdropScale) + 'px;';
+            } else {
+              style += 'left:' + layout.x + ';';
+            }
+          }
+          
+          if( 'y' in layout )
+          {
+            var value = layout.y.match( cssPosRegEx );
+            if( 'px' === value[2] )
+            {
+              style += 'top:' + (backdropTop + value[1]*backdropScale) + 'px;';
+            } else {
+              style += 'top:' + layout.y + ';';
+            }
+          }
+          
+          if( 'width' in layout )
+            style += 'width:' + layout.width + ';';
+          
+          if( 'height' in layout )
+            style += 'height:' + layout.height + ';';
+          
+          // this assumes that a .widget_container has only one child and this
+          // is the .widget itself
+          this.children[0].style = style;
+        }
+      });
+    }
   };
   
   var usedRowspans = {};
