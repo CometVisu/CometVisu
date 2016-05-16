@@ -527,6 +527,7 @@ define([
         // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
         // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
         setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,true); }, 100);
+        return;
       }
     }
     if (skipScrollFix === undefined) {
@@ -577,7 +578,7 @@ define([
       if( !backdrop.complete )
       {
         // backdrop not available yet - reload
-        setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,true); }, 100);
+        setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,force); }, 100);
         return;
       }
       
