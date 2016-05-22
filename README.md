@@ -11,6 +11,8 @@ extended features it should support PHP, but that is optional and not required.
 How to get it:
 ==============
 
+[![Join the chat at https://gitter.im/CometVisu/CometVisu](https://badges.gitter.im/CometVisu/CometVisu.svg)](https://gitter.im/CometVisu/CometVisu?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 The latest releases can be downloaded at:
 
     https://github.com/CometVisu/CometVisu/releases
