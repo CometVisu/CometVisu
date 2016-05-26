@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/CometVisu/CometVisu.svg?branch=develop)](https://travis-ci.org/CometVisu/CometVisu) [![Coverage Status](https://coveralls.io/repos/github/CometVisu/CometVisu/badge.svg?branch=develop)](https://coveralls.io/github/CometVisu/CometVisu?branch=develop)
+[![Join the chat at https://gitter.im/CometVisu/CometVisu](https://badges.gitter.im/CometVisu/CometVisu.svg)](https://gitter.im/CometVisu/CometVisu?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 CometVisu is a real-time visualization software using modern web technologies for
 building automation applications like smart homes.

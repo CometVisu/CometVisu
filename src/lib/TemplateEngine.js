@@ -653,7 +653,11 @@ define([
       delete loadReady.plugins;
     }
     */
-    require( pluginsToLoad, delaySetup('plugins') );
+    var delaySetupPluginsCallback = delaySetup('plugins');
+    require( pluginsToLoad, delaySetupPluginsCallback, function( err ) {
+      console.log( 'Plugin loading error! It happend with: "' + err.requireModules[0] + '". Is the plugin available and written correctly?');
+      delaySetupPluginsCallback();
+    });
     
     // then the icons
     $('meta > icons icon-definition', xml).each(function(i) {
