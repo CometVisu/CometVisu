@@ -557,6 +557,9 @@ define([
     // set css style
     $('#rowspanStyle').text( styles );
     
+    if( !templateEngine.currentPage )
+      return;
+    
     var widgetData = templateEngine.widgetData[  templateEngine.currentPage.attr('id') ];
     if( '2d' === widgetData.type )
     {
