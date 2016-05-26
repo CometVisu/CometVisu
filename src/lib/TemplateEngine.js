@@ -512,11 +512,10 @@ define([
    * Make sure everything looks right when the window gets resized. This is
    * necessary as the scroll effect requires a fixed element size
    */
-  this.handleResize = function(resize, skipScrollFix, force) {
+  this.handleResize = function(resize, skipScrollFix, forceHeight) {
     var $main = $('#main');
-    var forceHeight = force==undefined ? false : force; 
     var width = thisTemplateEngine.getAvailableWidth();
-    var height = thisTemplateEngine.getAvailableHeight(forceHeight);
+    var height = thisTemplateEngine.getAvailableHeight(forceHeight||true);
     $main.css('width', width).css('height', height);
     $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
     if (this.mobileDevice) {
@@ -578,7 +577,7 @@ define([
       if( !backdrop.complete )
       {
         // backdrop not available yet - reload
-        setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,force); }, 100);
+        setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,forceHeight); }, 100);
         return;
       }
       
