@@ -367,7 +367,7 @@ define([ 'jquery' ], function( $ ) {
       }
       level++;
     });
-      templateEngine.handleResize();
+    templateEngine.handleResize();
   };
 
   this.removeInactiveNavbars = function(page_id) {
