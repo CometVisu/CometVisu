@@ -565,9 +565,11 @@ define([
     {
       var
         cssPosRegEx = /(\d*)(.*)/,
-        backdrop = templateEngine.currentPage.children().children().filter('img')[0],
-        backdropNWidth   = backdrop.naturalWidth  || width,
-        backdropNHeight  = backdrop.naturalHeight || height,
+        backdrop = templateEngine.currentPage.children().children().filter(widgetData.backdroptype)[0],
+        backdropSVG      = widgetData.backdroptype === 'embed' ? backdrop.getSVGDocument() : null,
+        backdropBBox     = backdropSVG ? backdropSVG.children[0].getBBox() : {},
+        backdropNWidth   = backdrop.naturalWidth  || backdropBBox.width  || width,
+        backdropNHeight  = backdrop.naturalHeight || backdropBBox.height || height,
         backdropScale    = Math.min( width/backdropNWidth, height/backdropNHeight ),
         backdropWidth    = backdropNWidth  * backdropScale,
         backdropHeight   = backdropNHeight * backdropScale,
@@ -578,18 +580,22 @@ define([
         backdropTop      = backdropTopRaw[2]  === '%' ? (height>backdropHeight ? ((height-backdropHeight)*(+backdropTopRaw[1] )/100) : 0) : +backdropTopRaw[1],
         uagent           = navigator.userAgent.toLowerCase();
         
-      if( !backdrop.complete )
+      if( backdrop.complete === false || backdropSVG === null )
       {
         // backdrop not available yet - reload
         setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,forceHeight); }, 100);
         return;
       }
       
-      // Note: this here is a work around for older browsers that can't use
+      // Note 1: this here is a work around for older browsers that can't use
       // the object-fit property yet.
       // Currently (26.05.16) only Safari is known to not support 
       // object-position although object-fit itself does work
-      if( uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1)
+      // Note 2: The embed element allways needs it
+      if( 
+        widgetData.backdroptype === 'embed' ||
+        ( uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1 )
+      )
       {
         $( backdrop ).css({
           width:  backdropWidth  + 'px',

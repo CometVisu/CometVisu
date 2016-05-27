@@ -138,6 +138,7 @@ define( ['_common'], function( design ) {
       if (undefined != backdrop) {
         var elemType = '.svg' == backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';
         container += '<' + elemType + ' src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
+        data.backdroptype = elemType;
       }
     } else if( '3d' == type && false ) //---Disable 3D for 0.8---
     {
