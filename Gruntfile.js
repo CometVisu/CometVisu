@@ -132,7 +132,19 @@ module.exports = function(grunt) {
         }
       }
     },
-
+    
+    // build icons
+    svgstore: {
+      options: {
+        prefix : 'shape-', // This will prefix each <g> ID
+      },
+      default : {
+        files: {
+          'src/icon/knx-uf-iconset/svg-defs.svg': ['src/icon/knx-uf-iconset/knx-uf-iconset/raw_svg/*.svg'],
+        }
+      }
+    },
+    
     // appcache
     manifest: {
       generate: {
@@ -492,10 +504,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-karma-coveralls');
+  grunt.loadNpmTasks('grunt-svgstore');
 
   // Default task runs all code checks, updates the banner and builds the release
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'svgstore', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
 
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
