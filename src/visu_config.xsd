@@ -528,8 +528,14 @@
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="fixed" />
           <xsd:enumeration value="scaled" />
+          <xsd:enumeration value="contained" />
         </xsd:restriction>
       </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="backdropalign" stype="xsd:string" use="optional">
+      <xsd:annotation>
+          <xsd:appinfo>level:expert</xsd:appinfo>
+      </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="backdrop" type="uri" use="optional">
         <xsd:annotation>

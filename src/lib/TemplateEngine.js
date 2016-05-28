@@ -512,11 +512,10 @@ define([
    * Make sure everything looks right when the window gets resized. This is
    * necessary as the scroll effect requires a fixed element size
    */
-  this.handleResize = function(resize, skipScrollFix, force) {
+  this.handleResize = function(resize, skipScrollFix, forceHeight) {
     var $main = $('#main');
-    var forceHeight = force==undefined ? false : force; 
     var width = thisTemplateEngine.getAvailableWidth();
-    var height = thisTemplateEngine.getAvailableHeight(forceHeight);
+    var height = thisTemplateEngine.getAvailableHeight(forceHeight||true);
     $main.css('width', width).css('height', height);
     $('#pageSize').text('.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
     if (this.mobileDevice) {
@@ -527,6 +526,7 @@ define([
         // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
         // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
         setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,true); }, 100);
+        return;
       }
     }
     if (skipScrollFix === undefined) {
@@ -556,6 +556,95 @@ define([
 
     // set css style
     $('#rowspanStyle').text( styles );
+    
+    if( !templateEngine.currentPage )
+      return;
+    
+    var widgetData = templateEngine.widgetData[  templateEngine.currentPage.attr('id') ];
+    if( '2d' === widgetData.type )
+    {
+      var
+        cssPosRegEx = /(\d*)(.*)/,
+        backdrop = templateEngine.currentPage.children().children().filter(widgetData.backdroptype)[0],
+        backdropSVG      = widgetData.backdroptype === 'embed' ? backdrop.getSVGDocument() : null,
+        backdropBBox     = backdropSVG ? backdropSVG.children[0].getBBox() : {},
+        backdropNWidth   = backdrop.naturalWidth  || backdropBBox.width  || width,
+        backdropNHeight  = backdrop.naturalHeight || backdropBBox.height || height,
+        backdropScale    = Math.min( width/backdropNWidth, height/backdropNHeight ),
+        backdropWidth    = backdropNWidth  * backdropScale,
+        backdropHeight   = backdropNHeight * backdropScale,
+        backdropPos      = widgetData.backdropalign.split(' '),
+        backdropLeftRaw  = backdropPos[0].match( cssPosRegEx ),
+        backdropTopRaw   = backdropPos[1].match( cssPosRegEx ),
+        backdropLeft     = backdropLeftRaw[2] === '%' ? (width >backdropWidth  ? ((width -backdropWidth )*(+backdropLeftRaw[1])/100) : 0) : +backdropLeftRaw[1],
+        backdropTop      = backdropTopRaw[2]  === '%' ? (height>backdropHeight ? ((height-backdropHeight)*(+backdropTopRaw[1] )/100) : 0) : +backdropTopRaw[1],
+        uagent           = navigator.userAgent.toLowerCase();
+        
+      if( backdrop.complete === false || (widgetData.backdroptype === 'embed' && backdropSVG === null) )
+      {
+        // backdrop not available yet - reload
+        setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,forceHeight); }, 100);
+        return;
+      }
+      
+      // Note 1: this here is a work around for older browsers that can't use
+      // the object-fit property yet.
+      // Currently (26.05.16) only Safari is known to not support 
+      // object-position although object-fit itself does work
+      // Note 2: The embed element allways needs it
+      if( 
+        widgetData.backdroptype === 'embed' ||
+        ( uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1 )
+      )
+      {
+        $( backdrop ).css({
+          width:  backdropWidth  + 'px',
+          height: backdropHeight + 'px',
+          left:   backdropLeft   + 'px',
+          top:    backdropTop    + 'px'
+        });
+      }
+      
+      templateEngine.currentPage.find('.widget_container').toArray().forEach( function( widgetContainer ){ 
+        var widgetData = templateEngine.widgetDataGet( widgetContainer.id );
+        if( widgetData.layout )
+        {
+          var 
+            layout = widgetData.layout,
+            // this assumes that a .widget_container has only one child and this
+            // is the .widget itself
+            style  = widgetContainer.children[0].style;
+          
+          if( 'x' in layout )
+          {
+            var value = layout.x.match( cssPosRegEx );
+            if( 'px' === value[2] )
+            {
+              style.left = (backdropLeft + value[1]*backdropScale) + 'px';
+            } else {
+              style.left = layout.x;
+            }
+          }
+          
+          if( 'y' in layout )
+          {
+            var value = layout.y.match( cssPosRegEx );
+            if( 'px' === value[2] )
+            {
+              style.top = (backdropTop + value[1]*backdropScale) + 'px';
+            } else {
+              style.top = layout.y;
+            }
+          }
+          
+          if( 'width' in layout )
+            style.width = layout.width;
+          
+          if( 'height' in layout )
+            style.height = layout.height;
+        }
+      });
+    }
   };
   
   var usedRowspans = {};

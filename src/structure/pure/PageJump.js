@@ -32,8 +32,8 @@ define( ['_common'], function( design ) {
   design.basicdesign.addCreator('pagejump', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
+    var layout = basicdesign.parseLayout( $e.children('layout')[0] );
+    var style = $.isEmptyObject(layout) ? '' : 'style="' + basicdesign.extractLayout( layout, type ) + '"';
     var target = $e.attr('target') ? $e.attr('target') : '0';
     var classes = 'widget clearfix pagejump';
     if( $e.attr('align') ) {
@@ -64,6 +64,7 @@ define( ['_common'], function( design ) {
     var data = templateEngine.widgetDataInsert( path, {
       'bind_click_to_widget': true, // for pagejumps this is mandatory
       'styling' : $(element).attr('styling'),
+      'layout'  : layout,
       'align'   : $e.attr('align'),
       'target'  : target,
       'path'    : $(element).attr('path'),
