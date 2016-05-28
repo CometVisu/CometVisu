@@ -83,7 +83,7 @@ require([
 
   templateEngine = TemplateEngine.getInstance();
 
-  $(window).bind('resize', templateEngine.handleResize);
+  $(window).bind('resize', templateEngine.resizeHandling.invalidateScreensize);
   $(window).unload(function() {
     if( templateEngine.visu ) {
       templateEngine.visu.stop();
