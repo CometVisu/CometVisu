@@ -465,7 +465,7 @@ define([
    *         because the value of $main.position().top is not reliable all the time
    */
   this.getAvailableHeight = function() {
-  var windowHeight = $(window).height();
+    var windowHeight = $(window).height();
     thisTemplateEngine.currentPageUnavailableHeight=0;
     var navbarVisibility = thisTemplateEngine.getCurrentPageNavbarVisibility(thisTemplateEngine.currentPage);
     var heightStr = "Height: "+windowHeight;
