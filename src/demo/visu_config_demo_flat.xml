@@ -70,7 +70,7 @@
         ]]></status>
     </statusbar>
   </meta>
-  <page name="Übersicht" type="2d" backdrop="demo/media/demo_flat_floorplan.svg" align="center" size="contained" backdropalign="25% 0">
+  <page name="Übersicht" type="2d" backdrop="demo/media/demo_flat_floorplan.png" align="center" size="contained" backdropalign="25% 0">
     <navbar position="top">
       <pagejump target="Übersicht">
         <layout colspan="0"/>

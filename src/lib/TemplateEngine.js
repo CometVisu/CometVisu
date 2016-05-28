@@ -580,7 +580,7 @@ define([
         backdropTop      = backdropTopRaw[2]  === '%' ? (height>backdropHeight ? ((height-backdropHeight)*(+backdropTopRaw[1] )/100) : 0) : +backdropTopRaw[1],
         uagent           = navigator.userAgent.toLowerCase();
         
-      if( backdrop.complete === false || backdropSVG === null )
+      if( backdrop.complete === false || (widgetData.backdroptype === 'embed' && backdropSVG === null) )
       {
         // backdrop not available yet - reload
         setTimeout( function() { thisTemplateEngine.handleResize(resize,skipScrollFix,forceHeight); }, 100);
