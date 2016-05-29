@@ -59,7 +59,8 @@ define([ 'jquery' ], function( $ ) {
       }
     }
     $('.nav_path').html(nav);
-    templateEngine.handleResize();
+    // templateEngine.handleResize(); - TODO CM160528: why? This shouldn't have
+    //                             any effect on the page size => commented out
   };
 
   /**
@@ -74,7 +75,7 @@ define([ 'jquery' ], function( $ ) {
       $('#navbarLeft').css({
         width : cssSize
       });
-      templateEngine.handleResize();
+      templateEngine.resizeHandling.invalidateNavbar();
       break;
 
     case 'right':
@@ -83,7 +84,7 @@ define([ 'jquery' ], function( $ ) {
         width : cssSize,
         'margin-right' : '-' + cssSize
       });
-      templateEngine.handleResize();
+      templateEngine.resizeHandling.invalidateNavbar();
       break;
     }
   };
@@ -233,7 +234,7 @@ define([ 'jquery' ], function( $ ) {
         }
       }
     });
-    templateEngine.handleResize();
+    templateEngine.resizeHandling.invalidateNavbar();
   };
 
   /**
@@ -253,7 +254,7 @@ define([ 'jquery' ], function( $ ) {
     var navbar = $('#navbar' + position);
     var key = position.toLowerCase();
     var fn = function() {
-      templateEngine.handleResize();
+      templateEngine.resizeHandling.invalidateNavbar();
     };
     switch (direction) {
     case "in":
@@ -275,7 +276,7 @@ define([ 'jquery' ], function( $ ) {
     case "out":
       fn = function() {
         navbar.css("display", "none");
-        templateEngine.handleResize();
+        templateEngine.resizeHandling.invalidateNavbar();
       };
       switch (position) {
       case "Top":
@@ -367,7 +368,7 @@ define([ 'jquery' ], function( $ ) {
       }
       level++;
     });
-    templateEngine.handleResize();
+    templateEngine.resizeHandling.invalidateNavbar();
   };
 
   this.removeInactiveNavbars = function(page_id) {
