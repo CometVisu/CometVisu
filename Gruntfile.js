@@ -516,7 +516,7 @@ module.exports = function(grunt) {
     var end   = '// Do not remove this line: Dynamic Icons End';
     var iconconfigFile = grunt.file.read(iconconfig, { encoding: "utf8" }).toString();
     grunt.file.write(iconconfig, iconconfigFile
-      .replace( RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n" + end )
+      .replace( RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n    " + end )
     );
   });
 

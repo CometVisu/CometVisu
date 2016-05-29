@@ -939,7 +939,7 @@ define( ['lib/IconTools'], function() {
     'weather_wind_speed_ms': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : svgKUF('weather_wind_speed_ms') } } },
     'weather_winter': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : svgKUF('weather_winter') } } }
 
-// Do not remove this line: Dynamic Icons End
+    // Do not remove this line: Dynamic Icons End
 
   };
 });
