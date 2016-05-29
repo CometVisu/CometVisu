@@ -501,15 +501,34 @@ module.exports = function(grunt) {
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
   
-  // custom task to fix the KNX user forum icons:
+  // custom task to fix the KNX user forum icons and add them to the iconconfig.js:
   // - replace #FFFFFF with the currentColor
   // - fix viewBox to follow the png icon version
-  grunt.registerTask('fix-kuf-svg', function() {
-    var filename = 'src/icon/knx-uf-iconset.svg';
+  grunt.registerTask('handle-kuf-svg', function() {
+    var filename   = 'src/icon/knx-uf-iconset.svg';
+    var iconconfig = 'src/icon/iconconfig.js';
     var svg = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, svg
       .replace( /#FFFFFF/g, 'currentColor' )
       .replace( /viewBox="0 0 361 361"/g, 'viewBox="30 30 301 301"' ) // emulate a shave 40 on a 480px image
+    );
+    
+    var symbolRegEx = /<symbol.*?id="kuf-(.*?)".*?>/g;
+    var kufIcons = '';
+    while( (icon = symbolRegEx.exec( svg )) !== null )
+    {
+      // icon id = icon[1]
+      
+      if( kufIcons !== '' )
+        kufIcons += ",\n";
+      
+      kufIcons += "  '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : svgKUF('" + icon[1] + "') } } }";
+    }
+    var start = '// Do not remove this line: Dynamic Icons Start';
+    var end   = '// Do not remove this line: Dynamic Icons End';
+    var iconconfigFile = grunt.file.read(iconconfig, { encoding: "utf8" }).toString();
+    grunt.file.write(iconconfig, iconconfigFile
+      .replace( RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n" + end )
     );
   });
 
@@ -535,7 +554,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-svgstore');
 
   // Default task runs all code checks, updates the banner and builds the release
-  grunt.registerTask('buildicons', ['svgstore', 'fix-kuf-svg']);
+  grunt.registerTask('buildicons', ['svgstore', 'handle-kuf-svg']);
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'svgstore', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
