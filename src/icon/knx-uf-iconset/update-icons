@@ -84,5 +84,4 @@ git status
 echo
 
 echo -n "Creating Icon Handler ..."
-php -f ./make-iconhandler.php
-echo "done."
+echo "-> removed! Use 'grunt buildicons' instead!"

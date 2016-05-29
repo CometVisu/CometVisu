@@ -138,18 +138,6 @@ module.exports = function(grunt) {
       options: {
         prefix : 'kuf-', // This will prefix each <g> ID
         includeTitleElement: false,
-        /*
-        inheritviewbox: true,
-        //cleanup: true
-        // use sed -i 's/#FFFFFF/currentColor/g' icon/knx-uf-iconset.svg instead!
-        svg: {
-          viewBox: '0 0 331 331'
-        },
-        symbol: {
-          foo: 'bar',
-          viewBox: '0 0 331 331'
-        }
-        */
       },
       default : {
         files: {
