@@ -58,6 +58,47 @@ img.icon, canvas.icon {
   width: 100%;
 }
 
+/* The message popup.
+ * It will hide itself when it's empty, otherwise will stick on the top of the
+ * window.
+ */
+#message {
+  display: none;
+}
+
+#message:not(:empty) {
+  display: block;
+  position: fixed;
+  left: 1em;
+  top: 1em;
+  right: 1em;
+  padding: 0.5em;
+  color: #000;
+  background-color: #bbb;
+  border: 1px solid #000;
+  box-shadow: 0px 0px 0.5em 0.35em blue;
+}
+
+/*
+ * Option for a close button:
+#message::before {
+  content: '[X]';
+  display: block;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+*/
+
+#message.warning {
+  box-shadow: 0px 0px 0.5em 0.35em #ffc107;
+}
+
+#message.error {
+  box-shadow: 0px 0px 0.5em 0.35em #f00;
+  background-color: #ffafaf;
+}
+
 #pages,
 .page > .clearfix, 
 #navbarTop, #navbarBottom {

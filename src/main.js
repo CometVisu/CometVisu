@@ -169,5 +169,8 @@ require([
       dataType : 'xml'
     };
     $.ajax( ajaxRequest );
+    
+    // message discarding:
+    $('#message').click( function(){ this.textContent = ''; } );
   });
 }); // end require
