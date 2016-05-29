@@ -40,8 +40,8 @@ define( ['_common'], function( design ) {
       address[ '_' + $e.attr('ga') ] = [ 'DPT:1.001', 0 ];
     }
 
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
+    var layout = basicdesign.parseLayout( $e.children('layout')[0] );
+    var style = $.isEmptyObject(layout) ? '' : 'style="' + basicdesign.extractLayout( layout, type ) + '"';
     var classes = basicdesign.setWidgetLayout( $e, path );
 
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
@@ -68,6 +68,7 @@ define( ['_common'], function( design ) {
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
     var data = templateEngine.widgetDataInsert( path, {
       'address': address,
+      'layout' : layout,
       'refresh': refresh
     } );
     

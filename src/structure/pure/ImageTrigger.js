@@ -41,8 +41,8 @@ define( ['_common'], function( design ) {
     var value = $e.attr('value') ? $e.attr('value') : 0;
     ret_val += basicdesign.extractLabel( $e.find('label')[0], flavour );
     var address = basicdesign.makeAddressList($e);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type, {width:'100%'} ) + '"' : '';
+    var layout = basicdesign.parseLayout( $e.children('layout')[0], {width:'100%'} );
+    var style = $.isEmptyObject(layout) ? '' : 'style="' + basicdesign.extractLayout( layout, type ) + '"';
 
     var actor = '<div class="actor">';
     if ( $e.attr('type')=='show' )
@@ -56,6 +56,7 @@ define( ['_common'], function( design ) {
     var data = templateEngine.widgetDataInsert( path, {
       'address':   address, 
       'refresh':   refresh,
+      'layout' :   layout,
       'src':       $e.attr('src'),
       'suffix':    $e.attr('suffix'),
       'sendValue': $e.attr('sendValue') || ""

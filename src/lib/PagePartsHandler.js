@@ -59,7 +59,8 @@ define([ 'jquery' ], function( $ ) {
       }
     }
     $('.nav_path').html(nav);
-    templateEngine.handleResize();
+    // templateEngine.handleResize(); - TODO CM160528: why? This shouldn't have
+    //                             any effect on the page size => commented out
   };
 
   /**
@@ -74,6 +75,7 @@ define([ 'jquery' ], function( $ ) {
       $('#navbarLeft').css({
         width : cssSize
       });
+      templateEngine.resizeHandling.invalidateNavbar();
       break;
 
     case 'right':
@@ -82,6 +84,7 @@ define([ 'jquery' ], function( $ ) {
         width : cssSize,
         'margin-right' : '-' + cssSize
       });
+      templateEngine.resizeHandling.invalidateNavbar();
       break;
     }
   };
@@ -91,8 +94,9 @@ define([ 'jquery' ], function( $ ) {
       if (page==null) {
         page = templateEngine.currentPage;
       }
-      var pageData=templateEngine.widgetDataGet(page.attr('id'));
-      if (page==null || pageData==null) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
+      if( page===null ) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
+      var pageData = templateEngine.widgetDataGet(page.attr('id'));
+      if( pageData==null ) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
       var shownavbar = (pageData.shownavbar != undefined ? pageData.shownavbar : {
         top : 'inherit',
         bottom : 'inherit',
@@ -230,6 +234,7 @@ define([ 'jquery' ], function( $ ) {
         }
       }
     });
+    templateEngine.resizeHandling.invalidateNavbar();
   };
 
   /**
@@ -249,7 +254,7 @@ define([ 'jquery' ], function( $ ) {
     var navbar = $('#navbar' + position);
     var key = position.toLowerCase();
     var fn = function() {
-      
+      templateEngine.resizeHandling.invalidateNavbar();
     };
     switch (direction) {
     case "in":
@@ -271,6 +276,7 @@ define([ 'jquery' ], function( $ ) {
     case "out":
       fn = function() {
         navbar.css("display", "none");
+        templateEngine.resizeHandling.invalidateNavbar();
       };
       switch (position) {
       case "Top":
@@ -362,6 +368,7 @@ define([ 'jquery' ], function( $ ) {
       }
       level++;
     });
+    templateEngine.resizeHandling.invalidateNavbar();
   };
 
   this.removeInactiveNavbars = function(page_id) {
