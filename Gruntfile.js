@@ -510,7 +510,7 @@ module.exports = function(grunt) {
       if( kufIcons !== '' )
         kufIcons += ",\n";
       
-      kufIcons += "  '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : svgKUF('" + icon[1] + "') } } }";
+      kufIcons += "    '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : svgKUF('" + icon[1] + "') } } }";
     }
     var start = '// Do not remove this line: Dynamic Icons Start';
     var end   = '// Do not remove this line: Dynamic Icons End';
