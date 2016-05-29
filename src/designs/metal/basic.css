@@ -201,7 +201,7 @@ body br
 	float: none;
 	width: auto;
 }
-.navbar .widget > .label > img, .navbar .widget > .label > canvas {
+.navbar .widget > .label > .icon {
 	left: 0.2em;
 }
 .navbar .switchPressed, .navbar .switchUnpressed {
@@ -717,8 +717,8 @@ background-color: #000;
 }
 #navbarTop { border-bottom: 2px solid #666; }
 #navbarBottom { border-top: 2px solid #666; }
-.navbar .pagejump .label > img, .navbar .pagejump .label > canvas,
-.navbar .refresh .label > img, .navbar .refresh .label > canvas { 
+.navbar .pagejump .label > .icon,
+.navbar .refresh .label > .icon { 
 	height: 44px !important;
         width: 44px !important;
 	display: block;
