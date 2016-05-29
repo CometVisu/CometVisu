@@ -771,7 +771,7 @@ define([
     if ($('pages', xml).attr('max_mobile_screen_width'))
       thisTemplateEngine.maxMobileScreenWidth = $('pages', xml).attr('max_mobile_screen_width');
 
-    var getCSSlist = [ 'css!designs/designglobals.css'];
+    var getCSSlist = [];
     if (thisTemplateEngine.clientDesign) {
       getCSSlist.push( 'css!designs/' + thisTemplateEngine.clientDesign + '/basic.css' );
       if (!thisTemplateEngine.forceNonMobile) {
