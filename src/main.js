@@ -83,7 +83,7 @@ require([
 
   templateEngine = TemplateEngine.getInstance();
 
-  $(window).bind('resize', templateEngine.handleResize);
+  $(window).bind('resize', templateEngine.resizeHandling.invalidateScreensize);
   $(window).unload(function() {
     if( templateEngine.visu ) {
       templateEngine.visu.stop();
@@ -122,7 +122,7 @@ require([
             message += '.';
           }
       }
-      $('#loading').html(message);
+      $('#message').addClass('error').html(message);
     }
     // get the data once the page was loaded
     var ajaxRequest = {
@@ -169,5 +169,11 @@ require([
       dataType : 'xml'
     };
     $.ajax( ajaxRequest );
+    
+    // message discarding - but not for errors:
+    $('#message').click( function(){ 
+      if( this.className.indexOf('error') === -1 )
+        this.textContent = ''; 
+    });
   });
 }); // end require

@@ -290,22 +290,41 @@ define( ['jquery'], function($) {
     ev.data.element.css( 'display', floorFilter ? '' : 'none' );
   }
   
-  this.extractLayout = function( layout, type, defaultValues )
+  /**
+   * Parse config file layout element and convert it to an object
+   */
+  this.parseLayout = function( layout, defaultValues )
   {
-    if (typeof defaultValue === 'undefined') defaultValues = [];
+    var ret_val = {};
+    
+    if( !layout )
+      return ret_val;
+    
+    if( undefined === defaultValues ) defaultValues = {};
+       
+    if( layout.getAttribute('x'     ) ) ret_val.x      = layout.getAttribute('x'     );
+    else if( defaultValues.x          ) ret_val.x      = defaultValues.x;
+       
+    if( layout.getAttribute('y'     ) ) ret_val.y      = layout.getAttribute('y'     );
+    else if( defaultValues.y          ) ret_val.y      = defaultValues.y;
+       
+    if( layout.getAttribute('width' ) ) ret_val.width  = layout.getAttribute('width' );
+    else if( defaultValues.width      ) ret_val.width  = defaultValues.width;
+       
+    if( layout.getAttribute('height') ) ret_val.height = layout.getAttribute('height');
+    else if( defaultValues.height     ) ret_val.height = defaultValues.height;
+       
+    return ret_val;
+  }
+  
+  this.extractLayout = function( layout, type )
+  {
   
     var ret_val = (type == '2d') ? 'position:absolute;' : '';
-    if( layout.getAttribute('x'     ) ) ret_val += 'left:'   + layout.getAttribute('x'     ) + ';';
-    else if( defaultValues[ 'x'     ] ) ret_val += 'left:'   + defaultValues[      'x'     ] + ';';
-    
-    if( layout.getAttribute('y'     ) ) ret_val += 'top:'    + layout.getAttribute('y'     ) + ';';
-    else if( defaultValues[ 'y'     ] ) ret_val += 'top:'    + defaultValues[      'y'     ] + ';';
-    
-    if( layout.getAttribute('width' ) ) ret_val += 'width:'  + layout.getAttribute('width' ) + ';';
-    else if( defaultValues[ 'width' ] ) ret_val += 'width:'  + defaultValues[      'width' ] + ';';
-    
-    if( layout.getAttribute('height') ) ret_val += 'height:' + layout.getAttribute('height') + ';';
-    else if( defaultValues[ 'height'] ) ret_val += 'height:' + defaultValues[      'height'] + ';';
+    if( layout.x      ) ret_val += 'left:'   + layout.x      + ';';
+    if( layout.y      ) ret_val += 'top:'    + layout.y      + ';';
+    if( layout.width  ) ret_val += 'width:'  + layout.width  + ';';
+    if( layout.height ) ret_val += 'height:' + layout.height + ';';
     
     return ret_val;
   }
@@ -422,7 +441,7 @@ define( ['jquery'], function($) {
    * @param updateFn   The callback function for updates
    */
   this.createDefaultWidget = function( widgetType, $element, path, flavour, type, updateFn, makeAddressListFn ) {
-    var layout = $element.children('layout')[0];
+    var layout = this.parseLayout( $element.children('layout')[0] );
     var style = layout ? 'style="' + this.extractLayout( layout, type ) + '"' : '';
     var classes = 'widget clearfix ' + widgetType;
     if( $element.attr('align') ) {
@@ -444,6 +463,7 @@ define( ['jquery'], function($) {
       'styling' : $element.attr('styling'),
       'format'  : $element.attr('format'),
       'align'   : $element.attr('align'),
+      'layout'  : layout,
       'path'    : path
     });
     var ret_val = '<div class="'+classes+'" ' + style + '>' + label;
