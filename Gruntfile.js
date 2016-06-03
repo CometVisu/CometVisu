@@ -494,6 +494,19 @@ module.exports = function(grunt) {
         force: true,
         recursive: true
       }
+    },
+
+    shell: {
+      updateicons: {
+        command: [
+          'cd external/knx-uf-iconset',
+          'git checkout master',
+          'git pull',
+          'cd ../../',
+          'git add external/knx-uf-iconset',
+          'git commit -m "icons updated"'
+        ].join('&&')
+      }
     }
   });
 
@@ -562,6 +575,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-svgstore');
   grunt.loadNpmTasks('grunt-svgmin');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
@@ -571,6 +585,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
+
+  // update icon submodule
+  grunt.registerTask('updateicons', ['shell:updateicons']);
 
   grunt.registerTask('default', 'build');
 };
