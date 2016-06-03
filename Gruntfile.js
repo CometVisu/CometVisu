@@ -132,19 +132,39 @@ module.exports = function(grunt) {
         }
       }
     },
-    
+
+    // minify svg icons
+    svgmin: {
+      options: {
+        plugins: [
+          {
+            convertTransform: false
+          }
+        ]
+      },
+      dist: {
+        files: [
+          {
+            expand: true,
+            cwd: 'external/knx-uf-iconset/raw_svg/',
+            src: '*.svg',
+            dest: 'cache/icons/'
+          }
+        ]
+      }
+    },
+
     // build icons
     svgstore: {
       options: {
         prefix : 'kuf-', // This will prefix each <g> ID
-        includeTitleElement: false,
+        includeTitleElement: false
       },
       default : {
         files: {
           'src/icon/knx-uf-iconset.svg': [
-            'src/icon/knx-uf-iconset/knx-uf-iconset/raw_svg/*.svg', 
-            '!src/icon/knx-uf-iconset/knx-uf-iconset/raw_svg/secur_alarm_test.svg' // exclude big icon with interpretation problem due to it's included font file
-          ],
+            'cache/icons/*.svg'
+          ]
         }
       }
     },
@@ -348,7 +368,8 @@ module.exports = function(grunt) {
 
     clean: {
       archives : ['*.zip', '*.gz'],
-      release: ['release/']
+      release: ['release/'],
+      iconcache: ['cache/icons']
     },
 
     "file-creator": {
@@ -540,11 +561,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-svgstore');
+  grunt.loadNpmTasks('grunt-svgmin');
 
   // Default task runs all code checks, updates the banner and builds the release
-  grunt.registerTask('buildicons', ['svgstore', 'handle-kuf-svg']);
+  grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'svgstore', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'buildicons', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
 
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
