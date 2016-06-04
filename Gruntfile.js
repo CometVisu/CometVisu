@@ -499,12 +499,14 @@ module.exports = function(grunt) {
     shell: {
       updateicons: {
         command: [
+          'git submodule init',
+          'git submodule update',
           'cd external/knx-uf-iconset',
           'git checkout master',
           'git pull',
           'cd ../../',
-          'git add external/knx-uf-iconset',
-          'git commit -m "icons updated"'
+          // 'git add external/knx-uf-iconset',
+          //'git commit -m "icons updated"'
         ].join('&&')
       }
     }
@@ -531,7 +533,7 @@ module.exports = function(grunt) {
     var iconconfig = 'src/icon/iconconfig.js';
     var svg = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, svg
-      .replace( /#FFFFFF/g, 'currentColor' )
+      .replace( /#FFFFFF|#fff/g, 'currentColor' )
       .replace( /viewBox="0 0 361 361"/g, 'viewBox="30 30 301 301"' ) // emulate a shave 40 on a 480px image
     );
     
