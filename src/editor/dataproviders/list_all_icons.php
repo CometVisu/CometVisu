@@ -28,17 +28,20 @@
  * @since       2012-10-17
  */
 
-define('ICON_DIRECTORY', '../../icon/knx-uf-iconset/128x128_white/');
-define('ICON_SUFFIX', '.png');
-define('ICON_PATTERN', '*.png');
+define('ICON_FILE', '../../icon/knx-uf-iconset.svg');
 
-foreach (glob(ICON_DIRECTORY . ICON_PATTERN) as $strFilename) {
-    $strFileBasename = basename($strFilename, ICON_SUFFIX);
+function createListEntry( $key )
+{
+  return array(
+    'value' => utf8_encode($key),
+    'label' => utf8_encode($key),
+  );
+}
 
-    $arrData[] = array(
-                                        'value' => utf8_encode($strFileBasename),
-                                        'label' => utf8_encode($strFileBasename),
-                                        );
+if (true === file_exists(ICON_FILE) && filesize(ICON_FILE) > 0) {
+  preg_match_all( '/id="kuf-(.*?)"/', file_get_contents( ICON_FILE ), $fileData, PREG_PATTERN_ORDER );
+  
+  $arrData = array_map( "createListEntry", $fileData[1] );
 }
 
 Header("Content-type: application/json");
