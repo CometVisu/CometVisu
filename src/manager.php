@@ -108,7 +108,7 @@ define( 'DEMO_TABLE_ROW', '<tr class="visuline">'
  */
 function icon( $name )
 {
-  return '<img src="icon/knx-uf-iconset/128x128_white/' . $name . '.png" class="icon" />';
+  return '<svg class="icon"><use xlink:href="icon/knx-uf-iconset.svg#kuf-' . $name . '"></use></svg>';
 }
 
 /**
@@ -228,7 +228,7 @@ if( ($config == '' || $config != false) && ($action != false) )
     <link rel="apple-touch-icon" sizes="114x114" href="icon/comet_webapp_icon_114.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="icon/comet_webapp_icon_144.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="icon/comet_webapp_icon_144.png" />
-    <script src="dependencies/jquery.min.js" type="text/javascript"></script>
+    <script src="dependencies/jquery.js" type="text/javascript"></script>
     <script>
 function deleteConfig( displayName, name )
 {
@@ -311,8 +311,10 @@ if( $resetUrl )
     .visuline:hover, #newConfig:hover {
       background: #999;
     }
-    img.icon {
+    .icon {
       width: 32px;
+      height: 32px;
+      color: white;
     }
     .footnote {
       font-size: 80%;
