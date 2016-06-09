@@ -532,7 +532,7 @@
         </xsd:restriction>
       </xsd:simpleType>
     </xsd:attribute>
-    <xsd:attribute name="backdropalign" stype="xsd:string" use="optional">
+    <xsd:attribute name="backdropalign" type="xsd:string" use="optional">
       <xsd:annotation>
           <xsd:appinfo>level:expert</xsd:appinfo>
       </xsd:annotation>
