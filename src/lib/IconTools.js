@@ -227,7 +227,7 @@ define([ 'jquery' ], function( $ ) {
    */
   window.fillRecoloredIcon = function( icon ) {
     var 
-      parameters = icon.className.split(' ')[0].substring(4).split('_');
+      parameters = (icon.className.split ? icon.className.split(' ') : icon.className.baseVal.split(' '))[0].substring(4).split('_');
     if( 2 === parameters.length )
     { 
       var 
@@ -238,6 +238,20 @@ define([ 'jquery' ], function( $ ) {
         iconDelayed( icon, cacheEntry.colors, '#' + parameters[1] );
       else
         fillCanvas( icon, coloredIcon );
+    }
+  };
+  
+  window.svgKUF = function( iconID ) {
+    return function( color, styling, classes, asText )
+    {
+      if( color in colorMapping )
+        color = colorMapping[ color ];
+      
+      var style='';
+      if( color )
+        style = 'style="color:' + color + '" ';
+      
+      return '<svg ' + style + 'class="' + classes + '"><use xlink:href="icon/knx-uf-iconset.svg#kuf-' + iconID + '"></use></svg>';
     }
   };
 })(window);

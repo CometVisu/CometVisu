@@ -70,7 +70,7 @@
         ]]></status>
     </statusbar>
   </meta>
-  <page name="Übersicht" type="2d" backdrop="demo/media/demo_flat_floorplan.svg" align="center" size="fixed">
+  <page name="Übersicht" type="2d" backdrop="demo/media/demo_flat_floorplan.png" align="center" size="contained" backdropalign="25% 0">
     <navbar position="top">
       <pagejump target="Übersicht">
         <layout colspan="0"/>
@@ -158,32 +158,6 @@
         </pagejump>
       </group>
     </navbar>
-    <!--
-    <info mapping="Zu_Auf_Icon">
-      <layout x="562px" y="10px"/>
-      <address transform="DPT:1.001">12/7/10</address>
-    </info>
-    <info mapping="Zu_Auf_Icon">
-      <layout x="320px" y="5px"/>
-      <address transform="DPT:1.001">12/7/11</address>
-    </info>
-    <info mapping="Zu_Auf_Icon">
-      <layout x="120px" y="296px"/>
-      <address transform="DPT:1.001">12/7/12</address>
-    </info>
-    <info mapping="Zu_Auf_Icon">
-      <layout x="136px" y="887px"/>
-      <address transform="DPT:1.001">12/7/20</address>
-    </info>
-    <info mapping="Zu_Auf_Icon">
-      <layout x="476px" y="924px"/>
-      <address transform="DPT:1.001">12/7/30</address>
-    </info>
-    <info mapping="Door_Auf_Zu_Locked_Icon">
-      <layout x="660px" y="539px"/>
-      <address transform="DPT:5.010">12/7/40</address>
-    </info>
-    -->
     <info mapping="Zu_Auf_Icon">
       <layout x="454px" y="8px"/>
       <address transform="DPT:1.001">12/7/10</address>
@@ -291,9 +265,6 @@
           </group>
         </page>
         <switch mapping="Aus_An_Pumpe_Icon">
-          <!--
-          <label>Pumpe</label>
-          -->
           <layout colspan="1" x="488px" y="248px"/>
           <address transform="DPT:1.001" mode="readwrite">12/7/50</address>
         </switch>

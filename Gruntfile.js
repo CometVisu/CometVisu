@@ -133,6 +133,42 @@ module.exports = function(grunt) {
       }
     },
 
+    // minify svg icons
+    svgmin: {
+      options: {
+        plugins: [
+          {
+            convertTransform: false
+          }
+        ]
+      },
+      dist: {
+        files: [
+          {
+            expand: true,
+            cwd: 'external/knx-uf-iconset/raw_svg/',
+            src: '*.svg',
+            dest: 'cache/icons/'
+          }
+        ]
+      }
+    },
+
+    // build icons
+    svgstore: {
+      options: {
+        prefix : 'kuf-', // This will prefix each <g> ID
+        includeTitleElement: false
+      },
+      default : {
+        files: {
+          'src/icon/knx-uf-iconset.svg': [
+            'cache/icons/*.svg'
+          ]
+        }
+      }
+    },
+    
     // appcache
     manifest: {
       generate: {
@@ -332,7 +368,8 @@ module.exports = function(grunt) {
 
     clean: {
       archives : ['*.zip', '*.gz'],
-      release: ['release/']
+      release: ['release/'],
+      iconcache: ['cache/icons']
     },
 
     "file-creator": {
@@ -457,6 +494,21 @@ module.exports = function(grunt) {
         force: true,
         recursive: true
       }
+    },
+
+    shell: {
+      updateicons: {
+        command: [
+          'git submodule init',
+          'git submodule update',
+          'cd external/knx-uf-iconset',
+          'git checkout master',
+          'git pull',
+          'cd ../../',
+          // 'git add external/knx-uf-iconset',
+          //'git commit -m "icons updated"'
+        ].join('&&')
+      }
     }
   });
 
@@ -471,6 +523,37 @@ module.exports = function(grunt) {
     filename = 'release/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
+  });
+  
+  // custom task to fix the KNX user forum icons and add them to the iconconfig.js:
+  // - replace #FFFFFF with the currentColor
+  // - fix viewBox to follow the png icon version
+  grunt.registerTask('handle-kuf-svg', function() {
+    var filename   = 'src/icon/knx-uf-iconset.svg';
+    var iconconfig = 'src/icon/iconconfig.js';
+    var svg = grunt.file.read(filename, { encoding: "utf8" }).toString();
+    grunt.file.write(filename, svg
+      .replace( /#FFFFFF|#fff/g, 'currentColor' )
+      .replace( /viewBox="0 0 361 361"/g, 'viewBox="30 30 301 301"' ) // emulate a shave 40 on a 480px image
+    );
+    
+    var symbolRegEx = /<symbol.*?id="kuf-(.*?)".*?>/g;
+    var kufIcons = '';
+    while( (icon = symbolRegEx.exec( svg )) !== null )
+    {
+      // icon id = icon[1]
+      
+      if( kufIcons !== '' )
+        kufIcons += ",\n";
+      
+      kufIcons += "    '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : svgKUF('" + icon[1] + "') } } }";
+    }
+    var start = '// Do not remove this line: Dynamic Icons Start';
+    var end   = '// Do not remove this line: Dynamic Icons End';
+    var iconconfigFile = grunt.file.read(iconconfig, { encoding: "utf8" }).toString();
+    grunt.file.write(iconconfig, iconconfigFile
+      .replace( RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n    " + end )
+    );
   });
 
   // Load the plugin tasks
@@ -492,14 +575,21 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-karma-coveralls');
+  grunt.loadNpmTasks('grunt-svgstore');
+  grunt.loadNpmTasks('grunt-svgmin');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task runs all code checks, updates the banner and builds the release
+  grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'buildicons', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
 
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
+
+  // update icon submodule
+  grunt.registerTask('updateicons', ['shell:updateicons']);
 
   grunt.registerTask('default', 'build');
 };

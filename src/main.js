@@ -83,7 +83,7 @@ require([
 
   templateEngine = TemplateEngine.getInstance();
 
-  $(window).bind('resize', templateEngine.handleResize);
+  $(window).bind('resize', templateEngine.resizeHandling.invalidateScreensize);
   $(window).unload(function() {
     if( templateEngine.visu ) {
       templateEngine.visu.stop();
@@ -122,14 +122,14 @@ require([
             message += '.';
           }
       }
-      $('#loading').html(message);
+      $('#message').addClass('error').html(message);
     }
     // get the data once the page was loaded
     var ajaxRequest = {
       noDemo: true,
       url : 'config/visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
       cache : !templateEngine.forceReload,
-      success : function(xml) {
+      success : function(xml, textStatus, request) {
         if (!xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length) {
           configError("parsererror");
         }
@@ -145,6 +145,12 @@ require([
           else {
             var $loading = $('#loading');
             $loading.html( $loading.text().trim() + '.' );
+            if (request.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
+              templateEngine.backendUrl = request.getResponseHeader("X-CometVisu-Backend-LoginUrl");
+            }
+            if (request.getResponseHeader("X-CometVisu-Backend-Name")) {
+              templateEngine.backend = request.getResponseHeader("X-CometVisu-Backend-Name");
+            }
             templateEngine.parseXML(xml);
           }
         }
@@ -169,5 +175,11 @@ require([
       dataType : 'xml'
     };
     $.ajax( ajaxRequest );
+    
+    // message discarding - but not for errors:
+    $('#message').click( function(){ 
+      if( this.className.indexOf('error') === -1 )
+        this.textContent = ''; 
+    });
   });
 }); // end require

@@ -32,8 +32,8 @@ define( ['_common'], function( design ) {
   design.basicdesign.addCreator('urltrigger', {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
-    var layout = $e.children('layout')[0];
-    var style = layout ? 'style="' + basicdesign.extractLayout( layout, type ) + '"' : '';
+    var layout = basicdesign.parseLayout( $e.children('layout')[0] );
+    var style = $.isEmptyObject(layout) ? '' : 'style="' + basicdesign.extractLayout( layout, type ) + '"';
     var value = $e.attr('value') ? $e.attr('value') : 0;
     var classes = 'widget clearfix trigger';
     if( $e.attr('align') ) {
@@ -53,6 +53,7 @@ define( ['_common'], function( design ) {
       'url'     : $(element).attr('url'), 
       'mapping' : $(element).attr('mapping'),
       'styling' : $(element).attr('styling'),
+      'layout'  : layout,
       'align'   : $e.attr('align'),
       'params'  : $(element).attr('params'),
       'sendValue': value //value is currently ignored in XHR! maybe for multitrigger
