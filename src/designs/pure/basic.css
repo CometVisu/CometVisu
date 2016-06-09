@@ -615,7 +615,7 @@ div#demo_3 {
     background-color: black;
 }
 
-img.icon, canvas.icon
+.icon
 {
   vertical-align: middle;
 }
