@@ -40,6 +40,9 @@
     "grunt-manifest": "^0.4.4",
     "grunt-prompt": "^1.3.3",
     "grunt-protractor-runner": "^3.1.0",
+    "grunt-shell": "^1.3.0",
+    "grunt-svgmin": "^3.2.0",
+    "grunt-svgstore": "latest",
     "ink-docstrap": "^1.1.2",
     "jasmine-core": "^2.4.1",
     "jshint-stylish": "^2.1.0",
@@ -54,6 +57,7 @@
     "protractor": "^3.2.2",
     "request": "^2.69.0",
     "requirejs": "^2.1.22",
-    "rjs-build-analysis": "0.0.3"
+    "rjs-build-analysis": "0.0.3",
+    "svgmin": "^0.1.0"
   }
 }
