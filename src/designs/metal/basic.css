@@ -168,10 +168,10 @@ body br
   -ms-box-sizing: border-box;
 }
 .text > div { line-height: 2em; }
-.widget > .label img.icon, .widget > .label canvas.icon, .text img.icon, .text canvas.icon { vertical-align: middle; margin-top: -0.3em; }
-.widget .pagejump img.icon, .widget .pagejump canvas.icon { margin-top: -0; }
-.widget .actor img.icon, .widget .actor canvas.icon { margin-bottom: -0.6em; }
-.widget .switchPressed img.icon, .widget .switchPressed canvas.icon, .widget .switchUnpressed img.icon, .widget .switchUnpressed canvas.icon { margin-top: -0.4em; margin-bottom: -0.6em;}
+.widget > .label .icon, .text .icon { vertical-align: middle; margin-top: -0.3em; }
+.widget .pagejump .icon { margin-top: -0; }
+.widget .actor .icon { margin-bottom: -0.6em; }
+.widget .switchPressed .icon, .widget .switchUnpressed .icon { margin-top: -0.4em; margin-bottom: -0.6em;}
 .navbar .widget_container > .pagejump > .label, .navbar .widget_container > .refresh > .label {
 	width: auto;
 	display: inline;
@@ -201,7 +201,7 @@ body br
 	float: none;
 	width: auto;
 }
-.navbar .widget > .label > img, .navbar .widget > .label > canvas {
+.navbar .widget > .label > .icon {
 	left: 0.2em;
 }
 .navbar .switchPressed, .navbar .switchUnpressed {
@@ -717,8 +717,8 @@ background-color: #000;
 }
 #navbarTop { border-bottom: 2px solid #666; }
 #navbarBottom { border-top: 2px solid #666; }
-.navbar .pagejump .label > img, .navbar .pagejump .label > canvas,
-.navbar .refresh .label > img, .navbar .refresh .label > canvas { 
+.navbar .pagejump .label > .icon,
+.navbar .refresh .label > .icon { 
 	height: 44px !important;
         width: 44px !important;
 	display: block;
@@ -762,14 +762,10 @@ background-color: #000;
 .widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { text-align: center; }
 .widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > div { text-align: right; }
 
-.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon,
-.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor canvas.icon { margin-left: 0; }
-.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon,
-.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor canvas.icon { margin-right: 35px; }
-.widget.left:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon,
-.widget.left:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor canvas.icon,
-.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor img.icon,
-.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor canvas.icon { margin-left: 10px; }
+.widget.center:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor .icon { margin-left: 0; }
+.widget.right:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor .icon { margin-right: 35px; }
+.widget.left:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor .icon,
+.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor .icon { margin-left: 10px; }
 
 .widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor:first-child, 
 .widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor:first-child > div { 
