@@ -129,7 +129,7 @@ require([
       noDemo: true,
       url : 'config/visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
       cache : !templateEngine.forceReload,
-      success : function(xml) {
+      success : function(xml, textStatus, request) {
         if (!xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length) {
           configError("parsererror");
         }
@@ -145,6 +145,12 @@ require([
           else {
             var $loading = $('#loading');
             $loading.html( $loading.text().trim() + '.' );
+            if (request.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
+              templateEngine.backendUrl = request.getResponseHeader("X-CometVisu-Backend-LoginUrl");
+            }
+            if (request.getResponseHeader("X-CometVisu-Backend-Name")) {
+              templateEngine.backend = request.getResponseHeader("X-CometVisu-Backend-Name");
+            }
             templateEngine.parseXML(xml);
           }
         }
