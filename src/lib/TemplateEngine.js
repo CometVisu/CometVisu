@@ -1018,117 +1018,120 @@ define([
   function setup_page() {
     // and now setup the pages
     profileCV( 'setup_page start' );
-
-    // check if the page and the plugins are ready now
+  
+      // check if the page and the plugins are ready now
     for( var key in loadReady )  // test for emptines
       return; // we'll be called again...
-      
-    profileCV( 'setup_page running' );
- 
-    // as we are sure that the default CSS were loaded now:
-    $('link[href*="mobile.css"]').each(function(){
-      this.media = 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)';
-    });
-    
-    var page = $('pages > page', xml)[0]; // only one page element allowed...
 
-    thisTemplateEngine.create_pages(page, 'id');
-    thisTemplateEngine.design.getCreator('page').createFinal();
-    profileCV( 'setup_page created pages' );
-    
-    thisTemplateEngine.postDOMSetupFns.forEach( function( thisFn ){
-      thisFn();
-    });
-    profileCV( 'setup_page finished postDOMSetupFns' );
-    
-    var startpage = 'id_';
-    if ($.getUrlVar('startpage')) {
-      startpage = $.getUrlVar('startpage');
-      if( typeof(Storage) !== 'undefined' )
-      {
-        if( 'remember' === startpage )
-        {
-          startpage = localStorage.getItem( 'lastpage' );
-          rememberLastPage = true;
-          if( 'string' !== typeof( startpage ) || 'id_' !== startpage.substr( 0, 3 ) )
-            startpage = 'id_'; // fix obvious wrong data
-        } else
-        if( 'noremember' === startpage )
-        {
-          localStorage.removeItem( 'lastpage' );
-          startpage = 'id_';
-          rememberLastPage = false;
-        }
-      }
-    }
-    thisTemplateEngine.currentPage = $('#'+startpage);
-    
-    thisTemplateEngine.adjustColumns();
-    thisTemplateEngine.applyColumnWidths();
-    
-    thisTemplateEngine.main_scroll = new PageHandler();
-    if (thisTemplateEngine.scrollSpeed != undefined) {
-      thisTemplateEngine.main_scroll.setSpeed( thisTemplateEngine.scrollSpeed );
-    }
+    // login to backend as it might change some settings needed for further processing
+    thisTemplateEngine.visu.login(true, function() {
+      profileCV( 'setup_page running' );
    
-    thisTemplateEngine.scrollToPage(startpage,0);
-
-    /* CM, 9.4.16:
-     * TODO: Is this really needed?
-     * I can't find any source for setting .fast - and when it's set, it's
-     * most likely not working as scrollToPage should have been used instead
-     * anyway...
-     * 
-    $('.fast').bind('click', function() {
-      thisTemplateEngine.main_scroll.seekTo($(this).text());
-    });
-   */
-
-    // reaction on browser back button
-    window.onpopstate = function(e) {
-      // where do we come frome?
-      lastpage = e.state;
-      if (lastpage) {
-        // browser back button takes back to the last page
-        thisTemplateEngine.scrollToPage(lastpage, 0, true);
-      }
-    };
-
-    // run the Trick-O-Matic scripts for great SVG backdrops
-    $('embed').each(function() { this.onload =  Trick_O_Matic });
-    
-    if (thisTemplateEngine.enableAddressQueue) {
-      // identify addresses on startpage
-      var startPageAddresses = {};
-      $('.actor','#'+startpage).each(function() {
-        var $this = $(this),
-              data  = $this.data();
-        if( undefined === data.address ) data = $this.parent().data();
-        for( var addr in data.address )
+      // as we are sure that the default CSS were loaded now:
+      $('link[href*="mobile.css"]').each(function(){
+        this.media = 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)';
+      });
+      
+      var page = $('pages > page', xml)[0]; // only one page element allowed...
+  
+      thisTemplateEngine.create_pages(page, 'id');
+      thisTemplateEngine.design.getCreator('page').createFinal();
+      profileCV( 'setup_page created pages' );
+      
+      thisTemplateEngine.postDOMSetupFns.forEach( function( thisFn ){
+        thisFn();
+      });
+      profileCV( 'setup_page finished postDOMSetupFns' );
+      
+      var startpage = 'id_';
+      if ($.getUrlVar('startpage')) {
+        startpage = $.getUrlVar('startpage');
+        if( typeof(Storage) !== 'undefined' )
         {
-          startPageAddresses[addr.substring(1)]=1;
+          if( 'remember' === startpage )
+          {
+            startpage = localStorage.getItem( 'lastpage' );
+            rememberLastPage = true;
+            if( 'string' !== typeof( startpage ) || 'id_' !== startpage.substr( 0, 3 ) )
+              startpage = 'id_'; // fix obvious wrong data
+          } else
+          if( 'noremember' === startpage )
+          {
+            localStorage.removeItem( 'lastpage' );
+            startpage = 'id_';
+            rememberLastPage = false;
+          }
         }
+      }
+      thisTemplateEngine.currentPage = $('#'+startpage);
+      
+      thisTemplateEngine.adjustColumns();
+      thisTemplateEngine.applyColumnWidths();
+      
+      thisTemplateEngine.main_scroll = new PageHandler();
+      if (thisTemplateEngine.scrollSpeed != undefined) {
+        thisTemplateEngine.main_scroll.setSpeed( thisTemplateEngine.scrollSpeed );
+      }
+     
+      thisTemplateEngine.scrollToPage(startpage,0);
+  
+      /* CM, 9.4.16:
+       * TODO: Is this really needed?
+       * I can't find any source for setting .fast - and when it's set, it's
+       * most likely not working as scrollToPage should have been used instead
+       * anyway...
+       * 
+      $('.fast').bind('click', function() {
+        thisTemplateEngine.main_scroll.seekTo($(this).text());
       });
-      thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
-    }
-    var addressesToSubscribe = thisTemplateEngine.getAddresses();
-    if( 0 !== addressesToSubscribe.length )
-      thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
-    
-    xml = null; // not needed anymore - free the space
-    
-    $('.icon').each(function(){ fillRecoloredIcon(this);});
-    $('.loading').removeClass('loading');
-    fireLoadingFinishedAction();
-    if( undefined !== thisTemplateEngine.screensave_time )
-    {
-      thisTemplateEngine.screensave = setTimeout( function(){thisTemplateEngine.scrollToPage();}, thisTemplateEngine.screensave_time*1000 );
-      $(document).click( function(){
-        clearInterval( thisTemplateEngine.screensave );
+     */
+  
+      // reaction on browser back button
+      window.onpopstate = function(e) {
+        // where do we come frome?
+        lastpage = e.state;
+        if (lastpage) {
+          // browser back button takes back to the last page
+          thisTemplateEngine.scrollToPage(lastpage, 0, true);
+        }
+      };
+  
+      // run the Trick-O-Matic scripts for great SVG backdrops
+      $('embed').each(function() { this.onload =  Trick_O_Matic });
+      
+      if (thisTemplateEngine.enableAddressQueue) {
+        // identify addresses on startpage
+        var startPageAddresses = {};
+        $('.actor','#'+startpage).each(function() {
+          var $this = $(this),
+                data  = $this.data();
+          if( undefined === data.address ) data = $this.parent().data();
+          for( var addr in data.address )
+          {
+            startPageAddresses[addr.substring(1)]=1;
+          }
+        });
+        thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
+      }
+      var addressesToSubscribe = thisTemplateEngine.getAddresses();
+      if( 0 !== addressesToSubscribe.length )
+        thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
+      
+      xml = null; // not needed anymore - free the space
+      
+      $('.icon').each(function(){ fillRecoloredIcon(this);});
+      $('.loading').removeClass('loading');
+      fireLoadingFinishedAction();
+      if( undefined !== thisTemplateEngine.screensave_time )
+      {
         thisTemplateEngine.screensave = setTimeout( function(){thisTemplateEngine.scrollToPage();}, thisTemplateEngine.screensave_time*1000 );
-      });
-    }
-    profileCV( 'setup_page finish' );
+        $(document).click( function(){
+          clearInterval( thisTemplateEngine.screensave );
+          thisTemplateEngine.screensave = setTimeout( function(){thisTemplateEngine.scrollToPage();}, thisTemplateEngine.screensave_time*1000 );
+        });
+      }
+      profileCV( 'setup_page finish' );
+    }, this);
   };
 
   this.create_pages = function(page, path, flavour, type) {
