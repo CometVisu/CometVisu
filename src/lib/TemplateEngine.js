@@ -1018,8 +1018,8 @@ define([
   function setup_page() {
     // and now setup the pages
     profileCV( 'setup_page start' );
-  
-      // check if the page and the plugins are ready now
+    
+    // check if the page and the plugins are ready now
     for( var key in loadReady )  // test for emptines
       return; // we'll be called again...
 
