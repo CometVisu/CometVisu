@@ -612,12 +612,12 @@ define( ['jquery'], function( $ ) {
         this.stop(); // stop when new addresses are empty
       }
       else if (startCommunication) {
-        if (this.loginOnly === true) {
+        if (this.loginSettings.loginOnly === true) {
           // connect to the backend
           this.currentTransport.connect();
           // start the watchdog
           watchdog.start(5);
-          this.loginOnly = false;
+          this.loginSettings.loginOnly = false;
         }
         else {
           this.login(true);
@@ -677,7 +677,7 @@ define( ['jquery'], function( $ ) {
       if (json.c) {
         self.backend = $.extend(self.backend, json.c); // assign itself to run setter
       }
-      if (this.loginOnly) {
+      if (this.loginSettings.loginOnly) {
         this.currentTransport.handleSession(json, false);
       } else {
         this.currentTransport.handleSession(json, true);
