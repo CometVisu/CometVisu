@@ -12,33 +12,15 @@
    width="750"
    height="500"
    id="svg2">
-   <!--
-   <script xlink:href="../../lib/jquery.js" type="text/javascript"></script>
-   -->
-   <script xlink:href="../../dependencies/jquery.js" type="text/javascript"></script>
-   <script xlink:href="../../lib/cometvisu-client.js" type="text/javascript"></script>
-   <script xlink:href="../../transforms/transform_default.js" type="text/javascript"></script>
-   <script xlink:href="../../transforms/transform_knx.js" type="text/javascript"></script>
+  
    <script>
-    <![CDATA[
-    var thisGA = '12/7/52';
-    var thisTransform = 'DPT:5.001';
-    visu = new CometVisu('/cgi-bin/');
-    visu.update = function( json ) // overload the handler
-    {
-      var h = Transform[thisTransform].decode( json[thisGA] );
-      var filling = $('#rect3855')[0];
-      filling.y.baseVal.value=200.57388 + (100-h)*2;
-      filling.height.baseVal.value = h*2;
-      $('#path3029-4')[0].setAttribute('d', 'm 524.85653,'+(200.57388+ (100-h)*2)+' a 100,37.795274 0 0 1 -200,0 100,37.795274 0 1 1 200,0 z')
-    }
-    $(window).unload(function() {
-      visu.stop();
-    });
-    visu.user = 'demo_user'; // example for setting a user
-    visu.subscribe( [thisGA] );
-    //]]>
+     <![CDATA[
+     var require = {
+       xhtml: true
+     };
+     //]]>
   </script>
+  <script data-main="demo_2d_backdrop_red_pot" xlink:href="../../dependencies/require-2.1.15.min.js" type="text/javascript"></script>
   <defs
      id="defs4">
     <linearGradient

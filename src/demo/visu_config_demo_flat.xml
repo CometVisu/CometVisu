@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="metal" scroll_speed="0" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+  <meta>
+    <plugins>
+      <plugin name="colorchooser"/>
+      <plugin name="diagram"/>      
+    </plugins>
+    <mappings>
+      <mapping name="KonnexHVAC">
+        <entry value="auto"><icon name="status_automatic"/>Auto</entry>
+        <entry value="comfort"><icon name="status_comfort"/>Komfort</entry>
+        <entry value="standby"><icon name="status_standby"/>Stand By</entry>
+        <entry value="economy"><icon name="status_night"/>Economy</entry>
+        <entry value="building_protection"><icon name="status_frost"/>Haus-Schutz</entry>
+      </mapping>
+      <mapping name="AudioSource">
+        <entry value="0">UKW</entry>
+        <entry value="1">Squeeze</entry>
+        <entry value="2">Denon</entry>
+        <entry value="3">iPod</entry>
+        <entry value="4">Sat</entry>
+        <entry value="5">Kino</entry>
+      </mapping>
+      <mapping name="Zu_Auf">
+        <entry value="0"><icon color="green" name="fts_window_2w"/>zu</entry>
+        <entry value="1"><icon color="red"   name="fts_window_2w_open_lr"/>offen</entry>
+      </mapping>
+      <mapping name="Zu_Auf_Icon">
+        <entry value="0"><icon color="green" name="fts_window_2w"/></entry>
+        <entry value="1"><icon color="red"   name="fts_window_2w_open_lr"/></entry>
+      </mapping>
+      <mapping name="Door_Auf_Zu_Locked">
+        <entry value="0"><icon color="red"    name="fts_door_open"/>offen</entry>
+        <entry value="1"><icon color="yellow" name="fts_door"/>zu</entry>
+        <entry value="2"><icon color="green"  name="fts_door_locked"/>verschlossen</entry>
+      </mapping>
+      <mapping name="Door_Auf_Zu_Locked_Icon">
+        <entry value="0"><icon color="red"    name="fts_door_open"/></entry>
+        <entry value="1"><icon color="yellow" name="fts_door"/></entry>
+        <entry value="2"><icon color="green"  name="fts_door_locked"/></entry>
+      </mapping>
+      <mapping name="Aus_An_Icon">
+        <entry value="0"><icon color="grey"   name="light_light"/></entry>
+        <entry value="1"><icon color="yellow" name="light_light_dim_100"/></entry>
+      </mapping>
+      <mapping name="Aus_An_Pumpe_Icon">
+        <entry value="0"><icon color="grey"   name="sani_pump"/></entry>
+        <entry value="1"><icon color="green" name="sani_pump"/></entry>
+      </mapping>
+    </mappings>
+    <stylings>
+    </stylings>
+    <statusbar>
+      <status type="html"><![CDATA[
+          <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+          - <a href="manager.php">Config-Manager</a>
+          - <a href=".?forceReload=true">Reload</a>
+        ]]></status>
+      <status type="html" condition="!edit" hrefextend="config"><![CDATA[
+          - <a href="editor/">Edit</a>
+        ]]></status>
+      <status type="html" condition="edit" hrefextend="config"><![CDATA[
+          - <a href=".">normal Mode</a>
+        ]]></status>
+      <status type="html"><![CDATA[
+          - <a href="?config=demo">Widget Demo</a>
+        ]]></status>
+      <status type="html" hrefextend="config"><![CDATA[
+          - <a href="check_config.php">Check Config</a>
+        ]]></status>
+    </statusbar>
+  </meta>
+  <page name="Übersicht" type="2d" backdrop="demo/media/demo_flat_floorplan.png" align="center" size="contained" backdropalign="25% 0">
+    <navbar position="top">
+      <pagejump target="Übersicht">
+        <layout colspan="0"/>
+        <label><icon name="control_building_empty"/>Übersicht</label>
+      </pagejump>
+      <line>
+        <layout colspan="0"/>
+      </line>
+      <pagejump target="Wohnzimmer" active_scope="path">
+        <layout colspan="0"/>
+        <label><icon name="scene_livingroom"/>Wohnzimmer</label>
+        <widgetinfo>
+          <info format="%d °C">
+          <layout colspan="0" />
+            <address transform="DPT:9.001" variant="">12/7/15</address>
+          </info>
+        </widgetinfo>
+      </pagejump>
+      <pagejump target="Schlafzimmer">
+        <layout colspan="0"/>
+        <label><icon name="scene_sleeping_alternat"/>Schlafzimmer</label>
+      </pagejump>
+      <pagejump target="Bad">
+        <layout colspan="0"/>
+        <label><icon name="scene_bath"/>Bad</label>
+      </pagejump>
+      <pagejump target="Technik">
+        <layout colspan="0"/>
+        <label><icon name="scene_cubby"/>Technik</label>
+      </pagejump>
+      <line>
+        <layout colspan="0"/>
+      </line>
+      <pagejump target="Einstellungen">
+        <layout colspan="0"/>
+        <label><icon name="edit_settings"/>Einstellungen</label>
+      </pagejump>
+    </navbar>
+    <navbar position="left" dynamic="true" width="200px">
+      <group name="Räume">
+        <pagejump target="Wohnzimmer" name="Wohnen">
+          <label>
+            <icon name="scene_livingroom"/>
+          </label>
+          <widgetinfo>
+            <info format="%d°">
+            <layout colspan="0" />
+              <address transform="DPT:9.001" variant="">12/7/15</address>
+            </info>
+          </widgetinfo>
+        </pagejump>
+        <pagejump target="Schlafzimmer" name="Schlafen">
+          <label>
+            <icon name="scene_sleeping_alternat"/>
+          </label>
+          <widgetinfo>
+            <info format="%d°">
+            <layout colspan="0" />
+              <address transform="DPT:9.001" variant="">12/7/25</address>
+            </info>
+          </widgetinfo>
+        </pagejump>
+        <pagejump target="Bad" name="Bad">
+          <label>
+            <icon name="scene_bath"/>
+          </label>
+          <widgetinfo>
+            <info format="%d°">
+            <layout colspan="0" />
+              <address transform="DPT:9.001" variant="">12/7/35</address>
+            </info>
+          </widgetinfo>
+        </pagejump>
+        <pagejump target="Technik" name="Technik">
+          <label>
+            <icon name="scene_cubby"/>
+          </label>
+        </pagejump>
+      </group>
+      <group name="Sonstiges">
+        <pagejump target="Temperaturen" name="Temperatur">
+          <label>
+            <icon name="temp_temperature"/>
+          </label>
+        </pagejump>
+      </group>
+    </navbar>
+    <info mapping="Zu_Auf_Icon">
+      <layout x="454px" y="8px"/>
+      <address transform="DPT:1.001">12/7/10</address>
+    </info>
+    <info mapping="Zu_Auf_Icon">
+      <layout x="250px" y="4px"/>
+      <address transform="DPT:1.001">12/7/11</address>
+    </info>
+    <info mapping="Zu_Auf_Icon">
+      <layout x="90px" y="235px"/>
+      <address transform="DPT:1.001">12/7/12</address>
+    </info>
+    <info mapping="Zu_Auf_Icon">
+      <layout x="107px" y="703px"/>
+      <address transform="DPT:1.001">12/7/20</address>
+    </info>
+    <info mapping="Zu_Auf_Icon">
+      <layout x="380px" y="735px"/>
+      <address transform="DPT:1.001">12/7/30</address>
+    </info>
+    <info mapping="Door_Auf_Zu_Locked_Icon">
+      <layout x="514px" y="441px"/>
+      <address transform="DPT:5.010">12/7/40</address>
+    </info>
+
+    <page name="Wohnzimmer" visible="false">
+      <group name="Wohnzimmer">
+        <multitrigger button1label="Auto" button1value="auto" button2label="Komfort" button2value="comfort" button3label="Standy By" button3value="standby" button4label="Economy" button4value="economy" showstatus="true" mapping="KonnexHVAC">
+          <label>Heizung</label>
+          <address transform="DPT:20.102" mode="readwrite">12/7/13</address>
+        </multitrigger>
+        
+        <colorchooser>
+          <label><icon name="light_led_stripe_rgb"/>Ambiente</label>
+          <address transform="DPT:5.001" variant="r" mode="readwrite">12/7/17</address>
+          <address transform="DPT:5.001" variant="g" mode="readwrite">12/7/18</address>
+          <address transform="DPT:5.001" variant="b" mode="readwrite">12/7/19</address>
+        </colorchooser>
+      </group>
+    </page>
+    <page name="Schlafzimmer" visible="false">
+      <group name="Bett links">
+        <switch mapping="Aus_An_Icon">
+          <label>Nachttischlampe</label>
+          <address transform="DPT:1.001" mode="readwrite">12/7/21</address>
+        </switch>
+      </group>
+      <group name="Bett rechts">
+        <switch mapping="Aus_An_Icon">
+          <label>Nachttischlampe</label>
+          <address transform="DPT:1.001" mode="readwrite">12/7/22</address>
+        </switch>
+      </group>
+    </page>
+    <page name="Bad" visible="false">
+      <group name="Audio" flavour="potassium">
+        <infotrigger uplabel="&gt;" downlabel="&lt;" upvalue="1" downvalue="-1" min="0" max="5" infoposition="middle" change="absolute" mapping="AudioSource">
+          <label>Quelle</label>
+          <address transform="DPT:5.010" mode="readwrite">12/7/31</address>
+        </infotrigger>
+        <slide min="0" max="100" format="%d%%">
+          <label>Lautstärke</label>
+          <address transform="DPT:5.001" mode="readwrite">12/7/32</address>
+        </slide>
+      </group>
+      <group name="Ambientelicht" flavour="potassium">
+        <slide min="0" max="100" flavour="lithium">
+          <label>Helligkeit Rot</label>
+          <address transform="DPT:5.001" mode="readwrite">12/7/37</address>
+        </slide>
+        <slide min="0" max="100" flavour="boron">
+          <label>Helligkeit Grün</label>
+          <address transform="DPT:5.001" mode="readwrite">12/7/38</address>
+        </slide>
+        <slide min="0" max="100" flavour="antimony">
+          <label>Helligkeit Blau</label>
+          <address transform="DPT:5.001" mode="readwrite">12/7/39</address>
+        </slide>
+      </group>
+    </page>
+    <page name="Technik" visible="false" type="2d" backdrop="demo/media/demo_flat_circuit.svg" size="fixed">
+        <page name="Temperaturen">
+        <layout colspan="3"/>
+          <group name="Vorgabe">
+            <slide min="10" max="30" format="%d °C">
+              <label>Temperatur Wohnzimmer</label>
+              <address transform="DPT:9" mode="readwrite">12/7/15</address>
+            </slide>
+            <slide min="10" max="30" format="%d °C">
+              <label>Temperatur Schlafzimmer</label>
+              <address transform="DPT:9" mode="readwrite">12/7/25</address>
+            </slide>
+            <slide min="10" max="30" format="%d °C">
+              <label>Temperatur Bad</label>
+              <address transform="DPT:9" mode="readwrite">12/7/35</address>
+            </slide>
+          </group>
+          <group name="Diagram">
+            <diagram series="day" tooltip="false" popup="true" previewlabels="false" legend="popup">
+              <layout colspan="6"/>
+              <label>Außentemperatur</label>
+              <axis unit="°C"/>
+              <rrd consolidationFunction="AVERAGE">10.0BD6ED010800_temp</rrd>
+            </diagram>
+          </group>
+        </page>
+        <switch mapping="Aus_An_Pumpe_Icon">
+          <layout colspan="1" x="488px" y="248px"/>
+          <address transform="DPT:1.001" mode="readwrite">12/7/50</address>
+        </switch>
+    </page>
+    <page name="Einstellungen" visible="false">
+      <group name="Wohnzimmer">
+        <switch mapping="Zu_Auf" styling="Red_Green">
+          <label>
+            <icon name="scene_livingroom"/>Fenster Wohnzimmer
+          </label>
+          <address transform="DPT:1.001" mode="readwrite">12/7/10</address>
+        </switch>
+        <slide min="10" max="30" format="%d °C">
+          <label>Temperatur Wohnzimmer</label>
+          <address transform="DPT:9" mode="readwrite">12/7/15</address>
+        </slide>
+        <switch mapping="Zu_Auf" styling="Red_Green">
+          <label>
+            <icon name="scene_livingroom"/>Balkon Wohnzimmer
+          </label>
+          <address transform="DPT:1.001" mode="readwrite">12/7/11</address>
+        </switch>
+        <switch mapping="Zu_Auf" styling="Red_Green">
+          <label>
+            <icon name="scene_livingroom"/>Fenster Küche
+          </label>
+          <address transform="DPT:1.001" mode="readwrite">12/7/12</address>
+        </switch>
+      </group>
+      <group name="Schlafzimmer">
+        <switch mapping="Zu_Auf" styling="Red_Green">
+          <label>
+            <icon name="scene_sleeping_alternat"/>Fenster Schlafzimmer
+          </label>
+          <address transform="DPT:1.001" mode="readwrite">12/7/20</address>
+        </switch>
+        <slide min="10" max="30" format="%d °C">
+          <label>Temperatur Schlafzimmer</label>
+          <address transform="DPT:9" mode="readwrite">12/7/25</address>
+        </slide>
+      </group>
+      <group name="Bad">
+        <switch mapping="Zu_Auf" styling="Red_Green">
+          <label>
+            <icon name="scene_bath"/>Fenster Bad
+          </label>
+          <address transform="DPT:1.001" mode="readwrite">12/7/30</address>
+        </switch>
+        <slide min="10" max="30" format="%d °C">
+          <label>Temperatur Bad</label>
+          <address transform="DPT:9" mode="readwrite">12/7/35</address>
+        </slide>
+      </group>
+      <group name="Flur">
+        <toggle mapping="Door_Auf_Zu_Locked">
+          <label><icon name="scene_hall"/>Wohnungstüre</label>
+          <address transform="DPT:5.010" mode="readwrite">12/7/40</address>
+        </toggle>
+      </group>
+    </page>
+  </page>
+</pages>

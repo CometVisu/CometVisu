@@ -100,31 +100,31 @@
     </line>
     <rsslog src="plugins/rsslog/rsslog.php?state=1" filter="fish" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
       <layout rowspan="9" colspan="6"/>
-      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       <label>Ereignisse state=1 Filter=fish</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </rsslog>
     <rsslog src="plugins/rsslog/rsslog.php?state=0" filter="fish" refresh="300" mode="last" timeformat="%d.%m. %H:%M">
       <layout rowspan="9" colspan="6"/>
-      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       <label>Ereignisse state=0 Filter=fish</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </rsslog>
     <line>
       <layout colspan="12"/>
     </line>
     <rsslog src="plugins/rsslog/rsslog.php" refresh="300" limit="5" mode="last" itemack="modify">
       <layout rowspan="3" colspan="4"/>
-      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       <label>itemack: Modify</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </rsslog>
     <rsslog src="plugins/rsslog/rsslog.php" refresh="300" limit="5" mode="last" itemack="display">
       <layout rowspan="3" colspan="4"/>
-      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       <label>itemack: Display</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </rsslog>
     <rsslog src="plugins/rsslog/rsslog.php" refresh="300" limit="5" mode="last" itemack="disable">
       <layout rowspan="3" colspan="4"/>
-      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
       <label>itemack: Disable</label>
+      <address transform="DPT:1.001" mode="readwrite">12/7/1</address>
     </rsslog>
     <line>
       <layout colspan="12"/>

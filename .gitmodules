@@ -1,0 +1,3 @@
+[submodule "external/knx-uf-iconset"]
+	path = external/knx-uf-iconset
+	url = https://github.com/OpenAutomationProject/knx-uf-iconset.git

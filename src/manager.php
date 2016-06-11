@@ -108,7 +108,7 @@ define( 'DEMO_TABLE_ROW', '<tr class="visuline">'
  */
 function icon( $name )
 {
-  return '<img src="icon/knx-uf-iconset/128x128_white/' . $name . '.png" class="icon" />';
+  return '<svg class="icon"><use xlink:href="icon/knx-uf-iconset.svg#kuf-' . $name . '"></use></svg>';
 }
 
 /**
@@ -194,10 +194,24 @@ if( ($config == '' || $config != false) && ($action != false) )
 } else {
   // nothing special to do - so at least do a few sanity checks
   if( !is_writeable( 'config/visu_config.xml' ) )
+  {
+    if( chmod( 'config/visu_config.xml', 0666 ) ) // try to fix it
+    {
+      if( !is_writeable( 'config/visu_config.xml' ) )
+        $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
+    } else
     $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
+  }
   
   if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
-    $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+  { 
+    if( chmod( 'config/visu_config_previewtemp.xml', 0666 ) ) // try to fix it
+    {
+      if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
+        $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+    } else
+      $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+  }
   
   if( !is_readable( 'demo/visu_config_empty.xml' ) )
     $actionDone = $_['Installation error - please check file permissions!'].' (demo/visu_config_empty.xml)';
@@ -214,7 +228,7 @@ if( ($config == '' || $config != false) && ($action != false) )
     <link rel="apple-touch-icon" sizes="114x114" href="icon/comet_webapp_icon_114.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="icon/comet_webapp_icon_144.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="icon/comet_webapp_icon_144.png" />
-    <script src="dependencies/jquery.min.js" type="text/javascript"></script>
+    <script src="dependencies/jquery.js" type="text/javascript"></script>
     <script>
 function deleteConfig( displayName, name )
 {
@@ -297,8 +311,10 @@ if( $resetUrl )
     .visuline:hover, #newConfig:hover {
       background: #999;
     }
-    img.icon {
+    .icon {
       width: 32px;
+      height: 32px;
+      color: white;
     }
     .footnote {
       font-size: 80%;

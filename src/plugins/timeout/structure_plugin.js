@@ -21,13 +21,13 @@
 
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
   "use strict";
-var timeoutIdleCount   = 0;
-var timeoutCurrentPage = "";
-var timeoutCurrentPageTitle = "";
-var timeoutTargetPage  = "";
-var timeoutDebug       = 'false';
+  var timeoutIdleCount   = 0;
+  var timeoutCurrentPage = "";
+  var timeoutCurrentPageTitle = "";
+  var timeoutTargetPage  = "";
+  var timeoutDebug       = 'false';
 
-VisuDesign_Custom.prototype.addCreator("timeout", {
+  VisuDesign_Custom.prototype.addCreator("timeout", {
   create : function(page, path) {
     var $p = $(page);
 
@@ -79,7 +79,7 @@ VisuDesign_Custom.prototype.addCreator("timeout", {
 });
 
 
-function timeoutTrigger() {
+  function timeoutTrigger() {
   timeoutPrintDebug("TIMEOUT: Got Trigger (" + timeoutIdleCount + ")");
   timeoutIdleCount++;
   if (timeoutIdleCount >= 10) { 
@@ -99,7 +99,7 @@ function timeoutTrigger() {
   }
 }
 
-function timeoutPrintDebug(s) {
+  function timeoutPrintDebug(s) {
   if (timeoutDebug == 'true') console.log(s);
 }
 

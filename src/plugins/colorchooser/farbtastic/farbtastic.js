@@ -264,7 +264,7 @@ $._farbtastic = function (container, callback) {
   // Install mousedown handler (the others are set on the document on-demand)
   $('*', e).mousedown(fb.mousedown);
 
-    // Init color
+  // Init color
   fb.setColor('#000000');
 
   // Set linked elements/callback

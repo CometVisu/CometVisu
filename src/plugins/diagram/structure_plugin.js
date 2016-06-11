@@ -69,7 +69,7 @@ define( ['structure_custom',
     "use strict";
 
     var cache = {};
-
+    
     /**
      * Get the rrd and put it's content in the cache.
      * @param Number   refresh  time is seconds to refresh the data
@@ -79,7 +79,7 @@ define( ['structure_custom',
     function lookupRRDcache( rrd, start, end, res, refresh, force, callback, callbackParameter )
     {
       var
-        url = templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
+        url = templateEngine.visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
         urlNotInCache = !(url in cache),
         doLoad = force || urlNotInCache || !('data' in cache[ url ]) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
 
@@ -315,10 +315,9 @@ define( ['structure_custom',
       var 
         diagram = isPopup ? $( '#' + id + '_big' ) : $( '#' + id + ' .actor div' ),
         data = templateEngine.widgetDataGet( id );
-        
-      if( data === undefined ) 
+      if (!data.init || data === undefined) {
         return;
-      
+      }
       data.init = false;
       isPopup |= data.isPopup;
 
@@ -431,9 +430,9 @@ define( ['structure_custom',
       };
       if (data.series == "custom") {
         // initial load, take parameters from custom configuration
-  	    ret.start = data.seriesStart;
-  	    ret.end = data.seriesEnd;
-  	    ret.res = data.seriesResolution;
+        ret.start = data.seriesStart;
+        ret.end = data.seriesEnd;
+        ret.res = data.seriesResolution;
       }
       else {
         var selectedSeries = series[data.series];
@@ -442,9 +441,9 @@ define( ['structure_custom',
         }
 
         // initial load, take parameters from configuration
-  	    ret.start = "end-" + data.period + selectedSeries.start;
-  	    ret.end = selectedSeries.end;
-  	    ret.res = selectedSeries.res;
+        ret.start = "end-" + data.period + selectedSeries.start;
+        ret.end = selectedSeries.end;
+        ret.res = selectedSeries.res;
       }
 
       if (xAxis.datamin && xAxis.datamax && isInteractive) {
@@ -523,4 +522,4 @@ define( ['structure_custom',
         });
       });
     }
-});
+  });
