@@ -105,9 +105,10 @@ define( ['jquery'], function( $ ) {
          * and session information is available.
          *
          * @param json
+         * @param connect (boolean) wether to start the connection or not
          * @method handleSession
          */
-        this.handleSession = function(json) {
+        this.handleSession = function(json, connect) {
           self.sessionId = json.s;
           self.version = json.v.split('.', 3);
 
@@ -116,8 +117,14 @@ define( ['jquery'], function( $ ) {
             alert('ERROR CometVisu Client: too new protocol version ('
               + json.v + ') used!');
 
-          // send first request
+          if (connect) {
+            this.connect();
+          }
+        };
+
+        this.connect = function() {
           self.running = true;
+          // send first request
           if (session.initialAddresses.length) {
             this.xhr = $.ajax({
               url         : session.getResourcePath("read"),
@@ -343,9 +350,10 @@ define( ['jquery'], function( $ ) {
          * This function gets called once the communication is established
          * and session information is available
          *
+         * @param connect (boolean) wether to start the connection or not
          * @method handleSession
          */
-        this.handleSession = function(json) {
+        this.handleSession = function(json, connect) {
           self.sessionId = json.s;
           self.version = json.v.split('.', 3);
 
@@ -354,7 +362,9 @@ define( ['jquery'], function( $ ) {
             alert('ERROR CometVisu Client: too new protocol version ('
               + json.v + ') used!');
 
-          this.connect();
+          if (connect) {
+            this.connect();
+          }
         };
 
         /**
@@ -527,6 +537,12 @@ define( ['jquery'], function( $ ) {
     this.device = ''; // the current device ID
     this.running = false; // is the communication running at the moment?
     this.currentTransport; // the currently used transport layer
+    this.loginSettings = {
+      loggedIn : false,
+      callbackAfterLoggedIn : null,
+      context : null,
+      loginOnlyMode : false // login only for backend configuration, do not start address subscription
+    }
 
     Object.defineProperty(this, 'backend', {
       get: function () {
@@ -592,34 +608,61 @@ define( ['jquery'], function( $ ) {
       this.addresses = addresses ? addresses : [];
       this.filters = filters ? filters : [];
 
-      if (!addresses.length)
+      if (!addresses.length) {
         this.stop(); // stop when new addresses are empty
-      else if (startCommunication)
-        this.login();
+      }
+      else if (startCommunication) {
+        if (this.loginSettings.loginOnly === true) {
+          // connect to the backend
+          this.currentTransport.connect();
+          // start the watchdog
+          watchdog.start(5);
+          this.loginSettings.loginOnly = false;
+        }
+        else {
+          this.login(true);
+        }
+      }
     };
 
     /**
      * This function starts the communication by a login and then runs the
      * ongoing communication task
      *
+     * @param loginOnly (boolean) if true only login and backend configuration, no subscription to addresses (default: false)
+     * @param callback (Function) cakk this function when login is done
+     * @param context (Object) context for the callback (this)
      * @method login
      */
-    this.login = function () {
-      var request = {};
-      if ('' !== this.user)
-        request.u = this.user;
-      if ('' !== this.pass)
-        request.p = this.pass;
-      if ('' !== this.device)
-        request.d = this.device;
+    this.login = function (loginOnly, callback, context) {
+      if (this.loginSettings.loggedIn === false) {
+        this.loginSettings.loginOnly = !!loginOnly;
+        this.loginSettings.callbackAfterLoggedIn = callback;
+        this.loginSettings.context = context;
+        var request = {};
+        if ('' !== this.user) {
+          request.u = this.user;
+        }
+        if ('' !== this.pass) {
+          request.p = this.pass;
+        }
+        if ('' !== this.device) {
+          request.d = this.device;
+        }
 
-      $.ajax({
-        url: initPath ? initPath : this.getResourcePath("login"),
-        dataType: 'json',
-        context: this,
-        data: request,
-        success: this.handleLogin
-      });
+        $.ajax({
+          url: initPath ? initPath : this.getResourcePath("login"),
+          dataType: 'json',
+          context: this,
+          data: request,
+          success: this.handleLogin
+        });
+      } else if (this.loginSettings.callbackAfterLoggedIn) {
+        // call callback immediately
+        this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
+        this.loginSettings.callbackAfterLoggedIn = null;
+        this.loginSettings.context = null;
+      }
     };
 
     /**
@@ -634,10 +677,19 @@ define( ['jquery'], function( $ ) {
       if (json.c) {
         self.backend = $.extend(self.backend, json.c); // assign itself to run setter
       }
-      this.currentTransport.handleSession(json);
-
-      // once the connection is set up, start the watchdog
-      watchdog.start(5);
+      if (this.loginSettings.loginOnly) {
+        this.currentTransport.handleSession(json, false);
+      } else {
+        this.currentTransport.handleSession(json, true);
+        // once the connection is set up, start the watchdog
+        watchdog.start(5);
+      }
+      this.loginSettings.loggedIn = true;
+      if (this.loginSettings.callbackAfterLoggedIn) {
+        this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
+        this.loginSettings.callbackAfterLoggedIn = null;
+        this.loginSettings.context = null;
+      }
     };
 
     /**
@@ -650,6 +702,7 @@ define( ['jquery'], function( $ ) {
       if (this.currentTransport.abort) {
         this.currentTransport.abort();
       }
+      this.loginSettings.loggedIn = false;
     };
 
     /**
