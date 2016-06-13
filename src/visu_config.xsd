@@ -412,15 +412,16 @@
       <xsd:element name="colorchooser" type="colorchooser" />
       <xsd:element name="diagram_info" type="diagram_info" />
       <xsd:element name="diagram" type="diagram" />
+      <xsd:element name="smartmeter" type="smartmeter" />
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
       <xsd:element name="strftime" type="strftime" />
       <xsd:element name="svg" type="svg" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="timeout" type="timeout" />
-	  <xsd:element name="gauge" type="gauge" />
-	  <xsd:element name="calendarlist" type="calendarlist" />
-	  <xsd:element name="infoaction" type="infoaction" />
+      <xsd:element name="gauge" type="gauge" />
+      <xsd:element name="calendarlist" type="calendarlist" />
+      <xsd:element name="infoaction" type="infoaction" />
     </xsd:choice>
   </xsd:group>
 
@@ -1220,6 +1221,9 @@
         <xsd:documentation xml:lang="de">Zeit in Stunden für zukünftige Ereignisse.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+  </xsd:complexType>
+  
+  <xsd:complexType name="smartmeter">
   </xsd:complexType>
 
   <xsd:complexType name="svg">
