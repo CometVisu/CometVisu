@@ -1036,6 +1036,7 @@
     <xsd:attribute name="volume" type="xsd:string" />
     <xsd:attribute name="autoplay" type="xsd:string" />
     <xsd:attribute name="loop" type="xsd:string" />
+    <xsd:attribute name="allwaysreload" type="xsd:string" use="optional"  />
     <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
