@@ -43,6 +43,7 @@ define( ['_common'], function( design ) {
       'height'  : $e.attr('height'),
       'autoplay': $e.attr('autoplay'),
       'loop'    : $e.attr('loop'),
+      'allwaysreload' : $e.attr('allwaysreload') ,
       'threshold_value'  : $e.attr('threshold_value' ) || 1
     } );
 
@@ -54,6 +55,7 @@ define( ['_common'], function( design ) {
     var autoplay = (data.autoplay == 'true') ? ' autoplay ' : '';
     var loop = (data.loop == 'true') ? ' loop ' : '';
     var actor = '<div class="actor"><audio id="' + $e.attr('id') + '" ' + autoplay + loop + style + ' controls> <source src="' +$e.attr('src') + '" > </audio> </div>';
+
     return ret_val + actor + '</div>';
   },
   
@@ -65,10 +67,16 @@ define( ['_common'], function( design ) {
     var on = templateEngine.map( data[ 'threshold_value' ], data['mapping'] );
     if (value >= on){
       var audioWidget = document.getElementById(data['id']);
-      if (audioWidget.paused == true)
+      if (data[ 'allwaysreload' ] == 'true'){
+      audioWidget.src= data[ 'src' ];
+      audioWidget.load();
+      }
+      if (audioWidget.paused == true){
         audioWidget.play();
+      } 
     };
   }
+  
 });
 
 }); // end define
