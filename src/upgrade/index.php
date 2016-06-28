@@ -44,7 +44,7 @@ if (LIBRARY_VERSION > UPGRADER_LIBRARY_VERSION) {
 
 
 define('OLD_CONFIG_FILENAME', '../visu_config%s.xml');
-define('DEMO_CONFIG_FILENAME', '../config/demo/visu_config%s.xml');
+define('DEMO_CONFIG_FILENAME', '../demo/visu_config%s.xml');
 define('CONFIG_FILENAME', '../config/visu_config%s.xml');
 define('BACKUP_FILENAME', '../config/backup/visu_config%s-%s.xml');
 

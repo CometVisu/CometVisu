@@ -2,8 +2,13 @@
  * global CSS declarations for all designs 
  */
 
+html
+{
+  height: 100%;
+}
+
 body 
-{ 
+{
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -13,7 +18,7 @@ body
 /*
  * Default height for all icons
  */
-img.icon, canvas.icon {
+.icon {
   height: 2em;
   width: 2em;
 }
@@ -31,8 +36,9 @@ img.icon, canvas.icon {
   float: left;
   display: block;
 }
-#main {
-  width: 100%;
+#centerContainer.inactiveMain {
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
 }
 #navbarLeft {
   width: 0px;          /* left bar width */
@@ -50,6 +56,47 @@ img.icon, canvas.icon {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+/* The message popup.
+ * It will hide itself when it's empty, otherwise will stick on the top of the
+ * window.
+ */
+#message {
+  display: none;
+}
+
+#message:not(:empty) {
+  display: block;
+  position: fixed;
+  left: 1em;
+  top: 1em;
+  right: 1em;
+  padding: 0.5em;
+  color: #000;
+  background-color: #bbb;
+  border: 1px solid #000;
+  box-shadow: 0px 0px 0.5em 0.35em blue;
+}
+
+/*
+ * Option for a close button:
+#message::before {
+  content: '[X]';
+  display: block;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+*/
+
+#message.warning {
+  box-shadow: 0px 0px 0.5em 0.35em #ffc107;
+}
+
+#message.error {
+  box-shadow: 0px 0px 0.5em 0.35em #f00;
+  background-color: #ffafaf;
 }
 
 #pages,
@@ -167,4 +214,30 @@ img.icon, canvas.icon {
 .widget_container.break_container
 {
   clear: both;
+}
+
+/* infoaction widget basic styling, just positioning no fancy stuff */
+.infoaction { position: relative; }
+.infoaction .widget_container.widgetinfo {
+  width: auto !important;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 2;
+}
+
+.infoaction .widget_container.widgetaction {
+  z-index: 1;
+}
+
+.infoaction .widget_container.widgetinfo .widget .actor {
+  width: 100%;
+  margin: 0;
+}
+
+.infoaction .widget_container.widgetinfo .widget .actor div { float: none; }
+
+.navbar .infoaction .label {
+  float: left;
+  margin: 0 auto;
 }

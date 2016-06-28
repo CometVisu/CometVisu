@@ -36,13 +36,13 @@
  * @param   result  object  Result-object, used for clear-text informations on the event, optional
  */
 var ListenerEvent = function (event, params, result) {
-    var _le = this;
+  var _le = this;
     
-    _le.event = event;
-    _le.params = params;
-    _le.result = undefined;
+  _le.event = event;
+  _le.params = params;
+  _le.result = undefined;
     
-    if (typeof result == 'object') {
-        _le.result = result;
-    }
+  if (typeof result == 'object') {
+    _le.result = result;
+  }
 };

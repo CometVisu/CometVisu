@@ -13,10 +13,12 @@
 //                          separated by COMMA, usage &t[]=tag1,tag2 
 //    URL parameter "h":   a header(title) for the entry; maybe empty 
 //    URL parameter "state": (optional) state
+//    URL parameter "mapping": (optional) mapping - used for displaying
 // 2. Receive the log as RSS:
 //    URL parameter "f":   The (optional) filter, only log lines with a tag
 //                         that fit this string are sent
 //    URL parameter "state": get only rows with state=value
+//    URL parameter "limit": only get the latest "limit" entries
 // 3. Dump all the content in a HTML page:
 //    URL parameter "dump" - no value needed
 // 4. Remove old content:
@@ -59,6 +61,7 @@ if( isset($_GET['c']) )
   $log_content = $_GET['c'] ? $_GET['c'] : '<no content>';
   $log_title = $_GET['h'] ? $_GET['h'] : '';
   $log_state = $_GET['state'] ? $_GET['state'] : 0;
+  $log_mapping = $_GET['mapping'] ? $_GET['mapping'] : '';
   if( mb_detect_encoding($log_content, 'UTF-8', true) != 'UTF-8' )
     $log_content = utf8_encode($log_content);
   if( mb_detect_encoding($log_title, 'UTF-8', true) != 'UTF-8' )
@@ -66,16 +69,16 @@ if( isset($_GET['c']) )
   $log_tags    = $_GET['t'] ? $_GET['t'] : array();
   if(! is_array($log_tags))
     die("wrong format - use one or more t[]= for tags");
-  insert( $db, $log_content, $log_title, $log_tags, $log_state );
+  insert( $db, $log_content, $log_title, $log_tags, $log_mapping, $log_state );
 } else if( isset($_GET['dump']) )
 {
-  $result = retrieve( $db, $log_filter, NULL );
+  $result = retrieve( $db, $log_filter, NULL, NULL );
   ?>
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /></head><body>
 <table border="1">
   <?php
   $records = 0;
-  echo '<tr><th>ID</th><th>DateTime</th><th>Timestamp</th><th>Title</th><th>Content</th><th>Tags</th><th>State</th></tr>';
+  echo '<tr><th>ID</th><th>DateTime</th><th>Timestamp</th><th>Title</th><th>Content</th><th>Tags</th><th>Mapping</th><th>State</th></tr>';
   while( sqlite_has_more($result) )
   {
     $row = sqlite_fetch_array($result, SQLITE_ASSOC ); 
@@ -86,6 +89,7 @@ if( isset($_GET['c']) )
     echo '<td>' . $row['title'] . '</td>';
     echo '<td>' . $row['content'] . '</td>';
     echo '<td>' . $row['tags'] . '</td>';
+    echo '<td>' . $row['mapping'] . '</td>';
     echo '<td>' . $row['state'] . '</td>';
     echo "</tr>\n";
     $records++;
@@ -118,9 +122,10 @@ if( isset($_GET['c']) )
   // send logs
   $log_filter  = $_GET['f'] ? $_GET['f'] : '';
   $state = $_GET['state']; // ? $_GET['state'] : '';
+  $future = $_GET['future'];
 
   // retrieve data
-  $result = retrieve( $db, $log_filter, $state );
+  $result = retrieve( $db, $log_filter, $state, $future );
   $first = true;
   while( sqlite_has_more($result) )
   {
@@ -131,6 +136,7 @@ if( isset($_GET['c']) )
     echo '"title": "' . $row['title'] . '",';
     echo '"content": "' . $row['content'] . '",';
     echo '"tags": ' . json_encode(explode(",", $row['tags'])) . ',';
+    echo '"mapping": "' . $row['mapping'] . '",';
     echo '"state": "' . $row['state'] . '",';
     echo '"publishedDate": "' . date( DATE_ATOM, $row['t'] ) . '"';
     echo '}';
@@ -167,9 +173,10 @@ Successfully deleted ID=<?php echo $id; ?>.
   // send logs
   $log_filter  = $_GET['f'] ? $_GET['f'] : '';
   $state = $_GET['state']; // ? $_GET['state'] : '';
+  $future = $_GET['future'];
 
   // retrieve data
-  $result = retrieve( $db, $log_filter, $state );
+  $result = retrieve( $db, $log_filter, $state, $future );
   echo '<?xml version="1.0"?>';
   ?>
 <rss version="2.0">
@@ -204,35 +211,94 @@ sqlite_close($db);
 // create tables if they don't exist
 function create( $db )
 {
-  $q = "SELECT name FROM sqlite_master WHERE type='table' AND name='Logs';";
+  $logschema = 0;  // default: nothing exists yet
+  
+  // check: do we have a version information?
+  $q = "SELECT name FROM sqlite_master WHERE type='table' AND name='Version';";
   $result = sqlite_query( $db, $q, SQLITE_NUM );
   if (!$result) die("Cannot execute query. $q");
   if( !sqlite_has_more($result) )
   {
     // no table found - create it
-    $q = 'CREATE TABLE Logs(' .
-        '  id INTEGER PRIMARY KEY,' .
-        '  title TEXT,' . 
-        '  content TEXT NOT NULL,' .
-        '  tags TEXT,' .
-        '  t TIMESTAMP,' .
-        '  state INT' .
-        ');';
+    $q = 'CREATE TABLE Version(' .
+        '  logschema INT' .
+        ');' . 
+        'INSERT INTO Version( logschema ) VALUES( 0 );';
     $ok = sqlite_exec($db, $q, $error);
     
     if (!$ok)
       die("Cannot execute query $q. $error");
+    
+    $q = "SELECT name FROM sqlite_master WHERE type='table' AND name='Logs';";
+    $result = sqlite_query( $db, $q, SQLITE_NUM );
+    if (!$result) die("Cannot execute query. $q");
+    if( sqlite_has_more($result) )
+    {
+      // no Version table but Log table
+      // => database version prior 2016
+      $logschema = 1;
+    }
+  } else {
+    $q = "SELECT logschema FROM Version";
+    $res = sqlite_query( $db, $q, SQLITE_ASSOC );
+    $logschema = sqlite_fetch_single( $res );
   }
+  
+  $currentSchema = 
+    '(' .
+    '  id INTEGER PRIMARY KEY,' .
+    '  title TEXT,' . 
+    '  content TEXT NOT NULL,' .
+    '  tags TEXT,' .
+    '  mapping TEXT,' .
+    '  t TIMESTAMP,' .
+    '  state INT' .
+    ');';
+    
+  switch( $logschema )
+  {
+    case 0:  // inital setup of database
+      // no table found - create it
+      $q = 'CREATE TABLE Logs' . $currentSchema;
+      $ok = sqlite_exec($db, $q, $error);
+      if (!$ok) die("Cannot execute query $q. $error");
+        
+      $logschema = 2;
+      break;
+      
+    case 1:  // version without mapping
+      // note: SQLite2 has no ALTER TABLE - so do it the hard way
+      $q = 'CREATE TEMPORARY TABLE TempLogs' . $currentSchema .
+        'INSERT INTO TempLogs SELECT id, title, content, tags, "", t, state FROM Logs;' .
+        'DROP TABLE Logs;' .
+        'CREATE TABLE Logs' . $currentSchema .
+        'INSERT INTO Logs SELECT id, title, content, tags, mapping, t, state FROM TempLogs;' .
+        'DROP TABLE TempLogs;';
+      $ok = sqlite_exec($db, $q, $error);
+      if (!$ok) die("Cannot execute query $q. $error");
+    
+      $logschema = 2;
+      break;
+      
+    case 2:  // current
+      return; 
+  }
+  
+  // bump logschema
+  $q = 'UPDATE Version SET logschema=' . $logschema . ';';
+  $ok = sqlite_exec($db, $q, $error);
+  if (!$ok) die("Cannot execute query. $error");
 }
 
 // insert a new log line
-function insert( $db, $content, $title, $tags, $state )
+function insert( $db, $content, $title, $tags, $mapping, $state )
 {
   // store a new log line
-  $q = 'INSERT INTO Logs(content, title, tags, t, state) VALUES( ' .
+  $q = 'INSERT INTO Logs(content, title, tags, mapping, t, state) VALUES( ' .
        "  '" . sqlite_escape_string( $content ) . "'," .
        "  '" . sqlite_escape_string( $title ) . "'," .
        "  '" . sqlite_escape_string( implode(",",$tags) ) . "'," .
+       "  '" . sqlite_escape_string( $mapping ) . "'," .
        "  datetime('now')," .
        "  $state" .
        ')';
@@ -244,21 +310,29 @@ function insert( $db, $content, $title, $tags, $state )
 }
 
 // return a handle to all the data
-function retrieve( $db, $filter, $state )
+function retrieve( $db, $filter, $state, $future )
 {
   $filters = explode(',', $filter); // accept filters by separated by ,
   foreach ($filters as $i => $val) {
     $filters[$i] = " (tags LIKE '%" . sqlite_escape_string($val) . "%') ";
   }
   
-  $q = "SELECT id, title, content, tags, state, strftime('%s', t) AS t FROM Logs WHERE (" . implode('OR', $filters) . ")";
+  $q = "SELECT id, title, content, tags, mapping, state, strftime('%s', t) AS t FROM Logs WHERE (" . implode('OR', $filters) . ")";
   
-  if (isset($state))
+  if (isset($state) AND is_numeric($state))
     $q .= " AND state=" . $state . " ";
+
+  if (isset($future) AND is_numeric($future))
+    $q .= " AND ((t  <= datetime('now','+" . $future . " hour') )) ";
+  else
+    $q .= " AND ((t  <= datetime('now') ))";
   
   $q .= "ORDER by t DESC";
   if (!isset($_GET['dump']))
-    $q .= " LIMIT 100";
+    if( !isset($_GET['limit']) || !is_numeric($_GET['limit']) || '0' == $_GET['limit'] )
+      $q .= " LIMIT 100";
+    else
+      $q .= " LIMIT " . $_GET['limit'];
   return sqlite_query( $db, $q, SQLITE_ASSOC );
 }
 

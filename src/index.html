@@ -7,10 +7,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="icon/comet_16x16_000000.png" type="image/png" />
-    <link rel="apple-touch-icon" sizes="57x57" href="icon/comet_webapp_icon_114.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="icon/comet_webapp_icon_114.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="icon/comet_webapp_icon_144.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="icon/comet_webapp_icon_144.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="icon/comet_webapp_icon_76.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="icon/comet_webapp_icon_120.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="icon/comet_webapp_icon_152.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="icon/comet_webapp_icon_167.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="icon/comet_webapp_icon_180.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> 
     <meta name="apple-mobile-web-app-capable" content="yes" /> 
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -68,10 +69,11 @@
           window.location.href.indexOf('forceReload=true') < 0 ? '' : '_=' + (+new Date)
       };
     </script>
-    <script data-main="lib/templateengine" src="dependencies/require-2.1.15.min.js" type="text/javascript"></script>
+    <script data-main="main" src="dependencies/require-2.1.15.min.js" type="text/javascript"></script>
     <style type="text/css">
         .loading { display: none; }
     </style>
+    <link type="text/css" rel="stylesheet" href="designs/designglobals.css">
     <style type="text/css" id="pageSize"></style>
     <style type="text/css" id="rowspanStyle"></style>
   </head>
@@ -82,7 +84,7 @@
     <div id="navbarTop" class="loading"></div>
     <div id="centerContainer">
       <div id="navbarLeft" class="loading page"></div>
-      <div id="main" style="width:900px;position:relative; overflow: hidden;" class="loading">
+      <div id="main" style="position:relative; overflow: hidden;" class="loading">
         <div id="pages" class="clearfix" style="width:20000em; position:relative;clear:both;">
           <!-- all pages will be inserted here -->
         </div>
@@ -97,5 +99,6 @@
     <div id="loading" style="text-align: center; width: 100%; margin: auto;">
       Loading ...
     </div>
+    <div id="message"></div>
   </body>
 </html>

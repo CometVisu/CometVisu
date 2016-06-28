@@ -153,7 +153,8 @@ body br
 
 #navbarLeft .widget > .label, #navbarRight .widget > .label
 {
-  width: initial;
+  width: 90%;
+  text-align: left;
 }
 #navbarTop .widget .actor, #navbarBottom .widget .actor
 {
@@ -172,8 +173,12 @@ body br
   position: relative;
 }
 
+.navbar .pagejump .label {
+  font-size: 75%;
+}
+
 .navbar .pagejump .actor {
-    position: absolute;
+    /*position: absolute;*/
     top:0;
     left:0;
     right:0;
@@ -181,6 +186,12 @@ body br
     vertical-align: middle;
     margin: 0em;
 }
+
+.navbar .widgetinfo {
+  right: 0;
+  position: absolute;
+}
+
 #navbarTop .navbar .pagejump .actor, 
 #navbarBottom .navbar .pagejump .actor 
 {
@@ -418,6 +429,18 @@ div#loading {
   background: transparent;
 }
 
+.popup_close {
+  position: absolute;
+  z-index: 102;
+  right: 1em;
+  top: -0.8em;
+  width: 1.2em;
+  text-align: center;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 1px solid #fff;
+  cursor: default;
+}
 
 .popup_background {
   z-index: 100;
@@ -592,7 +615,7 @@ div#demo_3 {
     background-color: black;
 }
 
-img.icon, canvas.icon
+.icon
 {
   vertical-align: middle;
 }

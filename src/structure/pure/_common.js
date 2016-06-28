@@ -1,5 +1,7 @@
-/* _common.js (c) 2010 by Christian Mayer [CometVisu at ChristianMayer dot de]
- *
+/* _common.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 3 of the License, or (at your option)
@@ -7,35 +9,41 @@
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  * more details.
  *
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ *
+ * @module _common 
+ * @title  CometVisu _common 
  */
+
 
 /**
  * This module defines the widgets for the CometVisu visualisation.
  * @module Structure Pure
  * @title  CometVisu Structure "pure"
+ * @author Christian Mayer [CometVisu at ChristianMayer dot de]
+ * @since 2010
 */
 define( ['jquery'], function($) {
   "use strict";
 
-// Define ENUM of maturity levels for features, so that e.g. the editor can 
-// ignore some widgets when they are not supported yet
-var Maturity = {
-  release     : 0,
-  development : 1
-};
+  // Define ENUM of maturity levels for features, so that e.g. the editor can 
+  // ignore some widgets when they are not supported yet
+  var Maturity = {
+    release     : 0,
+    development : 1
+  };
 
-/**
- * This class defines all the building blocks for a Visu in the "Pure" design
- * @class VisuDesign
- */
+  /**
+   * This class defines all the building blocks for a Visu in the "Pure" design
+   * @class VisuDesign
+   */
    
-function VisuDesign() {
+  function VisuDesign() {
   var self = this;
   
   this.creators = {};
@@ -61,23 +69,23 @@ function VisuDesign() {
   this.getPopup = function(name) {
     var p = popups[name];
     if (p === undefined) {
-        return popups.unknown;
+      return popups.unknown;
     }
     return popups[name];
   }
 
   this.addPopup('unknown', {
     create: function( attributes ) {
-      var repositon = false;
-      var ret_val = $('<div class="popup" style="display:none"/><div class="popup_background" style="display:none" />').appendTo('body');
+      var reposition = false;
+      var ret_val = $('<div class="popup" style="display:none"><div class="popup_close">X</div></div><div class="popup_background" style="display:none" />').appendTo('body');
       ret_val.addClass( this.type );
 
       if (attributes.title) {
-          ret_val.filter(".popup").append( $('<div class="head" />').append(attributes.title));
+        ret_val.filter(".popup").append( $('<div class="head" />').append(attributes.title));
       }
 
       if( attributes.content) {
-          ret_val.filter(".popup").append( $('<div class="main" />').append(attributes.content));
+        ret_val.filter(".popup").append( $('<div class="main" />').append(attributes.content));
       }
 
       if( attributes.width ) {
@@ -121,14 +129,18 @@ function VisuDesign() {
 
       ret_val.bind( 'close', this.close );
       ret_val.bind( 'click', function() {
+        // note: this will call two events - one for the popup itself and 
+        //       one for the popup_background.
         ret_val.trigger( 'close' );
         return false;
       });
 
       ret_val.css( 'display', 'block' );
+      $('#centerContainer').addClass('inactiveMain');
       return ret_val;
     },
     close: function( event ) {
+      $('#centerContainer').removeClass('inactiveMain');
       event.currentTarget.remove();
     }
   });
@@ -144,14 +156,13 @@ function VisuDesign() {
    */
   this.defaultValueHandling = function( ga, data, widgetData )
   {
+    var thisTransform = '';
+    var value = data;
     if( undefined !== ga )
     {
-      var thisTransform = widgetData.address[ ga ][0];
+      thisTransform = widgetData.address[ ga ][0];
       // #1: transform the raw value to a JavaScript type
-      var value = templateEngine.transformDecode( thisTransform, data );
-    } else {
-      var thisTransform = '';
-      var value = data;
+      value = templateEngine.transformDecode( thisTransform, data );
     }
     
     widgetData.basicvalue = value; // store it to be able to supress sending of unchanged data
@@ -162,8 +173,16 @@ function VisuDesign() {
     // #3: format it in a way the user understands the value
     if( widgetData.precision )
       value = Number( value ).toPrecision( widgetData.precision );
-    if( widgetData.format )
-      value = sprintf( widgetData.format, value );
+    if( widgetData.format ) {
+      if( !('formatValueCache' in widgetData) )
+        widgetData.formatValueCache = [widgetData.format];
+      
+      var argListPos = (widgetData.address && widgetData.address[ga])? widgetData.address[ga][3] : 1;
+      
+      widgetData.formatValueCache[argListPos] = value;
+
+      value = sprintf.apply(this, widgetData.formatValueCache);
+    }
     widgetData.value = value;
     if (undefined !== value && value.constructor == Date)
     {
@@ -181,12 +200,54 @@ function VisuDesign() {
         case 'OH:time':
           value = value.toLocaleTimeString();
           break;
-        }
+      }
     }
     
     // #4 will happen outside: style the value to be pretty
     return value;
   };
+  
+  /**
+   * Method to handle all special cases for the value. The might come from
+   * the mapping where it can be quite complex as it can contain icons.
+   * value: the value that will be inserted
+   * modifyFn: callback function that modifies the DOM
+   */
+  this.defaultValue2DOM = function( value, modifyFn )
+  {
+    if (('string' === typeof value) || ('number' === typeof value))
+      modifyFn( value );
+    else if ('function' === typeof value)
+      // thisValue(valueElement);
+      console.error( 'typeof value === function - special case not handled anymore!' );
+    else if( !Array.isArray( value ) ) {
+      var element = value.cloneNode();
+      if( value.getContext )
+      {
+        fillRecoloredIcon( element );
+      }
+      modifyFn( element );
+    } else {
+      for (var i = 0; i < value.length; i++) {
+        var thisValue = value[i];
+        if (!thisValue) continue;
+
+        if( ('string' === typeof thisValue) || ('number' === typeof thisValue)  )
+          modifyFn( thisValue );
+        else if( 'function' === typeof thisValue )
+          // thisValue(valueElement);
+          console.error( 'typeof value === function - special case not handled anymore!' );
+        else {
+          var element = thisValue.cloneNode();
+          if( thisValue.getContext )
+          {
+            fillRecoloredIcon( element );
+          }
+          modifyFn( element );
+        }
+      }
+    }
+  }
   
   /**
    * ga:            address
@@ -208,41 +269,10 @@ function VisuDesign() {
   
     var valueElement = element.find('.value');
     valueElement.empty();
-    if (undefined !== value) {
-      if (('string' === typeof value) || ('number' === typeof value))
-        valueElement.append( value );
-      else if ('function' === typeof value)
-        value( valueElement );
-      else if( !Array.isArray( value ) ) {
-        var element = value.cloneNode();
-        if( value.getContext )
-        {
-          fillRecoloredIcon( element );
-        }
-        valueElement.append( element );
-      } else {
-        for (var i = 0; i < value.length; i++) {
-          var thisValue = value[i];
-          if (!thisValue) continue;
-  
-          if( ('string' === typeof thisValue) || ('number' === typeof thisValue)  )
-            valueElement.append( thisValue );
-          else if( 'function' === typeof thisValue )
-            thisValue(valueElement);
-          else {
-            var element = thisValue.cloneNode();
-            if( thisValue.getContext )
-            {
-              fillRecoloredIcon( element );
-            }
-            valueElement.append( element );
-          }
-        }
-      }
-    }
-    else {
+    if (undefined !== value)
+      self.defaultValue2DOM( value, function(e){ valueElement.append( e ) } );
+    else
       valueElement.append('-');
-    }
     
     return value;
   }
@@ -260,22 +290,41 @@ function VisuDesign() {
     ev.data.element.css( 'display', floorFilter ? '' : 'none' );
   }
   
-  this.extractLayout = function( layout, type, defaultValues )
+  /**
+   * Parse config file layout element and convert it to an object
+   */
+  this.parseLayout = function( layout, defaultValues )
   {
-    if (typeof defaultValue === 'undefined') defaultValues = [];
+    var ret_val = {};
+    
+    if( !layout )
+      return ret_val;
+    
+    if( undefined === defaultValues ) defaultValues = {};
+       
+    if( layout.getAttribute('x'     ) ) ret_val.x      = layout.getAttribute('x'     );
+    else if( defaultValues.x          ) ret_val.x      = defaultValues.x;
+       
+    if( layout.getAttribute('y'     ) ) ret_val.y      = layout.getAttribute('y'     );
+    else if( defaultValues.y          ) ret_val.y      = defaultValues.y;
+       
+    if( layout.getAttribute('width' ) ) ret_val.width  = layout.getAttribute('width' );
+    else if( defaultValues.width      ) ret_val.width  = defaultValues.width;
+       
+    if( layout.getAttribute('height') ) ret_val.height = layout.getAttribute('height');
+    else if( defaultValues.height     ) ret_val.height = defaultValues.height;
+       
+    return ret_val;
+  }
+  
+  this.extractLayout = function( layout, type )
+  {
   
     var ret_val = (type == '2d') ? 'position:absolute;' : '';
-    if( layout.getAttribute('x'     ) ) ret_val += 'left:'   + layout.getAttribute('x'     ) + ';';
-    else if( defaultValues[ 'x'     ] ) ret_val += 'left:'   + defaultValues[      'x'     ] + ';';
-    
-    if( layout.getAttribute('y'     ) ) ret_val += 'top:'    + layout.getAttribute('y'     ) + ';';
-    else if( defaultValues[ 'y'     ] ) ret_val += 'top:'    + defaultValues[      'y'     ] + ';';
-    
-    if( layout.getAttribute('width' ) ) ret_val += 'width:'  + layout.getAttribute('width' ) + ';';
-    else if( defaultValues[ 'width' ] ) ret_val += 'width:'  + defaultValues[      'width' ] + ';';
-    
-    if( layout.getAttribute('height') ) ret_val += 'height:' + layout.getAttribute('height') + ';';
-    else if( defaultValues[ 'height'] ) ret_val += 'height:' + defaultValues[      'height'] + ';';
+    if( layout.x      ) ret_val += 'left:'   + layout.x      + ';';
+    if( layout.y      ) ret_val += 'top:'    + layout.y      + ';';
+    if( layout.width  ) ret_val += 'width:'  + layout.width  + ';';
+    if( layout.height ) ret_val += 'height:' + layout.height + ';';
     
     return ret_val;
   }
@@ -323,11 +372,15 @@ function VisuDesign() {
   this.makeAddressList = function( element, handleVariant, id ) {
     var address = {};
     element.find('address').each( function(){ 
-      var src = this.textContent;
-      var transform = this.getAttribute('transform');
+      var 
+        src = this.textContent,
+        transform = this.getAttribute('transform'),
+        formatPos = +(this.getAttribute('format-pos') || 1)|0, // force integer
+        mode = 1|2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+      
       if ((!src) || (!transform)) // fix broken address-entries in config
         return;
-      var mode = 1|2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+      
       switch( this.getAttribute('mode') )
       {
         case 'disable':
@@ -346,7 +399,7 @@ function VisuDesign() {
       var variantInfo = handleVariant ? handleVariant( src, transform, mode, this.getAttribute('variant') ) : [true, undefined];
       if( (mode&1) && variantInfo[0]) // add only addresses when reading from them
         templateEngine.addAddress( src, id );
-      address[ src ] = [ transform, mode, variantInfo[1] ];
+      address[ src ] = [ transform, mode, variantInfo[1], formatPos ];
       return; // end of each-func
     });
     return address;
@@ -361,10 +414,16 @@ function VisuDesign() {
   this.setWidgetLayout = function( page, path ) { 
     var 
       elementData = templateEngine.widgetDataGet( path ),
+      layout      = page.children('layout'),
+      lookupM     = [ 0, 2, 4,  6,  6,  6,  6, 12, 12, 12, 12, 12, 12 ],
+      lookupS     = [ 0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],
       ret_val = '';
-    elementData['colspan'] = page.children('layout').attr('colspan') || $('head').data('colspanDefault') || 6;
-    if (page.children('layout').attr('rowspan')) {
-      elementData['rowspanClass'] = templateEngine.rowspanClass(page.children('layout').attr('rowspan') || 1);
+    elementData.colspan = layout.attr('colspan') || $('head').data('colspanDefault') || 6;
+    elementData.colspanM = layout.attr('colspan-m') || lookupM[Math.floor(elementData.colspan)] || elementData.colspan;
+    elementData.colspanS = layout.attr('colspan-s') || lookupS[Math.floor(elementData.colspan)] || elementData.colspan;
+    if( layout.attr('rowspan') )
+    {
+      elementData.rowspanClass = templateEngine.rowspanClass( layout.attr('rowspan') || 1 );
       ret_val = 'innerrowspan'; 
     }
     return ret_val;
@@ -382,7 +441,7 @@ function VisuDesign() {
    * @param updateFn   The callback function for updates
    */
   this.createDefaultWidget = function( widgetType, $element, path, flavour, type, updateFn, makeAddressListFn ) {
-    var layout = $element.children('layout')[0];
+    var layout = this.parseLayout( $element.children('layout')[0] );
     var style = layout ? 'style="' + this.extractLayout( layout, type ) + '"' : '';
     var classes = 'widget clearfix ' + widgetType;
     if( $element.attr('align') ) {
@@ -392,7 +451,7 @@ function VisuDesign() {
     if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
     if( flavour ) classes += ' flavour_' + flavour;
     if($element.attr('class')) classes += ' custom_' + $element.attr('class');
-    var label = this.extractLabel( $element.find('label')[0], flavour );
+    var label = (widgetType==='text')?this.extractLabel( $element.find('label')[0], flavour, '' ):this.extractLabel( $element.find('label')[0], flavour );
     var address = this.makeAddressList( $element, makeAddressListFn, path );
     var bindClickToWidget = templateEngine.bindClickToWidget;
     if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
@@ -404,13 +463,14 @@ function VisuDesign() {
       'styling' : $element.attr('styling'),
       'format'  : $element.attr('format'),
       'align'   : $element.attr('align'),
+      'layout'  : layout,
       'path'    : path
     });
     var ret_val = '<div class="'+classes+'" ' + style + '>' + label;
     if (address && updateFn!=undefined) {
       templateEngine.postDOMSetupFns.push( function() {
         // initially setting a value
-        basicdesign.defaultUpdate( undefined, undefined, $("#"+path), true, path );
+        updateFn.bind( $("#"+path), undefined, undefined );
       });
     }
     return ret_val;
@@ -470,80 +530,80 @@ function VisuDesign() {
   };
 };
 
-/*
- * Figure out best placement of popup.
- * A preference can optionally be passed. The position is that of the numbers
- * on the numeric keypad. I.e. a value of "6" means centered above the anchor.
- * A value of "0" means centered to the page
- */
-function placementStrategy( anchor, popup, page, preference )
-{
-  var position_order = [ 8, 2, 6, 4, 9, 3, 7, 1, 5, 0 ];
-  if( preference !== undefined ) position_order.unshift( preference );
-  
-  for( var pos in position_order )
+  /*
+   * Figure out best placement of popup.
+   * A preference can optionally be passed. The position is that of the numbers
+   * on the numeric keypad. I.e. a value of "6" means centered above the anchor.
+   * A value of "0" means centered to the page
+   */
+  function placementStrategy( anchor, popup, page, preference )
   {
-    var xy = {};
-    switch(position_order[pos])
-    {
-      case 0: // page center - will allways work
-        return { x: (page.w-popup.w)/2, y: (page.h-popup.h)/2 };
-      
-      case 1:
-        xy.x = anchor.x - popup.w;
-        xy.y = anchor.y + anchor.h;
-        break;
-      
-      case 2:
-        xy.x = anchor.x + anchor.w/2 - popup.w/2;
-        xy.y = anchor.y + anchor.h;
-        break;
-      
-      case 3:
-        xy.x = anchor.x + anchor.w;
-        xy.y = anchor.y + anchor.h;
-        break;
-      
-      case 4:
-        xy.x = anchor.x - popup.w;
-        xy.y = anchor.y + anchor.h/2 - popup.h/2;
-        break;
-      
-      case 5:
-        xy.x = anchor.x + anchor.w/2 - popup.w/2;
-        xy.y = anchor.y + anchor.h/2 - popup.h/2;
-        break;
-      
-      case 6:
-        xy.x = anchor.x + anchor.w;
-        xy.y = anchor.y + anchor.h/2 - popup.h/2;
-        break;
-      
-      case 7:
-        xy.x = anchor.x - popup.w;
-        xy.y = anchor.y - popup.h;
-        break;
-      
-      case 8:
-        xy.x = anchor.x + anchor.w/2 - popup.w/2;
-        xy.y = anchor.y - popup.h;
-        break;
-      
-      case 9:
-        xy.x = anchor.x + anchor.w;
-        xy.y = anchor.y - popup.h;
-        break;
-    }
-    
-    // test if that solution is valid
-    if( xy.x >= 0 && xy.y >= 0 && xy.x+popup.w<=page.w && xy.y+popup.h<=page.h )
-      return xy;
-  }
+    var position_order = [ 8, 2, 6, 4, 9, 3, 7, 1, 5, 0 ];
+    if( preference !== undefined ) position_order.unshift( preference );
   
-  return { x: 0, y: 0 }; // sanity return
-}
+    for( var pos in position_order )
+    {
+      var xy = {};
+      switch(position_order[pos])
+      {
+        case 0: // page center - will allways work
+          return { x: (page.w-popup.w)/2, y: (page.h-popup.h)/2 };
+      
+        case 1:
+          xy.x = anchor.x - popup.w;
+          xy.y = anchor.y + anchor.h;
+          break;
+      
+        case 2:
+          xy.x = anchor.x + anchor.w/2 - popup.w/2;
+          xy.y = anchor.y + anchor.h;
+          break;
+      
+        case 3:
+          xy.x = anchor.x + anchor.w;
+          xy.y = anchor.y + anchor.h;
+          break;
+      
+        case 4:
+          xy.x = anchor.x - popup.w;
+          xy.y = anchor.y + anchor.h/2 - popup.h/2;
+          break;
+      
+        case 5:
+          xy.x = anchor.x + anchor.w/2 - popup.w/2;
+          xy.y = anchor.y + anchor.h/2 - popup.h/2;
+          break;
+      
+        case 6:
+          xy.x = anchor.x + anchor.w;
+          xy.y = anchor.y + anchor.h/2 - popup.h/2;
+          break;
+      
+        case 7:
+          xy.x = anchor.x - popup.w;
+          xy.y = anchor.y - popup.h;
+          break;
+      
+        case 8:
+          xy.x = anchor.x + anchor.w/2 - popup.w/2;
+          xy.y = anchor.y - popup.h;
+          break;
+      
+        case 9:
+          xy.x = anchor.x + anchor.w;
+          xy.y = anchor.y - popup.h;
+          break;
+      }
+    
+      // test if that solution is valid
+      if( xy.x >= 0 && xy.y >= 0 && xy.x+popup.w<=page.w && xy.y+popup.h<=page.h )
+        return xy;
+    }
+  
+    return { x: 0, y: 0 }; // sanity return
+  }
 
-var basicdesign = new VisuDesign();
+  var basicdesign = new VisuDesign();
 
   return {
     basicdesign: basicdesign,

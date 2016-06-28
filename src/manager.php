@@ -23,7 +23,7 @@
 
 // global definitions
 define( 'CONFIG_FILENAME', 'config/visu_config%s.xml');
-define( 'DEMO_FILENAME', 'config/demo/visu_config%s.xml');
+define( 'DEMO_FILENAME', 'demo/visu_config%s.xml');
 
 // strings
 $_STRINGS = array(
@@ -108,7 +108,7 @@ define( 'DEMO_TABLE_ROW', '<tr class="visuline">'
  */
 function icon( $name )
 {
-  return '<img src="icon/knx-uf-iconset/128x128_white/' . $name . '.png" class="icon" />';
+  return '<svg class="icon"><use xlink:href="icon/knx-uf-iconset.svg#kuf-' . $name . '"></use></svg>';
 }
 
 /**
@@ -140,7 +140,7 @@ $config = array_key_exists( 'config', $_GET  ) ? $_GET ['config'] :
         ( array_key_exists( 'config', $_POST ) ? $_POST['config'] : false );
 $action = array_key_exists( 'action', $_GET  ) ? $_GET ['action'] :
         ( array_key_exists( 'action', $_POST ) ? $_POST['action'] : false );
-if( ($config != false) && ($action != false) )
+if( ($config == '' || $config != false) && ($action != false) )
 {
   $configFile = sprintf( CONFIG_FILENAME, (''==$config ? '' : '_') . $config );
   if( !is_writeable( $configFile ) && 'create' != $action )
@@ -148,7 +148,7 @@ if( ($config != false) && ($action != false) )
   else switch( $action )
   {
     case 'create':
-      if( !is_readable( 'config/demo/visu_config_empty.xml' ) )
+      if( !is_readable( 'demo/visu_config_empty.xml' ) )
       {
         $actionDone = $_['Empty configuration is not readable -> CometVisu installation is badly broken!'];
         break;
@@ -159,7 +159,7 @@ if( ($config != false) && ($action != false) )
         break;
       }
       
-      if( copy( 'config/demo/visu_config_empty.xml', $configFile ) ) {
+      if( copy( 'demo/visu_config_empty.xml', $configFile ) ) {
         $actionDone = sprintf( $_['New configuration file successfully created'], $configFile );
         $availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), filterPreview );
         $resetUrl = true;
@@ -194,13 +194,27 @@ if( ($config != false) && ($action != false) )
 } else {
   // nothing special to do - so at least do a few sanity checks
   if( !is_writeable( 'config/visu_config.xml' ) )
+  {
+    if( chmod( 'config/visu_config.xml', 0666 ) ) // try to fix it
+    {
+      if( !is_writeable( 'config/visu_config.xml' ) )
+        $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
+    } else
     $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
+  }
   
   if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
-    $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+  { 
+    if( chmod( 'config/visu_config_previewtemp.xml', 0666 ) ) // try to fix it
+    {
+      if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
+        $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+    } else
+      $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+  }
   
-  if( !is_readable( 'config/demo/visu_config_empty.xml' ) )
-    $actionDone = $_['Installation error - please check file permissions!'].' (config/demo/visu_config_empty.xml)';
+  if( !is_readable( 'demo/visu_config_empty.xml' ) )
+    $actionDone = $_['Installation error - please check file permissions!'].' (demo/visu_config_empty.xml)';
 }
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -214,7 +228,7 @@ if( ($config != false) && ($action != false) )
     <link rel="apple-touch-icon" sizes="114x114" href="icon/comet_webapp_icon_114.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="icon/comet_webapp_icon_144.png" />
     <link rel="apple-touch-icon" sizes="144x144" href="icon/comet_webapp_icon_144.png" />
-    <script src="dependencies/jquery.min.js" type="text/javascript"></script>
+    <script src="dependencies/jquery.js" type="text/javascript"></script>
     <script>
 function deleteConfig( displayName, name )
 {
@@ -297,8 +311,10 @@ if( $resetUrl )
     .visuline:hover, #newConfig:hover {
       background: #999;
     }
-    img.icon {
+    .icon {
       width: 32px;
+      height: 32px;
+      color: white;
     }
     .footnote {
       font-size: 80%;
