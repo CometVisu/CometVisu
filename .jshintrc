@@ -26,6 +26,7 @@
     "element": false,
     "by": false,
     "list": false,
-    "define": false
+    "define": false,
+    "templateEngine":false
   }
 }

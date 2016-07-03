@@ -37,8 +37,7 @@ define( ['_common'], function( design ) {
     var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type );
 
     // create the actor
-    var value = $('link[href*="basic.css"]').attr('href').split('/')[2];
-    var actor = '<div class="actor switchUnpressed"><div class="value">' + value + '</div></div>';
+    var actor = '<div class="actor switchUnpressed"><div class="value">' + templateEngine.clientDesign + '</div></div>';
 
     var data = templateEngine.widgetDataGet( path );
     

@@ -442,6 +442,7 @@ module.exports = function(grunt) {
           dir: 'coverage',
           reporters: [
             { type : 'lcov' },
+            { type: 'html'},
             { type : 'text-summary' }
           ]
         }
@@ -508,6 +509,30 @@ module.exports = function(grunt) {
           // 'git add external/knx-uf-iconset',
           //'git commit -m "icons updated"'
         ].join('&&')
+      }
+    },
+
+    scaffold: {
+      widgetTest: {
+        options: {
+          questions: [{
+            name: 'widgetName',
+            type: 'input',
+            message: 'Widget name:'
+          }],
+          filter: function (result) {
+            result['testFileName'] = result.widgetName.substr(0,1).toUpperCase() + result.widgetName.substr(1);
+            return result;
+          },
+          template: {
+            "skeletons/widget-test.js": "test/karma/structure/pure/{{testFileName}}-spec.js"
+          },
+          after: function(result) {
+            var filename = "test/karma/structure/pure/"+result.testFileName+"-spec.js";
+            var test = grunt.file.read(filename, { encoding: "utf8" }).toString();
+            grunt.file.write(filename, test.replace(/%WIDGET_NAME%/g, result.widgetName));
+          }
+        }
       }
     }
   });
@@ -578,6 +603,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-svgstore');
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-scaffold');
 
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
@@ -587,6 +613,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
+  grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
