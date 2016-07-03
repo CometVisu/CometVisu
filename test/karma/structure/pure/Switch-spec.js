@@ -97,8 +97,10 @@ define( ['TemplateEngine', '_common', 'CometVisuMockup', 'widget_switch'], funct
       expect(actor).not.toBe(null);
 
       //canceled call
-      creator.action.call('id_0', actor, true);
+      creator.action('id_0', actor, true);
       expect(templateEngine.visu.write).not.toHaveBeenCalled();
+
+      creator.update.call(container.children[0],'12/7/37', 0);
 
       creator.action('id_0', actor, false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '81');
