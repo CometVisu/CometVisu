@@ -67,6 +67,7 @@ define( ['_common'], function( design ) {
       'layout'  : layout,
       'align'   : $e.attr('align'),
       'target'  : target,
+      'target_path': $e.attr('path'),
       'path'    : path,
       'active_scope': $(element).attr('active_scope') ? $(element).attr('active_scope') : 'target'
     } );
@@ -85,8 +86,8 @@ define( ['_common'], function( design ) {
     
     var data = templateEngine.widgetDataGet( path );
     var target = data.target;
-    if (data.path!=undefined) {
-      target = templateEngine.getPageIdByPath(data.target,data.path);
+    if (data.target_path !== undefined) {
+      target = templateEngine.getPageIdByPath(data.target,data.target_path);
     }
     templateEngine.scrollToPage( target );
   }
