@@ -475,34 +475,4 @@ define( ['TransformDefault'], function(Transform ) {
   */
   'temp dummy' : {link:'1.001'}
 } );
-
-  //////
-  // To be deleted later: a test function to check if the coding is consistent
-  function TEST( DPT, Bytes )
-  {
-    var maxErr = 5;
-    DPT = 'DPT:' + DPT;
-    for( i = 0; i < Math.pow(2,8*Bytes); i++ )
-    {
-      var v = i.toString( 16 );
-      v = new Array(2*Bytes - v.length + 1).join('0') + v;
-      var test = Transform[DPT].encode(
-        Transform[DPT].decode(v)
-      );
-      //console.log(i,v,test);
-      if( v != test )
-      {
-        var v2 = Transform[DPT].decode(v);
-        var test2 = Transform[DPT].decode(
-          Transform[DPT].encode(v2)
-        );
-        if( v2 != test2 )
-        {
-          console.log( i, v, test, Transform[DPT].decode(v), v2, test2, maxErr );
-          if( (--maxErr) < 0 ) return maxErr;
-        }
-      }
-    }
-  }
-
 }); // end define
