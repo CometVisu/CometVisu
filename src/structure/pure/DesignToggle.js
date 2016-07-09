@@ -61,20 +61,26 @@ define( ['_common'], function( design ) {
     var oldDesign = $('.value',$this).text();
     var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
 
-    var URL = window.location.href;
+    var URL = this.getLocation();
     var regexp = new RegExp("design="+oldDesign)
     if (URL.search(regexp) != -1) { // has URL-parameter design
-      window.location.href=URL.replace(regexp, "design="+newDesign);
+      this.setLocation(URL.replace(regexp, "design="+newDesign));
     }
     else {
       if (URL.indexOf("?") != -1) { // has other parameters, append design
-        window.location.href=URL+"&design="+newDesign;
+        this.setLocation(URL+"&design="+newDesign);
       }
       else { // has now parameters
-        window.location.href=URL+"?design="+newDesign;
+        this.setLocation(URL+"?design="+newDesign);
       }
     }
-  }
+  },
+  getLocation : function() {
+    return window.location.href;
+  },
+  setLocation : function(loc) {
+    window.location.href = loc;
+  }  
 });
 
 }); // end define
