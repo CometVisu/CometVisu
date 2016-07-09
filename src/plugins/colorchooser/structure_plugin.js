@@ -47,7 +47,8 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
         'bus_g'   : 0, // The current value on the bus
         'bus_b'   : 0, // The current value on the bus
         'rateLimiter' : false, // is the rate limiter active?
-        'type'    : 'colorChooser'
+        'type'    : 'colorChooser',
+        'path'    : path
       });
     
     templateEngine.postDOMSetupFns.push( function(){
