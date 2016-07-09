@@ -231,7 +231,7 @@ module.exports = function(grunt) {
 
           modules: [
             // the main application
-            { name: 'lib/templateengine', include: ['css'] },
+            { name: 'lib/TemplateEngine', include: ['css'] },
             // optimize the plugins
             { name: 'plugins/calendarlist/structure_plugin',   exclude: ['structure_custom', 'css', 'normalize']  },
             { name: 'plugins/clock/structure_plugin',          exclude: ['structure_custom', 'css', 'normalize']  },
