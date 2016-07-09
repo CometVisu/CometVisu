@@ -64,7 +64,6 @@ define( ['TemplateEngine', '_common', 'widget_audio'], function(engine, design) 
       var actor = document.getElementById('test');
       actor.paused = true;
       actor.play = jasmine.createSpy('playspy');
-      console.log(actor);
 
       creator.update.call(container.children[0],'12/7/37', 0);
       expect(actor.play).not.toHaveBeenCalled();
