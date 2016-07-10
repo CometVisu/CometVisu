@@ -46,4 +46,8 @@ define([], function() {
   beforeEach(function() {
     jasmine.addMatchers(customMatchers);
   });
+
+  afterEach(function() {
+    templateEngine.widgetData = {};
+  });
 });

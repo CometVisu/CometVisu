@@ -54,6 +54,7 @@ define( ['_common'], function( design ) {
     actor += '</div>';
     var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
     var data = templateEngine.widgetDataInsert( path, {
+      'path'    : path,
       'address':   address, 
       'refresh':   refresh,
       'layout' :   layout,

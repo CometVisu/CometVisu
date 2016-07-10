@@ -67,7 +67,7 @@ define( ['_common'], function( design ) {
       'layout'  : layout,
       'align'   : $e.attr('align'),
       'target'  : target,
-      'path'    : $(element).attr('path'),
+      'path'    : path,
       'active_scope': $(element).attr('active_scope') ? $(element).attr('active_scope') : 'target'
     } );
     return ret_val + actor + info +'</div>';

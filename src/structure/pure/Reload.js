@@ -32,17 +32,16 @@ define( ['_common'], function( design ) {
   design.basicdesign.addCreator('reload', {
   create: function( element, path, flavour, type ) {
     var 
-      e = $(element);
-    address = basicdesign.makeAddressList(e, null);
-    data = templateEngine.widgetDataInsert( path, {
-        address: address
-      });
+      e = $(element),
+      address = basicdesign.makeAddressList(e, null);
+    templateEngine.widgetDataInsert( path, {
+      address: address,
+      path: path
+    });
     return '';
   },
   update: function( ga, d ) {
     var
-      element = $(this),
-      valElem = element.find('.value'),
       data    = templateEngine.widgetDataGetByElement( this ),
       value   = templateEngine.transformDecode( data['address'][ ga ][0], d );
     if (value > 0) {
