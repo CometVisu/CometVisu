@@ -49,6 +49,26 @@ define( ['TemplateEngine', '_common', 'CometVisuMockup', 'plugin_ColorChooser'],
       // simulate the initial incoming data
       creator.update.call(container.children[0],'Rgb_Test', '246,0,20');
       expect(templateEngine.visu.write).not.toHaveBeenCalled();
+      templateEngine.visu.write.calls.reset();
+      document.body.removeChild(container);
+
+      xml.innerHTML = '<colorchooser><label>Test</label><address transform="OH:color" variant="r">Rgb_Test</address></colorchooser>';
+      xml = xml.firstChild;
+      widgetString = creator.create(xml, 'id_0', null, 'colorchooser');
+
+      container =document.createElement('div');
+      container.setAttribute("class","widget_container");
+      container.setAttribute("id", 'id_0');
+      container.innerHTML = widgetString;
+      document.body.appendChild(container);
+
+      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
+        thisFn();
+      });
+
+      // simulate the initial incoming data
+      creator.update.call(container.children[0],'Rgb_Test', '246');
+      expect(templateEngine.visu.write).not.toHaveBeenCalled();
 
       document.body.removeChild(container);
     });

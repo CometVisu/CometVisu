@@ -141,21 +141,21 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
     switch( wData.address[ ga ][2] )
     {
       case 'r':
-        wData.bus_r = value * 100 / 255.0;
+        wData.bus_r = value;
         color = color.substring(0,1) +
                 toHex( value*255/100 )+
                 color.substring(3);
         break;
         
       case 'g':
-        wData.bus_g = value * 100 / 255.0;
+        wData.bus_g = value;
         color = color.substring(0,3) +
                 toHex( value*255/100 )+
                 color.substring(5);
         break;
         
       case 'b':
-        wData.bus_b = value * 100 / 255.0;
+        wData.bus_b = value;
         color = color.substring(0,5) +
                 toHex( value*255/100 )+
                 color.substring(7);
