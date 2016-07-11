@@ -161,13 +161,13 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
                 color.substring(7);
         break;
       case 'rgb':
-        wData.bus_r = value[0] * 100 / 255.0;
-        wData.bus_g = value[1] * 100 / 255.0;
-        wData.bus_b = value[2] * 100 / 255.0;
+        wData.bus_r = value[0];
+        wData.bus_g = value[1];
+        wData.bus_b = value[2];
         color = color.substring(0,1) +
-        toHex( value[0] )+
-        toHex( value[1] )+
-        toHex( value[2] )+
+        toHex( value[0]*255/100 )+
+        toHex( value[1]*255/100 )+
+        toHex( value[2]*255/100 )+
         color.substring(7);
         break;
     }
