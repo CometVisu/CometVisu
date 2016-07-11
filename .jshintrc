@@ -27,6 +27,7 @@
     "by": false,
     "list": false,
     "define": false,
-    "templateEngine":false
+    "templateEngine":false,
+    "Transform":false
   }
 }

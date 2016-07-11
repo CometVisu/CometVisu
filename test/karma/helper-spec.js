@@ -65,5 +65,6 @@ define([], function() {
 
   afterEach(function() {
     templateEngine.widgetData = {};
+    templateEngine.postDOMSetupFns = [];
   });
 });
