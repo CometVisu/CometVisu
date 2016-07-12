@@ -56,6 +56,22 @@ define([], function() {
           return result;
         }
       };
+    },
+
+    toBeVisible: function() {
+      return  {
+        compare: function(actual) {
+          var result = {};
+          result.pass = $(actual).css('display') === 'none';
+          if (result.pass) {
+            result.message = "Expected " + actual.tagName + " to be visible";
+          }
+          else{
+            result.message = "Expected " + actual.tagName + " not to be visible, but it is "+$(actual).css('display');
+          }
+          return result;
+        }
+      };
     }
   };
   

@@ -37,8 +37,7 @@ define( ['_common'], function( design ) {
     classes += ' imagetrigger';
     if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
     if( flavour ) classes += ' flavour_' + flavour;
-    var ret_val = '<div class="widget clearfix image '+(classes?classes:'')+'">';
-    var value = $e.attr('value') ? $e.attr('value') : 0;
+    var ret_val = '<div class="widget clearfix image '+classes+'">';
     ret_val += basicdesign.extractLabel( $e.find('label')[0], flavour );
     var address = basicdesign.makeAddressList($e);
     var layout = basicdesign.parseLayout( $e.children('layout')[0], {width:'100%'} );
@@ -60,7 +59,8 @@ define( ['_common'], function( design ) {
       'layout' :   layout,
       'src':       $e.attr('src'),
       'suffix':    $e.attr('suffix'),
-      'sendValue': $e.attr('sendValue') || ""
+      'sendValue': $e.attr('sendValue') || "",
+      'type':      $e.attr('type')
     } );
     
     if (data.refresh) {
@@ -72,20 +72,25 @@ define( ['_common'], function( design ) {
     return ret_val + actor + '</div>';
   },
   update: function( ga, d ) {
-    var data  = templateEngine.widgetDataGetByElement( element );
-    if ( data.address[e.type][1].writeonly == "true")
-      return; // skip writeonly FIXME: writeonly shouldnt bind to update at all
-    var val = templateEngine.transformDecode(data.address[ ga ][0], d);
-    if (data.type == "show")
-      if (val == 0)
-        $(this).children().hide();
-    else
-      $(this).children().attr("src", data.src + '.' + data.suffix ).show();
-    else if (data.type == "select")
-      if (val == 0)
-        $(this).children().hide();
-    else
-      $(this).children().attr("src", data.src + val + '.' + data.suffix ).show();
+    var element = $(this),
+      data  = templateEngine.widgetDataGetByElement( element ),
+      val = templateEngine.transformDecode(data.address[ ga ][0], d);
+    if (data.type == "show") {
+      if (val == 0) {
+        element.children().hide();
+      }
+      else {
+        element.children().attr("src", data.src + '.' + data.suffix).show();
+      }
+    }
+    else if (data.type == "select") {
+      if (val == 0) {
+        element.children().hide();
+      }
+      else {
+        element.children().attr("src", data.src + val + '.' + data.suffix).show();
+      }
+    }
         
     //FIXME: add value if mapping exists 
     //FIXME: get image name from mapping
@@ -93,6 +98,7 @@ define( ['_common'], function( design ) {
     //FIXME: add SVG-magics
   },
   action: function( path, actor, isCanceled ) {
+    if( isCanceled ) return;
     var 
       data = templateEngine.widgetDataGet( path );
     for( var addr in data.address ) {
