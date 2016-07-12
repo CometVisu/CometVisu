@@ -11,6 +11,7 @@ define( ['jquery','TemplateEngine', '_common', 'widget_image'], function($, engi
     var templateEngine = engine.getInstance();
 
     it("should test the image creator", function() {
+      spyOn(templateEngine, "setupRefreshAction");
 
       var creator = design.basicdesign.getCreator("image");
 
@@ -21,12 +22,24 @@ define( ['jquery','TemplateEngine', '_common', 'widget_image'], function($, engi
       image.appendChild(label);
       xml.documentElement.appendChild(image);
       var widget = $(creator.create(xml.firstChild.firstChild, 'id_0', null, 'image'));
-      
+
       expect(widget).toHaveClass('image');
       expect(widget.find("div.label").text()).toBe('Test');
-
       var data = templateEngine.widgetDataGet('id_0');
       expect(data.path).toBe("id_0");
+
+      expect(widget.find("img").get(0).getAttribute("style")).toBe('width: 100%;');
+
+      image.setAttribute("width", "50%");
+      image.setAttribute("height", "51%");
+      image.setAttribute("refresh", "5");
+      widget = $(creator.create(xml.firstChild.firstChild, 'id_0', null, 'image'));
+
+      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
+        thisFn();
+      });
+      expect(templateEngine.setupRefreshAction).toHaveBeenCalled();
+      expect(widget.find("img").get(0).getAttribute("style")).toBe('width:50%;height:51%;');
     });
   });
 });
