@@ -40,6 +40,22 @@ define([], function() {
           return result;
         }
       };
+    },
+
+    toHaveAttribute: function() {
+      return  {
+        compare: function(actual, expected) {
+          var result = {};
+          result.pass = actual.hasAttribute(expected);
+          if (result.pass) {
+            result.message = "Expected " + actual.tagName + " not to have attribute "+expected;
+          }
+          else{
+            result.message = "Expected " + actual.tagName + " to have attribute "+expected+", but it does not";
+          }
+          return result;
+        }
+      };
     }
   };
   
@@ -49,5 +65,6 @@ define([], function() {
 
   afterEach(function() {
     templateEngine.widgetData = {};
+    templateEngine.postDOMSetupFns = [];
   });
 });

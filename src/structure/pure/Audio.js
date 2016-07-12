@@ -41,8 +41,8 @@ define( ['_common'], function( design ) {
       'id'      : $e.attr('id'),
       'width'   : $e.attr('width'),
       'height'  : $e.attr('height'),
-      'autoplay': $e.attr('autoplay'),
-      'loop'    : $e.attr('loop'),
+      'autoplay': $e.attr('autoplay') === "autoplay" || $e.attr('autoplay') === "true",
+      'loop'    : $e.attr('loop') === "loop" || $e.attr('loop') === "true",
       'threshold_value'  : $e.attr('threshold_value' ) || 1
     } );
 
@@ -51,8 +51,8 @@ define( ['_common'], function( design ) {
     if( data.width  ) style += 'width:'  + data.width  + ';';
     if( data.height ) style += 'height:' + data.height + ';';
     if( style != '' ) style = 'style="' + style + '"';
-    var autoplay = (data.autoplay == 'true') ? ' autoplay ' : '';
-    var loop = (data.loop == 'true') ? ' loop ' : '';
+    var autoplay = (data.autoplay) ? ' autoplay ' : '';
+    var loop = (data.loop) ? ' loop ' : '';
     var actor = '<div class="actor"><audio id="' + $e.attr('id') + '" ' + autoplay + loop + style + ' controls> <source src="' +$e.attr('src') + '" > </audio> </div>';
     return ret_val + actor + '</div>';
   },
@@ -63,11 +63,11 @@ define( ['_common'], function( design ) {
     var value = basicdesign.defaultUpdate( e, d, element, true, element.parent().attr('id') );
     var data  = templateEngine.widgetDataGetByElement( element );
     var on = templateEngine.map( data[ 'threshold_value' ], data['mapping'] );
-    if (value >= on){
+    if (value >= on) {
       var audioWidget = document.getElementById(data['id']);
       if (audioWidget.paused == true)
         audioWidget.play();
-    };
+    }
   }
 });
 
