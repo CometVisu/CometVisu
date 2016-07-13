@@ -446,6 +446,12 @@ module.exports = function(grunt) {
             { type : 'text-summary' }
           ]
         }
+      },
+      debug: {
+        configFile: 'karma.conf.js',
+        singleRun: true,
+        browsers: ['PhantomJS'],
+        reporters: ['progress']
       }
     },
 
