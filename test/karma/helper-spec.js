@@ -13,11 +13,11 @@ define(['jquery','TemplateEngine', '_common'], function($, engine, design) {
    * @param name {String} name of the widget creator
    * @param attributes {Map} widget attributes
    * @param content {String} content od the widget
-   * @returns {xml}
+   * @returns [{creator}, {xml}]
    * @private
    */
   var createTestWidgetString = function(name, attributes, content) {
-    this.creator = design.basicdesign.getCreator(name);
+    var creator = design.basicdesign.getCreator(name);
     var xml = document.createElement('template');
     if (!content) {
       content="";
@@ -29,7 +29,8 @@ define(['jquery','TemplateEngine', '_common'], function($, engine, design) {
     elem += ">"+content+"</"+name+">";
     xml.innerHTML = elem;
     xml = xml.firstChild;
-    return this.creator.create(xml, 'id_0', null, name);
+
+    return [creator, creator.create(xml, 'id_0', null, name)];
   };
 
   var createTestElement = function(name, attributes, content, address, addressAttributes) {
@@ -50,13 +51,15 @@ define(['jquery','TemplateEngine', '_common'], function($, engine, design) {
     }
     content += ">"+address+"</address>";
 
-    var container =document.createElement('div');
+    var container = document.createElement('div');
     container.setAttribute("class","widget_container");
     container.setAttribute("id", 'id_0');
-    container.innerHTML = createTestWidgetString(name, attributes, content);
+    var res = createTestWidgetString(name, attributes, content);
+    container.innerHTML = res[1];
     document.body.appendChild(container);
     
     this.container = container;
+    return res[0];
   };
   
   var customMatchers = {

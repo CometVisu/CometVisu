@@ -9,7 +9,7 @@ define( ['TemplateEngine', '_common', 'widget_info'], function(engine, design) {
     var templateEngine = engine.getInstance();
 
     it("should test the info creator", function() {
-      var widget = $(this.createTestWidgetString("info", {}, "<label>Test</label>"));
+      var widget = $(this.createTestWidgetString("info", {}, "<label>Test</label>")[1]);
     
       expect(widget).toHaveClass('info');
       expect(widget.find("div.label").text()).toBe('Test');
@@ -19,7 +19,7 @@ define( ['TemplateEngine', '_common', 'widget_info'], function(engine, design) {
     });
 
     it("should update an info widget", function() {
-      this.createTestElement('info');
+      var creator = this.createTestElement('info');
 
       creator.update.call(this.container.children[0], '12/7/37', 1);
       var actor = $(this.container.children[0].querySelectorAll('.actor')[0]);
