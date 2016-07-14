@@ -55,11 +55,7 @@ define( ['_common'], function( design ) {
     
     if( data.button1label )
     {
-      ret_val += '<div class="actor switchUnpressed ';
-      if( data.align ) 
-        ret_val += data.align; 
-      ret_val += '">';
-      
+      ret_val += '<div class="actor switchUnpressed">';
       ret_val += '<div class="value">' + data.button1label + '</div>';
       ret_val += '</div>';
       if( 1 == (buttonCount++ % 2) ) ret_val += '<br/>';
@@ -67,11 +63,7 @@ define( ['_common'], function( design ) {
     
     if( data.button2label )
     {
-      ret_val += '<div class="actor switchUnpressed ';
-      if( data.align ) 
-        ret_val += data.align; 
-      ret_val += '">';
-      
+      ret_val += '<div class="actor switchUnpressed">';
       ret_val += '<div class="value">' + data.button2label + '</div>';
       ret_val += '</div>';
       if( 1 == (buttonCount++ % 2) ) ret_val += '<br/>';
@@ -79,11 +71,7 @@ define( ['_common'], function( design ) {
     
     if( data.button3label )
     {
-      ret_val += '<div class="actor switchUnpressed ';
-      if( data.align ) 
-        ret_val += data.align; 
-      ret_val += '">';
-      
+      ret_val += '<div class="actor switchUnpressed">';
       ret_val += '<div class="value">' + data.button3label + '</div>';
       ret_val += '</div>';
       if( 1 == (buttonCount++ % 2) ) ret_val += '<br/>';
@@ -91,11 +79,7 @@ define( ['_common'], function( design ) {
     
     if( data.button4label )
     {
-      ret_val += '<div class="actor switchUnpressed ';
-      if( data.align ) 
-        ret_val += data.align; 
-      ret_val += '">';
-      
+      ret_val += '<div class="actor switchUnpressed">';
       ret_val += '<div class="value">' + data.button4label + '</div>';
       ret_val += '</div>';
       if( 1 == (buttonCount++ % 2) ) ret_val += '<br/>';
@@ -133,7 +117,6 @@ define( ['_common'], function( design ) {
         data  = templateEngine.widgetDataGetByElement( this ),
         thisTransform = data.address[ ga ][0],
         value = templateEngine.transformDecode( thisTransform, d );
-        
     element.find('.actor').each( function(){
       var $this     = $(this),
           index = $this.index() < 3 ? $this.index()+1 : $this.index(),
