@@ -27,8 +27,13 @@ define( ['TemplateEngine', '_common', 'widget_multitrigger'], function(engine, d
         'button2value': '2',
         'button3value': '3',
         'button4value': '4',
-        'showstatus': 'true'
+        'showstatus': 'true',
+        'mapping': 'test'
       })[1]);
+
+      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
+        thisFn();
+      });
 
       var values = $(widget.find("div.actor > div.value"));
       expect($(values.get(0)).text()).toBe('B1');
@@ -81,7 +86,7 @@ define( ['TemplateEngine', '_common', 'widget_multitrigger'], function(engine, d
         'button3value': 3,
         'button4value': 4,
         'showstatus': 'true'
-      }, null, null, {'transform': '4.001'});
+      }, '<address transform="DPT:4001" mode="read">1/0/0</address>', null, {'transform': '4.001'});
 
       var actors = $(this.container.children[0]).find('.actor');
       expect(actors).not.toBe(null);
@@ -92,15 +97,19 @@ define( ['TemplateEngine', '_common', 'widget_multitrigger'], function(engine, d
 
       creator.action('id_0', actors[0], false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '1');
+      expect(templateEngine.visu.write).not.toHaveBeenCalledWith('1/0/0', '1');
 
       creator.action('id_0', actors[1], false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '2');
+      expect(templateEngine.visu.write).not.toHaveBeenCalledWith('1/0/0', '1');
 
       creator.action('id_0', actors[2], false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '3');
+      expect(templateEngine.visu.write).not.toHaveBeenCalledWith('1/0/0', '1');
 
       creator.action('id_0', actors[3], false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '4');
+      expect(templateEngine.visu.write).not.toHaveBeenCalledWith('1/0/0', '1');
     });
   });
 });
