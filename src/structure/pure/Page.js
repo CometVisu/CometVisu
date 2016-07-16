@@ -223,11 +223,11 @@ define( ['_common'], function( design ) {
     //     break;
     //
     //   default:
-        // TODO: data comparision has to be refactored to use DPT and a value
-        if (data==1) {
-          templateEngine.scrollToPage(element.context.firstChild.textContent);
-          templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));
-        }
+    // TODO: data comparision has to be refactored to use DPT and a value
+    if (data==1) {
+      templateEngine.scrollToPage(element.context.firstChild.textContent);
+      templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));
+    }
     // }
   },
   action: function( path, actor, isCanceled ) {
