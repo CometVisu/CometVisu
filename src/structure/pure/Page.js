@@ -200,38 +200,38 @@ define( ['_common'], function( design ) {
   },
   update: function( ga, data ) {
     var 
-      element = $(this),
-      widgetData  = templateEngine.widgetDataGetByElement( element );
-    var value = basicdesign.defaultValueHandling( ga, data, widgetData );
-    var type = widgetData.address[ ga ][2];
-    switch( type )
-    {
-      case 'azimut':
-        widgetData.JSFloorPlan3D.setState('currentAzimut', value, true);
-        element.trigger( 'update3d', widgetData.JSFloorPlan3D );
-        break;
-        
-      case 'elevation':
-        widgetData.JSFloorPlan3D.setState('currentElevation', value, true);
-        element.trigger( 'update3d', widgetData.JSFloorPlan3D );
-        break;
-        
-      case 'floor':
-        widgetData.JSFloorPlan3D.moveToRoom( value, false, true, true, function(){
-          element.trigger( 'update3d', widgetData.JSFloorPlan3D );
-        });
-        break;
-        
-      default:
+      element = $(this);
+      // widgetData  = templateEngine.widgetDataGetByElement( element );
+    // var value = basicdesign.defaultValueHandling( ga, data, widgetData );
+    // var type = widgetData.address[ ga ][2];
+    // switch( type )
+    // {
+    //   case 'azimut':
+    //     widgetData.JSFloorPlan3D.setState('currentAzimut', value, true);
+    //     element.trigger( 'update3d', widgetData.JSFloorPlan3D );
+    //     break;
+    //
+    //   case 'elevation':
+    //     widgetData.JSFloorPlan3D.setState('currentElevation', value, true);
+    //     element.trigger( 'update3d', widgetData.JSFloorPlan3D );
+    //     break;
+    //
+    //   case 'floor':
+    //     widgetData.JSFloorPlan3D.moveToRoom( value, false, true, true, function(){
+    //       element.trigger( 'update3d', widgetData.JSFloorPlan3D );
+    //     });
+    //     break;
+    //
+    //   default:
         // TODO: data comparision has to be refactored to use DPT and a value
         if (data==1) {
           templateEngine.scrollToPage(element.context.firstChild.textContent);
           templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));
         }
-    }
+    // }
   },
-  action: function( path, actor, isCaneled ) {
-    if( isCaneled ) return;
+  action: function( path, actor, isCanceled ) {
+    if( isCanceled ) return;
     
     templateEngine.scrollToPage( path + '_' );
   }
