@@ -201,7 +201,7 @@ define( ['_common'], function( design ) {
   update: function( ga, data ) {
     var 
       element = $(this);
-      // widgetData  = templateEngine.widgetDataGetByElement( element );
+    // widgetData  = templateEngine.widgetDataGetByElement( element );
     // var value = basicdesign.defaultValueHandling( ga, data, widgetData );
     // var type = widgetData.address[ ga ][2];
     // switch( type )
