@@ -97,6 +97,40 @@ define(['jquery','TemplateEngine', '_common'], function($, engine, design) {
       };
     },
 
+    /**
+     * checks if the css-styleis set in the elements style attribute
+     * Note: This checks the style css attribute setting not the
+     * computed css value as the jQuery.css function does.
+     */
+    toHaveStyleSetting: function() {
+      return  {
+        compare: function(actual, cssKey, cssValue) {
+          var result = {};
+          if (!actual.hasAttribute('style')) {
+            result.pass = false;
+            result.message = "Expected " + actual.tagName + " has no style aattribute";
+            return result;
+          }
+          var styles = actual.getAttribute('style').split(";");
+          for (var key in styles) {
+            var styleParts = styles[key].split(":");
+            if (styleParts[0].trim() == cssKey) {
+              result.pass = styleParts[1].trim() == cssValue;
+              break;
+            }
+          }
+
+          if (result.pass) {
+            result.message = "Expected " + actual.tagName + " to have style '"+cssKey+":"+cssValue+" set";
+          }
+          else{
+            result.message = "Expected " + actual.tagName + " to have style '"+cssKey+":"+cssValue+" set, but it has not";
+          }
+          return result;
+        }
+      };
+    },
+
     toHaveAttribute: function() {
       return  {
         compare: function(actual, expected) {
