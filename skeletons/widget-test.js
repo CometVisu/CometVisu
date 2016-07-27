@@ -9,13 +9,7 @@ define( ['TemplateEngine', '_common', 'widget_%WIDGET_NAME%'], function(engine, 
     var templateEngine = engine.getInstance();
 
     it("should test the %WIDGET_NAME% creator", function() {
-
-      var creator = design.basicdesign.getCreator("%WIDGET_NAME%");
-
-      var xml = document.createElement('template');
-      xml.innerHTML = '<%WIDGET_NAME%><label>Test</label></%WIDGET_NAME%>';
-      xml = xml.firstChild;
-      var widget = $(creator.create(xml, 'id_0', null, '%WIDGET_NAME%'));
+      var widget = $(this.createTestWidgetString("%WIDGET_NAME%", {}, "<label>Test</label>")[1]);
     
       expect(widget).toHaveClass('%WIDGET_NAME%');
       expect(widget.find("div.label").text()).toBe('Test');
