@@ -44,6 +44,12 @@ define( [], function() {
       }
     };
 
+    this.login = function (loginOnly, callback, context) {
+      if (callback) {
+        callback.call(context);
+      }
+    };
+
     // make some functions accessible for the protactor runner
     window._receive = this.receive.bind(this);
     window._widgetDataGet = templateEngine.widgetDataGet.bind(templateEngine);

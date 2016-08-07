@@ -134,6 +134,12 @@ define( ['jquery'], function($) {
         ret_val.trigger( 'close' );
         return false;
       });
+      $('.popup_close').bind( 'touchend', function() {
+        // note: this will call two events - one for the popup itself and 
+        //       one for the popup_background.
+        ret_val.trigger( 'close' );
+        return false;
+      });
 
       ret_val.css( 'display', 'block' );
       $('#centerContainer').addClass('inactiveMain');

@@ -67,7 +67,8 @@ define( ['_common'], function( design ) {
       'layout'  : layout,
       'align'   : $e.attr('align'),
       'target'  : target,
-      'path'    : $(element).attr('path'),
+      'target_path': $e.attr('path'),
+      'path'    : path,
       'active_scope': $(element).attr('active_scope') ? $(element).attr('active_scope') : 'target'
     } );
     return ret_val + actor + info +'</div>';
@@ -85,8 +86,8 @@ define( ['_common'], function( design ) {
     
     var data = templateEngine.widgetDataGet( path );
     var target = data.target;
-    if (data.path!=undefined) {
-      target = templateEngine.getPageIdByPath(data.target,data.path);
+    if (data.target_path !== undefined) {
+      target = templateEngine.getPageIdByPath(data.target,data.target_path);
     }
     templateEngine.scrollToPage( target );
   }
