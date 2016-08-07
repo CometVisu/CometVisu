@@ -47,7 +47,8 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
         'bus_g'   : 0, // The current value on the bus
         'bus_b'   : 0, // The current value on the bus
         'rateLimiter' : false, // is the rate limiter active?
-        'type'    : 'colorChooser'
+        'type'    : 'colorChooser',
+        'path'    : path
       });
     
     templateEngine.postDOMSetupFns.push( function(){
@@ -65,30 +66,31 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
           var br = data.bus_r;
           var bg = data.bus_g;
           var bb = data.bus_b;
+          var v;
           for( var addr in address )
           {
-            if( !(address[addr][1] & 2) ) continue; // skip when write flag not set
+            if( !(address[addr][1] & 2) ) { continue; } // skip when write flag not set
             switch( address[addr][2] )
             {
               case 'r':
-                var v = Transform[address[addr][0]].encode( r );
-                if( v != Transform[address[addr][0]].encode( br ) )
+                v = Transform[address[addr][0]].encode( r );
+                if( v !== Transform[address[addr][0]].encode( br ) )
                 {
                   templateEngine.visu.write( addr, v );
                   modified = true;
                 }
                 break;
               case 'g':
-                var v = Transform[address[addr][0]].encode( g );
-                if( v != Transform[address[addr][0]].encode( bg ) )
+                v = Transform[address[addr][0]].encode( g );
+                if( v !== Transform[address[addr][0]].encode( bg ) )
                 {
                   templateEngine.visu.write( addr, v );
                   modified = true;
                 }
                 break;
               case 'b':
-                var v = Transform[address[addr][0]].encode( b );
-                if( v != Transform[address[addr][0]].encode( bb ) )
+                v = Transform[address[addr][0]].encode( b );
+                if( v !== Transform[address[addr][0]].encode( bb ) )
                 {
                   templateEngine.visu.write( addr, v );
                   modified = true;
@@ -97,9 +99,9 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
               case 'rgb':
                 var rgb = [r*255/100.0,g*255/100.0,b*255/100.0];
                 var brgb = [br*255/100.0,bg*255/100.0,bb*255/100.0];
-                var v = Transform[address[addr][0]].encode( rgb );
-                var b = Transform[address[addr][0]].encode( brgb );
-                if( v[0] != b[0] || v[1] != b[1] || v[2] != b[2] )
+                v = Transform[address[addr][0]].encode( rgb );
+                var bv = Transform[address[addr][0]].encode( brgb );
+                if( v[0] !== bv[0] || v[1] !== bv[1] || v[2] !== bv[2] )
                 {
                   templateEngine.visu.write( addr, v );
                   modified = true;
@@ -119,8 +121,9 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
             data.rateLimiter = false;
           }
         }
-        if( data.rateLimiter == false ) // already requests going?
-          rateLimitedSend( $actor ); 
+        if( data.rateLimiter === false ) {// already requests going?
+          rateLimitedSend($actor);
+        }
       });
     });
 
@@ -162,9 +165,9 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
         wData.bus_g = value[1];
         wData.bus_b = value[2];
         color = color.substring(0,1) +
-        toHex( value[0] )+
-        toHex( value[1] )+
-        toHex( value[2] )+
+        toHex( value[0]*255/100 )+
+        toHex( value[1]*255/100 )+
+        toHex( value[2]*255/100 )+
         color.substring(7);
         break;
     }

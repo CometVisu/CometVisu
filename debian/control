@@ -1,0 +1,13 @@
+Package: cometvisu
+Replaces: cometvisu-wiregate,cometvisu-0.5,cometvisu-0.8
+Priority: extra
+Maintainer: CometVisu.org <info@cometvisu.org>
+Vcs-Git: https://github.com/CometVisu/CometVisu.git
+Vcs-browser: https://github.com/CometVisu/CometVisu
+Homepage: http://www.cometvisu.org
+Architecture: all
+Section: net
+Depends: libapache2-mod-php5 | libapache-mod-php5 | php5-cgi | php5, rrdtool (>= 1.3.1-4+nmu1), cometvisu-backend | knxd-tools
+Recommends: apache2 | lighttpd | httpd | nginx
+Description: CometVisu base files
+ a browser-based KNX visualisation

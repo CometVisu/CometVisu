@@ -48,6 +48,7 @@
 require.config({
   shim: {
     'plugins/diagram/dep/flot/jquery.flot.min':          ['jquery'],
+    'plugins/diagram/dep/flot/jquery.flot.touch.min':    ['plugins/diagram/dep/flot/jquery.flot.min'],
     'plugins/diagram/dep/flot/jquery.flot.canvas.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
     'plugins/diagram/dep/flot/jquery.flot.resize.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
     'plugins/diagram/dep/flot/jquery.flot.time.min':     ['plugins/diagram/dep/flot/jquery.flot.min'],
@@ -59,6 +60,7 @@ require.config({
 
 define( ['structure_custom',
                   'plugins/diagram/dep/flot/jquery.flot.min',
+                  'plugins/diagram/dep/flot/jquery.flot.touch.min',
                   'plugins/diagram/dep/flot/jquery.flot.canvas.min',
                   'plugins/diagram/dep/flot/jquery.flot.resize.min',
                   'plugins/diagram/dep/flot/jquery.flot.time.min',
@@ -127,14 +129,14 @@ define( ['structure_custom',
       create: function(element, path, flavour, type) {
         return createDiagram(false, element, path, flavour, type);
       },
-      action: function( path, actor, isCaneled ) {
-        if( isCaneled ) return;
+      action: function( path, actor, isCanceled ) {
+        if( isCanceled ) return;
     
         var 
           widgetData = templateEngine.widgetDataGet( path );
           
         if( widgetData.popup )
-          action( path, actor, isCaneled );
+          action( path, actor, isCanceled );
       },
     });
     VisuDesign_Custom.prototype.addCreator("diagram_info", {
@@ -221,8 +223,8 @@ define( ['structure_custom',
       return ret_val + actor + '</div>';
     }
     
-    function action( path, actor, isCaneled ) {
-      if( isCaneled ) return;
+    function action( path, actor, isCanceled ) {
+      if( isCanceled ) return;
 
       var 
         data = templateEngine.widgetDataGet( path ),
@@ -363,6 +365,18 @@ define( ['structure_custom',
           markingsColor   : data.gridcolor,
           borderColor     : data.gridcolor,
           hoverable       : true
+        },
+        touch: {
+          pan: 'x',              // what axis pan work
+          scale: 'x',            // what axis zoom work
+          autoWidth: false,
+          autoHeight: false,
+          delayTouchEnded: 500,   // delay in ms before touchended event is fired if no more touches
+          callback: null,         // other plot draw callback
+          simulClick: true,       // plugin will generate Mouse click event to brwoser on tap or double tap
+          tapThreshold:150,       // range of time where a tap event could be detected
+          dbltapThreshold:200,    // delay needed to detect a double tap
+          tapPrecision:60/2       // tap events boundaries ( 60px square by default )
         }
       };
       $.each(options.yaxes, function(index, val) {
@@ -408,6 +422,16 @@ define( ['structure_custom',
         }
       }).bind("plotzoom", function() {
         loadDiagramData( id, plot, isPopup, false );
+      }).bind("touchended", function() {
+        loadDiagramData( id, plot, isPopup, false );
+      }).bind("tap", function() {
+        var self = this;
+        if ( !isPopup & typeof $(self).closest('.widget_container')[0] != 'undefined' ) {
+          var actor = $(self).closest('.actor')[0];
+          var path = $(self).closest('.widget_container')[0].id;
+          if( typeof actor != 'undefined' & path.length > 0 )
+            action(path,actor,false);
+        }
       });
 
       loadDiagramData( id, plot, isPopup, false );

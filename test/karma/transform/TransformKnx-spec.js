@@ -188,9 +188,22 @@ define(['TransformDefault', 'TransformKnx'], function(Transform) {
     { transform: 'DPT:16.000', type: 'decode', source: '6162636465666768696a6b6c6d6e', target: 'abcdefghijklmn' },
     
     { transform: 'DPT:20.102', type: 'encode', source: 'auto',                target: '8000', noNumber: true },
+    { transform: 'DPT:20.102', type: 'encode', source: 'comfort',             target: '8001', noNumber: true },
+    { transform: 'DPT:20.102', type: 'encode', source: 'standby',             target: '8002', noNumber: true },
+    { transform: 'DPT:20.102', type: 'encode', source: 'economy',             target: '8003', noNumber: true },
     { transform: 'DPT:20.102', type: 'encode', source: 'building_protection', target: '8004', noNumber: true },
+    { transform: 'DPT:20.102', type: 'encode', source: 1,                     target: '8001', noNumber: true },
+    { transform: 'DPT:20.102', type: 'encode', source: 2,                     target: '8002', noNumber: true },
+    { transform: 'DPT:20.102', type: 'encode', source: 3,                     target: '8003', noNumber: true },
+    { transform: 'DPT:20.102', type: 'encode', source: 4,                     target: '8004', noNumber: true },
     { transform: 'DPT:20.102', type: 'decode', source: '00', target: 'auto'                },
-    { transform: 'DPT:20.102', type: 'decode', source: '04', target: 'building_protection' }
+    { transform: 'DPT:20.102', type: 'decode', source: '01', target: 'comfort'             },
+    { transform: 'DPT:20.102', type: 'decode', source: '02', target: 'standby'             },
+    { transform: 'DPT:20.102', type: 'decode', source: '03', target: 'economy'             },
+    { transform: 'DPT:20.102', type: 'decode', source: '04', target: 'building_protection' },
+
+    { transform: 'DPT:24.001', type: 'encode', source: 'Test string',                 target: '805465737420737472696e6700', noNumber: true },
+    { transform: 'DPT:24.001', type: 'decode', source: '5465737420737472696e67',  target: 'Test string' }
   ];
 
   describe('checking knx transforms', function() {

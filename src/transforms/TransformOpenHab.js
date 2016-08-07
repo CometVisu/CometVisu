@@ -161,7 +161,7 @@ define( ['TransformDefault'], function(Transform ) {
     decode : function(hsbString) {
       // decode HSV/HSB to RGB
       var hsb = hsbString.split(",");
-      var h = hsb[0], s = hsb[1], v = hsb[2];
+      var h = parseFloat(hsb[0]), s = parseFloat(hsb[1]), v = parseFloat(hsb[2]);
       var r, g, b, i, f, p, q, t;
 
       // h = h / 360;
