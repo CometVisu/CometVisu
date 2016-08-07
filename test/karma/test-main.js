@@ -73,7 +73,8 @@ require.config({
     'TransformDefault':         'transforms/TransformDefault',
     'TransformKnx':             'transforms/TransformKnx',
     'TransformMockup':          'lib/mockup/TransformKnx',
-    'TransformOpenHab':         'transforms/TransformOpenHab'
+    'TransformOpenHab':         'transforms/TransformOpenHab',
+    'plugin_ColorChooser':      'plugins/colorchooser/structure_plugin'
   },
   'shim': {
     'scrollable': ['jquery'],

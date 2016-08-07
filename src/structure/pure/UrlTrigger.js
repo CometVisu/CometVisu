@@ -50,6 +50,7 @@ define( ['_common'], function( design ) {
       actor += $e.attr( 'align' ); 
     actor += '"><div class="value"></div></div>';
     var data = templateEngine.widgetDataInsert( path, {
+      'path'    : path,
       'url'     : $(element).attr('url'), 
       'mapping' : $(element).attr('mapping'),
       'styling' : $(element).attr('styling'),

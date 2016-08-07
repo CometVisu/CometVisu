@@ -50,7 +50,8 @@ define( ['_common'], function( design ) {
       'shorttime'     : parseFloat($e.attr('shorttime')) || -1,
       'isAbsolute'    : ($e.attr('change')               || 'relative') == 'absolute',
       'min'           : parseFloat($e.attr('min'))       || 0,
-      'max'           : parseFloat($e.attr('max'))       || 255
+      'max'           : parseFloat($e.attr('max'))       || 255,
+      'align'         : $e.attr('align')
     } );
 
     // create buttons + info
@@ -70,10 +71,10 @@ define( ['_common'], function( design ) {
     actorup += '<div class="label">' + (data.uplabel || '+') + '</div>';
     actorup += '</div>';
 
-    var actorinfo = '<div class="actor switchInvisible " ';
+    var actorinfo = '<div class="actor switchInvisible" ';
     if ( data.align ) 
       actorinfo += 'style="text-align: ' + data.align + '" '; 
-    actorinfo += '" ><div class="value">-</div></div>';
+    actorinfo += '><div class="value">-</div></div>';
 
     switch ($e.attr('infoposition')) {
       case 'middle':
