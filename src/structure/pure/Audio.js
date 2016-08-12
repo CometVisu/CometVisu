@@ -24,10 +24,10 @@
 /**
  * The audio widget embeds an audio file, which can be automatically played by incoming data
  * @widget_example <caption>Default example for defining an audio widget in the configuration</caption>
- * <audio src="path/to/audio_file.mp3">
+ * <audio id="audio_widget" src="path/to/audio_file.mp3">
  *   <layout colspan="1" />
- *   <address transform="DPT:1.001" mode="read" />
  *   <label>Audio</label>
+ *   <address transform="DPT:1.001" mode="read">0/0/0</address>
  * </audio>
  * @argument {String} src - Path (URI) to the audio file
  * @argument {String} [threshold_value]
