@@ -63,13 +63,13 @@ define( ['_common'], function( design ) {
     actor += '</div>';
     var data = templateEngine.widgetDataInsert( path, {
       'bind_click_to_widget': true, // for pagejumps this is mandatory
-      'styling' : $(element).attr('styling'),
+      'styling' : $e.attr('styling'),
       'layout'  : layout,
       'align'   : $e.attr('align'),
       'target'  : target,
       'target_path': $e.attr('path'),
       'path'    : path,
-      'active_scope': $(element).attr('active_scope') ? $(element).attr('active_scope') : 'target'
+      'active_scope': $e.attr('active_scope') ? $e.attr('active_scope') : 'target'
     } );
     return ret_val + actor + info +'</div>';
   },
