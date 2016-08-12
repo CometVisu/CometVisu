@@ -22,6 +22,7 @@
 
 
 /**
+ * @module structure/pure/DesignToggle
  * @author Christian Mayer
  * @since 2010
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
  
   design.basicdesign.addCreator('designtoggle', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
 
@@ -48,6 +58,14 @@ define( ['_common'], function( design ) {
     return ret_val + actor + '</div>';
   },
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCaneled
+   * @return 
+   */
   action: function( path, actor, isCaneled ) {
     basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
     if( isCaneled ) return;
@@ -75,9 +93,20 @@ define( ['_common'], function( design ) {
       }
     }
   },
+  /**
+   * Description
+   * @method getLocation
+   * @return MemberExpression
+   */
   getLocation : function() {
     return window.location.href;
   },
+  /**
+   * Description
+   * @method setLocation
+   * @param {} loc
+   * @return 
+   */
   setLocation : function(loc) {
     window.location.href = loc;
   }  

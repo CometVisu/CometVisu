@@ -22,6 +22,7 @@
 
 
 /**
+ * @module structure/pure/ImageTrigger
  * @author Christian Mayer
  * @since 2012
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('imagetrigger', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) { 
     var 
       $e = $(element),
@@ -71,6 +81,13 @@ define( ['_common'], function( design ) {
     
     return ret_val + actor + '</div>';
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} d
+   * @return 
+   */
   update: function( ga, d ) {
     var element = $(this),
       data  = templateEngine.widgetDataGetByElement( element ),
@@ -97,6 +114,14 @@ define( ['_common'], function( design ) {
     //FIXME: add bitmask for multiple images
     //FIXME: add SVG-magics
   },
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   * @return 
+   */
   action: function( path, actor, isCanceled ) {
     if( isCanceled ) return;
     var 

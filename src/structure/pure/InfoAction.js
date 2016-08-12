@@ -22,11 +22,12 @@
 
 
 /**
- * The infoaction widget is a combination of an info/text widget
- * and an "action"-widget
+ * The infoaction widget is a combination of an info/text widget and an "action"-widget.
  * 
- * use case: if you have a group of lights, you can show the number of turned on lights
- * 		and control the whole group in one widget
+ * Use case: if you have a group of lights, you can show the number of turned on lights
+ * and control the whole group in one widget
+ *
+ * @example <caption>Example of the basic configuration structure of this widget</caption>
  * <infoaction>
  * 	<widgetinfo>
  * 
@@ -36,6 +37,8 @@
  *  </widgetaction>
  * </infoaction>
  *
+ * @module structure/pure/InfoAction
+ * @requires structure/pure
  * @author Tobias Bräutigam
  * @since 2015
  */
@@ -43,10 +46,31 @@ define( ['_common' ], function( design ) {
   "use strict";
 
   design.basicdesign.addCreator("infoaction", {
+      /**
+       * Creates the InfoAction widget
+       *
+       * @method create
+       * @param {} element
+       * @param {} path
+       * @param {} flavour
+       * @param {} type
+       * @return String - HTML representation if the widget as string
+       */
       create: function(element, path, flavour, type) {
         return createWidget(false, element, path, flavour, type);
       }
     });
+  /**
+   * Creates the InfoAction widget
+   *
+   * @method createWidget
+   * @param {} isInfo
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return String - HTML representation if the widget as string
+   */
   function createWidget(isInfo, element, path, flavour, type) {
       var $e = $(element);
 
@@ -60,6 +84,15 @@ define( ['_common' ], function( design ) {
       return ret_val + '</div>';
     }
    
+  /**
+   * Description
+   * @method getWidgetElements
+   * @param {} xmlElement
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return ret_val
+   */
   function getWidgetElements(xmlElement, path, flavour, type) {
       var infoWidget = $('widgetinfo > *', xmlElement).first()[0];
       var actionWidget = $('widgetaction > *', xmlElement).first()[0];

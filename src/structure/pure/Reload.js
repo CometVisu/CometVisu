@@ -30,6 +30,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('reload', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return Literal
+   */
   create: function( element, path, flavour, type ) {
     var 
       e = $(element),
@@ -40,6 +49,13 @@ define( ['_common'], function( design ) {
     });
     return '';
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} d
+   * @return 
+   */
   update: function( ga, d ) {
     var
       data    = templateEngine.widgetDataGetByElement( this ),

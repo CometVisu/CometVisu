@@ -22,6 +22,7 @@
 
 
 /**
+ * @module structure/pure/Group
  * @author Christian Mayer
  * @since 2012
  */
@@ -31,6 +32,15 @@ define( ['_common'], function( design ) {
   
   design.basicdesign.addCreator('group', {
   maturity: design.Maturity.development,
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var classes = 'clearfix group ' + basicdesign.setWidgetLayout( $e, path );
@@ -62,6 +72,14 @@ define( ['_common'], function( design ) {
     }
     return '<div class="' + classes + '">' + container + '</div>';
   },
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   * @return 
+   */
   action: function( path, actor, isCanceled ) {
     var data = templateEngine.widgetDataGet( path );
     if( isCanceled ) return;

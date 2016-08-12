@@ -22,6 +22,7 @@
 
 
 /**
+ * @module structure/pure/Include
  * @author Christian Mayer
  * @since 2012
  */
@@ -31,6 +32,15 @@ define( ['_common'], function( design ) {
   
   design.basicdesign.addCreator('include', {
   maturity: design.Maturity.development,
+  /**
+   * Description
+   * @method create
+   * @param {} page
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return CallExpression
+   */
   create: function( page, path, flavour, type ) {
     var p = $.get( $(page).attr('src') );
     var p = $.ajax({

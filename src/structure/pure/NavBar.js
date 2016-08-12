@@ -38,6 +38,15 @@ define( ['_common'], function( design ) {
     $navbarRightSize = $( '#navbarRight' ).data('size');
  
   design.basicdesign.addCreator('navbar', {
+  /**
+   * Description
+   * @method create
+   * @param {} navbar
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return Literal
+   */
   create: function( navbar, path, flavour, type ) {
     var $n = $(navbar);
     var childs = $n.children();

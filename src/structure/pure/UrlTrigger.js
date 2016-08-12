@@ -22,6 +22,7 @@
 
 
 /**
+ * @module structure/pure/UrlTrigger
  * @author Christian Mayer
  * @since 2012
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('urltrigger', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = basicdesign.parseLayout( $e.children('layout')[0] );
@@ -68,6 +78,14 @@ define( ['_common'], function( design ) {
     return ret_val + label + actor + '</div>';
   },
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   * @return 
+   */
   action: function( path, actor, isCanceled ) {
     basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
     if( isCanceled ) return;
@@ -81,6 +99,12 @@ define( ['_common'], function( design ) {
       datatype: "html",
       data: encodeURI(data.params),
       url: data.url,
+      /**
+       * Description
+       * @method success
+       * @param {} data
+       * @return 
+       */
       success: function(data){
         //maybe do something useful with the response?
       }

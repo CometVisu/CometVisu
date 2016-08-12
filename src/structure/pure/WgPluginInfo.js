@@ -22,6 +22,7 @@
 
 
 /**
+ * @module structure/pure/WgPluginInfo
  * @author Christian Mayer
  * @since 2012
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('wgplugin_info', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     
@@ -47,6 +57,14 @@ define( ['_common'], function( design ) {
     return ret_val + '</div>';
 
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} d
+   * @param {} passedElement
+   * @return 
+   */
   update: function( ga, d, passedElement )
   {
     var 

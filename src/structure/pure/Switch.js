@@ -22,6 +22,7 @@
 
 
 /**
+ * @module structure/pure/Switch
  * @author Christian Mayer
  * @since 2012
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
  
   design.basicdesign.addCreator('switch', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     
@@ -45,6 +55,13 @@ define( ['_common'], function( design ) {
     
     return ret_val + '</div>';
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} d
+   * @return 
+   */
   update: function( ga, d ) { 
     var 
       element = $(this),
@@ -55,6 +72,14 @@ define( ['_common'], function( design ) {
     actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCaneled
+   * @return 
+   */
   action: function( path, actor, isCaneled ) {
     if( isCaneled ) return;
     

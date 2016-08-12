@@ -22,6 +22,7 @@
 
 
 /**
+ * @module structure/pure/Rgb
  * @author Christian Mayer
  * @since 2012
  */
@@ -30,10 +31,28 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('rgb', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return ret_val
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     
     // create the main structure
+    /**
+     * Description
+     * @method rgb_handleVariant
+     * @param {} src
+     * @param {} transform
+     * @param {} mode
+     * @param {} variant
+     * @return ArrayExpression
+     */
     function rgb_handleVariant(src, transform, mode, variant) {
       return [true, variant];
     }
@@ -45,6 +64,13 @@ define( ['_common'], function( design ) {
     
     return ret_val;
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} d
+   * @return 
+   */
   update: function( ga, d ) { 
     var
       element = $(this),

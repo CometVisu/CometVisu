@@ -32,6 +32,15 @@ define( ['_common'], function( design ) {
     allPages = '';
  
   design.basicdesign.addCreator('page', {
+  /**
+   * Description
+   * @method create
+   * @param {} page
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return ret_val
+   */
   create: function( page, path, flavour, type ) {
     var $p = $(page);
     
@@ -195,9 +204,21 @@ define( ['_common'], function( design ) {
     allPages = subpage + allPages;
     return ret_val;
   },
+  /**
+   * Description
+   * @method createFinal
+   * @return 
+   */
   createFinal: function() { // special function - only for pages!
     $('#pages').prepend( allPages );
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} data
+   * @return 
+   */
   update: function( ga, data ) {
     var 
       element = $(this);
@@ -230,6 +251,14 @@ define( ['_common'], function( design ) {
     }
     // }
   },
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   * @return 
+   */
   action: function( path, actor, isCanceled ) {
     if( isCanceled ) return;
     

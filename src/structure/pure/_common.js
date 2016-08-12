@@ -23,7 +23,7 @@
 
 /**
  * This module defines the widgets for the CometVisu visualisation.
- * @module Structure Pure
+ * @module structure/pure
  * @title  CometVisu Structure "pure"
  * @author Christian Mayer [CometVisu at ChristianMayer dot de]
  * @since 2010
@@ -41,17 +41,31 @@ define( ['jquery'], function($) {
   /**
    * This class defines all the building blocks for a Visu in the "Pure" design
    * @class VisuDesign
+   * @method VisuDesign
+   * @return 
    */
-   
   function VisuDesign() {
   var self = this;
   
   this.creators = {};
 
+  /**
+   * Description
+   * @method addCreator
+   * @param {} name
+   * @param {} object
+   * @return 
+   */
   this.addCreator = function (name, object) {
     this.creators[name] = object;
   }
 
+  /**
+   * Description
+   * @method getCreator
+   * @param {} name
+   * @return MemberExpression
+   */
   this.getCreator = function(name) {
     if (this.creators[name] === undefined) {
       return this.creators.unknown;
@@ -61,11 +75,24 @@ define( ['jquery'], function($) {
 
   var popups = {};
 
+  /**
+   * Description
+   * @method addPopup
+   * @param {} name
+   * @param {} object
+   * @return 
+   */
   this.addPopup = function (name, object) {
     popups[name] = object;
     popups[name].type = name;
   }
 
+  /**
+   * Description
+   * @method getPopup
+   * @param {} name
+   * @return MemberExpression
+   */
   this.getPopup = function(name) {
     var p = popups[name];
     if (p === undefined) {
@@ -75,6 +102,12 @@ define( ['jquery'], function($) {
   }
 
   this.addPopup('unknown', {
+    /**
+     * Description
+     * @method create
+     * @param {} attributes
+     * @return ret_val
+     */
     create: function( attributes ) {
       var reposition = false;
       var ret_val = $('<div class="popup" style="display:none"><div class="popup_close">X</div></div><div class="popup_background" style="display:none" />').appendTo('body');
@@ -139,6 +172,12 @@ define( ['jquery'], function($) {
       $('#centerContainer').addClass('inactiveMain');
       return ret_val;
     },
+    /**
+     * Description
+     * @method close
+     * @param {} event
+     * @return 
+     */
     close: function( event ) {
       $('#centerContainer').removeClass('inactiveMain');
       event.currentTarget.remove();
@@ -150,9 +189,12 @@ define( ['jquery'], function($) {
   this.addPopup('error'  , $.extend(true, {}, this.getPopup('unknown')) ) ;
 
   /**
+   * Description
+   * @method defaultValueHandling
    * @param ga         address
    * @param data       the raw value from the bus
    * @param widgetData the data structure in the widget
+   * @return value
    */
   this.defaultValueHandling = function( ga, data, widgetData )
   {
@@ -212,6 +254,10 @@ define( ['jquery'], function($) {
    * the mapping where it can be quite complex as it can contain icons.
    * value: the value that will be inserted
    * modifyFn: callback function that modifies the DOM
+   * @method defaultValue2DOM
+   * @param {} value
+   * @param {} modifyFn
+   * @return 
    */
   this.defaultValue2DOM = function( value, modifyFn )
   {
@@ -253,6 +299,13 @@ define( ['jquery'], function($) {
    * ga:            address
    * data:          the raw value from the bus
    * passedElement: the element to update
+   * @method defaultUpdate
+   * @param {} ga
+   * @param {} data
+   * @param {} passedElement
+   * @param {} newVersion
+   * @param {} path
+   * @return value
    */
   this.defaultUpdate = function( ga, data, passedElement, newVersion, path ) 
   {
@@ -277,6 +330,14 @@ define( ['jquery'], function($) {
     return value;
   }
   
+  /**
+   * Description
+   * @method defaultUpdate3d
+   * @param {} ev
+   * @param {} data
+   * @param {} passedElement
+   * @return 
+   */
   this.defaultUpdate3d = function( ev, data, passedElement )
   {
     //var element = passedElement || $(this);
@@ -292,6 +353,10 @@ define( ['jquery'], function($) {
   
   /**
    * Parse config file layout element and convert it to an object
+   * @method parseLayout
+   * @param {} layout
+   * @param {} defaultValues
+   * @return ret_val
    */
   this.parseLayout = function( layout, defaultValues )
   {
@@ -317,6 +382,13 @@ define( ['jquery'], function($) {
     return ret_val;
   }
   
+  /**
+   * Description
+   * @method extractLayout
+   * @param {} layout
+   * @param {} type
+   * @return ret_val
+   */
   this.extractLayout = function( layout, type )
   {
   
@@ -329,6 +401,12 @@ define( ['jquery'], function($) {
     return ret_val;
   }
   
+  /**
+   * Description
+   * @method extractLayout3d
+   * @param {} layout
+   * @return ret_val
+   */
   this.extractLayout3d = function( layout )
   {
     var ret_val = {};
@@ -341,6 +419,15 @@ define( ['jquery'], function($) {
     return ret_val;
   }
   
+  /**
+   * Description
+   * @method extractLabel
+   * @param {} label
+   * @param {} flavour
+   * @param {} labelClass
+   * @param {} style
+   * @return BinaryExpression
+   */
   this.extractLabel = function( label, flavour, labelClass, style )
   {
     if( !label ) return '';
@@ -361,14 +448,16 @@ define( ['jquery'], function($) {
   }
   
   /**
-  * this function extracts all addresses with attributes (JNK)
-  * 
-  * @param  handleVariant is a callback function that returns an array of two
-  *                       elements. The first is a boolean that determins if
-  *                       the visu should listen for that address. The second
-  *                       is added as it is to the returned object.
-  * @param id             id / path to the widget
-  */
+   * this function extracts all addresses with attributes (JNK)
+   *                       elements. The first is a boolean that determins if
+   *                       the visu should listen for that address. The second
+   *                       is added as it is to the returned object.
+   * @method makeAddressList
+   * @param {} element
+   * @param handleVariant is a callback function that returns an array of two
+   * @param id             id / path to the widget
+   * @return address
+   */
   this.makeAddressList = function( element, handleVariant, id ) {
     var address = {};
     element.find('address').each( function(){ 
@@ -407,9 +496,11 @@ define( ['jquery'], function($) {
   
   /**
    * this function implements all widget layouts that are identical (JNK)
-   *
    * implemented: rowspan, colspan
-   * @return String to add to classes
+   * @method setWidgetLayout
+   * @param {} page
+   * @param {} path
+   * @return ret_val
    */
   this.setWidgetLayout = function( page, path ) { 
     var 
@@ -432,13 +523,15 @@ define( ['jquery'], function($) {
   /**
    * Create a default widget to be filled by the creator afterwards.
    * Note: the reciever of the returned string must add an </div> closing element!
-   * 
+   * @method createDefaultWidget
    * @param widgetType string of the widget type
    * @param $element   jQuery object of the XML element
    * @param path       string of the path ID
    * @param flavour    
    * @param type       
    * @param updateFn   The callback function for updates
+   * @param {} makeAddressListFn
+   * @return ret_val
    */
   this.createDefaultWidget = function( widgetType, $element, path, flavour, type, updateFn, makeAddressListFn ) {
     var layout = this.parseLayout( $element.children('layout')[0] );
@@ -480,6 +573,10 @@ define( ['jquery'], function($) {
    * Create an action handling that shows a button press animation.
    * Note: use this function when multiple action elements are used and thus
    * bind_click_to_widget is not available.
+   * @method defaultButtonDownAnimation
+   * @param {} path
+   * @param {} actor
+   * @return 
    */
   this.defaultButtonDownAnimation = function( path, actor )
   {
@@ -493,6 +590,10 @@ define( ['jquery'], function($) {
    * Create an action handling that shows a button press animation.
    * When the action is not set, it will be searched for - so that widgets
    * with bind_click_to_widget will also work.
+   * @method defaultButtonDownAnimationInheritAction
+   * @param {} path
+   * @param {} actor
+   * @return 
    */
   this.defaultButtonDownAnimationInheritAction = function( path, actor )
   {
@@ -506,6 +607,10 @@ define( ['jquery'], function($) {
    * Create an action handling that shows a button unpress animation.
    * Note: use this function when multiple action elements are used and thus
    * bind_click_to_widget is not available.
+   * @method defaultButtonUpAnimation
+   * @param {} path
+   * @param {} actor
+   * @return 
    */
   this.defaultButtonUpAnimation = function( path, actor )
   {
@@ -519,6 +624,10 @@ define( ['jquery'], function($) {
    * Create an action handling that shows a button unpress animation.
    * When the action is not set, it will be searched for - so that widgets
    * with bind_click_to_widget will also work.
+   * @method defaultButtonUpAnimationInheritAction
+   * @param {} path
+   * @param {} actor
+   * @return 
    */
   this.defaultButtonUpAnimationInheritAction = function( path, actor )
   {
@@ -530,11 +639,17 @@ define( ['jquery'], function($) {
   };
 };
 
-  /*
+  /**
    * Figure out best placement of popup.
    * A preference can optionally be passed. The position is that of the numbers
    * on the numeric keypad. I.e. a value of "6" means centered above the anchor.
    * A value of "0" means centered to the page
+   * @method placementStrategy
+   * @param {} anchor
+   * @param {} popup
+   * @param {} page
+   * @param {} preference
+   * @return ObjectExpression
    */
   function placementStrategy( anchor, popup, page, preference )
   {

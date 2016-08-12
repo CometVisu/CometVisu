@@ -30,6 +30,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('pagejump', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = basicdesign.parseLayout( $e.children('layout')[0] );
@@ -73,11 +82,27 @@ define( ['_common'], function( design ) {
     } );
     return ret_val + actor + info +'</div>';
   },
+  /**
+   * Description
+   * @method downaction
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   * @return 
+   */
   downaction: function( path, actor, isCanceled ) {
     if (!$(actor).parent().hasClass("info")) {
       basicdesign.defaultButtonDownAnimationInheritAction( path, actor );
     }
   },
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   * @return 
+   */
   action: function( path, actor, isCanceled ) {
     if (!$(actor).parent().hasClass("info")) {
       basicdesign.defaultButtonUpAnimationInheritAction( path, actor );

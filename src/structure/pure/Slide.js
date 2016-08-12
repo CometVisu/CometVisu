@@ -31,6 +31,13 @@ define( ['_common'], function( design ) {
     basicdesign = design.basicdesign,
     $main = $('#main');
 
+  /**
+   * Description
+   * @method transformSlider
+   * @param {} value
+   * @param {} handle
+   * @return 
+   */
   function transformSlider( value, handle )
   {
     if (!$main.data('disableSliderTransform')) {
@@ -45,6 +52,15 @@ define( ['_common'], function( design ) {
   }
 
   design.basicdesign.addCreator('slide', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var self = this,
         $e = $(element);
@@ -115,6 +131,13 @@ define( ['_common'], function( design ) {
     
     return ret_val + '<div class="actor"/></div>';
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} d
+   * @return 
+   */
   update: function( ga, d ) { 
     var element = $(this),
         actor   = element.find('.actor'),
@@ -135,6 +158,13 @@ define( ['_common'], function( design ) {
     }
     transformSlider(value,actor.children('.ui-slider-handle'));
   },
+  /**
+   * Description
+   * @method slideUpdateValue
+   * @param {} event
+   * @param {} ui
+   * @return 
+   */
   slideUpdateValue:function(event,ui) {
     var element = $(this).parent(),
       actor   = element.find('.actor'),
@@ -144,9 +174,13 @@ define( ['_common'], function( design ) {
     }
     transformSlider(ui.value,ui.handle);
   },
-  /*
-  * Start a thread that regularily sends the silder position to the bus
-  */
+  /**
+   * Start a thread that regularily sends the silder position to the bus
+   * @method slideStart
+   * @param {} event
+   * @param {} ui
+   * @return 
+   */
   slideStart:function(event,ui)
   {
     var element = $(this).parent(),
@@ -172,9 +206,13 @@ define( ['_common'], function( design ) {
       data.value = asv;
     }, 250 ); // update KNX every 250 ms
   },
-  /*
-  * Delete the update thread and send the final value of the slider to the bus
-  */
+  /**
+   * Delete the update thread and send the final value of the slider to the bus
+   * @method slideChange
+   * @param {} event
+   * @param {} ui
+   * @return 
+   */
   slideChange:function(event,ui)
   {
     var data    = templateEngine.widgetDataGetByElement( this );

@@ -22,6 +22,7 @@
 
 
 /**
+ * @module structure/pure/Unknown
  * @author Christian Mayer
  * @since 2012
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('unknown', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     return '<div class="widget clearfix">'
       + '<pre>unknown: ' + element.nodeName + '</pre>'

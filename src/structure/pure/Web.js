@@ -22,6 +22,7 @@
 
 
 /**
+ * @module structure/pure/Web
  * @author Christian Mayer
  * @since 2012
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('web', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
 
@@ -81,6 +91,13 @@ define( ['_common'], function( design ) {
 
     return ret_val + actor + '</div>';
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} data
+   * @return 
+   */
   update: function( ga, data) {
     var 
       element    = $(this),

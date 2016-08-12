@@ -22,6 +22,7 @@
 
 
 /**
+ * @module structure/pure/Break
  * @author Christian Mayer
  * @since 2012
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('break', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return Literal
+   */
   create: function( element, path, flavour, type ) {
     var data = templateEngine.widgetDataInsert( path, {
       path: path
