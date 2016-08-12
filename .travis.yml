@@ -6,12 +6,12 @@ cache:
     - node_modules
 before_install:
   - npm install -g grunt-cli
-  - apt-get install python-software-properties
-  - add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - apt-get update
-  - apt-get install gcc-5 g++-5
-  - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 80 --slave /usr/bin/g++ g++ /usr/bin/g++-5
-  - update-alternatives --set gcc /usr/bin/gcc-5
+  - sudo apt-get install python-software-properties
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo apt-get update
+  - sudo apt-get install gcc-5 g++-5
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 80 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+  - sudo update-alternatives --set gcc /usr/bin/gcc-5
 install:
   - npm install
   - ./node_modules/protractor/bin/webdriver-manager update --standalone --firefox
