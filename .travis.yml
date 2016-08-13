@@ -24,3 +24,4 @@ script:
   - grunt karma:travis
   - grunt e2e
   - grunt coveralls
+  - grunt jsdoc
