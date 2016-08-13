@@ -45,8 +45,9 @@
  * @argument {String} [flavour]
  *
  * @module structure/pure/Audio
+ * @requires structure/pure
  * @author Markus Damman
- * @since 2014
+ * @since 0.8.4 (2014)
  */
 define( ['_common'], function( design ) {
   "use strict";

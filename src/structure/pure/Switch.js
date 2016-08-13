@@ -55,8 +55,9 @@
  *   <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
  * </switch>
  * @module structure/pure/Switch
+ * @requires structure/pure
  * @author Christian Mayer
- * @since 2012
+ * @since 0.8.0 (2012)
  */
 define( ['_common'], function( design ) {
   "use strict";
@@ -108,10 +109,10 @@ define( ['_common'], function( design ) {
    * @method action
    * @param {} path
    * @param {} actor
-   * @param {} isCaneled
+   * @param {} isCanceled
    */
-  action: function( path, actor, isCaneled ) {
-    if( isCaneled ) return;
+  action: function( path, actor, isCanceled ) {
+    if( isCanceled ) return;
     
     var 
       widgetData  = templateEngine.widgetDataGet( path );
