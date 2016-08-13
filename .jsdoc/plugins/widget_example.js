@@ -10,8 +10,11 @@ var xsd = require('libxml-xsd');
 var libxmljs = require('libxml-xsd').libxmljs;
 
 var configParts = {
-  start : '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="metal" xsi:noNamespaceSchemaLocation="../visu_config.xsd"><meta/><page name="Example">',
-  end :   '</page></pages>'
+  start : '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd">',
+  meta : '<meta/>',
+  content_start: '<page name="Example">',
+  content_end: '</page>',
+  end :   '</pages>'
 };
 
 var schemaString = fs.readFileSync("src/visu_config.xsd", "utf-8");
@@ -31,20 +34,31 @@ exports.handlers = {
       e.doclet.examples = e.doclet.examples || [];
 
       tags.forEach(function(tag, index) {
-        var jsdocExample, configExample, configNode;
+        var jsdocExample, configExample;
         var name = e.doclet.name.replace(/\//g,"_")+index;
         var filename = "cache/widget_examples/"+name+".xml";
         var xml = libxmljs.parseXmlString('<?xml version="1.0" encoding="UTF-8"?><root>'+tag.value+"</root>");
         var firstChild = xml.root().childNodes()[0];
 
+        // clone the configParts
+        var visuConfigParts = JSON.parse(JSON.stringify(configParts));
+        var design = "metal";
+        var screenshots = [];
+
         if (firstChild.name() == "meta") {
           // read meta settings
-          var screenshots = [];
           var shotIndex = 0;
           var globalCaption = null;
+
+          if (firstChild.attr("design")) {
+            design = firstChild.attr("design").value();
+          }
+          visuConfigParts.start = visuConfigParts.start.replace("%%%DESIGN%%%", design);
           firstChild.childNodes().forEach(function(screenshot) {
             if (screenshot.name() == "screenshot") {
-              var shot = {name: screenshot.attr("name").value() || name + shotIndex, data: {}};
+              var shot = {
+                name: screenshot.attr("name").value() || name + shotIndex,
+                data: {}};
               screenshot.childNodes().forEach(function (node) {
                 if (node.name() == "caption") {
                   shot.caption = node.text();
@@ -60,14 +74,26 @@ exports.handlers = {
             }
           });
           // get the next non-text node
-          xml.root().childNodes().forEach(function(child, index) {
-            if (child.name() != "text") {
+          var metaNode = null;
+          var configNode = null;
+          xml.root().childNodes().forEach(function(child) {
+            if (child.name() == "cv-meta") {
+              // this needs to to placed in the configs meta part
+              metaNode = child;
+              child.name("meta");
+              visuConfigParts.meta = child.toString(true);
+            }
+            else if (child.name() != "text") {
               configNode = child;
               return;
             }
           });
           configExample = configNode.toString(true);
           jsdocExample = configExample;
+          if (metaNode) {
+            // add meta settings to the example
+            jsdocExample = "...\n"+visuConfigParts.meta+"\n...\n"+jsdocExample;
+          }
           var globalCaptionString = "";
           if (globalCaption) {
             // add caption for further example processing
@@ -90,7 +116,14 @@ exports.handlers = {
           configExample = tag.value;
         }
         e.doclet.examples.push(jsdocExample);
-        var configSource = configParts.start + configExample + configParts.end;
+
+        // build the real config source
+        var configSource = visuConfigParts.start +
+          visuConfigParts.meta +
+          visuConfigParts.content_start +
+          configExample +
+          visuConfigParts.content_end +
+          configParts.end;
 
         // validate the configSource snippet against the visu_config.xsd file
         var validationErrors = schema.validate(configSource);

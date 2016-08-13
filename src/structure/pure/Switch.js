@@ -25,7 +25,7 @@
  * The switch widget shows two states (e.g. ON and OFF) and can toggle between them.
  *
  * @widget_example <meta>
- *   <caption>Default example for defining an switch widget in the configuration</caption>
+ *   <caption>Configuration example of a switch widget using mapping and styling</caption>
  *   <screenshot name="switch_example_on">
  *    <caption>Switch turned on</caption>
  *    <data address="0/0/0">1</data>
@@ -35,7 +35,21 @@
  *    <data address="0/0/0">0</data>
  *   </screenshot>
  * </meta>
- * <switch>
+ * <cv-meta>
+ *  <mappings>
+ *    <mapping name="OnOff">
+ *      <entry value="0">O</entry>
+ *      <entry value="1">I</entry>
+ *    </mapping>
+ *  </mappings>
+ *  <stylings>
+ *    <styling name="GreyGreen">
+ *      <entry value="0">grey</entry>
+ *      <entry value="1">green</entry>
+ *    </styling>
+ *  </stylings>
+ * </cv-meta>
+ * <switch mapping="OnOff" styling="GreyGreen">
  *   <layout colspan="3" />
  *   <label>Switch</label>
  *   <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
