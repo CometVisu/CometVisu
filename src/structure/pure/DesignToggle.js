@@ -22,9 +22,17 @@
 
 
 /**
+ * Adds a button to toggle through the available designs
+ * @widget_example
+ * <designtoggle>
+ *   <layout colspan="6"/>
+ *   <label>Change Design</label>
+ * </designtoggle>
+ *
  * @module structure/pure/DesignToggle
+ * @requires structure/pure
  * @author Christian Mayer
- * @since 2010
+ * @since 0.5.3 (2010)
  */
 define( ['_common'], function( design ) {
   "use strict";
@@ -32,13 +40,14 @@ define( ['_common'], function( design ) {
  
   design.basicdesign.addCreator('designtoggle', {
     /**
-     * Description
+     * Creates the widget HTML code
+     *
      * @method create
-     * @param {} element
-     * @param {} path
-     * @param {} flavour
-     * @param {} type
-     * @return BinaryExpression
+     * @param {Element} element - DOM-Element
+     * @param {String} path - internal path of the widget
+     * @param {String} flavour - Flavour of the widget
+     * @param {String} type - Page type (2d, 3d, ...)
+     * @return {String} HTML code
      */
     create: function( element, path, flavour, type ) {
       var $e = $(element);
@@ -58,16 +67,18 @@ define( ['_common'], function( design ) {
       return ret_val + actor + '</div>';
     },
     downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+
     /**
-     * Description
+     * Action performed when the widget got clicked
+     *
      * @method action
-     * @param {} path
-     * @param {} actor
-     * @param {} isCaneled
+     * @param {String} path - Internal path of the widget
+     * @param {Element} actor - DOMElement
+     * @param {Boolean} isCanceled - If true the action does nothing
      */
-    action: function( path, actor, isCaneled ) {
+    action: function( path, actor, isCanceled ) {
       basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
-      if( isCaneled ) return;
+      if( isCanceled ) return;
 
       var
         data = templateEngine.widgetDataGet( path );
@@ -92,18 +103,22 @@ define( ['_common'], function( design ) {
         }
       }
     },
+
     /**
-     * Description
+     * Wrapper for getting the `window.location.href` value
+     *
      * @method getLocation
-     * @return MemberExpression
+     * @return {String} URI of the page the browser is currently showing
      */
     getLocation : function() {
       return window.location.href;
     },
+
     /**
-     * Description
+     * Changes `window.location.href` to trigger a redirect
+     *
      * @method setLocation
-     * @param {} loc
+     * @param {String} loc - URI of the location the browser should be redirected to
      */
     setLocation : function(loc) {
       window.location.href = loc;

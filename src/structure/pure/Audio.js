@@ -34,15 +34,6 @@
  *   <label>Audio</label>
  *   <address transform="DPT:1.001" mode="read">0/0/0</address>
  * </audio>
- * @argument {String} src - Path (URI) to the audio file
- * @argument {String} [threshold_value]
- * @argument {String} id
- * @argument {Dimension} width
- * @argument {Dimension} height
- * @argument {String} volume
- * @argument {String} autoplay
- * @argument {String} loop
- * @argument {String} [flavour]
  *
  * @module structure/pure/Audio
  * @requires structure/pure
