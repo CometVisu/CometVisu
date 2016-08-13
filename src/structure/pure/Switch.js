@@ -22,6 +22,24 @@
 
 
 /**
+ * The switch widget shows two states (e.g. ON and OFF) and can toggle between them.
+ *
+ * @widget_example <meta>
+ *   <caption>Default example for defining an switch widget in the configuration</caption>
+ *   <screenshot name="switch_example_on">
+ *    <caption>Switch turned on</caption>
+ *    <data address="0/0/0">1</data>
+ *   </screenshot>
+ *   <screenshot name="switch_example_off">
+ *    <caption>Switch turned off</caption>
+ *    <data address="0/0/0">0</data>
+ *   </screenshot>
+ * </meta>
+ * <switch>
+ *   <layout colspan="3" />
+ *   <label>Switch</label>
+ *   <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
+ * </switch>
  * @module structure/pure/Switch
  * @author Christian Mayer
  * @since 2012

@@ -490,6 +490,11 @@ module.exports = function(grunt) {
             }
           }
         }
+      },
+      screenshots: {
+        options: {
+          configFile: ".jsdoc/protractor.conf.js"
+        }
       }
     },
 
@@ -620,6 +625,8 @@ module.exports = function(grunt) {
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
+  grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
+  grunt.registerTask('api-doc', ['jsdoc', 'screenshots']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
