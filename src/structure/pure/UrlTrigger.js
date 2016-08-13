@@ -84,7 +84,6 @@ define( ['_common'], function( design ) {
    * @param {} path
    * @param {} actor
    * @param {} isCanceled
-   * @return 
    */
   action: function( path, actor, isCanceled ) {
     basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
@@ -99,12 +98,6 @@ define( ['_common'], function( design ) {
       datatype: "html",
       data: encodeURI(data.params),
       url: data.url,
-      /**
-       * Description
-       * @method success
-       * @param {} data
-       * @return 
-       */
       success: function(data){
         //maybe do something useful with the response?
       }

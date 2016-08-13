@@ -94,7 +94,6 @@ define( ['_common'], function( design ) {
      * @method update
      * @param {String} address - Address of the update
      * @param {String} data - Incoming data
-     * @return 
      */
     update: function(address, data) {
       var element = $(this);

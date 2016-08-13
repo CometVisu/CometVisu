@@ -369,7 +369,9 @@ module.exports = function(grunt) {
     clean: {
       archives : ['*.zip', '*.gz'],
       release: ['release/'],
-      iconcache: ['cache/icons']
+      iconcache: ['cache/icons'],
+      exampleCache: ['cache/widget_examples'],
+      doc: ['doc']
     },
 
     "file-creator": {
@@ -626,7 +628,7 @@ module.exports = function(grunt) {
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
-  grunt.registerTask('api-doc', ['jsdoc', 'screenshots']);
+  grunt.registerTask('api-doc', ['clean:exampleCache', 'clean:doc', 'jsdoc', 'screenshots']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);

@@ -207,7 +207,6 @@ define( ['_common'], function( design ) {
   /**
    * Description
    * @method createFinal
-   * @return 
    */
   createFinal: function() { // special function - only for pages!
     $('#pages').prepend( allPages );
@@ -217,7 +216,6 @@ define( ['_common'], function( design ) {
    * @method update
    * @param {} ga
    * @param {} data
-   * @return 
    */
   update: function( ga, data ) {
     var 
@@ -257,7 +255,6 @@ define( ['_common'], function( design ) {
    * @param {} path
    * @param {} actor
    * @param {} isCanceled
-   * @return 
    */
   action: function( path, actor, isCanceled ) {
     if( isCanceled ) return;

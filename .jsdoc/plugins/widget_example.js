@@ -6,6 +6,7 @@
 
 var logger = require('jsdoc/util/logger');
 var fs = require('fs');
+var path = require('path');
 var xsd = require('libxml-xsd');
 var libxmljs = require('libxml-xsd').libxmljs;
 
@@ -17,7 +18,14 @@ var configParts = {
   end :   '</pages>'
 };
 
-var schemaString = fs.readFileSync("src/visu_config.xsd", "utf-8");
+var cacheDir = path.join("cache", "widget_examples");
+try {
+  fs.statSync(cacheDir);
+} catch(e) {
+  fs.mkdirSync(cacheDir, "0744");
+}
+
+var schemaString = fs.readFileSync(path.join("src", "visu_config.xsd"), "utf-8");
 var schema = xsd.parse(schemaString);
 
 exports.handlers = {
@@ -36,7 +44,7 @@ exports.handlers = {
       tags.forEach(function(tag, index) {
         var jsdocExample, configExample;
         var name = e.doclet.name.replace(/\//g,"_")+index;
-        var filename = "cache/widget_examples/"+name+".xml";
+        var filename = path.join(cacheDir, name+".xml");
         var xml = libxmljs.parseXmlString('<?xml version="1.0" encoding="UTF-8"?><root>'+tag.value+"</root>");
         var firstChild = xml.root().childNodes()[0];
 

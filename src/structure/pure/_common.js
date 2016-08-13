@@ -42,7 +42,6 @@ define( ['jquery'], function($) {
    * This class defines all the building blocks for a Visu in the "Pure" design
    * @class VisuDesign
    * @method VisuDesign
-   * @return 
    */
   function VisuDesign() {
   var self = this;
@@ -54,7 +53,6 @@ define( ['jquery'], function($) {
    * @method addCreator
    * @param {} name
    * @param {} object
-   * @return 
    */
   this.addCreator = function (name, object) {
     this.creators[name] = object;
@@ -80,7 +78,6 @@ define( ['jquery'], function($) {
    * @method addPopup
    * @param {} name
    * @param {} object
-   * @return 
    */
   this.addPopup = function (name, object) {
     popups[name] = object;
@@ -176,7 +173,6 @@ define( ['jquery'], function($) {
      * Description
      * @method close
      * @param {} event
-     * @return 
      */
     close: function( event ) {
       $('#centerContainer').removeClass('inactiveMain');
@@ -257,7 +253,6 @@ define( ['jquery'], function($) {
    * @method defaultValue2DOM
    * @param {} value
    * @param {} modifyFn
-   * @return 
    */
   this.defaultValue2DOM = function( value, modifyFn )
   {
@@ -336,7 +331,6 @@ define( ['jquery'], function($) {
    * @param {} ev
    * @param {} data
    * @param {} passedElement
-   * @return 
    */
   this.defaultUpdate3d = function( ev, data, passedElement )
   {
@@ -576,7 +570,6 @@ define( ['jquery'], function($) {
    * @method defaultButtonDownAnimation
    * @param {} path
    * @param {} actor
-   * @return 
    */
   this.defaultButtonDownAnimation = function( path, actor )
   {
@@ -593,7 +586,6 @@ define( ['jquery'], function($) {
    * @method defaultButtonDownAnimationInheritAction
    * @param {} path
    * @param {} actor
-   * @return 
    */
   this.defaultButtonDownAnimationInheritAction = function( path, actor )
   {
@@ -610,7 +602,6 @@ define( ['jquery'], function($) {
    * @method defaultButtonUpAnimation
    * @param {} path
    * @param {} actor
-   * @return 
    */
   this.defaultButtonUpAnimation = function( path, actor )
   {
@@ -627,7 +618,6 @@ define( ['jquery'], function($) {
    * @method defaultButtonUpAnimationInheritAction
    * @param {} path
    * @param {} actor
-   * @return 
    */
   this.defaultButtonUpAnimationInheritAction = function( path, actor )
   {

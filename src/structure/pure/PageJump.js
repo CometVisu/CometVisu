@@ -88,7 +88,6 @@ define( ['_common'], function( design ) {
    * @param {} path
    * @param {} actor
    * @param {} isCanceled
-   * @return 
    */
   downaction: function( path, actor, isCanceled ) {
     if (!$(actor).parent().hasClass("info")) {
@@ -101,7 +100,6 @@ define( ['_common'], function( design ) {
    * @param {} path
    * @param {} actor
    * @param {} isCanceled
-   * @return 
    */
   action: function( path, actor, isCanceled ) {
     if (!$(actor).parent().hasClass("info")) {

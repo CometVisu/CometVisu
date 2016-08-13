@@ -43,7 +43,7 @@ define( ['_common'], function( design ) {
   create: function( element, path, flavour, type ) {
     var $e = $(element);
 
-    var address = {};
+    var address = {}, src;
     if ($e.attr('ga')) {
       src = $e.attr('ga');
       templateEngine.addAddress($e.attr('ga'));
@@ -96,7 +96,6 @@ define( ['_common'], function( design ) {
    * @method update
    * @param {} ga
    * @param {} data
-   * @return 
    */
   update: function( ga, data) {
     var 

@@ -54,7 +54,6 @@ define( ['_common'], function( design ) {
    * @method update
    * @param {} ga
    * @param {} d
-   * @return 
    */
   update: function( ga, d ) {
     var

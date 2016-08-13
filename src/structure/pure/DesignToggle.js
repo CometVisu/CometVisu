@@ -64,7 +64,6 @@ define( ['_common'], function( design ) {
    * @param {} path
    * @param {} actor
    * @param {} isCaneled
-   * @return 
    */
   action: function( path, actor, isCaneled ) {
     basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
@@ -105,7 +104,6 @@ define( ['_common'], function( design ) {
    * Description
    * @method setLocation
    * @param {} loc
-   * @return 
    */
   setLocation : function(loc) {
     window.location.href = loc;

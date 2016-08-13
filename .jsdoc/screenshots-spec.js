@@ -34,8 +34,14 @@ describe('generation screenshots from jsdoc examples', function () {
     cvMockup.at();
   });
 
+  var examplesDir = path.join("cache", "widget_examples");
+  var screenshotsDir = path.join("doc", "static");
+  try {
+    fs.statSync(screenshotsDir);
+  } catch(e) {
+    fs.mkdirSync(screenshotsDir, "0744");
+  }
 
-  var examplesDir = "cache/widget_examples";
   fs.readdirSync(examplesDir).forEach(function(fileName) {
     var filePath = path.join(examplesDir, fileName);
     var stat = fs.statSync(filePath);
@@ -55,7 +61,7 @@ describe('generation screenshots from jsdoc examples', function () {
               widget.getLocation().then(function (location) {
                 browser.takeScreenshot().then(function (data) {
                   var base64Data = data.replace(/^data:image\/png;base64,/, "");
-                  var imgFile = path.join("doc", "static", setting.name + ".png");
+                  var imgFile = path.join(screenshotsDir, setting.name + ".png");
                   fs.writeFile(imgFile, base64Data, 'base64', function (err) {
                     if (err) {
                       console.log(err);

@@ -36,7 +36,6 @@ define( ['_common'], function( design ) {
    * @method transformSlider
    * @param {} value
    * @param {} handle
-   * @return 
    */
   function transformSlider( value, handle )
   {
@@ -136,7 +135,6 @@ define( ['_common'], function( design ) {
    * @method update
    * @param {} ga
    * @param {} d
-   * @return 
    */
   update: function( ga, d ) { 
     var element = $(this),
@@ -163,7 +161,6 @@ define( ['_common'], function( design ) {
    * @method slideUpdateValue
    * @param {} event
    * @param {} ui
-   * @return 
    */
   slideUpdateValue:function(event,ui) {
     var element = $(this).parent(),
@@ -179,7 +176,6 @@ define( ['_common'], function( design ) {
    * @method slideStart
    * @param {} event
    * @param {} ui
-   * @return 
    */
   slideStart:function(event,ui)
   {
@@ -211,7 +207,6 @@ define( ['_common'], function( design ) {
    * @method slideChange
    * @param {} event
    * @param {} ui
-   * @return 
    */
   slideChange:function(event,ui)
   {

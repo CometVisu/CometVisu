@@ -63,7 +63,6 @@ define( ['_common'], function( design ) {
    * @param {} ga
    * @param {} d
    * @param {} passedElement
-   * @return 
    */
   update: function( ga, d, passedElement )
   {

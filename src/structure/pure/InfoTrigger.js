@@ -121,7 +121,6 @@ define( ['_common'], function( design ) {
    * @method update
    * @param {} ga
    * @param {} d
-   * @return 
    */
   update: function( ga, d ) { 
     var element = $(this);
@@ -134,7 +133,6 @@ define( ['_common'], function( design ) {
    * @param {} path
    * @param {} actor
    * @param {} isCanceled
-   * @return 
    */
   action: function( path, actor, isCanceled ) {
     basicdesign.defaultButtonUpAnimation( path, actor );

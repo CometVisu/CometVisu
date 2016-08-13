@@ -92,7 +92,6 @@ define( ['_common'], function( design ) {
    * @method update
    * @param {} ga
    * @param {} d
-   * @return 
    */
   update: function( ga, d ) { 
     var 
@@ -110,7 +109,6 @@ define( ['_common'], function( design ) {
    * @param {} path
    * @param {} actor
    * @param {} isCaneled
-   * @return 
    */
   action: function( path, actor, isCaneled ) {
     if( isCaneled ) return;
