@@ -26,8 +26,16 @@
  *
  * @author Christian Mayer
  * @since 2010
- * @module Templateengine
- * @title  CometVisu templateengine
+ * @module lib/TemplateEngine
+ * @requires dependencies/jquery
+ * @requires structure/pure
+ * @requires config/structure_custom
+ * @requires lib/TrickOMatic
+ * @requires lib/PageHandler
+ * @requires lib/PagePartsHandler
+ * @requires lib/CometVisuClient
+ * @requires lib/mockup/Client
+ * @requires lib/EventHandler
  */
 
 ///////////////////////////////////////////////////////////////////////

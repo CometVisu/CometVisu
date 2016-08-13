@@ -15,21 +15,18 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
- * @module CometVisuClient 
- * @title  CometVisu CometVisuClient 
  */
 
 
 /**
  * The JavaScript library that implements the CometVisu protocol.
  *
- * @title CometVisu-Client
- * @exports ComentVisuVlient
- * @requires jQuery
+ * @module lib/CometVisuClient
+ * @exports ComentVisuClient
+ * @requires dependencies/jquery
  * @author Christan Mayer
  * @author Tobias Bräutigam
- * @since 2010
+ * @since 0.5.3 (initial contribution) 0.10.0 (major refactoring)
  */
 define( ['jquery'], function( $ ) {
   "use strict";
@@ -446,14 +443,14 @@ define( ['jquery'], function( $ ) {
   /**
    * The CometVisuClient handles all communication issues to supply the user
    * ob this object with reliable realtime data.
-   * Itself it can be seens as the session layer (layer 5) according to the OSI
+   * Itself it can be seen as the session layer (layer 5) according to the OSI
    * model.
    *
    * @class CometVisuClient
    * @constructor
    * @alias module:cometvisu-client
-   * @param {String}      backendName name of the backend (cgi-bin|default|oh|openhab|oh2|openhab2)
-   * @param {String|null} initPath    optional path to login ressource
+   * @param {String} backendName - name of the backend (cgi-bin|default|oh|openhab|oh2|openhab2)
+   * @param {String} [initPath] - optional path to login ressource
    */
   function CometVisuClient( backendName, initPath ) { // Constructor
 

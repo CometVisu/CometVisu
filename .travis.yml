@@ -15,6 +15,9 @@ before_install:
 install:
   - npm install
   - ./node_modules/protractor/bin/webdriver-manager update --standalone --firefox
+  - ls -la node_modules
+  - ls -la node_modules/jsdoc
+  - ls -la node_modules/jsdoc/plugins
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
