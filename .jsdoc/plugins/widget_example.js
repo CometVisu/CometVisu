@@ -114,7 +114,7 @@ exports.handlers = {
           if (firstChild.attr("selector")) {
             settings.selector = firstChild.attr("selector").value();
           }
-          visuConfigParts.start = visuConfigParts.start.replace("%%%DESIGN%%%", design);
+
           firstChild.childNodes().forEach(function(node) {
             if (node.name() == "screenshot") {
               var shot = {
@@ -147,6 +147,8 @@ exports.handlers = {
         } else {
           settings.screenshots = [{ name: name }];
         }
+        // replace the design value in the config
+        visuConfigParts.start = visuConfigParts.start.replace("%%%DESIGN%%%", design);
 
         // get the next non-text node
         var configNodes = traverseElements(xml.root(), visuConfigParts);
