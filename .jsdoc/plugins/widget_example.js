@@ -111,9 +111,13 @@ exports.handlers = {
             globalCaptionString = screenshots[0].caption;
           }
           for (var i=0; i < screenshots.length; i++) {
-            globalCaptionString += '<br/>' +
-              '<img style="margin-bottom: 3px" id="'+screenshots[i].name+'" src="static/'+screenshots[i].name+'.png" alt="'+screenshots[i].caption+'" title="'+screenshots[i].caption+'"/>' +
-              '<label style="margin-left: 10px" for="'+screenshots[i].name+'">'+screenshots[i].caption+'</label>';
+            var divStyle = "margin-top: 5px; float:left; width: 50%; text-align: center;";
+            if (i % 2 == 0) {
+              divStyle += " clear: left";
+            }
+            globalCaptionString += '<div style="'+divStyle+'">'+
+              '<img id="'+screenshots[i].name+'" src="static/'+screenshots[i].name+'.png" alt="'+screenshots[i].caption+'" title="'+screenshots[i].caption+'"/>' +
+              '<label style="margin-left: 10px; clear: left" for="'+screenshots[i].name+'">'+screenshots[i].caption+'</label></div>';
           }
           jsdocExample = '<caption>'+globalCaptionString+'</caption>\n' + jsdocExample;
         } else if (firstChild.name() == "caption") {
