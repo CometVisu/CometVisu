@@ -28,6 +28,53 @@ try {
 var schemaString = fs.readFileSync(path.join("src", "visu_config.xsd"), "utf-8");
 var schema = xsd.parse(schemaString);
 
+function getCaptionString(globalCaption, screenshots) {
+  var res = globalCaption;
+  for (var i=0; i < screenshots.length; i++) {
+    var divStyle = "margin-top: 5px; float:left; width: 50%; text-align: center;";
+    if (i % 2 == 0) {
+      divStyle += " clear: left";
+    }
+    res += '<div style="'+divStyle+'">'+
+      '<img id="'+screenshots[i].name+'" src="static/'+screenshots[i].name+'.png"';
+    if (screenshots[i].caption) {
+      res += ' alt="'+screenshots[i].caption+'" title="'+screenshots[i].caption+' ">';
+      res += '<label style="margin-left: 10px; clear: left" for="' + screenshots[i].name + '">' + screenshots[i].caption + '</label>';
+    } else {
+      res += ' "/>';
+    }
+    res += '</div>';
+  }
+  if (res) {
+    return '<caption>' + res + '</caption>\n';
+  } else {
+    return '\n';
+  }
+}
+
+function traverseElements(rootNode, visuConfigParts) {
+  var res = {
+    metaNode: null,
+    configNode: null
+  };
+  rootNode.childNodes().forEach(function(child) {
+    if (child.type() == "element") {
+      if (child.name() == "cv-meta") {
+        // this needs to to placed in the configs meta part
+        res.metaNode = child;
+        child.name("meta");
+        visuConfigParts.meta = child.toString(true);
+      }
+      else {
+        // must be the example code
+        res.configNode = child;
+        return;
+      }
+    }
+  });
+  return res;
+}
+
 exports.handlers = {
   newDoclet: function(e) {
     var tags = e.doclet.tags;
@@ -51,7 +98,10 @@ exports.handlers = {
         // clone the configParts
         var visuConfigParts = JSON.parse(JSON.stringify(configParts));
         var design = "metal";
-        var screenshots = [];
+        var settings = {
+          selector: ".widget_container",
+          screenshots: []
+        };
 
         if (firstChild.name() == "meta") {
           // read meta settings
@@ -61,72 +111,63 @@ exports.handlers = {
           if (firstChild.attr("design")) {
             design = firstChild.attr("design").value();
           }
+          if (firstChild.attr("selector")) {
+            settings.selector = firstChild.attr("selector").value();
+          }
           visuConfigParts.start = visuConfigParts.start.replace("%%%DESIGN%%%", design);
-          firstChild.childNodes().forEach(function(screenshot) {
-            if (screenshot.name() == "screenshot") {
+          firstChild.childNodes().forEach(function(node) {
+            if (node.name() == "screenshot") {
               var shot = {
-                name: screenshot.attr("name").value() || name + shotIndex,
+                name: node.attr("name").value() || name + shotIndex,
                 data: {}};
-              screenshot.childNodes().forEach(function (node) {
+              node.childNodes().forEach(function (node) {
                 if (node.name() == "caption") {
                   shot.caption = node.text();
                 } else if (node.name() == "data") {
                   shot.data[node.attr("address").value()] = node.text()
                 }
               });
-              screenshots.push(shot);
+              settings.screenshots.push(shot);
               shotIndex++;
-            } else if (screenshot.name() == "caption") {
+            } else if (node.name() == "caption") {
               // global caption
-              globalCaption = screenshot;
+              globalCaption = node;
             }
           });
-          // get the next non-text node
-          var metaNode = null;
-          var configNode = null;
-          xml.root().childNodes().forEach(function(child) {
-            if (child.name() == "cv-meta") {
-              // this needs to to placed in the configs meta part
-              metaNode = child;
-              child.name("meta");
-              visuConfigParts.meta = child.toString(true);
-            }
-            else if (child.name() != "text") {
-              configNode = child;
-              return;
-            }
-          });
-          configExample = configNode.toString(true);
-          jsdocExample = configExample;
-          if (metaNode) {
-            // add meta settings to the example
-            jsdocExample = "...\n"+visuConfigParts.meta+"\n...\n"+jsdocExample;
+          // no screenshots defined, add a default one
+          if (settings.screenshots.length == 0) {
+            settings.screenshots.push({
+              name: name + shotIndex
+            });
           }
-          var globalCaptionString = "";
-          if (globalCaption) {
-            // add caption for further example processing
-            globalCaptionString = globalCaption.text();
-          } else if (screenshots.length == 1) {
-            // use the caption of the only screenshot we have as global caption for the example
-            globalCaptionString = screenshots[0].caption;
-          }
-          for (var i=0; i < screenshots.length; i++) {
-            var divStyle = "margin-top: 5px; float:left; width: 50%; text-align: center;";
-            if (i % 2 == 0) {
-              divStyle += " clear: left";
-            }
-            globalCaptionString += '<div style="'+divStyle+'">'+
-              '<img id="'+screenshots[i].name+'" src="static/'+screenshots[i].name+'.png" alt="'+screenshots[i].caption+'" title="'+screenshots[i].caption+'"/>' +
-              '<label style="margin-left: 10px; clear: left" for="'+screenshots[i].name+'">'+screenshots[i].caption+'</label></div>';
-          }
-          jsdocExample = '<caption>'+globalCaptionString+'</caption>\n' + jsdocExample;
         } else if (firstChild.name() == "caption") {
-          configExample = xml.root().childNodes()[1].toString(true);
-          jsdocExample = tag.value;
+          globalCaption = firstChild;
+          firstChild.remove();
+          settings.screenshots = [{ name: name }];
         } else {
-          jsdocExample = tag.value;
-          configExample = tag.value;
+          settings.screenshots = [{ name: name }];
         }
+
+        // get the next non-text node
+        var configNodes = traverseElements(xml.root(), visuConfigParts);
+
+        configExample = configNodes.configNode.toString(true);
+        jsdocExample = configExample;
+        if (configNodes.metaNode) {
+          // add meta settings to the example
+          jsdocExample = "...\n"+visuConfigParts.meta+"\n...\n"+jsdocExample;
+        }
+
+        var globalCaptionString = "";
+        if (globalCaption) {
+          // add caption for further example processing
+          globalCaptionString = globalCaption.text();
+        } else if (settings.screenshots.length == 1 && settings.screenshots[0].caption) {
+          // use the caption of the only screenshot we have as global caption for the example
+          globalCaptionString = settings.screenshots[0].caption;
+        }
+        jsdocExample = getCaptionString(globalCaptionString, settings.screenshots) + jsdocExample;
+
         e.doclet.examples.push(jsdocExample);
 
         // build the real config source
@@ -145,7 +186,7 @@ exports.handlers = {
           return
         }
         // example is a valid configuration
-        fs.writeFile(filename, JSON.stringify(screenshots)+"\n"+configSource, function(err) {
+        fs.writeFile(filename, JSON.stringify(settings)+"\n"+configSource, function(err) {
           if (err) {
             logger.error(err);
           }

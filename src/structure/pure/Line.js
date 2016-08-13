@@ -22,34 +22,43 @@
 
 
 /**
+ * A line tag is used to display a horizontal line in the browser to allow for a grouped and thereby tidy display of
+ * elements on one page. To specify the width of the line an optional &lt;layout/&gt;-child can be added.
+ *
+ * @widget_example <meta selector="hr">
+ *   <caption>A line tag which uses 50% of the screen size (6 of 12 available columns)</caption>
+ * </meta>
+ * <line><layout colspan="6"/></line>
+ *
  * @module structure/pure/Line
+ * @requires structure/pure
  * @author Christian Mayer
- * @since 2012
+ * @since 0.8.0 (2012)
  */
 define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('line', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return ret_val
-   */
-  create:     function( element, path, flavour, type ) {
-    var 
-      $e = $(element),
-      classes = basicdesign.setWidgetLayout( $e, path ),
-      ret_val = '<hr ' + (classes ? 'class="'+classes+'"' : '') + '/>';
-    templateEngine.widgetDataInsert( path, {
-      path: path
-    });
-    return ret_val;
-  }
-});
-
+    /**
+     * Creates the widget HTML code
+     *
+     * @method create
+     * @param {Element} element - DOM-Element
+     * @param {String} path - internal path of the widget
+     * @param {String} flavour - Flavour of the widget
+     * @param {String} type - Page type (2d, 3d, ...)
+     * @return {String} HTML code
+     */
+    create:     function( element, path, flavour, type ) {
+      var
+        $e = $(element),
+        classes = basicdesign.setWidgetLayout( $e, path ),
+        ret_val = '<hr ' + (classes ? 'class="'+classes+'"' : '') + '/>';
+        templateEngine.widgetDataInsert( path, {
+          path: path
+        });
+      return ret_val;
+    }
+  });
 }); // end define

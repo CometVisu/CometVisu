@@ -22,30 +22,38 @@
 
 
 /**
+ * A break tag is used to start in new line for a grouped and thereby tidy display of
+ * elements on one page.
+ *
+ * @example <caption>The break tag has no content</caption>
+ * <break/>
+ *
  * @module structure/pure/Break
+ * @requires structure/pure
  * @author Christian Mayer
- * @since 2012
+ * @since 0.8.0 (2012)
  */
 define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('break', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return Literal
-   */
-  create: function( element, path, flavour, type ) {
-    var data = templateEngine.widgetDataInsert( path, {
-      path: path
-    });
-    return '<br />';
-  }
-});
+    /**
+     * Creates the widget HTML code
+     *
+     * @method create
+     * @param {Element} element - DOM-Element
+     * @param {String} path - internal path of the widget
+     * @param {String} flavour - Flavour of the widget
+     * @param {String} type - Page type (2d, 3d, ...)
+     * @return {String} HTML code
+     */
+    create: function( element, path, flavour, type ) {
+      var data = templateEngine.widgetDataInsert( path, {
+        path: path
+      });
+      return '<br />';
+    }
+  });
 
 }); // end define

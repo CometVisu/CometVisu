@@ -30,7 +30,7 @@
  *   </screenshot>
  * </meta>
  * <audio id="audio_widget" src="path/to/audio_file.mp3">
- *   <layout colspan="3" />
+ *   <layout colspan="4" />
  *   <label>Audio</label>
  *   <address transform="DPT:1.001" mode="read">0/0/0</address>
  * </audio>
@@ -55,13 +55,14 @@ define( ['_common'], function( design ) {
   
   design.basicdesign.addCreator('audio', {
     /**
-     * Creates an audio widget
+     * Creates the widget HTML code
+     *
      * @method create
      * @param {Element} element - DOM-Element
      * @param {String} path - internal path of the widget
      * @param {String} flavour - Flavour of the widget
      * @param {String} type - Page type (2d, 3d, ...)
-     * @return BinaryExpression
+     * @return {String} HTML code
      */
     create: function( element, path, flavour, type ) {
       var $e = $(element);

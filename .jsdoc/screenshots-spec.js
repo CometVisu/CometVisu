@@ -19,7 +19,7 @@ var cropInFile = function(size, location, srcFile) {
       y: location.y,
       gravity: 'North-West'
     },
-    function(err, stdout, stderr) {
+    function(err) {
       if (err) throw err;
     });
 };
@@ -47,13 +47,13 @@ describe('generation screenshots from jsdoc examples', function () {
     var stat = fs.statSync(filePath);
     if (stat.isFile()) {
       var example = fs.readFileSync(filePath, "utf-8").split("\n");
-      if (example[0].substr(0,1) == "[") {
+      if (example[0].substr(0,1) == "{") {
         var settings = JSON.parse(example.shift());
 
         mockupConfig.push(example.join("\n"));
         it('should create a screenshot', function () {
-          var widget = element.all(by.css(".activePage .widget_container")).first();
-          settings.forEach(function(setting) {
+          var widget = element.all(by.css(".activePage "+settings.selector)).first();
+          settings.screenshots.forEach(function(setting) {
             for (var ga in setting.data) {
               cvMockup.sendUpdate(ga, setting.data[ga]);
             }
