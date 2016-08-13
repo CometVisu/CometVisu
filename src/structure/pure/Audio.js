@@ -94,13 +94,13 @@ define( ['_common'], function( design ) {
     /**
      * Handles updates of incoming data for this widget
      * @method update
-     * @param {String} address - Address of the update
-     * @param {String} data - Incoming data
+     * @param {String} address - Source address of the incoming data
+     * @param {String} value - Incoming data
      */
-    update: function(address, data) {
+    update: function(address, value) {
       var element = $(this);
       var actor   = element.find('.actor');
-      var value = basicdesign.defaultUpdate( address, data, element, true, element.parent().attr('id') );
+      var value = basicdesign.defaultUpdate( address, value, element, true, element.parent().attr('id') );
       var data  = templateEngine.widgetDataGetByElement( element );
       var on = templateEngine.map( data[ 'threshold_value' ], data['mapping'] );
       if (value >= on) {

@@ -31,83 +31,83 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
  
   design.basicdesign.addCreator('designtoggle', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
+    /**
+     * Description
+     * @method create
+     * @param {} element
+     * @param {} path
+     * @param {} flavour
+     * @param {} type
+     * @return BinaryExpression
+     */
+    create: function( element, path, flavour, type ) {
+      var $e = $(element);
 
-    // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type );
+      // create the main structure
+      var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type );
 
-    // create the actor
-    var actor = '<div class="actor switchUnpressed"><div class="value">' + templateEngine.clientDesign + '</div></div>';
+      // create the actor
+      var actor = '<div class="actor switchUnpressed"><div class="value">' + templateEngine.clientDesign + '</div></div>';
 
-    var data = templateEngine.widgetDataGet( path );
-    
-    $.getJSON("./designs/get_designs.php",function(d) {
-      data['availableDesigns'] = d;
-    });
+      var data = templateEngine.widgetDataGet( path );
 
-    return ret_val + actor + '</div>';
-  },
-  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
-  /**
-   * Description
-   * @method action
-   * @param {} path
-   * @param {} actor
-   * @param {} isCaneled
-   */
-  action: function( path, actor, isCaneled ) {
-    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
-    if( isCaneled ) return;
+      $.getJSON("./designs/get_designs.php",function(d) {
+        data['availableDesigns'] = d;
+      });
 
-    var 
-      data = templateEngine.widgetDataGet( path );
-    
-    var $this = $(this);
-    var designs = data.availableDesigns;
+      return ret_val + actor + '</div>';
+    },
+    downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+    /**
+     * Description
+     * @method action
+     * @param {} path
+     * @param {} actor
+     * @param {} isCaneled
+     */
+    action: function( path, actor, isCaneled ) {
+      basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+      if( isCaneled ) return;
 
-    var oldDesign = $('.value',$this).text();
-    var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
+      var
+        data = templateEngine.widgetDataGet( path );
 
-    var URL = this.getLocation();
-    var regexp = new RegExp("design="+oldDesign)
-    if (URL.search(regexp) != -1) { // has URL-parameter design
-      this.setLocation(URL.replace(regexp, "design="+newDesign));
-    }
-    else {
-      if (URL.indexOf("?") != -1) { // has other parameters, append design
-        this.setLocation(URL+"&design="+newDesign);
+      var $this = $(this);
+      var designs = data.availableDesigns;
+
+      var oldDesign = $('.value',$this).text();
+      var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
+
+      var URL = this.getLocation();
+      var regexp = new RegExp("design="+oldDesign)
+      if (URL.search(regexp) != -1) { // has URL-parameter design
+        this.setLocation(URL.replace(regexp, "design="+newDesign));
       }
-      else { // has now parameters
-        this.setLocation(URL+"?design="+newDesign);
+      else {
+        if (URL.indexOf("?") != -1) { // has other parameters, append design
+          this.setLocation(URL+"&design="+newDesign);
+        }
+        else { // has now parameters
+          this.setLocation(URL+"?design="+newDesign);
+        }
       }
+    },
+    /**
+     * Description
+     * @method getLocation
+     * @return MemberExpression
+     */
+    getLocation : function() {
+      return window.location.href;
+    },
+    /**
+     * Description
+     * @method setLocation
+     * @param {} loc
+     */
+    setLocation : function(loc) {
+      window.location.href = loc;
     }
-  },
-  /**
-   * Description
-   * @method getLocation
-   * @return MemberExpression
-   */
-  getLocation : function() {
-    return window.location.href;
-  },
-  /**
-   * Description
-   * @method setLocation
-   * @param {} loc
-   */
-  setLocation : function(loc) {
-    window.location.href = loc;
-  }  
-});
+  });
 
 }); // end define

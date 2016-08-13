@@ -64,65 +64,69 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
  
   design.basicdesign.addCreator('switch', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
-    
-    // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'switch', $e, path, flavour, type, this.update );
-    // and fill in widget specific data
-    var data = templateEngine.widgetDataInsert( path, {
-      'on_value'  : $e.attr('on_value' ) || 1,
-      'off_value' : $e.attr('off_value') || 0
-    } );
-    
-    ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
-    
-    return ret_val + '</div>';
-  },
-  /**
-   * Description
-   * @method update
-   * @param {} ga
-   * @param {} d
-   */
-  update: function( ga, d ) { 
-    var 
-      element = $(this),
-      data  = templateEngine.widgetDataGetByElement( element ),
-      actor = element.find('.actor'),
-      value = basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') ),
-      off   = templateEngine.map( data['off_value'], data['mapping'] );
-    actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
-    actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
-  },
-  /**
-   * Description
-   * @method action
-   * @param {} path
-   * @param {} actor
-   * @param {} isCanceled
-   */
-  action: function( path, actor, isCanceled ) {
-    if( isCanceled ) return;
-    
-    var 
-      widgetData  = templateEngine.widgetDataGet( path );
-    
-    for( var addr in widgetData.address )
-    {
-      if( !(widgetData.address[addr][1] & 2) ) continue; // skip when write flag not set
-      templateEngine.visu.write( addr, templateEngine.transformEncode( widgetData.address[addr][0], widgetData.basicvalue == widgetData.off_value ? widgetData.on_value : widgetData.off_value ) );
+    /**
+     * Creates the widget HTML code
+     *
+     * @method create
+     * @param {Element} element - DOM-Element
+     * @param {String} path - internal path of the widget
+     * @param {String} flavour - Flavour of the widget
+     * @param {String} type - Page type (2d, 3d, ...)
+     * @return {String} HTML code
+     */
+    create: function( element, path, flavour, type ) {
+      var $e = $(element);
+
+      // create the main structure
+      var ret_val = basicdesign.createDefaultWidget( 'switch', $e, path, flavour, type, this.update );
+      // and fill in widget specific data
+      var data = templateEngine.widgetDataInsert( path, {
+        'on_value'  : $e.attr('on_value' ) || 1,
+        'off_value' : $e.attr('off_value') || 0
+      } );
+
+      ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+
+      return ret_val + '</div>';
+    },
+
+    /**
+     * Handles updates of incoming data for this widget
+     * @method update
+     * @param {String} address - Source address of the incoming data
+     * @param {String} value - Incoming data
+     */
+    update: function( address, value ) {
+      var
+        element = $(this),
+        data  = templateEngine.widgetDataGetByElement( element ),
+        actor = element.find('.actor'),
+        value = basicdesign.defaultUpdate( address, value, element, true, element.parent().attr('id') ),
+        off   = templateEngine.map( data['off_value'], data['mapping'] );
+      actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
+      actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
+    },
+
+    /**
+     * Action performed when the switch got clicked
+     *
+     * @method action
+     * @param {String} path - Internal path of the widget
+     * @param {Element} actor - DOMElement
+     * @param {Boolean} isCanceled - If true the action does nothing
+     */
+    action: function( path, actor, isCanceled ) {
+      if( isCanceled ) return;
+
+      var
+        widgetData  = templateEngine.widgetDataGet( path );
+
+      for( var addr in widgetData.address )
+      {
+        if( !(widgetData.address[addr][1] & 2) ) continue; // skip when write flag not set
+        templateEngine.visu.write( addr, templateEngine.transformEncode( widgetData.address[addr][0], widgetData.basicvalue == widgetData.off_value ? widgetData.on_value : widgetData.off_value ) );
+      }
     }
-  }
-});
+  });
 
 }); // end define

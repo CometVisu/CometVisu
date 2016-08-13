@@ -22,7 +22,20 @@
 
 
 /**
+ *
+ * @widget_example <meta>
+ *   <caption>Show temperature in degree celcius</caption>
+ *   <screenshot name="info_temp">
+ *     <data address="0/0/0">19</data>
+ *   </screenshot>
+ * </meta>
+ * <info format="%.1f °C">
+ *   <label>outside temperature</label>
+ *   <address transform="DPT:9.001">0/0/0</address>
+ * </info>
+ *
  * @module structure/pure/Info
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2012
  */
@@ -31,38 +44,41 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
  
   design.basicdesign.addCreator('info', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
-    
-    // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'info', $e, path, flavour, type, this.update );
-    
-    // create the actor
-    var actor = '<div class="actor"><div class="value">-</div></div>';
-    ret_val += actor;
-    
-    return ret_val + '</div>';
-  },
-  /**
-   * Description
-   * @method update
-   * @param {} ga
-   * @param {} d
-   */
-  update:   function( ga, d ) { 
-    var element = $(this);
-    basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
-  },
-  update3d: design.basicdesign.defaultUpdate3d
-});
+    /**
+     * Creates the widget HTML code
+     *
+     * @method create
+     * @param {Element} element - DOM-Element
+     * @param {String} path - internal path of the widget
+     * @param {String} flavour - Flavour of the widget
+     * @param {String} type - Page type (2d, 3d, ...)
+     * @return {String} HTML code
+     */
+    create: function( element, path, flavour, type ) {
+      var $e = $(element);
+
+      // create the main structure
+      var ret_val = basicdesign.createDefaultWidget( 'info', $e, path, flavour, type, this.update );
+
+      // create the actor
+      var actor = '<div class="actor"><div class="value">-</div></div>';
+      ret_val += actor;
+
+      return ret_val + '</div>';
+    },
+
+    /**
+     * Handles updates of incoming data for this widget
+     * @method update
+     * @param {String} address - Source address of the incoming data
+     * @param {String} value - Incoming data
+     */
+    update:   function( address, value ) {
+      var element = $(this);
+      basicdesign.defaultUpdate( address, value, element, true, element.parent().attr('id') );
+    },
+
+    update3d: design.basicdesign.defaultUpdate3d
+  });
 
 }); // end define
