@@ -55,9 +55,9 @@ define( ['_common'], function( design ) {
         $e = $(element),
         classes = basicdesign.setWidgetLayout( $e, path ),
         ret_val = '<hr ' + (classes ? 'class="'+classes+'"' : '') + '/>';
-        templateEngine.widgetDataInsert( path, {
-          path: path
-        });
+      templateEngine.widgetDataInsert( path, {
+        path: path
+      });
       return ret_val;
     }
   });
