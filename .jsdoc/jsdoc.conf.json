@@ -2,7 +2,10 @@
   "tags": {
     "allowUnknownTags": true
   },
-  "plugins": ["plugins/widget_example"],
+  "plugins": [
+    "plugins/widget_example",
+    "node_modules/jsdoc/plugins/markdown"
+  ],
   "templates": {
     "logoFile": "",
     "cleverLinks": false,
@@ -12,7 +15,7 @@
     "outputSourcePath": true,
     "systemName": "CometVisu",
     "footer": "",
-    "copyright": "CometVisu Copyright © 2012-2016 The contributors to the CometVisu project.",
+    "copyright": "CometVisu Copyright © 2010-2016, Christian Mayer and the CometVisu contributers.",
     "navType": "vertical",
     "theme": "spacelab",
     "linenums": true,
