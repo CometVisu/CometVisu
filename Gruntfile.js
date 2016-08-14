@@ -517,7 +517,12 @@ module.exports = function(grunt) {
       },
       screenshots: {
         options: {
-          configFile: ".doc/protractor.conf.js"
+          configFile: ".doc/protractor.conf.js",
+          args: {
+            params: {
+              subDir: grunt.option('subDir')
+            }
+          }
         }
       }
     },

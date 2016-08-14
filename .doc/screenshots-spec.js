@@ -61,10 +61,15 @@ describe('generation screenshots from jsdoc examples', function () {
   });
 
   var examplesDir = path.join("cache", "widget_examples");
+  var onlySubDir = null;
+
+
 
   fs.readdirSync(examplesDir).forEach(function(fileName) {
     var subDir = path.join(examplesDir, fileName);
-
+    if (browser.onlySubDir && browser.onlySubDir!=fileName) {
+      return;
+    }
     if (fs.statSync(subDir).isDirectory()) {
       fs.readdirSync(subDir).forEach(function(fileName) {
         var filePath = path.join(subDir, fileName);
@@ -76,6 +81,7 @@ describe('generation screenshots from jsdoc examples', function () {
             createDir(settings.screenshotDir);
 
             mockupConfig.push(example.join("\n"));
+
             it('should create a screenshot', function () {
               var widget = element.all(by.css(".activePage "+settings.selector)).first();
               settings.screenshots.forEach(function(setting) {

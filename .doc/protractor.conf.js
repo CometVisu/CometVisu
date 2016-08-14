@@ -21,5 +21,10 @@ exports.config = {
     browser.manage().timeouts().implicitlyWait(1000);
     // set browser size...
     browser.manage().window().setSize(1024, 800);
+    return browser.getProcessedConfig().then(function(config) {
+      if (config.params && config.params.subDir) {
+        browser.onlySubDir = config.params.subDir;
+      }
+    });
   }
 };
