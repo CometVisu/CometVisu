@@ -1224,6 +1224,11 @@
   </xsd:complexType>
   
   <xsd:complexType name="smartmeter">
+    <xsd:attribute name="limitname" type="xsd:string" use="optional" />
+    <xsd:attribute name="limitcolor" type="xsd:string" use="optional" />
+    <xsd:attribute name="color1" type="xsd:string" use="optional" />
+    <xsd:attribute name="color2" type="xsd:string" use="optional" />
+    <xsd:attribute name="color3" type="xsd:string" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="svg">

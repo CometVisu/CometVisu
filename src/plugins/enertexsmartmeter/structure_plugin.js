@@ -144,16 +144,16 @@ define( ['structure_custom',
   {
     return widgetData.singlePhase ?
       [
-        { label: 'L1', data: referenceSin[0] },
-        { label: 'L1', data: widgetData.curve[0] }
+        { label: null, data: referenceSin[0], color:13 }, // trick flot to automatically make color darker
+        { label: 'L', data: widgetData.curve[0], color:1 }
       ] :
       [
-        { label: 'L1', data: referenceSin[0] },
-        { label: 'L2', data: referenceSin[1] },
-        { label: 'L3', data: referenceSin[2] },
-        { label: 'L1', data: widgetData.curve[0] },
-        { label: 'L2', data: widgetData.curve[1] },
-        { label: 'L3', data: widgetData.curve[2] }
+        { label: null, data: referenceSin[0], color:13 },
+        { label: null, data: referenceSin[1], color:14 },
+        { label: null, data: referenceSin[2], color:15 },
+        { label: 'L1', data: widgetData.curve[0], color:1 },
+        { label: 'L2', data: widgetData.curve[1], color:2 },
+        { label: 'L3', data: widgetData.curve[2], color:3 }
       ];
   }
   
@@ -164,14 +164,14 @@ define( ['structure_custom',
   {
     return widgetData.singlePhase ? 
       [
-        { label: 'limit', data:widgetData.displayType===VOLTAGE?limitEN50160_1999:limitEN61000_3_2, bars:{show:false}, lines:{steps:true} },
-        { label: 'L1', data:widgetData.spectrum[0] }
+        { label: widgetData.limitName, data:widgetData.displayType===VOLTAGE?limitEN50160_1999:limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
+        { label: 'L', data:widgetData.spectrum[0] , color:1}
       ] :
       [
-        { label: 'limit', data:widgetData.displayType===VOLTAGE?limitEN50160_1999:limitEN61000_3_2, bars:{show:false}, lines:{steps:true} },
-        { label: 'L1', data:widgetData.spectrum[0] },
-        { label: 'L2', data:widgetData.spectrum[1] },
-        { label: 'L3', data:widgetData.spectrum[2] }
+        { label: widgetData.limitName, data:widgetData.displayType===VOLTAGE?limitEN50160_1999:limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
+        { label: 'L1', data:widgetData.spectrum[0], color:1 },
+        { label: 'L2', data:widgetData.spectrum[1], color:2 },
+        { label: 'L3', data:widgetData.spectrum[2], color:3 }
       ];
   }
 
@@ -200,10 +200,11 @@ define( ['structure_custom',
         displayType: displayType,
         singlePhase: singlePhase,
         spectrum: singlePhase ? [ setupSpectrum() ] :[ setupSpectrum(-0.25), setupSpectrum(0), setupSpectrum(0.25) ],
+        limitName: $e.attr('limitname') || 'limit',
         curve: singlePhase ? [ setupCurve() ] : [ setupCurve(), setupCurve(), setupCurve() ],
         current: []
       });
-      
+
       var 
         pageId = templateEngine.getPageIdForWidgetId( element, path ),
         classStr = 'diagram_inline',
@@ -212,7 +213,13 @@ define( ['structure_custom',
         height   = $e.attr("height") ? ($e.attr("height") + (/[0-9]$/.test($e.attr("height")) ? 'px' : '')) : undefined,
         styleStr = 'min-height: 40px'
                   + (width  ? (';width:'  + width ) : ''             )
-                  + (height ? (';height:' + height) : ';height: 100%');
+                  + (height ? (';height:' + height) : ';height: 100%'),
+        colors = [
+          $e.attr('limitcolor') || "#edc240", // default directly from flot code
+          $e.attr('color1')     || "#afd8f8",
+          $e.attr('color2')     || "#cb4b4b",
+          $e.attr('color3')     || "#4da74d"
+        ];
       
       // create the actor
       var actor = '<div class="actor clickable" style="height: 100%; min-height: 40px;">';
@@ -224,9 +231,11 @@ define( ['structure_custom',
         var 
           diagramCurve = showCurve && $( '#' + path + ' .actor div.curve' ).empty(),
           optionsCurve = showCurve && {
+            colors: colors
           },
           diagramSpectrum = $( '#' + path + ' .actor div.spectrum' ).empty(),
           optionsSpectrum = {
+            colors: colors,
             series: {
               bars: {
                 show: true
