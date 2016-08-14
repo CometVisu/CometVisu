@@ -517,7 +517,7 @@ module.exports = function(grunt) {
       },
       screenshots: {
         options: {
-          configFile: ".jsdoc/protractor.conf.js"
+          configFile: ".doc/protractor.conf.js"
         }
       }
     },

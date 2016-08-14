@@ -76,6 +76,7 @@ Parameter
 | **bind\_click\_to\_widget**   | **true** oder **false**                             | Mit dieser Option wird festgelegt ob die gesammte Fläche des Widgets zum schalten verwendet werden kann oder nur der Button. Visuell gibt es keinen Unterschied.                                                                                                                                            |
 +-------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+
 Parameter im Editor
 -------------------
 
@@ -100,11 +101,10 @@ der `visu\_config.xml <CometVisu/XML-Elemente>`__ hinzufügen.
 **WICHTIG: In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!**
 
-Hier der minimale Beispielcode der das XXX Widget mit den oben gezeigten
+Hier der minimale Beispielcode der das switch Widget mit den oben gezeigten
 Eigenschaften einfügt:
 
-.. code:: xml
-
+.. widget_example::
           <switch on_value="1" off_value="0">
             <label>Kanal 1</label>
             <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
@@ -119,12 +119,29 @@ mitbekommt und den Status falsch anzeigt.
 XML Syntax komplett
 -------------------
 
-Hier der Beispielcode der das XXX Widget mit den allen oben gezeigten
-Eigenschaften einfügt:
+Hier der Beispielcode der das switch Widget mit den allen oben gezeigten
+Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
 
-.. code:: xml
-
-        <switch on_value="1" off_value="0" mapping="On_Off" styling="Green_Red" bind_click_to_widget="true">
+.. widget_example::
+        <meta>
+            <screenshot name="switch_complete"/>
+            <data address="1/4/0">1</data>
+        </meta>
+        <cv-meta>
+            <mappings>
+                <mapping name="OnOff">
+                    <entry value="0">O</entry>
+                    <entry value="1">I</entry>
+                </mapping>
+            </mappings>
+            <stylings>
+                <styling name="GreyGreen">
+                    <entry value="0">grey</entry>
+                    <entry value="1">green</entry>
+                </styling>
+            </stylings>
+        </cv-meta>
+        <switch on_value="1" off_value="0" mapping="OnOff" styling="GreyGreen" bind_click_to_widget="true">
           <label>Kanal 1<icon name="control_on_off"/></label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
           <address transform="DPT:1.001" mode="read">1/4/0</address>

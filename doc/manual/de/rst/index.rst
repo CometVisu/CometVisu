@@ -183,7 +183,7 @@ eingebaut sein oder per Plugin-Schnittstelle intergriert.
 
 Die Beschreibung der Widgets kann man hier nachlesen:
 
--  `Widgetbeschreibungen <CometVisu/0.8.x/widgets/de>`__
+-  `Widgetbeschreibungen <widgets/>`__
 
 CometVisu - Beispiele
 ---------------------
