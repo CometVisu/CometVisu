@@ -24,6 +24,32 @@ var cropInFile = function(size, location, srcFile) {
     });
 };
 
+var createDir = function(dir) {
+  try {
+    fs.statSync(dir);
+  } catch(e) {
+    var create = [dir];
+    var parts = dir.split(path.sep);
+    parts.pop();
+    var parentDir = parts.join(path.sep);
+    var exists = false;
+    while(!exists && parentDir) {
+      try {
+        fs.statSync(parentDir);
+        exists = true;
+      } catch(e) {
+        create.unshift(parentDir);
+        parts = parentDir.split(path.sep);
+        parts.pop();
+        parentDir = parts.join(path.sep);
+      }
+    }
+    create.forEach(function(newDir) {
+      fs.mkdirSync(newDir, "0744");
+    });
+  }
+};
+
 describe('generation screenshots from jsdoc examples', function () {
   'use strict';
   var mockupConfig = [];
@@ -35,47 +61,48 @@ describe('generation screenshots from jsdoc examples', function () {
   });
 
   var examplesDir = path.join("cache", "widget_examples");
-  var screenshotsDir = path.join("doc", "api", "examples");
-  try {
-    fs.statSync(screenshotsDir);
-  } catch(e) {
-    fs.mkdirSync(screenshotsDir, "0744");
-  }
 
   fs.readdirSync(examplesDir).forEach(function(fileName) {
-    var filePath = path.join(examplesDir, fileName);
-    var stat = fs.statSync(filePath);
-    if (stat.isFile()) {
-      var example = fs.readFileSync(filePath, "utf-8").split("\n");
-      if (example[0].substr(0,1) == "{") {
-        var settings = JSON.parse(example.shift());
+    var subDir = path.join(examplesDir, fileName);
 
-        mockupConfig.push(example.join("\n"));
-        it('should create a screenshot', function () {
-          var widget = element.all(by.css(".activePage "+settings.selector)).first();
-          settings.screenshots.forEach(function(setting) {
-            for (var ga in setting.data) {
-              cvMockup.sendUpdate(ga, setting.data[ga]);
-            }
-            widget.getSize().then(function (size) {
-              widget.getLocation().then(function (location) {
-                browser.takeScreenshot().then(function (data) {
-                  var base64Data = data.replace(/^data:image\/png;base64,/, "");
-                  var imgFile = path.join(screenshotsDir, setting.name + ".png");
-                  fs.writeFile(imgFile, base64Data, 'base64', function (err) {
-                    if (err) {
-                      console.log(err);
-                    }
-                    else {
-                      cropInFile(size, location, imgFile);
-                    }
+    if (fs.statSync(subDir).isDirectory()) {
+      fs.readdirSync(subDir).forEach(function(fileName) {
+        var filePath = path.join(subDir, fileName);
+        var stat = fs.statSync(filePath);
+        if (stat.isFile()) {
+          var example = fs.readFileSync(filePath, "utf-8").split("\n");
+          if (example[0].substr(0,1) == "{") {
+            var settings = JSON.parse(example.shift());
+            createDir(settings.screenshotDir);
+
+            mockupConfig.push(example.join("\n"));
+            it('should create a screenshot', function () {
+              var widget = element.all(by.css(".activePage "+settings.selector)).first();
+              settings.screenshots.forEach(function(setting) {
+                for (var ga in setting.data) {
+                  cvMockup.sendUpdate(ga, setting.data[ga]);
+                }
+                widget.getSize().then(function (size) {
+                  widget.getLocation().then(function (location) {
+                    browser.takeScreenshot().then(function (data) {
+                      var base64Data = data.replace(/^data:image\/png;base64,/, "");
+                      var imgFile = path.join(settings.screenshotDir, setting.name + ".png");
+                      fs.writeFile(imgFile, base64Data, 'base64', function (err) {
+                        if (err) {
+                          console.log(err);
+                        }
+                        else {
+                          cropInFile(size, location, imgFile);
+                        }
+                      });
+                    });
                   });
                 });
               });
             });
-          });
-        });
-      }
+          }
+        }
+      });
     }
   });
 });

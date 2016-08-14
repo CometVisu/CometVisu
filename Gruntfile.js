@@ -371,7 +371,7 @@ module.exports = function(grunt) {
         options: {
           destination: 'doc/api/html',
           template : "node_modules/ink-docstrap/template",
-          configure : ".jsdoc/jsdoc.conf.json"
+          configure : ".doc/jsdoc.conf.json"
         }
       },
       rst : {
@@ -383,7 +383,7 @@ module.exports = function(grunt) {
         options: {
           destination: 'doc/api/rst',
           template : "node_modules/jsdoc-sphinx/template/",
-          configure : ".jsdoc/jsdoc.conf.json"
+          configure : ".doc/jsdoc.conf.json"
         }
       }
     },

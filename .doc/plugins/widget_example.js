@@ -18,12 +18,35 @@ var configParts = {
   end :   '</pages>'
 };
 
-var cacheDir = path.join("cache", "widget_examples");
-try {
-  fs.statSync(cacheDir);
-} catch(e) {
-  fs.mkdirSync(cacheDir, "0744");
-}
+var createDir = function(dir) {
+  try {
+    fs.statSync(dir);
+  } catch(e) {
+    var create = [dir];
+    var parts = dir.split(path.sep);
+    parts.pop();
+    var parentDir = parts.join(path.sep);
+    var exists = false;
+    while(!exists && parentDir) {
+      try {
+        fs.statSync(parentDir);
+        exists = true;
+      } catch(e) {
+        create.unshift(parentDir);
+        parts = parentDir.split(path.sep);
+        parts.pop();
+        parentDir = parts.join(path.sep);
+      }
+    }
+    create.forEach(function(newDir) {
+      fs.mkdirSync(newDir, "0744");
+    });
+  }
+};
+
+var cacheDir = path.join("cache", "widget_examples", "jsdoc");
+var screenshotDir = path.join("doc", "api", "examples");
+createDir(cacheDir);
 
 var schemaString = fs.readFileSync(path.join("src", "visu_config.xsd"), "utf-8");
 var schema = xsd.parse(schemaString);
@@ -100,7 +123,8 @@ exports.handlers = {
         var design = "metal";
         var settings = {
           selector: ".widget_container",
-          screenshots: []
+          screenshots: [],
+          screenshotDir: screenshotDir
         };
 
         if (firstChild.name() == "meta") {
