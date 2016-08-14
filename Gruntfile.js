@@ -362,14 +362,14 @@ module.exports = function(grunt) {
     },
 
     jsdoc : {
-      dist : {
+      html : {
         src: [
           'src/lib/**/*.js',
           'src/plugins/**/*.js',
           'src/structure/**/*.js'
         ],
         options: {
-          destination: 'doc',
+          destination: 'doc/api/html',
           template : "node_modules/ink-docstrap/template",
           configure : ".jsdoc/jsdoc.conf.json"
         }
@@ -381,7 +381,7 @@ module.exports = function(grunt) {
           'src/structure/**/*.js'
         ],
         options: {
-          destination: 'doc/rst',
+          destination: 'doc/api/rst',
           template : "node_modules/jsdoc-sphinx/template/",
           configure : ".jsdoc/jsdoc.conf.json"
         }
@@ -393,7 +393,7 @@ module.exports = function(grunt) {
       release: ['release/'],
       iconcache: ['cache/icons'],
       exampleCache: ['cache/widget_examples'],
-      doc: ['doc']
+      apiDoc: ['doc/api']
     },
 
     "file-creator": {
@@ -650,7 +650,7 @@ module.exports = function(grunt) {
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
-  grunt.registerTask('api-doc', ['clean:exampleCache', 'clean:doc', 'jsdoc', 'screenshots']);
+  grunt.registerTask('api-doc', ['clean:exampleCache', 'clean:apiDoc', 'jsdoc:html', 'screenshots']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
