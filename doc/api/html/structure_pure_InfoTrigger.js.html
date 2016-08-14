@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>CometVisu Source: structure/pure/InfoTrigger.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.spacelab.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">CometVisu</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-lib_CometVisuClient.html">lib/CometVisuClient</a></li><li><a href="module-lib_TemplateEngine.html">lib/TemplateEngine</a></li><li><a href="module-structure_pure.html">structure/pure</a></li><li><a href="module-structure_pure_Audio.html">structure/pure/Audio</a></li><li><a href="module-structure_pure_Break.html">structure/pure/Break</a></li><li><a href="module-structure_pure_DesignToggle.html">structure/pure/DesignToggle</a></li><li><a href="module-structure_pure_Group.html">structure/pure/Group</a></li><li><a href="module-structure_pure_Image.html">structure/pure/Image</a></li><li><a href="module-structure_pure_ImageTrigger.html">structure/pure/ImageTrigger</a></li><li><a href="module-structure_pure_Include.html">structure/pure/Include</a></li><li><a href="module-structure_pure_Info.html">structure/pure/Info</a></li><li><a href="module-structure_pure_InfoAction.html">structure/pure/InfoAction</a></li><li><a href="module-structure_pure_InfoTrigger.html">structure/pure/InfoTrigger</a></li><li><a href="module-structure_pure_Line.html">structure/pure/Line</a></li><li><a href="module-structure_pure_Multitrigger.html">structure/pure/Multitrigger</a></li><li><a href="module-structure_pure_NavBar.html">structure/pure/NavBar</a></li><li><a href="module-structure_pure_Page.html">structure/pure/Page</a></li><li><a href="module-structure_pure_PageJump.html">structure/pure/PageJump</a></li><li><a href="module-structure_pure_PushButton.html">structure/pure/PushButton</a></li><li><a href="module-structure_pure_Refresh.html">structure/pure/Refresh</a></li><li><a href="module-structure_pure_Reload.html">structure/pure/Reload</a></li><li><a href="module-structure_pure_Rgb.html">structure/pure/Rgb</a></li><li><a href="module-structure_pure_Slide.html">structure/pure/Slide</a></li><li><a href="module-structure_pure_Switch.html">structure/pure/Switch</a></li><li><a href="module-structure_pure_Text.html">structure/pure/Text</a></li><li><a href="module-structure_pure_Toggle.html">structure/pure/Toggle</a></li><li><a href="module-structure_pure_Trigger.html">structure/pure/Trigger</a></li><li><a href="module-structure_pure_Unknown.html">structure/pure/Unknown</a></li><li><a href="module-structure_pure_UrlTrigger.html">structure/pure/UrlTrigger</a></li><li><a href="module-structure_pure_Video.html">structure/pure/Video</a></li><li><a href="module-structure_pure_Web.html">structure/pure/Web</a></li><li><a href="module-structure_pure_WgPluginInfo.html">structure/pure/WgPluginInfo</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="-_anonymous_-EventHandler-Dispatcher.html"><anonymous>~EventHandler~Dispatcher</a></li><li><a href="FOO.html">FOO</a></li><li><a href="module-cometvisu-client.html">cometvisu-client</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#debug">debug</a></li><li><a href="global.html#fadeNavbar">fadeNavbar</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#handleRead">handleRead</a></li><li><a href="global.html#initializeNavbars">initializeNavbars</a></li><li><a href="global.html#jOWM">jOWM</a></li><li><a href="global.html#list">list</a></li><li><a href="global.html#navbarSetSize">navbarSetSize</a></li><li><a href="global.html#subscribe">subscribe</a></li><li><a href="global.html#updatePageParts">updatePageParts</a></li><li><a href="global.html#write">write</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+		<div class="col-sm-3 col-md-3">
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: structure/pure/InfoTrigger.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/* InfoTrigger.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
+
+/**
+ * @module structure/pure/InfoTrigger
+ * @author Christian Mayer
+ * @since 2012
+ */
+define( ['_common'], function( design ) {
+  "use strict";
+  var basicdesign = design.basicdesign;
+ 
+  design.basicdesign.addCreator('infotrigger', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
+  create: function( element, path, flavour, type ) {
+    var $e = $(element);
+
+    // create the main structure
+    /**
+     * Description
+     * @method makeAddressListFn
+     * @param {} src
+     * @param {} transform
+     * @param {} mode
+     * @param {} variant
+     * @return ArrayExpression
+     */
+    var makeAddressListFn = function( src, transform, mode, variant ) {
+      // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
+      return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
+    }
+    var ret_val = basicdesign.createDefaultWidget( 'infotrigger', $e, path, flavour, type, this.update, makeAddressListFn );
+    // and fill in widget specific data
+    var data = templateEngine.widgetDataInsert( path, {
+      'downvalue'     : $e.attr('downvalue' )            || 0,
+      'shortdownvalue': $e.attr('shortdownvalue')        || 0,
+      'downlabel'     : $e.attr('downlabel')                 ,
+      'upvalue'       : $e.attr('upvalue' )              || 0,
+      'shortupvalue'  : $e.attr('shortupvalue')          || 0,
+      'uplabel'       : $e.attr('uplabel')                   ,
+      'shorttime'     : parseFloat($e.attr('shorttime')) || -1,
+      'isAbsolute'    : ($e.attr('change')               || 'relative') == 'absolute',
+      'min'           : parseFloat($e.attr('min'))       || 0,
+      'max'           : parseFloat($e.attr('max'))       || 255,
+      'align'         : $e.attr('align')
+    } );
+
+    // create buttons + info
+    ret_val += '&lt;div style="float:left;">';
+
+    var actordown = '&lt;div class="actor switchUnpressed downlabel" ';
+    if ( data.align ) 
+      actordown += 'style="text-align: ' + data.align + '" '; 
+    actordown += '>';
+    actordown += '&lt;div class="label">' + (data.downlabel || '-') + '&lt;/div>';
+    actordown += '&lt;/div>';
+
+    var actorup = '&lt;div class="actor switchUnpressed uplabel" ';
+    if ( data.align ) 
+      actorup += 'style="text-align: ' + data.align + '" '; 
+    actorup += '>';
+    actorup += '&lt;div class="label">' + (data.uplabel || '+') + '&lt;/div>';
+    actorup += '&lt;/div>';
+
+    var actorinfo = '&lt;div class="actor switchInvisible" ';
+    if ( data.align ) 
+      actorinfo += 'style="text-align: ' + data.align + '" '; 
+    actorinfo += '>&lt;div class="value">-&lt;/div>&lt;/div>';
+
+    switch ($e.attr('infoposition')) {
+      case 'middle':
+        ret_val += actordown;
+        ret_val += actorinfo;
+        ret_val += actorup;
+        break;
+      case 'right':
+        ret_val += actordown;
+        ret_val += actorup;
+        ret_val += actorinfo;
+        break;
+      default:
+        ret_val += actorinfo;
+        ret_val += actordown;
+        ret_val += actorup;
+        break;
+    }
+
+    return ret_val+ '&lt;/div>&lt;/div>';
+  },
+
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} d
+   */
+  update: function( ga, d ) { 
+    var element = $(this);
+    var value = basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
+  },
+  downaction: basicdesign.defaultButtonDownAnimation,
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   */
+  action: function( path, actor, isCanceled ) {
+    basicdesign.defaultButtonUpAnimation( path, actor );
+    if( isCanceled ) return;
+
+    var
+      isDown     = actor.classList.contains('downlabel'),
+      data       = templateEngine.widgetDataGet( path ),
+      buttonDataValue      = data[ isDown ? 'downvalue'      : 'upvalue'      ],
+      buttonDataShortvalue = data[ isDown ? 'shortdownvalue' : 'shortupvalue' ],
+      isShort = Date.now() - templateEngine.handleMouseEvent.downtime &lt; data.shorttime,
+      value = isShort ? buttonDataShortvalue : buttonDataValue,
+      bitMask = (isShort ? 1 : 2);
+      
+    if( data.isAbsolute )
+    {
+      value = parseFloat(data.basicvalue);
+      if( isNaN( value ) )
+        value = 0; // anything is better than NaN...
+      value = value + parseFloat(isShort ? buttonDataShortvalue : buttonDataValue);
+      if (value &lt; data.min ) value = data.min;
+      if( value > data.max ) value = data.max;
+    }
+    for( var addr in data.address )
+    {
+      if( !(data.address[addr][1] &amp; 2) ) continue; // skip when write flag not set
+      if (data.address[addr][2] &amp; bitMask) {
+        templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], value ) );
+      }
+    }
+  }
+});
+
+}); // end define</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+<div class="modal fade" id="searchResults">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Search results</h4>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<footer>
+
+
+	<span class="copyright">
+	CometVisu Copyright © 2010-2016, Christian Mayer and the CometVisu contributers.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
+	
+		on Sun Aug 14th 2016
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+<script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			var id = $( heading ).attr( "id" );
+			return id && id.replace(/\~/g, '-inner-').replace(/\./g, '-static-') || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		SearcherDisplay.init();
+	});
+</script>
+
+</body>
+</html>

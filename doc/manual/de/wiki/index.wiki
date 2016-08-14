@@ -1,0 +1,122 @@
+{{TOCright}}
+== Willkommen bei der [[CometVisu]]! ==
+
+
+CometVisu ist eine webbasierte Visualisierungslösung für den Bereich der Hausautomation. 
+Sie kann direkt auf den [[KNX]] zugreifen (über den eibd, bzw. knxd) oder auf alles aus der [http://www.openhab.org/ OpenHAB]-Welt.
+Die aktuelle Version wird auf sourceforge.net veröffentlicht.
+
+Diese Dokumentation ist für die aktuelle Version 0.8.5
+
+
+Die Dokumentation für die 0.6.2 findet man unter [[CometVisu/manual/de|Benutzerhandbuch Version 0.6.2]]
+
+Die Dokumentation für die 0.8.0 findet man unter [[CometVisu/0.8.0/manual/de|Benutzerhandbuch Version 0.8.0]]
+
+Die deutsche FAQ findet man [[CometVisu/FAQ (Deutsch)|hier]]
+
+
+'''Aufgabenliste für die CV-Doku: [[CometVisu/0.8.x/aufgaben/de]]'''
+
+== Systemvoraussetzungen ==
+Die '''Bedienung''' durch die Anwender erfolgt über einen Webbrowser. Die meisten aktuellen Browser werden unterstützt.
+
+Durch Angabe von [[CometVisu/URL_parameter/de|Parametern im URL]] kann man zusätzlich die CometVisu beeinflussen, zum Bespiel andere Configs oder Design laden, ebenso aber die Darstellung für Mobilgeräte wie z.B. Smartphones erzwingen.
+
+== Bedienung der CometVisu ==
+
+Das Hauptmenü befindet sich in der Fußzeile und besteht normalerweise aus verschiedenen Links:
+* Link auf die Homepage des Projekts CometVisu
+* "'''Reload'''" um die aktuelle Seite neu aufzurufen.
+::''Achtung'': Im Editormodus gehen ohne Nachfrage alle nicht abgespeicherten Änderungen verloren!
+* "'''Widget Demo'''": Zeigt die verschiedenen Bedienelemente und ihre Verwendungsmöglichkeiten auf.
+* "'''[[CometVisu/0.8.x/editor/de|Edit]]'''": Wechselt in den Editor.
+* "'''Check Config'''": Tool, um die Konfigurationsdatei auf syntaktische Fehler zu überprüfen. "config visu_config is valid XML" bedeutet, dass die Konfigurationsdatei formal in Ordnung ist, darunter wird dir aktuelle Konfigurationsdatei angezeigt..
+(Über die Config-Datei kann man den Inhalt der Fußzeile den eigenen Bedürfnissen anpassen)
+
+== Installation der CometVisu ==
+
+Einfache Installation:
+* [[CometVisu/Installation/de|Allgemein]]
+* [[CometVisu/Installation/WireGate/de|auf Wiregate]]
+* [[CometVisu/Installation/Raspberry Pi/de|auf Raspberry Pi]]
+
+Schwieriger, nur für Fortgeschrittene:
+* [[CometVisu/0.8.x/installation/de/linux|auf beliebigen anderen Linux-Systemen]]
+* [[CometVisu/0.8.x/installation/de/nas|auf NAS-Systemen]]
+
+Informationen wie man die CometVisu auf OpenHAB installiert gibt es auf englisch in der [https://github.com/openhab/openhab/wiki/Comet-Visu OpenHAB-WIKI]
+
+Man kann auch die aktuelle Entwickler-Version installieren, diese sollte jedoch NIE produktiv eingesetzt werden.
+* [[CometVisu/HowTo install the development version on the WireGate|Infos zur Installation Development-Version]] - auf eigene Gefahr!!!
+
+== Update der CometVisu ==
+
+falls eine Version 0.8 schon installiert war kann die Installation direkt aktualsiert werden
+auf dem [[CometVisu/0.8.x/manual/updatewiregate/de|WireGate]] oder [[CometVisu/0.8.x/manual/updateother/de|anderen Installationen]]
+
+== CometVisu-Designs ==
+
+* [[CometVisu/demo config/swiss/de|Metal]] das wohl beliebsteste Design 
+* [[CometVisu/0.8.x/designs/pure/de/|Pure]]
+* [[CometVisu/0.8.x/designs/diskreet/de/|Diskreet]]
+* [[CometVisu/0.8.x/designs/discreet_sand/de/|Discreet Sand]]
+* [[CometVisu/0.8.x/designs/discreet_slim/de/|Discreet Slim]]
+* [[CometVisu/0.8.x/designs/alaska/de/|Alaska]]
+* [[CometVisu/0.8.x/designs/alaska_slim/de/|Alaska Slim]]
+
+Es ist auch möglich eigene Design zu implementieren.
+
+== Farben in der CometVisu ==
+
+werden grundsätzlich hexadezimal im [http://de.wikipedia.org/wiki/Hexadezimale_Farbdefinition 0xRGB Format] angegeben.
+
+Hilfe, Beispiele und Farbwerte findet man [http://www.z1-web.de/Webmaster-Tools-HTML-HEX_Farbcodes_Tools hier] oder [http://de.selfhtml.org/helferlein/farben.htm hier]
+
+== "Quick Start mit der CometVisu" ==
+
+gibt es [[CometVisu/0.8.x/quickstart/de|hier]]
+
+== CometVisu Konfigurationsdatei ==
+
+Die CometVisu Konfigurationsdatei ist eine XML Datei, die im Unterverzeichnis "config" der CometVisu-Installation (normal also unter /var/www/visu/config) liegt.
+
+Der Editor bearbeitet direkt diese Konfigurationsdatei. Hierfür muss die Konfigurationsdatei für den Webserver Prozess (oder alle Prozesse) beschreibar sein.
+
+Die Konfiguration ist XML formatiert und kann von fortgeschrittenen Anwendern auch direkt bearbeitet werden. (Man sollte dafür dann einen Editor nutzen, der mit XML umgehen kann und/oder die Syntax einfärbt (z.B. Textwrangler auf MacOSX, WordPad++ oder MS XML Editor 2007 unter Windows und unter Linux z.B. vi mit ":syntax on").
+
+Allgemeine Informationen über das CometVisu XML Format findet man [[CometVisu/XML-Elemente|hier]], Informationen zu den einzelnen Widgets in den jeweiligen Unterseiten.
+
+Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch sollte man die Seite neu laden und den Browser-Cache löschen.
+
+Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser eine Fehlermeldung angezeigt. Diese gibt im Normalfall schon genaue Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und Darstellung) auch mit dem Link "Check Config" in der Fusszeile oder durch Anhängen von check_config.php an den URL erzwingen.
+
+== Seiten und Struktur der CometVisu ==
+
+== Navigationselemente in der CometVisu ==
+== Elemente für Konvertierung und Formatierung in der CometVisu ==
+
+In der CometVisu können Werte auf verschiedenste Art und Weisen dargestellt werden. Hierfür können genutzt werden:
+
+* [[CometVisu/0.8.x/format/de|Format]] von Werten z.B. auf Anzahl der Nachkommastellen, Einheiten etc.
+* [[CometVisu/0.8.x/mapping/de|Mapping]] erlaubt das Ersetzen von Zahlenwerten durch Texte (z.B. An/Aus statt 1/0) und Icons. (z.B. für Fensterkontakte)
+* [[CometVisu/0.8.x/styling/de|Styling]] erlaubt das wertabhängige Färben von Werten (z.B. An in rot und Aus in Grün)
+* [[CometVisu/0.8.x/flavour/de|Flavour]] ermöglich in einigen Designs für einige Widgets noch zusätzliche Optionen.
+
+== Widgets in der CometVisu ==
+Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site zusammengebaut wird. Diese können entweder fest in der CometVisu eingebaut sein oder per Plugin-Schnittstelle intergriert.
+
+Die Beschreibung der Widgets kann man hier nachlesen:
+
+* [[CometVisu/0.8.x/widgets/de|Widgetbeschreibungen]]
+
+== CometVisu - Beispiele ==
+* [[CometVisu/0.8.0/demo config/de|findet man hier]]
+
+== sonstiges ==
+* [[CometVisu/0.8.x/etc/rrd/de/|RRD Beispiele]]
+* [[CometVisu/0.8.x/Howto: Animierter Hydraulikplan|Howto: Animierter Hydraulikplan]]
+
+
+[[Category:CometVisu]]
+
