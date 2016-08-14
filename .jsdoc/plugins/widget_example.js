@@ -36,7 +36,7 @@ function getCaptionString(globalCaption, screenshots) {
       divStyle += " clear: left";
     }
     res += '<div style="'+divStyle+'">'+
-      '<img id="'+screenshots[i].name+'" src="static/'+screenshots[i].name+'.png"';
+      '<img id="'+screenshots[i].name+'" src="../examples/'+screenshots[i].name+'.png"';
     if (screenshots[i].caption) {
       res += ' alt="'+screenshots[i].caption+'" title="'+screenshots[i].caption+' ">';
       res += '<label style="margin-left: 10px; clear: left" for="' + screenshots[i].name + '">' + screenshots[i].caption + '</label>';

@@ -35,7 +35,7 @@ describe('generation screenshots from jsdoc examples', function () {
   });
 
   var examplesDir = path.join("cache", "widget_examples");
-  var screenshotsDir = path.join("doc", "static");
+  var screenshotsDir = path.join("doc", "api", "examples");
   try {
     fs.statSync(screenshotsDir);
   } catch(e) {
