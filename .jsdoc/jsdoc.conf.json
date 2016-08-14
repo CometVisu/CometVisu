@@ -4,7 +4,7 @@
   },
   "plugins": [
     "plugins/widget_example",
-    "plugins/markdown"
+    "node_modules/jsdoc/plugins/markdown"
   ],
   "templates": {
     "logoFile": "",

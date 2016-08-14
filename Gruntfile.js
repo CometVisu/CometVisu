@@ -373,6 +373,18 @@ module.exports = function(grunt) {
           template : "node_modules/ink-docstrap/template",
           configure : ".jsdoc/jsdoc.conf.json"
         }
+      },
+      rst : {
+        src: [
+          'src/lib/**/*.js',
+          'src/plugins/**/*.js',
+          'src/structure/**/*.js'
+        ],
+        options: {
+          destination: 'doc/rst',
+          template : "node_modules/jsdoc-sphinx/template/",
+          configure : ".jsdoc/jsdoc.conf.json"
+        }
       }
     },
 
