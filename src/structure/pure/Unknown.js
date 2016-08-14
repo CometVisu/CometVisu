@@ -23,6 +23,7 @@
 
 /**
  * @module structure/pure/Unknown
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2012
  */

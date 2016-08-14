@@ -23,6 +23,7 @@
 
 /**
  * @module structure/pure/UrlTrigger
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2012
  */

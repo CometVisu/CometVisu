@@ -22,6 +22,8 @@
 
 
 /**
+ * @module structure/pure/PushButton
+ * @requires structure/pure
  * @since 2013
  */
 define( ['_common'], function( design ) {

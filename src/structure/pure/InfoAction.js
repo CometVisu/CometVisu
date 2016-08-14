@@ -16,31 +16,56 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  *
- * @module InfoAction 
- * @title  CometVisu InfoAction 
  */
 
 
 /**
- * The infoaction widget is a combination of an info/text widget and an "action"-widget.
+ * The infoaction widget is a combination of an info/text widget and an "action"-widget, e.g. switch or trigger.
  * 
- * Use case: if you have a group of lights, you can show the number of turned on lights
- * and control the whole group in one widget
+ * Use case: if you have a group of lights, you can show the number of lights currently switched on
+ * and control the whole group in one widget.
  *
- * @example <caption>Example of the basic configuration structure of this widget</caption>
+ * @widget_example <meta>
+ *   <caption>Example combines an info widget to show the number of lights currently switched on, and an Switch to control them</caption>
+ *   <screenshot name="infoaction_lights">
+ *     <data address="0/0/0">4</data>
+ *     <data address="0/0/1">1</data>
+ *   </screenshot>
+ * </meta>
+ * <cv-meta>
+ *  <mappings>
+ *    <mapping name="OnOff">
+ *      <entry value="0">Off</entry>
+ *      <entry value="1">On</entry>
+ *    </mapping>
+ *  </mappings>
+ *  <stylings>
+ *    <styling name="GreyGreen">
+ *      <entry value="0">grey</entry>
+ *      <entry value="1">green</entry>
+ *    </styling>
+ *  </stylings>
+ * </cv-meta>
  * <infoaction>
+ *  <layout colspan="4"/>
+ *  <label>Lights</label>
  * 	<widgetinfo>
- * 
+ *    <info>
+ *     <address transform="DPT:9.001">0/0/0</address>
+ *    </info>
  *  </widgetinfo>
  *  <widgetaction>
- *  
+ *   <switch mapping="OnOff" styling="GreyGreen">
+ *    <layout colspan="3" />
+ *    <address transform="DPT:1.001" mode="readwrite">0/0/1</address>
+ *   </switch>
  *  </widgetaction>
  * </infoaction>
  *
  * @module structure/pure/InfoAction
  * @requires structure/pure
  * @author Tobias Bräutigam
- * @since 2015
+ * @since 0.10.0 (as widget), 0.9.2 (as plugin)
  */
 define( ['_common' ], function( design ) {
   "use strict";

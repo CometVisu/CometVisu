@@ -23,6 +23,7 @@
 
 /**
  * @module structure/pure/Web
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2012
  */

@@ -22,6 +22,8 @@
 
 
 /**
+ * @module structure/pure/Slide
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2012
  */
