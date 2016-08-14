@@ -5,4 +5,4 @@ CometVisu-*.zip
 node_modules/
 .idea
 *.swp
-/doc/api/examples/
+doc/api/examples/
