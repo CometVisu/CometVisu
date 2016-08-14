@@ -1,0 +1,83 @@
+Widgets in der CometVisu
+------------------------
+
+Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site zusammengebaut wird. Diese können entweder fest in der CometVisu eingebaut sein oder per Plugin-Schnittstelle integriert werden. Die Widgets lassen sich durch den Editor hinzufügen. (Rechtklick auf das Element, welches ein Widget aufnehmen soll z.B. eine Page oder eine Gruppe (group). Durch Auswahl des Widget aus dem Drop-Down Menü und anschließendem Klick auf das + - Zeichen ist das Widget eingefügt und kann wie folgt konfiguriert werden;
+
+### fest eingebaute Widgets:
+
+|                                               |                                                                                                                                                                                                                                                                                                                                                           |
+|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Widget                                        | Beschreibung                                                                                                                                                                                                                                                                                                                                              |
+| [audio](audio/ "wikilink")                    | Mit diesem Widget kann in die Visu ein Audio-File eingebunden werden, das sich durch eine GA abspielen lässt.                                                                                                                                                                                                                                             |
+| [Break](break/ "wikilink")                    | Fügt der Visu einen Zeilenumbruch hinzu (wird evt. nicht von allen Browsern korrekt interpretiert)                                                                                                                                                                                                                                                        |
+| [Designtoggle](designtoggle/ "wikilink")      | Fügt der Visu eine Schaltfläche hinzu, mit der das Design gewechselt werden kann.                                                                                                                                                                                                                                                                         |
+| [Diagramm\_Info](diagramm_info/ "wikilink")   | Fügt der Visu ein Infoswitch ein welcher z.B. eine Temperatur anzeigt. Beim drücken auf den Switch öffnet sich ein Diagramm.                                                                                                                                                                                                                              |
+| [Group](group/ "wikilink")                    | Mit group können widgets in einem Rahmen als Gruppe zusammengefasst werden. Der Gruppe kann man über "layout" die Größeneigenschaft mitgeben sowie alle zur Verfügung stehenden widgets zuordnen.                                                                                                                                                         |
+| [Image](image/ "wikilink")                    | Fügt der Visu ein statisches Bild oder ein Kamerabild hinzu.                                                                                                                                                                                                                                                                                              |
+| [ImageTrigger](imagetrigger/ "wikilink")      | Fügt der Visu ein klickbares Symbol hinzu. Dies kann z.B. für Erinnerungen wie Geburtstage oder Müllabfuhr verwendet werden.                                                                                                                                                                                                                              |
+| [Include](include/ "wikilink")                | tbd.                                                                                                                                                                                                                                                                                                                                                      |
+| [Info](info/ "wikilink")                      | Fügt der Visu ein dynamisches Feld hinzu, dass Werte vom BUS darstellen kann. z.B. 14-Byte-Text oder Zählerstände.                                                                                                                                                                                                                                        |
+| [InfoTrigger](infotrigger/ "wikilink")        | Fügt der Visu ein Element hinzu, dass zwei Schaltflächen und eine Wertanzeige für Rückmeldungen vom BUS enthält. z.B. für Multimediasteuerungen.                                                                                                                                                                                                          |
+| [Layout](layout/ "wikilink")                  | Mit einem Layout lassen sich Gruppen in ihrer Darstellungsgröße beeinflussen.                                                                                                                                                                                                                                                                             |
+| [Line](line/de "wikilink")                    | Fügt der Visu eine horizontale Linie hinzu, um die Visuseite in einzelne Bereiche zu unterteilen.                                                                                                                                                                                                                                                         |
+| [Multitrigger](multitrigger/ "wikilink")      | Fügt der Visu ein Widget mit 4 Schaltflächen hinzu. Damit kann man z.B. die Betriebsart der Heizung umstellen (Komfort -&gt; Nacht -&gt; Abwesend -&gt; Frostschutz) oder Szenenfunktionen realisieren.                                                                                                                                                   |
+| [Navbar](navbar/ "wikilink")                  | Mit dem Widget navbar kann man der gesamten Visu ein Navigationsmenü hinzu fügen. Das Menü lässt sich an einer Seite (oben, unten, link, rechts darstellen. Die Navigation durch die Visu lässt sich damit strukturieren.                                                                                                                                 |
+| [Page](page/de "wikilink")                    | Erstellt eine neue Visuseite und fügt der aktuellen Seite einen entsprechenden Link hinzu.                                                                                                                                                                                                                                                                |
+| [Pagejump](pagejump/ "wikilink")              | Mit dem Widget pagejump lassen sich Seiten der Visu verknüpfen. Von der Funktion ist das vergleichbar mit Hyperlinks.                                                                                                                                                                                                                                     |
+| [PushButton](pushbutton/ "wikilink")          | Fügt der Visu eine Schaltfläche hinzu, mit der jeweils beim drücken und loslassen ein definierter Wert an den BUS gesendet wird. Z.B. beim Drücken eine 1 und beim Loslassen eine 0. Damit wird es beispielsweise möglich einen Taster zu simulieren um ein Garagentor, Rolläden oder Raffstores zu öffnen und zu schliessen.                             |
+| [Refresh](refresh/ "wikilink")                | Mit dem Widget refresh wird der Visu ein Schalter hinzu gefügt, dessen Betätigung die Visu im Browser neu laden lässt??                                                                                                                                                                                                                                   |
+| [Reload](reload/ "wikilink")                  | Mit dem Widget reload wird der Visu ein Schalter hinzu gefügt, dessen Betätigung die Visu im Browser neu laden lässt??                                                                                                                                                                                                                                    |
+| [RGB](rgb/ "wikilink")                        |                                                                                                                                                                                                                                                                                                                                                           |
+| [Shade](shade/ "wikilink")                    | tbd.                                                                                                                                                                                                                                                                                                                                                      |
+| [Slide](slide/ "wikilink")                    | Fügt der Visu einen horizontalen Schieberegler hinzu. Mit diesem kann man z.B. dimmen oder Temperaturwerte verändern.                                                                                                                                                                                                                                     |
+| [Switch](switch/ "wikilink")                  | Fügt der Visu eine Schaltfläche hinzu, mit der z.B. Schaltaktionen ausgelöst werden können. Der Switch wird typisch für EIN/AUS Aktionen benutzt. (z.B. Licht, Steckdosen etc.)                                                                                                                                                                           |
+| [Text](text/ "wikilink")                      | Fügt der Visu ein statisches Textfeld hinzu.                                                                                                                                                                                                                                                                                                              |
+| [Toggle](toggle/ "wikilink")                  | Das toggle Widget ist ähnlich wie der Switch, kann aber mehr als zwei Zustände annehmen - dies kann z.B. für die Umschaltung von Betriebsarten der Heizung genutzt werden. Bei jedem Druck nimmt der Toggle den nächsten möglichen Zustand an.                                                                                                            |
+| [Trigger](trigger/ "wikilink")                | Fügt der Visu eine Schaltfläche hinzu, mit der genau ein definierter Wert für einen kurzen, sowie ein definierter Wert für einen langen Tastendruck an den BUS gesendet werden kann, z.B. für das Abrufen und Abspeichern von Szenen oder dem Fahren von Rollos. (kurz = stopp, lang = fahren). Die GA für Kurz und Langzeit können unterschiedlich sein. |
+| [URL-trigger](urltrigger/ "wikilink")         | tbd.                                                                                                                                                                                                                                                                                                                                                      |
+| [Video](video/ "wikilink")                    | Fügt der Visu ein Video oder einen Livestream hinzu. Wird derzeit allerdings von den meisten Quellen noch nicht unterstützt.                                                                                                                                                                                                                              |
+| [Web](web/ "wikilink")                        | Fügt der Visu ein Fläche hinzu, in der externe Webseiten dargestellt werden können.                                                                                                                                                                                                                                                                       |
+| [WG\_Plugin\_Info](wgplugin_info/ "wikilink") | tbd.                                                                                                                                                                                                                                                                                                                                                      |
+||
+
+### Widgets die per Plugin eingebunden werden können:
+
+Diese müssen im "meta" Bereich der [CometVisu-XML-Config](CometVisu/XML-Elemente "wikilink") eingebunden werden bevor sie genutzt werden können.
+
+also z.B.:
+
+``` xml
+<plugins>
+  <plugin name="diagram"/>
+  <plugin name="colorchooser"/>
+  <plugin name="strftime"/>
+</plugins>
+```
+
+|                                              |                                                                   |
+|----------------------------------------------|-------------------------------------------------------------------|
+| Widget                                       | Beschreibung                                                      |
+| [ColorChooser](colorchooser/ "wikilink")     | Farb-Auswahl-Rad für RGB-Beleuchtung                              |
+| [Diagram](diagram/ "wikilink")               | RRD-basierte Diagramme                                            |
+| [strftime](strftime/ "wikilink")             | Darstellung der Uhrzeit in Textform                               |
+| [RSSlog](rsslog/ "wikilink")                 | RSS                                                               |
+| [RSS](rss/ "wikilink")                       | RSS                                                               |
+| [Gauge](gauge/ "wikilink")                   | Zeigerinstrument                                                  |
+| [calendarlist](calendarlist/ "wikilink")     | externen Kalendar einbinden                                       |
+| [clock](clock/ "wikilink")                   | Widget zum Darstellen der Uhrzeit von einer GA. z.B. dem WireGate |
+| [svg](svg/ "wikilink")                       | skalierbare Vektorgrafik einbinden?                               |
+| [timeout](timeout/ "wikilink")               | timeout                                                           |
+| [upnpcontroller](upnpcontroller/ "wikilink") | upnp-Controller                                                   |
+||
+
+weitere Plugins befinden sich in der Entwicklung.
+
+### Widget zum Umschalten des Design der CometVisu
+
+|                                          |                        |
+|------------------------------------------|------------------------|
+| Widget                                   | Beschreibung           |
+| [DesignToggle](designtoggle/ "wikilink") | Umschalten des Designs |
+||
+
+<Category:CometVisu> <Category:Handbuch>
