@@ -1,0 +1,133 @@
+{{Infobox Widget  | Name = Widgets einbinden  | Bild = Widgets:hinzu_fügen.png }}
+
+== Widgets in der CometVisu ==
+
+Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site zusammengebaut wird. Diese können entweder fest in der CometVisu eingebaut sein oder per Plugin-Schnittstelle integriert werden. Die Widgets lassen sich durch den Editor hinzufügen. (Rechtklick auf das Element, welches ein Widget aufnehmen soll z.B. eine Page oder eine Gruppe (group). Durch Auswahl des Widget aus dem Drop-Down Menü und anschließendem Klick auf das + - Zeichen ist das Widget eingefügt und kann wie folgt konfiguriert werden;
+
+
+
+=== fest eingebaute Widgets: ===
+{| border="1" cellpadding="2" rules="all"
+|- style="background:#EEEEEE;"
+|width="100pt"|Widget
+|width="800pt"|Beschreibung
+|-
+|[[audio/|audio]]||Mit diesem Widget kann in die Visu ein Audio-File eingebunden werden, das sich durch eine GA abspielen lässt.
+|-
+|[[break/|Break]]||Fügt der Visu einen Zeilenumbruch hinzu (wird evt. nicht von allen Browsern korrekt interpretiert)
+|-
+|[[designtoggle/|Designtoggle]]|| Fügt der Visu eine Schaltfläche hinzu, mit der das Design gewechselt werden kann.
+|-
+|[[diagramm_info/|Diagramm_Info]]||Fügt der Visu ein Infoswitch ein welcher z.B. eine Temperatur anzeigt. Beim drücken auf den Switch öffnet sich ein Diagramm.
+|-
+|[[group/|Group]]||Mit group können widgets in einem Rahmen als Gruppe zusammengefasst werden. Der Gruppe kann man über "layout" die Größeneigenschaft mitgeben sowie alle zur Verfügung stehenden widgets zuordnen.
+|-
+|[[image/|Image]]||Fügt der Visu ein statisches Bild oder ein Kamerabild hinzu. 
+|-
+|[[imagetrigger/|ImageTrigger]]||Fügt der Visu ein klickbares Symbol hinzu. Dies kann z.B. für Erinnerungen wie Geburtstage oder Müllabfuhr verwendet werden.
+|-
+|[[include/|Include]]||tbd. 
+|-
+|[[info/|Info]]||Fügt der Visu ein dynamisches Feld hinzu, dass Werte vom BUS darstellen kann. z.B. 14-Byte-Text oder Zählerstände.
+|-
+|[[infotrigger/|InfoTrigger]]||Fügt der Visu ein Element hinzu, dass zwei Schaltflächen und eine Wertanzeige für Rückmeldungen vom BUS enthält. z.B. für Multimediasteuerungen.
+|-
+|[[layout/|Layout]]||Mit einem Layout lassen sich Gruppen in ihrer Darstellungsgröße beeinflussen.
+|-
+|[[line/de|Line]]||Fügt der Visu eine horizontale Linie hinzu, um die Visuseite in einzelne Bereiche zu unterteilen. 
+|-
+|[[multitrigger/|Multitrigger]]||Fügt der Visu ein Widget mit 4 Schaltflächen hinzu. Damit kann man z.B. die Betriebsart der Heizung umstellen (Komfort -> Nacht -> Abwesend -> Frostschutz) oder Szenenfunktionen realisieren.
+|-
+|[[navbar/|Navbar]]||Mit dem Widget navbar kann man der gesamten Visu ein Navigationsmenü hinzu fügen. Das Menü lässt sich an einer Seite (oben, unten, link, rechts darstellen. Die Navigation durch die Visu lässt sich damit strukturieren. 
+|-
+|[[page/de|Page]]||Erstellt eine neue Visuseite und fügt der aktuellen Seite einen entsprechenden Link hinzu.
+|-
+|[[pagejump/|Pagejump]]||Mit dem Widget pagejump lassen sich Seiten der Visu verknüpfen. Von der Funktion ist das vergleichbar mit Hyperlinks.
+|-
+|[[pushbutton/|PushButton]]||Fügt der Visu eine Schaltfläche hinzu, mit der jeweils beim drücken und loslassen ein definierter Wert an den BUS gesendet wird. Z.B. beim Drücken eine 1 und beim Loslassen eine 0. Damit wird es beispielsweise möglich einen Taster zu simulieren um ein Garagentor, Rolläden oder Raffstores zu öffnen und zu schliessen. 
+|-
+|[[refresh/|Refresh]]||Mit dem Widget refresh wird der Visu ein Schalter hinzu gefügt, dessen Betätigung die Visu im Browser neu laden lässt?? 
+|-
+|[[reload/|Reload]]||Mit dem Widget reload wird der Visu ein Schalter hinzu gefügt, dessen Betätigung die Visu im Browser neu laden lässt?? 
+|-
+|[[rgb/|RGB]]||!! Das Widget scheint noch nicht freigegeben/aktiviert. Es kann noch nicht genutzt werden. Mit dem Widget rgb werden der Visu 3 gruppierte Slider zur Steuerung von RGB-Beleuchtung hinzu gefügt.??
+|-
+|[[shade/|Shade]]||tbd.
+|-
+|[[slide/|Slide]]||Fügt der Visu einen horizontalen Schieberegler hinzu. Mit diesem kann man z.B. dimmen oder Temperaturwerte verändern.
+|-
+|[[switch/|Switch]]||Fügt der Visu eine Schaltfläche hinzu, mit der z.B. Schaltaktionen ausgelöst werden können. Der Switch wird typisch für EIN/AUS Aktionen benutzt. (z.B. Licht, Steckdosen etc.) 
+|-
+|[[text/|Text]]||Fügt der Visu ein statisches Textfeld hinzu.
+|-
+|[[toggle/|Toggle]]||Das toggle Widget ist ähnlich wie der Switch, kann aber mehr als zwei Zustände annehmen - dies kann z.B. für die Umschaltung von Betriebsarten der Heizung genutzt werden. Bei jedem Druck nimmt der Toggle den nächsten möglichen Zustand an.
+|-
+|[[trigger/|Trigger]]||Fügt der Visu eine Schaltfläche hinzu, mit der genau ein definierter Wert für einen kurzen, sowie ein definierter Wert für einen langen Tastendruck an den BUS gesendet werden kann, z.B. für das Abrufen und Abspeichern von Szenen oder dem Fahren von Rollos. (kurz = stopp, lang = fahren). Die GA für Kurz und Langzeit können unterschiedlich sein.
+|-
+|[[urltrigger/|URL-trigger]]|| tbd.
+|-
+|[[video/|Video]]||Fügt der Visu ein Video oder einen Livestream hinzu. Wird derzeit allerdings von den meisten Quellen noch nicht unterstützt.
+|-
+|[[web/|Web]]||Fügt der Visu ein Fläche hinzu, in der externe Webseiten dargestellt werden können.
+|-
+|[[wgplugin_info/|WG_Plugin_Info]]||tbd.
+|-
+|}
+
+=== Widgets die per Plugin eingebunden werden können: ===
+Diese müssen im "meta" Bereich der [[CometVisu/XML-Elemente|CometVisu-XML-Config]] eingebunden werden bevor sie genutzt werden können.
+
+also z.B.:
+<syntaxhighlight lang="xml">
+<plugins>
+  <plugin name="diagram"/>
+  <plugin name="colorchooser"/>
+  <plugin name="strftime"/>
+</plugins>
+</syntaxhighlight>
+
+{| border="1" cellpadding="2" rules="all" borderCollapse="collapse"
+|- style="background:#EEEEEE;"
+|width="100pt"|Widget
+|width="400pt"|Beschreibung
+|-
+|[[colorchooser/|ColorChooser]] ||Farb-Auswahl-Rad für RGB-Beleuchtung
+|-
+|[[diagram/|Diagram]]||RRD-basierte Diagramme
+|-
+|[[strftime/|strftime]] ||Darstellung der Uhrzeit in Textform
+|-
+|[[rsslog/|RSSlog]]||RSS
+|-
+|[[rss/|RSS]]||RSS
+|-
+|[[gauge/|Gauge]]||Zeigerinstrument
+|-
+|[[calendarlist/|calendarlist]]||externen Kalendar einbinden 
+|-
+|[[clock/|clock]]|| Widget zum Darstellen der Uhrzeit von einer GA. z.B. dem WireGate
+|-
+|[[svg/|svg]]|| skalierbare Vektorgrafik einbinden?
+|-
+|[[timeout/|timeout]]||timeout
+|-
+|[[upnpcontroller/|upnpcontroller]]||upnp-Controller
+|-
+|}
+
+
+weitere Plugins befinden sich in der Entwicklung.
+
+=== Widget zum Umschalten des Design der CometVisu ===
+{| border="1" cellpadding="2" rules="all" borderCollapse="collapse"
+|- style="background:#EEEEEE;"
+|width="100pt"|Widget
+|width="400pt"|Beschreibung
+|-
+|[[designtoggle/|DesignToggle]]||Umschalten des Designs
+|-
+|}
+
+
+[[Category:CometVisu]]
+[[Category:Handbuch]]

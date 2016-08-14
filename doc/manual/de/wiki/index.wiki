@@ -108,7 +108,7 @@ Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site zusammengebaut
 
 Die Beschreibung der Widgets kann man hier nachlesen:
 
-* [[CometVisu/0.8.x/widgets/de|Widgetbeschreibungen]]
+* [[widgets/|Widgetbeschreibungen]]
 
 == CometVisu - Beispiele ==
 * [[CometVisu/0.8.0/demo config/de|findet man hier]]
