@@ -19,6 +19,8 @@
 
 
 /**
+ * TODO: complete docs
+ *
  * @module structure/pure/PushButton
  * @requires structure/pure
  * @since 2013

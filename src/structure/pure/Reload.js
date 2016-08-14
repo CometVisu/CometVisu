@@ -19,6 +19,8 @@
 
 
 /**
+ * TODO: complete docs
+ *
  * @module structure/pure/Reload
  * @requires structure/pure
  * @author Christian Mayer

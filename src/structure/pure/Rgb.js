@@ -19,6 +19,8 @@
 
 
 /**
+ * TODO: complete docs
+ *
  * @module structure/pure/Rgb
  * @author Christian Mayer
  * @since 2012

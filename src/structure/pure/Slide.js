@@ -19,6 +19,8 @@
 
 
 /**
+ * TODO: complete docs
+ *
  * @module structure/pure/Slide
  * @requires structure/pure
  * @author Christian Mayer

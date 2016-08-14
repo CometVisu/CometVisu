@@ -19,6 +19,8 @@
 
 
 /**
+ * TODO: complete docs
+ *
  * @module structure/pure/Video
  * @requires structure/pure
  * @author Christian Mayer
