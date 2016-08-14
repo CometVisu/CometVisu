@@ -45,6 +45,7 @@ define( ['_common'], function( design ) {
      * @return {String} HTML code
      */
     create: function( page, path, flavour, type ) {
+      // FIXME: the file gets requested twice, check which one can be removed
       var p = $.get( $(page).attr('src') );
       var p = $.ajax({
         url: $(page).attr('src'),
