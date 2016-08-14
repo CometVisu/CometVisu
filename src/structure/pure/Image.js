@@ -22,58 +22,68 @@
 
 
 /**
+ * Adds an image to your visualization. Using the auto-refresh setting this widget can be used e.g. to show
+ * a camera picture.
+ *
+ * @widget_example
+ * <image src="icon/CometVisu_orange.png" width="45px" height="32px">
+ *   <layout colspan="2" />
+ * </image>
+ *
  * @module structure/pure/Image
+ * @requires structure/pure
  * @author Christian Mayer
- * @since 2012
+ * @since 0.8.0 (2012)
  */
 define( ['_common'], function( design ) {
   "use strict";
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('image', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function(element, path, flavour, type) {
-    var $e = $(element);
-    
-    // create the main structure
-    var ret_val = basicdesign.createDefaultWidget('image', $e, path, flavour, type);
-    // and fill in widget specific data
-    var data = templateEngine.widgetDataInsert( path, {
-      'width'  : $e.attr('width'),
-      'height' : $e.attr('height'),
-      'src'    : $e.attr('src'),
-      'refresh': $e.attr('refresh') ? $e.attr('refresh') * 1000 : 0
-    });
+    /**
+     * Creates the widget HTML code
+     *
+     * @method create
+     * @param {Element} element - DOM-Element
+     * @param {String} path - internal path of the widget
+     * @param {String} flavour - Flavour of the widget
+     * @param {String} type - Page type (2d, 3d, ...)
+     * @return {String} HTML code
+     */
+    create: function(element, path, flavour, type) {
+      var $e = $(element);
 
-    // create the actor
-    var imgStyle = '';
-    if (data.width) {
-      imgStyle += 'width:'  + data.width + ';';
-    }
-    else {
-      imgStyle += 'width: 100%;';
-    }
-    if (data.height) {
-      imgStyle += 'height:' + data.height + ';';
-    }
-    var actor = '<div class="actor"><img src="' + data.src + '" style="' + imgStyle + '" /></div>';
-
-    if (data.refresh) {
-      templateEngine.postDOMSetupFns.push( function(){
-        templateEngine.setupRefreshAction( path, data.refresh );
+      // create the main structure
+      var ret_val = basicdesign.createDefaultWidget('image', $e, path, flavour, type);
+      // and fill in widget specific data
+      var data = templateEngine.widgetDataInsert( path, {
+        'width'  : $e.attr('width'),
+        'height' : $e.attr('height'),
+        'src'    : $e.attr('src'),
+        'refresh': $e.attr('refresh') ? $e.attr('refresh') * 1000 : 0
       });
+
+      // create the actor
+      var imgStyle = '';
+      if (data.width) {
+        imgStyle += 'width:'  + data.width + ';';
+      }
+      else {
+        imgStyle += 'width: 100%;';
+      }
+      if (data.height) {
+        imgStyle += 'height:' + data.height + ';';
+      }
+      var actor = '<div class="actor"><img src="' + data.src + '" style="' + imgStyle + '" /></div>';
+
+      if (data.refresh) {
+        templateEngine.postDOMSetupFns.push( function(){
+          templateEngine.setupRefreshAction( path, data.refresh );
+        });
+      }
+
+      return ret_val + actor + '</div>';
     }
-    
-    return ret_val + actor + '</div>';
-  }
-});
+  });
 
 }); // end define
