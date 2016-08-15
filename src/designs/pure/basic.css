@@ -623,10 +623,17 @@ div#demo_3 {
 /* smartmeter plugin */
 .smartmeter .diagram_inline {
   margin-left: 0;
+  width: 50%;
+  height: 100%;
+  min-height: 40px;
+}
+.smartmeter .diagram_inline:only-child {
+  width: 100%;
 }
 
 .smartmeter > .actor {
   width: calc(50% - 1.1em);
+  height: 100%;
 }
 .smartmeter > .actor:only-child {
   width: 100%;

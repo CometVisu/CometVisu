@@ -209,9 +209,6 @@ define( ['structure_custom',
         pageId = templateEngine.getPageIdForWidgetId( element, path ),
         classStr = 'diagram_inline',
         showCurve = $e.attr('spectrumonly') === 'true' ? false : true,
-        width    = $e.attr("width" ) ? ($e.attr("width" ) + (/[0-9]$/.test($e.attr("width" )) ? 'px' : '')) : '50%',
-        height   = $e.attr("height") ? ($e.attr("height") + (/[0-9]$/.test($e.attr("height")) ? 'px' : '')) : '100%',
-        styleStr = 'min-height: 40px;width:' + width + ';height:' + height,
         colors = [
           $e.attr('limitcolor') || "#edc240", // default directly from flot code
           $e.attr('color1')     || "#afd8f8",
@@ -220,10 +217,10 @@ define( ['structure_custom',
         ];
       
       // create the actor
-      var actor = '<div class="actor clickable" style="height: 100%; min-height: 40px">';
+      var actor = '<div class="actor clickable">';
       if( showCurve )
-        actor += '<div class="' + classStr + ' curve" style="' + styleStr + '">loading...</div>';
-      actor += '<div class="' + classStr + ' spectrum" style="' + styleStr + '">loading...</div></div>';
+        actor += '<div class="' + classStr + ' curve">loading...</div>';
+      actor += '<div class="' + classStr + ' spectrum">loading...</div></div>';
       
       templateEngine.postDOMSetupFns.push( function(){
         var 
