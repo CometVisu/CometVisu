@@ -15,6 +15,17 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
+
+/**
+ * The powerspectrum plugin and widget creates a graph to show the power 
+ * spectral data that the Enertex Smartmeter can send on the KNX bus.
+ * 
+ * @module plugins/powerspectrum/structure_plugin
+ * @requires structure/pure
+ * @author Christian Mayer
+ * @since 0.10.0
+ * */
+
 require.config({
   shim: {
     'plugins/diagram/dep/flot/jquery.flot.min':          ['jquery'],
@@ -167,7 +178,7 @@ define( ['structure_custom',
    * This will create a diagram to show the frequency that the Enertex 
    * Smartmeter pushes on the KNX bus.
    */
-  VisuDesign_Custom.prototype.addCreator( 'smartmeter', {
+  VisuDesign_Custom.prototype.addCreator( 'powerspectrum', {
     create: function( element, path, flavour, type ) {
       var 
         $e = $(element),
@@ -183,7 +194,7 @@ define( ['structure_custom',
         return [true, variant];
       }
     
-      var ret_val = templateEngine.design.createDefaultWidget( 'smartmeter', $e, path, flavour, type, this.update, handleVariant );
+      var ret_val = templateEngine.design.createDefaultWidget( 'powerspectrum', $e, path, flavour, type, this.update, handleVariant );
       var data = templateEngine.widgetDataInsert( path, {
         displayType: displayType,
         singlePhase: singlePhase,
