@@ -105,11 +105,21 @@ Hier der minimale Beispielcode der das switch Widget mit den oben gezeigten
 Eigenschaften einfügt:
 
 .. widget_example::
-          <switch on_value="1" off_value="0">
-            <label>Kanal 1</label>
-            <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-            <address transform="DPT:1.001" mode="read">1/4/0</address>
-          </switch>
+    :number-lines: 1
+    :hide-source: true
+
+        <meta>
+            <screenshot name="switch_simple">
+                <caption>Einfacher Switch</caption>
+                <data address="1/4/0">0</data>
+            </screenshot>
+        </meta>
+        <switch on_value="1" off_value="0">
+          <label>Kanal 1</label>
+          <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+          <address transform="DPT:1.001" mode="read">1/4/0</address>
+        </switch>
+
 
 Die zweite address Zeile ist zwar streng genommen optional, jedoch macht
 ein Switch-Widget ohne die Rückmeldeaddresse in der Praxis keinen Sinn,
@@ -124,8 +134,10 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
 
 .. widget_example::
         <meta>
-            <screenshot name="switch_complete"/>
-            <data address="1/4/0">1</data>
+            <screenshot name="switch_complete">
+                <caption>Switch mit mapping + styling</caption>
+                <data address="1/4/0">1</data>
+            </screenshot>
         </meta>
         <cv-meta>
             <mappings>
