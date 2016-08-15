@@ -61,9 +61,6 @@ describe('generation screenshots from jsdoc examples', function () {
   });
 
   var examplesDir = path.join("cache", "widget_examples");
-  var onlySubDir = null;
-
-
 
   fs.readdirSync(examplesDir).forEach(function(fileName) {
     var subDir = path.join(examplesDir, fileName);

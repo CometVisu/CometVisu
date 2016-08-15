@@ -2,7 +2,6 @@ import xml.etree.ElementTree as ET
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
-from sh import grunt
 from os import path
 
 
@@ -17,11 +16,11 @@ class WidgetExampleDirective(Directive):
 
     example_dir = path.join("cache", "widget_examples", "manual")
     config_parts = {
-        "start" : '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd">',
-        "meta" : '<meta/>',
+        "start": '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd">',
+        "meta": '<meta/>',
         "content_start": '<page name="Example">',
         "content_end": '</page>',
-        "end" :   '</pages>'
+        "end":   '</pages>'
     }
 
     def run(self):

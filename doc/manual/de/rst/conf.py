@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import sphinx_rtd_theme
 import sys, os
 
 extensions_path = os.path.abspath(os.path.join('..', '..', '..', '..', '.doc', 'docutils'))
@@ -28,8 +28,8 @@ release = ''
 
 # -- Options for HTML output ---------------------------------------------------
 
-html_theme = 'default'
-#html_theme_path = ['themes']
+html_theme = 'sphinx_rtd_theme'
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_title = "CometVisu"
 #html_short_title = None
 #html_logo = None
