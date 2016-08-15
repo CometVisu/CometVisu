@@ -14,6 +14,7 @@ before_install:
   - mkdir cache
 install:
   - npm install
+  - npm install libxml-xsd easyimage jsdoc
   - ./node_modules/protractor/bin/webdriver-manager update --standalone --firefox
 before_script:
   - export DISPLAY=:99.0
