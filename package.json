@@ -54,7 +54,6 @@
     "karma-jasmine": "^0.3.7",
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-requirejs": "^0.2.5",
-    "libxml-xsd": "^0.5.2",
     "phantomjs-prebuilt": "^2.1.4",
     "protractor": "^3.2.2",
     "request": "^2.69.0",
