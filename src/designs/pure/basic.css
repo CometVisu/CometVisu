@@ -619,3 +619,16 @@ div#demo_3 {
 {
   vertical-align: middle;
 }
+
+/* smartmeter plugin */
+.smartmeter .diagram_inline {
+  margin-left: 0;
+}
+
+.smartmeter > .actor {
+  width: calc(50% - 1.1em);
+}
+.smartmeter > .actor:only-child {
+  width: 100%;
+  margin-left: 0;
+}

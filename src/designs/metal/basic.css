@@ -767,8 +767,8 @@ background-color: #000;
 .widget.left:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor .icon,
 .widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor .icon { margin-left: 10px; }
 
-.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor:first-child, 
-.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info) > .actor:first-child > div { 
+.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info):not(.smartmeter) > .actor:first-child, 
+.widget:not(.switch):not(.toggle):not(.trigger):not(.diagram_info):not(.smartmeter) > .actor:first-child > div { 
 	float: none; width: auto; 
 }
 .widget.center.toggle > .actor:first-child, 
@@ -1072,4 +1072,16 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
     height: 30px;
     padding: 0;
     min-height: 0;
+}
+
+/* smartmeter plugin */
+.smartmeter .diagram_inline {
+  margin-left: 0;
+}
+
+.smartmeter > .actor {
+  width: 50%;
+}
+.smartmeter > .actor:only-child {
+  width: 100%;
 }

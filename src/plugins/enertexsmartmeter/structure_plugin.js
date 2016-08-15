@@ -209,11 +209,9 @@ define( ['structure_custom',
         pageId = templateEngine.getPageIdForWidgetId( element, path ),
         classStr = 'diagram_inline',
         showCurve = $e.attr('spectrumonly') === 'true' ? false : true,
-        width    = $e.attr("width" ) ? ($e.attr("width" ) + (/[0-9]$/.test($e.attr("width" )) ? 'px' : '')) : '22em',//undefined,
-        height   = $e.attr("height") ? ($e.attr("height") + (/[0-9]$/.test($e.attr("height")) ? 'px' : '')) : undefined,
-        styleStr = 'min-height: 40px'
-                  + (width  ? (';width:'  + width ) : ''             )
-                  + (height ? (';height:' + height) : ';height: 100%'),
+        width    = $e.attr("width" ) ? ($e.attr("width" ) + (/[0-9]$/.test($e.attr("width" )) ? 'px' : '')) : '50%',
+        height   = $e.attr("height") ? ($e.attr("height") + (/[0-9]$/.test($e.attr("height")) ? 'px' : '')) : '100%',
+        styleStr = 'min-height: 40px;width:' + width + ';height:' + height,
         colors = [
           $e.attr('limitcolor') || "#edc240", // default directly from flot code
           $e.attr('color1')     || "#afd8f8",
@@ -222,7 +220,7 @@ define( ['structure_custom',
         ];
       
       // create the actor
-      var actor = '<div class="actor clickable" style="height: 100%; min-height: 40px;">';
+      var actor = '<div class="actor clickable" style="height: 100%; min-height: 40px">';
       if( showCurve )
         actor += '<div class="' + classStr + ' curve" style="' + styleStr + '">loading...</div>';
       actor += '<div class="' + classStr + ' spectrum" style="' + styleStr + '">loading...</div></div>';
@@ -231,7 +229,13 @@ define( ['structure_custom',
         var 
           diagramCurve = showCurve && $( '#' + path + ' .actor div.curve' ).empty(),
           optionsCurve = showCurve && {
-            colors: colors
+            colors: colors,
+            xaxis: {
+              show: false
+            },
+            yaxis: {
+              show: false
+            }
           },
           diagramSpectrum = $( '#' + path + ' .actor div.spectrum' ).empty(),
           optionsSpectrum = {
@@ -246,22 +250,10 @@ define( ['structure_custom',
               barWidth: 0.2
             },
             xaxis: {
-              /*
-              axisLabel: "time / number",
-              axisLabelUseCanvas: true,
-              axisLabelFontSizePixels: 12,
-              axisLabelFontFamily: 'Verdana, Arial',
-              axisLabelPadding: 10,
-              */
+              show: false
             },
             yaxis: {
-              /*
-              axisLabel: "Average Temperature",
-              axisLabelUseCanvas: true,
-              axisLabelFontSizePixels: 12,
-              axisLabelFontFamily: 'Verdana, Arial',
-              axisLabelPadding: 3,
-              */
+              show: false
             },
           };
         data.plotCurve = showCurve && $.plot(diagramCurve, createDatasetCurve( data ), optionsCurve);
