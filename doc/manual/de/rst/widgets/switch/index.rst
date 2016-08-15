@@ -164,7 +164,7 @@ Parameter im Editor
 XML Syntax minimal
 ------------------
 
-Alternativ kann man für das XXX Widget auch von Hand einen Eintrag in
+Alternativ kann man für das switch Widget auch von Hand einen Eintrag in
 der `visu\_config.xml <CometVisu/XML-Elemente>`__ hinzufügen.
 
 **WICHTIG: In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
