@@ -15,13 +15,14 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
- * @module PageJump 
- * @title  CometVisu PageJump 
  */
 
 
 /**
+ * TODO: complete docs
+ *
+ * @module structure/pure/PageJump
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2012
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('pagejump', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     var layout = basicdesign.parseLayout( $e.children('layout')[0] );
@@ -63,21 +73,35 @@ define( ['_common'], function( design ) {
     actor += '</div>';
     var data = templateEngine.widgetDataInsert( path, {
       'bind_click_to_widget': true, // for pagejumps this is mandatory
-      'styling' : $(element).attr('styling'),
+      'styling' : $e.attr('styling'),
       'layout'  : layout,
       'align'   : $e.attr('align'),
       'target'  : target,
       'target_path': $e.attr('path'),
       'path'    : path,
-      'active_scope': $(element).attr('active_scope') ? $(element).attr('active_scope') : 'target'
+      'active_scope': $e.attr('active_scope') ? $e.attr('active_scope') : 'target'
     } );
     return ret_val + actor + info +'</div>';
   },
+  /**
+   * Description
+   * @method downaction
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   */
   downaction: function( path, actor, isCanceled ) {
     if (!$(actor).parent().hasClass("info")) {
       basicdesign.defaultButtonDownAnimationInheritAction( path, actor );
     }
   },
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   */
   action: function( path, actor, isCanceled ) {
     if (!$(actor).parent().hasClass("info")) {
       basicdesign.defaultButtonUpAnimationInheritAction( path, actor );

@@ -15,13 +15,14 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
- * @module NavBar 
- * @title  CometVisu NavBar 
  */
 
 
 /**
+ * TODO: complete docs
+ *
+ * @module structure/pure/NavBar
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2012
  */
@@ -38,6 +39,15 @@ define( ['_common'], function( design ) {
     $navbarRightSize = $( '#navbarRight' ).data('size');
  
   design.basicdesign.addCreator('navbar', {
+  /**
+   * Description
+   * @method create
+   * @param {} navbar
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return Literal
+   */
   create: function( navbar, path, flavour, type ) {
     var $n = $(navbar);
     var childs = $n.children();

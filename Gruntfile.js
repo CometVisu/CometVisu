@@ -1,3 +1,6 @@
+var fs = require('fs'),
+  path = require('path');
+
 var mocks = [];
 function captureMock() {
   return function (req, res, next) {
@@ -35,6 +38,19 @@ function mock() {
     var mockedResponse = mocks[url];
     if (mockedResponse) {
       res.write(mockedResponse);
+      res.end();
+    } else if (url == "/designs/get_designs.php") {
+      // untested
+      var dir = path.join("src", "designs");
+      var designs = [];
+      fs.readdirSync(dir).forEach(function(designDir) {
+        var filePath = path.join(dir, designDir);
+        var stat = fs.statSync(filePath);
+        if (stat.isDirectory()) {
+          designs.push(designDir);
+        }
+      });
+      res.write(JSON.stringify(designs));
       res.end();
     } else {
       next();
@@ -93,7 +109,6 @@ module.exports = function(grunt) {
           linebreak: true,
           process: function( filepath ) {
             var filename = filepath.match(/\/([^/]*)$/)[1];
-            var modulename = filename.substring(0,1).toUpperCase()+filename.substring(1).replace(".js","");
 
             return grunt.template.process('/* <%= filename %> \n'+
               ' * \n'+
@@ -112,14 +127,9 @@ module.exports = function(grunt) {
               ' * You should have received a copy of the GNU General Public License along\n'+
               ' * with this program; if not, write to the Free Software Foundation, Inc.,\n'+
               ' * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n'+
-              ' *\n'+
-              ' * @module <%= modulename %> \n'+
-              ' * @title  <%= title %> \n'+
               ' */\n', {
                   data: {
                     filename: filename,
-                    modulename: modulename,
-                    title: "CometVisu " + modulename,
                     author: pkg.authors[0].name+ " ["+pkg.authors[0].email+"]",
                     version: pkg.version
                   }
@@ -352,16 +362,28 @@ module.exports = function(grunt) {
     },
 
     jsdoc : {
-      dist : {
+      html : {
         src: [
           'src/lib/**/*.js',
           'src/plugins/**/*.js',
           'src/structure/**/*.js'
         ],
         options: {
-          destination: 'doc',
+          destination: 'doc/api/html',
           template : "node_modules/ink-docstrap/template",
-          configure : "node_modules/ink-docstrap/template/jsdoc.conf.json"
+          configure : ".jsdoc/jsdoc.conf.json"
+        }
+      },
+      rst : {
+        src: [
+          'src/lib/**/*.js',
+          'src/plugins/**/*.js',
+          'src/structure/**/*.js'
+        ],
+        options: {
+          destination: 'doc/api/rst',
+          template : "node_modules/jsdoc-sphinx/template/",
+          configure : ".jsdoc/jsdoc.conf.json"
         }
       }
     },
@@ -369,7 +391,9 @@ module.exports = function(grunt) {
     clean: {
       archives : ['*.zip', '*.gz'],
       release: ['release/'],
-      iconcache: ['cache/icons']
+      iconcache: ['cache/icons'],
+      exampleCache: ['cache/widget_examples'],
+      apiDoc: ['doc/api']
     },
 
     "file-creator": {
@@ -489,6 +513,11 @@ module.exports = function(grunt) {
               browserName: 'firefox'
             }
           }
+        }
+      },
+      screenshots: {
+        options: {
+          configFile: ".jsdoc/protractor.conf.js"
         }
       }
     },
@@ -620,6 +649,8 @@ module.exports = function(grunt) {
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
+  grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
+  grunt.registerTask('api-doc', ['clean:exampleCache', 'clean:apiDoc', 'jsdoc:html', 'screenshots']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);

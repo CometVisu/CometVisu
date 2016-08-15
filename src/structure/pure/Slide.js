@@ -15,13 +15,14 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
- * @module Slide 
- * @title  CometVisu Slide 
  */
 
 
 /**
+ * TODO: complete docs
+ *
+ * @module structure/pure/Slide
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2012
  */
@@ -31,6 +32,12 @@ define( ['_common'], function( design ) {
     basicdesign = design.basicdesign,
     $main = $('#main');
 
+  /**
+   * Description
+   * @method transformSlider
+   * @param {} value
+   * @param {} handle
+   */
   function transformSlider( value, handle )
   {
     if (!$main.data('disableSliderTransform')) {
@@ -45,6 +52,15 @@ define( ['_common'], function( design ) {
   }
 
   design.basicdesign.addCreator('slide', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var self = this,
         $e = $(element);
@@ -115,6 +131,12 @@ define( ['_common'], function( design ) {
     
     return ret_val + '<div class="actor"/></div>';
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} d
+   */
   update: function( ga, d ) { 
     var element = $(this),
         actor   = element.find('.actor'),
@@ -135,6 +157,12 @@ define( ['_common'], function( design ) {
     }
     transformSlider(value,actor.children('.ui-slider-handle'));
   },
+  /**
+   * Description
+   * @method slideUpdateValue
+   * @param {} event
+   * @param {} ui
+   */
   slideUpdateValue:function(event,ui) {
     var element = $(this).parent(),
       actor   = element.find('.actor'),
@@ -144,9 +172,12 @@ define( ['_common'], function( design ) {
     }
     transformSlider(ui.value,ui.handle);
   },
-  /*
-  * Start a thread that regularily sends the silder position to the bus
-  */
+  /**
+   * Start a thread that regularily sends the silder position to the bus
+   * @method slideStart
+   * @param {} event
+   * @param {} ui
+   */
   slideStart:function(event,ui)
   {
     var element = $(this).parent(),
@@ -172,9 +203,12 @@ define( ['_common'], function( design ) {
       data.value = asv;
     }, 250 ); // update KNX every 250 ms
   },
-  /*
-  * Delete the update thread and send the final value of the slider to the bus
-  */
+  /**
+   * Delete the update thread and send the final value of the slider to the bus
+   * @method slideChange
+   * @param {} event
+   * @param {} ui
+   */
   slideChange:function(event,ui)
   {
     var data    = templateEngine.widgetDataGetByElement( this );

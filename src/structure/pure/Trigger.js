@@ -15,13 +15,14 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
- * @module Trigger 
- * @title  CometVisu Trigger 
  */
 
 
 /**
+ * TODO: complete docs
+ *
+ * @module structure/pure/Trigger
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2012
  */
@@ -30,11 +31,29 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('trigger', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var 
       $e = $(element);
     
     // create the main structure
+    /**
+     * Description
+     * @method makeAddressListFn
+     * @param {} src
+     * @param {} transform
+     * @param {} mode
+     * @param {} variant
+     * @return ArrayExpression
+     */
     var makeAddressListFn = function( src, transform, mode, variant ) {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
       return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
@@ -57,6 +76,13 @@ define( ['_common'], function( design ) {
     return ret_val + actor + '</div>';
   },
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   */
   action: function( path, actor, isCanceled ) {
     basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
     if( isCanceled ) return;

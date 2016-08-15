@@ -15,13 +15,14 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
- * @module Video 
- * @title  CometVisu Video 
  */
 
 
 /**
+ * TODO: complete docs
+ *
+ * @module structure/pure/Video
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2012
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('video', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return ret_val
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     
