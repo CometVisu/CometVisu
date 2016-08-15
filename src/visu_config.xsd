@@ -1224,6 +1224,15 @@
   </xsd:complexType>
   
   <xsd:complexType name="smartmeter">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="type" type="xsd:string" use="optional" />
+    <xsd:attribute name="showlegend" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="singlephase" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="spectrumonly" type="xsd:boolean" use="optional" />
     <xsd:attribute name="limitname" type="xsd:string" use="optional" />
     <xsd:attribute name="limitcolor" type="xsd:string" use="optional" />
     <xsd:attribute name="color1" type="xsd:string" use="optional" />

@@ -20,9 +20,6 @@ require.config({
     'plugins/diagram/dep/flot/jquery.flot.min':          ['jquery'],
     'plugins/diagram/dep/flot/jquery.flot.canvas.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
     'plugins/diagram/dep/flot/jquery.flot.resize.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
-    'plugins/diagram/dep/flot/jquery.flot.time.min':     ['plugins/diagram/dep/flot/jquery.flot.min'],
-    'plugins/diagram/dep/flot/jquery.flot.axislabels':   ['plugins/diagram/dep/flot/jquery.flot.min'],
-    'plugins/diagram/dep/flot/jquery.flot.tooltip.min':  ['plugins/diagram/dep/flot/jquery.flot.min'],
     'plugins/diagram/dep/flot/jquery.flot.navigate.min': ['plugins/diagram/dep/flot/jquery.flot.min']
   }
 });
@@ -31,9 +28,6 @@ define( ['structure_custom',
     'plugins/diagram/dep/flot/jquery.flot.min',
     'plugins/diagram/dep/flot/jquery.flot.canvas.min',
     'plugins/diagram/dep/flot/jquery.flot.resize.min',
-    'plugins/diagram/dep/flot/jquery.flot.time.min',
-    'plugins/diagram/dep/flot/jquery.flot.axislabels',
-    'plugins/diagram/dep/flot/jquery.flot.tooltip.min',
     'plugins/diagram/dep/flot/jquery.flot.navigate.min'
   ], function( VisuDesign_Custom ) {
   "use strict";
@@ -103,12 +97,6 @@ define( ['structure_custom',
     for( var i = 2; i < 52; i++ )
       ret_val.push( [ i + offset, 0 ] );
     return ret_val;
-    
-    return [[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[11,0],
-    [12,0],[13,0],[14,0],[15,0],[16,0],[17,0],[18,0],[19,0],[20,0],[21,0],
-    [22,0],[23,0],[24,0],[25,0],[26,0],[27,0],[28,0],[29,0],[30,0],[31,0],
-    [32,0],[33,0],[34,0],[35,0],[36,0],[37,0],[38,0],[39,0],[40,0],[41,0],
-    [42,0],[43,0],[44,0],[45,0],[46,0],[47,0],[48,0],[49,0],[50,0],[51,0]];
   }
   
   /**
@@ -199,7 +187,7 @@ define( ['structure_custom',
       var data = templateEngine.widgetDataInsert( path, {
         displayType: displayType,
         singlePhase: singlePhase,
-        spectrum: singlePhase ? [ setupSpectrum() ] :[ setupSpectrum(-0.25), setupSpectrum(0), setupSpectrum(0.25) ],
+        spectrum: singlePhase ? [ setupSpectrum() ] :[ setupSpectrum(-0.26), setupSpectrum(0), setupSpectrum(0.26) ],
         limitName: $e.attr('limitname') || 'limit',
         curve: singlePhase ? [ setupCurve() ] : [ setupCurve(), setupCurve(), setupCurve() ],
         current: []
@@ -207,7 +195,6 @@ define( ['structure_custom',
 
       var 
         pageId = templateEngine.getPageIdForWidgetId( element, path ),
-        classStr = 'diagram_inline',
         showCurve = $e.attr('spectrumonly') === 'true' ? false : true,
         colors = [
           $e.attr('limitcolor') || "#edc240", // default directly from flot code
@@ -219,14 +206,17 @@ define( ['structure_custom',
       // create the actor
       var actor = '<div class="actor clickable">';
       if( showCurve )
-        actor += '<div class="' + classStr + ' curve">loading...</div>';
-      actor += '<div class="' + classStr + ' spectrum">loading...</div></div>';
+        actor += '<div class="diagram_inline curve">loading...</div>';
+      actor += '<div class="diagram_inline spectrum">loading...</div></div>';
       
       templateEngine.postDOMSetupFns.push( function(){
         var 
           diagramCurve = showCurve && $( '#' + path + ' .actor div.curve' ).empty(),
           optionsCurve = showCurve && {
             colors: colors,
+            legend: {
+              show: $e.attr('showlegend') === 'false' ? false : true
+            },
             xaxis: {
               show: false
             },
@@ -239,12 +229,18 @@ define( ['structure_custom',
             colors: colors,
             series: {
               bars: {
-                show: true
+                show: true,
+                fill: 1,
+                fillColor: null,
+                lineWidth: 0
               }
             },
             bars: {
               align: "center",
-              barWidth: 0.2
+              barWidth: singlePhase ? 0.75 : 0.25
+            },
+            legend: {
+              show: $e.attr('showlegend') === 'false' ? false : true
             },
             xaxis: {
               show: false
@@ -280,7 +276,7 @@ define( ['structure_custom',
           index = parseInt( data.substr( 0, 2 ), 16 ),
           factor = widgetData.current[phase-1] || 1,
           values = [];
-        
+
         for( var i = 0; i < 13; i++ )
         {
           if( index + i < 2 )
