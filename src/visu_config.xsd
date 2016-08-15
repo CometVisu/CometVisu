@@ -1235,8 +1235,11 @@
     <xsd:attribute name="spectrumonly" type="xsd:boolean" use="optional" />
     <xsd:attribute name="limitname" type="xsd:string" use="optional" />
     <xsd:attribute name="limitcolor" type="xsd:string" use="optional" />
+    <xsd:attribute name="name1" type="xsd:string" use="optional" />
     <xsd:attribute name="color1" type="xsd:string" use="optional" />
+    <xsd:attribute name="name2" type="xsd:string" use="optional" />
     <xsd:attribute name="color2" type="xsd:string" use="optional" />
+    <xsd:attribute name="name3" type="xsd:string" use="optional" />
     <xsd:attribute name="color3" type="xsd:string" use="optional" />
   </xsd:complexType>
 

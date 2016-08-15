@@ -153,13 +153,13 @@ define( ['structure_custom',
     return widgetData.singlePhase ? 
       [
         { label: widgetData.limitName, data:widgetData.displayType===VOLTAGE?limitEN50160_1999:limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
-        { label: 'L', data:widgetData.spectrum[0] , color:1}
+        { label: widgetData.name1, data:widgetData.spectrum[0] , color:1}
       ] :
       [
         { label: widgetData.limitName, data:widgetData.displayType===VOLTAGE?limitEN50160_1999:limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
-        { label: 'L1', data:widgetData.spectrum[0], color:1 },
-        { label: 'L2', data:widgetData.spectrum[1], color:2 },
-        { label: 'L3', data:widgetData.spectrum[2], color:3 }
+        { label: widgetData.name1, data:widgetData.spectrum[0], color:1 },
+        { label: widgetData.name2, data:widgetData.spectrum[1], color:2 },
+        { label: widgetData.name3, data:widgetData.spectrum[2], color:3 }
       ];
   }
 
@@ -187,8 +187,11 @@ define( ['structure_custom',
       var data = templateEngine.widgetDataInsert( path, {
         displayType: displayType,
         singlePhase: singlePhase,
-        spectrum: singlePhase ? [ setupSpectrum() ] :[ setupSpectrum(-0.26), setupSpectrum(0), setupSpectrum(0.26) ],
+        spectrum: singlePhase ? [ setupSpectrum() ] : [ setupSpectrum(-0.26), setupSpectrum(0), setupSpectrum(0.26) ],
         limitName: $e.attr('limitname') || 'limit',
+        name1: $e.attr('name1') || (singlePhase ? 'L' : 'L1'),
+        name2: $e.attr('name2') || 'L2',
+        name3: $e.attr('name3') || 'L3',
         curve: singlePhase ? [ setupCurve() ] : [ setupCurve(), setupCurve(), setupCurve() ],
         current: []
       });
@@ -215,7 +218,7 @@ define( ['structure_custom',
           optionsCurve = showCurve && {
             colors: colors,
             legend: {
-              show: $e.attr('showlegend') === 'false' ? false : true
+              show: $e.attr('showlegend') === 'true' ? true : false // default to false
             },
             xaxis: {
               show: false
@@ -240,7 +243,7 @@ define( ['structure_custom',
               barWidth: singlePhase ? 0.75 : 0.25
             },
             legend: {
-              show: $e.attr('showlegend') === 'false' ? false : true
+              show: $e.attr('showlegend') === 'false' ? false : true // default to true
             },
             xaxis: {
               show: false
