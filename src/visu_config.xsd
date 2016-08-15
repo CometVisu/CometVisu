@@ -412,7 +412,7 @@
       <xsd:element name="colorchooser" type="colorchooser" />
       <xsd:element name="diagram_info" type="diagram_info" />
       <xsd:element name="diagram" type="diagram" />
-      <xsd:element name="smartmeter" type="smartmeter" />
+      <xsd:element name="powerspectrum" type="powerspectrum" />
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
       <xsd:element name="strftime" type="strftime" />
@@ -1223,7 +1223,7 @@
     </xsd:attribute>
   </xsd:complexType>
   
-  <xsd:complexType name="smartmeter">
+  <xsd:complexType name="powerspectrum">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>

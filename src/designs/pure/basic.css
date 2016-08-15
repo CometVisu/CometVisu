@@ -620,22 +620,22 @@ div#demo_3 {
   vertical-align: middle;
 }
 
-/* smartmeter plugin */
-.smartmeter .diagram_inline {
+/* powerspectrum plugin */
+.powerspectrum .diagram_inline {
   margin-left: 0;
   width: 50%;
   height: 100%;
   min-height: 40px;
 }
-.smartmeter .diagram_inline:only-child {
+.powerspectrum .diagram_inline:only-child {
   width: 100%;
 }
 
-.smartmeter > .actor {
+.powerspectrum > .actor {
   width: calc(50% - 1.1em);
   height: 100%;
 }
-.smartmeter > .actor:only-child {
+.powerspectrum > .actor:only-child {
   width: 100%;
   margin-left: 0;
 }
