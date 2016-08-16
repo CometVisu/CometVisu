@@ -19,6 +19,8 @@ import json
 from lxml import etree
 from schema import Schema
 from docutils import nodes
+from sphinx.util.nodes import set_source_info
+from sphinx.directives.code import container_wrapper
 from docutils.parsers.rst import directives, Directive
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
 from os import path, makedirs
@@ -73,7 +75,8 @@ class WidgetExampleDirective(Directive):
     optional_arguments = 0
     final_argument_whitespace = True
     option_spec = {
-        'number-lines': directives.unchanged, # integer or None
+        'linenos': directives.flag,
+        'lineno-start': int,
         'hide-source': directives.unchanged # true or false
     }
     has_content = True
@@ -195,8 +198,7 @@ class WidgetExampleDirective(Directive):
         classes = ['code', 'xml']
         # set up lexical analyzer
         try:
-            tokens = Lexer(example_content, 'xml',
-                           self.state.document.settings.syntax_highlight)
+            tokens = Lexer(example_content, 'xml', self.state.document.settings.syntax_highlight)
         except LexerError as error:
             raise self.warning(error)
 
@@ -222,22 +224,21 @@ class WidgetExampleDirective(Directive):
             res_nodes.append(image_node)
 
         if 'hide-source' not in self.options or self.options['hide-source'] != "true":
-            node = nodes.literal_block(example_content, classes=classes)
+            example_content = example_content.decode('utf-8')
+            node = nodes.literal_block(example_content, example_content)
+            node['language'] = 'xml'
+            node['linenos'] = 'linenos' in self.options or \
+                             'lineno-start' in self.options
+            node['classes'] += self.options.get('class', [])
 
+            set_source_info(self, node)
+
+            if global_caption:
+                self.options.setdefault('name', nodes.fully_normalize_name(global_caption))
+                node = container_wrapper(self, node, global_caption)
             self.add_name(node)
-            # if called from "include", set the source
-            if 'source' in self.options:
-                node.attributes['source'] = self.options['source']
-            # analyze content and add nodes for every token
-            for classes, value in tokens:
-                # print (classes, value)
-                if classes:
-                    node += nodes.inline(value, value, classes=classes)
-                else:
-                    # insert as Text to decrease the verbosity of the output
-                    node += nodes.Text(value, value)
-
             res_nodes.append(node)
+
         return res_nodes
 
 
