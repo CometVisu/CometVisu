@@ -1,5 +1,23 @@
+# copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 3 of the License, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+# more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+
+
 import json
-import xml.etree.ElementTree as ET
+from lxml import etree
+from schema import Schema
 from docutils import nodes
 from docutils.parsers.rst import directives, Directive
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
@@ -7,8 +25,50 @@ from os import path, makedirs
 
 counters = {}
 
+xsd = etree.XMLSchema(etree.parse(path.join("src", "visu_config.xsd")))
+parser = etree.XMLParser(schema=xsd)
+
 
 class WidgetExampleDirective(Directive):
+    """
+    reStructuredText directive for widget examples. Extracts the example code, validates it against the
+    XSD-File provided by CometVisu and creates an file with the relevant content the screenshot generation tool needs
+    to create the screenshots. Additionally an code block preceeded by references to the screenshots is added to the rst
+    document.
+
+    .. code-block:: rst
+        ..widget-example::
+            :hide-source: false
+            :number-lines: 1
+
+            <meta design="metal" selector=".widget_container">
+                <screenshot name="switch_mapping_styling">
+                    <data address="1/4/0">0</data>
+                </screenshot>
+            </meta>
+            <cv-meta>
+                <mappings>
+                    <mapping name="OnOff">
+                        <entry value="0">Aus</entry>
+                        <entry value="1">An</entry>
+                    </mapping>
+                </mappings>
+                <stylings>
+                    <styling name="RedGreen">
+                        <entry value="1">red</entry>
+                        <entry value="0">green</entry>
+                    </styling>
+                </stylings>
+            </cv-meta>
+            <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen">
+                <label>Kanal 1</label>
+                <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+                <address transform="DPT:1.001" mode="read">1/4/0</address>
+            </switch>
+
+    @author Tobias Bräutigam
+    @since 0.10.0
+    """
     required_arguments = 0
     optional_arguments = 0
     final_argument_whitespace = True
@@ -47,9 +107,9 @@ class WidgetExampleDirective(Directive):
         visu_config_parts = self.config_parts.copy()
         try:
             # we need one surrouding element to prevent parse errors
-            xml = ET.fromstring("<root>%s</root>" % source)
+            xml = etree.fromstring("<root>%s</root>" % source)
             for child in xml:
-                if ET.iselement(child):
+                if etree.iselement(child):
                     if child.tag == "meta":
                         # meta settings
                         meta = child
@@ -65,10 +125,10 @@ class WidgetExampleDirective(Directive):
         except Exception as e:
             print("Parse error: %s" % str(e))
 
-        example_content = ET.tostring(config, encoding='utf-8')
-        if cv_meta:
-            example_content = b"...\n%s...\n%s" % (ET.tostring(cv_meta, encoding='utf-8'), example_content)
-            visu_config_parts['meta'] = ET.tostring(cv_meta, encoding='utf-8').decode('utf-8')
+        example_content = etree.tostring(config, encoding='utf-8')
+        if cv_meta is not None:
+            example_content = b"...\n%s...\n%s" % (etree.tostring(cv_meta, encoding='utf-8'), example_content)
+            visu_config_parts['meta'] = etree.tostring(cv_meta, encoding='utf-8').decode('utf-8')
 
         settings = {
             "selector": ".widget_container",
@@ -76,7 +136,7 @@ class WidgetExampleDirective(Directive):
             "screenshotDir": screenshot_dir
         }
         shot_index = 0
-        if meta:
+        if meta is not None:
             # read meta settings
             design = meta.get("design", "metal")
             settings['selector'] = meta.get("selector", ".widget_container")
@@ -113,13 +173,17 @@ class WidgetExampleDirective(Directive):
 
         # build the real config source
         visu_config = visu_config_parts['start'] + \
-            visu_config_parts['meta'] + \
-            visu_config_parts['content_start'] + \
-            ET.tostring(config, encoding='utf-8').decode('utf-8') + \
-            visu_config_parts['content_end'] + \
-            visu_config_parts['end']
+                      visu_config_parts['meta'] + \
+                      visu_config_parts['content_start'] + \
+                      etree.tostring(config, encoding='utf-8').decode('utf-8') + \
+                      visu_config_parts['content_end'] + \
+                      visu_config_parts['end']
 
-        # TODO: validate against XSD
+        # validate generated config against XSD
+        try:
+            etree.fromstring(visu_config, parser)
+        except etree.XMLSyntaxError as e:
+            raise self.error(str(e))
 
         if not path.exists(self.example_dir):
             makedirs(self.example_dir)

@@ -3,11 +3,11 @@ import sphinx_rtd_theme
 import sys, os
 
 extensions_path = os.path.abspath(os.path.join('..', '..', '..', '..', '.doc', 'docutils'))
-print(extensions_path)
+
 sys.path.insert(0, extensions_path)
 
 extensions = ['sphinx.ext.todo',
-              'sphinx.ext.coverage','sphinx.ext.ifconfig', 'widget_example']
+              'sphinx.ext.coverage','sphinx.ext.ifconfig', 'widget_example', 'parameter_information']
 
 todo_include_todos = True
 templates_path = ['_templates']
@@ -160,6 +160,7 @@ code_add_python_path = ["../py"]
 
 
 def setup(app):
+    app.add_stylesheet('theme_override.css')
     from sphinx.util.texescape import tex_replacements
     tex_replacements += [(u'♮', u'$\\natural$'),
                          (u'ē', u'\=e'),

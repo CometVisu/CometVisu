@@ -17,6 +17,7 @@ grunt apt-doc
 
 User Manual
 -----------
+Install libxml2 + libxslt development files (e.g. `apt-get install libxml2-dev libxslt-dev`)
 Install required python3 packages specified in .doc/docutils/requirements.txt
 (and python3 if it is not installed on your system)
  
