@@ -164,6 +164,7 @@ Hier der minimale Beispielcode der das switch Widget mit den oben gezeigten
 Eigenschaften einfügt:
 
 .. widget_example::
+
         <meta>
             <screenshot name="switch_simple">
                 <caption>Einfacher Switch</caption>
@@ -189,6 +190,7 @@ Hier der Beispielcode der das switch Widget mit den allen oben gezeigten
 Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
 
 .. widget_example::
+
         <meta>
             <screenshot name="switch_complete">
                 <caption>Switch mit mapping + styling</caption>
