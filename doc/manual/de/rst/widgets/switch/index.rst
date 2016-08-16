@@ -216,6 +216,3 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
           <address transform="DPT:1.001" mode="read">1/4/0</address>
         </switch>
-
-Beispiele
----------
