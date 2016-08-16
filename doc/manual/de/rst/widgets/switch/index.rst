@@ -114,6 +114,8 @@ Parameter
 
 .. parameter_information:: switch
 
+.. elements_information:: switch
+
 +-------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Parameter                     | Werte                                               | Beschreibung                                                                                                                                                                                                                                                                                                |
 +-------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -160,8 +162,7 @@ der `visu\_config.xml <CometVisu/XML-Elemente>`__ hinzufügen.
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
     werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
 
-Hier der minimale Beispielcode der das switch Widget mit den oben gezeigten
-Eigenschaften einfügt:
+Hier der minimale Beispielcode der das switch Widget aus dem folgenden Screenshot erzeugt:
 
 .. widget_example::
 
@@ -186,7 +187,7 @@ mitbekommt und den Status falsch anzeigt.
 XML Syntax komplett
 -------------------
 
-Hier der Beispielcode der das switch Widget mit den allen oben gezeigten
+Hier der Beispielcode der das switch Widget mit den allen gezeigten
 Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
 
 .. widget_example::
@@ -200,8 +201,8 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
         <cv-meta>
             <mappings>
                 <mapping name="OnOff">
-                    <entry value="0">O</entry>
-                    <entry value="1">I</entry>
+                    <entry value="0">Aus</entry>
+                    <entry value="1">An</entry>
                 </mapping>
             </mappings>
             <stylings>

@@ -14,15 +14,10 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
-import json
-
 from docutils import statemachine
-from lxml import etree
 from schema import *
-from docutils import nodes
 from docutils.parsers.rst import directives, Directive
-from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
-from os import path, makedirs
+from os import path
 
 schema = Schema(path.join("src", "visu_config.xsd"))
 

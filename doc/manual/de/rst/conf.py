@@ -2,12 +2,16 @@
 import sphinx_rtd_theme
 import sys, os
 
-extensions_path = os.path.abspath(os.path.join('..', '..', '..', '..', '.doc', 'docutils'))
+extensions_path = os.path.abspath(os.path.join('..', '..', '..', '..', '.doc', 'docutils', 'directives'))
 
 sys.path.insert(0, extensions_path)
 
 extensions = ['sphinx.ext.todo',
-              'sphinx.ext.coverage','sphinx.ext.ifconfig', 'widget_example', 'parameter_information']
+              'sphinx.ext.coverage',
+              'sphinx.ext.ifconfig',
+              'widget_example',
+              'parameter_information',
+              'elements_information']
 
 todo_include_todos = True
 templates_path = ['_templates']
