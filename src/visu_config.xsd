@@ -412,15 +412,16 @@
       <xsd:element name="colorchooser" type="colorchooser" />
       <xsd:element name="diagram_info" type="diagram_info" />
       <xsd:element name="diagram" type="diagram" />
+      <xsd:element name="powerspectrum" type="powerspectrum" />
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
       <xsd:element name="strftime" type="strftime" />
       <xsd:element name="svg" type="svg" />
       <xsd:element name="upnpcontroller" type="upnpcontroller" />
       <xsd:element name="timeout" type="timeout" />
-	  <xsd:element name="gauge" type="gauge" />
-	  <xsd:element name="calendarlist" type="calendarlist" />
-	  <xsd:element name="infoaction" type="infoaction" />
+      <xsd:element name="gauge" type="gauge" />
+      <xsd:element name="calendarlist" type="calendarlist" />
+      <xsd:element name="infoaction" type="infoaction" />
     </xsd:choice>
   </xsd:group>
 
@@ -1220,6 +1221,26 @@
         <xsd:documentation xml:lang="de">Zeit in Stunden für zukünftige Ereignisse.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+  </xsd:complexType>
+  
+  <xsd:complexType name="powerspectrum">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="type" type="xsd:string" use="optional" />
+    <xsd:attribute name="showlegend" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="singlephase" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="spectrumonly" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="limitname" type="xsd:string" use="optional" />
+    <xsd:attribute name="limitcolor" type="xsd:string" use="optional" />
+    <xsd:attribute name="name1" type="xsd:string" use="optional" />
+    <xsd:attribute name="color1" type="xsd:string" use="optional" />
+    <xsd:attribute name="name2" type="xsd:string" use="optional" />
+    <xsd:attribute name="color2" type="xsd:string" use="optional" />
+    <xsd:attribute name="name3" type="xsd:string" use="optional" />
+    <xsd:attribute name="color3" type="xsd:string" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="svg">

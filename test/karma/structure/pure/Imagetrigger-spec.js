@@ -51,12 +51,12 @@ define( ['TemplateEngine', '_common', 'widget_imagetrigger'], function(engine, d
       document.body.appendChild(container);
 
       creator.update.call(container.children[0],'12/7/37', 1);
-      var actor = $(container.children[0].querySelectorAll('.actor')[0]);
-      expect(actor).not.toBeVisible();
+      var actor = $(container.children[0].querySelectorAll('.actor img')[0]);
+      expect(actor).toBeVisible();
       expect(actor.attr('src')).toBe('imgs.jpg');
 
       creator.update.call(container.children[0],'12/7/37', 0);
-      expect(actor).toBeVisible();
+      expect(actor).not.toBeVisible();
 
       document.body.removeChild(container);
 
@@ -70,12 +70,12 @@ define( ['TemplateEngine', '_common', 'widget_imagetrigger'], function(engine, d
       document.body.appendChild(container);
 
       creator.update.call(container.children[0],'12/7/37', 1);
-      var actor = $(container.children[0].querySelectorAll('.actor')[0]);
-      expect(actor).not.toBeVisible();
+      var actor = $(container.children[0].querySelectorAll('.actor img')[0]);
+      expect(actor).toBeVisible();
       expect(actor.attr('src')).toBe('imgs1.jpg');
 
       creator.update.call(container.children[0],'12/7/37', 0);
-      expect(actor).toBeVisible();
+      expect(actor).not.toBeVisible();
 
       document.body.removeChild(container);
     });

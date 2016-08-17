@@ -15,13 +15,14 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
- * @module Page 
- * @title  CometVisu Page 
  */
 
 
 /**
+ * TODO: complete docs
+ *
+ * @module structure/pure/Page
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2012
  */
@@ -32,6 +33,15 @@ define( ['_common'], function( design ) {
     allPages = '';
  
   design.basicdesign.addCreator('page', {
+  /**
+   * Description
+   * @method create
+   * @param {} page
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return ret_val
+   */
   create: function( page, path, flavour, type ) {
     var $p = $(page);
     
@@ -195,9 +205,19 @@ define( ['_common'], function( design ) {
     allPages = subpage + allPages;
     return ret_val;
   },
+  /**
+   * Description
+   * @method createFinal
+   */
   createFinal: function() { // special function - only for pages!
     $('#pages').prepend( allPages );
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} data
+   */
   update: function( ga, data ) {
     var 
       element = $(this);
@@ -230,6 +250,13 @@ define( ['_common'], function( design ) {
     }
     // }
   },
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   */
   action: function( path, actor, isCanceled ) {
     if( isCanceled ) return;
     

@@ -15,13 +15,14 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
- * @module Reload 
- * @title  CometVisu Reload 
  */
 
 
 /**
+ * TODO: complete docs
+ *
+ * @module structure/pure/Reload
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2014
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('reload', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return Literal
+   */
   create: function( element, path, flavour, type ) {
     var 
       e = $(element),
@@ -40,6 +50,12 @@ define( ['_common'], function( design ) {
     });
     return '';
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} d
+   */
   update: function( ga, d ) {
     var
       data    = templateEngine.widgetDataGetByElement( this ),

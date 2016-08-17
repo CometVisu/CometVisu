@@ -15,13 +15,14 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
- * @module PushButton 
- * @title  CometVisu PushButton 
  */
 
 
 /**
+ * TODO: complete docs
+ *
+ * @module structure/pure/PushButton
+ * @requires structure/pure
  * @since 2013
  */
 define( ['_common'], function( design ) {
@@ -29,6 +30,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('pushbutton', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     
@@ -46,6 +56,12 @@ define( ['_common'], function( design ) {
 
     return ret_val + '</div>';
   },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} d
+   */
   update: function( ga, d ) { 
     var element = $(this),
         data  = templateEngine.widgetDataGetByElement( element );
@@ -55,6 +71,12 @@ define( ['_common'], function( design ) {
     actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
+  /**
+   * Description
+   * @method downaction
+   * @param {} path
+   * @param {} actor
+   */
   downaction: function( path, actor ) {
     var data = templateEngine.widgetDataGet( path );
 
@@ -64,6 +86,13 @@ define( ['_common'], function( design ) {
       templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.downValue));
     }
   },
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   */
   action: function( path, actor, isCanceled ) {
     var data = templateEngine.widgetDataGet( path );
 
