@@ -20,6 +20,12 @@ XML_SPACE = "{http://www.w3.org/XML/1998/namespace}"
 
 
 class Schema:
+    """
+    Parse visu_config.xsd and retrieve relevant information for a widget
+
+    @author Tobias Bräutigam
+    @since 0.10.0
+    """
 
     def __init__(self, schemafile):
         self.root = parse(schemafile)

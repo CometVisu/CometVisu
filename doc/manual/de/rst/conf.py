@@ -2,7 +2,9 @@
 import sphinx_rtd_theme
 import sys, os
 
-extensions_path = os.path.abspath(os.path.join('..', '..', '..', '..', '.doc', 'docutils', 'directives'))
+root_dir = os.path.abspath(os.path.join('..', '..', '..', '..',))
+
+extensions_path = os.path.join(root_dir, '.doc', 'docutils', 'directives')
 
 sys.path.insert(0, extensions_path)
 

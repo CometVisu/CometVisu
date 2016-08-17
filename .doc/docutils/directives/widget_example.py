@@ -17,7 +17,6 @@
 
 import json
 from lxml import etree
-from schema import Schema
 from docutils import nodes
 from sphinx.util.nodes import set_source_info
 from sphinx.directives.code import container_wrapper

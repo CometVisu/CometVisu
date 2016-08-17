@@ -15,26 +15,24 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 from docutils import statemachine
-from schema import *
+from helper.schema import *
 from docutils.parsers.rst import directives, Directive
+from common import BaseDirective
 from os import path
 
 schema = Schema(path.join("src", "visu_config.xsd"))
 
-locale = 'de'
-
-# TODO: translation (gettext)
 # TODO: possibility to map attribute names to links
 # TODO: read + display allowed elements, link to external pages (or include page with detailed element description)
 
 
 type_mapping = {
-    'boolean': 'true oder false',
-    'string': 'Text'
+    'boolean': "true %s false" % _('or'),
+    'string': _('string')
 }
 
 
-class ParameterInformationDirective(Directive):
+class ParameterInformationDirective(BaseDirective):
     """
     reStructuredText directive for parameter information. Extracts information for the given element from
     the visu_config.xsd file and adds it to the document.
@@ -58,13 +56,8 @@ class ParameterInformationDirective(Directive):
             type = type[4:]
         return type_mapping[type] if type in type_mapping else type
 
-    def normalize_values(self, values):
-        if len(values) <= 1:
-            return (" %s " % "oder").join(values)
-        else:
-            return " ".join([", ".join(values[0:-1]), "oder", values[-1]])
-
     def run(self):
+        self.init_locale()
         element_name = self.arguments[0]
 
         table_body = []
@@ -72,7 +65,7 @@ class ParameterInformationDirective(Directive):
             if 'name' in attr.attrib:
                 name = attr.get('name')
                 atype, values = schema.get_attribute_type(attr)
-                description = schema.get_node_documentation(attr, locale)
+                description = schema.get_node_documentation(attr, self.locale)
                 if description is not None:
                     description = description.text
                 else:
@@ -81,7 +74,7 @@ class ParameterInformationDirective(Directive):
                 name = attr.get('ref')
                 type_def = schema.get_attribute(name)
                 atype, values = schema.get_attribute_type(type_def)
-                description = schema.get_node_documentation(type_def, locale)
+                description = schema.get_node_documentation(type_def, self.locale)
                 if description is not None:
                     description = description.text
                 else:
