@@ -33,3 +33,24 @@ Translation
 pygettext -d cv -p locale/ .doc/docutils/directives/*.py
 # translate with poedit + save
 ```
+
+TODOs
+-----
+
+TODO: possibility to map attribute names to links
+TODO: improve element description retrieval from XSD, possibility to extend
+TODO: widget description page scaffolding + (include TODOs for those pages)
+TODO: transfer content from wiki
+TODO: establish structure for manual
+TODO: python command line tool for:
+
+ * generating rst -> html -> screenshots
+ * scaffolding
+ * syntax check for examples
+
+TODO: cleanup, doc, travis integration
+
+Optional
+--------
+
+ * auto-generate english widget descriptions from jsdoc

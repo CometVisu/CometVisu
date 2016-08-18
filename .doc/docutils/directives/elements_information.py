@@ -20,9 +20,6 @@ from common import BaseXsdDirective, schema
 import gettext
 gettext.install('cv', localedir='locale')
 
-# TODO: possibility to map attribute names to links
-# TODO: read + display allowed elements, link to external pages (or include page with detailed element description)
-
 
 class ElementsInformationDirective(BaseXsdDirective):
     """

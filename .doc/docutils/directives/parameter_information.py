@@ -20,11 +20,6 @@ from docutils.parsers.rst import directives
 from common import BaseXsdDirective
 
 
-
-# TODO: possibility to map attribute names to links
-# TODO: read + display allowed elements, link to external pages (or include page with detailed element description)
-
-
 class ParameterInformationDirective(BaseXsdDirective):
     """
     reStructuredText directive for parameter information. Extracts information for the given element from
