@@ -244,7 +244,7 @@ class WidgetExampleDirective(Directive):
             image_node = nodes.image(rawsource=shot['name'], **options)
             res_nodes.append(image_node)
 
-        if 'hide_source' in self.options and show_source:
+        if 'hide-source' in self.options and show_source:
             show_source = self.options['hide-source'] != "true"
 
         if show_source:
