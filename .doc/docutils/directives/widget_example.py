@@ -76,7 +76,8 @@ class WidgetExampleDirective(Directive):
     option_spec = {
         'linenos': directives.flag,
         'lineno-start': int,
-        'hide-source': directives.unchanged # true or false
+        'hide-source': directives.unchanged, # true or false
+        'editor': directives.unchanged # true or false
     }
     has_content = True
 
@@ -94,6 +95,8 @@ class WidgetExampleDirective(Directive):
         cv_meta = None
         meta = None
         global_caption = None
+        show_source = True
+        editor = self.options['editor'] if 'editor' in self.options else None
         self.assert_has_content()
         source = "\n".join(self.content)
         source_path = self.state_machine.document.settings._source.split("doc/manual/", 1)[1]
@@ -138,7 +141,20 @@ class WidgetExampleDirective(Directive):
             "screenshotDir": screenshot_dir
         }
         shot_index = 0
-        if meta is not None:
+        if editor is not None:
+            # change screenshot + selector
+            settings['editor'] = editor
+            settings['widget'] = config.tag
+            if editor == "attributes":
+                settings['selector'] = "ul.attributes"
+            elif editor == "elements":
+                settings['selector'] = ".nodeType_%s.active" % config.tag
+            settings['screenshots'].append({
+                "name": "%s_editor_%s" % (name, editor),
+                "data": {}
+            })
+
+        elif meta is not None:
             # read meta settings
             design = meta.get("design", "metal")
             settings['selector'] = meta.get("selector", ".widget_container")
@@ -222,7 +238,10 @@ class WidgetExampleDirective(Directive):
             image_node = nodes.image(rawsource=shot['name'], **options)
             res_nodes.append(image_node)
 
-        if 'hide-source' not in self.options or self.options['hide-source'] != "true":
+        if 'hide_source' in self.options and show_source:
+            show_source = self.options['hide-source'] != "true"
+
+        if show_source:
             example_content = example_content.decode('utf-8')
             node = nodes.literal_block(example_content, example_content)
             node['language'] = 'xml'

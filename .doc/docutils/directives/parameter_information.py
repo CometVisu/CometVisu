@@ -15,24 +15,17 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 from docutils import statemachine
-from helper.schema import *
-from docutils.parsers.rst import directives, Directive
-from common import BaseDirective
-from os import path
 
-schema = Schema(path.join("src", "visu_config.xsd"))
+from docutils.parsers.rst import directives
+from common import BaseXsdDirective
+
+
 
 # TODO: possibility to map attribute names to links
 # TODO: read + display allowed elements, link to external pages (or include page with detailed element description)
 
 
-type_mapping = {
-    'boolean': "true %s false" % _('or'),
-    'string': _('string')
-}
-
-
-class ParameterInformationDirective(BaseDirective):
+class ParameterInformationDirective(BaseXsdDirective):
     """
     reStructuredText directive for parameter information. Extracts information for the given element from
     the visu_config.xsd file and adds it to the document.
@@ -51,49 +44,10 @@ class ParameterInformationDirective(BaseDirective):
     def get_cell_data(self, content):
         return 0, 0, 0, statemachine.StringList( content.splitlines())
 
-    def normalize_type(self, type):
-        if type[0:4] == "xsd:":
-            type = type[4:]
-        return type_mapping[type] if type in type_mapping else type
-
     def run(self):
         self.init_locale()
-        element_name = self.arguments[0]
-
-        table_body = []
-        for attr in schema.get_widget_attributes(element_name):
-            if 'name' in attr.attrib:
-                name = attr.get('name')
-                atype, values = schema.get_attribute_type(attr)
-                description = schema.get_node_documentation(attr, self.locale)
-                if description is not None:
-                    description = description.text
-                else:
-                    description = ''
-            elif 'ref' in attr.attrib:
-                name = attr.get('ref')
-                type_def = schema.get_attribute(name)
-                atype, values = schema.get_attribute_type(type_def)
-                description = schema.get_node_documentation(type_def, self.locale)
-                if description is not None:
-                    description = description.text
-                else:
-                    description = ''
-
-            if attr.get('use', 'optional') == "required":
-                name += "*"
-
-            atype = self.normalize_type(atype) if len(values) == 0 else self.normalize_values(values)
-            row = [self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
-            table_body.append(row)
-
-        table_head = [[self.get_cell_data('Name'), self.get_cell_data('Type'), self.get_cell_data('Description')]]
-        table = ([20, 20, 60], table_head, table_body)
-
-        table_node = self.state.build_table(table, self.content_offset)
-        table_node['classes'] += self.options.get('class', [])
+        table_node = self.generate_table(self.arguments[0])
         self.add_name(table_node)
-
         return [table_node]
 
 

@@ -25,3 +25,11 @@ generate doc with:
 ```
 sphinx-build -b html doc/manual/de/rst/ doc/manual/de/html
 ```
+
+Translation
+-----------
+```
+# update po files
+pygettext -d cv -p locale/ .doc/docutils/directives/*.py
+# translate with poedit + save
+```

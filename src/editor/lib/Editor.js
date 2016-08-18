@@ -1744,7 +1744,7 @@ var EditorConfigurationElement = function (parent, element) {
     }
         
     // create this elements markup, divided into outer shell (container, tree) and inner part (text, buttons, ...)
-    _html = $('<li />').addClass('element');
+    _html = $('<li />').addClass('element').addClass("treeType_"+element.name);
     _html.append($('<span />').addClass('tree').append(UIElements.getButtonOfType('children')));
         
     // check if we are sortable

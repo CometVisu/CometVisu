@@ -114,6 +114,24 @@ Parameter
 
 .. parameter_information:: switch
 
+
+Parameter im Editor
+-------------------
+
+.. widget_example::
+    :editor: attributes
+
+        <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen" bind_click_to_widget="true">
+          <layout colspan="4" />
+          <label>Kanal 1<icon name="control_on_off"/></label>
+          <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+          <address transform="DPT:1.001" mode="read">1/4/0</address>
+        </switch>
+
+
+Erlaubte Elemente
+-----------------
+
 .. elements_information:: switch
 
 +-------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

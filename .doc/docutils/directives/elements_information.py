@@ -14,28 +14,18 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
-from docutils import statemachine
+from docutils import nodes
 from helper.schema import *
-from docutils.parsers.rst import directives, Directive
-from common import BaseDirective
-from os import path
+from docutils.parsers.rst import directives
+from common import BaseXsdDirective, schema
 import gettext
 gettext.install('cv', localedir='locale')
 
-schema = Schema(path.join("src", "visu_config.xsd"))
-
-
-# TODO: translation (gettext)
 # TODO: possibility to map attribute names to links
 # TODO: read + display allowed elements, link to external pages (or include page with detailed element description)
 
 
-type_mapping = {
-    'boolean': 'true %s false' % _("or"),
-    'string': _("string")
-}
-
-class ElementsInformationDirective(BaseDirective):
+class ElementsInformationDirective(BaseXsdDirective):
     """
     reStructuredText directive for information about allowed child elements. Extracts information for the given element from
     the visu_config.xsd file and adds it to the document.
@@ -51,54 +41,35 @@ class ElementsInformationDirective(BaseDirective):
     option_spec = {}
     has_content = False
 
-    def get_cell_data(self, content):
-        return 0, 0, 0, statemachine.StringList( content.splitlines())
-
-    def normalize_type(self, type):
-        if type[0:4] == "xsd:":
-            type = type[4:]
-        return type_mapping[type] if type in type_mapping else type
+    def make_title(self, element):
+        if element.get("name", None) is not None:
+            name = element.get("name")
+            if int(element.get("minOccurs")) > 0:
+                name += "*"
+            text_nodes, messages = self.state.inline_text(name,
+                                                          self.lineno)
+            title = nodes.title(name, '', *text_nodes)
+        else:
+            title = None
+            messages = []
+        return title, messages
 
     def run(self):
         self.init_locale()
 
         element_name = self.arguments[0]
+        res_nodes = []
 
-        table_body = []
-        for attr in schema.get_widget_attributes(element_name):
-            if 'name' in attr.attrib:
-                name = attr.get('name')
-                atype, values = schema.get_attribute_type(attr)
-                description = schema.get_node_documentation(attr, self.locale)
-                if description is not None:
-                    description = description.text
-                else:
-                    description = ''
-            elif 'ref' in attr.attrib:
-                name = attr.get('ref')
-                type_def = schema.get_attribute(name)
-                atype, values = schema.get_attribute_type(type_def)
-                description = schema.get_node_documentation(type_def, self.locale)
-                if description is not None:
-                    description = description.text
-                else:
-                    description = ''
+        for element in schema.get_widget_elements(element_name):
+            title, messages = self.make_title(element)
 
-            if attr.get('use', 'optional') == "required":
-                name += "*"
+            table_node = self.generate_table(element.get("name"))
+            if table_node is not None:
+                if title is not None:
+                    table_node.insert(0, title)
 
-            atype = self.normalize_type(atype) if len(values) == 0 else self.normalize_values(values)
-            row = [self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
-            table_body.append(row)
+                res_nodes.append(table_node)
 
-        table_head = [[self.get_cell_data('Name'), self.get_cell_data('Type'), self.get_cell_data('Description')]]
-        table = ([20, 20, 60], table_head, table_body)
-
-        table_node = self.state.build_table(table, self.content_offset)
-        table_node['classes'] += self.options.get('class', [])
-        self.add_name(table_node)
-
-        return [table_node]
-
+        return res_nodes
 
 directives.register_directive("elements_information", ElementsInformationDirective)

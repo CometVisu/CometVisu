@@ -52,7 +52,7 @@ class Schema:
         return self.findall("xs:complexType[@name='%s']" % widget_name)
 
     def get_widget_attributes(self, widget_name):
-        return self.findall("xs:complexType[@name='%s']/xs:attribute" % widget_name)
+        return self.findall("xs:complexType[@name='%s']//xs:attribute" % widget_name)
 
     def get_attribute(self, widget_name):
         return self.findall("xs:attribute[@name='%s']" % widget_name)[0]
@@ -71,11 +71,10 @@ class Schema:
         values = []
         if 'type' in node.attrib:
             type = node.get('type')
-        else:
+        elif len(node.findall("xs:simpleType/xs:restriction/xs:enumeration".replace("xs:", SCHEMA_SPACE))) > 0:
             enums = node.findall("xs:simpleType/xs:restriction/xs:enumeration".replace("xs:", SCHEMA_SPACE))
-            if len(enums) > 0:
-                values = [enum.get('value') for enum in enums]
-                type = node.find("xs:simpleType/xs:restriction".replace("xs:", SCHEMA_SPACE)).get("base")
+            values = [enum.get('value') for enum in enums]
+            type = node.find("xs:simpleType/xs:restriction".replace("xs:", SCHEMA_SPACE)).get("base")
         return type, values
 
     def get_element_attributes(self, name):
@@ -83,7 +82,6 @@ class Schema:
         node = self.find(".//xs:element[@name='" + name + "']")
         if node is None:
             node = self.find(".//xs:complexType[@name='" + name + "']")
-
         if node is None:
             return None
         else:
