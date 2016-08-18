@@ -10,8 +10,9 @@ var fs = require('fs'),
 var cvMockup = require('../test/protractor/pages/Mock');
 var editorMockup = require('../test/protractor/pages/EditorMock');
 
-var cropInFile = function(size, location, srcFile) {
-  easyimg.crop({
+var cropInFile = function(size, location, srcFile, width, height) {
+  if (width && height) {
+    easyimg.crop({
       src: srcFile,
       dst: srcFile,
       cropwidth: size.width,
@@ -19,10 +20,37 @@ var cropInFile = function(size, location, srcFile) {
       x: location.x,
       y: location.y,
       gravity: 'North-West'
-    },
-    function(err) {
-      if (err) throw err;
-    });
+    }).then(function(image) {
+        easyimg.resize({
+          src: srcFile,
+          dst: srcFile,
+          width: width,
+          height: height
+        }).then(
+          function(image) {
+            console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
+          },
+          function (err) {
+            if (err) throw err;
+          });
+      },
+      function (err) {
+        if (err) throw err;
+      });
+  } else {
+    easyimg.crop({
+        src: srcFile,
+        dst: srcFile,
+        cropwidth: size.width,
+        cropheight: size.height,
+        x: location.x,
+        y: location.y,
+        gravity: 'North-West'
+      },
+      function (err) {
+        if (err) throw err;
+      });
+  }
 };
 
 var createDir = function(dir) {
@@ -133,7 +161,6 @@ describe('generation screenshots from jsdoc examples', function () {
                 }, 1000);
                 widgetButton.click();
 
-                selectorPrefix = ".treeType_"+settings.widget+" ";
                 // wait for everything to be rendered
                 browser.sleep(300);
               }
@@ -157,7 +184,15 @@ describe('generation screenshots from jsdoc examples', function () {
                             console.log(err);
                           }
                           else {
-                            cropInFile(size, location, imgFile);
+
+                            if (settings.scale) {
+                              var scale = parseInt(settings.scale);
+                              var scaledWidth = Math.round(size.width * scale/100);
+                              var scaledHeight = Math.round(size.height * scale/100);
+                              cropInFile(size, location, imgFile, scaledWidth, scaledHeight);
+                            } else {
+                              cropInFile(size, location, imgFile);
+                            }
                           }
                         });
                       });

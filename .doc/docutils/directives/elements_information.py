@@ -15,7 +15,6 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 from docutils import nodes
-from helper.schema import *
 from docutils.parsers.rst import directives
 from common import BaseXsdDirective, schema
 import gettext

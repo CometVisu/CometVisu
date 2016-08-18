@@ -76,6 +76,7 @@ class WidgetExampleDirective(Directive):
     option_spec = {
         'linenos': directives.flag,
         'lineno-start': int,
+        'scale': int, # scale screenshot in percent
         'hide-source': directives.unchanged, # true or false
         'editor': directives.unchanged # true or false
     }
@@ -140,19 +141,24 @@ class WidgetExampleDirective(Directive):
             "screenshots": [],
             "screenshotDir": screenshot_dir
         }
+        if 'scale' in self.options:
+            scale = max(1, min(100, int(self.options['scale'] or 100)))
+            settings['scale'] = scale
+
         shot_index = 0
         if editor is not None:
             # change screenshot + selector
             settings['editor'] = editor
             settings['widget'] = config.tag
             if editor == "attributes":
-                settings['selector'] = "ul.attributes"
+                settings['selector'] = ".treeType_%s ul.attributes" % config.tag
             elif editor == "elements":
-                settings['selector'] = ".nodeType_%s.active" % config.tag
+                settings['selector'] = ".treeType_%s" % config.tag
             settings['screenshots'].append({
                 "name": "%s_editor_%s" % (name, editor),
                 "data": {}
             })
+            show_source = False
 
         elif meta is not None:
             # read meta settings
