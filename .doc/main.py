@@ -20,7 +20,6 @@ import os
 import json
 import logging
 import sh
-import glob
 from argparse import ArgumentParser
 
 grunt = sh.Command("grunt")
@@ -38,13 +37,20 @@ with open(os.path.join(root_dir, "package.json")) as data_file:
     VERSION = data['version']
 
 
-def generate_manual(language):
+def generate_manual(language, target_dir):
     # check if sources exist for this language
     source_dir = os.path.join(root_dir, "doc", "manual", language, source_type)
-    target_dir = os.path.join(root_dir, "doc", "manual", language, target_type)
+    if target_dir is None:
+        target_dir = os.path.join(root_dir, "doc", "manual", language, target_type)
+    else:
+        target_dir = os.path.join(root_dir, target_dir, language)
+
     if not os.path.exists(source_dir):
         log.error("no sources found for manual in language '%s'" % language)
         exit(1)
+
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
 
     # first run generates the widget-example configs
     print(sphinx_build("-b", target_type, source_dir, target_dir))
@@ -112,6 +118,9 @@ def main():
     parser.add_argument("--language", "-l", dest="language", default="de",
                         help="Language of documentation (only available for manual)")
 
+    parser.add_argument("--target", dest="target",
+                        help="Target dir for generation")
+
     parser.add_argument("--widget", "-w", dest="widget",
                         help="Name of the widget to generate docs for")
 
@@ -129,7 +138,7 @@ def main():
     elif options.action == "doc":
 
         if 'type' not in options or options.type == "manual":
-            generate_manual(options.language)
+            generate_manual(options.language, options.target)
         elif options.type == "source":
             print(grunt("api-doc", "--subDir=jsdoc"))
         else:
