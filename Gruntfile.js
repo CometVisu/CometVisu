@@ -392,7 +392,7 @@ module.exports = function(grunt) {
       archives : ['*.zip', '*.gz'],
       release: ['release/'],
       iconcache: ['cache/icons'],
-      exampleCache: ['cache/widget_examples'],
+      exampleCache: ['cache/widget_examples/jsdoc'],
       apiDoc: ['doc/api']
     },
 

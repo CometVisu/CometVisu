@@ -40,7 +40,7 @@ class ElementsInformationDirective(BaseXsdDirective):
     def make_title(self, element):
         if element.get("name", None) is not None:
             name = element.get("name")
-            if int(element.get("minOccurs")) > 0:
+            if element.get("minOccurs") is not None and int(element.get("minOccurs")) > 0:
                 name += "*"
             text_nodes, messages = self.state.inline_text(name,
                                                           self.lineno)

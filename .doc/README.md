@@ -17,8 +17,9 @@ grunt apt-doc
 
 User Manual
 -----------
-Install libxml2 + libxslt development files (e.g. `apt-get install libxml2-dev libxslt-dev`)
+Install libxml2, libxslt development files and plantuml (e.g. `apt-get install libxml2-dev libxslt-dev plantuml`)
 Install required python3 packages specified in .doc/docutils/requirements.txt
+Note: pip install sh must be installed as root `sudo pip install sh`
 (and python3 if it is not installed on your system)
  
 generate doc with: 
@@ -39,13 +40,10 @@ TODOs
 
 TODO: possibility to map attribute names to links
 TODO: improve element description retrieval from XSD, possibility to extend
-TODO: widget description page scaffolding + (include TODOs for those pages)
 TODO: transfer content from wiki
-TODO: establish structure for manual
-TODO: python command line tool for:
+TODO: establish structure for manual (done for widgets)
+TODO: python command line tool:
 
- * generating rst -> html -> screenshots
- * scaffolding
  * syntax check for examples
 
 TODO: cleanup, doc, travis integration

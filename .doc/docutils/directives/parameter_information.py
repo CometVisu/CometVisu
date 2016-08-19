@@ -42,6 +42,9 @@ class ParameterInformationDirective(BaseXsdDirective):
     def run(self):
         self.init_locale()
         table_node = self.generate_table(self.arguments[0])
+        if table_node is None:
+            return []
+
         self.add_name(table_node)
         return [table_node]
 

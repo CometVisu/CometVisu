@@ -1,9 +1,5 @@
-.. raw:: mediawiki
-
-   {{Infobox Widget  | Name = Widgets einbinden  | Bild = Widgets:hinzu_fügen.png }}
-
 Widgets in der CometVisu
-------------------------
+========================
 
 Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
 zusammengebaut wird. Diese können entweder fest in der CometVisu
@@ -14,8 +10,8 @@ Gruppe (group). Durch Auswahl des Widget aus dem Drop-Down Menü und
 anschließendem Klick auf das + - Zeichen ist das Widget eingefügt und
 kann wie folgt konfiguriert werden;
 
-fest eingebaute Widgets:
-~~~~~~~~~~~~~~~~~~~~~~~~
+fest eingebaute Widgets
+-----------------------
 
 +-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Widget                                  | Beschreibung                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                    |
@@ -83,9 +79,16 @@ fest eingebaute Widgets:
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 +-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. toctree::
+    :titlesonly:
+    :maxdepth: 1
+    :glob:
+    :hidden:
 
-Widgets die per Plugin eingebunden werden können:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    */index
+
+Widgets die per Plugin eingebunden werden können
+------------------------------------------------
 
 Diese müssen im "meta" Bereich der
 `CometVisu-XML-Config <CometVisu/XML-Elemente>`__ eingebunden werden
@@ -132,7 +135,7 @@ also z.B.:
 weitere Plugins befinden sich in der Entwicklung.
 
 Widget zum Umschalten des Design der CometVisu
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------
 
 +------------------------------------+--------------------------+
 | Widget                             | Beschreibung             |
@@ -142,4 +145,10 @@ Widget zum Umschalten des Design der CometVisu
 |                                                               |
 +------------------------------------+--------------------------+
 
-Category:CometVisu Category:Handbuch
+.. toctree::
+    :titlesonly:
+    :maxdepth: 1
+    :glob:
+    :hidden:
+
+    designtoggle/index

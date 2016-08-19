@@ -1,9 +1,5 @@
-.. raw:: mediawiki
-
-   {{TOCright}}
-
 Willkommen bei der `CometVisu <CometVisu>`__!
----------------------------------------------
+=============================================
 
 CometVisu ist eine webbasierte Visualisierungslösung für den Bereich der
 Hausautomation. Sie kann direkt auf den `KNX <KNX>`__ zugreifen (über
@@ -58,31 +54,7 @@ aus verschiedenen Links:
 (Über die Config-Datei kann man den Inhalt der Fußzeile den eigenen
 Bedürfnissen anpassen)
 
-Installation der CometVisu
---------------------------
 
-Einfache Installation:
-
--  `Allgemein <CometVisu/Installation/de>`__
--  `auf Wiregate <CometVisu/Installation/WireGate/de>`__
--  `auf Raspberry Pi <CometVisu/Installation/Raspberry_Pi/de>`__
-
-Schwieriger, nur für Fortgeschrittene:
-
--  `auf beliebigen anderen
-   Linux-Systemen <CometVisu/0.8.x/installation/de/linux>`__
--  `auf NAS-Systemen <CometVisu/0.8.x/installation/de/nas>`__
-
-Informationen wie man die CometVisu auf OpenHAB installiert gibt es auf
-englisch in der
-`OpenHAB-WIKI <https://github.com/openhab/openhab/wiki/Comet-Visu>`__
-
-Man kann auch die aktuelle Entwickler-Version installieren, diese sollte
-jedoch NIE produktiv eingesetzt werden.
-
--  `Infos zur Installation
-   Development-Version <CometVisu/HowTo_install_the_development_version_on_the_WireGate>`__
-   - auf eigene Gefahr!!!
 
 Update der CometVisu
 --------------------
@@ -197,4 +169,8 @@ sonstiges
 -  `Howto: Animierter
    Hydraulikplan <CometVisu/0.8.x/Howto:_Animierter_Hydraulikplan>`__
 
-Category:CometVisu
+
+.. toctree::
+
+    basics/install
+    widgets/index

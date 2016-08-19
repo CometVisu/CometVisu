@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import json
+
 import sphinx_rtd_theme
 import sys, os
 
@@ -11,6 +13,7 @@ sys.path.insert(0, extensions_path)
 extensions = ['sphinx.ext.todo',
               'sphinx.ext.coverage',
               'sphinx.ext.ifconfig',
+              'sphinxcontrib.plantuml',
               'widget_example',
               'parameter_information',
               'elements_information']
@@ -29,7 +32,10 @@ language = 'de'
 project = 'CometVisu'
 copyright = '2010-2016 Christian Mayer and the CometVisu contributers'
 
-version = ''
+with open(os.path.join(root_dir, "package.json")) as data_file:
+    data = json.load(data_file)
+    version = data['version']
+
 release = ''
 
 # -- Options for HTML output ---------------------------------------------------
@@ -38,11 +44,11 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_title = "CometVisu"
 #html_short_title = None
-#html_logo = None
+html_logo = os.path.join(root_dir, "src", "icon", "comet_webapp_icon_android_48.png")
 #html_favicon = None
 html_static_path = ['_static']
 html_domain_indices = False
-html_use_index = False
+html_use_index = True
 html_show_sphinx = False
 htmlhelp_basename = 'CometVisu'
 html_show_sourcelink = False

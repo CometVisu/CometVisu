@@ -2,3 +2,4 @@ docutils
 sh
 sphinx
 lxml
+sphinxcontrib-plantuml

@@ -1,12 +1,21 @@
-.. raw:: mediawiki
+Das Switch Widget
+=================
 
-   {{TOCright}}
-
-Beschreibung des Switch Widgets
--------------------------------
+Beschreibung
+------------
 
 Das Switch Widget fügt der Visualisierung eine Schaltfläche hinzu. Mit
 dieser können z.B. Ein/Aus Schalter realisiert werden.
+
+
+.. uml::
+    :align: center
+
+    title Switch
+    state An
+    state Aus
+    An --> Aus : sende off_value bei Klick
+    Aus --> An : sende on_value bei Klick
 
 .. widget_example::
     :hide-source: true
