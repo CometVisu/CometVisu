@@ -45,7 +45,7 @@ var createDir = function(dir) {
 };
 
 var cacheDir = path.join("cache", "widget_examples", "jsdoc");
-var screenshotDir = path.join("doc", "api", "examples");
+var screenshotDir = path.join("out" ,"doc", "api", "examples");
 createDir(cacheDir);
 
 var schemaString = fs.readFileSync(path.join("src", "visu_config.xsd"), "utf-8");
