@@ -14,6 +14,11 @@ exports.config = {
     common: ['screenshots-spec.js']
   },
 
+  capabilities: {
+    // phantomjs is not recommended by the protractor team, and chrome seems not to work on travis
+    browserName: 'firefox'
+  },
+
   onPrepare: function(){
     browser.ignoreSynchronization = true;
 
