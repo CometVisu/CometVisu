@@ -7,3 +7,5 @@ node_modules/
 *.swp
 doc/api/examples/
 /docs/
+deploy_key
+settings/keys/deploy_key
