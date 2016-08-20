@@ -34,9 +34,5 @@ script:
 - grunt jscs
 - grunt karma:travis
 - grunt e2e
-- sphinx-build -b html doc/manual/de/rst out
-- grunt jsdoc:html --targetDir=out
-- grunt screenshots --browserName=firefox
-- sphinx-build -b html doc/manual/de/rst out
 - .doc/deploy.sh
 - grunt coveralls
