@@ -5,7 +5,7 @@ CometVisu ist eine webbasierte Visualisierungslösung für den Bereich der
 Hausautomation. Sie kann direkt auf den KNX-Bus zugreifen (über
 den eibd, bzw. knxd) oder auf alles aus der
 `OpenHAB <http://www.openhab.org/>`__-Welt. Die aktuelle Version wird
-auf `Github <http://github.com/cometvisu/CometVisu>`__ veröffentlicht.
+auf `Github <http://github.com/CometVisu/CometVisu>`__ veröffentlicht.
 
 Systemvoraussetzungen
 ---------------------
