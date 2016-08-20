@@ -40,11 +40,11 @@ with open(os.path.join(root_dir, "package.json")) as data_file:
 
 def generate_manual(language, target_dir, browser):
     # check if sources exist for this language
-    source_dir = os.path.join(root_dir, "doc", "manual", language, source_type)
+    source_dir = os.path.join(root_dir, "doc", language, "manual", source_type)
     if target_dir is None:
-        target_dir = os.path.join(root_dir, "doc", "manual", language, target_type)
+        target_dir = os.path.join(root_dir, "doc", language, "manual", target_type)
     else:
-        target_dir = os.path.join(root_dir, target_dir, language)
+        target_dir = os.path.join(root_dir, target_dir)
 
     if not os.path.exists(source_dir):
         log.error("no sources found for manual in language '%s'" % language)
