@@ -24,7 +24,7 @@ install:
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update --standalone --firefox"
 - sudo pip install -r .doc/requirements.txt # for documentation
-- sudo apt-get install libxml2-dev libxslt-dev plantuml
+- sudo apt-get install libxml2-dev libxslt-dev plantuml easyimage
 - npm install jsdoc libxmljs-mt libxml-xsd
 before_script:
 - export DISPLAY=:99.0
