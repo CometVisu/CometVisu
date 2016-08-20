@@ -28,5 +28,5 @@ script:
 - grunt jscs
 - grunt karma:travis
 - grunt e2e
-- doc/deploy.sh
+- .doc/deploy.sh
 - grunt coveralls
