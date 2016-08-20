@@ -83,6 +83,8 @@ describe('generation screenshots from jsdoc examples', function () {
 
   beforeEach(function () {
     var mockedConfigData = mockupConfig.shift();
+    console.log("Reading mockuo config data:");
+    console.log(mockedConfigData);
     if (mockedConfigData.mode == "cv") {
       cvMockup.mockupConfig(mockedConfigData.data);
       cvMockup.to();
@@ -121,7 +123,8 @@ describe('generation screenshots from jsdoc examples', function () {
               selectorPrefix = "";
               mockedConfigData.mode = "editor";
             }
-
+            console.log("Pushing mockuo config data:");
+            console.log(mockedConfigData);
             mockupConfig.push(mockedConfigData);
 
             it('should create a screenshot', function () {
