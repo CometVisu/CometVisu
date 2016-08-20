@@ -27,9 +27,7 @@ var cropInFile = function(size, location, srcFile, width, height) {
           width: width,
           height: height
         }).then(
-          function(image) {
-            console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
-          },
+          function(image) { },
           function (err) {
             if (err) throw err;
           });

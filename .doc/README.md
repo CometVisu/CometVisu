@@ -5,9 +5,7 @@ Source docs
 -----------
 Install required packages
 ```
-npm install jsdoc
-npm install libxmljs-mt
-npm install libxml-xsd
+npm install jsdoc libxmljs-mt libxml-xsd easyimage
 ```
 
 generate doc with

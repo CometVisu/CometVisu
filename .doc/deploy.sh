@@ -5,8 +5,8 @@ SOURCE_BRANCH="user-manual"
 TARGET_BRANCH="gh-pages"
 
 function createDocs {
-  .doc/main.py -l de --target out/de/manual --doc-type doc doc
-  .doc/main.py -l de --target out/de/api --doc-type source
+  .doc/main.py -l de --target out/de/manual --doc-type doc --browserName firefox doc
+  .doc/main.py -l de --target out/de/api --doc-type source --browserName firefox doc
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify

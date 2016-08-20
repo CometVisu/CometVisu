@@ -38,7 +38,7 @@ with open(os.path.join(root_dir, "package.json")) as data_file:
     VERSION = data['version']
 
 
-def generate_manual(language, target_dir):
+def generate_manual(language, target_dir, browser):
     # check if sources exist for this language
     source_dir = os.path.join(root_dir, "doc", "manual", language, source_type)
     if target_dir is None:
@@ -57,7 +57,7 @@ def generate_manual(language, target_dir):
     print(sphinx_build("-b", target_type, source_dir, target_dir))
 
     # generate the screenshots
-    print(grunt("screenshots", "--subDir=manual"))
+    print(grunt("screenshots", "--subDir=manual", "--browserName=%s" % browser))
 
     # 2dn run with access to the generated screenshots
     print(sphinx_build("-b", target_type, source_dir, target_dir))
@@ -125,6 +125,9 @@ def main():
     parser.add_argument("--widget", "-w", dest="widget",
                         help="Name of the widget to generate docs for")
 
+    parser.add_argument("--browser", "-b", dest="browser", default="chrome",
+                        help="Browser used for screenshot generation")
+
     parser.add_argument('--doc-type', "-dt", dest="doc", default="manual",
                         type=str, help='type of documentation to generate (manual, source)', nargs='?')
 
@@ -138,12 +141,12 @@ def main():
     elif options.action == "doc":
 
         if 'type' not in options or options.type == "manual":
-            generate_manual(options.language, options.target)
+            generate_manual(options.language, options.target, options.browser)
         elif options.type == "source":
             if options.target is not None:
-                print(grunt("api-doc", "--subDir=jsdoc", "--targetDir=%s" % options.target))
+                print(grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, "--targetDir=%s" % options.target))
             else:
-                print(grunt("api-doc", "--subDir=jsdoc"))
+                print(grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser))
         else:
             log.error("generation of '%s' documentation is not available" % options.type)
             exit(1)

@@ -521,6 +521,10 @@ module.exports = function(grunt) {
           args: {
             params: {
               subDir: grunt.option('subDir')
+            },
+            capabilities: {
+              browserName: grunt.option('browserName') || 'firefox',
+              marionette: true
             }
           }
         }
@@ -661,4 +665,5 @@ module.exports = function(grunt) {
   grunt.registerTask('updateicons', ['shell:updateicons']);
 
   grunt.registerTask('default', 'build');
+
 };
