@@ -2,23 +2,10 @@ Willkommen bei der `CometVisu <CometVisu>`__!
 =============================================
 
 CometVisu ist eine webbasierte Visualisierungslösung für den Bereich der
-Hausautomation. Sie kann direkt auf den `KNX <KNX>`__ zugreifen (über
+Hausautomation. Sie kann direkt auf den KNX-Bus zugreifen (über
 den eibd, bzw. knxd) oder auf alles aus der
 `OpenHAB <http://www.openhab.org/>`__-Welt. Die aktuelle Version wird
-auf sourceforge.net veröffentlicht.
-
-Diese Dokumentation ist für die aktuelle Version 0.8.5
-
-Die Dokumentation für die 0.6.2 findet man unter `Benutzerhandbuch
-Version 0.6.2 <CometVisu/manual/de>`__
-
-Die Dokumentation für die 0.8.0 findet man unter `Benutzerhandbuch
-Version 0.8.0 <CometVisu/0.8.0/manual/de>`__
-
-Die deutsche FAQ findet man `hier <CometVisu/FAQ_(Deutsch)>`__
-
-**Aufgabenliste für die CV-Doku:
-`CometVisu/0.8.x/aufgaben/de <CometVisu/0.8.x/aufgaben/de>`__**
+auf `Github <http://github.com/cometvisu/CometVisu>`__ veröffentlicht.
 
 Systemvoraussetzungen
 ---------------------
