@@ -6,3 +6,4 @@ node_modules/
 .idea
 *.swp
 doc/api/examples/
+/docs/

@@ -124,11 +124,10 @@ def main():
     parser.add_argument("--widget", "-w", dest="widget",
                         help="Name of the widget to generate docs for")
 
-    parser.add_argument('--doc-type', "-dt", dest="doc", metavar='str', default="manual",
+    parser.add_argument('--doc-type', "-dt", dest="doc", default="manual",
                         type=str, help='type of documentation to generate (manual, source)', nargs='?')
 
-    parser.add_argument('action', metavar='str',
-                        type=str, help='what should I do?', nargs='?')
+    parser.add_argument('action', type=str, help='what should I do?', nargs='?')
     options = parser.parse_args()
 
     if options.action is None:
@@ -140,7 +139,10 @@ def main():
         if 'type' not in options or options.type == "manual":
             generate_manual(options.language, options.target)
         elif options.type == "source":
-            print(grunt("api-doc", "--subDir=jsdoc"))
+            if options.target is not None:
+                print(grunt("api-doc", "--subDir=jsdoc", "--targetDir=%s" % options.target))
+            else:
+                print(grunt("api-doc", "--subDir=jsdoc"))
         else:
             log.error("generation of '%s' documentation is not available" % options.type)
             exit(1)
