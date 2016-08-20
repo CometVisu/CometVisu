@@ -36,7 +36,7 @@ script:
 - grunt e2e
 #- .doc/deploy.sh
 - sphinx-build -b html doc/manual/de/rst out
-- grunt jsdoc --targetDir=out
+- grunt jsdoc:html --targetDir=out
 - grunt screenshots --browserName=firefox
 - sphinx-build -b html doc/manual/de/rst out
 - grunt coveralls
