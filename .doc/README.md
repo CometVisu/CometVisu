@@ -44,7 +44,7 @@ TODO: python command line tool:
 
  * syntax check for examples
 
-TODO: cleanup, doc, travis integration
+TODO: cleanup, doc
 
 Optional
 --------
