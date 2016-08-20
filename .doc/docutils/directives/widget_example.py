@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
 #
 # This program is free software; you can redistribute it and/or modify it
