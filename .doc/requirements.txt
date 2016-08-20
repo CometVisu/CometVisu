@@ -3,3 +3,4 @@ sh
 sphinx
 lxml
 sphinxcontrib-plantuml
+sphinx_rtd_theme
