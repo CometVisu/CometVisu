@@ -1,6 +1,8 @@
 language: node_js
 node_js:
 - '4.2'
+-python:
+- '3.5'
 cache:
   directories:
   - node_modules
@@ -19,9 +21,8 @@ before_install:
 install:
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update --standalone --firefox"
-- pip install -r .doc/requirements.txt # for documentation
+- sudo pip install -r .doc/requirements.txt # for documentation
 - sudo apt-get install libxml2-dev libxslt-dev plantuml
-- sudo pip install sh
 - npm install jsdoc libxmljs-mt libxml-xsd
 before_script:
 - export DISPLAY=:99.0
