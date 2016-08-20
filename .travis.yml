@@ -8,7 +8,7 @@ cache:
   - node_modules
 env:
   global:
-  - ENCRYPTION_LABEL: "1b0babe6137a"
+  - ENCRYPTION_LABEL: "77daa7d0dc58"
   - COMMIT_AUTHOR_EMAIL: "generator@cometvisu.org"
 before_install:
 - npm install -g grunt-cli
