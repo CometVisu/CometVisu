@@ -1,5 +1,5 @@
-Willkommen bei der `CometVisu <CometVisu>`__!
-=============================================
+Willkommen bei der CometVisu!
+=============================
 
 CometVisu ist eine webbasierte Visualisierungslösung für den Bereich der
 Hausautomation. Sie kann direkt auf den KNX-Bus zugreifen (über
@@ -32,15 +32,16 @@ aus verschiedenen Links:
 
 -  "**Widget Demo**": Zeigt die verschiedenen Bedienelemente und ihre
    Verwendungsmöglichkeiten auf.
--  "**`Edit <CometVisu/0.8.x/editor/de>`__**": Wechselt in den Editor.
+-  "**Edit**:" Wechselt in den Editor.
 -  "**Check Config**": Tool, um die Konfigurationsdatei auf syntaktische
    Fehler zu überprüfen. "config visu\_config is valid XML" bedeutet,
    dass die Konfigurationsdatei formal in Ordnung ist, darunter wird dir
    aktuelle Konfigurationsdatei angezeigt..
 
-(Über die Config-Datei kann man den Inhalt der Fußzeile den eigenen
-Bedürfnissen anpassen)
 
+.. hint::
+    Über die Config-Datei kann man den Inhalt der Fußzeile den eigenen
+    Bedürfnissen anpassen
 
 
 Update der CometVisu
