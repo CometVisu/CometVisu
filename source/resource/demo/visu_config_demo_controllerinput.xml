@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages lib_version="8" design="metal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+  <meta>
+    <plugins>
+      <plugin name="controllerinput"/>
+    </plugins>
+    <mappings/>
+    <stylings/>
+    <statusbar>
+      <status type="html">&lt;img src="icon/comet_64_ff8000.png" alt="CometVisu" /&gt; by &lt;a href="http://www.cometvisu.org/"&gt;CometVisu.org&lt;/a&gt;
+          - &lt;a href="manager.php"&gt;Config-Manager&lt;/a&gt;
+          - &lt;a href=".?forceReload=true"&gt;Reload&lt;/a&gt;</status>
+      <status type="html" condition="!edit" hrefextend="config">- &lt;a href="editor/"&gt;Edit&lt;/a&gt;</status>
+      <status type="html" condition="edit" hrefextend="config">- &lt;a href="."&gt;normal Mode&lt;/a&gt;</status>
+      <status type="html">- &lt;a href="?config=demo"&gt;Widget Demo&lt;/a&gt;</status>
+      <status type="html" hrefextend="config">- &lt;a href="check_config.php"&gt;Check Config&lt;/a&gt;</status>
+    </statusbar>
+  </meta>
+  <page name="Controller Input">
+    <controllerinput min="-10" max="30" bind_click_to_widget="true" format="%.1f°">
+      <layout colspan="6" rowspan="5" />
+      <label>Example Controller Input</label>
+      <address transform="DPT:9.001" variant="actual" mode="read">12/7/90</address>
+      <address transform="DPT:9.001" variant="setpoint" mode="readwrite">12/7/91</address>
+      <address transform="DPT:9.001" variant="control" mode="read">12/7/92</address> 
+      <rrd variant="actual" consolidationFunction="AVERAGE">28.F5432E020000_temp</rrd>
+      <rrd variant="setpoint" consolidationFunction="AVERAGE">10_BadEG_FBH_Sollwert</rrd>
+      <rrd variant="control" consolidationFunction="AVERAGE">10_BadEG_FBH_Regelung</rrd>
+    </controllerinput>
+    <text>
+      <label>Change example values:</label>
+      <layout colspan="6" rowspan="2" />
+    </text>
+    <slide min="-20" max="40" format="%.1f">
+      <label>Actual value</label>
+      <layout colspan="6" rowspan="1" />
+      <address transform="DPT:9.001">12/7/90</address>
+    </slide>
+    <slide min="-20" max="40" format="%.1f">
+      <label>Set point</label>
+      <layout colspan="6" rowspan="1" />
+      <address transform="DPT:9.001">12/7/91</address>
+    </slide>
+    <slide min="0" max="100" format="%.1f">
+      <label>Controller Output</label>
+      <layout colspan="6" rowspan="1" />
+      <address transform="DPT:9.001">12/7/92</address>
+    </slide>
+  </page>
+</pages>
