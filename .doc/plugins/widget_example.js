@@ -192,7 +192,7 @@ exports.handlers = {
           // use the caption of the only screenshot we have as global caption for the example
           globalCaptionString = settings.screenshots[0].caption;
         }
-        jsdocExample = "{@lang xml} "+ getCaptionString(globalCaptionString, settings.screenshots) + jsdocExample;
+        jsdocExample = getCaptionString(globalCaptionString, settings.screenshots) +" {@lang xml} "+ jsdocExample;
 
         e.doclet.examples.push(jsdocExample);
 
