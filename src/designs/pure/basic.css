@@ -624,3 +624,23 @@ div#demo_3 {
 {
   border-radius: 5px;
 }
+
+/* powerspectrum plugin */
+.powerspectrum .diagram_inline {
+  margin-left: 0;
+  width: 50%;
+  height: 100%;
+  min-height: 40px;
+}
+.powerspectrum .diagram_inline:only-child {
+  width: 100%;
+}
+
+.powerspectrum > .actor {
+  width: calc(50% - 1.1em);
+  height: 100%;
+}
+.powerspectrum > .actor:only-child {
+  width: 100%;
+  margin-left: 0;
+}

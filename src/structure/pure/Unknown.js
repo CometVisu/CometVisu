@@ -15,26 +15,37 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
- * @module Unknown 
- * @title  CometVisu Unknown 
  */
 
 
 /**
+ * Fallback widget shown when an unknown widget is defined in the configuration.
+ * You must not use this one directly.
+ *
+ * @module structure/pure/Unknown
+ * @requires structure/pure
  * @author Christian Mayer
- * @since 2012
+ * @since 0.8.0 (2012)
  */
 define( ['_common'], function( design ) {
   "use strict";
-  var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('unknown', {
-  create: function( element, path, flavour, type ) {
-    return '<div class="widget clearfix">'
-      + '<pre>unknown: ' + element.nodeName + '</pre>'
-      + '</div>';
-  }
-});
+    /**
+     * Creates the widget HTML code
+     *
+     * @method create
+     * @param {Element} element - DOM-Element
+     * @param {String} path - internal path of the widget
+     * @param {String} flavour - Flavour of the widget
+     * @param {String} type - Page type (2d, 3d, ...)
+     * @return {String} HTML code
+     */
+    create: function( element, path, flavour, type ) {
+      return '<div class="widget clearfix">'
+        + '<pre>unknown: ' + element.nodeName + '</pre>'
+        + '</div>';
+    }
+  });
 
 }); // end define

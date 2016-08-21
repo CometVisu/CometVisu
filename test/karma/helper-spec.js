@@ -151,12 +151,12 @@ define(['jquery','TemplateEngine', '_common'], function($, engine, design) {
       return  {
         compare: function(actual) {
           var result = {};
-          result.pass = $(actual).css('display') === 'none';
+          result.pass = $(actual).css('display') !== 'none';
           if (result.pass) {
-            result.message = "Expected " + actual.tagName + " to be visible";
+            result.message = "Expected " + actual.tagName + " not to be visible, but it is "+$(actual).css('display');
           }
           else{
-            result.message = "Expected " + actual.tagName + " not to be visible, but it is "+$(actual).css('display');
+            result.message = "Expected " + actual.tagName + " to be visible";
           }
           return result;
         }

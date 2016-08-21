@@ -15,13 +15,14 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
- *
- * @module Refresh 
- * @title  CometVisu Refresh 
  */
 
 
 /**
+ * TODO: complete docs
+ *
+ * @module structure/pure/Refresh
+ * @requires structure/pure
  * @author Christian Mayer
  * @since 2014
  */
@@ -30,6 +31,15 @@ define( ['_common'], function( design ) {
   var basicdesign = design.basicdesign;
   
   design.basicdesign.addCreator('refresh', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return BinaryExpression
+   */
   create: function( element, path, flavour, type ) {
     var $e = $(element);
     
@@ -49,6 +59,13 @@ define( ['_common'], function( design ) {
     return ret_val + '</div>';
   },
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
+  /**
+   * Description
+   * @method action
+   * @param {} path
+   * @param {} actor
+   * @param {} isCanceled
+   */
   action: function( path, actor, isCanceled ) {
     basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
     if( isCanceled ) return;
