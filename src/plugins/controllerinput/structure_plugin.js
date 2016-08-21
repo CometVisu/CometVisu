@@ -105,15 +105,15 @@ define( ['structure_custom', 'css!plugins/controllerinput/controllerinput', 'plu
           case 'actual':
             plotData[0].data = rrdContent;
             plotData[3].data[0][0] = rrdContent[rrdContent.length-1][0];
-          break;
+            break;
           case 'control':
             plotData[1].data = rrdContent;
             plotData[4].data[0][0] = rrdContent[rrdContent.length-1][0];
-          break;
+            break;
           case 'setpoint':
             plotData[2].data = rrdContent;
             plotData[5].data[0][0] = rrdContent[rrdContent.length-1][0];
-          break;
+            break;
         }
         data.plot.setData( plotData );
         data.plot.setupGrid();
@@ -251,52 +251,52 @@ define( ['structure_custom', 'css!plugins/controllerinput/controllerinput', 'plu
         */
         function createSparkline(){
           /*
-  var dataActual   = [ [0, 21], [1, 12], [2, 32], [3, 32], [4, 22], [5, 23], [6, 24], [7, 22], [8, 28], [9, 23], [10, 25], [11, 25], [12, 24] ];
-  var dataControl  = [ [0, 22], [1, 24], [2, 23], [3, 23], [4, 21], [5, 22], [6, 23], [7, 23], [8, 23], [9, 22], [10, 23], [11, 25], [12, 25] ];
-  var dataSetpoint = [ [0, 24], [1, 23], [2, 22], [3, 21], [4, 20], [5, 22], [6, 24], [7, 24], [8, 20], [9, 22], [10, 25], [11, 22], [12, 22] ];
-  */
-  var
-    dataActual   = [ [0,0] ],
-    dataControl  = [ [0,0] ],
-    dataSetpoint = [ [0,0] ];
-  //debugger;
-  //console.log( path );
-  var 
-    dataLastX = dataActual[dataActual.length - 1][0],
-    $element = $('#' + path),
-    XcolorActual = $element.find('.roundbar').css('border-top-color'),
-    XcolorSet    = $element.find('.roundbar').css('border-top-color');
-    
-    var options = {
-      xaxis: {
-        // extend graph to fit the last point
-        //max: dataLastX 
-      },
-      yaxes: [
-        { min: min, max: max },
-        { min: 0, max: 100 }
-      ],
-      grid: {
-        show: false,
-        margin: 2*(defaults.sparklineSpotradius || 1) // make space for the round dots
-      }
-    };
-    //console.log( options );
+          var dataActual   = [ [0, 21], [1, 12], [2, 32], [3, 32], [4, 22], [5, 23], [6, 24], [7, 22], [8, 28], [9, 23], [10, 25], [11, 25], [12, 24] ];
+          var dataControl  = [ [0, 22], [1, 24], [2, 23], [3, 23], [4, 21], [5, 22], [6, 23], [7, 23], [8, 23], [9, 22], [10, 23], [11, 25], [12, 25] ];
+          var dataSetpoint = [ [0, 24], [1, 23], [2, 22], [3, 21], [4, 20], [5, 22], [6, 24], [7, 24], [8, 20], [9, 22], [10, 25], [11, 22], [12, 22] ];
+          */
+          var
+            dataActual   = [ [0,0] ],
+            dataControl  = [ [0,0] ],
+            dataSetpoint = [ [0,0] ];
+          //debugger;
+          //console.log( path );
+          var 
+            dataLastX = dataActual[dataActual.length - 1][0],
+            $element = $('#' + path),
+            XcolorActual = $element.find('.roundbar').css('border-top-color'),
+            XcolorSet    = $element.find('.roundbar').css('border-top-color');
+            
+          var options = {
+            xaxis: {
+              // extend graph to fit the last point
+              //max: dataLastX 
+            },
+            yaxes: [
+              { min: min, max: max },
+              { min: 0, max: 100 }
+            ],
+            grid: {
+              show: false,
+              margin: 2*(defaults.sparklineSpotradius || 1) // make space for the round dots
+            }
+          };
+          //console.log( options );
 
-    // main series
-    var series = [
-      createDataLine( 1, data.colorActual ),
-      createDataLine( 2, data.colorControl ),
-      createDataLine( 1, data.colorSetpoint ),
-      createDataPoint( 1, data.colorActual ),
-      createDataPoint( 2, data.colorControl ),
-      createDataPoint( 1, data.colorSetpoint )
-    ];
+          // main series
+          var series = [
+            createDataLine( 1, data.colorActual ),
+            createDataLine( 2, data.colorControl ),
+            createDataLine( 1, data.colorSetpoint ),
+            createDataPoint( 1, data.colorActual ),
+            createDataPoint( 2, data.colorControl ),
+            createDataPoint( 1, data.colorSetpoint )
+          ];
 
-    // draw the sparkline
-  // data.plot = $.plot('.sparkline', series, options);
-    data.plot = $element.find('.sparkline').plot( series, options).data('plot');
-    //console.log(data.plot);
+          // draw the sparkline
+          // data.plot = $.plot('.sparkline', series, options);
+          data.plot = $element.find('.sparkline').plot( series, options).data('plot');
+          //console.log(data.plot);
         }
         //setTimeout( createSparkline, 3000 );
         createSparkline();
@@ -402,12 +402,12 @@ define( ['structure_custom', 'css!plugins/controllerinput/controllerinput', 'plu
       clearInterval( data.updateFn );
       data.inAction = false;
       $actor.removeClass('notransition');
-              for( var addr in data.address )
-              {
-                if( data.address[addr][2] !== 'setpoint' || !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-                var dv  = templateEngine.transformEncode( data.address[addr][0], data.value );
-                templateEngine.visu.write( addr, dv );
-              }
+      for( var addr in data.address )
+      {
+        if( data.address[addr][2] !== 'setpoint' || !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
+        var dv  = templateEngine.transformEncode( data.address[addr][0], data.value );
+        templateEngine.visu.write( addr, dv );
+      }
     },
     createX: function(element, path, flavour, type) {
     }
