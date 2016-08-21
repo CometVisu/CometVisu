@@ -1005,9 +1005,10 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
     </xsd:sequence>
     <xsd:attribute name="src" type="uri" use="required" />
-    <xsd:attribute name="width" type="dimension" />
-    <xsd:attribute name="height" type="dimension" />
-    <xsd:attribute name="refresh" type="xsd:decimal" />
+    <xsd:attribute name="width" type="dimension" use="optional" />
+    <xsd:attribute name="height" type="dimension" use="optional" />
+    <xsd:attribute name="widthfit" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="refresh" type="xsd:decimal" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
