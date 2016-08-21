@@ -17,7 +17,8 @@ before_install:
 - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 80 --slave /usr/bin/g++ g++ /usr/bin/g++-5
 - sudo update-alternatives --set gcc /usr/bin/gcc-5
 - mkdir cache
-- curl https://bootstrap.pypa.io/3.2/get-pip.py | python3.5 - --upgrade
+- sudo easy_install3 pip
+- pip3 install --upgrade pip3
 install:
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update --standalone --firefox"
