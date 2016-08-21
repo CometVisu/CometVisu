@@ -30,6 +30,7 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 - "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
 - sleep 3
+- python --version
 script:
 - grunt jscs
 - grunt karma:travis
