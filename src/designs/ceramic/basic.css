@@ -65,6 +65,7 @@ h1
   font-size: 2em;
   margin-left: 15px;
   font-kerning: normal;
+  display: none;
 }
 
 h2
