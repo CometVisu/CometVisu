@@ -66,7 +66,7 @@ define( ['_common'], function( design ) {
         imgStyle += 'width:'  + data.width + ';';
       }
       if( $e.attr('widthfit') === 'true' ) {
-        imgStyle += 'max-width: 100%;';
+        imgStyle += 'max-width:100%;';
       }
       if (data.height) {
         imgStyle += 'height:' + data.height + ';';
