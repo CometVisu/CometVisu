@@ -1,8 +1,6 @@
-language: python
+language: node_js
 node_js:
 - '4.2'
--python:
-- '3.5'
 cache:
   directories:
   - node_modules
@@ -22,7 +20,7 @@ before_install:
 install:
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update --standalone --firefox"
-- sudo pip install -r .doc/requirements.txt # for documentation
+- sudo pip3 install -r .doc/requirements.txt # for documentation
 - sudo apt-get install libxml2-dev libxslt-dev plantuml
 - npm install jsdoc libxmljs-mt libxml-xsd easyimage
 before_script:
@@ -30,7 +28,6 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 - "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
 - sleep 3
-- python --version
 script:
 - grunt jscs
 - grunt karma:travis
