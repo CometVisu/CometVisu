@@ -195,7 +195,6 @@ body br
 .widget, h2
 {
   background: hsl(345,10%,20%);
-  background: linear-gradient( hsl(345,10%,18%), hsl(345,10%,22%) );
   background: linear-gradient( hsl(345,10%,22%), hsl(345,10%,18%) );
 }
 
@@ -390,7 +389,6 @@ body br
   font-weight: bold;
   position: absolute;
   right: 0;
-  color: rgba( 0,0,0, 0.6 );
 }
 
 .page
@@ -436,6 +434,14 @@ body br
   */
   border: 1px solid hsl(345,35%,95%);
   box-shadow: 2px 3px 7px rgba(0,0,0,0.5);
+}
+
+.pagelink:hover,
+.switchUnpressed div:hover,
+.multitrigger .switchUnpressed:hover
+{
+  background: hsl(345,10%,25%);
+  background: linear-gradient( hsl(345,10%,27%), hsl(345,10%,23%) );
 }
 
 .switchPressed
@@ -499,6 +505,11 @@ body br
   border: 1px solid hsl(345,35%,95%);
   background: hsl(345,35%,95%);
   box-shadow: 2px 3px 7px rgba(0,0,0,0.5) inset;
+}
+
+.switchPressed div:hover
+{
+  background: hsl(345,35%,100%);
 }
 
 .switchInvisible
