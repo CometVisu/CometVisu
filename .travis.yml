@@ -9,6 +9,7 @@ env:
   - ENCRYPTION_LABEL: "77daa7d0dc58"
   - COMMIT_AUTHOR_EMAIL: "generator@cometvisu.org"
 before_install:
+- python3 --version
 - npm install -g grunt-cli
 - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 - sudo add-apt-repository ppa:isage-dna/plantuml -y
@@ -18,7 +19,6 @@ before_install:
 - sudo update-alternatives --set gcc /usr/bin/gcc-5
 - mkdir cache
 - sudo easy_install3 pip
-- pip3 install --upgrade pip3
 install:
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update --standalone --firefox"
