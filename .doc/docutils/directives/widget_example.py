@@ -209,9 +209,7 @@ class WidgetExampleDirective(Directive):
         try:
             etree.fromstring(visu_config, parser)
         except etree.XMLSyntaxError as e:
-            print(str(e))
-            print(visu_config)
-            #raise self.error(str(e))
+            raise self.error(str(e))
 
         if not path.exists(self.example_dir):
             makedirs(self.example_dir)
