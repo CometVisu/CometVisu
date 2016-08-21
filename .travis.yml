@@ -1,5 +1,4 @@
 language: node_js
-dist: trusty
 node_js:
 - '4.2'
 cache:
@@ -14,10 +13,11 @@ before_install:
 - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 - sudo add-apt-repository ppa:isage-dna/plantuml -y
 - sudo apt-get update -q
-- sudo apt-get install gcc-5 g++-5 python3-pip
+- sudo apt-get install gcc-5 g++-5 python3-setuptools
 - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 80 --slave /usr/bin/g++ g++ /usr/bin/g++-5
 - sudo update-alternatives --set gcc /usr/bin/gcc-5
 - mkdir cache
+- sudo easy_install3 pip
 install:
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update --standalone --firefox"
