@@ -159,6 +159,7 @@ sonstiges
 
 
 .. toctree::
+    :hidden:
 
     basics/install
     widgets/index
