@@ -9,20 +9,18 @@ env:
   - ENCRYPTION_LABEL: "77daa7d0dc58"
   - COMMIT_AUTHOR_EMAIL: "generator@cometvisu.org"
 before_install:
-- python3.5 --version
 - npm install -g grunt-cli
 - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 - sudo add-apt-repository ppa:isage-dna/plantuml -y
 - sudo apt-get update -q
-- sudo apt-get install gcc-5 g++-5 python3-setuptools
+- sudo apt-get install gcc-5 g++-5
 - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 80 --slave /usr/bin/g++ g++ /usr/bin/g++-5
 - sudo update-alternatives --set gcc /usr/bin/gcc-5
 - mkdir cache
-- sudo easy_install3 pip
 install:
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update --standalone --firefox"
-- sudo pip3 install -r .doc/requirements.txt # for documentation
+- sudo pip install -r .doc/requirements.txt # for documentation
 - sudo apt-get install libxml2-dev libxslt-dev plantuml
 - npm install jsdoc libxmljs-mt libxml-xsd easyimage
 before_script:
