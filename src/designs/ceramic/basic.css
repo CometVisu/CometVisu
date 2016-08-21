@@ -642,6 +642,29 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
   z-index: 5;
 }
 
+/* image widget - center */
+.image > .actor
+{
+  position: relative;
+  height: 100%;
+  width: 50%;
+  left: 50%;
+}
+.image > .actor:first-child
+{
+  width: 100%;
+  left: 0;
+}
+
+.image > .actor > img
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
 /* Clearfix */
 .clearfix::after {
     content: ".";
