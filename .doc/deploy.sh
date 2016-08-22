@@ -5,10 +5,10 @@ SOURCE_BRANCH="user-manual"
 TARGET_BRANCH="gh-pages"
 
 function createDocs {
-  sphinx-build -b html doc/manual/de/rst out/de/manual
+  sphinx-build -b html doc/manual/de out/de/manual
   grunt jsdoc:html --targetDir=out/api
   grunt screenshots --browserName=chrome
-  sphinx-build -b html doc/manual/de/rst out/de/manual
+  sphinx-build -b html doc/manual/de out/de/manual
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
