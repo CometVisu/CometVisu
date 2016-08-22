@@ -15,7 +15,7 @@ before_install:
 - nvm install 4.2
 - npm install -g grunt-cli
 - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-#- sudo add-apt-repository ppa:isage-dna/plantuml -y
+- wget http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb
 - sudo apt-get update -q
 - sudo apt-get install gcc-5 g++-5 xsltproc
 - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 80 --slave /usr/bin/g++ g++ /usr/bin/g++-5
@@ -23,6 +23,7 @@ before_install:
 - mkdir cache
 - xsltproc --version
 install:
+- sudo dpkg -i plantuml_7707-1_all.deb
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update --standalone --firefox"
 - sudo pip install -r .doc/requirements.txt # for documentation
