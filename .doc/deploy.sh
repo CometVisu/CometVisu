@@ -7,7 +7,7 @@ TARGET_BRANCH="gh-pages"
 function createDocs {
   sphinx-build -b html doc/manual/de/rst out/de/manual
   grunt jsdoc:html --targetDir=out/api
-  grunt screenshots --browserName=firefox
+  grunt screenshots --browserName=chrome
   sphinx-build -b html doc/manual/de/rst out/de/manual
 }
 

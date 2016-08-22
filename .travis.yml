@@ -11,9 +11,12 @@ env:
   global:
   - ENCRYPTION_LABEL: "77daa7d0dc58"
   - COMMIT_AUTHOR_EMAIL: "generator@cometvisu.org"
+  - CV_BROWSER=Chrome CV_VERSION=stable
 before_install:
 - nvm install 4.2
 - npm install -g grunt-cli
+- ./.doc/browser-setup.sh
+- export CHROME_BIN=`pwd`/chrome/google-chrome
 - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 - wget -O /tmp/plantuml.deb http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb
 - sudo apt-get update -q
