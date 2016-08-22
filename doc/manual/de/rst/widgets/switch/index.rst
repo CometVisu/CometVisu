@@ -20,12 +20,12 @@ dieser können z.B. Ein/Aus Schalter realisiert werden.
 .. widget_example::
     :hide-source: true
 
-        <meta>
+        <settings>
             <screenshot name="switch">
                 <caption>Einfacher Switch</caption>
                 <data address="1/4/0">0</data>
             </screenshot>
-        </meta>
+        </settings>
         <switch on_value="1" off_value="0">
           <label>Kanal 1</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
@@ -42,20 +42,20 @@ Dokumentations-Seite für das `Mapping <CometVisu/0.8.x/mapping/de>`__.
 .. widget_example::
     :hide-source: true
 
-        <meta>
+        <settings>
             <screenshot name="switch_mapping">
                 <caption>Einfacher Switch</caption>
                 <data address="1/4/0">0</data>
             </screenshot>
-        </meta>
-        <cv-meta>
+        </settings>
+        <meta>
             <mappings>
                 <mapping name="OnOff">
                     <entry value="0">Aus</entry>
                     <entry value="1">An</entry>
                 </mapping>
             </mappings>
-        </cv-meta>
+        </meta>
         <switch on_value="1" off_value="0" mapping="OnOff">
           <label>Kanal 1</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
@@ -68,20 +68,20 @@ gesetzt werden (z.B. An in rot und Aus in Grün)
 .. widget_example::
     :hide-source: true
 
-        <meta>
+        <settings>
             <screenshot name="switch_styling">
                 <caption>Einfacher Switch</caption>
                 <data address="1/4/0">0</data>
             </screenshot>
-        </meta>
-        <cv-meta>
+        </settings>
+        <meta>
             <stylings>
                 <styling name="RedGreen">
                     <entry value="1">red</entry>
                     <entry value="0">green</entry>
                 </styling>
             </stylings>
-        </cv-meta>
+        </meta>
         <switch on_value="1" off_value="0" styling="RedGreen">
           <label>Kanal 1</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
@@ -93,12 +93,12 @@ Natürlich kann man auch beides gleichzeitig nutzen:
 .. widget_example::
     :hide-source: true
 
-    <meta>
+    <settings>
         <screenshot name="switch_mapping_styling">
             <data address="1/4/0">0</data>
         </screenshot>
-    </meta>
-    <cv-meta>
+    </settings>
+    <meta>
         <mappings>
             <mapping name="OnOff">
                 <entry value="0">Aus</entry>
@@ -111,7 +111,7 @@ Natürlich kann man auch beides gleichzeitig nutzen:
                 <entry value="0">green</entry>
             </styling>
         </stylings>
-    </cv-meta>
+    </meta>
     <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen">
         <label>Kanal 1</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
@@ -163,11 +163,10 @@ Elemente
     +-------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-.. widget_example::
+.. widget_example:: <caption>Elemente im Editor</caption>
     :editor: elements
     :scale: 75
 
-        <caption>Elemente im Editor</caption>
         <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen" bind_click_to_widget="true">
           <layout colspan="4" />
           <label>Kanal 1<icon name="control_on_off"/></label>
@@ -189,12 +188,12 @@ Hier der minimale Beispielcode der das switch Widget aus dem folgenden Screensho
 
 .. widget_example::
 
-        <meta>
+        <settings>
             <screenshot name="switch_simple">
                 <caption>Einfacher Switch</caption>
                 <data address="1/4/0">0</data>
             </screenshot>
-        </meta>
+        </settings>
         <switch on_value="1" off_value="0">
           <label>Kanal 1</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
@@ -215,13 +214,13 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
 
 .. widget_example::
 
-        <meta>
+        <settings>
             <screenshot name="switch_complete">
                 <caption>Switch mit mapping + styling</caption>
                 <data address="1/4/0">1</data>
             </screenshot>
-        </meta>
-        <cv-meta>
+        </settings>
+        <meta>
             <mappings>
                 <mapping name="OnOff">
                     <entry value="0">Aus</entry>
@@ -234,7 +233,7 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
                     <entry value="0">green</entry>
                 </styling>
             </stylings>
-        </cv-meta>
+        </meta>
         <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen" bind_click_to_widget="true">
           <label>Kanal 1<icon name="control_on_off"/></label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>

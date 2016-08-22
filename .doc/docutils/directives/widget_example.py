@@ -118,13 +118,12 @@ class WidgetExampleDirective(Directive):
             xml = etree.fromstring("<root>%s</root>" % source)
             for child in xml:
                 if etree.iselement(child):
-                    if child.tag == "meta":
+                    if child.tag == "settings":
                         # meta settings
                         meta = child
-                    elif child.tag == "cv-meta":
+                    elif child.tag == "meta":
                         # config meta settings
                         cv_meta = child
-                        cv_meta.tag = "meta"
                     elif child.tag == "caption":
                         global_caption = child.text
                     else:

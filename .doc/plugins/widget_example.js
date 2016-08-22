@@ -82,10 +82,9 @@ function traverseElements(rootNode, visuConfigParts) {
   };
   rootNode.childNodes().forEach(function(child) {
     if (child.type() == "element") {
-      if (child.name() == "cv-meta") {
+      if (child.name() == "meta") {
         // this needs to to placed in the configs meta part
         res.metaNode = child;
-        child.name("meta");
         visuConfigParts.meta = child.toString(true);
       }
       else {
@@ -127,7 +126,7 @@ exports.handlers = {
           screenshotDir: screenshotDir
         };
 
-        if (firstChild.name() == "meta") {
+        if (firstChild.name() == "settings") {
           // read meta settings
           var shotIndex = 0;
           var globalCaption = null;

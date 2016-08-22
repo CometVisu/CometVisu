@@ -24,14 +24,14 @@
  * Use case: if you have a group of lights, you can show the number of lights currently switched on
  * and control the whole group in one widget.
  *
- * @widget_example <meta>
+ * @widget_example <settings>
  *   <caption>Example combines an info widget to show the number of lights currently switched on, and an Switch to control them</caption>
  *   <screenshot name="infoaction_lights">
  *     <data address="0/0/0">4</data>
  *     <data address="0/0/1">1</data>
  *   </screenshot>
- * </meta>
- * <cv-meta>
+ * </settings>
+ * <meta>
  *  <mappings>
  *    <mapping name="OnOff">
  *      <entry value="0">Off</entry>
@@ -44,7 +44,7 @@
  *      <entry value="1">green</entry>
  *    </styling>
  *  </stylings>
- * </cv-meta>
+ * </meta>
  * <infoaction>
  *  <layout colspan="4"/>
  *  <label>Lights</label>

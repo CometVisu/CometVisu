@@ -62,12 +62,12 @@ Hier der minimale Beispielcode der das %%%WIDGET_NAME%%% Widget aus dem folgende
 
 .. widget_example::
 
-        <meta>
+        <settings>
             <screenshot name="%%%WIDGET_NAME_LOWER%%%_simple">
                 <caption>%%%WIDGET_NAME%%%, einfaches Beispiel</caption>
                 <data address="1/4/0">0</data>
             </screenshot>
-        </meta>
+        </settings>
         <%%%WIDGET_NAME_LOWER%%%>
           <label>%%%WIDGET_NAME%%%</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
@@ -88,13 +88,13 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
 
 .. widget_example::
 
-        <meta>
+        <settings>
             <screenshot name="%%%WIDGET_NAME_LOWER%%%_complete">
                 <caption>%%%WIDGET_NAME%%% mit mapping + styling</caption>
                 <data address="1/4/0">1</data>
             </screenshot>
-        </meta>
-        <cv-meta>
+        </settings>
+        <meta>
             <mappings>
                 <mapping name="OnOff">
                     <entry value="0">Aus</entry>
@@ -107,7 +107,7 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
                     <entry value="0">green</entry>
                 </styling>
             </stylings>
-        </cv-meta>
+        </meta>
         <%%%WIDGET_NAME_LOWER%%% mapping="OnOff" styling="RedGreen">
           <label>%%%WIDGET_NAME%%%</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>

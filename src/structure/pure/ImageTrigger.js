@@ -35,7 +35,7 @@
  *  the image `icon/comet_opt_icon.svg` is shown. When the CometVisu receives '0' on address `0/0/0`,
  *  this image is hidden.
  *
- * @widget_example <meta>
+ * @widget_example <settings>
  *   <screenshot name="image_trigger">
  *     <caption>Image changed by incoming data 'blue'</caption>
  *     <data address="0/0/0">blue</data>
@@ -44,18 +44,18 @@
  *     <caption>Image changed by incoming data 'grey'</caption>
  *     <data address="0/0/0">grey</data>
  *   </screenshot>
- * </meta>
+ * </settings>
  * <imagetrigger src="icon/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
  *   <layout colspan="1" />
  *   <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
  * </imagetrigger>
  *
- * @widget_example <meta>
+ * @widget_example <settings>
  *   <caption>Disable layout width by settings it to '0', to have widget with == image width</caption>
  *   <screenshot name="image_trigger_colspan0">
  *     <data address="0/0/0">1</data>
  *   </screenshot>
- * </meta>
+ * </settings>
  * <imagetrigger src="icon/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
  *   <layout colspan="0" />
  *   <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
