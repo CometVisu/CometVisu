@@ -528,6 +528,34 @@ module.exports = function(grunt) {
             }
           }
         }
+      },
+      screenshotsSource: {
+        options: {
+          configFile: ".doc/protractor.conf.js",
+          args: {
+            params: {
+              subDir: "jsdoc"
+            },
+            capabilities: {
+              browserName: grunt.option('browserName') || 'firefox',
+              marionette: true
+            }
+          }
+        }
+      },
+      screenshotsManual: {
+        options: {
+          configFile: ".doc/protractor.conf.js",
+            args: {
+            params: {
+              subDir: "manual"
+            },
+            capabilities: {
+              browserName: grunt.option('browserName') || 'firefox',
+                marionette: true
+            }
+          }
+        }
       }
     },
 
@@ -659,7 +687,9 @@ module.exports = function(grunt) {
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
-  grunt.registerTask('api-doc', ['clean:exampleCache', 'clean:apiDoc', 'jsdoc:html', 'screenshots']);
+  grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
+  grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
+  grunt.registerTask('api-doc', ['clean:exampleCache', 'clean:apiDoc', 'jsdoc:html', 'screenshotsSource']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
