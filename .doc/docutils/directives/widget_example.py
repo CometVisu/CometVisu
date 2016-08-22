@@ -19,7 +19,7 @@
 
 import json
 from lxml import etree
-from docutils import nodes
+from docutils import nodes, statemachine
 from sphinx.util.nodes import set_source_info
 from sphinx.directives.code import container_wrapper
 from docutils.parsers.rst import directives, Directive
@@ -31,6 +31,15 @@ counters = {}
 xsd = etree.XMLSchema(etree.parse(path.join("src", "visu_config.xsd")))
 parser = etree.XMLParser(schema=xsd)
 
+
+def align(argument):
+    align_values = ('left', 'center', 'right')
+    return directives.choice(argument, align_values)
+
+
+def editor(argument):
+    align_values = ('attributes', 'elements')
+    return directives.choice(argument, align_values)
 
 class WidgetExampleDirective(Directive):
     """
@@ -80,7 +89,8 @@ class WidgetExampleDirective(Directive):
         'lineno-start': int,
         'scale': int, # scale screenshot in percent
         'hide-source': directives.unchanged, # true or false
-        'editor': directives.unchanged # true or false
+        'editor': editor,
+        'align': align
     }
     has_content = True
 
@@ -93,6 +103,19 @@ class WidgetExampleDirective(Directive):
         "content_end": '</page>',
         "end":   '</pages>'
     }
+
+    def add_caption(self, caption_string, node):
+        cnode = nodes.Element()  # anonymous container for parsing
+        sl = statemachine.StringList([caption_string], source='')
+        self.state.nested_parse(sl, self.content_offset, cnode)
+        caption = nodes.caption(caption_string, '', *cnode)
+        if 'align' in self.options:
+            caption['align'] = self.options['align']
+        else:
+            caption['align'] = 'center'
+        print(caption)
+        node += caption
+
 
     def run(self):
         cv_meta = None
@@ -111,7 +134,6 @@ class WidgetExampleDirective(Directive):
             counters[name] += 1
         design = "metal"
 
-        #print("Source: '%s'" % source)
         visu_config_parts = self.config_parts.copy()
         try:
             # we need one surrouding element to prevent parse errors
@@ -243,6 +265,12 @@ class WidgetExampleDirective(Directive):
                 options['alt'] = shot['caption']
 
             image_node = nodes.image(rawsource=shot['name'], **options)
+            if 'align' in self.options:
+                image_node['align'] = self.options['align']
+            else:
+                image_node['align'] = 'center'
+            if not show_source and global_caption and len(settings['screenshots']) == 1:
+                self.add_caption(global_caption, image_node)
             res_nodes.append(image_node)
 
         if 'hide-source' in self.options and show_source:

@@ -38,7 +38,7 @@ class BaseDirective(Directive):
     def init_locale(self):
         #locale = self.state_machine.document.settings.language_code
         # this is a hack, but as language_code settings returns 'en' its the only known way to get the locale
-        self.locale = self.state_machine.document.settings._source.split(path.sep +"rst", 1)[0].split(path.sep)[-1]
+        self.locale = self.state_machine.document.settings._source.split(path.sep +"manual" + path.sep, 1)[1].split(path.sep)[0]
         t = gettext.translation('messages', localedir='locale', languages=[self.locale])
         t.install()
 

@@ -163,10 +163,11 @@ Elemente
     +-------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-.. widget_example:: <caption>Elemente im Editor</caption>
+.. widget_example::
     :editor: elements
     :scale: 75
 
+        <caption>Elemente im Editor</caption>
         <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen" bind_click_to_widget="true">
           <layout colspan="4" />
           <label>Kanal 1<icon name="control_on_off"/></label>

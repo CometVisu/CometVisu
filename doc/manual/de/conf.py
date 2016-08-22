@@ -4,7 +4,7 @@ import json
 import sphinx_rtd_theme
 import sys, os
 
-root_dir = os.path.abspath(os.path.join('..', '..', '..', '..',))
+root_dir = os.path.abspath(os.path.join('..', '..', '..'))
 
 extensions_path = os.path.join(root_dir, '.doc', 'docutils', 'directives')
 
