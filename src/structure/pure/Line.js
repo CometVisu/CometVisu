@@ -22,9 +22,9 @@
  * A line tag is used to display a horizontal line in the browser to allow for a grouped and thereby tidy display of
  * elements on one page. To specify the width of the line an optional &lt;layout/&gt;-child can be added.
  *
- * @widget_example <meta selector="hr">
+ * @widget_example <settings selector="hr">
  *   <caption>A line tag which uses 50% of the screen size (6 of 12 available columns)</caption>
- * </meta>
+ * </settings>
  * <line><layout colspan="6"/></line>
  *
  * @module structure/pure/Line

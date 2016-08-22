@@ -20,12 +20,12 @@
 
 /**
  *
- * @widget_example <meta>
+ * @widget_example <settings>
  *   <caption>Show temperature in degree celcius</caption>
  *   <screenshot name="info_temp">
  *     <data address="0/0/0">19</data>
  *   </screenshot>
- * </meta>
+ * </settings>
  * <info format="%.1f °C">
  *   <label>outside temperature</label>
  *   <address transform="DPT:9.001">0/0/0</address>

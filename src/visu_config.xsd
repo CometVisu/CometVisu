@@ -273,7 +273,7 @@
   <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">use the whole widget area to react on click events</xsd:documentation>
-	  <xsd:documentation xml:lang="de">Beim aktivieren dieser Option wird die gesammte Widget Fläche als Schaltfläche genutzt</xsd:documentation>
+	  <xsd:documentation xml:lang="de">Beim aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
   
@@ -452,7 +452,12 @@
       <xsd:element name="formula" type="xsd:string" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="entry" type="entry" minOccurs="0" maxOccurs="unbounded" />
     </xsd:sequence>
-    <xsd:attribute name="name" type="xsd:string" use="required" />
+    <xsd:attribute name="name" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Name of the mapping</xsd:documentation>
+        <xsd:documentation xml:lang="de">Name des Mappings</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="stylings">

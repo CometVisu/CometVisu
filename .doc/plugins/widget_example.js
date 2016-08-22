@@ -18,12 +18,35 @@ var configParts = {
   end :   '</pages>'
 };
 
-var cacheDir = path.join("cache", "widget_examples");
-try {
-  fs.statSync(cacheDir);
-} catch(e) {
-  fs.mkdirSync(cacheDir, "0744");
-}
+var createDir = function(dir) {
+  try {
+    fs.statSync(dir);
+  } catch(e) {
+    var create = [dir];
+    var parts = dir.split(path.sep);
+    parts.pop();
+    var parentDir = parts.join(path.sep);
+    var exists = false;
+    while(!exists && parentDir) {
+      try {
+        fs.statSync(parentDir);
+        exists = true;
+      } catch(e) {
+        create.unshift(parentDir);
+        parts = parentDir.split(path.sep);
+        parts.pop();
+        parentDir = parts.join(path.sep);
+      }
+    }
+    create.forEach(function(newDir) {
+      fs.mkdirSync(newDir, "0744");
+    });
+  }
+};
+
+var cacheDir = path.join("cache", "widget_examples", "jsdoc");
+var screenshotDir = path.join("out", "api", "examples");
+createDir(cacheDir);
 
 var schemaString = fs.readFileSync(path.join("src", "visu_config.xsd"), "utf-8");
 var schema = xsd.parse(schemaString);
@@ -36,7 +59,7 @@ function getCaptionString(globalCaption, screenshots) {
       divStyle += " clear: left";
     }
     res += '<div style="'+divStyle+'">'+
-      '<img id="'+screenshots[i].name+'" src="../examples/'+screenshots[i].name+'.png"';
+      '<img id="'+screenshots[i].name+'" src="examples/'+screenshots[i].name+'.png"';
     if (screenshots[i].caption) {
       res += ' alt="'+screenshots[i].caption+'" title="'+screenshots[i].caption+' ">';
       res += '<label style="margin-left: 10px; clear: left" for="' + screenshots[i].name + '">' + screenshots[i].caption + '</label>';
@@ -59,10 +82,9 @@ function traverseElements(rootNode, visuConfigParts) {
   };
   rootNode.childNodes().forEach(function(child) {
     if (child.type() == "element") {
-      if (child.name() == "cv-meta") {
+      if (child.name() == "meta") {
         // this needs to to placed in the configs meta part
         res.metaNode = child;
-        child.name("meta");
         visuConfigParts.meta = child.toString(true);
       }
       else {
@@ -100,10 +122,11 @@ exports.handlers = {
         var design = "metal";
         var settings = {
           selector: ".widget_container",
-          screenshots: []
+          screenshots: [],
+          screenshotDir: screenshotDir
         };
 
-        if (firstChild.name() == "meta") {
+        if (firstChild.name() == "settings") {
           // read meta settings
           var shotIndex = 0;
           var globalCaption = null;
@@ -168,7 +191,7 @@ exports.handlers = {
           // use the caption of the only screenshot we have as global caption for the example
           globalCaptionString = settings.screenshots[0].caption;
         }
-        jsdocExample = getCaptionString(globalCaptionString, settings.screenshots) + jsdocExample;
+        jsdocExample = getCaptionString(globalCaptionString, settings.screenshots) +" {@lang xml} "+ jsdocExample;
 
         e.doclet.examples.push(jsdocExample);
 

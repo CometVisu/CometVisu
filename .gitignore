@@ -5,3 +5,7 @@ CometVisu-*.zip
 node_modules/
 .idea
 *.swp
+doc/api/examples/
+/docs/
+deploy_key
+settings/keys/deploy_key
