@@ -40,10 +40,6 @@ TODO: possibility to map attribute names to links
 TODO: improve element description retrieval from XSD, possibility to extend
 TODO: transfer content from wiki
 TODO: establish structure for manual (done for widgets)
-TODO: python command line tool:
-
- * syntax check for examples
-
 TODO: cleanup, doc
 
 Optional
