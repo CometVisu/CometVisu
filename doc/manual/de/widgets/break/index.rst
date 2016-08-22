@@ -1,4 +1,5 @@
-%%%HEADLINE%%%
+Das Break Widget
+================
 
 Beschreibung
 ------------
@@ -11,81 +12,81 @@ Beschreibung
 Parameter
 ---------
 
-.. parameter_information:: %%%WIDGET_NAME_LOWER%%%
+.. parameter_information:: break
 
 .. widget_example::
     :editor: attributes
     :scale: 75
 
         <caption>Parameter im Editor</caption>
-        <%%%WIDGET_NAME_LOWER%%%>
+        <break>
           <layout colspan="4" />
           <label>Kanal 1<icon name="control_on_off"/></label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
           <address transform="DPT:1.001" mode="read">1/4/0</address>
-        </%%%WIDGET_NAME_LOWER%%%>
+        </break>
 
 
 Elemente
 --------
 
-.. elements_information:: %%%WIDGET_NAME_LOWER%%%
+.. elements_information:: break
 
 .. widget_example::
     :editor: elements
     :scale: 75
 
         <caption>Elemente im Editor</caption>
-        <%%%WIDGET_NAME_LOWER%%%>
+        <break>
           <layout colspan="4" />
-          <label>%%%WIDGET_NAME%%%</label>
+          <label>Break</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
           <address transform="DPT:1.001" mode="read">1/4/0</address>
-        </%%%WIDGET_NAME_LOWER%%%>
+        </break>
 
 XML Syntax minimal
 ------------------
 
-Alternativ kann man für das %%%WIDGET_NAME%%% Widget auch von Hand einen Eintrag in
+Alternativ kann man für das Break Widget auch von Hand einen Eintrag in
 der `visu\_config.xml <../XML-Elemente>`__ hinzufügen.
 
 .. CAUTION::
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
     werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
 
-Hier der minimale Beispielcode der das %%%WIDGET_NAME%%% Widget aus dem folgenden Screenshot erzeugt:
+Hier der minimale Beispielcode der das Break Widget aus dem folgenden Screenshot erzeugt:
 
 .. widget_example::
 
         <settings>
-            <screenshot name="%%%WIDGET_NAME_LOWER%%%_simple">
-                <caption>%%%WIDGET_NAME%%%, einfaches Beispiel</caption>
+            <screenshot name="break_simple">
+                <caption>Break, einfaches Beispiel</caption>
                 <data address="1/4/0">0</data>
             </screenshot>
         </settings>
-        <%%%WIDGET_NAME_LOWER%%%>
-          <label>%%%WIDGET_NAME%%%</label>
+        <break>
+          <label>Break</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
           <address transform="DPT:1.001" mode="read">1/4/0</address>
-        </%%%WIDGET_NAME_LOWER%%%>
+        </break>
 
 
 Die 2. address Zeile ist zwar streng genommen optional, jedoch macht
-ein %%%WIDGET_NAME%%%-Widget ohne die Rückmeldeaddresse in der Praxis keinen Sinn,
+ein Break-Widget ohne die Rückmeldeaddresse in der Praxis keinen Sinn,
 da es dann Ereignisse vom Bus (wie z.B. Zentral-Aus, Treppenlicht) nicht
 mitbekommt und den Status falsch anzeigt.
 
 XML Syntax komplett
 -------------------
 
-Hier der Beispielcode der das %%%WIDGET_NAME%%%-Widget mit den allen gezeigten
+Hier der Beispielcode der das Break-Widget mit den allen gezeigten
 Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
 
 .. widget_example::
 
         <settings>
-            <screenshot name="%%%WIDGET_NAME_LOWER%%%_complete">
-                <caption>%%%WIDGET_NAME%%% mit mapping + styling</caption>
+            <screenshot name="break_complete">
+                <caption>Break mit mapping + styling</caption>
                 <data address="1/4/0">1</data>
             </screenshot>
         </settings>
@@ -103,8 +104,8 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
                 </styling>
             </stylings>
         </meta>
-        <%%%WIDGET_NAME_LOWER%%% mapping="OnOff" styling="RedGreen">
-          <label>%%%WIDGET_NAME%%%</label>
+        <break mapping="OnOff" styling="RedGreen">
+          <label>Break</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
           <address transform="DPT:1.001" mode="read">1/4/0</address>
-        </%%%WIDGET_NAME_LOWER%%%>
+        </break>

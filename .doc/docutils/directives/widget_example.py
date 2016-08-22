@@ -113,7 +113,6 @@ class WidgetExampleDirective(Directive):
             caption['align'] = self.options['align']
         else:
             caption['align'] = 'center'
-        print(caption)
         node += caption
 
 

@@ -87,7 +87,7 @@ def create_widget_skeleton(language, widget_name, force=False):
 
     for widget_name in widgets:
         print("Generating doc source for '%s' widgetin language '%s'" % (widget_name, language))
-        target = os.path.join(root_dir, "doc", "manual", language, "rst", "widgets", widget_name.lower(), "index.rst")
+        target = os.path.join(root_dir, "doc", "manual", language, "widgets", widget_name.lower(), "index.rst")
 
         if force is False and os.path.exists(target):
             log.error("widget documentation already exists for widget '%s' in language '%s'" % (widget_name, language))
