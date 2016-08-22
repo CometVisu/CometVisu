@@ -123,14 +123,11 @@ Parameter
 
 .. parameter_information:: switch
 
-
-Parameter im Editor
--------------------
-
 .. widget_example::
     :editor: attributes
     :scale: 75
 
+        <caption>Parameter im Editor</caption>
         <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen" bind_click_to_widget="true">
           <layout colspan="4" />
           <label>Kanal 1<icon name="control_on_off"/></label>
@@ -165,13 +162,12 @@ Elemente
     |                               |                                                     | Wenn die Rückmeldung über eine zusätzliche oder separate Gruppenadresse erfolgt, müssen die oben genannten Schritte für jede Rückmeldung widerholt werden. Dabei einfach zusätzlich noch den Haken bei **readonly** setzen.                                                                                 |
     +-------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Elemente im Editor
-------------------
 
 .. widget_example::
     :editor: elements
     :scale: 75
 
+        <caption>Elemente im Editor</caption>
         <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen" bind_click_to_widget="true">
           <layout colspan="4" />
           <label>Kanal 1<icon name="control_on_off"/></label>
