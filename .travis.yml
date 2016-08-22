@@ -9,6 +9,7 @@ env:
   - ENCRYPTION_LABEL: "77daa7d0dc58"
   - COMMIT_AUTHOR_EMAIL: "generator@cometvisu.org"
 before_install:
+- xsltproc --version
 - npm install -g grunt-cli
 - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 - sudo add-apt-repository ppa:isage-dna/plantuml -y
