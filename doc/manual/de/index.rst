@@ -7,6 +7,12 @@ den eibd, bzw. knxd) oder auf alles aus der
 `OpenHAB <http://www.openhab.org/>`__-Welt. Die aktuelle Version wird
 auf `Github <http://github.com/CometVisu/CometVisu>`__ veröffentlicht.
 
+.. CAUTION::
+    Diese Dokumentation wird zu Zeit von Grund auf neu aufgebaut ist
+    daher nicht vollständig. Solange noch nicht alle Inhalte übertragen
+    worden sind, dient das bekannte `CometVisu-Wiki <http://www.cometvisu.org>`__
+    als weitere Informationsquelle.
+
 Systemvoraussetzungen
 ---------------------
 
