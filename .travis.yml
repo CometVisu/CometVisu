@@ -17,11 +17,10 @@ before_install:
 - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 - wget -O /tmp/plantuml.deb http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb
 - sudo apt-get update -q
-- sudo apt-get install gcc-5 g++-5 xsltproc
+- sudo apt-get install gcc-5 g++-5
 - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 80 --slave /usr/bin/g++ g++ /usr/bin/g++-5
 - sudo update-alternatives --set gcc /usr/bin/gcc-5
 - mkdir cache
-- xsltproc --version
 install:
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update --standalone --firefox"
