@@ -83,11 +83,6 @@ Hilfe, Beispiele und Farbwerte findet man
 `hier <http://www.z1-web.de/Webmaster-Tools-HTML-HEX_Farbcodes_Tools>`__
 oder `hier <http://de.selfhtml.org/helferlein/farben.htm>`__
 
-"Quick Start mit der CometVisu"
--------------------------------
-
-gibt es `hier <CometVisu/0.8.x/quickstart/de>`__
-
 CometVisu Konfigurationsdatei
 -----------------------------
 
@@ -130,14 +125,14 @@ Elemente für Konvertierung und Formatierung in der CometVisu
 In der CometVisu können Werte auf verschiedenste Art und Weisen
 dargestellt werden. Hierfür können genutzt werden:
 
--  `Format <CometVisu/0.8.x/format/de>`__ von Werten z.B. auf Anzahl der
+-  `Format <format>`__ von Werten z.B. auf Anzahl der
    Nachkommastellen, Einheiten etc.
--  `Mapping <CometVisu/0.8.x/mapping/de>`__ erlaubt das Ersetzen von
+-  `Mapping <mapping>`__ erlaubt das Ersetzen von
    Zahlenwerten durch Texte (z.B. An/Aus statt 1/0) und Icons. (z.B. für
    Fensterkontakte)
--  `Styling <CometVisu/0.8.x/styling/de>`__ erlaubt das wertabhängige
+-  `Styling <styling>`__ erlaubt das wertabhängige
    Färben von Werten (z.B. An in rot und Aus in Grün)
--  `Flavour <CometVisu/0.8.x/flavour/de>`__ ermöglich in einigen Designs
+-  `Flavour <flavour>`__ ermöglich in einigen Designs
    für einige Widgets noch zusätzliche Optionen.
 
 Widgets in der CometVisu
@@ -166,6 +161,9 @@ sonstiges
 
 .. toctree::
     :hidden:
+    :glob:
 
     basics/install
+    *
     widgets/index
+
