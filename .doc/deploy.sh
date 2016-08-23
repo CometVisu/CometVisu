@@ -23,7 +23,7 @@ fi
 
 
 # Save some useful information
-REPO=`git config remote.origin.url`
+REPO="https://github.com/CometVisu/cometvisu.github.io.git"
 SSH_REPO="git@github.com:CometVisu/cometvisu.github.io.git"
 SHA=`git rev-parse --verify HEAD`
 
@@ -37,9 +37,12 @@ cd ..
 # Clean out existing contents
 rm -rf out/docs**/* || exit 0
 
+ls -la out
+
 # Run our creation script
 createDocs
 
+ls -la out
 # Now let's go have some fun with the cloned repo
 cd out
 git config user.name "Travis CI"
