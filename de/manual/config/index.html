@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Konfiguration der CometVisu &mdash; CometVisu</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_override.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="CometVisu" href="../index.html"/>
+        <link rel="next" title="Flavour" href="flavour.html"/>
+        <link rel="prev" title="Installation auf dem Raspberry PI" href="../install/raspberry.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CometVisu
+          
+
+          
+            
+            <img src="../_static/comet_webapp_icon_android_48.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.10.0-dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Konfiguration der CometVisu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flavour.html">Flavour</a></li>
+<li class="toctree-l3"><a class="reference internal" href="format.html">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mapping.html">Mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="styling.html">Styling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="widgets/index.html">Fest eingebaute Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#widgets-zum-umschalten-des-designs-der-cometvisu">Widgets zum Umschalten des Designs der CometVisu</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sonstiges">sonstiges</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CometVisu</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Konfiguration der CometVisu</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="konfiguration-der-cometvisu">
+<h1>Konfiguration der CometVisu<a class="headerlink" href="#konfiguration-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die CometVisu Konfigurationsdatei ist eine XML Datei, die im
+Unterverzeichnis &#8220;config&#8221; der CometVisu-Installation (normal also unter
+/var/www/visu/config) liegt.</p>
+<p>Der Editor bearbeitet direkt diese Konfigurationsdatei. Hierfür muss die
+Konfigurationsdatei für den Webserver Prozess (oder alle Prozesse)
+beschreibar sein.</p>
+<p>Die Konfiguration ist XML formatiert und kann von fortgeschrittenen
+Anwendern auch direkt bearbeitet werden. (Man sollte dafür dann einen
+Editor nutzen, der mit XML umgehen kann und/oder die Syntax einfärbt
+(z.B. Textwrangler auf MacOSX, WordPad++ oder MS XML Editor 2007 unter
+Windows und unter Linux z.B. vi mit &#8221;:syntax on&#8221;).</p>
+<p>Allgemeine Informationen über das CometVisu XML Format findet man
+<a class="reference external" href="CometVisu/XML-Elemente">hier</a>, Informationen zu den einzelnen
+Widgets in den jeweiligen Unterseiten.</p>
+<p>Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch
+sollte man die Seite neu laden und den Browser-Cache löschen.</p>
+<p>Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser
+eine Fehlermeldung angezeigt. Diese gibt im Normalfall schon genaue
+Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
+Darstellung) auch mit dem Link &#8220;Check Config&#8221; in der Fusszeile oder
+durch Anhängen von check_config.php an den URL erzwingen.</p>
+<div class="section" id="seiten-und-struktur-der-cometvisu">
+<h2>Seiten und Struktur der CometVisu<a class="headerlink" href="#seiten-und-struktur-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Zu tun</p>
+<p class="last">Beschreibung</p>
+</div>
+</div>
+<div class="section" id="navigationselemente-in-der-cometvisu">
+<h2>Navigationselemente in der CometVisu<a class="headerlink" href="#navigationselemente-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Zu tun</p>
+<p class="last">Beschreibung</p>
+</div>
+</div>
+<div class="section" id="elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">
+<h2>Elemente für Konvertierung und Formatierung in der CometVisu<a class="headerlink" href="#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In der CometVisu können Werte auf verschiedenste Art und Weisen
+dargestellt werden. Hierfür können genutzt werden:</p>
+<div class="toctree-wrapper compound">
+</div>
+<ul class="simple">
+<li><a class="reference internal" href="format.html"><span class="doc">Format</span></a> von Werten z.B. auf Anzahl der
+Nachkommastellen, Einheiten etc.</li>
+<li><a class="reference internal" href="mapping.html"><span class="doc">Mapping</span></a> erlaubt das Ersetzen von
+Zahlenwerten durch Texte (z.B. An/Aus statt 1/0) und Icons. (z.B. für
+Fensterkontakte)</li>
+<li><a class="reference internal" href="styling.html"><span class="doc">Styling</span></a> erlaubt das wertabhängige
+Färben von Werten (z.B. An in rot und Aus in Grün)</li>
+<li><a class="reference internal" href="flavour.html"><span class="doc">Flavour</span></a> ermöglich in einigen Designs
+für einige Widgets noch zusätzliche Optionen.</li>
+</ul>
+</div>
+<div class="section" id="widgets-in-der-cometvisu">
+<h2>Widgets in der CometVisu<a class="headerlink" href="#widgets-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
+zusammengebaut wird. Diese können entweder fest in der CometVisu
+eingebaut sein oder per Plugin-Schnittstelle intergriert.</p>
+<p>Die Beschreibung der Widgets kann man hier nachlesen:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="widgets/index.html">Fest eingebaute Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets/index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets/index.html#widgets-zum-umschalten-des-designs-der-cometvisu">Widgets zum Umschalten des Designs der CometVisu</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="cometvisu-beispiele">
+<h2>CometVisu - Beispiele<a class="headerlink" href="#cometvisu-beispiele" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Zu tun</p>
+<p class="last">Hinzufügen</p>
+</div>
+</div>
+<div class="section" id="sonstiges">
+<h2>sonstiges<a class="headerlink" href="#sonstiges" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="admonition-todo admonition" id="index-3">
+<p class="first admonition-title">Zu tun</p>
+<p class="last">Hinzufügen der alten Inhalte (RRD-Beispiele, Animierter Hydraulikplan)</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="flavour.html" class="btn btn-neutral float-right" title="Flavour" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../install/raspberry.html" class="btn btn-neutral" title="Installation auf dem Raspberry PI" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2010-2016 Christian Mayer and the CometVisu contributers.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

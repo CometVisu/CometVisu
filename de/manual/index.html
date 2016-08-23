@@ -33,7 +33,7 @@
 
   
     <link rel="top" title="CometVisu" href="#"/>
-        <link rel="next" title="Installation der CometVisu" href="basics/install.html"/> 
+        <link rel="next" title="Installation der CometVisu" href="install/index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,8 +86,8 @@
             
             
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="basics/install.html">Installation der CometVisu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="widgets/index.html">Widgets in der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config/index.html">Konfiguration der CometVisu</a></li>
 </ul>
 
             
@@ -186,14 +186,14 @@ Bedürfnissen anpassen</p>
 <div class="section" id="update-der-cometvisu">
 <h2>Update der CometVisu<a class="headerlink" href="#update-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
 <p>falls eine Version 0.8 schon installiert war kann die Installation
-direkt aktualsiert werden auf dem
+direkt aktualisiert werden auf dem
 <a class="reference external" href="CometVisu/0.8.x/manual/updatewiregate/de">WireGate</a> oder <a class="reference external" href="CometVisu/0.8.x/manual/updateother/de">anderen
 Installationen</a></p>
 </div>
 <div class="section" id="cometvisu-designs">
 <h2>CometVisu-Designs<a class="headerlink" href="#cometvisu-designs" title="Link zu dieser Überschrift">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="CometVisu/demo_config/swiss/de">Metal</a> das wohl beliebsteste
+<li><a class="reference external" href="CometVisu/demo_config/swiss/de">Metal</a> das wohl beliebteste
 Design</li>
 <li><a class="reference external" href="CometVisu/0.8.x/designs/pure/de/">Pure</a></li>
 <li><a class="reference external" href="CometVisu/0.8.x/designs/diskreet/de/">Diskreet</a></li>
@@ -212,80 +212,6 @@ angegeben.</p>
 <p>Hilfe, Beispiele und Farbwerte findet man
 <a class="reference external" href="http://www.z1-web.de/Webmaster-Tools-HTML-HEX_Farbcodes_Tools">hier</a>
 oder <a class="reference external" href="http://de.selfhtml.org/helferlein/farben.htm">hier</a></p>
-</div>
-<div class="section" id="quick-start-mit-der-cometvisu">
-<h2>&#8220;Quick Start mit der CometVisu&#8221;<a class="headerlink" href="#quick-start-mit-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
-<p>gibt es <a class="reference external" href="CometVisu/0.8.x/quickstart/de">hier</a></p>
-</div>
-<div class="section" id="cometvisu-konfigurationsdatei">
-<h2>CometVisu Konfigurationsdatei<a class="headerlink" href="#cometvisu-konfigurationsdatei" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Die CometVisu Konfigurationsdatei ist eine XML Datei, die im
-Unterverzeichnis &#8220;config&#8221; der CometVisu-Installation (normal also unter
-/var/www/visu/config) liegt.</p>
-<p>Der Editor bearbeitet direkt diese Konfigurationsdatei. Hierfür muss die
-Konfigurationsdatei für den Webserver Prozess (oder alle Prozesse)
-beschreibar sein.</p>
-<p>Die Konfiguration ist XML formatiert und kann von fortgeschrittenen
-Anwendern auch direkt bearbeitet werden. (Man sollte dafür dann einen
-Editor nutzen, der mit XML umgehen kann und/oder die Syntax einfärbt
-(z.B. Textwrangler auf MacOSX, WordPad++ oder MS XML Editor 2007 unter
-Windows und unter Linux z.B. vi mit &#8221;:syntax on&#8221;).</p>
-<p>Allgemeine Informationen über das CometVisu XML Format findet man
-<a class="reference external" href="CometVisu/XML-Elemente">hier</a>, Informationen zu den einzelnen
-Widgets in den jeweiligen Unterseiten.</p>
-<p>Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch
-sollte man die Seite neu laden und den Browser-Cache löschen.</p>
-<p>Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser
-eine Fehlermeldung angezeigt. Diese gibt im Normalfall schon genaue
-Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
-Darstellung) auch mit dem Link &#8220;Check Config&#8221; in der Fusszeile oder
-durch Anhängen von check_config.php an den URL erzwingen.</p>
-</div>
-<div class="section" id="seiten-und-struktur-der-cometvisu">
-<h2>Seiten und Struktur der CometVisu<a class="headerlink" href="#seiten-und-struktur-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
-</div>
-<div class="section" id="navigationselemente-in-der-cometvisu">
-<h2>Navigationselemente in der CometVisu<a class="headerlink" href="#navigationselemente-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
-</div>
-<div class="section" id="elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">
-<h2>Elemente für Konvertierung und Formatierung in der CometVisu<a class="headerlink" href="#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
-<p>In der CometVisu können Werte auf verschiedenste Art und Weisen
-dargestellt werden. Hierfür können genutzt werden:</p>
-<ul class="simple">
-<li><a class="reference external" href="CometVisu/0.8.x/format/de">Format</a> von Werten z.B. auf Anzahl der
-Nachkommastellen, Einheiten etc.</li>
-<li><a class="reference external" href="CometVisu/0.8.x/mapping/de">Mapping</a> erlaubt das Ersetzen von
-Zahlenwerten durch Texte (z.B. An/Aus statt 1/0) und Icons. (z.B. für
-Fensterkontakte)</li>
-<li><a class="reference external" href="CometVisu/0.8.x/styling/de">Styling</a> erlaubt das wertabhängige
-Färben von Werten (z.B. An in rot und Aus in Grün)</li>
-<li><a class="reference external" href="CometVisu/0.8.x/flavour/de">Flavour</a> ermöglich in einigen Designs
-für einige Widgets noch zusätzliche Optionen.</li>
-</ul>
-</div>
-<div class="section" id="widgets-in-der-cometvisu">
-<h2>Widgets in der CometVisu<a class="headerlink" href="#widgets-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
-zusammengebaut wird. Diese können entweder fest in der CometVisu
-eingebaut sein oder per Plugin-Schnittstelle intergriert.</p>
-<p>Die Beschreibung der Widgets kann man hier nachlesen:</p>
-<ul class="simple">
-<li><a class="reference external" href="widgets/">Widgetbeschreibungen</a></li>
-</ul>
-</div>
-<div class="section" id="cometvisu-beispiele">
-<h2>CometVisu - Beispiele<a class="headerlink" href="#cometvisu-beispiele" title="Link zu dieser Überschrift">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="CometVisu/0.8.0/demo_config/de">findet man hier</a></li>
-</ul>
-</div>
-<div class="section" id="sonstiges">
-<h2>sonstiges<a class="headerlink" href="#sonstiges" title="Link zu dieser Überschrift">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="CometVisu/0.8.x/etc/rrd/de/">RRD Beispiele</a></li>
-<li><a class="reference external" href="CometVisu/0.8.x/Howto:_Animierter_Hydraulikplan">Howto: Animierter
-Hydraulikplan</a></li>
-</ul>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -298,7 +224,7 @@ Hydraulikplan</a></li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="basics/install.html" class="btn btn-neutral float-right" title="Installation der CometVisu" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="install/index.html" class="btn btn-neutral float-right" title="Installation der CometVisu" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
