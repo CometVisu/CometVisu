@@ -2,13 +2,13 @@
 set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH="develop"
-TARGET_BRANCH="gh-pages"
+TARGET_BRANCH="master"
 
 function createDocs {
-  sphinx-build -b html doc/manual/de out/de/manual
-  grunt jsdoc:html --targetDir=out/api
+  sphinx-build -b html doc/manual/de out/docs/de/manual
+  grunt jsdoc:html --targetDir=out/docs/api
   grunt screenshots --browserName=chrome
-  sphinx-build -b html doc/manual/de out/de/manual
+  sphinx-build -b html doc/manual/de out/docs/de/manual
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
@@ -24,7 +24,7 @@ fi
 
 # Save some useful information
 REPO=`git config remote.origin.url`
-SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
+SSH_REPO="git@github.com:CometVisu/cometvisu.github.io.git"
 SHA=`git rev-parse --verify HEAD`
 
 # Clone the existing gh-pages for this repo into out/
@@ -35,7 +35,7 @@ git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
 # Clean out existing contents
-rm -rf out/**/* || exit 0
+rm -rf out/docs**/* || exit 0
 
 # Run our creation script
 createDocs
