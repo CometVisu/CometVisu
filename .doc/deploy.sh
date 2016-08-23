@@ -37,17 +37,14 @@ cd ..
 # Clean out existing contents
 rm -rf out/**/* || exit 0
 
-ls -la out
-
 # Run our creation script
 createDocs
 
-ls -la out
 # Now let's go have some fun with the cloned repo
 cd out
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
-git diff
+
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 if [ -z `git diff --exit-code` ]; then
     echo "No changes to the output on this push; exiting."
