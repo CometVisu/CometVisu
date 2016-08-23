@@ -9,7 +9,7 @@ cache:
   - node_modules
 env:
   global:
-  - ENCRYPTION_LABEL: "39e6005b7253"
+  - ENCRYPTION_LABEL: "4c79fec0aeb9"
   - COMMIT_AUTHOR_EMAIL: "generator@cometvisu.org"
   - CV_BROWSER=Chrome CV_VERSION=stable
 before_install:

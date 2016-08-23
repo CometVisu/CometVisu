@@ -2,7 +2,7 @@
 set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH="develop"
-TARGET_BRANCH="master"
+TARGET_BRANCH="gh-pages"
 
 function createDocs {
   sphinx-build -b html doc/manual/de out/de/manual
@@ -23,8 +23,8 @@ fi
 
 
 # Save some useful information
-REPO="https://github.com/CometVisu/cometvisu.github.io.git"
-SSH_REPO="git@github.com:CometVisu/cometvisu.github.io.git"
+REPO=`git config remote.origin.url`
+SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
 
 # Clone the existing gh-pages for this repo into out/
@@ -54,7 +54,6 @@ fi
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
 git add --all .
-git diff
 git commit -m "Deploy to GitHub Pages: ${SHA}"
 
 # Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
