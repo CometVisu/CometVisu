@@ -1,5 +1,3 @@
-Widgets in der CometVisu
-========================
 
 Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
 zusammengebaut wird. Diese können entweder fest in der CometVisu
@@ -10,7 +8,7 @@ Gruppe (group). Durch Auswahl des Widget aus dem Drop-Down Menü und
 anschließendem Klick auf das + - Zeichen ist das Widget eingefügt und
 kann wie folgt konfiguriert werden;
 
-fest eingebaute Widgets
+Fest eingebaute Widgets
 -----------------------
 
 +-----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -134,8 +132,8 @@ also z.B.:
 
 weitere Plugins befinden sich in der Entwicklung.
 
-Widget zum Umschalten des Design der CometVisu
-----------------------------------------------
+Widgets zum Umschalten des Designs der CometVisu
+------------------------------------------------
 
 +------------------------------------+--------------------------+
 | Widget                             | Beschreibung             |

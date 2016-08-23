@@ -3,9 +3,16 @@ Installation der CometVisu
 
 Einfache Installation:
 
--  `Allgemein <CometVisu/Installation/de>`__
--  `auf Wiregate <CometVisu/Installation/WireGate/de>`__
--  `auf Raspberry Pi <CometVisu/Installation/Raspberry_Pi/de>`__
+-  :doc:`Allgemein <allgemein>`
+-  :doc:`auf Wiregate <wiregate>`
+-  :doc:`auf Raspberry Pi <raspberry>`
+
+.. toctree::
+    :hidden:
+
+    allgemein
+    wiregate
+    raspberry
 
 Schwieriger, nur für Fortgeschrittene:
 
