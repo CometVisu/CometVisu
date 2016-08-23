@@ -61,7 +61,7 @@ Installationen <CometVisu/0.8.x/manual/updateother/de>`__
 CometVisu-Designs
 -----------------
 
--  `Metal <CometVisu/demo_config/swiss/de>`__ das wohl beliebsteste
+-  `Metal <CometVisu/demo_config/swiss/de>`__ das wohl beliebteste
    Design
 -  `Pure <CometVisu/0.8.x/designs/pure/de/>`__
 -  `Diskreet <CometVisu/0.8.x/designs/diskreet/de/>`__
@@ -83,12 +83,10 @@ Hilfe, Beispiele und Farbwerte findet man
 `hier <http://www.z1-web.de/Webmaster-Tools-HTML-HEX_Farbcodes_Tools>`__
 oder `hier <http://de.selfhtml.org/helferlein/farben.htm>`__
 
-
-
 .. toctree::
     :hidden:
     :glob:
 
-    basics/install
+    install/index
     config/index
 
