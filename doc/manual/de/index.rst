@@ -54,7 +54,7 @@ Update der CometVisu
 --------------------
 
 falls eine Version 0.8 schon installiert war kann die Installation
-direkt aktualsiert werden auf dem
+direkt aktualisiert werden auf dem
 `WireGate <CometVisu/0.8.x/manual/updatewiregate/de>`__ oder `anderen
 Installationen <CometVisu/0.8.x/manual/updateother/de>`__
 
@@ -83,80 +83,6 @@ Hilfe, Beispiele und Farbwerte findet man
 `hier <http://www.z1-web.de/Webmaster-Tools-HTML-HEX_Farbcodes_Tools>`__
 oder `hier <http://de.selfhtml.org/helferlein/farben.htm>`__
 
-CometVisu Konfigurationsdatei
------------------------------
-
-Die CometVisu Konfigurationsdatei ist eine XML Datei, die im
-Unterverzeichnis "config" der CometVisu-Installation (normal also unter
-/var/www/visu/config) liegt.
-
-Der Editor bearbeitet direkt diese Konfigurationsdatei. Hierfür muss die
-Konfigurationsdatei für den Webserver Prozess (oder alle Prozesse)
-beschreibar sein.
-
-Die Konfiguration ist XML formatiert und kann von fortgeschrittenen
-Anwendern auch direkt bearbeitet werden. (Man sollte dafür dann einen
-Editor nutzen, der mit XML umgehen kann und/oder die Syntax einfärbt
-(z.B. Textwrangler auf MacOSX, WordPad++ oder MS XML Editor 2007 unter
-Windows und unter Linux z.B. vi mit ":syntax on").
-
-Allgemeine Informationen über das CometVisu XML Format findet man
-`hier <CometVisu/XML-Elemente>`__, Informationen zu den einzelnen
-Widgets in den jeweiligen Unterseiten.
-
-Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch
-sollte man die Seite neu laden und den Browser-Cache löschen.
-
-Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser
-eine Fehlermeldung angezeigt. Diese gibt im Normalfall schon genaue
-Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
-Darstellung) auch mit dem Link "Check Config" in der Fusszeile oder
-durch Anhängen von check\_config.php an den URL erzwingen.
-
-Seiten und Struktur der CometVisu
----------------------------------
-
-Navigationselemente in der CometVisu
-------------------------------------
-
-Elemente für Konvertierung und Formatierung in der CometVisu
-------------------------------------------------------------
-
-In der CometVisu können Werte auf verschiedenste Art und Weisen
-dargestellt werden. Hierfür können genutzt werden:
-
--  `Format <format>`__ von Werten z.B. auf Anzahl der
-   Nachkommastellen, Einheiten etc.
--  `Mapping <mapping>`__ erlaubt das Ersetzen von
-   Zahlenwerten durch Texte (z.B. An/Aus statt 1/0) und Icons. (z.B. für
-   Fensterkontakte)
--  `Styling <styling>`__ erlaubt das wertabhängige
-   Färben von Werten (z.B. An in rot und Aus in Grün)
--  `Flavour <flavour>`__ ermöglich in einigen Designs
-   für einige Widgets noch zusätzliche Optionen.
-
-Widgets in der CometVisu
-------------------------
-
-Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
-zusammengebaut wird. Diese können entweder fest in der CometVisu
-eingebaut sein oder per Plugin-Schnittstelle intergriert.
-
-Die Beschreibung der Widgets kann man hier nachlesen:
-
--  `Widgetbeschreibungen <widgets/>`__
-
-CometVisu - Beispiele
----------------------
-
--  `findet man hier <CometVisu/0.8.0/demo_config/de>`__
-
-sonstiges
----------
-
--  `RRD Beispiele <CometVisu/0.8.x/etc/rrd/de/>`__
--  `Howto: Animierter
-   Hydraulikplan <CometVisu/0.8.x/Howto:_Animierter_Hydraulikplan>`__
 
 
 .. toctree::
@@ -164,6 +90,5 @@ sonstiges
     :glob:
 
     basics/install
-    *
-    widgets/index
+    config/index
 
