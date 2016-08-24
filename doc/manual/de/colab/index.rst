@@ -2,7 +2,7 @@ Hilf dem CometVisu Projekt
 ==========================
 
 Die Mitarbeit am CometVisu Projekt ist problemlos möglich und auch höchst willkommen!
-Hierbei sind nicht nur Entwickler angesprochen, die neue Features oder Bufgixes beitragen möchten, sondern
+Hierbei sind nicht nur Entwickler angesprochen, die neue Features oder Bugfixes beitragen möchten, sondern
 auch Anwender, die ihre eigenen Erfahrungen in die Verbesserung der Dokumtenation einfliessen lassen möchten.
 
 Allgemeine Vorbereitungen
