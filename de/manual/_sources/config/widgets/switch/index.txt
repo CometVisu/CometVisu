@@ -22,7 +22,6 @@ dieser können z.B. Ein/Aus Schalter realisiert werden.
 
         <settings>
             <screenshot name="switch">
-                <caption>Einfacher Switch</caption>
                 <data address="1/4/0">0</data>
             </screenshot>
         </settings>
@@ -44,7 +43,6 @@ Dokumentations-Seite für das `Mapping <CometVisu/0.8.x/mapping/de>`__.
 
         <settings>
             <screenshot name="switch_mapping">
-                <caption>Einfacher Switch</caption>
                 <data address="1/4/0">0</data>
             </screenshot>
         </settings>
@@ -70,7 +68,6 @@ gesetzt werden (z.B. An in rot und Aus in Grün)
 
         <settings>
             <screenshot name="switch_styling">
-                <caption>Einfacher Switch</caption>
                 <data address="1/4/0">0</data>
             </screenshot>
         </settings>
@@ -118,8 +115,21 @@ Natürlich kann man auch beides gleichzeitig nutzen:
         <address transform="DPT:1.001" mode="read">1/4/0</address>
     </switch>
 
-Parameter
----------
+Einstellungen
+-------------
+
+Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
+Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: :ref:`visu-config-details`.
+
+Das Verhalten und Aussehen des Switch-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
+Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente des Switch-Widgets. In den Screenshots sieht man, wie
+beides über den :ref:`Editor <editor>` bearbeitet werden kann.
+
+Nur die mit * gekennzeichneten Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+daher weg gelassen werden.
+
+
+**Attribute**
 
 .. parameter_information:: switch
 
@@ -127,7 +137,7 @@ Parameter
     :editor: attributes
     :scale: 75
 
-        <caption>Parameter im Editor</caption>
+        <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
         <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen" bind_click_to_widget="true">
           <layout colspan="4" />
           <label>Kanal 1<icon name="control_on_off"/></label>
@@ -136,8 +146,7 @@ Parameter
         </switch>
 
 
-Elemente
---------
+**Elemente**
 
 .. elements_information:: switch
 
@@ -240,3 +249,7 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
           <address transform="DPT:1.001" mode="read">1/4/0</address>
         </switch>
+
+.. rubric:: Footnotes
+
+.. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.

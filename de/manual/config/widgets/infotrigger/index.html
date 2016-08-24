@@ -127,13 +127,13 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#widgets-zum-umschalten-des-designs-der-cometvisu">Widgets zum Umschalten des Designs der CometVisu</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#sonstiges">sonstiges</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../colab/index.html">Hilf dem CometVisu Projekt</a></li>
 </ul>
 
             
@@ -369,15 +369,13 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das InfoTrigger Widget aus dem folgenden Screenshot erzeugt:</p>
 <img alt="InfoTrigger, einfaches Beispiel" class="align-center" src="../../../_images/infotrigger_simple.png" />
-<div class="literal-block-wrapper container" id="infotrigger-einfaches-beispiel">
-<div class="code-block-caption"><span class="caption-text">InfoTrigger, einfaches Beispiel</span><a class="headerlink" href="#infotrigger-einfaches-beispiel" title="Link zu diesem Quellcode">¶</a></div>
+<p class="caption"><span class="caption-text">InfoTrigger, einfaches Beispiel</span></p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;infotrigger&gt;</span>
   <span class="nt">&lt;label&gt;</span>InfoTrigger<span class="nt">&lt;/label&gt;</span>
   <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>1/1/0<span class="nt">&lt;/address&gt;</span>
   <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/address&gt;</span>
 <span class="nt">&lt;/infotrigger&gt;</span>
 </pre></div>
-</div>
 </div>
 <p>Die 2. address Zeile ist zwar streng genommen optional, jedoch macht
 ein InfoTrigger-Widget ohne die Rückmeldeaddresse in der Praxis keinen Sinn,
@@ -389,8 +387,7 @@ mitbekommt und den Status falsch anzeigt.</p>
 <p>Hier der Beispielcode der das InfoTrigger-Widget mit den allen gezeigten
 Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:</p>
 <img alt="InfoTrigger mit mapping + styling" class="align-center" src="../../../_images/infotrigger_complete.png" />
-<div class="literal-block-wrapper container" id="infotrigger-mit-mapping-styling">
-<div class="code-block-caption"><span class="caption-text">InfoTrigger mit mapping + styling</span><a class="headerlink" href="#infotrigger-mit-mapping-styling" title="Link zu diesem Quellcode">¶</a></div>
+<p class="caption"><span class="caption-text">InfoTrigger mit mapping + styling</span></p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
     <span class="nt">&lt;mappings&gt;</span>
@@ -413,7 +410,6 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:</p>
   <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;read&quot;</span><span class="nt">&gt;</span>1/4/0<span class="nt">&lt;/address&gt;</span>
 <span class="nt">&lt;/infotrigger&gt;</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
