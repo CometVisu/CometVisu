@@ -16,7 +16,7 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
-from docutils import statemachine
+from docutils import statemachine, nodes
 from docutils.parsers.rst import Directive
 from os import path
 from helper.schema import *
@@ -46,7 +46,7 @@ class BaseDirective(Directive):
 class BaseXsdDirective(BaseDirective):
 
     def get_cell_data(self, content):
-        return 0, 0, 0, statemachine.StringList( content.splitlines())
+        return 0, 0, 0, statemachine.StringList(content.splitlines())
 
     def normalize_values(self, values):
         if len(values) <= 1:
@@ -58,6 +58,13 @@ class BaseXsdDirective(BaseDirective):
         if type[0:4] == "xsd:":
             type = type[4:]
         return type_mapping[type] if type in type_mapping else type
+
+    def get_name(self, name):
+        name = ":ref:`%s`" % name
+        cnode = nodes.Element()  # anonymous container for parsing
+        sl = statemachine.StringList([name], source='')
+        self.state.nested_parse(sl, self.content_offset, cnode)
+        return nodes.label(name, '', *cnode)
 
     def generate_table(self, element_name):
         table_body = []
@@ -80,6 +87,8 @@ class BaseXsdDirective(BaseDirective):
                 else:
                     description = ''
 
+            # name = self.get_name(name)
+            # print(name)
             if attr.get('use', 'optional') == "required":
                 name += "*"
 
