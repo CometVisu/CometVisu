@@ -68,6 +68,7 @@ Und nun noch einmal dieselben Schritte im Detail:
    "Create pull request" (grüner Button unten rechts). Damit ist der Pull-Request erstellt
 
 Jetzt muss man warten bis einer der Maintainer des CometVisu-Projekts des Pull-Request *reviewed*.
+Außerdem werden einige automatisierte Checks auf dem Pull-Request ausgeführt um mögliche Probleme zu erkennen.
 Sollte alles in Ordnung sein, wird der Pull-Request vom Maintainer *gemerged* und damit sind die Änderungen
 Teil des CometVisu-Projekts. Sollte der Maintainer Verbesserungsvorschläge haben, wird er dies durch Kommentare
 im Pull-Request tun. Ist dies der Fall, kommt nun der Vorteil des im Schritt 1. erstellen extra Branches zum Tragen.
@@ -84,6 +85,7 @@ zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit
     * weitere nützliche Git-Befehle (branches löschen, status, ...)
     * Eigenen Fork vom Haupt-Repository aktualisieren
     * Merge-Konflikte
+    * Ablauf-Diagramm für Workflow Änderung -> Pull-Request
 
 Mithilfe bei der Dokumentation
 ------------------------------
