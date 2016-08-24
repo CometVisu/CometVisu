@@ -28,12 +28,17 @@ Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
 Darstellung) auch mit dem Link "Check Config" in der Fusszeile oder
 durch Anhängen von check\_config.php an den URL erzwingen.
 
+.. _visu-config-details:
+
 Seiten und Struktur der CometVisu
 ---------------------------------
 
 .. TODO::
 
-    Beschreibung
+    - Aufbau der Konfiguration (Grundstruktur)
+    - *Attribute*: Allgemein erklären
+    - *Elemente*: Allgemein erklären
+
 
 Navigationselemente in der CometVisu
 ------------------------------------

@@ -115,7 +115,6 @@ class WidgetExampleDirective(Directive):
             caption['align'] = 'center'
         node += caption
 
-
     def run(self):
         cv_meta = None
         meta = None
@@ -205,7 +204,7 @@ class WidgetExampleDirective(Directive):
 
                 settings['screenshots'].append(shot)
 
-            for caption in meta.iter('caption'):
+            for caption in meta.iterchildren('caption'):
                 global_caption = caption.text
 
         # no screenshots defined, add a default one
@@ -255,6 +254,9 @@ class WidgetExampleDirective(Directive):
             # add linenumber filter:
             tokens = NumberLines(tokens, startline, endline)
 
+        if 'hide-source' in self.options and show_source:
+            show_source = self.options['hide-source'] != "true"
+
         res_nodes = []
         for shot in settings['screenshots']:
 
@@ -268,12 +270,14 @@ class WidgetExampleDirective(Directive):
                 image_node['align'] = self.options['align']
             else:
                 image_node['align'] = 'center'
-            if not show_source and global_caption and len(settings['screenshots']) == 1:
-                self.add_caption(global_caption, image_node)
-            res_nodes.append(image_node)
 
-        if 'hide-source' in self.options and show_source:
-            show_source = self.options['hide-source'] != "true"
+            if 'caption' in shot:
+                self.add_caption(shot['caption'], image_node)
+
+            elif not show_source and global_caption and len(settings['screenshots']) == 1:
+                self.add_caption(global_caption, image_node)
+
+            res_nodes.append(image_node)
 
         if show_source:
             example_content = example_content.decode('utf-8')
