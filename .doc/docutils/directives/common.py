@@ -46,7 +46,7 @@ class BaseDirective(Directive):
 class BaseXsdDirective(BaseDirective):
 
     def get_cell_data(self, content):
-        return 0, 0, 0, statemachine.StringList(content.splitlines())
+        return 0, 0, self.content_offset, statemachine.StringList(content.splitlines())
 
     def normalize_values(self, values):
         if len(values) <= 1:
@@ -66,9 +66,13 @@ class BaseXsdDirective(BaseDirective):
         self.state.nested_parse(sl, self.content_offset, cnode)
         return nodes.label(name, '', *cnode)
 
-    def generate_table(self, element_name):
-        table_body = []
-        for attr in schema.get_widget_attributes(element_name):
+    def generate_table(self, element_name, include_name=False, mandatory=False):
+        table_body=[]
+        attributes = schema.get_widget_attributes(element_name)
+        if include_name:
+            rowspan = len(attributes)-1
+        line = 0
+        for attr in attributes:
             if 'name' in attr.attrib:
                 name = attr.get('name')
                 atype, values = schema.get_attribute_type(attr)
@@ -87,22 +91,137 @@ class BaseXsdDirective(BaseDirective):
                 else:
                     description = ''
 
-            # name = self.get_name(name)
-            # print(name)
             if attr.get('use', 'optional') == "required":
                 name += "*"
 
             atype = self.normalize_type(atype) if len(values) == 0 else self.normalize_values(values)
-            row = [self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
+            if include_name:
+                if line == 0:
+                    if mandatory:
+                        element_name += "*"
+                    row = [(rowspan, 0, 0, statemachine.StringList(element_name.splitlines())), self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
+                else:
+                    row = [ None, self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
+            else:
+                row = [self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
             table_body.append(row)
+            line += 1
 
         if len(table_body) == 0:
             return None
 
-        table_head = [[self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
-        table = ([20, 20, 60], table_head, table_body)
+        if include_name:
+            table_head = [[self.get_cell_data(_('Element')), self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+            table = ([10, 15, 20, 55], table_head, table_body)
+        else:
+            table_head = [[self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+            table = ([20, 20, 60], table_head, table_body)
 
         table_node = self.state.build_table(table, self.content_offset)
         table_node['classes'] += self.options.get('class', [])
 
         return table_node
+
+    def generate_complex_table(self, element_name, include_name=False, mandatory=False,
+                               table_body=None, sub_run=False, parent=None):
+        """ needs to be fixed """
+        if table_body is None:
+            table_body = []
+
+        if not element_name == "#text":
+            attributes = schema.get_widget_attributes(element_name)
+            elements = schema.get_widget_elements(element_name)
+            if include_name:
+                rowspan = len(attributes)-1
+                if "#text" in elements:
+                    rowspan += 1
+
+            line = 0
+            for attr in attributes:
+                if 'name' in attr.attrib:
+                    name = attr.get('name')
+                    atype, values = schema.get_attribute_type(attr)
+                    description = schema.get_node_documentation(attr, self.locale)
+                    if description is not None:
+                        description = description.text
+                    else:
+                        description = ''
+                elif 'ref' in attr.attrib:
+                    name = attr.get('ref')
+                    type_def = schema.get_attribute(name)
+                    atype, values = schema.get_attribute_type(type_def)
+                    description = schema.get_node_documentation(type_def, self.locale)
+                    if description is not None:
+                        description = description.text
+                    else:
+                        description = ''
+
+                if attr.get('use', 'optional') == "required":
+                    name += "*"
+
+                atype = self.normalize_type(atype) if len(values) == 0 else self.normalize_values(values)
+                if include_name:
+                    if line == 0:
+                        element_title = element_name
+                        if mandatory:
+                            element_title += "*"
+                        if parent:
+                            element_title = "%s\n  * **%s**" % (parent, element_title)
+                        row = [(rowspan, 0, 0,
+                                statemachine.StringList(element_title.splitlines())),
+                               self.get_cell_data(name),
+                               self.get_cell_data(atype),
+                               self.get_cell_data(description)
+                               ]
+                    else:
+                        row = [ None, self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
+                else:
+                    row = [self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
+                table_body.append(row)
+                line += 1
+
+            for sub_element in elements:
+                if not isinstance(sub_element, str):
+                    name = sub_element.get("name")
+                    mandatory = sub_element.get("minOccurs") is not None and int(sub_element.get("minOccurs")) > 0
+                    if parent is not None:
+                        sub_parent = "%s\n * %s" % (parent, element_name)
+                    else:
+                        sub_parent = element_name
+                    self.generate_complex_table(name, include_name=include_name,
+                                                mandatory=mandatory, table_body=table_body,
+                                                sub_run=True, parent=sub_parent)
+                else:
+                    indent = 2 if parent is not None else 1
+                    element_title = "%s\n%s* **%s**" % (element_name, " " * indent, sub_element)
+                    if parent:
+                        element_title = "%s\n * %s" % (parent, element_title)
+
+                    row = [ self.get_cell_data(element_title), self.get_cell_data(""), self.get_cell_data(self.normalize_type("string")), self.get_cell_data(" ")]
+                    table_body.append(row)
+                    line += 1
+
+        else:
+            # text node
+            if include_name:
+                row = [ None, self.get_cell_data(element_name), self.get_cell_data(self.normalize_type("string")), self.get_cell_data("")]
+            else:
+                row = [self.get_cell_data(element_name), self.get_cell_data(self.normalize_type("string")), self.get_cell_data("")]
+            table_body.append(row)
+
+        if sub_run is False:
+            if len(table_body) == 0:
+                return None
+
+            if include_name:
+                table_head = [[self.get_cell_data(_('Structure')), self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+                table = ([15, 15, 15, 55], table_head, table_body)
+            else:
+                table_head = [[self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+                table = ([20, 20, 60], table_head, table_body)
+
+            table_node = self.state.build_table(table, self.content_offset)
+            table_node['classes'] += self.options.get('class', [])
+            table_node['classes'] += ["schema-table"]
+
+            return table_node
