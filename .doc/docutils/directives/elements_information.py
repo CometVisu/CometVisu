@@ -57,15 +57,11 @@ class ElementsInformationDirective(BaseXsdDirective):
 
         element_name = self.arguments[0]
         res_nodes = []
-
         for element in schema.get_widget_elements(element_name):
-            title, messages = self.make_title(element)
-
-            table_node = self.generate_table(element.get("name"))
+            name = element.get("name")
+            mandatory = element.get("minOccurs") is not None and int(element.get("minOccurs")) > 0
+            table_node = self.generate_complex_table(name, include_name=True, mandatory=mandatory, parent=element_name)
             if table_node is not None:
-                if title is not None:
-                    table_node.insert(0, title)
-
                 res_nodes.append(table_node)
 
         return res_nodes

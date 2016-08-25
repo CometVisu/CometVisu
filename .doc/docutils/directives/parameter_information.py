@@ -38,12 +38,9 @@ class ParameterInformationDirective(BaseXsdDirective):
     option_spec = {}
     has_content = False
 
-    def get_cell_data(self, content):
-        return 0, 0, 0, statemachine.StringList( content.splitlines())
-
     def run(self):
         self.init_locale()
-        table_node = self.generate_table(self.arguments[0])
+        table_node = self.generate_table(self.arguments[0], include_name=True)
         if table_node is None:
             return []
 

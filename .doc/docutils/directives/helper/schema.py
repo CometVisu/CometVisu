@@ -60,7 +60,13 @@ class Schema:
         return self.findall("xs:attribute[@name='%s']" % widget_name)[0]
 
     def get_widget_elements(self, widget_name):
-        return self.findall("xs:complexType[@name='%s']/xs:sequence//" % widget_name)
+        cType = self.find("xs:complexType[@name='%s']" % widget_name)
+        if cType is None:
+            return []
+        elems = cType.findall(".//xs:element".replace("xs:", SCHEMA_SPACE))
+        if cType.get("mixed", "false") == "true":
+            elems.append("#text")
+        return elems
 
     def get_elements_of_attribute(self, attribute):
         return self.names_of(self.findall(".//xs:element/xs:complexType/xs:" + attribute + "/../.."))
