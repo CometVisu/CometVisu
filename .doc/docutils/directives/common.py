@@ -166,7 +166,7 @@ class BaseXsdDirective(BaseDirective):
                         if mandatory:
                             element_title += "*"
                         if parent:
-                            element_title = "%s -> **%s**" % (parent, element_title)
+                            element_title = "%s\n  * **%s**" % (parent, element_title)
                         row = [(rowspan, 0, 0,
                                 statemachine.StringList(element_title.splitlines())),
                                self.get_cell_data(name),
@@ -185,16 +185,17 @@ class BaseXsdDirective(BaseDirective):
                     name = sub_element.get("name")
                     mandatory = sub_element.get("minOccurs") is not None and int(sub_element.get("minOccurs")) > 0
                     if parent is not None:
-                        sub_parent = "%s -> %s" % (parent, element_name)
+                        sub_parent = "%s\n * %s" % (parent, element_name)
                     else:
                         sub_parent = element_name
                     self.generate_complex_table(name, include_name=include_name,
                                                 mandatory=mandatory, table_body=table_body,
                                                 sub_run=True, parent=sub_parent)
                 else:
-                    element_title = "%s -> **%s**" % (element_name, sub_element)
+                    indent = 2 if parent is not None else 1
+                    element_title = "%s\n%s* **%s**" % (element_name, " " * indent, sub_element)
                     if parent:
-                        element_title = "%s -> %s" % (parent, element_title)
+                        element_title = "%s\n * %s" % (parent, element_title)
 
                     row = [ self.get_cell_data(element_title), self.get_cell_data(""), self.get_cell_data(self.normalize_type("string")), self.get_cell_data(" ")]
                     table_body.append(row)
@@ -221,5 +222,6 @@ class BaseXsdDirective(BaseDirective):
 
             table_node = self.state.build_table(table, self.content_offset)
             table_node['classes'] += self.options.get('class', [])
+            table_node['classes'] += ["schema-table"]
 
             return table_node
