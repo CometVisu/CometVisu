@@ -34,8 +34,8 @@
   
     <link rel="top" title="CometVisu" href="../../../index.html"/>
         <link rel="up" title="Fest eingebaute Widgets" href="../index.html"/>
-        <link rel="next" title="Das Text Widget" href="../text/index.html"/>
-        <link rel="prev" title="Das Slide Widget" href="../slide/index.html"/> 
+        <link rel="next" title="Hilf dem CometVisu Projekt" href="../../../colab/index.html"/>
+        <link rel="prev" title="Fest eingebaute Widgets" href="../index.html"/> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -95,35 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">Fest eingebaute Widgets</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../audio/index.html">Das Audio Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../break/index.html">Das Break Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../designtoggle/index.html">Das DesignToggle Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../group/index.html">Das Group Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../image/index.html">Das Image Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../imagetrigger/index.html">Das ImageTrigger Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../include/index.html">Das Include Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../info/index.html">Das Info Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../infoaction/index.html">Das InfoAction Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../infotrigger/index.html">Das InfoTrigger Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../line/index.html">Das Line Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../multitrigger/index.html">Das MultiTrigger Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../navbar/index.html">Das NavBar Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../page/index.html">Das Page Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../pagejump/index.html">Das PageJump Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../pushbutton/index.html">Das PushButton Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../refresh/index.html">Das Refresh Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../reload/index.html">Das Reload Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../rgb/index.html">Das Rgb Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../slide/index.html">Das Slide Widget</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Das Switch Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../text/index.html">Das Text Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../toggle/index.html">Das Toggle Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../trigger/index.html">Das Trigger Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../unknown/index.html">Das Unknown Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../urltrigger/index.html">Das UrlTrigger Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../video/index.html">Das Video Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../web/index.html">Das Web Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../wgplugininfo/index.html">Das WgPluginInfo Widget</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
@@ -181,7 +153,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="das-switch-widget">
-<h1>Das Switch Widget<a class="headerlink" href="#das-switch-widget" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="switch"></span><h1>Das Switch Widget<a class="headerlink" href="#das-switch-widget" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="section" id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Das Switch Widget fügt der Visualisierung eine Schaltfläche hinzu. Mit
@@ -218,21 +190,24 @@ Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente des Switch-Wi
 beides über den <span class="xref std std-ref">Editor</span> bearbeitet werden kann.</p>
 <p>Nur die mit * gekennzeichneten Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
-<p><strong>Attribute</strong></p>
+<p><strong>Erlaubte Attribute im Switch-Element</strong></p>
 <table border="1" class="docutils">
 <colgroup>
+<col width="10%" />
+<col width="15%" />
 <col width="20%" />
-<col width="20%" />
-<col width="60%" />
+<col width="55%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head">Name</th>
 <th class="head">Typ</th>
 <th class="head">Beschreibung</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>styling</td>
+<tr class="row-even"><td rowspan="7">switch</td>
+<td>styling</td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
@@ -264,22 +239,31 @@ daher weg gelassen werden.</p>
 </table>
 <img alt="../../../_images/de_config_widgets_switch_index_editor_attributes.png" class="align-center" src="../../../_images/de_config_widgets_switch_index_editor_attributes.png" />
 <p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
-<p><strong>Elemente</strong></p>
-<table border="1" class="docutils" id="id2">
-<caption><span class="caption-text">layout</span><a class="headerlink" href="#id2" title="Link zu dieser Tabelle">¶</a></caption>
+<p><strong>Erlaubte Kind-Elemente und deren Attribute</strong></p>
+<table border="1" class="schema-table docutils">
 <colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="60%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
+<tr class="row-odd"><th class="head">Struktur</th>
+<th class="head">Name</th>
 <th class="head">Typ</th>
 <th class="head">Beschreibung</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>colspan</td>
+<tr class="row-even"><td rowspan="8"><dl class="first last docutils">
+<dt>switch</dt>
+<dd><ul class="first last simple">
+<li><strong>layout</strong></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
 <td>decimal</td>
 <td>&nbsp;</td>
 </tr>
@@ -313,21 +297,101 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils" id="id3">
-<caption><span class="caption-text">address*</span><a class="headerlink" href="#id3" title="Link zu dieser Tabelle">¶</a></caption>
+<table border="1" class="schema-table docutils">
 <colgroup>
-<col width="20%" />
-<col width="20%" />
-<col width="60%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
+<tr class="row-odd"><th class="head">Struktur</th>
+<th class="head">Name</th>
 <th class="head">Typ</th>
 <th class="head">Beschreibung</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>transform*</td>
+<tr class="row-even"><td rowspan="6"><dl class="first last docutils">
+<dt>switch</dt>
+<dd><ul class="first simple">
+<li>label</li>
+</ul>
+<blockquote class="last">
+<div><ul class="simple">
+<li><strong>icon</strong></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</td>
+<td>name*</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>flavour</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>color</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>styling</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>class</td>
+<td>string</td>
+<td>Füge dieses Attribut der CSS Klasse hinzu, so dass das Widget durch ein eigenes Stylesheet zusätzlich formatiert werden kann.</td>
+</tr>
+<tr class="row-even"><td><dl class="first last docutils">
+<dt>switch</dt>
+<dd><ul class="first simple">
+<li>label</li>
+</ul>
+<blockquote class="last">
+<div><ul class="simple">
+<li><strong>#text</strong></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</td>
+<td>&nbsp;</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Struktur</th>
+<th class="head">Name</th>
+<th class="head">Typ</th>
+<th class="head">Beschreibung</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td rowspan="4"><dl class="first last docutils">
+<dt>switch</dt>
+<dd><ul class="first last simple">
+<li><strong>address*</strong></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>transform*</td>
 <td>string</td>
 <td>&nbsp;</td>
 </tr>
@@ -418,10 +482,10 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../text/index.html" class="btn btn-neutral float-right" title="Das Text Widget" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../../../colab/index.html" class="btn btn-neutral float-right" title="Hilf dem CometVisu Projekt" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../slide/index.html" class="btn btn-neutral" title="Das Slide Widget" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral" title="Fest eingebaute Widgets" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

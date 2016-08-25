@@ -1,3 +1,5 @@
+.. _switch:
+
 Das Switch Widget
 =================
 
@@ -129,7 +131,7 @@ Nur die mit * gekennzeichneten Attribute/Elemente müssen zwingend angegeben wer
 daher weg gelassen werden.
 
 
-**Attribute**
+**Erlaubte Attribute im Switch-Element**
 
 .. parameter_information:: switch
 
@@ -146,7 +148,7 @@ daher weg gelassen werden.
         </switch>
 
 
-**Elemente**
+**Erlaubte Kind-Elemente und deren Attribute**
 
 .. elements_information:: switch
 
