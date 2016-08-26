@@ -59,13 +59,20 @@ class Schema:
     def get_attribute(self, widget_name):
         return self.findall("xs:attribute[@name='%s']" % widget_name)[0]
 
-    def get_widget_elements(self, widget_name):
+    def get_widget_elements(self, widget_name, locale='en'):
         cType = self.find("xs:complexType[@name='%s']" % widget_name)
         if cType is None:
             return []
         elems = cType.findall(".//xs:element".replace("xs:", SCHEMA_SPACE))
-        if cType.get("mixed", "false") == "true":
-            elems.append("#text")
+        ext = cType.find(".//xs:simpleContent/xs:extension".replace("xs:", SCHEMA_SPACE))
+        if ext is not None and ext.get("base") is not None:
+            # should we really hardcode this?
+            ref = self.find("xs:simpleType[@name='%s']" % ext.get("base"))
+            doc = self.get_node_documentation(ref, locale).text if ref is not None and self.get_node_documentation(ref, locale) is not None else ""
+            elems.append(("#text", "string", doc))
+        elif cType.get("mixed", "false") == "true":
+            doc = self.get_node_documentation(cType, locale).text if self.get_node_documentation(cType, locale) is not None else ""
+            elems.append(("#text", "string", doc))
         return elems
 
     def get_elements_of_attribute(self, attribute):
