@@ -21,6 +21,8 @@ from docutils.parsers.rst import Directive
 from os import path
 from helper.schema import *
 import gettext
+
+
 gettext.install('messages', localedir='locale')
 
 type_mapping = {
@@ -50,9 +52,9 @@ class BaseXsdDirective(BaseDirective):
 
     def normalize_values(self, values):
         if len(values) <= 1:
-            return (" %s " % _("or")).join(values)
+            return "*%s*" % ("* %s *" % _("or")).join(values)
         else:
-            return " ".join([", ".join(values[0:-1]), _("or"), values[-1]])
+            return " ".join(["*%s*" % "*, *".join(values[0:-1]), _("or"), "*%s*" % values[-1]])
 
     def normalize_type(self, type):
         if type[0:4] == "xsd:":
@@ -130,11 +132,9 @@ class BaseXsdDirective(BaseDirective):
 
         if not element_name == "#text":
             attributes = schema.get_widget_attributes(element_name)
-            elements = schema.get_widget_elements(element_name)
+            elements = schema.get_widget_elements(element_name, locale=self.locale)
             if include_name:
                 rowspan = len(attributes)-1
-                if "#text" in elements:
-                    rowspan += 1
 
             line = 0
             for attr in attributes:
@@ -181,7 +181,7 @@ class BaseXsdDirective(BaseDirective):
                 line += 1
 
             for sub_element in elements:
-                if not isinstance(sub_element, str):
+                if not isinstance(sub_element, tuple):
                     name = sub_element.get("name")
                     mandatory = sub_element.get("minOccurs") is not None and int(sub_element.get("minOccurs")) > 0
                     if parent is not None:
@@ -192,19 +192,20 @@ class BaseXsdDirective(BaseDirective):
                                                 mandatory=mandatory, table_body=table_body,
                                                 sub_run=True, parent=sub_parent)
                 else:
+                    (sub_element, atype, doc) = sub_element
                     indent = 2 if parent is not None else 1
                     element_title = "%s\n%s* **%s**" % (element_name, " " * indent, sub_element)
                     if parent:
                         element_title = "%s\n * %s" % (parent, element_title)
 
-                    row = [ self.get_cell_data(element_title), self.get_cell_data(""), self.get_cell_data(self.normalize_type("string")), self.get_cell_data(" ")]
+                    row = [ self.get_cell_data(element_title), self.get_cell_data(""), self.get_cell_data(self.normalize_type(atype)), self.get_cell_data(doc)]
                     table_body.append(row)
                     line += 1
 
         else:
             # text node
             if include_name:
-                row = [ None, self.get_cell_data(element_name), self.get_cell_data(self.normalize_type("string")), self.get_cell_data("")]
+                row = [self.get_cell_data(element_name), self.get_cell_data(""), self.get_cell_data(self.normalize_type("string")), self.get_cell_data("")]
             else:
                 row = [self.get_cell_data(element_name), self.get_cell_data(self.normalize_type("string")), self.get_cell_data("")]
             table_body.append(row)
