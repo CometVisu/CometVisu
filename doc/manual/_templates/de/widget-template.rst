@@ -1,3 +1,5 @@
+.. _%%%WIDGET_NAME_LOWER%%%:
+
 %%%HEADLINE%%%
 
 Beschreibung
@@ -8,8 +10,21 @@ Beschreibung
     Widget Beschreibung hinzufügen inkl. Beispielen, vorhandene Beispiele korrigieren, vervollständigen
 
 
-Parameter
----------
+Einstellungen
+-------------
+
+Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
+Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: :ref:`visu-config-details`.
+
+Das Verhalten und Aussehen des %%%WIDGET_NAME%%%-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
+Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
+beides über den :ref:`Editor <editor>` bearbeitet werden kann.
+
+Nur die mit * gekennzeichneten Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+daher weg gelassen werden.
+
+
+**Erlaubte Attribute im %%%WIDGET_NAME%%%-Element**
 
 .. parameter_information:: %%%WIDGET_NAME_LOWER%%%
 
@@ -17,7 +32,7 @@ Parameter
     :editor: attributes
     :scale: 75
 
-        <caption>Parameter im Editor</caption>
+        <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
         <%%%WIDGET_NAME_LOWER%%%>
           <layout colspan="4" />
           <label>Kanal 1<icon name="control_on_off"/></label>
@@ -26,8 +41,7 @@ Parameter
         </%%%WIDGET_NAME_LOWER%%%>
 
 
-Elemente
---------
+**Erlaubte Kind-Elemente und deren Attribute**
 
 .. elements_information:: %%%WIDGET_NAME_LOWER%%%
 
@@ -108,3 +122,8 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
           <address transform="DPT:1.001" mode="read">1/4/0</address>
         </%%%WIDGET_NAME_LOWER%%%>
+
+
+.. rubric:: Footnotes
+
+.. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.
