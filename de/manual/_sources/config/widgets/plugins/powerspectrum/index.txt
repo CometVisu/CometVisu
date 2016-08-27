@@ -22,6 +22,9 @@ die das Enertex Smart Meter versenden kann.
             <data address="4/4/211">35 19</data>
           </screenshot>
         </settings>
+        <meta>
+          <plugins><plugin name="powerspectrum"/></plugins>
+        </meta>
         <powerspectrum type="current" singlephase="true" limitname="Grenzwert" name1="L1">
           <layout colspan="6" rowspan="6" />
           <address transform="DPT:Harmonics" variant="spectrum1" mode="read">4/4/219</address>
