@@ -41,6 +41,46 @@ var getCropArgs = function(options) {
     return args;
 };
 
+var getResizeArgs = function(options) {
+
+  options.height = options.height || options.width;
+
+  var args = [options.src];
+
+  if (options.flatten) {
+    args.push('-flatten');
+    if (options.background) {
+      args.push('-background');
+      args.push(options.background);
+    }
+  }
+  else {
+    if (options.background) {
+      args.push('-background');
+      args.push(options.background);
+      args.push('-flatten');
+    }
+  }
+
+  args.push('-auto-orient');
+  args.push('-strip');
+  args.push('-resize');
+  args.push(options.width + 'x' + options.height);
+  if (options.ignoreAspectRatio) {
+    args[args.length-1] += '!';
+  }
+  if (options.quality) {
+    args.push('-quality');
+    args.push(options.quality);
+  }
+  if (options.background) {
+    args.push('-background');
+    args.push(options.background);
+  }
+  args.push(options.dst);
+  return args;
+};
+
 var cropInFile = function(size, location, srcFile, width, height) {
   if (width && height) {
     var args = getCropArgs({
@@ -54,13 +94,15 @@ var cropInFile = function(size, location, srcFile, width, height) {
     });
     args.unshift('convert');
     easyimg.exec(args.join(" ")).then(function(image) {
-        easyimg.resize({
-          src: srcFile,
-          dst: srcFile,
-          width: width,
-          height: height
-        });
-      }, errorHandler);
+      var resizeArgs = getResizeArgs({
+        src: srcFile,
+        dst: srcFile,
+        width: width,
+        height: height
+      });
+      resizeArgs.unshift('convert');
+      easyimg.exec(resizeArgs.join(" ")).then(function (img) { }, errorHandler);
+    }, errorHandler);
   } else {
     var args = getCropArgs({
       src: srcFile,
