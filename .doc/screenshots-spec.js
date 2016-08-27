@@ -63,6 +63,7 @@ var getResizeArgs = function(options) {
   }
 
   args.push('-auto-orient');
+  args.push('-strip');
   args.push('-resize');
   args.push(options.width + 'x' + options.height);
   if (options.ignoreAspectRatio) {
