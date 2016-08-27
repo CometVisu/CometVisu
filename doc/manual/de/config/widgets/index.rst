@@ -161,7 +161,9 @@ also z.B.:
 +-------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Diagram <diagram>`                  | RRD-basierte Diagramme                                              |
 +-------------------------------------------+---------------------------------------------------------------------+
-| :doc:`Diagramm_Info <diagramm_info>`      | Temperaturanzeigt, die beim Klick ein Diagramm öffne.               |
+| :doc:`Diagramm_Info <diagramm_info>`      | Informations-Anzeige, die beim Klick ein Diagramm öffnet            |
++-------------------------------------------+---------------------------------------------------------------------+
+| :doc:`PowerSpectrum <powerspectrum>`      | Darstellung des Strom-Spektrums                                     |
 +-------------------------------------------+---------------------------------------------------------------------+
 | :doc:`strftime <strftime>`                | Darstellung der Uhrzeit in Textform                                 |
 +-------------------------------------------+---------------------------------------------------------------------+
@@ -183,5 +185,12 @@ also z.B.:
 +-------------------------------------------+---------------------------------------------------------------------+
 |                                                                                                                 |
 +-------------------------------------------+---------------------------------------------------------------------+
+
+.. toctree::
+    :titlesonly:
+    :maxdepth: 1
+    :hidden:
+
+    plugins/powerspectrum/index
 
 weitere Plugins befinden sich in der Entwicklung.
