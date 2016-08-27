@@ -21,13 +21,13 @@
 /**
  * A group can be used to group a couple of widgets and optionally surround them with a border or name the group.
  *
- * @widget_example <meta selector=".widget_container[data-type=group]">
+ * @widget_example <settings selector=".widget_container[data-type=group]">
  *  <screenshot name="group_with_border">
  *    <caption>Group with border and name</caption>
  *    <data address="0/0/0">1</data>
  *    <data address="0/0/1">21</data>
  *  </screenshot>
- *  </meta>
+ *  </settings>
  *  <group name="Example Group">
  *    <layout colspan="6" />
  *    <text><label>Some Text</label></text>
@@ -43,13 +43,13 @@
  *    </info>
  *  </group>
  *
- * @widget_example <meta selector=".widget_container[data-type=group]">
+ * @widget_example <settings selector=".widget_container[data-type=group]">
  *  <screenshot name="group_without_border">
  *    <caption>Hidden Group: no border no name</caption>
  *    <data address="0/0/0">1</data>
  *    <data address="0/0/1">21</data>
  *  </screenshot>
- *  </meta>
+ *  </settings>
  *  <group nowidget="true">
  *    <layout colspan="6" />
  *    <text><label>Some Text</label></text>

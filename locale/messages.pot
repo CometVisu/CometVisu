@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2016-08-25 21:16+CEST\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: .doc/docutils/directives/common.py:27 .doc/docutils/directives/common.py:53
+#: .doc/docutils/directives/common.py:55
+msgid "or"
+msgstr ""
+
+#: .doc/docutils/directives/common.py:28
+msgid "string"
+msgstr ""
+
+#: .doc/docutils/directives/common.py:29
+msgid "decimal"
+msgstr ""
+
+#: .doc/docutils/directives/common.py:114
+msgid "Element"
+msgstr ""
+
+#: .doc/docutils/directives/common.py:114
+#: .doc/docutils/directives/common.py:117
+#: .doc/docutils/directives/common.py:221
+#: .doc/docutils/directives/common.py:224
+msgid "Description"
+msgstr ""
+
+#: .doc/docutils/directives/common.py:114
+#: .doc/docutils/directives/common.py:117
+#: .doc/docutils/directives/common.py:221
+#: .doc/docutils/directives/common.py:224
+msgid "Name"
+msgstr ""
+
+#: .doc/docutils/directives/common.py:114
+#: .doc/docutils/directives/common.py:117
+#: .doc/docutils/directives/common.py:221
+#: .doc/docutils/directives/common.py:224
+msgid "Type"
+msgstr ""
+
+#: .doc/docutils/directives/common.py:221
+msgid "Structure"
+msgstr ""
+

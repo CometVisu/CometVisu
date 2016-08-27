@@ -1,0 +1,33 @@
+.wy-table-responsive table tr td, .wy-table-responsive table tr th {
+    white-space: normal;
+}
+img + p.caption {
+    margin-top: -16px;
+    font-style: italic;
+}
+img.align-center + p.caption {
+    text-align: center;
+}
+img.align-right + p.caption {
+    text-align: right;
+}
+img.align-left + p.caption {
+    text-align: left;
+}
+table.schema-table td dl dt {
+    font-weight: normal;
+}
+table.schema-table td dl dd ul {
+    line-height: normal !important;
+}
+table.schema-table td dl dd > ul {
+    margin-left: -24px; /* override surrounding dd padding */
+    margin-bottom: 0px !important;
+}
+table.schema-table td dl dd blockquote {
+    line-height: normal;
+}
+table.schema-table td dl dd blockquote ul {
+    margin-left: -24px; /* override surrounding blockquote padding */
+    line-height: normal;
+}

@@ -19,6 +19,7 @@
 
 
 /**
+ * TODO: complete docs
  * @module structure/pure/Multitrigger
  * @author Christian Mayer
  * @since 2012

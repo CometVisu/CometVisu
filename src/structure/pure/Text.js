@@ -21,10 +21,10 @@
 /**
  * The text-tag defines static (non-changing) text to be displayed on a page. The content of a &lt;label&gt; with free text.
  *
- * @widget_example <meta>
+ * @widget_example <settings>
  *   <caption>Configuration example of a centered text widget</caption>
  *   <screenshot name="text_example" />
- * </meta>
+ * </settings>
  * <text align="center"><label>Example text</label></text>
  *
  * @module structure/pure/Text
