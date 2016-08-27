@@ -11,7 +11,6 @@ var cvMockup = require('../test/protractor/pages/Mock');
 var editorMockup = require('../test/protractor/pages/EditorMock');
 
 var errorHandler = function(err) {
-  console.log(err);
   if (err) throw err;
 };
 
