@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Fest eingebaute Widgets &mdash; CometVisu</title>
+  <title>Bedienbare Widgets &mdash; CometVisu</title>
   
 
   
@@ -94,8 +94,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Fest eingebaute Widgets</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Bedienbare Widgets</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="switch/index.html">Das Switch Widget</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#darstellende-widgets">Darstellende Widgets</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sonstige-widgets">Sonstige Widgets</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
@@ -138,7 +144,7 @@
       
           <li><a href="../index.html">Konfiguration der CometVisu</a> &raquo;</li>
       
-    <li>Fest eingebaute Widgets</li>
+    <li>Bedienbare Widgets</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -158,128 +164,133 @@ Element, welches ein Widget aufnehmen soll z.B. eine Page oder eine
 Gruppe (group). Durch Auswahl des Widget aus dem Drop-Down Menü und
 anschließendem Klick auf das + - Zeichen ist das Widget eingefügt und
 kann wie folgt konfiguriert werden;</p>
-<div class="section" id="fest-eingebaute-widgets">
-<h1>Fest eingebaute Widgets<a class="headerlink" href="#fest-eingebaute-widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="bedienbare-widgets">
+<h1>Bedienbare Widgets<a class="headerlink" href="#bedienbare-widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Diese Widgets können in irgendeiner Weise bedient werden um so Daten an das Backend zu senden oder andere
+Aktionen auszulösen, z.B. kann man mit einem Switch durch anklicken einen Lampe schalten, oder mit einem Pagejumo
+kann innerhalb der Visu navigiert werden.</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="8%" />
-<col width="59%" />
-<col width="33%" />
+<col width="12%" />
+<col width="88%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>Widget</td>
 <td>Beschreibung</td>
-<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td><span class="xref doc">audio</span></td>
 <td>Mit diesem Widget kann in die Visu ein Audio-File eingebunden werden, das sich durch eine GA abspielen lässt.</td>
-<td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><span class="xref doc">Break</span></td>
-<td>Fügt der Visu einen Zeilenumbruch hinzu (wird evt. nicht von allen Browsern korrekt interpretiert)</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td><span class="xref doc">Designtoggle</span></td>
+<tr class="row-odd"><td><span class="xref doc">Designtoggle</span></td>
 <td>Fügt der Visu eine Schaltfläche hinzu, mit der das Design gewechselt werden kann.</td>
-<td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><span class="xref doc">Group</span></td>
-<td>Mit group können widgets in einem Rahmen als Gruppe zusammengefasst werden. Der Gruppe kann man über &#8220;layout&#8221; die Größeneigenschaft mitgeben sowie alle zur Verfügung stehenden widgets zuordnen.</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td><span class="xref doc">Image</span></td>
-<td>Fügt der Visu ein statisches Bild oder ein Kamerabild hinzu.</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td><span class="xref doc">ImageTrigger</span></td>
+<tr class="row-even"><td><span class="xref doc">ImageTrigger</span></td>
 <td>Fügt der Visu ein klickbares Symbol hinzu. Dies kann z.B. für Erinnerungen wie Geburtstage oder Müllabfuhr verwendet werden.</td>
-<td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td><span class="xref doc">Include</span></td>
-<td>tbd.</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td><span class="xref doc">Info</span></td>
-<td>Fügt der Visu ein dynamisches Feld hinzu, dass Werte vom BUS darstellen kann. z.B. 14-Byte-Text oder Zählerstände.</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td><span class="xref doc">InfoTrigger</span></td>
+<tr class="row-odd"><td><span class="xref doc">InfoTrigger</span></td>
 <td>Fügt der Visu ein Element hinzu, dass zwei Schaltflächen und eine Wertanzeige für Rückmeldungen vom BUS enthält. z.B. für Multimediasteuerungen.</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td><span class="xref doc">Line</span></td>
-<td>Fügt der Visu eine horizontale Linie hinzu, um die Visuseite in einzelne Bereiche zu unterteilen.</td>
-<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td><span class="xref doc">Multitrigger</span></td>
 <td>Fügt der Visu ein Widget mit 4 Schaltflächen hinzu. Damit kann man z.B. die Betriebsart der Heizung umstellen (Komfort -&gt; Nacht -&gt; Abwesend -&gt; Frostschutz) oder Szenenfunktionen realisieren.</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td><span class="xref doc">Navbar</span></td>
-<td>Mit dem Widget navbar kann man der gesamten Visu ein Navigationsmenü hinzu fügen. Das Menü lässt sich an einer Seite (oben, unten, link, rechts darstellen. Die Navigation durch die Visu lässt sich damit strukturieren.</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td><span class="xref doc">Page</span></td>
-<td>Erstellt eine neue Visuseite und fügt der aktuellen Seite einen entsprechenden Link hinzu.</td>
-<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td><span class="xref doc">Pagejump</span></td>
 <td>Mit dem Widget pagejump lassen sich Seiten der Visu verknüpfen. Von der Funktion ist das vergleichbar mit Hyperlinks.</td>
-<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td><span class="xref doc">PushButton</span></td>
 <td>Fügt der Visu eine Schaltfläche hinzu, mit der jeweils beim drücken und loslassen ein definierter Wert an den BUS gesendet wird. Z.B. beim Drücken eine 1 und beim Loslassen eine 0. Damit wird es beispielsweise möglich einen Taster zu simulieren um ein Garagentor, Rolläden oder Raffstores zu öffnen und zu schliessen.</td>
-<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td><span class="xref doc">Refresh</span></td>
 <td>Mit dem Widget refresh wird der Visu ein Schalter hinzu gefügt, dessen Betätigung die Visu im Browser neu laden lässt??</td>
-<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td><span class="xref doc">Reload</span></td>
 <td>Mit dem Widget reload wird der Visu ein Schalter hinzu gefügt, dessen Betätigung die Visu im Browser neu laden lässt??</td>
-<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td><span class="xref doc">RGB</span></td>
-<td>&nbsp;</td>
 <td>Das Widget scheint noch nicht freigegeben/aktiviert. Es kann noch nicht genutzt werden. Mit dem Widget rgb werden der Visu 3 gruppierte Slider zur Steuerung von RGB-Beleuchtung hinzu gefügt.??</td>
 </tr>
 <tr class="row-even"><td><span class="xref doc">Slide</span></td>
 <td>Fügt der Visu einen horizontalen Schieberegler hinzu. Mit diesem kann man z.B. dimmen oder Temperaturwerte verändern.</td>
-<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="switch/index.html"><span class="doc">Switch</span></a></td>
 <td>Fügt der Visu eine Schaltfläche hinzu, mit der z.B. Schaltaktionen ausgelöst werden können. Der Switch wird typisch für EIN/AUS Aktionen benutzt. (z.B. Licht, Steckdosen etc.)</td>
-<td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td><span class="xref doc">Text</span></td>
-<td>Fügt der Visu ein statisches Textfeld hinzu.</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td><span class="xref doc">Toggle</span></td>
+<tr class="row-even"><td><span class="xref doc">Toggle</span></td>
 <td>Das toggle Widget ist ähnlich wie der Switch, kann aber mehr als zwei Zustände annehmen - dies kann z.B. für die Umschaltung von Betriebsarten der Heizung genutzt werden. Bei jedem Druck nimmt der Toggle den nächsten möglichen Zustand an.</td>
-<td>&nbsp;</td>
 </tr>
-<tr class="row-even"><td><span class="xref doc">Trigger</span></td>
+<tr class="row-odd"><td><span class="xref doc">Trigger</span></td>
 <td>Fügt der Visu eine Schaltfläche hinzu, mit der genau ein definierter Wert für einen kurzen, sowie ein definierter Wert für einen langen Tastendruck an den BUS gesendet werden kann, z.B. für das Abrufen und Abspeichern von Szenen oder dem Fahren von Rollos. (kurz = stopp, lang = fahren). Die GA für Kurz und Langzeit können unterschiedlich sein.</td>
-<td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td><span class="xref doc">URL-trigger</span></td>
+<tr class="row-even"><td><span class="xref doc">URL-trigger</span></td>
 <td>tbd.</td>
-<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="darstellende-widgets">
+<h1>Darstellende Widgets<a class="headerlink" href="#darstellende-widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht möglich.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Widget</td>
+<td>Beschreibung</td>
+</tr>
+<tr class="row-even"><td><span class="xref doc">Image</span></td>
+<td>Fügt der Visu ein statisches Bild oder ein Kamerabild hinzu.</td>
+</tr>
+<tr class="row-odd"><td><span class="xref doc">Info</span></td>
+<td>Fügt der Visu ein dynamisches Feld hinzu, dass Werte vom BUS darstellen kann. z.B. 14-Byte-Text oder Zählerstände.</td>
+</tr>
+<tr class="row-even"><td><span class="xref doc">Line</span></td>
+<td>Fügt der Visu eine horizontale Linie hinzu, um die Visuseite in einzelne Bereiche zu unterteilen.</td>
+</tr>
+<tr class="row-odd"><td><span class="xref doc">Text</span></td>
+<td>Fügt der Visu ein statisches Textfeld hinzu.</td>
 </tr>
 <tr class="row-even"><td><span class="xref doc">Video</span></td>
 <td>Fügt der Visu ein Video oder einen Livestream hinzu. Wird derzeit allerdings von den meisten Quellen noch nicht unterstützt.</td>
-<td>&nbsp;</td>
 </tr>
 <tr class="row-odd"><td><span class="xref doc">Web</span></td>
 <td>Fügt der Visu ein Fläche hinzu, in der externe Webseiten dargestellt werden können.</td>
-<td>&nbsp;</td>
 </tr>
 <tr class="row-even"><td><span class="xref doc">WG_Plugin_Info</span></td>
 <td>tbd.</td>
-<td>&nbsp;</td>
 </tr>
-<tr class="row-odd"><td colspan="3">&nbsp;</td>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="sonstige-widgets">
+<h1>Sonstige Widgets<a class="headerlink" href="#sonstige-widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Widget</td>
+<td>Beschreibung</td>
+</tr>
+<tr class="row-even"><td><span class="xref doc">Break</span></td>
+<td>Fügt der Visu einen Zeilenumbruch hinzu (wird evt. nicht von allen Browsern korrekt interpretiert)</td>
+</tr>
+<tr class="row-odd"><td><span class="xref doc">Group</span></td>
+<td>Mit group können widgets in einem Rahmen als Gruppe zusammengefasst werden. Der Gruppe kann man über &#8220;layout&#8221; die Größeneigenschaft mitgeben sowie alle zur Verfügung stehenden widgets zuordnen.</td>
+</tr>
+<tr class="row-even"><td><span class="xref doc">Include</span></td>
+<td>tbd.</td>
+</tr>
+<tr class="row-odd"><td><span class="xref doc">Navbar</span></td>
+<td>Mit dem Widget navbar kann man der gesamten Visu ein Navigationsmenü hinzu fügen. Das Menü lässt sich an einer Seite (oben, unten, link, rechts darstellen. Die Navigation durch die Visu lässt sich damit strukturieren.</td>
+</tr>
+<tr class="row-even"><td><span class="xref doc">Page</span></td>
+<td>Erstellt eine neue Visuseite und fügt der aktuellen Seite einen entsprechenden Link hinzu.</td>
 </tr>
 </tbody>
 </table>
