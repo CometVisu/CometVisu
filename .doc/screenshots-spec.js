@@ -10,9 +10,40 @@ var fs = require('fs'),
 var cvMockup = require('../test/protractor/pages/Mock');
 var editorMockup = require('../test/protractor/pages/EditorMock');
 
+var errorHandler = function(err) {
+  if (err) throw err;
+};
+
+var getCropArgs = function(options) {
+
+    options.cropheight = options.cropheight || options.cropwidth;
+    options.gravity = options.gravity || 'Center';
+    options.x = options.x || 0;
+    options.y = options.y || 0;
+
+    var args = [options.src];
+
+    args.push('-auto-orient');
+    args.push('-gravity');
+    args.push('Center');
+    args.push('-crop');
+    args.push('-strip');
+    args.push(options.cropwidth + 'x'+ options.cropheight + '+' + options.x + '+' + options.y);
+    if (options.quality) {
+      args.push('-quality');
+      args.push(options.quality)
+    }
+    if (options.background) {
+      args.push('-background');
+      args.push(options.background)
+    }
+    args.push(options.dst);
+    return args;
+};
+
 var cropInFile = function(size, location, srcFile, width, height) {
   if (width && height) {
-    easyimg.crop({
+    easyimg.exec('convert', getCropArgs({
       src: srcFile,
       dst: srcFile,
       cropwidth: size.width,
@@ -20,23 +51,16 @@ var cropInFile = function(size, location, srcFile, width, height) {
       x: location.x,
       y: location.y,
       gravity: 'North-West'
-    }).then(function(image) {
+    })).then(function(image) {
         easyimg.resize({
           src: srcFile,
           dst: srcFile,
           width: width,
           height: height
-        }).then(
-          function(image) { },
-          function (err) {
-            if (err) throw err;
-          });
-      },
-      function (err) {
-        if (err) throw err;
+        });
       });
   } else {
-    easyimg.crop({
+    easyimg.exec('convert', getCropArgs({
         src: srcFile,
         dst: srcFile,
         cropwidth: size.width,
@@ -44,10 +68,7 @@ var cropInFile = function(size, location, srcFile, width, height) {
         x: location.x,
         y: location.y,
         gravity: 'North-West'
-      },
-      function (err) {
-        if (err) throw err;
-      });
+      }));
   }
 };
 
@@ -157,10 +178,10 @@ describe('generation screenshots from jsdoc examples', function () {
                   return widgetButton.isDisplayed();
                 }, 1000);
                 widgetButton.click();
-
-                // wait for everything to be rendered
-                browser.sleep(300);
               }
+
+              // wait for everything to be rendered
+              browser.sleep(300);
 
               var widget = element(by.css(selectorPrefix+settings.selector));
               browser.wait(function() {
