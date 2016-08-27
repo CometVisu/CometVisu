@@ -157,8 +157,9 @@ class BaseXsdDirective(BaseDirective):
                     else:
                         description = ''
 
+                name = ":ref:`%s <%s>`" % (name, name)
                 if attr.get('use', 'optional') == "required":
-                    name += "*"
+                    name += " *"
 
                 atype = self.normalize_type(atype) if len(values) == 0 else self.normalize_values(values)
                 if include_name:

@@ -36,7 +36,6 @@ pygettext -d cv -p locale/ .doc/docutils/directives/*.py
 TODOs
 -----
 
-TODO: possibility to map attribute names to links
 TODO: improve element description retrieval from XSD, possibility to extend
 TODO: transfer content from wiki
 TODO: establish structure for manual (done for widgets)
