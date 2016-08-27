@@ -142,12 +142,15 @@ exports.handlers = {
             if (node.name() == "screenshot") {
               var shot = {
                 name: node.attr("name").value() || name + shotIndex,
-                data: {}};
+                data: []};
               node.childNodes().forEach(function (node) {
                 if (node.name() == "caption") {
                   shot.caption = node.text();
                 } else if (node.name() == "data") {
-                  shot.data[node.attr("address").value()] = node.text()
+                  shot.data.push({
+                    'address': node.attr("address").value(),
+                    'value': node.text()
+                  });
                 }
               });
               settings.screenshots.push(shot);

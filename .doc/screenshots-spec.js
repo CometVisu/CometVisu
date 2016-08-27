@@ -192,8 +192,11 @@ describe('generation screenshots from jsdoc examples', function () {
                 return widget.isDisplayed();
               }, 1000).then(function() {
                 settings.screenshots.forEach(function(setting) {
-                  for (var ga in setting.data) {
-                    cvMockup.sendUpdate(ga, setting.data[ga]);
+
+                  if (setting.data && Array.isArray(setting.data)) {
+                    setting.data.forEach(function (data) {
+                      cvMockup.sendUpdate(data.address, data.value);
+                    });
                   }
 
                   widget.getSize().then(function (size) {
