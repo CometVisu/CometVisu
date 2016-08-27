@@ -3,6 +3,7 @@ set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH="develop"
 TARGET_BRANCH="gh-pages"
+REPO_SLUG="CometVisu/CometVisu"
 
 function createDocs {
   sphinx-build -b html doc/manual/de out/de/manual
@@ -14,6 +15,11 @@ function createDocs {
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
 if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
     echo "Skipping deploy;"
+    exit 0
+fi
+
+if [ "$TRAVIS_REPO_SLUG" != "$REPO_SLUG" ]; then
+    echo "Not in main repository => skipping deploy;"
     exit 0
 fi
 
