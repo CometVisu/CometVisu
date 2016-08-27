@@ -17,7 +17,7 @@ die das Enertex Smart Meter versenden kann.
           <screenshot name="powerspectrum">
             <data address="4/4/219">00 00 FE 5E D3 55 CB 53 C6 45 C1 34 A3 40</data>
             <data address="4/4/219">0D 77 39 7B 3D 80 3D 83 3A 86 40 8D 3D 75</data>
-            <data address="4/4/219">1A 37 6C 35 7A 43 6E 3D 6B 46 6E 3D 74</data>
+            <data address="4/4/219">1A 37 6C 35 7A 43 6E 3D 6B 46 6E 3D 74 3A</data>
             <data address="4/4/219">27 50 38 58 3E 56 39 63 3C 79 3C 66 3D 00</data>
             <data address="4/4/211">35 19</data>
           </screenshot>
