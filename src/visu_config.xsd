@@ -156,13 +156,19 @@
       <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere zur Anzeige zu.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
+
   <xsd:attribute name="styling" type="xsd:string" />
+
   <xsd:attribute name="value" type="xsd:string" />
+
   <xsd:attribute name="flavour" type="xsd:string">
     <xsd:annotation>
-        <xsd:appinfo>level:expert</xsd:appinfo>
+      <xsd:appinfo>level:expert</xsd:appinfo>
+      <xsd:documentation xml:lang="en">Selection of a display variant. See also :ref:'flavour'.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Auswahl der Darstellungsvariante. Siehe auch :ref:'Flavour flavour'.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
+  
   <xsd:attribute name="target" type="xsd:string">
     <xsd:annotation>
       <xsd:appinfo>level:expert</xsd:appinfo>
