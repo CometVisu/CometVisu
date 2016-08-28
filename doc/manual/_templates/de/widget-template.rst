@@ -24,7 +24,8 @@ Nur die mit * gekennzeichneten Attribute/Elemente müssen zwingend angegeben wer
 daher weg gelassen werden.
 
 
-**Erlaubte Attribute im %%%WIDGET_NAME%%%-Element**
+Erlaubte Attribute im %%%WIDGET_NAME%%%-Element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter_information:: %%%WIDGET_NAME_LOWER%%%
 
@@ -41,7 +42,8 @@ daher weg gelassen werden.
         </%%%WIDGET_NAME_LOWER%%%>
 
 
-**Erlaubte Kind-Elemente und deren Attribute**
+Erlaubte Kind-Elemente und deren Attribute
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements_information:: %%%WIDGET_NAME_LOWER%%%
 
