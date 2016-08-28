@@ -15,7 +15,7 @@ before_install:
 - npm install -g grunt-cli
 - if [ "CV_BUILD" == "docs" ]; then sudo ./.doc/browser-setup.sh; fi
 - if [ "CV_BUILD" == "docs" ]; then export CHROME_BIN=`pwd`/chrome/google-chrome; fi
-- if [ "CV_BUILD" == "docs" ]; then udo add-apt-repository ppa:ubuntu-toolchain-r/test -y; fi
+- if [ "CV_BUILD" == "docs" ]; then sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y; fi
 - if [ "CV_BUILD" == "docs" ]; then wget -O /tmp/plantuml.deb http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb; fi
 - if [ "CV_BUILD" == "docs" ]; then sudo apt-get update -q; fi
 - if [ "CV_BUILD" == "docs" ]; then sudo apt-get install gcc-5 g++-5; fi
