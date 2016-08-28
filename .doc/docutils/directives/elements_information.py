@@ -17,7 +17,6 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 from docutils import nodes
-from docutils.parsers.rst import directives
 from common import BaseXsdDirective, schema
 import gettext
 gettext.install('cv', localedir='locale')
@@ -65,5 +64,3 @@ class ElementsInformationDirective(BaseXsdDirective):
                 res_nodes.append(table_node)
 
         return res_nodes
-
-directives.register_directive("elements_information", ElementsInformationDirective)

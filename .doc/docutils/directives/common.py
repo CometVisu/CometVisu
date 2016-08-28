@@ -21,9 +21,15 @@ from docutils.parsers.rst import Directive
 from os import path
 from helper.schema import *
 import gettext
+import sys
 
+kwargs = {
+    'localedir': 'locale'
+}
+if sys.version_info[0] > 3:
+    kwargs['unicode'] = True
 
-gettext.install('messages', localedir='locale')
+gettext.install('messages', **kwargs)
 
 type_mapping = {
     'boolean': "true %s false" % _('or'),
