@@ -581,7 +581,7 @@ var SchemaAttribute = function (node, schema) {
   {
     return text.replace(new RegExp( ":ref:[`'](.+?)[`']", 'g'), function(match, contents){
       var 
-        reference = contents.match( /^(.*?) *<([^ ]*)>$/ ),
+        reference = contents.match( /^(.*?) *<([^<]*)>$/ ),
         label     = reference ? reference[1] : contents,
         key       = reference ? reference[2] : contents,
         language  = 'de'; // TODO handle other languages as well, don't hard code!
