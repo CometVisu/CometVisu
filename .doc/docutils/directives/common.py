@@ -44,7 +44,6 @@ class BaseDirective(Directive):
             'string': _('string'),
             'decimal': _('decimal')
         }
-        print("type mapping initialized")
 
     def init_locale(self):
         #locale = self.state_machine.document.settings.language_code
@@ -66,14 +65,12 @@ class BaseXsdDirective(BaseDirective):
             res = "*%s*" % ("* %s *" % _("or")).join(values)
         else:
             res = " ".join(["*%s*" % "*, *".join(values[0:-1]), _("or"), "*%s*" % values[-1]])
-        print(res)
         return res
 
     def normalize_type(self, type):
         if type[0:4] == "xsd:":
             type = type[4:]
         res = self.type_mapping[type] if type in self.type_mapping else type
-        print("Type: %s" % res)
         return res
 
     def get_name(self, name):

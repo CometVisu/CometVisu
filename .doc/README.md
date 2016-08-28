@@ -50,8 +50,8 @@ TODO: transfer content from wiki
 TODO: establish structure for manual (done for widgets)
 TODO: cleanup, doc, todos
 TODO: add since or changelog to widget pages
+TODO: use travis build matrix to separate normal build and doc build to speed things up
 
-FIXME: Translations of attribute types
 FIXME: wrong design (pure) in some screenshots, when build on travis
 
 
