@@ -35,8 +35,8 @@ before_script:
 - "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
 - sleep 3
 script:
-- grunt jscs
-- grunt karma:travis
-- grunt e2e
+- if [ "CV_BUILD" == "test" ]; then grunt jscs; fi
+- if [ "CV_BUILD" == "test" ]; then grunt karma:travis; fi
+- if [ "CV_BUILD" == "test" ]; then grunt e2e; fi
+- if [ "CV_BUILD" == "test" ]; then grunt coveralls; fi
 - if [ "CV_BUILD" == "docs" ]; then .doc/deploy.sh; fi
-- grunt coveralls
