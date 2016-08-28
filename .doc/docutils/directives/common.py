@@ -32,10 +32,11 @@ if sys.version_info[0] > 3:
 gettext.install('messages', **kwargs)
 
 type_mapping = {
-    'boolean': "true %s false" % _('or'),
+    'boolean': "*true* %s *false*" % _('or'),
     'string': _('string'),
     'decimal': _('decimal')
 }
+print(type_mapping)
 
 schema = Schema(path.join("src", "visu_config.xsd"))
 
@@ -58,14 +59,18 @@ class BaseXsdDirective(BaseDirective):
 
     def normalize_values(self, values):
         if len(values) <= 1:
-            return "*%s*" % ("* %s *" % _("or")).join(values)
+            res = "*%s*" % ("* %s *" % _("or")).join(values)
         else:
-            return " ".join(["*%s*" % "*, *".join(values[0:-1]), _("or"), "*%s*" % values[-1]])
+            res = " ".join(["*%s*" % "*, *".join(values[0:-1]), _("or"), "*%s*" % values[-1]])
+        print(res)
+        return res
 
     def normalize_type(self, type):
         if type[0:4] == "xsd:":
             type = type[4:]
-        return type_mapping[type] if type in type_mapping else type
+        res = type_mapping[type] if type in type_mapping else type
+        print("Type: %s" % res)
+        return res
 
     def get_name(self, name):
         name = ":ref:`%s`" % name
