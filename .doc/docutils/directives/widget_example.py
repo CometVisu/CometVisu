@@ -299,6 +299,3 @@ class WidgetExampleDirective(Directive):
             res_nodes.append(node)
 
         return res_nodes
-
-
-directives.register_directive("widget_example", WidgetExampleDirective)

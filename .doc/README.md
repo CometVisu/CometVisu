@@ -35,17 +35,25 @@ Translation
 -----------
 ```
 # update po files
-pygettext -d cv -p locale/ .doc/docutils/directives/*.py
+pygettext -d messages -p locale/ .doc/docutils/directives/*.py
 # translate with poedit + save
 ```
 
 TODOs
 -----
 
+TODO: complete colaboration pages
+TODO: move python part to virtualenv + setuptools, assist as much as possible
+        - python-auto-setup (clone, set remotes, 
 TODO: improve element description retrieval from XSD, possibility to extend
 TODO: transfer content from wiki
 TODO: establish structure for manual (done for widgets)
-TODO: cleanup, doc
+TODO: cleanup, doc, todos
+TODO: add since or changelog to widget pages
+
+FIXME: Translations of attribute types
+FIXME: wrong design (pure) in some screenshots, when build on travis
+
 
 Optional
 --------
