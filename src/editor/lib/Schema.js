@@ -41,6 +41,16 @@ var xsdNamespaceResolver = function(prefix) {
 }
 
 /**
+ * Object to translate references in the XSD annotation elements to link
+ * to the online documentation.
+ * @var object
+ */
+var documentationMapping;
+$.getJSON( 'lib/DocumentationMapping.json', function( json ){
+  documentationMapping = json;
+});
+
+/**
  * starting-point for a javascript-representation of the XSD
  * 
  * @param   filename    string  filename of the schema, including a relative path
@@ -560,7 +570,26 @@ var SchemaAttribute = function (node, schema) {
    * @var array
    */
   var documentationCache = undefined;
-   
+  
+  /**
+   * Transform documentation text to link to the online documentation when it
+   * contains a reference.
+   * 
+   * @return string The transformed input string.
+   */
+  function createDocumentationWebLinks( text )
+  {
+    return text.replace(new RegExp( ":ref:[`'](.+?)[`']", 'g'), function(match, contents){
+      var 
+        reference = contents.match( /^(.*?) *<([^<]*)>$/ ),
+        label     = reference ? reference[1] : contents,
+        key       = reference ? reference[2] : contents,
+        language  = 'de'; // TODO handle other languages as well, don't hard code!
+      
+      return '<a class="doclink" target="_blank" href="' + documentationMapping._base + language + documentationMapping[key] + '">' + label + '</a>';
+    });
+  }
+  
   /**
    * get the documentation information from the attribute, if any
    * 
@@ -579,7 +608,7 @@ var SchemaAttribute = function (node, schema) {
     // any appinfo this element itself might carry
     $.each($node.xpath(selector, xsdNamespaceResolver), function (i, documentationNode) {
       var documentationNodeText = $(documentationNode).text();
-      documentation.push(documentationNodeText);
+      documentation.push(createDocumentationWebLinks(documentationNodeText));
     });
 
     if ($node.is('[ref]')) {
@@ -590,7 +619,7 @@ var SchemaAttribute = function (node, schema) {
 
       $.each($ref.xpath(selector, xsdNamespaceResolver), function (i, documentationNode) {
         var documentationNodeText = $(documentationNode).text();
-        documentation.push(documentationNodeText);
+        documentation.push(createDocumentationWebLinks(documentationNodeText));
       });
     }
             
