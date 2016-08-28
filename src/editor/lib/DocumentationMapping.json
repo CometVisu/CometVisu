@@ -1,0 +1,7 @@
+{
+  "_base": "http://test.cometvisu.org/CometVisu/",
+  "flavour": "/manual/config/flavour.html",
+  "format": "/manual/config/format.html",
+  "mapping": "/manual/config/mapping.html",
+  "styling": "/manual/config/styling.html"
+}

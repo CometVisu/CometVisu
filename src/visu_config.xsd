@@ -21,14 +21,54 @@
   </xsd:simpleType>
 
   <xsd:complexType name="layout">
-    <xsd:attribute name="colspan" type="xsd:decimal" use="optional" />
-    <xsd:attribute name="colspan-m" type="xsd:decimal" use="optional" />
-    <xsd:attribute name="colspan-s" type="xsd:decimal" use="optional" />
-    <xsd:attribute name="rowspan" type="xsd:decimal" use="optional" />
-    <xsd:attribute name="x" type="xsd:string" use="optional" />
-    <xsd:attribute name="y" type="xsd:string" use="optional" />
-    <xsd:attribute name="z" type="xsd:string" use="optional" />
-    <xsd:attribute name="width" type="xsd:string" use="optional" />
+    <xsd:attribute name="colspan" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Amount of coloumns this widget sould be wide.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Spaltenanzahl für dieses Widget.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="colspan-m" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Overrules the amount of coloumns on a medium screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="colspan-s" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Overrules the amount of coloumns on a small screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="rowspan" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Amount of rows this widget should be high.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeilenanzahl für dieses Widget.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Horizontal position of the widget for 2D pages.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Horizontale Position des Widgets auf 2D Seiten.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="y" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Vertical position of the widget for 2D pages.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Vertikale Position des Widgets auf 2D Seiten.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="z" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Reserved for future use.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Für zukünftige Anwendungen reserviert.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="width" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Width for the widget for 2D pages.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite des Widgets auf 2D Seiten.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="address">
@@ -116,13 +156,19 @@
       <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere zur Anzeige zu.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
+
   <xsd:attribute name="styling" type="xsd:string" />
+
   <xsd:attribute name="value" type="xsd:string" />
+
   <xsd:attribute name="flavour" type="xsd:string">
     <xsd:annotation>
-        <xsd:appinfo>level:expert</xsd:appinfo>
+      <xsd:appinfo>level:expert</xsd:appinfo>
+      <xsd:documentation xml:lang="en">Selection of a display variant. See also :ref:'flavour'.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Auswahl der Darstellungsvariante. Siehe auch :ref:`Flavour &lt;flavour&gt;`.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
+  
   <xsd:attribute name="target" type="xsd:string">
     <xsd:annotation>
       <xsd:appinfo>level:expert</xsd:appinfo>
@@ -793,6 +839,10 @@
   </xsd:complexType>
 
   <xsd:complexType name="label" mixed="true">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Text to display a label for the widget.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Text um bei dem Widget eine Beschreibung darzustellen.</xsd:documentation>
+    </xsd:annotation>
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
       <xsd:element name="icon" type="icon" />
     </xsd:choice>
