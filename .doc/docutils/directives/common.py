@@ -31,17 +31,19 @@ if sys.version_info[0] > 3:
 
 gettext.install('messages', **kwargs)
 
-type_mapping = {
-    'boolean': "true %s false" % _('or'),
-    'string': _('string'),
-    'decimal': _('decimal')
-}
-
 schema = Schema(path.join("src", "visu_config.xsd"))
 
 
 class BaseDirective(Directive):
     locale = 'en'
+    type_mapping = {}
+
+    def init_type_mapping(self):
+        self.type_mapping = {
+            'boolean': "*true* %s *false*" % _('or'),
+            'string': _('string'),
+            'decimal': _('decimal')
+        }
 
     def init_locale(self):
         #locale = self.state_machine.document.settings.language_code
@@ -49,6 +51,8 @@ class BaseDirective(Directive):
         self.locale = self.state_machine.document.settings._source.split(path.sep +"manual" + path.sep, 1)[1].split(path.sep)[0]
         t = gettext.translation('messages', localedir='locale', languages=[self.locale])
         t.install()
+
+        self.init_type_mapping()
 
 
 class BaseXsdDirective(BaseDirective):
@@ -58,14 +62,16 @@ class BaseXsdDirective(BaseDirective):
 
     def normalize_values(self, values):
         if len(values) <= 1:
-            return "*%s*" % ("* %s *" % _("or")).join(values)
+            res = "*%s*" % ("* %s *" % _("or")).join(values)
         else:
-            return " ".join(["*%s*" % "*, *".join(values[0:-1]), _("or"), "*%s*" % values[-1]])
+            res = " ".join(["*%s*" % "*, *".join(values[0:-1]), _("or"), "*%s*" % values[-1]])
+        return res
 
     def normalize_type(self, type):
         if type[0:4] == "xsd:":
             type = type[4:]
-        return type_mapping[type] if type in type_mapping else type
+        res = self.type_mapping[type] if type in self.type_mapping else type
+        return res
 
     def get_name(self, name):
         name = ":ref:`%s`" % name
@@ -99,7 +105,7 @@ class BaseXsdDirective(BaseDirective):
                 else:
                     description = ''
 
-            name = ":ref:`%s <%s>`" % (name, name)
+            #name = ":ref:`%s <%s>`" % (name, name)
             if attr.get('use', 'optional') == "required":
                 name += " *"
 
@@ -169,7 +175,7 @@ class BaseXsdDirective(BaseDirective):
                     else:
                         description = ''
 
-                name = ":ref:`%s <%s>`" % (name, name)
+                #name = ":ref:`%s <%s>`" % (name, name)
                 if attr.get('use', 'optional') == "required":
                     name += " *"
 

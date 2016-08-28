@@ -131,7 +131,8 @@ Nur die mit * gekennzeichneten Attribute/Elemente müssen zwingend angegeben wer
 daher weg gelassen werden.
 
 
-**Erlaubte Attribute im Switch-Element**
+Erlaubte Attribute im Switch-Element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter_information:: switch
 
@@ -148,7 +149,8 @@ daher weg gelassen werden.
         </switch>
 
 
-**Erlaubte Kind-Elemente und deren Attribute**
+Erlaubte Kind-Elemente und deren Attribute
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements_information:: switch
 

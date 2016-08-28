@@ -142,8 +142,7 @@ entpackt werden. Die veröffentlichten Pakete sind dort unter
 https://github.com/CometVisu/CometVisu/releases zu finden.
 
 Die Installation auf dem `Raspberry
-Pi <http://de.wikipedia.org/wiki/Raspberry_Pi>`__ wird unter `CometVisu
-auf Raspberry Pi <CometVisu/Installation/Raspberry_Pi/de>`__
+Pi <http://de.wikipedia.org/wiki/Raspberry_Pi>`__ wird unter :doc:`CometVisu auf Raspberry Pi <raspberry>`
 beschrieben.
 
 CometVisu testen
