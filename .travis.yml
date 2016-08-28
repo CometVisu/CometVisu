@@ -40,6 +40,5 @@ script:
 - grunt jscs
 - grunt karma:travis
 - grunt e2e
-- sphinx-build -b html doc/manual/de out/de/manual
 - .doc/deploy.sh
 - grunt coveralls
