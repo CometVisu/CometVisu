@@ -105,4 +105,8 @@ Mithilfe bei der Entwicklung
     * Einführung ins Build-Systemmit *grunt*
     * Style-Guide
     * JSDoc inkl. widget-examples
-    * ...
+    * ..
+
+.. toctree::
+
+    dev/test
