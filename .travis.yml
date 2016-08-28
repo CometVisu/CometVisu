@@ -25,7 +25,7 @@ before_install:
 install:
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update --standalone --firefox"
-- if [ "CV_BUILD" == "docs" ]; sudo pip install -r .doc/requirements.txt; fi # for documentation
+- if [ "CV_BUILD" == "docs" ]; then sudo pip install -r .doc/requirements.txt; fi # for documentation
 - if [ "CV_BUILD" == "docs" ]; then sudo apt-get install libxml2-dev libxslt-dev graphviz; fi
 - if [ "CV_BUILD" == "docs" ]; then sudo dpkg -i /tmp/plantuml.deb; fi
 - if [ "CV_BUILD" == "docs" ]; then npm install jsdoc libxmljs-mt libxml-xsd easyimage; fi
