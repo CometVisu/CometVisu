@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CometVisu\n"
-"POT-Creation-Date: 2016-08-25 21:17+0200\n"
-"PO-Revision-Date: 2016-08-25 21:17+0200\n"
+"POT-Creation-Date: 2016-08-28 13:19+0200\n"
+"PO-Revision-Date: 2016-08-28 13:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: Tobias Bräutigam <tbraeutigam@gmail.com>\n"
 "Language: de_DE\n"
@@ -17,44 +17,58 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .doc/docutils/directives/common.py:27 .doc/docutils/directives/common.py:53
-#: .doc/docutils/directives/common.py:55
+#: .doc/docutils/directives/common.py:29 .doc/docutils/directives/common.py:55
+#: .doc/docutils/directives/common.py:57
 msgid "or"
 msgstr "oder"
 
-#: .doc/docutils/directives/common.py:28
+#: .doc/docutils/directives/common.py:30
 msgid "string"
 msgstr "Text"
 
-#: .doc/docutils/directives/common.py:29
+#: .doc/docutils/directives/common.py:31
 msgid "decimal"
 msgstr "Zahl"
 
-#: .doc/docutils/directives/common.py:114
+#: .doc/docutils/directives/common.py:118
+#: .doc/docutils/directives/common.py:124
+#: .doc/docutils/directives/common.py:227
+#: .doc/docutils/directives/common.py:233
+msgid "Attribute"
+msgstr "Attribut"
+
+#: .doc/docutils/directives/common.py:118
+#: .doc/docutils/directives/common.py:227
 msgid "Element"
 msgstr "Element"
 
-#: .doc/docutils/directives/common.py:114
-#: .doc/docutils/directives/common.py:117
-#: .doc/docutils/directives/common.py:221
-#: .doc/docutils/directives/common.py:224
+#: .doc/docutils/directives/common.py:119
+#: .doc/docutils/directives/common.py:125
+#: .doc/docutils/directives/common.py:228
+#: .doc/docutils/directives/common.py:234
+msgid "Content"
+msgstr "Inhalt"
+
+#: .doc/docutils/directives/common.py:119
+#: .doc/docutils/directives/common.py:125
+#: .doc/docutils/directives/common.py:228
+#: .doc/docutils/directives/common.py:234
 msgid "Description"
 msgstr "Beschreibung"
 
-#: .doc/docutils/directives/common.py:114
-#: .doc/docutils/directives/common.py:117
-#: .doc/docutils/directives/common.py:221
-#: .doc/docutils/directives/common.py:224
+#: .doc/docutils/directives/common.py:119
+#: .doc/docutils/directives/common.py:125
+#: .doc/docutils/directives/common.py:228
+#: .doc/docutils/directives/common.py:234
 msgid "Name"
 msgstr "Name"
 
-#: .doc/docutils/directives/common.py:114
-#: .doc/docutils/directives/common.py:117
-#: .doc/docutils/directives/common.py:221
-#: .doc/docutils/directives/common.py:224
-msgid "Type"
-msgstr "Typ"
-
-#: .doc/docutils/directives/common.py:221
+#: .doc/docutils/directives/common.py:228
 msgid "Structure"
 msgstr "Struktur"
+
+#~ msgid "Value range"
+#~ msgstr "Wertebereich"
+
+#~ msgid "Type"
+#~ msgstr "Typ"

@@ -35,7 +35,7 @@ Translation
 -----------
 ```
 # update po files
-pygettext -d cv -p locale/ .doc/docutils/directives/*.py
+pygettext -d messages -p locale/ .doc/docutils/directives/*.py
 # translate with poedit + save
 ```
 

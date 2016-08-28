@@ -114,10 +114,16 @@ class BaseXsdDirective(BaseDirective):
             return None
 
         if include_name:
-            table_head = [[self.get_cell_data(_('Element')), self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+            table_head = [
+                [self.get_cell_data(_('Element')), (0, 3, 0, statemachine.StringList(_('Attribute').splitlines())), None, None],
+                [self.get_cell_data(''), self.get_cell_data(_('Name')), self.get_cell_data(_('Content')), self.get_cell_data(_('Description'))]
+            ]
             table = ([10, 15, 20, 55], table_head, table_body)
         else:
-            table_head = [[self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+            table_head = [
+                [(0, 3, 0, statemachine.StringList(_('Attribute').splitlines())), None, None],
+                [self.get_cell_data(_('Name')), self.get_cell_data(_('Content')), self.get_cell_data(_('Description'))]
+            ]
             table = ([20, 20, 60], table_head, table_body)
 
         table_node = self.state.build_table(table, self.content_offset)
@@ -217,10 +223,16 @@ class BaseXsdDirective(BaseDirective):
                 return None
 
             if include_name:
-                table_head = [[self.get_cell_data(_('Structure')), self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+                table_head = [
+                    [self.get_cell_data(_('Element')), (0, 3, 0, statemachine.StringList(_('Attribute').splitlines())), None, None],
+                    [self.get_cell_data(_('Structure')), self.get_cell_data(_('Name')), self.get_cell_data(_('Content')), self.get_cell_data(_('Description'))]
+                ]
                 table = ([15, 15, 15, 55], table_head, table_body)
             else:
-                table_head = [[self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+                table_head = [
+                    [(0, 3, 0, statemachine.StringList(_('Attribute').splitlines())), None, None],
+                    [self.get_cell_data(_('Name')), self.get_cell_data(_('Content')), self.get_cell_data(_('Description'))]
+                ]
                 table = ([20, 20, 60], table_head, table_body)
 
             table_node = self.state.build_table(table, self.content_offset)
