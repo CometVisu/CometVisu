@@ -16,7 +16,7 @@ Editor nutzen, der mit XML umgehen kann und/oder die Syntax einfärbt
 Windows und unter Linux z.B. vi mit ":syntax on").
 
 Allgemeine Informationen über das CometVisu XML Format findet man
-`hier <CometVisu/XML-Elemente>`__, Informationen zu den einzelnen
+:doc:`hier <xml-format>`, Informationen zu den einzelnen
 Widgets in den jeweiligen Unterseiten.
 
 Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch
@@ -46,6 +46,15 @@ Navigationselemente in der CometVisu
 .. TODO::
 
     Beschreibung
+
+Die verfügbaren Designs
+------------------------
+
+.. toctree::
+    :glob:
+
+    designs/*
+
 
 Elemente für Konvertierung und Formatierung in der CometVisu
 ------------------------------------------------------------
