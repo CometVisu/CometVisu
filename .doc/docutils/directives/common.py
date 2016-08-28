@@ -31,18 +31,17 @@ if sys.version_info[0] > 3:
 
 gettext.install('messages', **kwargs)
 
-type_mapping = {
-    'boolean': "*true* %s *false*" % _('or'),
-    'string': _('string'),
-    'decimal': _('decimal')
-}
-print(type_mapping)
-
 schema = Schema(path.join("src", "visu_config.xsd"))
 
 
 class BaseDirective(Directive):
     locale = 'en'
+
+    type_mapping = {
+        'boolean': "*true* %s *false*" % _('or'),
+        'string': _('string'),
+        'decimal': _('decimal')
+    }
 
     def init_locale(self):
         #locale = self.state_machine.document.settings.language_code
@@ -68,7 +67,7 @@ class BaseXsdDirective(BaseDirective):
     def normalize_type(self, type):
         if type[0:4] == "xsd:":
             type = type[4:]
-        res = type_mapping[type] if type in type_mapping else type
+        res = self.type_mapping[type] if type in self.type_mapping else type
         print("Type: %s" % res)
         return res
 
