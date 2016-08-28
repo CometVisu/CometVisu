@@ -99,7 +99,7 @@ class BaseXsdDirective(BaseDirective):
                 else:
                     description = ''
 
-            name = ":ref:`%s <%s>`" % (name, name)
+            #name = ":ref:`%s <%s>`" % (name, name)
             if attr.get('use', 'optional') == "required":
                 name += " *"
 
@@ -169,7 +169,7 @@ class BaseXsdDirective(BaseDirective):
                     else:
                         description = ''
 
-                name = ":ref:`%s <%s>`" % (name, name)
+                #name = ":ref:`%s <%s>`" % (name, name)
                 if attr.get('use', 'optional') == "required":
                     name += " *"
 
