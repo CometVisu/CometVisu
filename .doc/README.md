@@ -3,6 +3,11 @@ Setup documentation build system
 
 Source docs
 -----------
+Install required system packages
+```
+apt-get install nodejs-legacy imagemagick
+```
+
 Install required packages
 ```
 npm install jsdoc libxmljs-mt libxml-xsd easyimage
@@ -15,10 +20,11 @@ grunt apt-doc
 
 User Manual
 -----------
-Install libxml2, libxslt development files and plantuml (e.g. `apt-get install libxml2-dev libxslt-dev plantuml`)
+Install libxml2, libxslt development files and plantuml (e.g. `apt-get install libxml2-dev libxslt-dev plantuml python-pip`)
 Install required python3 packages specified in .doc/docutils/requirements.txt
+`pip install -r .doc/requirements`
 Note: pip install sh must be installed as root `sudo pip install sh`
-(and python3 if it is not installed on your system)
+(and python if it is not installed on your system)
  
 generate doc with: 
 ```
