@@ -46,6 +46,7 @@ def store_references(app, exception):
         with open(references_file, "w") as f:
             f.write(dumps(references, indent=2, sort_keys=True))
 
+
 def setup(app):
     app.add_directive("widget_example", WidgetExampleDirective)
     app.add_directive("elements_information", ElementsInformationDirective)

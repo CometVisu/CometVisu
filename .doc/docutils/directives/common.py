@@ -36,12 +36,15 @@ schema = Schema(path.join("src", "visu_config.xsd"))
 
 class BaseDirective(Directive):
     locale = 'en'
+    type_mapping = {}
 
-    type_mapping = {
-        'boolean': "*true* %s *false*" % _('or'),
-        'string': _('string'),
-        'decimal': _('decimal')
-    }
+    def init_type_mapping(self):
+        self.type_mapping = {
+            'boolean': "*true* %s *false*" % _('or'),
+            'string': _('string'),
+            'decimal': _('decimal')
+        }
+        print("type mapping initialized")
 
     def init_locale(self):
         #locale = self.state_machine.document.settings.language_code
@@ -49,6 +52,8 @@ class BaseDirective(Directive):
         self.locale = self.state_machine.document.settings._source.split(path.sep +"manual" + path.sep, 1)[1].split(path.sep)[0]
         t = gettext.translation('messages', localedir='locale', languages=[self.locale])
         t.install()
+
+        self.init_type_mapping()
 
 
 class BaseXsdDirective(BaseDirective):
