@@ -554,6 +554,7 @@
     <xsd:attribute name="name" type="xsd:string" use="required">
         <xsd:annotation>
             <xsd:documentation xml:lang="en">title of this page</xsd:documentation>
+            <xsd:documentation xml:lang="de">Titel der Seite</xsd:documentation>
         </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
@@ -563,7 +564,12 @@
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="visible" type="xsd:boolean" />
+    <xsd:attribute name="visible" type="xsd:boolean">
+    	<xsd:annotation>
+        	<xsd:documentation xml:lang="en">Displays the widget (page name) which links to be page</xsd:documentation>
+        	<xsd:documentation xml:lang="de">Zeigt ein Widget an (Seitenname), das auf die Seite verlinkt</xsd:documentation>
+	</xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="type" use="optional">
       <xsd:annotation>
           <xsd:appinfo>level:expert</xsd:appinfo>
