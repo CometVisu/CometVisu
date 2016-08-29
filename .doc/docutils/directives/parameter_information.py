@@ -16,9 +16,6 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
-from docutils import statemachine
-
-from docutils.parsers.rst import directives
 from common import BaseXsdDirective
 
 
@@ -46,6 +43,3 @@ class ParameterInformationDirective(BaseXsdDirective):
 
         self.add_name(table_node)
         return [table_node]
-
-
-directives.register_directive("parameter_information", ParameterInformationDirective)

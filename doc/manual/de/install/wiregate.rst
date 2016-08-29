@@ -16,8 +16,8 @@ Manuelle Installation auf dem WireGate
 
 Hatte man die CometVisu der 0.8er Reihe bereits vorher installiert, so
 müssen nur noch die eigenen Config-Dateien übertragen werden. Diese
-liegen im Verzeichnis /vsr/www/release\_*<...>*/release/config/ und
-müssen nun in das Verzeichnis /etc/cometvisu/ kopiert werden.
+liegen im Verzeichnis ``/srv/www/release\_*<...>*/release/config/`` und
+müssen nun in das Verzeichnis ``/etc/cometvisu/`` kopiert werden.
 
 Beispiel: bewirkt die Kopie der config aus dem "release\_0.8.3" in den
 neuen Ordner der cometvisu-0.8
@@ -32,7 +32,7 @@ einen Link auf den Editor in der Statusbar gesetzt hatte, so sollte man
 diese korrigieren. Mit dem neuen Editor benötigt man dazu folgende
 Schritte:
 
-#. Den neuen Editor öffnen: http://\ **/cometvisu/editor/?config=** -
+#. Den neuen Editor öffnen: ``http://<server-name>/cometvisu/editor/?config=`` -
    sollte hierbei der Hinweis kommen, dass die Config nicht in der
    neueste Version vorliegt, so bitte diese konvertieren (lassen)
 #. Durch Klick auf "+" bei "pages" den entsprechenden Baum ausklappen
@@ -43,7 +43,7 @@ Schritte:
    öffnen (kann eine kurze Verzögerung geben) und ggf. das Textfeld zur
    besseren Übersicht mit dem Handle in der rechten unteren Ecke
    vergrößern
-#. Das -HTML-Element abändern auf **, also z.B. auf *Edit*
+#. Das HTML-Element abändern auf **, also z.B. auf *Edit*
 #. Mit Klick ganz oben auf der Seite auf "preview" testen, ob die Seite
    wie gewünscht funktioniert
 #. Falls ja: mit Klick ganz oben auf der Seite auf "save" die Config
@@ -65,9 +65,9 @@ installieren sind folgende Schritte durchzuführen:
 .. code:: bash
 
     cd /var/www
-    wget -O CometVisuDownload.tar.bz2 http://sourceforge.net/projects/openautomation/files/CometVisu/CometVisu_0.8.5.tar.bz2/download
-    tar xvfp CometVisuDownload.tar.bz2
-    rm ./CometVisuDownload.tar.bz2
+    wget -O CometVisuDownload.tar.gz https://github.com/CometVisu/CometVisu/releases/download/v0.9.2/CometVisu-0.9.2.tar.gz
+    tar xvfz CometVisuDownload.tar.gz
+    rm ./CometVisuDownload.tar.gz
     ln -s release_0.8.5/release cometvisu
     chmod a+w cometvisu/config/*
 
@@ -85,9 +85,9 @@ aktualisiert werden:
 .. code:: bash
 
     cd /var/www
-    wget -O CometVisuDownload.tar.bz2  http://sourceforge.net/projects/openautomation/files/CometVisu/CometVisu_0.8.5.tar.bz2/download
-    tar xvfp CometVisuDownload.tar.bz2
-    rm ./CometVisuDownload.tar.bz2
+    wget -O CometVisuDownload.tar.gz https://github.com/CometVisu/CometVisu/releases/download/v0.9.2/CometVisu-0.9.2.tar.gz
+    tar xvfz CometVisuDownload.tar.gz
+    rm ./CometVisuDownload.tar.gz
     rm -f ./cometvisu.bak
     mv ./cometvisu cometvisu.bak
     ln -s release_0.8.5/release cometvisu
@@ -97,5 +97,5 @@ aktualisiert werden:
 Ergebnis:
 ^^^^^^^^^
 
-Die CometVisu ist nun unter http://wiregateXYZ/cometvisu/ zu erreichen.
+Die CometVisu ist nun unter ``http://wiregateXYZ/cometvisu/`` zu erreichen.
 

@@ -16,10 +16,10 @@ auf `Github <http://github.com/CometVisu/CometVisu>`__ veröffentlicht.
 Systemvoraussetzungen
 ---------------------
 
-Die **Bedienung** durch die Anwender erfolgt über einen Webbrowser. Die
+Die Bedienung durch die Anwender erfolgt über einen Webbrowser. Die
 meisten aktuellen Browser werden unterstützt.
 
-Durch Angabe von `Parametern im URL <CometVisu/URL_parameter/de>`__ kann
+Durch Angabe von :doc:`Parametern im URL <config/url-params>` kann
 man zusätzlich die CometVisu beeinflussen, zum Bespiel andere Configs
 oder Design laden, ebenso aber die Darstellung für Mobilgeräte wie z.B.
 Smartphones erzwingen.
@@ -33,8 +33,9 @@ aus verschiedenen Links:
 -  Link auf die Homepage des Projekts CometVisu
 -  "**Reload**" um die aktuelle Seite neu aufzurufen.
 
-        *Achtung*: Im Editormodus gehen ohne Nachfrage alle nicht
-        abgespeicherten Änderungen verloren!
+        .. caution::
+
+            Im Editormodus gehen ohne Nachfrage alle nicht abgespeicherten Änderungen verloren!
 
 -  "**Widget Demo**": Zeigt die verschiedenen Bedienelemente und ihre
    Verwendungsmöglichkeiten auf.
@@ -55,20 +56,19 @@ Update der CometVisu
 
 falls eine Version 0.8 schon installiert war kann die Installation
 direkt aktualisiert werden auf dem
-`WireGate <CometVisu/0.8.x/manual/updatewiregate/de>`__ oder `anderen
-Installationen <CometVisu/0.8.x/manual/updateother/de>`__
+:doc:`WireGate <install/update-wiregate>` oder :doc:`anderen
+Installationen <install/update-other>`
 
 CometVisu-Designs
 -----------------
 
--  `Metal <CometVisu/demo_config/swiss/de>`__ das wohl beliebteste
-   Design
--  `Pure <CometVisu/0.8.x/designs/pure/de/>`__
--  `Diskreet <CometVisu/0.8.x/designs/diskreet/de/>`__
--  `Discreet Sand <CometVisu/0.8.x/designs/discreet_sand/de/>`__
--  `Discreet Slim <CometVisu/0.8.x/designs/discreet_slim/de/>`__
--  `Alaska <CometVisu/0.8.x/designs/alaska/de/>`__
--  `Alaska Slim <CometVisu/0.8.x/designs/alaska_slim/de/>`__
+-  :doc:`Metal <config/designs/metal>` das wohl beliebteste Design
+-  :doc:`Pure <config/designs/pure>`
+-  :doc:`Diskreet <config/designs/diskreet>`
+-  :doc:`Discreet Sand <config/designs/diskreet-sand>`
+-  :doc:`Discreet Slim <config/designs/diskreet-slim>`
+-  :doc:`Alaska <config/designs/alaska>`
+-  :doc:`Alaska Slim <config/designs/alaska_slim>`
 
 Es ist auch möglich eigene Design zu implementieren.
 

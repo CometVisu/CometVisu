@@ -10,9 +10,80 @@ var fs = require('fs'),
 var cvMockup = require('../test/protractor/pages/Mock');
 var editorMockup = require('../test/protractor/pages/EditorMock');
 
+var errorHandler = function(err) {
+  if (err) throw err;
+};
+
+var getCropArgs = function(options) {
+
+    options.cropheight = options.cropheight || options.cropwidth;
+    options.gravity = options.gravity || 'Center';
+    options.x = options.x || 0;
+    options.y = options.y || 0;
+
+    var args = [options.src];
+
+    args.push('-auto-orient');
+    args.push('-gravity');
+    args.push(options.gravity);
+    args.push('-strip');
+    args.push('-crop');
+    args.push(options.cropwidth + 'x'+ options.cropheight + '+' + options.x + '+' + options.y);
+    if (options.quality) {
+      args.push('-quality');
+      args.push(options.quality)
+    }
+    if (options.background) {
+      args.push('-background');
+      args.push(options.background)
+    }
+    args.push(options.dst);
+    return args;
+};
+
+var getResizeArgs = function(options) {
+
+  options.height = options.height || options.width;
+
+  var args = [options.src];
+
+  if (options.flatten) {
+    args.push('-flatten');
+    if (options.background) {
+      args.push('-background');
+      args.push(options.background);
+    }
+  }
+  else {
+    if (options.background) {
+      args.push('-background');
+      args.push(options.background);
+      args.push('-flatten');
+    }
+  }
+
+  args.push('-auto-orient');
+  args.push('-strip');
+  args.push('-resize');
+  args.push(options.width + 'x' + options.height);
+  if (options.ignoreAspectRatio) {
+    args[args.length-1] += '!';
+  }
+  if (options.quality) {
+    args.push('-quality');
+    args.push(options.quality);
+  }
+  if (options.background) {
+    args.push('-background');
+    args.push(options.background);
+  }
+  args.push(options.dst);
+  return args;
+};
+
 var cropInFile = function(size, location, srcFile, width, height) {
   if (width && height) {
-    easyimg.crop({
+    var args = getCropArgs({
       src: srcFile,
       dst: srcFile,
       cropwidth: size.width,
@@ -20,34 +91,30 @@ var cropInFile = function(size, location, srcFile, width, height) {
       x: location.x,
       y: location.y,
       gravity: 'North-West'
-    }).then(function(image) {
-        easyimg.resize({
-          src: srcFile,
-          dst: srcFile,
-          width: width,
-          height: height
-        }).then(
-          function(image) { },
-          function (err) {
-            if (err) throw err;
-          });
-      },
-      function (err) {
-        if (err) throw err;
-      });
-  } else {
-    easyimg.crop({
+    });
+    args.unshift('convert');
+    easyimg.exec(args.join(" ")).then(function(image) {
+      var resizeArgs = getResizeArgs({
         src: srcFile,
         dst: srcFile,
-        cropwidth: size.width,
-        cropheight: size.height,
-        x: location.x,
-        y: location.y,
-        gravity: 'North-West'
-      },
-      function (err) {
-        if (err) throw err;
+        width: width,
+        height: height
       });
+      resizeArgs.unshift('convert');
+      easyimg.exec(resizeArgs.join(" ")).then(function (img) { }, errorHandler);
+    }, errorHandler);
+  } else {
+    var args = getCropArgs({
+      src: srcFile,
+      dst: srcFile,
+      cropwidth: size.width,
+      cropheight: size.height,
+      x: location.x,
+      y: location.y,
+      gravity: 'North-West'
+    });
+    args.unshift('convert');
+    easyimg.exec(args.join(" ")).then(function(img) { }, errorHandler);
   }
 };
 
@@ -157,18 +224,21 @@ describe('generation screenshots from jsdoc examples', function () {
                   return widgetButton.isDisplayed();
                 }, 1000);
                 widgetButton.click();
-
-                // wait for everything to be rendered
-                browser.sleep(300);
               }
+
+              // wait for everything to be rendered
+              browser.sleep(300);
 
               var widget = element(by.css(selectorPrefix+settings.selector));
               browser.wait(function() {
                 return widget.isDisplayed();
               }, 1000).then(function() {
                 settings.screenshots.forEach(function(setting) {
-                  for (var ga in setting.data) {
-                    cvMockup.sendUpdate(ga, setting.data[ga]);
+
+                  if (setting.data && Array.isArray(setting.data)) {
+                    setting.data.forEach(function (data) {
+                      cvMockup.sendUpdate(data.address, data.value);
+                    });
                   }
 
                   widget.getSize().then(function (size) {

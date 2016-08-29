@@ -189,15 +189,18 @@ class WidgetExampleDirective(Directive):
             for screenshot in meta.iter('screenshot'):
                 shot = {
                     "name": screenshot.get("name", name + str(shot_index)),
-                    "data": {}
+                    "data": []
                 }
                 shot_index += 1
 
                 for data in screenshot.iter('data'):
-                    shot['data'][data.get("address", "0/0/0")] = data.text
+                    shot['data'].append({
+                        'address': data.get("address", "0/0/0"),
+                        'value': data.text
+                    })
 
                 for caption in screenshot.iter('caption'):
-                    if not 'caption' in shot:
+                    if 'caption' not in shot:
                         shot['caption'] = caption.text
                     else:
                         shot['caption'] += caption.text
@@ -296,6 +299,3 @@ class WidgetExampleDirective(Directive):
             res_nodes.append(node)
 
         return res_nodes
-
-
-directives.register_directive("widget_example", WidgetExampleDirective)

@@ -14,9 +14,7 @@ extensions = ['sphinx.ext.todo',
               'sphinx.ext.coverage',
               'sphinx.ext.ifconfig',
               'sphinxcontrib.plantuml',
-              'widget_example',
-              'parameter_information',
-              'elements_information']
+              'cometvisu']
 
 todo_include_todos = True
 templates_path = ['_templates']
@@ -28,6 +26,7 @@ add_function_parentheses = True
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 language = 'de'
+locale_dirs = ["locale/"]
 
 project = 'CometVisu'
 copyright = '2010-2016 Christian Mayer and the CometVisu contributers'

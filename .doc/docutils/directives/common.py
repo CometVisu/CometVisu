@@ -21,19 +21,29 @@ from docutils.parsers.rst import Directive
 from os import path
 from helper.schema import *
 import gettext
-gettext.install('messages', localedir='locale')
+import sys
 
-type_mapping = {
-    'boolean': "true %s false" % _('or'),
-    'string': _('string'),
-    'decimal': _('decimal')
+kwargs = {
+    'localedir': 'locale'
 }
+if sys.version_info[0] > 3:
+    kwargs['unicode'] = True
+
+gettext.install('messages', **kwargs)
 
 schema = Schema(path.join("src", "visu_config.xsd"))
 
 
 class BaseDirective(Directive):
     locale = 'en'
+    type_mapping = {}
+
+    def init_type_mapping(self):
+        self.type_mapping = {
+            'boolean': "*true* %s *false*" % _('or'),
+            'string': _('string'),
+            'decimal': _('decimal')
+        }
 
     def init_locale(self):
         #locale = self.state_machine.document.settings.language_code
@@ -41,6 +51,8 @@ class BaseDirective(Directive):
         self.locale = self.state_machine.document.settings._source.split(path.sep +"manual" + path.sep, 1)[1].split(path.sep)[0]
         t = gettext.translation('messages', localedir='locale', languages=[self.locale])
         t.install()
+
+        self.init_type_mapping()
 
 
 class BaseXsdDirective(BaseDirective):
@@ -50,14 +62,16 @@ class BaseXsdDirective(BaseDirective):
 
     def normalize_values(self, values):
         if len(values) <= 1:
-            return (" %s " % _("or")).join(values)
+            res = "*%s*" % ("* %s *" % _("or")).join(values)
         else:
-            return " ".join([", ".join(values[0:-1]), _("or"), values[-1]])
+            res = " ".join(["*%s*" % "*, *".join(values[0:-1]), _("or"), "*%s*" % values[-1]])
+        return res
 
     def normalize_type(self, type):
         if type[0:4] == "xsd:":
             type = type[4:]
-        return type_mapping[type] if type in type_mapping else type
+        res = self.type_mapping[type] if type in self.type_mapping else type
+        return res
 
     def get_name(self, name):
         name = ":ref:`%s`" % name
@@ -91,8 +105,9 @@ class BaseXsdDirective(BaseDirective):
                 else:
                     description = ''
 
+            #name = ":ref:`%s <%s>`" % (name, name)
             if attr.get('use', 'optional') == "required":
-                name += "*"
+                name += " *"
 
             atype = self.normalize_type(atype) if len(values) == 0 else self.normalize_values(values)
             if include_name:
@@ -111,10 +126,16 @@ class BaseXsdDirective(BaseDirective):
             return None
 
         if include_name:
-            table_head = [[self.get_cell_data(_('Element')), self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+            table_head = [
+                [self.get_cell_data(_('Element')), (0, 3, 0, statemachine.StringList(_('Attribute').splitlines())), None, None],
+                [self.get_cell_data(''), self.get_cell_data(_('Name')), self.get_cell_data(_('Content')), self.get_cell_data(_('Description'))]
+            ]
             table = ([10, 15, 20, 55], table_head, table_body)
         else:
-            table_head = [[self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+            table_head = [
+                [(0, 3, 0, statemachine.StringList(_('Attribute').splitlines())), None, None],
+                [self.get_cell_data(_('Name')), self.get_cell_data(_('Content')), self.get_cell_data(_('Description'))]
+            ]
             table = ([20, 20, 60], table_head, table_body)
 
         table_node = self.state.build_table(table, self.content_offset)
@@ -130,11 +151,9 @@ class BaseXsdDirective(BaseDirective):
 
         if not element_name == "#text":
             attributes = schema.get_widget_attributes(element_name)
-            elements = schema.get_widget_elements(element_name)
+            elements = schema.get_widget_elements(element_name, locale=self.locale)
             if include_name:
                 rowspan = len(attributes)-1
-                if "#text" in elements:
-                    rowspan += 1
 
             line = 0
             for attr in attributes:
@@ -156,8 +175,9 @@ class BaseXsdDirective(BaseDirective):
                     else:
                         description = ''
 
+                #name = ":ref:`%s <%s>`" % (name, name)
                 if attr.get('use', 'optional') == "required":
-                    name += "*"
+                    name += " *"
 
                 atype = self.normalize_type(atype) if len(values) == 0 else self.normalize_values(values)
                 if include_name:
@@ -181,7 +201,7 @@ class BaseXsdDirective(BaseDirective):
                 line += 1
 
             for sub_element in elements:
-                if not isinstance(sub_element, str):
+                if not isinstance(sub_element, tuple):
                     name = sub_element.get("name")
                     mandatory = sub_element.get("minOccurs") is not None and int(sub_element.get("minOccurs")) > 0
                     if parent is not None:
@@ -192,19 +212,20 @@ class BaseXsdDirective(BaseDirective):
                                                 mandatory=mandatory, table_body=table_body,
                                                 sub_run=True, parent=sub_parent)
                 else:
+                    (sub_element, atype, doc) = sub_element
                     indent = 2 if parent is not None else 1
                     element_title = "%s\n%s* **%s**" % (element_name, " " * indent, sub_element)
                     if parent:
                         element_title = "%s\n * %s" % (parent, element_title)
 
-                    row = [ self.get_cell_data(element_title), self.get_cell_data(""), self.get_cell_data(self.normalize_type("string")), self.get_cell_data(" ")]
+                    row = [ self.get_cell_data(element_title), self.get_cell_data(""), self.get_cell_data(self.normalize_type(atype)), self.get_cell_data(doc)]
                     table_body.append(row)
                     line += 1
 
         else:
             # text node
             if include_name:
-                row = [ None, self.get_cell_data(element_name), self.get_cell_data(self.normalize_type("string")), self.get_cell_data("")]
+                row = [self.get_cell_data(element_name), self.get_cell_data(""), self.get_cell_data(self.normalize_type("string")), self.get_cell_data("")]
             else:
                 row = [self.get_cell_data(element_name), self.get_cell_data(self.normalize_type("string")), self.get_cell_data("")]
             table_body.append(row)
@@ -214,10 +235,16 @@ class BaseXsdDirective(BaseDirective):
                 return None
 
             if include_name:
-                table_head = [[self.get_cell_data(_('Structure')), self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+                table_head = [
+                    [self.get_cell_data(_('Element')), (0, 3, 0, statemachine.StringList(_('Attribute').splitlines())), None, None],
+                    [self.get_cell_data(_('Structure')), self.get_cell_data(_('Name')), self.get_cell_data(_('Content')), self.get_cell_data(_('Description'))]
+                ]
                 table = ([15, 15, 15, 55], table_head, table_body)
             else:
-                table_head = [[self.get_cell_data(_('Name')), self.get_cell_data(_('Type')), self.get_cell_data(_('Description'))]]
+                table_head = [
+                    [(0, 3, 0, statemachine.StringList(_('Attribute').splitlines())), None, None],
+                    [self.get_cell_data(_('Name')), self.get_cell_data(_('Content')), self.get_cell_data(_('Description'))]
+                ]
                 table = ([20, 20, 60], table_head, table_body)
 
             table_node = self.state.build_table(table, self.content_offset)

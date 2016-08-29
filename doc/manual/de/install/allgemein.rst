@@ -19,9 +19,7 @@ Diese sind
 Backend - knxd/eibd oder OpenHAB
 --------------------------------
 
-Die Installation des Backends wird unter
-`CometVisu/Installation/Backend/de <CometVisu/Installation/Backend/de>`__
-beschrieben.
+Die Installation des Backends wird unter :doc:`backends/install-eibd` beschrieben.
 
 Graphentool - RRDtool
 ---------------------
@@ -30,13 +28,12 @@ Eine optionale, aber dringend empfohlene Komponente ist rrdtool, um die
 Daten für die Erstellung von Graphen bereitzustellen. Es gibt viele
 Möglichkeiten, Daten an rrds zu übergeben und der Einsatz von rrdtool
 ist in der Breite dokumentiert. Die Installation von rrdtool für
-CometVisu wird unter `RRDtool
-(englisch) <CometVisu/Installation/RRDtool/en>`__ beschrieben.
+CometVisu wird unter :doc:`RRDtool <install-rrd>` beschrieben.
 
 Webserver
 ---------
 
-Der notwendigen Dateien unter /usr/lib/cgi-bin/ müssen für das Konto,
+Der notwendigen Dateien unter ``/usr/lib/cgi-bin/`` müssen für das Konto,
 unter dem der Webserver läuft, ausführbar sein:
 
 .. code-block:: bash
@@ -145,8 +142,7 @@ entpackt werden. Die veröffentlichten Pakete sind dort unter
 https://github.com/CometVisu/CometVisu/releases zu finden.
 
 Die Installation auf dem `Raspberry
-Pi <http://de.wikipedia.org/wiki/Raspberry_Pi>`__ wird unter `CometVisu
-auf Raspberry Pi <CometVisu/Installation/Raspberry_Pi/de>`__
+Pi <http://de.wikipedia.org/wiki/Raspberry_Pi>`__ wird unter :doc:`CometVisu auf Raspberry Pi <raspberry>`
 beschrieben.
 
 CometVisu testen

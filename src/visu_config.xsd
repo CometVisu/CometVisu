@@ -3,6 +3,10 @@
 
   <!-- basic types -->
   <xsd:simpleType name="addr">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The GA (like: 12/0/7) for KNX-backends or the item name for openHAB-backend</xsd:documentation>
+      <xsd:documentation xml:lang="de">Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends oder der Item-Name beim openHAB-Backend.</xsd:documentation>
+    </xsd:annotation>
     <xsd:restriction base="xsd:string">
       <xsd:pattern value="([0-9]{1,2}/[0-9]{1,2}/[0-9]{1,3}|[A-Za-z][A-Za-z0-9_\-\.:]*)" />
     </xsd:restriction>
@@ -17,14 +21,54 @@
   </xsd:simpleType>
 
   <xsd:complexType name="layout">
-    <xsd:attribute name="colspan" type="xsd:decimal" use="optional" />
-    <xsd:attribute name="colspan-m" type="xsd:decimal" use="optional" />
-    <xsd:attribute name="colspan-s" type="xsd:decimal" use="optional" />
-    <xsd:attribute name="rowspan" type="xsd:decimal" use="optional" />
-    <xsd:attribute name="x" type="xsd:string" use="optional" />
-    <xsd:attribute name="y" type="xsd:string" use="optional" />
-    <xsd:attribute name="z" type="xsd:string" use="optional" />
-    <xsd:attribute name="width" type="xsd:string" use="optional" />
+    <xsd:attribute name="colspan" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Amount of coloumns this widget sould be wide.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Spaltenanzahl für dieses Widget.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="colspan-m" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Overrules the amount of coloumns on a medium screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Übersteuert die Spaltenanzahl auf mittleren (medium) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="colspan-s" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Overrules the amount of coloumns on a small screen.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Übersteuert die Spaltenanzahl auf kleinen (small) Browser Größen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="rowspan" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Amount of rows this widget should be high.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeilenanzahl für dieses Widget.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="x" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Horizontal position of the widget for 2D pages.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Horizontale Position des Widgets auf 2D Seiten.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="y" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Vertical position of the widget for 2D pages.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Vertikale Position des Widgets auf 2D Seiten.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="z" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Reserved for future use.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Für zukünftige Anwendungen reserviert.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="width" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Width for the widget for 2D pages.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite des Widgets auf 2D Seiten.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="address">
@@ -112,13 +156,19 @@
       <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere zur Anzeige zu.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
+
   <xsd:attribute name="styling" type="xsd:string" />
+
   <xsd:attribute name="value" type="xsd:string" />
+
   <xsd:attribute name="flavour" type="xsd:string">
     <xsd:annotation>
-        <xsd:appinfo>level:expert</xsd:appinfo>
+      <xsd:appinfo>level:expert</xsd:appinfo>
+      <xsd:documentation xml:lang="en">Selection of a display variant. See also :ref:'flavour'.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Auswahl der Darstellungsvariante. Siehe auch :ref:`Flavour &lt;flavour&gt;`.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
+  
   <xsd:attribute name="target" type="xsd:string">
     <xsd:annotation>
       <xsd:appinfo>level:expert</xsd:appinfo>
@@ -273,7 +323,7 @@
   <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">use the whole widget area to react on click events</xsd:documentation>
-	  <xsd:documentation xml:lang="de">Beim aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</xsd:documentation>
+      <xsd:documentation xml:lang="de">Beim aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
   
@@ -789,6 +839,10 @@
   </xsd:complexType>
 
   <xsd:complexType name="label" mixed="true">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Text to display a label for the widget.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Text um bei dem Widget eine Beschreibung darzustellen.</xsd:documentation>
+    </xsd:annotation>
     <xsd:choice maxOccurs="unbounded" minOccurs="0">
       <xsd:element name="icon" type="icon" />
     </xsd:choice>
@@ -802,8 +856,18 @@
     </xsd:sequence>
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
-    <xsd:attribute name="on_value" type="xsd:string" use="optional" />
-    <xsd:attribute name="off_value" type="xsd:string" use="optional" />
+    <xsd:attribute name="on_value" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Value of the "on" state. Defaults to "1".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wert für den An-Zustand. Default ist "1".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="off_value" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Value of the "off" state. Defaults to "0".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wert für den Aus-Zustand. Default ist "0".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
@@ -1235,18 +1299,78 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="type" type="xsd:string" use="optional" />
-    <xsd:attribute name="showlegend" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="singlephase" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="spectrumonly" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="limitname" type="xsd:string" use="optional" />
-    <xsd:attribute name="limitcolor" type="xsd:string" use="optional" />
-    <xsd:attribute name="name1" type="xsd:string" use="optional" />
-    <xsd:attribute name="color1" type="xsd:string" use="optional" />
-    <xsd:attribute name="name2" type="xsd:string" use="optional" />
-    <xsd:attribute name="color2" type="xsd:string" use="optional" />
-    <xsd:attribute name="name3" type="xsd:string" use="optional" />
-    <xsd:attribute name="color3" type="xsd:string" use="optional" />
+    <xsd:attribute name="type" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Select the type of the powerspectrum by entering "current" or "voltage".</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wahl der Art des Spektrums durch die Angabe von "current" oder "voltage".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="showlegend" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Boolean value to display a legend.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Boolscher Wert um eine Legende anzuzeigen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="singlephase" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Boolean value to select the view of only a single phase.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Boolscher Wert um auszuwhälen, dass nur eine Phase angezeigt wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="spectrumonly" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Boolean value to show only the spectrum and not the curve as well.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Boolscher Wert um die Anzeige auf das Spektrum selbst zu beschränken.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="limitname" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Display name for the limit curve. Used in the legend.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anzeigename für den Grenzwert. Wird in der Legende verwendet.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="limitcolor" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color for the limit line.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe für den Grenzwert.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="name1" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Display name for the first phase.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anzeigename für die erste Phase.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="color1" type="xsd:string" use="optional">
+    <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color for the first phase.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe für die erste Phase.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="name2" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Display name for the second phase.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anzeigename für die zweite Phase.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="color2" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color for the second phase.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe für die zweite Phase.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="name3" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Display name for the third phase.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Anzeigename für die dritte Phase.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="color3" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color for the third phase.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe für die dritte Phase.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="svg">
