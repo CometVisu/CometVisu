@@ -10,7 +10,7 @@ Das Plugin erzeugt ein Diagramm, dass das aktuelle Strom- oder Spannungspektrum
 der Stromversorgung darstellen kann. Hierzu werden die KNX Diagramme verarbeitet,
 die das Enertex Smart Meter versenden kann.
 
-.. widget_example::
+.. widget-example::
     :hide-source: true
 
         <settings>
@@ -40,11 +40,12 @@ Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden:
 
 **Erlaubte Attribute im Switch-Element**
 
-.. parameter_information:: powerspectrum
+.. parameter-information:: powerspectrum
 
-.. widget_example::
+.. widget-example::
     :editor: attributes
     :scale: 75
+    :align: center
 
         <caption>Attribute im Editor (vereinfachte Ansicht)</caption>
         <powerspectrum type="current" singlephase="false" limitname="Grenze" limitcolor="#999999" name1="Phase U" color1="#ff0000" name2="Phase V" color2="#00ff00" name3="Phase W" color3="#0000ff">
@@ -61,7 +62,7 @@ Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden:
 
 **Erlaubte Kind-Elemente und deren Attribute**
 
-.. elements_information:: powerspectrum
+.. elements-information:: powerspectrum
 
 XML Syntax minimal
 ------------------
