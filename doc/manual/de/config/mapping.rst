@@ -1,10 +1,8 @@
 .. _mapping:
 
+=======
 Mapping
 =======
-
-.. TODO::
-    Beispiele / Screenshots hinzufügen
 
 Bedeutung
 ---------
@@ -36,29 +34,25 @@ Dies würde bei Benutzung mit z.B. einem :doc:`Switch-Widget <widgets/switch/ind
 
 Statt 0 und 1:
 
-.. figure:: switch-basic.png
-   :alt: switch-basic.png
-
-   switch-basic.png
+.. figure:: widgets/switch/_static/switch.png
+   :alt: Einfacher Switch
 
 An und Aus anzeigen:
 
-.. figure:: switch-mapping.png
-   :alt: switch-mapping.png
-
-   switch-mapping.png
+.. figure:: widgets/switch/_static/switch_mapping.png
+   :alt: Switch mit mapping
 
 Die Farbe kann durch die Definition des :doc:`Styling <styling>` bestimmt werden.
 
 Mapping von Werten in Icons
 ---------------------------
 
-Die CometVisu enthält das umfangreichen `KNX User Forum
+Die CometVisu enthält das umfangreiche `KNX User Forum
 Iconset <http://knx-user-forum.de/knx-uf-iconset/>`__
 
 Eine Übersicht der verfügbaren Icons findet man am einfachsten auf dem
 Rechner auf dem die CometVisu läuft unter
-http://<IP>/visu/icon/knx-uf-iconset/showicons.php
+``http://<IP>/visu/icon/knx-uf-iconset/showicons.php``
 
 Man kann damit Mapping nutzen um statt Werten (z.B. 0 oder 1) Icons
 anzuzeigen.
@@ -80,17 +74,42 @@ So würde bei Benutzung mit z.B. einem :doc:`Switch-Widget <widgets/switch/index
 
 statt 0 und 1:
 
-.. figure:: switch-basic.png
-   :alt: switch-basic.png
+.. figure:: widgets/switch/_static/switch.png
+    :alt: switch.png
 
-   switch-basic.png
+    Einfacher Switch
 
 die Birne mit Status in der Schaltfläche anzeigt werden:
 
-.. figure:: mapping-icons.png
-   :alt: mapping-icons.png
+.. widget-example::
+    :hide-source: true
 
-   mapping-icons.png
+    <settings>
+        <screenshot name="switch_mapping_styling_off">
+            <caption>Ausgeschaltet</caption>
+            <data address="1/1/0">0</data>
+        </screenshot>
+        <screenshot name="switch_mapping_styling_on">
+            <caption>Eingeschaltet</caption>
+            <data address="1/1/0">1</data>
+        </screenshot>
+    </settings>
+    <meta>
+     <mappings>
+       <mapping name="On_Off_Symbol">
+        <entry value="0">
+          <icon name="light_light_dim_00" color="grey"/>
+        </entry>
+        <entry value="1">
+          <icon name="light_light_dim_100" color="white"/>
+        </entry>
+      </mapping>
+     </mappings>
+    </meta>
+    <switch on_value="1" off_value="0" mapping="On_Off_Symbol">
+        <label>Kanal 1</label>
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+    </switch>
 
 Die Farbe eines Icons wird hierbei NICHT über das Styling gesteuert,
 sondern direkt im Mapping.
@@ -119,10 +138,39 @@ bei gekippter Tür. Das Mapping ersetzt die wenig aussagekräftige Zahl
 durch die entsprechenden Icons aus dem bei der CometVisu mitgeliefertem
 `KNX User Forum Iconset <http://knx-user-forum.de/knx-uf-iconset/>`__
 
-.. figure:: Mapping-doors.png
-   :alt: Mapping-doors.png
+.. widget-example::
+    :hide-source: true
 
-   Mapping-doors.png
+        <settings>
+            <screenshot name="mapping_door_closed">
+                <data address="1/1/0">0</data>
+            </screenshot>
+            <screenshot name="mapping_door_open">
+                <data address="1/1/0">1</data>
+            </screenshot>
+            <screenshot name="mapping_door_tilt">
+                <data address="1/1/0">2</data>
+            </screenshot>
+        </settings>
+        <meta>
+        <mappings>
+         <mapping name="AufZuTuerSymbol">
+          <entry value="0">
+            <icon name="fts_door" color="green"/>
+          </entry>
+          <entry value="1">
+            <icon name="fts_door_open" color="red"/>
+          </entry>
+          <entry value="2">
+            <icon name="fts_door_tilt" color="orange"/>
+          </entry>
+        </mapping>
+        </mappings>
+        </meta>
+        <info mapping="AufZuTuerSymbol">
+            <label>Haustür</label>
+            <address transform="DPT:4.001" mode="read">1/1/0</address>
+        </info>
 
 Wertebereiche
 -------------
@@ -166,25 +214,30 @@ gegebenen JavaScript-Funktionen zu verwenden. Mehr dazu weiter unten.
 
 Beispielsweise kann man damit °C in °F umrechnen:
 
-.. code-block:: xml
+.. widget-example::
 
-        <mapping name="C-to-F">
-          <formula>y = x*1.8+32</formula>
-        </mapping>
-
-        <info format="%.1f C">
-          <label>Aussentemperatur</label>
-          <address transform="DPT:9.001" mode="read">3/6/0</address>
-        </info>
-        <info format="%.1f F" mapping="C-to-F">
-          <label>Aussentemperatur</label>
-          <address transform="DPT:9.001" mode="read">3/6/0</address>
-        </info>
-
-.. figure:: Mapping-formula.png
-   :alt: Mapping-formula.png
-
-   Mapping-formula.png
+        <settings selector=".widget_container[data-type='group']">
+         <screenshot name="mappong_formula">
+          <data address="3/6/0">8.4</data>
+         </screenshot>
+        </settings>
+        <meta>
+         <mappings>
+          <mapping name="C-to-F">
+           <formula>y = x*1.8+32</formula>
+          </mapping>
+         </mappings>
+        </meta>
+        <group nowidget="true">
+            <info format="%.1f C">
+              <label>Aussentemperatur</label>
+              <address transform="DPT:9.001" mode="read">3/6/0</address>
+            </info>
+            <info format="%.1f F" mapping="C-to-F">
+              <label>Aussentemperatur</label>
+              <address transform="DPT:9.001" mode="read">3/6/0</address>
+            </info>
+        </group>
 
 Formeln (Advanced)
 ------------------
@@ -199,30 +252,44 @@ so dass dessen Methoden direkt angewendet werden können.
 Ohne Mapping resp. Formel sieht der Output eines openHAB-DateTime-Items
 bspw. so aus:
 
-ToDo: Screenshot
+.. widget-example::
+    :hide-source: true
+
+        <settings>
+         <screenshot name="oh_datetime">
+            <data address="Sunrise_Time">2016-08-21T03:57:50</data>
+         </screenshot>
+        </settings>
+        <info format="%s Uhr">
+            <address transform="OH:datetime">Sunrise_Time</address>
+        </info>
 
 Möchte man jedoch lediglich die Uhrzeit im Output haben, so geht das mit
 folgendem Mapping:
 
-.. code-block:: xml
+.. widget-example::
 
-        <mapping name="HourMinute">
+        <settings>
+         <screenshot name="mapping_oh_datetime">
+            <data address="Sunrise_Time">2016-08-21T03:57:50</data>
+         </screenshot>
+        </settings>
+        <meta>
+         <mappings>
+          <mapping name="HourMinute">
             <formula>y = x &amp;&amp; x.constructor === Date ? x.getHours() + ':' + x.getMinutes() : x;</formula>
-        </mapping>
-    ...
+          </mapping>
+         </mappings>
+        </meta>
         <info format="%s Uhr" class="value_right" mapping="HourMinute">
-            <layout colspan="4"/>
-        <address transform="OH:datetime">Sunrise_Time</address>
+            <address transform="OH:datetime">Sunrise_Time</address>
         </info>
 
-Achtung: Die OH-Datentypen sind vollständig in Kleinbuchstaben
-definiert! Das muss in der CV-Konfig auch so geschrieben werden, sonst
-wird das Mapping nicht funktionieren. *DateTime* ist nicht gleich
-*datetime*!
-
-Damit sieht der Output in der Visu dann so aus:
-
-ToDo: Screenshot
+.. CAUTION::
+    Die OH-Datentypen sind vollständig in Kleinbuchstaben
+    definiert! Das muss in der CV-Konfig auch so geschrieben werden, sonst
+    wird das Mapping nicht funktionieren. *DateTime* ist nicht gleich
+    *datetime*!
 
 Der openHAB-DateTime-Datentyp wird auf ein JavaScript-Date gemappt.
 `Hier <http://www.w3schools.com/jsref/jsref_obj_date.asp>`__ findet sich
@@ -232,10 +299,12 @@ Objekt aufrufen kann.
 Beispiel-Mappings
 -----------------
 
-bei copy&paste einen UTF-8 fähigen Editor nutzen!
+.. HINT::
+
+    bei copy&paste einen UTF-8 fähigen Editor nutzen!
 
 Wind und Windstärke
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Für Wetterdaten in km/h:
 
@@ -326,7 +395,7 @@ Für Wetterdaten in m/s:
         </mapping>
 
 Windrichtung
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 .. code-block:: xml
 
@@ -351,7 +420,7 @@ Windrichtung
         </mapping>
 
 Rolläden, Raffstores und Jalousien
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: xml
 

@@ -1,5 +1,6 @@
+**************************
 Hilf dem CometVisu Projekt
-==========================
+**************************
 
 Die Mitarbeit am CometVisu Projekt ist problemlos möglich und auch höchst willkommen!
 Hierbei sind nicht nur Entwickler angesprochen, die neue Features oder Bugfixes beitragen möchten, sondern
@@ -95,6 +96,10 @@ Mithilfe bei der Dokumentation
     * Einführung in reStructuredText
     * Eigene RST-Direktiven erklären
     * Lokales Erzeugen der HTML-Doku, inkl. Screenshots
+
+.. toctree::
+
+    todos
 
 Mithilfe bei der Entwicklung
 ----------------------------
