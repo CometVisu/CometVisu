@@ -27,11 +27,12 @@ daher weg gelassen werden.
 Erlaubte Attribute im %%%WIDGET_NAME%%%-Element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. parameter_information:: %%%WIDGET_NAME_LOWER%%%
+.. parameter-information:: %%%WIDGET_NAME_LOWER%%%
 
-.. widget_example::
+.. widget-example::
     :editor: attributes
     :scale: 75
+    :align: center
 
         <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
         <%%%WIDGET_NAME_LOWER%%%>
@@ -45,11 +46,12 @@ Erlaubte Attribute im %%%WIDGET_NAME%%%-Element
 Erlaubte Kind-Elemente und deren Attribute
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. elements_information:: %%%WIDGET_NAME_LOWER%%%
+.. elements-information:: %%%WIDGET_NAME_LOWER%%%
 
-.. widget_example::
+.. widget-example::
     :editor: elements
     :scale: 75
+    :align: center
 
         <caption>Elemente im Editor</caption>
         <%%%WIDGET_NAME_LOWER%%%>
@@ -71,7 +73,7 @@ der `visu\_config.xml <../XML-Elemente>`__ hinzufügen.
 
 Hier der minimale Beispielcode der das %%%WIDGET_NAME%%% Widget aus dem folgenden Screenshot erzeugt:
 
-.. widget_example::
+.. widget-example::
 
         <settings>
             <screenshot name="%%%WIDGET_NAME_LOWER%%%_simple">
@@ -97,7 +99,7 @@ XML Syntax komplett
 Hier der Beispielcode der das %%%WIDGET_NAME%%%-Widget mit den allen gezeigten
 Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
 
-.. widget_example::
+.. widget-example::
 
         <settings>
             <screenshot name="%%%WIDGET_NAME_LOWER%%%_complete">

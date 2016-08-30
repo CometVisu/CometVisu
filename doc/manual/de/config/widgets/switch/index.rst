@@ -19,7 +19,7 @@ dieser können z.B. Ein/Aus Schalter realisiert werden.
     An --> Aus : sende off_value bei Klick
     Aus --> An : sende on_value bei Klick
 
-.. widget_example::
+.. widget-example::
     :hide-source: true
 
         <settings>
@@ -40,7 +40,7 @@ Zur CometVisu gehört die umfangreiche Sammlung an Icons für die
 verschiedensten Zwecke. Weitere Informationen findet man auf der
 Dokumentations-Seite für das `Mapping <CometVisu/0.8.x/mapping/de>`__.
 
-.. widget_example::
+.. widget-example::
     :hide-source: true
 
         <settings>
@@ -65,7 +65,7 @@ Dokumentations-Seite für das `Mapping <CometVisu/0.8.x/mapping/de>`__.
 und/oder über ein `Styling <CometVisu/0.8.x/styling/de>`__ Farben
 gesetzt werden (z.B. An in rot und Aus in Grün)
 
-.. widget_example::
+.. widget-example::
     :hide-source: true
 
         <settings>
@@ -89,7 +89,7 @@ gesetzt werden (z.B. An in rot und Aus in Grün)
 
 Natürlich kann man auch beides gleichzeitig nutzen:
 
-.. widget_example::
+.. widget-example::
     :hide-source: true
 
     <settings>
@@ -134,11 +134,12 @@ daher weg gelassen werden.
 Erlaubte Attribute im Switch-Element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. parameter_information:: switch
+.. parameter-information:: switch
 
-.. widget_example::
+.. widget-example::
     :editor: attributes
     :scale: 75
+    :align: center
 
         <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
         <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen" bind_click_to_widget="true">
@@ -152,7 +153,7 @@ Erlaubte Attribute im Switch-Element
 Erlaubte Kind-Elemente und deren Attribute
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. elements_information:: switch
+.. elements-information:: switch
 
 ..  +-------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | Parameter                     | Werte                                               | Beschreibung                                                                                                                                                                                                                                                                                                |
@@ -176,9 +177,10 @@ Erlaubte Kind-Elemente und deren Attribute
     +-------------------------------+-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-.. widget_example::
+.. widget-example::
     :editor: elements
     :scale: 75
+    :align: center
 
         <caption>Elemente im Editor</caption>
         <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen" bind_click_to_widget="true">
@@ -200,7 +202,7 @@ der `visu\_config.xml <CometVisu/XML-Elemente>`__ hinzufügen.
 
 Hier der minimale Beispielcode der das switch Widget aus dem folgenden Screenshot erzeugt:
 
-.. widget_example::
+.. widget-example::
 
         <settings>
             <screenshot name="switch_simple">
@@ -226,7 +228,7 @@ XML Syntax komplett
 Hier der Beispielcode der das switch Widget mit den allen gezeigten
 Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
 
-.. widget_example::
+.. widget-example::
 
         <settings>
             <screenshot name="switch_complete">

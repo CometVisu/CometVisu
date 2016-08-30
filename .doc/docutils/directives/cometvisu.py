@@ -48,9 +48,9 @@ def store_references(app, exception):
 
 
 def setup(app):
-    app.add_directive("widget_example", WidgetExampleDirective)
-    app.add_directive("elements_information", ElementsInformationDirective)
-    app.add_directive("parameter_information", ParameterInformationDirective)
+    app.add_directive("widget-example", WidgetExampleDirective)
+    app.add_directive("elements-information", ElementsInformationDirective)
+    app.add_directive("parameter-information", ParameterInformationDirective)
 
     app.connect('doctree-resolved', process_references)
     app.connect('build-finished', store_references)

@@ -2,7 +2,6 @@
     white-space: normal;
 }
 img + p.caption {
-    margin-top: -16px;
     font-style: italic;
 }
 img.align-center + p.caption {

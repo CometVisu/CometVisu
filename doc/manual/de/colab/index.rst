@@ -96,6 +96,10 @@ Mithilfe bei der Dokumentation
     * Eigene RST-Direktiven erklären
     * Lokales Erzeugen der HTML-Doku, inkl. Screenshots
 
+.. toctree::
+
+    todos
+
 Mithilfe bei der Entwicklung
 ----------------------------
 

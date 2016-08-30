@@ -5,7 +5,7 @@ Source docs
 -----------
 Install required system packages
 ```
-apt-get install nodejs-legacy imagemagick
+apt-get install nodejs-legacy imagemagick 
 ```
 
 Install required packages
@@ -20,15 +20,13 @@ grunt apt-doc
 
 User Manual
 -----------
-Install libxml2, libxslt development files and plantuml (e.g. `apt-get install libxml2-dev libxslt-dev plantuml python-pip`)
-Install required python3 packages specified in .doc/docutils/requirements.txt
+Install some required packages (`apt-get install libxml2-dev libxslt-dev python-dev plantuml python-pip`)
+Install required python packages specified in .doc/docutils/requirements.txt with
 `pip install -r .doc/requirements`
-Note: pip install sh must be installed as root `sudo pip install sh`
-(and python if it is not installed on your system)
  
 generate doc with: 
 ```
-sphinx-build -b html doc/manual/de/rst/ doc/manual/de/html
+sphinx-build -b html doc/manual/de/rst/ out/docs/de/manual/
 ```
 
 Translation
