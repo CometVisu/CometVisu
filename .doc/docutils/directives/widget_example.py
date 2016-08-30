@@ -26,6 +26,7 @@ from sphinx.directives.code import container_wrapper
 from docutils.parsers.rst import directives, Directive
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
 from os import path, makedirs
+from io import open
 
 counters = {}
 
