@@ -1,5 +1,6 @@
+#############################
 Willkommen bei der CometVisu!
-=============================
+#############################
 
 CometVisu ist eine webbasierte Visualisierungslösung für den Bereich der
 Hausautomation. Sie kann direkt auf den KNX-Bus zugreifen (über
