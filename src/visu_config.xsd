@@ -566,8 +566,8 @@
     </xsd:attribute>
     <xsd:attribute name="visible" type="xsd:boolean">
     	<xsd:annotation>
-        	<xsd:documentation xml:lang="en">Displays the widget (page name) which links to be page</xsd:documentation>
-        	<xsd:documentation xml:lang="de">Zeigt ein Widget an (Seitenname), das auf die Seite verlinkt</xsd:documentation>
+        	<xsd:documentation xml:lang="en">Displays a widget with the page name being a link to be page</xsd:documentation>
+        	<xsd:documentation xml:lang="de">Zeigt ein Widget mit dem Seitennamen als Link auf die Seite</xsd:documentation>
 	</xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="type" use="optional">
