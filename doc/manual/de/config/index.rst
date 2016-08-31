@@ -53,8 +53,13 @@ Die verfügbaren Designs
 
 .. toctree::
     :glob:
+    :maxdepth: 1
 
     designs/*
+
+.. TODO::
+
+    Weitere Beispielseiten für die anderen Designs
 
 
 Elemente für Konvertierung und Formatierung in der CometVisu
