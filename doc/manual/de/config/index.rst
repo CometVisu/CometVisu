@@ -27,7 +27,6 @@ in "/usr/share/openhab/webapps/visu…" installiert.
 - Wurde openHAB manuell z.B. in "/opt/openHAB" installiert, wird die CometVisu manuell
 in "/opt/openhab/www/visu..." installiert.
 
-
 - Wird openHAB2 als backend für die CometVisu eingesetzt, ... (to do) 
 
 Soll die XML-formatierte Konfigurationsdatei „visu_config.xml“ durch den
