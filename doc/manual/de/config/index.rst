@@ -1,30 +1,19 @@
 Konfiguration der CometVisu
 ===========================
-Die Konfiguration der CometVisu erfolgt durch Bearbeiten der Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis …/visu/config der CometVisu-Installation. Die im XML-formatierte Konfiguratiosdatei kann entweder mit einem textbasierten Editor oder mit dem grafischen Editor erfolgen. Die Verwendung des grafischen Editors setzt jedoch voraus, daß die Konfigurationsdatei entsprechend in die Struktur eines php-fähigen Webservers (z.B. apache oder lighttdp) eingebunden und beschreibar ist.
+Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis …/visu/config der CometVisu-Installation. Dies kann entweder mit einem textbasierten Editor oder mit dem grafischen Editor erfolgen. Die Verwendung des grafischen Editors setzt jedoch voraus, daß die Konfigurationsdatei entsprechend in die Struktur eines php-fähigen Webservers (z.B. apache oder lighttdp) eingebunden und durch dessen Prozess beschreibar ist.
 
 Je nach verwendetem backend und der Vorgehensweisen bei der Installation befindet sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
 
-- Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr (backend=KNX) angebunden werden, wird die CometVisu in der Regel manuell in den Vezeichnisbaum des Webservers (z.B. apache oder lighttpd) installiert.
-- /usr/share/openhab/webapps/visu… (bei automatisierter Installation via apt-get)
-- /opt/openhab/www/visu… (bei manueller Installation)
-- …
+- Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr (backend=KNX) angebunden werden, wird die CometVisu manuell in den Vezeichnisbaum "/var/www/visu…" des Webservers (z.B. apache oder lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.
 
-und  Im Normalfall wird der Webserver über Port 80 angesprochen.
+- Wird openHAB als backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in "/usr/share/openhab/webapps/visu…" installiert.
+Wurde openHAB manuell z.B. in "/opt/openHAB" installiert, wird die CometVisu manuell in "/opt/openhab/www/visu..." installiert.
+Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem texbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. apache oder lighttdp) "umlenken“.
 
-Wird openHAB als backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem texbasierten Editor begnügen oder „apache / lighttdp umlenken“.
+- Wird openHAB2 als backend für die CometVisu eingesetzt, ... (to do) 
 
-Wird openHAB2 als backend für die CometVisu eingesetzt, ….. 
-
-
-Der Editor bearbeitet direkt diese Konfigurationsdatei. Hierfür muss die
-Konfigurationsdatei für den Webserver Prozess (oder alle Prozesse)
-beschreibar sein.
-
-Die Konfiguration ist XML formatiert und kann von fortgeschrittenen
-Anwendern auch direkt bearbeitet werden. (Man sollte dafür dann einen
-Editor nutzen, der mit XML umgehen kann und/oder die Syntax einfärbt
-(z.B. Textwrangler auf MacOSX, WordPad++ oder MS XML Editor 2007 unter
-Windows und unter Linux z.B. vi mit ":syntax on").
+Soll die XML-formatierte Konfigurationsdatei „visu_config.xml“ durch den (fortgeschrittenen) Anwender direkt bearbeitet werden, ist es sehr ratsam, hierzu einen XML-fähigen Editor zu verwenden, wekche u.a. die Syntax der besseren Lesbarkeit einfärbt
+(z.B. Textwrangler auf MacOSX, WordPad++, Notepad++ oder MS XML Editor 2007 unter Windows und unter Linux z.B. vi mit ":syntax on").
 
 Allgemeine Informationen über das CometVisu XML Format findet man
 `hier <CometVisu/XML-Elemente>`__, Informationen zu den einzelnen
