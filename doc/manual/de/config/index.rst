@@ -1,5 +1,6 @@
+***************************
 Konfiguration der CometVisu
-===========================
+***************************
 
 Die CometVisu Konfigurationsdatei ist eine XML Datei, die im
 Unterverzeichnis "config" der CometVisu-Installation (normal also unter

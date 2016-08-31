@@ -18,6 +18,7 @@
 
 
 import json
+
 from lxml import etree
 from docutils import nodes, statemachine
 from sphinx.util.nodes import set_source_info
@@ -25,6 +26,7 @@ from sphinx.directives.code import container_wrapper
 from docutils.parsers.rst import directives, Directive
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
 from os import path, makedirs
+from io import open
 
 counters = {}
 
@@ -116,8 +118,9 @@ class WidgetExampleDirective(Directive):
         node += caption
 
     def run(self):
-        cv_meta = None
-        meta = None
+        config = None
+        meta_node = None
+        settings_node = None
         global_caption = None
         show_source = True
         editor = self.options['editor'] if 'editor' in self.options else None
@@ -138,12 +141,13 @@ class WidgetExampleDirective(Directive):
             xml = etree.fromstring("<root>%s</root>" % source)
             for child in xml:
                 if etree.iselement(child):
+
                     if child.tag == "settings":
                         # meta settings
-                        meta = child
+                        settings_node = child
                     elif child.tag == "meta":
                         # config meta settings
-                        cv_meta = child
+                        meta_node = child
                     elif child.tag == "caption":
                         global_caption = child.text
                     else:
@@ -153,9 +157,9 @@ class WidgetExampleDirective(Directive):
             print("Parse error: %s" % str(e))
 
         example_content = etree.tostring(config, encoding='utf-8')
-        if cv_meta is not None:
-            example_content = b"...\n%s...\n%s" % (etree.tostring(cv_meta, encoding='utf-8'), example_content)
-            visu_config_parts['meta'] = etree.tostring(cv_meta, encoding='utf-8').decode('utf-8')
+        if meta_node is not None:
+            example_content = b"...\n%s...\n%s" % (etree.tostring(meta_node, encoding='utf-8'), example_content)
+            visu_config_parts['meta'] = etree.tostring(meta_node, encoding='utf-8').decode('utf-8')
 
         settings = {
             "selector": ".widget_container",
@@ -181,12 +185,12 @@ class WidgetExampleDirective(Directive):
             })
             show_source = False
 
-        elif meta is not None:
+        elif settings_node is not None:
             # read meta settings
-            design = meta.get("design", "metal")
-            settings['selector'] = meta.get("selector", ".widget_container")
+            design = settings_node.get("design", "metal")
+            settings['selector'] = settings_node.get("selector", ".widget_container")
 
-            for screenshot in meta.iter('screenshot'):
+            for screenshot in settings_node.iter('screenshot'):
                 shot = {
                     "name": screenshot.get("name", name + str(shot_index)),
                     "data": []
@@ -207,7 +211,7 @@ class WidgetExampleDirective(Directive):
 
                 settings['screenshots'].append(shot)
 
-            for caption in meta.iterchildren('caption'):
+            for caption in settings_node.iterchildren('caption'):
                 global_caption = caption.text
 
         # no screenshots defined, add a default one
@@ -236,8 +240,8 @@ class WidgetExampleDirective(Directive):
         if not path.exists(self.example_dir):
             makedirs(self.example_dir)
 
-        with open("%s_%s.xml" % (path.join(self.example_dir, name), counters[name]), "w") as f:
-            f.write("%s\n%s" % (json.dumps(settings), visu_config))
+        with open("%s_%s.xml" % (path.join(self.example_dir, name), counters[name]), encoding='utf-8', mode="w") as f:
+            f.write(u"%s\n%s" % (json.dumps(settings), visu_config))
 
         # create the code-block
         classes = ['code', 'xml']
@@ -269,18 +273,17 @@ class WidgetExampleDirective(Directive):
                 options['alt'] = shot['caption']
 
             image_node = nodes.image(rawsource=shot['name'], **options)
+            figure_node = nodes.figure('', image_node)
             if 'align' in self.options:
-                image_node['align'] = self.options['align']
-            else:
-                image_node['align'] = 'center'
+                figure_node['align'] = self.options['align']
 
             if 'caption' in shot:
-                self.add_caption(shot['caption'], image_node)
+                self.add_caption(shot['caption'], figure_node)
 
             elif not show_source and global_caption and len(settings['screenshots']) == 1:
-                self.add_caption(global_caption, image_node)
+                self.add_caption(global_caption, figure_node)
 
-            res_nodes.append(image_node)
+            res_nodes.append(figure_node)
 
         if show_source:
             example_content = example_content.decode('utf-8')

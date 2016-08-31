@@ -1,5 +1,6 @@
+**************************
 Installation der CometVisu
-==========================
+**************************
 
 Einfache Installation:
 
