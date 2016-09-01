@@ -1,20 +1,33 @@
 ***************************
 Konfiguration der CometVisu
-***************************
+===========================
+Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
+Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis "./config"
+der CometVisu-Installation. Dies kann entweder mit einem textbasierten Editor oder
+mit dem integrierten grafischen Editor erfolgen. Die Verwendung des grafischen Editors
+setzt jedoch voraus, dass die CometVisu von einem PHP-fähigen Webserver (z.B Apache oder
+Lighttpd) ausgeliefert wird und die Konfigurationsdatei durch diesen beschreibbar ist.
 
-Die CometVisu Konfigurationsdatei ist eine XML Datei, die im
-Unterverzeichnis "config" der CometVisu-Installation (normal also unter
-/var/www/visu/config) liegt.
+Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
+sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
 
-Der Editor bearbeitet direkt diese Konfigurationsdatei. Hierfür muss die
-Konfigurationsdatei für den Webserver Prozess (oder alle Prozesse)
-beschreibar sein.
+- Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Vezeichnisbaum "/var/www/visu…" des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.
 
-Die Konfiguration ist XML formatiert und kann von fortgeschrittenen
-Anwendern auch direkt bearbeitet werden. (Man sollte dafür dann einen
-Editor nutzen, der mit XML umgehen kann und/oder die Syntax einfärbt
-(z.B. Textwrangler auf MacOSX, WordPad++ oder MS XML Editor 2007 unter
-Windows und unter Linux z.B. vi mit ":syntax on").
+- Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem texbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) "umlenken“.
+
+- Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in "/usr/share/openhab/webapps/visu…" installiert.
+
+- Wurde openHAB manuell z.B. in "/opt/openHAB" installiert, wird die CometVisu manuell in "/opt/openhab/www/visu..." installiert.
+
+.. TODO::
+
+    Wird openHAB2 als backend für die CometVisu eingesetzt, ...  
+
+Soll die XML-formatierte Konfigurationsdatei „visu_config.xml“ durch den
+(fortgeschrittenen) Anwender direkt bearbeitet werden, ist es sehr ratsam,
+hierzu einen XML-fähigen Editor zu verwenden, welcher u.a. die Syntax der besseren
+Lesbarkeit einfärbt (z.B. Textwrangler auf MacOSX, WordPad++, Notepad++ oder
+MS XML Editor 2007 unter Windows und unter Linux z.B. vi mit ":syntax on").
 
 Allgemeine Informationen über das CometVisu XML Format findet man
 :doc:`hier <xml-format>`, Informationen zu den einzelnen

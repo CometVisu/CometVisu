@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Konfiguration der CometVisu &mdash; CometVisu</title>
+  <title>Seiten und Struktur der CometVisu &mdash; CometVisu</title>
   
 
   
@@ -88,31 +88,28 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Konfiguration der CometVisu</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#die-verfugbaren-designs">Die verfügbaren Designs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="designs/metal.html">Metal</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#die-verfugbaren-designs">Die verfügbaren Designs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="designs/metal.html">Metal</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="flavour.html">Flavour</a></li>
-<li class="toctree-l3"><a class="reference internal" href="format.html">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="mapping.html">Mapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="styling.html">Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flavour.html">Flavour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format.html">Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html">Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="styling.html">Styling</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html">Bedienbare Widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#darstellende-widgets">Darstellende Widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#sonstige-widgets">Sonstige Widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="widgets/index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="widgets/index.html">Bedienbare Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets/index.html#darstellende-widgets">Darstellende Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets/index.html#sonstige-widgets">Sonstige Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets/index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#cometvisu-beispiele">CometVisu - Beispiele</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sonstiges">sonstiges</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#sonstiges">sonstiges</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
 </ul>
 
@@ -144,7 +141,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Konfiguration der CometVisu</li>
+    <li>Seiten und Struktur der CometVisu</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -156,19 +153,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="konfiguration-der-cometvisu">
-<h1>Konfiguration der CometVisu<a class="headerlink" href="#konfiguration-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Die CometVisu Konfigurationsdatei ist eine XML Datei, die im
-Unterverzeichnis &#8220;config&#8221; der CometVisu-Installation (normal also unter
-/var/www/visu/config) liegt.</p>
-<p>Der Editor bearbeitet direkt diese Konfigurationsdatei. Hierfür muss die
-Konfigurationsdatei für den Webserver Prozess (oder alle Prozesse)
-beschreibar sein.</p>
-<p>Die Konfiguration ist XML formatiert und kann von fortgeschrittenen
-Anwendern auch direkt bearbeitet werden. (Man sollte dafür dann einen
-Editor nutzen, der mit XML umgehen kann und/oder die Syntax einfärbt
-(z.B. Textwrangler auf MacOSX, WordPad++ oder MS XML Editor 2007 unter
-Windows und unter Linux z.B. vi mit &#8221;:syntax on&#8221;).</p>
+  <p>Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
+Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis &#8221;./config&#8221;
+der CometVisu-Installation. Dies kann entweder mit einem textbasierten Editor oder
+mit dem integrierten grafischen Editor erfolgen. Die Verwendung des grafischen Editors
+setzt jedoch voraus, dass die CometVisu von einem PHP-fähigen Webserver (z.B Apache oder
+Lighttpd) ausgeliefert wird und die Konfigurationsdatei durch diesen beschreibbar ist.</p>
+<p>Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
+sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:</p>
+<ul class="simple">
+<li>Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Vezeichnisbaum &#8220;/var/www/visu…&#8221; des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.</li>
+<li>Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem texbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) &#8220;umlenken“.</li>
+<li>Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in &#8220;/usr/share/openhab/webapps/visu…&#8221; installiert.</li>
+<li>Wurde openHAB manuell z.B. in &#8220;/opt/openHAB&#8221; installiert, wird die CometVisu manuell in &#8220;/opt/openhab/www/visu...&#8221; installiert.</li>
+</ul>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Zu tun</p>
+<p class="last">Wird openHAB2 als backend für die CometVisu eingesetzt, ...</p>
+</div>
+<p>Soll die XML-formatierte Konfigurationsdatei „visu_config.xml“ durch den
+(fortgeschrittenen) Anwender direkt bearbeitet werden, ist es sehr ratsam,
+hierzu einen XML-fähigen Editor zu verwenden, welcher u.a. die Syntax der besseren
+Lesbarkeit einfärbt (z.B. Textwrangler auf MacOSX, WordPad++, Notepad++ oder
+MS XML Editor 2007 unter Windows und unter Linux z.B. vi mit &#8221;:syntax on&#8221;).</p>
 <p>Allgemeine Informationen über das CometVisu XML Format findet man
 <a class="reference internal" href="xml-format.html"><span class="doc">hier</span></a>, Informationen zu den einzelnen
 Widgets in den jeweiligen Unterseiten.</p>
@@ -180,8 +187,8 @@ Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
 Darstellung) auch mit dem Link &#8220;Check Config&#8221; in der Fusszeile oder
 durch Anhängen von check_config.php an den URL erzwingen.</p>
 <div class="section" id="seiten-und-struktur-der-cometvisu">
-<span id="visu-config-details"></span><h2>Seiten und Struktur der CometVisu<a class="headerlink" href="#seiten-und-struktur-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="admonition-todo admonition" id="index-0">
+<span id="visu-config-details"></span><h1>Seiten und Struktur der CometVisu<a class="headerlink" href="#seiten-und-struktur-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Zu tun</p>
 <ul class="last simple">
 <li>Aufbau der Konfiguration (Grundstruktur)</li>
@@ -191,26 +198,26 @@ durch Anhängen von check_config.php an den URL erzwingen.</p>
 </div>
 </div>
 <div class="section" id="navigationselemente-in-der-cometvisu">
-<h2>Navigationselemente in der CometVisu<a class="headerlink" href="#navigationselemente-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="admonition-todo admonition" id="index-1">
+<h1>Navigationselemente in der CometVisu<a class="headerlink" href="#navigationselemente-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="admonition-todo admonition" id="index-2">
 <p class="first admonition-title">Zu tun</p>
 <p class="last">Beschreibung</p>
 </div>
 </div>
 <div class="section" id="die-verfugbaren-designs">
-<h2>Die verfügbaren Designs<a class="headerlink" href="#die-verfugbaren-designs" title="Link zu dieser Überschrift">¶</a></h2>
+<h1>Die verfügbaren Designs<a class="headerlink" href="#die-verfugbaren-designs" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="designs/metal.html">Metal</a></li>
 </ul>
 </div>
-<div class="admonition-todo admonition" id="index-2">
+<div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Zu tun</p>
 <p class="last">Weitere Beispielseiten für die anderen Designs</p>
 </div>
 </div>
 <div class="section" id="elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">
-<h2>Elemente für Konvertierung und Formatierung in der CometVisu<a class="headerlink" href="#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<h1>Elemente für Konvertierung und Formatierung in der CometVisu<a class="headerlink" href="#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
 <p>In der CometVisu können Werte auf verschiedenste Art und Weisen
 dargestellt werden. Hierfür können genutzt werden:</p>
 <div class="toctree-wrapper compound">
@@ -228,7 +235,7 @@ für einige Widgets noch zusätzliche Optionen.</li>
 </ul>
 </div>
 <div class="section" id="widgets-in-der-cometvisu">
-<h2>Widgets in der CometVisu<a class="headerlink" href="#widgets-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<h1>Widgets in der CometVisu<a class="headerlink" href="#widgets-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
 zusammengebaut wird. Diese können entweder fest in der CometVisu
 eingebaut sein oder per Plugin-Schnittstelle intergriert.</p>
@@ -243,18 +250,17 @@ eingebaut sein oder per Plugin-Schnittstelle intergriert.</p>
 </div>
 </div>
 <div class="section" id="cometvisu-beispiele">
-<h2>CometVisu - Beispiele<a class="headerlink" href="#cometvisu-beispiele" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="admonition-todo admonition" id="index-3">
+<h1>CometVisu - Beispiele<a class="headerlink" href="#cometvisu-beispiele" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="admonition-todo admonition" id="index-4">
 <p class="first admonition-title">Zu tun</p>
 <p class="last">Hinzufügen</p>
 </div>
 </div>
 <div class="section" id="sonstiges">
-<h2>sonstiges<a class="headerlink" href="#sonstiges" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="admonition-todo admonition" id="index-4">
+<h1>sonstiges<a class="headerlink" href="#sonstiges" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="admonition-todo admonition" id="index-5">
 <p class="first admonition-title">Zu tun</p>
 <p class="last">Hinzufügen der alten Inhalte (RRD-Beispiele, Animierter Hydraulikplan)</p>
-</div>
 </div>
 </div>
 
