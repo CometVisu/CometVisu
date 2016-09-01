@@ -18,7 +18,7 @@ sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
 
 - Wurde openHAB manuell z.B. in "/opt/openHAB" installiert, wird die CometVisu manuell in "/opt/openhab/www/visu..." installiert.
 
-..TODO::
+.. TODO::
 
 Wird openHAB2 als backend für die CometVisu eingesetzt, ...  
 
