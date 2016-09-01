@@ -598,12 +598,42 @@
             <xsd:appinfo>level:expert</xsd:appinfo>
         </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="showtopnavigation" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="showfooter" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="shownavbar-top" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="shownavbar-bottom" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="shownavbar-left" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="shownavbar-right" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="showtopnavigation" type="xsd:boolean" use="optional">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="en">the navigation path shows on which subpage of the visu one currently is</xsd:documentation>
+            <xsd:documentation xml:lang="en">Der Navigationspfad zeigt an, auf welcher Seite der Visualisierung man sich befindet</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="showfooter" type="xsd:boolean" use="optional">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="en">Shows the CometVisu logo and various Links</xsd:documentation>
+            <xsd:documentation xml:lang="en">Zeigt die Fußzeile mit CometVisu Logo und diversen Links an</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="shownavbar-top" type="xsd:boolean" use="optional">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="en">Shows the defined navigation bar on top of the page</xsd:documentation>
+            <xsd:documentation xml:lang="en">Zeigt oben auf der Seite die definierte Navigationsleiste an</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="shownavbar-bottom" type="xsd:boolean" use="optional">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="en">Shows the defined navigation bar at the bottom of the page</xsd:documentation>
+            <xsd:documentation xml:lang="en">Zeigt unten auf der Seite die definierte Navigationsleiste an</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="shownavbar-left" type="xsd:boolean" use="optional">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="en">Shows the defined navigation bar at the left side of the page</xsd:documentation>
+            <xsd:documentation xml:lang="en">Zeigt links auf der Seite die definierte Navigationsleiste an</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="shownavbar-right" type="xsd:boolean" use="optional">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="en">Shows the defined navigation bar at the right side of the page</xsd:documentation>
+            <xsd:documentation xml:lang="en">Zeigt rechts auf der Seite die definierte Navigationsleiste an</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
   </xsd:complexType>
 
@@ -617,7 +647,12 @@
         <xsd:group ref="AvailablePlugins"/>
       </xsd:choice>
     </xsd:sequence>
-    <xsd:attribute name="name" type="xsd:string" use="optional" />
+    <xsd:attribute name="name" type="xsd:string" use="optional">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="en">Name/title of the group</xsd:documentation>
+            <xsd:documentation xml:lang="en">Name/Überschrift der Gruppe</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="nowidget" type="xsd:boolean" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="target" use="optional" />
@@ -632,8 +667,18 @@
       <xsd:group ref="Widgets"/>
       <xsd:group ref="AvailablePlugins"/>
     </xsd:choice>
-    <xsd:attribute name="name" type="xsd:string" use="optional" />
-    <xsd:attribute name="position" type="navbarPositionType" use="required" />
+    <xsd:attribute name="name" type="xsd:string" use="optional">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="en">Name/title of the navigation bar</xsd:documentation>
+            <xsd:documentation xml:lang="en">Name/Überschrift der Navigationsleiste</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="position" type="navbarPositionType" use="required">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="en">position of the navigation bar on the page</xsd:documentation>
+            <xsd:documentation xml:lang="en">Position der Navigationsleiste auf der Seite</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="dynamic" type="xsd:boolean" use="optional" />
     <xsd:attribute name="width" type="xsd:string" use="optional" />
     <xsd:attribute name="scope" type="xsd:decimal" use="optional" />
