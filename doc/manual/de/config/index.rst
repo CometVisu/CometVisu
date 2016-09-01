@@ -20,7 +20,7 @@ sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
 
 .. TODO::
 
-Wird openHAB2 als backend für die CometVisu eingesetzt, ...  
+    Wird openHAB2 als backend für die CometVisu eingesetzt, ...  
 
 Soll die XML-formatierte Konfigurationsdatei „visu_config.xml“ durch den
 (fortgeschrittenen) Anwender direkt bearbeitet werden, ist es sehr ratsam,
