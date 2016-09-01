@@ -9,3 +9,7 @@ doc/api/examples/
 /docs/
 deploy_key
 settings/keys/deploy_key
+.project
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+.settings/.jsdtscope
+.settings/org.eclipse.wst.jsdt.ui.superType.name
