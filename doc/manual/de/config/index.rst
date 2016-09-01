@@ -3,8 +3,8 @@ Konfiguration der CometVisu
 Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
 Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis "./config"
 der CometVisu-Installation. Dies kann entweder mit einem textbasierten Editor oder
-mit dem grafischen Editor erfolgen. Die Verwendung des grafischen Editors setzt
-jedoch voraus, dass die CometVisu von einem PHP-fähigen Webserver (z.B Apache oder
+mit dem integrierten grafischen Editor erfolgen. Die Verwendung des grafischen Editors
+setzt jedoch voraus, dass die CometVisu von einem PHP-fähigen Webserver (z.B Apache oder
 Lighttpd) ausgeliefert wird und die Konfigurationsdatei durch diesen beschreibbar ist.
 
 Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
