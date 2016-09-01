@@ -1,6 +1,7 @@
 ***************************
 Konfiguration der CometVisu
-===========================
+***************************
+
 Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
 Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis "./config"
 der CometVisu-Installation. Dies kann entweder mit einem textbasierten Editor oder
