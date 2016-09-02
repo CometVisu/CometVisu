@@ -675,7 +675,7 @@
     </xsd:attribute>
     <xsd:attribute name="position" type="navbarPositionType" use="required">
     	<xsd:annotation>
-            <xsd:documentation xml:lang="en">position of the navigation bar on the page</xsd:documentation>
+            <xsd:documentation xml:lang="en">Position of the navigation bar on the page</xsd:documentation>
             <xsd:documentation xml:lang="de">Position der Navigationsleiste auf der Seite</xsd:documentation>
         </xsd:annotation>
     </xsd:attribute>
