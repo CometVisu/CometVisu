@@ -924,8 +924,13 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute ref="value" use="required" />
-    <xsd:attribute name="shortvalue" type="xsd:string" use="optional" />
+    <xsd:attribute ref="value" use="required"/>
+    <xsd:attribute name="shortvalue" type="xsd:string" use="optional">
+      <xsd:annotation>
+      	  <xsd:documentation xml:lang="en">Defines the value which is sent on short push of the button</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei einem kurzen Tastendruck gesendet wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="shorttime" type="xsd:decimal" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Time in milliseconds that is accepted as shorttime.</xsd:documentation>
@@ -958,8 +963,18 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="downValue" type="xsd:string" use="required" />
-    <xsd:attribute name="upValue" type="xsd:string" use="required" />
+    <xsd:attribute name="downValue" type="xsd:string" use="required">
+      <xsd:annotation>
+      	  <xsd:documentation xml:lang="en">Defines the value which is sent when pushing the button</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei einem Tastendruck gesendet wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="upValue" type="xsd:string" use="required">
+      <xsd:annotation>
+      	  <xsd:documentation xml:lang="en">Defines the value which is sent on releasing the button</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert beim Loslassen gesendet wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="align" use="optional" />
@@ -988,12 +1003,42 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="upvalue" type="xsd:string" use="optional" />
-    <xsd:attribute name="shortupvalue" type="xsd:string" use="optional" />
-    <xsd:attribute name="downvalue" type="xsd:string" use="optional" />
-    <xsd:attribute name="shortdownvalue" type="xsd:string" use="optional" />
-    <xsd:attribute name="uplabel" type="xsd:string" use="optional" />
-    <xsd:attribute name="downlabel" type="xsd:string" use="optional" />
+    <xsd:attribute name="upvalue" type="xsd:string" use="optional">
+      <xsd:annotation>
+      	  <xsd:documentation xml:lang="en">Defines the value which is sent on long push of the button.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei einem langen Tastendruck gesendet wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="shortupvalue" type="xsd:string" use="optional">
+      <xsd:annotation>
+      	  <xsd:documentation xml:lang="en">Defines the value which is sent on short push of the button.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei einem kurzen Tastendruck gesendet wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="downvalue" type="xsd:string" use="optional">
+      <xsd:annotation>
+      	  <xsd:documentation xml:lang="en">Defines the value which is sent when releasing the button after a long push.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert beim Loslassen nach einem langen Tastendruck gesendet wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="shortdownvalue" type="xsd:string" use="optional">
+      <xsd:annotation>
+      	  <xsd:documentation xml:lang="en">Defines the value which is sent when releasing the button after a short push.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert beim Loslassen nach einem kurzen Tastendruck gesendet wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="uplabel" type="xsd:string" use="optional">
+      <xsd:annotation>
+      	  <xsd:documentation xml:lang="en">Defines the label which is displayed on the left button.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt die Beschriftung der linken Taste fest.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="downlabel" type="xsd:string" use="optional">
+      <xsd:annotation>
+      	  <xsd:documentation xml:lang="en">Defines the label which is displayed on the right button.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt die Beschriftung der rechten Taste fest.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="shorttime" type="xsd:decimal" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Time in milliseconds that is accepted as shorttime.</xsd:documentation>
@@ -1047,15 +1092,60 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="showstatus" type="xsd:string" use="optional" />
-    <xsd:attribute name="button1label" type="xsd:string" use="optional" />
-    <xsd:attribute name="button1value" type="xsd:string" use="optional" />
-    <xsd:attribute name="button2label" type="xsd:string" use="optional" />
-    <xsd:attribute name="button2value" type="xsd:string" use="optional" />
-    <xsd:attribute name="button3label" type="xsd:string" use="optional" />
-    <xsd:attribute name="button3value" type="xsd:string" use="optional" />
-    <xsd:attribute name="button4label" type="xsd:string" use="optional" />
-    <xsd:attribute name="button4value" type="xsd:string" use="optional" />
+    <xsd:attribute name="showstatus" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines if the current status is shown on the buttons.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt fest, ob auf den Schaltflächen der aktuelle Status angezeigt wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="button1label" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the label for the top left button.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Beschriftung für die obere linke Schaltfläche fest.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="button1value" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the value which will be sent when pushing the top left button.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der oberen linken Taste gesendet wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="button2label" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the label for the top right button.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Beschriftung für die obere rechte Schaltfläche fest.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="button2value" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the value which will be sent when pushing the top right button.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der oberen rechten Taste gesendet wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="button3label" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the label for the bottom left button.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Beschriftung für die untere linke Schaltfläche fest.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="button3value" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the value which will be sent when pushing the bottom left button.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der unteren linken Taste gesendet wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="button4label" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the label for the bottom right button.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Beschriftung für die untere rechte Schaltfläche fest.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="button4value" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the value which will be sent when pushing the bottom right button.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der unteren rechten Taste gesendet wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
   </xsd:complexType>
@@ -1118,11 +1208,31 @@
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
     </xsd:sequence>
-    <xsd:attribute name="src" type="uri" use="required" />
-    <xsd:attribute name="width" type="dimension" use="optional" />
-    <xsd:attribute name="height" type="dimension" use="optional" />
+    <xsd:attribute name="src" type="uri" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Complete path (URI) to the picture</xsd:documentation>
+        <xsd:documentation xml:lang="de">vollständiger Pfad zum Bild (URI)</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="width" type="dimension" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Sets the width of the image in pixels</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite des Bildes in Pixeln</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="height" type="dimension" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Sets the height of the image in pixels</xsd:documentation>
+        <xsd:documentation xml:lang="de">Höhe des Bildes in Pixeln</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="widthfit" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="refresh" type="xsd:decimal" use="optional" />
+    <xsd:attribute name="refresh" type="xsd:decimal" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Sets the update rate for the picture in seconds</xsd:documentation>
+        <xsd:documentation xml:lang="de">Definiert die Aktualisieruengsrate des Bildes in Sekunden</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
   </xsd:complexType>
 
@@ -1132,14 +1242,39 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="src" type="uri" />
+    <xsd:attribute name="src" type="uri">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Complete path (URI) to the picture</xsd:documentation>
+        <xsd:documentation xml:lang="de">vollständiger Pfad zum Bild (URI)</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="suffix" type="xsd:string" use="required" />
     <xsd:attribute name="type" type="xsd:string" use="optional" />
-    <xsd:attribute name="width" type="dimension" />
-    <xsd:attribute name="height" type="dimension" />
-    <xsd:attribute name="refresh" type="xsd:decimal" />
+    <xsd:attribute name="width" type="dimension">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Sets the width of the image in pixels</xsd:documentation>
+        <xsd:documentation xml:lang="de">Breite des Bildes in Pixeln</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="height" type="dimension">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Sets the height of the image in pixels</xsd:documentation>
+        <xsd:documentation xml:lang="de">Höhe des Bildes in Pixeln</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="refresh" type="xsd:decimal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Sets the update rate for the picture in seconds</xsd:documentation>
+        <xsd:documentation xml:lang="de">Definiert die Aktualisieruengsrate des Bildes in Sekunden</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="mapping" use="optional" />
-    <xsd:attribute name="sendValue" type="xsd:string" use="optional" />
+    <xsd:attribute name="sendValue" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the value which is sent when pressing the picture/icon</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung des Bildes/Icons gesendet wird</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
   </xsd:complexType>
