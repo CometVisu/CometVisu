@@ -606,8 +606,8 @@
     </xsd:attribute>
     <xsd:attribute name="showfooter" type="xsd:boolean" use="optional">
     	<xsd:annotation>
-            <xsd:documentation xml:lang="en">Shows the CometVisu logo and various Links</xsd:documentation>
-            <xsd:documentation xml:lang="de">Zeigt die Fußzeile mit CometVisu Logo und diversen Links an</xsd:documentation>
+            <xsd:documentation xml:lang="en">Shows a footer at the bottom of the page. The footer content is defined in the config file.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Zeigt eine Fußzeile am Ende der Seite. Der Inhalt der Fußzeile wird in der config-Datei festgelegt.</xsd:documentation>
         </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="shownavbar-top" type="xsd:boolean" use="optional">
