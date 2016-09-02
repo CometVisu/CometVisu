@@ -208,9 +208,12 @@ class BaseXsdDirective(BaseDirective):
                         sub_parent = "%s\n * %s" % (parent, element_name)
                     else:
                         sub_parent = element_name
-                    self.generate_complex_table(name, include_name=include_name,
-                                                mandatory=mandatory, table_body=table_body,
-                                                sub_run=True, parent=sub_parent)
+                    #no recursions
+                    if name != element_name:
+                        print("Name: %s, Element-Name: %s" % (name, element_name))
+                        self.generate_complex_table(name, include_name=include_name,
+                                                    mandatory=mandatory, table_body=table_body,
+                                                    sub_run=True, parent=sub_parent)
                 else:
                     (sub_element, atype, doc) = sub_element
                     indent = 2 if parent is not None else 1
