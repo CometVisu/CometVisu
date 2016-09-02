@@ -44,6 +44,36 @@ durch Anhängen von check\_config.php an den URL erzwingen.
 Seiten und Struktur der CometVisu
 ---------------------------------
 
+Grundsätzliches
+
+Zur Visualisierung und zum Auslösen von Aktionen wie z.B. Schalten oder
+Jalousien verfahren bedient sich CometVisu sogenannter Widgets.
+Widgets können als grafische Bausteine verstanden werden, die auf einer
+darzustellenden Seite (= page) angeordnet werden. Ein Widget besteht aus
+dem eigentlichen sichtbaren Bereich, der Maus- oder Tastereignisse empfängt
+und weiterleitet und aus nicht sichtbaren Objekten, durch welche die
+Funktionsweise des Widget detaillierter festgelegt werde.
+
+Es wird zwischen Widgets zur
+
+- Bedienung (hier z.B. das switch-Widget zum Schalten),
+
+- Darstellung (diese haben ausschließlich informative Funktion),
+
+- Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb
+der verschiednen Seiten der Visualisierung (Sonstige Widgets)
+
+unterschieden.
+
+Eine kleine Ausnahme stellen die Plugin-Widgets dar. Diese müssen vor Verwendung
+in der “meta-Sektion” der Konfigurationsdatei eingebunden sein.
+
+Arbeiten mit Konfigurationsdatei
+
+Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in verschiedene
+Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
+Tags umschlossen aufgenommen werden.
+
 .. TODO::
 
     Beschreibung
