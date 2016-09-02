@@ -131,7 +131,7 @@ def main():
     parser.add_argument('--doc-type', "-dt", dest="doc", default="manual",
                         type=str, help='type of documentation to generate (manual, source)', nargs='?')
 
-    parser.add_argument('action', type=str, help='what should I do?', nargs='?')
+    parser.add_argument('action', type=str, help='action (doc, create-widget-skeleton)', nargs='?')
     options = parser.parse_args()
 
     if options.action is None:
