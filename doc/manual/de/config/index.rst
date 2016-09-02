@@ -69,7 +69,7 @@ in der “meta-Sektion” der Konfigurationsdatei eingebunden sein.
 
 Arbeiten mit Konfigurationsdatei
 
-Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in verschiedene
+Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
 Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
 Tags umschlossen aufgenommen werden.
 
