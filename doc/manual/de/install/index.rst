@@ -32,8 +32,8 @@ jedoch **NIE** produktiv eingesetzt werden.
 Update der CometVisu
 --------------------
 
-falls eine Version 0.8 schon installiert war kann die Installation direkt aktualisiert werden
-auf dem :doc:`WireGate <update-wiregate>` oder :doc:`anderen Installationen <update-other>`
+Falls bereits eine Version 0.8 installiert war, kann die Installation direkt
+auf dem :doc:`WireGate <update-wiregate>` oder :doc:`anderen Installationen <update-other>` aktualisiert werden.
 
 .. toctree::
     :hidden:
