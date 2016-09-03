@@ -928,13 +928,13 @@
     <xsd:attribute name="shortvalue" type="xsd:string" use="optional">
       <xsd:annotation>
       	  <xsd:documentation xml:lang="en">Defines the value which is sent on a short press of the button</xsd:documentation>
-      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei einem kurzen Tastendruck gesendet wird.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei kurzer Betätigung der Schaltfläche gesendet wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="shorttime" type="xsd:decimal" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Time in milliseconds that is accepted as shorttime.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Zeit in Millisekunden innerhalb der der Tastendruck als Kurzzeit interpretiert wird.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeit in Millisekunden innerhalb der die Betätigung der Schaltfläche als Kurzzeit interpretiert wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="mapping" use="optional" />
@@ -966,7 +966,7 @@
     <xsd:attribute name="downValue" type="xsd:string" use="required">
       <xsd:annotation>
       	  <xsd:documentation xml:lang="en">Defines the value which is sent when pressing the button</xsd:documentation>
-      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei einem Tastendruck gesendet wird.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei Betätigung der Schaltfläche gesendet wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="upValue" type="xsd:string" use="required">
@@ -1042,7 +1042,7 @@
     <xsd:attribute name="shorttime" type="xsd:decimal" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Time in milliseconds that is accepted as shorttime.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Zeit in Millisekunden innerhalb der der Tastendruck als Kurzzeit interpretiert wird.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeit in Millisekunden innerhalb der die Betätigung der Schaltfläche als Kurzzeit interpretiert wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="change" use="optional">
@@ -1107,7 +1107,7 @@
     <xsd:attribute name="button1value" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the value which will be sent when pressing the top left button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der oberen linken Taste gesendet wird.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der oberen linken Schaltfläche gesendet wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="button2label" type="xsd:string" use="optional">
@@ -1119,7 +1119,7 @@
     <xsd:attribute name="button2value" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the value which will be sent when pressing the top right button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der oberen rechten Taste gesendet wird.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der oberen rechten Schaltfläche gesendet wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="button3label" type="xsd:string" use="optional">
@@ -1131,7 +1131,7 @@
     <xsd:attribute name="button3value" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the value which will be sent when pressing the bottom left button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der unteren linken Taste gesendet wird.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der unteren linken Schaltfläche gesendet wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="button4label" type="xsd:string" use="optional">
@@ -1143,7 +1143,7 @@
     <xsd:attribute name="button4value" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Defines the value which will be sent when pressing the bottom right button.</xsd:documentation>
-        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der unteren rechten Taste gesendet wird.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt den Wert fest, der bei Betätigung der unteren rechten Schaltfläche gesendet wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
