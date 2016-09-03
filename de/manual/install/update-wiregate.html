@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; CometVisu</title>
+  <title>Update der CometVisu auf dem Wiregate &mdash; CometVisu</title>
   
 
   
@@ -32,7 +32,10 @@
   
 
   
-    <link rel="top" title="CometVisu" href="../index.html"/> 
+    <link rel="top" title="CometVisu" href="../index.html"/>
+        <link rel="up" title="Installation der CometVisu" href="index.html"/>
+        <link rel="next" title="Update der CometVisu auf anderen Geräten" href="update-other.html"/>
+        <link rel="prev" title="Entwicklerversion auf dem Wiregate" href="install-dev.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -84,8 +87,19 @@
           
             
             
-                <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Installation der CometVisu</a></li>
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="allgemein.html">Voraussetzungen für die Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Update der CometVisu auf dem Wiregate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="update-other.html">Update der CometVisu auf anderen Geräten</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
 </ul>
@@ -118,7 +132,9 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>&lt;no title&gt;</li>
+          <li><a href="index.html">Installation der CometVisu</a> &raquo;</li>
+      
+    <li>Update der CometVisu auf dem Wiregate</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -130,15 +146,60 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Zu tun</p>
-<p class="last">Inhalte übertragen</p>
+  <div class="section" id="update-der-cometvisu-auf-dem-wiregate">
+<h1>Update der CometVisu auf dem Wiregate<a class="headerlink" href="#update-der-cometvisu-auf-dem-wiregate" title="Link zu dieser Überschrift">¶</a></h1>
+<p><strong>Download der Installationsdatei</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www
+wget -O CometVisu0.8.5.tar.bz2  http://sourceforge.net/projects/openautomation/files/CometVisu/CometVisu_0.8.5.tar.bz2/download
+</pre></div>
+</div>
+<p><strong>Entpacken der Dateien</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>tar xvf CometVisu0.8.5.tar.bz2
+</pre></div>
+</div>
+<p><strong>OPTIONAL: Entfernen des Downloads</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rm ./CometVisu0.8.5.tar.bz2
+</pre></div>
+</div>
+<p><strong>Kopieren der Konfigurationsdatei in die neue Installation</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>cp cometvisu/config/visu_config*.xml release_0.8.5/release/config/
+</pre></div>
+</div>
+<p><strong>ENTWEDER entfernen eines alten Backups und Erzeugen eines neuen Backup
+aus der jetzt veralteten aktuellen Installation</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rm -Rf ./cometvisu.bak
+mv ./cometvisu cometvisu.bak
+</pre></div>
+</div>
+<p><strong>ODER alternatives Vorgehen OHNE Löschen alter Versionen (irgendeiname
+durch z.B. CV-0.8.x oder so was ersetzen)</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mv ./cometvisu irgendeinname
+</pre></div>
+</div>
+<p>&#8216;&#8217;&#8216;Erzeugen eines Links um die Visu mit dem bekannten URL aufrufen zu
+können - hier wieder &#8216;&#8217;&#8216;</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>ln -s release_0.8.5/release/ cometvisu
+</pre></div>
+</div>
+<p>Aufruf der Visu dann wie bekannt unter
+<code class="docutils literal"><span class="pre">http://name_oder_ip_addresse/cometvisu</span></code> - Beim ersten Start wird
+falls erforderlich angeboten die Konfiguration automatisch zu
+konvertieren.</p>
 </div>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="update-other.html" class="btn btn-neutral float-right" title="Update der CometVisu auf anderen Geräten" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install-dev.html" class="btn btn-neutral" title="Entwicklerversion auf dem Wiregate" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
