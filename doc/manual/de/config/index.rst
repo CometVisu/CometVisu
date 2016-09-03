@@ -45,6 +45,7 @@ Seiten und Struktur der CometVisu
 ---------------------------------
 
 Grundsätzliches
+^^^^^^^^^^^^^^^
 
 Zur Visualisierung und zum Auslösen von Aktionen wie z.B. Schalten oder
 Jalousien verfahren bedient sich CometVisu sogenannter Widgets.
@@ -52,7 +53,7 @@ Widgets können als grafische Bausteine verstanden werden, die auf einer
 darzustellenden Seite (= page) angeordnet werden. Ein Widget besteht aus
 dem eigentlichen sichtbaren Bereich, der Maus- oder Tastereignisse empfängt
 und weiterleitet und aus nicht sichtbaren Objekten, durch welche die
-Funktionsweise des Widget detaillierter festgelegt werde.
+Funktionsweise des Widget detaillierter festgelegt werden.
 
 Es wird zwischen Widgets zur
 
@@ -67,7 +68,8 @@ unterschieden.
 Eine kleine Ausnahme stellen die Plugin-Widgets dar. Diese müssen vor Verwendung
 in der “meta-Sektion” der Konfigurationsdatei eingebunden sein.
 
-Arbeiten mit Konfigurationsdatei
+Arbeiten mit der Konfigurationsdatei
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
 Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
