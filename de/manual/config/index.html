@@ -90,7 +90,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Konfiguration der CometVisu</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#grundsatzliches">Grundsätzliches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arbeiten-mit-der-konfigurationsdatei">Arbeiten mit der Konfigurationsdatei</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#die-verfugbaren-designs">Die verfügbaren Designs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="designs/metal.html">Metal</a></li>
@@ -196,6 +200,30 @@ durch Anhängen von check_config.php an den URL erzwingen.</p>
 </div>
 <div class="section" id="seiten-und-struktur-der-cometvisu">
 <span id="visu-config-details"></span><h2>Seiten und Struktur der CometVisu<a class="headerlink" href="#seiten-und-struktur-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="grundsatzliches">
+<h3>Grundsätzliches<a class="headerlink" href="#grundsatzliches" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Zur Visualisierung und zum Auslösen von Aktionen wie z.B. Schalten oder
+Jalousien verfahren bedient sich CometVisu sogenannter Widgets.
+Widgets können als grafische Bausteine verstanden werden, die auf einer
+darzustellenden Seite (= page) angeordnet werden. Ein Widget besteht aus
+dem eigentlichen sichtbaren Bereich, der Maus- oder Tastereignisse empfängt
+und weiterleitet und aus nicht sichtbaren Objekten, durch welche die
+Funktionsweise des Widget detaillierter festgelegt werden.</p>
+<p>Es wird zwischen Widgets zur</p>
+<ul class="simple">
+<li>Bedienung (hier z.B. das switch-Widget zum Schalten),</li>
+<li>Darstellung (diese haben ausschließlich informative Funktion),</li>
+<li>Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb der verschiednen Seiten der Visualisierung (Sonstige Widgets)</li>
+</ul>
+<p>unterschieden.</p>
+<p>Eine kleine Ausnahme stellen die Plugin-Widgets dar. Diese müssen vor Verwendung
+in der “meta-Sektion” der Konfigurationsdatei eingebunden sein.</p>
+</div>
+<div class="section" id="arbeiten-mit-der-konfigurationsdatei">
+<h3>Arbeiten mit der Konfigurationsdatei<a class="headerlink" href="#arbeiten-mit-der-konfigurationsdatei" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
+Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
+Tags umschlossen aufgenommen werden.</p>
 <div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Zu tun</p>
 <ul class="last simple">
@@ -203,6 +231,7 @@ durch Anhängen von check_config.php an den URL erzwingen.</p>
 <li><em>Attribute</em>: Allgemein erklären</li>
 <li><em>Elemente</em>: Allgemein erklären</li>
 </ul>
+</div>
 </div>
 </div>
 <div class="section" id="navigationselemente-in-der-cometvisu">
