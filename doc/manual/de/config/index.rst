@@ -77,6 +77,53 @@ unterschieden.
 Eine kleine Ausnahme stellen die Plugin-Widgets dar. Diese müssen vor Verwendung
 in der “meta-Sektion” der Konfigurationsdatei eingebunden sein.
 
+Der Aufbau einer Visualisierung beginnt normalerweise mit dem Skizzieren eines
+groben Konzepts dessen, was man wie und wo darstellen möchte. Dreh- und Angelpunkt
+ist hier die Startseite der Visualisierug mit Hilfe eines page-Widget.
+
+Soll die Startseite einen Navigationsbereich enthalten, über welchen z.B. die pages
+einzelner Räume ausgewählt werden sollen, wird in diese der Baustein navbar-Widget
+als child eingefügt. Das navbar-Widget selbst bekommt dann wiederum pagejump-Widget
+childreen mit Verweisen zu den Ziel-pages. Die Ziel-pages können an nahezu jeder
+Stelle eingefügt werden, da diese über über ihre Benennung angesprochen werden.
+
+So langsam wird man dann auch schon damit beginnen wollen, die einzelnen pages mit
+Leben zu füllen, wie zum Beispiel "Wieviele Schalter auf der Wohnzimmer-Seite?".
+Das Prinzip ist nun schon klar:
+Das page-Widget "Wohnzimmer" bekommt ein paar switch-Widget childreen, welche dann
+irgendwie wahllos auf der Wohnzimmer-Seite erscheinen.
+Also Kommando kurz zurück, dem page-Widget "Wohnzimmer" zuerst ein group-Widget child
+zuordnen und diesem dann die gewünschten switch-Widget childreen.
+
+Im Rahmen dieses Tuns wird man sehr schnell die child-child-Struktur des prinzipiellen
+Aufbaus der CometVisu erfassen, welche in der Konfigurationsdatei durch die durch Tags
+umschlossenen Verschachtelungen abgebildet wird.
+
+Der große Vorteil des grafischen Editors zeigt sich besonders zu Beginn der Arbeit mit
+der CometVisu. Der grafische Editor läßt nur mögliche child-child-Beziehungen zu und
+führt eine Syntaxprüfung durch. Widgets lassen sich mit ihm verschieben und er beinhaltet
+eine preview-Funktion, um Einfügungen und Änderungen unmittelbar zu visualisieren.
+Vor dem "preview" aber unbedingt erst ein "save", sonst gehen alle Änderungen seit
+dem letzten "save" verloren.
+ 
+Nach und nach nimmt die Visualisierung nun Form und Gestalt an, hat aber noch keine
+Funktionalität. Diese wird durch Zuordnen von Elementen einschließlich deren Attribute
+für die einzelnen Widgets erreicht. Auch hier gilt wieder das child-child-Prinzip.
+Am Beispiel des switch-Widget bedeutet dies, es muß das Element "address" mit den
+Attributen "transform" und "mode" hinzugefügt werden.
+Das Element "address" ist hierbei im Sinne einer KNX-Gruppenaddresse zu verstehen.
+Mit dem Attribut "transform" wird festgelegt, ob Hilfe des knxd-daemon unmittelbar
+auf wahre Gruppenadresse des KNX-Busses oder ob auf ein in openHAB definiertes item
+referenziert werden soll. Das Attribut "mode" spezifiziert den Umgang mit der
+"address" näher, wobei hier nur die selbsterklärenden Werte "disable", "read", "write"
+und "readwrite" möglich sind (Syntaxprüfung des grafischen Editors).    
+
+Eine Auflistung der möglichen Elemente, deren Attribute sowie deren Werte eines Widget
+ist in der jeweiligen Widget-Beschreibung zu finden. Der grafische Editor regt zum
+"just do it and try" an, sofern man die Reihenfolge "save -> preview" beachtet.
+
+
+
 Arbeiten mit der Konfigurationsdatei
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
