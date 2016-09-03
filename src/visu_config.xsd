@@ -1005,38 +1005,38 @@
     </xsd:sequence>
     <xsd:attribute name="upvalue" type="xsd:string" use="optional">
       <xsd:annotation>
-      	  <xsd:documentation xml:lang="en">Defines the value which is sent on a long press of the button.</xsd:documentation>
-      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei einem langen Tastendruck gesendet wird.</xsd:documentation>
+      	  <xsd:documentation xml:lang="en">Defines the value which is sent on a long press of the left button.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei langer Betätigung der linken Schaltfläche gesendet wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="shortupvalue" type="xsd:string" use="optional">
       <xsd:annotation>
-      	  <xsd:documentation xml:lang="en">Defines the value which is sent on a short press of the button.</xsd:documentation>
-      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei einem kurzen Tastendruck gesendet wird.</xsd:documentation>
+      	  <xsd:documentation xml:lang="en">Defines the value which is sent on a short press of the left button.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei kurzer Betätigung der linken Schaltfläche gesendet wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="downvalue" type="xsd:string" use="optional">
       <xsd:annotation>
-      	  <xsd:documentation xml:lang="en">Defines the value which is sent when releasing the button after a long press.</xsd:documentation>
-      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert beim Loslassen nach einem langen Tastendruck gesendet wird.</xsd:documentation>
+      	  <xsd:documentation xml:lang="en">Defines the value which is sent on a long press of the right button.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei langer Betätigung der rechten Schaltfläche gesendet wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="shortdownvalue" type="xsd:string" use="optional">
       <xsd:annotation>
-      	  <xsd:documentation xml:lang="en">Defines the value which is sent when releasing the button after a short press.</xsd:documentation>
-      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert beim Loslassen nach einem kurzen Tastendruck gesendet wird.</xsd:documentation>
+      	  <xsd:documentation xml:lang="en">Defines the value which is sent on a short press of the right button.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt fest welcher Wert bei kurzer Betätigung der rechten Schaltfläche gesendet wird.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="uplabel" type="xsd:string" use="optional">
       <xsd:annotation>
       	  <xsd:documentation xml:lang="en">Defines the label which is displayed on the left button.</xsd:documentation>
-      	  <xsd:documentation xml:lang="de">Legt die Beschriftung der linken Taste fest.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt die Beschriftung der linken Schaltfläche fest.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="downlabel" type="xsd:string" use="optional">
       <xsd:annotation>
       	  <xsd:documentation xml:lang="en">Defines the label which is displayed on the right button.</xsd:documentation>
-      	  <xsd:documentation xml:lang="de">Legt die Beschriftung der rechten Taste fest.</xsd:documentation>
+      	  <xsd:documentation xml:lang="de">Legt die Beschriftung der rechten Schaltfläche fest.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="shorttime" type="xsd:decimal" use="optional">
