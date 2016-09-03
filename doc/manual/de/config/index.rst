@@ -27,7 +27,12 @@ Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser
 eine Fehlermeldung angezeigt. Diese gibt im Normalfall schon genaue
 Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
 Darstellung) auch mit dem Link "Check Config" in der Fusszeile oder
-durch Anhängen von check\_config.php an den URL erzwingen.
+durch Anhängen von check_config.php an den URL erzwingen.
+
+.. toctree::
+    :hidden:
+
+    url-params
 
 .. _visu-config-details:
 
@@ -65,9 +70,11 @@ dargestellt werden. Hierfür können genutzt werden:
 
 .. toctree::
     :hidden:
-    :glob:
 
-    *
+    flavour
+    format
+    mapping
+    styling
 
 -  :doc:`Format <format>` von Werten z.B. auf Anzahl der
    Nachkommastellen, Einheiten etc.
