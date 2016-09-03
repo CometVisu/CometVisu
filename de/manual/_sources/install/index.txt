@@ -14,6 +14,7 @@ Einfache Installation:
     allgemein
     wiregate
     raspberry
+    install-dev
 
 Schwieriger, nur für Fortgeschrittene:
 
