@@ -7,7 +7,7 @@ Grundsätzliches
 Zur Visualisierung und zum Auslösen von Aktionen wie z.B. Schalten oder
 Jalousien verfahren bedient sich CometVisu sogenannter Widgets. Widgets
 können als grafische Bausteine verstanden werden, die auf einer darzustellenden
-Seite (= page) angeordnet werden.
+Seite (page) angeordnet werden.
 Ein Widget besteht aus dem eigentlichen sichtbaren Bereich, der Maus-
 oder Tastereignisse empfängt und weiterleitet und aus nicht sichtbaren Objekten,
 durch welche die Funktionsweise des Widget detaillierter festgelegt werden.
