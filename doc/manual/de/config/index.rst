@@ -2,7 +2,7 @@ Konfiguration der CometVisu
 ===========================
 
 Grundsätzliches
-^^^^^^^^^^^^^^^
+---------------
 
 Zur Visualisierung und zum Auslösen von Aktionen wie z.B. Schalten oder
 Jalousien verfahren bedient sich CometVisu sogenannter Widgets.
