@@ -80,7 +80,7 @@ Darstellung) auch mit dem Link "Check Config" in der Fusszeile oder
 durch Anhängen von check\_config.php an den URL erzwingen.
 
 Bearbeiten der Konfigurationsdatei mit dem grafischen Editor
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------------------------
 
 Der große Vorteil des grafischen Editors zeigt sich besonders zu Beginn der Arbeit mit
 der CometVisu. Der grafische Editor läßt nur mögliche child-child-Beziehungen zu und
@@ -92,7 +92,7 @@ dem letzten "save" verloren.
 
 
 Bearbeiten Konfigurationsdatei mit einem Texteditor
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------------
 
 Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
 Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
@@ -108,7 +108,7 @@ Tags umschlossen aufgenommen werden.
 
 
 Struktur und Seitenaufbau der CometVisu
----------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Der Aufbau einer Visualisierung beginnt normalerweise mit dem Skizzieren eines
 groben Konzepts dessen, was man wie und wo darstellen möchte. Dreh- und Angelpunkt
