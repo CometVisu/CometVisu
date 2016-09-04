@@ -25,6 +25,11 @@ unterschieden.
 Eine kleine Ausnahme stellen die Plugin-Widgets dar. Diese müssen vor Verwendung
 in der “meta-Sektion” der Konfigurationsdatei eingebunden sein.
 
+In der Regel erhalten Widgets ihre eigentliche Funktionalität durch Zuordnen von Elementen
+einschließlich deren Attribute, wobei Elemente selbst wiederum Unterelemente aufweisen können. 
+Man spricht hierbei von sogenannten parent-child-Beziehungen.
+Diese Struktur widerspiegelt sich in der Konfigurationsdatei durch die durch Tags
+umschlossenen Verschachtelungen.
 
 Anbindung an das Backend
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -74,6 +79,34 @@ Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
 Darstellung) auch mit dem Link "Check Config" in der Fusszeile oder
 durch Anhängen von check\_config.php an den URL erzwingen.
 
+Bearbeiten der Konfigurationsdatei mit dem grafischen Editor
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Der große Vorteil des grafischen Editors zeigt sich besonders zu Beginn der Arbeit mit
+der CometVisu. Der grafische Editor läßt nur mögliche child-child-Beziehungen zu und
+führt eine Syntaxprüfung durch. Widgets lassen sich mit ihm verschieben und er beinhaltet
+eine preview-Funktion, um Einfügungen und Änderungen unmittelbar zu visualisieren.
+Vor dem "preview" aber unbedingt erst ein "save", sonst gehen alle Änderungen seit
+dem letzten "save" verloren.
+
+
+
+Bearbeiten Konfigurationsdatei mit einem Texteditor
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
+Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
+Tags umschlossen aufgenommen werden.
+
+.. TODO::
+
+    Beschreibung
+
+
+
+
+
+
 Struktur und Seitenaufbau der CometVisu
 ---------------------------------------
 
@@ -99,12 +132,7 @@ Im Rahmen dieses Tuns wird man sehr schnell die child-child-Struktur des prinzip
 Aufbaus der CometVisu erfassen, welche in der Konfigurationsdatei durch die durch Tags
 umschlossenen Verschachtelungen abgebildet wird.
 
-Der große Vorteil des grafischen Editors zeigt sich besonders zu Beginn der Arbeit mit
-der CometVisu. Der grafische Editor läßt nur mögliche child-child-Beziehungen zu und
-führt eine Syntaxprüfung durch. Widgets lassen sich mit ihm verschieben und er beinhaltet
-eine preview-Funktion, um Einfügungen und Änderungen unmittelbar zu visualisieren.
-Vor dem "preview" aber unbedingt erst ein "save", sonst gehen alle Änderungen seit
-dem letzten "save" verloren.
+
  
 Nach und nach nimmt die Visualisierung nun Form und Gestalt an, hat aber noch keine
 Funktionalität. Diese wird durch Zuordnen von Elementen einschließlich deren Attribute
@@ -124,16 +152,7 @@ ist in der jeweiligen Widget-Beschreibung zu finden. Der grafische Editor regt z
 
 
 
-Arbeiten mit der Konfigurationsdatei
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
-Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
-Tags umschlossen aufgenommen werden.
-
-.. TODO::
-
-    Beschreibung
 
 Navigationselemente in der CometVisu
 ------------------------------------
