@@ -50,42 +50,32 @@ Bearbeiten der Konfigurationsdatei „visu_config.xml
 
 Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
 Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis "./config"
-der CometVisu-Installation. Dies kann entweder mit einem textbasierten Editor
-oder mit dem integrierten grafischen Editor erfolgen.
+der CometVisu-Installation. Dies kann entweder mit dem integrierten grafischen
+Editor oder mit einem textbasierten Editor erfolgen.
 
-Soll die XML-formatierte Konfigurationsdatei „visu_config.xml“ durch den
-(fortgeschrittenen) Anwender direkt bearbeitet werden, ist es sehr ratsam,
-hierzu einen XML-fähigen Editor zu verwenden, welcher u.a. die Syntax der besseren
+Die Verwendung des grafischen Editors setzt voraus, dass die CometVisu von einem php-fähigen
+Webserver (z.B Apache oder Lighttpd) ausgeliefert wird und die Konfigurationsdatei
+durch diesen beschreibbar ist.
+
+Für die direkte Bearbeitung der XML-formatierten Konfigurationsdatei ist es sehr ratsam,
+einen XML-fähigen Editor zu verwenden, welcher u.a. die Syntax der besseren
 Lesbarkeit einfärbt (z.B. Textwrangler auf MacOSX, WordPad++, Notepad++ oder
 MS XML Editor 2007 unter Windows und unter Linux z.B. vi mit ":syntax on").
 
 Allgemeine Informationen über das CometVisu XML Format findet man
-`hier <CometVisu/XML-Elemente>`__, Informationen zu den einzelnen
-Widgets in den jeweiligen Unterseiten.
+`hier <CometVisu/XML-Elemente>`__.
 
-Die Verwendung des grafischen Editors setzt jedoch voraus, dass die CometVisu von einem php-fähigen
-Webserver (z.B Apache oder Lighttpd) ausgeliefert wird und die Konfigurationsdatei
-durch diesen beschreibbar ist.
+Unabhängig von der Wahl des Editors ist nach dem Speichern keinerlei Neustart von
+Prozessen nötig, jedoch sollte man die Seite neu laden und den Browser-Cache löschen.
 
-Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch
-sollte man die Seite neu laden und den Browser-Cache löschen.
-
-Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser
+Wurde die XML Datei ungültig, wird beim Laden der Visu im Webbrowser
 eine Fehlermeldung angezeigt. Diese gibt im Normalfall schon genaue
 Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
 Darstellung) auch mit dem Link "Check Config" in der Fusszeile oder
 durch Anhängen von check\_config.php an den URL erzwingen.
 
-
-
-
-
-
-
-Seiten und Struktur der CometVisu
----------------------------------
-
-
+Struktur und Seitenaufbau der CometVisu
+---------------------------------------
 
 Der Aufbau einer Visualisierung beginnt normalerweise mit dem Skizzieren eines
 groben Konzepts dessen, was man wie und wo darstellen möchte. Dreh- und Angelpunkt
