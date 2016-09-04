@@ -18,8 +18,7 @@ Es wird zwischen Widgets zur
 
 - Darstellung (diese haben ausschließlich informative Funktion),
 
-- Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb der
-verschiednen Seiten der Visualisierung (Sonstige Widgets)
+- Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb der verschiednen Seiten der Visualisierung (Sonstige Widgets)
 
 unterschieden.
 
