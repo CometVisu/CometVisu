@@ -27,6 +27,9 @@ Eine kleine Ausnahme stellen die Plugin-Widgets dar. Diese müssen vor Verwendun
 in der “meta-Sektion” der Konfigurationsdatei eingebunden sein.
 
 
+Anbindung an das Backend
+------------------------
+
 Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
 sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
 
