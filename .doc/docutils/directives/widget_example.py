@@ -55,12 +55,12 @@ class WidgetExampleDirective(Directive):
             :hide-source: false
             :number-lines: 1
 
-            <meta design="metal" selector=".widget_container">
+            <settings design="metal" selector=".widget_container">
                 <screenshot name="switch_mapping_styling">
                     <data address="1/4/0">0</data>
                 </screenshot>
-            </meta>
-            <cv-meta>
+            </settings>
+            <meta>
                 <mappings>
                     <mapping name="OnOff">
                         <entry value="0">Aus</entry>
@@ -73,7 +73,7 @@ class WidgetExampleDirective(Directive):
                         <entry value="0">green</entry>
                     </styling>
                 </stylings>
-            </cv-meta>
+            </meta>
             <switch on_value="1" off_value="0" mapping="OnOff" styling="RedGreen">
                 <label>Kanal 1</label>
                 <address transform="DPT:1.001" mode="readwrite">1/1/0</address>

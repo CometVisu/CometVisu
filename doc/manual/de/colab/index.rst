@@ -98,7 +98,9 @@ Mithilfe bei der Dokumentation
     * Lokales Erzeugen der HTML-Doku, inkl. Screenshots
 
 .. toctree::
+    :hidden:
 
+    doc/directives
     todos
 
 Mithilfe bei der Entwicklung
