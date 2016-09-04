@@ -1,48 +1,5 @@
 Konfiguration der CometVisu
 ===========================
-Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
-Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis "./config"
-der CometVisu-Installation. Dies kann entweder mit einem textbasierten Editor oder
-mit dem integrierten grafischen Editor erfolgen. Die Verwendung des grafischen Editors
-setzt jedoch voraus, dass die CometVisu von einem PHP-fähigen Webserver (z.B Apache oder
-Lighttpd) ausgeliefert wird und die Konfigurationsdatei durch diesen beschreibbar ist.
-
-Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
-sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
-
-- Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die CometVisu manuell in den Vezeichnisbaum "/var/www/visu…" des Webservers (z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der default-Einstellung in der Regel am Port 80.
-
-- Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist nicht php-fähig. In diesem Fall muß man sich mit einem texbasierten Editor begnügen oder den wohlmöglich parallel laufenden Webserver (z.B. Apache oder Lighttpd) "umlenken“.
-
-- Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell in "/usr/share/openhab/webapps/visu…" installiert.
-
-- Wurde openHAB manuell z.B. in "/opt/openHAB" installiert, wird die CometVisu manuell in "/opt/openhab/www/visu..." installiert.
-
-.. TODO::
-
-    Wird openHAB2 als backend für die CometVisu eingesetzt, ...  
-
-Soll die XML-formatierte Konfigurationsdatei „visu_config.xml“ durch den
-(fortgeschrittenen) Anwender direkt bearbeitet werden, ist es sehr ratsam,
-hierzu einen XML-fähigen Editor zu verwenden, welcher u.a. die Syntax der besseren
-Lesbarkeit einfärbt (z.B. Textwrangler auf MacOSX, WordPad++, Notepad++ oder
-MS XML Editor 2007 unter Windows und unter Linux z.B. vi mit ":syntax on").
-
-Allgemeine Informationen über das CometVisu XML Format findet man
-`hier <CometVisu/XML-Elemente>`__, Informationen zu den einzelnen
-Widgets in den jeweiligen Unterseiten.
-
-Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch
-sollte man die Seite neu laden und den Browser-Cache löschen.
-
-Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser
-eine Fehlermeldung angezeigt. Diese gibt im Normalfall schon genaue
-Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
-Darstellung) auch mit dem Link "Check Config" in der Fusszeile oder
-durch Anhängen von check\_config.php an den URL erzwingen.
-
-Seiten und Struktur der CometVisu
----------------------------------
 
 Grundsätzliches
 ^^^^^^^^^^^^^^^
@@ -61,12 +18,83 @@ Es wird zwischen Widgets zur
 
 - Darstellung (diese haben ausschließlich informative Funktion),
 
-- Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb der verschiednen Seiten der Visualisierung (Sonstige Widgets)
+- Anordnung oder Gruppierung anderer Widgets oder zur Navigation innerhalb der
+verschiednen Seiten der Visualisierung (Sonstige Widgets)
 
 unterschieden.
 
 Eine kleine Ausnahme stellen die Plugin-Widgets dar. Diese müssen vor Verwendung
 in der “meta-Sektion” der Konfigurationsdatei eingebunden sein.
+
+
+Je nach verwendetem Backend und der Vorgehensweisen bei der Installation befindet
+sich der CometVisu-Verzeichnisbaum an unterschiedlichen Stellen:
+
+- Soll die CometVisu mit Hilfe des knxd-daemons unmittelbar an den
+KNX-Bus-Telegrammverkehr angebunden werden (KNX ist dann das Backend), wird die
+CometVisu manuell in den Vezeichnisbaum "/var/www/visu…" des Webservers
+(z.B. Apache oder Lighttpd) installiert. Der Webserver lauscht in der
+default-Einstellung in der Regel am Port 80.
+
+- Wird openHAB als Backend für die CometVisu eingesetzt, müssen sich die
+CometVisu-Dateien im openHAB-Verzeichnisbaum befinden. Der openHAB-eigene
+Webserver wird in der default-Einstellung über Port 8080 angesprochen und ist
+nicht php-fähig. In diesem Fall muß man sich mit einem texbasierten Editor
+begnügen oder den wohlmöglich parallel laufenden Webserver
+(z.B. Apache oder Lighttpd) "umlenken“.
+
+- Wurde openHAB automatisiert via apt-get installiert, wird die CometVisu manuell
+in "/usr/share/openhab/webapps/visu…" installiert.
+
+- Wurde openHAB manuell z.B. in "/opt/openHAB" installiert, wird die CometVisu
+manuell in "/opt/openhab/www/visu..." installiert.
+
+.. TODO::
+
+    Wird openHAB2 als backend für die CometVisu eingesetzt, ...  
+
+
+Bearbeiten der Konfigurationsdatei „visu_config.xml
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
+Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis "./config"
+der CometVisu-Installation. Dies kann entweder mit einem textbasierten Editor
+oder mit dem integrierten grafischen Editor erfolgen.
+
+Soll die XML-formatierte Konfigurationsdatei „visu_config.xml“ durch den
+(fortgeschrittenen) Anwender direkt bearbeitet werden, ist es sehr ratsam,
+hierzu einen XML-fähigen Editor zu verwenden, welcher u.a. die Syntax der besseren
+Lesbarkeit einfärbt (z.B. Textwrangler auf MacOSX, WordPad++, Notepad++ oder
+MS XML Editor 2007 unter Windows und unter Linux z.B. vi mit ":syntax on").
+
+Allgemeine Informationen über das CometVisu XML Format findet man
+`hier <CometVisu/XML-Elemente>`__, Informationen zu den einzelnen
+Widgets in den jeweiligen Unterseiten.
+
+Die Verwendung des grafischen Editors setzt jedoch voraus, dass die CometVisu von einem php-fähigen
+Webserver (z.B Apache oder Lighttpd) ausgeliefert wird und die Konfigurationsdatei
+durch diesen beschreibbar ist.
+
+Nach dem Speichern ist keinerlei Neustart von Prozessen nötig, jedoch
+sollte man die Seite neu laden und den Browser-Cache löschen.
+
+Wenn die XML Datei ungültig ist wird beim Laden der Visu im Webbrowser
+eine Fehlermeldung angezeigt. Diese gibt im Normalfall schon genaue
+Hinweise wo in der Datei der Fehler liegt. Man kann die Überprüfung (und
+Darstellung) auch mit dem Link "Check Config" in der Fusszeile oder
+durch Anhängen von check\_config.php an den URL erzwingen.
+
+
+
+
+
+
+
+Seiten und Struktur der CometVisu
+---------------------------------
+
+
 
 Der Aufbau einer Visualisierung beginnt normalerweise mit dem Skizzieren eines
 groben Konzepts dessen, was man wie und wo darstellen möchte. Dreh- und Angelpunkt
@@ -76,7 +104,7 @@ Soll die Startseite einen Navigationsbereich enthalten, über welchen z.B. die p
 einzelner Räume ausgewählt werden sollen, wird in diese der Baustein navbar-Widget
 als child eingefügt. Das navbar-Widget selbst bekommt dann wiederum pagejump-Widget
 childreen mit Verweisen zu den Ziel-pages. Die Ziel-pages können an nahezu jeder
-Stelle eingefügt werden, da diese über über ihre Benennung angesprochen werden.
+Stelle eingefügt werden, da diese über ihre Benennung angesprochen werden.
 
 So langsam wird man dann auch schon damit beginnen wollen, die einzelnen pages mit
 Leben zu füllen, wie zum Beispiel "Wieviele Schalter auf der Wohnzimmer-Seite?".
@@ -180,4 +208,4 @@ sonstiges
 
 .. TODO::
 
-    Hinzufügen der alten Inhalte (RRD-Beispiele, Animierter Hydraulikplan)
+    Hinzufügen de
