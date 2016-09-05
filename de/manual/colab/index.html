@@ -33,7 +33,7 @@
 
   
     <link rel="top" title="CometVisu" href="../index.html"/>
-        <link rel="next" title="Eigene Direktiven" href="doc/directives.html"/>
+        <link rel="next" title="Die RST-Syntax" href="doc/rst.html"/>
         <link rel="prev" title="Das PowerSpectrum Plugin" href="../config/widgets/plugins/powerspectrum/index.html"/> 
 
   
@@ -93,7 +93,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#allgemeine-vorbereitungen">Allgemeine Vorbereitungen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#allgemeine-vorgehensweise">Allgemeine Vorgehensweise</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mithilfe-bei-der-dokumentation">Mithilfe bei der Dokumentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="doc/directives.html">Eigene Direktiven</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/rst.html">Die RST-Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/rst.html#eigene-direktiven">Eigene Direktiven</a></li>
 <li class="toctree-l3"><a class="reference internal" href="todos.html">TODO&#8217;s</a></li>
 </ul>
 </li>
@@ -231,15 +232,41 @@ zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit
 </div>
 <div class="section" id="mithilfe-bei-der-dokumentation">
 <h2>Mithilfe bei der Dokumentation<a class="headerlink" href="#mithilfe-bei-der-dokumentation" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="admonition-todo admonition" id="index-1">
-<p class="first admonition-title">Zu tun</p>
-<ul class="last simple">
-<li>Einführung in reStructuredText</li>
-<li>Eigene RST-Direktiven erklären</li>
-<li>Lokales Erzeugen der HTML-Doku, inkl. Screenshots</li>
+<p>Die CometVisu Dokumentation wird mit Hilfe des <a class="reference external" href="http://www.sphinx-doc.org/">Sphinx - Python Documentation Generators</a>
+erzeugt. Geschrieben wird die Dokumentation daher im reStructuredText-Format (kurz. RST). Hierbei handelt es sich
+um eine vereinfachte Auszeichnungssprache, die in der reinen Textform gut lesbar ist und den Vorteil hat, einfach
+in andere Formate umgewandelt zu werden <a class="reference internal" href="#rst-wiki" id="id1">[RST-Wiki]</a> .</p>
+<p>Zum tieferen Einstieg in die Syntax des RST-Formats sind folgende Links geeignet:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html">Cheat sheet</a></li>
+<li><a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html">Sphinx Dokumentation</a></li>
+</ul>
+<p>Eine allgemeine Einführung, welche sowohl die wichtigsten Grundlagen der Syntax liefert, als auch auf spezielle
+in der CometVisu Dokumentation benutzten Besonderheiten eingeht, soll jedoch dieser Abschnitt liefern.
+Mit dem Wissen dieses Abschnitts sollte es möglich sein, eigene Beiträge für die Dokumentation zu schreiben.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="doc/rst.html">Die RST-Syntax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc/rst.html#uberschriften">Überschriften</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc/rst.html#inline-markup">Inline Markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc/rst.html#direktiven">Direktiven</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc/rst.html#eigene-direktiven">Eigene Direktiven</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc/rst.html#die-widget-example-direktive">Die <em>widget-example</em> Direktive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc/rst.html#die-parameter-information-direktive">Die <em>parameter-information</em> Direktive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="doc/rst.html#die-elements-information-direktive">Die <em>elements-information</em> Direktive</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
+</div>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Zu tun</p>
+<ul class="last simple">
+<li>Lokales Erzeugen der HTML-Doku, inkl. Screenshots</li>
+</ul>
 </div>
 </div>
 <div class="section" id="mithilfe-bei-der-entwicklung">
@@ -263,6 +290,12 @@ zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit
 </li>
 </ul>
 </div>
+<table class="docutils citation" frame="void" id="rst-wiki" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[RST-Wiki]</a></td><td><a class="reference external" href="https://de.wikipedia.org/wiki/ReStructuredText">https://de.wikipedia.org/wiki/ReStructuredText</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -273,7 +306,7 @@ zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="doc/directives.html" class="btn btn-neutral float-right" title="Eigene Direktiven" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="doc/rst.html" class="btn btn-neutral float-right" title="Die RST-Syntax" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../config/widgets/plugins/powerspectrum/index.html" class="btn btn-neutral" title="Das PowerSpectrum Plugin" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

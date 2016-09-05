@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Eigene Direktiven &mdash; CometVisu</title>
+  <title>Die RST-Syntax &mdash; CometVisu</title>
   
 
   
@@ -32,7 +32,10 @@
   
 
   
-    <link rel="top" title="CometVisu" href="../../index.html"/> 
+    <link rel="top" title="CometVisu" href="../../index.html"/>
+        <link rel="up" title="Hilf dem CometVisu Projekt" href="../index.html"/>
+        <link rel="next" title="TODO’s" href="../todos.html"/>
+        <link rel="prev" title="Hilf dem CometVisu Projekt" href="../index.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -84,10 +87,31 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation der CometVisu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../config/index.html">Konfiguration der CometVisu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Hilf dem CometVisu Projekt</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#allgemeine-vorbereitungen">Allgemeine Vorbereitungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#allgemeine-vorgehensweise">Allgemeine Vorgehensweise</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#mithilfe-bei-der-dokumentation">Mithilfe bei der Dokumentation</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Die RST-Syntax</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#uberschriften">Überschriften</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inline-markup">Inline Markup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#direktiven">Direktiven</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eigene-direktiven">Eigene Direktiven</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#die-widget-example-direktive">Die <em>widget-example</em> Direktive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#die-parameter-information-direktive">Die <em>parameter-information</em> Direktive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#die-elements-information-direktive">Die <em>elements-information</em> Direktive</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../todos.html">TODO&#8217;s</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#mithilfe-bei-der-entwicklung">Mithilfe bei der Entwicklung</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -118,7 +142,9 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Eigene Direktiven</li>
+          <li><a href="../index.html">Hilf dem CometVisu Projekt</a> &raquo;</li>
+      
+    <li>Die RST-Syntax</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -130,7 +156,117 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="eigene-direktiven">
+  <div class="section" id="die-rst-syntax">
+<h1>Die RST-Syntax<a class="headerlink" href="#die-rst-syntax" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="uberschriften">
+<h2>Überschriften<a class="headerlink" href="#uberschriften" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Überschriften werden in RST durch &#8220;unterstreichen&#8221; des Textes mit bestimmten Sonderzeichen definiert.
+Zu beachten ist hier, das die Sonderzeichen mindestens genauso lang sind wie der Text selbst.
+Auch wenn die RST-Syntax bei der Benutzung der Sonderzeichen relativ tolerant ist, wird für die CometVisu Dokumentation
+folgende Definition festgelegt.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="gh">######################</span>
+<span class="gh">Komplette Teilbereiche</span>
+<span class="gh">######################</span>
+
+<span class="gh">*******</span>
+<span class="gh">Kapitel</span>
+<span class="gh">*******</span>
+
+<span class="gh">Sektionen</span>
+<span class="gh">=========</span>
+
+<span class="gh">Unter-Sektionen</span>
+<span class="gh">---------------</span>
+
+<span class="gh">Unter-Unter-Sektionen</span>
+<span class="gh">^^^^^^^^^^^^^^^^^^^^^</span>
+
+<span class="gh">Paragraphen</span>
+<span class="gh">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Die kompletten Teilbereiche, sind den Teilen Api, Benutzerhandbuch und Tutorials vorbehalten und dürfen ansonsten
+innerhalb der Dokumentation nicht vorkommen, alle anderen können mit bedacht verwendet werden.</p>
+</div>
+<div class="section" id="inline-markup">
+<h2>Inline Markup<a class="headerlink" href="#inline-markup" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Soll der Text in der Dokumentation besonders formatiert (z.B. fett, kursiv, usw.) oder
+Referenzen / Links eingebaut werden benötigt man eine spezielle Syntax innerhalb des Textes.</p>
+<p>Zur Formatierung eines Textes, wird der Text ebenfalls von Sonderzeichen umrahmt, so kann man ein Wort z.B. fett
+formatieren indem man in mit zwei Sternchen umfasst (<cite>**fetter Text**</cite>), weitere Möglichkeiten sind.</p>
+<ul class="simple">
+<li><strong>Fett</strong>: <code class="docutils literal"><span class="pre">**fetter</span> <span class="pre">Text**</span></code> =&gt; <strong>fetter Text</strong></li>
+<li><strong>Kursiv</strong>: <code class="docutils literal"><span class="pre">*kursiver</span> <span class="pre">Text*</span></code> =&gt; <em>kursiver Text</em></li>
+<li><strong>Code-Beispiele</strong>: <code class="docutils literal"><span class="pre">``Code</span> <span class="pre">im</span> <span class="pre">Text``</span></code> =&gt; <code class="docutils literal"><span class="pre">Code</span> <span class="pre">im</span> <span class="pre">Text</span></code></li>
+</ul>
+<div class="section" id="listen">
+<h3>Listen<a class="headerlink" href="#listen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Für unnummerierte Listen wird jede Zeile mit <code class="docutils literal"><span class="pre">*</span></code> gestartet, bei nummerierten mit <code class="docutils literal"><span class="pre">#.</span></code>. Mit ensprechender
+Einrückung der Zeilen sind auch verschachtelte Listen möglich.</p>
+</div>
+<div class="section" id="links-und-referenzen">
+<h3>Links und Referenzen<a class="headerlink" href="#links-und-referenzen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die Grundsätzliche Syntax von Links enthält einen Title und den Link selbst in folgender Struktur:
+<code class="docutils literal"><span class="pre">`Titel</span> <span class="pre">des</span> <span class="pre">Links</span> <span class="pre">&lt;URL</span> <span class="pre">des</span> <span class="pre">Links&gt;`__</span></code>. Natürlich kann man auch auf andere Dokumente innerhalb der Dokumentation verweisen:
+<code class="docutils literal"><span class="pre">:doc:`Titel</span> <span class="pre">&lt;relativer/pfad/zum/document&gt;`</span></code>. Zu beachten ist hierbei, dass man die <cite>.rst</cite> Dateiendung weglassen muss.
+Möchte man also ein Dokument namens <em>dok.rst</em> im Unterverzeichnis <em>test</em> verlinkten, sieht das so aus:
+<code class="docutils literal"><span class="pre">:doc:`&lt;test/dok&gt;`</span></code>. Der Titel des Links ist optional, wird er weggelassen, wird der Seitentitel des verlinkten Dokuments
+als Titel benutzt (also die Überschrift auf der höchsten Ebene innerhalb des Dokuments).</p>
+</div>
+</div>
+<div class="section" id="direktiven">
+<h2>Direktiven<a class="headerlink" href="#direktiven" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Für Dinge die über reinen Text hinaus gehen (z.B. Bilder, Hinweise, Warnungen, usw.) werden Direktiven verwendet.
+Diese dürfen im Gegensatz zum bereits behandelten <em>inline Markup</em> nicht in der selben Zeile wie der &#8220;normale&#8221; Text
+stehen sondern benötigen eine Leerzeile vor und hinter der Direktive. Direktiven bestehen aus einem Namen, Parametern
+Optionen und dem Inhalt und sind immer nach folgendem Prinzip aufgebaut:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="cp">.. &lt;name&gt;:: &lt;parameter1&gt; &lt;parameter2&gt; ...</span>
+<span class="cp">     :&lt;option1&gt;: &lt;optionswert1&gt;</span>
+<span class="cp">     :&lt;option2&gt;: &lt;optionswert2&gt;</span>
+<span class="cp">     ....</span>
+
+<span class="cp">     &lt;Inhalt der Direktive&gt;</span>
+</pre></div>
+</div>
+<p>Eine Direktive startet immer mit 2 Punkten gefolgt von einem Leerzeichen. Darauf folgt der Name und dann direkt, ohne
+Leerzeichen 2 Doppelpunkte. Weiterhin zu beachten ist, dass die Optionen durch Doppelpunkte eingefasst und durch eine Leerzeile
+vom Inhalt getrennt sind, außerdem sind Optionen und Inhalt eingerückt.</p>
+<p>Das einzige, was zwingend erforderlich ist, ist der Name. Parameter, Optionen und Inhalt sind optional und unterscheiden
+sich in Menge und vorhandensein von Direktive zu Direktive. Im folgenden werden nun die wichtigsten Direktiven vorgestellt.</p>
+<div class="section" id="text-blocke">
+<h3>Text-Blöcke<a class="headerlink" href="#text-blocke" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Einfache Direktiven, mit denen ein farblich hervorgehobener Textblock mit vorgegebenem Titel erstellt werden können,
+um damit Hinweise, Informationen, Warnungen usw. zu definieren. Diese Direktiven haben keine Parameter und Optionen,
+lediglich einen Inhalt.</p>
+<p>Mögliche Textblöcke sind: attention, caution, danger, error, hint, important, note, tip, warning.
+Möchte man den Leser also z.B. auf etwas wichtiges Hinweisen, kann man folgendes schreiben.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">IMPORTANT</span><span class="p">::</span>
+
+    Dies ist ein wichtiger Hinweis.
+</pre></div>
+</div>
+<p>Was dann so formatiert wird:</p>
+<div class="admonition important">
+<p class="first admonition-title">Wichtig</p>
+<p class="last">Dies ist ein wichtiger Hinweis.</p>
+</div>
+</div>
+<div class="section" id="bilder">
+<h3>Bilder<a class="headerlink" href="#bilder" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Bilder werden mit der <em>figure</em>-Direktive eingebunden. Es gibt zwar auch eine <em>image</em>-Direktive,
+aber die <em>figure</em>-Direktive erlaubt komplexe Bildunterschriften.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">figure</span><span class="p">::</span> <span class="nt">&lt;pfad-zum-bild&gt;</span>
+
+    Dies ist die Bildunterschift
+</pre></div>
+</div>
+<p>Die komplette Syntax dieser Direktive kann in der
+<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#figure">offiziellen Dokumentation</a>
+nachgelesen werden.</p>
+</div>
+</div>
+</div>
+<div class="section" id="eigene-direktiven">
 <h1>Eigene Direktiven<a class="headerlink" href="#eigene-direktiven" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Neben den vorhandenen Sphinx/Docutils Direktiven werden in der CometVisu Dokumentation auch einige
 Eigentwicklungen genutzt, die dabei helfen, die Dokumentation einfacher auf einem aktuellen Stand zu halten.
@@ -594,6 +730,15 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../todos.html" class="btn btn-neutral float-right" title="TODO’s" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Hilf dem CometVisu Projekt" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
