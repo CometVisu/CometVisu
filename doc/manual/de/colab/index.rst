@@ -91,17 +91,33 @@ zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit
 Mithilfe bei der Dokumentation
 ------------------------------
 
-.. TODO::
+Die CometVisu Dokumentation wird mit Hilfe des `Sphinx - Python Documentation Generators <http://www.sphinx-doc.org/>`__
+erzeugt. Geschrieben wird die Dokumentation daher im reStructuredText-Format (kurz. RST). Hierbei handelt es sich
+um eine vereinfachte Auszeichnungssprache, die in der reinen Textform gut lesbar ist und den Vorteil hat, einfach
+in andere Formate umgewandelt zu werden [RST-Wiki]_ .
 
-    * Einführung in reStructuredText
-    * Eigene RST-Direktiven erklären
-    * Lokales Erzeugen der HTML-Doku, inkl. Screenshots
+Zum tieferen Einstieg in die Syntax des RST-Formats sind folgende Links geeignet:
+
+* `Cheat sheet <http://openalea.gforge.inria.fr/doc/openalea/doc/_build/html/source/sphinx/rest_syntax.html>`__
+* `Sphinx Dokumentation <http://www.sphinx-doc.org/en/stable/rest.html>`__
+
+Eine allgemeine Einführung, welche sowohl die wichtigsten Grundlagen der Syntax liefert, als auch auf spezielle
+in der CometVisu Dokumentation benutzten Besonderheiten eingeht, soll jedoch dieser Abschnitt liefern.
+Mit dem Wissen dieses Abschnitts sollte es möglich sein, eigene Beiträge für die Dokumentation zu schreiben.
+
+.. toctree::
+    :maxdepth: 2
+
+    doc/rst
 
 .. toctree::
     :hidden:
 
-    doc/directives
     todos
+
+.. TODO::
+
+    * Lokales Erzeugen der HTML-Doku, inkl. Screenshots
 
 Mithilfe bei der Entwicklung
 ----------------------------
@@ -117,3 +133,5 @@ Mithilfe bei der Entwicklung
 .. toctree::
 
     dev/test
+
+.. [RST-Wiki] https://de.wikipedia.org/wiki/ReStructuredText
