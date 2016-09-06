@@ -104,11 +104,13 @@ CometVisu - Beispiele
 
 .. TODO::
 
-    Hinzufügen
+    Beispiele hinzufügen
 
 sonstiges
 ---------
 
-.. TODO::
+.. toctree::
+    :maxdepth: 1
 
-    Hinzufügen der alten Inhalte (RRD-Beispiele, Animierter Hydraulikplan)
+    rrd_examples
+    hydraulik
