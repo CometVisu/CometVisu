@@ -60,7 +60,7 @@ Die Grundsätzliche Syntax von Links enthält einen Title und den Link selbst in
 ```Titel des Links <URL des Links>`__``. Natürlich kann man auch auf andere Dokumente innerhalb der Dokumentation verweisen:
 ``:doc:`Titel <relativer/pfad/zum/document>```. Zu beachten ist hierbei, dass man die `.rst` Dateiendung weglassen muss.
 Möchte man also ein Dokument namens *dok.rst* im Unterverzeichnis *test* verlinkten, sieht das so aus:
-``:doc:`<test/dok>```. Der Titel des Links ist optional, wird er weggelassen, wird der Seitentitel des verlinkten Dokuments
+``:doc:`test/dok```. Der Titel des Links ist optional, wird er weggelassen, wird der Seitentitel des verlinkten Dokuments
 als Titel benutzt (also die Überschrift auf der höchsten Ebene innerhalb des Dokuments).
 
 
