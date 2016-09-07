@@ -14,6 +14,8 @@ auf `Github <http://github.com/CometVisu/CometVisu>`__ veröffentlicht.
     worden sind, dient das bekannte `CometVisu-Wiki <http://www.cometvisu.org>`__
     als weitere Informationsquelle.
 
+.. _system-voraussetzungen:
+
 Systemvoraussetzungen
 ---------------------
 
@@ -91,4 +93,5 @@ oder `hier <http://de.selfhtml.org/helferlein/farben.htm>`__
     install/index
     config/index
     colab/index
+    faq
 
