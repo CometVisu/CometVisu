@@ -27,6 +27,7 @@ from elements_information import ElementsInformationDirective
 references = {"_base": "http://test.cometvisu.org/CometVisu/"}
 reference_prefix = "/manual/"
 references_file = os.path.join("src", "editor", "lib", "DocumentationMapping.json")
+manual_dir = os.path.join("doc", "manual")
 default_ref = re.compile("^index-[0-9]+$")
 
 
@@ -47,6 +48,14 @@ def store_references(app, exception):
             f.write(dumps(references, indent=2, sort_keys=True))
 
 
+def source_read(app, docname, source):
+    """ prepend header to every file """
+    header_file = os.path.join(manual_dir, app.config.language, "parts", "header.rst")
+    if os.path.exists(header_file):
+        with open(header_file, "rb") as f:
+            source[0] = "%s\n%s" % (f.read().decode('utf-8'), source[0])
+
+
 def setup(app):
     app.add_directive("widget-example", WidgetExampleDirective)
     app.add_directive("elements-information", ElementsInformationDirective)
@@ -54,5 +63,6 @@ def setup(app):
 
     app.connect('doctree-resolved', process_references)
     app.connect('build-finished', store_references)
+    app.connect('source-read', source_read)
 
     return {'version': '0.1'}
