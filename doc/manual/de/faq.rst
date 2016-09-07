@@ -88,6 +88,9 @@ dringend Programmierer die helfen Bugs zu beheben und die CometVisu
 weiter zu entwickeln. Aber auch "leidensfähige" Beta-Tester die Fehler
 zum Beispiel im
 `Bug-Tracker <https://github.com/CometVisu/CometVisu/issues>`__
-melden sind gerne willkommen. Falls du Interesse daran hast, an der
-CometVisu mitzuwirken, dann melde dich bitte im
+melden sind gerne willkommen.
+Ebenso ist jede Hilfe bei der Vervollständigung dieser Dokumentation willkommen.
+Falls du Interesse daran hast, an der CometVisu mitzuwirken, dann melde dich bitte im
 `knx-user-forum <http://knx-user-forum.de>`__ in Unterforum CometVisu.
+
+Informationen zu den Möglichkeiten der Mitarbeit gibt es hier: :doc:`colab/index`
