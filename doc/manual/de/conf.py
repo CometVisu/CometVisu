@@ -35,6 +35,7 @@ with open(os.path.join(root_dir, "package.json")) as data_file:
     data = json.load(data_file)
     version = data['version']
 
+releaselevel = 'dev' if version[-4:] == '-dev' else 'release'
 release = ''
 
 # -- Options for HTML output ---------------------------------------------------
@@ -172,6 +173,8 @@ code_add_python_path = ["../py"]
 
 def setup(app):
     app.add_stylesheet('theme_override.css')
+    app.add_config_value('releaselevel', '', 'env')
+
     from sphinx.util.texescape import tex_replacements
     tex_replacements += [(u'♮', u'$\\natural$'),
                          (u'ē', u'\=e'),

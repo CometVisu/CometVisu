@@ -1,18 +1,13 @@
 {
   "_base": "http://test.cometvisu.org/CometVisu/", 
-  "design-alaska": "/manual/config/designs/alaska.html#design-alaska", 
-  "design-alaska-slim": "/manual/config/designs/alaska_slim.html#design-alaska-slim", 
-  "design-diskreet": "/manual/config/designs/diskreet.html#design-diskreet", 
-  "design-diskreet-sand": "/manual/config/designs/diskreet-sand.html#design-diskreet-sand", 
-  "design-diskreet-slim": "/manual/config/designs/diskreet-slim.html#design-diskreet-slim", 
-  "design-metal": "/manual/config/designs/metal.html#design-metal", 
-  "design-pure": "/manual/config/designs/pure.html#design-pure", 
   "diagram": "/manual/config/widgets/plugins/diagram/index.html#diagram", 
   "flavour": "/manual/config/flavour.html#flavour", 
   "install-no-pakets": "/manual/install/install-dev.html#install-no-pakets", 
   "mapping": "/manual/config/mapping.html#mapping", 
+  "page": "/manual/config/widgets/page/index.html#page", 
   "powerspectrum": "/manual/config/widgets/plugins/powerspectrum/index.html#powerspectrum", 
   "styling": "/manual/config/styling.html#styling", 
   "switch": "/manual/config/widgets/switch/index.html#switch", 
+  "system-voraussetzungen": "/manual/#system-voraussetzungen", 
   "visu-config-details": "/manual/config/index.html#visu-config-details"
 }
