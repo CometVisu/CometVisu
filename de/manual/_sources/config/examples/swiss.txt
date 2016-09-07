@@ -1,7 +1,5 @@
-.. _design_metal:
-
-Metal
-=====
+CometVisu von swiss (Metal)
+===========================
 
 Hier wird die produktiv im Einsatz befindliche Visu von swiss vorgestellt.
 

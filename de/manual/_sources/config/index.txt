@@ -101,11 +101,13 @@ Navigationselemente in der CometVisu
 Die verfügbaren Designs
 ------------------------
 
-.. toctree::
-    :glob:
-    :maxdepth: 1
-
-    designs/*
+* :doc:`Metal <examples/swiss>` - das wohl beliebteste Dasign
+* Pure - Standard-Design
+* Diskreet
+* Diskreet Sand
+* Diskreet Slim
+* Alaska
+* Alaska Slim
 
 .. TODO::
 
@@ -152,9 +154,14 @@ Die Beschreibung der Widgets kann man hier nachlesen:
 CometVisu - Beispiele
 ---------------------
 
-.. TODO::
+Hier befindes sich mehrere Beispiele von Visualisierungen die sich im produktiven Einsatz befinden.
 
-    Beispiele hinzufügen
+.. toctree::
+    :maxdepth: 1
+    :glob:
+
+    examples/*
+
 
 sonstiges
 ---------

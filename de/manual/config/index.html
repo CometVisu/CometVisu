@@ -96,10 +96,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#die-verfugbaren-designs">Die verfügbaren Designs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="designs/metal.html">Metal</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="flavour.html">Flavour</a></li>
 <li class="toctree-l3"><a class="reference internal" href="format.html">Format</a></li>
@@ -114,7 +111,12 @@
 <li class="toctree-l3"><a class="reference internal" href="widgets/index.html#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#cometvisu-beispiele">CometVisu - Beispiele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cometvisu-beispiele">CometVisu - Beispiele</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/haegar80.html">CometVisu von haegar80 (Metal)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/merlin123.html">CometVisu von merlin123 (Metal)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/swiss.html">CometVisu von swiss (Metal)</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#sonstiges">sonstiges</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="rrd_examples.html">RRD Einführung &amp; Beispiele</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hydraulik.html">Anleitung zum Erstellen eines Animierten Hydraulikplans</a></li>
@@ -123,6 +125,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 </ul>
 
             
@@ -165,7 +168,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="konfiguration-der-cometvisu">
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="konfiguration-der-cometvisu">
 <h1>Konfiguration der CometVisu<a class="headerlink" href="#konfiguration-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Die Konfiguration der CometVisu erfolgt durch Bearbeiten der XML-formatierten
 Konfigurationsdatei „visu_config.xml“ im jeweiligen Unterverzeichnis &#8221;./config&#8221;
@@ -247,11 +256,15 @@ Tags umschlossen aufgenommen werden.</p>
 </div>
 <div class="section" id="die-verfugbaren-designs">
 <h2>Die verfügbaren Designs<a class="headerlink" href="#die-verfugbaren-designs" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="designs/metal.html">Metal</a></li>
+<ul class="simple">
+<li><a class="reference internal" href="examples/swiss.html"><span class="doc">Metal</span></a> - das wohl beliebteste Dasign</li>
+<li>Pure - Standard-Design</li>
+<li>Diskreet</li>
+<li>Diskreet Sand</li>
+<li>Diskreet Slim</li>
+<li>Alaska</li>
+<li>Alaska Slim</li>
 </ul>
-</div>
 <div class="admonition-todo admonition" id="index-3">
 <p class="first admonition-title">Zu tun</p>
 <p class="last">Weitere Beispielseiten für die anderen Designs</p>
@@ -292,9 +305,13 @@ eingebaut sein oder per Plugin-Schnittstelle intergriert.</p>
 </div>
 <div class="section" id="cometvisu-beispiele">
 <h2>CometVisu - Beispiele<a class="headerlink" href="#cometvisu-beispiele" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="admonition-todo admonition" id="index-4">
-<p class="first admonition-title">Zu tun</p>
-<p class="last">Beispiele hinzufügen</p>
+<p>Hier befindes sich mehrere Beispiele von Visualisierungen die sich im produktiven Einsatz befinden.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/haegar80.html">CometVisu von haegar80 (Metal)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/merlin123.html">CometVisu von merlin123 (Metal)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/swiss.html">CometVisu von swiss (Metal)</a></li>
+</ul>
 </div>
 </div>
 <div class="section" id="sonstiges">
