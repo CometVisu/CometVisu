@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/etc/rrd/knx_linknx/temperatur/de/
+
 Temperatur vom KNX mit linknx
 -----------------------------
 

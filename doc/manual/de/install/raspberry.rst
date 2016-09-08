@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/Installation/Raspberry_Pi/de
+
 Installation auf dem Raspberry PI
 =================================
 

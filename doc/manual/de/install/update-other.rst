@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/manual/updateother/de
+
 Update der CometVisu auf anderen Geräten
 ========================================
 

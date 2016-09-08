@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/etc/rrd/processes/de/
+
 Anzahl der Prozess auf Linux System
 -----------------------------------
 

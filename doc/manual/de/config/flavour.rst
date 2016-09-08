@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/flavour/de
+
 .. _flavour:
 
 Flavour

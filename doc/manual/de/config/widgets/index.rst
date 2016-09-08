@@ -1,3 +1,4 @@
+.. replaces:: CometVisu/0.8.x/widgets/de
 
 Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
 zusammengebaut wird. Diese können entweder fest in der CometVisu

@@ -1,3 +1,6 @@
+.. replaces:: de/manual/config/styling.html
+     CometVisu/0.8.x/styling/de
+
 .. _styling:
 
 Styling

@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/FAQ_(Deutsch)
+
 ***
 FAQ
 ***
