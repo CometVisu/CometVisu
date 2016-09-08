@@ -28,10 +28,15 @@ from elements_information import ElementsInformationDirective
 references = {"_base": "http://test.cometvisu.org/CometVisu/"}
 reference_prefix = "/manual/"
 references_file = os.path.join("src", "editor", "lib", "DocumentationMapping.json")
-redirect_file = os.path.join("redirect-structure.sh")
+redirect_file = os.path.join(".doc", "redirect-structure.sh")
 manual_dir = os.path.join("doc", "manual")
 default_ref = re.compile("^index-[0-9]+$")
-redirect_map = []
+redirect_map = {}
+with open(redirect_file, "r") as f:
+    for line in f:
+        if re.match("  \"(.+)\"$", line):
+            wiki, manual = line[3:-2].strip().split("|")
+            redirect_map[wiki] = manual
 
 
 def process_references(app, doctree, fromdocname):
@@ -47,7 +52,7 @@ def process_references(app, doctree, fromdocname):
     # traverse the replacements
     for node in doctree.traverse(replaces):
         for replacement in node.rawsource:
-            redirect_map.append("%s|%s%s%s.html" % (replacement, app.config.language, reference_prefix, fromdocname))
+            redirect_map[replacement] = "%s%s%s.html" % (app.config.language, reference_prefix, fromdocname)
         node.parent.remove(node)
 
 
@@ -57,8 +62,12 @@ def store_references():
 
 
 def store_redirect_map():
+    source = "redirections=(";
+    for src in sorted(redirect_map):
+        source += '\n  "%s|%s"' % (src, redirect_map[src])
+    source += "\n)"
     with open(redirect_file, "w") as f:
-        f.write("redirections=(\n  \"%s\"\n)" % "\"\n  \"".join(redirect_map))
+        f.write(source)
 
 
 def on_finish(app, exception):
