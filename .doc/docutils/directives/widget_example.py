@@ -99,7 +99,7 @@ class WidgetExampleDirective(Directive):
     example_dir = path.join("cache", "widget_examples", "manual")
     screenshot_dir = path.join("doc", "manual", "examples")
     config_parts = {
-        "start": '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd">',
+        "start": '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0">',
         "meta": '<meta/>',
         "content_start": '<page name="Example">',
         "content_end": '</page>',
@@ -195,6 +195,11 @@ class WidgetExampleDirective(Directive):
                     "name": screenshot.get("name", name + str(shot_index)),
                     "data": []
                 }
+                if screenshot.get("clickpath", None):
+                    shot['clickPath'] = screenshot.get('clickpath')
+                if screenshot.get("waitfor", None):
+                    shot['waitFor'] = screenshot.get('waitfor')
+
                 shot_index += 1
 
                 for data in screenshot.iter('data'):
@@ -222,11 +227,14 @@ class WidgetExampleDirective(Directive):
 
         # replace the design value in the config
         visu_config_parts['start'] = visu_config_parts['start'].replace("%%%DESIGN%%%", design)
+        if config.tag == "page":
+            visu_config_parts['content_start'] = ""
+            visu_config_parts['content_end'] = ""
 
         # build the real config source
         visu_config = visu_config_parts['start'] + \
                       visu_config_parts['meta'] + \
-                      visu_config_parts['content_start'] + \
+                      visu_config_parts['content_start']  + \
                       etree.tostring(config, encoding='utf-8').decode('utf-8') + \
                       visu_config_parts['content_end'] + \
                       visu_config_parts['end']
