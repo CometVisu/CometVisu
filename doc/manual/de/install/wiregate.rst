@@ -46,21 +46,18 @@ Schritte:
    öffnen (kann eine kurze Verzögerung geben) und ggf. das Textfeld zur
    besseren Übersicht mit dem Handle in der rechten unteren Ecke
    vergrößern
-#. Das HTML-Element abändern auf **, also z.B. auf *Edit*
+#. Das *<a>*-HTML-Element abändern auf *<a href="editor">*, also z.B. auf *<a href="editor">Edit</a>*
 #. Mit Klick ganz oben auf der Seite auf "preview" testen, ob die Seite
    wie gewünscht funktioniert
 #. Falls ja: mit Klick ganz oben auf der Seite auf "save" die Config
    abspeichern
 
---------------
 
-Um die neueste Version der CometVisu (0.8.5) auf dem WireGate zu
-installieren sind folgende Schritte durchzuführen:
+Um die neueste Version der CometVisu (0.8.5) auf dem WireGate zu installieren sind folgende Schritte durchzuführen:
 
-#. Installation des CometVisu-Paketes (d.h. die alte Version 0.6) um
+#. Installation des aktuellsten CometVisu-Paketes um
    sicher zu stellen, dass alle Abhängigkeiten erfüllt sind - so diese
-   Version noch nicht genutzt wird. Siehe hier: `Installation Version
-   0.6 <CometVisu/manual/de#Installation_und_Zugriff_auf_einem_Wiregate-Multifunktionsgateway>`__
+   Version noch nicht genutzt wird.
 #. Anmelden an der Konsole (Linux-Nutzer nehmen einfach ssh, Windows
    Nutzer nehmen z.B. das kostenlose Programm putty)
 #. An der Konsole werden diese Befehle benötigt:

@@ -87,11 +87,9 @@ Der strukturierte Aufbau der xml-formatierte Konfigurationsdatei ist in mehrere
 Sektionen unterteilt, innerhalb derer alle weiteren Einträge verschachtelt und durch
 Tags umschlossen aufgenommen werden.
 
-.. TODO::
+.. toctree::
 
-    - Aufbau der Konfiguration (Grundstruktur)
-    - *Attribute*: Allgemein erklären
-    - *Elemente*: Allgemein erklären
+    xml-format
 
 
 Navigationselemente in der CometVisu
@@ -104,7 +102,7 @@ Navigationselemente in der CometVisu
 Die verfügbaren Designs
 ------------------------
 
-* :doc:`Metal <examples/swiss>` - das wohl beliebteste Dasign
+* :doc:`Metal <examples/swiss>` - das wohl beliebteste Design
 * Pure - Standard-Design
 * Diskreet
 * Diskreet Sand
