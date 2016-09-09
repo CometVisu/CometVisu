@@ -188,9 +188,6 @@ describe('generation screenshots from jsdoc examples', function () {
               selectorPrefix = "";
               mockedConfigData.mode = "editor";
             }
-            if (settings.selector.includes(".activePage")) {
-              selectorPrefix = "";
-            }
             mockupConfig.push(mockedConfigData);
 
             it('should create a screenshot', function () {
@@ -242,18 +239,6 @@ describe('generation screenshots from jsdoc examples', function () {
                     setting.data.forEach(function (data) {
                       cvMockup.sendUpdate(data.address, data.value);
                     });
-                  }
-                  if (setting.clickPath) {
-
-                    var actor = element(by.css(setting.clickPath));
-                    if (actor) {
-                      actor.click();
-                      var waitFor = setting.waitFor ? setting.waitFor : selectorPrefix+settings.selector;
-                      widget = element(by.css(waitFor));
-                      browser.wait(function() {
-                        return widget.isDisplayed();
-                      }, 1000);
-                    }
                   }
 
                   widget.getSize().then(function (size) {
