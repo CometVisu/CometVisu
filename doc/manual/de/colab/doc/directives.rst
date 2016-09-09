@@ -141,7 +141,10 @@ verfeinert werden.
 |   <caption>       |                   |                   |                                                                            |
 +-------------------+-------------------+-------------------+----------------------------------------------------------------------------+
 | <settings>        | name              | Text              | Dateiname des Screenshots                                                  |
-|   <screenshot>    |                   |                   |                                                                            |
+|   <screenshot>    +-------------------+-------------------+----------------------------------------------------------------------------+
+|                   | clickpath         | CSS-Selector      | CSS-Pfad zu einem Element, das angeklickt werden soll vor dem Screenshot   |
+|                   +-------------------+-------------------+----------------------------------------------------------------------------+
+|                   | waitfor           | CSS-Selector      | CSS-Pfad zu einem Element, das sichtbar sein soll vor dem Screenshot       |
 +-------------------+-------------------+-------------------+----------------------------------------------------------------------------+
 | <settings>        | address           | Gruppenaddresse   | Sende Daten an diese Adresse bevor der Screenshot gemacht wird             |
 |   <screenshot>    +-------------------+-------------------+----------------------------------------------------------------------------+
