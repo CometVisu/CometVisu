@@ -1,4 +1,5 @@
 .. replaces:: CometVisu/0.8.x/manual/de
+    CometVisu/Examples
 
 ***************************
 Konfiguration der CometVisu

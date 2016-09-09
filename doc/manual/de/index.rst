@@ -1,4 +1,9 @@
 .. replaces:: CometVisu/0.8.x/manual/de
+    Benutzerhandbuch
+    CometVisu/0.8.1/manual/de
+    CometVisu/Benutzerhandbuch
+    CometVisu/handbook/de
+    CometVisu/manual/de
 
 #############################
 Willkommen bei der CometVisu!

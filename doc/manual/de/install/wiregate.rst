@@ -1,4 +1,5 @@
 .. replaces:: CometVisu/Install_Wiregate
+    CometVisu/Installation/WireGate/de
 
 Installation auf dem WireGate
 =============================

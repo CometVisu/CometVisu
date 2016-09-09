@@ -1,4 +1,6 @@
 .. replaces:: CometVisu/Installation/Raspberry_Pi/de
+    CometVisu/0.8.x/installation/de/pi
+    CometVisu/Installation/Pi/de
 
 Installation auf dem Raspberry PI
 =================================
