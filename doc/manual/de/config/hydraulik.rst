@@ -175,8 +175,8 @@ ist die Leitung als Gruppe eingefasst
    class="pipe_group show_flow flow_control"
    data-cometvisu-active="1/0/3">
    <path
-   …..
-   …./>
+   ....
+   ..../>
    </g>
 
 .. figure:: _static/XML4.png
