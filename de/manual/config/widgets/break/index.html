@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Das Page Widget &mdash; CometVisu</title>
+  <title>Das Break Widget &mdash; CometVisu</title>
   
 
   
@@ -34,8 +34,8 @@
   
     <link rel="top" title="CometVisu" href="../../../index.html"/>
         <link rel="up" title="Widgets in der CometVisu" href="../index.html"/>
-        <link rel="next" title="Das Diagram Plugin" href="../plugins/diagram/index.html"/>
-        <link rel="prev" title="Das Break Widget" href="../break/index.html"/> 
+        <link rel="next" title="Das Page Widget" href="../page/index.html"/>
+        <link rel="prev" title="Das Switch Widget" href="../switch/index.html"/> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -145,7 +145,7 @@
       
           <li><a href="../index.html">Widgets in der CometVisu</a> &raquo;</li>
       
-    <li>Das Page Widget</li>
+    <li>Das Break Widget</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -163,135 +163,28 @@
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="das-page-widget">
-<span id="page"></span><h1>Das Page Widget<a class="headerlink" href="#das-page-widget" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="das-break-widget">
+<span id="break"></span><h1>Das Break Widget<a class="headerlink" href="#das-break-widget" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="section" id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Das Page-Widget fügt der Visualisierung eine Seite hinzu. Eine Seite kann beliebig viele Widgets (auch weitere Seiten)
-enthalten. Die Seiten dienen dazu die Widgets inhaltlich zusammenzufassen. So kann man z.B. für jeden Raum eine
-Seite hinzufügen und dort alle Widgets einfügen, die in diesem Raum vorhanden sind (z.B. alle Lampen, Steckdosen,
-Jalousien und sonstigen Informations- und Bedienungsmöglichkeiten innerhalb dieses Raumes.</p>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Zu tun</p>
-<p class="last">Weitere Erklärungen zum Page-Widget, ggf. Beispiele (aus der Metal-Demo?)</p>
-</div>
+<p>Das Break-Widget fügt der Visualisierung einen Zeilenumbruch hinzu. Das nächste Widget landet also unter dem vorigen.
+Hiermit kann man die Visu grafisch strukturieren. Break ist von der Auflösung unabhängig.</p>
 </div>
 <div class="section" id="einstellungen">
 <h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
-Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: <a class="reference internal" href="../../index.html#visu-config-details"><span class="std std-ref">Seiten und Struktur der CometVisu</span></a>.</p>
-<p>Das Verhalten und Aussehen des Page-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
-Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
-beides über den <span class="xref std std-ref">Editor</span> bearbeitet werden kann.</p>
-<p>Nur die mit * gekennzeichneten Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
-daher weg gelassen werden.</p>
-<div class="section" id="erlaubte-attribute-im-page-element">
-<h3>Erlaubte Attribute im Page-Element<a class="headerlink" href="#erlaubte-attribute-im-page-element" title="Link zu dieser Überschrift">¶</a></h3>
-<table border="1" class="docutils">
-<colgroup>
-<col width="10%" />
-<col width="15%" />
-<col width="20%" />
-<col width="55%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Element</th>
-<th class="head" colspan="4">Attribut</th>
-</tr>
-<tr class="row-even"><th class="head">&nbsp;</th>
-<th class="head">Name</th>
-<th class="head">Inhalt</th>
-<th class="head">Beschreibung</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-odd"><td rowspan="16">page</td>
-<td>name *</td>
-<td>Text</td>
-<td>Titel der Seite</td>
-</tr>
-<tr class="row-even"><td>flavour</td>
-<td>Text</td>
-<td>Auswahl der Darstellungsvariante. Siehe auch <a class="reference internal" href="../../flavour.html#flavour"><span class="std std-ref">Flavour</span></a>.</td>
-</tr>
-<tr class="row-odd"><td>align</td>
-<td><em>left</em>, <em>right</em> oder <em>center</em></td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>ga</td>
-<td>GA/Itemname</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>visible</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Zeigt ein Widget mit dem Seitennamen als Link auf die Seite</td>
-</tr>
-<tr class="row-even"><td>type</td>
-<td><em>text</em>, <em>2d</em> oder <em>3d</em></td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>size</td>
-<td><em>fixed</em>, <em>scaled</em> oder <em>contained</em></td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>backdropalign</td>
-<td>Text</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-odd"><td>backdrop</td>
-<td>URL</td>
-<td>&nbsp;</td>
-</tr>
-<tr class="row-even"><td>showtopnavigation</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Zeigt oben auf der Seite den Navigationspfad, der die aktuelle Seite inkl. der übergeordneten Seiten zeigt.</td>
-</tr>
-<tr class="row-odd"><td>showfooter</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Zeigt eine Fußzeile am Ende der Seite. Der Inhalt der Fußzeile wird in der config-Datei festgelegt.</td>
-</tr>
-<tr class="row-even"><td>shownavbar-top</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Zeigt oben auf der Seite die definierte Navigationsleiste an</td>
-</tr>
-<tr class="row-odd"><td>shownavbar-bottom</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Zeigt unten auf der Seite die definierte Navigationsleiste an</td>
-</tr>
-<tr class="row-even"><td>shownavbar-left</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Zeigt links auf der Seite die definierte Navigationsleiste an</td>
-</tr>
-<tr class="row-odd"><td>shownavbar-right</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Zeigt rechts auf der Seite die definierte Navigationsleiste an</td>
-</tr>
-<tr class="row-even"><td>bind_click_to_widget</td>
-<td><em>true</em> oder <em>false</em></td>
-<td>Beim aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
-<h3>Erlaubte Kind-Elemente und deren Attribute<a class="headerlink" href="#erlaubte-kind-elemente-und-deren-attribute" title="Link zu dieser Überschrift">¶</a></h3>
-<p>Innerhalb des Page-Widgets sind alle anderen Widgets (auch andere Page-Widgets) erlaubt.</p>
-</div>
-<div class="section" id="erklarung-zu-den-menubezeichnungen">
-<h3>Erklärung zu den Menübezeichnungen<a class="headerlink" href="#erklarung-zu-den-menubezeichnungen" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="figure">
-<a class="reference external image-reference" href="../../../_images/menu_expl_page.png"><img alt="Menübezeichnungen" src="../../../_images/menu_expl_page.png" /></a>
-</div>
-</div>
+<p>Das Break-Widget hat keine Attribute und Elemente, über die weitere Einstellungen möglich wären.</p>
 </div>
 <div class="section" id="xml-syntax">
 <h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Hier der Beispielcode der die Page mit den oben gezeigten Eigenschaften einfügt:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;page</span> <span class="na">name=</span><span class="s">&quot;Testseite&quot;</span> <span class="na">visible=</span><span class="s">&quot;true&quot;</span> <span class="na">showtopnavigation=</span><span class="s">&quot;true&quot;</span>
-        <span class="na">showfooter=</span><span class="s">&quot;true&quot;</span> <span class="na">shownavbar-top=</span><span class="s">&quot;true&quot;</span> <span class="na">shownavbar-bottom=</span><span class="s">&quot;false&quot;</span>
-        <span class="na">shownavbar-left=</span><span class="s">&quot;false&quot;</span> <span class="na">shownavbar-right=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
-....
-<span class="nt">&lt;/page&gt;</span>
+<p>Alternativ kann man für das Break Widget auch von Hand einen Eintrag in
+der <a class="reference internal" href="../../xml-format.html"><span class="doc">visu_config.xml</span></a> hinzufügen.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
+</div>
+<p>Hier der Beispielcode der das Break Widget erzeugt:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;break/&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -304,10 +197,10 @@ daher weg gelassen werden.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../plugins/diagram/index.html" class="btn btn-neutral float-right" title="Das Diagram Plugin" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../page/index.html" class="btn btn-neutral float-right" title="Das Page Widget" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../break/index.html" class="btn btn-neutral" title="Das Break Widget" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../switch/index.html" class="btn btn-neutral" title="Das Switch Widget" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

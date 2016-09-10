@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Bedienbare Widgets &mdash; CometVisu</title>
+  <title>Widgets in der CometVisu &mdash; CometVisu</title>
   
 
   
@@ -96,19 +96,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Bedienbare Widgets</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="switch/index.html">Das Switch Widget</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#darstellende-widgets">Darstellende Widgets</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#sonstige-widgets">Sonstige Widgets</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="page/index.html">Das Page Widget</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="plugins/powerspectrum/index.html">Das PowerSpectrum Plugin</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Widgets in der CometVisu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bedienbare-widgets">Bedienbare Widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#darstellende-widgets">Darstellende Widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sonstige-widgets">Sonstige Widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#widgets-die-per-plugin-eingebunden-werden-konnen">Widgets die per Plugin eingebunden werden können</a></li>
 </ul>
 </li>
 </ul>
@@ -151,7 +143,7 @@
       
           <li><a href="../index.html">Konfiguration der CometVisu</a> &raquo;</li>
       
-    <li>Bedienbare Widgets</li>
+    <li>Widgets in der CometVisu</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -169,6 +161,8 @@
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
+<div class="section" id="widgets-in-der-cometvisu">
+<span id="widgets"></span><h1>Widgets in der CometVisu<a class="headerlink" href="#widgets-in-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
 zusammengebaut wird. Diese können entweder fest in der CometVisu
 eingebaut sein oder per Plugin-Schnittstelle integriert werden. Die
@@ -178,7 +172,7 @@ Gruppe (group). Durch Auswahl des Widget aus dem Drop-Down Menü und
 anschließendem Klick auf das + - Zeichen ist das Widget eingefügt und
 kann wie folgt konfiguriert werden;</p>
 <div class="section" id="bedienbare-widgets">
-<h1>Bedienbare Widgets<a class="headerlink" href="#bedienbare-widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<h2>Bedienbare Widgets<a class="headerlink" href="#bedienbare-widgets" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Diese Widgets können in irgendeiner Weise bedient werden um so Daten an das Backend zu senden oder andere
 Aktionen auszulösen, z.B. kann man mit einem Switch durch anklicken einen Lampe schalten, oder mit einem Pagejumo
 kann innerhalb der Visu navigiert werden.</p>
@@ -187,11 +181,13 @@ kann innerhalb der Visu navigiert werden.</p>
 <col width="12%" />
 <col width="88%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Widget</td>
-<td>Beschreibung</td>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Widget</th>
+<th class="head">Beschreibung</th>
 </tr>
-<tr class="row-even"><td><span class="xref doc">audio</span></td>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><span class="xref doc">Audio</span></td>
 <td>Mit diesem Widget kann in die Visu ein Audio-File eingebunden werden, das sich durch eine GA abspielen lässt.</td>
 </tr>
 <tr class="row-odd"><td><span class="xref doc">Designtoggle</span></td>
@@ -242,17 +238,19 @@ kann innerhalb der Visu navigiert werden.</p>
 </div>
 </div>
 <div class="section" id="darstellende-widgets">
-<h1>Darstellende Widgets<a class="headerlink" href="#darstellende-widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<h2>Darstellende Widgets<a class="headerlink" href="#darstellende-widgets" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht möglich.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="12%" />
 <col width="88%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Widget</td>
-<td>Beschreibung</td>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Widget</th>
+<th class="head">Beschreibung</th>
 </tr>
+</thead>
+<tbody valign="top">
 <tr class="row-even"><td><span class="xref doc">Image</span></td>
 <td>Fügt der Visu ein statisches Bild oder ein Kamerabild hinzu.</td>
 </tr>
@@ -280,17 +278,19 @@ kann innerhalb der Visu navigiert werden.</p>
 </div>
 </div>
 <div class="section" id="sonstige-widgets">
-<h1>Sonstige Widgets<a class="headerlink" href="#sonstige-widgets" title="Link zu dieser Überschrift">¶</a></h1>
+<h2>Sonstige Widgets<a class="headerlink" href="#sonstige-widgets" title="Link zu dieser Überschrift">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
 <col width="12%" />
 <col width="88%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Widget</td>
-<td>Beschreibung</td>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Widget</th>
+<th class="head">Beschreibung</th>
 </tr>
-<tr class="row-even"><td><span class="xref doc">Break</span></td>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><a class="reference internal" href="break/index.html"><span class="doc">Break</span></a></td>
 <td>Fügt der Visu einen Zeilenumbruch hinzu (wird evt. nicht von allen Browsern korrekt interpretiert)</td>
 </tr>
 <tr class="row-odd"><td><span class="xref doc">Group</span></td>
@@ -311,10 +311,8 @@ kann innerhalb der Visu navigiert werden.</p>
 </div>
 </div>
 <div class="section" id="widgets-die-per-plugin-eingebunden-werden-konnen">
-<h1>Widgets die per Plugin eingebunden werden können<a class="headerlink" href="#widgets-die-per-plugin-eingebunden-werden-konnen" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Diese müssen im &#8220;meta&#8221; Bereich der
-<a class="reference external" href="CometVisu/XML-Elemente">CometVisu-XML-Config</a> eingebunden werden
-bevor sie genutzt werden können.</p>
+<h2>Widgets die per Plugin eingebunden werden können<a class="headerlink" href="#widgets-die-per-plugin-eingebunden-werden-konnen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Diese müssen im &#8220;meta&#8221; Bereich der <a class="reference internal" href="../xml-format.html"><span class="doc">visu_config.xml</span></a> eingebunden werden bevor sie genutzt werden können.</p>
 <p>also z.B.:</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;plugins&gt;</span>
   <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;diagram&quot;</span><span class="nt">/&gt;</span>
@@ -325,26 +323,28 @@ bevor sie genutzt werden können.</p>
 </div>
 <table border="1" class="docutils">
 <colgroup>
-<col width="38%" />
-<col width="62%" />
+<col width="46%" />
+<col width="54%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Widget</td>
-<td>Beschreibung</td>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Widget</th>
+<th class="head">Beschreibung</th>
 </tr>
+</thead>
+<tbody valign="top">
 <tr class="row-even"><td><span class="xref doc">ColorChooser</span></td>
 <td>Farb-Auswahl-Rad für RGB-Beleuchtung</td>
 </tr>
-<tr class="row-odd"><td><span class="xref doc">Diagram</span></td>
+<tr class="row-odd"><td><a class="reference internal" href="plugins/diagram/index.html"><span class="doc">Diagram</span></a></td>
 <td>RRD-basierte Diagramme</td>
 </tr>
 <tr class="row-even"><td><span class="xref doc">Diagramm_Info</span></td>
 <td>Informations-Anzeige, die beim Klick ein Diagramm öffnet</td>
 </tr>
-<tr class="row-odd"><td><span class="xref doc">PowerSpectrum</span></td>
+<tr class="row-odd"><td><a class="reference internal" href="plugins/powerspectrum/index.html"><span class="doc">PowerSpectrum</span></a></td>
 <td>Darstellung des Strom-Spektrums</td>
 </tr>
-<tr class="row-even"><td><span class="xref doc">strftime</span></td>
+<tr class="row-even"><td><span class="xref doc">Strftime</span></td>
 <td>Darstellung der Uhrzeit in Textform</td>
 </tr>
 <tr class="row-odd"><td><span class="xref doc">RSSlog</span></td>
@@ -356,28 +356,27 @@ bevor sie genutzt werden können.</p>
 <tr class="row-odd"><td><span class="xref doc">Gauge</span></td>
 <td>Zeigerinstrument</td>
 </tr>
-<tr class="row-even"><td><span class="xref doc">calendarlist</span></td>
+<tr class="row-even"><td><span class="xref doc">CalendarList</span></td>
 <td>externen Kalendar einbinden</td>
 </tr>
-<tr class="row-odd"><td><span class="xref doc">clock</span></td>
+<tr class="row-odd"><td><span class="xref doc">Clock</span></td>
 <td>Widget zum Darstellen der Uhrzeit von einer GA. z.B. dem WireGate</td>
 </tr>
-<tr class="row-even"><td><span class="xref doc">svg</span></td>
+<tr class="row-even"><td><span class="xref doc">SVG</span></td>
 <td>skalierbare Vektorgrafik einbinden?</td>
 </tr>
-<tr class="row-odd"><td><span class="xref doc">timeout</span></td>
-<td>timeout</td>
+<tr class="row-odd"><td><span class="xref doc">Timeout</span></td>
+<td>Timeout</td>
 </tr>
-<tr class="row-even"><td><span class="xref doc">upnpcontroller</span></td>
-<td>upnp-Controller</td>
-</tr>
-<tr class="row-odd"><td colspan="2">&nbsp;</td>
+<tr class="row-even"><td><span class="xref doc">UPNPController</span></td>
+<td>UPNP-Controller</td>
 </tr>
 </tbody>
 </table>
 <div class="toctree-wrapper compound">
 </div>
 <p>weitere Plugins befinden sich in der Entwicklung.</p>
+</div>
 </div>
 
 

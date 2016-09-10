@@ -39,12 +39,12 @@ dieser können z.B. Ein/Aus Schalter realisiert werden.
           <address transform="DPT:1.001" mode="read">1/4/0</address>
         </switch>
 
-Es kann über ein `Mapping <CometVisu/0.8.x/mapping/de>`__ eine Ersetzung
+Es kann über ein :ref:`Mapping <mapping>` eine Ersetzung
 der 0/1 im Switch durch Texte oder Symbole vorgenommen werden (z.B.
 An/Aus statt 0/1 oder Icons für Fensterkontakte, Alarme, Lampen etc.).
 Zur CometVisu gehört die umfangreiche Sammlung an Icons für die
 verschiedensten Zwecke. Weitere Informationen findet man auf der
-Dokumentations-Seite für das `Mapping <CometVisu/0.8.x/mapping/de>`__.
+Dokumentations-Seite für das :ref:`Mapping <mapping>`.
 
 .. widget-example::
     :hide-source: true
@@ -68,7 +68,7 @@ Dokumentations-Seite für das `Mapping <CometVisu/0.8.x/mapping/de>`__.
           <address transform="DPT:1.001" mode="read">1/4/0</address>
         </switch>
 
-und/oder über ein `Styling <CometVisu/0.8.x/styling/de>`__ Farben
+und/oder über ein :ref:`Styling <styling>` Farben
 gesetzt werden (z.B. An in rot und Aus in Grün)
 
 .. widget-example::
@@ -200,7 +200,7 @@ XML Syntax minimal
 ------------------
 
 Alternativ kann man für das switch Widget auch von Hand einen Eintrag in
-der `visu\_config.xml <CometVisu/XML-Elemente>`__ hinzufügen.
+der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
 
 .. CAUTION::
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
