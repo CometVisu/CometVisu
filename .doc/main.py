@@ -21,15 +21,16 @@ import os
 import json
 import logging
 import sh
+import shutil
 from argparse import ArgumentParser
+from docutils.directives.settings import config
 
 grunt = sh.Command("grunt")
 sphinx_build = sh.Command("sphinx-build")
+pygettext = sh.Command("pygettext")
 
 log = logging.getLogger("doc")
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
-source_type = "rst"
-target_type = "html"
 
 root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..'))
 
@@ -38,11 +39,18 @@ with open(os.path.join(root_dir, "package.json")) as data_file:
     VERSION = data['version']
 
 
-def generate_manual(language, target_dir, browser):
+def process_output(line):
+    print(line.rstrip())
+
+
+def generate_manual(language, target_dir, browser, skip_screenshots=True, force=False):
     # check if sources exist for this language
-    source_dir = os.path.join(root_dir, "doc", language, "manual")
+    section = "manual-%s" % language
+    target_type = config.get(section, "target-type")
+
+    source_dir = os.path.join(root_dir, config.get(section, "source"))
     if target_dir is None:
-        target_dir = os.path.join(root_dir, "doc", language, "manual", target_type)
+        target_dir = os.path.join(root_dir, config.get(section, "target"))
     else:
         target_dir = os.path.join(root_dir, target_dir)
 
@@ -50,23 +58,30 @@ def generate_manual(language, target_dir, browser):
         log.error("no sources found for manual in language '%s'" % language)
         exit(1)
 
+    if force and os.path.exists(target_dir):
+        # delete target dir
+        print("deleting old content in '%s'" % target_dir)
+        shutil.rmtree(target_dir)
+
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
 
     # first run generates the widget-example configs
-    print(sphinx_build("-b", target_type, source_dir, target_dir))
+    sphinx_build("-b", target_type, source_dir, target_dir, _out=process_output, _err=process_output)
 
-    # generate the screenshots
-    print(grunt("screenshots", "--subDir=manual", "--browserName=%s" % browser))
+    if not skip_screenshots:
+        # generate the screenshots
+        grunt("screenshots", "--subDir=manual", "--browserName=%s" % browser, _out=process_output, _err=process_output)
 
-    # 2dn run with access to the generated screenshots
-    print(sphinx_build("-b", target_type, source_dir, target_dir))
+        # 2dn run with access to the generated screenshots
+        sphinx_build("-b", target_type, source_dir, target_dir, _out=process_output, _err=process_output)
 
 
 def create_widget_skeleton(language, widget_name, force=False):
-    template = os.path.join(root_dir, "doc", "manual", "_templates", language, "widget-template.rst")
+    section = "manual-%s" % language
+    template = os.path.join(root_dir, config.get(section, "widget-template"))
     if not os.path.exists(template):
-        log.error("widget template does language '%s' not found" % language)
+        log.error("widget template '%s' language '%s' not found" % (widget_name,language))
         exit(1)
 
     widgets = []
@@ -87,7 +102,7 @@ def create_widget_skeleton(language, widget_name, force=False):
 
     for widget_name in widgets:
         print("Generating doc source for '%s' widget in language '%s'" % (widget_name, language))
-        target = os.path.join(root_dir, "doc", "manual", language, "config", "widgets", widget_name.lower(), "index.rst")
+        target = os.path.join(root_dir, config.get(section, "widgets"), widget_name.lower(), "index.rst")
 
         if force is False and os.path.exists(target):
             log.error("widget documentation already exists for widget '%s' in language '%s'" % (widget_name, language))
@@ -111,6 +126,7 @@ def create_widget_skeleton(language, widget_name, force=False):
 
 
 def main():
+    actions = ['doc', 'create-widget-skeleton', 'update-translation', '']
     parser = ArgumentParser(usage="%(prog)s - CometVisu documentation generator")
     parser.add_argument("--version", action='version', version=VERSION)
 
@@ -131,24 +147,24 @@ def main():
     parser.add_argument('--doc-type', "-dt", dest="doc", default="manual",
                         type=str, help='type of documentation to generate (manual, source)', nargs='?')
 
-    parser.add_argument('action', type=str, help='action (doc, create-widget-skeleton)', nargs='?')
+    parser.add_argument('action', type=str, help='action (%s)' % ", ".join(actions), nargs='?')
     options = parser.parse_args()
 
     if options.action is None:
-        log.error("please provide an action (doc, create-widget-skeleton)")
+        log.error("please provide an action (%s)" % ",".join(actions))
         parser.print_help()
 
     elif options.action == "doc":
 
         if 'type' not in options or options.type == "manual":
-            generate_manual(options.language, options.target, options.browser)
+            generate_manual(options.language, options.target, options.browser, force=options.force)
         elif options.type == "source":
             if options.target is not None:
-                print(grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, "--targetDir=%s" % options.target))
+                grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, "--targetDir=%s" % options.target, _out=process_output, _err=process_output)
             else:
-                print(grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser))
+                grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, _out=process_output, _err=process_output)
         else:
-            log.error("generation of '%s' documentation is not available" % options.type)
+            log.error("generation of '%s' documentation is not available" % options.type, _out=process_output, _err=process_output)
             exit(1)
     elif options.action == "create-widget-skeleton":
         if 'widget' not in options:
@@ -156,6 +172,9 @@ def main():
             exit(1)
 
         create_widget_skeleton(options.language, options.widget, force=options.force)
+    elif options.action == "update-translation":
+        # pygettext -d messages -p locale/ .doc/docutils/directives/*.py
+        pygettext("-d", "messages", "-p", config.get("main", "locale"), ".doc/docutils/directives/*.py", _out=process_output, _err=process_output)
     else:
         log.error("action '%s' is not available" % options.action)
         exit(1)

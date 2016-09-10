@@ -27,10 +27,11 @@ from docutils.parsers.rst import directives, Directive
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
 from os import path, makedirs
 from io import open
+from settings import config
 
 counters = {}
 
-xsd = etree.XMLSchema(etree.parse(path.join("src", "visu_config.xsd")))
+xsd = etree.XMLSchema(etree.parse(config.get("DEFAULT", "schema-file")))
 parser = etree.XMLParser(schema=xsd)
 
 
@@ -42,6 +43,7 @@ def align(argument):
 def editor(argument):
     align_values = ('attributes', 'elements')
     return directives.choice(argument, align_values)
+
 
 class WidgetExampleDirective(Directive):
     """
@@ -97,7 +99,7 @@ class WidgetExampleDirective(Directive):
     has_content = True
 
     example_dir = path.join("cache", "widget_examples", "manual")
-    screenshot_dir = path.join("doc", "manual", "examples")
+
     config_parts = {
         "start": '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd">',
         "meta": '<meta/>',

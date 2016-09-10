@@ -18,20 +18,20 @@
 
 from docutils import statemachine, nodes
 from docutils.parsers.rst import Directive
-from os import path
 from helper.schema import *
 import gettext
 import sys
+from settings import config
 
 kwargs = {
-    'localedir': 'locale'
+    'localedir': config.get("DEFAULT", "locale")
 }
 if sys.version_info[0] > 3:
     kwargs['unicode'] = True
 
 gettext.install('messages', **kwargs)
 
-schema = Schema(path.join("src", "visu_config.xsd"))
+schema = Schema(config.get("DEFAULT", "schema-file"))
 
 
 class BaseDirective(Directive):
@@ -42,13 +42,13 @@ class BaseDirective(Directive):
         self.type_mapping = {
             'boolean': "*true* %s *false*" % _('or'),
             'string': _('string'),
-            'decimal': _('decimal')
+            'decimal': _('decimal'),
+            'uri': _('uri'),
+            'addr': _('addr')
         }
 
     def init_locale(self):
-        #locale = self.state_machine.document.settings.language_code
-        # this is a hack, but as language_code settings returns 'en' its the only known way to get the locale
-        self.locale = self.state_machine.document.settings._source.split(path.sep +"manual" + path.sep, 1)[1].split(path.sep)[0]
+        self.locale = self.state.document.settings.env.config.language
         t = gettext.translation('messages', localedir='locale', languages=[self.locale])
         t.install()
 
@@ -210,7 +210,6 @@ class BaseXsdDirective(BaseDirective):
                         sub_parent = element_name
                     #no recursions
                     if name != element_name:
-                        print("Name: %s, Element-Name: %s" % (name, element_name))
                         self.generate_complex_table(name, include_name=include_name,
                                                     mandatory=mandatory, table_body=table_body,
                                                     sub_run=True, parent=sub_parent)

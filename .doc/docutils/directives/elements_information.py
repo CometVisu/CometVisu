@@ -18,8 +18,6 @@
 
 from docutils import nodes
 from common import BaseXsdDirective, schema
-import gettext
-gettext.install('cv', localedir='locale')
 
 
 class ElementsInformationDirective(BaseXsdDirective):
