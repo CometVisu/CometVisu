@@ -41,7 +41,9 @@ git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
 # Clean out existing contents
+mv redirect-structure.sh ../
 rm -rf out/**/* || exit 0
+mv ../redirect-structure.sh .
 
 # Run our creation script
 createDocs
