@@ -167,7 +167,7 @@ Dieses Beispiel erzeugt die Attribut-Tabelle für das Switch-Widget.
 .. parameter-information:: switch
 
 Die *elements-information* Direktive
--------------------------------------
+------------------------------------
 
 Diese Direktive erzeugt automatisch eine Tabellenübersicht mit den erlaubten Unter-Elementen eines Widgets. Diese Daten werden
 aus der Schema-Definition (visu_config.xsd) ausgelesen.

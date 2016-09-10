@@ -65,7 +65,7 @@ XML Syntax minimal
 ------------------
 
 Alternativ kann man für das %%%WIDGET_NAME%%% Widget auch von Hand einen Eintrag in
-der `visu\_config.xml <../XML-Elemente>`__ hinzufügen.
+der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
 
 .. CAUTION::
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet

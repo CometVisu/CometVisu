@@ -24,12 +24,12 @@ from docutils.parsers.rst import Directive
 from widget_example import WidgetExampleDirective
 from parameter_information import ParameterInformationDirective
 from elements_information import ElementsInformationDirective
+from settings import config
 
 references = {"_base": "http://test.cometvisu.org/CometVisu/"}
-reference_prefix = "/manual/"
-references_file = os.path.join("src", "editor", "lib", "DocumentationMapping.json")
-redirect_file = os.path.join(".doc", "redirect-structure.sh")
-manual_dir = os.path.join("doc", "manual")
+reference_prefix = config.get("references", "prefix")
+references_file = config.get("references", "target")
+
 default_ref = re.compile("^index-[0-9]+$")
 redirect_map = {}
 with open(redirect_file, "r") as f:
@@ -78,8 +78,9 @@ def on_finish(app, exception):
 
 def source_read(app, docname, source):
     """ prepend header to every file """
-    header_file = os.path.join(manual_dir, app.config.language, "parts", "header.rst")
-    if os.path.exists(header_file):
+    section = "manual-%s" % app.config.language
+    header_file = config.get(section, "header-file")
+    if header_file and os.path.exists(header_file):
         with open(header_file, "rb") as f:
             source[0] = "%s\n%s" % (f.read().decode('utf-8'), source[0])
 
