@@ -29,6 +29,7 @@ from settings import config
 references = {"_base": "http://test.cometvisu.org/CometVisu/"}
 reference_prefix = config.get("references", "prefix")
 references_file = config.get("references", "target")
+redirect_file = config.get("redirect", "target")
 
 default_ref = re.compile("^index-[0-9]+$")
 redirect_map = {}
