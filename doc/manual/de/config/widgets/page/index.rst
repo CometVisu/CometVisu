@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/widgets/page/de
+
 .. _page:
 
 Das Page Widget

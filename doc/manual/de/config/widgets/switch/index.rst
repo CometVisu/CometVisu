@@ -1,3 +1,9 @@
+.. replaces:: CometVisu/0.8.x/widgets/switch/de/
+    CometVisu/0.8.0/switch/de
+    CometVisu/Widget/switch/de
+    CometVisu/switch
+    CometVisu/switch_(Deutsch)
+
 .. _switch:
 
 Das Switch Widget

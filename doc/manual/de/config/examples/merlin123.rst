@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/demo_config/merlin123/de
+
 CometVisu von merlin123 (Metal)
 ===============================
 

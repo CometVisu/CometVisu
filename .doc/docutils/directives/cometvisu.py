@@ -19,7 +19,8 @@
 import os
 import re
 from json import dumps
-from docutils.nodes import target
+from docutils.nodes import target, General, Element
+from docutils.parsers.rst import Directive
 from widget_example import WidgetExampleDirective
 from parameter_information import ParameterInformationDirective
 from elements_information import ElementsInformationDirective
@@ -27,8 +28,15 @@ from elements_information import ElementsInformationDirective
 references = {"_base": "http://test.cometvisu.org/CometVisu/"}
 reference_prefix = "/manual/"
 references_file = os.path.join("src", "editor", "lib", "DocumentationMapping.json")
+redirect_file = os.path.join(".doc", "redirect-structure.sh")
 manual_dir = os.path.join("doc", "manual")
 default_ref = re.compile("^index-[0-9]+$")
+redirect_map = {}
+with open(redirect_file, "r") as f:
+    for line in f:
+        if re.match("  \"(.+)\"$", line):
+            wiki, manual = line[3:-2].strip().split("|")
+            redirect_map[wiki] = manual
 
 
 def process_references(app, doctree, fromdocname):
@@ -41,11 +49,31 @@ def process_references(app, doctree, fromdocname):
         link += '#' + anchor
         references[anchor] = "%s%s" % (reference_prefix, link)
 
+    # traverse the replacements
+    for node in doctree.traverse(replaces):
+        for replacement in node.rawsource:
+            redirect_map[replacement] = "%s%s%s.html" % (app.config.language, reference_prefix, fromdocname)
+        node.parent.remove(node)
 
-def store_references(app, exception):
+
+def store_references():
+    with open(references_file, "w") as f:
+        f.write(dumps(references, indent=2, sort_keys=True))
+
+
+def store_redirect_map():
+    source = "redirections=(";
+    for src in sorted(redirect_map):
+        source += '\n  "%s|%s"' % (src, redirect_map[src])
+    source += "\n)"
+    with open(redirect_file, "w") as f:
+        f.write(source)
+
+
+def on_finish(app, exception):
     if exception is None:
-        with open(references_file, "w") as f:
-            f.write(dumps(references, indent=2, sort_keys=True))
+        store_references()
+        store_redirect_map()
 
 
 def source_read(app, docname, source):
@@ -56,13 +84,28 @@ def source_read(app, docname, source):
             source[0] = "%s\n%s" % (f.read().decode('utf-8'), source[0])
 
 
+class replaces(General, Element):
+    pass
+
+
+class ReplacesDirective(Directive):
+    # this enables content in the directive
+    has_content = True
+
+    def run(self):
+        return [replaces(self.content)]
+
+
 def setup(app):
+    app.add_node(replaces)
+
     app.add_directive("widget-example", WidgetExampleDirective)
     app.add_directive("elements-information", ElementsInformationDirective)
     app.add_directive("parameter-information", ParameterInformationDirective)
+    app.add_directive("replaces", ReplacesDirective)
 
     app.connect('doctree-resolved', process_references)
-    app.connect('build-finished', store_references)
+    app.connect('build-finished', on_finish)
     app.connect('source-read', source_read)
 
     return {'version': '0.1'}

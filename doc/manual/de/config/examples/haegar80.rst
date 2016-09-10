@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/demo_config/haegar80/de
+
 CometVisu von haegar80 (Metal)
 ==============================
 

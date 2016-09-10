@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/etc/rrd/cpuload/de/
+
 CPU load für Linux Systeme
 --------------------------
 

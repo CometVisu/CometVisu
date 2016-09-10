@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/URL_parameter/de
+
 URL-Parameter
 =============
 
