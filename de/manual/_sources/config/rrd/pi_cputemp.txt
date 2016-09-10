@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/etc/rrd/pi_cputemp/de/
+
 CPU Temperatur für Raspberry Pi
 -------------------------------
 

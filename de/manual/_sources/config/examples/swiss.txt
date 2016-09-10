@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/demo_config/swiss/de
+
 CometVisu von swiss (Metal)
 ===========================
 

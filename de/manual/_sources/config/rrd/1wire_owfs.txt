@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/etc/rrd/1wire_owfs/temperatur/de/
+
 Temperatur vom 1wire (lokale 1wire-Schnittstelle mit owfs)
 ----------------------------------------------------------
 

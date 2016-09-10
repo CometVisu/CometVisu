@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/Installation/de
+
 Voraussetzungen für die Installation
 ====================================
 
