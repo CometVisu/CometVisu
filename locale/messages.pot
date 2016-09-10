@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-09-10 10:09+CEST\n"
+"POT-Creation-Date: 2016-09-10 17:41+CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: .doc/docutils/directives/common.py:43 .doc/docutils/directives/common.py:67
-#: .doc/docutils/directives/common.py:69
+#: .doc/docutils/directives/common.py:43 .doc/docutils/directives/common.py:65
+#: .doc/docutils/directives/common.py:67
 msgid "or"
 msgstr ""
 
@@ -36,40 +36,45 @@ msgstr ""
 msgid "addr"
 msgstr ""
 
-#: .doc/docutils/directives/common.py:132
-#: .doc/docutils/directives/common.py:138
-#: .doc/docutils/directives/common.py:244
-#: .doc/docutils/directives/common.py:250
+#: .doc/docutils/directives/common.py:135
+#: .doc/docutils/directives/common.py:141
+#: .doc/docutils/directives/common.py:262
+#: .doc/docutils/directives/common.py:268
 msgid "Attribute"
 msgstr ""
 
-#: .doc/docutils/directives/common.py:132
-#: .doc/docutils/directives/common.py:244
+#: .doc/docutils/directives/common.py:135
+#: .doc/docutils/directives/common.py:262
 msgid "Element"
 msgstr ""
 
-#: .doc/docutils/directives/common.py:133
-#: .doc/docutils/directives/common.py:139
-#: .doc/docutils/directives/common.py:245
-#: .doc/docutils/directives/common.py:251
+#: .doc/docutils/directives/common.py:136
+#: .doc/docutils/directives/common.py:142
+#: .doc/docutils/directives/common.py:263
+#: .doc/docutils/directives/common.py:269
 msgid "Content"
 msgstr ""
 
-#: .doc/docutils/directives/common.py:133
-#: .doc/docutils/directives/common.py:139
-#: .doc/docutils/directives/common.py:245
-#: .doc/docutils/directives/common.py:251
+#: .doc/docutils/directives/common.py:136
+#: .doc/docutils/directives/common.py:142
+#: .doc/docutils/directives/common.py:263
+#: .doc/docutils/directives/common.py:269
 msgid "Description"
 msgstr ""
 
-#: .doc/docutils/directives/common.py:133
-#: .doc/docutils/directives/common.py:139
-#: .doc/docutils/directives/common.py:245
-#: .doc/docutils/directives/common.py:251
+#: .doc/docutils/directives/common.py:136
+#: .doc/docutils/directives/common.py:142
+#: .doc/docutils/directives/common.py:263
+#: .doc/docutils/directives/common.py:269
 msgid "Name"
 msgstr ""
 
-#: .doc/docutils/directives/common.py:245
+#: .doc/docutils/directives/common.py:150
+#: .doc/docutils/directives/common.py:278
+msgid "mandatory"
+msgstr ""
+
+#: .doc/docutils/directives/common.py:263
 msgid "Structure"
 msgstr ""
 
