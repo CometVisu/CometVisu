@@ -55,7 +55,7 @@ def generate_manual(language, target_dir, browser, skip_screenshots=True, force=
         target_dir = os.path.join(root_dir, target_dir)
 
     if not os.path.exists(source_dir):
-        log.error("no sources found for manual in language '%s'" % language)
+        log.error("no sources found for manual in language '%s' (%s)" % (language, source_dir))
         exit(1)
 
     if force and os.path.exists(target_dir):
@@ -174,7 +174,7 @@ def main():
         create_widget_skeleton(options.language, options.widget, force=options.force)
     elif options.action == "update-translation":
         # pygettext -d messages -p locale/ .doc/docutils/directives/*.py
-        pygettext("-d", "messages", "-p", config.get("main", "locale"), ".doc/docutils/directives/*.py", _out=process_output, _err=process_output)
+        pygettext("-d", "messages", "-p", config.get("DEFAULT", "locale"), ".doc/docutils/directives/*.py", _out=process_output, _err=process_output)
     else:
         log.error("action '%s' is not available" % options.action)
         exit(1)

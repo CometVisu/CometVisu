@@ -81,7 +81,9 @@ class BaseXsdDirective(BaseDirective):
         return nodes.label(name, '', *cnode)
 
     def generate_table(self, element_name, include_name=False, mandatory=False):
-        table_body=[]
+        table_body = []
+        has_required_attribute = False
+        has_required_element = False
         attributes = schema.get_widget_attributes(element_name)
         if include_name:
             rowspan = len(attributes)-1
@@ -107,13 +109,16 @@ class BaseXsdDirective(BaseDirective):
 
             #name = ":ref:`%s <%s>`" % (name, name)
             if attr.get('use', 'optional') == "required":
-                name += " *"
+                name += " [i]_"
+                has_required_attribute = True
 
             atype = self.normalize_type(atype) if len(values) == 0 else self.normalize_values(values)
             if include_name:
                 if line == 0:
                     if mandatory:
-                        element_name += "*"
+                        element_name += " [i]_ "
+                        has_required_element = True
+
                     row = [(rowspan, 0, 0, statemachine.StringList(element_name.splitlines())), self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
                 else:
                     row = [ None, self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
@@ -140,6 +145,17 @@ class BaseXsdDirective(BaseDirective):
 
         table_node = self.state.build_table(table, self.content_offset)
         table_node['classes'] += self.options.get('class', [])
+        footnotes = []
+        if has_required_attribute or has_required_element:
+            footnotes.append('.. [i] %s' % _('mandatory'))
+
+        if len(footnotes):
+            cnode = nodes.Element()  # anonymous container for parsing
+            sl = statemachine.StringList(footnotes, source='')
+            self.state.nested_parse(sl, self.content_offset, cnode)
+            footnote_node = nodes.inline('', '', *cnode)
+
+            table_node += footnote_node
 
         return table_node
 
@@ -148,6 +164,9 @@ class BaseXsdDirective(BaseDirective):
         """ needs to be fixed """
         if table_body is None:
             table_body = []
+
+        has_required_attribute = False
+        has_required_element = False
 
         if not element_name == "#text":
             attributes = schema.get_widget_attributes(element_name)
@@ -177,16 +196,18 @@ class BaseXsdDirective(BaseDirective):
 
                 #name = ":ref:`%s <%s>`" % (name, name)
                 if attr.get('use', 'optional') == "required":
-                    name += " *"
+                    name += " [i]_ "
+                    has_required_attribute = True
 
                 atype = self.normalize_type(atype) if len(values) == 0 else self.normalize_values(values)
                 if include_name:
                     if line == 0:
                         element_title = element_name
-                        if mandatory:
-                            element_title += "*"
                         if parent:
                             element_title = "%s\n  * **%s**" % (parent, element_title)
+                        if mandatory:
+                            element_title += " [i]_ "
+                            has_required_element = True
                         row = [(rowspan, 0, 0,
                                 statemachine.StringList(element_title.splitlines())),
                                self.get_cell_data(name),
@@ -252,5 +273,16 @@ class BaseXsdDirective(BaseDirective):
             table_node = self.state.build_table(table, self.content_offset)
             table_node['classes'] += self.options.get('class', [])
             table_node['classes'] += ["schema-table"]
+            footnotes = []
+            if has_required_attribute or has_required_element:
+                footnotes.append('.. [i] %s' % _('mandatory'))
+
+            if len(footnotes):
+                cnode = nodes.Element()  # anonymous container for parsing
+                sl = statemachine.StringList(footnotes, source='')
+                self.state.nested_parse(sl, self.content_offset, cnode)
+                footnote_node = nodes.inline('', '', *cnode)
+
+                table_node += footnote_node
 
             return table_node
