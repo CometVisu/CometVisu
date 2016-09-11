@@ -2,8 +2,7 @@
 
 .. _widgets:
 
-Widgets in der CometVisu
-========================
+.. rubric:: Widgets in der CometVisu
 
 Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
 zusammengebaut wird. Diese können entweder fest in der CometVisu
@@ -16,7 +15,7 @@ kann wie folgt konfiguriert werden;
 
 
 Bedienbare Widgets
-------------------
+==================
 
 Diese Widgets können in irgendeiner Weise bedient werden um so Daten an das Backend zu senden oder andere
 Aktionen auszulösen, z.B. kann man mit einem Switch durch anklicken einen Lampe schalten, oder mit einem Pagejumo
@@ -78,7 +77,7 @@ kann innerhalb der Visu navigiert werden.
     urltrigger/index
 
 Darstellende Widgets
---------------------
+====================
 
 Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht möglich.
 
@@ -115,7 +114,7 @@ Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht mö
 
 
 Sonstige Widgets
-----------------
+================
 
 +-------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Widget                                          | Beschreibung                                                                                                                                                                                                                                                                                                                                                |
@@ -144,7 +143,7 @@ Sonstige Widgets
     page/index
 
 Widgets die per Plugin eingebunden werden können
-------------------------------------------------
+================================================
 
 Diese müssen im "meta" Bereich der :doc:`visu_config.xml <../xml-format>` eingebunden werden bevor sie genutzt werden können.
 
