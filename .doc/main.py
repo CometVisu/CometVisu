@@ -37,24 +37,27 @@ def main():
         'scaffold': Scaffolder,
         'translation': TranslationHandler
     }
-
-    parser = ArgumentParser(usage="%(prog)s - CometVisu documentation helper commands")
-    parser.add_argument("--version", action='version', version=VERSION)
-
-    parser.add_argument('action', type=str, help='action (%s)' % ", ".join(commands.keys()), nargs='?')
-    options, unknown = parser.parse_known_args()
-
-    if options.action is None:
-        print("please provide an action (%s)" % ",".join(commands.keys()))
-        parser.print_help()
-
-    elif options.action not in commands:
-        print("action '%s' is not available" % options.action)
-        exit(1)
-
-    else:
-        handler = commands[options.action]()
+    if sys.argv[1] in commands:
+        handler = commands[sys.argv[1]]()
         handler.run(sys.argv[2:])
+    else:
+        parser = ArgumentParser(usage="%(prog)s - CometVisu documentation helper commands")
+        parser.add_argument("--version", action='version', version=VERSION)
+
+        parser.add_argument('action', type=str, help='action (%s)' % ", ".join(commands.keys()), nargs='?')
+        options, unknown = parser.parse_known_args()
+
+        if options.action is None:
+            print("please provide an action (%s)" % ",".join(commands.keys()))
+            parser.print_help()
+
+        elif options.action not in commands:
+            print("action '%s' is not available" % options.action)
+            exit(1)
+
+        else:
+            handler = commands[options.action]()
+            handler.run(sys.argv[2:])
 
 if __name__ == '__main__':
     main()
