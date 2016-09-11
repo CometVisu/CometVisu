@@ -26,7 +26,6 @@ class Command(object):
         self.config = ConfigParser.ConfigParser()
         self.config.read(os.path.join('.doc', 'config.ini'))
         self.root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..'))
-        print(self.root_dir)
 
     def process_output(self, line):
         print(line.rstrip())
