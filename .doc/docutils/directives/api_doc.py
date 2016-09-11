@@ -60,7 +60,7 @@ class ApiDocDirective(Directive):
     def init_locale(self):
         self.locale = self.state.document.settings.env.config.language
         t = gettext.translation('messages', localedir='locale', languages=[self.locale], codeset='utf-8')
-        t.install()
+        t.install(unicode=True)
 
         self.init_part_translations()
 
