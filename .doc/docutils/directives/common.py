@@ -113,7 +113,7 @@ class BaseXsdDirective(BaseDirective):
             if include_name:
                 if line == 0:
                     if mandatory:
-                        element_name += "*"
+                        element_name += " :abbr:`*(%s)`" % _('mandatory')
 
                     row = [(rowspan, 0, 0, statemachine.StringList(element_name.splitlines())), self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
                 else:
