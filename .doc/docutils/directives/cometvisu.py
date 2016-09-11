@@ -38,6 +38,9 @@ with open(redirect_file, "r") as f:
         if re.match("  \"(.+)\"$", line):
             wiki, manual = line[3:-2].strip().split("|")
             redirect_map[wiki] = manual
+        elif "|" in line:
+            wiki, manual = line.strip().split("|")
+            redirect_map[wiki] = manual
 
 
 def process_references(app, doctree, fromdocname):
@@ -63,10 +66,10 @@ def store_references():
 
 
 def store_redirect_map():
-    source = "redirections=(";
+    source = ""
     for src in sorted(redirect_map):
-        source += '\n  "%s|%s"' % (src, redirect_map[src])
-    source += "\n)"
+        source += '%s|%s\n' % (src, redirect_map[src])
+
     with open(redirect_file, "w") as f:
         f.write(source)
 
