@@ -42,7 +42,7 @@ Erlaubte Attribute im Page-Element
     :align: center
 
         <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
-        <page>
+        <page name="Testseite">
           <layout colspan="4" />
           <text>Test</text>
         </page>
