@@ -33,14 +33,15 @@ redirect_file = config.get("redirect", "target")
 
 default_ref = re.compile("^index-[0-9]+$")
 redirect_map = {}
-with open(redirect_file, "r") as f:
-    for line in f:
-        if re.match("  \"(.+)\"$", line):
-            wiki, manual = line[3:-2].strip().split("|")
-            redirect_map[wiki] = manual
-        elif "|" in line:
-            wiki, manual = line.strip().split("|")
-            redirect_map[wiki] = manual
+if os.path.exists(redirect_file):
+    with open(redirect_file, "r") as f:
+        for line in f:
+            if re.match("  \"(.+)\"$", line):
+                wiki, manual = line[3:-2].strip().split("|")
+                redirect_map[wiki] = manual
+            elif "|" in line:
+                wiki, manual = line.strip().split("|")
+                redirect_map[wiki] = manual
 
 
 def process_references(app, doctree, fromdocname):

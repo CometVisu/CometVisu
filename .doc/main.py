@@ -56,13 +56,5 @@ def main():
         handler = commands[options.action]()
         handler.run(sys.argv[2:])
 
-        create_widget_skeleton(options.language, options.widget, force=options.force)
-    elif options.action == "update-translation":
-        # pygettext -d messages -p locale/ .doc/docutils/directives/*.py
-        pygettext("-d", "messages", "-p", config.get("main", "locale"), ".doc/docutils/directives/*.py", _out=process_output, _err=process_output)
-    else:
-        log.error("action '%s' is not available" % options.action)
-        exit(1)
-
 if __name__ == '__main__':
     main()
