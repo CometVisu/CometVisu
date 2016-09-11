@@ -21,7 +21,7 @@ Das Verhalten und Aussehen des Audio-Widgets kann durch die Verwendung von Attri
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
 beides über den :ref:`Editor <editor>` bearbeitet werden kann.
 
-Nur die mit * gekennzeichneten Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+Nur die mit ..... unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.
 
 

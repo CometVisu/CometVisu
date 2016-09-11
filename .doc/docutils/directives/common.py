@@ -107,13 +107,13 @@ class BaseXsdDirective(BaseDirective):
 
             #name = ":ref:`%s <%s>`" % (name, name)
             if attr.get('use', 'optional') == "required":
-                name += " :abbr:`*(%s)`" % _('mandatory')
+                name = ":abbr:`%s(%s)`" % (name, _('mandatory'))
 
             atype = self.normalize_type(atype) if len(values) == 0 else self.normalize_values(values)
             if include_name:
                 if line == 0:
                     if mandatory:
-                        element_name += " :abbr:`*(%s)`" % _('mandatory')
+                        element_name = ":abbr:`%s(%s)`" % (element_name, _('mandatory'))
 
                     row = [(rowspan, 0, 0, statemachine.StringList(element_name.splitlines())), self.get_cell_data(name), self.get_cell_data(atype), self.get_cell_data(description)]
                 else:
@@ -178,17 +178,18 @@ class BaseXsdDirective(BaseDirective):
 
                 #name = ":ref:`%s <%s>`" % (name, name)
                 if attr.get('use', 'optional') == "required":
-                    name += " :abbr:`*(%s)`" % _('mandatory')
+                    name = ":abbr:`%s (%s)`" % (name, _('mandatory'))
 
                 atype = self.normalize_type(atype) if len(values) == 0 else self.normalize_values(values)
                 if include_name:
                     if line == 0:
                         element_title = element_name
-                        if parent:
-                            element_title = "%s\n  * **%s**" % (parent, element_title)
                         if mandatory:
-                            element_title += " :abbr:`*(%s)`" % _('mandatory')
-                            has_required_element = True
+                            element_title = ":abbr:`%s (%s)`" % (element_title, _('mandatory'))
+
+                        if parent:
+                            element_title = "%s\n  * %s" % (parent, element_title)
+
                         row = [(rowspan, 0, 0,
                                 statemachine.StringList(element_title.splitlines())),
                                self.get_cell_data(name),
@@ -218,7 +219,7 @@ class BaseXsdDirective(BaseDirective):
                 else:
                     (sub_element, atype, doc) = sub_element
                     indent = 2 if parent is not None else 1
-                    element_title = "%s\n%s* **%s**" % (element_name, " " * indent, sub_element)
+                    element_title = "%s\n%s* %s" % (element_name, " " * indent, sub_element)
                     if parent:
                         element_title = "%s\n * %s" % (parent, element_title)
 
