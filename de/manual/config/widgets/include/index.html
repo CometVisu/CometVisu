@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Das Break Widget &mdash; CometVisu</title>
+  <title>Das Include Widget &mdash; CometVisu</title>
   
 
   
@@ -34,8 +34,8 @@
   
     <link rel="top" title="CometVisu" href="../../../index.html"/>
         <link rel="up" title="Bedienbare Widgets" href="../index.html"/>
-        <link rel="next" title="Das Include Widget" href="../include/index.html"/>
-        <link rel="prev" title="Das Image Widget" href="../image/index.html"/> 
+        <link rel="next" title="Das Page Widget" href="../page/index.html"/>
+        <link rel="prev" title="Das Break Widget" href="../break/index.html"/> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -99,8 +99,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../index.html">Bedienbare Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../index.html#darstellende-widgets">Darstellende Widgets</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html#sonstige-widgets">Sonstige Widgets</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Das Break Widget</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../include/index.html">Das Include Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../break/index.html">Das Break Widget</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Das Include Widget</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../page/index.html">Das Page Widget</a></li>
 </ul>
 </li>
@@ -147,7 +147,7 @@
       
           <li><a href="../index.html">Bedienbare Widgets</a> &raquo;</li>
       
-    <li>Das Break Widget</li>
+    <li>Das Include Widget</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -165,30 +165,24 @@
 Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
-<div class="section" id="das-break-widget">
-<span id="break"></span><h1>Das Break Widget<a class="headerlink" href="#das-break-widget" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="das-include-widget">
+<span id="include"></span><h1>Das Include Widget<a class="headerlink" href="#das-include-widget" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="section" id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Das Break-Widget fügt der Visualisierung einen Zeilenumbruch hinzu. Das nächste Widget landet also unter dem vorigen.
-Hiermit kann man die Visu grafisch strukturieren. Break ist von der Auflösung unabhängig.</p>
-</div>
-<div class="section" id="einstellungen">
-<h2>Einstellungen<a class="headerlink" href="#einstellungen" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Das Break-Widget hat keine Attribute und Elemente, über die weitere Einstellungen möglich wären.</p>
-</div>
-<div class="section" id="xml-syntax">
-<h2>XML Syntax<a class="headerlink" href="#xml-syntax" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Alternativ kann man für das Break Widget auch von Hand einen Eintrag in
-der <a class="reference internal" href="../../xml-format.html"><span class="doc">visu_config.xml</span></a> hinzufügen.</p>
-<div class="admonition caution">
-<p class="first admonition-title">Vorsicht</p>
-<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
-werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
-</div>
-<p>Hier der Beispielcode der das Break Widget erzeugt:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;break/&gt;</span>
+<p>Das Include Widget ist im eigentlichen kein Widget, denn es bewirkt keine sichtbaren Änderungen
+in der Visualisierung.</p>
+<p>Mit Hilfe des Include-Elements kann man seine visu_config.xml Datei in mehrere Dateien aufteilen.
+Das kann bei sehr großen Dateien, hilfreich sein, den Überblick zu bewahren, wenn man den XML-Code direkt
+bearbeiten möchte.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;page&gt;</span>
+    <span class="nt">&lt;include</span> <span class="na">src=</span><span class="s">&quot;Wohnzimmer.xml&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;include</span> <span class="na">src=</span><span class="s">&quot;Schlafzimmer.xml&quot;</span><span class="nt">/&gt;</span>
+    ...
+<span class="nt">&lt;/page&gt;</span>
 </pre></div>
 </div>
+<p>Wie im Beispiel zu sehen, kann man z.B. für jeden Raum eine eigene XML-Datei anlegen und diese dann mittels
+<code class="docutils literal"><span class="pre">include</span></code> an der gewünschten Stelle in der eigentlichen <em>visu_config.xml</em> einbinden.</p>
 </div>
 </div>
 
@@ -199,10 +193,10 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../include/index.html" class="btn btn-neutral float-right" title="Das Include Widget" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../page/index.html" class="btn btn-neutral float-right" title="Das Page Widget" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../image/index.html" class="btn btn-neutral" title="Das Image Widget" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../break/index.html" class="btn btn-neutral" title="Das Break Widget" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
