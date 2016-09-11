@@ -1,4 +1,4 @@
-.. replaces:: CometVisu/HowTo:_Entwicklerversion_auf_dem_WireGate
+.. replaces:: CometVisu/HowTo%3A_Entwicklerversion_auf_dem_WireGate
 
 Entwicklerversion auf dem Wiregate
 ==================================
