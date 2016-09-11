@@ -7,6 +7,8 @@
 Das Diagram Plugin
 ==================
 
+.. api-doc:: diagram
+
 .. TODO::
 
     Inhalt übertragen + openHAB Ergänzungen

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CometVisu\n"
-"POT-Creation-Date: 2016-09-10 17:41+0200\n"
-"PO-Revision-Date: 2016-09-10 17:41+0200\n"
+"POT-Creation-Date: 2016-09-11 18:47+0200\n"
+"PO-Revision-Date: 2016-09-11 18:47+0200\n"
 "Last-Translator: \n"
 "Language-Team: Tobias Bräutigam <tbraeutigam@gmail.com>\n"
 "Language: de_DE\n"
@@ -16,6 +16,14 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .doc/docutils/directives/api_doc.py:36
+msgid "Available since version"
+msgstr "Verfügbar seit Version"
+
+#: .doc/docutils/directives/api_doc.py:37
+msgid "Author"
+msgstr "Autor"
 
 #: .doc/docutils/directives/common.py:43 .doc/docutils/directives/common.py:65
 #: .doc/docutils/directives/common.py:67
@@ -38,45 +46,47 @@ msgstr "URL"
 msgid "addr"
 msgstr "GA/Itemname"
 
-#: .doc/docutils/directives/common.py:135
-#: .doc/docutils/directives/common.py:141
-#: .doc/docutils/directives/common.py:262
-#: .doc/docutils/directives/common.py:268
-msgid "Attribute"
-msgstr "Attribut"
-
-#: .doc/docutils/directives/common.py:135
-#: .doc/docutils/directives/common.py:262
-msgid "Element"
-msgstr "Element"
-
-#: .doc/docutils/directives/common.py:136
-#: .doc/docutils/directives/common.py:142
-#: .doc/docutils/directives/common.py:263
-#: .doc/docutils/directives/common.py:269
-msgid "Content"
-msgstr "Inhalt"
-
-#: .doc/docutils/directives/common.py:136
-#: .doc/docutils/directives/common.py:142
-#: .doc/docutils/directives/common.py:263
-#: .doc/docutils/directives/common.py:269
-msgid "Description"
-msgstr "Beschreibung"
-
-#: .doc/docutils/directives/common.py:136
-#: .doc/docutils/directives/common.py:142
-#: .doc/docutils/directives/common.py:263
-#: .doc/docutils/directives/common.py:269
-msgid "Name"
-msgstr "Name"
-
-#: .doc/docutils/directives/common.py:150
-#: .doc/docutils/directives/common.py:278
+#: .doc/docutils/directives/common.py:110
+#: .doc/docutils/directives/common.py:116
+#: .doc/docutils/directives/common.py:181
+#: .doc/docutils/directives/common.py:190
 msgid "mandatory"
 msgstr "muss vorhanden sein"
 
-#: .doc/docutils/directives/common.py:263
+#: .doc/docutils/directives/common.py:131
+#: .doc/docutils/directives/common.py:137
+#: .doc/docutils/directives/common.py:243
+#: .doc/docutils/directives/common.py:249
+msgid "Attribute"
+msgstr "Attribut"
+
+#: .doc/docutils/directives/common.py:131
+#: .doc/docutils/directives/common.py:243
+msgid "Element"
+msgstr "Element"
+
+#: .doc/docutils/directives/common.py:132
+#: .doc/docutils/directives/common.py:138
+#: .doc/docutils/directives/common.py:244
+#: .doc/docutils/directives/common.py:250
+msgid "Content"
+msgstr "Inhalt"
+
+#: .doc/docutils/directives/common.py:132
+#: .doc/docutils/directives/common.py:138
+#: .doc/docutils/directives/common.py:244
+#: .doc/docutils/directives/common.py:250
+msgid "Description"
+msgstr "Beschreibung"
+
+#: .doc/docutils/directives/common.py:132
+#: .doc/docutils/directives/common.py:138
+#: .doc/docutils/directives/common.py:244
+#: .doc/docutils/directives/common.py:250
+msgid "Name"
+msgstr "Name"
+
+#: .doc/docutils/directives/common.py:244
 msgid "Structure"
 msgstr "Struktur"
 

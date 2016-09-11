@@ -9,6 +9,8 @@
 Das Switch Widget
 =================
 
+.. api-doc:: Switch
+
 Beschreibung
 ------------
 

@@ -3,6 +3,8 @@
 Das Audio Widget
 ================
 
+.. api-doc:: Audio
+
 Beschreibung
 ------------
 
