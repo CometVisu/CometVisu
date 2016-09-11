@@ -1,14 +1,5 @@
 {
   "_base": "http://test.cometvisu.org/CometVisu/", 
-  "break": "/manual/config/widgets/break/index.html#break", 
-  "diagram": "/manual/config/widgets/plugins/diagram/index.html#diagram", 
-  "flavour": "/manual/config/flavour.html#flavour", 
-  "install-no-pakets": "/manual/install/install-dev.html#install-no-pakets", 
-  "mapping": "/manual/config/mapping.html#mapping", 
-  "page": "/manual/config/widgets/page/index.html#page", 
-  "powerspectrum": "/manual/config/widgets/plugins/powerspectrum/index.html#powerspectrum", 
-  "styling": "/manual/config/styling.html#styling", 
-  "switch": "/manual/config/widgets/switch/index.html#switch", 
   "system-voraussetzungen": "/manual/#system-voraussetzungen", 
   "visu-config-details": "/manual/config/index.html#visu-config-details", 
   "widgets": "/manual/config/widgets/index.html#widgets"

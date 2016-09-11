@@ -81,6 +81,6 @@ Hier der minimale Beispielcode der das Audio Widget aus dem folgenden Screenshot
         </audio>
 
 
-.. rubric:: Footnotes
+.. rubric:: Fußnoten
 
 .. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.

@@ -44,7 +44,7 @@ Erlaubte Attribute im Page-Element
         <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
         <page name="Testseite">
           <layout colspan="4" />
-          <text>Test</text>
+          <text><label>Test</label></text>
         </page>
 
 
@@ -75,3 +75,6 @@ Hier der Beispielcode der die Page mit den oben gezeigten Eigenschaften einfügt
         ....
         </page>
 
+.. rubric:: Fußnoten
+
+.. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.

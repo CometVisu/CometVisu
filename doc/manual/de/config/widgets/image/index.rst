@@ -99,6 +99,6 @@ Eigenschaften einfügt:
     </image>
 
 
-.. rubric:: Footnotes
+.. rubric:: Fußnoten
 
 .. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.

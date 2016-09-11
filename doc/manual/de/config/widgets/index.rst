@@ -57,7 +57,6 @@ kann innerhalb der Visu navigiert werden.
 
 .. toctree::
     :titlesonly:
-    :maxdepth: 1
     :hidden:
 
     audio/index
@@ -101,7 +100,6 @@ Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht mö
 
 .. toctree::
     :titlesonly:
-    :maxdepth: 1
     :hidden:
 
     image/index
@@ -133,7 +131,6 @@ Sonstige Widgets
 
 .. toctree::
     :titlesonly:
-    :maxdepth: 1
     :hidden:
 
     break/index
@@ -189,7 +186,6 @@ also z.B.:
 
 .. toctree::
     :titlesonly:
-    :maxdepth: 1
     :hidden:
     :glob:
 

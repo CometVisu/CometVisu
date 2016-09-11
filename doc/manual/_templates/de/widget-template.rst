@@ -128,6 +128,6 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
         </%%%WIDGET_NAME_LOWER%%%>
 
 
-.. rubric:: Footnotes
+.. rubric:: Fußnoten
 
 .. [#f1] In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.
