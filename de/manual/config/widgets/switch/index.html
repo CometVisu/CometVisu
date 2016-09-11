@@ -207,7 +207,7 @@ Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden:
 <p>Das Verhalten und Aussehen des Switch-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente des Switch-Widgets. In den Screenshots sieht man, wie
 beides über den <span class="xref std std-ref">Editor</span> bearbeitet werden kann.</p>
-<p>Nur die mit * gekennzeichneten Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
+<p>Nur die mit <a class="reference internal" href="#i" id="id1">[i]</a> gekennzeichneten Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.</p>
 <div class="section" id="erlaubte-attribute-im-switch-element">
 <h3>Erlaubte Attribute im Switch-Element<a class="headerlink" href="#erlaubte-attribute-im-switch-element" title="Link zu dieser Überschrift">¶</a></h3>
@@ -260,9 +260,9 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id6">
 <img alt="../../../_images/de_config_widgets_switch_index_editor_attributes.png" src="../../../_images/de_config_widgets_switch_index_editor_attributes.png" />
-<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id2">[1]</a></span></p>
 </div>
 </div>
 <div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
@@ -358,7 +358,7 @@ daher weg gelassen werden.</p>
 </dd>
 </dl>
 </td>
-<td>name *</td>
+<td>name <a class="reference internal" href="#i" id="id3">[i]</a></td>
 <td>Text</td>
 <td>&nbsp;</td>
 </tr>
@@ -422,12 +422,12 @@ daher weg gelassen werden.</p>
 <tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
 <dt>switch</dt>
 <dd><ul class="first last simple">
-<li><strong>address*</strong></li>
+<li><strong>address</strong> <a class="reference internal" href="#i" id="id4">[i]</a></li>
 </ul>
 </dd>
 </dl>
 </td>
-<td>transform *</td>
+<td>transform <a class="reference internal" href="#i" id="id5">[i]</a></td>
 <td>Text</td>
 <td>&nbsp;</td>
 </tr>
@@ -461,8 +461,14 @@ daher weg gelassen werden.</p>
 <td>Die Gruppenaddresse (z.B: 12/0/7) bei KNX-Backends oder der Item-Name beim openHAB-Backend.</td>
 </tr>
 </tbody>
+<span><table class="docutils citation" frame="void" id="i" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[i]</td><td><em>(<a class="fn-backref" href="#id1">1</a>, <a class="fn-backref" href="#id3">2</a>, <a class="fn-backref" href="#id4">3</a>, <a class="fn-backref" href="#id5">4</a>)</em> muss vorhanden sein</td></tr>
+</tbody>
 </table>
-<div class="figure align-center" id="id3">
+</span></table>
+<div class="figure align-center" id="id7">
 <img alt="../../../_images/de_config_widgets_switch_index_editor_elements.png" src="../../../_images/de_config_widgets_switch_index_editor_elements.png" />
 <p class="caption"><span class="caption-text">Elemente im Editor</span></p>
 </div>
@@ -478,7 +484,7 @@ der <a class="reference internal" href="../../xml-format.html"><span class="doc"
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das switch Widget aus dem folgenden Screenshot erzeugt:</p>
-<div class="figure" id="id4">
+<div class="figure" id="id8">
 <img alt="Einfacher Switch" src="../../../_images/switch_simple.png" />
 <p class="caption"><span class="caption-text">Einfacher Switch</span></p>
 </div>
@@ -498,7 +504,7 @@ mitbekommt und den Status falsch anzeigt.</p>
 <h2>XML Syntax komplett<a class="headerlink" href="#xml-syntax-komplett" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Hier der Beispielcode der das switch Widget mit den allen gezeigten
 Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:</p>
-<div class="figure" id="id5">
+<div class="figure" id="id9">
 <img alt="Switch mit mapping + styling" src="../../../_images/switch_complete1.png" />
 <p class="caption"><span class="caption-text">Switch mit mapping + styling</span></p>
 </div>
@@ -529,7 +535,7 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
 </tbody>
 </table>
 </div>
