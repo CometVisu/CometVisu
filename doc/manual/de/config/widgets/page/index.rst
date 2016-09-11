@@ -5,6 +5,8 @@
 Das Page Widget
 ===============
 
+.. api-doc:: Page
+
 Beschreibung
 ------------
 

@@ -3,6 +3,8 @@
 Das DesignToggle Widget
 =======================
 
+.. api-doc:: DesignToggle
+
 Beschreibung
 ------------
 

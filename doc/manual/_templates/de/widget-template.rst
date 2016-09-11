@@ -2,6 +2,8 @@
 
 %%%HEADLINE%%%
 
+.. api-doc:: %%%WIDGET_NAME%%%
+
 Beschreibung
 ------------
 

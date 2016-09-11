@@ -3,6 +3,8 @@
 Das Break Widget
 ================
 
+.. api-doc:: Break
+
 Beschreibung
 ------------
 

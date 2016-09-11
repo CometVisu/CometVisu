@@ -24,6 +24,7 @@ from docutils.parsers.rst import Directive
 from widget_example import WidgetExampleDirective
 from parameter_information import ParameterInformationDirective
 from elements_information import ElementsInformationDirective
+from api_doc import ApiDocDirective
 from settings import config
 
 references = {"_base": "http://test.cometvisu.org/CometVisu/"}
@@ -109,6 +110,7 @@ def setup(app):
     app.add_directive("elements-information", ElementsInformationDirective)
     app.add_directive("parameter-information", ParameterInformationDirective)
     app.add_directive("replaces", ReplacesDirective)
+    app.add_directive("api-doc", ApiDocDirective)
 
     app.connect('doctree-resolved', process_references)
     app.connect('build-finished', on_finish)

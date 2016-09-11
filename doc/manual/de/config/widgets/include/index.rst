@@ -3,6 +3,8 @@
 Das Include Widget
 ==================
 
+.. api-doc:: Switch
+
 Beschreibung
 ------------
 

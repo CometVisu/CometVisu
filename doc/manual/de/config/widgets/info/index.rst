@@ -3,6 +3,8 @@
 Das Info Widget
 ===============
 
+.. api-doc:: Info
+
 Beschreibung
 ------------
 

@@ -3,6 +3,8 @@
 Das Image Widget
 ================
 
+.. api-doc:: Image
+
 Beschreibung
 ------------
 
