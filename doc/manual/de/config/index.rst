@@ -144,7 +144,7 @@ Widgets in der CometVisu
 
 Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
 zusammengebaut wird. Diese können entweder fest in der CometVisu
-eingebaut sein oder per Plugin-Schnittstelle intergriert.
+eingebaut sein oder per Plugin-Schnittstelle integriert.
 
 Die Beschreibung der Widgets kann man hier nachlesen:
 

@@ -2,8 +2,7 @@
 
 .. _widgets:
 
-Widgets in der CometVisu
-========================
+.. rubric:: Widgets in der CometVisu
 
 Widgets sind die einzelnen Elemente aus denen eine CometVisu-Site
 zusammengebaut wird. Diese können entweder fest in der CometVisu
@@ -16,7 +15,7 @@ kann wie folgt konfiguriert werden;
 
 
 Bedienbare Widgets
-------------------
+==================
 
 Diese Widgets können in irgendeiner Weise bedient werden um so Daten an das Backend zu senden oder andere
 Aktionen auszulösen, z.B. kann man mit einem Switch durch anklicken einen Lampe schalten, oder mit einem Pagejumo
@@ -58,7 +57,6 @@ kann innerhalb der Visu navigiert werden.
 
 .. toctree::
     :titlesonly:
-    :maxdepth: 1
     :hidden:
 
     audio/index
@@ -78,7 +76,7 @@ kann innerhalb der Visu navigiert werden.
     urltrigger/index
 
 Darstellende Widgets
---------------------
+====================
 
 Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht möglich.
 
@@ -102,7 +100,6 @@ Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht mö
 
 .. toctree::
     :titlesonly:
-    :maxdepth: 1
     :hidden:
 
     image/index
@@ -115,7 +112,7 @@ Diese Widgets haben eine rein informative Funktion, eine Bedienung ist nicht mö
 
 
 Sonstige Widgets
-----------------
+================
 
 +-------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Widget                                          | Beschreibung                                                                                                                                                                                                                                                                                                                                                |
@@ -124,7 +121,7 @@ Sonstige Widgets
 +-------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`Group <group/index>`                      | Mit group können widgets in einem Rahmen als Gruppe zusammengefasst werden. Der Gruppe kann man über "layout" die Größeneigenschaft mitgeben sowie alle zur Verfügung stehenden widgets zuordnen.                                                                                                                                                           |
 +-------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`Include <include/index>`                  | tbd.                                                                                                                                                                                                                                                                                                                                                        |
+| :doc:`Include <include/index>`                  | Ermöglicht es, die visu_config.xml in mehrere Dateien aufzuteilen und die Teile über *include* wieder zusammenzuführen.                                                                                                                                                                                                                                     |
 +-------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`Navbar <navbar/index>`                    | Mit dem Widget navbar kann man der gesamten Visu ein Navigationsmenü hinzu fügen. Das Menü lässt sich an einer Seite (oben, unten, link, rechts darstellen. Die Navigation durch die Visu lässt sich damit strukturieren.                                                                                                                                   |
 +-------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -134,7 +131,6 @@ Sonstige Widgets
 
 .. toctree::
     :titlesonly:
-    :maxdepth: 1
     :hidden:
 
     break/index
@@ -144,7 +140,7 @@ Sonstige Widgets
     page/index
 
 Widgets die per Plugin eingebunden werden können
-------------------------------------------------
+================================================
 
 Diese müssen im "meta" Bereich der :doc:`visu_config.xml <../xml-format>` eingebunden werden bevor sie genutzt werden können.
 
@@ -190,7 +186,6 @@ also z.B.:
 
 .. toctree::
     :titlesonly:
-    :maxdepth: 1
     :hidden:
     :glob:
 

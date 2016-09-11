@@ -16,3 +16,22 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+
+import logging
+import sh
+from . import Command
+
+class TranslationHandler(Command):
+
+    def __init__(self):
+        super(TranslationHandler, self).__init__()
+        self.log = logging.getLogger("doc")
+        logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+
+    def _run(self):
+        pygettext = sh.Command("pygettext")
+        pygettext("-d", "messages", "-p", self.config.get("main", "locale"), ".doc/docutils/directives/*.py",
+                  _out=self.process_output, _err=self.process_output)
+
+    def run(self):
+        self._run()

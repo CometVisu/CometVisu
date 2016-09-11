@@ -16,3 +16,11 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+import os
+import json
+
+root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..'))
+
+with open(os.path.join(root_dir, "package.json")) as data_file:
+    data = json.load(data_file)
+    VERSION = data['version']

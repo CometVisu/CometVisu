@@ -194,7 +194,7 @@ class WidgetExampleDirective(Directive):
 
             for screenshot in settings_node.iter('screenshot'):
                 shot = {
-                    "name": screenshot.get("name", name + str(shot_index)),
+                    "name": screenshot.get("name", name + str(counters[name] + shot_index)),
                     "data": []
                 }
                 if screenshot.get("clickpath", None):
