@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CometVisu\n"
 "POT-Creation-Date: 2016-09-11 18:47+0200\n"
-"PO-Revision-Date: 2016-09-11 18:47+0200\n"
+"PO-Revision-Date: 2016-09-12 18:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: Tobias Bräutigam <tbraeutigam@gmail.com>\n"
 "Language: de_DE\n"
@@ -51,7 +51,7 @@ msgstr "GA/Itemname"
 #: .doc/docutils/directives/common.py:181
 #: .doc/docutils/directives/common.py:190
 msgid "mandatory"
-msgstr "muss vorhanden sein"
+msgstr "Pflichtangabe"
 
 #: .doc/docutils/directives/common.py:131
 #: .doc/docutils/directives/common.py:137
