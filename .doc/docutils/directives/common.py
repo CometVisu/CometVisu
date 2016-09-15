@@ -23,10 +23,8 @@ import gettext
 import sys
 from settings import config
 
-kwargs = {
-    'localedir': config.get("DEFAULT", "locale")
-}
-if sys.version_info[0] > 3:
+kwargs = {}
+if sys.version_info[0] < 3:
     kwargs['unicode'] = True
 
 gettext.install('messages', **kwargs)
@@ -49,8 +47,8 @@ class BaseDirective(Directive):
 
     def init_locale(self):
         self.locale = self.state.document.settings.env.config.language
-        t = gettext.translation('messages', localedir='locale', languages=[self.locale])
-        t.install(unicode=True)
+        t = gettext.translation('messages', localedir=config.get("DEFAULT", "locale"), languages=[self.locale])
+        t.install(**kwargs)
 
         self.init_type_mapping()
 

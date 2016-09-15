@@ -20,7 +20,9 @@ grunt apt-doc
 
 User Manual
 -----------
-Install some required packages (`apt-get install libxml2-dev libxslt-dev python-dev plantuml python-pip`)
+Install some required packages (`apt-get install virtualenv libxml2-dev libxslt-dev python-dev plantuml python-pip`)
+Create virtualenv `virtualenv --python=python3 --system-site-packages .env`
+Activate `source .env/bin/activate`
 Install required python packages specified in .doc/docutils/requirements.txt with
 `pip install -r .doc/requirements`
  

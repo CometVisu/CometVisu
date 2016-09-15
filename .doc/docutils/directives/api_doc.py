@@ -24,10 +24,8 @@ from docutils import statemachine
 import gettext
 from settings import config
 
-kwargs = {
-    'localedir': config.get("DEFAULT", "locale")
-}
-if sys.version_info[0] > 3:
+kwargs = {}
+if sys.version_info[0] < 3:
     kwargs['unicode'] = True
 
 gettext.install('messages', **kwargs)
@@ -59,8 +57,8 @@ class ApiDocDirective(Directive):
 
     def init_locale(self):
         self.locale = self.state.document.settings.env.config.language
-        t = gettext.translation('messages', localedir='locale', languages=[self.locale], codeset='utf-8')
-        t.install(unicode=True)
+        t = gettext.translation('messages', localedir=config.get("DEFAULT", "locale"), languages=[self.locale], codeset='utf-8')
+        t.install(**kwargs)
 
         self.init_part_translations()
 
