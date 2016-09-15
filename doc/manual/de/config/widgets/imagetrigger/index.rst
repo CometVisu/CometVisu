@@ -26,7 +26,7 @@ daher weg gelassen werden.
 
 
 Erlaubte Attribute im ImageTrigger-Element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: imagetrigger
 
