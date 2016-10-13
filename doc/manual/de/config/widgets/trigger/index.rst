@@ -8,8 +8,8 @@ Das Trigger Widget
 Beschreibung
 ------------
 
-Der Trigger fügt der Visu eine Schaltfläche hinzu, die einen Wert für einen normalen Tastendruck und darüber hinaus,
-einen zweiten Wert für einen kurzen Tastendruck senden kann (wenn konfiguriert).
+Der Trigger fügt der Visu eine Schaltfläche hinzu, die einen Wert für einen normalen (kurzen) Tastendruck und darüber hinaus,
+einen zweiten Wert für einen langen Tastendruck senden kann (wenn konfiguriert).
 
 .. figure:: _static/trigger1.png
 
