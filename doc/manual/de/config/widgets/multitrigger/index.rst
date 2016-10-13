@@ -8,7 +8,7 @@ Das MultiTrigger Widget
 Beschreibung
 ------------
 
-Der Multitrigger fügt der Visu vier Schaltfläche hinzu, mit denen z.B. Szenenaufrufe realisiert werden können.
+Der Multitrigger fügt der Visu bis zu vier Schaltflächen hinzu, mit denen z.B. Szenenaufrufe realisiert werden können.
 
 .. figure:: _static/multitrigger_simple.png
 
