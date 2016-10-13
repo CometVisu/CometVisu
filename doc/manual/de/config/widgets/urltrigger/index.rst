@@ -8,8 +8,9 @@ Das UrlTrigger Widget
 Beschreibung
 ------------
 
-Das UrlTrigger Widget fügt der Visualisierung eine Schaltfläche hinzu, die im Hintergrund Daten von einer
-URL abfragt.
+Das UrlTrigger Widget fügt der Visualisierung eine Schaltfläche hinzu, die im Hintergrund eine
+URL öffnet. Hierbei handelt es sich um eine reine Abfrage, d.H die abgefragten Daten werden nicht genutzt.
+
 
 .. figure:: _static/urltrigger_simple.png
 
