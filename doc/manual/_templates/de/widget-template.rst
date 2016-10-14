@@ -27,7 +27,7 @@ daher weg gelassen werden.
 
 
 Erlaubte Attribute im %%%WIDGET_NAME%%%-Element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: %%%WIDGET_NAME_LOWER%%%
 
@@ -36,13 +36,13 @@ Erlaubte Attribute im %%%WIDGET_NAME%%%-Element
     :scale: 75
     :align: center
 
-        <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
-        <%%%WIDGET_NAME_LOWER%%%>
-          <layout colspan="4" />
-          <label>Kanal 1<icon name="control_on_off"/></label>
-          <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-          <address transform="DPT:1.001" mode="read">1/4/0</address>
-        </%%%WIDGET_NAME_LOWER%%%>
+    <caption>Attribute im Editor (vereinfachte Ansicht) [#f1]_</caption>
+    <%%%WIDGET_NAME_LOWER%%%>
+        <layout colspan="4" />
+        <label>Kanal 1<icon name="control_on_off"/></label>
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+        <address transform="DPT:1.001" mode="read">1/4/0</address>
+    </%%%WIDGET_NAME_LOWER%%%>
 
 
 Erlaubte Kind-Elemente und deren Attribute
@@ -55,16 +55,16 @@ Erlaubte Kind-Elemente und deren Attribute
     :scale: 75
     :align: center
 
-        <caption>Elemente im Editor</caption>
-        <%%%WIDGET_NAME_LOWER%%%>
-          <layout colspan="4" />
-          <label>%%%WIDGET_NAME%%%</label>
-          <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-          <address transform="DPT:1.001" mode="read">1/4/0</address>
-        </%%%WIDGET_NAME_LOWER%%%>
+    <caption>Elemente im Editor</caption>
+    <%%%WIDGET_NAME_LOWER%%%>
+        <layout colspan="4" />
+        <label>%%%WIDGET_NAME%%%</label>
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+        <address transform="DPT:1.001" mode="read">1/4/0</address>
+    </%%%WIDGET_NAME_LOWER%%%>
 
-XML Syntax minimal
-------------------
+XML Syntax
+----------
 
 Alternativ kann man für das %%%WIDGET_NAME%%% Widget auch von Hand einen Eintrag in
 der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
@@ -77,57 +77,17 @@ Hier der minimale Beispielcode der das %%%WIDGET_NAME%%% Widget aus dem folgende
 
 .. widget-example::
 
-        <settings>
-            <screenshot name="%%%WIDGET_NAME_LOWER%%%_simple">
-                <caption>%%%WIDGET_NAME%%%, einfaches Beispiel</caption>
-                <data address="1/4/0">0</data>
-            </screenshot>
-        </settings>
-        <%%%WIDGET_NAME_LOWER%%%>
-          <label>%%%WIDGET_NAME%%%</label>
-          <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-          <address transform="DPT:1.001" mode="read">1/4/0</address>
-        </%%%WIDGET_NAME_LOWER%%%>
-
-
-Die 2. address Zeile ist zwar streng genommen optional, jedoch macht
-ein %%%WIDGET_NAME%%%-Widget ohne die Rückmeldeaddresse in der Praxis keinen Sinn,
-da es dann Ereignisse vom Bus (wie z.B. Zentral-Aus, Treppenlicht) nicht
-mitbekommt und den Status falsch anzeigt.
-
-XML Syntax komplett
--------------------
-
-Hier der Beispielcode der das %%%WIDGET_NAME%%%-Widget mit den allen gezeigten
-Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:
-
-.. widget-example::
-
-        <settings>
-            <screenshot name="%%%WIDGET_NAME_LOWER%%%_complete">
-                <caption>%%%WIDGET_NAME%%% mit mapping + styling</caption>
-                <data address="1/4/0">1</data>
-            </screenshot>
-        </settings>
-        <meta>
-            <mappings>
-                <mapping name="OnOff">
-                    <entry value="0">Aus</entry>
-                    <entry value="1">An</entry>
-                </mapping>
-            </mappings>
-            <stylings>
-                <styling name="RedGreen">
-                    <entry value="1">red</entry>
-                    <entry value="0">green</entry>
-                </styling>
-            </stylings>
-        </meta>
-        <%%%WIDGET_NAME_LOWER%%% mapping="OnOff" styling="RedGreen">
-          <label>%%%WIDGET_NAME%%%</label>
-          <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-          <address transform="DPT:1.001" mode="read">1/4/0</address>
-        </%%%WIDGET_NAME_LOWER%%%>
+    <settings>
+        <screenshot name="%%%WIDGET_NAME_LOWER%%%_simple">
+            <caption>%%%WIDGET_NAME%%%, einfaches Beispiel</caption>
+            <data address="1/4/0">0</data>
+        </screenshot>
+    </settings>
+    <%%%WIDGET_NAME_LOWER%%%>
+        <label>%%%WIDGET_NAME%%%</label>
+        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
+        <address transform="DPT:1.001" mode="read">1/4/0</address>
+    </%%%WIDGET_NAME_LOWER%%%>
 
 
 .. rubric:: Fußnoten
