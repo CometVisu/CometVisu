@@ -275,6 +275,7 @@ describe('generation screenshots from jsdoc examples', function () {
                             } else {
                               cropInFile(size, location, imgFile);
                             }
+                            console.log("generated screenshot "+setting.name);
                           }
                         });
                       });
