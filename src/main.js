@@ -76,7 +76,7 @@ require.config({
 
 var templateEngine;
 require([
-  'jquery', 'TemplateEngine'
+  'jquery', 'lib/TemplateEngine'
 ], function( $, TemplateEngine ) {
   "use strict";
   profileCV( 'templateEngine start' );

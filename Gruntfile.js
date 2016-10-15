@@ -236,7 +236,8 @@ module.exports = function(grunt) {
           buildCSS: false,
           paths: {
             'css-builder': '../build/css-builder',
-            'normalize': '../build/normalize'
+            'normalize': '../build/normalize',
+            'jquery': 'empty:'
           },
 
           modules: [
