@@ -23,7 +23,7 @@ install:
 - "./node_modules/protractor/bin/webdriver-manager update"
 - if [ "$CV_BUILD" == "docs" ]; then sudo pip install -r .doc/requirements.txt; fi # for documentation
 - if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install libxml2-dev libxslt-dev graphviz; fi
-- if [ "$CV_BUILD" == "docs" ]; then sudo dpkg -i /tmp/plantuml.deb; fi
+#- if [ "$CV_BUILD" == "docs" ]; then sudo dpkg -i /tmp/plantuml.deb; fi
 - if [ "$CV_BUILD" == "docs" ]; then .doc/travis/npm-setup.sh; fi
 before_script:
 - export DISPLAY=:99.0
