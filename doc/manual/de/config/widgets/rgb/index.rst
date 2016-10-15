@@ -1,6 +1,6 @@
 .. _rgb:
 
-Das Rgb Widget
+Das RGB Widget
 ==============
 
 .. api-doc:: Rgb
@@ -8,7 +8,9 @@ Das Rgb Widget
 Beschreibung
 ------------
 
-Mit dem RGB-Widget kann man eine Farbe in der Visu anzeigen.
+Mit dem RGB-Widget kann man eine Farbe in der Visu anzeigen. Die Farbe setzt sich zusammen aus
+drei einzelnen Farbwerten für Rot (R), Grün (G) und Blau (B). Damit lässt sich z.B. die
+Farbe einer LED-Lampe anzeigen.
 
 
 Einstellungen
@@ -17,7 +19,7 @@ Einstellungen
 Für eine grundsätzliche Erklärung des Aufbaus der Konfiguration und der Definition der im folgenden benutzten
 Begriffe (Elemente, Attribute) sollte zunächst dieser Abschnitt gelesen werden: :ref:`visu-config-details`.
 
-Das Verhalten und Aussehen des Rgb-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
+Das Verhalten und Aussehen des RGB-Widgets kann durch die Verwendung von Attributen und Elementen beeinflusst werden.
 Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente. In den Screenshots sieht man, wie
 beides über den :ref:`Editor <editor>` bearbeitet werden kann.
 
@@ -25,7 +27,7 @@ Nur die mit ..... unterstrichenen Attribute/Elemente müssen zwingend angegeben 
 daher weg gelassen werden.
 
 
-Erlaubte Attribute im Rgb-Element
+Erlaubte Attribute im RGB-Element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: rgb
@@ -51,14 +53,14 @@ Erlaubte Kind-Elemente und deren Attribute
 XML Syntax
 ----------
 
-Alternativ kann man für das Rgb Widget auch von Hand einen Eintrag in
+Alternativ kann man für das RGB Widget auch von Hand einen Eintrag in
 der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
 
 .. CAUTION::
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
     werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
 
-Hier der minimale Beispielcode der das Rgb Widget aus dem folgenden Screenshot erzeugt:
+Hier der minimale Beispielcode der das RGB Widget aus dem folgenden Screenshot erzeugt:
 
 
 .. TODO:: Screenshot funktioniert nicht
@@ -75,7 +77,7 @@ Hier der minimale Beispielcode der das Rgb Widget aus dem folgenden Screenshot e
 
     <settings>
         <screenshot name="rgb_simple">
-            <caption>Rgb, einfaches Beispiel</caption>
+            <caption>RGB, einfaches Beispiel</caption>
         </screenshot>
     </settings>
     <rgb>

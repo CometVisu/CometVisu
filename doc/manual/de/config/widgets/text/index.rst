@@ -8,7 +8,8 @@ Das Text Widget
 Beschreibung
 ------------
 
-Das Text-Element fügt der Visu einen statischen Text hinzu.
+Das Text-Element fügt der Visu einen statischen Text hinzu. Auch HTML-Code ist möglich, muss allerdings
+entsprechend escaped werden.
 
 .. figure:: _static/text_simple.png
 
@@ -27,7 +28,7 @@ daher weg gelassen werden.
 
 
 Erlaubte Attribute im Text-Element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: text
 

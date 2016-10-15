@@ -8,7 +8,7 @@ Das Slide Widget
 Beschreibung
 ------------
 
-Der Slide (Schieberegler) wird oft für das Ansteuern von Rollos, Heizung und Dimmer benutzt.
+Der Slider (Schieberegler) wird oft für das Ansteuern von Rollos, Heizung und Dimmer benutzt.
 
 Einstellungen
 -------------
@@ -75,7 +75,7 @@ Hier der minimale Beispielcode der das Slide Widget aus dem folgenden Screenshot
 
     <settings>
         <screenshot name="slide_simple">
-            <caption>Slide, einfaches Beispiel</caption>
+            <caption>Slider, einfaches Beispiel</caption>
             <data address="11/1/6">0</data>
         </screenshot>
     </settings>

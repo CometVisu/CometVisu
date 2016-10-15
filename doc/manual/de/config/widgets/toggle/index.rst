@@ -8,7 +8,9 @@ Das Toggle Widget
 Beschreibung
 ------------
 
-Das Toggle Widget fügt der Visu eine Schaltfläche hinzu, mit der EIN/AUS Funktionen realisiert werden können.
+Das Toggle Widget fügt der Visu eine Schaltfläche hinzu, mit der zwischen verschiedenen Zuständen geschaltet
+werden kann. In der einfachsten Variante lässt sich damit eine EIN/AUS Funktionen realisieren.
+Jedoch sind auch mehrere Schaltzustände möglich, um z.B. zwischen den KONNEX Betriebsarten zu wechseln.
 
 .. figure:: _static/toggle_simple.png
 
@@ -76,7 +78,7 @@ Hier der minimale Beispielcode der das Toggle Widget aus dem folgenden Screensho
     <settings>
         <screenshot name="toggle_simple">
             <caption>Toggle, einfaches Beispiel</caption>
-            <data address="1/4/0">0</data>
+            <data address="12/1/5">0</data>
         </screenshot>
     </settings>
     <meta>
@@ -98,6 +100,31 @@ Hier der minimale Beispielcode der das Toggle Widget aus dem folgenden Screensho
       <address transform="DPT:1.001" mode="readwrite" variant="">12/1/5</address>
     </toggle>
 
+Beispiel für den Wechsel zwischen den KONNEX Betriebsarten:
+
+.. widget-example::
+
+    <settings>
+        <screenshot name="toggle_konnex">
+            <caption>Toggle für Betriebsarten</caption>
+            <data address="12/7/20">comfort</data>
+        </screenshot>
+    </settings>
+    <meta>
+     <mappings>
+      <mapping name="KonnexHVAC">
+        <entry value="auto"><icon name="status_automatic"/>Auto</entry>
+        <entry value="comfort"><icon name="status_comfort"/>Komfort</entry>
+        <entry value="standby"><icon name="status_standby"/>Stand By</entry>
+        <entry value="economy"><icon name="status_night"/>Economy</entry>
+        <entry value="building_protection"><icon name="status_frost"/>Haus-Schutz</entry>
+      </mapping>
+     </mappings>
+    </meta>
+    <toggle mapping="KonnexHVAC">
+      <label>Toggle: Betriebsart</label>
+      <address transform="DPT:20.102" mode="readwrite">12/7/20</address>
+    </toggle>
 
 .. rubric:: Fußnoten
 

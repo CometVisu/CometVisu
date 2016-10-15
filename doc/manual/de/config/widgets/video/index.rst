@@ -31,7 +31,7 @@ und Videoformat zu bekommen, nutzen Sie bitte die untenstehende Tabelle:
 +-------------------------------+-------+-------------+
 | IPhone                        | O     | X           |
 +-------------------------------+-------+-------------+
-| Android ab Jelly Bean         | X     | X           |
+| Android ab 4.1 (Jelly Bean)   | X     | X           |
 +-------------------------------+-------+-------------+
 
 **Legende:** X = unterstützt, O = nicht unterstützt
