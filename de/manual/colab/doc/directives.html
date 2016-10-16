@@ -165,6 +165,12 @@ Folgende Direktiven werden zur Zeit unterstützt:</p>
 <tr class="row-even"><td>elements-information</td>
 <td>Zeigt alle erlaubten Unter-Elemente eines Widgets inkl. deren Attributen als Tabelle an.</td>
 </tr>
+<tr class="row-odd"><td>api-doc</td>
+<td>Bindet Informationen aus der Source-Code Dokumentation ein (&#64;author und &#64;since)</td>
+</tr>
+<tr class="row-even"><td>replaces</td>
+<td>Hiermit läst sich festlegen, welche Seiten des alten Wikis diese Seite ersetzt</td>
+</tr>
 </tbody>
 </table>
 <div class="section" id="die-widget-example-direktive">
@@ -286,7 +292,7 @@ verfeinert werden.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-odd"><td rowspan="2">&lt;settings&gt;</td>
+<tr class="row-odd"><td rowspan="3">&lt;settings&gt;</td>
 <td>design</td>
 <td>Name eines Designs</td>
 <td>In welchem Design der Screenshot aufgenommen werden soll (Default: metal)</td>
@@ -295,7 +301,11 @@ verfeinert werden.</p>
 <td>Css-Selector</td>
 <td>Definiert den Bereich des Screenshots</td>
 </tr>
-<tr class="row-odd"><td><dl class="first last docutils">
+<tr class="row-odd"><td>sleep</td>
+<td>Zahl</td>
+<td>Initiale Wartezeit in ms bevor der Screenshot aufgenommen wird</td>
+</tr>
+<tr class="row-even"><td><dl class="first last docutils">
 <dt>&lt;settings&gt;</dt>
 <dd>&lt;caption&gt;</dd>
 </dl>
@@ -304,7 +314,7 @@ verfeinert werden.</p>
 <td>#text</td>
 <td>Untertitel des Beispielcodes</td>
 </tr>
-<tr class="row-even"><td rowspan="3"><dl class="first last docutils">
+<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
 <dt>&lt;settings&gt;</dt>
 <dd>&lt;screenshot&gt;</dd>
 </dl>
@@ -313,15 +323,19 @@ verfeinert werden.</p>
 <td>Text</td>
 <td>Dateiname des Screenshots</td>
 </tr>
-<tr class="row-odd"><td>clickpath</td>
+<tr class="row-even"><td>clickpath</td>
 <td>CSS-Selector</td>
 <td>CSS-Pfad zu einem Element, das angeklickt werden soll vor dem Screenshot</td>
 </tr>
-<tr class="row-even"><td>waitfor</td>
+<tr class="row-odd"><td>waitfor</td>
 <td>CSS-Selector</td>
 <td>CSS-Pfad zu einem Element, das sichtbar sein soll vor dem Screenshot</td>
 </tr>
-<tr class="row-odd"><td rowspan="2"><dl class="first last docutils">
+<tr class="row-even"><td>sleep</td>
+<td>Zahl</td>
+<td>Wartezeit zwischen Senden der Daten und Screenshot</td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><dl class="first last docutils">
 <dt>&lt;settings&gt;</dt>
 <dd><dl class="first last docutils">
 <dt>&lt;screenshot&gt;</dt>
@@ -334,7 +348,11 @@ verfeinert werden.</p>
 <td>Gruppenaddresse</td>
 <td>Sende Daten an diese Adresse bevor der Screenshot gemacht wird</td>
 </tr>
-<tr class="row-even"><td>#text</td>
+<tr class="row-even"><td>type</td>
+<td><em>float</em> oder <em>int</em></td>
+<td>Falls echte Zahlenwerte gesendet werden müssen</td>
+</tr>
+<tr class="row-odd"><td>#text</td>
 <td>Text</td>
 <td>Inhalt der Daten die gesendet werden sollen</td>
 </tr>
@@ -605,6 +623,42 @@ Diese Direktive hat keine Optionen und keinen Inhalt und nur einen Parameter der
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section" id="die-api-doc-direktive">
+<h2>Die <em>api-doc</em> Direktive<a class="headerlink" href="#die-api-doc-direktive" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Diese Direktive liest wichtige Informationen aus der Source-Code Dokumentation eines Widgets oder Plugins.
+Momentan sind das die Werte der <code class="docutils literal"><span class="pre">&#64;author</span></code> und <code class="docutils literal"><span class="pre">&#64;since</span></code> Angaben.</p>
+<div class="admonition important">
+<p class="first admonition-title">Wichtig</p>
+<p class="last">Wichtig ist hierbei, dass der Name des Widgets exakt dem Namen der Sourcecode-Datei ohne Dateiendung
+entspricht, also z.B. für <code class="docutils literal"><span class="pre">structure/pure/Switch.js</span></code> nimmt man <code class="docutils literal"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">Switch</span></code>
+(Groß-/Kleinschreibung beachten). Bei Plugins muss der Ordnername des Plugins angegeben werden, also
+z.B. für <code class="docutils literal"><span class="pre">plugins/colorchooser/</span></code> nimmt man <code class="docutils literal"><span class="pre">..</span> <span class="pre">api-doc::</span> <span class="pre">colorchooser</span></code></p>
+</div>
+<p>Beispiel für das Switch-Widget:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">api-doc</span><span class="p">::</span> Switch
+</pre></div>
+</div>
+<p>erzeugt folgenden Inhalt:</p>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Verfügbar seit Version</strong>: 0.8.0 (2012)</div>
+<div class="line"><strong>Autor</strong>: Christian Mayer</div>
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="die-replaces-directive">
+<h2>Die <em>replaces</em> Directive<a class="headerlink" href="#die-replaces-directive" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Durch diese Direktive lasst sich definieren, welche Seiten des alten Wikis durch diese Handbuch-Seite ersetzt werden.
+Es können mehrere Wiki-Seiten angegeben werden. Diese Direktive fügt der Dokumentation keinen Inhalt hinzu,
+sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">replaces</span><span class="p">::</span> CometVisu/0.8.x/widgets/switch/de/
+    CometVisu/0.8.0/switch/de
+    CometVisu/Widget/switch/de
+    CometVisu/switch
+    CometVisu/switch_(Deutsch)
+</pre></div>
+</div>
 </div>
 </div>
 
