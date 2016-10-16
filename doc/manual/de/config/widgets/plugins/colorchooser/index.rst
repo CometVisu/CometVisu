@@ -1,3 +1,10 @@
+.. replaces:: Colorchooser_(Deutsch)
+    CometVisu/0.8.0/ColorChooser/de
+    CometVisu/0.8.x/widgets/colorchooser/de/
+    CometVisu/ColorChooser
+    CometVisu/ColorChooser_(Deutsch)
+    CometVisu/Widget/ColorChooser/de
+
 .. _colorchooser:
 
 Das ColorChooser Plugin

@@ -1,3 +1,8 @@
+.. replaces:: CometVisu/0.8.0/strftime/de
+    CometVisu/0.8.x/widgets/strftime/
+    CometVisu/strftime/de
+    CometVisu/strftime_(Deutsch)
+
 .. _strftime:
 
 Das Strftime Plugin

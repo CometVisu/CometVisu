@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/widgets/gauge/de/
+
 .. _gauge:
 
 Das Gauge Plugin
