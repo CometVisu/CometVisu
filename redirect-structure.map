@@ -1,9 +1,9 @@
 Abkuerzungen|
 Anpassung_der_Konfigurationsdateien|
 Benutzerhandbuch|de/manual/index.html
-Colorchooser_(Deutsch)|
+Colorchooser_(Deutsch)|de/manual/config/widgets/plugins/colorchooser/index.html
 CometVisu|
-CometVisu/0.8.0/ColorChooser/de|
+CometVisu/0.8.0/ColorChooser/de|de/manual/config/widgets/plugins/colorchooser/index.html
 CometVisu/0.8.0/Tutorial/Plugins/de|
 CometVisu/0.8.0/Tutorial/Stylings/de|
 CometVisu/0.8.0/Tutorial/de|
@@ -18,7 +18,7 @@ CometVisu/0.8.0/mapping/de|
 CometVisu/0.8.0/multitrigger/de|
 CometVisu/0.8.0/pushbutton/de|
 CometVisu/0.8.0/slide/de|
-CometVisu/0.8.0/strftime/de|
+CometVisu/0.8.0/strftime/de|de/manual/config/widgets/plugins/strftime/index.html
 CometVisu/0.8.0/switch/de|de/manual/config/widgets/switch/index.html
 CometVisu/0.8.0/text/de|
 CometVisu/0.8.0/the_internal_Editor/de|
@@ -54,11 +54,11 @@ CometVisu/0.8.x/mapping/de|de/manual/config/mapping.html
 CometVisu/0.8.x/styling/de|de/manual/config/styling.html
 CometVisu/0.8.x/widgets/audio/de|
 CometVisu/0.8.x/widgets/break/de/|
-CometVisu/0.8.x/widgets/colorchooser/de/|
+CometVisu/0.8.x/widgets/colorchooser/de/|de/manual/config/widgets/plugins/colorchooser/index.html
 CometVisu/0.8.x/widgets/de|de/manual/config/widgets/index.html
 CometVisu/0.8.x/widgets/designtoggle/de/|
 CometVisu/0.8.x/widgets/diagramm_info/de/|de/manual/config/widgets/plugins/diagram/index.html
-CometVisu/0.8.x/widgets/gauge/de/|
+CometVisu/0.8.x/widgets/gauge/de/|de/manual/config/widgets/plugins/gauge/index.html
 CometVisu/0.8.x/widgets/image/de/|
 CometVisu/0.8.x/widgets/imagetrigger/de/|
 CometVisu/0.8.x/widgets/info/de/|
@@ -71,7 +71,7 @@ CometVisu/0.8.x/widgets/refresh/de/|
 CometVisu/0.8.x/widgets/reload/de/|
 CometVisu/0.8.x/widgets/rgb/de/|
 CometVisu/0.8.x/widgets/slide/de/|
-CometVisu/0.8.x/widgets/strftime/|
+CometVisu/0.8.x/widgets/strftime/|de/manual/config/widgets/plugins/strftime/index.html
 CometVisu/0.8.x/widgets/switch/de/|de/manual/config/widgets/switch/index.html
 CometVisu/0.8.x/widgets/template|
 CometVisu/0.8.x/widgets/text/de/|
@@ -86,8 +86,8 @@ CometVisu/Backend/en|
 CometVisu/Benutzerhandbuch|de/manual/index.html
 CometVisu/Beta|
 CometVisu/CodingStyle|
-CometVisu/ColorChooser|
-CometVisu/ColorChooser_(Deutsch)|
+CometVisu/ColorChooser|de/manual/config/widgets/plugins/colorchooser/index.html
+CometVisu/ColorChooser_(Deutsch)|de/manual/config/widgets/plugins/colorchooser/index.html
 CometVisu/Config|
 CometVisu/Den_eingebauten_Editor_benutzen|
 CometVisu/DesignDecisions|
@@ -122,7 +122,7 @@ CometVisu/Protokoll_(Deutsch)|
 CometVisu/The_internal_Editor|
 CometVisu/URL_parameter/de|de/manual/config/url-params.html
 CometVisu/Update|
-CometVisu/Widget/ColorChooser/de|
+CometVisu/Widget/ColorChooser/de|de/manual/config/widgets/plugins/colorchooser/index.html
 CometVisu/Widget/ColorChooser/en|
 CometVisu/Widget/Iframe/de|
 CometVisu/Widget/Iframe/en|
@@ -179,8 +179,8 @@ CometVisu/rrdtool|de/manual/install/install-rrd.html
 CometVisu/slide|
 CometVisu/slide_(Deutsch)|
 CometVisu/slider_(Deutsch)|
-CometVisu/strftime/de|
-CometVisu/strftime_(Deutsch)|
+CometVisu/strftime/de|de/manual/config/widgets/plugins/strftime/index.html
+CometVisu/strftime_(Deutsch)|de/manual/config/widgets/plugins/strftime/index.html
 CometVisu/styling_(Deutsch)|de/manual/config/styling.html
 CometVisu/switch|de/manual/config/widgets/switch/index.html
 CometVisu/switch_(Deutsch)|de/manual/config/widgets/switch/index.html
