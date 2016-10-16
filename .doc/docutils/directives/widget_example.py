@@ -191,12 +191,16 @@ class WidgetExampleDirective(Directive):
             # read meta settings
             design = settings_node.get("design", "metal")
             settings['selector'] = settings_node.get("selector", ".widget_container")
+            if settings_node.get("sleep"):
+                settings['sleep'] = settings_node.get("sleep")
 
             for screenshot in settings_node.iter('screenshot'):
                 shot = {
                     "name": screenshot.get("name", name + str(counters[name] + shot_index)),
                     "data": []
                 }
+                if screenshot.get("sleep"):
+                    shot['sleep'] = screenshot.get("sleep")
                 if screenshot.get("clickpath", None):
                     shot['clickPath'] = screenshot.get('clickpath')
                 if screenshot.get("waitfor", None):
@@ -205,10 +209,14 @@ class WidgetExampleDirective(Directive):
                 shot_index += 1
 
                 for data in screenshot.iter('data'):
-                    shot['data'].append({
+                    values = {
                         'address': data.get("address", "0/0/0"),
                         'value': data.text
-                    })
+                    }
+                    if data.get("type"):
+                        values['type'] = data.get("type")
+
+                    shot['data'].append(values)
 
                 for caption in screenshot.iter('caption'):
                     if 'caption' not in shot:

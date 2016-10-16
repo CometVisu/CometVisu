@@ -162,6 +162,7 @@ describe('generation screenshots from jsdoc examples', function () {
   });
 
   var examplesDir = path.join("cache", "widget_examples");
+  var whiteList = browser.screenshots ? browser.screenshots.split(",") : [];
 
   fs.readdirSync(examplesDir).forEach(function(fileName) {
     var subDir = path.join(examplesDir, fileName);
@@ -170,6 +171,10 @@ describe('generation screenshots from jsdoc examples', function () {
     }
     if (fs.statSync(subDir).isDirectory()) {
       fs.readdirSync(subDir).forEach(function(fileName) {
+        if (whiteList.length > 0 && whiteList.indexOf(fileName) < 0) {
+          // skip this one
+          return;
+        }
         var filePath = path.join(subDir, fileName);
         var stat = fs.statSync(filePath);
         if (stat.isFile()) {
@@ -230,7 +235,7 @@ describe('generation screenshots from jsdoc examples', function () {
               }
 
               // wait for everything to be rendered
-              browser.sleep(300);
+              browser.sleep(settings.sleep || 300);
 
               var widget = element(by.css(selectorPrefix+settings.selector));
               browser.wait(function() {
@@ -240,7 +245,18 @@ describe('generation screenshots from jsdoc examples', function () {
 
                   if (setting.data && Array.isArray(setting.data)) {
                     setting.data.forEach(function (data) {
-                      cvMockup.sendUpdate(data.address, data.value);
+                      var value = data.value;
+                      if (data.type) {
+                        switch(data.type) {
+                          case "float":
+                            value = parseFloat(value);
+                            break;
+                          case "int":
+                            value = parseInt(value);
+                            break;
+                        }
+                      }
+                      cvMockup.sendUpdate(data.address, value);
                     });
                   }
                   if (setting.clickPath) {
@@ -258,6 +274,9 @@ describe('generation screenshots from jsdoc examples', function () {
 
                   widget.getSize().then(function (size) {
                     widget.getLocation().then(function (location) {
+                      if (setting.sleep) {
+                        browser.sleep(setting.sleep);
+                      }
                       browser.takeScreenshot().then(function (data) {
                         var base64Data = data.replace(/^data:image\/png;base64,/, "");
                         var imgFile = path.join(settings.screenshotDir, setting.name + ".png");

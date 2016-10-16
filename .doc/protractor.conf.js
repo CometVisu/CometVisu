@@ -25,6 +25,9 @@ exports.config = {
       if (config.params && config.params.subDir) {
         browser.onlySubDir = config.params.subDir;
       }
+      if (config.params && config.params.screenshots) {
+        browser.screenshots = config.params.screenshots;
+      }
     });
   }
 };

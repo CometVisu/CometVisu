@@ -42,7 +42,9 @@ class BaseDirective(Directive):
             'string': _('string'),
             'decimal': _('decimal'),
             'uri': _('uri'),
-            'addr': _('addr')
+            'addr': _('addr'),
+            'nonNegativeInteger': _('nonNegativeInteger'),
+            'dimension': _('dimension')
         }
 
     def init_locale(self):

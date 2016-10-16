@@ -520,7 +520,8 @@ module.exports = function(grunt) {
           configFile: ".doc/protractor.conf.js",
           args: {
             params: {
-              subDir: grunt.option('subDir')
+              subDir: grunt.option('subDir'),
+              screenshots: grunt.option('files')
             },
             capabilities: {
               browserName: grunt.option('browserName') || 'firefox',
