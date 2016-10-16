@@ -17,7 +17,15 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 import os
+import sys
+import gettext
 import ConfigParser
+
+kwargs = {}
+if sys.version_info[0] < 3:
+    kwargs['unicode'] = True
+
+gettext.install('messages', **kwargs)
 
 
 class Command(object):
@@ -26,6 +34,10 @@ class Command(object):
         self.config = ConfigParser.ConfigParser()
         self.config.read(os.path.join('.doc', 'config.ini'))
         self.root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..'))
+
+    def init_locale(self, lang):
+        t = gettext.translation('messages', localedir=self.config.get("DEFAULT", "locale"), languages=[lang])
+        t.install(**kwargs)
 
     def process_output(self, line):
         print(line.rstrip())

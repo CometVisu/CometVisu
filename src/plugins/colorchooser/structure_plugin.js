@@ -15,6 +15,12 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
+
+/**
+ *
+ * @since 0.5.2
+ * @author Christian Mayer [CometVisu at ChristianMayer dot de]
+ */
 define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css', 'plugins/colorchooser/farbtastic/farbtastic' ], function( VisuDesign_Custom ) {
   "use strict";
 

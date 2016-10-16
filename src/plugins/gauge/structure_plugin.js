@@ -15,31 +15,33 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
  
- /*
-* This plugins integrates Gauge (in canavas) into the visualization
-*
-*
-* short documentation
-*
-* attributes:
-* - type: WindDirection | Radial | Linear
-* - subtype: type1 | type2 | type3 | type4 | type5
-* - titleString: optional, "name"
-* - unitString: optional, "units"
-* - minValue: optional, "measuring range"
-* - maxValue: optional, "measuring range"
-* - ledVisible: optional, "true", "false"
-* - lcdVisible: optional, "true", "false" 
-* - lcdDecimals: optional, integer
-* - trendVisible: optional, "true" , "false"
-* - size: optional, preset "150" 
-* - threshold: optional, ""
-* - thresholdRising: optional, "true" , "false" - default is "false"
-* - background: optional
-* - framedesign: optional
-* - valueColor: optional, default is "RED"
-* - target: optional, if defined jump to the page with the specified name
-*
+/**
+ * This plugins integrates Gauge (in canavas) into the visualization
+ *
+ *
+ * short documentation
+ *
+ * attributes:
+ * - type: WindDirection | Radial | Linear
+ * - subtype: type1 | type2 | type3 | type4 | type5
+ * - titleString: optional, "name"
+ * - unitString: optional, "units"
+ * - minValue: optional, "measuring range"
+ * - maxValue: optional, "measuring range"
+ * - ledVisible: optional, "true", "false"
+ * - lcdVisible: optional, "true", "false"
+ * - lcdDecimals: optional, integer
+ * - trendVisible: optional, "true" , "false"
+ * - size: optional, preset "150"
+ * - threshold: optional, ""
+ * - thresholdRising: optional, "true" , "false" - default is "false"
+ * - background: optional
+ * - framedesign: optional
+ * - valueColor: optional, default is "RED"
+ * - target: optional, if defined jump to the page with the specified name
+ *
+ * @author NetFritz [NetFritz at gmx dot de]
+ * @since 0.8.1
 */ 
  
 define( ['structure_custom', 'plugins/gauge/dep/tween-min', 'plugins/gauge/dep/steelseries-min', 'css!plugins/gauge/gauge' ], function( VisuDesign_Custom ) {
