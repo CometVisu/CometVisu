@@ -14,6 +14,10 @@ Folgende Direktiven werden zur Zeit unterstützt:
 +-----------------------+-----------------------------------------------------------------------------------------------+
 | elements-information  | Zeigt alle erlaubten Unter-Elemente eines Widgets inkl. deren Attributen als Tabelle an.      |
 +-----------------------+-----------------------------------------------------------------------------------------------+
+| api-doc               | Bindet Informationen aus der Source-Code Dokumentation ein (@author und @since)               |
++-----------------------+-----------------------------------------------------------------------------------------------+
+| replaces              | Hiermit läst sich festlegen, welche Seiten des alten Wikis diese Seite ersetzt                |
++-----------------------+-----------------------------------------------------------------------------------------------+
 
 Die *widget-example* Direktive
 ------------------------------
@@ -136,6 +140,8 @@ verfeinert werden.
 | <settings>        | design            | Name eines Designs| In welchem Design der Screenshot aufgenommen werden soll (Default: metal)  |
 |                   +-------------------+-------------------+----------------------------------------------------------------------------+
 |                   | selector          | Css-Selector      | Definiert den Bereich des Screenshots                                      |
+|                   +-------------------+-------------------+----------------------------------------------------------------------------+
+|                   | sleep             | Zahl              | Initiale Wartezeit in ms bevor der Screenshot aufgenommen wird             |
 +-------------------+-------------------+-------------------+----------------------------------------------------------------------------+
 | <settings>        |                   | #text             | Untertitel des Beispielcodes                                               |
 |   <caption>       |                   |                   |                                                                            |
@@ -145,10 +151,14 @@ verfeinert werden.
 |                   | clickpath         | CSS-Selector      | CSS-Pfad zu einem Element, das angeklickt werden soll vor dem Screenshot   |
 |                   +-------------------+-------------------+----------------------------------------------------------------------------+
 |                   | waitfor           | CSS-Selector      | CSS-Pfad zu einem Element, das sichtbar sein soll vor dem Screenshot       |
+|                   +-------------------+-------------------+----------------------------------------------------------------------------+
+|                   | sleep             | Zahl              | Wartezeit zwischen Senden der Daten und Screenshot                         |
 +-------------------+-------------------+-------------------+----------------------------------------------------------------------------+
 | <settings>        | address           | Gruppenaddresse   | Sende Daten an diese Adresse bevor der Screenshot gemacht wird             |
 |   <screenshot>    +-------------------+-------------------+----------------------------------------------------------------------------+
-|      <data>       | #text             | Text              | Inhalt der Daten die gesendet werden sollen                                |
+|      <data>       | type              | *float* oder *int*| Falls echte Zahlenwerte gesendet werden müssen                             |
++                   +-------------------+-------------------+----------------------------------------------------------------------------+
+|                   | #text             | Text              | Inhalt der Daten die gesendet werden sollen                                |
 +-------------------+-------------------+-------------------+----------------------------------------------------------------------------+
 
 Die *parameter-information* Direktive
@@ -180,3 +190,41 @@ Dieses Beispiel erzeugt die Element-Tabelle für das Switch-Widget.
     .. elements-information:: switch
 
 .. elements-information:: switch
+
+Die *api-doc* Direktive
+-----------------------
+
+Diese Direktive liest wichtige Informationen aus der Source-Code Dokumentation eines Widgets oder Plugins.
+Momentan sind das die Werte der ``@author`` und ``@since`` Angaben.
+
+.. IMPORTANT::
+
+    Wichtig ist hierbei, dass der Name des Widgets exakt dem Namen der Sourcecode-Datei ohne Dateiendung
+    entspricht, also z.B. für ``structure/pure/Switch.js`` nimmt man ``.. api-doc:: Switch``
+    (Groß-/Kleinschreibung beachten). Bei Plugins muss der Ordnername des Plugins angegeben werden, also
+    z.B. für ``plugins/colorchooser/`` nimmt man ``.. api-doc:: colorchooser``
+
+Beispiel für das Switch-Widget:
+
+.. code-block:: rst
+
+    .. api-doc:: Switch
+
+erzeugt folgenden Inhalt:
+
+.. api-doc:: Switch
+
+Die *replaces* Directive
+------------------------
+
+Durch diese Direktive lasst sich definieren, welche Seiten des alten Wikis durch diese Handbuch-Seite ersetzt werden.
+Es können mehrere Wiki-Seiten angegeben werden. Diese Direktive fügt der Dokumentation keinen Inhalt hinzu,
+sondern wird dazu verwendet automatisch Weiterleitungen zu erstellen.
+
+.. code-block:: rst
+
+    .. replaces:: CometVisu/0.8.x/widgets/switch/de/
+        CometVisu/0.8.0/switch/de
+        CometVisu/Widget/switch/de
+        CometVisu/switch
+        CometVisu/switch_(Deutsch)
