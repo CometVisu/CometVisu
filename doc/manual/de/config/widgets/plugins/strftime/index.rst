@@ -115,7 +115,7 @@ Zeitanzeige in der Navbar
     unter Plugins hinzugefügt werden. Das Attribut class wird im Editor nur angezeigt, wenn der complex-Modus
     aktiviert wurde.
 
-Die Zeitanzeige (inspiriert von netsrac) wurde folgendermassen eingebaut.
+Die Zeitanzeige wurde folgendermassen eingebaut.
 
 In der Navbar wurde an der obersten Stelle ein Group Widget eingefügt mit dem Namen "Aktuelle Zeit".
 Innerhalb dieser Group befindet sich ein weiteres Group Widget mit dem Attribut ``nowidget="true"``.

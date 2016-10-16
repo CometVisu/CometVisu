@@ -71,7 +71,7 @@ Dazu geht man wie folgt vor:
 * Auf das Pluszeichen über der Adressliste klicken.
 * In das eingefügte, aber noch leere Feld klicken.
 * Wenn die Gruppenadresse für die Farben im Wiregate importiert wurden, kann die entsprechende
-  Adresse aus dem Auswahlmenue ausgewählt werden. Anderenfalls muss der Haken hinter dem Adressfeld entfernt
+  Adresse aus dem Auswahlmenü ausgewählt werden. Anderenfalls muss der Haken hinter dem Adressfeld entfernt
   und die Adresse manuell nach dem Format ``x/y/z`` also z.B. ``1/2/59`` eingetragen werden.
 * Beim Auswählen einer importierten Gruppenadresse erscheint ggf. der richtige Datenpunkttyp unter Transforms.
   Anderenfalls muss dort von Hand der DPT 5.001 "Scaling" ausgewählt werden.
@@ -79,8 +79,8 @@ Dazu geht man wie folgt vor:
   für Grün ein ``g`` und für Blau ``b`` eingegeben werden.
 * Danach einmal auf save klicken und die Schritte für die nächste Farbe wiederholen.
 
-Am Ende sollten drei Einträge in der Adressliste stehn. Mit einem Klick auf OK wird nun der
-Farbwahlkreis der aktuellen Visuseite hinzugefügt und kann an einer beliebigen Stelle plaziert werden.
+Am Ende sollten drei Einträge in der Adressliste stehen. Mit einem Klick auf OK wird nun der
+Farbwahlkreis der aktuellen Visuseite hinzugefügt und kann an einer beliebigen Stelle platziert werden.
 
 XML Syntax
 ----------

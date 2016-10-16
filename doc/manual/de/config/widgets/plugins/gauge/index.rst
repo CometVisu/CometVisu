@@ -12,6 +12,12 @@ Beschreibung
 
 Das Gauge Plugin fügt der Visualisierung ein Anzeigeinstrument hinzu.
 Es stehen verschiedene Instrumente zur Auswahl.
+Die CometVisu beinhaltet eine Demo-Config für das Gauge-Plugin, welche eine Übersicht über
+die verschiedenen Elemente liefert. Geladen werden kann sie über folgenden Link:
+
+``http://<url-zur-cometvisu>/?config=gauge&testMode=1``
+
+über die Slider kann man dann verschiedenen Werte einstellen und sehen, wie diese angezeigt werden.
 
 Einstellungen
 -------------
