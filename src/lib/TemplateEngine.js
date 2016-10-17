@@ -105,9 +105,9 @@ define([
   this.widgetData = {}; // hash to store all widget specific data
 
   this.enableCache = $.getUrlVar('enableCache') ? !!$.getUrlVar('enableCache') : false;
-    /**
-   * Return (reference to) widgetData object by path.
-   */
+  /**
+ * Return (reference to) widgetData object by path.
+ */
   this.widgetDataGet = function( path ) {
     return this.widgetData[ path ] || (this.widgetData[ path ] = {});
   };

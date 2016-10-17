@@ -45,7 +45,7 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
     ret_val +="</div>";
     return ret_val;
   },
-    construct: function(path) {
+  construct: function(path) {
       var data = templateEngine.widgetDataGet(path);
       templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
         var $actor = $("#"+path+" .actor");

@@ -87,7 +87,7 @@ define( ['_common'], function( design ) {
 
     return ret_val + actor + '</div>';
   },
-    construct : function(path) {
+  construct : function(path) {
       var data = templateEngine.widgetDataGet(path);
       if (data.refresh) {
         templateEngine.messageBroker.subscribe("setup.dom.finished", function() {

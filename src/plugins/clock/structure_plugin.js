@@ -45,7 +45,7 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
     ret_val+="</div>";
     return ret_val;
   },
-    construct: function(path) {
+  construct: function(path) {
       templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
         var $actor = $("#"+path+" .actor");
         $actor.svg({loadURL:'plugins/clock/clock_pure.svg',onLoad:function(svg){

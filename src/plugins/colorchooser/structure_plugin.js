@@ -61,7 +61,7 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
 
     return ret_val + actor + '</div>';
   },
-    construct: function(path) {
+  construct: function(path) {
       var data = templateEngine.widgetDataGet(path);
       templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
         var $actor = $( '#' + path + ' .actor' );

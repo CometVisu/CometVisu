@@ -96,7 +96,7 @@ define( ['_common'], function( design ) {
     return ret_val + '<div class="actor"/></div>';
   },
 
-    construct: function(path) {
+  construct: function(path) {
       var data = templateEngine.widgetDataGet(path);
       // check provided address-items for at least one address which has write-access
       var readonly = true;
