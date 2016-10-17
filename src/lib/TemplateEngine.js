@@ -103,7 +103,9 @@ define([
  
   this.ga_list = {};
   this.widgetData = {}; // hash to store all widget specific data
-  /**
+
+  this.enableCache = $.getUrlVar('enableCache') ? !!$.getUrlVar('enableCache') : false;
+    /**
    * Return (reference to) widgetData object by path.
    */
   this.widgetDataGet = function( path ) {
@@ -1033,9 +1035,12 @@ define([
         this.media = 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)';
       });
 
-      var cache = localStorage.getItem(thisTemplateEngine.configSuffix+".dom");
-      var body = $('body');
-      var configHash = (new XMLSerializer()).serializeToString(xml).hashCode();
+      var cache = false;
+      if (thisTemplateEngine.enableCache) {
+        cache = localStorage.getItem(thisTemplateEngine.configSuffix + ".dom");
+        var body = $('body');
+        var configHash = (new XMLSerializer()).serializeToString(xml).hashCode();
+      }
 
       if (cache) {
         // check if cache is still valid
@@ -1067,7 +1072,7 @@ define([
       profileCV( 'setup_page created pages' );
 
       thisTemplateEngine.messageBroker.publish("setup.dom.finished");
-      if (!cache) {
+      if (!cache && thisTemplateEngine.enableCache) {
         // cache dom + data
         localStorage.setItem(thisTemplateEngine.configSuffix+".dom", body.html());
         localStorage.setItem(thisTemplateEngine.configSuffix+".configHash", configHash);

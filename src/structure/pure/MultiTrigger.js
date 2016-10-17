@@ -95,7 +95,7 @@ define( ['_common'], function( design ) {
     return ret_val + '</div></div>';
   },
     construct: function(path) {
-      var data = templateEngine.widgetDataGat(path);
+      var data = templateEngine.widgetDataGet(path);
       // replace button labels by mapped values
       if( undefined !== data.mapping )
       {

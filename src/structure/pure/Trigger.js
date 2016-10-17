@@ -69,6 +69,8 @@ define( ['_common'], function( design ) {
     // create the actor
     var actor = '<div class="actor switchUnpressed"><div class="value"></div></div>';
 
+    this.construct(path);
+
     return ret_val + actor + '</div>';
   },
     construct : function(path) {
@@ -78,6 +80,7 @@ define( ['_common'], function( design ) {
         basicdesign.defaultUpdate( undefined, data['sendValue'], $('#'+path), true, path );
       });
     },
+    downaction: basicdesign.defaultButtonDownAnimationInheritAction,
   /**
    * Description
    * @method action

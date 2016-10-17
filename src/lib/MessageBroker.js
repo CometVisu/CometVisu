@@ -32,6 +32,10 @@ define([], function() {
     // topics only fired once
     this.__singleEventTopics = ["setup.dom.finished"];
 
+    this.enableTestMode = function() {
+      this.__singleEventTopics = [];
+    };
+
     this.subscribeOnce = function (topic, callback, context, priority) {
       this.subscribe(topic, callback, context, priority, true);
     };
@@ -67,6 +71,10 @@ define([], function() {
         }
       }
     };
+
+    this.clear = function() {
+      this.__registry = {};
+    }
   }
   return {
     // simulate a singleton
