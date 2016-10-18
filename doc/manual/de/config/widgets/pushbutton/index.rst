@@ -1,3 +1,6 @@
+.. replaces:: CometVisu/0.8.0/pushbutton/de
+    CometVisu/0.8.x/widgets/pushbutton/de/
+
 .. _pushbutton:
 
 Das PushButton Widget

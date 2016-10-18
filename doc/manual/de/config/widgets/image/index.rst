@@ -1,3 +1,9 @@
+.. replaces:: CometVisu/0.8.0/image/de
+    CometVisu/0.8.x/widgets/image/de/
+    CometVisu/Widget/image/de
+    CometVisu/image
+    CometVisu/image_(Deutsch)
+
 .. _image:
 
 Das Image Widget

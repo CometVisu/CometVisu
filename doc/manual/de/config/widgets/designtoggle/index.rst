@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/widgets/designtoggle/de/
+
 .. _designtoggle:
 
 Das DesignToggle Widget

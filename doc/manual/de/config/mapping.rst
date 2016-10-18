@@ -1,6 +1,7 @@
 .. replaces:: CometVisu/0.8.x/mapping/de
     CometVisu/mapping
     CometVisu/mapping_(Deutsch)
+    CometVisu/0.8.0/mapping/de
 
 .. _mapping:
 

@@ -4,6 +4,8 @@
     CometVisu/Benutzerhandbuch
     CometVisu/handbook/de
     CometVisu/manual/de
+    CometVisu/0.8.0/manual/de
+    CometVisu/Manual
 
 #############################
 Willkommen bei der CometVisu!
