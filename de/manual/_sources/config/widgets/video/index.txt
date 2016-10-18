@@ -1,3 +1,9 @@
+.. replaces:: CometVisu/0.8.0/video/de
+    CometVisu/0.8.x/widgets/video/de/
+    CometVisu/Widget/video/de
+    CometVisu/video
+    CometVisu/video_(Deutsch)
+
 .. _video:
 
 Das Video Widget

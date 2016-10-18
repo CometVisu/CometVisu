@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/widgets/line/de
+
 .. _line:
 
 Das Line Widget

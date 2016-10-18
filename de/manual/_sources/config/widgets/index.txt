@@ -62,6 +62,7 @@ kann innerhalb der Visu navigiert werden.
     audio/index
     designtoggle/index
     imagetrigger/index
+    infoaction/index
     infotrigger/index
     multitrigger/index
     pagejump/index

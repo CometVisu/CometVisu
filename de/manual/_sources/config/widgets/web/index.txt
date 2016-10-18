@@ -1,3 +1,9 @@
+.. replaces:: CometVisu/0.8.0/web/de
+    CometVisu/0.8.x/widgets/web/de/
+    CometVisu/Iframe
+    CometVisu/Iframe_(Deutsch)
+    CometVisu/Widget/Iframe/de
+
 .. _web:
 
 Das Web Widget

@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/widgets/audio/de
+
 .. _audio:
 
 Das Audio Widget

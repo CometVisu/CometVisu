@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/widgets/refresh/de/
+
 .. _refresh:
 
 Das Refresh Widget

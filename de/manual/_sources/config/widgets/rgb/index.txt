@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/widgets/rgb/de/
+
 .. _rgb:
 
 Das RGB Widget
