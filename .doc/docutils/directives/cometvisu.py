@@ -26,9 +26,10 @@ from parameter_information import ParameterInformationDirective
 from elements_information import ElementsInformationDirective
 from api_doc import ApiDocDirective
 from settings import config
+from __init__ import Version
 
 references = {"_base": "http://test.cometvisu.org/CometVisu/"}
-reference_prefix = config.get("references", "prefix")
+reference_prefix = config.get("references", "prefix").replace("<version>", Version.get_doc_version())
 references_file = config.get("references", "target")
 redirect_file = config.get("redirect", "target")
 
@@ -63,8 +64,10 @@ def process_references(app, doctree, fromdocname):
 
 
 def store_references():
-    with open(references_file, "w") as f:
-        f.write(dumps(references, indent=2, sort_keys=True))
+    # only update references when we build from develop branch
+    if Version.get_doc_version() == config.get("DEFAULT", "develop-version-mapping"):
+        with open(references_file, "w") as f:
+            f.write(dumps(references, indent=2, sort_keys=True))
 
 
 def store_redirect_map():

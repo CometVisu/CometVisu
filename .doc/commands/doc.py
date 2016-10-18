@@ -21,16 +21,34 @@ import os
 import logging
 import sh
 import shutil
+import json
 from argparse import ArgumentParser
 from . import Command
 
 
 class DocGenerator(Command):
+    _source_version = None
 
     def __init__(self):
         super(DocGenerator, self).__init__()
         self.log = logging.getLogger("doc")
         logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+
+    def _get_doc_version(self):
+        git = sh.Command("git")
+        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip()
+        if branch == "develop":
+            return self.config.get("DEFAULT", "develop-version-mapping")
+        else:
+            # read version
+            return self._get_source_version()
+
+    def _get_source_version(self):
+        if self._source_version is None:
+            with open("package.json") as data_file:
+                data = json.load(data_file)
+                self._source_version = data['version']
+        return self._source_version
 
     def _run(self, language, target_dir, browser, skip_screenshots=True, force=False):
 
@@ -45,6 +63,8 @@ class DocGenerator(Command):
             target_dir = os.path.join(self.root_dir, self.config.get(section, "target"))
         else:
             target_dir = os.path.join(self.root_dir, target_dir)
+        target_dir = target_dir.replace("<version>", self._get_doc_version())
+        print("generating doc to %s" % target_dir)
 
         if not os.path.exists(source_dir):
             self.log.error("no sources found for manual (%s) in language '%s'" % (source_dir, language))
@@ -97,7 +117,8 @@ class DocGenerator(Command):
             if options.target is not None:
                 grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, "--targetDir=%s" % options.target, _out=self.process_output, _err=self.process_output)
             else:
-                grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, _out=self.process_output, _err=self.process_output)
+                target_dir = self.config.get("api", "target").replace("<version>", self._get_doc_version())
+                grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, "--targetDir=%s" % target_dir, _out=self.process_output, _err=self.process_output)
         else:
             self.log.error("generation of '%s' documentation is not available" % options.type)
             exit(1)
