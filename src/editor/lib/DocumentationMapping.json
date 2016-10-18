@@ -18,6 +18,7 @@
   "mapping": "/manual/config/mapping.html#mapping", 
   "multitrigger": "/manual/config/widgets/multitrigger/index.html#multitrigger", 
   "page": "/manual/config/widgets/page/index.html#page", 
+  "pagejump": "/manual/config/widgets/pagejump/index.html#pagejump", 
   "powerspectrum": "/manual/config/widgets/plugins/powerspectrum/index.html#powerspectrum", 
   "pushbutton": "/manual/config/widgets/pushbutton/index.html#pushbutton", 
   "refresh": "/manual/config/widgets/refresh/index.html#refresh", 
