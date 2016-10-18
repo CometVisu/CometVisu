@@ -1,3 +1,8 @@
+.. replaces:: CometVisu/0.8.0/imagetrigger/de
+    CometVisu/0.8.x/widgets/imagetrigger/de/
+    CometVisu/imagetrigger/de
+    CometVisu/imagetrigger_(Deutsch)
+
 .. _imagetrigger:
 
 Das ImageTrigger Widget

@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/widgets/reload/de/
+
 .. _reload:
 
 Das Reload Widget

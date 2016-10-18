@@ -1,3 +1,5 @@
+.. replaces:: CometVisu/0.8.x/widgets/break/de/
+
 .. _break:
 
 Das Break Widget
