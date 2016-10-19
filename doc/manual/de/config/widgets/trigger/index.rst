@@ -1,3 +1,9 @@
+.. replaces:: CometVisu/0.8.0/trigger/de
+    CometVisu/0.8.x/widgets/trigger/de/
+    CometVisu/Widget/trigger/de
+    CometVisu/trigger
+    CometVisu/trigger_(Deutsch)
+
 .. _trigger:
 
 Das Trigger Widget

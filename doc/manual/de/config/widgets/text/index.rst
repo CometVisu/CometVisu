@@ -1,3 +1,6 @@
+.. replaces:: CometVisu/0.8.0/text/de
+    CometVisu/0.8.x/widgets/text/de/
+
 .. _text:
 
 Das Text Widget

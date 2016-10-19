@@ -1,3 +1,10 @@
+.. replaces:: CometVisu/0.8.0/info/de
+    CometVisu/0.8.0/info/de)
+    CometVisu/0.8.x/widgets/info/de/
+    CometVisu/Widget/info/de
+    CometVisu/info
+    CometVisu/info_(Deutsch)
+
 .. _info:
 
 Das Info Widget

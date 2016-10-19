@@ -1,3 +1,9 @@
+.. replaces:: CometVisu/0.8.0/infotrigger/de
+    CometVisu/0.8.x/widgets/infotrigger/de/
+    CometVisu/Widget/infotrigger/de
+    CometVisu/infotrigger
+    CometVisu/infotrigger_(Deutsch)
+
 .. _infotrigger:
 
 Das InfoTrigger Widget

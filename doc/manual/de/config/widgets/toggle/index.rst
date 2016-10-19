@@ -1,3 +1,9 @@
+.. replaces:: CometVisu/0.8.0/toggle/de
+    CometVisu/0.8.x/widgets/toggle/de/
+    CometVisu/Widget/toggle/de
+    CometVisu/toggle
+    CometVisu/toggle_(Deutsch)
+
 .. _toggle:
 
 Das Toggle Widget

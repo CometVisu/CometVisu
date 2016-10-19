@@ -193,7 +193,7 @@ describe('generation screenshots from jsdoc examples', function () {
               selectorPrefix = "";
               mockedConfigData.mode = "editor";
             }
-            if (settings.selector.includes(".activePage")) {
+            if (settings.selector.includes(".activePage") || settings.selector.includes("#")) {
               selectorPrefix = "";
             }
             mockupConfig.push(mockedConfigData);

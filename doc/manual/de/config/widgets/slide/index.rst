@@ -1,3 +1,10 @@
+.. replaces:: CometVisu/0.8.0/slide/de
+    CometVisu/0.8.x/widgets/slide/de/
+    CometVisu/Widget/slide/de
+    CometVisu/slide
+    CometVisu/slide_(Deutsch)
+    CometVisu/slider_(Deutsch)
+
 .. _slide:
 
 Das Slide Widget

@@ -1,3 +1,9 @@
+.. replaces:: CometVisu/multitrigger
+    CometVisu/multitrigger_(Deutsch)
+    CometVisu/Widget/multitrigger/de
+    CometVisu/0.8.x/widgets/multitrigger/de/
+    CometVisu/0.8.0/multitrigger/de
+
 .. _multitrigger:
 
 Das MultiTrigger Widget
