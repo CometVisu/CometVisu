@@ -18,15 +18,12 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 import sys
 import json
-from os import path
 from argparse import ArgumentParser
-from commands.doc import DocGenerator
-from commands.scaffolding import Scaffolder
-from commands.translation import TranslationHandler
+from utils.commands.doc import DocGenerator
+from utils.commands.scaffolding import Scaffolder
+from utils.commands.translation import TranslationHandler
 
-root_dir = path.abspath(path.join(path.realpath(path.dirname(__file__)), '..'))
-
-with open(path.join(root_dir, "package.json")) as data_file:
+with open("package.json") as data_file:
     data = json.load(data_file)
     VERSION = data['version']
 

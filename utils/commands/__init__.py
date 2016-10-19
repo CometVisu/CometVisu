@@ -16,32 +16,28 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-
-import sh
-import json
 import os
+import sys
+import gettext
 import ConfigParser
 
+kwargs = {}
+if sys.version_info[0] < 3:
+    kwargs['unicode'] = True
 
-class Version:
-    _source_version = None
-    config = ConfigParser.ConfigParser()
-    config.read(os.path.join('.doc', 'config.ini'))
+gettext.install('messages', **kwargs)
 
-    @classmethod
-    def get_doc_version(cls):
-        git = sh.Command("git")
-        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip()
-        if branch == "develop":
-            return cls.config.get("DEFAULT", "develop-version-mapping")
-        else:
-            # read version
-            return cls.get_source_version()
 
-    @classmethod
-    def get_source_version(cls):
-        if cls._source_version is None:
-            with open("package.json") as data_file:
-                data = json.load(data_file)
-                cls._source_version = data['version']
-        return cls._source_version
+class Command(object):
+
+    def __init__(self):
+        self.config = ConfigParser.ConfigParser()
+        self.config.read(os.path.join('utils', 'config.ini'))
+        self.root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..'))
+
+    def init_locale(self, lang):
+        t = gettext.translation('messages', localedir=self.config.get("DEFAULT", "locale"), languages=[lang])
+        t.install(**kwargs)
+
+    def process_output(self, line):
+        print(line.rstrip())

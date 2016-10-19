@@ -6,7 +6,7 @@ import sys, os
 
 root_dir = os.path.abspath(os.path.join('..', '..', '..'))
 
-extensions_path = os.path.join(root_dir, '.doc', 'docutils', 'directives')
+extensions_path = os.path.join(root_dir, 'utils', 'docutils', 'directives')
 
 sys.path.insert(0, extensions_path)
 

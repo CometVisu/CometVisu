@@ -30,8 +30,8 @@ class TranslationHandler(Command):
 
     def _run(self):
         pygettext = sh.Command("pygettext")
-        pygettext("-d", "messages", "-p", self.config.get("DEFAULT", "locale"), ".doc/docutils/directives/*.py",
-                  ".doc/commands/*.py",
+        pygettext("-d", "messages", "-p", self.config.get("DEFAULT", "locale"), "utils/docutils/directives/*.py",
+                  "utils/commands/*.py",
                   _out=self.process_output, _err=self.process_output)
 
     def run(self, args):

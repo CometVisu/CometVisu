@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
@@ -16,28 +15,9 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+
 import os
-import sys
-import gettext
-import ConfigParser
+import configparser
 
-kwargs = {}
-if sys.version_info[0] < 3:
-    kwargs['unicode'] = True
-
-gettext.install('messages', **kwargs)
-
-
-class Command(object):
-
-    def __init__(self):
-        self.config = ConfigParser.ConfigParser()
-        self.config.read(os.path.join('.doc', 'config.ini'))
-        self.root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..'))
-
-    def init_locale(self, lang):
-        t = gettext.translation('messages', localedir=self.config.get("DEFAULT", "locale"), languages=[lang])
-        t.install(**kwargs)
-
-    def process_output(self, line):
-        print(line.rstrip())
+config = configparser.ConfigParser()
+config.read(os.path.join('utils', 'config.ini'))

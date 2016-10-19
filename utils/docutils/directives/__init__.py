@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
@@ -16,8 +17,31 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
+import sh
+import json
 import os
-import configparser
+import ConfigParser
 
-config = configparser.ConfigParser()
-config.read(os.path.join('.doc', 'config.ini'))
+
+class Version:
+    _source_version = None
+    config = ConfigParser.ConfigParser()
+    config.read(os.path.join('utils', 'config.ini'))
+
+    @classmethod
+    def get_doc_version(cls):
+        git = sh.Command("git")
+        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip()
+        if branch == "develop":
+            return cls.config.get("DEFAULT", "develop-version-mapping")
+        else:
+            # read version
+            return cls.get_source_version()
+
+    @classmethod
+    def get_source_version(cls):
+        if cls._source_version is None:
+            with open("package.json") as data_file:
+                data = json.load(data_file)
+                cls._source_version = data['version']
+        return cls._source_version

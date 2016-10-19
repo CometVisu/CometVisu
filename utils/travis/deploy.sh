@@ -39,9 +39,9 @@ rm -rf out/en || exit 0
 
 # Run our creation script
 echo "generating manual"
-.doc/main.py doc --doc-type manual -c -f
+./cv doc --doc-type manual -c -f
 echo "generating api"
-.doc/main.py doc --doc-type source
+./cv doc --doc-type source
 
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
@@ -66,7 +66,7 @@ ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
 ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
 ENCRYPTED_KEY=${!ENCRYPTED_KEY_VAR}
 ENCRYPTED_IV=${!ENCRYPTED_IV_VAR}
-openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../.doc/travis/deploy_key.enc -out deploy_key -d
+openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in ../utils/travis/deploy_key.enc -out deploy_key -d
 chmod 600 deploy_key
 eval `ssh-agent -s`
 ssh-add deploy_key

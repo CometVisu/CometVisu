@@ -23,8 +23,8 @@ User Manual
 Install some required packages (`apt-get install virtualenv libxml2-dev libxslt-dev python-dev plantuml python-pip`)
 Create virtualenv `virtualenv --python=python3 --system-site-packages .env`
 Activate `source .env/bin/activate`
-Install required python packages specified in .doc/docutils/requirements.txt with
-`pip install -r .doc/requirements`
+Install required python packages specified in utils/docutils/requirements.txt with
+`pip install -r utils/requirements`
  
 generate doc with: 
 ```
@@ -35,7 +35,7 @@ Translation
 -----------
 ```
 # update po files
-pygettext -d messages -p locale/ .doc/docutils/directives/*.py
+pygettext -d messages -p locale/ utils/docutils/directives/*.py
 # translate with poedit + save
 ```
 
