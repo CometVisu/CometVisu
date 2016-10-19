@@ -39,9 +39,9 @@ rm -rf out/en || exit 0
 
 # Run our creation script
 echo "generating manual"
-.doc/main.py doc --doc-type manual -c -f
+./cv doc --doc-type manual -c -f
 echo "generating api"
-.doc/main.py doc --doc-type source
+./cv doc --doc-type source
 
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
