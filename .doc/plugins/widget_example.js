@@ -12,7 +12,7 @@ var libxmljs = require('libxml-xsd').libxmljs;
 var ini = require('ini');
 var execSync = require('child_process').execSync;
 
-var branch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+var branch = process.env.TRAVIS_BRANCH ? process.env.TRAVIS_BRANCH : execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
 var config = ini.parse(fs.readFileSync(path.join(".doc", "config.ini"), 'utf-8'));
 var manifest = JSON.parse(fs.readFileSync('./package.json'));
 var version = (branch == "develop") ? config.DEFAULT['develop-version-mapping'] : manifest.version;
