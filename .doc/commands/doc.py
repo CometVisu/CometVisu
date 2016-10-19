@@ -39,7 +39,7 @@ class DocGenerator(Command):
         git = sh.Command("git")
         branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
             else os.environ.get('TRAVIS_BRANCH')
-        print("'%s'" % branch)
+
         if branch == "develop":
             return self.config.get("DEFAULT", "develop-version-mapping")
         else:
@@ -71,7 +71,7 @@ class DocGenerator(Command):
 
         if not os.path.exists(source_dir):
             self.log.error("no sources found for manual (%s) in language '%s'" % (source_dir, language))
-            exit(1)
+            sys.exit(1)
 
         if force and os.path.exists(target_dir):
             # delete target dir
