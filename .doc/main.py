@@ -53,7 +53,7 @@ def main():
 
         elif options.action not in commands:
             print("action '%s' is not available" % options.action)
-            exit(1)
+            sys.exit(1)
 
         else:
             handler = commands[options.action]()

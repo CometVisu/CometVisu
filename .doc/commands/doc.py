@@ -22,6 +22,7 @@ import logging
 import sh
 import shutil
 import json
+import sys
 from argparse import ArgumentParser
 from . import Command
 
@@ -36,7 +37,8 @@ class DocGenerator(Command):
 
     def _get_doc_version(self):
         git = sh.Command("git")
-        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip()
+        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
+            else os.environ.get('TRAVIS_BRANCH')
         print("'%s'" % branch)
         if branch == "develop":
             return self.config.get("DEFAULT", "develop-version-mapping")
@@ -113,6 +115,7 @@ class DocGenerator(Command):
 
         if 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force, skip_screenshots=not options.complete)
+            sys.exit(0)
         elif options.doc == "source":
             grunt = sh.Command("grunt")
             if options.target is not None:
@@ -122,4 +125,4 @@ class DocGenerator(Command):
                 grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, "--targetDir=%s" % target_dir, _out=self.process_output, _err=self.process_output)
         else:
             self.log.error("generation of '%s' documentation is not available" % options.type)
-            exit(1)
+            sys.exit(1)
