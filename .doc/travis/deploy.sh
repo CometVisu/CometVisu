@@ -38,8 +38,12 @@ rm -rf out/de || exit 0
 rm -rf out/en || exit 0
 
 # Run our creation script
-.doc/main.py doc -c
+echo "generating manual"
+.doc/main.py doc --doc-type manual -c -f
+echo "generating api"
+.doc/main.py doc --doc-type source
 
+echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
 cd out
 git config user.name "Travis CI"
