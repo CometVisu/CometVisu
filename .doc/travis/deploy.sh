@@ -6,10 +6,7 @@ TARGET_BRANCH="gh-pages"
 REPO_SLUG="CometVisu/CometVisu"
 
 function createDocs {
-  sphinx-build -b html doc/manual/de out/de/manual
-  grunt jsdoc:html --targetDir=out/api
-  grunt screenshots --browserName=chrome
-  sphinx-build -b html doc/manual/de out/de/manual
+    .doc/main.py doc -c
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
