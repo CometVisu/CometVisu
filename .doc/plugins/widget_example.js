@@ -9,6 +9,13 @@ var fs = require('fs');
 var path = require('path');
 var xsd = require('libxml-xsd');
 var libxmljs = require('libxml-xsd').libxmljs;
+var ini = require('ini');
+var execSync = require('child_process').execSync;
+
+var branch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+var config = ini.parse(fs.readFileSync(path.join(".doc", "config.ini"), 'utf-8'));
+var manifest = JSON.parse(fs.readFileSync('./package.json'));
+var version = (branch == "develop") ? config.DEFAULT['develop-version-mapping'] : manifest.version;
 
 var configParts = {
   start : '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd">',
@@ -45,7 +52,7 @@ var createDir = function(dir) {
 };
 
 var cacheDir = path.join("cache", "widget_examples", "jsdoc");
-var screenshotDir = path.join("out", "api", "examples");
+var screenshotDir = path.join(config.api.target.replace("<version>", version), "examples");
 createDir(cacheDir);
 
 var schemaString = fs.readFileSync(path.join("src", "visu_config.xsd"), "utf-8");
