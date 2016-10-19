@@ -37,6 +37,7 @@ class DocGenerator(Command):
     def _get_doc_version(self):
         git = sh.Command("git")
         branch = git("rev-parse", "--abbrev-ref", "HEAD").strip()
+        print("'%s'" % branch)
         if branch == "develop":
             return self.config.get("DEFAULT", "develop-version-mapping")
         else:

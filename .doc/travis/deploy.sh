@@ -5,10 +5,6 @@ SOURCE_BRANCH="develop"
 TARGET_BRANCH="gh-pages"
 REPO_SLUG="CometVisu/CometVisu"
 
-function createDocs {
-    .doc/main.py doc -c
-}
-
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
 if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
     echo "Skipping deploy;"
@@ -39,10 +35,10 @@ cd ..
 
 # Clean out existing contents
 rm -rf out/de || exit 0
-rm -rf out/api || exit 0
+rm -rf out/en || exit 0
 
 # Run our creation script
-createDocs
+.doc/main.py doc -c
 
 # Now let's go have some fun with the cloned repo
 cd out
