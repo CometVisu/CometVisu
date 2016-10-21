@@ -28,7 +28,7 @@
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
   "use strict";
 
-  var lastSpeech = null;
+  var lastSpeech = {};
   /**
    * This is a custom function that extends the available widgets.
    * It's purpose is to change the design of the visu during runtime
@@ -64,11 +64,12 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
         return;
       }
 
-      if (lastSpeech == text) {
+      if (lastSpeech[address] == text) {
         // do not repeat
+        console.log("skipping TTS because of repetition "+text);
         return;
       }
-      lastSpeech = text;
+      lastSpeech[address] = text;
 
       var element = $(this);
       var path = element.attr('id');
