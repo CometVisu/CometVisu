@@ -1,15 +1,18 @@
-.. _%%%WIDGET_NAME_LOWER%%%:
+.. _designtoggle:
 
-%%%HEADLINE%%%
+The DesignToggle widget
+=======================
 
-.. api-doc:: %%%WIDGET_NAME%%%
+.. api-doc:: DesignToggle
 
 Description
 -----------
 
-.. ###START-WIDGET-DESCRIPTION#### Please do not change the following content. Changes will be overwritten
+.. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
-.. ###END-WIDGET-DESCRIPTION####
+Adds a button to toggle through the available designs
+
+.. ###END-WIDGET-DESCRIPTION###
 
 Settings
 --------
@@ -17,32 +20,21 @@ Settings
 For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: :ref:`visu-config-details`.
 
-The behaviour and appearance of the %%%WIDGET_NAME%%% widget can be influenced by using certain attributes and elements.
+The behaviour and appearance of the DesignToggle widget can be influenced by using certain attributes and elements.
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the :ref:`editor <editor>`.
 
 Attributes underlined by ..... are mandatory, all the others are optional and be omitted.
 
-Allowed attributes in the %%%WIDGET_NAME%%%-element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Allowed attributes in the DesignToggle-element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. parameter-information:: %%%WIDGET_NAME_LOWER%%%
-
-.. widget-example::
-    :editor: attributes
-    :scale: 75
-    :align: center
-
-    <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <%%%WIDGET_NAME_LOWER%%%>
-        <layout colspan="4" />
-    </%%%WIDGET_NAME_LOWER%%%>
-
+None
 
 Allowed child-elements und their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. elements-information:: %%%WIDGET_NAME_LOWER%%%
+.. elements-information:: designtoggle
 
 .. widget-example::
     :editor: elements
@@ -50,25 +42,34 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <%%%WIDGET_NAME_LOWER%%%>
+    <designtoggle>
         <layout colspan="4" />
-        <label>%%%WIDGET_NAME%%%</label>
+        <label>DesignToggle</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-    </%%%WIDGET_NAME_LOWER%%%>
+    </designtoggle>
 
 Examples
 --------
 
 It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
-for the %%%WIDGET_NAME%%% widget.
+for the DesignToggle widget.
 
 .. CAUTION::
     Make sure that you only use UTF-8 encoded characters by settings the encoding in your
     XML-editor to UTF-8 mode!
 
-.. ###START-WIDGET-EXAMPLES#### Please do not change the following content. Changes will be overwritten
+.. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. ###END-WIDGET-EXAMPLES####
+.. widget-example::
+
+    
+    <designtoggle>
+      <layout colspan="6"/>
+      <label>Change Design</label>
+    </designtoggle>
+    
+
+.. ###END-WIDGET-EXAMPLES###
 
 .. rubric:: Footnotes
 

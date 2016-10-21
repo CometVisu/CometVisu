@@ -1,15 +1,20 @@
-.. _%%%WIDGET_NAME_LOWER%%%:
+.. _line:
 
-%%%HEADLINE%%%
+The Line widget
+===============
 
-.. api-doc:: %%%WIDGET_NAME%%%
+.. api-doc:: Line
 
 Description
 -----------
 
-.. ###START-WIDGET-DESCRIPTION#### Please do not change the following content. Changes will be overwritten
+.. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
-.. ###END-WIDGET-DESCRIPTION####
+A line tag is used to display a horizontal line in the browser to allow for a grouped and thereby tidy display of
+elements on one page. To specify the width of the line an optional &lt;layout/&gt;-child can be added.
+
+
+.. ###END-WIDGET-DESCRIPTION###
 
 Settings
 --------
@@ -17,32 +22,21 @@ Settings
 For a general understanding of how the configuration files are structured and what elements and attributes are
 it is recommended to read this section first: :ref:`visu-config-details`.
 
-The behaviour and appearance of the %%%WIDGET_NAME%%% widget can be influenced by using certain attributes and elements.
+The behaviour and appearance of the Line widget can be influenced by using certain attributes and elements.
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the :ref:`editor <editor>`.
 
 Attributes underlined by ..... are mandatory, all the others are optional and be omitted.
 
-Allowed attributes in the %%%WIDGET_NAME%%%-element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Allowed attributes in the Line-element
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. parameter-information:: %%%WIDGET_NAME_LOWER%%%
-
-.. widget-example::
-    :editor: attributes
-    :scale: 75
-    :align: center
-
-    <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <%%%WIDGET_NAME_LOWER%%%>
-        <layout colspan="4" />
-    </%%%WIDGET_NAME_LOWER%%%>
-
+None.
 
 Allowed child-elements und their attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. elements-information:: %%%WIDGET_NAME_LOWER%%%
+.. elements-information:: line
 
 .. widget-example::
     :editor: elements
@@ -50,25 +44,33 @@ Allowed child-elements und their attributes
     :align: center
 
     <caption>Elements in the editor</caption>
-    <%%%WIDGET_NAME_LOWER%%%>
+    <line>
         <layout colspan="4" />
-        <label>%%%WIDGET_NAME%%%</label>
+        <label>Line</label>
         <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-    </%%%WIDGET_NAME_LOWER%%%>
+    </line>
 
 Examples
 --------
 
 It is possible to manually edit the :doc:`visu_config.xml <../../../xml-format>` and add an entry
-for the %%%WIDGET_NAME%%% widget.
+for the Line widget.
 
 .. CAUTION::
     Make sure that you only use UTF-8 encoded characters by settings the encoding in your
     XML-editor to UTF-8 mode!
 
-.. ###START-WIDGET-EXAMPLES#### Please do not change the following content. Changes will be overwritten
+.. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. ###END-WIDGET-EXAMPLES####
+.. widget-example::
+
+    <settings selector="hr">
+      <caption>A line tag which uses 50% of the screen size (6 of 12 available columns)</caption>
+    </settings>
+    <line><layout colspan="6"/></line>
+    
+
+.. ###END-WIDGET-EXAMPLES###
 
 .. rubric:: Footnotes
 

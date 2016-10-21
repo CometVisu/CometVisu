@@ -35,13 +35,13 @@ class DocParser:
     Parse an existing rst file, recognize placeholder section and allow
     those sections to be replaced with new content
     """
-    sections = {}
-    lines = []
-    replacements = {}
 
     def __init__(self, widget=None, plugin=None):
         self.config = ConfigParser.ConfigParser()
         self.config.read(os.path.join('utils', 'config.ini'))
+        self.sections = {}
+        self.lines = []
+        self.replacements = {}
 
         if widget is not None:
             self.file = os.path.join(self.config.get("manual-en", "widgets"), widget.lower(), "index.rst")
@@ -85,7 +85,7 @@ class DocParser:
                 content.append(".. ###START-%s### Please do not change the following content. Changes will be overwritten\n\n" % section_name)
                 if section_name in self.replacements:
                     content.extend(self.replacements[section_name])
-                content.append("\n.. ###END-%s###\n\n" % section_name)
+                content.append("\n.. ###END-%s###\n" % section_name)
             else:
                 content.append(line)
         return "".join(content)
@@ -167,46 +167,79 @@ class DocGenerator(Command):
         # traverse through the widgets
         for root, dir, files in os.walk(os.path.join("src", "structure", "pure")):
             for file in files:
-                #if file != "_common.js":
-                if file == "ImageTrigger.js":
+                if file != "_common.js":
                     with open(os.path.join(root, file)) as f:
                         content = {
                             "WIDGET-DESCRIPTION": [],
                             "WIDGET-EXAMPLES": []
                         }
                         reading = False
+                        code_block = False
+                        example = False
                         section = "WIDGET-DESCRIPTION"
                         for line in f.readlines():
                             if re.match("^\s*/\*\*\s*$", line):
-                                print("start reading '%s'" % line)
                                 reading = True
+
                             elif reading:
                                 if re.match("^\s*\*/\s*$", line):
-                                    print("end reading '%s'" % line)
                                     break
+
                                 match = re.match("\s*\*?\s(.+)", line)
                                 if match:
-
+                                    indent = ""
                                     if match.group(1)[0:1] == "@":
-
                                         if match.group(1)[1:15] == "widget_example":
                                             section = "WIDGET-EXAMPLES"
                                             content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+                                        elif match.group(1)[1:8] == "example":
+                                            section = "WIDGET-DESCRIPTION"
+                                            content[section].append(".. code-block:: xml\n")
+                                            caption = re.match("\s*<caption>([^<]+)</caption>", match.group(1)[9:])
+                                            if caption:
+                                                content[section].append("    :caption: %s\n" % caption.group(1))
+                                            content[section].append("\n")
+                                            example = True
                                         else:
                                             section = "WIDGET-DESCRIPTION"
                                         continue
-                                    line_content = "" if match.group(1) == "*" else match.group(1)
-                                    if section == "WIDGET-EXAMPLES":
-                                        content[section].append("    %s\n" % line_content)
+
+                                    line_content = match.group(1)
+                                    if match.group(1).strip() == "*":
+                                        line_content = ""
+                                        example = False
+
+                                    if section == "WIDGET-EXAMPLES" or example:
+                                        indent = "    "
                                     else:
-                                        content[section].append("%s\n" % line_content)
+                                        if re.match("\s*```\s*$", line_content):
+                                            if not code_block:
+                                                line_content = "\n.. code-block:: xml\n"
+                                                code_block = True
+                                            else:
+                                                line_content = "\n"
+                                                code_block = False
+                                        elif code_block:
+                                            indent = "    "
+                                        elif re.match("\s*TODO:?\s(.*)$", line_content):
+                                            todo = re.match("\s*TODO:?\s(.*)$", line_content)
+                                            line_content = ".. TODO::\n\n    %s\n" % todo.group(1)
+
+                                    content[section].append("%s%s\n" % (indent, line_content))
+
+                    if (len("".join(content['WIDGET-DESCRIPTION'])) == 0 or
+                            content['WIDGET-DESCRIPTION'][0].startswith(".. TODO::\n\n    complete docs")):
+                        if len(content['WIDGET-EXAMPLES']) == 0:
+                            continue
+                        else:
+                            content['WIDGET-DESCRIPTION'].insert(0, ".. TODO::\n\n    add widget description\n")
 
                     parser = DocParser(widget=file[0:-3])
                     for section in content:
                         parser.replace_section(section, content[section])
 
-                    print(parser.write())
-                    return
+                    parser.write()
+                    #print(parser.tostring())
 
     def parse_existing_doc(self, ):
         """
