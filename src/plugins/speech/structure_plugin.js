@@ -19,17 +19,22 @@
  * Use the Web Speech API (https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
  * to make text-to-speech service available. This plugin listens to a address and forwards the
  * incoming data to the browser TTS engine (if the browser supports it)
+ *
+ * Example:
+ * <speech lang="de">
+ *  <address transform="OH:string" mode="read">Speak</address>
+ * </speech>
  */
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
   "use strict";
 
+  var lastSpeech = null;
   /**
    * This is a custom function that extends the available widgets.
    * It's purpose is to change the design of the visu during runtime
    * to demonstrate all available
    */
   VisuDesign_Custom.prototype.addCreator("speech", {
-    that: this,
 
     create: function( element, path) {
       if (!window.speechSynthesis) {
@@ -39,8 +44,7 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
       var $e = $(element);
       var address = templateEngine.design.makeAddressList($e, false, path);
 
-      var lang = null;
-      var data = templateEngine.widgetDataInsert( path, {
+      templateEngine.widgetDataInsert( path, {
         'language'   : $e.attr('lang') ? $e.attr('lang').toLowerCase() : null,
         'address' : address,
         'type'    : 'speech'
@@ -49,10 +53,23 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
     },
 
     update: function(address, text) {
+      if (!templateEngine.visu.dataReceived) {
+        // first call -> skipping
+        console.log("skipping initial TTS for "+text);
+        return;
+      }
+
       if (!text || text.length === 0) {
         // nothing to say
         return;
       }
+
+      if (lastSpeech == text) {
+        // do not repeat
+        return;
+      }
+      lastSpeech = text;
+
       var element = $(this);
       var path = element.attr('id');
       var data = templateEngine.widgetDataGet(path);

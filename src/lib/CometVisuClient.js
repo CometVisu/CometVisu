@@ -175,6 +175,9 @@ define( ['jquery'], function( $ ) {
             this.readResendHeaderValues();
             session.update(data);
             this.retryCounter = 0;
+            if (!session.dataReceived) {
+              session.dataReceived = true;
+            }
           }
 
           if (self.running) { // keep the requests going
@@ -210,6 +213,9 @@ define( ['jquery'], function( $ ) {
           if (json && !this.doRestart) {
             this.readResendHeaderValues();
             session.update(json.d);
+            if (!session.dataReceived) {
+              session.dataReceived = true;
+            }
           }
           if (self.running) { // keep the requests going, but only
             // request
@@ -394,6 +400,9 @@ define( ['jquery'], function( $ ) {
           var data = json.d;
           session.watchdog.ping();
           session.update(data);
+          if (!session.dataReceived) {
+            session.dataReceived = true;
+          }
         };
 
         /**
@@ -539,7 +548,8 @@ define( ['jquery'], function( $ ) {
       callbackAfterLoggedIn : null,
       context : null,
       loginOnlyMode : false // login only for backend configuration, do not start address subscription
-    }
+    };
+    this.dataReceived = false; // needed to be able to check if the incoming update is the initial answer or a successing update
 
     Object.defineProperty(this, 'backend', {
       get: function () {
@@ -674,6 +684,7 @@ define( ['jquery'], function( $ ) {
       if (json.c) {
         self.backend = $.extend(self.backend, json.c); // assign itself to run setter
       }
+      this.dataReceived = false;
       if (this.loginSettings.loginOnly) {
         this.currentTransport.handleSession(json, false);
       } else {
