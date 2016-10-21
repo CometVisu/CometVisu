@@ -19,12 +19,80 @@
 
 import os
 import logging
+import ConfigParser
+
 import sh
 import shutil
 import json
 import sys
+import re
 from argparse import ArgumentParser
 from . import Command
+from scaffolding import Scaffolder
+
+class DocParser:
+    """
+    Parse an existing rst file, recognize placeholder section and allow
+    those sections to be replaced with new content
+    """
+    sections = {}
+    lines = []
+    replacements = {}
+
+    def __init__(self, widget=None, plugin=None):
+        self.config = ConfigParser.ConfigParser()
+        self.config.read(os.path.join('utils', 'config.ini'))
+
+        if widget is not None:
+            self.file = os.path.join(self.config.get("manual-en", "widgets"), widget.lower(), "index.rst")
+            if not os.path.exists(self.file):
+                if os.path.exists(self.config.get("manual-en", "widget-template")):
+                    # fallback to template
+                    scaffolder = Scaffolder()
+                    scaffolder.generate("en", widget, None)
+            self._parse(self.file)
+
+    def _parse(self, filename):
+        with open(filename) as f:
+            current_section = None
+            # find sections
+            for line in f.readlines():
+                match = re.match("^\.\. #{3}(START|END)-([A-Z\-]+)#{3}", line)
+                if match:
+                    section_name = match.group(2)
+                    if match.group(1) == "START":
+                        current_section = section_name
+                        self.lines.append("##########%s" % section_name)
+                    else:
+                        current_section = None
+                    if section_name not in self.sections:
+                        self.sections[section_name] = []
+                else:
+                    if current_section is not None:
+                        self.sections[current_section].append(line)
+                    else:
+                        self.lines.append(line)
+
+    def replace_section(self, name, content):
+        self.replacements[name] = content
+
+    def tostring(self):
+        content = []
+        for line in self.lines:
+            if line.startswith("##########"):
+                # replace with section content
+                section_name = line[10:]
+                content.append(".. ###START-%s### Please do not change the following content. Changes will be overwritten\n\n" % section_name)
+                if section_name in self.replacements:
+                    content.extend(self.replacements[section_name])
+                content.append("\n.. ###END-%s###\n\n" % section_name)
+            else:
+                content.append(line)
+        return "".join(content)
+
+    def write(self):
+        with open(self.file, "w") as f:
+            f.write(self.tostring())
 
 
 class DocGenerator(Command):
@@ -92,6 +160,62 @@ class DocGenerator(Command):
             # 2dn run with access to the generated screenshots
             sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
 
+    def from_source(self):
+        """
+        Generates the english manual from the source code comments (api documentation)
+        """
+        # traverse through the widgets
+        for root, dir, files in os.walk(os.path.join("src", "structure", "pure")):
+            for file in files:
+                #if file != "_common.js":
+                if file == "ImageTrigger.js":
+                    with open(os.path.join(root, file)) as f:
+                        content = {
+                            "WIDGET-DESCRIPTION": [],
+                            "WIDGET-EXAMPLES": []
+                        }
+                        reading = False
+                        section = "WIDGET-DESCRIPTION"
+                        for line in f.readlines():
+                            if re.match("^\s*/\*\*\s*$", line):
+                                print("start reading '%s'" % line)
+                                reading = True
+                            elif reading:
+                                if re.match("^\s*\*/\s*$", line):
+                                    print("end reading '%s'" % line)
+                                    break
+                                match = re.match("\s*\*?\s(.+)", line)
+                                if match:
+
+                                    if match.group(1)[0:1] == "@":
+
+                                        if match.group(1)[1:15] == "widget_example":
+                                            section = "WIDGET-EXAMPLES"
+                                            content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+                                        else:
+                                            section = "WIDGET-DESCRIPTION"
+                                        continue
+                                    line_content = "" if match.group(1) == "*" else match.group(1)
+                                    if section == "WIDGET-EXAMPLES":
+                                        content[section].append("    %s\n" % line_content)
+                                    else:
+                                        content[section].append("%s\n" % line_content)
+
+                    parser = DocParser(widget=file[0:-3])
+                    for section in content:
+                        parser.replace_section(section, content[section])
+
+                    print(parser.write())
+                    return
+
+    def parse_existing_doc(self, ):
+        """
+        Read the existing documentation
+        :param widget:
+        :param plugin:
+        :return:
+        """
+
     def run(self, args):
         parser = ArgumentParser(usage="%(prog)s - CometVisu documentation generator")
 
@@ -111,11 +235,17 @@ class DocGenerator(Command):
         parser.add_argument('--doc-type', "-dt", dest="doc", default="manual",
                             type=str, help='type of documentation to generate (manual, source)', nargs='?')
 
+        parser.add_argument("--from-source", dest="from_source", action="store_true", help="generate english manual from source comments")
+
         options = parser.parse_args(args)
 
-        if 'doc' not in options or options.doc == "manual":
+        if options.from_source:
+            self.from_source()
+
+        elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force, skip_screenshots=not options.complete)
             sys.exit(0)
+
         elif options.doc == "source":
             grunt = sh.Command("grunt")
             if options.target is not None:

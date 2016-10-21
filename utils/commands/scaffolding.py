@@ -30,7 +30,7 @@ class Scaffolder(Command):
         self.log = logging.getLogger("scaffolder")
         logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
-    def _run(self, language, widget_name, plugin_name, force=False):
+    def generate(self, language, widget_name, plugin_name, force=False):
         self.init_locale(language)
         section = "manual-%s" % language
         mode = 'widget'if widget_name else 'plugin'
@@ -123,7 +123,7 @@ class Scaffolder(Command):
             self.log.error("please provide either a widget or a plugin name")
             exit(1)
 
-        self._run(options.language,
+        self.generate(options.language,
                   options.widget if 'widget' in options else None,
                   options.plugin if 'plugin' in options else None,
                   force=options.force)
