@@ -472,6 +472,7 @@
       <xsd:element name="gauge" type="gauge" />
       <xsd:element name="calendarlist" type="calendarlist" />
       <xsd:element name="infoaction" type="infoaction" />
+      <xsd:element name="speech" type="speech" />
     </xsd:choice>
   </xsd:group>
 
@@ -1752,5 +1753,18 @@
       <xsd:element name="pagejump" type="pagejump" />
       <xsd:element name="info" type="info" />
     </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="speech">
+    <xsd:sequence>
+      <xsd:element name="address" type="address" minOccurs="1"  maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="lang" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">The language that should be used to speak the text.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Die Stimme die benutzt werden soll, um den Text zu sprechen.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+
   </xsd:complexType>
 </xsd:schema>

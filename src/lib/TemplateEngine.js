@@ -199,8 +199,9 @@ define([
               var children = element.children;
               if( children[0] )
                 updateFn.call( children[0], key, data );
-              else
-                console.log( element, children, type ); // DEBUG FIXME
+              else {
+                updateFn.call( element, key, data );
+              }
             }
             //console.log( element, type, updateFn );
           } else if( typeof id === 'function' ) {
