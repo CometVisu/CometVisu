@@ -12,8 +12,6 @@ Description
 
 This plugins integrates formated date and clock strings into based on strftime.
 
-Thanks to Michael Markstaller for implementing the jqclock plugin as reference.
-
 
 .. ###END-WIDGET-DESCRIPTION###
 
