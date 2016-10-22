@@ -38,10 +38,14 @@ rm -rf out/de || exit 0
 rm -rf out/en || exit 0
 
 # Run our creation script
-echo "generating manual"
-./cv doc --doc-type manual -c -f
+echo "generating german manual"
+./cv doc --doc-type manual -c -f -l de
 echo "generating api"
 ./cv doc --doc-type source
+echo "updating english manual from source code doc comments"
+./cv doc --from-source
+echo "generating english manual"
+./cv doc --doc-type manual -c -f -l en
 
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo

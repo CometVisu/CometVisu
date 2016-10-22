@@ -18,7 +18,7 @@ Bedienbare Widgets
 ==================
 
 Diese Widgets können in irgendeiner Weise bedient werden um so Daten an das Backend zu senden oder andere
-Aktionen auszulösen, z.B. kann man mit einem Switch durch anklicken einen Lampe schalten, oder mit einem Pagejumo
+Aktionen auszulösen, z.B. kann man mit einem Switch durch anklicken einen Lampe schalten, oder mit einem Pagejump
 kann innerhalb der Visu navigiert werden.
 
 +-------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

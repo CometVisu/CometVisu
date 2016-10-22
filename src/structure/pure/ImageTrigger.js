@@ -22,18 +22,20 @@
  * Adds an image like the {@link structure/pure/Image} widget, but additionally the image can be changed by incoming
  * data and can send data to the backend by clicking on it.
  * There modes to react on incoming data:
- *  * type="show": Hides the image when incoming data == 0
- *  * type="select": Changes the image by appending the incoming data to the initial configured image source,
- *  or hide it when incoming data == 0
- *  Example:
- *  ```
- *  <imagetrigger src="icon/comet" suffix="svg" sendValue="clicked" type="select">
- *   <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
- *  </imagetrigger>
- *  ```
- *  initially shows nothing. When the CometVisu receives the string '_icon' in address `0/0/0`,
- *  the image `icon/comet_opt_icon.svg` is shown. When the CometVisu receives '0' on address `0/0/0`,
- *  this image is hidden.
+ *
+ * * type="show": Hides the image when incoming data == 0
+ * * type="select": Changes the image by appending the incoming data to the initial configured image source,
+ *   or hide it when incoming data == 0
+ *
+ * Example:
+ * ```
+ * <imagetrigger src="icon/comet" suffix="svg" sendValue="clicked" type="select">
+ *  <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
+ * </imagetrigger>
+ * ```
+ * initially shows nothing. When the CometVisu receives the string '_icon' in address `0/0/0`,
+ * the image `icon/comet_opt_icon.svg` is shown. When the CometVisu receives '0' on address `0/0/0`,
+ * this image is hidden.
  *
  * @widget_example <settings>
  *   <screenshot name="image_trigger">

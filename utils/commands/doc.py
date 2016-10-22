@@ -19,12 +19,94 @@
 
 import os
 import logging
+import ConfigParser
+
 import sh
 import shutil
 import json
 import sys
+import re
+from lxml import etree
 from argparse import ArgumentParser
 from . import Command
+from scaffolding import Scaffolder
+
+class DocParser:
+    """
+    Parse an existing rst file, recognize placeholder section and allow
+    those sections to be replaced with new content
+    """
+
+    def __init__(self, widget=None, plugin=None):
+        self.config = ConfigParser.ConfigParser()
+        self.config.read(os.path.join('utils', 'config.ini'))
+        self.sections = {}
+        self.lines = []
+        self.replacements = {}
+        self.name = widget if widget is not None else plugin
+        self.is_plugin = True if plugin is not None else False
+        if self.is_plugin:
+            self.file = os.path.join(self.config.get("manual-en", "plugins"), self.name.lower(), "index.rst")
+        else:
+            self.file = os.path.join(self.config.get("manual-en", "widgets"), self.name.lower(), "index.rst")
+
+    def init(self):
+        if not self.is_plugin:
+            if not os.path.exists(self.file):
+                if os.path.exists(self.config.get("manual-en", "widget-template")):
+                    # fallback to template
+                    scaffolder = Scaffolder()
+                    scaffolder.generate("en", self.name, None)
+
+        else:
+            if not os.path.exists(self.file):
+                if os.path.exists(self.config.get("manual-en", "plugin-template")):
+                    # fallback to template
+                    scaffolder = Scaffolder()
+                    scaffolder.generate("en", None, self.name)
+
+    def parse(self):
+        self.init()
+        with open(self.file) as f:
+            current_section = None
+            # find sections
+            for line in f.readlines():
+                match = re.match("^\.\. #{3}(START|END)-([A-Z\-]+)#{3}", line)
+                if match:
+                    section_name = match.group(2)
+                    if match.group(1) == "START":
+                        current_section = section_name
+                        self.lines.append("##########%s" % section_name)
+                    else:
+                        current_section = None
+                    if section_name not in self.sections:
+                        self.sections[section_name] = []
+                else:
+                    if current_section is not None:
+                        self.sections[current_section].append(line)
+                    else:
+                        self.lines.append(line)
+
+    def replace_section(self, name, content):
+        self.replacements[name] = content
+
+    def tostring(self):
+        content = []
+        for line in self.lines:
+            if line.startswith("##########"):
+                # replace with section content
+                section_name = line[10:]
+                content.append(".. ###START-%s### Please do not change the following content. Changes will be overwritten\n\n" % section_name)
+                if section_name in self.replacements:
+                    content.extend(self.replacements[section_name])
+                content.append("\n.. ###END-%s###\n" % section_name)
+            else:
+                content.append(line)
+        return "".join(content)
+
+    def write(self):
+        with open(self.file, "w") as f:
+            f.write(self.tostring())
 
 
 class DocGenerator(Command):
@@ -92,6 +174,159 @@ class DocGenerator(Command):
             # 2dn run with access to the generated screenshots
             sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
 
+    def from_source(self, path, plugin=False):
+        """
+        Generates the english manual from the source code comments (api documentation)
+        """
+        # traverse through the widgets
+        root, dirs, files = os.walk(path).next()
+        source_files = []
+        if plugin:
+            for dir in dirs:
+                source_files.append((dir, os.path.join(root, dir, "structure_plugin.js")))
+        else:
+            for file in files:
+                if file not in ["_common.js", "Unknown.js"]:
+                    source_files.append((file[0:-3], os.path.join(root, file)))
+
+        for name, file in source_files:
+            parser = DocParser(widget=name) if not plugin else DocParser(plugin=name)
+            api_screenshot_dir = os.path.join(self.config.get("api", "target").replace("<version>", self._get_doc_version()), "examples")
+
+            with open(file) as f:
+                content = {
+                    "WIDGET-DESCRIPTION": [],
+                    "WIDGET-EXAMPLES": []
+                }
+                reading = False
+                code_block = False
+                example = False
+                section = "WIDGET-DESCRIPTION"
+                skip_lines_before = 0
+                lines = f.readlines()
+                for i, line in enumerate(lines):
+                    if skip_lines_before > i:
+                        continue
+
+                    if line.startswith("define"):
+                        # source code starts here -> do not proceed
+                        break
+
+                    if re.match("^\s*/\*\*\s*$", line):
+                        reading = True
+
+                    elif reading:
+                        if re.match("^[\s*]*\*/\s*$", line):
+                            break
+
+                        match = re.match("\s*\*?\s(.+)", line)
+                        if match:
+                            indent = ""
+                            if match.group(1)[0:1] == "@":
+                                if match.group(1)[1:15] == "widget_example":
+                                    section = "WIDGET-EXAMPLES"
+
+                                    # we need to parse the examples xml and check if the screenshots already exist
+                                    # in the api-docs, then we need not to process them twice and jsut add a combination
+                                    # of a figure and a clode-block here
+                                    example_code = match.group(1)[16:]
+                                    for k, example_line in enumerate(lines[i+1:]):
+                                        if re.match("^[\s*]*(\*/|@.+)\s*$", example_line) or len(re.sub("[\s*\n]", "", example_line)) == 0:
+                                            # example finished
+                                            skip_lines_before = k+i+1
+                                            #print("skipping example lines from %s to %d" % (i, skip_lines_before))
+                                            break
+                                        example_code += re.sub("^\s*\*\s", "", example_line)
+
+                                    if len(example_code) > 0:
+                                        #print(example_code)
+                                        xml = etree.fromstring("<root>%s</root>" % example_code)
+                                        nodes = xml.xpath("/root/settings/screenshot")
+                                        if len(nodes) > 0:
+                                            for screenshot in nodes:
+                                                screenshot_name = screenshot.get("name")
+                                                screenshot_file = os.path.join(api_screenshot_dir, "%s.png" % screenshot_name)
+                                                #print("looking for screenshot %s" % screenshot_file)
+                                                if os.path.exists(screenshot_file):
+                                                    screenshot_target_dir = os.path.join(os.path.dirname(parser.file), "_static")
+                                                    if not os.path.exists(screenshot_target_dir):
+                                                        os.makedirs(screenshot_target_dir)
+                                                    # copy
+                                                    shutil.copy(screenshot_file, screenshot_target_dir)
+                                                    content[section].append(".. figure:: _static/%s.png\n" % screenshot_name)
+
+                                                    # check for screenshot caption
+                                                    caption = screenshot.find("caption")
+                                                    if caption is not None:
+                                                        content[section].append("\n    %s\n\n" % caption.text)
+
+                                            # add the code-block
+                                            content[section].append(".. code-block:: xml\n\n    ")
+                                            for child in xml:
+                                                if child.tag == "meta":
+                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').split("\n")))
+                                                elif child.tag != "settings":
+                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').split("\n")))
+                                        else:
+                                            # no screenshot name defined, the auto-configured name cannot be guessed
+                                            # reliable -> using widget-example
+                                            skip_lines_before = 0
+                                            content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+                                    else:
+                                        # no screenshot found, add widget-example th generate one
+                                        content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+
+                                elif match.group(1)[1:8] == "example":
+                                    section = "WIDGET-DESCRIPTION"
+                                    content[section].append(".. code-block:: xml\n")
+                                    caption = re.match("\s*<caption>([^<]+)</caption>", match.group(1)[9:])
+                                    if caption:
+                                        content[section].append("    :caption: %s\n" % caption.group(1))
+                                    content[section].append("\n")
+                                    example = True
+                                else:
+                                    section = "WIDGET-DESCRIPTION"
+                                continue
+
+                            line_content = match.group(1)
+                            if match.group(1).strip() == "*":
+                                line_content = ""
+                                example = False
+
+                            if section == "WIDGET-EXAMPLES" or example:
+                                indent = "    "
+                            else:
+                                if re.match("\s*```\s*$", line_content):
+                                    if not code_block:
+                                        line_content = "\n.. code-block:: xml\n"
+                                        code_block = True
+                                    else:
+                                        line_content = "\n"
+                                        code_block = False
+                                elif code_block:
+                                    indent = "    "
+                                elif re.match("\s*TODO:?\s(.*)$", line_content):
+                                    todo = re.match("\s*TODO:?\s(.*)$", line_content)
+                                    line_content = ".. TODO::\n\n    %s\n" % todo.group(1)
+
+                            content[section].append("%s%s\n" % (indent, line_content))
+
+            if (len("".join(x.strip() for x in content['WIDGET-DESCRIPTION'])) == 0 or
+                    content['WIDGET-DESCRIPTION'][0].startswith(".. TODO::\n\n    complete docs")):
+                if len(content['WIDGET-EXAMPLES']) == 0:
+                    continue
+                else:
+                    content['WIDGET-DESCRIPTION'].insert(0, ".. TODO::\n\n    add widget description\n")
+
+            parser.parse()
+            for section in content:
+                parser.replace_section(section, content[section])
+
+            parser.write()
+            # print(file)
+            # print(content)
+            #print(parser.tostring())
+
     def run(self, args):
         parser = ArgumentParser(usage="%(prog)s - CometVisu documentation generator")
 
@@ -111,11 +346,18 @@ class DocGenerator(Command):
         parser.add_argument('--doc-type', "-dt", dest="doc", default="manual",
                             type=str, help='type of documentation to generate (manual, source)', nargs='?')
 
+        parser.add_argument("--from-source", dest="from_source", action="store_true", help="generate english manual from source comments")
+
         options = parser.parse_args(args)
 
-        if 'doc' not in options or options.doc == "manual":
+        if options.from_source:
+            self.from_source(os.path.join("src", "structure", "pure"))
+            self.from_source(os.path.join("src", "plugins"), plugin=True)
+
+        elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force, skip_screenshots=not options.complete)
             sys.exit(0)
+
         elif options.doc == "source":
             grunt = sh.Command("grunt")
             if options.target is not None:

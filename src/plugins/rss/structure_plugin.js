@@ -20,7 +20,8 @@
  * *and* a parser for local feeds using jQuery 1.5+ into CometVisu.
  * rssfeedlocal is derived from simplerss and zrssfeed
  * rssfeedlocal is mainly meant to be used with rsslog.php and plugins
- * Examples
+ *
+ * @example
  *   <rss src="/visu/plugins/rss/rsslog.php" refresh="300" link="false" title="false"></rss>
  *   <rss src="http://www.tagesschau.de/xml/rss2" refresh="300">Test API</rss>
  *   <rss src="/visu/plugins/rss/tagesschau-rss2.xml" refresh="300" header="true" date="true"></rss>

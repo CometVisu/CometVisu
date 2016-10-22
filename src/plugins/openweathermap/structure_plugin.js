@@ -1,4 +1,4 @@
-/**
+/*
  * structure_plugin.js (c) 2015 by Stefan Borchert (stefan@borchert.cc)
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -18,6 +18,9 @@
 
 /**
  * This plugins integrates OpenWeatherMap data.
+ *
+ * @author Stefan Borchert (stefan@borchert.cc)
+ * @since 0.9.0
  */
 
 require.config({
