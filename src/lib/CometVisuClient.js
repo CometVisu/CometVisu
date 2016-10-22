@@ -211,9 +211,7 @@ define( ['jquery'], function( $ ) {
           if (json && !this.doRestart) {
             this.readResendHeaderValues();
             session.update(json.d);
-            if (!session.dataReceived) {
-              session.dataReceived = true;
-            }
+            session.dataReceived = true;
           }
           if (self.running) { // keep the requests going, but only
             // request
@@ -398,9 +396,7 @@ define( ['jquery'], function( $ ) {
           var data = json.d;
           session.watchdog.ping();
           session.update(data);
-          if (!session.dataReceived) {
-            session.dataReceived = true;
-          }
+          session.dataReceived = true;
         };
 
         /**
