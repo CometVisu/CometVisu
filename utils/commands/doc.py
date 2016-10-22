@@ -186,7 +186,7 @@ class DocGenerator(Command):
                 source_files.append((dir, os.path.join(root, dir, "structure_plugin.js")))
         else:
             for file in files:
-                if file != "_common.js":
+                if file not in ["_common.js", "Unknown.js"]:
                     source_files.append((file[0:-3], os.path.join(root, file)))
 
         for name, file in source_files:

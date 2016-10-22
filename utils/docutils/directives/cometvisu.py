@@ -63,9 +63,10 @@ def process_references(app, doctree, fromdocname):
         node.parent.remove(node)
 
 
-def store_references():
-    # only update references when we build from develop branch
-    if Version.get_doc_version() == config.get("DEFAULT", "develop-version-mapping"):
+def store_references(app):
+    # only update references when we build from develop branch and for the correct language
+    if Version.get_doc_version() == config.get("DEFAULT", "develop-version-mapping") and \
+       app.config.language == config.get("references", "language"):
         with open(references_file, "w") as f:
             f.write(dumps(references, indent=2, sort_keys=True))
 
@@ -81,7 +82,7 @@ def store_redirect_map():
 
 def on_finish(app, exception):
     if exception is None:
-        store_references()
+        store_references(app)
         store_redirect_map()
 
 
