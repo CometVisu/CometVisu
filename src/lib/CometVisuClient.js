@@ -175,9 +175,7 @@ define( ['jquery'], function( $ ) {
             this.readResendHeaderValues();
             session.update(data);
             this.retryCounter = 0;
-            if (!session.dataReceived) {
-              session.dataReceived = true;
-            }
+            session.dataReceived = true;
           }
 
           if (self.running) { // keep the requests going
