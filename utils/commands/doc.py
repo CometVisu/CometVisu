@@ -51,6 +51,14 @@ class DocParser:
                     scaffolder = Scaffolder()
                     scaffolder.generate("en", widget, None)
             self._parse(self.file)
+        elif plugin is not None:
+            self.file = os.path.join(self.config.get("manual-en", "plugins"), plugin.lower(), "index.rst")
+            if not os.path.exists(self.file):
+                if os.path.exists(self.config.get("manual-en", "plugin-template")):
+                    # fallback to template
+                    scaffolder = Scaffolder()
+                    scaffolder.generate("en", None, plugin)
+            self._parse(self.file)
 
     def _parse(self, filename):
         with open(filename) as f:
@@ -160,94 +168,101 @@ class DocGenerator(Command):
             # 2dn run with access to the generated screenshots
             sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
 
-    def from_source(self):
+    def from_source(self, path, plugin=False):
         """
         Generates the english manual from the source code comments (api documentation)
         """
         # traverse through the widgets
-        for root, dir, files in os.walk(os.path.join("src", "structure", "pure")):
+        root, dirs, files = os.walk(path).next()
+        source_files = []
+        if plugin:
+            for dir in dirs:
+                source_files.append((dir, os.path.join(root, dir, "structure_plugin.js")))
+        else:
             for file in files:
                 if file != "_common.js":
-                    with open(os.path.join(root, file)) as f:
-                        content = {
-                            "WIDGET-DESCRIPTION": [],
-                            "WIDGET-EXAMPLES": []
-                        }
-                        reading = False
-                        code_block = False
-                        example = False
-                        section = "WIDGET-DESCRIPTION"
-                        for line in f.readlines():
-                            if re.match("^\s*/\*\*\s*$", line):
-                                reading = True
+                    source_files.append((file[0:-3], os.path.join(root, file)))
 
-                            elif reading:
-                                if re.match("^\s*\*/\s*$", line):
-                                    break
+        for name, file in source_files:
 
-                                match = re.match("\s*\*?\s(.+)", line)
-                                if match:
-                                    indent = ""
-                                    if match.group(1)[0:1] == "@":
-                                        if match.group(1)[1:15] == "widget_example":
-                                            section = "WIDGET-EXAMPLES"
-                                            content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
-                                        elif match.group(1)[1:8] == "example":
-                                            section = "WIDGET-DESCRIPTION"
-                                            content[section].append(".. code-block:: xml\n")
-                                            caption = re.match("\s*<caption>([^<]+)</caption>", match.group(1)[9:])
-                                            if caption:
-                                                content[section].append("    :caption: %s\n" % caption.group(1))
-                                            content[section].append("\n")
-                                            example = True
-                                        else:
-                                            section = "WIDGET-DESCRIPTION"
-                                        continue
+            with open(file) as f:
+                content = {
+                    "WIDGET-DESCRIPTION": [],
+                    "WIDGET-EXAMPLES": []
+                }
+                reading = False
+                code_block = False
+                example = False
+                section = "WIDGET-DESCRIPTION"
+                for line in f.readlines():
+                    if line.startswith("define"):
+                        # source code starts here -> do not proceed
+                        break
 
-                                    line_content = match.group(1)
-                                    if match.group(1).strip() == "*":
-                                        line_content = ""
-                                        example = False
+                    if re.match("^\s*/\*\*\s*$", line):
+                        reading = True
 
-                                    if section == "WIDGET-EXAMPLES" or example:
-                                        indent = "    "
+                    elif reading:
+                        if re.match("^[\s*]*\*/\s*$", line):
+                            break
+
+                        match = re.match("\s*\*?\s(.+)", line)
+                        if match:
+                            indent = ""
+                            if match.group(1)[0:1] == "@":
+                                if match.group(1)[1:15] == "widget_example":
+                                    section = "WIDGET-EXAMPLES"
+                                    content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+                                elif match.group(1)[1:8] == "example":
+                                    section = "WIDGET-DESCRIPTION"
+                                    content[section].append(".. code-block:: xml\n")
+                                    caption = re.match("\s*<caption>([^<]+)</caption>", match.group(1)[9:])
+                                    if caption:
+                                        content[section].append("    :caption: %s\n" % caption.group(1))
+                                    content[section].append("\n")
+                                    example = True
+                                else:
+                                    section = "WIDGET-DESCRIPTION"
+                                continue
+
+                            line_content = match.group(1)
+                            if match.group(1).strip() == "*":
+                                line_content = ""
+                                example = False
+
+                            if section == "WIDGET-EXAMPLES" or example:
+                                indent = "    "
+                            else:
+                                if re.match("\s*```\s*$", line_content):
+                                    if not code_block:
+                                        line_content = "\n.. code-block:: xml\n"
+                                        code_block = True
                                     else:
-                                        if re.match("\s*```\s*$", line_content):
-                                            if not code_block:
-                                                line_content = "\n.. code-block:: xml\n"
-                                                code_block = True
-                                            else:
-                                                line_content = "\n"
-                                                code_block = False
-                                        elif code_block:
-                                            indent = "    "
-                                        elif re.match("\s*TODO:?\s(.*)$", line_content):
-                                            todo = re.match("\s*TODO:?\s(.*)$", line_content)
-                                            line_content = ".. TODO::\n\n    %s\n" % todo.group(1)
+                                        line_content = "\n"
+                                        code_block = False
+                                elif code_block:
+                                    indent = "    "
+                                elif re.match("\s*TODO:?\s(.*)$", line_content):
+                                    todo = re.match("\s*TODO:?\s(.*)$", line_content)
+                                    line_content = ".. TODO::\n\n    %s\n" % todo.group(1)
 
-                                    content[section].append("%s%s\n" % (indent, line_content))
+                            content[section].append("%s%s\n" % (indent, line_content))
 
-                    if (len("".join(content['WIDGET-DESCRIPTION'])) == 0 or
-                            content['WIDGET-DESCRIPTION'][0].startswith(".. TODO::\n\n    complete docs")):
-                        if len(content['WIDGET-EXAMPLES']) == 0:
-                            continue
-                        else:
-                            content['WIDGET-DESCRIPTION'].insert(0, ".. TODO::\n\n    add widget description\n")
+            if (len("".join(x.strip() for x in content['WIDGET-DESCRIPTION'])) == 0 or
+                    content['WIDGET-DESCRIPTION'][0].startswith(".. TODO::\n\n    complete docs")):
+                if len(content['WIDGET-EXAMPLES']) == 0:
+                    continue
+                else:
+                    content['WIDGET-DESCRIPTION'].insert(0, ".. TODO::\n\n    add widget description\n")
 
-                    parser = DocParser(widget=file[0:-3])
-                    for section in content:
-                        parser.replace_section(section, content[section])
+            parser = DocParser(widget=name) if not plugin else DocParser(plugin=name)
+            for section in content:
+                parser.replace_section(section, content[section])
 
-                    parser.write()
-                    #print(parser.tostring())
-
-    def parse_existing_doc(self, ):
-        """
-        Read the existing documentation
-        :param widget:
-        :param plugin:
-        :return:
-        """
+            parser.write()
+            # print(file)
+            # print(content)
+            #print(parser.tostring())
 
     def run(self, args):
         parser = ArgumentParser(usage="%(prog)s - CometVisu documentation generator")
@@ -273,7 +288,8 @@ class DocGenerator(Command):
         options = parser.parse_args(args)
 
         if options.from_source:
-            self.from_source()
+            #self.from_source(os.path.join("src", "structure", "pure"))
+            self.from_source(os.path.join("src", "plugins"), plugin=True)
 
         elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force, skip_screenshots=not options.complete)
