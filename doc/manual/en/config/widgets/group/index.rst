@@ -60,54 +60,50 @@ for the Group widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. widget-example::
+.. figure:: _static/group_with_border.png
 
-    <settings selector=".widget_container[data-type=group]">
-     <screenshot name="group_with_border">
-       <caption>Group with border and name</caption>
-       <data address="0/0/0">1</data>
-       <data address="0/0/1">21</data>
-     </screenshot>
-     </settings>
-     <group name="Example Group">
-       <layout colspan="6" />
+    Group with border and name
+
+.. code-block:: xml
+
+    
+    <group name="Example Group">
+       <layout colspan="6"/>
        <text><label>Some Text</label></text>
        <switch>
-         <layout colspan="3" />
+         <layout colspan="3"/>
          <label>Switch</label>
          <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
        </switch>
        <info format="%.1f °C">
-         <layout colspan="3" />
+         <layout colspan="3"/>
          <label>Temperature</label>
          <address transform="DPT:9.001">0/0/1</address>
        </info>
      </group>
-    
-.. widget-example::
+        
+.. figure:: _static/group_without_border.png
 
-    <settings selector=".widget_container[data-type=group]">
-     <screenshot name="group_without_border">
-       <caption>Hidden Group: no border no name</caption>
-       <data address="0/0/0">1</data>
-       <data address="0/0/1">21</data>
-     </screenshot>
-     </settings>
-     <group nowidget="true">
-       <layout colspan="6" />
+    Hidden Group: no border no name
+
+.. code-block:: xml
+
+    
+    <group nowidget="true">
+       <layout colspan="6"/>
        <text><label>Some Text</label></text>
        <switch>
-         <layout colspan="3" />
+         <layout colspan="3"/>
          <label>Switch</label>
          <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
        </switch>
        <info format="%.1f °C">
-         <layout colspan="3" />
+         <layout colspan="3"/>
          <label>Temperature</label>
          <address transform="DPT:9.001">0/0/1</address>
        </info>
      </group>
-    
+        
 
 .. ###END-WIDGET-EXAMPLES###
 

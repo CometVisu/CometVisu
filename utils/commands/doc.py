@@ -26,6 +26,7 @@ import shutil
 import json
 import sys
 import re
+from lxml import etree
 from argparse import ArgumentParser
 from . import Command
 from scaffolding import Scaffolder
@@ -42,26 +43,31 @@ class DocParser:
         self.sections = {}
         self.lines = []
         self.replacements = {}
+        self.name = widget if widget is not None else plugin
+        self.is_plugin = True if plugin is not None else False
+        if self.is_plugin:
+            self.file = os.path.join(self.config.get("manual-en", "plugins"), self.name.lower(), "index.rst")
+        else:
+            self.file = os.path.join(self.config.get("manual-en", "widgets"), self.name.lower(), "index.rst")
 
-        if widget is not None:
-            self.file = os.path.join(self.config.get("manual-en", "widgets"), widget.lower(), "index.rst")
+    def init(self):
+        if not self.is_plugin:
             if not os.path.exists(self.file):
                 if os.path.exists(self.config.get("manual-en", "widget-template")):
                     # fallback to template
                     scaffolder = Scaffolder()
-                    scaffolder.generate("en", widget, None)
-            self._parse(self.file)
-        elif plugin is not None:
-            self.file = os.path.join(self.config.get("manual-en", "plugins"), plugin.lower(), "index.rst")
+                    scaffolder.generate("en", self.name, None)
+
+        else:
             if not os.path.exists(self.file):
                 if os.path.exists(self.config.get("manual-en", "plugin-template")):
                     # fallback to template
                     scaffolder = Scaffolder()
-                    scaffolder.generate("en", None, plugin)
-            self._parse(self.file)
+                    scaffolder.generate("en", None, self.name)
 
-    def _parse(self, filename):
-        with open(filename) as f:
+    def parse(self):
+        self.init()
+        with open(self.file) as f:
             current_section = None
             # find sections
             for line in f.readlines():
@@ -184,6 +190,8 @@ class DocGenerator(Command):
                     source_files.append((file[0:-3], os.path.join(root, file)))
 
         for name, file in source_files:
+            parser = DocParser(widget=name) if not plugin else DocParser(plugin=name)
+            api_screenshot_dir = os.path.join(self.config.get("api", "target").replace("<version>", self._get_doc_version()), "examples")
 
             with open(file) as f:
                 content = {
@@ -194,7 +202,12 @@ class DocGenerator(Command):
                 code_block = False
                 example = False
                 section = "WIDGET-DESCRIPTION"
-                for line in f.readlines():
+                skip_lines_before = 0
+                lines = f.readlines()
+                for i, line in enumerate(lines):
+                    if skip_lines_before > i:
+                        continue
+
                     if line.startswith("define"):
                         # source code starts here -> do not proceed
                         break
@@ -212,7 +225,57 @@ class DocGenerator(Command):
                             if match.group(1)[0:1] == "@":
                                 if match.group(1)[1:15] == "widget_example":
                                     section = "WIDGET-EXAMPLES"
-                                    content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+
+                                    # we need to parse the examples xml and check if the screenshots already exist
+                                    # in the api-docs, then we need not to process them twice and jsut add a combination
+                                    # of a figure and a clode-block here
+                                    example_code = match.group(1)[16:]
+                                    for k, example_line in enumerate(lines[i+1:]):
+                                        if re.match("^[\s*]*(\*/|@.+)\s*$", example_line) or len(re.sub("[\s*\n]", "", example_line)) == 0:
+                                            # example finished
+                                            skip_lines_before = k+i+1
+                                            #print("skipping example lines from %s to %d" % (i, skip_lines_before))
+                                            break
+                                        example_code += re.sub("^\s*\*\s", "", example_line)
+
+                                    if len(example_code) > 0:
+                                        #print(example_code)
+                                        xml = etree.fromstring("<root>%s</root>" % example_code)
+                                        nodes = xml.xpath("/root/settings/screenshot")
+                                        if len(nodes) > 0:
+                                            for screenshot in nodes:
+                                                screenshot_name = screenshot.get("name")
+                                                screenshot_file = os.path.join(api_screenshot_dir, "%s.png" % screenshot_name)
+                                                #print("looking for screenshot %s" % screenshot_file)
+                                                if os.path.exists(screenshot_file):
+                                                    screenshot_target_dir = os.path.join(os.path.dirname(parser.file), "_static")
+                                                    if not os.path.exists(screenshot_target_dir):
+                                                        os.makedirs(screenshot_target_dir)
+                                                    # copy
+                                                    shutil.copy(screenshot_file, screenshot_target_dir)
+                                                    content[section].append(".. figure:: _static/%s.png\n" % screenshot_name)
+
+                                                    # check for screenshot caption
+                                                    caption = screenshot.find("caption")
+                                                    if caption is not None:
+                                                        content[section].append("\n    %s\n\n" % caption.text)
+
+                                            # add the code-block
+                                            content[section].append(".. code-block:: xml\n\n    ")
+                                            for child in xml:
+                                                if child.tag == "meta":
+                                                    content[section].append("...\n    %s..." % "\n    ".join(etree.tostring(child, encoding='utf-8').split("\n")))
+                                                elif child.tag != "settings":
+                                                    content[section].append("\n    %s" % "\n    ".join(etree.tostring(child, encoding='utf-8').split("\n")))
+                                        else:
+                                            # no screenshot name defined, the auto-configured name cannot be guessed
+                                            # reliable -> using widget-example
+                                            skip_lines_before = 0
+                                            content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+                                    else:
+                                        # no screenshot found, add widget-example th generate one
+                                        content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+
                                 elif match.group(1)[1:8] == "example":
                                     section = "WIDGET-DESCRIPTION"
                                     content[section].append(".. code-block:: xml\n")
@@ -255,7 +318,7 @@ class DocGenerator(Command):
                 else:
                     content['WIDGET-DESCRIPTION'].insert(0, ".. TODO::\n\n    add widget description\n")
 
-            parser = DocParser(widget=name) if not plugin else DocParser(plugin=name)
+            parser.parse()
             for section in content:
                 parser.replace_section(section, content[section])
 
@@ -288,7 +351,7 @@ class DocGenerator(Command):
         options = parser.parse_args(args)
 
         if options.from_source:
-            #self.from_source(os.path.join("src", "structure", "pure"))
+            self.from_source(os.path.join("src", "structure", "pure"))
             self.from_source(os.path.join("src", "plugins"), plugin=True)
 
         elif 'doc' not in options or options.doc == "manual":

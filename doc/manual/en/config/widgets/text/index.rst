@@ -72,14 +72,12 @@ for the Text widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. widget-example::
+.. figure:: _static/text_example.png
+.. code-block:: xml
 
-    <settings>
-      <caption>Configuration example of a centered text widget</caption>
-      <screenshot name="text_example" />
-    </settings>
-    <text align="center"><label>Example text</label></text>
     
+    <text align="center"><label>Example text</label></text>
+        
 
 .. ###END-WIDGET-EXAMPLES###
 

@@ -72,19 +72,17 @@ for the Switch widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. widget-example::
+.. figure:: _static/switch_example_on.png
 
-    <settings>
-      <caption>Configuration example of a switch widget using mapping and styling</caption>
-      <screenshot name="switch_example_on">
-       <caption>Switch turned on</caption>
-       <data address="0/0/0">1</data>
-      </screenshot>
-      <screenshot name="switch_example_off">
-       <caption>Switch turned off</caption>
-       <data address="0/0/0">0</data>
-      </screenshot>
-    </settings>
+    Switch turned on
+
+.. figure:: _static/switch_example_off.png
+
+    Switch turned off
+
+.. code-block:: xml
+
+    ...
     <meta>
      <mappings>
        <mapping name="OnOff">
@@ -99,12 +97,13 @@ for the Switch widget.
        </styling>
      </stylings>
     </meta>
+    ...
     <switch mapping="OnOff" styling="GreyGreen">
-      <layout colspan="3" />
+      <layout colspan="3"/>
       <label>Switch</label>
       <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
     </switch>
-
+    
 .. ###END-WIDGET-EXAMPLES###
 
 .. rubric:: Footnotes

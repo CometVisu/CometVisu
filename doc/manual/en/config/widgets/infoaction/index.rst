@@ -75,15 +75,10 @@ for the InfoAction widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. widget-example::
+.. figure:: _static/infoaction_lights.png
+.. code-block:: xml
 
-    <settings>
-      <caption>Example combines an info widget to show the number of lights currently switched on, and an Switch to control them</caption>
-      <screenshot name="infoaction_lights">
-        <data address="0/0/0">4</data>
-        <data address="0/0/1">1</data>
-      </screenshot>
-    </settings>
+    ...
     <meta>
      <mappings>
        <mapping name="OnOff">
@@ -98,6 +93,7 @@ for the InfoAction widget.
        </styling>
      </stylings>
     </meta>
+    ...
     <infoaction>
      <layout colspan="4"/>
      <label>Lights</label>
@@ -108,12 +104,12 @@ for the InfoAction widget.
      </widgetinfo>
      <widgetaction>
       <switch mapping="OnOff" styling="GreyGreen">
-       <layout colspan="3" />
+       <layout colspan="3"/>
        <address transform="DPT:1.001" mode="readwrite">0/0/1</address>
       </switch>
      </widgetaction>
     </infoaction>
-    
+        
 
 .. ###END-WIDGET-EXAMPLES###
 

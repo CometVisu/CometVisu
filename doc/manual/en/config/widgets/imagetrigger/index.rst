@@ -91,36 +91,31 @@ for the ImageTrigger widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. widget-example::
+.. figure:: _static/image_trigger.png
 
-    <settings>
-      <screenshot name="image_trigger">
-        <caption>Image changed by incoming data 'blue'</caption>
-        <data address="0/0/0">blue</data>
-      </screenshot>
-      <screenshot name="image_trigger_changes">
-        <caption>Image changed by incoming data 'grey'</caption>
-        <data address="0/0/0">grey</data>
-      </screenshot>
-    </settings>
+    Image changed by incoming data 'blue'
+
+.. figure:: _static/image_trigger_changes.png
+
+    Image changed by incoming data 'grey'
+
+.. code-block:: xml
+
+    
     <imagetrigger src="icon/CometVisu_" suffix="png" sendValue="clicked" type="select" width="45px" height="32px">
-      <layout colspan="1" />
+      <layout colspan="1"/>
       <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
     </imagetrigger>
-    
-.. widget-example::
+        
+.. figure:: _static/image_trigger_colspan0.png
+.. code-block:: xml
 
-    <settings>
-      <caption>Disable layout width by settings it to '0', to have widget with == image width</caption>
-      <screenshot name="image_trigger_colspan0">
-        <data address="0/0/0">1</data>
-      </screenshot>
-    </settings>
+    
     <imagetrigger src="icon/CometVisu_orange" suffix="png" sendValue="clicked" type="show" width="45px" height="32px">
-      <layout colspan="0" />
+      <layout colspan="0"/>
       <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
     </imagetrigger>
-    
+        
 
 .. ###END-WIDGET-EXAMPLES###
 

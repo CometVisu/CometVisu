@@ -10,6 +10,9 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
+.. TODO::
+
+    add widget description
 
 
 .. ###END-WIDGET-DESCRIPTION###
@@ -71,19 +74,15 @@ for the Info widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. widget-example::
+.. figure:: _static/info_temp.png
+.. code-block:: xml
 
-    <settings>
-      <caption>Show temperature in degree celcius</caption>
-      <screenshot name="info_temp">
-        <data address="0/0/0">19</data>
-      </screenshot>
-    </settings>
-    <info format="%.1f °C">
+    
+    <info format="%.1f &#xB0;C">
       <label>outside temperature</label>
       <address transform="DPT:9.001">0/0/0</address>
     </info>
-    
+        
 
 .. ###END-WIDGET-EXAMPLES###
 

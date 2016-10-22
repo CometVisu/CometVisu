@@ -71,20 +71,19 @@ for the Audio widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. widget-example::
+.. figure:: _static/audio_example.png
 
-    <settings>
-      <screenshot name="audio_example">
-       <caption>Default example for defining an audio widget in the configuration</caption>
-       <data address="0/0/0">1</data>
-      </screenshot>
-    </settings>
+    Default example for defining an audio widget in the configuration
+
+.. code-block:: xml
+
+    
     <audio id="audio_widget" src="path/to/audio_file.mp3">
-      <layout colspan="4" />
+      <layout colspan="4"/>
       <label>Audio</label>
       <address transform="DPT:1.001" mode="read">0/0/0</address>
     </audio>
-    
+        
 
 .. ###END-WIDGET-EXAMPLES###
 
