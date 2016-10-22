@@ -539,12 +539,19 @@ define([
         width  = 0,
         height = 0;
 
+      var request = null;
+
       function makeAllSizesValid()
       {
-        invalidPagesize && makePagesizeValid(); // must be first due to depencies
-        invalidNavbar   && makeNavbarValid();
-        invalidRowspan  && makeRowspanValid();
-        invalidBackdrop && makeBackdropValid();
+        if (!request) {
+          request = requestAnimationFrame(function () {
+            invalidPagesize && makePagesizeValid(); // must be first due to depencies
+            invalidNavbar && makeNavbarValid();
+            invalidRowspan && makeRowspanValid();
+            invalidBackdrop && makeBackdropValid();
+            request = null;
+          });
+        }
       }
 
       function makeBackdropValid()
@@ -977,9 +984,9 @@ define([
         width = thisTemplateEngine.getAvailableWidth();
       function dataColspan( data )
       {
-        if( width <= thisTemplateEngine.maxScreenWidthColspanS )
+        if( width <= thisTemplateEngine.configSettings.maxScreenWidthColspanS )
           return data.colspanS;
-        if( width <= thisTemplateEngine.maxScreenWidthColspanM )
+        if( width <= thisTemplateEngine.configSettings.maxScreenWidthColspanM )
           return data.colspanM;
         return data.colspan;
       }
