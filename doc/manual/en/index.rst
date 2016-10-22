@@ -15,5 +15,5 @@ Widgets
     :glob:
     :maxdepth: 1
 
-    config/widgets/**
+    config/widgets/*
 
