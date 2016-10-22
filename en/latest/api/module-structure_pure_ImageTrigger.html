@@ -92,10 +92,12 @@
             <div class="description"><p>Adds an image like the structure/pure/Image widget, but additionally the image can be changed by incoming<br>data and can send data to the backend by clicking on it.<br>There modes to react on incoming data:</p>
 <ul>
 <li>type=&quot;show&quot;: Hides the image when incoming data == 0</li>
-<li>type=&quot;select&quot;: Changes the image by appending the incoming data to the initial configured image source,<br>or hide it when incoming data == 0<br>Example:<pre class="prettyprint source"><code>&lt;imagetrigger src=&quot;icon/comet&quot; suffix=&quot;svg&quot; sendValue=&quot;clicked&quot; type=&quot;select&quot;>
-&lt;address transform=&quot;DPT:16.001&quot; mode=&quot;readwrite&quot;>0/0/0&lt;/address>
-&lt;/imagetrigger></code></pre>initially shows nothing. When the CometVisu receives the string '_icon' in address <code>0/0/0</code>,<br>the image <code>icon/comet_opt_icon.svg</code> is shown. When the CometVisu receives '0' on address <code>0/0/0</code>,<br>this image is hidden.</li>
-</ul></div>
+<li>type=&quot;select&quot;: Changes the image by appending the incoming data to the initial configured image source,<br>or hide it when incoming data == 0</li>
+</ul>
+<p>Example:</p>
+<pre class="prettyprint source"><code>&lt;imagetrigger src=&quot;icon/comet&quot; suffix=&quot;svg&quot; sendValue=&quot;clicked&quot; type=&quot;select&quot;>
+ &lt;address transform=&quot;DPT:16.001&quot; mode=&quot;readwrite&quot;>0/0/0&lt;/address>
+&lt;/imagetrigger></code></pre><p>initially shows nothing. When the CometVisu receives the string '_icon' in address <code>0/0/0</code>,<br>the image <code>icon/comet_opt_icon.svg</code> is shown. When the CometVisu receives '0' on address <code>0/0/0</code>,<br>this image is hidden.</p></div>
         
 
         
@@ -362,7 +364,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="structure_pure_ImageTrigger.js.html">structure/pure/ImageTrigger.js</a>,
-				 <a href="structure_pure_ImageTrigger.js.html#sunlight-1-line-173">line 173</a>
+				 <a href="structure_pure_ImageTrigger.js.html#sunlight-1-line-175">line 175</a>
 			</li>
 		</ul>
 	</dd>
@@ -572,7 +574,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="structure_pure_ImageTrigger.js.html">structure/pure/ImageTrigger.js</a>,
-				 <a href="structure_pure_ImageTrigger.js.html#sunlight-1-line-74">line 74</a>
+				 <a href="structure_pure_ImageTrigger.js.html#sunlight-1-line-76">line 76</a>
 			</li>
 		</ul>
 	</dd>
@@ -758,7 +760,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="structure_pure_ImageTrigger.js.html">structure/pure/ImageTrigger.js</a>,
-				 <a href="structure_pure_ImageTrigger.js.html#sunlight-1-line-138">line 138</a>
+				 <a href="structure_pure_ImageTrigger.js.html#sunlight-1-line-140">line 140</a>
 			</li>
 		</ul>
 	</dd>
