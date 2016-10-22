@@ -72,7 +72,7 @@ define([
       loadReady[ id ] = false;
       return function() {
         delete loadReady[ id ];
-        setup_page();
+        thisTemplateEngine.setup_page();
       };
     };
     this.design = new VisuDesign_Custom();
@@ -97,14 +97,13 @@ define([
       maxMobileScreenWidth: 480,
       // threshold where different colspans are used
       maxScreenWidthColspanS: 599, 
-      maxScreenWidthColspanM: 839
+      maxScreenWidthColspanM: 839,
+      mappings: {}, // store the mappings
+      stylings: {} // store the stylings
     };
     
     // use to recognize if the screen width has crossed the maxMobileScreenWidth
     var lastBodyWidth=0;
-
-    var mappings = {}; // store the mappings
-    var stylings = {}; // store the stylings
 
     this.ga_list = {};
     this.widgetData = {}; // hash to store all widget specific data
@@ -168,10 +167,10 @@ define([
 
     this.enableAddressQueue = $.getUrlVar('enableQueue') ? true : false;
 
-    this.backend = 'default';
-    this.backendUrl;
+    this.configSettings.backend = 'default';
+
     if ($.getUrlVar("backend")) {
-      this.backend = $.getUrlVar("backend");
+      this.configSettings.backend = $.getUrlVar("backend");
     }
 
     this.initBackendClient = function() {
@@ -179,13 +178,13 @@ define([
         thisTemplateEngine.visu = new ClientMockup();
         require(['TransformMockup'], function() {});
       }
-      else if (thisTemplateEngine.backend=="oh") {
-        thisTemplateEngine.visu = new CometVisu('openhab', this.backendUrl);
+      else if (thisTemplateEngine.configSettings.backend=="oh") {
+        thisTemplateEngine.visu = new CometVisu('openhab', thisTemplateEngine.configSettings.backendUrl);
       }
-      else if (thisTemplateEngine.backend=="oh2") {
-        thisTemplateEngine.visu = new CometVisu('openhab2', this.backendUrl);
+      else if (thisTemplateEngine.configSettings.backend=="oh2") {
+        thisTemplateEngine.visu = new CometVisu('openhab2', thisTemplateEngine.configSettings.backendUrl);
       } else {
-        thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.backend, this.backendUrl);
+        thisTemplateEngine.visu = new CometVisu(thisTemplateEngine.configSettings.backend, thisTemplateEngine.configSettings.backendUrl);
       }
       function update(json) {
         for( var key in json ) {
@@ -206,7 +205,7 @@ define([
                   if (children[0])
                     updateFn.call(children[0], key, data);
                   else
-                    console.log(element, children, type); // DEBUG FIXME
+                    updateFn.call(element, key, data);
                 }
               } else {
                 console.error("no element with id %s found", id);
@@ -316,7 +315,7 @@ define([
      * this function implements widget stylings
      */
     this.setWidgetStyling = function(e, value, styling) {
-      var sty = stylings[styling];
+      var sty = thisTemplateEngine.configSettings.stylings[styling];
       if (sty) {
         e.removeClass(sty['classnames']); // remove only styling classes
         var findValue = function(v, findExact) {
@@ -351,8 +350,8 @@ define([
     }
 
     this.map = function(value, this_map) {
-      if (this_map && mappings[this_map]) {
-        var m = mappings[this_map];
+      if (this_map && thisTemplateEngine.configSettings.mappings[this_map]) {
+        var m = thisTemplateEngine.configSettings.mappings[this_map];
 
         var ret = value;
         if (m.formula) {
@@ -389,8 +388,8 @@ define([
      * @return the next value in the list (including wrap around).
      */
     this.getNextMappedValue = function(value, this_map) {
-      if (this_map && mappings[this_map]) {
-        var keys = Object.keys(mappings[this_map]);
+      if (this_map && thisTemplateEngine.configSettings.mappings[this_map]) {
+        var keys = Object.keys(thisTemplateEngine.configSettings.mappings[this_map]);
         return keys[ (keys.indexOf( "" + value ) + 1) % keys.length ];
       }
       return value;
@@ -750,7 +749,6 @@ define([
       if ($('pages', xml).attr("backend")) {
         thisTemplateEngine.configSettings.backend = $('pages', xml).attr("backend");
       }
-      thisTemplateEngine.initBackendClient();
 
       if( undefined === $('pages', xml).attr( 'scroll_speed' ) )
         thisTemplateEngine.configSettings.scrollSpeed = 400;
@@ -784,16 +782,15 @@ define([
       if ($('pages', xml).attr('max_mobile_screen_width'))
         thisTemplateEngine.configSettings.maxMobileScreenWidth = $('pages', xml).attr('max_mobile_screen_width');
 
-      var getCSSlist = [];
+      thisTemplateEngine.configSettings.getCSSlist = [];
       if (thisTemplateEngine.configSettings.clientDesign) {
-        getCSSlist.push( 'css!designs/' + thisTemplateEngine.configSettings.clientDesign + '/basic.css' );
+        thisTemplateEngine.configSettings.getCSSlist.push( 'css!designs/' + thisTemplateEngine.configSettings.clientDesign + '/basic.css' );
         if (!thisTemplateEngine.forceNonMobile) {
-          getCSSlist.push( 'css!designs/' + thisTemplateEngine.configSettings.clientDesign + '/mobile.css' );
+          thisTemplateEngine.configSettings.getCSSlist.push( 'css!designs/' + thisTemplateEngine.configSettings.clientDesign + '/mobile.css' );
         }
-        getCSSlist.push( 'css!designs/' + thisTemplateEngine.configSettings.clientDesign + '/custom.css' );
-        getCSSlist.push( 'designs/' + thisTemplateEngine.configSettings.clientDesign + '/design_setup' );
+        thisTemplateEngine.configSettings.getCSSlist.push( 'css!designs/' + thisTemplateEngine.configSettings.clientDesign + '/custom.css' );
+        thisTemplateEngine.configSettings.getCSSlist.push( 'designs/' + thisTemplateEngine.configSettings.clientDesign + '/design_setup' );
       }
-      require( getCSSlist, delaySetup('design') );
 
       // start with the plugins
       thisTemplateEngine.configSettings.pluginsToLoad = [];
@@ -818,11 +815,6 @@ define([
        delete loadReady.plugins;
        }
        */
-      var delaySetupPluginsCallback = delaySetup('plugins');
-      require( thisTemplateEngine.configSettings.pluginsToLoad, delaySetupPluginsCallback, function( err ) {
-        console.log( 'Plugin loading error! It happend with: "' + err.requireModules[0] + '". Is the plugin available and written correctly?');
-        delaySetupPluginsCallback();
-      });
 
       // then the icons
       $('meta > icons icon-definition', xml).each(function(i) {
@@ -841,11 +833,11 @@ define([
       $('meta > mappings mapping', xml).each(function(i) {
         var $this = $(this);
         var name = $this.attr('name');
-        mappings[name] = {};
+        thisTemplateEngine.configSettings.mappings[name] = {};
         var formula = $this.find('formula');
         if (formula.length > 0) {
           var func = eval('var func = function(x){var y;' + formula.text() + '; return y;}; func');
-          mappings[name]['formula'] = func;
+          thisTemplateEngine.configSettings.mappings[name]['formula'] = func;
         }
         $this.find('entry').each(function() {
           var $localThis = $(this);
@@ -870,29 +862,28 @@ define([
           }
           // now set the mapped values
           if ($localThis.attr('value')) {
-            mappings[name][$localThis.attr('value')] = value.length == 1 ? value[0] : value;
+            thisTemplateEngine.configSettings.mappings[name][$localThis.attr('value')] = value.length == 1 ? value[0] : value;
             if (isDefaultValue) {
-              mappings[name]['defaultValue'] = $localThis.attr('value');
+              thisTemplateEngine.configSettings.mappings[name]['defaultValue'] = $localThis.attr('value');
             }
           }
           else {
-            if (!mappings[name]['range']) {
-              mappings[name]['range'] = {};
+            if (!thisTemplateEngine.configSettings.mappings[name]['range']) {
+              thisTemplateEngine.configSettings.mappings[name]['range'] = {};
             }
-            mappings[name]['range'][parseFloat($localThis.attr('range_min'))] = [ parseFloat($localThis.attr('range_max')), value ];
+            thisTemplateEngine.configSettings.mappings[name]['range'][parseFloat($localThis.attr('range_min'))] = [ parseFloat($localThis.attr('range_max')), value ];
             if (isDefaultValue) {
-              mappings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
+              thisTemplateEngine.configSettings.mappings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
             }
           }
         });
-        thisTemplateEngine.configSettings.mappings = mappings;
       });
 
       // then the stylings
       $('meta > stylings styling', xml).each(function(i) {
         var name = $(this).attr('name');
         var classnames = '';
-        stylings[name] = {};
+        thisTemplateEngine.configSettings.stylings[name] = {};
         $(this).find('entry').each(function() {
           var $localThis = $(this);
           classnames += $localThis.text() + ' ';
@@ -905,21 +896,20 @@ define([
           }
           // now set the styling values
           if ($localThis.attr('value')) {
-            stylings[name][$localThis.attr('value')] = $localThis.text();
+            thisTemplateEngine.configSettings.stylings[name][$localThis.attr('value')] = $localThis.text();
             if (isDefaultValue) {
-              stylings[name]['defaultValue'] = $localThis.attr('value');
+              thisTemplateEngine.configSettings.stylings[name]['defaultValue'] = $localThis.attr('value');
             }
           } else { // a range
-            if (!stylings[name]['range'])
-              stylings[name]['range'] = {};
-            stylings[name]['range'][parseFloat($localThis.attr('range_min'))] = [parseFloat($localThis.attr('range_max')),$localThis.text()];
+            if (!thisTemplateEngine.configSettings.stylings[name]['range'])
+              thisTemplateEngine.configSettings.stylings[name]['range'] = {};
+            thisTemplateEngine.configSettings.stylings[name]['range'][parseFloat($localThis.attr('range_min'))] = [parseFloat($localThis.attr('range_max')),$localThis.text()];
             if (isDefaultValue) {
-              stylings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
+              thisTemplateEngine.configSettings.stylings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
             }
           }
         });
-        stylings[name]['classnames'] = classnames;
-        thisTemplateEngine.configSettings.stylings = stylings;
+        thisTemplateEngine.configSettings.stylings[name]['classnames'] = classnames;
       });
 
       // then the status bar
@@ -961,11 +951,22 @@ define([
             break;
         }
         thisTemplateEngine.configSettings.footer = text;
-        $('.footer').html($('.footer').html() + text);
       });
 
       delete loadReady.page;
-      setup_page();
+      thisTemplateEngine.init();
+      thisTemplateEngine.setup_page();
+    };
+
+    this.init = function() {
+      thisTemplateEngine.initBackendClient();
+      require( thisTemplateEngine.configSettings.getCSSlist, delaySetup('design') );
+      var delaySetupPluginsCallback = delaySetup('plugins');
+      require( thisTemplateEngine.configSettings.pluginsToLoad, delaySetupPluginsCallback, function( err ) {
+        console.log( 'Plugin loading error! It happend with: "' + err.requireModules[0] + '". Is the plugin available and written correctly?');
+        delaySetupPluginsCallback();
+      });
+      $('.footer').html($('.footer').html() + thisTemplateEngine.configSettings.footer);
     };
 
     /**
@@ -1025,12 +1026,12 @@ define([
       });
     };
 
-    function setup_page() {
+    this.setup_page = function() {
       // and now setup the pages
       profileCV( 'setup_page start' );
 
       // check if the page and the plugins are ready now
-      for( var key in loadReady )  // test for emptines
+      for( var key in loadReady )  // test for emptyness
         return; // we'll be called again...
 
       // login to backend as it might change some settings needed for further processing
@@ -1056,8 +1057,9 @@ define([
             cache = thisTemplateEngine.configCache.get();
             thisTemplateEngine.widgetData = cache.data;
             thisTemplateEngine.ga_list = cache.addresses;
+            var body = $('body');
             body.empty();
-            body.prepend(cache.dom);
+            body.prepend(cache.body);
             thisTemplateEngine.create_objects();
           }
         } else {
@@ -1562,7 +1564,7 @@ define([
       if( 0 >= pluginsToLoadCount )
       {
         delete loadReady.plugins;
-        setup_page();
+        thisTemplateEngine.setup_page();
       }
     }
 

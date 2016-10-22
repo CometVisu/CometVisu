@@ -40,7 +40,8 @@ define([], function() {
         body: $('body').html(),
         hash: this.hash,
         data: templateEngine.widgetData,
-        addresses: templateEngine.ga_list
+        addresses: templateEngine.ga_list,
+        configSettings: templateEngine.configSettings
       });
     };
 
@@ -50,11 +51,18 @@ define([], function() {
 
     this.get = function(key) {
       var cached = JSON.parse(localStorage.getItem(templateEngine.configSuffix + "." + this._cacheKey));
+      if (!cached) {
+        return null;
+      }
       if (key) {
         return cached[key];
       } else {
         return cached;
       }
+    };
+
+    this.restore = function() {
+
     };
 
     /**
