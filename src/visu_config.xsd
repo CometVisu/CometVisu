@@ -1759,7 +1759,7 @@
     <xsd:sequence>
       <xsd:element name="address" type="address" minOccurs="1"  maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="lang" use="optional">
+    <xsd:attribute ref="lang" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">The language that should be used to speak the text.</xsd:documentation>
         <xsd:documentation xml:lang="de">Die Stimme die benutzt werden soll, um den Text zu sprechen.</xsd:documentation>

@@ -99,7 +99,11 @@ class BaseXsdDirective(BaseDirective):
                 name = attr.get('ref')
                 type_def = schema.get_attribute(name)
                 atype, values = schema.get_attribute_type(type_def)
-                description = schema.get_node_documentation(type_def, self.locale)
+                # check if there is some documentation here
+                description = schema.get_node_documentation(attr, self.locale)
+                if description is None:
+                    # check the referenced definition for documentation as fallback
+                    description = schema.get_node_documentation(type_def, self.locale)
                 if description is not None:
                     description = description.text
                 else:

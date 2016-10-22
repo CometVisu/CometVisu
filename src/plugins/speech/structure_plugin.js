@@ -20,7 +20,7 @@
  * to make text-to-speech service available. This plugin listens to a address and forwards the
  * incoming data to the browser TTS engine (if the browser supports it)
  *
- * Example:
+ * @example
  * <speech lang="de">
  *  <address transform="OH:string" mode="read">Speak</address>
  * </speech>
