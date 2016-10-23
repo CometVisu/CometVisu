@@ -107,7 +107,7 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
         return;
       }
 
-      if (text.substring(0,1) === "!") {
+      if (typeof text === "string" && text.substring(0,1) === "!") {
         // override repeatTimeout, force saying this
         text = substring(1);
       }
