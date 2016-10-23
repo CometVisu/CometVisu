@@ -973,7 +973,9 @@ define([
         console.log( 'Plugin loading error! It happend with: "' + err.requireModules[0] + '". Is the plugin available and written correctly?');
         delaySetupPluginsCallback();
       });
-      $('.footer').html($('.footer').html() + thisTemplateEngine.configSettings.footer);
+      if (thisTemplateEngine.configSettings.footer) {
+        $('.footer').html($('.footer').html() + thisTemplateEngine.configSettings.footer);
+      }
     };
 
     /**
@@ -1054,22 +1056,23 @@ define([
         if (thisTemplateEngine.enableCache && thisTemplateEngine.configCache.isCached()) {
 
           // check if cache is still valid
-          if (thisTemplateEngine.configCache.isValid(xml)) {
+          if (!thisTemplateEngine.configCache.isValid(xml)) {
             console.log("invalidating cache");
             // cache invalid
             cache = false;
             thisTemplateEngine.configCache.clear();
           } else {
             console.log("using cache");
-            cache = thisTemplateEngine.configCache.get();
+            cache = thisTemplateEngine.configCache.getData();
             thisTemplateEngine.widgetData = cache.data;
             thisTemplateEngine.ga_list = cache.addresses;
             var body = $('body');
             body.empty();
-            body.prepend(cache.body);
+            body.prepend(thisTemplateEngine.configCache.getBody());
             thisTemplateEngine.create_objects();
           }
-        } else {
+        }
+        if (!cache) {
           console.log("not using cache");
           var page = $('pages > page', xml)[0]; // only one page element allowed...
 
@@ -1081,7 +1084,7 @@ define([
         thisTemplateEngine.messageBroker.publish("setup.dom.finished");
         if (!cache && thisTemplateEngine.enableCache) {
           // cache dom + data
-          thisTemplateEngine.configCache.dump();
+          thisTemplateEngine.configCache.dump(xml);
         }
         profileCV( 'setup_page finished setup.dom.finished' );
 

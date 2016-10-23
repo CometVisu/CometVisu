@@ -31,66 +31,65 @@ define([], function() {
   var instance;
 
   function ConfigCache() {
-    this.hash = null;
-    this.source = null;
-    this._cacheKey = "cache";
+    this._cacheKey = "data";
+    this._parseCacheData = null;
+    this._valid = null;
 
-    this.dump = function() {
+    this.dump = function(xml) {
       this.save(this._cacheKey, {
-        body: $('body').html(),
-        hash: this.hash,
+        hash: this.toHash(xml),
         data: templateEngine.widgetData,
         addresses: templateEngine.ga_list,
         configSettings: templateEngine.configSettings
       });
+      localStorage.setItem(templateEngine.configSuffix+".body", $('body').html());
     };
 
     this.save = function(key, data) {
       localStorage.setItem(templateEngine.configSuffix+"."+key, JSON.stringify(data));
     };
 
-    this.get = function(key) {
-      var cached = JSON.parse(localStorage.getItem(templateEngine.configSuffix + "." + this._cacheKey));
-      if (!cached) {
+    this.getBody = function() {
+      return localStorage.getItem(templateEngine.configSuffix + ".body");
+    };
+
+    this.getData = function(key) {
+      if (!this._parseCacheData) {
+        this._parseCacheData = JSON.parse(localStorage.getItem(templateEngine.configSuffix + "." + this._cacheKey));
+      }
+      if (!this._parseCacheData) {
         return null;
       }
       if (key) {
-        return cached[key];
+        return this._parseCacheData[key];
       } else {
-        return cached;
+        return this._parseCacheData;
       }
-    };
-
-    this.restore = function() {
-
     };
 
     /**
      * Returns true if there is an existing cache for the current config file
      */
     this.isCached = function() {
-      return this.get() !== null;
+      return localStorage.getItem(templateEngine.configSuffix + "." + this._cacheKey) !== null;
     };
 
     this.isValid = function(xml) {
-      return this.toHash(xml) == this.get("configHash");
+      // cache the result, as the config stays the same until next reload
+      if (this._valid === null) {
+        console.log("Current hash: '%s', cached hash: '%s'", this.toHash(xml), this.getData("hash"));
+        this._valid = this.toHash(xml) == this.getData("hash");
+      }
+      return this._valid;
     };
 
     this.toHash = function(xml) {
       return (new XMLSerializer()).serializeToString(xml).hashCode();
     };
 
-    this.setSource = function(configXml) {
-      this.hash = this.toHash(configXml);
-      this.source = configXml;
-    };
-
-    this.getHash = function() {
-      return this.hash;
-    };
-
     this.clear = function() {
       localStorage.removeItem(templateEngine.configSuffix+"."+this._cacheKey);
+      localStorage.removeItem(templateEngine.configSuffix+".body");
     };
   }
   return {
