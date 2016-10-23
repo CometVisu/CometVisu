@@ -1777,8 +1777,9 @@
     </xsd:attribute>
     <xsd:attribute name="repeat-timeout" type="xsd:nonNegativeInteger" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">Do not repeat saying the same content within the given timeout (in seconds).
-0 means: never repeat the same content.
+        <xsd:documentation xml:lang="en">
+          Do not repeat saying the same content within the given timeout (in seconds).
+          0 means: never repeat the same content.
         </xsd:documentation>
         <xsd:documentation xml:lang="de">
           Zeitraum in Sekunden innerhalb dessen der selbe Text nicht wiederholt wird.
