@@ -29,6 +29,7 @@ define( [], function() {
 
   function CometVisu(  )
   {
+    this.dataReceived = true;
     /**
      * This function gets called once the communication is established and session information is available
      * @method handleRead

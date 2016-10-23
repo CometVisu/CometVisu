@@ -153,6 +153,7 @@ define( ['jquery'], function( $ ) {
          */
         this.handleRead = function(json) {
           if( this.doRestart || (!json && (-1 == this.lastIndex)) ) {
+            session.dataReceived = false;
             if (self.running) { // retry initial request
               this.retryCounter++;
               this.xhr = $.ajax({
@@ -195,6 +196,7 @@ define( ['jquery'], function( $ ) {
 
         this.handleReadStart = function(json) {
           if (!json && (-1 == this.lastIndex)) {
+            session.dataReceived = false;
             if (self.running) { // retry initial request
               this.xhr = $.ajax({
                 url         : session.getResourcePath("read"),
@@ -372,6 +374,7 @@ define( ['jquery'], function( $ ) {
         this.connect = function() {
           // send first request
           self.running = true;
+          session.dataReceived = false;
           this.eventSource = new EventSource(session
               .getResourcePath("read")
             + "?" + session.buildRequest());
