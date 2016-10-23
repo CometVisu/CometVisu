@@ -20,10 +20,32 @@
  * to make text-to-speech service available. This plugin listens to a address and forwards the
  * incoming data to the browser TTS engine (if the browser supports it)
  *
- * @example
- * <speech lang="de">
+ * @example <caption>Simple example</caption>
+ * <speech lang="en">
  *  <address transform="OH:string" mode="read">Speak</address>
  * </speech>
+ *
+ * @example <caption>Example preventing repetition within a timeout and use mapping</caption>
+ * ...
+ * <meta>
+ *  <plugins>
+ *    <plugin name="speech" />
+ *  </plugins>
+ *  <mappings>
+ *    <mapping name="speak">
+ *      <entry value="0">Hello, welcome home</entry>
+ *      <entry value="1">Please close all windows</entry>
+ *      <entry value="2">Please close all doors</entry>
+ *    </mapping>
+ *  </mappings>
+ * </meta>
+ * ...
+ * <speech lang="en" repeat-timout="300" mapping="speak">
+ *  <address transform="DPT:5.010" mode="read">Speak</address>
+ * </speech>
+ *
+ * @author Tobias Bräutigam
+ * @since 0.10.0
  */
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
   "use strict";
@@ -47,33 +69,64 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
       templateEngine.widgetDataInsert( path, {
         'language'   : $e.attr('lang') ? $e.attr('lang').toLowerCase() : null,
         'address' : address,
+        'mapping' : $e.attr('mapping'),
+        'repeatTimeout': $e.attr('repeat-timeout') ? parseInt($e.attr('repeat-timeout')) : -1,
         'type'    : 'speech'
       });
       return "";
     },
 
     update: function(address, text) {
+      var element = $(this);
+      var path = element.attr('id');
+      var data = templateEngine.widgetDataGet(path);
+
+      // apply transform
+      if( undefined !== address )
+      {
+        var transform = data.address[ address ][0];
+        text = templateEngine.transformDecode( transform, text );
+      }
+
+      // apply mapping
+      text = templateEngine.map( text, data['mapping'] );
+
       if (!templateEngine.visu.dataReceived) {
         // first call -> skipping
+        lastSpeech[address] = {
+          text: text,
+          time: Date.now()
+        };
         console.log("skipping initial TTS for "+text);
         return;
       }
 
       if (!text || text.length === 0) {
         // nothing to say
+        console.log("no text to speech given");
         return;
       }
 
-      if (lastSpeech[address] == text) {
-        // do not repeat
-        console.log("skipping TTS because of repetition "+text);
-        return;
+      if (text.substring(0,1) === "!") {
+        // override repeatTimeout, force saying this
+        text = substring(1);
       }
-      lastSpeech[address] = text;
-
-      var element = $(this);
-      var path = element.attr('id');
-      var data = templateEngine.widgetDataGet(path);
+      else if (data.repeatTimeout >= 0) {
+        // do not repeat (within timeout when data.repeatTimeout > 0)
+        if (lastSpeech[address] && lastSpeech[address].text == text && (data.repeatTimeout === 0 ||
+            data.repeatTimeout >= Math.round((Date.now()-lastSpeech[address].time)/1000))) {
+          // update time
+          lastSpeech[address].time = Date.now();
+          // do not repeat
+          console.log("skipping TTS because of repetition " + text);
+          return;
+        }
+      }
+      console.log("changing lastSpeech from '%s' to '%s'", lastSpeech[address] ? lastSpeech[address].text : "", text);
+      lastSpeech[address] = {
+        text: text,
+        time: Date.now()
+      };
 
       var synth = window.speechSynthesis;
 
@@ -94,6 +147,7 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
         selectedVoice = defaultVoice;
       }
       utterThis.voice = selectedVoice;
+      console.log("saying '%s' in voice %s", text, selectedVoice.name);
       synth.speak(utterThis);
     }
   });

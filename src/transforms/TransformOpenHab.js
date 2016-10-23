@@ -92,6 +92,7 @@ define( ['TransformDefault'], function(Transform ) {
       return phy;
     },
     decode : function(str) {
+      if (str=="NaN" || str=='Uninitialized') return null;
       return str;
     }
   },

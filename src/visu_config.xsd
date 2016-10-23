@@ -1765,6 +1765,26 @@
         <xsd:documentation xml:lang="de">Die Stimme die benutzt werden soll, um den Text zu sprechen.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-
+    <xsd:attribute ref="mapping" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          Map the bus value to a message for text-to-speech output. You can e.g. map numbers to messages.
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Ordnet den Werten vom Bus Texte zur Sprachausgabe zu. Man kann z.B. Zahlen auf Nachrichten mappen.
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="repeat-timeout" type="xsd:nonNegativeInteger" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Do not repeat saying the same content within the given timeout (in seconds).
+0 means: never repeat the same content.
+        </xsd:documentation>
+        <xsd:documentation xml:lang="de">
+          Zeitraum in Sekunden innerhalb dessen der selbe Text nicht wiederholt wird.
+          Wird der Wert 0 angegeben, wird der Text niemals zweimal hintereinander gesagt.
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 </xsd:schema>
