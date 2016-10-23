@@ -75,7 +75,8 @@ require.config({
     'TransformMockup':          'lib/mockup/TransformKnx',
     'TransformOpenHab':         'transforms/TransformOpenHab',
     'plugin_ColorChooser':      'plugins/colorchooser/structure_plugin',
-    'MessageBroker':            'lib/MessageBroker'
+    'MessageBroker':            'lib/MessageBroker',
+    'ConfigCache':              'lib/ConfigCache'
   },
   'shim': {
     'scrollable': ['jquery'],
