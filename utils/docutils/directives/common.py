@@ -21,6 +21,7 @@ from docutils.parsers.rst import Directive
 from helper.schema import *
 import gettext
 import sys
+import re
 from settings import config
 
 kwargs = {}
