@@ -15,10 +15,33 @@ to make text-to-speech service available. This plugin listens to a address and f
 incoming data to the browser TTS engine (if the browser supports it)
 
 .. code-block:: xml
+    :caption: Simple example
 
-    <speech lang="de">
+    <speech lang="en">
      <address transform="OH:string" mode="read">Speak</address>
     </speech>
+
+.. code-block:: xml
+    :caption: Example preventing repetition within a timeout and use mapping
+
+    ...
+    <meta>
+     <plugins>
+       <plugin name="speech" />
+     </plugins>
+     <mappings>
+       <mapping name="speak">
+         <entry value="0">Hello, welcome home</entry>
+         <entry value="1">Please close all windows</entry>
+         <entry value="2">Please close all doors</entry>
+       </mapping>
+     </mappings>
+    </meta>
+    ...
+    <speech lang="en" repeat-timout="300" mapping="speak">
+     <address transform="DPT:5.010" mode="read">Speak</address>
+    </speech>
+
 
 .. ###END-WIDGET-DESCRIPTION###
 
