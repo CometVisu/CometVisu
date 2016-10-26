@@ -157,7 +157,7 @@ define( ['_common'], function() {
     
     methods: {
 
-      getDomElement: function() {
+      getDomString: function() {
         var ret_val = '';
         var type = this.getType();
 
@@ -254,7 +254,7 @@ define( ['_common'], function() {
           var data = templateEngine.widgetDataGet(path);
           if (data.$$type == "switch") {
             var widget = new cv.structure.pure.Switch(data);
-            var subelement = widget.getDomElement();
+            var subelement = widget.getDomString();
             if( undefined === subelement )
               return;
             container += '<div class="widget_container '

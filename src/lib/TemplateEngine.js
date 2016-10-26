@@ -1161,7 +1161,7 @@ define([
     console.log(widget);
 
 
-    var retval = widget ? widget.getDomElement() : undefined;
+    var retval = widget ? widget.getDomString() : undefined;
     
     thisTemplateEngine.callbacks[ path + '_' ] = {
       exitingPageChange: [],// called when the current page is left

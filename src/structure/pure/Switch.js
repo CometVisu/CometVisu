@@ -90,7 +90,7 @@ define( ['_common'], function() {
     },
 
     methods: {
-      getDomElement: function () {
+      getDomString: function () {
         // create the main structure
         var ret_val = this.createDefaultWidget(this.update);
         ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';

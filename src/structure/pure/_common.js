@@ -75,7 +75,8 @@ define( [
       mapping           : { is: 'r' },
       styling           : { is: 'r' },
       format            : { is: 'r' },
-      align             : { is: 'r' }
+      align             : { is: 'r' },
+      $$domElement      : { is: 'rw' }
     },
 
     after: {
@@ -173,6 +174,16 @@ define( [
     },
 
     methods: {
+      /**
+       * Returns the DOMElement of this widget
+       */
+      getDomElement: function() {
+        if (!this.$$domElement) {
+          this.$$domElement = $('#'+this.getPath);
+        }
+        return this.$$domElement
+      },
+
       createDefaultWidget : function(updateFn) {
         var ret_val = '<div class="'+this.getClasses()+'" ' + this.getStyle() + '>' + this.getLabel();
         if (this.getAddress() && updateFn != undefined) {
