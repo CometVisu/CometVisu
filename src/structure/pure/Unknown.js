@@ -27,10 +27,10 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function( design ) {
+define( ['_common'], function() {
   "use strict";
-  
-  design.basicdesign.addCreator('unknown', {
+
+  cv.structure.pure.WidgetFactory.addCreator('unknown', {
     /**
      * Creates the widget HTML code
      *

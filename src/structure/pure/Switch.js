@@ -56,74 +56,87 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function( design ) {
+define( ['_common'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
- 
-  design.basicdesign.addCreator('switch', {
-    /**
-     * Creates the widget HTML code
-     *
-     * @method create
-     * @param {Element} element - DOM-Element
-     * @param {String} path - internal path of the widget
-     * @param {String} flavour - Flavour of the widget
-     * @param {String} type - Page type (2d, 3d, ...)
-     * @return {String} HTML code
-     */
-    create: function( element, path, flavour, type ) {
-      var $e = $(element);
 
-      // create the main structure
-      var ret_val = basicdesign.createDefaultWidget( 'switch', $e, path, flavour, type, this.update );
-      // and fill in widget specific data
-      var data = templateEngine.widgetDataInsert( path, {
-        'on_value'  : $e.attr('on_value' ) || 1,
-        'off_value' : $e.attr('off_value') || 0
-      } );
+  Class('cv.structure.pure.Switch', {
+    isa: cv.structure.pure.AbstractWidget,
 
-      ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+    my : {
 
-      return ret_val + '</div>';
+      methods: {
+        /**
+         * Creates the widget HTML code
+         *
+         * @method create
+         * @param {Element} element - DOM-Element
+         * @param {String} path - internal path of the widget
+         * @param {String} flavour - Flavour of the widget
+         * @param {String} type - Page type (2d, 3d, ...)
+         * @return {String} HTML code
+         */
+        parse: function (element, path, flavour, type) {
+          var $e = $(element);
+          // and fill in widget specific data
+          this.createDefaultWidget('switch', $e, path, flavour, type);
+          return templateEngine.widgetDataInsert(path, {
+            'on_value': $e.attr('on_value') || 1,
+            'off_value': $e.attr('off_value') || 0,
+            path: path,
+            $$type: "switch"
+          });
+        }
+      }
     },
 
-    /**
-     * Handles updates of incoming data for this widget
-     * @method update
-     * @param {String} address - Source address of the incoming data
-     * @param {String} value - Incoming data
-     */
-    update: function( address, value ) {
-      var
-        element = $(this),
-        data  = templateEngine.widgetDataGetByElement( element ),
-        actor = element.find('.actor'),
-        value = basicdesign.defaultUpdate( address, value, element, true, element.parent().attr('id') ),
-        off   = templateEngine.map( data['off_value'], data['mapping'] );
-      actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
-      actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
-    },
+    methods: {
+      getDomElement: function () {
+        // create the main structure
+        var ret_val = this.createDefaultWidget(this.update);
+        ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
 
-    /**
-     * Action performed when the switch got clicked
-     *
-     * @method action
-     * @param {String} path - Internal path of the widget
-     * @param {Element} actor - DOMElement
-     * @param {Boolean} isCanceled - If true the action does nothing
-     */
-    action: function( path, actor, isCanceled ) {
-      if( isCanceled ) return;
+        return ret_val + '</div>';
+      },
 
-      var
-        widgetData  = templateEngine.widgetDataGet( path );
 
-      for( var addr in widgetData.address )
-      {
-        if( !(widgetData.address[addr][1] & 2) ) continue; // skip when write flag not set
-        templateEngine.visu.write( addr, templateEngine.transformEncode( widgetData.address[addr][0], widgetData.basicvalue == widgetData.off_value ? widgetData.on_value : widgetData.off_value ) );
+      /**
+       * Handles updates of incoming data for this widget
+       * @method update
+       * @param {String} address - Source address of the incoming data
+       * @param {String} value - Incoming data
+       */
+      update: function (address, value) {
+        var
+          element = $(this),
+          data = templateEngine.widgetDataGetByElement(element),
+          actor = element.find('.actor'),
+          value = this.defaultUpdate(address, value, element, true, element.parent().attr('id')),
+          off = templateEngine.map(data['off_value'], data['mapping']);
+        actor.removeClass(value == off ? 'switchPressed' : 'switchUnpressed');
+        actor.addClass(value == off ? 'switchUnpressed' : 'switchPressed');
+      },
+
+      /**
+       * Action performed when the switch got clicked
+       *
+       * @method action
+       * @param {String} path - Internal path of the widget
+       * @param {Element} actor - DOMElement
+       * @param {Boolean} isCanceled - If true the action does nothing
+       */
+      action: function (path, actor, isCanceled) {
+        if (isCanceled) return;
+
+        var
+          widgetData = templateEngine.widgetDataGet(path);
+
+        for (var addr in widgetData.address) {
+          if (!(widgetData.address[addr][1] & 2)) continue; // skip when write flag not set
+          templateEngine.visu.write(addr, templateEngine.transformEncode(widgetData.address[addr][0], widgetData.basicvalue == widgetData.off_value ? widgetData.on_value : widgetData.off_value));
+        }
       }
     }
   });
 
+  cv.xml.Parser.addHandler("switch", cv.structure.pure.Switch);
 }); // end define

@@ -40,20 +40,22 @@
 //  Main:
 //
 define([
-  'jquery', '_common', 'structure_custom', 'TrickOMatic', 'PageHandler', 'PagePartsHandler',
+  'jquery', '_common', 'TrickOMatic', 'PageHandler', 'PagePartsHandler',
   'CometVisuClient', 'CometVisuMockup', 'EventHandler',
   'Compatibility', 'jquery-ui', 'strftime',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'IconHandler', 
-  'widget_break', 'widget_designtoggle',
-  'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
-  'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infoaction', 'widget_infotrigger',
-  'widget_line', 'widget_multitrigger', 'widget_navbar', 'widget_page', 
-  'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide', 
-  'widget_switch', 'widget_text', 'widget_toggle', 'widget_trigger', 
-  'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio', 
-  'widget_video', 'widget_wgplugin_info', 
-  'TransformDefault', 'TransformKnx', 'TransformOpenHab'
-], function( $, design, VisuDesign_Custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup, EventHandler ) {
+  // 'widget_break', 'widget_designtoggle',
+  // 'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
+  // 'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infoaction', 'widget_infotrigger',
+  // 'widget_line', 'widget_multitrigger', 'widget_navbar', 'widget_page',
+  // 'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide',
+  // 'widget_switch', 'widget_text', 'widget_toggle', 'widget_trigger',
+  // 'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio',
+  // 'widget_video', 'widget_wgplugin_info',
+  'widget_switch', 'widget_page', 'widget_unknown',
+  'TransformDefault', 'TransformKnx', 'TransformOpenHab',
+  'lib/cv/xml/Parser'
+], function( $, design, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup, EventHandler ) {
   "use strict";
 
   var instance;
@@ -74,7 +76,7 @@ define([
       setup_page();
     };
   };
-  this.design = new VisuDesign_Custom();
+  this.design = new cv.structure.pure.AbstractWidget();
   this.pagePartsHandler = new PagePartsHandler();
     
   this.eventHandler = new EventHandler(this);
@@ -268,7 +270,7 @@ define([
   }
 
   if (isNaN(this.use_maturity)) {
-    this.use_maturity = design.Maturity.release; // default to release
+    this.use_maturity = cv.structure.pure.AbstractWidget.my.Maturity.release; // default to release
   }
 
   this.transformEncode = function(transformation, value) {
@@ -1041,7 +1043,7 @@ define([
       var page = $('pages > page', xml)[0]; // only one page element allowed...
   
       thisTemplateEngine.create_pages(page, 'id');
-      thisTemplateEngine.design.getCreator('page').createFinal();
+      cv.structure.pure.Page.createFinal();
       profileCV( 'setup_page created pages' );
       
       thisTemplateEngine.postDOMSetupFns.forEach( function( thisFn ){
@@ -1141,7 +1143,25 @@ define([
   };
 
   this.create_pages = function(page, path, flavour, type) {
-    var creator = thisTemplateEngine.design.getCreator(page.nodeName);
+
+    var data = cv.xml.Parser.parse(page, path, flavour, type);
+    data.$$type = page.nodeName;
+
+
+    var widget;
+    type = page.nodeName;
+    if (type == "page") {
+      widget = new cv.structure.pure.Page(data);
+    } else if (type == "switch") {
+      widget = new cv.structure.pure.Switch(data);
+    } else {
+      console.error("unhandled type: %s", type);
+    }
+
+    console.log(widget);
+
+
+    var retval = widget ? widget.getDomElement() : undefined;
     
     thisTemplateEngine.callbacks[ path + '_' ] = {
       exitingPageChange: [],// called when the current page is left
@@ -1149,27 +1169,23 @@ define([
       duringPageChange: [], // called when the page is theoretical visible, i.e. "display:none" is removed - CSS calculations shoud work now
       afterPageChange: []   // called together with the global event when the transition is finished
     };
-    
-    var retval = creator.create(page, path, flavour, type);
 
     if( undefined === retval )
       return;
-    
-    var data = thisTemplateEngine.widgetDataGet( path );
-    data.type = page.nodeName;
+
     if( 'string' === typeof retval )
     {
       return '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
       + (data.containerClass ? data.containerClass : '')
       + ('break' === data.type ? 'break_container' : '') // special case for break widget
-      + '" id="'+path+'" data-type="'+data.type+'">' + retval + '</div>';
+      + '" id="'+path+'" data-type="'+data.$$type+'">' + retval + '</div>';
     } else {
       return jQuery(
       '<div class="widget_container '
       + (data.rowspanClass ? data.rowspanClass : '')
       + (data.containerClass ? data.containerClass : '')
-      + '" id="'+path+'" data-type="'+data.type+'"/>').append(retval);
+      + '" id="'+path+'" data-type="'+data.$$type+'"/>').append(retval);
     }
   };
   
