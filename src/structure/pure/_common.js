@@ -179,7 +179,7 @@ define( [
        */
       getDomElement: function() {
         if (!this.$$domElement) {
-          this.$$domElement = $('#'+this.getPath);
+          this.$$domElement = $('#'+this.getPath());
         }
         return this.$$domElement
       },
