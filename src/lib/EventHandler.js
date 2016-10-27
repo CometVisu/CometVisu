@@ -68,10 +68,9 @@ define([], function() {
         if (element.classList.contains('actor') || (element.classList.contains('group') && element.classList.contains('clickable'))) {
           actor = element;
         }
-
+        widget = cv.structure.pure.WidgetFactory.getInstanceById($(element).attr('id'));
         if (element.classList.contains('widget_container')) {
-          widget = element;
-          if (templateEngine.design.creators[widget.dataset.type].action !== undefined) {
+          if (widget.action !== undefined) {
             return {actor: actor, widget: widget};
           }
         }
@@ -122,7 +121,7 @@ define([], function() {
       if (this._isWidget) {
         this._mouseEvent.actor = widgetActor.actor;
         this._mouseEvent.widget = widgetActor.widget;
-        this._mouseEvent.widgetCreator = templateEngine.design.creators[widgetActor.widget.dataset.type];
+        this._mouseEvent.widgetCreator = widgetActor.widget;
         this._mouseEvent.downtime = Date.now();
         this._mouseEvent.alreadyCanceled = false;
 

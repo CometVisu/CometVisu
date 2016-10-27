@@ -47,12 +47,12 @@ define([
   // 'widget_break', 'widget_designtoggle',
   // 'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
   // 'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infoaction', 'widget_infotrigger',
-  // 'widget_line', 'widget_multitrigger', 'widget_navbar', 'widget_page',
+  // 'widget_line', 'widget_multitrigger', 'widget_navbar',
   // 'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide',
-  // 'widget_switch', 'widget_text', 'widget_toggle', 'widget_trigger',
-  // 'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio',
+  // 'widget_text', 'widget_toggle', 'widget_trigger',
+  // 'widget_pushbutton', 'widget_urltrigger',
   // 'widget_video', 'widget_wgplugin_info',
-  'widget_switch', 'widget_page', 'widget_unknown',
+  'widget_switch', 'widget_page', 'widget_unknown', 'widget_audio',
   'TransformDefault', 'TransformKnx', 'TransformOpenHab',
   'lib/cv/xml/Parser'
 ], function( $, design, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup, EventHandler ) {
@@ -192,18 +192,12 @@ define([
         ga_list[ key ].forEach( function( id ){
           if( typeof id === 'string' )
           {
-            var 
-              element = document.getElementById( id ),
-              type = element.dataset.type || 'page', // only pages have no datatype set
-              updateFn = thisTemplateEngine.design.creators[ type ].update;
-            if( updateFn )
+            var element = document.getElementById( id );
+            var type = element.dataset.type || 'page'; // only pages have no datatype set
+            var widget = cv.structure.pure.WidgetFactory.getInstanceById(id);
+            if( widget.update )
             {
-              var children = element.children;
-              if( children[0] )
-                updateFn.call( children[0], key, data );
-              else {
-                updateFn.call( element, key, data );
-              }
+              widget.update(key, data );
             }
             //console.log( element, type, updateFn );
           } else if( typeof id === 'function' ) {

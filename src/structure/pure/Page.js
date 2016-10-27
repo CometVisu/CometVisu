@@ -26,11 +26,18 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common'], function() {
+define( [
+  '_common',
+  'lib/cv/role/HasChildren'
+], function() {
   "use strict";
 
   Class('cv.structure.pure.Page', {
     isa: cv.structure.pure.AbstractWidget,
+
+    does: [
+      cv.role.HasChildren
+    ],
 
     has: {
       name              : { is: 'r' },
@@ -44,7 +51,7 @@ define( ['_common'], function() {
       visible           : { is: 'r', init: true },
       pageType          : { is: 'r' },
       wstyle            : { is: 'r', init: '' },
-      children          : { is: 'r', init: [] }
+      address           : { is: 'r', init: [] }
     },
 
     my : {
@@ -64,8 +71,6 @@ define( ['_common'], function() {
          */
         parse: function( page, path, flavour, widgetType ) {
           var $p = $(page);
-
-          console.log(widgetType);
 
           var addresses = {};
           if ($p.attr('ga')) {
@@ -132,16 +137,8 @@ define( ['_common'], function() {
             flavour           : flavour,
             $$type            : "page",
             classes           : this.setWidgetLayout( $p, path ),
-            wstyle            : wstyle,
-            children          : []
+            wstyle            : wstyle
           });
-
-          var childs = $p.children().not('layout');
-          Joose.A.each(childs, function(child, i) {
-            var childData = cv.xml.Parser.parse(child, path + '_' + i, flavour, type );
-            data.children.push(childData.path);
-          }, this);
-
           return data;
         },
 
@@ -253,7 +250,7 @@ define( ['_common'], function() {
         Joose.A.each( this.getChildren(), function(path) {
           var data = templateEngine.widgetDataGet(path);
           if (data.$$type == "switch") {
-            var widget = new cv.structure.pure.Switch(data);
+            var widget = cv.structure.pure.WidgetFactory.createInstance(data.$$type, data);
             var subelement = widget.getDomString();
             if( undefined === subelement )
               return;

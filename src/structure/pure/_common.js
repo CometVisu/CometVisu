@@ -28,28 +28,28 @@
 define( [
   'jquery',
   'dependencies/joose-all-min',
-  'lib/cv/xml/Parser'
+  'lib/cv/xml/Parser',
+  'lib/cv/role/Update'
 ], function($) {
   "use strict";
 
   Class('cv.structure.pure.WidgetFactory', {
     my : {
       has : {
-        creators: { is: 'rw', init: {} }
+        registry: { is: 'rw', init: {} }
       },
 
       methods: {
-        addCreator: function(name, object) {
-          this.creators[name] = object;
+        createInstance: function(type, data) {
+          if (!this.registry[data.path]) {
+            this.registry[data.path] = new cv.structure.pure[Joose.S.uppercaseFirst(type)](data);
+          }
+          return this.registry[data.path];
         },
 
-        getCreator: function(name) {
-          if (this.creators[name] === undefined) {
-            return this.creators.unknown;
-          }
-          return this.creators[name];
+        getInstanceById: function(id) {
+          return this.registry[id];
         }
-
       }
     }
   });
@@ -59,6 +59,8 @@ define( [
    * @class cv.structure.pure.AbstractWidget
    */
   Class('cv.structure.pure.AbstractWidget', {
+
+    does: cv.role.Update,
 
     has: {
 
@@ -70,13 +72,14 @@ define( [
       classes           : { is: 'r', init: '' },
       style             : { is: 'r', init: '' },
       label             : { is: 'r', init: '' },
-      address           : { is: 'r', init: {} },
       bind_click_to_widget : { is: 'r', init: false },
       mapping           : { is: 'r' },
       styling           : { is: 'r' },
       format            : { is: 'r' },
       align             : { is: 'r' },
-      $$domElement      : { is: 'rw' }
+      $$domElement      : { is: 'rw' },
+      $$actor           : { is: 'rw' },
+      basicValue        : { is: 'rw' }
     },
 
     after: {
@@ -184,6 +187,13 @@ define( [
         return this.$$domElement
       },
 
+      getActor: function() {
+        if (!this.$$actor) {
+          this.$$actor = this.getDomElement().find(".actor");
+        }
+        return this.$$actor;
+      },
+
       createDefaultWidget : function(updateFn) {
         var ret_val = '<div class="'+this.getClasses()+'" ' + this.getStyle() + '>' + this.getLabel();
         if (this.getAddress() && updateFn != undefined) {
@@ -193,7 +203,158 @@ define( [
           }.bind(this));
         }
         return ret_val;
+      },
+
+      getAddressListCallback: function() { return null; },
+
+      defaultValueHandling: function( ga, data, widgetData ) {
+        var thisTransform = '';
+        var value = data;
+        if (undefined !== ga) {
+          thisTransform = widgetData.address[ga][0];
+          // #1: transform the raw value to a JavaScript type
+          value = templateEngine.transformDecode(thisTransform, data);
+        }
+
+        this.setBasicValue(value); // store it to be able to supress sending of unchanged data
+
+        // #2: map it to a value the user wants to see
+        value = templateEngine.map(value, widgetData.mapping);
+
+        // #3: format it in a way the user understands the value
+        if (widgetData.precision)
+          value = Number(value).toPrecision(widgetData.precision);
+        if (widgetData.format) {
+          if (!('formatValueCache' in widgetData))
+            widgetData.formatValueCache = [widgetData.format];
+
+          var argListPos = (widgetData.address && widgetData.address[ga]) ? widgetData.address[ga][3] : 1;
+
+          widgetData.formatValueCache[argListPos] = value;
+
+          value = sprintf.apply(this, widgetData.formatValueCache);
+        }
+        widgetData.value = value;
+        if (undefined !== value && value.constructor == Date) {
+          switch (thisTransform) // special case for KNX
+          {
+            case 'DPT:10.001':
+              value = value.toLocaleTimeString();
+              break;
+            case 'DPT:11.001':
+              value = value.toLocaleDateString();
+              break;
+            case 'OH:datetime':
+              value = value.toLocaleDateString();
+              break;
+            case 'OH:time':
+              value = value.toLocaleTimeString();
+              break;
+          }
+        }
+
+        // #4 will happen outside: style the value to be pretty
+        return value;
+      },
+
+      /**
+       * Method to handle all special cases for the value. The might come from
+       * the mapping where it can be quite complex as it can contain icons.
+       * value: the value that will be inserted
+       * modifyFn: callback function that modifies the DOM
+       * @method defaultValue2DOM
+       * @param {} value
+       * @param {} modifyFn
+       */
+      defaultValue2DOM: function( value, modifyFn ) {
+        if (('string' === typeof value) || ('number' === typeof value))
+          modifyFn(value);
+        else if ('function' === typeof value)
+        // thisValue(valueElement);
+          console.error('typeof value === function - special case not handled anymore!');
+        else if (!Array.isArray(value)) {
+          var element = value.cloneNode();
+          if (value.getContext) {
+            fillRecoloredIcon(element);
+          }
+          modifyFn(element);
+        } else {
+          for (var i = 0; i < value.length; i++) {
+            var thisValue = value[i];
+            if (!thisValue) continue;
+
+            if (('string' === typeof thisValue) || ('number' === typeof thisValue))
+              modifyFn(thisValue);
+            else if ('function' === typeof thisValue)
+            // thisValue(valueElement);
+              console.error('typeof value === function - special case not handled anymore!');
+            else {
+              var element = thisValue.cloneNode();
+              if (thisValue.getContext) {
+                fillRecoloredIcon(element);
+              }
+              modifyFn(element);
+            }
+          }
+        }
+      },
+
+      /**
+       * ga:            address
+       * data:          the raw value from the bus
+       * passedElement: the element to update
+       * @method defaultUpdate
+       * @param {} ga
+       * @param {} data
+       * @param {} passedElement
+       * @param {} newVersion
+       * @param {} path
+       * @return value
+       */
+      defaultUpdate: function( ga, data, passedElement, newVersion, path ) {
+        ///console.log(ga, data, passedElement, newVersion );
+        var element = passedElement || $(this);
+        var elementData = templateEngine.widgetData[path];
+        var actor = newVersion ? element.find('.actor:has(".value")') : element;
+        var value = this.defaultValueHandling(ga, data, elementData);
+
+        templateEngine.setWidgetStyling(actor, this.getBasicValue(), elementData.styling);
+
+        if (elementData['align'])
+          element.addClass(elementData['align']);
+
+        var valueElement = element.find('.value');
+        valueElement.empty();
+        if (undefined !== value)
+          this.defaultValue2DOM(value, function (e) {
+            valueElement.append(e)
+          });
+        else
+          valueElement.append('-');
+
+        return value;
+      },
+
+      /**
+       * Description
+       * @method defaultUpdate3d
+       * @param {} ev
+       * @param {} data
+       * @param {} passedElement
+       */
+      defaultUpdate3d: function( ev, data, passedElement )
+      {
+        //var element = passedElement || $(this);
+        var l = ev.data.layout;
+        var pos = data.building2screen( new THREE.Vector3( l.x, l.y, l.z ) );
+        ev.data.element.css( 'left', pos.x + 'px' );
+        ev.data.element.css( 'top' , pos.y + 'px' );
+
+        var floorFilter = true;
+        if( l.floorFilter) floorFilter = data.getState('showFloor') == data.buildingProperties.floorNames[ l.floorFilter ];
+        ev.data.element.css( 'display', floorFilter ? '' : 'none' );
       }
+
     },
 
     /*
@@ -216,6 +377,60 @@ define( [
       },
 
       methods: {
+        getAddressListCallback: function() {
+          return null;
+        },
+
+        /**
+         * Returns a map with definitions for the XML Parser to map XML-Attribute values
+         * to properties e.g
+         * {
+         *  <attribute-name>: {
+         *    target: <property-name>,
+         *    default: <default-value>,
+         *    transform: <callback to transform the value to the desired value>
+         *  }
+         * }
+         * @returns {Object}
+         */
+        getAttributeToPropertyMappings: function() {
+          return null;
+        },
+
+        /**
+         * Creates the widget HTML code
+         *
+         * @method create
+         * @param {Element} element - DOM-Element
+         * @param {String} path - internal path of the widget
+         * @param {String} flavour - Flavour of the widget
+         * @param {String} type - Page type (2d, 3d, ...)
+         * @return {String} HTML code
+         */
+        parse: function (element, path, flavour, type) {
+          var $e = $(element);
+
+          // and fill in widget specific data
+          var data = this.createDefaultWidget(element.nodeName, $e, path, flavour, type);
+          var mappings = this.getAttributeToPropertyMappings();
+          if (mappings) {
+            for (var key in mappings) {
+              if (mappings.hasOwnProperty(key)) {
+                var map = mappings[key];
+                var value = $e.attr(key);
+                if (map.default && !value) {
+                  value = map.default;
+                }
+                if (map.transform) {
+                  value = map.transform(value);
+                }
+                data[map.target || key] = value;
+              }
+            }
+          }
+          return data;
+        },
+
         addPopup: function (name, object) {
           this.popups[name] = object;
           this.popups[name].type = name;
@@ -250,15 +465,15 @@ define( [
             classes+=" "+$element.attr('align');
           }
           classes += ' ' + this.setWidgetLayout( $element, path );
-          if ( flavour ) flavour = flavour;// sub design choice
+          if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
+          if( flavour ) classes += ' flavour_' + flavour;
           if ($element.attr('class')) classes += ' custom_' + $element.attr('class');
           var label = (widgetType==='text') ? this.extractLabel( $element.find('label')[0], flavour, '' ) : this.extractLabel( $element.find('label')[0], flavour );
-          var address = this.makeAddressList( $element, makeAddressListFn, path );
+
           var bindClickToWidget = templateEngine.bindClickToWidget;
           if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
 
           return templateEngine.widgetDataInsert( path, {
-            'address' : address,
             'bind_click_to_widget': bindClickToWidget,
             'mapping' : $element.attr('mapping'),
             'styling' : $element.attr('styling'),
@@ -267,156 +482,9 @@ define( [
             'layout'  : layout,
             'path'    : path,
             'label'   : label,
-            'classes' : classes
+            'classes' : classes,
+            '$$type'  : widgetType
           });
-        },
-
-        defaultValueHandling: function( ga, data, widgetData ) {
-          var thisTransform = '';
-          var value = data;
-          if (undefined !== ga) {
-            thisTransform = widgetData.address[ga][0];
-            // #1: transform the raw value to a JavaScript type
-            value = templateEngine.transformDecode(thisTransform, data);
-          }
-
-          widgetData.basicvalue = value; // store it to be able to supress sending of unchanged data
-
-          // #2: map it to a value the user wants to see
-          value = templateEngine.map(value, widgetData.mapping);
-
-          // #3: format it in a way the user understands the value
-          if (widgetData.precision)
-            value = Number(value).toPrecision(widgetData.precision);
-          if (widgetData.format) {
-            if (!('formatValueCache' in widgetData))
-              widgetData.formatValueCache = [widgetData.format];
-
-            var argListPos = (widgetData.address && widgetData.address[ga]) ? widgetData.address[ga][3] : 1;
-
-            widgetData.formatValueCache[argListPos] = value;
-
-            value = sprintf.apply(this, widgetData.formatValueCache);
-          }
-          widgetData.value = value;
-          if (undefined !== value && value.constructor == Date) {
-            switch (thisTransform) // special case for KNX
-            {
-              case 'DPT:10.001':
-                value = value.toLocaleTimeString();
-                break;
-              case 'DPT:11.001':
-                value = value.toLocaleDateString();
-                break;
-              case 'OH:datetime':
-                value = value.toLocaleDateString();
-                break;
-              case 'OH:time':
-                value = value.toLocaleTimeString();
-                break;
-            }
-          }
-
-          // #4 will happen outside: style the value to be pretty
-          return value;
-        },
-
-        /**
-         * Method to handle all special cases for the value. The might come from
-         * the mapping where it can be quite complex as it can contain icons.
-         * value: the value that will be inserted
-         * modifyFn: callback function that modifies the DOM
-         * @method defaultValue2DOM
-         * @param {} value
-         * @param {} modifyFn
-         */
-        defaultValue2DOM: function( value, modifyFn ) {
-          if (('string' === typeof value) || ('number' === typeof value))
-            modifyFn(value);
-          else if ('function' === typeof value)
-          // thisValue(valueElement);
-            console.error('typeof value === function - special case not handled anymore!');
-          else if (!Array.isArray(value)) {
-            var element = value.cloneNode();
-            if (value.getContext) {
-              fillRecoloredIcon(element);
-            }
-            modifyFn(element);
-          } else {
-            for (var i = 0; i < value.length; i++) {
-              var thisValue = value[i];
-              if (!thisValue) continue;
-
-              if (('string' === typeof thisValue) || ('number' === typeof thisValue))
-                modifyFn(thisValue);
-              else if ('function' === typeof thisValue)
-              // thisValue(valueElement);
-                console.error('typeof value === function - special case not handled anymore!');
-              else {
-                var element = thisValue.cloneNode();
-                if (thisValue.getContext) {
-                  fillRecoloredIcon(element);
-                }
-                modifyFn(element);
-              }
-            }
-          }
-        },
-
-        /**
-         * ga:            address
-         * data:          the raw value from the bus
-         * passedElement: the element to update
-         * @method defaultUpdate
-         * @param {} ga
-         * @param {} data
-         * @param {} passedElement
-         * @param {} newVersion
-         * @param {} path
-         * @return value
-         */
-        defaultUpdate: function( ga, data, passedElement, newVersion, path ) {
-          ///console.log(ga, data, passedElement, newVersion );
-          var element = passedElement || $(this);
-          var elementData = templateEngine.widgetData[path];
-          var actor = newVersion ? element.find('.actor:has(".value")') : element;
-          var value = self.defaultValueHandling(ga, data, elementData);
-
-          templateEngine.setWidgetStyling(actor, elementData.basicvalue, elementData.styling);
-
-          if (elementData['align'])
-            element.addClass(elementData['align']);
-
-          var valueElement = element.find('.value');
-          valueElement.empty();
-          if (undefined !== value)
-            self.defaultValue2DOM(value, function (e) {
-              valueElement.append(e)
-            });
-          else
-            valueElement.append('-');
-
-          return value;
-        },
-
-        /**
-         * Description
-         * @method defaultUpdate3d
-         * @param {} ev
-         * @param {} data
-         * @param {} passedElement
-         */
-        defaultUpdate3d: function( ev, data, passedElement )
-        {
-          //var element = passedElement || $(this);
-          var l = ev.data.layout;
-          var pos = data.building2screen( new THREE.Vector3( l.x, l.y, l.z ) );
-          ev.data.element.css( 'left', pos.x + 'px' );
-          ev.data.element.css( 'top' , pos.y + 'px' );
-
-          var floorFilter = true;
-          if( l.floorFilter) floorFilter = data.getState('showFloor') == data.buildingProperties.floorNames[ l.floorFilter ];
-          ev.data.element.css( 'display', floorFilter ? '' : 'none' );
         },
 
         /**
@@ -513,53 +581,6 @@ define( [
               ret_val += this.textContent;
           });
           return ret_val + '</div>';
-        },
-
-        /**
-         * this function extracts all addresses with attributes (JNK)
-         *                       elements. The first is a boolean that determins if
-         *                       the visu should listen for that address. The second
-         *                       is added as it is to the returned object.
-         * @method makeAddressList
-         * @param {} element
-         * @param handleVariant is a callback function that returns an array of two
-         * @param id             id / path to the widget
-         * @return address
-         */
-        makeAddressList: function( element, handleVariant, id ) {
-          var address = {};
-          element.find('address').each( function(){
-            var
-              src = this.textContent,
-              transform = this.getAttribute('transform'),
-              formatPos = +(this.getAttribute('format-pos') || 1)|0, // force integer
-              mode = 1|2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
-
-            if ((!src) || (!transform)) // fix broken address-entries in config
-              return;
-
-            switch( this.getAttribute('mode') )
-            {
-              case 'disable':
-                mode = 0;
-                break;
-              case 'read':
-                mode = 1;
-                break;
-              case 'write':
-                mode = 2;
-                break;
-              case 'readwrite':
-                mode = 1|2;
-                break;
-            }
-            var variantInfo = handleVariant ? handleVariant( src, transform, mode, this.getAttribute('variant') ) : [true, undefined];
-            if( (mode&1) && variantInfo[0]) // add only addresses when reading from them
-              templateEngine.addAddress( src, id );
-            address[ src ] = [ transform, mode, variantInfo[1], formatPos ];
-            return; // end of each-func
-          });
-          return address;
         },
 
         /**

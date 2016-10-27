@@ -56,62 +56,49 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function() {
+define( [
+  '_common'
+], function() {
   "use strict";
 
   Class('cv.structure.pure.Switch', {
     isa: cv.structure.pure.AbstractWidget,
 
-    my : {
+    has: {
+      onValue: { is: 'r', init: 1 },
+      offValue: { is: 'r', init: 1 }
+    },
 
+    my : {
       methods: {
-        /**
-         * Creates the widget HTML code
-         *
-         * @method create
-         * @param {Element} element - DOM-Element
-         * @param {String} path - internal path of the widget
-         * @param {String} flavour - Flavour of the widget
-         * @param {String} type - Page type (2d, 3d, ...)
-         * @return {String} HTML code
-         */
-        parse: function (element, path, flavour, type) {
-          var $e = $(element);
-          // and fill in widget specific data
-          this.createDefaultWidget('switch', $e, path, flavour, type);
-          return templateEngine.widgetDataInsert(path, {
-            'on_value': $e.attr('on_value') || 1,
-            'off_value': $e.attr('off_value') || 0,
-            path: path,
-            $$type: "switch"
-          });
+        getAttributeToPropertyMappings: function () {
+          return {
+            'on_value': {
+              target: 'onValue',
+              default: 1
+            },
+            'off_value': {
+              target: 'offValue',
+              default: 0
+            }
+          };
         }
       }
     },
 
     methods: {
+
       getDomString: function () {
         // create the main structure
-        var ret_val = this.createDefaultWidget(this.update);
+        var ret_val = this.createDefaultWidget();
         ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
 
         return ret_val + '</div>';
       },
 
-
-      /**
-       * Handles updates of incoming data for this widget
-       * @method update
-       * @param {String} address - Source address of the incoming data
-       * @param {String} value - Incoming data
-       */
-      update: function (address, value) {
-        var
-          element = $(this),
-          data = templateEngine.widgetDataGetByElement(element),
-          actor = element.find('.actor'),
-          value = this.defaultUpdate(address, value, element, true, element.parent().attr('id')),
-          off = templateEngine.map(data['off_value'], data['mapping']);
+      handleUpdate: function(value) {
+        var actor = this.getActor();
+        var off = templateEngine.map(this.getOffValue(), this.getMapping());
         actor.removeClass(value == off ? 'switchPressed' : 'switchUnpressed');
         actor.addClass(value == off ? 'switchUnpressed' : 'switchPressed');
       },
@@ -127,13 +114,8 @@ define( ['_common'], function() {
       action: function (path, actor, isCanceled) {
         if (isCanceled) return;
 
-        var
-          widgetData = templateEngine.widgetDataGet(path);
-
-        for (var addr in widgetData.address) {
-          if (!(widgetData.address[addr][1] & 2)) continue; // skip when write flag not set
-          templateEngine.visu.write(addr, templateEngine.transformEncode(widgetData.address[addr][0], widgetData.basicvalue == widgetData.off_value ? widgetData.on_value : widgetData.off_value));
-        }
+        var value = this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue();
+        this.sendToBackend(value);
       }
     }
   });

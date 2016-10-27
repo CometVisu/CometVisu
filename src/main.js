@@ -57,7 +57,7 @@ require.config({
     // 'widget_pushbutton':        'structure/pure/PushButton',
     // 'widget_urltrigger':        'structure/pure/UrlTrigger',
     'widget_unknown':           'structure/pure/Unknown',
-    // 'widget_audio':             'structure/pure/Audio',
+    'widget_audio':             'structure/pure/Audio',
     // 'widget_video':             'structure/pure/Video',
     // 'widget_wgplugin_info':     'structure/pure/WgPluginInfo',
     'TransformDefault':         'transforms/TransformDefault',

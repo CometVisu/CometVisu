@@ -30,7 +30,7 @@
 define( ['_common'], function() {
   "use strict";
 
-  cv.structure.pure.WidgetFactory.addCreator('unknown', {
+  cv.xml.Parser.addHandler("unknown", {
     /**
      * Creates the widget HTML code
      *
@@ -41,7 +41,7 @@ define( ['_common'], function() {
      * @param {String} type - Page type (2d, 3d, ...)
      * @return {String} HTML code
      */
-    create: function( element, path, flavour, type ) {
+    parse: function( element, path, flavour, type ) {
       return '<div class="widget clearfix">'
         + '<pre>unknown: ' + element.nodeName + '</pre>'
         + '</div>';

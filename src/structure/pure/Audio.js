@@ -37,64 +37,107 @@
  * @author Markus Damman
  * @since 0.8.4 (2014)
  */
-define( ['_common'], function( design ) {
+define( [
+  '_common'
+], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('audio', {
-    /**
-     * Creates the widget HTML code
-     *
-     * @method create
-     * @param {Element} element - DOM-Element
-     * @param {String} path - internal path of the widget
-     * @param {String} flavour - Flavour of the widget
-     * @param {String} type - Page type (2d, 3d, ...)
-     * @return {String} HTML code
-     */
-    create: function( element, path, flavour, type ) {
-      var $e = $(element);
 
-      // create the main structure
-      var ret_val = basicdesign.createDefaultWidget( 'audio', $e, path, flavour, type, this.update);
-      // and fill in widget specific data
-      var data = templateEngine.widgetDataInsert( path, {
-        'src'     : $e.attr('src'),
-        'id'      : $e.attr('id'),
-        'width'   : $e.attr('width'),
-        'height'  : $e.attr('height'),
-        'autoplay': $e.attr('autoplay') === "autoplay" || $e.attr('autoplay') === "true",
-        'loop'    : $e.attr('loop') === "loop" || $e.attr('loop') === "true",
-        'threshold_value'  : $e.attr('threshold_value' ) || 1
-      } );
+  Class('cv.structure.pure.Audio', {
+    isa: cv.structure.pure.AbstractWidget,
 
-      // create the actor
-      var style = '';
-      if( data.width  ) style += 'width:'  + data.width  + ';';
-      if( data.height ) style += 'height:' + data.height + ';';
-      if( style != '' ) style = 'style="' + style + '"';
-      var autoplay = (data.autoplay) ? ' autoplay ' : '';
-      var loop = (data.loop) ? ' loop ' : '';
-      var actor = '<div class="actor"><audio id="' + $e.attr('id') + '" ' + autoplay + loop + style + ' controls> <source src="' +$e.attr('src') + '" > </audio> </div>';
-      return ret_val + actor + '</div>';
+    has: {
+      src: { is: 'r' },
+      id: { is: 'r' },
+      width: { is: 'r' },
+      height: { is: 'r' },
+      autoplay: { is: 'r' },
+      loop: { is: 'r' },
+      thresholdValue: { is: 'r' }
     },
 
-    /**
-     * Handles updates of incoming data for this widget
-     * @method update
-     * @param {String} address - Source address of the incoming data
-     * @param {String} value - Incoming data
-     */
-    update: function(address, value) {
-      var element = $(this);
-      var actor   = element.find('.actor');
-      var value = basicdesign.defaultUpdate( address, value, element, true, element.parent().attr('id') );
-      var data  = templateEngine.widgetDataGetByElement( element );
-      var on = templateEngine.map( data[ 'threshold_value' ], data['mapping'] );
-      if (value >= on) {
-        var audioWidget = document.getElementById(data['id']);
-        if (audioWidget.paused == true)
-          audioWidget.play();
+    my : {
+      methods: {
+
+        getAttributeToPropertyMappings: function() {
+          return {
+            src: {},
+            id: {},
+            width: {},
+            height: {},
+            autoplay: {
+              transform: function (value) {
+                return value === "autoplay" || value === "true"
+              }
+            },
+            loop: {
+              transform: function (value) {
+                return value === "loop" || value === "true"
+              }
+            },
+            thresholdValue: {default: 1}
+          };
+        }
+      },
+
+      after: {
+        /**
+         * Creates the widget HTML code
+         *
+         * @method create
+         * @param {Element} element - DOM-Element
+         * @param {String} path - internal path of the widget
+         * @param {String} flavour - Flavour of the widget
+         * @param {String} type - Page type (2d, 3d, ...)
+         * @return {String} HTML code
+         */
+        parse: function (element, path, flavour, type) {
+          var $e = $(element);
+
+          // and fill in widget specific data
+          return templateEngine.widgetDataInsert(path, {
+
+          });
+        }
+      }
+    },
+
+    methods: {
+
+      getActor: function() {
+        if (!this.$$actor) {
+          this.$$actor = document.getElementById(this.getId());
+        }
+        return this.$$actor;
+      },
+
+      getDomString: function () {
+        // create the main structure
+        var ret_val = this.createDefaultWidget();
+        // create the actor
+        var style = '';
+        if (this.width) style += 'width:' + this.width + ';';
+        if (this.height) style += 'height:' + this.height + ';';
+        if (style != '') style = 'style="' + style + '"';
+        var autoplay = (this.autoplay) ? ' autoplay ' : '';
+        var loop = (this.loop) ? ' loop ' : '';
+        var actor = '<div class="actor"><audio id="' + this.getId() + '" ' + autoplay + loop + style + ' controls> <source src="' + this.getSrc()+ '" > </audio> </div>';
+        return ret_val + actor + '</div>';
+      },
+
+      /**
+       * Handles updates of incoming data for this widget
+       * @method update
+       * @param {String} address - Source address of the incoming data
+       * @param {String} value - Incoming data
+       */
+      handleUpdate: function (address, value) {
+        var on = templateEngine.map(this.getThresholdValue(), this.getMapping());
+
+        if (value >= on) {
+          var audioWidget = this.getActor();
+          if (audioWidget.paused == true)
+            audioWidget.play();
+        }
       }
     }
   });
