@@ -194,8 +194,15 @@ define( [
         return this.$$actor;
       },
 
-      createDefaultWidget : function(updateFn) {
-        var ret_val = '<div class="'+this.getClasses()+'" ' + this.getStyle() + '>' + this.getLabel();
+      /**
+       * Generates the DOM string for this widget
+       *
+       * @method getDomString
+       * @returns {string}
+       */
+      getDomString : function(updateFn) {
+        var ret_val = '<div class="'+this.getClasses()+'" ' + this.getStyle() + '>' + this.getLabel() + this.INNER() +'</div>';
+        // TODO: move this somewhere else
         if (this.getAddress() && updateFn != undefined) {
           templateEngine.postDOMSetupFns.push( function() {
             // initially setting a value

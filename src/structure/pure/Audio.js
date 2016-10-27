@@ -101,18 +101,9 @@ define( [
       }
     },
 
-    methods: {
-
-      getActor: function() {
-        if (!this.$$actor) {
-          this.$$actor = document.getElementById(this.getId());
-        }
-        return this.$$actor;
-      },
-
+    augment: {
       getDomString: function () {
         // create the main structure
-        var ret_val = this.createDefaultWidget();
         // create the actor
         var style = '';
         if (this.width) style += 'width:' + this.width + ';';
@@ -120,8 +111,17 @@ define( [
         if (style != '') style = 'style="' + style + '"';
         var autoplay = (this.autoplay) ? ' autoplay ' : '';
         var loop = (this.loop) ? ' loop ' : '';
-        var actor = '<div class="actor"><audio id="' + this.getId() + '" ' + autoplay + loop + style + ' controls> <source src="' + this.getSrc()+ '" > </audio> </div>';
-        return ret_val + actor + '</div>';
+        return '<div class="actor"><audio id="' + this.getId() + '" ' + autoplay + loop + style + ' controls> <source src="' + this.getSrc()+ '" > </audio> </div>';
+      }
+    },
+
+    methods: {
+
+      getActor: function() {
+        if (!this.$$actor) {
+          this.$$actor = document.getElementById(this.getId());
+        }
+        return this.$$actor;
       },
 
       /**

@@ -56,46 +56,41 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( [
-  '_common'
-], function() {
+define( ['_common'], function() {
   "use strict";
 
   Class('cv.structure.pure.Switch', {
     isa: cv.structure.pure.AbstractWidget,
 
     has: {
-      onValue: { is: 'r', init: 1 },
-      offValue: { is: 'r', init: 1 }
+      onValue: { is: 'r' },
+      offValue: { is: 'r' }
     },
 
     my : {
       methods: {
         getAttributeToPropertyMappings: function () {
           return {
-            'on_value': {
-              target: 'onValue',
-              default: 1
-            },
-            'off_value': {
-              target: 'offValue',
-              default: 0
-            }
+            'on_value':   { target: 'onValue',  default: 1 },
+            'off_value':  { target: 'offValue', default: 0 }
           };
         }
       }
     },
 
-    methods: {
-
+    augment: {
       getDomString: function () {
-        // create the main structure
-        var ret_val = this.createDefaultWidget();
-        ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+        return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+      }
+    },
 
-        return ret_val + '</div>';
-      },
-
+    methods: {
+      /**
+       * Handles the incoming data from the backend for this widget
+       *
+       * @method handleUpdate
+       * @param value {any} incoming data (already transformed + mapped)
+       */
       handleUpdate: function(value) {
         var actor = this.getActor();
         var off = templateEngine.map(this.getOffValue(), this.getMapping());
@@ -104,7 +99,7 @@ define( [
       },
 
       /**
-       * Action performed when the switch got clicked
+       * Action performed when the switch got clicked, sends data to the backend
        *
        * @method action
        * @param {String} path - Internal path of the widget
@@ -113,12 +108,10 @@ define( [
        */
       action: function (path, actor, isCanceled) {
         if (isCanceled) return;
-
-        var value = this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue();
-        this.sendToBackend(value);
+        this.sendToBackend(this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
       }
     }
   });
-
+  // register the parser
   cv.xml.Parser.addHandler("switch", cv.structure.pure.Switch);
 }); // end define
