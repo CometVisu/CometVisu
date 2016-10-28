@@ -56,11 +56,12 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function() {
+define( ['_common', 'lib/cv/role/Operate'], function() {
   "use strict";
 
   Class('cv.structure.pure.Switch', {
     isa: cv.structure.pure.AbstractWidget,
+    does: cv.role.Operate,
 
     has: {
       onValue: { is: 'r' },
@@ -99,16 +100,12 @@ define( ['_common'], function() {
       },
 
       /**
-       * Action performed when the switch got clicked, sends data to the backend
+       * Get the value that should be send to backend after the action has been triggered
        *
-       * @method action
-       * @param {String} path - Internal path of the widget
-       * @param {Element} actor - DOMElement
-       * @param {Boolean} isCanceled - If true the action does nothing
+       * @method getActionValue
        */
-      action: function (path, actor, isCanceled) {
-        if (isCanceled) return;
-        this.sendToBackend(this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
+      getActionValue: function () {
+        return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
       }
     }
   });

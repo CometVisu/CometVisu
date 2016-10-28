@@ -41,7 +41,6 @@ define( [
 
     has: {
       name              : { is: 'r' },
-      type              : { is: 'r' },
       showTopNavigation : { is: 'r' },
       showFooter        : { is: 'r' },
       showNavbar        : { is: 'r', init: {} },
@@ -66,10 +65,10 @@ define( [
          * @param {} page
          * @param {} path
          * @param {} flavour
-         * @param {} type
+         * @param {} pageType
          * @return ret_val
          */
-        parse: function( page, path, flavour, widgetType ) {
+        parse: function( page, path, flavour, pageType ) {
           var $p = $(page);
 
           var addresses = {};
@@ -80,18 +79,18 @@ define( [
           }
 
           var name    = $p.attr('name');
-          var type    = $p.attr('type') || 'text';              //text, 2d or 3d
+          pageType = $p.attr('type') || 'text';              //text, 2d or 3d
           var backdrop = $p.attr('backdrop');
           var showtopnavigation = $p.attr('showtopnavigation');
           var showfooter = $p.attr('showfooter');
           // make sure the type has the correct value as we need to use it ass CSS class
-          switch (type) {
+          switch (pageType) {
             case '2d':
             case '3d':
               // do nothing, type has correct value
               break;
             default:
-              type = 'text';
+              pageType = 'text';
               break;
           }
 
@@ -125,12 +124,12 @@ define( [
           var data = templateEngine.widgetDataInsert( path + '_', {
             path              : path,
             name              : name,
-            type              : type,
+            pageType          : pageType,
             showTopNavigation : showtopnavigation,
             showFooter        : showfooter,
             showNavbar        : shownavbar,
             layout            : layout,
-            backdropAlign     : '2d' === type ? ($p.attr('backdropalign' ) || '50% 50%') : undefined,
+            backdropAlign     : '2d' === pageType ? ($p.attr('backdropalign' ) || '50% 50%') : undefined,
             size              : $p.attr('size'),
             address           : addresses,
             visible           : $p.attr('visible') || true,
@@ -156,7 +155,7 @@ define( [
 
       getDomString: function() {
         var ret_val = '';
-        var type = this.getType();
+        var pageType = this.getPageType();
 
         if (!this.getVisible()) {
           ret_val='';
@@ -164,7 +163,7 @@ define( [
         else { // default is visible
           var layout = this.getLayout();
 
-          var style = $.isEmptyObject(layout) ? '' : 'style="' + this.extractLayout( layout, type ) + '"';
+          var style = $.isEmptyObject(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
 
           ret_val = '<div class="widget clearfix link pagelink '+this.getClasses()+'" ' + style + '>';
           ret_val += '<div class="actor" ' + this.getWstyle() + '><a href="javascript:">' + this.getName() + '</a></div>';
@@ -177,10 +176,10 @@ define( [
            */
         }
         var subpageClass = this.getFlavour() ? (' flavour_' + this.getFlavour()) : '';
-        var subpage = '<div class="page type_' + type + subpageClass + '" id="' + this.getPath() + '_">';
+        var subpage = '<div class="page type_' + pageType + subpageClass + '" id="' + this.getPath() + '_">';
         var container = '<div class="clearfix" style="height:100%;position:relative;"><h1>' + this.getName() + '</h1>';
 
-        if( '2d' == type )
+        if( '2d' == pageType )
         {
           var size = 'width:100%;height:100%;';
           switch( this.getSize() )
@@ -206,7 +205,7 @@ define( [
             container += '<' + elemType + ' src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
             this.setBackdropType(elemType);
           }
-        } else if( '3d' == type && false ) //---Disable 3D for 0.8---
+        } else if( '3d' == pageType && false ) //---Disable 3D for 0.8---
         {
           /*
            var floorplan = JSFloorPlan3D( container, backdrop );

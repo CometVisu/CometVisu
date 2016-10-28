@@ -405,20 +405,21 @@ define( [
         },
 
         /**
-         * Creates the widget HTML code
+         * Parses the widgets XML configuration and extracts the giveb information
+         * to a simple key/value map.
          *
          * @method create
-         * @param {Element} element - DOM-Element
+         * @param {Element} element - XML-Element
          * @param {String} path - internal path of the widget
          * @param {String} flavour - Flavour of the widget
-         * @param {String} type - Page type (2d, 3d, ...)
+         * @param {String} pageType - Page type (2d, 3d, ...)
          * @return {String} HTML code
          */
-        parse: function (element, path, flavour, type) {
+        parse: function (element, path, flavour, pageType) {
           var $e = $(element);
 
           // and fill in widget specific data
-          var data = this.createDefaultWidget(element.nodeName, $e, path, flavour, type);
+          var data = this.createDefaultWidget(element.nodeName, $e, path, flavour, pageType);
           var mappings = this.getAttributeToPropertyMappings();
           if (mappings) {
             for (var key in mappings) {
@@ -459,14 +460,14 @@ define( [
          * @param $element   jQuery object of the XML element
          * @param path       string of the path ID
          * @param flavour
-         * @param type
+         * @param pageType
          * @param updateFn   The callback function for updates
          * @param {} makeAddressListFn
          * @return ret_val
          */
-        createDefaultWidget: function( widgetType, $element, path, flavour, type, makeAddressListFn ) {
+        createDefaultWidget: function( widgetType, $element, path, flavour, pageType, makeAddressListFn ) {
           var layout = this.parseLayout( $element.children('layout')[0] );
-          var style = layout ? 'style="' + this.extractLayout( layout, type ) + '"' : '';
+          var style = layout ? 'style="' + this.extractLayout( layout, pageType ) + '"' : '';
           var classes = 'widget clearfix ' + widgetType;
           if ( $element.attr('align') ) {
             classes+=" "+$element.attr('align');
@@ -529,13 +530,13 @@ define( [
          * Description
          * @method extractLayout
          * @param {} layout
-         * @param {} type
+         * @param {} pageType
          * @return ret_val
          */
-        extractLayout: function( layout, type )
+        extractLayout: function( layout, pageType )
         {
 
-          var ret_val = (type == '2d') ? 'position:absolute;' : '';
+          var ret_val = (pageType == '2d') ? 'position:absolute;' : '';
           if( layout.x      ) ret_val += 'left:'   + layout.x      + ';';
           if( layout.y      ) ret_val += 'top:'    + layout.y      + ';';
           if( layout.width  ) ret_val += 'width:'  + layout.width  + ';';
