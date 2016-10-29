@@ -45,7 +45,7 @@ define([
   'Compatibility', 'jquery-ui', 'strftime',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'IconHandler', 
   'widget_break', //'widget_designtoggle',
-  // 'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
+  'widget_group', //'widget_rgb', 'widget_web', 'widget_image',
   // 'widget_imagetrigger', 'widget_include',
   'widget_info', //'widget_infoaction', 'widget_infotrigger',
   'widget_line', 'widget_multitrigger', //'widget_navbar',
@@ -1027,6 +1027,10 @@ define([
     // check if the page and the plugins are ready now
     for( var key in loadReady )  // test for emptines
       return; // we'll be called again...
+
+    if (!xml) {
+      return;
+    }
 
     // login to backend as it might change some settings needed for further processing
     thisTemplateEngine.visu.login(true, function() {

@@ -75,7 +75,6 @@ define(['joose'], function() {
             var variantInfo = that.meta.methods['makeAddressListFn'] ? that.makeAddressListFn(src, transform, mode, this.getAttribute('variant')) : [true, undefined];
             if ((mode & 1) && variantInfo[0]) {// add only addresses when reading from them
               templateEngine.addAddress(src, id);
-              console.log("add address srd: %s, id: %s (%o)", src, id, that);
             }
             address[src] = [transform, mode, variantInfo[1], formatPos];
             return; // end of each-func

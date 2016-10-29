@@ -37,10 +37,7 @@ define( [
 
     does: [
       cv.role.HasChildren,
-      {
-        role: cv.role.Update,
-        exclude: [ 'parse' ]
-      }
+      cv.role.Update
     ],
 
     has: {
@@ -54,7 +51,9 @@ define( [
       visible           : { is: 'r', init: true },
       pageType          : { is: 'r' },
       wstyle            : { is: 'r', init: '' },
-      address           : { is: 'r', init: [] }
+      address           : { is: 'r', init: [] },
+      size              : { is: 'r' },
+      backdrop          : { is: 'r' }
     },
 
     my : {
@@ -126,7 +125,7 @@ define( [
           var layout = this.parseLayout( $p.children('layout')[0] );
 
           var data = templateEngine.widgetDataInsert( path + '_', {
-            path              : path,
+            path              : path+'_',
             name              : name,
             pageType          : pageType,
             showTopNavigation : showtopnavigation,
@@ -140,7 +139,8 @@ define( [
             flavour           : flavour,
             $$type            : "page",
             classes           : this.setWidgetLayout( $p, path ),
-            wstyle            : wstyle
+            wstyle            : wstyle,
+            backdrop          : backdrop
           });
           return data;
         },
@@ -250,20 +250,7 @@ define( [
            });
            */
         }
-        Joose.A.each( this.getChildren(), function(path) {
-          var data = templateEngine.widgetDataGet(path);
-          var widget = cv.structure.pure.WidgetFactory.createInstance(data.$$type, data);
-          if (widget) {
-            var subelement = widget.getDomString();
-            if( undefined === subelement )
-              return;
-            container += '<div class="widget_container '
-                + (data.rowspanClass ? data.rowspanClass : '')
-                + (data.containerClass ? data.containerClass : '')
-                + ('break' === data.type ? 'break_container' : '') // special case for break widget
-                + '" id="'+path+'" data-type="'+data.$$type+'">' + subelement + '</div>';
-          }
-        }, this);
+        container += this.getChildrenDomString();
         subpage += container + '</div></div>';
         cv.structure.pure.Page.my.allPages = subpage + cv.structure.pure.Page.my.allPages;
         return ret_val;

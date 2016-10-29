@@ -44,6 +44,28 @@ define(['joose'], function() {
           return data;
         }
       }
+    },
+
+    methods: {
+
+      getChildrenDomString: function() {
+        var container = '';
+        Joose.A.each( this.getChildren(), function(path) {
+          var data = templateEngine.widgetDataGet(path);
+          var widget = cv.structure.pure.WidgetFactory.createInstance(data.$$type, data);
+          if (widget) {
+            var subelement = widget.getDomString();
+            if( undefined === subelement )
+              return;
+            container += '<div class="widget_container '
+              + (data.rowspanClass ? data.rowspanClass : '')
+              + (data.containerClass ? data.containerClass : '')
+              + ('break' === data.type ? 'break_container' : '') // special case for break widget
+              + '" id="'+path+'" data-type="'+data.$$type+'">' + subelement + '</div>';
+          }
+        }, this);
+        return container;
+      }
     }
   });
 });

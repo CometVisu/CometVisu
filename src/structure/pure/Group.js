@@ -70,72 +70,83 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function( design ) {
+define( [
+  '_common',
+  'lib/cv/role/HasChildren'
+], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('group', {
-    maturity: design.Maturity.development,
-    /**
-     * Creates the widget HTML code
-     *
-     * @method create
-     * @param {Element} element - DOM-Element
-     * @param {String} path - internal path of the widget
-     * @param {String} flavour - Flavour of the widget
-     * @param {String} type - Page type (2d, 3d, ...)
-     * @return {String} HTML code
-     */
-    create: function( element, path, flavour, type ) {
-      var $e = $(element);
-      var classes = 'clearfix group ' + basicdesign.setWidgetLayout( $e, path );
-      if ( $e.attr('class') ) {
-        classes += ' custom_' + $e.attr( 'class' );
-      }
-      if ($e.attr('nowidget')!=='true') classes = 'widget ' + classes;
-      if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-      if( flavour ) classes += ' flavour_' + flavour;
-      var hstyle  = '';                                     // heading style
-      if( $e.attr('align') ) hstyle += 'text-align:' + $e.attr('align') + ';';
-      if( hstyle != '' ) hstyle = 'style="' + hstyle + '"';
-      var childs = $e.children().not('layout');
-      var container = '<div class="clearfix">';
-      if( $e.attr('name') ) container += '<h2 ' + hstyle + '>' + $e.attr('name') + '</h2>';
 
-      $( childs ).each( function(i){
-        container += templateEngine.create_pages( childs[i], path + '_' + i, flavour );
-      } );
-      container += '</div>';
+  Class('cv.structure.pure.Group', {
+    isa: cv.structure.pure.AbstractWidget,
 
-      if ( $e.attr('target') )  {
-        var target = $e.attr('target') ;
-        classes += ' clickable';
-        templateEngine.widgetDataInsert( path, {
-          'bind_click_to_widget': true, // for groups with pagejumps this is mandatory
-          'target'  : target
-        } );
-      }
-      return '<div class="' + classes + '">' + container + '</div>';
+    does: cv.role.HasChildren,
+
+    has: {
+      noWidget  : { is: 'r', init: false },
+      name      : { is: 'r' },
+      target    : { is: 'r' }
     },
 
-    /**
-     * Action performed when the group got clicked. If a target is specified in the group attributes
-     * the action will switch to the page defined by the target.
-     *
-     * @method action
-     * @param {String} path - Internal path of the widget
-     * @param {Element} actor - DOMElement
-     * @param {Boolean} isCanceled - If true the action does nothing
-     */
-    action: function( path, actor, isCanceled ) {
-      if( isCanceled ) {
-        return;
+    my: {
+
+      after: {
+        parse: function(xml, path, flavour, pageType ) {
+          var data = templateEngine.widgetDataGet( path);
+          if ( data.target )  {
+            data.classes += ' clickable';
+            data.bind_click_to_widget = true; // for groups with pagejumps this is mandatory
+          }
+        }
+      },
+
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'nowidget': {target: 'noWidget', default: false},
+            'name': {},
+            'target': {}
+          };
+        }
       }
-      var data = templateEngine.widgetDataGet( path );
-      if (data.target != 0) {
-        templateEngine.scrollToPage( data.target );
+    },
+
+    methods: {
+      /**
+       * Action performed when the group got clicked. If a target is specified in the group attributes
+       * the action will switch to the page defined by the target.
+       *
+       * @method action
+       * @param {String} path - Internal path of the widget
+       * @param {Element} actor - DOMElement
+       * @param {Boolean} isCanceled - If true the action does nothing
+       */
+      action: function( path, actor, isCanceled ) {
+        if( isCanceled ) {
+          return;
+        }
+        var data = templateEngine.widgetDataGet( path );
+        if (data.target != 0) {
+          templateEngine.scrollToPage( data.target );
+        }
+      },
+      getDomString: function() {
+        // heading style
+        var hstyle  = '';
+        if( this.getAlign() ) {
+          hstyle += 'style="text-align:' + this.getAlign() + '";';
+        }
+
+        var container = '<div class="clearfix">';
+        if( this.getName() ) {
+          container += '<h2 ' + hstyle + '>' + this.getName() + '</h2>';
+        }
+
+        container += this.getChildrenDomString();
+        container += '</div>';
+
+        return '<div class="' + this.getClasses() + '">' + container + '</div>';
       }
     }
   });
-
+  cv.xml.Parser.addHandler("group", cv.structure.pure.Group);
 }); // end define
