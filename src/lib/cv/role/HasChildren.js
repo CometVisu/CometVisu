@@ -20,6 +20,8 @@
 define(['joose'], function() {
   Role("cv.role.HasChildren", {
 
+    requires: ['getPathSuffix'],
+
     has: {
       children: { is: 'rw', init: [] }
     },
@@ -28,7 +30,7 @@ define(['joose'], function() {
       after: {
         parse: function( xml, path, flavour, pageType ) {
           var $p = $(xml);
-          var data = templateEngine.widgetDataGet( path + '_');
+          var data = templateEngine.widgetDataGet( path + this.getPathSuffix());
 
           if (!data.children) {
             data.children = [];

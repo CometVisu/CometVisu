@@ -96,21 +96,32 @@ define( [
             data.classes += ' clickable';
             data.bind_click_to_widget = true; // for groups with pagejumps this is mandatory
           }
+          if (data.noWidget === true) {
+            data.classes = data.classes.replace("widget ", "");
+          }
         }
       },
 
       methods: {
         getAttributeToPropertyMappings: function () {
           return {
-            'nowidget': {target: 'noWidget', default: false},
+            'nowidget': {target: 'noWidget', default: false, transform: function(value) {
+              return value === "true";
+            }},
             'name': {},
             'target': {}
           };
+        },
+        getPathSuffix: function() {
+          return '';
         }
       }
     },
 
     methods: {
+      getPathSuffix: function() {
+        return cv.structure.pure.Group.my.getPathSuffix();
+      },
       /**
        * Action performed when the group got clicked. If a target is specified in the group attributes
        * the action will switch to the page defined by the target.
@@ -124,11 +135,12 @@ define( [
         if( isCanceled ) {
           return;
         }
-        var data = templateEngine.widgetDataGet( path );
-        if (data.target != 0) {
-          templateEngine.scrollToPage( data.target );
+
+        if (this.getTarget() != 0) {
+          templateEngine.scrollToPage( this.getTarget() );
         }
       },
+
       getDomString: function() {
         // heading style
         var hstyle  = '';

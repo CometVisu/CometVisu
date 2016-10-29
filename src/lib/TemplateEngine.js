@@ -302,44 +302,6 @@ define([
     $("#pages").triggerHandler("done");
   }
 
-  /*
-   * this function implements widget stylings 
-   */
-  this.setWidgetStyling = function(e, value, styling) {
-    var sty = stylings[styling];
-    if (sty) {    
-      e.removeClass(sty['classnames']); // remove only styling classes
-      var findValue = function(v, findExact) {
-        if (undefined === v) {
-          return false;
-        }
-        if (sty[v]) { // fixed value
-          e.addClass(sty[v]);
-          return true;
-        }
-        else { 
-          var range = sty['range'];
-          if (findExact && range[v]) {
-            e.addClass(range[v][1]);
-            return true;
-          }
-          var valueFloat = parseFloat(v);
-          for (var min in range) {
-            if (min > valueFloat) continue;
-            if (range[min][0] < valueFloat) continue; // check max
-            e.addClass(range[min][1]);
-            return true;
-          }
-        }
-        return false;
-      }
-      if (!findValue(value, false) && sty['defaultValue'] !== undefined) {
-        findValue(sty['defaultValue'], true);
-      }
-    }
-    return this;
-  }
-
   this.map = function(value, this_map) {
     if (this_map && mappings[this_map]) {
       var m = mappings[this_map];

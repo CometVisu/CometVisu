@@ -62,6 +62,9 @@ define( [
       },
 
       methods: {
+        getPathSuffix: function() {
+          return '_';
+        },
         /**
          * Description
          * @method create
@@ -77,7 +80,7 @@ define( [
           var addresses = {};
           if ($p.attr('ga')) {
             var src = $p.attr('ga');
-            templateEngine.addAddress( src, path + '_' );
+            templateEngine.addAddress( src, path + this.getPathSuffix() );
             addresses[ src ] = [ 'DPT:1.001', 0 ];
           }
 
@@ -124,8 +127,8 @@ define( [
 
           var layout = this.parseLayout( $p.children('layout')[0] );
 
-          var data = templateEngine.widgetDataInsert( path + '_', {
-            path              : path+'_',
+          var data = templateEngine.widgetDataInsert( path + this.getPathSuffix(), {
+            path              : path+this.getPathSuffix(),
             name              : name,
             pageType          : pageType,
             showTopNavigation : showtopnavigation,
@@ -156,6 +159,9 @@ define( [
     },
     
     methods: {
+      getPathSuffix: function() {
+        return cv.structure.pure.Page.my.getPathSuffix();
+      },
 
       getDomString: function() {
         var ret_val = '';
@@ -180,7 +186,7 @@ define( [
            */
         }
         var subpageClass = this.getFlavour() ? (' flavour_' + this.getFlavour()) : '';
-        var subpage = '<div class="page type_' + pageType + subpageClass + '" id="' + this.getPath() + '_">';
+        var subpage = '<div class="page type_' + pageType + subpageClass + '" id="' + this.getPath() + '">';
         var container = '<div class="clearfix" style="height:100%;position:relative;"><h1>' + this.getName() + '</h1>';
 
         if( '2d' == pageType )
