@@ -1094,7 +1094,7 @@ define([
       // reaction on browser back button
       window.onpopstate = function(e) {
         // where do we come frome?
-        lastpage = e.state;
+        var lastpage = e.state;
         if (lastpage) {
           // browser back button takes back to the last page
           thisTemplateEngine.scrollToPage(lastpage, 0, true);
@@ -1398,14 +1398,14 @@ define([
   };
 
   this.selectDesign = function() {
-    $body = $("body");
+    var $body = $("body");
 
     $("body > *").hide();
     $body.css({
       backgroundColor : "black"
     });
 
-    $div = $("<div id=\"designSelector\" />");
+    var $div = $("<div id=\"designSelector\" />");
     $div.css({
       background : "#808080",
       width : "400px",

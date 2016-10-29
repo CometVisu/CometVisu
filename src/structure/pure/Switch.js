@@ -56,12 +56,12 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common', 'lib/cv/role/Operate'], function() {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
   "use strict";
 
   Class('cv.structure.pure.Switch', {
     isa: cv.structure.pure.AbstractWidget,
-    does: cv.role.Operate,
+    does: [cv.role.Operate, cv.role.Update],
 
     has: {
       onValue: { is: 'r' },

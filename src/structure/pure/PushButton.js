@@ -25,12 +25,12 @@
  * @requires structure/pure
  * @since 2013
  */
-define( ['_common', 'lib/cv/role/Operate'], function() {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
   "use strict";
 
   Class('cv.structure.pure.Pushbutton', {
     isa: cv.structure.pure.AbstractWidget,
-    does: cv.role.Operate,
+    does: [cv.role.Operate, cv.role.Update],
 
     has: {
       'downValue' : { is: 'r', init: 1 },

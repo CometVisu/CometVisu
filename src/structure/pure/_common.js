@@ -29,43 +29,15 @@ define( [
   'jquery',
   'dependencies/joose-all-min',
   'lib/cv/xml/Parser',
-  'lib/cv/role/Update'
+  'structure/WidgetFactory'
 ], function($) {
   "use strict";
-
-  Class('cv.structure.pure.WidgetFactory', {
-    my : {
-      has : {
-        registry: { is: 'rw', init: {} }
-      },
-
-      methods: {
-        createInstance: function(type, data) {
-          if (!this.registry[data.path]) {
-            if (!cv.structure.pure[Joose.S.uppercaseFirst(type)]) {
-              console.error("No handler found for type '%s'", type)
-              return null;
-            } else {
-              this.registry[data.path] = new cv.structure.pure[Joose.S.uppercaseFirst(type)](data);
-            }
-          }
-          return this.registry[data.path];
-        },
-
-        getInstanceById: function(id) {
-          return this.registry[id];
-        }
-      }
-    }
-  });
 
   /**
    * This class defines all the building blocks for a Visu in the "Pure" design
    * @class cv.structure.pure.AbstractWidget
    */
   Class('cv.structure.pure.AbstractWidget', {
-
-    does: cv.role.Update,
 
     has: {
 
@@ -205,167 +177,11 @@ define( [
        * @method getDomString
        * @returns {string}
        */
-      getDomString : function(updateFn) {
-        var ret_val = '<div class="'+this.getClasses()+'" ' + this.getStyle() + '>' + this.getLabel() + this.INNER() +'</div>';
-        // TODO: move this somewhere else
-        if (this.getAddress() && updateFn != undefined) {
-          templateEngine.postDOMSetupFns.push( function() {
-            // initially setting a value
-            updateFn.bind( $("#"+this.getPath()), undefined, undefined );
-          }.bind(this));
-        }
-        return ret_val;
+      getDomString : function() {
+        return '<div class="'+this.getClasses()+'" ' + this.getStyle() + '>' + this.getLabel() + this.INNER() +'</div>';
       },
 
       getAddressListCallback: function() { return null; },
-
-      defaultValueHandling: function( ga, data, widgetData ) {
-        var thisTransform = '';
-        var value = data;
-        if (undefined !== ga) {
-          thisTransform = widgetData.address[ga][0];
-          // #1: transform the raw value to a JavaScript type
-          value = templateEngine.transformDecode(thisTransform, data);
-        }
-
-        this.setBasicValue(value); // store it to be able to supress sending of unchanged data
-
-        // #2: map it to a value the user wants to see
-        value = templateEngine.map(value, widgetData.mapping);
-
-        // #3: format it in a way the user understands the value
-        if (widgetData.precision)
-          value = Number(value).toPrecision(widgetData.precision);
-        if (widgetData.format) {
-          if (!('formatValueCache' in widgetData))
-            widgetData.formatValueCache = [widgetData.format];
-
-          var argListPos = (widgetData.address && widgetData.address[ga]) ? widgetData.address[ga][3] : 1;
-
-          widgetData.formatValueCache[argListPos] = value;
-
-          value = sprintf.apply(this, widgetData.formatValueCache);
-        }
-        widgetData.value = value;
-        if (undefined !== value && value.constructor == Date) {
-          switch (thisTransform) // special case for KNX
-          {
-            case 'DPT:10.001':
-              value = value.toLocaleTimeString();
-              break;
-            case 'DPT:11.001':
-              value = value.toLocaleDateString();
-              break;
-            case 'OH:datetime':
-              value = value.toLocaleDateString();
-              break;
-            case 'OH:time':
-              value = value.toLocaleTimeString();
-              break;
-          }
-        }
-
-        // #4 will happen outside: style the value to be pretty
-        return value;
-      },
-
-      /**
-       * Method to handle all special cases for the value. The might come from
-       * the mapping where it can be quite complex as it can contain icons.
-       * value: the value that will be inserted
-       * modifyFn: callback function that modifies the DOM
-       * @method defaultValue2DOM
-       * @param {} value
-       * @param {} modifyFn
-       */
-      defaultValue2DOM: function( value, modifyFn ) {
-        if (('string' === typeof value) || ('number' === typeof value))
-          modifyFn(value);
-        else if ('function' === typeof value)
-        // thisValue(valueElement);
-          console.error('typeof value === function - special case not handled anymore!');
-        else if (!Array.isArray(value)) {
-          var element = value.cloneNode();
-          if (value.getContext) {
-            fillRecoloredIcon(element);
-          }
-          modifyFn(element);
-        } else {
-          for (var i = 0; i < value.length; i++) {
-            var thisValue = value[i];
-            if (!thisValue) continue;
-
-            if (('string' === typeof thisValue) || ('number' === typeof thisValue))
-              modifyFn(thisValue);
-            else if ('function' === typeof thisValue)
-            // thisValue(valueElement);
-              console.error('typeof value === function - special case not handled anymore!');
-            else {
-              var element = thisValue.cloneNode();
-              if (thisValue.getContext) {
-                fillRecoloredIcon(element);
-              }
-              modifyFn(element);
-            }
-          }
-        }
-      },
-
-      /**
-       * ga:            address
-       * data:          the raw value from the bus
-       * passedElement: the element to update
-       * @method defaultUpdate
-       * @param {} ga
-       * @param {} data
-       * @param {} passedElement
-       * @param {} newVersion
-       * @param {} path
-       * @return value
-       */
-      defaultUpdate: function( ga, data, passedElement, newVersion, path ) {
-        ///console.log(ga, data, passedElement, newVersion );
-        var element = passedElement || this.getDomElement();
-        var elementData = templateEngine.widgetData[path];
-        var actor = newVersion ? element.find('.actor:has(".value")') : element;
-        var value = this.defaultValueHandling(ga, data, elementData);
-
-        templateEngine.setWidgetStyling(actor, this.getBasicValue(), elementData.styling);
-
-        if (elementData['align'])
-          element.addClass(elementData['align']);
-
-        var valueElement = element.find('.value');
-        valueElement.empty();
-        if (undefined !== value)
-          this.defaultValue2DOM(value, function (e) {
-            valueElement.append(e)
-          });
-        else
-          valueElement.append('-');
-
-        return value;
-      },
-
-      /**
-       * Description
-       * @method defaultUpdate3d
-       * @param {} ev
-       * @param {} data
-       * @param {} passedElement
-       */
-      defaultUpdate3d: function( ev, data, passedElement )
-      {
-        //var element = passedElement || $(this);
-        var l = ev.data.layout;
-        var pos = data.building2screen( new THREE.Vector3( l.x, l.y, l.z ) );
-        ev.data.element.css( 'left', pos.x + 'px' );
-        ev.data.element.css( 'top' , pos.y + 'px' );
-
-        var floorFilter = true;
-        if( l.floorFilter) floorFilter = data.getState('showFloor') == data.buildingProperties.floorNames[ l.floorFilter ];
-        ev.data.element.css( 'display', floorFilter ? '' : 'none' );
-      },
 
       /**
        * Create an action handling that shows a button press animation.

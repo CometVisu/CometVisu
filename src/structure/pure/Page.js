@@ -36,7 +36,11 @@ define( [
     isa: cv.structure.pure.AbstractWidget,
 
     does: [
-      cv.role.HasChildren
+      cv.role.HasChildren,
+      {
+        role: cv.role.Update,
+        exclude: [ 'parse' ]
+      }
     ],
 
     has: {

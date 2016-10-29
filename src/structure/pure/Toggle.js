@@ -31,7 +31,7 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
 
   Class('cv.structure.pure.Toggle', {
     isa: cv.structure.pure.AbstractWidget,
-    does: cv.role.Operate,
+    does: [cv.role.Operate, cv.role.Update],
 
     my : {
       methods: {

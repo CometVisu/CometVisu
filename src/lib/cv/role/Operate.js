@@ -19,11 +19,7 @@
 
 define(['dependencies/joose-all-min'], function() {
   Role("cv.role.Operate", {
-    requires: ['getActionValue'],
-
-    has: {
-      address: { is: 'r', init: {} }
-    },
+    requires: ['getActionValue', 'getAddress'],
 
     methods: {
 

@@ -26,12 +26,12 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker'], function() {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/HasAddress'], function() {
   "use strict";
 
   Class('cv.structure.pure.Trigger', {
     isa: cv.structure.pure.AbstractWidget,
-    does: cv.role.Operate,
+    does: [cv.role.Operate, cv.role.HasAddress],
 
     has: {
       sendValue: { is: 'r', init: 0 },
@@ -59,7 +59,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker'], function() {
     after : {
       initialize : function (props) {
         cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
-          this.defaultUpdate( undefined, this.getSendValue(), this.getDomElement(), true, this.getPath() );
+          //this.defaultUpdate( undefined, this.getSendValue(), this.getDomElement(), true, this.getPath() );
         }, this);
       }
     },
@@ -71,17 +71,8 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker'], function() {
     },
 
     methods: {
-      /**
-       * Handles the incoming data from the backend for this widget
-       *
-       * @method handleUpdate
-       * @param value {any} incoming data (already transformed + mapped)
-       */
+
       handleUpdate: function(value) {
-        var actor = this.getActor();
-        var off = templateEngine.map(this.getOffValue(), this.getMapping());
-        actor.removeClass(value == off ? 'switchPressed' : 'switchUnpressed');
-        actor.addClass(value == off ? 'switchUnpressed' : 'switchPressed');
       },
 
       /**

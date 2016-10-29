@@ -36,11 +36,12 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function() {
+define( ['_common', 'lib/cv/role/Update'], function() {
   "use strict";
 
   Class('cv.structure.pure.Info', {
     isa: cv.structure.pure.AbstractWidget,
+    does: cv.role.Update,
 
     augment: {
       getDomString: function () {

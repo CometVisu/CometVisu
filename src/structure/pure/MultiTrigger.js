@@ -24,12 +24,12 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common', 'lib/cv/role/Operate'], function() {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
   "use strict";
 
   Class('cv.structure.pure.Multitrigger', {
     isa: cv.structure.pure.AbstractWidget,
-    does: cv.role.Operate,
+    does: [cv.role.Operate, cv.role.Update],
 
     has: {
       showstatus: {is: 'r', init: false},
