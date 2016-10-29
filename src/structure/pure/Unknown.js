@@ -27,7 +27,7 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function() {
+define( ['_common', 'lib/cv/xml/Parser'], function() {
   "use strict";
 
   cv.xml.Parser.addHandler("unknown", {
