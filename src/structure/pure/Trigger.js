@@ -26,80 +26,95 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('trigger', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function( element, path, flavour, type ) {
-    var 
-      $e = $(element);
-    
-    // create the main structure
-    /**
-     * Description
-     * @method makeAddressListFn
-     * @param {} src
-     * @param {} transform
-     * @param {} mode
-     * @param {} variant
-     * @return ArrayExpression
-     */
-    var makeAddressListFn = function( src, transform, mode, variant ) {
-      // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
-      return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
-    }
-    var ret_val = basicdesign.createDefaultWidget( 'trigger', $e, path, flavour, type, null, makeAddressListFn );
-    // and fill in widget specific data
-    var data = templateEngine.widgetDataInsert( path, {
-      'sendValue'  : $e.attr('value' )                || 0,
-      'shorttime'  : parseFloat($e.attr('shorttime')) || -1,
-      'shortValue' : $e.attr('shortvalue')            || 0
-    } );
-    
-    // create the actor
-    var actor = '<div class="actor switchUnpressed"><div class="value"></div></div>';
-    
-    // initially setting a value
-    templateEngine.postDOMSetupFns.push( function(){
-      basicdesign.defaultUpdate( undefined, data['sendValue'], $('#'+path), true, path );
-    });
-    return ret_val + actor + '</div>';
-  },
-  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
-  /**
-   * Description
-   * @method action
-   * @param {} path
-   * @param {} actor
-   * @param {} isCanceled
-   */
-  action: function( path, actor, isCanceled ) {
-    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
-    if( isCanceled ) return;
 
-    var 
-      data = templateEngine.widgetDataGet( path ),
-      isShort = Date.now() - templateEngine.handleMouseEvent.downtime < data.shorttime,
-      bitMask = (isShort ? 1 : 2);
-      
-    for( var addr in data.address )
-    {
-      if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
-      if (data.address[addr][2] & bitMask) {
-        templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], isShort ? data.shortValue : data.sendValue ) );
+  Class('cv.structure.pure.Trigger', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: cv.role.Operate,
+
+    has: {
+      sendValue: { is: 'r', init: 0 },
+      shortTime: { is: 'r', init: -1 },
+      shortValue: { is: 'r', init: 0 }
+    },
+
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'value'      : { target: 'sendValue' , default: 0 },
+            'shorttime'  : { target: 'shortTime', default: -1, transform: parseFloat},
+            'shortValue' : { target: 'shortValue', default: 0 }
+          };
+        },
+
+        makeAddressListFn: function( src, transform, mode, variant ) {
+          // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
+          return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
+        }
+      }
+    },
+
+    after : {
+      initialize : function (props) {
+        cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
+          this.defaultUpdate( undefined, this.getSendValue(), this.getDomElement(), true, this.getPath() );
+        }, this);
+      }
+    },
+
+    augment: {
+      getDomString: function () {
+        // initially setting a value
+        return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+      }
+    },
+
+    methods: {
+      /**
+       * Handles the incoming data from the backend for this widget
+       *
+       * @method handleUpdate
+       * @param value {any} incoming data (already transformed + mapped)
+       */
+      handleUpdate: function(value) {
+        var actor = this.getActor();
+        var off = templateEngine.map(this.getOffValue(), this.getMapping());
+        actor.removeClass(value == off ? 'switchPressed' : 'switchUnpressed');
+        actor.addClass(value == off ? 'switchUnpressed' : 'switchPressed');
+      },
+
+      /**
+       * Get the value that should be send to backend after the action has been triggered
+       *
+       * @method getActionValue
+       */
+      getActionValue: function (isShort) {
+        if (isShort == undefined) {
+          isShort = Date.now() - templateEngine.handleMouseEvent.downtime < this.getShortTime();
+        }
+        return isShort ? this.getShortValue() : this.getSendValue();
+      },
+
+      action: function( path, actor, isCanceled ) {
+        basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+        if( isCanceled ) return;
+
+        var isShort = Date.now() - templateEngine.handleMouseEvent.downtime < this.getShortTime();
+        var bitMask = (isShort ? 1 : 2);
+        var sendValue = this.getActionValue();
+
+        this.sendToBackend(sendValue, function(address) {
+          return address[addr][2] & bitMask;
+        });
+      },
+
+      downaction: function(path, actor) {
+        return this.defaultButtonDownAnimationInheritAction(path, actor);
       }
     }
-  }
-});
-
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("trigger", cv.structure.pure.Trigger);
 }); // end define

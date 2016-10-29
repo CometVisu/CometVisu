@@ -49,12 +49,13 @@ define([
   // 'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infoaction', 'widget_infotrigger',
   // 'widget_line', 'widget_multitrigger', 'widget_navbar',
   // 'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide',
-  // 'widget_text', 'widget_toggle', 'widget_trigger',
+  // 'widget_text', 'widget_toggle',
   // 'widget_pushbutton', 'widget_urltrigger',
   // 'widget_video', 'widget_wgplugin_info',
-  'widget_switch', 'widget_page', 'widget_unknown', 'widget_audio',
+  'widget_switch', 'widget_page', 'widget_unknown', 'widget_audio', 'widget_trigger',
   'TransformDefault', 'TransformKnx', 'TransformOpenHab',
-  'lib/cv/xml/Parser'
+  'lib/cv/xml/Parser',
+  'lib/cv/MessageBroker'
 ], function( $, design, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup, EventHandler ) {
   "use strict";
 
@@ -1039,7 +1040,8 @@ define([
       thisTemplateEngine.create_pages(page, 'id');
       cv.structure.pure.Page.createFinal();
       profileCV( 'setup_page created pages' );
-      
+
+      cv.MessageBroker.my.publish("setup.dom.finished");
       thisTemplateEngine.postDOMSetupFns.forEach( function( thisFn ){
         thisFn();
       });

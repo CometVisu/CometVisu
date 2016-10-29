@@ -320,7 +320,7 @@ define( [
        */
       defaultUpdate: function( ga, data, passedElement, newVersion, path ) {
         ///console.log(ga, data, passedElement, newVersion );
-        var element = passedElement || $(this);
+        var element = passedElement || this.getDomElement();
         var elementData = templateEngine.widgetData[path];
         var actor = newVersion ? element.find('.actor:has(".value")') : element;
         var value = this.defaultValueHandling(ga, data, elementData);
@@ -360,6 +360,71 @@ define( [
         var floorFilter = true;
         if( l.floorFilter) floorFilter = data.getState('showFloor') == data.buildingProperties.floorNames[ l.floorFilter ];
         ev.data.element.css( 'display', floorFilter ? '' : 'none' );
+      },
+
+      /**
+       * Create an action handling that shows a button press animation.
+       * Note: use this function when multiple action elements are used and thus
+       * bind_click_to_widget is not available.
+       * @method defaultButtonDownAnimation
+       * @param {} path
+       * @param {} actor
+       */
+      defaultButtonDownAnimation: function( path, actor )
+      {
+        if( actor )
+        {
+          actor.classList.remove('switchUnpressed');
+          actor.classList.add('switchPressed');
+        }
+      },
+
+      /**
+       * Create an action handling that shows a button press animation.
+       * When the action is not set, it will be searched for - so that widgets
+       * with bind_click_to_widget will also work.
+       * @method defaultButtonDownAnimationInheritAction
+       * @param {} path
+       * @param {} actor
+       */
+      defaultButtonDownAnimationInheritAction: function( path, actor )
+      {
+        if( !actor )
+          actor = this.getActor();
+
+        actor.classList.remove('switchUnpressed');
+        actor.classList.add('switchPressed');
+      },
+      /**
+       * Create an action handling that shows a button unpress animation.
+       * Note: use this function when multiple action elements are used and thus
+       * bind_click_to_widget is not available.
+       * @method defaultButtonUpAnimation
+       * @param {} path
+       * @param {} actor
+       */
+      defaultButtonUpAnimation: function( path, actor ) {
+        if( actor )
+        {
+          actor.classList.remove('switchPressed');
+          actor.classList.add('switchUnpressed');
+        }
+      },
+      /**
+       * Create an action handling that shows a button unpress animation.
+       * When the action is not set, it will be searched for - so that widgets
+       * with bind_click_to_widget will also work.
+       * @method defaultButtonUpAnimationInheritAction
+       * @param {} path
+       * @param {} actor
+       */
+      defaultButtonUpAnimationInheritAction: function( path, actor )
+      {
+        if( !actor )
+          actor = this.getActor();
+
+        actor.classList.remove('switchPressed');
+        actor.classList.add('switchUnpressed');
       }
 
     },
@@ -465,7 +530,7 @@ define( [
          * @param {} makeAddressListFn
          * @return ret_val
          */
-        createDefaultWidget: function( widgetType, $element, path, flavour, pageType, makeAddressListFn ) {
+        createDefaultWidget: function( widgetType, $element, path, flavour, pageType ) {
           var layout = this.parseLayout( $element.children('layout')[0] );
           var style = layout ? 'style="' + this.extractLayout( layout, pageType ) + '"' : '';
           var classes = 'widget clearfix ' + widgetType;
@@ -615,73 +680,6 @@ define( [
             ret_val = 'innerrowspan';
           }
           return ret_val;
-        },
-
-
-
-        /**
-         * Create an action handling that shows a button press animation.
-         * Note: use this function when multiple action elements are used and thus
-         * bind_click_to_widget is not available.
-         * @method defaultButtonDownAnimation
-         * @param {} path
-         * @param {} actor
-         */
-        defaultButtonDownAnimation: function( path, actor )
-        {
-          if( actor )
-          {
-            actor.classList.remove('switchUnpressed');
-            actor.classList.add('switchPressed');
-          }
-        },
-
-        /**
-         * Create an action handling that shows a button press animation.
-         * When the action is not set, it will be searched for - so that widgets
-         * with bind_click_to_widget will also work.
-         * @method defaultButtonDownAnimationInheritAction
-         * @param {} path
-         * @param {} actor
-         */
-        defaultButtonDownAnimationInheritAction: function( path, actor )
-        {
-          if( !actor )
-            actor = templateEngine.handleMouseEvent.widget.getElementsByClassName('actor')[0];
-
-          actor.classList.remove('switchUnpressed');
-          actor.classList.add('switchPressed');
-        },
-        /**
-         * Create an action handling that shows a button unpress animation.
-         * Note: use this function when multiple action elements are used and thus
-         * bind_click_to_widget is not available.
-         * @method defaultButtonUpAnimation
-         * @param {} path
-         * @param {} actor
-         */
-        defaultButtonUpAnimation: function( path, actor ) {
-          if( actor )
-          {
-            actor.classList.remove('switchPressed');
-            actor.classList.add('switchUnpressed');
-          }
-        },
-        /**
-         * Create an action handling that shows a button unpress animation.
-         * When the action is not set, it will be searched for - so that widgets
-         * with bind_click_to_widget will also work.
-         * @method defaultButtonUpAnimationInheritAction
-         * @param {} path
-         * @param {} actor
-         */
-        defaultButtonUpAnimationInheritAction: function( path, actor )
-        {
-          if( !actor )
-            actor = templateEngine.handleMouseEvent.widget.getElementsByClassName('actor')[0];
-
-          actor.classList.remove('switchPressed');
-          actor.classList.add('switchUnpressed');
         },
 
         /**

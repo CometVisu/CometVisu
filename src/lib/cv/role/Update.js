@@ -42,12 +42,12 @@ define(['dependencies/joose-all-min'], function() {
          *                       is added as it is to the returned object.
          * @method makeAddressList
          * @param {} element
-         * @param handleVariant is a callback function that returns an array of two
          * @param id             id / path to the widget
          * @return address
          */
-        makeAddressList: function (element, handleVariant, id) {
+        makeAddressList: function (element, id) {
           var address = {};
+          var that = this;
           element.find('address').each(function () {
             var
               src = this.textContent,
@@ -72,7 +72,7 @@ define(['dependencies/joose-all-min'], function() {
                 mode = 1 | 2;
                 break;
             }
-            var variantInfo = handleVariant ? handleVariant(src, transform, mode, this.getAttribute('variant')) : [true, undefined];
+            var variantInfo = that.meta.methods['makeAddressListFn'] ? that.makeAddressListFn(src, transform, mode, this.getAttribute('variant')) : [true, undefined];
             if ((mode & 1) && variantInfo[0]) // add only addresses when reading from them
               templateEngine.addAddress(src, id);
             address[src] = [transform, mode, variantInfo[1], formatPos];
@@ -107,16 +107,6 @@ define(['dependencies/joose-all-min'], function() {
 
       processIncomingValue: function(address, data) {
         return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
-      },
-
-      sendToBackend: function(value) {
-        Joose.O.eachOwn(this.getAddress(), function(address, id) {
-          if (!(address[1] & 2)) {
-            return true; // aka continue
-          } else {
-            templateEngine.visu.write(id, templateEngine.transformEncode(address[0], value));
-          }
-        }, this);
       }
     }
   });

@@ -248,8 +248,8 @@ define( [
         }
         Joose.A.each( this.getChildren(), function(path) {
           var data = templateEngine.widgetDataGet(path);
-          if (data.$$type == "switch") {
-            var widget = cv.structure.pure.WidgetFactory.createInstance(data.$$type, data);
+          var widget = cv.structure.pure.WidgetFactory.createInstance(data.$$type, data);
+          if (widget) {
             var subelement = widget.getDomString();
             if( undefined === subelement )
               return;

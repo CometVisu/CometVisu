@@ -45,10 +45,11 @@ define(['dependencies/joose-all-min'], function() {
        *
        * @method sendToBackend
        * @param value
+       * @param filter {Function} optional filter function for addresses
        */
-      sendToBackend: function(value) {
+      sendToBackend: function(value, filter) {
         Joose.O.eachOwn(this.getAddress(), function(address, id) {
-          if (!(address[1] & 2)) {
+          if (!(address[1] & 2) || (filter && !filter(address))) {
             return true; // aka continue
           } else {
             templateEngine.visu.write(id, templateEngine.transformEncode(address[0], value));
