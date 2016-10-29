@@ -37,7 +37,7 @@ define(['dependencies/joose-all-min'], function() {
        */
       action: function (path, actor, isCanceled, event) {
         if (isCanceled) return;
-        this.sendToBackend(this.getActionValue(event));
+        this.sendToBackend(this.getActionValue(path, actor, isCanceled, event));
       },
 
       /**
@@ -50,7 +50,7 @@ define(['dependencies/joose-all-min'], function() {
       sendToBackend: function(value, filter) {
         Joose.O.eachOwn(this.getAddress(), function(address, id) {
           if (!!(address[1] & 2) && (!filter || filter(address))) {
-            console.log("sending '%s' to '%s'", id, value);
+            console.log("sending '%s' to '%s'", value, id);
             templateEngine.visu.write(id, templateEngine.transformEncode(address[0], value));
           }
         }, this);

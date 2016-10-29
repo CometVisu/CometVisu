@@ -24,141 +24,169 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Operate'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
- 
-  design.basicdesign.addCreator('multitrigger', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
-    
-    // create the main structure
-    var showstatus = $e.attr('showstatus') === 'true',
-        ret_val    = basicdesign.createDefaultWidget( 'multitrigger', $e, path, flavour, type, showstatus ? this.update : undefined );
-    // and fill in widget specific data
-    var data = templateEngine.widgetDataInsert( path, {
-      showstatus  : showstatus,
-      button1label: $e.attr('button1label'),
-      button1value: $e.attr('button1value'),
-      button2label: $e.attr('button2label'),
-      button2value: $e.attr('button2value'),
-      button3label: $e.attr('button3label'),
-      button3value: $e.attr('button3value'),
-      button4label: $e.attr('button4label'),
-      button4value: $e.attr('button4value')
-    } );
-    
-    // create the actor
-    ret_val += '<div class="actor_container" style="float:left">';
 
-    if( data.button1label )
-    {
-      ret_val += '<div class="actor switchUnpressed">';
-      ret_val += '<div class="value">' + data.button1label + '</div>';
-      ret_val += '</div>';
-    }
-    
-    if( data.button2label )
-    {
-      ret_val += '<div class="actor switchUnpressed">';
-      ret_val += '<div class="value">' + data.button2label + '</div>';
-      ret_val += '</div>';
-      ret_val += '<br/>';
-    }
-    
-    if( data.button3label )
-    {
-      ret_val += '<div class="actor switchUnpressed">';
-      ret_val += '<div class="value">' + data.button3label + '</div>';
-      ret_val += '</div>';
-    }
-    
-    if( data.button4label )
-    {
-      ret_val += '<div class="actor switchUnpressed">';
-      ret_val += '<div class="value">' + data.button4label + '</div>';
-      ret_val += '</div>';
-      ret_val += '<br/>';
-    }
-    
-    // replace button labels by mapped values 
-    if( undefined !== data.mapping )
-    {
-      templateEngine.postDOMSetupFns.push( function(){
+  Class('cv.structure.pure.Multitrigger', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: cv.role.Operate,
+
+    has: {
+      showstatus: {is: 'r', init: false},
+      button1label: {is: 'r'},
+      button1value: {is: 'r'},
+      button2label: {is: 'r'},
+      button2value: {is: 'r'},
+      button3label: {is: 'r'},
+      button3value: {is: 'r'},
+      button4label: {is: 'r'},
+      button4value: {is: 'r'}
+    },
+
+    my: {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            showstatus: {
+              transform: function (value) {
+                return value === 'true';
+              }
+            },
+            button1label: {},
+            button1value: {},
+            button2label: {},
+            button2value: {},
+            button3label: {},
+            button3value: {},
+            button4label: {},
+            button4value: {}
+          }
+        },
+
+        makeAddressListFn: function (src, transform, mode, variant) {
+          return [true, variant];
+        }
+      }
+    },
+
+    after: {
+      initialize: function (data) {
+        if (this.getMapping()) {
+          cv.MessageBroker.my.subscribe("setup.dom.finished", function () {
+            var
+              $actor = this.getActor(),
+              v0 = this.defaultValueHandling(undefined, this.getButton1value(), data),
+              $v0 = $actor.filter(':eq(0)'),
+              v1 = this.defaultValueHandling(undefined, this.getButton1value(), data),
+              $v1 = $actor.filter(':eq(1)'),
+              v2 = this.defaultValueHandling(undefined, this.getButton1value(), data),
+              $v2 = $actor.filter(':eq(2)'),
+              v3 = this.defaultValueHandling(undefined, this.getButton1value(), data),
+              $v3 = $actor.filter(':eq(3)');
+            $v0.empty();
+            this.defaultValue2DOM(v0, function (e) {
+              $v0.append(e)
+            });
+            $v1.empty();
+            this.defaultValue2DOM(v1, function (e) {
+              $v1.append(e)
+            });
+            $v2.empty();
+            this.defaultValue2DOM(v2, function (e) {
+              $v2.append(e)
+            });
+            $v3.empty();
+            this.defaultValue2DOM(v3, function (e) {
+              $v3.append(e)
+            });
+          }, this);
+        }
+      }
+    },
+
+    augment: {
+      getDomString: function () {
+        // create the actor
+        var ret_val = '<div class="actor_container" style="float:left">';
+
+        if (this.getButton1label()) {
+          ret_val += '<div class="actor switchUnpressed">';
+          ret_val += '<div class="value">' + this.getButton1label() + '</div>';
+          ret_val += '</div>';
+        }
+
+        if (this.getButton2label()) {
+          ret_val += '<div class="actor switchUnpressed">';
+          ret_val += '<div class="value">' + this.getButton2label() + '</div>';
+          ret_val += '</div>';
+          ret_val += '<br/>';
+        }
+
+        if (this.getButton3label()) {
+          ret_val += '<div class="actor switchUnpressed">';
+          ret_val += '<div class="value">' + this.getButton3label() + '</div>';
+          ret_val += '</div>';
+        }
+
+        if (this.getButton4label()) {
+          ret_val += '<div class="actor switchUnpressed">';
+          ret_val += '<div class="value">' + this.getButton4label() + '</div>';
+          ret_val += '</div>';
+          ret_val += '<br/>';
+        }
+        return ret_val + '</div></div>';
+      }
+    },
+
+    before: {
+      action: function (path, actor, isCanceled, event) {
+        this.defaultButtonUpAnimation(path, actor);
+      }
+    },
+
+    methods: {
+
+      // overridden, only transform the value, do not apply it to DOM
+      processIncomingValue: function(address, data) {
+        var transform = this.getAddress()[ address ][0];
+        return templateEngine.transformDecode( transform, data );
+      },
+
+      /**
+       * Handles the incoming data from the backend for this widget
+       *
+       * @method handleUpdate
+       * @param value {any} incoming data (already transformed + mapped)
+       */
+      handleUpdate: function (value) {
+        var that = this;
+        this.getDomElement().find('.actor').each(function () {
+          var $this = $(this),
+            index = $this.index() < 3 ? $this.index() + 1 : $this.index(),
+            isPressed = value === that['getButton'+index+'value']();
+          $this.removeClass(isPressed ? 'switchUnpressed' : 'switchPressed')
+            .addClass(isPressed ? 'switchPressed' : 'switchUnpressed');
+        });
+      },
+
+      /**
+       * Get the value that should be send to backend after the action has been triggered
+       *
+       * @method getActionValue
+       */
+      getActionValue: function (path, actor, isCanceled, event) {
         var
-          $actor = $( '#' + path + ' .actor .value' ),
-          v0 = basicdesign.defaultValueHandling( undefined, data.button1value, data ),
-          $v0 = $actor.filter(':eq(0)'),
-          v1 = basicdesign.defaultValueHandling( undefined, data.button2value, data ),
-          $v1 = $actor.filter(':eq(1)'),
-          v2 = basicdesign.defaultValueHandling( undefined, data.button3value, data ),
-          $v2 = $actor.filter(':eq(2)'),
-          v3 = basicdesign.defaultValueHandling( undefined, data.button4value, data ),
-          $v3 = $actor.filter(':eq(3)');
-        $v0.empty();
-        basicdesign.defaultValue2DOM( v0, function(e){ $v0.append( e ) } );
-        $v1.empty();
-        basicdesign.defaultValue2DOM( v1, function(e){ $v1.append( e ) } );
-        $v2.empty();
-        basicdesign.defaultValue2DOM( v2, function(e){ $v2.append( e ) } );
-        $v3.empty();
-        basicdesign.defaultValue2DOM( v3, function(e){ $v3.append( e ) } );
-      });
-    }
-    
-    return ret_val + '</div></div>';
-  },
-  /**
-   * Description
-   * @method update
-   * @param {} ga
-   * @param {} d
-   */
-  update: function( ga, d ) { 
-    var element = $(this),
-        data  = templateEngine.widgetDataGetByElement( this ),
-        thisTransform = data.address[ ga ][0],
-        value = templateEngine.transformDecode( thisTransform, d );
-    element.find('.actor').each( function(){
-      var $this     = $(this),
-          index = $this.index() < 3 ? $this.index()+1 : $this.index(),
-          isPressed = value === data['button'+index+'value'];
-      $this.removeClass( isPressed ? 'switchUnpressed' : 'switchPressed' )
-           .addClass(    isPressed ? 'switchPressed' : 'switchUnpressed' );
-    });
-  },
-  downaction: basicdesign.defaultButtonDownAnimation,
-  /**
-   * Description
-   * @method action
-   * @param {} path
-   * @param {} actor
-   * @param {} isCanceled
-   */
-  action: function( path, actor, isCanceled ) {
-    basicdesign.defaultButtonUpAnimation( path, actor );
-    if( isCanceled ) return;
-    
-    var
-      $actor = $(actor),
-      data  = templateEngine.widgetDataGet( path ),
-      index = $actor.index() < 3 ? $actor.index()+1 : $actor.index(),
-      value = data['button'+index+'value'];
-    for( var addr in data.address )
-    {
-      if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], value ) );
-    }
-  }
-});
+          $actor = $(actor),
+          index = $actor.index() < 3 ? $actor.index()+1 : $actor.index();
 
+        return this['getButton'+index+'value']();
+      },
+
+      downaction: function (path, actor, isCanceled, event) {
+        this.defaultButtonDownAnimation();
+      }
+    }
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("multitrigger", cv.structure.pure.Multitrigger);
 }); // end define

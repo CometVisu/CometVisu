@@ -77,7 +77,7 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
        *
        * @method getActionValue
        */
-      getActionValue: function (event) {
+      getActionValue: function (path, actor, isCanceled, event) {
         if (event.type === "mouseup" || event.type === "touchend") {
           return this.getUpValue();
         } else {

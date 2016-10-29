@@ -89,10 +89,8 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker'], function() {
        *
        * @method getActionValue
        */
-      getActionValue: function (isShort) {
-        if (isShort == undefined) {
-          isShort = Date.now() - templateEngine.handleMouseEvent.downtime < this.getShortTime();
-        }
+      getActionValue: function (path, actor, isCanceled, event) {
+        var isShort = Date.now() - templateEngine.handleMouseEvent.downtime < this.getShortTime();
         return isShort ? this.getShortValue() : this.getSendValue();
       },
 
@@ -102,7 +100,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker'], function() {
 
         var isShort = Date.now() - templateEngine.handleMouseEvent.downtime < this.getShortTime();
         var bitMask = (isShort ? 1 : 2);
-        var sendValue = this.getActionValue();
+        var sendValue = isShort ? this.getShortValue() : this.getSendValue();
 
         this.sendToBackend(sendValue, function(address) {
           return !!(address[2] & bitMask);
