@@ -42,7 +42,12 @@ define( [
       methods: {
         createInstance: function(type, data) {
           if (!this.registry[data.path]) {
-            this.registry[data.path] = new cv.structure.pure[Joose.S.uppercaseFirst(type)](data);
+            if (!cv.structure.pure[Joose.S.uppercaseFirst(type)]) {
+              console.error("No handler found for type '%s'", type)
+              return null;
+            } else {
+              this.registry[data.path] = new cv.structure.pure[Joose.S.uppercaseFirst(type)](data);
+            }
           }
           return this.registry[data.path];
         },
@@ -485,7 +490,7 @@ define( [
 
           // and fill in widget specific data
           var data = this.createDefaultWidget(element.nodeName, $e, path, flavour, pageType);
-          var mappings = this.getAttributeToPropertyMappings();
+          var mappings = this.meta.methods['getAttributeToPropertyMappings'] ? this.getAttributeToPropertyMappings() : {};
           if (mappings) {
             for (var key in mappings) {
               if (mappings.hasOwnProperty(key)) {

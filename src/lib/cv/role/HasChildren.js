@@ -26,7 +26,7 @@ define(['dependencies/joose-all-min'], function() {
 
     my: {
       after: {
-        parse: function( xml, path, flavour, widgetType ) {
+        parse: function( xml, path, flavour, pageType ) {
           var $p = $(xml);
           var data = templateEngine.widgetDataGet( path + '_');
 
@@ -35,7 +35,7 @@ define(['dependencies/joose-all-min'], function() {
           }
           var childs = $p.children().not('layout');
           Joose.A.each(childs, function(child, i) {
-            var childData = cv.xml.Parser.parse(child, path + '_' + i, flavour, widgetType );
+            var childData = cv.xml.Parser.parse(child, path + '_' + i, flavour, pageType );
             if (childData && childData.path) {
               data.children.push(childData.path);
             }

@@ -44,10 +44,10 @@ define([
   'CometVisuClient', 'CometVisuMockup', 'EventHandler',
   'Compatibility', 'jquery-ui', 'strftime',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'IconHandler', 
-  // 'widget_break', 'widget_designtoggle',
+  'widget_break', //'widget_designtoggle',
   // 'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
   // 'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infoaction', 'widget_infotrigger',
-  // 'widget_line', 'widget_multitrigger', 'widget_navbar',
+  'widget_line', //'widget_multitrigger', 'widget_navbar',
   // 'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide',
   // 'widget_text',
   // 'widget_pushbutton', 'widget_urltrigger',
@@ -1146,15 +1146,11 @@ define([
 
     var widget;
     type = page.nodeName;
-    if (type == "page") {
-      widget = new cv.structure.pure.Page(data);
-    } else if (type == "switch") {
-      widget = new cv.structure.pure.Switch(data);
+    if (cv.structure.pure[Joose.S.uppercaseFirst(type)]) {
+      widget = new cv.structure.pure[Joose.S.uppercaseFirst(type)](data);
     } else {
       console.error("unhandled type: %s", type);
     }
-
-    console.log(widget);
 
 
     var retval = widget ? widget.getDomString() : undefined;

@@ -30,27 +30,18 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function( design ) {
+define( ['_common'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('break', {
-    /**
-     * Creates the widget HTML code
-     *
-     * @method create
-     * @param {Element} element - DOM-Element
-     * @param {String} path - internal path of the widget
-     * @param {String} flavour - Flavour of the widget
-     * @param {String} type - Page type (2d, 3d, ...)
-     * @return {String} HTML code
-     */
-    create: function( element, path, flavour, type ) {
-      var data = templateEngine.widgetDataInsert( path, {
-        path: path
-      });
-      return '<br />';
+
+  Class('cv.structure.pure.Break', {
+    isa: cv.structure.pure.AbstractWidget,
+
+    methods: {
+      getDomString: function () {
+        return '<br/>';
+      }
     }
   });
-
+  // register the parser
+  cv.xml.Parser.addHandler("break", cv.structure.pure.Break);
 }); // end define

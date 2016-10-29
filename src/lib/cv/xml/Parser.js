@@ -21,10 +21,12 @@ define( [
             return this.handlers[tagName];
           },
 
-          parse: function (xml, path, flavour, type) {
+          parse: function (xml, path, flavour, pageType) {
             var parser = this.getHandler(xml.nodeName);
             if (parser) {
-              return parser.parse(xml, path, flavour, type);
+              return parser.parse(xml, path, flavour, pageType);
+            } else {
+              console.error("no parse handler registered for type: %s", xml.nodeName);
             }
             return null;
           }
