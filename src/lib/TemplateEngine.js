@@ -47,7 +47,7 @@ define([
   'widget_break', //'widget_designtoggle',
   // 'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
   // 'widget_imagetrigger', 'widget_include',
-  // 'widget_info', //'widget_infoaction', 'widget_infotrigger',
+  'widget_info', //'widget_infoaction', 'widget_infotrigger',
   'widget_line',// 'widget_multitrigger', //'widget_navbar',
   // 'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide',
   'widget_text',

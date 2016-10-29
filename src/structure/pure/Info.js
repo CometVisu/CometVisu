@@ -36,46 +36,36 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function( design ) {
+define( ['_common'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
- 
-  design.basicdesign.addCreator('info', {
-    /**
-     * Creates the widget HTML code
-     *
-     * @method create
-     * @param {Element} element - DOM-Element
-     * @param {String} path - internal path of the widget
-     * @param {String} flavour - Flavour of the widget
-     * @param {String} type - Page type (2d, 3d, ...)
-     * @return {String} HTML code
-     */
-    create: function( element, path, flavour, type ) {
-      var $e = $(element);
 
-      // create the main structure
-      var ret_val = basicdesign.createDefaultWidget( 'info', $e, path, flavour, type, this.update );
+  Class('cv.structure.pure.Info', {
+    isa: cv.structure.pure.AbstractWidget,
 
-      // create the actor
-      var actor = '<div class="actor"><div class="value">-</div></div>';
-      ret_val += actor;
-
-      return ret_val + '</div>';
+    augment: {
+      getDomString: function () {
+        return '<div class="actor"><div class="value">-</div></div>';
+      }
     },
 
-    /**
-     * Handles updates of incoming data for this widget
-     * @method update
-     * @param {String} address - Source address of the incoming data
-     * @param {String} value - Incoming data
-     */
-    update:   function( address, value ) {
-      var element = $(this);
-      basicdesign.defaultUpdate( address, value, element, true, element.parent().attr('id') );
-    },
+    methods: {
+      handleUpdate: function(value) {
+      },
 
-    update3d: design.basicdesign.defaultUpdate3d
+      update3d: function() {
+        this.defaultUpdate3d();
+      },
+
+      /**
+       * Get the value that should be send to backend after the action has been triggered
+       *
+       * @method getActionValue
+       */
+      getActionValue: function () {
+        return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
+      }
+    }
   });
-
+  // register the parser
+  cv.xml.Parser.addHandler("info", cv.structure.pure.Info);
 }); // end define
