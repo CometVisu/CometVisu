@@ -375,6 +375,7 @@ define( [
             'path'    : path,
             'label'   : label,
             'classes' : classes,
+            'style'   : style,
             '$$type'  : widgetType
           });
         },

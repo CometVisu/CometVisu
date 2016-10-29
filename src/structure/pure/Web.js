@@ -26,94 +26,104 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Refresh', 'lib/cv/role/Update'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('web', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
 
-    var address = {}, src;
-    if ($e.attr('ga')) {
-      src = $e.attr('ga');
-      templateEngine.addAddress($e.attr('ga'));
-      address[ '_' + $e.attr('ga') ] = [ 'DPT:1.001', 0 ];
-    }
+  Class('cv.structure.pure.Web', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: [
+      cv.role.Update,
+      cv.role.Refresh
+    ],
 
-    var layout = basicdesign.parseLayout( $e.children('layout')[0] );
-    var style = $.isEmptyObject(layout) ? '' : 'style="' + basicdesign.extractLayout( layout, type ) + '"';
-    var classes = basicdesign.setWidgetLayout( $e, path );
+    has: {
+      address: {is: 'r', init: {}},
+      width: {is: 'r'},
+      height: {is: 'r'},
+      frameborder: {is: 'r', init: false},
+      background: {is: 'r'},
+      scrolling: {is: 'r'},
+      src: {is: 'r'}
+    },
 
-    if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-    if( flavour ) classes += ' flavour_' + flavour;
-    var ret_val = '<div class="widget web '+(classes?classes:'')+'" ' + style + '>';
-    ret_val += basicdesign.extractLabel( $e.find('label')[0], flavour );
-    var webStyle = '';
-    if( $e.attr('width' ) ) {
-      webStyle += 'width:'  + $e.attr('width' ) + ';'; 
-    } else {  // default width is 100% of widget space (fix bug #3175343 part 1)
-      webStyle += 'width: 100%;';
-    }
-    if( $e.attr('height') ) webStyle += 'height:' + $e.attr('height') + ';';
-    if( $e.attr('frameborder') == 'false' ) style += 'border: 0px ;';
-    if( $e.attr('background') ) webStyle += 'background-color:' + $e.attr('background') + ';';
-    if( webStyle != '' ) webStyle = 'style="' + webStyle + '"';
-
-    var scrolling = '';
-    if( $e.attr('scrolling') ) scrolling = 'scrolling="' + $e.attr('scrolling') +'"'; // add scrolling parameter to iframe
-
-    //   var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
-    var actor = '<div class="actor"><iframe src="' +$e.attr('src') + '" ' + webStyle + scrolling + '></iframe></div>';
-  
-    var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
-    var data = templateEngine.widgetDataInsert( path, {
-      'path'    : path,
-      'address': address,
-      'layout' : layout,
-      'refresh': refresh
-    } );
-    
-    if (data.refresh) {
-      templateEngine.postDOMSetupFns.push( function(){
-        templateEngine.setupRefreshAction( path, data.refresh );
-      });
-    }
-
-    return ret_val + actor + '</div>';
-  },
-  /**
-   * Description
-   * @method update
-   * @param {} ga
-   * @param {} data
-   */
-  update: function( ga, data) {
-    var 
-      element    = $(this),
-      widgetData = templateEngine.widgetDataGetByElement( element ),
-      value      = basicdesign.defaultValueHandling( ga, data, widgetData ),
-      type       = widgetData.address[ ga ][2];
-    switch( type )
-    {
-      default:
-        if (data==1) {
-          var iframe = element.find('iframe');
-          iframe.attr('src', iframe.attr('src'));
-          templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));
+    my: {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            address: {},
+            width: {},
+            height: {},
+            frameborder: {
+              transform: function (value) {
+                return value === "true";
+              }
+            },
+            background: {},
+            src: {},
+            scrolling: {}
+          };
         }
+      },
+
+      after: {
+        parse: function (xml, path) {
+          var data = templateEngine.widgetDataGet(path);
+          var ga = $(xml).attr("ga");
+          if (ga) {
+            templateEngine.addAddress(ga);
+            if (templateEngine.backend.substr(0, 2) == "oh") {
+              data.address['_' + ga] = ['OH:number', 0];
+            } else {
+              data.address['_' + ga] = ['DPT:1.001', 0];
+            }
+          }
+        }
+      }
+    },
+
+    augment: {
+
+      getDomString: function () {
+        var webStyle = '';
+        if (this.getWidth()) {
+          webStyle += 'width:' + this.getWidth() + ';';
+        } else {  // default width is 100% of widget space (fix bug #3175343 part 1)
+          webStyle += 'width: 100%;';
+        }
+        var style = this.getStyle();
+        if (this.getHeight()) webStyle += 'height:' + this.getHeight() + ';';
+        if (this.getFrameborder() === false) style += 'border: 0px ;';
+        if (this.getBackground()) webStyle += 'background-color:' + this.getBackground() + ';';
+        if (webStyle != '') webStyle = 'style="' + webStyle + '"';
+
+        var scrolling = '';
+        if (this.getScrolling()) scrolling = 'scrolling="' + this.getScrolling() + '"'; // add scrolling parameter to iframe
+        return '<div class="actor"><iframe src="' + this.getSrc() + '" ' + webStyle + scrolling + '></iframe></div>'
+      }
+    },
+
+    methods: {
+      /**
+       * Handles the incoming data from the backend for this widget
+       *
+       * @method handleUpdate
+       * @param value {any} incoming data (already transformed + mapped)
+       */
+      update: function(address, data) {
+        var addr = this.getAddress()[ address ];
+        switch( addr[2] )
+        {
+          default:
+            if (data === 1) {
+              var iframe = this.getDomElement().find('iframe');
+              iframe.attr('src', iframe.attr('src'));
+              templateEngine.visu.write( address, templateEngine.transformEncode(addr[0], 0));
+            }
+            break;
+        }
+      }
     }
-  }
-
-});
-
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("web", cv.structure.pure.Web);
 }); // end define

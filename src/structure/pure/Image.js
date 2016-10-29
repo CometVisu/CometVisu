@@ -32,18 +32,19 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function() {
+define( ['_common', 'lib/cv/role/Refresh'], function() {
   "use strict";
 
   Class('cv.structure.pure.Image', {
     isa: cv.structure.pure.AbstractWidget,
 
+    does: cv.role.Refresh,
+
     has: {
       width   : { is: 'r' },
       height  : { is: 'r' },
       src     : { is: 'r' },
-      widthFit: { is: 'r' },
-      refresh : { is: 'r', init: 0 }
+      widthFit: { is: 'r' }
     },
 
     my : {
@@ -55,20 +56,9 @@ define( ['_common'], function() {
             'src'         :   {},
             'widthfit'    :   { target: 'widthFit', transform: function(value) {
               return value === true;
-            }},
-            'refresh'     :  { default: 0, transform: function(value) {
-              return value ? value * 1000 : 0;
             }}
           };
         }
-      }
-    },
-
-    after : {
-      initialize : function (props) {
-        cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
-          templateEngine.setupRefreshAction( this.getPath(), this.getRefresh() );
-        }, this);
       }
     },
 
