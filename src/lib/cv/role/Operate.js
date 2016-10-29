@@ -35,9 +35,9 @@ define(['dependencies/joose-all-min'], function() {
        * @param {Element} actor - DOMElement
        * @param {Boolean} isCanceled - If true the action does nothing
        */
-      action: function (path, actor, isCanceled) {
+      action: function (path, actor, isCanceled, event) {
         if (isCanceled) return;
-        this.sendToBackend(this.getActionValue());
+        this.sendToBackend(this.getActionValue(event));
       },
 
       /**
@@ -50,6 +50,7 @@ define(['dependencies/joose-all-min'], function() {
       sendToBackend: function(value, filter) {
         Joose.O.eachOwn(this.getAddress(), function(address, id) {
           if (!!(address[1] & 2) && (!filter || filter(address))) {
+            console.log("sending '%s' to '%s'", id, value);
             templateEngine.visu.write(id, templateEngine.transformEncode(address[0], value));
           }
         }, this);

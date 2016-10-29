@@ -66,7 +66,6 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker'], function() {
 
     augment: {
       getDomString: function () {
-        // initially setting a value
         return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       }
     },

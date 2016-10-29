@@ -25,83 +25,82 @@
  * @requires structure/pure
  * @since 2013
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Operate'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('pushbutton', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
-    
-    // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'pushbutton', $e, path, flavour, type, this.update, function( src, transform, mode, variant ) {
-      return [ true, variant ];
-    } );
-    // and fill in widget specific data
-    var data = templateEngine.widgetDataInsert( path, {
-      'downValue'  : $e.attr('downValue' ) || 1,
-      'upValue' : $e.attr('upValue') || 0
-    } );
 
-    ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+  Class('cv.structure.pure.Pushbutton', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: cv.role.Operate,
 
-    return ret_val + '</div>';
-  },
-  /**
-   * Description
-   * @method update
-   * @param {} ga
-   * @param {} d
-   */
-  update: function( ga, d ) { 
-    var element = $(this),
-        data  = templateEngine.widgetDataGetByElement( element );
-    var actor   = element.find('.actor');
-    var value = basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
-    var off = templateEngine.map( data['upValue'], data['mapping'] );
-    actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
-    actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
-  },
-  /**
-   * Description
-   * @method downaction
-   * @param {} path
-   * @param {} actor
-   */
-  downaction: function( path, actor ) {
-    var data = templateEngine.widgetDataGet( path );
+    has: {
+      'downValue' : { is: 'r', init: 1 },
+      'upValue'   : { is: 'r', init: 0 }
+    },
 
-    for (var addr in data.address) {
-      if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
-      if (data.address[addr][2]!=undefined && data.address[addr][2]!="down") continue; // skip when not down-variant
-      templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.downValue));
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'downValue' : { target: 'downValue' , default: 1 },
+            'upValue'   : { default: 0 }
+          };
+        },
+
+        makeAddressListFn: function( src, transform, mode, variant ) {
+          return [ true, variant ];
+        }
+      }
+    },
+
+    augment: {
+      getDomString: function () {
+        return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+      }
+    },
+
+    methods: {
+      /**
+       * Handles the incoming data from the backend for this widget
+       *
+       * @method handleUpdate
+       * @param value {any} incoming data (already transformed + mapped)
+       */
+      handleUpdate: function(value) {
+        var actor = this.getActor();
+        var off = templateEngine.map( this.getUpValue(), this.getMapping() );
+        actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
+        actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
+      },
+
+      /**
+       * Get the value that should be send to backend after the action has been triggered
+       *
+       * @method getActionValue
+       */
+      getActionValue: function (event) {
+        if (event.type === "mouseup" || event.type === "touchend") {
+          return this.getUpValue();
+        } else {
+          return this.getDownValue();
+        }
+      },
+
+      action: function( path, actor, isCanceled, event ) {
+        if( isCanceled ) return;
+        var sendValue = this.getUpValue();
+        this.sendToBackend(sendValue, function(address) {
+          return (!address[2] || address[2] === "up");
+        });
+      },
+
+      downaction: function(path, actor, isCanceled, event) {
+        var sendValue = this.getDownValue();
+        this.sendToBackend(sendValue, function(address) {
+          return (!address[2] || address[2] === "down");
+        });
+      }
     }
-  },
-  /**
-   * Description
-   * @method action
-   * @param {} path
-   * @param {} actor
-   * @param {} isCanceled
-   */
-  action: function( path, actor, isCanceled ) {
-    var data = templateEngine.widgetDataGet( path );
-
-    for (var addr in data.address) {
-      if (!(data.address[addr][1] & 2)) continue; // skip when write flag not set
-      if (data.address[addr][2]!=undefined && data.address[addr][2]!="up") continue; // skip when not up-variant
-      templateEngine.visu.write(addr, templateEngine.transformEncode(data.address[addr][0], data.upValue));
-    }
-  }
-});
-
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("pushbutton", cv.structure.pure.Pushbutton);
 }); // end define
