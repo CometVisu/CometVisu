@@ -31,95 +31,107 @@
  * @author Christian Mayer
  * @since 0.5.3 (2010)
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Operate'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
- 
-  design.basicdesign.addCreator('designtoggle', {
-    /**
-     * Creates the widget HTML code
-     *
-     * @method create
-     * @param {Element} element - DOM-Element
-     * @param {String} path - internal path of the widget
-     * @param {String} flavour - Flavour of the widget
-     * @param {String} type - Page type (2d, 3d, ...)
-     * @return {String} HTML code
-     */
-    create: function( element, path, flavour, type ) {
-      var $e = $(element);
 
-      // create the main structure
-      var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type );
+  Class('cv.structure.pure.Designtoggle', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: [cv.role.Operate],
 
-      // create the actor
-      var actor = '<div class="actor switchUnpressed"><div class="value">' + templateEngine.clientDesign + '</div></div>';
-
-      var data = templateEngine.widgetDataGet( path );
-
-      $.getJSON("./designs/get_designs.php",function(d) {
-        data['availableDesigns'] = d;
-      });
-
-      return ret_val + actor + '</div>';
+    has: {
+      availableDesigns: { is: 'r', init: [] }
     },
-    downaction: basicdesign.defaultButtonDownAnimationInheritAction,
 
-    /**
-     * Action performed when the widget got clicked
-     *
-     * @method action
-     * @param {String} path - Internal path of the widget
-     * @param {Element} actor - DOMElement
-     * @param {Boolean} isCanceled - If true the action does nothing
-     */
-    action: function( path, actor, isCanceled ) {
-      basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
-      if( isCanceled ) return;
-
-      var
-        data = templateEngine.widgetDataGet( path );
-
-      var $this = $(this);
-      var designs = data.availableDesigns;
-
-      var oldDesign = $('.value',$this).text();
-      var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
-
-      var URL = this.getLocation();
-      var regexp = new RegExp("design="+oldDesign)
-      if (URL.search(regexp) != -1) { // has URL-parameter design
-        this.setLocation(URL.replace(regexp, "design="+newDesign));
-      }
-      else {
-        if (URL.indexOf("?") != -1) { // has other parameters, append design
-          this.setLocation(URL+"&design="+newDesign);
-        }
-        else { // has now parameters
-          this.setLocation(URL+"?design="+newDesign);
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {};
         }
       }
     },
 
-    /**
-     * Wrapper for getting the `window.location.href` value
-     *
-     * @method getLocation
-     * @return {String} URI of the page the browser is currently showing
-     */
-    getLocation : function() {
-      return window.location.href;
+    augment: {
+      getDomString: function () {
+        return '<div class="actor switchUnpressed"><div class="value">' + templateEngine.clientDesign + '</div></div>';
+      }
     },
 
-    /**
-     * Changes `window.location.href` to trigger a redirect
-     *
-     * @method setLocation
-     * @param {String} loc - URI of the location the browser should be redirected to
-     */
-    setLocation : function(loc) {
-      window.location.href = loc;
+    after: {
+      initialize: function(props) {
+        $.getJSON("./designs/get_designs.php",function(d) {
+          this.availableDesigns = d;
+        }.bind(this));
+      }
+    },
+
+    methods: {
+      /**
+       * Get the value that should be send to backend after the action has been triggered
+       *
+       * @method getActionValue
+       */
+      getActionValue: function () {
+        return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
+      },
+      getAddress: function() {
+        return [];
+      },
+      /**
+       * Action performed when the widget got clicked
+       *
+       * @method action
+       * @param {String} path - Internal path of the widget
+       * @param {Element} actor - DOMElement
+       * @param {Boolean} isCanceled - If true the action does nothing
+       */
+      action: function( path, actor, isCanceled ) {
+        this.defaultButtonUpAnimationInheritAction( path, actor );
+        if( isCanceled ) return;
+
+        var designs = this.getAvailableDesigns();
+
+        var oldDesign = $('.value',this.getDomElement()).text();
+        var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
+
+        var URL = this.getLocation();
+        var regexp = new RegExp("design="+oldDesign);
+        if (URL.search(regexp) != -1) { // has URL-parameter design
+          this.setLocation(URL.replace(regexp, "design="+newDesign));
+        }
+        else {
+          if (URL.indexOf("?") != -1) { // has other parameters, append design
+            this.setLocation(URL+"&design="+newDesign);
+          }
+          else { // has now parameters
+            this.setLocation(URL+"?design="+newDesign);
+          }
+        }
+      },
+
+      downaction: function(path, actor) {
+        this.defaultButtonDownAnimationInheritAction(path, actor);
+      },
+      /**
+       * Wrapper for getting the `window.location.href` value
+       *
+       * @method getLocation
+       * @return {String} URI of the page the browser is currently showing
+       */
+      getLocation : function() {
+        return window.location.href;
+      },
+
+      /**
+       * Changes `window.location.href` to trigger a redirect
+       *
+       * @method setLocation
+       * @param {String} loc - URI of the location the browser should be redirected to
+       */
+      setLocation : function(loc) {
+        window.location.href = loc;
+      }
     }
   });
-
+  // register the parser
+  cv.xml.Parser.addHandler("designtoggle", cv.structure.pure.Designtoggle);
 }); // end define

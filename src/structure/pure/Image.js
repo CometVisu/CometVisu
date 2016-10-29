@@ -32,55 +32,63 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function( design ) {
+define( ['_common'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('image', {
-    /**
-     * Creates the widget HTML code
-     *
-     * @method create
-     * @param {Element} element - DOM-Element
-     * @param {String} path - internal path of the widget
-     * @param {String} flavour - Flavour of the widget
-     * @param {String} type - Page type (2d, 3d, ...)
-     * @return {String} HTML code
-     */
-    create: function(element, path, flavour, type) {
-      var $e = $(element);
 
-      // create the main structure
-      var ret_val = basicdesign.createDefaultWidget('image', $e, path, flavour, type);
-      // and fill in widget specific data
-      var data = templateEngine.widgetDataInsert( path, {
-        'width'  : $e.attr('width'),
-        'height' : $e.attr('height'),
-        'src'    : $e.attr('src'),
-        'refresh': $e.attr('refresh') ? $e.attr('refresh') * 1000 : 0
-      });
+  Class('cv.structure.pure.Image', {
+    isa: cv.structure.pure.AbstractWidget,
 
-      // create the actor
-      var imgStyle = '';
-      if (data.width) {
-        imgStyle += 'width:'  + data.width + ';';
-      }
-      if( $e.attr('widthfit') === 'true' ) {
-        imgStyle += 'max-width:100%;';
-      }
-      if (data.height) {
-        imgStyle += 'height:' + data.height + ';';
-      }
-      var actor = '<div class="actor"><img src="' + data.src + '" style="' + imgStyle + '" /></div>';
+    has: {
+      width   : { is: 'r' },
+      height  : { is: 'r' },
+      src     : { is: 'r' },
+      widthFit: { is: 'r' },
+      refresh : { is: 'r', init: 0 }
+    },
 
-      if (data.refresh) {
-        templateEngine.postDOMSetupFns.push( function(){
-          templateEngine.setupRefreshAction( path, data.refresh );
-        });
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'width'       :   {},
+            'height'      :   {},
+            'src'         :   {},
+            'widthfit'    :   { target: 'widthFit', transform: function(value) {
+              return value === true;
+            }},
+            'refresh'     :  { default: 0, transform: function(value) {
+              return value ? value * 1000 : 0;
+            }}
+          };
+        }
       }
+    },
 
-      return ret_val + actor + '</div>';
+    after : {
+      initialize : function (props) {
+        cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
+          templateEngine.setupRefreshAction( this.getPath(), this.getRefresh() );
+        }, this);
+      }
+    },
+
+    methods: {
+      getDomString: function () {
+        // create the actor
+        var imgStyle = '';
+        if (this.getWidth()) {
+          imgStyle += 'width:'  + this.getWidth() + ';';
+        }
+        if( this.getWidthFit() === true ) {
+          imgStyle += 'max-width:100%;';
+        }
+        if (this.getHeight()) {
+          imgStyle += 'height:' + this.getHeight() + ';';
+        }
+        return '<div class="actor"><img src="' + this.getSrc() + '" style="' + imgStyle + '" /></div>';
+      }
     }
   });
-
+  // register the parser
+  cv.xml.Parser.addHandler("image", cv.structure.pure.Image);
 }); // end define
