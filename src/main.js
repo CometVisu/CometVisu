@@ -52,7 +52,7 @@ require.config({
     // 'widget_slide':             'structure/pure/Slide',
     'widget_switch':            'structure/pure/Switch',
     // 'widget_text':              'structure/pure/Text',
-    // 'widget_toggle':            'structure/pure/Toggle',
+    'widget_toggle':            'structure/pure/Toggle',
     'widget_trigger':           'structure/pure/Trigger',
     // 'widget_pushbutton':        'structure/pure/PushButton',
     // 'widget_urltrigger':        'structure/pure/UrlTrigger',

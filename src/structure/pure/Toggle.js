@@ -26,65 +26,51 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Operate'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
- 
-  design.basicdesign.addCreator('toggle', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
-    
-    // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type, this.update );
-    
-    // create the actor
-    ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
-    
-    var data = templateEngine.widgetDataGet( path );
-    
-    return ret_val + '</div>';
-  },
-  /**
-   * Description
-   * @method update
-   * @param {} ga
-   * @param {} d
-   */
-  update: function( ga, d ) { 
-    var element = $(this);
-    basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
-  },
-  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
-  /**
-   * Description
-   * @method action
-   * @param {} path
-   * @param {} actor
-   * @param {} isCanceled
-   */
-  action: function( path, actor, isCanceled ) {
-    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
-    if( isCanceled ) return;
-    
-    var 
-      data  = templateEngine.widgetDataGet( path );
 
-    var sendValue = templateEngine.getNextMappedValue( data.basicvalue, data.mapping );
-    for( var addr in data.address )
-    {
-      if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], sendValue ) );
+  Class('cv.structure.pure.Toggle', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: cv.role.Operate,
+
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {};
+        }
+      }
+    },
+
+    augment: {
+      getDomString: function () {
+        return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+      }
+    },
+
+    methods: {
+      /**
+       * Handles the incoming data from the backend for this widget
+       *
+       * @method handleUpdate
+       * @param value {any} incoming data (already transformed + mapped)
+       */
+      handleUpdate: function(value) {
+      },
+
+      /**
+       * Get the value that should be send to backend after the action has been triggered
+       *
+       * @method getActionValue
+       */
+      getActionValue: function () {
+        return templateEngine.getNextMappedValue( this.getBasicValue(), this.getMapping() );
+      },
+
+      downaction: function(path, actor) {
+        return this.defaultButtonDownAnimationInheritAction(path, actor);
+      }
     }
-  }
-});
-
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("toggle", cv.structure.pure.Toggle);
 }); // end define
