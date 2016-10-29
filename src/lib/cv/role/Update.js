@@ -17,11 +17,16 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define(['dependencies/joose-all-min', 'lib/cv/role/HasAddress'], function() {
+define(['joose', 'lib/cv/role/HasAddress'], function() {
   Role("cv.role.Update", {
     does: cv.role.HasAddress,
 
-    requires: [ 'handleUpdate', 'getAddressListCallback' ],
+    requires: [ 'handleUpdate', 'getAddressListCallback', 'applyStyling' ],
+
+    has: {
+      value             : { is: 'rw' },
+      basicValue        : { is: 'rw' }
+    },
 
     my: {
       after: {
@@ -64,36 +69,52 @@ define(['dependencies/joose-all-min', 'lib/cv/role/HasAddress'], function() {
         return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
       },
 
-      defaultValueHandling: function( ga, data, widgetData ) {
-        var thisTransform = '';
-        var value = data;
-        if (undefined !== ga) {
-          thisTransform = widgetData.address[ga][0];
-          // #1: transform the raw value to a JavaScript type
-          value = templateEngine.transformDecode(thisTransform, data);
+      applyTransform: function(address, data) {
+        if (address) {
+          var transform = this.getAddress()[address][0];
+          // transform the raw value to a JavaScript type
+          return templateEngine.transformDecode(transform, data);
         }
+        return data;
+      },
 
-        this.setBasicValue(value); // store it to be able to supress sending of unchanged data
+      applyMapping: function(value) {
+        return templateEngine.map(value, this.getMapping());
+      },
+
+      applyFormat: function(value) {
+        if (this.getFormat()) {
+          if (!this.formatValueCache) {
+            this.formatValueCache = [widgetData.format];
+          }
+
+          var argListPos = (this.getAddress() && this.getAddress()[ga]) ? this.getAddress()[ga][3] : 1;
+
+          this.formatValueCache[argListPos] = value;
+
+          return sprintf.apply(this, this.formatValueCache);
+        }
+        return value;
+      },
+
+      defaultValueHandling: function( address, data ) {
+
+        // #1: transform the raw value to a JavaScript type
+        var value = this.applyTransform(address, data);
+
+        // store it to be able to suppress sending of unchanged data
+        this.setBasicValue(value);
 
         // #2: map it to a value the user wants to see
-        value = templateEngine.map(value, widgetData.mapping);
+        value = this.applyMapping(value);
 
         // #3: format it in a way the user understands the value
-        if (widgetData.precision)
-          value = Number(value).toPrecision(widgetData.precision);
-        if (widgetData.format) {
-          if (!('formatValueCache' in widgetData))
-            widgetData.formatValueCache = [widgetData.format];
+        value = this.applyFormat(value);
 
-          var argListPos = (widgetData.address && widgetData.address[ga]) ? widgetData.address[ga][3] : 1;
+        this.setValue(value);
 
-          widgetData.formatValueCache[argListPos] = value;
-
-          value = sprintf.apply(this, widgetData.formatValueCache);
-        }
-        widgetData.value = value;
         if (undefined !== value && value.constructor == Date) {
-          switch (thisTransform) // special case for KNX
+          switch (this.getAddress()[address][0]) // special case for KNX
           {
             case 'DPT:10.001':
               value = value.toLocaleTimeString();
@@ -110,6 +131,7 @@ define(['dependencies/joose-all-min', 'lib/cv/role/HasAddress'], function() {
           }
         }
 
+        this.applyStyling(this.getBasicValue());
         // #4 will happen outside: style the value to be pretty
         return value;
       },
@@ -168,17 +190,15 @@ define(['dependencies/joose-all-min', 'lib/cv/role/HasAddress'], function() {
        * @param {} path
        * @return value
        */
-      defaultUpdate: function( ga, data, passedElement, newVersion, path ) {
+      defaultUpdate: function( ga, data, passedElement) {
         ///console.log(ga, data, passedElement, newVersion );
         var element = passedElement || this.getDomElement();
-        var elementData = templateEngine.widgetData[path];
-        var actor = newVersion ? element.find('.actor:has(".value")') : element;
-        var value = this.defaultValueHandling(ga, data, elementData);
+        var value = this.defaultValueHandling(ga, data);
 
-        templateEngine.setWidgetStyling(actor, this.getBasicValue(), elementData.styling);
-
-        if (elementData['align'])
-          element.addClass(elementData['align']);
+        // TODO: check if this is the right place for this
+        // might be if the styling removes the align class
+        if (this.getAlign())
+          element.addClass(this.getAlign());
 
         var valueElement = element.find('.value');
         valueElement.empty();

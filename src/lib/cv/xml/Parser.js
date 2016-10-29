@@ -1,6 +1,6 @@
 
 define( [
-  'dependencies/joose-all-min',
+  'joose',
   'lib/cv/Object'
   ],
   function () {

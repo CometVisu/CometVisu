@@ -19,7 +19,7 @@
 
 
 define( [
-  'dependencies/joose-all-min'
+  'joose'
 ], function() {
   "use strict";
 
@@ -47,5 +47,5 @@ define( [
         }
       }
     }
-  });
+  })
 }); // end define

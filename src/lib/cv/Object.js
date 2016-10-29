@@ -1,7 +1,7 @@
 
 
 define( [
-    'dependencies/joose-all-min'
+    'joose'
   ], function() {
     Class('cv.Object', {
 

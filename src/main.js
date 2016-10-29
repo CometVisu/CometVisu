@@ -63,7 +63,8 @@ require.config({
     'TransformDefault':         'transforms/TransformDefault',
     'TransformKnx':             'transforms/TransformKnx',
     'TransformMockup':          'lib/mockup/TransformKnx',
-    'TransformOpenHab':         'transforms/TransformOpenHab'
+    'TransformOpenHab':         'transforms/TransformOpenHab',
+    'joose':                    'dependencies/joose-all'
   },
   'shim': {
     'scrollable':            ['jquery'],

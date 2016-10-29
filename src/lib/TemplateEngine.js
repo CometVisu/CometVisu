@@ -909,6 +909,7 @@ define([
         }
       });
       stylings[name]['classnames'] = classnames;
+      cv.ui.Stylings.my.addStyling(name, stylings[name]);
     });
 
     // then the status bar

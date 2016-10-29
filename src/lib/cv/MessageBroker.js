@@ -24,7 +24,7 @@
  * @since 0.10.0
  */
 define( [
-    'dependencies/joose-all-min'
+    'joose'
   ], function() {
   Class('cv.MessageBroker', {
     my: {

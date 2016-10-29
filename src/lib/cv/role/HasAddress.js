@@ -17,7 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define(['dependencies/joose-all-min'], function() {
+define(['joose'], function() {
   Role("cv.role.HasAddress", {
 
     has: {

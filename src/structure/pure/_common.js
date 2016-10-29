@@ -27,9 +27,10 @@
 */
 define( [
   'jquery',
-  'dependencies/joose-all-min',
+  'joose',
   'lib/cv/xml/Parser',
-  'structure/WidgetFactory'
+  'structure/WidgetFactory',
+  'lib/cv/role/HasStyling'
 ], function($) {
   "use strict";
 
@@ -39,8 +40,9 @@ define( [
    */
   Class('cv.structure.pure.AbstractWidget', {
 
-    has: {
+    does: cv.role.HasStyling,
 
+    has: {
       popups            : { is: 'rw', init: {} },
       path              : { is: 'r' },
       $$type            : { is: 'r' },
@@ -51,12 +53,11 @@ define( [
       label             : { is: 'r', init: '' },
       bind_click_to_widget : { is: 'r', init: false },
       mapping           : { is: 'r' },
-      styling           : { is: 'r' },
       format            : { is: 'r' },
+      formatValueCache  : { is: 'rw' },
       align             : { is: 'r' },
       $$domElement      : { is: 'rw' },
-      $$actor           : { is: 'rw' },
-      basicValue        : { is: 'rw' }
+      $$actor           : { is: 'rw' }
     },
 
     after: {
@@ -368,7 +369,6 @@ define( [
           return templateEngine.widgetDataInsert( path, {
             'bind_click_to_widget': bindClickToWidget,
             'mapping' : $element.attr('mapping'),
-            'styling' : $element.attr('styling'),
             'format'  : $element.attr('format'),
             'align'   : $element.attr('align'),
             'layout'  : layout,

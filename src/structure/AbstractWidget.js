@@ -27,7 +27,7 @@
 */
 define( [
   'jquery',
-  'dependencies/joose-all-min',
+  'joose',
   'lib/cv/xml/Parser',
   'lib/cv/role/Update'
 ], function($) {
