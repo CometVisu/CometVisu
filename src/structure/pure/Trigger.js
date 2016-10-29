@@ -98,7 +98,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker'], function() {
       },
 
       action: function( path, actor, isCanceled ) {
-        basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
+        this.defaultButtonUpAnimationInheritAction( path, actor );
         if( isCanceled ) return;
 
         var isShort = Date.now() - templateEngine.handleMouseEvent.downtime < this.getShortTime();
@@ -106,7 +106,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker'], function() {
         var sendValue = this.getActionValue();
 
         this.sendToBackend(sendValue, function(address) {
-          return address[addr][2] & bitMask;
+          return !!(address[2] & bitMask);
         });
       },
 

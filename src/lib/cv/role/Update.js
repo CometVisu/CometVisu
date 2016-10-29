@@ -29,7 +29,7 @@ define(['dependencies/joose-all-min'], function() {
       after: {
         parse: function( xml, path, flavour, widgetType ) {
           var data = templateEngine.widgetDataGet( path );
-          data.address = this.makeAddressList( $(xml), this.getAddressListCallback(), path );
+          data.address = this.makeAddressList( $(xml), path );
           return data;
         }
       },

@@ -168,7 +168,7 @@ define([], function() {
           actionFn !== undefined &&
           inCurrent && !this._mouseEvent.alreadyCanceled
         ) {
-          actionFn.call(widget, widget.id, this._mouseEvent.actor, !inCurrent, event);
+          actionFn.call(widget, widget.getPath(), this._mouseEvent.actor, !inCurrent, event);
         }
         this._mouseEvent.moveFn = undefined;
         this._mouseEvent.moveRestrict = true;

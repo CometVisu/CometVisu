@@ -526,8 +526,6 @@ define( [
          * @param path       string of the path ID
          * @param flavour
          * @param pageType
-         * @param updateFn   The callback function for updates
-         * @param {} makeAddressListFn
          * @return ret_val
          */
         createDefaultWidget: function( widgetType, $element, path, flavour, pageType ) {

@@ -49,9 +49,7 @@ define(['dependencies/joose-all-min'], function() {
        */
       sendToBackend: function(value, filter) {
         Joose.O.eachOwn(this.getAddress(), function(address, id) {
-          if (!(address[1] & 2) || (filter && !filter(address))) {
-            return true; // aka continue
-          } else {
+          if (!!(address[1] & 2) && (!filter || filter(address))) {
             templateEngine.visu.write(id, templateEngine.transformEncode(address[0], value));
           }
         }, this);
