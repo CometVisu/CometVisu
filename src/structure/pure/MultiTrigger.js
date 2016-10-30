@@ -134,7 +134,8 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
           ret_val += '</div>';
           ret_val += '<br/>';
         }
-        return ret_val + '</div></div>';
+        console.log(ret_val + '</div>');
+        return ret_val + '</div>';
       }
     },
 

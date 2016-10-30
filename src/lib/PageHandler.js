@@ -89,7 +89,7 @@ define([ 'jquery' ], function( $ ) {
         templateEngine.pagePartsHandler.updateTopNavigation( self );
         $('.activePage', '#pages').removeClass('activePage');
         $('.pageActive', '#pages').removeClass('pageActive');
-        templateEngine.currentPage.addClass('pageActive activePage');// show new page
+        $(templateEngine.currentPage).addClass('pageActive activePage');// show new page
         $('#pages').css('left', 0 );
         if (callbacks) {
           currentPath !== '' && templateEngine.callbacks[currentPath].afterPageChange.forEach(function (callback) {

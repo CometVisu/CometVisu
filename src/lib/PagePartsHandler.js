@@ -164,7 +164,7 @@ define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
     var showtopnavigation = true;
     var showfooter = true;
     var shownavbar = thisPagePartsHandler.getNavbarsVisibility(page);
-    //var pageData = templateEngine.widgetDataGet(page.attr('id'));
+
     if (page) {
       if (page.getShowTopNavigation() != undefined) {
         showtopnavigation = page.getShowTopNavigation();

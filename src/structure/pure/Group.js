@@ -125,13 +125,13 @@ define( [
        * @param {Element} actor - DOMElement
        * @param {Boolean} isCanceled - If true the action does nothing
        */
-      action: function( path, actor, isCanceled ) {
-        if( isCanceled ) {
+      action: function (path, actor, isCanceled) {
+        if (isCanceled) {
           return;
         }
 
         if (this.getTarget() != 0) {
-          templateEngine.scrollToPage( this.getTarget() );
+          templateEngine.scrollToPage(this.getTarget());
         }
       },
 
@@ -139,7 +139,7 @@ define( [
         // heading style
         var hstyle  = '';
         if( this.getAlign() ) {
-          hstyle += 'style="text-align:' + this.getAlign() + '";';
+          hstyle += 'style="text-align:' + this.getAlign() + '"';
         }
 
         var container = '<div class="clearfix">';

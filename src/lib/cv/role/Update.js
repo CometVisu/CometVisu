@@ -78,17 +78,26 @@ define(['joose', 'lib/cv/role/HasAddress'], function() {
         return data;
       },
 
+      applyTransformEncode: function(address, data) {
+        if (address) {
+          var transform = this.getAddress()[address][0];
+          // transform the raw value to a JavaScript type
+          return templateEngine.transformEncode(transform, data);
+        }
+        return data;
+      },
+
       applyMapping: function(value) {
         return templateEngine.map(value, this.getMapping());
       },
 
-      applyFormat: function(value) {
+      applyFormat: function(value, address) {
         if (this.getFormat()) {
           if (!this.formatValueCache) {
-            this.formatValueCache = [widgetData.format];
+            this.formatValueCache = [this.getFormat()];
           }
 
-          var argListPos = (this.getAddress() && this.getAddress()[ga]) ? this.getAddress()[ga][3] : 1;
+          var argListPos = (this.getAddress() && this.getAddress()[address]) ? this.getAddress()[address][3] : 1;
 
           this.formatValueCache[argListPos] = value;
 

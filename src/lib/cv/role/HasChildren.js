@@ -33,7 +33,7 @@ define(['joose'], function() {
           if (!data.children) {
             data.children = [];
           }
-          var childs = $p.children().not('layout');
+          var childs = $p.children().not('layout').not('label');
           Joose.A.each(childs, function(child, i) {
             var childData = cv.xml.Parser.parse(child, path + '_' + i, flavour, pageType );
             if (childData && childData.path) {
@@ -66,7 +66,7 @@ define(['joose'], function() {
 
       getChildrenDomString: function(noWidgetContainer) {
         var container = '';
-        // TODO: refactor that data is not needed anymore
+
         Joose.A.each( this.getChildren(), function(path) {
           var data = templateEngine.widgetDataGet(path);
           var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
@@ -77,6 +77,10 @@ define(['joose'], function() {
             if (noWidgetContainer === true) {
               container += subelement;
             } else {
+              if (data.$$type == "page" && path.substr(path.length-1, 1) === "_") {
+                // TODO: find better solution for this workaround
+                path = path.substr(0, path.length-1);
+              }
               container += '<div class="widget_container '
                 + (data.rowspanClass ? data.rowspanClass : '')
                 + (data.containerClass ? data.containerClass : '')

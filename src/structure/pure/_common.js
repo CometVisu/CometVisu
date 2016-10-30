@@ -364,7 +364,7 @@ define( [
          */
         createDefaultWidget: function( widgetType, $element, path, flavour, pageType ) {
           var layout = this.parseLayout( $element.children('layout')[0] );
-          var style = layout ? 'style="' + this.extractLayout( layout, pageType ) + '"' : '';
+          var style = $.isEmptyObject(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
           var classes = this.getDefaultClasses(widgetType);
           if ( $element.attr('align') ) {
             classes+=" "+$element.attr('align');

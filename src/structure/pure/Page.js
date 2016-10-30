@@ -254,7 +254,7 @@ define( [
         container += this.getChildrenDomString();
         subpage += container + '</div></div>';
         cv.structure.pure.Page.my.allPages = subpage + cv.structure.pure.Page.my.allPages;
-        return ret_val;
+        return ret_val.length > 0 ? ret_val : undefined;
       },
 
       /**
@@ -264,8 +264,7 @@ define( [
        * @param {} data
        */
       update: function( ga, data ) {
-        var
-          element = $(this);
+        var element = $(this);
         // widgetData  = templateEngine.widgetDataGetByElement( element );
         // var value = this.defaultValueHandling( ga, data, widgetData );
         // var type = widgetData.address[ ga ][2];
