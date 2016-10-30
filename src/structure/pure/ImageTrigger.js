@@ -68,7 +68,11 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/HasAddress'], function() {
+define( ['_common',
+  'lib/cv/role/Operate',
+  'lib/cv/role/Refresh',
+  'lib/cv/MessageBroker',
+  'lib/cv/role/HasAddress'], function() {
   "use strict";
 
   Class('cv.structure.pure.ImageTrigger', {
@@ -104,7 +108,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/
     },
 
     after : {
-      initialize : function (props) {
+      initialize : function () {
         cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
           //this.defaultUpdate( undefined, this.getSendValue(), this.getDomElement(), true, this.getPath() );
         }, this);

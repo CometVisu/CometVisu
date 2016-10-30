@@ -56,7 +56,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/
     },
 
     after : {
-      initialize : function (props) {
+      initialize : function () {
         cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
           //this.defaultUpdate( undefined, this.getSendValue(), this.getDomElement(), true, this.getPath() );
         }, this);

@@ -217,7 +217,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
           {
             if( !(addresses[addr][1] & 2) ) continue; // skip when write flag not set
             var uv  = this.applyTransformEncode(addr, ui.value );
-            if( uv != this.applyTransformEncode(addr, data.value ) )
+            if( uv != this.applyTransformEncode(addr, this.getValue() ) )
               templateEngine.visu.write( addr, uv );
           }
         }

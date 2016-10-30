@@ -25,69 +25,52 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Update'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('rgb', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return ret_val
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
-    
-    // create the main structure
-    /**
-     * Description
-     * @method rgb_handleVariant
-     * @param {} src
-     * @param {} transform
-     * @param {} mode
-     * @param {} variant
-     * @return ArrayExpression
-     */
-    function rgb_handleVariant(src, transform, mode, variant) {
-      return [true, variant];
-    }
-    var ret_val = basicdesign.createDefaultWidget( 'rgb', $e, path, flavour, type, this.update, rgb_handleVariant );
-    
-    // create the actor
-    var actor = '<div class="actor"><div class="value"></div></div>';
-    ret_val += actor + '</div>';
-    
-    return ret_val;
-  },
-  /**
-   * Description
-   * @method update
-   * @param {} ga
-   * @param {} d
-   */
-  update: function( ga, d ) { 
-    var
-      element = $(this),
-      valElem = element.find('.value'),
-      data    = templateEngine.widgetDataGetByElement( this );
-    var value = templateEngine.transformDecode( data['address'][ ga ][0], d );
-    var bg = valElem.css('background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
-    if( 3 !== bg.length )
-      bg = [0, 0, 0];
-    switch (data['address'][ ga ][2]) {
-    case 'r' :  bg[0] = value; break;
-    case 'g' :  bg[1] = value; break;
-    case 'b' :  bg[2] = value; break;
-    default:
-    }
-    var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
-    valElem.css('background-color', bgs ); 
-  }
-});
 
+  Class('cv.structure.pure.Rgb', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: [cv.role.Update],
+
+    my : {
+      methods: {
+        makeAddressListFn: function(src, transform, mode, variant) {
+          return [true, variant];
+        }
+      }
+    },
+
+    augment: {
+      getDomString: function () {
+        return '<div class="actor"><div class="value"></div></div>';
+      }
+    },
+
+    methods: {
+      /**
+       * Handles the incoming data from the backend for this widget
+       *
+       * @method handleUpdate
+       * @param value {any} incoming data (already transformed + mapped)
+       */
+      handleUpdate: function(value, ga) {
+        var valElem = this.getValueElement();
+
+        var bg = valElem.css('background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
+        if( 3 !== bg.length ) {
+          bg = [0, 0, 0];
+        }
+        switch (this.getAddress()[ ga ][2]) {
+          case 'r' :  bg[0] = value; break;
+          case 'g' :  bg[1] = value; break;
+          case 'b' :  bg[2] = value; break;
+          default:
+        }
+        var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
+        valElem.css('background-color', bgs );
+      }
+    }
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("rgb", cv.structure.pure.Rgb);
 }); // end define
-

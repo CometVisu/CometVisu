@@ -72,9 +72,6 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/
 
     methods: {
 
-      handleUpdate: function(value) {
-      },
-
       /**
        * Get the value that should be send to backend after the action has been triggered
        *

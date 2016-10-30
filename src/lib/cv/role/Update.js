@@ -53,7 +53,7 @@ define(['joose', 'lib/cv/role/HasAddress'], function() {
        */
       update: function(address, data) {
         var value = this.processIncomingValue(address, data);
-        this.handleUpdate(value);
+        this.handleUpdate(value, address);
       },
 
       /**
