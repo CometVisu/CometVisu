@@ -22,7 +22,7 @@
  * @author Christian Mayer
  * @since 2010
  */
-define([ 'jquery' ], function( $ ) {
+define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
   "use strict";
   return function PagePartsHandler() {
   var thisPagePartsHandler = this;
@@ -92,9 +92,12 @@ define([ 'jquery' ], function( $ ) {
         page = templateEngine.currentPage;
       }
       if( page===null ) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
-      var pageData = templateEngine.widgetDataGet(page.attr('id'));
-      if( pageData==null ) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
-      var shownavbar = (pageData.shownavbar != undefined ? pageData.shownavbar : {
+      if (typeof page == "string") {
+        page = cv.structure.WidgetFactory.my.getInstanceById(page);
+      }
+
+      if( page==null ) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
+      var shownavbar = (page.getShowNavbar() != undefined ? page.getShowNavbar() : {
         top : 'inherit',
         bottom : 'inherit',
         left : 'inherit',
@@ -106,9 +109,9 @@ define([ 'jquery' ], function( $ ) {
           shownavbar[pos] = 'inherit';
         }
       }
-      if (pageData != null) {
+      if (page != null) {
         // traverse up the page tree for shownavbar
-        var parentPage = templateEngine.getParentPage(page);
+        var parentPage = page.getParent();
         while (parentPage != null) {
           // do we need to go further? Check for inheritance
           var inherit = false;
@@ -119,12 +122,12 @@ define([ 'jquery' ], function( $ ) {
             }
           }
           if (inherit) {
-            var parentPageData=templateEngine.widgetDataGet(parentPage.attr('id'));
-            if (parentPageData.shownavbar != undefined) {
+
+            if (parentPage.getShowNavbar() != undefined) {
               for (var pos in shownavbar) {
                 if (shownavbar[pos] == 'inherit') {
                   // set value of parent page
-                  shownavbar[pos] = parentPageData.shownavbar[pos];
+                  shownavbar[pos] = parentPage.getShowNavbar()[pos];
                   if (shownavbar[pos] == undefined) {
                     shownavbar[pos] = 'inherit';
                   }
@@ -135,7 +138,7 @@ define([ 'jquery' ], function( $ ) {
             // we are done
             break;
           }
-          parentPage = templateEngine.getParentPage(parentPage);
+          parentPage = parentPage.getParent();
         }
       }
       // set default values for shownavbar if not set otherwise
@@ -155,39 +158,39 @@ define([ 'jquery' ], function( $ ) {
    * 
    * @param page
    */
-  this.updatePageParts = function( page, speed ) {
+  this.updatePageParts = function( xml, speed ) {
     // default values
+    var page = cv.structure.WidgetFactory.my.getInstanceById(xml.attr('id'));
     var showtopnavigation = true;
     var showfooter = true;
     var shownavbar = thisPagePartsHandler.getNavbarsVisibility(page);
-    var pageData = templateEngine.widgetDataGet(page.attr('id'));
-    if (pageData != null) {
-      if (pageData.showtopnavigation != undefined) {
-        showtopnavigation = pageData.showtopnavigation != "false";
+    //var pageData = templateEngine.widgetDataGet(page.attr('id'));
+    if (page) {
+      if (page.getShowTopNavigation() != undefined) {
+        showtopnavigation = page.getShowTopNavigation();
       } else {
         // traverse up the page tree
-        var parentPage = templateEngine.getParentPage(page);
+        var parentPage = page.getParent();
         while (parentPage != null) {
-          var parentData = templateEngine.widgetDataGet(parentPage.attr('id'));
-          if (parentData.showtopnavigation != undefined) {
-            showtopnavigation = parentData.showtopnavigation != "false";
+
+          if (parentPage.getShowTopNavigation() != undefined) {
+            showtopnavigation = parentPage.getShowTopNavigation();
             break;
           }
-          parentPage = templateEngine.getParentPage(parentPage);
+          parentPage = parentPage.getParent();
         }
       }
-      if (pageData.showfooter != undefined) {
-        showfooter = pageData.showfooter != "false";
+      if (page.getShowFooter() != undefined) {
+        showfooter = page.getShowFooter();
       } else {
         // traverse up the page tree
-        var parentPage = templateEngine.getParentPage(page);
+        var parentPage = page.getParent();
         while (parentPage != null) {
-          var parentData = templateEngine.widgetDataGet(parentPage.attr('id'));
-          if (parentData.showfooter != undefined) {
-            showfooter = parentData.showfooter != "false";
+          if (parentPage.getShowFooter() != undefined) {
+            showfooter = parentPage.getShowFooter();
             break;
           }
-          parentPage = templateEngine.getParentPage(parentPage);
+          parentPage = parentPage.getParent();
         }
       }
     }
@@ -195,23 +198,23 @@ define([ 'jquery' ], function( $ ) {
     if (showtopnavigation) {
       if ($('#top').css("display") == "none") {
         $('#top, #top > *').css("display", "block");
-        thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
+        thisPagePartsHandler.removeInactiveNavbars(page.getPath());
       }
     } else {
       if ($('#top').css("display") != "none") {
         $('#top').css("display", "none");
-        thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
+        thisPagePartsHandler.removeInactiveNavbars(page.getPath());
       }
     }
     if (showfooter) {
       if ($('#bottom').css("display") == "none") {
         $('#bottom').css("display", "block");
-        thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
+        thisPagePartsHandler.removeInactiveNavbars(page.getPath());
       }
     } else {
       if ($('#bottom').css("display") != "none") {
         $('#bottom').css("display", "none");
-        thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
+        thisPagePartsHandler.removeInactiveNavbars(page.getPath());
       }
     }
     [ 'Left', 'Top', 'Right', 'Bottom' ].forEach( function(value) {
@@ -223,7 +226,7 @@ define([ 'jquery' ], function( $ ) {
       if (shownavbar[key] == 'true') {
         if (display == "none" || isLoading) {
           thisPagePartsHandler.fadeNavbar( value, "in", speed );
-          thisPagePartsHandler.removeInactiveNavbars(page.attr('id'));
+          thisPagePartsHandler.removeInactiveNavbars(page.getPath());
         }
       } else {
         if (display != "none" || isLoading) {

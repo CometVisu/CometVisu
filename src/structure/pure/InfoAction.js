@@ -81,7 +81,7 @@ define( ['_common', 'lib/cv/role/Update'], function() {
         var childs = this.getChildObjects();
         Joose.A.each( this.getChildren(), function(path) {
           var data = templateEngine.widgetDataGet(path);
-          var widget = cv.structure.pure.WidgetFactory.createInstance(data.$$type, data);
+          var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
           if (widget) {
             childs.push(widget);
           }

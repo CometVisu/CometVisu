@@ -199,7 +199,7 @@ define([
           {
             var element = document.getElementById( id );
             var type = element.dataset.type || 'page'; // only pages have no datatype set
-            var widget = cv.structure.pure.WidgetFactory.getInstanceById(id);
+            var widget = cv.structure.WidgetFactory.getInstanceById(id);
             if( widget.update )
             {
               widget.update(key, data );
@@ -1112,17 +1112,8 @@ define([
   this.create_pages = function(page, path, flavour, type) {
 
     var data = cv.xml.Parser.parse(page, path, flavour, type);
-    data.$$type = page.nodeName;
 
-
-    var widget;
-    type = page.nodeName;
-    if (cv.structure.pure[Joose.S.uppercaseFirst(type)]) {
-      widget = new cv.structure.pure[Joose.S.uppercaseFirst(type)](data);
-    } else {
-      console.error("unhandled type: %s", type);
-    }
-
+    var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
 
     var retval = widget ? widget.getDomString() : undefined;
     

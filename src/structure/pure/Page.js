@@ -44,7 +44,7 @@ define( [
       name              : { is: 'r' },
       showTopNavigation : { is: 'r' },
       showFooter        : { is: 'r' },
-      showNavbar        : { is: 'r', init: {} },
+      showNavbar        : { is: 'r' },
       backdropAlign     : { is: 'r' },
       bindClickToWidget : { is: 'r', init: false },
       backdropType      : { is: 'rw' },
@@ -85,8 +85,8 @@ define( [
           var name    = $p.attr('name');
           pageType = $p.attr('type') || 'text';              //text, 2d or 3d
           var backdrop = $p.attr('backdrop');
-          var showtopnavigation = $p.attr('showtopnavigation');
-          var showfooter = $p.attr('showfooter');
+          var showtopnavigation = $p.attr('showtopnavigation') ? $p.attr('showtopnavigation') === "true" : undefined;
+          var showfooter = $p.attr('showfooter') ? $p.attr('showfooter') === "true": undefined;
           // make sure the type has the correct value as we need to use it ass CSS class
           switch (pageType) {
             case '2d':

@@ -29,7 +29,7 @@ define( [
   'jquery',
   'joose',
   'lib/cv/xml/Parser',
-  'structure/WidgetFactory',
+  'lib/cv/structure/WidgetFactory',
   'lib/cv/role/HasStyling'
 ], function($) {
   "use strict";

@@ -69,7 +69,7 @@ define(['joose'], function() {
         // TODO: refactor that data is not needed anymore
         Joose.A.each( this.getChildren(), function(path) {
           var data = templateEngine.widgetDataGet(path);
-          var widget = cv.structure.pure.WidgetFactory.createInstance(data.$$type, data);
+          var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
           if (widget) {
             var subelement = widget.getDomString();
             if( undefined === subelement )
@@ -82,6 +82,27 @@ define(['joose'], function() {
           }
         }, this);
         return container;
+      },
+
+      getParent: function() {
+        var path = this.getPath();
+        var type = this.$$type;
+        if (type === "page") {
+          if (path === "id_") {
+            // root page has no parent
+            return null;
+          }
+        } else {
+          if (path === "id") {
+            // root element has no parent
+            return null;
+          }
+        }
+        var parentPath = path.substr(0, path.length - 2);
+        var parent = cv.structure.WidgetFactory.getInstanceById(parentPath);
+        if (parent) {
+          return parent;
+        }
       }
     }
   });

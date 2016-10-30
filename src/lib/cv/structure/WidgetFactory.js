@@ -23,7 +23,7 @@ define( [
 ], function() {
   "use strict";
 
-  Class('cv.structure.pure.WidgetFactory', {
+  Class('cv.structure.WidgetFactory', {
     my : {
       has : {
         registry: { is: 'rw', init: {} }

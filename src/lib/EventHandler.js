@@ -68,7 +68,7 @@ define([], function() {
         if (element.classList.contains('actor') || (element.classList.contains('group') && element.classList.contains('clickable'))) {
           actor = element;
         }
-        widget = cv.structure.pure.WidgetFactory.getInstanceById($(element).attr('id'));
+        widget = cv.structure.WidgetFactory.getInstanceById($(element).attr('id'));
         if (element.classList.contains('widget_container')) {
           if (widget.action !== undefined) {
             return {actor: actor, widget: widget};
