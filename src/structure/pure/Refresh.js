@@ -26,52 +26,40 @@
  * @author Christian Mayer
  * @since 2014
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/HasAnimatedButton'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('refresh', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
-    
-    // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'refresh', $e, path, flavour, type, null );
-    
-    ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
-    
-    var data = templateEngine.widgetDataGet( path );
-    data.value = $e.attr('value');
-    
-    // initially setting a value
-    templateEngine.postDOMSetupFns.push( function(){
-      basicdesign.defaultUpdate( undefined, data.value, $('#'+path), true, path );
-    });
-    
-    return ret_val + '</div>';
-  },
-  downaction: basicdesign.defaultButtonDownAnimationInheritAction,
-  /**
-   * Description
-   * @method action
-   * @param {} path
-   * @param {} actor
-   * @param {} isCanceled
-   */
-  action: function( path, actor, isCanceled ) {
-    basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
-    if( isCanceled ) return;
-    
-    templateEngine.visu.restart();
-  }
-});
 
+  Class('cv.structure.pure.Refresh', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: [cv.role.Operate, cv.role.HasAnimatedButton],
+
+    has: {
+      value: { is: 'r' }
+    },
+
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'value':   {}
+          };
+        }
+      }
+    },
+
+    augment: {
+      getDomString: function () {
+        return '<div class="actor switchUnpressed"><div class="value">'+this.getValue()+'</div></div>';
+      }
+    },
+
+    methods: {
+
+      action: function() {
+        templateEngine.visu.restart();
+      }
+    }
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("refresh", cv.structure.pure.Refresh);
 }); // end define

@@ -26,44 +26,30 @@
  * @author Christian Mayer
  * @since 2014
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Update', 'lib/cv/role/HasAnimatedButton'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('reload', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return Literal
-   */
-  create: function( element, path, flavour, type ) {
-    var 
-      e = $(element),
-      address = basicdesign.makeAddressList(e, null);
-    templateEngine.widgetDataInsert( path, {
-      address: address,
-      path: path
-    });
-    return '';
-  },
-  /**
-   * Description
-   * @method update
-   * @param {} ga
-   * @param {} d
-   */
-  update: function( ga, d ) {
-    var
-      data    = templateEngine.widgetDataGetByElement( this ),
-      value   = templateEngine.transformDecode( data['address'][ ga ][0], d );
-    if (value > 0) {
-      window.location.reload(true);
-    }
-  }
-});
 
+  Class('cv.structure.pure.Reload', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: [
+      cv.role.Update,
+      cv.role.HasAnimatedButton
+    ],
+
+    augment: {
+      getDomString: function () {
+        return null;
+      }
+    },
+
+    methods: {
+      handleUpdate: function(value) {
+        if (value > 0) {
+          window.location.reload(true);
+        }
+      }
+    }
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("reload", cv.structure.pure.Reload);
 }); // end define

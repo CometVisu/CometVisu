@@ -19,7 +19,6 @@
 
 define(['joose'], function() {
   Role("cv.role.Operate", {
-    requires: ['getActionValue', 'getAddress'],
 
     methods: {
 
@@ -33,7 +32,9 @@ define(['joose'], function() {
        */
       action: function (path, actor, isCanceled, event) {
         if (isCanceled) return;
-        this.sendToBackend(this.getActionValue(path, actor, isCanceled, event));
+        if (this.meta.methods['getActionValue']) {
+          this.sendToBackend(this.getActionValue(path, actor, isCanceled, event));
+        }
       },
 
       /**
@@ -44,12 +45,14 @@ define(['joose'], function() {
        * @param filter {Function} optional filter function for addresses
        */
       sendToBackend: function(value, filter) {
-        Joose.O.eachOwn(this.getAddress(), function(address, id) {
-          if (!!(address[1] & 2) && (!filter || filter(address))) {
-            console.log("sending '%s' to '%s'", value, id);
-            templateEngine.visu.write(id, templateEngine.transformEncode(address[0], value));
-          }
-        }, this);
+        if (this.meta.attributes['address']) {
+          Joose.O.eachOwn(this.getAddress(), function (address, id) {
+            if (!!(address[1] & 2) && (!filter || filter(address))) {
+              console.log("sending '%s' to '%s'", value, id);
+              templateEngine.visu.write(id, templateEngine.transformEncode(address[0], value));
+            }
+          }, this);
+        }
       }
     }
   });
