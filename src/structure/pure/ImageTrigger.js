@@ -68,130 +68,118 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/HasAddress'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('imagetrigger', {
-    /**
-     * Creates the widget HTML code
-     *
-     * @method create
-     * @param {Element} element - DOM-Element
-     * @param {String} path - internal path of the widget
-     * @param {String} flavour - Flavour of the widget
-     * @param {String} type - Page type (2d, 3d, ...)
-     * @return {String} HTML code
-     */
-    create: function( element, path, flavour, type ) {
-      var
-        $e = $(element),
-        classes = basicdesign.setWidgetLayout( $e, path );
-      classes += ' imagetrigger';
-      if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
-      if( flavour ) classes += ' flavour_' + flavour;
-      var ret_val = '<div class="widget clearfix image '+classes+'">';
-      ret_val += basicdesign.extractLabel( $e.find('label')[0], flavour );
-      var address = basicdesign.makeAddressList($e, null, path);
-      var width = $e.attr('width') || "100%";
-      var layout = basicdesign.parseLayout( $e.children('layout')[0], {width:width} );
-      var style = "";
-      if (!$.isEmptyObject(layout)) {
-        style += basicdesign.extractLayout(layout, type);
-      }
-      if ($e.attr('height')) {
-        style += 'height:' + $e.attr('height') + ';';
-      }
-      if (style.length > 0) {
-        style = 'style="'+style+'"';
-      }
-      var actor = '<div class="actor">';
-      if ( $e.attr('type')=='show' )
-        actor += '<img src="' + $e.attr('src') + '.' + $e.attr('suffix') + '" ' + style + ' />';
-      else
-        actor += '<img src="" ' + style + ' />';
 
-      actor += '</div>';
+  Class('cv.structure.pure.ImageTrigger', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: [
+      cv.role.Operate,
+      cv.role.HasAddress,
+      cv.role.HasAnimatedButton,
+      cv.role.Refresh
+    ],
 
-      actor += '</div>';
-      var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
-      var data = templateEngine.widgetDataInsert( path, {
-        'path'    : path,
-        'address':   address,
-        'refresh':   refresh,
-        'layout' :   layout,
-        'width'  : $e.attr('width'),
-        'height' : $e.attr('height'),
-        'src':       $e.attr('src'),
-        'suffix':    $e.attr('suffix'),
-        'sendValue': $e.attr('sendValue') || "",
-        'update_type':      $e.attr('type')
-      } );
-
-      if (data.refresh) {
-        templateEngine.postDOMSetupFns.push( function(){
-          templateEngine.setupRefreshAction( path, data.refresh );
-        });
-      }
-
-      return ret_val + actor + '</div>';
+    has: {
+      height: {is: 'r', init: 0},
+      updateType: {is: 'r', init: ''},
+      width: {is: 'r', init: '100%'},
+      src: {},
+      suffix: {},
+      sendValue: {default: ''}
     },
 
-    /**
-     * Handles updates of incoming data for this widget
-     * @method update
-     * @param {String} address - Source address of the incoming data
-     * @param {String} value - Incoming data
-     */
-    update: function( address, value ) {
-      var element = $(this),
-        data  = templateEngine.widgetDataGetByElement( element ),
-        val = templateEngine.transformDecode(data.address[ address ][0], value);
-
-      var imageChildren = element.find("img");
-      if (data.update_type == "show") {
-        if (val == 0) {
-          imageChildren.hide();
-        }
-        else {
-          imageChildren.attr("src", data.src + '.' + data.suffix).show();
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'height' : { target: 'sendValue', default: 0 },
+            'type'  : { target: 'updateType', default: '' },
+            'src': { },
+            'suffix': { },
+            'sendValue': { default: ''}
+          };
         }
       }
-      else if (data.update_type == "select") {
-        if (val == 0) {
-          imageChildren.hide();
-        }
-        else {
-          imageChildren.attr("src", data.src + val + '.' + data.suffix).show();
-        }
-      }
-
-      //TODO: add value if mapping exists
-      //TODO: get image name from mapping
-      //TODO: add bitmask for multiple images
-      //TODO: add SVG-magics
     },
 
-    /**
-     * Action performed when the image got clicked
-     *
-     * @method action
-     * @param {String} path - Internal path of the widget
-     * @param {Element} actor - DOMElement
-     * @param {Boolean} isCanceled - If true the action does nothing
-     */
-    action: function( path, actor, isCanceled ) {
-      if( isCanceled ) return;
-      var
-        data = templateEngine.widgetDataGet( path );
-      for( var addr in data.address ) {
-        if( !(data.address[addr][1] & 2) )
-          continue; // skip when write flag not set
-        if( data.sendValue == "" )
-          continue; // skip empty
-        templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], data.sendValue ) );
+    after : {
+      initialize : function (props) {
+        cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
+          //this.defaultUpdate( undefined, this.getSendValue(), this.getDomElement(), true, this.getPath() );
+        }, this);
+      }
+    },
+
+    augment: {
+      getDomString: function () {
+
+        var style = "";
+        if (!$.isEmptyObject(this.getLayout())) {
+          style += this.extractLayout(this.getLayout(), this.getPageType());
+        }
+        if (this.getHeight()) {
+          style += 'height:' + this.getHeight() + ';';
+        }
+        if (style.length > 0) {
+          style = 'style="'+style+'"';
+        }
+
+        var actor = '<div class="actor">';
+        if ( this.getUpdateType() == 'show' ) {
+          actor += '<img src="' + this.getSrc() + '.' + this.getSuffix() + '" ' + style + ' />';
+        }
+        else {
+          actor += '<img src="" ' + style + ' />';
+        }
+
+        actor += '</div>';
+        return actor;
+      }
+    },
+
+    methods: {
+
+      handleUpdate: function(value) {
+        var imageChildren = this.getDomElement().find("img");
+        if (this.getUpdateType() == "show") {
+          if (value == 0) {
+            imageChildren.hide();
+          }
+          else {
+            imageChildren.attr("src", this.getSrc() + '.' + this.getSuffix()).show();
+          }
+        }
+        else if (this.getUpdateType() == "select") {
+          if (value == 0) {
+            imageChildren.hide();
+          }
+          else {
+            imageChildren.attr("src", this.getSrc() + value + '.' + this.getSuffix()).show();
+          }
+        }
+
+        //TODO: add value if mapping exists
+        //TODO: get image name from mapping
+        //TODO: add bitmask for multiple images
+        //TODO: add SVG-magics
+      },
+
+      action: function( path, actor, isCanceled ) {
+        if (isCanceled) return;
+
+        if (this.getSendValue() == "") return;
+        var addresses = this.getAddress();
+
+        for (var addr in addresses) {
+          if (!(addresses[addr][1] & 2)) {
+            continue; // skip when write flag not set
+          }
+          templateEngine.visu.write( addr, this.applyTransform(addr, this.getSendValue() ) );
+        }
       }
     }
   });
-
+  // register the parser
+  cv.xml.Parser.addHandler("imagetrigger", cv.structure.pure.ImageTrigger);
 }); // end define

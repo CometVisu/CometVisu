@@ -59,7 +59,8 @@ define( [
       align             : { is: 'r' },
       $$domElement      : { is: 'rw' },
       $$actorElement    : { is: 'rw' },
-      $$valueElement    : { is: 'rw' }
+      $$valueElement    : { is: 'rw' },
+      pageType          : { is: 'r' }
     },
 
     after: {
@@ -389,7 +390,8 @@ define( [
             'label'   : label,
             'classes' : classes,
             'style'   : style,
-            '$$type'  : widgetType
+            '$$type'  : widgetType,
+            'pageType': pageType
           });
         },
 
