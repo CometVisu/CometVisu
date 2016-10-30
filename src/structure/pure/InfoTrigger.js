@@ -117,7 +117,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
             break;
         }
 
-        return ret_val;
+        return ret_val + '</div>';
       }
     },
 
