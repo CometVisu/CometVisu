@@ -73,11 +73,21 @@ define( ['_common', 'lib/cv/role/Update'], function() {
     does: cv.role.HasChildren,
 
     has: {
-      childObjects: { is: 'rw', init: {} }
+      childObjects: { is: 'rw', init: [] },
+      containerClass: { is: 'rw' }
+    },
+
+    my: {
+      after: {
+        parse: function(xml, path) {
+          var data = templateEngine.widgetDataGet(path);
+          data.containerClass = data.$$type;
+        }
+      }
     },
 
     after: {
-      initialized: function(props) {
+      initialize: function(props) {
         var childs = this.getChildObjects();
         Joose.A.each( this.getChildren(), function(path) {
           var data = templateEngine.widgetDataGet(path);
@@ -89,13 +99,13 @@ define( ['_common', 'lib/cv/role/Update'], function() {
       }
     },
 
-    augment: {
+    methods: {
       getDomString: function () {
-        var content = '<div class="widget_container '+this.$$type+'" id="'+this.getPath()+'" data-type="'+this.$$type+'">';
+        var content = '';
         Joose.A.each( this.getChildObjects(), function(child) {
           content += child.getDomString();
         });
-        return content + '</div>';
+        return content;
       }
     }
   });

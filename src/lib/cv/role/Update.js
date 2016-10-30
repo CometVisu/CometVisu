@@ -31,7 +31,7 @@ define(['joose', 'lib/cv/role/HasAddress'], function() {
     my: {
       after: {
 
-        initialized: function(props) {
+        initialize: function(props) {
           if (this.getAddress()) {
             cv.MessageBroker.my.subscribe("setup.dom.finished", function () {
               // initially setting a value

@@ -107,7 +107,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/HasChildren', 'lib/cv/ro
     },
 
     after: {
-      initialized: function(props) {
+      initialize: function(props) {
         if (!this.getActor().parent().hasClass("info")) {
           this.meta.extend({
             does: cv.role.HasAnimatedButton

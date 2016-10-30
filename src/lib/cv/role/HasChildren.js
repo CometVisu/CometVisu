@@ -64,7 +64,7 @@ define(['joose'], function() {
 
     methods: {
 
-      getChildrenDomString: function() {
+      getChildrenDomString: function(noWidgetContainer) {
         var container = '';
         // TODO: refactor that data is not needed anymore
         Joose.A.each( this.getChildren(), function(path) {
@@ -74,11 +74,15 @@ define(['joose'], function() {
             var subelement = widget.getDomString();
             if( undefined === subelement )
               return;
-            container += '<div class="widget_container '
-              + (data.rowspanClass ? data.rowspanClass : '')
-              + (data.containerClass ? data.containerClass : '')
-              + ('break' === data.type ? 'break_container' : '') // special case for break widget
-              + '" id="'+path+'" data-type="'+data.$$type+'">' + subelement + '</div>';
+            if (noWidgetContainer === true) {
+              container += subelement;
+            } else {
+              container += '<div class="widget_container '
+                + (data.rowspanClass ? data.rowspanClass : '')
+                + (data.containerClass ? data.containerClass : '')
+                + ('break' === data.type ? 'break_container' : '') // special case for break widget
+                + '" id="' + path + '" data-type="' + data.$$type + '">' + subelement + '</div>';
+            }
           }
         }, this);
         return container;
