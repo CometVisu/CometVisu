@@ -39,6 +39,7 @@ define( [
    * @class cv.structure.pure.AbstractWidget
    */
   Class('cv.structure.pure.AbstractWidget', {
+    isa: cv.Object,
 
     does: cv.role.HasStyling,
 

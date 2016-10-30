@@ -22,6 +22,7 @@ define( [
   'joose'
 ], function() {
   "use strict";
+  var c = 0;
 
   Class('cv.structure.WidgetFactory', {
     my : {
@@ -32,6 +33,7 @@ define( [
       methods: {
         createInstance: function(type, data) {
           if (!this.registry[data.path]) {
+            data.$$id = c;
             if (!cv.structure.pure[Joose.S.uppercaseFirst(type)]) {
               // try to find it via parser handler
               var handler = cv.xml.Parser.getHandler(type);
@@ -44,6 +46,7 @@ define( [
             } else {
               this.registry[data.path] = new cv.structure.pure[Joose.S.uppercaseFirst(type)](data);
             }
+            c++;
           }
           return this.registry[data.path];
         },

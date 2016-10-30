@@ -66,8 +66,9 @@
  * @author Tobias Bräutigam
  * @since 0.10.0 (as widget), 0.9.2 (as plugin)
  */
-define( ['_common', 'lib/cv/role/Update'], function() {
+define( ['_common', 'lib/cv/role/HasChildren'], function() {
   "use strict";
+
   Class('cv.structure.pure.WidgetInfoAction', {
     isa: cv.structure.pure.AbstractWidget,
     does: cv.role.HasChildren,
@@ -86,26 +87,9 @@ define( ['_common', 'lib/cv/role/Update'], function() {
       }
     },
 
-    after: {
-      initialize: function(props) {
-        var childs = this.getChildObjects();
-        Joose.A.each( this.getChildren(), function(path) {
-          var data = templateEngine.widgetDataGet(path);
-          var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
-          if (widget) {
-            childs.push(widget);
-          }
-        }, this);
-      }
-    },
-
     methods: {
       getDomString: function () {
-        var content = '';
-        Joose.A.each( this.getChildObjects(), function(child) {
-          content += child.getDomString();
-        });
-        return content;
+        return this.getChildrenDomString();
       }
     }
   });

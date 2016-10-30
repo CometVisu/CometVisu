@@ -94,6 +94,8 @@ define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
       if( page===null ) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
       if (typeof page == "string") {
         page = cv.structure.WidgetFactory.my.getInstanceById(page);
+      } else if (page.attr) {
+        page = cv.structure.WidgetFactory.my.getInstanceById(page.attr('id'));
       }
 
       if( page==null ) return { top : 'true', bottom : 'true', left : 'true', right : 'true' };
