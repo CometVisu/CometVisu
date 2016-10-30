@@ -23,144 +23,153 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
- 
-  design.basicdesign.addCreator('infotrigger', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
 
-    // create the main structure
-    /**
-     * Description
-     * @method makeAddressListFn
-     * @param {} src
-     * @param {} transform
-     * @param {} mode
-     * @param {} variant
-     * @return ArrayExpression
-     */
-    var makeAddressListFn = function( src, transform, mode, variant ) {
-      // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
-      return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
-    }
-    var ret_val = basicdesign.createDefaultWidget( 'infotrigger', $e, path, flavour, type, this.update, makeAddressListFn );
-    // and fill in widget specific data
-    var data = templateEngine.widgetDataInsert( path, {
-      'downvalue'     : $e.attr('downvalue' )            || 0,
-      'shortdownvalue': $e.attr('shortdownvalue')        || 0,
-      'downlabel'     : $e.attr('downlabel')                 ,
-      'upvalue'       : $e.attr('upvalue' )              || 0,
-      'shortupvalue'  : $e.attr('shortupvalue')          || 0,
-      'uplabel'       : $e.attr('uplabel')                   ,
-      'shorttime'     : parseFloat($e.attr('shorttime')) || -1,
-      'isAbsolute'    : ($e.attr('change')               || 'relative') == 'absolute',
-      'min'           : parseFloat($e.attr('min'))       || 0,
-      'max'           : parseFloat($e.attr('max'))       || 255,
-      'align'         : $e.attr('align')
-    } );
+  Class('cv.structure.pure.InfoTrigger', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: [
+      cv.role.Operate,
+      cv.role.Update,
+      cv.role.HasAnimatedButton
+    ],
 
-    // create buttons + info
-    ret_val += '<div style="float:left;">';
+    has: {
+      'downValue'     : { is: 'r', init: 0 },
+      'shortDownValue': { is: 'r', init: 0 },
+      'downLabel'     : { is: 'r' },
+      'upValue'       : { is: 'r', init: 0 },
+      'shortUpValue'  : { is: 'r', init: 0 },
+      'upLabel'       : { is: 'r' },
+      'shortTime'     : { is: 'r', init: -1 },
+      'isAbsolute'    : { is: 'r' },
+      'min'           : { is: 'r', init: 0 },
+      'max'           : { is: 'r', init: 255 },
+      'infoPosition'  : { is: 'r', init: 'middle' }
+    },
 
-    var actordown = '<div class="actor switchUnpressed downlabel" ';
-    if ( data.align ) 
-      actordown += 'style="text-align: ' + data.align + '" '; 
-    actordown += '>';
-    actordown += '<div class="label">' + (data.downlabel || '-') + '</div>';
-    actordown += '</div>';
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'downvalue'     : { target: 'downValue', default: 0 },
+            'shortdownvalue': { target: 'shortDownValue', default: 0 },
+            'downlabel'     : { target: 'downLabel' },
+            'upvalue'       : { target: 'upValue', default: 0 },
+            'shortupvalue'  : { target: 'shortUpValue', default:  0 },
+            'uplabel'       : { target: 'upLabel' },
+            'shorttime'     : { target: 'shortTime', transform: parseFloat, default: -1 },
+            'change'    : { target: 'isAbsolute', transform: function(value) {
+              return value === "absolute";
+            }},
+            'min'           : { transform: parseFloat, default:  0 },
+            'max'           : { transform: parseFloat, default: 255 },
+            'infoposition'  : { target: 'infoPosition', default: 'middle' }
+          };
+        },
 
-    var actorup = '<div class="actor switchUnpressed uplabel" ';
-    if ( data.align ) 
-      actorup += 'style="text-align: ' + data.align + '" '; 
-    actorup += '>';
-    actorup += '<div class="label">' + (data.uplabel || '+') + '</div>';
-    actorup += '</div>';
+        makeAddressListFn: function( src, transform, mode, variant ) {
+          // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
+          return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
+        }
+      }
+    },
 
-    var actorinfo = '<div class="actor switchInvisible" ';
-    if ( data.align ) 
-      actorinfo += 'style="text-align: ' + data.align + '" '; 
-    actorinfo += '><div class="value">-</div></div>';
+    augment: {
+      getDomString: function () {
+        // create buttons + info
+       var ret_val = '<div style="float:left;">';
 
-    switch ($e.attr('infoposition')) {
-      case 'middle':
-        ret_val += actordown;
-        ret_val += actorinfo;
-        ret_val += actorup;
-        break;
-      case 'right':
-        ret_val += actordown;
-        ret_val += actorup;
-        ret_val += actorinfo;
-        break;
-      default:
-        ret_val += actorinfo;
-        ret_val += actordown;
-        ret_val += actorup;
-        break;
-    }
+        var actordown = '<div class="actor switchUnpressed downlabel" ';
+        if ( this.getAlign() )
+          actordown += 'style="text-align: ' + this.getAlign() + '" ';
+        actordown += '>';
+        actordown += '<div class="label">' + (this.getDownLabel() || '-') + '</div>';
+        actordown += '</div>';
 
-    return ret_val+ '</div></div>';
-  },
+        var actorup = '<div class="actor switchUnpressed uplabel" ';
+        if ( this.getAlign() )
+          actorup += 'style="text-align: ' + this.getAlign() + '" ';
+        actorup += '>';
+        actorup += '<div class="label">' + (this.getUpLabel() || '+') + '</div>';
+        actorup += '</div>';
 
-  /**
-   * Description
-   * @method update
-   * @param {} ga
-   * @param {} d
-   */
-  update: function( ga, d ) { 
-    var element = $(this);
-    var value = basicdesign.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
-  },
-  downaction: basicdesign.defaultButtonDownAnimation,
-  /**
-   * Description
-   * @method action
-   * @param {} path
-   * @param {} actor
-   * @param {} isCanceled
-   */
-  action: function( path, actor, isCanceled ) {
-    basicdesign.defaultButtonUpAnimation( path, actor );
-    if( isCanceled ) return;
+        var actorinfo = '<div class="actor switchInvisible" ';
+        if ( this.getAlign() )
+          actorinfo += 'style="text-align: ' + this.getAlign() + '" ';
+        actorinfo += '><div class="value">-</div></div>';
 
-    var
-      isDown     = actor.classList.contains('downlabel'),
-      data       = templateEngine.widgetDataGet( path ),
-      buttonDataValue      = data[ isDown ? 'downvalue'      : 'upvalue'      ],
-      buttonDataShortvalue = data[ isDown ? 'shortdownvalue' : 'shortupvalue' ],
-      isShort = Date.now() - templateEngine.handleMouseEvent.downtime < data.shorttime,
-      value = isShort ? buttonDataShortvalue : buttonDataValue,
-      bitMask = (isShort ? 1 : 2);
-      
-    if( data.isAbsolute )
-    {
-      value = parseFloat(data.basicvalue);
-      if( isNaN( value ) )
-        value = 0; // anything is better than NaN...
-      value = value + parseFloat(isShort ? buttonDataShortvalue : buttonDataValue);
-      if (value < data.min ) value = data.min;
-      if( value > data.max ) value = data.max;
-    }
-    for( var addr in data.address )
-    {
-      if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
-      if (data.address[addr][2] & bitMask) {
-        templateEngine.visu.write( addr, templateEngine.transformEncode( data.address[addr][0], value ) );
+        switch (this.getInfoPosition()) {
+          case 'middle':
+            ret_val += actordown;
+            ret_val += actorinfo;
+            ret_val += actorup;
+            break;
+          case 'right':
+            ret_val += actordown;
+            ret_val += actorup;
+            ret_val += actorinfo;
+            break;
+          default:
+            ret_val += actorinfo;
+            ret_val += actordown;
+            ret_val += actorup;
+            break;
+        }
+
+        return ret_val;
+      }
+    },
+
+    methods: {
+      /**
+       * Handles the incoming data from the backend for this widget
+       *
+       * @method handleUpdate
+       * @param value {any} incoming data (already transformed + mapped)
+       */
+      handleUpdate: function(value) {
+      },
+
+      /**
+       * Get the value that should be send to backend after the action has been triggered
+       *
+       * @method getActionValue
+       */
+      getActionValue: function () {
+        return "";
+      },
+
+      action: function( path, actor, isCanceled ) {
+        if( isCanceled ) return;
+
+        var isDown              = actor.classList.contains('downlabel');
+        var buttonDataValue     = isDown ? this.getDownValue() : this.getUpValue();
+        var buttonDataShortValue = isDown ? this.getShortDownValue() : this.getShortUpValue();
+        var isShort = Date.now() - templateEngine.handleMouseEvent.downtime < this.getShortTime();
+        var value = isShort ? buttonDataShortvalue : buttonDataValue;
+        var bitMask = (isShort ? 1 : 2);
+
+        if( this.getIsAbsolute() )
+        {
+          value = parseFloat(this.getBasicValue());
+          if( isNaN( value ) )
+            value = 0; // anything is better than NaN...
+          value = value + parseFloat(isShort ? buttonDataShortvalue : buttonDataValue);
+          if (value < this.getMin() ) value = this.getMin();
+          if( value > this.getMax() ) value = this.getMax();
+        }
+        var addresses = this.getAddress();
+        for( var addr in addresses )
+        {
+          if( !(addresses[addr][1] & 2) ) continue; // skip when write flag not set
+          if (addresses[addr][2] & bitMask) {
+            templateEngine.visu.write( addr, this.applyTransform(addr, value));
+          }
+        }
       }
     }
-  }
-});
-
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("infotrigger", cv.structure.pure.InfoTrigger);
 }); // end define
