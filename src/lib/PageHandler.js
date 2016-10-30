@@ -39,7 +39,7 @@ define([ 'jquery' ], function( $ ) {
     
     this.seekTo = function( target, speed )
     {
-      currentPath !== '' && templateEngine.callbacks[currentPath].exitingPageChange.forEach( function( callback ){
+      currentPath !== '' && templateEngine.callbacks[currentPath] && templateEngine.callbacks[currentPath].exitingPageChange.forEach( function( callback ){
         callback( currentPath, target );
       });      
       
@@ -49,20 +49,24 @@ define([ 'jquery' ], function( $ ) {
       
       if( 0 === page.length ) // check if page does exist
         return;
-    
-      callbacks.beforePageChange.forEach( function( callback ){
-        callback( target );
-      });
+
+      if (callbacks) {
+        callbacks.beforePageChange.forEach(function (callback) {
+          callback(target);
+        });
+      }
 
       templateEngine.resetPageValues();
       
       templateEngine.currentPage = page;
 
       page.addClass('pageActive activePage');// show new page
-      
-      callbacks.duringPageChange.forEach( function( callback ){
-        callback( target );
-      });
+
+      if (callbacks) {
+        callbacks.duringPageChange.forEach(function (callback) {
+          callback(target);
+        });
+      }
       
       // update visibility of navbars, top-navigation, footer
       templateEngine.pagePartsHandler.updatePageParts( page, speed );
@@ -87,9 +91,11 @@ define([ 'jquery' ], function( $ ) {
         $('.pageActive', '#pages').removeClass('pageActive');
         templateEngine.currentPage.addClass('pageActive activePage');// show new page
         $('#pages').css('left', 0 );
-        currentPath !== '' && templateEngine.callbacks[currentPath].afterPageChange.forEach( function( callback ){
-          callback( currentPath );
-        });
+        if (callbacks) {
+          currentPath !== '' && templateEngine.callbacks[currentPath].afterPageChange.forEach(function (callback) {
+            callback(currentPath);
+          });
+        }
       });
     };
     
