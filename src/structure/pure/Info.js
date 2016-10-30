@@ -53,10 +53,6 @@ define( ['_common', 'lib/cv/role/Update'], function() {
       handleUpdate: function(value) {
       },
 
-      update3d: function() {
-        this.defaultUpdate3d();
-      },
-
       /**
        * Get the value that should be send to backend after the action has been triggered
        *

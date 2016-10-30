@@ -26,44 +26,46 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Refresh'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('video', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return ret_val
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
-    
-    // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'video', $e, path, flavour, type );
-    // and fill in widget specific data
-    var data = templateEngine.widgetDataInsert( path, {
-      'width'   : $e.attr('with'),
-      'height'  : $e.attr('height'),
-      'src'     : $e.attr('src'),
-      'autoplay': $e.attr('autoplay')
-    } );
-    
-    // create the actor
-    var style = '';
-    if( data.width  ) style += 'width:'  + data.width  + ';';
-    if( data.height ) style += 'height:' + data.height + ';';
-    if( style != '' ) style = 'style="' + style + '"';
-    var autoplay = (data.autoplay === 'true') ? ' autoplay="autoplay"' : '';
-    var actor = '<div class="actor"><video src="' +$e.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>';
-    ret_val += actor + '</div>';
-    
-    return ret_val;
-  }
-});
 
+  Class('cv.structure.pure.Video', {
+    isa: cv.structure.pure.AbstractWidget,
+
+    has: {
+      width   : { is: 'r' },
+      height  : { is: 'r' },
+      src     : { is: 'r' },
+      autoplay: { is: 'r', init: false }
+    },
+
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'width'       :   {},
+            'height'      :   {},
+            'src'         :   {},
+            'autoplay'    :   { target: 'autoplay', transform: function(value) {
+              return value === "true";
+            }}
+          };
+        }
+      }
+    },
+
+    methods: {
+      getDomString: function () {
+        // create the actor
+        var style = '';
+        if( data.width  ) style += 'width:'  + data.width  + ';';
+        if( data.height ) style += 'height:' + data.height + ';';
+        if( style != '' ) style = 'style="' + style + '"';
+        var autoplay = (this.getAutoplay() === true) ? ' autoplay="autoplay"' : '';
+        return '<div class="actor"><video src="' +$e.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>';
+      }
+    }
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("video", cv.structure.pure.Video);
 }); // end define

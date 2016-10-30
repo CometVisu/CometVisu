@@ -219,7 +219,7 @@ define(['joose', 'lib/cv/role/HasAddress'], function() {
        * @param {} data
        * @param {} passedElement
        */
-      defaultUpdate3d: function( ev, data, passedElement )
+      update3d: function( ev, data, passedElement )
       {
         //var element = passedElement || $(this);
         var l = ev.data.layout;

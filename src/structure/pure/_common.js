@@ -57,7 +57,8 @@ define( [
       formatValueCache  : { is: 'rw' },
       align             : { is: 'r' },
       $$domElement      : { is: 'rw' },
-      $$actor           : { is: 'rw' }
+      $$actorElement    : { is: 'rw' },
+      $$valueElement    : { is: 'rw' }
     },
 
     after: {
@@ -166,10 +167,17 @@ define( [
       },
 
       getActor: function() {
-        if (!this.$$actor) {
-          this.$$actor = this.getDomElement().find(".actor");
+        if (!this.$$actorElement) {
+          this.$$actorElement = this.getDomElement().find(".actor");
         }
-        return this.$$actor;
+        return this.$$actorElement;
+      },
+
+      getValueElement: function() {
+        if (!this.$$valueElement) {
+          this.$$valueElement = this.getDomElement().find(".value");
+        }
+        return this.$$valueElement;
       },
 
       /**

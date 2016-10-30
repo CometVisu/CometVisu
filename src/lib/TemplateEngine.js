@@ -55,7 +55,7 @@ define([
   // 'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide',
   'widget_text',
   'widget_pushbutton', //'widget_urltrigger',
-  // 'widget_video', 'widget_wgplugin_info',
+  'widget_video', 'widget_wgplugin_info',
   'widget_switch', 'widget_page', 'widget_unknown', 'widget_audio', 'widget_trigger', 'widget_toggle',
   'TransformDefault', 'TransformKnx', 'TransformOpenHab',
   'lib/cv/xml/Parser',

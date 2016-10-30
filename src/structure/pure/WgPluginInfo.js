@@ -26,57 +26,42 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common'], function( design ) {
+define( ['_common', 'lib/cv/role/Update'], function() {
   "use strict";
-  var basicdesign = design.basicdesign;
-  
-  design.basicdesign.addCreator('wgplugin_info', {
-  /**
-   * Description
-   * @method create
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return BinaryExpression
-   */
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
-    
-    // create the main structure
-    var ret_val = basicdesign.createDefaultWidget( 'info', $e, path, flavour, type, this.update );
-    
-    templateEngine.widgetDataInsert( path, {
-      'variable' : $e.attr('variable')
-    } );
-    
-    // create the actor
-    var actor = '<div class="actor"><div class="value">-</div></div>';
-    ret_val += actor;
-    
-    return ret_val + '</div>';
 
-  },
-  /**
-   * Description
-   * @method update
-   * @param {} ga
-   * @param {} d
-   * @param {} passedElement
-   */
-  update: function( ga, d, passedElement )
-  {
-    var 
-      element = passedElement || $(this),
-      widgetData = templateEngine.widgetDataGetByElement( element ),
-      variable = widgetData[ 'variable' ],
-      valueElement = element.find('.value');
-      
-    $.getJSON('/wg-plugindb.pl?name=' + variable, function(data) {
-      basicdesign.defaultUpdate( undefined, data[variable], element, true, element.parent().attr('id') );
-    });
-  },
-  update3d: design.basicdesign.defaultUpdate3d
-});
+  Class('cv.structure.pure.Wgplugininfo', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: cv.role.Update,
 
+    has: {
+      variable   : { is: 'r' }
+    },
+
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'variable' : {}
+          };
+        }
+      }
+    },
+
+    augment: {
+      getDomString: function () {
+        return '<div class="actor"><div class="value">-</div></div>';
+      }
+    },
+
+    methods: {
+      handleUpdate: function(value) {
+        var that = this;
+        $.getJSON('/wg-plugindb.pl?name=' + this.getVariable(), function(data) {
+          that.defaultUpdate( undefined, data[that.getVariable()], that.getValueElement(), true, that.getPath());
+        });
+      }
+    }
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("wgplugin_info", cv.structure.pure.Wgplugininfo);
 }); // end define

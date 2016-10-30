@@ -55,7 +55,7 @@ define( ['_common', 'lib/cv/role/Refresh'], function() {
             'height'      :   {},
             'src'         :   {},
             'widthfit'    :   { target: 'widthFit', transform: function(value) {
-              return value === true;
+              return value === "true";
             }}
           };
         }
