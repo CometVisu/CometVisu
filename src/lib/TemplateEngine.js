@@ -1110,19 +1110,18 @@ define([
   };
 
   this.create_pages = function(page, path, flavour, type) {
-
-    var data = cv.xml.Parser.parse(page, path, flavour, type);
-
-    var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
-
-    var retval = widget ? widget.getDomString() : undefined;
-    
     thisTemplateEngine.callbacks[ path + '_' ] = {
       exitingPageChange: [],// called when the current page is left
       beforePageChange: [], // called as soon as a page change is known
       duringPageChange: [], // called when the page is theoretical visible, i.e. "display:none" is removed - CSS calculations shoud work now
       afterPageChange: []   // called together with the global event when the transition is finished
     };
+
+    var data = cv.xml.Parser.parse(page, path, flavour, type);
+
+    var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
+
+    var retval = widget ? widget.getDomString() : undefined;
 
     if( undefined === retval )
       return;
