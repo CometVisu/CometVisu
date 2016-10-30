@@ -136,7 +136,7 @@ define( [
             backdropAlign     : '2d' === pageType ? ($p.attr('backdropalign' ) || '50% 50%') : undefined,
             size              : $p.attr('size'),
             address           : addresses,
-            visible           : $p.attr('visible') || true,
+            visible           : $p.attr('visible') ? $p.attr('visible') === "true" : true,
             flavour           : flavour,
             $$type            : "page",
             classes           : this.setWidgetLayout( $p, path ),
