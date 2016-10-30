@@ -119,7 +119,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/HasChildren', 'lib/cv/ro
 
     augment: {
       getDomString: function () {
-        var actor = '<div class="actor switchUnpressed>';
+        var actor = '<div class="actor switchUnpressed';
         if (this.getAlign()) {
           actor += this.getAlign();
         }
