@@ -38,6 +38,14 @@ define( ['_common'], function() {
   Class('cv.structure.pure.Line', {
     isa: cv.structure.pure.AbstractWidget,
 
+    my: {
+      methods: {
+        getDefaultClasses: function(type) {
+          return '';
+        }
+      }
+    },
+
     methods: {
       getDomString: function () {
         return '<hr ' + (this.getClasses() ? 'class="'+this.getClasses()+'"' : '') + '/>';

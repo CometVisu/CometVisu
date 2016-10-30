@@ -34,7 +34,7 @@
 define( ['_common', 'lib/cv/role/Operate'], function() {
   "use strict";
 
-  Class('cv.structure.pure.Designtoggle', {
+  Class('cv.structure.pure.DesignToggle', {
     isa: cv.structure.pure.AbstractWidget,
     does: [cv.role.Operate],
 
@@ -133,5 +133,5 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
     }
   });
   // register the parser
-  cv.xml.Parser.addHandler("designtoggle", cv.structure.pure.Designtoggle);
+  cv.xml.Parser.addHandler("designtoggle", cv.structure.pure.DesignToggle);
 }); // end define

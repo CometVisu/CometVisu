@@ -33,8 +33,14 @@ define( [
         createInstance: function(type, data) {
           if (!this.registry[data.path]) {
             if (!cv.structure.pure[Joose.S.uppercaseFirst(type)]) {
-              console.error("No handler found for type '%s'", type);
-              return null;
+              // try to find it via parser handler
+              var handler = cv.xml.Parser.getHandler(type);
+              if (handler) {
+                this.registry[data.path] = new handler(data);
+              } else {
+                console.error("No handler found for type '%s'", type);
+                return null;
+              }
             } else {
               this.registry[data.path] = new cv.structure.pure[Joose.S.uppercaseFirst(type)](data);
             }

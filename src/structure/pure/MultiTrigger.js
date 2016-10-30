@@ -27,7 +27,7 @@
 define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
   "use strict";
 
-  Class('cv.structure.pure.Multitrigger', {
+  Class('cv.structure.pure.MultiTrigger', {
     isa: cv.structure.pure.AbstractWidget,
     does: [cv.role.Operate, cv.role.Update],
 
@@ -188,5 +188,5 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
     }
   });
   // register the parser
-  cv.xml.Parser.addHandler("multitrigger", cv.structure.pure.Multitrigger);
+  cv.xml.Parser.addHandler("multitrigger", cv.structure.pure.MultiTrigger);
 }); // end define

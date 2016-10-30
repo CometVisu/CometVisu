@@ -91,7 +91,7 @@ define( [
 
       after: {
         parse: function(xml, path, flavour, pageType ) {
-          var data = templateEngine.widgetDataGet( path);
+          var data = templateEngine.widgetDataGet(this.getStoragePath(xml, path));
           if ( data.target )  {
             data.classes += ' clickable';
             data.bind_click_to_widget = true; // for groups with pagejumps this is mandatory
@@ -111,17 +111,11 @@ define( [
             'name': {},
             'target': {}
           };
-        },
-        getPathSuffix: function() {
-          return '';
         }
       }
     },
 
     methods: {
-      getPathSuffix: function() {
-        return cv.structure.pure.Group.my.getPathSuffix();
-      },
       /**
        * Action performed when the group got clicked. If a target is specified in the group attributes
        * the action will switch to the page defined by the target.

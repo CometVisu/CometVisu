@@ -33,14 +33,6 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
     isa: cv.structure.pure.AbstractWidget,
     does: [cv.role.Operate, cv.role.Update],
 
-    my : {
-      methods: {
-        getAttributeToPropertyMappings: function () {
-          return {};
-        }
-      }
-    },
-
     augment: {
       getDomString: function () {
         return '<div class="actor switchUnpressed"><div class="value">-</div></div>';

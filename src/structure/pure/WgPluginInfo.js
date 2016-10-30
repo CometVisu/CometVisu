@@ -29,7 +29,7 @@
 define( ['_common', 'lib/cv/role/Update'], function() {
   "use strict";
 
-  Class('cv.structure.pure.Wgplugininfo', {
+  Class('cv.structure.pure.WgPluginInfo', {
     isa: cv.structure.pure.AbstractWidget,
     does: cv.role.Update,
 
@@ -63,5 +63,5 @@ define( ['_common', 'lib/cv/role/Update'], function() {
     }
   });
   // register the parser
-  cv.xml.Parser.addHandler("wgplugin_info", cv.structure.pure.Wgplugininfo);
+  cv.xml.Parser.addHandler("wgplugin_info", cv.structure.pure.WgPluginInfo);
 }); // end define

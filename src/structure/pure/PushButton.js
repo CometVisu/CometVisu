@@ -28,7 +28,7 @@
 define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
   "use strict";
 
-  Class('cv.structure.pure.Pushbutton', {
+  Class('cv.structure.pure.PushButton', {
     isa: cv.structure.pure.AbstractWidget,
     does: [cv.role.Operate, cv.role.Update],
 
@@ -102,5 +102,5 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
     }
   });
   // register the parser
-  cv.xml.Parser.addHandler("pushbutton", cv.structure.pure.Pushbutton);
+  cv.xml.Parser.addHandler("pushbutton", cv.structure.pure.PushButton);
 }); // end define

@@ -58,8 +58,12 @@ define( ['_common', 'lib/cv/role/Refresh'], function() {
       getDomString: function () {
         // create the actor
         var style = '';
-        if( data.width  ) style += 'width:'  + data.width  + ';';
-        if( data.height ) style += 'height:' + data.height + ';';
+        if (this.getWidth()) {
+          style += 'width:'  + this.getWidth() + ';';
+        }
+        if (this.getHeight()) {
+          style += 'height:' + this.getHeight() + ';';
+        }
         if( style != '' ) style = 'style="' + style + '"';
         var autoplay = (this.getAutoplay() === true) ? ' autoplay="autoplay"' : '';
         return '<div class="actor"><video src="' +$e.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>';

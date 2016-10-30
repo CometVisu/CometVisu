@@ -20,8 +20,6 @@
 define(['joose'], function() {
   Role("cv.role.HasChildren", {
 
-    requires: ['getPathSuffix'],
-
     has: {
       children: { is: 'rw', init: [] }
     },
@@ -30,7 +28,7 @@ define(['joose'], function() {
       after: {
         parse: function( xml, path, flavour, pageType ) {
           var $p = $(xml);
-          var data = templateEngine.widgetDataGet( path + this.getPathSuffix());
+          var data = templateEngine.widgetDataGet(this.getStoragePath(xml, path));
 
           if (!data.children) {
             data.children = [];
@@ -42,8 +40,24 @@ define(['joose'], function() {
               data.children.push(childData.path);
             }
           }, this);
-
           return data;
+        }
+      },
+
+      methods: {
+        /**
+         * Returns the path where the widget data is stored, usually this is the same path, but there are
+         * exceptions for pages which are handled here
+         * @param xml
+         * @param path
+         */
+        getStoragePath: function(xml, path) {
+          switch(xml.nodeName) {
+            case "page":
+              return path+"_";
+            default:
+              return path;
+          }
         }
       }
     },
@@ -52,6 +66,7 @@ define(['joose'], function() {
 
       getChildrenDomString: function() {
         var container = '';
+        // TODO: refactor that data is not needed anymore
         Joose.A.each( this.getChildren(), function(path) {
           var data = templateEngine.widgetDataGet(path);
           var widget = cv.structure.pure.WidgetFactory.createInstance(data.$$type, data);

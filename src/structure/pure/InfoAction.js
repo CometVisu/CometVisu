@@ -66,69 +66,53 @@
  * @author Tobias Bräutigam
  * @since 0.10.0 (as widget), 0.9.2 (as plugin)
  */
-define( ['_common' ], function( design ) {
+define( ['_common', 'lib/cv/role/Update'], function() {
   "use strict";
+  Class('cv.structure.pure.WidgetInfoAction', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: cv.role.HasChildren,
 
-  design.basicdesign.addCreator("infoaction", {
-      /**
-       * Creates the InfoAction widget
-       *
-       * @method create
-       * @param {} element
-       * @param {} path
-       * @param {} flavour
-       * @param {} type
-       * @return String - HTML representation if the widget as string
-       */
-      create: function(element, path, flavour, type) {
-        return createWidget(false, element, path, flavour, type);
+    has: {
+      childObjects: { is: 'rw', init: {} }
+    },
+
+    after: {
+      initialized: function(props) {
+        var childs = this.getChildObjects();
+        Joose.A.each( this.getChildren(), function(path) {
+          var data = templateEngine.widgetDataGet(path);
+          var widget = cv.structure.pure.WidgetFactory.createInstance(data.$$type, data);
+          if (widget) {
+            childs.push(widget);
+          }
+        }, this);
       }
-    });
-  /**
-   * Creates the InfoAction widget
-   *
-   * @method createWidget
-   * @param {} isInfo
-   * @param {} element
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return String - HTML representation if the widget as string
-   */
-  function createWidget(isInfo, element, path, flavour, type) {
-      var $e = $(element);
+    },
 
-      // create the main structure
-      var ret_val = templateEngine.design.createDefaultWidget('infoaction', $e, path, flavour, type);
-      // and fill in widget specific data
-      var data = templateEngine.widgetDataInsert( path, {
-        content           : getWidgetElements($e, path)
-      } );
-      ret_val += data.content;
-      return ret_val + '</div>';
+    augment: {
+      getDomString: function () {
+        var content = '<div class="widget_container '+this.$$type+'" id="'+this.getPath()+'" data-type="'+this.$$type+'">';
+        Joose.A.each( this.getChildObjects(), function(child) {
+          content += child.getDomString();
+        });
+        return content + '</div>';
+      }
     }
-   
-  /**
-   * Description
-   * @method getWidgetElements
-   * @param {} xmlElement
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return ret_val
-   */
-  function getWidgetElements(xmlElement, path, flavour, type) {
-      var infoWidget = $('widgetinfo > *', xmlElement).first()[0];
-      var actionWidget = $('widgetaction > *', xmlElement).first()[0];
-      var data = templateEngine.widgetDataInsert( path+"_0", {
-        containerClass           : "widgetinfo"
-      } );
-      data = templateEngine.widgetDataInsert( path+"_1", {
-        containerClass           : "widgetaction"
-      } );
-      
-      var ret_val = templateEngine.create_pages(infoWidget, path+"_0", flavour, infoWidget.nodeName);
-      ret_val += templateEngine.create_pages(actionWidget, path+"_1", flavour, actionWidget.nodeName);
-      return ret_val;
+  });
+  cv.xml.Parser.addHandler("widgetinfo", cv.structure.pure.WidgetInfoAction);
+  cv.xml.Parser.addHandler("widgetaction", cv.structure.pure.WidgetInfoAction);
+
+  Class('cv.structure.pure.InfoAction', {
+    isa: cv.structure.pure.AbstractWidget,
+
+    does: cv.role.HasChildren,
+
+    augment: {
+      getDomString: function () {
+        return this.getChildrenDomString();
+      }
     }
-});
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("infoaction", cv.structure.pure.InfoAction);
+}); // end define

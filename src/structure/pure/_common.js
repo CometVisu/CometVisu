@@ -347,6 +347,10 @@ define( [
           return this.popups[name];
         },
 
+        getDefaultClasses: function(type) {
+          return 'widget clearfix ' + type;
+        },
+
         /**
          * Create a default widget to be filled by the creator afterwards.
          * Note: the reciever of the returned string must add an </div> closing element!
@@ -361,7 +365,7 @@ define( [
         createDefaultWidget: function( widgetType, $element, path, flavour, pageType ) {
           var layout = this.parseLayout( $element.children('layout')[0] );
           var style = layout ? 'style="' + this.extractLayout( layout, pageType ) + '"' : '';
-          var classes = 'widget clearfix ' + widgetType;
+          var classes = this.getDefaultClasses(widgetType);
           if ( $element.attr('align') ) {
             classes+=" "+$element.attr('align');
           }

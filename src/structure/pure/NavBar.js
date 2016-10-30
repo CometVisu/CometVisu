@@ -26,86 +26,132 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common'], function( design ) {
+define( [
+  '_common',
+  'lib/cv/role/HasChildren'
+], function() {
   "use strict";
-  var 
-    basicdesign     = design.basicdesign,
-    isNotSubscribed = true,
-    navbarTop       = '',
-    navbarLeft      = '',
-    navbarRight     = '',
-    navbarBottom    = '',
-    $navbarLeftSize  = $( '#navbarLeft'  ).data('size'),
-    $navbarRightSize = $( '#navbarRight' ).data('size');
- 
-  design.basicdesign.addCreator('navbar', {
-  /**
-   * Description
-   * @method create
-   * @param {} navbar
-   * @param {} path
-   * @param {} flavour
-   * @param {} type
-   * @return Literal
-   */
-  create: function( navbar, path, flavour, type ) {
-    var $n = $(navbar);
-    var childs = $n.children();
-    var id = path.split('_'); id.pop();
-    var position = $n.attr('position') || 'left';
-    var scope = $n.attr('scope') || -1;
-    if( $n.attr('flavour') ) flavour = $n.attr('flavour');// sub design choice
-    var flavourClass = flavour ? ( ' flavour_' + flavour ) : '';
-    var container = '<div class="navbar clearfix' + flavourClass + '" id="' + id.join('_')+'_'+ position + '_navbar">';
-    if( $n.attr('name') ) container += '<h2>' + $n.attr('name') + '</h2>';
-    $( childs ).each( function(i){
-      container += templateEngine.create_pages( childs[i], path + '_' + i, flavour );
-    } );
-    container+='</div>';
-    var data = templateEngine.widgetDataInsert( id.join('_')+'_'+ position + '_navbar', {
-      'scope': scope
-    });
-    
-    var dynamic  = $n.attr('dynamic') == 'true' ? true : false;
-  
-    var size = $n.attr('width') || 300;
-    switch( position )
-    {
-      case 'top':
-        navbarTop += container;
-        break;
-        
-      case 'left':
-        navbarLeft += container;
-        var thisSize = $navbarLeftSize || size; // FIXME - only a temporal solution
-        if( dynamic ) templateEngine.pagePartsHandler.navbarSetSize( 'left', thisSize );
-        break;
-        
-      case 'right':
-        navbarRight += container;
-        var thisSize = $navbarRightSize || size; // FIXME - only a temporal solution
-        if( dynamic ) templateEngine.pagePartsHandler.navbarSetSize( 'right', thisSize );
-        break;
-        
-      case 'bottom':
-        navbarBottom += container;
-        break;
-    }
-    templateEngine.pagePartsHandler.navbars[position].dynamic |= dynamic;
-    
-    if( isNotSubscribed )
-    {
-      isNotSubscribed = false;
-      templateEngine.postDOMSetupFns.unshift( function(){
-        if( navbarTop    ) $( '#navbarTop'    ).append( navbarTop    );
-        if( navbarLeft   ) $( '#navbarLeft'   ).append( navbarLeft   );
-        if( navbarRight  ) $( '#navbarRight'  ).append( navbarRight  );
-        if( navbarBottom ) $( '#navbarBottom' ).append( navbarBottom );
-      });
-    }
-    
-    return '';
-  }
-});
 
+  Class('cv.structure.pure.NavBar', {
+    isa: cv.structure.pure.AbstractWidget,
+
+    does: cv.role.HasChildren,
+
+    has: {
+      name      : { is: 'r' },
+      scope     : { is: 'r', init: -1 },
+      width     : { is: 'r', init: 300 },
+      position  : { is: 'r', init: 'left' },
+      dynamic   : { is: 'r', init: false }
+    },
+
+    my: {
+      has: {
+        isNotSubscribed  : true,
+        navbarTop        : '',
+        navbarLeft       : '',
+        navbarRight      : '',
+        navbarBottom     : '',
+        $navbarLeftSize  : $( '#navbarLeft'  ).data('size'),
+        $navbarRightSize : $( '#navbarRight' ).data('size')
+      },
+
+      methods: {
+
+        createDefaultWidget: function( widgetType, $n, path, flavour, pageType ) {
+
+          var classes = "navbar clearfix";
+          if ( $n.attr('flavour') ) {
+            classes += "flavour_"+$n.attr('flavour');
+          }// sub design choice
+
+          // store scope globally
+          var id = path.split("_"); id.pop();
+          var pos = $n.attr('position') || 'left';
+          templateEngine.widgetDataInsert( id.join('_')+'_'+pos+'_navbar', {
+            'scope'   : $n.attr('scope') || -1
+          });
+
+          return templateEngine.widgetDataInsert( this.getStoragePath($n, path), {
+            'path'    : path,
+            'classes' : classes,
+            '$$type'  : widgetType
+          });
+        },
+
+        getAttributeToPropertyMappings: function () {
+          return {
+            'scope'   : { default: -1 },
+            'name'    : {},
+            'dynamic' : { transform: function(value) {
+              return value === "true";
+            }},
+            'width'   : { default: 300 },
+            'position': { default: 'left' }
+          };
+        }
+      }
+    },
+
+    methods: {
+      getGlobalPath: function() {
+        var id = this.getPath().split("_"); id.pop();
+        return id.join('_')+'_'+this.getPosition()+'_navbar';
+      },
+
+      getDomString: function() {
+
+        var container = '<div class="' + this.getClasses() + '" id="' + this.getGlobalPath() + '">';
+        if( this.getName() ) {
+          container += '<h2>' + this.getName() + '</h2>';
+        }
+        container += this.getChildrenDomString();
+
+        container+='</div>';
+
+        // add this to the navbars in DOM not inside the page
+        switch( this.getPosition() )
+        {
+          case 'top':
+            this.my.navbarTop += container;
+            break;
+
+          case 'left':
+            this.my.navbarLeft += container;
+            var thisSize = this.my.$navbarLeftSize || this.getWidth(); // FIXME - only a temporal solution
+            if (this.getDynamic()) {
+              templateEngine.pagePartsHandler.navbarSetSize( 'left', thisSize );
+            }
+            break;
+
+          case 'right':
+            this.my.navbarRight += container;
+            var thisSize = this.my.$navbarRightSize || this.getWidth(); // FIXME - only a temporal solution
+            if (this.getDynamic()) {
+              templateEngine.pagePartsHandler.navbarSetSize( 'right', thisSize );
+            }
+            break;
+
+          case 'bottom':
+            this.my.navbarBottom += container;
+            break;
+        }
+        templateEngine.pagePartsHandler.navbars[this.getPosition()].dynamic |= this.getDynamic();
+
+        if( this.my.isNotSubscribed )
+        {
+          this.my.isNotSubscribed = false;
+          cv.MessageBroker.my.subscribe("setup.dom.finished", function(){
+            if( this.my.navbarTop    ) $( '#navbarTop'    ).append( this.my.navbarTop    );
+            if( this.my.navbarLeft   ) $( '#navbarLeft'   ).append( this.my.navbarLeft   );
+            if( this.my.navbarRight  ) $( '#navbarRight'  ).append( this.my.navbarRight  );
+            if( this.my.navbarBottom ) $( '#navbarBottom' ).append( this.my.navbarBottom );
+          }, this, 100);
+        }
+
+        return '';
+      }
+    }
+  });
+  cv.xml.Parser.addHandler("navbar", cv.structure.pure.NavBar);
 }); // end define

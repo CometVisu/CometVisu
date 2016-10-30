@@ -62,9 +62,6 @@ define( [
       },
 
       methods: {
-        getPathSuffix: function() {
-          return '_';
-        },
         /**
          * Description
          * @method create
@@ -77,10 +74,11 @@ define( [
         parse: function( page, path, flavour, pageType ) {
           var $p = $(page);
 
+          var storagePath = this.getStoragePath(page, path);
           var addresses = {};
           if ($p.attr('ga')) {
             var src = $p.attr('ga');
-            templateEngine.addAddress( src, path + this.getPathSuffix() );
+            templateEngine.addAddress(src, storagePath);
             addresses[ src ] = [ 'DPT:1.001', 0 ];
           }
 
@@ -127,8 +125,8 @@ define( [
 
           var layout = this.parseLayout( $p.children('layout')[0] );
 
-          var data = templateEngine.widgetDataInsert( path + this.getPathSuffix(), {
-            path              : path+this.getPathSuffix(),
+          var data = templateEngine.widgetDataInsert( storagePath, {
+            path              : storagePath,
             name              : name,
             pageType          : pageType,
             showTopNavigation : showtopnavigation,
@@ -159,9 +157,6 @@ define( [
     },
     
     methods: {
-      getPathSuffix: function() {
-        return cv.structure.pure.Page.my.getPathSuffix();
-      },
 
       getDomString: function() {
         var ret_val = '';
