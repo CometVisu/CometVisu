@@ -384,7 +384,7 @@ class DocGenerator(Command):
         return widgets, plugins
 
     def _find_screenshot(self, name, widget_rst):
-        example = re.compile('.*<screenshot name="([^"]+)">.*')
+        example = re.compile('.*<screenshot name="([^"]+)"\s*/?>.*')
         figure = re.compile('.. figure:: _static/(.+)')
         with open(widget_rst) as f:
             for line in f.readlines():
