@@ -36,7 +36,7 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
 
   Class('cv.structure.pure.DesignToggle', {
     isa: cv.structure.pure.AbstractWidget,
-    does: [cv.role.Operate],
+    does: [cv.role.Operate, cv.role.HasAnimatedButton],
 
     has: {
       availableDesigns: { is: 'r', init: [] }
@@ -85,7 +85,6 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
        * @param {Boolean} isCanceled - If true the action does nothing
        */
       action: function( path, actor, isCanceled ) {
-        this.defaultButtonUpAnimationInheritAction( path, actor );
         if( isCanceled ) return;
 
         var designs = this.getAvailableDesigns();
@@ -106,10 +105,6 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
             this.setLocation(URL+"?design="+newDesign);
           }
         }
-      },
-
-      downaction: function(path, actor) {
-        this.defaultButtonDownAnimationInheritAction(path, actor);
       },
       /**
        * Wrapper for getting the `window.location.href` value

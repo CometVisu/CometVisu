@@ -31,7 +31,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/
 
   Class('cv.structure.pure.Trigger', {
     isa: cv.structure.pure.AbstractWidget,
-    does: [cv.role.Operate, cv.role.HasAddress],
+    does: [cv.role.Operate, cv.role.HasAddress, cv.role.HasAnimatedButton],
 
     has: {
       sendValue: { is: 'r', init: 0 },
@@ -59,7 +59,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/
     after : {
       initialize : function (props) {
         cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
-          //this.defaultUpdate( undefined, this.getSendValue(), this.getDomElement(), true, this.getPath() );
+          this.defaultUpdate( undefined, this.getSendValue(), this.getDomElement(), true, this.getPath() );
         }, this);
       }
     },
@@ -83,7 +83,6 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/
       },
 
       action: function( path, actor, isCanceled ) {
-        this.defaultButtonUpAnimationInheritAction( path, actor );
         if( isCanceled ) return;
 
         var isShort = Date.now() - templateEngine.handleMouseEvent.downtime < this.getShortTime();
@@ -93,10 +92,6 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/
         this.sendToBackend(sendValue, function(address) {
           return !!(address[2] & bitMask);
         });
-      },
-
-      downaction: function(path, actor) {
-        return this.defaultButtonDownAnimationInheritAction(path, actor);
       }
     }
   });

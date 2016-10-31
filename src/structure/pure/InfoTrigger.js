@@ -155,7 +155,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
           value = parseFloat(this.getBasicValue());
           if( isNaN( value ) )
             value = 0; // anything is better than NaN...
-          value = value + parseFloat(isShort ? buttonDataShortvalue : buttonDataValue);
+          value = value + parseFloat(isShort ? buttonDataShortValue : buttonDataValue);
           if (value < this.getMin() ) value = this.getMin();
           if( value > this.getMax() ) value = this.getMax();
         }
