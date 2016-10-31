@@ -20,6 +20,8 @@
 import os
 import logging
 import ConfigParser
+import codecs
+import yaml
 
 import sh
 import shutil
@@ -327,6 +329,58 @@ class DocGenerator(Command):
             # print(content)
             #print(parser.tostring())
 
+    def generate_features(self, widgets={}, plugins={}, lang='de', sanitize=False):
+
+        regex = re.compile("^\| :doc:`([^<]+)<([^>]+)>`\s+\|\s+([^\|]+).*$")
+        section = "manual-%s" % lang
+
+        link_prefix = self.config.get(section, "html").replace("<version>", self.config.get("DEFAULT", "develop-version-mapping"))
+        with codecs.open(os.path.join(self.config.get(section, "widgets"), "index.rst"), encoding='utf-8') as f:
+            for line in f.readlines():
+                match = regex.match(line)
+                if match is not None:
+
+                    name = match.group(1).strip()
+                    folder = None
+                    ref = match.group(2).strip()
+                    link = os.path.join(self.config.get(section, "widgets"), ref)
+                    is_plugin = 'plugins/' in ref
+
+                    if os.path.exists(link+".rst"):
+                        folder = link.replace("/index", "/")
+                        link += ".html"
+                    else:
+                        link = None
+
+                    desc = match.group(3).strip()
+                    screenshot = self._find_screenshot(folder) if folder is not None else None
+                    features = plugins if is_plugin else widgets
+                    if name not in features:
+                        features[name] = {
+                            'name': name,
+                            'description': {},
+                            'manual': {},
+                            'screenshot': {}
+                        }
+                    if desc is not None:
+                        features[name]['description'][lang] = desc
+                    if link is not None:
+                        features[name]['manual'][lang] = "%s/%s.html" % (link_prefix, ref)
+                    if screenshot is not None:
+                        features[name]['screenshot'][lang] = "%s/_static/%s" % (link_prefix, screenshot)
+                    if sanitize:
+                        if len(features[name]['screenshot']) == 0:
+                            del features[name]['screenshot']
+                        elif len(features[name]['screenshot']) == 1:
+                            features[name]['screenshot'] = features[name]['screenshot'].values()[0]
+                        if len(features[name]['manual']) == 0:
+                            del features[name]['manual']
+
+        return widgets, plugins
+
+    def _find_screenshot(self, path):
+        return None
+
     def run(self, args):
         parser = ArgumentParser(usage="%(prog)s - CometVisu documentation generator")
 
@@ -347,10 +401,28 @@ class DocGenerator(Command):
                             type=str, help='type of documentation to generate (manual, source)', nargs='?')
 
         parser.add_argument("--from-source", dest="from_source", action="store_true", help="generate english manual from source comments")
+        parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
 
         options = parser.parse_args(args)
 
-        if options.from_source:
+        if options.features:
+            widgets = {}
+            plugins = {}
+            self.generate_features(widgets=widgets, plugins=plugins, lang="de")
+            self.generate_features(widgets=widgets, plugins=plugins, lang="en", sanitize=True)
+
+            features = {
+                'widgets': widgets.values(),
+                'plugins': plugins.values()
+            }
+            print(yaml.safe_dump(features, default_flow_style=False,
+                                 encoding='utf-8',
+                                 indent=2,
+                                 width=10000,
+                                 default_style='"',
+                                 allow_unicode=True))
+
+        elif options.from_source:
             self.from_source(os.path.join("src", "structure", "pure"))
             self.from_source(os.path.join("src", "plugins"), plugin=True)
 
