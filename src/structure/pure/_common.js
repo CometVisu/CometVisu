@@ -34,33 +34,68 @@ define( [
 ], function($) {
   "use strict";
 
+  Class('cv.structure.pure.AbstractBasicWidget', {
+    isa: cv.Object,
+
+    has: {
+      path              : { is: 'r' },
+      $$type            : { is: 'r' },
+      $$domElement      : { is: 'rw' },
+      pageType          : { is: 'r' }
+    },
+
+    methods: {
+      /**
+       * Returns the DOMElement of this widget
+       */
+      getDomElement: function() {
+        if (!this.$$domElement) {
+          this.$$domElement = $('#'+this.getPath());
+        }
+        return this.$$domElement
+      },
+
+      getDomString : function() {
+        return this.INNER();
+      }
+    },
+
+    my: {
+      methods: {
+        parse: function (element, path, flavour, pageType) {
+          return templateEngine.widgetDataInsert( path, {
+            'path': path,
+            '$$type': element.nodeName,
+            'pageType': pageType
+          });
+        }
+      }
+    }
+  });
+
   /**
    * This class defines all the building blocks for a Visu in the "Pure" design
    * @class cv.structure.pure.AbstractWidget
    */
   Class('cv.structure.pure.AbstractWidget', {
-    isa: cv.Object,
+    isa: cv.structure.pure.AbstractBasicWidget,
 
     does: cv.role.HasStyling,
 
     has: {
       popups            : { is: 'rw', init: {} },
-      path              : { is: 'r' },
-      $$type            : { is: 'r' },
       flavour           : { is: 'r', init: '' },
       layout            : { is: 'r' },
-      classes           : { is: 'r', init: '' },
-      style             : { is: 'r', init: '' },
       label             : { is: 'r', init: '' },
       bind_click_to_widget : { is: 'r', init: false },
       mapping           : { is: 'r' },
       format            : { is: 'r' },
       formatValueCache  : { is: 'rw' },
       align             : { is: 'r' },
-      $$domElement      : { is: 'rw' },
+      classes           : { is: 'r', init: '' },
       $$actorElement    : { is: 'rw' },
       $$valueElement    : { is: 'rw' },
-      pageType          : { is: 'r' }
+      style             : { is: 'r', init: '' }
     },
 
     after: {
@@ -158,15 +193,7 @@ define( [
     },
 
     methods: {
-      /**
-       * Returns the DOMElement of this widget
-       */
-      getDomElement: function() {
-        if (!this.$$domElement) {
-          this.$$domElement = $('#'+this.getPath());
-        }
-        return this.$$domElement
-      },
+
 
       getActor: function() {
         if (!this.$$actorElement) {

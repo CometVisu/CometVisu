@@ -1112,28 +1112,34 @@ define([
       afterPageChange: []   // called together with the global event when the transition is finished
     };
 
-    var data = cv.xml.Parser.parse(page, path, flavour, type);
+    var parsedData = cv.xml.Parser.parse(page, path, flavour, type);
+    if (!Array.isArray(parsedData)) {
+      parsedData = [parsedData];
+    }
 
-    var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
+    for (var i=0, l=parsedData.length; i<l; i++) {
+      var data = parsedData[i];
+      var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
 
-    var retval = widget ? widget.getDomString() : undefined;
+      var retval = widget ? widget.getDomString() : undefined;
 
-    if( undefined === retval )
-      return;
+      if( undefined === retval )
+        return;
 
-    if( 'string' === typeof retval )
-    {
-      return '<div class="widget_container '
-      + (data.rowspanClass ? data.rowspanClass : '')
-      + (data.containerClass ? data.containerClass : '')
-      + ('break' === data.type ? 'break_container' : '') // special case for break widget
-      + '" id="'+path+'" data-type="'+data.$$type+'">' + retval + '</div>';
-    } else {
-      return jQuery(
-      '<div class="widget_container '
-      + (data.rowspanClass ? data.rowspanClass : '')
-      + (data.containerClass ? data.containerClass : '')
-      + '" id="'+path+'" data-type="'+data.$$type+'"/>').append(retval);
+      if( 'string' === typeof retval )
+      {
+        return '<div class="widget_container '
+          + (data.rowspanClass ? data.rowspanClass : '')
+          + (data.containerClass ? data.containerClass : '')
+          + ('break' === data.$$type ? 'break_container' : '') // special case for break widget
+          + '" id="'+path+'" data-type="'+data.$$type+'">' + retval + '</div>';
+      } else {
+        return jQuery(
+          '<div class="widget_container '
+          + (data.rowspanClass ? data.rowspanClass : '')
+          + (data.containerClass ? data.containerClass : '')
+          + '" id="'+path+'" data-type="'+data.$$type+'"/>').append(retval);
+      }
     }
   };
   

@@ -34,7 +34,7 @@ define( ['_common'], function() {
   "use strict";
 
   Class('cv.structure.pure.Break', {
-    isa: cv.structure.pure.AbstractWidget,
+    isa: cv.structure.pure.AbstractBasicWidget,
 
     methods: {
       getDomString: function () {

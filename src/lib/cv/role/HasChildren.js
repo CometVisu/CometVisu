@@ -36,8 +36,14 @@ define(['joose'], function() {
           var childs = $p.children().not('layout').not('label');
           Joose.A.each(childs, function(child, i) {
             var childData = cv.xml.Parser.parse(child, path + '_' + i, flavour, pageType );
-            if (childData && childData.path) {
-              data.children.push(childData.path);
+            if (childData) {
+              if (Array.isArray(childData)) {
+                for (var i=0, l=childData.length; i<l; i++) {
+                  data.children.push(childData[i].path);
+                }
+              } else if (childData.path) {
+                data.children.push(childData.path);
+              }
             }
           }, this);
           return data;
@@ -77,14 +83,10 @@ define(['joose'], function() {
             if (noWidgetContainer === true) {
               container += subelement;
             } else {
-              if (data.$$type == "page" && path.substr(path.length-1, 1) === "_") {
-                // TODO: find better solution for this workaround
-                path = path.substr(0, path.length-1);
-              }
               container += '<div class="widget_container '
                 + (data.rowspanClass ? data.rowspanClass : '')
                 + (data.containerClass ? data.containerClass : '')
-                + ('break' === data.type ? 'break_container' : '') // special case for break widget
+                + ('break' === data.$$type ? 'break_container' : '') // special case for break widget
                 + '" id="' + path + '" data-type="' + data.$$type + '">' + subelement + '</div>';
             }
           }
@@ -95,22 +97,29 @@ define(['joose'], function() {
       getParent: function() {
         var path = this.getPath();
         var type = this.$$type;
+        var parts, parentPath;
         if (type === "page") {
           if (path === "id_") {
             // root page has no parent
             return null;
           }
+          parts = path.substr(0, path.length - 1).split("_"); parts.pop();
+          parentPath = parts.join("_")+"_";
         } else {
           if (path === "id") {
             // root element has no parent
             return null;
           }
+          parts = path.split("_"); parts.pop();
+          parentPath = parts.join("_");
         }
-        var parentPath = path.substr(0, path.length - 2);
-        var parent = cv.structure.WidgetFactory.getInstanceById(parentPath);
-        if (parent) {
-          return parent;
+        if (parentPath) {
+          var parent = cv.structure.WidgetFactory.getInstanceById(parentPath);
+          if (parent) {
+            return parent;
+          }
         }
+        return null;
       }
     }
   });

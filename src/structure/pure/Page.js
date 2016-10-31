@@ -50,7 +50,6 @@ define( [
       backdropType      : { is: 'rw' },
       visible           : { is: 'r', init: true },
       pageType          : { is: 'r' },
-      wstyle            : { is: 'r', init: '' },
       address           : { is: 'r', init: [] },
       size              : { is: 'r' },
       backdrop          : { is: 'r' }
@@ -132,18 +131,29 @@ define( [
             showTopNavigation : showtopnavigation,
             showFooter        : showfooter,
             showNavbar        : shownavbar,
-            layout            : layout,
             backdropAlign     : '2d' === pageType ? ($p.attr('backdropalign' ) || '50% 50%') : undefined,
             size              : $p.attr('size'),
             address           : addresses,
             visible           : $p.attr('visible') ? $p.attr('visible') === "true" : true,
             flavour           : flavour,
             $$type            : "page",
-            classes           : this.setWidgetLayout( $p, path ),
-            wstyle            : wstyle,
             backdrop          : backdrop
           });
-          return data;
+          if (data.visible === true) {
+            var linkData = templateEngine.widgetDataInsert( path, {
+              $$type          : "pagelink",
+              path            : path,
+              name            : name,
+              classes         : this.setWidgetLayout( $p, path ),
+              layout          : layout,
+              address         : addresses,
+              pageType        : pageType,
+              wstyle          : wstyle
+            });
+            return [data, linkData];
+          } else {
+            return data;
+          }
         },
 
         /**
@@ -159,27 +169,8 @@ define( [
     methods: {
 
       getDomString: function() {
-        var ret_val = '';
         var pageType = this.getPageType();
 
-        if (!this.getVisible()) {
-          ret_val='';
-        }
-        else { // default is visible
-          var layout = this.getLayout();
-
-          var style = $.isEmptyObject(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
-
-          ret_val = '<div class="widget clearfix link pagelink '+this.getClasses()+'" ' + style + '>';
-          ret_val += '<div class="actor" ' + this.getWstyle() + '><a href="javascript:">' + this.getName() + '</a></div>';
-          ret_val += '</div>';
-          /*
-           var clickable = bindClickToWidget ? ret_val : actor;
-           clickable.bind( 'click', function() {
-           templateEngine.scrollToPage(name);
-           });
-           */
-        }
         var subpageClass = this.getFlavour() ? (' flavour_' + this.getFlavour()) : '';
         var subpage = '<div class="page type_' + pageType + subpageClass + '" id="' + this.getPath() + '">';
         var container = '<div class="clearfix" style="height:100%;position:relative;"><h1>' + this.getName() + '</h1>';
@@ -254,7 +245,7 @@ define( [
         container += this.getChildrenDomString();
         subpage += container + '</div></div>';
         cv.structure.pure.Page.my.allPages = subpage + cv.structure.pure.Page.my.allPages;
-        return ret_val.length > 0 ? ret_val : undefined;
+        return undefined;
       },
 
       /**
@@ -293,14 +284,32 @@ define( [
           templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));
         }
         // }
+      }
+    }
+  });
+
+  Class('cv.structure.pure.PageLink', {
+    isa: cv.structure.pure.AbstractWidget,
+
+    has: {
+      name              : { is: 'r' },
+      pageType          : { is: 'r' },
+      wstyle            : { is: 'r', init: '' },
+      address           : { is: 'r', init: [] }
+    },
+
+    methods: {
+      getDomString: function() {
+        var layout = this.getLayout();
+
+        var style = $.isEmptyObject(layout) ? '' : 'style="' + this.extractLayout(layout, this.getPageType()) + '"';
+
+        var ret_val = '<div class="widget clearfix link pagelink ' + this.getClasses() + '" ' + style + '>';
+        ret_val += '<div class="actor" ' + this.getWstyle() + '><a href="javascript:">' + this.getName() + '</a></div>';
+        ret_val += '</div>';
+        return ret_val;
       },
-      /**
-       * Description
-       * @method action
-       * @param {} path
-       * @param {} actor
-       * @param {} isCanceled
-       */
+
       action: function( path, actor, isCanceled ) {
         if( isCanceled ) return;
 
@@ -310,4 +319,5 @@ define( [
   });
 
   cv.xml.Parser.addHandler("page", cv.structure.pure.Page);
+  cv.xml.Parser.addHandler("pagelink", cv.structure.pure.PageLink);
 }); // end define
