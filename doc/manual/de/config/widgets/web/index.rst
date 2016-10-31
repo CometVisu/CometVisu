@@ -78,13 +78,13 @@ Hier der minimale Beispielcode der das Web Widget aus dem folgenden Screenshot e
 .. widget-example::
 
     <settings>
-        <screenshot name="web_simple">
+        <screenshot name="web_simple" sleep="1000">
             <caption>Web, einfaches Beispiel</caption>
         </screenshot>
     </settings>
-    <web src="http://www.google.de" width="320px" height="300px" frameborder="false" background="black" refresh="20">
-        <layout colspan="4"/>
-        <label>Web-Suche</label>
+    <web src="http://www.wikipedia.de" width="620px" height="300px" frameborder="false" background="black" refresh="20">
+      <layout colspan="6"/>
+      <label>Wikipedia</label>
     </web>
 
 

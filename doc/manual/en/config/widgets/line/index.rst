@@ -38,18 +38,6 @@ Allowed child-elements und their attributes
 
 .. elements-information:: line
 
-.. widget-example::
-    :editor: elements
-    :scale: 75
-    :align: center
-
-    <caption>Elements in the editor</caption>
-    <line>
-        <layout colspan="4" />
-        <label>Line</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-    </line>
-
 Examples
 --------
 

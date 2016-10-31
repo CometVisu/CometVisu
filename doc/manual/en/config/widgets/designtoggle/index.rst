@@ -36,18 +36,6 @@ Allowed child-elements und their attributes
 
 .. elements-information:: designtoggle
 
-.. widget-example::
-    :editor: elements
-    :scale: 75
-    :align: center
-
-    <caption>Elements in the editor</caption>
-    <designtoggle>
-        <layout colspan="4" />
-        <label>DesignToggle</label>
-        <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
-    </designtoggle>
-
 Examples
 --------
 
