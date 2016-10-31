@@ -71,6 +71,7 @@
 define( ['_common',
   'lib/cv/role/Operate',
   'lib/cv/role/Refresh',
+  'lib/cv/role/UpdateDOM',
   'lib/cv/MessageBroker',
   'lib/cv/role/HasAddress'], function() {
   "use strict";
@@ -81,7 +82,8 @@ define( ['_common',
       cv.role.Operate,
       cv.role.HasAddress,
       cv.role.HasAnimatedButton,
-      cv.role.Refresh
+      cv.role.Refresh,
+      cv.role.UpdateDOM
     ],
 
     has: {
@@ -110,7 +112,7 @@ define( ['_common',
     after : {
       initialize : function () {
         cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
-          this.defaultUpdate( undefined, this.getSendValue(), this.getDomElement(), true, this.getPath() );
+          this.updateDOM(this.getSendValue());
         }, this);
       }
     },

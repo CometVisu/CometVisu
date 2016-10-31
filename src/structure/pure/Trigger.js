@@ -26,12 +26,12 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/HasAddress'], function() {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/HasAddress', 'lib/cv/role/UpdateDOM'], function() {
   "use strict";
 
   Class('cv.structure.pure.Trigger', {
     isa: cv.structure.pure.AbstractWidget,
-    does: [cv.role.Operate, cv.role.HasAddress, cv.role.HasAnimatedButton],
+    does: [cv.role.Operate, cv.role.HasAddress, cv.role.HasAnimatedButton, cv.role.UpdateDOM],
 
     has: {
       sendValue: { is: 'r', init: 0 },
@@ -59,7 +59,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/
     after : {
       initialize : function (props) {
         cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
-          this.defaultUpdate( undefined, this.getSendValue(), this.getDomElement(), true, this.getPath() );
+          this.updateDOM(this.getSendValue());
         }, this);
       }
     },
