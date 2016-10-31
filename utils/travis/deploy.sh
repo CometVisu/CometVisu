@@ -49,6 +49,9 @@ echo "generating english manual, including screenshot generation for all languag
 echo "generating german manual again with existing screenshots"
 ./cv doc --doc-type manual -f -l de
 
+echo "generating feature yml file for homepage"
+./cv doc --generate-features
+
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
 cd out
