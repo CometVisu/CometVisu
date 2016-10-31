@@ -31,7 +31,9 @@ class Version:
     @classmethod
     def get_doc_version(cls):
         git = sh.Command("git")
-        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip()
+        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
+            else os.environ.get('TRAVIS_BRANCH')
+
         if branch == "develop":
             return cls.config.get("DEFAULT", "develop-version-mapping")
         else:
