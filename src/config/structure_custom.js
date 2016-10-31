@@ -20,28 +20,31 @@
  * @module Structure custom
 */
 
-define( ['_common'], function( design ) {
+define( ['_common'], function() {
   "use strict";
-  /**
-   * This class defines all the custom changes to the visu
-   * @class VisuDesign_Custom
-   */
-  function VisuDesign_Custom() {};                  // do NOT change here
-  VisuDesign_Custom.prototype = design.basicdesign; // do NOT change here
 
   /*
    * Custom changes could go here and look e.g. like
   ****************************************
-  VisuDesign_Custom.prototype.addCreator("line", {
-        create: function( page, path ) {
-                return $( '<hr />' );
-            },
-        attributes: {
-        },
-        content: false
-  });
+   Class('cv.structure.pure.Line', {
+     isa: cv.structure.pure.AbstractWidget,
+
+     my: {
+       methods: {
+         getDefaultClasses: function(type) {
+          return '';
+         }
+       }
+     },
+
+     methods: {
+       getDomString: function () {
+         return '<hr ' + (this.getClasses() ? 'class="'+this.getClasses()+'"' : '') + '/>';
+       }
+     }
+   });
+   // register the parser
+   cv.xml.Parser.addHandler("line", cv.structure.pure.Line);
   ****************************************
    */
-   
-  return VisuDesign_Custom;
 }); // end define

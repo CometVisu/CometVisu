@@ -61,6 +61,18 @@ define( [
     },
 
     my: {
+      has : {
+        // Define ENUM of maturity levels for features, so that e.g. the editor can
+        // ignore some widgets when they are not supported yet
+        Maturity : {
+          is: 'ro',
+          init: {
+            release: 0,
+            development: 1
+          }
+        }
+      },
+
       methods: {
         parse: function (element, path, flavour, pageType) {
           return templateEngine.widgetDataInsert( path, {
@@ -294,18 +306,6 @@ define( [
      *****************************************************************************************
      */
     my : {
-
-      has : {
-        // Define ENUM of maturity levels for features, so that e.g. the editor can
-        // ignore some widgets when they are not supported yet
-        Maturity : {
-          is: 'ro',
-          init: {
-            release: 0,
-            development: 1
-          }
-        }
-      },
 
       methods: {
         getAddressListCallback: function() {

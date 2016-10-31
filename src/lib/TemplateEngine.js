@@ -40,22 +40,22 @@
 //  Main:
 //
 define([
-  'jquery', '_common', 'TrickOMatic', 'PageHandler', 'PagePartsHandler',
+  'jquery', '_common', 'structure_custom', 'TrickOMatic', 'PageHandler', 'PagePartsHandler',
   'CometVisuClient', 'CometVisuMockup', 'EventHandler',
   'Compatibility', 'jquery-ui', 'strftime',
-  'jquery.ui.touch-punch', 'jquery.svg.min', 'IconHandler', 
-  'widget_break', 'widget_designtoggle', 'widget_group', 'widget_rgb',
-  'widget_web', 'widget_image', 'widget_imagetrigger', //'widget_include',
-  'widget_info', 'widget_infoaction', 'widget_infotrigger',
-  'widget_line', 'widget_multitrigger', 'widget_navbar',
+  'jquery.ui.touch-punch', 'jquery.svg.min', 'IconHandler',
+  'widget_break', 'widget_designtoggle',
+  'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
+  'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infoaction', 'widget_infotrigger',
+  'widget_line', 'widget_multitrigger', 'widget_navbar', 'widget_page',
   'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide',
-  'widget_text', 'widget_pushbutton', 'widget_urltrigger',
+  'widget_switch', 'widget_text', 'widget_toggle', 'widget_trigger',
+  'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio',
   'widget_video', 'widget_wgplugin_info',
-  'widget_switch', 'widget_page', 'widget_unknown', 'widget_audio', 'widget_trigger', 'widget_toggle',
   'TransformDefault', 'TransformKnx', 'TransformOpenHab',
   'lib/cv/xml/Parser',
   'lib/cv/MessageBroker'
-], function( $, design, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup, EventHandler ) {
+], function( $, design, custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup, EventHandler ) {
   "use strict";
 
   var instance;
@@ -76,7 +76,6 @@ define([
       setup_page();
     };
   };
-  this.design = new cv.structure.pure.AbstractWidget();
   this.pagePartsHandler = new PagePartsHandler();
     
   this.eventHandler = new EventHandler(this);
@@ -1311,7 +1310,7 @@ define([
    * it's content can be easily extended
    */
   this.showPopup = function(type, attributes) {
-    return thisTemplateEngine.design.getPopup(type).create(attributes);
+    return cv.structure.pure.AbstractWidget.getPopup(type).create(attributes);
   };
 
   /*
