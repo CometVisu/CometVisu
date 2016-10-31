@@ -18,6 +18,10 @@
  */
 
 define(['joose', 'lib/cv/role/HasAddress'], function() {
+
+  /**
+   * @class cv.role.UpdateDOM
+   */
   Role("cv.role.UpdateDOM", {
 
     methods: {
@@ -27,7 +31,7 @@ define(['joose', 'lib/cv/role/HasAddress'], function() {
        * the mapping where it can be quite complex as it can contain icons.
        * value: the value that will be inserted
        * modifyFn: callback function that modifies the DOM
-       * @method defaultValue2DOM
+       * @method value2DOM
        * @param {} value
        * @param {} modifyFn
        */
@@ -65,36 +69,21 @@ define(['joose', 'lib/cv/role/HasAddress'], function() {
       },
 
       /**
-       * ga:            address
-       * data:          the raw value from the bus
-       * passedElement: the element to update
-       * @method defaultUpdate
-       * @param {} ga
-       * @param {} data
-       * @param {} passedElement
-       * @param {} newVersion
-       * @param {} path
-       * @return value
+       *
+       * @method updateDOM
+       * @param value {any} value to write to the DOMElement
        */
       updateDOM: function( value ) {
-        ///console.log(ga, data, passedElement, newVersion );
-        var element = this.getDomElement();
-
-        // TODO: check if this is the right place for this
-        // might be if the styling removes the align class
-        if (this.getAlign())
-          element.addClass(this.getAlign());
-
-        var valueElement = element.find('.value');
+        var valueElement = this.getValueElement();
         valueElement.empty();
-        if (undefined !== value)
+        if (undefined !== value) {
           this.value2DOM(value, function (e) {
             valueElement.append(e)
           });
-        else
+        }
+        else {
           valueElement.append('-');
-
-        return value;
+        }
       }
     }
   });
