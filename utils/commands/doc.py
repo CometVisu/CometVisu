@@ -333,7 +333,7 @@ class DocGenerator(Command):
 
         regex = re.compile("^\| :doc:`([^<]+)<([^>]+)>`\s+\|\s+([^\|]+).*$")
         section = "manual-%s" % lang
-
+        image_prefix = self.config.get(section, "images").replace("<version>", self.config.get("DEFAULT", "develop-version-mapping"))
         link_prefix = self.config.get(section, "html").replace("<version>", self.config.get("DEFAULT", "develop-version-mapping"))
         with codecs.open(os.path.join(self.config.get(section, "widgets"), "index.rst"), encoding='utf-8') as f:
             for line in f.readlines():
@@ -341,19 +341,23 @@ class DocGenerator(Command):
                 if match is not None:
 
                     name = match.group(1).strip()
-                    folder = None
+                    widget_rst = None
+                    screenshot_folder = None
                     ref = match.group(2).strip()
                     link = os.path.join(self.config.get(section, "widgets"), ref)
                     is_plugin = 'plugins/' in ref
 
                     if os.path.exists(link+".rst"):
-                        folder = link.replace("/index", "/")
+                        widget_rst = link+".rst"
+                        screenshot_folder = link.replace("/index", "/_static/")
                         link += ".html"
                     else:
                         link = None
 
+                    widget_key = ref.split("/")[1] if is_plugin else ref.split("/")[0]
+
                     desc = match.group(3).strip()
-                    screenshot = self._find_screenshot(folder) if folder is not None else None
+                    screenshot = self._find_screenshot(widget_key, widget_rst) if widget_rst is not None else None
                     features = plugins if is_plugin else widgets
                     if name not in features:
                         features[name] = {
@@ -366,8 +370,9 @@ class DocGenerator(Command):
                         features[name]['description'][lang] = desc
                     if link is not None:
                         features[name]['manual'][lang] = "%s/%s.html" % (link_prefix, ref)
-                    if screenshot is not None:
-                        features[name]['screenshot'][lang] = "%s/_static/%s" % (link_prefix, screenshot)
+
+                    if screenshot is not None and os.path.exists(os.path.join(screenshot_folder, screenshot)):
+                        features[name]['screenshot'][lang] = "%s/%s" % (image_prefix, screenshot)
                     if sanitize:
                         if len(features[name]['screenshot']) == 0:
                             del features[name]['screenshot']
@@ -378,7 +383,21 @@ class DocGenerator(Command):
 
         return widgets, plugins
 
-    def _find_screenshot(self, path):
+    def _find_screenshot(self, name, widget_rst):
+        example = re.compile('.*<screenshot name="([^"]+)">.*')
+        figure = re.compile('.. figure:: _static/(.+)')
+        with open(widget_rst) as f:
+            for line in f.readlines():
+                match = example.match(line)
+
+                if match is None:
+                    match = figure.match(line)
+                    if match and name in match.group(1):
+                        return match.group(1)
+                else:
+                    if name in match.group(1):
+                        return "%s.png" % match.group(1)
+
         return None
 
     def run(self, args):
@@ -412,15 +431,17 @@ class DocGenerator(Command):
             self.generate_features(widgets=widgets, plugins=plugins, lang="en", sanitize=True)
 
             features = {
-                'widgets': widgets.values(),
-                'plugins': plugins.values()
+                'widgets': [widgets[i] for i in sorted(widgets)],
+                'plugins': [plugins[i] for i in sorted(plugins)]
             }
-            print(yaml.safe_dump(features, default_flow_style=False,
-                                 encoding='utf-8',
-                                 indent=2,
-                                 width=10000,
-                                 default_style='"',
-                                 allow_unicode=True))
+            with open(self.config.get("DEFAULT", "features-file"), 'w') as f:
+                yaml.safe_dump(features, f,
+                               default_flow_style=False,
+                               encoding='utf-8',
+                               indent=2,
+                               width=10000,
+                               default_style='"',
+                               allow_unicode=True)
 
         elif options.from_source:
             self.from_source(os.path.join("src", "structure", "pure"))
