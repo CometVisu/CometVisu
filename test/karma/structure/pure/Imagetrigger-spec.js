@@ -3,121 +3,103 @@
  *
  */
 
-define( ['TemplateEngine', '_common', 'widget_imagetrigger'], function(engine, design) {
+define( ['TemplateEngine','widget_imagetrigger', 'lib/cv/role/Operate'], function(engine) {
+  var templateEngine = engine.getInstance();
 
   describe("testing a imagetrigger widget", function() {
-    var templateEngine = engine.getInstance();
 
     it("should test the imagetrigger creator", function() {
 
-      var creator = design.basicdesign.getCreator("imagetrigger");
+      var res = this.createTestWidgetString("imagetrigger", {flavour: 'potassium'}, '<label>Test</label>');
+      var widget = $(res[1]);
 
-      var xml = document.createElement('template');
-      xml.innerHTML = '<imagetrigger><label>Test</label></imagetrigger>';
-      xml = xml.firstChild;
-      var widget = $(creator.create(xml, 'id_0', null, 'imagetrigger'));
-    
       expect(widget).toHaveClass('imagetrigger');
       expect(widget).toHaveClass('image');
+      expect(widget).toHaveClass('flavour_potassium');
       expect(widget.find("div.label").text()).toBe('Test');
 
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
-
-      spyOn(templateEngine, "setupRefreshAction");
-      xml.innerHTML = '<imagetrigger flavour="potassium" sendValue="on" refresh="5" type="show"><label>Test</label></imagetrigger>';
-      xml = xml.firstChild;
-      widget = $(creator.create(xml, 'id_0', null, 'imagetrigger'));
-      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
-        thisFn();
-      });
-      expect(templateEngine.setupRefreshAction).toHaveBeenCalled();
-      expect(widget).toHaveClass('flavour_potassium');
-      data = templateEngine.widgetDataGet('id_0');
-      expect(data.sendValue).toBe("on");
+      expect(res[0].getPath()).toBe("id_0");
     });
 
-    it("should update a imagetrigger", function() {
-      var creator = design.basicdesign.getCreator("imagetrigger");
+    it("should test the imagetriggers refresh behaviour", function() {
+      var res = this.createTestElement("imagetrigger", {
+        flavour: 'potassium',
+        sendValue: 'on',
+        refresh: '5',
+        type: 'show'
+      }, '<label>Test</label>');
 
-      var xml = document.createElement('template');
-      xml.innerHTML = '<imagetrigger src="imgs" suffix="jpg" type="show"><label>Test</label><address transform="DPT:1.001" mode="readwrite">12/7/37</address></imagetrigger>';
-      xml = xml.firstChild;
-      var widgetString = creator.create(xml, 'id_0', null, 'imagetrigger');
-      var container =document.createElement('div');
-      container.setAttribute("class","widget_container");
-      container.setAttribute("id", 'id_0');
-      container.innerHTML = widgetString;
-      document.body.appendChild(container);
+      spyOn(cv.utils.Timer, "start");
+      cv.MessageBroker.my.publish("setup.dom.finished");
+      expect(cv.utils.Timer.start).toHaveBeenCalled();
+      expect(res.getSendValue()).toBe("on");
+    });
 
-      creator.update.call(container.children[0],'12/7/37', 1);
-      var actor = $(container.children[0].querySelectorAll('.actor img')[0]);
+    it("should update a imagetrigger in show mode", function() {
+      var res = this.createTestElement("imagetrigger", {
+        src: 'imgs',
+        suffix: 'jpg',
+        type: 'show'
+      }, '<label>Test</label>');
+
+      res.update('12/7/37', 1);
+      var actor = $(this.container.children[0].querySelectorAll('.actor img')[0]);
       expect(actor).toBeVisible();
       expect(actor.attr('src')).toBe('imgs.jpg');
 
-      creator.update.call(container.children[0],'12/7/37', 0);
+      res.update('12/7/37', 0);
       expect(actor).not.toBeVisible();
+    });
 
-      document.body.removeChild(container);
+    it("should update a imagetrigger in select mode", function() {
+      var res = this.createTestElement("imagetrigger", {
+        src: 'imgs',
+        suffix: 'jpg',
+        type: 'select'
+      }, '<label>Test</label>');
 
-      xml.innerHTML = '<imagetrigger src="imgs" suffix="jpg" type="select"><label>Test</label><address transform="DPT:1.001" mode="readwrite">12/7/37</address></imagetrigger>';
-      xml = xml.firstChild;
-      var widgetString = creator.create(xml, 'id_0', null, 'imagetrigger');
-      var container =document.createElement('div');
-      container.setAttribute("class","widget_container");
-      container.setAttribute("id", 'id_0');
-      container.innerHTML = widgetString;
-      document.body.appendChild(container);
-
-      creator.update.call(container.children[0],'12/7/37', 1);
-      var actor = $(container.children[0].querySelectorAll('.actor img')[0]);
+      res.update('12/7/37', 1);
+      var actor = $(this.container.children[0].querySelectorAll('.actor img')[0]);
       expect(actor).toBeVisible();
       expect(actor.attr('src')).toBe('imgs1.jpg');
 
-      creator.update.call(container.children[0],'12/7/37', 0);
+      res.update('12/7/37', 0);
       expect(actor).not.toBeVisible();
-
-      document.body.removeChild(container);
     });
 
     it('should trigger the imagetrigger action', function() {
-      spyOn(templateEngine.visu, 'write');
 
-      var creator = design.basicdesign.getCreator("imagetrigger");
+      spyOn(templateEngine.visu, "write");
 
-      var xml = document.createElement('template');
-      xml.innerHTML = '<imagetrigger src="imgs" suffix="jpg" type="show" sendValue="1"><label>Test</label><address transform="DPT:1.001" mode="readwrite">12/7/37</address></imagetrigger>';
-      xml = xml.firstChild;
-      var widgetString = creator.create(xml, 'id_0', null, 'imagetrigger');
-      var container =document.createElement('div');
-      container.setAttribute("class","widget_container");
-      container.setAttribute("id", 'id_0');
-      container.innerHTML = widgetString;
-      document.body.appendChild(container);
-      var actor = container.children[0].querySelectorAll('.actor')[0];
+      var res = this.createTestElement("imagetrigger", {
+        src: 'imgs',
+        suffix: 'jpg',
+        type: 'show',
+        sendValue: "1"
+      }, '<label>Test</label>');
+
+      var actor = this.container.children[0].querySelectorAll('.actor')[0];
       expect(actor).not.toBe(null);
 
       //canceled call
-      creator.action('id_0', actor, true);
+      res.action('id_0', actor, true);
       expect(templateEngine.visu.write).not.toHaveBeenCalled();
 
       // no write flag
       data = templateEngine.widgetDataGet('id_0');
-      data.address['12/7/37'][1] = 1;
+      res.getAddress()['12/7/37'][1] = 1;
 
-      creator.action('id_0', actor, false);
+      res.action('id_0', actor, false);
       expect(templateEngine.visu.write).not.toHaveBeenCalled();
 
-      data.address['12/7/37'][1] = 3;
-      data.sendValue = "";
-      creator.action('id_0', actor, false);
+      res.getAddress()['12/7/37'][1] = 3;
+      res.setSendValue("");
+      res.action('id_0', actor, false);
       expect(templateEngine.visu.write).not.toHaveBeenCalled();
-      data.sendValue = "1";
+      res.setSendValue("1");
 
-      creator.action('id_0', actor, false);
+      res.action('id_0', actor, false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '81');
-
-      document.body.removeChild(container);
     });
   });
 });

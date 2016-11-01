@@ -90,9 +90,9 @@ define( ['_common',
       height: {is: 'r', init: 0},
       updateType: {is: 'r', init: ''},
       width: {is: 'r', init: '100%'},
-      src: {},
-      suffix: {},
-      sendValue: {default: ''}
+      src: { is: 'r' },
+      suffix: { is: 'r' },
+      sendValue: { is: 'rw', default: ''}
     },
 
     my : {
@@ -105,6 +105,10 @@ define( ['_common',
             'suffix': { },
             'sendValue': { default: ''}
           };
+        },
+        getDefaultClasses: function(type) {
+          // additional image class
+          return 'widget clearfix image '+type.toLowerCase();
         }
       }
     },
@@ -173,7 +177,7 @@ define( ['_common',
           if (!(addresses[addr][1] & 2)) {
             continue; // skip when write flag not set
           }
-          templateEngine.visu.write( addr, this.applyTransform(addr, this.getSendValue() ) );
+          templateEngine.visu.write( addr, this.applyTransformEncode(addr, this.getSendValue() ) );
         }
       }
     }

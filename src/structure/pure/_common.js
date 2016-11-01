@@ -409,7 +409,7 @@ define( [
           if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
           if( flavour ) classes += ' flavour_' + flavour;
           if ($element.attr('class')) classes += ' custom_' + $element.attr('class');
-          var label = (widgetType==='text') ? this.extractLabel( $element.find('label')[0], flavour, '' ) : this.extractLabel( $element.find('label')[0], flavour );
+          var label = (pageType==='text') ? this.extractLabel( $element.find('label')[0], flavour, '' ) : this.extractLabel( $element.find('label')[0], flavour );
 
           var bindClickToWidget = templateEngine.bindClickToWidget;
           if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
@@ -424,7 +424,7 @@ define( [
             'label'   : label,
             'classes' : classes,
             'style'   : style,
-            '$$type'  : widgetType,
+            '$$type'  : widgetType.toLowerCase(),
             'pageType': pageType
           });
         },

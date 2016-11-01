@@ -46,7 +46,7 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
       methods: {
         getDefaultClasses: function(type) {
           return 'widget clearfix toggle';
-        },
+        }
       }
     },
 

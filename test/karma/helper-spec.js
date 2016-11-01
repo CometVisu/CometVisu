@@ -5,7 +5,7 @@
  * @since 2016
  */
 
-define(['jquery','TemplateEngine', '_common'], function($, engine, design) {
+define(['jquery','TemplateEngine', '_common', 'lib/cv/MessageBroker'], function($, engine) {
   var templateEngine = engine.getInstance();
 
   /**

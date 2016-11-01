@@ -97,4 +97,5 @@ require([
 ], function( $, TemplateEngine ) {
   "use strict";
   templateEngine = TemplateEngine.getInstance();
+  templateEngine.initBackendClient();
 }); // end require

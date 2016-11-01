@@ -32,7 +32,7 @@ define(['joose'], function() {
        */
       action: function (path, actor, isCanceled, event) {
         if (isCanceled) return;
-        if (this.meta.methods['getActionValue']) {
+        if (this.meta.hasMethod('getActionValue')) {
           this.sendToBackend(this.getActionValue(path, actor, isCanceled, event));
         }
       },
@@ -45,7 +45,7 @@ define(['joose'], function() {
        * @param filter {Function} optional filter function for addresses
        */
       sendToBackend: function(value, filter) {
-        if (this.meta.attributes['address']) {
+        if (this.meta.hasAttribute('address')) {
           Joose.O.eachOwn(this.getAddress(), function (address, id) {
             if (!!(address[1] & 2) && (!filter || filter(address))) {
               console.log("sending '%s' to '%s'", value, id);
