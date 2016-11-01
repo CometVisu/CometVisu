@@ -44,9 +44,9 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
 
     my : {
       methods: {
-        getAttributeToPropertyMappings: function () {
-          return {};
-        }
+        getDefaultClasses: function(type) {
+          return 'widget clearfix toggle';
+        },
       }
     },
 
@@ -65,17 +65,7 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
     },
 
     methods: {
-      /**
-       * Get the value that should be send to backend after the action has been triggered
-       *
-       * @method getActionValue
-       */
-      getActionValue: function () {
-        return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
-      },
-      getAddress: function() {
-        return [];
-      },
+
       /**
        * Action performed when the widget got clicked
        *

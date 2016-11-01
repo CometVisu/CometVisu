@@ -3,19 +3,18 @@
  *
  */
 
-define( ['TemplateEngine', '_common', 'widget_designtoggle'], function(engine, design) {
+define( ['widget_designtoggle'], function() {
 
   describe("testing a designtoggle widget", function() {
-    var templateEngine = engine.getInstance();
 
     it("should test the designtoggle creator", function() {
-      var widget = $(this.createTestWidgetString("designtoggle", {}, "<label>Test</label>")[1]);
+      var res = this.createTestWidgetString("designtoggle", {}, "<label>Test</label>");
+      var widget = $(res[1]);
     
       expect(widget).toHaveClass('toggle');
       expect(widget.find("div.label").text()).toBe('Test');
 
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
+      expect(res[0].getPath()).toBe("id_0");
     });
 
     it('should trigger the designtoggle action', function() {
