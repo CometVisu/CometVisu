@@ -62,7 +62,7 @@ define( [
 
           var classes = "navbar clearfix";
           if ( $n.attr('flavour') ) {
-            classes += "flavour_"+$n.attr('flavour');
+            classes += " flavour_"+$n.attr('flavour');
           }// sub design choice
 
           // store scope globally
@@ -141,7 +141,7 @@ define( [
         if( this.my.isNotSubscribed )
         {
           this.my.isNotSubscribed = false;
-          cv.MessageBroker.my.subscribe("setup.dom.finished", function(){
+          cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
             if( this.my.navbarTop    ) $( '#navbarTop'    ).append( this.my.navbarTop    );
             if( this.my.navbarLeft   ) $( '#navbarLeft'   ).append( this.my.navbarLeft   );
             if( this.my.navbarRight  ) $( '#navbarRight'  ).append( this.my.navbarRight  );
