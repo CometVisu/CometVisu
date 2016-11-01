@@ -5,24 +5,20 @@
  * @since 2016
  */
 
-define( ['TemplateEngine', '_common', 'widget_line'], function(engine, design) {
+define( ['widget_line'], function() {
 
   describe("testing a line widget", function() {
-    var templateEngine = engine.getInstance();
 
     it("should test the line creator", function() {
 
-      var creator = design.basicdesign.getCreator("line");
+      var res = this.createTestWidgetString("line");
 
-      var xml = document.createElement('template');
-      xml.innerHTML = '<line/>';
-      xml = xml.firstChild;
-      var line = $(creator.create(xml, 'id_0', null, 'unknown'));
+      var line = $(res[1]);
 
       expect(line.prop("tagName")).toBe('HR');
 
       var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
+      expect(res[0].getPath()).toBe("id_0");
     });
   });
 });

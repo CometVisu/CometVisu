@@ -43,7 +43,12 @@ define( ['_common', 'lib/cv/role/Update'], function() {
           return {
             'variable' : {}
           };
+        },
+        getDefaultClasses: function(type) {
+          // additional info class
+          return 'widget clearfix info '+type.toLowerCase();
         }
+
       }
     },
 

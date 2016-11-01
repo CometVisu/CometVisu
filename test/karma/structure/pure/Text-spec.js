@@ -5,25 +5,19 @@
  * @since 2016
  */
 
-define( ['TemplateEngine', '_common', 'widget_text'], function(engine, design) {
+define( ['widget_text'], function(engine) {
 
   describe("testing a text widget", function() {
     var templateEngine = engine.getInstance();
 
     it("should test the text creator", function() {
 
-      var creator = design.basicdesign.getCreator("text");
-
-      var xml = document.createElement('template');
-      xml.innerHTML = '<text><label>Test</label></text>';
-      xml = xml.firstChild;
-      var text = $(creator.create(xml, 'id_0', null, 'text'));
+      var res = this.createTestWidgetString("test", {}, '<label>Test</label>');
+      var text = $(res[1]);
+      expect(res[0].getPath()).toBe("id_0");
 
       expect(text).toHaveClass('text');
       expect(text.find("div").text()).toBe('Test');
-
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
     });
   });
 });

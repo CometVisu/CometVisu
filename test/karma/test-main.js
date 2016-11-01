@@ -93,7 +93,7 @@ require.config({
 
 var templateEngine;
 require([
-  'jquery', 'TemplateEngine'
+  'jquery', 'TemplateEngine', 'joose'
 ], function( $, TemplateEngine ) {
   "use strict";
   templateEngine = TemplateEngine.getInstance();

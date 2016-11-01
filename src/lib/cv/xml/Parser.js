@@ -27,6 +27,8 @@ define( [
               return parser.parse(xml, path, flavour, pageType);
             } else {
               console.error("no parse handler registered for type: %s", xml.nodeName.toLowerCase());
+              parser = this.getHandler("unknown");
+              return parser.parse(xml, path, flavour, pageType);
             }
             return null;
           }

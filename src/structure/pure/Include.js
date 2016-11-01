@@ -36,9 +36,10 @@ define( ['_common'], function() {
 
     does: cv.role.HasChildren,
 
-    has : {
-      maturity : { is: 'r', init: cv.structure.pure.AbstractBasicWidget.my.Maturity.development},
-
+    my : {
+      has : {
+        maturity: {is: 'r', init: cv.structure.pure.AbstractBasicWidget.my.Maturity.development}
+      },
       methods: {
         parse: function( page, path, flavour, pageType ) {
           // TODO: needs to be tested

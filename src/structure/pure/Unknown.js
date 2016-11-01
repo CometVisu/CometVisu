@@ -27,25 +27,20 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common', 'lib/cv/xml/Parser'], function() {
+define( ['_common'], function() {
   "use strict";
 
-  cv.xml.Parser.addHandler("unknown", {
-    /**
-     * Creates the widget HTML code
-     *
-     * @method create
-     * @param {Element} element - DOM-Element
-     * @param {String} path - internal path of the widget
-     * @param {String} flavour - Flavour of the widget
-     * @param {String} type - Page type (2d, 3d, ...)
-     * @return {String} HTML code
-     */
-    parse: function( element, path, flavour, type ) {
-      return '<div class="widget clearfix">'
-        + '<pre>unknown: ' + element.nodeName + '</pre>'
-        + '</div>';
+  Class('cv.structure.pure.Unknown', {
+   // isa: cv.structure.pure.AbstractBasicWidget,
+
+    methods: {
+      getDomString: function () {
+        return '<div class="widget clearfix">'
+          + '<pre>unknown: ' + this.$$type + '</pre>'
+          + '</div>';
+      }
     }
   });
-
+  // register the parser
+  cv.xml.Parser.addHandler("unknown", cv.structure.pure.Unknown);
 }); // end define

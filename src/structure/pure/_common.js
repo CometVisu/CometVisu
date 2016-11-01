@@ -30,7 +30,8 @@ define( [
   'joose',
   'lib/cv/xml/Parser',
   'lib/cv/structure/WidgetFactory',
-  'lib/cv/role/HasStyling'
+  'lib/cv/role/HasStyling',
+  'widget_unknown'
 ], function($) {
   "use strict";
 
