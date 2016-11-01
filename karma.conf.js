@@ -20,7 +20,7 @@ module.exports = function(config) {
       'test/karma/test-main.js',
       {pattern: 'src/**/*.js', included: false},
       {pattern: 'test/karma/*-spec.js', included: false},
-      {pattern: 'test/karma/**/Page-spec.js', included: false}
+      {pattern: 'test/karma/**/*-spec.js', included: false}
     ],
 
 

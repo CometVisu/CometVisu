@@ -259,22 +259,6 @@ define( [
       },
 
       /**
-       * Create an action handling that shows a button press animation.
-       * When the action is not set, it will be searched for - so that widgets
-       * with bind_click_to_widget will also work.
-       * @method defaultButtonDownAnimationInheritAction
-       * @param {} path
-       * @param {} actor
-       */
-      defaultButtonDownAnimationInheritAction: function( path, actor )
-      {
-        if( !actor )
-          actor = this.getActor();
-
-        actor.classList.remove('switchUnpressed');
-        actor.classList.add('switchPressed');
-      },
-      /**
        * Create an action handling that shows a button unpress animation.
        * Note: use this function when multiple action elements are used and thus
        * bind_click_to_widget is not available.
@@ -288,22 +272,6 @@ define( [
           actor.classList.remove('switchPressed');
           actor.classList.add('switchUnpressed');
         }
-      },
-      /**
-       * Create an action handling that shows a button unpress animation.
-       * When the action is not set, it will be searched for - so that widgets
-       * with bind_click_to_widget will also work.
-       * @method defaultButtonUpAnimationInheritAction
-       * @param {} path
-       * @param {} actor
-       */
-      defaultButtonUpAnimationInheritAction: function( path, actor )
-      {
-        if( !actor )
-          actor = this.getActor();
-
-        actor.classList.remove('switchPressed');
-        actor.classList.add('switchUnpressed');
       }
 
     },

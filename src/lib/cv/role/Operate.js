@@ -37,6 +37,10 @@ define(['joose'], function() {
         }
       },
 
+      downaction: function() {
+
+      },
+
       /**
        * Send the given value to all writeable addresses known to this widget
        *

@@ -20,16 +20,37 @@
 define(['joose'], function() {
   Role("cv.role.HasAnimatedButton", {
 
-    requires: ['defaultButtonDownAnimationInheritAction', 'defaultButtonUpAnimationInheritAction'],
+    before: {
 
-    my: {
-      before: {
-        downaction: function(path, actor, isCanceled) {
-          this.defaultButtonDownAnimationInheritAction( path, actor );
-        },
-        action: function(path, actor, isCanceled) {
-          this.defaultButtonUpAnimationInheritAction( path, actor );
-        }
+      /**
+       * Create an action handling that shows a button press animation.
+       * When the action is not set, it will be searched for - so that widgets
+       * with bind_click_to_widget will also work.
+       * @method downaction
+       * @param {} path
+       * @param {} actor
+       */
+      downaction: function(path, actor, isCanceled) {
+        if( !actor )
+          actor = this.getActor();
+        actor.addClass('switchPressed');
+        actor.removeClass('switchUnpressed');
+      },
+
+      /**
+       * Create an action handling that shows a button unpress animation.
+       * When the action is not set, it will be searched for - so that widgets
+       * with bind_click_to_widget will also work.
+       * @method action
+       * @param {} path
+       * @param {} actor
+       */
+      action: function(path, actor, isCanceled) {
+        if( !actor )
+          actor = this.getActor();
+
+        actor.addClass('switchUnpressed');
+        actor.removeClass('switchPpressed');
       }
     }
   });
