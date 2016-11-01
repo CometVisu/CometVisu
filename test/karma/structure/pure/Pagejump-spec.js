@@ -3,10 +3,9 @@
  *
  */
 
-define( ['TemplateEngine', '_common', 'widget_pagejump'], function(engine, design) {
+define( ['widget_pagejump'], function() {
 
   describe("testing a pagejump widget", function() {
-    var templateEngine = engine.getInstance();
 
     it("should test the pagejump creator", function() {
 
@@ -17,9 +16,8 @@ define( ['TemplateEngine', '_common', 'widget_pagejump'], function(engine, desig
       expect(widget.find("div.label").text()).toBe('Test');
       expect(widget.find("div.value").text()).toBe('Testpage');
 
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
-      expect(data.active_scope).toBe("target");
+      expect(res[0].getPath()).toBe("id_0");
+      expect(res[0].getActiveScope()).toBe("target");
     });
 
     it("should test the pagejump creator with some extra settings", function() {
@@ -37,14 +35,13 @@ define( ['TemplateEngine', '_common', 'widget_pagejump'], function(engine, desig
       expect(widget).toHaveClass('innerrowspan');
       expect(widget).toHaveClass('flavour_potassium');
 
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
-      expect(data.target_path).toBe("ParentPage");
-      expect(data.target).toBe("OtherPage");
-      expect(data.align).toBe("right");
-      expect(data.active_scope).toBe("path");
-      expect(data.colspan).toBe("6");
-      expect(data.rowspanClass).toBe("rowspan rowspan2");
+      expect(res[0].getPath()).toBe("id_0");
+      expect(res[0].getTargetPath()).toBe("ParentPage");
+      expect(res[0].getTarget()).toBe("OtherPage");
+      expect(res[0].getAlign()).toBe("right");
+      expect(res[0].getActiveScope()).toBe("path");
+      expect(res[0].getColspan()).toBe("6");
+      expect(res[0].getRowspanClass()).toBe("rowspan rowspan2");
     });
 
     it("should test the pagejump creator with infoaction embedded", function() {
@@ -54,26 +51,21 @@ define( ['TemplateEngine', '_common', 'widget_pagejump'], function(engine, desig
       var widget = $(res[1]);
 
       expect(widget).toHaveClass('infoaction');
-
-      var data = templateEngine.widgetDataGet('id_0_0');
-      expect(data.containerClass).toBe("widgetinfo");
     });
 
     it("should trigger the pagejumps downaction", function() {
-      spyOn(design.basicdesign, 'defaultButtonDownAnimationInheritAction');
 
       var creator = this.createTestElement("pagejump", {
         'target': 'test'
       });
       var actor = this.container.children[0].querySelectorAll('.actor')[0];
       creator.downaction('id_0', actor, false);
-      expect(design.basicdesign.defaultButtonDownAnimationInheritAction).toHaveBeenCalledWith('id_0', actor);
+      expect($(actor)).toHaveClass("switchPressed");
 
     });
 
     it("should trigger the pagejumps action", function() {
       spyOn(templateEngine, 'scrollToPage');
-      spyOn(design.basicdesign, 'defaultButtonUpAnimationInheritAction');
 
       var creator = this.createTestElement("pagejump", {
         'target': 'test'
@@ -82,9 +74,9 @@ define( ['TemplateEngine', '_common', 'widget_pagejump'], function(engine, desig
 
       // canceled
       creator.action('id_0', actor, true);
-      expect(design.basicdesign.defaultButtonUpAnimationInheritAction).toHaveBeenCalledWith('id_0', actor);
-      expect(templateEngine.scrollToPage).not.toHaveBeenCalled();
 
+      expect(templateEngine.scrollToPage).not.toHaveBeenCalled();
+      expect($(actor)).toHaveClass("switchUnpressed");
       creator.action('id_0', actor, false);
       expect(templateEngine.scrollToPage).toHaveBeenCalledWith('test');
     });
@@ -92,7 +84,6 @@ define( ['TemplateEngine', '_common', 'widget_pagejump'], function(engine, desig
     it("should trigger the pagejumps action with target path", function() {
       spyOn(templateEngine, 'scrollToPage');
       spyOn(templateEngine, 'getPageIdByPath').and.returnValue('id_1');
-      spyOn(design.basicdesign, 'defaultButtonUpAnimationInheritAction');
 
       var creator = this.createTestElement("pagejump", {
         'target': 'test',
@@ -102,7 +93,7 @@ define( ['TemplateEngine', '_common', 'widget_pagejump'], function(engine, desig
 
       // canceled
       creator.action('id_0', actor, true);
-      expect(design.basicdesign.defaultButtonUpAnimationInheritAction).toHaveBeenCalledWith('id_0', actor);
+      expect($(actor)).toHaveClass("switchUnpressed");
       expect(templateEngine.scrollToPage).not.toHaveBeenCalled();
 
       creator.action('id_0', actor, false);

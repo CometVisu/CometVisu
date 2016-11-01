@@ -33,6 +33,9 @@ define(['joose'], function() {
       downaction: function(path, actor, isCanceled) {
         if( !actor )
           actor = this.getActor();
+        if (!actor.length) {
+          actor = $(actor);
+        }
         actor.addClass('switchPressed');
         actor.removeClass('switchUnpressed');
       },
@@ -48,7 +51,9 @@ define(['joose'], function() {
       action: function(path, actor, isCanceled) {
         if( !actor )
           actor = this.getActor();
-
+        if (!actor.length) {
+          actor = $(actor);
+        }
         actor.addClass('switchUnpressed');
         actor.removeClass('switchPpressed');
       }

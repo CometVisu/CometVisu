@@ -32,7 +32,8 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/HasChildren', 'lib/cv/ro
   Class('cv.structure.pure.PageJump', {
     isa: cv.structure.pure.AbstractWidget,
     does: [
-      cv.role.HasChildren
+      cv.role.HasChildren,
+      cv.role.HasAnimatedButton
     ],
 
     has: {
@@ -142,6 +143,8 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/HasChildren', 'lib/cv/ro
       getActionValue: function () {
         return null;
       },
+
+      downaction: function() {},
 
       action: function( path, actor, isCanceled ) {
         if( isCanceled ) return;
