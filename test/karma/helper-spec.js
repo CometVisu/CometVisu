@@ -196,6 +196,7 @@ define(['jquery','TemplateEngine', '_common', 'lib/cv/MessageBroker'], function(
     templateEngine.widgetData = {};
     templateEngine.postDOMSetupFns = [];
     cv.structure.WidgetFactory.clear();
+    cv.utils.Timer.stopAll();
     if (this.container) {
       document.body.removeChild(this.container);
       this.container = null;

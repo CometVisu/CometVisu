@@ -47,10 +47,9 @@ define(['joose', 'lib/cv/utils/Timer'], function() {
 
       setupRefreshAction: function() {
         if (this.getRefresh() && this.getRefresh() > 0) {
-          var
-            element = this.getDomElement(),
-            target = $('img', element)[0] || $('iframe', element)[0],
-            src = target.src;
+          var element = this.getDomElement();
+          var target = $('img', element)[0] || $('iframe', element)[0];
+          var src = target.src;
           if (src.indexOf('?') < 0)
             src += '?';
 

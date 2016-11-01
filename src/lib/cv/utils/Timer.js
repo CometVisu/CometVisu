@@ -42,6 +42,13 @@ define(['joose'], function() {
             clearTimeout(this.intervals[interval].id);
             delete this.intervals[interval];
           }
+        },
+
+        stopAll: function() {
+          Joose.A.each(this.intervals, function(entry) {
+              clearTimeout(entry.id);
+          }, this);
+          this.intervals = {};
         }
       }
     }

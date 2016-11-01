@@ -3,22 +3,24 @@
  *
  */
 
-define( ['TemplateEngine', '_common', 'widget_multitrigger'], function(engine, design) {
+define( ['widget_multitrigger'], function() {
 
   describe("testing a multitrigger widget", function() {
-    var templateEngine = engine.getInstance();
 
     it("should test the multitrigger creator", function() {
 
-      var widget = $(this.createTestWidgetString("multitrigger", {}, "<label>Test</label>")[1]);
+      var res = this.createTestWidgetString("multitrigger", {}, "<label>Test</label>");
+      var widget = $(res[1]);
 
       expect(widget).toHaveClass('multitrigger');
       expect(widget.find("div.label").text()).toBe('Test');
 
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
+      expect(res[0].path).toBe("id_0");
+    });
 
-      widget = $(this.createTestWidgetString("multitrigger", {
+    it("should test the multitrigger creator", function() {
+
+      var widget = $(this.createTestWidgetString("multitrigger", {
         'button1label': 'B1',
         'button2label': 'B2',
         'button3label': 'B3',
@@ -31,9 +33,7 @@ define( ['TemplateEngine', '_common', 'widget_multitrigger'], function(engine, d
         'mapping': 'test'
       })[1]);
 
-      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
-        thisFn();
-      });
+      cv.MessageBroker.my.publish("setup.dom.finish");
 
       var values = $(widget.find("div.actor > div.value"));
       expect($(values.get(0)).text()).toBe('B1');

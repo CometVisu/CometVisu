@@ -21,12 +21,14 @@ define( ['TemplateEngine','widget_imagetrigger', 'lib/cv/role/Operate'], functio
       expect(res[0].getPath()).toBe("id_0");
     });
 
-    it("should test the imagetriggers refresh behaviour", function() {
+    xit("should test the imagetriggers refresh behaviour", function() {
       var res = this.createTestElement("imagetrigger", {
         flavour: 'potassium',
         sendValue: 'on',
         refresh: '5',
-        type: 'show'
+        type: 'show',
+        src: 'imgs',
+        suffix: 'jpg'
       });
 
       spyOn(cv.utils.Timer, "start");

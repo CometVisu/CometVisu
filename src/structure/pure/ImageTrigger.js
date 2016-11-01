@@ -124,15 +124,15 @@ define( ['_common',
           style += 'height:' + this.getHeight() + ';';
         }
         if (style.length > 0) {
-          style = 'style="'+style+'"';
+          style = ' style="'+style+'"';
         }
 
         var actor = '<div class="actor">';
         if ( this.getUpdateType() == 'show' ) {
-          actor += '<img src="' + this.getSrc() + '.' + this.getSuffix() + '" ' + style + ' />';
+          actor += '<img src="' + this.getSrc() + '.' + this.getSuffix() + '"' + style.trim() + ' />';
         }
         else {
-          actor += '<img src="" ' + style + ' />';
+          actor += '<img src=""' + style + ' />';
         }
 
         actor += '</div>';
