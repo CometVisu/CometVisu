@@ -78,10 +78,20 @@ define( [
       },
 
       methods: {
+
+        getElementType: function(element) {
+          var type = element.nodeName.toLowerCase();
+          if (type == "img") {
+            // workaround for unittests (<image> gets replaced by <img>
+            type = "image";
+          }
+          return type;
+        },
+
         parse: function (element, path, flavour, pageType) {
           return templateEngine.widgetDataInsert( path, {
             'path': path,
-            '$$type': element.nodeName,
+            '$$type': this.getElementType(element),
             'pageType': pageType
           });
         }
@@ -319,7 +329,7 @@ define( [
           var $e = $(element);
 
           // and fill in widget specific data
-          var data = this.createDefaultWidget(element.nodeName, $e, path, flavour, pageType);
+          var data = this.createDefaultWidget(this.getElementType(element), $e, path, flavour, pageType);
           var mappings = this.meta.methods['getAttributeToPropertyMappings'] ? this.getAttributeToPropertyMappings() : {};
           if (mappings) {
             for (var key in mappings) {

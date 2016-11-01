@@ -58,11 +58,6 @@ define( ['_common', 'lib/cv/role/Refresh'], function() {
               return value === "true";
             }}
           };
-        },
-
-        // overridden because in the unittests the XML tag image gets replaces with img
-        getDefaultClasses: function(type) {
-          return 'widget clearfix image';
         }
       }
     },
