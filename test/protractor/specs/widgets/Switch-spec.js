@@ -36,6 +36,12 @@ describe('switch widget testing', function () {
     var widget = element.all(by.css(".activePage .switch")).first();
     var actor = element.all(by.css(".activePage .switch .actor")).first();
 
+    widget.element(by.xpath("parent::div")).getAttribute("id").then(function(id) {
+      cvMockup.getWidgetData(id).then(function (data) {
+        console.log(data)
+      });
+    });
+
     actor.click();
     expect(actor.element(by.css(".value")).getText()).toEqual('0');
     cvMockup.getLastWrite().then(function(lastWrite) {

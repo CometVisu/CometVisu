@@ -104,7 +104,7 @@ define([], function() {
     this.onPointerDown = function (event) {
       // search if a widget was hit
       var widgetActor = this.getWidgetActor(event.target),
-        bindWidget = widgetActor.widget ? templateEngine.widgetDataGet(widgetActor.widget.id).bind_click_to_widget : false;
+        bindWidget = widgetActor.widget ? widgetActor.widget.getBindClickToWidget() : false;
 
       var touchobj;
 
@@ -161,7 +161,7 @@ define([], function() {
           widgetActor = this.getWidgetActor(event.target),
           widget = this._mouseEvent.widget,
           actionFn = this._mouseEvent.widgetCreator.action,
-          bindWidget = templateEngine.widgetDataGet(widget.id).bind_click_to_widget,
+          bindWidget = widget.getBindClickToWidget(),
           inCurrent = widgetActor.widget === widget && (bindWidget || widgetActor.actor === this._mouseEvent.actor);
 
         if (
@@ -189,7 +189,7 @@ define([], function() {
           actionFn = null,
           widgetActor = this.getWidgetActor(event.target),
           widget = this._mouseEvent.widget,
-          bindWidget = templateEngine.widgetDataGet(widget.id).bind_click_to_widget,
+          bindWidget = widget.getBindClickToWidget(),
           inCurrent = !this._mouseEvent.moveRestrict || (widgetActor.widget === widget && (bindWidget || widgetActor.actor === this._mouseEvent.actor));
 
         if (inCurrent && this._mouseEvent.moveFn) {

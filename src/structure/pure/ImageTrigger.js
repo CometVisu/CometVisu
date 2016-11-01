@@ -71,7 +71,7 @@
 define( ['_common',
   'lib/cv/role/Operate',
   'lib/cv/role/Refresh',
-  'lib/cv/role/UpdateDOM',
+  'lib/cv/role/Update',
   'lib/cv/MessageBroker',
   'lib/cv/role/HasAddress'], function() {
   "use strict";
@@ -83,7 +83,7 @@ define( ['_common',
       cv.role.HasAddress,
       cv.role.HasAnimatedButton,
       cv.role.Refresh,
-      cv.role.UpdateDOM
+      cv.role.Update
     ],
 
     has: {
@@ -106,14 +106,6 @@ define( ['_common',
             'sendValue': { default: ''}
           };
         }
-      }
-    },
-
-    after : {
-      initialize : function () {
-        cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
-          this.updateDOM(this.getSendValue());
-        }, this);
       }
     },
 

@@ -124,28 +124,32 @@ describe('cometvisu demo config test:', function () {
         cvDemo.getLastWrite().then(function (lastWrite) {
           expect(lastWrite.value).toEqual(5.5);
         });
-
-        var borderWith = 1; // depending from design, but as the demo is in pure design, we use a hardcoded value here
+        var borderWidth = 1; // depending from design, but as the demo is in pure design, we use a hardcoded value here
 
         widget.getLocation().then(function(rangePosition) {
-          // move the slider by updates from backend
-          knob.getLocation().then(function (pos) {
-            // slider min
-            cvDemo.sendUpdate(address, data.min);
-            // give the slider some time to reach its position
-            browser.sleep(1000);
-            knob.getLocation().then(function (newPos) {
-              expect(newPos.x).toEqual(rangePosition.x+borderWith);
-              expect(newPos.y).toEqual(pos.y);
-            });
+          widget.getSize().then(function(rangeSize) {
+            // move the slider by updates from backend
+            knob.getLocation().then(function (pos) {
+              knob.getSize().then(function(knobSize) {
+                // slider min
+                cvDemo.sendUpdate(address, data.min);
+                // give the slider some time to reach its position
+                browser.sleep(1000);
+                knob.getLocation().then(function (newPos) {
+                  expect(newPos.x).toEqual(rangePosition.x + borderWidth);
+                  expect(newPos.y).toEqual(pos.y);
+                });
 
-            // slider max
-            cvDemo.sendUpdate(address, data.max);
-            // give the slider some time to reach its position
-            browser.sleep(1000);
-            knob.getLocation().then(function (newPos) {
-              expect(newPos.x).toEqual(rangePosition.x + rangePosition.width - pos.width - borderWith);
-              expect(newPos.y).toEqual(pos.y);
+                // slider max
+                cvDemo.sendUpdate(address, data.max);
+                // give the slider some time to reach its position
+                browser.sleep(1000);
+                knob.getLocation().then(function (newPos) {
+                  // check with some tolerance
+                  expect(Math.abs(newPos.x-(rangePosition.x + rangeSize.width - knobSize.width - borderWidth))).toBeLessThan(5);
+                  expect(newPos.y).toEqual(pos.y);
+                });
+              });
             });
           });
         });

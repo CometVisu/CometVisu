@@ -26,30 +26,38 @@
  * @author Christian Mayer
  * @since 2014
  */
-define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/HasAnimatedButton'], function() {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/HasAnimatedButton', 'lib/cv/role/BasicUpdate'], function() {
   "use strict";
 
   Class('cv.structure.pure.Refresh', {
     isa: cv.structure.pure.AbstractWidget,
-    does: [cv.role.Operate, cv.role.HasAnimatedButton],
+    does: [cv.role.Operate, cv.role.HasAnimatedButton, cv.role.BasicUpdate],
 
     has: {
-      value: { is: 'r' }
+      sendValue: { is: 'r' }
     },
 
     my : {
       methods: {
         getAttributeToPropertyMappings: function () {
           return {
-            'value':   {}
+            'value': {target: 'sendValue'}
           };
         }
       }
     },
 
+    after : {
+      initialize : function (props) {
+        cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
+          this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement(), true, this.getPath());
+        }, this);
+      }
+    },
+
     augment: {
       getDomString: function () {
-        return '<div class="actor switchUnpressed"><div class="value">'+this.getValue()+'</div></div>';
+        return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
       }
     },
 

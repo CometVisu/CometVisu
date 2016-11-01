@@ -99,7 +99,7 @@ define( [
       flavour           : { is: 'r', init: '' },
       layout            : { is: 'r' },
       label             : { is: 'r', init: '' },
-      bind_click_to_widget : { is: 'r', init: false },
+      bindClickToWidget : { is: 'r', init: false },
       mapping           : { is: 'r' },
       format            : { is: 'r' },
       formatValueCache  : { is: 'rw' },
@@ -350,7 +350,7 @@ define( [
               if (mappings.hasOwnProperty(key)) {
                 var map = mappings[key];
                 var value = $e.attr(key);
-                if (map.default && !value) {
+                if (map.default !== undefined && value === undefined) {
                   value = map.default;
                 }
                 if (map.transform) {
@@ -408,7 +408,7 @@ define( [
           if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
 
           return templateEngine.widgetDataInsert( path, {
-            'bind_click_to_widget': bindClickToWidget,
+            'bindClickToWidget': bindClickToWidget,
             'mapping' : $element.attr('mapping'),
             'format'  : $element.attr('format'),
             'align'   : $element.attr('align'),

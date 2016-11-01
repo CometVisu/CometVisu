@@ -11,7 +11,7 @@ exports.config = {
   directConnect: true,
 
   suites: {
-    common: ['specs/*spec.js'],
+    common: ['specs/d*spec.js'],
     widgets: ['specs/widgets/*spec.js']
   },
 
@@ -20,7 +20,7 @@ exports.config = {
     browser.ignoreSynchronization = true;
 
     // set implicit wait times in ms...
-    browser.manage().timeouts().implicitlyWait(1000);
+    browser.manage().timeouts().implicitlyWait(2000);
     // set browser size...
     browser.manage().window().setSize(1024, 800);
   }
