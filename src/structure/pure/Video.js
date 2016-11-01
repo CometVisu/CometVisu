@@ -54,19 +54,19 @@ define( ['_common', 'lib/cv/role/Refresh'], function() {
       }
     },
 
-    methods: {
+    augment: {
       getDomString: function () {
         // create the actor
         var style = '';
         if (this.getWidth()) {
-          style += 'width:'  + this.getWidth() + ';';
+          style += 'width:' + this.getWidth() + ';';
         }
         if (this.getHeight()) {
           style += 'height:' + this.getHeight() + ';';
         }
-        if( style != '' ) style = 'style="' + style + '"';
+        if (style != '') style = 'style="' + style + '"';
         var autoplay = (this.getAutoplay() === true) ? ' autoplay="autoplay"' : '';
-        return '<div class="actor"><video src="' +this.getSrc() + '" ' + style + autoplay + '  controls="controls" /></div>';
+        return '<div class="actor"><video src="' + this.getSrc() + '" ' + style + autoplay + '  controls="controls" /></div>';
       }
     }
   });
