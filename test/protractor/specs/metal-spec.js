@@ -6,6 +6,13 @@
 
 var cvMockup = require('../pages/Mock');
 
+function skipIfChrome() {
+  if (browser.isChrome()) {
+    console.log("PENDING");
+    pending("skipped in chrome");
+  }
+}
+
 describe('cometvisu metal design config test:', function () {
   'use strict';
 
@@ -41,7 +48,6 @@ describe('cometvisu metal design config test:', function () {
 
   // see: https://github.com/CometVisu/CometVisu/issues/287
   it('should set slider flavours correct in a flavoured group', function() {
-
     // test for lithium flavour #ff0000
     var widget = element.all(by.css(".activePage .slide .actor .ui-slider-range")).get(0);
     expect(widget.getCssValue('background-color')).toBe('rgba(255, 0, 0, 1)');
@@ -55,109 +61,110 @@ describe('cometvisu metal design config test:', function () {
     expect(widget.getCssValue('background-color')).toBe('rgba(0, 221, 255, 1)');
   });
 
-  // widgetinfo in pagejumps
-  mockupConfig.push(configParts.start +
-    '<meta/>'+
-    '<page name="Start"><navbar position="top">' +
-    ' <pagejump target="Start">'+
-    '   <layout colspan="0" />'+
-    '   <label>Wohnen</label>'+
-    '   <widgetinfo>'+
-    '     <info format="%d">'+
-    '       <layout colspan="0" />'+
-    '       <address transform="DPT:9" mode="read" variant="">1/0/1</address>'+
-    '     </info>'+
-    '   </widgetinfo>'+
-    ' </pagejump></navbar>'+
-    '</page>'+configParts.end);
+  if (!browser.isChrome()) {
+    // widgetinfo in pagejumps
+    mockupConfig.push(configParts.start +
+      '<meta/>' +
+      '<page name="Start"><navbar position="top">' +
+      ' <pagejump target="Start">' +
+      '   <layout colspan="0" />' +
+      '   <label>Wohnen</label>' +
+      '   <widgetinfo>' +
+      '     <info format="%d">' +
+      '       <layout colspan="0" />' +
+      '       <address transform="DPT:9" mode="read" variant="">1/0/1</address>' +
+      '     </info>' +
+      '   </widgetinfo>' +
+      ' </pagejump></navbar>' +
+      '</page>' + configParts.end);
 
-  it('should show the info value correctly styled in the pagejump', function() {
-    // border radius 20px leads to computed radius of 11px in firefox (???)
-    var widget = element(by.css(".navbar .pagejump .widgetinfo .info"));
-    expect(widget.getCssValue('border-top-left-radius')).toBe('11px');
-    expect(widget.getCssValue('border-top-right-radius')).toBe('11px');
-    expect(widget.getCssValue('border-bottom-left-radius')).toBe('11px');
-    expect(widget.getCssValue('border-bottom-right-radius')).toBe('11px');
-    expect(widget.getCssValue('background-color')).toBe('rgba(255, 255, 255, 1)');
-    expect(widget.getCssValue('color')).toBe('rgba(0, 0, 0, 1)');
+    it('should show the info value correctly styled in the pagejump', function () {
+      // border radius 20px leads to computed radius of 11px in firefox (???)
+      var widget = element(by.css(".navbar .pagejump .widgetinfo .info"));
+      expect(widget.getCssValue('border-top-left-radius')).toBe('11px');
+      expect(widget.getCssValue('border-top-right-radius')).toBe('11px');
+      expect(widget.getCssValue('border-bottom-left-radius')).toBe('11px');
+      expect(widget.getCssValue('border-bottom-right-radius')).toBe('11px');
+      expect(widget.getCssValue('background-color')).toBe('rgba(255, 255, 255, 1)');
+      expect(widget.getCssValue('color')).toBe('rgba(0, 0, 0, 1)');
 
-    // send value to widget
-    cvMockup.sendUpdate("1/0/1", 10.2);
-    expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
-  });
-
-  // infoaction widget
-  mockupConfig.push(configParts.start +
-    '<meta/>'+
-    '<page name="Start">'+
-    ' <infoaction>'+
-    '   <layout colspan="3" />'+
-    '   <label>Label</label>'+
-    '   <widgetinfo>'+
-    '     <info format="%d">'+
-    '       <address transform="DPT:9" mode="read" variant="">1/0/1</address>'+
-    '     </info>'+
-    '   </widgetinfo>'+
-    '   <widgetaction>'+
-    '     <switch>'+
-    '       <address transform="DPT:1.001">1/0/0</address>'+
-    '     </switch>'+
-    '   </widgetaction>'+
-    ' </infoaction>'+
-    '</page>'+configParts.end);
-
-  it('should show the infoaction widget', function() {
-    // border radius 20px leads to computed radius of 11px in firefox (???)
-    var widget = element(by.css(".infoaction .widgetinfo .info"));
-    expect(widget.getCssValue('border-top-left-radius')).toBe('0px');
-    expect(widget.getCssValue('border-top-right-radius')).toBe('0px');
-    expect(widget.getCssValue('border-bottom-left-radius')).toBe('30px');
-    expect(widget.getCssValue('border-bottom-right-radius')).toBe('0px');
-    expect(widget.getCssValue('background-color')).toBe('rgba(102, 102, 102, 1)');
-    expect(widget.getCssValue('color')).toBe('rgba(153, 153, 153, 1)');
-
-    // send value to widget
-    cvMockup.sendUpdate("1/0/1", 10.2);
-    expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
-
-    // click the action part
-    var action = element(by.css(".infoaction .widgetaction .switch .actor"));
-    action.click();
-    expect(action.element(by.css(".value")).getText()).toEqual('0');
-    cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual(0);
+      // send value to widget
+      cvMockup.sendUpdate("1/0/1", 10.2);
+      expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
     });
-  });
 
-  // see: https://knx-user-forum.de/forum/supportforen/cometvisu/824414-vorstellung-infoaction-plugin?p=922987#post922987
-  mockupConfig.push(configParts.start +
-    '<meta/>' +
-    '<page>' +
-    ' <pagejump target="Netzwerk">'+
-    '   <label><icon name="it_network"/></label>'+
-    '   <widgetinfo>'+
-    '     <info>'+
-    '       <address transform="DPT:5.010">1/0/1</address>'+
-    '     </info>'+
-    '   </widgetinfo>'+
-    ' </pagejump>' +
-    '</page>'+configParts.end);
+    // infoaction widget
+    mockupConfig.push(configParts.start +
+      '<meta/>' +
+      '<page name="Start">' +
+      ' <infoaction>' +
+      '   <layout colspan="3" />' +
+      '   <label>Label</label>' +
+      '   <widgetinfo>' +
+      '     <info format="%d">' +
+      '       <address transform="DPT:9" mode="read" variant="">1/0/1</address>' +
+      '     </info>' +
+      '   </widgetinfo>' +
+      '   <widgetaction>' +
+      '     <switch>' +
+      '       <address transform="DPT:1.001">1/0/0</address>' +
+      '     </switch>' +
+      '   </widgetaction>' +
+      ' </infoaction>' +
+      '</page>' + configParts.end);
 
-  it('should show a pagejump with widgetinfo inside a page, styled like the infoaction->widgetinfo part', function() {
-    // border radius 20px leads to computed radius of 11px in firefox (???)
-    var widget = element(by.css(".pagejump .widgetinfo .info"));
-    expect(widget.getCssValue('border-top-left-radius')).toBe('0px');
-    expect(widget.getCssValue('border-top-right-radius')).toBe('0px');
-    expect(widget.getCssValue('border-bottom-left-radius')).toBe('30px');
-    expect(widget.getCssValue('border-bottom-right-radius')).toBe('0px');
-    expect(widget.getCssValue('background-color')).toBe('rgba(102, 102, 102, 1)');
-    expect(widget.getCssValue('color')).toBe('rgba(153, 153, 153, 1)');
+    it('should show the infoaction widget', function () {
+      // border radius 20px leads to computed radius of 11px in firefox (???)
+      var widget = element(by.css(".infoaction .widgetinfo .info"));
+      expect(widget.getCssValue('border-top-left-radius')).toBe('0px');
+      expect(widget.getCssValue('border-top-right-radius')).toBe('0px');
+      expect(widget.getCssValue('border-bottom-left-radius')).toBe('30px');
+      expect(widget.getCssValue('border-bottom-right-radius')).toBe('0px');
+      expect(widget.getCssValue('background-color')).toBe('rgba(102, 102, 102, 1)');
+      expect(widget.getCssValue('color')).toBe('rgba(153, 153, 153, 1)');
 
-    // send value to widget
-    cvMockup.sendUpdate("1/0/1", 10.2);
-    expect(widget.element(by.css(".actor .value")).getText()).toBe("10.2");
+      // send value to widget
+      cvMockup.sendUpdate("1/0/1", 10.2);
+      expect(widget.element(by.css(".actor .value")).getText()).toBe("10");
 
-  });
+      // click the action part
+      var action = element(by.css(".infoaction .widgetaction .switch .actor"));
+      action.click();
+      expect(action.element(by.css(".value")).getText()).toEqual('0');
+      cvMockup.getLastWrite().then(function (lastWrite) {
+        expect(lastWrite.value).toEqual(0);
+      });
+    });
 
+    // see: https://knx-user-forum.de/forum/supportforen/cometvisu/824414-vorstellung-infoaction-plugin?p=922987#post922987
+    mockupConfig.push(configParts.start +
+      '<meta/>' +
+      '<page>' +
+      ' <pagejump target="Netzwerk">' +
+      '   <label><icon name="it_network"/></label>' +
+      '   <widgetinfo>' +
+      '     <info>' +
+      '       <address transform="DPT:5.010">1/0/1</address>' +
+      '     </info>' +
+      '   </widgetinfo>' +
+      ' </pagejump>' +
+      '</page>' + configParts.end);
+
+    it('should show a pagejump with widgetinfo inside a page, styled like the infoaction->widgetinfo part', function () {
+      // border radius 20px leads to computed radius of 11px in firefox (???)
+      var widget = element(by.css(".pagejump .widgetinfo .info"));
+      expect(widget.getCssValue('border-top-left-radius')).toBe('0px');
+      expect(widget.getCssValue('border-top-right-radius')).toBe('0px');
+      expect(widget.getCssValue('border-bottom-left-radius')).toBe('30px');
+      expect(widget.getCssValue('border-bottom-right-radius')).toBe('0px');
+      expect(widget.getCssValue('background-color')).toBe('rgba(102, 102, 102, 1)');
+      expect(widget.getCssValue('color')).toBe('rgba(153, 153, 153, 1)');
+
+      // send value to widget
+      cvMockup.sendUpdate("1/0/1", 10.2);
+      expect(widget.element(by.css(".actor .value")).getText()).toBe("10.2");
+
+    });
+  }
 });
 

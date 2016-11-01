@@ -16,6 +16,7 @@ exports.config = {
   },
 
   onPrepare: function(){
+    require('./capabilities.js');
     browser.ignoreSynchronization = true;
 
     // set implicit wait times in ms...
