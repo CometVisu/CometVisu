@@ -66,7 +66,7 @@ define( ['_common', 'lib/cv/role/Refresh'], function() {
         }
         if( style != '' ) style = 'style="' + style + '"';
         var autoplay = (this.getAutoplay() === true) ? ' autoplay="autoplay"' : '';
-        return '<div class="actor"><video src="' +$e.attr('src') + '" ' + style + autoplay + '  controls="controls" /></div>';
+        return '<div class="actor"><video src="' +this.getSrc() + '" ' + style + autoplay + '  controls="controls" /></div>';
       }
     }
   });
