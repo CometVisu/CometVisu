@@ -58,25 +58,30 @@ define( ['_common', 'lib/cv/role/Refresh'], function() {
               return value === "true";
             }}
           };
+        },
+
+        // overridden because in the unittests the XML tag image gets replaces with img
+        getDefaultClasses: function(type) {
+          return 'widget clearfix image';
         }
       }
     },
 
-    methods: {
-      getDomString: function () {
-        // create the actor
-        var imgStyle = '';
-        if (this.getWidth()) {
-          imgStyle += 'width:'  + this.getWidth() + ';';
+    augment: {
+        getDomString: function () {
+          // create the actor
+          var imgStyle = '';
+          if (this.getWidth()) {
+            imgStyle += 'width:' + this.getWidth() + ';';
+          }
+          if (this.getWidthFit() === true) {
+            imgStyle += 'max-width:100%;';
+          }
+          if (this.getHeight()) {
+            imgStyle += 'height:' + this.getHeight() + ';';
+          }
+          return '<div class="actor"><img src="' + this.getSrc() + '" style="' + imgStyle + '" /></div>';
         }
-        if( this.getWidthFit() === true ) {
-          imgStyle += 'max-width:100%;';
-        }
-        if (this.getHeight()) {
-          imgStyle += 'height:' + this.getHeight() + ';';
-        }
-        return '<div class="actor"><img src="' + this.getSrc() + '" style="' + imgStyle + '" /></div>';
-      }
     }
   });
   // register the parser

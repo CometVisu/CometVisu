@@ -5,47 +5,43 @@
  * @since 2016
  */
 
-define( ['jquery','TemplateEngine', '_common', 'widget_image'], function($, engine, design) {
+define( ['widget_image'], function() {
 
   describe("testing a image widget", function() {
-    var templateEngine = engine.getInstance();
 
     it("should test the image creator", function() {
-      spyOn(templateEngine, "setupRefreshAction");
 
-      var creator = design.basicdesign.getCreator("image");
+      var res = this.createTestWidgetString("image", {
+        flavour: 'potassium'
+      }, '<label>Test</label>');
 
-      var xml = $.parseXML("<root/>");
-      var image = xml.createElement('image');
-      var label = xml.createElement('label');
-      label.appendChild(xml.createTextNode("Test"));
-      image.appendChild(label);
-      xml.documentElement.appendChild(image);
-      var widget = $(creator.create(xml.firstChild.firstChild, 'id_0', null, 'image'));
+      var widget = $(res[1]);
 
       expect(widget).toHaveClass('image');
-      expect(widget.find("div.label").text()).toBe('Test');
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
-
+      // expect(widget.find("div.label").text()).toBe('Test');
+      expect(res[0].getPath()).toBe("id_0");
       expect(widget.find("img").get(0).getAttribute("style")).toBe('');
-
-      image.setAttribute("width", "50%");
-      image.setAttribute("height", "51%");
-      image.setAttribute("refresh", "5");
-      widget = $(creator.create(xml.firstChild.firstChild, 'id_0', null, 'image'));
-
-      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
-        thisFn();
+    });
+    it("should test the image creator and refreshing", function() {
+      spyOn(cv.utils.Timer, "start");
+      var res = this.createTestElement("image", {
+        width: '50%',
+        height: '51%',
+        refresh: 5
       });
-      expect(templateEngine.setupRefreshAction).toHaveBeenCalled();
+      var widget = res.getDomElement();
+      cv.MessageBroker.my.publish("setup.dom.finished");
+
+      expect(cv.utils.Timer.start).toHaveBeenCalled();
       expect(widget.find("img").get(0).getAttribute("style")).toBe('width:50%;height:51%;');
-      
-      image.removeAttribute("width");
-      image.removeAttribute("height");
-      image.removeAttribute("refresh");
-      image.setAttribute("widthfit", "true");
-      widget = $(creator.create(xml.firstChild.firstChild, 'id_0', null, 'image'));
+    });
+
+    it("should test the image creator width size", function() {
+
+      var res = this.createTestElement("image", {
+        widthfit: 'true'
+      });
+      var widget = res.getDomElement();
       expect(widget.find("img").get(0).getAttribute("style")).toBe('max-width:100%;');
     });
   });

@@ -510,8 +510,7 @@ define( [
         {
           if( !label ) return '';
 
-          if( !labelClass )
-            var ret_val = '<div class="' + (undefined===labelClass ? 'label' : labelClass) + '"'
+          var ret_val = '<div class="' + (!labelClass ? 'label' : labelClass) + '"'
               + ( style ? (' style="' + style + '"') : '' ) + '>';
 
           $( label ).contents().each( function(){

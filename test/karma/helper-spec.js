@@ -19,7 +19,6 @@ define(['jquery','TemplateEngine', '_common', 'lib/cv/MessageBroker'], function(
   var createTestWidgetString = function(name, attributes, content) {
 
     var creator = cv.xml.Parser.getHandler(name);
-    var xml = document.createElement('template');
     if (!content) {
       content="";
     }
@@ -28,10 +27,8 @@ define(['jquery','TemplateEngine', '_common', 'lib/cv/MessageBroker'], function(
       elem += " "+key+"=\""+attributes[key]+"\"";
     }
     elem += ">"+content+"</"+name+">";
-    xml.innerHTML = elem;
-    xml = xml.firstChild;
 
-    var data = creator.parse(xml, 'id_0', null, name);
+    var data = creator.parse($(elem)[0], 'id_0', null, "text");
     var widgetInstance = cv.structure.WidgetFactory.createInstance(name, data);
 
     return [widgetInstance, widgetInstance.getDomString()];

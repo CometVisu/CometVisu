@@ -27,7 +27,7 @@ define( ['TemplateEngine','widget_imagetrigger', 'lib/cv/role/Operate'], functio
         sendValue: 'on',
         refresh: '5',
         type: 'show'
-      }, '<label>Test</label>');
+      });
 
       spyOn(cv.utils.Timer, "start");
       cv.MessageBroker.my.publish("setup.dom.finished");
@@ -40,7 +40,7 @@ define( ['TemplateEngine','widget_imagetrigger', 'lib/cv/role/Operate'], functio
         src: 'imgs',
         suffix: 'jpg',
         type: 'show'
-      }, '<label>Test</label>');
+      });
 
       res.update('12/7/37', 1);
       var actor = $(this.container.children[0].querySelectorAll('.actor img')[0]);
@@ -56,7 +56,7 @@ define( ['TemplateEngine','widget_imagetrigger', 'lib/cv/role/Operate'], functio
         src: 'imgs',
         suffix: 'jpg',
         type: 'select'
-      }, '<label>Test</label>');
+      });
 
       res.update('12/7/37', 1);
       var actor = $(this.container.children[0].querySelectorAll('.actor img')[0]);
@@ -76,7 +76,7 @@ define( ['TemplateEngine','widget_imagetrigger', 'lib/cv/role/Operate'], functio
         suffix: 'jpg',
         type: 'show',
         sendValue: "1"
-      }, '<label>Test</label>');
+      });
 
       var actor = this.container.children[0].querySelectorAll('.actor')[0];
       expect(actor).not.toBe(null);
