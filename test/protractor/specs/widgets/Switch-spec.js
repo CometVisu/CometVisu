@@ -33,14 +33,8 @@ describe('switch widget testing', function () {
   it('should trigger a simple switch', function() {
 
     // test for lithium flavour #ff0000
-    var widget = element.all(by.css(".activePage .switch")).first();
-    var actor = element.all(by.css(".activePage .switch .actor")).first();
-
-    widget.element(by.xpath("parent::div")).getAttribute("id").then(function(id) {
-      cvMockup.getWidgetData(id).then(function (data) {
-        console.log(data)
-      });
-    });
+    var widget = element.all(by.css(".activePage .widget.switch")).first();
+    var actor = widget.all(by.css(".actor")).first();
 
     actor.click();
     expect(actor.element(by.css(".value")).getText()).toEqual('0');
@@ -58,7 +52,8 @@ describe('switch widget testing', function () {
     expect(actor.element(by.css(".value")).getText()).toEqual('0');
 
     // test that clicking on widgets does nothing
-    widget.click();
+    // we have to move the mouse somewhere where the actor is not, before clicking it
+    browser.actions().mouseMove(widget, {x: 2, y: 10}).click().perform();
     expect(actor.element(by.css(".value")).getText()).toEqual('0');
   });
 
@@ -70,19 +65,22 @@ describe('switch widget testing', function () {
     '<address transform="DPT:1.001" mode="readwrite">12/7/37</address>'+
     '</switch>'+
     '</page>'+configParts.end);
-  
+
   it('should trigger a switch with bind_click_to_widget = true', function() {
 
     // test for lithium flavour #ff0000
     var widget = element.all(by.css(".activePage .switch")).first();
     var actor = element.all(by.css(".activePage .switch .actor")).first();
 
-    widget.click();
+    // we have to move the mouse somewhere where the actor is not, before clicking it
+    browser.actions().mouseMove(widget, {x: 2, y: 10}).click().perform();
     expect(actor.element(by.css(".value")).getText()).toEqual('0');
     cvMockup.getLastWrite().then(function(lastWrite) {
       expect(lastWrite.value).toEqual(0);
     });
-    widget.click();
+
+    // we have to move the mouse somewhere where the actor is not, before clicking it
+    browser.actions().mouseMove(widget, {x: 2, y: 10}).click().perform();
     expect(actor.element(by.css(".value")).getText()).toEqual('1');
     cvMockup.getLastWrite().then(function(lastWrite) {
       expect(lastWrite.value).toEqual(1);
@@ -92,7 +90,7 @@ describe('switch widget testing', function () {
     cvMockup.sendUpdate("12/7/37", 0);
     expect(actor.element(by.css(".value")).getText()).toEqual('0');
 
-    // test that clicking on actor also works nothing
+    // test that clicking on actor also works
     actor.click();
     expect(actor.element(by.css(".value")).getText()).toEqual('1');
   });

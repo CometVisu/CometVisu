@@ -6,15 +6,12 @@
 
 var cvMockup = require('../pages/Mock');
 
-function skipIfChrome() {
-  if (browser.isChrome()) {
-    console.log("PENDING");
-    pending("skipped in chrome");
-  }
-}
-
 describe('cometvisu metal design config test:', function () {
   'use strict';
+
+  var isChrome = browser.getCapabilities().then(function(s) {
+    return /chrome/.test(s.get('browserName'));
+  });
 
   var mockupConfig = [];
   var configParts = {
@@ -61,7 +58,7 @@ describe('cometvisu metal design config test:', function () {
     expect(widget.getCssValue('background-color')).toBe('rgba(0, 221, 255, 1)');
   });
 
-  if (!browser.isChrome()) {
+  if (!isChrome) {
     // widgetinfo in pagejumps
     mockupConfig.push(configParts.start +
       '<meta/>' +
