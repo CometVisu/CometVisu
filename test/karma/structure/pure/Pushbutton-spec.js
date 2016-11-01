@@ -10,18 +10,12 @@ define( ['TemplateEngine', '_common', 'widget_pushbutton'], function(engine, des
 
     it("should test the pushbutton creator", function() {
 
-      var creator = design.basicdesign.getCreator("pushbutton");
-
-      var xml = document.createElement('template');
-      xml.innerHTML = '<pushbutton><label>Test</label></pushbutton>';
-      xml = xml.firstChild;
-      var widget = $(creator.create(xml, 'id_0', null, 'pushbutton'));
+      var res = this.createTestWidgetString("pushbutton", {}, '<label>Test</label>');
+      var widget = $(res[1]);
+      expect(res[0].getPath()).toBe("id_0");
     
       expect(widget).toHaveClass('pushbutton');
       expect(widget.find("div.label").text()).toBe('Test');
-
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
     });
   });
 });

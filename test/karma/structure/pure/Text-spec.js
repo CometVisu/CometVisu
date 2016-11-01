@@ -5,14 +5,13 @@
  * @since 2016
  */
 
-define( ['widget_text'], function(engine) {
+define( ['widget_text'], function() {
 
   describe("testing a text widget", function() {
-    var templateEngine = engine.getInstance();
 
     it("should test the text creator", function() {
 
-      var res = this.createTestWidgetString("test", {}, '<label>Test</label>');
+      var res = this.createTestWidgetString("text", {}, '<label>Test</label>');
       var text = $(res[1]);
       expect(res[0].getPath()).toBe("id_0");
 

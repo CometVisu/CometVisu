@@ -3,10 +3,9 @@
  *
  */
 
-define( ['TemplateEngine', '_common', 'widget_navbar'], function(engine, design) {
+define( [ 'widget_navbar'], function() {
 
   describe("testing a navbar widget", function() {
-    var templateEngine = engine.getInstance();
 
     it("should test the navbar creator", function() {
       spyOn(templateEngine.pagePartsHandler, "navbarSetSize");
@@ -36,11 +35,10 @@ define( ['TemplateEngine', '_common', 'widget_navbar'], function(engine, design)
           attrs.scope = "1";
         }
 
-        $(this.createTestWidgetString("navbar", attrs, "<text>Test</text>")[1]);
+        var res = this.createTestWidgetString("navbar", attrs, "<text>Test</text>");
 
-        templateEngine.postDOMSetupFns.forEach( function( thisFn ){
-          thisFn();
-        });
+        cv.MessageBroker.my.publish("setup.dom.finished");
+
         var navbar = $('.navbar', '#'+barContainerId);
         expect(navbar).not.toBeNull();
         expect($(navbar).attr('id')).toBe('id_'+pos+'_navbar');

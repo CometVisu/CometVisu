@@ -46,7 +46,7 @@ define(['jquery','TemplateEngine', '_common', 'lib/cv/MessageBroker'], function(
       } else {
         return [widgetInstance[0], '']
       }
-    } else {
+    } else if (data) {
       var inst = cv.structure.WidgetFactory.createInstance(data.$$type, data);
       res.push(inst);
       res.push(inst.getDomString());
@@ -196,6 +196,7 @@ define(['jquery','TemplateEngine', '_common', 'lib/cv/MessageBroker'], function(
     templateEngine.widgetData = {};
     templateEngine.postDOMSetupFns = [];
     cv.structure.WidgetFactory.clear();
+    cv.MessageBroker.clear();
     cv.utils.Timer.stopAll();
     if (this.container) {
       document.body.removeChild(this.container);

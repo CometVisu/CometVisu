@@ -10,18 +10,13 @@ define( ['TemplateEngine', '_common', 'widget_infoaction'], function(engine, des
 
     it("should test the infoaction creator", function() {
 
-      var creator = design.basicdesign.getCreator("infoaction");
-
-      var xml = document.createElement('template');
-      xml.innerHTML = '<infoaction><label>Test</label><widgetinfo><info></info></widgetinfo><widgetaction><switch></switch></widgetaction></infoaction>';
-      xml = xml.firstChild;
-      var widget = $(creator.create(xml, 'id_0', null, 'infoaction'));
+      var res = this.createTestWidgetString("infoaction", {}, '<label>Test</label><widgetinfo><info></info></widgetinfo><widgetaction><switch></switch></widgetaction>');
+      var widget = $(res[1]);
+      expect(res[0].getPath()).toBe("id_0");
 
       expect(widget).toHaveClass('infoaction');
       expect(widget.find("div.label").text()).toBe('Test');
 
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
     });
   });
 });

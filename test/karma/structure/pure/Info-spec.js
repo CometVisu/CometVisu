@@ -21,7 +21,7 @@ define( ['TemplateEngine', '_common', 'widget_info'], function(engine, design) {
     it("should update an info widget", function() {
       var creator = this.createTestElement('info');
 
-      creator.update.call(this.container.children[0], '12/7/37', 1);
+      creator.update('12/7/37', 1);
       var actor = $(this.container.children[0].querySelectorAll('.actor')[0]);
       expect(actor).not.toBe(null);
       expect(actor.find('div.value').text()).toBe("1")

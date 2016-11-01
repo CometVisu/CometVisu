@@ -3,14 +3,12 @@
  *
  */
 
-define( ['TemplateEngine', '_common', 'widget_include'], function(engine, design) {
+define( ['widget_include'], function() {
 
   describe("testing a include widget", function() {
-    var templateEngine = engine.getInstance();
 
     it("should test the include creator", function() {
-      spyOn(templateEngine, "create_pages")
-      spyOn($, "get");
+      spyOn(templateEngine, "create_pages");
       spyOn($, "ajax").and.callFake(function() {
         return {'responseXML': $.parseXML('<page name="Start"></page>')};
       });
@@ -18,7 +16,6 @@ define( ['TemplateEngine', '_common', 'widget_include'], function(engine, design
       var child = $.parseXML('<page name="Start"></page>').childNodes[0];
 
       this.createTestWidgetString("include", {'src': 'test'});
-      expect($.get).toHaveBeenCalledWith('test');
       expect(templateEngine.create_pages).toHaveBeenCalledWith(child, 'id_0', null);
     });
   });

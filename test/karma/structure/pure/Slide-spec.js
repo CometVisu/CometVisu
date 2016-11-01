@@ -10,18 +10,13 @@ define( ['TemplateEngine', '_common', 'widget_slide'], function(engine, design) 
 
     it("should test the slide creator", function() {
 
-      var creator = design.basicdesign.getCreator("slide");
-
-      var xml = document.createElement('template');
-      xml.innerHTML = '<slide><label>Test</label></slide>';
-      xml = xml.firstChild;
-      var widget = $(creator.create(xml, 'id_0', null, 'slide'));
+      var res = this.createTestWidgetString("slide", {}, '<label>Test</label>');
+      var widget = $(res[1]);
+      expect(res[0].getPath()).toBe("id_0");
     
       expect(widget).toHaveClass('slide');
       expect(widget.find("div.label").text()).toBe('Test');
 
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
     });
   });
 });

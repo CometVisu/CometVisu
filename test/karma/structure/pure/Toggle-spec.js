@@ -10,18 +10,13 @@ define( ['TemplateEngine', '_common', 'widget_toggle'], function(engine, design)
 
     it("should test the toggle creator", function() {
 
-      var creator = design.basicdesign.getCreator("toggle");
-
-      var xml = document.createElement('template');
-      xml.innerHTML = '<toggle><label>Test</label></toggle>';
-      xml = xml.firstChild;
-      var widget = $(creator.create(xml, 'id_0', null, 'toggle'));
+      var res = this.createTestWidgetString("toggle", {}, '<label>Test</label>');
+      var widget = $(res[1]);
+      expect(res[0].getPath()).toBe("id_0");
     
       expect(widget).toHaveClass('toggle');
       expect(widget.find("div.label").text()).toBe('Test');
 
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.path).toBe("id_0");
     });
   });
 });
