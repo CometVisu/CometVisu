@@ -69,7 +69,7 @@ define( ['widget_multitrigger'], function() {
       }.bind(this);
 
       for (var i=1; i<=4; i++) {
-        creator.update.call(this.container.children[0], '12/7/37', i.toString());
+        creator.update('12/7/37', i.toString());
         check(i-1);
       }
     });

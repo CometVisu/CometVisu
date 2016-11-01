@@ -52,6 +52,10 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/
             'params'  : { default: '' },
             'url': { }
           };
+        },
+        getDefaultClasses: function(type) {
+          // additional trigger class
+          return 'widget clearfix trigger '+type.toLowerCase();
         }
       }
     },
