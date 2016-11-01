@@ -94,7 +94,7 @@ define( [
           var data = templateEngine.widgetDataGet(this.getStoragePath(xml, path));
           if ( data.target )  {
             data.classes += ' clickable';
-            data.bind_click_to_widget = true; // for groups with pagejumps this is mandatory
+            data.bindClickToWidget = true; // for groups with pagejumps this is mandatory
           }
           if (data.noWidget === true) {
             data.classes = data.classes.replace("widget ", "");

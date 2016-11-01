@@ -3,31 +3,33 @@
  *
  */
 
-define( ['TemplateEngine', '_common', 'widget_group'], function(engine, design) {
+define( ['widget_group', 'widget_text'], function() {
 
   describe("testing a group widget", function() {
-    var templateEngine = engine.getInstance();
 
     it("should test the group creator", function() {
 
-      var creator = design.basicdesign.getCreator("group");
+      var res = this.createTestWidgetString("group");
 
-      var xml = document.createElement('template');
-      xml.innerHTML = '<group></group>';
-      xml = xml.firstChild;
-      var widget = $(creator.create(xml, 'id_0', null, 'group'));
-    
+      var widget = $(res[1]);
+
       expect(widget).toHaveClass('group');
       expect(widget).toHaveClass('widget');
+      expect(res[0].getColspan()).toBe(6);
+      expect(res[0].getColspanM()).toBe(6);
+      expect(res[0].getColspanS()).toBe(12);
+    });
 
-      var data = templateEngine.widgetDataGet('id_0');
-      expect(data.colspan).toBe(6);
-      expect(data.colspanM).toBe(6);
-      expect(data.colspanS).toBe(12);
-
-      xml.innerHTML = '<group nowidget="true" class="test" flavour="potassium" align="right" name="Test" target="target"><text/></group>';
-      xml = xml.firstChild;
-      var widget = $(creator.create(xml, 'id_0', null, 'group'));
+    it("should test the group creator with more attributes", function() {
+      var res = this.createTestWidgetString("group", {
+        nowidget: true,
+        class: "test",
+        flavour: "potassium",
+        align: "right",
+        name: "Test",
+        target: "target"
+      }, '<text/>');
+      var widget = $(res[1]);
 
       expect(widget).toHaveClass('group');
       expect(widget).toHaveClass('custom_test');
@@ -41,27 +43,17 @@ define( ['TemplateEngine', '_common', 'widget_group'], function(engine, design) 
     it('should trigger the group action', function() {
 
       spyOn(templateEngine, 'scrollToPage');
-      var creator = design.basicdesign.getCreator("group");
-      
-      var xml = document.createElement('template');
-      xml.innerHTML = '<group target="target"></group>';
-      xml = xml.firstChild;
-      var widgetString = creator.create(xml, 'id_0', null, 'group');
-      var container =document.createElement('div');
-      container.setAttribute("class","widget_container");
-      container.setAttribute("id", 'id_0');
-      container.innerHTML = widgetString;
-      document.body.appendChild(container);
-      var actor = container.children[0].querySelectorAll('.actor')[0];
+      var res = this.createTestElement("group", { target: "target" });
+
+      var actor = this.container.children[0].querySelectorAll('.actor')[0];
       expect(actor).not.toBe(null);
 
       //canceled call
-      creator.action('id_0', actor, true);
+      res.action('id_0', actor, true);
       expect(templateEngine.scrollToPage).not.toHaveBeenCalled();
 
-      creator.action('id_0', actor, false);
+      res.action('id_0', actor, false);
       expect(templateEngine.scrollToPage).toHaveBeenCalledWith("target");
-      document.body.removeChild(container);
     });
   });
 });
