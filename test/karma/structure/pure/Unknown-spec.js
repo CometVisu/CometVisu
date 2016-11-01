@@ -11,11 +11,12 @@ define( ['widget_unknown'], function() {
 
     it("should test the unknown creator", function() {
 
-      var res = this.createTestWidgetString("unknown_widget");
+      var data = cv.xml.Parser.parse($('<unknown_widget/>')[0], 'id_0', null, "text");
 
-      var unknown = $(res[1]);
+      var inst = cv.structure.WidgetFactory.createInstance(data.$$type, data);
+      var unknown = $(inst.getDomString());
 
-      expect(unknown.find("pre").text()).toBe('unknown: UNKNOWN_WIDGET');
+      expect(unknown.find("pre").text()).toBe('unknown: unknown_widget');
     });
   });
 });

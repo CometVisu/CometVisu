@@ -52,7 +52,6 @@ define(['joose'], function() {
         if (this.meta.hasAttribute('address')) {
           Joose.O.eachOwn(this.getAddress(), function (address, id) {
             if (!!(address[1] & 2) && (!filter || filter(address))) {
-              console.log("sending '%s' to '%s'", value, id);
               templateEngine.visu.write(id, templateEngine.transformEncode(address[0], value));
             }
           }, this);

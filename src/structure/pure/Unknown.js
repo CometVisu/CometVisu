@@ -33,18 +33,41 @@ define( ['joose', '_common'], function() {
   Class('cv.structure.pure.Unknown', {
     isa: cv.Object,
 
+    has: {
+      path              : { is: 'r' },
+      $$type            : { is: 'r' },
+      unknownType       : { is: 'r' },
+      $$domElement      : { is: 'rw' },
+      pageType          : { is: 'r' }
+    },
+
     my: {
       methods: {
-        parse: function() {
-
+        parse: function(xml, path, flavour, pageType) {
+          return templateEngine.widgetDataInsert( path, {
+            'path': path,
+            'unknownType': xml.nodeName.toLowerCase(),
+            '$$type': "unknown",
+            'pageType': pageType
+          });
         }
       }
     },
 
     methods: {
+      /**
+       * Returns the DOMElement of this widget
+       */
+      getDomElement: function() {
+        if (!this.$$domElement) {
+          this.$$domElement = $('#'+this.getPath());
+        }
+        return this.$$domElement
+      },
+
       getDomString: function () {
         return '<div class="widget clearfix">'
-          + '<pre>unknown: ' + this.$$type + '</pre>'
+          + '<pre>unknown: ' + this.unknownType + '</pre>'
           + '</div>';
       }
     }
