@@ -58,7 +58,10 @@ define(['joose'], function() {
          * @param path
          */
         getStoragePath: function(xml, path) {
-          switch(xml.nodeName) {
+          if (xml.length === 1) {
+            xml = xml[0]
+          }
+          switch(xml.nodeName.toLowerCase()) {
             case "page":
               return path+"_";
             default:

@@ -27,11 +27,19 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-define( ['_common'], function() {
+define( ['joose', '_common'], function() {
   "use strict";
 
   Class('cv.structure.pure.Unknown', {
-   // isa: cv.structure.pure.AbstractBasicWidget,
+    isa: cv.Object,
+
+    my: {
+      methods: {
+        parse: function() {
+
+        }
+      }
+    },
 
     methods: {
       getDomString: function () {
@@ -41,6 +49,7 @@ define( ['_common'], function() {
       }
     }
   });
+
   // register the parser
   cv.xml.Parser.addHandler("unknown", cv.structure.pure.Unknown);
 }); // end define

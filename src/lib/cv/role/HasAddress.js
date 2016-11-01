@@ -27,7 +27,7 @@ define(['joose'], function() {
     my: {
       after: {
         parse: function( xml, path, flavour, widgetType ) {
-          if (xml.nodeName !== "page") {
+          if (xml.nodeName.toLowerCase() !== "page") {
             var data = templateEngine.widgetDataGet(path);
             data.address = this.makeAddressList($(xml), path);
           }

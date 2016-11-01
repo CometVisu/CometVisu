@@ -32,6 +32,9 @@ define( [
 ], function() {
   "use strict";
 
+  /**
+   * @class cv.structure.pure.Page
+   */
   Class('cv.structure.pure.Page', {
     isa: cv.structure.pure.AbstractWidget,
 
@@ -255,7 +258,6 @@ define( [
        * @param {} data
        */
       update: function( ga, data ) {
-        var element = $(this);
         // widgetData  = templateEngine.widgetDataGetByElement( element );
         // var value = this.defaultValueHandling( ga, data, widgetData );
         // var type = widgetData.address[ ga ][2];
@@ -280,7 +282,7 @@ define( [
         //   default:
         // TODO: data comparision has to be refactored to use DPT and a value
         if (data==1) {
-          templateEngine.scrollToPage(element.context.firstChild.textContent);
+          templateEngine.scrollToPage(this.getName());
           templateEngine.visu.write( ga, templateEngine.transformEncode('DPT:1.001', 0));
         }
         // }
@@ -288,6 +290,9 @@ define( [
     }
   });
 
+  /**
+   * @class cv.structure.pure.PageLink
+   */
   Class('cv.structure.pure.PageLink', {
     isa: cv.structure.pure.AbstractWidget,
 

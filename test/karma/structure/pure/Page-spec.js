@@ -19,23 +19,25 @@ define( ['TemplateEngine', '_common', 'widget_page'], function(engine, design) {
       this.pages = null;
     });
 
+    it("should test that invisible pages generate no DOM string", function() {
+
+      expect(this.createTestWidgetString("page", {'visible': "false"})[1]).toBe(undefined);
+
+    });
+
     it("should test the page creator", function() {
-
-      expect(this.createTestWidgetString("page", {'visible': "false"})[1]).toBe('');
-
       var res = this.createTestWidgetString("page", {'name': 'Testpage'}, "<label>Test</label>");
-      var creator = res[0];
+      var pageLink = res[0];
+      var page = cv.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
+      expect(page.getPageType()).toBe("text");
+
       var widget = $(res[1]);
-      creator.createFinal();
+      cv.structure.pure.Page.createFinal();
       expect(widget).toHaveClass('pagelink');
 
-      var data = templateEngine.widgetDataGet('id_0_');
-      expect(data.type).toBe("text");
-
-      var page = $($('.page', '#pages')[0]);
-      expect(page).toHaveClass("type_text");
-
-      expect($(page.find('h1')).text()).toBe("Testpage");
+      var elem = $(page.getDomElement());
+      expect(elem).toHaveClass("type_text");
+      expect($(elem.find('h1')).text()).toBe("Testpage");
     });
 
     it("should test the page creator with some attributes", function() {
@@ -51,19 +53,20 @@ define( ['TemplateEngine', '_common', 'widget_page'], function(engine, design) {
         'shownavbar-bottom': 'true',
         'shownavbar-right': 'true'
       });
-      var creator = res[0];
+      var pageLink = res[0];
+      var page = cv.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
+
       var widget = $(res[1]);
       var actor = $(widget.find(".actor").get(0));
       expect(actor.css('text-align')).toBe('right');
-      creator.createFinal();
+      cv.structure.pure.Page.createFinal();
 
-      var data = templateEngine.widgetDataGet('id_0_');
-      expect(data.showtopnavigation).toBe("true");
-      expect(data.showfooter).toBe("true");
-      expect(data.shownavbar.top).toBe("true");
-      expect(data.shownavbar.bottom).toBe("true");
-      expect(data.shownavbar.left).toBe("true");
-      expect(data.shownavbar.right).toBe("true");
+      expect(page.getShowTopNavigation()).toBeTruthy();
+      expect(page.getShowFooter()).toBeTruthy();
+      expect(page.getShowNavbar().top).toBeTruthy();
+      expect(page.getShowNavbar().bottom).toBeTruthy();
+      expect(page.getShowNavbar().left).toBeTruthy();
+      expect(page.getShowNavbar().right).toBeTruthy();
 
       var page = $($('.page', '#pages')[0]);
       expect(page).toHaveClass("flavour_potassium");
@@ -77,13 +80,13 @@ define( ['TemplateEngine', '_common', 'widget_page'], function(engine, design) {
         'backdropalign': 'left',
         'backdrop': 'test.svg'
       });
-      var creator = res[0];
-      creator.createFinal();
+      var pageLink = res[0];
+      var page = cv.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
+      cv.structure.pure.Page.createFinal();
 
-      var data = templateEngine.widgetDataGet('id_0_');
-      expect(data.backdropalign).toBe("left");
+      expect(page.getBackdropAlign()).toBe("left");
 
-      var page = $($('.page', '#pages')[0]);
+      page = $($('.page', '#pages')[0]);
 
       expect(page).toHaveClass("type_2d");
       var backdrop = page.find('embed')[0];
@@ -101,8 +104,8 @@ define( ['TemplateEngine', '_common', 'widget_page'], function(engine, design) {
         'size': 'fixed',
         'backdrop': 'test.png'
       });
-      var creator = res[0];
-      creator.createFinal();
+
+      cv.structure.pure.Page.createFinal();
 
       var page = $($('.page', '#pages')[0]);
 
@@ -121,19 +124,11 @@ define( ['TemplateEngine', '_common', 'widget_page'], function(engine, design) {
         'ga': '1/0/0',
         'name': 'Testpage'
       });
-      var creator = res[0];
-      creator.createFinal();
+      var pageLink = res[0];
+      var page = cv.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
+      cv.structure.pure.Page.createFinal();
 
-      var container = document.createElement('div');
-      container.setAttribute("class","widget_container");
-      container.setAttribute("id", 'id_0');
-      container.innerHTML = res[1];
-      document.body.appendChild(container);
-      this.container = container;
-
-      var page = $('.page > div', '#pages')[0];
-      creator.update.call(page, '1/0/0', 1);
-
+      page.update('1/0/0', 1);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('1/0/0', '80');
       expect(templateEngine.scrollToPage).toHaveBeenCalledWith('Testpage');
     });
@@ -146,11 +141,11 @@ define( ['TemplateEngine', '_common', 'widget_page'], function(engine, design) {
         'ga': '1/0/0',
         'name': 'Testpage'
       });
-      var creator = res[0];
+      var pageLink = res[0];
       //canceled
-      creator.action('id_0', null, true);
+      pageLink.action('id_0', null, true);
       expect(templateEngine.scrollToPage).not.toHaveBeenCalled();
-      creator.action('id_0', null, false);
+      pageLink.action('id_0', null, false);
       expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_0_');
     });
   });

@@ -29,9 +29,30 @@ define(['jquery','TemplateEngine', '_common', 'lib/cv/MessageBroker'], function(
     elem += ">"+content+"</"+name+">";
 
     var data = creator.parse($(elem)[0], 'id_0', null, "text");
-    var widgetInstance = cv.structure.WidgetFactory.createInstance(name, data);
+    var res = [];
+    if (Array.isArray(data)) {
+      var widgetInstance = [];
+      for (var i=0, l=data.length; i < l; i++) {
+        var inst = cv.structure.WidgetFactory.createInstance(data[i].$$type, data[i]);
+        var source = inst.getDomString();
+        if (source) {
+          res = [inst, source];
+        } else {
+          widgetInstance.push(inst);
+        }
+      }
+      if (res.length == 2) {
+        return res;
+      } else {
+        return [widgetInstance[0], '']
+      }
+    } else {
+      var inst = cv.structure.WidgetFactory.createInstance(data.$$type, data);
+      res.push(inst);
+      res.push(inst.getDomString());
+    }
 
-    return [widgetInstance, widgetInstance.getDomString()];
+    return res;
   };
 
   var createTestElement = function(name, attributes, content, address, addressAttributes) {
