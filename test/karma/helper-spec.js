@@ -13,11 +13,12 @@ define(['jquery','TemplateEngine', '_common'], function($, engine, design) {
    * @param name {String} name of the widget creator
    * @param attributes {Map} widget attributes
    * @param content {String} content od the widget
-   * @returns [{creator}, {xml}]
+   * @returns [{WidgetInstance}, {xml-string}]
    * @private
    */
   var createTestWidgetString = function(name, attributes, content) {
-    var creator = design.basicdesign.getCreator(name);
+
+    var creator = cv.xml.Parser.getHandler(name);
     var xml = document.createElement('template');
     if (!content) {
       content="";
@@ -30,7 +31,10 @@ define(['jquery','TemplateEngine', '_common'], function($, engine, design) {
     xml.innerHTML = elem;
     xml = xml.firstChild;
 
-    return [creator, creator.create(xml, 'id_0', null, name)];
+    var data = creator.parse(xml, 'id_0', null, name);
+    var widgetInstance = cv.structure.WidgetFactory.createInstance(name, data);
+
+    return [widgetInstance, widgetInstance.getDomString()];
   };
 
   var createTestElement = function(name, attributes, content, address, addressAttributes) {
@@ -173,6 +177,7 @@ define(['jquery','TemplateEngine', '_common'], function($, engine, design) {
   afterEach(function() {
     templateEngine.widgetData = {};
     templateEngine.postDOMSetupFns = [];
+    cv.structure.WidgetFactory.clear();
     if (this.container) {
       document.body.removeChild(this.container);
       this.container = null;

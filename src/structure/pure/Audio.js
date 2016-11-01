@@ -38,12 +38,16 @@
  * @since 0.8.4 (2014)
  */
 define( [
-  '_common'
+  '_common',
+  'lib/cv/xml/Parser',
+  'lib/cv/role/Update'
 ], function() {
   "use strict";
 
   Class('cv.structure.pure.Audio', {
     isa: cv.structure.pure.AbstractWidget,
+
+    does: cv.role.Update,
 
     has: {
       src: { is: 'r' },
@@ -57,7 +61,6 @@ define( [
 
     my : {
       methods: {
-
         getAttributeToPropertyMappings: function() {
           return {
             src: {},
@@ -76,27 +79,6 @@ define( [
             },
             thresholdValue: {default: 1}
           };
-        }
-      },
-
-      after: {
-        /**
-         * Creates the widget HTML code
-         *
-         * @method create
-         * @param {Element} element - DOM-Element
-         * @param {String} path - internal path of the widget
-         * @param {String} flavour - Flavour of the widget
-         * @param {String} type - Page type (2d, 3d, ...)
-         * @return {String} HTML code
-         */
-        parse: function (element, path, flavour, type) {
-          var $e = $(element);
-
-          // and fill in widget specific data
-          return templateEngine.widgetDataInsert(path, {
-
-          });
         }
       }
     },
@@ -118,10 +100,10 @@ define( [
     methods: {
 
       getActor: function() {
-        if (!this.$$actor) {
-          this.$$actor = document.getElementById(this.getId());
+        if (!this.$$actorElement) {
+          this.$$actorElement = this.getDomElement().find(".actor audio");
         }
-        return this.$$actor;
+        return this.$$actorElement;
       },
 
       /**
@@ -130,15 +112,17 @@ define( [
        * @param {String} address - Source address of the incoming data
        * @param {String} value - Incoming data
        */
-      handleUpdate: function (address, value) {
-        var on = templateEngine.map(this.getThresholdValue(), this.getMapping());
+      handleUpdate: function (value, address) {
+        var on = this.applyMapping(this.getThresholdValue());
 
         if (value >= on) {
-          var audioWidget = this.getActor();
+          var audioWidget = this.getActor()[0];
           if (audioWidget.paused == true)
             audioWidget.play();
         }
       }
     }
   });
+  // register the parser
+  cv.xml.Parser.addHandler("audio", cv.structure.pure.Audio);
 }); // end define

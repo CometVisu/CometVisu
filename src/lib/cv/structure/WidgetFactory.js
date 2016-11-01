@@ -53,6 +53,10 @@ define( [
 
         getInstanceById: function(id) {
           return this.registry[id];
+        },
+
+        clear: function() {
+          this.registry = {};
         }
       }
     }

@@ -34,6 +34,9 @@ define( [
 ], function($) {
   "use strict";
 
+  /**
+   * @class cv.structure.pure.AbstractBasicWidget
+   */
   Class('cv.structure.pure.AbstractBasicWidget', {
     isa: cv.Object,
 
@@ -377,7 +380,7 @@ define( [
         },
 
         getDefaultClasses: function(type) {
-          return 'widget clearfix ' + type;
+          return 'widget clearfix ' + type.toLowerCase();
         },
 
         /**

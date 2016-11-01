@@ -26,6 +26,8 @@ define(['joose', 'lib/cv/role/HasAddress'], function() {
    */
   Role("cv.role.BasicUpdate", {
 
+    does: cv.role.HasAddress,
+
     has: {
       value       : { is: 'rw' },
       basicValue  : { is: 'rw' }
