@@ -23,7 +23,9 @@ define( ['TemplateEngine', '_common', 'widget_infotrigger'], function(engine, de
       expect($(actors.get(0)).find('div.value').length).toBe(1);
       expect($(actors.get(1)).find('div.value').length).toBe(0);
       expect($(actors.get(2)).find('div.value').length).toBe(0);
+    });
 
+    it("should test the infotrigger creator", function() {
       widget = $(this.createTestWidgetString("infotrigger", {'align': 'right', 'infoposition': 'middle'})[1]);
       expect($(widget.find("div.actor")).css('text-align')).toBe('right');
       actors = $(widget.find("div.actor"));
@@ -32,6 +34,9 @@ define( ['TemplateEngine', '_common', 'widget_infotrigger'], function(engine, de
       expect($(actors.get(0)).find('div.value').length).toBe(0);
       expect($(actors.get(1)).find('div.value').length).toBe(1);
       expect($(actors.get(2)).find('div.value').length).toBe(0);
+    });
+
+    it("should test the infotrigger creator", function() {
 
       widget = $(this.createTestWidgetString("infotrigger", {'align': 'center', 'infoposition': 'right'})[1]);
       expect($(widget.find("div.actor")).css('text-align')).toBe('center');
@@ -46,7 +51,7 @@ define( ['TemplateEngine', '_common', 'widget_infotrigger'], function(engine, de
     it("should update an infotrigger widget", function() {
       var creator = this.createTestElement('infotrigger');
 
-      creator.update.call(this.container.children[0], '12/7/37', 1);
+      creator.update('12/7/37', 1);
       var actor = $(this.container.children[0].querySelectorAll('.actor')[0]);
       expect(actor).not.toBe(null);
       expect(actor.find('div.value').text()).toBe("1")
@@ -68,21 +73,21 @@ define( ['TemplateEngine', '_common', 'widget_infotrigger'], function(engine, de
       creator.action('id_0', upActor, false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '81');
 
-      creator.update.call(this.container.children[0], '12/7/37', 1);
+      creator.update('12/7/37', 1);
       creator.action('id_0', upActor, false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '82');
-      creator.update.call(this.container.children[0], '12/7/37', 2);
+      creator.update('12/7/37', 2);
 
       creator.action('id_0', downActor, false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '81');
 
       // test lower border
-      creator.update.call(this.container.children[0], '12/7/37', 0);
+      creator.update('12/7/37', 0);
       creator.action('id_0', downActor, false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '80');
 
       // test upper border
-      creator.update.call(this.container.children[0], '12/7/37', 255);
+      creator.update('12/7/37', 255);
       creator.action('id_0', upActor, false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', 'ff');
     });

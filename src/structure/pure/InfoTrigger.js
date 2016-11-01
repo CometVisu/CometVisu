@@ -60,11 +60,11 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
             'uplabel'       : { target: 'upLabel' },
             'shorttime'     : { target: 'shortTime', transform: parseFloat, default: -1 },
             'change'    : { target: 'isAbsolute', transform: function(value) {
-              return value === "absolute";
+              return (value || 'relative') === "absolute";
             }},
             'min'           : { transform: parseFloat, default:  0 },
             'max'           : { transform: parseFloat, default: 255 },
-            'infoposition'  : { target: 'infoPosition', default: 'middle' }
+            'infoposition'  : { target: 'infoPosition', default: 'left' }
           };
         },
 
@@ -164,7 +164,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
         {
           if( !(addresses[addr][1] & 2) ) continue; // skip when write flag not set
           if (addresses[addr][2] & bitMask) {
-            templateEngine.visu.write( addr, this.applyTransform(addr, value));
+            templateEngine.visu.write( addr, this.applyTransformEncode(addr, value));
           }
         }
       }
