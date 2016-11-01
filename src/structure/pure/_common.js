@@ -110,7 +110,11 @@ define( [
       classes           : { is: 'r', init: '' },
       $$actorElement    : { is: 'rw' },
       $$valueElement    : { is: 'rw' },
-      style             : { is: 'r', init: '' }
+      style             : { is: 'r', init: '' },
+      colspan           : { is: 'r' },
+      colspanM          : { is: 'r' },
+      colspanS          : { is: 'r' },
+      rowspanClass      : { is: 'r' }
     },
 
     after: {
