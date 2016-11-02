@@ -78,7 +78,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
     augment: {
       getDomString: function () {
         // create buttons + info
-       var ret_val = '<div style="float:left;">';
+        var ret_val = '<div style="float:left;">';
 
         var actordown = '<div class="actor switchUnpressed downlabel" ';
         if ( this.getAlign() )

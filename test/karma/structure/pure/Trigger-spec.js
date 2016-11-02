@@ -64,7 +64,7 @@ define( ['widget_switch'], function() {
 
       expect(res.getSendValue()).toBe("1");
       expect(res.getShortValue()).toBe("0");
-      expect(res.getShortTime()).toBe(100);
+      expect(res.getShortThreshold()).toBe(100);
 
     });
 
@@ -91,13 +91,22 @@ define( ['widget_switch'], function() {
       expect(templateEngine.visu.write).not.toHaveBeenCalled();
 
       //simulate longpress
-      templateEngine.handleMouseEvent.downtime = Date.now()-150;
+      var oldDate = Date.now()-150;
+      var oldShortDate = Date.now()-50;
+      var now = Date.now();
+      spyOn(Date, 'now').and.callFake(function() {
+        return oldDate;
+      });
+      res.downaction();
+      oldDate = now;
       res.action('id_0', actor, false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '81');
 
 
       //simulate shortpress
-      templateEngine.handleMouseEvent.downtime = Date.now()-50;
+      oldDate = oldShortDate;
+      res.downaction();
+      oldDate = now;
       res.action('id_0', actor, false);
       expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '80');
     });

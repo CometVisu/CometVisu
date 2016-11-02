@@ -26,16 +26,22 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/HasAddress', 'lib/cv/role/BasicUpdate'], function() {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker',
+  'lib/cv/role/HasAddress', 'lib/cv/role/BasicUpdate', 'lib/cv/role/HandleLongpress'], function() {
   "use strict";
 
   Class('cv.structure.pure.Trigger', {
     isa: cv.structure.pure.AbstractWidget,
-    does: [cv.role.Operate, cv.role.HasAddress, cv.role.HasAnimatedButton, cv.role.BasicUpdate],
+    does: [
+      cv.role.Operate,
+      cv.role.HasAddress,
+      cv.role.HasAnimatedButton,
+      cv.role.BasicUpdate,
+      cv.role.HandleLongpress
+    ],
 
     has: {
       sendValue: { is: 'r', init: 0 },
-      shortTime: { is: 'r', init: -1 },
       shortValue: { is: 'r', init: 0 }
     },
 
@@ -44,7 +50,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/
         getAttributeToPropertyMappings: function () {
           return {
             'value'      : { target: 'sendValue' , default: 0 },
-            'shorttime'  : { target: 'shortTime', default: -1, transform: parseFloat},
+            'shorttime'  : { target: 'shortThreshold', default: -1, transform: parseFloat},
             'shortValue' : { target: 'shortValue', default: 0 }
           };
         },
@@ -78,16 +84,14 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/MessageBroker', 'lib/cv/role/
        * @method getActionValue
        */
       getActionValue: function (path, actor, isCanceled, event) {
-        var isShort = Date.now() - templateEngine.handleMouseEvent.downtime < this.getShortTime();
-        return isShort ? this.getShortValue() : this.getSendValue();
+        return this.isShortPress() ? this.getShortValue() : this.getSendValue();
       },
 
       action: function( path, actor, isCanceled ) {
         if( isCanceled ) return;
 
-        var isShort = Date.now() - templateEngine.handleMouseEvent.downtime < this.getShortTime();
-        var bitMask = (isShort ? 1 : 2);
-        var sendValue = isShort ? this.getShortValue() : this.getSendValue();
+        var bitMask = (this.isShortPress() ? 1 : 2);
+        var sendValue = this.getActionValue();
 
         this.sendToBackend(sendValue, function(address) {
           return !!(address[2] & bitMask);

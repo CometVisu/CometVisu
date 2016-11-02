@@ -63,20 +63,20 @@ define( ['_common', 'lib/cv/role/Refresh'], function() {
     },
 
     augment: {
-        getDomString: function () {
-          // create the actor
-          var imgStyle = '';
-          if (this.getWidth()) {
-            imgStyle += 'width:' + this.getWidth() + ';';
-          }
-          if (this.getWidthFit() === true) {
-            imgStyle += 'max-width:100%;';
-          }
-          if (this.getHeight()) {
-            imgStyle += 'height:' + this.getHeight() + ';';
-          }
-          return '<div class="actor"><img src="' + this.getSrc() + '" style="' + imgStyle + '" /></div>';
+      getDomString: function () {
+        // create the actor
+        var imgStyle = '';
+        if (this.getWidth()) {
+          imgStyle += 'width:' + this.getWidth() + ';';
         }
+        if (this.getWidthFit() === true) {
+          imgStyle += 'max-width:100%;';
+        }
+        if (this.getHeight()) {
+          imgStyle += 'height:' + this.getHeight() + ';';
+        }
+        return '<div class="actor"><img src="' + this.getSrc() + '" style="' + imgStyle + '" /></div>';
+      }
     }
   });
   // register the parser

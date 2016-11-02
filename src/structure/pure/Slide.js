@@ -178,7 +178,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
        */
       slideStart:function(event, ui)
       {
-       var actor = this.getActor();
+        var actor = this.getActor();
 
         if ( this.getSendOnFinish() === true) return;
 
