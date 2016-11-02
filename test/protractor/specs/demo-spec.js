@@ -37,12 +37,13 @@ describe('cometvisu demo config test:', function () {
           break;
         }
 
-        widget.click();
+        browser.actions().click(widget).perform();
         expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
         cvDemo.getLastWrite().then(function(lastWrite) {
           expect(lastWrite.value).toEqual(0);
         });
-        widget.click();
+
+        browser.actions().click(widget).perform();
         expect(widget.element(by.css(".value")).getText()).toEqual('An');
         cvDemo.getLastWrite().then(function(lastWrite) {
           expect(lastWrite.value).toEqual(1);
