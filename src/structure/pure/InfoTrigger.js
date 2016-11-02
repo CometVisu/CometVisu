@@ -23,7 +23,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update', 'lib/cv/role/HandleLongpress'], function() {
   "use strict";
 
   Class('cv.structure.pure.InfoTrigger', {
@@ -31,7 +31,8 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
     does: [
       cv.role.Operate,
       cv.role.Update,
-      cv.role.HasAnimatedButton
+      cv.role.HasAnimatedButton,
+      cv.role.HandleLongpress
     ],
 
     has: {
@@ -41,7 +42,6 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
       'upValue'       : { is: 'r', init: 0 },
       'shortUpValue'  : { is: 'r', init: 0 },
       'upLabel'       : { is: 'r' },
-      'shortTime'     : { is: 'r', init: -1 },
       'isAbsolute'    : { is: 'r' },
       'min'           : { is: 'r', init: 0 },
       'max'           : { is: 'r', init: 255 },
@@ -58,7 +58,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
             'upvalue'       : { target: 'upValue', default: 0 },
             'shortupvalue'  : { target: 'shortUpValue', default:  0 },
             'uplabel'       : { target: 'upLabel' },
-            'shorttime'     : { target: 'shortTime', transform: parseFloat, default: -1 },
+            'shorttime'     : { target: 'shortThreshold', transform: parseFloat, default: -1 },
             'change'    : { target: 'isAbsolute', transform: function(value) {
               return (value || 'relative') === "absolute";
             }},
@@ -136,28 +136,29 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
        *
        * @method getActionValue
        */
-      getActionValue: function () {
-        return "";
+      getActionValue: function (path, actor, isCanceled ) {
+        var isDown              = actor.classList.contains('downlabel');
+        if (this.isShortPress()) {
+          return isDown ? this.getShortDownValue() : this.getShortUpValue();
+        } else {
+          return isDown ? this.getDownValue() : this.getUpValue();
+        }
       },
 
       action: function( path, actor, isCanceled ) {
         if( isCanceled ) return;
 
-        var isDown              = actor.classList.contains('downlabel');
-        var buttonDataValue     = isDown ? this.getDownValue() : this.getUpValue();
-        var buttonDataShortValue = isDown ? this.getShortDownValue() : this.getShortUpValue();
-        var isShort = Date.now() - templateEngine.handleMouseEvent.downtime < this.getShortTime();
-        var value = isShort ? buttonDataShortvalue : buttonDataValue;
-        var bitMask = (isShort ? 1 : 2);
+        var value = this.getActionValue(path, actor, isCanceled);
+        var bitMask = (this.isShortPress() ? 1 : 2);
 
         if( this.getIsAbsolute() )
         {
           value = parseFloat(this.getBasicValue());
           if( isNaN( value ) )
             value = 0; // anything is better than NaN...
-          value = value + parseFloat(isShort ? buttonDataShortValue : buttonDataValue);
-          if (value < this.getMin() ) value = this.getMin();
-          if( value > this.getMax() ) value = this.getMax();
+          value = value + parseFloat(this.getActionValue(path, actor, isCanceled ));
+          value = Math.max(value, this.getMin())
+          value = Math.min(value, this.getMax())
         }
         var addresses = this.getAddress();
         for( var addr in addresses )

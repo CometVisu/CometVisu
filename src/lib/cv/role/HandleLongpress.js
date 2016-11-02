@@ -22,6 +22,7 @@ define(['joose'], function() {
 
     has: {
       shortThreshold: { is: 'r', init: -1 },
+      shortIsDefault: false, // is true use short value if no threshold is set, otherwise use long
       $$downActionTriggered: -1,
       $$pressTime: -1
     },
@@ -45,11 +46,19 @@ define(['joose'], function() {
     methods: {
 
       isShortPress: function() {
-        return (this.shortThreshold < 0 || this.$$pressTime < this.shortThreshold);
+        if (this.shortThreshold < 0) {
+          return this.shortIsDefault === true;
+        } else {
+          return this.$$pressTime < this.shortThreshold;
+        }
       },
 
       isLongPress: function() {
-        return (this.shortThreshold > 0 && this.$$pressTime >= this.shortThreshold);
+        if (this.shortThreshold < 0) {
+          return this.shortIsDefault === false;
+        } else {
+          return this.$$pressTime >= this.shortThreshold;
+        }
       }
     }
   });
