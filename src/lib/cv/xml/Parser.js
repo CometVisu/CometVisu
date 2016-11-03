@@ -9,7 +9,7 @@ define( [
 
       my: {
         has: {
-          handlers: {is: 'rw', init: {}}
+          handlers: {is: 'rw', init: Joose.I.Object }
         },
 
         methods: {

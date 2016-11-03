@@ -39,7 +39,7 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
     does: [cv.role.Operate, cv.role.HasAnimatedButton],
 
     has: {
-      availableDesigns: { is: 'r', init: [] }
+      availableDesigns: { is: 'r', init: Joose.I.Array }
     },
 
     my : {

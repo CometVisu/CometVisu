@@ -21,7 +21,7 @@ define(['joose'], function() {
   Role("cv.role.HasAddress", {
 
     has: {
-      address: { is: 'r', init: {} }
+      address: { is: 'r', init: Joose.I.Object }
     },
 
     my: {

@@ -2,7 +2,7 @@ define(['joose'], function() {
   Class("cv.utils.Timer", {
     my: {
       has: {
-        intervals: { is: 'rw', init: {} }
+        intervals: { is: 'rw', init: Joose.I.Object }
       },
 
       methods: {

@@ -37,7 +37,7 @@ define( ['_common', 'lib/cv/role/Refresh', 'lib/cv/role/Update'], function() {
     ],
 
     has: {
-      address: {is: 'r', init: {}},
+      address: {is: 'r', init: Joose.I.Object },
       width: {is: 'r'},
       height: {is: 'r'},
       frameborder: {is: 'r', init: false},

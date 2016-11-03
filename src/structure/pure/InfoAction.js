@@ -74,7 +74,7 @@ define( ['_common', 'lib/cv/role/HasChildren'], function() {
     does: cv.role.HasChildren,
 
     has: {
-      childObjects: { is: 'rw', init: [] },
+      childObjects: { is: 'rw', init: Joose.I.Array },
       containerClass: { is: 'rw' }
     },
 

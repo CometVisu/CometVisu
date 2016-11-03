@@ -27,7 +27,7 @@ define( [
   Class('cv.structure.WidgetFactory', {
     my : {
       has : {
-        registry: { is: 'rw', init: {} }
+        registry: { is: 'rw', init: Joose.I.Object }
       },
 
       methods: {

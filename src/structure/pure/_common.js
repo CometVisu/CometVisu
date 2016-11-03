@@ -109,7 +109,7 @@ define( [
     does: cv.role.HasStyling,
 
     has: {
-      popups            : { is: 'rw', init: {} },
+      popups            : { is: 'rw', init: Joose.I.Object },
       flavour           : { is: 'r', init: '' },
       layout            : { is: 'r' },
       label             : { is: 'r', init: '' },

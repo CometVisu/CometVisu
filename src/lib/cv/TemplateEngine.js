@@ -67,9 +67,9 @@ define( [
       },
 
       has: {
-        mappings : { is: 'rw', init: {} }, // store the mappings
-        stylings : { is: 'rw', init: {} }, // store the stylings
-        addressList : { is: 'rw', init: {} }, // aka ga_list
+        mappings : { is: 'rw', init: Joose.I.Object }, // store the mappings
+        stylings : { is: 'rw', init: Joose.I.Object }, // store the stylings
+        addressList : { is: 'rw', init: Joose.I.Object }, // aka ga_list
       },
 
       after: {

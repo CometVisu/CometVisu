@@ -21,7 +21,7 @@ define(['joose'], function() {
   Role("cv.role.HasChildren", {
 
     has: {
-      children: { is: 'rw', init: [] }
+      children: { is: 'rw', init: Joose.I.Array }
     },
 
     my: {

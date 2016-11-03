@@ -53,7 +53,7 @@ define( [
       backdropType      : { is: 'rw' },
       visible           : { is: 'r', init: true },
       pageType          : { is: 'r' },
-      address           : { is: 'r', init: [] },
+      address           : { is: 'r', init: Joose.I.Array },
       size              : { is: 'r' },
       backdrop          : { is: 'r' }
     },
@@ -300,7 +300,7 @@ define( [
       name              : { is: 'r' },
       pageType          : { is: 'r' },
       wstyle            : { is: 'r', init: '' },
-      address           : { is: 'r', init: [] }
+      address           : { is: 'r', init: Joose.I.Array }
     },
 
     methods: {

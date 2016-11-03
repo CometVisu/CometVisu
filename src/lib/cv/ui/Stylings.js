@@ -9,7 +9,7 @@ define(['joose'], function() {
   Class("cv.ui.Stylings", {
     my: {
       has: {
-        stylings: { is: 'rw', init: {}}
+        stylings: { is: 'rw', init: Joose.I.Object }
       },
 
       methods: {

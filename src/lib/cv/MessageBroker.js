@@ -29,7 +29,7 @@ define( [
   Class('cv.MessageBroker', {
     my: {
       has: {
-        registry: {is: 'r', init: {}},
+        registry: {is: 'r', init: Joose.I.Object },
         singleEventTopics: {is: 'r', init: ["setup.dom.finished"]}
       },
 
