@@ -224,6 +224,8 @@ define( [
 
     methods: {
 
+      downaction: function() {},
+      action: function() {},
 
       getActor: function() {
         if (!this.$$actorElement) {

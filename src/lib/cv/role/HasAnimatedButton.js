@@ -19,6 +19,7 @@
 
 define(['joose'], function() {
   Role("cv.role.HasAnimatedButton", {
+    requires: ['action', 'downaction'],
 
     before: {
 

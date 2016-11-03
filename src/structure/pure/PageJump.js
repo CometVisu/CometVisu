@@ -135,17 +135,6 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/HasChildren', 'lib/cv/ro
 
     methods: {
 
-      /**
-       * Get the value that should be send to backend after the action has been triggered
-       *
-       * @method getActionValue
-       */
-      getActionValue: function () {
-        return null;
-      },
-
-      downaction: function() {},
-
       action: function( path, actor, isCanceled ) {
         if( isCanceled ) return;
 
