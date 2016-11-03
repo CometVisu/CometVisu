@@ -22,7 +22,8 @@ from helper.schema import *
 import gettext
 import sys
 import re
-from settings import config
+import os
+from settings import config, root_dir
 
 kwargs = {}
 if sys.version_info[0] < 3:
@@ -30,7 +31,7 @@ if sys.version_info[0] < 3:
 
 gettext.install('messages', **kwargs)
 
-schema = Schema(config.get("DEFAULT", "schema-file"))
+schema = Schema(os.path.join(root_dir, config.get("DEFAULT", "schema-file")))
 
 
 class BaseDirective(Directive):
@@ -50,7 +51,7 @@ class BaseDirective(Directive):
 
     def init_locale(self):
         self.locale = self.state.document.settings.env.config.language
-        t = gettext.translation('messages', localedir=config.get("DEFAULT", "locale"), languages=[self.locale])
+        t = gettext.translation('messages', localedir=os.path.join(root_dir, config.get("DEFAULT", "locale")), languages=[self.locale])
         t.install(**kwargs)
 
         self.init_type_mapping()

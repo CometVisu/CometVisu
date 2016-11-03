@@ -22,11 +22,12 @@ import json
 import os
 import ConfigParser
 
+root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..', '..'))
 
 class Version:
     _source_version = None
     config = ConfigParser.ConfigParser()
-    config.read(os.path.join('utils', 'config.ini'))
+    config.read(os.path.join(root_dir, 'utils', 'config.ini'))
 
     @classmethod
     def get_doc_version(cls):
@@ -43,7 +44,7 @@ class Version:
     @classmethod
     def get_source_version(cls):
         if cls._source_version is None:
-            with open("package.json") as data_file:
+            with open(os.path.join(root_dir, "package.json")) as data_file:
                 data = json.load(data_file)
                 cls._source_version = data['version']
         return cls._source_version

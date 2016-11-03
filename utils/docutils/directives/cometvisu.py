@@ -25,13 +25,13 @@ from widget_example import WidgetExampleDirective
 from parameter_information import ParameterInformationDirective
 from elements_information import ElementsInformationDirective
 from api_doc import ApiDocDirective
-from settings import config
+from settings import config, root_dir
 from __init__ import Version
 
 references = {"_base": "http://test.cometvisu.org/CometVisu/"}
 reference_prefix = config.get("references", "prefix").replace("<version>", Version.get_doc_version())
-references_file = config.get("references", "target")
-redirect_file = config.get("redirect", "target")
+references_file = os.path.join(root_dir, config.get("references", "target"))
+redirect_file = os.path.join(root_dir, config.get("redirect", "target"))
 
 default_ref = re.compile("^index-[0-9]+$")
 redirect_map = {}

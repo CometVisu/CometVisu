@@ -19,5 +19,7 @@
 import os
 import configparser
 
+root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..', '..'))
+
 config = configparser.ConfigParser()
-config.read(os.path.join('utils', 'config.ini'))
+config.read(os.path.join(root_dir, 'utils', 'config.ini'))

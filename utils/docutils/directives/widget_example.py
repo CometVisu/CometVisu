@@ -18,7 +18,7 @@
 
 
 import json
-
+import os
 from lxml import etree
 from docutils import nodes, statemachine
 from sphinx.util.nodes import set_source_info
@@ -27,11 +27,11 @@ from docutils.parsers.rst import directives, Directive
 from docutils.utils.code_analyzer import Lexer, LexerError, NumberLines
 from os import path, makedirs
 from io import open
-from settings import config
+from settings import config, root_dir
 
 counters = {}
 
-xsd = etree.XMLSchema(etree.parse(config.get("DEFAULT", "schema-file")))
+xsd = etree.XMLSchema(etree.parse(os.path.join(root_dir, config.get("DEFAULT", "schema-file"))))
 parser = etree.XMLParser(schema=xsd)
 
 
