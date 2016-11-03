@@ -38,7 +38,7 @@ require.config({
     'PagePartsHandler':         'lib/PagePartsHandler',
     'TrickOMatic':              'lib/TrickOMatic',
     'TemplateEngine':           'lib/TemplateEngine',
-    'EventHandler':             'lib/EventHandler',
+    'EventHandler':             'lib/cv/event/Handler',
     '_common':                  'structure/pure/_common',
     'structure_custom':         'config/structure_custom',
     'widget_break':             'structure/pure/Break',
