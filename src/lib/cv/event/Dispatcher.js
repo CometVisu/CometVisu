@@ -1,5 +1,5 @@
 
-define(['joose'], function() {
+define(['joose', 'lib/cv/Object'], function() {
   /**
    * The dispatcher registers listeners for all relevant events to the window object
    * and dispatched the event to the EventHandler. The dispatcher listens to similar events
