@@ -27,7 +27,7 @@ require.config({
     'PageHandler':              'lib/PageHandler',
     'PagePartsHandler':         'lib/PagePartsHandler',
     'TrickOMatic':              'lib/TrickOMatic',
-    'TemplateEngine':           'lib/TemplateEngine',
+    'TemplateEngine':           'lib/cv/TemplateEngine',
     'EventHandler':             'lib/cv/event/Handler',
     '_common':                  'structure/pure/_common',
     'structure_custom':         'config/structure_custom',
@@ -77,14 +77,14 @@ require.config({
 
 var templateEngine;
 require([
-  'jquery', 'TemplateEngine'
-], function( $, TemplateEngine ) {
+  'jquery', 'TemplateEngine', 'lib/cv/Config', 'lib/cv/layout/ResizeHandler'
+], function( $, TemplateEngine, Config ) {
   "use strict";
   profileCV( 'templateEngine start' );
 
   templateEngine = TemplateEngine.getInstance();
 
-  $(window).bind('resize', templateEngine.resizeHandling.invalidateScreensize);
+  $(window).bind('resize', cv.layout.ResizeHandler.invalidateScreensize);
   $(window).unload(function() {
     if( templateEngine.visu ) {
       templateEngine.visu.stop();
@@ -92,7 +92,7 @@ require([
   });
   $(document).ready(function() {
     function configError( textStatus, additionalErrorInfo ) {
-      var configSuffix = (templateEngine.configSuffix ? templateEngine.configSuffix : '');
+      var configSuffix = (Config.configSuffix ? Config.configSuffix : '');
       var message = 'Config-File Error!<br/>';
       switch (textStatus) {
         case 'parsererror':
@@ -128,8 +128,8 @@ require([
     // get the data once the page was loaded
     var ajaxRequest = {
       noDemo: true,
-      url : 'config/visu_config'+ (templateEngine.configSuffix ? '_' + templateEngine.configSuffix : '') + '.xml',
-      cache : !templateEngine.forceReload,
+      url : 'config/visu_config'+ (Config.configSuffix ? '_' + Config.configSuffix : '') + '.xml',
+      cache : !Config.forceReload,
       success : function(xml, textStatus, request) {
         if (!xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length) {
           configError("parsererror");
@@ -140,17 +140,17 @@ require([
           if (xmlLibVersion === undefined) {
             xmlLibVersion = -1;
           }
-          if (templateEngine.libraryCheck && xmlLibVersion < templateEngine.libraryVersion) {
+          if (Config.libraryCheck && xmlLibVersion < Config.libraryVersion) {
             configError("libraryerror");
           }
           else {
             var $loading = $('#loading');
             $loading.html( $loading.text().trim() + '.' );
             if (request.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
-              templateEngine.backendUrl = request.getResponseHeader("X-CometVisu-Backend-LoginUrl");
+              Config.backendUrl = request.getResponseHeader("X-CometVisu-Backend-LoginUrl");
             }
             if (request.getResponseHeader("X-CometVisu-Backend-Name")) {
-              templateEngine.backend = request.getResponseHeader("X-CometVisu-Backend-Name");
+              Config.backend = request.getResponseHeader("X-CometVisu-Backend-Name");
             }
             templateEngine.parseXML(xml);
           }

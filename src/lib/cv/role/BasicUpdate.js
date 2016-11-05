@@ -17,7 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define(['joose', 'lib/cv/role/HasAddress'], function() {
+define(['joose', 'lib/cv/role/HasAddress', 'lib/cv/Config', 'lib/cv/role/Transform'], function(joose, HasAddress, Config) {
 
   /**
    * This role provides the basic update methods
@@ -26,7 +26,10 @@ define(['joose', 'lib/cv/role/HasAddress'], function() {
    */
   Role("cv.role.BasicUpdate", {
 
-    does: cv.role.HasAddress,
+    does: [
+      cv.role.HasAddress,
+      cv.role.Transform
+      ],
 
     has: {
       value       : { is: 'rw' },
@@ -38,7 +41,7 @@ define(['joose', 'lib/cv/role/HasAddress'], function() {
         if (address) {
           var transform = this.getAddress()[address][0];
           // transform the raw value to a JavaScript type
-          return templateEngine.transformDecode(transform, data);
+          return this.transformDecode(transform, data);
         }
         return data;
       },
@@ -47,13 +50,56 @@ define(['joose', 'lib/cv/role/HasAddress'], function() {
         if (address) {
           var transform = this.getAddress()[address][0];
           // transform the raw value to a JavaScript type
-          return templateEngine.transformEncode(transform, data);
+          return this.transformEncode(transform, data);
         }
         return data;
       },
 
       applyMapping: function(value) {
-        return templateEngine.map(value, this.getMapping());
+        var this_map = this.getMapping();
+        if (this_map && Config.templateEngine.mappings[this_map]) {
+          var m = Config.templateEngine.mappings[this_map];
+
+          var ret = value;
+          if (m.formula) {
+            ret = m.formula(ret);
+          }
+
+          var mapValue = function(v) {
+            if (m[v]) {
+              return m[v];
+            } else if (m['range']) {
+              var valueFloat = parseFloat(v);
+              var range = m['range'];
+              for (var min in range) {
+                if (min > valueFloat) continue;
+                if (range[min][0] < valueFloat) continue; // check max
+                return range[min][1];
+              }
+            }
+            return v; // pass through when nothing was found
+          }
+          var ret = mapValue(ret);
+          if (!ret && m['defaultValue']) {
+            ret = mapValue(m['defaultValue']);
+          }
+          if( ret !== undefined ) {
+            return ret;
+          }
+        }
+        return value;
+      },
+
+       /**
+       * Look up the entry for @param value in the mapping @param this_map and
+       * @return the next value in the list (including wrap around).
+       */
+      getNextMappedValue : function(value, this_map) {
+        if (this_map && Config.templateEngine.mappings[this_map]) {
+          var keys = Object.keys(Config.templateEngine.mappings[this_map]);
+          return keys[ (keys.indexOf( "" + value ) + 1) % keys.length ];
+        }
+        return value;
       },
 
       applyFormat: function(value, address) {

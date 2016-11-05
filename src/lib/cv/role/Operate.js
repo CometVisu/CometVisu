@@ -17,8 +17,9 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define(['joose'], function() {
+define(['joose', 'lib/cv/role/Transform'], function() {
   Role("cv.role.Operate", {
+    does: cv.role.Transform,
 
     methods: {
 
@@ -52,7 +53,7 @@ define(['joose'], function() {
         if (this.meta.hasAttribute('address')) {
           Joose.O.eachOwn(this.getAddress(), function (address, id) {
             if (!!(address[1] & 2) && (!filter || filter(address))) {
-              templateEngine.visu.write(id, templateEngine.transformEncode(address[0], value));
+              templateEngine.visu.write(id, this.transformEncode(address[0], value));
             }
           }, this);
         }

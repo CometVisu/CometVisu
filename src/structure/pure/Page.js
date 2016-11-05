@@ -258,7 +258,7 @@ define( [
        * @param {} data
        */
       update: function( ga, data ) {
-        // widgetData  = templateEngine.widgetDataGetByElement( element );
+        // widgetData  = templateEngine.getWidgetDataByElement( element );
         // var value = this.defaultValueHandling( ga, data, widgetData );
         // var type = widgetData.address[ ga ][2];
         // switch( type )

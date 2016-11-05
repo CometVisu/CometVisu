@@ -26,12 +26,12 @@
  * @author Christian Mayer
  * @since 2012
  */
-define( ['_common', 'lib/cv/role/Operate'], function() {
+define( ['_common', 'lib/cv/role/Operate', 'lib/cv/Config'], function() {
   "use strict";
 
   Class('cv.structure.pure.Toggle', {
     isa: cv.structure.pure.AbstractWidget,
-    does: [cv.role.Operate, cv.role.Update],
+    does: [cv.role.Operate, cv.role.Update, cv.role.HasAnimatedButton],
 
     augment: {
       getDomString: function () {
@@ -41,25 +41,12 @@ define( ['_common', 'lib/cv/role/Operate'], function() {
 
     methods: {
       /**
-       * Handles the incoming data from the backend for this widget
-       *
-       * @method handleUpdate
-       * @param value {any} incoming data (already transformed + mapped)
-       */
-      handleUpdate: function(value) {
-      },
-
-      /**
        * Get the value that should be send to backend after the action has been triggered
        *
        * @method getActionValue
        */
       getActionValue: function () {
-        return templateEngine.getNextMappedValue( this.getBasicValue(), this.getMapping() );
-      },
-
-      downaction: function(path, actor) {
-        return this.defaultButtonDownAnimationInheritAction(path, actor);
+        return this.getNextMappedValue( this.getBasicValue(), this.getMapping() );
       }
     }
   });

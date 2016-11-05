@@ -72,7 +72,7 @@ define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
       $('#navbarLeft').css({
         width : cssSize
       });
-      templateEngine.resizeHandling.invalidateNavbar();
+      cv.layout.ResizeHandler.invalidateNavbar();
       break;
 
     case 'right':
@@ -81,13 +81,13 @@ define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
         width : cssSize,
         'margin-right' : '-' + cssSize
       });
-      templateEngine.resizeHandling.invalidateNavbar();
+      cv.layout.ResizeHandler.invalidateNavbar();
       break;
     }
   };
   
   this.getNavbarsVisibility = function(page) {
-    if (templateEngine.currentPageNavbarVisibility==null) {
+    if (cv.layout.ResizeHandler.currentPageNavbarVisibility==null) {
       if (page==null) {
         page = templateEngine.currentPage;
       }
@@ -149,10 +149,10 @@ define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
           shownavbar[pos] = 'true';
         }
       }
-      templateEngine.currentPageNavbarVisibility = shownavbar;
+      cv.layout.ResizeHandler.currentPageNavbarVisibility = shownavbar;
       //      console.log(shownavbar);
     }
-    return templateEngine.currentPageNavbarVisibility;
+    return cv.layout.ResizeHandler.currentPageNavbarVisibility;
   };
 
   /**
@@ -236,7 +236,7 @@ define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
         }
       }
     });
-    templateEngine.resizeHandling.invalidateNavbar();
+    cv.layout.ResizeHandler.invalidateNavbar();
   };
 
   /**
@@ -256,7 +256,7 @@ define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
     var navbar = $('#navbar' + position);
     var key = position.toLowerCase();
     var fn = function() {
-      templateEngine.resizeHandling.invalidateNavbar();
+      cv.layout.ResizeHandler.invalidateNavbar();
     };
     switch (direction) {
     case "in":
@@ -278,7 +278,7 @@ define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
     case "out":
       fn = function() {
         navbar.css("display", "none");
-        templateEngine.resizeHandling.invalidateNavbar();
+        cv.layout.ResizeHandler.invalidateNavbar();
       };
       switch (position) {
       case "Top":
@@ -370,7 +370,7 @@ define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
       }
       level++;
     });
-    templateEngine.resizeHandling.invalidateNavbar();
+    cv.layout.ResizeHandler.invalidateNavbar();
   };
 
   this.removeInactiveNavbars = function(page_id) {

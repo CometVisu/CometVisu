@@ -30,7 +30,7 @@ define(['joose', 'lib/cv/role/HasAddress', 'lib/cv/role/BasicUpdate'], function(
       cv.role.BasicUpdate
     ],
 
-    requires: [ 'handleUpdate', 'getAddressListCallback', 'applyStyling' ],
+    requires: [ 'getAddressListCallback', 'applyStyling' ],
 
     my: {
       after: {

@@ -31,6 +31,7 @@ define( [
   'lib/cv/xml/Parser',
   'lib/cv/structure/WidgetFactory',
   'lib/cv/role/HasStyling',
+  'lib/cv/layout/Manager',
   'widget_unknown'
 ], function($) {
   "use strict";
@@ -525,7 +526,7 @@ define( [
           elementData.colspanS = layout.attr('colspan-s') || lookupS[Math.floor(elementData.colspan)] || elementData.colspan;
           if( layout.attr('rowspan') )
           {
-            elementData.rowspanClass = templateEngine.rowspanClass( layout.attr('rowspan') || 1 );
+            elementData.rowspanClass = cv.layout.Manager.rowspanClass( layout.attr('rowspan') || 1 );
             ret_val = 'innerrowspan';
           }
           return ret_val;

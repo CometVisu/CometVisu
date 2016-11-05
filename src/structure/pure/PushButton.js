@@ -67,7 +67,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/Update'], function() {
        */
       handleUpdate: function(value) {
         var actor = this.getActor();
-        var off = templateEngine.map( this.getUpValue(), this.getMapping() );
+        var off = this.applyMapping(this.getUpValue());
         actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
         actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
       },

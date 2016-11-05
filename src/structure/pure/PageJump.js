@@ -46,7 +46,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/HasChildren', 'lib/cv/ro
     my : {
       after: {
         parse: function(xml, path) {
-          var data = templateEngine.widgetDataGet(path);
+          var data = templateEngine.getWidgetData(path);
           var widgetInfo = $('widgetinfo > *', $(xml)).first()[0];
           if (widgetInfo!=undefined) {
             data.classes += " infoaction";
@@ -79,7 +79,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/HasChildren', 'lib/cv/ro
           // and set the new active ones
           $('.pagejump').each(function () {
             var $pagejump = $(this);
-            var data = templateEngine.widgetDataGetByElement(this);
+            var data = templateEngine.getWidgetDataByElement(this);
             if (name == data.target) {
               $pagejump.addClass('active');
             }
@@ -95,7 +95,7 @@ define( ['_common', 'lib/cv/role/Operate', 'lib/cv/role/HasChildren', 'lib/cv/ro
 
             $('.pagejump').each(function () {
               var $pagejump = $(this);
-              var data = templateEngine.widgetDataGetByElement(this);
+              var data = templateEngine.getWidgetDataByElement(this);
               if (parentName == data.target || (data.active_scope == "path" && data.path != undefined && data.path.match(parentName + "$"))) {
                 $pagejump.addClass('active_ancestor');
               }

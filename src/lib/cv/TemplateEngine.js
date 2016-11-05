@@ -1,9 +1,26 @@
 
 
 define( [
-    'joose',
-    'lib/cv/Config'
-  ], function() {
+  'joose',
+  'jquery',
+  'lib/cv/Config',
+  'lib/cv/Object',
+  '_common', 'structure_custom', 'TrickOMatic', 'PageHandler', 'PagePartsHandler',
+  'CometVisuClient', 'CometVisuMockup', 'EventHandler',
+  'Compatibility', 'jquery-ui', 'strftime',
+  'jquery.ui.touch-punch', 'jquery.svg.min', 'IconHandler',
+  'widget_break', 'widget_designtoggle',
+  'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
+  'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infoaction', 'widget_infotrigger',
+  'widget_line', 'widget_multitrigger', 'widget_navbar', 'widget_page',
+  'widget_pagejump', 'widget_refresh', 'widget_reload', 'widget_slide',
+  'widget_switch', 'widget_text', 'widget_toggle', 'widget_trigger',
+  'widget_pushbutton', 'widget_urltrigger', 'widget_unknown', 'widget_audio',
+  'widget_video', 'widget_wgplugin_info',
+  'TransformDefault', 'TransformKnx', 'TransformOpenHab',
+  'lib/cv/xml/Parser',
+  'lib/cv/MessageBroker'
+  ], function(joose, $, Config, obj, design, custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup ) {
     Class('cv.TemplateEngine', {
       isa: cv.Object,
 
@@ -11,7 +28,6 @@ define( [
 
         loadReady: {page: false, plugins: false},
         pagePartsHandler: new PagePartsHandler(),
-        eventHandler: null,
 
         rememberLastPage: false,
         currentPage: null,
@@ -53,62 +69,8 @@ define( [
       },
 
       after: {
-        initialize: function () {
-          if ($.getUrlVar('libraryCheck')) {
-            this.libraryCheck = $.getUrlVar('libraryCheck') != 'false'; // true unless set to false
-          }
-          this.eventHandler = new cv.event.Handler({templateEngine: this});
-
-          this.enableProcessQueue = $.getUrlVar('enableQueue') ? true : false;
-
-          if ($.getUrlVar("backend")) {
-            this.backend = $.getUrlVar("backend");
-          }
-
-          if ($.getUrlVar("config")) {
-            this.configSuffix = $.getUrlVar("config");
-          }
-
-          if ($.getUrlVar('forceReload')) {
-            this.forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set
-            // to false
-          }
-
-          // "Bug"-Fix for ID: 3204682 "Caching on web server"
-          // This isn't a real fix for the problem as that's part of the web browser,
-          // but
-          // it helps to avoid the problems on the client, e.g. when the config file
-          // has changed but the browser doesn't even ask the server about it...
-          this.forceReload = true;
-
-          if ($.getUrlVar('forceDevice')) {
-            this.forceMobile = $.getUrlVar('forceDevice') == 'mobile';
-            this.forceNonMobile = !this.forceMobile;
-          } else {
-            this.forceMobile = false;
-            this.forceNonMobile = false;
-          }
-          var uagent = navigator.userAgent.toLowerCase();
-          this.mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
-          if (/(nexus 7|tablet)/i.test(uagent)) this.mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
-          this.mobileDevice |= this.forceMobile;  // overwrite detection when set by URL
-
-
-          // Disable features that aren't ready yet
-          // This can be overwritten in the URL with the parameter "maturity"
-
-          if ($.getUrlVar('maturity')) {
-            this.url_maturity = $.getUrlVar('maturity');
-            if (!isNaN(this.url_maturity - 0)) {
-              this.use_maturity = this.url_maturity - 0; // given directly as number
-            } else {
-              this.use_maturity = Maturity[this.url_maturity]; // or as the ENUM name
-            }
-          }
-
-          if (isNaN(this.use_maturity)) {
-            this.use_maturity = cv.structure.pure.AbstractWidget.my.Maturity.release; // default to release
-          }
+        initialize: function() {
+          Config.eventHandler = new cv.event.Handler({templateEngine: this});
         }
       },
 
@@ -118,7 +80,7 @@ define( [
           return function () {
             delete this.loadReady[id];
             this.setup_page();
-          }
+          }.bind(this);
         },
 
         /**
@@ -132,7 +94,7 @@ define( [
         /**
          * Return (reference to) widget data by element
          */
-        widgetDataGetByElement: function (element) {
+        getWidgetDataByElement: function (element) {
           var
             parent = $(element).parent(),
             path = parent.attr('id');
@@ -154,6 +116,43 @@ define( [
           return data;
         },
 
+        /**
+         * @deprecated Please use setWidgetData
+         */
+        widgetDataInsert: function(path, obj) {
+          return this.setWidgetData(path, obj);
+        },
+
+        /**
+         * @deprecated Please use setWidgetData
+         */
+        widgetDataGet: function(path) {
+          return this.getWidgetData(path);
+        },
+
+        update : function (json) {
+          for (var key in json) {
+            //$.event.trigger('_' + key, json[key]);
+            if (!(key in this.addressList))
+              continue;
+
+            var data = json[key];
+            this.addressList[key].forEach(function (id) {
+              if (typeof id === 'string') {
+                var element = document.getElementById(id);
+                var type = element.dataset.type || 'page'; // only pages have no datatype set
+                var widget = cv.structure.WidgetFactory.getInstanceById(id);
+                if (widget.update) {
+                  widget.update(key, data);
+                }
+                //console.log( element, type, updateFn );
+              } else if (typeof id === 'function') {
+                id.call(key, data);
+              }
+            });
+          }
+        },
+
         initBackendClient: function () {
           if ($.getUrlVar('testMode')) {
             this.visu = new ClientMockup();
@@ -168,35 +167,14 @@ define( [
           } else {
             this.visu = new CometVisu(this.backend, this.backendUrl);
           }
-          function update(json) {
-            for (var key in json) {
-              //$.event.trigger('_' + key, json[key]);
-              if (!(key in ga_list))
-                continue;
 
-              var data = json[key];
-              ga_list[key].forEach(function (id) {
-                if (typeof id === 'string') {
-                  var element = document.getElementById(id);
-                  var type = element.dataset.type || 'page'; // only pages have no datatype set
-                  var widget = cv.structure.WidgetFactory.getInstanceById(id);
-                  if (widget.update) {
-                    widget.update(key, data);
-                  }
-                  //console.log( element, type, updateFn );
-                } else if (typeof id === 'function') {
-                  id.call(key, data);
-                }
-              });
-            }
-          };
           this.visu.update = function (json) { // overload the handler
             profileCV('first data start (' + this.visu.retryCounter + ')');
-            update(json);
+            this.update(json);
             profileCV('first data updated', true);
-            this.visu.update = update; // handle future requests directly
-          }
-          this.visu.user = 'demo_user'; // example for setting a user
+            this.visu.update = this.update.bind(this); // handle future requests directly
+          }.bind(this);
+          this.user = 'demo_user'; // example for setting a user
         },
 
         addAddress: function (address, id) {
@@ -222,15 +200,15 @@ define( [
 
         resetPageValues: function () {
           this.currentPage = null;
-          thisTemplateEngine.currentPageUnavailableWidth = -1;
-          thisTemplateEngine.currentPageUnavailableHeight = -1;
-          thisTemplateEngine.currentPageNavbarVisibility = null;
+          this.currentPageUnavailableWidth = -1;
+          this.currentPageUnavailableHeight = -1;
+          this.currentPageNavbarVisibility = null;
         },
 
 
         parseXML: function (loaded_xml) {
           profileCV('parseXML');
-          xml = loaded_xml;
+          this.xml = loaded_xml;
           // erst mal den Cache für AJAX-Requests wieder aktivieren
           /*
            $.ajaxSetup({
@@ -242,59 +220,59 @@ define( [
            * First, we try to get a design by url. Secondly, we try to get a predefined
            */
           // read predefined design in config
-          var predefinedDesign = $('pages', xml).attr("design");
+          var predefinedDesign = $('pages', this.xml).attr("design");
 
-          if ($('pages', xml).attr("backend")) {
-            thisTemplateEngine.backend = $('pages', xml).attr("backend");
+          if ($('pages', this.xml).attr("backend")) {
+            this.backend = $('pages', this.xml).attr("backend");
           }
-          thisTemplateEngine.initBackendClient();
+          this.initBackendClient();
 
-          if (undefined === $('pages', xml).attr('scroll_speed'))
-            thisTemplateEngine.scrollSpeed = 400;
+          if (undefined === $('pages', this.xml).attr('scroll_speed'))
+            this.scrollSpeed = 400;
           else
-            thisTemplateEngine.scrollSpeed = $('pages', xml).attr('scroll_speed') | 0;
+            this.scrollSpeed = $('pages', this.xml).attr('scroll_speed') | 0;
 
-          if ($('pages', xml).attr('bind_click_to_widget') != undefined) {
-            thisTemplateEngine.bindClickToWidget = $('pages', xml).attr('bind_click_to_widget') == "true" ? true : false;
+          if ($('pages', this.xml).attr('bind_click_to_widget') != undefined) {
+            this.bindClickToWidget = $('pages', this.xml).attr('bind_click_to_widget') == "true" ? true : false;
           }
-          if ($('pages', xml).attr('default_columns')) {
-            thisTemplateEngine.defaultColumns = $('pages', xml).attr('default_columns');
+          if ($('pages', this.xml).attr('default_columns')) {
+            this.defaultColumns = $('pages', this.xml).attr('default_columns');
           }
-          if ($('pages', xml).attr('min_column_width')) {
-            thisTemplateEngine.minColumnWidth = $('pages', xml).attr('min_column_width');
+          if ($('pages', this.xml).attr('min_column_width')) {
+            this.minColumnWidth = $('pages', this.xml).attr('min_column_width');
           }
-          thisTemplateEngine.screensave_time = $('pages', xml).attr('screensave_time');
-          thisTemplateEngine.screensave_page = $('pages', xml).attr('screensave_page');
+          this.screensave_time = $('pages', this.xml).attr('screensave_time');
+          this.screensave_page = $('pages', this.xml).attr('screensave_page');
 
           // design by url
           if ($.getUrlVar("design")) {
-            thisTemplateEngine.clientDesign = $.getUrlVar("design");
+            this.clientDesign = $.getUrlVar("design");
           }
           // design by config file
           else if (predefinedDesign) {
-            thisTemplateEngine.clientDesign = predefinedDesign;
+            this.clientDesign = predefinedDesign;
           }
           // selection dialog
           else {
-            thisTemplateEngine.selectDesign();
+            this.selectDesign();
           }
-          if ($('pages', xml).attr('max_mobile_screen_width'))
-            thisTemplateEngine.maxMobileScreenWidth = $('pages', xml).attr('max_mobile_screen_width');
+          if ($('pages', this.xml).attr('max_mobile_screen_width'))
+            this.maxMobileScreenWidth = $('pages', this.xml).attr('max_mobile_screen_width');
 
           var getCSSlist = [];
-          if (thisTemplateEngine.clientDesign) {
-            getCSSlist.push('css!designs/' + thisTemplateEngine.clientDesign + '/basic.css');
-            if (!thisTemplateEngine.forceNonMobile) {
-              getCSSlist.push('css!designs/' + thisTemplateEngine.clientDesign + '/mobile.css');
+          if (this.clientDesign) {
+            getCSSlist.push('css!designs/' + this.clientDesign + '/basic.css');
+            if (!this.forceNonMobile) {
+              getCSSlist.push('css!designs/' + this.clientDesign + '/mobile.css');
             }
-            getCSSlist.push('css!designs/' + thisTemplateEngine.clientDesign + '/custom.css');
-            getCSSlist.push('designs/' + thisTemplateEngine.clientDesign + '/design_setup');
+            getCSSlist.push('css!designs/' + this.clientDesign + '/custom.css');
+            getCSSlist.push('designs/' + this.clientDesign + '/design_setup');
           }
-          require(getCSSlist, delaySetup('design'));
+          require(getCSSlist, this.delaySetup('design'));
 
           // start with the plugins
           var pluginsToLoad = [];
-          $('meta > plugins plugin', xml).each(function (i) {
+          $('meta > plugins plugin', this.xml).each(function (i) {
             var name = $(this).attr('name');
             if (name) {
               if (!pluginsToLoad[name]) {
@@ -302,7 +280,7 @@ define( [
                  pluginsToLoadCount++;
                  $.includeScripts(
                  ['plugins/' + name + '/structure_plugin.js'],
-                 delaySetup( 'plugin_' + name)
+                 this.delaySetup( 'plugin_' + name)
                  );
                  pluginsToLoad[name] = true;
                  */
@@ -315,15 +293,15 @@ define( [
            delete loadReady.plugins;
            }
            */
-          var delaySetupPluginsCallback = delaySetup('plugins');
+          var delaySetupPluginsCallback = this.delaySetup('plugins').bind(this);
           require(pluginsToLoad, delaySetupPluginsCallback, function (err) {
             console.log('Plugin loading error! It happend with: "' + err.requireModules[0] + '". Is the plugin available and written correctly?');
             delaySetupPluginsCallback();
           });
 
           // then the icons
-          $('meta > icons icon-definition', xml).each(function (i) {
-            var $this = $(this);
+          $('meta > icons icon-definition', this.xml).each(function (i, elem) {
+            var $this = $(elem);
             var name = $this.attr('name');
             var uri = $this.attr('uri');
             var type = $this.attr('type');
@@ -335,17 +313,17 @@ define( [
           });
 
           // then the mappings
-          $('meta > mappings mapping', xml).each(function (i) {
-            var $this = $(this);
+          $('meta > mappings mapping', this.xml).each(function (i, elem) {
+            var $this = $(elem);
             var name = $this.attr('name');
-            mappings[name] = {};
+            this.mappings[name] = {};
             var formula = $this.find('formula');
             if (formula.length > 0) {
               var func = eval('var func = function(x){var y;' + formula.text() + '; return y;}; func');
-              mappings[name]['formula'] = func;
+              this.mappings[name]['formula'] = func;
             }
-            $this.find('entry').each(function () {
-              var $localThis = $(this);
+            $this.find('entry').each(function (j, subElem) {
+              var $localThis = $(subElem);
               var origin = $localThis.contents();
               var value = [];
               for (var i = 0; i < origin.length; i++) {
@@ -367,30 +345,30 @@ define( [
               }
               // now set the mapped values
               if ($localThis.attr('value')) {
-                mappings[name][$localThis.attr('value')] = value.length == 1 ? value[0] : value;
+                this.mappings[name][$localThis.attr('value')] = value.length == 1 ? value[0] : value;
                 if (isDefaultValue) {
-                  mappings[name]['defaultValue'] = $localThis.attr('value');
+                  this.mappings[name]['defaultValue'] = $localThis.attr('value');
                 }
               }
               else {
-                if (!mappings[name]['range']) {
-                  mappings[name]['range'] = {};
+                if (!this.mappings[name]['range']) {
+                  this.mappings[name]['range'] = {};
                 }
-                mappings[name]['range'][parseFloat($localThis.attr('range_min'))] = [parseFloat($localThis.attr('range_max')), value];
+                this.mappings[name]['range'][parseFloat($localThis.attr('range_min'))] = [parseFloat($localThis.attr('range_max')), value];
                 if (isDefaultValue) {
-                  mappings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
+                  this.mappings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
                 }
               }
-            });
-          });
+            }.bind(this));
+          }.bind(this));
 
           // then the stylings
-          $('meta > stylings styling', xml).each(function (i) {
-            var name = $(this).attr('name');
+          $('meta > stylings styling', this.xml).each(function (i, elem) {
+            var name = $(elem).attr('name');
             var classnames = '';
-            stylings[name] = {};
-            $(this).find('entry').each(function () {
-              var $localThis = $(this);
+            this.stylings[name] = {};
+            $(elem).find('entry').each(function (k, subElem) {
+              var $localThis = $(subElem);
               classnames += $localThis.text() + ' ';
               // check for default entry
               var isDefaultValue = $localThis.attr('default');
@@ -401,28 +379,28 @@ define( [
               }
               // now set the styling values
               if ($localThis.attr('value')) {
-                stylings[name][$localThis.attr('value')] = $localThis.text();
+                this.stylings[name][$localThis.attr('value')] = $localThis.text();
                 if (isDefaultValue) {
-                  stylings[name]['defaultValue'] = $localThis.attr('value');
+                  this.stylings[name]['defaultValue'] = $localThis.attr('value');
                 }
               } else { // a range
-                if (!stylings[name]['range'])
-                  stylings[name]['range'] = {};
-                stylings[name]['range'][parseFloat($localThis.attr('range_min'))] = [parseFloat($localThis.attr('range_max')), $localThis.text()];
+                if (!this.stylings[name]['range'])
+                  this.stylings[name]['range'] = {};
+                this.stylings[name]['range'][parseFloat($localThis.attr('range_min'))] = [parseFloat($localThis.attr('range_max')), $localThis.text()];
                 if (isDefaultValue) {
-                  stylings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
+                  this.stylings[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
                 }
               }
-            });
-            stylings[name]['classnames'] = classnames;
-            cv.ui.Stylings.my.addStyling(name, stylings[name]);
-          });
+            }.bind(this));
+            this.stylings[name]['classnames'] = classnames;
+            cv.ui.Stylings.my.addStyling(name, this.stylings[name]);
+          }.bind(this));
 
           // then the status bar
-          $('meta > statusbar status', xml).each(function (i) {
-            var type = $(this).attr('type');
-            var condition = $(this).attr('condition');
-            var extend = $(this).attr('hrefextend');
+          $('meta > statusbar status', this.xml).each(function (i, elem) {
+            var type = $(elem).attr('type');
+            var condition = $(elem).attr('condition');
+            var extend = $(elem).attr('hrefextend');
             var sPath = window.location.pathname;
             var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 
@@ -437,7 +415,7 @@ define( [
             if (!editMode && 'edit' == condition)
               return;
 
-            var text = $(this).text();
+            var text = $(elem).text();
             switch (extend) {
               case 'all': // append all parameters
                 var search = window.location.search.replace(/\$/g, '$$$$');
@@ -457,10 +435,10 @@ define( [
                 break;
             }
             $('.footer').html($('.footer').html() + text);
-          });
+          }.bind(this));
 
-          delete loadReady.page;
-          setup_page();
+          delete this.loadReady.page;
+          this.setup_page();
         },
 
         setup_page: function () {
@@ -468,32 +446,29 @@ define( [
           profileCV('setup_page start');
 
           // check if the page and the plugins are ready now
-          for (var key in loadReady)  // test for emptines
+          for (var key in this.loadReady)  // test for emptines
             return; // we'll be called again...
 
-          if (!xml) {
+          if (!this.xml) {
             return;
           }
 
           // login to backend as it might change some settings needed for further processing
-          thisTemplateEngine.visu.login(true, function () {
+          this.visu.login(true, function () {
             profileCV('setup_page running');
 
             // as we are sure that the default CSS were loaded now:
             $('link[href*="mobile.css"]').each(function () {
-              this.media = 'only screen and (max-width: ' + thisTemplateEngine.maxMobileScreenWidth + 'px)';
-            });
+              this.media = 'only screen and (max-width: ' + this.maxMobileScreenWidth + 'px)';
+            }.bind(this));
 
-            var page = $('pages > page', xml)[0]; // only one page element allowed...
+            var page = $('pages > page', this.xml)[0]; // only one page element allowed...
 
-            thisTemplateEngine.create_pages(page, 'id');
+            this.create_pages(page, 'id');
             cv.structure.pure.Page.createFinal();
             profileCV('setup_page created pages');
 
             cv.MessageBroker.my.publish("setup.dom.finished");
-            thisTemplateEngine.postDOMSetupFns.forEach(function (thisFn) {
-              thisFn();
-            });
             profileCV('setup_page finished postDOMSetupFns');
 
             var startpage = 'id_';
@@ -502,27 +477,27 @@ define( [
               if (typeof(Storage) !== 'undefined') {
                 if ('remember' === startpage) {
                   startpage = localStorage.getItem('lastpage');
-                  rememberLastPage = true;
+                  this.rememberLastPage = true;
                   if ('string' !== typeof( startpage ) || 'id_' !== startpage.substr(0, 3))
                     startpage = 'id_'; // fix obvious wrong data
                 } else if ('noremember' === startpage) {
                   localStorage.removeItem('lastpage');
                   startpage = 'id_';
-                  rememberLastPage = false;
+                  this.rememberLastPage = false;
                 }
               }
             }
-            thisTemplateEngine.currentPage = $('#' + startpage);
+            this.currentPage = $('#' + startpage);
 
-            thisTemplateEngine.adjustColumns();
-            thisTemplateEngine.applyColumnWidths();
+            cv.layout.Manager.adjustColumns();
+            cv.layout.Manager.applyColumnWidths();
 
-            thisTemplateEngine.main_scroll = new PageHandler();
-            if (thisTemplateEngine.scrollSpeed != undefined) {
-              thisTemplateEngine.main_scroll.setSpeed(thisTemplateEngine.scrollSpeed);
+            this.main_scroll = new PageHandler();
+            if (this.scrollSpeed != undefined) {
+              this.main_scroll.setSpeed(this.scrollSpeed);
             }
 
-            thisTemplateEngine.scrollToPage(startpage, 0);
+            this.scrollToPage(startpage, 0);
 
             /* CM, 9.4.16:
              * TODO: Is this really needed?
@@ -531,7 +506,7 @@ define( [
              * anyway...
              *
              $('.fast').bind('click', function() {
-             thisTemplateEngine.main_scroll.seekTo($(this).text());
+             this.main_scroll.seekTo($(this).text());
              });
              */
 
@@ -541,7 +516,7 @@ define( [
               var lastpage = e.state;
               if (lastpage) {
                 // browser back button takes back to the last page
-                thisTemplateEngine.scrollToPage(lastpage, 0, true);
+                this.scrollToPage(lastpage, 0, true);
               }
             };
 
@@ -550,7 +525,7 @@ define( [
               this.onload = Trick_O_Matic
             });
 
-            if (thisTemplateEngine.enableAddressQueue) {
+            if (this.enableAddressQueue) {
               // identify addresses on startpage
               var startPageAddresses = {};
               $('.actor', '#' + startpage).each(function () {
@@ -561,28 +536,28 @@ define( [
                   startPageAddresses[addr.substring(1)] = 1;
                 }
               });
-              thisTemplateEngine.visu.setInitialAddresses(Object.keys(startPageAddresses));
+              this.visu.setInitialAddresses(Object.keys(startPageAddresses));
             }
-            var addressesToSubscribe = thisTemplateEngine.getAddresses();
+            var addressesToSubscribe = this.getAddresses();
             if (0 !== addressesToSubscribe.length)
-              thisTemplateEngine.visu.subscribe(thisTemplateEngine.getAddresses());
+              this.visu.subscribe(this.getAddresses());
 
-            xml = null; // not needed anymore - free the space
+            this.xml = null; // not needed anymore - free the space
 
             $('.icon').each(function () {
               fillRecoloredIcon(this);
             });
             $('.loading').removeClass('loading');
-            fireLoadingFinishedAction();
-            if (undefined !== thisTemplateEngine.screensave_time) {
-              thisTemplateEngine.screensave = setTimeout(function () {
-                thisTemplateEngine.scrollToPage();
-              }, thisTemplateEngine.screensave_time * 1000);
+            this.fireLoadingFinishedAction();
+            if (undefined !== this.screensave_time) {
+              this.screensave = setTimeout(function () {
+                this.scrollToPage();
+              }, this.screensave_time * 1000);
               $(document).click(function () {
-                clearInterval(thisTemplateEngine.screensave);
-                thisTemplateEngine.screensave = setTimeout(function () {
-                  thisTemplateEngine.scrollToPage();
-                }, thisTemplateEngine.screensave_time * 1000);
+                clearInterval(this.screensave);
+                this.screensave = setTimeout(function () {
+                  this.scrollToPage();
+                }, this.screensave_time * 1000);
               });
             }
             profileCV('setup_page finish');
@@ -590,7 +565,7 @@ define( [
         },
 
         create_pages: function (page, path, flavour, type) {
-          thisTemplateEngine.callbacks[path + '_'] = {
+          this.callbacks[path + '_'] = {
             exitingPageChange: [],// called when the current page is left
             beforePageChange: [], // called as soon as a page change is known
             duringPageChange: [], // called when the page is theoretical visible, i.e. "display:none" is removed - CSS calculations shoud work now
@@ -629,7 +604,7 @@ define( [
 
         /**
          * Little helper to find the relevant page path for a given widget.
-         * @param element The XML element
+         * @param element The this.xml element
          * @param widgetpath The path / ID of the widget
          * @return The path of the parent
          */
@@ -709,15 +684,15 @@ define( [
             //      console.log("Page: "+page_name+", Scope: "+scope);
             var selector = (scope != undefined && scope != null) ? '.page[id^="' + scope + '"] h1:contains(' + page_name + ')' : '.page h1:contains(' + page_name + ')';
             var pages = $(selector, '#pages');
-            if (pages.length > 1 && thisTemplateEngine.currentPage != null) {
+            if (pages.length > 1 && this.currentPage != null) {
               // More than one Page found -> search in the current pages descendants first
               var fallback = true;
               pages.each(function (i) {
                 var p = $(this).closest(".page");
                 if ($(this).text() == page_name) {
-                  if (p.attr('id').length < thisTemplateEngine.currentPage.attr('id').length) {
+                  if (p.attr('id').length < this.currentPage.attr('id').length) {
                     // found pages path is shorter the the current pages -> must be an ancestor
-                    if (thisTemplateEngine.currentPage.attr('id').indexOf(p.attr('id')) == 0) {
+                    if (this.currentPage.attr('id').indexOf(p.attr('id')) == 0) {
                       // found page is an ancenstor of the current page -> we take this one
                       page_id = p.attr("id");
                       fallback = false;
@@ -725,7 +700,7 @@ define( [
                       return false;
                     }
                   } else {
-                    if (p.attr('id').indexOf(thisTemplateEngine.currentPage.attr('id')) == 0) {
+                    if (p.attr('id').indexOf(this.currentPage.attr('id')) == 0) {
                       // found page is an descendant of the current page -> we take this one
                       page_id = p.attr("id");
                       fallback = false;
@@ -774,7 +749,7 @@ define( [
           if (undefined === speed)
             speed = Config.scrollSpeed;
 
-          if (rememberLastPage)
+          if (this.rememberLastPage)
             localStorage.lastpage = page_id;
 
           // push new state to history
@@ -977,72 +952,18 @@ define( [
         }
       }
     });
+
+    return {
+      // simulate a singleton
+      getInstance : function() {
+        if (!Config.templateEngine) {
+          Config.templateEngine = new cv.TemplateEngine();
+        }
+        return Config.templateEngine;
+      }
+    };
   }
 );
-
-
-
-// this.transformEncode = function(transformation, value) {
-//   var basetrans = transformation.split('.')[0];
-//   return transformation in Transform ? Transform[transformation]
-//     .encode(value) : (basetrans in Transform ? Transform[basetrans]
-//     .encode(value) : value);
-// };
-//
-// this.transformDecode = function(transformation, value) {
-//   var basetrans = transformation.split('.')[0];
-//   return transformation in Transform ? Transform[transformation]
-//     .decode(value) : (basetrans in Transform ? Transform[basetrans]
-//     .decode(value) : value);
-// };
-
-
-
-// this.map = function(value, this_map) {
-//   if (this_map && mappings[this_map]) {
-//     var m = mappings[this_map];
-//
-//     var ret = value;
-//     if (m.formula) {
-//       ret = m.formula(ret);
-//     }
-//
-//     var mapValue = function(v) {
-//       if (m[v]) {
-//         return m[v];
-//       } else if (m['range']) {
-//         var valueFloat = parseFloat(v);
-//         var range = m['range'];
-//         for (var min in range) {
-//           if (min > valueFloat) continue;
-//           if (range[min][0] < valueFloat) continue; // check max
-//           return range[min][1];
-//         }
-//       }
-//       return v; // pass through when nothing was found
-//     }
-//     var ret = mapValue(ret);
-//     if (!ret && m['defaultValue']) {
-//       ret = mapValue(m['defaultValue']);
-//     }
-//     if( ret !== undefined ) {
-//       return ret;
-//     }
-//   }
-//   return value;
-// };
-
-// /**
-//  * Look up the entry for @param value in the mapping @param this_map and
-//  * @return the next value in the list (including wrap around).
-//  */
-// this.getNextMappedValue = function(value, this_map) {
-//   if (this_map && mappings[this_map]) {
-//     var keys = Object.keys(mappings[this_map]);
-//     return keys[ (keys.indexOf( "" + value ) + 1) % keys.length ];
-//   }
-//   return value;
-// }
 
 
 // /** ************************************************************************* */
@@ -1075,8 +996,8 @@ define( [
 //       src = target.src;
 //     if (src.indexOf('?') < 0)
 //       src += '?';
-//     thisTemplateEngine.widgetDataGet( path ).internal = setInterval(function() {
-//       thisTemplateEngine.refreshAction(target, src);
+//     this.widgetDataGet( path ).internal = setInterval(function() {
+//       this.refreshAction(target, src);
 //     }, refresh);
 //   }
 // };
