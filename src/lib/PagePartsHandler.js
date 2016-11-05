@@ -87,7 +87,7 @@ define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
   };
   
   this.getNavbarsVisibility = function(page) {
-    if (cv.layout.ResizeHandler.currentPageNavbarVisibility==null) {
+    if (cv.layout.Manager.my.currentPageNavbarVisibility==null) {
       if (page==null) {
         page = templateEngine.currentPage;
       }
@@ -149,10 +149,10 @@ define([ 'jquery', 'lib/cv/structure/WidgetFactory' ], function( $ ) {
           shownavbar[pos] = 'true';
         }
       }
-      cv.layout.ResizeHandler.currentPageNavbarVisibility = shownavbar;
+      cv.layout.Manager.my.currentPageNavbarVisibility = shownavbar;
       //      console.log(shownavbar);
     }
-    return cv.layout.ResizeHandler.currentPageNavbarVisibility;
+    return cv.layout.Manager.my.currentPageNavbarVisibility;
   };
 
   /**

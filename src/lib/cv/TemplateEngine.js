@@ -200,9 +200,9 @@ define( [
 
         resetPageValues: function () {
           this.currentPage = null;
-          this.currentPageUnavailableWidth = -1;
-          this.currentPageUnavailableHeight = -1;
-          this.currentPageNavbarVisibility = null;
+          cv.layout.Manager.my.currentPageUnavailableWidth = -1;
+          cv.layout.Manager.my.currentPageUnavailableHeight = -1;
+          cv.layout.Manager.my.currentPageNavbarVisibility = null;
         },
 
 
@@ -223,50 +223,50 @@ define( [
           var predefinedDesign = $('pages', this.xml).attr("design");
 
           if ($('pages', this.xml).attr("backend")) {
-            this.backend = $('pages', this.xml).attr("backend");
+            Config.backend = $('pages', this.xml).attr("backend");
           }
           this.initBackendClient();
 
           if (undefined === $('pages', this.xml).attr('scroll_speed'))
-            this.scrollSpeed = 400;
+            Config.scrollSpeed = 400;
           else
-            this.scrollSpeed = $('pages', this.xml).attr('scroll_speed') | 0;
+            Config.scrollSpeed = $('pages', this.xml).attr('scroll_speed') | 0;
 
           if ($('pages', this.xml).attr('bind_click_to_widget') != undefined) {
-            this.bindClickToWidget = $('pages', this.xml).attr('bind_click_to_widget') == "true" ? true : false;
+            Config.bindClickToWidget = $('pages', this.xml).attr('bind_click_to_widget') == "true" ? true : false;
           }
           if ($('pages', this.xml).attr('default_columns')) {
-            this.defaultColumns = $('pages', this.xml).attr('default_columns');
+            Config.defaultColumns = $('pages', this.xml).attr('default_columns');
           }
           if ($('pages', this.xml).attr('min_column_width')) {
-            this.minColumnWidth = $('pages', this.xml).attr('min_column_width');
+            Config.minColumnWidth = $('pages', this.xml).attr('min_column_width');
           }
           this.screensave_time = $('pages', this.xml).attr('screensave_time');
           this.screensave_page = $('pages', this.xml).attr('screensave_page');
 
           // design by url
           if ($.getUrlVar("design")) {
-            this.clientDesign = $.getUrlVar("design");
+            Config.clientDesign = $.getUrlVar("design");
           }
           // design by config file
           else if (predefinedDesign) {
-            this.clientDesign = predefinedDesign;
+            Config.clientDesign = predefinedDesign;
           }
           // selection dialog
           else {
             this.selectDesign();
           }
           if ($('pages', this.xml).attr('max_mobile_screen_width'))
-            this.maxMobileScreenWidth = $('pages', this.xml).attr('max_mobile_screen_width');
+            Config.maxMobileScreenWidth = $('pages', this.xml).attr('max_mobile_screen_width');
 
           var getCSSlist = [];
-          if (this.clientDesign) {
-            getCSSlist.push('css!designs/' + this.clientDesign + '/basic.css');
-            if (!this.forceNonMobile) {
-              getCSSlist.push('css!designs/' + this.clientDesign + '/mobile.css');
+          if (Config.clientDesign) {
+            getCSSlist.push('css!designs/' + Config.clientDesign + '/basic.css');
+            if (!Config.forceNonMobile) {
+              getCSSlist.push('css!designs/' + Config.clientDesign + '/mobile.css');
             }
-            getCSSlist.push('css!designs/' + this.clientDesign + '/custom.css');
-            getCSSlist.push('designs/' + this.clientDesign + '/design_setup');
+            getCSSlist.push('css!designs/' + Config.clientDesign + '/custom.css');
+            getCSSlist.push('designs/' + Config.clientDesign + '/design_setup');
           }
           require(getCSSlist, this.delaySetup('design'));
 
@@ -459,8 +459,8 @@ define( [
 
             // as we are sure that the default CSS were loaded now:
             $('link[href*="mobile.css"]').each(function () {
-              this.media = 'only screen and (max-width: ' + this.maxMobileScreenWidth + 'px)';
-            }.bind(this));
+              this.media = 'only screen and (max-width: ' + Config.maxMobileScreenWidth + 'px)';
+            });
 
             var page = $('pages > page', this.xml)[0]; // only one page element allowed...
 
