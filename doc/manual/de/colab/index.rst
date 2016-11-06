@@ -119,6 +119,28 @@ Mit dem Wissen dieses Abschnitts sollte es möglich sein, eigene Beiträge für 
 
     * Lokales Erzeugen der HTML-Doku, inkl. Screenshots
 
+Dokumentation schreiben mit VisualStudio Code
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Der Editor `Visual Studio Code <https://code.visualstudio.com>`__ bietet ein Plugin, mit dessen Hilfe man sich eine
+Live Preview der geschriebenen Dokumentation anzeigen lassen kann. Dazu muss zunächst der Editor installiert werden und
+darin die Extension ``restructuredtext`` (über den Menüpunkt Anzeigen -> Extensions suchen nach rst) installiert werden.
+Nach einmaligem Neuladen des Editors steht diese zur Verfügung. 
+
+
+Damit die Live Preview funktioniert muss Python installiert sein.
+Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier: 
+`Install Sphinx <https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md>`__
+
+
+Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation öffnen und mit ``Strg+Shift r`` das Live-Preview Fenster öffnen.
+Änderungen an der RST-Datei, sollten dann mit kurzer Verzögerung automatisch in Preview Fenster zu sehen sein.
+
+.. figure:: doc/_static/visual_studio_live_preview.png
+
+   Ansicht des Editors mit Live-Preview
+
+
 Mithilfe bei der Entwicklung
 ----------------------------
 

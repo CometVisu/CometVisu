@@ -22,7 +22,7 @@ import sys
 from docutils.parsers.rst import Directive, nodes
 from docutils import statemachine
 import gettext
-from settings import config
+from settings import config, root_dir
 
 kwargs = {}
 if sys.version_info[0] < 3:
@@ -57,7 +57,7 @@ class ApiDocDirective(Directive):
 
     def init_locale(self):
         self.locale = self.state.document.settings.env.config.language
-        t = gettext.translation('messages', localedir=config.get("DEFAULT", "locale"), languages=[self.locale], codeset='utf-8')
+        t = gettext.translation('messages', localedir=os.path.join(root_dir, config.get("DEFAULT", "locale")), languages=[self.locale], codeset='utf-8')
         t.install(**kwargs)
 
         self.init_part_translations()
@@ -76,10 +76,10 @@ class ApiDocDirective(Directive):
             doc_parts = [self.arguments[1]]
 
         # find widget
-        widget_path = os.path.join("src", "structure", "pure", "%s.js" % widget_name)
+        widget_path = os.path.join(root_dir, "src", "structure", "pure", "%s.js" % widget_name)
         if not os.path.exists(widget_path):
             # try plugin
-            widget_path = os.path.join("src", "plugins", widget_name, "structure_plugin.js")
+            widget_path = os.path.join(root_dir, "src", "plugins", widget_name, "structure_plugin.js")
 
         if not os.path.exists(widget_path):
             print("No widget or plugin named '%s' found" % widget_name)

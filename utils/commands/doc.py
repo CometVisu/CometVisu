@@ -33,6 +33,9 @@ from argparse import ArgumentParser
 from . import Command
 from scaffolding import Scaffolder
 
+root_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+
+
 class DocParser:
     """
     Parse an existing rst file, recognize placeholder section and allow
@@ -41,7 +44,7 @@ class DocParser:
 
     def __init__(self, widget=None, plugin=None):
         self.config = ConfigParser.ConfigParser()
-        self.config.read(os.path.join('utils', 'config.ini'))
+        self.config.read(os.path.join(root_dir, 'utils', 'config.ini'))
         self.sections = {}
         self.lines = []
         self.replacements = {}
@@ -132,7 +135,7 @@ class DocGenerator(Command):
 
     def _get_source_version(self):
         if self._source_version is None:
-            with open("package.json") as data_file:
+            with open(os.path.join(self.root_dir, "package.json")) as data_file:
                 data = json.load(data_file)
                 self._source_version = data['version']
         return self._source_version
