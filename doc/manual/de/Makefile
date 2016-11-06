@@ -8,6 +8,6 @@ help:
 
 .PHONY: html
 html:
-	../../../cv doc -l de
+	../../../cv doc -l de --target out/preview/de
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
