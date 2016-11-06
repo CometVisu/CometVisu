@@ -525,7 +525,7 @@ define( [
               this.onload = Trick_O_Matic
             });
 
-            if (this.enableAddressQueue) {
+            if (Config.enableAddressQueue) {
               // identify addresses on startpage
               var startPageAddresses = {};
               $('.actor', '#' + startpage).each(function () {
