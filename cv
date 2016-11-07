@@ -23,6 +23,7 @@ from argparse import ArgumentParser
 from utils.commands.doc import DocGenerator
 from utils.commands.scaffolding import Scaffolder
 from utils.commands.translation import TranslationHandler
+from utils.commands.sitemaps import SitemapGenerator
 
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "package.json")) as data_file:
     data = json.load(data_file)
@@ -33,7 +34,8 @@ def main():
     commands = {
         'doc': DocGenerator,
         'scaffold': Scaffolder,
-        'translation': TranslationHandler
+        'translation': TranslationHandler,
+        'sitemap': SitemapGenerator
     }
     if sys.argv[1] in commands:
         handler = commands[sys.argv[1]]()

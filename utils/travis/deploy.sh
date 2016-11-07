@@ -52,6 +52,9 @@ echo "generating german manual again with existing screenshots"
 echo "generating feature yml file for homepage"
 ./cv doc --generate-features
 
+echo "generating sitemap.xml for documentation"
+./cv sitemap
+
 echo "starting deployment..."
 # Now let's go have some fun with the cloned repo
 cd out
