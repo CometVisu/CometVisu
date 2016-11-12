@@ -77,8 +77,10 @@ define([], function() {
     this.isValid = function(xml) {
       // cache the result, as the config stays the same until next reload
       if (this._valid === null) {
-        console.log("Current hash: '%s', cached hash: '%s'", this.toHash(xml), this.getData("hash"));
-        this._valid = this.toHash(xml) == this.getData("hash");
+        var hash = this.toHash(xml);
+        // TODO: remove before release
+        console.log("Current hash: '%s', cached hash: '%s'", hash, this.getData("hash"));
+        this._valid = hash == this.getData("hash");
       }
       return this._valid;
     };
