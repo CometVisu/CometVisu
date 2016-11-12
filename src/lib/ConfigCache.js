@@ -84,13 +84,31 @@ define([], function() {
     };
 
     this.toHash = function(xml) {
-      return (new XMLSerializer()).serializeToString(xml).hashCode();
+      return this.hashCode((new XMLSerializer()).serializeToString(xml));
     };
 
     this.clear = function() {
       localStorage.removeItem(templateEngine.configSuffix+"."+this._cacheKey);
       localStorage.removeItem(templateEngine.configSuffix+".body");
     };
+
+    /**
+     * @see http://stackoverflow.com/q/7616461/940217
+     * @return {number}
+     */
+    this.hashCode = function(string){
+      if (Array.prototype.reduce){
+        return string.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+      }
+      var hash = 0;
+      if (string.length === 0) return hash;
+      for (var i = 0, l = string.length; i < l; i++) {
+        var character  = string.charCodeAt(i);
+        hash  = ((hash<<5)-hash)+character;
+        hash = hash & hash; // Convert to 32bit integer
+      }
+      return hash;
+    }
   }
   return {
     // simulate a singleton
