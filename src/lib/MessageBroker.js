@@ -44,17 +44,19 @@ define([], function() {
       if (!this.__registry[topic]) {
         this.__registry[topic] = [];
       }
-      this.__registry[topic].push([callback || this, context, priority || 0, once || false]);
+      var registry = this.__registry[topic];
+      registry.push([callback || this, context, priority || 0, once || false]);
       // sort by priority
-      this.__registry[topic].sort(function(a, b) {
+      registry.sort(function(a, b) {
         return b[2] - a[2];
       })
     };
 
     this.publish = function (topic) {
-      if (this.__registry[topic]) {
+      var registry = this.__registry[topic];
+      if (registry) {
         var remove = [];
-        this.__registry[topic].forEach(function(entry, index) {
+        registry.forEach(function(entry, index) {
           entry[0].apply(entry[1], Array.prototype.slice.call(arguments, 1));
           if (entry[3] === true) {
             remove.push(index);
@@ -66,7 +68,7 @@ define([], function() {
         }
         else {
           remove.forEach(function (index) {
-            this.__registry[topic].splice(index, 1);
+            registry.splice(index, 1);
           }, this);
         }
       }
