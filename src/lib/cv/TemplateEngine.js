@@ -6,7 +6,7 @@ define( [
   'lib/cv/Config',
   'lib/cv/Object',
   '_common', 'structure_custom', 'TrickOMatic', 'PageHandler', 'PagePartsHandler',
-  'CometVisuClient', 'CometVisuMockup', 'EventHandler',
+  'lib/cv/io/Client', 'lib/cv/io/Mockup', 'EventHandler',
   'Compatibility', 'jquery-ui', 'strftime',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'IconHandler',
   'widget_break', 'widget_designtoggle',
@@ -20,7 +20,7 @@ define( [
   'TransformDefault', 'TransformKnx', 'TransformOpenHab',
   'lib/cv/xml/Parser',
   'lib/cv/MessageBroker'
-  ], function(joose, $, Config, obj, design, custom, Trick_O_Matic, PageHandler, PagePartsHandler, CometVisu, ClientMockup ) {
+  ], function(joose, $, Config, obj, design, custom, Trick_O_Matic, PageHandler, PagePartsHandler ) {
     Class('cv.TemplateEngine', {
       isa: cv.Object,
 
@@ -71,6 +71,7 @@ define( [
       after: {
         initialize: function() {
           Config.eventHandler = new cv.event.Handler({templateEngine: this});
+          Config.templateEngine = this;
         }
       },
 
@@ -155,17 +156,26 @@ define( [
 
         initBackendClient: function () {
           if ($.getUrlVar('testMode')) {
-            this.visu = new ClientMockup();
+            this.visu = new cv.io.Mockup();
             require(['TransformMockup'], function () {
             });
           }
           else if (this.backend == "oh") {
-            this.visu = new CometVisu('openhab', this.backendUrl);
+            this.visu = new cv.io.Client({
+              backendName: 'openhab',
+              backendUrl: this.backendUrl
+            });
           }
           else if (this.backend == "oh2") {
-            this.visu = new CometVisu('openhab2', this.backendUrl);
+            this.visu = new cv.io.Client({
+              backendName: 'openhab2',
+              backendUrl: this.backendUrl
+            });
           } else {
-            this.visu = new CometVisu(this.backend, this.backendUrl);
+            this.visu = new cv.io.Client({
+              backendName: this.backend,
+              backendUrl: this.backendUrl
+            });
           }
 
           this.visu.update = function (json) { // overload the handler

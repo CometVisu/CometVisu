@@ -21,8 +21,6 @@ define(['jquery', 'Compatibility'], function($) {
     forceReload : false,
     use_maturity : false
   };
-  // Config.eventHandler = new cv.event.Handler({templateEngine: Config.templateEngine});
-  // Config.layoutManager = new cv.layout.Manager();
 
   if ($.getUrlVar('enableQueue')) {
     Config.enableAddressQueue = true;
