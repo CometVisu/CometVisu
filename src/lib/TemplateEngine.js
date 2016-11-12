@@ -108,7 +108,7 @@ define([
     this.ga_list = {};
     this.widgetData = {}; // hash to store all widget specific data
 
-    this.enableCache = $.getUrlVar('enableCache') ? !!$.getUrlVar('enableCache') : false;
+    this.enableCache = $.getUrlVar('enableCache') ? !!$.getUrlVar('enableCache') : true;
     /**
      * Return (reference to) widgetData object by path.
      */
