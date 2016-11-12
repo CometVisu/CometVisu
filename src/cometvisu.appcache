@@ -30,6 +30,7 @@ lib/IconHandler.js
 lib/IconTools.js
 lib/Compatibility.js
 lib/CometVisuClient.js
+lib/ConfigCache.js
 lib/PageHandler.js
 lib/PagePartsHandler.js
 lib/TrickOMatic.js
