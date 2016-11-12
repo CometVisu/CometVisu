@@ -195,7 +195,7 @@ define( ['structure_custom',
       }
     
       var ret_val = templateEngine.design.createDefaultWidget( 'powerspectrum', $e, path, flavour, type, this.update, handleVariant );
-      templateEngine.widgetDataInsert( path, {
+      var data = templateEngine.widgetDataInsert( path, {
         displayType: displayType,
         singlePhase: singlePhase,
         spectrum: singlePhase ? [ setupSpectrum() ] : [ setupSpectrum(-0.26), setupSpectrum(0), setupSpectrum(0.26) ],
@@ -217,7 +217,7 @@ define( ['structure_custom',
 
       // create the actor
       var actor = '<div class="actor clickable">';
-      if( showCurve )
+      if( data.showCurve )
         actor += '<div class="diagram_inline curve">loading...</div>';
       actor += '<div class="diagram_inline spectrum">loading...</div></div>';
 
