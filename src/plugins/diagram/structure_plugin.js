@@ -148,7 +148,11 @@ define( ['structure_custom', 'MessageBroker',
         templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
       },
       action: action,
-      construct: addPageListeners
+      construct: function(path) {
+        var data = templateEngine.widgetDataGet(path);
+        data.init = true;
+        addPageListeners(path);
+      }
     });
 
     function createDiagram(isInfo, element, path, flavour, type, updateFn) {

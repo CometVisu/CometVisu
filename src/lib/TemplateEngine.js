@@ -231,7 +231,7 @@ define([
       this.configSuffix = $.getUrlVar("config");
     }
 
-    this.clientDesign = "";
+    this.configSettings.clientDesign = "";
 
     if (typeof this.forceReload == "undefined") {
       this.forceReload = false;
@@ -911,6 +911,7 @@ define([
         thisTemplateEngine.configSettings.stylings[name]['classnames'] = classnames;
       });
 
+      var statusContent = "";
       // then the status bar
       $('meta > statusbar status', xml).each(function(i) {
         var type = $(this).attr('type');
@@ -949,9 +950,9 @@ define([
             text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
             break;
         }
-        thisTemplateEngine.configSettings.footer = text;
+        statusContent += text;
       });
-
+      thisTemplateEngine.configSettings.footer = btoa(statusContent);
       delete loadReady.page;
       thisTemplateEngine.init();
       thisTemplateEngine.setup_page();
@@ -966,7 +967,8 @@ define([
         delaySetupPluginsCallback();
       });
       if (thisTemplateEngine.configSettings.footer) {
-        $('.footer').html($('.footer').html() + thisTemplateEngine.configSettings.footer);
+        console.log(atob(thisTemplateEngine.configSettings.footer));
+        $('.footer').append(atob(thisTemplateEngine.configSettings.footer));
       }
     };
 
