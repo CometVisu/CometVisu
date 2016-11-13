@@ -53,16 +53,18 @@ define( ['_common'], function( design ) {
       var ret_val = basicdesign.createDefaultWidget( 'toggle', $e, path, flavour, type );
 
       // create the actor
-      var actor = '<div class="actor switchUnpressed"><div class="value">' + templateEngine.clientDesign + '</div></div>';
+      var actor = '<div class="actor switchUnpressed"><div class="value">' + templateEngine.configSettings.clientDesign + '</div></div>';
+      this.construct(path);
+      return ret_val + actor + '</div>';
+    },
 
+    construct: function(path) {
       var data = templateEngine.widgetDataGet( path );
-
       $.getJSON("./designs/get_designs.php",function(d) {
         data['availableDesigns'] = d;
       });
-
-      return ret_val + actor + '</div>';
     },
+
     downaction: basicdesign.defaultButtonDownAnimationInheritAction,
 
     /**
@@ -86,17 +88,17 @@ define( ['_common'], function( design ) {
       var oldDesign = $('.value',$this).text();
       var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
 
-      var URL = this.getLocation();
-      var regexp = new RegExp("design="+oldDesign)
+      var URL = window.location.href;
+      var regexp = new RegExp("design="+oldDesign);
       if (URL.search(regexp) != -1) { // has URL-parameter design
-        this.setLocation(URL.replace(regexp, "design="+newDesign));
+        window.location.href = URL.replace(regexp, "design="+newDesign);
       }
       else {
         if (URL.indexOf("?") != -1) { // has other parameters, append design
-          this.setLocation(URL+"&design="+newDesign);
+          window.location.href = URL+"&design="+newDesign;
         }
         else { // has now parameters
-          this.setLocation(URL+"?design="+newDesign);
+          window.location.href = URL+"?design="+newDesign;
         }
       }
     },
