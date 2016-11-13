@@ -1057,11 +1057,13 @@ define([
 
           // check if cache is still valid
           if (!thisTemplateEngine.configCache.isValid(xml)) {
+            // TODO: remove before release
             console.log("invalidating cache");
             // cache invalid
             cache = false;
             thisTemplateEngine.configCache.clear();
           } else {
+            // TODO: remove before release
             console.log("using cache");
             cache = thisTemplateEngine.configCache.getData();
             thisTemplateEngine.widgetData = cache.data;
@@ -1073,6 +1075,7 @@ define([
           }
         }
         if (!cache) {
+          // TODO: remove before release
           console.log("not using cache");
           var page = $('pages > page', xml)[0]; // only one page element allowed...
 
