@@ -137,7 +137,7 @@ define( ['structure_custom', 'MessageBroker',
           
         if( widgetData.popup )
           action( path, actor, isCanceled );
-      },
+      }
     });
     VisuDesign_Custom.prototype.addCreator("diagram_info", {
       create: function(element, path, flavour, type) {
@@ -147,7 +147,8 @@ define( ['structure_custom', 'MessageBroker',
         var element = $(this);
         templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
       },
-      action: action
+      action: action,
+      construct: addPageListeners
     });
 
     function createDiagram(isInfo, element, path, flavour, type, updateFn) {
@@ -184,8 +185,7 @@ define( ['structure_custom', 'MessageBroker',
         actor = '<div class="actor clickable switchUnpressed"><div class="value">-</div></div>';
       }
       else {
-        var 
-          pageId = templateEngine.getPageIdForWidgetId( element, path ),
+        var
           classStr = data.previewlabels ? 'diagram_inline' : 'diagram_preview',
           width    = $e.attr("width" ) ? ($e.attr("width" ) + (/[0-9]$/.test($e.attr("width" )) ? 'px' : '')) : undefined,
           height   = $e.attr("height") ? ($e.attr("height") + (/[0-9]$/.test($e.attr("height")) ? 'px' : '')) : undefined,
@@ -196,30 +196,36 @@ define( ['structure_custom', 'MessageBroker',
         actor = '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
         
         data.init = true;
-
-        MessageBroker.getInstance().subscribe("path."+pageId+".exitingPageChange", function(a,b) {
-          if( data.refresh ) {
-            clearInterval( data.refreshFn );
-          }
-        }, this);
-        MessageBroker.getInstance().subscribe("path."+pageId+".beforePageChange", function() {
-          // update diagram data
-          if( !data.init )
-            loadDiagramData( path, data.plot, false, false );
-        }, this);
-        MessageBroker.getInstance().subscribe("path."+pageId+".duringPageChange", function() {
-          // create diagram when it's not already existing
-          if( data.init )
-            initDiagram( path, false );
-          
-          if( data.refresh ) {
-            data.refreshFn = window.setInterval(function() {
-              loadDiagramData( path, data.plot, false, true );
-            }, data.refresh * 1000 );
-          }
-        });
+        addPageListeners(path);
       }
+
       return ret_val + actor + '</div>';
+    }
+
+    function addPageListeners(path) {
+      var data = templateEngine.widgetDataGet(path);
+      var pageId = templateEngine.getPageIdForWidgetId( $('#'+path), path );
+      MessageBroker.getInstance().subscribe("path."+pageId+".exitingPageChange", function(a,b) {
+        if( data.refresh ) {
+          clearInterval( data.refreshFn );
+        }
+      }, this);
+      MessageBroker.getInstance().subscribe("path."+pageId+".beforePageChange", function() {
+        // update diagram data
+        if( !data.init )
+          loadDiagramData( path, data.plot, false, false );
+      }, this);
+      MessageBroker.getInstance().subscribe("path."+pageId+".duringPageChange", function() {
+        // create diagram when it's not already existing
+        if( data.init )
+          initDiagram( path, false );
+
+        if( data.refresh ) {
+          data.refreshFn = window.setInterval(function() {
+            loadDiagramData( path, data.plot, false, true );
+          }, data.refresh * 1000 );
+        }
+      });
     }
     
     function action( path, actor, isCanceled ) {
