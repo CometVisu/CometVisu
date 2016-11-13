@@ -1226,12 +1226,12 @@ define([
         parent = element.parentNode,
         parentpath = widgetpath.replace( /[0-9]*$/, '' );
 
-      while( parent && parent.nodeName !== 'page' )
+      while( parent && !$(parent).hasClass('page') )
       {
         parent = parent.parentNode;
         parentpath = parentpath.replace( /[0-9]*_$/, '' );
       }
-      return parentpath;
+      return $(parent).attr('id');
     };
 
     this.getPageIdByPath = function(page_name, path) {
