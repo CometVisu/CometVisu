@@ -105,6 +105,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#backend-backend"><em>backend</em> - Backend</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablequeue-queue"><em>enableQueue</em> - Queue</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#testmode-testmodus-ohne-echtes-backend"><em>testMode</em> - Testmodus ohne echtes Backend</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enablecache-caching-aktivieren"><em>enableCache</em> - Caching aktivieren</a></li>
 </ul>
 </li>
 </ul>
@@ -304,6 +305,20 @@ wie in der KNX-Welt üblich unterschiedliche Sende- und Rückmeldeadressen, wird
 funktionieren.</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="mi">0</span> <span class="p">(</span><span class="n">testMode</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">Options</span><span class="p">:</span> <span class="mi">0</span> <span class="p">(</span><span class="n">testMode</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="mi">1</span> <span class="p">(</span><span class="n">testMode</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enablecache-caching-aktivieren">
+<h3><em>enableCache</em> - Caching aktivieren<a class="headerlink" href="#enablecache-caching-aktivieren" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Durch den Parameter <code class="docutils literal"><span class="pre">enableCache</span></code> kann das Caching konfiguriert werden. Dieses bewirkt, dass eine Config
+nicht bei jeden Laden komplett neu eingelesen wird und daraus eine HTML-Seite generiert wird, sondern dass
+die gerenderte HTML-Struktur inkl. aller weiterer benötigter Daten lokal im Browser gespeichert werden
+(im LocalStore). Bei jedem weiteren Laden der Config werden die Daten also aus dem Cache gelesen, was
+das Laden der Visu auf leistungsschwachen Geräten wie z.B. Smartphones beschleunigt.</p>
+<p>Der Cache kann über diesen Parameter aktiviert (=true), deaktivert (=false) oder gelöscht werden (=invalid).
+Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu angelegt werden.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">true</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">true</span><span class="p">)</span>
+<span class="n">Options</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">false</span><span class="p">),</span> <span class="n">true</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">invalid</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">invalid</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
