@@ -967,7 +967,6 @@ define([
         delaySetupPluginsCallback();
       });
       if (thisTemplateEngine.configSettings.footer) {
-        console.log(atob(thisTemplateEngine.configSettings.footer));
         $('.footer').append(atob(thisTemplateEngine.configSettings.footer));
       }
     };
