@@ -96,12 +96,12 @@ define( ['_common'], function( design ) {
     if( isNotSubscribed )
     {
       isNotSubscribed = false;
-      templateEngine.postDOMSetupFns.unshift( function(){
+      templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
         if( navbarTop    ) $( '#navbarTop'    ).append( navbarTop    );
         if( navbarLeft   ) $( '#navbarLeft'   ).append( navbarLeft   );
         if( navbarRight  ) $( '#navbarRight'  ).append( navbarRight  );
         if( navbarBottom ) $( '#navbarBottom' ).append( navbarBottom );
-      });
+      }, this, 100);
     }
     
     return '';

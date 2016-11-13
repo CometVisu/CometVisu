@@ -28,9 +28,7 @@ define( ['TemplateEngine', '_common', 'widget_imagetrigger'], function(engine, d
       xml.innerHTML = '<imagetrigger flavour="potassium" sendValue="on" refresh="5" type="show"><label>Test</label></imagetrigger>';
       xml = xml.firstChild;
       widget = $(creator.create(xml, 'id_0', null, 'imagetrigger'));
-      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
-        thisFn();
-      });
+      templateEngine.messageBroker.publish("setup.dom.finished");
       expect(templateEngine.setupRefreshAction).toHaveBeenCalled();
       expect(widget).toHaveClass('flavour_potassium');
       data = templateEngine.widgetDataGet('id_0');

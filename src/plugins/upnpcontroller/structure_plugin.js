@@ -75,11 +75,17 @@ define( ['structure_custom', 'css!plugins/upnpcontroller/upnpcontroller' ], func
       ret_val +="</div>";
       //        console.log("loaded plugin upnpcontroller");
       upnpcontroller_trace_flag = $p.attr("debug");
-      templateEngine.postDOMSetupFns.push(function() {
-      refreshUpnpcontroller(path, $("#"+id), {}, false);
-    });
+
+      this.construct(path);
 
       return ret_val;
+    },
+
+    construct: function(path) {
+      var data = templateEngine.widgetDataGet(path);
+      templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+        refreshUpnpcontroller(path, $("#"+data.id), {}, false);
+      });
     }
   });
 
@@ -180,9 +186,9 @@ define( ['structure_custom', 'css!plugins/upnpcontroller/upnpcontroller' ], func
     var secondsProcessed = 0;
     trace("calculateSongProcessed");
     
-    durationParts = duration.split(':');
+    var durationParts = duration.split(':');
     secondsTotal = Number(durationParts[2]) + Number(durationParts[1]) * 60 + Number(durationParts[0]) * 60 * 60; 
-    reltimeParts = reltime.split(':');
+    var reltimeParts = reltime.split(':');
     secondsProcessed = Number(reltimeParts[2]) + Number(reltimeParts[1]) * 60 + Number(reltimeParts[0]) * 60 * 60; 
     trace("secondsTotal    : " + secondsTotal);
     trace("secondsProcessed: " + secondsProcessed);

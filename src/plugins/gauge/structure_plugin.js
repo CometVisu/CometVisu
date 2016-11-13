@@ -36,45 +36,55 @@ define( ['structure_custom', 'plugins/gauge/dep/tween-min', 'plugins/gauge/dep/s
     // create the actor 
     var id = "gauge_" + path;
     var data = templateEngine.widgetDataInsert( path, {
-      pagejumpTarget : $e.attr('target'),
+      pagejumpTarget          : $e.attr('target'),
+      gtype                   : $e.attr('type') || 'Radial',
+      subType                 : ($e.attr('subtype')) ? $e.attr('subtype').toUpperCase() : undefined,
+      titleString             : ($e.attr('titleString') ? $e.attr('titleString') : undefined),
+      unitString              : ($e.attr('unitString') ? $e.attr('unitString') : undefined),
+      unitStringVisible       : ($e.attr('unitStringVisible') ? $e.attr('unitStringVisible') == 'true' : undefined),
+      size                    : ($e.attr('size') ? parseFloat($e.attr('size') || 150) : undefined),
+      width                   : ($e.attr('width') ? parseFloat($e.attr('width') || 320) : undefined),
+      height                  : ($e.attr('height') ? parseFloat($e.attr('height') || 140) : undefined),
+      minValue                : parseFloat($e.attr('minValue') || 0),
+      maxValue                : parseFloat($e.attr('maxValue') || 100),
+      frameDesign             : ($e.attr('framedesign') ? $e.attr('framedesign').toUpperCase() : undefined),
+      backgroundColor         : ($e.attr('background') ? $e.attr('background').toUpperCase() : undefined),
+      lcdVisible              : ($e.attr('lcdVisible') ? $e.attr('lcdVisible') == 'true' : undefined),
+      lcdDecimals             : ($e.attr('lcdDecimals') ? parseInt($e.attr('lcdDecimals')) : undefined),
+      ledVisible              : ($e.attr('ledVisible') ? $e.attr('ledVisible') == 'true' : undefined),
+      valueColor              : ($e.attr('valueColor') ? $e.attr('valueColor').toUpperCase() : undefined),
+      trendVisible            : ($e.attr('trendVisible') ? $e.attr('trendVisible') == 'true' : undefined),
+      thresholdRising         : ($e.attr('thresholdRising') ? $e.attr('thresholdRising') == 'true' : undefined),
+      threshold               : ($e.attr('threshold') ? parseFloat($e.attr('threshold')) : undefined),
+      thresholdVisible        : ($e.attr('threshold') !== undefined),
+      autoScroll              : ($e.attr('autoScroll') ? $e.attr('autoScroll') == 'true' : undefined),
+      valuesNumeric           : ($e.attr('valuesNumeric') ? $e.attr('valuesNumeric') == 'true' : undefined)
     });
-    
-    var actor = '<div class="actor' + (data.pagejumpTarget?'clickable':'') + '"><canvas id=' + id + '></canvas></div>';
 
-    templateEngine.bindActionForLoadingFinished(function() {
-      var params = {
-        gaugeType               : ($e.attr('subtype') ? steelseries.GaugeType[$e.attr('subtype').toUpperCase()] : undefined),
-        titleString             : ($e.attr('titleString') ? $e.attr('titleString') : undefined),
-        unitString              : ($e.attr('unitString') ? $e.attr('unitString') : undefined),
-        unitStringVisible       : ($e.attr('unitStringVisible') ? $e.attr('unitStringVisible') == 'true' : undefined),
-        size                    : ($e.attr('size') ? parseFloat($e.attr('size') || 150) : undefined),
-        width                   : ($e.attr('width') ? parseFloat($e.attr('width') || 320) : undefined),
-        height                  : ($e.attr('height') ? parseFloat($e.attr('height') || 140) : undefined),
-        minValue                : parseFloat($e.attr('minValue') || 0), 
-        maxValue                : parseFloat($e.attr('maxValue') || 100),
-        frameDesign             : ($e.attr('framedesign') ? steelseries.FrameDesign[$e.attr('framedesign').toUpperCase()] : undefined),
-        backgroundColor         : ($e.attr('background') ? steelseries.BackgroundColor[$e.attr('background').toUpperCase()] : undefined),
-        foregroundType          : steelseries.ForegroundType.TYPE1,
-        pointerType             : steelseries.PointerType.TYPE1,
-        pointerColor            : steelseries.ColorDef.RED,
-        lcdColor                : steelseries.LcdColor.STANDARD,
-        lcdVisible              : ($e.attr('lcdVisible') ? $e.attr('lcdVisible') == 'true' : undefined),
-        lcdDecimals             : ($e.attr('lcdDecimals') ? parseInt($e.attr('lcdDecimals')) : undefined),
-        ledVisible              : ($e.attr('ledVisible') ? $e.attr('ledVisible') == 'true' : undefined),
-        ledColor                : steelseries.LedColor.RED_LED,
-        valueColor              : ($e.attr('valueColor') ? steelseries.ColorDef[$e.attr('valueColor').toUpperCase()] : steelseries.ColorDef.RED),
-        trendVisible            : ($e.attr('trendVisible') ? $e.attr('trendVisible') == 'true' : undefined),
-        thresholdRising         : ($e.attr('thresholdRising') ? $e.attr('thresholdRising') == 'true' : undefined),
-        threshold               : ($e.attr('threshold') ? parseFloat($e.attr('threshold')) : undefined),
-        thresholdVisible        : ($e.attr('threshold') !== undefined),
-        autoScroll              : ($e.attr('autoScroll') ? $e.attr('autoScroll') == 'true' : undefined),
-        valuesNumeric           : ($e.attr('valuesNumeric') ? $e.attr('valuesNumeric') == 'true' : undefined),
-      };
-      
-      data.gaugeElement = new steelseries[$e.attr('type') || 'Radial'](id, params);
-    });
-    
+    var actor = '<div class="actor' + (data.pagejumpTarget?'clickable':'') + '"><canvas id=' + id + '></canvas></div>';
+    this.construct(path);
     return ret_val + actor + '</div>';
+  },
+
+  construct : function(path) {
+    var data = templateEngine.widgetDataGet(path);
+    var additional = {
+      gaugeType               : data.subType ? steelseries.GaugeType[data.subType] : undefined,
+      frameDesign             : data.frameDesign ? steelseries.FrameDesign[data.frameDesign] : undefined,
+      backgroundColor         : data.backgroundColor ? steelseries.BackgroundColor[data.backgroundColor] : undefined,
+      valueColor              : data.valueColor ? steelseries.ColorDef[data.valueColor] : steelseries.ColorDef.RED,
+      foregroundType          : steelseries.ForegroundType.TYPE1,
+      pointerType             : steelseries.PointerType.TYPE1,
+      pointerColor            : steelseries.ColorDef.RED,
+      lcdColor                : steelseries.LcdColor.STANDARD,
+      ledColor                : steelseries.LedColor.RED_LED
+    };
+
+    var params = $.extend({}, data, additional);
+    var id = "gauge_" + path;
+    templateEngine.messageBroker.subscribe("loading.done", function() {
+      data.gaugeElement = new steelseries[data.gtype](id, params);
+    });
   },
 
   update: function( ga, d ) {

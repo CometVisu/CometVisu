@@ -42,9 +42,7 @@ define( ['TemplateEngine', '_common', 'CometVisuMockup', 'plugin_ColorChooser'],
       container.innerHTML = widgetString;
       document.body.appendChild(container);
 
-      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
-        thisFn();
-      });
+      templateEngine.messageBroker.publish("setup.dom.finished");
 
       // simulate the initial incoming data
       creator.update.call(container.children[0],'Rgb_Test', '246,0,20');
@@ -62,9 +60,7 @@ define( ['TemplateEngine', '_common', 'CometVisuMockup', 'plugin_ColorChooser'],
       container.innerHTML = widgetString;
       document.body.appendChild(container);
 
-      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
-        thisFn();
-      });
+      templateEngine.messageBroker.publish("setup.dom.finished");
 
       // simulate the initial incoming data
       creator.update.call(container.children[0],'Rgb_Test', '246');

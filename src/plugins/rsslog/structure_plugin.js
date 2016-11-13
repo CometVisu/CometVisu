@@ -15,7 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
-define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign_Custom ) {
+define( ['structure_custom', 'MessageBroker', 'css!plugins/rsslog/rsslog' ], function( VisuDesign_Custom, MessageBroker ) {
   "use strict";
 
   VisuDesign_Custom.prototype.addCreator("rsslog", {
@@ -43,7 +43,7 @@ define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign
     ret_val += '"></div></div>';
     ret_val += '</div>';
 
-    var data = templateEngine.widgetDataInsert( path, {
+    templateEngine.widgetDataInsert( path, {
       id:         id,
       address:    address,
       src:        $el.attr("src"),
@@ -56,14 +56,21 @@ define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign
       itemoffset: 0,
       itemack:    $el.attr("itemack") || "modify", // allowed: modify, display, disable
       future:     $el.attr("future"),
+      pageId:     templateEngine.getPageIdForWidgetId( element, path )
     });
-    
-    templateEngine.callbacks[ templateEngine.getPageIdForWidgetId( element, path ) ].beforePageChange.push( function(){
-      refreshRSSlog( data );
-    });
+
+    this.construct(path);
 
     return ret_val;
   },
+
+  construct: function(path) {
+    var data = templateEngine.widgetDataGet(path);
+    MessageBroker.getInstance().subscribe("path."+data.pageId+".beforePageChange", function() {
+      refreshRSSlog( data );
+    }, this);
+  },
+
   update:   function( ga, d ) { 
     var 
       element = $(this),

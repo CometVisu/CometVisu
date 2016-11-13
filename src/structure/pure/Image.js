@@ -72,14 +72,17 @@ define( ['_common'], function( design ) {
         imgStyle += 'height:' + data.height + ';';
       }
       var actor = '<div class="actor"><img src="' + data.src + '" style="' + imgStyle + '" /></div>';
+      this.construct(path);
+      return ret_val + actor + '</div>';
+    },
 
+    construct : function(path) {
+      var data = templateEngine.widgetDataGet(path);
       if (data.refresh) {
-        templateEngine.postDOMSetupFns.push( function(){
+        templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
           templateEngine.setupRefreshAction( path, data.refresh );
         });
       }
-
-      return ret_val + actor + '</div>';
     }
   });
 

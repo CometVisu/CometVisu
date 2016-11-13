@@ -90,33 +90,37 @@ define( ['_common'], function( design ) {
       ret_val += '<br/>';
     }
     
-    // replace button labels by mapped values 
-    if( undefined !== data.mapping )
-    {
-      templateEngine.postDOMSetupFns.push( function(){
-        var
-          $actor = $( '#' + path + ' .actor .value' ),
-          v0 = basicdesign.defaultValueHandling( undefined, data.button1value, data ),
-          $v0 = $actor.filter(':eq(0)'),
-          v1 = basicdesign.defaultValueHandling( undefined, data.button2value, data ),
-          $v1 = $actor.filter(':eq(1)'),
-          v2 = basicdesign.defaultValueHandling( undefined, data.button3value, data ),
-          $v2 = $actor.filter(':eq(2)'),
-          v3 = basicdesign.defaultValueHandling( undefined, data.button4value, data ),
-          $v3 = $actor.filter(':eq(3)');
-        $v0.empty();
-        basicdesign.defaultValue2DOM( v0, function(e){ $v0.append( e ) } );
-        $v1.empty();
-        basicdesign.defaultValue2DOM( v1, function(e){ $v1.append( e ) } );
-        $v2.empty();
-        basicdesign.defaultValue2DOM( v2, function(e){ $v2.append( e ) } );
-        $v3.empty();
-        basicdesign.defaultValue2DOM( v3, function(e){ $v3.append( e ) } );
-      });
-    }
+    this.construct(path);
     
     return ret_val + '</div></div>';
   },
+  construct: function(path) {
+      var data = templateEngine.widgetDataGet(path);
+      // replace button labels by mapped values
+      if( undefined !== data.mapping )
+      {
+        templateEngine.messageBroker.subscribe("setup.dom.finished", function(){
+          var
+            $actor = $( '#' + path + ' .actor .value' ),
+            v0 = basicdesign.defaultValueHandling( undefined, data.button1value, data ),
+            $v0 = $actor.filter(':eq(0)'),
+            v1 = basicdesign.defaultValueHandling( undefined, data.button2value, data ),
+            $v1 = $actor.filter(':eq(1)'),
+            v2 = basicdesign.defaultValueHandling( undefined, data.button3value, data ),
+            $v2 = $actor.filter(':eq(2)'),
+            v3 = basicdesign.defaultValueHandling( undefined, data.button4value, data ),
+            $v3 = $actor.filter(':eq(3)');
+          $v0.empty();
+          basicdesign.defaultValue2DOM( v0, function(e){ $v0.append( e ) } );
+          $v1.empty();
+          basicdesign.defaultValue2DOM( v1, function(e){ $v1.append( e ) } );
+          $v2.empty();
+          basicdesign.defaultValue2DOM( v2, function(e){ $v2.append( e ) } );
+          $v3.empty();
+          basicdesign.defaultValue2DOM( v3, function(e){ $v3.append( e ) } );
+        }, this);
+      }
+    },
   /**
    * Description
    * @method update

@@ -32,7 +32,7 @@ define( ['jquery', 'TemplateEngine', '_common', 'CometVisuMockup', 'widget_switc
       document.body.removeChild(container);
     });
 
-    it("should test the switch creator", function() {
+    it("should test the trigger creator", function() {
 
       var widget = $('#id_0 .widget');
 
@@ -47,9 +47,7 @@ define( ['jquery', 'TemplateEngine', '_common', 'CometVisuMockup', 'widget_switc
       expect(value).not.toBeNull();
       expect(value.text()).toBe("");
 
-      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
-        thisFn();
-      });
+      templateEngine.messageBroker.publish("setup.dom.finished");
 
       expect(value.text()).toBe("1");
       

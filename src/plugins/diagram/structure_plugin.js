@@ -58,7 +58,7 @@ require.config({
   }
 });
 
-define( ['structure_custom',
+define( ['structure_custom', 'MessageBroker',
                   'plugins/diagram/dep/flot/jquery.flot.min',
                   'plugins/diagram/dep/flot/jquery.flot.touch.min',
                   'plugins/diagram/dep/flot/jquery.flot.canvas.min',
@@ -67,7 +67,7 @@ define( ['structure_custom',
                   'plugins/diagram/dep/flot/jquery.flot.axislabels',
                   'plugins/diagram/dep/flot/jquery.flot.tooltip.min',
                   'plugins/diagram/dep/flot/jquery.flot.navigate.min'
-  ], function( VisuDesign_Custom ) {
+  ], function( VisuDesign_Custom, MessageBroker ) {
     "use strict";
 
     var cache = {};
@@ -138,6 +138,11 @@ define( ['structure_custom',
         if( widgetData.popup )
           action( path, actor, isCanceled );
       },
+      construct: function(path) {
+        var data = templateEngine.widgetDataGet(path);
+        data.init = true;
+        addPageListeners(path);
+      }
     });
     VisuDesign_Custom.prototype.addCreator("diagram_info", {
       create: function(element, path, flavour, type) {
@@ -175,7 +180,8 @@ define( ['structure_custom',
         previewlabels     : ($e.attr("previewlabels") || "false") == "true",
         isPopup           : false,
         popup             : $e.attr("popup") === "true",
-        tooltip           : ($e.attr("tooltip") || "false") == "true"
+        tooltip           : ($e.attr("tooltip") || "false") == "true",
+        pageId            : templateEngine.getPageIdForWidgetId( element, path )
       } );
 
       // create the actor
@@ -184,8 +190,7 @@ define( ['structure_custom',
         actor = '<div class="actor clickable switchUnpressed"><div class="value">-</div></div>';
       }
       else {
-        var 
-          pageId = templateEngine.getPageIdForWidgetId( element, path ),
+        var
           classStr = data.previewlabels ? 'diagram_inline' : 'diagram_preview',
           width    = $e.attr("width" ) ? ($e.attr("width" ) + (/[0-9]$/.test($e.attr("width" )) ? 'px' : '')) : undefined,
           height   = $e.attr("height") ? ($e.attr("height") + (/[0-9]$/.test($e.attr("height")) ? 'px' : '')) : undefined,
@@ -196,31 +201,35 @@ define( ['structure_custom',
         actor = '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
         
         data.init = true;
-        
-        templateEngine.callbacks[ pageId ].exitingPageChange.push( function(a,b){
-          if( data.refresh ) {
-            clearInterval( data.refreshFn );
-          }
-        });
-        
-        templateEngine.callbacks[ pageId ].beforePageChange.push( function(){
-          // update diagram data
-          if( !data.init )
-            loadDiagramData( path, data.plot, false, false );
-        });
-        templateEngine.callbacks[ pageId ].duringPageChange.push( function(){
-          // create diagram when it's not already existing
-          if( data.init )
-            initDiagram( path, false );
-          
-          if( data.refresh ) {
-            data.refreshFn = window.setInterval(function() {
-              loadDiagramData( path, data.plot, false, true );
-            }, data.refresh * 1000 );
-          }
-        });
+        addPageListeners(path);
       }
+
       return ret_val + actor + '</div>';
+    }
+
+    function addPageListeners(path) {
+      var data = templateEngine.widgetDataGet(path);
+      MessageBroker.getInstance().subscribe("path."+data.pageId+".exitingPageChange", function() {
+        if( data.refresh ) {
+          clearInterval( data.refreshFn );
+        }
+      }, this);
+      MessageBroker.getInstance().subscribe("path."+data.pageId+".beforePageChange", function() {
+        // update diagram data
+        if( !data.init )
+          loadDiagramData( path, data.plot, false, false );
+      }, this);
+      MessageBroker.getInstance().subscribe("path."+data.pageId+".duringPageChange", function() {
+        // create diagram when it's not already existing
+        if( data.init )
+          initDiagram( path, false );
+
+        if( data.refresh ) {
+          data.refreshFn = window.setInterval(function() {
+            loadDiagramData( path, data.plot, false, true );
+          }, data.refresh * 1000 );
+        }
+      });
     }
     
     function action( path, actor, isCanceled ) {

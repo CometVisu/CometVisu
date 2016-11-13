@@ -31,9 +31,7 @@ define( ['TemplateEngine', '_common', 'widget_multitrigger'], function(engine, d
         'mapping': 'test'
       })[1]);
 
-      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
-        thisFn();
-      });
+      templateEngine.messageBroker.publish("setup.dom.finished");
 
       var values = $(widget.find("div.actor > div.value"));
       expect($(values.get(0)).text()).toBe('B1');

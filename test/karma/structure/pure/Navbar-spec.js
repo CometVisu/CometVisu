@@ -7,6 +7,10 @@ define( ['TemplateEngine', '_common', 'widget_navbar'], function(engine, design)
 
   describe("testing a navbar widget", function() {
     var templateEngine = engine.getInstance();
+    // as the navbars can only subscribe once to the setup.dom.finished topic
+    // removing those listeners would prevent more then one tesat from running
+    // so we disable the single event behaviour fpr this test
+    templateEngine.messageBroker.enableTestMode();
 
     it("should test the navbar creator", function() {
       spyOn(templateEngine.pagePartsHandler, "navbarSetSize");
@@ -38,9 +42,7 @@ define( ['TemplateEngine', '_common', 'widget_navbar'], function(engine, design)
 
         $(this.createTestWidgetString("navbar", attrs, "<text>Test</text>")[1]);
 
-        templateEngine.postDOMSetupFns.forEach( function( thisFn ){
-          thisFn();
-        });
+        templateEngine.messageBroker.publish("setup.dom.finished");
         var navbar = $('.navbar', '#'+barContainerId);
         expect(navbar).not.toBeNull();
         expect($(navbar).attr('id')).toBe('id_'+pos+'_navbar');

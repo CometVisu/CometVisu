@@ -70,13 +70,17 @@ define( ['_common'], function( design ) {
       'sendValue': value //value is currently ignored in XHR! maybe for multitrigger
     } );
     
-    // initially setting a value
-    templateEngine.postDOMSetupFns.push( function(){
-      basicdesign.defaultUpdate( undefined, value, $('#'+path), true, path );
-    });
+    this.construct(path);
 
     return ret_val + label + actor + '</div>';
   },
+  construct : function(path) {
+      var data = templateEngine.widgetDataGet(path);
+      // initially setting a value
+      templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+        basicdesign.defaultUpdate( undefined, data['sendValue'], $('#'+path), true, path );
+      });
+    },
   downaction: basicdesign.defaultButtonDownAnimationInheritAction,
   /**
    * Description

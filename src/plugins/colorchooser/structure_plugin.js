@@ -44,7 +44,7 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
     );
 
     var actor = '<div class="actor" />';
-    var data = templateEngine.widgetDataInsert( path, {
+    templateEngine.widgetDataInsert( path, {
         'address' : address,
         'value_r' : 0, // The currenty displayed value
         'value_g' : 0, // The currenty displayed value
@@ -56,85 +56,89 @@ define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css
         'type'    : 'colorChooser',
         'path'    : path
       });
-    
-    templateEngine.postDOMSetupFns.push( function(){
-      var $actor = $( '#' + path + ' .actor' );
-      $actor.farbtastic( function(color){
-        data.value_r = parseInt(color.substring(1, 3), 16) * 100 / 255.0;
-        data.value_g = parseInt(color.substring(3, 5), 16) * 100 / 255.0;
-        data.value_b = parseInt(color.substring(5, 7), 16) * 100 / 255.0;
-        function rateLimitedSend( a ) {
-          var modified = false;
-          var address = data.address;
-          var r  = data.value_r;
-          var g  = data.value_g;
-          var b  = data.value_b;
-          var br = data.bus_r;
-          var bg = data.bus_g;
-          var bb = data.bus_b;
-          var v;
-          for( var addr in address )
-          {
-            if( !(address[addr][1] & 2) ) { continue; } // skip when write flag not set
-            switch( address[addr][2] )
-            {
-              case 'r':
-                v = Transform[address[addr][0]].encode( r );
-                if( v !== Transform[address[addr][0]].encode( br ) )
-                {
-                  templateEngine.visu.write( addr, v );
-                  modified = true;
-                }
-                break;
-              case 'g':
-                v = Transform[address[addr][0]].encode( g );
-                if( v !== Transform[address[addr][0]].encode( bg ) )
-                {
-                  templateEngine.visu.write( addr, v );
-                  modified = true;
-                }
-                break;
-              case 'b':
-                v = Transform[address[addr][0]].encode( b );
-                if( v !== Transform[address[addr][0]].encode( bb ) )
-                {
-                  templateEngine.visu.write( addr, v );
-                  modified = true;
-                }
-                break;
-              case 'rgb':
-                var rgb = [r*255/100.0,g*255/100.0,b*255/100.0];
-                var brgb = [br*255/100.0,bg*255/100.0,bb*255/100.0];
-                v = Transform[address[addr][0]].encode( rgb );
-                var bv = Transform[address[addr][0]].encode( brgb );
-                if( v[0] !== bv[0] || v[1] !== bv[1] || v[2] !== bv[2] )
-                {
-                  templateEngine.visu.write( addr, v );
-                  modified = true;
-                }
-                break;
-            }
-          }
 
-          if( modified ) 
-          {
-            data.bus_r = data.value_r;
-            data.bus_g = data.value_g;
-            data.bus_b = data.value_b;
-            data.rateLimiter = true;
-            setTimeout( function(){rateLimitedSend( a );}, 250 ); // next call in 250ms
-          } else {
-            data.rateLimiter = false;
-          }
-        }
-        if( data.rateLimiter === false ) {// already requests going?
-          rateLimitedSend($actor);
-        }
-      });
-    });
+    this.construct(path);
 
     return ret_val + actor + '</div>';
   },
+  construct: function(path) {
+      var data = templateEngine.widgetDataGet(path);
+      templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+        var $actor = $( '#' + path + ' .actor' );
+        $actor.farbtastic( function(color){
+          data.value_r = parseInt(color.substring(1, 3), 16) * 100 / 255.0;
+          data.value_g = parseInt(color.substring(3, 5), 16) * 100 / 255.0;
+          data.value_b = parseInt(color.substring(5, 7), 16) * 100 / 255.0;
+          function rateLimitedSend( a ) {
+            var modified = false;
+            var address = data.address;
+            var r  = data.value_r;
+            var g  = data.value_g;
+            var b  = data.value_b;
+            var br = data.bus_r;
+            var bg = data.bus_g;
+            var bb = data.bus_b;
+            var v;
+            for( var addr in address )
+            {
+              if( !(address[addr][1] & 2) ) { continue; } // skip when write flag not set
+              switch( address[addr][2] )
+              {
+                case 'r':
+                  v = Transform[address[addr][0]].encode( r );
+                  if( v !== Transform[address[addr][0]].encode( br ) )
+                  {
+                    templateEngine.visu.write( addr, v );
+                    modified = true;
+                  }
+                  break;
+                case 'g':
+                  v = Transform[address[addr][0]].encode( g );
+                  if( v !== Transform[address[addr][0]].encode( bg ) )
+                  {
+                    templateEngine.visu.write( addr, v );
+                    modified = true;
+                  }
+                  break;
+                case 'b':
+                  v = Transform[address[addr][0]].encode( b );
+                  if( v !== Transform[address[addr][0]].encode( bb ) )
+                  {
+                    templateEngine.visu.write( addr, v );
+                    modified = true;
+                  }
+                  break;
+                case 'rgb':
+                  var rgb = [r*255/100.0,g*255/100.0,b*255/100.0];
+                  var brgb = [br*255/100.0,bg*255/100.0,bb*255/100.0];
+                  v = Transform[address[addr][0]].encode( rgb );
+                  var bv = Transform[address[addr][0]].encode( brgb );
+                  if( v[0] !== bv[0] || v[1] !== bv[1] || v[2] !== bv[2] )
+                  {
+                    templateEngine.visu.write( addr, v );
+                    modified = true;
+                  }
+                  break;
+              }
+            }
+
+            if( modified )
+            {
+              data.bus_r = data.value_r;
+              data.bus_g = data.value_g;
+              data.bus_b = data.value_b;
+              data.rateLimiter = true;
+              setTimeout( function(){rateLimitedSend( a );}, 250 ); // next call in 250ms
+            } else {
+              data.rateLimiter = false;
+            }
+          }
+          if( data.rateLimiter === false ) {// already requests going?
+            rateLimitedSend($actor);
+          }
+        });
+      });
+    },
   update: function( ga, data ) {
     function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
     var 
