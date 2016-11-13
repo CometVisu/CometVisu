@@ -108,7 +108,7 @@ define([
     this.ga_list = {};
     this.widgetData = {}; // hash to store all widget specific data
 
-    this.enableCache = $.getUrlVar('enableCache') ? !!$.getUrlVar('enableCache') : true;
+    this.enableCache = $.getUrlVar('enableCache') ? $.getUrlVar('enableCache') === "true" : true;
     /**
      * Return (reference to) widgetData object by path.
      */
@@ -302,14 +302,6 @@ define([
     this.getAddresses = function() {
       return Object.keys(thisTemplateEngine.ga_list);
     };
-
-    this.bindActionForLoadingFinished = function(fn) {
-      $("#pages").bind("done", fn);
-    };
-
-    function fireLoadingFinishedAction() {
-      $("#pages").triggerHandler("done");
-    }
 
     /*
      * this function implements widget stylings
@@ -1169,7 +1161,7 @@ define([
 
         $('.icon').each(function(){ fillRecoloredIcon(this);});
         $('.loading').removeClass('loading');
-        fireLoadingFinishedAction();
+        this.messageBroker.publish("loading.done");
         if( undefined !== thisTemplateEngine.screensave_time )
         {
           thisTemplateEngine.screensave = setTimeout( function(){thisTemplateEngine.scrollToPage();}, thisTemplateEngine.screensave_time*1000 );
