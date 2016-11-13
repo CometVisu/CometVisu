@@ -108,7 +108,17 @@ define([
     this.ga_list = {};
     this.widgetData = {}; // hash to store all widget specific data
 
-    this.enableCache = $.getUrlVar('enableCache') ? $.getUrlVar('enableCache') === "true" : true;
+    this.configSuffix;
+    if ($.getUrlVar("config")) {
+      this.configSuffix = $.getUrlVar("config");
+    }
+
+    if ($.getUrlVar('enableCache') === "invalid") {
+      this.configCache.clear(this.configSuffix);
+      this.enableCache = true;
+    } else {
+      this.enableCache = $.getUrlVar('enableCache') ? $.getUrlVar('enableCache') === "true" : true;
+    }
     /**
      * Return (reference to) widgetData object by path.
      */
@@ -225,11 +235,6 @@ define([
       }
       thisTemplateEngine.visu.user = 'demo_user'; // example for setting a user
     };
-
-    this.configSuffix;
-    if ($.getUrlVar("config")) {
-      this.configSuffix = $.getUrlVar("config");
-    }
 
     this.configSettings.clientDesign = "";
 

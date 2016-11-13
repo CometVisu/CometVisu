@@ -156,13 +156,16 @@ funktionieren.
 *enableCache* - Caching aktivieren
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Durch den Parameter ``enableCache`` kann das Caching (de-)aktiviert werden. Dieses bewirkt, dass eine Config
+Durch den Parameter ``enableCache`` kann das Caching konfiguriert werden. Dieses bewirkt, dass eine Config
 nicht bei jeden Laden komplett neu eingelesen wird und daraus eine HTML-Seite generiert wird, sondern dass
 die gerenderte HTML-Struktur inkl. aller weiterer benötigter Daten lokal im Browser gespeichert werden
 (im LocalStore). Bei jedem weiteren Laden der Config werden die Daten also aus dem Cache gelesen, was
 das Laden der Visu auf leistungsschwachen Geräten wie z.B. Smartphones beschleunigt.
 
+Der Cache kann über diesen Parameter aktiviert (=true), deaktivert (=false) oder gelöscht werden (=invalid).
+Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu angelegt werden.
+
 .. code::
 
-    Default: 1 (enableCache=1)
-    Options: 0 (enableCache=0), 1 (enableCache=1)
+    Default: true (enableCache=true)
+    Options: false (enableCache=false), true (enableCache=true), invalid (enableCache=invalid)

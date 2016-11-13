@@ -89,9 +89,10 @@ define([], function() {
       return this.hashCode((new XMLSerializer()).serializeToString(xml));
     };
 
-    this.clear = function() {
-      localStorage.removeItem(templateEngine.configSuffix+"."+this._cacheKey);
-      localStorage.removeItem(templateEngine.configSuffix+".body");
+    this.clear = function(configSuffix) {
+      configSuffix = configSuffix || templateEngine.configSuffix;
+      localStorage.removeItem(configSuffix+"."+this._cacheKey);
+      localStorage.removeItem(configSuffix+".body");
     };
 
     /**
