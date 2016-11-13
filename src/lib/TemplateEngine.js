@@ -654,6 +654,9 @@ define([
             ($navbarTop.css('display')    !== 'none' && $navbarTop.outerHeight(true)<=2) ||
             ($navbarBottom.css('display') !== 'none' && $navbarBottom.innerHeight() <=2)
           ) {
+            // update references
+            $navbarTop = $('#navbarTop');
+            $navbarBottom = $('#navbarBottom');
             // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
             // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
             window.requestAnimationFrame( thisTemplateEngine.resizeHandling.invalidateNavbar );
@@ -687,7 +690,7 @@ define([
           singleHeightMargin = $('#containerDiv').outerHeight(true),
           styles = '';
 
-        for( var rowspan in usedRowspans )
+        for( var rowspan in thisTemplateEngine.configSettings.usedRowspans )
         {
           styles += '.rowspan.rowspan' + rowspan
             + ' { height: '
@@ -726,9 +729,9 @@ define([
       };
     })();
 
-    var usedRowspans = {};
+    thisTemplateEngine.configSettings.usedRowspans = {};
     this.rowspanClass = function(rowspan) {
-      usedRowspans[ rowspan ] = true;
+      thisTemplateEngine.configSettings.usedRowspans[ rowspan ] = true;
       return 'rowspan rowspan' + rowspan;
     };
 
