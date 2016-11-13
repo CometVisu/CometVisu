@@ -8,7 +8,7 @@ define( [
   '_common', 'structure_custom', 'TrickOMatic', 'lib/cv/PageHandler', 'lib/cv/PagePartsHandler',
   'lib/cv/io/Client', 'lib/cv/io/Mockup', 'lib/cv/event/Handler',
   'Compatibility', 'jquery-ui', 'strftime',
-  'jquery.ui.touch-punch', 'jquery.svg.min', 'IconHandler',
+  'jquery.ui.touch-punch', 'jquery.svg.min', 'lib/cv/IconHandler',
   'widget_break', 'widget_designtoggle',
   'widget_group', 'widget_rgb', 'widget_web', 'widget_image',
   'widget_imagetrigger', 'widget_include', 'widget_info', 'widget_infoaction', 'widget_infotrigger',

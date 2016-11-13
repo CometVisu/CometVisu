@@ -25,7 +25,7 @@
  * @since 2013
  */
 define( ['jquery', 'dependencies/sprintf'], function( $ ) {
-  "use strict";
+
   if( /(msie)/i.test(navigator.userAgent.toLowerCase()) )
   {
     var IE_version = /MSIE\s([\d]+)/;
