@@ -88,17 +88,18 @@ define( ['_common'], function( design ) {
       var oldDesign = $('.value',$this).text();
       var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
 
-      var URL = window.location.href;
+      var creator = design.basicdesign.getCreator("designtoggle");
+      var URL = creator.getLocation();
       var regexp = new RegExp("design="+oldDesign);
       if (URL.search(regexp) != -1) { // has URL-parameter design
-        window.location.href = URL.replace(regexp, "design="+newDesign);
+        creator.setLocation(URL.replace(regexp, "design="+newDesign));
       }
       else {
         if (URL.indexOf("?") != -1) { // has other parameters, append design
-          window.location.href = URL+"&design="+newDesign;
+          creator.setLocation(URL+"&design="+newDesign);
         }
         else { // has now parameters
-          window.location.href = URL+"?design="+newDesign;
+          creator.setLocation(URL+"?design="+newDesign);
         }
       }
     },
