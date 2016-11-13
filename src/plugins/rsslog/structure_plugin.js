@@ -43,7 +43,7 @@ define( ['structure_custom', 'MessageBroker', 'css!plugins/rsslog/rsslog' ], fun
     ret_val += '"></div></div>';
     ret_val += '</div>';
 
-    var data = templateEngine.widgetDataInsert( path, {
+    templateEngine.widgetDataInsert( path, {
       id:         id,
       address:    address,
       src:        $el.attr("src"),
@@ -56,14 +56,21 @@ define( ['structure_custom', 'MessageBroker', 'css!plugins/rsslog/rsslog' ], fun
       itemoffset: 0,
       itemack:    $el.attr("itemack") || "modify", // allowed: modify, display, disable
       future:     $el.attr("future"),
+      pageId:     templateEngine.getPageIdForWidgetId( element, path )
     });
 
-    MessageBroker.getInstance().subscribe("path."+templateEngine.getPageIdForWidgetId( element, path ) +".beforePageChange", function() {
-      refreshRSSlog( data );
-    }, this);
+    this.construct(path);
 
     return ret_val;
   },
+
+  construct: function(path) {
+    var data = templateEngine.widgetDataGet(path);
+    MessageBroker.getInstance().subscribe("path."+data.pageId+".beforePageChange", function() {
+      refreshRSSlog( data );
+    }, this);
+  },
+
   update:   function( ga, d ) { 
     var 
       element = $(this),

@@ -137,6 +137,11 @@ define( ['structure_custom', 'MessageBroker',
           
         if( widgetData.popup )
           action( path, actor, isCanceled );
+      },
+      construct: function(path) {
+        var data = templateEngine.widgetDataGet(path);
+        data.init = true;
+        addPageListeners(path);
       }
     });
     VisuDesign_Custom.prototype.addCreator("diagram_info", {
@@ -147,12 +152,7 @@ define( ['structure_custom', 'MessageBroker',
         var element = $(this);
         templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
       },
-      action: action,
-      construct: function(path) {
-        var data = templateEngine.widgetDataGet(path);
-        data.init = true;
-        addPageListeners(path);
-      }
+      action: action
     });
 
     function createDiagram(isInfo, element, path, flavour, type, updateFn) {
@@ -180,7 +180,8 @@ define( ['structure_custom', 'MessageBroker',
         previewlabels     : ($e.attr("previewlabels") || "false") == "true",
         isPopup           : false,
         popup             : $e.attr("popup") === "true",
-        tooltip           : ($e.attr("tooltip") || "false") == "true"
+        tooltip           : ($e.attr("tooltip") || "false") == "true",
+        pageId            : templateEngine.getPageIdForWidgetId( element, path )
       } );
 
       // create the actor
@@ -208,18 +209,17 @@ define( ['structure_custom', 'MessageBroker',
 
     function addPageListeners(path) {
       var data = templateEngine.widgetDataGet(path);
-      var pageId = templateEngine.getPageIdForWidgetId( $('#'+path), path );
-      MessageBroker.getInstance().subscribe("path."+pageId+".exitingPageChange", function(a,b) {
+      MessageBroker.getInstance().subscribe("path."+data.pageId+".exitingPageChange", function() {
         if( data.refresh ) {
           clearInterval( data.refreshFn );
         }
       }, this);
-      MessageBroker.getInstance().subscribe("path."+pageId+".beforePageChange", function() {
+      MessageBroker.getInstance().subscribe("path."+data.pageId+".beforePageChange", function() {
         // update diagram data
         if( !data.init )
           loadDiagramData( path, data.plot, false, false );
       }, this);
-      MessageBroker.getInstance().subscribe("path."+pageId+".duringPageChange", function() {
+      MessageBroker.getInstance().subscribe("path."+data.pageId+".duringPageChange", function() {
         // create diagram when it's not already existing
         if( data.init )
           initDiagram( path, false );
