@@ -5,8 +5,8 @@ define( [
   'jquery',
   'lib/cv/Config',
   'lib/cv/Object',
-  '_common', 'structure_custom', 'TrickOMatic', 'PageHandler', 'PagePartsHandler',
-  'lib/cv/io/Client', 'lib/cv/io/Mockup', 'EventHandler',
+  '_common', 'structure_custom', 'TrickOMatic', 'lib/cv/PageHandler', 'lib/cv/PagePartsHandler',
+  'lib/cv/io/Client', 'lib/cv/io/Mockup', 'lib/cv/event/Handler',
   'Compatibility', 'jquery-ui', 'strftime',
   'jquery.ui.touch-punch', 'jquery.svg.min', 'IconHandler',
   'widget_break', 'widget_designtoggle',
@@ -20,14 +20,14 @@ define( [
   'TransformDefault', 'TransformKnx', 'TransformOpenHab',
   'lib/cv/xml/Parser',
   'lib/cv/MessageBroker'
-  ], function(joose, $, Config, obj, design, custom, Trick_O_Matic, PageHandler, PagePartsHandler ) {
+  ], function(joose, $, Config, obj, design, custom, Trick_O_Matic ) {
     Class('cv.TemplateEngine', {
       isa: cv.Object,
 
       have: {
 
         loadReady: {page: false, plugins: false},
-        pagePartsHandler: new PagePartsHandler(),
+        pagePartsHandler: new cv.PagePartsHandler(),
 
         rememberLastPage: false,
         currentPage: null,
@@ -160,21 +160,21 @@ define( [
             require(['TransformMockup'], function () {
             });
           }
-          else if (this.backend == "oh") {
+          else if (Config.backend == "oh") {
             this.visu = new cv.io.Client({
               backendName: 'openhab',
-              backendUrl: this.backendUrl
+              backendUrl: Config.backendUrl
             });
           }
-          else if (this.backend == "oh2") {
+          else if (Config.backend == "oh2") {
             this.visu = new cv.io.Client({
               backendName: 'openhab2',
-              backendUrl: this.backendUrl
+              backendUrl: Config.backendUrl
             });
           } else {
             this.visu = new cv.io.Client({
-              backendName: this.backend,
-              backendUrl: this.backendUrl
+              backendName: Config.backend,
+              backendUrl: Config.backendUrl
             });
           }
 
@@ -502,7 +502,7 @@ define( [
             cv.layout.Manager.adjustColumns();
             cv.layout.Manager.applyColumnWidths();
 
-            this.main_scroll = new PageHandler();
+            this.main_scroll = new cv.PageHandler();
             if (this.scrollSpeed != undefined) {
               this.main_scroll.setSpeed(this.scrollSpeed);
             }

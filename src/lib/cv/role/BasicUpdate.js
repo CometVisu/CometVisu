@@ -133,7 +133,7 @@ define(['joose', 'lib/cv/role/HasAddress', 'lib/cv/Config', 'lib/cv/role/Transfo
 
         this.setValue(value);
 
-        if (undefined !== value && value.constructor == Date) {
+        if (value && value.constructor == Date) {
           switch (this.getAddress()[address][0]) // special case for KNX
           {
             case 'DPT:10.001':

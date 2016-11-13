@@ -28,13 +28,13 @@
  * @author Tobias Bräutigam
  * @since 0.5.3 (initial contribution) 0.10.0 (major refactoring)
  */
-define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transport/Sse'], function( $ ) {
+define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transport/Sse', 'lib/cv/io/Watchdog'], function( $ ) {
   "use strict";
 
   /**
    * The Client handles all communication issues to supply the user
    * ob this object with reliable realtime data.
-   * Itself it can be seen as the session layer (layer 5) according to the OSI
+   * Itthis.it can be seen as the session layer (layer 5) according to the OSI
    * model.
    *
    * @class Client
@@ -138,13 +138,13 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
         if (this.backendName && this.backendName !== 'default') {
           if ($.isPlainObject(this.backendName)) {
             // override default settings
-            this.backend = $.extend({}, this.my.backends['default'], this.backendName);
+            this.setBackend(this.backendName);
           } else if (this.my.backends[this.backendName]) {
             // merge backend settings into default backend
-            this.backend = $.extend({}, this.my.backends['default'], this.my.backends[this.backendName]);
+            this.setBackend(this.my.backends[this.backendName]);
           }
         } else {
-          this.backend = this.my.backends['default'];
+          this.setBackend(this.my.backends['default']);
         }
 
         this.watchdog = new cv.io.Watchdog();
@@ -155,7 +155,7 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
     methods: {
       setBackend: function(newBackend) {
         // override default settings
-        this.backend = $.extend({}, this.backends['default'], newBackend);
+        this.backend = $.extend({}, this.my.backends['default'], newBackend);
         if (this.backend.transport === 'sse' && this.backend.transportFallback) {
           if (window.EventSource === undefined) {
             // browser does not support EventSource object => use fallback
@@ -169,10 +169,10 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
         }
         switch(this.backend.transport) {
           case "long-polling":
-            this.currentTransport = new cv.io.transport.LongPolling(this);
+            this.currentTransport = new cv.io.transport.LongPolling({session: this});
             break;
           case "sse":
-            this.currentTransport = new cv.io.transport.Sse(this);
+            this.currentTransport = new cv.io.transport.Sse({session: this});
             break;
         }
 
@@ -210,7 +210,7 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
        * @returns {String} relative path to the resource
        */
       getResourcePath : function (name) {
-        return backend.baseURL + backend.resources[name];
+        return this.backend.baseURL + this.backend.resources[name];
       },
 
       /**
@@ -271,7 +271,7 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
           }
   
           $.ajax({
-            url: initPath ? initPath : this.getResourcePath("login"),
+            url: this.backendUrl ? this.backendUrl : this.getResourcePath("login"),
             dataType: 'json',
             context: this,
             data: request,
@@ -295,7 +295,7 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
       handleLogin : function (json) {
         // read backend configuration if send by backend
         if (json.c) {
-          self.backend = $.extend(self.backend, json.c); // assign itself to run setter
+          this.backend = $.extend(this.backend, json.c); // assign itthis.to run setter
         }
         this.dataReceived = false;
         if (this.loginSettings.loginOnly) {

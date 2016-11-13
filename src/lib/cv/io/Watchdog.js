@@ -1,24 +1,25 @@
 define(['joose'], function() {
-  Class("cv.utils.Watchdog", {
+
+  Class("cv.io.Watchdog", {
 
       has: {
         last: { is: 'rw', init: Joose.I.Now },
         hardLast : { is: 'r' },
-        client: {}
+        client: { is: 'rw' }
       },
 
       methods: {
 
         aliveCheckFunction : function () {
           var now = new Date();
-          if (now - this.last < this.client.getMaxConnectionAge() && this.client.getTransport().isConnectionRunning())
+          if (now - this.last < this.client.getBackend().maxConnectionAge && this.client.getCurrentTransport().isConnectionRunning())
             return;
-          this.client.getTransport().restart(now - this.hardLast > this.client.getMaxDataAge());
+          this.client.getCurrentTransport().restart(now - this.hardLast > this.client.getBackend().maxDataAge);
           this.last = now;
         },
 
         start: function (watchdogTimer) {
-          setInterval(this.aliveCheckFunction, watchdogTimer * 1000);
+          setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
         },
 
         ping: function (fullReload) {
