@@ -15,8 +15,8 @@
    id="svg2">
    <script xlink:href="../dependencies/jquery.js" type="text/javascript"></script>
    <script xlink:href="../lib/CometVisuClient.js" type="text/javascript"></script>
-   <script xlink:href="../transforms/TransformDefault.js" type="text/javascript"></script>
-   <script xlink:href="../transforms/TransformKnx.js" type="text/javascript"></script>
+   <script xlink:href="../cv/lib/Transform.js" type="text/javascript"></script>
+   <script xlink:href="../cv/lib/transforms/Knx.js" type="text/javascript"></script>
    <script>
     <![CDATA[
     function get_url_param( name )

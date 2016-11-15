@@ -60,10 +60,10 @@ require.config({
     'widget_audio':             'structure/pure/Audio',
     'widget_video':             'structure/pure/Video',
     'widget_wgplugin_info':     'structure/pure/WgPluginInfo',
-    'TransformDefault':         'transforms/TransformDefault',
-    'TransformKnx':             'transforms/TransformKnx',
+    'TransformDefault':         'lib/cv/Transform',
+    'TransformKnx':             'lib/cv/transforms/Knx',
     'TransformMockup':          'lib/mockup/TransformKnx',
-    'TransformOpenHab':         'transforms/TransformOpenHab',
+    'TransformOpenHab':         'lib/cv/transforms/OpenHab',
     'joose':                    'dependencies/joose-all'
   },
   'shim': {
