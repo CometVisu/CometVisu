@@ -50,106 +50,107 @@
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
   "use strict";
 
-  var lastSpeech = {};
-  /**
-   * This is a custom function that extends the available widgets.
-   * It's purpose is to change the design of the visu during runtime
-   * to demonstrate all available
-   */
-  VisuDesign_Custom.prototype.addCreator("speech", {
+  Class('cv.structure.pure.Speech', {
+    isa: cv.Object,
+    does: cv.role.Update,
 
-    create: function( element, path) {
-      if (!window.speechSynthesis) {
-        console.log("this browser does not support the Web Speech API");
-        return "";
+    my: {
+      parse: function (element, path, flavour, pageType) {
+        if (!window.speechSynthesis) {
+          console.log("this browser does not support the Web Speech API");
+          return;
+        }
+        var $e = $(element);
+        var address = templateEngine.design.makeAddressList($e, false, path);
+
+        return templateEngine.setWidgetData( path, {
+          'path'      : path,
+          'language'   : $e.attr('lang') ? $e.attr('lang').toLowerCase() : null,
+          'address' : address,
+          'mapping' : $e.attr('mapping'),
+          'repeatTimeout': $e.attr('repeat-timeout') ? parseInt($e.attr('repeat-timeout')) : -1,
+          '$$type'    : 'speech'
+        });
       }
-      var $e = $(element);
-      var address = templateEngine.design.makeAddressList($e, false, path);
-
-      templateEngine.widgetDataInsert( path, {
-        'language'   : $e.attr('lang') ? $e.attr('lang').toLowerCase() : null,
-        'address' : address,
-        'mapping' : $e.attr('mapping'),
-        'repeatTimeout': $e.attr('repeat-timeout') ? parseInt($e.attr('repeat-timeout')) : -1,
-        'type'    : 'speech'
-      });
-      return "";
     },
 
-    update: function(address, text) {
-      var element = $(this);
-      var path = element.attr('id');
-      var data = templateEngine.widgetDataGet(path);
+    has: {
+      lastSpeech        : { is : 'ro', init: Joose.I.Object },
+      path              : { is: 'r' },
+      $$type            : { is: 'r' },
+      language          : { is: 'r' },
+      mapping           : { is: 'r' },
+      repeatTimeout     : { is: 'r', init: -1 }
+    },
 
-      // apply transform
-      if( undefined !== address )
-      {
-        var transform = data.address[ address ][0];
-        text = templateEngine.transformDecode( transform, text );
-      }
+    methods: {
+      processIncomingValue: function(address, data) {
+        return this.defaultValueHandling(address, data);
+      },
 
-      // apply mapping
-      text = templateEngine.map( text, data['mapping'] );
+      handleUpdate: function(text, address) {
 
-      if (!templateEngine.visu.dataReceived) {
-        // first call -> skipping
-        lastSpeech[address] = {
+        if (!templateEngine.visu.dataReceived) {
+          // first call -> skipping
+          this.lastSpeech[address] = {
+            text: text,
+            time: Date.now()
+          };
+          console.log("skipping initial TTS for "+text);
+          return;
+        }
+
+        if (!text || text.length === 0) {
+          // nothing to say
+          console.log("no text to speech given");
+          return;
+        }
+
+        if (typeof text === "string" && text.substring(0,1) === "!") {
+          // override repeatTimeout, force saying this
+          text = substring(1);
+        }
+        else if (this.repeatTimeout >= 0) {
+          // do not repeat (within timeout when this.repeatTimeout > 0)
+          if (this.lastSpeech[address] && this.lastSpeech[address].text == text && (this.repeatTimeout === 0 ||
+            this.repeatTimeout >= Math.round((Date.now()-this.lastSpeech[address].time)/1000))) {
+            // update time
+            this.lastSpeech[address].time = Date.now();
+            // do not repeat
+            console.log("skipping TTS because of repetition " + text);
+            return;
+          }
+        }
+        console.log("changing lastSpeech from '%s' to '%s'", this.lastSpeech[address] ? this.lastSpeech[address].text : "", text);
+        this.lastSpeech[address] = {
           text: text,
           time: Date.now()
         };
-        console.log("skipping initial TTS for "+text);
-        return;
-      }
 
-      if (!text || text.length === 0) {
-        // nothing to say
-        console.log("no text to speech given");
-        return;
-      }
+        var synth = window.speechSynthesis;
 
-      if (typeof text === "string" && text.substring(0,1) === "!") {
-        // override repeatTimeout, force saying this
-        text = substring(1);
-      }
-      else if (data.repeatTimeout >= 0) {
-        // do not repeat (within timeout when data.repeatTimeout > 0)
-        if (lastSpeech[address] && lastSpeech[address].text == text && (data.repeatTimeout === 0 ||
-            data.repeatTimeout >= Math.round((Date.now()-lastSpeech[address].time)/1000))) {
-          // update time
-          lastSpeech[address].time = Date.now();
-          // do not repeat
-          console.log("skipping TTS because of repetition " + text);
-          return;
+        // speak
+        var utterThis = new SpeechSynthesisUtterance(text);
+
+        var selectedVoice, defaultVoice;
+        var voices = synth.getVoices();
+        for (var i = 0, l = voices.length; i < l; i++) {
+          if (this.language && voices[i].lang.substr(0, 2).toLowerCase() === this.language) {
+            selectedVoice = voices[i];
+          }
+          if (voices[i].default) {
+            defaultVoice = voices[i];
+          }
         }
-      }
-      console.log("changing lastSpeech from '%s' to '%s'", lastSpeech[address] ? lastSpeech[address].text : "", text);
-      lastSpeech[address] = {
-        text: text,
-        time: Date.now()
-      };
-
-      var synth = window.speechSynthesis;
-
-      // speak
-      var utterThis = new SpeechSynthesisUtterance(text);
-
-      var selectedVoice, defaultVoice;
-      var voices = synth.getVoices();
-      for (var i = 0, l = voices.length; i < l; i++) {
-        if (data.language && voices[i].lang.substr(0, 2).toLowerCase() === data.language) {
-          selectedVoice = voices[i];
+        if (!selectedVoice) {
+          selectedVoice = defaultVoice;
         }
-        if (voices[i].default) {
-          defaultVoice = voices[i];
-        }
+        utterThis.voice = selectedVoice;
+        console.log("saying '%s' in voice %s", text, selectedVoice.name);
+        synth.speak(utterThis);
       }
-      if (!selectedVoice) {
-        selectedVoice = defaultVoice;
-      }
-      utterThis.voice = selectedVoice;
-      console.log("saying '%s' in voice %s", text, selectedVoice.name);
-      synth.speak(utterThis);
     }
   });
-
+  // register the parser
+  cv.xml.Parser.addHandler("speech", cv.structure.pure.Speech);
 });
