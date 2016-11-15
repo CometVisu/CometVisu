@@ -1,14 +1,14 @@
-define( ['structure_custom' ], function( VisuDesign_Custom ) {
+define( ['joose', 'lib/cv/role/Refresh' ], function(  ) {
   "use strict";
   Class('cv.structure.pure.CalendarList', {
     isa: cv.structure.pure.AbstractWidget,
-    does: [cv.role.Operate, cv.role.Update, cv.role.Refresh],
+    does: [cv.role.Refresh],
 
     has: {
-      width: { is: 'ro' },
-      height: { is: 'ro' },
+      width: { is: 'ro', init: '' },
+      height: { is: 'ro', init: '' },
       src: { is: 'ro', init: "plugins/calendarlist/calendarlist.php" },
-      calendar: { is: 'ro' },
+      calendars: { is: 'ro' },
       days: { is: 'ro' }
     },
 
@@ -16,24 +16,36 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
       methods: {
         getAttributeToPropertyMappings: function () {
           return {
-            'width':   { target: 'width', init: '', transform: function(value) {
-              return value ? "width:"+value+";" : "";
-            }},
-            'height':   { target: 'height', init: '', transform: function(value) {
-              return value ? "height:"+value+";" : "";
-            }},
+            'width': {
+              transform: function (value) {
+                return value ? "width:" + value + ";" : "";
+              }
+            },
+            'height': {
+              transform: function (value) {
+                return value ? "height:" + value + ";" : "";
+              }
+            },
             'maxquantity': {},
+            'days': {},
             'refresh': {}
           };
-        },
-
-        after: {
-          parse: function(xml, path) {
-            var $el = $(xml);
-            var data = templateEngine.getWidgetData(path);
-            data.calendar = $el.find('calendar');
-            data.days = $el.find('days');
-          }
+        }
+      },
+      after: {
+        parse: function (xml, path) {
+          var $el = $(xml);
+          var data = templateEngine.getWidgetData(path);
+          var calendars = this.calendars = [];
+          $el.find('calendar').each(function(cal) {
+            var calData = {
+              type: cal.getAttribute('type'),
+              userid : cal.getAttribute('userid'),
+              magiccookie: cal.hasAttribute('magiccookie') ? cal.getAttribute('magiccookie') : '',
+              days: cal.hasAttribute('days') ? cal.getAttribute('days') : data.days
+            };
+            calendars.push(calData);
+          });
         }
       }
     },
@@ -57,14 +69,13 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
 
         var src = this.getSrc();
         var maxquantity = this.getMaxquantity();
-        var calendar = this.getCalendar();
-        var days = this.getDays();
+        var calendars = this.getCalendars();
 
         $(function () {
           $(calendarList).calendarListlocal({
             src: src,
             maxquantity: maxquantity,
-            calendar: calendar
+            calendar: calendars
           });
         });
         return false;
@@ -106,18 +117,10 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
             var magiccookie = 'magiccookie' + i;
             var days = 'days' + i;
             formData[calendarname] = i; //o.calendar[i].textContent;
-            formData[type] = o.calendar[i].getAttribute('type');
-            formData[userid] = o.calendar[i].getAttribute('userid');
-            if (o.calendar[i].hasAttribute('magiccookie') === true) {
-              formData[magiccookie] = o.calendar[i].getAttribute('magiccookie');
-            } else {
-              formData[magiccookie] = '';
-            }
-            if (o.calendar[i].hasAttribute('days') === true) {
-              formData[days] = o.calendar[i].getAttribute('days');
-            } else {
-              formData[days] = o.days;
-            }
+            formData[type] = o.calendar[i].type;
+            formData[userid] = o.calendar[i].userid;
+            formData[magiccookie] = o.calendar[i].magiccookie;
+            formData[days] = o.calendar[i].days;
           }
 
           jQuery.ajax({
