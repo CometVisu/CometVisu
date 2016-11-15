@@ -18,55 +18,43 @@
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
   "use strict";
 
-  /**
-   * This is a custom function that extends the available widgets.
-   * It's purpose is to change the design of the visu during runtime
-   * to demonstrate all available
-   */
-  VisuDesign_Custom.prototype.addCreator('svg', {
-  create: function( element, path, flavour, type ) {
-    var $e = $(element);
-    var $self = $(this);
-    var classes = templateEngine.design.setWidgetLayout( $e, path );
-    var ret_val = '<div class="widget clearfix image '+(classes?classes:'')+'">';
-    templateEngine.design.setWidgetLayout( $e, $e, path );
-    ret_val+=templateEngine.design.extractLabel( $e.find('label')[0], flavour );
+  Class('cv.structure.pure.Svg', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: [cv.role.Update, cv.role.Refresh],
 
-    var address = templateEngine.design.makeAddressList($e,false,path);
-    ret_val += '<div class="actor"></div>';
-    
-    var refresh = $e.attr('refresh') ? $e.attr('refresh')*1000 : 0;
-    var data = templateEngine.widgetDataInsert( path, {
-      'address':   address, 
-      'refresh':   refresh
-    } );
+    after: {
+      initialize: function() {
+        cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
+          var $actor = $(this.getActor());
+          $actor.svg({loadURL:'plugins/svg/rollo.svg'});
+        }, this);
+      }
+    },
 
-    templateEngine.postDOMSetupFns.push(function() {
-      var $actor = $("#"+path+" .actor");
-      $actor.svg({loadURL:'plugins/svg/rollo.svg'});
-    });
-    if (data.refresh) {
-      templateEngine.setupRefreshAction( path, data.refresh );
+    augment: {
+      getDomString: function () {
+        return '<div class="actor"></div>';
+      }
+    },
+
+    methods: {
+      handleUpdate: function(value) {
+        var element = $(this.getDomElement());
+        var linewidth=3;
+        var space = 1;
+        var total = linewidth + space;
+        var line_qty = 48 / total;
+        for(var i = 0; i<=Math.floor(value/line_qty);i++) {
+          element.find('#line'+(i+1)).attr('y1',9+total*(i)+((h%line_qty)/line_qty)*total);
+          element.find('#line'+(i+1)).attr('y2',9+total*(i)+((h%line_qty)/line_qty)*total);
+        }
+        for(var i = Math.floor(h/line_qty)+1; i<=line_qty;i++) {
+          element.find('#line'+(i+1)).attr('y1',9);
+          element.find('#line'+(i+1)).attr('y2',9);
+        }
+      }
     }
-    ret_val +="</div>";
-    return ret_val;
-  },
-  update: function(e,d) {
-    var element = $(this);
-    var h = templateEngine.design.defaultUpdate( e, d, element, undefined, element.parent().attr('id') );
-    var linewidth=3;
-    var space = 1;
-    var total = linewidth + space;
-    var line_qty = 48 / total;
-    for(var i = 0; i<=Math.floor(h/line_qty);i++) {
-      	element.find('#line'+(i+1)).attr('y1',9+total*(i)+((h%line_qty)/line_qty)*total);
-      	element.find('#line'+(i+1)).attr('y2',9+total*(i)+((h%line_qty)/line_qty)*total);
-    } 
-    for(var i = Math.floor(h/line_qty)+1; i<=line_qty;i++) {  
-      	element.find('#line'+(i+1)).attr('y1',9);
-      	element.find('#line'+(i+1)).attr('y2',9);
-    }
-  }
-}); 
-
+  });
+  // register the parser
+  cv.xml.Parser.addHandler("svg", cv.structure.pure.Svg);
 });
