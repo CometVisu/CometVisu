@@ -1,66 +1,77 @@
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
   "use strict";
+  Class('cv.structure.pure.CalendarList', {
+    isa: cv.structure.pure.AbstractWidget,
+    does: [cv.role.Operate, cv.role.Update, cv.role.Refresh],
 
-  VisuDesign_Custom.prototype.addCreator("calendarlist", {
-    create: function (element, path, flavour, type) {
-      var $el = $(element);
+    has: {
+      width: { is: 'ro' },
+      height: { is: 'ro' },
+      src: { is: 'ro', init: "plugins/calendarlist/calendarlist.php" },
+      calendar: { is: 'ro' },
+      days: { is: 'ro' }
+    },
 
-      var id = "calendarList_" + path;
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'width':   { target: 'width', init: '', transform: function(value) {
+              return value ? "width:"+value+";" : "";
+            }},
+            'height':   { target: 'height', init: '', transform: function(value) {
+              return value ? "height:"+value+";" : "";
+            }},
+            'maxquantity': {},
+            'refresh': {}
+          };
+        },
 
-      var classes = templateEngine.design.setWidgetLayout( $el, path );
-      var ret_val = '<div class="widget clearfix calendarList ' + classes + '">';
-        
-      ret_val += templateEngine.design.extractLabel( page.find('label')[0], flavour );
-      
-      var style = ''
-        + $el.attr("width" ) ? ("width:"  + $el.attr("width") + ';') : ''
-        + $el.attr("height") ? ("height:" + $el.attr("height")     ) : '';
-      var actor = '<div class="actor calendarListBody"><div class="calendarList_inline" id="' + id + '" style="'+style+'"></div></div>';
+        after: {
+          parse: function(xml, path) {
+            var $el = $(xml);
+            var data = templateEngine.getWidgetData(path);
+            data.calendar = $el.find('calendar');
+            data.days = $el.find('days');
+          }
+        }
+      }
+    },
+    augment: {
+      getDomString: function () {
+        return '<div class="actor calendarListBody">' +
+          '<div class="calendarList_inline" id="calendarList' + this.getPath()+ '" style="'+this.getHeight()+this.getWidth()+'"></div>' +
+          '</div>';
+      }
+    },
 
-      var data = templateEngine.widgetDataInsert( path, {
-          src:         "plugins/calendarlist/calendarlist.php",
-          maxquantity: $el.attr("maxquantity"),
-          refresh:     $el.attr("refresh"),
-          calendar:    $el.find('calendar'),
-          days:        $el.find('days')
+    after: {
+      initialize: function() {
+        cv.MessageBroker.my.subscribe("setup.dom.finished", this.refreshAction, this);
+      }
+    },
+
+    methods: {
+      refreshAction: function() {
+        var calendarList = this.getActor();
+
+        var src = this.getSrc();
+        var maxquantity = this.getMaxquantity();
+        var calendar = this.getCalendar();
+        var days = this.getDays();
+
+        $(function () {
+          $(calendarList).calendarListlocal({
+            src: src,
+            maxquantity: maxquantity,
+            calendar: calendar
+          });
         });
-
-      templateEngine.bindActionForLoadingFinished(function () {
-        refreshcalendarList( path );
-      });
-
-      return ret_val + actor + '</div>';
+        return false;
+      }
     }
   });
-
-  function refreshcalendarList( path ) {
-    var 
-      calendarList = $('#' + path + ' .actor'),
-      data = templateEngine.widgetDataGet( path );
-
-    var refresh = data.refresh;
-    var src = data.src;
-    var maxquantity = data.maxquantity;
-    var calendar = data.calendar;
-    var days = data.days;
-
-    $(function () {
-      $(calendarList).calendarListlocal({
-        src: src,
-        maxquantity: maxquantity,
-        calendar: calendar
-      });
-    });
-
-    if (typeof (refresh) != "undefined" && refresh) {
-      // reload regularly
-      window.setTimeout(function (calendarList) {
-        refreshcalendarList(calendarList)
-      }, refresh * 1000 * 60, calendarList);
-    }
-
-    return false;
-  };
+  cv.xml.Parser.addHandler("calendarlist", cv.structure.pure.CalendarList);
 
   (function ($) {
     jQuery.fn.extend({
@@ -123,6 +134,7 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
               var itemnum = items.length;
               var date = '';
               var time = '';
+              var color, format, where;
 
               for (var i = 0; i < itemnum; i++) {
                 var item = items[i];
@@ -161,14 +173,14 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
                   }
                 }
 
-                itemHtml = itemHtml.replace(/{text}/, item.description);
+                itemHtml = itemHtml.replace(/\{text\}/, item.description);
                 if (item.where != '') {
                   where = ' (' + item.where + ')';
                 } else {
                   where = item.where;
                 }
-                itemHtml = itemHtml.replace(/{where}/, where);
-                itemHtml = itemHtml.replace(/{date}/, date);
+                itemHtml = itemHtml.replace(/\{where\}/, where);
+                itemHtml = itemHtml.replace(/\{date\}/, date);
                 //console.log('%i: %s', i, itemHtml);
 
                 var $row = $('<span style="color:' + color + '">').append(itemHtml).append('</span><br>');
@@ -182,5 +194,4 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
       }
     });
   })(jQuery);
-
 });
