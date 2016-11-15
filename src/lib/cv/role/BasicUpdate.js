@@ -230,7 +230,7 @@ define(['joose', 'lib/cv/role/HasAddress', 'lib/cv/Config', 'lib/cv/role/Transfo
           valueElement.append('-');
 
         return value;
-      },
+      }
     }
   });
 });
