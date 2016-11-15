@@ -19,23 +19,39 @@
  * This plugins integrates a simple link.
  */
 
-define(['structure_custom'], function(VisuDesign_Custom) {
-  VisuDesign_Custom.prototype.addCreator("link", {
-    create : function(page, path) {
-      var $p = $(page);
+define(['joose'], function() {
 
-      var ret_val = $('<a class="link"/>');
-      if ( $p.attr('class') ) {
-        ret_val.addClass($p.attr('class'));
-      }
-      if ( $p.attr('text') ) {
-        ret_val.html($p.attr('text'));
-      }
-      if ( $p.attr('href') ) {
-        ret_val.attr('href', $p.attr('href'));
-      }
+  Class('cv.structure.pure.Link', {
+    isa: cv.structure.pure.AbstractBasicWidget,
 
-      return ret_val;
+    has: {
+      cssClass: {is: 'ro', init: '' },
+      text: {is: 'ro', init: '' },
+      href: {is: 'ro', init: '' }
+    },
+
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'class': {target: 'cssClass'},
+            'text': {},
+            'href': {}
+          };
+        }
+      }
+    },
+
+    methods: {
+      getDomString: function () {
+        var classes = "link";
+        if (this.getCssClass()) {
+          classes += " "+this.getCssClass();
+        }
+        var href = this.getHref() ? ' href="'+this.getHref()+'"' : '';
+        return '<a class="'+classes+'"'+href+'>' + this.getText() + '</a>';
+      }
     }
   });
+  cv.xml.Parser.addHandler("link", cv.structure.pure.Link);
 });
