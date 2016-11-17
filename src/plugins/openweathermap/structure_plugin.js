@@ -29,74 +29,61 @@ require.config({
   }
 });
 
-define(['structure_custom', 'css!plugins/openweathermap/openweathermap', 'plugins/openweathermap/owm/jquery.owm'], function(VisuDesign_Custom) {
+define(['structure_custom', 'css!plugins/openweathermap/openweathermap', 'plugins/openweathermap/owm/jquery.owm'], function() {
 
-  VisuDesign_Custom.prototype.addCreator("openweathermap", {
-    create : function(page, path) {
-      var $p = $(page);
-      function uniqid() {
-        var newDate = new Date;
-        return newDate.getTime();
-      }
-      var id = "owm_" + uniqid();
+  Class('cv.plugin.OpenWeatherMap', {
+    isa: cv.structure.pure.AbstractBasicWidget,
+    does: cv.role.Refresh,
 
-      var ret_val = $('<div class="widget clearfix text openweathermap"/>');
-      if ($p.attr('class')) {
-        ret_val.addClass('custom_'+$p.attr('class'));
+    augment: {
+      getDomString: function () {
+        var classes = "widget clearfix text openweathermap";
+        if (this.cssClass) {
+          classes+=" "+this.cssClass;
+        }
+        return '<div class="'+classes+'"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
       }
+    },
 
-      templateEngine.design.setWidgetLayout(ret_val, $p);
-      var actor = $('<div id="' + id + '" class="openweathermap_value"></div>');
-      ret_val.append(actor);
+    my : {
+      methods: {
+        getAttributeToPropertyMappings: function () {
+          return {
+            'class': { target: 'cssClass' },
+            'lang':   { },
+            'q':   { },
+            'lat':   { },
+            'long':   { },
+            'units':   { },
+            'type':   { },
+            'forecastItems':   { },
+            'detailItems':   { },
+            'appid':   { }
+          };
+        }
+      }
+    },
 
-      var options = {};
-      if ($p.attr('lang')) {
-        options.lang = $p.attr('lang');
-      }
-      if ($p.attr('q')) {
-        options.q = $p.attr('q');
-      }
-      else if ($p.attr('lat') && $p.attr('lon')) {
-        options.lat = $p.attr('lat');
-        options.lon = $p.attr('lon');
-      }
-      if ($p.attr('units')) {
-        options.units = $p.attr('units');
-      }
-      if ($p.attr('type')) {
-        options.type = $p.attr('type');
-      }
-      if ($p.attr('forecastItems')) {
-        options.forecastItems = $p.attr('forecastItems');
-      }
-      if ($p.attr('detailItems')) {
-        options.detailItems = $p.attr('detailItems');
-      }
-      if ($p.attr('refresh')) {
-        options.refresh = parseInt($p.attr('refresh'), 10);
-      }
-      if ($p.attr('appid')) {
-        options.appid = $p.attr('appid');
-      }
+    has: {
+      options: { is: 'ro', init: Joose.I.Object },
+      cssClass: { is: 'ro', init: "" }
+    },
 
-      refreshWeatherData(actor, options);
+    after : {
+      initialize: function (props) {
+        props.refresh = props.refresh * 60;
+        this.options = props
+      }
+    },
 
-      return ret_val;
+    methods: {
+      refreshAction: function() {
+        var elem = $(this.getDomElement());
+        elem.openweathermap(this.options);
+        return false;
+      }
     }
   });
+  // register the parser
+  cv.xml.Parser.addHandler("openweathermap", cv.plugin.OpenWeatherMap);
 });
-
-function refreshWeatherData(elem, options) {
-  var elem = $(elem);
-  jQuery(function() {
-    $(elem).openweathermap(options);
-  });
-  if (typeof(options.refresh) != "undefined" && options.refresh) {
-    // Reload regularly.
-    window.setTimeout(function(elem, options) {
-      refreshWeatherData(elem, options)
-    }, options.refresh * 60 * 1000, elem, options);
-  }
-
-  return false;
-}
