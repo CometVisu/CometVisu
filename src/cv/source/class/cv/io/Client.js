@@ -28,8 +28,6 @@
  * @author Tobias Bräutigam
  * @since 0.5.3 (initial contribution) 0.10.0 (major refactoring)
  */
-define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transport/Sse', 'lib/cv/io/Watchdog'], function( $ ) {
-  "use strict";
 
   /**
    * The Client handles all communication issues to supply the user
@@ -41,121 +39,139 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
    * @constructor
    * @alias module:Client
    */
-  Class('cv.io.Client', {
-    isa: cv.Object,
+  qx.Class.define('cv.io.Client', {
+    extend: cv.Object,
+    
+    /*
+    ******************************************************
+      CONSTRUCTOR
+    ******************************************************
+    */
+    construct: function() {
+      this.loginSettings = {
+        loggedIn: false,
+        callbackAfterLoggedIn: null,
+        context: null,
+        loginOnlyMode: false // login only for backend configuration, do not start address subscription
+      };
 
-    my: {
-      have: {
-        // used for backwards compability
-        backendNameAliases: {
-          'cgi-bin': 'default',
-          'oh': 'openhab',
-          'oh2': 'openhab2'
-        },
-        // setup of the different known backends
-        backends: {
-          'default': {
-            name: 'default',
-            baseURL: '/cgi-bin/',
-            transport: 'long-polling',
-            resources: {
-              login: 'l',
-              read: 'r',
-              write: 'w',
-              rrd: 'rrdfetch'
-            },
-            maxConnectionAge: 60 * 1000, // in milliseconds - restart if last read is older
-            maxDataAge: 3200 * 1000, // in milliseconds - reload all data when last successful read is older (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
-            hooks: {}
+      // init default settings
+      if (this.backendNameAliases[this.backendName]) {
+        this.backendName = this.backendNameAliases[this.backendName];
+      }
+
+      if (this.backendName && this.backendName !== 'default') {
+        if ($.isPlainObject(this.backendName)) {
+          // override default settings
+          this.setBackend(this.backendName);
+        } else if (this.backends[this.backendName]) {
+          // merge backend settings into default backend
+          this.setBackend(this.backends[this.backendName]);
+        }
+      } else {
+        this.setBackend(this.backends['default']);
+      }
+
+      this.watchdog = new cv.io.Watchdog();
+      this.watchdog.setClient(this);
+    },
+    
+    /*
+    ******************************************************
+      STATICS
+    ******************************************************
+    */
+    statics: {
+      // used for backwards compability
+      backendNameAliases: {
+        'cgi-bin': 'default',
+        'oh': 'openhab',
+        'oh2': 'openhab2'
+      },
+      // setup of the different known backends
+      backends: {
+        'default': {
+          name: 'default',
+          baseURL: '/cgi-bin/',
+          transport: 'long-polling',
+          resources: {
+            login: 'l',
+            read: 'r',
+            write: 'w',
+            rrd: 'rrdfetch'
           },
-          'openhab': {
-            name: 'openHAB',
-            baseURL: '/services/cv/',
-            // keep the e.g. atmosphere tracking-id if there is one
-            resendHeaders: {
-              'X-Atmosphere-tracking-id': undefined
-            },
-            // fixed headers that are send everytime
-            headers: {
-              'X-Atmosphere-Transport': 'long-polling'
-            },
-            hooks: {
-              onClose: function () {
-                // send an close request to the openHAB server
-                var oldValue = this.headers["X-Atmosphere-Transport"];
-                this.headers["X-Atmosphere-Transport"] = "close";
-                $.ajax({
-                  url: this.getResourcePath('read'),
-                  dataType: 'json',
-                  context: this,
-                  beforeSend: this.beforeSend
-                });
-                if (oldValue != undefined) {
-                  this.headers["X-Atmosphere-Transport"] = oldValue;
-                } else {
-                  delete this.headers["X-Atmosphere-Transport"];
-                }
+          maxConnectionAge: 60 * 1000, // in milliseconds - restart if last read is older
+          maxDataAge: 3200 * 1000, // in milliseconds - reload all data when last successful read is older (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
+          hooks: {}
+        },
+        'openhab': {
+          name: 'openHAB',
+          baseURL: '/services/cv/',
+          // keep the e.g. atmosphere tracking-id if there is one
+          resendHeaders: {
+            'X-Atmosphere-tracking-id': undefined
+          },
+          // fixed headers that are send everytime
+          headers: {
+            'X-Atmosphere-Transport': 'long-polling'
+          },
+          hooks: {
+            onClose: function () {
+              // send an close request to the openHAB server
+              var oldValue = this.headers["X-Atmosphere-Transport"];
+              this.headers["X-Atmosphere-Transport"] = "close";
+              $.ajax({
+                url: this.getResourcePath('read'),
+                dataType: 'json',
+                context: this,
+                beforeSend: this.beforeSend
+              });
+              if (oldValue != undefined) {
+                this.headers["X-Atmosphere-Transport"] = oldValue;
+              } else {
+                delete this.headers["X-Atmosphere-Transport"];
               }
             }
           }
         }
       }
     },
+    
+    /*
+    ******************************************************
+      PROPERTIES
+    ******************************************************
+    */
+    properties: {
+    
+      backendName: { },
+      backend: { },
+      watchdog: { },
+      addresses: { init: [] }, // the subscribed addresses
+      initialAddresses: { init: [] }, // the addresses which should be loaded before the subscribed addresses
+      filters: { init: [] }, // the subscribed filters
 
-    has: {
-      backendName: { is: 'ro' },
-      backend: { is: 'ro' },
-      watchdog: { is: 'ro' },
-      addresses: { is: 'ro', init: Joose.I.Array }, // the subscribed addresses
-      initialAddresses: { is: 'ro', init: Joose.I.Array }, // the addresses which should be loaded before the subscribed addresses
-      filters: { is: 'ro', init: Joose.I.Array }, // the subscribed filters
+      user : { init: '' }, // the current user
+      pass : { init: '' }, // the current password
+      device : { init: '' }, // the current device ID
+      running : { check: "Boolean", init: false }, // is the communication running at the moment?
+      currentTransport: {}, // the currently used transport layer
+      loginSettings : { init: {} },
+      dataReceived : { check: "Boolean", init: false }, // needed to be able to check if the incoming update is the initial answer or a successing update
 
-      user : { is: 'ro', init: '' }, // the current user
-      pass : { is: 'ro', init: '' }, // the current password
-      device : { is: 'ro', init: '' }, // the current device ID
-      running : { is: 'ro', init: false }, // is the communication running at the moment?
-      currentTransport: { is: 'ro' }, // the currently used transport layer
-      loginSettings : { is: 'ro', init: Joose.I.Object },
-      dataReceived : { is: 'ro', init: false }, // needed to be able to check if the incoming update is the initial answer or a successing update
-
-      headers: { is: 'ro', init: Joose.I.Object}
+      headers: { init: {} }
     },
 
-    after: {
-      initialize: function() {
-        this.loginSettings = {
-          loggedIn: false,
-          callbackAfterLoggedIn: null,
-          context: null,
-          loginOnlyMode: false // login only for backend configuration, do not start address subscription
-        };
+    /*
+    ******************************************************
+      MEMBERS
+    ******************************************************
+    */
+    members: {
 
-        // init default settings
-        if (this.my.backendNameAliases[this.backendName]) {
-          this.backendName = this.my.backendNameAliases[this.backendName];
-        }
-
-        if (this.backendName && this.backendName !== 'default') {
-          if ($.isPlainObject(this.backendName)) {
-            // override default settings
-            this.setBackend(this.backendName);
-          } else if (this.my.backends[this.backendName]) {
-            // merge backend settings into default backend
-            this.setBackend(this.my.backends[this.backendName]);
-          }
-        } else {
-          this.setBackend(this.my.backends['default']);
-        }
-
-        this.watchdog = new cv.io.Watchdog();
-        this.watchdog.setClient(this);
-      }
-    },
-
-    methods: {
       setBackend: function(newBackend) {
         // override default settings
-        this.backend = $.extend({}, this.my.backends['default'], newBackend);
+        this.backend = $.extend({}, this.backends['default'], newBackend);
         if (this.backend.transport === 'sse' && this.backend.transportFallback) {
           if (window.EventSource === undefined) {
             // browser does not support EventSource object => use fallback
@@ -227,7 +243,7 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
         // empty
         this.addresses = addresses ? addresses : [];
         this.filters = filters ? filters : [];
-  
+
         if (!addresses.length) {
           this.stop(); // stop when new addresses are empty
         }
@@ -244,7 +260,7 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
           }
         }
       },
-  
+
       /**
        * This function starts the communication by a login and then runs the
        * ongoing communication task
@@ -269,7 +285,7 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
           if ('' !== this.device) {
             request.d = this.device;
           }
-  
+
           $.ajax({
             url: this.backendUrl ? this.backendUrl : this.getResourcePath("login"),
             dataType: 'json',
@@ -284,7 +300,7 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
           this.loginSettings.context = null;
         }
       },
-  
+
       /**
        * Handles login response, applies backend configuration if send by
        * backend and forwards to the configurated transport handleSession
@@ -312,7 +328,7 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
           this.loginSettings.context = null;
         }
       },
-  
+
       /**
        * This function stops an ongoing connection
        *
@@ -325,7 +341,7 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
         }
         this.loginSettings.loggedIn = false;
       },
-  
+
       /**
        * Build the URL part that contains the addresses and filters
        * @method buildRequest
@@ -343,7 +359,7 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
           + ((addresses.length && this.filters.length) ? '&' : '')
           + requestFilters;
       },
-  
+
       /**
        * This function sends a value
        * @param address
@@ -366,5 +382,4 @@ define( ['jquery', 'joose', 'lib/cv/io/transport/LongPolling', 'lib/cv/io/transp
 
       update: function(json) {}
     }
-  });
 });

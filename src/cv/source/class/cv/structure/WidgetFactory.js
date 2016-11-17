@@ -18,47 +18,43 @@
  */
 
 
-define( [
-  'joose'
-], function() {
-  "use strict";
-  var c = 0;
+Class('cv.structure.WidgetFactory', {
+  type: "static",
 
-  Class('cv.structure.WidgetFactory', {
-    my : {
-      has : {
-        registry: { is: 'rw', init: Joose.I.Object }
-      },
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    registry: { check: 'Object', init: {} },
 
-      methods: {
-        createInstance: function(type, data) {
-          if (!this.registry[data.path]) {
-            data.$$id = c;
-            if (!cv.structure.pure[Joose.S.uppercaseFirst(type)]) {
-              // try to find it via parser handler
-              var handler = cv.xml.Parser.getHandler(type);
-              if (handler) {
-                this.registry[data.path] = new handler(data);
-              } else {
-                console.error("No handler found for type '%s'", type);
-                return null;
-              }
-            } else {
-              this.registry[data.path] = new cv.structure.pure[Joose.S.uppercaseFirst(type)](data);
-            }
-            c++;
+    createInstance: function (type, data) {
+      if (!this.registry[data.path]) {
+        data.$$id = c;
+        if (!cv.structure.pure[Joose.S.uppercaseFirst(type)]) {
+          // try to find it via parser handler
+          var handler = cv.xml.Parser.getHandler(type);
+          if (handler) {
+            this.registry[data.path] = new handler(data);
+          } else {
+            console.error("No handler found for type '%s'", type);
+            return null;
           }
-          return this.registry[data.path];
-        },
-
-        getInstanceById: function(id) {
-          return this.registry[id];
-        },
-
-        clear: function() {
-          this.registry = {};
+        } else {
+          this.registry[data.path] = new cv.structure.pure[Joose.S.uppercaseFirst(type)](data);
         }
+        c++;
       }
+      return this.registry[data.path];
+    },
+
+    getInstanceById: function (id) {
+      return this.registry[id];
+    },
+
+    clear: function () {
+      this.registry = {};
     }
-  })
-}); // end define
+  }
+});
