@@ -28,7 +28,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
       if (0 < parseInt(this.version[0])
         || 1 < parseInt(this.version[1]))
-        alert('ERROR CometVisu Client: too new protocol version ('
+        this.error('ERROR CometVisu Client: too new protocol version ('
           + json.v + ') used!');
 
       if (connect) {
@@ -187,7 +187,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
             readyState = 'COMPLETED';
             break;
         }
-        alert('Error! Type: "' + str + '" ExceptionObject: "'
+        this.error('Error! Type: "' + str + '" ExceptionObject: "'
           + excptObj + '" readyState: ' + readyState);
       }
     },

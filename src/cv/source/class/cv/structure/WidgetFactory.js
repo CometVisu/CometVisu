@@ -18,7 +18,7 @@
  */
 
 
-Class('cv.structure.WidgetFactory', {
+qx.Class.define('cv.structure.WidgetFactory', {
   type: "static",
 
   /*

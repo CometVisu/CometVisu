@@ -2,7 +2,7 @@
  * @class cv.layout.Manager
  */
 qx.Class.define('cv.layout.Manager', {
-  isa: cv.Object,
+
   type: "static",
 
   /*

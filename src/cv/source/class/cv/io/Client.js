@@ -56,20 +56,20 @@
       };
 
       // init default settings
-      if (this.backendNameAliases[this.backendName]) {
-        this.backendName = this.backendNameAliases[this.backendName];
+      if (cv.io.Client.backendNameAliases[this.backendName]) {
+        this.backendName = cv.io.Client.backendNameAliases[this.backendName];
       }
 
       if (this.backendName && this.backendName !== 'default') {
-        if ($.isPlainObject(this.backendName)) {
+        if (qx.lang.Type.isObject(this.backendName)) {
           // override default settings
           this.setBackend(this.backendName);
-        } else if (this.backends[this.backendName]) {
+        } else if (cv.io.Client.backends[this.backendName]) {
           // merge backend settings into default backend
-          this.setBackend(this.backends[this.backendName]);
+          this.setBackend(cv.io.Client.backends[this.backendName]);
         }
       } else {
-        this.setBackend(this.backends['default']);
+        this.setBackend(cv.io.Client.backends['default']);
       }
 
       this.watchdog = new cv.io.Watchdog();
@@ -120,12 +120,9 @@
               // send an close request to the openHAB server
               var oldValue = this.headers["X-Atmosphere-Transport"];
               this.headers["X-Atmosphere-Transport"] = "close";
-              $.ajax({
-                url: this.getResourcePath('read'),
-                dataType: 'json',
-                context: this,
-                beforeSend: this.beforeSend
-              });
+              var ajaxRequest = new qx.io.request.Xhr(this.getResourcePath('read'));
+              this.beforeSend(ajaxRequest);
+              ajaxRequest.send();
               if (oldValue != undefined) {
                 this.headers["X-Atmosphere-Transport"] = oldValue;
               } else {
@@ -171,12 +168,12 @@
 
       setBackend: function(newBackend) {
         // override default settings
-        this.backend = $.extend({}, this.backends['default'], newBackend);
+        this.backend = qx.lang.Object.mergeWith(qx.lang.Object.clone(cv.io.Client.backends['default']), newBackend);
         if (this.backend.transport === 'sse' && this.backend.transportFallback) {
           if (window.EventSource === undefined) {
             // browser does not support EventSource object => use fallback
             // transport + settings
-            $.extend(this.backend, this.backend.transportFallback);
+            qx.lang.Object.mergeWith(this.backend, this.backend.transportFallback);
           }
         }
         // add trailing slash to baseURL if not set
@@ -285,14 +282,12 @@
           if ('' !== this.device) {
             request.d = this.device;
           }
-
-          $.ajax({
-            url: this.backendUrl ? this.backendUrl : this.getResourcePath("login"),
-            dataType: 'json',
-            context: this,
-            data: request,
-            success: this.handleLogin
+          var ajaxRequest = new qx.io.request.Xhr(this.backendUrl ? this.backendUrl : this.getResourcePath("login"));
+          ajaxRequest.set({
+            accept: "application/json"
           });
+          ajaxRequest.addListener("success", this.handleLogin, this);
+          ajaxRequest.send();
         } else if (this.loginSettings.callbackAfterLoggedIn) {
           // call callback immediately
           this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
@@ -311,7 +306,7 @@
       handleLogin : function (json) {
         // read backend configuration if send by backend
         if (json.c) {
-          this.backend = $.extend(this.backend, json.c); // assign itthis.to run setter
+          this.backend = qx.lang.Object.mergeWith(this.backend, json.c); // assign itthis.to run setter
         }
         this.dataReceived = false;
         if (this.loginSettings.loginOnly) {
@@ -372,12 +367,11 @@
          * could maybe selective based on UserAgent but isn't that costly on writes
          */
         var ts = new Date().getTime();
-        $.ajax({
-          url: this.getResourcePath("write"),
-          dataType: 'json',
-          context: this,
-          data: 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts
+        var ajaxRequest = new qx.io.request.Xhr(qx.util.Uri.appendParamsToUrl(this.getResourcePath("write"), 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts));
+        ajaxRequest.set({
+          accept: "application/json"
         });
+        ajaxRequest.send();
       },
 
       update: function(json) {}

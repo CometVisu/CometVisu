@@ -17,30 +17,33 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define(['joose', 'lib/cv/role/HasAddress', 'lib/cv/Config'], function(joose, HasAddress, Config) {
 
-  /**
-   * This role provides the vlue transformation methods
-   *
-   * @class cv.role.Transform
-   */
-  Role("cv.role.Transform", {
+/**
+ * This role provides the vlue transformation methods
+ *
+ * @class cv.role.Transform
+ */
+qx.Mixin.define("cv.role.Transform", {
 
-    methods: {
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
 
-      transformEncode : function(transformation, value) {
-        var basetrans = transformation.split('.')[0];
-        return transformation in Transform ? Transform[transformation]
-          .encode(value) : (basetrans in Transform ? Transform[basetrans]
-          .encode(value) : value);
-      },
+    transformEncode: function (transformation, value) {
+      var basetrans = transformation.split('.')[0];
+      return transformation in Transform ? Transform[transformation]
+        .encode(value) : (basetrans in Transform ? Transform[basetrans]
+        .encode(value) : value);
+    },
 
-      transformDecode : function(transformation, value) {
-        var basetrans = transformation.split('.')[0];
-        return transformation in Transform ? Transform[transformation]
-          .decode(value) : (basetrans in Transform ? Transform[basetrans]
-          .decode(value) : value);
-      }
+    transformDecode: function (transformation, value) {
+      var basetrans = transformation.split('.')[0];
+      return transformation in Transform ? Transform[transformation]
+        .decode(value) : (basetrans in Transform ? Transform[basetrans]
+        .decode(value) : value);
     }
-  });
+  }
 });

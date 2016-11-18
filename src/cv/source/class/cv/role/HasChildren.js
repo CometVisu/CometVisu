@@ -17,113 +17,130 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define(['joose'], function() {
-  Role("cv.role.HasChildren", {
+qx.Mixin.define("cv.role.HasChildren", {
 
-    has: {
-      children: { is: 'rw', init: Joose.I.Array }
-    },
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    children: {
+      check: "Array",
+      init: []
+    }
+  },
 
-    my: {
-      after: {
-        parse: function( xml, path, flavour, pageType ) {
-          var $p = $(xml);
-          var data = templateEngine.widgetDataGet(this.getStoragePath(xml, path));
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    parse: function (xml, path, flavour, pageType) {
+      var $p = $(xml);
+      var data = templateEngine.widgetDataGet(this.getStoragePath(xml, path));
 
-          if (!data.children) {
-            data.children = [];
-          }
-          var childs = $p.children().not('layout').not('label');
-          Joose.A.each(childs, function(child, i) {
-            var childData = cv.xml.Parser.parse(child, path + '_' + i, flavour, pageType );
-            if (childData) {
-              if (Array.isArray(childData)) {
-                for (var i=0, l=childData.length; i<l; i++) {
-                  data.children.push(childData[i].path);
-                }
-              } else if (childData.path) {
-                data.children.push(childData.path);
-              }
-            }
-          }, this);
-          return data;
-        }
-      },
-
-      methods: {
-        /**
-         * Returns the path where the widget data is stored, usually this is the same path, but there are
-         * exceptions for pages which are handled here
-         * @param xml
-         * @param path
-         */
-        getStoragePath: function(xml, path) {
-          if (xml.length === 1) {
-            xml = xml[0]
-          }
-          switch(xml.nodeName.toLowerCase()) {
-            case "page":
-              return path+"_";
-            default:
-              return path;
-          }
-        }
+      if (!data.children) {
+        data.children = [];
       }
+      var childs = $p.children().not('layout').not('label');
+      Joose.A.each(childs, function (child, i) {
+        var childData = cv.xml.Parser.parse(child, path + '_' + i, flavour, pageType);
+        if (childData) {
+          if (Array.isArray(childData)) {
+            for (var i = 0, l = childData.length; i < l; i++) {
+              data.children.push(childData[i].path);
+            }
+          } else if (childData.path) {
+            data.children.push(childData.path);
+          }
+        }
+      }, this);
+      return data;
     },
 
-    methods: {
-
-      getChildrenDomString: function(noWidgetContainer) {
-        var container = '';
-
-        Joose.A.each( this.getChildren(), function(path) {
-          var data = templateEngine.widgetDataGet(path);
-          var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
-          if (widget) {
-            var subelement = widget.getDomString();
-            if( undefined === subelement )
-              return;
-            if (noWidgetContainer === true) {
-              container += subelement;
-            } else {
-              container += '<div class="widget_container '
-                + (data.rowspanClass ? data.rowspanClass : '')
-                + (data.containerClass ? data.containerClass : '')
-                + ('break' === data.$$type ? 'break_container' : '') // special case for break widget
-                + '" id="' + path + '" data-type="' + data.$$type + '">' + subelement + '</div>';
-            }
-          }
-        }, this);
-        return container;
-      },
-
-      getParent: function() {
-        var path = this.getPath();
-        var type = this.$$type;
-        var parts, parentPath;
-        if (type === "page") {
-          if (path === "id_") {
-            // root page has no parent
-            return null;
-          }
-          parts = path.substr(0, path.length - 1).split("_"); parts.pop();
-          parentPath = parts.join("_")+"_";
-        } else {
-          if (path === "id") {
-            // root element has no parent
-            return null;
-          }
-          parts = path.split("_"); parts.pop();
-          parentPath = parts.join("_");
-        }
-        if (parentPath) {
-          var parent = cv.structure.WidgetFactory.getInstanceById(parentPath);
-          if (parent) {
-            return parent;
-          }
-        }
-        return null;
+    /**
+     * Returns the path where the widget data is stored, usually this is the same path, but there are
+     * exceptions for pages which are handled here
+     * @param xml
+     * @param path
+     */
+    getStoragePath: function (xml, path) {
+      if (xml.length === 1) {
+        xml = xml[0]
+      }
+      switch (xml.nodeName.toLowerCase()) {
+        case "page":
+          return path + "_";
+        default:
+          return path;
       }
     }
-  });
+  },
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    getChildrenDomString: function (noWidgetContainer) {
+      var container = '';
+
+      Joose.A.each(this.getChildren(), function (path) {
+        var data = templateEngine.widgetDataGet(path);
+        var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
+        if (widget) {
+          var subelement = widget.getDomString();
+          if (undefined === subelement)
+            return;
+          if (noWidgetContainer === true) {
+            container += subelement;
+          } else {
+            container += '<div class="widget_container '
+              + (data.rowspanClass ? data.rowspanClass : '')
+              + (data.containerClass ? data.containerClass : '')
+              + ('break' === data.$$type ? 'break_container' : '') // special case for break widget
+              + '" id="' + path + '" data-type="' + data.$$type + '">' + subelement + '</div>';
+          }
+        }
+      }, this);
+      return container;
+    },
+
+    getParent: function () {
+      var path = this.getPath();
+      var type = this.$$type;
+      var parts, parentPath;
+      if (type === "page") {
+        if (path === "id_") {
+          // root page has no parent
+          return null;
+        }
+        parts = path.substr(0, path.length - 1).split("_");
+        parts.pop();
+        parentPath = parts.join("_") + "_";
+      } else {
+        if (path === "id") {
+          // root element has no parent
+          return null;
+        }
+        parts = path.split("_");
+        parts.pop();
+        parentPath = parts.join("_");
+      }
+      if (parentPath) {
+        var parent = cv.structure.WidgetFactory.getInstanceById(parentPath);
+        if (parent) {
+          return parent;
+        }
+      }
+      return null;
+    }
+  }
+
+  // defer: function() {
+  //   // cv.xml.Parser.addHook(this.classname.split(".").pop().toLowerCase(), cv.role.HasChildren.parse, this);
+  // }
 });

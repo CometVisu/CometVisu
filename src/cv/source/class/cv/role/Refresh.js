@@ -39,13 +39,16 @@ qx.Mixin.define("cv.role.Refresh", {
     refresh: {check: 'Number', init: 0}
   },
 
-  my: {
-    after: {
-      parse: function (xml, path) {
-        var data = templateEngine.widgetDataGet(path);
-        $e = $(xml);
-        data.refresh = $e.attr('refresh') ? $e.attr('refresh') * 1000 : 0;
-      }
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    parse: function (xml, path) {
+      var data = templateEngine.widgetDataGet(path);
+      $e = $(xml);
+      data.refresh = $e.attr('refresh') ? $e.attr('refresh') * 1000 : 0;
     }
   },
 
@@ -88,5 +91,9 @@ qx.Mixin.define("cv.role.Refresh", {
         target.src = src + '&' + new Date().getTime();
       }
     }
+  },
+
+  defer: function() {
+    cv.xml.Parser.addHook(this.classname.split(".").pop().toLowerCase(), cv.role.Refresh.parse, this);
   }
 });

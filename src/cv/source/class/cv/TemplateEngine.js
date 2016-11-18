@@ -3,9 +3,8 @@ qx.Class.define('cv.TemplateEngine', {
   type: "singleton",
   
   construct: function() {
-    this.base(arguments);
+    // this.base(arguments);
     cv.Config.eventHandler = new cv.event.Handler(this);
-    cv.Config.templateEngine = this;
 
     this.loadReady = {page: false, plugins: false};
     this.pagePartsHandler = new cv.PagePartsHandler();
@@ -149,7 +148,7 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     initBackendClient: function () {
-      if ($.getUrlVar('testMode')) {
+      if (cv.Config.testMode) {
         this.visu = new cv.io.Mockup();
         require(['TransformMockup'], function () {
         });
@@ -173,9 +172,7 @@ qx.Class.define('cv.TemplateEngine', {
       }
 
       this.visu.update = function (json) { // overload the handler
-        profileCV('first data start (' + this.visu.retryCounter + ')');
         this.update(json);
-        profileCV('first data updated', true);
         this.visu.update = this.update.bind(this); // handle future requests directly
       }.bind(this);
       this.user = 'demo_user'; // example for setting a user
@@ -209,9 +206,7 @@ qx.Class.define('cv.TemplateEngine', {
       cv.layout.Manager.my.currentPageNavbarVisibility = null;
     },
 
-
     parseXML: function (loaded_xml) {
-      profileCV('parseXML');
       this.xml = loaded_xml;
       // erst mal den Cache für AJAX-Requests wieder aktivieren
       /*
@@ -224,222 +219,91 @@ qx.Class.define('cv.TemplateEngine', {
        * First, we try to get a design by url. Secondly, we try to get a predefined
        */
       // read predefined design in config
-      var predefinedDesign = $('pages', this.xml).attr("design");
+      var pagesNode = qx.bom.Selector.query("pages", this.xml)[0];
+      var predefinedDesign = qx.bom.element.Attribute.get(pagesNode, "design");
 
-      if ($('pages', this.xml).attr("backend")) {
-        cv.Config.backend = $('pages', this.xml).attr("backend");
+      if (qx.bom.element.Attribute.get(pagesNode, "backend") !== null) {
+        cv.Config.backend = qx.bom.element.Attribute.get(pagesNode, "backend");
       }
       this.initBackendClient();
 
-      if (undefined === $('pages', this.xml).attr('scroll_speed'))
+      if (!qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') !== null) {
         cv.Config.scrollSpeed = 400;
-      else
-        cv.Config.scrollSpeed = $('pages', this.xml).attr('scroll_speed') | 0;
+      } else {
+        cv.Config.scrollSpeed = qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') | 0;
+      }
 
-      if ($('pages', this.xml).attr('bind_click_to_widget') != undefined) {
-        cv.Config.bindClickToWidget = $('pages', this.xml).attr('bind_click_to_widget') == "true" ? true : false;
+      if (qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') !== null) {
+        cv.Config.bindClickToWidget = qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') == "true" ? true : false;
       }
-      if ($('pages', this.xml).attr('default_columns')) {
-        cv.Config.defaultColumns = $('pages', this.xml).attr('default_columns');
+      if (qx.bom.element.Attribute.get(pagesNode, 'default_columns') !== null) {
+        cv.Config.defaultColumns = qx.bom.element.Attribute.get(pagesNode, 'default_columns');
       }
-      if ($('pages', this.xml).attr('min_column_width')) {
-        cv.Config.minColumnWidth = $('pages', this.xml).attr('min_column_width');
+      if (qx.bom.element.Attribute.get(pagesNode, 'min_column_width') !== null) {
+        cv.Config.minColumnWidth = qx.bom.element.Attribute.get(pagesNode, 'min_column_width');
       }
-      this.screensave_time = $('pages', this.xml).attr('screensave_time');
-      this.screensave_page = $('pages', this.xml).attr('screensave_page');
+      this.screensave_time = qx.bom.element.Attribute.get(pagesNode, 'screensave_time');
+      this.screensave_page = qx.bom.element.Attribute.get(pagesNode, 'screensave_page');
 
       // design by url
-      if ($.getUrlVar("design")) {
-        cv.Config.clientDesign = $.getUrlVar("design");
-      }
       // design by config file
-      else if (predefinedDesign) {
-        cv.Config.clientDesign = predefinedDesign;
-      }
-      // selection dialog
-      else {
-        this.selectDesign();
-      }
-      if ($('pages', this.xml).attr('max_mobile_screen_width'))
-        cv.Config.maxMobileScreenWidth = $('pages', this.xml).attr('max_mobile_screen_width');
-
-      var getCSSlist = [];
-      if (cv.Config.clientDesign) {
-        getCSSlist.push('css!designs/' + cv.Config.clientDesign + '/basic.css');
-        if (!cv.Config.forceNonMobile) {
-          getCSSlist.push('css!designs/' + cv.Config.clientDesign + '/mobile.css');
+      if (!cv.Config.clientDesign) {
+        if (predefinedDesign) {
+          cv.Config.clientDesign = predefinedDesign;
         }
-        getCSSlist.push('css!designs/' + cv.Config.clientDesign + '/custom.css');
-        getCSSlist.push('designs/' + cv.Config.clientDesign + '/design_setup');
+        // selection dialog
+        else {
+          this.selectDesign();
+        }
       }
-      require(getCSSlist, this.delaySetup('design'));
+      if (qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width') !== null)
+        cv.Config.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
+
+      // TODO: implement cv.bom.request.Css (see qx.bom.request.Script)
+      // var getCSSlist = [];
+      // if (cv.Config.clientDesign) {
+      //   getCSSlist.push('css!designs/' + cv.Config.clientDesign + '/basic.css');
+      //   if (!cv.Config.forceNonMobile) {
+      //     getCSSlist.push('css!designs/' + cv.Config.clientDesign + '/mobile.css');
+      //   }
+      //   getCSSlist.push('css!designs/' + cv.Config.clientDesign + '/custom.css');
+      //   getCSSlist.push('designs/' + cv.Config.clientDesign + '/design_setup');
+      // }
+      // require(getCSSlist, this.delaySetup('design'));
 
       // start with the plugins
-      var pluginsToLoad = [];
-      $('meta > plugins plugin', this.xml).each(function (i) {
-        var name = $(this).attr('name');
-        if (name) {
-          if (!pluginsToLoad[name]) {
-            /*
-             pluginsToLoadCount++;
-             $.includeScripts(
-             ['plugins/' + name + '/structure_plugin.js'],
-             this.delaySetup( 'plugin_' + name)
-             );
-             pluginsToLoad[name] = true;
-             */
-            pluginsToLoad.push('plugins/' + name + '/structure_plugin');
-          }
-        }
-      });
+      // var pluginsToLoad = [];
+      // $('meta > plugins plugin', this.xml).each(function (i) {
+      //   var name = $(this).attr('name');
+      //   if (name) {
+      //     if (!pluginsToLoad[name]) {
+      //       /*
+      //        pluginsToLoadCount++;
+      //        $.includeScripts(
+      //        ['plugins/' + name + '/structure_plugin.js'],
+      //        this.delaySetup( 'plugin_' + name)
+      //        );
+      //        pluginsToLoad[name] = true;
+      //        */
+      //       pluginsToLoad.push('plugins/' + name + '/structure_plugin');
+      //     }
+      //   }
+      // });
       /*
        if (0 == pluginsToLoadCount) {
        delete loadReady.plugins;
        }
        */
-      var delaySetupPluginsCallback = this.delaySetup('plugins').bind(this);
-      require(pluginsToLoad, delaySetupPluginsCallback, function (err) {
-        console.log('Plugin loading error! It happend with: "' + err.requireModules[0] + '". Is the plugin available and written correctly?');
-        delaySetupPluginsCallback();
-      });
+      // var delaySetupPluginsCallback = this.delaySetup('plugins').bind(this);
+      // require(pluginsToLoad, delaySetupPluginsCallback, function (err) {
+      //   console.log('Plugin loading error! It happend with: "' + err.requireModules[0] + '". Is the plugin available and written correctly?');
+      //   delaySetupPluginsCallback();
+      // });
 
-      // then the icons
-      $('meta > icons icon-definition', this.xml).each(function (i, elem) {
-        var $this = $(elem);
-        var name = $this.attr('name');
-        var uri = $this.attr('uri');
-        var type = $this.attr('type');
-        var flavour = $this.attr('flavour');
-        var color = $this.attr('color');
-        var styling = $this.attr('styling');
-        var dynamic = $this.attr('dynamic');
-        icons.insert(name, uri, type, flavour, color, styling, dynamic);
-      });
 
-      // then the mappings
-      $('meta > mappings mapping', this.xml).each(function (i, elem) {
-        var $this = $(elem);
-        var name = $this.attr('name');
-        this.getMappings()[name] = {};
-        var formula = $this.find('formula');
-        if (formula.length > 0) {
-          var func = qx.lang.Function.globalEval('var func = function(x){var y;' + formula.text() + '; return y;}; func');
-          this.getMappings()[name]['formula'] = func;
-        }
-        $this.find('entry').each(function (j, subElem) {
-          var $localThis = $(subElem);
-          var origin = $localThis.contents();
-          var value = [];
-          for (var i = 0; i < origin.length; i++) {
-            var $v = $(origin[i]);
-            if ($v.is('icon')) {
-              value[i] = icons.getIconElement($v.attr('name'), $v.attr('type'), $v.attr('flavour'), $v.attr('color'), $v.attr('styling'), $v.attr('class'));
-            }
-            else {
-              value[i] = $v.text();
-            }
-          }
-          // check for default entry
-          var isDefaultValue = $localThis.attr('default');
-          if (isDefaultValue != undefined) {
-            isDefaultValue = isDefaultValue == "true";
-          }
-          else {
-            isDefaultValue = false;
-          }
-          // now set the mapped values
-          if ($localThis.attr('value')) {
-            this.getMappings()[name][$localThis.attr('value')] = value.length == 1 ? value[0] : value;
-            if (isDefaultValue) {
-              this.getMappings()[name]['defaultValue'] = $localThis.attr('value');
-            }
-          }
-          else {
-            if (!this.getMappings()[name]['range']) {
-              this.getMappings()[name]['range'] = {};
-            }
-            this.getMappings()[name]['range'][parseFloat($localThis.attr('range_min'))] = [parseFloat($localThis.attr('range_max')), value];
-            if (isDefaultValue) {
-              this.getMappings()[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
-            }
-          }
-        }.bind(this));
-      }.bind(this));
 
-      // then the stylings
-      $('meta > stylings styling', this.xml).each(function (i, elem) {
-        var name = $(elem).attr('name');
-        var classnames = '';
-        this.getStylings()[name] = {};
-        $(elem).find('entry').each(function (k, subElem) {
-          var $localThis = $(subElem);
-          classnames += $localThis.text() + ' ';
-          // check for default entry
-          var isDefaultValue = $localThis.attr('default');
-          if (isDefaultValue != undefined) {
-            isDefaultValue = isDefaultValue == "true";
-          } else {
-            isDefaultValue = false;
-          }
-          // now set the styling values
-          if ($localThis.attr('value')) {
-            this.getStylings()[name][$localThis.attr('value')] = $localThis.text();
-            if (isDefaultValue) {
-              this.getStylings()[name]['defaultValue'] = $localThis.attr('value');
-            }
-          } else { // a range
-            if (!this.getStylings()[name]['range'])
-              this.getStylings()[name]['range'] = {};
-            this.getStylings()[name]['range'][parseFloat($localThis.attr('range_min'))] = [parseFloat($localThis.attr('range_max')), $localThis.text()];
-            if (isDefaultValue) {
-              this.getStylings()[name]['defaultValue'] = parseFloat($localThis.attr('range_min'));
-            }
-          }
-        }.bind(this));
-        this.getStylings()[name]['classnames'] = classnames;
-        cv.ui.Stylings.my.addStyling(name, this.getStylings()[name]);
-      }.bind(this));
-
-      // then the status bar
-      $('meta > statusbar status', this.xml).each(function (i, elem) {
-        var type = $(elem).attr('type');
-        var condition = $(elem).attr('condition');
-        var extend = $(elem).attr('hrefextend');
-        var sPath = window.location.pathname;
-        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-
-        // @TODO: make this match once the new editor is finished-ish.
-        var editMode = 'edit_config.html' == sPage;
-
-        // skip this element if it's edit-only and we are non-edit, or the other
-        // way
-        // round
-        if (editMode && '!edit' == condition)
-          return;
-        if (!editMode && 'edit' == condition)
-          return;
-
-        var text = $(elem).text();
-        switch (extend) {
-          case 'all': // append all parameters
-            var search = window.location.search.replace(/\$/g, '$$$$');
-            text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
-            break;
-          case 'config': // append config file info
-            var search = window.location.search.replace(/\$/g, '$$$$');
-            search = search.replace(/.*(config=[^&]*).*|.*/, '$1');
-
-            var middle = text.replace(/.*href="([^"]*)".*/g, '{$1}');
-            if (0 < middle.indexOf('?'))
-              search = '&' + search;
-            else
-              search = '?' + search;
-
-            text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
-            break;
-        }
-        $('.footer').html($('.footer').html() + text);
-      }.bind(this));
+     var metaParser = new cv.xml.parser.Meta();
+      metaParser.parse(this.xml);
 
       delete this.loadReady.page;
       this.setup_page();
@@ -447,7 +311,6 @@ qx.Class.define('cv.TemplateEngine', {
 
     setup_page: function () {
       // and now setup the pages
-      profileCV('setup_page start');
 
       // check if the page and the plugins are ready now
       for (var key in this.loadReady)  // test for emptines
@@ -459,25 +322,22 @@ qx.Class.define('cv.TemplateEngine', {
 
       // login to backend as it might change some settings needed for further processing
       this.visu.login(true, function () {
-        profileCV('setup_page running');
 
         // as we are sure that the default CSS were loaded now:
-        $('link[href*="mobile.css"]').each(function () {
+        qx.bom.Selector.query('link[href*="mobile.css"]').forEach(function () {
           this.media = 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)';
         });
 
-        var page = $('pages > page', this.xml)[0]; // only one page element allowed...
+        var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
 
         this.create_pages(page, 'id');
         cv.structure.pure.Page.createFinal();
-        profileCV('setup_page created pages');
 
         cv.MessageBroker.my.publish("setup.dom.finished");
-        profileCV('setup_page finished postDOMSetupFns');
 
         var startpage = 'id_';
-        if ($.getUrlVar('startpage')) {
-          startpage = $.getUrlVar('startpage');
+        if (cv.Config.startpage) {
+          startpage = cv.Config.startpage;
           if (typeof(Storage) !== 'undefined') {
             if ('remember' === startpage) {
               startpage = localStorage.getItem('lastpage');
@@ -491,7 +351,7 @@ qx.Class.define('cv.TemplateEngine', {
             }
           }
         }
-        this.currentPage = $('#' + startpage);
+        this.currentPage = qx.bom.Selector.query('#' + startpage)[0];
 
         cv.layout.Manager.adjustColumns();
         cv.layout.Manager.applyColumnWidths();
@@ -525,17 +385,16 @@ qx.Class.define('cv.TemplateEngine', {
         };
 
         // run the Trick-O-Matic scripts for great SVG backdrops
-        $('embed').each(function () {
+        qx.bom.Selector.query('embed').forEach(function () {
           this.onload = Trick_O_Matic
         });
 
         if (cv.Config.enableAddressQueue) {
           // identify addresses on startpage
           var startPageAddresses = {};
-          $('.actor', '#' + startpage).each(function () {
-            var $this = $(this),
-              data = $this.data();
-            if (undefined === data.address) data = $this.parent().data();
+          qx.bom.Selector.query('.actor', this.currentPage).forEach(function (elem) {
+            var data = qx.bom.element.Dataset.getAll(elem);
+            if (undefined === data.address) data = qx.bom.element.Dataset.getAll(elem.parentElement);
             for (var addr in data.address) {
               startPageAddresses[addr.substring(1)] = 1;
             }
@@ -548,23 +407,19 @@ qx.Class.define('cv.TemplateEngine', {
 
         this.xml = null; // not needed anymore - free the space
 
-        $('.icon').each(function () {
-          fillRecoloredIcon(this);
+        qx.bom.Selector.query('.icon').forEach(function (icon) {
+          fillRecoloredIcon(icon);
         });
-        $('.loading').removeClass('loading');
+        qx.bom.element.Class.remove(qx.bom.Selector.query('.loading')[0], 'loading');
         this.fireLoadingFinishedAction();
         if (undefined !== this.screensave_time) {
-          this.screensave = setTimeout(function () {
+          this.screensave = new qx.event.Timer(this.screensave_time * 1000);
+          this.screensave.addListener("interval", function () {
             this.scrollToPage();
-          }, this.screensave_time * 1000);
-          $(document).click(function () {
-            clearInterval(this.screensave);
-            this.screensave = setTimeout(function () {
-              this.scrollToPage();
-            }, this.screensave_time * 1000);
-          });
+          }, this);
+          this.screensave.start();
+          qx.event.Registration.addListener(document, "pointerdown", this.screensave.restart, this.screensave);
         }
-        profileCV('setup_page finish');
       }, this);
     },
 

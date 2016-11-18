@@ -14,7 +14,7 @@ qx.Class.define("cv.ui.Stylings", {
   ******************************************************
   */
   statics: {
-    stylings: {check: 'Number', init: {}},
+    stylings: { init: {} },
 
     addStyling: function (name, styling) {
       this.stylings[name] = styling;

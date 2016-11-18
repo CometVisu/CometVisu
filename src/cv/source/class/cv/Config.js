@@ -25,23 +25,37 @@ qx.Class.define('cv.Config', {
   },
 
   defer: function() {
-    if ($.getUrlVar('enableQueue')) {
+    var req = qx.util.Uri.parseUri(window.location.href);
+
+    if (req.queryKey.enableQueue) {
       cv.Config.enableAddressQueue = true;
     }
 
-    if ($.getUrlVar('libraryCheck')) {
-      cv.Config.libraryCheck = $.getUrlVar('libraryCheck') != 'false'; // true unless set to false
+    if (req.queryKey.libraryCheck) {
+      cv.Config.libraryCheck = req.queryKey.libraryCheck != 'false'; // true unless set to false
     }
-    if ($.getUrlVar("backend")) {
-      cv.Config.backend = $.getUrlVar("backend");
-    }
-
-    if ($.getUrlVar("config")) {
-      cv.Config.configSuffix = $.getUrlVar("config");
+    if (req.queryKey.backend) {
+      cv.Config.backend = req.queryKey.backend;
     }
 
-    if ($.getUrlVar('forceReload')) {
-      cv.Config.forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set
+    if (req.queryKey.design) {
+      cv.Config.clientDesign = req.queryKey.design;
+    }
+
+    if (req.queryKey.startpage) {
+      cv.Config.startpage = req.queryKey.startpage;
+    }
+
+    if (req.queryKey.testMode) {
+      cv.Config.testMode = req.queryKey.testMode;
+    }
+
+    if (req.queryKey.config) {
+      cv.Config.configSuffix = req.queryKey.config;
+    }
+
+    if (req.queryKey.forceReload) {
+      cv.Config.forceReload = req.queryKey.forceReload != 'false'; // true unless set
       // to false
     }
 
@@ -52,8 +66,8 @@ qx.Class.define('cv.Config', {
     // has changed but the browser doesn't even ask the server about it...
     cv.Config.forceReload = true;
 
-    if ($.getUrlVar('forceDevice')) {
-      cv.Config.forceMobile = $.getUrlVar('forceDevice') == 'mobile';
+    if (req.queryKey.forceDevice) {
+      cv.Config.forceMobile = req.queryKey.forceDevice == 'mobile';
       cv.Config.forceNonMobile = !cv.Config.forceMobile;
     } else {
       cv.Config.forceMobile = false;
@@ -68,8 +82,8 @@ qx.Class.define('cv.Config', {
     // Disable features that aren't ready yet
     // Config can be overwritten in the URL with the parameter "maturity"
 
-    if ($.getUrlVar('maturity')) {
-      cv.Config.url_maturity = $.getUrlVar('maturity');
+    if (req.queryKey.maturity) {
+      cv.Config.url_maturity = req.queryKey.maturity;
       if (!isNaN(Config.url_maturity - 0)) {
         cv.Config.use_maturity = cv.Config.url_maturity - 0; // given directly as number
       } else {
@@ -77,8 +91,8 @@ qx.Class.define('cv.Config', {
       }
     }
 
-    if (isNaN(Config.use_maturity)) {
-      Config.use_maturity = cv.structure.pure.AbstractWidget.my.Maturity.release; // default to release
+    if (isNaN(cv.Config.use_maturity)) {
+      cv.Config.use_maturity = cv.structure.pure.AbstractWidget.Maturity.release; // default to release
     }
   }
 });

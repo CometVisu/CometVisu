@@ -47,10 +47,10 @@ qx.Class.define('cv.event.Handler', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function() {
+  construct: function(templateEngine) {
     this.isTouchDevice = !!('ontouchstart' in window) ||    // works on most browsers
       !!('onmsgesturechange' in window); // works on ie10
-    this.mouseEvent = cv.TemplateEngine.getInstance().handleMouseEvent = {
+    this.mouseEvent = templateEngine.handleMouseEvent = {
       moveFn: undefined,
       moveRestrict: true,
       actor: undefined,
@@ -59,7 +59,7 @@ qx.Class.define('cv.event.Handler', {
       downtime: 0,
       alreadyCanceled: false
     };
-    this.dispatcher = new cv.event.Dispatcher({handler: this});
+    this.dispatcher = new cv.event.Dispatcher(this);
     this.dispatcher.register();
   },
 
@@ -87,7 +87,7 @@ qx.Class.define('cv.event.Handler', {
         if (element.classList.contains('actor') || (element.classList.contains('group') && element.classList.contains('clickable'))) {
           actor = element;
         }
-        widget = cv.structure.WidgetFactory.getInstanceById($(element).attr('id'));
+        widget = cv.structure.WidgetFactory.getInstanceById(qx.bom.element.Attribute.get(element, 'id'));
         if (element.classList.contains('widget_container')) {
           if (widget.action !== undefined) {
             return {actor: actor, widget: widget};

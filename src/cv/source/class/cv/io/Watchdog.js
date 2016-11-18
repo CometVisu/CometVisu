@@ -12,19 +12,32 @@ qx.Class.define("cv.io.Watchdog", {
 
   /*
   ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    client: {
+      check: "cv.io.Client",
+      nullable: true,
+      init: null
+    }
+  },
+
+
+  /*
+  ******************************************************
     MEMBERS
   ******************************************************
   */
   members: {
     last: null,
     hardLast: null,
-    client: null,
 
     aliveCheckFunction: function () {
       var now = new Date();
-      if (now - this.last < this.client.getBackend().maxConnectionAge && this.client.getCurrentTransport().isConnectionRunning())
+      if (now - this.last < this.getClient().getBackend().maxConnectionAge && this.getClient().getCurrentTransport().isConnectionRunning())
         return;
-      this.client.getCurrentTransport().restart(now - this.hardLast > this.client.getBackend().maxDataAge);
+      this.getClient().getCurrentTransport().restart(now - this.hardLast > this.getClient().getBackend().maxDataAge);
       this.last = now;
     },
 

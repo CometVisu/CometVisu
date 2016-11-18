@@ -17,61 +17,74 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define(['joose', 'lib/cv/ui/Stylings'], function() {
-  Role("cv.role.HasStyling", {
+qx.Mixin.define("cv.role.HasStyling", {
 
-    requires: ['getActor'],
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    styling: { check: "String" }
+  },
 
-    has: {
-      styling           : { is: 'r' }
-    },
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    parse: function (xml, path) {
+      var data = templateEngine.widgetDataGet(path);
+      data.styling = $(xml).attr('styling');
+    }
+  },
 
-    my: {
-      after: {
-        parse: function( xml, path ) {
-          var data = templateEngine.widgetDataGet(path);
-          data.styling = $(xml).attr('styling');
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+
+    applyStyling: function (value) {
+      var sty = cv.ui.Stylings.my.getStyling(this.getStyling());
+      var e = this.getDomElement().find('.actor:has(".value")');
+      if (sty) {
+        e.removeClass(sty['classnames']); // remove only styling classes
+        if (!this._findValue(value, false, e, sty) && sty['defaultValue'] !== undefined) {
+          this._findValue(sty['defaultValue'], true, e, sty);
         }
       }
     },
 
-    methods: {
-
-      applyStyling: function(value) {
-        var sty = cv.ui.Stylings.my.getStyling(this.getStyling());
-        var e = this.getDomElement().find('.actor:has(".value")');
-        if (sty) {
-          e.removeClass(sty['classnames']); // remove only styling classes
-          if (!this._findValue(value, false, e, sty) && sty['defaultValue'] !== undefined) {
-            this._findValue(sty['defaultValue'], true, e, sty);
-          }
-        }
-      },
-
-      _findValue: function (value, findExact, element, styling) {
-        if (undefined === value) {
-          return false;
-        }
-        if (styling[value]) { // fixed value
-          element.addClass(styling[value]);
-          return true;
-        }
-        else {
-          var range = styling['range'];
-          if (findExact && range[value]) {
-            element.addClass(range[value][1]);
-            return true;
-          }
-          var valueFloat = parseFloat(value);
-          for (var min in range) {
-            if (min > valueFloat) continue;
-            if (range[min][0] < valueFloat) continue; // check max
-            element.addClass(range[min][1]);
-            return true;
-          }
-        }
+    _findValue: function (value, findExact, element, styling) {
+      if (undefined === value) {
         return false;
       }
+      if (styling[value]) { // fixed value
+        element.addClass(styling[value]);
+        return true;
+      }
+      else {
+        var range = styling['range'];
+        if (findExact && range[value]) {
+          element.addClass(range[value][1]);
+          return true;
+        }
+        var valueFloat = parseFloat(value);
+        for (var min in range) {
+          if (min > valueFloat) continue;
+          if (range[min][0] < valueFloat) continue; // check max
+          element.addClass(range[min][1]);
+          return true;
+        }
+      }
+      return false;
     }
-  });
+  }
+
+  // defer: function() {
+  //   // cv.xml.Parser.addHook(this.classname.split(".").pop().toLowerCase(), cv.role.HasStyling.parse, this);
+  // }
 });

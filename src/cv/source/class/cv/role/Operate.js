@@ -17,47 +17,50 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define(['joose', 'lib/cv/role/Transform'], function() {
-  Role("cv.role.Operate", {
-    does: cv.role.Transform,
+qx.Mixin.define("cv.role.Operate", {
+  include: cv.role.Transform,
 
-    methods: {
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
 
-      /**
-       * Action performed when the widget got clicked, sends data to the backend
-       *
-       * @method action
-       * @param {String} path - Internal path of the widget
-       * @param {Element} actor - DOMElement
-       * @param {Boolean} isCanceled - If true the action does nothing
-       */
-      action: function (path, actor, isCanceled, event) {
-        if (isCanceled) return;
-        if (this.meta.hasMethod('getActionValue')) {
-          this.sendToBackend(this.getActionValue(path, actor, isCanceled, event));
-        }
-      },
+    /**
+     * Action performed when the widget got clicked, sends data to the backend
+     *
+     * @method action
+     * @param {String} path - Internal path of the widget
+     * @param {Element} actor - DOMElement
+     * @param {Boolean} isCanceled - If true the action does nothing
+     */
+    action: function (path, actor, isCanceled, event) {
+      if (isCanceled) return;
+      if (this.meta.hasMethod('getActionValue')) {
+        this.sendToBackend(this.getActionValue(path, actor, isCanceled, event));
+      }
+    },
 
-      downaction: function() {
+    downaction: function () {
 
-      },
+    },
 
-      /**
-       * Send the given value to all writeable addresses known to this widget
-       *
-       * @method sendToBackend
-       * @param value
-       * @param filter {Function} optional filter function for addresses
-       */
-      sendToBackend: function(value, filter) {
-        if (this.meta.hasAttribute('address')) {
-          Joose.O.eachOwn(this.getAddress(), function (address, id) {
-            if (!!(address[1] & 2) && (!filter || filter(address))) {
-              templateEngine.visu.write(id, this.transformEncode(address[0], value));
-            }
-          }, this);
-        }
+    /**
+     * Send the given value to all writeable addresses known to this widget
+     *
+     * @method sendToBackend
+     * @param value
+     * @param filter {Function} optional filter function for addresses
+     */
+    sendToBackend: function (value, filter) {
+      if (this.meta.hasAttribute('address')) {
+        Joose.O.eachOwn(this.getAddress(), function (address, id) {
+          if (!!(address[1] & 2) && (!filter || filter(address))) {
+            templateEngine.visu.write(id, this.transformEncode(address[0], value));
+          }
+        }, this);
       }
     }
-  });
+  }
 });

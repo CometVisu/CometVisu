@@ -9,7 +9,7 @@
  * @class cv.layout.ResizeHandler
  */
 qx.Class.define('cv.layout.ResizeHandler', {
-  isa: cv.Object,
+
   type: "static",
 
   /*

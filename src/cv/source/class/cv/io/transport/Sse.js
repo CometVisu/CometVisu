@@ -1,5 +1,5 @@
 qx.Class.define('cv.io.transport.Sse', {
-  extend: cv.Config,
+  extend: cv.Object,
 
   /*
    ******************************************************
@@ -25,7 +25,7 @@ qx.Class.define('cv.io.transport.Sse', {
 
       if (0 < parseInt(this.version[0])
         || 1 < parseInt(this.version[1]))
-        alert('ERROR CometVisu Client: too new protocol version ('
+        this.error('ERROR CometVisu Client: too new protocol version ('
           + json.v + ') used!');
 
       if (connect) {

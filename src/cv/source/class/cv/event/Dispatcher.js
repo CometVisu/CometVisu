@@ -11,12 +11,33 @@ qx.Class.define('cv.event.Dispatcher', {
 
   /*
   ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(handler) {
+    if (handler) {
+      this.setHandler(handler);
+    }
+  },
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    handler: {
+      check: "cv.event.Handler"
+    }
+  },
+
+
+  /*
+  ******************************************************
     MEMBERS
   ******************************************************
   */
   members: {
-    handler: null,
-
     /**
      * register to all events
      */
@@ -32,11 +53,11 @@ qx.Class.define('cv.event.Dispatcher', {
     },
 
     _onDown: function (event) {
-      this.handler.onPointerDown(event);
+      this.getHandler().onPointerDown(event);
     },
 
     _onUp: function (event) {
-      this.handler.onPointerUp(event);
+      this.getHandler().onPointerUp(event);
       if (event.type === "touchend") {
         // prevent mouseup beeing fired
         event.preventDefault();
@@ -46,9 +67,9 @@ qx.Class.define('cv.event.Dispatcher', {
     _onMove: function (event) {
       // dispatch by event type
       if (event.type === "mousemove") {
-        this.handler._onPointerMoveNoTouch(event);
+        this.getHandler()._onPointerMoveNoTouch(event);
       } else if (event.type === "touchmove") {
-        this.handler._onPointerMoveTouch(event);
+        this.getHandler()._onPointerMoveTouch(event);
       } else {
         console.error("onhandled event type " + event.type);
       }
