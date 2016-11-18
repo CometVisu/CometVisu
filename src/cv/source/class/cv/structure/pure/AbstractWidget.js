@@ -285,9 +285,9 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
      * Create a default widget to be filled by the creator afterwards.
      * Note: the reciever of the returned string must add an </div> closing element!
      * @method createDefaultWidget
-     * @param widgetType string of the widget type
-     * @param $element   jQuery object of the XML element
-     * @param path       string of the path ID
+     * @param widgetType {String} of the widget type
+     * @param $element   {Object} the XML element
+     * @param path       {String} of the path ID
      * @param flavour
      * @param pageType
      * @return ret_val
@@ -305,10 +305,10 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
       if ($element.attr('class')) classes += ' custom_' + $element.attr('class');
       var label = (pageType==='text') ? this.extractLabel( $element.find('label')[0], flavour, '' ) : this.extractLabel( $element.find('label')[0], flavour );
 
-      var bindClickToWidget = templateEngine.bindClickToWidget;
+      var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
       if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
 
-      return templateEngine.widgetDataInsert( path, {
+      return cv.TemplateEngine.getInstance().widgetDataInsert( path, {
         'bindClickToWidget': bindClickToWidget,
         'mapping' : $element.attr('mapping'),
         'format'  : $element.attr('format'),
@@ -411,7 +411,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
         var $v = $(this);
         if( $v.is('icon') )
         {
-          ret_val += icons.getIconText($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling') );
+          ret_val += cv.IconHandler.getInstance().getIconText($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling') );
         } else
           ret_val += this.textContent;
       });
@@ -428,7 +428,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
      */
     setWidgetLayout: function( page, path ) {
       var
-        elementData = templateEngine.widgetDataGet( path ),
+        elementData = cv.TemplateEngine.getInstance().widgetDataGet( path ),
         layout      = page.children('layout'),
         lookupM     = [ 0, 2, 4,  6,  6,  6,  6, 12, 12, 12, 12, 12, 12 ],
         lookupS     = [ 0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],

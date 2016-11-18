@@ -21,16 +21,16 @@ qx.Class.define('cv.layout.Manager', {
 
     getCurrentPageNavbarVisibility: function () {
       if (this.currentPageNavbarVisibility == null) {
-        this.currentPageNavbarVisibility = Config.templateEngine.pagePartsHandler.getNavbarsVisibility(Config.templateEngine.currentPage);
+        this.currentPageNavbarVisibility = cv.TemplateEngine.getInstance().pagePartsHandler.getNavbarsVisibility(cv.TemplateEngine.getInstance().currentPage);
       }
       return this.currentPageNavbarVisibility;
     },
 
     // return S, M or L depening on the passed width
     getColspanClass: function (width) {
-      if (width <= Config.maxScreenWidthColspanS)
+      if (width <= cv.Config.maxScreenWidthColspanS)
         return 'S';
-      if (width <= Config.maxScreenWidthColspanM)
+      if (width <= cv.Config.maxScreenWidthColspanM)
         return 'M';
       return 'L';
     },
@@ -53,15 +53,15 @@ qx.Class.define('cv.layout.Manager', {
      * - Right-Navbar
      */
     getAvailableWidth: function () {
-      // currently this calculation is done once after every page scroll (where Config.templateEngine.currentPageUnavailableWidth is reseted)
+      // currently this calculation is done once after every page scroll (where cv.TemplateEngine.getInstance()currentPageUnavailableWidth is reseted)
       // if the screen width falls below the threshold which activates/deactivates the mobile.css
       // the calculation has to be done again, even if the page hasn´t changed (e.g. switching between portrait and landscape mode on a mobile can cause that)
       var bodyWidth = $('body').width();
-      var mobileUseChanged = (this.lastBodyWidth < Config.maxMobileScreenWidth) != (bodyWidth < Config.maxMobileScreenWidth);
+      var mobileUseChanged = (this.lastBodyWidth < cv.Config.maxMobileScreenWidth) != (bodyWidth < cv.Config.maxMobileScreenWidth);
       if (this.currentPageUnavailableWidth < 0 || mobileUseChanged || true) {
         //      console.log("Mobile.css use changed "+mobileUseChanged);
         this.currentPageUnavailableWidth = 0;
-        var navbarVisibility = this.getCurrentPageNavbarVisibility(Config.templateEngine.currentPage);
+        var navbarVisibility = this.getCurrentPageNavbarVisibility(cv.TemplateEngine.getInstance().currentPage);
         var widthNavbarLeft = navbarVisibility.left == "true" && $('#navbarLeft').css('display') != "none" ? Math.ceil($('#navbarLeft').outerWidth()) : 0;
         if (widthNavbarLeft >= bodyWidth) {
           // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
@@ -95,7 +95,7 @@ qx.Class.define('cv.layout.Manager', {
     getAvailableHeight: function () {
       var windowHeight = $(window).height();
       this.currentPageUnavailableHeight = 0;
-      var navbarVisibility = this.getCurrentPageNavbarVisibility(Config.templateEngine.currentPage);
+      var navbarVisibility = this.getCurrentPageNavbarVisibility(cv.TemplateEngine.getInstance().currentPage);
       var heightStr = "Height: " + windowHeight;
       if ($('#top').css('display') != 'none' && $('#top').outerHeight(true) > 0) {
         this.currentPageUnavailableHeight += Math.max($('#top').outerHeight(true), $('.nav_path').outerHeight(true));
@@ -130,7 +130,7 @@ qx.Class.define('cv.layout.Manager', {
         this.currentPageUnavailableHeight += 1;// remove an additional pixel for Firefox
       }
       //console.log(heightStr);
-      //console.log(windowHeight+" - "+Config.templateEngine.currentPageUnavailableHeight);
+      //console.log(windowHeight+" - "+cv.TemplateEngine.getInstance()currentPageUnavailableHeight);
       return windowHeight - this.currentPageUnavailableHeight;
     },
 
@@ -140,9 +140,9 @@ qx.Class.define('cv.layout.Manager', {
     },
 
     dataColspan: function (data) {
-      if (this.width <= Config.maxScreenWidthColspanS)
+      if (this.width <= cv.Config.maxScreenWidthColspanS)
         return data.colspanS;
-      if (this.width <= Config.maxScreenWidthColspanM)
+      if (this.width <= cv.Config.maxScreenWidthColspanM)
         return data.colspanM;
       return data.colspan;
     },
@@ -162,12 +162,12 @@ qx.Class.define('cv.layout.Manager', {
         allContainer.each(function (i, e) {
           var
             $e = $(e),
-            data = Config.templateEngine.getWidgetData(e.id),
+            data = cv.TemplateEngine.getInstance().getWidgetData(e.id),
             ourColspan = this.dataColspan(data);
 
           var w = 'auto';
           if (ourColspan > 0) {
-            var areaColspan = areaColumns || Config.defaultColumns;
+            var areaColspan = areaColumns || cv.Config.defaultColumns;
             w = Math.min(100, ourColspan / areaColspan * 100) + '%';
           }
           $e.css('width', w);
@@ -178,16 +178,16 @@ qx.Class.define('cv.layout.Manager', {
         adjustableElements.each(function (i, e) {
           var
             $e = $(e),
-            data = Config.templateEngine.getWidgetData(e.id),
+            data = cv.TemplateEngine.getInstance().getWidgetData(e.id),
             ourColspan = this.dataColspan(data);
           if (ourColspan == undefined) {
             // workaround for nowidget groups
-            ourColspan = this.dataColspan(Config.templateEngine.getWidgetDataByElement($e.children('.group')));
+            ourColspan = this.dataColspan(cv.TemplateEngine.getInstance().getWidgetDataByElement($e.children('.group')));
           }
           var w = 'auto';
           if (ourColspan > 0) {
-            var areaColspan = areaColumns || Config.defaultColumns;
-            var groupColspan = Math.min(areaColspan, this.dataColspan(Config.templateEngine.getWidgetDataByElement($e.parentsUntil(
+            var areaColspan = areaColumns || cv.Config.defaultColumns;
+            var groupColspan = Math.min(areaColspan, this.dataColspan(cv.TemplateEngine.getInstance().getWidgetDataByElement($e.parentsUntil(
               '.widget_container', '.group'))));
             w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
           }

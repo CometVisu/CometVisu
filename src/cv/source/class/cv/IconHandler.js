@@ -162,20 +162,22 @@ qx.Class.define('cv.IconHandler', {
 
         // fetch and cache image
         if (styling === undefined)
-          styling = i.styling === undefined ? '' : ' style="' + i.styling + '"';
-        else
-          styling = ' style="' + styling + '"';
+          styling = i.styling;
 
-        var classes = 'icon'
+        var classes = 'icon';
         var iconclass = arguments[5];
         if (iconclass !== undefined) {
           classes = classes + ' custom_' + iconclass;
         }
 
         if (typeof i === 'function') {
-          i.icon = i(arguments[3], styling, classes, false);
+          i.icon = i(arguments[3], styling === undefined ? '' : ' style="'+styling+'"', classes, false);
         } else {
-          i.icon = $('<img class="' + classes + '" src="' + i.uri + '"' + styling + '/>')[0];
+          i.icon = qx.dom.Element.create('img', {
+            'class': classes,
+            src: i.uri,
+            style: styling
+          });
         }
         return i.icon;
       }

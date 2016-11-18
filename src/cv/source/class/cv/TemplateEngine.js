@@ -24,7 +24,7 @@ qx.Class.define('cv.TemplateEngine', {
      * This is especially important for design relevant information like colors
      * that can not be set though CSS.
      *
-     * Useage: templateEngine.defaults.plugin.foo = {bar: 'baz'};
+     * Useage: this.defaults.plugin.foo = {bar: 'baz'};
      */
     this.defaults = {widget: {}, plugin: {}};
     /**
@@ -150,8 +150,6 @@ qx.Class.define('cv.TemplateEngine', {
     initBackendClient: function () {
       if (cv.Config.testMode) {
         this.visu = new cv.io.Mockup();
-        require(['TransformMockup'], function () {
-        });
       }
       else if (cv.Config.backend == "oh") {
         this.visu = new cv.io.Client({
@@ -408,8 +406,8 @@ qx.Class.define('cv.TemplateEngine', {
         this.xml = null; // not needed anymore - free the space
 
         qx.bom.Selector.query('.icon').forEach(function (icon) {
-          fillRecoloredIcon(icon);
-        });
+          cv.util.IconTools.fillRecoloredIcon(icon);
+        }, this);
         qx.bom.element.Class.remove(qx.bom.Selector.query('.loading')[0], 'loading');
         this.fireLoadingFinishedAction();
         if (undefined !== this.screensave_time) {
@@ -452,11 +450,10 @@ qx.Class.define('cv.TemplateEngine', {
             + ('break' === data.$$type ? 'break_container' : '') // special case for break widget
             + '" id="' + path + '" data-type="' + data.$$type + '">' + retval + '</div>';
         } else {
-          return jQuery(
-            '<div class="widget_container '
-            + (data.rowspanClass ? data.rowspanClass : '')
-            + (data.containerClass ? data.containerClass : '')
-            + '" id="' + path + '" data-type="' + data.$$type + '"/>').append(retval);
+          return qx.dom.Element.create('div', {
+            'class': 'widget_container ' + (data.rowspanClass ? data.rowspanClass : '')+ (data.containerClass ? data.containerClass : ''),
+            id: path,
+            "data-type": data.$$type}).appendChild(retval);
         }
       }
     },
@@ -487,15 +484,15 @@ qx.Class.define('cv.TemplateEngine', {
         return page_name;
       } else {
         if (path != undefined) {
-          var scope = templateEngine.traversePath(path);
+          var scope = this.traversePath(path);
           if (scope == null) {
             // path is wrong
-            console.error("path '" + path + "' could not be traversed, no page found");
+            this.error("path '" + path + "' could not be traversed, no page found");
             return null;
           }
-          return templateEngine.getPageIdByName(page_name, scope);
+          return this.getPageIdByName(page_name, scope);
         } else {
-          return templateEngine.getPageIdByName(page_name);
+          return this.getPageIdByName(page_name);
         }
       }
     },
@@ -516,14 +513,14 @@ qx.Class.define('cv.TemplateEngine', {
       if (index >= 0) {
         // traverse path one level down
         var path_page_name = path.substr(0, index);
-        path_scope = templateEngine.getPageIdByName(path_page_name, root_page_id);
+        path_scope = this.getPageIdByName(path_page_name, root_page_id);
         path = path.substr(path_page_name.length + 1);
-        path_scope = templateEngine.traversePath(path, path_scope);
+        path_scope = this.traversePath(path, path_scope);
         //      console.log(path_page_name+"=>"+path_scope);
         return path_scope;
       } else {
         // bottom path level reached
-        path_scope = templateEngine.getPageIdByName(path, root_page_id);
+        path_scope = this.getPageIdByName(path, root_page_id);
         return path_scope;
       }
       return null;
@@ -641,93 +638,89 @@ qx.Class.define('cv.TemplateEngine', {
 
 
     selectDesign: function () {
-      var $body = $("body");
-
-      $("body > *").hide();
-      $body.css({
-        backgroundColor: "black"
-      });
-
-      var $div = $("<div id=\"designSelector\" />");
-      $div.css({
-        background: "#808080",
-        width: "400px",
-        color: "white",
-        margin: "auto",
-        padding: "0.5em"
-      });
-      $div.html("Loading ...");
-
-      $body.append($div);
-
-      $.getJSON("./designs/get_designs.php", function (data) {
-        $div.empty();
-
-        $div.append("<h1>Please select design</h1>");
-        $div.append("<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>");
-
-        $.each(data, function (i, element) {
-          var $myDiv = $("<div />");
-
-          $myDiv.css({
-            cursor: "pointer",
-            padding: "0.5em 1em",
-            borderBottom: "1px solid black",
-            margin: "auto",
-            width: "262px",
-            position: "relative"
-          });
-
-          $myDiv
-            .append("<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: "
-              + element + "</div>");
-          $myDiv
-            .append("<iframe src=\"designs/design_preview.html?design="
-              + element
-              + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>");
-          $myDiv
-            .append("<img width=\"60\" height=\"30\" src=\"./demo/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>");
-
-          $div.append($myDiv);
-
-          var $tDiv = $("<div />");
-          $tDiv.css({
-            background: "transparent",
-            position: "absolute",
-            height: "90px",
-            width: "160px",
-            zIndex: 2
-          });
-          var pos = $myDiv.find("iframe").position();
-          $tDiv.css({
-            left: pos.left + "px",
-            top: pos.top + "px"
-          });
-          $myDiv.append($tDiv);
-
-          $myDiv.hover(function () {
-            // over
-            $myDiv.css({
-              background: "#bbbbbb"
-            });
-          }, function () {
-            // out
-            $myDiv.css({
-              background: "transparent"
-            });
-          });
-
-          $myDiv.click(function () {
-            if (document.location.search == "") {
-              document.location.href = document.location.href
-                + "?design=" + element;
-            } else {
-              document.location.href = document.location.href
-                + "&design=" + element;
-            }
-          });
-        });
-      });
+      // var body = qx.bom.Selector.query("body")[0];
+      //
+      // qx.bom.Selector.query('body > *').forEach(function(elem) {
+      //   qx.bom.element.Style(elem, 'display', 'none');
+      // }, this);
+      // qx.bom.element.Style.set(body, 'backgroundColor', "black");
+      //
+      //
+      // var div = qx.dom.Element.create("div", {id: "designSelector"});
+      // qx.bom.element.Style.setStyles(body, {
+      //   background: "#808080",
+      //   width: "400px",
+      //   color: "white",
+      //   margin: "auto",
+      //   padding: "0.5em"
+      // });
+      // div.innerHTML = "Loading ...";
+      //
+      // body.appendChild(div);
+      //
+      // var store = new qx.data.store.Json("./designs/get_designs.php");
+      //
+      // store.addListener("loaded", function () {
+      //   var html = "<h1>Please select design</h1>";
+      //   html += "<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>";
+      //
+      //   store.getModel().forEach(function(element) {
+      //
+      //     var myDiv = '<div style="'+ qx.bom.element.Style.compile({
+      //         cursor: "pointer",
+      //         padding: "0.5em 1em",
+      //         borderBottom: "1px solid black",
+      //         margin: "auto",
+      //         width: "262px",
+      //         position: "relative"
+      //       });
+      //     myDiv+='">';
+      //
+      //     myDiv = "<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>";
+      //     myDiv += "<iframe src=\"designs/design_preview.html?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
+      //     myDiv += "<img width=\"60\" height=\"30\" src=\"./demo/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
+      //
+      //     html += myDiv;
+      //
+      //
+      //     var tDiv = "<div";
+      //     qx.bom.element.Style.compile({
+      //       background: "transparent",
+      //       position: "absolute",
+      //       height: "90px",
+      //       width: "160px",
+      //       zIndex: 2
+      //     });
+      //     var pos = $myDiv.find("iframe").position();
+      //     $tDiv.css({
+      //       left: pos.left + "px",
+      //       top: pos.top + "px"
+      //     });
+      //     $myDiv.append($tDiv);
+      //
+      //     $myDiv.hover(function () {
+      //       // over
+      //       $myDiv.css({
+      //         background: "#bbbbbb"
+      //       });
+      //     }, function () {
+      //       // out
+      //       $myDiv.css({
+      //         background: "transparent"
+      //       });
+      //     });
+      //
+      //     $myDiv.click(function () {
+      //       if (document.location.search == "") {
+      //         document.location.href = document.location.href
+      //           + "?design=" + element;
+      //       } else {
+      //         document.location.href = document.location.href
+      //           + "&design=" + element;
+      //       }
+      //     });
+      //   });
+      // });
     },
 
     // tools for widget handling
@@ -770,7 +763,7 @@ qx.Class.define('cv.TemplateEngine', {
      * This is needed for plugin that depend on an external library.
      */
     getPluginDependency: function (url) {
-      $.getScriptSync(url);
+      // $.getScriptSync(url);
     },
 
     /**

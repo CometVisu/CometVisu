@@ -31,8 +31,7 @@ qx.Class.define('cv.structure.WidgetFactory', {
 
     createInstance: function (type, data) {
       if (!this.registry[data.path]) {
-        data.$$id = c;
-        if (!cv.structure.pure[Joose.S.uppercaseFirst(type)]) {
+        if (!cv.structure.pure[type.firstUp()]) {
           // try to find it via parser handler
           var handler = cv.xml.Parser.getHandler(type);
           if (handler) {
@@ -42,9 +41,8 @@ qx.Class.define('cv.structure.WidgetFactory', {
             return null;
           }
         } else {
-          this.registry[data.path] = new cv.structure.pure[Joose.S.uppercaseFirst(type)](data);
+          this.registry[data.path] = new cv.structure.pure[type.firstUp()](data);
         }
-        c++;
       }
       return this.registry[data.path];
     },

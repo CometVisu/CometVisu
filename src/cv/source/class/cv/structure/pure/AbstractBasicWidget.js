@@ -14,11 +14,8 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
     // Define ENUM of maturity levels for features, so that e.g. the editor can
     // ignore some widgets when they are not supported yet
     Maturity : {
-      is: 'ro',
-      init: {
-        release: 0,
-        development: 1
-      }
+      release: 0,
+      development: 1
     },
 
     getElementType: function(element) {
@@ -31,7 +28,7 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
     },
 
     parse: function (element, path, flavour, pageType) {
-      return templateEngine.widgetDataInsert( path, {
+      return cv.TemplateEngine.getInstance().widgetDataInsert( path, {
         'path': path,
         '$$type': this.getElementType(element),
         'pageType': pageType
@@ -62,7 +59,7 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
      */
     getDomElement: function() {
       if (!this.$$domElement) {
-        this.$$domElement = $('#'+this.getPath());
+        this.$$domElement = qx.bom.Selector.query('#'+this.getPath())[0];
       }
       return this.$$domElement
     },

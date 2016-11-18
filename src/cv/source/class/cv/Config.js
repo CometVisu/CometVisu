@@ -84,7 +84,7 @@ qx.Class.define('cv.Config', {
 
     if (req.queryKey.maturity) {
       cv.Config.url_maturity = req.queryKey.maturity;
-      if (!isNaN(Config.url_maturity - 0)) {
+      if (!isNaN(cv.Config.url_maturity - 0)) {
         cv.Config.use_maturity = cv.Config.url_maturity - 0; // given directly as number
       } else {
         cv.Config.use_maturity = Maturity[cv.Config.url_maturity]; // or as the ENUM name
@@ -92,7 +92,7 @@ qx.Class.define('cv.Config', {
     }
 
     if (isNaN(cv.Config.use_maturity)) {
-      cv.Config.use_maturity = cv.structure.pure.AbstractWidget.Maturity.release; // default to release
+      cv.Config.use_maturity = cv.structure.pure.AbstractBasicWidget.Maturity.release; // default to release
     }
   }
 });

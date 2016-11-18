@@ -139,7 +139,7 @@ define([ 'jquery' ], function( $ ) {
         if( color !== undefined )
         {
           if( !hexColorRegEx.test( color ) )
-            alert( 'Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".' );
+            qx.log.Logger.error( 'Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".' );
           
           var r      = parseInt( color.substr( 1, 2 ), 16 ),
               g      = parseInt( color.substr( 3, 2 ), 16 ),

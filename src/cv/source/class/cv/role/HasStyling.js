@@ -35,8 +35,8 @@ qx.Mixin.define("cv.role.HasStyling", {
   */
   statics: {
     parse: function (xml, path) {
-      var data = templateEngine.widgetDataGet(path);
-      data.styling = $(xml).attr('styling');
+      var data = cv.TemplateEngine.getInstance().getWidgetData(path);
+      data.styling = qx.bom.element.Attribute(xml, 'styling');
     }
   },
 
@@ -48,7 +48,7 @@ qx.Mixin.define("cv.role.HasStyling", {
   members: {
 
     applyStyling: function (value) {
-      var sty = cv.ui.Stylings.my.getStyling(this.getStyling());
+      var sty = cv.ui.Stylings.getStyling(this.getStyling());
       var e = this.getDomElement().find('.actor:has(".value")');
       if (sty) {
         e.removeClass(sty['classnames']); // remove only styling classes

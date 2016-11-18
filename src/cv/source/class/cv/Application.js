@@ -13,7 +13,7 @@
  *
  * If you have added resources to your app, remove the first '@' in the
  * following line to make use of them.
- * @@asset(cv/*)
+ * @asset(cv/*)
  */
 qx.Class.define("cv.Application",
 {
@@ -48,6 +48,27 @@ qx.Class.define("cv.Application",
        Below is your actual application code...
        -------------------------------------------------------------------------
        */
+      // in debug mode load the uncompressed unobfuscated scripts
+      var src = '';
+      var min = '.min';
+      if (qx.core.Environment.get("qx.debug")) {
+        min = '';
+      }
+
+      var dynLoader = new qx.util.DynamicScriptLoader([
+        "resource/cv/libs/jquery.js"
+      ]);
+      dynLoader.addListenerOnce('ready',function(e){
+        console.log("all scripts have been loaded!");
+      });
+
+      dynLoader.addListener('failed',function(e){
+        var data = e.getData();
+        console.log("failed to load "+data.script);
+      });
+
+      dynLoader.start();
+
       var templateEngine = cv.TemplateEngine.getInstance();
 
       qx.event.Registration.addListener(window, 'resize', cv.layout.ResizeHandler.invalidateScreensize);

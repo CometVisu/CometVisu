@@ -32,21 +32,21 @@ qx.Class.define('cv.layout.ResizeHandler', {
 
     getPageSize: function () {
       if (!this.$pageSize) {
-        this.$pageSize = $('#pageSize');
+        this.$pageSize = qx.bom.Selector.query('#pageSize')[0];
       }
       return this.$pageSize;
     },
 
     getNavbarTop: function () {
       if (!this.$navbarTop) {
-        this.$navbarTop = $('#navbarTop');
+        this.$navbarTop = qx.bom.Selector.query('#navbarTop')[0];
       }
       return this.$navbarTop;
     },
 
     getNavbarBottom: function () {
       if (!this.$navbarBottom) {
-        this.$navbarBottom = $('#navbarBottom');
+        this.$navbarBottom = qx.bom.Selector.query('#navbarBottom')[0];
       }
       return this.$navbarBottom;
     },
@@ -59,27 +59,28 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makeBackdropValid: function () {
-      if (!Config.templateEngine.currentPage)
+      var templateEngine = cv.TemplateEngine.getInstance();
+      if (!templateEngine.currentPage)
         return;
 
       // TODO use page object
-      var widgetData = Config.templateEngine.getWidgetData(Config.templateEngine.currentPage.attr('id'));
+      var widgetData = templateEngine.getWidgetData(qx.bom.element.Attribute.get(templateEngine.currentPage, 'id'));
       if ('2d' === widgetData.type) {
         var
           cssPosRegEx = /(\d*)(.*)/,
-          backdrop = Config.templateEngine.currentPage.children().children().filter(widgetData.backdroptype)[0],
+          backdrop = templateEngine.currentPage.children().children().filter(widgetData.backdroptype)[0],
           backdropSVG = widgetData.backdroptype === 'embed' ? backdrop.getSVGDocument() : null,
           backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {},
-          backdropNWidth = backdrop.naturalWidth || backdropBBox.width || this.width,
-          backdropNHeight = backdrop.naturalHeight || backdropBBox.height || this.height,
-          backdropScale = Math.min(width / backdropNWidth, height / backdropNHeight),
+          backdropNWidth = backdrop.naturalWidth || backdropBBox.width || this.self(arguments).width,
+          backdropNHeight = backdrop.naturalHeight || backdropBBox.height || this.self(arguments).height,
+          backdropScale = Math.min(this.self(arguments).width / backdropNWidth, this.self(arguments).height / backdropNHeight),
           backdropWidth = backdropNWidth * backdropScale,
           backdropHeight = backdropNHeight * backdropScale,
           backdropPos = widgetData.backdropalign.split(' '),
           backdropLeftRaw = backdropPos[0].match(cssPosRegEx),
           backdropTopRaw = backdropPos[1].match(cssPosRegEx),
-          backdropLeft = backdropLeftRaw[2] === '%' ? (this.width > backdropWidth ? ((this.width - backdropWidth ) * (+backdropLeftRaw[1]) / 100) : 0) : +backdropLeftRaw[1],
-          backdropTop = backdropTopRaw[2] === '%' ? (this.height > backdropHeight ? ((this.height - backdropHeight) * (+backdropTopRaw[1] ) / 100) : 0) : +backdropTopRaw[1],
+          backdropLeft = backdropLeftRaw[2] === '%' ? (this.self(arguments).width > backdropWidth ? ((this.self(arguments).width - backdropWidth ) * (+backdropLeftRaw[1]) / 100) : 0) : +backdropLeftRaw[1],
+          backdropTop = backdropTopRaw[2] === '%' ? (this.self(arguments).height > backdropHeight ? ((this.self(arguments).height - backdropHeight) * (+backdropTopRaw[1] ) / 100) : 0) : +backdropTopRaw[1],
           uagent = navigator.userAgent.toLowerCase();
 
         if (backdrop.complete === false || (widgetData.backdroptype === 'embed' && backdropSVG === null)) {
@@ -97,7 +98,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
           widgetData.backdroptype === 'embed' ||
           ( uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1 )
         ) {
-          $(backdrop).css({
+          qx.bom.element.Style.setStyles(backdrop, {
             width: backdropWidth + 'px',
             height: backdropHeight + 'px',
             left: backdropLeft + 'px',
@@ -105,8 +106,8 @@ qx.Class.define('cv.layout.ResizeHandler', {
           });
         }
 
-        Config.templateEngine.currentPage.find('.widget_container').toArray().forEach(function (widgetContainer) {
-          var widgetData = Config.templateEngine.getWidgetData(widgetContainer.id);
+        templateEngine.currentPage.find('.widget_container').toArray().forEach(function (widgetContainer) {
+          var widgetData = templateEngine.getWidgetData(widgetContainer.id);
           if (widgetData.layout) {
             var
               layout = widgetData.layout,
@@ -145,7 +146,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makeNavbarValid: function () {
-      if (Config.mobileDevice) {
+      if (cv.Config.mobileDevice) {
         //do nothing
       } else {
         if (
@@ -176,24 +177,23 @@ qx.Class.define('cv.layout.ResizeHandler', {
 
     makeRowspanValid: function () {
       var
-        dummyDiv = $(
+        dummyDiv = document.body.appendChild(qx.xml.Document.fromString(
           '<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
-          .appendTo(document.body).show(),
-        singleHeight = $('#containerDiv').outerHeight(false),
-        singleHeightMargin = $('#containerDiv').outerHeight(true),
-        styles = '';
+        );
+      var bounds = qx.bom.Selector.query('#containerDiv')[0].getBoundingClientRect();
+      var styles = '';
 
       for (var rowspan in cv.layout.Manager.usedRowspans) {
         styles += '.rowspan.rowspan' + rowspan
           + ' { height: '
-          + ((rowspan - 1) * singleHeightMargin + singleHeight)
+          + ((rowspan - 1) * bounds.height)
           + "px;}\n";
       }
 
-      $('#calcrowspan').remove();
+      dummyDiv.remove();
 
       // set css style
-      $('#rowspanStyle').text(styles);
+      qx.bom.Selector.query('#rowspanStyle').innerHTML = styles;
 
       this.invalidRowspan = false;
     },

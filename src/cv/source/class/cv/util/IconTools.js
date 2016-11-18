@@ -50,6 +50,9 @@ qx.Class.define('cv.util.IconTools', {
     iconDelay: [],    // array of all icons to fill where the Image is not ready yet
     iconDelayFn: null,       // handler for delay function
 
+    tmpCanvas: qx.dom.Element.create('canvas'),
+    tmpCtx: cv.util.IconTools.tmpCanvas.getContext('2d'),
+
     iconDelayed: function (icon, colors, color) {
       cv.util.IconTools.iconDelay.push([icon, colors, color]);
       if (!cv.util.IconTools.iconDelayFn)
@@ -118,8 +121,6 @@ qx.Class.define('cv.util.IconTools', {
           }
         }
       },
-    tmpCanvas: qx.bom.Selector.query('<canvas/>')[0],
-    tmpCtx: cv.util.IconTools.tmpCanvas.getContext('2d'),
     /**
      * Do the recoloring based on @param thisIcon and store it in the
      * hash @param thisIconColors.
@@ -136,7 +137,7 @@ qx.Class.define('cv.util.IconTools', {
       var imageData = cv.util.IconTools.tmpCtx.getImageData(0, 0, width, height);
       if (color !== undefined) {
         if (!cv.util.IconTools.hexColorRegEx.test(color))
-          alert('Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".');
+          qx.log.Logger.error('Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".');
 
         var r = parseInt(color.substr(1, 2), 16),
           g = parseInt(color.substr(3, 2), 16),

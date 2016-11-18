@@ -43,7 +43,7 @@ qx.Class.define('cv.PageHandler', {
     // name of the easing function
     easing : {
       check: 'string',
-      init: 'swing'
+      init: 'ease-in-out'
     },
 
     currentPath : {
@@ -59,24 +59,18 @@ qx.Class.define('cv.PageHandler', {
    */
   members: {
 
-    // TODO: remove callbacks
     seekTo : function( target, speed ) {
-      this.getCurrentPath() !== '' && templateEngine.callbacks[this.getCurrentPath()] && templateEngine.callbacks[this.getCurrentPath()].exitingPageChange.forEach( function( callback ){
-        callback( this.getCurrentPath(), target );
-      });
+      var currentPath = this.getCurrentPath();
+      currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".exitingPageChange", currentPath, target);
 
-      var
-        page = $('#' + target),
-        callbacks = templateEngine.callbacks[target];
+      var page = qx.bom.Selector.query('#' + target)[0];
 
       if( 0 === page.length ) // check if page does exist
         return;
 
-      if (callbacks) {
-        callbacks.beforePageChange.forEach(function (callback) {
-          callback(target);
-        });
-      }
+      cv.MessageBroker.getInstance().publish("path."+target+".beforePageChange", target);
+
+      var templateEngine = cv.TemplateEngine.getInstance();
 
       templateEngine.resetPageValues();
 
@@ -84,11 +78,7 @@ qx.Class.define('cv.PageHandler', {
 
       page.addClass('pageActive activePage');// show new page
 
-      if (callbacks) {
-        callbacks.duringPageChange.forEach(function (callback) {
-          callback(target);
-        });
-      }
+      cv.MessageBroker.getInstance().publish("path."+target+".duringPageChange", target);
 
       // update visibility of navbars, top-navigation, footer
       templateEngine.pagePartsHandler.updatePageParts( page, speed );
@@ -104,21 +94,22 @@ qx.Class.define('cv.PageHandler', {
           leftStart = -page.position().left - page.width();
         }
       }
-      $('#pages').css('left', leftStart );
-      $('#pages').animate( {left:leftEnd}, speed, this.easing, function(){
+      var pagesNode = qx.bom.Selector.query('#pages')[0];
+      qx.bom.element.Style.set(pagesNode, 'left', leftStart);
+      var animation = qx.bom.element.Animation.animate(pagesNode, {
+        left: leftEnd,
+        timing: this.getEasing()
+      }, speed);
+      animation.addListenerOnce("end", function(){
         // final stuff
         this.setCurrentPath(target);
         templateEngine.pagePartsHandler.updateTopNavigation( target );
-        $('.activePage', '#pages').removeClass('activePage');
-        $('.pageActive', '#pages').removeClass('pageActive');
-        $(templateEngine.currentPage).addClass('pageActive activePage');// show new page
-        $('#pages').css('left', 0 );
-        if (callbacks) {
-          this.getCurrentPath() !== '' && templateEngine.callbacks[this.getCurrentPath()].afterPageChange.forEach(function (callback) {
-            callback(this.getCurrentPath());
-          });
-        }
-      }.bind(this));
+        qx.bom.element.Class.remove(qx.bom.Selector.query('.activePage', pagesNode)[0], 'activePage');
+        qx.bom.element.Class.remove(qx.bom.Selector.query('.pageActive', pagesNode)[0], 'pageActive');
+        qx.bom.element.Class.addClasses(templateEngine.currentPage, ['pageActive', 'activePage']);// show new page
+        qx.bom.element.Style.set(pagesNode, 'left', 0 );
+        currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".afterPageChange", currentPath);
+      }, this);
     },
 
     setSpeed : function( newSpeed ) {
@@ -126,7 +117,7 @@ qx.Class.define('cv.PageHandler', {
     },
 
     getIndex : function() {
-      return $( '#pages > .page' ).index( $('#' + this.getCurrentPath()) );
+      return qx.bom.Selector.query( '#pages > .page' ).indexOf(qx.bom.Selector.query('#' + this.getCurrentPath())[0]);
     }
   }
 });
