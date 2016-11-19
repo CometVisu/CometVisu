@@ -123,7 +123,15 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       return value;
     },
 
-    applyFormat: function (value, address) {
+    /**
+     * Format the given value according to the defined format.
+     * If no format is defined the value will not be changed.
+     *
+     * @param address {String} KNX-GA or openHAB item name
+     * @param value {var} value to be formatted
+     * @return {var} the formatted value
+     */
+    applyFormat: function (address, value) {
       if (this.getFormat()) {
         if (!this.formatValueCache) {
           this.formatValueCache = [this.getFormat()];
@@ -150,7 +158,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       value = this.applyMapping(value);
 
       // #3: format it in a way the user understands the value
-      value = this.applyFormat(value, address);
+      value = this.applyFormat(address, value);
 
       value !== undefined && this.setValue(value);
 
