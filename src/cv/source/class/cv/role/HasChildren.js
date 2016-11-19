@@ -37,8 +37,9 @@ qx.Mixin.define("cv.role.HasChildren", {
   ******************************************************
   */
   statics: {
-    parse: function (xml, path, flavour, pageType) {
-      var data = cv.data.Model.getInstance().getWidgetData(this.getStoragePath(xml, path));
+    // this might have been called from the cv.xml.Parser with the including class as context
+    parseChildren: function (xml, path, flavour, pageType) {
+      var data = cv.data.Model.getInstance().getWidgetData(cv.role.HasChildren.getStoragePath(xml, path));
 
       if (!data.children) {
         data.children = [];

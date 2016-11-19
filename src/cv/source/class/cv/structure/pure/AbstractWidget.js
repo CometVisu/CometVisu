@@ -121,8 +121,6 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
     mapping           : { check: "String", nullable: true },
     align             : { check: "String", nullable: true },
     classes           : { check: "String", init: '', nullable: true },
-    $$actorElement    : { check: "Object" },
-    $$valueElement    : { check: "Object" },
     style             : { check: "String", init: ''},
     colspan           : { check: "Number", transform: "string2number" },
     colspanM          : { check: "Number", transform: "string2number" },
@@ -141,17 +139,11 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
     action: function() {},
 
     getActor: function() {
-      if (!this.$$actorElement) {
-        this.$$actorElement = qx.bom.Selector.query('.actor', this.getDomElement())[0];
-      }
-      return this.$$actorElement;
+      return qx.bom.Selector.query('.actor', this.getDomElement())[0];
     },
 
     getValueElement: function() {
-      if (!this.$$valueElement) {
-        this.$$valueElement = qx.bom.Selector.query(".value", this.getDomElement())[0];
-      }
-      return this.$$valueElement;
+      return qx.bom.Selector.query(".value", this.getDomElement())[0];
     },
 
     /**

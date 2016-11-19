@@ -47,17 +47,17 @@ qx.Class.define('cv.structure.pure.Page', {
 
       var storagePath = cv.role.HasChildren.getStoragePath(page, path);
       var addresses = {};
-      if ($p.attr('ga')) {
-        var src = $p.attr('ga');
+      if (qx.bom.element.Attribute.get(page, 'ga')) {
+        var src = qx.bom.element.Attribute.get(page, 'ga');
         cv.data.Model.getInstance().addAddress(src, storagePath);
         addresses[ src ] = [ 'DPT:1.001', 0 ];
       }
 
-      var name    = $p.attr('name');
-      pageType = $p.attr('type') || 'text';              //text, 2d or 3d
-      var backdrop = $p.attr('backdrop');
-      var showtopnavigation = $p.attr('showtopnavigation') ? $p.attr('showtopnavigation') === "true" : undefined;
-      var showfooter = $p.attr('showfooter') ? $p.attr('showfooter') === "true": undefined;
+      var name    = qx.bom.element.Attribute.get(page, 'name');
+      pageType = qx.bom.element.Attribute.get(page, 'type') || 'text';              //text, 2d or 3d
+      var backdrop = qx.bom.element.Attribute.get(page, 'backdrop');
+      var showtopnavigation = qx.bom.element.Attribute.get(page, 'showtopnavigation') ? qx.bom.element.Attribute.get(page, 'showtopnavigation') === "true" : undefined;
+      var showfooter = qx.bom.element.Attribute.get(page, 'showfooter') ? qx.bom.element.Attribute.get(page, 'showfooter') === "true": undefined;
       // make sure the type has the correct value as we need to use it ass CSS class
       switch (pageType) {
         case '2d':
@@ -80,18 +80,18 @@ qx.Class.define('cv.structure.pure.Page', {
         shownavbar[ $(this).attr('position') || 'left' ] = 'true';
       });
       // overwrite default when set manually in the config
-      shownavbar.top = $p.attr('shownavbar-top') || shownavbar.top;
-      shownavbar.bottom = $p.attr('shownavbar-bottom') || shownavbar.bottom;
-      shownavbar.left = $p.attr('shownavbar-left') || shownavbar.left;
-      shownavbar.right = $p.attr('shownavbar-right') || shownavbar.right;
+      shownavbar.top = qx.bom.element.Attribute.get(page, 'shownavbar-top') || shownavbar.top;
+      shownavbar.bottom = qx.bom.element.Attribute.get(page, 'shownavbar-bottom') || shownavbar.bottom;
+      shownavbar.left = qx.bom.element.Attribute.get(page, 'shownavbar-left') || shownavbar.left;
+      shownavbar.right = qx.bom.element.Attribute.get(page, 'shownavbar-right') || shownavbar.right;
 
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
-      if ($p.attr("bind_click_to_widget")) {
-        bindClickToWidget = $p.attr("bind_click_to_widget")=="true";
+      if (qx.bom.element.Attribute.get(page, "bind_click_to_widget")) {
+        bindClickToWidget = qx.bom.element.Attribute.get(page, "bind_click_to_widget")=="true";
       }
-      if( $p.attr('flavour') ) flavour = $p.attr('flavour');// sub design choice
+      if( qx.bom.element.Attribute.get(page, 'flavour') ) flavour = qx.bom.element.Attribute.get(page, 'flavour');// sub design choice
       var wstyle  = '';                                     // widget style
-      if( $p.attr('align') ) wstyle += 'text-align:' + $p.attr('align') + ';';
+      if( qx.bom.element.Attribute.get(page, 'align') ) wstyle += 'text-align:' + qx.bom.element.Attribute.get(page, 'align') + ';';
       if( wstyle != '' ) wstyle = 'style="' + wstyle + '"';
 
       var layout = cv.xml.Parser.parseLayout( $p.children('layout')[0] );
@@ -103,15 +103,16 @@ qx.Class.define('cv.structure.pure.Page', {
         showTopNavigation : showtopnavigation || null,
         showFooter        : showfooter || null,
         showNavbar        : shownavbar || null,
-        backdropAlign     : '2d' === pageType ? ($p.attr('backdropalign' ) || '50% 50%') : null,
-        size              : $p.attr('size') || null,
+        backdropAlign     : '2d' === pageType ? (qx.bom.element.Attribute.get(page, 'backdropalign' ) || '50% 50%') : null,
+        size              : qx.bom.element.Attribute.get(page, 'size') || null,
         address           : addresses,
-        visible           : $p.attr('visible') ? $p.attr('visible') === "true" : true,
+        visible           : qx.bom.element.Attribute.get(page, 'visible') ? qx.bom.element.Attribute.get(page, 'visible') === "true" : true,
         flavour           : flavour || null,
         $$type            : "page",
         backdrop          : backdrop || null
       });
-      cv.role.HasChildren.parse(page, path, flavour, pageType);
+      // this has to be called manually to allow inheritance of the flavour, pageType values
+      cv.role.HasChildren.parseChildren(page, path, flavour, pageType);
       if (data.visible === true) {
         var linkData = cv.data.Model.getInstance().setWidgetData( path, {
           $$type          : "pagelink",
@@ -217,17 +218,17 @@ qx.Class.define('cv.structure.pure.Page', {
          });
          }}, floorplan.translateMouseEvent );
          $(window).bind( 'resize', function(){ floorplan.resize($('.page').width(), $('.page').height(), true);} );
-         if ($p.attr('azimut')) {
-         cv.TemplateEngine.getInstance().addAddress( $p.attr('azimut'), path + '_' );
-         address[ $p.attr('azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
+         if (qx.bom.element.Attribute.get(page, 'azimut')) {
+         cv.TemplateEngine.getInstance().addAddress( qx.bom.element.Attribute.get(page, 'azimut'), path + '_' );
+         address[ qx.bom.element.Attribute.get(page, 'azimut') ] = [ 'DPT:9.001', 0, 'azimut' ];
          }
-         if ($p.attr('elevation')) {
-         cv.TemplateEngine.getInstance().addAddress( $p.attr('elevation'), path + '_' );
-         address[ $p.attr('elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
+         if (qx.bom.element.Attribute.get(page, 'elevation')) {
+         cv.TemplateEngine.getInstance().addAddress( qx.bom.element.Attribute.get(page, 'elevation'), path + '_' );
+         address[ qx.bom.element.Attribute.get(page, 'elevation') ] = [ 'DPT:9.001', 0, 'elevation' ];
          };
-         if ($p.attr('floor')) {
-         cv.TemplateEngine.getInstance().addAddress( $p.attr('floor'), path + '_' );
-         address[ $p.attr('floor') ] = [ 'DPT:5.004', 0, 'floor' ];
+         if (qx.bom.element.Attribute.get(page, 'floor')) {
+         cv.TemplateEngine.getInstance().addAddress( qx.bom.element.Attribute.get(page, 'floor'), path + '_' );
+         address[ qx.bom.element.Attribute.get(page, 'floor') ] = [ 'DPT:5.004', 0, 'floor' ];
          };
 
          $( childs ).each( function(i,a){

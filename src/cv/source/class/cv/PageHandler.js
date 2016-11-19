@@ -76,7 +76,7 @@ qx.Class.define('cv.PageHandler', {
 
       templateEngine.currentPage = page;
 
-      qx.bom.element.Class.addClasses(page, ['pageActive',  'activePage']);// show new page
+      // qx.bom.element.Class.addClasses(page, ['pageActive',  'activePage']);// show new page
 
       cv.MessageBroker.getInstance().publish("path."+target+".duringPageChange", target);
 
@@ -86,12 +86,15 @@ qx.Class.define('cv.PageHandler', {
       // now the animation
       var leftStart = 0, leftEnd = 0;
       if( speed > 0 ) {
-        var scrollLeft = page.position().left != 0;
+        // update reference, because the appearance might have changed
+        page = qx.bom.Selector.query('#' + target)[0];
+        var pageBounds = page.getBoundingClientRect();
+        var scrollLeft = pageBounds.left != 0;
         // jump to the page on the left of the page we need to scroll to
         if (scrollLeft) {
-          leftEnd = -page.width();
+          leftEnd = -pageBounds.width;
         } else {
-          leftStart = -page.position().left - page.width();
+          leftStart = -pageBounds.left - pageBounds.width;
         }
       }
       var pagesNode = qx.bom.Selector.query('#pages')[0];
@@ -104,14 +107,18 @@ qx.Class.define('cv.PageHandler', {
           0: { left: leftStart},
           100: { left: leftEnd}
         }
-      }, speed);
+      });
       animation.addListenerOnce("end", function(){
         // final stuff
         this.setCurrentPath(target);
         templateEngine.pagePartsHandler.updateTopNavigation( target );
-        qx.bom.element.Class.remove(qx.bom.Selector.query('.activePage', pagesNode)[0], 'activePage');
-        qx.bom.element.Class.remove(qx.bom.Selector.query('.pageActive', pagesNode)[0], 'pageActive');
-        qx.bom.element.Class.addClasses(templateEngine.currentPage, ['pageActive', 'activePage']);// show new page
+        qx.bom.Selector.query('.activePage', pagesNode).forEach(function(elem) {
+          qx.bom.element.Class.remove(elem, 'activePage');
+        }, this);
+        qx.bom.Selector.query('.pageActive', pagesNode).forEach(function(elem) {
+          qx.bom.element.Class.remove(elem, 'pageActive');
+        }, this);
+        qx.bom.element.Class.addClasses(qx.bom.Selector.query('#' + target)[0], ['pageActive', 'activePage']);// show new page
         qx.bom.element.Style.set(pagesNode, 'left', 0 );
         currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".afterPageChange", currentPath);
       }, this);

@@ -3,6 +3,20 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
   /*
   ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  /**
+   *
+   * @param client {cv.io.Client}
+   */
+  construct: function(client) {
+    this.session = client;
+  },
+
+
+  /*
+  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -13,6 +27,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     retryCounter: 0,      // count number of retries (reset with each valid response)
     sessionId: null,
     session: null,
+    running: null,
 
     /**
      * This function gets called once the communication is established
@@ -71,7 +86,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
      */
     handleRead: function (json) {
       if (this.doRestart || (!json && (-1 == this.lastIndex))) {
-        this.session.dataReceived = false;
+        this.session.setDataReceived(false);
         if (this.running) { // retry initial request
           this.retryCounter++;
           this.xhr = $.ajax({
@@ -94,7 +109,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.readResendHeaderValues();
         this.session.update(data);
         this.retryCounter = 0;
-        this.session.dataReceived = true;
+        this.session.setDataReceived(true);
       }
 
       if (this.running) { // keep the requests going
@@ -114,7 +129,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
     handleReadStart: function (json) {
       if (!json && (-1 == this.lastIndex)) {
-        this.session.dataReceived = false;
+        this.session.setDataReceived(false);
         if (this.running) { // retry initial request
           this.xhr = $.ajax({
             url: this.session.getResourcePath("read"),
@@ -131,7 +146,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
       if (json && !this.doRestart) {
         this.readResendHeaderValues();
         this.session.update(json.d);
-        this.session.dataReceived = true;
+        this.session.setDataReceived(true);
       }
       if (this.running) { // keep the requests going, but only
         // request

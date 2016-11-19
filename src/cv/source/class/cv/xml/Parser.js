@@ -16,6 +16,28 @@ qx.Class.define('cv.xml.Parser', {
 
     addHandler: function (tagName, handler) {
       this.__handlers[tagName.toLowerCase()] = handler;
+
+      // add include parse hooks
+      if (handler.$$flatIncludes) {
+        // check for parse hooks in includes
+        handler.$$flatIncludes.forEach(function (mixin) {
+          if (mixin.parse) {
+            qx.log.Logger.debug("adding after parse hook for include: " + mixin.classname);
+            this.addHook(tagName, "after", mixin.parse, handler);
+          }
+        }, this);
+      }
+
+      if (handler.superclass) {
+        var parentClass = handler.superclass;
+        while (parentClass && parentClass.classname !== "cv.Object") {
+          if (parentClass.parse) {
+            qx.log.Logger.debug("adding before parse hook for parent class: " + parentClass.classname);
+            this.addHook(tagName, "before", parentClass.parse, handler);
+          }
+          parentClass = parentClass.superclass;
+        }
+      }
     },
 
     getHandler: function (tagName) {

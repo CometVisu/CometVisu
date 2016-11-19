@@ -99,15 +99,15 @@ qx.Class.define('cv.Transform', {
 
     encode: function (transformation, value) {
       var basetrans = transformation.split('.')[0];
-      return transformation in Transform ? Transform[transformation]
-        .encode(value) : (basetrans in Transform ? Transform[basetrans]
+      return transformation in cv.Transform.registry ? cv.Transform.registry[transformation]
+        .encode(value) : (basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans]
         .encode(value) : value);
     },
 
     decode: function (transformation, value) {
       var basetrans = transformation.split('.')[0];
-      return transformation in Transform ? Transform[transformation]
-        .decode(value) : (basetrans in Transform ? Transform[basetrans]
+      return transformation in cv.Transform.registry ? cv.Transform.registry[transformation]
+        .decode(value) : (basetrans in cv.Transform.registry ? cv.Transform.registry[basetrans]
         .decode(value) : value);
     }
   }

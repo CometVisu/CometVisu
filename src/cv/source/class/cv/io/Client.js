@@ -47,7 +47,7 @@
       CONSTRUCTOR
     ******************************************************
     */
-    construct: function() {
+    construct: function(backendName, backendUrl) {
       this.loginSettings = {
         loggedIn: false,
         callbackAfterLoggedIn: null,
@@ -56,21 +56,24 @@
       };
 
       // init default settings
-      if (cv.io.Client.backendNameAliases[this.backendName]) {
-        this.backendName = cv.io.Client.backendNameAliases[this.backendName];
+      if (cv.io.Client.backendNameAliases[backendName]) {
+        this.backendName = cv.io.Client.backendNameAliases[backendName];
       }
 
-      if (this.backendName && this.backendName !== 'default') {
-        if (qx.lang.Type.isObject(this.backendName)) {
+      if (backendName && backendName !== 'default') {
+        if (qx.lang.Type.isObject(backendName)) {
           // override default settings
-          this.setBackend(this.backendName);
-        } else if (cv.io.Client.backends[this.backendName]) {
+          this.setBackend(backendName);
+        } else if (cv.io.Client.backends[backendName]) {
           // merge backend settings into default backend
-          this.setBackend(cv.io.Client.backends[this.backendName]);
+          this.setBackend(cv.io.Client.backends[backendName]);
         }
       } else {
         this.setBackend(cv.io.Client.backends['default']);
       }
+
+      this.backendName = backendName;
+      this.backendUrl = backendUrl;
 
       this.watchdog = new cv.io.Watchdog();
       this.watchdog.setClient(this);
@@ -140,23 +143,27 @@
     ******************************************************
     */
     properties: {
-    
-      backendName: { },
-      backend: { },
-      watchdog: { },
-      addresses: { init: [] }, // the subscribed addresses
-      initialAddresses: { init: [] }, // the addresses which should be loaded before the subscribed addresses
-      filters: { init: [] }, // the subscribed filters
+      /**
+       * is the communication running at the moment?
+       */
+      running : {
+        check: "Boolean",
+        init: false
+      },
 
-      user : { init: '' }, // the current user
-      pass : { init: '' }, // the current password
-      device : { init: '' }, // the current device ID
-      running : { check: "Boolean", init: false }, // is the communication running at the moment?
-      currentTransport: {}, // the currently used transport layer
-      loginSettings : { init: {} },
-      dataReceived : { check: "Boolean", init: false }, // needed to be able to check if the incoming update is the initial answer or a successing update
-
-      headers: { init: {} }
+      /**
+       * needed to be able to check if the incoming update is the initial answer or a successing update
+       */
+      dataReceived : {
+        check: "Boolean",
+        init: false
+      },
+      /**
+       * the currently used transport layer
+       */
+      currentTransport: {
+        init: null
+      }
     },
 
     /*
@@ -165,30 +172,47 @@
     ******************************************************
     */
     members: {
+      watchdog: null,
+      backend: null,
+      backendName: null,
+      backendUrl: null,
+      addresses: [], // the subscribed addresses
+      initialAddresses: [], // the addresses which should be loaded before the subscribed addresses
+      filters: [], // the subscribed filters
+      user : '', // the current user
+      pass : '', // the current password
+      device : '', // the current device ID
+      
+      loginSettings : {},
+      headers: { init: {} },
 
       setBackend: function(newBackend) {
         // override default settings
-        this.backend = qx.lang.Object.mergeWith(qx.lang.Object.clone(cv.io.Client.backends['default']), newBackend);
-        if (this.backend.transport === 'sse' && this.backend.transportFallback) {
+        var backend = qx.lang.Object.mergeWith(qx.lang.Object.clone(cv.io.Client.backends['default']), newBackend);
+        this.backend = backend;
+        if (backend.transport === 'sse' && backend.transportFallback) {
           if (window.EventSource === undefined) {
             // browser does not support EventSource object => use fallback
             // transport + settings
-            qx.lang.Object.mergeWith(this.backend, this.backend.transportFallback);
+            qx.lang.Object.mergeWith(backend, backend.transportFallback);
           }
         }
         // add trailing slash to baseURL if not set
-        if (this.backend.baseURL && this.backend.baseURL.substr(-1) !== "/") {
-          this.backend.baseURL += "/";
+        if (backend.baseURL && backend.baseURL.substr(-1) !== "/") {
+          backend.baseURL += "/";
         }
-        switch(this.backend.transport) {
+        switch(backend.transport) {
           case "long-polling":
-            this.currentTransport = new cv.io.transport.LongPolling({session: this});
+            this.setCurrentTransport(new cv.io.transport.LongPolling(this));
             break;
           case "sse":
-            this.currentTransport = new cv.io.transport.Sse({session: this});
+            this.setCurrentTransport(new cv.io.transport.Sse(this));
             break;
         }
+      },
 
+      getBackend: function() {
+        return this.backend;
       },
       /**
        * manipulates the header of the current ajax query before it is been send to the server
@@ -247,7 +271,7 @@
         else if (startCommunication) {
           if (this.loginSettings.loginOnly === true) {
             // connect to the backend
-            this.currentTransport.connect();
+            this.getCurrentTransport().connect();
             // start the watchdog
             this.watchdog.start(5);
             this.loginSettings.loginOnly = false;
@@ -308,11 +332,11 @@
         if (json.c) {
           this.backend = qx.lang.Object.mergeWith(this.backend, json.c); // assign itthis.to run setter
         }
-        this.dataReceived = false;
+        this.setDataReceived(false);
         if (this.loginSettings.loginOnly) {
-          this.currentTransport.handleSession(json, false);
+          this.getCurrentTransport().handleSession(json, false);
         } else {
-          this.currentTransport.handleSession(json, true);
+          this.getCurrentTransport().handleSession(json, true);
           // once the connection is set up, start the watchdog
           this.watchdog.start(5);
         }
@@ -330,9 +354,9 @@
        * @method stop
        */
       stop : function () {
-        this.running = false;
-        if (this.currentTransport.abort) {
-          this.currentTransport.abort();
+        this.setRunning(false);
+        if (this.getCurrentTransport().abort) {
+          this.getCurrentTransport().abort();
         }
         this.loginSettings.loggedIn = false;
       },

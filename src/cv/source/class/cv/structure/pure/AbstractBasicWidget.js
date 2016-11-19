@@ -30,7 +30,7 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
     parse: function (element, path, flavour, pageType) {
       return cv.data.Model.getInstance().setWidgetData( path, {
         'path': path,
-        '$$type': this.getElementType(element),
+        '$$type': cv.xml.Parser.getElementType(element),
         'pageType': pageType
       });
     }
@@ -48,7 +48,6 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
     $$type : {
       check: "String"
     },
-    $$domElement : { },
     pageType  : {
       check: ["text", "2d", "3d"],
       init: "text"
@@ -61,14 +60,12 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
   ******************************************************
   */
   members: {
+
     /**
      * Returns the DOMElement of this widget
      */
     getDomElement: function() {
-      if (!this.$$domElement) {
-        this.$$domElement = qx.bom.Selector.query('#'+this.getPath())[0];
-      }
-      return this.$$domElement
+      return qx.bom.Selector.query('#'+this.getPath())[0];
     },
 
     getDomString : function() {

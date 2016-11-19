@@ -37,20 +37,14 @@ qx.Mixin.define("cv.role.HasAddress", {
    ******************************************************
    */
   statics: {
+    // this might have been called from the cv.xml.Parser with the including class as context
     parse: function (xml, path, flavour, widgetType) {
       if (xml.nodeName.toLowerCase() !== "page") {
         var data = cv.data.Model.getInstance().getWidgetData(path);
-        data.address = this.makeAddressList($(xml), path);
+        data.address = cv.role.HasAddress.makeAddressList(xml, path);
       }
-    }
-  },
+    },
 
-  /*
-  ******************************************************
-    MEMBERS
-  ******************************************************
-  */
-  members: {
     /**
      * this function extracts all addresses with attributes (JNK)
      *                       elements. The first is a boolean that determins if
@@ -63,18 +57,17 @@ qx.Mixin.define("cv.role.HasAddress", {
      */
     makeAddressList: function (element, id) {
       var address = {};
-      var that = this;
-      element.find('address').each(function () {
+      qx.bom.Selector.query('address', element).forEach(function (elem) {
         var
-          src = this.textContent,
-          transform = this.getAttribute('transform'),
-          formatPos = +(this.getAttribute('format-pos') || 1) | 0, // force integer
+          src = elem.textContent,
+          transform = qx.bom.element.Attribute.get(elem, 'transform'),
+          formatPos = +(qx.bom.element.Attribute.get(elem, 'format-pos') || 1) | 0, // force integer
           mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
 
         if ((!src) || (!transform)) // fix broken address-entries in config
           return;
 
-        switch (this.getAttribute('mode')) {
+        switch (qx.bom.element.Attribute.get(elem, 'mode')) {
           case 'disable':
             mode = 0;
             break;
@@ -88,18 +81,13 @@ qx.Mixin.define("cv.role.HasAddress", {
             mode = 1 | 2;
             break;
         }
-        var variantInfo = that.meta.methods['makeAddressListFn'] ? that.makeAddressListFn(src, transform, mode, this.getAttribute('variant')) : [true, undefined];
+        var variantInfo = this.makeAddressListFn ? this.makeAddressListFn(src, transform, mode, qx.bom.element.Attribute.get(elem, 'variant')) : [true, undefined];
         if ((mode & 1) && variantInfo[0]) {// add only addresses when reading from them
-          templateEngine.addAddress(src, id);
+          cv.data.Model.getInstance().addAddress(src, id);
         }
         address[src] = [transform, mode, variantInfo[1], formatPos];
-        return; // end of each-func
       });
       return address;
     }
   }
-
-  // defer: function () {
-  //   // cv.xml.Parser.addHook(this.classname.split(".").pop().toLowerCase(), cv.role.HasAddress.parse, this);
-  // }
 });

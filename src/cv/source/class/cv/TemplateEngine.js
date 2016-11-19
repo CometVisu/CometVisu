@@ -115,11 +115,11 @@ qx.Class.define('cv.TemplateEngine', {
     update: function (json) {
       for (var key in json) {
         //$.event.trigger('_' + key, json[key]);
-        if (!(key in this.getAddressList()))
+        if (!(key in cv.data.Model.getInstance().getAddressList()))
           continue;
 
         var data = json[key];
-        this.getAddressList()[key].forEach(function (id) {
+        cv.data.Model.getInstance().getAddressList()[key].forEach(function (id) {
           if (typeof id === 'string') {
             var element = document.getElementById(id);
             var type = element.dataset.type || 'page'; // only pages have no datatype set
@@ -140,21 +140,12 @@ qx.Class.define('cv.TemplateEngine', {
         this.visu = new cv.io.Mockup();
       }
       else if (cv.Config.backend == "oh") {
-        this.visu = new cv.io.Client({
-          backendName: 'openhab',
-          backendUrl: cv.Config.backendUrl
-        });
+        this.visu = new cv.io.Client('openhab', cv.Config.backendUrl);
       }
       else if (cv.Config.backend == "oh2") {
-        this.visu = new cv.io.Client({
-          backendName: 'openhab2',
-          backendUrl: cv.Config.backendUrl
-        });
+        this.visu = new cv.io.Client('openhab2', cv.Config.backendUrl);
       } else {
-        this.visu = new cv.io.Client({
-          backendName: cv.Config.backend,
-          backendUrl: cv.Config.backendUrl
-        });
+        this.visu = new cv.io.Client(cv.Config.backend, cv.Config.backendUrl);
       }
 
       this.visu.update = function (json) { // overload the handler
@@ -544,7 +535,8 @@ qx.Class.define('cv.TemplateEngine', {
 
       // push new state to history
       if (skipHistory === undefined) {
-        qx.bom.History.getInstance().addToHistory(page_id, page_id);
+        var pageTitle = "CometVisu "+qx.bom.Selector.query("#"+page_id+" h1")[0].textContent;
+        qx.bom.History.getInstance().addToHistory(page_id, pageTitle);
       }
 
       this.main_scroll.seekTo(page_id, speed); // scroll to it

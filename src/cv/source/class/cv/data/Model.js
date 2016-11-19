@@ -1,6 +1,6 @@
 
 /**
- * Internal Model which holds all rellevant data like addresses and widgetData
+ * Internal Model which holds all relevant data like addresses and widgetData
  *
  * @author Tobias Bräutigam
  * @since 0.10.0 (2016)

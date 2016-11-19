@@ -312,9 +312,17 @@ qx.Class.define('cv.PagePartsHandler', {
         qx.bom.element.Style.setStyles(navbar, targetCss);
         fn();
       } else {
-        targetCss.timing = cv.TemplateEngine.getInstance().main_scroll.getEasing();
-        var anim = qx.bom.element.Animation(navbar, targetCss, speed);
-        anim.addListenerOnce("end", fn, this)
+        var spec = {
+          duration: speed,
+          timing: cv.TemplateEngine.getInstance().main_scroll.getEasing(),
+          keep: 100,
+          keyFrames: {
+            0: initCss,
+            100: targetCss
+          }
+        };
+        var anim = qx.bom.element.Animation.animate(navbar, spec);
+        anim.addListenerOnce("end", fn, this);
       }
     },
 

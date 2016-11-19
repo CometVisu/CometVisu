@@ -36,7 +36,7 @@ qx.Mixin.define("cv.role.Operate", {
      */
     action: function (path, actor, isCanceled, event) {
       if (isCanceled) return;
-      if (this.meta.hasMethod('getActionValue')) {
+      if (this.getActionValue) {
         this.sendToBackend(this.getActionValue(path, actor, isCanceled, event));
       }
     },
@@ -53,12 +53,16 @@ qx.Mixin.define("cv.role.Operate", {
      * @param filter {Function} optional filter function for addresses
      */
     sendToBackend: function (value, filter) {
-      if (this.meta.hasAttribute('address')) {
-        Joose.O.eachOwn(this.getAddress(), function (address, id) {
-          if (!!(address[1] & 2) && (!filter || filter(address))) {
-            templateEngine.visu.write(id, cv.Transform.encode(address[0], value));
+      if (this.getAddress) {
+        var list = this.getAddress();
+        for (var id in list) {
+          if (list.hasOwnProperty(id)) {
+            var address = list[id];
+            if (!!(address[1] & 2) && (!filter || filter(address))) {
+              cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address[0], value));
+            }
           }
-        }, this);
+        }
       }
     }
   }

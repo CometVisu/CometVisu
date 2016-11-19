@@ -47,7 +47,7 @@ qx.Class.define('cv.Config', {
     }
 
     if (req.queryKey.testMode) {
-      cv.Config.testMode = req.queryKey.testMode;
+      cv.Config.testMode = req.queryKey.testMode === "true";
     }
 
     if (req.queryKey.config) {

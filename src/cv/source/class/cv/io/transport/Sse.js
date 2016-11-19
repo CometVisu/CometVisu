@@ -3,6 +3,19 @@ qx.Class.define('cv.io.transport.Sse', {
 
   /*
    ******************************************************
+   CONSTRUCTOR
+   ******************************************************
+   */
+  /**
+   *
+   * @param client {cv.io.Client}
+   */
+  construct: function(client) {
+    this.session = client;
+  },
+
+  /*
+   ******************************************************
    MEMBERS
    ******************************************************
    */
@@ -39,7 +52,7 @@ qx.Class.define('cv.io.transport.Sse', {
     connect: function () {
       // send first request
       this.running = true;
-      this.session.dataReceived = false;
+      this.session.setDataReceived(false);
       this.eventSource = new EventSource(this.session.getResourcePath("read") + "?" + this.session.buildRequest());
       this.eventSource.addEventListener('message', this.handleMessage, false);
       this.eventSource.addEventListener('error', this.handleError, false);
@@ -60,7 +73,7 @@ qx.Class.define('cv.io.transport.Sse', {
       var data = json.d;
       this.session.watchdog.ping();
       this.session.update(data);
-      this.session.dataReceived = true;
+      this.session.setDataReceived(true);
     },
 
     /**
