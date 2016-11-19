@@ -70,7 +70,7 @@ qx.Mixin.define("cv.role.Refresh", {
           src += '?';
 
         this._timer = new qx.event.Timer(this.getRefresh());
-        this._timer.addListener("intervall", function () {
+        this._timer.addListener("interval", function () {
           this.refreshAction(target, src);
         }, this);
       }

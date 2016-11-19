@@ -84,8 +84,8 @@ qx.Class.define('cv.structure.pure.Switch', {
   statics: {
     getAttributeToPropertyMappings: function () {
       return {
-        'on_value': {target: 'onValue', 'default': 1},
-        'off_value': {target: 'offValue', 'default': 0}
+        'on_value': {target: 'onValue', 'default': "1"},
+        'off_value': {target: 'offValue', 'default': "0"}
       };
     }
   },
