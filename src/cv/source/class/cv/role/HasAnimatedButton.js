@@ -17,47 +17,43 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define(['joose'], function() {
-  Role("cv.role.HasAnimatedButton", {
-    requires: ['action', 'downaction'],
+qx.Mixin.define("cv.role.HasAnimatedButton", {
 
-    before: {
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
 
-      /**
-       * Create an action handling that shows a button press animation.
-       * When the action is not set, it will be searched for - so that widgets
-       * with bind_click_to_widget will also work.
-       * @method downaction
-       * @param {} path
-       * @param {} actor
-       */
-      downaction: function(path, actor, isCanceled) {
-        if( !actor )
-          actor = this.getActor();
-        if (!actor.length) {
-          actor = $(actor);
-        }
-        actor.addClass('switchPressed');
-        actor.removeClass('switchUnpressed');
-      },
+    /**
+     * Create an action handling that shows a button press animation.
+     * When the action is not set, it will be searched for - so that widgets
+     * with bind_click_to_widget will also work.
+     *
+     * @param path {String} widget path
+     * @param actor {Element} DOM element of the actor
+     */
+    beforeDownAction: function(path, actor, isCanceled) {
+      if( !actor )
+        actor = this.getActor();
+      qx.bom.element.Class.add(actor, 'switchPressed');
+      qx.bom.element.Class.remove(actor, 'switchUnpressed');
+    },
 
-      /**
-       * Create an action handling that shows a button unpress animation.
-       * When the action is not set, it will be searched for - so that widgets
-       * with bind_click_to_widget will also work.
-       * @method action
-       * @param {} path
-       * @param {} actor
-       */
-      action: function(path, actor, isCanceled) {
-        if( !actor )
-          actor = this.getActor();
-        if (!actor.length) {
-          actor = $(actor);
-        }
-        actor.addClass('switchUnpressed');
-        actor.removeClass('switchPpressed');
-      }
+    /**
+     * Create an action handling that shows a button unpress animation.
+     * When the action is not set, it will be searched for - so that widgets
+     * with bind_click_to_widget will also work.
+     *
+     * @param path {String} widget path
+     * @param actor {Element} DOM element of the actor
+     */
+    beforeAction: function(path, actor, isCanceled) {
+      if( !actor )
+        actor = this.getActor();
+      qx.bom.element.Class.add(actor, 'switchUnpressed');
+      qx.bom.element.Class.remove(actor, 'switchPressed');
     }
-  });
+  }
 });

@@ -103,17 +103,17 @@ qx.Class.define('cv.xml.Parser', {
      * @return {String} HTML code
      */
     __parse: function (handler, element, path, flavour, pageType) {
-      var $e = $(element);
-
+      var clazz = qx.Class.getByName(handler.classname);
+      var properties = qx.Class.getProperties(clazz);
       // and fill in widget specific data
-      var data = this.createDefaultWidget(this.getElementType(element), $e, path, flavour, pageType);
+      var data = this.createDefaultWidget(this.getElementType(element), $(element), path, flavour, pageType, properties);
       var mappings = this.__getAttributeToPropertyMappings(handler);
       if (mappings) {
         for (var key in mappings) {
           if (mappings.hasOwnProperty(key)) {
             var map = mappings[key];
-            var value = $e.attr(key);
-            if (map['default'] !== undefined && value === undefined) {
+            var value = element.getAttribute(key);
+            if (map['default'] !== undefined && (value === undefined || value === null)) {
               value = map['default'];
             }
             if (map.transform) {
@@ -154,7 +154,7 @@ qx.Class.define('cv.xml.Parser', {
      * @param pageType
      * @return ret_val
      */
-    createDefaultWidget: function( widgetType, $element, path, flavour, pageType ) {
+    createDefaultWidget: function( widgetType, $element, path, flavour, pageType, properties ) {
       var layout = this.parseLayout( $element.children('layout')[0] );
       var style = $.isEmptyObject(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
       var classes = this.getDefaultClasses(widgetType);
@@ -170,19 +170,33 @@ qx.Class.define('cv.xml.Parser', {
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
       if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
 
-      return cv.data.Model.getInstance().setWidgetData( path, {
-        'bindClickToWidget': bindClickToWidget,
-        'mapping' : $element.attr('mapping') || null,
-        'format'  : $element.attr('format') || null,
-        'align'   : $element.attr('align') || null,
-        'layout'  : layout || null,
+      var data = {
         'path'    : path,
-        'label'   : label || '',
-        'classes' : classes || '',
-        'style'   : style || '',
         '$$type'  : widgetType.toLowerCase(),
         'pageType': pageType
-      });
+      };
+      if (qx.lang.Array.contains(properties, "bindClickToWidget")) {
+        data.bindClickToWidget = bindClickToWidget;
+      }
+      ['mapping', 'align', 'align'].forEach(function(prop) {
+        if (qx.lang.Array.contains(properties, prop)) {
+          data[prop] = $element.attr(prop) || null;
+        }
+      }, this);
+      if (qx.lang.Array.contains(properties, "layout")) {
+        data.layout = layout || null;
+      }
+      if (qx.lang.Array.contains(properties, "label")) {
+        data.label = label || '';
+      }
+      if (qx.lang.Array.contains(properties, "classes")) {
+        data.classes = classes || '';
+      }
+      if (qx.lang.Array.contains(properties, "style")) {
+        data.style = style || '';
+      }
+
+      return cv.data.Model.getInstance().setWidgetData( path, data);
     },
 
     /**
