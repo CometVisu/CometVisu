@@ -46,7 +46,7 @@ qx.Mixin.define("cv.role.Refresh", {
   */
   statics: {
     parse: function (xml, path) {
-      var data = templateEngine.widgetDataGet(path);
+      var data = cv.data.Model.getInstance().getWidgetData()(path);
       $e = $(xml);
       data.refresh = $e.attr('refresh') ? $e.attr('refresh') * 1000 : 0;
     }

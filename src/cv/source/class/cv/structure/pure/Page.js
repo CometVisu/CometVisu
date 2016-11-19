@@ -49,7 +49,7 @@ qx.Class.define('cv.structure.pure.Page', {
       var addresses = {};
       if ($p.attr('ga')) {
         var src = $p.attr('ga');
-        cv.TemplateEngine.getInstance().addAddress(src, storagePath);
+        cv.data.Model.getInstance().addAddress(src, storagePath);
         addresses[ src ] = [ 'DPT:1.001', 0 ];
       }
 
@@ -96,7 +96,7 @@ qx.Class.define('cv.structure.pure.Page', {
 
       var layout = cv.xml.Parser.parseLayout( $p.children('layout')[0] );
 
-      var data = cv.TemplateEngine.getInstance().widgetDataInsert( storagePath, {
+      var data = cv.data.Model.getInstance().setWidgetData( storagePath, {
         path              : storagePath,
         name              : name,
         pageType          : pageType,
@@ -113,7 +113,7 @@ qx.Class.define('cv.structure.pure.Page', {
       });
       cv.role.HasChildren.parse(page, path, flavour, pageType);
       if (data.visible === true) {
-        var linkData = cv.TemplateEngine.getInstance().widgetDataInsert( path, {
+        var linkData = cv.data.Model.getInstance().setWidgetData( path, {
           $$type          : "pagelink",
           path            : path,
           name            : name,
@@ -257,7 +257,7 @@ qx.Class.define('cv.structure.pure.Page', {
      * @param {} data
      */
     _update: function( ga, data ) {
-      // widgetData  = cv.TemplateEngine.getInstance().getWidgetDataByElement( element );
+      // widgetData  = cv.data.Model.getInstance().getWidgetDataByElement( element );
       // var value = this.defaultValueHandling( ga, data, widgetData );
       // var type = widgetData.address[ ga ][2];
       // switch( type )

@@ -28,7 +28,7 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
     },
 
     parse: function (element, path, flavour, pageType) {
-      return cv.TemplateEngine.getInstance().widgetDataInsert( path, {
+      return cv.data.Model.getInstance().setWidgetData( path, {
         'path': path,
         '$$type': this.getElementType(element),
         'pageType': pageType

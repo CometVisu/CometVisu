@@ -86,50 +86,19 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     /**
-     * Return (reference to) widgetData object by path.
-     */
-    getWidgetData: function (path) {
-      return this.widgetData[path] || (this.widgetData[path] = {});
-    },
-
-
-    /**
-     * Return (reference to) widget data by element
-     */
-    getWidgetDataByElement: function (element) {
-      var
-        parent = $(element).parent(),
-        path = parent.attr('id');
-
-      if (path === undefined)
-        path = parent.parent().attr('id');
-
-      return this.getWidgetData(path);
-    },
-    /**
-     * Merge obj in the widgetData.
-     */
-    setWidgetData: function (path, obj) {
-      var data = this.getWidgetData(path);
-
-      for (var attrname in obj)
-        data[attrname] = obj[attrname];
-
-      return data;
-    },
-
-    /**
-     * @deprecated {0.10.0} Please use setWidgetData
+     * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().setWidgetData()}
      */
     widgetDataInsert: function (path, obj) {
-      return this.setWidgetData(path, obj);
+      this.debug("widgetDataInsert is deprecated! Please use cv.data.Model.getInstance().setWidgetData() instead");
+      return cv.data.Model.getInstance().setWidgetData(path, obj);
     },
 
     /**
-     * @deprecated {0.10.0} Please use setWidgetData
+     * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().getWidgetData()}
      */
     widgetDataGet: function (path) {
-      return this.getWidgetData(path);
+      this.debug("widgetDataGet is deprecated! Please use cv.data.Model.getInstance().getWidgetData() instead");
+      return cv.data.Model.getInstance().getWidgetData(path);
     },
 
     update: function (json) {
@@ -268,7 +237,6 @@ qx.Class.define('cv.TemplateEngine', {
           qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/mobile.css'));
         }
         qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/custom.css'));
-        qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/basic.css'));
         scriptsToLoad.push('cv/designs/' + cv.Config.clientDesign + '/design_setup.js');
       }
 
@@ -622,89 +590,85 @@ qx.Class.define('cv.TemplateEngine', {
 
 
     selectDesign: function () {
-      // var body = qx.bom.Selector.query("body")[0];
-      //
-      // qx.bom.Selector.query('body > *').forEach(function(elem) {
-      //   qx.bom.element.Style(elem, 'display', 'none');
-      // }, this);
-      // qx.bom.element.Style.set(body, 'backgroundColor', "black");
-      //
-      //
-      // var div = qx.dom.Element.create("div", {id: "designSelector"});
-      // qx.bom.element.Style.setStyles(body, {
-      //   background: "#808080",
-      //   width: "400px",
-      //   color: "white",
-      //   margin: "auto",
-      //   padding: "0.5em"
-      // });
-      // div.innerHTML = "Loading ...";
-      //
-      // body.appendChild(div);
-      //
-      // var store = new qx.data.store.Json("./designs/get_designs.php");
-      //
-      // store.addListener("loaded", function () {
-      //   var html = "<h1>Please select design</h1>";
-      //   html += "<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>";
-      //
-      //   store.getModel().forEach(function(element) {
-      //
-      //     var myDiv = '<div style="'+ qx.bom.element.Style.compile({
-      //         cursor: "pointer",
-      //         padding: "0.5em 1em",
-      //         borderBottom: "1px solid black",
-      //         margin: "auto",
-      //         width: "262px",
-      //         position: "relative"
-      //       });
-      //     myDiv+='">';
-      //
-      //     myDiv = "<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>";
-      //     myDiv += "<iframe src=\"designs/design_preview.html?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
-      //     myDiv += "<img width=\"60\" height=\"30\" src=\"./demo/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
-      //
-      //     html += myDiv;
-      //
-      //
-      //     var tDiv = "<div";
-      //     qx.bom.element.Style.compile({
-      //       background: "transparent",
-      //       position: "absolute",
-      //       height: "90px",
-      //       width: "160px",
-      //       zIndex: 2
-      //     });
-      //     var pos = $myDiv.find("iframe").position();
-      //     $tDiv.css({
-      //       left: pos.left + "px",
-      //       top: pos.top + "px"
-      //     });
-      //     $myDiv.append($tDiv);
-      //
-      //     $myDiv.hover(function () {
-      //       // over
-      //       $myDiv.css({
-      //         background: "#bbbbbb"
-      //       });
-      //     }, function () {
-      //       // out
-      //       $myDiv.css({
-      //         background: "transparent"
-      //       });
-      //     });
-      //
-      //     $myDiv.click(function () {
-      //       if (document.location.search == "") {
-      //         document.location.href = document.location.href
-      //           + "?design=" + element;
-      //       } else {
-      //         document.location.href = document.location.href
-      //           + "&design=" + element;
-      //       }
-      //     });
-      //   });
-      // });
+      var body = qx.bom.Selector.query("body")[0];
+
+      qx.bom.Selector.query('body > *').forEach(function(elem) {
+        qx.bom.element.Style(elem, 'display', 'none');
+      }, this);
+      qx.bom.element.Style.set(body, 'backgroundColor', "black");
+
+
+      var div = qx.dom.Element.create("div", {id: "designSelector"});
+      qx.bom.element.Style.setStyles(body, {
+        background: "#808080",
+        width: "400px",
+        color: "white",
+        margin: "auto",
+        padding: "0.5em"
+      });
+      div.innerHTML = "Loading ...";
+
+      body.appendChild(div);
+
+      var store = new qx.data.store.Json("./designs/get_designs.php");
+
+      store.addListener("loaded", function () {
+        var html = "<h1>Please select design</h1>";
+        html += "<p>The Location/URL will change after you have chosen your design. Please bookmark the new URL if you do not want to select the design every time.</p>";
+
+        div.innerHTML = html;
+
+        store.getModel().forEach(function(element) {
+
+          var myDiv = qx.dom.Element.create("div", {
+              cursor: "pointer",
+              padding: "0.5em 1em",
+              borderBottom: "1px solid black",
+              margin: "auto",
+              width: "262px",
+              position: "relative"
+          });
+
+          myDiv.innerHTML = "<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>";
+          myDiv.innerHTML += "<iframe src=\"designs/design_preview.html?design=" + element + "\" width=\"160\" height=\"90\" border=\"0\" scrolling=\"auto\" frameborder=\"0\" style=\"z-index: 1;\"></iframe>";
+          myDiv.innerHTML += "<img width=\"60\" height=\"30\" src=\"./demo/media/arrow.png\" alt=\"select\" border=\"0\" style=\"margin: 60px 10px 10px 30px;\"/>";
+
+          qx.dom.Element.insertEnd(myDiv, div);
+
+
+          var tDiv = qx.dom.Element.create("div", {
+            background: "transparent",
+            position: "absolute",
+            height: "90px",
+            width: "160px",
+            zIndex: 2
+          });
+          var pos = qx.bom.Selector.query("iframe")[0].getBoundingClientRect();
+          qx.bom.element.Style.setStyles(tDiv, {
+            left: pos.left + "px",
+            top: pos.top + "px"
+          });
+          qx.dom.Element.insertEnd(tDiv, myDiv);
+
+          qx.event.Registration.addListener(myDiv, 'pointerover', function() {
+            qx.bom.element.Style.set(myDiv, 'background', "#bbbbbb");
+          }, this);
+
+          qx.event.Registration.addListener(myDiv, 'pointerout', function() {
+            qx.bom.element.Style.set(myDiv, 'background', "transparent");
+          }, this);
+
+          qx.event.Registration.addListener(myDiv, 'tap', function() {
+            if (document.location.search == "") {
+              document.location.href = document.location.href
+                + "?design=" + element;
+            } else {
+              document.location.href = document.location.href
+                + "&design=" + element;
+            }
+          });
+        });
+      });
     },
 
     // tools for widget handling
@@ -770,40 +734,3 @@ qx.Class.define('cv.TemplateEngine', {
     }
   }
 });
-
-
-// /** ************************************************************************* */
-// /* FIXME - Question: should this belong to the VisuDesign object so that it */
-// /* is possible to overload?!? */
-// /** ************************************************************************* */
-// this.refreshAction = function(target, src) {
-//   /*
-//    * Special treatment for (external) iframes: we need to clear it and reload
-//    * it in another thread as otherwise stays blank for some targets/sites and
-//    * src = src doesnt work anyway on external This creates though some
-//    * "flickering" so we avoid to use it on images, internal iframes and others
-//    */
-//   var parenthost = window.location.protocol + "//" + window.location.host;
-//   if (target.nodeName == "IFRAME" && src.indexOf(parenthost) != 0) {
-//     target.src = '';
-//     setTimeout(function() {
-//       target.src = src;
-//     }, 0);
-//   } else {
-//     target.src = src + '&' + new Date().getTime();
-//   }
-// };
-//
-// this.setupRefreshAction = function( path, refresh ) {
-//   if (refresh && refresh > 0) {
-//     var
-//       element = $( '#' + path ),
-//       target = $('img', element)[0] || $('iframe', element)[0],
-//       src = target.src;
-//     if (src.indexOf('?') < 0)
-//       src += '?';
-//     this.widgetDataGet( path ).internal = setInterval(function() {
-//       this.refreshAction(target, src);
-//     }, refresh);
-//   }
-// };

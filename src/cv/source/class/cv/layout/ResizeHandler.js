@@ -64,7 +64,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
         return;
 
       // TODO use page object
-      var widgetData = templateEngine.getWidgetData(qx.bom.element.Attribute.get(templateEngine.currentPage, 'id'));
+      var widgetData = cv.data.Model.getInstance().getWidgetData(qx.bom.element.Attribute.get(templateEngine.currentPage, 'id'));
       if ('2d' === widgetData.type) {
         var
           cssPosRegEx = /(\d*)(.*)/,
@@ -107,7 +107,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
         }
 
         templateEngine.currentPage.find('.widget_container').toArray().forEach(function (widgetContainer) {
-          var widgetData = templateEngine.getWidgetData(widgetContainer.id);
+          var widgetData = cv.data.Model.getInstance().getWidgetData(widgetContainer.id);
           if (widgetData.layout) {
             var
               layout = widgetData.layout,
@@ -188,13 +188,6 @@ qx.Class.define('cv.layout.ResizeHandler', {
           + Math.round((rowspan - 1) * bounds.height)
           + "px;}\n";
       }
-      if (styles.length === 0) {
-        styles += '.rowspan.rowspan1'
-          + ' { height: '
-          + Math.round(bounds.height)
-          + "px;}\n";
-      }
-
       qx.bom.Selector.query("#calcrowspan")[0].remove();
 
       // set css style

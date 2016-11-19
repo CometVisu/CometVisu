@@ -162,7 +162,7 @@ qx.Class.define('cv.layout.Manager', {
         allContainer.each(function (i, e) {
           var
             $e = $(e),
-            data = cv.TemplateEngine.getInstance().getWidgetData(e.id),
+            data = cv.data.Model.getInstance().getWidgetData(e.id),
             ourColspan = this.dataColspan(data);
 
           var w = 'auto';
@@ -178,16 +178,16 @@ qx.Class.define('cv.layout.Manager', {
         adjustableElements.each(function (i, e) {
           var
             $e = $(e),
-            data = cv.TemplateEngine.getInstance().getWidgetData(e.id),
+            data = cv.data.Model.getInstance().getWidgetData(e.id),
             ourColspan = this.dataColspan(data);
           if (ourColspan == undefined) {
             // workaround for nowidget groups
-            ourColspan = this.dataColspan(cv.TemplateEngine.getInstance().getWidgetDataByElement($e.children('.group')));
+            ourColspan = this.dataColspan(cv.data.Model.getInstance().getWidgetDataByElement($e.children('.group')));
           }
           var w = 'auto';
           if (ourColspan > 0) {
             var areaColspan = areaColumns || cv.Config.defaultColumns;
-            var groupColspan = Math.min(areaColspan, this.dataColspan(cv.TemplateEngine.getInstance().getWidgetDataByElement($e.parentsUntil(
+            var groupColspan = Math.min(areaColspan, this.dataColspan(cv.data.Model.getInstance().getWidgetDataByElement($e.parentsUntil(
               '.widget_container', '.group'))));
             w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
           }

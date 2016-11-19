@@ -343,13 +343,13 @@ qx.Class.define('cv.PagePartsHandler', {
       tree.forEach(function (elem) {
         var id = qx.bom.element.Attribute.get(elem, 'id');
         var topNav = qx.bom.Selector.query('#' + id + 'top_navbar');
-        var topData = cv.TemplateEngine.getInstance().widgetDataGet(id + 'top_navbar');
+        var topData = cv.data.Model.getInstance().getWidgetData(id + 'top_navbar');
         var rightNav = qx.bom.Selector.query('#' + id + 'right_navbar');
-        var rightData = cv.TemplateEngine.getInstance().widgetDataGet(id + 'right_navbar');
+        var rightData = cv.data.Model.getInstance().getWidgetData(id + 'right_navbar');
         var bottomNav = qx.bom.Selector.query('#' + id + 'bottom_navbar');
-        var bottomData = cv.TemplateEngine.getInstance().widgetDataGet(id + 'bottom_navbar');
+        var bottomData = cv.data.Model.getInstance().getWidgetData(id + 'bottom_navbar');
         var leftNav = qx.bom.Selector.query('#' + id + 'left_navbar');
-        var leftData = cv.TemplateEngine.getInstance().widgetDataGet(id + 'left_navbar');
+        var leftData = cv.data.Model.getInstance().getWidgetData(id + 'left_navbar');
         // console.log(tree.length+"-"+level+"<="+topData.scope);
         if (topNav.length > 0) {
           if (topData.scope == undefined || topData.scope < 0

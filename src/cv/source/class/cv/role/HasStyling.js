@@ -39,7 +39,7 @@ qx.Mixin.define("cv.role.HasStyling", {
   */
   statics: {
     parse: function (xml, path) {
-      var data = cv.TemplateEngine.getInstance().getWidgetData(path);
+      var data = cv.data.Model.getInstance().getWidgetData(path);
       data.styling = qx.bom.element.Attribute(xml, 'styling');
     }
   },

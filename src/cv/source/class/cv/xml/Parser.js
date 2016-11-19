@@ -136,7 +136,7 @@ qx.Class.define('cv.xml.Parser', {
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
       if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
 
-      return cv.TemplateEngine.getInstance().widgetDataInsert( path, {
+      return cv.data.Model.getInstance().setWidgetData( path, {
         'bindClickToWidget': bindClickToWidget,
         'mapping' : $element.attr('mapping') || null,
         'format'  : $element.attr('format') || null,
@@ -256,7 +256,7 @@ qx.Class.define('cv.xml.Parser', {
      */
     setWidgetLayout: function( page, path ) {
       var
-        elementData = cv.TemplateEngine.getInstance().widgetDataGet( path ),
+        elementData = cv.data.Model.getInstance().getWidgetData( path ),
         layout      = page.children('layout'),
         lookupM     = [ 0, 2, 4,  6,  6,  6,  6, 12, 12, 12, 12, 12, 12 ],
         lookupS     = [ 0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],

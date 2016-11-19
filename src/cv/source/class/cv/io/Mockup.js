@@ -34,7 +34,7 @@ qx.Class.define('cv.io.Mockup', {
   construct: function() {
     // make some functions accessible for the protactor runner
     window._receive = this.receive.bind(this);
-    window._widgetDataGet = cv.TemplateEngine.getInstance().getWidgetData.bind(cv.TemplateEngine.getInstance());
+    window._widgetDataGet = cv.data.Model.getInstance().getWidgetData.bind(cv.TemplateEngine.getInstance());
     window.writeHistory = [];
 
     this.addresses = [];

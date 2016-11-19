@@ -39,7 +39,7 @@ qx.Mixin.define("cv.role.HasAddress", {
   statics: {
     parse: function (xml, path, flavour, widgetType) {
       if (xml.nodeName.toLowerCase() !== "page") {
-        var data = templateEngine.widgetDataGet(path);
+        var data = cv.data.Model.getInstance().getWidgetData(path);
         data.address = this.makeAddressList($(xml), path);
       }
     }

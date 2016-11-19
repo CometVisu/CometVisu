@@ -38,8 +38,7 @@ qx.Mixin.define("cv.role.HasChildren", {
   */
   statics: {
     parse: function (xml, path, flavour, pageType) {
-      var $p = $(xml);
-      var data = cv.TemplateEngine.getInstance().getWidgetData(this.getStoragePath(xml, path));
+      var data = cv.data.Model.getInstance().getWidgetData(this.getStoragePath(xml, path));
 
       if (!data.children) {
         data.children = [];
@@ -91,7 +90,7 @@ qx.Mixin.define("cv.role.HasChildren", {
       var container = '';
 
       this.getChildren().forEach(function (path) {
-        var data = cv.TemplateEngine.getInstance().getWidgetData(path);
+        var data = cv.data.Model.getInstance().getWidgetData(path);
         var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
         if (widget) {
           var subelement = widget.getDomString();
