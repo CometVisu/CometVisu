@@ -25,7 +25,7 @@ qx.Mixin.define("cv.role.Refresh", {
    ******************************************************
    */
   construct: function () {
-    cv.MessageBroker.my.subscribe("setup.dom.finished", function () {
+    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
       this.setupRefreshAction();
     }, this);
   },
@@ -36,7 +36,10 @@ qx.Mixin.define("cv.role.Refresh", {
    ******************************************************
    */
   properties: {
-    refresh: {check: 'Number', init: 0}
+    refresh: {
+      check: 'Number',
+      init: 0
+    }
   },
 
   /*
@@ -46,9 +49,8 @@ qx.Mixin.define("cv.role.Refresh", {
   */
   statics: {
     parse: function (xml, path) {
-      var data = cv.data.Model.getInstance().getWidgetData()(path);
-      $e = $(xml);
-      data.refresh = $e.attr('refresh') ? $e.attr('refresh') * 1000 : 0;
+      var data = cv.data.Model.getInstance().getWidgetData(path);
+      data.refresh = xml.getAttribute('refresh') ? parseInt(xml.getAttribute('refresh')) * 1000 : 0;
     }
   },
 
@@ -67,7 +69,7 @@ qx.Mixin.define("cv.role.Refresh", {
         if (src.indexOf('?') < 0)
           src += '?';
 
-        this._timer = qx.event.Timer(this.getRefresh());
+        this._timer = new qx.event.Timer(this.getRefresh());
         this._timer.addListener("intervall", function () {
           this.refreshAction(target, src);
         }, this);
@@ -91,9 +93,5 @@ qx.Mixin.define("cv.role.Refresh", {
         target.src = src + '&' + new Date().getTime();
       }
     }
-  },
-
-  defer: function() {
-    cv.xml.Parser.addHook(this.classname.split(".").pop().toLowerCase(), cv.role.Refresh.parse, this);
   }
 });
