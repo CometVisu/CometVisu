@@ -58,12 +58,6 @@ qx.Class.define('cv.TemplateEngine', {
       check: "Object",
       init: {}
     },
-    
-    // aka ga_list
-    addressList: {
-      check: "Object",
-      init: {}
-    },
 
     ready: {
       check: "Boolean",
@@ -79,9 +73,10 @@ qx.Class.define('cv.TemplateEngine', {
   */
   members: {
 
+    // property apply
     _applyReady: function(value) {
       if (value === true) {
-        this.setup_page();
+        this.setupPage();
       }
     },
 
@@ -89,7 +84,7 @@ qx.Class.define('cv.TemplateEngine', {
      * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().setWidgetData()}
      */
     widgetDataInsert: function (path, obj) {
-      this.debug("widgetDataInsert is deprecated! Please use cv.data.Model.getInstance().setWidgetData() instead");
+      this.warn("widgetDataInsert is deprecated! Please use cv.data.Model.getInstance().setWidgetData() instead");
       return cv.data.Model.getInstance().setWidgetData(path, obj);
     },
 
@@ -97,8 +92,24 @@ qx.Class.define('cv.TemplateEngine', {
      * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().getWidgetData()}
      */
     widgetDataGet: function (path) {
-      this.debug("widgetDataGet is deprecated! Please use cv.data.Model.getInstance().getWidgetData() instead");
+      this.warn("widgetDataGet is deprecated! Please use cv.data.Model.getInstance().getWidgetData() instead");
       return cv.data.Model.getInstance().getWidgetData(path);
+    },
+
+    /**
+     * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().addAddress()} instead
+     */
+    addAddress: function (address, id) {
+      this.warn("addAddress is deprecated! Please use cv.data.Model.getInstance().addAddress() instead");
+      cv.data.Model.getInstance().addAddress(address, id);
+    },
+
+    /**
+     * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().getAddresses()} instead
+     */
+    getAddresses: function () {
+      this.warn("getAddresses is deprecated! Please use cv.data.Model.getInstance().getAddresses() instead");
+      return cv.data.Model.getInstance().getAddresses();
     },
 
     update: function (json) {
@@ -151,20 +162,6 @@ qx.Class.define('cv.TemplateEngine', {
         this.visu.update = this.update.bind(this); // handle future requests directly
       }.bind(this);
       this.user = 'demo_user'; // example for setting a user
-    },
-
-    /**
-     * @deprecated Please use {cv.data.Model.getInstance().addAddress()} instead
-     */
-    addAddress: function (address, id) {
-      cv.data.Model.getInstance().addAddress(address, id);
-    },
-
-    /**
-     * @deprecated Please use {cv.data.Model.getInstance().getAddresses()} instead
-     */
-    getAddresses: function () {
-      return cv.data.Model.getInstance().getAddresses();
     },
 
     bindActionForLoadingFinished: function (fn) {
@@ -259,16 +256,8 @@ qx.Class.define('cv.TemplateEngine', {
       }
     },
 
-    setup_page: function () {
+    setupPage: function () {
       // and now setup the pages
-
-      // check if the page and the plugins are ready now
-      // for (var key in this.loadReady)  // test for emptines
-      //   return; // we'll be called again...
-
-      if (!this.xml) {
-        return;
-      }
 
       // login to backend as it might change some settings needed for further processing
       this.visu.login(true, function () {
@@ -280,7 +269,7 @@ qx.Class.define('cv.TemplateEngine', {
 
         var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
 
-        this.create_pages(page, 'id');
+        this.createPages(page, 'id');
         cv.structure.pure.Page.createFinal();
 
         cv.MessageBroker.getInstance().publish("setup.dom.finished");
@@ -325,14 +314,12 @@ qx.Class.define('cv.TemplateEngine', {
          */
 
         // reaction on browser back button
-        window.onpopstate = function (e) {
-          // where do we come frome?
-          var lastpage = e.state;
-          if (lastpage) {
-            // browser back button takes back to the last page
-            this.scrollToPage(lastpage, 0, true);
+        qx.bom.History.getInstance().addListener("request", function(e) {
+          var lastPage = e.getData();
+          if (lastPage) {
+            this.scrollToPage(lastPage, 0, true);
           }
-        };
+        }, this);
 
         // run the Trick-O-Matic scripts for great SVG backdrops
         qx.bom.Selector.query('embed').forEach(function () {
@@ -351,9 +338,9 @@ qx.Class.define('cv.TemplateEngine', {
           });
           this.visu.setInitialAddresses(Object.keys(startPageAddresses));
         }
-        var addressesToSubscribe = this.getAddresses();
+        var addressesToSubscribe = cv.data.Model.getInstance().getAddresses();
         if (0 !== addressesToSubscribe.length)
-          this.visu.subscribe(this.getAddresses());
+          this.visu.subscribe(addressesToSubscribe);
 
         this.xml = null; // not needed anymore - free the space
 
@@ -362,7 +349,7 @@ qx.Class.define('cv.TemplateEngine', {
         }, this);
         qx.bom.element.Class.remove(qx.bom.Selector.query('.loading')[0], 'loading');
         this.fireLoadingFinishedAction();
-        if (undefined !== this.screensave_time) {
+        if (qx.lang.Type.isNumber(this.screensave_time)) {
           this.screensave = new qx.event.Timer(this.screensave_time * 1000);
           this.screensave.addListener("interval", function () {
             this.scrollToPage();
@@ -373,13 +360,7 @@ qx.Class.define('cv.TemplateEngine', {
       }, this);
     },
 
-    create_pages: function (page, path, flavour, type) {
-      this.callbacks[path + '_'] = {
-        exitingPageChange: [],// called when the current page is left
-        beforePageChange: [], // called as soon as a page change is known
-        duringPageChange: [], // called when the page is theoretical visible, i.e. "display:none" is removed - CSS calculations shoud work now
-        afterPageChange: []   // called together with the global event when the transition is finished
-      };
+    createPages: function (page, path, flavour, type) {
 
       var parsedData = cv.xml.Parser.parse(page, path, flavour, type);
       if (!Array.isArray(parsedData)) {
@@ -562,8 +543,9 @@ qx.Class.define('cv.TemplateEngine', {
         localStorage.lastpage = page_id;
 
       // push new state to history
-      if (skipHistory === undefined)
-        window.history.pushState(page_id, page_id, window.location.href);
+      if (skipHistory === undefined) {
+        qx.bom.History.getInstance().addToHistory(page_id, page_id);
+      }
 
       this.main_scroll.seekTo(page_id, speed); // scroll to it
 

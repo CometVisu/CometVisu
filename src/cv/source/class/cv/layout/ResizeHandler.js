@@ -23,7 +23,6 @@ qx.Class.define('cv.layout.ResizeHandler', {
     invalidNavbar: true,
     invalidPagesize: true,
     invalidRowspan: true,
-    invalidScreensize: true,
     $pageSize: null,
     $navbarTop: null,
     $navbarBottom: null,
@@ -106,7 +105,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
           });
         }
 
-        templateEngine.currentPage.find('.widget_container').toArray().forEach(function (widgetContainer) {
+        qx.bom.Selector.query('.widget_container', templateEngine.currentPage).forEach(function (widgetContainer) {
           var widgetData = cv.data.Model.getInstance().getWidgetData(widgetContainer.id);
           if (widgetData.layout) {
             var
@@ -209,7 +208,6 @@ qx.Class.define('cv.layout.ResizeHandler', {
       this.makeAllSizesValid();
     },
     invalidateScreensize: function () {
-      this.invalidScreensize = true;
       this.invalidPagesize = true;
       this.invalidBackdrop = true;
       this.makeAllSizesValid();
