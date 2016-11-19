@@ -242,8 +242,6 @@ qx.Mixin.define("cv.role.BasicUpdate", {
      * @return value
      */
     defaultUpdate: function (ga, data, passedElement) {
-      console.log(ga, data, passedElement );
-      console.log(qx.dom.Element.isInDom(passedElement));
       var element = passedElement || this.getDomElement();
       var value = this.defaultValueHandling(ga, data);
 
@@ -253,12 +251,9 @@ qx.Mixin.define("cv.role.BasicUpdate", {
         qx.bom.element.Class.add(element, this.getAlign());
 
       var valueElement = qx.bom.Selector.query('.value', element)[0];
-      console.log(qx.dom.Element.isInDom(valueElement));
       qx.dom.Element.empty(valueElement);
-      console.log(qx.dom.Element.isInDom(valueElement));
       if (undefined !== value)
         this.defaultValue2DOM(value, function (e) {
-          console.log(qx.dom.Element.isInDom(valueElement));
           if (qx.lang.Type.isString(e) || qx.lang.Type.isNumber(e)) {
             qx.dom.Element.insertEnd(document.createTextNode(e), valueElement);
           } else {

@@ -28,7 +28,7 @@ qx.Class.define("cv.xml.parser.Meta", {
     },
 
     parseMappings: function(elem) {
-      var name = qx.bom.element.Attribute.get(elem, 'name');
+      var name = elem.getAttribute('name');
       var mapping = {};
       var formula = qx.bom.Selector.query('formula', elem);
       if (formula.length > 0) {
@@ -49,7 +49,7 @@ qx.Class.define("cv.xml.parser.Meta", {
           }
         }
         // check for default entry
-        var isDefaultValue = qx.bom.element.Attribute.get(subElem, 'default');
+        var isDefaultValue = subElem.getAttribute('default');
         if (isDefaultValue != undefined) {
           isDefaultValue = isDefaultValue == "true";
         }
@@ -57,19 +57,19 @@ qx.Class.define("cv.xml.parser.Meta", {
           isDefaultValue = false;
         }
         // now set the mapped values
-        if (qx.bom.element.Attribute.get(subElem, 'value')) {
-          mapping[qx.bom.element.Attribute.get(subElem, 'value')] = value.length == 1 ? value[0] : value;
+        if (subElem.getAttribute('value')) {
+          mapping[subElem.getAttribute('value')] = value.length == 1 ? value[0] : value;
           if (isDefaultValue) {
-            mapping['defaultValue'] = qx.bom.element.Attribute.get(subElem, 'value');
+            mapping['defaultValue'] = subElem.getAttribute('value');
           }
         }
         else {
           if (!mapping['range']) {
             mapping['range'] = {};
           }
-          mapping['range'][parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'))] = [parseFloat(qx.bom.element.Attribute.get(subElem, 'range_max')), value];
+          mapping['range'][parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), value];
           if (isDefaultValue) {
-            mapping['defaultValue'] = parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'));
+            mapping['defaultValue'] = parseFloat(subElem.getAttribute('range_min'));
           }
         }
       }, this);
@@ -77,34 +77,34 @@ qx.Class.define("cv.xml.parser.Meta", {
     },
 
     parseStylings: function(elem) {
-      var name = qx.bom.element.Attribute.get(elem, 'name');
+      var name = elem.getAttribute('name');
       var classnames = '';
       var styling = {};
       qx.bom.Selector.query('entry', elem).forEach(function (subElem) {
         classnames += subElem.textContent + ' ';
         // check for default entry
-        var isDefaultValue = qx.bom.element.Attribute.get(subElem, 'default');
+        var isDefaultValue = subElem.getAttribute('default');
         if (isDefaultValue != undefined) {
           isDefaultValue = isDefaultValue == "true";
         } else {
           isDefaultValue = false;
         }
         // now set the styling values
-        if (qx.bom.element.Attribute.get(subElem, 'value')) {
-          styling[qx.bom.element.Attribute.get(subElem, 'value')] = subElem.textContent;
+        if (subElem.getAttribute('value')) {
+          styling[subElem.getAttribute('value')] = subElem.textContent;
           if (isDefaultValue) {
-            styling['defaultValue'] = qx.bom.element.Attribute.get(subElem, 'value');
+            styling['defaultValue'] = subElem.getAttribute('value');
           }
         } else { // a range
           if (!styling['range'])
             styling['range'] = {};
-          styling['range'][parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'))] = [parseFloat(qx.bom.element.Attribute.get(subElem, 'range_max')), subElem.textContent];
+          styling['range'][parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), subElem.textContent];
           if (isDefaultValue) {
-            styling['defaultValue'] = parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'));
+            styling['defaultValue'] = parseFloat(subElem.getAttribute('range_min'));
           }
         }
       }, this);
-      styling['classnames'] = classnames;
+      styling['classnames'] = classnames.trim();
       cv.ui.Stylings.addStyling(name, styling);
     },
 
@@ -162,14 +162,14 @@ qx.Class.define("cv.xml.parser.Meta", {
 
     __parseIconDefinition: function(elem) {
       return {
-        name : qx.bom.element.Attribute.get(elem, 'name'),
-        uri : qx.bom.element.Attribute.get(elem, 'uri'),
-        type : qx.bom.element.Attribute.get(elem, 'type'),
-        flavour : qx.bom.element.Attribute.get(elem, 'flavour'),
-        color : qx.bom.element.Attribute.get(elem, 'color'),
-        styling : qx.bom.element.Attribute.get(elem, 'styling'),
-        dynamic : qx.bom.element.Attribute.get(elem, 'dynamic'),
-        'class' : qx.bom.element.Attribute.get(elem, 'class')
+        name : elem.getAttribute('name'),
+        uri : elem.getAttribute('uri'),
+        type : elem.getAttribute('type'),
+        flavour : elem.getAttribute('flavour'),
+        color : elem.getAttribute('color'),
+        styling : elem.getAttribute('styling'),
+        dynamic : elem.getAttribute('dynamic'),
+        'class' : elem.getAttribute('class')
       }
     }
 

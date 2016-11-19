@@ -40,7 +40,7 @@ qx.Mixin.define("cv.role.HasStyling", {
   statics: {
     parse: function (xml, path) {
       var data = cv.data.Model.getInstance().getWidgetData(path);
-      data.styling = qx.bom.element.Attribute(xml, 'styling');
+      data.styling = qx.bom.element.Attribute.get(xml, 'styling');
     }
   },
 
@@ -54,8 +54,8 @@ qx.Mixin.define("cv.role.HasStyling", {
     applyStyling: function (value) {
       var sty = cv.ui.Stylings.getStyling(this.getStyling());
       if (sty) {
-        var e = qx.bom.Selector.query('.actor:has(".value")', this.getDomElement());
-        qx.bom.element.Class.remove(e, sty['classnames']); // remove only styling classes
+        var e = qx.bom.Selector.query('.actor:has(".value")', this.getDomElement())[0];
+        qx.bom.element.Class.removeClasses(e, sty['classnames'].split(" ")); // remove only styling classes
         if (!this._findValue(value, false, e, sty) && sty['defaultValue'] !== undefined) {
           this._findValue(sty['defaultValue'], true, e, sty);
         }

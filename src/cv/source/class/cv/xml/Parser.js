@@ -16,27 +16,39 @@ qx.Class.define('cv.xml.Parser', {
 
     addHandler: function (tagName, handler) {
       this.__handlers[tagName.toLowerCase()] = handler;
+      this.__applyHooks(tagName, handler);
+    },
 
+    /**
+     * Traverse through the handlers includes and its superclasses + theit includes to add parsing hooks
+     * @private
+     */
+    __applyHooks: function(tagName, clazz) {
       // add include parse hooks
-      if (handler.$$flatIncludes) {
-        // check for parse hooks in includes
-        handler.$$flatIncludes.forEach(function (mixin) {
-          if (mixin.parse) {
-            qx.log.Logger.debug("adding after parse hook for include: " + mixin.classname);
-            this.addHook(tagName, "after", mixin.parse, handler);
-          }
-        }, this);
-      }
+      this.__applyIncludeHooks(tagName, clazz);
 
-      if (handler.superclass) {
-        var parentClass = handler.superclass;
+      if (clazz.superclass) {
+        var parentClass = clazz.superclass;
         while (parentClass && parentClass.classname !== "cv.Object") {
           if (parentClass.parse) {
             qx.log.Logger.debug("adding before parse hook for parent class: " + parentClass.classname);
-            this.addHook(tagName, "before", parentClass.parse, handler);
+            this.addHook(tagName, "before", parentClass.parse, clazz);
           }
+          this.__applyIncludeHooks(tagName, parentClass);
           parentClass = parentClass.superclass;
         }
+      }
+    },
+
+    __applyIncludeHooks: function(tagName, clazz) {
+      if (clazz.$$flatIncludes) {
+        // check for parse hooks in includes
+        clazz.$$flatIncludes.forEach(function (mixin) {
+          if (mixin.parse) {
+            qx.log.Logger.debug("adding after parse hook for include: " + mixin.classname);
+            this.addHook(tagName, "after", mixin.parse, clazz);
+          }
+        }, this);
       }
     },
 
@@ -115,7 +127,7 @@ qx.Class.define('cv.xml.Parser', {
     },
 
     __getAttributeToPropertyMappings: function(handler) {
-      var mappings = handler && handler.getAttributeToPropertyMappings ? handler.getAttributeToPropertyMappings() : {};
+      return handler && handler.getAttributeToPropertyMappings ? handler.getAttributeToPropertyMappings() : {};
     },
 
     getElementType: function(element) {
