@@ -103,10 +103,8 @@ qx.Class.define('cv.xml.Parser', {
      * @return {String} HTML code
      */
     __parse: function (handler, element, path, flavour, pageType) {
-      var clazz = qx.Class.getByName(handler.classname);
-      var properties = qx.Class.getProperties(clazz);
       // and fill in widget specific data
-      var data = this.createDefaultWidget(this.getElementType(element), $(element), path, flavour, pageType, properties);
+      var data = this.createDefaultWidget(handler, this.getElementType(element), $(element), path, flavour, pageType);
       var mappings = this.__getAttributeToPropertyMappings(handler);
       if (mappings) {
         for (var key in mappings) {
@@ -154,10 +152,13 @@ qx.Class.define('cv.xml.Parser', {
      * @param pageType
      * @return ret_val
      */
-    createDefaultWidget: function( widgetType, $element, path, flavour, pageType, properties ) {
+    createDefaultWidget: function(handler, widgetType, $element, path, flavour, pageType) {
+      var clazz = qx.Class.getByName(handler.classname);
+      var properties = qx.Class.getProperties(clazz);
+
       var layout = this.parseLayout( $element.children('layout')[0] );
       var style = $.isEmptyObject(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
-      var classes = this.getDefaultClasses(widgetType);
+      var classes = handler.getDefaultClasses ? handler.getDefaultClasses(widgetType) : this.getDefaultClasses(widgetType);
       if ( $element.attr('align') ) {
         classes+=" "+$element.attr('align');
       }
