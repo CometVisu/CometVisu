@@ -56,17 +56,14 @@ qx.Class.define("cv.Application",
       }
       qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('cv/designs/designglobals.css'));
 
+      // TODO: replace jquery calls with Qooxdoo equivalents and get rid of the dependency
       var dynLoader = new qx.util.DynamicScriptLoader([
         "cv/libs/jquery.js"
       ]);
-      dynLoader.addListenerOnce('ready',function(e){
-        console.log("all scripts have been loaded!");
-        this.__init();
-      }, this);
+      dynLoader.addListenerOnce('ready', this.__init, this);
       dynLoader.addListener('failed',function(e){
-        var data = e.getData();
-        console.log("failed to load "+data.script);
-      });
+        this.error("failed to load "+ e.getData().script);
+      }, this);
       dynLoader.start();
     },
 

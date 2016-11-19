@@ -143,9 +143,9 @@ qx.Class.define('cv.xml.Parser', {
         'align'   : $element.attr('align') || null,
         'layout'  : layout || null,
         'path'    : path,
-        'label'   : label || null,
-        'classes' : classes || null,
-        'style'   : style || null,
+        'label'   : label || '',
+        'classes' : classes || '',
+        'style'   : style || '',
         '$$type'  : widgetType.toLowerCase(),
         'pageType': pageType
       });

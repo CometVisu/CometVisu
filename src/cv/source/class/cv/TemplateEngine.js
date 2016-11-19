@@ -306,8 +306,8 @@ qx.Class.define('cv.TemplateEngine', {
       this.visu.login(true, function () {
 
         // as we are sure that the default CSS were loaded now:
-        qx.bom.Selector.query('link[href*="mobile.css"]').forEach(function () {
-          this.media = 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)';
+        qx.bom.Selector.query('link[href*="mobile.css"]').forEach(function (elem) {
+          qx.bom.element.Attribute.set(elem, 'media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
         });
 
         var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...

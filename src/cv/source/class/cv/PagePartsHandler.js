@@ -62,9 +62,9 @@ qx.Class.define('cv.PagePartsHandler', {
 
     updateTopNavigation: function (path) {
       path = path.split('_');
-      var id = 'id_'; // path[0];
-      var pageTitle = qx.bom.Selector.query("#"+id+" h1")[0].textContent;
-      var nav = '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')">'
+      var id = path[0];
+      var pageTitle = qx.bom.Selector.query("#"+id+"_ h1")[0].textContent;
+      var nav = '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '_\')">'
         + pageTitle + '</a>';
       for (var i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
         id += path[i] + '_';

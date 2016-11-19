@@ -97,8 +97,13 @@ qx.Class.define('cv.PageHandler', {
       var pagesNode = qx.bom.Selector.query('#pages')[0];
       qx.bom.element.Style.set(pagesNode, 'left', leftStart);
       var animation = qx.bom.element.Animation.animate(pagesNode, {
-        left: leftEnd,
-        timing: this.getEasing()
+        duration: speed,
+        timing: this.getEasing(),
+        keep: 100,
+        keyFrames:  {
+          0: { left: leftStart},
+          100: { left: leftEnd}
+        }
       }, speed);
       animation.addListenerOnce("end", function(){
         // final stuff

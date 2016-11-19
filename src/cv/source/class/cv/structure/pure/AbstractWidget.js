@@ -123,7 +123,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
     classes           : { check: "String", init: '', nullable: true },
     $$actorElement    : { check: "Object" },
     $$valueElement    : { check: "Object" },
-    style             : { check: "String", init: '', nullable: true },
+    style             : { check: "String", init: ''},
     colspan           : { check: "Number", transform: "string2number" },
     colspanM          : { check: "Number", transform: "string2number" },
     colspanS          : { check: "Number", transform: "string2number" },
@@ -162,7 +162,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
      */
     getDomString : function() {
       return '<div class="'+this.getClasses()+'" ' + this.getStyle() + '>' + this.getLabel() +
-        this._getInnerDomString ? this._getInnerDomString() : '' +'</div>';
+        (this._getInnerDomString ? this._getInnerDomString() : '') +'</div>';
     },
 
     getAddressListCallback: function() { return null; },

@@ -40,7 +40,7 @@ qx.Class.define('cv.structure.pure.Page', {
    ******************************************************
    */
   statics: {
-    allPages : { init: '' },
+    allPages : '',
 
     parse: function( page, path, flavour, pageType ) {
       var $p = $(page);
@@ -134,7 +134,7 @@ qx.Class.define('cv.structure.pure.Page', {
      * @method createFinal
      */
     createFinal: function() { // special function - only for pages!
-      $('#pages').prepend( this.allPages );
+      qx.bom.Selector.query("#pages")[0].innerHTML = this.allPages;
     }
   },
 

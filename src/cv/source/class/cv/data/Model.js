@@ -11,22 +11,13 @@ qx.Class.define('cv.data.Model', {
 
   /*
   ******************************************************
-    CONSTRUCTOR
-  ******************************************************
-  */
-  construct: function() {
-    this.setAddresses(new qx.data.Array());
-  },
-
-
-  /*
-  ******************************************************
     PROPERTIES
   ******************************************************
   */
   properties: {
-    addresses: {
-      check: "qx.data.Array"
+    addressList: {
+      check: "Object",
+      init: {}
     }
   },
 
@@ -36,17 +27,19 @@ qx.Class.define('cv.data.Model', {
   ******************************************************
   */
   members: {
+
     addAddress: function (address, id) {
-      if (address in this.getAddresses()) {
-        this.getAddresses()[address].push(id);
+      var list = this.getAddressList();
+      if (address in list) {
+        list[address].push(id);
       }
       else {
-        this.getAddresses()[address] = [id];
+        list[address] = [id];
       }
     },
 
     getAddresses: function () {
-      return Object.keys(this.getAddresses());
+      return Object.keys(this.getAddressList());
     }
   }
 

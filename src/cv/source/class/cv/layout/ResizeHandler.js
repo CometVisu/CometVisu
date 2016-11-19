@@ -32,21 +32,21 @@ qx.Class.define('cv.layout.ResizeHandler', {
 
     getPageSize: function (noCache) {
       if (!this.$pageSize || noCache === true) {
-        this.$pageSize = $(qx.bom.Selector.query('#pageSize')[0]);
+        this.$pageSize = qx.bom.Selector.query('#pageSize')[0];
       }
       return this.$pageSize;
     },
 
     getNavbarTop: function (noCache) {
       if (!this.$navbarTop || noCache === true) {
-        this.$navbarTop = $(qx.bom.Selector.query('#navbarTop')[0]);
+        this.$navbarTop = qx.bom.Selector.query('#navbarTop')[0];
       }
       return this.$navbarTop;
     },
 
     getNavbarBottom: function (noCache) {
       if (!this.$navbarBottom || noCache === true) {
-        this.$navbarBottom = $(qx.bom.Selector.query('#navbarBottom')[0]);
+        this.$navbarBottom = qx.bom.Selector.query('#navbarBottom')[0];
       }
       return this.$navbarBottom;
     },
@@ -149,9 +149,11 @@ qx.Class.define('cv.layout.ResizeHandler', {
       if (cv.Config.mobileDevice) {
         //do nothing
       } else {
+        var navbarTop = this.getNavbarTop();
+        var navbarBottom = this.getNavbarBottom(true);
         if (
-          (this.getNavbarTop(true).css('display') !== 'none' && this.getNavbarTop(true).outerHeight(true) <= 2) ||
-          (this.getNavbarBottom(true).css('display') !== 'none' && this.getNavbarBottom(true).innerHeight() <= 2)
+          (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && navbarTop.getBoundingClientRect().height <= 2) ||
+          (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && navbarBottom.getBoundingClientRect() <= 2)
         ) {
           // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
           // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
@@ -170,7 +172,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
     makePagesizeValid: function () {
       this.width = cv.layout.Manager.getAvailableWidth();
       this.height = cv.layout.Manager.getAvailableHeight();
-      this.getPageSize().text('#main,.page{width:' + (this.width - 0) + 'px;height:' + this.height + 'px;}');
+      this.getPageSize().innerHTML = '#main,.page{width:' + (this.width - 0) + 'px;height:' + this.height + 'px;}';
 
       this.invalidPagesize = false;
     },
@@ -183,15 +185,20 @@ qx.Class.define('cv.layout.ResizeHandler', {
       for (var rowspan in cv.layout.Manager.usedRowspans) {
         styles += '.rowspan.rowspan' + rowspan
           + ' { height: '
-          + ((rowspan - 1) * bounds.height)
+          + Math.round((rowspan - 1) * bounds.height)
+          + "px;}\n";
+      }
+      if (styles.length === 0) {
+        styles += '.rowspan.rowspan1'
+          + ' { height: '
+          + Math.round(bounds.height)
           + "px;}\n";
       }
 
       qx.bom.Selector.query("#calcrowspan")[0].remove();
 
       // set css style
-      qx.bom.Selector.query('#rowspanStyle').innerHTML = styles;
-
+      qx.bom.Selector.query('#rowspanStyle')[0].innerHTML = styles;
       this.invalidRowspan = false;
     },
 
