@@ -66,8 +66,14 @@ qx.Class.define('cv.structure.pure.Switch', {
    ******************************************************
    */
   properties: {
-    onValue: { check: "String" },
-    offValue: { check: "String" }
+    onValue: {
+      check: "String",
+      init: "1"
+    },
+    offValue: {
+      check: "String",
+      init: "0"
+    }
   },
 
   /*
@@ -104,8 +110,8 @@ qx.Class.define('cv.structure.pure.Switch', {
     handleUpdate: function(value) {
       var actor = this.getActor();
       var off = this.applyMapping(this.getOffValue());
-      actor.removeClass(value == off ? 'switchPressed' : 'switchUnpressed');
-      actor.addClass(value == off ? 'switchUnpressed' : 'switchPressed');
+      qx.bom.element.Class.remove(actor, value == off ? 'switchPressed' : 'switchUnpressed');
+      qx.bom.element.Class.add(actor, value == off ? 'switchUnpressed' : 'switchPressed');
     },
 
     /**

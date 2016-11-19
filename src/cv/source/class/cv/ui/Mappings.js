@@ -22,6 +22,10 @@ qx.Class.define("cv.ui.Mappings", {
 
     getMapping: function (name) {
       return this.mappings[name];
+    },
+
+    hasMapping: function(name) {
+      return this.mappings.hasOwnProperty(name);
     }
   }
 });

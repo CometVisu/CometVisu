@@ -39,12 +39,14 @@ qx.Mixin.define("cv.role.HasChildren", {
   statics: {
     parse: function (xml, path, flavour, pageType) {
       var $p = $(xml);
-      var data = templateEngine.widgetDataGet(this.getStoragePath(xml, path));
+      var data = cv.TemplateEngine.getInstance().getWidgetData(this.getStoragePath(xml, path));
 
       if (!data.children) {
         data.children = [];
       }
-      var childs = $p.children().not('layout').not('label');
+      var childs = qx.dom.Hierarchy.getChildElements(xml).filter(function(child) {
+        return child.tagName !== "layout" && child.tagName !== "label";
+      }, this);
       childs.forEach(function (child, i) {
         var childData = cv.xml.Parser.parse(child, path + '_' + i, flavour, pageType);
         if (childData) {
@@ -89,7 +91,7 @@ qx.Mixin.define("cv.role.HasChildren", {
       var container = '';
 
       this.getChildren().forEach(function (path) {
-        var data = templateEngine.widgetDataGet(path);
+        var data = cv.TemplateEngine.getInstance().getWidgetData(path);
         var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
         if (widget) {
           var subelement = widget.getDomString();

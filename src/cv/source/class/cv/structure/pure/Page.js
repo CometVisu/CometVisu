@@ -100,9 +100,9 @@ qx.Class.define('cv.structure.pure.Page', {
         path              : storagePath,
         name              : name,
         pageType          : pageType,
-        showTopNavigation : showtopnavigation,
-        showFooter        : showfooter,
-        showNavbar        : shownavbar,
+        showTopNavigation : showtopnavigation || null,
+        showFooter        : showfooter || null,
+        showNavbar        : shownavbar || null,
         backdropAlign     : '2d' === pageType ? ($p.attr('backdropalign' ) || '50% 50%') : null,
         size              : $p.attr('size') || null,
         address           : addresses,
@@ -111,12 +111,13 @@ qx.Class.define('cv.structure.pure.Page', {
         $$type            : "page",
         backdrop          : backdrop || null
       });
+      cv.role.HasChildren.parse(page, path, flavour, pageType);
       if (data.visible === true) {
         var linkData = cv.TemplateEngine.getInstance().widgetDataInsert( path, {
           $$type          : "pagelink",
           path            : path,
           name            : name,
-          classes         : cv.xml.Parser.setWidgetLayout( $p, path ),
+          classes         : cv.xml.Parser.setWidgetLayout( $p, path ) || null,
           layout          : layout || null,
           address         : addresses,
           pageType        : pageType,
@@ -149,15 +150,15 @@ qx.Class.define('cv.structure.pure.Page', {
       check: "String",
       init: "", nullable: true
     },
-    showTopNavigation : { check: "Boolean", init: true },
-    showFooter        : { check: "Boolean", init: true },
-    showNavbar        : { check: "Object", init: {} },
+    showTopNavigation : { check: "Boolean", init: true, nullable: true },
+    showFooter        : { check: "Boolean", init: true, nullable: true },
+    showNavbar        : { check: "Object", init: {}, nullable: true },
     backdropAlign     : {
       init: '50% 50%',
       nullable: true
     },
     backdropType      : { check: "String", nullable: true },
-    visible           : { check: "Boolean", init: true },
+    visible           : { check: "Boolean", init: true, nullable: true },
     size              : { check: "String", nullable: true },
     backdrop          : { check: "String", nullable: true }
   },

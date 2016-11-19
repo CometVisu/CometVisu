@@ -149,6 +149,17 @@ qx.Class.define("cv.xml.parser.Meta", {
       footerElement.innerHTML += text;
     },
 
+    parsePlugins: function(xml) {
+      var pluginsToLoad = [];
+      qx.bom.Selector.query('meta > plugins plugin', this.xml).forEach(function (elem) {
+        var name = qx.bom.element.Attribute.get(elem, 'name');
+        if (name && !pluginsToLoad[name]) {
+          pluginsToLoad.push('cv/plugins/' + name + '/structure_plugin.js');
+        }
+      });
+      return pluginsToLoad;
+    },
+
     __parseIconDefinition: function(elem) {
       return {
         name : qx.bom.element.Attribute.get(elem, 'name'),

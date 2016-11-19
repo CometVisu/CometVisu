@@ -31,6 +31,16 @@ qx.Mixin.define("cv.role.BasicUpdate", {
 
   /*
   ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function() {
+    this.formatValueCache = {};
+  },
+
+
+  /*
+  ******************************************************
     PROPERTIES
   ******************************************************
   */
@@ -42,6 +52,11 @@ qx.Mixin.define("cv.role.BasicUpdate", {
     basicValue: {
       nullable: true,
       init: null
+    },
+    format: {
+      check: "Object",
+      init: {},
+      nullable: true
     }
   },
 
@@ -51,6 +66,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
   ******************************************************
   */
   members: {
+    formatValueCache : null,
 
     applyTransform: function (address, data) {
       if (address) {
@@ -72,8 +88,8 @@ qx.Mixin.define("cv.role.BasicUpdate", {
 
     applyMapping: function (value) {
       var this_map = this.getMapping();
-      if (this_map && Config.templateEngine.mappings[this_map]) {
-        var m = Config.templateEngine.mappings[this_map];
+      if (this_map && cv.ui.Mappings.hasMapping(this_map)) {
+        var m = cv.ui.Mappings.getMapping(this_map);
 
         var ret = value;
         if (m.formula) {
@@ -110,8 +126,8 @@ qx.Mixin.define("cv.role.BasicUpdate", {
      * @return the next value in the list (including wrap around).
      */
     getNextMappedValue: function (value, this_map) {
-      if (this_map && Config.templateEngine.mappings[this_map]) {
-        var keys = Object.keys(Config.templateEngine.mappings[this_map]);
+      if (this_map && cv.ui.Mappings.hasMapping(this_map)) {
+        var keys = Object.keys(cv.ui.Mappings.getMapping(this_map));
         return keys[(keys.indexOf("" + value) + 1) % keys.length];
       }
       return value;
@@ -138,7 +154,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       var value = this.applyTransform(address, data);
 
       // store it to be able to suppress sending of unchanged data
-      this.setBasicValue(value);
+      value !== undefined && this.setBasicValue(value);
 
       // #2: map it to a value the user wants to see
       value = this.applyMapping(value);
@@ -146,7 +162,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       // #3: format it in a way the user understands the value
       value = this.applyFormat(value);
 
-      this.setValue(value);
+      value !== undefined && this.setValue(value);
 
       if (value && value.constructor == Date) {
         switch (this.getAddress()[address][0]) // special case for KNX
@@ -235,15 +251,19 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       if (this.getAlign())
         element.addClass(this.getAlign());
 
-      var valueElement = element.find('.value');
-      valueElement.empty();
+      var valueElement = qx.bom.Selector.query('.value', element)[0];
+      qx.dom.Element.empty(valueElement);
       if (undefined !== value)
         this.defaultValue2DOM(value, function (e) {
-          valueElement.append(e)
+          if (qx.lang.Type.isString(e)) {
+            qx.dom.Element.insertEnd(document.createTextNode(e), valueElement);
+          } else {
+            qx.dom.Element.insertEnd(e, valueElement);
+          }
         });
-      else
-        valueElement.append('-');
-
+      else {
+        qx.dom.Element.insertEnd(document.createTextNode('-'), valueElement);
+      }
       return value;
     }
   }

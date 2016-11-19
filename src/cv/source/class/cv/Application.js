@@ -54,9 +54,10 @@ qx.Class.define("cv.Application",
       if (qx.core.Environment.get("qx.debug")) {
         min = '';
       }
+      qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('cv/designs/designglobals.css'));
 
       var dynLoader = new qx.util.DynamicScriptLoader([
-        "resource/cv/libs/jquery.js"
+        "cv/libs/jquery.js"
       ]);
       dynLoader.addListenerOnce('ready',function(e){
         console.log("all scripts have been loaded!");

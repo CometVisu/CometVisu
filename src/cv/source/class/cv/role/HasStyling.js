@@ -25,7 +25,11 @@ qx.Mixin.define("cv.role.HasStyling", {
   ******************************************************
   */
   properties: {
-    styling: { check: "String" }
+    styling: {
+      check: "String",
+      init: null,
+      nullable: true
+    }
   },
 
   /*
@@ -49,9 +53,9 @@ qx.Mixin.define("cv.role.HasStyling", {
 
     applyStyling: function (value) {
       var sty = cv.ui.Stylings.getStyling(this.getStyling());
-      var e = this.getDomElement().find('.actor:has(".value")');
       if (sty) {
-        e.removeClass(sty['classnames']); // remove only styling classes
+        var e = qx.bom.Selector.query('.actor:has(".value")', this.getDomElement());
+        qx.bom.element.Class.remove(e, sty['classnames']); // remove only styling classes
         if (!this._findValue(value, false, e, sty) && sty['defaultValue'] !== undefined) {
           this._findValue(sty['defaultValue'], true, e, sty);
         }
@@ -63,20 +67,20 @@ qx.Mixin.define("cv.role.HasStyling", {
         return false;
       }
       if (styling[value]) { // fixed value
-        element.addClass(styling[value]);
+        qx.bom.element.Class.add(element, styling[value]);
         return true;
       }
       else {
         var range = styling['range'];
         if (findExact && range[value]) {
-          element.addClass(range[value][1]);
+          qx.bom.element.Class.add(element, range[value][1]);
           return true;
         }
         var valueFloat = parseFloat(value);
         for (var min in range) {
           if (min > valueFloat) continue;
           if (range[min][0] < valueFloat) continue; // check max
-          element.addClass(range[min][1]);
+          qx.bom.element.Class.add(element, range[min][1]);
           return true;
         }
       }

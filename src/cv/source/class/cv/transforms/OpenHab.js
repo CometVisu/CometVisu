@@ -166,7 +166,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           // decode HSV/HSB to RGB
           var hsb = hsbString.split(",");
           var h = parseFloat(hsb[0]), s = parseFloat(hsb[1]), v = parseFloat(hsb[2]);
-          var r, g, b, i, f, p, q, t;
+          var r, g, b, i, f, p, qq, t;
 
           // h = h / 360;
           if (v === 0) {
@@ -178,14 +178,14 @@ qx.Class.define('cv.transforms.OpenHab', {
           i = Math.floor(h);
           f = h - i;
           p = v * (1 - s);
-          q = v * (1 - (s * f));
+          qq = v * (1 - (s * f));
           t = v * (1 - (s * (1 - f)));
           if (i === 0) {
             r = v;
             g = t;
             b = p;
           } else if (i === 1) {
-            r = q;
+            r = qq;
             g = v;
             b = p;
           } else if (i === 2) {
@@ -194,7 +194,7 @@ qx.Class.define('cv.transforms.OpenHab', {
             b = t;
           } else if (i === 3) {
             r = p;
-            g = q;
+            g = qq;
             b = v;
           } else if (i === 4) {
             r = t;
@@ -203,7 +203,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           } else if (i === 5) {
             r = v;
             g = p;
-            b = q;
+            b = qq;
           }
           r = Math.floor(r * 255);
           g = Math.floor(g * 255);

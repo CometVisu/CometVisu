@@ -115,20 +115,18 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
 
     popups            : { init: {} },
     flavour           : { check: "String", init: '', nullable: true },
-    layout            : { check: "String", nullable: true},
+    layout            : { check: "Object", nullable: true},
     label             : { check: "String", init: '', nullable: true },
     bindClickToWidget : { check: "Boolean", init: false },
     mapping           : { check: "String", nullable: true },
-    format            : { check: "String", nullable: true },
-    formatValueCache  : { check: "String" },
     align             : { check: "String", nullable: true },
     classes           : { check: "String", init: '', nullable: true },
     $$actorElement    : { check: "Object" },
     $$valueElement    : { check: "Object" },
     style             : { check: "String", init: '', nullable: true },
-    colspan           : { check: "Number" },
-    colspanM          : { check: "Number" },
-    colspanS          : { check: "Number" },
+    colspan           : { check: "Number", transform: "string2number" },
+    colspanM          : { check: "Number", transform: "string2number" },
+    colspanS          : { check: "Number", transform: "string2number" },
     rowspanClass      : { check: "String" }
   },
 
@@ -144,14 +142,14 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
 
     getActor: function() {
       if (!this.$$actorElement) {
-        this.$$actorElement = this.getDomElement().find(".actor");
+        this.$$actorElement = qx.bom.Selector.query('.actor', this.getDomElement())[0];
       }
       return this.$$actorElement;
     },
 
     getValueElement: function() {
       if (!this.$$valueElement) {
-        this.$$valueElement = this.getDomElement().find(".value");
+        this.$$valueElement = qx.bom.Selector.query(".value", this.getDomElement())[0];
       }
       return this.$$valueElement;
     },

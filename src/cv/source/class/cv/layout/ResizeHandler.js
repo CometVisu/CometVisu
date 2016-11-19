@@ -30,22 +30,22 @@ qx.Class.define('cv.layout.ResizeHandler', {
     width: 0,
     height: 0,
 
-    getPageSize: function () {
-      if (!this.$pageSize) {
+    getPageSize: function (noCache) {
+      if (!this.$pageSize || noCache === true) {
         this.$pageSize = $(qx.bom.Selector.query('#pageSize')[0]);
       }
       return this.$pageSize;
     },
 
-    getNavbarTop: function () {
-      if (!this.$navbarTop) {
+    getNavbarTop: function (noCache) {
+      if (!this.$navbarTop || noCache === true) {
         this.$navbarTop = $(qx.bom.Selector.query('#navbarTop')[0]);
       }
       return this.$navbarTop;
     },
 
-    getNavbarBottom: function () {
-      if (!this.$navbarBottom) {
+    getNavbarBottom: function (noCache) {
+      if (!this.$navbarBottom || noCache === true) {
         this.$navbarBottom = $(qx.bom.Selector.query('#navbarBottom')[0]);
       }
       return this.$navbarBottom;
@@ -150,8 +150,8 @@ qx.Class.define('cv.layout.ResizeHandler', {
         //do nothing
       } else {
         if (
-          (this.getNavbarTop().css('display') !== 'none' && this.getNavbarTop().outerHeight(true) <= 2) ||
-          (this.getNavbarBottom().css('display') !== 'none' && this.getNavbarBottom().innerHeight() <= 2)
+          (this.getNavbarTop(true).css('display') !== 'none' && this.getNavbarTop(true).outerHeight(true) <= 2) ||
+          (this.getNavbarBottom(true).css('display') !== 'none' && this.getNavbarBottom(true).innerHeight() <= 2)
         ) {
           // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
           // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it

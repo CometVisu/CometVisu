@@ -20,7 +20,7 @@ qx.Class.define('cv.Config', {
     backendUrl : null,
     configSuffix : null,
     clientDesign : "",
-    forceReload : false,
+    Uri : false,
     use_maturity : false
   },
 

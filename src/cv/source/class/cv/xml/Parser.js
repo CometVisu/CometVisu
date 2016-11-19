@@ -138,14 +138,14 @@ qx.Class.define('cv.xml.Parser', {
 
       return cv.TemplateEngine.getInstance().widgetDataInsert( path, {
         'bindClickToWidget': bindClickToWidget,
-        'mapping' : $element.attr('mapping'),
-        'format'  : $element.attr('format'),
-        'align'   : $element.attr('align'),
-        'layout'  : layout,
+        'mapping' : $element.attr('mapping') || null,
+        'format'  : $element.attr('format') || null,
+        'align'   : $element.attr('align') || null,
+        'layout'  : layout || null,
         'path'    : path,
-        'label'   : label,
-        'classes' : classes,
-        'style'   : style,
+        'label'   : label || null,
+        'classes' : classes || null,
+        'style'   : style || null,
         '$$type'  : widgetType.toLowerCase(),
         'pageType': pageType
       });
@@ -261,9 +261,9 @@ qx.Class.define('cv.xml.Parser', {
         lookupM     = [ 0, 2, 4,  6,  6,  6,  6, 12, 12, 12, 12, 12, 12 ],
         lookupS     = [ 0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],
         ret_val = '';
-      elementData.colspan = layout.attr('colspan') || $('head').data('colspanDefault') || 6;
-      elementData.colspanM = layout.attr('colspan-m') || lookupM[Math.floor(elementData.colspan)] || elementData.colspan;
-      elementData.colspanS = layout.attr('colspan-s') || lookupS[Math.floor(elementData.colspan)] || elementData.colspan;
+      elementData.colspan = parseFloat(layout.attr('colspan')) || parseFloat($('head').data('colspanDefault')) || 6;
+      elementData.colspanM = parseFloat(layout.attr('colspan-m')) || lookupM[Math.floor(elementData.colspan)] || elementData.colspan;
+      elementData.colspanS = parseFloat(layout.attr('colspan-s')) || lookupS[Math.floor(elementData.colspan)] || elementData.colspan;
       if( layout.attr('rowspan') )
       {
         elementData.rowspanClass = cv.layout.Manager.rowspanClass( layout.attr('rowspan') || 1 );

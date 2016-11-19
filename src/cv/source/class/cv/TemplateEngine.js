@@ -1,5 +1,8 @@
 /**
  *
+ * @asset(cv/config/*.xml)
+ * @asset(cv/demo/*.xml)
+ * @asset(cv/designs/*)
  */
 qx.Class.define('cv.TemplateEngine', {
   extend: cv.Object,
@@ -8,8 +11,6 @@ qx.Class.define('cv.TemplateEngine', {
   construct: function() {
     // this.base(arguments);
     cv.Config.eventHandler = new cv.event.Handler(this);
-
-    this.loadReady = {page: false, plugins: false};
     this.pagePartsHandler = new cv.PagePartsHandler();
   
     this.rememberLastPage = false;
@@ -62,6 +63,12 @@ qx.Class.define('cv.TemplateEngine', {
     addressList: {
       check: "Object",
       init: {}
+    },
+
+    ready: {
+      check: "Boolean",
+      init: false,
+      apply: "_applyReady"
     }
   },
   
@@ -72,12 +79,10 @@ qx.Class.define('cv.TemplateEngine', {
   */
   members: {
 
-    delaySetup: function (id) {
-      this.loadReady[id] = false;
-      return function () {
-        delete this.loadReady[id];
+    _applyReady: function(value) {
+      if (value === true) {
         this.setup_page();
-      }.bind(this);
+      }
     },
 
     /**
@@ -179,17 +184,18 @@ qx.Class.define('cv.TemplateEngine', {
       this.user = 'demo_user'; // example for setting a user
     },
 
+    /**
+     * @deprecated Please use {cv.data.Model.getInstance().addAddress()} instead
+     */
     addAddress: function (address, id) {
-      if (address in this.getAddressList()) {
-        this.getAddressList()[address].push(id);
-      }
-      else {
-        this.getAddressList()[address] = [id];
-      }
+      cv.data.Model.getInstance().addAddress(address, id);
     },
 
+    /**
+     * @deprecated Please use {cv.data.Model.getInstance().getAddresses()} instead
+     */
     getAddresses: function () {
-      return Object.keys(this.getAddressList());
+      return cv.data.Model.getInstance().getAddresses();
     },
 
     bindActionForLoadingFinished: function (fn) {
@@ -209,19 +215,12 @@ qx.Class.define('cv.TemplateEngine', {
 
     parseXML: function (loaded_xml) {
       this.xml = loaded_xml;
-      // erst mal den Cache für AJAX-Requests wieder aktivieren
-      /*
-       $.ajaxSetup({
-       cache : true
-       });
-       */
-
       /*
        * First, we try to get a design by url. Secondly, we try to get a predefined
        */
       // read predefined design in config
       var pagesNode = qx.bom.Selector.query("pages", this.xml)[0];
-      var predefinedDesign = qx.bom.element.Attribute.get(pagesNode, "design");
+
 
       if (qx.bom.element.Attribute.get(pagesNode, "backend") !== null) {
         cv.Config.backend = qx.bom.element.Attribute.get(pagesNode, "backend");
@@ -246,6 +245,7 @@ qx.Class.define('cv.TemplateEngine', {
       this.screensave_time = qx.bom.element.Attribute.get(pagesNode, 'screensave_time');
       this.screensave_page = qx.bom.element.Attribute.get(pagesNode, 'screensave_page');
 
+      var predefinedDesign = qx.bom.element.Attribute.get(pagesNode, "design");
       // design by url
       // design by config file
       if (!cv.Config.clientDesign) {
@@ -260,54 +260,35 @@ qx.Class.define('cv.TemplateEngine', {
       if (qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width') !== null)
         cv.Config.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
 
-      // TODO: implement cv.bom.request.Css (see qx.bom.request.Script)
-      // var getCSSlist = [];
-      // if (cv.Config.clientDesign) {
-      //   getCSSlist.push('css!designs/' + cv.Config.clientDesign + '/basic.css');
-      //   if (!cv.Config.forceNonMobile) {
-      //     getCSSlist.push('css!designs/' + cv.Config.clientDesign + '/mobile.css');
-      //   }
-      //   getCSSlist.push('css!designs/' + cv.Config.clientDesign + '/custom.css');
-      //   getCSSlist.push('designs/' + cv.Config.clientDesign + '/design_setup');
-      // }
-      // require(getCSSlist, this.delaySetup('design'));
+      var scriptsToLoad = [];
+      if (cv.Config.clientDesign) {
+        var baseUri = 'cv/designs/' + cv.Config.clientDesign;
+        qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/basic.css'));
+        if (!cv.Config.forceNonMobile) {
+          qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/mobile.css'));
+        }
+        qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/custom.css'));
+        qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/basic.css'));
+        scriptsToLoad.push('cv/designs/' + cv.Config.clientDesign + '/design_setup.js');
+      }
+
+      var metaParser = new cv.xml.parser.Meta();
 
       // start with the plugins
-      // var pluginsToLoad = [];
-      // $('meta > plugins plugin', this.xml).each(function (i) {
-      //   var name = $(this).attr('name');
-      //   if (name) {
-      //     if (!pluginsToLoad[name]) {
-      //       /*
-      //        pluginsToLoadCount++;
-      //        $.includeScripts(
-      //        ['plugins/' + name + '/structure_plugin.js'],
-      //        this.delaySetup( 'plugin_' + name)
-      //        );
-      //        pluginsToLoad[name] = true;
-      //        */
-      //       pluginsToLoad.push('plugins/' + name + '/structure_plugin');
-      //     }
-      //   }
-      // });
-      /*
-       if (0 == pluginsToLoadCount) {
-       delete loadReady.plugins;
-       }
-       */
-      // var delaySetupPluginsCallback = this.delaySetup('plugins').bind(this);
-      // require(pluginsToLoad, delaySetupPluginsCallback, function (err) {
-      //   console.log('Plugin loading error! It happend with: "' + err.requireModules[0] + '". Is the plugin available and written correctly?');
-      //   delaySetupPluginsCallback();
-      // });
+      qx.lang.Array.append(scriptsToLoad, metaParser.parsePlugins(this.xml));
 
-
-
-     var metaParser = new cv.xml.parser.Meta();
+      // and then the rest
       metaParser.parse(this.xml);
 
-      delete this.loadReady.page;
-      this.setup_page();
+      if (scriptsToLoad.length > 0) {
+        var dynloader = new cv.util.DynamicScriptLoader(scriptsToLoad);
+        dynloader.addListener("ready", function() {
+          this.setReady(true);
+        }, this);
+        dynloader.start();
+      } else {
+        this.setReady(true);
+      }
     },
 
     setup_page: function () {
@@ -759,25 +740,6 @@ qx.Class.define('cv.TemplateEngine', {
 
     getParentPageFromPath: function (path) {
       return this.getParentPageById(path, false);
-    },
-
-    /**
-     * Load a script and run it before page setup.
-     * This is needed for plugin that depend on an external library.
-     */
-    getPluginDependency: function (url) {
-      // $.getScriptSync(url);
-    },
-
-    /**
-     * This has to be called by a plugin once it was loaded.
-     */
-    pluginLoaded: function () {
-      this.pluginsToLoadCount--;
-      if (0 >= this.pluginsToLoadCount) {
-        delete this.loadReady.plugins;
-        this.setup_page();
-      }
     },
 
     /**
