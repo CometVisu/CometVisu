@@ -86,7 +86,7 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
      * @param {Element} actor - DOMElement
      * @param {Boolean} isCanceled - If true the action does nothing
      */
-    action: function( path, actor, isCanceled ) {
+    _action: function( path, actor, isCanceled ) {
       if( isCanceled ) return;
 
       var designs = this.getAvailableDesigns();

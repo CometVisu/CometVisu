@@ -1,4 +1,4 @@
-/* Refresh.js 
+/* Trigger.js 
  * 
  * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
  * 
@@ -21,14 +21,19 @@
 /**
  * TODO: complete docs
  *
- * @module structure/pure/Refresh
+ * @module structure/pure/Trigger
  * @requires structure/pure
  * @author Christian Mayer
- * @since 2014
+ * @since 2012
  */
-qx.Class.define('cv.structure.pure.Refresh', {
+qx.Class.define('cv.structure.pure.Trigger', {
   extend: cv.structure.pure.AbstractWidget,
-  include: [cv.role.Operate, cv.role.HasAnimatedButton, cv.role.BasicUpdate],
+  include: [
+    cv.role.Operate,
+    cv.role.HasAnimatedButton,
+    cv.role.BasicUpdate,
+    cv.role.HandleLongpress
+  ],
 
   /*
   ******************************************************
@@ -41,13 +46,15 @@ qx.Class.define('cv.structure.pure.Refresh', {
     }, this);
   },
 
+
   /*
   ******************************************************
     PROPERTIES
   ******************************************************
   */
   properties: {
-    sendValue: { check: "String", nullable: true }
+    sendValue: { check: "String", init: "0" },
+    shortValue: { check: "String", init: "0" }
   },
 
   /*
@@ -58,8 +65,15 @@ qx.Class.define('cv.structure.pure.Refresh', {
   statics: {
     getAttributeToPropertyMappings: function () {
       return {
-        'value': {target: 'sendValue'}
+        'value'      : { target: 'sendValue' , "default": "0" },
+        'shorttime'  : { target: 'shortThreshold', "default": -1, transform: parseFloat},
+        'shortValue' : { target: 'shortValue', "default": "0" }
       };
+    },
+
+    makeAddressListFn: function( src, transform, mode, variant ) {
+      // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
+      return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
     }
   },
 
@@ -73,13 +87,29 @@ qx.Class.define('cv.structure.pure.Refresh', {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
-    _action: function() {
-      templateEngine.visu.restart();
+    /**
+     * Get the value that should be send to backend after the action has been triggered
+     *
+     * @method getActionValue
+     */
+    getActionValue: function (path, actor, isCanceled, event) {
+      return this.isShortPress() ? this.getShortValue() : this.getSendValue();
+    },
+
+    _action: function( path, actor, isCanceled ) {
+      if( isCanceled ) return;
+
+      var bitMask = (this.isShortPress() ? 1 : 2);
+      var sendValue = this.getActionValue();
+
+      this.sendToBackend(sendValue, function(address) {
+        return !!(address[2] & bitMask);
+      });
     }
   },
 
   defer: function() {
     // register the parser
-    cv.xml.Parser.addHandler("refresh", cv.structure.pure.Refresh);
+    cv.xml.Parser.addHandler("trigger", cv.structure.pure.Trigger);
   }
 });

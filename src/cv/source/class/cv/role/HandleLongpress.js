@@ -17,49 +17,65 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-define(['joose'], function() {
-  Role("cv.role.HandleLongpress", {
+qx.Mixin.define("cv.role.HandleLongpress", {
 
-    has: {
-      shortThreshold: { is: 'r', init: -1 },
-      shortIsDefault: false, // is true use short value if no threshold is set, otherwise use long
-      $$downActionTriggered: -1,
-      $$pressTime: -1
+  /*
+  ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function() {
+    this.addBeforeMethod("downaction", this.saveDownTrigger, this);
+    this.addBeforeMethod("action", this.saveUpTrigger, this);
+  },
+
+
+  /*
+   ******************************************************
+   PROPERTIES
+   ******************************************************
+   */
+  properties: {
+    shortThreshold: {check: "Number", init: -1},
+    shortDefault: {check: "Boolean", init: false} // is true use short value if no threshold is set, otherwise use long
+  },
+
+  /*
+   ******************************************************
+   MEMBERS
+   ******************************************************
+   */
+  members: {
+    $$downActionTriggered: -1,
+    $$pressTime: -1,
+
+    saveDownTrigger: function () {
+      this.$$downActionTriggered = Date.now();
     },
 
-    before: {
+    saveUpTrigger: function () {
+      if (this.$$downActionTriggered > 0) {
+        this.$$pressTime = Date.now() - this.$$downActionTriggered;
+      } else {
+        this.$$pressTime = -1;
+      }
+      this.$$downActionTriggered = -1;
+    },
 
-      downaction: function() {
-        this.$$downActionTriggered = Date.now();
-      },
-
-      action: function() {
-        if (this.$$downActionTriggered > 0) {
-          this.$$pressTime = Date.now() - this.$$downActionTriggered;
-        } else {
-          this.$$pressTime = -1;
-        }
-        this.$$downActionTriggered = -1;
+    isShortPress: function () {
+      if (this.shortThreshold < 0) {
+        return this.isShortDefault();
+      } else {
+        return this.$$pressTime < this.getShortThreshold();
       }
     },
 
-    methods: {
-
-      isShortPress: function() {
-        if (this.shortThreshold < 0) {
-          return this.shortIsDefault === true;
-        } else {
-          return this.$$pressTime < this.shortThreshold;
-        }
-      },
-
-      isLongPress: function() {
-        if (this.shortThreshold < 0) {
-          return this.shortIsDefault === false;
-        } else {
-          return this.$$pressTime >= this.shortThreshold;
-        }
+    isLongPress: function () {
+      if (this.shortThreshold < 0) {
+        return !this.isShortDefault();
+      } else {
+        return this.$$pressTime >= this.getShortThreshold();
       }
     }
-  });
+  }
 });

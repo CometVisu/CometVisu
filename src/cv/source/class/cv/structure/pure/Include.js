@@ -39,7 +39,7 @@ qx.Class.define('cv.structure.pure.Include', {
   ******************************************************
   */
   statics: {
-    maturity: cv.structure.pure.AbstractBasicWidget.my.Maturity.development,
+    maturity: cv.structure.pure.AbstractBasicWidget.Maturity.development,
 
     parse: function( xml, path, flavour, pageType ) {
       // TODO: needs to be tested

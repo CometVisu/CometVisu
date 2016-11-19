@@ -20,6 +20,16 @@
 qx.Mixin.define("cv.role.HasAnimatedButton", {
 
   /*
+   ******************************************************
+   CONSTRUCTOR
+   ******************************************************
+   */
+  construct: function() {
+    this.addBeforeMethod("downaction", this.buttonPressed, this);
+    this.addBeforeMethod("action", this.buttonReleased, this);
+  },
+
+  /*
   ******************************************************
     MEMBERS
   ******************************************************
@@ -34,7 +44,7 @@ qx.Mixin.define("cv.role.HasAnimatedButton", {
      * @param path {String} widget path
      * @param actor {Element} DOM element of the actor
      */
-    beforeDownAction: function(path, actor, isCanceled) {
+    buttonPressed: function(path, actor, isCanceled) {
       if( !actor )
         actor = this.getActor();
       qx.bom.element.Class.add(actor, 'switchPressed');
@@ -49,7 +59,7 @@ qx.Mixin.define("cv.role.HasAnimatedButton", {
      * @param path {String} widget path
      * @param actor {Element} DOM element of the actor
      */
-    beforeAction: function(path, actor, isCanceled) {
+    buttonReleased: function(path, actor, isCanceled) {
       if( !actor )
         actor = this.getActor();
       qx.bom.element.Class.add(actor, 'switchUnpressed');

@@ -35,14 +35,22 @@ qx.Mixin.define("cv.role.Operate", {
      * @param {Boolean} isCanceled - If true the action does nothing
      */
     action: function (path, actor, isCanceled, event) {
-      if (isCanceled) return;
-      if (this.getActionValue) {
-        this.sendToBackend(this.getActionValue(path, actor, isCanceled, event));
+      this.processBeforeChain("action", path, actor, isCanceled, event);
+      if (this._action) {
+        this._action(path, actor, isCanceled, event);
+      } else {
+        if (isCanceled) return;
+        if (this.getActionValue) {
+          this.sendToBackend(this.getActionValue(path, actor, isCanceled, event));
+        }
       }
     },
 
-    downaction: function () {
-
+    downaction: function(path, actor, isCanceled, event) {
+      this.processBeforeChain("downaction", path, actor, isCanceled, event);
+      if (this._downaction) {
+        this._beforeAction(path, actor, isCanceled, event);
+      }
     },
 
     /**
