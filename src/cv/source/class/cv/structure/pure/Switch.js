@@ -97,6 +97,11 @@ qx.Class.define('cv.structure.pure.Switch', {
    */
   members: {
 
+    /**
+     * Called by parent class, which wraps this HTML-String in a widget-container
+     * @returns {String} HTML string of this widget
+     * @protected
+     */
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },

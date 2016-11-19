@@ -33,7 +33,7 @@ qx.Mixin.define("cv.role.Update", {
    ******************************************************
    */
   construct: function () {
-    if (this.getAddress()) {
+    if (this.getAddress) {
       cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
         // initially setting a value
         this.update(undefined, undefined);
@@ -59,7 +59,7 @@ qx.Mixin.define("cv.role.Update", {
         this._update(address, data);
       } else {
         var value = this.processIncomingValue(address, data);
-        this.handleUpdate(value, address);
+        this.handleUpdate && this.handleUpdate(value, address);
       }
     },
 

@@ -31,16 +31,6 @@ qx.Mixin.define("cv.role.BasicUpdate", {
 
   /*
   ******************************************************
-    CONSTRUCTOR
-  ******************************************************
-  */
-  construct: function() {
-    this.formatValueCache = {};
-  },
-
-
-  /*
-  ******************************************************
     PROPERTIES
   ******************************************************
   */
@@ -54,8 +44,8 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       init: null
     },
     format: {
-      check: "Object",
-      init: {},
+      check: "String",
+      init: "",
       nullable: true
     }
   },
@@ -160,7 +150,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       value = this.applyMapping(value);
 
       // #3: format it in a way the user understands the value
-      value = this.applyFormat(value);
+      value = this.applyFormat(value, address);
 
       value !== undefined && this.setValue(value);
 

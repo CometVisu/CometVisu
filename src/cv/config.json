@@ -81,7 +81,17 @@
       {
         "qx.version"     : "5.1",
         "qx.application" : "${APPLICATION}.Application"
-      }
+      },
+      "add-script" : [
+        {
+          "uri" : "resource/cv/libs/sprintf.js"
+        }
+      ],
+      "lint-check" : {
+        "allowed-globals" : [
+          "sprintf"
+        ]
+      },
     },
 
     "source-all-script" :
