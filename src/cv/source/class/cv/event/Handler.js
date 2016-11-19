@@ -69,15 +69,15 @@ qx.Class.define('cv.event.Handler', {
   ******************************************************
   */
   members: {
-    dispatcher: {is: 'rw'},
-    isTouchDevice: {is: 'r'},
-    isWidget: {is: 'r', init: false},
-    scrollElement: {init: null},
-    mouseEvent: {is: 'r'},
-    navbarRegEx: {init: /navbar/},
+    dispatcher: null,
+    isTouchDevice: null,
+    isWidget: false,
+    scrollElement: null,
+    mouseEvent:  null,
+    navbarRegEx: /navbar/,
     // object to hold the coordinated of the current mouse / touch event
-    touchStartX: {is: 'r', init: null},
-    touchStartY: {is: 'r', init: null},
+    touchStartX:  null,
+    touchStartY:  null,
     
     // helper function to get the current actor and widget out of an event:
     getWidgetActor: function (element) {

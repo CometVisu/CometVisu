@@ -72,7 +72,7 @@ qx.Class.define('cv.Transform', {
     addTransform: function (prefix, transforms) {
       for (var trans in transforms) {
         if (transforms[trans].link) {
-          this.registry[prefix + ':' + trans] = $.extend({}, transforms[transforms[trans].link], transforms[trans]);
+          this.registry[prefix + ':' + trans] = qx.lang.Object.mergeWith(qx.lang.Object.clone(transforms[transforms[trans].link]), transforms[trans]);
         } else {
           this.registry[prefix + ':' + trans] = transforms[trans];
         }
@@ -95,6 +95,20 @@ qx.Class.define('cv.Transform', {
     clip: function (min, value, max) {
       value = +value; // enforce number
       return value > min ? (value > max ? max : value) : min;
+    },
+
+    encode: function (transformation, value) {
+      var basetrans = transformation.split('.')[0];
+      return transformation in Transform ? Transform[transformation]
+        .encode(value) : (basetrans in Transform ? Transform[basetrans]
+        .encode(value) : value);
+    },
+
+    decode: function (transformation, value) {
+      var basetrans = transformation.split('.')[0];
+      return transformation in Transform ? Transform[transformation]
+        .decode(value) : (basetrans in Transform ? Transform[basetrans]
+        .decode(value) : value);
     }
   }
 });

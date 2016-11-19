@@ -26,8 +26,7 @@
 qx.Mixin.define("cv.role.BasicUpdate", {
 
   include: [
-    cv.role.HasAddress,
-    cv.role.Transform
+    cv.role.HasAddress
   ],
 
   /*
@@ -57,7 +56,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       if (address) {
         var transform = this.getAddress()[address][0];
         // transform the raw value to a JavaScript type
-        return this.transformDecode(transform, data);
+        return cv.Transform.decode(transform, data);
       }
       return data;
     },
@@ -66,7 +65,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       if (address) {
         var transform = this.getAddress()[address][0];
         // transform the raw value to a JavaScript type
-        return this.transformEncode(transform, data);
+        return cv.Transform.encode(transform, data);
       }
       return data;
     },

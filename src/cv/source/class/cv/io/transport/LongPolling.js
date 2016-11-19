@@ -22,7 +22,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * @param connect (boolean) wether to start the connection or not
      * @method handlethis.session
      */
-    handleSession: function (json, connect) {
+    handleSession: function (ev, connect) {
+      var json = qx.lang.Json.parse(ev.getTarget().getResponse());
       this.sessionId = json.s;
       this.version = json.v.split('.', 3);
 

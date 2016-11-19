@@ -24,7 +24,6 @@
  */
 qx.Mixin.define("cv.role.Update", {
   include: [
-    cv.role.HasAddress,
     cv.role.BasicUpdate
   ],
 
@@ -35,7 +34,7 @@ qx.Mixin.define("cv.role.Update", {
    */
   construct: function () {
     if (this.getAddress()) {
-      cv.MessageBroker.my.subscribe("setup.dom.finished", function () {
+      cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
         // initially setting a value
         this.update(undefined, undefined);
       }, this);
@@ -56,17 +55,12 @@ qx.Mixin.define("cv.role.Update", {
      * @param data {String} the incoming value
      */
     update: function (address, data) {
-      var value = this.processIncomingValue(address, data);
-      this.handleUpdate(value, address);
-    },
-
-    /**
-     * Update styling of the widgets according to the transformed + mapped
-     * incoming value
-     *
-     * @param value
-     */
-    handleUpdate: function (value) {
+      if (this._update) {
+        this._update(address, data);
+      } else {
+        var value = this.processIncomingValue(address, data);
+        this.handleUpdate(value, address);
+      }
     },
 
     processIncomingValue: function (address, data) {

@@ -56,69 +56,70 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
+qx.Class.define('cv.structure.pure.Switch', {
+  extend: cv.structure.pure.AbstractWidget,
+  include: [cv.role.Operate, cv.role.Update],
 
-  qx.Class.define('cv.structure.pure.Switch', {
-    extend: cv.structure.pure.AbstractWidget,
-    include: [cv.role.Operate, cv.role.Update],
+  /*
+   ******************************************************
+   PROPERTIES
+   ******************************************************
+   */
+  properties: {
+    onValue: { check: "String" },
+    offValue: { check: "String" }
+  },
 
-    /*
-    ******************************************************
-      PROPERTIES
-    ******************************************************
-    */
-    properties: {
-      onValue: { check: "String" },
-      offValue: { check: "String" }
-    },
-
-    my : {
-      methods: {
-        getAttributeToPropertyMappings: function () {
-          return {
-            'on_value':   { target: 'onValue',  default: 1 },
-            'off_value':  { target: 'offValue', default: 0 }
-          };
-        }
-      }
-    },
-
-    /*
-    ******************************************************
-      MEMBERS
-    ******************************************************
-    */
-    members: {
-
-      _getInnerDomString: function () {
-        return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
-      },
-
-      /**
-       * Handles the incoming data from the backend for this widget
-       *
-       * @method handleUpdate
-       * @param value {any} incoming data (already transformed + mapped)
-       */
-      handleUpdate: function(value) {
-        var actor = this.getActor();
-        var off = this.applyMapping(this.getOffValue());
-        actor.removeClass(value == off ? 'switchPressed' : 'switchUnpressed');
-        actor.addClass(value == off ? 'switchUnpressed' : 'switchPressed');
-      },
-
-      /**
-       * Get the value that should be send to backend after the action has been triggered
-       *
-       * @method getActionValue
-       */
-      getActionValue: function () {
-        return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
-      }
-    },
-
-    defer: function() {
-      // register the parser
-      cv.xml.Parser.addHandler("switch", cv.structure.pure.Switch);
-      debugger;
+  /*
+   ******************************************************
+   STATICS
+   ******************************************************
+   */
+  statics: {
+    getAttributeToPropertyMappings: function () {
+      return {
+        'on_value': {target: 'onValue', 'default': 1},
+        'off_value': {target: 'offValue', 'default': 0}
+      };
     }
+  },
+
+  /*
+   ******************************************************
+   MEMBERS
+   ******************************************************
+   */
+  members: {
+
+    _getInnerDomString: function () {
+      return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
+    },
+
+    /**
+     * Handles the incoming data from the backend for this widget
+     *
+     * @method handleUpdate
+     * @param value {any} incoming data (already transformed + mapped)
+     */
+    handleUpdate: function(value) {
+      var actor = this.getActor();
+      var off = this.applyMapping(this.getOffValue());
+      actor.removeClass(value == off ? 'switchPressed' : 'switchUnpressed');
+      actor.addClass(value == off ? 'switchUnpressed' : 'switchPressed');
+    },
+
+    /**
+     * Get the value that should be send to backend after the action has been triggered
+     *
+     * @method getActionValue
+     */
+    getActionValue: function () {
+      return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
+    }
+  },
+
+  defer: function() {
+    // register the parser
+    cv.xml.Parser.addHandler("switch", cv.structure.pure.Switch);
+  }
 }); // end define

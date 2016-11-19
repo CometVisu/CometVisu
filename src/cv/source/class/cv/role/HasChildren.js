@@ -45,7 +45,7 @@ qx.Mixin.define("cv.role.HasChildren", {
         data.children = [];
       }
       var childs = $p.children().not('layout').not('label');
-      Joose.A.each(childs, function (child, i) {
+      childs.forEach(function (child, i) {
         var childData = cv.xml.Parser.parse(child, path + '_' + i, flavour, pageType);
         if (childData) {
           if (Array.isArray(childData)) {
@@ -88,7 +88,7 @@ qx.Mixin.define("cv.role.HasChildren", {
     getChildrenDomString: function (noWidgetContainer) {
       var container = '';
 
-      Joose.A.each(this.getChildren(), function (path) {
+      this.getChildren().forEach(function (path) {
         var data = templateEngine.widgetDataGet(path);
         var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
         if (widget) {

@@ -113,8 +113,8 @@ qx.Class.define('cv.PagePartsHandler', {
         if (page === null) return {top: 'true', bottom: 'true', left: 'true', right: 'true'};
         if (typeof page == "string") {
           page = cv.structure.WidgetFactory.getInstanceById(page);
-        } else if (page.attr) {
-          page = cv.structure.WidgetFactory.getInstanceById(page.attr('id'));
+        } else if (page.attributes ) {
+          page = cv.structure.WidgetFactory.getInstanceById(qx.bom.element.Attribute.get(page, 'id'));
         }
 
         if (page == null) return {top: 'true', bottom: 'true', left: 'true', right: 'true'};
@@ -180,7 +180,7 @@ qx.Class.define('cv.PagePartsHandler', {
      */
     updatePageParts: function (xml, speed) {
       // default values
-      var page = cv.structure.WidgetFactory.getInstanceById(xml.attr('id'));
+      var page = cv.structure.WidgetFactory.getInstanceById(qx.bom.element.Attribute.get(xml, 'id'));
       var showtopnavigation = true;
       var showfooter = true;
       var shownavbar = this.getNavbarsVisibility(page);
@@ -268,51 +268,53 @@ qx.Class.define('cv.PagePartsHandler', {
       speed = (speed !== undefined) ? speed : cv.TemplateEngine.getInstance().main_scroll.getSpeed();
       var initCss = {};
       var targetCss = {};
-      var navbar = ('#navbar' + position);
+      var navbar = qx.bom.Selector.query('#navbar' + position)[0];
       var key = position.toLowerCase();
       var fn = function () {
         cv.layout.ResizeHandler.invalidateNavbar();
       };
       switch (direction) {
         case "in":
-          if (navbar.css('display') == 'none') {
+          if (qx.bom.element.Style.get(navbar, "display") == 'none') {
             initCss.display = 'block';
           }
           targetCss[key] = 0;
           switch (position) {
             case "Top":
             case "Bottom":
-              initCss[key] = -navbar.height();
+              initCss[key] = -navbar.getBoundingClientRect().height;
               break;
             case "Left":
             case "Right":
-              initCss[key] = -navbar.width();
+              initCss[key] = -navbar.getBoundingClientRect().width;
               break;
           }
           break;
         case "out":
           fn = function () {
-            navbar.css("display", "none");
+            qx.bom.element.Style.set(navbar, "display", "none");
             cv.layout.ResizeHandler.invalidateNavbar();
           };
           switch (position) {
             case "Top":
             case "Bottom":
-              targetCss[key] = -navbar.height();
+              targetCss[key] = -navbar.getBoundingClientRect().height;
               break;
             case "Left":
             case "Right":
-              targetCss[key] = -navbar.width();
+              targetCss[key] = -navbar.getBoundingClientRect().width;
               break;
           }
           break;
       }
-      navbar.css(initCss);
+      qx.bom.element.Style.setStyles(navbar, initCss);
       if (speed == 0) {
-        navbar.css(targetCss);
+        qx.bom.element.Style.setStyles(navbar, targetCss);
         fn();
       } else {
-        navbar.animate(targetCss, speed, cv.TemplateEngine.getInstance().main_scroll.getEasing(), fn);
+        targetCss.timing = cv.TemplateEngine.getInstance().main_scroll.getEasing();
+        var anim = qx.bom.element.Animation(navbar, targetCss, speed);
+        anim.addListenerOnce("end", fn, this)
       }
     },
 
@@ -340,13 +342,13 @@ qx.Class.define('cv.PagePartsHandler', {
       var level = 1;
       tree.forEach(function (elem) {
         var id = qx.bom.element.Attribute.get(elem, 'id');
-        var topNav = qx.bom.Selector.query('#' + id + 'top_navbar')[0];
+        var topNav = qx.bom.Selector.query('#' + id + 'top_navbar');
         var topData = cv.TemplateEngine.getInstance().widgetDataGet(id + 'top_navbar');
-        var rightNav = qx.bom.Selector.query('#' + id + 'right_navbar')[0];
+        var rightNav = qx.bom.Selector.query('#' + id + 'right_navbar');
         var rightData = cv.TemplateEngine.getInstance().widgetDataGet(id + 'right_navbar');
-        var bottomNav = qx.bom.Selector.query('#' + id + 'bottom_navbar')[0];
+        var bottomNav = qx.bom.Selector.query('#' + id + 'bottom_navbar');
         var bottomData = cv.TemplateEngine.getInstance().widgetDataGet(id + 'bottom_navbar');
-        var leftNav = qx.bom.Selector.query('#' + id + 'left_navbar')[0];
+        var leftNav = qx.bom.Selector.query('#' + id + 'left_navbar');
         var leftData = cv.TemplateEngine.getInstance().widgetDataGet(id + 'left_navbar');
         // console.log(tree.length+"-"+level+"<="+topData.scope);
         if (topNav.length > 0) {

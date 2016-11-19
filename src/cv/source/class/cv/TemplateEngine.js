@@ -1,3 +1,6 @@
+/**
+ *
+ */
 qx.Class.define('cv.TemplateEngine', {
   extend: cv.Object,
   type: "singleton",
@@ -199,9 +202,9 @@ qx.Class.define('cv.TemplateEngine', {
 
     resetPageValues: function () {
       this.currentPage = null;
-      cv.layout.Manager.my.currentPageUnavailableWidth = -1;
-      cv.layout.Manager.my.currentPageUnavailableHeight = -1;
-      cv.layout.Manager.my.currentPageNavbarVisibility = null;
+      cv.layout.Manager.currentPageUnavailableWidth = -1;
+      cv.layout.Manager.currentPageUnavailableHeight = -1;
+      cv.layout.Manager.currentPageNavbarVisibility = null;
     },
 
     parseXML: function (loaded_xml) {
@@ -311,8 +314,8 @@ qx.Class.define('cv.TemplateEngine', {
       // and now setup the pages
 
       // check if the page and the plugins are ready now
-      for (var key in this.loadReady)  // test for emptines
-        return; // we'll be called again...
+      // for (var key in this.loadReady)  // test for emptines
+      //   return; // we'll be called again...
 
       if (!this.xml) {
         return;
@@ -331,7 +334,7 @@ qx.Class.define('cv.TemplateEngine', {
         this.create_pages(page, 'id');
         cv.structure.pure.Page.createFinal();
 
-        cv.MessageBroker.my.publish("setup.dom.finished");
+        cv.MessageBroker.getInstance().publish("setup.dom.finished");
 
         var startpage = 'id_';
         if (cv.Config.startpage) {

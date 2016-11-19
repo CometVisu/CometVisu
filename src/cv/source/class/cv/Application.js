@@ -60,15 +60,16 @@ qx.Class.define("cv.Application",
       ]);
       dynLoader.addListenerOnce('ready',function(e){
         console.log("all scripts have been loaded!");
-      });
-
+        this.__init();
+      }, this);
       dynLoader.addListener('failed',function(e){
         var data = e.getData();
         console.log("failed to load "+data.script);
       });
-
       dynLoader.start();
+    },
 
+    __init: function() {
       var templateEngine = cv.TemplateEngine.getInstance();
 
       qx.event.Registration.addListener(window, 'resize', cv.layout.ResizeHandler.invalidateScreensize);

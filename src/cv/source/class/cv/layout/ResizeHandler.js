@@ -32,21 +32,21 @@ qx.Class.define('cv.layout.ResizeHandler', {
 
     getPageSize: function () {
       if (!this.$pageSize) {
-        this.$pageSize = qx.bom.Selector.query('#pageSize')[0];
+        this.$pageSize = $(qx.bom.Selector.query('#pageSize')[0]);
       }
       return this.$pageSize;
     },
 
     getNavbarTop: function () {
       if (!this.$navbarTop) {
-        this.$navbarTop = qx.bom.Selector.query('#navbarTop')[0];
+        this.$navbarTop = $(qx.bom.Selector.query('#navbarTop')[0]);
       }
       return this.$navbarTop;
     },
 
     getNavbarBottom: function () {
       if (!this.$navbarBottom) {
-        this.$navbarBottom = qx.bom.Selector.query('#navbarBottom')[0];
+        this.$navbarBottom = $(qx.bom.Selector.query('#navbarBottom')[0]);
       }
       return this.$navbarBottom;
     },
@@ -176,10 +176,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makeRowspanValid: function () {
-      var
-        dummyDiv = document.body.appendChild(qx.xml.Document.fromString(
-          '<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>')
-        );
+      document.body.innerHTML += '<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>';
       var bounds = qx.bom.Selector.query('#containerDiv')[0].getBoundingClientRect();
       var styles = '';
 
@@ -190,7 +187,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
           + "px;}\n";
       }
 
-      dummyDiv.remove();
+      qx.bom.Selector.query("#calcrowspan")[0].remove();
 
       // set css style
       qx.bom.Selector.query('#rowspanStyle').innerHTML = styles;

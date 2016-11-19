@@ -103,7 +103,8 @@
     },
 
     "source-script" : {
-      "extend" : ["my-lint-options"]
+      "extend" : ["my-lint-options"],
+      "include": [ "${APPLICATION}.structure.pure.*",  "${APPLICATION}.transforms.*" ]
     },
 
     "source-all-script" : {
@@ -111,7 +112,8 @@
     },
 
     "build-script" : {
-      "extend" : ["my-lint-options"]
+      "extend" : ["my-lint-options"],
+      "include": [ "${APPLICATION}.structure.pure.*",  "${APPLICATION}.transforms.*" ]
     }
 
     // Uncomment the following entry to add a contrib or library to your

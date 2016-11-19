@@ -31,7 +31,7 @@ qx.Class.define('cv.structure.WidgetFactory', {
 
     createInstance: function (type, data) {
       if (!this.registry[data.path]) {
-        if (!cv.structure.pure[type.firstUp()]) {
+        if (!cv.structure.pure[qx.lang.String.firstUp(type)]) {
           // try to find it via parser handler
           var handler = cv.xml.Parser.getHandler(type);
           if (handler) {
@@ -41,7 +41,7 @@ qx.Class.define('cv.structure.WidgetFactory', {
             return null;
           }
         } else {
-          this.registry[data.path] = new cv.structure.pure[type.firstUp()](data);
+          this.registry[data.path] = new cv.structure.pure[qx.lang.String.firstUp(type)](data);
         }
       }
       return this.registry[data.path];

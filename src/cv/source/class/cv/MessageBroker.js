@@ -49,7 +49,7 @@ qx.Class.define('cv.MessageBroker', {
 
 
     enableTestMode: function () {
-      this.singleEventTopics = [];
+      this.__singleEventTopics = [];
     },
 
     subscribeOnce: function (topic, callback, context, priority) {
@@ -57,39 +57,39 @@ qx.Class.define('cv.MessageBroker', {
     },
 
     subscribe: function (topic, callback, context, priority, once) {
-      if (!this.registry[topic]) {
-        this.registry[topic] = [];
+      if (!this.__registry[topic]) {
+        this.__registry[topic] = [];
       }
-      this.registry[topic].push([callback || this, context, priority || 0, once || false]);
+      this.__registry[topic].push([callback || this, context, priority || 0, once || false]);
       // sort by priority
-      this.registry[topic].sort(function (a, b) {
+      this.__registry[topic].sort(function (a, b) {
         return b[2] - a[2];
       })
     },
 
     publish: function (topic) {
-      if (this.registry[topic]) {
+      if (this.__registry[topic]) {
         var remove = [];
-        this.registry[topic].forEach(function (entry, index) {
+        this.__registry[topic].forEach(function (entry, index) {
           entry[0].apply(entry[1], Array.prototype.slice.call(arguments, 1));
           if (entry[3] === true) {
             remove.push(index);
           }
         });
-        if (this.singleEventTopics.indexOf(topic) >= 0) {
+        if (this.__singleEventTopics.indexOf(topic) >= 0) {
           // this is a single-fire event and can only be fired once -> delete listeners
-          delete this.registry[topic];
+          delete this.__registry[topic];
         }
         else {
           remove.forEach(function (index) {
-            this.registry[topic].splice(index, 1);
+            this.__registry[topic].splice(index, 1);
           }, this);
         }
       }
     },
 
     clear: function () {
-      this.registry = {};
+      this.__registry = {};
     }
   } // end my
 });

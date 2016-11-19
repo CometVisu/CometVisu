@@ -76,7 +76,7 @@ qx.Class.define('cv.PageHandler', {
 
       templateEngine.currentPage = page;
 
-      page.addClass('pageActive activePage');// show new page
+      qx.bom.element.Class.addClasses(page, ['pageActive',  'activePage']);// show new page
 
       cv.MessageBroker.getInstance().publish("path."+target+".duringPageChange", target);
 

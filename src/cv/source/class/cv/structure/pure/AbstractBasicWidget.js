@@ -7,6 +7,15 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
 
   /*
   ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(props) {
+    this.set(props);
+  },
+
+  /*
+  ******************************************************
     STATICS
   ******************************************************
   */
@@ -16,15 +25,6 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
     Maturity : {
       release: 0,
       development: 1
-    },
-
-    getElementType: function(element) {
-      var type = element.nodeName.toLowerCase();
-      if (type == "img") {
-        // workaround for unittests (<image> gets replaced by <img>
-        type = "image";
-      }
-      return type;
     },
 
     parse: function (element, path, flavour, pageType) {
@@ -42,10 +42,17 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
   ******************************************************
   */
   properties: {
-    path              : { },
-    $$type            : { },
-    $$domElement      : { },
-    pageType          : { }
+    path : {
+      check: "String"
+    },
+    $$type : {
+      check: "String"
+    },
+    $$domElement : { },
+    pageType  : {
+      check: ["text", "2d", "3d"],
+      init: "text"
+    }
   },
 
   /*

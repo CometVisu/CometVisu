@@ -50,8 +50,8 @@ qx.Class.define('cv.util.IconTools', {
     iconDelay: [],    // array of all icons to fill where the Image is not ready yet
     iconDelayFn: null,       // handler for delay function
 
-    tmpCanvas: qx.dom.Element.create('canvas'),
-    tmpCtx: cv.util.IconTools.tmpCanvas.getContext('2d'),
+    tmpCanvas: null,
+    tmpCtx: null,
 
     iconDelayed: function (icon, colors, color) {
       cv.util.IconTools.iconDelay.push([icon, colors, color]);
@@ -245,5 +245,11 @@ qx.Class.define('cv.util.IconTools', {
         return '<svg ' + style + 'class="' + classes + '"><use xlink:href="icon/knx-uf-iconset.svg#kuf-' + iconID + '"></use></svg>';
       }
     }
+  },
+
+  defer: function() {
+    var canvas = qx.dom.Element.create('canvas');
+    this.defer.self.tmpCanvas = canvas;
+    this.defer.self.tmpCtx = canvas.getContext('2d');
   }
 });

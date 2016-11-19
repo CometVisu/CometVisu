@@ -18,7 +18,6 @@
  */
 
 qx.Mixin.define("cv.role.Operate", {
-  include: cv.role.Transform,
 
   /*
   ******************************************************
@@ -57,7 +56,7 @@ qx.Mixin.define("cv.role.Operate", {
       if (this.meta.hasAttribute('address')) {
         Joose.O.eachOwn(this.getAddress(), function (address, id) {
           if (!!(address[1] & 2) && (!filter || filter(address))) {
-            templateEngine.visu.write(id, this.transformEncode(address[0], value));
+            templateEngine.visu.write(id, cv.Transform.encode(address[0], value));
           }
         }, this);
       }
