@@ -59,16 +59,16 @@ qx.Class.define('cv.PagePartsHandler', {
   members: {
     navbars: null,
 
-
     updateTopNavigation: function (path) {
-      path = path.split('_');
-      var id = path[0];
-      var pageTitle = qx.bom.Selector.query("#"+id+"_ h1")[0].textContent;
-      var nav = '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '_\')">'
+      path = path.split('_'); path.pop();
+      var id = "id_"; //path[0];
+      var pageTitle = qx.bom.Selector.query("#"+id+" h1")[0].textContent;
+      var nav = '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')">'
         + pageTitle + '</a>';
       for (var i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
         id += path[i] + '_';
         if (qx.bom.element.Class.has(qx.bom.Selector.query("#"+id)[0], "page")) { // FIXME is this still needed?!?
+          pageTitle = qx.bom.Selector.query("#"+id+" h1")[0].textContent;
           nav += '<span> &#x25ba; </span>'
             + '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')">'
             + pageTitle + '</a>';
@@ -132,7 +132,7 @@ qx.Class.define('cv.PagePartsHandler', {
         }
         if (page != null) {
           // traverse up the page tree for shownavbar
-          var parentPage = page.getParent();
+          var parentPage = cv.util.Tree.getParentWidget(page, 'page');
           while (parentPage != null) {
             // do we need to go further? Check for inheritance
             var inherit = false;
@@ -159,7 +159,7 @@ qx.Class.define('cv.PagePartsHandler', {
               // we are done
               break;
             }
-            parentPage = parentPage.getParent();
+            parentPage = cv.util.Tree.getParentWidget(parentPage, 'page');
           }
         }
         // set default values for shownavbar if not set otherwise
@@ -190,27 +190,27 @@ qx.Class.define('cv.PagePartsHandler', {
           showtopnavigation = page.getShowTopNavigation();
         } else {
           // traverse up the page tree
-          var parentPage = page.getParent();
+          var parentPage = cv.util.Tree.getParentWidget(page, 'page');
           while (parentPage != null) {
 
             if (parentPage.getShowTopNavigation() != undefined) {
               showtopnavigation = parentPage.getShowTopNavigation();
               break;
             }
-            parentPage = parentPage.getParent();
+            parentPage = cv.util.Tree.getParentWidget(parentPage, 'page');
           }
         }
         if (page.getShowFooter() != undefined) {
           showfooter = page.getShowFooter();
         } else {
           // traverse up the page tree
-          var parentPage = page.getParent();
+          var parentPage = cv.util.Tree.getParentWidget(page, 'page');
           while (parentPage != null) {
             if (parentPage.getShowFooter() != undefined) {
               showfooter = parentPage.getShowFooter();
               break;
             }
-            parentPage = parentPage.getParent();
+            parentPage = cv.util.Tree.getParentWidget(parentPage, 'page');
           }
         }
       }

@@ -24,8 +24,9 @@ qx.Mixin.define('cv.oo.MMethodChaining', {
 
     processBeforeChain: function() {
       var name = [].splice.call(arguments, 0, 1);
+      var args = arguments;
       this.__chain[name] && this.__chain[name].forEach(function(entry) {
-        entry[0].apply(entry[1] || this, arguments);
+        entry[0].apply(entry[1] || this, args);
       }, this);
     }
   }
