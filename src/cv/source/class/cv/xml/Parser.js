@@ -305,9 +305,9 @@ qx.Class.define('cv.xml.Parser', {
      * this function implements all widget layouts that are identical (JNK)
      * implemented: rowspan, colspan
      * @method setWidgetLayout
-     * @param {} page
-     * @param {} path
-     * @return ret_val
+     * @param page {Element} XML-Element from the config file for this widget
+     * @param path {String}
+     * @return {String} rowspan class or empty string
      */
     setWidgetLayout: function( page, path ) {
       var
