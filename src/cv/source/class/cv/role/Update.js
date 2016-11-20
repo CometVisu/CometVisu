@@ -64,6 +64,9 @@ qx.Mixin.define("cv.role.Update", {
     },
 
     processIncomingValue: function (address, data) {
+      if (this._processIncomingValue) {
+        return this._processIncomingValue(address, data);
+      }
       return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
     },
 

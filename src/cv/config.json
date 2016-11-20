@@ -53,7 +53,10 @@
     "job-shadowing" : [
       "common",
       "dependencies",
-      "source-all-script"
+      "source-all-script",
+      "build-script",
+      "lint",
+      "source-script"
     ]
   },
 

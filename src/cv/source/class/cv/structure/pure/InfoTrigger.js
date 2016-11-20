@@ -67,7 +67,7 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
       init: false
     },
     'min': {
-      checK: "Number",
+      check: "Number",
       init: 0
     },
     'max': {
@@ -88,11 +88,11 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
   statics: {
     getAttributeToPropertyMappings: function () {
       return {
-        'downvalue': {target: 'downValue', "default": 0},
-        'shortdownvalue': {target: 'shortDownValue', "default": 0},
+        'downvalue': {target: 'downValue', "default": "0"},
+        'shortdownvalue': {target: 'shortDownValue', "default": "0"},
         'downlabel': {target: 'downLabel'},
-        'upvalue': {target: 'upValue', "default": 0},
-        'shortupvalue': {target: 'shortUpValue', "default": 0},
+        'upvalue': {target: 'upValue', "default": "0"},
+        'shortupvalue': {target: 'shortUpValue', "default": "0"},
         'uplabel': {target: 'upLabel'},
         'shorttime': {target: 'shortThreshold', transform: parseFloat, "default": -1},
         'change': {
@@ -176,7 +176,7 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
       }
     },
 
-    action: function (path, actor, isCanceled) {
+    _action: function (path, actor, isCanceled) {
       if (isCanceled) return;
 
       var value = this.getActionValue(path, actor, isCanceled);
