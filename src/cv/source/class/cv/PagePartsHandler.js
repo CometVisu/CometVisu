@@ -88,15 +88,13 @@ qx.Class.define('cv.PagePartsHandler', {
       var cssSize = size + (isFinite(size) ? 'px' : '');
       switch (position) {
         case 'left':
-          $('#navbarLeft').css({
-            width: cssSize
-          });
+          qx.bom.element.Style.set(qx.bom.Selector.query('#navbarLeft')[0], "width", cssSize);
           cv.layout.ResizeHandler.invalidateNavbar();
           break;
 
         case 'right':
-          $('#centerContainer').css('padding-right', cssSize);
-          $('#navbarRight').css({
+          qx.bom.element.Style.set(qx.bom.Selector.query('#centerContainer')[0], "padding-right", cssSize);
+          qx.bom.element.Style.setStyles(qx.bom.Selector.query('#navbarLeft')[0], {
             width: cssSize,
             'margin-right': '-' + cssSize
           });
@@ -214,35 +212,38 @@ qx.Class.define('cv.PagePartsHandler', {
           }
         }
       }
-
+      var topDisplay = qx.bom.element.Style.get(qx.bom.Selector.query("#top")[0], "display");
+      var bottomDisplay = qx.bom.element.Style.get(qx.bom.Selector.query("#bottom")[0], "display");
       if (showtopnavigation) {
-        if ($('#top').css("display") == "none") {
-          $('#top, #top > *').css("display", "block");
+        if (topDisplay == "none") {
+          qx.bom.Selector.query('#top, #top > *').forEach(function(elem) {
+            qx.bom.element.Style.set(elem, "display", "block");
+          }, this);
           this.removeInactiveNavbars(page.getPath());
         }
       } else {
-        if ($('#top').css("display") != "none") {
-          $('#top').css("display", "none");
+        if (topDisplay != "none") {
+          qx.bom.element.Style.set(qx.bom.Selector.query("#top")[0], "display", "none");
           this.removeInactiveNavbars(page.getPath());
         }
       }
       if (showfooter) {
-        if ($('#bottom').css("display") == "none") {
-          $('#bottom').css("display", "block");
+        if (bottomDisplay == "none") {
+          qx.bom.element.Style.set(qx.bom.Selector.query("#bottom")[0], "display", "block");
           this.removeInactiveNavbars(page.getPath());
         }
       } else {
-        if ($('#bottom').css("display") != "none") {
-          $('#bottom').css("display", "none");
+        if (bottomDisplay!= "none") {
+          qx.bom.element.Style.set(qx.bom.Selector.query("#bottom")[0], "display", "none");
           this.removeInactiveNavbars(page.getPath());
         }
       }
       ['Left', 'Top', 'Right', 'Bottom'].forEach(function (value) {
         var
           key = value.toLowerCase(),
-          $navbar = $('#navbar' + value),
-          display = $navbar.css("display"),
-          isLoading = $navbar[0].classList.contains('loading');
+          navbar = qx.bom.Selector.query('#navbar' + value)[0],
+          display = qx.bom.element.Style.get(navbar, "display"),
+          isLoading = qx.bom.element.Class.has(navbar, 'loading');
         if (shownavbar[key] == 'true') {
           if (display == "none" || isLoading) {
             this.fadeNavbar(value, "in", speed);
@@ -253,7 +254,7 @@ qx.Class.define('cv.PagePartsHandler', {
             this.fadeNavbar(value, "out", speed);
           }
         }
-      }.bind(this));
+      }, this);
       cv.layout.ResizeHandler.invalidateNavbar();
     },
 
@@ -334,16 +335,15 @@ qx.Class.define('cv.PagePartsHandler', {
      */
     initializeNavbars: function (page_id) {
       this.removeInactiveNavbars(page_id);
-      var tree = [qx.bom.Selector.query('#id_')[0]];
+      var tree = qx.bom.Selector.query('#id_');
       if (page_id != "id_") {
         var parts = page_id.split("_");
         parts.pop();
         parts[0] = '';
         for (var i = 0; i < parts.length; i++) {
-          var item = qx.bom.Selector.query('#id' + parts.slice(0, i + 1).join('_') + "_.page",
-            '#pages');
+          var item = qx.bom.Selector.query('#id' + parts.slice(0, i + 1).join('_') + "_.page");
           if (item.length == 1) {
-            tree.push(item.get(0));
+            tree.push(item[0]);
           }
         }
       }
