@@ -57,7 +57,6 @@ qx.Class.define('cv.MessageBroker', {
     },
 
     subscribe: function (topic, callback, context, priority, once) {
-      this.debug("subscription to "+topic+" added");
       if (!this.__registry[topic]) {
         this.__registry[topic] = [];
       }
@@ -70,7 +69,6 @@ qx.Class.define('cv.MessageBroker', {
 
     publish: function (topic) {
       if (this.__registry[topic]) {
-        this.debug("publishing message on topic "+topic+" to "+this.__registry[topic].length+" listeners");
         var remove = [];
         var args = Array.prototype.slice.call(arguments, 1);
         this.__registry[topic].forEach(function (entry, index) {
@@ -88,8 +86,6 @@ qx.Class.define('cv.MessageBroker', {
             this.__registry[topic].splice(index, 1);
           }, this);
         }
-      } else {
-        this.debug("publishing message on topic "+topic+" to 0 listeners");
       }
     },
 

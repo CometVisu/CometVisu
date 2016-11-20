@@ -70,6 +70,16 @@ qx.Class.define('cv.xml.Parser', {
       return this.__hooks[type][tagname] || [];
     },
 
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     * @return {Map} widget data
+     */
     parse: function (xml, path, flavour, pageType) {
       var parser = this.getHandler(xml.nodeName);
       var result = null;
@@ -97,12 +107,12 @@ qx.Class.define('cv.xml.Parser', {
      * Parses the widgets XML configuration and extracts the given information
      * to a simple key/value map.
      *
-     * @method create
-     * @param {Element} element - XML-Element
-     * @param {String} path - internal path of the widget
-     * @param {String} flavour - Flavour of the widget
-     * @param {String} pageType - Page type (2d, 3d, ...)
-     * @return {String} HTML code
+     * @param handler {Class} Handler class that parses this element
+     * @param element {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     * @return {Map} HTML code
      */
     __parse: function (handler, element, path, flavour, pageType) {
       // and fill in widget specific data
@@ -126,6 +136,13 @@ qx.Class.define('cv.xml.Parser', {
       return data;
     },
 
+    /**
+     * Get the mappings needed for parsing from the handler
+     *
+     * @param handler {Class} parser handler
+     * @returns {Map} parser configuration: describes how Attributes are mapped to properties
+     * @private
+     */
     __getAttributeToPropertyMappings: function(handler) {
       return handler && handler.getAttributeToPropertyMappings ? handler.getAttributeToPropertyMappings() : {};
     },
@@ -145,14 +162,14 @@ qx.Class.define('cv.xml.Parser', {
 
     /**
      * Create a default widget to be filled by the creator afterwards.
-     * Note: the reciever of the returned string must add an </div> closing element!
-     * @method createDefaultWidget
+     * Note: the receiver of the returned string must add an </div> closing element!
+     *
      * @param widgetType {String} of the widget type
      * @param $element   {Object} the XML element
      * @param path       {String} of the path ID
-     * @param flavour
-     * @param pageType
-     * @return ret_val
+     * @param flavour   {String} Flavour
+     * @param pageType  {String} one of text, 2d and 3d
+     * @return {Map] parsed widget data
      */
     createDefaultWidget: function(handler, widgetType, $element, path, flavour, pageType) {
       if (handler.createDefaultWidget) {
@@ -208,10 +225,10 @@ qx.Class.define('cv.xml.Parser', {
 
     /**
      * Parse config file layout element and convert it to an object
-     * @method parseLayout
-     * @param {} layout
-     * @param {} defaultValues
-     * @return ret_val
+     *
+     * @param layout
+     * @param defaultValues
+     * @returns {Map}
      */
     parseLayout: function( layout, defaultValues )
     {
@@ -237,13 +254,6 @@ qx.Class.define('cv.xml.Parser', {
       return ret_val;
     },
 
-    /**
-     * Description
-     * @method extractLayout
-     * @param {} layout
-     * @param {} pageType
-     * @return ret_val
-     */
     extractLayout: function( layout, pageType )
     {
 
@@ -256,12 +266,6 @@ qx.Class.define('cv.xml.Parser', {
       return ret_val;
     },
 
-    /**
-     * Description
-     * @method extractLayout3d
-     * @param {} layout
-     * @return ret_val
-     */
     extractLayout3d: function( layout )
     {
       var ret_val = {};
@@ -274,15 +278,6 @@ qx.Class.define('cv.xml.Parser', {
       return ret_val;
     },
 
-    /**
-     * Description
-     * @method extractLabel
-     * @param {} label
-     * @param {} flavour
-     * @param {} labelClass
-     * @param {} style
-     * @return BinaryExpression
-     */
     extractLabel: function( label, flavour, labelClass, style )
     {
       if( !label ) return '';
