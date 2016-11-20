@@ -159,17 +159,19 @@ qx.Class.define('cv.layout.Manager', {
       ['#navbarTop', '#navbarLeft', '#main', '#navbarRight', '#navbarBottom'].forEach(function (area) {
         var allContainer = qx.bom.Selector.query(area + ' .widget_container');
         if (allContainer.length > 0) {
-          var
-            areaColumns = qx.bom.element.Dataset.get(allContainer[0], 'columns'),
-            widget = cv.structure.WidgetFactory.getInstanceByElement(allContainer[0]),
-            ourColspan = this.getWidgetColspan(widget);
+          var areaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query(area)[0], 'columns');
+          allContainer.forEach(function(child) {
+            var widget = cv.structure.WidgetFactory.getInstanceByElement(child),
+              ourColspan = this.getWidgetColspan(widget);
 
-          var w = 'auto';
-          if (ourColspan > 0) {
-            var areaColspan = areaColumns || cv.Config.defaultColumns;
-            w = Math.min(100, ourColspan / areaColspan * 100) + '%';
-          }
-          qx.bom.element.Style.set(allContainer[0], 'width', w);
+            var w = 'auto';
+            if (ourColspan > 0) {
+              var areaColspan = areaColumns || cv.Config.defaultColumns;
+              w = Math.min(100, ourColspan / areaColspan * 100) + '%';
+            }
+            qx.bom.element.Style.set(child, 'width', w);
+          }, this);
+
         }
 
         // and elements inside groups
