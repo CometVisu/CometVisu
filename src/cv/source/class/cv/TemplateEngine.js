@@ -3,6 +3,7 @@
  * @asset(cv/config/*.xml)
  * @asset(cv/demo/*.xml)
  * @asset(cv/designs/*)
+ * @asset(cv/icon/*)
  */
 qx.Class.define('cv.TemplateEngine', {
   extend: cv.Object,

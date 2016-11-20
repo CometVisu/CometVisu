@@ -237,12 +237,13 @@ qx.Class.define('cv.util.IconTools', {
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
         }
+        var iconPath = qx.util.ResourceManager.getInstance().toUri('cv/icon/knx-uf-iconset.svg');
 
         var style = '';
         if (color)
           style = 'style="color:' + color + '" ';
 
-        return '<svg ' + style + 'class="' + classes + '"><use xlink:href="icon/knx-uf-iconset.svg#kuf-' + iconID + '"></use></svg>';
+        return '<svg ' + style + 'class="' + classes + '"><use xlink:href="'+iconPath+'#kuf-' + iconID + '"></use></svg>';
       }
     }
   },
