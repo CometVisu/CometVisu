@@ -310,9 +310,9 @@ qx.Class.define('cv.TemplateEngine', {
         }, this);
 
         // run the Trick-O-Matic scripts for great SVG backdrops
-        qx.bom.Selector.query('embed').forEach(function () {
-          this.onload = Trick_O_Matic
-        });
+        // qx.bom.Selector.query('embed').forEach(function () {
+        //   this.onload = Trick_O_Matic
+        // });
 
         if (cv.Config.enableAddressQueue) {
           // identify addresses on startpage

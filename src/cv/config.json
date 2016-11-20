@@ -67,6 +67,9 @@
         "allowed-globals" : [
           "$",
           "jQuery",
+          "THREE",
+          "sprintf",
+          "fillRecoloredIcon"
         ]
       }
     },
@@ -85,13 +88,11 @@
       "add-script" : [
         {
           "uri" : "resource/cv/libs/sprintf.js"
+        },
+        {
+          "uri" : "resource/cv/libs/Three.js"
         }
-      ],
-      "lint-check" : {
-        "allowed-globals" : [
-          "sprintf"
-        ]
-      },
+      ]
     },
 
     "source-all-script" :

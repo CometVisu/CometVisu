@@ -251,12 +251,6 @@ qx.Class.define('cv.structure.pure.Page', {
       return undefined;
     },
 
-    /**
-     * Description
-     * @method update
-     * @param {} ga
-     * @param {} data
-     */
     _update: function( ga, data ) {
       // widgetData  = cv.data.Model.getInstance().getWidgetDataByElement( element );
       // var value = this.defaultValueHandling( ga, data, widgetData );
@@ -287,61 +281,9 @@ qx.Class.define('cv.structure.pure.Page', {
       }
       // }
     }
-  }
-});
-
-/**
- * @class cv.structure.pure.PageLink
- */
-qx.Class.define('cv.structure.pure.PageLink', {
-  extend: cv.structure.pure.AbstractWidget,
-
-  /*
-   ******************************************************
-   PROPERTIES
-   ******************************************************
-   */
-  properties: {
-    name : {
-      check: "String"
-    },
-    wstyle : {
-      check: "String",
-      nullable: true
-    },
-    address : {
-      check: "Object",
-      init: {}
-    }
-  },
-
-  /*
-  ******************************************************
-    MEMBERS
-  ******************************************************
-  */
-  members: {
-    getDomString: function() {
-      var layout = this.getLayout();
-
-      var style = qx.lang.Type.isObject(layout) ? '' : 'style="' + cv.xml.Parser.extractLayout(layout, this.getPageType()) + '"';
-
-      var ret_val = '<div class="widget clearfix link pagelink ' + this.getClasses() + '" ' + style + '>';
-      ret_val += '<div class="actor" ' + this.getWstyle() + '><a href="javascript:">' + this.getName() + '</a></div>';
-      ret_val += '</div>';
-      return ret_val;
-    },
-
-    action: function( path, actor, isCanceled ) {
-      if( isCanceled ) return;
-
-      cv.TemplateEngine.getInstance().scrollToPage( path + '_' );
-    }
   },
 
   defer: function() {
-
     cv.xml.Parser.addHandler("page", cv.structure.pure.Page);
-    cv.xml.Parser.addHandler("pagelink", cv.structure.pure.PageLink);
   }
-}); // end define
+});

@@ -82,7 +82,7 @@ qx.Class.define('cv.util.Tree', {
     * ********************************************************
     */
     getChildElements: function(element, selector) {
-      return qx.bom.Hierarchy.getChildElements(element).filter(function(child) {
+      return qx.dom.Hierarchy.getChildElements(element).filter(function(child) {
         if (selector) {
           return qx.bom.Selector.matches(selector, child);
         } else {

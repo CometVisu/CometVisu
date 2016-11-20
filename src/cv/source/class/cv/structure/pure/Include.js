@@ -43,7 +43,7 @@ qx.Class.define('cv.structure.pure.Include', {
 
     parse: function( xml, path, flavour, pageType ) {
       // TODO: needs to be tested
-      var ajaxRequest = new qx.io.request.Xhr(xml.getAttribute(src));
+      var ajaxRequest = new qx.io.request.Xhr(xml.getAttribute("src"));
       ajaxRequest.set({
         accept: "application/xml",
         async: false

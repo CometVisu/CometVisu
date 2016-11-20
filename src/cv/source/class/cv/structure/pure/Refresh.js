@@ -75,7 +75,7 @@ qx.Class.define('cv.structure.pure.Refresh', {
     },
 
     _action: function() {
-      templateEngine.visu.restart();
+      cv.TemplateEngine.getInstance().visu.restart();
     }
   },
 

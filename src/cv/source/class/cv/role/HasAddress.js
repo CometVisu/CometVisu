@@ -81,9 +81,6 @@ qx.Mixin.define("cv.role.HasAddress", {
             mode = 1 | 2;
             break;
         }
-        if (element.tagName === "trigger") {
-          debugger;
-        }
         var variantInfo = this.makeAddressListFn ? this.makeAddressListFn(src, transform, mode, qx.bom.element.Attribute.get(elem, 'variant')) : [true, undefined];
         if ((mode & 1) && variantInfo[0]) {// add only addresses when reading from them
           cv.data.Model.getInstance().addAddress(src, id);

@@ -87,7 +87,7 @@ qx.Class.define('cv.Config', {
       if (!isNaN(cv.Config.url_maturity - 0)) {
         cv.Config.use_maturity = cv.Config.url_maturity - 0; // given directly as number
       } else {
-        cv.Config.use_maturity = Maturity[cv.Config.url_maturity]; // or as the ENUM name
+        cv.Config.use_maturity = cv.structure.pure.AbstractBasicWidget.Maturity[cv.Config.url_maturity]; // or as the ENUM name
       }
     }
 
