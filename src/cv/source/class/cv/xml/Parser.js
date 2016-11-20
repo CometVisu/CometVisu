@@ -11,7 +11,7 @@ qx.Class.define('cv.xml.Parser', {
     __handlers: {},
     __hooks: {
       before: {},
-      after: {},
+      after: {}
     },
     lookupM : [ 0, 2, 4,  6,  6,  6,  6, 12, 12, 12, 12, 12, 12 ],
     lookupS : [ 0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],

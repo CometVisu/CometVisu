@@ -29,6 +29,8 @@ qx.Class.define('cv.layout.ResizeHandler', {
     width: 0,
     height: 0,
 
+    __request : null,
+
     getPageSize: function (noCache) {
       if (!this.$pageSize || noCache === true) {
         this.$pageSize = qx.bom.Selector.query('#pageSize')[0];
@@ -50,7 +52,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
       return this.$navbarBottom;
     },
 
-    makeAllSizesValid: function () {
+    __makeAllSizesValid: function () {
       this.invalidPagesize && this.makePagesizeValid(); // must be first due to dependencies
       this.invalidNavbar && this.makeNavbarValid();
       this.invalidRowspan && this.makeRowspanValid();
@@ -152,11 +154,11 @@ qx.Class.define('cv.layout.ResizeHandler', {
         var navbarBottom = this.getNavbarBottom(true);
         if (
           (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && navbarTop.getBoundingClientRect().height <= 2) ||
-          (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && navbarBottom.getBoundingClientRect() <= 2)
+          (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && navbarBottom.getBoundingClientRect().height <= 2)
         ) {
           // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
           // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
-          window.requestAnimationFrame(this.invalidateNavbar.bind(this));
+          qx.bom.AnimationFrame.request(this.invalidateNavbar, this);
           return;
         }
       }
@@ -212,5 +214,9 @@ qx.Class.define('cv.layout.ResizeHandler', {
       this.invalidBackdrop = true;
       this.makeAllSizesValid();
     }
+  },
+
+  defer: function() {
+    cv.layout.ResizeHandler.makeAllSizesValid = qx.util.Function.debounce(cv.layout.ResizeHandler.__makeAllSizesValid, 10, true);
   }
 });
