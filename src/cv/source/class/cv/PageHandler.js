@@ -60,7 +60,6 @@ qx.Class.define('cv.PageHandler', {
   members: {
 
     seekTo : function( target, speed ) {
-      console.trace();
       var currentPath = this.getCurrentPath();
       currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".exitingPageChange", currentPath, target);
 
@@ -122,6 +121,7 @@ qx.Class.define('cv.PageHandler', {
         qx.bom.element.Class.addClasses(qx.bom.Selector.query('#' + target)[0], ['pageActive', 'activePage']);// show new page
         qx.bom.element.Style.set(pagesNode, 'left', 0 );
         currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".afterPageChange", currentPath);
+        currentPath !== '' && cv.MessageBroker.getInstance().publish("path.pageChanged", target);
       }, this);
     },
 

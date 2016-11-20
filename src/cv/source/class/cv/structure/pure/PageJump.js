@@ -35,18 +35,6 @@ qx.Class.define('cv.structure.pure.PageJump', {
 
   /*
   ******************************************************
-    CONSTRUCTOR
-  ******************************************************
-  */
-  construct: function(props) {
-    this.base(arguments, props);
-    // because the parent page relation is not set yet, we have to use the data model traversion to find the parent page
-    var page = cv.util.Tree.getParentPageData(this.getPath());
-    cv.MessageBroker.getInstance().subscribe("path."+page.path+".afterPageChange", cv.structure.pure.PageJump._onScrollToPage, this);
-  },
-
-  /*
-  ******************************************************
     STATICS
   ******************************************************
   */
@@ -75,7 +63,6 @@ qx.Class.define('cv.structure.pure.PageJump', {
       var page = cv.structure.WidgetFactory.getInstanceById(page_id);
       var model = cv.data.Model.getInstance();
       var name = page.getName();
-
 
       // remove old active classes
       qx.bom.Selector.query('.pagejump.active').forEach(function(elem) {
@@ -175,5 +162,6 @@ qx.Class.define('cv.structure.pure.PageJump', {
     // register the parser
     cv.xml.Parser.addHandler("pagejump", cv.structure.pure.PageJump);
     cv.xml.Parser.addHook("pagejump", "after", cv.structure.pure.PageJump.afterParse, cv.structure.pure.PageJump);
+    cv.MessageBroker.getInstance().subscribe("path.pageChanged", cv.structure.pure.PageJump._onScrollToPage, this);
   }
 });
