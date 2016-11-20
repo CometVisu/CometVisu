@@ -51,6 +51,10 @@ qx.Class.define('cv.structure.WidgetFactory', {
       return this.registry[id];
     },
 
+    getInstanceByElement: function(element) {
+      return this.getInstanceById(qx.bom.element.Attribute.get(element, 'id'));
+    },
+
     clear: function () {
       this.registry = {};
     }

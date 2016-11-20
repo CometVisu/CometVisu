@@ -307,11 +307,11 @@ qx.Class.define('cv.structure.pure.PageLink', {
     },
     wstyle : {
       check: "String",
-      init: ''
+      nullable: true
     },
     address : {
-      check: "Array",
-      init: []
+      check: "Object",
+      init: {}
     }
   },
 

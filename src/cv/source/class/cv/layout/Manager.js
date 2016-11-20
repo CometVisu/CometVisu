@@ -140,59 +140,66 @@ qx.Class.define('cv.layout.Manager', {
     },
 
     dataColspan: function (data) {
-      if (this.width <= cv.Config.maxScreenWidthColspanS)
+      var width = this.getAvailableWidth();
+      if (width <= cv.Config.maxScreenWidthColspanS)
         return data.colspanS;
-      if (this.width <= cv.Config.maxScreenWidthColspanM)
+      if (width <= cv.Config.maxScreenWidthColspanM)
         return data.colspanM;
       return data.colspan;
+    },
+
+    getWidgetColspan: function(widget) {
+      var width = this.getAvailableWidth();
+      if (width <= cv.Config.maxScreenWidthColspanS)
+        return widget.getColspanS();
+      if (width <= cv.Config.maxScreenWidthColspanM)
+        return widget.getColspanM();
+      return widget.getColspan();
     },
 
     /**
      * applies the correct width to the widgets corresponding to the given colspan setting
      */
     applyColumnWidths: function () {
-      var
-        width = this.getAvailableWidth();
+      var width = this.getAvailableWidth();
+      var mainAreaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query('#main')[0], 'columns');
 
       // all containers
       ['#navbarTop', '#navbarLeft', '#main', '#navbarRight', '#navbarBottom'].forEach(function (area) {
-        var
-          allContainer = $(area + ' .widget_container'),
-          areaColumns = $(area).data('columns');
-        allContainer.each(function (i, e) {
+        var allContainer = qx.bom.Selector.query(area + ' .widget_container');
+        if (allContainer.length > 0) {
           var
-            $e = $(e),
-            data = cv.data.Model.getInstance().getWidgetData(e.id),
-            ourColspan = this.dataColspan(data);
+            areaColumns = qx.bom.element.Dataset.get(allContainer[0], 'columns'),
+            widget = cv.structure.WidgetFactory.getInstanceByElement(allContainer[0]),
+            ourColspan = this.getWidgetColspan(widget);
 
           var w = 'auto';
           if (ourColspan > 0) {
             var areaColspan = areaColumns || cv.Config.defaultColumns;
             w = Math.min(100, ourColspan / areaColspan * 100) + '%';
           }
-          $e.css('width', w);
-        }.bind(this));
+          qx.bom.element.Style.set(allContainer[0], 'width', w);
+        }
+
         // and elements inside groups
-        var areaColumns = $('#main').data('columns');
-        var adjustableElements = $('.group .widget_container');
-        adjustableElements.each(function (i, e) {
+        var adjustableElements = qx.bom.Selector.query('.group .widget_container');
+        adjustableElements.forEach(function (e) {
           var
-            $e = $(e),
-            data = cv.data.Model.getInstance().getWidgetData(e.id),
-            ourColspan = this.dataColspan(data);
-          if (ourColspan == undefined) {
+            widget = cv.structure.WidgetFactory.getInstanceByElement(e),
+            ourColspan = this.getWidgetColspan(widget);
+          if (ourColspan === null) {
             // workaround for nowidget groups
-            ourColspan = this.dataColspan(cv.data.Model.getInstance().getWidgetDataByElement($e.children('.group')));
+            var groupChild = cv.util.Tree.getChildWidgets(widget, 'group')[0];
+            ourColspan = this.getWidgetColspan(groupChild);
           }
           var w = 'auto';
           if (ourColspan > 0) {
-            var areaColspan = areaColumns || cv.Config.defaultColumns;
-            var groupColspan = Math.min(areaColspan, this.dataColspan(cv.data.Model.getInstance().getWidgetDataByElement($e.parentsUntil(
-              '.widget_container', '.group'))));
+            var areaColspan = mainAreaColumns || cv.Config.defaultColumns;
+            var groupColspan = Math.min(areaColspan, this.getWidgetColspan(cv.util.Tree.getParentWidget(widget, "group")));
             w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
           }
-          $e.css('width', w);
-        }.bind(this));
+          qx.bom.element.Style.set(e, 'width', w);
+        }, this);
       }, this);
     }
   }

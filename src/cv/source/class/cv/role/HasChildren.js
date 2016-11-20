@@ -94,6 +94,7 @@ qx.Mixin.define("cv.role.HasChildren", {
         var data = cv.data.Model.getInstance().getWidgetData(path);
         var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
         if (widget) {
+          widget.setParentWidget(this);
           var subelement = widget.getDomString();
           if (undefined === subelement)
             return;

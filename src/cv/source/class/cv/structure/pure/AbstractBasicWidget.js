@@ -51,6 +51,10 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
     pageType  : {
       check: ["text", "2d", "3d"],
       init: "text"
+    },
+    parentWidget: {
+      check: "cv.structure.pure.AbstractBasicWidget",
+      init: null
     }
   },
 

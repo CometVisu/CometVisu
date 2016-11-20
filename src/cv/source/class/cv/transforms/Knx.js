@@ -155,7 +155,7 @@ qx.Class.define('cv.transforms.Knx', {
       '7.001': {
         name: 'DPT_Value_2_Ucount',
         encode: function (phy) {
-          var val = Transform.zeroFillString(parseInt(phy).toString(16), 4);
+          var val = qx.lang.String.pad(parseInt(phy).toString(16), 4, "0");
           return '80' + val;
         },
         decode: function (hex) {
@@ -171,7 +171,7 @@ qx.Class.define('cv.transforms.Knx', {
         encode: function (phy) {
           var val = parseInt(phy);
           val = val < 0 ? val + 65536 : val;
-          return '80' + Transform.zeroFillString(val.toString(16), 4);
+          return '80' + qx.lang.String.pad(val.toString(16), 4, "0");
         },
         decode: function (hex) {
           var val = parseInt(hex, 16);
@@ -230,9 +230,9 @@ qx.Class.define('cv.transforms.Knx', {
       '10.001': {
         name: 'DPT_TimeOfDay',
         encode: function (phy) {
-          var val = Transform.zeroFillString(((phy.getDay() << 5) + phy.getHours()).toString(16), 2);
-          val += Transform.zeroFillString(phy.getMinutes().toString(16), 2);
-          val += Transform.zeroFillString(phy.getSeconds().toString(16), 2);
+          var val = qx.lang.String.pad(((phy.getDay() << 5) + phy.getHours()).toString(16), 2, "0");
+          val += qx.lang.String.pad(phy.getMinutes().toString(16), 2, "0");
+          val += qx.lang.String.pad(phy.getSeconds().toString(16), 2, "0");
           return '80' + val;
         },
         decode: function (hex) {
@@ -267,7 +267,7 @@ qx.Class.define('cv.transforms.Knx', {
       '12.001': {
         name: 'DPT_Value_4_Ucount',
         encode: function (phy) {
-          var val = Transform.zeroFillString(parseInt(phy).toString(16), 8);
+          var val = qx.lang.String.pad(parseInt(phy).toString(16), 8, "0");
           return '80' + val;
         },
         decode: function (hex) {
@@ -283,7 +283,7 @@ qx.Class.define('cv.transforms.Knx', {
         encode: function (phy) {
           var val = parseInt(phy);
           val = val < 0 ? val + 4294967296 : val;
-          return '80' + Transform.zeroFillString(val.toString(16), 8);
+          return '80' + qx.lang.String.pad(val.toString(16), 8, "0");
         },
         decode: function (hex) {
           var val = parseInt(hex, 16);

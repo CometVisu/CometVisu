@@ -80,15 +80,6 @@ qx.Class.define('cv.Transform', {
     },
 
     /**
-     * Prepend zeros to the string s till the result has the length l.
-     */
-    zeroFillString: function (s, l) {
-      if (s.length >= l) return s;
-
-      return new Array(1 + l - s.length).join('0') + s;
-    },
-
-    /**
      * Enforce that value stays within range
      * When value is not a valid number, the min value is returned
      */
