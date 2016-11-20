@@ -60,6 +60,7 @@ qx.Class.define('cv.PageHandler', {
   members: {
 
     seekTo : function( target, speed ) {
+      console.trace();
       var currentPath = this.getCurrentPath();
       currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".exitingPageChange", currentPath, target);
 

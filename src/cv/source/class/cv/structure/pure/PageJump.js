@@ -40,7 +40,9 @@ qx.Class.define('cv.structure.pure.PageJump', {
   */
   construct: function(props) {
     this.base(arguments, props);
-    cv.MessageBroker.getInstance().subscribe("path."+this.getPath()+".afterPageChange", this._onScrollToPage, this);
+    // because the parent page relation is not set yet, we have to use the data model traversion to find the parent page
+    var page = cv.util.Tree.getParentPageData(this.getPath());
+    cv.MessageBroker.getInstance().subscribe("path."+page.path+".afterPageChange", cv.structure.pure.PageJump._onScrollToPage, this);
   },
 
   /*
@@ -63,6 +65,49 @@ qx.Class.define('cv.structure.pure.PageJump', {
         'name'        : {},
         'path'        : { target: 'targetPath' }
       };
+    },
+    /**
+     * Handle page change events and update the active state of this PageJump
+     *
+     * @protected
+     */
+    _onScrollToPage: function(page_id) {
+      var page = cv.structure.WidgetFactory.getInstanceById(page_id);
+      var model = cv.data.Model.getInstance();
+      var name = page.getName();
+
+
+      // remove old active classes
+      qx.bom.Selector.query('.pagejump.active').forEach(function(elem) {
+        qx.bom.element.Class.remove(elem, 'active');
+      }, this);
+      qx.bom.Selector.query('.pagejump.active_ancestor').forEach(function(elem) {
+        qx.bom.element.Class.remove(elem, 'active_ancestor');
+      }, this);
+
+      // and set the new active ones
+      qx.bom.Selector.query('.pagejump').forEach(function(elem) {
+        var data = model.getWidgetDataByElement(elem);
+        if (name == data.target) {
+          qx.bom.element.Class.add(elem, 'active');
+        }
+      }, this);
+
+      // now set the active ancestors
+      var parentPage = cv.util.Tree.getParentWidget(page, "page");
+      // set for all parent pages apart from the root page
+      while (parentPage != null && cv.util.Tree.getParentWidget(parentPage, "page") != null) {
+        var parentName = parentPage.getName();
+
+        qx.bom.Selector.query('.pagejump').forEach(function(elem) {
+          var data = model.getWidgetDataByElement(elem);
+          if (parentName == data.target || (data.active_scope == "path" && data.path != undefined && data.path.match(parentName + "$"))) {
+            qx.bom.element.Class.add(elem, 'active_ancestor');
+          }
+        });
+        // recursively find pagejumps for parent pages
+        parentPage = cv.util.Tree.getParentWidget(parentPage, "page");
+      }
     }
   },
 
@@ -123,48 +168,6 @@ qx.Class.define('cv.structure.pure.PageJump', {
         target = cv.TemplateEngine.getInstance().getPageIdByPath(target,this.getTargetPath());
       }
       cv.TemplateEngine.getInstance().scrollToPage( target );
-    },
-
-    /**
-     * Handle page change events and update the active state of this PageJump
-     *
-     * @prptected
-     */
-    _onScrollToPage: function(event, page_id) {
-      var page = $('#' + page_id);
-      var name = templateEngine.widgetData[page_id].name;
-
-      // remove old active classes
-      $('.pagejump.active').removeClass('active');
-      $('.pagejump.active_ancestor').removeClass('active_ancestor');
-
-      // and set the new active ones
-      $('.pagejump').each(function () {
-        var $pagejump = $(this);
-        var data = templateEngine.getWidgetDataByElement(this);
-        if (name == data.target) {
-          $pagejump.addClass('active');
-        }
-      });
-
-      // now set the active ancestors
-      var parentPage = templateEngine.getParentPage(page);
-      // set for all parent pages apart from the root page
-      while (parentPage != null && templateEngine.getParentPage(parentPage) != null) {
-        var
-          parentId = parentPage.attr('id'),
-          parentName = templateEngine.widgetData[parentId].name;
-
-        $('.pagejump').each(function () {
-          var $pagejump = $(this);
-          var data = templateEngine.getWidgetDataByElement(this);
-          if (parentName == data.target || (data.active_scope == "path" && data.path != undefined && data.path.match(parentName + "$"))) {
-            $pagejump.addClass('active_ancestor');
-          }
-        });
-        // recursively find pagejumps for parent pages
-        parentPage = templateEngine.getParentPage(parentPage);
-      }
     }
   },
 

@@ -68,6 +68,7 @@ qx.Class.define('cv.TemplateEngine', {
 
     pluginsToLoadCount : 0,
     xml : null,
+    __currentPageId: null,
 
     // property apply
     _applyReady: function(value) {
@@ -524,6 +525,10 @@ qx.Class.define('cv.TemplateEngine', {
       if (page_id == null) {
         return;
       }
+      if (this.__currentPageId === page_id) {
+        return;
+      }
+      this.__currentPageId = page_id;
 
       if (undefined === speed)
         speed = cv.Config.scrollSpeed;
@@ -540,7 +545,6 @@ qx.Class.define('cv.TemplateEngine', {
       this.main_scroll.seekTo(page_id, speed); // scroll to it
 
       this.pagePartsHandler.initializeNavbars(page_id);
-      $(window).trigger('scrolltopage', page_id);
     },
 
     /*
