@@ -40,8 +40,9 @@ qx.Class.define('cv.structure.pure.Trigger', {
     CONSTRUCTOR
   ******************************************************
   */
-  construct: function() {
-    cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
+  construct: function(props) {
+    this.base(arguments, props);
+    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function() {
       this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
     }, this);
   },

@@ -270,7 +270,7 @@ qx.Class.define('cv.PagePartsHandler', {
       var targetCss = {};
       var navbar = qx.bom.Selector.query('#navbar' + position)[0];
       var key = position.toLowerCase();
-      var fn = function () {
+      var onAnimationEnd = function () {
         cv.layout.ResizeHandler.invalidateNavbar();
       };
       switch (direction) {
@@ -291,7 +291,7 @@ qx.Class.define('cv.PagePartsHandler', {
           }
           break;
         case "out":
-          fn = function () {
+          onAnimationEnd = function () {
             qx.bom.element.Style.set(navbar, "display", "none");
             cv.layout.ResizeHandler.invalidateNavbar();
           };
@@ -310,7 +310,7 @@ qx.Class.define('cv.PagePartsHandler', {
       qx.bom.element.Style.setStyles(navbar, initCss);
       if (speed == 0) {
         qx.bom.element.Style.setStyles(navbar, targetCss);
-        fn();
+        onAnimationEnd();
       } else {
         var spec = {
           duration: speed,
@@ -322,7 +322,7 @@ qx.Class.define('cv.PagePartsHandler', {
           }
         };
         var anim = qx.bom.element.Animation.animate(navbar, spec);
-        anim.addListenerOnce("end", fn, this);
+        anim.addListenerOnce("end", onAnimationEnd, this);
       }
     },
 
@@ -350,16 +350,16 @@ qx.Class.define('cv.PagePartsHandler', {
       var level = 1;
       tree.forEach(function (elem) {
         var id = qx.bom.element.Attribute.get(elem, 'id');
-        var topNav = qx.bom.Selector.query('#' + id + 'top_navbar');
+        var topNav = qx.bom.Selector.query('#' + id + 'top_navbar')[0];
         var topData = cv.data.Model.getInstance().getWidgetData(id + 'top_navbar');
-        var rightNav = qx.bom.Selector.query('#' + id + 'right_navbar');
+        var rightNav = qx.bom.Selector.query('#' + id + 'right_navbar')[0];
         var rightData = cv.data.Model.getInstance().getWidgetData(id + 'right_navbar');
-        var bottomNav = qx.bom.Selector.query('#' + id + 'bottom_navbar');
+        var bottomNav = qx.bom.Selector.query('#' + id + 'bottom_navbar')[0];
         var bottomData = cv.data.Model.getInstance().getWidgetData(id + 'bottom_navbar');
-        var leftNav = qx.bom.Selector.query('#' + id + 'left_navbar');
+        var leftNav = qx.bom.Selector.query('#' + id + 'left_navbar')[0];
         var leftData = cv.data.Model.getInstance().getWidgetData(id + 'left_navbar');
         // console.log(tree.length+"-"+level+"<="+topData.scope);
-        if (topNav.length > 0) {
+        if (topNav) {
           if (topData.scope == undefined || topData.scope < 0
             || tree.length - level <= topData.scope) {
             qx.bom.element.Class.add(topNav, 'navbarActive');
@@ -367,7 +367,7 @@ qx.Class.define('cv.PagePartsHandler', {
             qx.bom.element.Class.remove(topNav, 'navbarActive');
           }
         }
-        if (rightNav.length > 0) {
+        if (rightNav) {
           if (rightData.scope == undefined
             || rightData.scope < 0
             || tree.length - level <= rightData.scope) {
@@ -376,7 +376,7 @@ qx.Class.define('cv.PagePartsHandler', {
             qx.bom.element.Class.remove(rightNav, 'navbarActive');
           }
         }
-        if (bottomNav.length > 0) {
+        if (bottomNav) {
           if (bottomData.scope == undefined
             || bottomData.scope < 0
             || tree.length - level <= bottomData.scope) {
@@ -385,7 +385,7 @@ qx.Class.define('cv.PagePartsHandler', {
             qx.bom.element.Class.remove(bottomNav, 'navbarActive');
           }
         }
-        if (leftNav.length > 0) {
+        if (leftNav) {
           if (leftData.scope == undefined || leftData.scope < 0
             || tree.length - level <= leftData.scope) {
             qx.bom.element.Class.add(leftNav, 'navbarActive');

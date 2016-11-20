@@ -153,6 +153,9 @@ qx.Class.define('cv.xml.Parser', {
      * @return ret_val
      */
     createDefaultWidget: function(handler, widgetType, $element, path, flavour, pageType) {
+      if (handler.createDefaultWidget) {
+        return handler.createDefaultWidget(widgetType, $element, path, flavour, pageType);
+      }
       var clazz = qx.Class.getByName(handler.classname);
       var properties = qx.Class.getProperties(clazz);
 

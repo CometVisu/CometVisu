@@ -12,38 +12,6 @@ qx.Class.define('cv.TemplateEngine', {
     // this.base(arguments);
     cv.Config.eventHandler = new cv.event.Handler(this);
     this.pagePartsHandler = new cv.PagePartsHandler();
-  
-    this.rememberLastPage = false;
-    this.currentPage = null;
-  
-  
-    // if true the whole widget reacts on click events
-    // if false only the actor in the widget reacts on click events
-    this.bindClickToWidget = false;
-  
-    this.widgetData = {}; // hash to store all widget specific data
-    /**
-     * Structure where a design can set a default value that a widget or plugin
-     * can use.
-     * This is especially important for design relevant information like colors
-     * that can not be set though CSS.
-     *
-     * Useage: this.defaults.plugin.foo = {bar: 'baz'};
-     */
-    this.defaults = {widget: {}, plugin: {}};
-    /**
-     * Function to test if the path is in a valid form.
-     * Note: it doesn't check if it exists!
-     */
-    this.pathRegEx = /^id(_[0-9]+)+$/;
-  
-    this.callbacks = {}; // Hash of functions to call during page change
-    this.main_scroll = null;
-    this.old_scroll = '';
-    this.visu = null;
-  
-    this.pluginsToLoadCount = 0;
-    this.xml = null;
   },
   
   properties: {
@@ -72,6 +40,33 @@ qx.Class.define('cv.TemplateEngine', {
   ******************************************************
   */
   members: {
+    pagePartsHandler: null,
+    rememberLastPage: false,
+    currentPage: null,
+    // if true the whole widget reacts on click events
+    // if false only the actor in the widget reacts on click events
+    bindClickToWidget : false,
+    /**
+     * Structure where a design can set a default value that a widget or plugin
+     * can use.
+     * This is especially important for design relevant information like colors
+     * that can not be set though CSS.
+     *
+     * Usage: this.defaults.plugin.foo = {bar: 'baz'};
+     */
+    defaults : {widget: {}, plugin: {}},
+    /**
+     * Function to test if the path is in a valid form.
+     * Note: it doesn't check if it exists!
+     */
+    pathRegEx : /^id(_[0-9]+)+$/,
+
+    main_scroll : null,
+    old_scroll : '',
+    visu : null,
+
+    pluginsToLoadCount : 0,
+    xml : null,
 
     // property apply
     _applyReady: function(value) {
@@ -338,7 +333,9 @@ qx.Class.define('cv.TemplateEngine', {
         qx.bom.Selector.query('.icon').forEach(function (icon) {
           cv.util.IconTools.fillRecoloredIcon(icon);
         }, this);
-        qx.bom.element.Class.remove(qx.bom.Selector.query('.loading')[0], 'loading');
+        qx.bom.Selector.query('.loading').forEach(function(elem) {
+          qx.bom.element.Class.remove(elem, 'loading');
+        }, this);
         this.fireLoadingFinishedAction();
         if (qx.lang.Type.isNumber(this.screensave_time)) {
           this.screensave = new qx.event.Timer(this.screensave_time * 1000);

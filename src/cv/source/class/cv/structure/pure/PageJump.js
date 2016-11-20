@@ -82,11 +82,10 @@ qx.Class.define('cv.structure.pure.PageJump', {
     },
     name : {
       check: "String",
-      init: ""
+      nullable: true
     },
     targetPath : {
       check: "String",
-      init: null,
       nullable: true
     }
   },
