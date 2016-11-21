@@ -133,4 +133,4 @@ qx.Class.define('cv.structure.pure.Switch', {
     // register the parser
     cv.xml.Parser.addHandler("switch", cv.structure.pure.Switch);
   }
-}); // end define
+});

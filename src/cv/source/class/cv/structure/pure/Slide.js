@@ -48,12 +48,6 @@ qx.Class.define('cv.structure.pure.Slide', {
       }
     }
     cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
-      // var slider = this.__slider = new qx.ui.website.Slider('#' + this.getPath() + ' .actor');
-      // slider.setConfig("minimum", this.getMin());
-      // slider.setConfig("maximum", this.getMax());
-      // slider.setConfig("step", this.getStep());
-      // slider.on("changeValue", this.slideUpdateValue, this);
-      // slider.on("changePosition", this.slideStart, this);
       var $actor = $( '#' + this.getPath() + ' .actor' );
       $actor.slider({
         step:    this.getStep(),
