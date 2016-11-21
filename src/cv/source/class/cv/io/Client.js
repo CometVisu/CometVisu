@@ -398,6 +398,13 @@
         ajaxRequest.send();
       },
 
+      /**
+       * Restart the connection
+       */
+      restart: function() {
+        this.getCurrentTransport().restart();
+      },
+
       update: function(json) {}
     }
 });
