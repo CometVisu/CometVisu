@@ -42,12 +42,15 @@ qx.Class.define('cv.event.Dispatcher', {
      * register to all events
      */
     register: function () {
-      window.addEventListener('mousedown', this._onDown.bind(this));
-      window.addEventListener('touchstart', this._onDown.bind(this));
+      qx.event.Registration.addListener(document, "pointerdown", this._onDown, this);
+      // window.addEventListener('mousedown', this._onDown.bind(this));
+      // window.addEventListener('touchstart', this._onDown.bind(this));
 
-      window.addEventListener('mouseup', this._onUp.bind(this));
-      window.addEventListener('touchend', this._onUp.bind(this));
+      qx.event.Registration.addListener(document, "pointerup", this._onUp, this);
+      // window.addEventListener('mouseup', this._onUp.bind(this));
+      // window.addEventListener('touchend', this._onUp.bind(this));
 
+      // qx.event.Registration.addListener(document, "pointermove", this._onMove, this);
       window.addEventListener('mousemove', this._onMove.bind(this));
       window.addEventListener('touchmove', this._onMove.bind(this));
     },
@@ -58,10 +61,10 @@ qx.Class.define('cv.event.Dispatcher', {
 
     _onUp: function (event) {
       this.getHandler().onPointerUp(event);
-      if (event.type === "touchend") {
-        // prevent mouseup beeing fired
-        event.preventDefault();
-      }
+      // if (event.type === "touchend") {
+      //   // prevent mouseup beeing fired
+      //   event.preventDefault();
+      // }
     },
 
     _onMove: function (event) {

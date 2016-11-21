@@ -43,7 +43,7 @@ qx.Class.define('cv.PageHandler', {
     // name of the easing function
     easing : {
       check: 'string',
-      init: 'ease-in-out'
+      init: 'ease'
     },
 
     currentPath : {
@@ -84,22 +84,30 @@ qx.Class.define('cv.PageHandler', {
       templateEngine.pagePartsHandler.updatePageParts( page, speed );
 
       // now the animation
-      var leftStart = 0, leftEnd = 0;
+      var leftStart = "0px", leftEnd = "0px";
       if( speed > 0 ) {
         // update reference, because the appearance might have changed
         page = qx.bom.Selector.query('#' + target)[0];
-        var pageBounds = page.getBoundingClientRect();
-        var scrollLeft = pageBounds.left != 0;
+        var left = qx.bom.element.Location.getLeft(page);
+        var currentPageWidth = qx.bom.element.Dimension.getWidth(qx.bom.Selector.query('#' + currentPath)[0]);
+        var scrollLeft = left != 0;
         // jump to the page on the left of the page we need to scroll to
         if (scrollLeft) {
-          leftEnd = -pageBounds.width;
+          leftEnd = -currentPageWidth+"px";
         } else {
-          leftStart = -pageBounds.left - pageBounds.width;
+          leftStart = -left - currentPageWidth+"px";
         }
       }
       var pagesNode = qx.bom.Selector.query('#pages')[0];
       qx.bom.element.Style.set(pagesNode, 'left', leftStart);
-      var animation = qx.bom.element.Animation.animate(pagesNode, {
+      qx.bom.Selector.query('.activePage', pagesNode).forEach(function(elem) {
+        qx.bom.element.Class.remove(elem, 'activePage');
+      }, this);
+      qx.bom.Selector.query('.pageActive', pagesNode).forEach(function(elem) {
+        qx.bom.element.Class.remove(elem, 'pageActive');
+      }, this);
+      qx.bom.element.Class.addClasses(qx.bom.Selector.query('#' + target)[0], ['pageActive', 'activePage']);// show new page
+      var animationConfig = {
         duration: speed,
         timing: this.getEasing(),
         keep: 100,
@@ -107,18 +115,12 @@ qx.Class.define('cv.PageHandler', {
           0: { left: leftStart},
           100: { left: leftEnd}
         }
-      });
+      };
+      var animation = qx.bom.element.Animation.animate(pagesNode, animationConfig);
       animation.addListenerOnce("end", function(){
         // final stuff
         this.setCurrentPath(target);
         templateEngine.pagePartsHandler.updateTopNavigation( target );
-        qx.bom.Selector.query('.activePage', pagesNode).forEach(function(elem) {
-          qx.bom.element.Class.remove(elem, 'activePage');
-        }, this);
-        qx.bom.Selector.query('.pageActive', pagesNode).forEach(function(elem) {
-          qx.bom.element.Class.remove(elem, 'pageActive');
-        }, this);
-        qx.bom.element.Class.addClasses(qx.bom.Selector.query('#' + target)[0], ['pageActive', 'activePage']);// show new page
         qx.bom.element.Style.set(pagesNode, 'left', 0 );
         currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".afterPageChange", currentPath);
         currentPath !== '' && cv.MessageBroker.getInstance().publish("path.pageChanged", target);

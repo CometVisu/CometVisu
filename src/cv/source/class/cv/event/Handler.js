@@ -122,19 +122,19 @@ qx.Class.define('cv.event.Handler', {
 
     onPointerDown: function (event) {
       // search if a widget was hit
-      var widgetActor = this.getWidgetActor(event.target),
+      var widgetActor = this.getWidgetActor(event.getTarget()),
         bindWidget = widgetActor.widget ? widgetActor.widget.getBindClickToWidget() : false;
 
       var touchobj;
 
-      if (event.changedTouches) {
-        touchobj = event.changedTouches[0];
-        this.touchStartX = parseInt(touchobj.clientX);
-        this.touchStartY = parseInt(touchobj.clientY);
-      } else {
-        this.touchStartX = parseInt(event.clientX);
-        this.touchStartY = parseInt(event.clientY);
-      }
+      // if (event.changedTouches) {
+      //   touchobj = event.changedTouches[0];
+      //   this.touchStartX = parseInt(touchobj.getViewportLeft());
+      //   this.touchStartY = parseInt(touchobj.clientY);
+      // } else {
+        this.touchStartX = parseInt(event.getViewportLeft());
+        this.touchStartY = parseInt(event.getViewportTop());
+      // }
 
       this.isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
       if (this.isWidget) {
@@ -158,7 +158,7 @@ qx.Class.define('cv.event.Handler', {
       }
 
       if (this.mouseEvent.moveRestrict) {
-        this.scrollElement = this.getScrollElement(event.target);
+        this.scrollElement = this.getScrollElement(event.getTarget());
       }
       // stop the propagation if scrollable is at the end
       // inspired by
@@ -177,7 +177,7 @@ qx.Class.define('cv.event.Handler', {
     onPointerUp: function (event) {
       if (this.isWidget) {
         var
-          widgetActor = this.getWidgetActor(event.target),
+          widgetActor = this.getWidgetActor(event.getTarget()),
           widget = this.mouseEvent.widget,
           actionFn = this.mouseEvent.widgetCreator.action,
           bindWidget = widget.getBindClickToWidget(),
