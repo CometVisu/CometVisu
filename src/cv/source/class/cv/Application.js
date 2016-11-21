@@ -58,7 +58,8 @@ qx.Class.define("cv.Application",
 
       // TODO: replace jquery calls with Qooxdoo equivalents and get rid of the dependency
       var dynLoader = new qx.util.DynamicScriptLoader([
-        "cv/libs/jquery.js"
+        "cv/libs/jquery.js",
+        "cv/libs/jquery-ui.js"
       ]);
       dynLoader.addListenerOnce('ready', this.__init, this);
       dynLoader.addListener('failed',function(e){

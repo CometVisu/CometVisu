@@ -51,6 +51,22 @@ qx.Mixin.define("cv.role.BasicUpdate", {
   },
 
   /*
+   ******************************************************
+   STATICS
+   ******************************************************
+   */
+  statics: {
+    parse: function (xml, path) {
+      var data = cv.data.Model.getInstance().getWidgetData(path);
+      var value = qx.bom.element.Attribute.get(xml, 'format');
+      if (value) {
+        data.format = value;
+      }
+      // data.format = qx.bom.element.Attribute.get(xml, 'format') || "";
+    }
+  },
+
+  /*
   ******************************************************
     MEMBERS
   ******************************************************
@@ -59,7 +75,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
     formatValueCache : null,
 
     applyTransform: function (address, data) {
-      if (address) {
+      if (address && cv.Config.testMode !== true) {
         var transform = this.getAddress()[address][0];
         // transform the raw value to a JavaScript type
         return cv.Transform.decode(transform, data);
@@ -68,7 +84,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
     },
 
     applyTransformEncode: function (address, data) {
-      if (address) {
+      if (address && cv.Config.testMode !== true) {
         var transform = this.getAddress()[address][0];
         // transform the raw value to a JavaScript type
         return cv.Transform.encode(transform, data);
@@ -158,7 +174,9 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       value = this.applyMapping(value);
 
       // #3: format it in a way the user understands the value
-      value = this.applyFormat(address, value);
+      if (value !== undefined) {
+        value = this.applyFormat(address, value);
+      }
 
       value !== undefined && this.setValue(value);
 
