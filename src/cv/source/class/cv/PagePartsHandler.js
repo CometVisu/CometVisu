@@ -322,7 +322,6 @@ qx.Class.define('cv.PagePartsHandler', {
             100: targetCss
           }
         };
-        console.log(spec);
         var anim = qx.bom.element.Animation.animate(navbar, spec);
         anim.addListenerOnce("end", onAnimationEnd, this);
       }

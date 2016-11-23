@@ -19,7 +19,7 @@
 
 
 /**
- * @module structure/pure/InfoTrigger
+ * @class cv.structure.pure.InfoTrigger
  * @author Christian Mayer
  * @since 2012
  */
@@ -39,24 +39,24 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
   */
   properties: {
     'downValue': {
-      check: "String",
-      init: "0"
+      check: "Number",
+      init: 0
     },
     'shortDownValue': {
-      check: "String",
-      init: "0"
+      check: "Number",
+      init: 0
     },
     'downLabel': {
       check: "String",
       nullable: true
     },
     'upValue': {
-      check: "String",
-      init: "0"
+      check: "Number",
+      init: 0
     },
     'shortUpValue': {
-      check: "String",
-      init: "0"
+      check: "Number",
+      init: 0
     },
     'upLabel': {
       check: "String",
@@ -88,11 +88,11 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
   statics: {
     getAttributeToPropertyMappings: function () {
       return {
-        'downvalue': {target: 'downValue', "default": "0"},
-        'shortdownvalue': {target: 'shortDownValue', "default": "0"},
+        'downvalue': {target: 'downValue', transform: parseFloat, "default": 0},
+        'shortdownvalue': {target: 'shortDownValue', transform: parseFloat, "default": 0},
         'downlabel': {target: 'downLabel'},
-        'upvalue': {target: 'upValue', "default": "0"},
-        'shortupvalue': {target: 'shortUpValue', "default": "0"},
+        'upvalue': {target: 'upValue', transform: parseFloat, "default": 0},
+        'shortupvalue': {target: 'shortUpValue', transform: parseFloat, "default": 0},
         'uplabel': {target: 'upLabel'},
         'shorttime': {target: 'shortThreshold', transform: parseFloat, "default": -1},
         'change': {
@@ -107,6 +107,7 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
     },
 
     makeAddressListFn: function (src, transform, mode, variant) {
+      console.log("make address list "+variant);
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
       return [true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1 | 2)];
     }
@@ -162,9 +163,18 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
       return ret_val + '</div>';
     },
 
-    _onDomReady: function() {
-      this.base(arguments);
-      this.addListener("longtap", this._onLongTap, this);
+    initListeners: function() {
+      qx.bom.Selector.query(".actor.uplabel, .actor.downlabel", this.getDomElement()).forEach(function(actor) {
+        if (this.getShortThreshold() > 0) {
+          qx.event.Registration.addListener(actor, "tap", this.action, this);
+          qx.event.Registration.addListener(actor, "longtap", this._onLongTap, this);
+        } else {
+          // no short tap treat all taps as long
+          qx.event.Registration.addListener(actor, "tap", this._onLongTap, this);
+          qx.event.Registration.addListener(actor, "longtap", this._onLongTap, this);
+        }
+      }, this);
+
     },
 
     _onLongTap: function(event) {
@@ -186,10 +196,10 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
       var bitMask = (isShort ? 1 : 2);
 
       if (this.getIsAbsolute()) {
-        value = parseFloat(this.getBasicValue());
-        if (isNaN(value))
-          value = 0; // anything is better than NaN...
-        value = value + parseFloat(value);
+        var bvalue = parseFloat(this.getBasicValue());
+        if (isNaN(bvalue))
+          bvalue = 0; // anything is better than NaN...
+        value = bvalue + value;
         value = Math.max(value, this.getMin());
         value = Math.min(value, this.getMax());
       }

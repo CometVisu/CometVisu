@@ -41,7 +41,7 @@ qx.Mixin.define("cv.role.HasAddress", {
     parse: function (xml, path, flavour, widgetType) {
       if (xml.nodeName.toLowerCase() !== "page") {
         var data = cv.data.Model.getInstance().getWidgetData(path);
-        data.address = cv.role.HasAddress.makeAddressList(xml, path);
+        data.address = cv.role.HasAddress.makeAddressList(xml, path, this.makeAddressListFn);
       }
     },
 
@@ -55,7 +55,7 @@ qx.Mixin.define("cv.role.HasAddress", {
      * @param id             id / path to the widget
      * @return address
      */
-    makeAddressList: function (element, id) {
+    makeAddressList: function (element, id, makeAddressListFn) {
       var address = {};
       qx.bom.Selector.query('address', element).forEach(function (elem) {
         var
@@ -81,7 +81,7 @@ qx.Mixin.define("cv.role.HasAddress", {
             mode = 1 | 2;
             break;
         }
-        var variantInfo = this.makeAddressListFn ? this.makeAddressListFn(src, transform, mode, qx.bom.element.Attribute.get(elem, 'variant')) : [true, undefined];
+        var variantInfo = makeAddressListFn ? makeAddressListFn(src, transform, mode, qx.bom.element.Attribute.get(elem, 'variant')) : [true, undefined];
         if ((mode & 1) && variantInfo[0]) {// add only addresses when reading from them
           cv.data.Model.getInstance().addAddress(src, id);
         }

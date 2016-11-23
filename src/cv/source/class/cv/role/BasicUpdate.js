@@ -75,7 +75,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
     formatValueCache : null,
 
     applyTransform: function (address, data) {
-      if (address && cv.Config.testMode !== true) {
+      if (address) {
         var transform = this.getAddress()[address][0];
         // transform the raw value to a JavaScript type
         return cv.Transform.decode(transform, data);
@@ -84,7 +84,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
     },
 
     applyTransformEncode: function (address, data) {
-      if (address && cv.Config.testMode !== true) {
+      if (address) {
         var transform = this.getAddress()[address][0];
         // transform the raw value to a JavaScript type
         return cv.Transform.encode(transform, data);

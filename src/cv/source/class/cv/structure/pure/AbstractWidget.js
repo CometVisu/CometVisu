@@ -162,7 +162,6 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
     },
 
     initListeners: function() {
-      this.addListener("pointerdown", this.downaction, this);
       this.addListener("tap", this.action, this);
     },
 
