@@ -25,8 +25,7 @@ qx.Mixin.define("cv.role.HasAnimatedButton", {
    ******************************************************
    */
   construct: function() {
-    this.addBeforeMethod("downaction", this.buttonPressed, this);
-    this.addBeforeMethod("action", this.buttonReleased, this);
+    this.addAfterMethod("_onDomReady", this.__initListeners, this);
   },
 
   /*
@@ -36,17 +35,22 @@ qx.Mixin.define("cv.role.HasAnimatedButton", {
   */
   members: {
 
+    __initListeners: function() {
+      qx.bom.Selector.query('.actor', this.getDomElement()).forEach(function(actor) {
+        qx.event.Registration.addListener(actor, "pointerdown", this.buttonPressed, this);
+        qx.event.Registration.addListener(actor, "pointerup", this.buttonReleased, this);
+      }, this);
+    },
+
     /**
      * Create an action handling that shows a button press animation.
      * When the action is not set, it will be searched for - so that widgets
      * with bind_click_to_widget will also work.
      *
-     * @param path {String} widget path
-     * @param actor {Element} DOM element of the actor
+     * @param event {Event} pointerdown event
      */
-    buttonPressed: function(path, actor, isCanceled) {
-      if( !actor )
-        actor = this.getActor();
+    buttonPressed: function(event) {
+      var actor = event.getCurrentTarget();
       qx.bom.element.Class.add(actor, 'switchPressed');
       qx.bom.element.Class.remove(actor, 'switchUnpressed');
     },
@@ -56,12 +60,10 @@ qx.Mixin.define("cv.role.HasAnimatedButton", {
      * When the action is not set, it will be searched for - so that widgets
      * with bind_click_to_widget will also work.
      *
-     * @param path {String} widget path
-     * @param actor {Element} DOM element of the actor
+     * @param event {Event} pointerup event
      */
-    buttonReleased: function(path, actor, isCanceled) {
-      if( !actor )
-        actor = this.getActor();
+    buttonReleased: function(event) {
+      var actor = event.getCurrentTarget();
       qx.bom.element.Class.add(actor, 'switchUnpressed');
       qx.bom.element.Class.remove(actor, 'switchPressed');
     }

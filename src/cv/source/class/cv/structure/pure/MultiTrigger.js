@@ -195,8 +195,8 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
      *
      * @method getActionValue
      */
-    getActionValue: function (path, actor, isCanceled, event) {
-      var index = qx.dom.Hierarchy.getChildElements(this.getDomElement()).indexOf(actor);
+    getActionValue: function (event) {
+      var index = qx.bom.Selector.query('.actor', this.getDomElement()).indexOf(event.getCurrentTarget());
       index = index < 3 ? index + 1 : index;
 
       return this['getButton' + index + 'value']();

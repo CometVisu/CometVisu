@@ -11,7 +11,6 @@ qx.Class.define('cv.TemplateEngine', {
   
   construct: function() {
     // this.base(arguments);
-    cv.Config.eventHandler = new cv.event.Handler(this);
     this.pagePartsHandler = new cv.PagePartsHandler();
   },
   

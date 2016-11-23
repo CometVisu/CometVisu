@@ -30,27 +30,26 @@ qx.Mixin.define("cv.role.Operate", {
      * Action performed when the widget got clicked, sends data to the backend
      *
      * @method action
-     * @param {String} path - Internal path of the widget
-     * @param {Element} actor - DOMElement
-     * @param {Boolean} isCanceled - If true the action does nothing
+     * @param event {Event}
      */
-    action: function (path, actor, isCanceled, event) {
-      this.processBeforeChain("action", path, actor, isCanceled, event);
+    action: function (event) {
+      this.processBeforeChain("action", event);
       if (this._action) {
-        this._action(path, actor, isCanceled, event);
+        this._action(event);
       } else {
-        if (isCanceled) return;
         if (this.getActionValue) {
-          this.sendToBackend(this.getActionValue(path, actor, isCanceled, event));
+          this.sendToBackend(this.getActionValue(event));
         }
       }
+      event.stopPropagation();
     },
 
-    downaction: function(path, actor, isCanceled, event) {
-      this.processBeforeChain("downaction", path, actor, isCanceled, event);
+    downaction: function(event) {
+      this.processBeforeChain("downaction", event);
       if (this._downaction) {
-        this._beforeAction(path, actor, isCanceled, event);
+        this._downaction(event);
       }
+      event.stopPropagation();
     },
 
     /**

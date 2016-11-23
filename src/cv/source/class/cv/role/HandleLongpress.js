@@ -20,17 +20,6 @@
 qx.Mixin.define("cv.role.HandleLongpress", {
 
   /*
-  ******************************************************
-    CONSTRUCTOR
-  ******************************************************
-  */
-  construct: function() {
-    this.addBeforeMethod("downaction", this.saveDownTrigger, this);
-    this.addBeforeMethod("action", this.saveUpTrigger, this);
-  },
-
-
-  /*
    ******************************************************
    PROPERTIES
    ******************************************************
@@ -38,44 +27,6 @@ qx.Mixin.define("cv.role.HandleLongpress", {
   properties: {
     shortThreshold: {check: "Number", init: -1},
     shortDefault: {check: "Boolean", init: false} // is true use short value if no threshold is set, otherwise use long
-  },
-
-  /*
-   ******************************************************
-   MEMBERS
-   ******************************************************
-   */
-  members: {
-    $$downActionTriggered: -1,
-    $$pressTime: -1,
-
-    saveDownTrigger: function () {
-      this.$$downActionTriggered = Date.now();
-    },
-
-    saveUpTrigger: function () {
-      if (this.$$downActionTriggered > 0) {
-        this.$$pressTime = Date.now() - this.$$downActionTriggered;
-      } else {
-        this.$$pressTime = -1;
-      }
-      this.$$downActionTriggered = -1;
-    },
-
-    isShortPress: function () {
-      if (this.shortThreshold < 0) {
-        return this.isShortDefault();
-      } else {
-        return this.$$pressTime < this.getShortThreshold();
-      }
-    },
-
-    isLongPress: function () {
-      if (this.shortThreshold < 0) {
-        return !this.isShortDefault();
-      } else {
-        return this.$$pressTime >= this.getShortThreshold();
-      }
-    }
   }
+
 });

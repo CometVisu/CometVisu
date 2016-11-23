@@ -137,18 +137,18 @@ qx.Class.define('cv.structure.pure.Group', {
      * the action will switch to the page defined by the target.
      *
      * @method action
-     * @param {String} path - Internal path of the widget
-     * @param {Element} actor - DOMElement
-     * @param {Boolean} isCanceled - If true the action does nothing
+     * @param  event {Event}
      */
-    action: function (path, actor, isCanceled) {
-      if (isCanceled) {
-        return;
-      }
-
+    action: function (event) {
       if (this.getTarget() != 0) {
         cv.TemplateEngine.getInstance().scrollToPage(this.getTarget());
+        event.stopPropagation();
       }
+    },
+
+    _onDomReady: function() {
+      this.base(arguments);
+      qx.bom.element.Style.set(this.getDomElement(), "z-index", 1);
     },
 
     getDomString: function () {

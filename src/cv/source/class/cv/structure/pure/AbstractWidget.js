@@ -14,6 +14,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
   */
   construct: function(props) {
     this.base(arguments, props);
+    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", this._onDomReady, this);
     // this.addPopup('unknown', {
     //   /**
     //    * Description
@@ -138,12 +139,39 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
     downaction: function() {},
     action: function() {},
 
+    _onDomReady: function() {
+      this.initListeners();
+      this.processAfterChain("_onDomReady");
+    },
+
     getActor: function() {
       return qx.bom.Selector.query('.actor', this.getDomElement())[0];
     },
 
     getValueElement: function() {
       return qx.bom.Selector.query(".value", this.getDomElement())[0];
+    },
+
+    /**
+     * Return the element which should be used to attach listeners too.
+     * Unsually this would be the actor but if bindClickToWidget is true
+     * it would be the DomElement (aka widget-container)
+     */
+    getInteractionElement: function() {
+      return this.isBindClickToWidget() ? this.getDomElement() : this.getActor();
+    },
+
+    initListeners: function() {
+      this.addListener("pointerdown", this.downaction, this);
+      this.addListener("tap", this.action, this);
+    },
+
+    addListener: function(type, callback, context) {
+      var widget = this.getInteractionElement();
+      if (widget) {
+        return qx.event.Registration.addListener(widget, type, callback, context);
+      }
+      return null;
     },
 
     /**
@@ -243,7 +271,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
      * @param {} popup
      * @param {} page
      * @param {} preference
-     * @return ObjectExpression
+     * @return {Map}
      */
     placementStrategy: function( anchor, popup, page, preference ) {
       var position_order = [8, 2, 6, 4, 9, 3, 7, 1, 5, 0];

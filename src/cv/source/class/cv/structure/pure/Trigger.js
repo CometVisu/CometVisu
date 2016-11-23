@@ -37,19 +37,6 @@ qx.Class.define('cv.structure.pure.Trigger', {
 
   /*
   ******************************************************
-    CONSTRUCTOR
-  ******************************************************
-  */
-  construct: function(props) {
-    this.base(arguments, props);
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function() {
-      this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
-    }, this);
-  },
-
-
-  /*
-  ******************************************************
     PROPERTIES
   ******************************************************
   */
@@ -84,27 +71,25 @@ qx.Class.define('cv.structure.pure.Trigger', {
   ******************************************************
   */
   members: {
+    _onDomReady: function() {
+      this.base(arguments);
+      this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
+      this.addListener("longtap", this._onLongTap, this);
+    },
+
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
-    /**
-     * Get the value that should be send to backend after the action has been triggered
-     *
-     * @method getActionValue
-     */
-    getActionValue: function (path, actor, isCanceled, event) {
-      return this.isShortPress() ? this.getShortValue() : this.getSendValue();
+    _action: function(event) {
+      this.sendToBackend(this.getShortValue(), function(address) {
+        return !!(address[2] & 1);
+      });
     },
 
-    _action: function( path, actor, isCanceled ) {
-      if( isCanceled ) return;
-
-      var bitMask = (this.isShortPress() ? 1 : 2);
-      var sendValue = this.getActionValue();
-
-      this.sendToBackend(sendValue, function(address) {
-        return !!(address[2] & bitMask);
+    _onLongTap: function(event) {
+      this.sendToBackend(this.getSendValue(), function(address) {
+        return !!(address[2] & 2);
       });
     }
   },

@@ -162,41 +162,40 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
       return ret_val + '</div>';
     },
 
-    /**
-     * Get the value that should be send to backend after the action has been triggered
-     *
-     * @method getActionValue
-     */
-    getActionValue: function (path, actor, isCanceled) {
-      var isDown = qx.bom.element.Class.has(actor, 'downlabel');
-      if (this.isShortPress()) {
-        return isDown ? this.getShortDownValue() : this.getShortUpValue();
-      } else {
-        return isDown ? this.getDownValue() : this.getUpValue();
-      }
+    _onDomReady: function() {
+      this.base(arguments);
+      this.addListener("longtap", this._onLongTap, this);
     },
 
-    _action: function (path, actor, isCanceled) {
-      if (isCanceled) return;
+    _onLongTap: function(event) {
+      this.__action(false, qx.bom.element.Class.has(event.getCurrentTarget(), 'downlabel'));
+    },
 
-      var value = this.getActionValue(path, actor, isCanceled);
-      var bitMask = (this.isShortPress() ? 1 : 2);
+    _action: function(event) {
+      this.__action(true, qx.bom.element.Class.has(event.getCurrentTarget(), 'downlabel'));
+    },
+
+    __action: function (isShort, isDown) {
+      var value;
+      if (isShort) {
+        value = isDown ? this.getShortDownValue() : this.getShortUpValue();
+      } else {
+        value = isDown ? this.getDownValue() : this.getUpValue();
+      }
+
+      var bitMask = (isShort ? 1 : 2);
 
       if (this.getIsAbsolute()) {
         value = parseFloat(this.getBasicValue());
         if (isNaN(value))
           value = 0; // anything is better than NaN...
-        value = value + parseFloat(this.getActionValue(path, actor, isCanceled));
+        value = value + parseFloat(value);
         value = Math.max(value, this.getMin());
         value = Math.min(value, this.getMax());
       }
-      var addresses = this.getAddress();
-      for (var addr in addresses) {
-        if (!(addresses[addr][1] & 2)) continue; // skip when write flag not set
-        if (addresses[addr][2] & bitMask) {
-          cv.TemplateEngine.getInstance().visu.write(addr, this.applyTransformEncode(addr, value));
-        }
-      }
+      this.sendToBackend(value, function(address) {
+        return !!(address[2] & bitMask);
+      });
     }
   },
 
