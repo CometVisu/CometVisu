@@ -37,7 +37,7 @@ qx.Class.define('cv.structure.WidgetFactory', {
           if (handler) {
             this.registry[data.path] = new handler(data);
           } else {
-            qx.log.Logger.error("No handler found for type '%s'", type);
+            qx.log.Logger.error("No handler found for type '"+type+"'");
             return null;
           }
         } else {

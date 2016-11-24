@@ -184,7 +184,9 @@ qx.Class.define('cv.xml.Parser', {
       if ( $element.attr('align') ) {
         classes+=" "+$element.attr('align');
       }
-      classes += ' ' + this.setWidgetLayout( $element, path );
+      if (qx.lang.Array.contains(properties, "colspan")) {
+        classes += ' ' + this.setWidgetLayout($element, path);
+      }
       if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
       if( flavour ) classes += ' flavour_' + flavour;
       if ($element.attr('class')) classes += ' custom_' + $element.attr('class');

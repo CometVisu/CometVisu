@@ -107,7 +107,6 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
     },
 
     makeAddressListFn: function (src, transform, mode, variant) {
-      console.log("make address list "+variant);
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
       return [true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1 | 2)];
     }

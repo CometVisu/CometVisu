@@ -140,12 +140,15 @@ qx.Class.define('cv.layout.Manager', {
     },
 
     getWidgetColspan: function(widget) {
-      var width = this.getAvailableWidth();
-      if (width <= cv.Config.maxScreenWidthColspanS)
-        return widget.getColspanS();
-      if (width <= cv.Config.maxScreenWidthColspanM)
-        return widget.getColspanM();
-      return widget.getColspan();
+      if (widget.getColspan) {
+        var width = this.getAvailableWidth();
+        if (width <= cv.Config.maxScreenWidthColspanS)
+          return widget.getColspanS();
+        if (width <= cv.Config.maxScreenWidthColspanM)
+          return widget.getColspanM();
+        return widget.getColspan();
+      }
+      return 12;
     },
 
     /**
