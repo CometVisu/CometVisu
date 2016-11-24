@@ -64,8 +64,8 @@ qx.Mixin.define("cv.role.Refresh", {
     setupRefreshAction: function () {
       if (this.getRefresh() && this.getRefresh() > 0) {
         var element = this.getDomElement();
-        var target = $('img', element)[0] || $('iframe', element)[0];
-        var src = target.src;
+        var target = qx.bom.Selector.query('img', element)[0] || qx.bom.Selector.query('iframe', element)[0];
+        var src = qx.bom.element.Attribute.get(target, "src");
         if (src.indexOf('?') < 0)
           src += '?';
 
@@ -85,12 +85,12 @@ qx.Mixin.define("cv.role.Refresh", {
        */
       var parenthost = window.location.protocol + "//" + window.location.host;
       if (target.nodeName == "IFRAME" && src.indexOf(parenthost) != 0) {
-        target.src = '';
+        qx.bom.element.Attribute.set(target, "src", "");
         qx.event.Timer.once(function () {
-          target.src = src;
+          qx.bom.element.Attribute.set(target, "src", src);
         }, this, 0);
       } else {
-        target.src = src + '&' + new Date().getTime();
+        qx.bom.element.Attribute.set(target, "src", src + '&' + new Date().getTime());
       }
     }
   }
