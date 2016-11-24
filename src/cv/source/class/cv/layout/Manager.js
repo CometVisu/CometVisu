@@ -161,8 +161,8 @@ qx.Class.define('cv.layout.Manager', {
         if (allContainer.length > 0) {
           var areaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query(area)[0], 'columns');
           allContainer.forEach(function(child) {
-            var widget = cv.structure.WidgetFactory.getInstanceByElement(child),
-              ourColspan = this.getWidgetColspan(widget);
+            var widget = cv.structure.WidgetFactory.getInstanceByElement(child);
+            var ourColspan = this.getWidgetColspan(widget);
 
             var w = 'auto';
             if (ourColspan > 0) {
@@ -187,8 +187,15 @@ qx.Class.define('cv.layout.Manager', {
           }
           var w = 'auto';
           if (ourColspan > 0) {
-            var areaColspan = mainAreaColumns || cv.Config.defaultColumns;
-            var groupColspan = Math.min(areaColspan, this.getWidgetColspan(cv.util.Tree.getParentWidget(widget, "group")));
+            var areaColspan = parseInt(mainAreaColumns || cv.Config.defaultColumns);
+            var groupColspan = areaColspan;
+            var parentGroupElement = cv.util.Tree.getParent(e, '.widget_container', '.group', 1)[0];
+            if (parentGroupElement) {
+              var parentGroupWidget = cv.structure.WidgetFactory.getInstanceByElement(qx.dom.Element.getParentElement(parentGroupElement));
+              if (parentGroupWidget) {
+                groupColspan = Math.min(areaColspan, this.getWidgetColspan(parentGroupWidget));
+              }
+            }
             w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
           }
           qx.bom.element.Style.set(e, 'width', w);

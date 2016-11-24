@@ -52,12 +52,12 @@ qx.Class.define('cv.layout.ResizeHandler', {
       return this.$navbarBottom;
     },
 
-    __makeAllSizesValid: function () {
+    makeAllSizesValid : qx.util.Function.debounce(function() {
       this.invalidPagesize && this.makePagesizeValid(); // must be first due to dependencies
       this.invalidNavbar && this.makeNavbarValid();
       this.invalidRowspan && this.makeRowspanValid();
       this.invalidBackdrop && this.makeBackdropValid();
-    },
+    }, 10, true),
 
     makeBackdropValid: function () {
       var templateEngine = cv.TemplateEngine.getInstance();
@@ -147,21 +147,21 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makeNavbarValid: function () {
-      if (cv.Config.mobileDevice) {
-        //do nothing
-      } else {
-        var navbarTop = this.getNavbarTop();
-        var navbarBottom = this.getNavbarBottom(true);
-        if (
-          (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && navbarTop.getBoundingClientRect().height <= 2) ||
-          (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && navbarBottom.getBoundingClientRect().height <= 2)
-        ) {
-          // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
-          // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
-          qx.bom.AnimationFrame.request(this.invalidateNavbar, this);
-          return;
-        }
-      }
+      // if (cv.Config.mobileDevice) {
+      //   //do nothing
+      // } else {
+      //   var navbarTop = this.getNavbarTop();
+      //   var navbarBottom = this.getNavbarBottom(true);
+      //   if (
+      //     (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && navbarTop.getBoundingClientRect().height <= 2) ||
+      //     (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && navbarBottom.getBoundingClientRect().height <= 2)
+      //   ) {
+      //     // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
+      //     // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
+      //     qx.bom.AnimationFrame.request(this.invalidateNavbar, this);
+      //     return;
+      //   }
+      // }
       if (cv.layout.Manager.adjustColumns()) {
         // the amount of columns has changed -> recalculate the widgets widths
         cv.layout.Manager.applyColumnWidths();
@@ -214,9 +214,5 @@ qx.Class.define('cv.layout.ResizeHandler', {
       this.invalidBackdrop = true;
       this.makeAllSizesValid();
     }
-  },
-
-  defer: function() {
-    cv.layout.ResizeHandler.makeAllSizesValid = qx.util.Function.debounce(cv.layout.ResizeHandler.__makeAllSizesValid, 10, true);
   }
 });

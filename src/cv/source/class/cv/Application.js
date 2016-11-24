@@ -71,7 +71,7 @@ qx.Class.define("cv.Application",
     __init: function() {
       var templateEngine = cv.TemplateEngine.getInstance();
 
-      qx.event.Registration.addListener(window, 'resize', cv.layout.ResizeHandler.invalidateScreensize);
+      qx.event.Registration.addListener(window, 'resize', cv.layout.ResizeHandler.invalidateScreensize, cv.layout.ResizeHandler);
       qx.event.Registration.addListener(window, 'unload', function () {
         if (templateEngine.visu) {
           templateEngine.visu.stop();

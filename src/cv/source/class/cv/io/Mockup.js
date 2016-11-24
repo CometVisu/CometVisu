@@ -96,8 +96,9 @@ qx.Class.define('cv.io.Mockup', {
       this.receive(answer);
     },
 
-    stop: function () {
-    },
+    restart: function() {},
+
+    stop: function () {},
 
     getResourcePath: function (name) {
       return name;
