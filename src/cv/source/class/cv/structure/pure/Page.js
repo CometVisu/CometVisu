@@ -56,8 +56,8 @@ qx.Class.define('cv.structure.pure.Page', {
       var name    = qx.bom.element.Attribute.get(page, 'name');
       pageType = qx.bom.element.Attribute.get(page, 'type') || 'text';              //text, 2d or 3d
       var backdrop = qx.bom.element.Attribute.get(page, 'backdrop');
-      var showtopnavigation = qx.bom.element.Attribute.get(page, 'showtopnavigation') ? qx.bom.element.Attribute.get(page, 'showtopnavigation') === "true" : undefined;
-      var showfooter = qx.bom.element.Attribute.get(page, 'showfooter') ? qx.bom.element.Attribute.get(page, 'showfooter') === "true": undefined;
+      var showtopnavigation = qx.bom.element.Attribute.get(page, 'showtopnavigation') ? qx.bom.element.Attribute.get(page, 'showtopnavigation') === "true" : true;
+      var showfooter = qx.bom.element.Attribute.get(page, 'showfooter') ? qx.bom.element.Attribute.get(page, 'showfooter') === "true": true;
       // make sure the type has the correct value as we need to use it ass CSS class
       switch (pageType) {
         case '2d':
@@ -100,9 +100,9 @@ qx.Class.define('cv.structure.pure.Page', {
         path              : storagePath,
         name              : name,
         pageType          : pageType,
-        showTopNavigation : showtopnavigation || null,
-        showFooter        : showfooter || null,
-        showNavbar        : shownavbar || null,
+        showTopNavigation : showtopnavigation,
+        showFooter        : showfooter,
+        showNavbar        : shownavbar,
         backdropAlign     : '2d' === pageType ? (qx.bom.element.Attribute.get(page, 'backdropalign' ) || '50% 50%') : null,
         size              : qx.bom.element.Attribute.get(page, 'size') || null,
         address           : addresses,
