@@ -94,6 +94,11 @@ qx.Class.define('cv.data.Model', {
         data[attrname] = obj[attrname];
 
       return data;
+    },
+
+    clear: function() {
+      this.resetAddressList();
+      this.resetWidgetDataModel();
     }
   }
 

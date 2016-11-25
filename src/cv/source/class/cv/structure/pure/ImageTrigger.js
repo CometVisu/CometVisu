@@ -72,7 +72,6 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
   extend: cv.structure.pure.AbstractWidget,
   include: [
     cv.role.Operate,
-    cv.role.HasAddress,
     cv.role.HasAnimatedButton,
     cv.role.Refresh,
     cv.role.Update
@@ -89,7 +88,7 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
     width: {check: "String", init: '100%'},
     src: { check: "String", nullable: true },
     suffix: { check: "String", nullable: true },
-    sendValue: { check: "String", "default": ''}
+    sendValue: { check: "String", init: ''}
   },
 
   /*
@@ -173,7 +172,7 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
       //TODO: add SVG-magics
     },
 
-    action: function() {
+    _action: function() {
       if (this.getSendValue() == "") return;
       this.sendToBackend(this.getSendValue());
     }

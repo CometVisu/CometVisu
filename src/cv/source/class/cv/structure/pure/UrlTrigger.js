@@ -30,7 +30,6 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
   extend: cv.structure.pure.AbstractWidget,
   include: [
     cv.role.Operate,
-    cv.role.HasAddress,
     cv.role.HasAnimatedButton,
     cv.role.BasicUpdate
   ],
@@ -85,7 +84,7 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
       return actor;
     },
 
-    action: function( path, actor, isCanceled ) {
+    _action: function( path, actor, isCanceled ) {
 
       // TODO: remove jquery
       $.ajax({

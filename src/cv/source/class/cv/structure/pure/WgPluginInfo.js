@@ -30,7 +30,12 @@ qx.Class.define('cv.structure.pure.WgPluginInfo', {
   extend: cv.structure.pure.AbstractWidget,
   include: cv.role.Update,
 
-  has: {
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
     variable   : { check: "String", nullable: true }
   },
 
