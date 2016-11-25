@@ -2,58 +2,54 @@
  * Unit tests for group widget
  *
  */
+describe("testing a group widget", function() {
 
-define( ['widget_group', 'widget_text'], function() {
+  it("should test the group creator", function() {
 
-  describe("testing a group widget", function() {
+    var res = this.createTestWidgetString("group");
 
-    it("should test the group creator", function() {
+    var widget = $(res[1]);
 
-      var res = this.createTestWidgetString("group");
+    expect(widget).toHaveClass('group');
+    expect(widget).toHaveClass('widget');
+    expect(res[0].getColspan()).toBe(6);
+    expect(res[0].getColspanM()).toBe(6);
+    expect(res[0].getColspanS()).toBe(12);
+  });
 
-      var widget = $(res[1]);
+  it("should test the group creator with more attributes", function() {
+    var res = this.createTestWidgetString("group", {
+      nowidget: true,
+      class: "test",
+      flavour: "potassium",
+      align: "right",
+      name: "Test",
+      target: "target"
+    }, '<text/>');
+    var widget = $(res[1]);
 
-      expect(widget).toHaveClass('group');
-      expect(widget).toHaveClass('widget');
-      expect(res[0].getColspan()).toBe(6);
-      expect(res[0].getColspanM()).toBe(6);
-      expect(res[0].getColspanS()).toBe(12);
-    });
+    expect(widget).toHaveClass('group');
+    expect(widget).toHaveClass('custom_test');
+    expect(widget).toHaveClass('flavour_potassium');
+    expect(widget).toHaveClass('clickable');
+    expect(widget).not.toHaveClass('widget');
 
-    it("should test the group creator with more attributes", function() {
-      var res = this.createTestWidgetString("group", {
-        nowidget: true,
-        class: "test",
-        flavour: "potassium",
-        align: "right",
-        name: "Test",
-        target: "target"
-      }, '<text/>');
-      var widget = $(res[1]);
+    expect($(widget.find('h2').get(0)).text()).toBe("Test")
+  });
 
-      expect(widget).toHaveClass('group');
-      expect(widget).toHaveClass('custom_test');
-      expect(widget).toHaveClass('flavour_potassium');
-      expect(widget).toHaveClass('clickable');
-      expect(widget).not.toHaveClass('widget');
+  it('should trigger the group action', function() {
 
-      expect($(widget.find('h2').get(0)).text()).toBe("Test")
-    });
+    spyOn(templateEngine, 'scrollToPage');
+    var res = this.createTestElement("group", { target: "target" });
 
-    it('should trigger the group action', function() {
+    var actor = this.container.children[0].querySelectorAll('.actor')[0];
+    expect(actor).not.toBe(null);
 
-      spyOn(templateEngine, 'scrollToPage');
-      var res = this.createTestElement("group", { target: "target" });
+    //canceled call
+    res.action('id_0', actor, true);
+    expect(templateEngine.scrollToPage).not.toHaveBeenCalled();
 
-      var actor = this.container.children[0].querySelectorAll('.actor')[0];
-      expect(actor).not.toBe(null);
-
-      //canceled call
-      res.action('id_0', actor, true);
-      expect(templateEngine.scrollToPage).not.toHaveBeenCalled();
-
-      res.action('id_0', actor, false);
-      expect(templateEngine.scrollToPage).toHaveBeenCalledWith("target");
-    });
+    res.action('id_0', actor, false);
+    expect(templateEngine.scrollToPage).toHaveBeenCalledWith("target");
   });
 });

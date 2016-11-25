@@ -30,6 +30,16 @@ qx.Class.define('cv.structure.pure.NavBar', {
   extend: cv.structure.pure.AbstractWidget,
 
   include: cv.role.HasChildren,
+
+  /*
+  ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(props) {
+    this.base(arguments, props);
+  },
+
   
   /*
   ******************************************************
@@ -114,8 +124,13 @@ qx.Class.define('cv.structure.pure.NavBar', {
     navbarLeft: '',
     navbarRight: '',
     navbarBottom: '',
-    $navbarLeftSize: qx.bom.element.Dataset.get(qx.bom.Selector.query('#navbarLeft')[0], 'size'),
-    $navbarRightSize: qx.bom.element.Dataset.get(qx.bom.Selector.query('#navbarRight')[0], 'size'),
+    $navbarLeftSize: null,
+    $navbarRightSize: null,
+
+    _onDomReady: function() {
+      this.$navbarLeftSize = qx.bom.element.Dataset.get(qx.bom.Selector.query('#navbarLeft')[0], 'size');
+      this.$navbarRightSize = qx.bom.element.Dataset.get(qx.bom.Selector.query('#navbarRight')[0], 'size');
+    },
     
     getGlobalPath: function () {
       var id = this.getPath().split("_");

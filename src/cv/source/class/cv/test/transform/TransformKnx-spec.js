@@ -211,24 +211,24 @@
         switch( testcase.type ) {
           case 'encode':
             // test direct
-            expect(Transform.Transform[ testcase.transform ].encode( testcase.source )).toEqual( testcase.target );
+            expect(cv.Transform.encode(testcase.transform, testcase.source )).toEqual( testcase.target );
             if( !testcase.noNumber )
             {
               // test integer
               if( !testcase.noInt )
-                expect(Transform.Transform[ testcase.transform ].encode( testcase.source|0  )).toEqual( testcase.target );
+                expect(cv.Transform.encode(testcase.transform, testcase.source|0  )).toEqual( testcase.target );
               // test float
-              expect(Transform.Transform[ testcase.transform ].encode( +testcase.source   )).toEqual( testcase.target );
+              expect(cv.Transform.encode(testcase.transform , +testcase.source   )).toEqual( testcase.target );
               // test string
-              expect(Transform.Transform[ testcase.transform ].encode( testcase.source+'' )).toEqual( testcase.target );
+              expect(cv.Transform.encode(testcase.transform, testcase.source+'' )).toEqual( testcase.target );
             }
           break;
           
         case 'decode':
           if( testcase.isDate )
-            expect(Transform.Transform[ testcase.transform ].decode( testcase.source )+'').toEqual( testcase.target+'' );
+            expect(cv.Transform.decode(testcase.transform, testcase.source )+'').toEqual( testcase.target+'' );
           else
-            expect(Transform.Transform[ testcase.transform ].decode( testcase.source )).toEqual( testcase.target );
+            expect(cv.Transform.decode(testcase.transform, testcase.source )).toEqual( testcase.target );
           break;
         }
       });

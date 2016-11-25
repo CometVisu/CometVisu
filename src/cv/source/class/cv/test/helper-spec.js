@@ -20,11 +20,8 @@ var createTestWidgetString = function (name, attributes, content) {
   if (!content) {
     content = "";
   }
-  var elem = '<' + name;
-  for (var key in attributes) {
-    elem += " " + key + "=\"" + attributes[key] + "\"";
-  }
-  elem += ">" + content + "</" + name + ">";
+  var elem = qx.dom.Element.create(name, attributes);
+  elem.innerHTML = content;
 
   var data = cv.xml.Parser.parse(elem, 'id_0', null, "text");
   var res = [];
@@ -83,34 +80,34 @@ var createTestElement = function (name, attributes, content, address, addressAtt
 };
 
 var customMatchers = {
-  toHaveFlavour: function () {
-    return {
-      compare: function (actual, expected) {
+  toHaveFlavour: function() {
+    return  {
+      compare: function(actual, expected) {
         var result = {};
 
-        result.pass = actual.hasClass('flavour_' + expected);
+        result.pass = qx.bom.element.Class.has(actual, 'flavour_'+expected);
         if (result.pass) {
-          result.message = "Expected " + actual.prop("tagName") + " not to be flavoured with " + expected;
+          result.message = "Expected " + actual.tagName + " not to be flavoured with "+expected;
         }
-        else {
-          result.message = "Expected " + actual.prop("tagName") + " to be flavoured with " + expected + ", but is was not";
+        else{
+          result.message = "Expected " + actual.tagName + " to be flavoured with "+expected+", but is was not";
         }
         return result;
       }
     };
   },
 
-  toHaveClass: function () {
-    return {
-      compare: function (actual, expected) {
+  toHaveClass: function() {
+    return  {
+      compare: function(actual, expected) {
         var result = {};
 
-        result.pass = actual.hasClass(expected);
+        result.pass = qx.bom.element.Class.has(actual, expected);
         if (result.pass) {
-          result.message = "Expected " + actual.prop("tagName") + " not to have class " + expected;
+          result.message = "Expected " + actual.tagName + " not to have class "+expected;
         }
-        else {
-          result.message = "Expected " + actual.prop("tagName") + " to have class " + expected + ", but it does not";
+        else{
+          result.message = "Expected " + actual.tagName + " to have class "+expected+", but it does not";
         }
         return result;
       }
@@ -122,9 +119,9 @@ var customMatchers = {
    * Note: This checks the style css attribute setting not the
    * computed css value as the jQuery.css function does.
    */
-  toHaveStyleSetting: function () {
-    return {
-      compare: function (actual, cssKey, cssValue) {
+  toHaveStyleSetting: function() {
+    return  {
+      compare: function(actual, cssKey, cssValue) {
         var result = {};
         if (!actual.hasAttribute('style')) {
           result.pass = false;
@@ -141,41 +138,41 @@ var customMatchers = {
         }
 
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " to have style '" + cssKey + ":" + cssValue + " set";
+          result.message = "Expected " + actual.tagName + " to have style '"+cssKey+":"+cssValue+" set";
         }
-        else {
-          result.message = "Expected " + actual.tagName + " to have style '" + cssKey + ":" + cssValue + " set, but it has not";
+        else{
+          result.message = "Expected " + actual.tagName + " to have style '"+cssKey+":"+cssValue+" set, but it has not";
         }
         return result;
       }
     };
   },
 
-  toHaveAttribute: function () {
-    return {
-      compare: function (actual, expected) {
+  toHaveAttribute: function() {
+    return  {
+      compare: function(actual, expected) {
         var result = {};
         result.pass = actual.hasAttribute(expected);
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " not to have attribute " + expected;
+          result.message = "Expected " + actual.tagName + " not to have attribute "+expected;
         }
-        else {
-          result.message = "Expected " + actual.tagName + " to have attribute " + expected + ", but it does not";
+        else{
+          result.message = "Expected " + actual.tagName + " to have attribute "+expected+", but it does not";
         }
         return result;
       }
     };
   },
 
-  toBeVisible: function () {
-    return {
-      compare: function (actual) {
+  toBeVisible: function() {
+    return  {
+      compare: function(actual) {
         var result = {};
-        result.pass = $(actual).css('display') !== 'none';
+        result.pass = qx.bom.element.Style.get(actual, 'display') !== 'none';
         if (result.pass) {
-          result.message = "Expected " + actual.tagName + " not to be visible, but it is " + $(actual).css('display');
+          result.message = "Expected " + actual.tagName + " not to be visible, but it is "+qx.bom.element.Style.get(actual, 'display');
         }
-        else {
+        else{
           result.message = "Expected " + actual.tagName + " to be visible";
         }
         return result;

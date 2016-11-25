@@ -118,7 +118,7 @@ qx.Class.define('cv.transforms.Knx', {
           max: 255.0
         },
         encode: function (phy) {
-          var val = parseInt(cv.Transform.my.clip(0, phy, 255)).toString(16);
+          var val = parseInt(cv.Transform.clip(0, phy, 255)).toString(16);
           return (val.length == 1 ? '800' : '80') + val;
         },
         decode: function (hex) {
@@ -138,7 +138,7 @@ qx.Class.define('cv.transforms.Knx', {
       '6.001': {
         name: 'DPT_Percent_V8',
         encode: function (phy) {
-          phy = parseInt(cv.Transform.my.clip(-128, phy, 127));
+          phy = parseInt(cv.Transform.clip(-128, phy, 127));
           var val = phy < 0 ? phy + 256 : phy;
           val = val.toString(16);
           return (val.length == 1 ? '800' : '80') + val;
