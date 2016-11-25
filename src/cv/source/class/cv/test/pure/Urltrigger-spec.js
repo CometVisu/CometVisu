@@ -11,6 +11,6 @@ describe("testing a urltrigger widget", function() {
     expect(res[0].getPath()).toBe("id_0");
 
     expect(widget).toHaveClass('trigger');
-    expect(widget.find("div.label").text()).toBe('Test');
+    expect(widget).toHaveLabel('Test');
   });
 });

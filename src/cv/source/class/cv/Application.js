@@ -14,6 +14,7 @@
  * If you have added resources to your app, remove the first '@' in the
  * following line to make use of them.
  * @asset(cv/*)
+ * @require(qx.bom.Html)
  */
 qx.Class.define("cv.Application",
 {

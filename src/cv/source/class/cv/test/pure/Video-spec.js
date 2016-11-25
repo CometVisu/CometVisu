@@ -11,7 +11,7 @@ describe("testing a video widget", function() {
     expect(res[0].getPath()).toBe("id_0");
 
     expect(widget).toHaveClass('video');
-    expect(widget.find("div.label").text()).toBe('Test');
+    expect(widget).toHaveLabel('Test');
 
 
   });

@@ -97,8 +97,8 @@ qx.Class.define('cv.data.Model', {
     },
 
     clear: function() {
-      this.resetAddressList();
-      this.resetWidgetDataModel();
+      this.setAddressList({});
+      this.setWidgetDataModel({});
     }
   }
 

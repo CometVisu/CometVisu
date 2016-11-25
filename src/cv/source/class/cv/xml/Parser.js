@@ -116,7 +116,7 @@ qx.Class.define('cv.xml.Parser', {
      */
     __parse: function (handler, element, path, flavour, pageType) {
       // and fill in widget specific data
-      var data = this.createDefaultWidget(handler, this.getElementType(element), $(element), path, flavour, pageType);
+      var data = this.createDefaultWidget(handler, this.getElementType(element), element, path, flavour, pageType);
       var mappings = this.__getAttributeToPropertyMappings(handler);
       if (mappings) {
         for (var key in mappings) {
@@ -165,35 +165,35 @@ qx.Class.define('cv.xml.Parser', {
      * Note: the receiver of the returned string must add an </div> closing element!
      *
      * @param widgetType {String} of the widget type
-     * @param $element   {Object} the XML element
+     * @param element   {Object} the XML element
      * @param path       {String} of the path ID
      * @param flavour   {String} Flavour
      * @param pageType  {String} one of text, 2d and 3d
-     * @return {Map] parsed widget data
+     * @return {Map} parsed widget data
      */
-    createDefaultWidget: function(handler, widgetType, $element, path, flavour, pageType) {
+    createDefaultWidget: function(handler, widgetType, element, path, flavour, pageType) {
       if (handler.createDefaultWidget) {
-        return handler.createDefaultWidget(widgetType, $element, path, flavour, pageType);
+        return handler.createDefaultWidget(widgetType, element, path, flavour, pageType);
       }
       var clazz = qx.Class.getByName(handler.classname);
       var properties = qx.Class.getProperties(clazz);
 
-      var layout = this.parseLayout( $element.children('layout')[0] );
-      var style = $.isEmptyObject(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
+      var layout = this.parseLayout( qx.bom.Selector.matches('layout', qx.dom.Hierarchy.getChildElements(element))[0] );
+      var style = qx.lang.Object.isEmpty(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
       var classes = handler.getDefaultClasses ? handler.getDefaultClasses(widgetType) : this.getDefaultClasses(widgetType);
-      if ( $element.attr('align') ) {
-        classes+=" "+$element.attr('align');
+      if ( qx.bom.element.Attribute.get(element, 'align') ) {
+        classes+=" "+qx.bom.element.Attribute.get(element, 'align') ;
       }
       if (qx.lang.Array.contains(properties, "colspan")) {
-        classes += ' ' + this.setWidgetLayout($element, path);
+        classes += ' ' + this.setWidgetLayout(element, path);
       }
-      if( $element.attr('flavour') ) flavour = $element.attr('flavour');// sub design choice
+      if( qx.bom.element.Attribute.get(element, 'flavour') ) flavour = qx.bom.element.Attribute.get(element, 'flavour');// sub design choice
       if( flavour ) classes += ' flavour_' + flavour;
-      if ($element.attr('class')) classes += ' custom_' + $element.attr('class');
-      var label = (pageType==='text') ? this.extractLabel( $element.find('label')[0], flavour, '' ) : this.extractLabel( $element.find('label')[0], flavour );
+      if (qx.bom.element.Attribute.get(element, 'class')) classes += ' custom_' + qx.bom.element.Attribute.get(element, 'class');
+      var label = (pageType==='text') ? this.extractLabel( qx.bom.Selector.query("label", element)[0], flavour, '' ) : this.extractLabel( qx.bom.Selector.query("label", element)[0], flavour );
 
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
-      if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
+      if (qx.bom.element.Attribute.get(element, "bind_click_to_widget")) bindClickToWidget = qx.bom.element.Attribute.get(element, "bind_click_to_widget")=="true";
 
       var data = {
         'path'    : path,
@@ -205,7 +205,7 @@ qx.Class.define('cv.xml.Parser', {
       }
       ['mapping', 'align', 'align'].forEach(function(prop) {
         if (qx.lang.Array.contains(properties, prop)) {
-          data[prop] = $element.attr(prop) || null;
+          data[prop] = qx.bom.element.Attribute.get(element, prop) || null;
         }
       }, this);
 
@@ -240,7 +240,7 @@ qx.Class.define('cv.xml.Parser', {
         return ret_val;
 
       if( undefined === defaultValues ) defaultValues = {};
-
+      console.log(layout);
       if( layout.getAttribute('x'     ) ) ret_val.x      = layout.getAttribute('x'     );
       else if( defaultValues.x          ) ret_val.x      = defaultValues.x;
 
@@ -287,13 +287,17 @@ qx.Class.define('cv.xml.Parser', {
       var ret_val = '<div class="' + (!labelClass ? 'label' : labelClass) + '"'
         + ( style ? (' style="' + style + '"') : '' ) + '>';
 
-      $( label ).contents().each( function(){
-        var $v = $(this);
-        if( $v.is('icon') )
-        {
-          ret_val += cv.IconHandler.getInstance().getIconText($v.attr('name'), $v.attr('type'), $v.attr('flavour') || flavour, $v.attr('color'), $v.attr('styling') );
-        } else
-          ret_val += this.textContent;
+      label.childNodes.forEach(function(elem) {
+        if( qx.dom.Node.isNodeName(elem, 'icon') ) {
+          ret_val += cv.IconHandler.getInstance().getIconText(
+            qx.bom.element.Attribute.get(elem, 'name'),
+            qx.bom.element.Attribute.get(elem, 'type'),
+            qx.bom.element.Attribute.get(elem, 'flavour') || flavour,
+            qx.bom.element.Attribute.get(elem, 'color'),
+            qx.bom.element.Attribute.get(elem, 'styling') );
+        } else {
+          ret_val += elem.textContent;
+        }
       });
       return ret_val + '</div>';
     },
@@ -309,15 +313,16 @@ qx.Class.define('cv.xml.Parser', {
     setWidgetLayout: function( page, path ) {
       var
         elementData = cv.data.Model.getInstance().getWidgetData( path ),
-        layout      = page.children('layout')[0],
-
+        layout      = qx.bom.Selector.matches("layout", qx.dom.Hierarchy.getChildElements(page))[0],
         ret_val = '';
+
       if (layout) {
+        console.log(layout);
         elementData.colspan = layout.getAttribute('colspan');
         elementData.colspanM = layout.getAttribute('colspan-m');
         elementData.colspanS = layout.getAttribute('colspan-s');
       }
-      elementData.colspan = parseFloat(elementData.colspan || $('head').data('colspanDefault') || 6);
+      elementData.colspan = parseFloat(elementData.colspan || qx.bom.element.Dataset.get(qx.bom.Selector.query('head')[0], 'colspanDefault') || 6);
       elementData.colspanM = parseFloat(elementData.colspanM || cv.xml.Parser.lookupM[Math.floor(elementData.colspan)] || elementData.colspan);
       elementData.colspanS = parseFloat(cv.xml.Parser.lookupS[Math.floor(elementData.colspan)] || elementData.colspan);
 

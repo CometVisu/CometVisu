@@ -67,11 +67,16 @@ qx.Class.define('cv.structure.pure.WgPluginInfo', {
     },
 
     handleUpdate: function(value) {
-      var that = this;
-      // TODO: remove jquery
-      $.getJSON('/wg-plugindb.pl?name=' + this.getVariable(), function(data) {
-        that.defaultUpdate( undefined, data[that.getVariable()], that.getValueElement(), true, that.getPath());
+      var ajaxRequest = new qx.io.request.Xhr('/wg-plugindb.pl?name=' + this.getVariable());
+      ajaxRequest.set({
+        accept: "application/json",
+        async: false
       });
+      ajaxRequest.addListenerOnce("success", function(ev) {
+        var req = ev.getTarget();
+        var data = req.getResponse();
+        this.defaultUpdate(undefined, data[this.getVariable()], this.getValueElement());
+      }, this);
     }
   },
 

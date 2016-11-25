@@ -8,11 +8,11 @@ describe("testing a unknown widget", function() {
 
   it("should test the unknown creator", function() {
 
-    var data = cv.xml.Parser.parse($('<unknown_widget/>')[0], 'id_0', null, "text");
+    var data = cv.xml.Parser.parse(qx.dom.Element.create('unknown_widget'), 'id_0', null, "text");
 
     var inst = cv.structure.WidgetFactory.createInstance(data.$$type, data);
-    var unknown = $(inst.getDomString());
+    var unknown = inst.getDomString();
 
-    expect(unknown.find("pre").text()).toBe('unknown: unknown_widget');
+    expect(unknown).toBe('unknown: unknown_widget');
   });
 });

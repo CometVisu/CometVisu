@@ -101,13 +101,29 @@ var customMatchers = {
     return  {
       compare: function(actual, expected) {
         var result = {};
-
         result.pass = qx.bom.element.Class.has(actual, expected);
         if (result.pass) {
           result.message = "Expected " + actual.tagName + " not to have class "+expected;
         }
         else{
           result.message = "Expected " + actual.tagName + " to have class "+expected+", but it does not";
+        }
+        return result;
+      }
+    };
+  },
+
+  toHaveLabel: function() {
+    return  {
+      compare: function(actual, expected) {
+        var result = {};
+        var label = qx.bom.Selector.matches("div.label", qx.dom.Hierarchy.getChildElements(actual))[0];
+        result.pass = label && qx.dom.Node.getText(label) === expected;
+        if (result.pass) {
+          result.message = "Expected " + actual.tagName + " not to have label "+expected;
+        }
+        else{
+          result.message = "Expected " + actual.tagName + " to have label "+expected+", but it has "+qx.dom.Node.getText(label);
         }
         return result;
       }

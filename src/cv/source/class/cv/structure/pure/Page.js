@@ -43,7 +43,6 @@ qx.Class.define('cv.structure.pure.Page', {
     allPages : '',
 
     parse: function( page, path, flavour, pageType ) {
-      var $p = $(page);
 
       var storagePath = cv.role.HasChildren.getStoragePath(page, path);
       var addresses = {};
@@ -76,8 +75,8 @@ qx.Class.define('cv.structure.pure.Page', {
         left   : 'id' === path ? 'false' : 'inherit',
         right  : 'id' === path ? 'false' : 'inherit'
       };
-      $p.children('navbar').each( function(){
-        shownavbar[ $(this).attr('position') || 'left' ] = 'true';
+      qx.bom.Selector.matches("navbar", qx.dom.Hierarchy.getChildElements(page)).forEach( function(elem) {
+        shownavbar[ qx.bom.element.Attribute.get(elem, 'position') || 'left' ] = 'true';
       });
       // overwrite default when set manually in the config
       shownavbar.top = qx.bom.element.Attribute.get(page, 'shownavbar-top') || shownavbar.top;
@@ -94,7 +93,7 @@ qx.Class.define('cv.structure.pure.Page', {
       if( qx.bom.element.Attribute.get(page, 'align') ) wstyle += 'text-align:' + qx.bom.element.Attribute.get(page, 'align') + ';';
       if( wstyle != '' ) wstyle = 'style="' + wstyle + '"';
 
-      var layout = cv.xml.Parser.parseLayout( $p.children('layout')[0] );
+      var layout = cv.xml.Parser.parseLayout( qx.bom.Selector.matches("layout", qx.dom.Hierarchy.getChildElements(page))[0] );
 
       var data = cv.data.Model.getInstance().setWidgetData( storagePath, {
         path              : storagePath,
@@ -118,7 +117,7 @@ qx.Class.define('cv.structure.pure.Page', {
           $$type          : "pagelink",
           path            : path,
           name            : name,
-          classes         : cv.xml.Parser.setWidgetLayout( $p, path ) || null,
+          classes         : cv.xml.Parser.setWidgetLayout( page, path ) || null,
           layout          : layout || null,
           address         : addresses,
           pageType        : pageType,

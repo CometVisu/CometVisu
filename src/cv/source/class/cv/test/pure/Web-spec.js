@@ -11,8 +11,6 @@ describe("testing a web widget", function() {
     expect(res[0].getPath()).toBe("id_0");
 
     expect(widget).toHaveClass('web');
-    expect(widget.find("div.label").text()).toBe('Test');
-
-    var data = templateEngine.widgetDataGet('id_0');
+    expect(widget).toHaveLabel('Test');
   });
 });
