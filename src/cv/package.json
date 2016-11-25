@@ -6,6 +6,6 @@
     "grunt": "~0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-http-server": "^1.13.0",
-    "karma-qooxdoo": "^0.4.6"
+    "karma-qooxdoo": "^0.5.0"
   }
 }
