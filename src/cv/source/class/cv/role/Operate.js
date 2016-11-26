@@ -41,7 +41,9 @@ qx.Mixin.define("cv.role.Operate", {
           this.sendToBackend(this.getActionValue(event));
         }
       }
-      event.stopPropagation();
+      if (event.getBubbles()) {
+        event.stopPropagation();
+      }
     },
 
     downaction: function(event) {
@@ -49,7 +51,9 @@ qx.Mixin.define("cv.role.Operate", {
       if (this._downaction) {
         this._downaction(event);
       }
-      event.stopPropagation();
+      if (event.getBubbles()) {
+        event.stopPropagation();
+      }
     },
 
     /**

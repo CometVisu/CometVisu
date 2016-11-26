@@ -5,7 +5,8 @@
  * @since 2016
  */
 describe("testing a trigger", function() {
-  // var templateEngine = engine.getInstance();
+  var templateEngine = cv.TemplateEngine.getInstance();
+
   // templateEngine.visu = new ClientMockup();
   // var creator = design.basicdesign.getCreator("trigger");
   // var container;
@@ -38,26 +39,26 @@ describe("testing a trigger", function() {
       flavour: "potassium"
     }, '<label>Test</label>');
 
-    var widget = $('#id_0 .widget');
+    var widget = qx.bom.Selector.query('#id_0 .widget')[0];
 
     expect(widget).toHaveFlavour('potassium');
 
-    var actor = widget.find(".actor");
+    var actor = qx.bom.Selector.matches(".actor", qx.dom.Hierarchy.getChildElements(widget))[0];
     expect(actor).not.toBeNull();
     expect(actor).toHaveClass("switchUnpressed");
     expect(actor).not.toHaveClass("switchPressed");
 
-    var value = actor.find(".value");
+    var value = qx.bom.Selector.matches(".value", qx.dom.Hierarchy.getChildElements(actor))[0];
     expect(value).not.toBeNull();
-    expect(value.text()).toBe("-");
+    expect(qx.dom.Node.getText(value)).toBe("-");
 
-    cv.MessageBroker.my.publish("setup.dom.finished");
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
 
-    expect(value.text()).toBe("1");
+    expect(qx.dom.Node.getText(value)).toBe("1");
 
-    var label = widget.find(".label");
+    var label = qx.bom.Selector.matches(".label", qx.dom.Hierarchy.getChildElements(widget))[0];
     expect(label).not.toBeNull();
-    expect(label.text()).toBe("Test");
+    expect(qx.dom.Node.getText(label)).toBe("Test");
 
     expect(res.getSendValue()).toBe("1");
     expect(res.getShortValue()).toBe("0");
@@ -66,7 +67,6 @@ describe("testing a trigger", function() {
   });
 
   it('should trigger the trigger downaction', function() {
-    spyOn(templateEngine.visu, 'write');
 
     var res = this.createTestElement("trigger", {
       value:"1",
@@ -75,36 +75,29 @@ describe("testing a trigger", function() {
       flavour: "potassium"
     }, '<label>Test</label>');
 
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+
+    spyOn(res, "sendToBackend");
     var actor = res.getActor();
     expect(actor).not.toBe(null);
 
-    //downaction
-    res.downaction('id_0', actor);
-    expect($(actor)).toHaveClass("switchPressed");
-    expect($(actor)).not.toHaveClass("switchUnpressed");
+    var Reg = qx.event.Registration;
 
-    //canceled call
-    res.action('id_0', actor, true);
-    expect(templateEngine.visu.write).not.toHaveBeenCalled();
+    // longpress
+    Reg.fireEvent(actor, "longtap", qx.event.type.Event, []);
+    expect(res.sendToBackend).toHaveBeenCalledWith('1', jasmine.any(Function));
 
-    //simulate longpress
-    var oldDate = Date.now()-150;
-    var oldShortDate = Date.now()-50;
-    var now = Date.now();
-    spyOn(Date, 'now').and.callFake(function() {
-      return oldDate;
-    });
-    res.downaction();
-    oldDate = now;
-    res.action('id_0', actor, false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '81');
+    //shortpress
+    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
+    expect(res.sendToBackend).toHaveBeenCalledWith('0', jasmine.any(Function));
 
-
-    //simulate shortpress
-    oldDate = oldShortDate;
-    res.downaction();
-    oldDate = now;
-    res.action('id_0', actor, false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '80');
+    // down
+    Reg.fireEvent(actor, "pointerdown", qx.event.type.Event, []);
+    expect(actor).toHaveClass("switchPressed");
+    expect(actor).not.toHaveClass("switchUnpressed");
+    // up
+    Reg.fireEvent(actor, "pointerup", qx.event.type.Event, []);
+    expect(actor).not.toHaveClass("switchPressed");
+    expect(actor).toHaveClass("switchUnpressed");
   });
 });
