@@ -1,6 +1,6 @@
 // requires
 var util = require('util');
-var qx = require("../../external/qooxdoo/tool/grunt");
+var qx = require("./external/qooxdoo/tool/grunt");
 var path = require('path');
 
 
@@ -44,7 +44,7 @@ function mock() {
       res.end();
     } else if (url == "/designs/get_designs.php") {
       // untested
-      var dir = path.join("src", "designs");
+      var dir = path.join("source", "resource", "cv", "designs");
       var designs = [];
       fs.readdirSync(dir).forEach(function(designDir) {
         var filePath = path.join(dir, designDir);
@@ -98,10 +98,10 @@ module.exports = function(grunt) {
           return isConfig ? 0777 : 0755;
         return isConfig ? 0666 : 0644;
       }
-    } ];
+    } ],
+    sourceFiles = [ 'source/class/**/*.js', 'source/resource/cv/designs/*/design_setup.js' ];
 
   var config = {
-    pkg : grunt.file.readJSON('package.json') || {},
 
     generator_config: {
       let: {
@@ -110,8 +110,8 @@ module.exports = function(grunt) {
 
     common: {
       "APPLICATION" : "cv",
-      "QOOXDOO_PATH" : "../../external/qooxdoo",
-      "LOCALES": ["en"],
+      "QOOXDOO_PATH" : "./external/qooxdoo",
+      "LOCALES": ["en", "de"],
       "QXTHEME": "cv.theme.Theme"
     },
 
@@ -192,7 +192,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          src: [ 'src/lib/**/*.js', 'src/structure/**/*.js', 'src/transforms/**/*.js', 'src/designs/*/design_setup.js' ]
+          src: sourceFiles
         }
       }
     },
@@ -273,74 +273,20 @@ module.exports = function(grunt) {
       }
     },
 
-    // the build script
-    requirejs: {
-      compile: {
-        options: {
-          baseUrl: './',
-          appDir: 'src/',  // relative to baseUrl
-          dir: 'release/',
-          mainConfigFile: 'src/main.js',
-          optimize: 'uglify2',
-          generateSourceMaps: true,
-          preserveLicenseComments: false,
-          removeCombined: true,
-          // config options to handle required CSS files:
-          separateCSS: true,
-          buildCSS: false,
-          paths: {
-            'css-builder': '../build/css-builder',
-            'normalize': '../build/normalize'
-          },
-
-          modules: [
-            // the main application
-            { name: 'lib/TemplateEngine', include: ['css'] },
-            // optimize the plugins
-            { name: 'plugins/calendarlist/structure_plugin',   exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/clock/structure_plugin',          exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/colorchooser/structure_plugin',   exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/diagram/structure_plugin',        exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/gauge/structure_plugin',          exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/link/structure_plugin',           exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/mobilemenu/structure_plugin',     exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/openweathermap/structure_plugin', exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/rss/structure_plugin',            exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/rsslog/structure_plugin',         exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/strftime/structure_plugin',       exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/svg/structure_plugin',            exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/timeout/structure_plugin',        exclude: ['structure_custom', 'css', 'normalize']  },
-            { name: 'plugins/upnpcontroller/structure_plugin', exclude: ['structure_custom', 'css', 'normalize']  }
-          ],
-          done: function(done, output) {
-            var duplicates = require('rjs-build-analysis').duplicates(output);
-
-            if (duplicates.length > 0) {
-              grunt.log.subhead('Duplicates found in requirejs build:');
-              grunt.log.warn(duplicates);
-              return done(new Error('r.js built duplicate modules, please check the excludes option.'));
-            }
-
-            done();
-          }
-        }
-      }
-    },
-
     // javascript syntax checker
     jshint: {
       options: {
         // reporter: require('jshint-stylish'),
-        ignores: [ "**/dependencies/**", "**/dep/**"]
+        ignores: [ "**/lib/**", "**/dep/**"]
       },
-      all: [ 'src/**/*.js' ]
+      all: sourceFiles
     },
 
     // check coding-style: https://github.com/CometVisu/CometVisu/wiki/Coding-style
     jscs: {
       main: {
         options: {
-          excludeFiles: [ "**/dependencies/**", "**/dep/**"],
+          excludeFiles: [ "**/lib/**", "**/dep/**"],
           //preset: "jquery",
           validateIndentation: 2,
           validateLineBreaks: "LF",
@@ -354,7 +300,7 @@ module.exports = function(grunt) {
           //}
         },
         files: {
-          src: [ "src/**/*.js"]
+          src: sourceFiles
         }
       }
     },
@@ -417,11 +363,7 @@ module.exports = function(grunt) {
 
     jsdoc : {
       html : {
-        src: [
-          'src/lib/**/*.js',
-          'src/plugins/**/*.js',
-          'src/structure/**/*.js'
-        ],
+        src: sourceFiles,
         options: {
           destination: grunt.option('targetDir') || 'doc/api/html',
           template : "node_modules/ink-docstrap/template",
@@ -429,11 +371,7 @@ module.exports = function(grunt) {
         }
       },
       rst : {
-        src: [
-          'src/lib/**/*.js',
-          'src/plugins/**/*.js',
-          'src/structure/**/*.js'
-        ],
+        src: sourceFiles,
         options: {
           destination: grunt.option('targetDir') || 'doc/api/rst',
           template : "node_modules/jsdoc-sphinx/template/",
@@ -515,7 +453,7 @@ module.exports = function(grunt) {
       travis: {
         configFile: 'karma.conf.js',
         singleRun: true,
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
         coverageReporter : {
           dir: 'coverage',
           reporters: [
@@ -528,7 +466,7 @@ module.exports = function(grunt) {
       debug: {
         configFile: 'karma.conf.js',
         singleRun: true,
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
         reporters: ['progress']
       }
     },
@@ -539,7 +477,7 @@ module.exports = function(grunt) {
         options: {
           port: 8000,
           hostname: '*',
-          base: "src",
+          base: "source",
           middleware : function(connect, options, middlewares) {
             // inject out mockup middlewares before the default ones
             middlewares.unshift(captureMock());
@@ -652,10 +590,10 @@ module.exports = function(grunt) {
             return result;
           },
           template: {
-            "skeletons/widget-test.js": "test/karma/structure/pure/{{testFileName}}-spec.js"
+            "skeletons/widget-test.js": "source/class/test/structure/pure/{{testFileName}}-spec.js"
           },
           after: function(result) {
-            var filename = "test/karma/structure/pure/"+result.testFileName+"-spec.js";
+            var filename = "source/class/test/structure/pure/"+result.testFileName+"-spec.js";
             var test = grunt.file.read(filename, { encoding: "utf8" }).toString();
             grunt.file.write(filename, test.replace(/%WIDGET_NAME%/g, result.widgetName));
           }
@@ -695,8 +633,8 @@ module.exports = function(grunt) {
   // - replace #FFFFFF with the currentColor
   // - fix viewBox to follow the png icon version
   grunt.registerTask('handle-kuf-svg', function() {
-    var filename   = 'src/icon/knx-uf-iconset.svg';
-    var iconconfig = 'src/icon/iconconfig.js';
+    var filename   = 'source/resource/cv/icon/knx-uf-iconset.svg';
+    var iconconfig = 'source/resource/cv/icon/iconconfig.js';
     var svg = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, svg
       .replace( /#FFFFFF|#fff/g, 'currentColor' )

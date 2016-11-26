@@ -21,6 +21,10 @@ before_install:
 - mkdir cache
 install:
 - npm install -g grunt-cli
+- cd external/qooxdoo
+- npm install
+- grunt setup
+- cd ../../
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update"
 - if [ "$CV_BUILD" == "docs" ]; then sudo pip install -r utils/requirements.txt; fi # for documentation

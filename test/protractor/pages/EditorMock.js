@@ -17,7 +17,7 @@ var CometVisuEditorMockup = function () {
   this.mockupConfig = function(config) {
     request({
       method: 'POST',
-      uri: 'http://localhost:8000/mock/config/visu_config_mockup.xml',
+      uri: 'http://localhost:8000/mock/resource/cv/config/visu_config_mockup.xml',
       body: config
     }, function(error, response, body) {
       if (!error && response.statusCode === 200) {
