@@ -7,10 +7,10 @@ describe("testing a multitrigger widget", function() {
   it("should test the multitrigger creator", function() {
 
     var res = this.createTestWidgetString("multitrigger", {}, "<label>Test</label>");
-    var widget = $(res[1]);
+    var widget = qx.bom.Html.clean([res[1]])[0];
 
     expect(widget).toHaveClass('multitrigger');
-    expect(widget.find("div.label").text()).toBe('Test');
+    expect(widget).toHaveÖabeö('Test');
 
     expect(res[0].path).toBe("id_0");
   });

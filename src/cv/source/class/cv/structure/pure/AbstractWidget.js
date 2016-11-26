@@ -184,41 +184,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
         (this._getInnerDomString ? this._getInnerDomString() : '') +'</div>';
     },
 
-    getAddressListCallback: function() { return null; },
-
-    /**
-     * Create an action handling that shows a button press animation.
-     * Note: use this function when multiple action elements are used and thus
-     * bind_click_to_widget is not available.
-     * @method defaultButtonDownAnimation
-     * @param {} path
-     * @param {} actor
-     */
-    defaultButtonDownAnimation: function( path, actor )
-    {
-      if( actor )
-      {
-        actor.classList.remove('switchUnpressed');
-        actor.classList.add('switchPressed');
-      }
-    },
-
-    /**
-     * Create an action handling that shows a button unpress animation.
-     * Note: use this function when multiple action elements are used and thus
-     * bind_click_to_widget is not available.
-     * @method defaultButtonUpAnimation
-     * @param {} path
-     * @param {} actor
-     */
-    defaultButtonUpAnimation: function( path, actor ) {
-      if( actor )
-      {
-        actor.classList.remove('switchPressed');
-        actor.classList.add('switchUnpressed');
-      }
-    }
-
+    getAddressListCallback: function() { return null; }
   },
 
   /*

@@ -3,15 +3,15 @@
  *
  */
 describe("testing a pagejump widget", function() {
+  var templateEngine = cv.TemplateEngine.getInstance();
 
   it("should test the pagejump creator", function() {
 
     var res = this.createTestWidgetString("pagejump", {'name': 'Testpage'}, "<label>Test</label>");
-    var widget = $(res[1]);
-
+    var widget = qx.bom.Html.clean([res[1]])[0];
     expect(widget).toHaveClass('pagejump');
-    expect(widget.find("div.label").text()).toBe('Test');
-    expect(widget.find("div.value").text()).toBe('Testpage');
+    expect(widget).toHaveLabel('Test');
+    expect(widget).toHaveValue('Testpage');
 
     expect(res[0].getPath()).toBe("id_0");
     expect(res[0].getActiveScope()).toBe("target");
@@ -26,7 +26,7 @@ describe("testing a pagejump widget", function() {
       'path': 'ParentPage',
       'active_scope': 'path'
     }, '<layout colspan="6" rowspan="2"></layout>');
-    var widget = $(res[1]);
+    var widget = qx.bom.Html.clean([res[1]])[0];
 
     expect(widget).toHaveClass('right');
     expect(widget).toHaveClass('innerrowspan');
@@ -37,7 +37,7 @@ describe("testing a pagejump widget", function() {
     expect(res[0].getTarget()).toBe("OtherPage");
     expect(res[0].getAlign()).toBe("right");
     expect(res[0].getActiveScope()).toBe("path");
-    expect(res[0].getColspan()).toBe("6");
+    expect(res[0].getColspan()).toBe(6);
     expect(res[0].getRowspanClass()).toBe("rowspan rowspan2");
   });
 
@@ -45,7 +45,7 @@ describe("testing a pagejump widget", function() {
 
     var res = this.createTestWidgetString("pagejump", {},
       '<widgetinfo><text>Test</text></widgetinfo>');
-    var widget = $(res[1]);
+    var widget = qx.bom.Html.clean([res[1]])[0];
 
     expect(widget).toHaveClass('infoaction');
   });
@@ -55,26 +55,24 @@ describe("testing a pagejump widget", function() {
     var creator = this.createTestElement("pagejump", {
       'target': 'test'
     });
-    var actor = this.container.children[0].querySelectorAll('.actor')[0];
-    creator.downaction('id_0', actor, false);
-    expect($(actor)).toHaveClass("switchPressed");
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    var actor = creator.getActor();
+    qx.event.Registration.fireEvent(actor, "pointerdown", qx.event.type.Event, []);
+    expect(actor).toHaveClass("switchPressed");
 
   });
 
   it("should trigger the pagejumps action", function() {
     spyOn(templateEngine, 'scrollToPage');
 
-    var creator = this.createTestElement("pagejump", {
+    var widget = this.createTestElement("pagejump", {
       'target': 'test'
     });
-    var actor = this.container.children[0].querySelectorAll('.actor')[0];
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    var actor = widget.getActor();
+    expect(actor).toHaveClass("switchUnpressed");
 
-    // canceled
-    creator.action('id_0', actor, true);
-
-    expect(templateEngine.scrollToPage).not.toHaveBeenCalled();
-    expect($(actor)).toHaveClass("switchUnpressed");
-    creator.action('id_0', actor, false);
+    qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
     expect(templateEngine.scrollToPage).toHaveBeenCalledWith('test');
   });
 
@@ -86,14 +84,12 @@ describe("testing a pagejump widget", function() {
       'target': 'test',
       'path': 'path'
     });
-    var actor = this.container.children[0].querySelectorAll('.actor')[0];
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    var actor = creator.getActor();
 
-    // canceled
-    creator.action('id_0', actor, true);
-    expect($(actor)).toHaveClass("switchUnpressed");
-    expect(templateEngine.scrollToPage).not.toHaveBeenCalled();
+    expect(actor).toHaveClass("switchUnpressed");
 
-    creator.action('id_0', actor, false);
+    qx.event.Registration.fireEvent(actor, "tap", qx.event.type.Event, []);
     expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_1');
   });
 

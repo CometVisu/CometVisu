@@ -8,24 +8,24 @@ describe("testing a switch", function() {
   it("should test the switch creator", function() {
 
     var res = this.createTestElement("switch", {flavour: 'potassium'}, '<label>Test</label>');
-    var switchWidget = $(res.getDomElement().find(".switch"));
+    var switchWidget = qx.bom.Selector.matches(".switch", qx.dom.Hierarchy.getChildElements(res.getDomElement()))[0];
 
     expect(switchWidget).toHaveFlavour('potassium');
-    var actor = switchWidget.find(".actor");
+    var actor = res.getActor();
     expect(actor).not.toBeNull();
     expect(actor).toHaveClass("switchUnpressed");
     expect(actor).not.toHaveClass("switchPressed");
 
-    var value = actor.find(".value");
+    var value = res.getValueElement();
     expect(value).not.toBeNull();
-    expect(value.text()).toBe("-");
+    expect(qx.dom.Node.getText(value)).toBe("-");
 
-    var label = switchWidget.find(".label");
+    var label = qx.bom.Selector.matches(".label", qx.dom.Hierarchy.getChildElements(switchWidget))[0];
     expect(label).not.toBeNull();
-    expect(label.text()).toBe("Test");
+    expect(qx.dom.Node.getText(label)).toBe("Test");
 
-    expect(res.getOnValue()).toBe(1);
-    expect(res.getOffValue()).toBe(0);
+    expect(res.getOnValue()).toBe("1");
+    expect(res.getOffValue()).toBe("0");
   });
 
   it("should test the switch creator with different on/off values", function() {
@@ -39,7 +39,7 @@ describe("testing a switch", function() {
     var res = this.createTestElement("switch", {}, '<label>Test</label>');
 
     res.update('12/7/37', 1);
-    var actor = $(this.container.children[0].querySelectorAll('.actor')[0]);
+    var actor = res.getActor();
     expect(actor).not.toBe(null);
 
     expect(actor).toHaveClass("switchPressed");
@@ -51,25 +51,24 @@ describe("testing a switch", function() {
   });
 
   it('should trigger the switch action', function() {
-    spyOn(templateEngine.visu, 'write');
 
     var res = this.createTestElement("switch", {}, '<label>Test</label>');
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    spyOn(res, 'sendToBackend');
 
     var actor = res.getActor();
     expect(actor).not.toBe(null);
 
-    //canceled call
-    res.action('id_0', actor, true);
-    expect(templateEngine.visu.write).not.toHaveBeenCalled();
+    var Reg = qx.event.Registration;
 
     res.update('12/7/37', 0);
 
-    res.action('id_0', actor, false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '81');
+    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
+    expect(res.sendToBackend).toHaveBeenCalledWith('1');
 
     res.update('12/7/37', 1);
 
-    res.action('id_0', actor, false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '80');
+    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
+    expect(res.sendToBackend).toHaveBeenCalledWith('0');
   });
 });

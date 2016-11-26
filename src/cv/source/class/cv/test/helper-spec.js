@@ -120,6 +120,23 @@ var customMatchers = {
         var label = qx.bom.Selector.matches("div.label", qx.dom.Hierarchy.getChildElements(actual))[0];
         result.pass = label && qx.dom.Node.getText(label) === expected;
         if (result.pass) {
+          result.message = "Expected " + actual.tagName + " not to have value "+expected;
+        }
+        else{
+          result.message = "Expected " + actual.tagName + " to have value "+expected+", but it has "+qx.dom.Node.getText(label);
+        }
+        return result;
+      }
+    };
+  },
+
+  toHaveValue: function() {
+    return  {
+      compare: function(actual, expected) {
+        var result = {};
+        var label = qx.bom.Selector.matches(".value", qx.dom.Hierarchy.getDescendants(actual))[0];
+        result.pass = label && qx.dom.Node.getText(label) === expected;
+        if (result.pass) {
           result.message = "Expected " + actual.tagName + " not to have label "+expected;
         }
         else{

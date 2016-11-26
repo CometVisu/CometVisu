@@ -10,11 +10,9 @@ describe("testing a line widget", function() {
 
     var res = this.createTestWidgetString("line");
 
-    var line = $(res[1]);
+    var line = qx.bom.Html.clean([res[1]])[0];
 
-    expect(line.prop("tagName")).toBe('HR');
-
-    var data = templateEngine.widgetDataGet('id_0');
+    expect(qx.dom.Node.getName(line).toLowerCase()).toBe('hr');
     expect(res[0].getPath()).toBe("id_0");
   });
 });

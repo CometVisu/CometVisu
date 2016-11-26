@@ -142,14 +142,7 @@ qx.Class.define('cv.structure.pure.PageJump', {
       return actor + this.getChildrenDomString();
     },
 
-    downaction: function(path, actor, isCanceled, event) {
-      this.processBeforeChain("downaction", path, actor, isCanceled, event);
-    },
-
-    action: function( path, actor, isCanceled, event ) {
-      this.processBeforeChain("action", path, actor, isCanceled, event);
-      if( isCanceled ) return;
-
+    action: function() {
       var target = this.getTarget();
       if (this.getTargetPath() !== null) {
         target = cv.TemplateEngine.getInstance().getPageIdByPath(target,this.getTargetPath());
