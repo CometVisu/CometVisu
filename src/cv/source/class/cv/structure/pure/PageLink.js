@@ -61,9 +61,7 @@ qx.Class.define('cv.structure.pure.PageLink', {
       return ret_val;
     },
 
-    action: function( path, actor, isCanceled ) {
-      if( isCanceled ) return;
-
+    action: function() {
       cv.TemplateEngine.getInstance().scrollToPage( path + '_' );
     }
   },

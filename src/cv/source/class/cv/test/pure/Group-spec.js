@@ -8,7 +8,7 @@ describe("testing a group widget", function() {
 
     var res = this.createTestWidgetString("group");
 
-    var widget = $(res[1]);
+    var widget = qx.bom.Html.clean([res[1]])[0];
 
     expect(widget).toHaveClass('group');
     expect(widget).toHaveClass('widget');
@@ -26,7 +26,7 @@ describe("testing a group widget", function() {
       name: "Test",
       target: "target"
     }, '<text/>');
-    var widget = $(res[1]);
+    var widget = qx.bom.Html.clean([res[1]])[0];
 
     expect(widget).toHaveClass('group');
     expect(widget).toHaveClass('custom_test');

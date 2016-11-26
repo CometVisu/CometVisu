@@ -276,9 +276,23 @@ qx.Class.define('cv.structure.pure.Page', {
       // TODO: data comparision has to be refactored to use DPT and a value
       if (data==1) {
         cv.TemplateEngine.getInstance().scrollToPage(this.getName());
-        cv.TemplateEngine.getInstance().visu.write( ga, cv.TemplateEngine.getInstance().transformEncode('DPT:1.001', 0));
+        this.sendToBackend("0");
       }
       // }
+    },
+
+    sendToBackend: function (value) {
+      if (this.getAddress) {
+        var list = this.getAddress();
+        for (var id in list) {
+          if (list.hasOwnProperty(id)) {
+            var address = list[id];
+            if (!!(address[1] & 2)) {
+              cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address[0], value));
+            }
+          }
+        }
+      }
     }
   },
 

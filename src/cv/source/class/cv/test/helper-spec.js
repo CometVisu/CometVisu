@@ -79,6 +79,12 @@ var createTestElement = function (name, attributes, content, address, addressAtt
   return res[0];
 };
 
+// DOM Helpers
+
+var findChild = function(elem, selector) {
+  return qx.bom.Selector.matches(selector, qx.dom.Hierarchy.getDescendants(elem))[0];
+};
+
 var customMatchers = {
   toHaveFlavour: function() {
     return  {
@@ -218,6 +224,7 @@ beforeEach(function () {
   jasmine.addMatchers(customMatchers);
   this.createTestElement = createTestElement;
   this.createTestWidgetString = createTestWidgetString;
+  this.findChild = findChild;
 });
 
 afterEach(function () {

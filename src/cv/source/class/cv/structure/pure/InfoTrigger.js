@@ -205,6 +205,18 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
       this.sendToBackend(value, function(address) {
         return !!(address[2] & bitMask);
       });
+    },
+
+    getDownActor: function() {
+      return qx.bom.Selector.query(".actor.downlabel", this.getDomElement())[0];
+    },
+
+    getUpActor: function() {
+      return qx.bom.Selector.query(".actor.uplabel", this.getDomElement())[0];
+    },
+
+    getInfoActor: function() {
+      return qx.bom.Selector.query(".actor.switchInvisible", this.getDomElement())[0];
     }
   },
 

@@ -3,89 +3,92 @@
  *
  */
 describe("testing a infotrigger widget", function() {
-  var templateEngine = engine.getInstance();
 
   it("should test the infotrigger creator", function() {
 
-    var widget = $(this.createTestWidgetString("infotrigger", {}, "<label>Test</label>")[1]);
+    var res = this.createTestWidgetString("infotrigger", {}, "<label>Test</label>")[1];
+    var widget = qx.bom.Html.clean(res[1])[0];
+    var obj = res[0];
 
     expect(widget).toHaveClass('infotrigger');
-    expect(widget.find("div.label").text()).toBe('Test-+');
+    expect(widget).toHaveLabel('Test-+');
 
-    var data = templateEngine.widgetDataGet('id_0');
-    expect(data.path).toBe("id_0");
+    expect(obj.getPath()).toBe("id_0");
 
     // check infoposition
-    var actors = $(widget.find("div.actor"));
-    expect($(actors.get(0)).find('div.value').length).toBe(1);
-    expect($(actors.get(1)).find('div.value').length).toBe(0);
-    expect($(actors.get(2)).find('div.value').length).toBe(0);
+    var info = qx.bom.Selector.query(".actor.switchInvisible", obj.getDomElement())[0];
+    expect(qx.dom.Hierarchy.getChildElements(obj.getDomElement()).indexOf(info)).toBe(0);
   });
 
   it("should test the infotrigger creator", function() {
-    widget = $(this.createTestWidgetString("infotrigger", {'align': 'right', 'infoposition': 'middle'})[1]);
-    expect($(widget.find("div.actor")).css('text-align')).toBe('right');
-    actors = $(widget.find("div.actor"));
+    var widget = this.createTestWidgetString("infotrigger", {'align': 'right', 'infoposition': 'middle'})[1];
+    widget = qx.bom.Html.clean([widget])[0];
+    var actors = qx.bom.Selector.query("div.actor", widget);
+    actors.forEach(function(actor) {
+      expect(qx.bom.element.Style.get(actor, "text-align")).toBe("right");
+    }, this);
 
     // check infoposition
-    expect($(actors.get(0)).find('div.value').length).toBe(0);
-    expect($(actors.get(1)).find('div.value').length).toBe(1);
-    expect($(actors.get(2)).find('div.value').length).toBe(0);
+    var info = qx.bom.Selector.query(".actor.switchInvisible", obj.getDomElement())[0];
+    expect(qx.dom.Hierarchy.getChildElements(obj.getDomElement()).indexOf(info)).toBe(1);
   });
 
   it("should test the infotrigger creator", function() {
 
-    widget = $(this.createTestWidgetString("infotrigger", {'align': 'center', 'infoposition': 'right'})[1]);
+    var widget = this.createTestWidgetString("infotrigger", {'align': 'center', 'infoposition': 'right'})[1];
+    widget = qx.bom.Html.clean([widget])[0];
+    var actors = qx.bom.Selector.query("div.actor", widget);
+    actors.forEach(function(actor) {
+      expect(qx.bom.element.Style.get(actor, "text-align")).toBe("right");
+    }, this);
     expect($(widget.find("div.actor")).css('text-align')).toBe('center');
-    actors = $(widget.find("div.actor"));
 
     // check infoposition
-    expect($(actors.get(0)).find('div.value').length).toBe(0);
-    expect($(actors.get(1)).find('div.value').length).toBe(0);
-    expect($(actors.get(2)).find('div.value').length).toBe(1);
+    var info = qx.bom.Selector.query(".actor.switchInvisible", obj.getDomElement())[0];
+    expect(qx.dom.Hierarchy.getChildElements(obj.getDomElement()).indexOf(info)).toBe(2);
   });
 
   it("should update an infotrigger widget", function() {
     var creator = this.createTestElement('infotrigger');
 
     creator.update('12/7/37', 1);
-    var actor = $(this.container.children[0].querySelectorAll('.actor')[0]);
+    var actor = creator.getActor();
     expect(actor).not.toBe(null);
-    expect(actor.find('div.value').text()).toBe("1")
+    expect(actor).toHaveValue("1");
   });
 
   it('should trigger the infotrigger action', function() {
-    spyOn(templateEngine.visu, 'write');
-    var creator = this.createTestElement('infotrigger', {'change': 'absolute', 'upvalue': '1', 'downvalue': '-1'});
 
-    var downActor = this.container.children[0].querySelectorAll('.actor')[1];
-    var upActor = this.container.children[0].querySelectorAll('.actor')[2];
+    var creator = this.createTestElement('infotrigger', {'change': 'absolute', 'upvalue': '1', 'downvalue': '-1'});
+    spyOn(creator, "sendToBackend");
+
+    var downActor = creator.getDownActor();
+    var upActor = creator.getUpActor();
     expect(downActor).not.toBe(null);
     expect(upActor).not.toBe(null);
 
-    //canceled call
-    creator.action('id_0', upActor, true);
-    expect(templateEngine.visu.write).not.toHaveBeenCalled();
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    var Reg = qx.event.Registration;
 
-    creator.action('id_0', upActor, false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '81');
+    Reg.fireEvent(upActor, "tap", qx.event.type.Event, []);
+    expect(creator.sendToBackend).toHaveBeenCalledWith('1');
 
     creator.update('12/7/37', 1);
-    creator.action('id_0', upActor, false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '82');
+    Reg.fireEvent(downActor, "tap", qx.event.type.Event, []);
+    expect(tcreator.sendToBackend).toHaveBeenCalledWith('2');
     creator.update('12/7/37', 2);
 
     creator.action('id_0', downActor, false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '81');
+    expect(creator.sendToBackend).toHaveBeenCalledWith('1');
 
     // test lower border
     creator.update('12/7/37', 0);
-    creator.action('id_0', downActor, false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '80');
+    Reg.fireEvent(downActor, "tap", qx.event.type.Event, []);
+    expect(creator.sendToBackend).toHaveBeenCalledWith('0');
 
     // test upper border
     creator.update('12/7/37', 255);
-    creator.action('id_0', upActor, false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', 'ff');
+    Reg.fireEvent(upActor, "tap", qx.event.type.Event, []);
+    expect(creator.sendToBackend).toHaveBeenCalledWith('255');
   });
 });

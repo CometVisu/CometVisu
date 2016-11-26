@@ -6,39 +6,42 @@ describe("testing a designtoggle widget", function() {
 
   it("should test the designtoggle creator", function() {
     var res = this.createTestWidgetString("designtoggle", {}, "<label>Test</label>");
-    var widget = $(res[1]);
+    var widget = qx.bom.Html.clean([res[1]])[0];
 
     expect(widget).toHaveClass('toggle');
-    expect(widget.find("div.label").text()).toBe('Test');
+    expect(widget).toHaveLabel('Test');
 
     expect(res[0].getPath()).toBe("id_0");
   });
 
   it('should trigger the designtoggle action', function() {
 
-    spyOn($,'getJSON').and.callFake(function(path, callback) {
-      callback(['metal','pure']);
+    var spiedStore;
+    var originalConstructor = qx.data.store.Json;
+    spyOn(qx.data.store, 'Json').and.callFake(function(url) {
+      spiedStore = new originalConstructor();
+      return spiedStore;
     });
+
     var loc = window.location.href;
     var creator = this.createTestElement('designtoggle');
     spyOn(creator, 'setLocation');
-
-    var actor = this.container.children[0].querySelectorAll('.actor')[0];
+    spiedStore.fireDataEvent("loaded", ['metal','pure']);
+    var actor = creator.getActor();
     expect(actor).not.toBe(null);
 
-    //canceled call
-    creator.action('id_0', actor, true);
-    expect(creator.setLocation).not.toHaveBeenCalled();
+    var Reg = qx.event.Registration;
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
 
-    creator.action('id_0', actor, false);
+    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
     expect(creator.setLocation).toHaveBeenCalledWith(loc+"?design=metal");
 
     spyOn(creator,'getLocation').and.returnValue(loc+"?design=pure");
-    creator.action('id_0', actor, false);
+    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
     expect(creator.setLocation).toHaveBeenCalledWith(loc+"?design=metal");
 
     creator.getLocation.and.returnValue(loc+"?other=parameter");
-    creator.action('id_0', actor, false);
+    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
     expect(creator.setLocation).toHaveBeenCalledWith(loc+"?other=parameter&design=metal");
   });
 });

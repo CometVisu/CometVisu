@@ -9,7 +9,7 @@ describe("testing a imagetrigger widget", function() {
   it("should test the imagetrigger creator", function() {
 
     var res = this.createTestWidgetString("imagetrigger", {flavour: 'potassium'}, '<label>Test</label>');
-    var widget = $(res[1]);
+    var widget = qx.bom.Html.clean([res[1]])[0];
 
     expect(widget).toHaveClass('imagetrigger');
     expect(widget).toHaveClass('image');

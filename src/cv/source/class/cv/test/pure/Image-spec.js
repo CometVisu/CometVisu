@@ -12,7 +12,7 @@ describe("testing a image widget", function() {
       flavour: 'potassium'
     }, '<label>Test</label>');
 
-    var widget = $(res[1]);
+    var widget = qx.bom.Html.clean([res[1]])[0];
 
     expect(widget).toHaveClass('image');
     // expect(widget.find("div.label").text()).toBe('Test');
