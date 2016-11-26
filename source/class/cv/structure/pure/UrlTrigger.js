@@ -84,18 +84,14 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
       return actor;
     },
 
-    _action: function( path, actor, isCanceled ) {
-
-      // TODO: remove jquery
-      $.ajax({
+    _action: function(ev) {
+      var xhr = new qx.io.request.Xhr(this.getUrl());
+      xhr.set({
         type: "GET",
-        datatype: "html",
-        data: encodeURI(this.getParams()),
-        url: this.getUrl(),
-        success: function(data){
-          //maybe do something useful with the response?
-        }
+        accept: "application/html",
+        requestData: this.getParams()
       });
+      xhr.send();
     }
   },
 

@@ -22,7 +22,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
   */
   members: {
     doRestart: false, // are we currently in a restart, e.g. due to the watchdog
-    xhr: false, // the ongoing AJAX request
+    xhr: null, // the ongoing AJAX request
     lastIndex: -1,    // index returned by the last request
     retryCounter: 0,      // count number of retries (reset with each valid response)
     sessionId: null,
@@ -55,27 +55,26 @@ qx.Class.define('cv.io.transport.LongPolling', {
     connect: function () {
       this.running = true;
       // send first request
+      this.xhr = new qx.io.request.Xhr(this.session.getResourcePath("read"));
+      this.xhr.set({
+        accept: "application/json",
+        method: "GET",
+        beforeSend: this.beforeSend.bind(this)
+      });
+      this.xhr.addListener("error", this.handleError, this);
       if (this.session.initialAddresses.length) {
-        this.xhr = $.ajax({
-          url: this.session.getResourcePath("read"),
-          dataType: 'json',
-          context: this,
-          data: this.session.buildRequest(this.session.initialAddresses) + '&t=0',
-          success: this.handleReadStart,
-          beforeSend: this.beforeSend
+        this.xhr.set({
+          requestData: this.session.buildRequest(this.session.initialAddresses) + '&t=0'
         });
+        this.xhr.addListener("success", this.handleReadStart, this);
       } else {
         // old behaviour -> start full query
-        this.xhr = $.ajax({
-          url: this.session.getResourcePath("read"),
-          dataType: 'json',
-          context: this,
-          data: this.session.buildRequest() + '&t=0',
-          success: this.handleRead,
-          error: this.handleError,
-          beforeSend: this.beforeSend
+        this.xhr.set({
+          requestData: this.session.buildRequest() + '&t=0'
         });
+        this.xhr.addListener("success", this.handleRead, this);
       }
+      this.xhr.send();
     },
     /**
      * This function gets called once the communication is established
@@ -89,15 +88,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.session.setDataReceived(false);
         if (this.running) { // retry initial request
           this.retryCounter++;
-          this.xhr = $.ajax({
-            url: this.session.getResourcePath("read"),
-            dataType: 'json',
-            context: this,
-            data: this.session.buildRequest() + '&t=0',
-            success: this.handleRead,
-            error: this.handleError,
-            beforeSend: this.beforeSend
-          });
+          this.xhr.send();
           this.session.watchdog.ping(true);
         }
         return;
@@ -114,15 +105,10 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
       if (this.running) { // keep the requests going
         this.retryCounter++;
-        this.xhr = $.ajax({
-          url: this.session.getResourcePath("read"),
-          dataType: 'json',
-          context: this,
-          data: this.session.buildRequest() + '&i=' + this.lastIndex,
-          success: this.handleRead,
-          error: this.handleError,
-          beforeSend: this.beforeSend
+        this.xhr.set({
+          requestData: this.session.buildRequest() + '&i=' + this.lastIndex
         });
+        this.xhr.send();
         this.session.watchdog.ping();
       }
     },
@@ -131,14 +117,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
       if (!json && (-1 == this.lastIndex)) {
         this.session.setDataReceived(false);
         if (this.running) { // retry initial request
-          this.xhr = $.ajax({
-            url: this.session.getResourcePath("read"),
-            dataType: 'json',
-            context: this,
-            data: this.session.buildRequest(this.session.initialAddresses) + '&t=0',
-            success: this.handleReadStart,
-            beforeSend: this.beforeSend
-          });
+          this.xhr.send();
           this.session.watchdog.ping();
         }
         return;
@@ -153,19 +132,17 @@ qx.Class.define('cv.io.transport.LongPolling', {
         // addresses-startPageAddresses
         var diffAddresses = [];
         for (var i = 0; i < this.session.addresses.length; i++) {
-          if ($.inArray(this.addresses[i],
+          if (qx.lang.Array.contains(this.session.addresses[i],
               this.session.initialAddresses) < 0)
             diffAddresses.push(this.session.addresses[i]);
         }
-        this.xhr = $.ajax({
-          url: this.session.getResourcePath("read"),
-          dataType: 'json',
-          context: this,
-          data: this.session.buildRequest(diffAddresses) + '&t=0',
-          success: this.handleRead,
-          error: this.handleError,
-          beforeSend: this.beforeSend
+
+        this.xhr.set({
+          data: this.session.buildRequest(diffAddresses) + '&t=0'
         });
+        this.xhr.removeListener("success", this.handleReadStart, this);
+        this.xhr.addListener("success", this.handleRead, this);
+        this.xhr.send();
         this.session.watchdog.ping();
       }
     },

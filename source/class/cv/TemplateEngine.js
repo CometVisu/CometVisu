@@ -151,14 +151,6 @@ qx.Class.define('cv.TemplateEngine', {
       this.user = 'demo_user'; // example for setting a user
     },
 
-    bindActionForLoadingFinished: function (fn) {
-      $("#pages").bind("done", fn);
-    },
-
-    fireLoadingFinishedAction: function () {
-      $("#pages").triggerHandler("done");
-    },
-
     resetPageValues: function () {
       this.currentPage = null;
       cv.layout.Manager.currentPageUnavailableWidth = -1;
@@ -289,17 +281,6 @@ qx.Class.define('cv.TemplateEngine', {
 
         this.scrollToPage(startpage, 0);
 
-        /* CM, 9.4.16:
-         * TODO: Is this really needed?
-         * I can't find any source for setting .fast - and when it's set, it's
-         * most likely not working as scrollToPage should have been used instead
-         * anyway...
-         *
-         $('.fast').bind('click', function() {
-         this.main_scroll.seekTo($(this).text());
-         });
-         */
-
         // reaction on browser back button
         qx.bom.History.getInstance().addListener("request", function(e) {
           var lastPage = e.getData();
@@ -337,7 +318,7 @@ qx.Class.define('cv.TemplateEngine', {
         qx.bom.Selector.query('.loading').forEach(function(elem) {
           qx.bom.element.Class.remove(elem, 'loading');
         }, this);
-        this.fireLoadingFinishedAction();
+
         if (qx.lang.Type.isNumber(this.screensave_time)) {
           this.screensave = new qx.event.Timer(this.screensave_time * 1000);
           this.screensave.addListener("interval", function () {
@@ -456,32 +437,34 @@ qx.Class.define('cv.TemplateEngine', {
         var page_id = null;
         // find Page-ID by name
         // decode html code (e.g. like &apos; => ')
-        page_name = $("<textarea/>").html(page_name).val();
+        page_name = cv.util.String.decodeHtmlEntities(page_name);
         // remove escaped slashes
         page_name = page_name.replace("\\\/", "/");
 
         //      console.log("Page: "+page_name+", Scope: "+scope);
         var selector = (scope != undefined && scope != null) ? '.page[id^="' + scope + '"] h1:contains(' + page_name + ')' : '.page h1:contains(' + page_name + ')';
-        var pages = $(selector, '#pages');
+        var pages = qx.bom.Selector.query(selector);
         if (pages.length > 1 && this.currentPage != null) {
           // More than one Page found -> search in the current pages descendants first
           var fallback = true;
-          pages.each(function (i) {
-            var p = $(this).closest(".page");
-            if ($(this).text() == page_name) {
-              if (p.attr('id').length < this.currentPage.attr('id').length) {
+          pages.forEach(function (page) {
+            var p = cv.util.Tree.getClosest(page, ".page");
+            if (qx.dom.Node.getText(page) == page_name) {
+              var pid = qx.bom.element.Attribute.get(p, 'id');
+              var cid = qx.bom.element.Attribute.get(this.currentPage, 'id');
+              if (pid.length < cid.length) {
                 // found pages path is shorter the the current pages -> must be an ancestor
-                if (this.currentPage.attr('id').indexOf(p.attr('id')) == 0) {
-                  // found page is an ancenstor of the current page -> we take this one
-                  page_id = p.attr("id");
+                if (qx.bom.element.Attribute.get(this.currentPage, 'id').indexOf(pid) == 0) {
+                  // found page is an ancestor of the current page -> we take this one
+                  page_id = pid;
                   fallback = false;
                   //break loop
                   return false;
                 }
               } else {
-                if (p.attr('id').indexOf(this.currentPage.attr('id')) == 0) {
+                if (pid.indexOf(cid) == 0) {
                   // found page is an descendant of the current page -> we take this one
-                  page_id = p.attr("id");
+                  page_id = pid;
                   fallback = false;
                   //break loop
                   return false;
@@ -491,18 +474,18 @@ qx.Class.define('cv.TemplateEngine', {
           });
           if (fallback) {
             // take the first page that fits (old behaviour)
-            pages.each(function (i) {
-              if ($(this).text() == page_name) {
-                page_id = $(this).closest(".page").attr("id");
+            pages.forRach(function (elem) {
+              if (qx.dom.Node.getText(page)  == page_name) {
+                page_id = qx.bom.element.Attribute.get(cv.util.Tree.getClosest(page, ".page"), "id");
                 // break loop
                 return false;
               }
             });
           }
         } else {
-          pages.each(function (i) {
-            if ($(this).text() == page_name) {
-              page_id = $(this).closest(".page").attr("id");
+          pages.forEach(function () {
+            if (qx.dom.Node.getText(page) == page_name) {
+              page_id = qx.bom.element.Attribute.get(cv.util.Tree.getClosest(page, ".page"), "id");
               // break loop
               return false;
             }
@@ -651,15 +634,13 @@ qx.Class.define('cv.TemplateEngine', {
      * Return a widget (to be precise: the widget_container) for the given path
      */
     lookupWidget: function (path) {
-      var id = path.split('_');
-      var elementNumber = +id.pop();
-      return $('.page#' + id.join('_')).children().children()[elementNumber + 1];
+      return qx.bom.Selector.query('.page#' + path)[0];
     },
 
     getParentPage: function (page) {
       if (0 === page.length) return null;
 
-      return this.getParentPageById(page.attr('id'), true);
+      return this.getParentPageById(qx.bom.element.Attribute.get(page, 'id'), true);
     },
 
     getParentPageById: function (path, isPageId) {
@@ -669,8 +650,9 @@ qx.Class.define('cv.TemplateEngine', {
         while (pathParts.length > 1) {
           pathParts.pop();
           var path = pathParts.join('_') + '_';
-          if ($('#' + path).hasClass("page")) {
-            return $('#' + path);
+          var page = qx.bom.Selector.query('#' + path)[0];
+          if (qx.bom.element.Class.has(page, "page")) {
+            return page;
           }
         }
       }
@@ -695,8 +677,8 @@ qx.Class.define('cv.TemplateEngine', {
      * FIXME: this does nothing, should be removed?
      */
     deleteCommand: function (path) {
-      this.debug(this.lookupWidget(path), $('#' + path));
-      //$( this.lookupWidget( path ) ).remove();
+      this.debug(this.lookupWidget(path), qx.bom.Selector.query('#' + path)[0]);
+      //this.lookupWidget( path ).remove();
       return "deleted widget '" + path + "'";
     },
 
@@ -704,8 +686,8 @@ qx.Class.define('cv.TemplateEngine', {
      * Focus a widget.
      */
     focus: function (path) {
-      $('.focused').removeClass('focused');
-      $(this.lookupWidget(path)).addClass('focused');
+      qx.bom.element.Class.remove(qx.bom.Selector.query('.focused')[0], 'focused');
+      qx.bom.element.Class.add(this.lookupWidget(path), 'focused');
     }
   }
 });

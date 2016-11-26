@@ -126,7 +126,7 @@ qx.Class.define("cv.xml.parser.Meta", {
       if (!editMode && 'edit' == condition)
         return;
 
-      var text = $(elem).text();
+      var text = qx.dom.Node.getText(elem);
       switch (extend) {
         case 'all': // append all parameters
           var search = window.location.search.replace(/\$/g, '$$$$');

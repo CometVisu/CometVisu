@@ -56,19 +56,21 @@ qx.Class.define('cv.layout.Manager', {
       // currently this calculation is done once after every page scroll (where cv.TemplateEngine.getInstance()currentPageUnavailableWidth is reseted)
       // if the screen width falls below the threshold which activates/deactivates the mobile.css
       // the calculation has to be done again, even if the page hasn´t changed (e.g. switching between portrait and landscape mode on a mobile can cause that)
-      var bodyWidth = $('body').width();
+      var bodyWidth = qx.bom.Viewport.getWidth();
       var mobileUseChanged = (this.lastBodyWidth < cv.Config.maxMobileScreenWidth) != (bodyWidth < cv.Config.maxMobileScreenWidth);
       if (this.currentPageUnavailableWidth < 0 || mobileUseChanged || true) {
         //      console.log("Mobile.css use changed "+mobileUseChanged);
         this.currentPageUnavailableWidth = 0;
         var navbarVisibility = this.getCurrentPageNavbarVisibility(cv.TemplateEngine.getInstance().currentPage);
-        var widthNavbarLeft = navbarVisibility.left == "true" && $('#navbarLeft').css('display') != "none" ? Math.ceil($('#navbarLeft').outerWidth()) : 0;
+        var left = qx.bom.Selector.query('#navbarLeft')[0];
+        var widthNavbarLeft = navbarVisibility.left == "true" && qx.bom.element.Class.get(left, 'display') != "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
         if (widthNavbarLeft >= bodyWidth) {
           // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
           widthNavbarLeft = 0;
         }
-        var widthNavbarRight = navbarVisibility.right == "true" && $('#navbarRight').css('display') != "none" ? Math.ceil($('#navbarRight').outerWidth()) : 0;
+        var right = qx.bom.Selector.query('#navbarRight')[0];
+        var widthNavbarRight = navbarVisibility.right == "true" && qx.bom.element.Class.get(right, 'display') != "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
         if (widthNavbarRight >= bodyWidth) {
           // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
@@ -89,39 +91,46 @@ qx.Class.define('cv.layout.Manager', {
      * - Bottom-Navbar
      * - Statusbar
      *
-     * Notice: the former way to use the subtract the $main.position().top value from the total height leads to errors in certain cases
-     *         because the value of $main.position().top is not reliable all the time
+     * Notice: the former way to use the subtract the main.position().top value from the total height leads to errors in certain cases
+     *         because the value of main.position().top is not reliable all the time
      */
     getAvailableHeight: function () {
-      var windowHeight = $(window).height();
+      var windowHeight = qx.bom.Viewport.getHeight();
       this.currentPageUnavailableHeight = 0;
       var navbarVisibility = this.getCurrentPageNavbarVisibility(cv.TemplateEngine.getInstance().currentPage);
       var heightStr = "Height: " + windowHeight;
-      if ($('#top').css('display') != 'none' && $('#top').outerHeight(true) > 0) {
-        this.currentPageUnavailableHeight += Math.max($('#top').outerHeight(true), $('.nav_path').outerHeight(true));
-        heightStr += " - " + Math.max($('#top').outerHeight(true), $('.nav_path').outerHeight(true));
+      var top = qx.bom.Selector.query('#navbarTop')[0];
+      var bottom = qx.bom.Selector.query('#navbarBottom')[0];
+      var topDisplay = qx.bom.element.Class.get(top, 'display');
+      var bottomDisplay = qx.bom.element.Class.get(bottom, 'display');
+      var topHeight = qx.bom.element.Dimension.getHeight(top);
+      var bottomHeight = qx.bom.element.Dimension.getHeight(top);
+      var navPathHeight = qx.bom.element.Dimension.getHeight(qx.bom.Selector.query('.nav_path')[0]);
+
+      if (topDisplay  != 'none' && topHeight > 0) {
+        this.currentPageUnavailableHeight += Math.max(topHeight, navPathHeight);
+        heightStr += " - " + Math.max(topHeight, navPathHeight);
       }
       else {
         heightStr += " - 0";
       }
-      //      console.log($('#navbarTop').css('display')+": "+$('#navbarTop').outerHeight(true));
-      if ($('#navbarTop').css('display') != 'none' && navbarVisibility.top == "true" && $('#navbarTop').outerHeight(true) > 0) {
-        this.currentPageUnavailableHeight += $('#navbarTop').outerHeight(true);
-        heightStr += " - " + $('#navbarTop').outerHeight(true);
+      if (topDisplay != 'none' && navbarVisibility.top == "true" && topHeight > 0) {
+        this.currentPageUnavailableHeight += topHeight;
+        heightStr += " - " + topHeight;
       }
       else {
         heightStr += " - 0";
       }
-      if ($('#navbarBottom').css('display') != 'none' && navbarVisibility.bottom == "true" && $('#navbarBottom').outerHeight(true) > 0) {
-        this.currentPageUnavailableHeight += $('#navbarBottom').outerHeight(true);
-        heightStr += " - " + $('#navbarBottom').outerHeight(true);
+      if (bottomDisplay != 'none' && navbarVisibility.bottom == "true" && bottomHeight > 0) {
+        this.currentPageUnavailableHeight += bottomHeight;
+        heightStr += " - " + bottomHeight;
       }
       else {
         heightStr += " - 0";
       }
-      if ($('#bottom').css('display') != 'none' && $('#bottom').outerHeight(true) > 0) {
-        this.currentPageUnavailableHeight += $('#bottom').outerHeight(true);
-        heightStr += " - #bottom:" + $('#bottom').outerHeight(true);
+      if (bottomDisplay != 'none' && bottomHeight > 0) {
+        this.currentPageUnavailableHeight += bottomHeight;
+        heightStr += " - #bottom:" + bottomHeight;
       }
       else {
         heightStr += " - 0";

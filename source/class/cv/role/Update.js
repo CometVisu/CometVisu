@@ -77,8 +77,7 @@ qx.Mixin.define("cv.role.Update", {
      * @param {} data
      * @param {} passedElement
      */
-    update3d: function (ev, data, passedElement) {
-      //var element = passedElement || $(this);
+    update3d: function (ev, data) {
       var l = ev.data.layout;
       var pos = data.building2screen(new THREE.Vector3(l.x, l.y, l.z));
       ev.data.element.css('left', pos.x + 'px');

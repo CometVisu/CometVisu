@@ -115,6 +115,23 @@ qx.Class.define('cv.util.Tree', {
         parent = qx.dom.Element.getParentElement(parent);
       }
       return parents;
+    },
+
+    getClosest: function(elem, selector) {
+      var closest = [];
+
+      var findClosest = function (current) {
+        var found = qx.bom.Selector.matches(selector, current);
+        if (found.length) {
+          closest.push(found[0]);
+        } else {
+          current = current.getParents(); // One up
+          if (current[0] && current[0].parentNode) {
+            findClosest(current);
+          }
+        }
+      };
+      return findClosest(elem);
     }
   }
 });

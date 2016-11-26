@@ -18,8 +18,8 @@ qx.Class.define('cv.io.Reflection', {
      */
     list: function () {
       var widgetTree = {};
-      $('.page').each(function () {
-        var id = this.id.split('_');
+      qx.bom.Selector.query('.page').forEach(function (elem) {
+        var id = qx.bom.element.Attribute.get(elem, "id").split('_');
         var thisEntry = widgetTree;
         if ('id' === id.shift()) {
           var thisNumber;
@@ -29,13 +29,13 @@ qx.Class.define('cv.io.Reflection', {
 
             thisEntry = thisEntry[thisNumber];
           }
-          $(this).children().children('div.widget_container').each(function (i) {
+          qx.bom.Selector.matches('div.widget_container', qx.dom.Hierarchy.getDescendants(elem)).forEach(function(widget, i) {
             if (undefined === thisEntry[i]) {
               thisEntry[i] = {}
             }
-            var thisWidget = $(this).children()[0];
-            thisEntry[i].name = ('className' in thisWidget) ? thisWidget.className : 'TODO';
-            thisEntry[i].type = $(this).data('type');
+            var thisWidget = cv.structure.WidgetFactory.getInstanceByElement(widget);
+            thisEntry[i].name = widget.classname;
+            thisEntry[i].type = widget.get$$type();
           });
         }
       });
@@ -47,7 +47,7 @@ qx.Class.define('cv.io.Reflection', {
      */
     read: function (path) {
       var widget = this.lookupWidget(path),
-        data = $.extend({}, $(widget).children().data()); // copy
+        data = qx.lang.Object.mergeWith({}, cv.data.Model.getInstance().getWidgetDataByElement(widget)); // copy
       delete data.basicvalue;
       delete data.value;
       return data;
@@ -57,18 +57,18 @@ qx.Class.define('cv.io.Reflection', {
      * Set the selection state of a widget.
      */
     select: function (path, state) {
-      var container = this.lookupWidget(path)
+      var container = this.lookupWidget(path);
       if (state)
-        $(container).addClass('selected');
+        qx.bom.element.Class.set(container, 'selected');
       else
-        $(container).removeClass('selected');
+        qx.bom.element.Class.remove(container, 'selected');
     },
 
     /**
      * Set all attributes of a widget.
      */
     write: function (path, attributes) {
-      $(this.lookupWidget(path)).children().data(attributes);
+      qx.bom.element.Dataset.setData(qx.dom.Hierarchy.getChildElements(this.lookupWidget(path))[0], attributes);
     },
 
     /**
