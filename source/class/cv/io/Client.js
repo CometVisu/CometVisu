@@ -29,382 +29,382 @@
  * @since 0.5.3 (initial contribution) 0.10.0 (major refactoring)
  */
 
-  /**
-   * The Client handles all communication issues to supply the user
-   * ob this object with reliable realtime data.
-   * Itthis.it can be seen as the session layer (layer 5) according to the OSI
-   * model.
-   *
-   * @class Client
-   * @constructor
-   * @alias module:Client
+/**
+ * The Client handles all communication issues to supply the user
+ * ob this object with reliable realtime data.
+ * Itthis.it can be seen as the session layer (layer 5) according to the OSI
+ * model.
+ *
+ * @class Client
+ * @constructor
+ * @alias module:Client
+ */
+qx.Class.define('cv.io.Client', {
+  extend: cv.Object,
+
+  /*
+   ******************************************************
+   CONSTRUCTOR
+   ******************************************************
    */
-  qx.Class.define('cv.io.Client', {
-    extend: cv.Object,
-    
-    /*
-    ******************************************************
-      CONSTRUCTOR
-    ******************************************************
-    */
-    construct: function(backendName, backendUrl) {
-      this.loginSettings = {
-        loggedIn: false,
-        callbackAfterLoggedIn: null,
-        context: null,
-        loginOnlyMode: false // login only for backend configuration, do not start address subscription
-      };
+  construct: function(backendName, backendUrl) {
+    this.loginSettings = {
+      loggedIn: false,
+      callbackAfterLoggedIn: null,
+      context: null,
+      loginOnlyMode: false // login only for backend configuration, do not start address subscription
+    };
 
-      // init default settings
-      if (cv.io.Client.backendNameAliases[backendName]) {
-        this.backendName = cv.io.Client.backendNameAliases[backendName];
+    // init default settings
+    if (cv.io.Client.backendNameAliases[backendName]) {
+      this.backendName = cv.io.Client.backendNameAliases[backendName];
+    }
+
+    if (backendName && backendName !== 'default') {
+      if (qx.lang.Type.isObject(backendName)) {
+        // override default settings
+        this.setBackend(backendName);
+      } else if (cv.io.Client.backends[backendName]) {
+        // merge backend settings into default backend
+        this.setBackend(cv.io.Client.backends[backendName]);
       }
+    } else {
+      this.setBackend(cv.io.Client.backends['default']);
+    }
 
-      if (backendName && backendName !== 'default') {
-        if (qx.lang.Type.isObject(backendName)) {
-          // override default settings
-          this.setBackend(backendName);
-        } else if (cv.io.Client.backends[backendName]) {
-          // merge backend settings into default backend
-          this.setBackend(cv.io.Client.backends[backendName]);
-        }
-      } else {
-        this.setBackend(cv.io.Client.backends['default']);
-      }
+    this.backendName = backendName;
+    this.backendUrl = backendUrl;
 
-      this.backendName = backendName;
-      this.backendUrl = backendUrl;
+    this.watchdog = new cv.io.Watchdog();
+    this.watchdog.setClient(this);
+  },
 
-      this.watchdog = new cv.io.Watchdog();
-      this.watchdog.setClient(this);
+  /*
+   ******************************************************
+   STATICS
+   ******************************************************
+   */
+  statics: {
+    // used for backwards compability
+    backendNameAliases: {
+      'cgi-bin': 'default',
+      'oh': 'openhab',
+      'oh2': 'openhab2'
     },
-    
-    /*
-    ******************************************************
-      STATICS
-    ******************************************************
-    */
-    statics: {
-      // used for backwards compability
-      backendNameAliases: {
-        'cgi-bin': 'default',
-        'oh': 'openhab',
-        'oh2': 'openhab2'
-      },
-      // setup of the different known backends
-      backends: {
-        'default': {
-          name: 'default',
-          baseURL: '/cgi-bin/',
-          transport: 'long-polling',
-          resources: {
-            login: 'l',
-            read: 'r',
-            write: 'w',
-            rrd: 'rrdfetch'
-          },
-          maxConnectionAge: 60 * 1000, // in milliseconds - restart if last read is older
-          maxDataAge: 3200 * 1000, // in milliseconds - reload all data when last successful read is older (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
-          hooks: {}
+    // setup of the different known backends
+    backends: {
+      'default': {
+        name: 'default',
+        baseURL: '/cgi-bin/',
+        transport: 'long-polling',
+        resources: {
+          login: 'l',
+          read: 'r',
+          write: 'w',
+          rrd: 'rrdfetch'
         },
-        'openhab': {
-          name: 'openHAB',
-          baseURL: '/services/cv/',
-          // keep the e.g. atmosphere tracking-id if there is one
-          resendHeaders: {
-            'X-Atmosphere-tracking-id': undefined
-          },
-          // fixed headers that are send everytime
-          headers: {
-            'X-Atmosphere-Transport': 'long-polling'
-          },
-          hooks: {
-            onClose: function () {
-              // send an close request to the openHAB server
-              var oldValue = this.headers["X-Atmosphere-Transport"];
-              this.headers["X-Atmosphere-Transport"] = "close";
-              var ajaxRequest = new qx.io.request.Xhr(this.getResourcePath('read'));
-              this.beforeSend(ajaxRequest);
-              ajaxRequest.send();
-              if (oldValue != undefined) {
-                this.headers["X-Atmosphere-Transport"] = oldValue;
-              } else {
-                delete this.headers["X-Atmosphere-Transport"];
-              }
+        maxConnectionAge: 60 * 1000, // in milliseconds - restart if last read is older
+        maxDataAge: 3200 * 1000, // in milliseconds - reload all data when last successful read is older (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
+        hooks: {}
+      },
+      'openhab': {
+        name: 'openHAB',
+        baseURL: '/services/cv/',
+        // keep the e.g. atmosphere tracking-id if there is one
+        resendHeaders: {
+          'X-Atmosphere-tracking-id': undefined
+        },
+        // fixed headers that are send everytime
+        headers: {
+          'X-Atmosphere-Transport': 'long-polling'
+        },
+        hooks: {
+          onClose: function () {
+            // send an close request to the openHAB server
+            var oldValue = this.headers["X-Atmosphere-Transport"];
+            this.headers["X-Atmosphere-Transport"] = "close";
+            var ajaxRequest = new qx.io.request.Xhr(this.getResourcePath('read'));
+            this.beforeSend(ajaxRequest);
+            ajaxRequest.send();
+            if (oldValue != undefined) {
+              this.headers["X-Atmosphere-Transport"] = oldValue;
+            } else {
+              delete this.headers["X-Atmosphere-Transport"];
             }
           }
         }
       }
-    },
-    
-    /*
-    ******************************************************
-      PROPERTIES
-    ******************************************************
-    */
-    properties: {
-      /**
-       * is the communication running at the moment?
-       */
-      running : {
-        check: "Boolean",
-        init: false
-      },
+    }
+  },
 
-      /**
-       * needed to be able to check if the incoming update is the initial answer or a successing update
-       */
-      dataReceived : {
-        check: "Boolean",
-        init: false
-      },
-      /**
-       * the currently used transport layer
-       */
-      currentTransport: {
-        init: null
+  /*
+   ******************************************************
+   PROPERTIES
+   ******************************************************
+   */
+  properties: {
+    /**
+     * is the communication running at the moment?
+     */
+    running : {
+      check: "Boolean",
+      init: false
+    },
+
+    /**
+     * needed to be able to check if the incoming update is the initial answer or a successing update
+     */
+    dataReceived : {
+      check: "Boolean",
+      init: false
+    },
+    /**
+     * the currently used transport layer
+     */
+    currentTransport: {
+      init: null
+    }
+  },
+
+  /*
+   ******************************************************
+   MEMBERS
+   ******************************************************
+   */
+  members: {
+    watchdog: null,
+    backend: null,
+    backendName: null,
+    backendUrl: null,
+    addresses: [], // the subscribed addresses
+    initialAddresses: [], // the addresses which should be loaded before the subscribed addresses
+    filters: [], // the subscribed filters
+    user : '', // the current user
+    pass : '', // the current password
+    device : '', // the current device ID
+
+    loginSettings : {},
+    headers: { init: {} },
+
+    setBackend: function(newBackend) {
+      // override default settings
+      var backend = qx.lang.Object.mergeWith(qx.lang.Object.clone(cv.io.Client.backends['default']), newBackend);
+      this.backend = backend;
+      if (backend.transport === 'sse' && backend.transportFallback) {
+        if (window.EventSource === undefined) {
+          // browser does not support EventSource object => use fallback
+          // transport + settings
+          qx.lang.Object.mergeWith(backend, backend.transportFallback);
+        }
+      }
+      // add trailing slash to baseURL if not set
+      if (backend.baseURL && backend.baseURL.substr(-1) !== "/") {
+        backend.baseURL += "/";
+      }
+      switch(backend.transport) {
+        case "long-polling":
+          this.setCurrentTransport(new cv.io.transport.LongPolling(this));
+          break;
+        case "sse":
+          this.setCurrentTransport(new cv.io.transport.Sse(this));
+          break;
       }
     },
 
-    /*
-    ******************************************************
-      MEMBERS
-    ******************************************************
-    */
-    members: {
-      watchdog: null,
-      backend: null,
-      backendName: null,
-      backendUrl: null,
-      addresses: [], // the subscribed addresses
-      initialAddresses: [], // the addresses which should be loaded before the subscribed addresses
-      filters: [], // the subscribed filters
-      user : '', // the current user
-      pass : '', // the current password
-      device : '', // the current device ID
-      
-      loginSettings : {},
-      headers: { init: {} },
+    getBackend: function() {
+      return this.backend;
+    },
+    /**
+     * manipulates the header of the current ajax query before it is been send to the server
+     */
+    beforeSend : function (xhr) {
+      for (var headerName in this.resendHeaders) {
+        if (this.resendHeaders[headerName] != undefined)
+          xhr.setRequestHeader(headerName, this.resendHeaders[headerName]);
+      }
+      for (var headerName in this.headers) {
+        if (this.headers[headerName] != undefined)
+          xhr.setRequestHeader(headerName, this.headers[headerName]);
+      }
+    },
 
-      setBackend: function(newBackend) {
-        // override default settings
-        var backend = qx.lang.Object.mergeWith(qx.lang.Object.clone(cv.io.Client.backends['default']), newBackend);
-        this.backend = backend;
-        if (backend.transport === 'sse' && backend.transportFallback) {
-          if (window.EventSource === undefined) {
-            // browser does not support EventSource object => use fallback
-            // transport + settings
-            qx.lang.Object.mergeWith(backend, backend.transportFallback);
-          }
-        }
-        // add trailing slash to baseURL if not set
-        if (backend.baseURL && backend.baseURL.substr(-1) !== "/") {
-          backend.baseURL += "/";
-        }
-        switch(backend.transport) {
-          case "long-polling":
-            this.setCurrentTransport(new cv.io.transport.LongPolling(this));
-            break;
-          case "sse":
-            this.setCurrentTransport(new cv.io.transport.Sse(this));
-            break;
-        }
-      },
+    /**
+     * read the header values of a response and stores them to the resendHeaders array
+     * @method readResendHeaderValues
+     */
+    readResendHeaderValues : function () {
+      for (var headerName in this.resendHeaders) {
+        this.resendHeaders[headerName] = this.xhr.getResponseHeader(headerName);
+      }
+    },
 
-      getBackend: function() {
-        return this.backend;
-      },
-      /**
-       * manipulates the header of the current ajax query before it is been send to the server
-       */
-      beforeSend : function (xhr) {
-        for (var headerName in this.resendHeaders) {
-          if (this.resendHeaders[headerName] != undefined)
-            xhr.setRequestHeader(headerName, this.resendHeaders[headerName]);
-        }
-        for (var headerName in this.headers) {
-          if (this.headers[headerName] != undefined)
-            xhr.setRequestHeader(headerName, this.headers[headerName]);
-        }
-      },
+    /* return the relative path to a resource on the currently used backend
+     *
+     * @method getResourcePath
+     *
+     * @param name
+     *          {String} Name of the resource (e.g. login, read, write, rrd)
+     * @returns {String} relative path to the resource
+     */
+    getResourcePath : function (name) {
+      return this.backend.baseURL + this.backend.resources[name];
+    },
 
-      /**
-       * read the header values of a response and stores them to the resendHeaders array
-       * @method readResendHeaderValues
-       */
-      readResendHeaderValues : function () {
-        for (var headerName in this.resendHeaders) {
-          this.resendHeaders[headerName] = this.xhr.getResponseHeader(headerName);
-        }
-      },
+    /**
+     * Subscribe to the addresses in the parameter. The second parameter
+     * (filter) is optional
+     *
+     * @param addresses
+     * @param filters
+     * @method subscribe
+     */
+    subscribe : function (addresses, filters) {
+      var startCommunication = !this.addresses.length; // start when
+      // addresses were
+      // empty
+      this.addresses = addresses ? addresses : [];
+      this.filters = filters ? filters : [];
 
-      /* return the relative path to a resource on the currently used backend
-       *
-       * @method getResourcePath
-       *
-       * @param name
-       *          {String} Name of the resource (e.g. login, read, write, rrd)
-       * @returns {String} relative path to the resource
-       */
-      getResourcePath : function (name) {
-        return this.backend.baseURL + this.backend.resources[name];
-      },
-
-      /**
-       * Subscribe to the addresses in the parameter. The second parameter
-       * (filter) is optional
-       *
-       * @param addresses
-       * @param filters
-       * @method subscribe
-       */
-      subscribe : function (addresses, filters) {
-        var startCommunication = !this.addresses.length; // start when
-        // addresses were
-        // empty
-        this.addresses = addresses ? addresses : [];
-        this.filters = filters ? filters : [];
-
-        if (!addresses.length) {
-          this.stop(); // stop when new addresses are empty
-        }
-        else if (startCommunication) {
-          if (this.loginSettings.loginOnly === true) {
-            // connect to the backend
-            this.getCurrentTransport().connect();
-            // start the watchdog
-            this.watchdog.start(5);
-            this.loginSettings.loginOnly = false;
-          }
-          else {
-            this.login(true);
-          }
-        }
-      },
-
-      /**
-       * This function starts the communication by a login and then runs the
-       * ongoing communication task
-       *
-       * @param loginOnly (boolean) if true only login and backend configuration, no subscription to addresses (default: false)
-       * @param callback (Function) cakk this function when login is done
-       * @param context (Object) context for the callback (this)
-       * @method login
-       */
-      login : function (loginOnly, callback, context) {
-        if (this.loginSettings.loggedIn === false) {
-          this.loginSettings.loginOnly = !!loginOnly;
-          this.loginSettings.callbackAfterLoggedIn = callback;
-          this.loginSettings.context = context;
-          var request = {};
-          if ('' !== this.user) {
-            request.u = this.user;
-          }
-          if ('' !== this.pass) {
-            request.p = this.pass;
-          }
-          if ('' !== this.device) {
-            request.d = this.device;
-          }
-          var ajaxRequest = new qx.io.request.Xhr(this.backendUrl ? this.backendUrl : this.getResourcePath("login"));
-          ajaxRequest.set({
-            accept: "application/json"
-          });
-          ajaxRequest.addListener("success", this.handleLogin, this);
-          ajaxRequest.send();
-        } else if (this.loginSettings.callbackAfterLoggedIn) {
-          // call callback immediately
-          this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
-          this.loginSettings.callbackAfterLoggedIn = null;
-          this.loginSettings.context = null;
-        }
-      },
-
-      /**
-       * Handles login response, applies backend configuration if send by
-       * backend and forwards to the configurated transport handleSession
-       * function
-       *
-       * @param json
-       */
-      handleLogin : function (json) {
-        // read backend configuration if send by backend
-        if (json.c) {
-          this.backend = qx.lang.Object.mergeWith(this.backend, json.c); // assign itthis.to run setter
-        }
-        this.setDataReceived(false);
-        if (this.loginSettings.loginOnly) {
-          this.getCurrentTransport().handleSession(json, false);
-        } else {
-          this.getCurrentTransport().handleSession(json, true);
-          // once the connection is set up, start the watchdog
+      if (!addresses.length) {
+        this.stop(); // stop when new addresses are empty
+      }
+      else if (startCommunication) {
+        if (this.loginSettings.loginOnly === true) {
+          // connect to the backend
+          this.getCurrentTransport().connect();
+          // start the watchdog
           this.watchdog.start(5);
+          this.loginSettings.loginOnly = false;
         }
-        this.loginSettings.loggedIn = true;
-        if (this.loginSettings.callbackAfterLoggedIn) {
-          this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
-          this.loginSettings.callbackAfterLoggedIn = null;
-          this.loginSettings.context = null;
+        else {
+          this.login(true);
         }
-      },
+      }
+    },
 
-      /**
-       * This function stops an ongoing connection
-       *
-       * @method stop
-       */
-      stop : function () {
-        this.setRunning(false);
-        if (this.getCurrentTransport().abort) {
-          this.getCurrentTransport().abort();
+    /**
+     * This function starts the communication by a login and then runs the
+     * ongoing communication task
+     *
+     * @param loginOnly (boolean) if true only login and backend configuration, no subscription to addresses (default: false)
+     * @param callback (Function) cakk this function when login is done
+     * @param context (Object) context for the callback (this)
+     * @method login
+     */
+    login : function (loginOnly, callback, context) {
+      if (this.loginSettings.loggedIn === false) {
+        this.loginSettings.loginOnly = !!loginOnly;
+        this.loginSettings.callbackAfterLoggedIn = callback;
+        this.loginSettings.context = context;
+        var request = {};
+        if ('' !== this.user) {
+          request.u = this.user;
         }
-        this.loginSettings.loggedIn = false;
-      },
-
-      /**
-       * Build the URL part that contains the addresses and filters
-       * @method buildRequest
-       * @param addresses
-       * @return {String}
-       */
-      buildRequest : function (addresses) {
-        addresses = addresses ? addresses : this.addresses;
-        var
-          requestAddresses = (addresses.length) ? 'a='
-          + addresses.join('&a=') : '',
-          requestFilters = (this.filters.length) ? 'f='
-          + this.filters.join('&f=') : '';
-        return 's=' + this.session + '&' + requestAddresses
-          + ((addresses.length && this.filters.length) ? '&' : '')
-          + requestFilters;
-      },
-
-      /**
-       * This function sends a value
-       * @param address
-       * @param value
-       * @method write
-       */
-      write : function (address, value) {
-        /**
-         * ts is a quirk to fix wrong caching on some Android-tablets/Webkit;
-         * could maybe selective based on UserAgent but isn't that costly on writes
-         */
-        var ts = new Date().getTime();
-        var ajaxRequest = new qx.io.request.Xhr(qx.util.Uri.appendParamsToUrl(this.getResourcePath("write"), 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts));
+        if ('' !== this.pass) {
+          request.p = this.pass;
+        }
+        if ('' !== this.device) {
+          request.d = this.device;
+        }
+        var ajaxRequest = new qx.io.request.Xhr(this.backendUrl ? this.backendUrl : this.getResourcePath("login"));
         ajaxRequest.set({
           accept: "application/json"
         });
+        ajaxRequest.addListener("success", this.handleLogin, this);
         ajaxRequest.send();
-      },
+      } else if (this.loginSettings.callbackAfterLoggedIn) {
+        // call callback immediately
+        this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
+        this.loginSettings.callbackAfterLoggedIn = null;
+        this.loginSettings.context = null;
+      }
+    },
 
+    /**
+     * Handles login response, applies backend configuration if send by
+     * backend and forwards to the configurated transport handleSession
+     * function
+     *
+     * @param json
+     */
+    handleLogin : function (json) {
+      // read backend configuration if send by backend
+      if (json.c) {
+        this.backend = qx.lang.Object.mergeWith(this.backend, json.c); // assign itthis.to run setter
+      }
+      this.setDataReceived(false);
+      if (this.loginSettings.loginOnly) {
+        this.getCurrentTransport().handleSession(json, false);
+      } else {
+        this.getCurrentTransport().handleSession(json, true);
+        // once the connection is set up, start the watchdog
+        this.watchdog.start(5);
+      }
+      this.loginSettings.loggedIn = true;
+      if (this.loginSettings.callbackAfterLoggedIn) {
+        this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
+        this.loginSettings.callbackAfterLoggedIn = null;
+        this.loginSettings.context = null;
+      }
+    },
+
+    /**
+     * This function stops an ongoing connection
+     *
+     * @method stop
+     */
+    stop : function () {
+      this.setRunning(false);
+      if (this.getCurrentTransport().abort) {
+        this.getCurrentTransport().abort();
+      }
+      this.loginSettings.loggedIn = false;
+    },
+
+    /**
+     * Build the URL part that contains the addresses and filters
+     * @method buildRequest
+     * @param addresses
+     * @return {String}
+     */
+    buildRequest : function (addresses) {
+      addresses = addresses ? addresses : this.addresses;
+      var
+        requestAddresses = (addresses.length) ? 'a='
+        + addresses.join('&a=') : '',
+        requestFilters = (this.filters.length) ? 'f='
+        + this.filters.join('&f=') : '';
+      return 's=' + this.session + '&' + requestAddresses
+        + ((addresses.length && this.filters.length) ? '&' : '')
+        + requestFilters;
+    },
+
+    /**
+     * This function sends a value
+     * @param address
+     * @param value
+     * @method write
+     */
+    write : function (address, value) {
       /**
-       * Restart the connection
+       * ts is a quirk to fix wrong caching on some Android-tablets/Webkit;
+       * could maybe selective based on UserAgent but isn't that costly on writes
        */
-      restart: function() {
-        this.getCurrentTransport().restart();
-      },
+      var ts = new Date().getTime();
+      var ajaxRequest = new qx.io.request.Xhr(qx.util.Uri.appendParamsToUrl(this.getResourcePath("write"), 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts));
+      ajaxRequest.set({
+        accept: "application/json"
+      });
+      ajaxRequest.send();
+    },
 
-      update: function(json) {}
-    }
+    /**
+     * Restart the connection
+     */
+    restart: function() {
+      this.getCurrentTransport().restart();
+    },
+
+    update: function(json) {}
+  }
 });

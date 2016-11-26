@@ -25,59 +25,59 @@
  * @author Christian Mayer
  * @since 2012
  */
-  qx.Class.define('cv.structure.pure.Rgb', {
-    extend: cv.structure.pure.AbstractWidget,
-    include: [cv.role.Update],
+qx.Class.define('cv.structure.pure.Rgb', {
+  extend: cv.structure.pure.AbstractWidget,
+  include: [cv.role.Update],
 
-    /*
-    ******************************************************
-      STATICS
-    ******************************************************
-    */
-    statics: {
-      makeAddressListFn: function(src, transform, mode, variant) {
-        return [true, variant];
-      }
-    },
-
-
-    /*
-    ******************************************************
-      MEMBERS
-    ******************************************************
-    */
-    members: {
-      _getInnerDomString: function () {
-        return '<div class="actor"><div class="value"></div></div>';
-      },
-
-      /**
-       * Handles the incoming data from the backend for this widget
-       *
-       * @method handleUpdate
-       * @param value {any} incoming data (already transformed + mapped)
-       */
-      handleUpdate: function(value, ga) {
-        if (value === undefined || ga === undefined) return;
-        var valElem = this.getValueElement();
-
-        var bg = qx.bom.element.Style.get(valElem, 'background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
-        if( 3 !== bg.length ) {
-          bg = [0, 0, 0];
-        }
-        switch (this.getAddress()[ ga ][2]) {
-          case 'r' :  bg[0] = value; break;
-          case 'g' :  bg[1] = value; break;
-          case 'b' :  bg[2] = value; break;
-          default:
-        }
-        var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
-        qx.bom.element.Style.set(valElem, 'background-color', bgs);
-      }
-    },
-
-    defer: function() {
-      // register the parser
-      cv.xml.Parser.addHandler("rgb", cv.structure.pure.Rgb);
+  /*
+   ******************************************************
+   STATICS
+   ******************************************************
+   */
+  statics: {
+    makeAddressListFn: function(src, transform, mode, variant) {
+      return [true, variant];
     }
+  },
+
+
+  /*
+   ******************************************************
+   MEMBERS
+   ******************************************************
+   */
+  members: {
+    _getInnerDomString: function () {
+      return '<div class="actor"><div class="value"></div></div>';
+    },
+
+    /**
+     * Handles the incoming data from the backend for this widget
+     *
+     * @method handleUpdate
+     * @param value {any} incoming data (already transformed + mapped)
+     */
+    handleUpdate: function(value, ga) {
+      if (value === undefined || ga === undefined) return;
+      var valElem = this.getValueElement();
+
+      var bg = qx.bom.element.Style.get(valElem, 'background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
+      if( 3 !== bg.length ) {
+        bg = [0, 0, 0];
+      }
+      switch (this.getAddress()[ ga ][2]) {
+        case 'r' :  bg[0] = value; break;
+        case 'g' :  bg[1] = value; break;
+        case 'b' :  bg[2] = value; break;
+        default:
+      }
+      var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
+      qx.bom.element.Style.set(valElem, 'background-color', bgs);
+    }
+  },
+
+  defer: function() {
+    // register the parser
+    cv.xml.Parser.addHandler("rgb", cv.structure.pure.Rgb);
+  }
 });

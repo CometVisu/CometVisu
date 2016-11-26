@@ -27,19 +27,19 @@
 qx.Class.define('cv.TemplateEngine', {
   extend: cv.Object,
   type: "singleton",
-  
+
   construct: function() {
     // this.base(arguments);
     this.pagePartsHandler = new cv.PagePartsHandler();
   },
-  
+
   properties: {
     // store the mappings
     mappings: {
       check: "Object",
       init: {}
     },
-    
+
     // store the stylings
     stylings: {
       check: "Object",
@@ -52,12 +52,12 @@ qx.Class.define('cv.TemplateEngine', {
       apply: "_applyReady"
     }
   },
-  
+
   /*
-  ******************************************************
-    MEMBERS
-  ******************************************************
-  */
+   ******************************************************
+   MEMBERS
+   ******************************************************
+   */
   members: {
     pagePartsHandler: null,
     rememberLastPage: false,
@@ -598,12 +598,12 @@ qx.Class.define('cv.TemplateEngine', {
         store.getModel().forEach(function(element) {
 
           var myDiv = qx.dom.Element.create("div", {
-              cursor: "pointer",
-              padding: "0.5em 1em",
-              borderBottom: "1px solid black",
-              margin: "auto",
-              width: "262px",
-              position: "relative"
+            cursor: "pointer",
+            padding: "0.5em 1em",
+            borderBottom: "1px solid black",
+            margin: "auto",
+            width: "262px",
+            position: "relative"
           });
 
           myDiv.innerHTML = "<div style=\"font-weight: bold; margin: 1em 0 .5em;\">Design: " + element + "</div>";

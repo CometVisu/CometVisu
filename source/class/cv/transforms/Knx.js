@@ -440,23 +440,23 @@ qx.Class.define('cv.transforms.Knx', {
         }
       },
       /* 9 Zeilen:
-       },
-       '.001' : {
-       name  : '',
-       encode: function( phy ){
-       return phy;
-       },
-       decode: function( hex ){
-       return hex;
-       }
-       }
-       */ /////////////////////////////////////////////////
+      },
+      '.001' : {
+      name  : '',
+      encode: function( phy ){
+      return phy;
+      },
+      decode: function( hex ){
+      return hex;
+      }
+      }
+      /*/ /////////////////////////////////////////////////
       /* 3 Zeilen:
-       }
-       '': {
-       link  : '.001'
-       },
-       */
+      }
+      '': {
+      link  : '.001'
+      },
+      */
       'temp dummy': {link: '1.001'}
     });
   }
