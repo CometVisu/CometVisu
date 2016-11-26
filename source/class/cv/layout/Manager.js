@@ -163,7 +163,7 @@ qx.Class.define('cv.layout.Manager', {
           return widget.getColspanM();
         return widget.getColspan();
       }
-      return 12;
+      return 0;
     },
 
     /**
