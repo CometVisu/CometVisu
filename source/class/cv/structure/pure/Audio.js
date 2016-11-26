@@ -113,11 +113,12 @@
        * @param address {String} Source address of the incoming data
        * @param value {String} Incoming data
        */
-      handleUpdate: function (value, address) {
+      _update: function (address, value) {
         var on = this.applyMapping(this.getThresholdValue());
-
+        console.log("should play "+(value >= on));
         if (value >= on) {
           var audioWidget = this.getActor();
+          console.log("paused: "+audioWidget.paused);
           if (audioWidget.paused == true)
             audioWidget.play();
         }

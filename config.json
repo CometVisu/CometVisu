@@ -41,7 +41,7 @@
   "let" :
   {
     "APPLICATION"  : "cv",
-    "QOOXDOO_PATH" : "../../external/qooxdoo",
+    "QOOXDOO_PATH" : "./external/qooxdoo",
     "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.test.*"],
     "LOCALES"      : [ "en" ],
     "CACHE"        : "${TMPDIR}/qx${QOOXDOO_VERSION}/cache",

@@ -58,6 +58,7 @@
        * @param value {any} incoming data (already transformed + mapped)
        */
       handleUpdate: function(value, ga) {
+        if (value === undefined || ga === undefined) return;
         var valElem = this.getValueElement();
 
         var bg = qx.bom.element.Style.get(valElem, 'background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);

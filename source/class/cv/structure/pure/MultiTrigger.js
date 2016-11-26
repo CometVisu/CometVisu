@@ -204,7 +204,7 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
         qx.event.Registration.addListener(actor, "tap", this.action, this);
       }, this);
 
-    },
+    }
   },
 
   defer: function () {
