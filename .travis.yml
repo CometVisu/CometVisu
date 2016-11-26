@@ -26,6 +26,7 @@ install:
 - grunt setup
 - cd ../../
 - npm install
+- ./generate.py source
 - "./node_modules/protractor/bin/webdriver-manager update"
 - if [ "$CV_BUILD" == "docs" ]; then sudo pip install -r utils/requirements.txt; fi # for documentation
 - if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install libxml2-dev libxslt-dev graphviz; fi
