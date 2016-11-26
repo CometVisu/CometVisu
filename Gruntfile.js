@@ -1,5 +1,8 @@
-var fs = require('fs'),
-  path = require('path');
+// requires
+var util = require('util');
+var qx = require("../../external/qooxdoo/tool/grunt");
+var path = require('path');
+
 
 var mocks = [];
 function captureMock() {
@@ -58,20 +61,21 @@ function mock() {
   };
 }
 
+// grunt
 module.exports = function(grunt) {
-  var 
+  var
     pkg = grunt.file.readJSON('package.json') || {},
     isDirectoryRegEx = /\/$/,
     filesToCompress = [ {
-      expand: true, 
-      cwd: '.', 
+      expand: true,
+      cwd: '.',
       src: [
-        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README', 
-        'release/config', 
-        'release/config/visu_config.xml', 
-        'release/config/visu_config_previewtemp.xml', 
-        'release/config/structure_custom.js', 
-        'release/config/backup', 
+        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README',
+        'release/config',
+        'release/config/visu_config.xml',
+        'release/config/visu_config_previewtemp.xml',
+        'release/config/structure_custom.js',
+        'release/config/backup',
         'release/config/media',
         'release/demo/**',
         'release/dependencies/**',
@@ -85,20 +89,70 @@ module.exports = function(grunt) {
         'release/upgrade/**',
         'release/*',
         '!release/build.txt'
-      ], 
-      dest: 'cometvisu/', 
+      ],
+      dest: 'cometvisu/',
       mode: function( filename ){
         var isConfig = filename.indexOf( 'release/config' ) > -1;
-        
+
         if( isDirectoryRegEx.test( filename ) )
           return isConfig ? 0777 : 0755;
         return isConfig ? 0666 : 0644;
       }
     } ];
 
-  // Project configuration.
-  grunt.initConfig({
+  var config = {
     pkg : grunt.file.readJSON('package.json') || {},
+
+    generator_config: {
+      let: {
+      }
+    },
+
+    common: {
+      "APPLICATION" : "cv",
+      "QOOXDOO_PATH" : "../../external/qooxdoo",
+      "LOCALES": ["en"],
+      "QXTHEME": "cv.theme.Theme"
+    },
+
+    'http-server': {
+ 
+        'dev': {
+ 
+            // the server root directory 
+            root: ".",
+ 
+            // the server port 
+            // can also be written as a function, e.g. 
+            // port: function() { return 8282; } 
+            port: 9999,
+ 
+            // the host ip address 
+            // If specified to, for example, "127.0.0.1" the server will 
+            // only be available on that ip. 
+            // Specify "0.0.0.0" to be available everywhere 
+            host: "127.0.0.1",
+ 
+            showDir : true,
+            autoIndex: true,
+ 
+            // server default file extension 
+            ext: "html",
+ 
+            // specify a logger function. By default the requests are 
+            // sent to stdout. 
+            // logFn: function(req, res, error) {},
+ 
+            // Proxies all requests which can't be resolved locally to the given url 
+            // Note this this will disable 'showDir' 
+            // proxy: "http://mybackendserver.com",
+
+            // Tell grunt task to open the browser 
+            openBrowser : true
+ 
+        }
+ 
+    },
 
     // license header adding
     usebanner: {
@@ -128,11 +182,11 @@ module.exports = function(grunt) {
               ' * with this program; if not, write to the Free Software Foundation, Inc.,\n'+
               ' * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n'+
               ' */\n', {
-                  data: {
-                    filename: filename,
-                    author: pkg.authors[0].name+ " ["+pkg.authors[0].email+"]",
-                    version: pkg.version
-                  }
+                data: {
+                  filename: filename,
+                  author: pkg.authors[0].name+ " ["+pkg.authors[0].email+"]",
+                  version: pkg.version
+                }
               }
             );
           }
@@ -178,7 +232,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    
+
     // appcache
     manifest: {
       generate: {
@@ -276,7 +330,7 @@ module.exports = function(grunt) {
     // javascript syntax checker
     jshint: {
       options: {
-       // reporter: require('jshint-stylish'),
+        // reporter: require('jshint-stylish'),
         ignores: [ "**/dependencies/**", "**/dep/**"]
       },
       all: [ 'src/**/*.js' ]
@@ -424,7 +478,7 @@ module.exports = function(grunt) {
         regExp: false
       }
     },
-    
+
     chmod: {
       options: {
         mode: 'a+w'
@@ -547,13 +601,13 @@ module.exports = function(grunt) {
       screenshotsManual: {
         options: {
           configFile: "utils/protractor.conf.js",
-            args: {
+          args: {
             params: {
               subDir: "manual"
             },
             capabilities: {
               browserName: grunt.option('browserName') || 'firefox',
-                marionette: true
+              marionette: true
             }
           }
         }
@@ -608,7 +662,21 @@ module.exports = function(grunt) {
         }
       }
     }
-  });
+  };
+
+  var mergedConf = qx.config.mergeConfig(config);
+  // console.log(util.inspect(mergedConf, false, null));
+  grunt.initConfig(mergedConf);
+
+  qx.task.registerTasks(grunt);
+
+  // // 3. Where we tell Grunt we plan to use this plug-in.
+  // grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-http-server');
+
+  // // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
+  // grunt.registerTask('default', ['concat']);
+  grunt.registerTask('source-server-nodejs', ['http-server:dev']);
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
@@ -622,7 +690,7 @@ module.exports = function(grunt) {
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
-  
+
   // custom task to fix the KNX user forum icons and add them to the iconconfig.js:
   // - replace #FFFFFF with the currentColor
   // - fix viewBox to follow the png icon version
@@ -634,16 +702,16 @@ module.exports = function(grunt) {
       .replace( /#FFFFFF|#fff/g, 'currentColor' )
       .replace( /viewBox="0 0 361 361"/g, 'viewBox="30 30 301 301"' ) // emulate a shave 40 on a 480px image
     );
-    
+
     var symbolRegEx = /<symbol.*?id="kuf-(.*?)".*?>/g;
     var kufIcons = '';
     while( (icon = symbolRegEx.exec( svg )) !== null )
     {
       // icon id = icon[1]
-      
+
       if( kufIcons !== '' )
         kufIcons += ",\n";
-      
+
       kufIcons += "    '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : svgKUF('" + icon[1] + "') } } }";
     }
     var start = '// Do not remove this line: Dynamic Icons Start';
@@ -696,5 +764,4 @@ module.exports = function(grunt) {
   grunt.registerTask('updateicons', ['shell:updateicons']);
 
   grunt.registerTask('default', 'build');
-
 };

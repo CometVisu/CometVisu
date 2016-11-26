@@ -40,5 +40,42 @@
     }
   ],
   "display": "standalone",
-  "orientation": "any"
+  "orientation": "any",
+
+  "info" : 
+  {
+    "name" : "cv",
+
+    "summary" : "CometVisu",
+    "description" : "The CometVisu is an interactive, realtime, web based visualization.",
+    
+    "homepage" : "http://www.cometvisu.org/",
+
+    "license" : "GPL-3.0",
+    "authors" :
+    [
+      {
+        "name": "Christian Mayer (ChristianMayer)",
+        "email": "CometVisu at ChristianMayer dot de"
+      },
+      {
+        "name": "Tobias Bräutigam (Peuter)",
+        "email": "tbraeutigam at gmail dot com"
+      }
+    ],
+
+    "version": "0.10.0-dev",
+    "qooxdoo-versions": ["5.1"]
+  },
+  
+  "provides" : 
+  {
+    "namespace"   : "cv",
+    "encoding"    : "utf-8",
+    "class"       : "source/class",
+    "resource"    : "source/resource",
+    "translation" : "source/translation",
+    "type"        : "application"
+  }
 }
+

@@ -12,37 +12,33 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'requirejs'],
+    frameworks: ['qooxdoo', 'jasmine'],
 
-
-    // list of files / patterns to load in the browser
+    // list of files / patterns to load in the browser => auto-filled by the qooxdoo adapter
     files: [
-      'test/karma/test-main.js',
-      {pattern: 'src/**/*.js', included: false},
-      {pattern: 'test/karma/**/*-spec.js', included: false}
+      "source/class/cv/test/helper-spec.js",
+      { pattern: "source/class/cv/test/**/*.js" }
     ],
-
-
-    // list of files to exclude
-    exclude: [
-      'src/lib/main.js'
-    ],
-
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/lib/**.js': 'coverage',
-      'src/lib/**/*.js': 'coverage',
-      'src/structure/**/*.js': 'coverage',
-      'src/transforms/*.js': 'coverage'
+      'source/class/cv/{*.js,!(test)/**/*.js}': 'coverage'
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress','coverage'],
+    reporters: ['progress', 'coverage'],
+
+    coverageReporter : {
+      dir: 'coverage',
+      reporters: [
+        { type: 'html'},
+        { type : 'text-summary' }
+      ]
+    },
 
 
     // web server port
@@ -59,20 +55,27 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
 
+    browserNoActivityTimeout: 6000000,
+    browserDisconnectTimeout: 6000000,
+
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    qooxdooFramework: {
+      testSources: true
+    }
   });
 };
