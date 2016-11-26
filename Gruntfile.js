@@ -226,7 +226,7 @@ module.exports = function(grunt) {
       },
       default : {
         files: {
-          'src/icon/knx-uf-iconset.svg': [
+          'source/resource/cv/icon/knx-uf-iconset.svg': [
             'cache/icons/*.svg'
           ]
         }
@@ -261,7 +261,6 @@ module.exports = function(grunt) {
         src: [
           'index.html',
           'visu_config.xsd',
-          'dependencies/require-2.1.15.min.js',
           'dependencies/css.js',
           'icon/*.png',
           //'icon/iconconfig.js',
@@ -390,7 +389,7 @@ module.exports = function(grunt) {
 
     "file-creator": {
       version: {
-        "src/version": function(fs, fd, done) {
+        "source/version": function(fs, fd, done) {
           fs.writeSync(fd, pkg.version);
           done();
         }
@@ -477,7 +476,6 @@ module.exports = function(grunt) {
         options: {
           port: 8000,
           hostname: '*',
-          base: "source",
           middleware : function(connect, options, middlewares) {
             // inject out mockup middlewares before the default ones
             middlewares.unshift(captureMock());

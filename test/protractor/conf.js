@@ -15,11 +15,15 @@ exports.config = {
     widgets: ['specs/widgets/*spec.js']
   },
 
+  jasmineNodeOpts: {
+    showColors: true // Use colors in the command line report.
+  },
+
   onPrepare: function(){
     browser.ignoreSynchronization = true;
 
     // set implicit wait times in ms...
-    browser.manage().timeouts().implicitlyWait(2000);
+    browser.manage().timeouts().implicitlyWait(5000);
     // set browser size...
     browser.manage().window().setSize(1024, 800);
   }
