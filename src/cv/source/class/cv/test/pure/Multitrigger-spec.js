@@ -10,14 +10,14 @@ describe("testing a multitrigger widget", function() {
     var widget = qx.bom.Html.clean([res[1]])[0];
 
     expect(widget).toHaveClass('multitrigger');
-    expect(widget).toHaveÖabeö('Test');
+    expect(widget).toHaveLabel('Test');
 
-    expect(res[0].path).toBe("id_0");
+    expect(res[0].getPath()).toBe("id_0");
   });
 
   it("should test the multitrigger creator", function() {
 
-    var widget = $(this.createTestWidgetString("multitrigger", {
+    var res = this.createTestWidgetString("multitrigger", {
       'button1label': 'B1',
       'button2label': 'B2',
       'button3label': 'B3',
@@ -28,15 +28,15 @@ describe("testing a multitrigger widget", function() {
       'button4value': '4',
       'showstatus': 'true',
       'mapping': 'test'
-    })[1]);
+    });
+    var widget = qx.bom.Html.clean([res[1]])[0];
 
-    cv.MessageBroker.my.publish("setup.dom.finish");
+    cv.MessageBroker.getInstance().publish("setup.dom.finish");
 
-    var values = $(widget.find("div.actor > div.value"));
-    expect($(values.get(0)).text()).toBe('B1');
-    expect($(values.get(1)).text()).toBe('B2');
-    expect($(values.get(2)).text()).toBe('B3');
-    expect($(values.get(3)).text()).toBe('B4');
+    var values = qx.bom.Selector.query("div.actor > div.value", widget);
+    for (var i=0; i<4; i++) {
+      expect(qx.dom.Node.getText(values[i])).toBe('B'+(i+1));
+    }
   });
 
   it("should update an multitrigger widget", function() {
@@ -51,16 +51,16 @@ describe("testing a multitrigger widget", function() {
       'button4value': 4,
       'showstatus': 'true'
     }, null, null, {'transform': '4.001'});
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
 
     var check = function(index) {
-      $($(this.container.children[0]).find('.actor')).each(function(i, actor) {
-        $actor = $(actor);
+      qx.bom.Selector.query(".actor_container .actor", this.container.children[0]).forEach(function(actor, i) {
         if (index === i) {
-          expect($actor).toHaveClass('switchPressed');
-          expect($actor).not.toHaveClass('switchUnpressed');
+          expect(actor).toHaveClass('switchPressed');
+          expect(actor).not.toHaveClass('switchUnpressed');
         } else {
-          expect($actor).not.toHaveClass('switchPressed');
-          expect($actor).toHaveClass('switchUnpressed');
+          expect(actor).not.toHaveClass('switchPressed');
+          expect(actor).toHaveClass('switchUnpressed');
         }
       });
     }.bind(this);
@@ -72,7 +72,7 @@ describe("testing a multitrigger widget", function() {
   });
 
   it('should trigger the multitrigger action', function() {
-    spyOn(templateEngine.visu, 'write');
+
     var creator = this.createTestElement('multitrigger', {
       'button1label': 'B1',
       'button2label': 'B2',
@@ -84,28 +84,23 @@ describe("testing a multitrigger widget", function() {
       'button4value': 4,
       'showstatus': 'true'
     }, '<address transform="DPT:4001" mode="read">1/0/0</address>', null, {'transform': '4.001'});
+    spyOn(creator, "sendToBackend");
+    var actors = qx.bom.Selector.query(".actor_container .actor", this.container.children[0]);
+    expect(actors.length).not.toBe(0);
 
-    var actors = $(this.container.children[0]).find('.actor');
-    expect(actors).not.toBe(null);
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    var Reg = qx.event.Registration;
 
-    //canceled call
-    creator.action('id_0', actors[0], true);
-    expect(templateEngine.visu.write).not.toHaveBeenCalled();
+    Reg.fireEvent(actors[0], "tap", qx.event.type.Event, []);
+    expect(creator.sendToBackend).toHaveBeenCalledWith('1');
 
-    creator.action('id_0', actors[0], false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '1');
-    expect(templateEngine.visu.write).not.toHaveBeenCalledWith('1/0/0', '1');
+    Reg.fireEvent(actors[1], "tap", qx.event.type.Event, []);
+    expect(creator.sendToBackend).toHaveBeenCalledWith('2');
 
-    creator.action('id_0', actors[1], false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '2');
-    expect(templateEngine.visu.write).not.toHaveBeenCalledWith('1/0/0', '1');
+    Reg.fireEvent(actors[2], "tap", qx.event.type.Event, []);
+    expect(creator.sendToBackend).toHaveBeenCalledWith('3');
 
-    creator.action('id_0', actors[2], false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '3');
-    expect(templateEngine.visu.write).not.toHaveBeenCalledWith('1/0/0', '1');
-
-    creator.action('id_0', actors[3], false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '4');
-    expect(templateEngine.visu.write).not.toHaveBeenCalledWith('1/0/0', '1');
+    Reg.fireEvent(actors[3], "tap", qx.event.type.Event, []);
+    expect(creator.sendToBackend).toHaveBeenCalledWith('4');
   });
 });

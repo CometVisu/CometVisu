@@ -152,6 +152,10 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
       return qx.bom.Selector.query(".value", this.getDomElement())[0];
     },
 
+    getWidgetElement: function() {
+      return qx.bom.Selector.query('.widget', this.getDomElement())[0];
+    },
+
     /**
      * Return the element which should be used to attach listeners too.
      * Unsually this would be the actor but if bindClickToWidget is true

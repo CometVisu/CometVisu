@@ -3,8 +3,9 @@
  *
  */
 describe("testing a navbar widget", function() {
+  var templateEngine = cv.TemplateEngine.getInstance();
 
-  function testNavbar(pos, that) {
+  function testNavbar(pos) {
     spyOn(templateEngine.pagePartsHandler, "navbarSetSize");
 
     var bar = document.createElement('div');
@@ -22,46 +23,48 @@ describe("testing a navbar widget", function() {
       attrs.name = "Testbar";
       attrs.dynamic = "true";
       attrs.width = "200";
-      attrs.scope = "1";
+      attrs.scope = 1;
     }
-    var res = that.createTestWidgetString("navbar", attrs, "<text>Test</text>");
+    var res = this.createTestWidgetString("navbar", attrs, "<text>Test</text>");
+    var obj = res[0];
 
-    cv.MessageBroker.my.publish("setup.dom.finished");
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
 
-    var navbar = $('.navbar', '#'+barContainerId);
+    var navbar = qx.bom.Selector.query('#'+barContainerId+' .navbar')[0];
     expect(navbar).not.toBeNull();
-    expect($(navbar).attr('id')).toBe('id_'+pos+'_navbar');
-
-    var data = templateEngine.widgetDataGet('id_'+pos+'_navbar');
+    expect(qx.bom.element.Attribute.get(navbar, 'id')).toBe('id_'+pos+'_navbar');
 
     if (pos == "left") {
-      expect($(navbar)).toHaveClass("flavour_potassium");
-      expect($($(navbar).find('h2')).text()).toBe('Testbar');
+      expect(navbar).toHaveClass("flavour_potassium");
+      expect(qx.dom.Node.getText(qx.bom.Selector.query("h2", navbar)[0])).toBe('Testbar');
       expect(templateEngine.pagePartsHandler.navbarSetSize).toHaveBeenCalledWith(pos,"200");
-      expect(data.scope).toBe("1");
+      expect(obj.getScope()).toBe(1);
     }
     else {
       expect(templateEngine.pagePartsHandler.navbarSetSize).not.toHaveBeenCalled();
-      expect(data.scope).toBe(-1);
+      expect(obj.getScope()).toBe(-1);
     }
     document.body.removeChild(bar);
     templateEngine.pagePartsHandler.navbarSetSize.calls.reset();
-    cv.structure.pure.NavBar.my.isNotSubscribed = true;
   };
 
   it("should test the top navbar creator", function() {
-    testNavbar("top", this);
+    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar, 100);
+    testNavbar.call(this, "top");
   });
 
   it("should test the left navbar creator", function() {
-    testNavbar("left", this);
+    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar, 100);
+    testNavbar.call(this, "left");
   });
 
   it("should test the right navbar creator", function() {
-    testNavbar("right", this);
+    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar, 100);
+    testNavbar.call(this, "right");
   });
 
   it("should test the bottom navbar creator", function() {
-    testNavbar("bottom", this);
+    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar, 100);
+    testNavbar.call(this, "bottom");
   });
 });

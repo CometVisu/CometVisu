@@ -180,10 +180,9 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
      * @param value {any} incoming data (already transformed + mapped)
      */
     handleUpdate: function (value) {
-      var children = qx.dom.Hierarchy.getChildElements(this.getDomElement());
-      qx.bom.Selector.matches(".actor", children).forEach(function(actor) {
-        var index = children.indexOf(actor);
-        index = index < 3 ? index + 1 : index;
+      var children = qx.bom.Selector.query('.actor_container .actor', this.getDomElement());
+      children.forEach(function(actor) {
+        var index = children.indexOf(actor)+1;
         var isPressed = value === this['getButton' + index + 'value']();
         qx.bom.element.Class.remove(actor, isPressed ? 'switchUnpressed' : 'switchPressed');
         qx.bom.element.Class.add(actor, isPressed ? 'switchPressed' : 'switchUnpressed');
@@ -196,11 +195,16 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
      * @method getActionValue
      */
     getActionValue: function (event) {
-      var index = qx.bom.Selector.query('.actor', this.getDomElement()).indexOf(event.getCurrentTarget());
-      index = index < 3 ? index + 1 : index;
-
+      var index = qx.bom.Selector.query('.actor_container .actor', this.getDomElement()).indexOf(event.getCurrentTarget())+1;
       return this['getButton' + index + 'value']();
-    }
+    },
+
+    initListeners: function() {
+      qx.bom.Selector.query('.actor_container .actor', this.getDomElement()).forEach(function(actor) {
+        qx.event.Registration.addListener(actor, "tap", this.action, this);
+      }, this);
+
+    },
   },
 
   defer: function () {

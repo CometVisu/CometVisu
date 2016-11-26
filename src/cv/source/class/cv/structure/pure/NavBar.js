@@ -47,23 +47,27 @@ qx.Class.define('cv.structure.pure.NavBar', {
   ******************************************************
   */
   statics: {
+    _navbarTop: '',
+    _navbarLeft: '',
+    _navbarRight: '',
+    _navbarBottom: '',
 
-    createDefaultWidget: function (widgetType, $n, path, flavour, pageType) {
+    createDefaultWidget: function (widgetType, n, path, flavour, pageType) {
 
       var classes = "navbar clearfix";
-      if ($n.attr('flavour')) {
-        classes += " flavour_" + $n.attr('flavour');
+      if (qx.bom.element.Attribute.get(n, 'flavour')) {
+        classes += " flavour_" + qx.bom.element.Attribute.get(n, 'flavour');
       }// sub design choice
 
       // store scope globally
       var id = path.split("_");
       id.pop();
-      var pos = $n.attr('position') || 'left';
+      var pos = qx.bom.element.Attribute.get(n, 'position') || 'left';
       cv.data.Model.getInstance().setWidgetData(id.join('_') + '_' + pos + '_navbar', {
-        'scope': $n.attr('scope') || -1
+        'scope': parseFloat(qx.bom.element.Attribute.get(n, 'scope')) || -1
       });
 
-      return cv.data.Model.getInstance().setWidgetData(cv.role.HasChildren.getStoragePath($n, path), {
+      return cv.data.Model.getInstance().setWidgetData(cv.role.HasChildren.getStoragePath(n, path), {
         'path': path,
         'classes': classes,
         '$$type': widgetType
@@ -72,7 +76,7 @@ qx.Class.define('cv.structure.pure.NavBar', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'scope': {"default": -1},
+        'scope': {"default": -1, transform: parseFloat},
         'name': {},
         'dynamic': {
           transform: function (value) {
@@ -82,6 +86,21 @@ qx.Class.define('cv.structure.pure.NavBar', {
         'width': {"default": "300"},
         'position': {"default": 'left'}
       };
+    },
+
+    /**
+     * Called on setup.dom.finished event with high priority. Adds the navbar dom string
+     * to the DOM-Tree
+     */
+    initializeNavbars: function() {
+      ['Top', 'Left', 'Right', 'Bottom'].forEach(function(pos) {
+        if (cv.structure.pure.NavBar['_navbar'+pos]) {
+          var elem = qx.bom.Selector.query('#navbar'+pos)[0];
+          if (elem) {
+            elem.innerHTML += cv.structure.pure.NavBar['_navbar' + pos];
+          }
+        }
+      }, this);
     }
   },
 
@@ -119,17 +138,14 @@ qx.Class.define('cv.structure.pure.NavBar', {
   ******************************************************
   */
   members: {
-    isNotSubscribed: true,
-    navbarTop: '',
-    navbarLeft: '',
-    navbarRight: '',
-    navbarBottom: '',
-    $navbarLeftSize: null,
-    $navbarRightSize: null,
+    __navbarLeftSize: null,
+    __navbarRightSize: null,
 
     _onDomReady: function() {
-      this.$navbarLeftSize = qx.bom.element.Dataset.get(qx.bom.Selector.query('#navbarLeft')[0], 'size');
-      this.$navbarRightSize = qx.bom.element.Dataset.get(qx.bom.Selector.query('#navbarRight')[0], 'size');
+      var left = qx.bom.Selector.query('#navbarLeft')[0];
+      var right = qx.bom.Selector.query('#navbarRight')[0];
+      this.__navbarLeftSize = left ? qx.bom.element.Dataset.get(left, 'size') : 0;
+      this.__navbarRightSize = right ? qx.bom.element.Dataset.get(right, 'size') : 0;
     },
     
     getGlobalPath: function () {
@@ -153,41 +169,30 @@ qx.Class.define('cv.structure.pure.NavBar', {
       // add this to the navbars in DOM not inside the page
       switch (this.getPosition()) {
         case 'top':
-          this.navbarTop += container;
+          this.self(arguments)._navbarTop += container;
           break;
 
         case 'left':
-          this.navbarLeft += container;
-          var thisSize = this.$navbarLeftSize || this.getWidth(); // FIXME - only a temporal solution
+          this.self(arguments)._navbarLeft += container;
+          var thisSize = this.__navbarLeftSize || this.getWidth(); // FIXME - only a temporal solution
           if (this.isDynamic()) {
             templateEngine.pagePartsHandler.navbarSetSize('left', thisSize);
           }
           break;
 
         case 'right':
-          this.navbarRight += container;
-          var thisSize = this.$navbarRightSize || this.getWidth(); // FIXME - only a temporal solution
+          this.self(arguments)._navbarRight += container;
+          var thisSize = this.__navbarRightSize || this.getWidth(); // FIXME - only a temporal solution
           if (this.isDynamic()) {
             templateEngine.pagePartsHandler.navbarSetSize('right', thisSize);
           }
           break;
 
         case 'bottom':
-          this.navbarBottom += container;
+          this.self(arguments)._navbarBottom += container;
           break;
       }
       templateEngine.pagePartsHandler.navbars[this.getPosition()].dynamic |= this.getDynamic();
-
-      if (this.isNotSubscribed) {
-        this.isNotSubscribed = false;
-        cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
-          if (this.navbarTop) $('#navbarTop').append(this.navbarTop);
-          if (this.navbarLeft) $('#navbarLeft').append(this.navbarLeft);
-          if (this.navbarRight) $('#navbarRight').append(this.navbarRight);
-          if (this.navbarBottom) $('#navbarBottom').append(this.navbarBottom);
-        }, this, 100);
-      }
-
       return '';
     }
   },
@@ -195,5 +200,6 @@ qx.Class.define('cv.structure.pure.NavBar', {
   defer: function() {
     cv.xml.Parser.addHandler("navbar", cv.structure.pure.NavBar);
     cv.xml.Parser.addHook("navbar", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
+    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar, 100);
   }
 });

@@ -123,7 +123,7 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
 
       var style = "";
       if (qx.lang.Object.isEmpty(this.getLayout())) {
-        style += this.extractLayout(this.getLayout(), this.getPageType());
+        style += cv.xml.Parser.extractLayout(this.getLayout(), this.getPageType());
       }
       if (this.getHeight()) {
         style += 'height:' + this.getHeight() + ';';
@@ -144,25 +144,24 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
       return actor;
     },
 
-    handleUpdate: function(value) {
-      var imageChildren = qx.bom.Selector.query("img", this.getDomElement())[0];
+    _update: function(address, value) {
+      var imageChild = qx.bom.Selector.query("img", this.getDomElement())[0];
       if (this.getUpdateType() == "show") {
         if (value == 0) {
-          qx.bom.element.Style.set(imageChildren, "display", "none");
+          qx.bom.element.Style.set(imageChild, "display", "none");
         }
         else {
-          qx.bom.element.Attribute.get(imageChildren, "src", this.getSrc() + '.' + this.getSuffix());
-          qx.bom.element.Style.set(imageChildren, "display", "block");
+          qx.bom.element.Attribute.set(imageChild, "src", this.getSrc() + '.' + this.getSuffix());
+          qx.bom.element.Style.set(imageChild, "display", "block");
         }
       }
       else if (this.getUpdateType() == "select") {
         if (value == 0) {
-          imageChildren.hide();
-          qx.bom.element.Style.set(imageChildren, "display", "none");
+          qx.bom.element.Style.set(imageChild, "display", "none");
         }
         else {
-          imageChildren.attr("src", this.getSrc() + value + '.' + this.getSuffix()).show();
-          qx.bom.element.Style.set(imageChildren, "display", "block");
+          qx.bom.element.Attribute.set(imageChild, "src", this.getSrc() + value + '.' + this.getSuffix());
+          qx.bom.element.Style.set(imageChild, "display", "block");
         }
       }
 

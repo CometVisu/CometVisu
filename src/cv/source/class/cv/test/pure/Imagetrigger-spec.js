@@ -14,12 +14,12 @@ describe("testing a imagetrigger widget", function() {
     expect(widget).toHaveClass('imagetrigger');
     expect(widget).toHaveClass('image');
     expect(widget).toHaveClass('flavour_potassium');
-    expect(widget.find("div.label").text()).toBe('Test');
+    expect(widget).toHaveLabel('Test');
 
     expect(res[0].getPath()).toBe("id_0");
   });
 
-  xit("should test the imagetriggers refresh behaviour", function() {
+  it("should test the imagetriggers refresh behaviour", function() {
     var res = this.createTestElement("imagetrigger", {
       flavour: 'potassium',
       sendValue: 'on',
@@ -29,9 +29,16 @@ describe("testing a imagetrigger widget", function() {
       suffix: 'jpg'
     });
 
-    spyOn(cv.utils.Timer, "start");
-    cv.MessageBroker.my.publish("setup.dom.finished");
-    expect(cv.utils.Timer.start).toHaveBeenCalled();
+    var con = qx.event.Timer;
+    var spiedTimer;
+    spyOn(qx.event, "Timer").and.callFake(function() {
+      spiedTimer = new con();
+      spyOn(spiedTimer, "start");
+      return spiedTimer;
+    });
+
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    expect(spiedTimer.start).toHaveBeenCalled();
     expect(res.getSendValue()).toBe("on");
   });
 
@@ -43,9 +50,9 @@ describe("testing a imagetrigger widget", function() {
     });
 
     res.update('12/7/37', 1);
-    var actor = $(this.container.children[0].querySelectorAll('.actor img')[0]);
+    var actor = qx.bom.Selector.query('.actor img', this.container.children[0])[0];
     expect(actor).toBeVisible();
-    expect(actor.attr('src')).toBe('imgs.jpg');
+    expect(qx.bom.element.Attribute.get(actor, 'src')).toBe('imgs.jpg');
 
     res.update('12/7/37', 0);
     expect(actor).not.toBeVisible();
@@ -59,17 +66,19 @@ describe("testing a imagetrigger widget", function() {
     });
 
     res.update('12/7/37', 1);
-    var actor = $(this.container.children[0].querySelectorAll('.actor img')[0]);
+    var actor = qx.bom.Selector.query('.actor img', this.container.children[0])[0];
+
     expect(actor).toBeVisible();
-    expect(actor.attr('src')).toBe('imgs1.jpg');
+    expect(qx.bom.element.Attribute.get(actor, 'src')).toBe('imgs1.jpg');
 
     res.update('12/7/37', 0);
     expect(actor).not.toBeVisible();
   });
 
   it('should trigger the imagetrigger action', function() {
-
-    spyOn(templateEngine.visu, "write");
+    var engine = cv.TemplateEngine.getInstance();
+    var visu = jasmine.createSpyObj("visu", ['write']);
+    engine.visu = visu;
 
     var res = this.createTestElement("imagetrigger", {
       src: 'imgs',
@@ -77,28 +86,27 @@ describe("testing a imagetrigger widget", function() {
       type: 'show',
       sendValue: "1"
     });
+    spyOn(res, "sendToBackend");
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    var Reg = qx.event.Registration;
 
-    var actor = this.container.children[0].querySelectorAll('.actor')[0];
+    var actor = qx.bom.Selector.query('.actor', this.container.children[0])[0];
     expect(actor).not.toBe(null);
 
-    //canceled call
-    res.action('id_0', actor, true);
-    expect(templateEngine.visu.write).not.toHaveBeenCalled();
-
     // no write flag
-    data = templateEngine.widgetDataGet('id_0');
     res.getAddress()['12/7/37'][1] = 1;
 
-    res.action('id_0', actor, false);
-    expect(templateEngine.visu.write).not.toHaveBeenCalled();
+    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
+    expect(engine.visu.write).not.toHaveBeenCalled();
+    res.sendToBackend.calls.reset();
 
     res.getAddress()['12/7/37'][1] = 3;
     res.setSendValue("");
-    res.action('id_0', actor, false);
-    expect(templateEngine.visu.write).not.toHaveBeenCalled();
+    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
+    expect(res.sendToBackend).not.toHaveBeenCalled();
     res.setSendValue("1");
 
-    res.action('id_0', actor, false);
-    expect(templateEngine.visu.write).toHaveBeenCalledWith('12/7/37', '81');
+    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
+    expect(res.sendToBackend).toHaveBeenCalledWith('1');
   });
 });

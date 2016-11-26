@@ -52,8 +52,8 @@ define( [
         navbarLeft       : '',
         navbarRight      : '',
         navbarBottom     : '',
-        $navbarLeftSize  : $( '#navbarLeft'  ).data('size'),
-        $navbarRightSize : $( '#navbarRight' ).data('size')
+        __navbarLeftSize  : $( '#navbarLeft'  ).data('size'),
+        __navbarRightSize : $( '#navbarRight' ).data('size')
       },
 
       methods: {
@@ -118,7 +118,7 @@ define( [
 
           case 'left':
             this.my.navbarLeft += container;
-            var thisSize = this.my.$navbarLeftSize || this.getWidth(); // FIXME - only a temporal solution
+            var thisSize = this.my.__navbarLeftSize || this.getWidth(); // FIXME - only a temporal solution
             if (this.getDynamic()) {
               templateEngine.pagePartsHandler.navbarSetSize( 'left', thisSize );
             }
@@ -126,7 +126,7 @@ define( [
 
           case 'right':
             this.my.navbarRight += container;
-            var thisSize = this.my.$navbarRightSize || this.getWidth(); // FIXME - only a temporal solution
+            var thisSize = this.my.__navbarRightSize || this.getWidth(); // FIXME - only a temporal solution
             if (this.getDynamic()) {
               templateEngine.pagePartsHandler.navbarSetSize( 'right', thisSize );
             }
