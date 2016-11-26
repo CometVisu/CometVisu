@@ -40,13 +40,13 @@ describe('cometvisu demo config test:', function () {
         browser.actions().click(widget).perform();
         expect(widget.element(by.css(".value")).getText()).toEqual('Aus');
         cvDemo.getLastWrite().then(function(lastWrite) {
-          expect(lastWrite.value).toEqual(0);
+          expect(lastWrite.value).toEqual("0");
         });
 
         browser.actions().click(widget).perform();
         expect(widget.element(by.css(".value")).getText()).toEqual('An');
         cvDemo.getLastWrite().then(function(lastWrite) {
-          expect(lastWrite.value).toEqual(1);
+          expect(lastWrite.value).toEqual("1");
         });
 
         // send update via backend

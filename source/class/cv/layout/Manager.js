@@ -117,48 +117,35 @@ qx.Class.define('cv.layout.Manager', {
       var windowHeight = qx.bom.Viewport.getHeight();
       this.currentPageUnavailableHeight = 0;
       var navbarVisibility = this.getCurrentPageNavbarVisibility(cv.TemplateEngine.getInstance().currentPage);
-      var heightStr = "Height: " + windowHeight;
-      var top = qx.bom.Selector.query('#navbarTop')[0];
-      var bottom = qx.bom.Selector.query('#navbarBottom')[0];
+      var topNav = qx.bom.Selector.query('#navbarTop')[0];
+      var top = qx.bom.Selector.query('#top')[0];
+      var bottomNav = qx.bom.Selector.query('#navbarBottom')[0];
+      var bottom = qx.bom.Selector.query('#bottom')[0];
+      var topNavDisplay = qx.bom.element.Class.get(topNav, 'display');
       var topDisplay = qx.bom.element.Class.get(top, 'display');
+      var bottomNavDisplay = qx.bom.element.Class.get(bottomNav, 'display');
       var bottomDisplay = qx.bom.element.Class.get(bottom, 'display');
       var topHeight = qx.bom.element.Dimension.getHeight(top);
-      var bottomHeight = qx.bom.element.Dimension.getHeight(top);
+      var topNavHeight = qx.bom.element.Dimension.getHeight(topNav);
+      var bottomNavHeight = qx.bom.element.Dimension.getHeight(bottomNav);
+      var bottomHeight = qx.bom.element.Dimension.getHeight(bottom);
       var navPathHeight = qx.bom.element.Dimension.getHeight(qx.bom.Selector.query('.nav_path')[0]);
 
       if (topDisplay  != 'none' && topHeight > 0) {
         this.currentPageUnavailableHeight += Math.max(topHeight, navPathHeight);
-        heightStr += " - " + Math.max(topHeight, navPathHeight);
       }
-      else {
-        heightStr += " - 0";
-      }
-      if (topDisplay != 'none' && navbarVisibility.top == "true" && topHeight > 0) {
+      if (topNavDisplay != 'none' && navbarVisibility.top == "true" && topNavHeight > 0) {
         this.currentPageUnavailableHeight += topHeight;
-        heightStr += " - " + topHeight;
       }
-      else {
-        heightStr += " - 0";
-      }
-      if (bottomDisplay != 'none' && navbarVisibility.bottom == "true" && bottomHeight > 0) {
-        this.currentPageUnavailableHeight += bottomHeight;
-        heightStr += " - " + bottomHeight;
-      }
-      else {
-        heightStr += " - 0";
+      if (bottomNavDisplay != 'none' && navbarVisibility.bottom == "true" && bottomNavHeight > 0) {
+        this.currentPageUnavailableHeight += bottomNavHeight;
       }
       if (bottomDisplay != 'none' && bottomHeight > 0) {
         this.currentPageUnavailableHeight += bottomHeight;
-        heightStr += " - #bottom:" + bottomHeight;
-      }
-      else {
-        heightStr += " - 0";
       }
       if (this.currentPageUnavailableHeight > 0) {
         this.currentPageUnavailableHeight += 1;// remove an additional pixel for Firefox
       }
-      //console.log(heightStr);
-      //console.log(windowHeight+" - "+cv.TemplateEngine.getInstance()currentPageUnavailableHeight);
       return windowHeight - this.currentPageUnavailableHeight;
     },
 
