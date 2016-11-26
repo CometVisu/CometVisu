@@ -38,6 +38,8 @@ before_script:
 - "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
 - sleep 3
 script:
+- if [ "$CV_BUILD" == "test" ]; then virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages; fi
+- if [ "$CV_BUILD" == "test" ]; then source temp-python/bin/activate; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt jscs; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt karma:travis; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt e2e; fi
