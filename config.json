@@ -94,6 +94,12 @@
         },
         {
           "uri" : "resource/cv/libs/Three.js"
+        },
+        {
+          "uri" : "resource/cv/libs/jquery.js"
+        },
+        {
+          "uri" : "resource/cv/libs/jquery-ui.js"
         }
       ]
     },

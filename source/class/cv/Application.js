@@ -50,23 +50,9 @@ qx.Class.define("cv.Application",
        -------------------------------------------------------------------------
        */
       // in debug mode load the uncompressed unobfuscated scripts
-      var src = '';
-      var min = '.min';
-      if (qx.core.Environment.get("qx.debug")) {
-        min = '';
-      }
       qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('cv/designs/designglobals.css'));
 
-      // TODO: replace jquery calls with Qooxdoo equivalents and get rid of the dependency
-      var dynLoader = new qx.util.DynamicScriptLoader([
-        "cv/libs/jquery.js",
-        "cv/libs/jquery-ui.js"
-      ]);
-      dynLoader.addListenerOnce('ready', this.__init, this);
-      dynLoader.addListener('failed',function(e){
-        this.error("failed to load "+ e.getData().script);
-      }, this);
-      dynLoader.start();
+      this.__init();
     },
 
     __init: function() {
