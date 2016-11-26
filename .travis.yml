@@ -24,7 +24,7 @@ install:
 - if [ "$CV_BUILD" == "test" ]; then cd external/qooxdoo; fi
 - if [ "$CV_BUILD" == "test" ]; then npm install; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt setup; fi
-- if [ "$CV_BUILD" == "test" ]; then cd ../../
+- if [ "$CV_BUILD" == "test" ]; then cd ../../; fi
 - npm install
 - ./generate.py source
 - "./node_modules/protractor/bin/webdriver-manager update"
