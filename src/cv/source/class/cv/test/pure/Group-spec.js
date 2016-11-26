@@ -34,22 +34,21 @@ describe("testing a group widget", function() {
     expect(widget).toHaveClass('clickable');
     expect(widget).not.toHaveClass('widget');
 
-    expect($(widget.find('h2').get(0)).text()).toBe("Test")
+    expect(qx.dom.Node.getText(qx.bom.Selector.query("h2", widget)[0])).toBe("Test")
   });
 
   it('should trigger the group action', function() {
 
     spyOn(templateEngine, 'scrollToPage');
-    var res = this.createTestElement("group", { target: "target" });
+    var res = this.createTestElement("group", { target: "target" }, "", false);
 
-    var actor = this.container.children[0].querySelectorAll('.actor')[0];
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    var Reg = qx.event.Registration;
+
+    var actor = res.getInteractionElement();
     expect(actor).not.toBe(null);
 
-    //canceled call
-    res.action('id_0', actor, true);
-    expect(templateEngine.scrollToPage).not.toHaveBeenCalled();
-
-    res.action('id_0', actor, false);
+    Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
     expect(templateEngine.scrollToPage).toHaveBeenCalledWith("target");
   });
 });

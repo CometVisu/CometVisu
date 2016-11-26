@@ -51,22 +51,25 @@ var createTestWidgetString = function (name, attributes, content) {
 };
 
 var createTestElement = function (name, attributes, content, address, addressAttributes) {
-  if (!address) {
+  if (!address && address !== false) {
     address = '12/7/37';
   }
   if (!content) {
     content = "";
   }
-  if (!addressAttributes) {
-    addressAttributes = {'transform': 'DPT:1.001', 'mode': 'readwrite'};
-  } else if (!addressAttributes.transform) {
-    addressAttributes.transform = 'DPT:1.001';
+  if (address) {
+    if (!addressAttributes) {
+      addressAttributes = {'transform': 'DPT:1.001', 'mode': 'readwrite'};
+    } else if (!addressAttributes.transform) {
+      addressAttributes.transform = 'DPT:1.001';
+    }
+
+    content += "<address";
+    for (var key in addressAttributes) {
+      content += " " + key + "=\"" + addressAttributes[key] + "\"";
+    }
+    content += ">" + address + "</address>";
   }
-  content += "<address";
-  for (var key in addressAttributes) {
-    content += " " + key + "=\"" + addressAttributes[key] + "\"";
-  }
-  content += ">" + address + "</address>";
 
   var container = document.createElement('div');
   container.setAttribute("class", "widget_container");

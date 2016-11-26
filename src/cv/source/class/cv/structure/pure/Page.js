@@ -117,11 +117,11 @@ qx.Class.define('cv.structure.pure.Page', {
           $$type          : "pagelink",
           path            : path,
           name            : name,
-          classes         : cv.xml.Parser.setWidgetLayout( page, path ) || null,
+          classes         : cv.xml.Parser.setWidgetLayout( page, path ) || '',
           layout          : layout || null,
           address         : addresses,
           pageType        : pageType,
-          wstyle          : wstyle || null
+          wstyle          : wstyle || ''
         });
         return [data, linkData];
       } else {

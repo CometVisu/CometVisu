@@ -142,7 +142,9 @@ qx.Class.define('cv.structure.pure.Group', {
     action: function (event) {
       if (this.getTarget() != 0) {
         cv.TemplateEngine.getInstance().scrollToPage(this.getTarget());
-        event.stopPropagation();
+        if (event.getBubbles()) {
+          event.stopPropagation();
+        }
       }
     },
 

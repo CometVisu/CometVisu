@@ -3,7 +3,6 @@
  *
  */
 describe("testing a infoaction widget", function() {
-  var templateEngine = engine.getInstance();
 
   it("should test the infoaction creator", function() {
 
@@ -12,7 +11,7 @@ describe("testing a infoaction widget", function() {
     expect(res[0].getPath()).toBe("id_0");
 
     expect(widget).toHaveClass('infoaction');
-    expect(widget.find("div.label").text()).toBe('Test');
+    expect(widget).toHaveLabel('Test');
 
   });
 });

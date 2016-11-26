@@ -217,7 +217,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
         modifyFn(value);
       else if ('function' === typeof value)
       // thisValue(valueElement);
-        console.error('typeof value === function - special case not handled anymore!');
+        this.error('typeof value === function - special case not handled anymore!');
       else if (!Array.isArray(value)) {
         var element = value.cloneNode();
         if (value.getContext) {
@@ -233,7 +233,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
             modifyFn(thisValue);
           else if ('function' === typeof thisValue)
           // thisValue(valueElement);
-            console.error('typeof value === function - special case not handled anymore!');
+            this.error('typeof value === function - special case not handled anymore!');
           else {
             var element = thisValue.cloneNode();
             if (thisValue.getContext) {

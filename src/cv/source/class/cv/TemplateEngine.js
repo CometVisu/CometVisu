@@ -695,7 +695,7 @@ qx.Class.define('cv.TemplateEngine', {
      * FIXME: this does nothing, should be removed?
      */
     deleteCommand: function (path) {
-      console.log(this.lookupWidget(path), $('#' + path));
+      this.debug(this.lookupWidget(path), $('#' + path));
       //$( this.lookupWidget( path ) ).remove();
       return "deleted widget '" + path + "'";
     },

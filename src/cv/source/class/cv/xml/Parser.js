@@ -239,7 +239,6 @@ qx.Class.define('cv.xml.Parser', {
         return ret_val;
 
       if( undefined === defaultValues ) defaultValues = {};
-      console.log(layout);
       if( layout.getAttribute('x'     ) ) ret_val.x      = layout.getAttribute('x'     );
       else if( defaultValues.x          ) ret_val.x      = defaultValues.x;
 
@@ -316,7 +315,6 @@ qx.Class.define('cv.xml.Parser', {
         ret_val = '';
 
       if (layout) {
-        console.log(layout);
         elementData.colspan = layout.getAttribute('colspan');
         elementData.colspanM = layout.getAttribute('colspan-m');
         elementData.colspanS = layout.getAttribute('colspan-s');

@@ -137,14 +137,13 @@ describe("testing a page widget", function() {
   it("should trigger the page action", function() {
     spyOn(templateEngine, 'scrollToPage');
 
-    var res = this.createTestWidgetString("page", {
+    var pageLink = this.createTestElement("page", {
       'type': 'text',
       'ga': '1/0/0',
       'name': 'Testpage'
     });
     cv.MessageBroker.getInstance().publish("setup.dom.finished");
-    var pageLink = res[0];
-    qx.event.Registration.fireEvent(pageLink, "tap", qx.event.type.Event, []);
+    qx.event.Registration.fireEvent(pageLink.getActor(), "tap", qx.event.type.Event, []);
     expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_0_');
   });
 });

@@ -53,7 +53,6 @@ qx.Class.define('cv.util.Tree', {
      */
     getParentPageData: function(path) {
       var data = {};
-      console.log("getParentPath "+path);
       var isPage = path.substr(-1,1) === "_"; // path ends with _
       if (!isPage) {
         path = path.substr(0, path.length - 1);
@@ -64,7 +63,6 @@ qx.Class.define('cv.util.Tree', {
       }
       var model = cv.data.Model.getInstance();
       while (qx.lang.Object.isEmpty(data) && parentPath.length > 2) {
-        console.log("checking "+parentPath);
         data = model.getWidgetData(parentPath);
         if (parentPath === "id_") {
           break;

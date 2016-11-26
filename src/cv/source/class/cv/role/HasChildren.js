@@ -45,7 +45,7 @@ qx.Mixin.define("cv.role.HasChildren", {
         data.children = [];
       }
       var childs = qx.dom.Hierarchy.getChildElements(xml).filter(function(child) {
-        return child.tagName !== "layout" && child.tagName !== "label";
+        return ['layout', 'label', 'address'].indexOf(qx.dom.Node.getName(child)) === -1;
       }, this);
       childs.forEach(function (child, i) {
         var childData = cv.xml.Parser.parse(child, path + '_' + i, flavour, pageType);

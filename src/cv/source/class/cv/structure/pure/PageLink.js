@@ -36,7 +36,7 @@ qx.Class.define('cv.structure.pure.PageLink', {
     },
     wstyle : {
       check: "String",
-      nullable: true
+      init: ''
     },
     address : {
       check: "Object",
@@ -62,7 +62,7 @@ qx.Class.define('cv.structure.pure.PageLink', {
     },
 
     action: function() {
-      cv.TemplateEngine.getInstance().scrollToPage( path + '_' );
+      cv.TemplateEngine.getInstance().scrollToPage( this.getPath() + '_' );
     }
   },
 
