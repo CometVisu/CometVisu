@@ -96,9 +96,8 @@ qx.Class.define('cv.xml.Parser', {
           entry[0].call(entry[1] || this, xml, path, flavour, pageType);
         }, this);
       } else {
-        // console.error("no parse handler registered for type: %s", xml.nodeName.toLowerCase());
-        parser = this.getHandler("unknown");
-        result = this.__parse(parser, xml, path, flavour, pageType);
+        qx.log.Logger.debug("no parse handler registered for type: "+ xml.nodeName.toLowerCase());
+        result = cv.structure.pure.Unknown.parse(xml, path, flavour, pageType);
       }
       return result;
     },

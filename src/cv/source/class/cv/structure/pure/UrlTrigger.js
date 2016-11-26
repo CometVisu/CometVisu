@@ -53,7 +53,7 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
   statics: {
     getAttributeToPropertyMappings: function () {
       return {
-        'value' : { target: 'sendValue', "default": 0 },
+        'value' : { target: 'sendValue', "default": "0" },
         'params'  : { "default": '' },
         'url': { }
       };

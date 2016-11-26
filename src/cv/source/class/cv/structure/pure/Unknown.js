@@ -32,6 +32,16 @@ qx.Class.define('cv.structure.pure.Unknown', {
 
   /*
   ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(props) {
+    this.set(props);
+  },
+
+
+  /*
+  ******************************************************
     PROPERTIES
   ******************************************************
   */
@@ -61,9 +71,9 @@ qx.Class.define('cv.structure.pure.Unknown', {
   */
   statics: {
     parse: function (xml, path, flavour, pageType) {
-      return cv.data.Model.setWidgetData(path, {
+      return cv.data.Model.getInstance().setWidgetData(path, {
         'path': path,
-        'unknownType': xml.nodeName.toLowerCase(),
+        'unknownType': qx.dom.Node.getName(xml).toLowerCase(),
         '$$type': "unknown",
         'pageType': pageType
       });
@@ -80,13 +90,11 @@ qx.Class.define('cv.structure.pure.Unknown', {
      * Returns the DOMElement of this widget
      */
     getDomElement: function () {
-      return qx.bom.Selector.query('#' + this.getPath());
+      return qx.bom.Selector.query('#' + this.getPath())[0];
     },
 
     getDomString: function () {
-      return '<div class="widget clearfix">'
-        + '<pre>unknown: ' + this.unknownType + '</pre>'
-        + '</div>';
+      return '<div class="widget clearfix"><pre>unknown: ' + this.getUnknownType() + '</pre></div>';
     }
   },
 
