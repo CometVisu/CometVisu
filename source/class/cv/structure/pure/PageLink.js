@@ -1,4 +1,4 @@
-/* Page.js 
+/* PageLink.js 
  * 
  * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
  * 
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * PageLink Widget for visible pages

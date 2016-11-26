@@ -1,4 +1,4 @@
-/* InfoAction.js 
+/* WidgetInfoAction.js 
  * 
  * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
  * 
