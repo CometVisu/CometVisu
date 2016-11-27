@@ -48,6 +48,7 @@ qx.Class.define('cv.io.Client', {
    ******************************************************
    */
   construct: function(backendName, backendUrl) {
+    this.backend = {};
     this.loginSettings = {
       loggedIn: false,
       callbackAfterLoggedIn: null,
@@ -91,7 +92,8 @@ qx.Class.define('cv.io.Client', {
       'oh': 'openhab',
       'oh2': 'openhab2'
     },
-    // setup of the different known backends
+    // setup of the different known backends (openhab2 configures itself by sending the config with the login response
+    // so no defaults are defined here
     backends: {
       'default': {
         name: 'default',
@@ -308,7 +310,8 @@ qx.Class.define('cv.io.Client', {
         }
         var ajaxRequest = new qx.io.request.Xhr(this.backendUrl ? this.backendUrl : this.getResourcePath("login"));
         ajaxRequest.set({
-          accept: "application/json"
+          accept: "application/json",
+          requestData: request
         });
         ajaxRequest.addListener("success", this.handleLogin, this);
         ajaxRequest.send();
@@ -325,12 +328,13 @@ qx.Class.define('cv.io.Client', {
      * backend and forwards to the configurated transport handleSession
      * function
      *
-     * @param json
+     * @param ev {Event} the 'success' event from the XHR request
      */
-    handleLogin : function (json) {
+    handleLogin : function (ev) {
+      var json = ev.getTarget().getResponse();
       // read backend configuration if send by backend
       if (json.c) {
-        this.backend = qx.lang.Object.mergeWith(this.backend, json.c); // assign itthis.to run setter
+        this.setBackend(qx.lang.Object.mergeWith(this.getBackend(), json.c));
       }
       this.setDataReceived(false);
       if (this.loginSettings.loginOnly) {

@@ -30,7 +30,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
    * @param client {cv.io.Client}
    */
   construct: function(client) {
-    this.session = client;
+    this.client = client;
   },
 
 
@@ -45,7 +45,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     lastIndex: -1,    // index returned by the last request
     retryCounter: 0,      // count number of retries (reset with each valid response)
     sessionId: null,
-    session: null,
+    client: null,
     running: null,
 
     /**
@@ -74,26 +74,27 @@ qx.Class.define('cv.io.transport.LongPolling', {
     connect: function () {
       this.running = true;
       // send first request
-      this.xhr = new qx.io.request.Xhr(this.session.getResourcePath("read"));
+      this.xhr = new qx.io.request.Xhr(this.client.getResourcePath("read"));
       this.xhr.set({
         accept: "application/json",
         method: "GET",
         beforeSend: this.beforeSend.bind(this)
       });
       this.xhr.addListener("error", this.handleError, this);
-      if (this.session.initialAddresses.length) {
+      if (this.client.initialAddresses.length) {
         this.xhr.set({
-          requestData: this.session.buildRequest(this.session.initialAddresses) + '&t=0'
+          requestData: this.client.buildRequest(this.client.initialAddresses) + '&t=0'
         });
         this.xhr.addListener("success", this.handleReadStart, this);
       } else {
         // old behaviour -> start full query
         this.xhr.set({
-          requestData: this.session.buildRequest() + '&t=0'
+          requestData: this.client.buildRequest() + '&t=0'
         });
         this.xhr.addListener("success", this.handleRead, this);
       }
       this.xhr.send();
+      this.client.watchdog.start(5);
     },
     /**
      * This function gets called once the communication is established
@@ -104,11 +105,11 @@ qx.Class.define('cv.io.transport.LongPolling', {
      */
     handleRead: function (json) {
       if (this.doRestart || (!json && (-1 == this.lastIndex))) {
-        this.session.setDataReceived(false);
+        this.client.setDataReceived(false);
         if (this.running) { // retry initial request
           this.retryCounter++;
           this.xhr.send();
-          this.session.watchdog.ping(true);
+          this.client.watchdog.ping(true);
         }
         return;
       }
@@ -117,9 +118,9 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.lastIndex = json.i;
         var data = json.d;
         this.readResendHeaderValues();
-        this.session.update(data);
+        this.client.update(data);
         this.retryCounter = 0;
-        this.session.setDataReceived(true);
+        this.client.setDataReceived(true);
       }
 
       if (this.running) { // keep the requests going
@@ -128,41 +129,41 @@ qx.Class.define('cv.io.transport.LongPolling', {
           requestData: this.session.buildRequest() + '&i=' + this.lastIndex
         });
         this.xhr.send();
-        this.session.watchdog.ping();
+        this.client.watchdog.ping();
       }
     },
 
     handleReadStart: function (json) {
       if (!json && (-1 == this.lastIndex)) {
-        this.session.setDataReceived(false);
+        this.client.setDataReceived(false);
         if (this.running) { // retry initial request
           this.xhr.send();
-          this.session.watchdog.ping();
+          this.client.watchdog.ping();
         }
         return;
       }
       if (json && !this.doRestart) {
         this.readResendHeaderValues();
-        this.session.update(json.d);
-        this.session.setDataReceived(true);
+        this.client.update(json.d);
+        this.client.setDataReceived(true);
       }
       if (this.running) { // keep the requests going, but only
         // request
         // addresses-startPageAddresses
         var diffAddresses = [];
-        for (var i = 0; i < this.session.addresses.length; i++) {
-          if (qx.lang.Array.contains(this.session.addresses[i],
-              this.session.initialAddresses) < 0)
-            diffAddresses.push(this.session.addresses[i]);
+        for (var i = 0; i < this.client.addresses.length; i++) {
+          if (qx.lang.Array.contains(this.client.addresses[i],
+              this.client.initialAddresses) < 0)
+            diffAddresses.push(this.client.addresses[i]);
         }
 
         this.xhr.set({
-          data: this.session.buildRequest(diffAddresses) + '&t=0'
+          data: this.client.buildRequest(diffAddresses) + '&t=0'
         });
         this.xhr.removeListener("success", this.handleReadStart, this);
         this.xhr.addListener("success", this.handleRead, this);
         this.xhr.send();
-        this.session.watchdog.ping();
+        this.client.watchdog.ping();
       }
     },
 
@@ -267,8 +268,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
       if (this.xhr && this.xhr.abort) {
         this.xhr.abort();
 
-        if (this.session.backend && this.session.backend.hooks.onClose) {
-          this.session.backend.hooks.onClose.bind(this);
+        if (this.client.backend && this.client.backend.hooks.onClose) {
+          this.client.backend.hooks.onClose.bind(this);
         }
       }
     }

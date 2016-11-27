@@ -30,7 +30,7 @@ qx.Class.define('cv.io.transport.Sse', {
    * @param client {cv.io.Client}
    */
   construct: function(client) {
-    this.session = client;
+    this.client = client;
   },
 
   /*
@@ -42,7 +42,7 @@ qx.Class.define('cv.io.transport.Sse', {
 
     running: false,
     sessionId: null,
-    session: null,
+    client: null,
     eventSource: null,
     /**
      * This function gets called once the communication is established
@@ -71,17 +71,17 @@ qx.Class.define('cv.io.transport.Sse', {
     connect: function () {
       // send first request
       this.running = true;
-      this.session.setDataReceived(false);
-      this.eventSource = new EventSource(this.session.getResourcePath("read") + "?" + this.session.buildRequest());
-      this.eventSource.addEventListener('message', this.handleMessage, false);
-      this.eventSource.addEventListener('error', this.handleError, false);
+      this.client.setDataReceived(false);
+      this.eventSource = new EventSource(this.client.getResourcePath("read") + "?" + this.client.buildRequest());
+      this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
+      this.eventSource.addEventListener('error', this.handleError.bind(this), false);
       this.eventSource.onerror = function () {
         qx.log.Logger.debug("connection lost");
       };
       this.eventSource.onopen = function () {
         qx.log.Logger.debug("connection established");
       };
-      this.session.watchdog.ping();
+      this.client.watchdog.start(5);
     },
 
     /**
@@ -90,9 +90,9 @@ qx.Class.define('cv.io.transport.Sse', {
     handleMessage: function (e) {
       var json = JSON.parse(e.data);
       var data = json.d;
-      this.session.watchdog.ping();
-      this.session.update(data);
-      this.session.setDataReceived(true);
+      this.client.watchdog.ping();
+      this.client.update(data);
+      this.client.setDataReceived(true);
     },
 
     /**
