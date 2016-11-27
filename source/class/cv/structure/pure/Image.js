@@ -85,7 +85,13 @@ qx.Class.define('cv.structure.pure.Image', {
       if (this.getHeight()) {
         imgStyle += 'height:' + this.getHeight() + ';';
       }
-      return '<div class="actor"><img src="' + qx.util.ResourceManager.getInstance().toUri('cv/'+this.getSrc()) + '" style="' + imgStyle + '" /></div>';
+      var src = this.getSrc();
+      var parsedUri = qx.util.Uri.parseUri(this.getSrc());
+      if (!parsedUri.protocol &&  !this.getSrc().startsWith("/")) {
+        // is relative URI, use the ResourceManager
+        src = qx.util.ResourceManager.getInstance().toUri('cv/'+this.getSrc())
+      }
+      return '<div class="actor"><img src="' + src + '" style="' + imgStyle + '" /></div>';
     }
   },
   defer: function() {

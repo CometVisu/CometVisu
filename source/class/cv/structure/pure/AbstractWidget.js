@@ -132,6 +132,13 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
   ******************************************************
   */
   properties: {
+    /**
+     * If true this widget does not automatically apply any listeners
+     */
+    anonymous : {
+      check: "Boolean",
+      init: false
+    },
 
     popups            : { init: {} },
     flavour           : { check: "String", init: '', nullable: true },
@@ -189,6 +196,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
     },
 
     addListener: function(type, callback, context) {
+      if (this.isAnonymous()) return;
       var widget = this.getInteractionElement();
       if (widget) {
         return qx.event.Registration.addListener(widget, type, callback, context);

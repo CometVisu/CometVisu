@@ -34,6 +34,10 @@ qx.Class.define('cv.structure.pure.WidgetInfoAction', {
    ******************************************************
    */
   properties: {
+    anonymous : {
+      refine: true,
+      init: true
+    },
     childObjects: {check: "Array", init: []},
     containerClass: {check: "String", nullable: true}
   },

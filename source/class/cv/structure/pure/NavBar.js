@@ -40,6 +40,18 @@ qx.Class.define('cv.structure.pure.NavBar', {
     this.base(arguments, props);
   },
 
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    anonymous : {
+      refine: true,
+      init: true
+    }
+  },
+
   
   /*
   ******************************************************

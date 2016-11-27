@@ -493,7 +493,7 @@ qx.Class.define('cv.TemplateEngine', {
           });
           if (fallback) {
             // take the first page that fits (old behaviour)
-            pages.forRach(function (elem) {
+            pages.forRach(function (page) {
               if (qx.dom.Node.getText(page)  == page_name) {
                 page_id = qx.bom.element.Attribute.get(cv.util.Tree.getClosest(page, ".page"), "id");
                 // break loop
@@ -502,7 +502,7 @@ qx.Class.define('cv.TemplateEngine', {
             });
           }
         } else {
-          pages.forEach(function () {
+          pages.forEach(function (page) {
             if (qx.dom.Node.getText(page) == page_name) {
               page_id = qx.bom.element.Attribute.get(cv.util.Tree.getClosest(page, ".page"), "id");
               // break loop

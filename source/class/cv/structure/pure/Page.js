@@ -145,6 +145,10 @@ qx.Class.define('cv.structure.pure.Page', {
    ******************************************************
    */
   properties: {
+    anonymous : {
+      refine: true,
+      init: true
+    },
 
     name              : {
       check: "String",
