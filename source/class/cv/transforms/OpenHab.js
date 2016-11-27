@@ -25,6 +25,18 @@
  * @since 2012
  */
 qx.Class.define('cv.transforms.OpenHab', {
+
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    isUndefined: function(value) {
+      return ['NaN', 'Uninitialized', 'NULL'].indexOf(value) >= 0;
+    }
+  },
+
   
   /**
    * This class defines the default transforms: encode: transform JavaScript to
@@ -58,7 +70,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           else return phy;
         },
         decode: function (str) {
-          if (str == "NaN" || str == 'Uninitialized') return 0;
+          if (cv.transforms.OpenHab.isUndefined(str)) return 0;
           else if (str == "UP") return 0;
           else if (str == "DOWN") return 1;
           else return str;
@@ -70,7 +82,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           return parseInt(phy);
         },
         decode: function (str) {
-          if (str == "NaN" || str == 'Uninitialized') return 0;
+          if (cv.transforms.OpenHab.isUndefined(str)) return 0;
           else if (str == "ON") return 100;
           else if (str == "OFF") return 0;
           else return parseInt(str);
@@ -82,7 +94,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           return parseFloat(phy);
         },
         decode: function (str) {
-          if (str == "NaN" || str == 'Uninitialized') return 0;
+          if (cv.transforms.OpenHab.isUndefined(str)) return 0;
           return parseFloat(str);
         }
       },
@@ -92,7 +104,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           return phy;
         },
         decode: function (str) {
-          if (str == "NaN" || str == 'Uninitialized') return '';
+          if (cv.transforms.OpenHab.isUndefined(str)) return '';
           return str;
         }
       },
@@ -106,7 +118,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           }
         },
         decode: function (str) {
-          if (str == "NaN" || str == 'Uninitialized') return '-';
+          if (cv.transforms.OpenHab.isUndefined(str)) return '-';
           var date = new Date(Date.parse(str));
           return date;
         }
@@ -121,7 +133,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           }
         },
         decode: function (str) {
-          if (str == "NaN" || str == 'Uninitialized') return '-';
+          if (cv.transforms.OpenHab.isUndefined(str)) return '-';
           var date = new Date();
           var parts = str.split(":");
           date.setHours(parseInt(parts[0]));

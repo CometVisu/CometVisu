@@ -47,11 +47,11 @@ qx.Class.define("cv.xml.parser.Meta", {
     },
 
     parseMappings: function(elem) {
-      var name = elem.getAttribute('name');
+      var name = qx.bom.element.Attribute.get(elem, 'name');
       var mapping = {};
       var formula = qx.bom.Selector.query('formula', elem);
       if (formula.length > 0) {
-        var func = qx.lang.Function.globalEval('var func = function(x){var y;' + formula.textContent + '; return y;}; func');
+        var func = qx.lang.Function.globalEval('var func = function(x){var y;' + qx.dom.Node.getText(formula) + '; return y;}; func');
         mapping['formula'] = func;
       }
       qx.bom.Selector.query('entry', elem).forEach(function (subElem) {
@@ -59,16 +59,16 @@ qx.Class.define("cv.xml.parser.Meta", {
         var value = [];
         for (var i = 0; i < origin.length; i++) {
           var v = origin[i];
-          if (qx.dom.Node.isElement(v) && v.tagName.toLowerCase() == 'icon') {
+          if (qx.dom.Node.isElement(v) && qx.dom.Node.getName(v).toLowerCase() == 'icon') {
             var icon = this.__parseIconDefinition(v);
             value[i] = cv.IconHandler.getInstance().getIconElement(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.class);
           }
           else {
-            value[i] = v.textContent;
+            value[i] = qx.dom.Node.getText(v);
           }
         }
         // check for default entry
-        var isDefaultValue = subElem.getAttribute('default');
+        var isDefaultValue = qx.bom.element.Attribute.get(subElem, 'default');
         if (isDefaultValue != undefined) {
           isDefaultValue = isDefaultValue == "true";
         }
@@ -86,9 +86,9 @@ qx.Class.define("cv.xml.parser.Meta", {
           if (!mapping['range']) {
             mapping['range'] = {};
           }
-          mapping['range'][parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), value];
+          mapping['range'][parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'))] = [parseFloat(qx.bom.element.Attribute.get(subElem, 'range_max')), value];
           if (isDefaultValue) {
-            mapping['defaultValue'] = parseFloat(subElem.getAttribute('range_min'));
+            mapping['defaultValue'] = parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'));
           }
         }
       }, this);
@@ -96,13 +96,13 @@ qx.Class.define("cv.xml.parser.Meta", {
     },
 
     parseStylings: function(elem) {
-      var name = elem.getAttribute('name');
+      var name = qx.bom.element.Attribute.get(elem, 'name');
       var classnames = '';
       var styling = {};
       qx.bom.Selector.query('entry', elem).forEach(function (subElem) {
-        classnames += subElem.textContent + ' ';
+        classnames += qx.dom.Node.getText(subElem) + ' ';
         // check for default entry
-        var isDefaultValue = subElem.getAttribute('default');
+        var isDefaultValue = qx.bom.element.Attribute.get(subElem, 'default');
         if (isDefaultValue != undefined) {
           isDefaultValue = isDefaultValue == "true";
         } else {
@@ -110,16 +110,16 @@ qx.Class.define("cv.xml.parser.Meta", {
         }
         // now set the styling values
         if (subElem.getAttribute('value')) {
-          styling[subElem.getAttribute('value')] = subElem.textContent;
+          styling[subElem.getAttribute('value')] = qx.dom.Node.getText(subElem);
           if (isDefaultValue) {
             styling['defaultValue'] = subElem.getAttribute('value');
           }
         } else { // a range
           if (!styling['range'])
             styling['range'] = {};
-          styling['range'][parseFloat(subElem.getAttribute('range_min'))] = [parseFloat(subElem.getAttribute('range_max')), subElem.textContent];
+          styling['range'][parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'))] = [parseFloat(qx.bom.element.Attribute.get(subElem, 'range_max')), qx.dom.Node.getText(subElem)];
           if (isDefaultValue) {
-            styling['defaultValue'] = parseFloat(subElem.getAttribute('range_min'));
+            styling['defaultValue'] = parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'));
           }
         }
       }, this);
@@ -181,14 +181,14 @@ qx.Class.define("cv.xml.parser.Meta", {
 
     __parseIconDefinition: function(elem) {
       return {
-        name : elem.getAttribute('name'),
-        uri : elem.getAttribute('uri'),
-        type : elem.getAttribute('type'),
-        flavour : elem.getAttribute('flavour'),
-        color : elem.getAttribute('color'),
-        styling : elem.getAttribute('styling'),
-        dynamic : elem.getAttribute('dynamic'),
-        'class' : elem.getAttribute('class')
+        name : qx.bom.element.Attribute.get(elem, 'name'),
+        uri : qx.bom.element.Attribute.get(elem, 'uri'),
+        type : qx.bom.element.Attribute.get(elem, 'type'),
+        flavour : qx.bom.element.Attribute.get(elem, 'flavour'),
+        color : qx.bom.element.Attribute.get(elem, 'color'),
+        styling : qx.bom.element.Attribute.get(elem, 'styling'),
+        dynamic : qx.bom.element.Attribute.get(elem, 'dynamic'),
+        'class' : qx.bom.element.Attribute.get(elem, 'class')
       }
     }
 

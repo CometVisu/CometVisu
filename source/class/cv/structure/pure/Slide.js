@@ -47,29 +47,7 @@ qx.Class.define('cv.structure.pure.Slide', {
         break;
       }
     }
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
-      var $actor = $( '#' + this.getPath() + ' .actor' );
-      $actor.slider({
-        step:    this.getStep(),
-        min:     this.getMin(),
-        max:     this.getMax(),
-        range:   'min',
-        animate: true,
-        send_on_finish : this.getSendOnFinish(),
-        start:   this.slideStart.bind(this),
-        change:  this.slideChange.bind(this)
-      });
-      // disable slider interaction if in read-only mode --> just show the value
-      if (readonly) {
-        $actor.slider({ disabled: true });
-      }
-      $actor.on( 'slide', this.slideUpdateValue.bind(this) );
-
-      if(this.getFormat()) {
-        // initially setting a value
-        $actor.children('.ui-slider-handle').text(sprintf(this.getFormat(), this.applyMapping(this.getMin())));
-      }
-    }, this);
+    this.__readonly = readonly;
   },
 
 
@@ -149,27 +127,61 @@ qx.Class.define('cv.structure.pure.Slide', {
     __main: null,
     __timerId: null,
     __slider : null,
+    __readonly: null,
+    __initialized: null,
+
+    _onDomReady: function() {
+      this.base(arguments);
+      var $actor = $( '#' + this.getPath() + ' .actor' );
+      $actor.slider({
+        step:    this.getStep(),
+        min:     this.getMin(),
+        max:     this.getMax(),
+        range:   'min',
+        animate: true,
+        send_on_finish : this.getSendOnFinish(),
+        start:   this.slideStart.bind(this),
+        change:  this.slideChange.bind(this)
+      });
+      // disable slider interaction if in read-only mode --> just show the value
+      if (this.__readonly) {
+        $actor.slider({ disabled: true });
+      }
+      $actor.on( 'slide', this.slideUpdateValue.bind(this) );
+
+      if(this.getFormat()) {
+        // initially setting a value
+        $actor.children('.ui-slider-handle').text(sprintf(this.getFormat(), this.applyMapping(this.getMin())));
+      }
+      this.__initialized= true;
+    },
 
     _getInnerDomString: function () {
       return '<div class="actor"></div>';
     },
 
     _update: function (ga, d) {
+      if (this.__initialized !== true) return;
       var actor = $(this.getActor());
 
       if (this.getInAction())
         return;
 
       var value = this.applyTransform(ga, d);
-      if (this.getValue() != value) {
-        this.setValue(value);
-        this.setValueInternal(false);
-        actor.slider('value', value);
-        this.setValueInternal(true);
-        if (this.getFormat() != null)
-          actor.children('.ui-slider-handle').text(sprintf(this.getFormat(), this.applyMapping(value)));
+
+      try {
+        if (this.getValue() != value) {
+          this.setValue(value);
+          this.setValueInternal(false);
+          actor.slider('value', value);
+          this.setValueInternal(true);
+          if (this.getFormat() != null)
+            actor.children('.ui-slider-handle').text(sprintf(this.getFormat(), this.applyMapping(value)));
+        }
+        this.transformSlider(value, actor.children('.ui-slider-handle'));
+      } catch(e) {
+        this.error(e);
       }
-      this.transformSlider(value, actor.children('.ui-slider-handle'));
     },
 
     transformSlider: function (value, handle) {

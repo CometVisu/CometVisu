@@ -270,11 +270,9 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       qx.dom.Element.empty(valueElement);
       if (undefined !== value)
         this.defaultValue2DOM(value, function (e) {
-          if (qx.lang.Type.isString(e) || qx.lang.Type.isNumber(e)) {
-            qx.dom.Element.insertEnd(document.createTextNode(e), valueElement);
-          } else {
-            qx.dom.Element.insertEnd(e, valueElement);
-          }
+          qx.bom.Html.clean([e]).forEach(function(newElem) {
+            qx.dom.Element.insertEnd(newElem, valueElement);
+          }, this);
         });
       else {
         qx.dom.Element.insertEnd(document.createTextNode('-'), valueElement);
