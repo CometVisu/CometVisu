@@ -75,9 +75,9 @@ qx.Class.define('cv.plugin.speech.Main', {
         return;
       }
 
-      var address = cv.role.HasAddress.makeAddressList(element, false, path);
+      var address = cv.role.HasAddress.makeAddressList(element, path);
 
-      return templateEngine.setWidgetData( path, {
+      return cv.data.Model.getInstance().setWidgetData( path, {
         'path'    : path,
         'language': qx.bom.element.Attribute.get(element, 'lang') ? qx.bom.element.Attribute.get(element, 'lang') .toLowerCase() : null,
         'address' : address,
@@ -98,7 +98,11 @@ qx.Class.define('cv.plugin.speech.Main', {
     $$type            : { check: "String" },
     language          : { check: "String" },
     mapping           : { check: "String", init: "" },
-    repeatTimeout     : { check: "Number", init: -1 }
+    repeatTimeout     : { check: "Number", init: -1 },
+    parentWidget: {
+      check: "cv.structure.pure.AbstractBasicWidget",
+      init: null
+    }
   },
 
   /*
@@ -109,13 +113,21 @@ qx.Class.define('cv.plugin.speech.Main', {
   members: {
     __lastSpeech : null,
 
+    getDomString: function() {
+      return undefined;
+    },
+
     _processIncomingValue: function(address, data) {
-      return this.defaultValueHandling(address, data);
+      // #1: transform the raw value to a JavaScript type
+      var value = this.applyTransform(address, data);
+
+      // #2: map it to a value the user wants to see
+      return this.applyMapping(value);
     },
 
     handleUpdate: function(text, address) {
 
-      if (!templateEngine.visu.dataReceived) {
+      if (!cv.TemplateEngine.getInstance().visu.getDataReceived()) {
         // first call -> skipping
         this.__lastSpeech[address] = {
           text: text,
@@ -178,6 +190,6 @@ qx.Class.define('cv.plugin.speech.Main', {
 
   defer: function() {
     // register the parser
-    cv.xml.Parser.addHandler("speech", cv.structure.pure.Speech);
+    cv.xml.Parser.addHandler("speech", cv.plugin.speech.Main);
   }
 });
