@@ -14,7 +14,11 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
- 
+
+/**
+ * @author Mark K. [mr dot remy at gmx dot de]
+ * @since 2012
+ */
 define( ['structure_custom', 'css!plugins/upnpcontroller/upnpcontroller' ], function( VisuDesign_Custom ) {
   "use strict";
 

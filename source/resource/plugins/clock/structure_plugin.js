@@ -22,6 +22,9 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
    * This is a custom function that extends the available widgets.
    * It's purpose is to change the design of the visu during runtime
    * to demonstrate all available
+   *
+   * @author Christian Mayer
+   * @since 2012
    */
   VisuDesign_Custom.prototype.addCreator("clock", {
   that: this,

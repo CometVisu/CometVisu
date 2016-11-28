@@ -99,7 +99,11 @@ module.exports = function(grunt) {
         return isConfig ? 0666 : 0644;
       }
     } ],
-    sourceFiles = [ 'source/class/**/*.js', 'source/resource/cv/designs/*/design_setup.js' ];
+    sourceFiles = [
+      'source/class/**/*.js',
+      'source/resource/designs/*/design_setup.js',
+      'source/resource/plugins/*/*.js'
+    ];
 
   var config = {
 

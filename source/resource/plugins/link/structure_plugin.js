@@ -17,41 +17,65 @@
 
 /**
  * This plugins integrates a simple link.
+ *
+ * @author Stefan Borchert [stefan@borchert.cc]
+ * @since 2015
  */
+qx.Class.define('cv.plugin.link.Main', {
+  extend: cv.structure.pure.AbstractBasicWidget,
 
-define(['joose'], function() {
-
-  Class('cv.structure.pure.Link', {
-    isa: cv.structure.pure.AbstractBasicWidget,
-
-    has: {
-      cssClass: {is: 'ro', init: '' },
-      text: {is: 'ro', init: '' },
-      href: {is: 'ro', init: '' }
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    cssClass: {
+      check: "String",
+      init: ''
     },
-
-    my : {
-      methods: {
-        getAttributeToPropertyMappings: function () {
-          return {
-            'class': {target: 'cssClass'},
-            'text': {},
-            'href': {}
-          };
-        }
-      }
+    text: {
+      check: "String",
+      init: ''
     },
-
-    methods: {
-      getDomString: function () {
-        var classes = "link";
-        if (this.getCssClass()) {
-          classes += " "+this.getCssClass();
-        }
-        var href = this.getHref() ? ' href="'+this.getHref()+'"' : '';
-        return '<a class="'+classes+'"'+href+'>' + this.getText() + '</a>';
-      }
+    href: {
+      check: "String",
+      init: ''
     }
-  });
-  cv.xml.Parser.addHandler("link", cv.structure.pure.Link);
+  },
+
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    getAttributeToPropertyMappings: function () {
+      return {
+        'class': {target: 'cssClass'},
+        'text': {},
+        'href': {}
+      };
+    }
+  },
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    getDomString: function () {
+      var classes = "link";
+      if (this.getCssClass()) {
+        classes += " "+this.getCssClass();
+      }
+      var href = this.getHref() ? ' href="'+this.getHref()+'"' : '';
+      return '<a class="'+classes+'"'+href+'>' + this.getText() + '</a>';
+    }
+  },
+
+  defer: function() {
+    cv.xml.Parser.addHandler("link", cv.plugin.link.Main);
+  }
 });

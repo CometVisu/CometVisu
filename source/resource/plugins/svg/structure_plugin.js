@@ -15,6 +15,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
+/**
+ * @author christian523
+ * @since 2012
+ */
 define( ['structure_custom' ], function( VisuDesign_Custom ) {
   "use strict";
 

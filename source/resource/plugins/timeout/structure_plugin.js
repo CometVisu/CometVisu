@@ -17,6 +17,9 @@
 
 /**
  * This plugins jumps back to a defined page after a given timeout period
+ *
+ * @author Carsten Tschach (Carsten@Tschach.com)
+ * @since 2012
  */
 
 define( ['structure_custom' ], function( VisuDesign_Custom ) {

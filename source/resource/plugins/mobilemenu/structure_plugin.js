@@ -16,6 +16,10 @@
  */
 
 
+/**
+ * @author alltime84
+ * @since 2016
+ */
 define( ['structure_custom', 'css!plugins/mobilemenu/mobilemenu.css'  ], function( VisuDesign_Custom ) {
   "use strict";
  

@@ -18,6 +18,8 @@
 /**
  * This plugins integrates flot (diagrams in javascript) into the visualization.
  * server-side data-storage is rrd
+ * @author Michael Hausl [michael at hausl dot com]
+ * @since 2014
  */
 
 /**

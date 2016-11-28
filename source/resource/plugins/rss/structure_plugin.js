@@ -25,6 +25,9 @@
  *   <rss src="/visu/plugins/rss/rsslog.php" refresh="300" link="false" title="false"></rss>
  *   <rss src="http://www.tagesschau.de/xml/rss2" refresh="300">Test API</rss>
  *   <rss src="/visu/plugins/rss/tagesschau-rss2.xml" refresh="300" header="true" date="true"></rss>
+ *
+ * @author Michael Markstaller
+ * @since 2011
  */
 
 require.config({
