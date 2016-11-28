@@ -338,9 +338,9 @@ qx.Class.define('cv.io.Client', {
       }
       this.setDataReceived(false);
       if (this.loginSettings.loginOnly) {
-        this.getCurrentTransport().handleSession(json, false);
+        this.getCurrentTransport().handleSession(ev, false);
       } else {
-        this.getCurrentTransport().handleSession(json, true);
+        this.getCurrentTransport().handleSession(ev, true);
         // once the connection is set up, start the watchdog
         this.watchdog.start(5);
       }

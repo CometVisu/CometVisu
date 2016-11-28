@@ -19,10 +19,6 @@
 
 /**
  *
- * @asset(cv/config/*.xml)
- * @asset(cv/demo/*.xml)
- * @asset(cv/designs/*)
- * @asset(cv/icon/*)
  */
 qx.Class.define('cv.TemplateEngine', {
   extend: cv.Object,
@@ -226,13 +222,13 @@ qx.Class.define('cv.TemplateEngine', {
 
       var scriptsToLoad = [];
       if (cv.Config.clientDesign) {
-        var baseUri = 'cv/designs/' + cv.Config.clientDesign;
+        var baseUri = 'designs/' + cv.Config.clientDesign;
         qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/basic.css'));
         if (!cv.Config.forceNonMobile) {
           qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/mobile.css'));
         }
         qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/custom.css'));
-        scriptsToLoad.push('cv/designs/' + cv.Config.clientDesign + '/design_setup.js');
+        scriptsToLoad.push('designs/' + cv.Config.clientDesign + '/design_setup.js');
       }
 
       var metaParser = new cv.xml.parser.Meta();
@@ -244,9 +240,19 @@ qx.Class.define('cv.TemplateEngine', {
       metaParser.parse(this.xml);
 
       if (scriptsToLoad.length > 0) {
+        console.log(scriptsToLoad);
+        var counter = scriptsToLoad.length;
         var dynloader = new cv.util.DynamicScriptLoader(scriptsToLoad);
-        dynloader.addListener("ready", function() {
+        dynloader.addListenerOnce("ready", function() {
           this.setReady(true);
+        }, this);
+        dynloader.addListener("failed", function(e) {
+          counter--;
+          var data = e.getData();
+          this.error("failed to load "+data.script);
+        }, this);
+        dynloader.addListener("loaded", function() {
+          counter--;
         }, this);
         dynloader.start();
       } else {

@@ -50,14 +50,14 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
     /**
      * This function gets called once the communication is established
-     * and this.session information is available.
+     * and this.client information is available.
      *
      * @param json
      * @param connect (boolean) wether to start the connection or not
-     * @method handlethis.session
+     * @method handlethis.client
      */
     handleSession: function (ev, connect) {
-      var json = qx.lang.Json.parse(ev.getTarget().getResponse());
+      var json = ev.getTarget().getResponse();
       this.sessionId = json.s;
       this.version = json.v.split('.', 3);
 
@@ -74,7 +74,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     connect: function () {
       this.running = true;
       // send first request
-      this.xhr = new qx.io.request.Xhr(this.client.getResourcePath("read"));
+      this.xhr = new cv.io.request.Xhr(this.client.getResourcePath("read"));
       this.xhr.set({
         accept: "application/json",
         method: "GET",
@@ -98,7 +98,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     },
     /**
      * This function gets called once the communication is established
-     * and this.session information is available
+     * and this.client information is available
      *
      * @method handleRead
      * @param json
@@ -126,7 +126,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
       if (this.running) { // keep the requests going
         this.retryCounter++;
         this.xhr.set({
-          requestData: this.session.buildRequest() + '&i=' + this.lastIndex
+          requestData: this.client.buildRequest() + '&i=' + this.lastIndex
         });
         this.xhr.send();
         this.client.watchdog.ping();

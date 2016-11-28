@@ -30,9 +30,13 @@
 /**
  * This is the main application class of your custom application "cv"
  *
- * If you have added resources to your app, remove the first '@' in the
- * following line to make use of them.
- * @asset(cv/*)
+ *
+ * @asset(config/*.xml)
+ * @asset(demo/*.xml)
+ * @asset(designs/*)
+ * @asset(icon/*)
+ * @asset(plugins/*)
+ *
  * @require(qx.bom.Html)
  */
 qx.Class.define("cv.Application",
@@ -69,7 +73,7 @@ qx.Class.define("cv.Application",
        -------------------------------------------------------------------------
        */
       // in debug mode load the uncompressed unobfuscated scripts
-      qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('cv/designs/designglobals.css'));
+      qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css'));
 
       this.__init();
     },
@@ -87,7 +91,7 @@ qx.Class.define("cv.Application",
         var loading = qx.bom.Selector.query('#loading')[0];
 
         // get the data once the page was loaded
-        var uri = 'resource/cv/config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml';
+        var uri = 'resource/config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml';
         this.debug("Requesting "+uri);
         var ajaxRequest = new qx.io.request.Xhr(uri);
         ajaxRequest.set({
