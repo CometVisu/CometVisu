@@ -251,8 +251,10 @@ qx.Class.define('cv.TemplateEngine', {
           var data = e.getData();
           this.error("failed to load "+data.script);
         }, this);
-        dynloader.addListener("loaded", function() {
+        dynloader.addListener("loaded", function(e) {
           counter--;
+          var data = e.getData();
+          this.debug("successfully loaded "+data.script);
         }, this);
         dynloader.start();
       } else {
