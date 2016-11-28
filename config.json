@@ -90,16 +90,16 @@
       },
       "add-script" : [
         {
-          "uri" : "resource/cv/libs/sprintf.js"
+          "uri" : "resource/libs/sprintf.js"
         },
         {
-          "uri" : "resource/cv/libs/Three.js"
+          "uri" : "resource/libs/Three.js"
         },
         {
-          "uri" : "resource/cv/libs/jquery.js"
+          "uri" : "resource/libs/jquery.js"
         },
         {
-          "uri" : "resource/cv/libs/jquery-ui.js"
+          "uri" : "resource/libs/jquery-ui.js"
         }
       ]
     },
