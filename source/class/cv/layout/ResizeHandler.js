@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /*
  * Make sure everything looks right when the window gets resized. This is
  * necessary as the scroll effect requires a fixed element size

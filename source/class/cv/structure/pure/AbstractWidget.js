@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
  * @class cv.structure.pure.AbstractWidget

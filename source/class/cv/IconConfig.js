@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /* iconconfig.js (c) 2015 by Christian Mayer [CometVisu at ChristianMayer dot de]
  *
  * This program is free software; you can redistribute it and/or modify it
