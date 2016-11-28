@@ -221,14 +221,18 @@ qx.Class.define('cv.TemplateEngine', {
       if (qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width') !== null)
         cv.Config.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
 
+      var loader = cv.util.ScriptLoader.getInstance();
       var scriptsToLoad = [];
       if (cv.Config.clientDesign) {
         var baseUri = 'designs/' + cv.Config.clientDesign;
-        qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/basic.css'));
+        var styles = [];
+        styles.push(baseUri + '/basic.css');
+
         if (!cv.Config.forceNonMobile) {
-          qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/mobile.css'));
+          styles.push(baseUri + '/mobile.css');
         }
-        qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri(baseUri + '/custom.css'));
+        styles.push(baseUri + '/custom.css');
+        loader.addStyles(styles);
         scriptsToLoad.push('designs/' + cv.Config.clientDesign + '/design_setup.js');
       }
 
@@ -241,23 +245,11 @@ qx.Class.define('cv.TemplateEngine', {
       metaParser.parse(this.xml);
 
       if (scriptsToLoad.length > 0) {
-        console.log(scriptsToLoad);
-        var counter = scriptsToLoad.length;
-        var dynloader = new cv.util.DynamicScriptLoader(scriptsToLoad);
-        dynloader.addListenerOnce("ready", function() {
+        loader.addListenerOnce("finished", function() {
           this.setReady(true);
         }, this);
-        dynloader.addListener("failed", function(e) {
-          counter--;
-          var data = e.getData();
-          this.error("failed to load "+data.script);
-        }, this);
-        dynloader.addListener("loaded", function(e) {
-          counter--;
-          var data = e.getData();
-          this.debug("successfully loaded "+data.script);
-        }, this);
-        dynloader.start();
+        loader.addScripts(scriptsToLoad);
+        loader.setAllQueued(true);
       } else {
         this.setReady(true);
       }
