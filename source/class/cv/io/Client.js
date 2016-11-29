@@ -184,6 +184,7 @@ qx.Class.define('cv.io.Client', {
     user : '', // the current user
     pass : '', // the current password
     device : '', // the current device ID
+    session: null, // current session ID
 
     loginSettings : {},
     headers: { init: {} },
@@ -339,6 +340,9 @@ qx.Class.define('cv.io.Client', {
       if (json.c) {
         this.setBackend(qx.lang.Object.mergeWith(this.getBackend(), json.c));
       }
+      if (json.s) {
+        this.session = json.s;
+      }
       this.setDataReceived(false);
       if (this.loginSettings.loginOnly) {
         this.getCurrentTransport().handleSession(ev, false);
@@ -400,7 +404,7 @@ qx.Class.define('cv.io.Client', {
       var ts = new Date().getTime();
       var ajaxRequest = new qx.io.request.Xhr(qx.util.Uri.appendParamsToUrl(this.getResourcePath("write"), 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts));
       ajaxRequest.set({
-        accept: "application/json"
+        accept: "application/json, text/javascript, */*; q=0.01"
       });
       ajaxRequest.send();
     },
