@@ -165,7 +165,7 @@ qx.Class.define('cv.plugins.colorchooser.Main', {
     },
 
     _getInnerDomString: function() {
-      return '<div class="actor" />';
+      return '<div class="actor"></div>';
     },
 
     _update: function( ga, data ) {
