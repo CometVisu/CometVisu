@@ -187,9 +187,9 @@ define( ['structure_custom', 'css!plugins/upnpcontroller/upnpcontroller' ], func
     var secondsProcessed = 0;
     trace("calculateSongProcessed");
     
-    durationParts = duration.split(':');
+    var durationParts = duration.split(':');
     secondsTotal = Number(durationParts[2]) + Number(durationParts[1]) * 60 + Number(durationParts[0]) * 60 * 60; 
-    reltimeParts = reltime.split(':');
+    var reltimeParts = reltime.split(':');
     secondsProcessed = Number(reltimeParts[2]) + Number(reltimeParts[1]) * 60 + Number(reltimeParts[0]) * 60 * 60; 
     trace("secondsTotal    : " + secondsTotal);
     trace("secondsProcessed: " + secondsProcessed);
