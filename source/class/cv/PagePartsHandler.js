@@ -105,72 +105,26 @@ qx.Class.define('cv.PagePartsHandler', {
     },
 
     getNavbarsVisibility: function (page) {
-      if (cv.layout.Manager.currentPageNavbarVisibility == null) {
-        if (page == null) {
-          page = cv.TemplateEngine.getInstance().currentPage;
-        }
-        if (page === null) return {top: 'true', bottom: 'true', left: 'true', right: 'true'};
-        if (typeof page == "string") {
-          page = cv.structure.WidgetFactory.getInstanceById(page);
-        } else if (page.attributes ) {
-          page = cv.structure.WidgetFactory.getInstanceById(qx.bom.element.Attribute.get(page, 'id'));
-        }
-
-        if (page == null) return {top: 'true', bottom: 'true', left: 'true', right: 'true'};
-        var shownavbar = (page.getShowNavbar() != undefined ? page.getShowNavbar() : {
-          top: 'inherit',
-          bottom: 'inherit',
-          left: 'inherit',
-          right: 'inherit'
-        });
-        // set inherit for undefined
-        for (var pos in shownavbar) {
-          if (shownavbar[pos] == undefined) {
-            shownavbar[pos] = 'inherit';
-          }
-        }
-        if (page != null) {
-          // traverse up the page tree for shownavbar
-          var parentPage = cv.util.Tree.getParentWidget(page, 'page');
-          while (parentPage != null) {
-            // do we need to go further? Check for inheritance
-            var inherit = false;
-            for (var pos in shownavbar) {
-              if (shownavbar[pos] == 'inherit') {
-                inherit = true;
-                break;
-              }
-            }
-            if (inherit) {
-
-              if (parentPage.getShowNavbar() != undefined) {
-                for (var pos in shownavbar) {
-                  if (shownavbar[pos] == 'inherit') {
-                    // set value of parent page
-                    shownavbar[pos] = parentPage.getShowNavbar()[pos];
-                    if (shownavbar[pos] == undefined) {
-                      shownavbar[pos] = 'inherit';
-                    }
-                  }
-                }
-              }
-            } else {
-              // we are done
-              break;
-            }
-            parentPage = cv.util.Tree.getParentWidget(parentPage, 'page');
-          }
-        }
-        // set default values for shownavbar if not set otherwise
-        for (var pos in shownavbar) {
-          if (shownavbar[pos] == undefined || shownavbar[pos] == 'inherit') {
-            shownavbar[pos] = 'true';
-          }
-        }
-        cv.layout.Manager.currentPageNavbarVisibility = shownavbar;
-        //      console.log(shownavbar);
+      if (page == null) {
+        page = cv.TemplateEngine.getInstance().currentPage;
       }
-      return cv.layout.Manager.currentPageNavbarVisibility;
+      if (page === null) return {top: true, bottom: true, left: true, right: true};
+      if (typeof page == "string") {
+        page = cv.structure.WidgetFactory.getInstanceById(page);
+      } else if (page.attributes ) {
+        page = cv.structure.WidgetFactory.getInstanceById(qx.bom.element.Attribute.get(page, 'id'));
+      }
+
+      if (page == null) {
+        return {top: true, bottom: true, left: true, right: true};
+      } else {
+        return {
+          top: page.getShowNavbarTop(),
+          bottom: page.getShowNavbarBottom(),
+          left: page.getShowNavbarLeft(),
+          right: page.getShowNavbarRight()
+        };
+      }
     },
 
     /**
@@ -185,33 +139,8 @@ qx.Class.define('cv.PagePartsHandler', {
       var shownavbar = this.getNavbarsVisibility(page);
 
       if (page) {
-        if (page.getShowTopNavigation() != undefined) {
-          showtopnavigation = page.getShowTopNavigation();
-        } else {
-          // traverse up the page tree
-          var parentPage = cv.util.Tree.getParentWidget(page, 'page');
-          while (parentPage != null) {
-
-            if (parentPage.getShowTopNavigation() != undefined) {
-              showtopnavigation = parentPage.getShowTopNavigation();
-              break;
-            }
-            parentPage = cv.util.Tree.getParentWidget(parentPage, 'page');
-          }
-        }
-        if (page.getShowFooter() != undefined) {
-          showfooter = page.getShowFooter();
-        } else {
-          // traverse up the page tree
-          var parentPage = cv.util.Tree.getParentWidget(page, 'page');
-          while (parentPage != null) {
-            if (parentPage.getShowFooter() != undefined) {
-              showfooter = parentPage.getShowFooter();
-              break;
-            }
-            parentPage = cv.util.Tree.getParentWidget(parentPage, 'page');
-          }
-        }
+        showtopnavigation = page.getShowTopNavigation();
+        showfooter = page.getShowFooter();
       }
       var topDisplay = qx.bom.element.Style.get(qx.bom.Selector.query("#top")[0], "display");
       var bottomDisplay = qx.bom.element.Style.get(qx.bom.Selector.query("#bottom")[0], "display");
@@ -245,7 +174,7 @@ qx.Class.define('cv.PagePartsHandler', {
           navbar = qx.bom.Selector.query('#navbar' + value)[0],
           display = qx.bom.element.Style.get(navbar, "display"),
           isLoading = qx.bom.element.Class.has(navbar, 'loading');
-        if (shownavbar[key] == 'true') {
+        if (shownavbar[key] === true) {
           if (display == "none" || isLoading) {
             this.fadeNavbar(value, "in", speed);
             this.removeInactiveNavbars(page.getPath());

@@ -70,20 +70,26 @@ qx.Class.define('cv.structure.pure.Page', {
 
       // automatically set the navbars if not set in the config file
       var shownavbar = {
-        top    : 'id' === path ? 'false' : 'inherit',
-        bottom : 'id' === path ? 'false' : 'inherit',
-        left   : 'id' === path ? 'false' : 'inherit',
-        right  : 'id' === path ? 'false' : 'inherit'
+        top    : path === "id" ? false : null,
+        bottom : path === "id" ? false : null,
+        left   : path === "id" ? false : null,
+        right  : path === "id" ? false : null
       };
       qx.bom.Selector.matches("navbar", qx.dom.Hierarchy.getChildElements(page)).forEach( function(elem) {
-        shownavbar[ qx.bom.element.Attribute.get(elem, 'position') || 'left' ] = 'true';
+        shownavbar[ qx.bom.element.Attribute.get(elem, 'position') || 'left' ] = true;
       });
       // overwrite default when set manually in the config
-      shownavbar.top = qx.bom.element.Attribute.get(page, 'shownavbar-top') || shownavbar.top;
-      shownavbar.bottom = qx.bom.element.Attribute.get(page, 'shownavbar-bottom') || shownavbar.bottom;
-      shownavbar.left = qx.bom.element.Attribute.get(page, 'shownavbar-left') || shownavbar.left;
-      shownavbar.right = qx.bom.element.Attribute.get(page, 'shownavbar-right') || shownavbar.right;
-
+      ['top', 'left', 'right', 'bottom'].forEach(function(pos) {
+        if (shownavbar[pos] !== null) {
+          // do not override current values
+          return;
+        }
+        var value = qx.bom.element.Attribute.get(page, 'shownavbar-'+pos);
+        if (qx.lang.Type.isString(value)) {
+          shownavbar[pos] = value === "true";
+        }
+      }, this);
+      console.log("%s: %O", path, shownavbar);
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
       if (qx.bom.element.Attribute.get(page, "bind_click_to_widget")) {
         bindClickToWidget = qx.bom.element.Attribute.get(page, "bind_click_to_widget")=="true";
@@ -101,7 +107,10 @@ qx.Class.define('cv.structure.pure.Page', {
         pageType          : pageType,
         showTopNavigation : showtopnavigation,
         showFooter        : showfooter,
-        showNavbar        : shownavbar,
+        showNavbarTop     : shownavbar.top,
+        showNavbarBottom  : shownavbar.bottom,
+        showNavbarLeft    : shownavbar.left,
+        showNavbarRight   : shownavbar.right,
         backdropAlign     : '2d' === pageType ? (qx.bom.element.Attribute.get(page, 'backdropalign' ) || '50% 50%') : null,
         size              : qx.bom.element.Attribute.get(page, 'size') || null,
         address           : addresses,
@@ -121,7 +130,8 @@ qx.Class.define('cv.structure.pure.Page', {
           layout          : layout || null,
           address         : addresses,
           pageType        : pageType,
-          wstyle          : wstyle || ''
+          wstyle          : wstyle || '',
+          bindClickToWidget: bindClickToWidget
         });
         return [data, linkData];
       } else {
@@ -158,8 +168,31 @@ qx.Class.define('cv.structure.pure.Page', {
       nullable: true,
       event: "changeShowTopNavigation"
     },
-    showFooter        : { check: "Boolean", init: true, nullable: true },
-    showNavbar        : { check: "Object", init: {}, nullable: true },
+    showFooter        : {
+      check: "Boolean",
+      nullable: true,
+      event: "changeShowFooter"
+    },
+    showNavbarTop : {
+      check: "Boolean",
+      nullable: true,
+      event: "changeShowNavbarTop"
+    },
+    showNavbarBottom : {
+      check: "Boolean",
+      nullable: true,
+      event: "changeShowNavbarBottom"
+    },
+    showNavbarLeft : {
+      check: "Boolean",
+      nullable: true,
+      event: "changeShowNavbarLeft"
+    },
+    showNavbarRight : {
+      check: "Boolean",
+      nullable: true,
+      event: "changeShowNavbarRight"
+    },
     backdropAlign     : {
       init: '50% 50%',
       nullable: true
@@ -179,16 +212,28 @@ qx.Class.define('cv.structure.pure.Page', {
 
     _onDomReady: function () {
       this.base(arguments);
-      if (this.getShowTopNavigation() === null) {
-        // inherit from parent
-        var parentPage = this.getParentPage();
-        if (parentPage) {
-          parentPage.bind("showTopNavigation", this, "showTopNavigation");
-        } else {
-          // we have not parent page, because we are the root page, use the default value
-          this.setShowTopNavigation(true);
+      var parentPage = this.getParentPage();
+      [
+        ['showTopNavigation', true],
+        ['showFooter', true],
+        ['showNavbarTop', false],
+        ['showNavbarBottom', false],
+        ['showNavbarLeft', false],
+        ['showNavbarRight', false]
+      ].forEach(function(tuple) {
+        var property = tuple[0];
+        var defaultValue = tuple[1];
+        if (this['get'+qx.lang.String.firstUp(property)]() === null) {
+          // inherit from parent
+          if (parentPage) {
+            console.log("binding "+property+" from "+parentPage.getPath()+" to "+this.getPath());
+            parentPage.bind(property, this, property);
+          } else {
+            // we have not parent page, because we are the root page, use the default value
+            this['set'+qx.lang.String.firstUp(property)](defaultValue);
+          }
         }
-      }
+      }, this);
     },
 
     getDomString: function() {
