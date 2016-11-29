@@ -55,7 +55,7 @@ qx.Class.define('cv.structure.pure.Page', {
       var name    = qx.bom.element.Attribute.get(page, 'name');
       pageType = qx.bom.element.Attribute.get(page, 'type') || 'text';              //text, 2d or 3d
       var backdrop = qx.bom.element.Attribute.get(page, 'backdrop');
-      var showtopnavigation = qx.bom.element.Attribute.get(page, 'showtopnavigation') ? qx.bom.element.Attribute.get(page, 'showtopnavigation') === "true" : true;
+      var showtopnavigation = qx.bom.element.Attribute.get(page, 'showtopnavigation') ? qx.bom.element.Attribute.get(page, 'showtopnavigation') === "true" : null;
       var showfooter = qx.bom.element.Attribute.get(page, 'showfooter') ? qx.bom.element.Attribute.get(page, 'showfooter') === "true": true;
       // make sure the type has the correct value as we need to use it ass CSS class
       switch (pageType) {
@@ -149,12 +149,15 @@ qx.Class.define('cv.structure.pure.Page', {
       refine: true,
       init: true
     },
-
     name              : {
       check: "String",
       init: "", nullable: true
     },
-    showTopNavigation : { check: "Boolean", init: true, nullable: true },
+    showTopNavigation : {
+      check: "Boolean",
+      nullable: true,
+      event: "changeShowTopNavigation"
+    },
     showFooter        : { check: "Boolean", init: true, nullable: true },
     showNavbar        : { check: "Object", init: {}, nullable: true },
     backdropAlign     : {
@@ -173,6 +176,20 @@ qx.Class.define('cv.structure.pure.Page', {
    ******************************************************
    */
   members: {
+
+    _onDomReady: function () {
+      this.base(arguments);
+      if (this.getShowTopNavigation() === null) {
+        // inherit from parent
+        var parentPage = this.getParentPage();
+        if (parentPage) {
+          parentPage.bind("showTopNavigation", this, "showTopNavigation");
+        } else {
+          // we have not parent page, because we are the root page, use the default value
+          this.setShowTopNavigation(true);
+        }
+      }
+    },
 
     getDomString: function() {
       var pageType = this.getPageType();

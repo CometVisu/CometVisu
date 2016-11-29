@@ -94,6 +94,20 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
 
     getDomString : function() {
       return this.INNER();
+    },
+
+    /**
+     * Get the widgets parent page. This might not be the same as the parent widget.
+     */
+    getParentPage: function() {
+      var parent = this.getParentWidget();
+      while (parent) {
+        if (parent.get$$type() === "page") {
+          return parent;
+        }
+        parent = parent.getParentWidget();
+      }
+      return null;
     }
   }
 });

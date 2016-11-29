@@ -188,10 +188,10 @@ qx.Class.define('cv.TemplateEngine', {
       }
       this.initBackendClient();
 
-      if (!qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') !== null) {
+      if (!qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') === null) {
         cv.Config.scrollSpeed = 400;
       } else {
-        cv.Config.scrollSpeed = qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') | 0;
+        cv.Config.scrollSpeed = parseInt(qx.bom.element.Attribute.get(pagesNode, 'scroll_speed'));
       }
 
       if (qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') !== null) {

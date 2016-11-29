@@ -188,7 +188,6 @@ qx.Class.define('cv.layout.ResizeHandler', {
           return;
         }
       }
-      console.trace("make navbar valid");
       if (cv.layout.Manager.adjustColumns()) {
         // the amount of columns has changed -> recalculate the widgets widths
         cv.layout.Manager.applyColumnWidths();
