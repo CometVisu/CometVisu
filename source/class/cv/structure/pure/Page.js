@@ -89,7 +89,6 @@ qx.Class.define('cv.structure.pure.Page', {
           shownavbar[pos] = value === "true";
         }
       }, this);
-      console.log("%s: %O", path, shownavbar);
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
       if (qx.bom.element.Attribute.get(page, "bind_click_to_widget")) {
         bindClickToWidget = qx.bom.element.Attribute.get(page, "bind_click_to_widget")=="true";
@@ -226,7 +225,6 @@ qx.Class.define('cv.structure.pure.Page', {
         if (this['get'+qx.lang.String.firstUp(property)]() === null) {
           // inherit from parent
           if (parentPage) {
-            console.log("binding "+property+" from "+parentPage.getPath()+" to "+this.getPath());
             parentPage.bind(property, this, property);
           } else {
             // we have not parent page, because we are the root page, use the default value

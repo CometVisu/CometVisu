@@ -133,10 +133,8 @@ qx.Class.define('cv.TemplateEngine', {
         var data = json[key];
         cv.data.Model.getInstance().getAddressList()[key].forEach(function (id) {
           if (typeof id === 'string') {
-            var element = document.getElementById(id);
-            var type = element.dataset.type || 'page'; // only pages have no datatype set
             var widget = cv.structure.WidgetFactory.getInstanceById(id);
-            if (widget.update) {
+            if (widget && widget.update) {
               widget.update(key, data);
             }
             //console.log( element, type, updateFn );

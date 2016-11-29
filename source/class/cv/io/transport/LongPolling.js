@@ -107,7 +107,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * @method handleRead
      * @param json
      */
-    handleRead: function (json) {
+    handleRead: function (ev) {
+      var json = ev.getTarget().getResponse();
       if (this.doRestart || (!json && (-1 == this.lastIndex))) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
@@ -137,7 +138,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
       }
     },
 
-    handleReadStart: function (json) {
+    handleReadStart: function (ev) {
+      var json = ev.getTarget().getResponse();
       if (!json && (-1 == this.lastIndex)) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
@@ -172,17 +174,17 @@ qx.Class.define('cv.io.transport.LongPolling', {
     },
 
     /**
-     * This function gets called on an error FIXME: this should be a
-     * prototype, so that the application developer can override it
+     * This function gets called on an error
      *
      * @method handleError
      * @param xhr
      * @param str
      * @param excptObj
      */
-    handleError: function (xhr, str, excptObj) {
-      if (this.running && xhr.readyState != 4
-        && !this.doRestart && xhr.status !== 0) // ignore error when
+    handleError: function (ev) {
+      var req = ev.getTarget();
+      if (this.running && reg.readyState != 4
+        && !this.doRestart && req.status !== 0) // ignore error when
       // connection is
       // irrelevant
       {

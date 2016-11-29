@@ -92,7 +92,7 @@ qx.Class.define('cv.plugins.colorchooser.Main', {
         this.setValueG(parseInt(color.substring(3, 5), 16) * 100 / 255.0);
         this.setValueB(parseInt(color.substring(5, 7), 16) * 100 / 255.0);
 
-        if( data.rateLimiter === false ) {// already requests going?
+        if( this.getRateLimiter() === false ) {// already requests going?
           this._rateLimitedSend($actor);
         }
       }.bind(this));
