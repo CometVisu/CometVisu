@@ -129,14 +129,6 @@ qx.Class.define('cv.structure.pure.PageJump', {
   */
   members: {
 
-    initListeners: function() {
-      // console.log(this.addListener("pointerup", this._onTap, this));
-      var widget = this.getDomElement();
-      if (widget) {
-        return qx.event.Registration.addListener(widget, "tap", this._onTap, this);
-      }
-    },
-
     _getInnerDomString: function() {
       var actor = '<div class="actor switchUnpressed';
       if (this.getAlign()) {
@@ -150,7 +142,7 @@ qx.Class.define('cv.structure.pure.PageJump', {
       return actor + this.getChildrenDomString();
     },
 
-    _onTap: function() {
+    action: function() {
       var target = this.getTarget();
       if (this.getTargetPath() !== null) {
         target = cv.TemplateEngine.getInstance().getPageIdByPath(target,this.getTargetPath());

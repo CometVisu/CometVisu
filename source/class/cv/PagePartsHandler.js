@@ -89,6 +89,7 @@ qx.Class.define('cv.PagePartsHandler', {
       switch (position) {
         case 'left':
           qx.bom.element.Style.set(qx.bom.Selector.query('#navbarLeft')[0], "width", cssSize);
+          console.log(cssSize);
           cv.layout.ResizeHandler.invalidateNavbar();
           break;
 

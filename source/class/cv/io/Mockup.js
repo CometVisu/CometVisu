@@ -39,7 +39,18 @@ qx.Class.define('cv.io.Mockup', {
     window.writeHistory = [];
 
     this.addresses = [];
-    this.dataReceived = true;
+  },
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    dataReceived : {
+      check: "Boolean",
+      init: true
+    }
   },
 
   /*

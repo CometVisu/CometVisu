@@ -94,6 +94,7 @@ qx.Class.define('cv.structure.pure.NavBar', {
     initializeNavbars: function() {
       ['Top', 'Left', 'Right', 'Bottom'].forEach(function(pos) {
         if (cv.structure.pure.NavBar['_navbar'+pos]) {
+          console.log("initializing navbar "+pos);
           var elem = qx.bom.Selector.query('#navbar'+pos)[0];
           if (elem) {
             elem.innerHTML += cv.structure.pure.NavBar['_navbar' + pos];

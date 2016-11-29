@@ -72,12 +72,12 @@ qx.Class.define('cv.layout.ResizeHandler', {
       return this.$navbarBottom;
     },
 
-    makeAllSizesValid : qx.util.Function.debounce(function() {
+    makeAllSizesValid : function() {
       this.invalidPagesize && this.makePagesizeValid(); // must be first due to dependencies
       this.invalidNavbar && this.makeNavbarValid();
       this.invalidRowspan && this.makeRowspanValid();
       this.invalidBackdrop && this.makeBackdropValid();
-    }, 10, true),
+    },
 
     makeBackdropValid: function () {
       var templateEngine = cv.TemplateEngine.getInstance();
@@ -167,26 +167,33 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makeNavbarValid: function () {
-      // if (cv.Config.mobileDevice) {
-      //   //do nothing
-      // } else {
-      //   var navbarTop = this.getNavbarTop();
-      //   var navbarBottom = this.getNavbarBottom(true);
-      //   if (
-      //     (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && navbarTop.getBoundingClientRect().height <= 2) ||
-      //     (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && navbarBottom.getBoundingClientRect().height <= 2)
-      //   ) {
-      //     // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
-      //     // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
-      //     qx.bom.AnimationFrame.request(this.invalidateNavbar, this);
-      //     return;
-      //   }
-      // }
+      if (!this.__request) {
+        this.__makeNavbarValid();
+      }
+    },
+
+    __makeNavbarValid: function() {
+      if (cv.Config.mobileDevice) {
+        //do nothing
+      } else {
+        var navbarTop = this.getNavbarTop();
+        var navbarBottom = this.getNavbarBottom();
+        if (
+          (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && qx.bom.element.Dimension.getHeight(navbarTop) <= 2) ||
+          (qx.bom.element.Style.get(navbarBottom, 'display') !== 'none' && qx.bom.element.Dimension.getHeight(navbarBottom) <= 2)
+        ) {
+          // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
+          // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
+          this.__request = qx.bom.AnimationFrame.request(this.__makeNavbarValid, this);
+          return;
+        }
+      }
+      console.trace("make navbar valid");
       if (cv.layout.Manager.adjustColumns()) {
         // the amount of columns has changed -> recalculate the widgets widths
         cv.layout.Manager.applyColumnWidths();
       }
-
+      this.__request = null;
       this.invalidNavbar = false;
     },
 
@@ -199,17 +206,27 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makeRowspanValid: function () {
-      document.body.innerHTML += '<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>';
-      var bounds = qx.bom.Selector.query('#containerDiv')[0].getBoundingClientRect();
+      var elem = qx.bom.Html.clean(['<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>'])[0];
+      qx.dom.Element.insertEnd(elem, document.body);
+      this.__updateRowHeight(elem);
+    },
+
+    __updateRowHeight: function(elem) {
+      var height = qx.bom.element.Dimension.getHeight(elem);
+      if (height  === 0) {
+        // not ready try again
+        qx.bom.AnimationFrame.request(qx.lang.Function.curry(this.__updateRowHeight, elem), this);
+        return;
+      }
       var styles = '';
 
       for (var rowspan in cv.layout.Manager.usedRowspans) {
         styles += '.rowspan.rowspan' + rowspan
           + ' { height: '
-          + Math.round((rowspan - 1) * bounds.height)
+          + Math.round((rowspan - 1) * height)
           + "px;}\n";
       }
-      qx.bom.Selector.query("#calcrowspan")[0].remove();
+      elem.remove();
 
       // set css style
       qx.bom.Selector.query('#rowspanStyle')[0].innerHTML = styles;

@@ -52,6 +52,21 @@ qx.Class.define("cv.Application",
 
   members :
   {
+    _blocker: null,
+
+    block: function(val) {
+      if (val) {
+        if (!this._blocker) {
+          this._blocker = new qx.bom.Blocker();
+          this._blocker.setBlockerColor("#000000");
+          this._blocker.setBlockerOpacity("0.2");
+        }
+        this._blocker.block();
+      } else if (this._blocker){
+        this._blocker.unblock();
+      }
+    },
+
     /**
      * This method contains the initial application code and gets called
      * during startup of the application
@@ -59,6 +74,7 @@ qx.Class.define("cv.Application",
     main : function() {
       // Call super class
       this.base(arguments);
+      this.block(true);
 
       // Enable logging in debug variant
       if (qx.core.Environment.get("qx.debug")) {
@@ -89,7 +105,6 @@ qx.Class.define("cv.Application",
         }
       }, this);
       qx.bom.Lifecycle.onReady(function () {
-        var loading = qx.bom.Selector.query('#loading')[0];
 
         // get the data once the page was loaded
         var uri = 'resource/config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml';
@@ -101,6 +116,7 @@ qx.Class.define("cv.Application",
         });
         ajaxRequest.setUserData("noDemo", true);
         ajaxRequest.addListenerOnce("success", function (e) {
+          this.block(false);
           var req = e.getTarget();
           // Response parsed according to the server's response content type
           var xml = req.getResponse();
@@ -118,8 +134,6 @@ qx.Class.define("cv.Application",
               this.configError("libraryerror");
             }
             else {
-
-              loading.innerHTML = loading.innerHTML.trim() + '.';
               if (req.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
                 cv.Config.backendUrl = req.getResponseHeader("X-CometVisu-Backend-LoginUrl");
               }
@@ -132,11 +146,8 @@ qx.Class.define("cv.Application",
         }, this);
 
         ajaxRequest.addListenerOnce("statusError", function (e) {
-
           var status = e.getTarget().getTransport().status;
-
           if (!qx.util.Request.isSuccessful(status) && ajaxRequest.getUserData("noDemo")) {
-            loading.innerHTML = loading.innerHTML.trim() + '!';
             ajaxRequest.setUserData("noDemo", false);
             ajaxRequest.setUserData("origUrl", ajaxRequest.getUrl());
             ajaxRequest.setUrl(ajaxRequest.getUrl().replace('config/', 'demo/'));
@@ -195,6 +206,7 @@ qx.Class.define("cv.Application",
       var messageElement = qx.bom.Selector.query('#message')[0];
       qx.bom.element.Class.add(messageElement, 'error');
       messageElement.innerHTML = message;
+      this.block(false);
     }
   }
 });

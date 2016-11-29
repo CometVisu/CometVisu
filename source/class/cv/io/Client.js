@@ -332,6 +332,9 @@ qx.Class.define('cv.io.Client', {
      */
     handleLogin : function (ev) {
       var json = ev.getTarget().getResponse();
+      if (qx.lang.Type.isString(json)) {
+        json = qx.lang.Json.parse(json);
+      }
       // read backend configuration if send by backend
       if (json.c) {
         this.setBackend(qx.lang.Object.mergeWith(this.getBackend(), json.c));
