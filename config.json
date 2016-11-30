@@ -105,7 +105,14 @@
       ],
       "copy-files" :
       {
-        "files" : [ "resource/libs/sprintf.js", "resource/libs/Three.js", "resource/libs/jquery.js", "resource/libs/jquery-ui.js" ]
+        "files" : [
+          "resource/libs/sprintf.js",
+          "resource/libs/Three.js",
+          "resource/libs/jquery.js",
+          "resource/libs/jquery-ui.js",
+          "editor",
+          "upgrade"
+        ]
       }
     },
 
