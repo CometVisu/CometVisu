@@ -155,9 +155,8 @@ qx.Class.define('cv.layout.Manager', {
       return 'rowspan rowspan' + rowspan;
     },
 
-    getWidgetColspan: function(widget) {
+    getWidgetColspan: function(widget, width) {
       if (widget.getColspan) {
-        var width = this.getAvailableWidth();
         if (width <= cv.Config.maxScreenWidthColspanS)
           return widget.getColspanS();
         if (width <= cv.Config.maxScreenWidthColspanM)
@@ -173,19 +172,20 @@ qx.Class.define('cv.layout.Manager', {
     applyColumnWidths: function () {
       var width = this.getAvailableWidth();
       var mainAreaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query('#main')[0], 'columns');
+      var mainAreaColspan = parseInt(mainAreaColumns || cv.Config.defaultColumns);
 
       // all containers
       ['#navbarTop', '#navbarLeft', '#main', '#navbarRight', '#navbarBottom'].forEach(function (area) {
         var allContainer = qx.bom.Selector.query(area + ' .widget_container');
         if (allContainer.length > 0) {
           var areaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query(area)[0], 'columns');
+          var areaColspan = areaColumns || cv.Config.defaultColumns;
           allContainer.forEach(function(child) {
             var widget = cv.structure.WidgetFactory.getInstanceByElement(child);
-            var ourColspan = this.getWidgetColspan(widget);
+            var ourColspan = this.getWidgetColspan(widget, width);
 
             var w = 'auto';
             if (ourColspan > 0) {
-              var areaColspan = areaColumns || cv.Config.defaultColumns;
               w = Math.min(100, ourColspan / areaColspan * 100) + '%';
             }
             qx.bom.element.Style.set(child, 'width', w);
@@ -202,17 +202,16 @@ qx.Class.define('cv.layout.Manager', {
           if (ourColspan === null) {
             // workaround for nowidget groups
             var groupChild = cv.util.Tree.getChildWidgets(widget, 'group')[0];
-            ourColspan = this.getWidgetColspan(groupChild);
+            ourColspan = this.getWidgetColspan(groupChild, width);
           }
           var w = 'auto';
           if (ourColspan > 0) {
-            var areaColspan = parseInt(mainAreaColumns || cv.Config.defaultColumns);
             var groupColspan = areaColspan;
             var parentGroupElement = cv.util.Tree.getParent(e, '.widget_container', '.group', 1)[0];
             if (parentGroupElement) {
               var parentGroupWidget = cv.structure.WidgetFactory.getInstanceByElement(qx.dom.Element.getParentElement(parentGroupElement));
               if (parentGroupWidget) {
-                groupColspan = Math.min(areaColspan, this.getWidgetColspan(parentGroupWidget));
+                groupColspan = Math.min(mainAreaColspan, this.getWidgetColspan(parentGroupWidget, width));
               }
             }
             w = Math.min(100, ourColspan / groupColspan * 100) + '%'; // in percent
