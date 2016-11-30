@@ -1,0 +1,1 @@
+var script = document.createElement("script"); script.type = "text/javascript"; script.src = "script/cv.js"; document.getElementsByTagName('head')[0].appendChild(script);
