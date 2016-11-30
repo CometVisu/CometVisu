@@ -49,223 +49,57 @@
  *   - barWidth:             optional, width of bars (bar style graphs)
  *   - align:                optional, "left" (default), "center", "right" select qlignemnt of bars (bar style graphs)
  */
+qx.Class.define('cv.plugins.diagram.Main', {
+  extend: cv.structure.pure.AbstractWidget,
+  include: [cv.role.Operate, cv.role.Refresh],
+  type: "abstract",
 
-require.config({
-  shim: {
-    'plugins/diagram/dep/flot/jquery.flot.min':          ['jquery'],
-    'plugins/diagram/dep/flot/jquery.flot.touch.min':    ['plugins/diagram/dep/flot/jquery.flot.min'],
-    'plugins/diagram/dep/flot/jquery.flot.canvas.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
-    'plugins/diagram/dep/flot/jquery.flot.resize.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
-    'plugins/diagram/dep/flot/jquery.flot.time.min':     ['plugins/diagram/dep/flot/jquery.flot.min'],
-    'plugins/diagram/dep/flot/jquery.flot.axislabels':   ['plugins/diagram/dep/flot/jquery.flot.min'],
-    'plugins/diagram/dep/flot/jquery.flot.tooltip.min':  ['plugins/diagram/dep/flot/jquery.flot.min'],
-    'plugins/diagram/dep/flot/jquery.flot.navigate.min': ['plugins/diagram/dep/flot/jquery.flot.min']
-  }
-});
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    cache: {},
 
-define( ['structure_custom',
-                  'plugins/diagram/dep/flot/jquery.flot.min',
-                  'plugins/diagram/dep/flot/jquery.flot.touch.min',
-                  'plugins/diagram/dep/flot/jquery.flot.canvas.min',
-                  'plugins/diagram/dep/flot/jquery.flot.resize.min',
-                  'plugins/diagram/dep/flot/jquery.flot.time.min',
-                  'plugins/diagram/dep/flot/jquery.flot.axislabels',
-                  'plugins/diagram/dep/flot/jquery.flot.tooltip.min',
-                  'plugins/diagram/dep/flot/jquery.flot.navigate.min'
-  ], function( VisuDesign_Custom ) {
-    "use strict";
-
-    var cache = {};
-    
-    /**
-     * Get the rrd and put it's content in the cache.
-     * @param Number   refresh  time is seconds to refresh the data
-     * @param bool     force    Update even when the cache is still valid
-     * @param Function callback call when the data has arrived
-     */
-    function lookupRRDcache( rrd, start, end, res, refresh, force, callback, callbackParameter )
-    {
-      var
-        url = templateEngine.visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
-        urlNotInCache = !(url in cache),
-        doLoad = force || urlNotInCache || !('data' in cache[ url ]) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
-
-      if( doLoad )
-      {
-        if( urlNotInCache )
-          cache[ url ] = { waitingCallbacks: [] };
-
-        cache[ url ].waitingCallbacks.push( [ callback, callbackParameter ] );
-
-        if( cache[ url ].waitingCallbacks.length === 1 ) {
-          $.ajax( {
-            url:      url,
-            dataType: 'json',
-            type:     'GET',
-            context:  this,
-            success:  function( rrddata ) {
-              if( rrddata != null ) {
-                // calculate timestamp offset and scaling
-                var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
-                for( var j = 0; j < rrddata.length; j++ ) {
-                  rrddata[ j ][ 0 ] = rrddata[ j ][ 0 ] + millisOffset;
-                  rrddata[ j ][ 1 ] = parseFloat( rrddata[ j ][ 1 ][ rrd.dsIndex ] ) * rrd.scaling;
-                }
-              }
-              cache[ url ].data      = rrddata;
-              cache[ url ].timestamp = Date.now();
-
-              cache[ url ].waitingCallbacks.forEach( function( waitingCallback ) {
-                waitingCallback[0]( cache[ url ].data, waitingCallback[1] );
-              } );
-              cache[ url ].waitingCallbacks.length = 0; // empty array
-            }
-          } );
-        }
-      } else {
-        callback( cache[url].data, callbackParameter );
+    getAttributeToPropertyMappings: function() {
+      return {
+        series            : { "default": "day" },
+        seriesStart       : { "default": "end-month" },
+        seriesEnd         : { "default": "now" },
+        seriesResolution  : { "default": 300, transform: parseInt },
+        period            : { "default": 1, transform: parseInt },
+        legendposition    : { "default": "ne" },
+        timeformat        : {},
+        timeformatTooltip : { "default": "%d.%m.%Y %H:%M" },
+        zoomYAxis         : { transform: function(value) {
+          return value === "true";
+        }},
+        title             : { target: "label" },
+        refresh           : {},
+        gridcolor         : { "default": "#81664B" },
+        previewlabels     : { transform: function(value) {
+          return value === "true";
+        }},
+        popup             : { transform: function(value) {
+          return value === "true";
+        }},
+        tooltip           : { transform: function(value) {
+          return value === "true";
+        }}
       }
-    }
-    
-    // export for universal use in other plugins that also need to read RRDs
-    templateEngine.lookupRRDcache = lookupRRDcache;
-    
-    VisuDesign_Custom.prototype.addCreator("diagram", {
-      create: function(element, path, flavour, type) {
-        return createDiagram(false, element, path, flavour, type);
-      },
-      action: function( path, actor, isCanceled ) {
-        if( isCanceled ) return;
-    
-        var 
-          widgetData = templateEngine.widgetDataGet( path );
-          
-        if( widgetData.popup )
-          action( path, actor, isCanceled );
-      },
-    });
-    VisuDesign_Custom.prototype.addCreator("diagram_info", {
-      create: function(element, path, flavour, type) {
-        return createDiagram(true, element, path, flavour, type, this.update);
-      },
-      update: function( ga, d ) { 
-        var element = $(this);
-        templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
-      },
-      action: action
-    });
+    },
 
-    function createDiagram(isInfo, element, path, flavour, type, updateFn) {
-      var $e = $(element);
-
-      // create the main structure
-      var ret_val = templateEngine.design.createDefaultWidget((isInfo ? 'diagram_info' : 'diagram'), $e, path, flavour, type, updateFn);
-      // and fill in widget specific data
-      var data = templateEngine.widgetDataInsert( path, {
-        content           : getDiagramElements($e),
-        series            : $e.attr("series") || "day",
-        seriesStart       : $e.attr("seriesStart") || "end-month",
-        seriesEnd         : $e.attr("seriesEnd") || "now",
-        seriesResolution  : parseInt($e.attr("seriesResolution")) || 300,
-        period            : $e.attr("period") || 1,
-        legendInline      : ($e.attr("legend") || "both") == "both" || ($e.attr("legend") || "both") == "inline",
-        legendPopup       : ($e.attr("legend") || "both") == "both" || ($e.attr("legend") || "both") == "popup",
-        legendposition    : $e.attr("legendposition") || "ne",
-        timeformat        : $e.attr("timeformat") || null,
-        timeformatTooltip : $e.attr("timeformatTooltip") || "%d.%m.%Y %H:%M",
-        zoomYAxis         : ($e.attr("zoomYAxis") || "false") == "true",
-        label             : ($e.attr("title") ? $e.attr("title") : (ret_val.match( /label">(.*)</ )||[])[1] || '') || null,
-        refresh           : $e.attr("refresh"),
-        gridcolor         : $e.attr("gridcolor") || "#81664B",
-        previewlabels     : ($e.attr("previewlabels") || "false") == "true",
-        isPopup           : false,
-        popup             : $e.attr("popup") === "true",
-        tooltip           : ($e.attr("tooltip") || "false") == "true"
+    afterParse: function(element, path) {
+      var legend = qx.bom.element.Attribute.get(element, "legend") || "both";
+      return cv.data.Model.getInstance().setWidgetData( path, {
+        content           : this.getDiagramElements(element),
+        legendInline      : ["both", "inline"].indexOf(legend) >= 0,
+        legendPopup       : ["both", "popup"].indexOf(legend) >= 0
       } );
+    },
 
-      // create the actor
-      var actor;
-      if (isInfo) {
-        actor = '<div class="actor clickable switchUnpressed"><div class="value">-</div></div>';
-      }
-      else {
-        var 
-          pageId = templateEngine.getPageIdForWidgetId( element, path ),
-          classStr = data.previewlabels ? 'diagram_inline' : 'diagram_preview',
-          width    = $e.attr("width" ) ? ($e.attr("width" ) + (/[0-9]$/.test($e.attr("width" )) ? 'px' : '')) : undefined,
-          height   = $e.attr("height") ? ($e.attr("height") + (/[0-9]$/.test($e.attr("height")) ? 'px' : '')) : undefined,
-          styleStr = 'min-height: 40px'
-                   + (width  ? (';width:'  + width ) : ''             )
-                   + (height ? (';height:' + height) : ';height: 100%');
-
-        actor = '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
-        
-        data.init = true;
-        
-        templateEngine.callbacks[ pageId ].exitingPageChange.push( function(a,b){
-          if( data.refresh ) {
-            clearInterval( data.refreshFn );
-          }
-        });
-        
-        templateEngine.callbacks[ pageId ].beforePageChange.push( function(){
-          // update diagram data
-          if( !data.init )
-            loadDiagramData( path, data.plot, false, false );
-        });
-        templateEngine.callbacks[ pageId ].duringPageChange.push( function(){
-          // create diagram when it's not already existing
-          if( data.init )
-            initDiagram( path, false );
-          
-          if( data.refresh ) {
-            data.refreshFn = window.setInterval(function() {
-              loadDiagramData( path, data.plot, false, true );
-            }, data.refresh * 1000 );
-          }
-        });
-      }
-      return ret_val + actor + '</div>';
-    }
-    
-    function action( path, actor, isCanceled ) {
-      if( isCanceled ) return;
-
-      var 
-        data = templateEngine.widgetDataGet( path ),
-        popupRefreshFn;
-          
-      var popupDiagram = $('<div class="diagram" id="' + path + '_big"/>');
-      data.init = true;
-      popupDiagram.css({height: "90%"});
-      var popup = templateEngine.showPopup("diagram", {title: data.label, content: popupDiagram});
-      popup.bind( 'close', function(){
-        // this will be called when the popup is being closed.
-        // NOTE: this will be called twice, one time for the foreground and one
-        //       time for the background.
-        if( popupRefreshFn )
-        {
-          clearInterval( popupRefreshFn );
-          popupRefreshFn = 0;
-        }
-      });
-      popupDiagram.parent("div").css({height: "100%", width: "95%", margin: "auto"}); // define parent as 100%!
-      popupDiagram.empty();
-      popupDiagram.bind("click", function(event) {
-        // don't let the popup know about the click, or it will close
-        event.stopPropagation();
-      });
-
-      initDiagram( path, true );
-      
-      if( data.refresh ) {
-        popupRefreshFn = window.setInterval(function() {
-          loadDiagramData( path, data.popupplot, false, true );
-        }, data.refresh * 1000 );
-      }
-    }
-
-    function getDiagramElements(xmlElement) {
+    getDiagramElements: function(xmlElement) {
       var retVal = {
         axes    : [],
         axesnum : 0,
@@ -274,101 +108,304 @@ define( ['structure_custom',
       };
       var axesNameIndex = [];
 
-      xmlElement.find('axis').each(function() {
-        var unit = this.getAttribute('unit') || "";
+      qx.bom.Selector.query('axis', xmlElement).forEach(function(elem) {
+        var unit = elem.getAttribute('unit') || "";
         retVal.axes[retVal.axesnum] = {
-          axisLabel     : this.getAttribute('label') || null,
-          position      : this.getAttribute('position') || "left",
-          min           : this.getAttribute('min') || null,
-          max           : this.getAttribute('max') || null,
+          axisLabel     : elem.getAttribute('label') || null,
+          position      : elem.getAttribute('position') || "left",
+          min           : elem.getAttribute('min') || null,
+          max           : elem.getAttribute('max') || null,
           unit          : unit,
-          tickDecimals  : this.getAttribute('decimals') || null,
+          tickDecimals  : elem.getAttribute('decimals') || null,
           tickFormatter : function (v, axis) {
             return v.toFixed(axis.tickDecimals) + unit;
-          },
+          }
         };
         retVal.axesnum++;
-        axesNameIndex[this.textContent] = retVal.axesnum;
-      });
+        axesNameIndex[qx.dom.Node.getText(elem)] = retVal.axesnum;
+      }, this);
 
-      xmlElement.find('rrd').each(function() {
-        var src = this.textContent;
+      qx.bom.Selector.query("rrd", xmlElement).forEach(function(elem) {
+        var src = qx.dom.Node.getText(elem);
         retVal.rrd[retVal.rrdnum] = {
           src       : src,
-          color     : this.getAttribute('color'),
-          label     : this.getAttribute('label') || src,
-          axisIndex : axesNameIndex[this.getAttribute('yaxis')] || 1,
-          steps     : (this.getAttribute("steps") || "false") == "true",
-          fill      : (this.getAttribute("fill") || "false") == "true",
-          scaling   : parseFloat(this.getAttribute('scaling')) || 1.,
-          dsIndex   : this.getAttribute('datasourceIndex') || 0,
-          cFunc     : this.getAttribute('consolidationFunction') || "AVERAGE",
-          resol     : parseInt(this.getAttribute('resolution')),
-          offset    : parseInt(this.getAttribute('offset')),
-          style     : this.getAttribute('style') || "lines",
-          align     : this.getAttribute('align') || "center",
-          barWidth  : this.getAttribute('barWidth') || 1
+          color     : elem.getAttribute('color'),
+          label     : elem.getAttribute('label') || src,
+          axisIndex : axesNameIndex[elem.getAttribute('yaxis')] || 1,
+          steps     : (elem.getAttribute("steps") || "false") == "true",
+          fill      : (elem.getAttribute("fill") || "false") == "true",
+          scaling   : parseFloat(elem.getAttribute('scaling')) || 1.,
+          dsIndex   : elem.getAttribute('datasourceIndex') || 0,
+          cFunc     : elem.getAttribute('consolidationFunction') || "AVERAGE",
+          resol     : parseInt(elem.getAttribute('resolution')),
+          offset    : parseInt(elem.getAttribute('offset')),
+          style     : elem.getAttribute('style') || "lines",
+          align     : elem.getAttribute('align') || "center",
+          barWidth  : elem.getAttribute('barWidth') || 1
         };
         if (retVal.rrd[retVal.rrdnum].dsIndex < 0) {
           retVal.rrd[retVal.rrdnum].dsIndex = 0;
         }
         retVal.rrdnum++;
-      });
-
+      }, this);
       return retVal;
-    }
+    },
 
-    function initDiagram( id, isPopup ) {
-      var 
-        diagram = isPopup ? $( '#' + id + '_big' ) : $( '#' + id + ' .actor div' ),
-        data = templateEngine.widgetDataGet( id );
-      if (!data.init || data === undefined) {
+    /**
+     * Get the rrd and put it's content in the cache.
+     * @param refresh {Number} time is seconds to refresh the data
+     * @param force {Boolean} Update even when the cache is still valid
+     * @param callback {Function} call when the data has arrived
+     */
+    lookupRRDcache: function( rrd, start, end, res, refresh, force, callback, callbackParameter ) {
+      var
+        url = cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
+        urlNotInCache = !(url in this.cache),
+        doLoad = force || urlNotInCache || !('data' in this.cache[ url ]) || (refresh!==undefined && (Date.now()-this.cache[url].timestamp) > refresh*1000);
+
+      if( doLoad )
+      {
+        if( urlNotInCache )
+          this.cache[ url ] = { waitingCallbacks: [] };
+
+        this.cache[ url ].waitingCallbacks.push( [ callback, callbackParameter ] );
+
+        if( this.cache[ url ].waitingCallbacks.length === 1 ) {
+          var xhr = new qx.io.request.Xhr(url);
+          xhr.set({
+            accept: "application/json"
+          });
+          xhr.addListener("success", function( ev ) {
+            var rrddata = ev.getTarget().getResponse();
+            if (rrddata != null) {
+              // calculate timestamp offset and scaling
+              var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
+              for (var j = 0; j < rrddata.length; j++) {
+                rrddata[j][0] = rrddata[j][0] + millisOffset;
+                rrddata[j][1] = parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling;
+              }
+            }
+            this.cache[url].data = rrddata;
+            this.cache[url].timestamp = Date.now();
+
+            this.cache[url].waitingCallbacks.forEach(function (waitingCallback) {
+              waitingCallback[0](this.cache[url].data, waitingCallback[1]);
+            }, this);
+            this.cache[url].waitingCallbacks.length = 0; // empty array)
+          }, this);
+
+          this.cache[ url ].xhr = xhr;
+          xhr.send();
+        }
+      } else {
+        callback( this.cache[url].data, callbackParameter );
+      }
+    }
+  },
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    content: {
+      check: "Object",
+      init: {}
+    },
+    series: {
+      check: ["hour", "day", "week", "month", "year", "fullday", "custom"],
+      init: "day"
+    },
+    seriesStart: {
+      check: "String",
+      init: "end-month"
+    },
+    seriesEnd: {
+      check: "String",
+      init: "now"
+    },
+    seriesResolution: {
+      check: "Number",
+      init: 300
+    },
+    period: {
+      check: "Number",
+      init: 1
+    },
+    legendInline: {
+      check: "Boolean",
+      init: true
+    },
+    legendPopup: {
+      check: "Boolean",
+      init: true
+    },
+    legendposition: {
+      check: ["nw", "ne", "sw", "se"],
+      init: "ne"
+    },
+    timeformat: {
+      check: "String",
+      nullable: true
+    },
+    timeformatTooltip: {
+      check: "String",
+      init: "%d.%m.%Y %H:%M"
+    },
+    zoomYAxis: {
+      check: "Boolean",
+      init: false
+    },
+    gridcolor: {
+      check: "String",
+      init: "#81664B"
+    },
+    previewlabels: {
+      check: "Boolean",
+      init: false
+    },
+    isPopup: {
+      check: "Boolean",
+      init: false
+    },
+    popup: {
+      check: "Boolean",
+      init: false
+    },
+    tooltip: {
+      check: "Boolean",
+      init: false
+    }
+  },
+
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    _init: null,
+    popupplot: null,
+    plot: null,
+    plotted: null,
+    _timerPopup: null,
+    _timer: null,
+
+    _setupRefreshAction: function() {
+      if (this.getRefresh()) {
+        this._timer = new qx.event.Timer(this.getRefresh());
+        this._timer.addListener("interval", function () {
+          this.loadDiagramData(this.plot, false, true);
+        }, this);
+
+        this._timerPopup = new qx.event.Timer(this.getRefresh());
+        this._timerPopup.addListener("interval", function () {
+          this.loadDiagramData(this.popupplot, false, true);
+        }, this);
+      }
+    },
+
+    /**
+     * Stop the refresh timer
+     *
+     * @param timer {qx.event.Timer} stop this timer
+     * @protected
+     */
+    _stopRefresh: function(timer) {
+      if (timer && timer.isEnabled()) {
+        timer.stop();
+      }
+    },
+
+    /**
+     * Start the refresh timer
+     *
+     * @param timer {qx.event.Timer} start this timer
+     * @protected
+     */
+    _startRefresh: function(timer) {
+      if (timer && !timer.isEnabled()) {
+        timer.start();
+      }
+    },
+
+    _action: function() {
+      if (!this.getPopup()) return;
+
+      var popupDiagram = qx.bom.Selector.query('#' + this.getPath() + '_big');
+      this._init = true;
+      qx.bom.element.Attribute.set(popupDiagram, "height", "90%");
+      var popup = cv.TemplateEngine.getInstance().showPopup("diagram", {title: this.getLabel(), content: popupDiagram});
+
+      // this will be called when the popup is being closed.
+      // NOTE: this will be called twice, one time for the foreground and one
+      //       time for the background.
+      popup.bind('close', qx.util.Function.curry(this._stopRefresh.bind(this), this._timerPopup));
+
+      var parent = qx.dom.Hierarchy.getParentElement(popupDiagram);
+      qx.bom.element.Style.setStyles(parent, {height: "100%", width: "95%", margin: "auto"});// define parent as 100%!
+      qx.dom.Element.empty(popupDiagram);
+      qx.event.Registration.addListener(popupDiagram, "tap", function(event) {
+        // don't let the popup know about the click, or it will close
+        event.stopPropagation();
+      }, this);
+
+      this.initDiagram( true );
+
+      this._startRefresh(this._timerPopup);
+    },
+
+    initDiagram: function( isPopup ) {
+      var diagram = isPopup ? $( '#' + this.getPath() + '_big' ) : $( '#' + this.getPath() + ' .actor div' );
+
+      if (!this._init) {
         return;
       }
-      data.init = false;
-      isPopup |= data.isPopup;
+      isPopup |= this.isPopup();
 
       var options = {
         canvas  : true,
-        tooltip : data.tooltip,
+        tooltip : this.getTooltip(),
         tooltipOpts : {
           content      : "<center>%x<br/>%y</center>",
-          xDateFormat  : data.timeformatTooltip,
+          xDateFormat  : this.getTimeformatTooltip(),
           shifts       : {
             x : 20,
-            y : 10,
+            y : 10
           },
-          defaultTheme : false,
+          defaultTheme : false
         },
         zoom    : {
           interactive: isPopup,
           trigger: "dblclick",
-          amount: 1.5,
+          amount: 1.5
         },
         pan     : {
           interactive: isPopup,
           cursor: "move",
           frameRate: 20,
-          triggerOnDrag : false,
+          triggerOnDrag : false
         },
-        yaxes  : $.extend( true, [], data.content.axes ), // copy to prevent side effects
+        yaxes  : qx.lang.Object.clone(this.getContent().axes,true), // copy to prevent side effects
         xaxes  : [{
           mode       : "time",
-          timeformat : data.timeformat
+          timeformat : this.getTimeformat()
         }],
         legend : {
-          show            : (isPopup && data.legendPopup) || (!isPopup && data.legendInline),
+          show            : (isPopup && this.isLegendPopup()) || (!isPopup && this.isLegendInline()),
           backgroundColor : "#101010",
-          position        : data.legendposition
+          position        : this.getLegendposition()
         },
         grid : {
           show            : true,
           aboveData       : false,
-          color           : data.gridcolor,
+          color           : this.getGridcolor(),
           backgroundColor : "#000000",
-          tickColor       : data.gridcolor,
-          markingsColor   : data.gridcolor,
-          borderColor     : data.gridcolor,
+          tickColor       : this.getGridcolor(),
+          markingsColor   : this.getGridcolor(),
+          borderColor     : this.getGridcolor(),
           hoverable       : true
         },
         touch: {
@@ -384,93 +421,100 @@ define( ['structure_custom',
           tapPrecision:60/2       // tap events boundaries ( 60px square by default )
         }
       };
-      $.each(options.yaxes, function(index, val) {
-        $.extend(true, val, {axisLabelColour: data.gridcolor, color: data.gridcolor});
-      });
-      $.each(options.xaxes, function(index, val) {
-        $.extend(true, val, {axisLabelColour: data.gridcolor, color: data.gridcolor});
-      });
+      options.yaxes.forEach(function(val) {
+        qx.lang.Object.mergeWith(val, {axisLabelColour: this.getGridcolor(), color: this.getGridcolor()});
+      }, this);
+      options.xaxes.forEach(function(val) {
+        qx.lang.Object.mergeWith(val, {axisLabelColour: this.getGridcolor(), color: this.getGridcolor()});
+      }, this);
       if (isPopup) {
-        $.extend(true, options, {
+        qx.lang.Object.mergeWith(options, {
           yaxis : {
             isPopup   : true,
-            zoomRange : data.zoomYAxis ? [null, null] : false,
+            zoomRange : this.getZoomYAxis() ? [null, null] : false
           },
           xaxis : {
             zoomRange : [null, null],
-            panRange  : [null, null],
+            panRange  : [null, null]
           }
         });
       }
-      if (data.tooltip) {
-        $.extend(true, options, {grid: {hoverable: true, clickable: true}});
+      if (this.getTooltip()) {
+        qx.lang.Object.mergeWith(options, {grid: {hoverable: true, clickable: true}});
       }
 
-      if (!isPopup && !data.previewlabels) {
-        $.extend(true, options, {xaxes: [ {ticks: 0} ]});
-        $.each(options.yaxes, function(index, val) {
-          $.extend(true, val, {ticks:0, axisLabel: null});
-        });
+      if (!isPopup && !this.getPreviewlabels()) {
+        qx.lang.Object.mergeWith(options, {xaxes: [ {ticks: 0} ]});
+        options.yaxes.forEach(function(val) {
+          qx.lang.Object.mergeWith(val, {ticks:0, axisLabel: null});
+        }, this);
       }
 
       // plot diagram initially with empty values
       diagram.empty();
       var plot = $.plot(diagram, [], options);
-      if( isPopup )
-        data.popupplot = plot;
-      else
-        data.plot = plot;
-      data.plotted = true;
+      if( isPopup ) {
+        this.debug("popup plot generated");
+        this.popupplot = plot;
+      }
+      else {
+        this.debug("plot generated");
+        this.plot = plot;
+      }
+      this.plotted = true;
+
+      var that = this;
       diagram.bind("plotpan", function(event, plot, args) {
         if (args.dragEnded) {
-          loadDiagramData( id, plot, isPopup, false );
+          that.loadDiagramData( plot, isPopup, false );
         }
       }).bind("plotzoom", function() {
-        loadDiagramData( id, plot, isPopup, false );
+        that.loadDiagramData( plot, isPopup, false );
       }).bind("touchended", function() {
-        loadDiagramData( id, plot, isPopup, false );
+        that.loadDiagramData( plot, isPopup, false );
       }).bind("tap", function() {
         var self = this;
-        if ( !isPopup & typeof $(self).closest('.widget_container')[0] != 'undefined' ) {
+        var container = $(self).closest('.widget_container')[0];
+        if ( !isPopup && container !== undefined) {
           var actor = $(self).closest('.actor')[0];
-          var path = $(self).closest('.widget_container')[0].id;
-          if( typeof actor != 'undefined' & path.length > 0 )
-            action(path,actor,false);
+          var path = container.id;
+          if( actor !== undefined && path.length > 0 )
+            that.action();
         }
       });
 
-      loadDiagramData( id, plot, isPopup, false );
-    }
+      this.loadDiagramData( plot, isPopup, false );
+    },
 
-    function getSeries(data, xAxis, isInteractive) {
+    getSeriesSettings: function(xAxis, isInteractive) {
       var series = {
         hour    : {res: "60",     start: "hour",  end: "now"},
         day     : {res: "300",    start: "day",   end: "now"},
         fullday : {res: "300",    start: "day",   end: "midnight+24hour"},
         week    : {res: "1800",   start: "week",  end: "now"},
         month   : {res: "21600",  start: "month", end: "now"},
-        year    : {res: "432000", start: "year",  end: "now"},
+        year    : {res: "432000", start: "year",  end: "now"}
       };
 
       var ret = {
         start : null,
         end   : null,
-        res   : null,
+        res   : null
       };
-      if (data.series == "custom") {
+      if (this.getSeries() == "custom") {
         // initial load, take parameters from custom configuration
-        ret.start = data.seriesStart;
-        ret.end = data.seriesEnd;
-        ret.res = data.seriesResolution;
+        ret.start = this.getSeriesStart();
+        ret.end = this.getSeriesEnd();
+        ret.res = this.getSeriesResolution();
       }
       else {
-        var selectedSeries = series[data.series];
+        var selectedSeries = series[this.getSeries()];
         if (!selectedSeries) {
           return;
         }
 
         // initial load, take parameters from configuration
-        ret.start = "end-" + data.period + selectedSeries.start;
+        ret.start = "end-" + this.getPeriod() + selectedSeries.start;
         ret.end = selectedSeries.end;
         ret.res = selectedSeries.res;
       }
@@ -479,30 +523,26 @@ define( ['structure_custom',
         ret.start = (xAxis.min / 1000).toFixed(0);
       }
       return ret;
-    }
+    },
 
-    function loadDiagramData( id, plot, isInteractive, forceReload ) {
-      var data = templateEngine.widgetDataGet( id );
-      if (data === undefined) {
-        return;
-      }
+    loadDiagramData: function( plot, isInteractive, forceReload ) {
 
-      var series = getSeries(data, plot.getAxes().xaxis, isInteractive);
+      var series = this.getSeriesSettings(plot.getAxes().xaxis, isInteractive);
       if (!series) {
         return
       }
 
       // init
-      var loadedData = [];  
+      var loadedData = [];
       var rrdloaded = 0;
       var rrdSuccessful = 0;
       // get all rrd data
-      $.each(data.content.rrd, function(index, rrd) {
+      this.getContent().rrd.forEach(function(rrd, index) {
         var
           res = rrd.resol ? rrd.resol : series.res,
-          refresh = data.refresh ? data.refresh : res;
-        
-        lookupRRDcache( rrd, series.start, series.end, res, refresh, forceReload, function( rrddata ){
+          refresh = this.getRefresh() ? this.getRefresh() : res;
+
+        cv.plugins.diagram.Main.lookupRRDcache( rrd, series.start, series.end, res, refresh, forceReload, function( rrddata ){
           rrdloaded++;
           if (rrddata != null) {
             rrdSuccessful++;
@@ -521,7 +561,7 @@ define( ['structure_custom',
 
           // if loading has finished, i.e. all rrds have been retrieved,
           // go on and plot the diagram
-          if (rrdloaded == data.content.rrdnum) {
+          if (rrdloaded == this.getContent().rrdnum) {
             var fulldata;
             // If all rrds were successfully loaded, no extra action is needed.
             // Otherwise we need to reduce the array to the loaded data.
@@ -547,8 +587,158 @@ define( ['structure_custom',
             plot.setupGrid();
             plot.draw();
           }
-        
-        });
-      });
+
+        }.bind(this));
+      }, this);
     }
-  });
+  },
+
+  defer: function() {
+    var loader = cv.util.ScriptLoader.getInstance();
+    loader.addScripts([
+      'plugins/diagram/dep/flot/jquery.flot.min.js',
+      'plugins/diagram/dep/flot/jquery.flot.touch.min.js',
+      'plugins/diagram/dep/flot/jquery.flot.canvas.min.js',
+      'plugins/diagram/dep/flot/jquery.flot.resize.min.js',
+      'plugins/diagram/dep/flot/jquery.flot.time.min.js',
+      'plugins/diagram/dep/flot/jquery.flot.axislabels.js',
+      'plugins/diagram/dep/flot/jquery.flot.tooltip.min.js',
+      'plugins/diagram/dep/flot/jquery.flot.navigate.min.js'
+    ], [0]);
+  }
+});
+
+qx.Class.define('cv.plugins.diagram.Info', {
+  extend: cv.plugins.diagram.Main,
+
+  /*
+  ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(props) {
+    this.base(arguments, props);
+    this._init = false;
+  },
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    _getInnerDomString: function() {
+      return '<div class="actor clickable switchUnpressed"><div class="value">-</div></div>';
+    }
+  },
+
+  defer: function() {
+    // register the parser
+    cv.xml.Parser.addHandler("diagram_info", cv.plugins.diagram.Info);
+    cv.xml.Parser.addHook("diagram_info", "after", cv.plugins.diagram.Main.afterParse, cv.plugins.diagram.Main);
+  }
+});
+
+qx.Class.define('cv.plugins.diagram.Diagram', {
+  extend: cv.plugins.diagram.Main,
+  include: [cv.role.Update],
+
+  /*
+   ******************************************************
+   CONSTRUCTOR
+   ******************************************************
+   */
+  construct: function(props) {
+    this.base(arguments, props);
+    this._init = true;
+  },
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    width: {
+      check: "String",
+      nullable: true
+    },
+    height: {
+      check: "String",
+      nullable: true
+    }
+  },
+
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    getAttributeToPropertyMappings: function() {
+      return {
+        width: { transform: function(value) {
+          return value ? parseInt(value)+"px" : null;
+        }},
+        height: { transform: function(value) {
+          return value ? parseInt(value)+"px" : null;
+        }}
+      }
+    }
+  },
+
+  /*
+   ******************************************************
+   MEMBERS
+   ******************************************************
+   */
+  members: {
+
+    _onDomReady: function() {
+      var pageId = this.getParentPage().getPath();
+      var broker = cv.MessageBroker.getInstance();
+
+      // stop refreshing when page is left
+      broker.subscribe("path." + pageId + ".exitingPageChange", function() {
+        this._stopRefresh(this._timer);
+      }, this);
+
+      broker.subscribe("path." + pageId + ".beforePageChange", function() {
+        if( !this._init )
+          this.loadDiagramData( this.plot, false, false );
+      }, this);
+
+      broker.subscribe("path." + pageId + ".duringPageChange", function() {
+        // create diagram when it's not already existing
+        if( this._init )
+          this.initDiagram( false );
+
+        // start refreshing when page is entered
+        this._startRefresh(this._timer);
+      }, this);
+    },
+
+
+    _getInnerDomString: function() {
+      var
+        classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview',
+        styleStr = 'min-height: 40px'
+          + (this.getWidth()  ? (';width:'  + this.getWidth() ) : ''             )
+          + (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
+
+      return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
+    },
+
+    _update: function(address, data) {
+      if (address !== undefined && data !== undefined) {
+        return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
+      }
+    }
+  },
+
+  defer: function() {
+    // register the parser
+    cv.xml.Parser.addHandler("diagram", cv.plugins.diagram.Diagram);
+    cv.xml.Parser.addHook("diagram", "after", cv.plugins.diagram.Main.afterParse, cv.plugins.diagram.Main);
+  }
+});

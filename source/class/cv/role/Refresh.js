@@ -64,17 +64,22 @@ qx.Mixin.define("cv.role.Refresh", {
 
     setupRefreshAction: function () {
       if (this.getRefresh() && this.getRefresh() > 0) {
-        var element = this.getDomElement();
-        var target = qx.bom.Selector.query('img', element)[0] || qx.bom.Selector.query('iframe', element)[0];
-        var src = qx.bom.element.Attribute.get(target, "src");
-        if (src.indexOf('?') < 0)
-          src += '?';
+        if (this._setupRefreshAction) {
+          // overridden by inheriting class
+          this._setupRefreshAction();
+        } else {
+          var element = this.getDomElement();
+          var target = qx.bom.Selector.query('img', element)[0] || qx.bom.Selector.query('iframe', element)[0];
+          var src = qx.bom.element.Attribute.get(target, "src");
+          if (src.indexOf('?') < 0)
+            src += '?';
 
-        this._timer = new qx.event.Timer(this.getRefresh());
-        this._timer.addListener("interval", function () {
-          this.refreshAction(target, src);
-        }, this);
-        this._timer.start();
+          this._timer = new qx.event.Timer(this.getRefresh());
+          this._timer.addListener("interval", function () {
+            this.refreshAction(target, src);
+          }, this);
+          this._timer.start();
+        }
       }
     },
 

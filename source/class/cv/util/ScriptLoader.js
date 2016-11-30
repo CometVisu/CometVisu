@@ -72,18 +72,32 @@ qx.Class.define('cv.util.ScriptLoader', {
       }, this);
     },
 
-    addScripts: function(scriptArr) {
+    addScripts: function(scriptArr, order) {
       var queue = (qx.lang.Type.isString(scriptArr) ? [ scriptArr ] : qx.lang.Array.clone(scriptArr));
-      if (cv.Config.forceReload === true) {
-        // make sure that no cached scripts are loaded
-        for (var i=0, l = queue.length; i<l; i++) {
-          queue[i] = qx.util.ResourceManager.getInstance().toUri(queue[i])+"?"+Date.now();
-        }
+      // make sure that no cached scripts are loaded
+      var suffix = (cv.Config.forceReload === true) ? '?'+Date.now() : '';
+      for (var i=0, l = queue.length; i<l; i++) {
+        queue[i] = qx.util.ResourceManager.getInstance().toUri(queue[i])+suffix;
       }
       this.__scriptQueue.append(queue);
-      // use an extra DynamiScriptLoader for every single script because loading errors stop the process
-      // and the loader would not try to load the oher scripts
-      queue.forEach(this.__loadSingleScript, this);
+      if (order) {
+        var processQueue = function () {
+          if (order.length > 0) {
+            var loadIndex = order.shift();
+            var script = qx.lang.Array.removeAt(queue, loadIndex);
+            var loader = this.__loadSingleScript(script);
+            loader.addListener("ready", processQueue, this);
+          } else {
+            queue.forEach(this.__loadSingleScript, this);
+          }
+        }.bind(this);
+        processQueue();
+      } else {
+        // use an extra DynamiScriptLoader for every single script because loading errors stop the process
+        // and the loader would not try to load the oher scripts
+        // queue.forEach(this.__loadSingleScript, this);
+        this.__loadSingleScript(queue);
+      }
     },
 
     /**
@@ -103,6 +117,7 @@ qx.Class.define('cv.util.ScriptLoader', {
         loader.removeListener("failed", this._onFailed, this);
       }, this);
       loader.start();
+      return loader;
     },
 
     _onLoaded: function(ev) {
