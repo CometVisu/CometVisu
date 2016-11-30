@@ -493,7 +493,7 @@ module.exports = function(grunt) {
     // protractor end-to-end tests
     protractor: {
       options: {
-        configFile: "test/protractor/conf.js", // Default config file
+        configFile: "source/test/protractor/conf.js", // Default config file
         args: {
           // Arguments passed to the command
         }
