@@ -610,6 +610,7 @@ qx.Class.define('cv.plugins.diagram.Main', {
 
 qx.Class.define('cv.plugins.diagram.Info', {
   extend: cv.plugins.diagram.Main,
+  include: [cv.role.Update],
 
   /*
   ******************************************************
@@ -629,6 +630,11 @@ qx.Class.define('cv.plugins.diagram.Info', {
   members: {
     _getInnerDomString: function() {
       return '<div class="actor clickable switchUnpressed"><div class="value">-</div></div>';
+    },
+    _update: function(address, data) {
+      if (address !== undefined && data !== undefined) {
+        return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
+      }
     }
   },
 
@@ -641,7 +647,6 @@ qx.Class.define('cv.plugins.diagram.Info', {
 
 qx.Class.define('cv.plugins.diagram.Diagram', {
   extend: cv.plugins.diagram.Main,
-  include: [cv.role.Update],
 
   /*
    ******************************************************
@@ -727,12 +732,6 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
           + (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
 
       return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
-    },
-
-    _update: function(address, data) {
-      if (address !== undefined && data !== undefined) {
-        return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
-      }
     }
   },
 
