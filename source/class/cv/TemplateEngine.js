@@ -162,7 +162,7 @@ qx.Class.define('cv.TemplateEngine', {
         this.update(json);
         this.visu.update = this.update.bind(this); // handle future requests directly
       }.bind(this);
-      this.user = 'demo_user'; // example for setting a user
+      this.visu.user = 'demo_user'; // example for setting a user
     },
 
     resetPageValues: function () {

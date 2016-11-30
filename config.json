@@ -65,7 +65,15 @@
 
   "jobs" :
   {
-    "my-lint-options" : {
+    "common" :
+    {
+      "=include" :
+      [
+        "${APPLICATION}.Application",
+        "${APPLICATION}.structure.pure.*",
+        "${APPLICATION}.transforms.*"
+      ],
+
       "lint-check" : {
         "allowed-globals" : [
           "$",
@@ -74,14 +82,7 @@
           "sprintf",
           "fillRecoloredIcon"
         ]
-      }
-    },
-    "common" :
-    {
-      "=include" :
-      [
-        "${APPLICATION}.Application"
-      ],
+      },
 
       "=environment" :
       {
@@ -101,7 +102,11 @@
         {
           "uri" : "resource/libs/jquery-ui.js"
         }
-      ]
+      ],
+      "copy-files" :
+      {
+        "files" : [ "resource/libs/sprintf.js", "resource/libs/Three.js", "resource/libs/jquery.js", "resource/libs/jquery-ui.js" ]
+      }
     },
 
     "source-all-script" :
@@ -113,27 +118,30 @@
       ]
     },
 
+    "build-script": {
+
+      "=copy-files" :
+      {
+        "files" : ["loader.js"],
+        "source": "${SOURCE_PATH}/loader/build/",
+        "target" : "${BUILD_PATH}/loader"
+      },
+      "environment" :
+      {
+        "engine.name" : [ "gecko", "mshtml", "webkit", "opera" ]
+      },
+      "compile-options" :
+      {
+        "paths" :
+        {
+          "file" : "${BUILD_PATH}/script/${APPLICATION}-{engine.name}.js"
+        }
+      }
+    },
+
     "dependencies" :
     {
       "=exclude" : [ "${APPLICATION}.test.*" ]
-    },
-
-    "lint" : {
-      "extend" : ["my-lint-options"]
-    },
-
-    "source-script" : {
-      "extend" : ["my-lint-options"],
-      "include": [ "${APPLICATION}.structure.pure.*",  "${APPLICATION}.transforms.*" ]
-    },
-
-    "source-all-script" : {
-      "extend" : ["my-lint-options"]
-    },
-
-    "build-script" : {
-      "extend" : ["my-lint-options"],
-      "include": [ "${APPLICATION}.structure.pure.*",  "${APPLICATION}.transforms.*" ]
     }
 
     // Uncomment the following entry to add a contrib or library to your

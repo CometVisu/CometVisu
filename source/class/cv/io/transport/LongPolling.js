@@ -183,31 +183,10 @@ qx.Class.define('cv.io.transport.LongPolling', {
      */
     handleError: function (ev) {
       var req = ev.getTarget();
-      if (this.running && reg.readyState != 4
-        && !this.doRestart && req.status !== 0) // ignore error when
-      // connection is
-      // irrelevant
+      if (this.running && req.getReadyState() != 4
+        && !this.doRestart && req.getStatus() !== 0) // ignore error when connection is irrelevant
       {
-        var readyState = 'UNKNOWN';
-        switch (xhr.readyState) {
-          case 0:
-            readyState = 'UNINITIALIZED';
-            break;
-          case 1:
-            readyState = 'LOADING';
-            break;
-          case 2:
-            readyState = 'LOADED';
-            break;
-          case 3:
-            readyState = 'INTERACTIVE';
-            break;
-          case 4:
-            readyState = 'COMPLETED';
-            break;
-        }
-        this.error('Error! Type: "' + str + '" ExceptionObject: "'
-          + excptObj + '" readyState: ' + readyState);
+        this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
       }
     },
 
