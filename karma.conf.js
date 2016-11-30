@@ -16,8 +16,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser => auto-filled by the qooxdoo adapter
     files: [
-      "source/class/cv/test/helper-spec.js",
-      { pattern: "source/class/cv/test/**/*.js" }
+      "source/test/karma/helper-spec.js",
+      { pattern: "source/test/karma/*.js" },
+      { pattern: "source/test/karma/**/*.js" }
     ],
 
     // preprocess matching files before serving them to the browser
