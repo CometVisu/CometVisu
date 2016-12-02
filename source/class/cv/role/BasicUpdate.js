@@ -170,6 +170,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       // store it to be able to suppress sending of unchanged data
       value !== undefined && this.setBasicValue(value);
 
+      if ( address==="number:Speakers") debugger;
       // #2: map it to a value the user wants to see
       value = this.applyMapping(value);
 
@@ -270,9 +271,13 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       qx.dom.Element.empty(valueElement);
       if (undefined !== value)
         this.defaultValue2DOM(value, function (e) {
-          qx.bom.Html.clean([e]).forEach(function(newElem) {
-            qx.dom.Element.insertEnd(newElem, valueElement);
-          }, this);
+          if (qx.lang.Type.isNumber(e)) {
+            qx.bom.element.Attribute.set(valueElement, "text", e);
+          } else {
+            qx.bom.Html.clean([e]).forEach(function (newElem) {
+              qx.dom.Element.insertEnd(newElem, valueElement);
+            }, this);
+          }
         });
       else {
         qx.dom.Element.insertEnd(document.createTextNode('-'), valueElement);
