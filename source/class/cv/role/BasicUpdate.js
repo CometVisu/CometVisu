@@ -170,7 +170,6 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       // store it to be able to suppress sending of unchanged data
       value !== undefined && this.setBasicValue(value);
 
-      if ( address==="number:Speakers") debugger;
       // #2: map it to a value the user wants to see
       value = this.applyMapping(value);
 
