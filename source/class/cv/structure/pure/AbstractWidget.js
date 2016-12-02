@@ -34,7 +34,9 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
   */
   construct: function(props) {
     this.base(arguments, props);
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", this._onDomReady, this);
+    var parts = this.getPath().split("_"); parts.shift();
+    var prio = parseInt(parts.join(""))*-1;
+    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", this._onDomReady, this, prio);
     // this.addPopup('unknown', {
     //   /**
     //    * Description
