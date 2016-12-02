@@ -157,21 +157,21 @@ qx.Class.define('cv.IconHandler', {
       var i = this.get.apply(this, arguments);
       if (i) {
         var styling = arguments[4];
-        if (i.icon && styling === undefined && typeof i !== 'function')
+        if (i.icon && !styling && typeof i !== 'function')
           return i.icon;
 
         // fetch and cache image
-        if (styling === undefined)
+        if (!styling)
           styling = i.styling;
 
         var classes = 'icon';
         var iconclass = arguments[5];
-        if (iconclass !== undefined) {
+        if (iconclass) {
           classes = classes + ' custom_' + iconclass;
         }
 
         if (typeof i === 'function') {
-          i.icon = i(arguments[3], styling === undefined ? '' : ' style="'+styling+'"', classes, false);
+          i.icon = i(arguments[3], !styling ? '' : ' style="'+styling+'"', classes, false);
         } else {
           i.icon = qx.dom.Element.create('img', {
             'class': classes,
