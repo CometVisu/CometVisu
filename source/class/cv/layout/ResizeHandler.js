@@ -212,7 +212,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
 
     __updateRowHeight: function(elem) {
       var height = qx.bom.element.Dimension.getHeight(elem);
-      if (height  === 0) {
+      if (height === 0) {
         // not ready try again
         qx.bom.AnimationFrame.request(qx.lang.Function.curry(this.__updateRowHeight, elem), this);
         return;
@@ -222,7 +222,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
       for (var rowspan in cv.layout.Manager.usedRowspans) {
         styles += '.rowspan.rowspan' + rowspan
           + ' { height: '
-          + Math.round((rowspan - 1) * height)
+          + Math.round(rowspan * height)
           + "px;}\n";
       }
       elem.remove();

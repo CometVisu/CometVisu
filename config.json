@@ -43,7 +43,7 @@
     "APPLICATION"  : "cv",
     "QOOXDOO_PATH" : "./external/qooxdoo",
     "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.test.*"],
-    "LOCALES"      : [ "en" ],
+    "LOCALES"      : [ "en", "de" ],
     "CACHE"        : "${TMPDIR}/qx${QOOXDOO_VERSION}/cache",
     "ROOT"         : "."
   },

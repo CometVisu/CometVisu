@@ -82,15 +82,16 @@ qx.Class.define('cv.layout.Manager', {
         //      console.log("Mobile.css use changed "+mobileUseChanged);
         this.currentPageUnavailableWidth = 0;
         var navbarVisibility = this.getCurrentPageNavbarVisibility(cv.TemplateEngine.getInstance().currentPage);
+        console.log(navbarVisibility);
         var left = qx.bom.Selector.query('#navbarLeft')[0];
-        var widthNavbarLeft = navbarVisibility.left == "true" && qx.bom.element.Class.get(left, 'display') != "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
+        var widthNavbarLeft = navbarVisibility.left === true && qx.bom.element.Class.get(left, 'display') != "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
         if (widthNavbarLeft >= bodyWidth) {
           // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
           widthNavbarLeft = 0;
         }
         var right = qx.bom.Selector.query('#navbarRight')[0];
-        var widthNavbarRight = navbarVisibility.right == "true" && qx.bom.element.Class.get(right, 'display') != "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
+        var widthNavbarRight = navbarVisibility.right === true && qx.bom.element.Class.get(right, 'display') != "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
         if (widthNavbarRight >= bodyWidth) {
           // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem

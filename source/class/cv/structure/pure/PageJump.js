@@ -155,6 +155,7 @@ qx.Class.define('cv.structure.pure.PageJump', {
     // register the parser
     cv.xml.Parser.addHandler("pagejump", cv.structure.pure.PageJump);
     cv.xml.Parser.addHook("pagejump", "after", cv.structure.pure.PageJump.afterParse, cv.structure.pure.PageJump);
+    cv.xml.Parser.addHook("pagejump", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
     cv.MessageBroker.getInstance().subscribe("path.pageChanged", cv.structure.pure.PageJump._onScrollToPage, this);
   }
 });
