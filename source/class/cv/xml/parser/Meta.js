@@ -52,7 +52,7 @@ qx.Class.define("cv.xml.parser.Meta", {
       var mapping = {};
       var formula = qx.bom.Selector.query('formula', elem);
       if (formula.length > 0) {
-        var func = qx.lang.Function.globalEval('var func = function(x){var y;' + qx.dom.Node.getText(formula) + '; return y;}; func');
+        var func = qx.lang.Function.globalEval('var func = function(x){var y;' + qx.dom.Node.getText(formula[0]) + '; return y;}; func');
         mapping['formula'] = func;
       }
       qx.bom.Selector.query('entry', elem).forEach(function (subElem) {
