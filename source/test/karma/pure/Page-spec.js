@@ -81,10 +81,10 @@ describe("testing a page widget", function() {
 
     expect(page.getShowTopNavigation()).toBeTruthy();
     expect(page.getShowFooter()).toBeTruthy();
-    expect(page.getShowNavbar().top).toBeTruthy();
-    expect(page.getShowNavbar().bottom).toBeTruthy();
-    expect(page.getShowNavbar().left).toBeTruthy();
-    expect(page.getShowNavbar().right).toBeTruthy();
+    expect(page.getShowNavbarTop()).toBeTruthy();
+    expect(page.getShowNavbarBottom()).toBeTruthy();
+    expect(page.getShowNavbarLeft()).toBeTruthy();
+    expect(page.getShowNavbarRight()).toBeTruthy();
 
     expect(page.getDomElement()).toHaveClass("flavour_potassium");
   });
