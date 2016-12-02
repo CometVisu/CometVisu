@@ -53,7 +53,7 @@ qx.Class.define('cv.xml.Parser', {
         var parentClass = clazz.superclass;
         while (parentClass && parentClass.classname !== "cv.Object") {
           if (parentClass.parse) {
-            qx.log.Logger.debug("adding before parse hook for parent class: " + parentClass.classname);
+            qx.log.Logger.debug("adding before parse hook to "+tagName+" for parent class: " + parentClass.classname);
             this.addHook(tagName, "before", parentClass.parse, clazz);
           }
           this.__applyIncludeHooks(tagName, parentClass);
@@ -67,7 +67,7 @@ qx.Class.define('cv.xml.Parser', {
         // check for parse hooks in includes
         clazz.$$flatIncludes.forEach(function (mixin) {
           if (mixin.parse) {
-            qx.log.Logger.debug("adding after parse hook for include: " + mixin.classname);
+            qx.log.Logger.debug("adding after parse hook to "+tagName+" for include: " + mixin.name);
             this.addHook(tagName, "after", mixin.parse, clazz);
           }
         }, this);
