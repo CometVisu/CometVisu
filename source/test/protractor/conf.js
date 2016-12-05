@@ -11,7 +11,7 @@ exports.config = {
   directConnect: true,
 
   suites: {
-    // common: ['specs/d*spec.js'],
+    common: ['specs/d*spec.js'],
     widgets: ['specs/widgets/*spec.js']
   },
 
