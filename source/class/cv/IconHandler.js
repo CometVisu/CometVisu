@@ -147,7 +147,7 @@ qx.Class.define('cv.IconHandler', {
     getURI: function () {
       var i = this.get.apply(this, arguments);
       if (i)
-        return i.uri;
+        return qx.util.ResourceManager.getInstance().toUri(i.uri);
     },
 
     /**
@@ -175,7 +175,7 @@ qx.Class.define('cv.IconHandler', {
         } else {
           i.icon = qx.dom.Element.create('img', {
             'class': classes,
-            src: i.uri,
+            src: qx.util.ResourceManager.getInstance().toUri(i.uri),
             style: styling
           });
         }
@@ -220,7 +220,7 @@ qx.Class.define('cv.IconHandler', {
         if (typeof i === 'function') {
           return i(arguments[3], styling, classes, true);
         } else {
-          return '<img class="' + classes + '" src="' + i.uri + '"' + styling + '/>';
+          return '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '"' + styling + '/>';
         }
       }
     },

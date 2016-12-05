@@ -32,8 +32,8 @@
  * This is the main application class of your custom application "cv"
  *
  *
- * @asset(config/*.xml)
- * @asset(demo/*.xml)
+ * @asset(config/*)
+ * @asset(demo/*)
  * @asset(designs/*)
  * @asset(icon/*)
  * @asset(plugins/*)

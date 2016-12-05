@@ -264,7 +264,7 @@ qx.Class.define('cv.structure.pure.Page', {
         var backdrop = this.getBackdrop();
         if (undefined != backdrop) {
           var elemType = '.svg' == backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';
-          container += '<' + elemType + ' src="' + backdrop + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
+          container += '<' + elemType + ' src="' + qx.util.ResourceManager.getInstance().toUri(backdrop) + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
           this.setBackdropType(elemType);
         }
       } else if( '3d' == pageType && false ) //---Disable 3D for 0.8---
