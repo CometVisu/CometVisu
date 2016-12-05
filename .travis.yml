@@ -42,7 +42,7 @@ script:
 - if [ "$CV_BUILD" == "test" ]; then source temp-python/bin/activate; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt jscs; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt karma:travis; fi
-- if [ "$CV_BUILD" == "test" ]; then grunt e2e-chrome; fi
+- if [ "$CV_BUILD" == "test" ]; then grunt e2e; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
 after_success:
 - if [ "$CV_BUILD" == "test" ]; then grunt coveralls; fi
