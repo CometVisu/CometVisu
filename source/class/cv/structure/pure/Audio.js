@@ -48,6 +48,19 @@
     ******************************************************
     */
     statics: {
+
+      /**
+       * Returns a map with definitions for the XML Parser to map XML-Attribute values
+       * to properties e.g
+       * <pre>{
+         *  <attribute-name>: {
+         *    target: <property-name>,
+         *    default: <default-value>,
+         *    transform: <callback to transform the value to the desired value>
+         *  }
+         * }</pre>
+       * @return {Object}
+       */
       getAttributeToPropertyMappings: function() {
         return {
           src: {},
@@ -103,6 +116,7 @@
         return '<div class="actor"><audio id="' + this.getId() + '" ' + autoplay + loop + style + ' controls> <source src="' + this.getSrc()+ '" > </audio> </div>';
       },
 
+      // overridden
       getActor: function() {
         return qx.bom.Selector.query(".actor audio", this.getDomElement())[0];
       },

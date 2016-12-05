@@ -17,30 +17,84 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
+/**
+ * Main settings that an be accessed from anywhere inside the Application
+ */
 qx.Class.define('cv.Config', {
   type:"static",
 
   statics: {
-    libraryVersion: 7,
+    /**
+     * Config file version
+     * @type {Number}
+     */
+    libraryVersion: 8,
+    /**
+     * @type {Boolean}
+     */
     libraryCheck: true,
-    // threshold where the mobile.css is loaded
+    /**
+     * Threshold where the mobile.css is loaded
+     * @type {Number}
+     */
     maxMobileScreenWidth: 480,
-    // threshold where different colspans are used
+    /**
+     * Threshold where colspan-s is used
+     * @type {Number}
+     */
     maxScreenWidthColspanS: 599,
+    /**
+     * threshold where colspan-m is used
+     * @type {Number}
+     */
     maxScreenWidthColspanM: 839,
+    /**
+     * Default scrolling speed for page changes (in ms)
+     * @type {Number}
+     */
     scrollSpeed : 0,
 
+    /**
+     * Default number of colums the layout should use
+     * @type {Number}
+     */
     defaultColumns : 12,
+    /**
+     * Minimum column width
+     * @type {Number}
+     */
     minColumnWidth : 120,
 
+    /**
+     * If true, the client only loads the states for the widgets that are part of the start page at first
+     * read request (should increase the performance when huge config files are used)
+     * @type {Boolean}
+     */
     enableAddressQueue : false,
 
+    /**
+     * Type of the used backend (*default*, *openhab* or *openhab2*)
+     * @type {String}
+     */
     backend : 'default',
+    /**
+     * Initial URL to the backend
+     * @type {String}
+     */
     backendUrl : null,
+    /**
+     * @type {String}
+     */
     configSuffix : null,
+    /**
+     * The design currently used
+     * @type {String}
+     */
     clientDesign : "",
-    Uri : false,
+    /**
+     * Maturity level {cv.structure.pure.AbstractBasicWidget.Maturity.release|cv.structure.pure.AbstractBasicWidget.Maturity.development}
+     * @type {var}
+     */
     use_maturity : false
   },
 

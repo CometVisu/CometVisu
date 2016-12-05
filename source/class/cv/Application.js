@@ -18,18 +18,8 @@
  */
 
 
-/* ************************************************************************
-
-   Copyright:
-
-   License:
-
-   Authors:
-
-************************************************************************ */
-
 /**
- * This is the main application class of your custom application "cv"
+ * This is the main application class of the CometVisu
  *
  *
  * @asset(config/*)
@@ -54,6 +44,10 @@ qx.Class.define("cv.Application",
   {
     _blocker: null,
 
+    /**
+     * Toggle the {qx.bom.Blocker} visibility
+     * @param val {Boolean}
+     */
     block: function(val) {
       if (val) {
         if (!this._blocker) {
@@ -95,6 +89,10 @@ qx.Class.define("cv.Application",
       this.__init();
     },
 
+    /**
+     * Internal initialization method
+     * @private
+     */
     __init: function() {
       var templateEngine = cv.TemplateEngine.getInstance();
 
@@ -171,6 +169,11 @@ qx.Class.define("cv.Application",
       }, this);
     },
 
+    /**
+     * Handle errors that occur during loading ot the config file
+     * @param textStatus {String} error status
+     * @param additionalErrorInfo {String} error message
+     */
     configError: function( textStatus, additionalErrorInfo ) {
       var configSuffix = (cv.Config.configSuffix ? cv.Config.configSuffix : '');
       var message = 'cv.Config.File Error!<br/>';

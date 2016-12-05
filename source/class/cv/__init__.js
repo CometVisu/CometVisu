@@ -18,9 +18,9 @@
  */
 
 
-/** <h3> cv API Documentation </h3>
+/**
+ * <h3> CometVisu API Documentation </h3>
  *
- * Replace this text with an appropriate overview and introduction to your 
- * application.
- *
+ * The CometVisu open source development project for a building automation visualisation (e.g. KNX or OpenHAB).
+ * This is the source code documentation for the project.
  */

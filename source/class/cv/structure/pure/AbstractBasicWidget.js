@@ -40,13 +40,23 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
   ******************************************************
   */
   statics: {
-    // Define ENUM of maturity levels for features, so that e.g. the editor can
-    // ignore some widgets when they are not supported yet
+    /**
+     * Define ENUM of maturity levels for features, so that e.g. the editor can
+     * ignore some widgets when they are not supported yet
+     */
     Maturity : {
       release: 0,
       development: 1
     },
 
+    /**
+     * Parse the widgets XML confuguration
+     * @param element {Element} the widgets XML Element from the config file
+     * @param path {String} internal path to the widget
+     * @param flavour {String} inherited flavour
+     * @param pageType {String} text, 2d or 3d the parent page type
+     * @returns {Map} the extracted information, that is stored in the data model
+     */
     parse: function (element, path, flavour, pageType) {
       return cv.data.Model.getInstance().setWidgetData( path, {
         'path': path,
@@ -62,16 +72,31 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
   ******************************************************
   */
   properties: {
+    /**
+     * Internal path to the widget
+     */
     path : {
       check: "String"
     },
+
+    /**
+     * The widget type
+     */
     $$type : {
       check: "String"
     },
+
+    /**
+     * The parents page type
+     */
     pageType  : {
       check: ["text", "2d", "3d"],
       init: "text"
     },
+
+    /**
+     * The parent widget
+     */
     parentWidget: {
       check: "cv.structure.pure.AbstractBasicWidget",
       init: null
@@ -87,17 +112,23 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
 
     /**
      * Returns the DOMElement of this widget
+     * @return {Element}
      */
     getDomElement: function() {
       return qx.bom.Selector.query('#'+this.getPath())[0];
     },
 
+    /**
+     * Generates the DOM string for this widget
+     * @return {String|null}
+     */
     getDomString : function() {
-      return this.INNER();
+      return this._getInnerDomString ? this._getInnerDomString() : null;
     },
 
     /**
      * Get the widgets parent page. This might not be the same as the parent widget.
+     * @return {cv.structure.pure.Page|null}
      */
     getParentPage: function() {
       var parent = this.getParentWidget();

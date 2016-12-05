@@ -165,22 +165,49 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
   */
   members: {
 
-    downaction: function() {},
-    action: function() {},
+    /**
+     * Default action for pointerdown events, does nothing but can be overridden
+     * by subclasses
+     * @param ev {Event} pointerdoen event
+     */
+    downaction: function(ev) {},
 
+    /**
+     * Default action for tap events, does nothing but can be overridden
+     * by subclasses
+     * @param ev {Event} tap event
+     */
+    action: function(ev) {},
+
+    /**
+     * Called when all widgets are available in the DOM tree
+     * @protected
+     */
     _onDomReady: function() {
       this.initListeners();
       this.processAfterChain("_onDomReady");
     },
 
+    /**
+     * Return the widgets actor element
+     * @return {Element}
+     */
     getActor: function() {
       return qx.bom.Selector.query('.actor', this.getDomElement())[0];
     },
 
+    /**
+     * Return the widgets value element
+     * @return {Element}
+     */
     getValueElement: function() {
       return qx.bom.Selector.query(".value", this.getDomElement())[0];
     },
 
+    /**
+     * Return the widgets widget element
+     * @return {Element}
+     */
     getWidgetElement: function() {
       return qx.bom.Selector.query('.widget', this.getDomElement())[0];
     },
@@ -189,15 +216,26 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
      * Return the element which should be used to attach listeners too.
      * Unsually this would be the actor but if bindClickToWidget is true
      * it would be the DomElement (aka widget-container)
+     * @return {Element]
      */
     getInteractionElement: function() {
       return this.isBindClickToWidget() ? this.getDomElement() : this.getActor();
     },
 
+    /**
+     * Initialize the widgets listeners
+     */
     initListeners: function() {
       this.addListener("tap", this.action, this);
     },
 
+    /**
+     * Add a listener to the widgets interaction element
+     * @param type {String} event type to listen to
+     * @param callback {Function} called when the event occurs
+     * @param context {Object} this context for the callback
+     * @returns {var} the listener id
+     */
     addListener: function(type, callback, context) {
       if (this.isAnonymous()) return;
       var widget = this.getInteractionElement();
@@ -210,15 +248,12 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
     /**
      * Generates the DOM string for this widget
      *
-     * @method getDomString
-     * @returns {string}
+     * @return {String} The widgets DOM representation as string
      */
     getDomString : function() {
       return '<div class="'+this.getClasses()+'" ' + this.getStyle() + '>' + this.getLabel() +
         (this._getInnerDomString ? this._getInnerDomString() : '') +'</div>';
-    },
-
-    getAddressListCallback: function() { return null; }
+    }
   },
 
   /*
@@ -227,31 +262,38 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
   ******************************************************
   */
   statics: {
-    getAddressListCallback: function() {
-      return null;
-    },
 
     /**
      * Returns a map with definitions for the XML Parser to map XML-Attribute values
      * to properties e.g
-     * {
+     * <pre>{
          *  <attribute-name>: {
          *    target: <property-name>,
          *    default: <default-value>,
          *    transform: <callback to transform the value to the desired value>
          *  }
-         * }
-     * @returns {Object}
+         * }</pre>
+     * @return {Object}
      */
     getAttributeToPropertyMappings: function() {
       return null;
     },
 
+    /**
+     * Add a popup to the internal list
+     * @param name {String} name of the popup
+     * @param object {Object} the popup
+     */
     addPopup: function (name, object) {
       this.popups[name] = object;
       this.popups[name].type = name;
     },
 
+    /**
+     * Retrieve a popup by name
+     * @param name {String} name of the popup
+     * @returns {Object}
+     */
     getPopup: function(name) {
       var p = this.popups[name];
       if (p === undefined) {
