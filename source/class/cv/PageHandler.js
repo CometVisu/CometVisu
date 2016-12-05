@@ -60,6 +60,9 @@ qx.Class.define('cv.PageHandler', {
   members: {
 
     seekTo : function( target, speed ) {
+      if (isNaN(speed)) {
+        speed = 0;
+      }
       var currentPath = this.getCurrentPath();
       currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".exitingPageChange", currentPath, target);
 
@@ -117,14 +120,19 @@ qx.Class.define('cv.PageHandler', {
         }
       };
       var animation = qx.bom.element.Animation.animate(pagesNode, animationConfig);
-      animation.addListenerOnce("end", function(){
+      var finish = function() {
         // final stuff
         this.setCurrentPath(target);
         templateEngine.pagePartsHandler.updateTopNavigation( target );
         qx.bom.element.Style.set(pagesNode, 'left', 0 );
         currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".afterPageChange", currentPath);
         currentPath !== '' && cv.MessageBroker.getInstance().publish("path.pageChanged", target);
-      }, this);
+      }.bind(this);
+      if (speed === 0) {
+        finish();
+      } else {
+        animation.addListenerOnce("end", finish, this);
+      }
     },
 
     setSpeed : function( newSpeed ) {
