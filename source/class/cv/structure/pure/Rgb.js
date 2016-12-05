@@ -73,7 +73,6 @@ qx.Class.define('cv.structure.pure.Rgb', {
         case 'b' :  bg[2] = value; break;
         default:
       }
-      console.log(bg);
       var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
       qx.bom.element.Style.set(valElem, 'background-color', bgs);
     }
