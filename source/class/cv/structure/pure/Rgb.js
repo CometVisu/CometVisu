@@ -61,7 +61,7 @@ qx.Class.define('cv.structure.pure.Rgb', {
       if (data === undefined || address === undefined) return;
       var valElem = this.getValueElement();
 
-      var value = Math.round(255/100 * cv.Transform.decode( this.getAddress()[ address ][0], data ));
+      var value = cv.Transform.decode( this.getAddress()[ address ][0], data );
 
       var bg = qx.bom.element.Style.get(valElem, 'background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
       if( 3 !== bg.length ) {
