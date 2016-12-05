@@ -34,17 +34,18 @@ function captureMock() {
 function mock() {
   return function (req, res, next) {
     var url = req.url;
-    var found = url.match(/(\?_=[0-9]+)$/);
+    var found = url.match(/(\?(_|nocache)=[0-9]+)$/);
     if (found) {
       url = url.replace(found[1],"");
     }
     var mockedResponse = mocks[url];
     if (mockedResponse) {
+      res.writeHead(200, {'Content-Type': 'application/xml'});
       res.write(mockedResponse);
       res.end();
     } else if (url == "/designs/get_designs.php") {
       // untested
-      var dir = path.join("source", "resource", "cv", "designs");
+      var dir = path.join("source", "resource", "designs");
       var designs = [];
       fs.readdirSync(dir).forEach(function(designDir) {
         var filePath = path.join(dir, designDir);
@@ -230,7 +231,7 @@ module.exports = function(grunt) {
       },
       default : {
         files: {
-          'source/resource/cv/icon/knx-uf-iconset.svg': [
+          'source/resource/icon/knx-uf-iconset.svg': [
             'cache/icons/*.svg'
           ]
         }
@@ -635,8 +636,8 @@ module.exports = function(grunt) {
   // - replace #FFFFFF with the currentColor
   // - fix viewBox to follow the png icon version
   grunt.registerTask('handle-kuf-svg', function() {
-    var filename   = 'source/resource/cv/icon/knx-uf-iconset.svg';
-    var iconconfig = 'source/resource/cv/icon/iconconfig.js';
+    var filename   = 'source/resource/icon/knx-uf-iconset.svg';
+    var iconconfig = 'source/resource/icon/iconconfig.js';
     var svg = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, svg
       .replace( /#FFFFFF|#fff/g, 'currentColor' )

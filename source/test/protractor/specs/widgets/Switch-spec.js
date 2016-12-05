@@ -39,12 +39,12 @@ describe('switch widget testing', function () {
     actor.click();
     expect(actor.element(by.css(".value")).getText()).toEqual('0');
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual(0);
+      expect(lastWrite.value).toEqual('0');
     });
     actor.click();
     expect(actor.element(by.css(".value")).getText()).toEqual('1');
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual(1);
+      expect(lastWrite.value).toEqual('1');
     });
 
     // send update via backend
@@ -76,14 +76,14 @@ describe('switch widget testing', function () {
     browser.actions().mouseMove(widget, {x: 2, y: 10}).click().perform();
     expect(actor.element(by.css(".value")).getText()).toEqual('0');
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual(0);
+      expect(lastWrite.value).toEqual('0');
     });
 
     // we have to move the mouse somewhere where the actor is not, before clicking it
     browser.actions().mouseMove(widget, {x: 2, y: 10}).click().perform();
     expect(actor.element(by.css(".value")).getText()).toEqual('1');
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual(1);
+      expect(lastWrite.value).toEqual('1');
     });
 
     // send update via backend
@@ -156,14 +156,14 @@ describe('switch widget testing', function () {
     expect(actor.element(by.css(".value")).getText()).toEqual("Off");
     expect(actor.getAttribute('class')).toMatch("red");
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual(0);
+      expect(lastWrite.value).toEqual('0');
     });
 
     actor.click();
     expect(actor.element(by.css(".value")).getText()).toEqual('On');
     expect(actor.getAttribute('class')).toMatch("green");
     cvMockup.getLastWrite().then(function(lastWrite) {
-      expect(lastWrite.value).toEqual(1);
+      expect(lastWrite.value).toEqual('1');
     });
 
     // send update via backend
