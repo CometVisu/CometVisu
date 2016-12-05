@@ -52,25 +52,28 @@ qx.Class.define('cv.structure.pure.Rgb', {
     },
 
     /**
-     * Handles the incoming data from the backend for this widget
+     * Updates the RGB wiget by setting the background color
      *
-     * @method handleUpdate
-     * @param value {any} incoming data (already transformed + mapped)
+     * @param address {String} KNX-GA or openHAB item name
+     * @param value {any} incoming data
      */
-    handleUpdate: function(value, ga) {
-      if (value === undefined || ga === undefined) return;
+    _update: function(address, data) {
+      if (data === undefined || address === undefined) return;
       var valElem = this.getValueElement();
+
+      var value = Math.round(255/100 * cv.Transform.decode( this.getAddress()[ address ][0], data ));
 
       var bg = qx.bom.element.Style.get(valElem, 'background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
       if( 3 !== bg.length ) {
         bg = [0, 0, 0];
       }
-      switch (this.getAddress()[ ga ][2]) {
+      switch (this.getAddress()[ address ][2]) {
         case 'r' :  bg[0] = value; break;
         case 'g' :  bg[1] = value; break;
         case 'b' :  bg[2] = value; break;
         default:
       }
+      console.log(bg);
       var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
       qx.bom.element.Style.set(valElem, 'background-color', bgs);
     }
