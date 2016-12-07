@@ -92,7 +92,7 @@ qx.Class.define('cv.Config', {
      */
     clientDesign : "",
     /**
-     * Maturity level {cv.structure.pure.AbstractBasicWidget.Maturity.release|cv.structure.pure.AbstractBasicWidget.Maturity.development}
+     * Maturity level
      * @type {var}
      */
     use_maturity : false
