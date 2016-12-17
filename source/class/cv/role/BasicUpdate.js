@@ -266,7 +266,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       if (this.getAlign())
         qx.bom.element.Class.add(element, this.getAlign());
 
-      var valueElement = qx.bom.Selector.query('.value', element)[0];
+      var valueElement = this.getValueElement ? this.getValueElement() : qx.bom.Selector.query('.value', element)[0];
       qx.dom.Element.empty(valueElement);
       if (undefined !== value)
         this.defaultValue2DOM(value, function (e) {
