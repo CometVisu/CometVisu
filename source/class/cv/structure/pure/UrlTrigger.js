@@ -73,7 +73,7 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
 
     _onDomReady: function() {
       this.base(arguments);
-      this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement(), true, this.getPath());
+      this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
     },
 
     _getInnerDomString: function () {
@@ -84,10 +84,10 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
       return actor;
     },
 
-    _action: function(ev) {
-      var xhr = new qx.io.request.Xhr(this.getUrl());
+    _action: function() {
+      var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(this.getUrl()));
       xhr.set({
-        type: "GET",
+        method: "GET",
         accept: "application/html",
         requestData: this.getParams()
       });
