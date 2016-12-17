@@ -103,13 +103,14 @@ describe("testing a multitrigger widget", function() {
       'button3value': 3,
       'button4value': 4,
       'showstatus': 'true'
-    }, '<address transform="DPT:4001" mode="read">1/0/0</address>', null, {'transform': '4.001'});
+    }, null, '<address transform="DPT:4001" mode="read">1/0/0</address>', {'transform': '4.001'});
     spyOn(creator, "sendToBackend");
     var actors = qx.bom.Selector.query(".actor_container .actor", this.container.children[0]);
     expect(actors.length).not.toBe(0);
 
     cv.MessageBroker.getInstance().publish("setup.dom.finished");
     var Reg = qx.event.Registration;
+    console.log(actors[0]);
 
     Reg.fireEvent(actors[0], "tap", qx.event.type.Event, []);
     expect(creator.sendToBackend).toHaveBeenCalledWith('1');

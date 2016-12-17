@@ -30,20 +30,6 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
 
   /*
   ******************************************************
-    CONSTRUCTOR
-  ******************************************************
-  */
-  construct: function(props) {
-    this.base(arguments, props);
-    if (this.getMapping()) {
-      cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
-
-      }, this);
-    }
-  },
-
-  /*
-  ******************************************************
     PROPERTIES
   ******************************************************
   */
@@ -154,15 +140,18 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
     },
 
     _onDomReady: function() {
+      this.initListeners();
       var actor = this.getActor();
       var children = qx.dom.Hierarchy.getChildElements(actor);
       var value;
 
-      children.forEach(function(element, i) {
-        value = this.defaultValueHandling(undefined, this['getButton' + (i+1) + 'value']());
-        qx.dom.Element.empty(element);
-        this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, element));
-      }, this);
+      if (this.getMapping()) {
+        children.forEach(function (element, i) {
+          value = this.defaultValueHandling(undefined, this['getButton' + (i + 1) + 'value']());
+          qx.dom.Element.empty(element);
+          this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, element));
+        }, this);
+      }
     },
 
     // overridden, only transform the value, do not apply it to DOM
@@ -196,6 +185,7 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
       return this['getButton' + index + 'value']();
     },
 
+    // overridden
     initListeners: function() {
       qx.bom.Selector.query('.actor_container .actor', this.getDomElement()).forEach(function(actor) {
         qx.event.Registration.addListener(actor, "tap", this.action, this);
