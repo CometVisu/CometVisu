@@ -23,7 +23,7 @@ install:
 - npm install -g grunt-cli
 - npm install
 - "./node_modules/protractor/bin/webdriver-manager update"
-- if [ "$CV_BUILD" == "docs" ]; then sudo pip install -r utils/requirements.txt; fi # for documentation
+- if [ "$CV_BUILD" == "docs" ]; then sudo pip3 install -r utils/requirements.txt; fi # for documentation
 - if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install libxml2-dev libxslt-dev graphviz; fi
 - if [ "$CV_BUILD" == "docs" ]; then sudo dpkg -i downloads/plantuml.deb; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/npm-setup.sh; fi
