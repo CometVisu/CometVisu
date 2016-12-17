@@ -168,6 +168,7 @@ module.exports = function(grunt) {
           linebreak: true,
           process: function( filepath ) {
             var filename = filepath.match(/\/([^/]*)$/)[1];
+            if (filename === "__init__.js") return "";
 
             return grunt.template.process('/* <%= filename %> \n'+
               ' * \n'+

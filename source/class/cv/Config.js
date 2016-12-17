@@ -17,6 +17,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+
 /**
  * Main settings that an be accessed from anywhere inside the Application
  */
