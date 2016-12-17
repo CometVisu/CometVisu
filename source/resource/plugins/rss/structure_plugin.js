@@ -32,69 +32,91 @@
  * @author Michael Markstaller
  * @since 2011
  */
+qx.Class.define('cv.plugins.rss.Main', {
+  extend: cv.structure.pure.AbstractWidget,
+  include: [cv.role.Refresh],
 
-require.config({
-  shim: {
-    'plugins/rss/dep/zrssfeed/jquery.zrssfeed': ['jquery']
-  }
-});
-
-define( ['structure_custom', 'plugins/rss/dep/zrssfeed/jquery.zrssfeed' ], function( VisuDesign_Custom ) {
-  "use strict";
-
-  VisuDesign_Custom.prototype.addCreator("rss", {
-    create: function( page, path ) {
-      var 
-        $p = $(page),
-        id = "rss_" + path,
-        classes = templateEngine.design.setWidgetLayout( $p, path ),
-        ret_val = '<div class="widget clearfix rss ' + classes + '">',
-        label = '<div class="label">' + page.textContent + '</div>',
-        rssstyle = ''
-          + $p.attr('width' ) ? 'width:'  + $p.attr('width' ) : ''
-          + $p.attr('height') ? 'height:' + $p.attr('height') : '',
-        actor = '<div class="actor"><div class="rss_inline" id="' + id + '" style="' + rssstyle + '"></div>';
-
-      var data = templateEngine.widgetDataInsert( path, {
-          id:         id,
-          src:        $p.attr("src"),
-          label:      page.textContent,
-          refresh:    $p.attr("refresh")*1000 || 0,
-          limit:      $p.attr("limit") || 10,
-          header:     $p.attr("header") || true,
-          date:       $p.attr("date") || true,
-          content:    $p.attr("content") || true,
-          snippet:    $p.attr("snippet") || true,
-          showerror:  $p.attr("showerror") || true,
-          ssl:        $p.attr("ssl") || false,
-          linktarget: $p.attr("linktarget") || "_new",
-          link:       $p.attr("link") || true,
-          title:      $p.attr("title") || true
-        });
-          
-      templateEngine.postDOMSetupFns.push( function(){
-          refreshRSS( path );
-        });
-
-      return ret_val + label + actor + '</div>';
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    getAttributeToPropertyMappings: function() {
+      return {
+        'src': {},
+        'width': { "default": "" },
+        'height': { "default": "" },
+        'limit': { "default": 10 },
+        'header': { "default": true },
+        'date': { "default": true },
+        'content': { "default": true },
+        'snippet': { "default": true },
+        'showerror': { "default": true },
+        'ssl': { "default": false },
+        'linktarget': { "default": "_new" },
+        'link': { "default": true },
+        'title': { "default": true }
+      }
     }
-  });
+  },
 
-  function refreshRSS( path ) {
-    var
-      data = templateEngine.widgetDataGet( path ),
-      src = data.src;
-    
-    $('#'+path+' .rss_inline').rssfeed( src, data )
-      
-    if( data.refresh ) {
-      // reload regularly
-      window.setTimeout( function( path ) {
-        refreshRSS( path )
-      }, data.refresh, path );
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    src: { check: "String", init: "" },
+    'width': { init: "" },
+    'height': { init: "" },
+    'limit': { init: 10 },
+    'header': { init: true },
+    'date': { init: true },
+    'content': { init: true },
+    'snippet': { init: true },
+    'showerror': { init: true },
+    'ssl': { init: false },
+    'linktarget': { init: "_new" },
+    'link': { init: true },
+    'title': { init: true }
+  },
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    _getInnerDomString: function () {
+      var rssstyle = ''
+      + this.getWidth() ? 'width:' + this.getWidth() : ''
+        + this.getHeight() ? 'height:' + this.getHeight() : '';
+      return '<div class="actor"><div class="rss_inline" id="rss_' + this.getPath() + '" style="' + rssstyle + '"></div>';
+    },
+
+    _onDomReady: function () {
+      this.base(arguments);
+      this.refreshRSS();
+    },
+
+    _setupRefreshAction: function() {
+      this._timer = new qx.event.Timer(this.getRefresh());
+      this._timer.addListener("interval", function () {
+        this.refreshRSS();
+      }, this);
+      this._timer.start();
+    },
+
+    refreshRSS: function () {
+      var data = cv.data.Model.getInstance().getWidgetData(this.getPath());
+      $('#' + this.getPath() + ' .rss_inline').rssfeed(this.getSrc(), data);
     }
-    //rss.data("itemoffset") = itemoffset;
-    return false;
-  }
+  },
 
+  defer: function() {
+    var loader = cv.util.ScriptLoader.getInstance();
+    loader.addScripts('plugins/rss/dep/zrssfeed/jquery.zrssfeed.js');
+    cv.xml.Parser.addHandler("rss", cv.plugins.rss.Main);
+  }
 });
