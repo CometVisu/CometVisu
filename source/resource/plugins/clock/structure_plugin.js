@@ -18,115 +18,108 @@
  */
 
 
-define( ['structure_custom' ], function( VisuDesign_Custom ) {
-  "use strict";
+qx.Class.define('cv.plugins.clock.Main', {
+  extend: cv.structure.pure.AbstractWidget,
+  include: [cv.role.Update],
 
-  /**
-   * This is a custom function that extends the available widgets.
-   * It's purpose is to change the design of the visu during runtime
-   * to demonstrate all available
-   *
-   * @author Christian Mayer
-   * @since 2012
-   */
-  VisuDesign_Custom.prototype.addCreator("clock", {
-  that: this,
-  create: function( page, path, flavour, type ) {
-    var that = this;
-    var $p = $(page);
-    var classes = templateEngine.design.setWidgetLayout( $p, path );
-    var ret_val = '<div class="widget clearfix clock '+(classes?classes:'')+'">';
-    ret_val+=templateEngine.design.extractLabel( $p.find('label')[0], flavour );
-    var address = templateEngine.design.makeAddressList($p,false,path);
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    _getInnerDomString: function () {
+      return '<div class="actor" style="width:200px;"></div>';
+    },
 
-    ret_val+='<div class="actor" style="width:200px;"></div>';
-    
-    var data = templateEngine.widgetDataInsert( path, {
-      'value'   : new Date(),
-      'address' : address,
-      'type'    : 'clock'
-    });
-    
-    templateEngine.postDOMSetupFns.push(function() {
-      var $actor = $("#"+path+" .actor");
-      $actor.svg({loadURL:'plugins/clock/clock_pure.svg',onLoad:function(svg){
-        $( svg.getElementById('HotSpotHour'  ) )
-          .draggable()
-          .bind('drag', {type: 'hour'  ,actor:$actor}, that.dragHelper )
-          .bind('dragstop', {actor:$actor}, that.dragAction );
-        $( svg.getElementById('HotSpotMinute') )
-          .draggable()
-          .bind('drag', {type: 'minute',actor:$actor}, that.dragHelper )
-          .bind('dragstop', {actor:$actor}, that.dragAction );
-      }});
-    });
-    ret_val+="</div>";
-    return ret_val;
-  },
-  update: function(e,d) { 
-    var element = $(this);
-    var value = templateEngine.design.defaultUpdate( e, d, element, undefined, element.parent().attr('id') );
-    var $svg = element.find('svg');
-    var time = value.split(':');
-    $svg.children().find('#Hour'  ).attr('transform','rotate('+((time[0]%12)*360/12+time[1]*30/60)+',50,50)');
-    $svg.children().find('#Minute').attr('transform','rotate('+(time[1]*6)+',50,50)');
-  },
-  dragHelper:function(event,ui) {
-    var $container = event.data.actor;
-    var $svg = $container.find('svg');
-    var widget = $container.parents('.widget_container')[0];
-    var path = widget.id;
-    var widgetData  = templateEngine.widgetDataGet( path );
-    var x = event.originalEvent.pageX - $svg.offset().left - 50; 
-    var y = 50 - (event.originalEvent.pageY - $svg.offset().top);
-    var angle = (Math.atan2( x, y ) * 180 / Math.PI + 360) % 360;
-    var time = widgetData.value;
-    if( event.data.type == 'hour' )
-    {
-      var oldHours = time.getHours();
-      var pm = oldHours >= 12;
-      var hours = Math.floor( angle/30 );
-      var minutes = (angle%30) * 2;
-      
-      if( oldHours%12 > 9 && hours < 3 )
-      {
-        if( pm ) { pm = false; time.setDate( time.getDate() + 1 ); }
-        else     { pm = true ;                                     }
-      } else if ( hours > 9 && oldHours%12 < 3 )
-      {
-        if( pm ) { pm = false;                                     }
-        else     { pm = true ; time.setDate( time.getDate() - 1 ); }
+    _onDomReady: function () {
+      var $actor = $(this.getActor());
+      $actor.svg({
+        loadURL: 'plugins/clock/clock_pure.svg',
+        onLoad: function (svg) {
+          $(svg.getElementById('HotSpotHour'))
+            .draggable()
+            .bind('drag', {type: 'hour', actor: $actor}, this.dragHelper)
+            .bind('dragstop', {actor: $actor}, this.dragAction);
+          $(svg.getElementById('HotSpotMinute'))
+            .draggable()
+            .bind('drag', {type: 'minute', actor: $actor}, this.dragHelper)
+            .bind('dragstop', {actor: $actor}, this.dragAction);
+        }.bind(this)
+      });
+    },
+
+    // overidden
+    _update: function (address, data) {
+      var element = this.getDomElement();
+      var value = this.defaultValueHandling(address, data);
+      var svg = qx.bom.Selector.query('svg', element);
+      var time = value.split(':');
+      var hourElem = qx.bom.Selector.query('#Hour', svg)[0];
+      var minuteElem = qx.bom.Selector.query('#Minute', svg)[0];
+      qx.bom.element.Attribute.set(hourElem, "transform", 'rotate(' + ((time[0] % 12) * 360 / 12 + time[1] * 30 / 60) + ',50,50)');
+      qx.bom.element.Attribute.set(minuteElem, "transform", 'rotate(' + (time[1] * 6) + ',50,50)');
+    },
+
+    dragHelper: function (event, ui) {
+      var $container = event.data.actor;
+      var $svg = $container.find('svg');
+
+      var x = event.originalEvent.pageX - $svg.offset().left - 50;
+      var y = 50 - (event.originalEvent.pageY - $svg.offset().top);
+      var angle = (Math.atan2(x, y) * 180 / Math.PI + 360) % 360;
+      var time = this.getCalue();
+      if (event.data.type == 'hour') {
+        var oldHours = time.getHours();
+        var pm = oldHours >= 12;
+        var hours = Math.floor(angle / 30);
+        var minutes = (angle % 30) * 2;
+
+        if (oldHours % 12 > 9 && hours < 3) {
+          if (pm) {
+            pm = false;
+            time.setDate(time.getDate() + 1);
+          }
+          else {
+            pm = true;
+          }
+        } else if (hours > 9 && oldHours % 12 < 3) {
+          if (pm) {
+            pm = false;
+          }
+          else {
+            pm = true;
+            time.setDate(time.getDate() - 1);
+          }
+        }
+
+        time.setHours(hours + pm * 12);
+        time.setMinutes(minutes);
+      } else { // minute
+        var minutes = Math.round(angle / 6);
+        var oldMinutes = time.getMinutes();
+
+        if (oldMinutes > 45 && minutes < 15)
+          time.setHours(time.getHours() + 1);
+        else if (minutes > 45 && oldMinutes < 15)
+          time.setHours(time.getHours() - 1);
+
+        time.setMinutes(minutes);
       }
-      
-      time.setHours( hours + pm * 12 );
-      time.setMinutes( minutes );
-    } else { // minute
-      var minutes = Math.round( angle/6 );
-      var oldMinutes = time.getMinutes();
-      
-      if( oldMinutes > 45 && minutes < 15 )
-        time.setHours( time.getHours() + 1 );
-      else if( minutes > 45 && oldMinutes < 15 )
-        time.setHours( time.getHours() - 1 );
-      
-      time.setMinutes( minutes );
-    }
-    $container.find('#Hour'  ).attr('transform','rotate('+((time.getHours()%12)*360/12+time.getMinutes()*30/60)+',50,50)');
-    $container.find('#Minute').attr('transform','rotate('+(time.getMinutes()*6)+',50,50)');
-  },
-  dragAction: function(event,ui) {
-    var widget = event.data.actor.parents('.widget_container')[0];
-    var 
-      widgetData  = templateEngine.widgetDataGet( widget.id );
-    for( var addr in widgetData.address )
-    {
-      if( widgetData.address[addr][1] == true ) continue; // skip read only
-      templateEngine.visu.write( addr, templateEngine.transformEncode( widgetData.address[addr][0], widgetData.value ) );
-    }
-  },
-  action: function(path,actor,isCanceled) {
-    // override system action-function
-  }
-});
+      $container.find('#Hour').attr('transform', 'rotate(' + ((time.getHours() % 12) * 360 / 12 + time.getMinutes() * 30 / 60) + ',50,50)');
+      $container.find('#Minute').attr('transform', 'rotate(' + (time.getMinutes() * 6) + ',50,50)');
+    },
 
+    dragAction: function () {
+      var address = this.getAddress();
+      for (var addr in address) {
+        if (address[addr][1] == true) continue; // skip read only
+        cv.TemplateEngine.getInstane().visu.write(addr, cv.Transform.encode(address[addr][0], this.getValue()));
+      }
+    }
+  },
+
+  defer: function() {
+    cv.xml.Parser.addHandler("clock", cv.plugins.clock.Main);
+  }
 });
