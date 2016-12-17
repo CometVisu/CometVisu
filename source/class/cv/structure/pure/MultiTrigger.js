@@ -37,22 +37,7 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
     this.base(arguments, props);
     if (this.getMapping()) {
       cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
-        var actor = this.getActor();
-        var children = qx.dom.Hierarchy.getChildElements(actor);
-        var value, element;
 
-        for (var i=1; i<=4; i++) {
-          value = this.defaultValueHandling(undefined, this['getButton'+i+'value']);
-          element = children[i];
-          qx.dom.Element.empty(element);
-          this.defaultValue2DOM(value, function (e) {
-            if (qx.lang.Type.isString(e) || qx.lang.Type.isNumber(e)) {
-              qx.dom.Element.insertEnd(document.createTextNode(e), element);
-            } else {
-              qx.dom.Element.insertEnd(e, element);
-            }
-          });
-        }
       }, this);
     }
   },
@@ -166,6 +151,24 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
         ret_val += '<br/>';
       }
       return ret_val + '</div>';
+    },
+
+    _onDomReady: function() {
+      var actor = this.getActor();
+      var children = qx.dom.Hierarchy.getChildElements(actor);
+      var value;
+
+      children.forEach(function(element, i) {
+        value = this.defaultValueHandling(undefined, this['getButton' + (i+1) + 'value']());
+        qx.dom.Element.empty(element);
+        this.defaultValue2DOM(value, function (e) {
+          if (qx.lang.Type.isString(e) || qx.lang.Type.isNumber(e)) {
+            qx.dom.Element.insertEnd(document.createTextNode(e), element);
+          } else {
+            qx.dom.Element.insertEnd(e, element);
+          }
+        });
+      }, this);
     },
 
     // overridden, only transform the value, do not apply it to DOM
