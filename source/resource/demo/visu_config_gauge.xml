@@ -2,9 +2,6 @@
 <pages lib_version="8" design="metal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
   <meta>
     <plugins>
-      <plugin name="colorchooser"/>
-      <plugin name="diagram"/>
-      <plugin name="upnpcontroller"/>
       <plugin name="gauge"/>
     </plugins>
     <mappings>
