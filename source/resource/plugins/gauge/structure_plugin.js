@@ -193,7 +193,7 @@ qx.Class.define('cv.plugins.gauge.Main', {
      * @param address {String} source address of the value
      */
     handleUpdate: function( value, address) {
-      if (!address || !value) return;
+      if (!address || value === undefined) return;
 
       var variant = this.getAddress()[address][2];
       var gaugeElement = this.__gaugeElement;
