@@ -22,46 +22,47 @@
  * @author christian523
  * @since 2012
  */
-define( ['structure_custom' ], function( VisuDesign_Custom ) {
-  "use strict";
+qx.Class.define('cv.plugins.svg.Main', {
+  extend: cv.structure.pure.AbstractWidget,
+  include: [cv.role.Update, cv.role.Refresh],
 
-  Class('cv.structure.pure.Svg', {
-    isa: cv.structure.pure.AbstractWidget,
-    does: [cv.role.Update, cv.role.Refresh],
-
-    after: {
-      initialize: function() {
-        cv.MessageBroker.my.subscribe("setup.dom.finished", function() {
-          var $actor = $(this.getActor());
-          $actor.svg({loadURL:'plugins/svg/rollo.svg'});
-        }, this);
-      }
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    _getInnerDomString: function() {
+      return '<div class="actor"></div>';
     },
 
-    augment: {
-      getDomString: function () {
-        return '<div class="actor"></div>';
-      }
+    _onDomReady: function() {
+      // TODO: replace jquery
+      var actor = $(this.getActor());
+      actor.svg({loadURL: qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg')});
     },
 
-    methods: {
-      handleUpdate: function(value) {
-        var element = $(this.getDomElement());
-        var linewidth=3;
-        var space = 1;
-        var total = linewidth + space;
-        var line_qty = 48 / total;
-        for(var i = 0; i<=Math.floor(value/line_qty);i++) {
-          element.find('#line'+(i+1)).attr('y1',9+total*(i)+((h%line_qty)/line_qty)*total);
-          element.find('#line'+(i+1)).attr('y2',9+total*(i)+((h%line_qty)/line_qty)*total);
-        }
-        for(var i = Math.floor(h/line_qty)+1; i<=line_qty;i++) {
-          element.find('#line'+(i+1)).attr('y1',9);
-          element.find('#line'+(i+1)).attr('y2',9);
-        }
+    handleUpdate: function(value) {
+      var element = this.getDomElement();
+      var linewidth=3;
+      var space = 1;
+      var total = linewidth + space;
+      var line_qty = 48 / total;
+      for(var i = 0, l = Math.floor(value/line_qty); i<=l;i++) {
+        var line = qx.bom.Selector.query('#line'+(i+1), element);
+        qx.bom.element.Attribute.set(line, 'y1', 9+total*(i)+((value%line_qty)/line_qty)*total);
+        qx.bom.element.Attribute.set(line, 'y2', 9+total*(i)+((value%line_qty)/line_qty)*total);
+      }
+      for(var i = Math.floor(value/line_qty)+1; i<=line_qty;i++) {
+        var line = qx.bom.Selector.query('#line'+(i+1), element);
+        qx.bom.element.Attribute.set(line, 'y1', 9);
+        qx.bom.element.Attribute.set(line, 'y2', 9);
       }
     }
-  });
-  // register the parser
-  cv.xml.Parser.addHandler("svg", cv.structure.pure.Svg);
+  },
+
+  defer: function() {
+    // register the parser
+    cv.xml.Parser.addHandler("svg", cv.plugins.svg.Main);
+  }
 });
