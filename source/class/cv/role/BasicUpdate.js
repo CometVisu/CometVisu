@@ -269,19 +269,21 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       var valueElement = this.getValueElement ? this.getValueElement() : qx.bom.Selector.query('.value', element)[0];
       qx.dom.Element.empty(valueElement);
       if (undefined !== value)
-        this.defaultValue2DOM(value, function (e) {
-          if (qx.lang.Type.isNumber(e)) {
-            qx.bom.element.Attribute.set(valueElement, "text", e);
-          } else {
-            qx.bom.Html.clean([e]).forEach(function (newElem) {
-              qx.dom.Element.insertEnd(newElem, valueElement);
-            }, this);
-          }
-        });
+        this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, valueElement));
       else {
         qx.dom.Element.insertEnd(document.createTextNode('-'), valueElement);
       }
       return value;
+    },
+
+    _applyValueToDom: function(valueElement, e) {
+      if (qx.lang.Type.isNumber(e)) {
+        qx.bom.element.Attribute.set(valueElement, "text", e);
+      } else {
+        qx.bom.Html.clean([e]).forEach(function (newElem) {
+          qx.dom.Element.insertEnd(newElem, valueElement);
+        }, this);
+      }
     }
   }
 });

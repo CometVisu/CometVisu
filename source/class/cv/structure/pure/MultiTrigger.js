@@ -161,13 +161,7 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
       children.forEach(function(element, i) {
         value = this.defaultValueHandling(undefined, this['getButton' + (i+1) + 'value']());
         qx.dom.Element.empty(element);
-        this.defaultValue2DOM(value, function (e) {
-          if (qx.lang.Type.isString(e) || qx.lang.Type.isNumber(e)) {
-            qx.dom.Element.insertEnd(document.createTextNode(e), element);
-          } else {
-            qx.dom.Element.insertEnd(e, element);
-          }
-        });
+        this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, element));
       }, this);
     },
 
