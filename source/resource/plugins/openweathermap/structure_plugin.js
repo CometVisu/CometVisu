@@ -24,68 +24,119 @@
  * @author Stefan Borchert (stefan@borchert.cc)
  * @since 0.9.0
  */
+qx.Class.define('cv.plugins.openweathermap.Main', {
+  extend: cv.structure.pure.AbstractBasicWidget,
+  include: cv.role.Refresh,
 
-require.config({
-  shim: {
-    'plugins/openweathermap/owm/jquery.owm': ['jquery']
-  }
-});
+  /*
+  ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(props) {
+    props.refresh = props.refresh * 60;
+    this.base(arguments, props);
+    this.__options = props;
+  },
 
-define(['structure_custom', 'css!plugins/openweathermap/openweathermap', 'plugins/openweathermap/owm/jquery.owm'], function() {
-
-  Class('cv.plugin.OpenWeatherMap', {
-    isa: cv.structure.pure.AbstractBasicWidget,
-    does: cv.role.Refresh,
-
-    augment: {
-      getDomString: function () {
-        var classes = "widget clearfix text openweathermap";
-        if (this.cssClass) {
-          classes+=" "+this.cssClass;
-        }
-        return '<div class="'+classes+'"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
-      }
-    },
-
-    my : {
-      methods: {
-        getAttributeToPropertyMappings: function () {
-          return {
-            'class': { target: 'cssClass' },
-            'lang':   { },
-            'q':   { },
-            'lat':   { },
-            'long':   { },
-            'units':   { },
-            'type':   { },
-            'forecastItems':   { },
-            'detailItems':   { },
-            'appid':   { }
-          };
-        }
-      }
-    },
-
-    has: {
-      options: { is: 'ro', init: Joose.I.Object },
-      cssClass: { is: 'ro', init: "" }
-    },
-
-    after : {
-      initialize: function (props) {
-        props.refresh = props.refresh * 60;
-        this.options = props
-      }
-    },
-
-    methods: {
-      refreshAction: function() {
-        var elem = $(this.getDomElement());
-        elem.openweathermap(this.options);
-        return false;
-      }
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    getAttributeToPropertyMappings: function () {
+      return {
+        'class': { target: 'cssClass' },
+        'lang':   { },
+        'q':   { },
+        'lat':   { },
+        'long':   { },
+        'units':   { },
+        'type':   { },
+        'forecastItems':   { },
+        'detailItems':   { },
+        'appid':   { }
+      };
     }
-  });
-  // register the parser
-  cv.xml.Parser.addHandler("openweathermap", cv.plugin.OpenWeatherMap);
+  },
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    cssClass: {
+      check: "String",
+      init: ""
+    },
+    lang: {
+      check: "String",
+      init: ""
+    },
+    q: {
+      check: "String",
+      init: ""
+    },
+    lat: {
+      check: "String",
+      init: ""
+    },
+    long: {
+      check: "String",
+      init: ""
+    },
+    units: {
+      check: "String",
+      init: ""
+    },
+    type: {
+      check: "String",
+      init: ""
+    },
+    forecastItems: {
+      check: "String",
+      init: ""
+    },
+    detailItems: {
+      check: "String",
+      init: ""
+    },
+    appid: {
+      check: "String",
+      init: ""
+    }
+  },
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    __options: null,
+
+    _getInnerDomString: function(){
+      var classes = "widget clearfix text openweathermap";
+      if (this.getCssClass()) {
+        classes+=" "+this.getCssClass();
+      }
+      return '<div class="'+classes+'"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
+    },
+
+    refreshAction: function() {
+      var elem = $(this.getDomElement());
+      elem.openweathermap(this.options);
+      return false;
+    }
+  },
+
+  defer: function() {
+    var loader = cv.util.ScriptLoader.getInstance();
+    loader.addStyles('plugins/openweathermap/openweathermap');
+    loader.addScripts('plugins/openweathermap/owm/jquery.owm.js');
+    // register the parser
+    cv.xml.Parser.addHandler("openweathermap", cv.plugins.openweathermap.Main);
+  }
 });
