@@ -23,8 +23,6 @@
  * @since 0.5.2
  * @author Christian Mayer [CometVisu at ChristianMayer dot de]
  */
-// define( ['structure_custom', 'css!plugins/colorchooser/farbtastic/farbtastic.css', 'plugins/colorchooser/farbtastic/farbtastic' ], function( VisuDesign_Custom ) {
-
 qx.Class.define('cv.plugins.colorchooser.Main', {
   extend: cv.structure.pure.AbstractWidget,
   include: [cv.role.Update, cv.role.Operate],

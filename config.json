@@ -101,6 +101,9 @@
         },
         {
           "uri" : "resource/libs/jquery-ui.js"
+        },
+        {
+          "uri" : "resource/libs/strftime.js"
         }
       ],
       "copy-files" :
