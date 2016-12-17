@@ -25,7 +25,7 @@
  * @since 2012
  */
 qx.Class.define('cv.plugins.timeout.Main', {
-  extend: cv.structure.pure.AbstractWidget,
+  extend: cv.structure.pure.AbstractBasicWidget,
 
   /*
   ******************************************************
