@@ -547,24 +547,6 @@ qx.Class.define('cv.TemplateEngine', {
       this.pagePartsHandler.initializeNavbars(page_id);
     },
 
-    /*
-     * Show a popup of type "type". The attributes is an type dependend object
-     * This function returnes a jQuery object that points to the whole popup, so
-     * it's content can be easily extended
-     */
-    showPopup: function (type, attributes) {
-      return cv.structure.pure.AbstractWidget.getPopup(type).create(attributes);
-    },
-
-    /*
-     * Remove the popup. The parameter is the jQuery object returned by the
-     * showPopup function
-     */
-    removePopup: function (jQuery_object) {
-      jQuery_object.remove();
-    },
-
-
     selectDesign: function () {
       var body = qx.bom.Selector.query("body")[0];
 

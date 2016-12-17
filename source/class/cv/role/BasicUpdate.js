@@ -92,8 +92,8 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       return data;
     },
 
-    applyMapping: function (value) {
-      var this_map = this.getMapping();
+    applyMapping: function (value, mapping) {
+      var this_map = mapping || this.getMapping();
       if (this_map && cv.ui.Mappings.hasMapping(this_map)) {
         var m = cv.ui.Mappings.getMapping(this_map);
 
