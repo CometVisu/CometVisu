@@ -110,7 +110,6 @@ describe("testing a multitrigger widget", function() {
 
     cv.MessageBroker.getInstance().publish("setup.dom.finished");
     var Reg = qx.event.Registration;
-    console.log(actors[0]);
 
     Reg.fireEvent(actors[0], "tap", qx.event.type.Event, []);
     expect(creator.sendToBackend).toHaveBeenCalledWith('1');
