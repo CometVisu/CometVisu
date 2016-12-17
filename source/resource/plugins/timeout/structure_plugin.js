@@ -24,90 +24,137 @@
  * @author Carsten Tschach (Carsten@Tschach.com)
  * @since 2012
  */
+qx.Class.define('cv.plugins.timeout.Main', {
+  extend: cv.structure.pure.AbstractWidget,
 
-define( ['structure_custom' ], function( VisuDesign_Custom ) {
-  "use strict";
-  var timeoutIdleCount   = 0;
-  var timeoutCurrentPage = "";
-  var timeoutCurrentPageTitle = "";
-  var timeoutTargetPage  = "";
-  var timeoutDebug       = 'false';
+  /*
+  ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(props) {
+    this.base(arguments, props);
+    this.__timeoutIdleCount = 0;
+  },
 
-  VisuDesign_Custom.prototype.addCreator("timeout", {
-  create : function(page, path) {
-    var $p = $(page);
 
-    var target  = "id_";   // Set default go back to Start Page
-    var timeout = 600;      // Set default to 10 Minutes
-    var debug   = 'false';  // Set debug off by default
-
-    if ( $p.attr('target') ) { target       = $p.attr('target'); }
-    if ( $p.attr('time')   ) { timeout      = $p.attr('time');   }
-    if ( $p.attr('debug')  ) { timeoutDebug = $p.attr('debug');  }
-
-    timeoutPrintDebug("TIMEOUT: Timeout Set to : " + timeout);
-    timeoutPrintDebug("TIMEOUT: Target Page: " + target);
-
-    timeoutTargetPage = target;
-
-    var deltaT = timeout * 100;
-    var idleInterval = setInterval(function() {timeoutTrigger();}, deltaT);
-    
-    // Reset Counter on every interaction
-    $(document).bind('scroll',      function(e) { timeoutIdleCount = 0; });
-    $(document).bind('mousemove',   function(e) { timeoutIdleCount = 0; });
-    $(document).bind('click',       function(e) { timeoutIdleCount = 0; });
-    $(document).bind('keypress',    function(e) { timeoutIdleCount = 0; });
-    $(document).bind('mousewheel',  function(e) { timeoutIdleCount = 0; });
-    $(document).bind('scrollstart', function(e) { timeoutIdleCount = 0; });
-
-    $(document).bind('touchstart',  function(e) { timeoutIdleCount = 0; });
-    $(document).bind('touchmove',   function(e) { timeoutIdleCount = 0; });
-    $(document).bind('touchend',    function(e) { timeoutIdleCount = 0; });
-
-    // Keep track of current page
-    $(window).bind('scrolltopage', function(page, path) {
-      timeoutCurrentPage = path; 
-      timeoutCurrentPageTitle = $("div > h1","#"+path).text();
-      timeoutIdleCount   = 0;
-      /* We could trun on and off the above binds if we are already on the right page 
-      
-      if (timeoutCurrentPage == timeoutTargetPage) {
-        console.log("XXXXXX TIMEOUT: Scrolled to Target Page: " + path);
-      } else {
-        console.log("XXXXXX TIMEOUT: Scrolled to: " + path + " ("+timeoutTargetPage + ")");
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    getAttributeToPropertyMappings: function() {
+      return {
+        'target': { "default": "id_" },
+        'time': { "default": 600, transform: parseFloat },
+        'debug': {
+          "default": false,
+          transform: function(value) {
+            return value === "true";
+          }
+        }
       }
-      */
-    });
-
-    return '';
-  }
-});
-
-
-  function timeoutTrigger() {
-  timeoutPrintDebug("TIMEOUT: Got Trigger (" + timeoutIdleCount + ")");
-  timeoutIdleCount++;
-  if (timeoutIdleCount >= 10) { 
-    timeoutIdleCount = 0;
-
-    var page_id = timeoutTargetPage;
-
-    if (timeoutCurrentPage != timeoutTargetPage && timeoutCurrentPageTitle != timeoutTargetPage) {
-      timeoutPrintDebug("TIMEOUT: Got Timeout - Now Goto Page " + timeoutTargetPage); 
-      templateEngine.scrollToPage(timeoutTargetPage);
-      templateEngine.currentPage.scrollTop(0);
-      //templateEngine.updateTopNavigation();
-    } else {
-      timeoutPrintDebug("TIMEOUT: Already on page " + timeoutTargetPage); 
-      templateEngine.currentPage.scrollTop(0);
     }
-  }
-}
+  },
 
-  function timeoutPrintDebug(s) {
-  if (timeoutDebug == 'true') console.log(s);
-}
+  /*
+   ******************************************************
+   PROPERTIES
+   ******************************************************
+   */
+  properties: {
+    target: {
+      check: "String",
+      init: "id_"
+    },
+    time: {
+      check: "Number",
+      init: 600
+    },
+    debug: {
+      check: "Boolean",
+      init: false
+    }
+  },
+
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    __timeoutIdleCount: null,
+    __timeoutCurrentPage: null,
+    __timeoutCurrentPageTitle: null,
+    __timeoutTargetPage: null,
+
+    timeoutPrintDebug: function (s) {
+      if (this.isDebug()) {
+        this.debug(s);
+      }
+    },
+
+    _onDomReady: function () {
+      this.timeoutPrintDebug("Timeout Set to : " + this.getTimeout());
+      this.timeoutPrintDebug("Target Page: " + this.getTarget());
+
+      var deltaT = this.getTimeout() * 100;
+      this.__timer = new qx.event.Timer(deltaT);
+      this.__timer.addListener("interval", this.timeoutTrigger, this);
+      this.__timer.start();
+
+      // Reset Counter on every interaction
+      qx.event.Registration.addListener(document, 'scroll', this._onUserAction, this);
+      qx.event.Registration.addListener(document, 'keypress', this._onUserAction, this);
+      qx.event.Registration.addListener(document, 'roll', this._onUserAction, this);
+      qx.event.Registration.addListener(document, 'pointerdown', this._onUserAction, this);
+
+      // Keep track of current page
+      cv.MessageBroker.getInstance().subscribe("path.pageChanged", function (path) {
+        this.__timeoutCurrentPage = path;
+        this.__timeoutCurrentPageTitle = qx.dom.Node.getText(qx.bom.Selector.query("#" + path+ " div > h1")[0]);
+        this.__timeoutIdleCount = 0;
+        /* We could trun on and off the above binds if we are already on the right page
+
+         if (timeoutCurrentPage == timeoutTargetPage) {
+         console.log("XXXXXX TIMEOUT: Scrolled to Target Page: " + path);
+         } else {
+         console.log("XXXXXX TIMEOUT: Scrolled to: " + path + " ("+timeoutTargetPage + ")");
+         }
+         */
+      });
+    },
+
+    _onUserAction: function() {
+      this.__timeoutIdleCount = 0;
+    },
+
+    timeoutTrigger: function () {
+      this.timeoutPrintDebug("TIMEOUT: Got Trigger (" + this.__timeoutIdleCount + ")");
+      this.__timeoutIdleCount++;
+      this.__timeoutTargetPage = this.getTarget();
+      if (this.__timeoutIdleCount >= 10) {
+        this.__timeoutIdleCount = 0;
+        var templateEngine = cv.TemplateEngine.getInstance();
+
+        if (this.__timeoutCurrentPage != this.__timeoutTargetPage && this.__timeoutCurrentPageTitle != this.__timeoutTargetPage) {
+          this.timeoutPrintDebug("TIMEOUT: Got Timeout - Now Goto Page " + this.__timeoutTargetPage);
+          templateEngine.scrollToPage(this.__timeoutTargetPage);
+          templateEngine.currentPage.scrollTop(0);
+          //templateEngine.updateTopNavigation();
+        } else {
+          this.timeoutPrintDebug("TIMEOUT: Already on page " + this.__timeoutTargetPage);
+          templateEngine.currentPage.scrollTop(0);
+        }
+      }
+    }
+  },
+
+  defer: function() {
+    cv.xml.Parser.addHandler("timeout", cv.plugins.timeout.Main);
+  }
 
 });
 
