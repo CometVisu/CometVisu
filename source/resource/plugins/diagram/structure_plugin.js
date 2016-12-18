@@ -291,7 +291,6 @@ qx.Class.define('cv.plugins.diagram.Main', {
     plot: null,
     plotted: null,
     _timerPopup: null,
-    _timer: null,
 
     _setupRefreshAction: function() {
       if (this.getRefresh()) {

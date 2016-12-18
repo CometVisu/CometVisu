@@ -61,6 +61,7 @@ qx.Mixin.define("cv.role.Refresh", {
    ******************************************************
    */
   members: {
+    _timer: null,
 
     setupRefreshAction: function () {
       if (this.getRefresh() && this.getRefresh() > 0) {
