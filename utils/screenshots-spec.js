@@ -7,8 +7,8 @@
 var fs = require('fs'),
   path = require('path'),
   easyimg = require('easyimage');
-var cvMockup = require('../test/protractor/pages/Mock');
-var editorMockup = require('../test/protractor/pages/EditorMock');
+var cvMockup = require('../source/test/protractor/pages/Mock');
+var editorMockup = require('../source/test/protractor/pages/EditorMock');
 
 var errorHandler = function(err) {
   if (err) throw err;

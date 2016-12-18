@@ -12,6 +12,7 @@ Description
 
 This plugins jumps back to a defined page after a given timeout period
 
+
 .. ###END-WIDGET-DESCRIPTION###
 
 
