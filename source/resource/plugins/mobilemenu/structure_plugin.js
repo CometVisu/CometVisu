@@ -92,12 +92,12 @@ qx.Class.define('cv.plugins.mobilemenu.Main', {
       var scrollStartPos=0;
 
       var elem = qx.bom.Selector.query('#'+id)[0];
-      qx.event.Registration.addListener(elem, "pointerdown", function(event) {
+      qx.event.Registration.addListener(elem, "touchstart", function(event) {
         scrollStartPos=this.scrollTop+event.touches[0].pageY;
         event.preventDefault();
       }, false);
 
-      qx.event.Registration.addListener(elem, "pointermove", function(event) {
+      qx.event.Registration.addListener(elem, "touchmove", function(event) {
         this.scrollTop=scrollStartPos-event.touches[0].pageY;
         event.preventDefault();
       },false);
