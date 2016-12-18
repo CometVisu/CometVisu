@@ -33,4 +33,25 @@ describe("testing a pushbutton widget", function() {
     expect(widget).toHaveClass('pushbutton');
     expect(widget).toHaveLabel('Test');
   });
+
+  it("should check if the up/down values are used corrent", function() {
+
+    var button = this.createTestElement("pushbutton");
+    expect(button.getActionValue({type: 'pointerup'})).toBe("0");
+    expect(button.getActionValue({type: 'pointerdown'})).toBe("1");
+  });
+
+  it("should test the events", function() {
+    var button = this.createTestElement("pushbutton");
+    var actor = button.getActor();
+
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    spyOn(button, "sendToBackend");
+    var Reg = qx.event.Registration;
+
+    Reg.fireEvent(actor, "pointerdown");
+    expect(button.sendToBackend).toHaveBeenCalledWith("1", jasmine.any(Function));
+    Reg.fireEvent(actor, "pointerup");
+    expect(button.sendToBackend).toHaveBeenCalledWith("0", jasmine.any(Function));
+  });
 });

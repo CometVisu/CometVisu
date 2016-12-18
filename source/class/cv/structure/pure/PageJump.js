@@ -151,11 +151,11 @@ qx.Class.define('cv.structure.pure.PageJump', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     // register the parser
     cv.xml.Parser.addHandler("pagejump", cv.structure.pure.PageJump);
-    cv.xml.Parser.addHook("pagejump", "after", cv.structure.pure.PageJump.afterParse, cv.structure.pure.PageJump);
+    cv.xml.Parser.addHook("pagejump", "after", statics.afterParse, statics);
     cv.xml.Parser.addHook("pagejump", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
-    cv.MessageBroker.getInstance().subscribe("path.pageChanged", cv.structure.pure.PageJump._onScrollToPage, this);
+    cv.MessageBroker.getInstance().subscribe("path.pageChanged", statics._onScrollToPage, statics);
   }
 });

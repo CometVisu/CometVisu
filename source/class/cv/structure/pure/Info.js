@@ -54,15 +54,6 @@ qx.Class.define('cv.structure.pure.Info', {
      */
     _getInnerDomString: function () {
       return '<div class="actor"><div class="value">-</div></div>';
-    },
-
-    /**
-     * Get the value that should be send to backend after the action has been triggered
-     *
-     * @method getActionValue
-     */
-    getActionValue: function () {
-      return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
     }
   },
 

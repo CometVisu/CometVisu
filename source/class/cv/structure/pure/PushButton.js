@@ -90,8 +90,8 @@ qx.Class.define('cv.structure.pure.PushButton', {
      *
      * @method getActionValue
      */
-    getActionValue: function (path, actor, isCanceled, event) {
-      if (event.type === "mouseup" || event.type === "touchend") {
+    getActionValue: function (event) {
+      if (event.type === "pointerup") {
         return this.getUpValue();
       } else {
         return this.getDownValue();
