@@ -27,211 +27,217 @@
  * @author Christian Mayer
  * @since 0.10.0
  * */
+qx.Class.define('cv.plugins.powerspectrum.Main', {
+  extend: cv.structure.pure.AbstractWidget,
+  include: [cv.role.Update],
 
-require.config({
-  shim: {
-    'plugins/diagram/dep/flot/jquery.flot.min':          ['jquery'],
-    'plugins/diagram/dep/flot/jquery.flot.canvas.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
-    'plugins/diagram/dep/flot/jquery.flot.resize.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
-    'plugins/diagram/dep/flot/jquery.flot.navigate.min': ['plugins/diagram/dep/flot/jquery.flot.min']
-  }
-});
-
-define( ['structure_custom',
-    'plugins/diagram/dep/flot/jquery.flot.min',
-    'plugins/diagram/dep/flot/jquery.flot.canvas.min',
-    'plugins/diagram/dep/flot/jquery.flot.resize.min',
-    'plugins/diagram/dep/flot/jquery.flot.navigate.min'
-  ], function( VisuDesign_Custom ) {
-  "use strict";
-  
-  // Constants
-  var
-    CURRENT = 0,
-    VOLTAGE = 1,
-    limitEN50160_1999 = [[2,0.02],[3,0.05],[4,0.01],[5,0.06],[6,0.005],[7,0.05],
-      [8,0.005],[9,0.015],[10,0.005],[11,0.035],[12,0.005],[13,0.03],[14,0.005],
-      [15,0.005],[16,0.005],[17,0.02],[18,0.005],[19,0.015],[20,0.005],
-      [21,0.005],[22,0.005],[23,0.015],[24,0.005],[25,0.015]
-    ], // limit for voltage in ratio
-    limitEN61000_3_2 = [[2,1.620],[3,3.450],[4,0.650],[5,1.710],[6,0.450],
-      [7,1.160],[8,0.350],[9,0.600],[10,0.280],[11,0.500],[12,0.233],[13,0.320],
-      [14,0.200],[15,0.230],[16,0.175],[17,0.203],[18,0.155],[19,0.182],
-      [20,0.140],[21,0.164],[22,0.127],[23,0.150],[24,0.117],[25,0.139]
-    ], // limit for current in Ampere
-    referenceSin = [[],[],[]];
-  
-  // fix limits for better displaying
-  function fixLimits( entry, index, array )
-  {
-    array[index][0] -= 0.5;
-  }
-  function lastShifted( array )
-  {
-    var last = array[ array.length-1 ];
-    return [ last[0]+1, last[1] ];
-  }
-  
-  limitEN50160_1999.forEach( fixLimits );
-  limitEN50160_1999.push( lastShifted( limitEN50160_1999 ) );
-  limitEN61000_3_2.forEach( fixLimits );
-  limitEN61000_3_2.push( lastShifted( limitEN61000_3_2 ) );
-  
-  // fill reference
-  for( var phi = 0; phi < 50; phi++ )
-  {
-    var
-      time = phi * 20 / 50; // time in milliseconds
-    
-    referenceSin[0].push( [ time, Math.sin( (phi      ) * Math.PI / 25 ) ] );
-    referenceSin[1].push( [ time, Math.sin( (phi+ 50/3) * Math.PI / 25 ) ] );
-    referenceSin[2].push( [ time, Math.sin( (phi+100/3) * Math.PI / 25 ) ] );
-  }
-  
-  /**
-   * Setup helper
-   */
-  function setupCurve()
-  {
-    return [[0,0],[0.4,0],[0.8,0],[1.2,0],[1.6,0],[2,0],[2.4,0],[2.8,0],[3.2,0],
-    [3.6,0],[4,0],[4.4,0],[4.8,0],[5.2,0],[5.6,0],[6,0],[6.4,0],[6.8,0],[7.2,0],
-    [7.6,0],[8,0],[8.4,0],[8.8,0],[9.2,0],[9.6,0],[10,0],[10.4,0],[10.8,0],
-    [11.2,0],[11.6,0],[12,0],[12.4,0],[12.8,0],[13.2,0],[13.6,0],[14,0],
-    [14.4,0],[14.8,0],[15.2,0],[15.6,0],[16,0],[16.4,0],[16.8,0],[17.2,0],
-    [17.6,0],[18,0],[18.4,0],[18.8,0],[19.2,0],[19.6,0]];
-  }
-  function setupSpectrum( offset )
-  {
-    var ret_val = [];
-    
-    if( undefined === offset )
-      offset = 0;
-    
-    for( var i = 2; i < 52; i++ )
-      ret_val.push( [ i + offset, 0 ] );
-    return ret_val;
-  }
-  
-  /**
-   * Convert a spectrum to a curve
-   */
-  function updateCurve( input, target, phase )
-  {
-    var 
-      inp = input[phase],
-      out = target[phase],
-      shift = (phase * 2 / 3 - 0.5) * Math.PI;
-      
-    for( var i = 0; i < 50; i++ )
-    {
-      var
-        phi  = i * Math.PI / 25,
-        value = Math.cos( phi + shift ); // the base with 50 Hz
-        
-      // the harmonics
-      for( var j = 2; j < 50; j++ )
-      {
-        value += Math.cos( (phi+shift) * j ) * inp[j][1];
-      }
-      
-      out[i][1] = value;
+  /*
+  ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(props) {
+    if (!props.name1) {
+      props.name1 = props.singlePhase === true ? "L" : "L1";
     }
-  }
-  
-  /**
-   * Little helper to setup the Flot dataset structure.
-   */
-  function createDatasetCurve( widgetData )
-  {
-    return widgetData.singlePhase ?
-      [
-        { label: null, data: referenceSin[0], color:13 }, // trick flot to automatically make color darker
-        { label: 'L', data: widgetData.curve[0], color:1 }
-      ] :
-      [
-        { label: null, data: referenceSin[0], color:13 },
-        { label: null, data: referenceSin[1], color:14 },
-        { label: null, data: referenceSin[2], color:15 },
-        { label: 'L1', data: widgetData.curve[0], color:1 },
-        { label: 'L2', data: widgetData.curve[1], color:2 },
-        { label: 'L3', data: widgetData.curve[2], color:3 }
-      ];
-  }
-  
-  /**
-   * Little helper to setup the Flot dataset structure.
-   */
-  function createDatasetSpectrum( widgetData )
-  {
-    return widgetData.singlePhase ? 
-      [
-        { label: widgetData.limitName, data:widgetData.displayType===VOLTAGE?limitEN50160_1999:limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
-        { label: widgetData.name1, data:widgetData.spectrum[0] , color:1}
-      ] :
-      [
-        { label: widgetData.limitName, data:widgetData.displayType===VOLTAGE?limitEN50160_1999:limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
-        { label: widgetData.name1, data:widgetData.spectrum[0], color:1 },
-        { label: widgetData.name2, data:widgetData.spectrum[1], color:2 },
-        { label: widgetData.name3, data:widgetData.spectrum[2], color:3 }
-      ];
-  }
+    if (!props.name2) {
+      props.name2 = "L2";
+    }
+    if (!props.name3) {
+      props.name3 = "L3";
+    }
+    this.base(arguments, props);
 
-  /**
-   * This will create a diagram to show the frequency that the Enertex 
-   * Smartmeter pushes on the KNX bus.
-   */
-  VisuDesign_Custom.prototype.addCreator( 'powerspectrum', {
-    create: function( element, path, flavour, type ) {
-      var 
-        $e = $(element),
-        displayType = $e.attr('type') === 'current' ? CURRENT : VOLTAGE,
-        singlePhase = $e.attr('singlephase') === 'true' ? true : false;
-      
-      // create the main structure
-      function handleVariant(src, transform, mode, variant)
-      {
-        if( !variant )
-          variant = 'spectrum'; // the default
-        
-        return [true, variant];
+    // some initializations
+    this.setSpectrum(this.isSinglePhase() ? [ this.setupSpectrum() ] : [ this.setupSpectrum(-0.26), this.setupSpectrum(0), this.setupSpectrum(0.26) ]);
+    this.setCurve(this.isSinglePhase() ? [ this.setupCurve() ] : [ this.setupCurve(), this.setupCurve(), this.setupCurve() ]);
+  },
+
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    // Constants
+    CURRENT: 0,
+    VOLTAGE: 1,
+    limitEN50160_1999: [[2, 0.02], [3, 0.05], [4, 0.01], [5, 0.06], [6, 0.005], [7, 0.05],
+      [8, 0.005], [9, 0.015], [10, 0.005], [11, 0.035], [12, 0.005], [13, 0.03], [14, 0.005],
+      [15, 0.005], [16, 0.005], [17, 0.02], [18, 0.005], [19, 0.015], [20, 0.005],
+      [21, 0.005], [22, 0.005], [23, 0.015], [24, 0.005], [25, 0.015]
+    ], // limit for voltage in ratio
+    limitEN61000_3_2: [[2, 1.620], [3, 3.450], [4, 0.650], [5, 1.710], [6, 0.450],
+      [7, 1.160], [8, 0.350], [9, 0.600], [10, 0.280], [11, 0.500], [12, 0.233], [13, 0.320],
+      [14, 0.200], [15, 0.230], [16, 0.175], [17, 0.203], [18, 0.155], [19, 0.182],
+      [20, 0.140], [21, 0.164], [22, 0.127], [23, 0.150], [24, 0.117], [25, 0.139]
+    ], // limit for current in Ampere
+    referenceSin: [[], [], []],
+
+    // fix limits for better displaying
+    fixLimits: function( entry, index, array )
+    {
+      array[index][0] -= 0.5;
+    },
+    lastShifted: function( array )
+    {
+      var last = array[ array.length-1 ];
+      return [ last[0]+1, last[1] ];
+    },
+
+
+    getAttributeToPropertyMappings: function() {
+      return {
+        'type': {
+          target: 'displayType',
+          transform: function(value) {
+            return value === 'current' ? cv.plugins.powerspectrum.Main.CURRENT : cv.plugins.powerspectrum.Main.VOLTAGE;
+          }
+        },
+        'singlephase': {
+          target: 'singlePhase',
+          transform: function(value) {
+            return value === "true";
+          }
+        },
+        'limitname': {
+          target: 'limitName',
+          "default": "limit"
+        },
+        'name1': { },
+        'name2': { },
+        'name3': { },
+        'spectrumonly': {
+          target: 'showCurve',
+          transform: function(value) {
+            return value !== 'true';
+          }
+        },
+        'showlegend': {
+          target: 'showLegend',
+          transform: function(value) {
+            return value === "true";
+          }
+        },
+        'limitcolor': {
+          target: "limitColor",
+          "default": "#edc240" // default directly from flot code
+        },
+        'color1': {
+          "default": "#afd8f8"
+        },
+        'color2': {
+          "default": "#cb4b4b"
+        },
+        'color3': {
+          "default": "#4da74d"
+        }
       }
-    
-      var ret_val = templateEngine.design.createDefaultWidget( 'powerspectrum', $e, path, flavour, type, this.update, handleVariant );
-      var data = templateEngine.widgetDataInsert( path, {
-        displayType: displayType,
-        singlePhase: singlePhase,
-        spectrum: singlePhase ? [ setupSpectrum() ] : [ setupSpectrum(-0.26), setupSpectrum(0), setupSpectrum(0.26) ],
-        limitName: $e.attr('limitname') || 'limit',
-        name1: $e.attr('name1') || (singlePhase ? 'L' : 'L1'),
-        name2: $e.attr('name2') || 'L2',
-        name3: $e.attr('name3') || 'L3',
-        curve: singlePhase ? [ setupCurve() ] : [ setupCurve(), setupCurve(), setupCurve() ],
-        current: []
-      });
+    },
 
-      var 
-        pageId = templateEngine.getPageIdForWidgetId( element, path ),
-        showCurve = $e.attr('spectrumonly') === 'true' ? false : true,
-        colors = [
-          $e.attr('limitcolor') || "#edc240", // default directly from flot code
-          $e.attr('color1')     || "#afd8f8",
-          $e.attr('color2')     || "#cb4b4b",
-          $e.attr('color3')     || "#4da74d"
-        ];
-      
+    makeAddressListFn: function(src, transform, mode, variant) {
+      if( !variant )
+        variant = 'spectrum'; // the default
+
+      return [true, variant];
+    }
+  },
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    displayType: {
+      check: [0, 1],
+      init: 1
+    },
+    singlePhase: {
+      check: "Boolean",
+      init: false
+    },
+    spectrum: {
+      check: "Array",
+      init: []
+    },
+    limitName: {
+      check: "String",
+      init: "limit"
+    },
+    name1: {
+      check: "String",
+      init: "L1"
+    },
+    name2: {
+      check: "String",
+      init: "L2"
+    },
+    name3: {
+      check: "String",
+      init: "L3"
+    },
+    curve: {
+      check: "Array",
+      init: []
+    },
+    showCurve: {
+      check: "Boolean",
+      init: false
+    },
+    showLegend: {
+      check: "Boolean",
+      init: false
+    },
+    current: {
+      check: "Array",
+      init: []
+    },
+    limitColor: {
+      check: "Color",
+      init: "#edc240"
+    },
+    color1: {
+      check: "Color",
+      init: "#afd8f8"
+    },
+    color2: {
+      check: "Color",
+      init: "#cb4b4b"
+    },
+    color3: {
+      check: "Color",
+      init: "#4da74d"
+    }
+  },
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    __plot: null,
+    __plotCurve: null,
+    
+    _getInnerDomString: function() {
       // create the actor
       var actor = '<div class="actor clickable">';
-      if( showCurve )
+      if( this.isShowCurve() )
         actor += '<div class="diagram_inline curve">loading...</div>';
       actor += '<div class="diagram_inline spectrum">loading...</div></div>';
-      
-      templateEngine.postDOMSetupFns.push( function(){
-        var 
-          diagramCurve = showCurve && $( '#' + path + ' .actor div.curve' ).empty(),
-          optionsCurve = showCurve && {
+      return actor;
+    },
+    
+    _onDomReady: function() {
+      var colors = [ this.getLimitColor(), this.getColor1(), this.getColor2(), this.getColor3() ];
+        
+      var
+        diagramCurve = this.isShowCurve() && $( '#' + this.getPath() + ' .actor div.curve' ).empty(),
+        optionsCurve = this.isShowCurve() && {
             colors: colors,
             legend: {
-              show: $e.attr('showlegend') === 'true' ? true : false // default to false
+              show: this.isShowLegend()
             },
             xaxis: {
               show: false
@@ -240,77 +246,189 @@ define( ['structure_custom',
               show: false
             }
           },
-          diagramSpectrum = $( '#' + path + ' .actor div.spectrum' ).empty(),
-          optionsSpectrum = {
-            colors: colors,
-            series: {
-              bars: {
-                show: true,
-                fill: 1,
-                fillColor: null,
-                lineWidth: 0
-              }
-            },
+        diagramSpectrum = $( '#' + this.getPath() + ' .actor div.spectrum' ).empty(),
+        optionsSpectrum = {
+          colors: colors,
+          series: {
             bars: {
-              align: "center",
-              barWidth: singlePhase ? 0.75 : 0.25
-            },
-            legend: {
-              show: $e.attr('showlegend') === 'false' ? false : true // default to true
-            },
-            xaxis: {
-              show: false
-            },
-            yaxis: {
-              show: false
-            },
-          };
-        data.plotCurve = showCurve && $.plot(diagramCurve, createDatasetCurve( data ), optionsCurve);
-        data.plot = $.plot(diagramSpectrum, createDatasetSpectrum( data ), optionsSpectrum);
-      });
-      
-      return ret_val + actor + '</div>';
+              show: true,
+              fill: 1,
+              fillColor: null,
+              lineWidth: 0
+            }
+          },
+          bars: {
+            align: "center",
+            barWidth: this.isSinglePhase() ? 0.75 : 0.25
+          },
+          legend: {
+            show: this.isShowLegend()
+          },
+          xaxis: {
+            show: false
+          },
+          yaxis: {
+            show: false
+          }
+        };
+      this.__plotCurve = this.isShowCurve() && $.plot(diagramCurve, this.createDatasetCurve(), optionsCurve);
+      this.__plot = $.plot(diagramSpectrum, this.createDatasetSpectrum(), optionsSpectrum);
     },
-    update: function( ga, data ) {
-      var 
-        element = $(this),
-        widgetData = templateEngine.widgetDataGetByElement( this ),
-        addressInfo = widgetData.address[ ga ];
-        
+
+    _update: function( ga, data ) {
+      if (ga === undefined) return;
+      var addressInfo = this.getAddress()[ ga ];
+
       if( addressInfo[2][0] === 'I' )
       {
         var
-          phase = widgetData.singlePhase ? 1 : +(addressInfo[2][1] || 1),
-          value = templateEngine.transformDecode( addressInfo[0], data );
-        widgetData.current[phase-1] = value / 1000; // transform mA to A
-      } else if( 
-        widgetData.address[ ga ][2].substr(0,8) === 'spectrum'
+          phase = this.isSinglePhase() ? 1 : +(addressInfo[2][1] || 1),
+          value = cv.Transform.encode( addressInfo[0], data );
+        this.getCurrent()[phase-1] = value / 1000; // transform mA to A
+      } else if(
+        addressInfo[2].substr(0,8) === 'spectrum'
         && data.length === 28 ) // sanity check for 14 bytes
       {
-        var 
-          phase = widgetData.singlePhase ? 1 : +(addressInfo[2][8] || 1),
-          index = parseInt( data.substr( 0, 2 ), 16 ),
-          factor = widgetData.current[phase-1] || 1,
+        var
+          phase = this.isSinglePhase() ? 1 : +(addressInfo[2][8] || 1),
+          index = parseInt(data.substr(0, 2), 16),
+          factor = this.getCurrent()[phase - 1] || 1,
           values = [];
 
-        for( var i = 0; i < 13; i++ )
-        {
-          if( index + i < 2 )
+        for (var i = 0; i < 13; i++) {
+          if (index + i < 2)
             continue;
-          
-          values[i] = Math.pow( 10, (parseInt( data.substr( i*2 + 2, 2 ), 16 ) - 253) / 80);
-          widgetData.spectrum[phase-1][ index + i - 2 ][1] = values[i] * factor;
+
+          values[i] = Math.pow(10, (parseInt(data.substr(i * 2 + 2, 2), 16) - 253) / 80);
+          this.getSpectrum()[phase - 1][index + i - 2][1] = values[i] * factor;
         }
-        widgetData.plot.setData( createDatasetSpectrum( widgetData ) );
-        widgetData.plot.draw();
-        
-        if( widgetData.plotCurve )
-        {
-          updateCurve( widgetData.spectrum, widgetData.curve, phase-1 );
-          widgetData.plotCurve.setData( createDatasetCurve( widgetData ) );
-          widgetData.plotCurve.draw();
+        this.__plot.setData(this.createDatasetSpectrum());
+        this.__plot.draw();
+
+        if (widgetData.plotCurve) {
+          this.updateCurve(this.getSpectrum(), this.getCurve(), phase - 1);
+          this.__plotCurve.setData(this.createDatasetCurve());
+          this.__plotCurve.draw();
         }
       }
+    },
+    
+    /**
+     * Setup helper
+     */
+    setupCurve: function()
+    {
+      return [[0,0],[0.4,0],[0.8,0],[1.2,0],[1.6,0],[2,0],[2.4,0],[2.8,0],[3.2,0],
+        [3.6,0],[4,0],[4.4,0],[4.8,0],[5.2,0],[5.6,0],[6,0],[6.4,0],[6.8,0],[7.2,0],
+        [7.6,0],[8,0],[8.4,0],[8.8,0],[9.2,0],[9.6,0],[10,0],[10.4,0],[10.8,0],
+        [11.2,0],[11.6,0],[12,0],[12.4,0],[12.8,0],[13.2,0],[13.6,0],[14,0],
+        [14.4,0],[14.8,0],[15.2,0],[15.6,0],[16,0],[16.4,0],[16.8,0],[17.2,0],
+        [17.6,0],[18,0],[18.4,0],[18.8,0],[19.2,0],[19.6,0]];
+    },
+    setupSpectrum: function( offset )
+    {
+      var ret_val = [];
+
+      if( undefined === offset )
+        offset = 0;
+
+      for( var i = 2; i < 52; i++ )
+        ret_val.push( [ i + offset, 0 ] );
+      return ret_val;
+    },
+
+    /**
+     * Convert a spectrum to a curve
+     */
+    updateCurve: function( input, target, phase )
+    {
+      var
+        inp = input[phase],
+        out = target[phase],
+        shift = (phase * 2 / 3 - 0.5) * Math.PI;
+
+      for( var i = 0; i < 50; i++ )
+      {
+        var
+          phi  = i * Math.PI / 25,
+          value = Math.cos( phi + shift ); // the base with 50 Hz
+
+        // the harmonics
+        for( var j = 2; j < 50; j++ )
+        {
+          value += Math.cos( (phi+shift) * j ) * inp[j][1];
+        }
+
+        out[i][1] = value;
+      }
+    },
+
+    /**
+     * Little helper to setup the Flot dataset structure.
+     */
+    createDatasetCurve: function()
+    {
+      return this.isSinglePhase() ?
+        [
+          { label: null, data: this.self(arguments).referenceSin[0], color:13 }, // trick flot to automatically make color darker
+          { label: 'L', data: this.getCurve()[0], color:1 }
+        ] :
+        [
+          { label: null, data: this.self(arguments).referenceSin[0], color:13 },
+          { label: null, data: this.self(arguments).referenceSin[1], color:14 },
+          { label: null, data: this.self(arguments).referenceSin[2], color:15 },
+          { label: 'L1', data: this.getCurve()[0], color:1 },
+          { label: 'L2', data: this.getCurve()[1], color:2 },
+          { label: 'L3', data: this.getCurve()[2], color:3 }
+        ];
+    },
+
+    /**
+     * Little helper to setup the Flot dataset structure.
+     */
+    createDatasetSpectrum: function() {
+      return this.isSinglePhase() ?
+        [
+          { label: this.getLimitName(), data: this.getDisplayType()===this.self(arguments).VOLTAGE ? this.self(arguments).limitEN50160_1999 : this.self(arguments).limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
+          { label: this.getName1(), data:this.getSpectrum()[0] , color:1}
+        ] :
+        [
+          { 
+            label: this.getLimitName(), 
+            data: this.getDisplayType() === this.self(arguments).VOLTAGE ? this.self(arguments).limitEN50160_1999 : this.self(arguments).limitEN61000_3_2, bars:{show:false}, lines:{steps:true}, color:0 },
+          { label: this.getName1(), data:this.getSpectrum()[0], color:1 },
+          { label: this.getName2(), data:this.getSpectrum()[1], color:2 },
+          { label: this.getName3(), data:this.getSpectrum()[2], color:3 }
+        ];
     }
-  });
+  },
+
+  defer: function(statics) {
+    var loader = cv.util.ScriptLoader.getInstance();
+    loader.addScripts([
+      'plugins/diagram/dep/flot/jquery.flot.min.js',
+      'plugins/diagram/dep/flot/jquery.flot.canvas.min.js',
+      'plugins/diagram/dep/flot/jquery.flot.resize.min.js',
+      'plugins/diagram/dep/flot/jquery.flot.navigate.min.js'
+    ]);
+    cv.xml.Parser.addHandler("powerspectrum", cv.plugins.powerspectrum.Main);
+    
+    // init
+    statics.limitEN50160_1999.forEach( statics.fixLimits );
+    statics.limitEN50160_1999.push( statics.lastShifted( statics.limitEN50160_1999 ) );
+    statics.limitEN61000_3_2.forEach( statics.fixLimits );
+    statics.limitEN61000_3_2.push( statics.lastShifted( statics.limitEN61000_3_2 ) );
+
+    // fill reference
+    for( var phi = 0; phi < 50; phi++ )
+    {
+      var
+        time = phi * 20 / 50; // time in milliseconds
+
+      statics.referenceSin[0].push( [ time, Math.sin( (phi      ) * Math.PI / 25 ) ] );
+      statics.referenceSin[1].push( [ time, Math.sin( (phi+ 50/3) * Math.PI / 25 ) ] );
+      statics.referenceSin[2].push( [ time, Math.sin( (phi+100/3) * Math.PI / 25 ) ] );
+    }
+  }
+
 });
