@@ -22,74 +22,113 @@
  * @author alltime84
  * @since 2016
  */
-define( ['structure_custom', 'css!plugins/mobilemenu/mobilemenu.css'  ], function( VisuDesign_Custom ) {
-  "use strict";
- 
-  VisuDesign_Custom.prototype.addCreator("mobilemenu", {
-    create: function(element, path, flavour, type) {
-      var $e = $(element);
-      var data = templateEngine.widgetDataInsert( path, {
-        content           : getWidgetElements($e, path)
-      } );
-      
-      if(isTouchDevice()){
-        touchScroll("navbarLeft");
-      }
-      if (window.innerWidth <= templateEngine.maxMobileScreenWidth){
-        if (!$('#navbarLeft').hasClass('mobilemenu')){
-          $('#navbarLeft').addClass('mobilemenu');
+qx.Class.define('cv.plugins.mobilemenu.Main', {
+  extend: cv.structure.pure.AbstractWidget,
+  include: [cv.role.HasChildren],
+
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+
+    getWidgetElements: function(xmlElement, path, flavour, type) {
+      cv.data.Model.getInstance().setWidgetData( path+"_0", {
+        containerClass           : "actor"
+      });
+    }
+  },
+
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    __navLeft : null,
+    __isTouchDevice: null,
+
+    // overridden
+    getDomString: function() {
+      if (window.innerWidth <= cv.Config.maxMobileScreenWidth){
+        var navLeft = this.__navLeft = qx.bom.Selector.query('#navbarLeft')[0];
+        if (!qx.bom.element.Class.has(navLeft, 'mobilemenu')){
+          qx.bom.element.Class.add(navLeft, 'mobilemenu');
         }
-        $('#navbarLeft').hide();
-        $(window).bind('scrolltopage', function(){
-          $('#navbarLeft .navbar').hide("slide", { direction: "left" }, 200);
-          $('#navbarLeft').hide();
+        qx.bom.element.Style.set(navLeft, "display", "none");
+        cv.MessageBroker.getInstance().subscribe("path.pageChanged", function() {
+          var navbar = qx.bom.Selector.query('.navbar', navLeft)[0];
+          var animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
+          animation.addListenerOnce("end", function() {
+            qx.bom.element.Style.set(navLeft, "display", "none");
+          }, this);
         });
-        
-        return '<div class="clearfix mobilemenuTrigger">' + data.content + '</div>';
+
+        return '<div class="clearfix mobilemenuTrigger">' + this.getChildrenDomString() + '</div>';
       } else {
         return '<div class="clearfix mobilemenuTrigger" style="display: none"></div>';
       }
     },
-    action: function( path, actor, isCanceled ) {
-      if (window.innerWidth <= templateEngine.maxMobileScreenWidth){
-        if(isTouchDevice()){
-          $('#navbarLeft').show();
-          $('#navbarLeft .navbar.navbarActive').show("slide", { direction: "left" }, 200);
+
+    _onDomReady: function() {
+      if(this.isTouchDevice()){
+        this.touchScroll("navbarLeft");
+      }
+    },
+
+    _action: function() {
+      if (window.innerWidth <= cv.Config.maxMobileScreenWidth){
+        if(this.isTouchDevice()){
+          qx.bom.element.Style.set(this.__navLeft, "display", "block");
+          var navbar = qx.bom.Selector.query('.navbar.navbarActive', this.__navLeft)[0];
+          qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_IN);
         }
       }
-    } 
-  });
- 
-  function getWidgetElements(xmlElement, path, flavour, type) {
-    var mobilemenuTrigger = $('mobilemenu > *', xmlElement).first()[0];
-    var data = templateEngine.widgetDataInsert( path+"_0", {
-      containerClass           : "actor"
-    } );
-    var ret_val = templateEngine.create_pages(mobilemenuTrigger, path+"_0", flavour, mobilemenuTrigger.nodeName);
+    },
 
-    return ret_val;
-  }
-  
-  function isTouchDevice(){
-    try{
-      document.createEvent("TouchEvent");
-      return true;
-    }catch(e){
-      return false;
+    touchScroll: function(id){
+      var scrollStartPos=0;
+
+      var elem = qx.bom.Selector.query('#'+id)[0];
+      qx.event.Registration.addListener(elem, "pointerdown", function(event) {
+        scrollStartPos=this.scrollTop+event.touches[0].pageY;
+        event.preventDefault();
+      }, false);
+
+      qx.event.Registration.addListener(elem, "pointermove", function(event) {
+        this.scrollTop=scrollStartPos-event.touches[0].pageY;
+        event.preventDefault();
+      },false);
+    },
+
+    isTouchDevice: function(){
+      if (this.__isTouchDevice === null) {
+        try {
+          document.createEvent("TouchEvent");
+          this.__isTouchDevice = true;
+        } catch (e) {
+          this.__isTouchDevice = false;
+        }
+      }
+      return this.__isTouchDevice;
     }
-  }
-      
-  function touchScroll(id){
-    var scrollStartPos=0;
+  },
 
-    document.getElementById(id).addEventListener("touchstart", function(event) {
-      scrollStartPos=this.scrollTop+event.touches[0].pageY;
-      event.preventDefault();
-    },false);
+  // VisuDesign_Custom.prototype.addCreator("mobilemenu", {
+  //   create: function(element, path, flavour, type) {
+  //     var $e = $(element);
+  //     var data = templateEngine.widgetDataInsert( path, {
+  //       content           : getWidgetElements($e, path)
+  //     } );
+  // });
 
-    document.getElementById(id).addEventListener("touchmove", function(event) {
-      this.scrollTop=scrollStartPos-event.touches[0].pageY;
-      event.preventDefault();
-    },false);
+  defer: function() {
+    var loader = cv.util.ScriptLoader.getInstance();
+    loader.addStyles('plugins/mobilemenu/mobilemenu.css');
+    cv.xml.Parser.addHandler("mobilemenu", cv.plugins.mobilemenu.Main);
+    // add parser hook for children
+    cv.xml.Parser.addHook("mobilemenu", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
   }
 });
