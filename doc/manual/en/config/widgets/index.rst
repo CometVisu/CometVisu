@@ -38,13 +38,13 @@ actions, e.g. you can switch on a lamp by clicking a switch-widget, or you can n
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`PushButton <pushbutton/index>`            | Adds a button to the visu that sends a defined value to the BUS when you press and release. E.g. pushing a 1 and releasing a 0. This makes it possible, for example, to simulate a push button to open and close a garage door, blinds or blinds.                                                         |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`Refresh <refresh/index>`                  | With the widget refresh, the visu is added a switch, which allows the visu to reloaded the displayed data                                                                                                                                                                                                 |
+| :doc:`Refresh <refresh/index>`                  | With the widget refresh, the visu is added a switch, which allows the visu to reload the displayed data.                                                                                                                                                                                                  |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`Reload <reload/index>`                    | With the reload widget, the visu is added a switch, which allows to reload the full visu in the browser                                                                                                                                                                                                   |
+| :doc:`Reload <reload/index>`                    | With the reload widget, the visu is added a switch, which allows to reload the full visu in the browser.                                                                                                                                                                                                  |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`Slide <slide/index>`                      | Adds a horizontal slider to the visu. This can be used, for example, to dim a light or change temperature values.                                                                                                                                                                                         |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`Switch <switch/index>`                    | Adds a button to the visu. Switching actions can be triggered. The switch is typically used for ON/OFF actions. (E.g. light or power sockets)                                                                                                                                                             |
+| :doc:`Switch <switch/index>`                    | Adds a button to the visu. Switching actions can be triggered. The switch is typically used for ON/OFF actions (e.g. light or power sockets).                                                                                                                                                             |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`Toggle <toggle/index>`                    | The toggle widget is similar to the switch, but it can take more than two states. Can be used to change the operating modes of the heating system. Each time the toggle is pressed, the toggle takes the next possible state.                                                                             |
 +-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -83,7 +83,7 @@ These widgets have a purely informative function, an operation is not possible.
 +===================================================+=======================================================================================================================================+
 | :doc:`Image <image/index>`                        | Adds a static image or a live camera image to the visu.                                                                               |
 +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`Info <info/index>`                          | Adds a dynamic field to the visu that can represent values from the BUS. (e.g. 14-byte text or temperature measurements)              |
+| :doc:`Info <info/index>`                          | Adds a dynamic field to the visu that can represent values from the BUS (e.g. 14-byte text or temperature measurements).              |
 +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`Line <line/index>`                          | Adds a horizontal line to the visu to divide the display into individual areas.                                                       |
 +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
@@ -95,7 +95,7 @@ These widgets have a purely informative function, an operation is not possible.
 +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | :doc:`Web <web/index>`                            | Adds an area to the visu, where external websites can be displayed.                                                                   |
 +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`WG_Plugin_Info <wgplugininfo/index>`        | Adds an dynamic field to the viso that shows live information from a WireGate plugin.                                                 |
+| :doc:`WG_Plugin_Info <wgplugininfo/index>`        | Adds an dynamic field to the visu that shows live information from a WireGate plugin.                                                 |
 +---------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 
 .. toctree::
@@ -115,19 +115,19 @@ These widgets have a purely informative function, an operation is not possible.
 Other widgets
 =============
 
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-| Widget                                            | Description                                                                                                                              |
-+===================================================+==========================================================================================================================================+
-| :doc:`Break <break/index>`                        | Adds a line break to the visu.                                                                                                           |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`Group <group/index>`                        | With group, widgets can be grouped together. The group can be given a size via "layout".                                                 |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`Include <include/index>`                    | Allows you to split the visu_config.xml into multiple files and re-merge the parts using *include*.                                      |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`Navbar <navbar/index>`                      | With the widget navbar, you can add a navigation menu to the entire visu. The menu can be displayed on a page (top, bottom, left, right) |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
-| :doc:`Page <page/index>`                          | Creates a new sub page and adds a corresponding link to the current page.                                                                |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
++---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| Widget                                            | Description                                                                                                                               |
++===================================================+===========================================================================================================================================+
+| :doc:`Break <break/index>`                        | Adds a line break to the visu.                                                                                                            |
++---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| :doc:`Group <group/index>`                        | With group, widgets can be grouped together. The group can be given a size via "layout".                                                  |
++---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| :doc:`Include <include/index>`                    | Allows you to split the visu_config.xml into multiple files and re-merge the parts using *include*.                                       |
++---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| :doc:`Navbar <navbar/index>`                      | With the widget navbar, you can add a navigation menu to the entire visu. The menu can be displayed on a page (top, bottom, left, right). |
++---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| :doc:`Page <page/index>`                          | Creates a new sub page and adds a corresponding link to the current page.                                                                 |
++---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 .. toctree::
@@ -158,33 +158,33 @@ For example:
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | Widget                                                                | Description                                                                                                           |
 +=======================================================================+=======================================================================================================================+
-| :doc:`ColorChooser <plugins/colorchooser/index>`                      | Color selection wheel for RGB illumination                                                                            |
+| :doc:`ColorChooser <plugins/colorchooser/index>`                      | Color selection wheel for RGB illumination.                                                                           |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`Diagram <plugins/diagram/index>`                                | RRD based graphs                                                                                                      |
+| :doc:`Diagram <plugins/diagram/index>`                                | RRD based graphs.                                                                                                     |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`Diagram_Info <plugins/diagramm_info/index>`                     | Information display that opens a graph when you click on it                                                           |
+| :doc:`Diagram_Info <plugins/diagramm_info/index>`                     | Information display that opens a graph when you click on it.                                                          |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`PowerSpectrum <plugins/powerspectrum/index>`                    | Graph of the spectrum of a power source                                                                               |
+| :doc:`PowerSpectrum <plugins/powerspectrum/index>`                    | Graph of the spectrum of a power source.                                                                              |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`Strftime <plugins/strftime/index>`                              | Display of the time in text form                                                                                      |
+| :doc:`Strftime <plugins/strftime/index>`                              | Display of the time in text form.                                                                                     |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`RSSlog <plugins/rsslog/index>`                                  | RSS                                                                                                                   |
+| :doc:`RSSlog <plugins/rsslog/index>`                                  | Display of RSS feed.                                                                                                  |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`RSS <plugins/rss/index>`                                        | RSS                                                                                                                   |
+| :doc:`RSS <plugins/rss/index>`                                        | Display of RSS feed.                                                                                                  |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`Gauge <plugins/gauge/index>`                                    | Pointer instrument                                                                                                    |
+| :doc:`Gauge <plugins/gauge/index>`                                    | Pointer instrument.                                                                                                   |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`CalendarList <plugins/calendarlist/index>`                      | External calendar                                                                                                     |
+| :doc:`CalendarList <plugins/calendarlist/index>`                      | External calendar.                                                                                                    |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 | :doc:`Clock <plugins/clock/index>`                                    | Widget to display the time of an address.                                                                             |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`SVG <plugins/svg/index>`                                        | Demo plugin to show the integration of an interactive scalable vector graphic                                         |
+| :doc:`SVG <plugins/svg/index>`                                        | Demo plugin to show the integration of an interactive scalable vector graphic.                                        |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`Timeout <plugins/timeout/index>`                                | Changes currently displayed page after some time of inactivity                                                        |
+| :doc:`Timeout <plugins/timeout/index>`                                | Changes currently displayed page after some time of inactivity.                                                       |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`UPNPController <plugins/upnpcontroller/index>`                  | UPNP Controller                                                                                                       |
+| :doc:`UPNPController <plugins/upnpcontroller/index>`                  | UPNP Controller.                                                                                                      |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
-| :doc:`Speech <plugins/speech/index>`                                  | Uses the browsers built in text-to-speech engine to speak text                                                        |
+| :doc:`Speech <plugins/speech/index>`                                  | Uses the browsers built in text-to-speech engine to speak text.                                                       |
 +-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
 
 .. toctree::
