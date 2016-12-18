@@ -42,8 +42,8 @@ class Scaffolder(Command):
                 self.log.error("widget template '%s' language '%s' not found" % (widget_name, language))
                 exit(1)
 
-            for file in os.listdir(os.path.join("src", "structure", "pure")):
-                if file.endswith(".js") and not file.startswith("_"):
+            for file in os.listdir(os.path.join("source", "class", "cv", "structure", "pure")):
+                if file.endswith(".js") and not file.startswith("Abstract"):
                     # this is a widget
                     found_widget = os.path.splitext(file)[0]
                     if widget_name == "ALL" or widget_name.lower() == found_widget.lower():
@@ -54,7 +54,7 @@ class Scaffolder(Command):
                 self.log.error("plugin template '%s' language '%s' not found" % (plugin_name, language))
                 exit(1)
 
-            plugin_dir = os.path.join("src", "plugins")
+            plugin_dir = os.path.join("source", "resource", "plugins")
             if plugin_name == 'ALL':
                 widgets = [name for name in os.listdir(plugin_dir) if os.path.isdir(os.path.join(plugin_dir, name))]
             else:

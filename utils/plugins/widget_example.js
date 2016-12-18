@@ -55,7 +55,7 @@ var cacheDir = path.join("cache", "widget_examples", "jsdoc");
 var screenshotDir = path.join(config.api.target.replace("<version>", version), "examples");
 createDir(cacheDir);
 
-var schemaString = fs.readFileSync(path.join("src", "visu_config.xsd"), "utf-8");
+var schemaString = fs.readFileSync(path.join("source", "visu_config.xsd"), "utf-8");
 var schema = xsd.parse(schemaString);
 
 function getCaptionString(globalCaption, screenshots) {
