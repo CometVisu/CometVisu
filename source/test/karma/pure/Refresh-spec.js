@@ -32,4 +32,16 @@ describe("testing a refresh widget", function() {
     expect(widget).toHaveClass('refresh');
     expect(widget).toHaveLabel('Test');
   });
+
+  it("should test the refresh actor", function() {
+    var res = this.createTestElement("refresh");
+    cv.TemplateEngine.getInstance().visu = jasmine.createSpyObj('visu', ['restart']);
+
+    spyOn(res, "defaultUpdate");
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    qx.event.Registration.fireEvent(res.getActor(), "tap");
+
+    expect(cv.TemplateEngine.getInstance().visu.restart).toHaveBeenCalled();
+  });
+
 });

@@ -32,18 +32,6 @@ qx.Class.define('cv.structure.pure.Refresh', {
 
   /*
   ******************************************************
-    CONSTRUCTOR
-  ******************************************************
-  */
-  construct: function(props) {
-    this.base(arguments, props);
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function() {
-      this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
-    }, this);
-  },
-
-  /*
-  ******************************************************
     PROPERTIES
   ******************************************************
   */
@@ -70,6 +58,11 @@ qx.Class.define('cv.structure.pure.Refresh', {
   ******************************************************
   */
   members: {
+    _onDomReady: function() {
+      this.base(arguments);
+      this.defaultUpdate(undefined, this.getSendValue());
+    },
+
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
