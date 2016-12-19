@@ -28,7 +28,7 @@ from api_doc import ApiDocDirective
 from settings import config, root_dir
 from __init__ import Version
 
-references = {"_base": "http://test.cometvisu.org/CometVisu/"}
+references = {"_base": "http://www.cometvisu.org/CometVisu/"}
 reference_prefix = config.get("references", "prefix").replace("<version>", Version.get_doc_version())
 references_file = os.path.join(root_dir, config.get("references", "target"))
 redirect_file = os.path.join(root_dir, config.get("redirect", "target"))
