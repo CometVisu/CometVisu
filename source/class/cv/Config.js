@@ -134,6 +134,13 @@ qx.Class.define('cv.Config', {
       // to false
     }
 
+    if (req.queryKey.enableCache === "invalid") {
+      cv.ConfigCache.clear(cv.Config.configSuffix);
+      cv.Config.enableCache = true;
+    } else {
+      cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : true;
+    }
+
     // "Bug"-Fix for ID: 3204682 "Caching on web server"
     // Config isn't a real fix for the problem as that's part of the web browser,
     // but

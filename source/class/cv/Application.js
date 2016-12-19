@@ -103,6 +103,20 @@ qx.Class.define("cv.Application",
         }
       }, this);
       qx.bom.Lifecycle.onReady(function () {
+        var cache = false;
+        if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
+          // load settings
+          this.debug("using cache");
+          cv.Config = cv.ConfigCache.getData("configSettings");
+          cache = cv.ConfigCache.getData();
+          cv.data.Model.getInstance().setWidgetDataModel(cache.data);
+          cv.data.Model.getInstance().setAddressList(cache.addresses);
+          var body = qx.bom.Selector.query("body")[0];
+          qx.dom.Element.empty(body);
+          qx.bom.Html.clean([cv.ConfigCache.getBody()], null, body);
+
+          thisTemplateEngine.create_objects();
+        }
 
         // get the data once the page was loaded
         var uri = 'resource/config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml';
