@@ -64,7 +64,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
     colspan           : { check: "Number", init: 6, transform: "string2number" },
     colspanM          : { check: "Number", init: 6, transform: "string2number" },
     colspanS          : { check: "Number", init: 6, transform: "string2number" },
-    rowspanClass      : { check: "String" }
+    rowspanClass      : { check: "String", init: "" }
   },
 
   /*

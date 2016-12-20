@@ -35,6 +35,15 @@ qx.Class.define("cv.Application",
   extend : qx.application.Native,
 
   /*
+   ******************************************************
+   STATICS
+   ******************************************************
+   */
+  statics: {
+    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="width:20000em; position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div><div id="message"></div>'
+  },
+
+  /*
   *****************************************************************************
      MEMBERS
   *****************************************************************************
@@ -104,6 +113,7 @@ qx.Class.define("cv.Application",
       }, this);
       qx.bom.Lifecycle.onReady(function () {
         var cache = false;
+        var body = qx.bom.Selector.query("body")[0];
         if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
           // load settings
           this.debug("using cache");
@@ -111,11 +121,12 @@ qx.Class.define("cv.Application",
           cache = cv.ConfigCache.getData();
           cv.data.Model.getInstance().setWidgetDataModel(cache.data);
           cv.data.Model.getInstance().setAddressList(cache.addresses);
-          var body = qx.bom.Selector.query("body")[0];
           qx.dom.Element.empty(body);
           qx.bom.Html.clean([cv.ConfigCache.getBody()], null, body);
-
-          thisTemplateEngine.create_objects();
+        } else {
+          // load empty HTML structure
+          qx.dom.Element.empty(body);
+          qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
         }
 
         // get the data once the page was loaded

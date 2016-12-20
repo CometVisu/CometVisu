@@ -264,12 +264,48 @@ qx.Class.define('cv.TemplateEngine', {
           qx.bom.element.Attribute.set(elem, 'media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
         });
 
-        var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
+        var cache = false;
+        if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
 
-        this.createPages(page, 'id');
-        cv.structure.pure.Page.createFinal();
+          // check if cache is still valid
+          if (!cv.ConfigCache.isValid(this.xml)) {
+            // TODO: remove before release
+            this.debug("cache is invalid re-parse xml");
+            // cache invalid
+            cache = false;
+            cv.ConfigCache.clear();
+
+            // load empty HTML structure
+            var body = qx.bom.Selector.query("body")[0];
+            qx.dom.Element.empty(body);
+            qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+
+            //empty model
+            cv.data.Model.getInstance().resetWidgetDataModel();
+            cv.data.Model.getInstance().resetAddressList();
+          } else {
+            cache = true;
+
+            // create the objects
+            var data = cv.data.Model.getInstance().getWidgetData("id_");
+            cv.structure.WidgetFactory.createInstance(data.$$type, data);
+          }
+        }
+        if (!cache) {
+          // TODO: remove before release
+          this.debug("not using cache");
+          var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
+
+          this.createPages(page, 'id');
+          cv.structure.pure.Page.createFinal();
+        }
 
         cv.MessageBroker.getInstance().publish("setup.dom.finished");
+        if (!cache && cv.Config.enableCache) {
+          // cache dom + data
+          cv.ConfigCache.dump(this.xml);
+        }
+
 
         var startpage = 'id_';
         if (cv.Config.startpage) {

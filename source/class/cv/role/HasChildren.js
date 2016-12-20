@@ -22,11 +22,43 @@ qx.Mixin.define("cv.role.HasChildren", {
 
   /*
   ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(props) {
+    var children = [];
+    // create children
+    var model = cv.data.Model.getInstance();
+    props.children.forEach(function(path) {
+      var data = model.getWidgetData(path);
+      var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
+      if (widget) {
+        children.push(widget);
+        widget.setParentWidget(this);
+      }
+    }, this);
+    this.setChildWidgets(children);
+  },
+
+
+  /*
+  ******************************************************
     PROPERTIES
   ******************************************************
   */
   properties: {
+    /**
+     * Array with child paths
+     */
     children: {
+      check: "Array",
+      init: []
+    },
+
+    /**
+     * Array with child widget objects
+     */
+    childWidgets: {
       check: "Array",
       init: []
     }
@@ -91,23 +123,17 @@ qx.Mixin.define("cv.role.HasChildren", {
     getChildrenDomString: function (noWidgetContainer) {
       var container = '';
 
-      this.getChildren().forEach(function (path) {
-        var data = cv.data.Model.getInstance().getWidgetData(path);
-        var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
-        if (widget) {
-          widget.setParentWidget(this);
-          var subelement = widget.getDomString();
-          if (undefined === subelement)
-            return;
-          if (noWidgetContainer === true) {
-            container += subelement;
-          } else {
-            container += '<div class="widget_container '
-              + (data.rowspanClass ? data.rowspanClass : '')
-              + (data.containerClass ? data.containerClass : '')
-              + ('break' === data.$$type ? 'break_container' : '') // special case for break widget
-              + '" id="' + path + '" data-type="' + data.$$type + '">' + subelement + '</div>';
-          }
+      this.getChildWidgets().forEach(function(widget) {
+        var subelement = widget.getDomString();
+        if (undefined === subelement)
+          return;
+        if (noWidgetContainer === true) {
+          container += subelement;
+        } else {
+          container += '<div class="widget_container ' + widget.getRowspanClass()
+            + (widget.getContainerClass ? widget.getContainerClass() : '')
+            + ('break' === widget.get$$type() ? 'break_container' : '') // special case for break widget
+            + '" id="' + widget.getPath() + '" data-type="' + widget.get$$type() + '">' + subelement + '</div>';
         }
       }, this);
       return container;

@@ -79,7 +79,7 @@ qx.Class.define('cv.ConfigCache', {
       // cache the result, as the config stays the same until next reload
       if (this._valid === null) {
         var hash = this.toHash(xml);
-        qx.log.Logger.debug("Current hash: '%s', cached hash: '%s'", hash, this.getData("hash"));
+        qx.log.Logger.debug(this, "Current hash: '"+hash+"', cached hash: '"+this.getData("hash")+"'");
         this._valid = hash == this.getData("hash");
       }
       return this._valid;
