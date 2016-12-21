@@ -45,7 +45,8 @@
     "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.test.*"],
     "LOCALES"      : [ "en", "de" ],
     "CACHE"        : "${TMPDIR}/qx${QOOXDOO_VERSION}/cache",
-    "ROOT"         : "."
+    "ROOT"         : ".",
+    "CV_VERSION"   : "dev"
   },
 
   "config-warnings" :
@@ -89,7 +90,8 @@
       "=environment" :
       {
         "qx.version"     : "5.1",
-        "qx.application" : "${APPLICATION}.Application"
+        "qx.application" : "${APPLICATION}.Application",
+        "cv.version"     : "${CV_VERSION}"
       },
       "add-script" : [
         {
@@ -163,6 +165,12 @@
 
       "extend" : ["libraries", "apiconf::build-viewer"],
 
+      "environment" :
+      {
+        "versionLabel.name"     : "CometVisu",
+        "versionLabel.version"  : "${CV_VERSION}"
+      },
+
       "run" : [
         "api-data"
       ],
@@ -183,11 +191,11 @@
 
       "let"    :
       {
-        "BUILD_PATH"     : "${ROOT}/api",
+        "BUILD_PATH"     : "${ROOT}/out/api",
         "API_INCLUDE"    : ["qx.*", "${APPLICATION}.*"],
         "API_EXCLUDE"    : ["qx.test.*", "${APPLICATION}.test.*"]
       }
-    },
+    }
 
     // Uncomment the following entry to add a contrib or library to your
     // project; make sure to adapt the path to the Manifest.json; if you are
