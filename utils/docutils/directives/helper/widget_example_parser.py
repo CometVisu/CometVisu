@@ -197,7 +197,7 @@ class WidgetExampleParser:
                 text += '<img id="%s" src="resource/apiviewer/examples/%s.png"' % (shot['name'], shot['name'])
                 if 'caption' in shot:
                     text += ' alt="%s" title="%s">' % (shot['caption'],shot['caption'])
-                    text += '<label style="margin-left: 10px; clear: left" for="%s">%s</label>' % (shot['name'], shot['caption'])
+                    text += '<label style="margin-left: 10px; clear: left; display: block" for="%s">%s</label>' % (shot['name'], shot['caption'])
                 else:
                     text += ' "/>'
                 text += '</div>'
@@ -206,7 +206,7 @@ class WidgetExampleParser:
         except etree.XMLSyntaxError as e:
             print("ERROR: %s" % str(e))
 
-        text += '<h3>Example</h3><pre class="xml">%s</pre>' % escape(parsed_result['display_content'])
+        text += '<div style="clear: left"><h3>Example</h3><pre class="xml">%s</pre></div>' % escape(parsed_result['display_content'])
         res = {
             'category' : 'description',
             'text' : text,
