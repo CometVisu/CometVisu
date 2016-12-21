@@ -37,7 +37,6 @@ qx.Class.define('cv.layout.Manager', {
     currentPageUnavailableHeight: -1,
     currentPageNavbarVisibility: null,
     oldWidth: -1,
-    usedRowspans: {},
 
     getCurrentPageNavbarVisibility: function () {
       if (this.currentPageNavbarVisibility == null) {
@@ -152,7 +151,7 @@ qx.Class.define('cv.layout.Manager', {
     },
 
     rowspanClass: function (rowspan) {
-      this.usedRowspans[rowspan] = true;
+      cv.Config.usedRowspans[rowspan] = true;
       return 'rowspan rowspan' + rowspan;
     },
 

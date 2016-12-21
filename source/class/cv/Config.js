@@ -96,7 +96,13 @@ qx.Class.define('cv.Config', {
      * Maturity level
      * @type {var}
      */
-    use_maturity : false
+    use_maturity : false,
+
+    /**
+     * Stores the rowspans used by the current confid
+     * @type {Map} of rowspan-value as key and true as value
+     */
+    usedRowspans: {},
   },
 
   defer: function() {

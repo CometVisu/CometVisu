@@ -80,6 +80,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makeBackdropValid: function () {
+      qx.log.Logger.debug("makeBackdropValid");
       var templateEngine = cv.TemplateEngine.getInstance();
       if (!templateEngine.currentPage)
         return;
@@ -168,6 +169,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
 
     makeNavbarValid: function () {
       if (!this.__request) {
+        qx.log.Logger.debug("makeNavbarValid");
         this.__makeNavbarValid();
       }
     },
@@ -197,6 +199,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makePagesizeValid: function () {
+      qx.log.Logger.debug("makePagesizeValid");
       this.width = cv.layout.Manager.getAvailableWidth();
       this.height = cv.layout.Manager.getAvailableHeight();
       this.getPageSize().innerHTML = '#main,.page{width:' + (this.width - 0) + 'px;height:' + this.height + 'px;}';
@@ -205,6 +208,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makeRowspanValid: function () {
+      qx.log.Logger.debug("makeRowspanValid");
       var elem = qx.bom.Html.clean(['<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>'])[0];
       qx.dom.Element.insertEnd(elem, document.body);
       this.__updateRowHeight(elem);
@@ -219,7 +223,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
       }
       var styles = '';
 
-      for (var rowspan in cv.layout.Manager.usedRowspans) {
+      for (var rowspan in cv.Config.usedRowspans) {
         styles += '.rowspan.rowspan' + rowspan
           + ' { height: '
           + Math.round(rowspan * height)
