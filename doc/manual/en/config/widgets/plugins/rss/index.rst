@@ -21,7 +21,6 @@ rssfeedlocal is mainly meant to be used with rsslog.php and plugins
       <rss src="http://www.tagesschau.de/xml/rss2" refresh="300">Test API</rss>
       <rss src="/visu/plugins/rss/tagesschau-rss2.xml" refresh="300" header="true" date="true"></rss>
 
-
 .. ###END-WIDGET-DESCRIPTION###
 
 

@@ -97,7 +97,7 @@ for the InfoAction widget.
     <infoaction>
      <layout colspan="4"/>
      <label>Lights</label>
-     <widgetinfo>
+    	<widgetinfo>
        <info>
         <address transform="DPT:9.001">0/0/0</address>
        </info>

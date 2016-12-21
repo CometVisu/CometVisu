@@ -12,7 +12,6 @@ Description
 
 This plugins integrates a simple link.
 
-
 .. ###END-WIDGET-DESCRIPTION###
 
 

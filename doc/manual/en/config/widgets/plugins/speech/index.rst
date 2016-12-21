@@ -15,9 +15,8 @@ to make text-to-speech service available. This plugin listens to a address and f
 incoming data to the browser TTS engine (if the browser supports it)
 
 .. code-block:: xml
-    :caption: Simple example
 
-    <speech lang="en">
+    <speech lang="de">
      <address transform="OH:string" mode="read">Speak</address>
     </speech>
 
