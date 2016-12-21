@@ -26,6 +26,7 @@ install:
 - if [ "$CV_BUILD" == "test" ]; then grunt setup; fi
 - if [ "$CV_BUILD" == "test" ]; then cd ../../; fi
 - npm install
+- pip install lxml #used by the generator
 - ./generate.py source
 - "./node_modules/protractor/bin/webdriver-manager update"
 - if [ "$CV_BUILD" == "docs" ]; then sudo pip install -r utils/requirements.txt; fi # for documentation
