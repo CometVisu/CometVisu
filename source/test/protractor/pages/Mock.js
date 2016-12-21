@@ -10,7 +10,7 @@ var request = require('request');
 var CometVisuMockup = function () {
   'use strict';
 
-  this.url = 'http://localhost:8000/source/index.html?config=mockup&testMode=true';
+  this.url = 'http://localhost:8000/source/index.html?config=mockup&testMode=true&enableCache=false';
 
   this.mockupReady = false;
 
