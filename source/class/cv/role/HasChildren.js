@@ -130,7 +130,8 @@ qx.Mixin.define("cv.role.HasChildren", {
         if (noWidgetContainer === true) {
           container += subelement;
         } else {
-          container += '<div class="widget_container ' + widget.getRowspanClass()
+          container += '<div class="widget_container '
+            + (widget.getRowspanClass ? widget.getRowspanClass() : '')
             + (widget.getContainerClass ? widget.getContainerClass() : '')
             + ('break' === widget.get$$type() ? 'break_container' : '') // special case for break widget
             + '" id="' + widget.getPath() + '" data-type="' + widget.get$$type() + '">' + subelement + '</div>';
