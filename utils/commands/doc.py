@@ -424,6 +424,7 @@ class DocGenerator(Command):
 
         parser.add_argument("--from-source", dest="from_source", action="store_true", help="generate english manual from source comments")
         parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
+        parser.add_argument("--move-apiviewer", dest="move-apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
 
         options = parser.parse_args(args)
 
@@ -455,12 +456,15 @@ class DocGenerator(Command):
             sys.exit(0)
 
         elif options.doc == "source":
-            grunt = sh.Command("grunt")
-            if options.target is not None:
-                grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, "--targetDir=%s" % options.target, _out=self.process_output, _err=self.process_output)
-            else:
-                target_dir = self.config.get("api", "target").replace("<version>", self._get_doc_version())
-                grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, "--targetDir=%s" % target_dir, _out=self.process_output, _err=self.process_output)
+            py = sh.Command("python2")
+            print(py("generate.py", "api", "-sI"))
+
+        elif options.move_apiviewer:
+            # move to the correct dir
+            target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
+            target_dir = target_dir.replace("<version>", self._get_doc_version())
+            shutil.move(self.config.get("api", "generator_target"), target_dir)
+
         else:
             self.log.error("generation of '%s' documentation is not available" % options.type)
             sys.exit(1)

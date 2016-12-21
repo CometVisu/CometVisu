@@ -135,7 +135,7 @@ class WidgetExampleParser:
         # no screenshots defined, add a default one
         if len(settings['screenshots']) == 0:
             settings['screenshots'].append({
-                "name": name + str(shot_index)
+                "name": name + str(self.counters[name] + shot_index)
             })
 
         result = {
@@ -181,14 +181,14 @@ class WidgetExampleParser:
     ##
     # "@widgetexample text"
     def parse_at_widgetexample(self, line):
-        """ parse @widgetexample inside souce code comments used by qx/tool/pylib/ecmascript/frontend/Comment.py """
+        """ parse @widgetexample inside source code comments used by qx/tool/pylib/ecmascript/frontend/Comment.py """
         content = line[14:].strip()
         # set screenshot dir
-        self.set_screenshot_dir("api/resource/apiviewer/examples/")
-        parsed_result = self.parse(content)
+        self.set_screenshot_dir(path.join(config.get("api", "generator_target"), "resource", "apiviewer", "examples"))
+        parsed_result = self.parse(content, "source")
         text = ''
         try:
-            self.save_screenshot_control_files(parsed_result)
+            self.save_screenshot_control_files(parsed_result, "source")
             for i, shot in enumerate(parsed_result['settings']['screenshots']):
                 div_style = "margin-top: 5px; float:left; width: 50%; text-align: center;"
                 if i % 2 == 0:
