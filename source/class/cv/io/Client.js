@@ -212,6 +212,10 @@ qx.Class.define('cv.io.Client', {
           this.setCurrentTransport(new cv.io.transport.Sse(this));
           break;
       }
+      if (this.backend.name === "openhab") {
+        // use the fallback parser
+        qx.util.ResponseParser.PARSER.json = cv.io.parser.Json.parse;
+      }
     },
 
     getBackend: function() {

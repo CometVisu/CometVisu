@@ -102,7 +102,7 @@ qx.Class.define('cv.Config', {
      * Stores the rowspans used by the current confid
      * @type {Map} of rowspan-value as key and true as value
      */
-    usedRowspans: {},
+    usedRowspans: {}
   },
 
   defer: function() {
