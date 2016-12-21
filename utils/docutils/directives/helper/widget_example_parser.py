@@ -190,23 +190,23 @@ class WidgetExampleParser:
         try:
             self.save_screenshot_control_files(parsed_result, "source")
             for i, shot in enumerate(parsed_result['settings']['screenshots']):
-                div_style = "margin-top: 5px; float:left; width: 50%; text-align: center;"
+                classes = "widget-example"
                 if i % 2 == 0:
-                    div_style += " clear: left"
-                text += '<div style="%s">' % div_style
+                    classes += " last"
+                text += '<div class="%s">' % classes
                 text += '<img id="%s" src="resource/apiviewer/examples/%s.png"' % (shot['name'], shot['name'])
                 if 'caption' in shot:
-                    text += ' alt="%s" title="%s">' % (shot['caption'],shot['caption'])
-                    text += '<label style="margin-left: 10px; clear: left; display: block" for="%s">%s</label>' % (shot['name'], shot['caption'])
+                    text += ' alt="%s" title="%s"/>' % (shot['caption'].decode('utf-8'), shot['caption'].decode('utf-8'))
+                    text += '<label for="'+shot['name']+'">'+shot['caption']+'</label>'
                 else:
                     text += ' "/>'
                 text += '</div>'
             if parsed_result['global_caption']:
-                text+= "<caption>%s</caption>" % parsed_result['global_caption']
+                text += '<div class="caption">%s</div>' % parsed_result['global_caption'].decode('utf-8')
         except etree.XMLSyntaxError as e:
             print("ERROR: %s" % str(e))
 
-        text += '<div style="clear: left"><h3>Example</h3><pre class="xml">%s</pre></div>' % escape(parsed_result['display_content'])
+        text += '<div class="code"><pre class="xml">%s</pre></div>' % escape(parsed_result['display_content'])
         res = {
             'category' : 'description',
             'text' : text,

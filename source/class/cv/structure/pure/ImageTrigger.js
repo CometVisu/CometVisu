@@ -19,24 +19,26 @@
 
 
 /**
- * Adds an image like the {@link structure/pure/Image} widget, but additionally the image can be changed by incoming
+ * Adds an image like the {@link cv.structure.pure.Image} widget, but additionally the image can be changed by incoming
  * data and can send data to the backend by clicking on it.
- * There modes to react on incoming data:
+ * There are two modes to react on incoming data:
  *
- * * type="show": Hides the image when incoming data == 0
- * * type="select": Changes the image by appending the incoming data to the initial configured image source,
- *   or hide it when incoming data == 0
- *
+ * <ul>
+ *  <li><code>type="show"</code>: Hides the image when incoming data == 0</li>
+ *  <li><code>type="select"</code>: Changes the image by appending the incoming data to the initial configured image source,
+ *   or hide it when incoming data == 0</li>
+ * </ul>
  * Example:
- * ```
- * <imagetrigger src="icon/comet" suffix="svg" sendValue="clicked" type="select">
- *  <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
- * </imagetrigger>
- * ```
- * initially shows nothing. When the CometVisu receives the string '_icon' in address `0/0/0`,
- * the image `icon/comet_opt_icon.svg` is shown. When the CometVisu receives '0' on address `0/0/0`,
+ * <pre class="xml">
+ * &lt;imagetrigger src="icon/comet" suffix="svg" sendValue="clicked" type="select"&gt;
+ *  &lt;address transform="DPT:16.001" mode="readwrite"&gt;0/0/0&lt;/address&gt;
+ * &lt;/imagetrigger&gt;
+ * </pre>
+ * initially shows nothing. When the CometVisu receives the string <code>_icon</code> in address <code>0/0/0</code>,
+ * the image <code>icon/comet_opt_icon.svg</code> is shown. When the CometVisu receives '0' on address <code>0/0/0</code>,
  * this image is hidden.
  *
+ * <h3>Examples</h3>
  * @widgetexample <settings>
  *   <screenshot name="image_trigger">
  *     <caption>Image changed by incoming data 'blue'</caption>
@@ -63,8 +65,7 @@
  *   <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
  * </imagetrigger>
  *
- * @module structure/pure/ImageTrigger
- * @requires structure/pure
+ *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
