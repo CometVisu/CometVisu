@@ -69,7 +69,7 @@ qx.Class.define('cv.data.Model', {
 
     /**
      * Get the addresses as Array
-     * @returns {Array} Addresses
+     * @return {Array} Addresses
      */
     getAddresses: function () {
       return Object.keys(this.getAddressList());
@@ -87,7 +87,7 @@ qx.Class.define('cv.data.Model', {
     /**
      * Return (reference to) widget data by element
      * @param element {Element} DOM-Element to retrieve the widgetData for
-     * @returns {Map} widgetData Map
+     * @return {Map} widgetData Map
      */
     getWidgetDataByElement: function (element) {
       var

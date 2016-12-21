@@ -115,7 +115,7 @@ qx.Class.define('cv.io.transport.Sse', {
     /**
      * Check if the connection is still running.
      *
-     * @returns {Boolean}
+     * @return {Boolean}
      */
     isConnectionRunning: function () {
       return this.eventSource.readyState === EventSource.OPEN;

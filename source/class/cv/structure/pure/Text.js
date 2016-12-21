@@ -21,7 +21,7 @@
 /**
  * The text-tag defines static (non-changing) text to be displayed on a page. The content of a &lt;label&gt; with free text.
  *
- * @widget_example <settings>
+ * @widgetexample <settings>
  *   <caption>Configuration example of a centered text widget</caption>
  *   <screenshot name="text_example" />
  * </settings>

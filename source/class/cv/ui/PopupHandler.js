@@ -156,7 +156,7 @@ qx.Class.define('cv.ui.PopupHandler', {
     /**
      * Retrieve a popup by name
      * @param name {String} name of the popup
-     * @returns {Object}
+     * @return {Object}
      */
     getPopup: function(name) {
       var p = this.popups[name];

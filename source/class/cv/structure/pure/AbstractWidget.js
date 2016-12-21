@@ -143,7 +143,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
      * @param type {String} event type to listen to
      * @param callback {Function} called when the event occurs
      * @param context {Object} this context for the callback
-     * @returns {var} the listener id
+     * @return {var} the listener id
      */
     addListener: function(type, callback, context) {
       if (this.isAnonymous()) return;

@@ -22,7 +22,7 @@
  * Adds an image to your visualization. Using the auto-refresh setting this widget can be used e.g. to show
  * a camera picture.
  *
- * @widget_example
+ * @widgetexample
  * <image src="icon/CometVisu_orange.png" width="45px" height="32px">
  *   <layout colspan="2" />
  * </image>

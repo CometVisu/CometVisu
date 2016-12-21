@@ -20,7 +20,7 @@
 
 /**
  * The audio widget embeds an audio file, which can be automatically played by incoming data
- * @widget_example <settings>
+ * @widgetexample <settings>
  *   <screenshot name="audio_example">
  *    <caption>Default example for defining an audio widget in the configuration</caption>
  *    <data address="0/0/0">1</data>

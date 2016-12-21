@@ -24,7 +24,7 @@
  * Use case: if you have a group of lights, you can show the number of lights currently switched on
  * and control the whole group in one widget.
  *
- * @widget_example <settings>
+ * @widgetexample <settings>
  *   <caption>Example combines an info widget to show the number of lights currently switched on, and an Switch to control them</caption>
  *   <screenshot name="infoaction_lights">
  *     <data address="0/0/0">4</data>

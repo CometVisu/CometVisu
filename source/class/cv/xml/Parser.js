@@ -159,7 +159,7 @@ qx.Class.define('cv.xml.Parser', {
      * Get the mappings needed for parsing from the handler
      *
      * @param handler {Class} parser handler
-     * @returns {Map} parser configuration: describes how Attributes are mapped to properties
+     * @return {Map} parser configuration: describes how Attributes are mapped to properties
      * @private
      */
     __getAttributeToPropertyMappings: function(handler) {
@@ -249,7 +249,7 @@ qx.Class.define('cv.xml.Parser', {
      *
      * @param layout
      * @param defaultValues
-     * @returns {Map}
+     * @return {Map}
      */
     parseLayout: function( layout, defaultValues )
     {

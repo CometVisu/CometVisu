@@ -251,7 +251,7 @@ qx.Class.define('cv.io.Client', {
      *
      * @param name
      *          {String} Name of the resource (e.g. login, read, write, rrd)
-     * @returns {String} relative path to the resource
+     * @return {String} relative path to the resource
      */
     getResourcePath : function (name) {
       return this.backend.baseURL + this.backend.resources[name];

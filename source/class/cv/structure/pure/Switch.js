@@ -21,7 +21,7 @@
 /**
  * The switch widget shows two states (e.g. ON and OFF) and can toggle between them.
  *
- * @widget_example <settings>
+ * @widgetexample <settings>
  *   <caption>Configuration example of a switch widget using mapping and styling</caption>
  *   <screenshot name="switch_example_on">
  *    <caption>Switch turned on</caption>
@@ -99,7 +99,7 @@ qx.Class.define('cv.structure.pure.Switch', {
 
     /**
      * Called by parent class, which wraps this HTML-String in a widget-container
-     * @returns {String} HTML string of this widget
+     * @return {String} HTML string of this widget
      * @protected
      */
     _getInnerDomString: function () {

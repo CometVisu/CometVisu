@@ -32,7 +32,7 @@ qx.Class.define('cv.util.String', {
     /**
      * Decode HTML entities like &amp; to &
      * @param str {String} string to decode
-     * @returns {String}
+     * @return {String}
      */
     decodeHtmlEntities: function (str) {
       if (!this.__elem) {

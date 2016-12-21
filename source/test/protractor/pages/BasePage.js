@@ -6,7 +6,7 @@
 var BasePage = function () {
   /**
    * wait and verify that a page is loaded
-   * @returns {promise}
+   * @return {promise}
    * @requires a page to include `pageLoaded` method
    */
   this.at = function () {
@@ -30,7 +30,7 @@ var BasePage = function () {
    * I find ECs are generally poorly named, so we wrap them in
    * methods that are 9% more sexy, and allow us to add logging, etc...
    *
-   * @returns {ExpectedCondition}
+   * @return {ExpectedCondition}
    */
   var EC = protractor.ExpectedConditions;
 
@@ -116,7 +116,7 @@ var BasePage = function () {
 
   /**
    * Get the last message that has been send to the backend (aka write message)
-   * @returns {Map}
+   * @return {Map}
    */
   this.getLastWrite = function() {
     return browser.executeScript('return window.writeHistory[window.writeHistory.length-1];');
@@ -124,7 +124,7 @@ var BasePage = function () {
 
   /**
    * Get the compelte list of write messages, which have been send to the backend
-   * @returns {Array}
+   * @return {Array}
    */
   this.getWriteHistory = function() {
     return browser.executeScript('return window.writeHistory;');
@@ -146,7 +146,7 @@ var BasePage = function () {
   /**
    * Get widget data
    * @param path
-   * @returns {Map}
+   * @return {Map}
    */
   this.getWidgetData = function(path) {
     return browser.executeScript('return window._widgetDataGet("'+path+'");');

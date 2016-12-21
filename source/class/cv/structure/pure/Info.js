@@ -20,7 +20,7 @@
 
 /**
  *
- * @widget_example <settings>
+ * @widgetexample <settings>
  *   <caption>Show temperature in degree celcius</caption>
  *   <screenshot name="info_temp">
  *     <data address="0/0/0">19</data>
@@ -49,7 +49,7 @@ qx.Class.define('cv.structure.pure.Info', {
 
     /**
      * Called by parent class, which wraps this HTML-String in a widget-container
-     * @returns {String} HTML string of this widget
+     * @return {String} HTML string of this widget
      * @protected
      */
     _getInnerDomString: function () {

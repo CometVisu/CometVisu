@@ -20,7 +20,7 @@
 
 /**
  * Adds a button to toggle through the available designs
- * @widget_example
+ * @widgetexample
  * <designtoggle>
  *   <layout colspan="6"/>
  *   <label>Change Design</label>

@@ -55,7 +55,7 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
      * @param path {String} internal path to the widget
      * @param flavour {String} inherited flavour
      * @param pageType {String} text, 2d or 3d the parent page type
-     * @returns {Map} the extracted information, that is stored in the data model
+     * @return {Map} the extracted information, that is stored in the data model
      */
     parse: function (element, path, flavour, pageType) {
       return cv.data.Model.getInstance().setWidgetData( path, {
