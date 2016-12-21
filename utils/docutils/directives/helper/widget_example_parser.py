@@ -206,7 +206,7 @@ class WidgetExampleParser:
         except etree.XMLSyntaxError as e:
             print("ERROR: %s" % str(e))
 
-        text += '<div class="code"><pre class="xml">%s</pre></div>' % escape(parsed_result['display_content'])
+        text += '<div class="code"><pre class="sunlight-highlight-xml">%s</pre></div>' % escape(parsed_result['display_content'])
         res = {
             'category' : 'description',
             'text' : text,

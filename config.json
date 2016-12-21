@@ -171,6 +171,26 @@
         "versionLabel.version"  : "${CV_VERSION}"
       },
 
+      "add-script" : [
+        {
+          "uri" : "resource/apiviewer/lib/sunlight-min.js"
+        },
+        {
+          "uri" : "resource/apiviewer/lib/sunlight.xml-min.js"
+        },
+        {
+          "uri" : "resource/apiviewer/lib/sunlight.javascript-min.js"
+        }
+      ],
+
+      "copy-files" : {
+        "files": [
+          "resource/apiviewer/lib/sunlight-min.js",
+          "resource/apiviewer/lib/sunlight.xml-min.js",
+          "resource/apiviewer/lib/sunlight.javascript-min.js"
+        ]
+      },
+
       "run" : [
         "api-data"
       ],
