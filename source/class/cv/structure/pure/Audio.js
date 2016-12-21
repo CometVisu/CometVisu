@@ -20,6 +20,7 @@
 
 /**
  * The audio widget embeds an audio file, which can be automatically played by incoming data
+ *
  * @widgetexample <settings>
  *   <screenshot name="audio_example">
  *    <caption>Default example for defining an audio widget in the configuration</caption>
@@ -32,8 +33,7 @@
  *   <address transform="DPT:1.001" mode="read">0/0/0</address>
  * </audio>
  *
- * @module structure/pure/Audio
- * @requires structure/pure
+ *
  * @author Markus Damman
  * @since 0.8.4 (2014)
  */
