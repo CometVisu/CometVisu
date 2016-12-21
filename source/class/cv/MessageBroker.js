@@ -36,36 +36,7 @@ qx.Class.define('cv.MessageBroker', {
   construct: function () {
     this.__registry = {};
     this.__singleEventTopics = ["setup.dom.finished"];
-    var pathRegex = new RegExp("^id_([0-9_]*)_?$");
     this.__topicOrder = {
-      // 'setup.dom.finished': function(a, b) {
-      //   if (a[2] > 0 || b[2] > 0) {
-      //     // sort by priority
-      //     return b[2] - a[2];
-      //   } else {
-      //     // sort by path
-      //     if (a[1].getPath && b[1].getPath) {
-      //       var pathA = a[1].getPath();
-      //       var pathB = b[1].getPath();
-      //       if (pathA.length === pathB.length) {
-      //         var partsA = pathRegex.exec(pathA);
-      //         var partsB = pathRegex.exec(pathB);
-      //         var indexA = partsA.length === 2 ? parseInt(partsA[1].split("_").join("")) : 0;
-      //         var indexB = partsA.length === 2 ? parseInt(partsB[1].split("_").join("")) : 0;
-      //         return indexA - indexB;
-      //       } else {
-      //         return pathA.length - pathB.length;
-      //       }
-      //     } else if (a.getPath) {
-      //       return -1;
-      //     } else if (b.getPath) {
-      //       return 1;
-      //     } else {
-      //       // fallback
-      //       return b[2] - a[2];
-      //     }
-      //   }
-      // },
       '*': function (a, b) {
         return b[2] - a[2];
       }
@@ -82,15 +53,6 @@ qx.Class.define('cv.MessageBroker', {
     __registry: null,
     __singleEventTopics: null,
     __topicOrder : null,
-
-
-    enableTestMode: function () {
-      this.__singleEventTopics = [];
-    },
-
-    subscribeOnce: function (topic, callback, context, priority) {
-      this.subscribe(topic, callback, context, priority, true);
-    },
 
     subscribe: function (topic, callback, context, priority, once) {
       if (!this.__registry[topic]) {
@@ -127,5 +89,5 @@ qx.Class.define('cv.MessageBroker', {
     clear: function () {
       this.__registry = {};
     }
-  } // end my
+  }
 });
