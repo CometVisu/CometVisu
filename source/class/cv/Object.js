@@ -17,7 +17,9 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
+/**
+ * Base object all CometVisu classes inherit from
+ */
 qx.Class.define('cv.Object', {
   extend: qx.core.Object,
 
@@ -29,12 +31,13 @@ qx.Class.define('cv.Object', {
    ******************************************************
    */
   members: {
+    /**
+     * Transform string to float
+     * @param value {String}
+     * @return {Number} transformed value
+     */
     string2number: function(value) {
       return parseFloat(value);
-    },
-
-    string2bool: function(value) {
-      return !!value;
     }
   }
 });
