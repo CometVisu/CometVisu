@@ -21,6 +21,8 @@ import os
 import logging
 import ConfigParser
 import codecs
+
+import subprocess
 import yaml
 
 import sh
@@ -456,8 +458,8 @@ class DocGenerator(Command):
             sys.exit(0)
 
         elif options.doc == "source":
-            py = sh.Command("python2")
-            print(py("generate.py", "api", "-sI"))
+            cmd = "python2 ./generate.py api -sI --macro=CV_VERSION:%s" % self._get_doc_version()
+            subprocess.call(cmd, shell=True)
 
         elif options.move_apiviewer:
             # move to the correct dir
