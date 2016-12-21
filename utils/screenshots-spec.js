@@ -119,6 +119,9 @@ var cropInFile = function(size, location, srcFile, width, height) {
 };
 
 var createDir = function(dir) {
+  if (dir.substring(dir.length-1) == "/") {
+    dir = dir.substring(0,dir.length-1);
+  }
   try {
     fs.statSync(dir);
   } catch(e) {
