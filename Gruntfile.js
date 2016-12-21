@@ -531,7 +531,7 @@ module.exports = function(grunt) {
           configFile: "utils/protractor.conf.js",
           args: {
             params: {
-              subDir: "jsdoc"
+              subDir: "source"
             },
             capabilities: {
               browserName: grunt.option('browserName') || 'firefox',
