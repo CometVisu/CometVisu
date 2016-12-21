@@ -3,4 +3,5 @@
 	url = https://github.com/OpenAutomationProject/knx-uf-iconset.git
 [submodule "external/qooxdoo"]
 	path = external/qooxdoo
-	url = git://github.com/qooxdoo/qooxdoo.git
+	url = https://github.com/peuter/qooxdoo.git
+	branch = cometvisu
