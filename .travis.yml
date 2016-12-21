@@ -26,8 +26,11 @@ install:
 - if [ "$CV_BUILD" == "test" ]; then grunt setup; fi
 - if [ "$CV_BUILD" == "test" ]; then cd ../../; fi
 - npm install
+- virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages
+- source temp-python/bin/activate
 - pip install lxml #used by the generator
 - ./generate.py source
+- deactivate
 - "./node_modules/protractor/bin/webdriver-manager update"
 - if [ "$CV_BUILD" == "docs" ]; then sudo pip install -r utils/requirements.txt; fi # for documentation
 - if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install libxml2-dev libxslt-dev graphviz; fi
@@ -39,7 +42,6 @@ before_script:
 - "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
 - sleep 3
 script:
-- if [ "$CV_BUILD" == "test" ]; then virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages; fi
 - if [ "$CV_BUILD" == "test" ]; then source temp-python/bin/activate; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt jscs; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt karma:travis; fi
