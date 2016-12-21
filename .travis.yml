@@ -28,7 +28,7 @@ install:
 - npm install
 - virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages
 - source temp-python/bin/activate
-- pip install lxml #used by the generator
+- sudo pip install -r utils/requirements.txt #used by the generator
 - ./generate.py source
 - deactivate
 - "./node_modules/protractor/bin/webdriver-manager update"
