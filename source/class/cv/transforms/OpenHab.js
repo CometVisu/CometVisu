@@ -50,6 +50,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           return phy == 1 ? 'ON' : 'OFF';
         },
         decode: function (string) {
+          if (cv.transforms.OpenHab.isUndefined(string)) return 0;
           return (string == "ON" || parseInt(string) > 0) ? 1 : 0;
         }
       },
@@ -59,6 +60,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           return phy == 1 ? 'OPEN' : 'CLOSED';
         },
         decode: function (string) {
+          if (cv.transforms.OpenHab.isUndefined(string)) return 0;
           return string == "OPEN" ? 1 : 0;
         }
       },
@@ -175,6 +177,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           return [h, s, v];
         },
         decode: function (hsbString) {
+          if (cv.transforms.OpenHab.isUndefined(hsbString)) return [0,0,0];
           // decode HSV/HSB to RGB
           var hsb = hsbString.split(",");
           var h = parseFloat(hsb[0]), s = parseFloat(hsb[1]), v = parseFloat(hsb[2]);
