@@ -548,7 +548,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           res = rrd.resol ? rrd.resol : series.res,
           refresh = this.getRefresh() ? this.getRefresh() : res;
 
-        cv.plugins.diagram.Main.lookupRRDcache( rrd, series.start, series.end, res, refresh, forceReload, function( rrddata ){
+        cv.plugins.diagram.AbstractDiagram.lookupRRDcache( rrd, series.start, series.end, res, refresh, forceReload, function( rrddata ){
           rrdloaded++;
           if (rrddata != null) {
             rrdSuccessful++;
