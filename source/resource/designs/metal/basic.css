@@ -467,7 +467,7 @@ body br
     overflow: hidden;
 }
 
-.ui-slider-horizontal { height: .8em;  margin-left: 0.6em !important; }
+.ui-slider-horizontal { height: .8em; }
 .ui-slider-horizontal .ui-slider-handle { top: -.5em; }
 
 .ui-corner-all { -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }

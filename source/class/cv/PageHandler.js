@@ -126,6 +126,7 @@ qx.Class.define('cv.PageHandler', {
         templateEngine.pagePartsHandler.updateTopNavigation( target );
         qx.bom.element.Style.set(pagesNode, 'left', 0 );
         currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".afterPageChange", currentPath);
+        currentPath !== '' && cv.MessageBroker.getInstance().publish("page."+target+".appear", target);
         currentPath !== '' && cv.MessageBroker.getInstance().publish("path.pageChanged", target);
       }.bind(this);
       if (speed === 0) {

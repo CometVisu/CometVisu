@@ -58,6 +58,13 @@ qx.Class.define('cv.ui.website.Slider', {
       }
     },
 
+    /**
+     * Update slider knob position
+     */
+    updatePositions: function() {
+      this._onWindowResize();
+    },
+
     //overridden
     _onPointerMove : function(e) {
       this.__pointerMoveEvent = true;

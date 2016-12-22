@@ -155,6 +155,13 @@ qx.Class.define('cv.structure.pure.Slide', {
       var knob = slider.find(".qx-slider-knob");
       knob.addClasses(["ui-slider-handle", "ui-state-default", "ui-corner-all"]);
       this.__initialized= true;
+
+      var pageId = this.getParentPage().getPath();
+      var broker = cv.MessageBroker.getInstance();
+
+      broker.subscribe("page." + pageId + ".appear", function() {
+        this.__slider.updatePositions();
+      }, this);
     },
 
     _getInnerDomString: function () {
