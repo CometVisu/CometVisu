@@ -91,22 +91,13 @@ qx.Class.define('cv.IconHandler', {
     /**
      * Get the icon information for a name.
      *
-     *
-     * @param {String}
-     *          name Name
-     * @param {String}
-     *          type Type (optional)
-     * @param {String}
-     *          flavour Flavour (optional)
-     * @param {String}
-     *          color Color (optional, only relevant for monochrome icons)
+     * @param name {String} Name
+     * @param type {String?} Type
+     * @param flavour {String?} Flavour
+     * @param color {String?} Color (only relevant for monochrome icons)
      * @return {URI} The URI for the icon - or "undefined" if not known
      */
-    get: function () {
-      var name = arguments[0];
-      var type = arguments[1];
-      var flavour = arguments[2];
-      var color = arguments[3];
+    get: function (name, type, flavour, color) {
       if (!this.__db[name])
         return undefined;
       if (!this.__db[name][type])
@@ -189,13 +180,13 @@ qx.Class.define('cv.IconHandler', {
      * fillIcons method must be called to fill missing content (e.g. the <canvas>
      * icons.
      * @param name {String} Name
-     * @param type {String?} Type (optional)
-     * @param flavour {String?} Flavour (optional)
-     * @param color {String?} Color (optional, only relevant for monochrome icons)
+     * @param type {String?} Type
+     * @param flavour {String?} Flavour
+     * @param color {String?} Color (only relevant for monochrome icons)
      * @param styling {String?} Styling
-     * @param iconClass {String} icon class
+     * @param iconclass {String?} icon class
      */
-    getIconText: function (name, type, flavour, color, styling, iconClass) {
+    getIconText: function (name, type, flavour, color, styling, iconclass) {
       var i = this.get.apply(this, arguments);
       if (i) {
 
