@@ -16,9 +16,10 @@ qx.Class.define('cv.io.parser.Json', {
       try {
         result = qx.lang.Json.parse(data);
       } catch (e) {
-        data.split("}{").forEach(function(subData) {
+        data.split("}{").forEach(function(subData, i) {
           try {
-            result = qx.lang.Object.mergeWith(result, qx.lang.Json.parse(subData + "}"));
+            var jsonString = i === 0 ? subData + "}" : "{" + subData;
+            result = qx.lang.Object.mergeWith(result, qx.lang.Json.parse(jsonString));
           } catch (se) {
             qx.log.Logger.error(se);
           }
