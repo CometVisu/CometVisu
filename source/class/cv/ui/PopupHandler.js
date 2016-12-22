@@ -33,124 +33,44 @@ qx.Class.define('cv.ui.PopupHandler', {
     popups: {},
 
     init: function() {
-      this.addPopup('unknown', {
-        /**
-         * Description
-         * @method create
-         * @param {} attributes
-         * @return ret_val
-         */
-        create: function (attributes) {
-          var reposition = false;
-          var ret_val = qx.bom.Html.clean(['<div class="popup" style="display:none"><div class="popup_close">X</div></div><div class="popup_background" style="display:none" />'],
-            null, qx.bom.Selector.query('body')[0])[0];
-          qx.bom.element.Class.add(ret_val, this.type);
-
-          if (attributes.title) {
-            var head = qx.bom.Html.clean(['<div class="head" />'], null, qx.bom.Selector(".popup", ret_val)[0])[0];
-            qx.bom.Html.clean([attributes.title], null, head)[0];
-          }
-
-          if (attributes.content) {
-            var content = qx.bom.Html.clean(['<div class="main" />'], null, qx.bom.Selector(".popup", ret_val)[0])[0];
-            qx.bom.Html.clean([attributes.content], null, content)[0];
-          }
-
-          if (attributes.width) {
-            qx.bom.element.Style.add(ret_val, "width", attributes.width);
-            reposition = true;
-          }
-
-          if (attributes.height) {
-            qx.bom.element.Style.add(ret_val, "height", attributes.height);
-            reposition = true;
-          }
-
-          var anchor = {x: -1, y: -1, w: 0, h: 0};
-          var align;
-          if (attributes.position) {
-            if (attributes.position.offset) {
-              var offset = attributes.position.offset();
-              anchor.x = offset.left;
-              anchor.y = offset.top;
-              anchor.w = attributes.position.width();
-              anchor.h = attributes.position.height();
-            } else {
-              if (attributes.position.hasOwnProperty('x')) anchor.x = attributes.position.x;
-              if (attributes.position.hasOwnProperty('y')) anchor.y = attributes.position.y;
-              if (attributes.position.hasOwnProperty('w')) anchor.w = attributes.position.w;
-              if (attributes.position.hasOwnProperty('h')) anchor.h = attributes.position.h;
-              if (anchor.w == 0 && anchor.h == 0) align = 5;
-            }
-          }
-          if (attributes.align !== undefined) align = attributes.align;
-          var placement = this.placementStrategy(
-            anchor,
-            {w: qx.bom.Dimension.getWidth(ret_val), h: qx.bom.Dimension.getHeight(ret_val)},
-            {w: qx.bom.ViewPort.getWidth(), h: qx.bom.ViewPort.getHeight()},
-            align
-          );
-
-          qx.bom.element.Style.add(ret_val, 'left', placement.x);
-          qx.bom.element.Style.add(ret_val, 'top', placement.y);
-
-          qx.event.Registration.addListener(ret_val, 'close', this.close, this);
-          qx.event.Registration.addListener(ret_val, 'tap', function () {
-            // note: this will call two events - one for the popup itself and
-            //       one for the popup_background.
-            qx.event.Registration.fireEvent(ret_val, 'close');
-          }, this);
-          qx.event.Registration.addListener(qx.bom.Selector.query(".popup_close", ret_val), 'tap', function () {
-            // note: this will call two events - one for the popup itself and
-            //       one for the popup_background.
-            qx.event.Registration.fireEvent(ret_val, 'close');
-          });
-
-          qx.bom.element.Style.add(ret_val, 'display', 'block');
-          qx.bom.element.Class.add(qx.bom.Selector.query('#centerContainer')[0], 'inactiveMain');
-          return ret_val;
-        },
-        /**
-         * Description
-         * @method close
-         * @param {} event
-         */
-        close: function (event) {
-          qx.bom.element.Class.remove(qx.bom.Selector.query('#centerContainer')[0], 'inactiveMain');
-          qx.dom.Element.remove(event.getTarget());
-        }
-      });
-
-      this.addPopup('info', qx.lang.Object.clone(this.getPopup('unknown'), true));
-      this.addPopup('warning', qx.lang.Object.clone(this.getPopup('unknown'), true));
-      this.addPopup('error', qx.lang.Object.clone(this.getPopup('unknown'), true));
+      this.addPopup(new cv.ui.Popup("unknown"));
+      this.addPopup(new cv.ui.Popup("info"));
+      this.addPopup(new cv.ui.Popup("warning"));
+      this.addPopup(new cv.ui.Popup("error"));
     },
 
     /**
-     * Show a popup of type "type". The attributes is an type dependend object
-     * This function returnes a jQuery object that points to the whole popup, so
-     * it's content can be easily extended
+     * Show a popup of type "type". The attributes is an type dependent object
+     *
+     * @param type {String} popup type
+     * @param attributes {Map} popup configuration (content, title, stylings etc)
+     * @return {cv.ui.Popup} The popup
      */
     showPopup: function (type, attributes) {
-      return this.getPopup(type).create(attributes);
+      var popup = this.getPopup(type);
+      popup.create(attributes);
+      return popup;
     },
 
     /**
-     * Remove the popup. The parameter is the element returned by the
-     * showPopup function
+     * Remove the popup.
+     * @param popup {cv.ui.Popup} popup returned by showPopup()
      */
     removePopup: function (popup) {
-      qx.dom.Element.remove(popup);
+      if (popup instanceof cv.ui.Popup) {
+        popup.close();
+      } else {
+        qx.dom.Element.remove(popup);
+      }
     },
 
     /**
      * Add a popup to the internal list
-     * @param name {String} name of the popup
-     * @param object {Object} the popup
+     * @param object {cv.ui.Popup} the popup
      */
-    addPopup: function (name, object) {
-      this.popups[name] = object;
-      this.popups[name].type = name;
+    addPopup: function (object) {
+      qx.core.Assert.assertInstance(object, cv.ui.Popup);
+      this.popups[object.getType()] = object;
     },
 
     /**
@@ -244,6 +164,6 @@ qx.Class.define('cv.ui.PopupHandler', {
   },
 
   defer: function(statics) {
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", statics.init, this);
+    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", statics.init, statics);
   }
 });

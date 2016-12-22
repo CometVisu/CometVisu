@@ -85,18 +85,19 @@ qx.Class.define('cv.io.transport.LongPolling', {
         beforeSend: this.beforeSend.bind(this)
       });
       this.xhr.addListener("error", this.handleError, this);
+      var data = [];
       if (this.client.initialAddresses.length) {
-        this.xhr.set({
-          requestData: this.client.buildRequest(this.client.initialAddresses) + '&t=0'
-        });
+        data = this.client.buildRequest(this.client.initialAddresses);
         this.xhr.addListener("success", this.handleReadStart, this);
       } else {
         // old behaviour -> start full query
-        this.xhr.set({
-          requestData: this.client.buildRequest() + '&t=0'
-        });
+        data = this.client.buildRequest();
         this.xhr.addListener("success", this.handleRead, this);
       }
+      data.t = 0;
+      this.xhr.set({
+        requestData: data
+      });
       this.xhr.send();
       this.client.watchdog.start(5);
     },
@@ -130,8 +131,11 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
       if (this.running) { // keep the requests going
         this.retryCounter++;
+        var data = this.client.buildRequest();
+        if (!this.lastIndex) debugger;
+        data.i = this.lastIndex;
         this.xhr.set({
-          requestData: this.client.buildRequest() + '&i=' + this.lastIndex
+          requestData: data
         });
         this.xhr.send();
         this.client.watchdog.ping();
@@ -162,9 +166,10 @@ qx.Class.define('cv.io.transport.LongPolling', {
               this.client.initialAddresses) < 0)
             diffAddresses.push(this.client.addresses[i]);
         }
-
+        var data = this.client.buildRequest(diffAddresses);
+        data.t = 0;
         this.xhr.set({
-          data: this.client.buildRequest(diffAddresses) + '&t=0'
+          data: data
         });
         this.xhr.removeListener("success", this.handleReadStart, this);
         this.xhr.addListener("success", this.handleRead, this);

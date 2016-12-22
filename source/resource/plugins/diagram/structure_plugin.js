@@ -331,19 +331,20 @@ qx.Class.define('cv.plugins.diagram.Main', {
     },
 
     _action: function() {
-      if (!this.getPopup()) return;
-
-      var popupDiagram = qx.bom.Selector.query('#' + this.getPath() + '_big');
+      var popupDiagram = qx.dom.Element.create("div", {
+        'class': "diagram",
+        id: this.getPath() + '_big',
+        style: 'height: 90%'
+      });
       this._init = true;
-      qx.bom.element.Attribute.set(popupDiagram, "height", "90%");
-      var popup = cv.TemplateEngine.getInstance().showPopup("diagram", {title: this.getLabel(), content: popupDiagram});
+      var popup = cv.ui.PopupHandler.showPopup("diagram", {title: this.getLabel(), content: popupDiagram});
 
       // this will be called when the popup is being closed.
       // NOTE: this will be called twice, one time for the foreground and one
       //       time for the background.
-      popup.bind('close', qx.util.Function.curry(this._stopRefresh.bind(this), this._timerPopup));
+      popup.addListener('close', qx.lang.Function.curry(this._stopRefresh.bind(this), this._timerPopup));
 
-      var parent = qx.dom.Hierarchy.getParentElement(popupDiagram);
+      var parent = qx.dom.Element.getParentElement(popupDiagram);
       qx.bom.element.Style.setStyles(parent, {height: "100%", width: "95%", margin: "auto"});// define parent as 100%!
       qx.dom.Element.empty(popupDiagram);
       qx.event.Registration.addListener(popupDiagram, "tap", function(event) {
@@ -722,7 +723,6 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
       }, this);
     },
 
-
     _getInnerDomString: function() {
       var
         classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview',
@@ -731,6 +731,13 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
           + (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
 
       return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
+    },
+
+    // overridden
+    _action: function(ev) {
+      if (this.getPopup()) {
+        this.base(arguments, ev);
+      }
     }
   },
 

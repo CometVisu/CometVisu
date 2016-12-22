@@ -28,7 +28,7 @@
  * @asset(icon/*)
  * @asset(plugins/*)
  *
- * @require(qx.bom.Html)
+ * @require(qx.bom.Html,cv.ui.PopupHandler)
  */
 qx.Class.define("cv.Application",
 {

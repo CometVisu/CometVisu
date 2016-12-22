@@ -212,7 +212,7 @@ qx.Class.define('cv.io.Client', {
           this.setCurrentTransport(new cv.io.transport.Sse(this));
           break;
       }
-      if (this.backend.name === "openhab") {
+      if (this.backend.name === "openHAB") {
         // use the fallback parser
         qx.util.ResponseParser.PARSER.json = cv.io.parser.Json.parse;
       }
@@ -383,15 +383,11 @@ qx.Class.define('cv.io.Client', {
      * @return {String}
      */
     buildRequest : function (addresses) {
-      addresses = addresses ? addresses : this.addresses;
-      var
-        requestAddresses = (addresses.length) ? 'a='
-        + addresses.join('&a=') : '',
-        requestFilters = (this.filters.length) ? 'f='
-        + this.filters.join('&f=') : '';
-      return 's=' + this.session + '&' + requestAddresses
-        + ((addresses.length && this.filters.length) ? '&' : '')
-        + requestFilters;
+      return {
+        a: addresses ? addresses : this.addresses,
+        f: this.filters,
+        s: this.session
+      }
     },
 
     /**
