@@ -31,8 +31,8 @@
  *   <address transform="DPT:9.001">0/0/0</address>
  * </info>
  *
- * @module structure/pure/Info
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */

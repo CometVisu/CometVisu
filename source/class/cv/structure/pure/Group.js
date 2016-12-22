@@ -65,8 +65,8 @@
  *    </info>
  *  </group>
  *
- * @module structure/pure/Group
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
@@ -136,7 +136,7 @@ qx.Class.define('cv.structure.pure.Group', {
      * Action performed when the group got clicked. If a target is specified in the group attributes
      * the action will switch to the page defined by the target.
      *
-     * @method action
+     *
      * @param  event {Event}
      */
     action: function (event) {

@@ -51,8 +51,8 @@
  *   <label>Switch</label>
  *   <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
  * </switch>
- * @module structure/pure/Switch
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
@@ -109,7 +109,7 @@ qx.Class.define('cv.structure.pure.Switch', {
     /**
      * Handles the incoming data from the backend for this widget
      *
-     * @method handleUpdate
+     *
      * @param value {any} incoming data (already transformed + mapped)
      */
     handleUpdate: function(value) {
@@ -122,7 +122,7 @@ qx.Class.define('cv.structure.pure.Switch', {
     /**
      * Get the value that should be send to backend after the action has been triggered
      *
-     * @method getActionValue
+     *
      */
     getActionValue: function () {
       return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());

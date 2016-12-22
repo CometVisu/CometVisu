@@ -73,10 +73,10 @@ qx.Mixin.define("cv.role.Update", {
 
     /**
      * Description
-     * @method defaultUpdate3d
-     * @param {} ev
-     * @param {} data
-     * @param {} passedElement
+     *
+     * @param ev {var}
+     * @param data {var}
+     * @param passedElement {var}
      */
     update3d: function (ev, data) {
       var l = ev.data.layout;

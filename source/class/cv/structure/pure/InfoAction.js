@@ -61,8 +61,8 @@
  *  </widgetaction>
  * </infoaction>
  *
- * @module structure/pure/InfoAction
- * @requires structure/pure
+ *
+ *
  * @author Tobias Bräutigam
  * @since 0.10.0 (as widget), 0.9.2 (as plugin)
  */

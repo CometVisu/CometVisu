@@ -21,8 +21,8 @@
 /**
  * TODO: complete docs
  *
- * @module structure/pure/Web
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 2012
  */
@@ -130,7 +130,7 @@ qx.Class.define('cv.structure.pure.Web', {
     /**
      * Handles the incoming data from the backend for this widget
      *
-     * @method handleUpdate
+     *
      * @param value {any} incoming data (already transformed + mapped)
      */
     _update: function(address, data) {

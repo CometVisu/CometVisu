@@ -64,7 +64,7 @@ qx.Class.define('cv.io.Mockup', {
 
     /**
      * This function gets called once the communication is established and session information is available
-     * @method handleRead
+     *
      */
     receive: function (json) {
       if (json) {
@@ -80,7 +80,7 @@ qx.Class.define('cv.io.Mockup', {
 
     /**
      * Subscribe to the addresses in the parameter
-     * @method subscribe
+     *
      */
     subscribe: function (addresses) {
       this.addresses = addresses ? addresses : [];
@@ -88,7 +88,7 @@ qx.Class.define('cv.io.Mockup', {
 
     /**
      * This function sends a value
-     * @method write
+     *
      */
     write: function (address, value) {
       var ts = new Date().getTime();

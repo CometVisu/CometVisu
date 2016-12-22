@@ -51,8 +51,8 @@ qx.Mixin.define("cv.role.HasAddress", {
      *                       elements. The first is a boolean that determins if
      *                       the visu should listen for that address. The second
      *                       is added as it is to the returned object.
-     * @method makeAddressList
-     * @param {} element
+     *
+     * @param element {var}
      * @param id             id / path to the widget
      * @return address
      */

@@ -209,9 +209,9 @@ qx.Mixin.define("cv.role.BasicUpdate", {
      * the mapping where it can be quite complex as it can contain icons.
      * value: the value that will be inserted
      * modifyFn: callback function that modifies the DOM
-     * @method defaultValue2DOM
-     * @param {} value
-     * @param {} modifyFn
+     *
+     * @param value {var}
+     * @param modifyFn {var}
      */
     defaultValue2DOM: function (value, modifyFn) {
       if (('string' === typeof value) || ('number' === typeof value))
@@ -250,12 +250,12 @@ qx.Mixin.define("cv.role.BasicUpdate", {
      * ga:            address
      * data:          the raw value from the bus
      * passedElement: the element to update
-     * @method defaultUpdate
-     * @param {} ga
-     * @param {} data
-     * @param {} passedElement
-     * @param {} newVersion
-     * @param {} path
+     *
+     * @param ga {var}
+     * @param data {var}
+     * @param passedElement {var}
+     * @param newVersion {var}
+     * @param path {var}
      * @return value
      */
     defaultUpdate: function (ga, data, passedElement) {

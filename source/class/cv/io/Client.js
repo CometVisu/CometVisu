@@ -21,9 +21,6 @@
 /**
  * The JavaScript library that implements the CometVisu protocol.
  *
- * @module lib/CometVisuClient
- * @exports ComentVisuClient
- * @requires dependencies/jquery
  * @author Christan Mayer
  * @author Tobias Bräutigam
  * @since 0.5.3 (initial contribution) 0.10.0 (major refactoring)
@@ -34,10 +31,6 @@
  * ob this object with reliable realtime data.
  * Itthis.it can be seen as the session layer (layer 5) according to the OSI
  * model.
- *
- * @class Client
- * @constructor
- * @alias module:Client
  */
 qx.Class.define('cv.io.Client', {
   extend: cv.Object,
@@ -237,7 +230,7 @@ qx.Class.define('cv.io.Client', {
 
     /**
      * read the header values of a response and stores them to the resendHeaders array
-     * @method readResendHeaderValues
+     *
      */
     readResendHeaderValues : function () {
       for (var headerName in this.resendHeaders) {
@@ -247,7 +240,7 @@ qx.Class.define('cv.io.Client', {
 
     /* return the relative path to a resource on the currently used backend
      *
-     * @method getResourcePath
+     *
      *
      * @param name
      *          {String} Name of the resource (e.g. login, read, write, rrd)
@@ -261,9 +254,9 @@ qx.Class.define('cv.io.Client', {
      * Subscribe to the addresses in the parameter. The second parameter
      * (filter) is optional
      *
-     * @param addresses
-     * @param filters
-     * @method subscribe
+     * @param addresses {Array?} addresses to subscribe to
+     * @param filters {Array?} Filters
+     *
      */
     subscribe : function (addresses, filters) {
       var startCommunication = !this.addresses.length; // start when
@@ -293,10 +286,10 @@ qx.Class.define('cv.io.Client', {
      * This function starts the communication by a login and then runs the
      * ongoing communication task
      *
-     * @param loginOnly (boolean) if true only login and backend configuration, no subscription to addresses (default: false)
-     * @param callback (Function) cakk this function when login is done
-     * @param context (Object) context for the callback (this)
-     * @method login
+     * @param loginOnly {Boolean} if true only login and backend configuration, no subscription to addresses (default: false)
+     * @param callback {Function} call this function when login is done
+     * @param context {Object} context for the callback (this)
+     *
      */
     login : function (loginOnly, callback, context) {
       if (this.loginSettings.loggedIn === false) {
@@ -366,7 +359,6 @@ qx.Class.define('cv.io.Client', {
     /**
      * This function stops an ongoing connection
      *
-     * @method stop
      */
     stop : function () {
       this.setRunning(false);
@@ -378,9 +370,9 @@ qx.Class.define('cv.io.Client', {
 
     /**
      * Build the URL part that contains the addresses and filters
-     * @method buildRequest
-     * @param addresses
-     * @return {String}
+     *
+     * @param addresses {Array}
+     * @return {Map}
      */
     buildRequest : function (addresses) {
       return {
@@ -392,9 +384,9 @@ qx.Class.define('cv.io.Client', {
 
     /**
      * This function sends a value
-     * @param address
-     * @param value
-     * @method write
+     * @param address {String} address to send the value to
+     * @param value {String} value to send
+     *
      */
     write : function (address, value) {
       /**

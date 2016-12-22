@@ -27,8 +27,8 @@
  * </settings>
  * <text align="center"><label>Example text</label></text>
  *
- * @module structure/pure/Text
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */

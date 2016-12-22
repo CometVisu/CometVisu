@@ -21,8 +21,8 @@
 /**
  * TODO: complete docs
  *
- * @module structure/pure/Page
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 2012
  */
@@ -140,7 +140,7 @@ qx.Class.define('cv.structure.pure.Page', {
 
     /**
      * Description
-     * @method createFinal
+     *
      */
     createFinal: function() { // special function - only for pages!
       qx.bom.Selector.query("#pages")[0].innerHTML = this.allPages;

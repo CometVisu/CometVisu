@@ -21,8 +21,8 @@
 /**
  * TODO: complete docs
  *
- * @module structure/pure/PageJump
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 2012
  */

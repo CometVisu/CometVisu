@@ -26,8 +26,8 @@
  *   <label>Change Design</label>
  * </designtoggle>
  *
- * @module structure/pure/DesignToggle
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 0.5.3 (2010)
  */
@@ -82,10 +82,10 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
     /**
      * Action performed when the widget got clicked
      *
-     * @method action
-     * @param {String} path - Internal path of the widget
-     * @param {Element} actor - DOMElement
-     * @param {Boolean} isCanceled - If true the action does nothing
+     *
+     * @param path {String} - Internal path of the widget
+     * @param actor {Element} - DOMElement
+     * @param isCanceled {Boolean} - If true the action does nothing
      */
     _action: function( path, actor, isCanceled ) {
       if( isCanceled ) return;
@@ -112,7 +112,7 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
     /**
      * Wrapper for getting the `window.location.href` value
      *
-     * @method getLocation
+     *
      * @return {String} URI of the page the browser is currently showing
      */
     getLocation : function() {
@@ -122,8 +122,8 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
     /**
      * Changes `window.location.href` to trigger a redirect
      *
-     * @method setLocation
-     * @param {String} loc - URI of the location the browser should be redirected to
+     *
+     * @param loc {String} - URI of the location the browser should be redirected to
      */
     setLocation : function(loc) {
       window.location.href = loc;

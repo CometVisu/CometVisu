@@ -27,8 +27,8 @@
  * </settings>
  * <line><layout colspan="6"/></line>
  *
- * @module structure/pure/Line
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */

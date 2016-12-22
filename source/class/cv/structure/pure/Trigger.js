@@ -21,8 +21,8 @@
 /**
  * TODO: complete docs
  *
- * @module structure/pure/Trigger
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 2012
  */

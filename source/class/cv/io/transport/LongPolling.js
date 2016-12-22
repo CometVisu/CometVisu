@@ -55,7 +55,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
      *
      * @param json
      * @param connect (boolean) wether to start the connection or not
-     * @method handlethis.client
+     *
      */
     handleSession: function (ev, connect) {
       var json = ev.getTarget().getResponse();
@@ -105,7 +105,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * This function gets called once the communication is established
      * and this.client information is available
      *
-     * @method handleRead
+     *
      * @param json
      */
     handleRead: function (ev) {
@@ -181,7 +181,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     /**
      * This function gets called on an error
      *
-     * @method handleError
+     *
      * @param xhr
      * @param str
      * @param excptObj
@@ -200,7 +200,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * been send to the server
      *
      * @param xhr
-     * @method beforeSend
+     *
      */
     beforeSend: function (xhr) {
       for (var headerName in this.resendHeaders) {
@@ -218,7 +218,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * read the header values of a response and stores them to the
      * resendHeaders array
      *
-     * @method readResendHeaderValues
+     *
      */
     readResendHeaderValues: function () {
       for (var headerName in this.resendHeaders) {
@@ -237,8 +237,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     /**
      * Restart the read request, e.g. when the watchdog kicks in
      *
-     * @method restart
-     * @param {bool} doFullReload reload all data and not only restart connection
+     * @param doFullReload {Boolean} reload all data and not only restart connection
      */
     restart: function (doFullReload) {
       if (doFullReload)
@@ -252,7 +251,6 @@ qx.Class.define('cv.io.transport.LongPolling', {
     /**
      * Abort the read request properly
      *
-     * @method restart
      */
     abort: function () {
       if (this.xhr && this.xhr.abort) {

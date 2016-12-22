@@ -123,7 +123,7 @@
 
       /**
        * Handles updates of incoming data for this widget
-       * @method update
+       *
        * @param address {String} Source address of the incoming data
        * @param value {String} Incoming data
        */

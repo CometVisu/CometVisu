@@ -27,8 +27,8 @@
  *   <layout colspan="2" />
  * </image>
  *
- * @module structure/pure/Image
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */

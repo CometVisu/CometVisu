@@ -91,7 +91,7 @@ qx.Class.define('cv.IconHandler', {
     /**
      * Get the icon information for a name.
      *
-     * @method get
+     *
      * @param {String}
      *          name Name
      * @param {String}
@@ -188,37 +188,29 @@ qx.Class.define('cv.IconHandler', {
      * passing it to ParseHTML. After the content was added to the DOM the
      * fillIcons method must be called to fill missing content (e.g. the <canvas>
      * icons.
-     * @param {String}
-     *          name Name
-     * @param {String}
-     *          type Type (optional)
-     * @param {String}
-     *          flavour Flavour (optional)
-     * @param {String}
-     *          color Color (optional, only relevant for monochrome icons)
-     * @param {String}
-     *          styling
-     * @param {String}
-     *          iconclass
+     * @param name {String} Name
+     * @param type {String?} Type (optional)
+     * @param flavour {String?} Flavour (optional)
+     * @param color {String?} Color (optional, only relevant for monochrome icons)
+     * @param styling {String?} Styling
+     * @param iconClass {String} icon class
      */
-    getIconText: function () {
+    getIconText: function (name, type, flavour, color, styling, iconClass) {
       var i = this.get.apply(this, arguments);
       if (i) {
-        var styling = arguments[4];
 
         if (styling === undefined)
           styling = i.styling === undefined ? '' : ' style="' + i.styling + '"';
         else
           styling = ' style="' + styling + '"';
 
-        var classes = 'icon'
-        var iconclass = arguments[5];
+        var classes = 'icon';
         if (iconclass !== undefined) {
           classes = classes + ' custom_' + iconclass;
         }
 
         if (typeof i === 'function') {
-          return i(arguments[3], styling, classes, true);
+          return i(color, styling, classes, true);
         } else {
           return '<img class="' + classes + '" src="' + qx.util.ResourceManager.getInstance().toUri(i.uri) + '"' + styling + '/>';
         }
@@ -237,7 +229,7 @@ qx.Class.define('cv.IconHandler', {
     /**
      * List all known icons
      *
-     * @method list
+     *
      * @return {Array} List of all known icon names
      */
     list: function () {
@@ -249,7 +241,7 @@ qx.Class.define('cv.IconHandler', {
      * circumventing the data hiding and exposes a writeable reference to the
      * database object!
      *
-     * @method debug
+     *
      * @return {Object} The icon database
      */
     debug: function () {

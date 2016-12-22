@@ -21,8 +21,8 @@
 /**
  * TODO: complete docs
  *
- * @module structure/pure/Toggle
- * @requires structure/pure
+ *
+ *
  * @author Christian Mayer
  * @since 2012
  */
@@ -43,7 +43,7 @@ qx.Class.define('cv.structure.pure.Toggle', {
     /**
      * Get the value that should be send to backend after the action has been triggered
      *
-     * @method getActionValue
+     *
      */
     getActionValue: function () {
       return this.getNextMappedValue(this.getBasicValue(), this.getMapping());

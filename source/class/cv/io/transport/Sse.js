@@ -50,7 +50,7 @@ qx.Class.define('cv.io.transport.Sse', {
      * and session information is available
      *
      * @param connect (boolean) wether to start the connection or not
-     * @method handleSession
+     *
      */
     handleSession: function (ev, connect) {
       var json = ev.getTarget().getResponse();
@@ -124,7 +124,7 @@ qx.Class.define('cv.io.transport.Sse', {
     /**
      * Restart the read request, e.g. when the watchdog kicks in
      *
-     * @method restart
+     *
      */
     restart: function () {
       this.abort();
@@ -134,7 +134,7 @@ qx.Class.define('cv.io.transport.Sse', {
     /**
      * Abort the read request properly
      *
-     * @method restart
+     *
      */
     abort: function () {
       if (this.isConnectionRunning() === true) {

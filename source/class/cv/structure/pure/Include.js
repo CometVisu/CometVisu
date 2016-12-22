@@ -23,8 +23,8 @@
  * you the opportunity to split you configuration into multiple files. If you have a large configuration file
  * splitting it up might help to keep track of your configuration.
  *
- * @module structure/pure/Include
- * @requires structure/pure/
+ *
+ *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */

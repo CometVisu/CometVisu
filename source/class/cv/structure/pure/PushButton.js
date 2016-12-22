@@ -21,8 +21,8 @@
 /**
  * TODO: complete docs
  *
- * @module structure/pure/PushButton
- * @requires structure/pure
+ *
+ *
  * @since 2013
  */
 qx.Class.define('cv.structure.pure.PushButton', {
@@ -75,7 +75,7 @@ qx.Class.define('cv.structure.pure.PushButton', {
     /**
      * Handles the incoming data from the backend for this widget
      *
-     * @method handleUpdate
+     *
      * @param value {any} incoming data (already transformed + mapped)
      */
     handleUpdate: function (value) {
@@ -88,7 +88,7 @@ qx.Class.define('cv.structure.pure.PushButton', {
     /**
      * Get the value that should be send to backend after the action has been triggered
      *
-     * @method getActionValue
+     *
      */
     getActionValue: function (event) {
       if (event.type === "pointerup") {

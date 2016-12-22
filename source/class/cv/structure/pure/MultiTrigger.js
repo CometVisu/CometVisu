@@ -20,7 +20,7 @@
 
 /**
  * TODO: complete docs
- * @module structure/pure/Multitrigger
+ *
  * @author Christian Mayer
  * @since 2012
  */
@@ -162,7 +162,7 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
     /**
      * Handles the incoming data from the backend for this widget
      *
-     * @method handleUpdate
+     *
      * @param value {any} incoming data (already transformed + mapped)
      */
     handleUpdate: function (value) {
@@ -178,7 +178,7 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
     /**
      * Get the value that should be send to backend after the action has been triggered
      *
-     * @method getActionValue
+     *
      */
     getActionValue: function (event) {
       var index = qx.bom.Selector.query('.actor_container .actor', this.getDomElement()).indexOf(event.getCurrentTarget())+1;

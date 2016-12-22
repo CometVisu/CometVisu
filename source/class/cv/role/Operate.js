@@ -30,7 +30,7 @@ qx.Mixin.define("cv.role.Operate", {
     /**
      * Action performed when the widget got clicked, sends data to the backend
      *
-     * @method action
+     *
      * @param event {Event}
      */
     action: function (event) {
@@ -60,7 +60,7 @@ qx.Mixin.define("cv.role.Operate", {
     /**
      * Send the given value to all writeable addresses known to this widget
      *
-     * @method sendToBackend
+     *
      * @param value
      * @param filter {Function} optional filter function for addresses
      */

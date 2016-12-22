@@ -22,11 +22,9 @@
  * A break tag is used to start in new line for a grouped and thereby tidy display of
  * elements on one page.
  *
- * @example <caption>The break tag has no content</caption>
+ * @widgetexample <caption>The break tag has no content</caption>
  * <break/>
  *
- * @module structure/pure/Break
- * @requires structure/pure
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
