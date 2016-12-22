@@ -43,7 +43,7 @@ qx.Class.define('cv.ConfigCache', {
         addresses: cv.data.Model.getInstance().getAddressList(),
         configSettings: cv.Config
       });
-      localStorage.setItem(cv.Config.configSuffix+".body", $('body').html());
+      localStorage.setItem(cv.Config.configSuffix+".body", qx.bom.element.Attribute.get(qx.bom.Selector.query('body')[0], 'html'));
     },
     
     save: function(key, data) {
