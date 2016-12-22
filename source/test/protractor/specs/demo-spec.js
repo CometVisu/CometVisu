@@ -137,7 +137,7 @@ describe('cometvisu demo config test:', function () {
                 // give the slider some time to reach its position
                 browser.sleep(1000);
                 knob.getLocation().then(function (newPos) {
-                  expect(newPos.x).toEqual(rangePosition.x + borderWidth);
+                  expect(newPos.x).toEqual(rangePosition.x + borderWidth - Math.round(knobSize.width/2));
                   expect(newPos.y).toEqual(pos.y);
                 });
 
@@ -147,7 +147,7 @@ describe('cometvisu demo config test:', function () {
                 browser.sleep(1000);
                 knob.getLocation().then(function (newPos) {
                   // check with some tolerance
-                  expect(Math.abs(newPos.x-(rangePosition.x + rangeSize.width - knobSize.width - borderWidth))).toBeLessThan(5);
+                  expect(Math.abs(newPos.x-(rangePosition.x + rangeSize.width - knobSize.width - borderWidth))).toBeLessThan(15);
                   expect(newPos.y).toEqual(pos.y);
                 });
               });

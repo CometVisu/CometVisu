@@ -144,7 +144,7 @@ qx.Class.define('cv.structure.pure.Slide', {
       }
       slider.init();
 
-      slider.on("changeValue", qx.util.Function.debounce(this._onChangeValue, 250), this);
+      slider.on("changeValue", qx.util.Function.debounce(this._onChangeValue, 250, true), this);
 
       this.addListener("changeValue", function(ev) {
         slider.setValue(parseFloat(ev.getData()));
