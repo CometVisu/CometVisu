@@ -103,9 +103,9 @@
         {
           "uri" : "resource/libs/jquery.js"
         },
-        {
-          "uri" : "resource/libs/jquery-ui.js"
-        },
+//        {
+//          "uri" : "resource/libs/jquery-ui.js"
+//        },
         {
           "uri" : "resource/libs/strftime.js"
         }
@@ -116,7 +116,7 @@
           "resource/libs/sprintf.js",
           "resource/libs/Three.js",
           "resource/libs/jquery.js",
-          "resource/libs/jquery-ui.js",
+//          "resource/libs/jquery-ui.js",
           "resource/libs/strftime.js",
           "editor",
           "upgrade"

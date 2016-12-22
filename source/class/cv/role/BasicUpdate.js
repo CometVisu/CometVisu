@@ -37,7 +37,8 @@ qx.Mixin.define("cv.role.BasicUpdate", {
   properties: {
     value: {
       nullable: true,
-      init: null
+      init: null,
+      event: "changeValue"
     },
     basicValue: {
       nullable: true,

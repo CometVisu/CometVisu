@@ -21,8 +21,7 @@
 /**
  * TODO: complete docs
  *
- * @module structure/pure/Slide
- * @requires structure/pure
+ * @require(qx.module.Attribute,qx.module.Css,qx.module.Traversing,qx.module.Manipulating)
  * @author Christian Mayer
  * @since 2012
  */
@@ -37,7 +36,6 @@ qx.Class.define('cv.structure.pure.Slide', {
   */
   construct: function(props) {
     this.base(arguments, props);
-    this.__main = $('#main');
     // check provided address-items for at least one address which has write-access
     var readonly = true;
     for (var addrIdx in this.getAddress()) {
@@ -132,27 +130,30 @@ qx.Class.define('cv.structure.pure.Slide', {
 
     _onDomReady: function() {
       this.base(arguments);
-      var $actor = $( '#' + this.getPath() + ' .actor' );
-      $actor.slider({
-        step:    this.getStep(),
-        min:     this.getMin(),
-        max:     this.getMax(),
-        range:   'min',
-        animate: true,
-        send_on_finish : this.getSendOnFinish(),
-        start:   this.slideStart.bind(this),
-        change:  this.slideChange.bind(this)
-      });
-      // disable slider interaction if in read-only mode --> just show the value
-      if (this.__readonly) {
-        $actor.slider({ disabled: true });
-      }
-      $actor.on( 'slide', this.slideUpdateValue.bind(this) );
+      var actor = this.getActor();
+      var slider = this.__slider = new cv.ui.website.Slider(actor);
+      slider.setFormat(this.getFormat());
+      slider.setConfig("step", this.getStep());
+      slider.setConfig("minimum", this.getMin());
+      slider.setConfig("maximum", this.getMax());
+      // set initial value
+      slider.setValue(parseFloat(this.applyMapping(this.getMin())));
 
-      if(this.getFormat()) {
-        // initially setting a value
-        $actor.children('.ui-slider-handle').text(sprintf(this.getFormat(), this.applyMapping(this.getMin())));
+      if (this.__readonly) {
+        slider.setEnabled(false);
       }
+      slider.init();
+
+      slider.on("changeValue", qx.util.Function.debounce(this._onChangeValue, 250), this);
+      // slider.on("changePosition", this.slideStart, this);
+      this.addListener("changeValue", function(ev) {
+        slider.setValue(parseFloat(ev.getData()));
+      }, this);
+
+      // add CSS classes for compability with old sliders
+      slider.addClasses(["ui-slider", "ui-slider-horizontal", "ui-widget", "ui-widget-content", "ui-corner-all"]);
+      var knob = slider.find(".qx-slider-knob");
+      knob.addClasses(["ui-slider-handle", "ui-state-default", "ui-corner-all"]);
       this.__initialized= true;
     },
 
@@ -162,7 +163,7 @@ qx.Class.define('cv.structure.pure.Slide', {
 
     _update: function (ga, d) {
       if (this.__initialized !== true) return;
-      var actor = $(this.getActor());
+      // var actor = $(this.getActor());
 
       if (this.getInAction())
         return;
@@ -173,89 +174,106 @@ qx.Class.define('cv.structure.pure.Slide', {
         if (this.getValue() != value) {
           this.setValue(value);
           this.setValueInternal(false);
-          actor.slider('value', value);
+          if (this.__slider) {
+            this.__slider.setValue(value);
+          }
           this.setValueInternal(true);
-          if (this.getFormat() != null)
-            actor.children('.ui-slider-handle').text(sprintf(this.getFormat(), this.applyMapping(value)));
         }
-        this.transformSlider(value, actor.children('.ui-slider-handle'));
+        // this.transformSlider(value, actor.children('.ui-slider-handle'));
       } catch(e) {
         this.error(e);
       }
     },
 
     transformSlider: function (value, handle) {
-      if (!this.__main.data('disableSliderTransform')) {
-        if (!isNaN(value)) {
-          value = parseFloat(value); // force any (string) value to float
-          var sliderMax = $(handle).parent().slider("option", "max") + ($(handle).parent().slider("option", "min") * -1);
-          var percent = Math.round((100 / sliderMax) * (value + ($(handle).parent().slider("option", "min") * -1)));
-          //console.log("Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
-          $(handle).css('transform', 'translateX(-' + percent + '%)');
-        }
-      }
+      // if (!this.__main.data('disableSliderTransform')) {
+      //   if (!isNaN(value)) {
+      //     value = parseFloat(value); // force any (string) value to float
+      //     var sliderMax = $(handle).parent().slider("option", "max") + ($(handle).parent().slider("option", "min") * -1);
+      //     var percent = Math.round((100 / sliderMax) * (value + ($(handle).parent().slider("option", "min") * -1)));
+      //     //console.log("Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
+      //     $(handle).css('transform', 'translateX(-' + percent + '%)');
+      //   }
+      // }
     },
 
     slideUpdateValue: function (event, ui) {
-      if (this.getFormat()) {
-        $(ui.handle).text(sprintf(this.getFormat(), this.applyMapping(ui.value)));
-      }
-      this.transformSlider(ui.value, ui.handle);
+      // if (this.getFormat()) {
+      //   $(ui.handle).text(sprintf(this.getFormat(), this.applyMapping(ui.value)));
+      // }
+      // this.transformSlider(ui.value, ui.handle);
+    },
+
+    /**
+     * Handle incoming value changes send by the slider widget (e.g. triggered by user interaction)
+     * @param value {Number}
+     * @private
+     */
+    _onChangeValue: function(value) {
+      console.log("value changed "+value);
+      var addresses = this.getAddress();
+        for (var addr in addresses) {
+          if (!(addresses[addr][1] & 2)) continue; // skip when write flag not set
+          var dv = this.applyTransformEncode(addr, value);
+          if (dv != this.applyTransformEncode(addr, this.getValue()) && !isNaN(dv))
+            console.log(dv);
+            cv.TemplateEngine.getInstance().visu.write(addr, dv);
+        }
+        this.setValue(value);
     },
 
     /**
      * Start a thread that regularly sends the slider position to the bus
-     * @method slideStart
-     * @param {} event
-     * @param {} ui
+     *
+     * @param value {Number}
      */
-    slideStart: function (event, ui) {
-      var actor = $(this.getActor());
-
-      if (this.getSendOnFinish() === true) return;
-
-      this.setInAction(true);
-      this.setValueInternal(true);
-      this.__timerId = setInterval(function () {
-        var asv = actor.slider('value');
-
-        if (this.getValue() == asv) return;
-
-        var addresses = this.getAddress();
-        for (var addr in addresses) {
-          if (!(addresses[addr][1] & 2)) continue; // skip when write flag not set
-          var dv = this.applyTransformEncode(addr, asv);
-          if (dv != this.applyTransformEncode(addr, this.getValue()))
-            cv.TemplateEngine.getInstance().visu.write(addr, dv);
-        }
-        this.setValue(asv);
-      }.bind(this), 250); // update KNX every 250 ms
+    slideStart: function (value) {
+      console.log("Slide start "+value);
+      // var actor = $(this.getActor());
+      //
+      // if (this.getSendOnFinish() === true) return;
+      //
+      // this.setInAction(true);
+      // this.setValueInternal(true);
+      // this.__timerId = setInterval(function () {
+      //   var asv = actor.slider('value');
+      //
+      //   if (this.getValue() == asv) return;
+      //
+      //   var addresses = this.getAddress();
+      //   for (var addr in addresses) {
+      //     if (!(addresses[addr][1] & 2)) continue; // skip when write flag not set
+      //     var dv = this.applyTransformEncode(addr, asv);
+      //     if (dv != this.applyTransformEncode(addr, this.getValue()))
+      //       cv.TemplateEngine.getInstance().visu.write(addr, dv);
+      //   }
+      //   this.setValue(asv);
+      // }.bind(this), 250); // update KNX every 250 ms
     },
+
     /**
      * Delete the update thread and send the final value of the slider to the bus
-     * @method slideChange
-     * @param {} event
-     * @param {} ui
+     *
+     * @param value {Number}
      */
-    slideChange: function (event, ui) {
-      clearInterval(this.__timerId);
-      this.setInAction(false);
-      if (this.getValueInternal() && this.getValue() != ui.value) {
-        var addresses = this.getAddress();
-        for (var addr in addresses) {
-          if (!(addresses[addr][1] & 2)) continue; // skip when write flag not set
-          var uv = this.applyTransformEncode(addr, ui.value);
-          if (uv != this.applyTransformEncode(addr, this.getValue()))
-            cv.TemplateEngine.getInstance().visu.write(addr, uv);
-        }
-      }
-      this.transformSlider(ui.value, ui.handle);
+    slideChange: function (value) {
+      console.log("Slide change "+value);
+      // clearInterval(this.__timerId);
+      // this.setInAction(false);
+      // if (this.getValueInternal() && this.getValue() != ui.value) {
+      //   var addresses = this.getAddress();
+      //   for (var addr in addresses) {
+      //     if (!(addresses[addr][1] & 2)) continue; // skip when write flag not set
+      //     var uv = this.applyTransformEncode(addr, ui.value);
+      //     if (uv != this.applyTransformEncode(addr, this.getValue()))
+      //       cv.TemplateEngine.getInstance().visu.write(addr, uv);
+      //   }
+      // }
+      // this.transformSlider(ui.value, ui.handle);
     },
 
     /**
      * Get the value that should be send to backend after the action has been triggered
-     *
-     * @method getActionValue
      */
     getActionValue: function () {
       return "";
