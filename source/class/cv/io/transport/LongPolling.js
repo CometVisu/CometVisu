@@ -132,7 +132,6 @@ qx.Class.define('cv.io.transport.LongPolling', {
       if (this.running) { // keep the requests going
         this.retryCounter++;
         var data = this.client.buildRequest();
-        if (!this.lastIndex) debugger;
         data.i = this.lastIndex;
         this.xhr.set({
           requestData: data
