@@ -37,10 +37,6 @@ qx.Class.define('cv.ui.website.Slider', {
     format: {
       check: "String",
       nullable: true
-    },
-    sendOnFinish: {
-      check: "Boolean",
-      init: false
     }
   },
 
@@ -51,6 +47,8 @@ qx.Class.define('cv.ui.website.Slider', {
   ******************************************************
   */
   members: {
+    __pointerMoveEvent: null,
+
     // overridden
     _getKnobContent: function() {
       if (this.getFormat() && this.getValue() !== undefined) {
@@ -60,98 +58,25 @@ qx.Class.define('cv.ui.website.Slider', {
       }
     },
 
-    /**
-     * Listener for the pointerdown event. Initializes drag or tracking mode.
-     *
-     * @param e {qx.event.Emitter} Incoming event object
-     */
-    _onPointerDown : function(e) {
-      // this can happen if the user releases the button while dragging outside
-      // of the browser viewport
-      if (this._dragMode) {
-        return;
-      }
-
-      this._dragMode = true;
-
-      qxWeb(document.documentElement).on("pointermove", this._onPointerMove, this)
-        .setStyle("cursor", "pointer");
-
-      e.stopPropagation();
-    },
-
-    /**
-     * Listener for the pointermove event for the knob. Only used in drag mode.
-     *
-     * @param e {qx.event.Emitter} Incoming event object
-     */
+    //overridden
     _onPointerMove : function(e) {
-      e.preventDefault();
-
-      if (this._dragMode) {
-        var dragPosition = e.getDocumentLeft();
-        var dragBoundaries = this._getDragBoundaries();
-        var paddingLeft = Math.ceil(parseFloat(this.getStyle("paddingLeft")) || 0);
-        var positionKnob = dragPosition - this.getOffset().left - this._getHalfKnobWidth() - paddingLeft;
-
-        if (dragPosition >= dragBoundaries.min && dragPosition <= dragBoundaries.max) {
-          if (!this.isSendOnFinish()) {
-            this.setValue(this._getNearestValue(dragPosition));
-          }
-          if (positionKnob > 0) {
-            this._setKnobPosition(positionKnob);
-            this.emit("changePosition", positionKnob);
-          }
-        }
-        e.stopPropagation();
-      }
+      this.__pointerMoveEvent = true;
+      this.base(arguments, e);
     },
 
-    /**
-     * Listener for the pointerup event. Used for cleanup of previously
-     * initialized modes.
-     *
-     * @param e {qx.event.Emitter} Incoming event object
-     */
-    _onDocPointerUp : function(e) {
-      if (this._dragMode === true) {
-        // Cleanup status flags
-        delete this._dragMode;
-
-        this._valueToPosition(this.getValue());
-
-        qxWeb(document.documentElement).off("pointermove", this._onPointerMove, this)
-          .setStyle("cursor", "auto");
-        e.stopPropagation();
-      }
+    // overridden
+    _onSliderPointerUp: function(e) {
+      this.__pointerMoveEvent = false;
+      this.base(arguments, e);
     },
-    /**
-     * Positions the slider knob to the given value and fires the "changePosition"
-     * event with the current position as integer.
-     *
-     * @param value {Integer} slider step value
-     */
-    _valueToPosition : function(value)
-    {
-      var pixels = this._getPixels();
-      var paddingLeft = Math.ceil(parseFloat(this.getStyle("paddingLeft")) || 0);
-      var valueToPixel;
-      if (pixels.length > 0) {
-        // Get the pixel value of the current step value
-        valueToPixel = pixels[this.getConfig("step").indexOf(value)] - paddingLeft;
-      } else {
-        var dragBoundaries = this._getDragBoundaries();
-        var availableWidth = dragBoundaries.max - dragBoundaries.min;
-        var range = this.getConfig("maximum") - this.getConfig("minimum");
-        var fraction = (value - this.getConfig("minimum")) / range;
-        valueToPixel = (availableWidth * fraction) + dragBoundaries.min - paddingLeft;
-      }
 
-      // relative position is necessary here
-      var position = valueToPixel - this.getOffset().left - this._getHalfKnobWidth();
-      this._setKnobPosition(position);
+    _onDocPointerUp: function(e) {
+      this.__pointerMoveEvent = false;
+      this.base(arguments, e);
+    },
 
-      this.emit("changePosition", position);
+    isInPointerMove: function() {
+      return this.__pointerMoveEvent === true;
     }
   }
 });

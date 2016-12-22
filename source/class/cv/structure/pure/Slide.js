@@ -149,7 +149,6 @@ qx.Class.define('cv.structure.pure.Slide', {
       this.addListener("changeValue", function(ev) {
         slider.setValue(parseFloat(ev.getData()));
       }, this);
-      slider.setSendOnFinish(this.getSendOnFinish());
 
       // add CSS classes for compability with old sliders
       slider.addClasses(["ui-slider", "ui-slider-horizontal", "ui-widget", "ui-widget-content", "ui-corner-all"]);
@@ -191,14 +190,16 @@ qx.Class.define('cv.structure.pure.Slide', {
      * @private
      */
     _onChangeValue: function(value) {
-      var addresses = this.getAddress();
+      if (this.isSendOnFinish() === false || this.__slider.isInPointerMove()) {
+        var addresses = this.getAddress();
         for (var addr in addresses) {
           if (!(addresses[addr][1] & 2)) continue; // skip when write flag not set
           var dv = this.applyTransformEncode(addr, value);
           if (dv != this.applyTransformEncode(addr, this.getValue()) && !isNaN(dv))
             cv.TemplateEngine.getInstance().visu.write(addr, dv);
         }
-        this.setValue(value);
+      }
+      this.setValue(value);
     },
 
     /**
