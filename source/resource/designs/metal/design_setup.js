@@ -28,64 +28,6 @@ qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarLeft')[0], 'columns', 6
 qx.bom.element.Dataset.set(qx.bom.Selector.query('#main')[0], 'columns', 12);
 qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarRight')[0], 'columns', 6);
 
-function getOffsetCorners(elem) {
-  var bounds = elem.getBoundingClientRect();
-  return {
-    top_left: {top: Math.round(bounds.top), left: Math.round(bounds.left) },
-    bottom_left: {top: Math.round(bounds.top+bounds.height), left: Math.round(bounds.left) },
-    top_right: {top: Math.round(bounds.top), left: Math.round(bounds.left+bounds.width) },
-    bottom_right: {top: Math.round(bounds.top+bounds.height), left: Math.round(bounds.left+elem.width) }
-  };
-}
-
-function setRadius(elem, type, value) {
-  qx.bom.element.Style.set(elem, type, value);
-  qx.dom.Hierarchy.getChildElements(elem).forEach(function(subElem) {
-    qx.bom.element.Style.set(subElem, type, value);
-  }, this);
-}
-
-function roundCorners() {
-  // find elements in each groups corners
-  qx.bom.Selector.query('.page.activePage .group').forEach(function(group) {
-    var bounds = group.getBoundingClientRect();
-    // skip invisible groups
-    if (bounds.width === 0 || bounds.height === 0) {
-      return
-    }
-    // do not use this in navbars
-    if (qx.bom.Selector.matches('.navbar', qx.dom.Hierarchy.getAncestors(group)).length > 0) return;
-    var groupCorners = getOffsetCorners(group);
-    // if the group has a headline (=name) we must not round the upper corners
-    var topRight = qx.bom.element.Style.get(group, 'border-top-right-radius');
-    var bottomRight = qx.bom.element.Style.get(group, 'border-bottom-right-radius');
-    var bottomLeft = qx.bom.element.Style.get(group, 'border-bottom-left-radius');
-    var roundUpperCorners = (qx.bom.Selector.query('.widget_container:first-child', group).length>0) && topRight != "0px";
-    var threshold=5;
-    qx.bom.Selector.query('.widget_container', group).forEach(function (elem) {
-      var elemCorners = getOffsetCorners(elem);
-      if (roundUpperCorners) {
-        // upper left corner is done by regular  css-rule  upper right corner
-        if (Math.abs(elemCorners.top_right.top-groupCorners.top_right.top)<threshold && Math.abs(elemCorners.top_right.left-groupCorners.top_right.left)<threshold) {
-          setRadius(elem, 'border-top-right-radius', topRight);
-        }
-      }
-      if (bottomRight!="0px" && Math.abs(elemCorners.bottom_right.top-groupCorners.bottom_right.top)<threshold && Math.abs(elemCorners.bottom_right.left-groupCorners.bottom_right.left)<threshold) {
-        setRadius(elem, 'border-bottom-right-radius', bottomRight);
-      }
-      if (bottomLeft!="0px" && Math.abs(elemCorners.bottom_left.top-groupCorners.bottom_left.top)<threshold && Math.abs(elemCorners.bottom_left.left-groupCorners.bottom_left.left)<threshold) {
-        setRadius(elem, 'border-bottom-left-radius', bottomLeft);
-      }
-    });
-  });
-}
-cv.MessageBroker.getInstance().subscribe("path.pageChanged", function() {
-  //$('#id_0').append(navigator.userAgent.toLowerCase());
-  if (/(opera|chrome|safari)/i.test(navigator.userAgent.toLowerCase())) {
-    roundCorners();
-  }
-});
-
 cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function() {
   qx.bom.Selector.query('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').forEach(function(label) {
 
