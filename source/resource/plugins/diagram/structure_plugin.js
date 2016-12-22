@@ -363,6 +363,7 @@ qx.Class.define('cv.plugins.diagram.Main', {
       if (!this._init) {
         return;
       }
+      this._init = false;
       isPopup |= this.isPopup();
 
       var options = {
