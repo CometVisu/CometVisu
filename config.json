@@ -60,7 +60,9 @@
       "lint",
       "source-script",
       "api",
-      "api-data"
+      "api-data",
+      "source",
+      "build"
     ]
   },
 
