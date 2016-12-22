@@ -21,7 +21,7 @@
 /**
  * TODO: complete docs
  *
- * @require(qx.module.Attribute,qx.module.Css,qx.module.Traversing,qx.module.Manipulating)
+ * @require(qx.module.Attribute,qx.module.Css,qx.module.Traversing,qx.module.Manipulating,qx.module.event.Keyboard)
  * @author Christian Mayer
  * @since 2012
  */
@@ -145,10 +145,11 @@ qx.Class.define('cv.structure.pure.Slide', {
       slider.init();
 
       slider.on("changeValue", qx.util.Function.debounce(this._onChangeValue, 250), this);
-      // slider.on("changePosition", this.slideStart, this);
+
       this.addListener("changeValue", function(ev) {
         slider.setValue(parseFloat(ev.getData()));
       }, this);
+      slider.setSendOnFinish(this.getSendOnFinish());
 
       // add CSS classes for compability with old sliders
       slider.addClasses(["ui-slider", "ui-slider-horizontal", "ui-widget", "ui-widget-content", "ui-corner-all"]);
@@ -179,29 +180,9 @@ qx.Class.define('cv.structure.pure.Slide', {
           }
           this.setValueInternal(true);
         }
-        // this.transformSlider(value, actor.children('.ui-slider-handle'));
       } catch(e) {
         this.error(e);
       }
-    },
-
-    transformSlider: function (value, handle) {
-      // if (!this.__main.data('disableSliderTransform')) {
-      //   if (!isNaN(value)) {
-      //     value = parseFloat(value); // force any (string) value to float
-      //     var sliderMax = $(handle).parent().slider("option", "max") + ($(handle).parent().slider("option", "min") * -1);
-      //     var percent = Math.round((100 / sliderMax) * (value + ($(handle).parent().slider("option", "min") * -1)));
-      //     //console.log("Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
-      //     $(handle).css('transform', 'translateX(-' + percent + '%)');
-      //   }
-      // }
-    },
-
-    slideUpdateValue: function (event, ui) {
-      // if (this.getFormat()) {
-      //   $(ui.handle).text(sprintf(this.getFormat(), this.applyMapping(ui.value)));
-      // }
-      // this.transformSlider(ui.value, ui.handle);
     },
 
     /**
@@ -210,66 +191,14 @@ qx.Class.define('cv.structure.pure.Slide', {
      * @private
      */
     _onChangeValue: function(value) {
-      console.log("value changed "+value);
       var addresses = this.getAddress();
         for (var addr in addresses) {
           if (!(addresses[addr][1] & 2)) continue; // skip when write flag not set
           var dv = this.applyTransformEncode(addr, value);
           if (dv != this.applyTransformEncode(addr, this.getValue()) && !isNaN(dv))
-            console.log(dv);
             cv.TemplateEngine.getInstance().visu.write(addr, dv);
         }
         this.setValue(value);
-    },
-
-    /**
-     * Start a thread that regularly sends the slider position to the bus
-     *
-     * @param value {Number}
-     */
-    slideStart: function (value) {
-      console.log("Slide start "+value);
-      // var actor = $(this.getActor());
-      //
-      // if (this.getSendOnFinish() === true) return;
-      //
-      // this.setInAction(true);
-      // this.setValueInternal(true);
-      // this.__timerId = setInterval(function () {
-      //   var asv = actor.slider('value');
-      //
-      //   if (this.getValue() == asv) return;
-      //
-      //   var addresses = this.getAddress();
-      //   for (var addr in addresses) {
-      //     if (!(addresses[addr][1] & 2)) continue; // skip when write flag not set
-      //     var dv = this.applyTransformEncode(addr, asv);
-      //     if (dv != this.applyTransformEncode(addr, this.getValue()))
-      //       cv.TemplateEngine.getInstance().visu.write(addr, dv);
-      //   }
-      //   this.setValue(asv);
-      // }.bind(this), 250); // update KNX every 250 ms
-    },
-
-    /**
-     * Delete the update thread and send the final value of the slider to the bus
-     *
-     * @param value {Number}
-     */
-    slideChange: function (value) {
-      console.log("Slide change "+value);
-      // clearInterval(this.__timerId);
-      // this.setInAction(false);
-      // if (this.getValueInternal() && this.getValue() != ui.value) {
-      //   var addresses = this.getAddress();
-      //   for (var addr in addresses) {
-      //     if (!(addresses[addr][1] & 2)) continue; // skip when write flag not set
-      //     var uv = this.applyTransformEncode(addr, ui.value);
-      //     if (uv != this.applyTransformEncode(addr, this.getValue()))
-      //       cv.TemplateEngine.getInstance().visu.write(addr, uv);
-      //   }
-      // }
-      // this.transformSlider(ui.value, ui.handle);
     },
 
     /**
