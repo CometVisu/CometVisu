@@ -74,20 +74,27 @@ qx.Class.define('cv.structure.pure.Trigger', {
     _onDomReady: function() {
       this.base(arguments);
       this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
-      this.addListener("longtap", this._onLongTap, this);
+    },
+
+    initListeners: function() {
+      this.base(arguments);
+      if (this.getShortThreshold() > 0) {
+        this.addListener("longtap", this._onLongTap, this);
+      }
     },
 
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
-    _action: function(event) {
-      this.sendToBackend(this.getShortValue(), function(address) {
+    _action: function() {
+      var value = (this.getShortThreshold() > 0 || this.isShortDefault()) ? this.getShortValue() : this.getSendValue();
+      this.sendToBackend(value, function(address) {
         return !!(address[2] & 1);
       });
     },
 
-    _onLongTap: function(event) {
+    _onLongTap: function() {
       this.sendToBackend(this.getSendValue(), function(address) {
         return !!(address[2] & 2);
       });
