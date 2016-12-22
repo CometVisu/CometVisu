@@ -123,7 +123,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
       if (json && !this.doRestart) {
         if (qx.lang.Type.isString(json)) {
           this.error("backend response not parsed, check if backend returned the correct content-type. Parsing manually now!");
-          json = qx.io.parser.Json.parse(json);
+          json = cv.io.parser.Json.parse(json);
         }
         this.lastIndex = json.i;
         var data = json.d;
