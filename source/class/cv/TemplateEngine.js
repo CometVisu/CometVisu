@@ -131,29 +131,29 @@ qx.Class.define('cv.TemplateEngine', {
       var currentFrameTime = Date.now();
 
       var process = function() {
-          var key = keys.pop();
-          if (key in addressList) {
-            var data = json[key];
-            addressList[key].forEach(function (id) {
-              if (typeof id === 'string') {
-                var widget = cv.structure.WidgetFactory.getInstanceById(id);
-                if (widget && widget.update) {
-                  widget.update(key, data);
-                }
-                //console.log( element, type, updateFn );
-              } else if (typeof id === 'function') {
-                id.call(key, data);
+        var key = keys.pop();
+        if (key in addressList) {
+          var data = json[key];
+          addressList[key].forEach(function (id) {
+            if (typeof id === 'string') {
+              var widget = cv.structure.WidgetFactory.getInstanceById(id);
+              if (widget && widget.update) {
+                widget.update(key, data);
               }
-            });
-          }
-          if (keys.length) {
-            if (Date.now() - currentFrameTime <= 30) {
-              process();
-            } else {
-              currentFrameTime = Date.now();
-              qx.bom.AnimationFrame.request(process, this);
+              //console.log( element, type, updateFn );
+            } else if (typeof id === 'function') {
+              id.call(key, data);
             }
+          });
+        }
+        if (keys.length) {
+          if (Date.now() - currentFrameTime <= 30) {
+            process();
+          } else {
+            currentFrameTime = Date.now();
+            qx.bom.AnimationFrame.request(process, this);
           }
+        }
       };
       if (keys.length) {
         currentFrameTime = Date.now();
