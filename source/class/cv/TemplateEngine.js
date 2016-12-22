@@ -322,6 +322,12 @@ qx.Class.define('cv.TemplateEngine', {
               this.rememberLastPage = false;
             }
           }
+          console.log(startpage);
+        } else {
+          var req = qx.util.Uri.parseUri(window.location.href);
+          if (req.anchor && req.anchor.substring(0, 3) === "id_") {
+            startpage = req.anchor;
+          }
         }
         this.currentPage = qx.bom.Selector.query('#' + startpage)[0];
 
