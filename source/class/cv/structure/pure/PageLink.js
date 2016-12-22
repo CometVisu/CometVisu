@@ -24,7 +24,7 @@
  * @class cv.structure.pure.PageLink
  */
 qx.Class.define('cv.structure.pure.PageLink', {
-  extend: cv.structure.pure.AbstractWidget,
+  extend: cv.structure.AbstractWidget,
 
   /*
    ******************************************************

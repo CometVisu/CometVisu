@@ -43,6 +43,18 @@ qx.Class.define('cv.TemplateEngine', {
       init: {}
     },
 
+    partsLoaded: {
+      check: "Boolean",
+      init: false,
+      apply: "_applyLoaded"
+    },
+
+    scriptsLoaded: {
+      check: "Boolean",
+      init: false,
+      apply: "_applyLoaded"
+    },
+
     ready: {
       check: "Boolean",
       init: false,
@@ -89,6 +101,12 @@ qx.Class.define('cv.TemplateEngine', {
     _applyReady: function(value) {
       if (value === true) {
         this.setupPage();
+      }
+    },
+
+    _applyLoaded: function() {
+      if (this.isPartsLoaded() && this.isScriptsLoaded()) {
+        this.setReady(true);
       }
     },
 
@@ -253,19 +271,26 @@ qx.Class.define('cv.TemplateEngine', {
       var metaParser = new cv.xml.parser.Meta();
 
       // start with the plugins
-      qx.lang.Array.append(scriptsToLoad, metaParser.parsePlugins(this.xml));
+      var parts = metaParser.parsePlugins(this.xml);
+      if (parts.length > 0) {
+        qx.io.PartLoader.require(parts, function () {
+          this.setPartsLoaded(true);
+        }, this);
+      } else {
+        this.setPartsLoaded(true);
+      }
 
       // and then the rest
       metaParser.parse(this.xml);
 
       if (scriptsToLoad.length > 0) {
         loader.addListenerOnce("finished", function() {
-          this.setReady(true);
+          this.setScriptsLoaded(true);
         }, this);
         loader.addScripts(scriptsToLoad);
         loader.setAllQueued(true);
       } else {
-        this.setReady(true);
+        this.setScriptsLoaded(true);
       }
     },
 

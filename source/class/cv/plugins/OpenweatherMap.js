@@ -24,8 +24,8 @@
  * @author Stefan Borchert (stefan@borchert.cc)
  * @since 0.9.0
  */
-qx.Class.define('cv.plugins.openweathermap.Main', {
-  extend: cv.structure.pure.AbstractBasicWidget,
+qx.Class.define('cv.plugins.OpenweatherMap', {
+  extend: cv.structure.AbstractBasicWidget,
   include: cv.role.Refresh,
 
   /*
@@ -83,7 +83,7 @@ qx.Class.define('cv.plugins.openweathermap.Main', {
       check: "String",
       init: ""
     },
-    long: {
+    "long": {
       check: "String",
       init: ""
     },
@@ -137,6 +137,6 @@ qx.Class.define('cv.plugins.openweathermap.Main', {
     loader.addStyles('plugins/openweathermap/openweathermap');
     loader.addScripts('plugins/openweathermap/owm/jquery.owm.js');
     // register the parser
-    cv.xml.Parser.addHandler("openweathermap", cv.plugins.openweathermap.Main);
+    cv.xml.Parser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
   }
 });

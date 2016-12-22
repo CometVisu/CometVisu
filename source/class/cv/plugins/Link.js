@@ -24,8 +24,8 @@
  * @author Stefan Borchert [stefan@borchert.cc]
  * @since 2015
  */
-qx.Class.define('cv.plugin.link.Main', {
-  extend: cv.structure.pure.AbstractBasicWidget,
+qx.Class.define('cv.plugins.Link', {
+  extend: cv.structure.AbstractBasicWidget,
 
   /*
   ******************************************************
@@ -79,6 +79,6 @@ qx.Class.define('cv.plugin.link.Main', {
   },
 
   defer: function() {
-    cv.xml.Parser.addHandler("link", cv.plugin.link.Main);
+    cv.xml.Parser.addHandler("link", cv.plugins.Link);
   }
 });

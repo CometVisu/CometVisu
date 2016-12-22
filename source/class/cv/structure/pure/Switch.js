@@ -57,7 +57,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.structure.pure.Switch', {
-  extend: cv.structure.pure.AbstractWidget,
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Operate, cv.role.Update],
 
   /*

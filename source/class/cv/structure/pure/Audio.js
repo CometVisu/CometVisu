@@ -38,7 +38,7 @@
  * @since 0.8.4 (2014)
  */
   qx.Class.define('cv.structure.pure.Audio', {
-    extend: cv.structure.pure.AbstractWidget,
+    extend: cv.structure.AbstractWidget,
 
     include: cv.role.Update,
 

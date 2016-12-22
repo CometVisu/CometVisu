@@ -22,8 +22,8 @@
  * @author Mark K. [mr dot remy at gmx dot de]
  * @since 2012
  */
-qx.Class.define('cv.plugins.upnpcontroller.Main', {
-  extend: cv.structure.pure.AbstractWidget,
+qx.Class.define('cv.plugins.UpnpController', {
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Refresh],
   
   /*
@@ -366,7 +366,7 @@ qx.Class.define('cv.plugins.upnpcontroller.Main', {
   defer: function() {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/upnpcontroller/upnpcontroller.css');
-    cv.xml.Parser.addHandler("upnpcontroller", cv.plugins.upnpcontroller.Main);
+    cv.xml.Parser.addHandler("upnpcontroller", cv.plugins.UpnpController);
   }
   
 });

@@ -24,8 +24,8 @@
  * @author Carsten Tschach (Carsten@Tschach.com)
  * @since 2012
  */
-qx.Class.define('cv.plugins.timeout.Main', {
-  extend: cv.structure.pure.AbstractBasicWidget,
+qx.Class.define('cv.plugins.Timeout', {
+  extend: cv.structure.AbstractBasicWidget,
 
   /*
   ******************************************************
@@ -153,7 +153,7 @@ qx.Class.define('cv.plugins.timeout.Main', {
   },
 
   defer: function() {
-    cv.xml.Parser.addHandler("timeout", cv.plugins.timeout.Main);
+    cv.xml.Parser.addHandler("timeout", cv.plugins.Timeout);
   }
 
 });

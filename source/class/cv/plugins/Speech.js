@@ -23,34 +23,38 @@
  * to make text-to-speech service available. This plugin listens to a address and forwards the
  * incoming data to the browser TTS engine (if the browser supports it)
  *
- * @example <caption>Simple example</caption>
- * <speech lang="en">
- *  <address transform="OH:string" mode="read">Speak</address>
- * </speech>
+ * <h4>Simple example</h4>
+ * <pre class="sunlight-highlight-xml">
+ * &lt;speech lang=&quot;en&quot;&gt;
+ *  &lt;address transform=&quot;OH:string&quot; mode=&quot;read&quot;&gt;Speak&lt;/address&gt;
+ * &lt;/speech&gt;
+ * </pre>
  *
- * @example <caption>Example preventing repetition within a timeout and use mapping</caption>
+ * <h4>Example preventing repetition within a timeout and use mapping</h4>
+ * <pre class="sunlight-highlight-xml">
  * ...
- * <meta>
- *  <plugins>
- *    <plugin name="speech" />
- *  </plugins>
- *  <mappings>
- *    <mapping name="speak">
- *      <entry value="0">Hello, welcome home</entry>
- *      <entry value="1">Please close all windows</entry>
- *      <entry value="2">Please close all doors</entry>
- *    </mapping>
- *  </mappings>
- * </meta>
+ * &lt;meta&gt;
+ *  &lt;plugins&gt;
+ *    &lt;plugin name=&quot;speech&quot; /&gt;
+ *  &lt;/plugins&gt;
+ *  &lt;mappings&gt;
+ *    &lt;mapping name=&quot;speak&quot;&gt;
+ *      &lt;entry value=&quot;0&quot;&gt;Hello, welcome home&lt;/entry&gt;
+ *      &lt;entry value=&quot;1&quot;&gt;Please close all windows&lt;/entry&gt;
+ *      &lt;entry value=&quot;2&quot;&gt;Please close all doors&lt;/entry&gt;
+ *    &lt;/mapping&gt;
+ *  &lt;/mappings&gt;
+ * &lt;/meta&gt;
  * ...
- * <speech lang="en" repeat-timout="300" mapping="speak">
- *  <address transform="DPT:5.010" mode="read">Speak</address>
- * </speech>
+ * &lt;speech lang=&quot;en&quot; repeat-timout=&quot;300&quot; mapping=&quot;speak&quot;&gt;
+ *  &lt;address transform=&quot;DPT:5.010&quot; mode=&quot;read&quot;&gt;Speak&lt;/address&gt;
+ * &lt;/speech&gt;
+ * </pre>
  *
  * @author Tobias Bräutigam
  * @since 0.10.0
  */
-qx.Class.define('cv.plugin.speech.Main', {
+qx.Class.define('cv.plugins.Speech', {
   extend: cv.Object,
   include: cv.role.Update,
 
@@ -103,7 +107,7 @@ qx.Class.define('cv.plugin.speech.Main', {
     mapping           : { check: "String", init: "" },
     repeatTimeout     : { check: "Number", init: -1 },
     parentWidget: {
-      check: "cv.structure.pure.AbstractBasicWidget",
+      check: "cv.structure.AbstractBasicWidget",
       init: null
     }
   },
@@ -178,7 +182,7 @@ qx.Class.define('cv.plugin.speech.Main', {
         if (this.language && voices[i].lang.substr(0, 2).toLowerCase() === this.language) {
           selectedVoice = voices[i];
         }
-        if (voices[i].default) {
+        if (voices[i]["default"]) {
           defaultVoice = voices[i];
         }
       }
@@ -193,6 +197,6 @@ qx.Class.define('cv.plugin.speech.Main', {
 
   defer: function() {
     // register the parser
-    cv.xml.Parser.addHandler("speech", cv.plugin.speech.Main);
+    cv.xml.Parser.addHandler("speech", cv.plugins.Speech);
   }
 });

@@ -25,7 +25,7 @@
  * @since 0.10.0 (as widget), 0.9.2 (as plugin)
  */
 qx.Class.define('cv.structure.pure.WidgetInfoAction', {
-  extend: cv.structure.pure.AbstractWidget,
+  extend: cv.structure.AbstractWidget,
   include: cv.role.HasChildren,
 
   /*

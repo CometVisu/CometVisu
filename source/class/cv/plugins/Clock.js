@@ -18,8 +18,8 @@
  */
 
 
-qx.Class.define('cv.plugins.clock.Main', {
-  extend: cv.structure.pure.AbstractWidget,
+qx.Class.define('cv.plugins.Clock', {
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Update],
 
   /*
@@ -120,6 +120,6 @@ qx.Class.define('cv.plugins.clock.Main', {
   },
 
   defer: function() {
-    cv.xml.Parser.addHandler("clock", cv.plugins.clock.Main);
+    cv.xml.Parser.addHandler("clock", cv.plugins.Clock);
   }
 });

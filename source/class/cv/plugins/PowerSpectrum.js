@@ -22,13 +22,11 @@
  * The powerspectrum plugin and widget creates a graph to show the power 
  * spectral data that the Enertex Smartmeter can send on the KNX bus.
  * 
- * @module plugins/powerspectrum/structure_plugin
- * @requires structure/pure
  * @author Christian Mayer
  * @since 0.10.0
  * */
-qx.Class.define('cv.plugins.powerspectrum.Main', {
-  extend: cv.structure.pure.AbstractWidget,
+qx.Class.define('cv.plugins.PowerSpectrum', {
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Update],
 
   /*
@@ -411,7 +409,7 @@ qx.Class.define('cv.plugins.powerspectrum.Main', {
       'plugins/diagram/dep/flot/jquery.flot.resize.min.js',
       'plugins/diagram/dep/flot/jquery.flot.navigate.min.js'
     ]);
-    cv.xml.Parser.addHandler("powerspectrum", cv.plugins.powerspectrum.Main);
+    cv.xml.Parser.addHandler("powerspectrum", cv.plugins.PowerSpectrum);
     
     // init
     statics.limitEN50160_1999.forEach( statics.fixLimits );

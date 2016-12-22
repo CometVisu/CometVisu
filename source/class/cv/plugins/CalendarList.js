@@ -22,8 +22,8 @@
  * @author mclb
  * @since 2014
  */
-qx.Class.define('cv.structure.pure.CalendarList', {
-  extend: cv.structure.pure.AbstractWidget,
+qx.Class.define('cv.plugins.CalendarList', {
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Refresh],
 
 
@@ -128,7 +128,7 @@ qx.Class.define('cv.structure.pure.CalendarList', {
   },
 
   defer: function () {
-    cv.xml.Parser.addHandler("calendarlist", cv.structure.pure.CalendarList);
+    cv.xml.Parser.addHandler("calendarlist", cv.plugins.CalendarList);
   }
 });
 (function ($) {
@@ -154,7 +154,7 @@ qx.Class.define('cv.structure.pure.CalendarList', {
         }
 
         var formData = {
-          'maxquantity': o.maxquantity,
+          'maxquantity': o.maxquantity
         };
 
         for (var i = 0; i < o.calendar.length; i++) {
@@ -243,4 +243,4 @@ qx.Class.define('cv.structure.pure.CalendarList', {
       });
     }
   });
-})(jQuery)
+})(jQuery);

@@ -27,7 +27,7 @@
  * @since 2012
  */
 qx.Class.define('cv.structure.pure.NavBar', {
-  extend: cv.structure.pure.AbstractWidget,
+  extend: cv.structure.AbstractWidget,
 
   include: cv.role.HasChildren,
 

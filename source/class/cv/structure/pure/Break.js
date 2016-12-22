@@ -29,7 +29,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.structure.pure.Break', {
-  extend: cv.structure.pure.AbstractBasicWidget,
+  extend: cv.structure.AbstractBasicWidget,
 
   /*
    ******************************************************

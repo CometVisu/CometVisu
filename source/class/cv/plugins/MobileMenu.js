@@ -22,8 +22,8 @@
  * @author alltime84
  * @since 2016
  */
-qx.Class.define('cv.plugins.mobilemenu.Main', {
-  extend: cv.structure.pure.AbstractWidget,
+qx.Class.define('cv.plugins.MobileMenu', {
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.HasChildren],
 
   /*
@@ -127,7 +127,7 @@ qx.Class.define('cv.plugins.mobilemenu.Main', {
   defer: function() {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/mobilemenu/mobilemenu.css');
-    cv.xml.Parser.addHandler("mobilemenu", cv.plugins.mobilemenu.Main);
+    cv.xml.Parser.addHandler("mobilemenu", cv.plugins.MobileMenu);
     // add parser hook for children
     cv.xml.Parser.addHook("mobilemenu", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
   }

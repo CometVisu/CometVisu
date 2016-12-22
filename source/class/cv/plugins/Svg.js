@@ -22,8 +22,8 @@
  * @author christian523
  * @since 2012
  */
-qx.Class.define('cv.plugins.svg.Main', {
-  extend: cv.structure.pure.AbstractWidget,
+qx.Class.define('cv.plugins.Svg', {
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Update, cv.role.Refresh],
 
   /*
@@ -63,6 +63,6 @@ qx.Class.define('cv.plugins.svg.Main', {
 
   defer: function() {
     // register the parser
-    cv.xml.Parser.addHandler("svg", cv.plugins.svg.Main);
+    cv.xml.Parser.addHandler("svg", cv.plugins.Svg);
   }
 });

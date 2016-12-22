@@ -24,8 +24,8 @@
  * @author NetFritz [NetFritz at gmx dot de]
  * @since 0.8.1
 */ 
-qx.Class.define('cv.plugins.gauge.Main', {
-  extend: cv.structure.pure.AbstractWidget,
+qx.Class.define('cv.plugins.Gauge', {
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Update, cv.role.Operate ],
 
   /*
@@ -265,6 +265,6 @@ qx.Class.define('cv.plugins.gauge.Main', {
       'plugins/gauge/dep/tween-min.js',
       'plugins/gauge/dep/steelseries-min.js'
     ]);
-    cv.xml.Parser.addHandler("gauge", cv.plugins.gauge.Main);
+    cv.xml.Parser.addHandler("gauge", cv.plugins.Gauge);
   }
 });

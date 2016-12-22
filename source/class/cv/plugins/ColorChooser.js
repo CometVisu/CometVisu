@@ -23,8 +23,8 @@
  * @since 0.5.2
  * @author Christian Mayer [CometVisu at ChristianMayer dot de]
  */
-qx.Class.define('cv.plugins.colorchooser.Main', {
-  extend: cv.structure.pure.AbstractWidget,
+qx.Class.define('cv.plugins.ColorChooser', {
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Update, cv.role.Operate],
 
 
@@ -216,6 +216,6 @@ qx.Class.define('cv.plugins.colorchooser.Main', {
     loader.addStyles('plugins/colorchooser/farbtastic/farbtastic.css');
     loader.addScripts('plugins/colorchooser/farbtastic/farbtastic.js');
     // register the parser
-    cv.xml.Parser.addHandler("colorchooser", cv.plugins.colorchooser.Main);
+    cv.xml.Parser.addHandler("colorchooser", cv.plugins.ColorChooser);
   }
 });

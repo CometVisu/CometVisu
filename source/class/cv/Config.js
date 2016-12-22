@@ -175,12 +175,12 @@ qx.Class.define('cv.Config', {
       if (!isNaN(cv.Config.url_maturity - 0)) {
         cv.Config.use_maturity = cv.Config.url_maturity - 0; // given directly as number
       } else {
-        cv.Config.use_maturity = cv.structure.pure.AbstractBasicWidget.Maturity[cv.Config.url_maturity]; // or as the ENUM name
+        cv.Config.use_maturity = cv.structure.AbstractBasicWidget.Maturity[cv.Config.url_maturity]; // or as the ENUM name
       }
     }
 
     if (isNaN(cv.Config.use_maturity)) {
-      cv.Config.use_maturity = cv.structure.pure.AbstractBasicWidget.Maturity.release; // default to release
+      cv.Config.use_maturity = cv.structure.AbstractBasicWidget.Maturity.release; // default to release
     }
   }
 });

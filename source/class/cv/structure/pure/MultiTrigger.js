@@ -25,7 +25,7 @@
  * @since 2012
  */
 qx.Class.define('cv.structure.pure.MultiTrigger', {
-  extend: cv.structure.pure.AbstractWidget,
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Operate, cv.role.Update, cv.role.HasAnimatedButton],
 
   /*

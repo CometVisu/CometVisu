@@ -63,7 +63,7 @@ qx.Class.define('cv.structure.pure.Unknown', {
       init: "text"
     },
     parentWidget: {
-      check: "cv.structure.pure.AbstractBasicWidget",
+      check: "cv.structure.AbstractBasicWidget",
       init: null
     }
   },

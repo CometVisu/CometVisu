@@ -173,8 +173,8 @@ qx.Class.define("cv.xml.parser.Meta", {
       var pluginsToLoad = [];
       qx.bom.Selector.query('meta > plugins plugin', xml).forEach(function (elem) {
         var name = qx.bom.element.Attribute.get(elem, 'name');
-        if (name && !pluginsToLoad[name]) {
-          pluginsToLoad.push('plugins/' + name + '/structure_plugin.js');
+        if (name) {
+          pluginsToLoad.push("plugin-"+name);
         }
       });
       return pluginsToLoad;

@@ -29,7 +29,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.structure.pure.Include', {
-  extend: cv.structure.pure.AbstractBasicWidget,
+  extend: cv.structure.AbstractBasicWidget,
 
   include: cv.role.HasChildren,
 
@@ -39,7 +39,7 @@ qx.Class.define('cv.structure.pure.Include', {
   ******************************************************
   */
   statics: {
-    maturity: cv.structure.pure.AbstractBasicWidget.Maturity.development,
+    maturity: cv.structure.AbstractBasicWidget.Maturity.development,
 
     parse: function( xml, path, flavour, pageType ) {
       // TODO: needs to be tested

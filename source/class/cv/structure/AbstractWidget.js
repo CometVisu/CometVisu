@@ -20,10 +20,10 @@
 
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
- * @class cv.structure.pure.AbstractWidget
+ * @class cv.structure.AbstractWidget
  */
-qx.Class.define('cv.structure.pure.AbstractWidget', {
-  extend: cv.structure.pure.AbstractBasicWidget,
+qx.Class.define('cv.structure.AbstractWidget', {
+  extend: cv.structure.AbstractBasicWidget,
   include: [cv.role.HasStyling],
   type: "abstract",
 

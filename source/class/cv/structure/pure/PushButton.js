@@ -26,7 +26,7 @@
  * @since 2013
  */
 qx.Class.define('cv.structure.pure.PushButton', {
-  extend: cv.structure.pure.AbstractWidget,
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Operate, cv.role.Update],
 
   /*

@@ -19,9 +19,9 @@
 
 
 /**
- * @class cv.structure.pure.AbstractBasicWidget
+ * @class cv.structure.AbstractBasicWidget
  */
-qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
+qx.Class.define('cv.structure.AbstractBasicWidget', {
   extend: cv.Object,
   type: "abstract",
 
@@ -98,7 +98,7 @@ qx.Class.define('cv.structure.pure.AbstractBasicWidget', {
      * The parent widget
      */
     parentWidget: {
-      check: "cv.structure.pure.AbstractBasicWidget",
+      check: "cv.structure.AbstractBasicWidget",
       init: null
     }
   },

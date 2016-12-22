@@ -24,8 +24,8 @@
  * @author Michael Hausl [michael at hausl dot com]
  * @since 0.8.0
  */
-qx.Class.define('cv.plugins.strftime.Main', {
-  extend: cv.structure.pure.AbstractWidget,
+qx.Class.define('cv.plugins.Strftime', {
+  extend: cv.structure.AbstractWidget,
 
   /*
   ******************************************************
@@ -121,7 +121,7 @@ qx.Class.define('cv.plugins.strftime.Main', {
   defer: function() {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/strftime/strftime.css');
-    cv.xml.Parser.addHandler("strftime", cv.plugins.strftime.Main);
+    cv.xml.Parser.addHandler("strftime", cv.plugins.Strftime);
 
     // extend locales by German and French
     Date.ext.locales['de'] = {

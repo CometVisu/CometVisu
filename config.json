@@ -75,7 +75,8 @@
       [
         "${APPLICATION}.Application",
         "${APPLICATION}.structure.pure.*",
-        "${APPLICATION}.transforms.*"
+        "${APPLICATION}.transforms.*",
+        "${APPLICATION}.plugins.*"
       ],
 
       "lint-check" : {
@@ -104,9 +105,6 @@
         {
           "uri" : "resource/libs/jquery.js"
         },
-//        {
-//          "uri" : "resource/libs/jquery-ui.js"
-//        },
         {
           "uri" : "resource/libs/strftime.js"
         }
@@ -117,7 +115,6 @@
           "resource/libs/sprintf.js",
           "resource/libs/Three.js",
           "resource/libs/jquery.js",
-//          "resource/libs/jquery-ui.js",
           "resource/libs/strftime.js",
           "editor",
           "upgrade"
@@ -125,12 +122,108 @@
       }
     },
 
+    "parts-config":
+    {
+      "packages" :
+      {
+        "verifier-bombs-on-error" : false,
+        "separate-loader" : true,
+        "parts"  :
+        {
+          "boot"     :
+          {
+            "include" : [
+              "${APPLICATION}.Application",
+              "${APPLICATION}.structure.pure.*",
+              "${APPLICATION}.transforms.*"
+            ]
+          },
+
+          "plugin-diagram" :
+          {
+            "include" : [ "${APPLICATION}.plugins.diagram.*" ]
+          },
+          "plugin-colorchooser" :
+          {
+            "include" : [ "${APPLICATION}.plugins.ColorChooser" ]
+          },
+          "plugin-calendarlist" :
+          {
+            "include" : [ "${APPLICATION}.plugins.CalendarList" ]
+          },
+          "plugin-clock" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Clock" ]
+          },
+          "plugin-gauge" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Gauge" ]
+          },
+          "plugin-link" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Link" ]
+          },
+          "plugin-mobilemenu" :
+          {
+            "include" : [ "${APPLICATION}.plugins.MobileMenu" ]
+          },
+          "plugin-powerspectrum" :
+          {
+            "include" : [ "${APPLICATION}.plugins.PowerSpectrum" ]
+          },
+          "plugin-openweathermap" :
+          {
+            "include" : [ "${APPLICATION}.plugins.OpenweatherMap" ]
+          },
+          "plugin-rss" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Rss" ]
+          },
+          "plugin-rsslog" :
+          {
+            "include" : [ "${APPLICATION}.plugins.RssLog" ]
+          },
+          "plugin-strftime" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Strftime" ]
+          },
+          "plugin-speech" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Speech" ]
+          },
+          "plugin-timeout" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Timeout" ]
+          },
+          "plugin-svg" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Svg" ]
+          },
+          "plugin-upnpcontroller" :
+          {
+            "include" : [ "${APPLICATION}.plugins.UpnpController" ]
+          }
+        }
+      }
+    },
+
+    "source" :
+    {
+      "extend" : [ "parts-config" ]
+    },
+
+    "build" :
+    {
+      "extend" : [ "parts-config" ]
+    },
+
     "source-all-script" :
     {
       "=exclude" :
       [
         "qx.test.*",
-        "${APPLICATION}.test.*"
+        "${APPLICATION}.test.*",
+        "${APPLICATION}.plugins.*"
       ]
     },
 

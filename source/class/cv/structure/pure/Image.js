@@ -33,7 +33,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.structure.pure.Image', {
-  extend: cv.structure.pure.AbstractWidget,
+  extend: cv.structure.AbstractWidget,
 
   include: cv.role.Refresh,
 

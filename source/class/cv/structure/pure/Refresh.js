@@ -27,7 +27,7 @@
  * @since 2014
  */
 qx.Class.define('cv.structure.pure.Refresh', {
-  extend: cv.structure.pure.AbstractWidget,
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Operate, cv.role.HasAnimatedButton, cv.role.BasicUpdate],
 
   /*

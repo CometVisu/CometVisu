@@ -21,36 +21,41 @@
 /**
  * This plugins integrates flot (diagrams in javascript) into the visualization.
  * server-side data-storage is rrd
+ *
+ * short documentation
+ *
+ * <h4>widgets:</h4>
+ * <ul>
+ *   <li>diagram</li>
+ *   <li>diagram_info</li>
+ * </ul>
+ *
+ * <h4>attributes (per diagram):</h4>
+ * <ul>
+ *   <li>series:               optional, "hour", "day" (default), "week", "month", "year"</li>
+ *   <li>period:               optional, number of "series" to be shown</li>
+ *   <li>refresh:              optional, refresh-rate in seconds, no refresh if missing</li>
+ *   <li>gridcolor:            optional, color for dataline and grid, HTML-colorcode</li>
+ *   <li>width, height:        optional, width and height of "inline"-diagram</li>
+ *   <li>previewlabels:        optional, show labels on "inline"-diagram</li>
+ *   <li>popup:                optional, make diagram clickable and open popup</li>
+ *   <li>legend:               optional, "none", "both", "inline", "popup" select display of legend</li>
+ *   <li>title:                optional, diagram title (overrides label-content)</li>
+ * </ul>
+ *
+ * <h4>attributes (per graph):</h4>
+ * <ul>
+ *   <li>style:                optional, "lines" (default), "bars", "points" select graph type</li>
+ *   <li>fill:                 optional, true or false - fill the space under the line / within the bar (line / bar style graphs)</li>
+ *   <li>barWidth:             optional, width of bars (bar style graphs)</li>
+ *   <li>align:                optional, "left" (default), "center", "right" select qlignemnt of bars (bar style graphs)</li>
+ * </ul>
+ *
  * @author Michael Hausl [michael at hausl dot com]
  * @since 2014
  */
-
-/**
- * short documentation
- *
- * widgets:
- *   - diagram
- *   - diagram_info
- *
- * attributes (per diagram):
- *   - series:               optional, "hour", "day" (default), "week", "month", "year"
- *   - period:               optional, number of "series" to be shown
- *   - refresh:              optional, refresh-rate in seconds, no refresh if missing
- *   - gridcolor:            optional, color for dataline and grid, HTML-colorcode
- *   - width, height:        optional, width and height of "inline"-diagram
- *   - previewlabels:        optional, show labels on "inline"-diagram
- *   - popup:                optional, make diagram clickable and open popup
- *   - legend:               optional, "none", "both", "inline", "popup" select display of legend
- *   - title:                optional, diagram title (overrides label-content)
- *
- * attributes (per graph):
- *   - style:                optional, "lines" (default), "bars", "points" select graph type
- *   - fill:                 optional, true or false - fill the space under the line / within the bar (line / bar style graphs)
- *   - barWidth:             optional, width of bars (bar style graphs)
- *   - align:                optional, "left" (default), "center", "right" select qlignemnt of bars (bar style graphs)
- */
-qx.Class.define('cv.plugins.diagram.Main', {
-  extend: cv.structure.pure.AbstractWidget,
+qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
+  extend: cv.structure.AbstractWidget,
   include: [cv.role.Operate, cv.role.Refresh],
   type: "abstract",
 
@@ -134,7 +139,7 @@ qx.Class.define('cv.plugins.diagram.Main', {
           axisIndex : axesNameIndex[elem.getAttribute('yaxis')] || 1,
           steps     : (elem.getAttribute("steps") || "false") == "true",
           fill      : (elem.getAttribute("fill") || "false") == "true",
-          scaling   : parseFloat(elem.getAttribute('scaling')) || 1.,
+          scaling   : parseFloat(elem.getAttribute('scaling')) || 1.0,
           dsIndex   : elem.getAttribute('datasourceIndex') || 0,
           cFunc     : elem.getAttribute('consolidationFunction') || "AVERAGE",
           resol     : parseInt(elem.getAttribute('resolution')),
@@ -606,145 +611,5 @@ qx.Class.define('cv.plugins.diagram.Main', {
       'plugins/diagram/dep/flot/jquery.flot.tooltip.min.js',
       'plugins/diagram/dep/flot/jquery.flot.navigate.min.js'
     ], [0]);
-  }
-});
-
-qx.Class.define('cv.plugins.diagram.Info', {
-  extend: cv.plugins.diagram.Main,
-  include: [cv.role.Update],
-
-  /*
-  ******************************************************
-    CONSTRUCTOR
-  ******************************************************
-  */
-  construct: function(props) {
-    this.base(arguments, props);
-    this._init = false;
-  },
-
-  /*
-  ******************************************************
-    MEMBERS
-  ******************************************************
-  */
-  members: {
-    _getInnerDomString: function() {
-      return '<div class="actor clickable switchUnpressed"><div class="value">-</div></div>';
-    },
-    _update: function(address, data) {
-      if (address !== undefined && data !== undefined) {
-        return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
-      }
-    }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("diagram_info", cv.plugins.diagram.Info);
-    cv.xml.Parser.addHook("diagram_info", "after", cv.plugins.diagram.Main.afterParse, cv.plugins.diagram.Main);
-  }
-});
-
-qx.Class.define('cv.plugins.diagram.Diagram', {
-  extend: cv.plugins.diagram.Main,
-
-  /*
-   ******************************************************
-   CONSTRUCTOR
-   ******************************************************
-   */
-  construct: function(props) {
-    this.base(arguments, props);
-    this._init = true;
-  },
-
-  /*
-  ******************************************************
-    PROPERTIES
-  ******************************************************
-  */
-  properties: {
-    width: {
-      check: "String",
-      nullable: true
-    },
-    height: {
-      check: "String",
-      nullable: true
-    }
-  },
-
-  /*
-  ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function() {
-      return {
-        width: { transform: function(value) {
-          return value ? parseInt(value)+"px" : null;
-        }},
-        height: { transform: function(value) {
-          return value ? parseInt(value)+"px" : null;
-        }}
-      }
-    }
-  },
-
-  /*
-   ******************************************************
-   MEMBERS
-   ******************************************************
-   */
-  members: {
-
-    _onDomReady: function() {
-      var pageId = this.getParentPage().getPath();
-      var broker = cv.MessageBroker.getInstance();
-
-      // stop refreshing when page is left
-      broker.subscribe("path." + pageId + ".exitingPageChange", function() {
-        this._stopRefresh(this._timer);
-      }, this);
-
-      broker.subscribe("path." + pageId + ".beforePageChange", function() {
-        if( !this._init )
-          this.loadDiagramData( this.plot, false, false );
-      }, this);
-
-      broker.subscribe("path." + pageId + ".duringPageChange", function() {
-        // create diagram when it's not already existing
-        if( this._init )
-          this.initDiagram( false );
-
-        // start refreshing when page is entered
-        this._startRefresh(this._timer);
-      }, this);
-    },
-
-    _getInnerDomString: function() {
-      var
-        classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview',
-        styleStr = 'min-height: 40px'
-          + (this.getWidth()  ? (';width:'  + this.getWidth() ) : ''             )
-          + (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
-
-      return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
-    },
-
-    // overridden
-    _action: function(ev) {
-      if (this.getPopup()) {
-        this.base(arguments, ev);
-      }
-    }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("diagram", cv.plugins.diagram.Diagram);
-    cv.xml.Parser.addHook("diagram", "after", cv.plugins.diagram.Main.afterParse, cv.plugins.diagram.Main);
   }
 });

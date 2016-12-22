@@ -27,7 +27,7 @@
  * @since 2012
  */
 qx.Class.define('cv.structure.pure.Video', {
-  extend: cv.structure.pure.AbstractWidget,
+  extend: cv.structure.AbstractWidget,
 
   /*
   ******************************************************
