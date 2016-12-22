@@ -128,8 +128,8 @@
     {
       "packages" :
       {
-        "verifier-bombs-on-error" : false,
-        "separate-loader" : true,
+//        "verifier-bombs-on-error" : false,
+//        "separate-loader" : true,
         "parts"  :
         {
           "boot"     :
@@ -224,8 +224,7 @@
       "=exclude" :
       [
         "qx.test.*",
-        "${APPLICATION}.test.*",
-        "${APPLICATION}.plugins.*"
+        "${APPLICATION}.test.*"
       ]
     },
 

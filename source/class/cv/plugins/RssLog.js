@@ -343,7 +343,7 @@ qx.Class.define('cv.plugins.RssLog', {
           }, this);
         }
         if (item.state == 1 && itemack !== 'disable') {
-          qx.bom.element.Class.add(rowEleme, "rsslog_ack");
+          qx.bom.element.Class.add(rowElem, "rsslog_ack");
         }
 
         if (itemack === 'modify') {

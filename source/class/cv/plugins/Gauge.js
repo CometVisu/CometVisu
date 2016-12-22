@@ -23,6 +23,8 @@
  *
  * @author NetFritz [NetFritz at gmx dot de]
  * @since 0.8.1
+ *
+ * @ignore(steelseries.*)
 */ 
 qx.Class.define('cv.plugins.Gauge', {
   extend: cv.structure.AbstractWidget,

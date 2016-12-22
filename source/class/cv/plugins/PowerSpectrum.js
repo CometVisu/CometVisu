@@ -89,7 +89,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
         'type': {
           target: 'displayType',
           transform: function(value) {
-            return value === 'current' ? cv.plugins.powerspectrum.Main.CURRENT : cv.plugins.powerspectrum.Main.VOLTAGE;
+            return value === 'current' ? cv.plugins.PowerSpectrum.CURRENT : cv.plugins.PowerSpectrum.VOLTAGE;
           }
         },
         'singlephase': {
@@ -303,7 +303,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
         this.__plot.setData(this.createDatasetSpectrum());
         this.__plot.draw();
 
-        if (widgetData.plotCurve) {
+        if (this.__plotCurve) {
           this.updateCurve(this.getSpectrum(), this.getCurve(), phase - 1);
           this.__plotCurve.setData(this.createDatasetCurve());
           this.__plotCurve.draw();

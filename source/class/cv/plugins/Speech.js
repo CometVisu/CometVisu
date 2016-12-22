@@ -53,6 +53,8 @@
  *
  * @author Tobias Bräutigam
  * @since 0.10.0
+ *
+ * @ignore(SpeechSynthesisUtterance)
  */
 qx.Class.define('cv.plugins.Speech', {
   extend: cv.Object,
@@ -152,7 +154,7 @@ qx.Class.define('cv.plugins.Speech', {
 
       if (typeof text === "string" && text.substring(0,1) === "!") {
         // override repeatTimeout, force saying this
-        text = substring(1);
+        text = text.substring(1);
       }
       else if (this.getRepeatTimeout() >= 0) {
         // do not repeat (within timeout when this.repeatTimeout > 0)

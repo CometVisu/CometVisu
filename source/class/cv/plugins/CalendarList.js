@@ -21,6 +21,8 @@
 /**
  * @author mclb
  * @since 2014
+ *
+ * @ignore(jQuery.*)
  */
 qx.Class.define('cv.plugins.CalendarList', {
   extend: cv.structure.AbstractWidget,
@@ -77,7 +79,7 @@ qx.Class.define('cv.plugins.CalendarList', {
       };
     },
     afterParse: function (xml, path) {
-      var data = qx.data.Model.getWidgetData(path);
+      var data = cv.data.Model.getInstance().getWidgetData(path);
       this.calendars = [];
       qx.bom.Selector.query('calendar', xml).forEach(function (cal) {
         var calData = {
