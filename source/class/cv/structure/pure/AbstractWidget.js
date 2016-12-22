@@ -46,6 +46,9 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
       broker.subscribe("page." + pageId + ".disappear", function () {
         this.setVisible(false);
       }, this, prio);
+    } else {
+      // widgets without parent page are visible
+      this.setVisible(true);
     }
   },
 
