@@ -36,7 +36,17 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
     this.base(arguments, props);
     var parts = this.getPath().split("_"); parts.shift();
     var prio = parseInt(parts.join(""))*-1;
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", this._onDomReady, this, prio);
+    var pageId = this.get$$type() === "page" ? this.getPath() : this.getParentPage() ? this.getParentPage().getPath() : null;
+    var broker = cv.MessageBroker.getInstance();
+    broker.subscribe("setup.dom.finished", this._onDomReady, this, prio);
+    if (pageId) {
+      broker.subscribe("page." + pageId + ".appear", function () {
+        this.setVisible(true);
+      }, this, prio);
+      broker.subscribe("page." + pageId + ".disappear", function () {
+        this.setVisible(false);
+      }, this, prio);
+    }
   },
 
 
@@ -64,7 +74,12 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
     colspan           : { check: "Number", init: 6, transform: "string2number" },
     colspanM          : { check: "Number", init: 6, transform: "string2number" },
     colspanS          : { check: "Number", init: 6, transform: "string2number" },
-    rowspanClass      : { check: "String", init: "" }
+    rowspanClass      : { check: "String", init: "" },
+    visible           : {
+      check: "Boolean",
+      init: false,
+      event: "changeVisible"
+    }
   },
 
   /*
@@ -73,6 +88,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
   ******************************************************
   */
   members: {
+    __init: null,
 
     /**
      * Default action for pointerdown events, does nothing but can be overridden
@@ -93,8 +109,15 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
      * @protected
      */
     _onDomReady: function() {
-      this.initListeners();
-      this.processAfterChain("_onDomReady");
+      if (!this.__init) {
+        if (!this.isVisible()) {
+          this.addListenerOnce("changeVisible", this._onDomReady, this);
+          return;
+        }
+        this.initListeners();
+        this.processAfterChain("_onDomReady");
+        this.__init = true;
+      }
     },
 
     /**
@@ -125,7 +148,7 @@ qx.Class.define('cv.structure.pure.AbstractWidget', {
      * Return the element which should be used to attach listeners too.
      * Unsually this would be the actor but if bindClickToWidget is true
      * it would be the DomElement (aka widget-container)
-     * @return {Element]
+     * @return {Element}
      */
     getInteractionElement: function() {
       return this.isBindClickToWidget() ? this.getDomElement() : this.getActor();

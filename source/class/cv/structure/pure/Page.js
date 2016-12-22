@@ -113,14 +113,14 @@ qx.Class.define('cv.structure.pure.Page', {
         backdropAlign     : '2d' === pageType ? (qx.bom.element.Attribute.get(page, 'backdropalign' ) || '50% 50%') : null,
         size              : qx.bom.element.Attribute.get(page, 'size') || null,
         address           : addresses,
-        visible           : qx.bom.element.Attribute.get(page, 'visible') ? qx.bom.element.Attribute.get(page, 'visible') === "true" : true,
+        linkVisible       : qx.bom.element.Attribute.get(page, 'visible') ? qx.bom.element.Attribute.get(page, 'visible') === "true" : true,
         flavour           : flavour || null,
         $$type            : "page",
         backdrop          : backdrop || null
       });
       // this has to be called manually to allow inheritance of the flavour, pageType values
       cv.role.HasChildren.parseChildren(page, path, flavour, pageType);
-      if (data.visible === true) {
+      if (data.linkVisible === true) {
         var linkData = cv.data.Model.getInstance().setWidgetData( path, {
           $$type          : "pagelink",
           path            : path,
@@ -197,7 +197,7 @@ qx.Class.define('cv.structure.pure.Page', {
       nullable: true
     },
     backdropType      : { check: "String", nullable: true },
-    visible           : { check: "Boolean", init: true, nullable: true },
+    linkVisible           : { check: "Boolean", init: true, nullable: true },
     size              : { check: "String", nullable: true },
     backdrop          : { check: "String", nullable: true }
   },

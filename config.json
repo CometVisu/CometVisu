@@ -33,7 +33,8 @@
     "translation",
     "validate-config",
     "validate-manifest",
-    "watch"
+    "watch",
+    "profile"
   ],
 
   "default-job" : "source-hybrid",
@@ -215,7 +216,17 @@
         "API_INCLUDE"    : ["qx.*", "${APPLICATION}.*"],
         "API_EXCLUDE"    : ["qx.test.*", "${APPLICATION}.test.*"]
       }
+    },
+    "profile" :
+    {
+      "desc" : "generate source for profiling",
+      "extend" : [ "source" ],
+      "environment" :
+      {
+        "qx.aspects" : true
+      }
     }
+
 
     // Uncomment the following entry to add a contrib or library to your
     // project; make sure to adapt the path to the Manifest.json; if you are

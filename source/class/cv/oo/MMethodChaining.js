@@ -62,6 +62,9 @@ qx.Mixin.define('cv.oo.MMethodChaining', {
     },
 
     __processChain: function() {
+      if (!this.__chain[arguments[0]][arguments[1]]) {
+        return;
+      }
       var type = [].splice.call(arguments, 0, 1);
       var name = [].splice.call(arguments, 0, 1);
       var args = arguments;

@@ -125,23 +125,39 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     update: function (json) {
-      for (var key in json) {
-        //$.event.trigger('_' + key, json[key]);
-        if (!(key in cv.data.Model.getInstance().getAddressList()))
-          continue;
+      var addressList = cv.data.Model.getInstance().getAddressList();
 
-        var data = json[key];
-        cv.data.Model.getInstance().getAddressList()[key].forEach(function (id) {
-          if (typeof id === 'string') {
-            var widget = cv.structure.WidgetFactory.getInstanceById(id);
-            if (widget && widget.update) {
-              widget.update(key, data);
-            }
-            //console.log( element, type, updateFn );
-          } else if (typeof id === 'function') {
-            id.call(key, data);
+      var keys = Object.keys(json);
+      var currentFrameTime = Date.now();
+
+      var process = function() {
+          var key = keys.pop();
+          if (key in addressList) {
+            var data = json[key];
+            addressList[key].forEach(function (id) {
+              if (typeof id === 'string') {
+                var widget = cv.structure.WidgetFactory.getInstanceById(id);
+                if (widget && widget.update) {
+                  widget.update(key, data);
+                }
+                //console.log( element, type, updateFn );
+              } else if (typeof id === 'function') {
+                id.call(key, data);
+              }
+            });
           }
-        });
+          if (keys.length) {
+            if (Date.now() - currentFrameTime <= 30) {
+              process();
+            } else {
+              currentFrameTime = Date.now();
+              qx.bom.AnimationFrame.request(process, this);
+            }
+          }
+      };
+      if (keys.length) {
+        currentFrameTime = Date.now();
+        qx.bom.AnimationFrame.request(process, this);
       }
     },
 
@@ -386,6 +402,10 @@ qx.Class.define('cv.TemplateEngine', {
           }, this);
           this.screensave.start();
           qx.event.Registration.addListener(document, "pointerdown", this.screensave.restart, this.screensave);
+        }
+        if (qx.core.Environment.get("qx.aspects")) {
+          qx.dev.Profile.stop();
+          qx.dev.Profile.showResults(50);
         }
       }, this);
     },

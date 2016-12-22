@@ -75,6 +75,10 @@ qx.Class.define("cv.Application",
      * during startup of the application
      */
     main : function() {
+      if (qx.core.Environment.get("qx.aspects")) {
+        qx.dev.Profile.stop();
+        qx.dev.Profile.start();
+      }
       // Call super class
       this.base(arguments);
       this.block(true);
