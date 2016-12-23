@@ -192,7 +192,7 @@ qx.Class.define('cv.PagePartsHandler', {
      * fades in/out a navbar
      *
      * @param position {String}  [Top|Left|Right|Bottom]
-     * @param direction {String] [in|out]
+     * @param direction {String} [in|out]
      * @param speed {Number} time in milliseconds
      */
     fadeNavbar: function (position, direction, speed) {
