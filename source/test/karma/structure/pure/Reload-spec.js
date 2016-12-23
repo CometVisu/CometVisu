@@ -28,4 +28,13 @@ describe("testing a reload widget", function() {
     var res = this.createTestWidgetString("reload");
     expect(res[0].getPath()).toBe("id_0");
   });
+
+  it("should test the reload action", function() {
+    var widgetInstance = this.createTestElement("reload");
+    spyOn(cv.util.Location, "reload");
+    widgetInstance.handleUpdate(0);
+    expect(cv.util.Location.reload).not.toHaveBeenCalled();
+    widgetInstance.handleUpdate(1);
+    expect(cv.util.Location.reload).toHaveBeenCalledWith(true);
+  });
 });

@@ -45,7 +45,7 @@ describe("testing a designtoggle widget", function() {
 
     var loc = window.location.href;
     var creator = this.createTestElement('designtoggle');
-    spyOn(creator, 'setLocation');
+    spyOn(cv.util.Location, 'setHref');
     spiedStore.fireDataEvent("loaded", ['metal','pure']);
     var actor = creator.getActor();
     expect(actor).not.toBe(null);
@@ -54,14 +54,14 @@ describe("testing a designtoggle widget", function() {
     cv.MessageBroker.getInstance().publish("setup.dom.finished");
 
     Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
-    expect(creator.setLocation).toHaveBeenCalledWith(loc+"?design=metal");
+    expect(cv.util.Location.setHref).toHaveBeenCalledWith(loc+"?design=metal");
 
-    spyOn(creator,'getLocation').and.returnValue(loc+"?design=pure");
+    spyOn(cv.util.Location,'getHref').and.returnValue(loc+"?design=pure");
     Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
-    expect(creator.setLocation).toHaveBeenCalledWith(loc+"?design=metal");
+    expect(cv.util.Location.setHref).toHaveBeenCalledWith(loc+"?design=metal");
 
-    creator.getLocation.and.returnValue(loc+"?other=parameter");
+    cv.util.Location.getHref.and.returnValue(loc+"?other=parameter");
     Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
-    expect(creator.setLocation).toHaveBeenCalledWith(loc+"?other=parameter&design=metal");
+    expect(cv.util.Location.setHref).toHaveBeenCalledWith(loc+"?other=parameter&design=metal");
   });
 });

@@ -95,38 +95,19 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
       var oldDesign = qx.bom.Selector.query('.value',this.getDomElement())[0].textContent;
       var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
 
-      var URL = this.getLocation();
+      var URL = cv.util.Location.getHref();
       var regexp = new RegExp("design="+oldDesign);
       if (URL.search(regexp) != -1) { // has URL-parameter design
-        this.setLocation(URL.replace(regexp, "design="+newDesign));
+        cv.util.Location.setHref(URL.replace(regexp, "design="+newDesign));
       }
       else {
         if (URL.indexOf("?") != -1) { // has other parameters, append design
-          this.setLocation(URL+"&design="+newDesign);
+          cv.util.Location.setHref(URL+"&design="+newDesign);
         }
         else { // has now parameters
-          this.setLocation(URL+"?design="+newDesign);
+          cv.util.Location.setHref(URL+"?design="+newDesign);
         }
       }
-    },
-    /**
-     * Wrapper for getting the `window.location.href` value
-     *
-     *
-     * @return {String} URI of the page the browser is currently showing
-     */
-    getLocation : function() {
-      return window.location.href;
-    },
-
-    /**
-     * Changes `window.location.href` to trigger a redirect
-     *
-     *
-     * @param loc {String} - URI of the location the browser should be redirected to
-     */
-    setLocation : function(loc) {
-      window.location.href = loc;
     }
   },
 

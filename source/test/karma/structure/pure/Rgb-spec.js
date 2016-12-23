@@ -33,4 +33,22 @@ describe("testing a rgb widget", function() {
     expect(widget).toHaveClass('rgb');
     expect(widget).toHaveLabel('Test');
   });
+
+  it("should test the RGB update in R variant", function() {
+    var widgetInstance = this.createTestElement("rgb", {}, null, "Test", {variant: "r", transform: 'OH:Number'});
+    widgetInstance.update("Test", 255);
+    expect(qx.bom.element.Style.get(widgetInstance.getValueElement(), 'background-color')).toBe('rgb(255, 0, 0)');
+  });
+
+  it("should test the RGB update in G variant", function() {
+    var widgetInstance = this.createTestElement("rgb", {}, null, "Test", {variant: "g", transform: 'OH:Number'});
+    widgetInstance.update("Test", 255);
+    expect(qx.bom.element.Style.get(widgetInstance.getValueElement(), 'background-color')).toBe('rgb(0, 255, 0)');
+  });
+
+  it("should test the RGB update in B variant", function() {
+    var widgetInstance = this.createTestElement("rgb", {}, null, "Test", {variant: "b", transform: 'OH:Number'});
+    widgetInstance.update("Test", 255);
+    expect(qx.bom.element.Style.get(widgetInstance.getValueElement(), 'background-color')).toBe('rgb(0, 0, 255)');
+  });
 });

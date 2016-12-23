@@ -45,7 +45,7 @@ qx.Class.define('cv.structure.pure.Reload', {
 
     handleUpdate: function (value) {
       if (value > 0) {
-        window.location.reload(true);
+        cv.util.Location.reload(true);
       }
     }
   },

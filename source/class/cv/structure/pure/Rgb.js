@@ -19,8 +19,7 @@
 
 
 /**
- * TODO: complete docs
- *
+ * With the RGB widget you can display a colour in the visu.
  *
  * @author Christian Mayer
  * @since 2012
@@ -52,10 +51,10 @@ qx.Class.define('cv.structure.pure.Rgb', {
     },
 
     /**
-     * Updates the RGB wiget by setting the background color
+     * Updates the RGB widget by setting the background color
      *
      * @param address {String} KNX-GA or openHAB item name
-     * @param value {any} incoming data
+     * @param data {var} incoming data
      */
     _update: function(address, data) {
       if (data === undefined || address === undefined) return;
@@ -71,7 +70,6 @@ qx.Class.define('cv.structure.pure.Rgb', {
         case 'r' :  bg[0] = value; break;
         case 'g' :  bg[1] = value; break;
         case 'b' :  bg[2] = value; break;
-        default:
       }
       var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
       qx.bom.element.Style.set(valElem, 'background-color', bgs);
