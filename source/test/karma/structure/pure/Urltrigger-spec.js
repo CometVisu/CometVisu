@@ -33,4 +33,16 @@ describe("testing a urltrigger widget", function() {
     expect(widget).toHaveClass('trigger');
     expect(widget).toHaveLabel('Test');
   });
+
+  it("should test the urltrigger action", function() {
+    var res = this.createTestElement("urltrigger", {url: "/test/test.txt", align: "center"});
+    expect(res.getActor()).toHaveClass("center");
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    var fakeXhr = jasmine.createSpyObj('Xhr', ['send', 'set']);
+    spyOn(qx.io.request, "Xhr").and.callFake(function() {
+      return fakeXhr;
+    });
+    res._action();
+    expect(fakeXhr.send).toHaveBeenCalled();
+  });
 });
