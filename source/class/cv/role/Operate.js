@@ -17,7 +17,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
+/**
+ * Provides methods for widgets that can be controlled by the user.
+ * Usually this operation includes sending values to the backend.
+ */
 qx.Mixin.define("cv.role.Operate", {
 
   /*
@@ -30,8 +33,7 @@ qx.Mixin.define("cv.role.Operate", {
     /**
      * Action performed when the widget got clicked, sends data to the backend
      *
-     *
-     * @param event {Event}
+     * @param event {Event} tap event
      */
     action: function (event) {
       this.processBeforeChain("action", event);
@@ -47,6 +49,10 @@ qx.Mixin.define("cv.role.Operate", {
       }
     },
 
+    /**
+     * Handles pointerdown events
+     * @param event {Event} pointerdown event
+     */
     downaction: function(event) {
       this.processBeforeChain("downaction", event);
       if (this._downaction) {
@@ -60,8 +66,7 @@ qx.Mixin.define("cv.role.Operate", {
     /**
      * Send the given value to all writeable addresses known to this widget
      *
-     *
-     * @param value
+     * @param value {var} value to send
      * @param filter {Function} optional filter function for addresses
      */
     sendToBackend: function (value, filter) {

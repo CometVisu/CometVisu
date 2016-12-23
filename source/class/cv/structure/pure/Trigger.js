@@ -19,9 +19,10 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * Adds a button to the visu with which exactly a defined value for a short,
+ * as well as a defined value for a long key pressure, can be sent to the BUS,
+ * e.g. for recalling and storing scenes or driving roller blinds. (Short = stop, long = drive).
+ * The address for short and long term may vary.
  *
  * @author Christian Mayer
  * @since 2012
@@ -71,11 +72,13 @@ qx.Class.define('cv.structure.pure.Trigger', {
   ******************************************************
   */
   members: {
+    // overridden
     _onDomReady: function() {
       this.base(arguments);
       this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
     },
 
+    // overridden
     initListeners: function() {
       this.base(arguments);
       if (this.getShortThreshold() > 0) {
@@ -83,10 +86,15 @@ qx.Class.define('cv.structure.pure.Trigger', {
       }
     },
 
+    // overridden
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
+    /**
+     * Handle a short tap event and send the value for short pressing the trigger to the backend.
+     * If there is no short threshold set, this send the value for long presses to the backend.
+     */
     _action: function() {
       var value = (this.getShortThreshold() > 0 || this.isShortDefault()) ? this.getShortValue() : this.getSendValue();
       this.sendToBackend(value, function(address) {
@@ -94,6 +102,9 @@ qx.Class.define('cv.structure.pure.Trigger', {
       });
     },
 
+    /**
+     * Handle a long tap event and send the value for long pressing the trigger to the backend.
+     */
     _onLongTap: function() {
       this.sendToBackend(this.getSendValue(), function(address) {
         return !!(address[2] & 2);

@@ -74,7 +74,13 @@ qx.Mixin.define("cv.role.BasicUpdate", {
   */
   members: {
     formatValueCache : null,
-
+    /**
+     * Decode the given data with the addresses transform
+     *
+     * @param address {String} KNX-GA or openHAB-item name
+     * @param data {var} value to be decoded
+     * @return {var}
+     */
     applyTransform: function (address, data) {
       if (address) {
         var transform = this.getAddress()[address][0];
@@ -84,15 +90,13 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       return data;
     },
 
-    applyTransformEncode: function (address, data) {
-      if (address) {
-        var transform = this.getAddress()[address][0];
-        // transform the raw value to a JavaScript type
-        return cv.Transform.encode(transform, data);
-      }
-      return data;
-    },
-
+    /**
+     * Apply the given mapping to the value
+     *
+     * @param value {var} value to be mapped
+     * @param mapping {String?} mapping name, if not set the <code>mapping</code> property value is used
+     * @returns {var} the mapped value
+     */
     applyMapping: function (value, mapping) {
       var this_map = mapping || this.getMapping();
       if (this_map && cv.ui.Mappings.hasMapping(this_map)) {
@@ -129,8 +133,12 @@ qx.Mixin.define("cv.role.BasicUpdate", {
     },
 
     /**
-     * Look up the entry for @param value in the mapping @param this_map and
-     * @return the next value in the list (including wrap around).
+     * Look up the entry for <code>value</code> in the mapping <code>this_map</code> and
+     * return the next value in the list (including wrap around).
+     *
+     * @param value {var} value to look up
+     * @param this_map {String} mapping name
+     * @return {var} the next mapped value
      */
     getNextMappedValue: function (value, this_map) {
       if (this_map && cv.ui.Mappings.hasMapping(this_map)) {
@@ -163,6 +171,14 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       return value;
     },
 
+    /**
+     * The default value handling for most of the widgets.
+     * This method applies the transform, mapping, format and styling to the value.
+     *
+     * @param address {String} KNX-GA or openHAB item name
+     * @param data {var} value to be processes
+     * @returns {var} the processed value
+     */
     defaultValueHandling: function (address, data) {
 
       // #1: transform the raw value to a JavaScript type
@@ -211,7 +227,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
      * modifyFn: callback function that modifies the DOM
      *
      * @param value {var}
-     * @param modifyFn {var}
+     * @param modifyFn {Function}
      */
     defaultValue2DOM: function (value, modifyFn) {
       if (('string' === typeof value) || ('number' === typeof value))
@@ -248,15 +264,13 @@ qx.Mixin.define("cv.role.BasicUpdate", {
 
     /**
      * ga:            address
-     * data:          the raw value from the bus
-     * passedElement: the element to update
+     * data:
+     * passedElement:
      *
-     * @param ga {var}
-     * @param data {var}
-     * @param passedElement {var}
-     * @param newVersion {var}
-     * @param path {var}
-     * @return value
+     * @param ga {String} KNX-GA or openHAB item name
+     * @param data {var} the raw value from the bus
+     * @param passedElement {Element?} the element to update, if not given {@link getDomElement()} is used
+     * @return {var} value
      */
     defaultUpdate: function (ga, data, passedElement) {
       var element = passedElement || this.getDomElement();
@@ -277,6 +291,11 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       return value;
     },
 
+    /**
+     * Internal function which updates the DOM element with the given value
+     * @param valueElement {Element} element to update
+     * @param e {var} value to add to the element
+     */
     _applyValueToDom: function(valueElement, e) {
       if (qx.lang.Type.isNumber(e)) {
         qx.bom.element.Attribute.set(valueElement, "text", e);

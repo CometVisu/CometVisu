@@ -36,10 +36,7 @@ qx.Class.define('cv.structure.pure.Toggle', {
   ******************************************************
   */
   members: {
-    /**
-     * Return the inner DOM string for this widget
-     * @return {String} HTML code as string
-     */
+    // overridden
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },

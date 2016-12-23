@@ -187,7 +187,15 @@ qx.Class.define('cv.structure.AbstractWidget', {
      */
     getDomString : function() {
       return '<div class="'+this.getClasses()+'" ' + this.getStyle() + '>' + this.getLabel() +
-        (this._getInnerDomString ? this._getInnerDomString() : '') +'</div>';
+        this._getInnerDomString() +'</div>';
+    },
+
+    /**
+     * Return the inner DOM string for this widget
+     * @return {String} HTML code as string
+     */
+    _getInnerDomString: function() {
+      return "";
     }
   },
 
