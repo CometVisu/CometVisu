@@ -285,8 +285,6 @@ qx.Class.define('cv.TemplateEngine', {
     loadScripts: function(scripts) {
       if (scripts.length > 0) {
         cv.util.ScriptLoader.getInstance().addScripts(scripts);
-      } else {
-        this.setScriptsLoaded(true);
       }
     },
 
