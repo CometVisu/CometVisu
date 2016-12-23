@@ -290,10 +290,7 @@ qx.Class.define('cv.TemplateEngine', {
 
     loadPlugins: function(plugins) {
       if (plugins.length > 0) {
-        console.log(plugins);
         qx.io.PartLoader.require(plugins, function (states) {
-          console.log("plugins loaded");
-          console.log(states);
           cv.util.ScriptLoader.getInstance().setAllQueued(true);
           this.setPartsLoaded(true);
         }, this);
@@ -372,7 +369,6 @@ qx.Class.define('cv.TemplateEngine', {
               this.rememberLastPage = false;
             }
           }
-          console.log(startpage);
         } else {
           var req = qx.util.Uri.parseUri(window.location.href);
           if (req.anchor && req.anchor.substring(0, 3) === "id_") {
