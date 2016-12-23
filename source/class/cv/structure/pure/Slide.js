@@ -198,13 +198,11 @@ qx.Class.define('cv.structure.pure.Slide', {
      */
     _onChangeValue: function(value) {
       if (this.isSendOnFinish() === false || this.__slider.isInPointerMove()) {
-        var addresses = this.getAddress();
-        for (var addr in addresses) {
-          if (!(addresses[addr][1] & 2)) continue; // skip when write flag not set
-          var dv = this.applyTransformEncode(addr, value);
-          if (dv != this.applyTransformEncode(addr, this.getValue()) && !isNaN(dv))
-            cv.TemplateEngine.getInstance().visu.write(addr, dv);
-        }
+        var currentValue = this.getValue();
+        this.sendToBackend(value, function(addr) {
+          var newValue = cv.Transform.encode(addr[0], value);
+          return !isNaN(newValue) && newValue != cv.Transform.encode(addr[0], currentValue);
+        });
       }
       this.setValue(value);
     },
