@@ -123,7 +123,7 @@ describe('cometvisu demo config test:', function () {
         browser.actions().mouseDown(knob).mouseMove(knob, {x: 20, y:0}).mouseUp(knob).perform();
 
         cvDemo.getLastWrite().then(function (lastWrite) {
-          expect(lastWrite.value).toBeLowerThan(0);
+          expect(lastWrite.value).toBeLessThan(0);
         });
         var borderWidth = 1; // depending from design, but as the demo is in pure design, we use a hardcoded value here
 

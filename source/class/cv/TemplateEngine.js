@@ -275,11 +275,11 @@ qx.Class.define('cv.TemplateEngine', {
       var metaParser = new cv.xml.parser.Meta();
 
       // start with the plugins
-      this.loadPlugins(metaParser.parsePlugins(this.xml));
+      this.loadPlugins(metaParser.parsePlugins(loaded_xml));
 
       this.loadScripts(scriptsToLoad);
       // and then the rest
-      metaParser.parse(this.xml);
+      metaParser.parse(loaded_xml);
     },
 
     loadScripts: function(scripts) {
