@@ -34,4 +34,14 @@ describe("testing a toggle widget", function() {
     expect(widget).toHaveLabel('Test');
 
   });
+
+  it("should test the action value return", function() {
+    cv.ui.Mappings.addMapping("test", {0: 0, 1: 1});
+    var res = this.createTestElement("toggle", {mapping: "test"});
+
+    expect(res.getActionValue()).toBe('0');
+    res.setBasicValue(0);
+    expect(res.getActionValue()).toBe('1');
+    cv.ui.Mappings.clearMappings();
+  });
 });
