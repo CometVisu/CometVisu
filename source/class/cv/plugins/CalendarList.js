@@ -131,6 +131,7 @@ qx.Class.define('cv.plugins.CalendarList', {
 
   defer: function () {
     cv.xml.Parser.addHandler("calendarlist", cv.plugins.CalendarList);
+    cv.xml.Parser.addHook("calendarlist", "after", cv.plugins.CalendarList.afterParse, cv.plugins.CalendarList);
   }
 });
 (function ($) {

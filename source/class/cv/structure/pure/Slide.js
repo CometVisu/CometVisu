@@ -220,5 +220,6 @@ qx.Class.define('cv.structure.pure.Slide', {
   defer: function () {
     // register the parser
     cv.xml.Parser.addHandler("slide", cv.structure.pure.Slide);
+    cv.xml.Parser.addHook("slide", "after", cv.structure.pure.Slide.afterParse, cv.structure.pure.Slide);
   }
 }); // end define
