@@ -51,7 +51,7 @@ describe("testing a designtoggle widget", function() {
     expect(actor).not.toBe(null);
 
     var Reg = qx.event.Registration;
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(creator);
 
     Reg.fireEvent(actor, "tap", qx.event.type.Event, []);
     expect(cv.util.Location.setHref).toHaveBeenCalledWith(loc+"?design=metal");

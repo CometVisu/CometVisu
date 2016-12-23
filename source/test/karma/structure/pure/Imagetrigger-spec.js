@@ -57,7 +57,7 @@ describe("testing a imagetrigger widget", function() {
       return spiedTimer;
     });
 
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(res);
     expect(spiedTimer.start).toHaveBeenCalled();
     expect(res.getSendValue()).toBe("on");
   });
@@ -107,7 +107,7 @@ describe("testing a imagetrigger widget", function() {
       sendValue: "1"
     });
     spyOn(res, "sendToBackend");
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(res);
     var Reg = qx.event.Registration;
 
     var actor = qx.bom.Selector.query('.actor', this.container.children[0])[0];

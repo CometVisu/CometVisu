@@ -73,7 +73,7 @@ describe("testing a switch", function() {
   it('should trigger the switch action', function() {
 
     var res = this.createTestElement("switch", {}, '<label>Test</label>');
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(res);
     spyOn(res, 'sendToBackend');
 
     var actor = res.getActor();

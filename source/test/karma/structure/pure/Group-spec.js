@@ -62,7 +62,7 @@ describe("testing a group widget", function() {
     spyOn(templateEngine, 'scrollToPage');
     var res = this.createTestElement("group", { target: "target" }, "", false);
 
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(res);
     var Reg = qx.event.Registration;
 
     var actor = res.getInteractionElement();

@@ -51,7 +51,7 @@ describe("testing a slide widget", function() {
 
   it("should test incoming data", function() {
     var widgetInstance = this.createTestElement("slide", {}, null, "Test_slide", {transform: 'DPT:5.004'});
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(widgetInstance);
     widgetInstance.update("Test_slide", "64"); // 0x64 == 100
     expect(widgetInstance.__slider.getValue()).toBe(100);
   });

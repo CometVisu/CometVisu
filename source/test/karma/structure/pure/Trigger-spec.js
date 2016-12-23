@@ -72,7 +72,7 @@ describe("testing a trigger", function() {
     expect(value).not.toBeNull();
     expect(qx.dom.Node.getText(value)).toBe("-");
 
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(res);
 
     expect(qx.dom.Node.getText(value)).toBe("1");
 
@@ -95,7 +95,7 @@ describe("testing a trigger", function() {
       flavour: "potassium"
     }, '<label>Test</label>');
 
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(res);
 
     spyOn(res, "sendToBackend");
     var actor = res.getActor();

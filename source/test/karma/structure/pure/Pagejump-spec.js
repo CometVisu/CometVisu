@@ -75,7 +75,7 @@ describe("testing a pagejump widget", function() {
     var creator = this.createTestElement("pagejump", {
       'target': 'test'
     });
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(creator);
     var actor = creator.getActor();
     qx.event.Registration.fireEvent(actor, "pointerdown", qx.event.type.Event, []);
     expect(actor).toHaveClass("switchPressed");
@@ -88,7 +88,7 @@ describe("testing a pagejump widget", function() {
     var widget = this.createTestElement("pagejump", {
       'target': 'test'
     });
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(widget);
     var actor = widget.getActor();
     expect(actor).toHaveClass("switchUnpressed");
 
@@ -104,7 +104,7 @@ describe("testing a pagejump widget", function() {
       'target': 'test',
       'path': 'path'
     });
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(creator);
     var actor = creator.getActor();
 
     expect(actor).toHaveClass("switchUnpressed");
@@ -130,7 +130,7 @@ describe("testing a pagejump widget", function() {
       'target': 'id_1_',
       'path': 'id_1_0'
     });
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(creator);
     spyOn(cv.data.Model.getInstance(), "getWidgetDataByElement").and.callFake(function() {
       return {target: 'id_1_0'}
     });

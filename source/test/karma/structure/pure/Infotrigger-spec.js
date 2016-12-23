@@ -87,7 +87,7 @@ describe("testing a infotrigger widget", function() {
     expect(downActor).not.toBe(null);
     expect(upActor).not.toBe(null);
 
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(creator);
     var Reg = qx.event.Registration;
 
     Reg.fireEvent(upActor, "tap", qx.event.type.Event, []);

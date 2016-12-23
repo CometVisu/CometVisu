@@ -38,7 +38,7 @@ describe("testing a refresh widget", function() {
     cv.TemplateEngine.getInstance().visu = jasmine.createSpyObj('visu', ['restart']);
 
     spyOn(res, "defaultUpdate");
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(res);
     qx.event.Registration.fireEvent(res.getActor(), "tap");
 
     expect(cv.TemplateEngine.getInstance().visu.restart).toHaveBeenCalled();

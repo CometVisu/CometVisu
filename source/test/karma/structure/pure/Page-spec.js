@@ -142,7 +142,7 @@ describe("testing a page widget", function() {
       'ga': '1/0/0',
       'name': 'Testpage'
     });
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(res);
 
     var pageLink = res[0];
     var page = cv.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
@@ -162,7 +162,7 @@ describe("testing a page widget", function() {
       'ga': '1/0/0',
       'name': 'Testpage'
     });
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(pageLink);
     qx.event.Registration.fireEvent(pageLink.getActor(), "tap", qx.event.type.Event, []);
     expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_0_');
   });

@@ -71,7 +71,7 @@ describe("testing a multitrigger widget", function() {
       'button4value': 4,
       'showstatus': 'true'
     }, null, null, {'transform': '4.001'});
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(creator);
 
     var check = function(index) {
       qx.bom.Selector.query(".actor_container .actor", this.container.children[0]).forEach(function(actor, i) {
@@ -108,7 +108,7 @@ describe("testing a multitrigger widget", function() {
     var actors = qx.bom.Selector.query(".actor_container .actor", this.container.children[0]);
     expect(actors.length).not.toBe(0);
 
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(creator);
     var Reg = qx.event.Registration;
 
     Reg.fireEvent(actors[0], "tap", qx.event.type.Event, []);

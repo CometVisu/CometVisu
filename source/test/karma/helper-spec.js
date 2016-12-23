@@ -258,6 +258,10 @@ beforeEach(function () {
   this.createTestElement = createTestElement;
   this.createTestWidgetString = createTestWidgetString;
   this.findChild = findChild;
+  this.initWidget = function(widget) {
+    widget.setVisible && widget.setVisible(true);
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+  }
 });
 
 afterEach(function () {

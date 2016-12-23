@@ -45,7 +45,7 @@ describe("testing a pushbutton widget", function() {
     var button = this.createTestElement("pushbutton");
     var actor = button.getActor();
 
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    this.initWidget(button);
     spyOn(button, "sendToBackend");
     var Reg = qx.event.Registration;
 
