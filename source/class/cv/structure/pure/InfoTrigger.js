@@ -19,7 +19,9 @@
 
 
 /**
- * @class cv.structure.pure.InfoTrigger
+ * Adds an element to the visu that contains two buttons and a value indication for feedback
+ * from the BUS. (E.g. for multimedia control
+ *
  * @author Christian Mayer
  * @since 2012
  */

@@ -19,9 +19,11 @@
 
 
 /**
- * PageLink Widget for visible pages
+ * PageLink Widget for visible pages. Do not use this directly because the pagelink widget
+ * is automatically added when you use a page widget with parameter <code>visible=true</code>.
  *
- * @class cv.structure.pure.PageLink
+ * @author Tobias Bräutigam
+ * @since 0.10.0 (2017)
  */
 qx.Class.define('cv.structure.pure.PageLink', {
   extend: cv.structure.AbstractWidget,

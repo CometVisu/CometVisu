@@ -27,8 +27,6 @@
  * </settings>
  * <line><layout colspan="6"/></line>
  *
- *
- *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */

@@ -19,9 +19,7 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * The UrlTrigger widget adds a button to the visualization that queries data from a URL in the background.
  *
  * @author Christian Mayer
  * @since 2012

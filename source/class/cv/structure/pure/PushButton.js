@@ -19,9 +19,9 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * Adds a button to the visu that sends a defined value to the BUS when you press and release.
+ * E.g. pushing a 1 and releasing a 0. This makes it possible, for example,
+ * to simulate a push button to open and close a garage door, blinds or blinds.
  *
  * @since 2013
  */

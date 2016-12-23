@@ -19,9 +19,8 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * With the widget navbar, you can add a navigation menu to the entire visu.
+ * The menu can be displayed on a page (top, bottom, left, right).
  *
  * @author Christian Mayer
  * @since 2012

@@ -19,9 +19,7 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * Creates a new sub page and adds a corresponding link to the current page.
  *
  * @author Christian Mayer
  * @since 2012

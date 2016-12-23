@@ -19,7 +19,9 @@
 
 
 /**
- * TODO: complete docs
+ * Adds a widget with 4 buttons to the visu.
+ * Thus, e.g. change the operating mode of the heating system
+ * (Comfort -> Night -> Absent -> Frost protection) or create scene functions.
  *
  * @author Christian Mayer
  * @since 2012

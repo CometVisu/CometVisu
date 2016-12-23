@@ -19,9 +19,8 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * The pagejump widget can be used to link the visu pages.
+ * The function is similar to hyperlinks.
  *
  * @author Christian Mayer
  * @since 2012

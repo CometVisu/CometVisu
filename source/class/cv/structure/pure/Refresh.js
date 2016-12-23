@@ -19,9 +19,7 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * With the widget refresh, the visu is added a switch, which allows the visu to reload the displayed data.
  *
  * @author Christian Mayer
  * @since 2014

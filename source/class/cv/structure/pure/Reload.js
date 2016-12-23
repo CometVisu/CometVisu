@@ -19,9 +19,7 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * With the reload widget, the visu is added a switch, which allows to reload the full visu in the browser.
  *
  * @author Christian Mayer
  * @since 2014

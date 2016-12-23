@@ -19,9 +19,7 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * Adds a video or live stream to the visu. Currently, most sources do not support this yet.
  *
  * @author Christian Mayer
  * @since 2012

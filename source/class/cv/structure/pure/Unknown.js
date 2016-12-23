@@ -22,8 +22,6 @@
  * Fallback widget shown when an unknown widget is defined in the configuration.
  * You must not use this one directly.
  *
- *
- *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
