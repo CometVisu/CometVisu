@@ -46,6 +46,7 @@ qx.Class.define('cv.structure.pure.Rgb', {
    ******************************************************
    */
   members: {
+    // overridden
     _getInnerDomString: function () {
       return '<div class="actor"><div class="value"></div></div>';
     },

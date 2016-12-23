@@ -63,6 +63,7 @@ qx.Class.define('cv.structure.pure.Video', {
   ******************************************************
   */
   members: {
+    // overridden
     _getInnerDomString: function () {
       // create the actor
       var style = '';

@@ -143,6 +143,7 @@ qx.Class.define('cv.structure.pure.NavBar', {
     __navbarLeftSize: null,
     __navbarRightSize: null,
 
+    // overridden
     _onDomReady: function() {
       var left = qx.bom.Selector.query('#navbarLeft')[0];
       var right = qx.bom.Selector.query('#navbarRight')[0];
@@ -156,6 +157,7 @@ qx.Class.define('cv.structure.pure.NavBar', {
       return id.join('_') + '_' + this.getPosition() + '_navbar';
     },
 
+    // overridden
     getDomString: function () {
 
       var container = '<div class="' + this.getClasses() + '" id="' + this.getGlobalPath() + '">';

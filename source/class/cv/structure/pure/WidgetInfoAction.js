@@ -60,6 +60,7 @@ qx.Class.define('cv.structure.pure.WidgetInfoAction', {
    ******************************************************
    */
   members: {
+    // overridden
     getDomString: function () {
       return this.getChildrenDomString();
     }

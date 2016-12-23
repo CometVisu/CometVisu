@@ -97,18 +97,13 @@ qx.Class.define('cv.structure.pure.Switch', {
    */
   members: {
 
-    /**
-     * Called by parent class, which wraps this HTML-String in a widget-container
-     * @return {String} HTML string of this widget
-     * @protected
-     */
+    // overridden
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
     /**
      * Handles the incoming data from the backend for this widget
-     *
      *
      * @param value {any} incoming data (already transformed + mapped)
      */
@@ -121,8 +116,7 @@ qx.Class.define('cv.structure.pure.Switch', {
 
     /**
      * Get the value that should be send to backend after the action has been triggered
-     *
-     *
+     * @return {var}
      */
     getActionValue: function () {
       return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());

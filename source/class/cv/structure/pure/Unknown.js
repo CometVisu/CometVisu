@@ -89,12 +89,17 @@ qx.Class.define('cv.structure.pure.Unknown', {
   */
   members: {
     /**
-     * Returns the DOMElement of this widget
+     * Returns the DOM-Element of this widget
+     * @return {Element} the DOM element
      */
     getDomElement: function () {
       return qx.bom.Selector.query('#' + this.getPath())[0];
     },
 
+    /**
+     * Return the HTML string for this widget
+     * @return {String} HTML code
+     */
     getDomString: function () {
       return '<div class="widget clearfix"><pre>unknown: ' + this.getUnknownType() + '</pre></div>';
     }

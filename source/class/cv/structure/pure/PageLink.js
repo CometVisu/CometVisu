@@ -53,6 +53,7 @@ qx.Class.define('cv.structure.pure.PageLink', {
   ******************************************************
   */
   members: {
+    // overridden
     getDomString: function() {
       var layout = this.getLayout();
 
@@ -64,6 +65,7 @@ qx.Class.define('cv.structure.pure.PageLink', {
       return ret_val;
     },
 
+    // overridden
     action: function() {
       cv.TemplateEngine.getInstance().scrollToPage( this.getPath() + '_' );
     }

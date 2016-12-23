@@ -109,6 +109,7 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
   ******************************************************
   */
   members: {
+    // overridden
     _getInnerDomString: function () {
       // create the actor
       var ret_val = '<div class="actor_container" style="float:left">';
@@ -141,6 +142,7 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
       return ret_val + '</div>';
     },
 
+    // overridden
     _onDomReady: function() {
       this.initListeners();
       var actor = this.getActor();

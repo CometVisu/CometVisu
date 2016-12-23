@@ -50,6 +50,7 @@ qx.Class.define('cv.structure.pure.Line', {
   ******************************************************
   */
   members: {
+    // overridden
     getDomString: function () {
       return '<hr ' + (this.getClasses() ? 'class="'+this.getClasses()+'"' : '') + '/>';
     }

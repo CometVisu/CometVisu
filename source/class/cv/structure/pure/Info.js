@@ -19,6 +19,8 @@
 
 
 /**
+ * Adds a dynamic field to the visu that can represent values from the BUS
+ * (e.g. 14-byte text or temperature measurements).
  *
  * @widgetexample <settings>
  *   <caption>Show temperature in degree celcius</caption>
@@ -30,8 +32,6 @@
  *   <label>outside temperature</label>
  *   <address transform="DPT:9.001">0/0/0</address>
  * </info>
- *
- *
  *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
@@ -46,12 +46,7 @@ qx.Class.define('cv.structure.pure.Info', {
   ******************************************************
   */
   members: {
-
-    /**
-     * Called by parent class, which wraps this HTML-String in a widget-container
-     * @return {String} HTML string of this widget
-     * @protected
-     */
+    // overridden
     _getInnerDomString: function () {
       return '<div class="actor"><div class="value">-</div></div>';
     }

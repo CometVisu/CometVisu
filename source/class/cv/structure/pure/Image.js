@@ -27,8 +27,6 @@
  *   <layout colspan="2" />
  * </image>
  *
- *
- *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
@@ -73,6 +71,7 @@ qx.Class.define('cv.structure.pure.Image', {
   ******************************************************
   */
   members: {
+    // overridden
     _getInnerDomString: function () {
       // create the actor
       var imgStyle = '';

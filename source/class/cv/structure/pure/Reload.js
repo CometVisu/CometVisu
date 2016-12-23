@@ -37,6 +37,7 @@ qx.Class.define('cv.structure.pure.Reload', {
   ******************************************************
   */
   members: {
+    // overridden
     _getInnerDomString: function () {
       return null;
     },

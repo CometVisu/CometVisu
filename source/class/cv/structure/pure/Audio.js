@@ -104,6 +104,7 @@
     */
     members: {
 
+      // overridden
       _getInnerDomString: function () {
         // create the main structure
         // create the actor

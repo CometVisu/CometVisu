@@ -120,6 +120,7 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
   ******************************************************
   */
   members: {
+    // overridden
     _getInnerDomString: function () {
       // create buttons + info
       var ret_val = '<div style="float:left;">';
@@ -164,6 +165,7 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
       return ret_val + '</div>';
     },
 
+    // overridden
     initListeners: function() {
       qx.bom.Selector.query(".actor.uplabel, .actor.downlabel", this.getDomElement()).forEach(function(actor) {
         if (this.getShortThreshold() > 0) {

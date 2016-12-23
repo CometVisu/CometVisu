@@ -90,6 +90,7 @@ qx.Class.define('cv.structure.pure.InfoAction', {
    ******************************************************
    */
   members: {
+    // overridden
     _getInnerDomString: function () {
       return this.getChildrenDomString();
     }

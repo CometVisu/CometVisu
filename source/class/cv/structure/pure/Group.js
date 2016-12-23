@@ -65,14 +65,11 @@
  *    </info>
  *  </group>
  *
- *
- *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.structure.pure.Group', {
   extend: cv.structure.AbstractWidget,
-
   include: cv.role.HasChildren,
 
   /*
@@ -148,11 +145,13 @@ qx.Class.define('cv.structure.pure.Group', {
       }
     },
 
+    // overridden
     _onDomReady: function() {
       this.base(arguments);
       qx.bom.element.Style.set(this.getDomElement(), "z-index", 1);
     },
 
+    // overridden
     getDomString: function () {
       // heading style
       var hstyle = '';

@@ -63,10 +63,12 @@ qx.Class.define('cv.structure.pure.PushButton', {
   ******************************************************
   */
   members: {
+    // overridden
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
+    // overridden
     initListeners: function() {
       this.addElementListener("pointerdown", this._onPointerDown, this);
       this.addElementListener("pointerup", this._onPointerUp, this);

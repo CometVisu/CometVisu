@@ -56,11 +56,13 @@ qx.Class.define('cv.structure.pure.Refresh', {
   ******************************************************
   */
   members: {
+    // overridden
     _onDomReady: function() {
       this.base(arguments);
       this.defaultUpdate(undefined, this.getSendValue());
     },
 
+    // overridden
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },

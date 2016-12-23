@@ -120,6 +120,7 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
   ******************************************************
   */
   members: {
+    // overridden
     _getInnerDomString: function () {
 
       var style = "";

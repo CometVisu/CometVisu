@@ -128,6 +128,7 @@ qx.Class.define('cv.structure.pure.PageJump', {
   */
   members: {
 
+    // overridden
     _getInnerDomString: function() {
       var actor = '<div class="actor switchUnpressed';
       if (this.getAlign()) {
@@ -141,6 +142,7 @@ qx.Class.define('cv.structure.pure.PageJump', {
       return actor + this.getChildrenDomString();
     },
 
+    // overridden
     action: function() {
       var target = this.getTarget();
       if (this.getTargetPath() !== null) {

@@ -128,6 +128,7 @@ qx.Class.define('cv.structure.pure.Slide', {
     __readonly: null,
     __initialized: null,
 
+    // overridden
     _onDomReady: function() {
       this.base(arguments);
       var actor = this.getActor();
@@ -164,6 +165,7 @@ qx.Class.define('cv.structure.pure.Slide', {
       }, this);
     },
 
+    // overridden
     _getInnerDomString: function () {
       return '<div class="actor"></div>';
     },

@@ -76,6 +76,7 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
    ******************************************************
    */
   members: {
+    // overridden
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">' + cv.Config.clientDesign + '</div></div>';
     },

@@ -37,6 +37,7 @@ qx.Class.define('cv.structure.pure.Break', {
    ******************************************************
    */
   members: {
+    // overridden
     getDomString: function () {
       return '<br/>';
     }

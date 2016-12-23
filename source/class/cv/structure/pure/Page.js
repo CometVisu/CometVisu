@@ -206,7 +206,7 @@ qx.Class.define('cv.structure.pure.Page', {
    ******************************************************
    */
   members: {
-
+    // overridden
     _onDomReady: function () {
       this.base(arguments);
       var parentPage = this.getParentPage();
@@ -232,6 +232,7 @@ qx.Class.define('cv.structure.pure.Page', {
       }, this);
     },
 
+    // overridden
     getDomString: function() {
       var pageType = this.getPageType();
 

@@ -41,6 +41,7 @@ qx.Class.define('cv.structure.pure.Text', {
    ******************************************************
    */
   members: {
+    // overridden
     _getInnerDomString: function () {
       return '';
     }
