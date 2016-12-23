@@ -29,7 +29,7 @@ qx.Mixin.define("cv.role.HasAddress", {
    */
   properties: {
     /**
-     *
+     * Map of addresses (KNX-GA's or openHAB item names) this widget communicates with
      */
     address: {
       check: 'Object',
