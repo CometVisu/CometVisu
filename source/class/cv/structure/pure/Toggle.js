@@ -19,9 +19,9 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * The toggle widget is similar to the switch, but it can take more than two states.
+ * Can be used to change the operating modes of the heating system.
+ * Each time the toggle is pressed, the toggle takes the next possible state.
  *
  * @author Christian Mayer
  * @since 2012
@@ -36,14 +36,17 @@ qx.Class.define('cv.structure.pure.Toggle', {
   ******************************************************
   */
   members: {
+    /**
+     * Return the inner DOM string for this widget
+     * @return {String} HTML code as string
+     */
     _getInnerDomString: function () {
       return '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     },
 
     /**
      * Get the value that should be send to backend after the action has been triggered
-     *
-     *
+     * @return {var}
      */
     getActionValue: function () {
       return this.getNextMappedValue(this.getBasicValue(), this.getMapping());
