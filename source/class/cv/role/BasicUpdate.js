@@ -35,15 +35,26 @@ qx.Mixin.define("cv.role.BasicUpdate", {
   ******************************************************
   */
   properties: {
+    /**
+     * @type {var} the incoming value after transformation, mapping and formatting
+     */
     value: {
       nullable: true,
       init: null,
       event: "changeValue"
     },
+
+    /**
+     * @type {var} the incoming value after transformation
+     */
     basicValue: {
       nullable: true,
       init: null
     },
+
+    /**
+     * Format to apply to incoming values
+     */
     format: {
       check: "String",
       init: "",
@@ -57,13 +68,17 @@ qx.Mixin.define("cv.role.BasicUpdate", {
    ******************************************************
    */
   statics: {
+    /**
+     * Parse the format setting
+     * @param xml {Element} XML-Element from config
+     * @param path {String} path to the widget
+     */
     parse: function (xml, path) {
       var data = cv.data.Model.getInstance().getWidgetData(path);
       var value = qx.bom.element.Attribute.get(xml, 'format');
       if (value) {
         data.format = value;
       }
-      // data.format = qx.bom.element.Attribute.get(xml, 'format') || "";
     }
   },
 

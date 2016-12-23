@@ -17,7 +17,9 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
+/**
+ * Add the address property including its parsing to widgets
+ */
 qx.Mixin.define("cv.role.HasAddress", {
 
   /*
@@ -26,6 +28,9 @@ qx.Mixin.define("cv.role.HasAddress", {
    ******************************************************
    */
   properties: {
+    /**
+     *
+     */
     address: {
       check: 'Object',
       init: {}
@@ -39,7 +44,12 @@ qx.Mixin.define("cv.role.HasAddress", {
    */
   statics: {
     // this might have been called from the cv.xml.Parser with the including class as context
-    parse: function (xml, path, flavour, widgetType) {
+    /**
+     * Parses the address element
+     * @param xml {Element} address XML-Element from config
+     * @param path {String} path to the widget
+     */
+    parse: function (xml, path) {
       if (xml.nodeName.toLowerCase() !== "page") {
         var data = cv.data.Model.getInstance().getWidgetData(path);
         data.address = cv.role.HasAddress.makeAddressList(xml, path, this.makeAddressListFn);
@@ -52,9 +62,10 @@ qx.Mixin.define("cv.role.HasAddress", {
      *                       the visu should listen for that address. The second
      *                       is added as it is to the returned object.
      *
-     * @param element {var}
-     * @param id             id / path to the widget
-     * @return address
+     * @param element {Element} address XML-Element from the config file
+     * @param id {String} id / path to the widget
+     * @param makeAddressListFn {Function?} callback for parsing address variants
+     * @return {Object} address
      */
     makeAddressList: function (element, id, makeAddressListFn) {
       var address = {};
