@@ -58,6 +58,7 @@ qx.Class.define('cv.TemplateEngine', {
     ready: {
       check: "Boolean",
       init: false,
+      event: "changeReady",
       apply: "_applyReady"
     }
   },
@@ -254,6 +255,10 @@ qx.Class.define('cv.TemplateEngine', {
         cv.Config.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
 
       var loader = cv.util.ScriptLoader.getInstance();
+      loader.addListenerOnce("finished", function() {
+        this.setScriptsLoaded(true);
+      }, this);
+
       var scriptsToLoad = [];
       if (cv.Config.clientDesign) {
         var baseUri = 'designs/' + cv.Config.clientDesign;
@@ -267,30 +272,36 @@ qx.Class.define('cv.TemplateEngine', {
         loader.addStyles(styles);
         scriptsToLoad.push('designs/' + cv.Config.clientDesign + '/design_setup.js');
       }
-
       var metaParser = new cv.xml.parser.Meta();
 
       // start with the plugins
-      var parts = metaParser.parsePlugins(this.xml);
-      if (parts.length > 0) {
-        qx.io.PartLoader.require(parts, function () {
+      this.loadPlugins(metaParser.parsePlugins(this.xml));
+
+      this.loadScripts(scriptsToLoad);
+      // and then the rest
+      metaParser.parse(this.xml);
+    },
+
+    loadScripts: function(scripts) {
+      if (scripts.length > 0) {
+        cv.util.ScriptLoader.getInstance().addScripts(scripts);
+      } else {
+        this.setScriptsLoaded(true);
+      }
+    },
+
+    loadPlugins: function(plugins) {
+      if (plugins.length > 0) {
+        console.log(plugins);
+        qx.io.PartLoader.require(plugins, function (states) {
+          console.log("plugins loaded");
+          console.log(states);
+          cv.util.ScriptLoader.getInstance().setAllQueued(true);
           this.setPartsLoaded(true);
         }, this);
       } else {
+        cv.util.ScriptLoader.getInstance().setAllQueued(true);
         this.setPartsLoaded(true);
-      }
-
-      // and then the rest
-      metaParser.parse(this.xml);
-
-      if (scriptsToLoad.length > 0) {
-        loader.addListenerOnce("finished", function() {
-          this.setScriptsLoaded(true);
-        }, this);
-        loader.addScripts(scriptsToLoad);
-        loader.setAllQueued(true);
-      } else {
-        this.setScriptsLoaded(true);
       }
     },
 

@@ -17,8 +17,9 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser => auto-filled by the qooxdoo adapter
     files: [
       "source/test/karma/helper-spec.js",
-      { pattern: "source/test/karma/*.js" },
-      { pattern: "source/test/karma/**/*.js" }
+      { pattern: "source/test/karma/plugins/*.js" },
+      // { pattern: "source/test/karma/*.js" },
+      // { pattern: "source/test/karma/**/*.js" }
     ],
 
     // preprocess matching files before serving them to the browser
@@ -41,6 +42,13 @@ module.exports = function(config) {
       ]
     },
 
+    proxies: {
+      '/script/': '/base/source/script/',
+      '/resource/': '/base/source/resource/',
+      '/source/class/': '/base/source/class/',
+      '/external/': '/base/external/',
+      '/designs/': '/base/resource/designs/'
+    },
 
     // web server port
     port: 9876,
