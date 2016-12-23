@@ -36,20 +36,16 @@ qx.Class.define('cv.structure.AbstractWidget', {
     this.base(arguments, props);
     var parts = this.getPath().split("_"); parts.shift();
     var prio = parseInt(parts.join(""))*-1;
-    var pageId = this.get$$type() === "page" ? this.getPath() : this.getParentPage() ? this.getParentPage().getPath() : null;
     var broker = cv.MessageBroker.getInstance();
-    broker.subscribe("setup.dom.finished", this._onDomReady, this, prio);
-    if (pageId) {
-      broker.subscribe("page." + pageId + ".appear", function () {
-        this.setVisible(true);
-      }, this, prio);
-      broker.subscribe("page." + pageId + ".disappear", function () {
-        this.setVisible(false);
-      }, this, prio);
-    } else {
-      // widgets without parent page are visible
-      this.setVisible(true);
-    }
+    broker.subscribe("setup.dom.finished", this._onDomFinished, this, prio);
+
+    // bind visibility to parent page
+    new qx.util.DeferredCall(function() {
+      var parentPage = this.get$$type() === "page" || this.get$$type() === "navbar" ? null : this.getParentPage();
+      if (parentPage) {
+        parentPage.bind("visible", this, "visible");
+      }
+    }, this).schedule();
   },
 
 
@@ -108,15 +104,21 @@ qx.Class.define('cv.structure.AbstractWidget', {
     action: function(ev) {},
 
     /**
+     * Triggered by the {@link cv.MessageBroker} <code>setup.dom.finished</code> message
+     */
+    _onDomFinished: function() {
+      if (!this.isVisible()) {
+        this.addListenerOnce("changeVisible", this._onDomFinished, this);
+        return;
+      }
+      this._onDomReady();
+    },
+
+    /**
      * Called when all widgets are available in the DOM tree
-     * @protected
      */
     _onDomReady: function() {
       if (!this.__init) {
-        if (!this.isVisible()) {
-          this.addListenerOnce("changeVisible", this._onDomReady, this);
-          return;
-        }
         this.initListeners();
         this.processAfterChain("_onDomReady");
         this.__init = true;

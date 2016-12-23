@@ -65,6 +65,7 @@ qx.Class.define('cv.MessageBroker', {
     },
 
     publish: function (topic) {
+      this.debug("publishing "+topic);
       if (this.__registry[topic]) {
         var remove = [];
         var args = Array.prototype.slice.call(arguments, 1);

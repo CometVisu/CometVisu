@@ -131,6 +131,10 @@ qx.Class.define('cv.structure.pure.NavBar', {
     dynamic: {
       check: "Boolean", 
       init: false
+    },
+    visible: {
+      refine: true,
+      init: true
     }
   },
   

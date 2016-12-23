@@ -339,7 +339,6 @@ qx.Class.define('cv.TemplateEngine', {
           }
         }
         if (!cache) {
-          // TODO: remove before release
           this.debug("not using cache");
           var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
 
@@ -385,7 +384,9 @@ qx.Class.define('cv.TemplateEngine', {
           this.main_scroll.setSpeed(this.scrollSpeed);
         }
 
-        this.scrollToPage(startpage, 0);
+        new qx.util.DeferredCall(function() {
+          this.scrollToPage(startpage, 0);
+        }, this).schedule();
 
         // reaction on browser back button
         qx.bom.History.getInstance().addListener("request", function(e) {

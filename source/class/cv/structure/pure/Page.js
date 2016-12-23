@@ -33,6 +33,39 @@ qx.Class.define('cv.structure.pure.Page', {
   ],
 
   /*
+  ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(props) {
+    this.base(arguments, props);
+
+    new qx.util.DeferredCall(function() {
+      var parentPage = this.getParentPage();
+      [
+        ['showTopNavigation', true],
+        ['showFooter', true],
+        ['showNavbarTop', false],
+        ['showNavbarBottom', false],
+        ['showNavbarLeft', false],
+        ['showNavbarRight', false]
+      ].forEach(function (tuple) {
+        var property = tuple[0];
+        var defaultValue = tuple[1];
+        if (this['get' + qx.lang.String.firstUp(property)]() === null) {
+          // inherit from parent
+          if (parentPage) {
+            parentPage.bind(property, this, property);
+          } else {
+            // we have not parent page, because we are the root page, use the default value
+            this['set' + qx.lang.String.firstUp(property)](defaultValue);
+          }
+        }
+      }, this);
+    }, this).schedule();
+  },
+
+  /*
    ******************************************************
    STATICS
    ******************************************************
@@ -195,7 +228,7 @@ qx.Class.define('cv.structure.pure.Page', {
       nullable: true
     },
     backdropType      : { check: "String", nullable: true },
-    linkVisible           : { check: "Boolean", init: true, nullable: true },
+    linkVisible       : { check: "Boolean", init: true, nullable: true },
     size              : { check: "String", nullable: true },
     backdrop          : { check: "String", nullable: true }
   },
@@ -206,31 +239,6 @@ qx.Class.define('cv.structure.pure.Page', {
    ******************************************************
    */
   members: {
-    // overridden
-    _onDomReady: function () {
-      this.base(arguments);
-      var parentPage = this.getParentPage();
-      [
-        ['showTopNavigation', true],
-        ['showFooter', true],
-        ['showNavbarTop', false],
-        ['showNavbarBottom', false],
-        ['showNavbarLeft', false],
-        ['showNavbarRight', false]
-      ].forEach(function(tuple) {
-        var property = tuple[0];
-        var defaultValue = tuple[1];
-        if (this['get'+qx.lang.String.firstUp(property)]() === null) {
-          // inherit from parent
-          if (parentPage) {
-            parentPage.bind(property, this, property);
-          } else {
-            // we have not parent page, because we are the root page, use the default value
-            this['set'+qx.lang.String.firstUp(property)](defaultValue);
-          }
-        }
-      }, this);
-    },
 
     // overridden
     getDomString: function() {

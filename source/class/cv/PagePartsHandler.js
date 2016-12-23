@@ -129,10 +129,11 @@ qx.Class.define('cv.PagePartsHandler', {
     /**
      * update the visibility ob top-navigation, footer and navbar for this page
      *
+     * @param page {cv.structure.pure.Page} page to update the parts for
+     * @param speed {Number} animation duration for changes
      */
-    updatePageParts: function (xml, speed) {
+    updatePageParts: function (page, speed) {
       // default values
-      var page = cv.structure.WidgetFactory.getInstanceById(qx.bom.element.Attribute.get(xml, 'id'));
       var showtopnavigation = true;
       var showfooter = true;
       var shownavbar = this.getNavbarsVisibility(page);

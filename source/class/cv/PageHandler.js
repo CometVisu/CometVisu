@@ -67,6 +67,7 @@ qx.Class.define('cv.PageHandler', {
       currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".exitingPageChange", currentPath, target);
 
       var page = qx.bom.Selector.query('#' + target)[0];
+      var pageWidget = cv.structure.WidgetFactory.getInstanceById(target);
 
       if( 0 === page.length ) // check if page does exist
         return;
@@ -84,7 +85,7 @@ qx.Class.define('cv.PageHandler', {
       cv.MessageBroker.getInstance().publish("path."+target+".duringPageChange", target);
 
       // update visibility of navbars, top-navigation, footer
-      templateEngine.pagePartsHandler.updatePageParts( page, speed );
+      templateEngine.pagePartsHandler.updatePageParts( pageWidget, speed );
 
       // now the animation
       var leftStart = "0px", leftEnd = "0px";
@@ -125,9 +126,16 @@ qx.Class.define('cv.PageHandler', {
         this.setCurrentPath(target);
         templateEngine.pagePartsHandler.updateTopNavigation( target );
         qx.bom.element.Style.set(pagesNode, 'left', 0 );
-        currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".afterPageChange", currentPath);
-        currentPath !== '' && cv.MessageBroker.getInstance().publish("page."+target+".appear", target);
-        currentPath !== '' && cv.MessageBroker.getInstance().publish("path.pageChanged", target);
+        if (currentPath !== '') {
+          cv.MessageBroker.getInstance().publish("path." + currentPath + ".afterPageChange", currentPath);
+          var oldPageWidget = cv.structure.WidgetFactory.getInstanceById(target);
+          oldPageWidget.setVisible(false);
+        }
+        cv.MessageBroker.getInstance().publish("page." + target + ".appear", target);
+        cv.MessageBroker.getInstance().publish("path.pageChanged", target);
+        // get page widget and set it to visible
+
+        pageWidget.setVisible(true);
       }.bind(this);
       if (speed === 0) {
         finish();

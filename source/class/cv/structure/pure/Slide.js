@@ -19,7 +19,7 @@
 
 
 /**
- * TODO: complete docs
+ * Adds a horizontal slider to the visu. This can be used, for example, to dim a light or change temperature values.
  *
  * @require(qx.module.Attribute,qx.module.Css,qx.module.Traversing,qx.module.Manipulating,qx.module.event.Keyboard)
  * @author Christian Mayer
@@ -70,10 +70,6 @@ qx.Class.define('cv.structure.pure.Slide', {
     sendOnFinish: {
       check: "Boolean",
       init: false
-    },
-    valueInternal: {
-      check: "Boolean",
-      init: true
     },
     inAction: {
       check: "Boolean",
@@ -127,42 +123,50 @@ qx.Class.define('cv.structure.pure.Slide', {
     __slider : null,
     __readonly: null,
     __initialized: null,
+    __skipUpdatesFromSlider: null,
 
     // overridden
     _onDomReady: function() {
       this.base(arguments);
-      var actor = this.getActor();
-      var slider = this.__slider = new cv.ui.website.Slider(actor);
-      slider.setFormat(this.getFormat());
-      slider.setConfig("step", this.getStep());
-      slider.setConfig("minimum", this.getMin());
-      slider.setConfig("maximum", this.getMax());
-      // set initial value
-      slider.setValue(parseFloat(this.applyMapping(this.getMin())));
+      if (!this.__initialized) {
+        var actor = this.getActor();
+        var slider = this.__slider = new cv.ui.website.Slider(actor);
+        slider.setFormat(this.getFormat());
+        slider.setConfig("step", this.getStep());
+        slider.setConfig("minimum", this.getMin());
+        slider.setConfig("maximum", this.getMax());
+        // set initial value
+        slider.setValue(parseFloat(this.applyMapping(this.getMin())));
 
-      if (this.__readonly) {
-        slider.setEnabled(false);
+        if (this.__readonly) {
+          slider.setEnabled(false);
+        }
+        slider.init();
+
+        // defer setting the listener to prevent sending values during initialization
+        new qx.util.DeferredCall(function () {
+          slider.on("changeValue", qx.util.Function.debounce(this._onChangeValue, 250, true), this);
+        }, this).schedule();
+
+        this.addListener("changeValue", function (ev) {
+          slider.setValue(parseFloat(ev.getData()));
+        }, this);
+
+        // add CSS classes for compability with old sliders
+        slider.addClasses(["ui-slider", "ui-slider-horizontal", "ui-widget", "ui-widget-content", "ui-corner-all"]);
+        var knob = slider.find(".qx-slider-knob");
+        knob.addClasses(["ui-slider-handle", "ui-state-default", "ui-corner-all"]);
+        this.__initialized = true;
+
+        var pageId = this.getParentPage().getPath();
+        var broker = cv.MessageBroker.getInstance();
+
+        broker.subscribe("page." + pageId + ".appear", function () {
+          this.__skipUpdatesFromSlider = true;
+          this.__slider.updatePositions();
+          this.__skipUpdatesFromSlider = false;
+        }, this);
       }
-      slider.init();
-
-      slider.on("changeValue", qx.util.Function.debounce(this._onChangeValue, 250, true), this);
-
-      this.addListener("changeValue", function(ev) {
-        slider.setValue(parseFloat(ev.getData()));
-      }, this);
-
-      // add CSS classes for compability with old sliders
-      slider.addClasses(["ui-slider", "ui-slider-horizontal", "ui-widget", "ui-widget-content", "ui-corner-all"]);
-      var knob = slider.find(".qx-slider-knob");
-      knob.addClasses(["ui-slider-handle", "ui-state-default", "ui-corner-all"]);
-      this.__initialized= true;
-
-      var pageId = this.getParentPage().getPath();
-      var broker = cv.MessageBroker.getInstance();
-
-      broker.subscribe("page." + pageId + ".appear", function() {
-        this.__slider.updatePositions();
-      }, this);
     },
 
     // overridden
@@ -182,11 +186,11 @@ qx.Class.define('cv.structure.pure.Slide', {
       try {
         if (this.getValue() != value) {
           this.setValue(value);
-          this.setValueInternal(false);
+          this.__skipUpdatesFromSlider = true;
           if (this.__slider) {
             this.__slider.setValue(value);
           }
-          this.setValueInternal(true);
+          this.__skipUpdatesFromSlider = false;
         }
       } catch(e) {
         this.error(e);
@@ -199,6 +203,7 @@ qx.Class.define('cv.structure.pure.Slide', {
      * @private
      */
     _onChangeValue: function(value) {
+      if (!this.__initialized || this.__skipUpdatesFromSlider === true) return;
       if (this.isSendOnFinish() === false || this.__slider.isInPointerMove()) {
         var currentValue = this.getValue();
         this.sendToBackend(value, function(addr) {
