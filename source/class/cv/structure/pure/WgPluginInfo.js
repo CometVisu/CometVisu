@@ -19,9 +19,7 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * Adds an dynamic field to the visu that shows live information from a WireGate plugin.
  *
  * @author Christian Mayer
  * @since 2012
@@ -32,11 +30,23 @@ qx.Class.define('cv.structure.pure.WgPluginInfo', {
 
   /*
   ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(props) {
+    this.base(arguments, props);
+
+
+  },
+
+
+  /*
+  ******************************************************
     PROPERTIES
   ******************************************************
   */
   properties: {
-    variable   : { check: "String", nullable: true }
+    variable   : { check: "String", nullable: true, apply: "_applyVariable" }
   },
 
   /*
@@ -62,23 +72,59 @@ qx.Class.define('cv.structure.pure.WgPluginInfo', {
   ******************************************************
   */
   members: {
+    __request: null,
+
+    // property apply
+    _applyVariable: function(value) {
+      if (value) {
+        if (!this.__request) {
+          // create the request
+          this.__request = new qx.io.request.Xhr('/wg-plugindb.pl?name=' + value);
+          this.__request.set({
+            accept: "application/json",
+            async: false
+          });
+          this.__request.addListener("success", this._onSuccess, this);
+        } else {
+          this.__request.setUrl('/wg-plugindb.pl?name=' + value);
+        }
+      }
+    },
+
+    /**
+     * Handle successful requests from {@link qx.io.request.Xhr}
+     * @param ev {Event}
+     */
+    _onSuccess: function(ev) {
+      var req = ev.getTarget();
+      var data = req.getResponse();
+      this.defaultUpdate(undefined, data[this.getVariable()], this.getValueElement());
+    },
+
+    // overridden
     _getInnerDomString: function () {
       return '<div class="actor"><div class="value">-</div></div>';
     },
 
-    handleUpdate: function(value) {
-      var ajaxRequest = new qx.io.request.Xhr('/wg-plugindb.pl?name=' + this.getVariable());
-      ajaxRequest.set({
-        accept: "application/json",
-        async: false
-      });
-      ajaxRequest.addListenerOnce("success", function(ev) {
-        var req = ev.getTarget();
-        var data = req.getResponse();
-        this.defaultUpdate(undefined, data[this.getVariable()], this.getValueElement());
-      }, this);
+    /**
+     * Triggers an {@link qx.io.request.Xhr} request to query the plugin value
+     */
+    handleUpdate: function() {
+      if (this.__request) {
+        this.__request.send();
+      }
     }
   },
+
+  /*
+  ******************************************************
+    DESTRUCTOR
+  ******************************************************
+  */
+  destruct: function() {
+    this._disposeObjects("__request");
+  },
+
 
   defer: function() {
     // register the parser

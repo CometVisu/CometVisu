@@ -42,7 +42,7 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
   properties: {
     sendValue: { check: "String", init: "0" },
     params: { check: "String", init: '' },
-    url: { check: "String", nullable: true }
+    url: { check: "String", nullable: true, apply: "_applyUrl" }
   },
 
   /*
@@ -70,12 +70,32 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
   ******************************************************
   */
   members: {
+    __xhr: null,
 
+    // property apply
+    _applyUrl: function(value) {
+      if (value) {
+        if (!this.__xhr) {
+          var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(value));
+          xhr.set({
+            method: "GET",
+            accept: "application/html",
+            requestData: this.getParams()
+          });
+          this.__xhr = xhr;
+        } else {
+          this.__xhr.setUrl(qx.util.ResourceManager.getInstance().toUri(value));
+        }
+      }
+    },
+
+    // overridden
     _onDomReady: function() {
       this.base(arguments);
       this.defaultUpdate(undefined, this.getSendValue(), this.getDomElement());
     },
 
+    // overridden
     _getInnerDomString: function () {
       var actor = '<div class="actor switchUnpressed ';
       if ( this.getAlign() )
@@ -84,15 +104,21 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
       return actor;
     },
 
+    // overridden
     _action: function() {
-      var xhr = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(this.getUrl()));
-      xhr.set({
-        method: "GET",
-        accept: "application/html",
-        requestData: this.getParams()
-      });
-      xhr.send();
+      if (this.__xhr) {
+        this.__xhr.send();
+      }
     }
+  },
+
+  /*
+  ******************************************************
+    DESTRUCTOR
+  ******************************************************
+  */
+  destruct: function() {
+    this._disposeObjects("__xhr");
   },
 
   defer: function() {

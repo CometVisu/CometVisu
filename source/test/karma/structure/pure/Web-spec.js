@@ -20,17 +20,53 @@
 
 /**
  * Unit tests for web widget
- *
  */
 describe("testing a web widget", function() {
 
   it("should test the web creator", function() {
 
-    var res = this.createTestWidgetString("web", {}, '<label>Test</label>');
+    var res = this.createTestWidgetString("web", {ga: 'Test'}, '<label>Test</label>');
     var widget = qx.bom.Html.clean([res[1]])[0];
     expect(res[0].getPath()).toBe("id_0");
+    expect(res[0].getAddress()['_Test'][0]).toBe('DPT:1.001');
+    expect(res[0].getAddress()['_Test'][1]).toBe(0);
 
     expect(widget).toHaveClass('web');
     expect(widget).toHaveLabel('Test');
+
+  });
+
+  it("should test the ga with openhab backend", function() {
+    var defBackend = cv.Config.backend;
+    cv.Config.backend = 'oh';
+    var res = this.createTestWidgetString("web", {ga: 'Test'}, '<label>Test</label>');
+    expect(res[0].getAddress()['_Test'][0]).toBe('OH:switch');
+    expect(res[0].getAddress()['_Test'][1]).toBe('OFF');
+
+    cv.Config.backend = defBackend;
+  });
+
+  it("should test web update", function() {
+    var engine = cv.TemplateEngine.getInstance();
+    engine.visu = jasmine.createSpyObj("visu", ["write"]);
+    var res = this.createTestElement("web", {
+      width: '60%',
+      height: '90%',
+      background: '#CCC',
+      frameborder: 'true',
+      scrolling: "yes"
+    }, "", "Test");
+    expect(res.getWidth()).toBe("60%");
+    expect(res.getHeight()).toBe("90%");
+    expect(res.getBackground()).toBe("#CCC");
+    expect(res.getFrameborder()).toBeTruthy();
+    expect(res.getScrolling()).toBe("yes");
+
+    spyOn(res, "refreshAction");
+    res.update("Test", 0);
+    expect(res.refreshAction).not.toHaveBeenCalled();
+    res.update("Test", 1);
+    expect(res.refreshAction).toHaveBeenCalled();
+    expect(engine.visu.write).toHaveBeenCalledWith("Test", "80");
   });
 });

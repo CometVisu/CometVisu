@@ -33,4 +33,11 @@ describe("testing a wgplugin_info widget", function() {
     expect(widget).toHaveClass('info');
     expect(widget).toHaveLabel('Test');
   });
+
+  it("should test the wgplugin_info update", function() {
+    var res = this.createTestElement("wgplugin_info", {variable: "Test"}, '', "Test", {transform: "raw"});
+    spyOn(res.__request, "send");
+    res.update("Test", 1);
+
+  });
 });

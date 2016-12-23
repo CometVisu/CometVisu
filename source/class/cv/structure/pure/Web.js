@@ -19,9 +19,7 @@
 
 
 /**
- * TODO: complete docs
- *
- *
+ * Adds an area to the visu, where external websites can be displayed.
  *
  * @author Christian Mayer
  * @since 2012
@@ -57,7 +55,7 @@ qx.Class.define('cv.structure.pure.Web', {
       nullable: true
     },
     scrolling: {
-      check: "String",
+      check: ["auto", "yes", "no"],
       nullable: true
     },
     src: {
@@ -73,6 +71,10 @@ qx.Class.define('cv.structure.pure.Web', {
   */
   statics: {
 
+    /**
+     * Returns a mapping to map XML-Attributes to properties to help the parser to parse the config element.
+     * @return {Map}
+     */
     getAttributeToPropertyMappings: function () {
       return {
         address: {},
@@ -89,13 +91,18 @@ qx.Class.define('cv.structure.pure.Web', {
       };
     },
 
+    /**
+     * Parsed the ga attribute if set
+     * @param xml {Element} web XML-Element from config
+     * @param path {String} path to the widget
+     */
     afterParse: function (xml, path) {
       var data = cv.data.Model.getInstance().getWidgetData(path);
       var ga = xml.getAttribute("ga");
       if (ga) {
         cv.data.Model.getInstance().addAddress(ga);
         if (cv.Config.backend.substr(0, 2) == "oh") {
-          data.address['_' + ga] = ['OH:number', 0];
+          data.address['_' + ga] = ['OH:switch', 'OFF'];
         } else {
           data.address['_' + ga] = ['DPT:1.001', 0];
         }
@@ -109,6 +116,7 @@ qx.Class.define('cv.structure.pure.Web', {
   ******************************************************
   */
   members: {
+    // overridden
     _getInnerDomString: function () {
       var webStyle = '';
       if (this.getWidth()) {
@@ -130,21 +138,17 @@ qx.Class.define('cv.structure.pure.Web', {
     /**
      * Handles the incoming data from the backend for this widget
      *
-     *
-     * @param value {any} incoming data (already transformed + mapped)
+     * @param address {String} KNX-GA or openHAB item name
+     * @param data {any} incoming data (already transformed + mapped)
      */
     _update: function(address, data) {
       var addr = this.getAddress()[ address ];
       if (!addr) return;
-      switch( addr[2] )
-      {
-        default:
-          if (data === 1) {
-            var iframe = qx.bom.Selector.query('iframe', this.getDomElement());
-            qx.bom.element.Attribute.set(iframe, 'src', qx.bom.element.Attribute.get(iframe, 'src'));
-            cv.TemplateEngine.getInstance().visu.write( address, cv.TemplateEngine.getInstance().transformEncode(addr[0], 0));
-          }
-          break;
+      if (data == 1) {
+        var iframe = qx.bom.Selector.query('iframe', this.getDomElement())[0];
+        this.refreshAction(iframe, qx.bom.element.Attribute.get(iframe, 'src'));
+        // reset the value
+        cv.TemplateEngine.getInstance().visu.write( address, cv.Transform.encode(addr[0], 0));
       }
     }
   },
