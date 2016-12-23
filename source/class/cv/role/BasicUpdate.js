@@ -95,7 +95,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
      *
      * @param value {var} value to be mapped
      * @param mapping {String?} mapping name, if not set the <code>mapping</code> property value is used
-     * @returns {var} the mapped value
+     * @return {var} the mapped value
      */
     applyMapping: function (value, mapping) {
       var this_map = mapping || this.getMapping();
@@ -177,7 +177,7 @@ qx.Mixin.define("cv.role.BasicUpdate", {
      *
      * @param address {String} KNX-GA or openHAB item name
      * @param data {var} value to be processes
-     * @returns {var} the processed value
+     * @return {var} the processed value
      */
     defaultValueHandling: function (address, data) {
 
