@@ -34,14 +34,18 @@ qx.Class.define("cv.ui.Stylings", {
   ******************************************************
   */
   statics: {
-    stylings: { init: {} },
+    __stylings: { },
 
     addStyling: function (name, styling) {
-      this.stylings[name] = styling;
+      this.__stylings[name] = styling;
     },
 
     getStyling: function (name) {
-      return this.stylings[name];
+      return this.__stylings[name];
+    },
+
+    hasStyling: function(name) {
+      return this.__stylings.hasOwnProperty(name);
     }
   }
 });
