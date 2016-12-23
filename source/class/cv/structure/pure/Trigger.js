@@ -82,7 +82,7 @@ qx.Class.define('cv.structure.pure.Trigger', {
     initListeners: function() {
       this.base(arguments);
       if (this.getShortThreshold() > 0) {
-        this.addListener("longtap", this._onLongTap, this);
+        this.addElementListener("longtap", this._onLongTap, this);
       }
     },
 

@@ -161,7 +161,7 @@ qx.Class.define('cv.structure.AbstractWidget', {
      * Initialize the widgets listeners
      */
     initListeners: function() {
-      this.addListener("tap", this.action, this);
+      this.addElementListener("tap", this.action, this);
     },
 
     /**
@@ -171,7 +171,7 @@ qx.Class.define('cv.structure.AbstractWidget', {
      * @param context {Object} this context for the callback
      * @return {var} the listener id
      */
-    addListener: function(type, callback, context) {
+    addElementListener: function(type, callback, context) {
       if (this.isAnonymous()) return;
       var widget = this.getInteractionElement();
       if (widget) {

@@ -68,8 +68,8 @@ qx.Class.define('cv.structure.pure.PushButton', {
     },
 
     initListeners: function() {
-      this.addListener("pointerdown", this._onPointerDown, this);
-      this.addListener("pointerup", this._onPointerUp, this);
+      this.addElementListener("pointerdown", this._onPointerDown, this);
+      this.addElementListener("pointerup", this._onPointerUp, this);
     },
 
     /**
