@@ -35,4 +35,24 @@ describe("testing a slide widget", function() {
     expect(widget).toHaveLabel('Test');
 
   });
+
+  it("should test the min/max and step settings", function() {
+    var widgetInstance = this.createTestElement("slide", {min: 30, max: 130, step: 5});
+    expect(widgetInstance.getMin()).toBe(30);
+    expect(widgetInstance.getMax()).toBe(130);
+    expect(widgetInstance.getStep()).toBe(5);
+  });
+
+  it("should test the min/max settings from transform", function() {
+    var widgetInstance = this.createTestElement("slide", {}, null, null, {transform: 'DPT:5.004'});
+    expect(widgetInstance.getMin()).toBe(0.0);
+    expect(widgetInstance.getMax()).toBe(255.0);
+  });
+
+  it("should test incoming data", function() {
+    var widgetInstance = this.createTestElement("slide", {}, null, "Test_slide", {transform: 'DPT:5.004'});
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    widgetInstance.update("Test_slide", "64"); // 0x64 == 100
+    expect(widgetInstance.__slider.getValue()).toBe(100);
+  });
 });
