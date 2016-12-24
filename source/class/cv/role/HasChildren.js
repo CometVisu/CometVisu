@@ -29,15 +29,29 @@ qx.Mixin.define("cv.role.HasChildren", {
     var children = [];
     // create children
     var model = cv.data.Model.getInstance();
-    props.children.forEach(function(path) {
-      var data = model.getWidgetData(path);
-      var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
-      if (widget) {
-        children.push(widget);
-        widget.setParentWidget(this);
-      }
-    }, this);
-    this.setChildWidgets(children);
+    if (cv.Config.lazyLoading === false || cv.Config.TMP.treePath.indexOf(props.path) >= 0) {
+      // this.debug(props.$$type+" INIT ["+props.path+"] with "+props.children.length+" children");
+      props.children.forEach(function (path) {
+        var data = model.getWidgetData(path);
+        var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
+        if (widget) {
+          children.push(widget);
+          widget.setParentWidget(this);
+        }
+      }, this);
+      this.setChildWidgets(children);
+    }
+    if (cv.Config.lazyLoading === true && !this.getParentWidget()) {
+      new qx.util.DeferredCall(function() {
+        // initialize the ancestors
+        var parentData = cv.util.Tree.getParentData(props.path);
+        if (parentData) {
+          // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + props.$$type + " (" + props.path + ")");
+          var parent = cv.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
+          this.setParentWidget(parent);
+        }
+      }, this).schedule();
+    }
   },
 
 

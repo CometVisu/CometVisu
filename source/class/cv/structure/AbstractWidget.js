@@ -39,8 +39,18 @@ qx.Class.define('cv.structure.AbstractWidget', {
     var broker = cv.MessageBroker.getInstance();
     broker.subscribe("setup.dom.finished", this._onDomFinished, this, prio);
 
+    // this.debug(props.$$type+" INIT ["+props.path+"]");
     // bind visibility to parent page
     new qx.util.DeferredCall(function() {
+      if (cv.Config.lazyLoading === true && !this.getParentWidget()) {
+        // initialize the ancestors
+        var parentData = cv.util.Tree.getParentData(props.path);
+        if (parentData) {
+          // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + props.$$type + " (" + props.path + ")");
+          var parent = cv.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
+          this.setParentWidget(parent);
+        }
+      }
       var parentPage = this.get$$type() === "page" || this.get$$type() === "navbar" ? null : this.getParentPage();
       if (parentPage) {
         parentPage.bind("visible", this, "visible");

@@ -26,6 +26,11 @@ qx.Class.define('cv.Config', {
 
   statics: {
     /**
+     * Temporary settings which will not be cached
+     */
+    TMP: {},
+
+    /**
      * Config file version
      * @type {Number}
      */
@@ -118,7 +123,14 @@ qx.Class.define('cv.Config', {
     /**
      * Store last visited page in LocalStorage
      */
-    rememberLastPage: false
+    rememberLastPage: false,
+
+    /**
+     * If enabled the widget instances are created on demand. Note: this must only be used when
+     * cache is valid!
+     * @type {Boolean}
+     */
+    lazyLoading: false
   },
 
   defer: function() {

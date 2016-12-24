@@ -37,11 +37,13 @@ qx.Class.define('cv.ConfigCache', {
     _valid : null,
     
     dump : function(xml) {
+      var config = qx.lang.Object.clone(cv.Config);
+      config.TMP = {};
       this.save(this._cacheKey, {
         hash: this.toHash(xml),
         data: cv.data.Model.getInstance().getWidgetDataModel(),
         addresses: cv.data.Model.getInstance().getAddressList(),
-        configSettings: cv.Config,
+        configSettings: config,
         mappings: cv.ui.Mappings.getMappings(),
         stylings: cv.ui.Stylings.getStylings()
       });

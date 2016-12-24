@@ -48,7 +48,12 @@ qx.Class.define('cv.structure.WidgetFactory', {
     },
 
     getInstanceById: function (id) {
-      return this.registry[id];
+      var widget = this.registry[id];
+      if (!widget && cv.Config.lazyLoading === true) {
+        var data = cv.data.Model.getInstance().getWidgetData(id);
+        widget = this.createInstance(data.$$type, data);
+      }
+      return widget;
     },
 
     getInstanceByElement: function(element) {

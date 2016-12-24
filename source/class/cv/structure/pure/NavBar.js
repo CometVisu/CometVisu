@@ -27,17 +27,7 @@
  */
 qx.Class.define('cv.structure.pure.NavBar', {
   extend: cv.structure.AbstractWidget,
-
   include: cv.role.HasChildren,
-
-  /*
-  ******************************************************
-    CONSTRUCTOR
-  ******************************************************
-  */
-  construct: function(props) {
-    this.base(arguments, props);
-  },
   
   /*
   ******************************************************

@@ -94,6 +94,40 @@ qx.Class.define('cv.util.Tree', {
       return data;
     },
 
+    /**
+     * Returns the data for the parent entry of the given path
+     * @param path
+     * @returns {*}
+     */
+    getParentData: function(path) {
+      var data = {};
+
+      function traverseUp(path) {
+        var parts = path.split("_");
+        if (parts[parts.length - 1] === "") {
+          parts.pop();
+        } else {
+          parts[parts.length - 1] = "";
+        }
+        return parts.join("_");
+      }
+      var parentPath = traverseUp(path);
+      if (parentPath === "id") {
+        // no parent
+        return null;
+      }
+
+      var model = cv.data.Model.getInstance();
+      while (parentPath.length >= 2) {
+        data = model.getWidgetData(parentPath);
+        if (parentPath === "id_" || (data.children && data.children.indexOf(path) >= 0)) {
+          return data;
+        }
+        parentPath = traverseUp(parentPath);
+      }
+      return null;
+    },
+
     /*
     * *********************************************************
     * DOM-Element tree helper functions

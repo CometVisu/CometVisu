@@ -225,11 +225,13 @@ qx.Class.define("cv.Application",
         } else {
           // loaded cache is still valid
           cv.Config.cacheUsed = true;
+          // cv.Config.lazyLoading = true;
           engine.initBackendClient();
           this.__detectInitialPage();
 
           engine.addListenerOnce("changeReady", function() {
             // create the objects
+            cv.Config.TMP.treePath = cv.Config.initialPage;
             var data = cv.data.Model.getInstance().getWidgetData("id_");
             cv.structure.WidgetFactory.createInstance(data.$$type, data);
           }, this);
