@@ -29,6 +29,17 @@ qx.Mixin.define("cv.role.Refresh", {
     cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
       this.setupRefreshAction();
     }, this);
+
+    // Stop the while invisible
+    this.addListener("changeVisible", function(ev) {
+      if (this._timer) {
+        if (ev.getData()) {
+          this._timer.start();
+        } else {
+          this._timer.stop();
+        }
+      }
+    }, this);
   },
 
   /*
