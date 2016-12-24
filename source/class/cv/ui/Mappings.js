@@ -36,6 +36,14 @@ qx.Class.define("cv.ui.Mappings", {
   statics: {
     __mappings: { },
 
+    getMappings: function() {
+      return this.__mappings;
+    },
+
+    setMappings: function(map) {
+      this.__mappings = map;
+    },
+
     addMapping: function (name, mapping) {
       this.__mappings[name] = mapping;
     },

@@ -41,9 +41,23 @@ qx.Class.define('cv.ConfigCache', {
         hash: this.toHash(xml),
         data: cv.data.Model.getInstance().getWidgetDataModel(),
         addresses: cv.data.Model.getInstance().getAddressList(),
-        configSettings: cv.Config
+        configSettings: cv.Config,
+        mappings: cv.ui.Mappings.getMappings(),
+        stylings: cv.ui.Stylings.getStylings()
       });
       localStorage.setItem(cv.Config.configSuffix+".body", qx.bom.element.Attribute.get(qx.bom.Selector.query('body')[0], 'html'));
+    },
+
+    restore: function() {
+      var body = qx.bom.Selector.query("body")[0];
+      cv.Config = this.getData("configSettings");
+      cache = this.getData();
+      cv.data.Model.getInstance().setWidgetDataModel(cache.data);
+      cv.data.Model.getInstance().setAddressList(cache.addresses);
+      cv.ui.Mappings.setMappings(cache.mappings);
+      cv.ui.Stylings.setStylings(cache.stylings);
+      qx.dom.Element.empty(body);
+      qx.bom.Html.clean([cv.ConfigCache.getBody()], null, body);
     },
     
     save: function(key, data) {

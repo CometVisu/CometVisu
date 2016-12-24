@@ -43,8 +43,7 @@ qx.Class.define("cv.xml.parser.Meta", {
     },
 
     parseIcons: function(elem) {
-      var icon = this.__parseIconDefinition(elem);
-      cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic);
+      cv.Config.iconsFromConfig.push(this.__parseIconDefinition(elem));
     },
 
     parseMappings: function(elem) {

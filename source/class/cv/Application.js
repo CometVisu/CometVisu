@@ -121,12 +121,7 @@ qx.Class.define("cv.Application",
         if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
           // load settings
           this.debug("using cache");
-          cv.Config = cv.ConfigCache.getData("configSettings");
-          cache = cv.ConfigCache.getData();
-          cv.data.Model.getInstance().setWidgetDataModel(cache.data);
-          cv.data.Model.getInstance().setAddressList(cache.addresses);
-          qx.dom.Element.empty(body);
-          qx.bom.Html.clean([cv.ConfigCache.getBody()], null, body);
+          cv.ConfigCache.restore();
         } else {
           // load empty HTML structure
           qx.dom.Element.empty(body);
@@ -167,7 +162,7 @@ qx.Class.define("cv.Application",
               if (req.getResponseHeader("X-CometVisu-Backend-Name")) {
                 cv.Config.backend = req.getResponseHeader("X-CometVisu-Backend-Name");
               }
-              templateEngine.parseXML(xml);
+              this.bootstrap(xml);
             }
           }
         }, this);
@@ -196,6 +191,123 @@ qx.Class.define("cv.Application",
             this.innerHTML = '';
         }, messageElement);
       }, this);
+    },
+
+    /**
+     * Initialize the content
+     * @param xml {Document} XML configuration retrieved from backend
+     */
+    bootstrap: function(xml) {
+      var cache = false;
+      var engine = cv.TemplateEngine.getInstance();
+      var loader = cv.util.ScriptLoader.getInstance();
+      engine.xml = xml;
+      loader.addListenerOnce("finished", function() {
+        engine.setScriptsLoaded(true);
+      }, this);
+      if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
+
+        // check if cache is still valid
+        if (!cv.ConfigCache.isValid(xml)) {
+          this.debug("cache is invalid re-parse xml");
+          // cache invalid
+          cv.Config.cacheUsed = false;
+          cv.ConfigCache.clear();
+
+          // load empty HTML structure
+          var body = qx.bom.Selector.query("body")[0];
+          qx.dom.Element.empty(body);
+          qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+
+          //empty model
+          cv.data.Model.getInstance().resetWidgetDataModel();
+          cv.data.Model.getInstance().resetAddressList();
+        } else {
+          // loaded cache is still valid
+          cv.Config.cacheUsed = true;
+          engine.initBackendClient();
+          this.__detectInitialPage();
+
+          engine.addListenerOnce("changeReady", function() {
+            // create the objects
+            var data = cv.data.Model.getInstance().getWidgetData("id_");
+            cv.structure.WidgetFactory.createInstance(data.$$type, data);
+          }, this);
+          this.loadStyles();
+          this.loadPlugins();
+          this.loadScripts();
+          this.loadIcons();
+        }
+      }
+      if (!cv.Config.cacheUsed) {
+        this.__detectInitialPage();
+        engine.parseXML(xml);
+        this.loadStyles();
+        this.loadPlugins();
+        this.loadScripts();
+        this.loadIcons();
+
+        if (cv.Config.enableCache) {
+          // cache dom + data when everything is ready
+          cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function() {
+            cv.ConfigCache.dump(xml);
+          }, this);
+        }
+      }
+    },
+
+    loadIcons: function() {
+      cv.Config.iconsFromConfig.forEach(function(icon) {
+        cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic);
+      }, this);
+    },
+
+    loadStyles: function() {
+      cv.util.ScriptLoader.getInstance().addStyles(cv.Config.configSettings.stylesToLoad);
+    },
+
+    loadScripts: function() {
+      if (cv.Config.configSettings.scriptsToLoad.length > 0) {
+        cv.util.ScriptLoader.getInstance().addScripts(cv.Config.configSettings.scriptsToLoad);
+      }
+    },
+
+    loadPlugins: function() {
+      var plugins = cv.Config.configSettings.pluginsToLoad;
+      if (plugins.length > 0) {
+        qx.io.PartLoader.require(plugins, function() {
+          cv.util.ScriptLoader.getInstance().setAllQueued(true);
+          cv.TemplateEngine.getInstance().setPartsLoaded(true);
+        }, this);
+      } else {
+        cv.util.ScriptLoader.getInstance().setAllQueued(true);
+        cv.TemplateEngine.getInstance().setPartsLoaded(true);
+      }
+    },
+
+    __detectInitialPage: function() {
+      var startpage = 'id_';
+      if (cv.Config.startpage) {
+        startpage = cv.Config.startpage;
+        if (typeof(Storage) !== 'undefined') {
+          if ('remember' === startpage) {
+            startpage = localStorage.getItem('lastpage');
+            cv.Config.rememberLastPage = true;
+            if ('string' !== typeof( startpage ) || 'id_' !== startpage.substr(0, 3))
+              startpage = 'id_'; // fix obvious wrong data
+          } else if ('noremember' === startpage) {
+            localStorage.removeItem('lastpage');
+            startpage = 'id_';
+            cv.Config.rememberLastPage = false;
+          }
+        }
+      } else {
+        var req = qx.util.Uri.parseUri(window.location.href);
+        if (req.anchor && req.anchor.substring(0, 3) === "id_") {
+          startpage = req.anchor;
+        }
+      }
+      cv.Config.initialPage = startpage;
     },
 
     /**

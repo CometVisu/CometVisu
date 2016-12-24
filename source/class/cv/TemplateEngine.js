@@ -70,7 +70,6 @@ qx.Class.define('cv.TemplateEngine', {
    */
   members: {
     pagePartsHandler: null,
-    rememberLastPage: false,
     currentPage: null,
     // if true the whole widget reacts on click events
     // if false only the actor in the widget reacts on click events
@@ -181,16 +180,17 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     initBackendClient: function () {
+      var backendName = cv.Config.configSettings.backend || cv.Config.backend;
       if (cv.Config.testMode) {
         this.visu = new cv.io.Mockup();
       }
-      else if (cv.Config.backend == "oh") {
+      else if (backendName == "oh") {
         this.visu = new cv.io.Client('openhab', cv.Config.backendUrl);
       }
-      else if (cv.Config.backend == "oh2") {
+      else if (backendName == "oh2") {
         this.visu = new cv.io.Client('openhab2', cv.Config.backendUrl);
       } else {
-        this.visu = new cv.io.Client(cv.Config.backend, cv.Config.backendUrl);
+        this.visu = new cv.io.Client(backendName, cv.Config.backendUrl);
       }
 
       this.visu.update = function (json) { // overload the handler
@@ -207,44 +207,48 @@ qx.Class.define('cv.TemplateEngine', {
       cv.layout.Manager.currentPageNavbarVisibility = null;
     },
 
+    /**
+     * Read basic settings and meta-section from config document
+     * @param loaded_xml {Document} XML-configuration document
+     */
     parseXML: function (loaded_xml) {
-      this.xml = loaded_xml;
       /*
        * First, we try to get a design by url. Secondly, we try to get a predefined
        */
       // read predefined design in config
-      var pagesNode = qx.bom.Selector.query("pages", this.xml)[0];
+      var settings = cv.Config.configSettings;
+      var pagesNode = qx.bom.Selector.query("pages", loaded_xml)[0];
 
 
       if (qx.bom.element.Attribute.get(pagesNode, "backend") !== null) {
-        cv.Config.backend = qx.bom.element.Attribute.get(pagesNode, "backend");
+        settings.backend = qx.bom.element.Attribute.get(pagesNode, "backend");
       }
       this.initBackendClient();
 
       if (!qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') === null) {
-        cv.Config.scrollSpeed = 400;
+        settings.scrollSpeed = 400;
       } else {
-        cv.Config.scrollSpeed = parseInt(qx.bom.element.Attribute.get(pagesNode, 'scroll_speed'));
+        settings.scrollSpeed = parseInt(qx.bom.element.Attribute.get(pagesNode, 'scroll_speed'));
       }
 
       if (qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') !== null) {
-        cv.Config.bindClickToWidget = qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') == "true" ? true : false;
+        settings.bindClickToWidget = qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') == "true" ? true : false;
       }
       if (qx.bom.element.Attribute.get(pagesNode, 'default_columns') !== null) {
-        cv.Config.defaultColumns = qx.bom.element.Attribute.get(pagesNode, 'default_columns');
+        settings.defaultColumns = qx.bom.element.Attribute.get(pagesNode, 'default_columns');
       }
       if (qx.bom.element.Attribute.get(pagesNode, 'min_column_width') !== null) {
-        cv.Config.minColumnWidth = qx.bom.element.Attribute.get(pagesNode, 'min_column_width');
+        settings.minColumnWidth = qx.bom.element.Attribute.get(pagesNode, 'min_column_width');
       }
-      this.screensave_time = qx.bom.element.Attribute.get(pagesNode, 'screensave_time');
-      this.screensave_page = qx.bom.element.Attribute.get(pagesNode, 'screensave_page');
+      settings.screensave_time = qx.bom.element.Attribute.get(pagesNode, 'screensave_time');
+      settings.screensave_page = qx.bom.element.Attribute.get(pagesNode, 'screensave_page');
 
       var predefinedDesign = qx.bom.element.Attribute.get(pagesNode, "design");
       // design by url
       // design by config file
-      if (!cv.Config.clientDesign) {
+      if (!settings.clientDesign) {
         if (predefinedDesign) {
-          cv.Config.clientDesign = predefinedDesign;
+          settings.clientDesign = predefinedDesign;
         }
         // selection dialog
         else {
@@ -252,52 +256,26 @@ qx.Class.define('cv.TemplateEngine', {
         }
       }
       if (qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width') !== null)
-        cv.Config.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
+        settings.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
 
-      var loader = cv.util.ScriptLoader.getInstance();
-      loader.addListenerOnce("finished", function() {
-        this.setScriptsLoaded(true);
-      }, this);
-
-      var scriptsToLoad = [];
-      if (cv.Config.clientDesign) {
-        var baseUri = 'designs/' + cv.Config.clientDesign;
-        var styles = [];
-        styles.push(baseUri + '/basic.css');
-
-        if (!cv.Config.forceNonMobile) {
-          styles.push(baseUri + '/mobile.css');
+      settings.scriptsToLoad = [];
+      settings.stylesToLoad = [];
+      if (settings.clientDesign) {
+        var baseUri = 'designs/' + settings.clientDesign;
+        settings.stylesToLoad.push(baseUri + '/basic.css');
+        if (!settings.forceNonMobile) {
+          settings.stylesToLoad.push(baseUri + '/mobile.css');
         }
-        styles.push(baseUri + '/custom.css');
-        loader.addStyles(styles);
-        scriptsToLoad.push('designs/' + cv.Config.clientDesign + '/design_setup.js');
+        settings.stylesToLoad.push(baseUri + '/custom.css');
+        settings.scriptsToLoad.push('designs/' + settings.clientDesign + '/design_setup.js');
+
       }
       var metaParser = new cv.xml.parser.Meta();
 
       // start with the plugins
-      this.loadPlugins(metaParser.parsePlugins(loaded_xml));
-
-      this.loadScripts(scriptsToLoad);
+      settings.pluginsToLoad = metaParser.parsePlugins(loaded_xml);
       // and then the rest
       metaParser.parse(loaded_xml);
-    },
-
-    loadScripts: function(scripts) {
-      if (scripts.length > 0) {
-        cv.util.ScriptLoader.getInstance().addScripts(scripts);
-      }
-    },
-
-    loadPlugins: function(plugins) {
-      if (plugins.length > 0) {
-        qx.io.PartLoader.require(plugins, function (states) {
-          cv.util.ScriptLoader.getInstance().setAllQueued(true);
-          this.setPartsLoaded(true);
-        }, this);
-      } else {
-        cv.util.ScriptLoader.getInstance().setAllQueued(true);
-        this.setPartsLoaded(true);
-      }
     },
 
     setupPage: function () {
@@ -311,70 +289,15 @@ qx.Class.define('cv.TemplateEngine', {
           qx.bom.element.Attribute.set(elem, 'media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
         });
 
-        var cache = false;
-        if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
-
-          // check if cache is still valid
-          if (!cv.ConfigCache.isValid(this.xml)) {
-            // TODO: remove before release
-            this.debug("cache is invalid re-parse xml");
-            // cache invalid
-            cache = false;
-            cv.ConfigCache.clear();
-
-            // load empty HTML structure
-            var body = qx.bom.Selector.query("body")[0];
-            qx.dom.Element.empty(body);
-            qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
-
-            //empty model
-            cv.data.Model.getInstance().resetWidgetDataModel();
-            cv.data.Model.getInstance().resetAddressList();
-          } else {
-            cache = true;
-
-            // create the objects
-            var data = cv.data.Model.getInstance().getWidgetData("id_");
-            cv.structure.WidgetFactory.createInstance(data.$$type, data);
-          }
-        }
-        if (!cache) {
-          this.debug("not using cache");
+        if (!cv.Config.cacheUsed) {
           var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
-
           this.createPages(page, 'id');
           cv.structure.pure.Page.createFinal();
         }
 
         cv.MessageBroker.getInstance().publish("setup.dom.finished");
-        if (!cache && cv.Config.enableCache) {
-          // cache dom + data
-          cv.ConfigCache.dump(this.xml);
-        }
 
-
-        var startpage = 'id_';
-        if (cv.Config.startpage) {
-          startpage = cv.Config.startpage;
-          if (typeof(Storage) !== 'undefined') {
-            if ('remember' === startpage) {
-              startpage = localStorage.getItem('lastpage');
-              this.rememberLastPage = true;
-              if ('string' !== typeof( startpage ) || 'id_' !== startpage.substr(0, 3))
-                startpage = 'id_'; // fix obvious wrong data
-            } else if ('noremember' === startpage) {
-              localStorage.removeItem('lastpage');
-              startpage = 'id_';
-              this.rememberLastPage = false;
-            }
-          }
-        } else {
-          var req = qx.util.Uri.parseUri(window.location.href);
-          if (req.anchor && req.anchor.substring(0, 3) === "id_") {
-            startpage = req.anchor;
-          }
-        }
-        this.currentPage = qx.bom.Selector.query('#' + startpage)[0];
+        this.currentPage = qx.bom.Selector.query('#' + cv.Config.initialPage)[0];
 
         cv.layout.Manager.adjustColumns();
         cv.layout.Manager.applyColumnWidths();
@@ -385,7 +308,7 @@ qx.Class.define('cv.TemplateEngine', {
         }
 
         new qx.util.DeferredCall(function() {
-          this.scrollToPage(startpage, 0);
+          this.scrollToPage(cv.Config.initialPage, 0);
         }, this).schedule();
 
         // reaction on browser back button
@@ -397,48 +320,62 @@ qx.Class.define('cv.TemplateEngine', {
         }, this);
 
         // run the Trick-O-Matic scripts for great SVG backdrops
-        // qx.bom.Selector.query('embed').forEach(function () {
-        //   this.onload = Trick_O_Matic
+        // qx.bom.Selector.query('embed').forEach(function(elem) {
+        //   elem.onload = Trick_O_Matic
         // });
 
-        if (cv.Config.enableAddressQueue) {
-          // identify addresses on startpage
-          var startPageAddresses = {};
-          qx.bom.Selector.query('.actor', this.currentPage).forEach(function (elem) {
-            var data = qx.bom.element.Dataset.getAll(elem);
-            if (undefined === data.address) data = qx.bom.element.Dataset.getAll(elem.parentElement);
-            for (var addr in data.address) {
-              startPageAddresses[addr.substring(1)] = 1;
-            }
-          });
-          this.visu.setInitialAddresses(Object.keys(startPageAddresses));
-        }
-        var addressesToSubscribe = cv.data.Model.getInstance().getAddresses();
-        if (0 !== addressesToSubscribe.length)
-          this.visu.subscribe(addressesToSubscribe);
+        this.startInitialRequest();
 
         this.xml = null; // not needed anymore - free the space
 
-        qx.bom.Selector.query('.icon').forEach(function (icon) {
-          cv.util.IconTools.fillRecoloredIcon(icon);
-        }, this);
+        qx.bom.Selector.query('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, this);
         qx.bom.Selector.query('.loading').forEach(function(elem) {
           qx.bom.element.Class.remove(elem, 'loading');
         }, this);
 
-        if (qx.lang.Type.isNumber(this.screensave_time)) {
-          this.screensave = new qx.event.Timer(this.screensave_time * 1000);
-          this.screensave.addListener("interval", function () {
-            this.scrollToPage();
-          }, this);
-          this.screensave.start();
-          qx.event.Registration.addListener(document, "pointerdown", this.screensave.restart, this.screensave);
-        }
+        this.startScreensaver();
         if (qx.core.Environment.get("qx.aspects")) {
           qx.dev.Profile.stop();
           qx.dev.Profile.showResults(50);
         }
       }, this);
+    },
+
+    /**
+     * Start the screensaver if a screensave time is set
+     */
+    startScreensaver: function() {
+      if (qx.lang.Type.isNumber(cv.Config.configSettings.screensave_time)) {
+        this.screensave = new qx.event.Timer(cv.Config.configSettings.screensave_time * 1000);
+        this.screensave.addListener("interval", function () {
+          this.scrollToPage();
+        }, this);
+        this.screensave.start();
+        qx.event.Registration.addListener(document, "pointerdown", this.screensave.restart, this.screensave);
+      }
+    },
+
+    /**
+     * Start retrieving data from backend
+     */
+    startInitialRequest: function() {
+      if (cv.Config.enableAddressQueue) {
+        // identify addresses on startpage
+        var startPageAddresses = {};
+        var pageWidget = cv.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
+        pageWidget.getChildWidgets().forEach(function(child) {
+          var address = child.getAddress();
+          for (var addr in address) {
+            if (address.hasOwnProperty(addr)) {
+              startPageAddresses[addr.substring(1)] = 1;
+            }
+          }
+        }, this);
+        this.visu.setInitialAddresses(Object.keys(startPageAddresses));
+      }
+      var addressesToSubscribe = cv.data.Model.getInstance().getAddresses();
+      if (0 !== addressesToSubscribe.length)
+        this.visu.subscribe(addressesToSubscribe);
     },
 
     createPages: function (page, path, flavour, type) {
@@ -470,6 +407,7 @@ qx.Class.define('cv.TemplateEngine', {
             "data-type": data.$$type}).appendChild(retval);
         }
       }
+      console.log("pages created");
     },
 
     /**
@@ -626,7 +564,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (undefined === speed)
         speed = cv.Config.scrollSpeed;
 
-      if (this.rememberLastPage)
+      if (cv.Config.rememberLastPage)
         localStorage.lastpage = page_id;
 
       // push new state to history

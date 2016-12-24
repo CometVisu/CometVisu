@@ -36,6 +36,14 @@ qx.Class.define("cv.ui.Stylings", {
   statics: {
     __stylings: { },
 
+    getStylings: function() {
+      return this.__stylings;
+    },
+
+    setStylings: function(map) {
+      this.__stylings = map;
+    },
+
     addStyling: function (name, styling) {
       this.__stylings[name] = styling;
     },

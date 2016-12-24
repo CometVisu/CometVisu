@@ -102,7 +102,23 @@ qx.Class.define('cv.Config', {
      * Stores the rowspans used by the current confid
      * @type {Map} of rowspan-value as key and true as value
      */
-    usedRowspans: {}
+    usedRowspans: {},
+
+    /**
+     * All configuration and settings from the current configuration
+     */
+    configSettings: {},
+
+    /**
+     * Array with alls icons defined in the current config file
+     * @type {Array}
+     */
+    iconsFromConfig: [],
+
+    /**
+     * Store last visited page in LocalStorage
+     */
+    rememberLastPage: false
   },
 
   defer: function() {
