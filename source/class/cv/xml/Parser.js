@@ -329,20 +329,22 @@ qx.Class.define('cv.xml.Parser', {
     setWidgetLayout: function( page, path ) {
       var
         elementData = cv.data.Model.getInstance().getWidgetData( path ),
-        layout      = qx.bom.Selector.matches("layout", qx.dom.Hierarchy.getChildElements(page))[0],
-        ret_val = '';
+        layout      = qx.bom.Selector.query("layout", page)[0],
+        ret_val = '',
+        rowspan = null;
 
       if (layout) {
-        elementData.colspan = layout.getAttribute('colspan');
-        elementData.colspanM = layout.getAttribute('colspan-m');
-        elementData.colspanS = layout.getAttribute('colspan-s');
+        elementData.colspan = qx.xml.Element.getAttributeNS(layout, '', 'colspan');
+        elementData.colspanM = qx.xml.Element.getAttributeNS(layout, '', 'colspan-m');
+        elementData.colspanS = qx.xml.Element.getAttributeNS(layout, '', 'colspan-s');
+        rowspan = qx.xml.Element.getAttributeNS(layout, '', 'rowspan');
       }
       elementData.colspan = parseFloat(elementData.colspan || qx.bom.element.Dataset.get(qx.bom.Selector.query('head')[0], 'colspanDefault') || 6);
       elementData.colspanM = parseFloat(elementData.colspanM || cv.xml.Parser.lookupM[Math.floor(elementData.colspan)] || elementData.colspan);
-      elementData.colspanS = parseFloat(cv.xml.Parser.lookupS[Math.floor(elementData.colspan)] || elementData.colspan);
+      elementData.colspanS = parseFloat(elementData.colspanS || cv.xml.Parser.lookupS[Math.floor(elementData.colspan)] || elementData.colspan);
 
-      if (layout && layout.getAttribute('rowspan')) {
-        elementData.rowspanClass = cv.layout.Manager.rowspanClass( parseFloat(layout.getAttribute('rowspan')) || 1 );
+      if (rowspan) {
+        elementData.rowspanClass = cv.layout.Manager.rowspanClass(parseFloat(rowspan || 1));
         ret_val = 'innerrowspan';
       }
       return ret_val;

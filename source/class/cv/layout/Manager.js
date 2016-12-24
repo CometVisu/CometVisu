@@ -198,7 +198,7 @@ qx.Class.define('cv.layout.Manager', {
         adjustableElements.forEach(function (e) {
           var
             widget = cv.structure.WidgetFactory.getInstanceByElement(e),
-            ourColspan = this.getWidgetColspan(widget);
+            ourColspan = this.getWidgetColspan(widget, width);
           if (ourColspan === null) {
             // workaround for nowidget groups
             var groupChild = cv.util.Tree.getChildWidgets(widget, 'group')[0];
@@ -206,7 +206,7 @@ qx.Class.define('cv.layout.Manager', {
           }
           var w = 'auto';
           if (ourColspan > 0) {
-            var groupColspan = areaColspan;
+            var groupColspan = mainAreaColspan;
             var parentGroupElement = cv.util.Tree.getParent(e, '.widget_container', '.group', 1)[0];
             if (parentGroupElement) {
               var parentGroupWidget = cv.structure.WidgetFactory.getInstanceByElement(qx.dom.Element.getParentElement(parentGroupElement));

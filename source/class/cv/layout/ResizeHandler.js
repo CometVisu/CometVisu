@@ -251,6 +251,8 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
     invalidateScreensize: function () {
       this.invalidPagesize = true;
+      this.invalidRowspan = true;
+      this.invalidNavbar = true;
       this.invalidBackdrop = true;
       this.makeAllSizesValid();
     }
