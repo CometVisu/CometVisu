@@ -51,7 +51,7 @@ qx.Class.define('cv.ConfigCache', {
     restore: function() {
       var body = qx.bom.Selector.query("body")[0];
       cv.Config = this.getData("configSettings");
-      cache = this.getData();
+      var cache = this.getData();
       cv.data.Model.getInstance().setWidgetDataModel(cache.data);
       cv.data.Model.getInstance().setAddressList(cache.addresses);
       cv.ui.Mappings.setMappings(cache.mappings);
