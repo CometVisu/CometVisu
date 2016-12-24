@@ -46,6 +46,9 @@ qx.Class.define('cv.structure.pure.Slide', {
       }
     }
     this.__readonly = readonly;
+
+    // initialize value with min value
+    this.setValue(this.applyMapping(this.getMin()));
   },
 
 
@@ -136,7 +139,7 @@ qx.Class.define('cv.structure.pure.Slide', {
         slider.setConfig("minimum", this.getMin());
         slider.setConfig("maximum", this.getMax());
         // set initial value
-        slider.setValue(parseFloat(this.applyMapping(this.getMin())));
+        slider.setValue(parseFloat(this.getValue()));
 
         if (this.__readonly) {
           slider.setEnabled(false);
@@ -175,9 +178,6 @@ qx.Class.define('cv.structure.pure.Slide', {
     },
 
     _update: function (ga, d) {
-      if (this.__initialized !== true) return;
-      // var actor = $(this.getActor());
-
       if (this.getInAction())
         return;
 
