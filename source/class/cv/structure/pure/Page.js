@@ -62,6 +62,8 @@ qx.Class.define('cv.structure.pure.Page', {
           }
         }
       }, this);
+
+      this.addListener("changeVisible", this._onChangeVisible, this);
     }, this).schedule();
   },
 
@@ -239,6 +241,26 @@ qx.Class.define('cv.structure.pure.Page', {
    ******************************************************
    */
   members: {
+    __colspanClass: null,
+
+    /**
+     * If the page gets visible the colspan sized must be checked
+     * @param ev {Event}
+     */
+    _onChangeVisible: function(ev) {
+      var visible = ev.getData();
+      if (visible && this.__colspanClass != cv.layout.Manager.COLSPAN_CLASS) {
+        this.applyColumnWidths();
+      }
+    },
+
+    /**
+     * Set childrens column widths
+     */
+    applyColumnWidths: function() {
+      cv.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
+      this.__colspanClass = cv.layout.Manager.COLSPAN_CLASS;
+    },
 
     // overridden
     getDomString: function() {

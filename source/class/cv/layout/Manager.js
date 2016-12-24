@@ -38,6 +38,8 @@ qx.Class.define('cv.layout.Manager', {
     currentPageNavbarVisibility: null,
     oldWidth: -1,
 
+    COLSPAN_CLASS: null,
+
     getCurrentPageNavbarVisibility: function () {
       if (this.currentPageNavbarVisibility == null) {
         this.currentPageNavbarVisibility = cv.TemplateEngine.getInstance().pagePartsHandler.getNavbarsVisibility(cv.TemplateEngine.getInstance().currentPage);
@@ -61,7 +63,7 @@ qx.Class.define('cv.layout.Manager', {
         newClass = this.getColspanClass(width);
 
       this.oldWidth = width;
-
+      this.COLSPAN_CLASS = newClass;
       return oldClass != newClass;
     },
 
@@ -168,14 +170,25 @@ qx.Class.define('cv.layout.Manager', {
 
     /**
      * applies the correct width to the widgets corresponding to the given colspan setting
+     *
+     * @param selector {String?} only update elements found by the given selector
+     * @param includeNavbars {Boolean?} also update navbar elements (default: true)
      */
-    applyColumnWidths: function () {
+    applyColumnWidths: function (selector, includeNavbars) {
       var width = this.getAvailableWidth();
       var mainAreaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query('#main')[0], 'columns');
       var mainAreaColspan = parseInt(mainAreaColumns || cv.Config.defaultColumns);
 
-      // all containers
-      ['#navbarTop', '#navbarLeft', '#main', '#navbarRight', '#navbarBottom'].forEach(function (area) {
+      var pageSelector = selector ? selector : '#main .activePage';
+      var selectors = [];
+
+      if (includeNavbars === true) {
+        selectors = ['#navbarTop', '#navbarLeft', pageSelector, '#navbarRight', '#navbarBottom']
+      } else {
+        selectors = [pageSelector]
+      }
+
+      selectors.forEach(function (area) {
         var allContainer = qx.bom.Selector.query(area + ' .widget_container');
         if (allContainer.length > 0) {
           var areaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query(area)[0], 'columns');
@@ -194,7 +207,7 @@ qx.Class.define('cv.layout.Manager', {
         }
 
         // and elements inside groups
-        var adjustableElements = qx.bom.Selector.query('.group .widget_container');
+        var adjustableElements = qx.bom.Selector.query(area + ' .group .widget_container');
         adjustableElements.forEach(function (e) {
           var
             widget = cv.structure.WidgetFactory.getInstanceByElement(e),

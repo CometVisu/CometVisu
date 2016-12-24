@@ -79,9 +79,10 @@ function roundCorners() {
     });
   });
 }
+var deferredRoundCorners = new qx.util.DeferredCall(roundCorners);
 cv.MessageBroker.getInstance().subscribe("path.pageChanged", function() {
   if (/(opera|chrome|safari)/i.test(navigator.userAgent.toLowerCase())) {
-    roundCorners();
+    deferredRoundCorners.schedule();
   }
 });
 
