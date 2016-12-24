@@ -161,14 +161,25 @@ qx.Class.define('cv.structure.pure.Slide', {
         knob.addClasses(["ui-slider-handle", "ui-state-default", "ui-corner-all"]);
         this.__initialized = true;
 
-        var pageId = this.getParentPage().getPath();
-        var broker = cv.MessageBroker.getInstance();
-
-        broker.subscribe("page." + pageId + ".appear", function () {
-          this.__skipUpdatesFromSlider = true;
-          this.__slider.updatePositions();
-          this.__skipUpdatesFromSlider = false;
+        this.addListener("changeVisible", function (ev) {
+          if (ev.getData() === true) {
+            this.__updateSlider();
+          }
         }, this);
+        if (this.isVisible()) {
+          this.__updateSlider();
+        }
+      }
+    },
+
+    /**
+     * Refresh the slider position
+     */
+    __updateSlider: function() {
+      if (this.__slider) {
+        this.__skipUpdatesFromSlider = true;
+        this.__slider.updatePositions();
+        this.__skipUpdatesFromSlider = false;
       }
     },
 
@@ -178,7 +189,7 @@ qx.Class.define('cv.structure.pure.Slide', {
     },
 
     _update: function (ga, d) {
-      if (this.getInAction())
+      if (this.getInAction() || d === undefined)
         return;
 
       var value = this.applyTransform(ga, d);
