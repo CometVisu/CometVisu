@@ -211,7 +211,8 @@ qx.Class.define('cv.layout.ResizeHandler', {
       qx.log.Logger.debug("makeRowspanValid");
       var elem = qx.bom.Html.clean(['<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>'])[0];
       qx.dom.Element.insertEnd(elem, document.body);
-      this.__updateRowHeight(elem);
+      // use the internal dic for height as in mobile view the elem uses the full screen height
+      this.__updateRowHeight(qx.bom.Selector.query("#containerDiv", elem)[0]);
     },
 
     __updateRowHeight: function(elem) {
@@ -229,7 +230,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
           + Math.round(rowspan * height)
           + "px;}\n";
       }
-      elem.remove();
+      // elem.remove();
 
       // set css style
       qx.bom.Selector.query('#rowspanStyle')[0].innerHTML = styles;
