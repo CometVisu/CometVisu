@@ -95,7 +95,7 @@ qx.Class.define('cv.io.transport.Sse', {
     handleMessage: function (e) {
       var json = JSON.parse(e.data);
       var data = json.d;
-      this.client.watchdog.ping();
+      this.client.watchdog.ping(true);
       this.client.update(data);
       this.client.setDataReceived(true);
     },
@@ -126,9 +126,11 @@ qx.Class.define('cv.io.transport.Sse', {
      *
      *
      */
-    restart: function () {
-      this.abort();
-      this.connect();
+    restart: function (doFullReload) {
+      if (doFullReload) {
+        this.abort();
+        this.connect();
+      }
     },
 
     /**
