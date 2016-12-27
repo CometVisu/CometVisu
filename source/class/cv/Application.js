@@ -167,7 +167,7 @@ qx.Class.define("cv.Application",
           }
         }, this);
 
-        ajaxRequest.addListenerOnce("statusError", function (e) {
+        ajaxRequest.addListener("statusError", function (e) {
           var status = e.getTarget().getTransport().status;
           if (!qx.util.Request.isSuccessful(status) && ajaxRequest.getUserData("noDemo")) {
             ajaxRequest.setUserData("noDemo", false);

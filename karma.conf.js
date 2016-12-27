@@ -1,6 +1,8 @@
 // Karma configuration
 // Generated on Sat Mar 05 2016 11:10:08 GMT+0100 (CET)
 
+var path = require('path');
+
 module.exports = function(config) {
   'use strict';
 
@@ -18,7 +20,8 @@ module.exports = function(config) {
     files: [
       "source/test/karma/helper-spec.js",
       { pattern: "source/test/karma/*.js" },
-      { pattern: "source/test/karma/**/*.js" }
+      { pattern: "source/test/karma/**/*.js" },
+      { pattern: "source/resource/**/*", included: false, served: true, watched: false }
     ],
 
     // preprocess matching files before serving them to the browser
@@ -44,6 +47,13 @@ module.exports = function(config) {
     // web server port
     port: 9876,
 
+    proxies: {
+      '/resource/demo': '/base/source/resource/demo',
+      '/source/resource/designs': '/base/source/resource/designs',
+      '../source/resource/designs': '/base/source/resource/designs',
+      '/script': '/base/source/script',
+      '/cgi-bin': '/base/source/resource/test'
+    },
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
@@ -65,7 +75,6 @@ module.exports = function(config) {
     browserNoActivityTimeout: 6000000,
     browserDisconnectTimeout: 6000000,
 
-
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true,
@@ -75,7 +84,8 @@ module.exports = function(config) {
     concurrency: Infinity,
 
     qooxdooFramework: {
-      testSources: true
+      testSources: true,
+      scriptFile: "cv.js"
     }
   });
 };
