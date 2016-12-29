@@ -107,20 +107,20 @@ describe('checking openhab transforms', function() {
 
   it('should transform color values', function() {
     // encode RGB -> HSV
-    expect(cv.Transform.encode('OH:color', [59, 60, 64])).toEqual([228, 7.8, 25.1]);
-    expect(cv.Transform.encode('OH:color', [48, 54, 41])).toEqual([87.7, 24.1, 21.2]);
-    expect(cv.Transform.encode('OH:color', [110, 101, 87])).toEqual([36.5, 20.9, 43.1]);
-    expect(cv.Transform.encode('OH:color', [110, 87, 101])).toEqual([323.5, 20.9, 43.1]);
+    expect(cv.Transform.encode('OH:color', [59, 60, 64])).toEqual([228, 8, 25]);
+    expect(cv.Transform.encode('OH:color', [48, 54, 41])).toEqual([88, 24, 21]);
+    expect(cv.Transform.encode('OH:color', [110, 101, 87])).toEqual([37, 21, 43]);
+    expect(cv.Transform.encode('OH:color', [110, 87, 101])).toEqual([323, 21, 43]);
     expect(cv.Transform.encode('OH:color', [0, 0, 0])).toEqual([0, 0, 0]);
     // decode HSV -> RGB
     expect(cv.Transform.decode('OH:color', "228, 7.8, 25.1")).toEqual([59, 60, 64]);
-    expect(cv.Transform.decode('OH:color', "87.7, 24.1, 21.2")).toEqual([48, 54, 41]);
+    expect(cv.Transform.decode('OH:color', "87.7, 24.1, 21.2")).toEqual([47, 54, 40]);
     // Note: there are differences due to rounding
     expect(cv.Transform.decode('OH:color', "36.5, 20.9, 43.1")).toEqual([109, 100, 86]);
     expect(cv.Transform.decode('OH:color', "36.5, 20.9, 0")).toEqual([0, 0, 0]);
     expect(cv.Transform.decode('OH:color', "120, 60, 10")).toEqual([10, 25, 10]);
     expect(cv.Transform.decode('OH:color', "200, 60, 10")).toEqual([10, 20, 25]);
-    expect(cv.Transform.decode('OH:color', "260, 60, 10")).toEqual([15, 10, 25]);
+    expect(cv.Transform.decode('OH:color', "260, 60, 10")).toEqual([14, 10, 25]);
     expect(cv.Transform.decode('OH:color', "320, 60, 10")).toEqual([25, 10, 20]);
     expect(cv.Transform.decode('OH:color', "0,0,0")).toEqual([0, 0, 0]);
   });

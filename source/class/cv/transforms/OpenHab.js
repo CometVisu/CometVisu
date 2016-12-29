@@ -147,83 +147,12 @@ qx.Class.define('cv.transforms.OpenHab', {
       'color': {
         name: "OH_Color",
         encode: function (rgb) {
-          var max, min, h, s, v, d;
-          var r = rgb[0] / 255, g = rgb[1] / 255, b = rgb[2] / 255;
-          max = Math.max(r, g, b);
-          min = Math.min(r, g, b);
-          v = max;
-          d = max - min;
-          s = max === 0 ? 0 : d / max;
-          if (max === min) {
-            h = 0; // achromatic
-          } else {
-            switch (max) {
-              case r:
-                h = (g - b) / d + (g < b ? 6 : 0);
-                break;
-              case g:
-                h = (b - r) / d + 2;
-                break;
-              case b:
-                h = (r - g) / d + 4;
-                break;
-            }
-            h /= 6;
-          }
-          // map top 360,100,100
-          h = Math.round(h * 3600) / 10;
-          s = Math.round(s * 1000) / 10;
-          v = Math.round(v * 1000) / 10;
-          return [h, s, v];
+          return qx.util.ColorUtil.rgbToHsb(rgb);
         },
         decode: function (hsbString) {
           if (cv.transforms.OpenHab.isUndefined(hsbString)) return [0,0,0];
           // decode HSV/HSB to RGB
-          var hsb = hsbString.split(",");
-          var h = parseFloat(hsb[0]), s = parseFloat(hsb[1]), v = parseFloat(hsb[2]);
-          var r, g, b, i, f, p, qq, t;
-
-          // h = h / 360;
-          if (v === 0) {
-            return [0, 0, 0];
-          }
-          s = s / 100;
-          v = v / 100;
-          h = h / 60;
-          i = Math.floor(h);
-          f = h - i;
-          p = v * (1 - s);
-          qq = v * (1 - (s * f));
-          t = v * (1 - (s * (1 - f)));
-          if (i === 0) {
-            r = v;
-            g = t;
-            b = p;
-          } else if (i === 1) {
-            r = qq;
-            g = v;
-            b = p;
-          } else if (i === 2) {
-            r = p;
-            g = v;
-            b = t;
-          } else if (i === 3) {
-            r = p;
-            g = qq;
-            b = v;
-          } else if (i === 4) {
-            r = t;
-            g = p;
-            b = v;
-          } else if (i === 5) {
-            r = v;
-            g = p;
-            b = qq;
-          }
-          r = Math.floor(r * 255);
-          g = Math.floor(g * 255);
-          b = Math.floor(b * 255);
-          return [r, g, b];
+          return qx.util.ColorUtil.hsbToRgb(hsbString.split(","));
         }
       }
     });
