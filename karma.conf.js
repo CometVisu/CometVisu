@@ -50,6 +50,8 @@ module.exports = function(config) {
     proxies: {
       '/resource/demo': '/base/source/resource/demo',
       '/source/resource/designs': '/base/source/resource/designs',
+      '/source/class/cv/plugins': '/base/source/class/cv/plugins',
+      '/source/resource/plugins': '/base/source/resource/plugins',
       '../source/resource/designs': '/base/source/resource/designs',
       '/script': '/base/source/script',
       '/cgi-bin': '/base/source/resource/test'
