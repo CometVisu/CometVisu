@@ -51,7 +51,7 @@ describe("testing a multitrigger widget", function() {
     });
     var widget = qx.bom.Html.clean([res[1]])[0];
 
-    cv.MessageBroker.getInstance().publish("setup.dom.finish");
+    cv.MessageBroker.getInstance().publish("setup.dom.finished");
 
     var values = qx.bom.Selector.query("div.actor > div.value", widget);
     for (var i=0; i<4; i++) {
