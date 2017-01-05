@@ -119,7 +119,10 @@
           "resource/libs/jquery.js",
           "resource/libs/strftime.js",
           "editor",
-          "upgrade"
+          "upgrade",
+          "check_config.php",
+          "manager.php",
+          "visu_config.xsd"
         ]
       }
     },
