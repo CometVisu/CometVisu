@@ -259,14 +259,15 @@ qx.Class.define('cv.TemplateEngine', {
 
       settings.scriptsToLoad = [];
       settings.stylesToLoad = [];
-      if (settings.clientDesign) {
-        var baseUri = 'designs/' + settings.clientDesign;
+      var design = cv.Config.clientDesign || settings.clientDesign;
+      if (design) {
+        var baseUri = 'designs/' + design;
         settings.stylesToLoad.push(baseUri + '/basic.css');
         if (!settings.forceNonMobile) {
           settings.stylesToLoad.push(baseUri + '/mobile.css');
         }
         settings.stylesToLoad.push(baseUri + '/custom.css');
-        settings.scriptsToLoad.push('designs/' + settings.clientDesign + '/design_setup.js');
+        settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
 
       }
       var metaParser = new cv.xml.parser.Meta();
@@ -383,28 +384,12 @@ qx.Class.define('cv.TemplateEngine', {
       if (!Array.isArray(parsedData)) {
         parsedData = [parsedData];
       }
-
       for (var i = 0, l = parsedData.length; i < l; i++) {
         var data = parsedData[i];
         var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
 
-        var retval = widget ? widget.getDomString() : undefined;
-
-        if (undefined === retval)
-          return;
-
-        if ('string' === typeof retval) {
-          return '<div class="widget_container '
-            + (data.rowspanClass ? data.rowspanClass : '')
-            + (data.containerClass ? data.containerClass : '')
-            + ('break' === data.$$type ? 'break_container' : '') // special case for break widget
-            + '" id="' + path + '" data-type="' + data.$$type + '">' + retval + '</div>';
-        } else {
-          return qx.dom.Element.create('div', {
-            'class': 'widget_container ' + (data.rowspanClass ? data.rowspanClass : '')+ (data.containerClass ? data.containerClass : ''),
-            id: path,
-            "data-type": data.$$type}).appendChild(retval);
-        }
+        // trigger DOM generation
+        widget && widget.getDomString();
       }
       console.log("pages created");
     },
