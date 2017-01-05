@@ -270,8 +270,6 @@ beforeAll(function(done) {
       qx.dom.Element.empty(body);
       qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
 
-      console.log(qx.bom.element.Attribute.get(qx.bom.Selector.query("#pages")[0], "html"));
-
       done();
     }, this);
     var l = qx.$$loader;
