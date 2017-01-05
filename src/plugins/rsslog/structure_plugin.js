@@ -272,7 +272,7 @@ define( ['structure_custom', 'MessageBroker', 'css!plugins/rsslog/rsslog' ], fun
               }
                             
               var $row = $('<li class="rsslogRow ' + row + '">').append(itemHtml);
-              if( item.mapping !== '' )
+              if( item.mapping && item.mapping !== '' )
               {
                 var mappedValue = templateEngine.map( o.itemack === 'disable' ? 0 : item.state, item.mapping );
                 var $span = $row.find('.mappedValue');
@@ -312,7 +312,7 @@ define( ['structure_custom', 'MessageBroker', 'css!plugins/rsslog/rsslog' ], fun
                   var mapping = item.data('mapping');
                   item.toggleClass("rsslog_ack");
                   var state = +item.hasClass("rsslog_ack"); // the new state is the same as hasClass
-                  if( mapping !== '' )
+                  if( mapping && mapping !== '' )
                   {
                     var mappedValue = templateEngine.map( state, mapping );
                     var $span = item.find('.mappedValue');
