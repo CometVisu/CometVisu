@@ -25,16 +25,16 @@
 describe("testing a page widget", function() {
   var templateEngine = cv.TemplateEngine.getInstance();
 
-  beforeEach(function() {
-    this.pages = document.createElement('div');
-    this.pages.setAttribute('id', 'pages');
-    document.body.appendChild(this.pages);
-  });
-
-  afterEach(function() {
-    document.body.removeChild(this.pages);
-    this.pages = null;
-  });
+  // beforeEach(function() {
+  //   this.pages = document.createElement('div');
+  //   this.pages.setAttribute('id', 'pages');
+  //   document.body.appendChild(this.pages);
+  // });
+  //
+  // afterEach(function() {
+  //   document.body.removeChild(this.pages);
+  //   this.pages = null;
+  // });
 
   it("should test that invisible pages generate no DOM string", function() {
 
@@ -163,6 +163,7 @@ describe("testing a page widget", function() {
       'name': 'Testpage'
     });
     this.initWidget(pageLink);
+    console.log(qx.bom.element.Attribute.get(qx.bom.Selector.query("#pages")[0], "html"));
     qx.event.Registration.fireEvent(pageLink.getActor(), "tap", qx.event.type.Event, []);
     expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_0_');
   });

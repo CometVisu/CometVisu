@@ -253,6 +253,35 @@ var customMatchers = {
   }
 };
 
+beforeAll(function(done) {
+
+  if (!qx.$$loader.applicationHandlerReady) {
+    cv.Config.enableCache = false;
+    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
+      console.log("Application initialized");
+      // cleanup
+      templateEngine.widgetData = {};
+      cv.data.Model.getInstance().clear();
+      cv.structure.WidgetFactory.clear();
+      cv.MessageBroker.getInstance().clear();
+
+      var body = qx.bom.Selector.query("body")[0];
+      // load empty HTML structure
+      qx.dom.Element.empty(body);
+      qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+
+      console.log(qx.bom.element.Attribute.get(qx.bom.Selector.query("#pages")[0], "html"));
+
+      done();
+    }, this);
+    var l = qx.$$loader;
+    var bootPackageHash = l.parts[l.boot][0];
+    l.importPackageData(qx.$$packageData[bootPackageHash]);
+    qx.util.ResourceManager.getInstance().__registry = qx.$$resources;
+    qx.$$loader.signalStartup();
+  }
+});
+
 beforeEach(function () {
   jasmine.addMatchers(customMatchers);
   this.createTestElement = createTestElement;
@@ -277,4 +306,9 @@ afterEach(function () {
   if (this.creator) {
     this.creator = null;
   }
+
+  var body = qx.bom.Selector.query("body")[0];
+  // load empty HTML structure
+  qx.dom.Element.empty(body);
+  qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
 });

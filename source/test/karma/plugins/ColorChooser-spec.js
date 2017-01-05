@@ -26,6 +26,14 @@
  */
 describe("testing a colorchooser plugin", function() {
 
+  beforeAll(function(done) {
+    qx.io.PartLoader.require(['plugin-colorchooser'], function() {
+      cv.util.ScriptLoader.getInstance().addListenerOnce("finished", function () {
+        done();
+      }, this);
+    }, this);
+  }),
+
   it("should test the colorchooser creator", function() {
     var res = this.createTestWidgetString("colorchooser", {id: 'test'}, '<label>Test</label>');
     var widget = qx.bom.Html.clean([res[1]])[0];

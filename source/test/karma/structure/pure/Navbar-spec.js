@@ -64,7 +64,7 @@ describe("testing a navbar widget", function() {
       expect(templateEngine.pagePartsHandler.navbarSetSize).not.toHaveBeenCalled();
       expect(obj.getScope()).toBe(-1);
     }
-    document.body.removeChild(bar);
+    // document.body.removeChild(bar);
     templateEngine.pagePartsHandler.navbarSetSize.calls.reset();
   };
 

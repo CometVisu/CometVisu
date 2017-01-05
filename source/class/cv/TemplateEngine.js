@@ -391,7 +391,6 @@ qx.Class.define('cv.TemplateEngine', {
         // trigger DOM generation
         widget && widget.getDomString();
       }
-      console.log("pages created");
     },
 
     /**

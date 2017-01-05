@@ -76,6 +76,7 @@ describe("testing a pagejump widget", function() {
       'target': 'test'
     });
     this.initWidget(creator);
+    console.log(qx.bom.element.Attribute.get(qx.bom.Selector.query("#pages")[0], "html"));
     var actor = creator.getActor();
     qx.event.Registration.fireEvent(actor, "pointerdown", qx.event.type.Event, []);
     expect(actor).toHaveClass("switchPressed");
