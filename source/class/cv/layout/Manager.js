@@ -82,7 +82,7 @@ qx.Class.define('cv.layout.Manager', {
       if (this.currentPageUnavailableWidth < 0 || mobileUseChanged || true) {
         //      console.log("Mobile.css use changed "+mobileUseChanged);
         this.currentPageUnavailableWidth = 0;
-        var navbarVisibility = this.getCurrentPageNavbarVisibility(cv.TemplateEngine.getInstance().currentPage);
+        var navbarVisibility = this.getCurrentPageNavbarVisibility();
 
         var left = qx.bom.Selector.query('#navbarLeft')[0];
         var widthNavbarLeft = navbarVisibility.left === true && qx.bom.element.Class.get(left, 'display') != "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;

@@ -49,6 +49,18 @@ qx.Class.define('cv.layout.ResizeHandler', {
     width: 0,
     height: 0,
 
+    reset: function() {
+      this.invalidBackdrop = true;
+      this.invalidNavbar = true;
+      this.invalidPagesize = true;
+      this.invalidRowspan = true;
+      this.$pageSize = null;
+      this.$navbarTop = null;
+      this.$navbarBottom = null;
+      this.width = 0;
+      this.height = 0;
+    },
+
     __request : null,
 
     getPageSize: function (noCache) {

@@ -104,17 +104,17 @@ qx.Class.define('cv.PagePartsHandler', {
     },
 
     getNavbarsVisibility: function (page) {
-      if (page == null) {
+      if (!page) {
         page = cv.TemplateEngine.getInstance().currentPage;
       }
-      if (page === null) return {top: true, bottom: true, left: true, right: true};
+      if (!page) return {top: true, bottom: true, left: true, right: true};
       if (typeof page == "string") {
         page = cv.structure.WidgetFactory.getInstanceById(page);
       } else if (page.attributes ) {
         page = cv.structure.WidgetFactory.getInstanceById(qx.bom.element.Attribute.get(page, 'id'));
       }
 
-      if (page == null) {
+      if (!page) {
         return {top: true, bottom: true, left: true, right: true};
       } else {
         return {

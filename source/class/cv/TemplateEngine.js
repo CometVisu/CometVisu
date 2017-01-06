@@ -103,7 +103,8 @@ qx.Class.define('cv.TemplateEngine', {
       }
     },
 
-    _applyLoaded: function() {
+    _applyLoaded: function(value, old, name) {
+      this.debug(name+" is "+value+" now");
       if (this.isPartsLoaded() && this.isScriptsLoaded()) {
         this.setReady(true);
       }
@@ -276,25 +277,31 @@ qx.Class.define('cv.TemplateEngine', {
       settings.pluginsToLoad = metaParser.parsePlugins(loaded_xml);
       // and then the rest
       metaParser.parse(loaded_xml);
+      this.debug("parsed");
     },
 
     setupPage: function () {
       // and now setup the pages
+      this.debug("setup");
 
       // login to backend as it might change some settings needed for further processing
       this.visu.login(true, function () {
+        this.debug("logged in");
 
         // as we are sure that the default CSS were loaded now:
         qx.bom.Selector.query('link[href*="mobile.css"]').forEach(function (elem) {
           qx.bom.element.Attribute.set(elem, 'media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
         });
-
+        this.debug("234");
         if (!cv.Config.cacheUsed) {
+          this.debug("creating pages");
           var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
           this.createPages(page, 'id');
+          this.debug("finalizing");
           cv.structure.pure.Page.createFinal();
+          this.debug("pages created");
         }
-
+        this.debug("setup.dom.finished");
         cv.MessageBroker.getInstance().publish("setup.dom.finished");
 
         this.currentPage = qx.bom.Selector.query('#' + cv.Config.initialPage)[0];

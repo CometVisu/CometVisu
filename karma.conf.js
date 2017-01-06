@@ -51,6 +51,8 @@ module.exports = function(config) {
       '/source/resource/designs': '/base/source/resource/designs',
       '/source/class/cv/plugins': '/base/source/class/cv/plugins',
       '/source/resource': '/base/source/resource',
+      '/config': '/base/source/resource/config',
+      '/demo': '/base/source/resource/demo',
       '../source/resource': '/base/source/resource',
       '/script': '/base/source/script',
       '/cgi-bin': '/base/source/resource/test'

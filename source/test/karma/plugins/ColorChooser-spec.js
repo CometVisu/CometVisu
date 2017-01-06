@@ -27,10 +27,15 @@
 describe("testing a colorchooser plugin", function() {
 
   beforeAll(function(done) {
-    qx.io.PartLoader.require(['plugin-colorchooser'], function() {
+    cv.util.ScriptLoader.getInstance().setAllQueued(false);
+    qx.io.PartLoader.require(['plugin-colorchooser'], function () {
       cv.util.ScriptLoader.getInstance().addListenerOnce("finished", function () {
         done();
       }, this);
+      qx.event.Timer.once(function() {
+        cv.util.ScriptLoader.getInstance().setAllQueued(true);
+        cv.TemplateEngine.getInstance().setPartsLoaded(true);
+      }, this, 10);
     }, this);
   }),
 

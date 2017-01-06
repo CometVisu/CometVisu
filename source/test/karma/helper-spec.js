@@ -112,6 +112,27 @@ var createTestElement = function (name, attributes, content, address, addressAtt
   return res[0];
 };
 
+resetApplication = function() {
+  // cleanup
+  cv.data.Model.getInstance().clear();
+  cv.structure.WidgetFactory.clear();
+  cv.MessageBroker.getInstance().clear();
+
+  var body = qx.bom.Selector.query("body")[0];
+  // load empty HTML structure
+  qx.dom.Element.empty(body);
+  qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+
+  cv.Config.cacheUsed = false;
+  // reset templateEngine's init values
+  templateEngine.resetReady();
+  templateEngine.resetScriptsLoaded();
+  templateEngine.resetPartsLoaded();
+  cv.util.ScriptLoader.getInstance().resetAllQueued();
+
+  cv.layout.ResizeHandler.reset();
+};
+
 // DOM Helpers
 
 var findChild = function(elem, selector) {
@@ -258,18 +279,7 @@ beforeAll(function(done) {
   if (!qx.$$loader.applicationHandlerReady) {
     cv.Config.enableCache = false;
     cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
-      console.log("Application initialized");
-      // cleanup
-      templateEngine.widgetData = {};
-      cv.data.Model.getInstance().clear();
-      cv.structure.WidgetFactory.clear();
-      cv.MessageBroker.getInstance().clear();
-
-      var body = qx.bom.Selector.query("body")[0];
-      // load empty HTML structure
-      qx.dom.Element.empty(body);
-      qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
-
+      resetApplication();
       done();
     }, this);
     var l = qx.$$loader;
@@ -296,6 +306,7 @@ afterEach(function () {
   cv.data.Model.getInstance().clear();
   cv.structure.WidgetFactory.clear();
   cv.MessageBroker.getInstance().clear();
+  cv.layout.ResizeHandler.reset();
 
   if (this.container) {
     document.body.removeChild(this.container);
@@ -309,4 +320,5 @@ afterEach(function () {
   // load empty HTML structure
   qx.dom.Element.empty(body);
   qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+  // resetApplication();
 });

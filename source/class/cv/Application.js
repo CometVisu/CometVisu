@@ -127,74 +127,80 @@ qx.Class.define("cv.Application",
           qx.dom.Element.empty(body);
           qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
         }
-
-        // get the data once the page was loaded
-        var uri = qx.util.ResourceManager.getInstance().toUri('config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml');
-        if (cv.Config.testMode) {
-          // workaround for e2e-tests
-          uri = 'resource/config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml';
-        }
-        this.debug("Requesting "+uri);
-        var ajaxRequest = new qx.io.request.Xhr(uri);
-        ajaxRequest.set({
-          accept: "application/xml",
-          cache: !cv.Config.forceReload
-        });
-        ajaxRequest.setUserData("noDemo", true);
-        ajaxRequest.addListenerOnce("success", function (e) {
-          this.block(false);
-          var req = e.getTarget();
-          // Response parsed according to the server's response content type
-          var xml = req.getResponse();
-
-          if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
-            this.configError("parsererror");
-          }
-          else {
-            // check the library version
-            var xmlLibVersion = qx.bom.element.Attribute.get(qx.bom.Selector.query('pages', xml)[0], "lib_version");
-            if (xmlLibVersion === undefined) {
-              xmlLibVersion = -1;
-            }
-            if (cv.Config.libraryCheck && xmlLibVersion < cv.Config.libraryVersion) {
-              this.configError("libraryerror");
-            }
-            else {
-              if (req.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
-                cv.Config.backendUrl = req.getResponseHeader("X-CometVisu-Backend-LoginUrl");
-              }
-              if (req.getResponseHeader("X-CometVisu-Backend-Name")) {
-                cv.Config.backend = req.getResponseHeader("X-CometVisu-Backend-Name");
-              }
-              this.bootstrap(xml);
-            }
-          }
-        }, this);
-
-        ajaxRequest.addListener("statusError", function (e) {
-          var status = e.getTarget().getTransport().status;
-          if (!qx.util.Request.isSuccessful(status) && ajaxRequest.getUserData("noDemo")) {
-            ajaxRequest.setUserData("noDemo", false);
-            ajaxRequest.setUserData("origUrl", ajaxRequest.getUrl());
-            ajaxRequest.setUrl(ajaxRequest.getUrl().replace('config/', 'demo/'));
-            ajaxRequest.send();
-          } else if (!qx.util.Request.isSuccessful(status)) {
-            this.configError("filenotfound", [ajaxRequest.getUserData("origUrl"), ajaxRequest.getUrl()]);
-          }
-          else {
-            this.configError(status, null);
-          }
-        }, this);
-
-        ajaxRequest.send();
-
-        // message discarding - but not for errors:
-        var messageElement = qx.bom.Selector.query('#message')[0];
-        qx.event.Registration.addListener(messageElement, 'tap', function () {
-          if (!qx.bom.element.Class.has(messageElement, 'error'))
-            this.innerHTML = '';
-        }, messageElement);
+        this.loadConfig();
       }, this);
+    },
+
+    /**
+     * Load a config file
+     */
+    loadConfig: function() {
+      // get the data once the page was loaded
+      var uri = qx.util.ResourceManager.getInstance().toUri('config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml');
+      if (cv.Config.testMode) {
+        // workaround for e2e-tests
+        uri = 'resource/config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml';
+      }
+      this.debug("Requesting "+uri);
+      var ajaxRequest = new qx.io.request.Xhr(uri);
+      ajaxRequest.set({
+        accept: "application/xml",
+        cache: !cv.Config.forceReload
+      });
+      ajaxRequest.setUserData("noDemo", true);
+      ajaxRequest.addListenerOnce("success", function (e) {
+        this.block(false);
+        var req = e.getTarget();
+        // Response parsed according to the server's response content type
+        var xml = req.getResponse();
+
+        if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
+          this.configError("parsererror");
+        }
+        else {
+          // check the library version
+          var xmlLibVersion = qx.bom.element.Attribute.get(qx.bom.Selector.query('pages', xml)[0], "lib_version");
+          if (xmlLibVersion === undefined) {
+            xmlLibVersion = -1;
+          }
+          if (cv.Config.libraryCheck && xmlLibVersion < cv.Config.libraryVersion) {
+            this.configError("libraryerror");
+          }
+          else {
+            if (req.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
+              cv.Config.backendUrl = req.getResponseHeader("X-CometVisu-Backend-LoginUrl");
+            }
+            if (req.getResponseHeader("X-CometVisu-Backend-Name")) {
+              cv.Config.backend = req.getResponseHeader("X-CometVisu-Backend-Name");
+            }
+            this.bootstrap(xml);
+          }
+        }
+      }, this);
+
+      ajaxRequest.addListener("statusError", function (e) {
+        var status = e.getTarget().getTransport().status;
+        if (!qx.util.Request.isSuccessful(status) && ajaxRequest.getUserData("noDemo")) {
+          ajaxRequest.setUserData("noDemo", false);
+          ajaxRequest.setUserData("origUrl", ajaxRequest.getUrl());
+          ajaxRequest.setUrl(ajaxRequest.getUrl().replace('config/', 'demo/'));
+          ajaxRequest.send();
+        } else if (!qx.util.Request.isSuccessful(status)) {
+          this.configError("filenotfound", [ajaxRequest.getUserData("origUrl"), ajaxRequest.getUrl()]);
+        }
+        else {
+          this.configError(status, null);
+        }
+      }, this);
+
+      ajaxRequest.send();
+
+      // message discarding - but not for errors:
+      var messageElement = qx.bom.Selector.query('#message')[0];
+      qx.event.Registration.addListener(messageElement, 'tap', function () {
+        if (!qx.bom.element.Class.has(messageElement, 'error'))
+          this.innerHTML = '';
+      }, messageElement);
     },
 
     /**
@@ -202,6 +208,7 @@ qx.Class.define("cv.Application",
      * @param xml {Document} XML configuration retrieved from backend
      */
     bootstrap: function(xml) {
+      this.debug("bootstrapping");
       var cache = false;
       var engine = cv.TemplateEngine.getInstance();
       var loader = cv.util.ScriptLoader.getInstance();
@@ -246,12 +253,14 @@ qx.Class.define("cv.Application",
         }
       }
       if (!cv.Config.cacheUsed) {
+        this.debug("starting");
         this.__detectInitialPage();
         engine.parseXML(xml);
         this.loadStyles();
         this.loadPlugins();
         this.loadScripts();
         this.loadIcons();
+        this.debug("done");
 
         if (cv.Config.enableCache) {
           // cache dom + data when everything is ready
@@ -281,11 +290,16 @@ qx.Class.define("cv.Application",
     loadPlugins: function() {
       var plugins = cv.Config.configSettings.pluginsToLoad;
       if (plugins.length > 0) {
+        this.debug("loading plugins");
         qx.io.PartLoader.require(plugins, function() {
-          cv.util.ScriptLoader.getInstance().setAllQueued(true);
-          cv.TemplateEngine.getInstance().setPartsLoaded(true);
+          this.debug("plugins loaded");
+          qx.event.Timer.once(function() {
+            cv.util.ScriptLoader.getInstance().setAllQueued(true);
+            cv.TemplateEngine.getInstance().setPartsLoaded(true);
+          }, this, 0);
         }, this);
       } else {
+        this.debug("no plugins to load => all scripts queued");
         cv.util.ScriptLoader.getInstance().setAllQueued(true);
         cv.TemplateEngine.getInstance().setPartsLoaded(true);
       }
@@ -356,6 +370,7 @@ qx.Class.define("cv.Application",
       var messageElement = qx.bom.Selector.query('#message')[0];
       qx.bom.element.Class.add(messageElement, 'error');
       messageElement.innerHTML = message;
+      this.error(message);
       this.block(false);
     }
   }
