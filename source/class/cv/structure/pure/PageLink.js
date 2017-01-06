@@ -35,7 +35,9 @@ qx.Class.define('cv.structure.pure.PageLink', {
    */
   properties: {
     name : {
-      check: "String"
+      check: "String",
+      init: "",
+      nullable: true
     },
     wstyle : {
       check: "String",
