@@ -130,6 +130,10 @@ qx.Class.define("cv.Application",
 
         // get the data once the page was loaded
         var uri = qx.util.ResourceManager.getInstance().toUri('config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml');
+        if (cv.Config.testMode) {
+          // workaround for e2e-tests
+          uri = 'resource/config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml';
+        }
         this.debug("Requesting "+uri);
         var ajaxRequest = new qx.io.request.Xhr(uri);
         ajaxRequest.set({

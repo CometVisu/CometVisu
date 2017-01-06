@@ -23,7 +23,7 @@ describe('switch widget testing', function () {
 
   mockupConfig.push(configParts.start +
     '<meta/>'+
-    '<page>'+
+    '<page visible="false">'+
     '<switch>'+
     '<label>Test switch</label>'+
     '<address transform="DPT:1.001" mode="readwrite">12/7/37</address>'+
@@ -59,7 +59,7 @@ describe('switch widget testing', function () {
 
   mockupConfig.push(configParts.start +
     '<meta/>'+
-    '<page>'+
+    '<page visible="false">'+
     '<switch bind_click_to_widget="true">'+
     '<label>Test switch</label>'+
     '<address transform="DPT:1.001" mode="readwrite">12/7/37</address>'+
@@ -97,7 +97,7 @@ describe('switch widget testing', function () {
 
   mockupConfig.push(configParts.start +
     '<meta/>'+
-    '<page>'+
+    '<page visible="false">'+
     '<switch on_value="turn_on" off_value="turn_off">'+
     '<label>Test switch</label>'+
     '<address transform="DPT:1.001" mode="readwrite">12/7/37</address>'+
@@ -140,7 +140,7 @@ describe('switch widget testing', function () {
     '  </styling>'+
     ' </stylings>'+
     '</meta>'+
-    '<page>'+
+    '<page visible="false">'+
     '<switch mapping="test" styling="Red_Green">'+
     '<label>Test switch</label>'+
     '<address transform="DPT:1.001" mode="readwrite">12/7/37</address>'+
@@ -174,7 +174,7 @@ describe('switch widget testing', function () {
 
   mockupConfig.push(configParts.start +
     '<meta/>'+
-    '<page>'+
+    '<page visible="false">'+
     '<switch align="center" flavour="potassium">'+
     '<label>Test switch</label>'+
     '<address transform="DPT:1.001" mode="readwrite">12/7/37</address>'+
