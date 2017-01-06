@@ -56,6 +56,8 @@ $_STRINGS = array(
     'Media file deleted' => 'Media file (%s) deleted',
     'Media file could not be deleted' => 'Media file (%s) could not be deleted',
     'Media file to delete not found' => 'Media file (%s) to delete not found',
+    'Media file successfully replaced' => 'Media file (%s) successfully replaced',
+    'Could not replace media file' => 'Could not replace media file (%s)',
     'Upload new media' => 'Upload new media',
     'Delete' => 'Delete',
     'deleteConfig(displayName,name)' => '"Do you really want to delete config \"" + displayName + "\"?"',
@@ -96,6 +98,8 @@ $_STRINGS = array(
     'Media file deleted' => 'Mediendatei (%s) gelöscht',
     'Media file could not be deleted' => 'Mediendatei (%s) konnte nicht gelöscht werden',
     'Media file to delete not found' => 'Mediendatei zum Löschen (%s) nicht gefunden',
+    'Media file successfully replaced' => 'Mediendatei (%s) erfolgreich ersetzt',
+    'Could not replace media file' => 'Konnte Mediendatei (%s) nicht ersetzen',
     'Upload new media' => 'Lade neue Mediendatei hoch',
     'Delete' => 'Löschen',
     'deleteConfig(displayName,name)' => '"Wollen Sie wirklich Konfiguration \"" + displayName + "\" endgültig löschen?"',
@@ -136,7 +140,7 @@ define( 'DEMO_TABLE_ROW', '<tr class="visuline">'
 define( 'MEDIA_TABLE_ROW', '<tr class="visuline">'
 . '<td class="name">%1$s</td>'
 . '<td><a href="'.MEDIA_PATH.'%1$s" download target="_blank">'.icon('control_arrow_downward').'</a></td>'
-. '<td><label for="%1$s_xml">'.icon('control_return').'</label><input type="file" id="%1$s_xml" name="%1$s_xml"/></td>'
+. '<td><label for="media_file">'.icon('control_return').'</label></td>'
 . '<td class="warn"><a href="javascript:deleteMedia(\'%1$s\', \'%1$s\')">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
 
@@ -253,6 +257,7 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
   switch( $action )
   {
     case 'create':
+    case 'replace':
       if( !is_writeable( MEDIA_PATH ) )
       {
         $actionDone = sprintf( $_['Media directory is not writeable'], MEDIA_PATH );
@@ -263,18 +268,25 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
         $actionDone = sprintf( $_['Media file name is not valid'], $media );
         break;
       }
-      if( is_readable( $mediaFile ) )
+      if( is_readable( $mediaFile ) && $action === 'create' )
       {
         $actionDone = sprintf( $_['Media file does already exist'], $mediaFile );
         break;
       }
       if( move_uploaded_file( $_FILES['media_file']['tmp_name'], $mediaFile ) )
       {
-        $actionDone = sprintf( $_['Media file successfully uploaded'], $media );
+        if( $action === 'create' )
+          $actionDone = sprintf( $_['Media file successfully uploaded'], $media );
+        else
+          $actionDone = sprintf( $_['Media file successfully replaced'], $media );
         $actionSuccess = true;
         fillAvailMedia();
-      } else
-        $actionDone = sprintf( $_['Could not upload media file'], $media );
+      } else {
+        if( $action === 'create' )
+          $actionDone = sprintf( $_['Could not upload media file'], $media );
+        else
+          $actionDone = sprintf( $_['Could not replace media file'], $media );
+      }
       break;
       
     case 'delete':
@@ -557,14 +569,24 @@ if( $resetUrl )
         $('#submit_config').click();
       } );
       
+      $('#media_form label').click(function( ev ){
+        $('#input_media_name').val( $(this).parent().parent().find('.name').text() );
+      });
+      
       $('#media_form input[type=file]').change(function( ev ){ 
         if( this.value )
         {
-          var newName = prompt( "<?php echo $_['What name shall the new media file have (please use only letters, numbers and the underscore)'] ?>", this.value.replace( /.*[/\\]/,'' ) );
-          if( newName )
+          if( $('#input_media_name').val() === '' )
           {
-            $('#input_media_name').val( newName );
-            $('#input_media_action').val( 'create' );
+            var newName = prompt( "<?php echo $_['What name shall the new media file have (please use only letters, numbers and the underscore)'] ?>", this.value.replace( /.*[/\\]/,'' ) );
+            if( newName )
+            {
+              $('#input_media_name').val( newName );
+              $('#input_media_action').val( 'create' );
+              $('#submit_media').click();
+            }
+          } else {
+            $('#input_media_action').val( 'replace' );
             $('#submit_media').click();
           }
         }
