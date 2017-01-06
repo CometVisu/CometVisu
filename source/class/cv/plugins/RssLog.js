@@ -313,7 +313,7 @@ qx.Class.define('cv.plugins.RssLog', {
 
         var rowElem = qx.dom.Element.create('li', { 'class' : 'rsslogRow ' + row });
 
-        if (item.mapping !== '') {
+        if (item.mapping && item.mapping !== '') {
           var mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
           var span = qx.bom.Selector.query('.mappedValue', rowElem)[0];
           this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
@@ -354,7 +354,7 @@ qx.Class.define('cv.plugins.RssLog', {
             var mapping = qx.bom.element.Dataset.get(item, 'mapping');
             qx.bom.element.Class.toggle(item, "rsslog_ack");
             var state = +qx.bom.element.Class.has(item, "rsslog_ack"); // the new state is the same as hasClass
-            if (mapping !== '') {
+            if (mapping && mapping !== '') {
               var mappedValue = this.applyMapping(state, mapping);
               var span = qx.bom.Selector.query('.mappedValue', item)[0];
               qx.dom.Element.empty(span);
