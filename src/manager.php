@@ -308,7 +308,7 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
   // nothing special to do - so at least do a few sanity checks
   if( !is_writeable( 'config/visu_config.xml' ) )
   {
-    if( chmod( 'config/visu_config.xml', 0666 ) ) // try to fix it
+    if( @chmod( 'config/visu_config.xml', 0666 ) ) // try to fix it
     {
       if( !is_writeable( 'config/visu_config.xml' ) )
         $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
@@ -559,7 +559,7 @@ if( $resetUrl )
     
     <hr />
     <div id="footer">
-      <img src="icon/comet_50_ff8000.png" alt="CometVisu"> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+      <img src="icon/comet_icon_128x128_ff8000.png" alt="CometVisu" height="50"> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
       <div style="float:right;padding-right:0.5em">Version: <?php include('version') ?></div>
     </div>
     <script>
