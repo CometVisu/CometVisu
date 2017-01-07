@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>CometVisu Index</title>
+	<title>CometVisu Source: structure/pure/Group.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,32 +72,159 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	
-	
+		<h1 class="page-title">Source: structure/pure/Group.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/* Group.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
 
 
+/**
+ * A group can be used to group a couple of widgets and optionally surround them with a border or name the group.
+ *
+ * @widget_example &lt;settings selector=".widget_container[data-type=group]">
+ *  &lt;screenshot name="group_with_border">
+ *    &lt;caption>Group with border and name&lt;/caption>
+ *    &lt;data address="0/0/0">1&lt;/data>
+ *    &lt;data address="0/0/1">21&lt;/data>
+ *  &lt;/screenshot>
+ *  &lt;/settings>
+ *  &lt;group name="Example Group">
+ *    &lt;layout colspan="6" />
+ *    &lt;text>&lt;label>Some Text&lt;/label>&lt;/text>
+ *    &lt;switch>
+ *      &lt;layout colspan="3" />
+ *      &lt;label>Switch&lt;/label>
+ *      &lt;address transform="DPT:1.001" mode="readwrite">0/0/0&lt;/address>
+ *    &lt;/switch>
+ *    &lt;info format="%.1f °C">
+ *      &lt;layout colspan="3" />
+ *      &lt;label>Temperature&lt;/label>
+ *      &lt;address transform="DPT:9.001">0/0/1&lt;/address>
+ *    &lt;/info>
+ *  &lt;/group>
+ *
+ * @widget_example &lt;settings selector=".widget_container[data-type=group]">
+ *  &lt;screenshot name="group_without_border">
+ *    &lt;caption>Hidden Group: no border no name&lt;/caption>
+ *    &lt;data address="0/0/0">1&lt;/data>
+ *    &lt;data address="0/0/1">21&lt;/data>
+ *  &lt;/screenshot>
+ *  &lt;/settings>
+ *  &lt;group nowidget="true">
+ *    &lt;layout colspan="6" />
+ *    &lt;text>&lt;label>Some Text&lt;/label>&lt;/text>
+ *    &lt;switch>
+ *      &lt;layout colspan="3" />
+ *      &lt;label>Switch&lt;/label>
+ *      &lt;address transform="DPT:1.001" mode="readwrite">0/0/0&lt;/address>
+ *    &lt;/switch>
+ *    &lt;info format="%.1f °C">
+ *      &lt;layout colspan="3" />
+ *      &lt;label>Temperature&lt;/label>
+ *      &lt;address transform="DPT:9.001">0/0/1&lt;/address>
+ *    &lt;/info>
+ *  &lt;/group>
+ *
+ * @module structure/pure/Group
+ * @requires structure/pure
+ * @author Christian Mayer
+ * @since 0.8.0 (2012)
+ */
+define( ['_common'], function( design ) {
+  "use strict";
+  var basicdesign = design.basicdesign;
+  
+  design.basicdesign.addCreator('group', {
+    maturity: design.Maturity.development,
+    /**
+     * Creates the widget HTML code
+     *
+     * @method create
+     * @param {Element} element - DOM-Element
+     * @param {String} path - internal path of the widget
+     * @param {String} flavour - Flavour of the widget
+     * @param {String} type - Page type (2d, 3d, ...)
+     * @return {String} HTML code
+     */
+    create: function( element, path, flavour, type ) {
+      var $e = $(element);
+      var classes = 'clearfix group ' + basicdesign.setWidgetLayout( $e, path );
+      if ( $e.attr('class') ) {
+        classes += ' custom_' + $e.attr( 'class' );
+      }
+      if ($e.attr('nowidget')!=='true') classes = 'widget ' + classes;
+      if( $e.attr('flavour') ) flavour = $e.attr('flavour');// sub design choice
+      if( flavour ) classes += ' flavour_' + flavour;
+      var hstyle  = '';                                     // heading style
+      if( $e.attr('align') ) hstyle += 'text-align:' + $e.attr('align') + ';';
+      if( hstyle != '' ) hstyle = 'style="' + hstyle + '"';
+      var childs = $e.children().not('layout');
+      var container = '&lt;div class="clearfix">';
+      if( $e.attr('name') ) container += '&lt;h2 ' + hstyle + '>' + $e.attr('name') + '&lt;/h2>';
 
+      $( childs ).each( function(i){
+        container += templateEngine.create_pages( childs[i], path + '_' + i, flavour );
+      } );
+      container += '&lt;/div>';
 
+      if ( $e.attr('target') )  {
+        var target = $e.attr('target') ;
+        classes += ' clickable';
+        templateEngine.widgetDataInsert( path, {
+          'bind_click_to_widget': true, // for groups with pagejumps this is mandatory
+          'target'  : target
+        } );
+      }
+      return '&lt;div class="' + classes + '">' + container + '&lt;/div>';
+    },
 
+    /**
+     * Action performed when the group got clicked. If a target is specified in the group attributes
+     * the action will switch to the page defined by the target.
+     *
+     * @method action
+     * @param {String} path - Internal path of the widget
+     * @param {Element} actor - DOMElement
+     * @param {Boolean} isCanceled - If true the action does nothing
+     */
+    action: function( path, actor, isCanceled ) {
+      if( isCanceled ) {
+        return;
+      }
+      var data = templateEngine.widgetDataGet( path );
+      if (data.target != 0) {
+        templateEngine.scrollToPage( data.target );
+      }
+    }
+  });
 
-
-
-
-
-
-	
-	
-
-
-
-
-
-
+}); // end define</pre>
+    </article>
+</section>
 
 
 
@@ -108,10 +235,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>CometVisu Index</title>
+	<title>CometVisu Source: structure/pure/Audio.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,32 +72,119 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	
-	
+		<h1 class="page-title">Source: structure/pure/Audio.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/* Audio.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
 
 
+/**
+ * The audio widget embeds an audio file, which can be automatically played by incoming data
+ * @widget_example &lt;settings>
+ *   &lt;screenshot name="audio_example">
+ *    &lt;caption>Default example for defining an audio widget in the configuration&lt;/caption>
+ *    &lt;data address="0/0/0">1&lt;/data>
+ *   &lt;/screenshot>
+ * &lt;/settings>
+ * &lt;audio id="audio_widget" src="path/to/audio_file.mp3">
+ *   &lt;layout colspan="4" />
+ *   &lt;label>Audio&lt;/label>
+ *   &lt;address transform="DPT:1.001" mode="read">0/0/0&lt;/address>
+ * &lt;/audio>
+ *
+ * @module structure/pure/Audio
+ * @requires structure/pure
+ * @author Markus Damman
+ * @since 0.8.4 (2014)
+ */
+define( ['_common'], function( design ) {
+  "use strict";
+  var basicdesign = design.basicdesign;
+  
+  design.basicdesign.addCreator('audio', {
+    /**
+     * Creates the widget HTML code
+     *
+     * @method create
+     * @param {Element} element - DOM-Element
+     * @param {String} path - internal path of the widget
+     * @param {String} flavour - Flavour of the widget
+     * @param {String} type - Page type (2d, 3d, ...)
+     * @return {String} HTML code
+     */
+    create: function( element, path, flavour, type ) {
+      var $e = $(element);
 
+      // create the main structure
+      var ret_val = basicdesign.createDefaultWidget( 'audio', $e, path, flavour, type, this.update);
+      // and fill in widget specific data
+      var data = templateEngine.widgetDataInsert( path, {
+        'src'     : $e.attr('src'),
+        'id'      : $e.attr('id'),
+        'width'   : $e.attr('width'),
+        'height'  : $e.attr('height'),
+        'autoplay': $e.attr('autoplay') === "autoplay" || $e.attr('autoplay') === "true",
+        'loop'    : $e.attr('loop') === "loop" || $e.attr('loop') === "true",
+        'threshold_value'  : $e.attr('threshold_value' ) || 1
+      } );
 
+      // create the actor
+      var style = '';
+      if( data.width  ) style += 'width:'  + data.width  + ';';
+      if( data.height ) style += 'height:' + data.height + ';';
+      if( style != '' ) style = 'style="' + style + '"';
+      var autoplay = (data.autoplay) ? ' autoplay ' : '';
+      var loop = (data.loop) ? ' loop ' : '';
+      var actor = '&lt;div class="actor">&lt;audio id="' + $e.attr('id') + '" ' + autoplay + loop + style + ' controls> &lt;source src="' +$e.attr('src') + '" > &lt;/audio> &lt;/div>';
+      return ret_val + actor + '&lt;/div>';
+    },
 
-
-
-
-
-
-
-	
-	
-
-
-
-
-
-
+    /**
+     * Handles updates of incoming data for this widget
+     * @method update
+     * @param {String} address - Source address of the incoming data
+     * @param {String} value - Incoming data
+     */
+    update: function(address, value) {
+      var element = $(this);
+      var actor   = element.find('.actor');
+      var value = basicdesign.defaultUpdate( address, value, element, true, element.parent().attr('id') );
+      var data  = templateEngine.widgetDataGetByElement( element );
+      var on = templateEngine.map( data[ 'threshold_value' ], data['mapping'] );
+      if (value >= on) {
+        var audioWidget = document.getElementById(data['id']);
+        if (audioWidget.paused == true)
+          audioWidget.play();
+      }
+    }
+  });
+}); // end define</pre>
+    </article>
+</section>
 
 
 
@@ -108,10 +195,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>
