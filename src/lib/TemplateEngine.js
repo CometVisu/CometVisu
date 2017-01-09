@@ -1111,6 +1111,9 @@ define([
               rememberLastPage = false;
             }
           }
+          // check that startpage does exits
+          if( $('#'+startpage+'.page').length === 0 )
+            startpage = 'id_';   // default to top most page
         }
         thisTemplateEngine.currentPage = $('#'+startpage);
 
