@@ -369,9 +369,9 @@ module.exports = function(grunt) {
           'src/structure/**/*.js'
         ],
         options: {
-          destination: 'doc/api/html',
+          destination: grunt.option('targetDir') || 'doc/api/html',
           template : "node_modules/ink-docstrap/template",
-          configure : ".jsdoc/jsdoc.conf.json"
+          configure : "utils/jsdoc.conf.json"
         }
       },
       rst : {
@@ -381,9 +381,9 @@ module.exports = function(grunt) {
           'src/structure/**/*.js'
         ],
         options: {
-          destination: 'doc/api/rst',
+          destination: grunt.option('targetDir') || 'doc/api/rst',
           template : "node_modules/jsdoc-sphinx/template/",
-          configure : ".jsdoc/jsdoc.conf.json"
+          configure : "utils/jsdoc.conf.json"
         }
       }
     },
@@ -392,7 +392,7 @@ module.exports = function(grunt) {
       archives : ['*.zip', '*.gz'],
       release: ['release/'],
       iconcache: ['cache/icons'],
-      exampleCache: ['cache/widget_examples'],
+      exampleCache: ['cache/widget_examples/jsdoc'],
       apiDoc: ['doc/api']
     },
 
@@ -475,7 +475,10 @@ module.exports = function(grunt) {
         configFile: 'karma.conf.js',
         singleRun: true,
         browsers: ['PhantomJS'],
-        reporters: ['progress']
+        reporters: ['progress'],
+        client: {
+          captureConsole: true
+        }
       }
     },
 
@@ -517,7 +520,45 @@ module.exports = function(grunt) {
       },
       screenshots: {
         options: {
-          configFile: ".jsdoc/protractor.conf.js"
+          configFile: "utils/protractor.conf.js",
+          args: {
+            params: {
+              subDir: grunt.option('subDir'),
+              screenshots: grunt.option('files')
+            },
+            capabilities: {
+              browserName: grunt.option('browserName') || 'firefox',
+              marionette: true
+            }
+          }
+        }
+      },
+      screenshotsSource: {
+        options: {
+          configFile: "utils/protractor.conf.js",
+          args: {
+            params: {
+              subDir: "jsdoc"
+            },
+            capabilities: {
+              browserName: grunt.option('browserName') || 'firefox',
+              marionette: true
+            }
+          }
+        }
+      },
+      screenshotsManual: {
+        options: {
+          configFile: "utils/protractor.conf.js",
+            args: {
+            params: {
+              subDir: "manual"
+            },
+            capabilities: {
+              browserName: grunt.option('browserName') || 'firefox',
+                marionette: true
+            }
+          }
         }
       }
     },
@@ -650,10 +691,13 @@ module.exports = function(grunt) {
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
-  grunt.registerTask('api-doc', ['clean:exampleCache', 'clean:apiDoc', 'jsdoc:html', 'screenshots']);
+  grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
+  grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
+  grunt.registerTask('api-doc', ['clean:exampleCache', 'clean:apiDoc', 'jsdoc:html', 'screenshotsSource']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
 
   grunt.registerTask('default', 'build');
+
 };

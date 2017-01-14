@@ -35,9 +35,7 @@ define( ['jquery','TemplateEngine', '_common', 'widget_image'], function($, engi
       image.setAttribute("refresh", "5");
       widget = $(creator.create(xml.firstChild.firstChild, 'id_0', null, 'image'));
 
-      templateEngine.postDOMSetupFns.forEach( function( thisFn ){
-        thisFn();
-      });
+      templateEngine.messageBroker.publish("setup.dom.finished");
       expect(templateEngine.setupRefreshAction).toHaveBeenCalled();
       expect(widget.find("img").get(0).getAttribute("style")).toBe('width:50%;height:51%;');
       

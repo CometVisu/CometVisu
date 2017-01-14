@@ -63,7 +63,9 @@ require.config({
     'TransformDefault':         'transforms/TransformDefault',
     'TransformKnx':             'transforms/TransformKnx',
     'TransformMockup':          'lib/mockup/TransformKnx',
-    'TransformOpenHab':         'transforms/TransformOpenHab'
+    'TransformOpenHab':         'transforms/TransformOpenHab',
+    'MessageBroker':            'lib/MessageBroker',
+    'ConfigCache':              'lib/ConfigCache'
   },
   'shim': {
     'scrollable':            ['jquery'],
@@ -141,17 +143,25 @@ require([
           }
           if (templateEngine.libraryCheck && xmlLibVersion < templateEngine.libraryVersion) {
             configError("libraryerror");
-          }
-          else {
+          } else {
             var $loading = $('#loading');
-            $loading.html( $loading.text().trim() + '.' );
+            $loading.html($loading.text().trim() + '.');
             if (request.getResponseHeader("X-CometVisu-Backend-LoginUrl")) {
-              templateEngine.backendUrl = request.getResponseHeader("X-CometVisu-Backend-LoginUrl");
+              templateEngine.configSettings.backendUrl = request.getResponseHeader("X-CometVisu-Backend-LoginUrl");
             }
             if (request.getResponseHeader("X-CometVisu-Backend-Name")) {
-              templateEngine.backend = request.getResponseHeader("X-CometVisu-Backend-Name");
+              templateEngine.configSettings.backend = request.getResponseHeader("X-CometVisu-Backend-Name");
             }
-            templateEngine.parseXML(xml);
+            var cache = false;
+            if (templateEngine.enableCache && templateEngine.configCache.isValid(xml)) {
+              // load settings
+              console.log("using cache");
+              templateEngine.configSettings = templateEngine.configCache.getData("configSettings");
+              templateEngine.setup_page();
+            }
+            if (!cache) {
+              templateEngine.parseXML(xml);
+            }
           }
         }
       },

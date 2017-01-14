@@ -73,7 +73,7 @@ $(window).bind('scrolltopage',function() {
   }
 });
 
-templateEngine.bindActionForLoadingFinished(function() {
+templateEngine.messageBroker.subscribe("loading.done", function() {
   $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
     var label = $(this);
     if (label.text().trim()!="") {

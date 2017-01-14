@@ -15,7 +15,7 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
-define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign_Custom ) {
+define( ['structure_custom', 'MessageBroker', 'css!plugins/rsslog/rsslog' ], function( VisuDesign_Custom, MessageBroker ) {
   "use strict";
 
   VisuDesign_Custom.prototype.addCreator("rsslog", {
@@ -43,7 +43,7 @@ define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign
     ret_val += '"></div></div>';
     ret_val += '</div>';
 
-    var data = templateEngine.widgetDataInsert( path, {
+    templateEngine.widgetDataInsert( path, {
       id:         id,
       address:    address,
       src:        $el.attr("src"),
@@ -56,14 +56,21 @@ define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign
       itemoffset: 0,
       itemack:    $el.attr("itemack") || "modify", // allowed: modify, display, disable
       future:     $el.attr("future"),
+      pageId:     templateEngine.getPageIdForWidgetId( element, path )
     });
-    
-    templateEngine.callbacks[ templateEngine.getPageIdForWidgetId( element, path ) ].beforePageChange.push( function(){
-      refreshRSSlog( data );
-    });
+
+    this.construct(path);
 
     return ret_val;
   },
+
+  construct: function(path) {
+    var data = templateEngine.widgetDataGet(path);
+    MessageBroker.getInstance().subscribe("path."+data.pageId+".beforePageChange", function() {
+      refreshRSSlog( data );
+    }, this);
+  },
+
   update:   function( ga, d ) { 
     var 
       element = $(this),
@@ -265,7 +272,7 @@ define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign
               }
                             
               var $row = $('<li class="rsslogRow ' + row + '">').append(itemHtml);
-              if( item.mapping !== '' )
+              if( item.mapping && item.mapping !== '' )
               {
                 var mappedValue = templateEngine.map( o.itemack === 'disable' ? 0 : item.state, item.mapping );
                 var $span = $row.find('.mappedValue');
@@ -305,7 +312,7 @@ define( ['structure_custom', 'css!plugins/rsslog/rsslog' ], function( VisuDesign
                   var mapping = item.data('mapping');
                   item.toggleClass("rsslog_ack");
                   var state = +item.hasClass("rsslog_ack"); // the new state is the same as hasClass
-                  if( mapping !== '' )
+                  if( mapping && mapping !== '' )
                   {
                     var mappedValue = templateEngine.map( state, mapping );
                     var $span = item.find('.mappedValue');

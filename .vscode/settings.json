@@ -1,0 +1,5 @@
+{
+    "restructuredtext.confPath" : "doc/manual/de/conf.py",
+    "restructuredtext.builtDocumentationPath" : "out/preview/de",
+    "restructuredtext.updateOnTextChanged" : "true"
+}

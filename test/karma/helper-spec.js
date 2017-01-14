@@ -172,7 +172,7 @@ define(['jquery','TemplateEngine', '_common'], function($, engine, design) {
 
   afterEach(function() {
     templateEngine.widgetData = {};
-    templateEngine.postDOMSetupFns = [];
+    templateEngine.messageBroker.clear();
     if (this.container) {
       document.body.removeChild(this.container);
       this.container = null;

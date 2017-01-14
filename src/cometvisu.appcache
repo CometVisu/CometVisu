@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Version GIT:20160528-2208
+# Version GIT:20161114-1409
 
 CACHE:
 index.html
@@ -30,6 +30,7 @@ lib/IconHandler.js
 lib/IconTools.js
 lib/Compatibility.js
 lib/CometVisuClient.js
+lib/ConfigCache.js
 lib/PageHandler.js
 lib/PagePartsHandler.js
 lib/TrickOMatic.js
