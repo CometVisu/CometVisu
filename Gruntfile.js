@@ -207,6 +207,7 @@ module.exports = function(grunt) {
         src: [
           'index.html',
           'visu_config.xsd',
+          'dependencies/jquery.js',
           'dependencies/require-2.1.15.min.js',
           'dependencies/css.js',
           'icon/*.png',
@@ -236,7 +237,8 @@ module.exports = function(grunt) {
           buildCSS: false,
           paths: {
             'css-builder': '../build/css-builder',
-            'normalize': '../build/normalize'
+            'normalize': '../build/normalize',
+            'jquery': 'empty:'
           },
 
           modules: [
