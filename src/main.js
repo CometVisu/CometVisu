@@ -155,7 +155,6 @@ require([
             var cache = false;
             if (templateEngine.enableCache && templateEngine.configCache.isValid(xml)) {
               // load settings
-              console.log("using cache");
               templateEngine.configSettings = templateEngine.configCache.getData("configSettings");
               templateEngine.setup_page();
             }
