@@ -21,15 +21,23 @@
  * Configurations.
  */
 
+// activate most strict error reporting
+error_reporting(-1);
+ 
 // global definitions
-define( 'CONFIG_FILENAME', 'config/visu_config%s.xml');
-define( 'DEMO_FILENAME', 'demo/visu_config%s.xml');
+define( 'CONFIG_FILENAME', 'config/visu_config%s.xml' );
+define( 'DEMO_FILENAME', 'demo/visu_config%s.xml' );
+define( 'MEDIA_PATH', 'config/media/' );
+// white list and black list file name patterns
+define( 'MEDIA_ALLOWED_NAME', '#^[0-9a-zA-Z_./ -]+$#' ); // any of these chars but not empty
+define( 'MEDIA_DISALLOWED_NAME', '#(^\.*/)|(/\.*/)#' );  // no amount of points at the beginning or after an slash and a following slash
 
 // strings
 $_STRINGS = array(
   'en' => array(
     'A configuration with that name does already exist' => 'A configuration with that name does already exist',
     'Available Configurations:' => 'Available %s Configurations:',
+    'Available media files:' => 'Available media files:',
     'Check' => 'Check',
     'CometVisu Manager' => 'CometVisu Manager',
     'Configuration file could not be created' => 'Configuration file (%s) could not be created',
@@ -40,8 +48,20 @@ $_STRINGS = array(
     'Configuration successfully replaced' => 'Configuration successfully replaced (%s).',
     'Could not replace configuraion' => 'Could not replace configuraion (%s).',
     'Create new config' => 'Create new config',
+    'Media directory is not writeable' => 'Media directory (%s) is not writeable',
+    'Media file name is not valid' => 'Media file name (%s) is not valid',
+    'Media file does already exist' => 'Media file (%s) does already exist',
+    'Media file successfully uploaded' => 'Media file (%s) successfully uploaded',
+    'Could not upload media file' => 'Could not upload media file (%s)',
+    'Media file deleted' => 'Media file (%s) deleted',
+    'Media file could not be deleted' => 'Media file (%s) could not be deleted',
+    'Media file to delete not found' => 'Media file (%s) to delete not found',
+    'Media file successfully replaced' => 'Media file (%s) successfully replaced',
+    'Could not replace media file' => 'Could not replace media file (%s)',
+    'Upload new media' => 'Upload new media',
     'Delete' => 'Delete',
     'deleteConfig(displayName,name)' => '"Do you really want to delete config \"" + displayName + "\"?"',
+    'deleteMedia(displayName,name)' => '"Do you really want to delete media file \"" + displayName + "\"?"',
     'Demo config' => 'Demo config',
     'Download' => 'Download',
     'Edit' => 'Edit',
@@ -53,11 +73,13 @@ $_STRINGS = array(
     'Replace' => 'Replace',
     'View' => 'View',
     'What name shall the new config have (please use only letters, numbers and the underscore)' => 'What name shall the new config have (please use only letters, numbers and the underscore)?',
+    'What name shall the new media file have (please use only letters, numbers and the underscore)' => 'What name shall the new media file have (please use only letters, numbers and the underscore)',
     'dummy' => 'dummy' // hanlde last comma gracefully
   ),
   'de' => array(
     'A configuration with that name does already exist' => 'Eine Konfigurationsdatei mit diesem Namen existiert bereits!',
     'Available Configurations:' => 'Verfügbare %s Konfigurationen:',
+    'Available media files:' => 'Verfügbare Mediendateien:',
     'Check' => 'Überprüfen',
     'CometVisu Manager' => 'CometVisu Manager',
     'Configuration file could not be created' => 'Konfigurationsdatei (%s) konnte nicht erstellt werden.',
@@ -68,8 +90,20 @@ $_STRINGS = array(
     'Configuration successfully replaced' => 'Konfigurationsdatei (%s) erfolgreich ersetzt.',
     'Could not replace configuraion' => 'Konnte Konfigurationsdatei (%s) nicht ersetzen.',
     'Create new config' => 'Erstelle neue Konfigurationsdatei',
+    'Media directory is not writeable' => 'Medienverzeichnis (%s) ist nicht beschreibbar',
+    'Media file name is not valid' => 'Mediendatei-Name (%s) ist ungültig',
+    'Media file does already exist' => 'Mediendatei (%s) existiert bereits',
+    'Media file successfully uploaded' => 'Mediendatei (%s) erfolgreich hochgeladen',
+    'Could not upload media file' => 'Konnte Mediendatei (%s) nicht hochladen',
+    'Media file deleted' => 'Mediendatei (%s) gelöscht',
+    'Media file could not be deleted' => 'Mediendatei (%s) konnte nicht gelöscht werden',
+    'Media file to delete not found' => 'Mediendatei zum Löschen (%s) nicht gefunden',
+    'Media file successfully replaced' => 'Mediendatei (%s) erfolgreich ersetzt',
+    'Could not replace media file' => 'Konnte Mediendatei (%s) nicht ersetzen',
+    'Upload new media' => 'Lade neue Mediendatei hoch',
     'Delete' => 'Löschen',
     'deleteConfig(displayName,name)' => '"Wollen Sie wirklich Konfiguration \"" + displayName + "\" endgültig löschen?"',
+    'deleteMedia(displayName,name)' => '"Wollen Sie wirklich die Mediendatei \"" + displayName + "\" endgültig löschen?"',
     'Demo config' => 'Demo Konfiguration',
     'Download' => 'Herunterladen',
     'Edit' => 'Editieren',
@@ -81,7 +115,8 @@ $_STRINGS = array(
     'Replace' => 'Ersetzen',
     'View' => 'Öffnen',
     'What name shall the new config have (please use only letters, numbers and the underscore)' => 'Welchen Namen soll die neue Konfigurationsdatei haben (bitte nur Buchstaben, Zahlen und den Unterstrich verwenden)?',
-    'dummy' => 'dummy' // hanlde last comma gracefully
+    'What name shall the new media file have (please use only letters, numbers and the underscore)' => 'Welchen Namen soll die neue Mediendatei haben (bitte nur Buchstaben, Zahlen und den Unterstrich verwenden)?',
+    'dummy' => 'dummy' // handle last comma gracefully
   )
 );
 define( 'VISU_TABLE_ROW', '<tr class="visuline">'
@@ -101,6 +136,12 @@ define( 'DEMO_TABLE_ROW', '<tr class="visuline">'
 . '<td><a href="%4$s" download target="_blank">'.icon('control_arrow_downward').'</a></td>'
 . '<td>-</td>'
 . '<td>-</td>'
+. '</tr>' );
+define( 'MEDIA_TABLE_ROW', '<tr class="visuline">'
+. '<td class="name">%1$s</td>'
+. '<td><a href="'.MEDIA_PATH.'%1$s" download target="_blank">'.icon('control_arrow_downward').'</a></td>'
+. '<td><label for="media_file">'.icon('control_return').'</label></td>'
+. '<td class="warn"><a href="javascript:deleteMedia(\'%1$s\', \'%1$s\')">'.icon('message_garbage').'</a></td>'
 . '</tr>' );
 
 /**
@@ -129,8 +170,24 @@ if( !array_key_exists( $userLang, $_STRINGS ) )
 $_ = $_STRINGS[ $userLang ];
 
 // fill global variables
-$availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), filterPreview );
+$availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), 'filterPreview' );
 $availDemo = glob( sprintf( DEMO_FILENAME  , '*' ) );
+function fillAvailMedia()
+{
+  global $availMedia;
+  $availMedia = Array();
+  $it = new RecursiveDirectoryIterator( MEDIA_PATH );
+  foreach( new RecursiveIteratorIterator($it) as $file )
+  {
+    $name = substr( $file, strlen( MEDIA_PATH ) );
+    
+    if( in_array( $name, Array( '.gitignore' ) ) )
+      continue;
+    
+    array_push( $availMedia, $name );
+  }
+}
+fillAvailMedia();
 
 // check if we have to do something:
 $actionDone = false;
@@ -138,9 +195,12 @@ $actionSuccess = false;
 $resetUrl = false;
 $config = array_key_exists( 'config', $_GET  ) ? $_GET ['config'] :
         ( array_key_exists( 'config', $_POST ) ? $_POST['config'] : false );
+$media  = array_key_exists( 'media',  $_GET  ) ? $_GET ['media']  :
+        ( array_key_exists( 'media',  $_POST ) ? $_POST['media']  : false );
 $action = array_key_exists( 'action', $_GET  ) ? $_GET ['action'] :
         ( array_key_exists( 'action', $_POST ) ? $_POST['action'] : false );
-if( ($config == '' || $config != false) && ($action != false) )
+
+if( ($config === '' || $config !== false) && ($media === false) && ($action !== false) )
 {
   $configFile = sprintf( CONFIG_FILENAME, (''==$config ? '' : '_') . $config );
   if( !is_writeable( $configFile ) && 'create' != $action )
@@ -161,7 +221,7 @@ if( ($config == '' || $config != false) && ($action != false) )
       
       if( copy( 'demo/visu_config_empty.xml', $configFile ) ) {
         $actionDone = sprintf( $_['New configuration file successfully created'], $configFile );
-        $availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), filterPreview );
+        $availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), 'filterPreview' );
         $resetUrl = true;
         $actionSuccess = true;
       } else
@@ -172,7 +232,7 @@ if( ($config == '' || $config != false) && ($action != false) )
       if( in_array( $configFile, $availVisu ) ) {
         if( unlink( $configFile ) ) {
           $actionDone = sprintf( $_['Configuration file deleted'], $configFile );
-          $availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), filterPreview );
+          $availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), 'filterPreview' );
           $resetUrl = true;
           $actionSuccess = true;
         } else
@@ -191,11 +251,64 @@ if( ($config == '' || $config != false) && ($action != false) )
         $actionDone = sprintf( $_['Could not replace configuraion'], $configFile );
       break;
   }
+} else if( ($media !== false) && ($action !== false) )
+{
+  $mediaFile = MEDIA_PATH . $media;
+  switch( $action )
+  {
+    case 'create':
+    case 'replace':
+      if( !is_writeable( MEDIA_PATH ) )
+      {
+        $actionDone = sprintf( $_['Media directory is not writeable'], MEDIA_PATH );
+        break;
+      }
+      if( !( preg_match( MEDIA_ALLOWED_NAME, $media ) && !preg_match( MEDIA_DISALLOWED_NAME, $media )) )
+      {
+        $actionDone = sprintf( $_['Media file name is not valid'], $media );
+        break;
+      }
+      if( is_readable( $mediaFile ) && $action === 'create' )
+      {
+        $actionDone = sprintf( $_['Media file does already exist'], $mediaFile );
+        break;
+      }
+      if( move_uploaded_file( $_FILES['media_file']['tmp_name'], $mediaFile ) )
+      {
+        if( $action === 'create' )
+          $actionDone = sprintf( $_['Media file successfully uploaded'], $media );
+        else
+          $actionDone = sprintf( $_['Media file successfully replaced'], $media );
+        $actionSuccess = true;
+        fillAvailMedia();
+      } else {
+        if( $action === 'create' )
+          $actionDone = sprintf( $_['Could not upload media file'], $media );
+        else
+          $actionDone = sprintf( $_['Could not replace media file'], $media );
+      }
+      break;
+      
+    case 'delete':
+      if( in_array( $media, $availMedia ) )
+      {
+        if( unlink( $mediaFile ) ) {
+          $actionDone = sprintf( $_['Media file deleted'], $mediaFile );
+          fillAvailMedia();
+          $resetUrl = true;
+          $actionSuccess = true;
+        } else
+          $actionDone = sprintf( $_['Media file could not be deleted'], $mediaFile );
+      } else {
+        $actionDone = sprintf( $_['Media file to delete not found'], $media );
+      }
+      break;
+  }
 } else {
   // nothing special to do - so at least do a few sanity checks
   if( !is_writeable( 'config/visu_config.xml' ) )
   {
-    if( chmod( 'config/visu_config.xml', 0666 ) ) // try to fix it
+    if( @chmod( 'config/visu_config.xml', 0666 ) ) // try to fix it
     {
       if( !is_writeable( 'config/visu_config.xml' ) )
         $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
@@ -236,6 +349,15 @@ function deleteConfig( displayName, name )
   {
     var myUrl = window.location.href.split('?')[0];
     window.location.href = myUrl + '?config=' + name + '&action=delete';
+  }
+}
+
+function deleteMedia( displayName, name )
+{
+  if( confirm( <?php echo $_['deleteMedia(displayName,name)'] ?> ) )
+  {
+    var myUrl = window.location.href.split('?')[0];
+    window.location.href = myUrl + '?media=' + name + '&action=delete';
   }
 }
 
@@ -331,7 +453,7 @@ if( $resetUrl )
       border-color: #0c0;
       background-color: #cfc;
     }
-    #newConfig {
+    .newFile {
       display: inline-block;
       text-decoration: none;
       color:black;
@@ -339,11 +461,11 @@ if( $resetUrl )
       padding: 4px;
       padding-right: 16px;
     }
-    #newConfig .icon {
+    .newFile .icon {
       vertical-align: middle;
       margin-right: 4px;
     }
-    #newConfig:hover .icon {
+    .newFile:hover .icon {
       background-color: #6d6;
     }
     hr {
@@ -363,7 +485,7 @@ if( $resetUrl )
       echo '<div class="actionDone' . ($actionSuccess?' actionSuccess':'') . '">'.$actionDone.'</div>';
     ?>
     <h1><?php printf( $_['Available Configurations:'], '<img src="icon/comet_64_ff8000.png" />') ?></h1>
-    <form enctype="multipart/form-data" action="manager.php" method="post">
+    <form enctype="multipart/form-data" action="manager.php" method="post" id="config_form">
     <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
     <table>
       <?php
@@ -400,24 +522,74 @@ if( $resetUrl )
     </table>
     <input type="text" id="input_config" name="config" style="display:none" />
     <input type="text" id="input_action" name="action" style="display:none" />
-    <input type="submit" id="submit" style="display:none" />
+    <input type="submit" id="submit_config" style="display:none" />
     </form>
     <span class="footnote">*)</span>: <?php echo $_['Demo config'] ?>
     
     <p>
-    <a href="javascript:newConfig()" id="newConfig"><?php echo icon('control_plus') . $_['Create new config'] ?></a>
+    <a href="javascript:newConfig()" id="newConfig" class="newFile"><?php echo icon('control_plus') . $_['Create new config'] ?></a>
+    </p>
+    
+    <h2><?php printf( $_['Available media files:'], '<img src="icon/comet_64_ff8000.png" />') ?></h2>
+    <form enctype="multipart/form-data" action="manager.php" method="post" id="media_form">
+    <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
+    <table>
+      <?php
+        echo '<tr class="head">'
+        . '<th class="name">'.$_['Name'].'</th>'
+        . '<th>'.$_['Download'].'</th>'
+        . '<th>'.$_['Replace'].'</th>'
+        . '<th>'.$_['Delete'].'</th></tr>';
+        
+        foreach( $availMedia as $name )
+        {
+          printf( MEDIA_TABLE_ROW, $name );
+        }
+      ?>
+    </table>
+    <input type="text" id="input_media_name" name="media" style="display:none" />
+    <input type="text" id="input_media_action" name="action" style="display:none" />
+    <input type="file" id="media_file" name="media_file" style="display:none" />
+    <input type="submit" id="submit_media" style="display:none" />
+    </form>
+    
+    <p>
+    <a href="javascript:$('#media_file').trigger('click')" id="newMedia" class="newFile"><?php echo icon('control_plus') . $_['Upload new media'] ?></a>
     </p>
     
     <hr />
     <div id="footer">
-      <img src="icon/comet_50_ff8000.png" alt="CometVisu"> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+      <img src="icon/comet_icon_128x128_ff8000.png" alt="CometVisu" height="50"> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
       <div style="float:right;padding-right:0.5em">Version: <?php include('version') ?></div>
     </div>
     <script>
-      $('input[type=file]').change(function( ev ){ 
+      $('#config_form input[type=file]').change(function( ev ){ 
         $('#input_config').val( this.id.replace(/_xml$/,''));
         $('#input_action').val( 'replace' );
-        $('#submit').click();
+        $('#submit_config').click();
+      } );
+      
+      $('#media_form label').click(function( ev ){
+        $('#input_media_name').val( $(this).parent().parent().find('.name').text() );
+      });
+      
+      $('#media_form input[type=file]').change(function( ev ){ 
+        if( this.value )
+        {
+          if( $('#input_media_name').val() === '' )
+          {
+            var newName = prompt( "<?php echo $_['What name shall the new media file have (please use only letters, numbers and the underscore)'] ?>", this.value.replace( /.*[/\\]/,'' ) );
+            if( newName )
+            {
+              $('#input_media_name').val( newName );
+              $('#input_media_action').val( 'create' );
+              $('#submit_media').click();
+            }
+          } else {
+            $('#input_media_action').val( 'replace' );
+            $('#submit_media').click();
+          }
+        }
       } );
     </script>
   </body>

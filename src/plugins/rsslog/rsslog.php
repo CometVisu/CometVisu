@@ -36,9 +36,11 @@
 
 
 // look where to store DB
-if (is_dir('/etc/wiregate/rss'))
+if (is_dir('/etc/wiregate/rss'))  // Default for Wiregate
   $dbfile = '/etc/wiregate/rss/rsslog.db';
-else
+elseif (is_dir('/etc/cometvisu')) // Central option for non-Wiregate systems
+  $dbfile = '/etc/cometvisu/rsslog.db';
+else                              // if not found use local plugin directory
     $dbfile = 'rsslog.db';
 
 //check if the DIRECTORY is writeable by the webserver

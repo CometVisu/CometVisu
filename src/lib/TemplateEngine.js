@@ -676,6 +676,11 @@ define([
         width = thisTemplateEngine.getAvailableWidth();
         height = thisTemplateEngine.getAvailableHeight();
         $pageSize.text('#main,.page{width:' + (width - 0) + 'px;height:' + height + 'px;}');
+        
+        if (thisTemplateEngine.adjustColumns()) {
+          // the amount of columns has changed -> recalculate the widgets widths
+          thisTemplateEngine.applyColumnWidths();
+        }
 
         invalidPagesize = false;
       }
@@ -1111,6 +1116,9 @@ define([
               rememberLastPage = false;
             }
           }
+          // check that startpage does exits
+          if( $('#'+startpage+'.page').length === 0 )
+            startpage = 'id_';   // default to top most page
         }
         thisTemplateEngine.currentPage = $('#'+startpage);
 
