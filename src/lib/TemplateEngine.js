@@ -973,7 +973,11 @@ define([
 
     this.init = function() {
       thisTemplateEngine.initBackendClient();
-      require( thisTemplateEngine.configSettings.getCSSlist, delaySetup('design') );
+      require( thisTemplateEngine.configSettings.getCSSlist, delaySetup('design'), function( err ) {
+        console.log( 'Failed to load design! Falling back to simplified "pure"' );
+        thisTemplateEngine.configSettings.getCSSlist = [ 'css!designs/pure/basic.css', 'designs/pure/design_setup' ];
+        require( thisTemplateEngine.configSettings.getCSSlist, delaySetup('design') );
+      } );
       var delaySetupPluginsCallback = delaySetup('plugins');
       require( thisTemplateEngine.configSettings.pluginsToLoad, delaySetupPluginsCallback, function( err ) {
         console.log( 'Plugin loading error! It happend with: "' + err.requireModules[0] + '". Is the plugin available and written correctly?');
