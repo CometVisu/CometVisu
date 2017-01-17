@@ -126,8 +126,7 @@ qx.Class.define('cv.TemplateEngine', {
       return cv.data.Model.getInstance().getAddresses();
     },
 
-    update: function (json) {
-      cv.data.Model.getInstance().update(json);
+    // update: function (json) {
       // var addressList = model.getAddressList();
       //
       // var keys = Object.keys(json);
@@ -168,7 +167,7 @@ qx.Class.define('cv.TemplateEngine', {
       //   currentFrameTime = Date.now();
       //   qx.bom.AnimationFrame.request(process, this);
       // }
-    },
+    // },
 
     initBackendClient: function () {
       var backendName = cv.Config.configSettings.backend || cv.Config.backend;
@@ -185,8 +184,9 @@ qx.Class.define('cv.TemplateEngine', {
       }
 
       this.visu.update = function (json) { // overload the handler
-        this.update(json);
-        this.visu.update = this.update.bind(this); // handle future requests directly
+        var model = cv.data.Model.getInstance();
+        model.update(json);
+        this.visu.update = model.update.bind(model); // handle future requests directly
       }.bind(this);
       this.visu.user = 'demo_user'; // example for setting a user
     },
