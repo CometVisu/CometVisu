@@ -183,11 +183,8 @@ qx.Class.define('cv.TemplateEngine', {
         this.visu = new cv.io.Client(backendName, cv.Config.backendUrl);
       }
 
-      this.visu.update = function (json) { // overload the handler
-        var model = cv.data.Model.getInstance();
-        model.update(json);
-        this.visu.update = model.update.bind(model); // handle future requests directly
-      }.bind(this);
+      var model = cv.data.Model.getInstance();
+      this.visu.update = model.update.bind(model); // override clients update function
       this.visu.user = 'demo_user'; // example for setting a user
     },
 
