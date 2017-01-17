@@ -18,6 +18,7 @@
  */
 
 
+//noinspection JSUnusedGlobalSymbols
 /**
  * MMethodChaining
  *
@@ -68,8 +69,10 @@ qx.Mixin.define('cv.oo.MMethodChaining', {
       var type = [].splice.call(arguments, 0, 1);
       var name = [].splice.call(arguments, 0, 1);
       var args = arguments;
-      this.__chain[type][name] && this.__chain[type][name].forEach(function(entry) {
-        entry[0].apply(entry[1] || this, args);
+      this.__chain[type][name].forEach(function(entry) {
+        if (this === entry[1]) {
+          entry[0].apply(this, args);
+        }
       }, this);
     }
   }

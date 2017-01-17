@@ -37,13 +37,14 @@ qx.Class.define('cv.ConfigCache', {
     _valid : null,
     
     dump : function(xml) {
-      var config = qx.lang.Object.clone(cv.Config);
+      var config = qx.lang.Object.clone(cv.Config, true);
       config.TMP = {};
+      var model = cv.data.Model.getInstance();
       this.save(this._cacheKey, {
         hash: this.toHash(xml),
-        data: cv.data.Model.getInstance().getWidgetDataModel(),
-        addresses: cv.data.Model.getInstance().getAddressList(),
-        configSettings: config,
+        data: model.getWidgetDataModel(),
+        addresses: model.getAddressList(),
+        config: config,
         mappings: cv.ui.Mappings.getMappings(),
         stylings: cv.ui.Stylings.getStylings()
       });
@@ -52,10 +53,11 @@ qx.Class.define('cv.ConfigCache', {
 
     restore: function() {
       var body = qx.bom.Selector.query("body")[0];
-      cv.Config = this.getData("configSettings");
+      var model = cv.data.Model.getInstance();
       var cache = this.getData();
-      cv.data.Model.getInstance().setWidgetDataModel(cache.data);
-      cv.data.Model.getInstance().setAddressList(cache.addresses);
+      cv.Config = cache.config;
+      model.setWidgetDataModel(cache.data);
+      model.setAddressList(cache.addresses);
       cv.ui.Mappings.setMappings(cache.mappings);
       cv.ui.Stylings.setStylings(cache.stylings);
       qx.dom.Element.empty(body);

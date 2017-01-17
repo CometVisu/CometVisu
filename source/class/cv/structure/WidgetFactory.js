@@ -27,6 +27,7 @@ qx.Class.define('cv.structure.WidgetFactory', {
   ******************************************************
   */
   statics: {
+    c : 0,
     registry: { check: 'Object', init: {} },
 
     createInstance: function (type, data) {
@@ -35,21 +36,24 @@ qx.Class.define('cv.structure.WidgetFactory', {
           // try to find it via parser handler
           var handler = cv.xml.Parser.getHandler(type);
           if (handler) {
+            // console.log(data.path+" "+handler);
             this.registry[data.path] = new handler(data);
           } else {
             qx.log.Logger.error("No handler found for type '"+type+"'");
             return null;
           }
         } else {
+          // console.log(data.path+" cv.structure.pure."+qx.lang.String.firstUp(type));
           this.registry[data.path] = new cv.structure.pure[qx.lang.String.firstUp(type)](data);
         }
+        this.c++;
       }
       return this.registry[data.path];
     },
 
-    getInstanceById: function (id) {
+    getInstanceById: function (id, skipCreation) {
       var widget = this.registry[id];
-      if (!widget && cv.Config.lazyLoading === true) {
+      if (!widget && !skipCreation && cv.Config.lazyLoading === true) {
         var data = cv.data.Model.getInstance().getWidgetData(id);
         widget = this.createInstance(data.$$type, data);
       }

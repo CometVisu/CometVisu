@@ -41,17 +41,17 @@ qx.Mixin.define("cv.role.HasChildren", {
       }, this);
       this.setChildWidgets(children);
     }
-    if (cv.Config.lazyLoading === true && !this.getParentWidget()) {
-      new qx.util.DeferredCall(function() {
-        // initialize the ancestors
-        var parentData = cv.util.Tree.getParentData(props.path);
-        if (parentData) {
-          // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + props.$$type + " (" + props.path + ")");
-          var parent = cv.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
-          this.setParentWidget(parent);
-        }
-      }, this).schedule();
-    }
+    // if (cv.Config.lazyLoading === true && !this.getParentWidget()) {
+    //   new qx.util.DeferredCall(function() {
+    //     // initialize the ancestors
+    //     var parentData = cv.util.Tree.getParentData(props.path);
+    //     if (parentData) {
+    //       console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + props.$$type + " (" + props.path + ")");
+    //       var parent = cv.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
+    //       this.setParentWidget(parent);
+    //     }
+    //   }, this).schedule();
+    // }
   },
 
 
@@ -94,8 +94,8 @@ qx.Mixin.define("cv.role.HasChildren", {
       var childs = qx.dom.Hierarchy.getChildElements(xml).filter(function(child) {
         return ['layout', 'label', 'address'].indexOf(qx.dom.Node.getName(child)) === -1;
       }, this);
-      childs.forEach(function (child, i) {
-        var childData = cv.xml.Parser.parse(child, path + '_' + i, flavour, pageType);
+      childs.forEach(function (child, idx) {
+        var childData = cv.xml.Parser.parse(child, path + '_' + idx, flavour, pageType);
         if (childData) {
           if (Array.isArray(childData)) {
             for (var i = 0, l = childData.length; i < l; i++) {

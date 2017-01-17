@@ -111,22 +111,6 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     /**
-     * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().setWidgetData()}
-     */
-    widgetDataInsert: function (path, obj) {
-      this.warn("widgetDataInsert is deprecated! Please use cv.data.Model.getInstance().setWidgetData() instead");
-      return cv.data.Model.getInstance().setWidgetData(path, obj);
-    },
-
-    /**
-     * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().getWidgetData()}
-     */
-    widgetDataGet: function (path) {
-      this.warn("widgetDataGet is deprecated! Please use cv.data.Model.getInstance().getWidgetData() instead");
-      return cv.data.Model.getInstance().getWidgetData(path);
-    },
-
-    /**
      * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().addAddress()} instead
      */
     addAddress: function (address, id) {
@@ -143,40 +127,47 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     update: function (json) {
-      var addressList = cv.data.Model.getInstance().getAddressList();
+      cv.data.Model.getInstance().update(json);
+      // var addressList = model.getAddressList();
+      //
+      // var keys = Object.keys(json);
+      // var currentFrameTime = Date.now();
+      //
+      // var process = function() {
+      //   var key = keys.pop();
+      //   if (key in addressList) {
+      //     var data = json[key];
+      //     model.onUpdate(key, data);
 
-      var keys = Object.keys(json);
-      var currentFrameTime = Date.now();
-
-      var process = function() {
-        var key = keys.pop();
-        if (key in addressList) {
-          var data = json[key];
-          addressList[key].forEach(function (id) {
-            if (typeof id === 'string') {
-              var widget = cv.structure.WidgetFactory.getInstanceById(id);
-              if (widget && widget.update) {
-                widget.update(key, data);
-              }
-              //console.log( element, type, updateFn );
-            } else if (typeof id === 'function') {
-              id.call(key, data);
-            }
-          });
-        }
-        if (keys.length) {
-          if (Date.now() - currentFrameTime <= 30) {
-            process();
-          } else {
-            currentFrameTime = Date.now();
-            qx.bom.AnimationFrame.request(process, this);
-          }
-        }
-      };
-      if (keys.length) {
-        currentFrameTime = Date.now();
-        qx.bom.AnimationFrame.request(process, this);
-      }
+          // addressList[key].forEach(function (id) {
+          //   if (typeof id === 'string') {
+          //     var widget = cv.structure.WidgetFactory.getInstanceById(id, true);
+          //     if (widget) {
+          //       if (widget.update) {
+          //         widget.update(key, data);
+          //       }
+          //     } else {
+          //       // TODO: store for usage after widget has been created
+          //     }
+          //     //console.log( element, type, updateFn );
+          //   } else if (typeof id === 'function') {
+          //     id.call(key, data);
+          //   }
+          // });
+      //   }
+      //   if (keys.length) {
+      //     if (Date.now() - currentFrameTime <= 30) {
+      //       process();
+      //     } else {
+      //       currentFrameTime = Date.now();
+      //       qx.bom.AnimationFrame.request(process, this);
+      //     }
+      //   }
+      // };
+      // if (keys.length) {
+      //   currentFrameTime = Date.now();
+      //   qx.bom.AnimationFrame.request(process, this);
+      // }
     },
 
     initBackendClient: function () {
@@ -232,7 +223,7 @@ qx.Class.define('cv.TemplateEngine', {
       }
 
       if (qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') !== null) {
-        settings.bindClickToWidget = qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') == "true" ? true : false;
+        settings.bindClickToWidget = qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') == "true";
       }
       if (qx.bom.element.Attribute.get(pagesNode, 'default_columns') !== null) {
         settings.defaultColumns = qx.bom.element.Attribute.get(pagesNode, 'default_columns');
@@ -465,7 +456,6 @@ qx.Class.define('cv.TemplateEngine', {
         path_scope = this.getPageIdByName(path, root_page_id);
         return path_scope;
       }
-      return null;
     },
 
     getPageIdByName: function (page_name, scope) {
@@ -510,7 +500,7 @@ qx.Class.define('cv.TemplateEngine', {
                 }
               }
             }
-          });
+          }, this);
           if (fallback) {
             // take the first page that fits (old behaviour)
             pages.forRach(function (page) {
@@ -670,7 +660,7 @@ qx.Class.define('cv.TemplateEngine', {
         if (isPageId) pathParts.pop();
         while (pathParts.length > 1) {
           pathParts.pop();
-          var path = pathParts.join('_') + '_';
+          path = pathParts.join('_') + '_';
           var page = qx.bom.Selector.query('#' + path)[0];
           if (qx.bom.element.Class.has(page, "page")) {
             return page;

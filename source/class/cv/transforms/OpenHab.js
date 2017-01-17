@@ -33,7 +33,7 @@ qx.Class.define('cv.transforms.OpenHab', {
   */
   statics: {
     isUndefined: function(value) {
-      return ['NaN', 'Uninitialized', 'NULL'].indexOf(value) >= 0;
+      return ['NaN', 'Uninitialized', 'NULL', undefined, null].indexOf(value) >= 0;
     }
   },
 
@@ -121,8 +121,7 @@ qx.Class.define('cv.transforms.OpenHab', {
         },
         decode: function (str) {
           if (cv.transforms.OpenHab.isUndefined(str)) return '-';
-          var date = new Date(Date.parse(str));
-          return date;
+          return new Date(Date.parse(str));
         }
       },
       'time': {

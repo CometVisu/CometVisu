@@ -30,27 +30,48 @@ qx.Class.define('cv.data.Model', {
 
   /*
   ******************************************************
-    PROPERTIES
-  ******************************************************
-  */
-  properties: {
-    addressList: {
-      check: "Object",
-      init: {}
-    },
-
-    widgetDataModel: {
-      check: "Object",
-      init: {}
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
   members: {
+    __states : {},
+    __stateListeners: {},
+    __addressList : {},
+    __widgetData: {},
+
+    onUpdate: function(address, state) {
+      this.__states[address] = state;
+      // notify listeners
+      if (this.__stateListeners[address]) {
+        this.__stateListeners[address].forEach(function(listener) {
+          listener[0].call(listener[1], address, state);
+        }, this);
+      }
+    },
+
+    /**
+     * Handle incoming data from backend
+     * @param data {Map} Key/value map
+     */
+    update: function(data) {
+      var addressList = this.__addressList;
+      Object.getOwnPropertyNames(data).forEach(function(address) {
+        if (addressList.hasOwnProperty(address)) {
+          this.onUpdate(address, data[address]);
+        }
+      }, this);
+    },
+
+    getState: function(address) {
+      return this.__states[address];
+    },
+
+    addUpdateListener: function(address, callback, context) {
+      if (!this.__stateListeners[address]) {
+        this.__stateListeners[address] = [];
+      }
+      this.__stateListeners[address].push([callback, context]);
+    },
 
     /**
      * Add an Address -> Path mapping to the addressList
@@ -58,7 +79,7 @@ qx.Class.define('cv.data.Model', {
      * @param id {String} path to the widget
      */
     addAddress: function (address, id) {
-      var list = this.getAddressList();
+      var list = this.__addressList;
       if (address in list) {
         list[address].push(id);
       }
@@ -72,7 +93,15 @@ qx.Class.define('cv.data.Model', {
      * @return {Array} Addresses
      */
     getAddresses: function () {
-      return Object.keys(this.getAddressList());
+      return Object.keys(this.__addressList);
+    },
+
+    setAddressList: function(value) {
+      this.__addressList = value;
+    },
+
+    getAddressList: function() {
+      return this.__addressList;
     },
 
     /**
@@ -80,7 +109,7 @@ qx.Class.define('cv.data.Model', {
      * @param path {String} widget path
      */
     getWidgetData: function (path) {
-      return this.getWidgetDataModel()[path] || (this.getWidgetDataModel()[path] = {});
+      return this.__widgetData[path] || (this.__widgetData[path] = {});
     },
 
 
@@ -109,15 +138,29 @@ qx.Class.define('cv.data.Model', {
     setWidgetData: function (path, obj) {
       var data = this.getWidgetData(path);
 
-      for (var attrname in obj)
+      Object.getOwnPropertyNames(obj).forEach(function(attrname) {
         data[attrname] = obj[attrname];
-
+      }, this);
       return data;
     },
 
+    setWidgetDataModel: function(value) {
+      this.__widgetData = value;
+    },
+
+    getWidgetDataModel: function() {
+      return this.__widgetData;
+    },
+
+    /**
+     * Clear the model, internal method for testing purposes
+     * @internal
+     */
     clear: function() {
-      this.setAddressList({});
-      this.setWidgetDataModel({});
+      this.__addressList = {};
+      this.__widgetData = {};
+      this.__states = {};
+      this.__stateListeners = {};
     }
   }
 

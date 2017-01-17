@@ -35,10 +35,7 @@ qx.Mixin.define("cv.role.Update", {
    */
   construct: function () {
     if (this.getAddress) {
-      cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
-        // initially setting a value
-        this.update(undefined, undefined);
-      }, this);
+      this.addAfterMethod("_onDomReady", this.__initUpdater, this);
     }
   },
 
@@ -48,6 +45,16 @@ qx.Mixin.define("cv.role.Update", {
   ******************************************************
   */
   members: {
+
+    __initUpdater : function() {
+      var model = cv.data.Model.getInstance();
+      Object.getOwnPropertyNames(this.getAddress()).forEach(function(address) {
+        var state = model.getState(address);
+        this.update(address, state);
+        //add listener
+        model.addUpdateListener(address, this.update, this);
+      }, this);
+    },
 
     /**
      * Process the incoming data, update the shown value and the stylings
@@ -76,7 +83,6 @@ qx.Mixin.define("cv.role.Update", {
      *
      * @param ev {var}
      * @param data {var}
-     * @param passedElement {var}
      */
     update3d: function (ev, data) {
       var l = ev.data.layout;
