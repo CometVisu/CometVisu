@@ -153,7 +153,7 @@ require([
               templateEngine.configSettings.backend = request.getResponseHeader("X-CometVisu-Backend-Name");
             }
             var cache = false;
-            if (templateEngine.enableCache && templateEngine.configCache.isValid(xml)) {
+            if (!templateEngine.forceReload && templateEngine.enableCache && templateEngine.configCache.isValid(xml)) {
               // load settings
               console.log("using cache");
               templateEngine.configSettings = templateEngine.configCache.getData("configSettings");

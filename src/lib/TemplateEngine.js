@@ -1063,7 +1063,7 @@ define([
         });
 
         var cache = false;
-        if (thisTemplateEngine.enableCache && thisTemplateEngine.configCache.isCached()) {
+        if (!thisTemplateEngine.forceReload && thisTemplateEngine.enableCache && thisTemplateEngine.configCache.isCached()) {
 
           // check if cache is still valid
           if (!thisTemplateEngine.configCache.isValid(xml)) {
