@@ -10,7 +10,7 @@ describe('load the application', function () {
   // beforeEach(function(done) {
   //   cv.Config.configSuffix = "demo";
   //   cv.Config.testMode = false;
-  //   cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function() {
+  //   qx.event.message.Bus.subscribe("setup.dom.finished", function() {
   //     console.log("app loaded");
   //     done();
   //   }, this);

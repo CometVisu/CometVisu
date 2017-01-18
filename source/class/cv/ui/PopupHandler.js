@@ -164,6 +164,6 @@ qx.Class.define('cv.ui.PopupHandler', {
   },
 
   defer: function(statics) {
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", statics.init, statics);
+    qx.event.message.Bus.subscribe("setup.dom.finished", statics.init, statics);
   }
 });

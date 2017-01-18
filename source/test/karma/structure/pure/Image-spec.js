@@ -55,7 +55,7 @@ describe("testing a image widget", function() {
       refresh: 5
     });
     var widget = res.getDomElement();
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    qx.event.message.Bus.dispatchByName("setup.dom.finished");
 
     expect(spiedTimer.start).toHaveBeenCalled();
     expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "style")).toBe('width:50%;height:51%;');

@@ -64,7 +64,7 @@ qx.Class.define('cv.PageHandler', {
         speed = 0;
       }
       var currentPath = this.getCurrentPath();
-      currentPath !== '' && cv.MessageBroker.getInstance().publish("path."+currentPath+".exitingPageChange", currentPath, target);
+      currentPath !== '' && qx.event.message.Bus.dispatchByName("path."+currentPath+".exitingPageChange", currentPath, target);
 
       var page = qx.bom.Selector.query('#' + target)[0];
       var pageWidget = cv.structure.WidgetFactory.getInstanceById(target);
@@ -72,7 +72,7 @@ qx.Class.define('cv.PageHandler', {
       if( 0 === page.length ) // check if page does exist
         return;
 
-      cv.MessageBroker.getInstance().publish("path."+target+".beforePageChange", target);
+      qx.event.message.Bus.dispatchByName("path."+target+".beforePageChange", target);
 
       var templateEngine = cv.TemplateEngine.getInstance();
 
@@ -82,7 +82,7 @@ qx.Class.define('cv.PageHandler', {
 
       // qx.bom.element.Class.addClasses(page, ['pageActive',  'activePage']);// show new page
 
-      cv.MessageBroker.getInstance().publish("path."+target+".duringPageChange", target);
+      qx.event.message.Bus.dispatchByName("path."+target+".duringPageChange", target);
 
       // update visibility of navbars, top-navigation, footer
       templateEngine.pagePartsHandler.updatePageParts( pageWidget, speed );
@@ -127,12 +127,12 @@ qx.Class.define('cv.PageHandler', {
         templateEngine.pagePartsHandler.updateTopNavigation( target );
         qx.bom.element.Style.set(pagesNode, 'left', 0 );
         if (currentPath !== '') {
-          cv.MessageBroker.getInstance().publish("path." + currentPath + ".afterPageChange", currentPath);
+          qx.event.message.Bus.dispatchByName("path." + currentPath + ".afterPageChange", currentPath);
           var oldPageWidget = cv.structure.WidgetFactory.getInstanceById(target);
           oldPageWidget.setVisible(false);
         }
-        cv.MessageBroker.getInstance().publish("page." + target + ".appear", target);
-        cv.MessageBroker.getInstance().publish("path.pageChanged", target);
+        qx.event.message.Bus.dispatchByName("page." + target + ".appear", target);
+        qx.event.message.Bus.dispatchByName("path.pageChanged", target);
         // get page widget and set it to visible
 
         pageWidget.setVisible(true);

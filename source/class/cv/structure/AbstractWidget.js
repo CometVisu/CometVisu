@@ -35,9 +35,9 @@ qx.Class.define('cv.structure.AbstractWidget', {
   construct: function(props) {
     this.base(arguments, props);
     var parts = this.getPath().split("_"); parts.shift();
-    var prio = parseInt(parts.join(""))*-1;
-    var broker = cv.MessageBroker.getInstance();
-    broker.subscribe("setup.dom.finished", this._onDomFinished, this, prio);
+    // var prio = parseInt(parts.join(""))*-1;
+    // var broker = cv.MessageBroker.getInstance();
+    qx.event.message.Bus.subscribe("setup.dom.finished", this._onDomFinished, this);
 
     // this.debug(props.$$type+" INIT ["+props.path+"]");
     // bind visibility to parent page
@@ -123,7 +123,7 @@ qx.Class.define('cv.structure.AbstractWidget', {
     action: function(ev) {},
 
     /**
-     * Triggered by the {@link cv.MessageBroker} <code>setup.dom.finished</code> message
+     * Triggered by the <code>setup.dom.finished</code> bus event
      */
     _onDomFinished: function() {
       if (!this.isVisible()) {

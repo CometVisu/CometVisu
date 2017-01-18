@@ -58,7 +58,7 @@ qx.Class.define('cv.plugins.MobileMenu', {
           qx.bom.element.Class.add(navLeft, 'mobilemenu');
         }
         qx.bom.element.Style.set(navLeft, "display", "none");
-        cv.MessageBroker.getInstance().subscribe("path.pageChanged", function() {
+        qx.event.message.Bus.subscribe("path.pageChanged", function() {
           var navbar = qx.bom.Selector.query('.navbar', navLeft)[0];
           var animation = qx.bom.element.Animation.animate(navbar, qx.util.Animation.SLIDE_LEFT_OUT);
           animation.addListenerOnce("end", function() {

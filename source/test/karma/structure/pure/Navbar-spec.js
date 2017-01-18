@@ -48,7 +48,8 @@ describe("testing a navbar widget", function() {
     var res = this.createTestWidgetString("navbar", attrs, "<text>Test</text>");
     var obj = res[0];
 
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
+    qx.event.message.Bus.dispatchByName("setup.dom.finished");
 
     var navbar = qx.bom.Selector.query('#'+barContainerId+' .navbar')[0];
     expect(navbar).not.toBeNull();
@@ -69,22 +70,22 @@ describe("testing a navbar widget", function() {
   };
 
   it("should test the top navbar creator", function() {
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar, 100);
+    // qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar);
     testNavbar.call(this, "top");
   });
 
   it("should test the left navbar creator", function() {
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar, 100);
+    // qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar);
     testNavbar.call(this, "left");
   });
 
   it("should test the right navbar creator", function() {
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar, 100);
+    // qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar);
     testNavbar.call(this, "right");
   });
 
   it("should test the bottom navbar creator", function() {
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar, 100);
+    // qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar);
     testNavbar.call(this, "bottom");
   });
 });

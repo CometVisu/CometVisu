@@ -80,13 +80,13 @@ function roundCorners() {
   });
 }
 var deferredRoundCorners = new qx.util.DeferredCall(roundCorners);
-cv.MessageBroker.getInstance().subscribe("path.pageChanged", function() {
+qx.event.message.Bus.subscribe("path.pageChanged", function() {
   if (/(opera|chrome|safari)/i.test(navigator.userAgent.toLowerCase())) {
     deferredRoundCorners.schedule();
   }
 });
 
-cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function() {
+qx.event.message.Bus.subscribe("setup.dom.finished", function() {
   qx.bom.Selector.query('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').forEach(function(label) {
 
     if (label.textContent.trim()!="") {

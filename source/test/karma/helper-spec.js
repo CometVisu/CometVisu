@@ -116,7 +116,7 @@ resetApplication = function() {
   // cleanup
   cv.data.Model.getInstance().clear();
   cv.structure.WidgetFactory.clear();
-  cv.MessageBroker.getInstance().clear();
+  qx.event.message.Bus.getInstance().dispose();
 
   var body = qx.bom.Selector.query("body")[0];
   // load empty HTML structure
@@ -278,7 +278,7 @@ beforeAll(function(done) {
 
   if (!qx.$$loader.applicationHandlerReady) {
     cv.Config.enableCache = false;
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function () {
+    qx.event.message.Bus.subscribe("setup.dom.finished", function () {
       resetApplication();
       done();
     }, this);
@@ -297,7 +297,8 @@ beforeEach(function () {
   this.findChild = findChild;
   this.initWidget = function(widget) {
     widget.setVisible && widget.setVisible(true);
-    cv.MessageBroker.getInstance().publish("setup.dom.finished");
+    qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
+    qx.event.message.Bus.dispatchByName("setup.dom.finished");
   }
 });
 
@@ -305,7 +306,7 @@ afterEach(function () {
   templateEngine.widgetData = {};
   cv.data.Model.getInstance().clear();
   cv.structure.WidgetFactory.clear();
-  cv.MessageBroker.getInstance().clear();
+  qx.event.message.Bus.getInstance().dispose();
   cv.layout.ResizeHandler.reset();
 
   if (this.container) {

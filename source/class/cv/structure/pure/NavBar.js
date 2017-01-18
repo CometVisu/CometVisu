@@ -198,6 +198,6 @@ qx.Class.define('cv.structure.pure.NavBar', {
   defer: function() {
     cv.xml.Parser.addHandler("navbar", cv.structure.pure.NavBar);
     cv.xml.Parser.addHook("navbar", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
-    cv.MessageBroker.getInstance().subscribe("setup.dom.finished", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar, Number.POSITIVE_INFINITY);
+    qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar);
   }
 });

@@ -114,8 +114,8 @@ describe("testing a pagejump widget", function() {
   });
 
   it("should test the scrolltopage listener", function() {
-    // re-add the listener as the MessageBroker subscriptions get resetted after each test
-    cv.MessageBroker.getInstance().subscribe("path.pageChanged", cv.structure.pure.PageJump._onScrollToPage, cv.structure.pure.PageJump);
+    // re-add the listener as the message bus subscriptions get resetted after each test
+    qx.event.message.Bus.subscribe("path.pageChanged", cv.structure.pure.PageJump._onScrollToPage, cv.structure.pure.PageJump);
 
     var returns = ["id_1_0", "id_1"];
     spyOn(cv.structure.WidgetFactory, "getInstanceById").and.callFake(function() {
@@ -139,9 +139,9 @@ describe("testing a pagejump widget", function() {
     });
 
     var actor = qx.bom.Selector.query(".pagejump", creator.getDomElement())[0];
-    cv.MessageBroker.getInstance().publish("path.pageChanged", "id_");
+    qx.event.message.Bus.dispatchByName("path.pageChanged", "id_");
     expect(actor).toHaveClass("active");
-    cv.MessageBroker.getInstance().publish("path.pageChanged", "id_1_");
+    qx.event.message.Bus.dispatchByName("path.pageChanged", "id_1_");
     expect(actor).not.toHaveClass("active");
   });
 });

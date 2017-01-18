@@ -247,7 +247,8 @@ qx.Class.define('cv.TemplateEngine', {
           this.debug("pages created");
         }
         this.debug("setup.dom.finished");
-        cv.MessageBroker.getInstance().publish("setup.dom.finished");
+        qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
+        qx.event.message.Bus.dispatchByName("setup.dom.finished");
 
         this.currentPage = qx.bom.Selector.query('#' + cv.Config.initialPage)[0];
 

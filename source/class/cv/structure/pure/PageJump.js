@@ -56,9 +56,11 @@ qx.Class.define('cv.structure.pure.PageJump', {
     /**
      * Handle page change events and update the active state of this PageJump
      *
+     * @param ev {Event}
      * @protected
      */
-    _onScrollToPage: function(page_id) {
+    _onScrollToPage: function(ev) {
+      var page_id = ev.getData();
       var page = cv.structure.WidgetFactory.getInstanceById(page_id);
       var model = cv.data.Model.getInstance();
       var name = page.getName();
@@ -157,6 +159,6 @@ qx.Class.define('cv.structure.pure.PageJump', {
     cv.xml.Parser.addHandler("pagejump", cv.structure.pure.PageJump);
     cv.xml.Parser.addHook("pagejump", "after", statics.afterParse, statics);
     cv.xml.Parser.addHook("pagejump", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
-    cv.MessageBroker.getInstance().subscribe("path.pageChanged", statics._onScrollToPage, statics);
+    qx.event.message.Bus.subscribe("path.pageChanged", statics._onScrollToPage, statics);
   }
 });

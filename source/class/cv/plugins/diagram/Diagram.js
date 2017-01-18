@@ -54,7 +54,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
 
     _onDomReady: function() {
       var pageId = this.getParentPage().getPath();
-      var broker = cv.MessageBroker.getInstance();
+      var broker = qx.event.message.Bus;
 
       // stop refreshing when page is left
       broker.subscribe("path." + pageId + ".exitingPageChange", function() {

@@ -264,7 +264,7 @@ qx.Class.define("cv.Application",
 
         if (cv.Config.enableCache) {
           // cache dom + data when everything is ready
-          cv.MessageBroker.getInstance().subscribe("setup.dom.finished", function() {
+          qx.event.message.Bus.subscribe("setup.dom.finished", function() {
             cv.ConfigCache.dump(xml);
           }, this);
         }

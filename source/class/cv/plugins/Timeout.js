@@ -112,7 +112,8 @@ qx.Class.define('cv.plugins.Timeout', {
       qx.event.Registration.addListener(document, 'pointerdown', this._onUserAction, this);
 
       // Keep track of current page
-      cv.MessageBroker.getInstance().subscribe("path.pageChanged", function (path) {
+      qx.event.message.Bus.subscribe("path.pageChanged", function (ev) {
+        var path = ev.getData();
         this.__timeoutCurrentPage = path;
         this.__timeoutCurrentPageTitle = qx.dom.Node.getText(qx.bom.Selector.query("#" + path+ " div > h1")[0]);
         this.__timeoutIdleCount = 0;
