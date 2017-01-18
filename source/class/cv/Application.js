@@ -236,7 +236,7 @@ qx.Class.define("cv.Application",
         } else {
           // loaded cache is still valid
           cv.Config.cacheUsed = true;
-          // cv.Config.lazyLoading = true;
+          cv.Config.lazyLoading = true;
           engine.initBackendClient();
           this.__detectInitialPage();
 
