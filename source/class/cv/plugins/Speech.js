@@ -57,8 +57,8 @@
  * @ignore(SpeechSynthesisUtterance)
  */
 qx.Class.define('cv.plugins.Speech', {
-  extend: cv.Object,
-  include: cv.role.Update,
+  extend: qx.core.Object,
+  include: [cv.role.Update, cv.oo.MMethodChaining],
 
   /*
    ******************************************************

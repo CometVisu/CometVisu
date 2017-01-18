@@ -24,7 +24,7 @@
  */
 qx.Class.define('cv.structure.AbstractWidget', {
   extend: cv.structure.AbstractBasicWidget,
-  include: [cv.role.HasStyling],
+  include: [cv.role.HasStyling, cv.oo.MMethodChaining],
   type: "abstract",
 
   /*
@@ -98,6 +98,15 @@ qx.Class.define('cv.structure.AbstractWidget', {
   */
   members: {
     __init: null,
+
+    /**
+     * Property transformaon helper
+     * @param value {String}
+     * @return {Number}
+     */
+    string2number: function(value) {
+      return parseFloat(value);
+    },
 
     /**
      * Default action for pointerdown events, does nothing but can be overridden

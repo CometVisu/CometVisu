@@ -25,7 +25,7 @@
  * @since 2016
  */
 qx.Class.define('cv.io.Mockup', {
-  extend: cv.Object,
+  extend: qx.core.Object,
 
   /*
   ******************************************************

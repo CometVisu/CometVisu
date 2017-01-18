@@ -19,7 +19,7 @@
 
 
 qx.Class.define("cv.io.Watchdog", {
-  extend: cv.Object,
+  extend: qx.core.Object,
 
   /*
   ******************************************************

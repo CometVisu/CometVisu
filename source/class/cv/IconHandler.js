@@ -30,7 +30,7 @@
  * @constructor FOO
  */
 qx.Class.define('cv.IconHandler', {
-  extend: cv.Object,
+  extend: qx.core.Object,
   type: "singleton",
 
   /*

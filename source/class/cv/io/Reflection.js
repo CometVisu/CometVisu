@@ -24,7 +24,7 @@
  * @class cv.io.Reflection
  */
 qx.Class.define('cv.io.Reflection', {
-  extend: cv.Object,
+  extend: qx.core.Object,
   type: "static",
 
   /*

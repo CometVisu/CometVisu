@@ -19,7 +19,7 @@
 
 
 qx.Class.define("cv.xml.parser.Meta", {
-  extend: cv.Object,
+  extend: qx.core.Object,
 
   /*
   ******************************************************

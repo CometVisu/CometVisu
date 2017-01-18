@@ -51,7 +51,7 @@ qx.Class.define('cv.xml.Parser', {
 
       if (clazz.superclass) {
         var parentClass = clazz.superclass;
-        while (parentClass && parentClass.classname !== "cv.Object") {
+        while (parentClass && parentClass.classname !== "qx.core.Object") {
           if (parentClass.parse) {
             this.addHook(tagName, "before", parentClass.parse, clazz);
           }

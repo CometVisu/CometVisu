@@ -27,7 +27,7 @@
  * @class cv.PagePartsHandler
  */
 qx.Class.define('cv.PagePartsHandler', {
-  extend: cv.Object,
+  extend: qx.core.Object,
 
   /*
    ******************************************************

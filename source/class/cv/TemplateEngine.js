@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.TemplateEngine', {
-  extend: cv.Object,
+  extend: qx.core.Object,
   type: "singleton",
 
   construct: function() {

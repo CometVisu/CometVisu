@@ -19,7 +19,7 @@
 
 
 qx.Class.define('cv.io.transport.Sse', {
-  extend: cv.Object,
+  extend: qx.core.Object,
 
   /*
    ******************************************************

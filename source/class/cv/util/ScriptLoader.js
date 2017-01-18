@@ -19,7 +19,7 @@
 
 
 qx.Class.define('cv.util.ScriptLoader', {
-  extend: cv.Object,
+  extend: qx.core.Object,
   type: "singleton",
 
   /*

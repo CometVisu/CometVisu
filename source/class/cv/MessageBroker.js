@@ -25,7 +25,7 @@
  * @since 0.10.0
  */
 qx.Class.define('cv.MessageBroker', {
-  extend: cv.Object,
+  extend: qx.core.Object,
   type: "singleton",
 
   /*

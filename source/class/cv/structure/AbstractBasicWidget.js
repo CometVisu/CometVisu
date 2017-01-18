@@ -22,7 +22,7 @@
  * @class cv.structure.AbstractBasicWidget
  */
 qx.Class.define('cv.structure.AbstractBasicWidget', {
-  extend: cv.Object,
+  extend: qx.core.Object,
   type: "abstract",
 
   /*

@@ -26,7 +26,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.structure.pure.Unknown', {
-  extend: cv.Object,
+  extend: qx.core.Object,
 
   /*
   ******************************************************

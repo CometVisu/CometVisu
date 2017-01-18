@@ -25,7 +25,7 @@
  * @since 0.10.0 (2016)
  */
 qx.Class.define('cv.data.Model', {
-  extend: cv.Object,
+  extend: qx.core.Object,
   type: "singleton",
 
   /*

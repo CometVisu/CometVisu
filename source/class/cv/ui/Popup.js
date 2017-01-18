@@ -1,6 +1,6 @@
 
 qx.Class.define('cv.ui.Popup', {
-  extend: cv.Object,
+  extend: qx.core.Object,
 
   /*
   ******************************************************

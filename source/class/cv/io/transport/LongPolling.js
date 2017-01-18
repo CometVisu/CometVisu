@@ -19,7 +19,7 @@
 
 
 qx.Class.define('cv.io.transport.LongPolling', {
-  extend: cv.Object,
+  extend: qx.core.Object,
 
   /*
   ******************************************************

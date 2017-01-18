@@ -33,7 +33,7 @@
  * model.
  */
 qx.Class.define('cv.io.Client', {
-  extend: cv.Object,
+  extend: qx.core.Object,
 
   /*
    ******************************************************

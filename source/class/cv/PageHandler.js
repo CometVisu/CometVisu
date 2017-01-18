@@ -27,7 +27,7 @@
 // page transition animations like blending, etc. pp.
 
 qx.Class.define('cv.PageHandler', {
-  extend: cv.Object,
+  extend: qx.core.Object,
 
   /*
    ******************************************************
