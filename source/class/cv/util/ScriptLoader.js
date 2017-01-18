@@ -53,7 +53,8 @@ qx.Class.define('cv.util.ScriptLoader', {
   ******************************************************
   */
   events: {
-    "finished": "qx.event.type.Event"
+    "finished": "qx.event.type.Event",
+    "designError": "qx.event.type.Data"
   },
 
   /*
@@ -132,6 +133,10 @@ qx.Class.define('cv.util.ScriptLoader', {
       var data = ev.getData();
       this.__scriptQueue.remove(data.script);
       this.error(data.script+" failed");
+      if (data.script.startsWith("design")) {
+        var failedDesign = data.script.split("/")[1];
+        this.fireDataEvent("designError", failedDesign);
+      }
       this._checkQueue();
     },
 

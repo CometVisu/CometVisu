@@ -215,6 +215,19 @@ qx.Class.define('cv.TemplateEngine', {
         settings.stylesToLoad.push(baseUri + '/custom.css');
         settings.scriptsToLoad.push('designs/' + design + '/design_setup.js');
 
+        cv.util.ScriptLoader.getInstance().addListenerOnce("designError", function(ev) {
+          if (ev.getData() === design) {
+            this.error('Failed to load "'+design+'" design! Falling back to simplified "pure"');
+
+            baseUri = 'designs/pure';
+            cv.util.ScriptLoader.getInstance().addStyles([
+              baseUri+"/basic.css",
+              baseUri+"/mobile.css",
+              baseUri+"/custom.css"
+            ]);
+            cv.util.ScriptLoader.getInstance().addScripts(baseUri+"/design_setup.js");
+          }
+        })
       }
       var metaParser = new cv.xml.parser.Meta();
 
