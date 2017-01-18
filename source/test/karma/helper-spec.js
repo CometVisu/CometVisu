@@ -116,7 +116,11 @@ resetApplication = function() {
   // cleanup
   cv.data.Model.getInstance().clear();
   cv.structure.WidgetFactory.clear();
-  qx.event.message.Bus.getInstance().dispose();
+
+  var subs = qx.event.message.Bus.getInstance().getSubscriptions();
+  Object.getOwnPropertyNames(subs).forEach(function(topic) {
+    delete subs[topic];
+  });
 
   var body = qx.bom.Selector.query("body")[0];
   // load empty HTML structure
@@ -306,7 +310,11 @@ afterEach(function () {
   templateEngine.widgetData = {};
   cv.data.Model.getInstance().clear();
   cv.structure.WidgetFactory.clear();
-  qx.event.message.Bus.getInstance().dispose();
+
+  var subs = qx.event.message.Bus.getInstance().getSubscriptions();
+  Object.getOwnPropertyNames(subs).forEach(function(topic) {
+    delete subs[topic];
+  });
   cv.layout.ResizeHandler.reset();
 
   if (this.container) {

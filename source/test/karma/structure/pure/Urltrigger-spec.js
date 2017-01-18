@@ -38,7 +38,7 @@ describe("testing a urltrigger widget", function() {
     var res = this.createTestElement("urltrigger", {url: "/test/test.txt", align: "center"});
     spyOn(res.__xhr, "send");
     expect(res.getActor()).toHaveClass("center");
-    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    this.initWidget(res);
 
     res._action();
     expect(res.__xhr.send).toHaveBeenCalled();
