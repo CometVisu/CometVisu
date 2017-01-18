@@ -126,49 +126,6 @@ qx.Class.define('cv.TemplateEngine', {
       return cv.data.Model.getInstance().getAddresses();
     },
 
-    // update: function (json) {
-      // var addressList = model.getAddressList();
-      //
-      // var keys = Object.keys(json);
-      // var currentFrameTime = Date.now();
-      //
-      // var process = function() {
-      //   var key = keys.pop();
-      //   if (key in addressList) {
-      //     var data = json[key];
-      //     model.onUpdate(key, data);
-
-          // addressList[key].forEach(function (id) {
-          //   if (typeof id === 'string') {
-          //     var widget = cv.structure.WidgetFactory.getInstanceById(id, true);
-          //     if (widget) {
-          //       if (widget.update) {
-          //         widget.update(key, data);
-          //       }
-          //     } else {
-          //       // TODO: store for usage after widget has been created
-          //     }
-          //     //console.log( element, type, updateFn );
-          //   } else if (typeof id === 'function') {
-          //     id.call(key, data);
-          //   }
-          // });
-      //   }
-      //   if (keys.length) {
-      //     if (Date.now() - currentFrameTime <= 30) {
-      //       process();
-      //     } else {
-      //       currentFrameTime = Date.now();
-      //       qx.bom.AnimationFrame.request(process, this);
-      //     }
-      //   }
-      // };
-      // if (keys.length) {
-      //   currentFrameTime = Date.now();
-      //   qx.bom.AnimationFrame.request(process, this);
-      // }
-    // },
-
     initBackendClient: function () {
       var backendName = cv.Config.configSettings.backend || cv.Config.backend;
       if (cv.Config.testMode) {
