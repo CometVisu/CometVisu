@@ -49,7 +49,8 @@ module.exports = function(config) {
 
     proxies: {
       '/source/resource/designs': '/base/source/resource/designs',
-      '/source/class/cv/plugins': '/base/source/class/cv/plugins',
+      '/source/class/cv': '/base/source/class/cv',
+      '/external/qooxdoo': '/base/external/qooxdoo',
       '/source/resource': '/base/source/resource',
       '/config': '/base/source/resource/config',
       '/demo': '/base/source/resource/demo',

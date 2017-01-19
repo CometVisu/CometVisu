@@ -108,10 +108,18 @@ qx.Class.define('cv.TemplateEngine', {
         parts = [parts];
       }
       this.__partQueue.append(parts);
-      qx.io.PartLoader.require(parts, function(ev) {
-        parts.forEach(this.__partQueue.remove, this.__partQueue);
+      qx.io.PartLoader.require(parts, function(states) {
+        parts.forEach(function(part, idx) {
+          if (states[idx] === "complete") {
+            this.__partQueue.remove(part);
+            this.debug("successfully loaded part "+part);
+          } else {
+            this.error("error loading part "+part);
+          }
+        }, this);
+
         if (callback) {
-          callback.apply(context || this, ev);
+          callback.apply(context || this, states);
         }
       }, this);
     },
@@ -191,9 +199,7 @@ qx.Class.define('cv.TemplateEngine', {
         settings.structure = "structure-pure";
       }
       // load part for structure
-      this.loadParts([settings.structure], function() {
-        this.debug(settings.structure+" has been loaded");
-      }, this);
+      this.loadParts([settings.structure]);
 
       if (qx.bom.element.Attribute.get(pagesNode, "backend") !== null) {
         settings.backend = qx.bom.element.Attribute.get(pagesNode, "backend");
