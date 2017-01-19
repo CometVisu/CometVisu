@@ -140,9 +140,11 @@
           {
             "include" : [
               "${APPLICATION}.Application",
-              "${APPLICATION}.structure.pure.*",
               "${APPLICATION}.transforms.*"
             ]
+          },
+          "structure-pure" : {
+            "include": [ "${APPLICATION}.structure.pure.*" ]
           },
 
           "plugin-diagram" :

@@ -28,6 +28,10 @@ qx.Class.define('cv.TemplateEngine', {
   construct: function() {
     // this.base(arguments);
     this.pagePartsHandler = new cv.PagePartsHandler();
+
+    this.__partQueue.addListener("changeLength", function(ev) {
+      this.setPartsLoaded(ev.getData() === 0);
+    }, this);
   },
 
   properties: {
@@ -46,7 +50,8 @@ qx.Class.define('cv.TemplateEngine', {
     partsLoaded: {
       check: "Boolean",
       init: false,
-      apply: "_applyLoaded"
+      apply: "_applyLoaded",
+      event: "changePartsLoaded"
     },
 
     scriptsLoaded: {
@@ -95,6 +100,21 @@ qx.Class.define('cv.TemplateEngine', {
 
     pluginsToLoadCount : 0,
     xml : null,
+
+    __partQueue: new qx.data.Array(),
+
+    loadParts: function(parts, callback, context) {
+      if (!qx.lang.Type.isArray(parts)) {
+        parts = [parts];
+      }
+      this.__partQueue.append(parts);
+      qx.io.PartLoader.require(parts, function(ev) {
+        parts.forEach(this.__partQueue.remove, this.__partQueue);
+        if (callback) {
+          callback.apply(context || this, ev);
+        }
+      }, this);
+    },
 
     // property apply
     _applyReady: function(value) {
@@ -164,6 +184,16 @@ qx.Class.define('cv.TemplateEngine', {
       var settings = cv.Config.configSettings;
       var pagesNode = qx.bom.Selector.query("pages", loaded_xml)[0];
 
+      // load structure-part
+      if (qx.bom.element.Attribute.get(pagesNode, "structure") !== null) {
+        settings.structure = "structure-"+qx.bom.element.Attribute.get(pagesNode, "structure");
+      } else {
+        settings.structure = "structure-pure";
+      }
+      // load part for structure
+      this.loadParts([settings.structure], function() {
+        this.debug(settings.structure+" has been loaded");
+      }, this);
 
       if (qx.bom.element.Attribute.get(pagesNode, "backend") !== null) {
         settings.backend = qx.bom.element.Attribute.get(pagesNode, "backend");
@@ -254,6 +284,7 @@ qx.Class.define('cv.TemplateEngine', {
         if (!cv.Config.cacheUsed) {
           this.debug("creating pages");
           var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
+
           this.createPages(page, 'id');
           this.debug("finalizing");
           qx.event.message.Bus.dispatchByName("setup.dom.append");

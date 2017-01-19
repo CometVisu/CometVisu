@@ -86,8 +86,10 @@ qx.Class.define("cv.Application",
       // Enable logging in debug variant
       if (qx.core.Environment.get("qx.debug")) {
         // support native logging capabilities, e.g. Firebug for Firefox
+        //noinspection BadExpressionStatementJS
         qx.log.appender.Native;
         // support additional cross-browser console. Press F7 to toggle visibility
+        //noinspection BadExpressionStatementJS
         qx.log.appender.Console;
       }
 
@@ -240,6 +242,11 @@ qx.Class.define("cv.Application",
           engine.initBackendClient();
           this.__detectInitialPage();
 
+          // load part for structure
+          engine.loadParts([cv.Config.configSettings.structure], function() {
+            this.debug(cv.Config.configSettings.structure+" has been loaded");
+          }, this);
+
           engine.addListenerOnce("changeReady", function() {
             // create the objects
             cv.Config.TMP.treePath = cv.Config.initialPage;
@@ -291,17 +298,19 @@ qx.Class.define("cv.Application",
       var plugins = cv.Config.configSettings.pluginsToLoad;
       if (plugins.length > 0) {
         this.debug("loading plugins");
-        qx.io.PartLoader.require(plugins, function() {
-          this.debug("plugins loaded");
-          qx.event.Timer.once(function() {
-            cv.util.ScriptLoader.getInstance().setAllQueued(true);
-            cv.TemplateEngine.getInstance().setPartsLoaded(true);
-          }, this, 0);
+        var engine = cv.TemplateEngine.getInstance();
+        engine.addListener("changePartsLoaded", function(ev) {
+          if (ev.getData() === true) {
+            this.debug("plugins loaded");
+            qx.event.Timer.once(function() {
+              cv.util.ScriptLoader.getInstance().setAllQueued(true);
+            }, this, 0);
+          }
         }, this);
+        engine.loadParts(plugins);
       } else {
         this.debug("no plugins to load => all scripts queued");
         cv.util.ScriptLoader.getInstance().setAllQueued(true);
-        cv.TemplateEngine.getInstance().setPartsLoaded(true);
       }
     },
 
