@@ -23,6 +23,7 @@
  */
 qx.Class.define('cv.xml.parser.widgets.NavBar', {
   extend: cv.xml.parser.AbstractBasicWidget,
+  include: cv.role.HasChildren,
   
   /*
   ******************************************************

@@ -23,6 +23,10 @@
  */
 qx.Class.define('cv.xml.parser.widgets.Page', {
   extend: cv.xml.parser.AbstractBasicWidget,
+  include: [
+    cv.role.HasChildren,
+    cv.role.Update
+  ],
 
   /*
    ******************************************************
@@ -30,7 +34,6 @@ qx.Class.define('cv.xml.parser.widgets.Page', {
    ******************************************************
    */
   statics: {
-
 
     parse: function( page, path, flavour, pageType ) {
 

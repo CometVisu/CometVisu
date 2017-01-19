@@ -23,6 +23,7 @@
  */
 qx.Class.define('cv.xml.parser.widgets.Slide', {
   extend: cv.xml.parser.AbstractBasicWidget,
+  include: [cv.role.Operate, cv.role.Update],
 
   /*
   ******************************************************

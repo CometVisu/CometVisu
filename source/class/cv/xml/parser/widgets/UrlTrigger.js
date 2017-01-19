@@ -23,6 +23,11 @@
  */
 qx.Class.define('cv.xml.parser.widgets.UrlTrigger', {
   extend: cv.xml.parser.AbstractBasicWidget,
+  include: [
+    cv.role.Operate,
+    cv.role.HasAnimatedButton,
+    cv.role.BasicUpdate
+  ],
 
   /*
   ******************************************************

@@ -23,6 +23,7 @@
  */
 qx.Class.define('cv.xml.parser.widgets.MultiTrigger', {
   extend: cv.xml.parser.AbstractBasicWidget,
+  include: [cv.role.Operate, cv.role.Update, cv.role.HasAnimatedButton],
 
   /*
   ******************************************************

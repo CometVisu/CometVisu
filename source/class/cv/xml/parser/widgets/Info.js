@@ -23,6 +23,7 @@
  */
 qx.Class.define('cv.xml.parser.widgets.Info', {
   extend: cv.xml.parser.AbstractBasicWidget,
+  include: cv.role.Update,
 
   defer: function(statics) {
     // register the parser

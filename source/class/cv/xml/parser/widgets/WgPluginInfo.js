@@ -26,6 +26,7 @@
  */
 qx.Class.define('cv.xml.parser.widgets.WgPluginInfo', {
   extend: cv.xml.parser.AbstractBasicWidget,
+  include: cv.role.Update,
 
   /*
   ******************************************************

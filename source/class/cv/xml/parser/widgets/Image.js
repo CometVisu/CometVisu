@@ -23,6 +23,7 @@
  */
 qx.Class.define('cv.xml.parser.widgets.Image', {
   extend: cv.xml.parser.AbstractBasicWidget,
+  include: cv.role.Refresh,
 
   /*
   ******************************************************

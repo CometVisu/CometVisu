@@ -23,6 +23,7 @@
  */
   qx.Class.define('cv.xml.parser.widgets.Audio', {
     extend: cv.xml.parser.AbstractBasicWidget,
+    include: cv.role.Update,
 
     /*
     ******************************************************
