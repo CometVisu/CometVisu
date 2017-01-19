@@ -26,10 +26,8 @@
  * @author Christian Mayer
  * @since 0.8.0 (2012)
  */
-qx.Class.define('cv.structure.pure.Include', {
-  extend: cv.structure.AbstractBasicWidget,
-
-  //include: cv.role.HasChildren,
+qx.Class.define('cv.xml.parser.widgets.Include', {
+  type: "static",
 
   /*
   ******************************************************
@@ -37,7 +35,7 @@ qx.Class.define('cv.structure.pure.Include', {
   ******************************************************
   */
   statics: {
-    maturity: cv.structure.AbstractBasicWidget.Maturity.development,
+    maturity: cv.xml.parser.AbstractBasicWidget.Maturity.development,
     __xhr: null,
 
     getRequest: function(url) {
@@ -70,20 +68,8 @@ qx.Class.define('cv.structure.pure.Include', {
     }
   },
 
-  /*
-  ******************************************************
-    MEMBERS
-  ******************************************************
-  */
-  members: {
-    // overridden
-    getDomString: function () {
-      return '';
-    }
-  },
-
-  defer: function() {
+  defer: function(statics) {
     // register the parser
-    cv.xml.Parser.addHandler("include", cv.structure.pure.Include);
+    cv.xml.Parser.addHandler("include", statics);
   }
 });

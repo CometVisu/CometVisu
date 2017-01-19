@@ -132,11 +132,12 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/openweathermap/openweathermap');
     loader.addScripts('plugins/openweathermap/owm/jquery.owm.js');
     // register the parser
     cv.xml.Parser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
+    cv.structure.WidgetFactory.registerClass("openweathermap", statics);
   }
 });

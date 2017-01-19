@@ -73,7 +73,7 @@ qx.Class.define('cv.structure.pure.PageLink', {
     }
   },
 
-  defer: function() {
-    cv.xml.Parser.addHandler("pagelink", cv.structure.pure.PageLink);
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("pagelink", statics);
   }
-}); // end define
+});

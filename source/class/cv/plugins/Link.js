@@ -78,7 +78,8 @@ qx.Class.define('cv.plugins.Link', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     cv.xml.Parser.addHandler("link", cv.plugins.Link);
+    cv.structure.WidgetFactory.registerClass("link", statics);
   }
 });

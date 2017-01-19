@@ -94,9 +94,10 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     // register the parser
     cv.xml.Parser.addHandler("diagram", cv.plugins.diagram.Diagram);
     cv.xml.Parser.addHook("diagram", "after", cv.plugins.diagram.AbstractDiagram.afterParse, cv.plugins.diagram.AbstractDiagram);
+    cv.structure.WidgetFactory.registerClass("diagram", statics);
   }
 });

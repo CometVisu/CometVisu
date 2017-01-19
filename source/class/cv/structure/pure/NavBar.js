@@ -28,69 +28,6 @@
 qx.Class.define('cv.structure.pure.NavBar', {
   extend: cv.structure.AbstractWidget,
   include: cv.role.HasChildren,
-  
-  /*
-  ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    _navbarTop: '',
-    _navbarLeft: '',
-    _navbarRight: '',
-    _navbarBottom: '',
-
-    createDefaultWidget: function (widgetType, n, path, flavour, pageType) {
-
-      var classes = "navbar clearfix";
-      if (qx.bom.element.Attribute.get(n, 'flavour')) {
-        classes += " flavour_" + qx.bom.element.Attribute.get(n, 'flavour');
-      }// sub design choice
-
-      // store scope globally
-      var id = path.split("_");
-      id.pop();
-      var pos = qx.bom.element.Attribute.get(n, 'position') || 'left';
-      cv.data.Model.getInstance().setWidgetData(id.join('_') + '_' + pos + '_navbar', {
-        'scope': parseFloat(qx.bom.element.Attribute.get(n, 'scope')) || -1
-      });
-
-      return cv.data.Model.getInstance().setWidgetData(cv.role.HasChildren.getStoragePath(n, path), {
-        'path': path,
-        'classes': classes,
-        '$$type': widgetType
-      });
-    },
-
-    getAttributeToPropertyMappings: function () {
-      return {
-        'scope': {"default": -1, transform: parseFloat},
-        'name': {},
-        'dynamic': {
-          transform: function (value) {
-            return value === "true";
-          }
-        },
-        'width': {"default": "300"},
-        'position': {"default": 'left'}
-      };
-    },
-
-    /**
-     * Called on setup.dom.finished event with high priority. Adds the navbar dom string
-     * to the DOM-Tree
-     */
-    initializeNavbars: function() {
-      ['Top', 'Left', 'Right', 'Bottom'].forEach(function(pos) {
-        if (cv.structure.pure.NavBar['_navbar'+pos]) {
-          var elem = qx.bom.Selector.query('#navbar'+pos)[0];
-          if (elem) {
-            elem.innerHTML += cv.structure.pure.NavBar['_navbar' + pos];
-          }
-        }
-      }, this);
-    }
-  },
 
   /*
   ******************************************************
@@ -125,6 +62,33 @@ qx.Class.define('cv.structure.pure.NavBar', {
     visible: {
       refine: true,
       init: true
+    }
+  },
+
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    _navbarTop: '',
+    _navbarLeft: '',
+    _navbarRight: '',
+    _navbarBottom: '',
+
+    /**
+     * Called on setup.dom.finished event with high priority. Adds the navbar dom string
+     * to the DOM-Tree
+     */
+    initializeNavbars: function() {
+      ['Top', 'Left', 'Right', 'Bottom'].forEach(function(pos) {
+        if (this['_navbar'+pos]) {
+          var elem = qx.bom.Selector.query('#navbar'+pos)[0];
+          if (elem) {
+            elem.innerHTML += this['_navbar' + pos];
+          }
+        }
+      }, this);
     }
   },
   
@@ -194,10 +158,9 @@ qx.Class.define('cv.structure.pure.NavBar', {
       return '';
     }
   },
-  
-  defer: function() {
-    cv.xml.Parser.addHandler("navbar", cv.structure.pure.NavBar);
-    cv.xml.Parser.addHook("navbar", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
-    qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar);
+
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("navbar", statics);
+    qx.event.message.Bus.subscribe("setup.dom.finished.before", statics.initializeNavbars, statics);
   }
 });

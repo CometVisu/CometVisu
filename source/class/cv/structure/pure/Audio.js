@@ -44,46 +44,6 @@
 
     /*
     ******************************************************
-      STATICS
-    ******************************************************
-    */
-    statics: {
-
-      /**
-       * Returns a map with definitions for the XML Parser to map XML-Attribute values
-       * to properties e.g
-       * <pre>{
-         *  <attribute-name>: {
-         *    target: <property-name>,
-         *    default: <default-value>,
-         *    transform: <callback to transform the value to the desired value>
-         *  }
-         * }</pre>
-       * @return {Object}
-       */
-      getAttributeToPropertyMappings: function() {
-        return {
-          src: {},
-          id: {},
-          width: {},
-          height: {},
-          autoplay: {
-            transform: function (value) {
-              return value === "autoplay" || value === "true"
-            }
-          },
-          loop: {
-            transform: function (value) {
-              return value === "loop" || value === "true"
-            }
-          },
-          thresholdValue: {"default": 1}
-        };
-      }
-    },
-
-    /*
-    ******************************************************
       PROPERTIES
     ******************************************************
     */

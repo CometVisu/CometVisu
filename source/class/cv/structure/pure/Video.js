@@ -41,24 +41,6 @@ qx.Class.define('cv.structure.pure.Video', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'width'       :   {},
-        'height'      :   {},
-        'src'         :   {},
-        'autoplay'    :   { target: 'autoplay', transform: function(value) {
-          return value === "true";
-        }}
-      };
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -77,10 +59,5 @@ qx.Class.define('cv.structure.pure.Video', {
       var autoplay = (this.getAutoplay() === true) ? ' autoplay="autoplay"' : '';
       return '<div class="actor"><video src="' + this.getSrc() + '" ' + style + autoplay + '  controls="controls" /></div>';
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("video", cv.structure.pure.Video);
   }
-}); // end define
+});

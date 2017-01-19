@@ -61,8 +61,9 @@ qx.Class.define('cv.plugins.Svg', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     // register the parser
     cv.xml.Parser.addHandler("svg", cv.plugins.Svg);
+    cv.structure.WidgetFactory.registerClass("svg", statics);
   }
 });

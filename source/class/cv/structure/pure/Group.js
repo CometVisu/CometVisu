@@ -74,36 +74,6 @@ qx.Class.define('cv.structure.pure.Group', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    afterParse: function (xml, path, flavour, pageType) {
-      var data = cv.data.Model.getInstance().getWidgetData(cv.role.HasChildren.getStoragePath(xml, path));
-      if (data.target) {
-        data.classes += ' clickable';
-        data.bindClickToWidget = true; // for groups with pagejumps this is mandatory
-      }
-      if (data.noWidget === true) {
-        data.classes = data.classes.replace("widget ", "");
-      }
-    },
-    getAttributeToPropertyMappings: function () {
-      return {
-        'nowidget': {
-          target: 'noWidget', "default": false, transform: function (value) {
-            return value === "true";
-          }
-        },
-        'name': { "default": "" },
-        'target': { "default": "" }
-      };
-    }
-  },
-
-
-  /*
-  ******************************************************
     PROPERTIES
   ******************************************************
   */
@@ -169,11 +139,5 @@ qx.Class.define('cv.structure.pure.Group', {
 
       return '<div class="' + this.getClasses() + '">' + container + '</div>';
     }
-  },
-
-  defer: function() {
-    cv.xml.Parser.addHandler("group", cv.structure.pure.Group);
-    cv.xml.Parser.addHook("group", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
-    cv.xml.Parser.addHook("group", "after", cv.structure.pure.Group.afterParse, cv.structure.pure.Group);
   }
 });

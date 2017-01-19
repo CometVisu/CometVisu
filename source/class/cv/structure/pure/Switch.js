@@ -78,20 +78,6 @@ qx.Class.define('cv.structure.pure.Switch', {
 
   /*
    ******************************************************
-   STATICS
-   ******************************************************
-   */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'on_value': {target: 'onValue', 'default': "1"},
-        'off_value': {target: 'offValue', 'default': "0"}
-      };
-    }
-  },
-
-  /*
-   ******************************************************
    MEMBERS
    ******************************************************
    */
@@ -121,10 +107,5 @@ qx.Class.define('cv.structure.pure.Switch', {
     getActionValue: function () {
       return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("switch", cv.structure.pure.Switch);
   }
 });

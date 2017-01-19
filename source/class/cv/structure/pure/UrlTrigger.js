@@ -45,25 +45,6 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'value' : { target: 'sendValue', "default": "0" },
-        'params'  : { "default": '' },
-        'url': { }
-      };
-    },
-    getDefaultClasses: function(type) {
-      // additional trigger class
-      return 'widget clearfix trigger '+type.toLowerCase();
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -119,8 +100,7 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
     this._disposeObjects("__xhr");
   },
 
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("urltrigger", cv.structure.pure.UrlTrigger);
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("urltrigger", statics);
   }
-}); // end define
+});

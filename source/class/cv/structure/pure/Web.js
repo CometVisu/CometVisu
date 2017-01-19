@@ -66,52 +66,6 @@ qx.Class.define('cv.structure.pure.Web', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-
-    /**
-     * Returns a mapping to map XML-Attributes to properties to help the parser to parse the config element.
-     * @return {Map}
-     */
-    getAttributeToPropertyMappings: function () {
-      return {
-        address: {},
-        width: {},
-        height: {},
-        frameborder: {
-          transform: function (value) {
-            return value === "true";
-          }
-        },
-        background: {},
-        src: {},
-        scrolling: {}
-      };
-    },
-
-    /**
-     * Parsed the ga attribute if set
-     * @param xml {Element} web XML-Element from config
-     * @param path {String} path to the widget
-     */
-    afterParse: function (xml, path) {
-      var data = cv.data.Model.getInstance().getWidgetData(path);
-      var ga = xml.getAttribute("ga");
-      if (ga) {
-        cv.data.Model.getInstance().addAddress(ga);
-        if (cv.Config.backend.substr(0, 2) == "oh") {
-          data.address['_' + ga] = ['OH:switch', 'OFF'];
-        } else {
-          data.address['_' + ga] = ['DPT:1.001', 0];
-        }
-      }
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -151,12 +105,6 @@ qx.Class.define('cv.structure.pure.Web', {
         cv.TemplateEngine.getInstance().visu.write( address, cv.Transform.encode(addr[0], 0));
       }
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("web", cv.structure.pure.Web);
-    cv.xml.Parser.addHook("web", "after", cv.structure.pure.Web.afterParse, cv.structure.pure.Web);
   }
 });
 

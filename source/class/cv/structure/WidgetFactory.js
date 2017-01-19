@@ -28,16 +28,22 @@ qx.Class.define('cv.structure.WidgetFactory', {
   */
   statics: {
     c : 0,
-    registry: { check: 'Object', init: {} },
+    /**
+     * Map $$type to Classname
+     */
+    __typeMapping: {},
+    registry: {},
+
+    registerClass: function(type, clazz) {
+      this.__typeMapping[type] = clazz;
+    },
 
     createInstance: function (type, data) {
       if (!this.registry[data.path]) {
         if (!cv.structure.pure[qx.lang.String.firstUp(type)]) {
-          // try to find it via parser handler
-          var handler = cv.xml.Parser.getHandler(type);
-          if (handler) {
-            // console.log(data.path+" "+handler);
-            this.registry[data.path] = new handler(data);
+          var clazz = this.__typeMapping[type];
+          if (clazz) {
+            this.registry[data.path] = new clazz(data);
           } else {
             qx.log.Logger.error("No handler found for type '"+type+"'");
             return null;

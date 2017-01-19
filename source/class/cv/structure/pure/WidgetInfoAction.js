@@ -19,7 +19,7 @@
 
 
 /**
- * This is a halper class for the InfoAction widget it cannot be used directly
+ * This is a helper class for the InfoAction widget it cannot be used directly
  *
  * @author Tobias Bräutigam
  * @since 0.10.0 (as widget), 0.9.2 (as plugin)
@@ -44,18 +44,6 @@ qx.Class.define('cv.structure.pure.WidgetInfoAction', {
 
   /*
    ******************************************************
-   STATICS
-   ******************************************************
-   */
-  statics: {
-    afterParse: function (xml, path) {
-      var data = cv.data.Model.getInstance().getWidgetData(path);
-      data.containerClass = data.$$type;
-    }
-  },
-
-  /*
-   ******************************************************
    MEMBERS
    ******************************************************
    */
@@ -65,12 +53,9 @@ qx.Class.define('cv.structure.pure.WidgetInfoAction', {
       return this.getChildrenDomString();
     }
   },
-  defer: function () {
-    cv.xml.Parser.addHandler("widgetinfo", cv.structure.pure.WidgetInfoAction);
-    cv.xml.Parser.addHandler("widgetaction", cv.structure.pure.WidgetInfoAction);
-    cv.xml.Parser.addHook("widgetinfo", "after", cv.structure.pure.WidgetInfoAction.afterParse, cv.structure.pure.WidgetInfoAction);
-    cv.xml.Parser.addHook("widgetaction", "after", cv.structure.pure.WidgetInfoAction.afterParse, cv.structure.pure.WidgetInfoAction);
-    cv.xml.Parser.addHook("widgetinfo", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
-    cv.xml.Parser.addHook("widgetaction", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
+
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("widgetinfo", statics);
+    cv.structure.WidgetFactory.registerClass("widgetaction", statics);
   }
 });

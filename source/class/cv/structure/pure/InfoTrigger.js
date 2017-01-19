@@ -84,38 +84,6 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'downvalue': {target: 'downValue', transform: parseFloat, "default": 0},
-        'shortdownvalue': {target: 'shortDownValue', transform: parseFloat, "default": 0},
-        'downlabel': {target: 'downLabel'},
-        'upvalue': {target: 'upValue', transform: parseFloat, "default": 0},
-        'shortupvalue': {target: 'shortUpValue', transform: parseFloat, "default": 0},
-        'uplabel': {target: 'upLabel'},
-        'shorttime': {target: 'shortThreshold', transform: parseFloat, "default": -1},
-        'change': {
-          target: 'isAbsolute', transform: function (value) {
-            return (value || 'relative') === "absolute";
-          }
-        },
-        'min': {transform: parseFloat, "default": 0},
-        'max': {transform: parseFloat, "default": 255},
-        'infoposition': {target: 'infoPosition', "default": 'left'}
-      };
-    },
-
-    makeAddressListFn: function (src, transform, mode, variant) {
-      // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
-      return [true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1 | 2)];
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -224,8 +192,7 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
     }
   },
 
-  defer: function () {
-    // register the parser
-    cv.xml.Parser.addHandler("infotrigger", cv.structure.pure.InfoTrigger);
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("infotrigger", statics);
   }
 });

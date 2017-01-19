@@ -363,10 +363,11 @@ qx.Class.define('cv.plugins.UpnpController', {
     }
   },
   
-  defer: function() {
+  defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/upnpcontroller/upnpcontroller.css');
     cv.xml.Parser.addHandler("upnpcontroller", cv.plugins.UpnpController);
+    cv.structure.WidgetFactory.registerClass("upnpcontroller", statics);
   }
   
 });

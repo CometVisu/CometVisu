@@ -410,6 +410,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       'plugins/diagram/dep/flot/jquery.flot.navigate.min.js'
     ]);
     cv.xml.Parser.addHandler("powerspectrum", cv.plugins.PowerSpectrum);
+    cv.structure.WidgetFactory.registerClass("powerspectrum", statics);
     
     // init
     statics.limitEN50160_1999.forEach( statics.fixLimits );

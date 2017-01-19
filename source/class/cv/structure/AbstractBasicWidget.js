@@ -19,7 +19,7 @@
 
 
 /**
- * @class cv.structure.AbstractBasicWidget
+ *
  */
 qx.Class.define('cv.structure.AbstractBasicWidget', {
   extend: qx.core.Object,
@@ -32,38 +32,6 @@ qx.Class.define('cv.structure.AbstractBasicWidget', {
   */
   construct: function(props) {
     this.set(props);
-  },
-
-  /*
-  ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    /**
-     * Define ENUM of maturity levels for features, so that e.g. the editor can
-     * ignore some widgets when they are not supported yet
-     */
-    Maturity : {
-      release: 0,
-      development: 1
-    },
-
-    /**
-     * Parse the widgets XML confuguration
-     * @param element {Element} the widgets XML Element from the config file
-     * @param path {String} internal path to the widget
-     * @param flavour {String} inherited flavour
-     * @param pageType {String} text, 2d or 3d the parent page type
-     * @return {Map} the extracted information, that is stored in the data model
-     */
-    parse: function (element, path, flavour, pageType) {
-      return cv.data.Model.getInstance().setWidgetData( path, {
-        'path': path,
-        '$$type': cv.xml.Parser.getElementType(element),
-        'pageType': pageType
-      });
-    }
   },
 
   /*

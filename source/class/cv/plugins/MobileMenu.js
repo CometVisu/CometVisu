@@ -124,11 +124,12 @@ qx.Class.define('cv.plugins.MobileMenu', {
   //     } );
   // });
 
-  defer: function() {
+  defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/mobilemenu/mobilemenu.css');
     cv.xml.Parser.addHandler("mobilemenu", cv.plugins.MobileMenu);
     // add parser hook for children
     cv.xml.Parser.addHook("mobilemenu", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
+    cv.structure.WidgetFactory.registerClass("mobilemenu", statics);
   }
 });

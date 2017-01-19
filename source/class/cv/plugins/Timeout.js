@@ -153,8 +153,9 @@ qx.Class.define('cv.plugins.Timeout', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     cv.xml.Parser.addHandler("timeout", cv.plugins.Timeout);
+    cv.structure.WidgetFactory.registerClass("timeout", statics);
   }
 
 });

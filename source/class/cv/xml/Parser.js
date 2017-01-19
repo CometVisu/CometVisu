@@ -191,8 +191,8 @@ qx.Class.define('cv.xml.Parser', {
       if (handler.createDefaultWidget) {
         return handler.createDefaultWidget(widgetType, element, path, flavour, pageType);
       }
-      var clazz = qx.Class.getByName(handler.classname);
-      var properties = qx.Class.getProperties(clazz);
+      // var clazz = qx.Class.getByName(handler.classname);
+      // var properties = qx.Class.getProperties(clazz);
 
       var layout = this.parseLayout( qx.bom.Selector.matches('layout', qx.dom.Hierarchy.getChildElements(element))[0] );
       var style = qx.lang.Object.isEmpty(layout) ? '' : 'style="' + this.extractLayout( layout, pageType ) + '"';
@@ -200,9 +200,9 @@ qx.Class.define('cv.xml.Parser', {
       if ( qx.bom.element.Attribute.get(element, 'align') ) {
         classes+=" "+qx.bom.element.Attribute.get(element, 'align') ;
       }
-      if (qx.lang.Array.contains(properties, "colspan")) {
+      // if (qx.lang.Array.contains(properties, "colspan")) {
         classes += ' ' + this.setWidgetLayout(element, path);
-      }
+      // }
       if( qx.bom.element.Attribute.get(element, 'flavour') ) flavour = qx.bom.element.Attribute.get(element, 'flavour');// sub design choice
       if( flavour ) classes += ' flavour_' + flavour;
       if (qx.bom.element.Attribute.get(element, 'class')) classes += ' custom_' + qx.bom.element.Attribute.get(element, 'class');
@@ -216,27 +216,27 @@ qx.Class.define('cv.xml.Parser', {
         '$$type'  : widgetType.toLowerCase(),
         'pageType': pageType
       };
-      if (qx.lang.Array.contains(properties, "bindClickToWidget")) {
+      // if (qx.lang.Array.contains(properties, "bindClickToWidget")) {
         data.bindClickToWidget = bindClickToWidget;
-      }
+      // }
       ['mapping', 'align', 'align'].forEach(function(prop) {
-        if (qx.lang.Array.contains(properties, prop)) {
+        // if (qx.lang.Array.contains(properties, prop)) {
           data[prop] = qx.bom.element.Attribute.get(element, prop) || null;
-        }
+        // }
       }, this);
 
-      if (qx.lang.Array.contains(properties, "layout")) {
+      // if (qx.lang.Array.contains(properties, "layout")) {
         data.layout = layout || null;
-      }
-      if (qx.lang.Array.contains(properties, "label")) {
+      // }
+      // if (qx.lang.Array.contains(properties, "label")) {
         data.label = label || '';
-      }
-      if (qx.lang.Array.contains(properties, "classes")) {
+      // }
+      // if (qx.lang.Array.contains(properties, "classes")) {
         data.classes = classes || '';
-      }
-      if (qx.lang.Array.contains(properties, "style")) {
+      // }
+      // if (qx.lang.Array.contains(properties, "style")) {
         data.style = style || '';
-      }
+      // }
 
       return cv.data.Model.getInstance().setWidgetData( path, data);
     },

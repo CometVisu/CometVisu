@@ -48,26 +48,6 @@ qx.Class.define('cv.structure.pure.Trigger', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'value'      : { target: 'sendValue' , "default": "0" },
-        'shorttime'  : { target: 'shortThreshold', "default": -1, transform: parseFloat},
-        'shortValue' : { target: 'shortValue', "default": "0" }
-      };
-    },
-
-    makeAddressListFn: function( src, transform, mode, variant ) {
-      // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
-      return [ true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1|2) ];
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -110,10 +90,5 @@ qx.Class.define('cv.structure.pure.Trigger', {
         return !!(address[2] & 2);
       });
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("trigger", cv.structure.pure.Trigger);
   }
 });

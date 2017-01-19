@@ -28,9 +28,10 @@ qx.Class.define('cv.plugins.diagram.Info', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     // register the parser
     cv.xml.Parser.addHandler("diagram_info", cv.plugins.diagram.Info);
     cv.xml.Parser.addHook("diagram_info", "after", cv.plugins.diagram.AbstractDiagram.afterParse, cv.plugins.diagram.AbstractDiagram);
+    cv.structure.WidgetFactory.registerClass("diagram_info", statics);
   }
 });

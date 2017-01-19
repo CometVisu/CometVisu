@@ -96,9 +96,7 @@ qx.Class.define('cv.structure.pure.InfoAction', {
     }
   },
 
-  defer: function () {
-    // register the parser
-    cv.xml.Parser.addHandler("infoaction", cv.structure.pure.InfoAction);
-    cv.xml.Parser.addHook("infoaction", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("infoaction", statics);
   }
 });

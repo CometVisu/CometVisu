@@ -47,10 +47,5 @@ qx.Class.define('cv.structure.pure.Reload', {
         cv.util.Location.reload(true);
       }
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("reload", cv.structure.pure.Reload);
   }
 });

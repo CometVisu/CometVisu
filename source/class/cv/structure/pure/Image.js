@@ -49,24 +49,6 @@ qx.Class.define('cv.structure.pure.Image', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'width'       :   {},
-        'height'      :   {},
-        'src'         :   {},
-        'widthfit'    :   { target: 'widthFit', transform: function(value) {
-          return value === "true";
-        }}
-      };
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -92,9 +74,5 @@ qx.Class.define('cv.structure.pure.Image', {
       }
       return '<div class="actor"><img src="' + src + '" style="' + imgStyle + '" /></div>';
     }
-  },
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("image", cv.structure.pure.Image);
   }
-}); // end define
+});

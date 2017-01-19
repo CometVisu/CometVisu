@@ -197,8 +197,9 @@ qx.Class.define('cv.plugins.Speech', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     // register the parser
     cv.xml.Parser.addHandler("speech", cv.plugins.Speech);
+    cv.structure.WidgetFactory.registerClass("speech", statics);
   }
 });

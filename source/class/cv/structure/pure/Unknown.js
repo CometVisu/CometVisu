@@ -68,22 +68,6 @@ qx.Class.define('cv.structure.pure.Unknown', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    parse: function (xml, path, flavour, pageType) {
-      return cv.data.Model.getInstance().setWidgetData(path, {
-        'path': path,
-        'unknownType': qx.dom.Node.getName(xml).toLowerCase(),
-        '$$type': "unknown",
-        'pageType': pageType
-      });
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -103,11 +87,6 @@ qx.Class.define('cv.structure.pure.Unknown', {
     getDomString: function () {
       return '<div class="widget clearfix"><pre>unknown: ' + this.getUnknownType() + '</pre></div>';
     }
-  },
-
-  defer: function () {
-    // register the parser
-    cv.xml.Parser.addHandler("unknown", cv.structure.pure.Unknown);
   }
 });
 

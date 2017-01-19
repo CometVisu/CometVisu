@@ -119,7 +119,8 @@ qx.Class.define('cv.plugins.Clock', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     cv.xml.Parser.addHandler("clock", cv.plugins.Clock);
+    cv.structure.WidgetFactory.registerClass("clock", statics);
   }
 });

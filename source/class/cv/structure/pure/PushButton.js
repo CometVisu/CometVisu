@@ -41,24 +41,6 @@ qx.Class.define('cv.structure.pure.PushButton', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'downValue': {target: 'downValue', "default": "1"},
-        'upValue': {"default": "0"}
-      };
-    },
-
-    makeAddressListFn: function (src, transform, mode, variant) {
-      return [true, variant];
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -115,8 +97,7 @@ qx.Class.define('cv.structure.pure.PushButton', {
     }
   },
 
-  defer: function () {
-    // register the parser
-    cv.xml.Parser.addHandler("pushbutton", cv.structure.pure.PushButton);
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("pushbutton", statics);
   }
 });

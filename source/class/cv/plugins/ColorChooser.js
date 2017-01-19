@@ -211,11 +211,12 @@ qx.Class.define('cv.plugins.ColorChooser', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/colorchooser/farbtastic/farbtastic.css');
     loader.addScripts('plugins/colorchooser/farbtastic/farbtastic.js');
     // register the parser
     cv.xml.Parser.addHandler("colorchooser", cv.plugins.ColorChooser);
+    cv.structure.WidgetFactory.registerClass("colorchooser", statics);
   }
 });

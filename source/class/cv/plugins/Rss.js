@@ -115,9 +115,10 @@ qx.Class.define('cv.plugins.Rss', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts('plugins/rss/dep/zrssfeed/jquery.zrssfeed.js');
     cv.xml.Parser.addHandler("rss", cv.plugins.Rss);
+    cv.structure.WidgetFactory.registerClass("rss", statics);
   }
 });

@@ -35,17 +35,6 @@ qx.Class.define('cv.structure.pure.Line', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getDefaultClasses: function(type) {
-      return '';
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -54,10 +43,5 @@ qx.Class.define('cv.structure.pure.Line', {
     getDomString: function () {
       return '<hr ' + (this.getClasses() ? 'class="'+this.getClasses()+'"' : '') + '/>';
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("line", cv.structure.pure.Line);
   }
 });

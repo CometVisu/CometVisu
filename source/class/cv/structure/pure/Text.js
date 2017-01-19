@@ -45,10 +45,5 @@ qx.Class.define('cv.structure.pure.Text', {
     _getInnerDomString: function () {
       return '';
     }
-  },
-
-  defer: function () {
-    // register the parser
-    cv.xml.Parser.addHandler("text", cv.structure.pure.Text);
   }
 });

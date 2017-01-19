@@ -118,10 +118,11 @@ qx.Class.define('cv.plugins.Strftime', {
     this.self(arguments).__timer.removeListener("interval", this.__update, this);
   },
 
-  defer: function() {
+  defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/strftime/strftime.css');
     cv.xml.Parser.addHandler("strftime", cv.plugins.Strftime);
+    cv.structure.WidgetFactory.registerClass("strftime", statics);
 
     // extend locales by German and French
     Date.ext.locales['de'] = {

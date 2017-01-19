@@ -28,17 +28,6 @@ qx.Class.define('cv.structure.pure.Rgb', {
   extend: cv.structure.AbstractWidget,
   include: [cv.role.Update],
 
-  /*
-   ******************************************************
-   STATICS
-   ******************************************************
-   */
-  statics: {
-    makeAddressListFn: function(src, transform, mode, variant) {
-      return [true, variant];
-    }
-  },
-
 
   /*
    ******************************************************
@@ -75,10 +64,5 @@ qx.Class.define('cv.structure.pure.Rgb', {
       var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
       qx.bom.element.Style.set(valElem, 'background-color', bgs);
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("rgb", cv.structure.pure.Rgb);
   }
 });

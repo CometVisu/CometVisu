@@ -218,29 +218,5 @@ qx.Class.define('cv.structure.AbstractWidget', {
     _getInnerDomString: function() {
       return "";
     }
-  },
-
-  /*
-  ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-
-    /**
-     * Returns a map with definitions for the XML Parser to map XML-Attribute values
-     * to properties e.g
-     * <pre>{
-         *  <attribute-name>: {
-         *    target: <property-name>,
-         *    default: <default-value>,
-         *    transform: <callback to transform the value to the desired value>
-         *  }
-         * }</pre>
-     * @return {Object}
-     */
-    getAttributeToPropertyMappings: function() {
-      return null;
-    }
   }
 });

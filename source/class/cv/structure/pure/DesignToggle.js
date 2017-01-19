@@ -48,19 +48,6 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
     }, this);
   },
 
-
-  /*
-   ******************************************************
-   STATICS
-   ******************************************************
-   */
-  statics: {
-    getDefaultClasses: function(type) {
-      return 'widget clearfix toggle';
-    }
-  },
-
-
   /*
    ******************************************************
    PROPERTIES
@@ -112,8 +99,7 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
     }
   },
 
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("designtoggle", cv.structure.pure.DesignToggle);
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("designtoggle", statics);
   }
 });

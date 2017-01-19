@@ -76,35 +76,6 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        showstatus: {
-          transform: function (value) {
-            return value === 'true';
-          }
-        },
-        button1label: {},
-        button1value: {},
-        button2label: {},
-        button2value: {},
-        button3label: {},
-        button3value: {},
-        button4label: {},
-        button4value: {}
-      }
-    },
-
-    makeAddressListFn: function (src, transform, mode, variant) {
-      return [true, variant];
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -198,8 +169,7 @@ qx.Class.define('cv.structure.pure.MultiTrigger', {
     }
   },
 
-  defer: function () {
-    // register the parser
-    cv.xml.Parser.addHandler("multitrigger", cv.structure.pure.MultiTrigger);
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("multitrigger", statics);
   }
 });

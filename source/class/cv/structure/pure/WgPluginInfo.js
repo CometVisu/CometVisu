@@ -28,17 +28,6 @@ qx.Class.define('cv.structure.pure.WgPluginInfo', {
   extend: cv.structure.AbstractWidget,
   include: cv.role.Update,
 
-  /*
-  ******************************************************
-    CONSTRUCTOR
-  ******************************************************
-  */
-  construct: function(props) {
-    this.base(arguments, props);
-
-
-  },
-
 
   /*
   ******************************************************
@@ -47,23 +36,6 @@ qx.Class.define('cv.structure.pure.WgPluginInfo', {
   */
   properties: {
     variable   : { check: "String", nullable: true, apply: "_applyVariable" }
-  },
-
-  /*
-  ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'variable' : {}
-      };
-    },
-    getDefaultClasses: function(type) {
-      // additional info class
-      return 'widget clearfix info '+type.toLowerCase();
-    }
   },
 
   /*
@@ -125,9 +97,7 @@ qx.Class.define('cv.structure.pure.WgPluginInfo', {
     this._disposeObjects("__request");
   },
 
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("wgplugin_info", cv.structure.pure.WgPluginInfo);
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("wgplugininfo", statics);
   }
-}); // end define
+});

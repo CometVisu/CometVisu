@@ -381,9 +381,10 @@ qx.Class.define('cv.plugins.RssLog', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/rsslog/rsslog.css');
     cv.xml.Parser.addHandler("rsslog", cv.plugins.RssLog);
+    cv.structure.WidgetFactory.registerClass("rsslog", statics);
   }
 });

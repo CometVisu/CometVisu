@@ -41,10 +41,5 @@ qx.Class.define('cv.structure.pure.Break', {
     getDomString: function () {
       return '<br/>';
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("break", cv.structure.pure.Break);
   }
 });

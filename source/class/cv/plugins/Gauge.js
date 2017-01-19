@@ -260,7 +260,7 @@ qx.Class.define('cv.plugins.Gauge', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/gauge/gauge.css');
     loader.addScripts([
@@ -268,5 +268,6 @@ qx.Class.define('cv.plugins.Gauge', {
       'plugins/gauge/dep/steelseries-min.js'
     ]);
     cv.xml.Parser.addHandler("gauge", cv.plugins.Gauge);
+    cv.structure.WidgetFactory.registerClass("gauge", statics);
   }
 });

@@ -82,41 +82,6 @@ qx.Class.define('cv.structure.pure.Slide', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'step': {"default": 0.5, transform: parseFloat},
-        'send_on_finish': {target: 'sendOnFinish', "default": false}
-      };
-    },
-
-    afterParse: function (xml, path) {
-
-      var datatype_min = undefined;
-      var datatype_max = undefined;
-      qx.bom.Selector.matches("address", qx.dom.Hierarchy.getChildElements(xml)).forEach(function(elem) {
-        var transform = elem.getAttribute('transform');
-        if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
-          if (!( datatype_min > cv.Transform.registry[transform].range.min ))
-            datatype_min = cv.Transform.registry[transform].range.min;
-          if (!( datatype_max < cv.Transform.registry[transform].range.max ))
-            datatype_max = cv.Transform.registry[transform].range.max;
-        }
-      });
-      var min = parseFloat(xml.getAttribute('min') || datatype_min || 0);
-      var max = parseFloat(xml.getAttribute('max') || datatype_max || 100);
-
-      var data = cv.data.Model.getInstance().getWidgetData(path);
-      data.min = min;
-      data.max = max;
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -231,11 +196,5 @@ qx.Class.define('cv.structure.pure.Slide', {
     getActionValue: function () {
       return "";
     }
-  },
-
-  defer: function () {
-    // register the parser
-    cv.xml.Parser.addHandler("slide", cv.structure.pure.Slide);
-    cv.xml.Parser.addHook("slide", "after", cv.structure.pure.Slide.afterParse, cv.structure.pure.Slide);
   }
-}); // end define
+});

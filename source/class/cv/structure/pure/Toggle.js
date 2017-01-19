@@ -48,10 +48,5 @@ qx.Class.define('cv.structure.pure.Toggle', {
     getActionValue: function () {
       return this.getNextMappedValue(this.getBasicValue(), this.getMapping());
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("toggle", cv.structure.pure.Toggle);
   }
 });

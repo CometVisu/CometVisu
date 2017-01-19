@@ -78,7 +78,8 @@
         "${APPLICATION}.Application",
         "${APPLICATION}.structure.pure.*",
         "${APPLICATION}.transforms.*",
-        "${APPLICATION}.plugins.*"
+        "${APPLICATION}.plugins.*",
+        "${APPLICATION}.xml.parser.*"
       ],
 
       "lint-check" : {
@@ -140,7 +141,8 @@
           {
             "include" : [
               "${APPLICATION}.Application",
-              "${APPLICATION}.transforms.*"
+              "${APPLICATION}.transforms.*",
+              "${APPLICATION}.xml.parser.*"
             ]
           },
           "structure-pure" : {

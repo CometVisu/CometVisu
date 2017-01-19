@@ -50,11 +50,6 @@ qx.Class.define('cv.structure.pure.Info', {
     _getInnerDomString: function () {
       return '<div class="actor"><div class="value">-</div></div>';
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("info", cv.structure.pure.Info);
   }
 });
 

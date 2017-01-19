@@ -94,28 +94,6 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'height' : {  "default": "0" },
-        'width' : { "default": "0" },
-        'type'  : { target: 'updateType', "default": '' },
-        'src': { },
-        'suffix': { },
-        'sendValue': { "default": ''}
-      };
-    },
-    getDefaultClasses: function(type) {
-      // additional image class
-      return 'widget clearfix image '+type.toLowerCase();
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -177,10 +155,5 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
       if (this.getSendValue() == "") return;
       this.sendToBackend(this.getSendValue());
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("imagetrigger", cv.structure.pure.ImageTrigger);
   }
 });

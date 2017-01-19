@@ -599,7 +599,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts([
       'plugins/diagram/dep/flot/jquery.flot.min.js',

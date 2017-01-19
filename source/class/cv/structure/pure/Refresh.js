@@ -39,19 +39,6 @@ qx.Class.define('cv.structure.pure.Refresh', {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'value': {target: 'sendValue'}
-      };
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -70,10 +57,5 @@ qx.Class.define('cv.structure.pure.Refresh', {
     _action: function() {
       cv.TemplateEngine.getInstance().visu.restart();
     }
-  },
-
-  defer: function() {
-    // register the parser
-    cv.xml.Parser.addHandler("refresh", cv.structure.pure.Refresh);
   }
 });
