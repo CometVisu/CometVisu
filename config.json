@@ -122,7 +122,8 @@
           "upgrade",
           "check_config.php",
           "manager.php",
-          "visu_config.xsd"
+          "visu_config.xsd",
+          "version"
         ]
       }
     },

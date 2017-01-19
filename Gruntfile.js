@@ -72,24 +72,7 @@ module.exports = function(grunt) {
       cwd: '.',
       src: [
         'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README',
-        'release/config',
-        'release/config/visu_config.xml',
-        'release/config/visu_config_previewtemp.xml',
-        'release/config/structure_custom.js',
-        'release/config/backup',
-        'release/config/media',
-        'release/demo/**',
-        'release/dependencies/**',
-        'release/designs/**',
-        'release/editor/**',
-        'release/icon/**',
-        '!release/icon/knx-uf-iconset/raw_480x480/**',
-        '!release/icon/knx-uf-iconset/knx-uf-iconset/**',
-        'release/lib/**',
-        'release/plugins/**',
-        'release/upgrade/**',
-        'release/*',
-        '!release/build.txt'
+        'build/**'
       ],
       dest: 'cometvisu/',
       mode: function( filename ){
@@ -239,54 +222,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // appcache
-    manifest: {
-      generate: {
-        options: {
-          basePath: 'release/',
-          preferOnline: false,
-          headcomment: " <%= pkg.name %> v<%= pkg.version %>",
-          verbose: true,
-          timestamp: true,
-          hash: true,
-          network: [
-            'check_config.php',
-            'designs/get_designs.php',
-            'config/structure_custom.js',
-            'editor/index.php',
-            'editor/bin/',
-            'editor/dataproviders/',
-            'upgrade/',
-            'lib/library_version.inc.php',
-            '*',
-            'http://*',
-            'https://*'
-          ],
-          master: ['index.html']
-        },
-        src: [
-          'index.html',
-          'visu_config.xsd',
-          'dependencies/css.js',
-          'icon/*.png',
-          //'icon/iconconfig.js',
-          'lib/TemplateEngine.js',
-          'designs/**/*.{js,css,png,ttf,svg}',
-          'plugins/**/*.{js,css,png,ttf,svg}'
-        ],
-        dest: 'release/cometvisu.appcache'
-      }
-    },
-
-    // javascript syntax checker
-    jshint: {
-      options: {
-        // reporter: require('jshint-stylish'),
-        ignores: [ "**/lib/**", "**/dep/**"]
-      },
-      all: sourceFiles
-    },
-
     // check coding-style: https://github.com/CometVisu/CometVisu/wiki/Coding-style
     jscs: {
       main: {
@@ -366,28 +301,8 @@ module.exports = function(grunt) {
       }
     },
 
-    jsdoc : {
-      html : {
-        src: sourceFiles,
-        options: {
-          destination: grunt.option('targetDir') || 'doc/api/html',
-          template : "node_modules/ink-docstrap/template",
-          configure : "utils/jsdoc.conf.json"
-        }
-      },
-      rst : {
-        src: sourceFiles,
-        options: {
-          destination: grunt.option('targetDir') || 'doc/api/rst',
-          template : "node_modules/jsdoc-sphinx/template/",
-          configure : "utils/jsdoc.conf.json"
-        }
-      }
-    },
-
     clean: {
       archives : ['*.zip', '*.gz'],
-      release: ['release/'],
       iconcache: ['cache/icons'],
       exampleCache: ['cache/widget_examples/jsdoc'],
       apiDoc: ['doc/api']
@@ -428,7 +343,7 @@ module.exports = function(grunt) {
       },
       configFiles: {
         // Target-specific file/dir lists and/or options go here.
-        src: ['release/config', 'release/config/**']
+        src: ['build/resource/config', 'build/resource/config/**']
       }
     },
 
@@ -622,13 +537,13 @@ module.exports = function(grunt) {
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
-    var filename = 'release/demo/visu_config_demo.xml';
+    var filename = 'build/resource/demo/visu_config_demo.xml';
     var config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
-    filename = 'release/demo/visu_config_2d3d.xml';
+    filename = 'build/resource/demo/visu_config_2d3d.xml';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/Version:\s[\w\.]+/g, 'Version: '+pkg.version));
-    filename = 'release/index.html';
+    filename = 'build/index.html';
     config = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
@@ -638,7 +553,7 @@ module.exports = function(grunt) {
   // - fix viewBox to follow the png icon version
   grunt.registerTask('handle-kuf-svg', function() {
     var filename   = 'source/resource/icon/knx-uf-iconset.svg';
-    var iconconfig = 'source/resource/icon/iconconfig.js';
+    var iconconfig = 'source/class/cv/IconConfig.js';
     var svg = grunt.file.read(filename, { encoding: "utf8" }).toString();
     grunt.file.write(filename, svg
       .replace( /#FFFFFF|#fff/g, 'currentColor' )
@@ -654,13 +569,13 @@ module.exports = function(grunt) {
       if( kufIcons !== '' )
         kufIcons += ",\n";
 
-      kufIcons += "    '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : svgKUF('" + icon[1] + "') } } }";
+      kufIcons += "      '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('" + icon[1] + "') } } }";
     }
     var start = '// Do not remove this line: Dynamic Icons Start';
     var end   = '// Do not remove this line: Dynamic Icons End';
     var iconconfigFile = grunt.file.read(iconconfig, { encoding: "utf8" }).toString();
     grunt.file.write(iconconfig, iconconfigFile
-      .replace( RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n    " + end )
+      .replace( RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n      " + end )
     );
   });
 
@@ -669,7 +584,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks("grunt-jscs");
   grunt.loadNpmTasks('grunt-banner');
-  grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-github-releaser');
   grunt.loadNpmTasks('grunt-prompt');
@@ -690,11 +604,10 @@ module.exports = function(grunt) {
 
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
-  //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'buildicons', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('release-build', [ 'jscs', 'clean', 'file-creator', 'buildicons', 'build', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
 
-  grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
+  grunt.registerTask('release', [ 'prompt', 'release-build', 'github-release' ]);
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
   grunt.registerTask('e2e-chrome', ['connect', 'protractor:all']);
   grunt.registerTask('screenshots', ['connect', 'protractor:screenshots']);
@@ -705,5 +618,5 @@ module.exports = function(grunt) {
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
 
-  grunt.registerTask('default', 'build');
+  grunt.registerTask('default', 'release-build');
 };
