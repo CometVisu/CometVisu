@@ -256,7 +256,7 @@ qx.Class.define('cv.TemplateEngine', {
           var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
           this.createPages(page, 'id');
           this.debug("finalizing");
-          cv.structure.pure.Page.createFinal();
+          qx.event.message.Bus.dispatchByName("setup.dom.append");
           this.debug("pages created");
         }
         this.debug("setup.dom.finished");

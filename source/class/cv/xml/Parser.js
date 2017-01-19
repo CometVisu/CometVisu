@@ -73,7 +73,7 @@ qx.Class.define('cv.xml.Parser', {
     },
 
     getHandler: function (tagName) {
-      return this.__handlers[tagName.toLowerCase()];
+      return this.__handlers[tagName.toLowerCase()] || this.__handlers['unknown'];
     },
 
     addHook: function(tagname, type, callback, context) {
@@ -115,7 +115,6 @@ qx.Class.define('cv.xml.Parser', {
         }, this);
       } else {
         qx.log.Logger.debug("no parse handler registered for type: "+ xml.nodeName.toLowerCase());
-        result = cv.structure.pure.Unknown.parse(xml, path, flavour, pageType);
       }
       return result;
     },

@@ -177,6 +177,7 @@ qx.Class.define('cv.structure.pure.Page', {
      */
     createFinal: function() { // special function - only for pages!
       qx.bom.Selector.query("#pages")[0].innerHTML = this.allPages;
+      qx.event.message.Bus.unsubscribe("setup.dom.append", cv.structure.pure.Page.createFinal, cv.structure.pure.Page);
     }
   },
 
@@ -389,7 +390,8 @@ qx.Class.define('cv.structure.pure.Page', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     cv.xml.Parser.addHandler("page", cv.structure.pure.Page);
+    qx.event.message.Bus.subscribe("setup.dom.append", statics.createFinal, statics);
   }
 });
