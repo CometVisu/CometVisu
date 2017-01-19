@@ -22,7 +22,7 @@
  * Parse &lt;designtoggle;gt; config elements
  */
 qx.Class.define('cv.xml.parser.widgets.DesignToggle', {
-  type: "static",
+  extend: cv.xml.parser.AbstractBasicWidget,
 
   /*
    ******************************************************

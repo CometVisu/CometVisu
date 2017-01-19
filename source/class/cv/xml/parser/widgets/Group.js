@@ -22,7 +22,7 @@
  * Parse group config elements
  */
 qx.Class.define('cv.xml.parser.widgets.Group', {
-  type: "static",
+  extend: cv.xml.parser.AbstractBasicWidget,
 
   /*
   ******************************************************

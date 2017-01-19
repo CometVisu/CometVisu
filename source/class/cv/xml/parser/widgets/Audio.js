@@ -22,7 +22,7 @@
  * Parse &lt;audio;gt; config elements
  */
   qx.Class.define('cv.xml.parser.widgets.Audio', {
-    type: "static",
+    extend: cv.xml.parser.AbstractBasicWidget,
 
     /*
     ******************************************************

@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.PageJump', {
-  type: "static",
+  extend: cv.xml.parser.AbstractBasicWidget,
 
   /*
   ******************************************************

@@ -42,7 +42,7 @@ qx.Class.define('cv.xml.Parser', {
     },
 
     /**
-     * Traverse through the handlers includes and its superclasses + theit includes to add parsing hooks
+     * Traverse through the handlers includes and its superclasses + their includes to add parsing hooks
      * @private
      */
     __applyHooks: function(tagName, clazz) {

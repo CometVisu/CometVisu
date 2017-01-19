@@ -27,7 +27,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.xml.parser.widgets.Include', {
-  type: "static",
+  extend: cv.xml.parser.AbstractBasicWidget,
 
   /*
   ******************************************************

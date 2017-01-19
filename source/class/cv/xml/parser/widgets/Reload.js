@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.Reload', {
-  type: "static",
+  extend: cv.xml.parser.AbstractBasicWidget,
 
   defer: function(statics) {
     // register the parser

@@ -25,7 +25,7 @@
  * @since 2012
  */
 qx.Class.define('cv.xml.parser.widgets.WgPluginInfo', {
-  type: "static",
+  extend: cv.xml.parser.AbstractBasicWidget,
 
   /*
   ******************************************************

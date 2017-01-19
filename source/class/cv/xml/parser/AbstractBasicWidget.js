@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.AbstractBasicWidget', {
-  type: "static",
+  extend: qx.core.Object,
 
   /*
   ******************************************************

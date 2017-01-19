@@ -22,7 +22,7 @@
  * Parse &lt;break;gt; config elements
  */
 qx.Class.define('cv.xml.parser.widgets.Break', {
-  type: "static",
+  extend: cv.xml.parser.AbstractBasicWidget,
 
   defer: function(statics) {
     // register the parser

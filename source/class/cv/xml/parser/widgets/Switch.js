@@ -22,7 +22,8 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.Switch', {
-  type: "static",
+  extend: cv.xml.parser.AbstractBasicWidget,
+  include: [cv.role.Operate, cv.role.Update],
 
   /*
    ******************************************************

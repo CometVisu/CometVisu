@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.PageLink', {
-  type: "static",
+  extend: cv.xml.parser.AbstractBasicWidget,
 
   defer: function(statics) {
     cv.xml.Parser.addHandler("pagelink", statics);
