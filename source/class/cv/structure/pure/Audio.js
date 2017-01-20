@@ -98,8 +98,7 @@
       }
     },
 
-    defer: function() {
-      // register the parser
-      cv.xml.Parser.addHandler("audio", cv.structure.pure.Audio);
+    defer: function(statics) {
+      cv.structure.WidgetFactory.registerClass("audio", statics);
     }
   });

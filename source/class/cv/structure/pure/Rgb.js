@@ -64,5 +64,9 @@ qx.Class.define('cv.structure.pure.Rgb', {
       var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
       qx.bom.element.Style.set(valElem, 'background-color', bgs);
     }
+  },
+
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("rgb", statics);
   }
 });

@@ -87,6 +87,10 @@ qx.Class.define('cv.structure.pure.Unknown', {
     getDomString: function () {
       return '<div class="widget clearfix"><pre>unknown: ' + this.getUnknownType() + '</pre></div>';
     }
+  },
+
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("unknown", statics);
   }
 });
 

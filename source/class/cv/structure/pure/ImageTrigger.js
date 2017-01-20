@@ -155,5 +155,9 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
       if (this.getSendValue() == "") return;
       this.sendToBackend(this.getSendValue());
     }
+  },
+
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("imagetrigger", statics);
   }
 });

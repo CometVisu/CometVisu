@@ -23,6 +23,7 @@
  */
 qx.Class.define('cv.xml.parser.widgets.InfoTrigger', {
   extend: cv.xml.parser.AbstractBasicWidget,
+  include: cv.role.Update,
 
   /*
   ******************************************************

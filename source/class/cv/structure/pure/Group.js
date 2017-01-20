@@ -139,5 +139,9 @@ qx.Class.define('cv.structure.pure.Group', {
 
       return '<div class="' + this.getClasses() + '">' + container + '</div>';
     }
+  },
+
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("group", statics);
   }
 });

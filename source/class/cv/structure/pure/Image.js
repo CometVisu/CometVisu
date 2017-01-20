@@ -74,5 +74,9 @@ qx.Class.define('cv.structure.pure.Image', {
       }
       return '<div class="actor"><img src="' + src + '" style="' + imgStyle + '" /></div>';
     }
+  },
+
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("image", statics);
   }
 });

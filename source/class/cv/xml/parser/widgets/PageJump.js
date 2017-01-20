@@ -48,50 +48,6 @@ qx.Class.define('cv.xml.parser.widgets.PageJump', {
         'name'        : {},
         'path'        : { target: 'targetPath' }
       };
-    },
-    /**
-     * Handle page change events and update the active state of this PageJump
-     *
-     * @param ev {Event}
-     * @protected
-     */
-    _onScrollToPage: function(ev) {
-      var page_id = ev.getData();
-      var page = cv.structure.WidgetFactory.getInstanceById(page_id);
-      var model = cv.data.Model.getInstance();
-      var name = page.getName();
-
-      // remove old active classes
-      qx.bom.Selector.query('.pagejump.active').forEach(function(elem) {
-        qx.bom.element.Class.remove(elem, 'active');
-      }, this);
-      qx.bom.Selector.query('.pagejump.active_ancestor').forEach(function(elem) {
-        qx.bom.element.Class.remove(elem, 'active_ancestor');
-      }, this);
-
-      // and set the new active ones
-      qx.bom.Selector.query('.pagejump').forEach(function(elem) {
-        var data = model.getWidgetDataByElement(elem);
-        if (name == data.target) {
-          qx.bom.element.Class.add(elem, 'active');
-        }
-      }, this);
-
-      // now set the active ancestors
-      var parentPage = cv.util.Tree.getParentWidget(page, "page");
-      // set for all parent pages apart from the root page
-      while (parentPage != null && cv.util.Tree.getParentWidget(parentPage, "page") != null) {
-        var parentName = parentPage.getName();
-
-        qx.bom.Selector.query('.pagejump').forEach(function(elem) {
-          var data = model.getWidgetDataByElement(elem);
-          if (parentName == data.target || (data.active_scope == "path" && data.path != undefined && data.path.match(parentName + "$"))) {
-            qx.bom.element.Class.add(elem, 'active_ancestor');
-          }
-        });
-        // recursively find pagejumps for parent pages
-        parentPage = cv.util.Tree.getParentWidget(parentPage, "page");
-      }
     }
   },
 
@@ -100,6 +56,5 @@ qx.Class.define('cv.xml.parser.widgets.PageJump', {
     cv.xml.Parser.addHandler("pagejump", statics);
     cv.xml.Parser.addHook("pagejump", "after", statics.afterParse, statics);
     cv.xml.Parser.addHook("pagejump", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
-    qx.event.message.Bus.subscribe("path.pageChanged", statics._onScrollToPage, statics);
   }
 });

@@ -196,5 +196,9 @@ qx.Class.define('cv.structure.pure.Slide', {
     getActionValue: function () {
       return "";
     }
+  },
+
+  defer: function(statics) {
+    cv.structure.WidgetFactory.registerClass("slide", statics);
   }
 });

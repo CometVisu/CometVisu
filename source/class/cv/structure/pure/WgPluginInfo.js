@@ -98,6 +98,6 @@ qx.Class.define('cv.structure.pure.WgPluginInfo', {
   },
 
   defer: function(statics) {
-    cv.structure.WidgetFactory.registerClass("wgplugininfo", statics);
+    cv.structure.WidgetFactory.registerClass("wgplugin_info", statics);
   }
 });

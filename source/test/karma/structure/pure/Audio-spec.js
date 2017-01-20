@@ -54,6 +54,7 @@ describe("testing a audio widget", function() {
       autoplay: 'true',
       loop: 'true'
     }, '<label>Test</label>');
+
     var widget = qx.bom.Html.clean([res[1]])[0];
 
     expect(widget).toHaveClass('audio');

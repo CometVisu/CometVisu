@@ -59,7 +59,7 @@ var createTestWidgetString = function (name, attributes, content) {
     var widgetInstance = [];
     for (var i = 0, l = data.length; i < l; i++) {
       var inst = cv.structure.WidgetFactory.createInstance(data[i].$$type, data[i]);
-      var source = inst.getDomString();
+      var source = inst.getDomString ? inst.getDomString() : null;
       if (source) {
         res = [inst, source];
       } else {
@@ -73,8 +73,12 @@ var createTestWidgetString = function (name, attributes, content) {
     }
   } else if (data) {
     var inst = cv.structure.WidgetFactory.createInstance(data.$$type, data);
-    res.push(inst);
-    res.push(inst.getDomString());
+    if (inst) {
+      res.push(inst);
+      if (inst.getDomString) {
+        res.push(inst.getDomString());
+      }
+    }
   }
 
   return res;

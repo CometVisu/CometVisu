@@ -31,7 +31,11 @@ qx.Class.define('cv.structure.AbstractBasicWidget', {
   ******************************************************
   */
   construct: function(props) {
-    this.set(props);
+    for (var prop in props) {
+      if (this["set" + qx.Bootstrap.firstUp(prop)] != undefined) {
+        this.set(prop, props[prop]);
+      }
+    }
   },
 
   /*
