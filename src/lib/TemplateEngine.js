@@ -245,6 +245,10 @@ define([
     if ($.getUrlVar('forceReload')) {
       this.forceReload = $.getUrlVar('forceReload') != 'false'; // true unless set
       // to false
+      if (this.forceReload === true) {
+        // do not use cache when use set forceReload
+        this.enableCache = false;
+      }
     }
 
     if ($.getUrlVar('forceDevice')) {
@@ -1063,7 +1067,7 @@ define([
         });
 
         var cache = false;
-        if (!thisTemplateEngine.forceReload && thisTemplateEngine.enableCache && thisTemplateEngine.configCache.isCached()) {
+        if (thisTemplateEngine.enableCache && thisTemplateEngine.configCache.isCached()) {
 
           // check if cache is still valid
           if (!thisTemplateEngine.configCache.isValid(xml)) {
