@@ -24,9 +24,11 @@
  * @author Tobias Bräutigam
  * @since 2012
  */
-$('#navbarLeft').data('columns', 6 );
-$('#main').data('columns', 12 );
-$('#navbarRight').data('columns', 6 );
+templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+  $('#navbarLeft').data('columns', 6 );
+  $('#main').data('columns', 12 );
+  $('#navbarRight').data('columns', 6 );
+});
 
 function getOffsetCorners(elem) {
   return {
