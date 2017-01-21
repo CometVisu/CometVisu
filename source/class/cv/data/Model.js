@@ -30,14 +30,26 @@ qx.Class.define('cv.data.Model', {
 
   /*
   ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function() {
+    this.__states = {};
+    this.__stateListeners = {};
+    this.__addressList = {},
+    this.__widgetData = {};
+  },
+
+  /*
+  ******************************************************
     MEMBERS
   ******************************************************
   */
   members: {
-    __states : {},
-    __stateListeners: {},
-    __addressList : {},
-    __widgetData: {},
+    __states : null,
+    __stateListeners: null,
+    __addressList : null,
+    __widgetData: null,
 
     onUpdate: function(address, state) {
       this.__states[address] = state;

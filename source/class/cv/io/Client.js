@@ -71,6 +71,15 @@ qx.Class.define('cv.io.Client', {
 
     this.watchdog = new cv.io.Watchdog();
     this.watchdog.setClient(this);
+
+    this.addresses = [];
+    this.initialAddresses = [];
+    this.filters = [];
+    this.user = '';
+    this.pass = '';
+    this.device = '';
+    this.loginSettings = {};
+    this.headers = {};
   },
 
   /*
@@ -171,16 +180,16 @@ qx.Class.define('cv.io.Client', {
     backend: null,
     backendName: null,
     backendUrl: null,
-    addresses: [], // the subscribed addresses
-    initialAddresses: [], // the addresses which should be loaded before the subscribed addresses
-    filters: [], // the subscribed filters
-    user : '', // the current user
-    pass : '', // the current password
-    device : '', // the current device ID
+    addresses: null, // the subscribed addresses
+    initialAddresses: null, // the addresses which should be loaded before the subscribed addresses
+    filters: null, // the subscribed filters
+    user : null, // the current user
+    pass : null, // the current password
+    device : null, // the current device ID
     session: null, // current session ID
 
-    loginSettings : {},
-    headers: { init: {} },
+    loginSettings : null,
+    headers: null,
 
     setBackend: function(newBackend) {
       // override default settings
@@ -294,7 +303,7 @@ qx.Class.define('cv.io.Client', {
      *
      */
     login : function (loginOnly, callback, context) {
-      if (this.loginSettings.loggedIn === false) {
+      if (!this.loginSettings.loggedIn) {
         this.loginSettings.loginOnly = !!loginOnly;
         this.loginSettings.callbackAfterLoggedIn = callback;
         this.loginSettings.context = context;

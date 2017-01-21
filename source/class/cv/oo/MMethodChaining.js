@@ -34,10 +34,7 @@ qx.Mixin.define('cv.oo.MMethodChaining', {
   ******************************************************
   */
   members: {
-    __chain: {
-      before: {},
-      after: {}
-    },
+    __chain: null,
 
     addBeforeMethod: function(name, callback, context) {
       this.__addMethod("before", name, callback, context);
@@ -48,6 +45,9 @@ qx.Mixin.define('cv.oo.MMethodChaining', {
     },
 
     __addMethod: function(type, name, callback, context) {
+      if (!this.__chain) {
+        this.__chain = { before: {}, after: {} };
+      }
       if (!this.__chain[type][name]) {
         this.__chain[type][name] = [];
       }
@@ -63,7 +63,7 @@ qx.Mixin.define('cv.oo.MMethodChaining', {
     },
 
     __processChain: function() {
-      if (!this.__chain[arguments[0]][arguments[1]]) {
+      if (!this.__chain || !this.__chain[arguments[0]][arguments[1]]) {
         return;
       }
       var type = [].splice.call(arguments, 0, 1);

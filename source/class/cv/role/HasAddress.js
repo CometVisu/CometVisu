@@ -76,9 +76,9 @@ qx.Mixin.define("cv.role.HasAddress", {
           formatPos = +(qx.bom.element.Attribute.get(elem, 'format-pos') || 1) | 0, // force integer
           mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
 
-        if ((!src) || (!transform)) // fix broken address-entries in config
+        if ((!src) || (!transform)) {// fix broken address-entries in config
           return;
-
+        }
         switch (qx.bom.element.Attribute.get(elem, 'mode')) {
           case 'disable':
             mode = 0;

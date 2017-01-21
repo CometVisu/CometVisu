@@ -102,7 +102,7 @@ qx.Class.define('cv.structure.pure.PageJump', {
         }
       };
 
-      while (parentPage !== null && cv.util.Tree.getParentWidget(parentPage, "page") !== null) {
+      while (parentPage && cv.util.Tree.getParentWidget(parentPage, "page")) {
         pageJumps.forEach(qx.lang.Function.curry(markPageJumps, parentPage.getName()));
         // recursively find pagejumps for parent pages
         parentPage = cv.util.Tree.getParentWidget(parentPage, "page");

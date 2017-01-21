@@ -87,8 +87,7 @@
           "$",
           "jQuery",
           "THREE",
-          "sprintf",
-          "fillRecoloredIcon"
+          "sprintf"
         ]
       },
 
@@ -125,6 +124,17 @@
           "manager.php",
           "visu_config.xsd",
           "version"
+        ]
+      }
+    },
+
+    "lint": {
+      "lint-check" : {
+        "allowed-globals" : [
+          "$",
+          "jQuery",
+          "THREE",
+          "sprintf"
         ]
       }
     },

@@ -208,7 +208,7 @@ qx.Class.define('cv.plugins.RssLog', {
           requestData: requestData,
           method: "GET"
         });
-        this.__request.addListener("success", this.__updateContent, this);
+        this.__request.addListener("success", qx.lang.Function.curry(this.__updateContent, isBig), this);
         this.__request.addListener("error", function(ev) {
           this.error('C: #rss_%s, Error: %s, Feed: %s', this.getPath(), ev.getTarget().getResponse(), src);
         }, this);
@@ -225,14 +225,13 @@ qx.Class.define('cv.plugins.RssLog', {
       }
     },
 
-    __updateContent: function(ev) {
+    __updateContent: function(isBig, ev) {
       var result = ev.getTarget().getResponse();
       if (qx.lang.Type.isString(result)) {
         // no json -> error
         this.error(result);
         return;
       }
-      var isBig = this.__isBig;
       var c = qx.bom.Selector.query('#rss_' + this.getPath() + (isBig === true ? '_big' : ''))[0];
       var itemack = isBig === true ? this.getItemack() : ( 'modify' === this.getItemack() ? 'display' : this.getItemack());
 

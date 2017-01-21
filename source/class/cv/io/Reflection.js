@@ -17,11 +17,8 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
-////////// Reflection API for possible Editor communication: Start //////////
-
 /**
- * @class cv.io.Reflection
+ * Reflection API for possible Editor communication
  */
 qx.Class.define('cv.io.Reflection', {
   extend: qx.core.Object,
@@ -34,6 +31,12 @@ qx.Class.define('cv.io.Reflection', {
   */
   statics: {
     /**
+     * Function to test if the path is in a valid form.
+     * Note: it doesn't check if it exists!
+     */
+    pathRegEx : /^id(_[0-9]+)+$/,
+
+    /**
      * Return a list of all widgets.
      */
     list: function () {
@@ -43,17 +46,16 @@ qx.Class.define('cv.io.Reflection', {
         var thisEntry = widgetTree;
         if ('id' === id.shift()) {
           var thisNumber;
-          while (thisNumber = id.shift()) {
-            if (!(thisNumber in thisEntry))
+          while (thisNumber = id.shift()) { // jshint ignore:line
+            if (!(thisNumber in thisEntry)) {
               thisEntry[thisNumber] = {};
-
+            }
             thisEntry = thisEntry[thisNumber];
           }
           qx.bom.Selector.matches('div.widget_container', qx.dom.Hierarchy.getDescendants(elem)).forEach(function(widget, i) {
             if (undefined === thisEntry[i]) {
-              thisEntry[i] = {}
+              thisEntry[i] = {};
             }
-            var thisWidget = cv.structure.WidgetFactory.getInstanceByElement(widget);
             thisEntry[i].name = widget.classname;
             thisEntry[i].type = widget.get$$type();
           });
@@ -78,10 +80,12 @@ qx.Class.define('cv.io.Reflection', {
      */
     select: function (path, state) {
       var container = this.lookupWidget(path);
-      if (state)
+      if (state) {
         qx.bom.element.Class.set(container, 'selected');
-      else
+      }
+      else {
         qx.bom.element.Class.remove(container, 'selected');
+      }
     },
 
     /**
@@ -98,10 +102,9 @@ qx.Class.define('cv.io.Reflection', {
     handleMessage: function (event) {
       // prevend bad or even illegal requests
       if (event.origin !== window.location.origin ||
-        'object' !== typeof event.data || !('command' in event.data ) || !('parameters' in event.data )
-      )
+        'object' !== typeof event.data || !('command' in event.data ) || !('parameters' in event.data )) {
         return;
-
+      }
       var answer = 'bad command',
         parameters = event.data.parameters;
 
@@ -109,58 +112,112 @@ qx.Class.define('cv.io.Reflection', {
       //       carefull for corectness testing
       switch (event.data.command) {
         case 'create':
-          if ('object' === typeof parameters &&
-            pathRegEx.test(parameters.path) &&
-            'string' === typeof parameters.element
-          )
-            answer = thisTemplateEngine.create(parameters.path, parameters.element);
-          else
+          if ('object' === typeof parameters && this.pathRegEx.test(parameters.path) &&
+              'string' === typeof parameters.element ) {
+            answer = this.create(parameters.path, parameters.element);
+          } else {
             answer = 'bad path or element';
+          }
           break;
 
         case 'delete':
-          if (pathRegEx.test(parameters))
-            answer = thisTemplateEngine.deleteCommand(parameters);
-          else
+          if (this.pathRegEx.test(parameters)) {
+            answer = this.deleteCommand(parameters);
+          } else {
             answer = 'bad path';
+          }
           break;
 
         case 'focus':
-          if (pathRegEx.test(parameters))
-            answer = thisTemplateEngine.focus(parameters);
-          else
+          if (this.pathRegEx.test(parameters)) {
+            answer = this.focus(parameters);
+          } else {
             answer = 'bad path';
+          }
           break;
 
         case 'list':
-          answer = thisTemplateEngine.list();
+          answer = this.list();
           break;
 
         case 'read':
-          if (pathRegEx.test(parameters))
-            answer = thisTemplateEngine.read(parameters);
-          else
+          if (this.pathRegEx.test(parameters)) {
+            answer = this.read(parameters);
+          } else {
             answer = 'bad path';
+          }
           break;
 
         case 'select':
-          if ('object' === typeof parameters &&
-            pathRegEx.test(parameters.path) &&
-            'boolean' === typeof parameters.state
-          )
-            answer = thisTemplateEngine.select(parameters.path, parameters.state);
+          if ('object' === typeof parameters && this.pathRegEx.test(parameters.path) && 'boolean' === typeof parameters.state) {
+            answer = this.select(parameters.path, parameters.state);
+          }
           break;
 
         case 'write':
-          if ('object' === typeof parameters &&
-            pathRegEx.test(parameters.path) &&
-            'object' === typeof parameters.attributes
-          )
-            answer = thisTemplateEngine.write(parameters.path, parameters.attributes);
+          if ('object' === typeof parameters && this.pathRegEx.test(parameters.path) &&
+              'object' === typeof parameters.attributes ) {
+            answer = this.write(parameters.path, parameters.attributes);
+          }
           break;
       }
 
       event.source.postMessage(answer, event.origin);
+    },
+
+    // tools for widget handling
+    /**
+     * Return a widget (to be precise: the widget_container) for the given path
+     */
+    lookupWidget: function (path) {
+      return qx.bom.Selector.query('.page#' + path)[0];
+    },
+
+    getParentPage: function (page) {
+      if (0 === page.length) { return null; }
+
+      return this.getParentPageById(qx.bom.element.Attribute.get(page, 'id'), true);
+    },
+
+    getParentPageById: function (path, isPageId) {
+      if (0 < path.length) {
+        var pathParts = path.split('_');
+        if (isPageId) { pathParts.pop(); }
+        while (pathParts.length > 1) {
+          pathParts.pop();
+          path = pathParts.join('_') + '_';
+          var page = qx.bom.Selector.query('#' + path)[0];
+          if (qx.bom.element.Class.has(page, "page")) {
+            return page;
+          }
+        }
+      }
+      return null;
+    },
+
+    /**
+     * Create a new widget.
+     */
+    create: function (path, element) {
+      return "created widget '" + path + "': '" + element + "'";
+    },
+
+    /**
+     * Delete an existing path, i.e. widget, group or even page - including
+     * child elements.
+     */
+    deleteCommand: function (path) {
+      this.debug(this.lookupWidget(path), qx.bom.Selector.query('#' + path)[0]);
+      //this.lookupWidget( path ).remove();
+      return "deleted widget '" + path + "'";
+    },
+
+    /**
+     * Focus a widget.
+     */
+    focus: function (path) {
+      qx.bom.element.Class.remove(qx.bom.Selector.query('.focused')[0], 'focused');
+      qx.bom.element.Class.add(this.lookupWidget(path), 'focused');
     }
   },
 
@@ -168,5 +225,3 @@ qx.Class.define('cv.io.Reflection', {
     window.addEventListener('message', cv.io.Reflection.handleMessage, false);
   }
 });
-
-////////// Reflection API for possible Editor communication: End //////////

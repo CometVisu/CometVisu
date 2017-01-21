@@ -89,6 +89,7 @@ qx.Class.define('cv.plugins.Timeout', {
     __timeoutCurrentPage: null,
     __timeoutCurrentPageTitle: null,
     __timeoutTargetPage: null,
+    __timer: null,
 
     timeoutPrintDebug: function (s) {
       if (this.isDebug()) {
@@ -152,6 +153,16 @@ qx.Class.define('cv.plugins.Timeout', {
       }
     }
   },
+
+  /*
+  ******************************************************
+    DESTRUCTOR
+  ******************************************************
+  */
+  destruct: function() {
+    this._disposeObjects("__timer");
+  },
+
 
   defer: function(statics) {
     cv.xml.Parser.addHandler("timeout", cv.plugins.Timeout);

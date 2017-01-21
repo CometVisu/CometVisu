@@ -29,9 +29,12 @@ qx.Class.define('cv.TemplateEngine', {
     // this.base(arguments);
     this.pagePartsHandler = new cv.PagePartsHandler();
 
+    this.__partQueue = new qx.data.Array();
     this.__partQueue.addListener("changeLength", function(ev) {
       this.setPartsLoaded(ev.getData() === 0);
     }, this);
+
+    this.defaults = {widget: {}, plugin: {}};
   },
 
   properties: {
@@ -87,12 +90,7 @@ qx.Class.define('cv.TemplateEngine', {
      *
      * Usage: this.defaults.plugin.foo = {bar: 'baz'};
      */
-    defaults : {widget: {}, plugin: {}},
-    /**
-     * Function to test if the path is in a valid form.
-     * Note: it doesn't check if it exists!
-     */
-    pathRegEx : /^id(_[0-9]+)+$/,
+    defaults : null,
 
     main_scroll : null,
     old_scroll : '',
@@ -101,7 +99,7 @@ qx.Class.define('cv.TemplateEngine', {
     pluginsToLoadCount : 0,
     xml : null,
 
-    __partQueue: new qx.data.Array(),
+    __partQueue: null,
 
     loadParts: function(parts, callback, context) {
       if (!qx.lang.Type.isArray(parts)) {
@@ -646,67 +644,6 @@ qx.Class.define('cv.TemplateEngine', {
           });
         });
       });
-    },
-
-    // tools for widget handling
-    /**
-     * Return a widget (to be precise: the widget_container) for the given path
-     */
-    lookupWidget: function (path) {
-      return qx.bom.Selector.query('.page#' + path)[0];
-    },
-
-    getParentPage: function (page) {
-      if (0 === page.length) { return null; }
-
-      return this.getParentPageById(qx.bom.element.Attribute.get(page, 'id'), true);
-    },
-
-    getParentPageById: function (path, isPageId) {
-      if (0 < path.length) {
-        var pathParts = path.split('_');
-        if (isPageId) { pathParts.pop(); }
-        while (pathParts.length > 1) {
-          pathParts.pop();
-          path = pathParts.join('_') + '_';
-          var page = qx.bom.Selector.query('#' + path)[0];
-          if (qx.bom.element.Class.has(page, "page")) {
-            return page;
-          }
-        }
-      }
-      return null;
-    },
-
-    getParentPageFromPath: function (path) {
-      return this.getParentPageById(path, false);
-    },
-
-    /**
-     * Create a new widget.
-     * FIXME: this does nothing, should be removed?
-     */
-    create: function (path, element) {
-      return "created widget '" + path + "': '" + element + "'";
-    },
-
-    /**
-     * Delete an existing path, i.e. widget, group or even page - including
-     * child elements.
-     * FIXME: this does nothing, should be removed?
-     */
-    deleteCommand: function (path) {
-      this.debug(this.lookupWidget(path), qx.bom.Selector.query('#' + path)[0]);
-      //this.lookupWidget( path ).remove();
-      return "deleted widget '" + path + "'";
-    },
-
-    /**
-     * Focus a widget.
-     */
-    focus: function (path) {
-      qx.bom.element.Class.remove(qx.bom.Selector.query('.focused')[0], 'focused');
-      qx.bom.element.Class.add(this.lookupWidget(path), 'focused');
     }
   }
 });
