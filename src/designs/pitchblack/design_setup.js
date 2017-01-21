@@ -24,5 +24,7 @@
  * @author Christian Mayer
  * @since 2012
  */
-$('head').data('colspanDefault', 1 );
+templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+  $('head').data('colspanDefault', 1);
+});
 

@@ -26,8 +26,10 @@
  */
 /*$('#navbarLeft').data('columns', 6 );
 */
-$('#main').data('columns', 12 );
-$('#main').data('disableSliderTransform', true );
-$('#navbarRight').data('columns', 6 );
-$('#navbarLeft').data({'columns': 6, 'size': '12rem'} );
+templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+  $('#main').data('columns', 12);
+  $('#main').data('disableSliderTransform', true);
+  $('#navbarRight').data('columns', 6);
+  $('#navbarLeft').data({'columns': 6, 'size': '12rem'});
+});
 
