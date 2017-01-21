@@ -28,11 +28,11 @@
  * @since       2013-03-18
  */
 
-define('DESIGNS_DIRECTORY', '../../plugins/');
+define('DESIGNS_DIRECTORY', '../../class/cv/plugins/');
 define('DESIGNS_PATTERN', '*');
 
-foreach (glob(DESIGNS_DIRECTORY . DESIGNS_PATTERN, GLOB_ONLYDIR) as $strFilename) {
-    $strFileBasename = basename($strFilename);
+foreach (glob(DESIGNS_DIRECTORY . DESIGNS_PATTERN) as $strFilename) {
+    $strFileBasename = explode(".", basename($strFilename))[0];
 
     $arrData[] = array(
                                         'value' => utf8_encode($strFileBasename),
