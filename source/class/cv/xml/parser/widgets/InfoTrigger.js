@@ -23,7 +23,7 @@
  */
 qx.Class.define('cv.xml.parser.widgets.InfoTrigger', {
   extend: cv.xml.parser.AbstractBasicWidget,
-  include: cv.role.Update,
+  include: cv.role.BasicUpdate,
 
   /*
   ******************************************************
@@ -53,7 +53,7 @@ qx.Class.define('cv.xml.parser.widgets.InfoTrigger', {
 
     makeAddressListFn: function (src, transform, mode, variant) {
       // Bit 0 = short, Bit 1 = button => 1|2 = 3 = short + button
-      return [true, variant == 'short' ? 1 : (variant == 'button' ? 2 : 1 | 2)];
+      return [true, variant === 'short' ? 1 : (variant === 'button' ? 2 : 1 | 2)];
     }
   },
 

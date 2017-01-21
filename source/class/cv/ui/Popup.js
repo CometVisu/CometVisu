@@ -9,7 +9,7 @@ qx.Class.define('cv.ui.Popup', {
   */
   construct: function(type) {
     if (type) {
-      this.setType(type)
+      this.setType(type);
     }
     this.__deactivateSelectors = ['#top', '#navbarTop', '#centerContainer', '#navbarBottom', '#bottom'];
   },
@@ -110,14 +110,26 @@ qx.Class.define('cv.ui.Popup', {
           anchor.w = attributes.position.width();
           anchor.h = attributes.position.height();
         } else {
-          if (attributes.position.hasOwnProperty('x')) anchor.x = attributes.position.x;
-          if (attributes.position.hasOwnProperty('y')) anchor.y = attributes.position.y;
-          if (attributes.position.hasOwnProperty('w')) anchor.w = attributes.position.w;
-          if (attributes.position.hasOwnProperty('h')) anchor.h = attributes.position.h;
-          if (anchor.w == 0 && anchor.h == 0) align = 5;
+          if (attributes.position.hasOwnProperty('x')) {
+            anchor.x = attributes.position.x;
+          }
+          if (attributes.position.hasOwnProperty('y')) {
+            anchor.y = attributes.position.y;
+          }
+          if (attributes.position.hasOwnProperty('w')) {
+            anchor.w = attributes.position.w;
+          }
+          if (attributes.position.hasOwnProperty('h')) {
+            anchor.h = attributes.position.h;
+          }
+          if (anchor.w === 0 && anchor.h === 0) {
+            align = 5;
+          }
         }
       }
-      if (attributes.align !== undefined) align = attributes.align;
+      if (attributes.align !== undefined) {
+        align = attributes.align;
+      }
       var placement = cv.ui.PopupHandler.placementStrategy(
         anchor,
         {w: qx.bom.element.Dimension.getWidth(ret_val), h: qx.bom.element.Dimension.getHeight(ret_val)},

@@ -18,6 +18,10 @@
  */
 
 
+/**
+ * Mixin for all widgets that can have other widgets as children, this mixin includes the static parsing part
+ * and the methods for the widget instance.
+ */
 qx.Mixin.define("cv.role.HasChildren", {
 
   /*
@@ -112,12 +116,13 @@ qx.Mixin.define("cv.role.HasChildren", {
     /**
      * Returns the path where the widget data is stored, usually this is the same path, but there are
      * exceptions for pages which are handled here
-     * @param xml
-     * @param path
+     *
+     * @param xml {Element} widgets XML config element
+     * @param path {String} internal widget path e.g. id_0_2
      */
     getStoragePath: function (xml, path) {
       if (xml.length === 1) {
-        xml = xml[0]
+        xml = xml[0];
       }
       switch (xml.nodeName.toLowerCase()) {
         case "page":
@@ -134,26 +139,37 @@ qx.Mixin.define("cv.role.HasChildren", {
   ******************************************************
   */
   members: {
+    /**
+     * Creates the HTML code for the children if this widget
+     *
+     * @param noWidgetContainer {Boolean} if false: do not surround the childrens with a div-element with class 'widget_container'
+     * @return {String} HTML code
+     */
     getChildrenDomString: function (noWidgetContainer) {
       var container = '';
 
       this.getChildWidgets().forEach(function(widget) {
         var subelement = widget.getDomString();
-        if (undefined === subelement)
+        if (undefined === subelement) {
           return;
+        }
         if (noWidgetContainer === true) {
           container += subelement;
         } else {
-          container += '<div class="widget_container '
-            + (widget.getRowspanClass ? widget.getRowspanClass() : '')
-            + (widget.getContainerClass ? widget.getContainerClass() : '')
-            + ('break' === widget.get$$type() ? 'break_container' : '') // special case for break widget
-            + '" id="' + widget.getPath() + '" data-type="' + widget.get$$type() + '">' + subelement + '</div>';
+          container += '<div class="widget_container ' +
+            (widget.getRowspanClass ? widget.getRowspanClass() : '') +
+            (widget.getContainerClass ? widget.getContainerClass() : '') +
+            ('break' === widget.get$$type() ? 'break_container' : '') + // special case for break widget
+            '" id="' + widget.getPath() + '" data-type="' + widget.get$$type() + '">' + subelement + '</div>';
         }
       }, this);
       return container;
     },
 
+    /**
+     * Find the widgets parent widget
+     * @return {cv.structure.AbstractWidget}
+     */
     getParent: function () {
       var path = this.getPath();
       var type = this.$$type;
@@ -184,8 +200,4 @@ qx.Mixin.define("cv.role.HasChildren", {
       return null;
     }
   }
-
-  // defer: function() {
-  //   // cv.xml.Parser.addHook(this.classname.split(".").pop().toLowerCase(), cv.role.HasChildren.parse, this);
-  // }
 });

@@ -73,7 +73,7 @@ qx.Class.define('cv.xml.Parser', {
     },
 
     getHandler: function (tagName) {
-      return this.__handlers[tagName.toLowerCase()] || this.__handlers['unknown'];
+      return this.__handlers[tagName.toLowerCase()] || this.__handlers.unknown;
     },
 
     addHook: function(tagname, type, callback, context) {
@@ -165,7 +165,7 @@ qx.Class.define('cv.xml.Parser', {
 
     getElementType: function(element) {
       var type = element.nodeName.toLowerCase();
-      if (type == "img") {
+      if (type === "img") {
         // workaround for unittests (<image> gets replaced by <img>
         type = "image";
       }
@@ -199,13 +199,21 @@ qx.Class.define('cv.xml.Parser', {
         classes+=" "+qx.bom.element.Attribute.get(element, 'align') ;
       }
       classes += ' ' + this.setWidgetLayout(element, path);
-      if( qx.bom.element.Attribute.get(element, 'flavour') ) flavour = qx.bom.element.Attribute.get(element, 'flavour');// sub design choice
-      if( flavour ) classes += ' flavour_' + flavour;
-      if (qx.bom.element.Attribute.get(element, 'class')) classes += ' custom_' + qx.bom.element.Attribute.get(element, 'class');
+      if( qx.bom.element.Attribute.get(element, 'flavour') ) {
+        flavour = qx.bom.element.Attribute.get(element, 'flavour');
+      }// sub design choice
+      if( flavour ) {
+        classes += ' flavour_' + flavour;
+      }
+      if (qx.bom.element.Attribute.get(element, 'class')) {
+        classes += ' custom_' + qx.bom.element.Attribute.get(element, 'class');
+      }
       var label = (pageType==='text') ? this.extractLabel( qx.bom.Selector.query("label", element)[0], flavour, '' ) : this.extractLabel( qx.bom.Selector.query("label", element)[0], flavour );
 
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
-      if (qx.bom.element.Attribute.get(element, "bind_click_to_widget")) bindClickToWidget = qx.bom.element.Attribute.get(element, "bind_click_to_widget")=="true";
+      if (qx.bom.element.Attribute.get(element, "bind_click_to_widget")) {
+        bindClickToWidget = qx.bom.element.Attribute.get(element, "bind_click_to_widget") === "true";
+      }
 
       var data = {
         'path'    : path,
@@ -228,29 +236,48 @@ qx.Class.define('cv.xml.Parser', {
     /**
      * Parse config file layout element and convert it to an object
      *
-     * @param layout
-     * @param defaultValues
+     * @param layout {Element} XML config element &lt;layout&gt;
+     * @param defaultValues {Map} default layout values
      * @return {Map}
      */
     parseLayout: function( layout, defaultValues )
     {
       var ret_val = {};
 
-      if( !layout )
+      if( !layout ) {
         return ret_val;
+      }
 
-      if( undefined === defaultValues ) defaultValues = {};
-      if( layout.getAttribute('x'     ) ) ret_val.x      = layout.getAttribute('x'     );
-      else if( defaultValues.x          ) ret_val.x      = defaultValues.x;
+      if( undefined === defaultValues ) {
+        defaultValues = {};
+      }
+      if( layout.getAttribute('x'     ) ) {
+        ret_val.x = layout.getAttribute('x');
+      }
+      else if( defaultValues.x          ) {
+        ret_val.x = defaultValues.x;
+      }
 
-      if( layout.getAttribute('y'     ) ) ret_val.y      = layout.getAttribute('y'     );
-      else if( defaultValues.y          ) ret_val.y      = defaultValues.y;
+      if( layout.getAttribute('y'     ) ) {
+        ret_val.y = layout.getAttribute('y');
+      }
+      else if( defaultValues.y          ) {
+        ret_val.y = defaultValues.y;
+      }
 
-      if( layout.getAttribute('width' ) ) ret_val.width  = layout.getAttribute('width' );
-      else if( defaultValues.width      ) ret_val.width  = defaultValues.width;
+      if( layout.getAttribute('width' ) ) {
+        ret_val.width = layout.getAttribute('width');
+      }
+      else if( defaultValues.width      ) {
+        ret_val.width = defaultValues.width;
+      }
 
-      if( layout.getAttribute('height') ) ret_val.height = layout.getAttribute('height');
-      else if( defaultValues.height     ) ret_val.height = defaultValues.height;
+      if( layout.getAttribute('height') ) {
+        ret_val.height = layout.getAttribute('height');
+      }
+      else if( defaultValues.height     ) {
+        ret_val.height = defaultValues.height;
+      }
 
       return ret_val;
     },
@@ -258,11 +285,19 @@ qx.Class.define('cv.xml.Parser', {
     extractLayout: function( layout, pageType )
     {
 
-      var ret_val = (pageType == '2d') ? 'position:absolute;' : '';
-      if( layout.x      ) ret_val += 'left:'   + layout.x      + ';';
-      if( layout.y      ) ret_val += 'top:'    + layout.y      + ';';
-      if( layout.width  ) ret_val += 'width:'  + layout.width  + ';';
-      if( layout.height ) ret_val += 'height:' + layout.height + ';';
+      var ret_val = (pageType === '2d') ? 'position:absolute;' : '';
+      if( layout.x      ) {
+        ret_val += 'left:'   + layout.x      + ';';
+      }
+      if( layout.y      ) {
+        ret_val += 'top:'    + layout.y      + ';';
+      }
+      if( layout.width  ) {
+        ret_val += 'width:'  + layout.width  + ';';
+      }
+      if( layout.height ) {
+        ret_val += 'height:' + layout.height + ';';
+      }
 
       return ret_val;
     },
@@ -270,21 +305,35 @@ qx.Class.define('cv.xml.Parser', {
     extractLayout3d: function( layout )
     {
       var ret_val = {};
-      if( layout.getAttribute('x'    ) ) ret_val.x     = layout.getAttribute('x'    );
-      if( layout.getAttribute('y'    ) ) ret_val.y     = layout.getAttribute('y'    );
-      if( layout.getAttribute('z'    ) ) ret_val.z     = layout.getAttribute('z'    );
-      if( layout.getAttribute('floor') ) ret_val.floor = layout.getAttribute('floor');
-      if( layout.getAttribute('floorFilter') ) ret_val.floorFilter = layout.getAttribute('floorFilter');
-      if( layout.getAttribute('roomFilter')  ) ret_val.roomFilter  = layout.getAttribute('roomFilter' );
+      if( layout.getAttribute('x') ) {
+        ret_val.x     = layout.getAttribute('x');
+      }
+      if( layout.getAttribute('y') ) {
+        ret_val.y     = layout.getAttribute('y');
+      }
+      if( layout.getAttribute('z') ) {
+        ret_val.z     = layout.getAttribute('z');
+      }
+      if( layout.getAttribute('floor') ) {
+        ret_val.floor = layout.getAttribute('floor');
+      }
+      if( layout.getAttribute('floorFilter') ) {
+        ret_val.floorFilter = layout.getAttribute('floorFilter');
+      }
+      if( layout.getAttribute('roomFilter')  ) {
+        ret_val.roomFilter  = layout.getAttribute('roomFilter' );
+      }
       return ret_val;
     },
 
     extractLabel: function( label, flavour, labelClass, style )
     {
-      if( !label ) return '';
+      if( !label ) {
+        return '';
+      }
 
-      var ret_val = '<div class="' + (!labelClass ? 'label' : labelClass) + '"'
-        + ( style ? (' style="' + style + '"') : '' ) + '>';
+      var ret_val = '<div class="' + (!labelClass ? 'label' : labelClass) + '"' +
+        ( style ? (' style="' + style + '"') : '' ) + '>';
 
       label.childNodes.forEach(function(elem) {
         if( qx.dom.Node.isNodeName(elem, 'icon') ) {

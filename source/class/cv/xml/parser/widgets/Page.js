@@ -84,12 +84,18 @@ qx.Class.define('cv.xml.parser.widgets.Page', {
       }, this);
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
       if (qx.bom.element.Attribute.get(page, "bind_click_to_widget")) {
-        bindClickToWidget = qx.bom.element.Attribute.get(page, "bind_click_to_widget")=="true";
+        bindClickToWidget = qx.bom.element.Attribute.get(page, "bind_click_to_widget")==="true";
       }
-      if( qx.bom.element.Attribute.get(page, 'flavour') ) flavour = qx.bom.element.Attribute.get(page, 'flavour');// sub design choice
+      if( qx.bom.element.Attribute.get(page, 'flavour') ) {
+        flavour = qx.bom.element.Attribute.get(page, 'flavour');// sub design choice
+      }
       var wstyle  = '';                                     // widget style
-      if( qx.bom.element.Attribute.get(page, 'align') ) wstyle += 'text-align:' + qx.bom.element.Attribute.get(page, 'align') + ';';
-      if( wstyle != '' ) wstyle = 'style="' + wstyle + '"';
+      if( qx.bom.element.Attribute.get(page, 'align') ) {
+        wstyle += 'text-align:' + qx.bom.element.Attribute.get(page, 'align') + ';';
+      }
+      if( wstyle !== '' ) {
+        wstyle = 'style="' + wstyle + '"';
+      }
 
       var layout = cv.xml.Parser.parseLayout( qx.bom.Selector.matches("layout", qx.dom.Hierarchy.getChildElements(page))[0] );
 

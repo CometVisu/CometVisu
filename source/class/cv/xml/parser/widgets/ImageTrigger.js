@@ -24,8 +24,6 @@
 qx.Class.define('cv.xml.parser.widgets.ImageTrigger', {
   extend: cv.xml.parser.AbstractBasicWidget,
   include: [
-    cv.role.Operate,
-    cv.role.HasAnimatedButton,
     cv.role.Refresh,
     cv.role.Update
   ],

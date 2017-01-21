@@ -23,7 +23,7 @@
  */
 qx.Class.define('cv.xml.parser.widgets.MultiTrigger', {
   extend: cv.xml.parser.AbstractBasicWidget,
-  include: [cv.role.Operate, cv.role.Update, cv.role.HasAnimatedButton],
+  include: [cv.role.Update],
 
   /*
   ******************************************************
@@ -46,7 +46,7 @@ qx.Class.define('cv.xml.parser.widgets.MultiTrigger', {
         button3value: {},
         button4label: {},
         button4value: {}
-      }
+      };
     },
 
     makeAddressListFn: function (src, transform, mode, variant) {
