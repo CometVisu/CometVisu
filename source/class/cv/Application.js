@@ -141,9 +141,9 @@ qx.Class.define("cv.Application",
       if (cv.Config.testMode) {
         // workaround for e2e-tests
         uri = 'resource/config/visu_config' + (cv.Config.configSuffix ? '_' + cv.Config.configSuffix : '') + '.xml';
-      } else if (!uri.startsWith("resource/")) {
+      } else if (uri.indexOf("resource/") === -1) {
         // unknown config, try to add the resource part manually
-        uri = "resource/"+uri;
+        uri = uri.replace("config/", "resource/config/");
       }
       this.debug("Requesting "+uri);
       var ajaxRequest = new qx.io.request.Xhr(uri);
