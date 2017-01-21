@@ -91,7 +91,7 @@ $(document).ready(function () {
   }
     
   // create configuration filename
-  var configFilename = (isDemo?'demo/':'config/') + 'visu_config' + (configSuffix ? '_' + configSuffix : '' ) + '.xml'
+  var configFilename = (isDemo?'resource/demo/':'resource/config/') + 'visu_config' + (configSuffix ? '_' + configSuffix : '' ) + '.xml'
     
   // and start loading the configuration
   config = new Configuration(configFilename, isDemo);

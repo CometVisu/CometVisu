@@ -29,8 +29,8 @@
  * @since       2012-12-12
  */
 
-define('CONFIG_FILENAME', '../../config/visu_config%s.xml');
-define('BACKUP_FILENAME', '../../config/backup/visu_config%s-%s.xml');
+define('CONFIG_FILENAME', '../../resource/config/visu_config%s.xml');
+define('BACKUP_FILENAME', '../../resource/config/backup/visu_config%s-%s.xml');
 
 // get everything the user has provided ...
 $strJson   = (true === isset($_POST['data']))   ? $_POST['data']   : null;

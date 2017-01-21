@@ -7,7 +7,7 @@
   <body>
 <?php
 
-require_once('lib/library_version.inc.php');
+require_once('library_version.inc.php');
 
 $error_array = array();
 
@@ -95,7 +95,7 @@ if (substr($_GET['config'],0,3)=="oh_") {
    $conffile = "http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT'].$_SERVER['SCRIPT_NAME']."/config/visu_config";
 }
 else {
-   $conffile = 'config/visu_config';
+   $conffile = 'resource/config/visu_config';
 }
 if (defined('STDIN')) {
   $conffile = "visu_config_" . $argv[1];
@@ -105,7 +105,7 @@ if (defined('STDIN')) {
 $conffile .= '.xml';
 
 if ( false === is_readable( $conffile ) ) {
-  $conffile = 'demo/visu_config';
+  $conffile = 'resource/demo/visu_config';
   if ($_GET['config']) {
     $conffile .= "_" . $_GET['config'];
   }

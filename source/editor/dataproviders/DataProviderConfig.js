@@ -61,7 +61,7 @@ var DataProviderConfig = {
   },
   'pages': {
     'design':  {
-      url: 'designs/get_designs.php',
+      url: 'resource/designs/get_designs.php',
       map: function(element) {
         return {value: element, label: element};
       },

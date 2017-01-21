@@ -29,7 +29,7 @@
  */
 
 // get the current library version
-require_once('../lib/library_version.inc.php');
+require_once('../library_version.inc.php');
 
 /**
  * the library-version the upgrader understands

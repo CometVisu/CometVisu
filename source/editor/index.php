@@ -30,10 +30,10 @@
  * @since       2013-02-05
  */
 
-require_once('../lib/library_version.inc.php');
+require_once('../library_version.inc.php');
 
-define('CONFIG_FILENAME', '../config/visu_config%s.xml');
-define('DEMO_FILENAME', '../demo/visu_config%s.xml');
+define('CONFIG_FILENAME', '../resource/config/visu_config%s.xml');
+define('DEMO_FILENAME', '../resource/demo/visu_config%s.xml');
 define('SCHEMA_FILENAME', './%s');
 
 // helper function to simplify a path in itself
@@ -70,7 +70,7 @@ if (false === empty($strConfigCleaned)) {
 }
 
 // relative path (not affected by symlinks)
-$strConfigPath = realpath( '.' ) . '/../config/';
+$strConfigPath = realpath( '.' ) . '/../resource/config/';
 
 // generate the configurations filename
 $strConfigFilename = sprintf(CONFIG_FILENAME, $strConfigCleaned);

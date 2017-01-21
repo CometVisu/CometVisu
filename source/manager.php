@@ -25,9 +25,9 @@
 error_reporting(-1);
  
 // global definitions
-define( 'CONFIG_FILENAME', 'config/visu_config%s.xml' );
-define( 'DEMO_FILENAME', 'demo/visu_config%s.xml' );
-define( 'MEDIA_PATH', 'config/media/' );
+define( 'CONFIG_FILENAME', 'resource/config/visu_config%s.xml' );
+define( 'DEMO_FILENAME', 'resource/demo/visu_config%s.xml' );
+define( 'MEDIA_PATH', 'resource/config/media/' );
 // white list and black list file name patterns
 define( 'MEDIA_ALLOWED_NAME', '#^[0-9a-zA-Z_./ -]+$#' ); // any of these chars but not empty
 define( 'MEDIA_DISALLOWED_NAME', '#(^\.*/)|(/\.*/)#' );  // no amount of points at the beginning or after an slash and a following slash
@@ -149,7 +149,7 @@ define( 'MEDIA_TABLE_ROW', '<tr class="visuline">'
  */
 function icon( $name )
 {
-  return '<svg class="icon"><use xlink:href="icon/knx-uf-iconset.svg#kuf-' . $name . '"></use></svg>';
+  return '<svg class="icon"><use xlink:href="resource/icon/knx-uf-iconset.svg#kuf-' . $name . '"></use></svg>';
 }
 
 /**
@@ -157,7 +157,7 @@ function icon( $name )
  */
 function filterPreview( $name )
 {
-  if( 'config/visu_config_previewtemp.xml' == $name )
+  if( 'resource/config/visu_config_previewtemp.xml' == $name )
     return false;
   
   return true;
@@ -208,7 +208,7 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
   else switch( $action )
   {
     case 'create':
-      if( !is_readable( 'demo/visu_config_empty.xml' ) )
+      if( !is_readable( 'resource/demo/visu_config_empty.xml' ) )
       {
         $actionDone = $_['Empty configuration is not readable -> CometVisu installation is badly broken!'];
         break;
@@ -219,7 +219,7 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
         break;
       }
       
-      if( copy( 'demo/visu_config_empty.xml', $configFile ) ) {
+      if( copy( 'resource/demo/visu_config_empty.xml', $configFile ) ) {
         $actionDone = sprintf( $_['New configuration file successfully created'], $configFile );
         $availVisu = array_filter( glob( sprintf( CONFIG_FILENAME, '*' ) ), 'filterPreview' );
         $resetUrl = true;
@@ -306,28 +306,28 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
   }
 } else {
   // nothing special to do - so at least do a few sanity checks
-  if( !is_writeable( 'config/visu_config.xml' ) )
+  if( !is_writeable( 'resource/config/visu_config.xml' ) )
   {
-    if( @chmod( 'config/visu_config.xml', 0666 ) ) // try to fix it
+    if( @chmod( 'resource/config/visu_config.xml', 0666 ) ) // try to fix it
     {
-      if( !is_writeable( 'config/visu_config.xml' ) )
-        $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
+      if( !is_writeable( 'resource/config/visu_config.xml' ) )
+        $actionDone = $_['Installation error - please check file permissions!'].' (resource/config/visu_config.xml)';
     } else
-    $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config.xml)';
+    $actionDone = $_['Installation error - please check file permissions!'].' (resource/config/visu_config.xml)';
   }
   
-  if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
+  if( !is_writeable( 'resource/config/visu_config_previewtemp.xml' ) )
   { 
-    if( chmod( 'config/visu_config_previewtemp.xml', 0666 ) ) // try to fix it
+    if( chmod( 'resource/config/visu_config_previewtemp.xml', 0666 ) ) // try to fix it
     {
-      if( !is_writeable( 'config/visu_config_previewtemp.xml' ) )
-        $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+      if( !is_writeable( 'resource/config/visu_config_previewtemp.xml' ) )
+        $actionDone = $_['Installation error - please check file permissions!'].' (resource/config/visu_config_previewtemp.xml)';
     } else
-      $actionDone = $_['Installation error - please check file permissions!'].' (config/visu_config_previewtemp.xml)';
+      $actionDone = $_['Installation error - please check file permissions!'].' (resource/config/visu_config_previewtemp.xml)';
   }
   
-  if( !is_readable( 'demo/visu_config_empty.xml' ) )
-    $actionDone = $_['Installation error - please check file permissions!'].' (demo/visu_config_empty.xml)';
+  if( !is_readable( 'resource/demo/visu_config_empty.xml' ) )
+    $actionDone = $_['Installation error - please check file permissions!'].' (resource/demo/visu_config_empty.xml)';
 }
 
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -336,12 +336,12 @@ if( ($config === '' || $config !== false) && ($media === false) && ($action !== 
   <head>
     <title><?php echo $_['CometVisu Manager'] ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="icon" href="icon/comet_16x16_ff8000.png" type="image/png" />
-    <link rel="apple-touch-icon" sizes="57x57" href="icon/comet_webapp_icon_114.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="icon/comet_webapp_icon_114.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="icon/comet_webapp_icon_144.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="icon/comet_webapp_icon_144.png" />
-    <script src="dependencies/jquery.js" type="text/javascript"></script>
+    <link rel="icon" href="resource/icon/comet_16x16_ff8000.png" type="image/png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="resource/icon/comet_webapp_icon_114.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="resource/icon/comet_webapp_icon_114.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="resource/icon/comet_webapp_icon_144.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="resource/icon/comet_webapp_icon_144.png" />
+    <script src="resource/libs/jquery.js" type="text/javascript"></script>
     <script>
 function deleteConfig( displayName, name )
 {
@@ -484,7 +484,7 @@ if( $resetUrl )
     if( $actionDone )
       echo '<div class="actionDone' . ($actionSuccess?' actionSuccess':'') . '">'.$actionDone.'</div>';
     ?>
-    <h1><?php printf( $_['Available Configurations:'], '<img src="icon/comet_64_ff8000.png" />') ?></h1>
+    <h1><?php printf( $_['Available Configurations:'], '<img src="resource/icon/comet_64_ff8000.png" />') ?></h1>
     <form enctype="multipart/form-data" action="manager.php" method="post" id="config_form">
     <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
     <table>
@@ -530,7 +530,7 @@ if( $resetUrl )
     <a href="javascript:newConfig()" id="newConfig" class="newFile"><?php echo icon('control_plus') . $_['Create new config'] ?></a>
     </p>
     
-    <h2><?php printf( $_['Available media files:'], '<img src="icon/comet_64_ff8000.png" />') ?></h2>
+    <h2><?php printf( $_['Available media files:'], '<img src="resource/icon/comet_64_ff8000.png" />') ?></h2>
     <form enctype="multipart/form-data" action="manager.php" method="post" id="media_form">
     <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
     <table>
@@ -559,7 +559,7 @@ if( $resetUrl )
     
     <hr />
     <div id="footer">
-      <img src="icon/comet_icon_128x128_ff8000.png" alt="CometVisu" height="50"> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
+      <img src="resource/icon/comet_icon_128x128_ff8000.png" alt="CometVisu" height="50"> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
       <div style="float:right;padding-right:0.5em">Version: <?php include('version') ?></div>
     </div>
     <script>
