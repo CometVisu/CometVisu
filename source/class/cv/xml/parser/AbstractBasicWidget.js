@@ -23,6 +23,7 @@
  */
 qx.Class.define('cv.xml.parser.AbstractBasicWidget', {
   extend: qx.core.Object,
+  include: cv.role.HasStyling,
 
   /*
   ******************************************************
