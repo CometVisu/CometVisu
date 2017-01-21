@@ -43,7 +43,7 @@ qx.Class.define('cv.structure.WidgetFactory', {
         if (!cv.structure.pure[qx.lang.String.firstUp(type)]) {
           var clazz = this.__typeMapping[type];
           if (clazz) {
-            this.registry[data.path] = new clazz(data);
+            this.registry[data.path] = new clazz(data); // jshint ignore:line
           } else {
             qx.log.Logger.error("No handler found for type '"+type+"'");
             return null;

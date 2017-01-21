@@ -64,14 +64,14 @@ qx.Class.define('cv.PageHandler', {
         speed = 0;
       }
       var currentPath = this.getCurrentPath();
-      currentPath !== '' && qx.event.message.Bus.dispatchByName("path."+currentPath+".exitingPageChange", currentPath, target);
+      if (currentPath !== '') { qx.event.message.Bus.dispatchByName("path."+currentPath+".exitingPageChange", currentPath, target); }
 
       var page = qx.bom.Selector.query('#' + target)[0];
       var pageWidget = cv.structure.WidgetFactory.getInstanceById(target);
 
-      if( 0 === page.length ) // check if page does exist
+      if( 0 === page.length ) {// check if page does exist
         return;
-
+      }
       qx.event.message.Bus.dispatchByName("path."+target+".beforePageChange", target);
 
       var templateEngine = cv.TemplateEngine.getInstance();
@@ -94,7 +94,7 @@ qx.Class.define('cv.PageHandler', {
         page = qx.bom.Selector.query('#' + target)[0];
         var left = qx.bom.element.Location.getLeft(page);
         var currentPageWidth = qx.bom.element.Dimension.getWidth(qx.bom.Selector.query('#' + currentPath)[0]);
-        var scrollLeft = left != 0;
+        var scrollLeft = left !== 0;
         // jump to the page on the left of the page we need to scroll to
         if (scrollLeft) {
           leftEnd = -currentPageWidth+"px";

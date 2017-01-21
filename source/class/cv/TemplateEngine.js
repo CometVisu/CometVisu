@@ -159,10 +159,10 @@ qx.Class.define('cv.TemplateEngine', {
       if (cv.Config.testMode) {
         this.visu = new cv.io.Mockup();
       }
-      else if (backendName == "oh") {
+      else if (backendName === "oh") {
         this.visu = new cv.io.Client('openhab', cv.Config.backendUrl);
       }
-      else if (backendName == "oh2") {
+      else if (backendName === "oh2") {
         this.visu = new cv.io.Client('openhab2', cv.Config.backendUrl);
       } else {
         this.visu = new cv.io.Client(backendName, cv.Config.backendUrl);
@@ -206,14 +206,14 @@ qx.Class.define('cv.TemplateEngine', {
       }
       this.initBackendClient();
 
-      if (!qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') === null) {
+      if (qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') !== null) {
         settings.scrollSpeed = 400;
       } else {
         settings.scrollSpeed = parseInt(qx.bom.element.Attribute.get(pagesNode, 'scroll_speed'));
       }
 
       if (qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') !== null) {
-        settings.bindClickToWidget = qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') == "true";
+        settings.bindClickToWidget = qx.bom.element.Attribute.get(pagesNode, 'bind_click_to_widget') === "true";
       }
       if (qx.bom.element.Attribute.get(pagesNode, 'default_columns') !== null) {
         settings.defaultColumns = qx.bom.element.Attribute.get(pagesNode, 'default_columns');
@@ -236,8 +236,9 @@ qx.Class.define('cv.TemplateEngine', {
           this.selectDesign();
         }
       }
-      if (qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width') !== null)
+      if (qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width') !== null) {
         settings.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
+      }
 
       settings.scriptsToLoad = [];
       settings.stylesToLoad = [];
@@ -263,7 +264,7 @@ qx.Class.define('cv.TemplateEngine', {
             ]);
             cv.util.ScriptLoader.getInstance().addScripts(baseUri+"/design_setup.js");
           }
-        })
+        }, this);
       }
       var metaParser = new cv.xml.parser.Meta();
 
@@ -306,7 +307,7 @@ qx.Class.define('cv.TemplateEngine', {
         cv.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
 
         this.main_scroll = new cv.PageHandler();
-        if (this.scrollSpeed != undefined) {
+        if (this.scrollSpeed !== undefined) {
           this.main_scroll.setSpeed(this.scrollSpeed);
         }
 
@@ -377,8 +378,9 @@ qx.Class.define('cv.TemplateEngine', {
         this.visu.setInitialAddresses(Object.keys(startPageAddresses));
       }
       var addressesToSubscribe = cv.data.Model.getInstance().getAddresses();
-      if (0 !== addressesToSubscribe.length)
+      if (0 !== addressesToSubscribe.length) {
         this.visu.subscribe(addressesToSubscribe);
+      }
     },
 
     createPages: function (page, path, flavour, type) {
@@ -392,7 +394,7 @@ qx.Class.define('cv.TemplateEngine', {
         var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
 
         // trigger DOM generation
-        widget && widget.getDomString();
+        if (widget) { widget.getDomString(); }
       }
     },
 
@@ -416,14 +418,14 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     getPageIdByPath: function (page_name, path) {
-      if (page_name == null) return null;
-      if (page_name.match(/^id_[0-9_]*$/) != null) {
+      if (page_name === null) { return null; }
+      if (page_name.match(/^id_[0-9_]*$/) !== null) {
         // already a page_id
         return page_name;
       } else {
-        if (path != undefined) {
+        if (path !== undefined) {
           var scope = this.traversePath(path);
-          if (scope == null) {
+          if (scope === null) {
             // path is wrong
             this.error("path '" + path + "' could not be traversed, no page found");
             return null;
@@ -440,7 +442,7 @@ qx.Class.define('cv.TemplateEngine', {
       var index = path.indexOf("/");
       if (index >= 1) {
         // skip escaped slashes like \/
-        while (path.substr(index - 1, 1) == "\\") {
+        while (path.substr(index - 1, 1) === "\\") {
           var next = path.indexOf("/", index + 1);
           if (next >= 0) {
             index = next;
@@ -464,11 +466,11 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     getPageIdByName: function (page_name, scope) {
-      if (page_name.match(/^id_[0-9_]*$/) != null) {
+      var page_id = null;
+      if (page_name.match(/^id_[0-9_]*$/) !== null) {
         // already a page_id
         return page_name;
       } else {
-        var page_id = null;
         // find Page-ID by name
         // decode html code (e.g. like &apos; => ')
         page_name = cv.util.String.decodeHtmlEntities(page_name);
@@ -476,19 +478,19 @@ qx.Class.define('cv.TemplateEngine', {
         page_name = page_name.replace("\\\/", "/");
 
         //      console.log("Page: "+page_name+", Scope: "+scope);
-        var selector = (scope != undefined && scope != null) ? '.page[id^="' + scope + '"] h1:contains(' + page_name + ')' : '.page h1:contains(' + page_name + ')';
+        var selector = (scope !== undefined && scope !== null) ? '.page[id^="' + scope + '"] h1:contains(' + page_name + ')' : '.page h1:contains(' + page_name + ')';
         var pages = qx.bom.Selector.query(selector);
-        if (pages.length > 1 && this.currentPage != null) {
+        if (pages.length > 1 && this.currentPage !== null) {
           // More than one Page found -> search in the current pages descendants first
           var fallback = true;
           pages.forEach(function (page) {
             var p = cv.util.Tree.getClosest(page, ".page");
-            if (qx.dom.Node.getText(page) == page_name) {
+            if (qx.dom.Node.getText(page) === page_name) {
               var pid = qx.bom.element.Attribute.get(p, 'id');
               var cid = qx.bom.element.Attribute.get(this.currentPage, 'id');
               if (pid.length < cid.length) {
                 // found pages path is shorter the the current pages -> must be an ancestor
-                if (qx.bom.element.Attribute.get(this.currentPage, 'id').indexOf(pid) == 0) {
+                if (qx.bom.element.Attribute.get(this.currentPage, 'id').indexOf(pid) === 0) {
                   // found page is an ancestor of the current page -> we take this one
                   page_id = pid;
                   fallback = false;
@@ -496,7 +498,7 @@ qx.Class.define('cv.TemplateEngine', {
                   return false;
                 }
               } else {
-                if (pid.indexOf(cid) == 0) {
+                if (pid.indexOf(cid) === 0) {
                   // found page is an descendant of the current page -> we take this one
                   page_id = pid;
                   fallback = false;
@@ -509,7 +511,7 @@ qx.Class.define('cv.TemplateEngine', {
           if (fallback) {
             // take the first page that fits (old behaviour)
             pages.forRach(function (page) {
-              if (qx.dom.Node.getText(page)  == page_name) {
+              if (qx.dom.Node.getText(page)  === page_name) {
                 page_id = qx.bom.element.Attribute.get(cv.util.Tree.getClosest(page, ".page"), "id");
                 // break loop
                 return false;
@@ -518,7 +520,7 @@ qx.Class.define('cv.TemplateEngine', {
           }
         } else {
           pages.forEach(function (page) {
-            if (qx.dom.Node.getText(page) == page_name) {
+            if (qx.dom.Node.getText(page) === page_name) {
               page_id = qx.bom.element.Attribute.get(cv.util.Tree.getClosest(page, ".page"), "id");
               // break loop
               return false;
@@ -526,7 +528,7 @@ qx.Class.define('cv.TemplateEngine', {
           });
         }
       }
-      if (page_id != null && page_id.match(/^id_[0-9_]*$/) != null) {
+      if (page_id !== null && page_id.match(/^id_[0-9_]*$/) !== null) {
         return page_id;
       } else {
         // not found
@@ -535,10 +537,11 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     scrollToPage: function (target, speed, skipHistory) {
-      if (undefined === target)
+      if (undefined === target) {
         target = this.screensave_page;
+      }
       var page_id = this.getPageIdByPath(target);
-      if (page_id == null) {
+      if (page_id === null) {
         return;
       }
       if (cv.Config.TMP.currentPageId === page_id) {
@@ -546,11 +549,13 @@ qx.Class.define('cv.TemplateEngine', {
       }
       cv.Config.TMP.currentPageId = page_id;
 
-      if (undefined === speed)
+      if (undefined === speed) {
         speed = cv.Config.scrollSpeed;
+      }
 
-      if (cv.Config.rememberLastPage)
+      if (cv.Config.rememberLastPage) {
         localStorage.lastpage = page_id;
+      }
 
       // push new state to history
       if (skipHistory === undefined) {
@@ -633,12 +638,10 @@ qx.Class.define('cv.TemplateEngine', {
           }, this);
 
           qx.event.Registration.addListener(myDiv, 'tap', function() {
-            if (document.location.search == "") {
-              document.location.href = document.location.href
-                + "?design=" + element;
+            if (document.location.search === "") {
+              document.location.href = document.location.href + "?design=" + element;
             } else {
-              document.location.href = document.location.href
-                + "&design=" + element;
+              document.location.href = document.location.href + "&design=" + element;
             }
           });
         });
@@ -654,7 +657,7 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     getParentPage: function (page) {
-      if (0 === page.length) return null;
+      if (0 === page.length) { return null; }
 
       return this.getParentPageById(qx.bom.element.Attribute.get(page, 'id'), true);
     },
@@ -662,7 +665,7 @@ qx.Class.define('cv.TemplateEngine', {
     getParentPageById: function (path, isPageId) {
       if (0 < path.length) {
         var pathParts = path.split('_');
-        if (isPageId) pathParts.pop();
+        if (isPageId) { pathParts.pop(); }
         while (pathParts.length > 1) {
           pathParts.pop();
           path = pathParts.join('_') + '_';

@@ -49,8 +49,8 @@ qx.Class.define('cv.io.transport.Sse', {
      * This function gets called once the communication is established
      * and session information is available
      *
+     * @param ev {Event}
      * @param connect (boolean) wether to start the connection or not
-     *
      */
     handleSession: function (ev, connect) {
       var json = ev.getTarget().getResponse();
@@ -60,11 +60,9 @@ qx.Class.define('cv.io.transport.Sse', {
       this.sessionId = json.s;
       this.version = json.v.split('.', 3);
 
-      if (0 < parseInt(this.version[0])
-        || 1 < parseInt(this.version[1]))
-        this.error('ERROR CometVisu Client: too new protocol version ('
-          + json.v + ') used!');
-
+      if (0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1])) {
+        this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
+      }
       if (connect) {
         this.connect();
       }

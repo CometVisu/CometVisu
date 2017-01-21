@@ -56,9 +56,9 @@ qx.Mixin.define("cv.role.HasStyling", {
       var sty = cv.ui.Stylings.getStyling(this.getStyling());
       if (sty) {
         var e = qx.bom.Selector.query('.actor:has(".value")', this.getDomElement())[0];
-        qx.bom.element.Class.removeClasses(e, sty['classnames'].split(" ")); // remove only styling classes
-        if (!this._findValue(value, false, e, sty) && sty['defaultValue'] !== undefined) {
-          this._findValue(sty['defaultValue'], true, e, sty);
+        qx.bom.element.Class.removeClasses(e, sty.classnames.split(" ")); // remove only styling classes
+        if (!this._findValue(value, false, e, sty) && sty.defaultValue !== undefined) {
+          this._findValue(sty.defaultValue, true, e, sty);
         }
       }
     },
@@ -72,15 +72,15 @@ qx.Mixin.define("cv.role.HasStyling", {
         return true;
       }
       else {
-        var range = styling['range'];
+        var range = styling.range;
         if (findExact && range[value]) {
           qx.bom.element.Class.add(element, range[value][1]);
           return true;
         }
         var valueFloat = parseFloat(value);
         for (var min in range) {
-          if (min > valueFloat) continue;
-          if (range[min][0] < valueFloat) continue; // check max
+          if (min > valueFloat) { continue; }
+          if (range[min][0] < valueFloat) { continue; }// check max
           qx.bom.element.Class.add(element, range[min][1]);
           return true;
         }
@@ -88,8 +88,4 @@ qx.Mixin.define("cv.role.HasStyling", {
       return false;
     }
   }
-
-  // defer: function() {
-  //   // cv.xml.Parser.addHook(this.classname.split(".").pop().toLowerCase(), cv.role.HasStyling.parse, this);
-  // }
 });

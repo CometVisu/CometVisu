@@ -61,7 +61,7 @@ qx.Class.define('cv.plugins.Clock', {
       qx.bom.element.Attribute.set(minuteElem, "transform", 'rotate(' + (time[1] * 6) + ',50,50)');
     },
 
-    dragHelper: function (event, ui) {
+    dragHelper: function (event) {
       var $container = event.data.actor;
       var $svg = $container.find('svg');
 
@@ -69,11 +69,12 @@ qx.Class.define('cv.plugins.Clock', {
       var y = 50 - (event.originalEvent.pageY - $svg.offset().top);
       var angle = (Math.atan2(x, y) * 180 / Math.PI + 360) % 360;
       var time = this.getCalue();
-      if (event.data.type == 'hour') {
+      var minutes;
+      if (event.data.type === 'hour') {
         var oldHours = time.getHours();
         var pm = oldHours >= 12;
         var hours = Math.floor(angle / 30);
-        var minutes = (angle % 30) * 2;
+        minutes = (angle % 30) * 2;
 
         if (oldHours % 12 > 9 && hours < 3) {
           if (pm) {
@@ -96,14 +97,15 @@ qx.Class.define('cv.plugins.Clock', {
         time.setHours(hours + pm * 12);
         time.setMinutes(minutes);
       } else { // minute
-        var minutes = Math.round(angle / 6);
+        minutes = Math.round(angle / 6);
         var oldMinutes = time.getMinutes();
 
-        if (oldMinutes > 45 && minutes < 15)
+        if (oldMinutes > 45 && minutes < 15) {
           time.setHours(time.getHours() + 1);
-        else if (minutes > 45 && oldMinutes < 15)
+        }
+        else if (minutes > 45 && oldMinutes < 15) {
           time.setHours(time.getHours() - 1);
-
+        }
         time.setMinutes(minutes);
       }
       $container.find('#Hour').attr('transform', 'rotate(' + ((time.getHours() % 12) * 360 / 12 + time.getMinutes() * 30 / 60) + ',50,50)');
@@ -113,7 +115,7 @@ qx.Class.define('cv.plugins.Clock', {
     dragAction: function () {
       var address = this.getAddress();
       for (var addr in address) {
-        if (address[addr][1] == true) continue; // skip read only
+        if (address[addr][1] === true) { continue; } // skip read only
         cv.TemplateEngine.getInstane().visu.write(addr, cv.Transform.encode(address[addr][0], this.getValue()));
       }
     }

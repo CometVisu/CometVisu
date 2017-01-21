@@ -98,7 +98,7 @@ qx.Class.define('cv.ConfigCache', {
       if (this._valid === null) {
         var hash = this.toHash(xml);
         qx.log.Logger.debug(this, "Current hash: '"+hash+"', cached hash: '"+this.getData("hash")+"'");
-        this._valid = hash == this.getData("hash");
+        this._valid = hash === this.getData("hash");
       }
       return this._valid;
     },
@@ -119,10 +119,12 @@ qx.Class.define('cv.ConfigCache', {
      */
     hashCode: function(string){
       if (Array.prototype.reduce){
-        return string.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);
+        return string.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a;},0);
       }
       var hash = 0;
-      if (string.length === 0) return hash;
+      if (string.length === 0) {
+        return hash;
+      }
       for (var i = 0, l = string.length; i < l; i++) {
         var character  = string.charCodeAt(i);
         hash  = ((hash<<5)-hash)+character;

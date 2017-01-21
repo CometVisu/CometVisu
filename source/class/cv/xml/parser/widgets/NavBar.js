@@ -32,7 +32,7 @@ qx.Class.define('cv.xml.parser.widgets.NavBar', {
   */
   statics: {
 
-    createDefaultWidget: function (widgetType, n, path, flavour, pageType) {
+    createDefaultWidget: function (widgetType, n, path) {
 
       var classes = "navbar clearfix";
       if (qx.bom.element.Attribute.get(n, 'flavour')) {

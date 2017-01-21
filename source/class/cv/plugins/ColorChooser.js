@@ -167,8 +167,8 @@ qx.Class.define('cv.plugins.ColorChooser', {
     },
 
     _update: function( ga, data ) {
-      if (ga === undefined) return;
-      function toHex( x ) { var r = parseInt( x ).toString(16); return r.length == 1 ? '0'+r : r; }
+      if (ga === undefined) { return; }
+      function toHex( x ) { var r = parseInt( x ).toString(16); return r.length === 1 ? '0'+r : r; }
       var
         value      = cv.Transform.decode( this.getAddress()[ ga ][0], data ),
         farbtastic = jQuery.farbtastic( this.getActor() ),

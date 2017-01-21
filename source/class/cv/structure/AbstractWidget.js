@@ -111,16 +111,16 @@ qx.Class.define('cv.structure.AbstractWidget', {
     /**
      * Default action for pointerdown events, does nothing but can be overridden
      * by subclasses
-     * @param ev {Event} pointerdoen event
+     * @param ev {Event} pointerdown event
      */
-    downaction: function(ev) {},
+    downaction: function(ev) {}, // jshint ignore:line
 
     /**
      * Default action for tap events, does nothing but can be overridden
      * by subclasses
      * @param ev {Event} tap event
      */
-    action: function(ev) {},
+    action: function(ev) {}, // jshint ignore:line
 
     /**
      * Triggered by the <code>setup.dom.finished</code> bus event
@@ -193,7 +193,7 @@ qx.Class.define('cv.structure.AbstractWidget', {
      * @return {var} the listener id
      */
     addElementListener: function(type, callback, context) {
-      if (this.isAnonymous()) return;
+      if (this.isAnonymous()) { return; }
       var widget = this.getInteractionElement();
       if (widget) {
         return qx.event.Registration.addListener(widget, type, callback, context);

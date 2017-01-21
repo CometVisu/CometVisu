@@ -47,35 +47,35 @@ qx.Class.define('cv.transforms.OpenHab', {
       'switch': {
         name: 'OH_Switch',
         encode: function (phy) {
-          return phy == 1 ? 'ON' : 'OFF';
+          return phy === 1 ? 'ON' : 'OFF';
         },
         decode: function (string) {
-          if (cv.transforms.OpenHab.isUndefined(string)) return 0;
-          return (string == "ON" || parseInt(string) > 0) ? 1 : 0;
+          if (cv.transforms.OpenHab.isUndefined(string)) { return 0; }
+          return (string === "ON" || parseInt(string) > 0) ? 1 : 0;
         }
       },
       'contact': {
         name: 'OH_Contact',
         encode: function (phy) {
-          return phy == 1 ? 'OPEN' : 'CLOSED';
+          return phy === 1 ? 'OPEN' : 'CLOSED';
         },
         decode: function (string) {
-          if (cv.transforms.OpenHab.isUndefined(string)) return 0;
-          return string == "OPEN" ? 1 : 0;
+          if (cv.transforms.OpenHab.isUndefined(string)) { return 0; }
+          return string === "OPEN" ? 1 : 0;
         }
       },
       'rollershutter': {
         name: "OH_RollerShutter",
         encode: function (phy) {
-          if (phy == 1) return 'DOWN';
-          else if (phy == 0)  return 'UP';
-          else return phy;
+          if (phy === 1) { return 'DOWN'; }
+          else if (phy === 0) { return 'UP'; }
+          else { return phy; }
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) return 0;
-          else if (str == "UP") return 0;
-          else if (str == "DOWN") return 1;
-          else return str;
+          if (cv.transforms.OpenHab.isUndefined(str)) { return 0; }
+          else if (str === "UP") { return 0; }
+          else if (str === "DOWN") { return 1; }
+          else { return str; }
         }
       },
       'dimmer': {
@@ -84,10 +84,10 @@ qx.Class.define('cv.transforms.OpenHab', {
           return parseInt(phy);
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) return 0;
-          else if (str == "ON") return 100;
-          else if (str == "OFF") return 0;
-          else return parseInt(str);
+          if (cv.transforms.OpenHab.isUndefined(str)) { return 0; }
+          else if (str === "ON") { return 100; }
+          else if (str === "OFF") { return 0; }
+          else { return parseInt(str); }
         }
       },
       'number': {
@@ -96,7 +96,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           return parseFloat(phy);
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) return 0;
+          if (cv.transforms.OpenHab.isUndefined(str)) { return 0; }
           return parseFloat(str);
         }
       },
@@ -106,7 +106,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           return phy;
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) return '';
+          if (cv.transforms.OpenHab.isUndefined(str)) { return ''; }
           return str;
         }
       },
@@ -120,7 +120,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           }
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) return '-';
+          if (cv.transforms.OpenHab.isUndefined(str)) { return '-'; }
           return new Date(Date.parse(str));
         }
       },
@@ -134,7 +134,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           }
         },
         decode: function (str) {
-          if (cv.transforms.OpenHab.isUndefined(str)) return '-';
+          if (cv.transforms.OpenHab.isUndefined(str)) { return '-'; }
           var date = new Date();
           var parts = str.split(":");
           date.setHours(parseInt(parts[0]));
@@ -149,7 +149,7 @@ qx.Class.define('cv.transforms.OpenHab', {
           return qx.util.ColorUtil.rgbToHsb(rgb);
         },
         decode: function (hsbString) {
-          if (cv.transforms.OpenHab.isUndefined(hsbString)) return [0,0,0];
+          if (cv.transforms.OpenHab.isUndefined(hsbString)) { return [0,0,0]; }
           // decode HSV/HSB to RGB
           return qx.util.ColorUtil.hsbToRgb(hsbString.split(","));
         }

@@ -130,13 +130,13 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
         'color3': {
           "default": "#4da74d"
         }
-      }
+      };
     },
 
     makeAddressListFn: function(src, transform, mode, variant) {
-      if( !variant )
+      if( !variant ) {
         variant = 'spectrum'; // the default
-
+      }
       return [true, variant];
     }
   },
@@ -221,8 +221,9 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     _getInnerDomString: function() {
       // create the actor
       var actor = '<div class="actor clickable">';
-      if( this.isShowCurve() )
+      if( this.isShowCurve() ) {
         actor += '<div class="diagram_inline curve">loading...</div>';
+      }
       actor += '<div class="diagram_inline spectrum">loading...</div></div>';
       return actor;
     },
@@ -274,29 +275,27 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     },
 
     _update: function( ga, data ) {
-      if (ga === undefined) return;
+      if (ga === undefined) { return; }
       var addressInfo = this.getAddress()[ ga ];
 
+      var phase;
       if( addressInfo[2][0] === 'I' )
       {
-        var
-          phase = this.isSinglePhase() ? 1 : +(addressInfo[2][1] || 1),
-          value = cv.Transform.encode( addressInfo[0], data );
+        phase = this.isSinglePhase() ? 1 : +(addressInfo[2][1] || 1);
+        var value = cv.Transform.encode( addressInfo[0], data );
         this.getCurrent()[phase-1] = value / 1000; // transform mA to A
-      } else if(
-        addressInfo[2].substr(0,8) === 'spectrum'
-        && data.length === 28 ) // sanity check for 14 bytes
+      } else if (addressInfo[2].substr(0,8) === 'spectrum' && data.length === 28 ) // sanity check for 14 bytes
       {
+        phase = this.isSinglePhase() ? 1 : +(addressInfo[2][8] || 1);
         var
-          phase = this.isSinglePhase() ? 1 : +(addressInfo[2][8] || 1),
           index = parseInt(data.substr(0, 2), 16),
           factor = this.getCurrent()[phase - 1] || 1,
           values = [];
 
         for (var i = 0; i < 13; i++) {
-          if (index + i < 2)
+          if (index + i < 2) {
             continue;
-
+          }
           values[i] = Math.pow(10, (parseInt(data.substr(i * 2 + 2, 2), 16) - 253) / 80);
           this.getSpectrum()[phase - 1][index + i - 2][1] = values[i] * factor;
         }
@@ -327,11 +326,12 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
     {
       var ret_val = [];
 
-      if( undefined === offset )
+      if( undefined === offset ) {
         offset = 0;
-
-      for( var i = 2; i < 52; i++ )
-        ret_val.push( [ i + offset, 0 ] );
+      }
+      for( var i = 2; i < 52; i++ ) {
+        ret_val.push([i + offset, 0]);
+      }
       return ret_val;
     },
 

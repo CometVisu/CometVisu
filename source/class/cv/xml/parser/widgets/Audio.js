@@ -52,12 +52,12 @@
           height: {},
           autoplay: {
             transform: function (value) {
-              return value === "autoplay" || value === "true"
+              return value === "autoplay" || value === "true";
             }
           },
           loop: {
             transform: function (value) {
-              return value === "loop" || value === "true"
+              return value === "loop" || value === "true";
             }
           },
           thresholdValue: {"default": 1}

@@ -40,15 +40,16 @@ qx.Class.define('cv.xml.parser.widgets.Slide', {
 
     afterParse: function (xml, path) {
 
-      var datatype_min = undefined;
-      var datatype_max = undefined;
+      var datatype_min, datatype_max;
       qx.bom.Selector.matches("address", qx.dom.Hierarchy.getChildElements(xml)).forEach(function(elem) {
         var transform = elem.getAttribute('transform');
         if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
-          if (!( datatype_min > cv.Transform.registry[transform].range.min ))
+          if (!( datatype_min > cv.Transform.registry[transform].range.min )) {// jshint ignore:line
             datatype_min = cv.Transform.registry[transform].range.min;
-          if (!( datatype_max < cv.Transform.registry[transform].range.max ))
+          }
+          if (!( datatype_max < cv.Transform.registry[transform].range.max )) {// jshint ignore:line
             datatype_max = cv.Transform.registry[transform].range.max;
+          }
         }
       });
       var min = parseFloat(xml.getAttribute('min') || datatype_min || 0);

@@ -58,7 +58,7 @@ qx.Class.define('cv.plugins.Rss', {
         'linktarget': { "default": "_new" },
         'link': { "default": true },
         'title': { "default": true }
-      }
+      };
     }
   },
 
@@ -90,9 +90,9 @@ qx.Class.define('cv.plugins.Rss', {
   */
   members: {
     _getInnerDomString: function () {
-      var rssstyle = ''
-      + this.getWidth() ? 'width:' + this.getWidth() : ''
-        + this.getHeight() ? 'height:' + this.getHeight() : '';
+      var rssstyle = '' +
+        this.getWidth() ? 'width:' + this.getWidth() : '' +
+        this.getHeight() ? 'height:' + this.getHeight() : '';
       return '<div class="actor"><div class="rss_inline" id="rss_' + this.getPath() + '" style="' + rssstyle + '"></div>';
     },
 

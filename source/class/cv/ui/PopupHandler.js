@@ -100,7 +100,7 @@ qx.Class.define('cv.ui.PopupHandler', {
      */
     placementStrategy: function( anchor, popup, page, preference ) {
       var position_order = [8, 2, 6, 4, 9, 3, 7, 1, 5, 0];
-      if (preference !== undefined) position_order.unshift(preference);
+      if (preference !== undefined) { position_order.unshift(preference); }
 
       for (var pos in position_order) {
         var xy = {};
@@ -155,8 +155,9 @@ qx.Class.define('cv.ui.PopupHandler', {
         }
 
         // test if that solution is valid
-        if (xy.x >= 0 && xy.y >= 0 && xy.x + popup.w <= page.w && xy.y + popup.h <= page.h)
+        if (xy.x >= 0 && xy.y >= 0 && xy.x + popup.w <= page.w && xy.y + popup.h <= page.h) {
           return xy;
+        }
       }
 
       return {x: 0, y: 0}; // sanity return

@@ -129,7 +129,7 @@ qx.Class.define('cv.plugins.Gauge', {
             return value === "true";
           }
         }
-      }
+      };
     },
 
     makeAddressListFn: function( src, transform, mode, variant ) {
@@ -195,7 +195,7 @@ qx.Class.define('cv.plugins.Gauge', {
      * @param address {String} source address of the value
      */
     handleUpdate: function( value, address) {
-      if (!address || value === undefined) return;
+      if (!address || value === undefined) { return; }
 
       var variant = this.getAddress()[address][2];
       var gaugeElement = this.__gaugeElement;

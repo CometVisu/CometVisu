@@ -55,15 +55,17 @@ qx.Class.define('cv.util.IconTools', {
 
     iconDelayed: function (icon, colors, color) {
       cv.util.IconTools.iconDelay.push([icon, colors, color]);
-      if (!cv.util.IconTools.iconDelayFn)
+      if (!cv.util.IconTools.iconDelayFn) {
         cv.util.IconTools.iconDelayFn = setInterval(function () {
           while (cv.util.IconTools.iconDelay.length) {
             // it should be enough to test only the first element - the other
             // elements will be covered anyway...
-            if (cv.util.IconTools.iconDelay[0][2] in cv.util.IconTools.iconDelay[0][1])
+            if (cv.util.IconTools.iconDelay[0][2] in cv.util.IconTools.iconDelay[0][1]) {
               window.fillRecoloredIcon(cv.util.IconTools.iconDelay.shift()[0]);
-            else
+            }
+            else {
               break;
+            }
           }
 
           if (0 === cv.util.IconTools.iconDelay.length) {
@@ -71,6 +73,7 @@ qx.Class.define('cv.util.IconTools', {
             cv.util.IconTools.iconDelayFn = 0;
           }
         }, 10);
+      }
     },
     /**
      * Create the HTML for the canvas element and return it.
@@ -114,7 +117,7 @@ qx.Class.define('cv.util.IconTools', {
       function (r, g, b, data, length) // the normal version
       {
         for (var i = 0; i < length; i += 4) {
-          if (0 != data[i + 3]) {
+          if (0 !== data[i + 3]) {
             data[i] = r;
             data[i + 1] = g;
             data[i + 2] = b;
@@ -126,9 +129,9 @@ qx.Class.define('cv.util.IconTools', {
      * hash @param thisIconColors.
      */
     doRecolorNonTransparent: function (color, thisIcon, thisIconColors) {
-      if (thisIconColors[color])
+      if (thisIconColors[color]) {
         return; // done, already recolored
-
+      }
       var
         width = cv.util.IconTools.tmpCanvas.width = thisIcon.width,
         height = cv.util.IconTools.tmpCanvas.height = thisIcon.height;
@@ -136,9 +139,9 @@ qx.Class.define('cv.util.IconTools', {
 
       var imageData = cv.util.IconTools.tmpCtx.getImageData(0, 0, width, height);
       if (color !== undefined) {
-        if (!cv.util.IconTools.hexColorRegEx.test(color))
+        if (!cv.util.IconTools.hexColorRegEx.test(color)) {
           qx.log.Logger.error('Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".');
-
+        }
         var r = parseInt(color.substr(1, 2), 16),
           g = parseInt(color.substr(3, 2), 16),
           b = parseInt(color.substr(5, 2), 16);
@@ -160,7 +163,7 @@ qx.Class.define('cv.util.IconTools', {
             thisIcon = cv.util.IconTools.iconCache[url].icon,
             thisIconColors = cv.util.IconTools.iconCache[url].colors,
             thisFillColor;
-          while (thisFillColor = toFill.pop()) {
+          while (thisFillColor = toFill.pop()) { // jshint ignore:line
             cv.util.IconTools.doRecolorNonTransparent(thisFillColor, thisIcon, thisIconColors);
           }
         };
@@ -187,31 +190,32 @@ qx.Class.define('cv.util.IconTools', {
           cv.util.IconTools.iconCacheMap.push(url);
         }
 
-        if (color === undefined)
+        if (color === undefined) {
           color = '#ffffff';
-
-        if (color in cv.util.IconTools.colorMapping)
+        }
+        if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
-
+        }
         var c = 'icon' + cv.util.IconTools.iconCache[url].id + '_' + color.substr(1, 6);
         cv.util.IconTools.iconCache[url].toFill.push(color);
 
         // when already available - fill it now. Otherwise the onLoad will do it.
-        if (cv.util.IconTools.iconCache[url].icon.complete)
+        if (cv.util.IconTools.iconCache[url].icon.complete) {
           loadHandler();
-
+        }
         var newCanvas = cv.util.IconTools.createCanvas(c, styling, classes);
-        if (asText)
+        if (asText) {
           return newCanvas;
-
+        }
         var newElement = qx.bom.Selector.query(newCanvas)[0];
-        if (cv.util.IconTools.iconCache[url].icon.complete)
+        if (cv.util.IconTools.iconCache[url].icon.complete) {
           cv.util.IconTools.fillCanvas(newElement, cv.util.IconTools.iconCache[url].colors[color]);
-        else
+        }
+        else {
           cv.util.IconTools.iconDelayed(newElement, cv.util.IconTools.iconCache[url].colors, color);
-
+        }
         return newElement;
-      }
+      };
     },
 
     /**
@@ -225,26 +229,28 @@ qx.Class.define('cv.util.IconTools', {
           cacheEntry = cv.util.IconTools.iconCache[cv.util.IconTools.iconCacheMap[parameters[0]]],
           coloredIcon = cacheEntry.colors['#' + parameters[1]];
 
-        if (undefined === coloredIcon)
+        if (undefined === coloredIcon) {
           cv.util.IconTools.iconDelayed(icon, cacheEntry.colors, '#' + parameters[1]);
-        else
+        }
+        else {
           cv.util.IconTools.fillCanvas(icon, coloredIcon);
+        }
       }
     },
 
     svgKUF: function (iconID) {
-      return function (color, styling, classes, asText) {
+      return function (color, styling, classes) {
         if (color in cv.util.IconTools.colorMapping) {
           color = cv.util.IconTools.colorMapping[color];
         }
         var iconPath = qx.util.ResourceManager.getInstance().toUri('icon/knx-uf-iconset.svg');
 
         var style = '';
-        if (color)
+        if (color) {
           style = 'style="color:' + color + '" ';
-
+        }
         return '<svg ' + style + 'class="' + classes + '"><use xlink:href="'+iconPath+'#kuf-' + iconID + '"></use></svg>';
-      }
+      };
     }
   },
 

@@ -57,7 +57,7 @@ qx.Class.define('cv.plugins.Strftime', {
       return {
         'lang': { target: 'locale' },
         'format': { "default": "%c"}
-      }
+      };
     },
 
     uniqid: function() {
@@ -125,7 +125,7 @@ qx.Class.define('cv.plugins.Strftime', {
     cv.structure.WidgetFactory.registerClass("strftime", statics);
 
     // extend locales by German and French
-    Date.ext.locales['de'] = {
+    Date.ext.locales.de = {
       a: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
       A: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
       b: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
@@ -136,7 +136,7 @@ qx.Class.define('cv.plugins.Strftime', {
       x: '%d.%m.%Y',
       X: '%T'
     };
-    Date.ext.locales['fr'] = {
+    Date.ext.locales.fr = {
       a: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
       A: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
       b: ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jui', 'aoû', 'sep', 'oct', 'nov', 'déc'],

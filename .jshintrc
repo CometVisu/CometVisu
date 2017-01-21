@@ -26,10 +26,16 @@
     "element": false,
     "by": false,
     "list": false,
-    "define": false,
     "templateEngine":false,
     "Transform":false,
+    "window": false,
     "qx": false,
-    "cv": false
+    "cv": false,
+    "sprintf": false,
+    "THREE": false,
+    "SpeechSynthesisUtterance": false,
+    "jQuery": false,
+    "steelseries": false,
+    "EventSource": false
   }
 }

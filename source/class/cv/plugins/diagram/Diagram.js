@@ -41,7 +41,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
         height: { transform: function(value) {
           return value ? parseInt(value)+"px" : null;
         }}
-      }
+      };
     }
   },
 
@@ -62,15 +62,16 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
       }, this);
 
       broker.subscribe("path." + pageId + ".beforePageChange", function() {
-        if( !this._init )
-          this.loadDiagramData( this.plot, false, false );
+        if( !this._init ) {
+          this.loadDiagramData(this.plot, false, false);
+        }
       }, this);
 
       broker.subscribe("path." + pageId + ".duringPageChange", function() {
         // create diagram when it's not already existing
-        if( this._init )
-          this.initDiagram( false );
-
+        if( this._init ) {
+          this.initDiagram(false);
+        }
         // start refreshing when page is entered
         this._startRefresh(this._timer);
       }, this);
@@ -79,9 +80,9 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
     _getInnerDomString: function() {
       var
         classStr = this.getPreviewlabels() ? 'diagram_inline' : 'diagram_preview',
-        styleStr = 'min-height: 40px'
-          + (this.getWidth()  ? (';width:'  + this.getWidth() ) : ''             )
-          + (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
+        styleStr = 'min-height: 40px' +
+          (this.getWidth()  ? (';width:'  + this.getWidth() ) : ''             ) +
+          (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
 
       return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
     },

@@ -141,7 +141,7 @@ qx.Class.define('cv.Config', {
     }
 
     if (req.queryKey.libraryCheck) {
-      cv.Config.libraryCheck = req.queryKey.libraryCheck != 'false'; // true unless set to false
+      cv.Config.libraryCheck = req.queryKey.libraryCheck !== 'false'; // true unless set to false
     }
     if (req.queryKey.backend) {
       cv.Config.backend = req.queryKey.backend;
@@ -164,7 +164,7 @@ qx.Class.define('cv.Config', {
     }
 
     if (req.queryKey.forceReload) {
-      cv.Config.forceReload = req.queryKey.forceReload != 'false'; // true unless set
+      cv.Config.forceReload = req.queryKey.forceReload !== 'false'; // true unless set
       // to false
     }
 
@@ -183,7 +183,7 @@ qx.Class.define('cv.Config', {
     cv.Config.forceReload = true;
 
     if (req.queryKey.forceDevice) {
-      cv.Config.forceMobile = req.queryKey.forceDevice == 'mobile';
+      cv.Config.forceMobile = req.queryKey.forceDevice === 'mobile';
       cv.Config.forceNonMobile = !cv.Config.forceMobile;
     } else {
       cv.Config.forceMobile = false;
@@ -191,7 +191,9 @@ qx.Class.define('cv.Config', {
     }
     var uagent = navigator.userAgent.toLowerCase();
     cv.Config.mobileDevice = (/(android|blackberry|iphone|ipod|series60|symbian|windows ce|palm)/i.test(uagent));
-    if (/(nexus 7|tablet)/i.test(uagent)) cv.Config.mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
+    if (/(nexus 7|tablet)/i.test(uagent)) {
+      cv.Config.mobileDevice = false;  // Nexus 7 and Android Tablets have a "big" screen, so prevent Navbar from scrolling
+    }
     cv.Config.mobileDevice |= cv.Config.forceMobile;  // overwrite detection when set by URL
 
 

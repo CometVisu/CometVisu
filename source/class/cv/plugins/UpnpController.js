@@ -45,14 +45,14 @@ qx.Class.define('cv.plugins.UpnpController', {
         'player_port': {
           target: "playerPort",
           transform: function(value) {
-            return value ? parseInt(value) : 1440
+            return value ? parseInt(value) : 1440;
           }
         }
-      }
+      };
     },
 
     uniqid: function() {
-      var newDate = new Date;
+      var newDate = new Date();
       return newDate.getTime();
     }
   },
@@ -96,13 +96,13 @@ qx.Class.define('cv.plugins.UpnpController', {
       controller += "<div id='" + id + "_album' class='upnplabelgroup'><div class='upnplabel'>Album</div><div class='value'>-</div></div>";
       controller += "<div id='" + id + "_time' class='upnplabelgroup'><div class='upnplabel'></div><div class='value'>-</div></div>";
       controller += "<div style='float: left;'><progress id='" + id + "_progress'  max='100' value='0'></progress></div>";
-      controller += "<div style='float: left;'><div id='" + id + "_volumedown' class='actor center switchUnpressed'><div class='value'>-</div></div>"
-        + "<div id='" + id + "_volume' class='actor center switchInvisible' style='text-align: center;'><div class='value'>20</div></div>"
-        + "<div id='" + id + "_volumeup' class='actor center switchUnpressed'><div class='value'>+</div></div></div>";
-      controller += "<div style='float: left;'><div id='" + id + "_playButton' class='actor switchUnpressed center'><div class='value'>-</div></div>"
-        + "<div id='" + id + "_muteButton' class='actor switchUnpressed center'><div class='value'>-</div></div></div>";
-      controller += "<div style='float: left;'><div id='" + id + "_prev' class='actor switchUnpressed center'><div class='value'>prev</div></div>"
-        + "<div id='" + id + "_next' class='actor switchUnpressed center'><div class='value'>next</div></div></div>";
+      controller += "<div style='float: left;'><div id='" + id + "_volumedown' class='actor center switchUnpressed'><div class='value'>-</div></div>" +
+        "<div id='" + id + "_volume' class='actor center switchInvisible' style='text-align: center;'><div class='value'>20</div></div>" +
+        "<div id='" + id + "_volumeup' class='actor center switchUnpressed'><div class='value'>+</div></div></div>";
+      controller += "<div style='float: left;'><div id='" + id + "_playButton' class='actor switchUnpressed center'><div class='value'>-</div></div>" +
+        "<div id='" + id + "_muteButton' class='actor switchUnpressed center'><div class='value'>-</div></div></div>";
+      controller += "<div style='float: left;'><div id='" + id + "_prev' class='actor switchUnpressed center'><div class='value'>prev</div></div>" +
+        "<div id='" + id + "_next' class='actor switchUnpressed center'><div class='value'>next</div></div></div>";
       controller += "<div style='float: left;'><div id='" + id + "_getplaylists' class='actor switchUnpressed center'><div class='value'>play lists</div></div></div>";
       controller += "<div style='float: left;'><div id='" + id + "_playlistsresult'><div class='value'></div></div></div>";
 
@@ -154,14 +154,14 @@ qx.Class.define('cv.plugins.UpnpController', {
         this.trace("durationResponse: " + data.durationResponse);
         this.trace("title           : " + data.title);
 
-        this.__updateController(data.volume, data.muteState, data.transportState, data.title
-          , data.reltimeResponse, data.durationResponse, data.artist, data.album);
+        this.__updateController(data.volume, data.muteState, data.transportState, data.title,
+          data.reltimeResponse, data.durationResponse, data.artist, data.album);
       });
     },
 
     __updateController: function (volume, mute, playMode, title, reltime, duration, artist, album) {
       var id = this.upnpcontroller_uid;
-      if (mute == 0) {
+      if (mute === 0) {
         $('#' + id + '_muteButton').removeClass('switchPressed');
         $('#' + id + '_muteButton').addClass('switchUnpressed');
       } else {
@@ -169,7 +169,7 @@ qx.Class.define('cv.plugins.UpnpController', {
         $('#' + id + '_muteButton').addClass('switchPressed');
       }
 
-      if (playMode == 'Play') {
+      if (playMode === 'Play') {
         $('#' + id + '_playButton').removeClass('switchUnpressed');
         $('#' + id + '_playButton').addClass('switchPressed');
       } else {
@@ -216,7 +216,7 @@ qx.Class.define('cv.plugins.UpnpController', {
     },
 
     calculateSongProcessed: function (reltime, duration) {
-      if (reltime === undefined || duration === undefined) return;
+      if (reltime === undefined || duration === undefined) { return; }
       this.trace("calculateSongProcessed");
 
       var durationParts = duration.split(':');
@@ -246,18 +246,18 @@ qx.Class.define('cv.plugins.UpnpController', {
         this.trace("totalMatches: " + data.totalMatches);
 
         for (var i = 0; i < data.playLists.length; i++) {
-          playlists += "<a href='"
-            + "plugins/upnpcontroller/selectplaylist.php?player_ip_addr=" + playerIp
-            + "&listurl=" + data.playLists[i].urlenc + "&port=" + playerPort + "'>"
-            + data.playLists[i].name + "</a></br>";
+          playlists += "<a href='" +
+            "plugins/upnpcontroller/selectplaylist.php?player_ip_addr=" + playerIp +
+            "&listurl=" + data.playLists[i].urlenc + "&port=" + playerPort + "'>" +
+            data.playLists[i].name + "</a></br>";
 
-          if (this.isTraceFlag() == 'true') {
+          if (this.isTraceFlag() === 'true') {
             console.log("name: " + data.playLists[i].name);
             console.log("url: " + data.playLists[i].url);
           }
         }
 
-        if (currentValue != 'pressed') {
+        if (currentValue !== 'pressed') {
           $('#' + this.upnpcontroller_uid + '_playlistsresult div.value').html(playlists);
           $('#' + this.upnpcontroller_uid + '_getplaylists').attr({value: 'pressed'});
           $('#' + this.upnpcontroller_uid + '_getplaylists').removeClass('switchUnpressed');
@@ -310,12 +310,11 @@ qx.Class.define('cv.plugins.UpnpController', {
 
     toggleMute: function () {
       this.trace("click mute");
-      var upnpctrl = $("#" + this.upnpcontroller_uid);
       var muteValue = $('#' + this.upnpcontroller_uid + '_muteButton div.value').text();
 
       this.trace("current muteValue: " + muteValue);
 
-      if (muteValue == 0) {
+      if (muteValue === 0) {
         muteValue = 1;
         $('#' + this.upnpcontroller_uid + '_muteButton').removeClass('switchUnpressed');
         $('#' + this.upnpcontroller_uid + '_muteButton').addClass('switchPressed');
@@ -339,7 +338,7 @@ qx.Class.define('cv.plugins.UpnpController', {
 
       this.trace("current playValue: " + playValue);
 
-      if (playValue == 'Play') {
+      if (playValue === 'Play') {
         cmd = 'pause';
         $('#' + this.upnpcontroller_uid + '_playButton').removeClass('switchUnpressed');
         $('#' + this.upnpcontroller_uid + '_playButton').addClass('');

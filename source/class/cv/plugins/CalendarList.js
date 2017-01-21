@@ -129,7 +129,7 @@ qx.Class.define('cv.plugins.CalendarList', {
     }
   },
 
-  defer: function () {
+  defer: function (statics) {
     cv.xml.Parser.addHandler("calendarlist", cv.plugins.CalendarList);
     cv.xml.Parser.addHook("calendarlist", "after", cv.plugins.CalendarList.afterParse, cv.plugins.CalendarList);
     cv.structure.WidgetFactory.registerClass("calendarlist", statics);
@@ -145,14 +145,14 @@ qx.Class.define('cv.plugins.CalendarList', {
         wrapper: 'li',
         dataType: 'json',
         datetime: true
-      }
-      var options = jQuery.extend(defaults, options);
+      };
+      options = jQuery.extend(defaults, options);
 
       return this.each(function () {
         var o = options;
         var c = jQuery(this);
 
-        if (o.src == '') {
+        if (o.src === '') {
           console.log('calendarListlocal: no src URL');
           return; // avoid the request
         }
@@ -187,7 +187,6 @@ qx.Class.define('cv.plugins.CalendarList', {
             var items = result.calendarList.calendarListEntries;
             var itemnum = items.length;
             var date = '';
-            var time = '';
             var color, format, where;
 
             for (var i = 0; i < itemnum; i++) {
@@ -196,7 +195,7 @@ qx.Class.define('cv.plugins.CalendarList', {
 
               color = '#FFFFFF';
               for (var ix = 0; ix < o.calendar.length; ix++) {
-                if (item.calendarName == ix) {
+                if (item.calendarName === ix) {
                   if (o.calendar[ix].hasAttribute('color') === true) {
                     color = o.calendar[ix].getAttribute('color');
                   } else {
@@ -208,27 +207,27 @@ qx.Class.define('cv.plugins.CalendarList', {
                   } else {
                     format = '{date}: {text}{where}';
                   }
-                  itemHtml = '<span>' + format + '</span>'
+                  itemHtml = '<span>' + format + '</span>';
                 }
               }
 
               date = item.StartDate;
-              if (item.StartTime != '00:00') {
+              if (item.StartTime !== '00:00') {
                 date = date + ', ' + item.StartTime;
               }
-              if (item.StartDate != item.EndDate || item.StartTime != item.EndTime) {
+              if (item.StartDate !== item.EndDate || item.StartTime !== item.EndTime) {
                 date = date + ' - ';
               }
-              if (item.StartDate != item.EndDate) {
+              if (item.StartDate !== item.EndDate) {
                 date = date + item.EndDate + ', ' + item.EndTime;
               } else {
-                if (item.StartTime != item.EndTime) {
+                if (item.StartTime !== item.EndTime) {
                   date = date + item.EndTime;
                 }
               }
 
               itemHtml = itemHtml.replace(/\{text\}/, item.description);
-              if (item.where != '') {
+              if (item.where !== '') {
                 where = ' (' + item.where + ')';
               } else {
                 where = item.where;

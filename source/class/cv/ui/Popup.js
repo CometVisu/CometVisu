@@ -57,7 +57,6 @@ qx.Class.define('cv.ui.Popup', {
      * @return {Element} Popup as DOM Element
      */
     create: function (attributes) {
-      var reposition = false;
       var body = qx.bom.Selector.query('body')[0];
       qx.bom.Html.clean(['<div id="popup_'+this.__counter+'" class="popup popup_background" style="display:none"><div class="popup_close">X</div></div>'],
         null, body);
@@ -92,12 +91,10 @@ qx.Class.define('cv.ui.Popup', {
 
       if (attributes.width) {
         qx.bom.element.Style.add(ret_val, "width", attributes.width);
-        reposition = true;
       }
 
       if (attributes.height) {
         qx.bom.element.Style.add(ret_val, "height", attributes.height);
-        reposition = true;
       }
 
       var anchor = {x: -1, y: -1, w: 0, h: 0};

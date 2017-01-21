@@ -41,7 +41,7 @@ qx.Class.define('cv.layout.Manager', {
     COLSPAN_CLASS: null,
 
     getCurrentPageNavbarVisibility: function () {
-      if (this.currentPageNavbarVisibility == null) {
+      if (this.currentPageNavbarVisibility === null) {
         this.currentPageNavbarVisibility = cv.TemplateEngine.getInstance().pagePartsHandler.getNavbarsVisibility(cv.TemplateEngine.getInstance().currentPage);
       }
       return this.currentPageNavbarVisibility;
@@ -49,10 +49,12 @@ qx.Class.define('cv.layout.Manager', {
 
     // return S, M or L depening on the passed width
     getColspanClass: function (width) {
-      if (width <= cv.Config.maxScreenWidthColspanS)
+      if (width <= cv.Config.maxScreenWidthColspanS) {
         return 'S';
-      if (width <= cv.Config.maxScreenWidthColspanM)
+      }
+      if (width <= cv.Config.maxScreenWidthColspanM) {
         return 'M';
+      }
       return 'L';
     },
 
@@ -64,7 +66,7 @@ qx.Class.define('cv.layout.Manager', {
 
       this.oldWidth = width;
       this.COLSPAN_CLASS = newClass;
-      return oldClass != newClass;
+      return oldClass !== newClass;
     },
 
     /**
@@ -78,21 +80,21 @@ qx.Class.define('cv.layout.Manager', {
       // if the screen width falls below the threshold which activates/deactivates the mobile.css
       // the calculation has to be done again, even if the page hasn´t changed (e.g. switching between portrait and landscape mode on a mobile can cause that)
       var bodyWidth = qx.bom.Viewport.getWidth();
-      var mobileUseChanged = (this.lastBodyWidth < cv.Config.maxMobileScreenWidth) != (bodyWidth < cv.Config.maxMobileScreenWidth);
+      var mobileUseChanged = (this.lastBodyWidth < cv.Config.maxMobileScreenWidth) !== (bodyWidth < cv.Config.maxMobileScreenWidth);
       if (this.currentPageUnavailableWidth < 0 || mobileUseChanged || true) {
         //      console.log("Mobile.css use changed "+mobileUseChanged);
         this.currentPageUnavailableWidth = 0;
         var navbarVisibility = this.getCurrentPageNavbarVisibility();
 
         var left = qx.bom.Selector.query('#navbarLeft')[0];
-        var widthNavbarLeft = navbarVisibility.left === true && qx.bom.element.Class.get(left, 'display') != "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
+        var widthNavbarLeft = navbarVisibility.left === true && qx.bom.element.Class.get(left, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
         if (widthNavbarLeft >= bodyWidth) {
           // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
           widthNavbarLeft = 0;
         }
         var right = qx.bom.Selector.query('#navbarRight')[0];
-        var widthNavbarRight = navbarVisibility.right === true && qx.bom.element.Class.get(right, 'display') != "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
+        var widthNavbarRight = navbarVisibility.right === true && qx.bom.element.Class.get(right, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
         if (widthNavbarRight >= bodyWidth) {
           // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
@@ -134,16 +136,16 @@ qx.Class.define('cv.layout.Manager', {
       var bottomHeight = qx.bom.element.Dimension.getHeight(bottom);
       var navPathHeight = qx.bom.element.Dimension.getHeight(qx.bom.Selector.query('.nav_path')[0]);
 
-      if (topDisplay  != 'none' && topHeight > 0) {
+      if (topDisplay  !== 'none' && topHeight > 0) {
         this.currentPageUnavailableHeight += Math.max(topHeight, navPathHeight);
       }
-      if (topNavDisplay != 'none' && navbarVisibility.top == "true" && topNavHeight > 0) {
+      if (topNavDisplay !== 'none' && navbarVisibility.top === "true" && topNavHeight > 0) {
         this.currentPageUnavailableHeight += topHeight;
       }
-      if (bottomNavDisplay != 'none' && navbarVisibility.bottom == "true" && bottomNavHeight > 0) {
+      if (bottomNavDisplay !== 'none' && navbarVisibility.bottom === "true" && bottomNavHeight > 0) {
         this.currentPageUnavailableHeight += bottomNavHeight;
       }
-      if (bottomDisplay != 'none' && bottomHeight > 0) {
+      if (bottomDisplay !== 'none' && bottomHeight > 0) {
         this.currentPageUnavailableHeight += bottomHeight;
       }
       if (this.currentPageUnavailableHeight > 0) {
@@ -159,10 +161,12 @@ qx.Class.define('cv.layout.Manager', {
 
     getWidgetColspan: function(widget, width) {
       if (widget.getColspan) {
-        if (width <= cv.Config.maxScreenWidthColspanS)
+        if (width <= cv.Config.maxScreenWidthColspanS) {
           return widget.getColspanS();
-        if (width <= cv.Config.maxScreenWidthColspanM)
+        }
+        if (width <= cv.Config.maxScreenWidthColspanM) {
           return widget.getColspanM();
+        }
         return widget.getColspan();
       }
       return 0;
@@ -183,9 +187,9 @@ qx.Class.define('cv.layout.Manager', {
       var selectors = [];
 
       if (includeNavbars === true) {
-        selectors = ['#navbarTop', '#navbarLeft', pageSelector, '#navbarRight', '#navbarBottom']
+        selectors = ['#navbarTop', '#navbarLeft', pageSelector, '#navbarRight', '#navbarBottom'];
       } else {
-        selectors = [pageSelector]
+        selectors = [pageSelector];
       }
 
       selectors.forEach(function (area) {

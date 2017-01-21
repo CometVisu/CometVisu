@@ -46,7 +46,7 @@ qx.Class.define('cv.util.Tree', {
     getChildWidgets: function(widget, type) {
       return widget.getChildren().filter(function(child) {
         return !type || child.get$$type() === type;
-      })
+      });
     },
 
     /**

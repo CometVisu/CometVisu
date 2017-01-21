@@ -32,7 +32,7 @@ qx.Class.define('cv.structure.AbstractBasicWidget', {
   */
   construct: function(props) {
     for (var prop in props) {
-      if (this["set" + qx.Bootstrap.firstUp(prop)] != undefined) {
+      if (this["set" + qx.Bootstrap.firstUp(prop)] !== undefined) {
         this.set(prop, props[prop]);
       }
     }
@@ -100,7 +100,7 @@ qx.Class.define('cv.structure.AbstractBasicWidget', {
 
     /**
      * Get the widgets parent page (or navbar). This might not be the same as the parent widget.
-     * @return {cv.structure.pure.Page|cv.structure.pure.Navbar|null}
+     * @return {cv.structure.pure.Page|cv.structure.pure.NavBar|null}
      */
     getParentPage: function() {
       var parent = this.getParentWidget();

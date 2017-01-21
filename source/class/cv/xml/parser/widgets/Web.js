@@ -65,7 +65,7 @@ qx.Class.define('cv.xml.parser.widgets.Web', {
       var ga = xml.getAttribute("ga");
       if (ga) {
         cv.data.Model.getInstance().addAddress(ga);
-        if (cv.Config.backend.substr(0, 2) == "oh") {
+        if (cv.Config.backend.substr(0, 2) === "oh") {
           data.address['_' + ga] = ['OH:switch', 'OFF'];
         } else {
           data.address['_' + ga] = ['DPT:1.001', 0];

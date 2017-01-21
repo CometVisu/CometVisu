@@ -52,14 +52,14 @@ qx.Class.define("cv.xml.parser.Meta", {
       var formula = qx.bom.Selector.query('formula', elem);
       if (formula.length > 0) {
         var func = qx.lang.Function.globalEval('var func = function(x){var y;' + qx.dom.Node.getText(formula[0]) + '; return y;}; func');
-        mapping['formula'] = func;
+        mapping.formula = func;
       }
       qx.bom.Selector.query('entry', elem).forEach(function (subElem) {
         var origin = subElem.childNodes;
         var value = [];
         for (var i = 0; i < origin.length; i++) {
           var v = origin[i];
-          if (qx.dom.Node.isElement(v) && qx.dom.Node.getName(v).toLowerCase() == 'icon') {
+          if (qx.dom.Node.isElement(v) && qx.dom.Node.getName(v).toLowerCase() === 'icon') {
             var icon = this.__parseIconDefinition(v);
             value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon.class));
           }
@@ -69,26 +69,26 @@ qx.Class.define("cv.xml.parser.Meta", {
         }
         // check for default entry
         var isDefaultValue = qx.bom.element.Attribute.get(subElem, 'default');
-        if (isDefaultValue != undefined) {
-          isDefaultValue = isDefaultValue == "true";
+        if (isDefaultValue !== undefined) {
+          isDefaultValue = isDefaultValue === "true";
         }
         else {
           isDefaultValue = false;
         }
         // now set the mapped values
         if (subElem.getAttribute('value')) {
-          mapping[subElem.getAttribute('value')] = value.length == 1 ? value[0] : value;
+          mapping[subElem.getAttribute('value')] = value.length === 1 ? value[0] : value;
           if (isDefaultValue) {
-            mapping['defaultValue'] = subElem.getAttribute('value');
+            mapping.defaultValue = subElem.getAttribute('value');
           }
         }
         else {
-          if (!mapping['range']) {
-            mapping['range'] = {};
+          if (!mapping.range) {
+            mapping.range = {};
           }
-          mapping['range'][parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'))] = [parseFloat(qx.bom.element.Attribute.get(subElem, 'range_max')), value];
+          mapping.range[parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'))] = [parseFloat(qx.bom.element.Attribute.get(subElem, 'range_max')), value];
           if (isDefaultValue) {
-            mapping['defaultValue'] = parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'));
+            mapping.defaultValue = parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'));
           }
         }
       }, this);
@@ -103,8 +103,8 @@ qx.Class.define("cv.xml.parser.Meta", {
         classnames += qx.dom.Node.getText(subElem) + ' ';
         // check for default entry
         var isDefaultValue = qx.bom.element.Attribute.get(subElem, 'default');
-        if (isDefaultValue != undefined) {
-          isDefaultValue = isDefaultValue == "true";
+        if (isDefaultValue !== undefined) {
+          isDefaultValue = isDefaultValue === "true";
         } else {
           isDefaultValue = false;
         }
@@ -112,54 +112,59 @@ qx.Class.define("cv.xml.parser.Meta", {
         if (subElem.getAttribute('value')) {
           styling[subElem.getAttribute('value')] = qx.dom.Node.getText(subElem);
           if (isDefaultValue) {
-            styling['defaultValue'] = subElem.getAttribute('value');
+            styling.defaultValue = subElem.getAttribute('value');
           }
         } else { // a range
-          if (!styling['range'])
-            styling['range'] = {};
-          styling['range'][parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'))] = [parseFloat(qx.bom.element.Attribute.get(subElem, 'range_max')), qx.dom.Node.getText(subElem)];
+          if (!styling.range) {
+            styling.range = {};
+          }
+          styling.range[parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'))] = [parseFloat(qx.bom.element.Attribute.get(subElem, 'range_max')), qx.dom.Node.getText(subElem)];
           if (isDefaultValue) {
-            styling['defaultValue'] = parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'));
+            styling.defaultValue = parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'));
           }
         }
       }, this);
-      styling['classnames'] = classnames.trim();
+      styling.classnames = classnames.trim();
       cv.ui.Stylings.addStyling(name, styling);
     },
 
     parseStatusBar: function(elem) {
-      var type = qx.bom.element.Attribute.get(elem,'type');
       var condition = qx.bom.element.Attribute.get(elem,'condition');
       var extend = qx.bom.element.Attribute.get(elem,'hrefextend');
       var sPath = window.location.pathname;
       var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 
       // @TODO: make this match once the new editor is finished-ish.
-      var editMode = 'edit_config.html' == sPage;
+      var editMode = 'edit_config.html' === sPage;
 
       // skip this element if it's edit-only and we are non-edit, or the other
       // way
       // round
-      if (editMode && '!edit' == condition)
+      if (editMode && '!edit' === condition) {
         return;
-      if (!editMode && 'edit' == condition)
+      }
+      if (!editMode && 'edit' === condition) {
         return;
+      }
 
       var text = qx.dom.Node.getText(elem);
+      var search;
       switch (extend) {
         case 'all': // append all parameters
-          var search = window.location.search.replace(/\$/g, '$$$$');
+          search = window.location.search.replace(/\$/g, '$$$$');
           text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
           break;
         case 'config': // append config file info
-          var search = window.location.search.replace(/\$/g, '$$$$');
+          search = window.location.search.replace(/\$/g, '$$$$');
           search = search.replace(/.*(config=[^&]*).*|.*/, '$1');
 
           var middle = text.replace(/.*href="([^"]*)".*/g, '{$1}');
-          if (0 < middle.indexOf('?'))
+          if (0 < middle.indexOf('?')) {
             search = '&' + search;
-          else
+          }
+          else {
             search = '?' + search;
+          }
 
           text = text.replace(/(href="[^"]*)(")/g, '$1' + search + '$2');
           break;
@@ -189,8 +194,7 @@ qx.Class.define("cv.xml.parser.Meta", {
         styling : qx.bom.element.Attribute.get(elem, 'styling'),
         dynamic : qx.bom.element.Attribute.get(elem, 'dynamic'),
         'class' : qx.bom.element.Attribute.get(elem, 'class')
-      }
+      };
     }
-
   }
 });

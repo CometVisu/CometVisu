@@ -72,20 +72,25 @@ qx.Class.define('cv.IconHandler', {
       var styling = arguments[5];
       var dynamic = arguments[6];
 
-      if (!this.__db[name])
+      if (!this.__db[name]) {
         this.__db[name] = {};
-      if (!this.__db[name][type])
+      }
+      if (!this.__db[name][type]) {
         this.__db[name][type] = {};
-      if (!this.__db[name][type][flavour])
+      }
+      if (!this.__db[name][type][flavour]) {
         this.__db[name][type][flavour] = {};
+      }
 
-      if (dynamic && window[dynamic])
+      if (dynamic && window[dynamic]) {
         this.__db[name][type][flavour][color] = window[dynamic](uri);
-      else
+      }
+      else {
         this.__db[name][type][flavour][color] = {
           uri: uri,
           styling: styling
         };
+      }
     },
 
     /**
@@ -95,50 +100,57 @@ qx.Class.define('cv.IconHandler', {
      * @param type {String?} Type
      * @param flavour {String?} Flavour
      * @param color {String?} Color (only relevant for monochrome icons)
-     * @return {URI} The URI for the icon - or "undefined" if not known
+     * @return {String} The URI for the icon - or "undefined" if not known
      */
     get: function (name, type, flavour, color) {
-      if (!this.__db[name])
+      if (!this.__db[name]) {
         return undefined;
-      if (!this.__db[name][type])
+      }
+      if (!this.__db[name][type]) {
         type = '*'; // undefined -> use default
+      }
+      var all;
       if (typeof this.__db[name][type] === 'string') {
         type = this.__db[name][type]; // redirect link
         if (type.split('/').length > 1) {
-          var all = type.split('/');
+          all = type.split('/');
           type = all.shift();
-          if (flavour === undefined)
+          if (flavour === undefined) {
             flavour = all.shift();
+          }
         }
       }
-      if (!this.__db[name][type][flavour])
+      if (!this.__db[name][type][flavour]) {
         flavour = '*'; // undefined -> use default
+      }
       if (typeof this.__db[name][type][flavour] === 'string') {
         flavour = this.__db[name][type][flavour]; // redirect link
         if (flavour.split('/').length > 1) {
-          var all = flavour.split('/');
+          all = flavour.split('/');
           flavour = all.shift();
-          if (color === undefined)
+          if (color === undefined) {
             color = all.shift();
+          }
         }
       }
-      if (!this.__db[name][type][flavour][color])
+      if (!this.__db[name][type][flavour][color]) {
         color = '*'; // undefined -> use default
-
+      }
       // handle a generic mapping function
-      if (typeof this.__db[name][type][flavour]['*'] === 'function')
+      if (typeof this.__db[name][type][flavour]['*'] === 'function') {
         return this.__db[name][type][flavour]['*'];
-
-      if (typeof this.__db[name][type][flavour][color] === 'string')
-        color = this.__db[name][type][flavour][color]; // redirect link
-
+      }
+      if (typeof this.__db[name][type][flavour][color] === 'string') {
+        color = this.__db[name][type][flavour][color];
+      } // redirect link
       return this.__db[name][type][flavour][color];
     },
 
     getURI: function () {
       var i = this.get.apply(this, arguments);
-      if (i)
+      if (i) {
         return qx.util.ResourceManager.getInstance().toUri(i.uri);
+      }
     },
 
     /**
@@ -148,12 +160,14 @@ qx.Class.define('cv.IconHandler', {
       var i = this.get.apply(this, arguments);
       if (i) {
         var styling = arguments[4];
-        if (i.icon && !styling && typeof i !== 'function')
+        if (i.icon && !styling && typeof i !== 'function') {
           return i.icon;
+        }
 
         // fetch and cache image
-        if (!styling)
+        if (!styling) {
           styling = i.styling;
+        }
 
         var classes = 'icon';
         var iconclass = arguments[5];
@@ -190,10 +204,12 @@ qx.Class.define('cv.IconHandler', {
       var i = this.get.apply(this, arguments);
       if (i) {
 
-        if (styling === undefined)
+        if (styling === undefined) {
           styling = i.styling === undefined ? '' : ' style="' + i.styling + '"';
-        else
+        }
+        else {
           styling = ' style="' + styling + '"';
+        }
 
         var classes = 'icon';
         if (iconclass !== undefined) {
@@ -212,9 +228,7 @@ qx.Class.define('cv.IconHandler', {
      * Fill the icons in the array.
      */
     fillIcons: function (array) {
-      array.each(function (thisIcon) {
-        window.fillRecoloredIcon(thisIcon);
-      });
+      array.forEach(cv.util.IconTools.fillRecoloredIcon);
     },
 
     /**

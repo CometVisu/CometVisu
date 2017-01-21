@@ -123,9 +123,9 @@ qx.Class.define('cv.data.Model', {
         parent = qx.dom.Element.getParentElement(element),
         path = qx.bom.element.Attribute.get(parent, 'id');
 
-      if (path === undefined)
+      if (path === undefined) {
         path = qx.bom.element.Attribute.get(qx.dom.Element.getParentElement(parent), 'id');
-
+      }
       return this.getWidgetData(path);
     },
 

@@ -83,9 +83,9 @@ qx.Mixin.define("cv.role.Refresh", {
           var element = this.getDomElement();
           var target = qx.bom.Selector.query('img', element)[0] || qx.bom.Selector.query('iframe', element)[0];
           var src = qx.bom.element.Attribute.get(target, "src");
-          if (src.indexOf('?') < 0)
+          if (src.indexOf('?') < 0) {
             src += '?';
-
+          }
           this._timer = new qx.event.Timer(this.getRefresh());
           this._timer.addListener("interval", function () {
             this.refreshAction(target, src);
@@ -103,7 +103,7 @@ qx.Mixin.define("cv.role.Refresh", {
        * "flickering" so we avoid to use it on images, internal iframes and others
        */
       var parenthost = window.location.protocol + "//" + window.location.host;
-      if (target.nodeName == "IFRAME" && src.indexOf(parenthost) != 0) {
+      if (target.nodeName === "IFRAME" && src.indexOf(parenthost) !== 0) {
         qx.bom.element.Attribute.set(target, "src", "");
         qx.event.Timer.once(function () {
           qx.bom.element.Attribute.set(target, "src", src);

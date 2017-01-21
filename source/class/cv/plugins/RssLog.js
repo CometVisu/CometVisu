@@ -101,7 +101,7 @@ qx.Class.define('cv.plugins.RssLog', {
         timeformat: {},
         itemack:    { "default": "modify"}, // allowed: modify, display, disable
         future:     {}
-      }
+      };
     }
   },
 
@@ -170,7 +170,7 @@ qx.Class.define('cv.plugins.RssLog', {
             this.refreshRSSlog();
           }, this, 100);
           for (var addr in this.getAddress()) {
-            if (!(this.getAddress()[addr][1] & 2)) continue; // skip when write flag not set
+            if (!(this.getAddress()[addr][1] & 2)) { continue; }// skip when write flag not set
             cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(this.getAddress()[addr][0], 0));
           }
         }
@@ -188,19 +188,19 @@ qx.Class.define('cv.plugins.RssLog', {
         }
         var requestData = {};
         if (this.getFilter()) {
-          requestData['f'] = this.getFilter();
+          requestData.f = this.getFilter();
         }
         if (this.getLimit()) {
-          requestData['limit'] = this.getLimit();
+          requestData.limit = this.getLimit();
         }
         if (this.getFuture()) {
-          requestData['future'] = this.getFuture();
+          requestData.future = this.getFuture();
         }
         if (!src.match(/rsslog\.php/) && !src.match(/rsslog_mysql\.php/)) {
-          requestData['url'] = src;
+          requestData.url = src;
           src = "plugins/rsslog/rsslog_external.php";
         } else {
-          requestData['j'] = 1;
+          requestData.j = 1;
         }
         this.__request = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri(src));
         this.__request.set({
@@ -211,13 +211,13 @@ qx.Class.define('cv.plugins.RssLog', {
         this.__request.addListener("success", this.__updateContent, this);
         this.__request.addListener("error", function(ev) {
           this.error('C: #rss_%s, Error: %s, Feed: %s', this.getPath(), ev.getTarget().getResponse(), src);
-        }, this)
+        }, this);
       }
       this.__request.setUserData("selector", '#rss_' + this.getPath() + (isBig === true ? '_big' : ''));
       this.__request.send();
 
       var refresh = this.getRefresh();
-      if (typeof (refresh) != "undefined" && refresh) {
+      if (typeof (refresh) !== "undefined" && refresh) {
         // reload regularly
         if (this._timer && this._timer.isEnabled()) {
           this._timer.start();
@@ -244,11 +244,11 @@ qx.Class.define('cv.plugins.RssLog', {
 
       // get height of one entry, calc max num of display items in widget
       var displayrows = qx.bom.element.Dataset.get(c, "last_rowcount") || 0;
-      qx.bom.Html.clean(['<li class="rsslogRow odd" id="dummydiv">.</li>'], null, c)[0];
+      qx.bom.Html.clean(['<li class="rsslogRow odd" id="dummydiv">.</li>'], null, c);
       var dummyDiv = qx.bom.Selector.query('#dummydiv', c)[0];
       var itemheight = qx.bom.element.Dimension.getHeight(dummyDiv);
       qx.dom.Element.remove(dummyDiv);
-      if (itemheight != 0) {
+      if (itemheight !== 0) {
         var widget = qx.dom.Element.getParentElement(qx.dom.Element.getParentElement(c)); // get the parent widget
         var displayheight = qx.bom.element.Dimension.getHeight(widget);
         var labelElem = qx.bom.Selector.query('.label', widget)[0];
@@ -267,12 +267,12 @@ qx.Class.define('cv.plugins.RssLog', {
       var itemoffset = 0; // correct if mode='last' or itemnum<=displayrows
 
       if (itemnum > displayrows) { // no need to check mode if items are less than rows
-        if (this.getMode() == 'first') {
+        if (this.getMode() === 'first') {
           itemoffset = itemnum - displayrows;
         }
-        if (this.getMode() == 'rollover') {
+        if (this.getMode() === 'rollover') {
           itemoffset = qx.bom.element.Dataset.get(c, "itemoffset") || 0;
-          if (itemoffset == itemnum) {
+          if (itemoffset === itemnum) {
             itemoffset = 0;
           }
           qx.bom.element.Dataset.set(c, "itemoffset", itemoffset + 1);
@@ -303,7 +303,7 @@ qx.Class.define('cv.plugins.RssLog', {
             (itemHtml.replace(/\{date\}/, entryDate.strftime(this.getTimeformat()) + '&nbsp;')) :
             (itemHtml.replace(/\{date\}/, entryDate.toLocaleDateString() + ' ' + entryDate.toLocaleTimeString() + '&nbsp;'));
           var thisday = entryDate.strftime('%d');
-          separatoradd = ((separatordate > 0) && (separatordate != thisday));
+          separatoradd = ((separatordate > 0) && (separatordate !== thisday));
           separatordate = thisday;
           isFuture = (entryDate > new Date() );
         }
@@ -326,58 +326,57 @@ qx.Class.define('cv.plugins.RssLog', {
           separatorprevday = false;
         }
 
-        if (separatorprevday == true) {
+        if (separatorprevday === true) {
           qx.bom.element.Class.add(rowElem, 'rsslog_prevday');
         }
 
         if (isFuture) {
-          qx.bom.element.Class.add(rowElem, (row == 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
+          qx.bom.element.Class.add(rowElem, (row === 'rsslogodd') ? 'rsslog_futureeven' : 'rsslog_futureodd');
         }
 
         qx.bom.element.Dataset.set(rowElem, 'id', item.id);
         qx.bom.element.Dataset.set(rowElem, 'mapping', item.mapping);
         if (item.tags) {
           var tmp = qx.bom.Selector.query('span', rowElem);
-          item.tags.forEach(function(tag) {
-            qx.bom.element.Class.add(tmp, tag);
-          }, this);
+          item.tags.forEach(qx.lang.Function.curry(qx.bom.element.Class.add, tmp), this);
         }
-        if (item.state == 1 && itemack !== 'disable') {
+        if (item.state === 1 && itemack !== 'disable') {
           qx.bom.element.Class.add(rowElem, "rsslog_ack");
         }
 
         if (itemack === 'modify') {
-          qx.event.Registration.addListener(rowElem, "tap", function (ev) {
-            var item = ev.getTarget();
-
-            var id = qx.bom.element.Dataset.get(item, 'id');
-            var mapping = qx.bom.element.Dataset.get(item, 'mapping');
-            qx.bom.element.Class.toggle(item, "rsslog_ack");
-            var state = +qx.bom.element.Class.has(item, "rsslog_ack"); // the new state is the same as hasClass
-            if (mapping && mapping !== '') {
-              var mappedValue = this.applyMapping(state, mapping);
-              var span = qx.bom.Selector.query('.mappedValue', item)[0];
-              qx.dom.Element.empty(span);
-              this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
-            }
-            var req = new qx.io.request.Xhr(this.__request.getSrc());
-            req.set({
-              method: "GET",
-              requestData: {
-                'u': id,
-                'state': state
-              },
-              accept: "application/json"
-            });
-            req.send();
-          }, this);
+          qx.event.Registration.addListener(rowElem, "tap", this._onTap, this);
         }
-
         qx.dom.Element.insertEnd(rowElem, ul);
 
         // Alternate row classes
-        row = (row == 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
+        row = (row === 'rsslogodd') ? 'rsslogeven' : 'rsslogodd';
       }
+    },
+
+    _onTap: function(ev) {
+      var item = ev.getTarget();
+
+      var id = qx.bom.element.Dataset.get(item, 'id');
+      var mapping = qx.bom.element.Dataset.get(item, 'mapping');
+      qx.bom.element.Class.toggle(item, "rsslog_ack");
+      var state = +qx.bom.element.Class.has(item, "rsslog_ack"); // the new state is the same as hasClass
+      if (mapping && mapping !== '') {
+        var mappedValue = this.applyMapping(state, mapping);
+        var span = qx.bom.Selector.query('.mappedValue', item)[0];
+        qx.dom.Element.empty(span);
+        this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
+      }
+      var req = new qx.io.request.Xhr(this.__request.getSrc());
+      req.set({
+        method: "GET",
+        requestData: {
+          'u': id,
+          'state': state
+        },
+        accept: "application/json"
+      });
+      req.send();
     }
   },
 

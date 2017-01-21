@@ -33,7 +33,7 @@ qx.Class.define('cv.plugins.MobileMenu', {
   */
   statics: {
 
-    getWidgetElements: function(xmlElement, path, flavour, type) {
+    getWidgetElements: function(xmlElement, path) {
       cv.data.Model.getInstance().setWidgetData( path+"_0", {
         containerClass           : "actor"
       });

@@ -70,7 +70,7 @@ qx.Class.define('cv.transforms.Knx', {
         name: 'DPT_Char_ASCII',
         encode: function (phy) {
           var val = phy.charCodeAt(0).toString(16);
-          return (val.length == 1 ? '800' : '80') + val;
+          return (val.length === 1 ? '800' : '80') + val;
         },
         decode: function (hex) {
           return String.fromCharCode(parseInt(hex, 16));
@@ -89,7 +89,7 @@ qx.Class.define('cv.transforms.Knx', {
         },
         encode: function (phy) {
           var val = parseInt(phy * 255 / 100).toString(16);
-          return (val.length == 1 ? '800' : '80') + val;
+          return (val.length === 1 ? '800' : '80') + val;
         },
         decode: function (hex) {
           return parseInt(hex, 16) * 100 / 255.0;
@@ -104,7 +104,7 @@ qx.Class.define('cv.transforms.Knx', {
         },
         encode: function (phy) {
           var val = parseInt(phy * 255 / 360).toString(16);
-          return (val.length == 1 ? '800' : '80') + val;
+          return (val.length === 1 ? '800' : '80') + val;
         },
         decode: function (hex) {
           return parseInt(hex, 16) * 360 / 255.0;
@@ -119,7 +119,7 @@ qx.Class.define('cv.transforms.Knx', {
         },
         encode: function (phy) {
           var val = parseInt(cv.Transform.clip(0, phy, 255)).toString(16);
-          return (val.length == 1 ? '800' : '80') + val;
+          return (val.length === 1 ? '800' : '80') + val;
         },
         decode: function (hex) {
           return parseInt(hex, 16);
@@ -141,10 +141,10 @@ qx.Class.define('cv.transforms.Knx', {
           phy = parseInt(cv.Transform.clip(-128, phy, 127));
           var val = phy < 0 ? phy + 256 : phy;
           val = val.toString(16);
-          return (val.length == 1 ? '800' : '80') + val;
+          return (val.length === 1 ? '800' : '80') + val;
         },
         decode: function (hex) {
-          var val = parseInt(hex, 16)
+          var val = parseInt(hex, 16);
           return val > 127 ? (val - 256) : val;
         }
       },
@@ -185,7 +185,7 @@ qx.Class.define('cv.transforms.Knx', {
       '9.001': {
         name: 'DPT_Value_Temp',
         encode: function (phy) {
-          if (undefined === phy || NaN == phy) return '7fff';
+          if (undefined === phy || isNaN(phy)) { return '7fff'; }
           var sign = phy < 0 ? 0x8000 : 0;
           var mant = Math.round(phy * 100.0);
           var exp = 0;
@@ -197,14 +197,15 @@ qx.Class.define('cv.transforms.Knx', {
           return '80' + ( new Array(4 - val.length + 1).join('0') + val );
         },
         decode: function (hex) {
-          if (0x7fff == parseInt(hex, 16)) return NaN;
+          if (0x7fff === parseInt(hex, 16)) { return NaN; }
           var bin1 = parseInt(hex.substr(0, 2), 16);
           var bin2 = parseInt(hex.substr(2, 2), 16);
           var sign = parseInt(bin1 & 0x80);
           var exp = parseInt(bin1 & 0x78) >> 3;
           var mant = parseInt(((bin1 & 0x7) << 8) | bin2);
-          if (sign != 0)
+          if (sign !== 0) {
             mant = -(~(mant - 1) & 0x7ff);
+          }
           return (1 << exp) * 0.01 * mant;
         }
       },
@@ -253,7 +254,7 @@ qx.Class.define('cv.transforms.Knx', {
 
       '11.001': {
         name: 'DPT_Date',
-        encode: function (phy) {
+        encode: function () {
           // FIXME
         },
         decode: function (hex) {
@@ -296,7 +297,7 @@ qx.Class.define('cv.transforms.Knx', {
 
       '14.001': {
         name: 'DPT_Value_Acceleration_Angular',
-        encode: function (phy) {
+        encode: function () {
           //FIXME: unimplemented (jspack?)
         },
         decode: function (hex) {
@@ -388,7 +389,7 @@ qx.Class.define('cv.transforms.Knx', {
               val = 0;
           }
           val = val.toString(16);
-          return (val.length == 1 ? '800' : '80') + val;
+          return (val.length === 1 ? '800' : '80') + val;
         },
         decode: function (hex) {
           switch (parseInt(hex, 16)) {

@@ -78,7 +78,7 @@ qx.Class.define('cv.plugins.Speech', {
    ******************************************************
    */
   statics: {
-    parse: function (element, path, flavour, pageType) {
+    parse: function (element, path) {
       if (!window.speechSynthesis) {
         qx.log.Logger.warn("this browser does not support the Web Speech API");
         return;
@@ -158,7 +158,7 @@ qx.Class.define('cv.plugins.Speech', {
       }
       else if (this.getRepeatTimeout() >= 0) {
         // do not repeat (within timeout when this.repeatTimeout > 0)
-        if (this.__lastSpeech[address] && this.__lastSpeech[address].text == text && (this.getRepeatTimeout() === 0 ||
+        if (this.__lastSpeech[address] && this.__lastSpeech[address].text === text && (this.getRepeatTimeout() === 0 ||
           this.getRepeatTimeout() >= Math.round((Date.now()-this.__lastSpeech[address].time)/1000))) {
           // update time
           this.__lastSpeech[address].time = Date.now();

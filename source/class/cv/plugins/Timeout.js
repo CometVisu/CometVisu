@@ -54,7 +54,7 @@ qx.Class.define('cv.plugins.Timeout', {
             return value === "true";
           }
         }
-      }
+      };
     }
   },
 
@@ -140,7 +140,7 @@ qx.Class.define('cv.plugins.Timeout', {
         this.__timeoutIdleCount = 0;
         var templateEngine = cv.TemplateEngine.getInstance();
 
-        if (this.__timeoutCurrentPage != this.__timeoutTargetPage && this.__timeoutCurrentPageTitle != this.__timeoutTargetPage) {
+        if (this.__timeoutCurrentPage !== this.__timeoutTargetPage && this.__timeoutCurrentPageTitle !== this.__timeoutTargetPage) {
           this.timeoutPrintDebug("TIMEOUT: Got Timeout - Now Goto Page " + this.__timeoutTargetPage);
           templateEngine.scrollToPage(this.__timeoutTargetPage);
           templateEngine.currentPage.scrollTop(0);

@@ -92,7 +92,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         tooltip           : { transform: function(value) {
           return value === "true";
         }}
-      }
+      };
     },
 
     afterParse: function(element, path) {
@@ -137,8 +137,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           color     : elem.getAttribute('color'),
           label     : elem.getAttribute('label') || src,
           axisIndex : axesNameIndex[elem.getAttribute('yaxis')] || 1,
-          steps     : (elem.getAttribute("steps") || "false") == "true",
-          fill      : (elem.getAttribute("fill") || "false") == "true",
+          steps     : (elem.getAttribute("steps") || "false") === "true",
+          fill      : (elem.getAttribute("fill") || "false") === "true",
           scaling   : parseFloat(elem.getAttribute('scaling')) || 1.0,
           dsIndex   : elem.getAttribute('datasourceIndex') || 0,
           cFunc     : elem.getAttribute('consolidationFunction') || "AVERAGE",
@@ -170,9 +170,9 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       if( doLoad )
       {
-        if( urlNotInCache )
-          this.cache[ url ] = { waitingCallbacks: [] };
-
+        if( urlNotInCache ) {
+          this.cache[url] = {waitingCallbacks: []};
+        }
         this.cache[ url ].waitingCallbacks.push( [ callback, callbackParameter ] );
 
         if( this.cache[ url ].waitingCallbacks.length === 1 ) {
@@ -182,7 +182,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           });
           xhr.addListener("success", function( ev ) {
             var rrddata = ev.getTarget().getResponse();
-            if (rrddata != null) {
+            if (rrddata !== null) {
               // calculate timestamp offset and scaling
               var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
               for (var j = 0; j < rrddata.length; j++) {
@@ -484,8 +484,9 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         if ( !isPopup && container !== undefined) {
           var actor = $(self).closest('.actor')[0];
           var path = container.id;
-          if( actor !== undefined && path.length > 0 )
+          if( actor !== undefined && path.length > 0 ) {
             that.action();
+          }
         }
       });
 
@@ -507,7 +508,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         end   : null,
         res   : null
       };
-      if (this.getSeries() == "custom") {
+      if (this.getSeries() === "custom") {
         // initial load, take parameters from custom configuration
         ret.start = this.getSeriesStart();
         ret.end = this.getSeriesEnd();
@@ -535,7 +536,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       var series = this.getSeriesSettings(plot.getAxes().xaxis, isInteractive);
       if (!series) {
-        return
+        return;
       }
 
       // init
@@ -550,7 +551,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
         cv.plugins.diagram.AbstractDiagram.lookupRRDcache( rrd, series.start, series.end, res, refresh, forceReload, function( rrddata ){
           rrdloaded++;
-          if (rrddata != null) {
+          if (rrddata !== null) {
             rrdSuccessful++;
 
             // store the data for diagram plotting
@@ -559,19 +560,19 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
               color: rrd.color,
               data: rrddata,
               yaxis: parseInt(rrd.axisIndex),
-              bars: { show: rrd.style == "bars", fill: rrd.fill, barWidth: parseInt(rrd.barWidth), align: rrd.align },
-              lines: { show: rrd.style == "lines", steps: rrd.steps, fill: rrd.fill, zero: false },
-              points: { show: rrd.style == "points", fill: rrd.fill }
+              bars: { show: rrd.style === "bars", fill: rrd.fill, barWidth: parseInt(rrd.barWidth), align: rrd.align },
+              lines: { show: rrd.style === "lines", steps: rrd.steps, fill: rrd.fill, zero: false },
+              points: { show: rrd.style === "points", fill: rrd.fill }
             };
           }
 
           // if loading has finished, i.e. all rrds have been retrieved,
           // go on and plot the diagram
-          if (rrdloaded == this.getContent().rrdnum) {
+          if (rrdloaded === this.getContent().rrdnum) {
             var fulldata;
             // If all rrds were successfully loaded, no extra action is needed.
             // Otherwise we need to reduce the array to the loaded data.
-            if (rrdSuccessful == rrdloaded) {
+            if (rrdSuccessful === rrdloaded) {
               fulldata = loadedData;
             }
             else {
@@ -579,7 +580,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
               var loadedIndex = -1;
               for (var j = 0; j < rrdSuccessful; j++) {
                 for (var k = loadedIndex + 1; k < loadedData.length; k++) {
-                  if (loadedData[k] != null) {
+                  if (loadedData[k] !== null) {
                     fulldata[j] = loadedData[k];
                     loadedIndex = k;
                     break;
@@ -599,7 +600,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     }
   },
 
-  defer: function(statics) {
+  defer: function() {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts([
       'plugins/diagram/dep/flot/jquery.flot.min.js',

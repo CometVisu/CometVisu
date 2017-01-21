@@ -86,10 +86,10 @@ qx.Class.define("cv.Application",
       // Enable logging in debug variant
       if (qx.core.Environment.get("qx.debug")) {
         // support native logging capabilities, e.g. Firebug for Firefox
-        //noinspection BadExpressionStatementJS
+        //noinspection BadExpressionStatementJS,JSHint
         qx.log.appender.Native;
         // support additional cross-browser console. Press F7 to toggle visibility
-        //noinspection BadExpressionStatementJS
+        //noinspection BadExpressionStatementJS,JSHint
         qx.log.appender.Console;
       }
 
@@ -118,7 +118,6 @@ qx.Class.define("cv.Application",
         }
       }, this);
       qx.bom.Lifecycle.onReady(function () {
-        var cache = false;
         var body = qx.bom.Selector.query("body")[0];
         if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
           // load settings
@@ -200,8 +199,9 @@ qx.Class.define("cv.Application",
       // message discarding - but not for errors:
       var messageElement = qx.bom.Selector.query('#message')[0];
       qx.event.Registration.addListener(messageElement, 'tap', function () {
-        if (!qx.bom.element.Class.has(messageElement, 'error'))
+        if (!qx.bom.element.Class.has(messageElement, 'error')) {
           this.innerHTML = '';
+        }
       }, messageElement);
     },
 
@@ -211,7 +211,6 @@ qx.Class.define("cv.Application",
      */
     bootstrap: function(xml) {
       this.debug("bootstrapping");
-      var cache = false;
       var engine = cv.TemplateEngine.getInstance();
       var loader = cv.util.ScriptLoader.getInstance();
       engine.xml = xml;
@@ -322,8 +321,9 @@ qx.Class.define("cv.Application",
           if ('remember' === startpage) {
             startpage = localStorage.getItem('lastpage');
             cv.Config.rememberLastPage = true;
-            if ('string' !== typeof( startpage ) || 'id_' !== startpage.substr(0, 3))
+            if ('string' !== typeof( startpage ) || 'id_' !== startpage.substr(0, 3)) {
               startpage = 'id_'; // fix obvious wrong data
+            }
           } else if ('noremember' === startpage) {
             localStorage.removeItem('lastpage');
             startpage = 'id_';

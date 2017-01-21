@@ -65,11 +65,9 @@ qx.Class.define('cv.io.transport.LongPolling', {
       this.sessionId = json.s;
       this.version = json.v.split('.', 3);
 
-      if (0 < parseInt(this.version[0])
-        || 1 < parseInt(this.version[1]))
-        this.error('ERROR CometVisu Client: too new protocol version ('
-          + json.v + ') used!');
-
+      if (0 < parseInt(this.version[0]) || 1 < parseInt(this.version[1])) {
+        this.error('ERROR CometVisu Client: too new protocol version (' + json.v + ') used!');
+      }
       if (connect) {
         this.connect();
       }
@@ -101,16 +99,16 @@ qx.Class.define('cv.io.transport.LongPolling', {
       this.xhr.send();
       this.client.watchdog.start(5);
     },
+
     /**
      * This function gets called once the communication is established
      * and this.client information is available
      *
-     *
-     * @param json
+     * @param ev {Event}
      */
     handleRead: function (ev) {
       var json = ev && ev.getTarget().getResponse();
-      if (this.doRestart || (!json && (-1 == this.lastIndex))) {
+      if (this.doRestart || (!json && (-1 === this.lastIndex))) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
           this.retryCounter++;
@@ -120,13 +118,14 @@ qx.Class.define('cv.io.transport.LongPolling', {
         return;
       }
 
+      var data;
       if (json && !this.doRestart) {
         if (qx.lang.Type.isString(json)) {
           this.error("backend response not parsed, check if backend returned the correct content-type. Parsing manually now!");
           json = cv.io.parser.Json.parse(json);
         }
         this.lastIndex = json.i;
-        var data = json.d;
+        data = json.d;
         this.readResendHeaderValues();
         this.client.update(data);
         this.retryCounter = 0;
@@ -135,7 +134,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
       if (this.running) { // keep the requests going
         this.retryCounter++;
-        var data = this.client.buildRequest();
+        data = this.client.buildRequest();
         data.i = this.lastIndex;
         this.xhr.set({
           requestData: data
@@ -147,7 +146,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
     handleReadStart: function (ev) {
       var json = ev.getTarget().getResponse();
-      if (!json && (-1 == this.lastIndex)) {
+      if (!json && (-1 === this.lastIndex)) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
           this.xhr.send();
@@ -165,9 +164,9 @@ qx.Class.define('cv.io.transport.LongPolling', {
         // addresses-startPageAddresses
         var diffAddresses = [];
         for (var i = 0; i < this.client.addresses.length; i++) {
-          if (qx.lang.Array.contains(this.client.addresses[i],
-              this.client.initialAddresses) < 0)
+          if (qx.lang.Array.contains(this.client.addresses[i], this.client.initialAddresses) < 0) {
             diffAddresses.push(this.client.addresses[i]);
+          }
         }
         var data = this.client.buildRequest(diffAddresses);
         data.t = 0;
@@ -185,14 +184,11 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * This function gets called on an error
      *
      *
-     * @param xhr
-     * @param str
-     * @param excptObj
+     * @param ev {Event}
      */
     handleError: function (ev) {
       var req = ev.getTarget();
-      if (this.running && req.getReadyState() != 4
-        && !this.doRestart && req.getStatus() !== 0) // ignore error when connection is irrelevant
+      if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) // ignore error when connection is irrelevant
       {
         this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
       }
@@ -207,13 +203,14 @@ qx.Class.define('cv.io.transport.LongPolling', {
      */
     beforeSend: function (xhr) {
       for (var headerName in this.resendHeaders) {
-        if (this.resendHeaders[headerName] != undefined)
-          xhr.setRequestHeader(headerName,
-            this.resendHeaders[headerName]);
+        if (this.resendHeaders[headerName] !== undefined) {
+          xhr.setRequestHeader(headerName, this.resendHeaders[headerName]);
+        }
       }
-      for (var headerName in this.headers) {
-        if (this.headers[headerName] != undefined)
+      for (headerName in this.headers) {
+        if (this.headers[headerName] !== undefined) {
           xhr.setRequestHeader(headerName, this.headers[headerName]);
+        }
       }
     },
 
@@ -243,9 +240,9 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * @param doFullReload {Boolean} reload all data and not only restart connection
      */
     restart: function (doFullReload) {
-      if (doFullReload)
+      if (doFullReload) {
         this.lastIndex = -1; // reload all data
-
+      }
       this.doRestart = true;
       this.abort();
       this.handleRead(); // restart

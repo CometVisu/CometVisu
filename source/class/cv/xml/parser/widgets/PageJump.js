@@ -37,7 +37,7 @@ qx.Class.define('cv.xml.parser.widgets.PageJump', {
     afterParse: function(xml, path) {
       var data = cv.data.Model.getInstance().getWidgetData(path);
       var widgetInfo = qx.bom.Selector.query('widgetinfo > *', xml)[0];
-      if (widgetInfo!=undefined) {
+      if (widgetInfo!==undefined) {
         data.classes += " infoaction";
       }
     },

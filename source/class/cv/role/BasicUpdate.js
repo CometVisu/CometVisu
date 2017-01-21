@@ -125,20 +125,20 @@ qx.Mixin.define("cv.role.BasicUpdate", {
         var mapValue = function (v) {
           if (m[v]) {
             return m[v];
-          } else if (m['range']) {
+          } else if (m.range) {
             var valueFloat = parseFloat(v);
-            var range = m['range'];
+            var range = m.range;
             for (var min in range) {
-              if (min > valueFloat) continue;
-              if (range[min][0] < valueFloat) continue; // check max
+              if (min > valueFloat) { continue; }
+              if (range[min][0] < valueFloat) { continue; } // check max
               return range[min][1];
             }
           }
           return v; // pass through when nothing was found
-        }
-        var ret = mapValue(ret);
-        if (!ret && m['defaultValue']) {
-          ret = mapValue(m['defaultValue']);
+        };
+        ret = mapValue(ret);
+        if (!ret && m.defaultValue) {
+          ret = mapValue(m.defaultValue);
         }
         if (ret !== undefined) {
           return ret;
@@ -200,7 +200,9 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       var value = this.applyTransform(address, data);
 
       // store it to be able to suppress sending of unchanged data
-      value !== undefined && this.setBasicValue(value);
+      if (value !== undefined) {
+        this.setBasicValue(value);
+      }
 
       // #2: map it to a value the user wants to see
       value = this.applyMapping(value);
@@ -208,11 +210,10 @@ qx.Mixin.define("cv.role.BasicUpdate", {
       // #3: format it in a way the user understands the value
       if (value !== undefined) {
         value = this.applyFormat(address, value);
+        this.setValue(value);
       }
 
-      value !== undefined && this.setValue(value);
-
-      if (value && value.constructor == Date) {
+      if (value && value.constructor === Date) {
         switch (this.getAddress()[address][0]) // special case for KNX
         {
           case 'DPT:10.001':
@@ -245,31 +246,36 @@ qx.Mixin.define("cv.role.BasicUpdate", {
      * @param modifyFn {Function}
      */
     defaultValue2DOM: function (value, modifyFn) {
-      if (('string' === typeof value) || ('number' === typeof value))
+      var element;
+      if (('string' === typeof value) || ('number' === typeof value)) {
         modifyFn(value);
-      else if ('function' === typeof value)
-      // thisValue(valueElement);
+      }
+      else if ('function' === typeof value) {
+        // thisValue(valueElement);
         this.error('typeof value === function - special case not handled anymore!');
+      }
       else if (!Array.isArray(value)) {
-        var element = value.cloneNode();
+        element = value.cloneNode();
         if (value.getContext) {
-          fillRecoloredIcon(element);
+          cv.util.IconTools.fillRecoloredIcon(element);
         }
         modifyFn(element);
       } else {
         for (var i = 0; i < value.length; i++) {
           var thisValue = value[i];
-          if (!thisValue) continue;
+          if (!thisValue) { continue; }
 
-          if (('string' === typeof thisValue) || ('number' === typeof thisValue))
+          if (('string' === typeof thisValue) || ('number' === typeof thisValue)) {
             modifyFn(thisValue);
-          else if ('function' === typeof thisValue)
-          // thisValue(valueElement);
+          }
+          else if ('function' === typeof thisValue) {
+            // thisValue(valueElement);
             this.error('typeof value === function - special case not handled anymore!');
+          }
           else {
-            var element = thisValue.cloneNode();
+            element = thisValue.cloneNode();
             if (thisValue.getContext) {
-              fillRecoloredIcon(element);
+              cv.util.IconTools.fillRecoloredIcon(element);
             }
             modifyFn(element);
           }
@@ -293,13 +299,14 @@ qx.Mixin.define("cv.role.BasicUpdate", {
 
       // TODO: check if this is the right place for this
       // might be if the styling removes the align class
-      if (this.getAlign())
+      if (this.getAlign()) {
         qx.bom.element.Class.add(element, this.getAlign());
-
+      }
       var valueElement = this.getValueElement ? this.getValueElement() : qx.bom.Selector.query('.value', element)[0];
       qx.dom.Element.empty(valueElement);
-      if (undefined !== value)
+      if (undefined !== value) {
         this.defaultValue2DOM(value, qx.lang.Function.curry(this._applyValueToDom, valueElement));
+      }
       else {
         qx.dom.Element.insertEnd(document.createTextNode('-'), valueElement);
       }

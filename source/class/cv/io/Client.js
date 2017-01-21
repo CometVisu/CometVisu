@@ -121,7 +121,7 @@ qx.Class.define('cv.io.Client', {
             var ajaxRequest = new qx.io.request.Xhr(this.getResourcePath('read'));
             this.beforeSend(ajaxRequest);
             ajaxRequest.send();
-            if (oldValue != undefined) {
+            if (oldValue !== undefined) {
               this.headers["X-Atmosphere-Transport"] = oldValue;
             } else {
               delete this.headers["X-Atmosphere-Transport"];
@@ -219,12 +219,14 @@ qx.Class.define('cv.io.Client', {
      */
     beforeSend : function (xhr) {
       for (var headerName in this.resendHeaders) {
-        if (this.resendHeaders[headerName] != undefined)
+        if (this.resendHeaders[headerName] !== undefined) {
           xhr.setRequestHeader(headerName, this.resendHeaders[headerName]);
+        }
       }
-      for (var headerName in this.headers) {
-        if (this.headers[headerName] != undefined)
+      for (headerName in this.headers) {
+        if (this.headers[headerName] !== undefined) {
           xhr.setRequestHeader(headerName, this.headers[headerName]);
+        }
       }
     },
 
@@ -379,7 +381,7 @@ qx.Class.define('cv.io.Client', {
         a: addresses ? addresses : this.addresses,
         f: this.filters,
         s: this.session
-      }
+      };
     },
 
     /**
@@ -408,6 +410,6 @@ qx.Class.define('cv.io.Client', {
       this.getCurrentTransport().restart();
     },
 
-    update: function(json) {}
+    update: function(json) {} // jshint ignore:line
   }
 });

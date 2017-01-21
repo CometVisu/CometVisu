@@ -55,8 +55,9 @@ qx.Class.define("cv.io.Watchdog", {
 
     aliveCheckFunction: function () {
       var now = new Date();
-      if (now - this.last < this.getClient().getBackend().maxConnectionAge && this.getClient().getCurrentTransport().isConnectionRunning())
+      if (now - this.last < this.getClient().getBackend().maxConnectionAge && this.getClient().getCurrentTransport().isConnectionRunning()) {
         return;
+      }
       this.getClient().getCurrentTransport().restart(now - this.hardLast > this.getClient().getBackend().maxDataAge);
       this.last = now;
     },
