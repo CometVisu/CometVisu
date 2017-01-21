@@ -50,7 +50,9 @@ qx.Mixin.define("cv.role.Update", {
       var model = cv.data.Model.getInstance();
       Object.getOwnPropertyNames(this.getAddress()).forEach(function(address) {
         var state = model.getState(address);
-        this.update(address, state);
+        if (state !== undefined) {
+          this.update(address, state);
+        }
         //add listener
         model.addUpdateListener(address, this.update, this);
       }, this);

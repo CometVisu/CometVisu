@@ -130,7 +130,11 @@ qx.Class.define('cv.Config', {
      * cache is valid!
      * @type {Boolean}
      */
-    lazyLoading: false
+    lazyLoading: false,
+
+    getDesign: function() {
+      return this.clientDesign || this.configSettings.clientDesign;
+    }
   },
 
   defer: function() {

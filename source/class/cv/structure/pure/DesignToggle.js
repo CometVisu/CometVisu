@@ -42,7 +42,7 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
    */
   construct: function(props) {
     this.base(arguments, props);
-    var store = new qx.data.store.Json("./designs/get_designs.php");
+    var store = new qx.data.store.Json(qx.util.ResourceManager.getInstance().toUri("designs/get_designs.php"));
     store.addListener("loaded", function (ev) {
       this.setAvailableDesigns(ev.getData());
     }, this);
@@ -65,7 +65,7 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
   members: {
     // overridden
     _getInnerDomString: function () {
-      return '<div class="actor switchUnpressed"><div class="value">' + cv.Config.clientDesign + '</div></div>';
+      return '<div class="actor switchUnpressed"><div class="value">' + cv.Config.getDesign() + '</div></div>';
     },
     /**
      * Action performed when the widget got clicked
@@ -81,7 +81,7 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
       var designs = this.getAvailableDesigns();
 
       var oldDesign = qx.bom.Selector.query('.value',this.getDomElement())[0].textContent;
-      var newDesign = designs[ (designs.indexOf(oldDesign) + 1) % designs.length ];
+      var newDesign = designs.getItem((designs.indexOf(oldDesign) + 1) % designs.length);
 
       var URL = cv.util.Location.getHref();
       var regexp = new RegExp("design="+oldDesign);
@@ -89,12 +89,12 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
         cv.util.Location.setHref(URL.replace(regexp, "design="+newDesign));
       }
       else {
-        if (URL.indexOf("?") !== -1) { // has other parameters, append design
-          cv.util.Location.setHref(URL+"&design="+newDesign);
+        var parts = window.location.href.split("#");
+        var req = qx.util.Uri.appendParamsToUrl(parts[0], {design: newDesign});
+        if (parts.length > 1) {
+          req += "#"+parts[1];
         }
-        else { // has now parameters
-          cv.util.Location.setHref(URL+"?design="+newDesign);
-        }
+        cv.util.Location.setHref(req);
       }
     }
   },

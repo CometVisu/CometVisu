@@ -116,6 +116,10 @@ qx.Class.define('cv.data.Model', {
       return this.__addressList;
     },
 
+    resetAddressList: function() {
+      this.__addressList = {};
+    },
+
     /**
      * Return (reference to) widgetData object by path.
      * @param path {String} widget path
@@ -162,6 +166,10 @@ qx.Class.define('cv.data.Model', {
 
     getWidgetDataModel: function() {
       return this.__widgetData;
+    },
+
+    resetWidgetDataModel: function() {
+      this.__widgetData = {};
     },
 
     /**
