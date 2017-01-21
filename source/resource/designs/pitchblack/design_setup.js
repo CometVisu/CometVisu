@@ -24,5 +24,6 @@
  * @author Christian Mayer
  * @since 2012
  */
-qx.bom.element.Dataset.set(qx.bom.Selector.query('head')[0], 'colspanDefault', 1);
-
+qx.event.message.Bus.subscribe("setup.dom.finished.before", function() {
+  qx.bom.element.Dataset.set(qx.bom.Selector.query('head')[0], 'colspanDefault', 1);
+});
