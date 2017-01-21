@@ -97,7 +97,9 @@ if (substr($_GET['config'],0,3)=="oh_") {
 else {
    $conffile = 'config/visu_config';
 }
-if ($_GET['config']) {
+if (defined('STDIN')) {
+  $conffile = "visu_config_" . $argv[1];
+} else if ($_GET['config']) {
   $conffile .= "_" . $_GET['config'];
 }
 $conffile .= '.xml';
