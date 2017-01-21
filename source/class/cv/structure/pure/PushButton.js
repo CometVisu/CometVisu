@@ -65,8 +65,8 @@ qx.Class.define('cv.structure.pure.PushButton', {
     handleUpdate: function (value) {
       var actor = this.getActor();
       var off = this.applyMapping(this.getUpValue());
-      qx.bom.element.Class.remove(actor, value == off ? 'switchPressed' : 'switchUnpressed');
-      qx.bom.element.Class.add(actor, value == off ? 'switchUnpressed' : 'switchPressed');
+      qx.bom.element.Class.remove(actor, value === off ? 'switchPressed' : 'switchUnpressed');
+      qx.bom.element.Class.add(actor, value === off ? 'switchUnpressed' : 'switchPressed');
     },
 
     /**
@@ -82,14 +82,14 @@ qx.Class.define('cv.structure.pure.PushButton', {
       }
     },
 
-    _onPointerUp: function (event) {
+    _onPointerUp: function () {
       var sendValue = this.getUpValue();
       this.sendToBackend(sendValue, function (address) {
         return (!address[2] || address[2] === "up");
       });
     },
 
-    _onPointerDown: function (event) {
+    _onPointerDown: function () {
       var sendValue = this.getDownValue();
       this.sendToBackend(sendValue, function (address) {
         return (!address[2] || address[2] === "down");

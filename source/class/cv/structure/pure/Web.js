@@ -79,26 +79,26 @@ qx.Class.define('cv.structure.pure.Web', {
         webStyle += 'width: 100%;';
       }
       var style = this.getStyle();
-      if (this.getHeight()) webStyle += 'height:' + this.getHeight() + ';';
-      if (this.getFrameborder() === false) style += 'border: 0px ;';
-      if (this.getBackground()) webStyle += 'background-color:' + this.getBackground() + ';';
-      if (webStyle != '') webStyle = 'style="' + webStyle + '"';
+      if (this.getHeight()) { webStyle += 'height:' + this.getHeight() + ';'; }
+      if (this.getFrameborder() === false) { style += 'border: 0px ;'; }
+      if (this.getBackground()) { webStyle += 'background-color:' + this.getBackground() + ';'; }
+      if (webStyle !== '') { webStyle = 'style="' + webStyle + '"'; }
 
       var scrolling = '';
-      if (this.getScrolling()) scrolling = 'scrolling="' + this.getScrolling() + '"'; // add scrolling parameter to iframe
-      return '<div class="actor"><iframe src="' + this.getSrc() + '" ' + webStyle + scrolling + '></iframe></div>'
+      if (this.getScrolling()) { scrolling = 'scrolling="' + this.getScrolling() + '"'; } // add scrolling parameter to iframe
+      return '<div class="actor"><iframe src="' + this.getSrc() + '" ' + webStyle + scrolling + '></iframe></div>';
     },
 
     /**
      * Handles the incoming data from the backend for this widget
      *
      * @param address {String} KNX-GA or openHAB item name
-     * @param data {any} incoming data (already transformed + mapped)
+     * @param data {var} incoming data (already transformed + mapped)
      */
     _update: function(address, data) {
       var addr = this.getAddress()[ address ];
-      if (!addr) return;
-      if (data == 1) {
+      if (!addr) { return; }
+      if (data === 1) {
         var iframe = qx.bom.Selector.query('iframe', this.getDomElement())[0];
         this.refreshAction(iframe, qx.bom.element.Attribute.get(iframe, 'src'));
         // reset the value

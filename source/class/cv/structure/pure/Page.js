@@ -154,7 +154,7 @@ qx.Class.define('cv.structure.pure.Page', {
      */
     _onChangeVisible: function(ev) {
       var visible = ev.getData();
-      if (visible && this.__colspanClass != cv.layout.Manager.COLSPAN_CLASS) {
+      if (visible && this.__colspanClass !== cv.layout.Manager.COLSPAN_CLASS) {
         this.applyColumnWidths();
       }
     },
@@ -175,7 +175,7 @@ qx.Class.define('cv.structure.pure.Page', {
       var subpage = '<div class="page type_' + pageType + subpageClass + '" id="' + this.getPath() + '">';
       var container = '<div class="clearfix" style="height:100%;position:relative;"><h1>' + this.getName() + '</h1>';
 
-      if( '2d' == pageType )
+      if( '2d' === pageType )
       {
         var size = 'width:100%;height:100%;';
         switch( this.getSize() )
@@ -191,17 +191,16 @@ qx.Class.define('cv.structure.pure.Page', {
             }
             break;
 
-          case 'scaled':
           default: // default: assume scaled
         }
 
         var backdrop = this.getBackdrop();
-        if (undefined != backdrop) {
-          var elemType = '.svg' == backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';
+        if (undefined !== backdrop) {
+          var elemType = '.svg' === backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';
           container += '<' + elemType + ' src="' + qx.util.ResourceManager.getInstance().toUri(backdrop) + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
           this.setBackdropType(elemType);
         }
-      } else if( '3d' == pageType && false ) //---Disable 3D for 0.8---
+      } else if( '3d' === pageType && false ) //---Disable 3D for 0.8---
       {
         /*
          var floorplan = JSFloorPlan3D( container, backdrop );
@@ -229,7 +228,7 @@ qx.Class.define('cv.structure.pure.Page', {
          };
 
          $( childs ).each( function(i,a){
-         if( this.tagName == 'filter' )
+         if( this.tagName === 'filter' )
          {
          var floorFilter = $(this).attr('floor');
          var roomFilter  = $(this).attr('room');
@@ -272,7 +271,7 @@ qx.Class.define('cv.structure.pure.Page', {
       //
       //   default:
       // TODO: data comparision has to be refactored to use DPT and a value
-      if (data==1) {
+      if (data===1) {
         cv.TemplateEngine.getInstance().scrollToPage(this.getName());
         this.sendToBackend("0");
       }

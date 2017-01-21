@@ -77,8 +77,9 @@ qx.Class.define('cv.structure.pure.UrlTrigger', {
     // overridden
     _getInnerDomString: function () {
       var actor = '<div class="actor switchUnpressed ';
-      if ( this.getAlign() )
+      if ( this.getAlign() ) {
         actor += this.getAlign();
+      }
       actor += '"><div class="value"></div></div>';
       return actor;
     },

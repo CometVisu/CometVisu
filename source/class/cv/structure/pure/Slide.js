@@ -154,13 +154,13 @@ qx.Class.define('cv.structure.pure.Slide', {
     },
 
     _update: function (ga, d) {
-      if (this.getInAction() || d === undefined)
+      if (this.getInAction() || d === undefined) {
         return;
-
+      }
       var value = this.applyTransform(ga, d);
 
       try {
-        if (this.getValue() != value) {
+        if (this.getValue() !== value) {
           this.setValue(value);
           this.__skipUpdatesFromSlider = true;
           if (this.__slider) {
@@ -179,12 +179,12 @@ qx.Class.define('cv.structure.pure.Slide', {
      * @private
      */
     _onChangeValue: function(value) {
-      if (!this.__initialized || this.__skipUpdatesFromSlider === true) return;
+      if (!this.__initialized || this.__skipUpdatesFromSlider === true) { return; }
       if (this.isSendOnFinish() === false || this.__slider.isInPointerMove()) {
         var currentValue = this.getValue();
         this.sendToBackend(value, function(addr) {
           var newValue = cv.Transform.encode(addr[0], value);
-          return !isNaN(newValue) && newValue != cv.Transform.encode(addr[0], currentValue);
+          return !isNaN(newValue) && newValue !== cv.Transform.encode(addr[0], currentValue);
         });
       }
       this.setValue(value);

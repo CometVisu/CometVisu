@@ -55,7 +55,7 @@ qx.Class.define('cv.structure.pure.Video', {
       if (this.getHeight()) {
         style += 'height:' + this.getHeight() + ';';
       }
-      if (style != '') style = 'style="' + style + '"';
+      if (style !== '') { style = 'style="' + style + '"'; }
       var autoplay = (this.getAutoplay() === true) ? ' autoplay="autoplay"' : '';
       return '<div class="actor"><video src="' + this.getSrc() + '" ' + style + autoplay + '  controls="controls" /></div>';
     }

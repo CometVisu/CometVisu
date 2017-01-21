@@ -94,22 +94,25 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
       var ret_val = '<div style="float:left;">';
 
       var actordown = '<div class="actor switchUnpressed downlabel" ';
-      if (this.getAlign())
+      if (this.getAlign()) {
         actordown += 'style="text-align: ' + this.getAlign() + '" ';
+      }
       actordown += '>';
       actordown += '<div class="label">' + (this.getDownLabel() || '-') + '</div>';
       actordown += '</div>';
 
       var actorup = '<div class="actor switchUnpressed uplabel" ';
-      if (this.getAlign())
+      if (this.getAlign()) {
         actorup += 'style="text-align: ' + this.getAlign() + '" ';
+      }
       actorup += '>';
       actorup += '<div class="label">' + (this.getUpLabel() || '+') + '</div>';
       actorup += '</div>';
 
       var actorinfo = '<div class="actor switchInvisible" ';
-      if (this.getAlign())
+      if (this.getAlign()) {
         actorinfo += 'style="text-align: ' + this.getAlign() + '" ';
+      }
       actorinfo += '><div class="value">-</div></div>';
 
       switch (this.getInfoPosition()) {
@@ -168,8 +171,9 @@ qx.Class.define('cv.structure.pure.InfoTrigger', {
 
       if (this.getIsAbsolute()) {
         var bvalue = parseFloat(this.getBasicValue());
-        if (isNaN(bvalue))
+        if (isNaN(bvalue)) {
           bvalue = 0; // anything is better than NaN...
+        }
         value = bvalue + value;
         value = Math.max(value, this.getMin());
         value = Math.min(value, this.getMax());

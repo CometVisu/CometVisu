@@ -69,9 +69,9 @@
         // create the main structure
         // create the actor
         var style = '';
-        if (this.getWidth()) style += 'width:' + this.getWidth() + ';';
-        if (this.getHeight()) style += 'height:' + this.getHeight() + ';';
-        if (style != '') style = 'style="' + style + '"';
+        if (this.getWidth()) { style += 'width:' + this.getWidth() + ';'; }
+        if (this.getHeight()) { style += 'height:' + this.getHeight() + ';'; }
+        if (style !== '') { style = 'style="' + style + '"'; }
         var autoplay = (this.isAutoplay()) ? ' autoplay ' : '';
         var loop = (this.isLoop()) ? ' loop ' : '';
         return '<div class="actor"><audio id="' + this.getId() + '" ' + autoplay + loop + style + ' controls> <source src="' + this.getSrc()+ '" > </audio> </div>';
@@ -92,8 +92,9 @@
         var on = this.applyMapping(this.getThresholdValue());
         if (value >= on) {
           var audioWidget = this.getActor();
-          if (audioWidget.paused == true)
+          if (audioWidget.paused === true) {
             audioWidget.play();
+          }
         }
       }
     },

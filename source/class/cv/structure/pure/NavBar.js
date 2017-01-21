@@ -127,7 +127,7 @@ qx.Class.define('cv.structure.pure.NavBar', {
       container += '</div>';
 
       var templateEngine = cv.TemplateEngine.getInstance();
-
+      var thisSize;
       // add this to the navbars in DOM not inside the page
       switch (this.getPosition()) {
         case 'top':
@@ -136,7 +136,7 @@ qx.Class.define('cv.structure.pure.NavBar', {
 
         case 'left':
           this.self(arguments)._navbarLeft += container;
-          var thisSize = this.__navbarLeftSize || this.getWidth(); // FIXME - only a temporal solution
+          thisSize = this.__navbarLeftSize || this.getWidth(); // FIXME - only a temporal solution
           if (this.isDynamic()) {
             templateEngine.pagePartsHandler.navbarSetSize('left', thisSize);
           }
@@ -144,7 +144,7 @@ qx.Class.define('cv.structure.pure.NavBar', {
 
         case 'right':
           this.self(arguments)._navbarRight += container;
-          var thisSize = this.__navbarRightSize || this.getWidth(); // FIXME - only a temporal solution
+          thisSize = this.__navbarRightSize || this.getWidth(); // FIXME - only a temporal solution
           if (this.isDynamic()) {
             templateEngine.pagePartsHandler.navbarSetSize('right', thisSize);
           }

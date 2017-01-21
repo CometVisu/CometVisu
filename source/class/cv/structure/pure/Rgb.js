@@ -47,7 +47,7 @@ qx.Class.define('cv.structure.pure.Rgb', {
      * @param data {var} incoming data
      */
     _update: function(address, data) {
-      if (data === undefined || address === undefined) return;
+      if (data === undefined || address === undefined) { return; }
       var valElem = this.getValueElement();
 
       var value = cv.Transform.decode( this.getAddress()[ address ][0], data );

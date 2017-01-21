@@ -96,8 +96,8 @@ qx.Class.define('cv.structure.pure.Switch', {
     handleUpdate: function(value) {
       var actor = this.getActor();
       var off = this.applyMapping(this.getOffValue());
-      qx.bom.element.Class.remove(actor, value == off ? 'switchPressed' : 'switchUnpressed');
-      qx.bom.element.Class.add(actor, value == off ? 'switchUnpressed' : 'switchPressed');
+      qx.bom.element.Class.remove(actor, value == off ? 'switchPressed' : 'switchUnpressed'); // jshint ignore:line
+      qx.bom.element.Class.add(actor, value == off ? 'switchUnpressed' : 'switchPressed'); // jshint ignore:line
     },
 
     /**
@@ -105,7 +105,7 @@ qx.Class.define('cv.structure.pure.Switch', {
      * @return {var}
      */
     getActionValue: function () {
-      return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue());
+      return (this.getBasicValue() == this.getOffValue() ? this.getOnValue() : this.getOffValue()); // jshint ignore:line
     }
   }
 });

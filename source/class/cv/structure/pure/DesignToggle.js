@@ -76,7 +76,7 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
      * @param isCanceled {Boolean} - If true the action does nothing
      */
     _action: function( path, actor, isCanceled ) {
-      if( isCanceled ) return;
+      if( isCanceled ) { return; }
 
       var designs = this.getAvailableDesigns();
 
@@ -85,11 +85,11 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
 
       var URL = cv.util.Location.getHref();
       var regexp = new RegExp("design="+oldDesign);
-      if (URL.search(regexp) != -1) { // has URL-parameter design
+      if (URL.search(regexp) !== -1) { // has URL-parameter design
         cv.util.Location.setHref(URL.replace(regexp, "design="+newDesign));
       }
       else {
-        if (URL.indexOf("?") != -1) { // has other parameters, append design
+        if (URL.indexOf("?") !== -1) { // has other parameters, append design
           cv.util.Location.setHref(URL+"&design="+newDesign);
         }
         else { // has now parameters

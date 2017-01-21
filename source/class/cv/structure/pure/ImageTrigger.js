@@ -24,9 +24,9 @@
  * There are two modes to react on incoming data:
  *
  * <ul>
- *  <li><code>type="show"</code>: Hides the image when incoming data == 0</li>
+ *  <li><code>type="show"</code>: Hides the image when incoming data === 0</li>
  *  <li><code>type="select"</code>: Changes the image by appending the incoming data to the initial configured image source,
- *   or hide it when incoming data == 0</li>
+ *   or hide it when incoming data === 0</li>
  * </ul>
  * Example:
  * <pre class="xml">
@@ -55,7 +55,7 @@
  * </imagetrigger>
  *
  * @widgetexample <settings>
- *   <caption>Disable layout width by settings it to '0', to have widget with == image width</caption>
+ *   <caption>Disable layout width by settings it to '0', to have widget with === image width</caption>
  *   <screenshot name="image_trigger_colspan0">
  *     <data address="0/0/0">1</data>
  *   </screenshot>
@@ -113,7 +113,7 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
       }
 
       var actor = '<div class="actor">';
-      if ( this.getUpdateType() == 'show' ) {
+      if ( this.getUpdateType() === 'show' ) {
         actor += '<img src="' + this.getSrc() + '.' + this.getSuffix() + '"' + style.trim() + ' />';
       }
       else {
@@ -126,8 +126,8 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
 
     _update: function(address, value) {
       var imageChild = qx.bom.Selector.query("img", this.getDomElement())[0];
-      if (this.getUpdateType() == "show") {
-        if (value == 0) {
+      if (this.getUpdateType() === "show") {
+        if (value === 0) {
           qx.bom.element.Style.set(imageChild, "display", "none");
         }
         else {
@@ -135,8 +135,8 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
           qx.bom.element.Style.set(imageChild, "display", "block");
         }
       }
-      else if (this.getUpdateType() == "select") {
-        if (value == 0) {
+      else if (this.getUpdateType() === "select") {
+        if (value === 0) {
           qx.bom.element.Style.set(imageChild, "display", "none");
         }
         else {
@@ -152,7 +152,7 @@ qx.Class.define('cv.structure.pure.ImageTrigger', {
     },
 
     _action: function() {
-      if (this.getSendValue() == "") return;
+      if (this.getSendValue() === "") { return; }
       this.sendToBackend(this.getSendValue());
     }
   },
