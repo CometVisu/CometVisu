@@ -240,7 +240,7 @@ qx.Class.define('cv.TemplateEngine', {
 
       settings.scriptsToLoad = [];
       settings.stylesToLoad = [];
-      var design = cv.Config.clientDesign || settings.clientDesign;
+      var design = cv.Config.getDesign();
       if (design) {
         var baseUri = 'designs/' + design;
         settings.stylesToLoad.push(baseUri + '/basic.css');
