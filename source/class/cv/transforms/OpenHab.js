@@ -47,7 +47,7 @@ qx.Class.define('cv.transforms.OpenHab', {
       'switch': {
         name: 'OH_Switch',
         encode: function (phy) {
-          return phy === 1 ? 'ON' : 'OFF';
+          return phy == 1 ? 'ON' : 'OFF'; // jshint ignore:line
         },
         decode: function (string) {
           if (cv.transforms.OpenHab.isUndefined(string)) { return 0; }
@@ -57,7 +57,7 @@ qx.Class.define('cv.transforms.OpenHab', {
       'contact': {
         name: 'OH_Contact',
         encode: function (phy) {
-          return phy === 1 ? 'OPEN' : 'CLOSED';
+          return phy == 1 ? 'OPEN' : 'CLOSED'; // jshint ignore:line
         },
         decode: function (string) {
           if (cv.transforms.OpenHab.isUndefined(string)) { return 0; }
@@ -67,8 +67,8 @@ qx.Class.define('cv.transforms.OpenHab', {
       'rollershutter': {
         name: "OH_RollerShutter",
         encode: function (phy) {
-          if (phy === 1) { return 'DOWN'; }
-          else if (phy === 0) { return 'UP'; }
+          if (phy == 1) { return 'DOWN'; } // jshint ignore:line
+          else if (phy == 0) { return 'UP'; } // jshint ignore:line
           else { return phy; }
         },
         decode: function (str) {
