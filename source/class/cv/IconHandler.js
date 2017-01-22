@@ -128,7 +128,7 @@ qx.Class.define('cv.IconHandler', {
         if (flavour.split('/').length > 1) {
           all = flavour.split('/');
           flavour = all.shift();
-          if (color === undefined) {
+          if (!color) {
             color = all.shift();
           }
         }
@@ -203,16 +203,16 @@ qx.Class.define('cv.IconHandler', {
     getIconText: function (name, type, flavour, color, styling, iconclass) {
       var i = this.get.apply(this, arguments);
       if (i) {
-
-        if (styling === undefined) {
-          styling = i.styling === undefined ? '' : ' style="' + i.styling + '"';
+        console.log(i);
+        if (!styling) {
+          styling = !i.styling ? '' : ' style="' + i.styling + '"';
         }
         else {
           styling = ' style="' + styling + '"';
         }
 
         var classes = 'icon';
-        if (iconclass !== undefined) {
+        if (iconclass) {
           classes = classes + ' custom_' + iconclass;
         }
 
