@@ -180,6 +180,7 @@ qx.Class.define('cv.xml.Parser', {
      * Create a default widget to be filled by the creator afterwards.
      * Note: the receiver of the returned string must add an </div> closing element!
      *
+     * @param handler {cv.xml.parser.AbstractBasicWidget} the parser that can parse this element
      * @param widgetType {String} of the widget type
      * @param element   {Object} the XML element
      * @param path       {String} of the path ID
