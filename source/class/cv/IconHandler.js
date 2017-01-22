@@ -228,7 +228,7 @@ qx.Class.define('cv.IconHandler', {
      * Fill the icons in the array.
      */
     fillIcons: function (array) {
-      array.forEach(cv.util.IconTools.fillRecoloredIcon);
+      array.forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
     },
 
     /**

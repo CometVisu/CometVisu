@@ -61,7 +61,7 @@ qx.Class.define('cv.util.IconTools', {
             // it should be enough to test only the first element - the other
             // elements will be covered anyway...
             if (cv.util.IconTools.iconDelay[0][2] in cv.util.IconTools.iconDelay[0][1]) {
-              window.fillRecoloredIcon(cv.util.IconTools.iconDelay.shift()[0]);
+              cv.util.IconTools.fillRecoloredIcon(cv.util.IconTools.iconDelay.shift()[0]);
             }
             else {
               break;
@@ -72,7 +72,7 @@ qx.Class.define('cv.util.IconTools', {
             clearInterval(cv.util.IconTools.iconDelayFn);
             cv.util.IconTools.iconDelayFn = 0;
           }
-        }, 10);
+        }.bind(this), 10);
       }
     },
     /**
