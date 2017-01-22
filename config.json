@@ -299,6 +299,16 @@
         "versionLabel.version"  : "${CV_VERSION}"
       },
 
+      "lint-check" : {
+        "allowed-globals" : [
+          "$",
+          "jQuery",
+          "THREE",
+          "sprintf",
+          "Sunlight"
+        ]
+      },
+
       "add-script" : [
         {
           "uri" : "resource/apiviewer/lib/sunlight-min.js"
