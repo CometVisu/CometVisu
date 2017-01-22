@@ -533,7 +533,9 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     },
 
     loadDiagramData: function( plot, isInteractive, forceReload ) {
-
+      if (!plot) {
+        return;
+      }
       var series = this.getSeriesSettings(plot.getAxes().xaxis, isInteractive);
       if (!series) {
         return;
