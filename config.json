@@ -1,5 +1,5 @@
 {
-  "name"    : "cv",
+  "name"    : "CometVisu",
 
   "include" :
   [
@@ -235,7 +235,21 @@
 
     "build" :
     {
-      "extend" : [ "parts-config" ]
+      "extend" : [ "parts-config" ],
+      "run" :
+      [
+        "build-resources",
+        "build-script",
+        "build-files",
+        "build-libs"
+      ]
+    },
+
+    "build-libs" : {
+      "shell" :
+      {
+        "command" : "grunt uglify:libs"
+      }
     },
 
     "source-all-script" :

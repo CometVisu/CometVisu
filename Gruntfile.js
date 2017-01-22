@@ -518,6 +518,16 @@ module.exports = function(grunt) {
           }
         }
       }
+    },
+    uglify: {
+      libs: {
+        files: [{
+          expand: true,
+          cwd: 'build/resource/libs',
+          src: '*.js',
+          dest: 'build/resource/libs'
+        }]
+      }
     }
   };
 
@@ -601,6 +611,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-scaffold');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
