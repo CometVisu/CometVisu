@@ -255,9 +255,26 @@ qx.Class.define("cv.Application",
             var data = cv.data.Model.getInstance().getWidgetData("id_");
             cv.structure.WidgetFactory.createInstance(data.$$type, data);
           }, this);
-          this.loadStyles();
+          // check if the current design settings overrides the cache one
           this.loadPlugins();
-          this.loadScripts();
+          if (cv.Config.clientDesign && cv.Config.clientDesign !== cv.Config.configSettings.clientDesign) {
+            // we have to replace the cached design scripts styles to load
+            var styles = [];
+            cv.Config.configSettings.stylesToLoad.forEach(function(style) {
+              styles.push(style.replace("designs/"+cv.Config.configSettings.clientDesign, "designs/"+cv.Config.clientDesign));
+            }, this);
+            this.loadStyles(styles);
+
+            var scripts = [];
+            cv.Config.configSettings.scriptsToLoad.forEach(function(style) {
+              scripts.push(style.replace("designs/"+cv.Config.configSettings.clientDesign, "designs/"+cv.Config.clientDesign));
+            }, this);
+            this.loadScripts(scripts);
+
+          } else {
+            this.loadStyles();
+            this.loadScripts();
+          }
           this.loadIcons();
         }
       }
@@ -265,8 +282,8 @@ qx.Class.define("cv.Application",
         this.debug("starting");
         this.__detectInitialPage();
         engine.parseXML(xml);
-        this.loadStyles();
         this.loadPlugins();
+        this.loadStyles();
         this.loadScripts();
         this.loadIcons();
         this.debug("done");
@@ -286,13 +303,21 @@ qx.Class.define("cv.Application",
       }, this);
     },
 
-    loadStyles: function() {
-      cv.util.ScriptLoader.getInstance().addStyles(cv.Config.configSettings.stylesToLoad);
+    loadStyles: function(styles) {
+      if (!styles) {
+        styles = cv.Config.configSettings.stylesToLoad;
+      }
+      if (styles.length) {
+        cv.util.ScriptLoader.getInstance().addStyles(styles);
+      }
     },
 
-    loadScripts: function() {
-      if (cv.Config.configSettings.scriptsToLoad.length > 0) {
-        cv.util.ScriptLoader.getInstance().addScripts(cv.Config.configSettings.scriptsToLoad);
+    loadScripts: function(scripts) {
+      if (!scripts) {
+        scripts = cv.Config.configSettings.scriptsToLoad;
+      }
+      if (scripts.length > 0) {
+        cv.util.ScriptLoader.getInstance().addScripts(scripts);
       }
     },
 
