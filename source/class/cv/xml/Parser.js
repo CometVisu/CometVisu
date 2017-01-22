@@ -208,7 +208,7 @@ qx.Class.define('cv.xml.Parser', {
       if (qx.bom.element.Attribute.get(element, 'class')) {
         classes += ' custom_' + qx.bom.element.Attribute.get(element, 'class');
       }
-      var label = (pageType==='text') ? this.extractLabel( qx.bom.Selector.query("label", element)[0], flavour, '' ) : this.extractLabel( qx.bom.Selector.query("label", element)[0], flavour );
+      var label = (widgetType==='text') ? this.extractLabel( qx.bom.Selector.query("label", element)[0], flavour, '' ) : this.extractLabel( qx.bom.Selector.query("label", element)[0], flavour );
 
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
       if (qx.bom.element.Attribute.get(element, "bind_click_to_widget")) {
@@ -331,8 +331,7 @@ qx.Class.define('cv.xml.Parser', {
       if( !label ) {
         return '';
       }
-
-      var ret_val = '<div class="' + (!labelClass ? 'label' : labelClass) + '"' +
+      var ret_val = '<div class="' + (labelClass !== undefined ? labelClass : 'label') + '"' +
         ( style ? (' style="' + style + '"') : '' ) + '>';
 
       label.childNodes.forEach(function(elem) {
