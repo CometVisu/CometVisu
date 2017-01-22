@@ -175,6 +175,16 @@ define([], function() {
         this._mouseEvent.moveRestrict = true;
         this._scrollElement = undefined;
         this._isWidget = false;
+      } else if( 'touchend' === event.type && 'A' === event.target.nodeName )
+      {
+        // simulate a click on link elements on touch devices as we are
+        // prevented default
+        var 
+          x = event.changedTouches[0].pageX - window.pageXOffset,
+          y = event.changedTouches[0].pageY - window.pageYOffset,
+          target = document.elementFromPoint(x, y);
+        if( target === event.target ) // did the touch stay on the element?
+          target.click();
       }
     };
 
