@@ -49,6 +49,8 @@ qx.Class.define('cv.layout.ResizeHandler', {
     width: 0,
     height: 0,
 
+    validationQueue: [],
+
     reset: function() {
       this.invalidBackdrop = true;
       this.invalidNavbar = true;
@@ -84,6 +86,22 @@ qx.Class.define('cv.layout.ResizeHandler', {
       return this.$navbarBottom;
     },
 
+    queueJob: function(name) {
+      if (this.validationQueue.indexOf(name) === -1) {
+        this.validationQueue.push(name);
+      }
+      if (!this.__request) {
+        this.__request = qx.bom.AnimationFrame.request(this.flush, this);
+      }
+    },
+
+    flush: function() {
+      while (this.validationQueue.length) {
+        var job = this.validationQueue.shift();
+        this[job].apply(this);
+      }
+    },
+
     makeAllSizesValid : function() {
       if (this.invalidPagesize) { this.makePagesizeValid(); } // must be first due to dependencies
       if (this.invalidNavbar) { this.makeNavbarValid(); }
@@ -92,6 +110,10 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makeBackdropValid: function () {
+      this.queueJob("__makeBackdropValid");
+    },
+
+    __makeBackdropValid: function () {
       qx.log.Logger.debug("makeBackdropValid");
       var templateEngine = cv.TemplateEngine.getInstance();
       if (!templateEngine.currentPage) {
@@ -183,10 +205,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makeNavbarValid: function () {
-      if (!this.__request) {
-        qx.log.Logger.debug("makeNavbarValid");
-        this.__makeNavbarValid();
-      }
+      this.queueJob("__makeNavbarValid");
     },
 
     __makeNavbarValid: function() {
@@ -199,21 +218,26 @@ qx.Class.define('cv.layout.ResizeHandler', {
           (qx.bom.element.Style.get(navbarTop, 'display') !== 'none' && qx.bom.element.Dimension.getHeight(navbarTop) <= 2) ||
           (qx.bom.element.Style.get(navbarBottom, 'display') !== 'none' && qx.bom.element.Dimension.getHeight(navbarBottom) <= 2)
         ) {
-          // Top/Bottom-Navbar is not initialized yet, wait some time and recalculate available height
-          // this is an ugly workaround, if someone can come up with a better solution, feel free to implement it
-          this.__request = qx.bom.AnimationFrame.request(this.__makeNavbarValid, this);
+          // Top/Bottom-Navbar is not initialized yet, re-queue the job
+          new qx.util.DeferredCall(function() {
+            this.queueJob("__makeNavbarValid");
+          }, this).schedule();
           return;
         }
       }
+      qx.log.Logger.debug("makeNavbarValid");
       if (cv.layout.Manager.adjustColumns()) {
         // the amount of columns has changed -> recalculate the widgets widths
         cv.layout.Manager.applyColumnWidths();
       }
-      this.__request = null;
       this.invalidNavbar = false;
     },
 
     makePagesizeValid: function () {
+      this.queueJob("__makePagesizeValid");
+    },
+
+    __makePagesizeValid: function() {
       qx.log.Logger.debug("makePagesizeValid");
       this.width = cv.layout.Manager.getAvailableWidth();
       this.height = cv.layout.Manager.getAvailableHeight();
@@ -223,6 +247,10 @@ qx.Class.define('cv.layout.ResizeHandler', {
     },
 
     makeRowspanValid: function () {
+      this.queueJob("__makeRowspanValid");
+    },
+
+    __makeRowspanValid: function () {
       qx.log.Logger.debug("makeRowspanValid");
       var elem = qx.bom.Html.clean(['<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>'])[0];
       qx.dom.Element.insertEnd(elem, document.body);
