@@ -89,7 +89,7 @@ qx.Class.define('cv.structure.pure.DesignToggle', {
         cv.util.Location.setHref(URL.replace(regexp, "design="+newDesign));
       }
       else {
-        var parts = window.location.href.split("#");
+        var parts = cv.util.Location.getHref().split("#");
         var req = qx.util.Uri.appendParamsToUrl(parts[0], {design: newDesign});
         if (parts.length > 1) {
           req += "#"+parts[1];
