@@ -120,7 +120,7 @@ qx.Class.define('cv.plugins.Timeout', {
         this.__timeoutIdleCount = 0;
         /* We could trun on and off the above binds if we are already on the right page
 
-         if (timeoutCurrentPage == timeoutTargetPage) {
+         if (timeoutCurrentPage === timeoutTargetPage) {
          console.log("XXXXXX TIMEOUT: Scrolled to Target Page: " + path);
          } else {
          console.log("XXXXXX TIMEOUT: Scrolled to: " + path + " ("+timeoutTargetPage + ")");
