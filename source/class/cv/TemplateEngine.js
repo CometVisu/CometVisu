@@ -330,7 +330,7 @@ qx.Class.define('cv.TemplateEngine', {
 
         this.xml = null; // not needed anymore - free the space
 
-        qx.bom.Selector.query('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, this);
+        qx.bom.Selector.query('.icon').forEach(cv.util.IconTools.fillRecoloredIcon, cv.util.IconTools);
         qx.bom.Selector.query('.loading').forEach(function(elem) {
           qx.bom.element.Class.remove(elem, 'loading');
         }, this);
@@ -508,7 +508,7 @@ qx.Class.define('cv.TemplateEngine', {
           }, this);
           if (fallback) {
             // take the first page that fits (old behaviour)
-            pages.forRach(function (page) {
+            pages.forEach(function (page) {
               if (qx.dom.Node.getText(page)  === page_name) {
                 page_id = qx.bom.element.Attribute.get(cv.util.Tree.getClosest(page, ".page"), "id");
                 // break loop
