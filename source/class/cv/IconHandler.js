@@ -203,7 +203,6 @@ qx.Class.define('cv.IconHandler', {
     getIconText: function (name, type, flavour, color, styling, iconclass) {
       var i = this.get.apply(this, arguments);
       if (i) {
-        console.log(i);
         if (!styling) {
           styling = !i.styling ? '' : ' style="' + i.styling + '"';
         }
