@@ -36,7 +36,7 @@ body
   float: left;
   display: block;
 }
-.inactiveMain {
+#centerContainer.inactiveMain {
   -webkit-filter: blur(3px);
   filter: blur(3px);
 }
