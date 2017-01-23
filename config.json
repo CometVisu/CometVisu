@@ -62,7 +62,8 @@
       "api",
       "api-data",
       "source",
-      "build"
+      "build",
+      "source-hybrid"
     ]
   },
 
@@ -229,6 +230,11 @@
     },
 
     "source" :
+    {
+      "extend" : [ "parts-config" ]
+    },
+
+    "source-hybrid" :
     {
       "extend" : [ "parts-config" ]
     },
