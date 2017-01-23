@@ -39,14 +39,25 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
     if ( $p.attr('time')   ) { timeout      = $p.attr('time');   }
     if ( $p.attr('debug')  ) { timeoutDebug = $p.attr('debug');  }
 
+    templateEngine.widgetDataInsert( path, {
+      'target' : target,
+      'timeout' : timeout,
+      'debug' : timeoutDebug
+    });
+
     timeoutPrintDebug("TIMEOUT: Timeout Set to : " + timeout);
     timeoutPrintDebug("TIMEOUT: Target Page: " + target);
+    this.construct(path);
+    return '';
+  },
 
-    timeoutTargetPage = target;
+  construct: function(path) {
+    var data = templateEngine.widgetDataInsert(path);
 
-    var deltaT = timeout * 100;
+    timeoutTargetPage = data.target;
+    var deltaT = data.timeout * 100;
     var idleInterval = setInterval(function() {timeoutTrigger();}, deltaT);
-    
+
     // Reset Counter on every interaction
     $(document).bind('scroll',      function(e) { timeoutIdleCount = 0; });
     $(document).bind('mousemove',   function(e) { timeoutIdleCount = 0; });
@@ -61,20 +72,18 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
 
     // Keep track of current page
     $(window).bind('scrolltopage', function(page, path) {
-      timeoutCurrentPage = path; 
+      timeoutCurrentPage = path;
       timeoutCurrentPageTitle = $("div > h1","#"+path).text();
       timeoutIdleCount   = 0;
-      /* We could trun on and off the above binds if we are already on the right page 
-      
-      if (timeoutCurrentPage == timeoutTargetPage) {
-        console.log("XXXXXX TIMEOUT: Scrolled to Target Page: " + path);
-      } else {
-        console.log("XXXXXX TIMEOUT: Scrolled to: " + path + " ("+timeoutTargetPage + ")");
-      }
-      */
-    });
+      /* We could trun on and off the above binds if we are already on the right page
 
-    return '';
+       if (timeoutCurrentPage == timeoutTargetPage) {
+       console.log("XXXXXX TIMEOUT: Scrolled to Target Page: " + path);
+       } else {
+       console.log("XXXXXX TIMEOUT: Scrolled to: " + path + " ("+timeoutTargetPage + ")");
+       }
+       */
+    });
   }
 });
 
