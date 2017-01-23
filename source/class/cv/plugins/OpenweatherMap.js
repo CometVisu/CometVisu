@@ -125,7 +125,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       return '<div class="'+classes+'"><div id="owm_' + this.getPath() + '" class="openweathermap_value"></div></div>';
     },
 
-    refreshAction: function() {
+    _refreshAction: function() {
       var elem = $(this.getDomElement());
       elem.openweathermap(this.options);
       return false;

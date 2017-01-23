@@ -110,7 +110,7 @@ qx.Class.define('cv.plugins.CalendarList', {
       this.refreshAction();
     },
 
-    refreshAction: function () {
+    _refreshAction: function () {
       var calendarList = this.getActor();
 
       var src = this.getSrc();
