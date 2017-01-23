@@ -96,20 +96,24 @@ qx.Mixin.define("cv.role.Refresh", {
     },
 
     refreshAction: function (target, src) {
-      /*
-       * Special treatment for (external) iframes: we need to clear it and reload
-       * it in another thread as otherwise stays blank for some targets/sites and
-       * src = src doesnt work anyway on external This creates though some
-       * "flickering" so we avoid to use it on images, internal iframes and others
-       */
-      var parenthost = window.location.protocol + "//" + window.location.host;
-      if (target.nodeName === "IFRAME" && src.indexOf(parenthost) !== 0) {
-        qx.bom.element.Attribute.set(target, "src", "");
-        qx.event.Timer.once(function () {
-          qx.bom.element.Attribute.set(target, "src", src);
-        }, this, 0);
+      if (this._refreshAction) {
+        this._refreshAction();
       } else {
-        qx.bom.element.Attribute.set(target, "src", src + '&' + new Date().getTime());
+        /*
+         * Special treatment for (external) iframes: we need to clear it and reload
+         * it in another thread as otherwise stays blank for some targets/sites and
+         * src = src doesnt work anyway on external This creates though some
+         * "flickering" so we avoid to use it on images, internal iframes and others
+         */
+        var parenthost = window.location.protocol + "//" + window.location.host;
+        if (target.nodeName === "IFRAME" && src.indexOf(parenthost) !== 0) {
+          qx.bom.element.Attribute.set(target, "src", "");
+          qx.event.Timer.once(function () {
+            qx.bom.element.Attribute.set(target, "src", src);
+          }, this, 0);
+        } else {
+          qx.bom.element.Attribute.set(target, "src", src + '&' + new Date().getTime());
+        }
       }
     }
   }
