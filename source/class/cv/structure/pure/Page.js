@@ -38,8 +38,10 @@ qx.Class.define('cv.structure.pure.Page', {
   ******************************************************
   */
   construct: function(props) {
+    this.__inititialized = false;
     this.base(arguments, props);
 
+    // break out of the constructor
     new qx.util.DeferredCall(function() {
       var parentPage = this.getParentPage();
       [
@@ -61,6 +63,7 @@ qx.Class.define('cv.structure.pure.Page', {
             this['set' + qx.lang.String.firstUp(property)](defaultValue);
           }
         }
+        this.__inititialized = true;
       }, this);
 
       this.addListener("changeVisible", this._onChangeVisible, this);
@@ -146,7 +149,12 @@ qx.Class.define('cv.structure.pure.Page', {
    ******************************************************
    */
   members: {
+    __inititialized: null,
     __colspanClass: null,
+
+    isInitialized: function() {
+      return this.__inititialized === true;
+    },
 
     /**
      * If the page gets visible the colspan sized must be checked

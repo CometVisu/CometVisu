@@ -45,17 +45,6 @@ qx.Mixin.define("cv.role.HasChildren", {
       }, this);
       this.setChildWidgets(children);
     }
-    // if (cv.Config.lazyLoading === true && !this.getParentWidget()) {
-    //   new qx.util.DeferredCall(function() {
-    //     // initialize the ancestors
-    //     var parentData = cv.util.Tree.getParentData(props.path);
-    //     if (parentData) {
-    //       console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + props.$$type + " (" + props.path + ")");
-    //       var parent = cv.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
-    //       this.setParentWidget(parent);
-    //     }
-    //   }, this).schedule();
-    // }
   },
 
 
@@ -148,7 +137,7 @@ qx.Mixin.define("cv.role.HasChildren", {
     getChildrenDomString: function (noWidgetContainer) {
       var container = '';
 
-      this.getChildWidgets().forEach(function(widget) {
+      this.getChildWidgets().forEach(function (widget) {
         var subelement = widget.getDomString();
         if (undefined === subelement) {
           return;
@@ -164,40 +153,6 @@ qx.Mixin.define("cv.role.HasChildren", {
         }
       }, this);
       return container;
-    },
-
-    /**
-     * Find the widgets parent widget
-     * @return {cv.structure.AbstractWidget}
-     */
-    getParent: function () {
-      var path = this.getPath();
-      var type = this.$$type;
-      var parts, parentPath;
-      if (type === "page") {
-        if (path === "id_") {
-          // root page has no parent
-          return null;
-        }
-        parts = path.substr(0, path.length - 1).split("_");
-        parts.pop();
-        parentPath = parts.join("_") + "_";
-      } else {
-        if (path === "id") {
-          // root element has no parent
-          return null;
-        }
-        parts = path.split("_");
-        parts.pop();
-        parentPath = parts.join("_");
-      }
-      if (parentPath) {
-        var parent = cv.structure.WidgetFactory.getInstanceById(parentPath);
-        if (parent) {
-          return parent;
-        }
-      }
-      return null;
     }
   }
 });

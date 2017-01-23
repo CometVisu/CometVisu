@@ -139,6 +139,13 @@ qx.Class.define('cv.PagePartsHandler', {
       var shownavbar = this.getNavbarsVisibility(page);
 
       if (page) {
+        if (!page.isInitialized()) {
+          // page is not ready, defer this update
+          new qx.util.DeferredCall(function() {
+            this.updatePageParts(page, speed);
+          }, this).schedule();
+          return;
+        }
         showtopnavigation = page.getShowTopNavigation();
         showfooter = page.getShowFooter();
       }

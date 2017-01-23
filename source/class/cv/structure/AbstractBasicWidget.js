@@ -64,14 +64,6 @@ qx.Class.define('cv.structure.AbstractBasicWidget', {
     pageType  : {
       check: ["text", "2d", "3d"],
       init: "text"
-    },
-
-    /**
-     * The parent widget
-     */
-    parentWidget: {
-      check: "cv.structure.AbstractBasicWidget",
-      init: null
     }
   },
 
@@ -81,6 +73,23 @@ qx.Class.define('cv.structure.AbstractBasicWidget', {
   ******************************************************
   */
   members: {
+    __parentWidget: null,
+
+    setParentWidget: function(value) {
+      this.assertInstance(value, cv.structure.AbstractBasicWidget);
+      this.__parentWidget = value;
+    },
+
+    getParentWidget: function() {
+      if (cv.Config.lazyLoading === true && this.__parentWidget === null && this.getPath() !== "id_") {
+        // creating parent widget on demand
+        var parentData = cv.util.Tree.getParentData(this.getPath());
+        // console.log(parentData.$$type + " (" + parentData.path + ") is parent of " + this.get$$type() + " (" + this.getPath() + ")");
+        var parent = cv.structure.WidgetFactory.createInstance(parentData.$$type, parentData);
+        this.setParentWidget(parent);
+      }
+      return this.__parentWidget;
+    },
 
     /**
      * Returns the DOMElement of this widget
