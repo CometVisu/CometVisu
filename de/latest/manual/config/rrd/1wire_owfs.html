@@ -197,7 +197,7 @@ RRA:AVERAGE:0.5:525600:3200
 <span class="nv">TEMPERATURE</span><span class="o">=</span><span class="sb">`</span>owget /uncached/28.AB8BCB040000/temperature<span class="sb">`</span>
 
 <span class="c1"># remove leading character</span>
-<span class="nv">TEMPERATURE</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$TEMPERATURE</span> <span class="p">|</span> cut -c 1-<span class="sb">`</span>
+<span class="nv">TEMPERATURE</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$TEMPERATURE</span> <span class="p">|</span> cut -c <span class="m">1</span>-<span class="sb">`</span>
 
 /usr/bin/rrdtool update 1wire_temp_aussen.rrd N:<span class="nv">$TEMPERATURE</span>
 </pre></div>
