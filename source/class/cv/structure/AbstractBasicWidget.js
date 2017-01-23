@@ -76,7 +76,6 @@ qx.Class.define('cv.structure.AbstractBasicWidget', {
     __parentWidget: null,
 
     setParentWidget: function(value) {
-      this.assertInstance(value, cv.structure.AbstractBasicWidget);
       this.__parentWidget = value;
     },
 
