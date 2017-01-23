@@ -120,7 +120,6 @@ qx.Class.define('cv.PageHandler', {
           100: { left: leftEnd}
         }
       };
-      var animation = qx.bom.element.Animation.animate(pagesNode, animationConfig);
       var finish = function() {
         // final stuff
         this.setCurrentPath(target);
@@ -140,6 +139,7 @@ qx.Class.define('cv.PageHandler', {
       if (speed === 0) {
         finish();
       } else {
+        var animation = qx.bom.element.Animation.animate(pagesNode, animationConfig);
         animation.addListenerOnce("end", finish, this);
       }
     },
