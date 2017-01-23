@@ -102,9 +102,9 @@
         {
           "uri" : "resource/libs/sprintf.js"
         },
-        {
-          "uri" : "resource/libs/Three.js"
-        },
+//        {
+//          "uri" : "resource/libs/Three.js"
+//        },
         {
           "uri" : "resource/libs/jquery.js"
         },
@@ -158,72 +158,89 @@
             ]
           },
           "structure-pure" : {
-            "include": [ "${APPLICATION}.structure.pure.*" ]
+            "include": [ "${APPLICATION}.structure.pure.*" ],
+            "expected-load-order" : 1
           },
 
           "plugin-diagram" :
           {
-            "include" : [ "${APPLICATION}.plugins.diagram.*" ]
+            "include" : [ "${APPLICATION}.plugins.diagram.*" ],
+            "expected-load-order" : 2
           },
           "plugin-colorchooser" :
           {
-            "include" : [ "${APPLICATION}.plugins.ColorChooser" ]
+            "include" : [ "${APPLICATION}.plugins.ColorChooser" ],
+            "expected-load-order" : 2
           },
           "plugin-calendarlist" :
           {
-            "include" : [ "${APPLICATION}.plugins.CalendarList" ]
+            "include" : [ "${APPLICATION}.plugins.CalendarList" ],
+            "expected-load-order" : 2
           },
           "plugin-clock" :
           {
-            "include" : [ "${APPLICATION}.plugins.Clock" ]
+            "include" : [ "${APPLICATION}.plugins.Clock" ],
+            "expected-load-order" : 2
           },
           "plugin-gauge" :
           {
-            "include" : [ "${APPLICATION}.plugins.Gauge" ]
+            "include" : [ "${APPLICATION}.plugins.Gauge" ],
+            "expected-load-order" : 2
           },
           "plugin-link" :
           {
-            "include" : [ "${APPLICATION}.plugins.Link" ]
+            "include" : [ "${APPLICATION}.plugins.Link" ],
+            "expected-load-order" : 2
           },
           "plugin-mobilemenu" :
           {
-            "include" : [ "${APPLICATION}.plugins.MobileMenu" ]
+            "include" : [ "${APPLICATION}.plugins.MobileMenu" ],
+            "expected-load-order" : 2
           },
           "plugin-powerspectrum" :
           {
-            "include" : [ "${APPLICATION}.plugins.PowerSpectrum" ]
+            "include" : [ "${APPLICATION}.plugins.PowerSpectrum" ],
+            "expected-load-order" : 2
           },
           "plugin-openweathermap" :
           {
-            "include" : [ "${APPLICATION}.plugins.OpenweatherMap" ]
+            "include" : [ "${APPLICATION}.plugins.OpenweatherMap" ],
+            "expected-load-order" : 2
           },
           "plugin-rss" :
           {
-            "include" : [ "${APPLICATION}.plugins.Rss" ]
+            "include" : [ "${APPLICATION}.plugins.Rss" ],
+            "expected-load-order" : 2
           },
           "plugin-rsslog" :
           {
-            "include" : [ "${APPLICATION}.plugins.RssLog" ]
+            "include" : [ "${APPLICATION}.plugins.RssLog" ],
+            "expected-load-order" : 2
           },
           "plugin-strftime" :
           {
-            "include" : [ "${APPLICATION}.plugins.Strftime" ]
+            "include" : [ "${APPLICATION}.plugins.Strftime" ],
+            "expected-load-order" : 2
           },
           "plugin-speech" :
           {
-            "include" : [ "${APPLICATION}.plugins.Speech" ]
+            "include" : [ "${APPLICATION}.plugins.Speech" ],
+            "expected-load-order" : 2
           },
           "plugin-timeout" :
           {
-            "include" : [ "${APPLICATION}.plugins.Timeout" ]
+            "include" : [ "${APPLICATION}.plugins.Timeout" ],
+            "expected-load-order" : 2
           },
           "plugin-svg" :
           {
-            "include" : [ "${APPLICATION}.plugins.Svg" ]
+            "include" : [ "${APPLICATION}.plugins.Svg" ],
+            "expected-load-order" : 2
           },
           "plugin-upnpcontroller" :
           {
-            "include" : [ "${APPLICATION}.plugins.UpnpController" ]
+            "include" : [ "${APPLICATION}.plugins.UpnpController" ],
+            "expected-load-order" : 2
           }
         }
       }
