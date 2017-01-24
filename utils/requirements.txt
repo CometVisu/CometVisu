@@ -6,3 +6,4 @@ sphinxcontrib-plantuml
 sphinx_rtd_theme
 configparser
 PyYAML
+rjsmin

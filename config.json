@@ -247,7 +247,8 @@
         "build-resources",
         "build-script",
         "build-files",
-        "build-libs"
+        "build-libs",
+        "build-append-plugin-libs"
       ]
     },
 
@@ -255,6 +256,13 @@
       "shell" :
       {
         "command" : "grunt uglify:libs"
+      }
+    },
+
+    "build-append-plugin-libs" : {
+      "shell" :
+      {
+        "command" : "./cv build -bp"
       }
     },
 

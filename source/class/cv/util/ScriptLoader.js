@@ -75,19 +75,31 @@ qx.Class.define('cv.util.ScriptLoader', {
     },
 
     addScripts: function(scriptArr, order) {
-      var queue = (qx.lang.Type.isString(scriptArr) ? [ scriptArr ] : qx.lang.Array.clone(scriptArr));
+      var queue = (qx.lang.Type.isString(scriptArr) ? [ scriptArr ] : scriptArr);
       // make sure that no cached scripts are loaded
       var suffix = (cv.Config.forceReload === true) ? '?'+Date.now() : '';
+      var realQueue = [];
       for (var i=0, l = queue.length; i<l; i++) {
-        queue[i] = qx.util.ResourceManager.getInstance().toUri(queue[i])+suffix;
+        if (qx.core.Environment.get("qx.debug") === true) {
+          // in source load all scripts
+          realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
+        } else {
+          // in build do not load plugin scripts as they are included in the plugin script
+          if (queue[i].indexOf("plugins/") === -1) {
+            realQueue.push(qx.util.ResourceManager.getInstance().toUri(queue[i]) + suffix);
+          }
+        }
       }
-      this.debug("queueing "+queue.length+" scripts");
-      this.__scriptQueue.append(queue);
+      if (realQueue.length === 0) {
+        return;
+      }
+      this.debug("queueing "+realQueue.length+" scripts");
+      this.__scriptQueue.append(realQueue);
       if (order) {
         var processQueue = function () {
           if (order.length > 0) {
             var loadIndex = order.shift();
-            var script = qx.lang.Array.removeAt(queue, loadIndex);
+            var script = qx.lang.Array.removeAt(realQueue, loadIndex);
             var loader = this.__loadSingleScript(script);
             loader.addListener("ready", processQueue, this);
           } else {
@@ -99,7 +111,7 @@ qx.Class.define('cv.util.ScriptLoader', {
         // use an extra DynamicScriptLoader for every single script because loading errors stop the process
         // and the loader would not try to load the other scripts
         // queue.forEach(this.__loadSingleScript, this);
-        this.__loadSingleScript(queue);
+        this.__loadSingleScript(realQueue);
       }
     },
 
