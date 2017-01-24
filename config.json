@@ -116,7 +116,7 @@
       {
         "files" : [
           "resource/libs/sprintf.js",
-          "resource/libs/Three.js",
+          //"resource/libs/Three.js",
           "resource/libs/jquery.js",
           "resource/libs/strftime.js",
           "editor",
@@ -158,89 +158,72 @@
             ]
           },
           "structure-pure" : {
-            "include": [ "${APPLICATION}.structure.pure.*" ],
-            "expected-load-order" : 1
+            "include": [ "${APPLICATION}.structure.pure.*" ]
           },
 
           "plugin-diagram" :
           {
-            "include" : [ "${APPLICATION}.plugins.diagram.*" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.diagram.*" ]
           },
           "plugin-colorchooser" :
           {
-            "include" : [ "${APPLICATION}.plugins.ColorChooser" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.ColorChooser" ]
           },
           "plugin-calendarlist" :
           {
-            "include" : [ "${APPLICATION}.plugins.CalendarList" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.CalendarList" ]
           },
           "plugin-clock" :
           {
-            "include" : [ "${APPLICATION}.plugins.Clock" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.Clock" ]
           },
           "plugin-gauge" :
           {
-            "include" : [ "${APPLICATION}.plugins.Gauge" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.Gauge" ]
           },
           "plugin-link" :
           {
-            "include" : [ "${APPLICATION}.plugins.Link" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.Link" ]
           },
           "plugin-mobilemenu" :
           {
-            "include" : [ "${APPLICATION}.plugins.MobileMenu" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.MobileMenu" ]
           },
           "plugin-powerspectrum" :
           {
-            "include" : [ "${APPLICATION}.plugins.PowerSpectrum" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.PowerSpectrum" ]
           },
           "plugin-openweathermap" :
           {
-            "include" : [ "${APPLICATION}.plugins.OpenweatherMap" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.OpenweatherMap" ]
           },
           "plugin-rss" :
           {
-            "include" : [ "${APPLICATION}.plugins.Rss" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.Rss" ]
           },
           "plugin-rsslog" :
           {
-            "include" : [ "${APPLICATION}.plugins.RssLog" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.RssLog" ]
           },
           "plugin-strftime" :
           {
-            "include" : [ "${APPLICATION}.plugins.Strftime" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.Strftime" ]
           },
           "plugin-speech" :
           {
-            "include" : [ "${APPLICATION}.plugins.Speech" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.Speech" ]
           },
           "plugin-timeout" :
           {
-            "include" : [ "${APPLICATION}.plugins.Timeout" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.Timeout" ]
           },
           "plugin-svg" :
           {
-            "include" : [ "${APPLICATION}.plugins.Svg" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.Svg" ]
           },
           "plugin-upnpcontroller" :
           {
-            "include" : [ "${APPLICATION}.plugins.UpnpController" ],
-            "expected-load-order" : 2
+            "include" : [ "${APPLICATION}.plugins.UpnpController" ]
           }
         }
       }
