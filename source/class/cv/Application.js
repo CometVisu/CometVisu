@@ -245,8 +245,13 @@ qx.Class.define("cv.Application",
           this.__detectInitialPage();
 
           // load part for structure
-          engine.loadParts([cv.Config.configSettings.structure], function() {
-            this.debug(cv.Config.configSettings.structure+" has been loaded");
+          this.debug("loading structure "+cv.Config.configSettings.structure);
+          engine.loadParts([cv.Config.configSettings.structure], function(states) {
+            if (states === "complete") {
+              this.debug(cv.Config.configSettings.structure + " has been loaded");
+            } else {
+              this.error(cv.Config.configSettings.structure + " could not be loaded");
+            }
           }, this);
 
           engine.addListenerOnce("changeReady", function() {
