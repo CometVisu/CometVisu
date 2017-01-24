@@ -32,6 +32,7 @@
  *
  * @author Michael Markstaller
  * @since 2011
+ * @asset(plugins/rss/dep/zrssfeed/jquery.zrssfeed.js)
  */
 qx.Class.define('cv.plugins.Rss', {
   extend: cv.structure.AbstractWidget,

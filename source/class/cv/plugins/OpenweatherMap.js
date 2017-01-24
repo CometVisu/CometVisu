@@ -23,6 +23,7 @@
  *
  * @author Stefan Borchert (stefan@borchert.cc)
  * @since 0.9.0
+ * @asset(plugins/openweathermap/owm/jquery.owm.js,plugins/openweathermap/openweathermap.css)
  */
 qx.Class.define('cv.plugins.OpenweatherMap', {
   extend: cv.structure.AbstractBasicWidget,
@@ -134,7 +135,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
 
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
-    loader.addStyles('plugins/openweathermap/openweathermap');
+    loader.addStyles('plugins/openweathermap/openweathermap.css');
     loader.addScripts('plugins/openweathermap/owm/jquery.owm.js');
     // register the parser
     cv.xml.Parser.addHandler("openweathermap", cv.plugins.OpenweatherMap);

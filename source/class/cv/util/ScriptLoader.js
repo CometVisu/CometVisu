@@ -81,6 +81,7 @@ qx.Class.define('cv.util.ScriptLoader', {
       for (var i=0, l = queue.length; i<l; i++) {
         queue[i] = qx.util.ResourceManager.getInstance().toUri(queue[i])+suffix;
       }
+      this.debug("queueing "+queue.length+" scripts");
       this.__scriptQueue.append(queue);
       if (order) {
         var processQueue = function () {
@@ -95,8 +96,8 @@ qx.Class.define('cv.util.ScriptLoader', {
         }.bind(this);
         processQueue();
       } else {
-        // use an extra DynamiScriptLoader for every single script because loading errors stop the process
-        // and the loader would not try to load the oher scripts
+        // use an extra DynamicScriptLoader for every single script because loading errors stop the process
+        // and the loader would not try to load the other scripts
         // queue.forEach(this.__loadSingleScript, this);
         this.__loadSingleScript(queue);
       }
@@ -150,6 +151,7 @@ qx.Class.define('cv.util.ScriptLoader', {
           this.debug("script loader waiting for all scripts beeing queued");
 
           this.__listener = this.addListenerOnce("changeAllQueued", function() {
+            this.debug("script loader finished");
             this.fireEvent("finished");
             this.__listener = null;
           }, this);

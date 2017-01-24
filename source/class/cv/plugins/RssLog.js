@@ -21,6 +21,7 @@
 /**
  * @author Michael Markstaller
  * @since 2011
+ * @asset(plugins/rsslog/rsslog.css)
  */
 qx.Class.define('cv.plugins.RssLog', {
   extend: cv.structure.AbstractWidget,

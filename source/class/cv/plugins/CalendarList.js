@@ -23,6 +23,7 @@
  * @since 2014
  *
  * @ignore(jQuery.*)
+ * @asset(plugins/calendarlist/*)
  */
 qx.Class.define('cv.plugins.CalendarList', {
   extend: cv.structure.AbstractWidget,
@@ -120,7 +121,7 @@ qx.Class.define('cv.plugins.CalendarList', {
       // TODO: replace jQuery
       $(function () {
         $(calendarList).calendarListlocal({
-          src: src,
+          src: qx.util.ResourceManager.getInstance().toUri(src),
           maxquantity: maxquantity,
           calendar: calendars
         });

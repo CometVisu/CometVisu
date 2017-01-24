@@ -21,6 +21,7 @@
 /**
  * @author alltime84
  * @since 2016
+ * @asset(plugins/mobilemenu/*.css)
  */
 qx.Class.define('cv.plugins.MobileMenu', {
   extend: cv.structure.AbstractWidget,

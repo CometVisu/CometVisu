@@ -17,7 +17,9 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
+/**
+ * @asset(plugins/clock/*)
+ */
 qx.Class.define('cv.plugins.Clock', {
   extend: cv.structure.AbstractWidget,
   include: [cv.role.Update],
@@ -35,7 +37,7 @@ qx.Class.define('cv.plugins.Clock', {
     _onDomReady: function () {
       var $actor = $(this.getActor());
       $actor.svg({
-        loadURL: 'plugins/clock/clock_pure.svg',
+        loadURL: qx.util.ResourceManager.getInstance().toUri('plugins/clock/clock_pure.svg'),
         onLoad: function (svg) {
           $(svg.getElementById('HotSpotHour'))
             .draggable()

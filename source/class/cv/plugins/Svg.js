@@ -21,6 +21,7 @@
 /**
  * @author christian523
  * @since 2012
+ * @asset(plugins/svg/rollo.svg)
  */
 qx.Class.define('cv.plugins.Svg', {
   extend: cv.structure.AbstractWidget,

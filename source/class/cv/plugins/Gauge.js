@@ -25,6 +25,7 @@
  * @since 0.8.1
  *
  * @ignore(steelseries.*)
+ * @asset(plugins/gauge/gauge.css,plugins/gauge/dep/*.min.js)
 */ 
 qx.Class.define('cv.plugins.Gauge', {
   extend: cv.structure.AbstractWidget,

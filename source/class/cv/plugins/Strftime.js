@@ -23,6 +23,7 @@
  *
  * @author Michael Hausl [michael at hausl dot com]
  * @since 0.8.0
+ * @asset(plugins/strftime/strftime.css)
  */
 qx.Class.define('cv.plugins.Strftime', {
   extend: cv.structure.AbstractWidget,

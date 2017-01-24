@@ -21,6 +21,7 @@
 /**
  * @author Mark K. [mr dot remy at gmx dot de]
  * @since 2012
+ * @asset(plugins/upnpcontroller/upnpcontroller.css,plugins/upnpcontroller/*.php)
  */
 qx.Class.define('cv.plugins.UpnpController', {
   extend: cv.structure.AbstractWidget,

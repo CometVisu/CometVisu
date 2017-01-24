@@ -53,6 +53,8 @@
  *
  * @author Michael Hausl [michael at hausl dot com]
  * @since 2014
+ *
+ * @asset(plugins/diagram/dep/flot/*.min.js)
  */
 qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   extend: cv.structure.AbstractWidget,
