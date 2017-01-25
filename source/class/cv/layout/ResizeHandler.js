@@ -100,6 +100,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
         var job = this.validationQueue.shift();
         this[job].apply(this);
       }
+      this.__request = null;
     },
 
     makeAllSizesValid : function() {
@@ -270,7 +271,7 @@ qx.Class.define('cv.layout.ResizeHandler', {
       for (var rowspan in cv.Config.usedRowspans) {
         styles += '.rowspan.rowspan' + rowspan + ' { height: ' + Math.round(rowspan * height) + "px;}\n";
       }
-      // elem.remove();
+      elem.remove();
 
       // set css style
       qx.bom.Selector.query('#rowspanStyle')[0].innerHTML = styles;
