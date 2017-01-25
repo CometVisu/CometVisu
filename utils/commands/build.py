@@ -38,6 +38,7 @@ class BuildHelper(Command):
             print("Please run generate the build first")
             return
         p = re.compile("^qx.\$\$packageData\['\d+'\]=(.+);")
+        scripts_reg = re.compile("[\w]+\.addScripts\(\[([^\]]+)\],?(\[[^\]]\]+)?\);")
         for subdir, dirs, files in os.walk(os.path.join("build", "script")):
             for file in files:
                 # print(os.path.join(subdir, file))
@@ -47,23 +48,46 @@ class BuildHelper(Command):
                         # already processed
                         continue
                     data = p.findall(content)
-                    # print(data)
                     if len(data) > 0:
                         package_data = json.loads(data[0])
                         first_resource = True
+                        js_files = []
                         #print(package_data['resources'])
                         for resource in package_data['resources']:
                             if resource.startswith("plugins/") and resource.split(".")[-1] == "js":
-                                #print(os.path.join("build", "resource", resource))
-                                with open(os.path.join("build", "resource", resource), 'r') as fr:
-                                    if first_resource is True:
-                                        content = "//PROCESSED\n%s" % content
-                                        #content += "(function() {"
-                                        first_resource = False
-                                    content += " "+rjsmin.jsmin(fr.read().replace("\n", ""), keep_bang_comments=True)
+                                js_files.append(resource)
+                        if len(js_files) > 0:
+                            scripts_match = scripts_reg.findall(content)
+                            if len(scripts_match) > 0:
+                                # resolve variables
+                                scripts = []
+                                load_order = json.loads(scripts_match[0][1]) if len(scripts_match[0]) == 2  and scripts_match[0][1] else None
+                                for var in scripts_match[0][0].split(","):
+                                    var_match = re.search("%s=\'([^\']+)\'" % var, content)
+                                    if var_match is not None:
+                                        scripts.append(var_match.group(1))
+                                #print(scripts)
+                                loaded = []
+                                if load_order is not None:
+                                    for idx in load_order:
+                                        script = scripts[idx]
+                                        with open(os.path.join("build", "resource", script), 'r') as fr:
+                                            if first_resource is True:
+                                                content = "//PROCESSED\n%s" % content
+                                                first_resource = False
+                                            content += " "+rjsmin.jsmin(fr.read().replace("\n", ""), keep_bang_comments=True)
+                                        loaded.append(script)
+
+                                # load the rest
+                                for script in filter(lambda s: s in loaded, scripts):
+                                    with open(os.path.join("build", "resource", script), 'r') as fr:
+                                        if first_resource is True:
+                                            content = "//PROCESSED\n%s" % content
+                                            first_resource = False
+                                        content += " "+rjsmin.jsmin(fr.read().replace("\n", ""), keep_bang_comments=True)
+
                         if first_resource is False:
                             # something has been added
-                            #content += "})();"
                             f.seek(0)
                             f.truncate()
                             f.write(content)
