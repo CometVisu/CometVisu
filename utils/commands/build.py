@@ -38,7 +38,7 @@ class BuildHelper(Command):
             print("Please run generate the build first")
             return
         p = re.compile("^qx.\$\$packageData\['\d+'\]=(.+);")
-        scripts_reg = re.compile("[\w]+\.addScripts\(\[([^\]]+)\],?(\[[^\]]\]+)?\);")
+        scripts_reg = re.compile("[\w]+\.addScripts\(\[?([^\]\)]+)\]?,?(\[[^\]]\]+)?\)")
         for subdir, dirs, files in os.walk(os.path.join("build", "script")):
             for file in files:
                 # print(os.path.join(subdir, file))
@@ -66,7 +66,6 @@ class BuildHelper(Command):
                                     var_match = re.search("%s=\'([^\']+)\'" % var, content)
                                     if var_match is not None:
                                         scripts.append(var_match.group(1))
-                                #print(scripts)
                                 loaded = []
                                 if load_order is not None:
                                     for idx in load_order:
@@ -79,7 +78,7 @@ class BuildHelper(Command):
                                         loaded.append(script)
 
                                 # load the rest
-                                for script in filter(lambda s: s in loaded, scripts):
+                                for script in filter(lambda s: s not in loaded, scripts):
                                     with open(os.path.join("build", "resource", script), 'r') as fr:
                                         if first_resource is True:
                                             content = "//PROCESSED\n%s" % content

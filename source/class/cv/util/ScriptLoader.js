@@ -103,7 +103,7 @@ qx.Class.define('cv.util.ScriptLoader', {
             var loader = this.__loadSingleScript(script);
             loader.addListener("ready", processQueue, this);
           } else {
-            queue.forEach(this.__loadSingleScript, this);
+            realQueue.forEach(this.__loadSingleScript, this);
           }
         }.bind(this);
         processQueue();
