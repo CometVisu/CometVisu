@@ -24,8 +24,7 @@
 qx.Class.define('cv.xml.parser.widgets.PageJump', {
   extend: cv.xml.parser.AbstractBasicWidget,
   include: [
-    cv.role.HasChildren,
-    cv.role.HasAnimatedButton
+    cv.role.HasChildren
   ],
 
   /*
