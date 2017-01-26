@@ -18,6 +18,7 @@
  */
 
 
+//noinspection JSUnusedGlobalSymbols
 qx.Class.define('cv.xml.Parser', {
 
   type: "static",
@@ -354,14 +355,14 @@ qx.Class.define('cv.xml.Parser', {
      * this function implements all widget layouts that are identical (JNK)
      * implemented: rowspan, colspan
      *
-     * @param page {Element} XML-Element from the config file for this widget
+     * @param element {Element} XML-Element from the config file for this widget
      * @param path {String}
      * @return {String} rowspan class or empty string
      */
-    setWidgetLayout: function( page, path ) {
+    setWidgetLayout: function( element, path ) {
       var
         elementData = cv.data.Model.getInstance().getWidgetData( path ),
-        layout      = qx.bom.Selector.query("layout", page)[0],
+        layout      = qx.bom.Selector.matches('layout', qx.dom.Hierarchy.getChildElements(element))[0],
         ret_val = '',
         rowspan = null;
 
