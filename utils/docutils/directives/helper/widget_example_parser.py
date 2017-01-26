@@ -30,6 +30,7 @@ class WidgetExampleParser:
 
     config_parts = {
         "start": '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../visu_config.xsd" scroll_speed="0">',
+        "start_editor": '<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" lib_version="8" design="%%%DESIGN%%%" xsi:noNamespaceSchemaLocation="../../visu_config.xsd" scroll_speed="0">',
         "meta": '<meta/>',
         "content_start": '<page name="Example">',
         "content_end": '</page>',
@@ -149,10 +150,13 @@ class WidgetExampleParser:
         }
         return result
 
-    def save_screenshot_control_files(self, parsed, name=""):
+    def save_screenshot_control_files(self, parsed, name="", editor=False):
         visu_config_parts = self.config_parts.copy()
         # replace the design value in the config
-        visu_config_parts['start'] = visu_config_parts['start'].replace("%%%DESIGN%%%", parsed['design'])
+        if editor is True:
+            visu_config_parts['start'] = visu_config_parts['start_editor'].replace("%%%DESIGN%%%", parsed['design'])
+        else:
+            visu_config_parts['start'] = visu_config_parts['start'].replace("%%%DESIGN%%%", parsed['design'])
         if parsed['example_tag'] == "page":
             visu_config_parts['content_start'] = ""
             visu_config_parts['content_end'] = ""

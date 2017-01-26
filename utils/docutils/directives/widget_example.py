@@ -173,7 +173,7 @@ class WidgetExampleDirective(Directive):
             show_source = False
 
         try:
-            parser.save_screenshot_control_files(parse_result, name)
+            parser.save_screenshot_control_files(parse_result, name, editor=editor is not None)
         except etree.XMLSyntaxError as e:
             raise self.error(str(e))
 
