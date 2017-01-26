@@ -28,8 +28,8 @@ body
  * inspired by http://www.alistapart.com/articles/holygrail
  */
 #centerContainer {
-  padding-left: 0px;   /* left bar width */
-  padding-right: 0px;  /* right bar width */
+  padding-left: 0;   /* left bar width */
+  padding-right: 0;  /* right bar width */
 }
 #centerContainer > div {
   position: relative;
@@ -41,11 +41,11 @@ body
   filter: blur(3px);
 }
 #navbarLeft {
-  width: 0px;          /* left bar width */
+  width: 0;          /* left bar width */
 }
 #navbarRight {
-  width: 0px;          /* right bar width */
-  margin-right: 0px;   /* right bar width */
+  width: 0;          /* right bar width */
+  margin-right: 0;   /* right bar width */
 }
 #navbarTop {
 }
@@ -76,7 +76,7 @@ body
   color: #000;
   background-color: #bbb;
   border: 1px solid #000;
-  box-shadow: 0px 0px 0.5em 0.35em blue;
+  box-shadow: 0 0 0.5em 0.35em blue;
 }
 
 /*
@@ -91,11 +91,11 @@ body
 */
 
 #message.warning {
-  box-shadow: 0px 0px 0.5em 0.35em #ffc107;
+  box-shadow: 0 0 0.5em 0.35em #ffc107;
 }
 
 #message.error {
-  box-shadow: 0px 0px 0.5em 0.35em #f00;
+  box-shadow: 0 0 0.5em 0.35em #f00;
   background-color: #ffafaf;
 }
 
@@ -221,8 +221,8 @@ body
 .infoaction .widget_container.widgetinfo {
   width: auto !important;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 0;
   z-index: 2;
 }
 
@@ -240,4 +240,8 @@ body
 .navbar .infoaction .label {
   float: left;
   margin: 0 auto;
+}
+
+button.ui-slider-handle {
+  font: inherit;
 }
