@@ -41,13 +41,19 @@ define( ['structure_custom', 'css!plugins/strftime/strftime' ], function( VisuDe
 
       var data = templateEngine.widgetDataInsert( path, {
         'locale' : $p.attr('lang'),
-        'format' : $p.attr('format') || '%c'
+        'format' : $p.attr('format') || '%c',
+        'id': id
       } );
 
       elements[id] = path;
       startTimer();
 
       return ret_val + '</div>';
+    },
+    construct: function(path) {
+      var data = templateEngine.widgetDataGet(path);
+      elements[data.id] = path;
+      startTimer();
     }
   });
 
