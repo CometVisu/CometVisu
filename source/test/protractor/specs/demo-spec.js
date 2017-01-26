@@ -147,7 +147,7 @@ describe('cometvisu demo config test:', function () {
                 browser.sleep(1000);
                 knob.getLocation().then(function (newPos) {
                   // check with some tolerance
-                  expect(Math.abs(newPos.x-(rangePosition.x + rangeSize.width - knobSize.width - borderWidth))).toBeLessThan(15);
+                  expect(Math.abs(newPos.x-(rangePosition.x + rangeSize.width - knobSize.width - borderWidth))).toBeLessThan(25);
                   expect(newPos.y).toEqual(pos.y);
                 });
               });
