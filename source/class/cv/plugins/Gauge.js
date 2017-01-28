@@ -28,7 +28,7 @@
  * @asset(plugins/gauge/gauge.css,plugins/gauge/dep/*.min.js)
 */ 
 qx.Class.define('cv.plugins.Gauge', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Update, cv.role.Operate ],
 
   /*
@@ -269,6 +269,6 @@ qx.Class.define('cv.plugins.Gauge', {
       'plugins/gauge/dep/steelseries-min.js'
     ]);
     cv.xml.Parser.addHandler("gauge", cv.plugins.Gauge);
-    cv.structure.WidgetFactory.registerClass("gauge", statics);
+    cv.ui.structure.WidgetFactory.registerClass("gauge", statics);
   }
 });

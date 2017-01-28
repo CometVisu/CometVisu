@@ -189,8 +189,12 @@ class DocGenerator(Command):
         root, dirs, files = os.walk(path).next()
         source_files = []
         if plugin:
-            for dir in dirs:
-                source_files.append((dir, os.path.join(root, dir, "structure_plugin.js")))
+            for file in files:
+                if file.split(os.path.sep)[0] in dirs and file.startswith("Abstract"):
+                    # plugin in subdirectory, only read the Abstract Main Class
+                    source_files.append((file[0:-3], os.path.join(root, file)))
+                elif not file.startswith("Abstract"):
+                    source_files.append((file[0:-3], os.path.join(root, file)))
         else:
             for file in files:
                 if file not in ["PageLink.js", "Unknown.js", "WidgetInfoAction.js"] and not file.startswith("Abstract"):
@@ -215,7 +219,7 @@ class DocGenerator(Command):
                     if skip_lines_before > i:
                         continue
 
-                    if line.startswith("define"):
+                    if line.startswith("qx.Class.define"):
                         # source code starts here -> do not proceed
                         break
 
@@ -450,8 +454,8 @@ class DocGenerator(Command):
                                allow_unicode=True)
 
         elif options.from_source:
-            self.from_source(os.path.join("src", "structure", "pure"))
-            self.from_source(os.path.join("src", "plugins"), plugin=True)
+            self.from_source(self.config.get("manual-en", "widgets-path"))
+            self.from_source(self.config.get("manual-en", "plugins-path"), plugin=True)
 
         elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force, skip_screenshots=not options.complete)

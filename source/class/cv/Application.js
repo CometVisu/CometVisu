@@ -258,7 +258,7 @@ qx.Class.define("cv.Application",
             // create the objects
             cv.Config.TMP.treePath = cv.Config.initialPage;
             var data = cv.data.Model.getInstance().getWidgetData("id_");
-            cv.structure.WidgetFactory.createInstance(data.$$type, data);
+            cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
           }, this);
           // check if the current design settings overrides the cache one
           this.loadPlugins();

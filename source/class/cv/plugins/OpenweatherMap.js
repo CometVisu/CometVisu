@@ -26,7 +26,7 @@
  * @asset(plugins/openweathermap/owm/jquery.owm.js,plugins/openweathermap/openweathermap.css)
  */
 qx.Class.define('cv.plugins.OpenweatherMap', {
-  extend: cv.structure.AbstractBasicWidget,
+  extend: cv.ui.structure.AbstractBasicWidget,
   include: cv.role.Refresh,
 
   /*
@@ -139,6 +139,6 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
     loader.addScripts('plugins/openweathermap/owm/jquery.owm.js');
     // register the parser
     cv.xml.Parser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
-    cv.structure.WidgetFactory.registerClass("openweathermap", statics);
+    cv.ui.structure.WidgetFactory.registerClass("openweathermap", statics);
   }
 });

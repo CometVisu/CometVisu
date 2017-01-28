@@ -26,7 +26,7 @@
  * @asset(plugins/colorchooser/farbtastic/farbtastic.min.js,plugins/colorchooser/farbtastic/farbtastic.css)
  */
 qx.Class.define('cv.plugins.ColorChooser', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Update, cv.role.Operate],
 
 
@@ -219,6 +219,6 @@ qx.Class.define('cv.plugins.ColorChooser', {
     loader.addScripts('plugins/colorchooser/farbtastic/farbtastic.min.js');
     // register the parser
     cv.xml.Parser.addHandler("colorchooser", cv.plugins.ColorChooser);
-    cv.structure.WidgetFactory.registerClass("colorchooser", statics);
+    cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);
   }
 });

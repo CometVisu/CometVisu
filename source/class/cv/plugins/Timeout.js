@@ -25,7 +25,7 @@
  * @since 2012
  */
 qx.Class.define('cv.plugins.Timeout', {
-  extend: cv.structure.AbstractBasicWidget,
+  extend: cv.ui.structure.AbstractBasicWidget,
 
   /*
   ******************************************************
@@ -166,7 +166,7 @@ qx.Class.define('cv.plugins.Timeout', {
 
   defer: function(statics) {
     cv.xml.Parser.addHandler("timeout", cv.plugins.Timeout);
-    cv.structure.WidgetFactory.registerClass("timeout", statics);
+    cv.ui.structure.WidgetFactory.registerClass("timeout", statics);
   }
 
 });

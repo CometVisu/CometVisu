@@ -24,7 +24,7 @@
  * @asset(plugins/mobilemenu/*.css)
  */
 qx.Class.define('cv.plugins.MobileMenu', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.HasChildren],
 
   /*
@@ -131,6 +131,6 @@ qx.Class.define('cv.plugins.MobileMenu', {
     cv.xml.Parser.addHandler("mobilemenu", cv.plugins.MobileMenu);
     // add parser hook for children
     cv.xml.Parser.addHook("mobilemenu", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
-    cv.structure.WidgetFactory.registerClass("mobilemenu", statics);
+    cv.ui.structure.WidgetFactory.registerClass("mobilemenu", statics);
   }
 });

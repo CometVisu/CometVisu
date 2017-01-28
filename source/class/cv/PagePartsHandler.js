@@ -109,9 +109,9 @@ qx.Class.define('cv.PagePartsHandler', {
       }
       if (!page) { return {top: true, bottom: true, left: true, right: true}; }
       if (typeof page === "string") {
-        page = cv.structure.WidgetFactory.getInstanceById(page);
+        page = cv.ui.structure.WidgetFactory.getInstanceById(page);
       } else if (page.attributes ) {
-        page = cv.structure.WidgetFactory.getInstanceById(qx.bom.element.Attribute.get(page, 'id'));
+        page = cv.ui.structure.WidgetFactory.getInstanceById(qx.bom.element.Attribute.get(page, 'id'));
       }
 
       if (!page) {
@@ -129,7 +129,7 @@ qx.Class.define('cv.PagePartsHandler', {
     /**
      * update the visibility ob top-navigation, footer and navbar for this page
      *
-     * @param page {cv.structure.pure.Page} page to update the parts for
+     * @param page {cv.ui.structure.pure.Page} page to update the parts for
      * @param speed {Number} animation duration for changes
      */
     updatePageParts: function (page, speed) {

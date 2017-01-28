@@ -24,7 +24,7 @@
  * @asset(plugins/rsslog/rsslog.css)
  */
 qx.Class.define('cv.plugins.RssLog', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Refresh, cv.role.Update],
 
   /*
@@ -384,6 +384,6 @@ qx.Class.define('cv.plugins.RssLog', {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/rsslog/rsslog.css');
     cv.xml.Parser.addHandler("rsslog", cv.plugins.RssLog);
-    cv.structure.WidgetFactory.registerClass("rsslog", statics);
+    cv.ui.structure.WidgetFactory.registerClass("rsslog", statics);
   }
 });

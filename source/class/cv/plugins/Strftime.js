@@ -26,7 +26,7 @@
  * @asset(plugins/strftime/strftime.css)
  */
 qx.Class.define('cv.plugins.Strftime', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
 
   /*
   ******************************************************
@@ -123,7 +123,7 @@ qx.Class.define('cv.plugins.Strftime', {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/strftime/strftime.css');
     cv.xml.Parser.addHandler("strftime", cv.plugins.Strftime);
-    cv.structure.WidgetFactory.registerClass("strftime", statics);
+    cv.ui.structure.WidgetFactory.registerClass("strftime", statics);
 
     // extend locales by German and French
     Date.ext.locales.de = {

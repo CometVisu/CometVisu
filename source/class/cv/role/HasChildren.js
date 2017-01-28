@@ -37,7 +37,7 @@ qx.Mixin.define("cv.role.HasChildren", {
       // this.debug(props.$$type+" INIT ["+props.path+"] with "+props.children.length+" children");
       props.children.forEach(function (path) {
         var data = model.getWidgetData(path);
-        var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
+        var widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
         if (widget) {
           children.push(widget);
           widget.setParentWidget(this);

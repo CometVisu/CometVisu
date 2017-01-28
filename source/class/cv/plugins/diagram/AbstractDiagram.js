@@ -57,7 +57,7 @@
  * @asset(plugins/diagram/dep/flot/*.min.js)
  */
 qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Operate, cv.role.Refresh],
   type: "abstract",
 

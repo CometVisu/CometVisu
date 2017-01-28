@@ -27,7 +27,7 @@
  * @asset(plugins/diagram/dep/flot/jquery.flot.min.js,plugins/diagram/dep/flot/jquery.flot.canvas.min.js,plugins/diagram/dep/flot/jquery.flot.resize.min.js,plugins/diagram/dep/flot/jquery.flot.navigate.min.js)
  */
 qx.Class.define('cv.plugins.PowerSpectrum', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Update],
 
   /*
@@ -411,7 +411,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       'plugins/diagram/dep/flot/jquery.flot.navigate.min.js'
     ]);
     cv.xml.Parser.addHandler("powerspectrum", cv.plugins.PowerSpectrum);
-    cv.structure.WidgetFactory.registerClass("powerspectrum", statics);
+    cv.ui.structure.WidgetFactory.registerClass("powerspectrum", statics);
     
     // init
     statics.limitEN50160_1999.forEach( statics.fixLimits );

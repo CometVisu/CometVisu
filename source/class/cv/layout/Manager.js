@@ -198,7 +198,7 @@ qx.Class.define('cv.layout.Manager', {
           var areaColumns = qx.bom.element.Dataset.get(qx.bom.Selector.query(area)[0], 'columns');
           var areaColspan = areaColumns || cv.Config.defaultColumns;
           allContainer.forEach(function(child) {
-            var widget = cv.structure.WidgetFactory.getInstanceByElement(child);
+            var widget = cv.ui.structure.WidgetFactory.getInstanceByElement(child);
             var ourColspan = this.getWidgetColspan(widget, width);
 
             var w = 'auto';
@@ -214,7 +214,7 @@ qx.Class.define('cv.layout.Manager', {
         var adjustableElements = qx.bom.Selector.query(area + ' .group .widget_container');
         adjustableElements.forEach(function (e) {
           var
-            widget = cv.structure.WidgetFactory.getInstanceByElement(e),
+            widget = cv.ui.structure.WidgetFactory.getInstanceByElement(e),
             ourColspan = this.getWidgetColspan(widget, width);
           if (ourColspan === null) {
             // workaround for nowidget groups
@@ -226,7 +226,7 @@ qx.Class.define('cv.layout.Manager', {
             var groupColspan = mainAreaColspan;
             var parentGroupElement = cv.util.Tree.getParent(e, '.widget_container', '.group', 1)[0];
             if (parentGroupElement) {
-              var parentGroupWidget = cv.structure.WidgetFactory.getInstanceByElement(qx.dom.Element.getParentElement(parentGroupElement));
+              var parentGroupWidget = cv.ui.structure.WidgetFactory.getInstanceByElement(qx.dom.Element.getParentElement(parentGroupElement));
               if (parentGroupWidget) {
                 groupColspan = Math.min(mainAreaColspan, this.getWidgetColspan(parentGroupWidget, width));
               }

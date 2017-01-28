@@ -21,7 +21,7 @@
  * @asset(plugins/clock/*)
  */
 qx.Class.define('cv.plugins.Clock', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Update],
 
   /*
@@ -125,6 +125,6 @@ qx.Class.define('cv.plugins.Clock', {
 
   defer: function(statics) {
     cv.xml.Parser.addHandler("clock", cv.plugins.Clock);
-    cv.structure.WidgetFactory.registerClass("clock", statics);
+    cv.ui.structure.WidgetFactory.registerClass("clock", statics);
   }
 });

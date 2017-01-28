@@ -67,7 +67,7 @@ qx.Class.define('cv.PageHandler', {
       if (currentPath !== '') { qx.event.message.Bus.dispatchByName("path."+currentPath+".exitingPageChange", currentPath, target); }
 
       var page = qx.bom.Selector.query('#' + target)[0];
-      var pageWidget = cv.structure.WidgetFactory.getInstanceById(target);
+      var pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
 
       if( 0 === page.length ) {// check if page does exist
         return;
@@ -127,7 +127,7 @@ qx.Class.define('cv.PageHandler', {
         qx.bom.element.Style.set(pagesNode, 'left', 0 );
         if (currentPath !== '') {
           qx.event.message.Bus.dispatchByName("path." + currentPath + ".afterPageChange", currentPath);
-          var oldPageWidget = cv.structure.WidgetFactory.getInstanceById(target);
+          var oldPageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
           oldPageWidget.setVisible(false);
         }
         qx.event.message.Bus.dispatchByName("page." + target + ".appear", target);

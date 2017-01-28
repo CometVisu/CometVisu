@@ -109,7 +109,7 @@ qx.Class.define('cv.plugins.Speech', {
     mapping           : { check: "String", init: "" },
     repeatTimeout     : { check: "Number", init: -1 },
     parentWidget: {
-      check: "cv.structure.AbstractBasicWidget",
+      check: "cv.ui.structure.AbstractBasicWidget",
       init: null
     }
   },
@@ -200,6 +200,6 @@ qx.Class.define('cv.plugins.Speech', {
   defer: function(statics) {
     // register the parser
     cv.xml.Parser.addHandler("speech", cv.plugins.Speech);
-    cv.structure.WidgetFactory.registerClass("speech", statics);
+    cv.ui.structure.WidgetFactory.registerClass("speech", statics);
   }
 });

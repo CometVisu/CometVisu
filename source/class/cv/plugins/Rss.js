@@ -35,7 +35,7 @@
  * @asset(plugins/rss/dep/zrssfeed/jquery.zrssfeed.js)
  */
 qx.Class.define('cv.plugins.Rss', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Refresh],
 
   /*
@@ -120,6 +120,6 @@ qx.Class.define('cv.plugins.Rss', {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addScripts('plugins/rss/dep/zrssfeed/jquery.zrssfeed.js');
     cv.xml.Parser.addHandler("rss", cv.plugins.Rss);
-    cv.structure.WidgetFactory.registerClass("rss", statics);
+    cv.ui.structure.WidgetFactory.registerClass("rss", statics);
   }
 });

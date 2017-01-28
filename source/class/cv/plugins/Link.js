@@ -25,7 +25,7 @@
  * @since 2015
  */
 qx.Class.define('cv.plugins.Link', {
-  extend: cv.structure.AbstractBasicWidget,
+  extend: cv.ui.structure.AbstractBasicWidget,
 
   /*
   ******************************************************
@@ -80,6 +80,6 @@ qx.Class.define('cv.plugins.Link', {
 
   defer: function(statics) {
     cv.xml.Parser.addHandler("link", cv.plugins.Link);
-    cv.structure.WidgetFactory.registerClass("link", statics);
+    cv.ui.structure.WidgetFactory.registerClass("link", statics);
   }
 });

@@ -24,7 +24,7 @@
  * @asset(plugins/upnpcontroller/upnpcontroller.css,plugins/upnpcontroller/*.php)
  */
 qx.Class.define('cv.plugins.UpnpController', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Refresh],
   
   /*
@@ -367,7 +367,7 @@ qx.Class.define('cv.plugins.UpnpController', {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/upnpcontroller/upnpcontroller.css');
     cv.xml.Parser.addHandler("upnpcontroller", cv.plugins.UpnpController);
-    cv.structure.WidgetFactory.registerClass("upnpcontroller", statics);
+    cv.ui.structure.WidgetFactory.registerClass("upnpcontroller", statics);
   }
   
 });

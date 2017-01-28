@@ -26,7 +26,7 @@
  * @asset(plugins/calendarlist/*)
  */
 qx.Class.define('cv.plugins.CalendarList', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Refresh],
 
 
@@ -133,7 +133,7 @@ qx.Class.define('cv.plugins.CalendarList', {
   defer: function (statics) {
     cv.xml.Parser.addHandler("calendarlist", cv.plugins.CalendarList);
     cv.xml.Parser.addHook("calendarlist", "after", cv.plugins.CalendarList.afterParse, cv.plugins.CalendarList);
-    cv.structure.WidgetFactory.registerClass("calendarlist", statics);
+    cv.ui.structure.WidgetFactory.registerClass("calendarlist", statics);
   }
 });
 (function ($) {

@@ -364,7 +364,7 @@ qx.Class.define('cv.TemplateEngine', {
       if (cv.Config.enableAddressQueue) {
         // identify addresses on startpage
         var startPageAddresses = {};
-        var pageWidget = cv.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
+        var pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
         pageWidget.getChildWidgets().forEach(function(child) {
           var address = child.getAddress();
           for (var addr in address) {
@@ -389,7 +389,7 @@ qx.Class.define('cv.TemplateEngine', {
       }
       for (var i = 0, l = parsedData.length; i < l; i++) {
         var data = parsedData[i];
-        var widget = cv.structure.WidgetFactory.createInstance(data.$$type, data);
+        var widget = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
 
         // trigger DOM generation
         if (widget) { widget.getDomString(); }

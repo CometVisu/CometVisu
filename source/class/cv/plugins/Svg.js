@@ -24,7 +24,7 @@
  * @asset(plugins/svg/rollo.svg)
  */
 qx.Class.define('cv.plugins.Svg', {
-  extend: cv.structure.AbstractWidget,
+  extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Update, cv.role.Refresh],
 
   /*
@@ -66,6 +66,6 @@ qx.Class.define('cv.plugins.Svg', {
   defer: function(statics) {
     // register the parser
     cv.xml.Parser.addHandler("svg", cv.plugins.Svg);
-    cv.structure.WidgetFactory.registerClass("svg", statics);
+    cv.ui.structure.WidgetFactory.registerClass("svg", statics);
   }
 });
