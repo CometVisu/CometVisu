@@ -193,11 +193,11 @@ class DocGenerator(Command):
                 if file.split(os.path.sep)[0] in dirs and file.startswith("Abstract"):
                     # plugin in subdirectory, only read the Abstract Main Class
                     source_files.append((file[0:-3], os.path.join(root, file)))
-                elif not file.startswith("Abstract"):
+                elif not file.startswith("Abstract") and file != "__init__.js":
                     source_files.append((file[0:-3], os.path.join(root, file)))
         else:
             for file in files:
-                if file not in ["PageLink.js", "Unknown.js", "WidgetInfoAction.js"] and not file.startswith("Abstract"):
+                if file not in ["PageLink.js", "Unknown.js", "WidgetInfoAction.js", "__init__.js"] and not file.startswith("Abstract"):
                     source_files.append((file[0:-3], os.path.join(root, file)))
 
         for name, file in source_files:
