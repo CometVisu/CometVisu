@@ -74,6 +74,16 @@ qx.Class.define('cv.plugins.CalendarList', {
     parse: function (xml, path, flavour, pageType) {
       var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       cv.xml.Parser.parseRefresh(xml, path);
+      this.calendars = [];
+      qx.bom.Selector.query('calendar', xml).forEach(function (cal) {
+        var calData = {
+          type: cal.getAttribute('type'),
+          userid: cal.getAttribute('userid'),
+          magiccookie: cal.hasAttribute('magiccookie') ? cal.getAttribute('magiccookie') : '',
+          days: cal.hasAttribute('days') ? cal.getAttribute('days') : data.days
+        };
+        this.calendars.push(calData);
+      }, this);
       return data;
     },
 
@@ -93,19 +103,6 @@ qx.Class.define('cv.plugins.CalendarList', {
         'days': {},
         'refresh': {}
       };
-    },
-    afterParse: function (xml, path) {
-      var data = cv.data.Model.getInstance().getWidgetData(path);
-      this.calendars = [];
-      qx.bom.Selector.query('calendar', xml).forEach(function (cal) {
-        var calData = {
-          type: cal.getAttribute('type'),
-          userid: cal.getAttribute('userid'),
-          magiccookie: cal.hasAttribute('magiccookie') ? cal.getAttribute('magiccookie') : '',
-          days: cal.hasAttribute('days') ? cal.getAttribute('days') : data.days
-        };
-        this.calendars.push(calData);
-      }, this);
     }
   },
 
@@ -146,8 +143,7 @@ qx.Class.define('cv.plugins.CalendarList', {
   },
 
   defer: function (statics) {
-    cv.xml.Parser.addHandler("calendarlist", cv.plugins.CalendarList);
-    cv.xml.Parser.addHook("calendarlist", "after", cv.plugins.CalendarList.afterParse, cv.plugins.CalendarList);
+    cv.xml.Parser.addHandler("calendarlist", statics);
     cv.ui.structure.WidgetFactory.registerClass("calendarlist", statics);
   }
 });
