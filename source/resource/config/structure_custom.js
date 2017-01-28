@@ -19,32 +19,19 @@
  * This module defines the custom widget additions to the CometVisu visualisation.
  * @module Structure custom
 */
+/*
+* Custom changes could go here and look e.g. like
+*
+***************************************
+qx.Class.define('cv.ui.structure.pure.Line', {
+  extend: cv.ui.structure.AbstractWidget,
 
-define( ['_common'], function() {
-  "use strict";
-
-  /*
-   * Custom changes could go here and look e.g. like
-  ****************************************
-   Class('cv.structure.pure.Line', {
-     isa: cv.structure.pure.AbstractWidget,
-
-     my: {
-       methods: {
-         getDefaultClasses: function(type) {
-          return '';
-         }
-       }
-     },
-
-     methods: {
-       getDomString: function () {
-         return '<hr ' + (this.getClasses() ? 'class="'+this.getClasses()+'"' : '') + '/>';
-       }
-     }
-   });
-   // register the parser
-   cv.xml.Parser.addHandler("line", cv.structure.pure.Line);
-  ****************************************
-   */
-}); // end define
+  members: {
+    // overridden
+    getDomString: function () {
+      return '<hr ' + (this.getClasses() ? 'class="'+this.getClasses()+'"' : '') + '/>';
+    }
+  }
+});
+****************************************
+*/

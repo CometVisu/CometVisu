@@ -37,7 +37,7 @@ describe("testing a navbar widget", function() {
     var attrs = {
       'position': pos
     };
-    if (pos == "left") {
+    if (pos === "left") {
       // test with flavour + name + dynamic
       attrs.flavour = 'potassium';
       attrs.name = "Testbar";
@@ -55,7 +55,7 @@ describe("testing a navbar widget", function() {
     expect(navbar).not.toBeNull();
     expect(qx.bom.element.Attribute.get(navbar, 'id')).toBe('id_'+pos+'_navbar');
 
-    if (pos == "left") {
+    if (pos === "left") {
       expect(navbar).toHaveClass("flavour_potassium");
       expect(qx.dom.Node.getText(qx.bom.Selector.query("h2", navbar)[0])).toBe('Testbar');
       expect(templateEngine.pagePartsHandler.navbarSetSize).toHaveBeenCalledWith(pos,"200");
@@ -67,25 +67,25 @@ describe("testing a navbar widget", function() {
     }
     // document.body.removeChild(bar);
     templateEngine.pagePartsHandler.navbarSetSize.calls.reset();
-  };
+  }
 
   it("should test the top navbar creator", function() {
-    qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar);
+    qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.ui.structure.pure.NavBar.initializeNavbars, cv.ui.structure.pure.NavBar);
     testNavbar.call(this, "top");
   });
 
   it("should test the left navbar creator", function() {
-    qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar);
+    qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.ui.structure.pure.NavBar.initializeNavbars, cv.ui.structure.pure.NavBar);
     testNavbar.call(this, "left");
   });
 
   it("should test the right navbar creator", function() {
-    qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar);
+    qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.ui.structure.pure.NavBar.initializeNavbars, cv.ui.structure.pure.NavBar);
     testNavbar.call(this, "right");
   });
 
   it("should test the bottom navbar creator", function() {
-    qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.structure.pure.NavBar.initializeNavbars, cv.structure.pure.NavBar);
+    qx.event.message.Bus.subscribe("setup.dom.finished.before", cv.ui.structure.pure.NavBar.initializeNavbars, cv.ui.structure.pure.NavBar);
     testNavbar.call(this, "bottom");
   });
 });

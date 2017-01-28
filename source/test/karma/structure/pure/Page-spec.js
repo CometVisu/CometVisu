@@ -34,11 +34,11 @@ describe("testing a page widget", function() {
   it("should test the page creator", function() {
     var res = this.createTestWidgetString("page", {'name': 'Testpage'}, "<label>Test</label>");
     var pageLink = res[0];
-    var page = cv.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
+    var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
     expect(page.getPageType()).toBe("text");
 
     var widget = qx.bom.Html.clean([res[1]])[0];
-    cv.structure.pure.Page.createFinal();
+    cv.ui.structure.pure.Page.createFinal();
     expect(widget).toHaveClass('pagelink');
 
     var elem = page.getDomElement();
@@ -61,12 +61,12 @@ describe("testing a page widget", function() {
       'shownavbar-right': 'true'
     });
     var pageLink = res[0];
-    var page = cv.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
+    var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
 
     var widget = qx.bom.Html.clean([res[1]])[0];
     var actor = this.findChild(widget, ".actor");
     expect(qx.bom.element.Style.get(actor, 'text-align')).toBe('right');
-    cv.structure.pure.Page.createFinal();
+    cv.ui.structure.pure.Page.createFinal();
 
     expect(page.getShowTopNavigation()).toBeTruthy();
     expect(page.getShowFooter()).toBeTruthy();
@@ -88,8 +88,8 @@ describe("testing a page widget", function() {
       'backdrop': 'test.svg'
     });
     var pageLink = res[0];
-    var page = cv.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
-    cv.structure.pure.Page.createFinal();
+    var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
+    cv.ui.structure.pure.Page.createFinal();
 
     expect(page.getBackdropAlign()).toBe("left");
 
@@ -113,7 +113,7 @@ describe("testing a page widget", function() {
       'backdrop': 'test.png'
     });
 
-    cv.structure.pure.Page.createFinal();
+    cv.ui.structure.pure.Page.createFinal();
 
     var page = qx.bom.Selector.query('#pages .page')[0];
 
@@ -134,9 +134,9 @@ describe("testing a page widget", function() {
     this.initWidget(res);
 
     var pageLink = res[0];
-    var page = cv.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
+    var page = cv.ui.structure.WidgetFactory.getInstanceById(pageLink.getPath()+"_");
     spyOn(page, "sendToBackend");
-    cv.structure.pure.Page.createFinal();
+    cv.ui.structure.pure.Page.createFinal();
 
     page.update('1/0/0', 1);
     expect(page.sendToBackend).toHaveBeenCalledWith('0');

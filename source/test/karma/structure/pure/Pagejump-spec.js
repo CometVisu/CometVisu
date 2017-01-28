@@ -115,10 +115,10 @@ describe("testing a pagejump widget", function() {
 
   it("should test the scrolltopage listener", function() {
     // re-add the listener as the message bus subscriptions get resetted after each test
-    qx.event.message.Bus.subscribe("path.pageChanged", cv.structure.pure.PageJump._onScrollToPage, cv.structure.pure.PageJump);
+    qx.event.message.Bus.subscribe("path.pageChanged", cv.ui.structure.pure.PageJump._onScrollToPage, cv.ui.structure.pure.PageJump);
 
     var returns = ["id_1_0", "id_1"];
-    spyOn(cv.structure.WidgetFactory, "getInstanceById").and.callFake(function() {
+    spyOn(cv.ui.structure.WidgetFactory, "getInstanceById").and.callFake(function() {
       var page = jasmine.createSpyObj('page', ['getName']);
       page.getName = function() {
         return returns.shift();
@@ -132,7 +132,7 @@ describe("testing a pagejump widget", function() {
     });
     this.initWidget(creator);
     spyOn(cv.data.Model.getInstance(), "getWidgetDataByElement").and.callFake(function() {
-      return {target: 'id_1_0'}
+      return {target: 'id_1_0'};
     });
     spyOn(cv.util.Tree, "getParentWidget").and.callFake(function() {
       return null;
