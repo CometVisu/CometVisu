@@ -29,64 +29,16 @@ qx.Class.define('cv.xml.Parser', {
    */
   statics: {
     __handlers: {},
-    __hooks: {
-      before: {},
-      after: {}
-    },
     lookupM : [ 0, 2, 4,  6,  6,  6,  6, 12, 12, 12, 12, 12, 12 ],
     lookupS : [ 0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],
     model: cv.data.Model.getInstance(),
 
     addHandler: function (tagName, handler) {
       this.__handlers[tagName.toLowerCase()] = handler;
-      // this.__applyHooks(tagName, handler);
-    },
-
-    /**
-     * Traverse through the handlers includes and its superclasses + their includes to add parsing hooks
-     * @private
-     */
-    __applyHooks: function(tagName, clazz) {
-      // add include parse hooks
-      this.__applyIncludeHooks(tagName, clazz);
-
-      if (clazz.superclass) {
-        var parentClass = clazz.superclass;
-        while (parentClass && parentClass.classname !== "qx.core.Object") {
-          if (parentClass.parse) {
-            this.addHook(tagName, "before", parentClass.parse, clazz);
-          }
-          this.__applyIncludeHooks(tagName, parentClass);
-          parentClass = parentClass.superclass;
-        }
-      }
-    },
-
-    __applyIncludeHooks: function(tagName, clazz) {
-      if (clazz.$$flatIncludes) {
-        // check for parse hooks in includes
-        clazz.$$flatIncludes.forEach(function (mixin) {
-          if (mixin.parse) {
-            this.addHook(tagName, "after", mixin.parse, clazz);
-          }
-        }, this);
-      }
     },
 
     getHandler: function (tagName) {
       return this.__handlers[tagName.toLowerCase()] || this.__handlers.unknown;
-    },
-
-    addHook: function(tagname, type, callback, context) {
-      type = type || "after";
-      if (!this.__hooks[type][tagname]) {
-        this.__hooks[type][tagname] = [];
-      }
-      this.__hooks[type][tagname].push([callback, context]);
-    },
-
-    getHooks: function(type, tagname) {
-      return this.__hooks[type][tagname] || [];
     },
 
     /**
@@ -103,23 +55,12 @@ qx.Class.define('cv.xml.Parser', {
       var parser = this.getHandler(xml.nodeName);
       var result = null;
       if (parser) {
-        // this.getHooks("before", xml.nodeName.toLowerCase()).forEach(function(entry) {
-        //   entry[0].call(entry[1] || this, xml, path, flavour, pageType);
-        // }, this);
-        // if (parser.parse) {
-          result = parser.parse(xml, path, flavour, pageType);
-        // } else {
-        //   result = this.parseElement(parser, xml, path, flavour, pageType);
-        // }
-        // this.getHooks("after", xml.nodeName.toLowerCase()).forEach(function(entry) {
-        //   entry[0].call(entry[1] || this, xml, path, flavour, pageType);
-        // }, this);
+        result = parser.parse(xml, path, flavour, pageType);
       } else {
         qx.log.Logger.debug("no parse handler registered for type: "+ xml.nodeName.toLowerCase());
       }
       return result;
     },
-
 
     parseBasicElement: function (element, path, flavour, pageType) {
       return this.model.setWidgetData( path, {
