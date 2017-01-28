@@ -18,7 +18,7 @@
  */
 
 
-qx.Mixin.define("cv.role.Refresh", {
+qx.Mixin.define("cv.ui.common.Refresh", {
 
   /*
    ******************************************************

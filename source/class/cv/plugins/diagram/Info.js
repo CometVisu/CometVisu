@@ -1,6 +1,6 @@
 qx.Class.define('cv.plugins.diagram.Info', {
   extend: cv.plugins.diagram.AbstractDiagram,
-  include: [cv.role.Update],
+  include: [cv.ui.common.Update],
 
   /*
    ******************************************************

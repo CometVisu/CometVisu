@@ -21,10 +21,10 @@
 /**
  * This role provides the update method for incoming data
  *
- * @class cv.role.Update
+ * @class cv.ui.common.Update
  */
-qx.Mixin.define("cv.role.Update", {
-  include: cv.role.BasicUpdate,
+qx.Mixin.define("cv.ui.common.Update", {
+  include: cv.ui.common.BasicUpdate,
 
   /*
    ******************************************************

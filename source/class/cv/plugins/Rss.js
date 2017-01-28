@@ -36,7 +36,7 @@
  */
 qx.Class.define('cv.plugins.Rss', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Refresh],
+  include: [cv.ui.common.Refresh],
 
   /*
   ******************************************************

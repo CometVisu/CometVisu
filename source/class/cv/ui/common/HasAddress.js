@@ -20,7 +20,7 @@
 /**
  * Add the address property to widgets
  */
-qx.Mixin.define("cv.role.HasAddress", {
+qx.Mixin.define("cv.ui.common.HasAddress", {
   /*
    ******************************************************
    PROPERTIES

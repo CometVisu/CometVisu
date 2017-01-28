@@ -26,7 +26,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.Refresh', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Operate, cv.role.HasAnimatedButton, cv.role.BasicUpdate],
+  include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton, cv.ui.common.BasicUpdate],
 
   /*
   ******************************************************

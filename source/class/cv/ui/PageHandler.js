@@ -26,7 +26,7 @@
 // of the jQuery-Tools Scrollable. It should be enhanced to allow different
 // page transition animations like blending, etc. pp.
 
-qx.Class.define('cv.PageHandler', {
+qx.Class.define('cv.ui.PageHandler', {
   extend: qx.core.Object,
 
   /*

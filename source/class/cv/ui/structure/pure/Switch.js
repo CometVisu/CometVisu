@@ -58,7 +58,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.Switch', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Operate, cv.role.Update],
+  include: [cv.ui.common.Operate, cv.ui.common.Update],
 
   /*
    ******************************************************

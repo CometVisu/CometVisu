@@ -27,7 +27,7 @@
  */
 qx.Class.define('cv.plugins.OpenweatherMap', {
   extend: cv.ui.structure.AbstractBasicWidget,
-  include: cv.role.Refresh,
+  include: cv.ui.common.Refresh,
 
   /*
   ******************************************************

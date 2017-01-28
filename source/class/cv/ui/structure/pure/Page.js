@@ -28,8 +28,8 @@ qx.Class.define('cv.ui.structure.pure.Page', {
   extend: cv.ui.structure.AbstractWidget,
 
   include: [
-    cv.role.HasChildren,
-    cv.role.Update
+    cv.ui.common.HasChildren,
+    cv.ui.common.Update
   ],
 
   /*

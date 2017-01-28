@@ -33,7 +33,7 @@
 qx.Class.define('cv.ui.structure.pure.Image', {
   extend: cv.ui.structure.AbstractWidget,
 
-  include: cv.role.Refresh,
+  include: cv.ui.common.Refresh,
 
   /*
   ******************************************************

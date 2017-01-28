@@ -58,7 +58,7 @@
  */
 qx.Class.define('cv.plugins.Speech', {
   extend: qx.core.Object,
-  include: cv.role.Update,
+  include: cv.ui.common.Update,
 
   /*
    ******************************************************

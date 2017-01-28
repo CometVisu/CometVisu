@@ -27,7 +27,7 @@
  */
 qx.Class.define('cv.plugins.CalendarList', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Refresh],
+  include: [cv.ui.common.Refresh],
 
   /*
   ******************************************************

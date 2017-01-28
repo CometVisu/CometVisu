@@ -27,7 +27,7 @@
  */
 qx.Class.define('cv.plugins.ColorChooser', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Update, cv.role.Operate],
+  include: [cv.ui.common.Update, cv.ui.common.Operate],
 
   /*
   ******************************************************

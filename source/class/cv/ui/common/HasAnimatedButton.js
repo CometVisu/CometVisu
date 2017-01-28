@@ -18,7 +18,7 @@
  */
 
 
-qx.Mixin.define("cv.role.HasAnimatedButton", {
+qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
 
   /*
    ******************************************************

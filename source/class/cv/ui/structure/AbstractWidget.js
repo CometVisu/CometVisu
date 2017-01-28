@@ -24,7 +24,7 @@
  */
 qx.Class.define('cv.ui.structure.AbstractWidget', {
   extend: cv.ui.structure.AbstractBasicWidget,
-  include: cv.role.HasStyling,
+  include: cv.ui.common.HasStyling,
   type: "abstract",
 
   /*

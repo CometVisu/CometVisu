@@ -27,8 +27,8 @@
 qx.Class.define('cv.ui.structure.pure.Web', {
   extend: cv.ui.structure.AbstractWidget,
   include: [
-    cv.role.Update,
-    cv.role.Refresh
+    cv.ui.common.Update,
+    cv.ui.common.Refresh
   ],
 
   /*

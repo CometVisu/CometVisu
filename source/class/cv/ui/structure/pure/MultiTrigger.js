@@ -28,7 +28,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Operate, cv.role.Update, cv.role.HasAnimatedButton],
+  include: [cv.ui.common.Operate, cv.ui.common.Update, cv.ui.common.HasAnimatedButton],
 
   /*
   ******************************************************

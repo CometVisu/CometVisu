@@ -33,7 +33,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.DesignToggle', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Operate, cv.role.HasAnimatedButton],
+  include: [cv.ui.common.Operate, cv.ui.common.HasAnimatedButton],
 
   /*
    ******************************************************

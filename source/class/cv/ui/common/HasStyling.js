@@ -18,7 +18,7 @@
  */
 
 
-qx.Mixin.define("cv.role.HasStyling", {
+qx.Mixin.define("cv.ui.common.HasStyling", {
 
   /*
   ******************************************************

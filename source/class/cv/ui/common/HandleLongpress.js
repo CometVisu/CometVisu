@@ -18,7 +18,7 @@
  */
 
 
-qx.Mixin.define("cv.role.HandleLongpress", {
+qx.Mixin.define("cv.ui.common.HandleLongpress", {
 
   /*
    ******************************************************

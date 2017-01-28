@@ -26,7 +26,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.Rgb', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Update],
+  include: [cv.ui.common.Update],
 
 
   /*

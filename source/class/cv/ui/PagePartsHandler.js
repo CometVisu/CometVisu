@@ -22,11 +22,7 @@
  * @author Christian Mayer
  * @since 2010
  */
-
-/**
- * @class cv.PagePartsHandler
- */
-qx.Class.define('cv.PagePartsHandler', {
+qx.Class.define('cv.ui.PagePartsHandler', {
   extend: qx.core.Object,
 
   /*

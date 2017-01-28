@@ -28,8 +28,8 @@
 qx.Class.define('cv.ui.structure.pure.PageJump', {
   extend: cv.ui.structure.AbstractWidget,
   include: [
-    cv.role.HasChildren,
-    cv.role.HasAnimatedButton
+    cv.ui.common.HasChildren,
+    cv.ui.common.HasAnimatedButton
   ],
 
   /*

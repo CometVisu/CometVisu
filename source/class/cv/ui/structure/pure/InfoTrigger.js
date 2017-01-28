@@ -28,10 +28,10 @@
 qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
   extend: cv.ui.structure.AbstractWidget,
   include: [
-    cv.role.Operate,
-    cv.role.Update,
-    cv.role.HasAnimatedButton,
-    cv.role.HandleLongpress
+    cv.ui.common.Operate,
+    cv.ui.common.Update,
+    cv.ui.common.HasAnimatedButton,
+    cv.ui.common.HandleLongpress
   ],
 
   /*

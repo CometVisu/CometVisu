@@ -58,7 +58,7 @@
  */
 qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Operate, cv.role.Refresh],
+  include: [cv.ui.common.Operate, cv.ui.common.Refresh],
   type: "abstract",
 
   /*

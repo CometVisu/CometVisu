@@ -21,12 +21,12 @@
 /**
  * This role provides the basic update methods
  *
- * @class cv.role.BasicUpdate
+ * @class cv.ui.common.BasicUpdate
  */
-qx.Mixin.define("cv.role.BasicUpdate", {
+qx.Mixin.define("cv.ui.common.BasicUpdate", {
 
   include: [
-    cv.role.HasAddress
+    cv.ui.common.HasAddress
   ],
 
   /*

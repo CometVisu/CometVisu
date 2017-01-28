@@ -25,7 +25,7 @@
  */
 qx.Class.define('cv.plugins.RssLog', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Refresh, cv.role.Update],
+  include: [cv.ui.common.Refresh, cv.ui.common.Update],
 
   /*
   ******************************************************

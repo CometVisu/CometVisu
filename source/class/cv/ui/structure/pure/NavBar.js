@@ -27,7 +27,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.NavBar', {
   extend: cv.ui.structure.AbstractWidget,
-  include: cv.role.HasChildren,
+  include: cv.ui.common.HasChildren,
 
   /*
   ******************************************************

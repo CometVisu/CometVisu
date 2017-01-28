@@ -25,7 +25,7 @@
  */
 qx.Class.define('cv.plugins.MobileMenu', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.HasChildren],
+  include: [cv.ui.common.HasChildren],
 
   /*
   ******************************************************

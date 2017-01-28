@@ -22,7 +22,7 @@
  */
 qx.Class.define('cv.plugins.Clock', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Update],
+  include: [cv.ui.common.Update],
 
   /*
   ******************************************************

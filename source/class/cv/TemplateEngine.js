@@ -27,7 +27,7 @@ qx.Class.define('cv.TemplateEngine', {
 
   construct: function() {
     // this.base(arguments);
-    this.pagePartsHandler = new cv.PagePartsHandler();
+    this.pagePartsHandler = new cv.ui.PagePartsHandler();
 
     this.__partQueue = new qx.data.Array();
     this.__partQueue.addListener("changeLength", function(ev) {
@@ -304,7 +304,7 @@ qx.Class.define('cv.TemplateEngine', {
         cv.ui.layout.Manager.adjustColumns();
         cv.ui.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
 
-        this.main_scroll = new cv.PageHandler();
+        this.main_scroll = new cv.ui.PageHandler();
         if (this.scrollSpeed !== undefined) {
           this.main_scroll.setSpeed(this.scrollSpeed);
         }

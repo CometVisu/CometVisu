@@ -72,10 +72,10 @@
 qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
   extend: cv.ui.structure.AbstractWidget,
   include: [
-    cv.role.Operate,
-    cv.role.HasAnimatedButton,
-    cv.role.Refresh,
-    cv.role.Update
+    cv.ui.common.Operate,
+    cv.ui.common.HasAnimatedButton,
+    cv.ui.common.Refresh,
+    cv.ui.common.Update
   ],
 
   /*

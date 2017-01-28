@@ -69,7 +69,7 @@
 qx.Class.define('cv.ui.structure.pure.InfoAction', {
   extend: cv.ui.structure.AbstractWidget,
 
-  include: cv.role.HasChildren,
+  include: cv.ui.common.HasChildren,
 
   /*
   ******************************************************

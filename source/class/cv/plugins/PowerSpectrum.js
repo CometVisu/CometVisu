@@ -28,7 +28,7 @@
  */
 qx.Class.define('cv.plugins.PowerSpectrum', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Update],
+  include: [cv.ui.common.Update],
 
   /*
   ******************************************************

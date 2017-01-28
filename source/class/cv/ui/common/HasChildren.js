@@ -22,7 +22,7 @@
  * Mixin for all widgets that can have other widgets as children, this mixin includes the static parsing part
  * and the methods for the widget instance.
  */
-qx.Mixin.define("cv.role.HasChildren", {
+qx.Mixin.define("cv.ui.common.HasChildren", {
 
   /*
   ******************************************************

@@ -25,7 +25,7 @@
  */
 qx.Class.define('cv.plugins.Svg', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.role.Update, cv.role.Refresh],
+  include: [cv.ui.common.Update, cv.ui.common.Refresh],
 
   /*
   ******************************************************
