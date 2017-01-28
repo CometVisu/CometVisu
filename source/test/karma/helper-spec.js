@@ -138,7 +138,7 @@ resetApplication = function() {
   templateEngine.resetPartsLoaded();
   cv.util.ScriptLoader.getInstance().resetAllQueued();
 
-  cv.layout.ResizeHandler.reset();
+  cv.ui.layout.ResizeHandler.reset();
 };
 
 // DOM Helpers
@@ -307,7 +307,7 @@ beforeEach(function () {
     widget.setVisible && widget.setVisible(true);
     qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
-  }
+  };
 });
 
 afterEach(function () {
@@ -319,7 +319,7 @@ afterEach(function () {
   Object.getOwnPropertyNames(subs).forEach(function(topic) {
     delete subs[topic];
   });
-  cv.layout.ResizeHandler.reset();
+  cv.ui.layout.ResizeHandler.reset();
 
   if (this.container) {
     document.body.removeChild(this.container);

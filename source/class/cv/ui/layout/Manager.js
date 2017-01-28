@@ -19,9 +19,9 @@
 
 
 /**
- * @class cv.layout.Manager
+ * @class cv.ui.layout.Manager
  */
-qx.Class.define('cv.layout.Manager', {
+qx.Class.define('cv.ui.layout.Manager', {
 
   type: "static",
 

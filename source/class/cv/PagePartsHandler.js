@@ -89,7 +89,7 @@ qx.Class.define('cv.PagePartsHandler', {
       switch (position) {
         case 'left':
           qx.bom.element.Style.set(qx.bom.Selector.query('#navbarLeft')[0], "width", cssSize);
-          cv.layout.ResizeHandler.invalidateNavbar();
+          cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
 
         case 'right':
@@ -98,7 +98,7 @@ qx.Class.define('cv.PagePartsHandler', {
             width: cssSize,
             'margin-right': '-' + cssSize
           });
-          cv.layout.ResizeHandler.invalidateNavbar();
+          cv.ui.layout.ResizeHandler.invalidateNavbar();
           break;
       }
     },
@@ -192,7 +192,7 @@ qx.Class.define('cv.PagePartsHandler', {
           }
         }
       }, this);
-      cv.layout.ResizeHandler.invalidateNavbar();
+      cv.ui.layout.ResizeHandler.invalidateNavbar();
     },
 
     /**
@@ -209,7 +209,7 @@ qx.Class.define('cv.PagePartsHandler', {
       var navbar = qx.bom.Selector.query('#navbar' + position)[0];
       var key = position.toLowerCase();
       var onAnimationEnd = function () {
-        cv.layout.ResizeHandler.invalidateNavbar();
+        cv.ui.layout.ResizeHandler.invalidateNavbar();
       };
       switch (direction) {
         case "in":
@@ -231,7 +231,7 @@ qx.Class.define('cv.PagePartsHandler', {
         case "out":
           onAnimationEnd = function () {
             qx.bom.element.Style.set(navbar, "display", "none");
-            cv.layout.ResizeHandler.invalidateNavbar();
+            cv.ui.layout.ResizeHandler.invalidateNavbar();
           };
           switch (position) {
             case "Top":
@@ -326,7 +326,7 @@ qx.Class.define('cv.PagePartsHandler', {
         }
         level++;
       });
-      cv.layout.ResizeHandler.invalidateNavbar();
+      cv.ui.layout.ResizeHandler.invalidateNavbar();
     },
 
     removeInactiveNavbars: function (page_id) {

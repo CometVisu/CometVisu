@@ -26,9 +26,8 @@
  * Manager for all resizing issues. It ensures that the real resizing
  * calculations are only done as often as really necessary.
  *
- * @class cv.layout.ResizeHandler
  */
-qx.Class.define('cv.layout.ResizeHandler', {
+qx.Class.define('cv.ui.layout.ResizeHandler', {
 
   type: "static",
 
@@ -227,9 +226,9 @@ qx.Class.define('cv.layout.ResizeHandler', {
         }
       }
       qx.log.Logger.debug("makeNavbarValid");
-      if (cv.layout.Manager.adjustColumns()) {
+      if (cv.ui.layout.Manager.adjustColumns()) {
         // the amount of columns has changed -> recalculate the widgets widths
-        cv.layout.Manager.applyColumnWidths();
+        cv.ui.layout.Manager.applyColumnWidths();
       }
       this.invalidNavbar = false;
     },
@@ -240,8 +239,8 @@ qx.Class.define('cv.layout.ResizeHandler', {
 
     __makePagesizeValid: function() {
       qx.log.Logger.debug("makePagesizeValid");
-      this.width = cv.layout.Manager.getAvailableWidth();
-      this.height = cv.layout.Manager.getAvailableHeight();
+      this.width = cv.ui.layout.Manager.getAvailableWidth();
+      this.height = cv.ui.layout.Manager.getAvailableHeight();
       this.getPageSize().innerHTML = '#main,.page{width:' + (this.width - 0) + 'px;height:' + this.height + 'px;}';
 
       this.invalidPagesize = false;

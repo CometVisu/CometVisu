@@ -162,7 +162,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      */
     _onChangeVisible: function(ev) {
       var visible = ev.getData();
-      if (visible && this.__colspanClass !== cv.layout.Manager.COLSPAN_CLASS) {
+      if (visible && this.__colspanClass !== cv.ui.layout.Manager.COLSPAN_CLASS) {
         this.applyColumnWidths();
       }
     },
@@ -171,8 +171,8 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * Set childrens column widths
      */
     applyColumnWidths: function() {
-      cv.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
-      this.__colspanClass = cv.layout.Manager.COLSPAN_CLASS;
+      cv.ui.layout.Manager.applyColumnWidths('#'+this.getPath(), false);
+      this.__colspanClass = cv.ui.layout.Manager.COLSPAN_CLASS;
     },
 
     // overridden

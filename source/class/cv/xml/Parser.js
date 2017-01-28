@@ -327,7 +327,7 @@ qx.Class.define('cv.xml.Parser', {
       elementData.colspanS = parseFloat(elementData.colspanS || cv.xml.Parser.lookupS[Math.floor(elementData.colspan)] || elementData.colspan);
 
       if (rowspan) {
-        elementData.rowspanClass = cv.layout.Manager.rowspanClass(parseFloat(rowspan || 1));
+        elementData.rowspanClass = cv.ui.layout.Manager.rowspanClass(parseFloat(rowspan || 1));
         ret_val = 'innerrowspan';
       }
       return ret_val;

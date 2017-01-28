@@ -173,9 +173,9 @@ qx.Class.define('cv.TemplateEngine', {
 
     resetPageValues: function () {
       this.currentPage = null;
-      cv.layout.Manager.currentPageUnavailableWidth = -1;
-      cv.layout.Manager.currentPageUnavailableHeight = -1;
-      cv.layout.Manager.currentPageNavbarVisibility = null;
+      cv.ui.layout.Manager.currentPageUnavailableWidth = -1;
+      cv.ui.layout.Manager.currentPageUnavailableHeight = -1;
+      cv.ui.layout.Manager.currentPageNavbarVisibility = null;
     },
 
     /**
@@ -301,8 +301,8 @@ qx.Class.define('cv.TemplateEngine', {
 
         this.currentPage = qx.bom.Selector.query('#' + cv.Config.initialPage)[0];
 
-        cv.layout.Manager.adjustColumns();
-        cv.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
+        cv.ui.layout.Manager.adjustColumns();
+        cv.ui.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
 
         this.main_scroll = new cv.PageHandler();
         if (this.scrollSpeed !== undefined) {
