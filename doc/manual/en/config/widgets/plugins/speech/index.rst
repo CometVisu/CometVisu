@@ -14,33 +14,39 @@ Use the Web Speech API (https://developer.mozilla.org/en-US/docs/Web/API/Web_Spe
 to make text-to-speech service available. This plugin listens to a address and forwards the
 incoming data to the browser TTS engine (if the browser supports it)
 
-<h4>Simple example</h4>
-<pre class="sunlight-highlight-xml">
-&lt;speech lang=&quot;en&quot;&gt;
- &lt;address transform=&quot;OH:string&quot; mode=&quot;read&quot;&gt;Speak&lt;/address&gt;
-&lt;/speech&gt;
-</pre>
+**Simple example**
 
-<h4>Example preventing repetition within a timeout and use mapping</h4>
-<pre class="sunlight-highlight-xml">
-...
-&lt;meta&gt;
- &lt;plugins&gt;
-   &lt;plugin name=&quot;speech&quot; /&gt;
- &lt;/plugins&gt;
- &lt;mappings&gt;
-   &lt;mapping name=&quot;speak&quot;&gt;
-     &lt;entry value=&quot;0&quot;&gt;Hello, welcome home&lt;/entry&gt;
-     &lt;entry value=&quot;1&quot;&gt;Please close all windows&lt;/entry&gt;
-     &lt;entry value=&quot;2&quot;&gt;Please close all doors&lt;/entry&gt;
-   &lt;/mapping&gt;
- &lt;/mappings&gt;
-&lt;/meta&gt;
-...
-&lt;speech lang=&quot;en&quot; repeat-timout=&quot;300&quot; mapping=&quot;speak&quot;&gt;
- &lt;address transform=&quot;DPT:5.010&quot; mode=&quot;read&quot;&gt;Speak&lt;/address&gt;
-&lt;/speech&gt;
-</pre>
+.. code-block:: xml
+
+    <speech lang="en">
+     <address transform="OH:string" mode="read">Speak</address>
+    </speech>
+
+
+
+**Example preventing repetition within a timeout and use mapping**
+
+.. code-block:: xml
+
+    ...
+    <meta>
+     <plugins>
+       <plugin name="speech" />
+     </plugins>
+     <mappings>
+       <mapping name="speak">
+         <entry value="0">Hello, welcome home</entry>
+         <entry value="1">Please close all windows</entry>
+         <entry value="2">Please close all doors</entry>
+       </mapping>
+     </mappings>
+    </meta>
+    ...
+    <speech lang="en" repeat-timout="300" mapping="speak">
+     <address transform="DPT:5.010" mode="read">Speak</address>
+    </speech>
+
+
 
 
 

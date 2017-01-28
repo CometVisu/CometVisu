@@ -14,22 +14,25 @@ Adds an image like the {@link cv.ui.structure.pure.Image} widget, but additional
 data and can send data to the backend by clicking on it.
 There are two modes to react on incoming data:
 
-<ul>
- <li><code>type="show"</code>: Hides the image when incoming data === 0</li>
- <li><code>type="select"</code>: Changes the image by appending the incoming data to the initial configured image source,
-  or hide it when incoming data === 0</li>
-</ul>
+
+ type="show": Hides the image when incoming data === 0
+ type="select": Changes the image by appending the incoming data to the initial configured image source,
+  or hide it when incoming data === 0
+
 Example:
-<pre class="xml">
-&lt;imagetrigger src="icon/comet" suffix="svg" sendValue="clicked" type="select"&gt;
- &lt;address transform="DPT:16.001" mode="readwrite"&gt;0/0/0&lt;/address&gt;
-&lt;/imagetrigger&gt;
-</pre>
-initially shows nothing. When the CometVisu receives the string <code>_icon</code> in address <code>0/0/0</code>,
-the image <code>icon/comet_opt_icon.svg</code> is shown. When the CometVisu receives '0' on address <code>0/0/0</code>,
+
+.. code-block:: xml
+
+    <imagetrigger src="icon/comet" suffix="svg" sendValue="clicked" type="select">
+     <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
+    </imagetrigger>
+
+
+
+initially shows nothing. When the CometVisu receives the string _icon in address 0/0/0,
+the image icon/comet_opt_icon.svg is shown. When the CometVisu receives '0' on address 0/0/0,
 this image is hidden.
 
-<h3>Examples</h3>
 
 .. ###END-WIDGET-DESCRIPTION###
 

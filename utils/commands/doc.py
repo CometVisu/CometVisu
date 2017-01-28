@@ -34,9 +34,15 @@ from lxml import etree
 from argparse import ArgumentParser
 from . import Command
 from scaffolding import Scaffolder
+try:
+    # Python 2.6-2.7
+    from HTMLParser import HTMLParser
+    html = HTMLParser()
+except ImportError:
+    # Python 3
+    import html
 
 root_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
-
 
 class DocParser:
     """
@@ -188,6 +194,8 @@ class DocGenerator(Command):
         # traverse through the widgets
         root, dirs, files = os.walk(path).next()
         source_files = []
+        cleanr = re.compile('</?h.*?>')
+        clean_tags = re.compile('</?.*?>')
         if plugin:
             for file in files:
                 if file.split(os.path.sep)[0] in dirs and file.startswith("Abstract"):
@@ -211,6 +219,7 @@ class DocGenerator(Command):
                 }
                 reading = False
                 code_block = False
+                unescape = False
                 example = False
                 section = "WIDGET-DESCRIPTION"
                 skip_lines_before = 0
@@ -235,12 +244,12 @@ class DocGenerator(Command):
                             indent = ""
                             if match.group(1)[0:1] == "@":
                                 directive = match.group(1)[1:].split(" ")[0]
-                                print(directive)
+                                # print(directive)
                                 if directive == "widgetexample":
                                     section = "WIDGET-EXAMPLES"
 
                                     # we need to parse the examples xml and check if the screenshots already exist
-                                    # in the api-docs, then we need not to process them twice and jsut add a combination
+                                    # in the api-docs, then we need not to process them twice and just add a combination
                                     # of a figure and a clode-block here
                                     raw_code = match.group(1)[14:]
                                     example_code = raw_code
@@ -310,20 +319,29 @@ class DocGenerator(Command):
                             if section == "WIDGET-EXAMPLES" or example:
                                 indent = "    "
                             else:
-                                if re.match("\s*```\s*$", line_content):
+                                if line_content.strip() in ["```", "<pre class=\"sunlight-highlight-xml\">", "</pre>"]:
                                     if not code_block:
+                                        if line_content.strip() == "<pre class=\"sunlight-highlight-xml\">":
+                                            unescape = True
                                         line_content = "\n.. code-block:: xml\n"
                                         code_block = True
                                     else:
                                         line_content = "\n"
                                         code_block = False
+                                        unescape = False
                                 elif code_block:
                                     indent = "    "
                                 elif re.match("\s*TODO:?\s(.*)$", line_content):
                                     todo = re.match("\s*TODO:?\s(.*)$", line_content)
                                     line_content = ".. TODO::\n\n    %s\n" % todo.group(1)
 
-                            content[section].append("%s%s\n" % (indent, line_content))
+                            if unescape is True:
+                                content[section].append("%s%s\n" % (indent, html.unescape(line_content)))
+                            else:
+                                line_content = re.sub(cleanr, '**', line_content)
+                                if section != "WIDGET-EXAMPLES" and example is False:
+                                     line_content = re.sub(clean_tags, '', line_content)
+                                content[section].append("%s%s\n" % (indent, line_content))
 
             if (len("".join(x.strip() for x in content['WIDGET-DESCRIPTION'])) == 0 or
                     content['WIDGET-DESCRIPTION'][0].startswith(".. TODO::\n\n    complete docs")):
