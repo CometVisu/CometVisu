@@ -55,18 +55,6 @@ qx.Mixin.define("cv.role.Refresh", {
   },
 
   /*
-  ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    parse: function (xml, path) {
-      var data = cv.data.Model.getInstance().getWidgetData(path);
-      data.refresh = xml.getAttribute('refresh') ? parseInt(xml.getAttribute('refresh')) * 1000 : 0;
-    }
-  },
-
-  /*
    ******************************************************
    MEMBERS
    ******************************************************

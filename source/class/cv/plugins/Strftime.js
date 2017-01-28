@@ -54,6 +54,19 @@ qx.Class.define('cv.plugins.Strftime', {
     __internalCounter : 0,
     __timer : null,
 
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      return cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    },
+
     getAttributeToPropertyMappings: function() {
       return {
         'lang': { target: 'locale' },
@@ -122,7 +135,7 @@ qx.Class.define('cv.plugins.Strftime', {
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/strftime/strftime.css');
-    cv.xml.Parser.addHandler("strftime", cv.plugins.Strftime);
+    cv.xml.Parser.addHandler("strftime", statics);
     cv.ui.structure.WidgetFactory.registerClass("strftime", statics);
 
     // extend locales by German and French

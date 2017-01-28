@@ -35,18 +35,6 @@ qx.Mixin.define("cv.role.HasStyling", {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    parse: function (xml, path) {
-      var data = cv.data.Model.getInstance().getWidgetData(path);
-      data.styling = qx.bom.element.Attribute.get(xml, 'styling');
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */

@@ -22,11 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.ImageTrigger', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: [
-    cv.role.Refresh,
-    cv.role.Update
-  ],
+  type: "static",
 
   /*
   ******************************************************
@@ -34,6 +30,23 @@ qx.Class.define('cv.xml.parser.widgets.ImageTrigger', {
   ******************************************************
   */
   statics: {
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.xml.Parser.parseFormat(xml, path);
+      cv.xml.Parser.parseAddress(xml, path);
+      cv.xml.Parser.parseRefresh(xml, path);
+      return data;
+    },
+
     getAttributeToPropertyMappings: function () {
       return {
         'height' : {  "default": "0" },

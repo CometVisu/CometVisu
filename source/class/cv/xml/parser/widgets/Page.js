@@ -22,11 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.Page', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: [
-    cv.role.HasChildren,
-    cv.role.Update
-  ],
+  type: "static",
 
   /*
    ******************************************************
@@ -37,7 +33,7 @@ qx.Class.define('cv.xml.parser.widgets.Page', {
 
     parse: function( page, path, flavour, pageType ) {
 
-      var storagePath = cv.role.HasChildren.getStoragePath(page, path);
+      var storagePath = cv.xml.Parser.getStoragePath(page, path);
       var addresses = {};
       if (qx.bom.element.Attribute.get(page, 'ga')) {
         var src = qx.bom.element.Attribute.get(page, 'ga');
@@ -117,8 +113,10 @@ qx.Class.define('cv.xml.parser.widgets.Page', {
         $$type            : "page",
         backdrop          : backdrop || null
       });
+      cv.xml.Parser.parseAddress(page, path);
+      cv.xml.Parser.parseFormat(page, path);
       // this has to be called manually to allow inheritance of the flavour, pageType values
-      cv.role.HasChildren.parseChildren(page, path, flavour, pageType);
+      cv.xml.Parser.parseChildren(page, path, flavour, pageType);
       if (data.linkVisible === true) {
         var linkData = cv.data.Model.getInstance().setWidgetData( path, {
           $$type          : "pagelink",

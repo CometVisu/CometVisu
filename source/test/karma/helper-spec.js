@@ -49,7 +49,7 @@ var createTestWidgetString = function (name, attributes, content) {
     var page = qx.dom.Element.create("page", {visible: "false"});
     qx.dom.Element.insertEnd(elem, page);
     data = cv.xml.Parser.parse(page, 'id', null, "text");
-    cv.structure.WidgetFactory.createInstance(data.$$type, data);
+    cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
     data = cv.data.Model.getInstance().getWidgetData(data['children'][0]);
   } else {
     data = cv.xml.Parser.parse(elem, 'id_0', null, "text");
@@ -58,7 +58,7 @@ var createTestWidgetString = function (name, attributes, content) {
   if (Array.isArray(data)) {
     var widgetInstance = [];
     for (var i = 0, l = data.length; i < l; i++) {
-      var inst = cv.structure.WidgetFactory.createInstance(data[i].$$type, data[i]);
+      var inst = cv.ui.structure.WidgetFactory.createInstance(data[i].$$type, data[i]);
       var source = inst.getDomString ? inst.getDomString() : null;
       if (source) {
         res = [inst, source];
@@ -72,7 +72,7 @@ var createTestWidgetString = function (name, attributes, content) {
       return [widgetInstance[0], '']
     }
   } else if (data) {
-    var inst = cv.structure.WidgetFactory.createInstance(data.$$type, data);
+    var inst = cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
     if (inst) {
       res.push(inst);
       if (inst.getDomString) {
@@ -119,7 +119,7 @@ var createTestElement = function (name, attributes, content, address, addressAtt
 resetApplication = function() {
   // cleanup
   cv.data.Model.getInstance().clear();
-  cv.structure.WidgetFactory.clear();
+  cv.ui.structure.WidgetFactory.clear();
 
   var subs = qx.event.message.Bus.getInstance().getSubscriptions();
   Object.getOwnPropertyNames(subs).forEach(function(topic) {
@@ -313,7 +313,7 @@ beforeEach(function () {
 afterEach(function () {
   templateEngine.widgetData = {};
   cv.data.Model.getInstance().clear();
-  cv.structure.WidgetFactory.clear();
+  cv.ui.structure.WidgetFactory.clear();
 
   var subs = qx.event.message.Bus.getInstance().getSubscriptions();
   Object.getOwnPropertyNames(subs).forEach(function(topic) {

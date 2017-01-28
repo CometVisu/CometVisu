@@ -22,8 +22,7 @@
  * Parse &lt;audio;gt; config elements
  */
   qx.Class.define('cv.xml.parser.widgets.Audio', {
-    extend: cv.xml.parser.AbstractBasicWidget,
-    include: cv.role.Update,
+    type: "static",
 
     /*
     ******************************************************
@@ -31,6 +30,22 @@
     ******************************************************
     */
     statics: {
+
+      /**
+       * Parses the widgets XML configuration and extracts the given information
+       * to a simple key/value map.
+       *
+       * @param xml {Element} XML-Element
+       * @param path {String} internal path of the widget
+       * @param flavour {String} Flavour of the widget
+       * @param pageType {String} Page type (2d, 3d, ...)
+       */
+      parse: function (xml, path, flavour, pageType) {
+        var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+        cv.xml.Parser.parseFormat(xml, path);
+        cv.xml.Parser.parseAddress(xml, path);
+        return data;
+      },
 
       /**
        * Returns a map with definitions for the XML Parser to map XML-Attribute values

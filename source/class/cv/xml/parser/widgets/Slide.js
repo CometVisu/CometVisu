@@ -22,8 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.Slide', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: [cv.role.Operate, cv.role.Update],
+  type: "static",
 
   /*
   ******************************************************
@@ -31,14 +30,19 @@ qx.Class.define('cv.xml.parser.widgets.Slide', {
   ******************************************************
   */
   statics: {
-    getAttributeToPropertyMappings: function () {
-      return {
-        'step': {"default": 0.5, transform: parseFloat},
-        'send_on_finish': {target: 'sendOnFinish', "default": false}
-      };
-    },
-
-    afterParse: function (xml, path) {
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.xml.Parser.parseFormat(xml, path);
+      cv.xml.Parser.parseAddress(xml, path);
 
       var datatype_min, datatype_max;
       qx.bom.Selector.matches("address", qx.dom.Hierarchy.getChildElements(xml)).forEach(function(elem) {
@@ -55,15 +59,21 @@ qx.Class.define('cv.xml.parser.widgets.Slide', {
       var min = parseFloat(xml.getAttribute('min') || datatype_min || 0);
       var max = parseFloat(xml.getAttribute('max') || datatype_max || 100);
 
-      var data = cv.data.Model.getInstance().getWidgetData(path);
       data.min = min;
       data.max = max;
+      return data;
+    },
+
+    getAttributeToPropertyMappings: function () {
+      return {
+        'step': {"default": 0.5, transform: parseFloat},
+        'send_on_finish': {target: 'sendOnFinish', "default": false}
+      };
     }
   },
 
   defer: function (statics) {
     // register the parser
     cv.xml.Parser.addHandler("slide", statics);
-    cv.xml.Parser.addHook("slide", "after", statics.afterParse, statics);
   }
 });

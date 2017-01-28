@@ -33,6 +33,19 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
    ******************************************************
    */
   statics: {
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      return cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+    },
+
     getAttributeToPropertyMappings: function() {
       return {
         width: { transform: function(value) {
@@ -98,7 +111,6 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
   defer: function(statics) {
     // register the parser
     cv.xml.Parser.addHandler("diagram", cv.plugins.diagram.Diagram);
-    cv.xml.Parser.addHook("diagram", "after", cv.plugins.diagram.AbstractDiagram.afterParse, cv.plugins.diagram.AbstractDiagram);
     cv.ui.structure.WidgetFactory.registerClass("diagram", statics);
   }
 });

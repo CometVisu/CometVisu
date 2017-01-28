@@ -22,8 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.Image', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: cv.role.Refresh,
+  type: "static",
 
   /*
   ******************************************************
@@ -31,6 +30,21 @@ qx.Class.define('cv.xml.parser.widgets.Image', {
   ******************************************************
   */
   statics: {
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.xml.Parser.parseRefresh(xml, path);
+      return data;
+    },
+
     getAttributeToPropertyMappings: function () {
       return {
         'width'       :   {},

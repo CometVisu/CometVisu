@@ -23,7 +23,7 @@
  */
 qx.Class.define('cv.xml.parser.AbstractBasicWidget', {
   extend: qx.core.Object,
-  include: cv.role.HasStyling,
+
 
   /*
   ******************************************************
@@ -41,7 +41,7 @@ qx.Class.define('cv.xml.parser.AbstractBasicWidget', {
     },
 
     /**
-     * Parse the widgets XML confuguration
+     * Parse the widgets XML configuration
      * @param element {Element} the widgets XML Element from the config file
      * @param path {String} internal path to the widget
      * @param flavour {String} inherited flavour

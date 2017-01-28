@@ -22,10 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.PageJump', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: [
-    cv.role.HasChildren
-  ],
+  type: "static",
 
   /*
   ******************************************************
@@ -33,13 +30,28 @@ qx.Class.define('cv.xml.parser.widgets.PageJump', {
   ******************************************************
   */
   statics: {
-    afterParse: function(xml, path) {
-      var data = cv.data.Model.getInstance().getWidgetData(path);
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+
       var widgetInfo = qx.bom.Selector.query('widgetinfo > *', xml)[0];
       if (widgetInfo!==undefined) {
         data.classes += " infoaction";
       }
+
+      cv.xml.Parser.parseChildren(xml, path, flavour, pageType);
+      cv.xml.Parser.parseAddress(xml, path);
+      return data;
     },
+
     getAttributeToPropertyMappings: function () {
       return {
         'target'      : { 'default': '0' },
@@ -53,7 +65,5 @@ qx.Class.define('cv.xml.parser.widgets.PageJump', {
   defer: function(statics) {
     // register the parser
     cv.xml.Parser.addHandler("pagejump", statics);
-    cv.xml.Parser.addHook("pagejump", "after", statics.afterParse, statics);
-    cv.xml.Parser.addHook("pagejump", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
   }
 });

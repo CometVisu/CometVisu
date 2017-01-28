@@ -22,12 +22,32 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.InfoAction', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: cv.role.HasChildren,
+  type: "static",
+
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.xml.Parser.parseChildren(xml, path, flavour, pageType);
+      return data;
+    }
+  },
 
   defer: function (statics) {
     // register the parser
     cv.xml.Parser.addHandler("infoaction", statics);
-    cv.xml.Parser.addHook("infoaction", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
   }
 });

@@ -22,7 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.Line', {
-  extend: cv.xml.parser.AbstractBasicWidget,
+  type: "static",
 
   /*
   ******************************************************
@@ -30,6 +30,19 @@ qx.Class.define('cv.xml.parser.widgets.Line', {
   ******************************************************
   */
   statics: {
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      return cv.xml.Parser.parseElement(this, xml, path, flavour, pageType);
+    },
+
     getDefaultClasses: function() {
       return '';
     }

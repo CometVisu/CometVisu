@@ -22,8 +22,7 @@
  * Parse &lt;designtoggle;gt; config elements
  */
 qx.Class.define('cv.xml.parser.widgets.DesignToggle', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: [cv.role.Operate, cv.role.HasAnimatedButton],
+  type: "static",
 
   /*
    ******************************************************
@@ -31,6 +30,10 @@ qx.Class.define('cv.xml.parser.widgets.DesignToggle', {
    ******************************************************
    */
   statics: {
+    parse: function (xml, path, flavour, pageType) {
+      return cv.xml.Parser.parseElement(this, xml, path, flavour, pageType);
+    },
+
     getDefaultClasses: function() {
       return 'widget clearfix toggle';
     }

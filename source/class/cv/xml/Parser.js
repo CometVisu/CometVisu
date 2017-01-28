@@ -20,7 +20,6 @@
 
 //noinspection JSUnusedGlobalSymbols
 qx.Class.define('cv.xml.Parser', {
-
   type: "static",
 
   /*
@@ -36,10 +35,11 @@ qx.Class.define('cv.xml.Parser', {
     },
     lookupM : [ 0, 2, 4,  6,  6,  6,  6, 12, 12, 12, 12, 12, 12 ],
     lookupS : [ 0, 3, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 ],
+    model: cv.data.Model.getInstance(),
 
     addHandler: function (tagName, handler) {
       this.__handlers[tagName.toLowerCase()] = handler;
-      this.__applyHooks(tagName, handler);
+      // this.__applyHooks(tagName, handler);
     },
 
     /**
@@ -103,21 +103,30 @@ qx.Class.define('cv.xml.Parser', {
       var parser = this.getHandler(xml.nodeName);
       var result = null;
       if (parser) {
-        this.getHooks("before", xml.nodeName.toLowerCase()).forEach(function(entry) {
-          entry[0].call(entry[1] || this, xml, path, flavour, pageType);
-        }, this);
-        if (parser.parse) {
+        // this.getHooks("before", xml.nodeName.toLowerCase()).forEach(function(entry) {
+        //   entry[0].call(entry[1] || this, xml, path, flavour, pageType);
+        // }, this);
+        // if (parser.parse) {
           result = parser.parse(xml, path, flavour, pageType);
-        } else {
-          result = this.__parse(parser, xml, path, flavour, pageType);
-        }
-        this.getHooks("after", xml.nodeName.toLowerCase()).forEach(function(entry) {
-          entry[0].call(entry[1] || this, xml, path, flavour, pageType);
-        }, this);
+        // } else {
+        //   result = this.parseElement(parser, xml, path, flavour, pageType);
+        // }
+        // this.getHooks("after", xml.nodeName.toLowerCase()).forEach(function(entry) {
+        //   entry[0].call(entry[1] || this, xml, path, flavour, pageType);
+        // }, this);
       } else {
         qx.log.Logger.debug("no parse handler registered for type: "+ xml.nodeName.toLowerCase());
       }
       return result;
+    },
+
+
+    parseBasicElement: function (element, path, flavour, pageType) {
+      return this.model.setWidgetData( path, {
+        'path': path,
+        '$$type': cv.xml.Parser.getElementType(element),
+        'pageType': pageType
+      });
     },
 
     /**
@@ -131,10 +140,9 @@ qx.Class.define('cv.xml.Parser', {
      * @param pageType {String} Page type (2d, 3d, ...)
      * @return {Map} HTML code
      */
-    __parse: function (handler, element, path, flavour, pageType) {
+    parseElement: function (handler, element, path, flavour, pageType, mappings) {
       // and fill in widget specific data
       var data = this.createDefaultWidget(handler, this.getElementType(element), element, path, flavour, pageType);
-      var mappings = this.__getAttributeToPropertyMappings(handler);
       if (mappings) {
         for (var key in mappings) {
           if (mappings.hasOwnProperty(key)) {
@@ -210,7 +218,7 @@ qx.Class.define('cv.xml.Parser', {
       if (qx.bom.element.Attribute.get(element, 'class')) {
         classes += ' custom_' + qx.bom.element.Attribute.get(element, 'class');
       }
-      var label = (widgetType==='text') ? this.extractLabel( qx.bom.Selector.query("label", element)[0], flavour, '' ) : this.extractLabel( qx.bom.Selector.query("label", element)[0], flavour );
+      var label = (widgetType==='text') ? this.parseLabel( qx.bom.Selector.query("label", element)[0], flavour, '' ) : this.parseLabel( qx.bom.Selector.query("label", element)[0], flavour );
 
       var bindClickToWidget = cv.TemplateEngine.getInstance().bindClickToWidget;
       if (qx.bom.element.Attribute.get(element, "bind_click_to_widget")) {
@@ -232,7 +240,7 @@ qx.Class.define('cv.xml.Parser', {
       data.classes = classes || '';
       data.style = style || '';
 
-      return cv.data.Model.getInstance().setWidgetData( path, data);
+      return this.model.setWidgetData( path, data);
     },
 
     /**
@@ -328,7 +336,7 @@ qx.Class.define('cv.xml.Parser', {
       return ret_val;
     },
 
-    extractLabel: function( label, flavour, labelClass, style )
+    parseLabel: function(label, flavour, labelClass, style )
     {
       if( !label ) {
         return '';
@@ -361,7 +369,7 @@ qx.Class.define('cv.xml.Parser', {
      */
     setWidgetLayout: function( element, path ) {
       var
-        elementData = cv.data.Model.getInstance().getWidgetData( path ),
+        elementData = this.model.getWidgetData( path ),
         layout      = qx.bom.Selector.matches('layout', qx.dom.Hierarchy.getChildElements(element))[0],
         ret_val = '',
         rowspan = null;
@@ -381,6 +389,132 @@ qx.Class.define('cv.xml.Parser', {
         ret_val = 'innerrowspan';
       }
       return ret_val;
+    },
+
+    /**
+     * Parse the format setting
+     * @param xml {Element} XML-Element from config
+     * @param path {String} path to the widget
+     */
+    parseFormat: function (xml, path) {
+      var data = this.model.getWidgetData(path);
+      var value = qx.bom.element.Attribute.get(xml, 'format');
+      if (value) {
+        data.format = value;
+      }
+    },
+
+    /**
+     * Parses the address element
+     * @param xml {Element} address XML-Element from config
+     * @param path {String} path to the widget
+     * @param makeAddressListFn {Function?} callback for parsing address variants
+     */
+    parseAddress: function (xml, path, makeAddressListFn) {
+      if (xml.nodeName.toLowerCase() !== "page") {
+        var data = this.model.getWidgetData(path);
+        data.address = cv.xml.Parser.makeAddressList(xml, path, makeAddressListFn);
+      }
+    },
+
+    /**
+     * this function extracts all addresses with attributes (JNK)
+     *                       elements. The first is a boolean that determins if
+     *                       the visu should listen for that address. The second
+     *                       is added as it is to the returned object.
+     *
+     * @param element {Element} address XML-Element from the config file
+     * @param id {String} id / path to the widget
+     * @param makeAddressListFn {Function?} callback for parsing address variants
+     * @return {Object} address
+     */
+    makeAddressList: function (element, id, makeAddressListFn) {
+      var address = {};
+      qx.bom.Selector.query('address', element).forEach(function (elem) {
+        var
+          src = elem.textContent,
+          transform = qx.bom.element.Attribute.get(elem, 'transform'),
+          formatPos = +(qx.bom.element.Attribute.get(elem, 'format-pos') || 1) | 0, // force integer
+          mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
+
+        if ((!src) || (!transform)) {// fix broken address-entries in config
+          return;
+        }
+        switch (qx.bom.element.Attribute.get(elem, 'mode')) {
+          case 'disable':
+            mode = 0;
+            break;
+          case 'read':
+            mode = 1;
+            break;
+          case 'write':
+            mode = 2;
+            break;
+          case 'readwrite':
+            mode = 1 | 2;
+            break;
+        }
+        var variantInfo = makeAddressListFn ? makeAddressListFn(src, transform, mode, qx.bom.element.Attribute.get(elem, 'variant')) : [true, undefined];
+        if ((mode & 1) && variantInfo[0]) {// add only addresses when reading from them
+          this.model.addAddress(src, id);
+        }
+        address[src] = [transform, mode, variantInfo[1], formatPos];
+      }, this);
+      return address;
+    },
+
+    parseRefresh: function (xml, path) {
+      var data = this.model.getWidgetData(path);
+      data.refresh = xml.getAttribute('refresh') ? parseInt(xml.getAttribute('refresh')) * 1000 : 0;
+    },
+
+    parseStyling: function (xml, path) {
+      var data = this.model.getWidgetData(path);
+      data.styling = qx.bom.element.Attribute.get(xml, 'styling');
+    },
+
+    // this might have been called from the cv.xml.Parser with the including class as context
+    parseChildren: function (xml, path, flavour, pageType) {
+      var data = this.model.getWidgetData(this.getStoragePath(xml, path));
+
+      if (!data.children) {
+        data.children = [];
+      }
+      var childs = qx.dom.Hierarchy.getChildElements(xml).filter(function(child) {
+        return ['layout', 'label', 'address'].indexOf(qx.dom.Node.getName(child)) === -1;
+      }, this);
+      childs.forEach(function (child, idx) {
+        var childData = cv.xml.Parser.parse(child, path + '_' + idx, flavour, pageType);
+        if (childData) {
+          if (Array.isArray(childData)) {
+            for (var i = 0, l = childData.length; i < l; i++) {
+              data.children.push(childData[i].path);
+            }
+          } else if (childData.path) {
+            data.children.push(childData.path);
+          }
+        }
+      }, this);
+      return data;
+    },
+
+    /**
+     * Returns the path where the widget data is stored, usually this is the same path, but there are
+     * exceptions for pages which are handled here
+     *
+     * @param xml {Element} widgets XML config element
+     * @param path {String} internal widget path e.g. id_0_2
+     */
+    getStoragePath: function (xml, path) {
+      if (xml.length === 1) {
+        xml = xml[0];
+      }
+      switch (xml.nodeName.toLowerCase()) {
+        case "page":
+          return path + "_";
+        default:
+          return path;
+      }
     }
   }
 });

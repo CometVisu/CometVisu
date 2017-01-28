@@ -22,8 +22,7 @@
  * Parse group config elements
  */
 qx.Class.define('cv.xml.parser.widgets.Group', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: cv.role.HasChildren,
+  type: "static",
 
   /*
   ******************************************************
@@ -31,8 +30,17 @@ qx.Class.define('cv.xml.parser.widgets.Group', {
   ******************************************************
   */
   statics: {
-    afterParse: function (xml, path, flavour, pageType) {
-      var data = cv.data.Model.getInstance().getWidgetData(cv.role.HasChildren.getStoragePath(xml, path));
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
       if (data.target) {
         data.classes += ' clickable';
         data.bindClickToWidget = true; // for groups with pagejumps this is mandatory
@@ -40,7 +48,10 @@ qx.Class.define('cv.xml.parser.widgets.Group', {
       if (data.noWidget === true) {
         data.classes = data.classes.replace("widget ", "");
       }
+      cv.xml.Parser.parseChildren(xml, path, flavour, pageType);
+      return data;
     },
+
     getAttributeToPropertyMappings: function () {
       return {
         'nowidget': {
@@ -56,7 +67,5 @@ qx.Class.define('cv.xml.parser.widgets.Group', {
 
   defer: function(statics) {
     cv.xml.Parser.addHandler("group", statics);
-    cv.xml.Parser.addHook("group", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
-    cv.xml.Parser.addHook("group", "after", statics.afterParse, statics);
   }
 });

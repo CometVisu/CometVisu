@@ -22,8 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.NavBar', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: cv.role.HasChildren,
+  type: "static",
   
   /*
   ******************************************************
@@ -31,6 +30,20 @@ qx.Class.define('cv.xml.parser.widgets.NavBar', {
   ******************************************************
   */
   statics: {
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.xml.Parser.parseChildren(xml, path, flavour, pageType);
+      return data;
+    },
 
     createDefaultWidget: function (widgetType, n, path) {
 
@@ -47,7 +60,7 @@ qx.Class.define('cv.xml.parser.widgets.NavBar', {
         'scope': parseFloat(qx.bom.element.Attribute.get(n, 'scope')) || -1
       });
 
-      return cv.data.Model.getInstance().setWidgetData(cv.role.HasChildren.getStoragePath(n, path), {
+      return cv.data.Model.getInstance().setWidgetData(cv.xml.Parser.getStoragePath(n, path), {
         'path': path,
         'classes': classes,
         '$$type': widgetType
@@ -71,6 +84,5 @@ qx.Class.define('cv.xml.parser.widgets.NavBar', {
   
   defer: function(statics) {
     cv.xml.Parser.addHandler("navbar", statics);
-    cv.xml.Parser.addHook("navbar", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
   }
 });

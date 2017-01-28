@@ -68,6 +68,31 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
   */
   statics: {
     cache: {},
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType, mappings) {
+      if (mappings) {
+        mappings = qx.lang.Object.mergeWith(mappings, this.getAttributeToPropertyMappings());
+      } else {
+        mappings = this.getAttributeToPropertyMappings();
+      }
+      cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, mappings);
+      cv.xml.Parser.parseRefresh(xml, path);
+
+      var legend = qx.bom.element.Attribute.get(xml, "legend") || "both";
+      return cv.data.Model.getInstance().setWidgetData( path, {
+        content           : this.getDiagramElements(xml),
+        legendInline      : ["both", "inline"].indexOf(legend) >= 0,
+        legendPopup       : ["both", "popup"].indexOf(legend) >= 0
+      } );
+    },
 
     getAttributeToPropertyMappings: function() {
       return {
@@ -95,15 +120,6 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           return value === "true";
         }}
       };
-    },
-
-    afterParse: function(element, path) {
-      var legend = qx.bom.element.Attribute.get(element, "legend") || "both";
-      return cv.data.Model.getInstance().setWidgetData( path, {
-        content           : this.getDiagramElements(element),
-        legendInline      : ["both", "inline"].indexOf(legend) >= 0,
-        legendPopup       : ["both", "popup"].indexOf(legend) >= 0
-      } );
     },
 
     getDiagramElements: function(xmlElement) {

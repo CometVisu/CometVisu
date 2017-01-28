@@ -63,26 +63,6 @@ qx.Mixin.define("cv.role.BasicUpdate", {
   },
 
   /*
-   ******************************************************
-   STATICS
-   ******************************************************
-   */
-  statics: {
-    /**
-     * Parse the format setting
-     * @param xml {Element} XML-Element from config
-     * @param path {String} path to the widget
-     */
-    parse: function (xml, path) {
-      var data = cv.data.Model.getInstance().getWidgetData(path);
-      var value = qx.bom.element.Attribute.get(xml, 'format');
-      if (value) {
-        data.format = value;
-      }
-    }
-  },
-
-  /*
   ******************************************************
     MEMBERS
   ******************************************************

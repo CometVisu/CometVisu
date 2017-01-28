@@ -22,11 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.Web', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: [
-    cv.role.Update,
-    cv.role.Refresh
-  ],
+  type: "static",
 
   /*
   ******************************************************
@@ -34,6 +30,32 @@ qx.Class.define('cv.xml.parser.widgets.Web', {
   ******************************************************
   */
   statics: {
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.xml.Parser.parseFormat(xml, path);
+      cv.xml.Parser.parseAddress(xml, path);
+      cv.xml.Parser.parseRefresh(xml, path);
+
+      var ga = xml.getAttribute("ga");
+      if (ga) {
+        cv.data.Model.getInstance().addAddress(ga);
+        if (cv.Config.backend.substr(0, 2) === "oh") {
+          data.address['_' + ga] = ['OH:switch', 'OFF'];
+        } else {
+          data.address['_' + ga] = ['DPT:1.001', 0];
+        }
+      }
+      return data;
+    },
 
     /**
      * Returns a mapping to map XML-Attributes to properties to help the parser to parse the config element.
@@ -53,31 +75,12 @@ qx.Class.define('cv.xml.parser.widgets.Web', {
         src: {},
         scrolling: {}
       };
-    },
-
-    /**
-     * Parsed the ga attribute if set
-     * @param xml {Element} web XML-Element from config
-     * @param path {String} path to the widget
-     */
-    afterParse: function (xml, path) {
-      var data = cv.data.Model.getInstance().getWidgetData(path);
-      var ga = xml.getAttribute("ga");
-      if (ga) {
-        cv.data.Model.getInstance().addAddress(ga);
-        if (cv.Config.backend.substr(0, 2) === "oh") {
-          data.address['_' + ga] = ['OH:switch', 'OFF'];
-        } else {
-          data.address['_' + ga] = ['DPT:1.001', 0];
-        }
-      }
     }
   },
 
   defer: function(statics) {
     // register the parser
     cv.xml.Parser.addHandler("web", statics);
-    cv.xml.Parser.addHook("web", "after", statics.afterParse, statics);
   }
 });
 

@@ -73,57 +73,6 @@ qx.Mixin.define("cv.role.HasChildren", {
 
   /*
   ******************************************************
-    STATICS
-  ******************************************************
-  */
-  statics: {
-    // this might have been called from the cv.xml.Parser with the including class as context
-    parseChildren: function (xml, path, flavour, pageType) {
-      var data = cv.data.Model.getInstance().getWidgetData(cv.role.HasChildren.getStoragePath(xml, path));
-
-      if (!data.children) {
-        data.children = [];
-      }
-      var childs = qx.dom.Hierarchy.getChildElements(xml).filter(function(child) {
-        return ['layout', 'label', 'address'].indexOf(qx.dom.Node.getName(child)) === -1;
-      }, this);
-      childs.forEach(function (child, idx) {
-        var childData = cv.xml.Parser.parse(child, path + '_' + idx, flavour, pageType);
-        if (childData) {
-          if (Array.isArray(childData)) {
-            for (var i = 0, l = childData.length; i < l; i++) {
-              data.children.push(childData[i].path);
-            }
-          } else if (childData.path) {
-            data.children.push(childData.path);
-          }
-        }
-      }, this);
-      return data;
-    },
-
-    /**
-     * Returns the path where the widget data is stored, usually this is the same path, but there are
-     * exceptions for pages which are handled here
-     *
-     * @param xml {Element} widgets XML config element
-     * @param path {String} internal widget path e.g. id_0_2
-     */
-    getStoragePath: function (xml, path) {
-      if (xml.length === 1) {
-        xml = xml[0];
-      }
-      switch (xml.nodeName.toLowerCase()) {
-        case "page":
-          return path + "_";
-        default:
-          return path;
-      }
-    }
-  },
-
-  /*
-  ******************************************************
     MEMBERS
   ******************************************************
   */

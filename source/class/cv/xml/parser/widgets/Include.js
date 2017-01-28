@@ -27,8 +27,7 @@
  * @since 0.8.0 (2012)
  */
 qx.Class.define('cv.xml.parser.widgets.Include', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: cv.role.Update,
+  type: "static",
 
   /*
   ******************************************************

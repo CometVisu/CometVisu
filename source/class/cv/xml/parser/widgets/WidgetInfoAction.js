@@ -22,8 +22,7 @@
  *
  */
 qx.Class.define('cv.xml.parser.widgets.WidgetInfoAction', {
-  extend: cv.xml.parser.AbstractBasicWidget,
-  include: cv.role.HasChildren,
+  type: "static",
 
   /*
    ******************************************************
@@ -31,18 +30,25 @@ qx.Class.define('cv.xml.parser.widgets.WidgetInfoAction', {
    ******************************************************
    */
   statics: {
-    afterParse: function (xml, path) {
-      var data = cv.data.Model.getInstance().getWidgetData(path);
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType);
       data.containerClass = data.$$type;
+      cv.xml.Parser.parseChildren(xml, path, flavour, pageType);
+      return data;
     }
   },
 
   defer: function (statics) {
     cv.xml.Parser.addHandler("widgetinfo", statics);
     cv.xml.Parser.addHandler("widgetaction", statics);
-    cv.xml.Parser.addHook("widgetinfo", "after", statics.afterParse, statics);
-    cv.xml.Parser.addHook("widgetaction", "after", statics.afterParse, statics);
-    cv.xml.Parser.addHook("widgetinfo", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
-    cv.xml.Parser.addHook("widgetaction", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
   }
 });

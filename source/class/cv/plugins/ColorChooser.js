@@ -29,13 +29,28 @@ qx.Class.define('cv.plugins.ColorChooser', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Update, cv.role.Operate],
 
-
   /*
   ******************************************************
     STATICS
   ******************************************************
   */
   statics: {
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType);
+      cv.xml.Parser.parseFormat(xml, path);
+      cv.xml.Parser.parseAddress(xml, path, this.makeAddressListFn);
+      return data;
+    },
+
     makeAddressListFn: function( src, transform, mode, variant ) {
       return [ true, variant ];
     }
@@ -218,7 +233,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
     loader.addStyles('plugins/colorchooser/farbtastic/farbtastic.css');
     loader.addScripts('plugins/colorchooser/farbtastic/farbtastic.min.js');
     // register the parser
-    cv.xml.Parser.addHandler("colorchooser", cv.plugins.ColorChooser);
+    cv.xml.Parser.addHandler("colorchooser", statics);
     cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);
   }
 });
