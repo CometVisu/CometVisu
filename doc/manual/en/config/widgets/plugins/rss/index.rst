@@ -3,23 +3,23 @@
 The rss plugin
 ==============
 
-.. api-doc:: rss
-
+R
 Description
 -----------
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
 This plugins integrates zrssfeed to display RSS-Feeds via Google-API 
-*and* a parser for local feeds using jQuery 1.5+ into CometVisu.
+and a parser for local feeds using jQuery 1.5+ into CometVisu.
 rssfeedlocal is derived from simplerss and zrssfeed
 rssfeedlocal is mainly meant to be used with rsslog.php and plugins
 
-.. code-block:: xml
+<pre class="sunlight-highlight-xml">
+  &lt;rss src=&quot;/visu/plugins/rss/rsslog.php&quot; refresh=&quot;300&quot; link=&quot;false&quot; title=&quot;false&quot;&gt;&lt;/rss&gt;
+  &lt;rss src=&quot;http://www.tagesschau.de/xml/rss2&quot; refresh=&quot;300&quot;&gt;Test API&lt;/rss&gt;
+  &lt;rss src=&quot;/visu/plugins/rss/tagesschau-rss2.xml&quot; refresh=&quot;300&quot; header=&quot;true&quot; date=&quot;true&quot;&gt;&lt;/rss&gt;
+</pre>
 
-      <rss src="/visu/plugins/rss/rsslog.php" refresh="300" link="false" title="false"></rss>
-      <rss src="http://www.tagesschau.de/xml/rss2" refresh="300">Test API</rss>
-      <rss src="/visu/plugins/rss/tagesschau-rss2.xml" refresh="300" header="true" date="true"></rss>
 
 .. ###END-WIDGET-DESCRIPTION###
 

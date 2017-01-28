@@ -51,6 +51,7 @@ class WidgetExampleParser:
         settings_node = None
         global_caption = None
         meta_content = None
+        config_example = None
 
         if not name in self.counters:
             self.counters[name] = 0
@@ -72,11 +73,11 @@ class WidgetExampleParser:
                         global_caption = child.text
                     else:
                         # the config example
-                        config = child
+                        config_example = child
         except Exception as e:
             print("Parse error: %s" % str(e))
 
-        example_content = etree.tostring(config, encoding='utf-8')
+        example_content = etree.tostring(config_example, encoding='utf-8')
         display_content = example_content
 
         if meta_node is not None:
@@ -142,7 +143,7 @@ class WidgetExampleParser:
         result = {
             "example_content": example_content,
             "display_content": display_content,
-            "example_tag": config.tag,
+            "example_tag": config_example.tag,
             "meta_content": meta_content,
             "global_caption": global_caption,
             "settings": settings,

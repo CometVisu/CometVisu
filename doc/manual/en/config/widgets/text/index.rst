@@ -72,12 +72,13 @@ for the Text widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. figure:: _static/text_example.png
 .. code-block:: xml
 
     
     <text align="center"><label>Example text</label></text>
         
+    
+    
 
 .. ###END-WIDGET-EXAMPLES###
 

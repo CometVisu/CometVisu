@@ -3,7 +3,7 @@
 The powerspectrum plugin
 ========================
 
-.. api-doc:: powerspectrum
+.. api-doc:: PowerSpectrum
 
 Description
 -----------

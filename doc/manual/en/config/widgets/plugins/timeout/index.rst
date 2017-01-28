@@ -3,7 +3,7 @@
 The timeout plugin
 ==================
 
-.. api-doc:: timeout
+.. api-doc:: Timeout
 
 Description
 -----------
@@ -11,6 +11,7 @@ Description
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
 This plugins jumps back to a defined page after a given timeout period
+
 
 .. ###END-WIDGET-DESCRIPTION###
 

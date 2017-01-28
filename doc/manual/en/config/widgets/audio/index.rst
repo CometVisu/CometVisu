@@ -12,6 +12,7 @@ Description
 
 The audio widget embeds an audio file, which can be automatically played by incoming data
 
+
 .. ###END-WIDGET-DESCRIPTION###
 
 Settings
@@ -71,10 +72,6 @@ for the Audio widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. figure:: _static/audio_example.png
-
-    Default example for defining an audio widget in the configuration
-
 .. code-block:: xml
 
     
@@ -84,6 +81,7 @@ for the Audio widget.
       <address transform="DPT:1.001" mode="read">0/0/0</address>
     </audio>
         
+    
 
 .. ###END-WIDGET-EXAMPLES###
 

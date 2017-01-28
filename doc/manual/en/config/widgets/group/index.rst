@@ -60,10 +60,6 @@ for the Group widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. figure:: _static/group_with_border.png
-
-    Group with border and name
-
 .. code-block:: xml
 
     
@@ -82,10 +78,6 @@ for the Group widget.
        </info>
      </group>
         
-.. figure:: _static/group_without_border.png
-
-    Hidden Group: no border no name
-
 .. code-block:: xml
 
     

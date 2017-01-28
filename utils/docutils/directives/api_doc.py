@@ -76,14 +76,20 @@ class ApiDocDirective(Directive):
             doc_parts = [self.arguments[1]]
 
         # find widget
-        widget_path = os.path.join(root_dir, "source", "class", "cv", "structure", "pure", "%s.js" % widget_name)
+        widget_path = os.path.join(config.get("manual-en", "widgets-path"), "%s.js" % widget_name)
+        if not os.path.exists(widget_path):
+            # try parser
+            widget_path = os.path.join(config.get("manual-en", "parsers-path"), "%s.js" % widget_name)
+
         if not os.path.exists(widget_path):
             # try plugin
-            widget_path = os.path.join(root_dir, "source", "resource", "plugins", widget_name, "structure_plugin.js")
+            widget_path = os.path.join(config.get("manual-en", "plugins-path"), "%s.js" % widget_name)
 
         if not os.path.exists(widget_path):
             print("No widget or plugin named '%s' found" % widget_name)
             return []
+        else:
+            print("using source from: %s" % widget_path)
 
         content = {}
         with open(widget_path, "rb") as f:

@@ -234,13 +234,16 @@ class DocGenerator(Command):
                         if match:
                             indent = ""
                             if match.group(1)[0:1] == "@":
-                                if match.group(1)[1:15] == "widget_example":
+                                directive = match.group(1)[1:].split(" ")[0]
+                                print(directive)
+                                if directive == "widgetexample":
                                     section = "WIDGET-EXAMPLES"
 
                                     # we need to parse the examples xml and check if the screenshots already exist
                                     # in the api-docs, then we need not to process them twice and jsut add a combination
                                     # of a figure and a clode-block here
-                                    example_code = match.group(1)[16:]
+                                    raw_code = match.group(1)[14:]
+                                    example_code = raw_code
                                     for k, example_line in enumerate(lines[i+1:]):
                                         if re.match("^[\s*]*(\*/|@.+)\s*$", example_line) or len(re.sub("[\s*\n]", "", example_line)) == 0:
                                             # example finished
@@ -282,10 +285,10 @@ class DocGenerator(Command):
                                             # no screenshot name defined, the auto-configured name cannot be guessed
                                             # reliable -> using widget-example
                                             skip_lines_before = 0
-                                            content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+                                            content[section].append(".. widget-example::\n\n    %s\n" % raw_code)
                                     else:
                                         # no screenshot found, add widget-example th generate one
-                                        content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+                                        content[section].append(".. widget-example::\n\n    %s\n" % raw_code)
 
                                 elif match.group(1)[1:8] == "example":
                                     section = "WIDGET-DESCRIPTION"
