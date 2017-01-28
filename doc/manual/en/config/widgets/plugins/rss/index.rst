@@ -3,7 +3,8 @@
 The rss plugin
 ==============
 
-R
+.. api-doc:: Rss
+
 Description
 -----------
 
