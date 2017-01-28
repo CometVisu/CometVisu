@@ -32,7 +32,7 @@ qx.Mixin.define("cv.ui.common.Update", {
    ******************************************************
    */
   construct: function () {
-    if (this.getAddress) {
+    if (this.getAddress && qx.Class.getEventType(this.constructor, "domReady")) {
       this.addListenerOnce("domReady", this.__initUpdater, this);
     }
   },
