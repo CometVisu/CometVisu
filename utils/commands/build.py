@@ -83,7 +83,7 @@ class BuildHelper(Command):
                                         if first_resource is True:
                                             content = "//PROCESSED\n%s" % content
                                             first_resource = False
-                                        content += " "+rjsmin.jsmin(fr.read().replace("\n", ""), keep_bang_comments=True)
+                                        content += " "+rjsmin.jsmin(fr.read(), keep_bang_comments=True)
 
                         if first_resource is False:
                             # something has been added
