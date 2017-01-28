@@ -92,7 +92,7 @@ qx.Class.define("cv.xml.parser.Meta", {
           }
         }
       }, this);
-      cv.ui.Mappings.addMapping(name, mapping);
+      cv.Config.addMapping(name, mapping);
     },
 
     parseStylings: function(elem) {
@@ -125,7 +125,7 @@ qx.Class.define("cv.xml.parser.Meta", {
         }
       }, this);
       styling.classnames = classnames.trim();
-      cv.ui.Stylings.addStyling(name, styling);
+      cv.Config.addStyling(name, styling);
     },
 
     parseStatusBar: function(elem) {

@@ -94,8 +94,8 @@ qx.Mixin.define("cv.role.BasicUpdate", {
      */
     applyMapping: function (value, mapping) {
       var this_map = mapping || this.getMapping();
-      if (this_map && cv.ui.Mappings.hasMapping(this_map)) {
-        var m = cv.ui.Mappings.getMapping(this_map);
+      if (this_map && cv.Config.hasMapping(this_map)) {
+        var m = cv.Config.getMapping(this_map);
 
         var ret = value;
         if (m.formula) {
@@ -136,8 +136,8 @@ qx.Mixin.define("cv.role.BasicUpdate", {
      * @return {var} the next mapped value
      */
     getNextMappedValue: function (value, this_map) {
-      if (this_map && cv.ui.Mappings.hasMapping(this_map)) {
-        var keys = Object.keys(cv.ui.Mappings.getMapping(this_map));
+      if (this_map && cv.Config.hasMapping(this_map)) {
+        var keys = Object.keys(cv.Config.getMapping(this_map));
         return keys[(keys.indexOf("" + value) + 1) % keys.length];
       }
       return value;

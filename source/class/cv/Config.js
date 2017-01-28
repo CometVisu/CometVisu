@@ -121,7 +121,10 @@ qx.Class.define('cv.Config', {
     /**
      * All configuration and settings from the current configuration
      */
-    configSettings: {},
+    configSettings: {
+      mappings: {},
+      stylings: {}
+    },
 
     /**
      * Array with alls icons defined in the current config file
@@ -140,6 +143,34 @@ qx.Class.define('cv.Config', {
      * @type {Boolean}
      */
     lazyLoading: false,
+
+    addMapping: function (name, mapping) {
+      this.configSettings.mappings[name] = mapping;
+    },
+
+    getMapping: function (name) {
+      return this.configSettings.mappings[name];
+    },
+
+    hasMapping: function(name) {
+      return this.configSettings.mappings.hasOwnProperty(name);
+    },
+
+    clearMappings: function() {
+      this.configSettings.mappings = {};
+    },
+
+    addStyling: function (name, styling) {
+      this.configSettings.stylings[name] = styling;
+    },
+
+    getStyling: function (name) {
+      return this.configSettings.stylings[name];
+    },
+
+    hasStyling: function(name) {
+      return this.configSettings.stylings.hasOwnProperty(name);
+    },
 
     getDesign: function() {
       return this.clientDesign || this.configSettings.clientDesign;

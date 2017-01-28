@@ -43,9 +43,7 @@ qx.Class.define('cv.ConfigCache', {
         hash: this.toHash(xml),
         data: model.getWidgetDataModel(),
         addresses: model.getAddressList(),
-        configSettings: config,
-        mappings: cv.ui.Mappings.getMappings(),
-        stylings: cv.ui.Stylings.getStylings()
+        configSettings: config
       });
       localStorage.setItem(cv.Config.configSuffix+".body", qx.bom.element.Attribute.get(qx.bom.Selector.query('body')[0], 'html'));
     },
@@ -57,8 +55,6 @@ qx.Class.define('cv.ConfigCache', {
       cv.Config.configSettings = cache.configSettings;
       model.setWidgetDataModel(cache.data);
       model.setAddressList(cache.addresses);
-      cv.ui.Mappings.setMappings(cache.mappings);
-      cv.ui.Stylings.setStylings(cache.stylings);
       qx.dom.Element.empty(body);
       qx.bom.Html.clean([cv.ConfigCache.getBody()], null, body);
     },

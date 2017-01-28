@@ -41,7 +41,7 @@ qx.Mixin.define("cv.role.HasStyling", {
   members: {
 
     applyStyling: function (value) {
-      var sty = cv.ui.Stylings.getStyling(this.getStyling());
+      var sty = cv.Config.getStyling(this.getStyling());
       if (sty) {
         var e = qx.bom.Selector.query('.actor:has(".value")', this.getDomElement())[0];
         qx.bom.element.Class.removeClasses(e, sty.classnames.split(" ")); // remove only styling classes

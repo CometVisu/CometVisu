@@ -73,14 +73,14 @@ describe("testing the meta parser", function() {
     parser.parse(xml);
 
     // check mappings
-    expect(cv.ui.Mappings.hasMapping('Off_On')).toBeTruthy();
-    expect(cv.ui.Mappings.hasMapping('Sign')).toBeTruthy();
-    expect(cv.ui.Mappings.hasMapping('KonnexHVAC')).toBeTruthy();
-    expect(cv.ui.Mappings.hasMapping('One1000th')).toBeTruthy();
+    expect(cv.Config.hasMapping('Off_On')).toBeTruthy();
+    expect(cv.Config.hasMapping('Sign')).toBeTruthy();
+    expect(cv.Config.hasMapping('KonnexHVAC')).toBeTruthy();
+    expect(cv.Config.hasMapping('One1000th')).toBeTruthy();
 
     // check stylings
-    expect(cv.ui.Stylings.hasStyling('Red_Green')).toBeTruthy();
-    expect(cv.ui.Stylings.hasStyling('Blue_Purple_Red')).toBeTruthy();
+    expect(cv.Config.hasStyling('Red_Green')).toBeTruthy();
+    expect(cv.Config.hasStyling('Blue_Purple_Red')).toBeTruthy();
 
     // test plugins
     var plugins = parser.parsePlugins(xml);
