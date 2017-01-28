@@ -36,7 +36,6 @@ qx.Mixin.define("cv.role.Operate", {
      * @param event {Event} tap event
      */
     action: function (event) {
-      this.processBeforeChain("action", event);
       if (this._action) {
         this._action(event);
       } else {
@@ -54,7 +53,6 @@ qx.Mixin.define("cv.role.Operate", {
      * @param event {Event} pointerdown event
      */
     downaction: function(event) {
-      this.processBeforeChain("downaction", event);
       if (this._downaction) {
         this._downaction(event);
       }

@@ -24,9 +24,7 @@
  * @class cv.role.Update
  */
 qx.Mixin.define("cv.role.Update", {
-  include: [
-    cv.role.BasicUpdate
-  ],
+  include: cv.role.BasicUpdate,
 
   /*
    ******************************************************
@@ -35,7 +33,7 @@ qx.Mixin.define("cv.role.Update", {
    */
   construct: function () {
     if (this.getAddress) {
-      this.addAfterMethod("_onDomReady", this.__initUpdater, this);
+      this.addListenerOnce("domReady", this.__initUpdater, this);
     }
   },
 

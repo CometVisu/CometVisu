@@ -24,7 +24,7 @@
  */
 qx.Class.define('cv.ui.structure.AbstractWidget', {
   extend: cv.ui.structure.AbstractBasicWidget,
-  include: [cv.role.HasStyling, cv.oo.MMethodChaining],
+  include: cv.role.HasStyling,
   type: "abstract",
 
   /*
@@ -93,6 +93,15 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
 
   /*
   ******************************************************
+    EVENTS
+  ******************************************************
+  */
+  events: {
+    "domReady": "qx.event.type.Event"
+  },
+
+  /*
+  ******************************************************
     MEMBERS
   ******************************************************
   */
@@ -139,7 +148,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
     _onDomReady: function() {
       if (!this.__init) {
         this.initListeners();
-        this.processAfterChain("_onDomReady");
+        this.fireEvent("domReady");
         this.__init = true;
       }
     },

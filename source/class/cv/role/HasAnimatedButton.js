@@ -26,7 +26,7 @@ qx.Mixin.define("cv.role.HasAnimatedButton", {
    ******************************************************
    */
   construct: function() {
-    this.addAfterMethod("_onDomReady", this.__initListeners, this);
+    this.addListenerOnce("domReady", this.__initListeners, this);
   },
 
   /*
