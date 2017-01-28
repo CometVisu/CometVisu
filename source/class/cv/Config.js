@@ -26,6 +26,15 @@ qx.Class.define('cv.Config', {
 
   statics: {
     /**
+     * Define ENUM of maturity levels for features, so that e.g. the editor can
+     * ignore some widgets when they are not supported yet
+     */
+    Maturity : {
+      release: 0,
+      development: 1
+    },
+
+    /**
      * Temporary settings which will not be cached
      */
     TMP: {},
@@ -137,7 +146,7 @@ qx.Class.define('cv.Config', {
     }
   },
 
-  defer: function() {
+  defer: function(statics) {
     var req = qx.util.Uri.parseUri(window.location.href);
 
     if (req.queryKey.enableQueue) {
@@ -209,12 +218,12 @@ qx.Class.define('cv.Config', {
       if (!isNaN(cv.Config.url_maturity - 0)) {
         cv.Config.use_maturity = cv.Config.url_maturity - 0; // given directly as number
       } else {
-        cv.Config.use_maturity = cv.ui.structure.AbstractBasicWidget.Maturity[cv.Config.url_maturity]; // or as the ENUM name
+        cv.Config.use_maturity = statics.Maturity[cv.Config.url_maturity]; // or as the ENUM name
       }
     }
 
     if (isNaN(cv.Config.use_maturity)) {
-      cv.Config.use_maturity = cv.ui.structure.AbstractBasicWidget.Maturity.release; // default to release
+      cv.Config.use_maturity = statics.Maturity.release; // default to release
     }
   }
 });

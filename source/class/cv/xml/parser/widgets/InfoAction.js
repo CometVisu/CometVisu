@@ -40,7 +40,7 @@ qx.Class.define('cv.xml.parser.widgets.InfoAction', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType);
       cv.xml.Parser.parseChildren(xml, path, flavour, pageType);
       return data;
     }

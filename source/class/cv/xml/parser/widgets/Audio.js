@@ -39,6 +39,7 @@
        * @param path {String} internal path of the widget
        * @param flavour {String} Flavour of the widget
        * @param pageType {String} Page type (2d, 3d, ...)
+       * @return {Map} extracted data from config element as key/value map
        */
       parse: function (xml, path, flavour, pageType) {
         var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());

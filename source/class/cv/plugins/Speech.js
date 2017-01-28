@@ -84,7 +84,7 @@ qx.Class.define('cv.plugins.Speech', {
         return;
       }
 
-      var address = cv.role.HasAddress.makeAddressList(element, path);
+      var address = cv.xml.Parser.makeAddressList(element, path);
 
       return cv.data.Model.getInstance().setWidgetData( path, {
         'path'    : path,

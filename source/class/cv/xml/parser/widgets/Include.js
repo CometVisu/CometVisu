@@ -35,7 +35,7 @@ qx.Class.define('cv.xml.parser.widgets.Include', {
   ******************************************************
   */
   statics: {
-    maturity: cv.xml.parser.AbstractBasicWidget.Maturity.development,
+    maturity: cv.Config.Maturity.development,
     __xhr: null,
 
     getRequest: function(url) {

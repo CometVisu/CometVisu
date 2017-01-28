@@ -34,6 +34,22 @@ qx.Class.define('cv.plugins.MobileMenu', {
   */
   statics: {
 
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     * @return {Map} extracted data from config element as key/value map
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.xml.Parser.parseChildren(xml, path, flavour, pageType);
+      return data;
+    },
+
     getWidgetElements: function(xmlElement, path) {
       cv.data.Model.getInstance().setWidgetData( path+"_0", {
         containerClass           : "actor"
@@ -128,9 +144,7 @@ qx.Class.define('cv.plugins.MobileMenu', {
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/mobilemenu/mobilemenu.css');
-    cv.xml.Parser.addHandler("mobilemenu", cv.plugins.MobileMenu);
-    // add parser hook for children
-    cv.xml.Parser.addHook("mobilemenu", "after", cv.role.HasChildren.parseChildren, cv.role.HasChildren);
+    cv.xml.Parser.addHandler("mobilemenu", statics);
     cv.ui.structure.WidgetFactory.registerClass("mobilemenu", statics);
   }
 });

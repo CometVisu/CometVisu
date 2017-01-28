@@ -158,6 +158,7 @@ qx.Class.define('cv.xml.Parser', {
           }
         }
       }
+      this.parseStyling(element, path);
       return data;
     },
 

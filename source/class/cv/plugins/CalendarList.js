@@ -29,7 +29,6 @@ qx.Class.define('cv.plugins.CalendarList', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.role.Refresh],
 
-
   /*
   ******************************************************
     PROPERTIES
@@ -61,6 +60,22 @@ qx.Class.define('cv.plugins.CalendarList', {
   */
   statics: {
     calendars: null,
+
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     * @return {Map} extracted data from config element as key/value map
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.xml.Parser.parseRefresh(xml, path);
+      return data;
+    },
 
     getAttributeToPropertyMappings: function () {
       return {
