@@ -144,6 +144,33 @@ qx.Class.define('cv.Config', {
      */
     lazyLoading: false,
 
+    /**
+     * Defines which structure is supported by which designs
+     */
+    designStructureMap: {
+      "pure": ["alaska", "alaska_slim", "discreet", "discreet_sand", "discreet_slim", "metal", "pitchblack", "planet", "pure"]
+    },
+
+    /**
+     * Get the structure that is realted for this design
+     * @param design {String?} name of the design
+     * @returns {String} name of the structure
+     */
+    getStructure: function(design) {
+      if (!design) {
+        design = this.getDesign();
+      }
+      for (var structure in this.designStructureMap) {
+        if (this.designStructureMap.hasOwnProperty(structure)) {
+          if (this.designStructureMap[structure].indexOf(design) >= 0) {
+            return "structure-"+structure;
+          }
+        }
+      }
+      // fallback to pure
+      return "structure-pure";
+    },
+
     addMapping: function (name, mapping) {
       this.configSettings.mappings[name] = mapping;
     },

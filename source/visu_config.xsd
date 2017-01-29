@@ -311,17 +311,6 @@
     </xsd:simpleType>
   </xsd:attribute>
 
-  <xsd:attribute name="structure">
-    <xsd:annotation>
-      <xsd:appinfo>level:expert</xsd:appinfo>
-    </xsd:annotation>
-    <xsd:simpleType>
-      <xsd:restriction base="xsd:string">
-        <xsd:enumeration value="pure" />
-      </xsd:restriction>
-    </xsd:simpleType>
-  </xsd:attribute>
-
   <xsd:simpleType name="navbarPositionType">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="top" />
@@ -400,12 +389,6 @@
           <xsd:documentation xml:lang="en">Select the main design.</xsd:documentation>
           <xsd:documentation xml:lang="de">Hier wird das Design für die Visu ausgewählt</xsd:documentation>
           </xsd:annotation>
-      </xsd:attribute>
-      <xsd:attribute ref="structure" use="optional" >
-        <xsd:annotation>
-          <xsd:documentation xml:lang="en">Select the structure, which creates the HTML page from the config file (default is 'pure').</xsd:documentation>
-          <xsd:documentation xml:lang="de">Hier wird die Struktur ausgewählt, die aus der Konfigurationsdatein eine HTML-Seite erstellt (Default ist 'pure')</xsd:documentation>
-        </xsd:annotation>
       </xsd:attribute>
       <xsd:attribute ref="backend" use="optional" />
       <xsd:attribute ref="bind_click_to_widget" use="optional"/>

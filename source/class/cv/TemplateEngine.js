@@ -204,14 +204,21 @@ qx.Class.define('cv.TemplateEngine', {
       var settings = cv.Config.configSettings;
       var pagesNode = qx.bom.Selector.query("pages", loaded_xml)[0];
 
-      // load structure-part
-      if (qx.bom.element.Attribute.get(pagesNode, "structure") !== null) {
-        settings.structure = "structure-"+qx.bom.element.Attribute.get(pagesNode, "structure");
-      } else {
-        settings.structure = "structure-pure";
+      var predefinedDesign = qx.bom.element.Attribute.get(pagesNode, "design");
+      // design by url
+      // design by config file
+      if (!settings.clientDesign) {
+        if (predefinedDesign) {
+          settings.clientDesign = predefinedDesign;
+        }
+        // selection dialog
+        else {
+          this.selectDesign();
+        }
       }
-      // load part for structure
-      this.loadParts([settings.structure]);
+
+      // load structure-part
+      this.loadParts([cv.Config.getStructure()]);
 
       if (qx.bom.element.Attribute.get(pagesNode, "backend") !== null) {
         settings.backend = qx.bom.element.Attribute.get(pagesNode, "backend");
@@ -236,18 +243,6 @@ qx.Class.define('cv.TemplateEngine', {
       settings.screensave_time = qx.bom.element.Attribute.get(pagesNode, 'screensave_time');
       settings.screensave_page = qx.bom.element.Attribute.get(pagesNode, 'screensave_page');
 
-      var predefinedDesign = qx.bom.element.Attribute.get(pagesNode, "design");
-      // design by url
-      // design by config file
-      if (!settings.clientDesign) {
-        if (predefinedDesign) {
-          settings.clientDesign = predefinedDesign;
-        }
-        // selection dialog
-        else {
-          this.selectDesign();
-        }
-      }
       if (qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width') !== null) {
         settings.maxMobileScreenWidth = qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width');
       }

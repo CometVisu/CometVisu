@@ -244,12 +244,13 @@ qx.Class.define("cv.Application",
           this.__detectInitialPage();
 
           // load part for structure
-          this.debug("loading structure "+cv.Config.configSettings.structure);
-          engine.loadParts([cv.Config.configSettings.structure], function(states) {
+          var structure = cv.Config.getStructure();
+          this.debug("loading structure "+structure);
+          engine.loadParts([structure], function(states) {
             if (states === "complete") {
-              this.debug(cv.Config.configSettings.structure + " has been loaded");
+              this.debug(structure + " has been loaded");
             } else {
-              this.error(cv.Config.configSettings.structure + " could not be loaded");
+              this.error(structure + " could not be loaded");
             }
           }, this);
 
