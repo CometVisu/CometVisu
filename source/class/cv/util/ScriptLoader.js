@@ -118,8 +118,7 @@ qx.Class.define('cv.util.ScriptLoader', {
     /**
      * Load one script
      *
-     * @param script
-     * @private
+     * @param script {String} path to script
      */
     __loadSingleScript: function(script) {
       var loader = new qx.util.DynamicScriptLoader(script);

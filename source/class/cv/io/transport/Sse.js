@@ -50,7 +50,7 @@ qx.Class.define('cv.io.transport.Sse', {
      * and session information is available
      *
      * @param ev {Event}
-     * @param connect (boolean) wether to start the connection or not
+     * @param connect {Boolean} whether to start the connection or not
      */
     handleSession: function (ev, connect) {
       var json = ev.getTarget().getResponse();
