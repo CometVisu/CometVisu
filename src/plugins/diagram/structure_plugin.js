@@ -82,17 +82,18 @@ define( ['structure_custom', 'MessageBroker',
     {
       var
         url = templateEngine.visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
-        urlNotInCache = !(url in cache),
-        doLoad = force || urlNotInCache || !('data' in cache[ url ]) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
+        key = url + '|' + rrd.dsIndex,
+        urlNotInCache = !(key in cache),
+        doLoad = force || urlNotInCache || !('data' in cache[ key ]) || (refresh!==undefined && (Date.now()-cache[key].timestamp) > refresh*1000);
 
       if( doLoad )
       {
         if( urlNotInCache )
-          cache[ url ] = { waitingCallbacks: [] };
+          cache[ key ] = { waitingCallbacks: [] };
 
-        cache[ url ].waitingCallbacks.push( [ callback, callbackParameter ] );
+        cache[ key ].waitingCallbacks.push( [ callback, callbackParameter ] );
 
-        if( cache[ url ].waitingCallbacks.length === 1 ) {
+        if( cache[ key ].waitingCallbacks.length === 1 ) {
           $.ajax( {
             url:      url,
             dataType: 'json',
@@ -107,18 +108,18 @@ define( ['structure_custom', 'MessageBroker',
                   rrddata[ j ][ 1 ] = parseFloat( rrddata[ j ][ 1 ][ rrd.dsIndex ] ) * rrd.scaling;
                 }
               }
-              cache[ url ].data      = rrddata;
-              cache[ url ].timestamp = Date.now();
+              cache[ key ].data      = rrddata;
+              cache[ key ].timestamp = Date.now();
 
-              cache[ url ].waitingCallbacks.forEach( function( waitingCallback ) {
-                waitingCallback[0]( cache[ url ].data, waitingCallback[1] );
+              cache[ key ].waitingCallbacks.forEach( function( waitingCallback ) {
+                waitingCallback[0]( cache[ key ].data, waitingCallback[1] );
               } );
-              cache[ url ].waitingCallbacks.length = 0; // empty array
+              cache[ key ].waitingCallbacks.length = 0; // empty array
             }
           } );
         }
       } else {
-        callback( cache[url].data, callbackParameter );
+        callback( cache[key].data, callbackParameter );
       }
     }
     
