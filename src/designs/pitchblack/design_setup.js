@@ -26,5 +26,7 @@
  */
 templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
   $('head').data('colspanDefault', 1);
+  $('#navbarLeft').data('columns', 6);
+  $('#navbarRight').data('columns', 6);
 });
 
