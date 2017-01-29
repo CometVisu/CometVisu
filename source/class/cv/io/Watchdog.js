@@ -17,7 +17,10 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
-
+/**
+ * The Watchdog observes the backend communication and restarts the connection, if
+ * the client received to data from the backend within a defined timeout.
+ */
 qx.Class.define("cv.io.Watchdog", {
   extend: qx.core.Object,
 

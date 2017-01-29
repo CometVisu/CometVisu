@@ -38,18 +38,10 @@ qx.Class.define('cv.TemplateEngine', {
   },
 
   properties: {
-    // store the mappings
-    mappings: {
-      check: "Object",
-      init: {}
-    },
 
-    // store the stylings
-    stylings: {
-      check: "Object",
-      init: {}
-    },
-
+    /**
+     * Shows the loading state of the parts
+     */
     partsLoaded: {
       check: "Boolean",
       init: false,
@@ -57,12 +49,19 @@ qx.Class.define('cv.TemplateEngine', {
       event: "changePartsLoaded"
     },
 
+    /**
+     * Shows the loading state of the scripts
+     */
     scriptsLoaded: {
       check: "Boolean",
       init: false,
       apply: "_applyLoaded"
     },
 
+    /**
+     * Shows the initialization state of the TemplateEngine. It gets until when all
+     * external stuff (pars, scripts, etc.) has been loaded.
+     */
     ready: {
       check: "Boolean",
       init: false,
@@ -101,6 +100,12 @@ qx.Class.define('cv.TemplateEngine', {
 
     __partQueue: null,
 
+    /**
+     * Load parts
+     * @param parts {String[]|String} parts to load
+     * @param callback {Function} callback function to call when the parts have been loaded
+     * @param context {Object} callback context
+     */
     loadParts: function(parts, callback, context) {
       if (!qx.lang.Type.isArray(parts)) {
         parts = [parts];
@@ -129,6 +134,7 @@ qx.Class.define('cv.TemplateEngine', {
       }
     },
 
+    // property apply
     _applyLoaded: function(value, old, name) {
       this.debug(name+" is "+value+" now");
       if (this.isPartsLoaded() && this.isScriptsLoaded()) {
@@ -137,6 +143,7 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     /**
+     * Please use {cv.data.Model.getInstance().addAddress()} instead
      * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().addAddress()} instead
      */
     addAddress: function (address, id) {
@@ -145,6 +152,7 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     /**
+     * Please use {cv.data.Model.getInstance().getAddresses()} instead
      * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().getAddresses()} instead
      */
     getAddresses: function () {
@@ -152,6 +160,9 @@ qx.Class.define('cv.TemplateEngine', {
       return cv.data.Model.getInstance().getAddresses();
     },
 
+    /**
+     * Initialize the {@link cv.io.Client} for backend communication
+     */
     initBackendClient: function () {
       var backendName = cv.Config.configSettings.backend || cv.Config.backend;
       if (cv.Config.testMode) {
@@ -171,6 +182,9 @@ qx.Class.define('cv.TemplateEngine', {
       this.visu.user = 'demo_user'; // example for setting a user
     },
 
+    /**
+     * Reset some values related to the current page
+     */
     resetPageValues: function () {
       this.currentPage = null;
       cv.ui.layout.Manager.currentPageUnavailableWidth = -1;
@@ -273,6 +287,9 @@ qx.Class.define('cv.TemplateEngine', {
       this.debug("parsed");
     },
 
+    /**
+     * Main setup to get everything running and show the initial page.
+     */
     setupPage: function () {
       // and now setup the pages
       this.debug("setup");
@@ -285,7 +302,6 @@ qx.Class.define('cv.TemplateEngine', {
         qx.bom.Selector.query('link[href*="mobile.css"]').forEach(function (elem) {
           qx.bom.element.Attribute.set(elem, 'media', 'only screen and (max-width: ' + cv.Config.maxMobileScreenWidth + 'px)');
         });
-        this.debug("234");
         if (!cv.Config.cacheUsed) {
           this.debug("creating pages");
           var page = qx.bom.Selector.query('pages > page', this.xml)[0]; // only one page element allowed...
@@ -381,6 +397,13 @@ qx.Class.define('cv.TemplateEngine', {
       }
     },
 
+    /**
+     * Start the parsing process
+     * @param page {Element} XML-configuration element
+     * @param path {String} internal poth
+     * @param flavour {String} inherited flavour
+     * @param type {String} page type (text, 2d, 3d)
+     */
     createPages: function (page, path, flavour, type) {
 
       var parsedData = cv.xml.Parser.parse(page, path, flavour, type);
@@ -397,24 +420,11 @@ qx.Class.define('cv.TemplateEngine', {
     },
 
     /**
-     * Little helper to find the relevant page path for a given widget.
-     *
-     * @param element {Element} The this.xml element
-     * @param widgetpath {String} The path / ID of the widget
-     * @return {String} The path of the parent
+     * Returns the id of the page the given path is associated to
+     * @param page_name {String}
+     * @param path
+     * @returns {*}
      */
-    getPageIdForWidgetId: function (element, widgetpath) {
-      var
-        parent = element.parentNode,
-        parentpath = widgetpath.replace(/[0-9]*$/, '');
-
-      while (parent && parent.nodeName !== 'page') {
-        parent = parent.parentNode;
-        parentpath = parentpath.replace(/[0-9]*_$/, '');
-      }
-      return parentpath;
-    },
-
     getPageIdByPath: function (page_name, path) {
       if (page_name === null) { return null; }
       if (page_name.match(/^id_[0-9_]*$/) !== null) {

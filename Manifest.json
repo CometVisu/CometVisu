@@ -65,7 +65,8 @@
     ],
 
     "version": "0.10.0-dev",
-    "qooxdoo-versions": ["5.1"]
+    "qooxdoo-versions": ["5.1"],
+    "sourceViewUrl": "https://github.com/peuter/CometVisu/blob/qx-core/source/class/%{classFilePath}#L%{lineNumber}"
   },
   
   "provides" : 

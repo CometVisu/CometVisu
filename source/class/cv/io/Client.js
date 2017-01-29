@@ -20,17 +20,14 @@
 
 /**
  * The JavaScript library that implements the CometVisu protocol.
+ * The Client handles all communication issues to supply the user
+ * of this object with reliable realtime data.
+ * It can be seen as the session layer (layer 5) according to the OSI
+ * model.
  *
  * @author Christan Mayer
  * @author Tobias Bräutigam
  * @since 0.5.3 (initial contribution) 0.10.0 (major refactoring)
- */
-
-/**
- * The Client handles all communication issues to supply the user
- * ob this object with reliable realtime data.
- * Itthis.it can be seen as the session layer (layer 5) according to the OSI
- * model.
  */
 qx.Class.define('cv.io.Client', {
   extend: qx.core.Object,

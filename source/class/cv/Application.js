@@ -19,8 +19,7 @@
 
 
 /**
- * This is the main application class of the CometVisu
- *
+ * This is the main application class of the CometVisu.
  *
  * @asset(config/*)
  * @asset(demo/*)
@@ -54,7 +53,7 @@ qx.Class.define("cv.Application",
     _blocker: null,
 
     /**
-     * Toggle the {qx.bom.Blocker} visibility
+     * Toggle the {@link qx.bom.Blocker} visibility
      * @param val {Boolean}
      */
     block: function(val) {
@@ -302,12 +301,19 @@ qx.Class.define("cv.Application",
       }
     },
 
+    /**
+     * Adds icons which were defined in the current configuration to the {@link cv.IconHandler}
+     */
     loadIcons: function() {
       cv.Config.iconsFromConfig.forEach(function(icon) {
         cv.IconHandler.getInstance().insert(icon.name, icon.uri, icon.type, icon.flavour, icon.color, icon.styling, icon.dynamic);
       }, this);
     },
 
+    /**
+     * Load CSS styles
+     * @param styles {Array?}
+     */
     loadStyles: function(styles) {
       if (!styles) {
         styles = cv.Config.configSettings.stylesToLoad;
@@ -317,6 +323,10 @@ qx.Class.define("cv.Application",
       }
     },
 
+    /**
+     * Load Javascript source files
+     * @param scripts {Array?}
+     */
     loadScripts: function(scripts) {
       if (!scripts) {
         scripts = cv.Config.configSettings.scriptsToLoad;
@@ -326,6 +336,9 @@ qx.Class.define("cv.Application",
       }
     },
 
+    /**
+     * Load plugins
+     */
     loadPlugins: function() {
       var plugins = cv.Config.configSettings.pluginsToLoad;
       if (plugins.length > 0) {
