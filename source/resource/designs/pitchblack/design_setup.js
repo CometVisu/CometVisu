@@ -26,4 +26,6 @@
  */
 qx.event.message.Bus.subscribe("setup.dom.finished.before", function() {
   qx.bom.element.Dataset.set(qx.bom.Selector.query('head')[0], 'colspanDefault', 1);
+  qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarLeft')[0], 'columns', 6);
+  qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarRight')[0], 'columns', 6);
 });

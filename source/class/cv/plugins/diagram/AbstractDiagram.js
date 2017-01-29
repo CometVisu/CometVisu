@@ -183,17 +183,18 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     lookupRRDcache: function( rrd, start, end, res, refresh, force, callback, callbackParameter ) {
       var
         url = cv.TemplateEngine.getInstance().visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
-        urlNotInCache = !(url in this.cache),
-        doLoad = force || urlNotInCache || !('data' in this.cache[ url ]) || (refresh!==undefined && (Date.now()-this.cache[url].timestamp) > refresh*1000);
+        key = url + '|' + rrd.dsIndex,
+        urlNotInCache = !(key in this.cache),
+        doLoad = force || urlNotInCache || !('data' in this.cache[ key ]) || (refresh!==undefined && (Date.now()-this.cache[key].timestamp) > refresh*1000);
 
       if( doLoad )
       {
         if( urlNotInCache ) {
-          this.cache[url] = {waitingCallbacks: []};
+          this.cache[key] = {waitingCallbacks: []};
         }
-        this.cache[ url ].waitingCallbacks.push( [ callback, callbackParameter ] );
+        this.cache[ key ].waitingCallbacks.push( [ callback, callbackParameter ] );
 
-        if( this.cache[ url ].waitingCallbacks.length === 1 ) {
+        if( this.cache[ key ].waitingCallbacks.length === 1 ) {
           var xhr = new qx.io.request.Xhr(url);
           xhr.set({
             accept: "application/json"
@@ -208,20 +209,20 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
                 rrddata[j][1] = parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling;
               }
             }
-            this.cache[url].data = rrddata;
-            this.cache[url].timestamp = Date.now();
+            this.cache[key].data = rrddata;
+            this.cache[key].timestamp = Date.now();
 
-            this.cache[url].waitingCallbacks.forEach(function (waitingCallback) {
-              waitingCallback[0](this.cache[url].data, waitingCallback[1]);
+            this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
+              waitingCallback[0](this.cache[key].data, waitingCallback[1]);
             }, this);
-            this.cache[url].waitingCallbacks.length = 0; // empty array)
+            this.cache[key].waitingCallbacks.length = 0; // empty array)
           }, this);
 
-          this.cache[ url ].xhr = xhr;
+          this.cache[ key ].xhr = xhr;
           xhr.send();
         }
       } else {
-        callback( this.cache[url].data, callbackParameter );
+        callback( this.cache[key].data, callbackParameter );
       }
     }
   },
