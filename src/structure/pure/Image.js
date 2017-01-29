@@ -54,17 +54,14 @@ define( ['_common'], function( design ) {
       var ret_val = basicdesign.createDefaultWidget('image', $e, path, flavour, type);
       // and fill in widget specific data
       var data = templateEngine.widgetDataInsert( path, {
-        'width'  : $e.attr('width'),
+        'width'  : $e.attr('width') || '100%',
         'height' : $e.attr('height'),
         'src'    : $e.attr('src'),
         'refresh': $e.attr('refresh') ? $e.attr('refresh') * 1000 : 0
       });
 
       // create the actor
-      var imgStyle = '';
-      if (data.width) {
-        imgStyle += 'width:'  + data.width + ';';
-      }
+      var imgStyle = 'width:'  + data.width + ';';
       if( $e.attr('widthfit') === 'true' ) {
         imgStyle += 'max-width:100%;';
       }
