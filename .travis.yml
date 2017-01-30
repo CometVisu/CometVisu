@@ -26,11 +26,11 @@ install:
 - if [ "$CV_BUILD" == "test" ]; then grunt setup; fi
 - if [ "$CV_BUILD" == "test" ]; then cd ../../; fi
 - npm install
-- virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages
-- source temp-python/bin/activate
-- sudo pip install -r utils/requirements.txt #used by the generator
-- ./generate.py source -sI
-- deactivate
+- if [ "$CV_BUILD" == "test" ]; virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages; fi
+- if [ "$CV_BUILD" == "test" ]; source temp-python/bin/activate; fi
+- if [ "$CV_BUILD" == "test" ]; sudo pip install -r utils/requirements.txt; fi #used by the generator
+- if [ "$CV_BUILD" == "test" ]; ./generate.py source -sI; fi
+- if [ "$CV_BUILD" == "test" ]; deactivate; fi
 - "./node_modules/protractor/bin/webdriver-manager update"
 - if [ "$CV_BUILD" == "docs" ]; then sudo pip install -r utils/requirements.txt; fi # for documentation
 - if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install libxml2-dev libxslt-dev graphviz; fi
