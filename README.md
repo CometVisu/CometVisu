@@ -24,7 +24,12 @@ first) or you want to start CometVisu development.
 How to install it:
 ==================
 
-Please see the [INSTALL](./INSTALL) file.
+Please see the [INSTALL](./INSTALL.md) file.
+
+Instructions for developers:
+============================
+
+Please have a look at the [DEVELOPMENT](./DEVELOPMENT.md) file.
 
 Documentation:
 ==============

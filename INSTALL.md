@@ -42,7 +42,13 @@ few simple steps:
 Installation with OpenHAB:
 ==========================
 
-Please look at https://github.com/openhab/openhab/wiki/CometVisu
+Please look at the Wiki pages for the different openHAB versions: 
+
+For openHAB 1:
+https://github.com/openhab/openhab/wiki/CometVisu
+
+For openHAB 2:
+https://github.com/openhab/openhab2-addons/tree/master/addons/ui/org.openhab.ui.cometvisu
 
 NOTE:
 =====
