@@ -243,5 +243,6 @@ body
 }
 
 button.ui-slider-handle {
-  font: inherit;
+  min-width: 2em;
+  min-height: 2em;
 }
