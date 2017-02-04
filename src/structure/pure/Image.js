@@ -61,7 +61,7 @@ define( ['_common'], function( design ) {
       });
 
       // create the actor
-      var imgStyle = 'width:'  + data.width + ';';
+      var imgStyle = 'width: '  + data.width + ';';
       if( $e.attr('widthfit') === 'true' ) {
         imgStyle += 'max-width:100%;';
       }

@@ -28,7 +28,7 @@ define( ['jquery','TemplateEngine', '_common', 'widget_image'], function($, engi
       var data = templateEngine.widgetDataGet('id_0');
       expect(data.path).toBe("id_0");
 
-      expect(widget.find("img").get(0).getAttribute("style")).toBe('');
+      expect(widget.find("img").get(0).getAttribute("style")).toBe('width: 100%;');
 
       image.setAttribute("width", "50%");
       image.setAttribute("height", "51%");
