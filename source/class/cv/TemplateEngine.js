@@ -562,7 +562,11 @@ qx.Class.define('cv.TemplateEngine', {
 
       // push new state to history
       if (skipHistory === undefined) {
-        var pageTitle = qx.bom.Selector.query("#"+page_id+" h1")[0].textContent+ " - CometVisu";
+        var headline = qx.bom.Selector.query("#"+page_id+" h1");
+        var pageTitle = "CometVisu";
+        if (headline.length) {
+          pageTitle = headline[0].textContent+ " - "+pageTitle;
+        }
         qx.bom.History.getInstance().addToHistory(page_id, pageTitle);
       }
 
