@@ -4,6 +4,16 @@ Development
 If you would like to contribute to the CometVisu project there are some things you should know
 to get started.
 
+Preparation
+-----------
+
+The new build system requires python2 and grunt. Also you have to run `npm install` once,
+because at least the build-task (explained later) includes a grunt task which minifies included
+external dependencies. 
+ 
+Building source an build versions
+---------------------------------
+
 Since version >= 0.11.0 the CometVisu sources are based on the
  [Qooxdoo-Framework](http://www.qooxdoo.org). To develop, test and debug
 your changes you can work with a source version of the code, which can be generated be executing 
