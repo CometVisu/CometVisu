@@ -353,8 +353,11 @@ module.exports = function(grunt) {
           // Owner and Repository options are mandatory
           owner : 'CometVisu',
           repository : 'CometVisu',
+          tagName: pkg.version,
+          auth: true,
+          token: '', // this will be replaces by the prompt task with the user input
           branch: 'develop',
-          // betweenTags: 'master...develop', // seems to be not supported at the moment
+          betweenTags: 'master...develop',
           onlyPulls: true,
           useCommitBody: true,
           // auth: true, // auth creates a stall for me :(
@@ -594,6 +597,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks("grunt-jscs");
   grunt.loadNpmTasks('grunt-banner');
+  grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-github-releaser');
   grunt.loadNpmTasks('grunt-prompt');
@@ -624,9 +628,12 @@ module.exports = function(grunt) {
   grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
   grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
   grunt.registerTask('api-doc', ['clean:exampleCache', 'clean:apiDoc', 'jsdoc:html', 'screenshotsSource']);
+  grunt.registerTask('changelog', ['prompt:githubChanges', 'githubChanges']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
 
   grunt.registerTask('default', 'release-build');
+};
+
 };
