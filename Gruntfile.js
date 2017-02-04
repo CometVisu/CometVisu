@@ -358,6 +358,17 @@ module.exports = function(grunt) {
             }
           ]
         }
+      },
+      githubChanges: {
+        options: {
+          questions: [
+            {
+              config: 'githubChanges.dist.options.token', // get personal GitHub tokel to bypass API rate limiting
+              type: 'input',
+              message: 'GitHub personal token:'
+            }
+          ]
+        }
       }
     },
 
@@ -441,8 +452,11 @@ module.exports = function(grunt) {
           // Owner and Repository options are mandatory
           owner : 'CometVisu',
           repository : 'CometVisu',
+          tagName: pkg.version,
+          auth: true,
+          token: '', // this will be replaces by the prompt task with the user input
           branch: 'develop',
-          // betweenTags: 'master...develop', // seems to be not supported at the moment
+          betweenTags: 'master...develop',
           onlyPulls: true,
           useCommitBody: true,
           // auth: true, // auth creates a stall for me :(
@@ -694,6 +708,7 @@ module.exports = function(grunt) {
   grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
   grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
   grunt.registerTask('api-doc', ['clean:exampleCache', 'clean:apiDoc', 'jsdoc:html', 'screenshotsSource']);
+  grunt.registerTask('changelog', ['prompt:githubChanges', 'githubChanges']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
