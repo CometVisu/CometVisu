@@ -28,7 +28,7 @@ define( ['jquery','TemplateEngine', '_common', 'widget_image'], function($, engi
       var data = templateEngine.widgetDataGet('id_0');
       expect(data.path).toBe("id_0");
 
-      expect(widget.find("img").get(0).getAttribute("style")).toBe('');
+      expect(widget.find("img").get(0).getAttribute("style")).toBe('width:100%;');
 
       image.setAttribute("width", "50%");
       image.setAttribute("height", "51%");
@@ -44,7 +44,7 @@ define( ['jquery','TemplateEngine', '_common', 'widget_image'], function($, engi
       image.removeAttribute("refresh");
       image.setAttribute("widthfit", "true");
       widget = $(creator.create(xml.firstChild.firstChild, 'id_0', null, 'image'));
-      expect(widget.find("img").get(0).getAttribute("style")).toBe('max-width:100%;');
+      expect(widget.find("img").get(0).getAttribute("style")).toBe('width:100%;max-width:100%;');
     });
   });
 });
