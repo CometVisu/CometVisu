@@ -113,17 +113,17 @@ qx.Class.define('cv.Config', {
     use_maturity : false,
 
     /**
-     * Stores the rowspans used by the current confid
-     * @type {Map} of rowspan-value as key and true as value
-     */
-    usedRowspans: {},
-
-    /**
      * All configuration and settings from the current configuration
+     * (Note: all settings that need to be cached must be put in here)
      */
     configSettings: {
       mappings: {},
-      stylings: {}
+      stylings: {},
+      /**
+       * Stores the rowspans used by the current confid
+       * @type {Map} of rowspan-value as key and true as value
+       */
+      usedRowspans: {}
     },
 
     /**

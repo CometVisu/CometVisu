@@ -155,7 +155,7 @@ qx.Class.define('cv.ui.layout.Manager', {
     },
 
     rowspanClass: function (rowspan) {
-      cv.Config.usedRowspans[rowspan] = true;
+      cv.Config.configSettings.usedRowspans[rowspan] = true;
       return 'rowspan rowspan' + rowspan;
     },
 
