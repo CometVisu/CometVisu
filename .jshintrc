@@ -36,6 +36,7 @@
     "SpeechSynthesisUtterance": false,
     "jQuery": false,
     "steelseries": false,
-    "EventSource": false
+    "EventSource": false,
+    "fs": false
   }
 }
