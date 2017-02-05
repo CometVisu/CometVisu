@@ -38,7 +38,7 @@ describe("testing a image widget", function() {
     expect(widget).toHaveClass('image');
     expect(widget).toHaveLabel('Test');
     expect(res[0].getPath()).toBe("id_0");
-    expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "style")).toBe('');
+    expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "style")).toBe('width:100%;');
   });
   it("should test the image creator and refreshing", function() {
     var con = qx.event.Timer;
@@ -68,6 +68,6 @@ describe("testing a image widget", function() {
       widthfit: 'true'
     });
     var widget = res.getDomElement();
-    expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "style")).toBe('max-width:100%;');
+    expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "style")).toBe('width:100%;max-width:100%;');
   });
 });
