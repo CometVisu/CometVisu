@@ -619,7 +619,7 @@ module.exports = function(grunt) {
 
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
-  grunt.registerTask('release-build', [ 'lint', 'clean', 'file-creator', 'buildicons', 'build', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('release-build', ['updateicons', 'lint', 'clean', 'file-creator', 'buildicons', 'build', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release', [ 'prompt', 'release-build', 'github-release' ]);
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
