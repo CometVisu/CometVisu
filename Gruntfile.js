@@ -206,14 +206,14 @@ module.exports = function(grunt) {
         },
         src: [
           'index.html',
+          'main.js',
           'visu_config.xsd',
           'dependencies/require-2.1.15.min.js',
-          'dependencies/css.js',
-          'icon/*.png',
-          //'icon/iconconfig.js',
-          'lib/TemplateEngine.js',
+          'icon/*.{png,svg}',
           'designs/**/*.{js,css,png,ttf,svg}',
-          'plugins/**/*.{js,css,png,ttf,svg}'
+          'plugins/**/*.{js,css,png,ttf,svg}',
+          '!plugins/diagram/dep/flot/*.js', // alreay mangled in the plugin
+          '!**/*.src.js'
         ],
         dest: 'release/cometvisu.appcache'
       }
