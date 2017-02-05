@@ -1,5 +1,4 @@
 // requires
-var util = require('util');
 var qx = require("./external/qooxdoo/tool/grunt");
 var path = require('path');
 
@@ -43,7 +42,7 @@ function mock() {
       res.writeHead(200, {'Content-Type': 'application/xml'});
       res.write(mockedResponse);
       res.end();
-    } else if (url == "/designs/get_designs.php") {
+    } else if (url === "/designs/get_designs.php") {
       // untested
       var dir = path.join("source", "resource", "designs");
       var designs = [];
@@ -78,8 +77,9 @@ module.exports = function(grunt) {
       mode: function( filename ){
         var isConfig = filename.indexOf( 'release/config' ) > -1;
 
-        if( isDirectoryRegEx.test( filename ) )
+        if( isDirectoryRegEx.test( filename ) ) {
           return isConfig ? 0777 : 0755;
+        }
         return isConfig ? 0666 : 0644;
       }
     } ],
@@ -151,7 +151,7 @@ module.exports = function(grunt) {
           linebreak: true,
           process: function( filepath ) {
             var filename = filepath.match(/\/([^/]*)$/)[1];
-            if (filename === "__init__.js") return "";
+            if (filename === "__init__.js") { return ""; }
 
             return grunt.template.process('/* <%= filename %> \n'+
               ' * \n'+
@@ -508,7 +508,7 @@ module.exports = function(grunt) {
             message: 'Widget name:'
           }],
           filter: function (result) {
-            result['testFileName'] = result.widgetName.substr(0,1).toUpperCase() + result.widgetName.substr(1);
+            result.testFileName = result.widgetName.substr(0,1).toUpperCase() + result.widgetName.substr(1);
             return result;
           },
           template: {
@@ -535,7 +535,6 @@ module.exports = function(grunt) {
   };
 
   var mergedConf = qx.config.mergeConfig(config);
-  // console.log(util.inspect(mergedConf, false, null));
   grunt.initConfig(mergedConf);
 
   qx.task.registerTasks(grunt);
@@ -575,20 +574,21 @@ module.exports = function(grunt) {
 
     var symbolRegEx = /<symbol.*?id="kuf-(.*?)".*?>/g;
     var kufIcons = '';
+    var icon;
     while( (icon = symbolRegEx.exec( svg )) !== null )
     {
       // icon id = icon[1]
 
-      if( kufIcons !== '' )
+      if( kufIcons !== '' ) {
         kufIcons += ",\n";
-
+      }
       kufIcons += "      '" + icon[1] + "': { '*' : { 'white' : '*/white', 'ws' : '*/white', 'antimony' : '*/blue', 'boron' : '*/green', 'lithium' : '*/red', 'potassium' : '*/purple', 'sodium' : '*/orange', '*': { '*' : cv.util.IconTools.svgKUF('" + icon[1] + "') } } }";
     }
     var start = '// Do not remove this line: Dynamic Icons Start';
     var end   = '// Do not remove this line: Dynamic Icons End';
     var iconconfigFile = grunt.file.read(iconconfig, { encoding: "utf8" }).toString();
     grunt.file.write(iconconfig, iconconfigFile
-      .replace( RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n      " + end )
+      .replace( new RegExp( start + '[\\s\\S]*' + end, 'm' ), start + "\n\n" + kufIcons + "\n\n      " + end )
     );
   });
 
@@ -634,6 +634,4 @@ module.exports = function(grunt) {
   grunt.registerTask('updateicons', ['shell:updateicons']);
 
   grunt.registerTask('default', 'release-build');
-};
-
 };
