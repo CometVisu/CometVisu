@@ -90,11 +90,15 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
           this._startRefresh(this._timer);
         }, this);
         if (cv.Config.initialPage === pageId) {
-          if (!this._init) {
-            this.loadDiagramData(this.plot, false, false);
-          } else {
-            this.initDiagram(false);
-          }
+          // initialize the diagram but don't make the initialization process wait for it
+          // by using a deferred call
+          new qx.util.DeferredCall(function() {
+            if (!this._init) {
+              this.loadDiagramData(this.plot, false, false);
+            } else {
+              this.initDiagram(false);
+            }
+          }, this).schedule();
         }
         this.$$domReady = true;
       }
