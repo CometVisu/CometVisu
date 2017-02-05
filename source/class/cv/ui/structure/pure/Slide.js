@@ -97,6 +97,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     _onDomReady: function() {
       this.base(arguments);
       if (!this.__initialized) {
+        this.__skipUpdatesFromSlider = true;
         var actor = this.getActor();
         var slider = this.__slider = new cv.ui.website.Slider(actor);
         slider.setFormat(this.getFormat());
@@ -111,10 +112,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         }
         slider.init();
 
-        // defer setting the listener to prevent sending values during initialization
-        new qx.util.DeferredCall(function () {
-          slider.on("changeValue", qx.util.Function.debounce(this._onChangeValue, 250, true), this);
-        }, this).schedule();
+        slider.on("changeValue", qx.util.Function.debounce(this._onChangeValue, 250, true), this);
 
         this.addListener("changeValue", function (ev) {
           slider.setValue(parseFloat(ev.getData()));
@@ -124,7 +122,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         slider.addClasses(["ui-slider", "ui-slider-horizontal", "ui-widget", "ui-widget-content", "ui-corner-all"]);
         var knob = slider.find(".qx-slider-knob");
         knob.addClasses(["ui-slider-handle", "ui-state-default", "ui-corner-all"]);
-        this.__initialized = true;
+
 
         this.addListener("changeVisible", function (ev) {
           if (ev.getData() === true) {
@@ -134,6 +132,8 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         if (this.isVisible()) {
           this.__updateSlider();
         }
+        this.__skipUpdatesFromSlider = false;
+        this.__initialized = true;
       }
     },
 
