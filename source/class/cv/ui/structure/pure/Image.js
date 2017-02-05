@@ -41,7 +41,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
   ******************************************************
   */
   properties: {
-    width   : { check: "String", nullable: true },
+    width   : { check: "String", init: "100%" },
     height  : { check: "String", nullable: true },
     src     : { check: "String", init: "" },
     widthFit: { check: "Boolean", init: false }

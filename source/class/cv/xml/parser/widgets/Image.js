@@ -47,7 +47,7 @@ qx.Class.define('cv.xml.parser.widgets.Image', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'width'       :   {},
+        'width'       :   { "default": "100%" },
         'height'      :   {},
         'src'         :   {},
         'widthfit'    :   { target: 'widthFit', transform: function(value) {
