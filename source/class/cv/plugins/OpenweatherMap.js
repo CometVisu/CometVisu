@@ -68,7 +68,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
         'lang':   { },
         'q':   { },
         'lat':   { },
-        'long':   { },
+        'lon':   { },
         'units':   { },
         'type':   { },
         'forecastItems':   { },
@@ -100,7 +100,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
       check: "String",
       init: ""
     },
-    "long": {
+    lon: {
       check: "String",
       init: ""
     },
