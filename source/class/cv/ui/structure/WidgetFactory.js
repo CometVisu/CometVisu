@@ -68,9 +68,11 @@ qx.Class.define('cv.ui.structure.WidgetFactory', {
 
     getInstanceByElement: function(element) {
       var instance = this.getInstanceById(qx.bom.element.Attribute.get(element, 'id'));
-      if (instance && cv.Config.lazyLoading === true && instance._onDomReady) {
+      if (instance && cv.Config.lazyLoading === true && instance._onDomReady && !instance.$$domReady) {
         // apply listeners and update initial value
         instance._onDomReady();
+        // make sure that this is not triggered twice
+        instance.$$domReady = true;
       }
       return instance;
     },

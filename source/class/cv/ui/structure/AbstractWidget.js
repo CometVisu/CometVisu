@@ -106,7 +106,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
   ******************************************************
   */
   members: {
-    __init: null,
+    $$domReady: null,
 
     /**
      * Property transformaon helper
@@ -146,10 +146,10 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
      * Called when all widgets are available in the DOM tree
      */
     _onDomReady: function() {
-      if (!this.__init) {
+      if (!this.$$domReady) {
         this.initListeners();
         this.fireEvent("domReady");
-        this.__init = true;
+        this.$$domReady = true;
       }
     },
 
