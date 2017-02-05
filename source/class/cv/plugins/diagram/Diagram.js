@@ -66,28 +66,38 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
   members: {
 
     _onDomReady: function() {
-      var pageId = this.getParentPage().getPath();
-      var broker = qx.event.message.Bus;
+      if (!this.$$domReady) {
+        var pageId = this.getParentPage().getPath();
+        var broker = qx.event.message.Bus;
 
-      // stop refreshing when page is left
-      broker.subscribe("path." + pageId + ".exitingPageChange", function() {
-        this._stopRefresh(this._timer);
-      }, this);
+        // stop refreshing when page is left
+        broker.subscribe("path." + pageId + ".exitingPageChange", function () {
+          this._stopRefresh(this._timer);
+        }, this);
 
-      broker.subscribe("path." + pageId + ".beforePageChange", function() {
-        if( !this._init ) {
-          this.loadDiagramData(this.plot, false, false);
+        broker.subscribe("path." + pageId + ".beforePageChange", function () {
+          if (!this._init) {
+            this.loadDiagramData(this.plot, false, false);
+          }
+        }, this);
+
+        broker.subscribe("path." + pageId + ".duringPageChange", function () {
+          // create diagram when it's not already existing
+          if (this._init) {
+            this.initDiagram(false);
+          }
+          // start refreshing when page is entered
+          this._startRefresh(this._timer);
+        }, this);
+        if (cv.Config.initialPage === pageId) {
+          if (!this._init) {
+            this.loadDiagramData(this.plot, false, false);
+          } else {
+            this.initDiagram(false);
+          }
         }
-      }, this);
-
-      broker.subscribe("path." + pageId + ".duringPageChange", function() {
-        // create diagram when it's not already existing
-        if( this._init ) {
-          this.initDiagram(false);
-        }
-        // start refreshing when page is entered
-        this._startRefresh(this._timer);
-      }, this);
+        this.$$domReady = true;
+      }
     },
 
     _getInnerDomString: function() {
