@@ -124,8 +124,7 @@ qx.Class.define("cv.Application",
           cv.ConfigCache.restore();
         } else {
           // load empty HTML structure
-          qx.dom.Element.empty(body);
-          qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+          qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
         }
         this.loadConfig();
       }, this);
@@ -230,8 +229,7 @@ qx.Class.define("cv.Application",
 
           // load empty HTML structure
           var body = qx.bom.Selector.query("body")[0];
-          qx.dom.Element.empty(body);
-          qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+          qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
 
           //empty model
           cv.data.Model.getInstance().resetWidgetDataModel();
