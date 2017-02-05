@@ -55,8 +55,7 @@ qx.Class.define('cv.ConfigCache', {
       cv.Config.configSettings = cache.configSettings;
       model.setWidgetDataModel(cache.data);
       model.setAddressList(cache.addresses);
-      qx.dom.Element.empty(body);
-      qx.bom.Html.clean([cv.ConfigCache.getBody()], null, body);
+      qx.bom.element.Attribute.set(body, "html", cv.ConfigCache.getBody());
     },
     
     save: function(key, data) {
