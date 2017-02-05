@@ -107,7 +107,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         zoomYAxis         : { transform: function(value) {
           return value === "true";
         }},
-        title             : { target: "label" },
+        title             : { target: "title" },
         refresh           : {},
         gridcolor         : { "default": "#81664B" },
         previewlabels     : { transform: function(value) {
@@ -237,6 +237,11 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       check: "Object",
       init: {}
     },
+    title: {
+      check: "String",
+      nullable: true,
+      apply: "_applyTitle"
+    },
     series: {
       check: ["hour", "day", "week", "month", "year", "fullday", "custom"],
       init: "day"
@@ -315,6 +320,14 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     plot: null,
     plotted: null,
     _timerPopup: null,
+
+    // property apply
+    _applyTitle: function(value) {
+      if (value) {
+        // override label
+        this.setLabel(value);
+      }
+    },
 
     _setupRefreshAction: function() {
       if (this.getRefresh()) {
