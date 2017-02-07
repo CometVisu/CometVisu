@@ -59,7 +59,6 @@ qx.Class.define('cv.io.Mockup', {
   ******************************************************
   */
   members: {
-    dataReceived: null,
     addresses: null,
 
     /**

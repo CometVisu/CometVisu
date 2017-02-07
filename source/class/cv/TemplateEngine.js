@@ -547,10 +547,11 @@ qx.Class.define('cv.TemplateEngine', {
       if (page_id === null) {
         return;
       }
-      if (cv.Config.TMP.currentPageId === page_id) {
+      if (cv.Config.currentPageId === page_id) {
         return;
       }
-      cv.Config.TMP.currentPageId = page_id;
+      cv.Config.currentPageId = page_id;
+      cv.Config.treePath = page_id;
 
       if (undefined === speed) {
         speed = cv.Config.scrollSpeed;

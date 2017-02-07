@@ -33,7 +33,7 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
     var children = [];
     // create children
     var model = cv.data.Model.getInstance();
-    if (cv.Config.lazyLoading === false || cv.Config.TMP.treePath.indexOf(props.path) >= 0) {
+    if (cv.Config.lazyLoading === false || cv.Config.treePath.indexOf(props.path) >= 0) {
       // this.debug(props.$$type+" INIT ["+props.path+"] with "+props.children.length+" children");
       props.children.forEach(function (path) {
         var data = model.getWidgetData(path);

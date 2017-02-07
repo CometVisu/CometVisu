@@ -254,7 +254,7 @@ qx.Class.define("cv.Application",
 
           engine.addListenerOnce("changeReady", function() {
             // create the objects
-            cv.Config.TMP.treePath = cv.Config.initialPage;
+            cv.Config.treePath = cv.Config.initialPage;
             var data = cv.data.Model.getInstance().getWidgetData("id_");
             cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
           }, this);

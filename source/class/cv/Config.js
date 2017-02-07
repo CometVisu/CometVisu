@@ -35,9 +35,16 @@ qx.Class.define('cv.Config', {
     },
 
     /**
-     * Temporary settings which will not be cached
+     * The current path tree
+     * @type {String}
      */
-    TMP: {},
+    treePath: "",
+
+    /**
+     * Path to the current page
+     * @type {String}
+     */
+    currentPageId: null,
 
     /**
      * Config file version
