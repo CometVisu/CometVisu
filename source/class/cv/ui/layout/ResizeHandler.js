@@ -239,6 +239,11 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     __makePagesizeValid: function() {
       qx.log.Logger.debug("makePagesizeValid");
+      var page = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.currentPageId);
+      if (!page.isInitialized()) {
+        page.addListenerOnce("changeInitialized", this.__makePagesizeValid, this);
+        return;
+      }
       this.width = cv.ui.layout.Manager.getAvailableWidth();
       this.height = cv.ui.layout.Manager.getAvailableHeight();
       this.getPageSize().innerHTML = '#main,.page{width:' + (this.width - 0) + 'px;height:' + this.height + 'px;}';

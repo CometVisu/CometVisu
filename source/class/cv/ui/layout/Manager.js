@@ -41,7 +41,12 @@ qx.Class.define('cv.ui.layout.Manager', {
     COLSPAN_CLASS: null,
 
     getCurrentPageNavbarVisibility: function () {
-      if (this.currentPageNavbarVisibility === null) {
+      if (this.currentPageNavbarVisibility === null ||
+        this.currentPageNavbarVisibility.left === null ||
+        this.currentPageNavbarVisibility.right === null ||
+        this.currentPageNavbarVisibility.top === null ||
+        this.currentPageNavbarVisibility.bottom === null
+      ) {
         this.currentPageNavbarVisibility = cv.TemplateEngine.getInstance().pagePartsHandler.getNavbarsVisibility(cv.TemplateEngine.getInstance().currentPage);
       }
       return this.currentPageNavbarVisibility;
@@ -87,14 +92,14 @@ qx.Class.define('cv.ui.layout.Manager', {
         var navbarVisibility = this.getCurrentPageNavbarVisibility();
 
         var left = qx.bom.Selector.query('#navbarLeft')[0];
-        var widthNavbarLeft = navbarVisibility.left === true && qx.bom.element.Class.get(left, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
+        var widthNavbarLeft = navbarVisibility.left === true && qx.bom.element.Style.get(left, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(left)) : 0;
         if (widthNavbarLeft >= bodyWidth) {
           // Left-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem
           widthNavbarLeft = 0;
         }
         var right = qx.bom.Selector.query('#navbarRight')[0];
-        var widthNavbarRight = navbarVisibility.right === true && qx.bom.element.Class.get(right, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
+        var widthNavbarRight = navbarVisibility.right === true && qx.bom.element.Style.get(right, 'display') !== "none" ? Math.ceil(qx.bom.element.Dimension.getWidth(right)) : 0;
         if (widthNavbarRight >= bodyWidth) {
           // Right-Navbar has the same size as the complete body, this can happen, when the navbar has no content
           // maybe there is a better solution to solve this problem

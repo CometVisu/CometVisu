@@ -38,12 +38,17 @@ qx.Class.define('cv.ui.structure.pure.Page', {
   ******************************************************
   */
   construct: function(props) {
-    this.__inititialized = false;
+    this.__waitForProperties = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
     this.base(arguments, props);
 
     // break out of the constructor
     new qx.util.DeferredCall(function() {
       var parentPage = this.getParentPage();
+      if (!parentPage) {
+        this.__waitForProperties = [];
+      } else {
+        this.debug("binding navbar visibility from " + parentPage.getPath() + " to " + this.getPath());
+      }
       [
         ['showTopNavigation', true],
         ['showFooter', true],
@@ -63,7 +68,9 @@ qx.Class.define('cv.ui.structure.pure.Page', {
             this['set' + qx.lang.String.firstUp(property)](defaultValue);
           }
         }
-        this.__inititialized = true;
+        if (!parentPage) {
+          this.setInitialized(true);
+        }
       }, this);
 
       this.addListener("changeVisible", this._onChangeVisible, this);
@@ -95,6 +102,12 @@ qx.Class.define('cv.ui.structure.pure.Page', {
    ******************************************************
    */
   properties: {
+    initialized: {
+      check: "Boolean",
+      init: false,
+      event: "changeInitialized"
+    },
+
     anonymous : {
       refine: true,
       init: true
@@ -116,22 +129,26 @@ qx.Class.define('cv.ui.structure.pure.Page', {
     showNavbarTop : {
       check: "Boolean",
       nullable: true,
-      event: "changeShowNavbarTop"
+      event: "changeShowNavbarTop",
+      apply: "_applyNavbarVisibility"
     },
     showNavbarBottom : {
       check: "Boolean",
       nullable: true,
-      event: "changeShowNavbarBottom"
+      event: "changeShowNavbarBottom",
+      apply: "_applyNavbarVisibility"
     },
     showNavbarLeft : {
       check: "Boolean",
       nullable: true,
-      event: "changeShowNavbarLeft"
+      event: "changeShowNavbarLeft",
+      apply: "_applyNavbarVisibility"
     },
     showNavbarRight : {
       check: "Boolean",
       nullable: true,
-      event: "changeShowNavbarRight"
+      event: "changeShowNavbarRight",
+      apply: "_applyNavbarVisibility"
     },
     backdropAlign     : {
       init: '50% 50%',
@@ -149,11 +166,16 @@ qx.Class.define('cv.ui.structure.pure.Page', {
    ******************************************************
    */
   members: {
-    __inititialized: null,
+    __waitForProperties: null,
     __colspanClass: null,
 
-    isInitialized: function() {
-      return this.__inititialized === true;
+    _applyNavbarVisibility: function(value, old, name) {
+      if (value !== null) {
+        qx.lang.Array.remove(this.__waitForProperties, name);
+        if (this.__waitForProperties.length === 0) {
+          this.setInitialized(true);
+        }
+      }
     },
 
     /**
