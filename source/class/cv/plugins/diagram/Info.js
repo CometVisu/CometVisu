@@ -8,9 +8,33 @@ qx.Class.define('cv.plugins.diagram.Info', {
    ******************************************************
    */
   construct: function(props) {
-    this.base(arguments, props);
     this._init = false;
+    this.base(arguments, props);
   },
+
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    /**
+     * Parses the widgets XML configuration and extracts the given information
+     * to a simple key/value map.
+     *
+     * @param xml {Element} XML-Element
+     * @param path {String} internal path of the widget
+     * @param flavour {String} Flavour of the widget
+     * @param pageType {String} Page type (2d, 3d, ...)
+     */
+    parse: function (xml, path, flavour, pageType) {
+      var data = cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType);
+      cv.xml.Parser.parseAddress(xml, path);
+      cv.xml.Parser.parseFormat(xml, path);
+      return data;
+    }
+  },
+
 
   /*
    ******************************************************
@@ -30,7 +54,7 @@ qx.Class.define('cv.plugins.diagram.Info', {
 
   defer: function(statics) {
     // register the parser
-    cv.xml.Parser.addHandler("diagram_info", cv.plugins.diagram.AbstractDiagram);
+    cv.xml.Parser.addHandler("diagram_info", statics);
     cv.ui.structure.WidgetFactory.registerClass("diagram_info", statics);
   }
 });
