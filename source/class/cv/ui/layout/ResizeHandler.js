@@ -115,31 +115,33 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     __makeBackdropValid: function () {
       qx.log.Logger.debug("makeBackdropValid");
+      // TODO: this is structure.pure specific and should be handled by the structure itself
       var templateEngine = cv.TemplateEngine.getInstance();
-      if (!templateEngine.currentPage) {
+      var page = templateEngine.getCurrentPage();
+      if (!page) {
         return;
       }
       // TODO use page object
-      var widgetData = cv.data.Model.getInstance().getWidgetData(qx.bom.element.Attribute.get(templateEngine.currentPage, 'id'));
-      if ('2d' === widgetData.type) {
+
+      if ('2d' === page.getPageType()) {
         var
           cssPosRegEx = /(\d*)(.*)/,
-          backdrop = templateEngine.currentPage.children().children().filter(widgetData.backdroptype)[0],
-          backdropSVG = widgetData.backdroptype === 'embed' ? backdrop.getSVGDocument() : null,
+          backdrop = page.getDomElement().children().children().filter(page.getBackdropType())[0],
+          backdropSVG = page.getBackdropType() === 'embed' ? backdrop.getSVGDocument() : null,
           backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {},
           backdropNWidth = backdrop.naturalWidth || backdropBBox.width || this.self(arguments).width,
           backdropNHeight = backdrop.naturalHeight || backdropBBox.height || this.self(arguments).height,
           backdropScale = Math.min(this.self(arguments).width / backdropNWidth, this.self(arguments).height / backdropNHeight),
           backdropWidth = backdropNWidth * backdropScale,
           backdropHeight = backdropNHeight * backdropScale,
-          backdropPos = widgetData.backdropalign.split(' '),
+          backdropPos = page.getBackdropAlign().split(' '),
           backdropLeftRaw = backdropPos[0].match(cssPosRegEx),
           backdropTopRaw = backdropPos[1].match(cssPosRegEx),
           backdropLeft = backdropLeftRaw[2] === '%' ? (this.self(arguments).width > backdropWidth ? ((this.self(arguments).width - backdropWidth ) * (+backdropLeftRaw[1]) / 100) : 0) : +backdropLeftRaw[1],
           backdropTop = backdropTopRaw[2] === '%' ? (this.self(arguments).height > backdropHeight ? ((this.self(arguments).height - backdropHeight) * (+backdropTopRaw[1] ) / 100) : 0) : +backdropTopRaw[1],
           uagent = navigator.userAgent.toLowerCase();
 
-        if (backdrop.complete === false || (widgetData.backdroptype === 'embed' && backdropSVG === null)) {
+        if (backdrop.complete === false || (page.getBackdropType() === 'embed' && backdropSVG === null)) {
           // backdrop not available yet - reload
           setTimeout(this.invalidateBackdrop, 100);
           return;
@@ -151,7 +153,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
         // object-position although object-fit itself does work
         // Note 2: The embed element allways needs it
         if (
-          widgetData.backdroptype === 'embed' ||
+          page.getBackdropType() === 'embed' ||
           ( uagent.indexOf('safari') !== -1 && uagent.indexOf('chrome') === -1 )
         ) {
           qx.bom.element.Style.setStyles(backdrop, {
@@ -162,12 +164,12 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
           });
         }
 
-        qx.bom.Selector.query('.widget_container', templateEngine.currentPage).forEach(function (widgetContainer) {
-          var widgetData = cv.data.Model.getInstance().getWidgetData(widgetContainer.id);
+        qx.bom.Selector.query('.widget_container', page.getDomElement()).forEach(function (widgetContainer) {
+          var widget = cv.ui.structure.WidgetFactory.getInstanceById(widgetContainer.id);
           var value;
-          if (widgetData.layout) {
+          if (widget.getLayout()) {
             var
-              layout = widgetData.layout,
+              layout = widget.getLayout(),
               // this assumes that a .widget_container has only one child and this
               // is the .widget itself
               style = widgetContainer.children[0].style;

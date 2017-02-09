@@ -67,6 +67,12 @@ qx.Class.define('cv.TemplateEngine', {
       init: false,
       event: "changeReady",
       apply: "_applyReady"
+    },
+
+    currentPage: {
+      check: "cv.ui.structure.IPage",
+      nullable: true,
+      event: "changeCurrentPage"
     }
   },
 
@@ -77,7 +83,6 @@ qx.Class.define('cv.TemplateEngine', {
    */
   members: {
     pagePartsHandler: null,
-    currentPage: null,
     // if true the whole widget reacts on click events
     // if false only the actor in the widget reacts on click events
     bindClickToWidget : false,
@@ -186,7 +191,7 @@ qx.Class.define('cv.TemplateEngine', {
      * Reset some values related to the current page
      */
     resetPageValues: function () {
-      this.currentPage = null;
+      this.resetCurrentPage();
       cv.ui.layout.Manager.currentPageUnavailableWidth = -1;
       cv.ui.layout.Manager.currentPageUnavailableHeight = -1;
       cv.ui.layout.Manager.currentPageNavbarVisibility = null;
@@ -310,7 +315,7 @@ qx.Class.define('cv.TemplateEngine', {
         qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
         qx.event.message.Bus.dispatchByName("setup.dom.finished");
 
-        this.currentPage = qx.bom.Selector.query('#' + cv.Config.initialPage)[0];
+        this.setCurrentPage(cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage));
 
         cv.ui.layout.Manager.adjustColumns();
         cv.ui.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
@@ -417,8 +422,8 @@ qx.Class.define('cv.TemplateEngine', {
     /**
      * Returns the id of the page the given path is associated to
      * @param page_name {String}
-     * @param path
-     * @returns {*}
+     * @param path {String}
+     * @return {String}
      */
     getPageIdByPath: function (page_name, path) {
       if (page_name === null) { return null; }
@@ -483,17 +488,17 @@ qx.Class.define('cv.TemplateEngine', {
         //      console.log("Page: "+page_name+", Scope: "+scope);
         var selector = (scope !== undefined && scope !== null) ? '.page[id^="' + scope + '"] h1:contains(' + page_name + ')' : '.page h1:contains(' + page_name + ')';
         var pages = qx.bom.Selector.query(selector);
-        if (pages.length > 1 && this.currentPage !== null) {
+        if (pages.length > 1 && this.getCurrentPage() !== null) {
+          var currentPageId = this.getCurrentPage().getPath();
           // More than one Page found -> search in the current pages descendants first
           var fallback = true;
           pages.forEach(function (page) {
             var p = cv.util.Tree.getClosest(page, ".page");
             if (qx.dom.Node.getText(page) === page_name) {
               var pid = qx.bom.element.Attribute.get(p, 'id');
-              var cid = qx.bom.element.Attribute.get(this.currentPage, 'id');
-              if (pid.length < cid.length) {
+              if (pid.length < currentPageId.length) {
                 // found pages path is shorter the the current pages -> must be an ancestor
-                if (qx.bom.element.Attribute.get(this.currentPage, 'id').indexOf(pid) === 0) {
+                if (currentPageId.indexOf(pid) === 0) {
                   // found page is an ancestor of the current page -> we take this one
                   page_id = pid;
                   fallback = false;
@@ -501,7 +506,7 @@ qx.Class.define('cv.TemplateEngine', {
                   return false;
                 }
               } else {
-                if (pid.indexOf(cid) === 0) {
+                if (pid.indexOf(currentPageId) === 0) {
                   // found page is an descendant of the current page -> we take this one
                   page_id = pid;
                   fallback = false;

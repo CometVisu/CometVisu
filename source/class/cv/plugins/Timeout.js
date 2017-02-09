@@ -158,11 +158,11 @@ qx.Class.define('cv.plugins.Timeout', {
         if (this.__timeoutCurrentPage !== this.__timeoutTargetPage && this.__timeoutCurrentPageTitle !== this.__timeoutTargetPage) {
           this.timeoutPrintDebug("TIMEOUT: Got Timeout - Now Goto Page " + this.__timeoutTargetPage);
           templateEngine.scrollToPage(this.__timeoutTargetPage);
-          templateEngine.currentPage.scrollTop(0);
+          templateEngine.getCurrentPage().getDomElement().scrollTop(0);
           //templateEngine.updateTopNavigation();
         } else {
           this.timeoutPrintDebug("TIMEOUT: Already on page " + this.__timeoutTargetPage);
-          templateEngine.currentPage.scrollTop(0);
+          templateEngine.getCurrentPage().getDomElement().scrollTop(0);
         }
       }
     }

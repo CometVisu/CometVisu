@@ -26,6 +26,7 @@
  */
 qx.Class.define('cv.ui.structure.pure.Page', {
   extend: cv.ui.structure.AbstractWidget,
+  implement: cv.ui.structure.IPage,
 
   include: [
     cv.ui.common.HasChildren,
