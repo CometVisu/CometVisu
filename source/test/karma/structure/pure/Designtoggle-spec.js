@@ -37,9 +37,9 @@ describe("testing a designtoggle widget", function() {
   it('should trigger the designtoggle action', function() {
 
     var spiedStore;
-    var originalConstructor = qx.data.store.Json;
-    spyOn(qx.data.store, 'Json').and.callFake(function(url) {
-      spiedStore = new originalConstructor();
+    var OriginalConstructor = qx.data.store.Json;
+    spyOn(qx.data.store, 'Json').and.callFake(function() {
+      spiedStore = new OriginalConstructor();
       return spiedStore;
     });
 
