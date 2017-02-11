@@ -56,6 +56,8 @@ for the DesignToggle widget.
       <label>Change Design</label>
     </designtoggle>
     
+    
+    
 
 .. ###END-WIDGET-EXAMPLES###
 

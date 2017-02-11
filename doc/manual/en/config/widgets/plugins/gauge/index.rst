@@ -3,7 +3,7 @@
 The gauge plugin
 ================
 
-.. api-doc:: gauge
+.. api-doc:: Gauge
 
 Description
 -----------
@@ -11,6 +11,7 @@ Description
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
 This plugins integrates Gauge (in canvas) into the visualization
+
 
 
 .. ###END-WIDGET-DESCRIPTION###
