@@ -3,7 +3,15 @@
 0.10.0
 ======
 
-### 0.10.0-dev (2017/02/04 20:39 +00:00)
+### 0.10.0-RC2 (2017/02/11 15:26 +00:00)
+- [#494](https://github.com/CometVisu/CometVisu/pull/494) tweak requirejs settings to make sure everything is loaded in the cor… (@peuter)
+- [#498](https://github.com/CometVisu/CometVisu/pull/498) Update icons (@ChristianMayer)
+- [#496](https://github.com/CometVisu/CometVisu/pull/496) add class attribute for widgets that support it (by using createDefau… (@peuter)
+- [#492](https://github.com/CometVisu/CometVisu/pull/492) Fix build system and demo config (@ChristianMayer)
+
+### v0.10.0-RC1 (2017/02/05 15:23 +00:00)
+- [#491](https://github.com/CometVisu/CometVisu/pull/491) Add schema definition for openweathermap plugin (@ChristianMayer)
+- [#490](https://github.com/CometVisu/CometVisu/pull/490) Fix image width (@ChristianMayer)
 - [#488](https://github.com/CometVisu/CometVisu/pull/488) Fix issue 303: handle datasourceIndex in diagram plugin (@ChristianMayer)
 - [#487](https://github.com/CometVisu/CometVisu/pull/487) Make pitchblack design appear nicer (@ChristianMayer)
 - [#467](https://github.com/CometVisu/CometVisu/pull/467) remove console.log calls (@peuter)
