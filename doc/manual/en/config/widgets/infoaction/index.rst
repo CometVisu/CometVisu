@@ -75,7 +75,6 @@ for the InfoAction widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. figure:: _static/infoaction_lights.png
 .. code-block:: xml
 
     ...
@@ -97,7 +96,7 @@ for the InfoAction widget.
     <infoaction>
      <layout colspan="4"/>
      <label>Lights</label>
-    	<widgetinfo>
+     <widgetinfo>
        <info>
         <address transform="DPT:9.001">0/0/0</address>
        </info>
@@ -110,6 +109,8 @@ for the InfoAction widget.
      </widgetaction>
     </infoaction>
         
+    
+    
 
 .. ###END-WIDGET-EXAMPLES###
 

@@ -1,7 +1,7 @@
 .. _include:
 
-The Include widget
-==================
+The Include element
+===================
 
 .. api-doc:: Include
 

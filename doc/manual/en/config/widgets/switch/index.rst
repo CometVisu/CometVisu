@@ -28,7 +28,7 @@ The screenshots show, how both can be edited in the :ref:`editor <editor>`.
 Attributes underlined by ..... are mandatory, all the others are optional and be omitted.
 
 Allowed attributes in the Switch-element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: switch
 
@@ -72,14 +72,6 @@ for the Switch widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. figure:: _static/switch_example_on.png
-
-    Switch turned on
-
-.. figure:: _static/switch_example_off.png
-
-    Switch turned off
-
 .. code-block:: xml
 
     ...
@@ -103,7 +95,9 @@ for the Switch widget.
       <label>Switch</label>
       <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
     </switch>
+        
     
+
 .. ###END-WIDGET-EXAMPLES###
 
 .. rubric:: Footnotes

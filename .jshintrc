@@ -2,7 +2,7 @@
   "node": true,
   "browser": true,
   "esnext": true,
-  "bitwise": true,
+  "bitwise": false,
   "curly": true,
   "eqeqeq": true,
   "immed": true,
@@ -26,8 +26,17 @@
     "element": false,
     "by": false,
     "list": false,
-    "define": false,
     "templateEngine":false,
-    "Transform":false
+    "Transform":false,
+    "window": false,
+    "qx": false,
+    "cv": false,
+    "sprintf": false,
+    "THREE": false,
+    "SpeechSynthesisUtterance": false,
+    "jQuery": false,
+    "steelseries": false,
+    "EventSource": false,
+    "fs": false
   }
 }

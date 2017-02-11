@@ -52,7 +52,7 @@ for the Line widget.
 
 .. widget-example::
 
-    <settings selector="hr">
+     <settings selector="hr">
       <caption>A line tag which uses 50% of the screen size (6 of 12 available columns)</caption>
     </settings>
     <line><layout colspan="6"/></line>

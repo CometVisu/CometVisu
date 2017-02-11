@@ -51,11 +51,11 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                    '    <lastmod>%s</lastmod>\n' \
                    '    <priority>%s</priority>\n' \
                    '  </url>\n' % (
-                self.config.get("sitemap", "base"),
-                file,
-                iso_time,
-                self.config.get("sitemap", "prio")
-            )
+                       self.config.get("sitemap", "base"),
+                       file,
+                       iso_time,
+                       self.config.get("sitemap", "prio")
+                   )
         map += "</urlset>"
         with open(os.path.join(self.root_dir, self.config.get("sitemap", "file")), 'w') as f:
             f.write(map)
