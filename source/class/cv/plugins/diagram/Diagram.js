@@ -89,18 +89,18 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
           // start refreshing when page is entered
           this._startRefresh(this._timer);
         }, this);
-        if (cv.Config.initialPage === pageId) {
-          // initialize the diagram but don't make the initialization process wait for it
-          // by using a deferred call
-          new qx.util.DeferredCall(function() {
-            if (!this._init) {
-              this.loadDiagramData(this.plot, false, false);
-            } else {
-              this.initDiagram(false);
-            }
-          }, this).schedule();
-        }
+        // initialize the diagram but don't make the initialization process wait for it
+        // by using a deferred call
+        new qx.util.DeferredCall(function() {
+          if (!this._init) {
+            this.loadDiagramData(this.plot, false, false);
+          } else {
+            this.initDiagram(false);
+          }
+        }, this).schedule();
         this.$$domReady = true;
+      } else {
+        console.log("diagram dom not ready yet");
       }
     },
 
