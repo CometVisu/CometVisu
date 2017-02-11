@@ -126,15 +126,15 @@ qx.Class.define('cv.ui.layout.Manager', {
     getAvailableHeight: function () {
       var windowHeight = qx.bom.Viewport.getHeight();
       this.currentPageUnavailableHeight = 0;
-      var navbarVisibility = this.getCurrentPageNavbarVisibility(cv.TemplateEngine.getInstance().currentPage);
+      var navbarVisibility = this.getCurrentPageNavbarVisibility();
       var topNav = qx.bom.Selector.query('#navbarTop')[0];
       var top = qx.bom.Selector.query('#top')[0];
       var bottomNav = qx.bom.Selector.query('#navbarBottom')[0];
       var bottom = qx.bom.Selector.query('#bottom')[0];
-      var topNavDisplay = qx.bom.element.Class.get(topNav, 'display');
-      var topDisplay = qx.bom.element.Class.get(top, 'display');
-      var bottomNavDisplay = qx.bom.element.Class.get(bottomNav, 'display');
-      var bottomDisplay = qx.bom.element.Class.get(bottom, 'display');
+      var topNavDisplay = qx.bom.element.Style.get(topNav, 'display');
+      var topDisplay = qx.bom.element.Style.get(top, 'display');
+      var bottomNavDisplay = qx.bom.element.Style.get(bottomNav, 'display');
+      var bottomDisplay = qx.bom.element.Style.get(bottom, 'display');
       var topHeight = qx.bom.element.Dimension.getHeight(top);
       var topNavHeight = qx.bom.element.Dimension.getHeight(topNav);
       var bottomNavHeight = qx.bom.element.Dimension.getHeight(bottomNav);
@@ -144,10 +144,10 @@ qx.Class.define('cv.ui.layout.Manager', {
       if (topDisplay  !== 'none' && topHeight > 0) {
         this.currentPageUnavailableHeight += Math.max(topHeight, navPathHeight);
       }
-      if (topNavDisplay !== 'none' && navbarVisibility.top === "true" && topNavHeight > 0) {
-        this.currentPageUnavailableHeight += topHeight;
+      if (topNavDisplay !== 'none' && navbarVisibility.top === true && topNavHeight > 0) {
+        this.currentPageUnavailableHeight += topNavHeight;
       }
-      if (bottomNavDisplay !== 'none' && navbarVisibility.bottom === "true" && bottomNavHeight > 0) {
+      if (bottomNavDisplay !== 'none' && navbarVisibility.bottom === true && bottomNavHeight > 0) {
         this.currentPageUnavailableHeight += bottomNavHeight;
       }
       if (bottomDisplay !== 'none' && bottomHeight > 0) {
