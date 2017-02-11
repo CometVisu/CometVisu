@@ -106,12 +106,11 @@ qx.Class.define('cv.TemplateEngine', {
     __partQueue: null,
 
     /**
-     * Load parts
+     * Load parts (e.g. plugins, structure)
+     *
      * @param parts {String[]|String} parts to load
-     * @param callback {Function} callback function to call when the parts have been loaded
-     * @param context {Object} callback context
      */
-    loadParts: function(parts, callback, context) {
+    loadParts: function(parts) {
       if (!qx.lang.Type.isArray(parts)) {
         parts = [parts];
       }
@@ -125,10 +124,6 @@ qx.Class.define('cv.TemplateEngine', {
             this.error("error loading part "+part);
           }
         }, this);
-
-        if (callback) {
-          callback.apply(context || this, states);
-        }
       }, this);
     },
 
