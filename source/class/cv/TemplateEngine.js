@@ -144,7 +144,7 @@ qx.Class.define('cv.TemplateEngine', {
 
     /**
      * Please use {cv.data.Model.getInstance().addAddress()} instead
-     * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().addAddress()} instead
+     * @deprecated {0.11.0} Please use {cv.data.Model.getInstance().addAddress()} instead
      */
     addAddress: function (address, id) {
       this.warn("addAddress is deprecated! Please use cv.data.Model.getInstance().addAddress() instead");
@@ -153,7 +153,7 @@ qx.Class.define('cv.TemplateEngine', {
 
     /**
      * Please use {cv.data.Model.getInstance().getAddresses()} instead
-     * @deprecated {0.10.0} Please use {cv.data.Model.getInstance().getAddresses()} instead
+     * @deprecated {0.11.0} Please use {cv.data.Model.getInstance().getAddresses()} instead
      */
     getAddresses: function () {
       this.warn("getAddresses is deprecated! Please use cv.data.Model.getInstance().getAddresses() instead");
