@@ -105,15 +105,9 @@ qx.Class.define('cv.plugins.Timeout', {
     __timeoutTargetPage: null,
     __timer: null,
 
-    timeoutPrintDebug: function (s) {
-      if (this.isDebug()) {
-        this.debug(s);
-      }
-    },
-
     _onDomReady: function () {
-      this.timeoutPrintDebug("Timeout Set to : " + this.getTimeout());
-      this.timeoutPrintDebug("Target Page: " + this.getTarget());
+      this.debug("Timeout Set to : " + this.getTimeout());
+      this.debug("Target Page: " + this.getTarget());
 
       var deltaT = this.getTimeout() * 100;
       this.__timer = new qx.event.Timer(deltaT);
@@ -145,7 +139,7 @@ qx.Class.define('cv.plugins.Timeout', {
     },
 
     timeoutTrigger: function () {
-      this.timeoutPrintDebug("TIMEOUT: Got Trigger (" + this.__timeoutIdleCount + ")");
+      this.debug("TIMEOUT: Got Trigger (" + this.__timeoutIdleCount + ")");
       this.__timeoutIdleCount++;
       this.__timeoutTargetPage = this.getTarget();
       if (this.__timeoutIdleCount >= 10) {
@@ -153,12 +147,12 @@ qx.Class.define('cv.plugins.Timeout', {
         var templateEngine = cv.TemplateEngine.getInstance();
 
         if (this.__timeoutCurrentPage !== this.__timeoutTargetPage && this.__timeoutCurrentPageTitle !== this.__timeoutTargetPage) {
-          this.timeoutPrintDebug("TIMEOUT: Got Timeout - Now Goto Page " + this.__timeoutTargetPage);
+          this.debug("TIMEOUT: Got Timeout - Now Goto Page " + this.__timeoutTargetPage);
           templateEngine.scrollToPage(this.__timeoutTargetPage);
           templateEngine.getCurrentPage().getDomElement().scrollTop(0);
           //templateEngine.updateTopNavigation();
         } else {
-          this.timeoutPrintDebug("TIMEOUT: Already on page " + this.__timeoutTargetPage);
+          this.debug("TIMEOUT: Already on page " + this.__timeoutTargetPage);
           templateEngine.getCurrentPage().getDomElement().scrollTop(0);
         }
       }
