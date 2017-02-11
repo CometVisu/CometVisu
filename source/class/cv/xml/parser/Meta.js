@@ -63,7 +63,7 @@ qx.Class.define("cv.xml.parser.Meta", {
             var icon = this.__parseIconDefinition(v);
             value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon.class));
           }
-          else if (qx.dom.Node.getText(v).trim().length) {
+          else { //if (qx.dom.Node.getText(v).trim().length) {
             value.push(qx.dom.Node.getText(v).trim());
           }
         }
