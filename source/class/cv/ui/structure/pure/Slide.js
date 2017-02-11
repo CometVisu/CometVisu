@@ -48,7 +48,11 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     this.__readonly = readonly;
 
     // initialize value with min value
-    this.setValue(this.applyMapping(this.getMin()));
+    if (this.getMin() <= 0 && 0 <= this.getMax()) {
+      this.setValue(this.applyMapping(0));
+    } else {
+      this.setValue(this.applyMapping(this.getMin()));
+    }
   },
 
 
@@ -104,13 +108,13 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         slider.setConfig("step", this.getStep());
         slider.setConfig("minimum", this.getMin());
         slider.setConfig("maximum", this.getMax());
-        // set initial value
-        slider.setValue(parseFloat(this.getValue()));
 
         if (this.__readonly) {
           slider.setEnabled(false);
         }
         slider.init();
+        // set initial value
+        slider.setValue(parseFloat(this.getValue()));
 
         slider.on("changeValue", qx.util.Function.throttle(this._onChangeValue, 250, true), this);
 
@@ -130,10 +134,12 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
           }
         }, this);
         if (this.isVisible()) {
-          this.__updateSlider();
+          // delay the update, as the page width is not correct at this moment
+          qx.event.Timer.once(this.__updateSlider, this, 5);
         }
         this.__skipUpdatesFromSlider = false;
         this.__initialized = true;
+
       }
     },
 
