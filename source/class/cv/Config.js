@@ -161,7 +161,7 @@ qx.Class.define('cv.Config', {
     /**
      * Get the structure that is realted for this design
      * @param design {String?} name of the design
-     * @returns {String} name of the structure
+     * @return {String} name of the structure
      */
     getStructure: function(design) {
       if (!design) {
