@@ -364,7 +364,7 @@ qx.Class.define('cv.TemplateEngine', {
           this.scrollToPage();
         }, this);
         this.screensave.start();
-        qx.event.Registration.addListener(document, "pointerdown", this.screensave.restart, this.screensave);
+        qx.event.Registration.addListener(window, "useraction", this.screensave.restart, this.screensave);
       }
     },
 

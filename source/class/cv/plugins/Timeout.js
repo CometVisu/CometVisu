@@ -121,10 +121,7 @@ qx.Class.define('cv.plugins.Timeout', {
       this.__timer.start();
 
       // Reset Counter on every interaction
-      qx.event.Registration.addListener(document, 'scroll', this._onUserAction, this);
-      qx.event.Registration.addListener(document, 'keypress', this._onUserAction, this);
-      qx.event.Registration.addListener(document, 'roll', this._onUserAction, this);
-      qx.event.Registration.addListener(document, 'pointerdown', this._onUserAction, this);
+      qx.event.Registration.addListener(window, "useraction", this._onUserAction, this);
 
       // Keep track of current page
       qx.event.message.Bus.subscribe("path.pageChanged", function (ev) {
