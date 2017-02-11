@@ -159,7 +159,7 @@ qx.Class.define('cv.Config', {
     },
 
     /**
-     * Get the structure that is realted for this design
+     * Get the structure that is related to this design
      * @param design {String?} name of the design
      * @return {String} name of the structure
      */
