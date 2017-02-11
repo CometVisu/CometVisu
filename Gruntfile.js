@@ -231,6 +231,8 @@ module.exports = function(grunt) {
           generateSourceMaps: true,
           preserveLicenseComments: false,
           removeCombined: true,
+          wrapShim: true,
+          skipModuleInsertion: false,
           // config options to handle required CSS files:
           separateCSS: true,
           buildCSS: false,
