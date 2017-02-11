@@ -41,8 +41,8 @@ qx.Class.define('cv.xml.parser.widgets.MultiTrigger', {
      */
     parse: function (xml, path, flavour, pageType) {
       var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.xml.Parser.parseFormat(xml, path, this.makeAddressListFn);
-      cv.xml.Parser.parseAddress(xml, path);
+      cv.xml.Parser.parseFormat(xml, path);
+      cv.xml.Parser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
     },
 
