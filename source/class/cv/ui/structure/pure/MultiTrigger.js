@@ -136,15 +136,12 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
 
     /**
      * Handles the incoming data from the backend for this widget
-     *
-     *
-     * @param value {any} incoming data (already transformed + mapped)
      */
-    handleUpdate: function (value) {
+    handleUpdate: function () {
       var children = qx.bom.Selector.query('.actor_container .actor', this.getDomElement());
       children.forEach(function(actor) {
         var index = children.indexOf(actor)+1;
-        var isPressed = value === this['getButton' + index + 'value']();
+        var isPressed = this.getBasicValue() === this['getButton' + index + 'value']();
         qx.bom.element.Class.remove(actor, isPressed ? 'switchUnpressed' : 'switchPressed');
         qx.bom.element.Class.add(actor, isPressed ? 'switchPressed' : 'switchUnpressed');
       }, this);

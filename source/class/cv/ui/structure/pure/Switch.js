@@ -95,7 +95,9 @@ qx.Class.define('cv.ui.structure.pure.Switch', {
      */
     handleUpdate: function(value) {
       var actor = this.getActor();
-      var off = this.applyMapping(this.getOffValue());
+      // compare against the unmapped value
+      value = this.getBasicValue();
+      var off = this.getOffValue();
       // using == comparisons to make sure that e.g. 1 equals "1"
       qx.bom.element.Class.remove(actor, value == off ? 'switchPressed' : 'switchUnpressed'); // jshint ignore:line
       qx.bom.element.Class.add(actor, value == off ? 'switchUnpressed' : 'switchPressed'); // jshint ignore:line
