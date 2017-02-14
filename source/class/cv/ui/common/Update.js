@@ -73,7 +73,12 @@ qx.Mixin.define("cv.ui.common.Update", {
 
     processIncomingValue: function (address, data) {
       if (this._processIncomingValue) {
-        return this._processIncomingValue(address, data);
+        var value = this._processIncomingValue(address, data);
+        // store it to be able to suppress sending of unchanged data
+        if (value !== undefined) {
+          this.setBasicValue(value);
+        }
+        return value;
       }
       return this.defaultUpdate(address, data, this.getDomElement(), true, this.getPath());
     },
