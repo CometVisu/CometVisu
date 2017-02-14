@@ -45,8 +45,8 @@ qx.Class.define('cv.plugins.MobileMenu', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.xml.Parser.parseChildren(xml, path, flavour, pageType);
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
       return data;
     },
 
@@ -144,7 +144,7 @@ qx.Class.define('cv.plugins.MobileMenu', {
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/mobilemenu/mobilemenu.css');
-    cv.xml.Parser.addHandler("mobilemenu", statics);
+    cv.parser.WidgetParser.addHandler("mobilemenu", statics);
     cv.ui.structure.WidgetFactory.registerClass("mobilemenu", statics);
   }
 });

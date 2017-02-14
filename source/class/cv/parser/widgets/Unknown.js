@@ -1,4 +1,4 @@
-/* Unknown-spec.js 
+/* Unknown.js 
  * 
  * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
  * 
@@ -19,19 +19,34 @@
 
 
 /**
- * Unit tests for unkown widget
+ * Fallback widget shown when an unknown widget is defined in the configuration.
+ * You must not use this one directly.
  *
- * @author Tobias Bräutigam
- * @since 2016
+ * @author Christian Mayer
+ * @since 0.8.0 (2012)
  */
-describe("testing a unknown widget", function() {
+qx.Class.define('cv.parser.widgets.Unknown', {
+  type: "static",
 
-  it("should test the unknown creator", function() {
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    parse: function (xml, path, flavour, pageType) {
+      return cv.data.Model.getInstance().setWidgetData(path, {
+        'path': path,
+        'unknownType': qx.dom.Node.getName(xml).toLowerCase(),
+        '$$type': "unknown",
+        'pageType': pageType
+      });
+    }
+  },
 
-    var data = cv.parser.WidgetParser.parse(qx.dom.Element.create('unknown_widget'), 'id_0', null, "text");
-    var inst = cv.ui.structure.WidgetFactory.createInstance("unknown", data);
-    var unknown = qx.bom.Html.clean([inst.getDomString()])[0];
-
-    expect(qx.bom.Selector.query("pre", unknown)[0].textContent).toBe('unknown: unknown_widget');
-  });
+  defer: function (statics) {
+    // register the parser
+    cv.parser.WidgetParser.addHandler("unknown", statics);
+  }
 });
+

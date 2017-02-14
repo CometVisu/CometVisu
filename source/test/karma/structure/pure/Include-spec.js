@@ -28,7 +28,7 @@ describe("testing a include widget", function() {
   it("should test the include creator", function() {
 
     // create the request to be able to spy the send method
-    var req = cv.xml.parser.widgets.Include.getRequest('');
+    var req = cv.parser.widgets.Include.getRequest('');
     spyOn(req, "send");
 
     var child = qx.bom.Html.clean(['<page name="Start"></page>'])[0];
@@ -42,7 +42,7 @@ describe("testing a include widget", function() {
       return fakeResponse;
     });
     spyOn(cv.TemplateEngine.getInstance(), "createPages");
-    cv.xml.parser.widgets.Include._onSuccess("id_0", null, "text", fakeResponseEvent);
+    cv.parser.widgets.Include._onSuccess("id_0", null, "text", fakeResponseEvent);
 
     this.createTestWidgetString("include", {'src': 'test'});
 

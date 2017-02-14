@@ -95,9 +95,9 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.xml.Parser.parseFormat(xml, path);
-      cv.xml.Parser.parseAddress(xml, path);
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.WidgetParser.parseFormat(xml, path);
+      cv.parser.WidgetParser.parseAddress(xml, path);
       return data;
     },
 
@@ -426,7 +426,7 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
       'plugins/diagram/dep/flot/jquery.flot.resize.min.js',
       'plugins/diagram/dep/flot/jquery.flot.navigate.min.js'
     ]);
-    cv.xml.Parser.addHandler("powerspectrum", cv.plugins.PowerSpectrum);
+    cv.parser.WidgetParser.addHandler("powerspectrum", cv.plugins.PowerSpectrum);
     cv.ui.structure.WidgetFactory.registerClass("powerspectrum", statics);
     
     // init

@@ -69,7 +69,7 @@ describe("testing the meta parser", function() {
     </meta>
     */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1].trim();
     var xml = qx.xml.Document.fromString(source);
-    var parser = new cv.xml.parser.Meta();
+    var parser = new cv.parser.MetaParser();
     parser.parse(xml);
 
     // check mappings

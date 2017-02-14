@@ -1,4 +1,4 @@
-/* Unknown-spec.js 
+/* DesignToggle.js 
  * 
  * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
  * 
@@ -19,19 +19,28 @@
 
 
 /**
- * Unit tests for unkown widget
- *
- * @author Tobias Bräutigam
- * @since 2016
+ * Parse &lt;designtoggle;gt; config elements
  */
-describe("testing a unknown widget", function() {
+qx.Class.define('cv.parser.widgets.DesignToggle', {
+  type: "static",
 
-  it("should test the unknown creator", function() {
+  /*
+   ******************************************************
+   STATICS
+   ******************************************************
+   */
+  statics: {
+    parse: function (xml, path, flavour, pageType) {
+      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+    },
 
-    var data = cv.parser.WidgetParser.parse(qx.dom.Element.create('unknown_widget'), 'id_0', null, "text");
-    var inst = cv.ui.structure.WidgetFactory.createInstance("unknown", data);
-    var unknown = qx.bom.Html.clean([inst.getDomString()])[0];
+    getDefaultClasses: function() {
+      return 'widget clearfix toggle';
+    }
+  },
 
-    expect(qx.bom.Selector.query("pre", unknown)[0].textContent).toBe('unknown: unknown_widget');
-  });
+  defer: function(statics) {
+    // register the parser
+    cv.parser.WidgetParser.addHandler("designtoggle", statics);
+  }
 });

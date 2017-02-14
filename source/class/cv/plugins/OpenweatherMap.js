@@ -57,8 +57,8 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.xml.Parser.parseRefresh(xml, path);
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.WidgetParser.parseRefresh(xml, path);
       return data;
     },
 
@@ -154,7 +154,7 @@ qx.Class.define('cv.plugins.OpenweatherMap', {
     loader.addStyles('plugins/openweathermap/openweathermap.css');
     loader.addScripts('plugins/openweathermap/owm/jquery.owm.js');
     // register the parser
-    cv.xml.Parser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
+    cv.parser.WidgetParser.addHandler("openweathermap", cv.plugins.OpenweatherMap);
     cv.ui.structure.WidgetFactory.registerClass("openweathermap", statics);
   }
 });

@@ -64,7 +64,7 @@ qx.Class.define('cv.plugins.Strftime', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      return cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
     },
 
     getAttributeToPropertyMappings: function() {
@@ -135,7 +135,7 @@ qx.Class.define('cv.plugins.Strftime', {
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/strftime/strftime.css');
-    cv.xml.Parser.addHandler("strftime", statics);
+    cv.parser.WidgetParser.addHandler("strftime", statics);
     cv.ui.structure.WidgetFactory.registerClass("strftime", statics);
 
     // extend locales by German and French

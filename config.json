@@ -80,7 +80,7 @@
         "${APPLICATION}.ui.structure.pure.*",
         "${APPLICATION}.transforms.*",
         "${APPLICATION}.plugins.*",
-        "${APPLICATION}.xml.parser.*"
+        "${APPLICATION}.parser.*"
       ],
 
       "lint-check" : {
@@ -155,7 +155,7 @@
             "include" : [
               "${APPLICATION}.Application",
               "${APPLICATION}.transforms.*",
-              "${APPLICATION}.xml.parser.*"
+              "${APPLICATION}.parser.widgets.*"
             ]
           },
           "structure-pure" : {

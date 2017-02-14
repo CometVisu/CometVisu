@@ -103,7 +103,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
 
       var style = "";
       if (qx.lang.Object.isEmpty(this.getLayout())) {
-        style += cv.xml.Parser.extractLayout(this.getLayout(), this.getPageType());
+        style += cv.parser.WidgetParser.extractLayout(this.getLayout(), this.getPageType());
       }
       if (this.getHeight()) {
         style += 'height:' + this.getHeight() + ';';

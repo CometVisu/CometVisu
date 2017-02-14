@@ -84,7 +84,7 @@ qx.Class.define('cv.plugins.Speech', {
         return;
       }
 
-      var address = cv.xml.Parser.makeAddressList(element, path);
+      var address = cv.parser.WidgetParser.makeAddressList(element, path);
 
       return cv.data.Model.getInstance().setWidgetData( path, {
         'path'    : path,
@@ -199,7 +199,7 @@ qx.Class.define('cv.plugins.Speech', {
 
   defer: function(statics) {
     // register the parser
-    cv.xml.Parser.addHandler("speech", cv.plugins.Speech);
+    cv.parser.WidgetParser.addHandler("speech", cv.plugins.Speech);
     cv.ui.structure.WidgetFactory.registerClass("speech", statics);
   }
 });

@@ -45,9 +45,9 @@ qx.Class.define('cv.plugins.ColorChooser', {
      * @param pageType {String} Page type (2d, 3d, ...)
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType);
-      cv.xml.Parser.parseFormat(xml, path);
-      cv.xml.Parser.parseAddress(xml, path, this.makeAddressListFn);
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      cv.parser.WidgetParser.parseFormat(xml, path);
+      cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
       return data;
     },
 
@@ -233,7 +233,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
     loader.addStyles('plugins/colorchooser/farbtastic/farbtastic.css');
     loader.addScripts('plugins/colorchooser/farbtastic/farbtastic.min.js');
     // register the parser
-    cv.xml.Parser.addHandler("colorchooser", statics);
+    cv.parser.WidgetParser.addHandler("colorchooser", statics);
     cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);
   }
 });

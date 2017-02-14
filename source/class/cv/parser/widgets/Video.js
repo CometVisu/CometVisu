@@ -1,4 +1,4 @@
-/* structure_plugin.js 
+/* Video.js 
  * 
  * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
  * 
@@ -19,33 +19,10 @@
 
 
 /**
- * This plugins integrates a simple link.
  *
- * @author Stefan Borchert [stefan@borchert.cc]
- * @since 2015
  */
-qx.Class.define('cv.plugins.Link', {
-  extend: cv.ui.structure.AbstractBasicWidget,
-
-  /*
-  ******************************************************
-    PROPERTIES
-  ******************************************************
-  */
-  properties: {
-    cssClass: {
-      check: "String",
-      init: ''
-    },
-    text: {
-      check: "String",
-      init: ''
-    },
-    href: {
-      check: "String",
-      init: ''
-    }
-  },
+qx.Class.define('cv.parser.widgets.Video', {
+  type: "static",
 
   /*
   ******************************************************
@@ -61,7 +38,6 @@ qx.Class.define('cv.plugins.Link', {
      * @param path {String} internal path of the widget
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
-     * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
       return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
@@ -69,31 +45,18 @@ qx.Class.define('cv.plugins.Link', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'class': {target: 'cssClass'},
-        'text': {},
-        'href': {}
+        'width'       :   {},
+        'height'      :   {},
+        'src'         :   {},
+        'autoplay'    :   { target: 'autoplay', transform: function(value) {
+          return value === "true";
+        }}
       };
     }
   },
 
-  /*
-  ******************************************************
-    MEMBERS
-  ******************************************************
-  */
-  members: {
-    getDomString: function () {
-      var classes = "link";
-      if (this.getCssClass()) {
-        classes += " "+this.getCssClass();
-      }
-      var href = this.getHref() ? ' href="'+this.getHref()+'"' : '';
-      return '<a class="'+classes+'"'+href+'>' + this.getText() + '</a>';
-    }
-  },
-
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler("link", cv.plugins.Link);
-    cv.ui.structure.WidgetFactory.registerClass("link", statics);
+    // register the parser
+    cv.parser.WidgetParser.addHandler("video", statics);
   }
 });

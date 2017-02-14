@@ -29,8 +29,8 @@ qx.Class.define('cv.plugins.diagram.Info', {
      */
     parse: function (xml, path, flavour, pageType) {
       var data = cv.plugins.diagram.AbstractDiagram.parse(xml, path, flavour, pageType);
-      cv.xml.Parser.parseAddress(xml, path);
-      cv.xml.Parser.parseFormat(xml, path);
+      cv.parser.WidgetParser.parseAddress(xml, path);
+      cv.parser.WidgetParser.parseFormat(xml, path);
       return data;
     }
   },
@@ -54,7 +54,7 @@ qx.Class.define('cv.plugins.diagram.Info', {
 
   defer: function(statics) {
     // register the parser
-    cv.xml.Parser.addHandler("diagram_info", statics);
+    cv.parser.WidgetParser.addHandler("diagram_info", statics);
     cv.ui.structure.WidgetFactory.registerClass("diagram_info", statics);
   }
 });

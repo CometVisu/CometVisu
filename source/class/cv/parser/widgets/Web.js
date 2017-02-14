@@ -1,4 +1,4 @@
-/* structure_plugin.js 
+/* Web.js 
  * 
  * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
  * 
@@ -19,33 +19,10 @@
 
 
 /**
- * This plugins integrates a simple link.
  *
- * @author Stefan Borchert [stefan@borchert.cc]
- * @since 2015
  */
-qx.Class.define('cv.plugins.Link', {
-  extend: cv.ui.structure.AbstractBasicWidget,
-
-  /*
-  ******************************************************
-    PROPERTIES
-  ******************************************************
-  */
-  properties: {
-    cssClass: {
-      check: "String",
-      init: ''
-    },
-    text: {
-      check: "String",
-      init: ''
-    },
-    href: {
-      check: "String",
-      init: ''
-    }
-  },
+qx.Class.define('cv.parser.widgets.Web', {
+  type: "static",
 
   /*
   ******************************************************
@@ -61,39 +38,49 @@ qx.Class.define('cv.plugins.Link', {
      * @param path {String} internal path of the widget
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
-     * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.WidgetParser.parseFormat(xml, path);
+      cv.parser.WidgetParser.parseAddress(xml, path);
+      cv.parser.WidgetParser.parseRefresh(xml, path);
+
+      var ga = xml.getAttribute("ga");
+      if (ga) {
+        cv.data.Model.getInstance().addAddress(ga);
+        if (cv.Config.backend.substr(0, 2) === "oh") {
+          data.address['_' + ga] = ['OH:switch', 'OFF'];
+        } else {
+          data.address['_' + ga] = ['DPT:1.001', 0];
+        }
+      }
+      return data;
     },
 
+    /**
+     * Returns a mapping to map XML-Attributes to properties to help the parser to parse the config element.
+     * @return {Map}
+     */
     getAttributeToPropertyMappings: function () {
       return {
-        'class': {target: 'cssClass'},
-        'text': {},
-        'href': {}
+        address: {},
+        width: {},
+        height: {},
+        frameborder: {
+          transform: function (value) {
+            return value === "true";
+          }
+        },
+        background: {},
+        src: {},
+        scrolling: {}
       };
     }
   },
 
-  /*
-  ******************************************************
-    MEMBERS
-  ******************************************************
-  */
-  members: {
-    getDomString: function () {
-      var classes = "link";
-      if (this.getCssClass()) {
-        classes += " "+this.getCssClass();
-      }
-      var href = this.getHref() ? ' href="'+this.getHref()+'"' : '';
-      return '<a class="'+classes+'"'+href+'>' + this.getText() + '</a>';
-    }
-  },
-
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler("link", cv.plugins.Link);
-    cv.ui.structure.WidgetFactory.registerClass("link", statics);
+    // register the parser
+    cv.parser.WidgetParser.addHandler("web", statics);
   }
 });
+

@@ -48,11 +48,11 @@ var createTestWidgetString = function (name, attributes, content) {
     // create surrounding root page
     var page = qx.dom.Element.create("page", {visible: "false"});
     qx.dom.Element.insertEnd(elem, page);
-    data = cv.xml.Parser.parse(page, 'id', null, "text");
+    data = cv.parser.WidgetParser.parse(page, 'id', null, "text");
     cv.ui.structure.WidgetFactory.createInstance(data.$$type, data);
     data = cv.data.Model.getInstance().getWidgetData(data['children'][0]);
   } else {
-    data = cv.xml.Parser.parse(elem, 'id_0', null, "text");
+    data = cv.parser.WidgetParser.parse(elem, 'id_0', null, "text");
   }
   var res = [];
   if (Array.isArray(data)) {

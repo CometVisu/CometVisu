@@ -44,10 +44,10 @@ qx.Class.define('cv.plugins.Svg', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType);
-      cv.xml.Parser.parseFormat(xml, path);
-      cv.xml.Parser.parseAddress(xml, path);
-      cv.xml.Parser.parseRefresh(xml, path);
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
+      cv.parser.WidgetParser.parseFormat(xml, path);
+      cv.parser.WidgetParser.parseAddress(xml, path);
+      cv.parser.WidgetParser.parseRefresh(xml, path);
       return data;
     }
   },
@@ -90,7 +90,7 @@ qx.Class.define('cv.plugins.Svg', {
 
   defer: function(statics) {
     // register the parser
-    cv.xml.Parser.addHandler("svg", cv.plugins.Svg);
+    cv.parser.WidgetParser.addHandler("svg", cv.plugins.Svg);
     cv.ui.structure.WidgetFactory.registerClass("svg", statics);
   }
 });

@@ -55,7 +55,7 @@ qx.Class.define('cv.plugins.Timeout', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      return cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
     },
 
     getAttributeToPropertyMappings: function() {
@@ -170,7 +170,7 @@ qx.Class.define('cv.plugins.Timeout', {
 
 
   defer: function(statics) {
-    cv.xml.Parser.addHandler("timeout", cv.plugins.Timeout);
+    cv.parser.WidgetParser.addHandler("timeout", cv.plugins.Timeout);
     cv.ui.structure.WidgetFactory.registerClass("timeout", statics);
   }
 

@@ -89,9 +89,9 @@ qx.Class.define('cv.plugins.Gauge', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.xml.Parser.parseFormat(xml, path);
-      cv.xml.Parser.parseAddress(xml, path);
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.WidgetParser.parseFormat(xml, path);
+      cv.parser.WidgetParser.parseAddress(xml, path);
       return data;
     },
 
@@ -285,7 +285,7 @@ qx.Class.define('cv.plugins.Gauge', {
       'plugins/gauge/dep/tween-min.js',
       'plugins/gauge/dep/steelseries-min.js'
     ]);
-    cv.xml.Parser.addHandler("gauge", cv.plugins.Gauge);
+    cv.parser.WidgetParser.addHandler("gauge", cv.plugins.Gauge);
     cv.ui.structure.WidgetFactory.registerClass("gauge", statics);
   }
 });

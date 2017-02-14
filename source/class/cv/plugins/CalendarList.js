@@ -72,8 +72,8 @@ qx.Class.define('cv.plugins.CalendarList', {
      * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      var data = cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
-      cv.xml.Parser.parseRefresh(xml, path);
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      cv.parser.WidgetParser.parseRefresh(xml, path);
       this.calendars = [];
       qx.bom.Selector.query('calendar', xml).forEach(function (cal) {
         var calData = {
@@ -143,7 +143,7 @@ qx.Class.define('cv.plugins.CalendarList', {
   },
 
   defer: function (statics) {
-    cv.xml.Parser.addHandler("calendarlist", statics);
+    cv.parser.WidgetParser.addHandler("calendarlist", statics);
     cv.ui.structure.WidgetFactory.registerClass("calendarlist", statics);
   }
 });

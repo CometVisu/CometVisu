@@ -1,4 +1,4 @@
-/* structure_plugin.js 
+/* Group.js 
  * 
  * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
  * 
@@ -19,33 +19,10 @@
 
 
 /**
- * This plugins integrates a simple link.
- *
- * @author Stefan Borchert [stefan@borchert.cc]
- * @since 2015
+ * Parse group config elements
  */
-qx.Class.define('cv.plugins.Link', {
-  extend: cv.ui.structure.AbstractBasicWidget,
-
-  /*
-  ******************************************************
-    PROPERTIES
-  ******************************************************
-  */
-  properties: {
-    cssClass: {
-      check: "String",
-      init: ''
-    },
-    text: {
-      check: "String",
-      init: ''
-    },
-    href: {
-      check: "String",
-      init: ''
-    }
-  },
+qx.Class.define('cv.parser.widgets.Group', {
+  type: "static",
 
   /*
   ******************************************************
@@ -61,39 +38,34 @@ qx.Class.define('cv.plugins.Link', {
      * @param path {String} internal path of the widget
      * @param flavour {String} Flavour of the widget
      * @param pageType {String} Page type (2d, 3d, ...)
-     * @return {Map} extracted data from config element as key/value map
      */
     parse: function (xml, path, flavour, pageType) {
-      return cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, this.getAttributeToPropertyMappings());
+      if (data.target) {
+        data.classes += ' clickable';
+        data.bindClickToWidget = true; // for groups with pagejumps this is mandatory
+      }
+      if (data.noWidget === true) {
+        data.classes = data.classes.replace("widget ", "");
+      }
+      cv.parser.WidgetParser.parseChildren(xml, path, flavour, pageType);
+      return data;
     },
 
     getAttributeToPropertyMappings: function () {
       return {
-        'class': {target: 'cssClass'},
-        'text': {},
-        'href': {}
+        'nowidget': {
+          target: 'noWidget', "default": false, transform: function (value) {
+            return value === "true";
+          }
+        },
+        'name': { "default": "" },
+        'target': { "default": "" }
       };
     }
   },
 
-  /*
-  ******************************************************
-    MEMBERS
-  ******************************************************
-  */
-  members: {
-    getDomString: function () {
-      var classes = "link";
-      if (this.getCssClass()) {
-        classes += " "+this.getCssClass();
-      }
-      var href = this.getHref() ? ' href="'+this.getHref()+'"' : '';
-      return '<a class="'+classes+'"'+href+'>' + this.getText() + '</a>';
-    }
-  },
-
   defer: function(statics) {
-    cv.parser.WidgetParser.addHandler("link", cv.plugins.Link);
-    cv.ui.structure.WidgetFactory.registerClass("link", statics);
+    cv.parser.WidgetParser.addHandler("group", statics);
   }
 });

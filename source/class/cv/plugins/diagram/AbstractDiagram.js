@@ -83,8 +83,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       } else {
         mappings = this.getAttributeToPropertyMappings();
       }
-      cv.xml.Parser.parseElement(this, xml, path, flavour, pageType, mappings);
-      cv.xml.Parser.parseRefresh(xml, path);
+      cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType, mappings);
+      cv.parser.WidgetParser.parseRefresh(xml, path);
 
       var legend = qx.bom.element.Attribute.get(xml, "legend") || "both";
       return cv.data.Model.getInstance().setWidgetData( path, {
