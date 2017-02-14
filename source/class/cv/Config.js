@@ -74,7 +74,7 @@ qx.Class.define('cv.Config', {
      * Default scrolling speed for page changes (in ms)
      * @type {Number}
      */
-    scrollSpeed : 0,
+    scrollSpeed : 400,
 
     /**
      * Default number of colums the layout should use
