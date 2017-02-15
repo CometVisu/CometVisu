@@ -215,7 +215,7 @@ qx.Class.define('cv.plugins.RssLog', {
         if (this.getFuture()) {
           requestData.future = this.getFuture();
         }
-        if (!src.match(/rsslog\.php/) && !src.match(/rsslog_mysql\.php/)) {
+        if (!src.match(/rsslog\.php/) && !src.match(/rsslog_mysql\.php/) && !src.match(/rsslog_mysql\.php/)) {
           requestData.url = src;
           src = "plugins/rsslog/rsslog_external.php";
         } else {
@@ -278,7 +278,7 @@ qx.Class.define('cv.plugins.RssLog', {
       }
       qx.bom.element.Dataset.set(c, "last_rowcount", displayrows);
 
-      var items = result.feed.entries;
+      var items = result.responseData.feed.entries;
       var itemnum = items.length;
       //console.log('C: #%s, %i element(s) found, %i displayrow(s) available', $(c).attr('id'), itemnum, displayrows);
 
