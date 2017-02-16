@@ -53,16 +53,16 @@ function roundCorners() {
     var bounds = group.getBoundingClientRect();
     // skip invisible groups
     if (bounds.width === 0 || bounds.height === 0) {
-      return
+      return;
     }
     // do not use this in navbars
-    if (qx.bom.Selector.matches('.navbar', qx.dom.Hierarchy.getAncestors(group)).length > 0) return;
+    if (qx.bom.Selector.matches('.navbar', qx.dom.Hierarchy.getAncestors(group)).length > 0) { return; }
     var groupCorners = getOffsetCorners(group);
     // if the group has a headline (=name) we must not round the upper corners
     var topRight = qx.bom.element.Style.get(group, 'border-top-right-radius');
     var bottomRight = qx.bom.element.Style.get(group, 'border-bottom-right-radius');
     var bottomLeft = qx.bom.element.Style.get(group, 'border-bottom-left-radius');
-    var roundUpperCorners = (qx.bom.Selector.query('.widget_container:first-child', group).length>0) && topRight != "0px";
+    var roundUpperCorners = (qx.bom.Selector.query('.widget_container:first-child', group).length>0) && topRight !== "0px";
     var threshold=5;
     qx.bom.Selector.query('.widget_container', group).forEach(function (elem) {
       var elemCorners = getOffsetCorners(elem);
@@ -72,26 +72,30 @@ function roundCorners() {
           setRadius(elem, 'border-top-right-radius', topRight);
         }
       }
-      if (bottomRight!="0px" && Math.abs(elemCorners.bottom_right.top-groupCorners.bottom_right.top)<threshold && Math.abs(elemCorners.bottom_right.left-groupCorners.bottom_right.left)<threshold) {
+      if (bottomRight!=="0px" && Math.abs(elemCorners.bottom_right.top-groupCorners.bottom_right.top)<threshold && Math.abs(elemCorners.bottom_right.left-groupCorners.bottom_right.left)<threshold) {
         setRadius(elem, 'border-bottom-right-radius', bottomRight);
       }
-      if (bottomLeft!="0px" && Math.abs(elemCorners.bottom_left.top-groupCorners.bottom_left.top)<threshold && Math.abs(elemCorners.bottom_left.left-groupCorners.bottom_left.left)<threshold) {
+      if (bottomLeft!=="0px" && Math.abs(elemCorners.bottom_left.top-groupCorners.bottom_left.top)<threshold && Math.abs(elemCorners.bottom_left.left-groupCorners.bottom_left.left)<threshold) {
         setRadius(elem, 'border-bottom-left-radius', bottomLeft);
       }
     });
   });
 }
 var deferredRoundCorners = new qx.util.DeferredCall(roundCorners);
-qx.event.message.Bus.subscribe("path.pageChanged", function() {
-  if (/(opera|chrome|safari)/i.test(navigator.userAgent.toLowerCase())) {
+if (/(opera|chrome|safari)/i.test(navigator.userAgent.toLowerCase())) {
+  qx.event.message.Bus.subscribe("path.pageChanged", function () {
     deferredRoundCorners.schedule();
-  }
-});
+  });
+
+  qx.event.Registration.addListener(window, 'resize', function () {
+    deferredRoundCorners.schedule();
+  });
+}
 
 qx.event.message.Bus.subscribe("setup.dom.finished", function() {
   qx.bom.Selector.query('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').forEach(function(label) {
 
-    if (label.textContent.trim()!="") {
+    if (label.textContent.trim()!=="") {
       var actor = qx.bom.Selector.matches('.actor', qx.dom.Hierarchy.getSiblings(label))[0];
       if (actor && qx.bom.Selector.matches('img', qx.dom.Hierarchy.getChildElements(label)).length === 0) {
         var value = qx.bom.Selector.matches('.value', qx.dom.Hierarchy.getChildElements(actor))[0];
