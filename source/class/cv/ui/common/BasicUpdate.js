@@ -24,10 +24,7 @@
  * @class cv.ui.common.BasicUpdate
  */
 qx.Mixin.define("cv.ui.common.BasicUpdate", {
-
-  include: [
-    cv.ui.common.HasAddress
-  ],
+  include: cv.ui.common.HasAddress,
 
   /*
   ******************************************************
@@ -89,36 +86,43 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
      * Apply the given mapping to the value
      *
      * @param value {var} value to be mapped
-     * @param mapping {String?} mapping name, if not set the <code>mapping</code> property value is used
+     * @param mappingName {String?} mapping name, if not set the <code>mapping</code> property value is used
      * @return {var} the mapped value
      */
-    applyMapping: function (value, mapping) {
-      var this_map = mapping || this.getMapping();
-      if (this_map && cv.Config.hasMapping(this_map)) {
-        var m = cv.Config.getMapping(this_map);
+    applyMapping: function (value, mappingName) {
+      if (!mappingName) {
+        mappingName = this.getMapping();
+      }
+      if (mappingName && cv.Config.hasMapping(mappingName)) {
+        var mapping = cv.Config.getMapping(mappingName);
 
         var ret = value;
-        if (m.formula) {
-          ret = m.formula(ret);
+        if (mapping.formula) {
+          ret = mapping.formula(ret);
         }
 
         var mapValue = function (v) {
-          if (m[v]) {
-            return m[v];
-          } else if (m.range) {
+          if (v === null && mapping.NULL) {
+            return mapping.NULL;
+          } else if (mapping[v]) {
+            return mapping[v];
+          } else if (mapping.range) {
             var valueFloat = parseFloat(v);
-            var range = m.range;
+            var range = mapping.range;
             for (var min in range) {
               if (min > valueFloat) { continue; }
               if (range[min][0] < valueFloat) { continue; } // check max
               return range[min][1];
             }
+          } else if (mapping["*"]) {
+            // catchall mapping
+            return mapping["*"];
           }
           return v; // pass through when nothing was found
         };
         ret = mapValue(ret);
-        if (!ret && m.defaultValue) {
-          ret = mapValue(m.defaultValue);
+        if (!ret && mapping.defaultValue) {
+          ret = mapValue(mapping.defaultValue);
         }
         if (ret !== undefined) {
           return ret;
@@ -264,9 +268,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
     },
 
     /**
-     * ga:            address
-     * data:
-     * passedElement:
+     * Default update function, processes the incoming value and applies it to the Dom value element.
      *
      * @param ga {String} KNX-GA or openHAB item name
      * @param data {var} the raw value from the bus
