@@ -3,6 +3,7 @@ import json
 
 import sphinx_rtd_theme
 import sys, os
+from datetime import date
 
 root_dir = os.path.abspath(os.path.join('..', '..', '..'))
 
@@ -29,7 +30,7 @@ language = 'de'
 locale_dirs = ["locale/"]
 
 project = 'CometVisu'
-copyright = '2010-2016 Christian Mayer and the CometVisu contributers'
+copyright = '2010-%s Christian Mayer and the CometVisu contributers' % date.today().year
 
 with open(os.path.join(root_dir, "package.json")) as data_file:
     data = json.load(data_file)
