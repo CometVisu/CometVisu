@@ -197,6 +197,23 @@ priorisiert werden, als die Werte innerhalb eines Wertebereichs. Dadurch
 ist es möglich, für einzelne Werte Sonderbezeichnungen (in diesem Fall
 die "Null") zu definieren.
 
+Besondere Mapping-Werte
+-----------------------
+
+Es gibt zwei Mapping Werte die gesondert behandelt werden:
+
+ * ``NULL``: wird angewendet, wenn der Wert leer ist
+ * ``*``: wird angewendet, wenn kein vorher definiertes Mapping für den Wert gefunden wurde
+
+.. code-block:: xml
+
+    <mapping name="Fehler">
+        <entry value="NULL">Fehler</entry>
+        <entry value="*">Ok</entry>
+    </mapping>
+
+Liefert das Backend keine Wert, liefert das Mapping den Wert *Fehler* zurück, ansonsten *Ok*.
+
 Formeln (Einsteiger)
 --------------------
 
