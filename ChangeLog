@@ -3,6 +3,10 @@
 0.10.0
 ======
 
+### 0.10.0-RC3 (2017/02/18 14:18 +00:00)
+- [#507](https://github.com/CometVisu/CometVisu/pull/507) do not send rsslog request for openHAB through external (@peuter)
+- [#505](https://github.com/CometVisu/CometVisu/pull/505) read default scroll speed setting from cache (@peuter)
+
 ### 0.10.0-RC2 (2017/02/11 15:26 +00:00)
 - [#494](https://github.com/CometVisu/CometVisu/pull/494) tweak requirejs settings to make sure everything is loaded in the cor… (@peuter)
 - [#498](https://github.com/CometVisu/CometVisu/pull/498) Update icons (@ChristianMayer)
