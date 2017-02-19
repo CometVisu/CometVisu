@@ -54,11 +54,12 @@ script:
 - if [ "$CV_BUILD" == "test" ]; then grunt karma:travis; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt e2e-chrome; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
-- if [ "$CV_BUILD" == "test" && $TRAVIS_EVENT_TYPE == "cron"]; then grunt release-build; fi
+#- if [ "$CV_BUILD" == "test" && $TRAVIS_EVENT_TYPE == "cron"]; then grunt release-build; fi
+- if [ "$CV_BUILD" == "test"]; then grunt release-build; fi
 deploy:
   on:
     branch: next
-    condition: "$CV_BUILD = test && $TRAVIS_EVENT_TYPE = cron"
+    condition: "$CV_BUILD = test" # && $TRAVIS_EVENT_TYPE = cron"
   provider: bintray
   file: "./deploy.json"
   user: peuter
