@@ -9,12 +9,12 @@
   },
   "files":
   [
-    {"includePattern": "(CometVisu-.*\\.gz)", "uploadPattern": "$1",
+    {"includePattern": "./(CometVisu.*\\.gz)", "uploadPattern": "$1",
       "matrixParams": {
         "override": 1
       }
     },
-    {"includePattern": "(CometVisu-.*\\.zip)", "uploadPattern": "$1",
+    {"includePattern": "(CometVisu.*\\.zip)", "uploadPattern": "$1",
       "matrixParams": {
         "override": 1
       }
