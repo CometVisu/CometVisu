@@ -54,8 +54,8 @@ script:
 - if [ "$CV_BUILD" == "test" ]; then grunt karma:travis; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt e2e-chrome; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
-#- if [ "$CV_BUILD" == "test" && $TRAVIS_EVENT_TYPE == "cron"]; then grunt release-build; fi
-- if [ "$CV_BUILD" == "test"]; then grunt release-build; fi
+before_deploy:
+- grunt release-build
 deploy:
   on:
     branch: next
