@@ -1128,8 +1128,8 @@ define([
         thisTemplateEngine.applyColumnWidths();
 
         thisTemplateEngine.main_scroll = new PageHandler();
-        if (thisTemplateEngine.scrollSpeed != undefined) {
-          thisTemplateEngine.main_scroll.setSpeed( thisTemplateEngine.scrollSpeed );
+        if (thisTemplateEngine.configSettings.scrollSpeed != undefined) {
+          thisTemplateEngine.main_scroll.setSpeed( thisTemplateEngine.configSettings.scrollSpeed );
         }
 
         thisTemplateEngine.scrollToPage(startpage,0);
@@ -1379,7 +1379,7 @@ define([
       }
 
       if( undefined === speed )
-        speed = thisTemplateEngine.scrollSpeed;
+        speed = thisTemplateEngine.configSettings.scrollSpeed;
 
       if( rememberLastPage )
         localStorage.lastpage = page_id;

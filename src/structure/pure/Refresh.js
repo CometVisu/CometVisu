@@ -70,7 +70,7 @@ define( ['_common'], function( design ) {
     basicdesign.defaultButtonUpAnimationInheritAction( path, actor );
     if( isCanceled ) return;
     
-    templateEngine.visu.restart();
+    templateEngine.visu.currentTransport.restart(true);
   }
 });
 

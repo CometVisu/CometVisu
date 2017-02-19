@@ -462,6 +462,7 @@
       <xsd:element name="colorchooser" type="colorchooser" />
       <xsd:element name="diagram_info" type="diagram_info" />
       <xsd:element name="diagram" type="diagram" />
+      <xsd:element name="openweathermap" type="openweathermap" />
       <xsd:element name="powerspectrum" type="powerspectrum" />
       <xsd:element name="rss" type="rss" />
       <xsd:element name="rsslog" type="rsslog" />
@@ -923,6 +924,7 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="trigger">
@@ -949,6 +951,7 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="refresh">
@@ -962,6 +965,7 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="pushbutton">
@@ -987,6 +991,7 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="urltrigger">
@@ -1082,6 +1087,7 @@
         </xsd:simpleType>
     </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
   
   <xsd:complexType name="rgb">
@@ -1155,6 +1161,7 @@
     </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="mapping" use="optional" />
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="slide">
@@ -1171,6 +1178,7 @@
     <xsd:attribute ref="format" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute name="send_on_finish" type="xsd:boolean" use="optional" />
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="include">
@@ -1208,6 +1216,7 @@
     <xsd:attribute ref="styling" use="optional" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="image">
@@ -1241,6 +1250,7 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="imagetrigger">
@@ -1301,6 +1311,7 @@
     <xsd:attribute name="autoplay" type="xsd:string" />
     <xsd:attribute name="loop" type="xsd:string" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="video">
@@ -1313,6 +1324,7 @@
     <xsd:attribute name="height" type="dimension" />
     <xsd:attribute name="autoplay" type="xsd:string" />
     <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="web">
@@ -1480,6 +1492,24 @@
     </xsd:attribute>
   </xsd:complexType>
   
+  <xsd:complexType name="openweathermap">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute name="lang" type="xsd:string" use="optional" />
+    <xsd:attribute name="q" type="xsd:string" use="optional" />
+    <xsd:attribute name="lat" type="xsd:string" use="optional" />
+    <xsd:attribute name="lon" type="xsd:string" use="optional" />
+    <xsd:attribute name="units" type="xsd:string" use="optional" />
+    <xsd:attribute name="type" type="xsd:string" use="optional" />
+    <xsd:attribute name="forecastItems" type="xsd:string" use="optional" />
+    <xsd:attribute name="detailItems" type="xsd:string" use="optional" />
+    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
+    <xsd:attribute name="appid" type="xsd:string" use="optional" />
+  </xsd:complexType>
+      
   <xsd:complexType name="powerspectrum">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
@@ -1617,7 +1647,8 @@
      <xsd:attribute ref="styling" use="optional" />  
      <xsd:attribute ref="mapping" />  
      <xsd:attribute ref="align" use="optional" />  
-     <xsd:attribute ref="flavour" use="optional" />  
+     <xsd:attribute ref="flavour" use="optional" />
+     <xsd:attribute ref="class" use="optional" />
    </xsd:complexType>
 
   <xsd:complexType name="axis">
