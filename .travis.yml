@@ -56,7 +56,6 @@ script:
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
 before_deploy:
 - grunt release-build
-- ls -la
 deploy:
   on:
     branch: next
@@ -66,6 +65,6 @@ deploy:
   user: peuter
   key:
     secure: ZNAOoxb+uRMQalSr6sPgy6waeZod+yZwNFmijNRBDLQw0ArGdPYqBHXI5eoOJ6V86nCZ/OKrzZ5Q5YStArZoHhe3MTTt1btGBDNkS7cPV/1ijvKk93x5wxFtVtYl07EROolSoqWR4rT+DI0TIRo4xCBHc6BMjHz0e8OONUPmDZs=
-  dry-run: true
+  dry-run: false
 after_success:
 - if [ "$CV_BUILD" == "test" ]; then grunt coveralls; fi
