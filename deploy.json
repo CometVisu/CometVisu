@@ -4,6 +4,9 @@
     "repo": "CometVisu",
     "subject": "peuter"
   },
+  "version": {
+    "name": "nightly"
+  },
   "files":
   [
     {"includePattern": "CometVisu-(.*\\.[gz|zip])", "uploadPattern": "CometVisu-$1"}
