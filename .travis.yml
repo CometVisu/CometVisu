@@ -56,6 +56,7 @@ script:
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
 before_deploy:
 - grunt release-build
+- ls -la
 deploy:
   on:
     branch: next
