@@ -3,21 +3,21 @@ require.config({
   waitSeconds: 30, // default: 7 seconds
   paths: {
     'jquery':            '../../dependencies/jquery',
-    'CometvisuClient':  '../../lib/CometVisuClient',
+    'CometVisuClient':  '../../lib/CometVisuClient',
     'TransformDefault': '../../transforms/TransformDefault',
     'TransformKnx':     '../../transforms/TransformKnx'
   }
 });
 
 require([
-  'jquery', 'cometvisu-client', 'TransformDefault', 'TransformKnx'
+  'jquery', 'CometVisuClient', 'TransformDefault', 'TransformKnx'
 ], function( jq, CometVisu ) {
   "use strict";
   
   var 
     thisGA = '12/7/52',
     thisTransform = 'DPT:5.001',
-    visu = new CometVisu('cgi-bin');
+    visu = new CometVisu('default');
 
   visu.update = function( json ) // overload the handler
   {
@@ -34,4 +34,5 @@ require([
   
   visu.user = 'demo_user'; // example for setting a user
   visu.subscribe( [thisGA] );
+  visu.login();
 });
