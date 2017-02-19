@@ -412,8 +412,8 @@ qx.Class.define('cv.io.Client', {
     /**
      * Restart the connection
      */
-    restart: function() {
-      this.getCurrentTransport().restart();
+    restart: function(full) {
+      this.getCurrentTransport().restart(full);
     },
 
     update: function(json) {} // jshint ignore:line
