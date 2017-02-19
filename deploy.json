@@ -9,7 +9,7 @@
   },
   "files":
   [
-    {"includePattern": "CometVisu-(.+)\\.(gz|zip)", "uploadPattern": "CometVisu-$1.$2"}
+    {"includePattern": "build/(.*)", "uploadPattern": "nightly/$1"}
   ],
   "publish": true
 }
