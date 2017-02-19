@@ -1,0 +1,12 @@
+{
+  "package": {
+    "name": "CometVisu",
+    "repo": "CometVisu",
+    "subject": "peuter"
+  },
+  "files":
+  [
+    {"includePattern": "CometVisu-(.*\\.[gz|zip])", "uploadPattern": "CometVisu-$1"}
+  ],
+  "publish": true
+}

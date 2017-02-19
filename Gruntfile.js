@@ -252,7 +252,13 @@ module.exports = function(grunt) {
           mode: 'tgz',
           level: 9,
           archive: function() {
-            return "CometVisu-"+pkg.version+".tar.gz";
+            var name = "CometVisu-"+pkg.version;
+            if (process.env.TRAVIS_EVENT_TYPE === "cron") {
+              // nightly build with date
+              var now = new Date();
+              name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
+            }
+            return name+".tar.gz";
           }
         },
         files: filesToCompress
@@ -262,7 +268,13 @@ module.exports = function(grunt) {
           mode: 'zip',
           level: 9,
           archive: function() {
-            return "CometVisu-"+pkg.version+".zip";
+            var name = "CometVisu-"+pkg.version;
+            if (process.env.TRAVIS_EVENT_TYPE === "cron") {
+              // nightly build with date
+              var now = new Date();
+              name += "-"+now.toISOString().split(".")[0].replace(/[\D]/g, "");
+            }
+            return name+".zip";
           }
         },
         files: filesToCompress
