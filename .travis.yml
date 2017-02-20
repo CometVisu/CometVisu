@@ -13,13 +13,12 @@ env:
   - CV_BUILD="test"
   - CV_BUILD="docs" ENCRYPTION_LABEL="4c79fec0aeb9" COMMIT_AUTHOR_EMAIL="generator@cometvisu.org" CV_BROWSER=Chrome CV_VERSION=stable
 before_install:
+- sudo apt-get update
 - mkdir -p downloads
 - nvm install 4.2
 - if [ "$CV_BUILD" == "docs" ]; then sudo ./utils/travis/browser-setup.sh; fi
-- if [ "$CV_BUILD" == "docs" ]; then export CHROME_BIN=`pwd`/chrome/google-chrome;
-  fi
-- if [ "$CV_BUILD" == "docs" ] && ! [ -e downloads/plantuml.deb ]; then wget -O downloads/plantuml.deb
-  http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb; fi
+- if [ "$CV_BUILD" == "docs" ]; then export CHROME_BIN=`pwd`/chrome/google-chrome; fi
+- if [ "$CV_BUILD" == "docs" ] && ! [ -e downloads/plantuml.deb ]; then wget -O downloads/plantuml.deb http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb; fi
 - mkdir cache
 install:
 - npm install -g grunt-cli
@@ -28,8 +27,7 @@ install:
 - if [ "$CV_BUILD" == "test" ]; then grunt setup; fi
 - if [ "$CV_BUILD" == "test" ]; then cd ../../; fi
 - npm install
-- if [ "$CV_BUILD" == "test" ]; then virtualenv -p /usr/bin/python2.7 --distribute
-  temp-python --system-site-packages; fi
+- if [ "$CV_BUILD" == "test" ]; then virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages; fi
 - if [ "$CV_BUILD" == "test" ]; then source temp-python/bin/activate; fi
 - if [ "$CV_BUILD" == "test" ]; then sudo pip install -r utils/requirements.txt; fi
 - if [ "$CV_BUILD" == "test" ]; then ./generate.py source -sI; fi
