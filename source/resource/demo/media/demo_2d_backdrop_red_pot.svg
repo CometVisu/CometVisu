@@ -12,15 +12,8 @@
    width="750"
    height="500"
    id="svg2">
-  
-   <script>
-     <![CDATA[
-     var require = {
-       xhtml: true
-     };
-     //]]>
-  </script>
-  <script data-main="demo_2d_backdrop_red_pot" xlink:href="../../dependencies/require-2.1.15.min.js" type="text/javascript"></script>
+
+  <script xlink:href="demo_2d_backdrop_red_pot.js" type="text/javascript"></script>
   <defs
      id="defs4">
     <linearGradient
