@@ -13,6 +13,7 @@ env:
   - CV_BUILD="test"
   - CV_BUILD="docs" ENCRYPTION_LABEL="4c79fec0aeb9" COMMIT_AUTHOR_EMAIL="generator@cometvisu.org" CV_BROWSER=Chrome CV_VERSION=stable
 before_install:
+- sudo apt-get update
 - mkdir -p downloads
 - nvm install 4.2
 - if [ "$CV_BUILD" == "docs" ]; then sudo ./utils/travis/browser-setup.sh; fi
