@@ -22,6 +22,15 @@
  * Includes other configuration snippets. Note that this is no widget shown in your visualization it just gives
  * you the opportunity to split you configuration into multiple files. If you have a large configuration file
  * splitting it up might help to keep track of your configuration.
+ * The path to the included files must be relative to the root folder (the one with the index.html).
+ *
+ * <h4>Example</h4>
+ * <pre class="sunlight-highlight-xml">
+ * &lt;page&gt;
+ *  &lt;include src=&quot;config/part1.xml&quot;/&gt;
+ *  &lt;include src=&quot;config/part2.xml&quot;/&gt;
+ * &lt;/page&gt;
+ * </pre>
  *
  * @author Christian Mayer
  * @since 0.8.0 (2012)
