@@ -208,6 +208,15 @@ class DocGenerator(Command):
                 if file not in ["PageLink.js", "Unknown.js", "WidgetInfoAction.js", "__init__.js"] and not file.startswith("Abstract"):
                     source_files.append((file[0:-3], os.path.join(root, file)))
 
+            # add parser widgets if defined
+
+            for parser in self.config.get("manual-en", "parsers-doc-source").split(","):
+                parser_path = os.path.join(self.config.get("manual-en", "parsers-path"), "%s.js" % parser)
+                if os.path.exists(parser_path):
+                    source_files.append((parser, parser_path))
+                else:
+                    print("file not found %s" % parser_path)
+
         for name, file in source_files:
             parser = DocParser(widget=name) if not plugin else DocParser(plugin=name)
             api_screenshot_dir = os.path.join(self.config.get("api", "target").replace("<version>", self._get_doc_version()), "examples")

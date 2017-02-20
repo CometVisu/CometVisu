@@ -13,6 +13,18 @@ Description
 Includes other configuration snippets. Note that this is no widget shown in your visualization it just gives
 you the opportunity to split you configuration into multiple files. If you have a large configuration file
 splitting it up might help to keep track of your configuration.
+The path to the included files must be relative to the root folder (the one with the index.html).
+
+**Example**
+
+.. code-block:: xml
+
+    <page>
+     <include src="config/part1.xml"/>
+     <include src="config/part2.xml"/>
+    </page>
+
+
 
 
 .. ###END-WIDGET-DESCRIPTION###
