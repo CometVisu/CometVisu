@@ -7,6 +7,7 @@ Einfache Installation:
 -  :doc:`Allgemein <allgemein>`
 -  :doc:`auf Wiregate <wiregate>`
 -  :doc:`auf Raspberry Pi <raspberry>`
+-  :doc:`auf einem Debian System mit openHAB2 <openhab2>`
 
 .. toctree::
     :hidden:

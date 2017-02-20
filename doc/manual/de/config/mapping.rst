@@ -244,6 +244,16 @@ Beispielsweise kann man damit °C in °F umrechnen:
             </info>
         </group>
 
+Mit diesem Beispiel können fehlerhafte Sensoren in einer Übersichtsseite markiert werden.
+Sensoren liefern in der Regel nummerische Werte. Bleiben diesen aus, kann z.B. das expire-Binding 
+in openHAB einen negativen Wert zurückliefern. Das Mapping würde ein *OK* oder *not OK* liefern:
+
+.. code-block:: xml
+
+		<mapping name="SensorAlarm">
+			<formula>y = (x >= 0) ? "OK" : "not OK";</formula>
+		</mapping>
+
 Formeln (Advanced)
 ------------------
 
