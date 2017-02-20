@@ -82,6 +82,7 @@ module.exports = function(grunt) {
         '!release/icon/knx-uf-iconset/knx-uf-iconset/**',
         'release/lib/**',
         'release/plugins/**',
+        'release/transforms/**',
         'release/upgrade/**',
         'release/*',
         '!release/build.txt'
@@ -210,6 +211,7 @@ module.exports = function(grunt) {
           'visu_config.xsd',
           'dependencies/require-2.1.15.min.js',
           'icon/*.{png,svg}',
+          '!icon/knx-uf-iconset.svg', // don't include the big icon file as it might be too big and prevent the caching of the other files
           'designs/**/*.{js,css,png,ttf,svg}',
           'plugins/**/*.{js,css,png,ttf,svg}',
           '!plugins/diagram/dep/flot/*.js', // alreay mangled in the plugin
@@ -601,6 +603,17 @@ module.exports = function(grunt) {
           // 'git add external/knx-uf-iconset',
           //'git commit -m "icons updated"'
         ].join('&&')
+      },
+      // additional build step - TODO include into requirejs when known how to do it...
+      // Copy the required files for the 2D demo - and all other files by the 
+      // user which try to achive similiar effects
+      postbuild: {
+        command: [
+          'cp src/dependencies/jquery.js release/dependencies/',
+          'cp src/lib/CometVisuClient.js release/lib/',
+          'mkdir release/transforms',
+          'cp src/transforms/Transform*.js release/transforms/'
+        ].join('&&')
       }
     },
 
@@ -700,7 +713,7 @@ module.exports = function(grunt) {
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'updateicons', 'jscs', 'clean', 'file-creator', 'buildicons', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'updateicons', 'jscs', 'clean', 'file-creator', 'buildicons', 'requirejs', 'shell:postbuild', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
 
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
