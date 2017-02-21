@@ -222,7 +222,7 @@ qx.Class.define('cv.TemplateEngine', {
       }
       this.initBackendClient();
 
-      if (qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') !== null) {
+      if (qx.bom.element.Attribute.get(pagesNode, 'scroll_speed') === null) {
         settings.scrollSpeed = 400;
       } else {
         settings.scrollSpeed = parseInt(qx.bom.element.Attribute.get(pagesNode, 'scroll_speed'));
@@ -551,7 +551,7 @@ qx.Class.define('cv.TemplateEngine', {
       cv.Config.treePath = page_id;
 
       if (undefined === speed) {
-        speed = cv.Config.scrollSpeed;
+        speed = cv.Config.configSettings.scrollSpeed;
       }
 
       if (cv.Config.rememberLastPage) {
