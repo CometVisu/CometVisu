@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation der CometVisu &mdash; CometVisu</title>
+  <title>Installation auf einem Debian System mit openHAB2 &mdash; CometVisu</title>
   
 
   
@@ -35,9 +35,7 @@
         <link rel="index" title="Stichwortverzeichnis"
               href="../genindex.html"/>
         <link rel="search" title="Suche" href="../search.html"/>
-    <link rel="top" title="CometVisu" href="../index.html"/>
-        <link rel="next" title="Voraussetzungen für die Installation" href="allgemein.html"/>
-        <link rel="prev" title="Willkommen bei der CometVisu!" href="../index.html"/> 
+    <link rel="top" title="CometVisu" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -89,19 +87,8 @@
           
             
             
-                <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation der CometVisu</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="allgemein.html">Voraussetzungen für die Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#update-der-cometvisu">Update der CometVisu</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="update-wiregate.html">Update der CometVisu auf dem Wiregate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="update-other.html">Update der CometVisu auf anderen Geräten</a></li>
-</ul>
-</li>
-</ul>
-</li>
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Installation der CometVisu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -135,7 +122,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Installation der CometVisu</li>
+    <li>Installation auf einem Debian System mit openHAB2</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -147,51 +134,44 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installation-der-cometvisu">
-<h1>Installation der CometVisu<a class="headerlink" href="#installation-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Einfache Installation:</p>
-<ul class="simple">
-<li><a class="reference internal" href="allgemein.html"><span class="doc">Allgemein</span></a></li>
-<li><a class="reference internal" href="wiregate.html"><span class="doc">auf Wiregate</span></a></li>
-<li><a class="reference internal" href="raspberry.html"><span class="doc">auf Raspberry Pi</span></a></li>
-<li><a class="reference internal" href="openhab2.html"><span class="doc">auf einem Debian System mit openHAB2</span></a></li>
-</ul>
-<div class="toctree-wrapper compound">
-</div>
-<p>Schwieriger, nur für Fortgeschrittene:</p>
-<ul class="simple">
-<li><a class="reference internal" href="linux.html"><span class="doc">auf beliebigen anderen Linux-Systemen</span></a></li>
-<li><a class="reference internal" href="nas.html"><span class="doc">auf NAS-Systemen</span></a></li>
-</ul>
-<p>Informationen wie man die CometVisu auf OpenHAB installiert gibt es auf
-englisch im <a class="reference external" href="https://github.com/openhab/openhab/wiki/Comet-Visu">OpenHAB-WIKI</a></p>
-<p>Man kann auch die aktuelle Entwickler-Version installieren, diese sollte
-jedoch <strong>NIE</strong> produktiv eingesetzt werden.</p>
-<ul class="simple">
-<li><a class="reference internal" href="install-dev.html"><span class="doc">Infos zur Installation Development-Version</span></a> - auf eigene Gefahr!!!</li>
-</ul>
-<div class="section" id="update-der-cometvisu">
-<h2>Update der CometVisu<a class="headerlink" href="#update-der-cometvisu" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Falls bereits eine Version 0.8 installiert war, kann die Installation direkt
-auf dem <a class="reference internal" href="update-wiregate.html"><span class="doc">WireGate</span></a> oder <a class="reference internal" href="update-other.html"><span class="doc">anderen Installationen</span></a> aktualisiert werden.</p>
-<div class="toctree-wrapper compound">
-</div>
-</div>
+  <div class="section" id="installation-auf-einem-debian-system-mit-openhab2">
+<h1>Installation auf einem Debian System mit openHAB2<a class="headerlink" href="#installation-auf-einem-debian-system-mit-openhab2" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Voraussetzung ist hier, dass openHAB2 per apt-get installiert wurde, ansonsten müssen ggf. die Pfade
+angepasst werden.
+Die CometVisu kann hier herunter geladen werden: <a class="reference external" href="https://github.com/CometVisu/CometVisu/releases">https://github.com/CometVisu/CometVisu/releases</a>.
+Das entpackte Paket enthält den Ordner <em>cometvisu/release</em>, welches nach /var/www/cometvisu
+kopiert werden muss. Außerdem sind die Berechtigungen für den openhab User zu setzen.
+.. code-block:: bash</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>cp -r cometvisu/release /var/www/cometvisu</dt>
+<dd><p class="first">chown -R openhab:openhab /var/www/cometvisu</p>
+<p class="last">mkdir -p /etc/openhab2/cometvisu/config
+mkdir -p /etc/openhab2/cometvisu/designs
+chown -R openhab:openhab /etc/openhab2/cometvisu</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Die zwei Verzeichnisse <em>/etc/openhab2/cometvisu/config</em> und <em>/etc/openhab2/cometvisu/designs</em> werden die Konfigurationen
+der CometVisu enthalten und sind durch die separate Lokation vor Upgrades geschützt. Nur wenn diese Verzeichnisse nicht
+vorhanden sind, wird CometVisu die Konfiguration in <em>/etc/openhab2/html/cometvisu/config</em> suchen.</p>
+<p>Damit openHAB2 mit der CometVisu kommunizieren kann, ist die entsprechende Erweiterung über die PaperUI (<a class="reference external" href="http://openhab_adresse:8080">http://openhab_adresse:8080</a>)
+-&gt; Add-ons -&gt; User Interfaces -&gt; CometVisu zu installieren. Wenn auch noch der CometVisu Editor benutzt werden soll, ist die
+Erweiterung der PHP support for CometVisu zu installieren.
+Die openHAB2 Konfigurationsdatei cometvisu.cfg befindet sich, wie alle anderen Konfigurationen der openHAB Erweiterungen,
+unter <em>/etc/openhab2/services/</em> und sollte die Direktive
+.. code-block:: bash</p>
+<blockquote>
+<div>webFolder=/var/www/cometvisu/
+webAlias=/cometvisu</div></blockquote>
+<p>enthalten.</p>
+<p>Die CometVisu ist direkt unter der URL <a class="reference external" href="http://openhab_adresse:8080/cometvisu/">http://openhab_adresse:8080/cometvisu/</a>?config=&lt;name&gt; im Browser erreichbar, wobei sich &lt;name&gt; vom Namen der visu_config_&lt;name&gt;.xml ableitet.</p>
 </div>
 
 
            </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="allgemein.html" class="btn btn-neutral float-right" title="Voraussetzungen für die Installation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../index.html" class="btn btn-neutral" title="Willkommen bei der CometVisu!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

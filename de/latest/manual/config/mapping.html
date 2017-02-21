@@ -325,6 +325,14 @@ gegebenen JavaScript-Funktionen zu verwenden. Mehr dazu weiter unten.</p>
 <span class="nt">&lt;/group&gt;</span>
 </pre></div>
 </div>
+<p>Mit diesem Beispiel können fehlerhafte Sensoren in einer Übersichtsseite markiert werden.
+Sensoren liefern in der Regel nummerische Werte. Bleiben diesen aus, kann z.B. das expire-Binding
+in openHAB einen negativen Wert zurückliefern. Das Mapping würde ein <em>OK</em> oder <em>not OK</em> liefern:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;SensorAlarm&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;formula&gt;</span>y = (x &gt;= 0) ? &quot;OK&quot; : &quot;not OK&quot;;<span class="nt">&lt;/formula&gt;</span>
+<span class="nt">&lt;/mapping&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="formeln-advanced">
 <h2>Formeln (Advanced)<a class="headerlink" href="#formeln-advanced" title="Link zu dieser Überschrift">¶</a></h2>

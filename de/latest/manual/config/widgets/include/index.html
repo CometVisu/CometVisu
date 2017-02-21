@@ -172,20 +172,21 @@
 </div>
 <div class="section" id="beschreibung">
 <h2>Beschreibung<a class="headerlink" href="#beschreibung" title="Link zu dieser Überschrift">¶</a></h2>
-<p>Das Include Widget ist im eigentlichen kein Widget, denn es bewirkt keine sichtbaren Änderungen
+<p>Das Include Widget ist im eigentlichen Sinn kein Widget, denn es bewirkt keine sichtbaren Änderungen
 in der Visualisierung.</p>
 <p>Mit Hilfe des Include-Elements kann man seine visu_config.xml Datei in mehrere Dateien aufteilen.
 Das kann bei sehr großen Dateien, hilfreich sein, den Überblick zu bewahren, wenn man den XML-Code direkt
-bearbeiten möchte.</p>
+bearbeiten möchte. Außerdem können bei mehreren visu_config_&lt;variable&gt;.xml Dateien redundante Abschnitte ausgelagert werden.</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;page&gt;</span>
-    <span class="nt">&lt;include</span> <span class="na">src=</span><span class="s">&quot;Wohnzimmer.xml&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;include</span> <span class="na">src=</span><span class="s">&quot;Schlafzimmer.xml&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;include</span> <span class="na">src=</span><span class="s">&quot;config/Wohnzimmer.xml&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;include</span> <span class="na">src=</span><span class="s">&quot;config/Schlafzimmer.xml&quot;</span><span class="nt">/&gt;</span>
     ...
 <span class="nt">&lt;/page&gt;</span>
 </pre></div>
 </div>
 <p>Wie im Beispiel zu sehen, kann man z.B. für jeden Raum eine eigene XML-Datei anlegen und diese dann mittels
-<code class="docutils literal"><span class="pre">include</span></code> an der gewünschten Stelle in der eigentlichen <em>visu_config.xml</em> einbinden.</p>
+<code class="docutils literal"><span class="pre">include</span></code> an der gewünschten Stelle in der eigentlichen <em>visu_config.xml</em> einbinden. Zu beachten ist, dass
+der Pfad der eingebundenen Dateien relative zur index.html ist (in der Regel config/&lt;datei&gt;.xml).</p>
 </div>
 </div>
 
