@@ -11,9 +11,9 @@ Beschreibung
 Das Include Widget ist im eigentlichen Sinn kein Widget, denn es bewirkt keine sichtbaren Änderungen
 in der Visualisierung.
 
-Mit Hilfe des Include-Elements kann man seine *visu_config.xml* Datei in mehrere Dateien aufteilen.
-Das kann bei sehr großen Dateien, hilfreich sein den Überblick zu bewahren, wenn man den XML-Code direkt
-bearbeiten möchte.
+Mit Hilfe des Include-Elements kann man seine visu_config.xml Datei in mehrere Dateien aufteilen.
+Das kann bei sehr großen Dateien, hilfreich sein, den Überblick zu bewahren, wenn man den XML-Code direkt
+bearbeiten möchte. Außerdem können bei mehreren visu_config_<variable>.xml Dateien redundante Abschnitte ausgelagert werden.
 
 .. code-block:: xml
 

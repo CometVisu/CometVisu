@@ -310,6 +310,17 @@ module.exports = function(grunt) {
             }
           ]
         }
+      },
+      githubChanges: {
+        options: {
+          questions: [
+            {
+              config: 'githubChanges.dist.options.token', // get personal GitHub tokel to bypass API rate limiting
+              type: 'input',
+              message: 'GitHub personal token:'
+            }
+          ]
+        }
       }
     },
 
