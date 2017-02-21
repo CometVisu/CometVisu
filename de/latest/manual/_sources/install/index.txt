@@ -16,6 +16,7 @@ Einfache Installation:
     wiregate
     raspberry
     install-dev
+    openhab2
 
 Schwieriger, nur für Fortgeschrittene:
 

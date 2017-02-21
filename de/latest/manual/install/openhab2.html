@@ -35,7 +35,10 @@
         <link rel="index" title="Stichwortverzeichnis"
               href="../genindex.html"/>
         <link rel="search" title="Suche" href="../search.html"/>
-    <link rel="top" title="CometVisu" href="../index.html"/> 
+    <link rel="top" title="CometVisu" href="../index.html"/>
+        <link rel="up" title="Installation der CometVisu" href="index.html"/>
+        <link rel="next" title="Update der CometVisu auf dem Wiregate" href="update-wiregate.html"/>
+        <link rel="prev" title="Entwicklerversion auf dem Wiregate" href="install-dev.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -87,8 +90,16 @@
           
             
             
-                <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Installation der CometVisu</a></li>
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation der CometVisu</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="allgemein.html">Voraussetzungen für die Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wiregate.html">Installation auf dem WireGate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raspberry.html">Installation auf dem Raspberry PI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install-dev.html">Entwicklerversion auf dem Wiregate</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation auf einem Debian System mit openHAB2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#update-der-cometvisu">Update der CometVisu</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../config/index.html">Konfiguration der CometVisu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -122,6 +133,8 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
+          <li><a href="index.html">Installation der CometVisu</a> &raquo;</li>
+      
     <li>Installation auf einem Debian System mit openHAB2</li>
       <li class="wy-breadcrumbs-aside">
         
@@ -140,38 +153,45 @@
 angepasst werden.
 Die CometVisu kann hier herunter geladen werden: <a class="reference external" href="https://github.com/CometVisu/CometVisu/releases">https://github.com/CometVisu/CometVisu/releases</a>.
 Das entpackte Paket enthält den Ordner <em>cometvisu/release</em>, welches nach /var/www/cometvisu
-kopiert werden muss. Außerdem sind die Berechtigungen für den openhab User zu setzen.
-.. code-block:: bash</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>cp -r cometvisu/release /var/www/cometvisu</dt>
-<dd><p class="first">chown -R openhab:openhab /var/www/cometvisu</p>
-<p class="last">mkdir -p /etc/openhab2/cometvisu/config
+kopiert werden muss. Außerdem sind die Berechtigungen für den openhab User zu setzen.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>cp -r cometvisu/release /var/www/cometvisu
+chown -R openhab:openhab /var/www/cometvisu
+
+mkdir -p /etc/openhab2/cometvisu/config
 mkdir -p /etc/openhab2/cometvisu/designs
-chown -R openhab:openhab /etc/openhab2/cometvisu</p>
-</dd>
-</dl>
-</div></blockquote>
+chown -R openhab:openhab /etc/openhab2/cometvisu
+</pre></div>
+</div>
 <p>Die zwei Verzeichnisse <em>/etc/openhab2/cometvisu/config</em> und <em>/etc/openhab2/cometvisu/designs</em> werden die Konfigurationen
 der CometVisu enthalten und sind durch die separate Lokation vor Upgrades geschützt. Nur wenn diese Verzeichnisse nicht
 vorhanden sind, wird CometVisu die Konfiguration in <em>/etc/openhab2/html/cometvisu/config</em> suchen.</p>
 <p>Damit openHAB2 mit der CometVisu kommunizieren kann, ist die entsprechende Erweiterung über die PaperUI (<a class="reference external" href="http://openhab_adresse:8080">http://openhab_adresse:8080</a>)
 -&gt; Add-ons -&gt; User Interfaces -&gt; CometVisu zu installieren. Wenn auch noch der CometVisu Editor benutzt werden soll, ist die
-Erweiterung der PHP support for CometVisu zu installieren.
+Erweiterung <em>PHP support for CometVisu</em> zu installieren.
 Die openHAB2 Konfigurationsdatei cometvisu.cfg befindet sich, wie alle anderen Konfigurationen der openHAB Erweiterungen,
-unter <em>/etc/openhab2/services/</em> und sollte die Direktive
-.. code-block:: bash</p>
-<blockquote>
-<div>webFolder=/var/www/cometvisu/
-webAlias=/cometvisu</div></blockquote>
+unter <em>/etc/openhab2/services/</em> und sollte die Direktive</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="na">webFolder</span><span class="o">=</span><span class="s">/var/www/cometvisu/</span>
+<span class="na">webAlias</span><span class="o">=</span><span class="s">/cometvisu</span>
+</pre></div>
+</div>
 <p>enthalten.</p>
-<p>Die CometVisu ist direkt unter der URL <a class="reference external" href="http://openhab_adresse:8080/cometvisu/">http://openhab_adresse:8080/cometvisu/</a>?config=&lt;name&gt; im Browser erreichbar, wobei sich &lt;name&gt; vom Namen der visu_config_&lt;name&gt;.xml ableitet.</p>
+<p>Die CometVisu ist direkt unter der URL <code class="docutils literal"><span class="pre">http://openhab_adresse:8080/cometvisu/?config=&lt;name&gt;</span></code> im Browser erreichbar,
+wobei sich <code class="docutils literal"><span class="pre">&lt;name&gt;</span></code> vom Namen der <code class="docutils literal"><span class="pre">visu_config_&lt;name&gt;.xml</span></code> ableitet.</p>
 </div>
 
 
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="update-wiregate.html" class="btn btn-neutral float-right" title="Update der CometVisu auf dem Wiregate" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install-dev.html" class="btn btn-neutral" title="Entwicklerversion auf dem Wiregate" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
