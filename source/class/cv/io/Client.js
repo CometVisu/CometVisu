@@ -38,6 +38,8 @@ qx.Class.define('cv.io.Client', {
    ******************************************************
    */
   construct: function(backendName, backendUrl) {
+    this.base(arguments);
+    cv.io.Client.CLIENTS.push(this);
     this.backend = {};
     this.loginSettings = {
       loggedIn: false,
@@ -85,6 +87,31 @@ qx.Class.define('cv.io.Client', {
    ******************************************************
    */
   statics: {
+    CLIENTS: [],
+
+    /**
+     * Client factory method -> create a client
+     * @returns {cv.io.Client|cv.io.Mockup}
+     */
+    createClient: function() {
+      var args = Array.prototype.slice.call(arguments);
+      args.unshift(null);
+      if (cv.Config.testMode === true) {
+        return  new (Function.prototype.bind.apply(cv.io.Mockup, args)); // jshint ignore:line
+      } else {
+        return new (Function.prototype.bind.apply(cv.io.Client, args)); // jshint ignore:line
+      }
+    },
+
+    /**
+     * Stop all running clients
+     */
+    stopAll: function() {
+      this.CLIENTS.forEach(function(client) {
+        client.stop();
+      });
+    },
+
     // used for backwards compability
     backendNameAliases: {
       'cgi-bin': 'default',

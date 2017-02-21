@@ -108,13 +108,9 @@ qx.Class.define("cv.Application",
      * @private
      */
     __init: function() {
-      var templateEngine = cv.TemplateEngine.getInstance();
-
       qx.event.Registration.addListener(window, 'resize', cv.ui.layout.ResizeHandler.invalidateScreensize, cv.ui.layout.ResizeHandler);
       qx.event.Registration.addListener(window, 'unload', function () {
-        if (templateEngine.visu) {
-          templateEngine.visu.stop();
-        }
+        cv.io.Client.stopAll();
       }, this);
       qx.bom.Lifecycle.onReady(function () {
         var body = qx.bom.Selector.query("body")[0];
