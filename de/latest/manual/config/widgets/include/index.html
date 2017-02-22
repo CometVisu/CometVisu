@@ -185,8 +185,13 @@ bearbeiten möchte. Außerdem können bei mehreren visu_config_&lt;variable&gt;.
 </pre></div>
 </div>
 <p>Wie im Beispiel zu sehen, kann man z.B. für jeden Raum eine eigene XML-Datei anlegen und diese dann mittels
-<code class="docutils literal"><span class="pre">include</span></code> an der gewünschten Stelle in der eigentlichen <em>visu_config.xml</em> einbinden. Zu beachten ist, dass
-der Pfad der eingebundenen Dateien relative zur index.html ist (in der Regel config/&lt;datei&gt;.xml).</p>
+<code class="docutils literal"><span class="pre">include</span></code> an der gewünschten Stelle in der eigentlichen <em>visu_config.xml</em> einbinden.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Der Pfad zu den inkludierten Dateien muss relative zum Wurzelverzeichnis angegeben werden (also das Verzeichnis in dem
+die index.html liegt). Wenn die einzubindende Datei im config-Ordner liegt, muss also <code class="docutils literal"><span class="pre">src=config/&lt;dateiname&gt;</span></code>
+angegeben werden (siehe Beispielcode oben).</p>
+</div>
 </div>
 </div>
 

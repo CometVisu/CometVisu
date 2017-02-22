@@ -24,7 +24,11 @@ bearbeiten möchte. Außerdem können bei mehreren visu_config_<variable>.xml Da
     </page>
 
 Wie im Beispiel zu sehen, kann man z.B. für jeden Raum eine eigene XML-Datei anlegen und diese dann mittels
-``include`` an der gewünschten Stelle in der eigentlichen *visu_config.xml* einbinden. Zu beachten ist, dass
-der Pfad der eingebundenen Dateien relative zur index.html ist (in der Regel config/<datei>.xml).
+``include`` an der gewünschten Stelle in der eigentlichen *visu_config.xml* einbinden.
+
+.. hint::
+    Der Pfad zu den inkludierten Dateien muss relative zum Wurzelverzeichnis angegeben werden (also das Verzeichnis in dem
+    die index.html liegt). Wenn die einzubindende Datei im config-Ordner liegt, muss also ``src=config/<dateiname>``
+    angegeben werden (siehe Beispielcode oben).
 
 
