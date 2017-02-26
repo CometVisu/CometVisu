@@ -72,7 +72,7 @@ Dieser Code testet eine ``add``-Funktion die einfach zwei Zahlen addiert.
 
 Zu finden sind die vorhandenen Tests im ``source/test/karma`` Untervezeichnis. Möchte man nun einen neuen Test für eine (fiktive)
 Sourcecode Datei unter ``source/ui/structure/pure/NewWidget.js`` schreiben, legt man die neue Datei
-``source/test/karma/structure/pure/NewWidget-spec.js`` an.
+``source/test/karma/ui/structure/pure/NewWidget-spec.js`` an.
 Wichtig ist hier, dass der Name der Testdatei auf ``-spec`` endet, sonst wird sie vom Testrunner nicht gefunden.
 
 Der Test für diese Datei sollte nun folgendermaßen aussehen:
