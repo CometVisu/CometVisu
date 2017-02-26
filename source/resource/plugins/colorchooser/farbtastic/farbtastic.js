@@ -115,7 +115,7 @@ $._farbtastic = function (container, callback) {
    */
   fb.mousedown = function (event) {
 
-
+    
 
     // Check which area is being dragged
     var pos = fb.widgetCoords(event);
