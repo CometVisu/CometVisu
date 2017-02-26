@@ -48,6 +48,7 @@ qx.Class.define('cv.parser.widgets.Include', {
     __xhr: null,
 
     getRequest: function(url) {
+      url = qx.util.ResourceManager.getInstance().toUri(url);
       if (!this.__xhr) {
         this.__xhr = new qx.io.request.Xhr(url);
         this.__xhr.set({
@@ -62,18 +63,17 @@ qx.Class.define('cv.parser.widgets.Include', {
 
     parse: function( xml, path, flavour, pageType ) {
       var xhr = this.getRequest(xml.getAttribute("src"));
-      xhr.addListenerOnce("success", qx.lang.Function.curry(this._onSuccess, path , flavour, pageType), this);
-      return cv.data.Model.getInstance().setWidgetData( path, {
-        'path': path,
-        '$$type': "include",
-        'pageType': pageType
-      });
-    },
-
-    _onSuccess: function(path, flavour, pageType, e) {
-      var req = e.getTarget();
-      var xml = req.getResponse();
-      cv.TemplateEngine.getInstance().createPages( xml, path , flavour, pageType );
+      var children = [];
+      xhr.addListenerOnce("success", function(e) {
+        var req = e.getTarget();
+        var xml = req.getResponse();
+        qx.dom.Hierarchy.getChildElements(xml).forEach(function(child, idx) {
+          var childData = cv.parser.WidgetParser.parse(child, path + '_' + idx, flavour, pageType);
+          children.push(childData);
+        }, this);
+      }, this);
+      xhr.send();
+      return children;
     }
   },
 
