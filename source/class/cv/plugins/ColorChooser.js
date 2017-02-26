@@ -23,7 +23,7 @@
  * @since 0.5.2
  * @author Christian Mayer [CometVisu at ChristianMayer dot de]
  *
- * @asset(plugins/colorchooser/farbtastic/farbtastic.min.js,plugins/colorchooser/farbtastic/farbtastic.css)
+ * @asset(plugins/colorchooser/farbtastic/farbtastic.js,plugins/colorchooser/farbtastic/farbtastic.css)
  */
 qx.Class.define('cv.plugins.ColorChooser', {
   extend: cv.ui.structure.AbstractWidget,
@@ -231,7 +231,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
   defer: function(statics) {
     var loader = cv.util.ScriptLoader.getInstance();
     loader.addStyles('plugins/colorchooser/farbtastic/farbtastic.css');
-    loader.addScripts('plugins/colorchooser/farbtastic/farbtastic.min.js');
+    loader.addScripts('plugins/colorchooser/farbtastic/farbtastic.js');
     // register the parser
     cv.parser.WidgetParser.addHandler("colorchooser", statics);
     cv.ui.structure.WidgetFactory.registerClass("colorchooser", statics);

@@ -24,28 +24,27 @@
  */
 describe("testing a include widget", function() {
 
-  // TODO: find out how to spy and reactivate test
   it("should test the include creator", function() {
 
     // create the request to be able to spy the send method
     var req = cv.parser.widgets.Include.getRequest('');
-    spyOn(req, "send");
 
-    var child = qx.bom.Html.clean(['<page name="Start"></page>'])[0];
+    var child = qx.bom.Html.clean(['<root><text>Start</text></root>'])[0];
 
-    var fakeResponseEvent = jasmine.createSpyObj("response", ['getTarget']);
-    fakeResponseEvent.getTarget.and.callFake(function() {
+    var event = new qx.event.type.Event();
+    event.setType("success");
+    spyOn(event, "getTarget").and.callFake(function() {
       var fakeResponse = jasmine.createSpyObj("target", ['getResponse']);
       fakeResponse.getResponse.and.callFake(function() {
         return child;
       });
       return fakeResponse;
     });
+    spyOn(req, "send").and.callFake(function() {
+      qx.event.Registration.dispatchEvent(req, event);
+    });
     spyOn(cv.TemplateEngine.getInstance(), "createPages");
-    cv.parser.widgets.Include._onSuccess("id_0", null, "text", fakeResponseEvent);
-
-    this.createTestWidgetString("include", {'src': 'test'});
-
-    expect(cv.TemplateEngine.getInstance().createPages).toHaveBeenCalledWith(child, 'id_0', null, "text");
+    var res = this.createTestWidgetString("include", {'src': 'test'});
+    expect(res[1]).toBe('<div class="widget clearfix text " ></div>');
   });
 });
