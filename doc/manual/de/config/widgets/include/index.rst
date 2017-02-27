@@ -31,4 +31,6 @@ Wie im Beispiel zu sehen, kann man z.B. für jeden Raum eine eigene XML-Datei an
     die index.html liegt). Wenn die einzubindende Datei im config-Ordner liegt, muss also ``src=config/<dateiname>``
     angegeben werden (siehe Beispielcode oben).
 
+.. hint::
+    Der Abschnitt zwischen <meta> ... </meta> kann nicht ausgelagert werden.
 

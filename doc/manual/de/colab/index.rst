@@ -56,7 +56,8 @@ Und nun noch einmal dieselben Schritte im Detail:
 1. Auf Kommandozeile in das Verzeichnis mit dem lokalen Repository wechseln
    ``git checkout -b name-des-branches`` (Der Name des neuen Branches kann frei gewählt werden, es darf nur kein existierender sein)
 2. Die gewünschten Dateien mit einem Editor nach Wahl bearbeiten und speichern
-3. ``git commit -a -m "Kurze Beschreibung der Änderung"`` (Die Beschreibung nach Möglichkeit auf Englisch formulieren)
+3. ``git commit -a -m "Kurze Beschreibung der Änderung"`` (Die Beschreibung nach Möglichkeit auf Englisch formulieren). 
+   Mit ``git status`` kann zunächst nochmal geprüft werden, welche Änderungen alle *commited* werden. 
 4. s.o.
 5. ``git push``
 6. Auf die Github-Seite des private Repositories gehen und auf *new pull request* klicken.
@@ -76,10 +77,32 @@ im Pull-Request tun. Ist dies der Fall, kommt nun der Vorteil des im Schritt 1. 
 Man muss nähmlich nur die Schritte 2., 3. und 5. ausführen um die Korrekturwünsche des Maintainers auszuführen.
 Damit sind die Änderungen automatisch Teil des vorhandenen Pull-Requests.
 
+Sind alle Änderungen abgestimmt und übernommen worden, kann der Branch gelöscht werden.
+``git branch -D name-des-branches``
+
 Wenn man z.B. schon mit neuen Änderungen in einem neuen Branch begonnen hat, kann man beliebig zwischen den Branches
 hin und her wechseln und so sogar mehrere Pull-Requests und Änderungen gleichzeitig bearbeiten ohne diese inhaltlich
 zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit (siehe Schritt 3.) mit
-``git checkout name-des-branches``
+``git checkout name-des-branches``.
+
+Repositories synchron halten
+----------------------------
+Die von anderen Entwicklern *gemergeden* Änderungen mit dem eigenen Fork synchron zu halten, muss ein Pull-Request auf 
+vom privaten Repository aus gemacht werden. In der Zeile *This branch is ... commits ahead of CometVisu:develop.* zeigt 
+an, wieviele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Daneben befindet sich der Link zum Pull-Request, 
+welcher in der darauffolgenden Seite die Änderungen anzeigt, welche in das private Repository *gemerged* werden können. Das
+Akzeptieren aller Änderungen synchronisiert die Änderungen im Haupt-Repository auf das private Repository.
+
+.. figure:: doc/_static/pull_request_sync.png
+
+   Pull Request für Synchronisation zwischen Haupt- und privaten Repository
+
+Die lokale Kopie des privaten Repositories muss dann ebenso aktualisiert werden. Dazu muss im lokalen Repository in den Branch 
+*develop* gewechselt werden.
+``git checkout develop``  
+in den *develop* Branch werden alle aktuellen Änderungen der Entwicklet *gemerged*, deshalb ist dieser interessant. Mit dem Befehl
+``git pull``
+erfolgt die Synchronisation zwischen lokalem und privatem Repository. Ab jetzt geht es so weiter, wie weiter oben unter 1. beschrieben. 
 
 .. TODO::
 
