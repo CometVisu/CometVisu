@@ -9,7 +9,7 @@ Der eibd Service verbindet den Computer mit dem KNX/EIB Bus und unterstützt Sch
 
 Installation von knxd
 ---------------------
-Aufgrund des Entwicklungsstillstands bei eibd wurde der Fork knxd gebildet. knxd ist ein KNX Router, der auf allen Linux Computern läuft und kann mit allen bekannten KNX Schnittstellen kommunizieren.
+Aufgrund des Entwicklungsstillstands bei eibd wurde der Fork knxd gebildet. knxd ist ein KNX Router, der auf allen Linux Computern läuft und mit allen bekannten KNX Schnittstellen kommunizieren kann.
 Der knxd muss aus dem Source-Code kompiliert werden. Eine Konfigurations- und Kompilieranleitung für debian Server ist auf der `knxd github Seite <https://github.com/knxd/knxd>`__ zu finden. 
  
 .. TODO::

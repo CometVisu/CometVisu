@@ -32,5 +32,5 @@ Wie im Beispiel zu sehen, kann man z.B. für jeden Raum eine eigene XML-Datei an
     angegeben werden (siehe Beispielcode oben).
 
 .. hint::
-    Der Abschnitt zwischen <meta> ... </meta> kann nicht ausgelagert werden.
+    Der Abschnitt zwischen ``<meta> ... </meta>`` kann nicht ausgelagert werden.
 
