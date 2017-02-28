@@ -87,22 +87,23 @@ zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit
 
 Repositories synchron halten
 ----------------------------
-Die von anderen Entwicklern *gemergeden* Änderungen mit dem eigenen Fork synchron zu halten, muss ein Pull-Request auf 
+Um die von anderen Entwicklern *gemergeden* Änderungen mit dem eigenen Fork synchron zu halten, muss ein Pull-Request  
 vom privaten Repository aus gemacht werden. In der Zeile *This branch is ... commits ahead of CometVisu:develop.* zeigt 
-an, wieviele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Daneben befindet sich der Link zum Pull-Request, 
-welcher in der darauffolgenden Seite die Änderungen anzeigt, welche in das private Repository *gemerged* werden können. Das
-Akzeptieren aller Änderungen synchronisiert die Änderungen im Haupt-Repository auf das private Repository.
+an, wieviele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Direkt daneben befindet sich der Link zum Pull-Request, 
+welcher in der darauffolgenden Seite die Änderungen anzeigt, die in das private Repository *gemerged* werden können. Das
+Akzeptieren aller Änderungen synchronisiert die Änderungen vom Haupt-Repository auf das private Repository.
 
 .. figure:: doc/_static/pull_request_sync.png
 
    Pull Request für Synchronisation zwischen Haupt- und privaten Repository
 
 Die lokale Kopie des privaten Repositories muss dann ebenso aktualisiert werden. Dazu muss im lokalen Repository in den Branch 
-*develop* gewechselt werden.
+*develop* gewechselt werden, dort werden alle abgestimmten Änderungen der Entwickler *gemerged*.
 ``git checkout develop``  
-in den *develop* Branch werden alle aktuellen Änderungen der Entwicklet *gemerged*, deshalb ist dieser interessant. Mit dem Befehl
+Mit dem Befehl
 ``git pull``
-erfolgt die Synchronisation zwischen lokalem und privatem Repository. Ab jetzt geht es so weiter, wie weiter oben unter 1. beschrieben. 
+erfolgt die Synchronisation zwischen lokalem und privatem Repository. Nachdem nun alle Repositories wieder synchron sind, kann wie 
+oben unter 1. beschrieben mit neuen Änderungen an der Dokumentation fortgefahren werden. 
 
 .. TODO::
 
