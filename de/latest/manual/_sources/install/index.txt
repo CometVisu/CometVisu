@@ -7,6 +7,7 @@ Einfache Installation:
 -  :doc:`Allgemein <allgemein>`
 -  :doc:`auf Wiregate <wiregate>`
 -  :doc:`auf Raspberry Pi <raspberry>`
+-  auf einem Debian System mit openHAB1 (`OpenHAB-WIKI <https://github.com/openhab/openhab1-addons/wiki/CometVisu>`__)
 -  :doc:`auf einem Debian System mit openHAB2 <openhab2>`
 
 .. toctree::
@@ -22,9 +23,6 @@ Schwieriger, nur für Fortgeschrittene:
 
 -  :doc:`auf beliebigen anderen Linux-Systemen <linux>`
 -  :doc:`auf NAS-Systemen <nas>`
-
-Informationen wie man die CometVisu auf OpenHAB installiert gibt es auf
-englisch im `OpenHAB-WIKI <https://github.com/openhab/openhab/wiki/Comet-Visu>`__
 
 Man kann auch die aktuelle Entwickler-Version installieren, diese sollte
 jedoch **NIE** produktiv eingesetzt werden.

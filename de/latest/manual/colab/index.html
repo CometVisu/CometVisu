@@ -95,6 +95,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Hilf dem CometVisu Projekt</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#allgemeine-vorbereitungen">Allgemeine Vorbereitungen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#allgemeine-vorgehensweise">Allgemeine Vorgehensweise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#repositories-synchron-halten">Repositories synchron halten</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#mithilfe-bei-der-dokumentation">Mithilfe bei der Dokumentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="doc/rst.html">Die RST-Syntax</a></li>
 <li class="toctree-l3"><a class="reference internal" href="doc/rst.html#eigene-direktiven">Eigene Direktiven</a></li>
@@ -202,7 +203,8 @@ er damit zu Gewohnheit wird. Und so sieht der Workflow aus, zunächst als Übers
 <li>Auf Kommandozeile in das Verzeichnis mit dem lokalen Repository wechseln
 <code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">name-des-branches</span></code> (Der Name des neuen Branches kann frei gewählt werden, es darf nur kein existierender sein)</li>
 <li>Die gewünschten Dateien mit einem Editor nach Wahl bearbeiten und speichern</li>
-<li><code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span> <span class="pre">-m</span> <span class="pre">&quot;Kurze</span> <span class="pre">Beschreibung</span> <span class="pre">der</span> <span class="pre">Änderung&quot;</span></code> (Die Beschreibung nach Möglichkeit auf Englisch formulieren)</li>
+<li><code class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-a</span> <span class="pre">-m</span> <span class="pre">&quot;Kurze</span> <span class="pre">Beschreibung</span> <span class="pre">der</span> <span class="pre">Änderung&quot;</span></code> (Die Beschreibung nach Möglichkeit auf Englisch formulieren).
+Mit <code class="docutils literal"><span class="pre">git</span> <span class="pre">status</span></code> kann zunächst nochmal geprüft werden, welche Änderungen alle <em>commited</em> werden.</li>
 <li>s.o.</li>
 <li><code class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></code></li>
 <li>Auf die Github-Seite des private Repositories gehen und auf <em>new pull request</em> klicken.
@@ -221,10 +223,31 @@ Teil des CometVisu-Projekts. Sollte der Maintainer Verbesserungsvorschläge habe
 im Pull-Request tun. Ist dies der Fall, kommt nun der Vorteil des im Schritt 1. erstellen extra Branches zum Tragen.
 Man muss nähmlich nur die Schritte 2., 3. und 5. ausführen um die Korrekturwünsche des Maintainers auszuführen.
 Damit sind die Änderungen automatisch Teil des vorhandenen Pull-Requests.</p>
+<p>Sind alle Änderungen abgestimmt und übernommen worden, kann der Branch gelöscht werden.
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-D</span> <span class="pre">name-des-branches</span></code></p>
 <p>Wenn man z.B. schon mit neuen Änderungen in einem neuen Branch begonnen hat, kann man beliebig zwischen den Branches
 hin und her wechseln und so sogar mehrere Pull-Requests und Änderungen gleichzeitig bearbeiten ohne diese inhaltlich
 zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit (siehe Schritt 3.) mit
-<code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">name-des-branches</span></code></p>
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">name-des-branches</span></code>.</p>
+</div>
+<div class="section" id="repositories-synchron-halten">
+<h2>Repositories synchron halten<a class="headerlink" href="#repositories-synchron-halten" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Um die von anderen Entwicklern <em>gemergeden</em> Änderungen mit dem eigenen Fork synchron zu halten, muss ein Pull-Request
+vom privaten Repository aus gemacht werden. In der Zeile <em>This branch is ... commits ahead of CometVisu:develop.</em> zeigt
+an, wieviele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Direkt daneben befindet sich der Link zum Pull-Request,
+welcher in der darauffolgenden Seite die Änderungen anzeigt, die in das private Repository <em>gemerged</em> werden können. Das
+Akzeptieren aller Änderungen synchronisiert die Änderungen vom Haupt-Repository auf das private Repository.</p>
+<div class="figure" id="id2">
+<img alt="../_images/pull_request_sync.png" src="../_images/pull_request_sync.png" />
+<p class="caption"><span class="caption-text">Pull Request für Synchronisation zwischen Haupt- und privaten Repository</span></p>
+</div>
+<p>Die lokale Kopie des privaten Repositories muss dann ebenso aktualisiert werden. Dazu muss im lokalen Repository in den Branch
+<em>develop</em> gewechselt werden, dort werden alle abgestimmten Änderungen der Entwickler <em>gemerged</em>.
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">develop</span></code>
+Mit dem Befehl
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span></code>
+erfolgt die Synchronisation zwischen lokalem und privatem Repository. Nachdem nun alle Repositories wieder synchron sind, kann wie
+oben unter 1. beschrieben mit neuen Änderungen an der Dokumentation fortgefahren werden.</p>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Zu tun</p>
 <ul class="last simple">
@@ -286,7 +309,7 @@ Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
 <a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md">Install Sphinx</a></p>
 <p>Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation öffnen und mit <code class="docutils literal"><span class="pre">Strg+Shift</span> <span class="pre">r</span></code> das Live-Preview Fenster öffnen.
 Änderungen an der RST-Datei, sollten dann mit kurzer Verzögerung automatisch in Preview Fenster zu sehen sein.</p>
-<div class="figure" id="id2">
+<div class="figure" id="id3">
 <img alt="../_images/visual_studio_live_preview.png" src="../_images/visual_studio_live_preview.png" />
 <p class="caption"><span class="caption-text">Ansicht des Editors mit Live-Preview</span></p>
 </div>
