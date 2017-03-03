@@ -96,6 +96,7 @@
       {
         "qx.version"     : "5.1",
         "qx.application" : "${APPLICATION}.Application",
+        "qx.promise"     : false,
         "cv.version"     : "${CV_VERSION}"
       },
       "add-script" : [
