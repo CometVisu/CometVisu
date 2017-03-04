@@ -4,7 +4,7 @@
     "name" : "CometVisuClient",
 
     "summary" : "CometVisu-Client",
-    "description" : "The CometVisu Client communicates with a backend using the CometVisu protool.",
+    "description" : "The JavaScript library that implements the CometVisu protocol.",
 
     "homepage" : "http://www.cometvisu.org/",
 
@@ -19,11 +19,7 @@
         "name": "Tobias Bräutigam (Peuter)",
         "email": "tbraeutigam at gmail dot com"
       }
-    ],
-
-    "version": "0.10.0-dev",
-    "qooxdoo-versions": ["5.1"],
-    "sourceViewUri": "https://github.com/peuter/CometVisu/blob/qx-core/source/class/%{classFilePath}#L%{lineNumber}"
+    ]
   },
 
   "provides" :
@@ -31,6 +27,6 @@
     "namespace"   : "cv.io",
     "encoding"    : "utf-8",
     "class"       : "source/class",
-    "type"        : "contribution"
+    "type"        : "library"
   }
 }
