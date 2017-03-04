@@ -96,7 +96,7 @@ qx.Class.define('cv.util.Tree', {
 
     /**
      * Returns the data for the parent entry of the given path
-     * @param path
+     * @param path {String}
      * @return {var}
      */
     getParentData: function(path) {
