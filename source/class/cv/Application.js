@@ -39,7 +39,21 @@ qx.Class.define("cv.Application",
    ******************************************************
    */
   statics: {
-    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="width:20000em; position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div><div id="message"></div>'
+    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="width:20000em; position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div><div id="message"></div>',
+
+    /**
+     * Client factory method -> create a client
+     * @return {cv.io.Client|cv.io.Mockup}
+     */
+    createClient: function() {
+      var args = Array.prototype.slice.call(arguments);
+      args.unshift(null);
+      if (this.TEST_MODE === true) {
+        return  new (Function.prototype.bind.apply(cv.io.Mockup, args)); // jshint ignore:line
+      } else {
+        return new (Function.prototype.bind.apply(cv.io.Client, args)); // jshint ignore:line
+      }
+    }
   },
 
   /*

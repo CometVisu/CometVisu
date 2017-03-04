@@ -5,7 +5,7 @@ var cv = window.parent.cv;
 var
   thisGA = '12/7/52',
   thisTransform = 'DPT:5.001',
-  client = cv.io.Client.createClient('default');
+  client = cv.Application.createClient('default');
 
 client.update = function(json ) // overload the handler
 {

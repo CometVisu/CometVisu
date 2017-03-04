@@ -166,12 +166,12 @@ qx.Class.define('cv.TemplateEngine', {
     initBackendClient: function () {
       var backendName = cv.Config.configSettings.backend || cv.Config.backend;
       if (backendName === "oh") {
-        this.visu = cv.io.Client.createClient('openhab', cv.Config.backendUrl);
+        this.visu = cv.Application.createClient('openhab', cv.Config.backendUrl);
       }
       else if (backendName === "oh2") {
-        this.visu = cv.io.Client.createClient('openhab2', cv.Config.backendUrl);
+        this.visu = cv.Application.createClient('openhab2', cv.Config.backendUrl);
       } else {
-        this.visu = cv.io.Client.createClient(backendName, cv.Config.backendUrl);
+        this.visu = cv.Application.createClient(backendName, cv.Config.backendUrl);
       }
 
       var model = cv.data.Model.getInstance();

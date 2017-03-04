@@ -237,6 +237,9 @@ qx.Class.define('cv.Config', {
       cv.Config.testMode = req.queryKey.testMode === "true";
     }
 
+    // propagate to the client
+    cv.io.Client.TEST_MODE = cv.Config.testMode;
+
     if (req.queryKey.config) {
       cv.Config.configSuffix = req.queryKey.config;
     }

@@ -88,20 +88,7 @@ qx.Class.define('cv.io.Client', {
    */
   statics: {
     CLIENTS: [],
-
-    /**
-     * Client factory method -> create a client
-     * @returns {cv.io.Client|cv.io.Mockup}
-     */
-    createClient: function() {
-      var args = Array.prototype.slice.call(arguments);
-      args.unshift(null);
-      if (cv.Config.testMode === true) {
-        return  new (Function.prototype.bind.apply(cv.io.Mockup, args)); // jshint ignore:line
-      } else {
-        return new (Function.prototype.bind.apply(cv.io.Client, args)); // jshint ignore:line
-      }
-    },
+    TEST_MODE: false,
 
     /**
      * Stop all running clients
