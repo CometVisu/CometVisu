@@ -63,6 +63,7 @@
       "api-data",
       "source",
       "build",
+      "libraries",
       "source-hybrid"
     ]
   },
@@ -99,6 +100,7 @@
         "qx.promise"     : false,
         "cv.version"     : "${CV_VERSION}"
       },
+
       "add-script" : [
         {
           "uri" : "resource/libs/sprintf.js"
@@ -130,6 +132,14 @@
           "manifest.json"
         ]
       }
+    },
+
+    "libraries" :
+    {
+      "library" :
+      [
+        { "manifest" : "client/Manifest.json" }
+      ]
     },
 
     "lint": {
