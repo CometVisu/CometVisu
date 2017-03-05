@@ -48,7 +48,7 @@ qx.Class.define("cv.Application",
     createClient: function() {
       var args = Array.prototype.slice.call(arguments);
       args.unshift(null);
-      if (this.TEST_MODE === true) {
+      if (cv.Config.testMode === true) {
         return  new (Function.prototype.bind.apply(cv.io.Mockup, args)); // jshint ignore:line
       } else {
         return new (Function.prototype.bind.apply(cv.io.Client, args)); // jshint ignore:line
