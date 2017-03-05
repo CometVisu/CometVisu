@@ -6,7 +6,7 @@ TARGET_BRANCH="gh-pages"
 REPO_SLUG="CometVisu/CometVisu"
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
+if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ([ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && ["$TRAVIS_BRANCH" != "master"]); then
     echo "Skipping deploy;"
     exit 0
 fi
@@ -16,7 +16,7 @@ if [ "$TRAVIS_REPO_SLUG" != "$REPO_SLUG" ]; then
     exit 0
 fi
 
-if [ "$SOURCE_BRANCH" != "master" ]; then
+if [ "$TRAVIS_BRANCH" != "master" ]; then
     echo "ATTENTION! Deploying docs from non master branch. Please change this!!!"
 fi
 
