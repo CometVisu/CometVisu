@@ -138,9 +138,9 @@ qx.Class.define('cv.io.Client', {
             // send an close request to the openHAB server
             var oldValue = this.headers["X-Atmosphere-Transport"];
             this.headers["X-Atmosphere-Transport"] = "close";
-            var ajaxRequest = new qx.io.request.Xhr(this.getResourcePath('read'));
-            this.beforeSend(ajaxRequest);
-            ajaxRequest.send();
+            this.doRequest(this.getResourcePath('read'), null, null, null, {
+              beforeSend: this.beforeSend
+            });
             if (oldValue !== undefined) {
               this.headers["X-Atmosphere-Transport"] = oldValue;
             } else {
@@ -328,13 +328,7 @@ qx.Class.define('cv.io.Client', {
         if ('' !== this.device) {
           request.d = this.device;
         }
-        var ajaxRequest = new qx.io.request.Xhr(this.backendUrl ? this.backendUrl : this.getResourcePath("login"));
-        ajaxRequest.set({
-          accept: "application/json",
-          requestData: request
-        });
-        ajaxRequest.addListener("success", this.handleLogin, this);
-        ajaxRequest.send();
+        this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath("login"), request, this.handleLogin, this);
       } else if (this.loginSettings.callbackAfterLoggedIn) {
         // call callback immediately
         this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
@@ -342,6 +336,58 @@ qx.Class.define('cv.io.Client', {
         this.loginSettings.context = null;
       }
     },
+
+    /**
+     * Creates an XHR request. The request type depends von the "cv.xhr" environment setting
+     * (currently "qx" and "jquery" are supported)
+     * @param url {String} URI
+     * @param data {Map} request data
+     * @param callback {Function} success callback
+     * @param context {Object} context fot the callback
+     * @return {qx.io.request.Xhr|jQuery}
+     */
+    doRequest: qx.core.Environment.select("cv.xhr", {
+      "jquery": function(url, data, callback, context, options) {
+        var config = {
+          url         : url,
+          dataType    : 'json',
+          context     : context,
+          success     : callback
+        };
+        if (options) {
+          if (options.listeners) {
+            config = $.extend(config, options.listeners);
+            delete options.listeners;
+          }
+        }
+        config = $.extend(config, options || {});
+        $.ajax(config);
+      },
+      "qx": function(url, data, callback, context, options) {
+        var ajaxRequest = new qx.io.request.Xhr(url);
+        if (options) {
+          if (options.beforeSend) {
+            this.beforeSend(ajaxRequest);
+            delete options.beforeSend;
+          }
+          if (options.listeners) {
+            Object.getOwnPropertyNames(options.listeners).forEach(function(eventName) {
+              ajaxRequest.addListener(eventName, options.listeners[eventName], context);
+            });
+            delete options.listeners;
+          }
+        }
+        ajaxRequest.set(qx.lang.Object.mergeWith({
+          accept: "application/json",
+          requestData: data
+        }, options || {}));
+        if (callback) {
+          ajaxRequest.addListener("success", callback, context);
+        }
+        ajaxRequest.send();
+        return ajaxRequest;
+      }
+    }),
 
     /**
      * Handles login response, applies backend configuration if send by
@@ -416,11 +462,10 @@ qx.Class.define('cv.io.Client', {
        * could maybe selective based on UserAgent but isn't that costly on writes
        */
       var ts = new Date().getTime();
-      var ajaxRequest = new qx.io.request.Xhr(qx.util.Uri.appendParamsToUrl(this.getResourcePath("write"), 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts));
-      ajaxRequest.set({
+      var url = qx.util.Uri.appendParamsToUrl(this.getResourcePath("write"), 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts);
+      this.doRequest(url, null, null, null, {
         accept: "application/json, text/javascript, */*; q=0.01"
       });
-      ajaxRequest.send();
     },
 
     /**

@@ -98,7 +98,8 @@
         "qx.version"     : "5.1",
         "qx.application" : "${APPLICATION}.Application",
         "qx.promise"     : false,
-        "cv.version"     : "${CV_VERSION}"
+        "cv.version"     : "${CV_VERSION}",
+        "cv.xhr"         : "qx"
       },
 
       "add-script" : [

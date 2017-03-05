@@ -43,12 +43,13 @@
   "jobs": {
     "common": {
       "=include" : [ "${APPLICATION}.*" ],
-      //"=exclude" : [ "qx.*" ],
-      "lint-check": { "allowed-globals": [ "cv" ] },
+      //"=exclude" : [ "qx.io.*" ],
+      "lint-check": { "allowed-globals": [ "cv", "$" ] },
       "environment" : {
         "APPLICATION" : "${APPLICATION}",
         "qx.promise": false,
-        "qx.theme" : null
+        "qx.theme" : null,
+        "cv.xhr": ["qx", "jquery"]
       },
       "compile-options" :
       {
@@ -67,7 +68,8 @@
       [
         "build-resources",
         "build-script",
-        "build-files"
+        "build-files",
+        "gzip-files"
       ]
     },
     "build-script": {
@@ -75,8 +77,14 @@
       {
         "paths" :
         {
-          "file" : "${BUILD_PATH}/script/${APPLICATION_NAME}.js"
+          "file" : "${BUILD_PATH}/script/{cv.xhr}-${APPLICATION_NAME}.js"
         }
+      }
+    },
+    "gzip-files": {
+      "desc": "gzip the build files",
+      "shell": {
+        "command": "gzip build/script/*.js"
       }
     }
   }

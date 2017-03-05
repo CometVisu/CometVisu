@@ -76,27 +76,25 @@ qx.Class.define('cv.io.transport.LongPolling', {
     connect: function () {
       this.running = true;
       // send first request
-      this.xhr = new cv.io.request.Xhr(this.client.getResourcePath("read"));
-      this.xhr.set({
-        accept: "application/json",
-        method: "GET",
-        beforeSend: this.beforeSend.bind(this)
-      });
-      this.xhr.addListener("error", this.handleError, this);
+
+      var options = {
+        beforeSend: this.beforeSend.bind(this),
+        listeners: {
+          error: this.handleError
+        }
+      };
       var data = [];
+      var successCallback = null;
       if (this.client.initialAddresses.length) {
         data = this.client.buildRequest(this.client.initialAddresses);
-        this.xhr.addListener("success", this.handleReadStart, this);
+        successCallback = this.handleReadStart;
       } else {
         // old behaviour -> start full query
         data = this.client.buildRequest();
-        this.xhr.addListener("success", this.handleRead, this);
+        successCallback = this.handleRead;
       }
       data.t = 0;
-      this.xhr.set({
-        requestData: data
-      });
-      this.xhr.send();
+      this.xhr = this.client.doRequest(this.client.getResourcePath("read"), data, successCallback, this, options);
       this.client.watchdog.start(5);
     },
 
