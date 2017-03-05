@@ -34,8 +34,8 @@ git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
 # Clean out existing contents
-rm -rf out/de || exit 0
-rm -rf out/en || exit 0
+#rm -rf out/de || exit 0
+#rm -rf out/en || exit 0
 
 # Run our creation script
 echo "generating german manual to extract screenshot examples"
