@@ -23,6 +23,11 @@ vorhanden sind, wird CometVisu die Konfiguration in */etc/openhab2/html/cometvis
 Damit openHAB2 mit der CometVisu kommunizieren kann, ist die entsprechende Erweiterung über die PaperUI (http://openhab_adresse:8080)
 -> Add-ons -> User Interfaces -> CometVisu zu installieren. Wenn auch noch der CometVisu Editor benutzt werden soll, ist die 
 Erweiterung *PHP support for CometVisu* zu installieren.
+
+.. figure:: _static/openhab_paperui_user_interfaces.png
+
+   PaperUI - Add-ons - User Interfaces
+   
 Die openHAB2 Konfigurationsdatei cometvisu.cfg befindet sich, wie alle anderen Konfigurationen der openHAB Erweiterungen,
 unter */etc/openhab2/services/* und sollte die Direktive
 
