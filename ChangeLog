@@ -3,6 +3,18 @@
 0.10.0
 ======
 
+### 0.10.0-RC4 (2017/02/23 19:48 +00:00)
+- [#520](https://github.com/CometVisu/CometVisu/pull/520) fix for iOS touch handling
+- [#517](https://github.com/CometVisu/CometVisu/pull/517) add relative path hint for include widget (@peuter)
+- [#518](https://github.com/CometVisu/CometVisu/pull/518) cometvisu installation for openhab2 (@staehler)
+- [#516](https://github.com/CometVisu/CometVisu/pull/516) Fix build system for 2d demo and exclude icon SVG as it is too big (@ChristianMayer)
+- [#513](https://github.com/CometVisu/CometVisu/pull/513) Update backend communication (@ChristianMayer)
+- [#511](https://github.com/CometVisu/CometVisu/pull/511) call the transport restart method not the (not existing) client method (@peuter)
+
+### 0.10.0-RC3 (2017/02/18 14:18 +00:00)
+- [#507](https://github.com/CometVisu/CometVisu/pull/507) do not send rsslog request for openHAB through external (@peuter)
+- [#505](https://github.com/CometVisu/CometVisu/pull/505) read default scroll speed setting from cache (@peuter)
+
 ### 0.10.0-RC2 (2017/02/11 15:26 +00:00)
 - [#494](https://github.com/CometVisu/CometVisu/pull/494) tweak requirejs settings to make sure everything is loaded in the cor… (@peuter)
 - [#498](https://github.com/CometVisu/CometVisu/pull/498) Update icons (@ChristianMayer)

@@ -271,6 +271,8 @@ in openHAB einen negativen Wert zurückliefern. Das Mapping würde ein *OK* oder
 			<formula>y = (x >= 0) ? "OK" : "not OK";</formula>
 		</mapping>
 
+.. figure:: _static/sensor_alarme.png
+   
 Formeln (Advanced)
 ------------------
 
