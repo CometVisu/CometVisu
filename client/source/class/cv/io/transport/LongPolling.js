@@ -53,15 +53,11 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * This function gets called once the communication is established
      * and this.client information is available.
      *
-     * @param json
-     * @param connect (boolean) wether to start the connection or not
-     *
+     * @param ev {Event|Object} qx event or json response
+     * @param connect {Boolean} whether to start the connection or not
      */
     handleSession: function (ev, connect) {
-      var json = ev.getTarget().getResponse();
-      if (qx.lang.Type.isString(json)) {
-        json = cv.io.parser.Json.parse(json);
-      }
+      var json =  this.client.getResponse(ev);
       this.sessionId = json.s;
       this.version = json.v.split('.', 3);
 
@@ -105,7 +101,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * @param ev {Event}
      */
     handleRead: function (ev) {
-      var json = ev && ev.getTarget().getResponse();
+      var json = this.client.getResponse(ev);
       if (this.doRestart || (!json && (-1 === this.lastIndex))) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
@@ -118,10 +114,6 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
       var data;
       if (json && !this.doRestart) {
-        if (qx.lang.Type.isString(json)) {
-          this.error("backend response not parsed, check if backend returned the correct content-type. Parsing manually now!");
-          json = cv.io.parser.Json.parse(json);
-        }
         this.lastIndex = json.i;
         data = json.d;
         this.readResendHeaderValues();
@@ -143,7 +135,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     },
 
     handleReadStart: function (ev) {
-      var json = ev.getTarget().getResponse();
+      var json = this.client.getResponse(ev);
       if (!json && (-1 === this.lastIndex)) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
@@ -169,7 +161,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         var data = this.client.buildRequest(diffAddresses);
         data.t = 0;
         this.xhr.set({
-          data: data
+          requestData: data
         });
         this.xhr.removeListener("success", this.handleReadStart, this);
         this.xhr.addListener("success", this.handleRead, this);
@@ -184,19 +176,45 @@ qx.Class.define('cv.io.transport.LongPolling', {
      *
      * @param ev {Event}
      */
-    handleError: function (ev) {
-      var req = ev.getTarget();
-      if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) // ignore error when connection is irrelevant
-      {
-        this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
+    handleError: qx.core.Environment.select("cv.xhr", {
+      "qx": function (ev) {
+        var req = ev.getTarget();
+        if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) // ignore error when connection is irrelevant
+        {
+          this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
+        }
+      },
+      "jquery": function(xhr, str, excptObj) {
+        // ignore error when connection is irrelevant
+        if (this.running && xhr.readyState !== 4 && !this.doRestart && xhr.status !== 0) {
+          var readyState = 'UNKNOWN';
+          switch (xhr.readyState) {
+            case 0:
+              readyState = 'UNINITIALIZED';
+              break;
+            case 1:
+              readyState = 'LOADING';
+              break;
+            case 2:
+              readyState = 'LOADED';
+              break;
+            case 3:
+              readyState = 'INTERACTIVE';
+              break;
+            case 4:
+              readyState = 'COMPLETED';
+              break;
+          }
+          this.error('Error! Type: "' + str + '" ExceptionObject: "'+ excptObj + '" readyState: ' + readyState);
+        }
       }
-    },
+    }),
 
     /**
      * manipulates the header of the current ajax query before it is
      * been send to the server
      *
-     * @param xhr
+     * @param xhr {Object} the native XHR object
      *
      */
     beforeSend: function (xhr) {
@@ -215,8 +233,6 @@ qx.Class.define('cv.io.transport.LongPolling', {
     /**
      * read the header values of a response and stores them to the
      * resendHeaders array
-     *
-     *
      */
     readResendHeaderValues: function () {
       for (var headerName in this.resendHeaders) {

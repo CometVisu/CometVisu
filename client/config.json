@@ -81,10 +81,18 @@
         }
       }
     },
+    "build-files": {
+      "copy-files" : {
+        "files": [
+          "index*",
+          "lib/jquery.js"
+        ]
+      }
+    },
     "gzip-files": {
       "desc": "gzip the build files",
       "shell": {
-        "command": "gzip build/script/*.js"
+        "command": "gzip -f -k build/script/*.js"
       }
     }
   }

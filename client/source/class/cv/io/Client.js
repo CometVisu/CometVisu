@@ -45,12 +45,14 @@ qx.Class.define('cv.io.Client', {
       loggedIn: false,
       callbackAfterLoggedIn: null,
       context: null,
-      loginOnlyMode: false // login only for backend configuration, do not start address subscription
+      loginOnly: false // login only for backend configuration, do not start address subscription
     };
 
     // init default settings
     if (cv.io.Client.backendNameAliases[backendName]) {
       this.backendName = cv.io.Client.backendNameAliases[backendName];
+    } else {
+      this.backendName = backendName;
     }
 
     if (backendName && backendName !== 'default') {
@@ -65,7 +67,6 @@ qx.Class.define('cv.io.Client', {
       this.setBackend(cv.io.Client.backends['default']);
     }
 
-    this.backendName = backendName;
     this.backendUrl = backendUrl;
 
     this.watchdog = new cv.io.Watchdog();
@@ -77,7 +78,6 @@ qx.Class.define('cv.io.Client', {
     this.user = '';
     this.pass = '';
     this.device = '';
-    this.loginSettings = {};
     this.headers = {};
   },
 
@@ -250,16 +250,6 @@ qx.Class.define('cv.io.Client', {
       }
     },
 
-    /**
-     * read the header values of a response and stores them to the resendHeaders array
-     *
-     */
-    readResendHeaderValues : function () {
-      for (var headerName in this.resendHeaders) {
-        this.resendHeaders[headerName] = this.xhr.getResponseHeader(headerName);
-      }
-    },
-
     /* return the relative path to a resource on the currently used backend
      *
      *
@@ -299,7 +289,7 @@ qx.Class.define('cv.io.Client', {
           this.loginSettings.loginOnly = false;
         }
         else {
-          this.login(true);
+          this.login(false);
         }
       }
     },
@@ -338,6 +328,27 @@ qx.Class.define('cv.io.Client', {
     },
 
     /**
+     * Get the json response from the parameter received from the used XHR transport
+     */
+    getResponse: qx.core.Environment.select("cv.xhr", {
+      "jquery": function(data) {
+        if ($.type(data) === "string") {
+          data = cv.io.parser.Json.parse(data);
+        }
+        return data;
+      },
+
+      "qx": function(ev) {
+        if (!ev) { return null; }
+        var json = ev.getTarget().getResponse();
+        if (qx.lang.Type.isString(json)) {
+          json = cv.io.parser.Json.parse(json);
+        }
+        return json;
+      }
+    }),
+
+    /**
      * Creates an XHR request. The request type depends von the "cv.xhr" environment setting
      * (currently "qx" and "jquery" are supported)
      * @param url {String} URI
@@ -361,7 +372,9 @@ qx.Class.define('cv.io.Client', {
           }
         }
         config = $.extend(config, options || {});
-        $.ajax(config);
+        var request = new cv.io.request.Jquery(config);
+        request.send();
+        return request;
       },
       "qx": function(url, data, callback, context, options) {
         var ajaxRequest = new qx.io.request.Xhr(url);
@@ -397,10 +410,7 @@ qx.Class.define('cv.io.Client', {
      * @param ev {Event} the 'success' event from the XHR request
      */
     handleLogin : function (ev) {
-      var json = ev.getTarget().getResponse();
-      if (qx.lang.Type.isString(json)) {
-        json = cv.io.parser.Json.parse(json);
-      }
+      var json = this.getResponse(ev);
       // read backend configuration if send by backend
       if (json.c) {
         this.setBackend(qx.lang.Object.mergeWith(this.getBackend(), json.c));

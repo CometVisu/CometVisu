@@ -53,10 +53,7 @@ qx.Class.define('cv.io.transport.Sse', {
      * @param connect {Boolean} whether to start the connection or not
      */
     handleSession: function (ev, connect) {
-      var json = ev.getTarget().getResponse();
-      if (qx.lang.Type.isString(json)) {
-        json = cv.io.parser.Json.parse(json);
-      }
+      var json = this.client.getResponse(ev);
       this.sessionId = json.s;
       this.version = json.v.split('.', 3);
 
