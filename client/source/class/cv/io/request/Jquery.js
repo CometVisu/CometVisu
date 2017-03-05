@@ -6,7 +6,7 @@
  */
 
 qx.Class.define("cv.io.request.Jquery", {
-  extend: "qx.core.Object",
+  extend: qx.core.Object,
 
   /*
   ******************************************************
