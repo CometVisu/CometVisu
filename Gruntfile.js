@@ -515,9 +515,16 @@ module.exports = function(grunt) {
           'cd external/knx-uf-iconset',
           'git checkout master',
           'git pull',
-          'cd ../../',
+          'cd ../../'
           // 'git add external/knx-uf-iconset',
           //'git commit -m "icons updated"'
+        ].join('&&')
+      },
+      buildClient: {
+        command: [
+          'cd client',
+          './generate.py build',
+          'cd ..'
         ].join('&&')
       }
     },
@@ -642,7 +649,11 @@ module.exports = function(grunt) {
 
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
-  grunt.registerTask('release-build', ['updateicons', 'lint', 'clean', 'file-creator', 'buildicons', 'build', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('release-build', [
+    'updateicons', 'lint', 'clean', 'file-creator', 'buildicons', 'build',
+    'update-demo-config', 'chmod', 'compress:tar', 'compress:zip', 'release-client' ]);
+
+  grunt.registerTask('release-client', ['shell:buildClient']);
 
   grunt.registerTask('release', [ 'prompt', 'release-build', 'github-release' ]);
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
