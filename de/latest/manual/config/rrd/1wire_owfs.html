@@ -47,6 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -69,7 +70,7 @@
             
             
               <div class="version">
-                0.10.0-RC2
+                0.10.0
               </div>
             
           
@@ -129,8 +130,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">CometVisu</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CometVisu</a>
+        
       </nav>
 
 
@@ -139,25 +142,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../index.html">Konfiguration der CometVisu</a> &raquo;</li>
-      
+        
           <li><a href="../rrd_examples.html">RRD Einführung &amp; Beispiele</a> &raquo;</li>
-      
-    <li>Temperatur vom 1wire (lokale 1wire-Schnittstelle mit owfs)</li>
+        
+      <li>Temperatur vom 1wire (lokale 1wire-Schnittstelle mit owfs)</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -204,15 +224,18 @@ RRA:AVERAGE:0.5:525600:3200
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cpuload.html" class="btn btn-neutral float-right" title="CPU load für Linux Systeme" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="cpuload.html" class="btn btn-neutral float-right" title="CPU load für Linux Systeme" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../rrd_examples.html" class="btn btn-neutral" title="RRD Einführung &amp; Beispiele" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../rrd_examples.html" class="btn btn-neutral" title="RRD Einführung &amp; Beispiele" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -245,7 +268,8 @@ RRA:AVERAGE:0.5:525600:3200
             VERSION:'',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
         };
     </script>
       <script type="text/javascript" src="../../_static/jquery.js"></script>
