@@ -1,6 +1,7 @@
 // requires
 var qx = require("./external/qooxdoo/tool/grunt");
 var path = require('path');
+var fs = require('fs');
 
 
 var mocks = [];
@@ -590,6 +591,23 @@ module.exports = function(grunt) {
     grunt.file.write(filename, config.replace(/comet_16x16_000000.png/g, 'comet_16x16_ff8000.png'));
   });
 
+  grunt.registerTask("rename-client-build", function() {
+    var path = 'client/build/script/';
+    fs.readdirSync(path).forEach(function(file) {
+      var stats = fs.statSync(path + file);
+      var parts = file.split(".");
+      if (!stats.isDirectory() && parts[parts.length-1] === "gz" && file.indexOf(pkg.version) === -1) {
+        var newName = parts.shift() + "-" + pkg.version;
+        if (process.env.TRAVIS_EVENT_TYPE === "cron") {
+          // nightly build with date
+          var now = new Date();
+          newName += "-" + now.toISOString().split(".")[0].replace(/[\D]/g, "");
+        }
+        fs.rename(path + file, path + newName + "." + parts.join('.'));
+      }
+    });
+  });
+
   // custom task to fix the KNX user forum icons and add them to the iconconfig.js:
   // - replace #FFFFFF with the currentColor
   // - fix viewBox to follow the png icon version
@@ -653,7 +671,7 @@ module.exports = function(grunt) {
     'updateicons', 'lint', 'clean', 'file-creator', 'buildicons', 'build',
     'update-demo-config', 'chmod', 'compress:tar', 'compress:zip', 'release-client' ]);
 
-  grunt.registerTask('release-client', ['shell:buildClient']);
+  grunt.registerTask('release-client', ['shell:buildClient', 'rename-client-build']);
 
   grunt.registerTask('release', [ 'prompt', 'release-build', 'github-release' ]);
   grunt.registerTask('e2e', ['connect', 'protractor:travis']);
