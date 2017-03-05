@@ -55,7 +55,7 @@ qx.Class.define('cv.io.transport.Sse', {
     handleSession: function (ev, connect) {
       var json = ev.getTarget().getResponse();
       if (qx.lang.Type.isString(json)) {
-        json = qx.lang.Json.parse(json);
+        json = cv.io.parser.Json.parse(json);
       }
       this.sessionId = json.s;
       this.version = json.v.split('.', 3);
