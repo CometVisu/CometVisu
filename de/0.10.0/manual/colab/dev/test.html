@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Automatisierte Tests &mdash; CometVisu</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Stichwortverzeichnis"
+              href="../../genindex.html"/>
+        <link rel="search" title="Suche" href="../../search.html"/>
+    <link rel="top" title="CometVisu" href="../../index.html"/>
+        <link rel="up" title="Hilf dem CometVisu Projekt" href="../index.html"/>
+        <link rel="next" title="FAQ" href="../../faq.html"/>
+        <link rel="prev" title="TODO’s" href="../todos.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> CometVisu
+          
+
+          
+            
+            <img src="../../_static/comet_webapp_icon_android_48.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.10.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation der CometVisu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../config/index.html">Konfiguration der CometVisu</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Hilf dem CometVisu Projekt</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#allgemeine-vorbereitungen">Allgemeine Vorbereitungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#allgemeine-vorgehensweise">Allgemeine Vorgehensweise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#mithilfe-bei-der-dokumentation">Mithilfe bei der Dokumentation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#mithilfe-bei-der-entwicklung">Mithilfe bei der Entwicklung</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Automatisierte Tests</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#unittests">Unittests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eigene-tests-schreiben">Eigene Tests schreiben</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CometVisu</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Hilf dem CometVisu Projekt</a> &raquo;</li>
+        
+      <li>Automatisierte Tests</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="automatisierte-tests">
+<h1>Automatisierte Tests<a class="headerlink" href="#automatisierte-tests" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die CometVisu nutzt zwei Arten von automatisierten Softwaretests: Unittests und End-to-End Tests.
+Bei Unittest geht es darum einzelne Funktionen innerhalb des Sourcecodes zu testen.
+Wenn man z.B. eine <cite>add</cite>-Funktion hat, die zwei Zahlen addiert, dann ruft ein Unittest diese
+Funktion auf, übergibt ihr zwei Zahlen und prüft ob das Ergebnis korrekt ist.</p>
+<p>End-to-End Tests prüfen eher das &#8220;Große Ganze&#8221; und simulieren das Benutzervehalten.
+Hierbei wird also die CometVisu voll-automatisiert in einem Browser geöffnet und die Tests
+bedienen die Visu wie ein Benutzer und prüfen ob eine Aktion die gewünschten Veränderungen bewirkt.
+Zu kann man z.B. prüfen ob das Klicken auf einen Switch den passenden Wert an das Backend liefert und
+wenn das Backend ein Update für den Switch liefert, dieser diesen entsprechend anzeigt.</p>
+<div class="section" id="unittests">
+<h2>Unittests<a class="headerlink" href="#unittests" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Als Testrunner für die Unittests kommt <a class="reference external" href="https://karma-runner.github.io">Karma</a> zum Einsatz.
+Ausgeführt werden die Tests über das Kommandozeilen-Tool Grunt.
+Falls noch nicht geschehen, müssen also einmalig folgende Kommandos im Wurzelverzeichnis des
+CometVisu Projekts zur Vorbereitung ausgeführt werden.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>npm install
+sudo npm -g install grunt-cli
+</pre></div>
+</div>
+<p>Die vorhandenen Unittests kann man dann mit folgendem Befehl ausführen:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>grunt karma:travis
+</pre></div>
+</div>
+<p>Dies führt die Tests inkl. eine Code-Coverage Analyse aus. Die Code-Coverage zeigt als Ergebnis an wieviel
+Prozent des Sourcecodes durch Tests abgedeckt wurde, die Ausgabe sieht so aus:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">===============================</span> Coverage <span class="nv">summary</span> <span class="o">===============================</span>
+Statements   : <span class="m">42</span>.14% <span class="o">(</span> <span class="m">1308</span>/3104 <span class="o">)</span>
+Branches     : <span class="m">32</span>.35% <span class="o">(</span> <span class="m">584</span>/1805 <span class="o">)</span>
+Functions    : <span class="m">46</span>.99% <span class="o">(</span> <span class="m">211</span>/449 <span class="o">)</span>
+Lines        : <span class="m">41</span>.8% <span class="o">(</span> <span class="m">1233</span>/2950 <span class="o">)</span>
+<span class="o">================================================================================</span>
+</pre></div>
+</div>
+<p>Einen ausführlicheren Coverage Report findet man unter <code class="docutils literal"><span class="pre">./coverage/&lt;browser-name&gt;/index.html</span></code>. Wobei
+der Browser Name dem des den ausführenden Browsers entspeicht. Zur Zeit ist dies der für Headless-Testing
+entwickelte (auf Chrome basierende) PhantomJS. Theoretisch sind hier aber alle auf dem lokalen System
+installierten Browser möglich. In dem ausführlichen Coverage Report, kann man bis hinunter in einzelne
+Sourcecode Dateien navigieren und dort sehen, welche Zeilen noch nicht getestet wurde. Das ist sehr
+nützlich, um zu sehen an welchen Stellen die Tests noch verfollständigt werden müssen</p>
+</div>
+<div class="section" id="eigene-tests-schreiben">
+<h2>Eigene Tests schreiben<a class="headerlink" href="#eigene-tests-schreiben" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die Unittests werden mit Hilfe des <a class="reference external" href="http://jasmine.github.io/2.4/introduction.html">Jasmine Frameworks</a>
+geschrieben. Dadurch ist es möglich die Test fast in natürlicher Sprache zu schreiben. Der Grundaufbau eines
+Tests sieht so aus:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Meine Testsuite&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should add two numbers&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Dieser Code testet eine <code class="docutils literal"><span class="pre">add</span></code>-Funktion die einfach zwei Zahlen addiert.</p>
+<p>Zu finden sind die vorhandenen Tests im <code class="docutils literal"><span class="pre">test/karma</span></code> Untervezeichnis. Möchte man nun einen neuen Test für eine (fiktive)
+Sourcecode Datei unter <code class="docutils literal"><span class="pre">src/structure/pure/new-widget.js</span></code> schreiben, legt man die neue Datei <code class="docutils literal"><span class="pre">test/karma/structure/pure/new-widget-spec.js</span></code> an.
+Wichtig ist hier, dass der Name der Testdatei auf <code class="docutils literal"><span class="pre">-spec</span></code> endet, sonst wird sie vom Testrunner nicht gefunden.</p>
+<p>Innerhalb der Testdatei gibt es jetzt noch eine Besonderheit zu beachten. Die CometVisu nutzt <a class="reference external" href="http://requirejs.org">RequireJS</a>
+um Javascript Module zu laden (vergleichbar mit der <code class="docutils literal"><span class="pre">import</span></code> Anweisung in anderen Programmiersprachen). Man muss nun also
+natürlich zunächst die Source-Datei die man testen möchte auf diesem Weg laden. Man braucht nun also zunächst den Modulnamen der zu
+testenden Datei. Diese werden in der <code class="docutils literal"><span class="pre">src/main.js</span></code> definiert, dort sollte ein Eintrag nach folgendem Muster zu finden sein
+<code class="docutils literal"><span class="pre">'widget_new-widget':</span> <span class="pre">'structure/pure/new-widget',</span></code>.</p>
+<p>Der Test für diese Datei sollte nun folgendermaßen aussehen (es werden hier noch 3 weitere Module importiert, die man eigentlich für die
+meisten Tests braucht und daher als default angesehen werden sollten):</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">define</span><span class="p">(</span> <span class="p">[</span><span class="s1">&#39;TemplateEngine&#39;</span><span class="p">,</span> <span class="s1">&#39;_common&#39;</span><span class="p">,</span> <span class="s1">&#39;CometVisuMockup&#39;</span><span class="p">,</span> <span class="s1">&#39;widget_new-widget&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">engine</span><span class="p">,</span> <span class="nx">design</span><span class="p">,</span> <span class="nx">ClientMockup</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;testing the new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">templateEngine</span> <span class="o">=</span> <span class="nx">engine</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+    <span class="nx">templateEngine</span><span class="p">.</span><span class="nx">visu</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClientMockup</span><span class="p">();</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test whatever the new-widget does&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// write your test and assertions here</span>
+
+    <span class="p">});</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test another part of the new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// write another test</span>
+    <span class="p">});</span>
+
+    <span class="p">...</span>
+
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Als Beispiele, wie man Tests schreibt und welche Dinge man wie testen kann, sollten die vorhandenen Tests dienen</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../faq.html" class="btn btn-neutral float-right" title="FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../todos.html" class="btn btn-neutral" title="TODO’s" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2010-2016 Christian Mayer and the CometVisu contributers.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
