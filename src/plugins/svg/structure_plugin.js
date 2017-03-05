@@ -41,16 +41,20 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
       'refresh':   refresh
     } );
 
-    templateEngine.postDOMSetupFns.push(function() {
-      var $actor = $("#"+path+" .actor");
-      $actor.svg({loadURL:'plugins/svg/rollo.svg'});
-    });
-    if (data.refresh) {
-      templateEngine.setupRefreshAction( path, data.refresh );
-    }
+
     ret_val +="</div>";
     return ret_val;
   },
+  construct: function(path) {
+      var data = templateEngine.widgetDataGet(path);
+      templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+        var $actor = $("#"+path+" .actor");
+        $actor.svg({loadURL:'plugins/svg/rollo.svg'});
+      });
+      if (data.refresh) {
+        templateEngine.setupRefreshAction( path, data.refresh );
+      }
+    },
   update: function(e,d) {
     var element = $(this);
     var h = templateEngine.design.defaultUpdate( e, d, element, undefined, element.parent().attr('id') );

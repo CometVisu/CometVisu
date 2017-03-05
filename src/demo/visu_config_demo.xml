@@ -325,7 +325,7 @@
       <label>Image</label>
     </image>
     <page name="Image: Erweitert..." align="center">
-      <image src="http://www.e-zeeinternet.com/count.php?page=546016&amp;style=default&amp;nbdigits=9&amp;reloads=1" refresh="10">
+      <image src="http://www.reliablecounter.com/count.php?page=cometvisu.org&amp;digit=style/plain/1/&amp;reloads=0" refresh="10">
         <label>Image: Update alle 10s</label>
       </image>
       <image src="icon/comet_128_ff8000.png" width="500px" height="46px">
@@ -338,7 +338,7 @@
         <label>In dem Video-Element lassen sich Videos nach dem HTML5 Standard einbinden</label>
       </text>
       <break/>
-      <video src="https://upload.wikimedia.org/wikipedia/commons/b/b5/I-15bis.ogg" autoplay="false">
+      <video src="https://upload.wikimedia.org/wikipedia/commons/c/c5/I-15bis.ogv" autoplay="false">
         <label>Polikarpov I-15bis - Ogg Theora</label>
       </video>
     </page>

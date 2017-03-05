@@ -154,7 +154,7 @@ if (true === $boolValid) {
     exit;
 } else {
     // not everything is good, have check_config look at it.
-    header('Location: ../check_config.php?config=' . $strConfigSuffix);
+    header('Location: ../check_config.php?src=editor&config=' . $strConfigSuffix);
     exit;
 }
 

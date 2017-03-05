@@ -114,11 +114,8 @@ $._farbtastic = function (container, callback) {
    * Mousedown handler
    */
   fb.mousedown = function (event) {
-    // Capture mouse
-    if (!document.dragging) {
-      $(document).bind('mousemove', fb.mousemove).bind('mouseup', fb.mouseup);
-      document.dragging = true;
-    }
+
+    
 
     // Check which area is being dragged
     var pos = fb.widgetCoords(event);
@@ -128,6 +125,35 @@ $._farbtastic = function (container, callback) {
     fb.mousemove(event);
     return false;
   };
+
+  /**
+   * TouchConvert: Converts touch co-ordinates to mouse co-ordinates
+   */
+  fb.touchconvert = function (e) {
+    var e = e.originalEvent.touches.item(0);
+    return e;
+  }
+
+  /**
+   * Touchmove handler for iPad, iPhone etc
+   */
+  fb.touchmove = function (e) {
+    fb.mousemove( fb.touchconvert(e)  );
+    event.preventDefault();
+    return false;
+  }
+
+  /**
+   * Touchend handler for iPad, iPhone etc
+   */
+  fb.touchend = function (event) {
+    $(document).unbind('touchmove', fb.touchmove);
+    $(document).unbind('touchend', fb.touchend);
+    document.dragging = false;
+    event.preventDefault();
+    return false;
+  }
+
 
   /**
    * Mousemove handler
@@ -262,8 +288,26 @@ $._farbtastic = function (container, callback) {
   };
 
   // Install mousedown handler (the others are set on the document on-demand)
-  $('*', e).mousedown(fb.mousedown);
+  $('*', e).mousedown(function(e){
+    // Capture mouse
+    if (!document.dragging) {
+      $(document).bind('mousemove', fb.mousemove).bind('mouseup', fb.mouseup);
+      document.dragging = true;
+    }
+    fb.mousedown(e);
+  });
 
+  // TouchStart bound, calls conversion of touchpoints to mousepoints
+  $('*', e).bind("touchstart", function (e) {
+    // Capture mouse
+    if (!document.dragging) {
+      $(document).bind('touchmove', fb.touchmove).bind('touchend', fb.touchend);
+      document.dragging = true;
+    }
+    fb.mousedown( fb.touchconvert(e) );
+    e.preventDefault();
+    return false;
+  });
   // Init color
   fb.setColor('#000000');
 

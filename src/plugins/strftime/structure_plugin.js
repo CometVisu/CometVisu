@@ -17,10 +17,10 @@
 
 /**
  * This plugins integrates formated date and clock strings into based on strftime.
- * 
- * Thanks to Michael Markstaller for implementing the jqclock plugin as reference.
+ *
+ * @author Michael Hausl [michael at hausl dot com]
+ * @since 0.8.0
  */
-
 define( ['structure_custom', 'css!plugins/strftime/strftime' ], function( VisuDesign_Custom ) {
   "use strict";
 
@@ -41,13 +41,19 @@ define( ['structure_custom', 'css!plugins/strftime/strftime' ], function( VisuDe
 
       var data = templateEngine.widgetDataInsert( path, {
         'locale' : $p.attr('lang'),
-        'format' : $p.attr('format') || '%c'
+        'format' : $p.attr('format') || '%c',
+        'id': id
       } );
 
       elements[id] = path;
       startTimer();
 
       return ret_val + '</div>';
+    },
+    construct: function(path) {
+      var data = templateEngine.widgetDataGet(path);
+      elements[data.id] = path;
+      startTimer();
     }
   });
 

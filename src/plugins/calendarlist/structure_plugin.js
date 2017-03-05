@@ -17,7 +17,7 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
         + $el.attr("height") ? ("height:" + $el.attr("height")     ) : '';
       var actor = '<div class="actor calendarListBody"><div class="calendarList_inline" id="' + id + '" style="'+style+'"></div></div>';
 
-      var data = templateEngine.widgetDataInsert( path, {
+      templateEngine.widgetDataInsert( path, {
           src:         "plugins/calendarlist/calendarlist.php",
           maxquantity: $el.attr("maxquantity"),
           refresh:     $el.attr("refresh"),
@@ -25,11 +25,14 @@ define( ['structure_custom' ], function( VisuDesign_Custom ) {
           days:        $el.find('days')
         });
 
-      templateEngine.bindActionForLoadingFinished(function () {
+      this.construct(path);
+      return ret_val + actor + '</div>';
+    },
+
+    construct: function(path) {
+      MessageBroker.getInstance().subscribe("loading.done", function() {
         refreshcalendarList( path );
       });
-
-      return ret_val + actor + '</div>';
     }
   });
 

@@ -1,0 +1,119 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: CometVisu\n"
+"POT-Creation-Date: 2016-10-16 10:08+0200\n"
+"PO-Revision-Date: 2016-10-16 10:10+0200\n"
+"Last-Translator: \n"
+"Language-Team: Tobias Bräutigam <tbraeutigam@gmail.com>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: utils/commands/scaffolding.py:83
+msgid "The %s plugin"
+msgstr "Das %s Plugin"
+
+#: utils/commands/scaffolding.py:83
+msgid "The %s widget"
+msgstr "Das %s Widget"
+
+#: utils/docutils/directives/api_doc.py:54
+msgid "Available since version"
+msgstr "Verfügbar seit Version"
+
+#: utils/docutils/directives/api_doc.py:55
+msgid "Author"
+msgstr "Autor"
+
+#: utils/docutils/directives/common.py:41 utils/docutils/directives/common.py:65
+#: utils/docutils/directives/common.py:67
+msgid "or"
+msgstr "oder"
+
+#: utils/docutils/directives/common.py:42
+msgid "string"
+msgstr "Text"
+
+#: utils/docutils/directives/common.py:43
+msgid "decimal"
+msgstr "Zahl"
+
+#: utils/docutils/directives/common.py:44
+msgid "uri"
+msgstr "URL"
+
+#: utils/docutils/directives/common.py:45
+msgid "addr"
+msgstr "GA/Itemname"
+
+#: utils/docutils/directives/common.py:46
+msgid "nonNegativeInteger"
+msgstr "Zahl >= 0"
+
+#: utils/docutils/directives/common.py:47
+msgid "dimension"
+msgstr "Dimension (Zahl+Einheit)"
+
+#: utils/docutils/directives/common.py:110
+#: utils/docutils/directives/common.py:116
+#: utils/docutils/directives/common.py:181
+#: utils/docutils/directives/common.py:188
+msgid "mandatory"
+msgstr "Pflichtangabe"
+
+#: utils/docutils/directives/common.py:131
+#: utils/docutils/directives/common.py:137
+#: utils/docutils/directives/common.py:244
+#: utils/docutils/directives/common.py:250
+msgid "Attribute"
+msgstr "Attribut"
+
+#: utils/docutils/directives/common.py:131
+#: utils/docutils/directives/common.py:244
+msgid "Element"
+msgstr "Element"
+
+#: utils/docutils/directives/common.py:132
+#: utils/docutils/directives/common.py:138
+#: utils/docutils/directives/common.py:245
+#: utils/docutils/directives/common.py:251
+msgid "Content"
+msgstr "Inhalt"
+
+#: utils/docutils/directives/common.py:132
+#: utils/docutils/directives/common.py:138
+#: utils/docutils/directives/common.py:245
+#: utils/docutils/directives/common.py:251
+msgid "Description"
+msgstr "Beschreibung"
+
+#: utils/docutils/directives/common.py:132
+#: utils/docutils/directives/common.py:138
+#: utils/docutils/directives/common.py:245
+#: utils/docutils/directives/common.py:251
+msgid "Name"
+msgstr "Name"
+
+#: utils/docutils/directives/common.py:245
+msgid "Structure"
+msgstr "Struktur"
+
+#~ msgid "This attribute is mandatory"
+#~ msgstr "Dieses Attribut muss vorhanden sein"
+
+#~ msgid "This element is mandatory"
+#~ msgstr "Dieses Element muss vorhanden sein"
+
+#~ msgid "Value range"
+#~ msgstr "Wertebereich"
+
+#~ msgid "Type"
+#~ msgstr "Typ"

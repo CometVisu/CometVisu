@@ -1,0 +1,93 @@
+/* Rgb.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
+
+/**
+ * TODO: complete docs
+ *
+ * @module structure/pure/Rgb
+ * @author Christian Mayer
+ * @since 2012
+ */
+define( ['_common'], function( design ) {
+  "use strict";
+  var basicdesign = design.basicdesign;
+  
+  design.basicdesign.addCreator('rgb', {
+  /**
+   * Description
+   * @method create
+   * @param {} element
+   * @param {} path
+   * @param {} flavour
+   * @param {} type
+   * @return ret_val
+   */
+  create: function( element, path, flavour, type ) {
+    var $e = $(element);
+    
+    // create the main structure
+    /**
+     * Description
+     * @method rgb_handleVariant
+     * @param {} src
+     * @param {} transform
+     * @param {} mode
+     * @param {} variant
+     * @return ArrayExpression
+     */
+    function rgb_handleVariant(src, transform, mode, variant) {
+      return [true, variant];
+    }
+    var ret_val = basicdesign.createDefaultWidget( 'rgb', $e, path, flavour, type, this.update, rgb_handleVariant );
+    
+    // create the actor
+    var actor = '<div class="actor"><div class="value"></div></div>';
+    ret_val += actor + '</div>';
+    
+    return ret_val;
+  },
+  /**
+   * Description
+   * @method update
+   * @param {} ga
+   * @param {} d
+   */
+  update: function( ga, d ) { 
+    var
+      element = $(this),
+      valElem = element.find('.value'),
+      data    = templateEngine.widgetDataGetByElement( this );
+    var value = templateEngine.transformDecode( data['address'][ ga ][0], d );
+    var bg = valElem.css('background-color').replace(/[a-zA-Z()\s]/g, '').split(/,/);
+    if( 3 !== bg.length )
+      bg = [0, 0, 0];
+    switch (data['address'][ ga ][2]) {
+    case 'r' :  bg[0] = value; break;
+    case 'g' :  bg[1] = value; break;
+    case 'b' :  bg[2] = value; break;
+    default:
+    }
+    var bgs = "rgb(" + bg[0] + ", " + bg[1] + ", " + bg[2] + ")";
+    valElem.css('background-color', bgs ); 
+  }
+});
+
+}); // end define
+

@@ -1,8 +1,42 @@
-language: node_js
+language: python
+dist: trusty
 node_js:
-  - '0.11'
+- '4.2'
+python:
+- '3.5'
+cache:
+  directories:
+  - node_modules
+  - $HOME/.cache/pip
+  - downloads
+env:
+  - CV_BUILD="test"
+  - CV_BUILD="docs" ENCRYPTION_LABEL="4c79fec0aeb9" COMMIT_AUTHOR_EMAIL="generator@cometvisu.org" CV_BROWSER=Chrome CV_VERSION=stable
 before_install:
-  - npm install -g grunt-cli
-install: npm install
+- mkdir -p downloads
+- nvm install 4.2
+- if [ "$CV_BUILD" == "docs" ]; then sudo ./utils/travis/browser-setup.sh; fi
+- if [ "$CV_BUILD" == "docs" ]; then export CHROME_BIN=`pwd`/chrome/google-chrome; fi
+- if [ "$CV_BUILD" == "docs" ] && ! [ -e downloads/plantuml.deb ]; then wget -O downloads/plantuml.deb http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb; fi
+- mkdir cache
+install:
+- npm install -g grunt-cli
+- npm install
+- "./node_modules/protractor/bin/webdriver-manager update"
+- if [ "$CV_BUILD" == "docs" ]; then sudo pip install -r utils/requirements.txt; fi # for documentation
+- if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install libxml2-dev libxslt-dev graphviz; fi
+- if [ "$CV_BUILD" == "docs" ]; then sudo dpkg -i downloads/plantuml.deb; fi
+- if [ "$CV_BUILD" == "docs" ]; then utils/travis/npm-setup.sh; fi
+before_script:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
+- sleep 3
 script:
-  - grunt jscs
+- if [ "$CV_BUILD" == "test" ]; then grunt jscs; fi
+- if [ "$CV_BUILD" == "test" ]; then grunt karma:travis; fi
+- if [ "$CV_BUILD" == "test" ]; then grunt e2e; fi
+- if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
+after_success:
+- if [ "$CV_BUILD" == "test" ]; then grunt coveralls; fi
+

@@ -48,6 +48,7 @@
 require.config({
   shim: {
     'plugins/diagram/dep/flot/jquery.flot.min':          ['jquery'],
+    'plugins/diagram/dep/flot/jquery.flot.touch.min':    ['plugins/diagram/dep/flot/jquery.flot.min'],
     'plugins/diagram/dep/flot/jquery.flot.canvas.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
     'plugins/diagram/dep/flot/jquery.flot.resize.min':   ['plugins/diagram/dep/flot/jquery.flot.min'],
     'plugins/diagram/dep/flot/jquery.flot.time.min':     ['plugins/diagram/dep/flot/jquery.flot.min'],
@@ -57,19 +58,20 @@ require.config({
   }
 });
 
-define( ['structure_custom',
+define( ['structure_custom', 'MessageBroker',
                   'plugins/diagram/dep/flot/jquery.flot.min',
+                  'plugins/diagram/dep/flot/jquery.flot.touch.min',
                   'plugins/diagram/dep/flot/jquery.flot.canvas.min',
                   'plugins/diagram/dep/flot/jquery.flot.resize.min',
                   'plugins/diagram/dep/flot/jquery.flot.time.min',
                   'plugins/diagram/dep/flot/jquery.flot.axislabels',
                   'plugins/diagram/dep/flot/jquery.flot.tooltip.min',
                   'plugins/diagram/dep/flot/jquery.flot.navigate.min'
-  ], function( VisuDesign_Custom ) {
+  ], function( VisuDesign_Custom, MessageBroker ) {
     "use strict";
 
     var cache = {};
-
+    
     /**
      * Get the rrd and put it's content in the cache.
      * @param Number   refresh  time is seconds to refresh the data
@@ -79,18 +81,19 @@ define( ['structure_custom',
     function lookupRRDcache( rrd, start, end, res, refresh, force, callback, callbackParameter )
     {
       var
-        url = templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
-        urlNotInCache = !(url in cache),
-        doLoad = force || urlNotInCache || !('data' in cache[ url ]) || (refresh!==undefined && (Date.now()-cache[url].timestamp) > refresh*1000);
+        url = templateEngine.visu.getResourcePath('rrd')+"?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + start + "&end=" + end + "&res=" + res,
+        key = url + '|' + rrd.dsIndex,
+        urlNotInCache = !(key in cache),
+        doLoad = force || urlNotInCache || !('data' in cache[ key ]) || (refresh!==undefined && (Date.now()-cache[key].timestamp) > refresh*1000);
 
       if( doLoad )
       {
         if( urlNotInCache )
-          cache[ url ] = { waitingCallbacks: [] };
+          cache[ key ] = { waitingCallbacks: [] };
 
-        cache[ url ].waitingCallbacks.push( [ callback, callbackParameter ] );
+        cache[ key ].waitingCallbacks.push( [ callback, callbackParameter ] );
 
-        if( cache[ url ].waitingCallbacks.length === 1 ) {
+        if( cache[ key ].waitingCallbacks.length === 1 ) {
           $.ajax( {
             url:      url,
             dataType: 'json',
@@ -105,18 +108,18 @@ define( ['structure_custom',
                   rrddata[ j ][ 1 ] = parseFloat( rrddata[ j ][ 1 ][ rrd.dsIndex ] ) * rrd.scaling;
                 }
               }
-              cache[ url ].data      = rrddata;
-              cache[ url ].timestamp = Date.now();
+              cache[ key ].data      = rrddata;
+              cache[ key ].timestamp = Date.now();
 
-              cache[ url ].waitingCallbacks.forEach( function( waitingCallback ) {
-                waitingCallback[0]( cache[ url ].data, waitingCallback[1] );
+              cache[ key ].waitingCallbacks.forEach( function( waitingCallback ) {
+                waitingCallback[0]( cache[ key ].data, waitingCallback[1] );
               } );
-              cache[ url ].waitingCallbacks.length = 0; // empty array
+              cache[ key ].waitingCallbacks.length = 0; // empty array
             }
           } );
         }
       } else {
-        callback( cache[url].data, callbackParameter );
+        callback( cache[key].data, callbackParameter );
       }
     }
     
@@ -127,15 +130,20 @@ define( ['structure_custom',
       create: function(element, path, flavour, type) {
         return createDiagram(false, element, path, flavour, type);
       },
-      action: function( path, actor, isCaneled ) {
-        if( isCaneled ) return;
+      action: function( path, actor, isCanceled ) {
+        if( isCanceled ) return;
     
         var 
           widgetData = templateEngine.widgetDataGet( path );
           
         if( widgetData.popup )
-          action( path, actor, isCaneled );
+          action( path, actor, isCanceled );
       },
+      construct: function(path) {
+        var data = templateEngine.widgetDataGet(path);
+        data.init = true;
+        addPageListeners(path);
+      }
     });
     VisuDesign_Custom.prototype.addCreator("diagram_info", {
       create: function(element, path, flavour, type) {
@@ -173,7 +181,8 @@ define( ['structure_custom',
         previewlabels     : ($e.attr("previewlabels") || "false") == "true",
         isPopup           : false,
         popup             : $e.attr("popup") === "true",
-        tooltip           : ($e.attr("tooltip") || "false") == "true"
+        tooltip           : ($e.attr("tooltip") || "false") == "true",
+        pageId            : templateEngine.getPageIdForWidgetId( element, path )
       } );
 
       // create the actor
@@ -182,8 +191,7 @@ define( ['structure_custom',
         actor = '<div class="actor clickable switchUnpressed"><div class="value">-</div></div>';
       }
       else {
-        var 
-          pageId = templateEngine.getPageIdForWidgetId( element, path ),
+        var
           classStr = data.previewlabels ? 'diagram_inline' : 'diagram_preview',
           width    = $e.attr("width" ) ? ($e.attr("width" ) + (/[0-9]$/.test($e.attr("width" )) ? 'px' : '')) : undefined,
           height   = $e.attr("height") ? ($e.attr("height") + (/[0-9]$/.test($e.attr("height")) ? 'px' : '')) : undefined,
@@ -194,35 +202,39 @@ define( ['structure_custom',
         actor = '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
         
         data.init = true;
-        
-        templateEngine.callbacks[ pageId ].exitingPageChange.push( function(a,b){
-          if( data.refresh ) {
-            clearInterval( data.refreshFn );
-          }
-        });
-        
-        templateEngine.callbacks[ pageId ].beforePageChange.push( function(){
-          // update diagram data
-          if( !data.init )
-            loadDiagramData( path, data.plot, false, false );
-        });
-        templateEngine.callbacks[ pageId ].duringPageChange.push( function(){
-          // create diagram when it's not already existing
-          if( data.init )
-            initDiagram( path, false );
-          
-          if( data.refresh ) {
-            data.refreshFn = window.setInterval(function() {
-              loadDiagramData( path, data.plot, false, true );
-            }, data.refresh * 1000 );
-          }
-        });
+        addPageListeners(path);
       }
+
       return ret_val + actor + '</div>';
     }
+
+    function addPageListeners(path) {
+      var data = templateEngine.widgetDataGet(path);
+      MessageBroker.getInstance().subscribe("path."+data.pageId+".exitingPageChange", function() {
+        if( data.refresh ) {
+          clearInterval( data.refreshFn );
+        }
+      }, this);
+      MessageBroker.getInstance().subscribe("path."+data.pageId+".beforePageChange", function() {
+        // update diagram data
+        if( !data.init )
+          loadDiagramData( path, data.plot, false, false );
+      }, this);
+      MessageBroker.getInstance().subscribe("path."+data.pageId+".duringPageChange", function() {
+        // create diagram when it's not already existing
+        if( data.init )
+          initDiagram( path, false );
+
+        if( data.refresh ) {
+          data.refreshFn = window.setInterval(function() {
+            loadDiagramData( path, data.plot, false, true );
+          }, data.refresh * 1000 );
+        }
+      });
+    }
     
-    function action( path, actor, isCaneled ) {
-      if( isCaneled ) return;
+    function action( path, actor, isCanceled ) {
+      if( isCanceled ) return;
 
       var 
         data = templateEngine.widgetDataGet( path ),
@@ -315,10 +327,9 @@ define( ['structure_custom',
       var 
         diagram = isPopup ? $( '#' + id + '_big' ) : $( '#' + id + ' .actor div' ),
         data = templateEngine.widgetDataGet( id );
-        
-      if( data === undefined ) 
+      if (!data.init || data === undefined) {
         return;
-      
+      }
       data.init = false;
       isPopup |= data.isPopup;
 
@@ -364,6 +375,18 @@ define( ['structure_custom',
           markingsColor   : data.gridcolor,
           borderColor     : data.gridcolor,
           hoverable       : true
+        },
+        touch: {
+          pan: 'x',              // what axis pan work
+          scale: 'x',            // what axis zoom work
+          autoWidth: false,
+          autoHeight: false,
+          delayTouchEnded: 500,   // delay in ms before touchended event is fired if no more touches
+          callback: null,         // other plot draw callback
+          simulClick: true,       // plugin will generate Mouse click event to brwoser on tap or double tap
+          tapThreshold:150,       // range of time where a tap event could be detected
+          dbltapThreshold:200,    // delay needed to detect a double tap
+          tapPrecision:60/2       // tap events boundaries ( 60px square by default )
         }
       };
       $.each(options.yaxes, function(index, val) {
@@ -409,6 +432,16 @@ define( ['structure_custom',
         }
       }).bind("plotzoom", function() {
         loadDiagramData( id, plot, isPopup, false );
+      }).bind("touchended", function() {
+        loadDiagramData( id, plot, isPopup, false );
+      }).bind("tap", function() {
+        var self = this;
+        if ( !isPopup & typeof $(self).closest('.widget_container')[0] != 'undefined' ) {
+          var actor = $(self).closest('.actor')[0];
+          var path = $(self).closest('.widget_container')[0].id;
+          if( typeof actor != 'undefined' & path.length > 0 )
+            action(path,actor,false);
+        }
       });
 
       loadDiagramData( id, plot, isPopup, false );

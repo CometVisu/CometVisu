@@ -1,4 +1,4 @@
-/**
+/*
  * structure_plugin.js (c) 2015 by Stefan Borchert (stefan@borchert.cc)
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -18,6 +18,9 @@
 
 /**
  * This plugins integrates OpenWeatherMap data.
+ *
+ * @author Stefan Borchert (stefan@borchert.cc)
+ * @since 0.9.0
  */
 
 require.config({
@@ -46,7 +49,7 @@ define(['structure_custom', 'css!plugins/openweathermap/openweathermap', 'plugin
       var actor = $('<div id="' + id + '" class="openweathermap_value"></div>');
       ret_val.append(actor);
 
-      var options = {};
+      var options = templateEngine.widgetDataInsert(path, {id: id});
       if ($p.attr('lang')) {
         options.lang = $p.attr('lang');
       }
@@ -76,9 +79,14 @@ define(['structure_custom', 'css!plugins/openweathermap/openweathermap', 'plugin
         options.appid = $p.attr('appid');
       }
 
-      refreshWeatherData(actor, options);
+      this.construct(path);
 
       return ret_val;
+    },
+
+    construct: function(path) {
+      var options = templateEngine.widgetDataGet(path);
+      refreshWeatherData($('#'+options.id), options);
     }
   });
 });

@@ -1,29 +1,34 @@
-//
-//  Design setup for the metal design
-//
-//   Copyright (C) 2012 by Christian Mayer
-//   cometvisu (at) ChristianMayer.de
-//
-//   This program is free software; you can redistribute it and/or modify
-//   it under the terms of the GNU General Public License as published by
-//   the Free Software Foundation; either version 2 of the License, or
-//   (at your option) any later version.
-//
-//   This program is distributed in the hope that it will be useful,
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of the GNU General Public License
-//   along with this program; if not, write to the
-//   Free Software Foundation, Inc.,
-//   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-//
-//////////////////////////////////////////////////////////////////////////////
-//$(".value < img").css("padding", "0");
-$('#navbarLeft').data('columns', 6 );
-$('#main').data('columns', 12 );
-$('#navbarRight').data('columns', 6 );
+/* design_setup.js 
+ * 
+ * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * 
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
+ */
+
+
+/**
+ * Design setup  for the metal design
+ * 
+ * @author Tobias Bräutigam
+ * @since 2012
+ */
+templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
+  $('#navbarLeft').data('columns', 6 );
+  $('#main').data('columns', 12 );
+  $('#navbarRight').data('columns', 6 );
+});
 
 function getOffsetCorners(elem) {
   return {
@@ -38,10 +43,10 @@ function roundCorners() {
   $('.page.activePage .group:visible').each(function(i) {
       var group = $(this);
       // do not use this in navbars
-      if (group.parents('.navbar').size()>0) return;
+      if (group.parents('.navbar').length>0) return;
       var groupCorners = getOffsetCorners(group);
       // if the group has a headline (=name) we must not round the upper corners
-      var roundUpperCorners =  ($(this).find('.widget_container:first-child').size()>0) && group.css('border-top-right-radius')!="0px";
+      var roundUpperCorners =  ($(this).find('.widget_container:first-child').length>0) && group.css('border-top-right-radius')!="0px";
       var threshold=5;
       $(this).find('.widget_container').each(function (i) {
         var elemCorners = getOffsetCorners($(this));
@@ -70,12 +75,12 @@ $(window).bind('scrolltopage',function() {
   }
 });
 
-templateEngine.bindActionForLoadingFinished(function() {
+templateEngine.messageBroker.subscribe("loading.done", function() {
   $('#navbarLeft .navbar .widget .label,#navbarRight .navbar .widget .label').each(function(i) {
     var label = $(this);
     if (label.text().trim()!="") {
       var actor = label.siblings('.actor');
-      if (label.children('img').size()==0 && actor.children('.value').text().trim()!="") {
+      if (label.children('img').length==0 && actor.children('.value').text().trim()!="") {
         actor.css('padding-top','0.5em');
       }
     }
@@ -83,7 +88,7 @@ templateEngine.bindActionForLoadingFinished(function() {
   // Disable borders for groups that contain widget-group as children
   $('.page > div > .widget_container > .group:not(.widget)').each(function(i) {
     var $this = $(this);
-    if ($this.find('.clearfix > .widget_container > .group.widget').size()>0) {
+    if ($this.find('.clearfix > .widget_container > .group.widget').length>0) {
       $this.css({'border': 'none', 'margin': 0});
     }
   });
