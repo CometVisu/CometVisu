@@ -55,7 +55,7 @@ before_deploy:
 deploy:
   on:
     branch: next
-    condition: "$CV_BUILD = test && $TRAVIS_EVENT_TYPE = cron"
+    condition: "$CV_BUILD = test && $TRAVIS_EVENT_TYPE = cron && $(git reflog --no-merges --after='24 hours' | wc -l) -gt 0"
   provider: bintray
   file: "./deploy.json"
   user: peuter
