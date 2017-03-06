@@ -143,7 +143,7 @@ qx.Class.define('cv.plugins.RssLog', {
         style += "height:" + this.getHeight();
       }
 
-      return '<div class="actor rsslogBody"><div class="rsslog_inline" id="rss_' + this.getPath() + '" style="' + style + '"></div>';
+      return '<div class="actor rsslogBody"><div class="rsslog_inline" id="rss_' + this.getPath() + '" style="' + style + '"></div></div>';
     },
 
     _setupRefreshAction: function() {
