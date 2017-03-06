@@ -55,7 +55,7 @@ before_deploy:
 deploy:
   on:
     branch: next
-    condition: "$CV_BUILD = test -a $TRAVIS_EVENT_TYPE = cron"
+    condition: "$CV_BUILD = test && $TRAVIS_EVENT_TYPE = cron"
   provider: bintray
   file: "./deploy.json"
   user: peuter
