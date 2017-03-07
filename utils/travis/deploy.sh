@@ -52,6 +52,9 @@ echo "generating german manual again with existing screenshots"
 # move the apiviewer to the correct version subfolder
 ./cv doc --move-apiviewer
 
+# udpate symlinks and write version files
+./cv doc --process-versions
+
 echo "generating feature yml file for homepage"
 ./cv doc --generate-features
 

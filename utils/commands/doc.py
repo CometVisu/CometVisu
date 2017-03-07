@@ -23,6 +23,8 @@ import ConfigParser
 import codecs
 
 import subprocess
+from json import dumps
+from semver import compare
 import yaml
 
 import sh
@@ -439,6 +441,50 @@ class DocGenerator(Command):
 
         return None
 
+    def process_versions(self, path):
+        root, dirs, files = os.walk(path).next()
+        for lang_dir in dirs:
+            if lang_dir[0:1] != ".":
+                print("checking versions in language: %s" % lang_dir)
+                # collect versions and symlinks
+                root, dirs, files = os.walk(os.path.join(path, lang_dir)).next()
+                symlinks = {}
+                versions = []
+                special_versions = []
+                for version_dir in dirs:
+                    if os.path.islink(os.path.join(root, version_dir)):
+                        symlinks[version_dir] = os.readlink(os.path.join(root, version_dir)).rstrip("/")
+                    elif len(version_dir.split(".")) == 3:
+                        versions.append(version_dir)
+                    else:
+                        special_versions.append(version_dir)
+
+                # max_version = max_ver(versions)
+                versions.sort(compare)
+                max_version = versions[-1:][0]
+                print("versions found: %s" % versions)
+
+                # checking current symlink to max version
+                if 'current' not in symlinks or symlinks['current'] != max_version:
+                    print("setting 'current' symlink to '%s'" % max_version)
+                    os.chdir(root)
+                    try:
+                        os.remove('current')
+                    except Exception:
+                        pass
+                    os.symlink(max_version, 'current')
+                    symlinks['current'] = max_version
+
+                # saving versions to json file
+                try:
+                    with open(self.config.get("DEFAULT", "versions-file-%s" % lang_dir), "w") as f:
+                        f.write(dumps({
+                            "versions": versions+special_versions,
+                            "symlinks": symlinks
+                        }))
+                except ConfigParser.NoOptionError:
+                    pass
+
     def run(self, args):
         parser = ArgumentParser(usage="%(prog)s - CometVisu documentation generator")
 
@@ -461,6 +507,7 @@ class DocGenerator(Command):
         parser.add_argument("--from-source", dest="from_source", action="store_true", help="generate english manual from source comments")
         parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
         parser.add_argument("--move-apiviewer", dest="move-apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
+        parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/current docs and weite version files")
 
         options = parser.parse_args(args)
 
@@ -482,6 +529,9 @@ class DocGenerator(Command):
                                width=10000,
                                default_style='"',
                                allow_unicode=True)
+
+        elif options.process_versions:
+            self.process_versions(self.config.get("DEFAULT", "doc-dir"))
 
         elif options.from_source:
             self.from_source(self.config.get("manual-en", "widgets-path"))
