@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-
-import sphinx_rtd_theme
 import sys, os
 from datetime import date
 
@@ -36,13 +34,22 @@ with open(os.path.join(root_dir, "package.json")) as data_file:
     data = json.load(data_file)
     version = data['version']
 
+# read versions file
+versions_file = os.path.join(root_dir, 'out', language, 'versions.json')
+versions = []
+if os.path.exists(versions_file):
+    with open(versions_file) as f:
+        data = json.load(f)
+        for ver in data['versions']:
+            versions.append((ver, '../../%s/manual' % ver))
+
 releaselevel = 'dev' if version[-4:] == '-dev' else 'release'
 release = ''
 
 # -- Options for HTML output ---------------------------------------------------
 
 html_theme = 'sphinx_rtd_theme'
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_theme_path = [os.path.join(root_dir, 'utils', 'docutils', 'template', 'sphinx_rtd_theme-0.2.4')]
 html_title = "CometVisu"
 #html_short_title = None
 html_logo = os.path.join(root_dir, "source", "resource", "icon", "comet_webapp_icon_android_48.png")
@@ -53,6 +60,12 @@ html_use_index = True
 html_show_sphinx = False
 htmlhelp_basename = 'CometVisu'
 html_show_sourcelink = False
+
+if len(versions):
+    html_context = {
+        'versions': versions,
+        'current_version': version
+    }
 
 # -- Options for LaTeX output --------------------------------------------------
 

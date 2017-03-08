@@ -19,7 +19,7 @@
 
 import os
 import logging
-import ConfigParser
+import configparser
 import codecs
 
 import subprocess
@@ -53,7 +53,7 @@ class DocParser:
     """
 
     def __init__(self, widget=None, plugin=None):
-        self.config = ConfigParser.ConfigParser()
+        self.config = configparser.ConfigParser()
         self.config.read(os.path.join(root_dir, 'utils', 'config.ini'))
         self.sections = {}
         self.lines = []
@@ -482,7 +482,7 @@ class DocGenerator(Command):
                             "versions": versions+special_versions,
                             "symlinks": symlinks
                         }))
-                except ConfigParser.NoOptionError:
+                except configparser.NoOptionError:
                     pass
 
     def run(self, args):
