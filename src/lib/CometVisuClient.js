@@ -470,6 +470,10 @@ define( ['jquery'], function( $ ) {
       return new CometVisuClient();
     }
 
+    this.setInitialAddresses = function(addresses) {
+      this.initialAddresses = addresses;
+    }
+
     /**
      * manipulates the header of the current ajax query before it is been send to the server
      */
