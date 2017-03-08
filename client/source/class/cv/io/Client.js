@@ -202,6 +202,10 @@ qx.Class.define('cv.io.Client', {
     loginSettings : null,
     headers: null,
 
+    setInitialAddresses: function(addresses) {
+      this.initialAddresses = addresses;
+    },
+
     setBackend: function(newBackend) {
       // override default settings
       var backend = qx.lang.Object.mergeWith(qx.lang.Object.clone(cv.io.Client.backends['default']), newBackend);
