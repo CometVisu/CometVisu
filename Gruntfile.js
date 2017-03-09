@@ -71,12 +71,12 @@ module.exports = function(grunt) {
       expand: true,
       cwd: '.',
       src: [
-        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL', 'README',
-        'build/**'
+        'AUTHORS', 'ChangeLog', 'COPYING', 'INSTALL.md', 'README.md',
+        'release/**'
       ],
       dest: 'cometvisu/',
       mode: function( filename ){
-        var isConfig = filename.indexOf( 'release/config' ) > -1;
+        var isConfig = filename.indexOf( 'release/resource/config' ) > -1;
 
         if( isDirectoryRegEx.test( filename ) ) {
           return isConfig ? 0777 : 0755;
@@ -527,6 +527,12 @@ module.exports = function(grunt) {
           './generate.py build',
           'cd ..'
         ].join('&&')
+      },
+      buildToRelease: {
+        command: [
+          'rm -rf release',
+          'mv build release'
+        ].join('&&')
       }
     },
 
@@ -669,7 +675,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   grunt.registerTask('release-build', [
     'updateicons', 'lint', 'clean', 'file-creator', 'buildicons', 'build',
-    'update-demo-config', 'chmod', 'compress:tar', 'compress:zip', 'release-client' ]);
+    'update-demo-config', 'chmod', 'shell:buildToRelease', 'compress:tar', 'compress:zip', 'release-client' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'rename-client-build']);
 
