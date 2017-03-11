@@ -1,6 +1,6 @@
 /* CometVisuClient.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -468,6 +468,10 @@ define( ['jquery'], function( $ ) {
     // check and fix if the user forgot the "new" keyword
     if (!(this instanceof CometVisuClient)) {
       return new CometVisuClient();
+    }
+
+    this.setInitialAddresses = function(addresses) {
+      this.initialAddresses = addresses;
     }
 
     /**
