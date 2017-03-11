@@ -101,7 +101,15 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Hilf dem CometVisu Projekt</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#allgemeine-vorbereitungen">Allgemeine Vorbereitungen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#allgemeine-vorgehensweise">Allgemeine Vorgehensweise</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#repositories-synchron-halten">Repositories synchron halten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#repositories-synchron-halten">Repositories synchron halten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#uber-github-com">Über github.com</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uber-die-kommandozeile">Über die Kommandozeile</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#zusammenfassung">Zusammenfassung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ausfuhrliche-vorgehensweise">Ausführliche Vorgehensweise</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#mithilfe-bei-der-dokumentation">Mithilfe bei der Dokumentation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="doc/rst.html">Die RST-Syntax</a></li>
 <li class="toctree-l3"><a class="reference internal" href="doc/rst.html#eigene-direktiven">Eigene Direktiven</a></li>
@@ -263,6 +271,8 @@ zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit
 </div>
 <div class="section" id="repositories-synchron-halten">
 <h2>Repositories synchron halten<a class="headerlink" href="#repositories-synchron-halten" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="uber-github-com">
+<h3>Über github.com<a class="headerlink" href="#uber-github-com" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Um die von anderen Entwicklern <em>gemergeden</em> Änderungen mit dem eigenen Fork synchron zu halten, muss ein Pull-Request
 vom privaten Repository aus gemacht werden. In der Zeile <em>This branch is ... commits ahead of CometVisu:develop.</em> zeigt
 an, wieviele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Direkt daneben befindet sich der Link zum <em>Pull Request</em>,
@@ -296,14 +306,73 @@ welcher in der darauffolgenden Seite die Änderungen anzeigt, die in das private
 <em>develop</em> gewechselt werden (<code class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">develop</span></code>), dort werden alle abgestimmten Änderungen der Entwickler <em>gemerged</em>.
 Mit dem Befehl <code class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span></code> erfolgt die Synchronisation zwischen lokalem und privatem Repository. Nachdem nun alle Repositories
 wieder synchron sind, kann wie oben unter 1. beschrieben mit neuen Änderungen an der Dokumentation fortgefahren werden.</p>
+</div>
+<div class="section" id="uber-die-kommandozeile">
+<h3>Über die Kommandozeile<a class="headerlink" href="#uber-die-kommandozeile" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Natürlich kann man den lokalen Klon seines Repositories auch rein über Kommandozeilenbefehle komfortabel synchron halten.
+Um dieses möglichst einfach zu machen, muss man die <em>Remotes</em> seines lokalen Klons entsprechend konfigurieren.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Für die folgenden Beispiele wird angenommen, dass man den Usernamen <code class="docutils literal"><span class="pre">gh-user</span></code> hat und das CometVisu Repository über SSH
+geklont wurde (<code class="docutils literal"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git&#64;github.com:gh-user/CometVisu.git</span></code>). Wenn über HTTPS geklont wurde
+(<code class="docutils literal"><span class="pre">https://github.com/CometVisu/CometVisu.git</span></code>) sehen die URLs entsprechend anders aus.</p>
+</div>
+<div class="section" id="zusammenfassung">
+<h4>Zusammenfassung<a class="headerlink" href="#zusammenfassung" title="Link zu dieser Überschrift">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># aktuelle Einstellungen abfragen</span>
+git remote -v
+&gt;&gt;&gt; origin  git@github.com:gh-user/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
+&gt;&gt;&gt; origin  git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
+
+<span class="c1"># Aktualisierungen vom original Repository holen</span>
+git remote set-url origin git@github.com:CometVisu/CometVisu.git
+
+<span class="c1"># aktuelle Einstellungen prüfen</span>
+git remote -v
+&gt;&gt;&gt; origin  git@github.com:CometVisu/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
+&gt;&gt;&gt; origin  git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
+
+<span class="c1"># develop branch mit original Repository synchronisieren</span>
+git checkout develop
+git pull
+</pre></div>
+</div>
+</div>
+<div class="section" id="ausfuhrliche-vorgehensweise">
+<h4>Ausführliche Vorgehensweise<a class="headerlink" href="#ausfuhrliche-vorgehensweise" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Die aktuellen Einstellungen kann man mit dem Befehl <code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code> abfragen.
+Üblicherweise liefert das folgende Werte:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
+origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
+</pre></div>
+</div>
+<p>Das bedeuted, dass git beim Aktualisieren (<em>fetch</em>, <em>pull</em>) und auch beim <em>pushen</em> den Fork des Users auf github benutzt.
+Man möchte nun aber möglichst einfach Änderungen auf dem Haupt-Repository in den lokalen Klon laden. Dazu ändert man die
+<em>fetch</em> URL des remotes mit folgendem Befehl: <code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">set-url</span> <span class="pre">origin</span> <span class="pre">git&#64;github.com:CometVisu/CometVisu.git</span></code>.
+Danach sollte <code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code> folgende Ausgabe liefern:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>origin      git@github.com:CometVisu/CometVisu.git <span class="o">(</span>fetch<span class="o">)</span>
+origin      git@github.com:gh-user/CometVisu.git <span class="o">(</span>push<span class="o">)</span>
+</pre></div>
+</div>
+<p>Damit sind die Vorraussetzungen erfüllt und man kann seinen lokalen <em>develop</em> Branch (dieser enthält die neuesten Weiterenwicklungen)
+ganz einfach durch ein <code class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span></code> aktualisieren.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Diese Vorgehensweise ist nur ratsam, wenn man nur an einem Rechner Änderungen an der CometVisu vornimmt.
+Wenn man gleichzeitig mehrere Rechner benutzt, muss man zwangsläufig die Änderungen die man von dem anderen Rechner
+in den eigenen Fork <em>gepushed</em> hat in den lokalen Klon bekommen. Dazu kann man ein zweites Remote einrichten mit
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">fork</span> <span class="pre">git&#64;github.com:gh-user/CometVisu.git</span></code> und dann davon <em>pullen</em>
+<code class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">fork</span> <span class="pre">develop</span></code></p>
+</div>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Zu tun</p>
 <ul class="last simple">
 <li>weitere nützliche Git-Befehle (branches löschen, status, ...)</li>
-<li>Eigenen Fork vom Haupt-Repository aktualisieren</li>
 <li>Merge-Konflikte</li>
 <li>Ablauf-Diagramm für Workflow Änderung -&gt; Pull-Request</li>
 </ul>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="mithilfe-bei-der-dokumentation">
