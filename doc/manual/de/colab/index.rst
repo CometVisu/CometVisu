@@ -89,21 +89,39 @@ Repositories synchron halten
 ----------------------------
 Um die von anderen Entwicklern *gemergeden* Änderungen mit dem eigenen Fork synchron zu halten, muss ein Pull-Request  
 vom privaten Repository aus gemacht werden. In der Zeile *This branch is ... commits ahead of CometVisu:develop.* zeigt 
-an, wieviele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Direkt daneben befindet sich der Link zum Pull-Request, 
-welcher in der darauffolgenden Seite die Änderungen anzeigt, die in das private Repository *gemerged* werden können. Das
-Akzeptieren aller Änderungen synchronisiert die Änderungen vom Haupt-Repository auf das private Repository.
+an, wieviele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Direkt daneben befindet sich der Link zum *Pull Request*, 
+welcher in der darauffolgenden Seite die Änderungen anzeigt, die in das private Repository *gemerged* werden können. 
 
 .. figure:: doc/_static/pull_request_sync.png
 
-   Pull Request für Synchronisation zwischen Haupt- und privaten Repository
+	Pull Request für Synchronisation zwischen Haupt- und privaten Repository
 
+.. figure:: doc/_static/github_sync2.png
+
+	Vergleich der Änderungen
+
+.. IMPORTANT::
+
+	Wichtig bei diesem Vergleich ist, dass der eigene *base fork* links und der offizielle *head fork* rechts steht.
+
+.. figure:: doc/_static/github_sync3.png
+
+	Merge pull request erzeugen
+
+Das Akzeptieren aller Änderungen synchronisiert die Änderungen vom Haupt-Repository auf das private Repository.   
+
+.. figure:: doc/_static/github_sync4.png
+
+	Merge bestätigen
+
+.. figure:: doc/_static/github_sync5.png
+
+	Erfolgreiche Synchronisierung   
+     
 Die lokale Kopie des privaten Repositories muss dann ebenso aktualisiert werden. Dazu muss im lokalen Repository in den Branch 
-*develop* gewechselt werden, dort werden alle abgestimmten Änderungen der Entwickler *gemerged*.
-``git checkout develop``  
-Mit dem Befehl
-``git pull``
-erfolgt die Synchronisation zwischen lokalem und privatem Repository. Nachdem nun alle Repositories wieder synchron sind, kann wie 
-oben unter 1. beschrieben mit neuen Änderungen an der Dokumentation fortgefahren werden. 
+*develop* gewechselt werden (``git checkout develop``), dort werden alle abgestimmten Änderungen der Entwickler *gemerged*.
+Mit dem Befehl ``git pull`` erfolgt die Synchronisation zwischen lokalem und privatem Repository. Nachdem nun alle Repositories 
+wieder synchron sind, kann wie oben unter 1. beschrieben mit neuen Änderungen an der Dokumentation fortgefahren werden. 
 
 .. TODO::
 
