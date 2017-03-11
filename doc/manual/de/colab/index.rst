@@ -136,7 +136,7 @@ Um dieses möglichst einfach zu machen, muss man die *Remotes* seines lokalen Kl
 
 .. HINT::
     Für die folgenden Beispiele wird angenommen, dass man den Usernamen ``gh-user`` hat und das CometVisu Repository über SSH
-    geklont hat (``git clone git@github.com:gh-user/CometVisu.git``). Wenn man über HTTPS geklont hat
+    geklont wurde (``git clone git@github.com:gh-user/CometVisu.git``). Wenn über HTTPS geklont wurde
     (``https://github.com/CometVisu/CometVisu.git``) sehen die URLs entsprechend anders aus.
 
 Zusammenfassung
