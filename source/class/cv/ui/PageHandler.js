@@ -109,7 +109,6 @@ qx.Class.define('cv.ui.PageHandler', {
           })
         );
       }
-      console.log(currentPath+" => "+target);
 
       if (speed === 0) {
         this.__onEnterPage(pageWidget);
@@ -155,7 +154,6 @@ qx.Class.define('cv.ui.PageHandler', {
      * @param oldPageWidget {cv.ui.structure.pure.Page}
      */
     __onLeavePage: function(oldPageWidget) {
-      console.log("left page "+oldPageWidget.getPath());
       qx.bom.element.Class.removeClasses(oldPageWidget.getDomElement(), ['pageActive', 'activePage']);
       qx.event.message.Bus.dispatchByName("path." + oldPageWidget.getPath() + ".afterPageChange", oldPageWidget.getPath());
       oldPageWidget.setVisible(false);
@@ -166,7 +164,6 @@ qx.Class.define('cv.ui.PageHandler', {
      * @param pageWidget {cv.ui.structure.pure.Page}
      */
     __onEnterPage: function(pageWidget) {
-      console.log("entered page "+pageWidget.getPath());
       var page = pageWidget.getDomElement();
       var target = pageWidget.getPath();
       qx.bom.element.Class.addClasses(page, ['pageActive', 'activePage']);// show new page
