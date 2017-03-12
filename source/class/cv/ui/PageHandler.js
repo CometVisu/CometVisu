@@ -111,6 +111,9 @@ qx.Class.define('cv.ui.PageHandler', {
       }
 
       if (speed === 0) {
+        if (oldPageWidget) {
+          this.__onLeavePage(oldPageWidget);
+        }
         this.__onEnterPage(pageWidget);
       } else {
         if (oldPageWidget) {
