@@ -169,6 +169,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
   members: {
     __waitForProperties: null,
     __colspanClass: null,
+    __normalizedDomId: null,
 
     _applyNavbarVisibility: function(value, old, name) {
       if (value !== null) {
