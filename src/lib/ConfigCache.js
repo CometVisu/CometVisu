@@ -1,6 +1,6 @@
-/* ConfigCache.js
+/* ConfigCache.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -16,6 +16,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
+
 
 /**
  * Handles caches for cometvisu configs
@@ -78,8 +79,6 @@ define([], function() {
       // cache the result, as the config stays the same until next reload
       if (this._valid === null) {
         var hash = this.toHash(xml);
-        // TODO: remove before release
-        console.log("Current hash: '%s', cached hash: '%s'", hash, this.getData("hash"));
         this._valid = hash == this.getData("hash");
       }
       return this._valid;

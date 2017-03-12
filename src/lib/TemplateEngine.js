@@ -1,6 +1,6 @@
 /* TemplateEngine.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -1071,14 +1071,10 @@ define([
 
           // check if cache is still valid
           if (!thisTemplateEngine.configCache.isValid(xml)) {
-            // TODO: remove before release
-            console.log("invalidating cache");
             // cache invalid
             cache = false;
             thisTemplateEngine.configCache.clear();
           } else {
-            // TODO: remove before release
-            console.log("using cache");
             cache = thisTemplateEngine.configCache.getData();
             thisTemplateEngine.widgetData = cache.data;
             thisTemplateEngine.ga_list = cache.addresses;
@@ -1089,8 +1085,6 @@ define([
           }
         }
         if (!cache) {
-          // TODO: remove before release
-          console.log("not using cache");
           var page = $('pages > page', xml)[0]; // only one page element allowed...
 
           thisTemplateEngine.create_pages(page, 'id');
@@ -1134,8 +1128,8 @@ define([
         thisTemplateEngine.applyColumnWidths();
 
         thisTemplateEngine.main_scroll = new PageHandler();
-        if (thisTemplateEngine.scrollSpeed != undefined) {
-          thisTemplateEngine.main_scroll.setSpeed( thisTemplateEngine.scrollSpeed );
+        if (thisTemplateEngine.configSettings.scrollSpeed != undefined) {
+          thisTemplateEngine.main_scroll.setSpeed( thisTemplateEngine.configSettings.scrollSpeed );
         }
 
         thisTemplateEngine.scrollToPage(startpage,0);
@@ -1385,7 +1379,7 @@ define([
       }
 
       if( undefined === speed )
-        speed = thisTemplateEngine.scrollSpeed;
+        speed = thisTemplateEngine.configSettings.scrollSpeed;
 
       if( rememberLastPage )
         localStorage.lastpage = page_id;

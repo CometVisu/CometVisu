@@ -1,6 +1,6 @@
 /* Image.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -54,17 +54,14 @@ define( ['_common'], function( design ) {
       var ret_val = basicdesign.createDefaultWidget('image', $e, path, flavour, type);
       // and fill in widget specific data
       var data = templateEngine.widgetDataInsert( path, {
-        'width'  : $e.attr('width'),
+        'width'  : $e.attr('width') || '100%',
         'height' : $e.attr('height'),
         'src'    : $e.attr('src'),
         'refresh': $e.attr('refresh') ? $e.attr('refresh') * 1000 : 0
       });
 
       // create the actor
-      var imgStyle = '';
-      if (data.width) {
-        imgStyle += 'width:'  + data.width + ';';
-      }
+      var imgStyle = 'width:'  + data.width + ';';
       if( $e.attr('widthfit') === 'true' ) {
         imgStyle += 'max-width:100%;';
       }

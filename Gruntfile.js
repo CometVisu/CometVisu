@@ -82,6 +82,7 @@ module.exports = function(grunt) {
         '!release/icon/knx-uf-iconset/knx-uf-iconset/**',
         'release/lib/**',
         'release/plugins/**',
+        'release/transforms/**',
         'release/upgrade/**',
         'release/*',
         '!release/build.txt'
@@ -206,14 +207,15 @@ module.exports = function(grunt) {
         },
         src: [
           'index.html',
+          'main.js',
           'visu_config.xsd',
           'dependencies/require-2.1.15.min.js',
-          'dependencies/css.js',
-          'icon/*.png',
-          //'icon/iconconfig.js',
-          'lib/TemplateEngine.js',
+          'icon/*.{png,svg}',
+          '!icon/knx-uf-iconset.svg', // don't include the big icon file as it might be too big and prevent the caching of the other files
           'designs/**/*.{js,css,png,ttf,svg}',
-          'plugins/**/*.{js,css,png,ttf,svg}'
+          'plugins/**/*.{js,css,png,ttf,svg}',
+          '!plugins/diagram/dep/flot/*.js', // alreay mangled in the plugin
+          '!**/*.src.js'
         ],
         dest: 'release/cometvisu.appcache'
       }
@@ -231,6 +233,8 @@ module.exports = function(grunt) {
           generateSourceMaps: true,
           preserveLicenseComments: false,
           removeCombined: true,
+          wrapShim: true,
+          skipModuleInsertion: false,
           // config options to handle required CSS files:
           separateCSS: true,
           buildCSS: false,
@@ -358,6 +362,17 @@ module.exports = function(grunt) {
             }
           ]
         }
+      },
+      githubChanges: {
+        options: {
+          questions: [
+            {
+              config: 'githubChanges.dist.options.token', // get personal GitHub tokel to bypass API rate limiting
+              type: 'input',
+              message: 'GitHub personal token:'
+            }
+          ]
+        }
       }
     },
 
@@ -441,8 +456,11 @@ module.exports = function(grunt) {
           // Owner and Repository options are mandatory
           owner : 'CometVisu',
           repository : 'CometVisu',
+          tagName: pkg.version,
+          auth: true,
+          token: '', // this will be replaces by the prompt task with the user input
           branch: 'develop',
-          // betweenTags: 'master...develop', // seems to be not supported at the moment
+          betweenTags: 'master...develop',
           onlyPulls: true,
           useCommitBody: true,
           // auth: true, // auth creates a stall for me :(
@@ -585,6 +603,17 @@ module.exports = function(grunt) {
           // 'git add external/knx-uf-iconset',
           //'git commit -m "icons updated"'
         ].join('&&')
+      },
+      // additional build step - TODO include into requirejs when known how to do it...
+      // Copy the required files for the 2D demo - and all other files by the 
+      // user which try to achive similiar effects
+      postbuild: {
+        command: [
+          'cp src/dependencies/jquery.js release/dependencies/',
+          'cp src/lib/CometVisuClient.js release/lib/',
+          'mkdir release/transforms',
+          'cp src/transforms/Transform*.js release/transforms/'
+        ].join('&&')
       }
     },
 
@@ -684,7 +713,7 @@ module.exports = function(grunt) {
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'jscs', 'clean', 'file-creator', 'buildicons', 'requirejs', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'updateicons', 'jscs', 'clean', 'file-creator', 'buildicons', 'requirejs', 'shell:postbuild', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
 
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
@@ -694,6 +723,7 @@ module.exports = function(grunt) {
   grunt.registerTask('screenshotsSource', ['connect', 'protractor:screenshotsSource']);
   grunt.registerTask('screenshotsManual', ['connect', 'protractor:screenshotsManual']);
   grunt.registerTask('api-doc', ['clean:exampleCache', 'clean:apiDoc', 'jsdoc:html', 'screenshotsSource']);
+  grunt.registerTask('changelog', ['prompt:githubChanges', 'githubChanges']);
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);

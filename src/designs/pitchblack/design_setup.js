@@ -1,6 +1,6 @@
 /* design_setup.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -26,5 +26,7 @@
  */
 templateEngine.messageBroker.subscribe("setup.dom.finished", function() {
   $('head').data('colspanDefault', 1);
+  $('#navbarLeft').data('columns', 6);
+  $('#navbarRight').data('columns', 6);
 });
 
