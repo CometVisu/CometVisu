@@ -126,24 +126,24 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       if ('2d' === page.getPageType()) {
         var
           cssPosRegEx = /(\d*)(.*)/,
-          backdrop = page.getDomElement().children().children().filter(page.getBackdropType())[0],
+          backdrop = qx.bom.Selector.query("div > "+page.getBackdropType(), page.getDomElement())[0],
           backdropSVG = page.getBackdropType() === 'embed' ? backdrop.getSVGDocument() : null,
           backdropBBox = backdropSVG ? backdropSVG.children[0].getBBox() : {},
-          backdropNWidth = backdrop.naturalWidth || backdropBBox.width || this.self(arguments).width,
-          backdropNHeight = backdrop.naturalHeight || backdropBBox.height || this.self(arguments).height,
-          backdropScale = Math.min(this.self(arguments).width / backdropNWidth, this.self(arguments).height / backdropNHeight),
+          backdropNWidth = backdrop.naturalWidth || backdropBBox.width || this.width,
+          backdropNHeight = backdrop.naturalHeight || backdropBBox.height || this.height,
+          backdropScale = Math.min(this.width / backdropNWidth, this.height / backdropNHeight),
           backdropWidth = backdropNWidth * backdropScale,
           backdropHeight = backdropNHeight * backdropScale,
           backdropPos = page.getBackdropAlign().split(' '),
           backdropLeftRaw = backdropPos[0].match(cssPosRegEx),
           backdropTopRaw = backdropPos[1].match(cssPosRegEx),
-          backdropLeft = backdropLeftRaw[2] === '%' ? (this.self(arguments).width > backdropWidth ? ((this.self(arguments).width - backdropWidth ) * (+backdropLeftRaw[1]) / 100) : 0) : +backdropLeftRaw[1],
-          backdropTop = backdropTopRaw[2] === '%' ? (this.self(arguments).height > backdropHeight ? ((this.self(arguments).height - backdropHeight) * (+backdropTopRaw[1] ) / 100) : 0) : +backdropTopRaw[1],
+          backdropLeft = backdropLeftRaw[2] === '%' ? (this.width > backdropWidth ? ((this.width - backdropWidth ) * (+backdropLeftRaw[1]) / 100) : 0) : +backdropLeftRaw[1],
+          backdropTop = backdropTopRaw[2] === '%' ? (this.height > backdropHeight ? ((this.height - backdropHeight) * (+backdropTopRaw[1] ) / 100) : 0) : +backdropTopRaw[1],
           uagent = navigator.userAgent.toLowerCase();
 
         if (backdrop.complete === false || (page.getBackdropType() === 'embed' && backdropSVG === null)) {
           // backdrop not available yet - reload
-          setTimeout(this.invalidateBackdrop, 100);
+          qx.event.Timer.once(this.invalidateBackdrop, this, 100);
           return;
         }
 
@@ -249,7 +249,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       }
       this.width = cv.ui.layout.Manager.getAvailableWidth();
       this.height = cv.ui.layout.Manager.getAvailableHeight();
-      this.getPageSize().innerHTML = '#main,.page{width:' + (this.width - 0) + 'px;height:' + this.height + 'px;}';
+      this.getPageSize().innerHTML = '#main,.page{width:' + this.width + 'px;height:' + this.height + 'px;}';
 
       this.invalidPagesize = false;
     },

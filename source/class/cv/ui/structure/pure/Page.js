@@ -227,7 +227,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
         }
 
         var backdrop = this.getBackdrop();
-        if (undefined !== backdrop) {
+        if (backdrop) {
           var elemType = '.svg' === backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';
           container += '<' + elemType + ' src="' + qx.util.ResourceManager.getInstance().toUri(backdrop) + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
           this.setBackdropType(elemType);
