@@ -52,7 +52,7 @@ qx.Class.define('cv.ui.PageHandler', {
     },
 
     animationType: {
-      check: ["slide", "fade", "flip", "pop", "swap"],
+      check: ["slide", "fade", "flip", "pop", "swap", "none"],
       init: "slide"
     }
   },
@@ -96,7 +96,8 @@ qx.Class.define('cv.ui.PageHandler', {
       var oldPageWidget = currentPath ? cv.ui.structure.WidgetFactory.getInstanceById(currentPath) : null;
 
       var direction = null;
-      if( speed > 0 ) {
+      var animationEnabled = speed > 0 || this.getAnimationType() !== "none";
+      if (animationEnabled) {
         var currentDepth = currentPath.split("_").length;
         var targetDepth = target.split("_").length;
         direction = currentDepth<=targetDepth ? "down" : "up";
@@ -109,7 +110,7 @@ qx.Class.define('cv.ui.PageHandler', {
         });
       }
 
-      if (speed === 0) {
+      if (!animationEnabled) {
         if (oldPageWidget) {
           this.__onLeavePage(oldPageWidget);
         }
