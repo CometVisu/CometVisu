@@ -118,6 +118,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
           }
         }, this).schedule();
         this.$$domReady = true;
+        this.initListeners();
       } else {
         console.log("diagram dom not ready yet");
       }
@@ -131,13 +132,6 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
           (this.getHeight() ? (';height:' + this.getHeight()) : ';height: 100%');
 
       return '<div class="actor clickable" style="height: 100%; min-height: 40px;"><div class="' + classStr + '" style="' + styleStr + '">loading...</div></div>';
-    },
-
-    // overridden
-    _action: function(ev) {
-      if (this.getPopup()) {
-        this.base(arguments, ev);
-      }
     }
   },
 

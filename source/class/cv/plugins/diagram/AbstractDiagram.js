@@ -379,7 +379,10 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       // this will be called when the popup is being closed.
       // NOTE: this will be called twice, one time for the foreground and one
       //       time for the background.
-      popup.addListener('close', qx.lang.Function.curry(this._stopRefresh.bind(this), this._timerPopup));
+      popup.addListener('close', function() {
+        this._stopRefresh(this._timerPopup);
+        qx.event.Registration.removeAllListeners(popupDiagram);
+      }, this);
 
       var parent = qx.dom.Element.getParentElement(popupDiagram);
       qx.bom.element.Style.setStyles(parent, {height: "100%", width: "95%", margin: "auto"});// define parent as 100%!
