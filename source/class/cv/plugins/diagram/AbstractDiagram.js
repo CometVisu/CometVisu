@@ -294,10 +294,6 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       check: "Boolean",
       init: false
     },
-    isPopup: {
-      check: "Boolean",
-      init: false
-    },
     popup: {
       check: "Boolean",
       init: false
@@ -320,6 +316,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     plot: null,
     plotted: null,
     _timerPopup: null,
+    __isPopup: false,
 
     // property apply
     _applyTitle: function(value) {
@@ -404,7 +401,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         return;
       }
       this._init = false;
-      isPopup |= this.isPopup();
+      isPopup |= this.__isPopup;
 
       var options = {
         canvas  : true,
