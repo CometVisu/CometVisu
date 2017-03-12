@@ -133,11 +133,10 @@ if( false === is_readable( $conffile ) )
     exit;
   }
 }
-
 $lines = file( $conffile );
 $dom->load( $conffile );
 
-if( $dom->schemaValidate( 'visu_config.xsd' ) )
+if( $dom->schemaValidate( 'resource/visu_config.xsd' ) )
 {
   echo 'config <b>' . $conffile . ' is valid </b> XML';
   if( $_GET['src'] === 'editor' )
