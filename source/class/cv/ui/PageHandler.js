@@ -52,7 +52,7 @@ qx.Class.define('cv.ui.PageHandler', {
     },
 
     animationType: {
-      check: ["slide"],
+      check: ["slide", "fade", "flip", "pop", "swap"],
       init: "slide"
     }
   },
@@ -72,9 +72,8 @@ qx.Class.define('cv.ui.PageHandler', {
       if (currentPath !== '') { qx.event.message.Bus.dispatchByName("path."+currentPath+".exitingPageChange", currentPath, target); }
 
       var pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(target);
-      var page = pageWidget.getDomElement();
 
-      if( 0 === page.length ) {// check if page does exist
+      if (!pageWidget.getDomElement()) {// check if page does exist
         return;
       }
       qx.event.message.Bus.dispatchByName("path."+target+".beforePageChange", target);
@@ -96,18 +95,18 @@ qx.Class.define('cv.ui.PageHandler', {
       // update reference, because the appearance might have changed
       var oldPageWidget = currentPath ? cv.ui.structure.WidgetFactory.getInstanceById(currentPath) : null;
 
+      var direction = null;
       if( speed > 0 ) {
         var currentDepth = currentPath.split("_").length;
         var targetDepth = target.split("_").length;
-        animationConfig = this.__getAnimationConfig(currentDepth<=targetDepth ? "down" : "up");
+        direction = currentDepth<=targetDepth ? "down" : "up";
+        animationConfig = this.__getAnimationConfig(direction);
 
-        // position the new page
-        qx.bom.element.Style.setStyles(pageWidget.getDomElement(),
-          qx.lang.Object.mergeWith(animationConfig.in.keyFrames["0"], {
-            "display": "block",
-            "overflow": "hidden"
-          })
-        );
+        // show the new page (because animations do not work on hidden elements) + hide scrollbar
+        qx.bom.element.Style.setStyles(pageWidget.getDomElement(), {
+          "display": "block",
+          "overflow": "hidden"
+        });
       }
 
       if (speed === 0) {
@@ -117,11 +116,14 @@ qx.Class.define('cv.ui.PageHandler', {
         this.__onEnterPage(pageWidget);
       } else {
         if (oldPageWidget) {
-          var oldAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.out, speed);
-          oldAnim.addListenerOnce("end", qx.lang.Function.curry(this.__onLeavePage, oldPageWidget), this);
+          this.__onLeavePage(oldPageWidget);
         }
-        var animation = qx.bom.element.Animation.animate(page, animationConfig["in"], speed);
-        animation.addListenerOnce("end", qx.lang.Function.curry(this.__onEnterPage, pageWidget), this);
+        // get page widget and set it to visible
+        pageWidget.setVisible(true);
+        qx.bom.AnimationFrame.request(function() {
+          var animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig["in"], speed);
+          animation.addListenerOnce("end", qx.lang.Function.curry(this.__onEnterPage, pageWidget), this);
+        }, this);
       }
     },
 
@@ -132,19 +134,36 @@ qx.Class.define('cv.ui.PageHandler', {
      */
     __getAnimationConfig: function(direction) {
       var inAnim, outAnim;
-      switch (this.getAnimationType()) {
 
-        case "slide":
-          if (direction === "up") {
-            inAnim = qx.util.Animation.SLIDE_RIGHT_IN;
-            outAnim = qx.util.Animation.SLIDE_RIGHT_OUT;
-          } else {
-            inAnim = qx.util.Animation.SLIDE_LEFT_IN;
-            outAnim = qx.util.Animation.SLIDE_LEFT_OUT;
-          }
-          inAnim.timing = this.getEasing();
-          outAnim.timing = this.getEasing();
-          break;
+      // try to find existing animation configuration
+      var type = this.getAnimationType().toUpperCase();
+      if (direction === "up") {
+        inAnim = qx.util.Animation[type+"_RIGHT_IN"] || qx.util.Animation[type+"_IN"];
+        outAnim = qx.util.Animation[type+"_RIGHT_OUT"] || qx.util.Animation[type+"_OUT"];
+      } else if (direction === "down") {
+        inAnim = qx.util.Animation[type+"_LEFT_IN"] || qx.util.Animation[type+"_IN"];
+        outAnim = qx.util.Animation[type+"_LEFT_OUT"] || qx.util.Animation[type+"_OUT"];
+      }
+      if (!inAnim || !outAnim) {
+        // fallback
+        switch (this.getAnimationType()) {
+
+          case "slide":
+            if (direction === "up") {
+              inAnim = qx.util.Animation.SLIDE_RIGHT_IN;
+              outAnim = qx.util.Animation.SLIDE_RIGHT_OUT;
+            } else {
+              inAnim = qx.util.Animation.SLIDE_LEFT_IN;
+              outAnim = qx.util.Animation.SLIDE_LEFT_OUT;
+            }
+            break;
+        }
+      }
+      if (inAnim) {
+        inAnim.timing = this.getEasing();
+      }
+      if (outAnim) {
+        outAnim.timing = this.getEasing();
       }
       return {
         "in": inAnim,
@@ -158,6 +177,7 @@ qx.Class.define('cv.ui.PageHandler', {
      */
     __onLeavePage: function(oldPageWidget) {
       qx.bom.element.Class.removeClasses(oldPageWidget.getDomElement(), ['pageActive', 'activePage']);
+      qx.bom.element.Style.set(oldPageWidget.getDomElement(), "overflow", null);
       qx.event.message.Bus.dispatchByName("path." + oldPageWidget.getPath() + ".afterPageChange", oldPageWidget.getPath());
       oldPageWidget.setVisible(false);
     },
@@ -178,17 +198,6 @@ qx.Class.define('cv.ui.PageHandler', {
       qx.event.message.Bus.dispatchByName("path.pageChanged", target);
       // show scrollbar after animation
       qx.bom.element.Style.setStyles(page, {"overflow": null, "display": null});
-
-      // get page widget and set it to visible
-      pageWidget.setVisible(true);
-    },
-
-    setSpeed : function( newSpeed ) {
-      this.speed = +newSpeed;
-    },
-
-    getIndex : function() {
-      return qx.bom.Selector.query( '#pages > .page' ).indexOf(qx.bom.Selector.query('#' + this.getCurrentPath())[0]);
     }
   }
 });
