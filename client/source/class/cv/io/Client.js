@@ -336,7 +336,7 @@ qx.Class.define('cv.io.Client', {
      */
     getResponse: qx.core.Environment.select("cv.xhr", {
       "jquery": function(data) {
-        if ($.type(data) === "string") {
+        if (data && $.type(data) === "string") {
           data = cv.io.parser.Json.parse(data);
         }
         return data;
@@ -345,6 +345,7 @@ qx.Class.define('cv.io.Client', {
       "qx": function(ev) {
         if (!ev) { return null; }
         var json = ev.getTarget().getResponse();
+        if (!json) { return null; }
         if (qx.lang.Type.isString(json)) {
           json = cv.io.parser.Json.parse(json);
         }

@@ -73,6 +73,7 @@ qx.Class.define('cv.data.Model', {
      * @param data {Map} Key/value map of address/state
      */
     update: function(data) {
+      if (!data) { return; }
       var addressList = this.__addressList;
       Object.getOwnPropertyNames(data).forEach(function(address) {
         if (addressList.hasOwnProperty(address)) {

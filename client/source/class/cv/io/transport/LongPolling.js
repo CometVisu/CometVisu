@@ -106,8 +106,11 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
           this.retryCounter++;
-          this.xhr.send();
-          this.client.watchdog.ping(true);
+          qx.event.Timer.once(function () {
+            this.error("read request received emtpy response => retrying");
+            this.xhr.send();
+            this.client.watchdog.ping(true);
+          }, this, 100 * Math.pow(this.retryCounter, 2));
         }
         return;
       }
