@@ -36,7 +36,7 @@ define('BACKUP_FILENAME', '../../resource/config/backup/visu_config%s-%s.xml');
 $strJson   = (true === isset($_POST['data']))   ? $_POST['data']   : null;
 $strConfig = (true === isset($_POST['config'])) ? $_POST['config'] : null;
 
-$strConfigSuffix = preg_replace('/^config\/visu_config(_?.*?)\.xml$/', '$1', $strConfig);
+$strConfigSuffix = preg_replace('/^resource\/config\/visu_config(_?.*?)\.xml$/', '$1', $strConfig);
 
 $isOhGenerated = false;
 if (substr($strConfigSuffix,1,3)=="oh_") {
