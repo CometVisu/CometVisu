@@ -148,6 +148,11 @@ qx.Class.define('cv.io.Client', {
             }
           }
         }
+      },
+      "openhab2": {
+        name: "openHAB2",
+        baseURL: "/rest/cv/",
+        transport: "sse"
       }
     }
   },
