@@ -26,6 +26,7 @@
  * @asset(designs/*)
  * @asset(icon/*)
  * @asset(plugins/*)
+ * @asset(visu_config.xsd)
  *
  * @require(qx.bom.Html,cv.ui.PopupHandler)
  */

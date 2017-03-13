@@ -127,7 +127,6 @@
           "upgrade",
           "check_config.php",
           "manager.php",
-          "visu_config.xsd",
           "version",
           "library_version.inc.php",
           "manifest.json"
