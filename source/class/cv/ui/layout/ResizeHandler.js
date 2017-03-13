@@ -117,7 +117,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       qx.log.Logger.debug("makeBackdropValid");
       // TODO: this is structure.pure specific and should be handled by the structure itself
       var templateEngine = cv.TemplateEngine.getInstance();
-      var page = templateEngine.getCurrentPage();
+      var page = templateEngine.currentPage;
       if (!page) {
         return;
       }

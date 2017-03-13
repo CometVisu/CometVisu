@@ -228,9 +228,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
 
         var backdrop = this.getBackdrop();
         if (backdrop) {
-          var elemType = '.svg' === backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';
-          container += '<' + elemType + ' src="' + qx.util.ResourceManager.getInstance().toUri(backdrop) + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
-          this.setBackdropType(elemType);
+          container += '<' + this.getBackdropType() + ' src="' + qx.util.ResourceManager.getInstance().toUri(backdrop) + '" style="position: absolute; top: 0px; left: 0px;z-index:-1;' + size + '"/>';
         }
       } else if( '3d' === pageType && false ) //---Disable 3D for 0.8---
       {

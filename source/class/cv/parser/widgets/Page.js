@@ -94,6 +94,10 @@ qx.Class.define('cv.parser.widgets.Page', {
       }
 
       var layout = cv.parser.WidgetParser.parseLayout( qx.bom.Selector.matches("layout", qx.dom.Hierarchy.getChildElements(page))[0] );
+      var backdropType = null;
+      if (backdrop) {
+        backdropType = '.svg' === backdrop.substring( backdrop.length - 4 ) ? 'embed' : 'img';
+      }
 
       var data = cv.data.Model.getInstance().setWidgetData( storagePath, {
         path              : storagePath,
@@ -111,7 +115,8 @@ qx.Class.define('cv.parser.widgets.Page', {
         linkVisible       : qx.bom.element.Attribute.get(page, 'visible') ? qx.bom.element.Attribute.get(page, 'visible') === "true" : true,
         flavour           : flavour || null,
         $$type            : "page",
-        backdrop          : backdrop || null
+        backdrop          : backdrop || null,
+        backdropType      : backdropType
       });
       cv.parser.WidgetParser.parseAddress(page, path);
       cv.parser.WidgetParser.parseFormat(page, path);
