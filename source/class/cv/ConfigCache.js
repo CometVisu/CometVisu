@@ -42,6 +42,7 @@ qx.Class.define('cv.ConfigCache', {
       var model = cv.data.Model.getInstance();
       this.save(this._cacheKey, {
         hash: this.toHash(xml),
+        VERSION: cv.Version.VERSION,
         data: model.getWidgetDataModel(),
         addresses: model.getAddressList(),
         configSettings: config
@@ -85,7 +86,14 @@ qx.Class.define('cv.ConfigCache', {
      * Returns true if there is an existing cache for the current config file
      */
     isCached: function() {
-      return localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey) !== null;
+      if (localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey) !== null) {
+        // compare versions
+        var cacheVersion = this.getData("VERSION");
+        qx.log.Logger.debug(this, "Cached version: "+cacheVersion+", CV-Version: "+cv.Version.VERSION);
+        return (cacheVersion === cv.Version.VERSION);
+      } else {
+        return false;
+      }
     },
     
     isValid: function(xml) {

@@ -244,12 +244,24 @@
 
     "source" :
     {
-      "extend" : [ "parts-config" ]
+      "extend" : [ "parts-config" ],
+      "run" :
+      [
+        "update-version",
+        "source-script"
+      ]
     },
 
     "source-hybrid" :
     {
       "extend" : [ "parts-config" ]
+    },
+
+    "update-version": {
+      "shell" :
+      {
+        "command" : "./cv build --update-version"
+      }
     },
 
     "build" :
@@ -258,6 +270,7 @@
       "run" :
       [
         "build-resources",
+        "update-version",
         "build-script",
         "build-files",
         "build-libs",

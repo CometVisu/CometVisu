@@ -18,3 +18,4 @@ settings/keys/deploy_key
 /build/
 /test/
 /source/script/
+/source/class/cv/Version.js
