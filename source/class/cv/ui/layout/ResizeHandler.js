@@ -28,7 +28,6 @@
  *
  */
 qx.Class.define('cv.ui.layout.ResizeHandler', {
-
   type: "static",
 
   /*
@@ -200,7 +199,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
               style.height = layout.height;
             }
           }
-        });
+        }, this);
       }
 
       this.invalidBackdrop = false;
