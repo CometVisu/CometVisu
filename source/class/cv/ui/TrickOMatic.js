@@ -31,6 +31,8 @@ qx.Class.define('cv.ui.TrickOMatic', {
   ******************************************************
   */
   statics: {
+    __id: 0,
+
     run: function () {
       var svg = this.getSVGDocument();
       if (!svg) { return; }
@@ -53,6 +55,8 @@ qx.Class.define('cv.ui.TrickOMatic', {
           }
         });
       });
+
+      var model = cv.data.Model.getInstance();
 
       // Flow-O-Matic: add Paths
       var segmentLength = 40;
@@ -103,8 +107,10 @@ qx.Class.define('cv.ui.TrickOMatic', {
           length += path.getTotalLength();
           var activeValues = qx.bom.element.Attribute.get(pipe_group, 'data-cometvisu-active');
           if (activeValues) {
-            activeValues.split(' ').forEach(function () {
-              templateEngine.addAddress(this, function (data) {
+            activeValues.split(' ').forEach(function (address) {
+              var id = "flow_"+this.__id++;
+              model.addAddress(address, id);
+              model.addUpdateListener(address, function (data) {
                 if (data === '01' || data === 'ON') {
                   qx.bom.element.Class.toggle(pipe_group, "flow_active", true);
                 } else {
