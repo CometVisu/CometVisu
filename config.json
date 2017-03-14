@@ -259,7 +259,7 @@
     "update-version": {
       "shell" :
       {
-        "command" : "./cv build --update-version"
+        "command" : "utils/update_version.py"
       }
     },
 

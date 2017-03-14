@@ -22,8 +22,6 @@ import re
 import json
 import rjsmin
 import logging
-import sh
-import datetime
 from argparse import ArgumentParser
 from . import Command
 
@@ -94,42 +92,12 @@ class BuildHelper(Command):
                             f.write(content)
                             print("%s has peen processed" % os.path.join(subdir, file))
 
-    def update_version(self):
-        # gather information from git
-        git = sh.Command("git")
-        data = {
-            "revision": git("rev-parse", "HEAD").strip("\n"),
-            "branch": git("rev-parse", "--abbrev-ref", "HEAD").strip("\n"),
-            "date": datetime.datetime.now().isoformat()
-        }
-        with open(os.path.join(self.root_dir, "package.json")) as data_file:
-            package_data = json.load(data_file)
-            data["version"] = package_data['version']
-
-        with open(self.config.get("DEFAULT", "versions-source-file"), 'w') as f:
-            f.write('''
-qx.Class.define("cv.Version", {
-  type: "static",
-
-  statics: {
-    REV: "%(revision)s",
-    BRANCH: "%(branch)s",
-    VERSION: "%(version)s",
-    DATE: "%(date)s"
-  }
-});
-''' % data)
-
     def run(self, args):
         parser = ArgumentParser(usage="%(prog)s - CometVisu build helper scrips")
 
         parser.add_argument("--build-plugins", "-bp", dest="build_plugins", action='store_true', help="include external libs in plugin parts")
 
-        parser.add_argument("--update-version", "-uv", dest="update_version", action='store_true', help="update cv.Version class")
-
         options = parser.parse_args(args)
 
         if options.build_plugins:
             self.build_plugins()
-        elif options.update_version:
-            self.update_version()
