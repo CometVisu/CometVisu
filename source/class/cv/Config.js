@@ -159,6 +159,11 @@ qx.Class.define('cv.Config', {
     },
 
     /**
+     * If enabled the user interaction gets logged
+     */
+    reporting: false,
+
+    /**
      * Get the structure that is related to this design
      * @param design {String?} name of the design
      * @return {String} name of the structure
@@ -245,8 +250,11 @@ qx.Class.define('cv.Config', {
     }
 
     if (req.queryKey.forceReload) {
-      cv.Config.forceReload = req.queryKey.forceReload !== 'false'; // true unless set
-      // to false
+      cv.Config.forceReload = req.queryKey.forceReload !== 'false'; // true unless set to false
+    }
+
+    if (req.queryKey.reporting) {
+      cv.Config.reporting = req.queryKey.reporting === 'true';
     }
 
     if (req.queryKey.enableCache === "invalid") {

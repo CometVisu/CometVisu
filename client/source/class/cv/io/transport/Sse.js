@@ -88,6 +88,7 @@ qx.Class.define('cv.io.transport.Sse', {
      * Handle messages send from server as Server-Sent-Event
      */
     handleMessage: function (e) {
+      this.client.record("read", e.data);
       var json = JSON.parse(e.data);
       var data = json.d;
       this.client.watchdog.ping(true);

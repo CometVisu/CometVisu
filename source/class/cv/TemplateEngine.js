@@ -176,6 +176,9 @@ qx.Class.define('cv.TemplateEngine', {
 
       var model = cv.data.Model.getInstance();
       this.visu.update = model.update.bind(model); // override clients update function
+      if (cv.Config.reporting) {
+        this.visu.record = qx.lang.Function.curry(cv.Reporting.getInstance().record, cv.Reporting.BACKEND).bind(cv.Reporting.getInstance());
+      }
       this.visu.user = 'demo_user'; // example for setting a user
     },
 

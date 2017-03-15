@@ -205,6 +205,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       if (this.isAnonymous()) { return; }
       var widget = this.getInteractionElement();
       if (widget) {
+        cv.Reporting.register(widget, this.getPath(), [type]);
         return qx.event.Registration.addListener(widget, type, callback, context);
       }
       return null;

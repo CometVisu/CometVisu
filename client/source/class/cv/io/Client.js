@@ -421,6 +421,7 @@ qx.Class.define('cv.io.Client', {
      */
     handleLogin : function (ev) {
       var json = this.getResponse(ev);
+      this.record("handleLogin", json);
       // read backend configuration if send by backend
       if (json.c) {
         this.setBackend(qx.lang.Object.mergeWith(this.getBackend(), json.c));
@@ -483,6 +484,7 @@ qx.Class.define('cv.io.Client', {
        */
       var ts = new Date().getTime();
       var url = qx.util.Uri.appendParamsToUrl(this.getResourcePath("write"), 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts);
+      this.record("write", {url: url});
       this.doRequest(url, null, null, null, {
         accept: "application/json, text/javascript, */*; q=0.01"
       });
@@ -495,6 +497,13 @@ qx.Class.define('cv.io.Client', {
       this.getCurrentTransport().restart(full);
     },
 
-    update: function(json) {} // jshint ignore:line
+    update: function(json) {}, // jshint ignore:line
+
+    /**
+     * Can be overridden to record client communication with backend
+     * @param type {String} type of event to record
+     * @param data {Object} data to record
+     */
+    record: function(type, data) {}  // jshint ignore:line
   }
 });

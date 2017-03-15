@@ -166,6 +166,7 @@ qx.Class.define("cv.Application",
         var req = e.getTarget();
         // Response parsed according to the server's response content type
         var xml = req.getResponse();
+        cv.Reporting.record(cv.Reporting.CONFIG, cv.Config.configSuffix, xml.xml ? xml.xml : (new XMLSerializer()).serializeToString(xml));
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
           this.configError("parsererror");
@@ -247,6 +248,7 @@ qx.Class.define("cv.Application",
           cv.data.Model.getInstance().resetAddressList();
         } else {
           // loaded cache is still valid
+          cv.Reporting.logCache();
           cv.Config.cacheUsed = true;
           cv.Config.lazyLoading = true;
           engine.initBackendClient();
