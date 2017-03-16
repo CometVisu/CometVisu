@@ -140,7 +140,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
     handleReadStart: function (ev) {
       var json = this.client.getResponse(ev);
-      this.client.record("read-start", json);
+      this.client.record("read", json);
       if (!json && (-1 === this.lastIndex)) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request

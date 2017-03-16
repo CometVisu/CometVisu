@@ -89,7 +89,8 @@
           "$",
           "jQuery",
           "THREE",
-          "sprintf"
+          "sprintf",
+          "replayLog"
         ]
       },
 
@@ -148,7 +149,8 @@
           "$",
           "jQuery",
           "THREE",
-          "sprintf"
+          "sprintf",
+          "replayLog"
         ]
       }
     },
@@ -344,7 +346,8 @@
           "jQuery",
           "THREE",
           "sprintf",
-          "Sunlight"
+          "Sunlight",
+          "replayLog"
         ]
       },
 

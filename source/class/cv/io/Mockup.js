@@ -92,6 +92,10 @@ qx.Class.define('cv.io.Mockup', {
      *
      */
     write: function (address, value) {
+      if (cv.Reporting.REPLAYING === true) {
+        // do nothing in replay mode
+        return;
+      }
       var ts = new Date().getTime();
       // store in window, to make it accessible for protractor
       window.writeHistory.push({

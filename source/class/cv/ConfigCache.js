@@ -61,7 +61,7 @@ qx.Class.define('cv.ConfigCache', {
     },
     
     save: function(key, data) {
-      localStorage.setItem(cv.Config.configSuffix+"."+key, JSON.stringify(data));
+      localStorage.setItem(cv.Config.configSuffix+"."+key, qx.lang.Json.stringify(data));
     },
     
     getBody: function() {
@@ -70,7 +70,7 @@ qx.Class.define('cv.ConfigCache', {
     
     getData: function(key) {
       if (!this._parseCacheData) {
-        this._parseCacheData = JSON.parse(localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey));
+        this._parseCacheData = qx.lang.Json.parse(localStorage.getItem(cv.Config.configSuffix + "." + this._cacheKey));
       }
       if (!this._parseCacheData) {
         return null;

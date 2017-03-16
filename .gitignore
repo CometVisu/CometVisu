@@ -19,3 +19,4 @@ settings/keys/deploy_key
 /test/
 /source/script/
 /source/class/cv/Version.js
+/source/replay-log.js

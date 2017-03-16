@@ -372,6 +372,7 @@ qx.Class.define('cv.TemplateEngine', {
      * Start retrieving data from backend
      */
     startInitialRequest: function() {
+      cv.Reporting.startReplay();
       if (cv.Config.enableAddressQueue) {
         // identify addresses on startpage
         var startPageAddresses = {};

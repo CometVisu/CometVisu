@@ -37,6 +37,7 @@
     "jQuery": false,
     "steelseries": false,
     "EventSource": false,
-    "fs": false
+    "fs": false,
+    "replayLog": false
   }
 }
