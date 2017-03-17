@@ -8,7 +8,6 @@ qx.Mixin.define('cv.report.utils.MXhrHook', {
   ******************************************************
   */
   construct: function() {
-    console.log("patching Xhr");
     this.addListener("changePhase", this._onPhaseChange, this);
   },
 
