@@ -97,6 +97,9 @@ qx.Class.define('cv.report.Record', {
       if (url.indexOf("nocache=") >= 0) {
         url = url.replace(/[\?|&]nocache=[0-9]+/, "");
       }
+      if (url.indexOf("ts=") >= 0) {
+        url = url.replace(/[\?|&]ts=[0-9]+/, "");
+      }
       return url;
     }
   },
