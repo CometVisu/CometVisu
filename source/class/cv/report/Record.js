@@ -22,9 +22,6 @@
  * Recording/Replay tool for user interactions on existing configs. Used for bug reproduction
  *
  * TODO:
- * - qx.dev.FakeServer benutzen (auch für Config):
- *  + Replay in extra Klasse, die nur in qx.debug benutzt wird, damit die Abh. nicht in den Build kommen
- *  + Index der XHR-Requests mit speichern (in Long-Polling), bei SSE ggf. Mockup Client benutzen falls mit FakeServer nicht möglich
  * - python replay modul
  * - weitere user events (slider, colorchooser)
  * - weitere Daten (diagram RRD, RSS?)
