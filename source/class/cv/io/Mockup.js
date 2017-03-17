@@ -92,7 +92,7 @@ qx.Class.define('cv.io.Mockup', {
      *
      */
     write: function (address, value) {
-      if (cv.Reporting.REPLAYING === true) {
+      if (cv.report.Record.REPLAYING === true) {
         // do nothing in replay mode
         return;
       }

@@ -177,7 +177,7 @@ qx.Class.define('cv.TemplateEngine', {
       var model = cv.data.Model.getInstance();
       this.visu.update = model.update.bind(model); // override clients update function
       if (cv.Config.reporting) {
-        this.visu.record = qx.lang.Function.curry(cv.Reporting.getInstance().record, cv.Reporting.BACKEND).bind(cv.Reporting.getInstance());
+        this.visu.record = qx.lang.Function.curry(cv.report.Record.getInstance().record, cv.report.Record.BACKEND).bind(cv.report.Record.getInstance());
       }
       this.visu.user = 'demo_user'; // example for setting a user
     },
@@ -372,7 +372,9 @@ qx.Class.define('cv.TemplateEngine', {
      * Start retrieving data from backend
      */
     startInitialRequest: function() {
-      cv.Reporting.startReplay();
+      if (qx.core.Environment.get("qx.debug")) {
+        cv.report.Replay.start();
+      }
       if (cv.Config.enableAddressQueue) {
         // identify addresses on startpage
         var startPageAddresses = {};

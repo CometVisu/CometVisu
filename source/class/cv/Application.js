@@ -49,7 +49,7 @@ qx.Class.define("cv.Application",
     createClient: function() {
       var args = Array.prototype.slice.call(arguments);
       args.unshift(null);
-      if (cv.Config.testMode === true || cv.Reporting.REPLAYING === true) {
+      if (cv.Config.testMode === true) {
         return  new (Function.prototype.bind.apply(cv.io.Mockup, args)); // jshint ignore:line
       } else {
         return new (Function.prototype.bind.apply(cv.io.Client, args)); // jshint ignore:line
@@ -89,9 +89,12 @@ qx.Class.define("cv.Application",
      * during startup of the application
      */
     main : function() {
-      if (replayLog) {
-        cv.Reporting.prepareReplay(replayLog);
+      if (qx.core.Environment.get("qx.debug")) {
+        if (replayLog) {
+          cv.report.Replay.prepare(replayLog);
+        }
       }
+      cv.report.Record.prepare();
       if (qx.core.Environment.get("qx.aspects")) {
         qx.dev.Profile.stop();
         qx.dev.Profile.start();
@@ -140,11 +143,7 @@ qx.Class.define("cv.Application",
           // load empty HTML structure
           qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
         }
-        if (!cv.Reporting.REPLAYING) {
-          this.loadConfig();
-        } else {
-          this.bootstrap(cv.Reporting.getInstance().getConfig());
-        }
+        this.loadConfig();
       }, this);
     },
 
@@ -173,7 +172,6 @@ qx.Class.define("cv.Application",
         var req = e.getTarget();
         // Response parsed according to the server's response content type
         var xml = req.getResponse();
-        cv.Reporting.record(cv.Reporting.CONFIG, cv.Config.configSuffix, xml);
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
           this.configError("parsererror");
@@ -255,7 +253,7 @@ qx.Class.define("cv.Application",
           cv.data.Model.getInstance().resetAddressList();
         } else {
           // loaded cache is still valid
-          cv.Reporting.logCache();
+          cv.report.Record.logCache();
           cv.Config.cacheUsed = true;
           cv.Config.lazyLoading = true;
           engine.initBackendClient();

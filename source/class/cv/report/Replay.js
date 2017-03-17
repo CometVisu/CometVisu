@@ -22,14 +22,17 @@
  * Recording/Replay tool for user interactions on existing configs. Used for bug reproduction
  *
  * TODO:
- *  - python replay modul
- *  - weitere user events (slider, colorchooser)
- *  - weitere Daten (diagram RRD, RSS?)
+ * - qx.dev.FakeServer benutzen (auch für Config):
+ *  + Replay in extra Klasse, die nur in qx.debug benutzt wird, damit die Abh. nicht in den Build kommen
+ *  + Index der XHR-Requests mit speichern (in Long-Polling), bei SSE ggf. Mockup Client benutzen falls mit FakeServer nicht möglich
+ * - python replay modul
+ * - weitere user events (slider, colorchooser)
+ * - weitere Daten (diagram RRD, RSS?)
  *
  * @author Tobias Bräutigam
  * @since 0.11.0 (2017)
  */
-qx.Class.define('cv.Reporting', {
+qx.Class.define('cv.report.Replay', {
   extend: qx.core.Object,
   type: "singleton",
 
@@ -57,38 +60,14 @@ qx.Class.define('cv.Reporting', {
     REPLAYING: false,
     data: null,
 
-    prepareReplay: function(data) {
-      this.REPLAYING = true;
-      cv.Reporting.getInstance().prepareReplay(data);
+    prepare: function(data) {
+      cv.report.Record.REPLAYING = true;
+      cv.report.Replay.getInstance().prepare(data);
     },
 
-    startReplay: function() {
-      if (this.REPLAYING === true) {
-        cv.Reporting.getInstance().startReplay();
-      }
-    },
-
-    register: function(target, path, events) {
-      if (cv.Config.reporting === true && !cv.Reporting.REPLAYING) {
-        cv.Reporting.getInstance().register(target, path, events);
-      }
-    },
-
-    record: function(category, path, data) {
-      if (cv.Config.reporting === true && !cv.Reporting.REPLAYING) {
-        cv.Reporting.getInstance().record(category, path, data);
-      }
-    },
-
-    /**
-     * Save cache in
-     */
-    logCache: function() {
-      if (cv.Config.reporting === true && !cv.Reporting.REPLAYING) {
-        cv.Reporting.record(cv.Reporting.CACHE, cv.Config.configSuffix, {
-          data: cv.ConfigCache.getData(),
-          body: cv.ConfigCache.getBody()
-        });
+    start: function() {
+      if (cv.report.Record.REPLAYING === true) {
+        cv.report.Replay.getInstance().start();
       }
     }
   },
@@ -101,92 +80,24 @@ qx.Class.define('cv.Reporting', {
   members: {
     __start: null,
     __log: null,
-    __cache: null,
-    __config: null,
-    __listeners: null,
     __client: null,
 
-    //---------------------------------------------------------------
-    // Recording stuff
-    //---------------------------------------------------------------
-
-    register: function(target, path, events) {
-      var lid;
-      var Reg = qx.event.Registration;
-
-      events.forEach(function(event) {
-        lid = Reg.addListener(target, event, qx.lang.Function.curry(this._onEvent, path), this);
-      }, this);
-    },
-
-    _onEvent: function(path, ev) {
-      this.record(cv.Reporting.USER, path, ev.getType());
-    },
-
-    record: function(category, path, data) {
-      if (category === cv.Reporting.CACHE) {
-        this.__cache = data;
-      } else if (category === cv.Reporting.CONFIG) {
-        this.__config = data;
-      } else {
-        this.__log.push({
-          c: category,
-          t: Date.now(),
-          i: path,
-          d: data
-        });
-      }
-    },
-
-    /**
-     * Download Log as file
-     */
-    download: function() {
-
-      var data = {
-        cache: this.__cache,
-        start: this.__start,
-        config: this.__config.xml ? this.__config.xml : (new XMLSerializer()).serializeToString(this.__config),
-        log: this.__log,
-        configSuffix: cv.Config.configSuffix
-      };
-
-      var d = new Date();
-
-      var a = window.document.createElement('a');
-      a.href = window.URL.createObjectURL(new Blob(["var replayLog = "+qx.lang.Json.stringify(data)+";"], {type: 'application/json'}));
-      a.download = 'CometVisu-replay-'+d.toISOString()+'.log';
-
-      // Append anchor to body.
-      document.body.appendChild(a);
-      a.click();
-
-      // Remove anchor from body
-      document.body.removeChild(a);
-    },
-
-    getConfig: function() {
-      return this.__config;
-    },
-
-    //---------------------------------------------------------------
-    // Replaying stuff
-    //---------------------------------------------------------------
-
-    prepareReplay: function(data) {
+    prepare: function(data) {
       cv.Config.configSuffix = data.configSuffix;
       this.__start = data.start;
       this.__log = data.log;
       this.__config = qx.xml.Document.fromString(data.config);
       localStorage.setItem(cv.Config.configSuffix+".body", data.cache.body);
       localStorage.setItem(cv.Config.configSuffix+".data", qx.lang.Json.stringify(data.cache.data));
+
+      cv.report.utils.FakeServer.init(data.xhr);
     },
 
     /**
      * Start replaying the given data
      * @param data {Map}
      */
-    startReplay: function() {
+    start: function() {
       this.__replay(0);
     },
 
@@ -199,20 +110,19 @@ qx.Class.define('cv.Reporting', {
         return;
       }
       var delay = this.__log[index+1].t - (index === 0 ? this.__start : this.__log[index].t);
-      console.log(delay);
       qx.event.Timer.once(function() {
         this.__replay(index+1);
       }, this, delay);
     },
 
     __dispatchRecord: function(record) {
-      console.log("replay "+record.c+" event");
       switch (record.c) {
-        case cv.Reporting.BACKEND:
+
+        case cv.report.Record.BACKEND:
 
           this.__dispatchBackendRecord(record);
           break;
-        case cv.Reporting.USER:
+        case cv.report.Record.USER:
           var widget = cv.ui.structure.WidgetFactory.getInstanceById(record.i);
           if (!widget) {
             this.error("widget with id "+record.i+" not found");
@@ -224,9 +134,7 @@ qx.Class.define('cv.Reporting', {
           event.setTarget(widget.getInteractionElement());
           qx.event.Registration.dispatchEvent(widget.getInteractionElement(), event);
           break;
-        case cv.Reporting.CONFIG:
-          // todo
-          break;
+
         default:
           this.error("replaying of category "+record.c+" no implemented");
           break;
@@ -237,7 +145,11 @@ qx.Class.define('cv.Reporting', {
       var client = this.__getClient();
       switch (record.i) {
         case "read":
-          this.__client.receive(qx.lang.Json.parse(record.d));
+          if (this.__client.getCurrentTransport() instanceof cv.io.transport.Sse) {
+            this.__client.getCurrentTransport().handleMessage({data: record.d});
+          } else {
+            this.error("long-polling transport should not record 'backend' log events. Skip replaying");
+          }
           break;
         default:
           if (client[record.i]) {

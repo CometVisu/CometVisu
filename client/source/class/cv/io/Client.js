@@ -421,7 +421,6 @@ qx.Class.define('cv.io.Client', {
      */
     handleLogin : function (ev) {
       var json = this.getResponse(ev);
-      this.record("handleLogin", [json]);
       // read backend configuration if send by backend
       if (json.c) {
         this.setBackend(qx.lang.Object.mergeWith(this.getBackend(), json.c));
@@ -484,7 +483,6 @@ qx.Class.define('cv.io.Client', {
        */
       var ts = new Date().getTime();
       var url = qx.util.Uri.appendParamsToUrl(this.getResourcePath("write"), 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts);
-      this.record("write", [address, value]);
       this.doRequest(url, null, null, null, {
         accept: "application/json, text/javascript, */*; q=0.01"
       });
