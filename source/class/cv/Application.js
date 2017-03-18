@@ -90,7 +90,7 @@ qx.Class.define("cv.Application",
      */
     main : function() {
       if (qx.core.Environment.get("qx.debug")) {
-        if (replayLog) {
+        if (typeof replayLog !== "undefined" && replayLog) {
           cv.report.Replay.prepare(replayLog);
         }
       }
