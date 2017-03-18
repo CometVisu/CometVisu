@@ -81,21 +81,25 @@ qx.Class.define('cv.report.Record', {
 
         // add scroll listeners to all pages
         qx.event.message.Bus.subscribe("setup.dom.finished", function() {
+          var throttled = qx.util.Function.throttle(record.recordScroll, 250, true);
           qx.bom.Selector.query("#pages > .page").forEach(function (page) {
-            console.log("register scroll listener on page");
-            Reg.addListener(page, "scroll", qx.util.Function.throttle(record.recordScroll, 250, true), record);
+            Reg.addListener(page, "scroll", throttled, record);
           }, this);
         }, this);
 
         // save browser settings
         var req = qx.util.Uri.parseUri(window.location.href);
+        var Env = qx.core.Environment;
         var runtime = {
-          browserName: qx.bom.client.Browser.getName(),
-          browserVersion: qx.bom.client.Browser.getVersion(),
-          deviceName: qx.bom.client.Device.getName(),
-          deviceType: qx.bom.client.Device.getType(),
-          pixelRatio: qx.bom.client.Device.getDevicePixelRatio(),
-          touch: qx.bom.client.Device.getTouch(),
+          browserName: Env.get("browser.name"),
+          browserVersion: Env.get("browser.version"),
+          deviceName: Env.get("device.name"),
+          deviceType: Env.get("device.type"),
+          pixelRatio: Env.get("device.pixelRation"),
+          touch: Env.get("device.touch"),
+          osName: Env.get("os.name"),
+          osVersion: Env.get("os.version"),
+          build: Env.get("cv.build"),
           locale: qx.bom.client.Locale.getLocale(),
           cv: {},
           width: qx.bom.Viewport.getWidth(),

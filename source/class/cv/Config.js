@@ -218,7 +218,6 @@ qx.Class.define('cv.Config', {
 
   defer: function(statics) {
     var req = qx.util.Uri.parseUri(window.location.href);
-    console.log(req);
 
     if (req.queryKey.enableQueue) {
       cv.Config.enableAddressQueue = true;

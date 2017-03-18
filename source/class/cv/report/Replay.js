@@ -94,7 +94,7 @@ qx.Class.define('cv.report.Replay', {
         localStorage.setItem(cv.Config.configSuffix + ".body", log.data.cache.body);
         localStorage.setItem(cv.Config.configSuffix + ".data", qx.lang.Json.stringify(log.data.cache.data));
       }
-      cv.report.utils.FakeServer.init(log.xhr);
+      cv.report.utils.FakeServer.init(log.xhr, this.__data.runtime.build);
     },
 
     /**

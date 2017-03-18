@@ -12,14 +12,27 @@ qx.Class.define("cv.report.utils.FakeServer", {
     _responseDelays: [],
     _index : 0,
 
-    init: function (log) {
+    init: function (log, build) {
+
+      var prependResourcePath = null;
+      if (build !== qx.core.Environment.get("cv.build")) {
+        // the log has not been recorded in the same build as is is replayed, some paths must be adjusted
+        if (build === "build") {
+          // map from build to source
+          prependResourcePath = "../source/";
+        }
+      }
 
       // split by URI
       log.response.forEach(function (entry) {
-        if (!this._xhr[entry.url]) {
-          this._xhr[entry.url] = [];
+        var url = entry.url;
+        if (prependResourcePath && url.startsWith("resource/")) {
+          url = prependResourcePath+url;
         }
-        this._xhr[entry.url].push(entry);
+        if (!this._xhr[url]) {
+          this._xhr[url] = [];
+        }
+        this._xhr[url].push(entry);
         this._responseDelays.push(entry.delay);
       }, this);
 
