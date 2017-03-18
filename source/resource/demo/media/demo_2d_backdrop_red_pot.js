@@ -18,4 +18,3 @@ client.update = function(json ) // overload the handler
   
 client.user = 'demo_user'; // example for setting a user
 client.subscribe( [thisGA] );
-client.login();

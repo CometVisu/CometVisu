@@ -152,7 +152,8 @@ qx.Class.define('cv.report.Record', {
         start: this.__start,
         xhr: this.__xhr,
         log: this.__log,
-        configSuffix: cv.Config.configSuffix
+        configSuffix: cv.Config.configSuffix,
+        end: Date.now()
       };
 
       var d = new Date();

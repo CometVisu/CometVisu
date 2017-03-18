@@ -22,10 +22,9 @@
  * Recording/Replay tool for user interactions on existing configs. Used for bug reproduction
  *
  * TODO:
- * - qx.dev.FakeServer benutzen (auch für Config):
- *  + Replay in extra Klasse, die nur in qx.debug benutzt wird, damit die Abh. nicht in den Build kommen
- *  + Index der XHR-Requests mit speichern (in Long-Polling), bei SSE ggf. Mockup Client benutzen falls mit FakeServer nicht möglich
- * - python replay modul
+ * - Progressbar + Laufzeitangabe
+ * - Browser-Daten speichern (Fenstergröße, user-agent, name)
+ * - python replay modul (server starten, browser starten, ggf. passende revision auschecken usw.)
  * - weitere user events (slider, colorchooser)
  * - weitere Daten (diagram RRD, RSS?)
  *
@@ -79,37 +78,47 @@ qx.Class.define('cv.report.Replay', {
   */
   members: {
     __start: null,
+    __end: null,
     __log: null,
     __client: null,
 
     prepare: function(data) {
       cv.Config.configSuffix = data.configSuffix;
       this.__start = data.start;
+      this.__end = data.end;
       this.__log = data.log;
       this.__config = qx.xml.Document.fromString(data.config);
-      localStorage.setItem(cv.Config.configSuffix+".body", data.cache.body);
-      localStorage.setItem(cv.Config.configSuffix+".data", qx.lang.Json.stringify(data.cache.data));
-
+      if (data.cache) {
+        localStorage.setItem(cv.Config.configSuffix + ".body", data.cache.body);
+        localStorage.setItem(cv.Config.configSuffix + ".data", qx.lang.Json.stringify(data.cache.data));
+      }
       cv.report.utils.FakeServer.init(data.xhr);
     },
 
     /**
      * Start replaying the given data
-     * @param data {Map}
      */
     start: function() {
-      this.__replay(0);
+      var runtime = Math.round((this.__end - this.__start)/1000);
+      console.log("Replay time: "+Math.floor(runtime/60)+":"+ qx.lang.String.pad(""+(runtime  % 60), 2, "0"));
+      var delay = this.__log[0].t - this.__start;
+      qx.event.Timer.once(function() {
+        this.__replay(0);
+      }, this, delay);
     },
 
     __replay: function(index) {
       var record = this.__log[index];
       this.__dispatchRecord(record);
       if (this.__log.length === index + 1) {
-        this.info("Replay finished");
-        qx.bom.Notification.getInstance().show("Replay", "Replay finished");
+        this.info("All log events have been played, waiting till end of recording time");
+        qx.event.Timer.once(function() {
+          qx.bom.Notification.getInstance().show("Replay", "Replay finished");
+          cv.io.Client.stopAll();
+        }, this, this.__end - this.__log[index].t);
         return;
       }
-      var delay = this.__log[index+1].t - (index === 0 ? this.__start : this.__log[index].t);
+      var delay = this.__log[index+1].t - this.__log[index].t;
       qx.event.Timer.once(function() {
         this.__replay(index+1);
       }, this, delay);

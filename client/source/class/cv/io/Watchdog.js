@@ -55,6 +55,7 @@ qx.Class.define("cv.io.Watchdog", {
   members: {
     last: null,
     hardLast: null,
+    __id: null,
 
     aliveCheckFunction: function () {
       var now = new Date();
@@ -66,7 +67,14 @@ qx.Class.define("cv.io.Watchdog", {
     },
 
     start: function (watchdogTimer) {
-      setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
+      this.__id = setInterval(this.aliveCheckFunction.bind(this), watchdogTimer * 1000);
+    },
+
+    stop: function() {
+      if (this.__id) {
+        clearInterval(this.__id);
+        this.__id = null;
+      }
     },
 
     ping: function (fullReload) {

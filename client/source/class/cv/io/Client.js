@@ -425,9 +425,8 @@ qx.Class.define('cv.io.Client', {
       if (json.c) {
         this.setBackend(qx.lang.Object.mergeWith(this.getBackend(), json.c));
       }
-      if (json.s) {
-        this.session = json.s;
-      }
+      this.session = json.s || "SESSION";
+
       this.setDataReceived(false);
       if (this.loginSettings.loginOnly) {
         this.getCurrentTransport().handleSession(ev, false);
@@ -454,6 +453,7 @@ qx.Class.define('cv.io.Client', {
         this.getCurrentTransport().abort();
       }
       this.loginSettings.loggedIn = false;
+      this.watchdog.stop();
     },
 
     /**
@@ -503,5 +503,14 @@ qx.Class.define('cv.io.Client', {
      * @param data {Object} data to record
      */
     record: function(type, data) {}  // jshint ignore:line
+  },
+
+  /*
+  ******************************************************
+    DESTRUCTOR
+  ******************************************************
+  */
+  destruct: function() {
+    this.stop();
   }
 });

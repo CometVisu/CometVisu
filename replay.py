@@ -24,7 +24,7 @@ import os
 def prepare_replay(file):
     with open(os.path.join("source", "replay-log.js"), "w") as target:
         with open(file) as source:
-            target.write("var replayLog = %s" % source.read())
+            target.write("var replayLog = %s;" % source.read())
 
 
 if __name__ == '__main__':
