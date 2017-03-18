@@ -19,12 +19,10 @@
 
 
 /**
- * Recording/Replay tool for user interactions on existing configs. Used for bug reproduction
+ * Replay tool for user interactions on existing configs. Used for bug reproduction
  *
  * TODO:
  * - Progressbar + Laufzeitangabe
- * - Browser-Daten speichern (Fenstergröße, user-agent, name)
- * - python replay modul (server starten, browser starten, ggf. passende revision auschecken usw.)
  * - weitere user events (slider, colorchooser)
  * - weitere Daten (diagram RRD, RSS?)
  *
@@ -81,18 +79,20 @@ qx.Class.define('cv.report.Replay', {
     __end: null,
     __log: null,
     __client: null,
+    __data: null,
 
-    prepare: function(data) {
-      cv.Config.configSuffix = data.configSuffix;
-      this.__start = data.start;
-      this.__end = data.end;
-      this.__log = data.log;
-      this.__config = qx.xml.Document.fromString(data.config);
-      if (data.cache) {
-        localStorage.setItem(cv.Config.configSuffix + ".body", data.cache.body);
-        localStorage.setItem(cv.Config.configSuffix + ".data", qx.lang.Json.stringify(data.cache.data));
+    prepare: function(log) {
+      cv.Config.configSuffix = log.configSuffix;
+      this.__start = log.start;
+      this.__end = log.end;
+      this.__log = log.log;
+      this.__data = log.data;
+      this.__config = qx.xml.Document.fromString(log.config);
+      if (log.data.cache) {
+        localStorage.setItem(cv.Config.configSuffix + ".body", log.data.cache.body);
+        localStorage.setItem(cv.Config.configSuffix + ".data", qx.lang.Json.stringify(log.data.cache.data));
       }
-      cv.report.utils.FakeServer.init(data.xhr);
+      cv.report.utils.FakeServer.init(log.xhr);
     },
 
     /**
@@ -128,20 +128,42 @@ qx.Class.define('cv.report.Replay', {
       switch (record.c) {
 
         case cv.report.Record.BACKEND:
-
           this.__dispatchBackendRecord(record);
           break;
+
+        case cv.report.Record.SCREEN:
+          // most browsers do not allow resizing the window
+          console.log("resize event received "+record.d);
+          window.resizeTo(record.d.w, record.d.h);
+          break;
+
         case cv.report.Record.USER:
-          var widget = cv.ui.structure.WidgetFactory.getInstanceById(record.i);
-          if (!widget) {
-            this.error("widget with id "+record.i+" not found");
+          var target;
+          if (/^id_([0-9_]+)?$/.test(record.i)) {
+            var widget = cv.ui.structure.WidgetFactory.getInstanceById(record.i);
+            if (!widget) {
+              this.error("widget with id " + record.i + " not found");
+              return;
+            }
+            target = widget.getInteractionElement();
+          } else {
+            // muss be an CSS selector
+            target = qx.bom.Selector.query(record.i)[0];
+            if (record.i.indexOf("breadcrump_pagejump_") >= 0) {
+              // simple clickable links use builtin click method
+              target.click();
+              return;
+            }
+          }
+          if (!target) {
+            this.error("no target found for path " + record.i);
             return;
           }
           var event = new qx.event.type.Event();
           event.init(true, true);
           event.setType(record.d);
-          event.setTarget(widget.getInteractionElement());
-          qx.event.Registration.dispatchEvent(widget.getInteractionElement(), event);
+          event.setTarget(target);
+          qx.event.Registration.dispatchEvent(target, event);
           break;
 
         default:

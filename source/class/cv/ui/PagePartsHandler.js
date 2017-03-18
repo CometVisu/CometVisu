@@ -59,18 +59,26 @@ qx.Class.define('cv.ui.PagePartsHandler', {
       path = path.split('_'); path.pop();
       var id = "id_"; //path[0];
       var pageTitle = qx.bom.Selector.query("#"+id+" h1")[0].textContent;
-      var nav = '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')">' +
+      var nav = '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')" id="breadcrump_pagejump_'+id+'">' +
         pageTitle + '</a>';
       for (var i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
         id += path[i] + '_';
         if (qx.bom.element.Class.has(qx.bom.Selector.query("#"+id)[0], "page")) { // FIXME is this still needed?!?
           pageTitle = qx.bom.Selector.query("#"+id+" h1")[0].textContent;
           nav += '<span> &#x25ba; </span>' +
-            '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')">' +
+            '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')" id="breadcrump_pagejump_'+id+'">' +
             pageTitle + '</a>';
         }
       }
       qx.bom.Selector.query(".nav_path")[0].innerHTML = nav;
+
+      if (cv.Config.reporting === true) {
+        // register listeners to elements
+        qx.bom.Selector.query(".nav_path > a").forEach(function(elem) {
+          var path = qx.bom.element.Attribute.get(elem, "id");
+          cv.report.Record.register(elem, "#"+path, ["tap"]);
+        });
+      }
       // cv.TemplateEngine.getInstance().handleResize(); - TODO CM160528: why? This shouldn't have
       //                             any effect on the page size => commented out
     },

@@ -19,13 +19,120 @@
 
 import sys
 import os
+import sh
+from argparse import ArgumentParser
+import threading
+import socket
+import errno
+import json
+import shutil
+
+try:
+    # Python 2.x
+    from SocketServer import ThreadingMixIn
+    from SimpleHTTPServer import SimpleHTTPRequestHandler
+    from BaseHTTPServer import HTTPServer
+except ImportError:
+    # Python 3.x
+    from socketserver import ThreadingMixIn
+    from http.server import SimpleHTTPRequestHandler, HTTPServer
+
+
+class ThreadingSimpleServer(ThreadingMixIn, HTTPServer):
+    """ threadable HTTPServer """
+    pass
+
+
+class MutedHttpRequestHandler(SimpleHTTPRequestHandler):
+    """ Mute the log messages """
+    def log_message(self, format, *args):
+        pass
 
 
 def prepare_replay(file):
     with open(os.path.join("source", "replay-log.js"), "w") as target:
         with open(file) as source:
-            target.write("var replayLog = %s;" % source.read())
+            data = source.read()
+            target.write('var replayLog = %s;' % data)
 
+            return json.loads(data)["data"]["runtime"]
+
+
+def start_browser(url, browser="chrome", size="1024,768", open_devtools=False):
+    print("Starting browser %s..." % browser)
+
+    user_dir = os.getcwd()+"/."+browser
+
+    try:
+        shutil.rmtree(user_dir)
+    except OSError:
+        pass
+
+    if browser == "chrome":
+        flags = [
+            "--no-first-run", "--disk-cache-dir=/dev/null",
+            "--disk-cache-size=1", "--window-size=%s" % size,
+            "--user-data-dir=%s" % user_dir, "--disable-popup-blocking",
+            "--media-cache-size=1"
+        ]
+        if open_devtools is True:
+            flags.append("--auto-open-devtools-for-tabs")
+
+        flags.append("--app=%s" % url)
+        sh.google_chrome(*flags)
+    else:
+        print("browser %s not yet supported" % browser)
+
+
+def get_server(host="", port=9000, next_attempts=0):
+    while next_attempts >= 0:
+        try:
+            server = ThreadingSimpleServer((host, port), MutedHttpRequestHandler)
+            return server, port
+        except socket.error as e:
+            if e.errno == errno.EADDRINUSE:
+                next_attempts -= 1
+                port += 1
+            else:
+                raise
 
 if __name__ == '__main__':
-    prepare_replay(sys.argv[1])
+    parser = ArgumentParser(usage="%(prog)s - CometVisu documentation helper commands")
+
+    parser.add_argument('file', type=str, help='log file')
+    options, unknown = parser.parse_known_args()
+
+    settings = prepare_replay(sys.argv[1])
+    window_size = "%s,%s" % (settings["width"], settings["height"])
+    browser_name = settings["browserName"] if settings["browserName"] is not None else "chrome"
+
+    print("Replaying log recorded with CometVisu:")
+    print("  Branch:   %s" % settings["cv"]["BRANCH"])
+    print("  Revision: %s" % settings["cv"]["REV"])
+    print("  Version:  %s" % settings["cv"]["VERSION"])
+    print("  Date:     %s" % settings["cv"]["DATE"])
+    print("")
+
+    print("Stop with Strg + c")
+    print("")
+
+    hostname = ""
+    port = 9000
+
+    # start server
+    server, port = get_server(hostname, port, 10)
+
+    try:
+        thread = threading.Thread(target=server.serve_forever)
+        thread.start()
+
+        # open browser
+        start_browser("http://localhost:%s/source/replay.html" % port, browser=browser_name, size=window_size)
+
+        while thread.isAlive():
+            thread.join(1)
+
+    except (KeyboardInterrupt, SystemExit):
+        print("aborted")
+        server.shutdown()
+        sys.exit()

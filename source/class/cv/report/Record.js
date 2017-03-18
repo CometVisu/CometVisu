@@ -19,13 +19,8 @@
 
 
 /**
- * Recording/Replay tool for user interactions on existing configs. Used for bug reproduction
- *
- * TODO:
- * - python replay modul
- * - weitere user events (slider, colorchooser)
- * - weitere Daten (diagram RRD, RSS?)
- *
+ * Recording tool for user interactions on existing configs. Used for bug reproduction.
+
  * @author Tobias Bräutigam
  * @since 0.11.0 (2017)
  */
@@ -43,6 +38,7 @@ qx.Class.define('cv.report.Record', {
     this.__listeners = {};
     this.__start = Date.now();
     this.__xhr = { response: [], request:[] };
+    this.__data = {};
   },
 
   /*
@@ -56,6 +52,8 @@ qx.Class.define('cv.report.Record', {
     USER: "user",
     CACHE: "cache",
     XHR: "xhr",
+    SCREEN: "screen",
+    RUNTIME: "runtime",
     REPLAYING: false,
     data: null,
 
@@ -63,6 +61,37 @@ qx.Class.define('cv.report.Record', {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
         // patch XHR
         qx.Class.patch(qx.io.request.Xhr, cv.report.utils.MXhrHook);
+
+        // add resize listener
+        qx.event.Registration.addListener(window, "resize", function() {
+          this.record(this.SCREEN, "resize", {
+            w: qx.bom.Viewport.getWidth(),
+            h: qx.bom.Viewport.getHeight()
+          });
+        }, this);
+
+        // save browser settings
+        var runtime = {
+          browserName: qx.bom.client.Browser.getName(),
+          browserVersion: qx.bom.client.Browser.getVersion(),
+          deviceName: qx.bom.client.Device.getName(),
+          deviceType: qx.bom.client.Device.getType(),
+          pixelRatio: qx.bom.client.Device.getDevicePixelRatio(),
+          touch: qx.bom.client.Device.getTouch(),
+          locale: qx.bom.client.Locale.getLocale(),
+          cv: {},
+          width: qx.bom.Viewport.getWidth(),
+          height: qx.bom.Viewport.getHeight()
+        };
+
+        // save CometVisu build information
+        Object.getOwnPropertyNames(cv.Version).forEach(function(name) {
+          if (/^[A-Z]+$/.test(name)) {
+            runtime.cv[name] = cv.Version[name];
+          }
+        });
+
+        this.record(this.RUNTIME, "config", runtime);
       }
     },
 
@@ -110,8 +139,8 @@ qx.Class.define('cv.report.Record', {
     __start: null,
     __log: null,
     __xhr: null,
-    __cache: null,
     __listeners: null,
+    __data: null,
 
     register: function(target, path, events) {
       var lid;
@@ -127,18 +156,25 @@ qx.Class.define('cv.report.Record', {
     },
 
     record: function(category, path, data) {
-      if (category === cv.report.Record.CACHE) {
-        this.__cache = data;
-      } else if (category === cv.report.Record.XHR) {
-        data.t = Date.now();
-        this.__xhr[path].push(data);
-      } else {
-        this.__log.push({
-          c: category,
-          t: Date.now(),
-          i: path,
-          d: data
-        });
+      switch (category) {
+
+        case cv.report.Record.XHR:
+          data.t = Date.now();
+          this.__xhr[path].push(data);
+          break;
+
+        case cv.report.Record.CACHE:
+        case cv.report.Record.RUNTIME:
+          this.__data[category] = data;
+          break;
+
+        default:
+          this.__log.push({
+            c: category,
+            t: Date.now(),
+            i: path,
+            d: data
+          });
       }
     },
 
@@ -148,7 +184,7 @@ qx.Class.define('cv.report.Record', {
     download: function() {
 
       var data = {
-        cache: this.__cache,
+        data: this.__data,
         start: this.__start,
         xhr: this.__xhr,
         log: this.__log,
