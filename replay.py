@@ -105,6 +105,7 @@ if __name__ == '__main__':
     settings = prepare_replay(sys.argv[1])
     window_size = "%s,%s" % (settings["width"], settings["height"])
     browser_name = settings["browserName"] if settings["browserName"] is not None else "chrome"
+    anchor = "#%s" % settings["anchor"] if settings["anchor"] is not None else ""
 
     print("Replaying log recorded with CometVisu:")
     print("  Branch:   %s" % settings["cv"]["BRANCH"])
@@ -127,7 +128,7 @@ if __name__ == '__main__':
         thread.start()
 
         # open browser
-        start_browser("http://localhost:%s/source/replay.html" % port, browser=browser_name, size=window_size)
+        start_browser("http://localhost:%s/source/replay.html%s" % (port, anchor), browser=browser_name, size=window_size)
 
         while thread.isAlive():
             thread.join(1)

@@ -63,9 +63,10 @@ qx.Class.define('cv.report.Record', {
         qx.Class.patch(qx.io.request.Xhr, cv.report.utils.MXhrHook);
 
         var record = cv.report.Record.getInstance();
+        var Reg = qx.event.Registration;
 
         // add resize listener
-        qx.event.Registration.addListener(window, "resize", function() {
+        Reg.addListener(window, "resize", function() {
           this.record(this.SCREEN, "resize", {
             w: qx.bom.Viewport.getWidth(),
             h: qx.bom.Viewport.getHeight()
@@ -73,12 +74,21 @@ qx.Class.define('cv.report.Record', {
         }, this);
 
         // capture mouse cursor
-        qx.event.Registration.addListener(document.body, "pointermove",
+        Reg.addListener(document.body, "pointermove",
           qx.util.Function.throttle(record.recordPointer, 500, true), record);
-        qx.event.Registration.addListener(document.body, "pointerdown", record.recordPointer, record);
-        qx.event.Registration.addListener(document.body, "pointerup", record.recordPointer, record);
+        Reg.addListener(document.body, "pointerdown", record.recordPointer, record);
+        Reg.addListener(document.body, "pointerup", record.recordPointer, record);
+
+        // add scroll listeners to all pages
+        qx.event.message.Bus.subscribe("setup.dom.finished", function() {
+          qx.bom.Selector.query("#pages > .page").forEach(function (page) {
+            console.log("register scroll listener on page");
+            Reg.addListener(page, "scroll", qx.util.Function.throttle(record.recordScroll, 250, true), record);
+          }, this);
+        }, this);
 
         // save browser settings
+        var req = qx.util.Uri.parseUri(window.location.href);
         var runtime = {
           browserName: qx.bom.client.Browser.getName(),
           browserVersion: qx.bom.client.Browser.getVersion(),
@@ -89,7 +99,8 @@ qx.Class.define('cv.report.Record', {
           locale: qx.bom.client.Locale.getLocale(),
           cv: {},
           width: qx.bom.Viewport.getWidth(),
-          height: qx.bom.Viewport.getHeight()
+          height: qx.bom.Viewport.getHeight(),
+          anchor: req.anchor
         };
 
         // save CometVisu build information
@@ -206,6 +217,18 @@ qx.Class.define('cv.report.Record', {
       };
 
       this.record(cv.report.Record.USER, "pointer", data);
+    },
+
+    recordScroll: function(ev) {
+      var page = ev.getTarget();
+      var path = qx.bom.element.Attribute.get(page, "id");
+      var data = {
+        type: ev.getType(),
+        page: path,
+        x: page.scrollLeft,
+        y: page.scrollTop
+      };
+      this.record(cv.report.Record.USER, "scroll", data);
     },
 
     /**

@@ -141,24 +141,10 @@ qx.Class.define('cv.report.Replay', {
 
         case cv.report.Record.USER:
           if (record.i === "pointer") {
-            // simulate cursor
-            if (!this.__cursor) {
-              this.__cursor = qx.dom.Element.create("span", {
-                style: "position: absolute; transform: rotate(-40deg); font-size: 36px;"
-              });
-              qx.bom.element.Attribute.set(this.__cursor, "html", "&uarr;");
-              qx.dom.Element.insertEnd(this.__cursor, qx.bom.Selector.query("body")[0]);
-            }
-            qx.bom.element.Style.setStyles(this.__cursor, {top: record.d.y+"px", left: record.d.x+"px"});
-            switch(record.d.type) {
-              case "pointerdown":
-                qx.bom.element.Style.set(this.__cursor, "color", "red");
-                break;
-              case "pointerup":
-                qx.bom.element.Style.set(this.__cursor, "color", "white");
-                break;
-            }
-
+            this.__playPointerEvent(record);
+            return;
+          } else if (record.i === "scroll") {
+            this.__playScrollEvent(record);
             return;
           }
           var target;
@@ -191,6 +177,32 @@ qx.Class.define('cv.report.Replay', {
 
         default:
           this.error("replaying of category "+record.c+" no implemented");
+          break;
+      }
+    },
+
+    __playScrollEvent: function(record) {
+      var elem = qx.bom.Selector.query("#"+record.d.page)[0];
+      elem.scrollTop = record.d.y;
+      elem.scrollLeft = record.d.x;
+    },
+
+    __playPointerEvent: function(record) {
+      // simulate cursor
+      if (!this.__cursor) {
+        this.__cursor = qx.dom.Element.create("span", {
+          style: "position: absolute; transform: rotate(-40deg); font-size: 36px;"
+        });
+        qx.bom.element.Attribute.set(this.__cursor, "html", "&uarr;");
+        qx.dom.Element.insertEnd(this.__cursor, qx.bom.Selector.query("body")[0]);
+      }
+      qx.bom.element.Style.setStyles(this.__cursor, {top: record.d.y+"px", left: record.d.x+"px"});
+      switch(record.d.type) {
+        case "pointerdown":
+          qx.bom.element.Style.set(this.__cursor, "color", "red");
+          break;
+        case "pointerup":
+          qx.bom.element.Style.set(this.__cursor, "color", "white");
           break;
       }
     },
