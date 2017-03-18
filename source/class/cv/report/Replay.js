@@ -149,14 +149,14 @@ qx.Class.define('cv.report.Replay', {
           } else {
             // muss be an CSS selector
             target = qx.bom.Selector.query(record.i)[0];
-            if (record.i.indexOf("breadcrump_pagejump_") >= 0) {
-              // simple clickable links use builtin click method
-              target.click();
-              return;
-            }
           }
           if (!target) {
             this.error("no target found for path " + record.i);
+            return;
+          }
+          if (record.o && record.o.fire === "click") {
+            // just use builtin click
+            target.click();
             return;
           }
           var event = new qx.event.type.Event();

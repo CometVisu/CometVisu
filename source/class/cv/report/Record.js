@@ -147,15 +147,20 @@ qx.Class.define('cv.report.Record', {
       var Reg = qx.event.Registration;
 
       events.forEach(function(event) {
-        lid = Reg.addListener(target, event, qx.lang.Function.curry(this._onEvent, path), this);
+        var options = {};
+        if (event === "click") {
+          options.fire = "click";
+          event = "tap";
+        }
+        lid = Reg.addListener(target, event, qx.lang.Function.curry(this._onEvent, path, options), this);
       }, this);
     },
 
-    _onEvent: function(path, ev) {
-      this.record(cv.report.Record.USER, path, ev.getType());
+    _onEvent: function(path, options, ev) {
+      this.record(cv.report.Record.USER, path, ev.getType(), options);
     },
 
-    record: function(category, path, data) {
+    record: function(category, path, data, options) {
       switch (category) {
 
         case cv.report.Record.XHR:
@@ -173,7 +178,8 @@ qx.Class.define('cv.report.Record', {
             c: category,
             t: Date.now(),
             i: path,
-            d: data
+            d: data,
+            o: options
           });
       }
     },
