@@ -62,6 +62,8 @@ qx.Class.define('cv.report.Record', {
         // patch XHR
         qx.Class.patch(qx.io.request.Xhr, cv.report.utils.MXhrHook);
 
+        var record = cv.report.Record.getInstance();
+
         // add resize listener
         qx.event.Registration.addListener(window, "resize", function() {
           this.record(this.SCREEN, "resize", {
@@ -69,6 +71,12 @@ qx.Class.define('cv.report.Record', {
             h: qx.bom.Viewport.getHeight()
           });
         }, this);
+
+        // capture mouse cursor
+        qx.event.Registration.addListener(document.body, "pointermove",
+          qx.util.Function.throttle(record.recordPointer, 500, true), record);
+        qx.event.Registration.addListener(document.body, "pointerdown", record.recordPointer, record);
+        qx.event.Registration.addListener(document.body, "pointerup", record.recordPointer, record);
 
         // save browser settings
         var runtime = {
@@ -188,6 +196,16 @@ qx.Class.define('cv.report.Record', {
             o: options
           });
       }
+    },
+
+    recordPointer: function(ev) {
+      var data = {
+        type: ev.getType(),
+        x: ev.getDocumentLeft(),
+        y: ev.getDocumentTop()
+      };
+
+      this.record(cv.report.Record.USER, "pointer", data);
     },
 
     /**

@@ -81,6 +81,8 @@ qx.Class.define('cv.report.Replay', {
     __client: null,
     __data: null,
 
+    __cursor: null,
+
     prepare: function(log) {
       cv.Config.configSuffix = log.configSuffix;
       this.__start = log.start;
@@ -138,6 +140,27 @@ qx.Class.define('cv.report.Replay', {
           break;
 
         case cv.report.Record.USER:
+          if (record.i === "pointer") {
+            // simulate cursor
+            if (!this.__cursor) {
+              this.__cursor = qx.dom.Element.create("span", {
+                style: "position: absolute; transform: rotate(-40deg); font-size: 36px;"
+              });
+              qx.bom.element.Attribute.set(this.__cursor, "html", "&uarr;");
+              qx.dom.Element.insertEnd(this.__cursor, qx.bom.Selector.query("body")[0]);
+            }
+            qx.bom.element.Style.setStyles(this.__cursor, {top: record.d.y+"px", left: record.d.x+"px"});
+            switch(record.d.type) {
+              case "pointerdown":
+                qx.bom.element.Style.set(this.__cursor, "color", "red");
+                break;
+              case "pointerup":
+                qx.bom.element.Style.set(this.__cursor, "color", "white");
+                break;
+            }
+
+            return;
+          }
           var target;
           if (/^id_([0-9_]+)?$/.test(record.i)) {
             var widget = cv.ui.structure.WidgetFactory.getInstanceById(record.i);
