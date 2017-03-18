@@ -127,6 +127,12 @@ qx.Class.define('cv.report.Record', {
         url = url.replace(/[\?|&]ts=[0-9]+/, "");
       }
       return url;
+    },
+
+    download: function() {
+      if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
+        cv.report.Record.getInstance().download();
+      }
     }
   },
 
@@ -211,5 +217,10 @@ qx.Class.define('cv.report.Record', {
       // Remove anchor from body
       document.body.removeChild(a);
     }
+  },
+
+  defer: function(statics) {
+    // install shortcut for downloading
+    window.downloadLog = statics.download;
   }
 });
