@@ -224,7 +224,7 @@ qx.Class.define('cv.report.Record', {
       var nativeEvent = ev.getNativeEvent();
       var data = {
         type: ev.getType(),
-        native: {
+        "native": {
           button: nativeEvent.button,
           clientX: Math.round(nativeEvent.clientX),
           clientY: Math.round(nativeEvent.clientY),
