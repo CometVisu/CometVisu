@@ -356,7 +356,8 @@
           "sprintf",
           "Sunlight",
           "replayLog"
-        ]
+        ],
+        "generate-widget-examples": true
       },
 
       "add-script" : [
