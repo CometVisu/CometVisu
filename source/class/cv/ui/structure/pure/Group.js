@@ -115,6 +115,11 @@ qx.Class.define('cv.ui.structure.pure.Group', {
       }
     },
 
+    // overridden, group has no actor
+    getActor: function() {
+      return this.getDomElement();
+    },
+
     // overridden
     _onDomReady: function() {
       this.base(arguments);
