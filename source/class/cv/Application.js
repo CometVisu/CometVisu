@@ -41,6 +41,7 @@ qx.Class.define("cv.Application",
    */
   statics: {
     HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div><div id="message"></div>',
+    consoleCommands: [],
 
     /**
      * Client factory method -> create a client
@@ -53,6 +54,20 @@ qx.Class.define("cv.Application",
         return  new (Function.prototype.bind.apply(cv.io.Mockup, args)); // jshint ignore:line
       } else {
         return new (Function.prototype.bind.apply(cv.io.Client, args)); // jshint ignore:line
+      }
+    },
+
+    /**
+     * Register shortcuts to usefull commands the user can execute in the browser console
+     * @param shortcutName {String} command name used to install the command in the global namespace
+     * @param command {Function} command to execute
+     * @param help {String} some documentation about the command
+     */
+    registerConsoleCommand: function(shortcutName, command, help) {
+      // install command
+      if (!(shortcutName in window)) {
+        window[shortcutName] = command;
+        this.consoleCommands.push(shortcutName + "() - " + help);
       }
     }
   },
@@ -95,6 +110,29 @@ qx.Class.define("cv.Application",
         }
       }
       cv.report.Record.prepare();
+
+      var info = "\n"+
+        "   _____                     ___      ___\n"+
+        "  / ____|                   | \\ \\    / (_)\n"+
+        " | |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n"+
+        " | |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n"+
+        " | |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n"+
+        "  \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n"+
+        " -----------------------------------------------------------------------------------------\n"+
+        "\n"+
+        " (c) 2010-"+(new Date().getFullYear())+" Christian Mayer and the CometVisu contributers.\n"+
+        " Version: "+cv.Version.VERSION+"\n"+
+        "\n";
+
+      if (cv.Application.consoleCommands.length) {
+        info += " Available commands:\n"+
+          "    "+cv.Application.consoleCommands.join("\n    ")+"\n";
+      }
+
+      info += " -----------------------------------------------------------------------------------------\n\n";
+
+      console.log(info);
+
       if (qx.core.Environment.get("qx.aspects")) {
         qx.dev.Profile.stop();
         qx.dev.Profile.start();
