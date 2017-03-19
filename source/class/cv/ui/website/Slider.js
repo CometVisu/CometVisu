@@ -17,15 +17,30 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
  */
 
+//noinspection JSUnusedGlobalSymbols
 /**
  * Slider
  *
- * @author tobiasb
- * @since 2016
+ * @author Tobias Bräutigam
+ * @since 0.11.0 (2017)
  */
 
 qx.Class.define('cv.ui.website.Slider', {
   extend: qx.ui.website.Slider,
+
+  /*
+  ******************************************************
+    CONSTRUCTOR
+  ******************************************************
+  */
+  construct: function(actor, path) {
+    this.base(arguments, actor);
+    this.__path = path;
+    if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
+      this.__record = cv.report.Record.getInstance();
+    }
+  },
+
 
   /*
   ******************************************************
@@ -66,6 +81,14 @@ qx.Class.define('cv.ui.website.Slider', {
   ******************************************************
   */
   members: {
+    /**
+     * @type {String} path to the widget that contains this slider e.g. {cv.ui.structure.pure.Slide}
+     */
+    __path: null,
+    /**
+     * @type {cv.report.Record} reporting instance
+     */
+    __record: null,
     __pointerMoveEvent: null,
 
     // overridden
@@ -85,20 +108,36 @@ qx.Class.define('cv.ui.website.Slider', {
     },
 
     //overridden
+    _onPointerDown: function(e) {
+      this.base(arguments, e);
+      if (this.__record) {
+        this.__record.recordPointer("#" + this.__path + " ." + this.getCssPrefix() + "-knob", e);
+      }
+    },
+
+    //overridden
     _onPointerMove : function(e) {
       this.__pointerMoveEvent = true;
       this.base(arguments, e);
+      if (this.__record) {
+        this.__record.recordPointer("document.documentElement", e);
+      }
     },
 
     // overridden
     _onSliderPointerUp: function(e) {
       this.__pointerMoveEvent = false;
       this.base(arguments, e);
+      if (this.__record) {
+        this.__record.recordPointer("#"+this.__path+" .ui-slider", e);
+      }
     },
 
+    //overridden
     _onDocPointerUp: function(e) {
       this.__pointerMoveEvent = false;
       this.base(arguments, e);
+      // no recording here as this one is already recorded by the Recorder itself
     },
 
     isInPointerMove: function() {

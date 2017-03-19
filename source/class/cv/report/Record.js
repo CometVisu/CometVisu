@@ -59,6 +59,8 @@ qx.Class.define('cv.report.Record', {
 
     prepare: function() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
+        cv.Application.registerConsoleCommand("downloadLog", cv.report.Record.download, "Download recorded log file.");
+
         // patch XHR
         qx.Class.patch(qx.io.request.Xhr, cv.report.utils.MXhrHook);
 
@@ -74,10 +76,10 @@ qx.Class.define('cv.report.Record', {
         }, this);
 
         // capture mouse cursor
-        Reg.addListener(document.body, "pointermove",
-          qx.util.Function.throttle(record.recordPointer, 500, true), record);
-        Reg.addListener(document.body, "pointerdown", record.recordPointer, record);
-        Reg.addListener(document.body, "pointerup", record.recordPointer, record);
+        Reg.addListener(document, "pointermove",
+          qx.util.Function.throttle(record.recordDocumentPointer, 500, true), record);
+        Reg.addListener(document, "pointerdown", record.recordDocumentPointer, record);
+        Reg.addListener(document, "pointerup", record.recordDocumentPointer, record);
 
         // add scroll listeners to all pages
         qx.event.message.Bus.subscribe("setup.dom.finished", function() {
@@ -213,8 +215,13 @@ qx.Class.define('cv.report.Record', {
       }
     },
 
-    recordPointer: function(ev) {
+    recordDocumentPointer: function(ev) {
+      this.recordPointer("document", ev);
+    },
+
+    recordPointer: function(path, ev) {
       var data = {
+        path: path,
         type: ev.getType(),
         x: ev.getDocumentLeft(),
         y: ev.getDocumentTop()
@@ -262,10 +269,5 @@ qx.Class.define('cv.report.Record', {
       // Remove anchor from body
       document.body.removeChild(a);
     }
-  },
-
-  defer: function(statics) {
-    // install shortcut for downloading
-    window.downloadLog = statics.download;
   }
 });

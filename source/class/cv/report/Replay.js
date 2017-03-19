@@ -197,14 +197,55 @@ qx.Class.define('cv.report.Replay', {
         qx.dom.Element.insertEnd(this.__cursor, qx.bom.Selector.query("body")[0]);
       }
       qx.bom.element.Style.setStyles(this.__cursor, {top: record.d.y+"px", left: record.d.x+"px"});
+      var target = document;
+      if (record.d.path) {
+        if (record.d.path.startsWith("document")) {
+          var parts = record.d.path.split(".");
+          if (parts.length === 2) {
+            target = document[parts[1]];
+          }
+        } else {
+          target = qx.bom.Selector.query(record.d.path)[0];
+        }
+      }
       switch(record.d.type) {
         case "pointerdown":
           qx.bom.element.Style.set(this.__cursor, "color", "red");
+          // also dispatch event
+          this.__simulatePointerEvent(target, record);
           break;
         case "pointerup":
           qx.bom.element.Style.set(this.__cursor, "color", "white");
+          // also dispatch event
+          this.__simulatePointerEvent(target, record);
           break;
       }
+    },
+
+    __simulatePointerEvent: function(target, record) {
+      var native = {
+        button: 0,
+        wheelDelta: 0,
+        wheelDeltaX: 0,
+        wheelDeltaY: 0,
+        wheelX: 0,
+        wheelY: 0,
+        target: target,
+        clientX: record.d.x,
+        clientY: record.d.y,
+        pageX: record.d.x,
+        pageY: record.d.y,
+        screenX: 0,
+        screenY: 0,
+        shiftKey: false,
+        ctrlKey: false,
+        altKay: false,
+        metaKey: false
+      };
+      var event = new qx.event.type.Pointer();
+      event.init(native, target, null, true, true);
+      event.setType(record.d.type);
+      qx.event.Registration.dispatchEvent(target, event);
     },
 
     __dispatchBackendRecord: function(record) {

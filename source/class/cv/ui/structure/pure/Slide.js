@@ -39,6 +39,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     // check provided address-items for at least one address which has write-access
     var readonly = true;
     for (var addrIdx in this.getAddress()) {
+      //noinspection JSBitwiseOperatorUsage
       if (this.getAddress()[addrIdx][1] & 2) {
         // write-access detected --> no read-only mode
         readonly = false;
@@ -103,7 +104,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       if (!this.__initialized) {
         this.__skipUpdatesFromSlider = true;
         var actor = this.getActor();
-        var slider = this.__slider = new cv.ui.website.Slider(actor);
+        var slider = this.__slider = new cv.ui.website.Slider(actor, this.getPath());
         slider.setFormat(this.getFormat());
         slider.setConfig("step", this.getStep());
         slider.setConfig("minimum", this.getMin());

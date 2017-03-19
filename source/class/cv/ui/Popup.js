@@ -18,6 +18,7 @@
  */
 
 
+//noinspection JSUnusedGlobalSymbols
 qx.Class.define('cv.ui.Popup', {
   extend: qx.core.Object,
 
@@ -80,7 +81,6 @@ qx.Class.define('cv.ui.Popup', {
       qx.bom.Html.clean(['<div id="popup_'+this.__counter+'" class="popup popup_background" style="display:none"><div class="popup_close">X</div></div>'],
         null, body);
       var ret_val = this.__domElement = qx.bom.Selector.query("#popup_"+this.__counter, body)[0];
-      this.__counter++;
 
       qx.bom.element.Class.add(ret_val, this.getType());
 
@@ -162,14 +162,19 @@ qx.Class.define('cv.ui.Popup', {
         //       one for the popup_background.
         this.fireEvent('close');
       }, this);
-      qx.event.Registration.addListener(qx.bom.Selector.query(".popup_close", ret_val), 'tap', function () {
+      var close = qx.bom.Selector.query(".popup_close", ret_val)[0];
+      qx.event.Registration.addListener(close, 'tap', function () {
         this.fireEvent('close');
       }, this);
+
+      cv.report.Record.register(ret_val, "#popup_"+this.__counter, ["tap"]);
+      cv.report.Record.register(close, "#popup_"+this.__counter+" .popup_close", ["tap"]);
 
       qx.bom.element.Style.set(ret_val, 'display', 'block');
       qx.bom.Selector.query(this.__deactivateSelectors.join(",")).forEach(function(elem) {
         qx.bom.element.Class.add(elem, 'inactiveMain');
       }, this);
+      this.__counter++;
       return ret_val;
     },
 
