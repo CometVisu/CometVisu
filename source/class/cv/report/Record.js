@@ -188,7 +188,8 @@ qx.Class.define('cv.report.Record', {
     },
 
     _onEvent: function(path, options, ev) {
-      this.record(cv.report.Record.USER, path, ev.getType(), options);
+      var data = this.__extractDataFromEvent(ev);
+      this.record(cv.report.Record.USER, path, data, options);
     },
 
     record: function(category, path, data, options) {
@@ -215,18 +216,58 @@ qx.Class.define('cv.report.Record', {
       }
     },
 
+    /**
+     * Extract useful data we need from every event
+     * @param ev {Event}
+     */
+    __extractDataFromEvent: function(ev) {
+      var nativeEvent = ev.getNativeEvent();
+      var data = {
+        type: ev.getType(),
+        native: {
+          button: nativeEvent.button,
+          clientX: Math.round(nativeEvent.clientX),
+          clientY: Math.round(nativeEvent.clientY),
+          pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
+          pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
+          screenX : Math.round(nativeEvent.screenX),
+          screenY : Math.round(nativeEvent.screenY),
+          wheelDelta : nativeEvent.wheelDelta,
+          wheelDeltaX : nativeEvent.wheelDeltaX,
+          wheelDeltaY : nativeEvent.wheelDeltaY,
+          delta : nativeEvent.delta,
+          deltaX : nativeEvent.deltaX,
+          deltaY : nativeEvent.deltaY,
+          deltaZ : nativeEvent.deltaZ,
+          detail : nativeEvent.detail,
+          axis : nativeEvent.axis,
+          wheelX : nativeEvent.wheelX,
+          wheelY : nativeEvent.wheelY,
+          HORIZONTAL_AXIS : nativeEvent.HORIZONTAL_AXIS
+        }
+      };
+
+      if (ev instanceof qx.event.type.Pointer) {
+        qx.lang.Object.mergeWith(data.native, {
+          pointerId : nativeEvent.pointerId,
+          width : nativeEvent.width,
+          height : nativeEvent.height,
+          pressure : nativeEvent.pressure,
+          tiltX : nativeEvent.tiltX,
+          tiltY : nativeEvent.tiltY,
+          pointerType : nativeEvent.pointerType,
+          isPrimary : nativeEvent.isPrimary
+        });
+      }
+      return data;
+    },
+
     recordDocumentPointer: function(ev) {
       this.recordPointer("document", ev);
     },
 
     recordPointer: function(path, ev) {
-      var data = {
-        path: path,
-        type: ev.getType(),
-        x: ev.getDocumentLeft(),
-        y: ev.getDocumentTop()
-      };
-
+      var data = qx.lang.Object.mergeWith({ path: path }, this.__extractDataFromEvent(ev));
       this.record(cv.report.Record.USER, "pointer", data);
     },
 

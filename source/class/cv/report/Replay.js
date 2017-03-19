@@ -168,10 +168,7 @@ qx.Class.define('cv.report.Replay', {
             target.click();
             return;
           }
-          var event = new qx.event.type.Event();
-          event.init(true, true);
-          event.setType(record.d);
-          event.setTarget(target);
+          var event = this.__createEvent(target, record);
           qx.event.Registration.dispatchEvent(target, event);
           break;
 
@@ -222,8 +219,14 @@ qx.Class.define('cv.report.Replay', {
       }
     },
 
-    __simulatePointerEvent: function(target, record) {
-      var native = {
+    /**
+     * Create a fake native event
+     * @param target {Element} event target
+     * @param record {Map} recorded event meta-data
+     * @return {Map}
+     */
+    __createNativeEvent: function(target, record) {
+      return {
         button: 0,
         wheelDelta: 0,
         wheelDeltaX: 0,
@@ -239,11 +242,31 @@ qx.Class.define('cv.report.Replay', {
         screenY: 0,
         shiftKey: false,
         ctrlKey: false,
-        altKay: false,
+        altKey: false,
         metaKey: false
       };
+    },
+
+    __createEvent: function(target, record) {
+      var nativeEvent = record.d.native || this.__createNativeEvent(target, record);
+      var type = record.d.type;
+      var event;
+      if (type.startsWith("pointer")) {
+        event = new qx.event.type.Pointer();
+      } else if (type === "tap") {
+        event = new qx.event.type.Tap();
+      } else {
+        return null;
+      }
+      event.init(nativeEvent, target, null, true, true);
+      event.setType(record.d.type);
+      return event;
+    },
+
+    __simulatePointerEvent: function(target, record) {
+      var nativeEvent = this.__createNativeEvent(target, record);
       var event = new qx.event.type.Pointer();
-      event.init(native, target, null, true, true);
+      event.init(nativeEvent, target, null, true, true);
       event.setType(record.d.type);
       qx.event.Registration.dispatchEvent(target, event);
     },
