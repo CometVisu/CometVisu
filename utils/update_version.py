@@ -1,11 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-try:
-    import sh
-except ImportError:
-    pass
-
+import subprocess
 import datetime
 import json
 import os
@@ -15,10 +11,9 @@ root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file_
 
 def update_version():
     # gather information from git
-    git = sh.Command("git") if sh is not None else None
     data = {
-        "revision": git("rev-parse", "HEAD").strip("\n") if git is not None else None,
-        "branch": git("rev-parse", "--abbrev-ref", "HEAD").strip("\n") if git is not None else None,
+        "revision": subprocess.check_output(["git", "rev-parse", "HEAD"]).strip("\n"),
+        "branch": subprocess.check_output(["git", "rev-parse", "--abbrev-ref", "HEAD"]).strip("\n"),
         "date": datetime.datetime.now().isoformat()
     }
     with open(os.path.join(root_dir, "package.json")) as data_file:
