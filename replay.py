@@ -99,10 +99,16 @@ def get_server(host="", port=9000, next_attempts=0):
 if __name__ == '__main__':
     parser = ArgumentParser(usage="%(prog)s - CometVisu documentation helper commands")
 
-    parser.add_argument('file', type=str, help='log file')
+    parser.add_argument('file', type=str, help='log file', nargs='?')
+    parser.add_argument('--devtools', '-d', action='store_true', dest='devtools', help='Open browser with dev tools')
     options, unknown = parser.parse_known_args()
 
-    settings = prepare_replay(sys.argv[1])
+    if options.file is None:
+        print("please provide a log file")
+        parser.print_help()
+        sys.exit(0)
+
+    settings = prepare_replay(options.file)
     window_size = "%s,%s" % (settings["width"], settings["height"])
     browser_name = settings["browserName"] if settings["browserName"] is not None else "chrome"
     anchor = "#%s" % settings["anchor"] if "anchor" in settings and settings["anchor"] is not None else ""
@@ -128,7 +134,8 @@ if __name__ == '__main__':
         thread.start()
 
         # open browser
-        start_browser("http://localhost:%s/source/replay.html%s" % (port, anchor), browser=browser_name, size=window_size)
+        start_browser("http://localhost:%s/source/replay.html%s" % (port, anchor),
+                      browser=browser_name, size=window_size, open_devtools=options.devtools)
 
         while thread.isAlive():
             thread.join(1)
