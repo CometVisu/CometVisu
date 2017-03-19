@@ -140,7 +140,7 @@ qx.Class.define('cv.util.IconTools', {
       var imageData = cv.util.IconTools.tmpCtx.getImageData(0, 0, width, height);
       if (color !== undefined) {
         if (!cv.util.IconTools.hexColorRegEx.test(color)) {
-          qx.log.Logger.error('Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".');
+          qx.log.Logger.error(this, 'Error! "' + color + '" is not a valid color for icon recoloring! It must have a shape like "#aabbcc".');
         }
         var r = parseInt(color.substr(1, 2), 16),
           g = parseInt(color.substr(3, 2), 16),

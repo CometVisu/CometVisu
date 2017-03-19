@@ -57,7 +57,7 @@ qx.Class.define('cv.parser.WidgetParser', {
       if (parser) {
         result = parser.parse(xml, path, flavour, pageType);
       } else {
-        qx.log.Logger.debug("no parse handler registered for type: "+ xml.nodeName.toLowerCase());
+        qx.log.Logger.debug(this, "no parse handler registered for type: "+ xml.nodeName.toLowerCase());
       }
       return result;
     },

@@ -113,7 +113,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     },
 
     __makeBackdropValid: function () {
-      qx.log.Logger.debug("makeBackdropValid");
+      qx.log.Logger.debug(this, "makeBackdropValid");
       // TODO: this is structure.pure specific and should be handled by the structure itself
       var templateEngine = cv.TemplateEngine.getInstance();
       var page = templateEngine.currentPage;
@@ -226,7 +226,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
           return;
         }
       }
-      qx.log.Logger.debug("makeNavbarValid");
+      qx.log.Logger.debug(this, "makeNavbarValid");
       if (cv.ui.layout.Manager.adjustColumns()) {
         // the amount of columns has changed -> recalculate the widgets widths
         cv.ui.layout.Manager.applyColumnWidths();
@@ -240,7 +240,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     __makePagesizeValid: function() {
       if (!cv.Config.currentPageId) { return; }
-      qx.log.Logger.debug("makePagesizeValid");
+      qx.log.Logger.debug(this, "makePagesizeValid");
       var page = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.currentPageId);
       if (!page.isInitialized()) {
         page.addListenerOnce("changeInitialized", this.__makePagesizeValid, this);
@@ -258,7 +258,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     },
 
     __makeRowspanValid: function () {
-      qx.log.Logger.debug("makeRowspanValid");
+      qx.log.Logger.debug(this, "makeRowspanValid");
       var elem = qx.bom.Html.clean(['<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>'])[0];
       qx.dom.Element.insertEnd(elem, document.body);
       // use the internal div for height as in mobile view the elem uses the full screen height

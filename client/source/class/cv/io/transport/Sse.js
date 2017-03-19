@@ -76,11 +76,11 @@ qx.Class.define('cv.io.transport.Sse', {
       this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
       this.eventSource.addEventListener('error', this.handleError.bind(this), false);
       this.eventSource.onerror = function () {
-        qx.log.Logger.debug("connection lost");
-      };
+        this.error("connection lost");
+      }.bind(this);
       this.eventSource.onopen = function () {
-        qx.log.Logger.debug("connection established");
-      };
+        this.debug("connection established");
+      }.bind(this);
       this.client.watchdog.start(5);
     },
 

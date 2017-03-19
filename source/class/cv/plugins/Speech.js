@@ -80,7 +80,7 @@ qx.Class.define('cv.plugins.Speech', {
   statics: {
     parse: function (element, path) {
       if (!window.speechSynthesis) {
-        qx.log.Logger.warn("this browser does not support the Web Speech API");
+        qx.log.Logger.warn(this, "this browser does not support the Web Speech API");
         return;
       }
 
