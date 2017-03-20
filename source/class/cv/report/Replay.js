@@ -40,7 +40,6 @@ qx.Class.define('cv.report.Replay', {
   */
   construct: function() {
     this.__log = [];
-    this.__listeners = {};
     this.__start = Date.now();
   },
 
@@ -80,7 +79,7 @@ qx.Class.define('cv.report.Replay', {
     __log: null,
     __client: null,
     __data: null,
-
+    __config: null,
     __cursor: null,
 
     prepare: function(log) {
@@ -184,7 +183,7 @@ qx.Class.define('cv.report.Replay', {
     __playScrollEvent: function(record) {
       var elem = qx.bom.Selector.query("#"+record.d.page)[0];
       elem.scrollTop = record.d.native.pageY;
-      elem.scrollLeft = record.d.native.pageX
+      elem.scrollLeft = record.d.native.pageX;
     },
 
     __playPointerEvent: function(record) {
