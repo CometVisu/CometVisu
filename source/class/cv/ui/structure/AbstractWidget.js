@@ -37,7 +37,11 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
     var parts = this.getPath().split("_"); parts.shift();
     // var prio = parseInt(parts.join(""))*-1;
     // var broker = cv.MessageBroker.getInstance();
-    qx.event.message.Bus.subscribe("setup.dom.finished", this._onDomFinished, this);
+    if (cv.TemplateEngine.getInstance().isDomFinished()) {
+      this._onDomFinished();
+    } else {
+      qx.event.message.Bus.subscribe("setup.dom.finished", this._onDomFinished, this);
+    }
 
     // this.debug(props.$$type+" INIT ["+props.path+"]");
     // bind visibility to parent page

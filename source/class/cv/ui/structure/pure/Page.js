@@ -42,6 +42,8 @@ qx.Class.define('cv.ui.structure.pure.Page', {
     this.__waitForProperties = ['showNavbarTop', 'showNavbarBottom', 'showNavbarLeft', 'showNavbarRight'];
     this.base(arguments, props);
 
+    this.addListener("changeVisible", this._onChangeVisible, this);
+
     // break out of the constructor
     new qx.util.DeferredCall(function() {
       var parentPage = this.getParentPage();
@@ -73,8 +75,6 @@ qx.Class.define('cv.ui.structure.pure.Page', {
           this.setInitialized(true);
         }
       }, this);
-
-      this.addListener("changeVisible", this._onChangeVisible, this);
     }, this).schedule();
   },
 
@@ -185,8 +185,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
      * @param ev {Event}
      */
     _onChangeVisible: function(ev) {
-      var visible = ev.getData();
-      if (visible && this.__colspanClass !== cv.ui.layout.Manager.COLSPAN_CLASS) {
+      if (ev.getData() && this.__colspanClass !== cv.ui.layout.Manager.COLSPAN_CLASS) {
         this.applyColumnWidths();
       }
     },

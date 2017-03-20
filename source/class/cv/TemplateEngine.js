@@ -73,6 +73,13 @@ qx.Class.define('cv.TemplateEngine', {
       check: "cv.ui.structure.IPage",
       nullable: true,
       event: "changeCurrentPage"
+    },
+
+    domFinished: {
+      check: "Boolean",
+      init: false,
+      apply: "_applyDomFinished",
+      event: "changeDomFinished"
     }
   },
 
@@ -139,6 +146,13 @@ qx.Class.define('cv.TemplateEngine', {
       this.debug(name+" is "+value+" now");
       if (this.isPartsLoaded() && this.isScriptsLoaded()) {
         this.setReady(true);
+      }
+    },
+
+    // property apply
+    _applyDomFinished: function(value) {
+      if (value) {
+        qx.event.message.Bus.dispatchByName("setup.dom.finished");
       }
     },
 
@@ -308,7 +322,7 @@ qx.Class.define('cv.TemplateEngine', {
         }
         this.debug("setup.dom.finished");
         qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
-        qx.event.message.Bus.dispatchByName("setup.dom.finished");
+        this.setDomFinished(true);
 
         this.setCurrentPage(cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage));
 
