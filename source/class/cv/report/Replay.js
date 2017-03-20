@@ -84,6 +84,9 @@ qx.Class.define('cv.report.Replay', {
     __cursor: null,
 
     prepare: function(log) {
+      // patch XHR
+      qx.Class.patch(qx.io.request.Xhr, cv.report.utils.MXhrReplayHook);
+
       cv.Config.configSuffix = log.configSuffix;
       this.__start = log.start;
       this.__end = log.end;
@@ -180,8 +183,8 @@ qx.Class.define('cv.report.Replay', {
 
     __playScrollEvent: function(record) {
       var elem = qx.bom.Selector.query("#"+record.d.page)[0];
-      elem.scrollTop = record.d.y;
-      elem.scrollLeft = record.d.x;
+      elem.scrollTop = record.d.native.pageY;
+      elem.scrollLeft = record.d.native.pageX
     },
 
     __playPointerEvent: function(record) {
@@ -193,7 +196,7 @@ qx.Class.define('cv.report.Replay', {
         qx.bom.element.Attribute.set(this.__cursor, "html", "&uarr;");
         qx.dom.Element.insertEnd(this.__cursor, qx.bom.Selector.query("body")[0]);
       }
-      qx.bom.element.Style.setStyles(this.__cursor, {top: record.d.y+"px", left: record.d.x+"px"});
+      qx.bom.element.Style.setStyles(this.__cursor, {top: record.d.native.pageY+"px", left: record.d.native.pageX+"px"});
       var target = document;
       if (record.d.path) {
         if (record.d.path.startsWith("document")) {
