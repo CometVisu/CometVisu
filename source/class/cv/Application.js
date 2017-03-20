@@ -111,25 +111,23 @@ qx.Class.define("cv.Application",
       }
       cv.report.Record.prepare();
 
-      var info = "\n"+
-        "   _____                     ___      ___\n"+
-        "  / ____|                   | \\ \\    / (_)\n"+
-        " | |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n"+
-        " | |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n"+
-        " | |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n"+
-        "  \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n"+
-        " -----------------------------------------------------------------------------------------\n"+
-        "\n"+
-        " (c) 2010-"+(new Date().getFullYear())+" Christian Mayer and the CometVisu contributers.\n"+
-        " Version: "+cv.Version.VERSION+"\n"+
-        "\n";
+      var info = ""+
+        "  _____                     ___      ___\n"+
+        " / ____|                   | \\ \\    / (_)\n"+
+        "| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n"+
+        "| |    / _ \\| '_ ` _ \\ / _ \\ __\\ \\/ / | / __| | | |\n"+
+        "| |___| (_) | | | | | |  __/ |_ \\  /  | \\__ \\ |_| |\n"+
+        " \\_____\\___/|_| |_| |_|\\___|\\__| \\/   |_|___/\\__,_|\n"+
+        "-----------------------------------------------------------\n"+
+        " ©2010-"+(new Date().getFullYear())+" Christian Mayer and the CometVisu contributers.\n"+
+        " Version: "+cv.Version.VERSION+"\n";
 
       if (cv.Application.consoleCommands.length) {
-        info += " Available commands:\n"+
+        info += "\n Available commands:\n"+
           "    "+cv.Application.consoleCommands.join("\n    ")+"\n";
       }
 
-      info += " -----------------------------------------------------------------------------------------\n\n";
+      info += "-----------------------------------------------------------\n\n";
 
       console.log(info);
 
