@@ -129,6 +129,7 @@ define( ['jquery'], function( $ ) {
               context     : this,
               data        : session.buildRequest(session.initialAddresses) + '&t=0',
               success     : this.handleReadStart,
+              error       : this.handleError,
               beforeSend  : this.beforeSend
             });
           } else {
@@ -152,6 +153,7 @@ define( ['jquery'], function( $ ) {
          * @param json
          */
         this.handleRead = function(json) {
+          console.log('read', json);
           if( this.doRestart || (!json && (-1 == this.lastIndex)) ) {
             session.dataReceived = false;
             if (self.running) { // retry initial request
@@ -195,6 +197,7 @@ define( ['jquery'], function( $ ) {
         };
 
         this.handleReadStart = function(json) {
+          console.log('readstart', json);
           if (!json && (-1 == this.lastIndex)) {
             session.dataReceived = false;
             if (self.running) { // retry initial request
@@ -204,6 +207,7 @@ define( ['jquery'], function( $ ) {
                 context     : this,
                 data        : session.buildRequest(session.initialAddresses) + '&t=0',
                 success     : this.handleReadStart,
+                error       : this.handleError,
                 beforeSend  : this.beforeSend
               });
               session.watchdog.ping();
@@ -272,6 +276,17 @@ define( ['jquery'], function( $ ) {
             }
             alert('Error! Type: "' + str + '" ExceptionObject: "'
               + excptObj + '" readyState: ' + readyState);
+          } else if( 'parsererror' === str )
+          {
+            console.log('preseerror!');
+            // make sure that a possible resart loop isn't draining all
+            // ressources by limiting it
+            var now = new Date();
+            if( !this.lastRestartTime )
+              this.lastRestartTime = now;
+            
+            // limit to an interval of at least 1000 ms
+            setTimeout( function(){ self.restart( true ) }, Math.max(0,1000 - (now - this.lastRestartTime)) );
           }
         };
 
@@ -324,6 +339,7 @@ define( ['jquery'], function( $ ) {
           if( doFullReload )
             this.lastIndex = -1; // reload all data
 
+          self.lastRestartTime = new Date();
           self.doRestart = true;
           self.abort();
           self.handleRead(); // restart
@@ -643,6 +659,7 @@ define( ['jquery'], function( $ ) {
      * @method login
      */
     this.login = function (loginOnly, callback, context) {
+      console.warn('CometVisu Client Test 1');
       if (this.loginSettings.loggedIn === false) {
         this.loginSettings.loginOnly = !!loginOnly;
         this.loginSettings.callbackAfterLoggedIn = callback;
@@ -727,7 +744,7 @@ define( ['jquery'], function( $ ) {
         + addresses.join('&a=') : '',
         requestFilters = (this.filters.length) ? 'f='
         + this.filters.join('&f=') : '';
-      return 's=' + this.session + '&' + requestAddresses
+      return 's=' + this.currentTransport.sessionId + '&' + requestAddresses
         + ((addresses.length && this.filters.length) ? '&' : '')
         + requestFilters;
     };
@@ -748,7 +765,7 @@ define( ['jquery'], function( $ ) {
         url: this.getResourcePath("write"),
         dataType: 'json',
         context: this,
-        data: 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts
+        data: 's=' + this.currentTransport.sessionId + '&a=' + address + '&v=' + value + '&ts=' + ts
       });
     };
 
