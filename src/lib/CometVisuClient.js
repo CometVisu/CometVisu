@@ -153,7 +153,6 @@ define( ['jquery'], function( $ ) {
          * @param json
          */
         this.handleRead = function(json) {
-          console.log('read', json);
           if( this.doRestart || (!json && (-1 == this.lastIndex)) ) {
             session.dataReceived = false;
             if (self.running) { // retry initial request
@@ -197,7 +196,6 @@ define( ['jquery'], function( $ ) {
         };
 
         this.handleReadStart = function(json) {
-          console.log('readstart', json);
           if (!json && (-1 == this.lastIndex)) {
             session.dataReceived = false;
             if (self.running) { // retry initial request
@@ -278,7 +276,6 @@ define( ['jquery'], function( $ ) {
               + excptObj + '" readyState: ' + readyState);
           } else if( 'parsererror' === str )
           {
-            console.log('preseerror!');
             // make sure that a possible resart loop isn't draining all
             // ressources by limiting it
             var now = new Date();
@@ -659,7 +656,6 @@ define( ['jquery'], function( $ ) {
      * @method login
      */
     this.login = function (loginOnly, callback, context) {
-      console.warn('CometVisu Client Test 1');
       if (this.loginSettings.loggedIn === false) {
         this.loginSettings.loginOnly = !!loginOnly;
         this.loginSettings.callbackAfterLoggedIn = callback;
