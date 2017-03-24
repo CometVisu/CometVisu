@@ -127,7 +127,7 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest(session.initialAddresses) + '&t=0',
+              data        : 't=0&' + session.buildRequest(session.initialAddresses),
               success     : this.handleReadStart,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -138,7 +138,7 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest() + '&t=0',
+              data        : 't=0&' + session.buildRequest(),
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -162,7 +162,7 @@ define( ['jquery'], function( $ ) {
                 url : session.getResourcePath("read"),
                 dataType : 'json',
                 context : this,
-                data : session.buildRequest() + '&t=0',
+                data : 't=0&' + session.buildRequest(),
                 success : this.handleRead,
                 error : this.handleError,
                 beforeSend : this.beforeSend
@@ -187,7 +187,7 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest() + '&i=' + this.lastIndex,
+              data        : 'i=' + this.lastIndex + '&' + session.buildRequest(),
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -205,7 +205,7 @@ define( ['jquery'], function( $ ) {
                 url         : session.getResourcePath("read"),
                 dataType    : 'json',
                 context     : this,
-                data        : session.buildRequest(session.initialAddresses) + '&t=0',
+                data        : 't=0&' + session.buildRequest(session.initialAddresses),
                 success     : this.handleReadStart,
                 error       : this.handleError,
                 beforeSend  : this.beforeSend
@@ -232,7 +232,7 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest(diffAddresses) + '&t=0',
+              data        : 't=0&' + session.buildRequest(diffAddresses),
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
