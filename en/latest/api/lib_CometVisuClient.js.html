@@ -84,7 +84,7 @@
         <pre
             class="sunlight-highlight-javascript linenums">/* CometVisuClient.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -211,8 +211,9 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest(session.initialAddresses) + '&amp;t=0',
+              data        : 't=0&amp;' + session.buildRequest(session.initialAddresses),
               success     : this.handleReadStart,
+              error       : this.handleError,
               beforeSend  : this.beforeSend
             });
           } else {
@@ -221,7 +222,7 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest() + '&amp;t=0',
+              data        : 't=0&amp;' + session.buildRequest(),
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -244,7 +245,7 @@ define( ['jquery'], function( $ ) {
                 url : session.getResourcePath("read"),
                 dataType : 'json',
                 context : this,
-                data : session.buildRequest() + '&amp;t=0',
+                data : 't=0&amp;' + session.buildRequest(),
                 success : this.handleRead,
                 error : this.handleError,
                 beforeSend : this.beforeSend
@@ -269,7 +270,7 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest() + '&amp;i=' + this.lastIndex,
+              data        : 'i=' + this.lastIndex + '&amp;' + session.buildRequest(),
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -286,8 +287,9 @@ define( ['jquery'], function( $ ) {
                 url         : session.getResourcePath("read"),
                 dataType    : 'json',
                 context     : this,
-                data        : session.buildRequest(session.initialAddresses) + '&amp;t=0',
+                data        : 't=0&amp;' + session.buildRequest(session.initialAddresses),
                 success     : this.handleReadStart,
+                error       : this.handleError,
                 beforeSend  : this.beforeSend
               });
               session.watchdog.ping();
@@ -312,7 +314,7 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest(diffAddresses) + '&amp;t=0',
+              data        : 't=0&amp;' + session.buildRequest(diffAddresses),
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -356,6 +358,16 @@ define( ['jquery'], function( $ ) {
             }
             alert('Error! Type: "' + str + '" ExceptionObject: "'
               + excptObj + '" readyState: ' + readyState);
+          } else if( 'parsererror' === str )
+          {
+            // make sure that a possible resart loop isn't draining all
+            // ressources by limiting it
+            var now = new Date();
+            if( !this.lastRestartTime )
+              this.lastRestartTime = now;
+            
+            // limit to an interval of at least 1000 ms
+            setTimeout( function(){ self.restart( true ) }, Math.max(0,1000 - (now - this.lastRestartTime)) );
           }
         };
 
@@ -408,6 +420,7 @@ define( ['jquery'], function( $ ) {
           if( doFullReload )
             this.lastIndex = -1; // reload all data
 
+          self.lastRestartTime = new Date();
           self.doRestart = true;
           self.abort();
           self.handleRead(); // restart
@@ -811,7 +824,7 @@ define( ['jquery'], function( $ ) {
         + addresses.join('&amp;a=') : '',
         requestFilters = (this.filters.length) ? 'f='
         + this.filters.join('&amp;f=') : '';
-      return 's=' + this.session + '&amp;' + requestAddresses
+      return 's=' + this.currentTransport.sessionId + '&amp;' + requestAddresses
         + ((addresses.length &amp;&amp; this.filters.length) ? '&amp;' : '')
         + requestFilters;
     };
@@ -832,7 +845,7 @@ define( ['jquery'], function( $ ) {
         url: this.getResourcePath("write"),
         dataType: 'json',
         context: this,
-        data: 's=' + this.session + '&amp;a=' + address + '&amp;v=' + value + '&amp;ts=' + ts
+        data: 's=' + this.currentTransport.sessionId + '&amp;a=' + address + '&amp;v=' + value + '&amp;ts=' + ts
       });
     };
 
@@ -859,7 +872,8 @@ define( ['jquery'], function( $ ) {
     };
   }
   return CometVisuClient;
-});</pre>
+});
+</pre>
     </article>
 </section>
 
@@ -902,7 +916,7 @@ define( ['jquery'], function( $ ) {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on Sat Mar 11th 2017
+		on Sun Mar 26th 2017
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
