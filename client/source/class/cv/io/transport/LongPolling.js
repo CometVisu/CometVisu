@@ -182,8 +182,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
     handleError: qx.core.Environment.select("cv.xhr", {
       "qx": function (ev) {
         var req = ev.getTarget();
-        if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) // ignore error when connection is irrelevant
-        {
+        // ignore error when connection is irrelevant
+        if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) {
           this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
         }
       },

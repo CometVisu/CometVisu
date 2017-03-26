@@ -105,8 +105,8 @@ qx.Class.define('cv.io.Client', {
       'oh': 'openhab',
       'oh2': 'openhab2'
     },
-    // setup of the different known backends (openhab2 configures itself by sending the config with the login response
-    // so no defaults are defined here
+    // setup of the different known backends (openhab2 configures itself by sending the config
+    // with the login response so no defaults are defined here
     backends: {
       'default': {
         name: 'default',
@@ -119,7 +119,9 @@ qx.Class.define('cv.io.Client', {
           rrd: 'rrdfetch'
         },
         maxConnectionAge: 60 * 1000, // in milliseconds - restart if last read is older
-        maxDataAge: 3200 * 1000, // in milliseconds - reload all data when last successful read is older (should be faster than the index overflow at max data rate, i.e. 2^16 @ 20 tps for KNX TP)
+        maxDataAge: 3200 * 1000, // in milliseconds - reload all data when last successful
+        // read is older (should be faster than the index overflow at max data rate,
+        // i.e. 2^16 @ 20 tps for KNX TP)
         hooks: {}
       },
       'openhab': {
@@ -307,7 +309,8 @@ qx.Class.define('cv.io.Client', {
      * This function starts the communication by a login and then runs the
      * ongoing communication task
      *
-     * @param loginOnly {Boolean} if true only login and backend configuration, no subscription to addresses (default: false)
+     * @param loginOnly {Boolean} if true only login and backend configuration, no subscription
+     *                            to addresses (default: false)
      * @param callback {Function} call this function when login is done
      * @param context {Object} context for the callback (this)
      *
@@ -327,7 +330,8 @@ qx.Class.define('cv.io.Client', {
         if ('' !== this.device) {
           request.d = this.device;
         }
-        this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath("login"), request, this.handleLogin, this);
+        this.doRequest(this.backendUrl ? this.backendUrl : this.getResourcePath("login"),
+          request, this.handleLogin, this);
       } else if (this.loginSettings.callbackAfterLoggedIn) {
         // call callback immediately
         this.loginSettings.callbackAfterLoggedIn.call(this.loginSettings.context);
@@ -464,9 +468,9 @@ qx.Class.define('cv.io.Client', {
      */
     buildRequest : function (addresses) {
       return {
+        s: this.session,
         a: addresses ? addresses : this.addresses,
-        f: this.filters,
-        s: this.session
+        f: this.filters
       };
     },
 
@@ -482,7 +486,9 @@ qx.Class.define('cv.io.Client', {
        * could maybe selective based on UserAgent but isn't that costly on writes
        */
       var ts = new Date().getTime();
-      var url = qx.util.Uri.appendParamsToUrl(this.getResourcePath("write"), 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts);
+      var url = qx.util.Uri.appendParamsToUrl(
+        this.getResourcePath("write"),
+        's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts);
       this.doRequest(url, null, null, null, {
         accept: "application/json, text/javascript, */*; q=0.01"
       });
