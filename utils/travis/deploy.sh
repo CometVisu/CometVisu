@@ -6,7 +6,7 @@ TARGET_BRANCH="gh-pages"
 REPO_SLUG="CometVisu/CometVisu"
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
+if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [ "$TRAVIS_BRANCH" != "master" ] ); then
     echo "Skipping deploy;"
     exit 0
 fi
@@ -16,7 +16,7 @@ if [ "$TRAVIS_REPO_SLUG" != "$REPO_SLUG" ]; then
     exit 0
 fi
 
-if [ "$SOURCE_BRANCH" != "master" ]; then
+if [ "$TRAVIS_BRANCH" != "master" ]; then
     echo "ATTENTION! Deploying docs from non master branch. Please change this!!!"
 fi
 
@@ -34,8 +34,8 @@ git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
 # Clean out existing contents
-rm -rf out/de || exit 0
-rm -rf out/en || exit 0
+#rm -rf out/de || exit 0
+#rm -rf out/en || exit 0
 
 # Run our creation script
 echo "generating german manual to extract screenshot examples"
@@ -61,11 +61,14 @@ cd out
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
-echo "checking diff"
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
-if [ -z `git diff --exit-code` ]; then
-    echo "No changes to the output on this push; exiting."
-    exit 0
+# as the changesets on master are too big we skip this check to prevent timeouts
+if [ "$TRAVIS_BRANCH" != "master" ]; then
+    echo "checking diff"
+    if [ -z `git diff --exit-code` ]; then
+        echo "No changes to the output on this push; exiting."
+        exit 0
+    fi
 fi
 
 # Commit the "changes", i.e. the new version.
