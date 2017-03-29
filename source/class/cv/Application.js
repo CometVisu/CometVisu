@@ -435,7 +435,14 @@ qx.Class.define("cv.Application",
           startpage = req.anchor;
         }
       }
-      cv.Config.initialPage = startpage;
+      if (startpage.match(/^id_[0-9_]*$/) !== null) {
+        cv.Config.initialPage = startpage;
+      } else {
+        // wait for DOM to be ready and detect the page id then
+        qx.event.message.Bus.subscribe("setup.dom.finished.before", function() {
+          cv.Config.initialPage = cv.TemplateEngine.getInstance().getPageIdByPath(startpage) || "id_";
+        });
+      }
     },
 
     /**
