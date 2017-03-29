@@ -1119,7 +1119,7 @@ define([
             }
           }
           // check that startpage does exits
-          if( $('#'+startpage+'.page').length === 0 )
+          if( $('#'+startpage+'.page').length === 0 && thisTemplateEngine.getPageIdByPath(startpage) === null)
             startpage = 'id_';   // default to top most page
         }
         thisTemplateEngine.currentPage = $('#'+startpage);
