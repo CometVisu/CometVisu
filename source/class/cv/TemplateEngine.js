@@ -495,7 +495,7 @@ qx.Class.define('cv.TemplateEngine', {
         // decode html code (e.g. like &apos; => ')
         page_name = cv.util.String.decodeHtmlEntities(page_name);
         // remove escaped slashes
-        page_name = page_name.replace("\\\/", "/");
+        page_name = decodeURI(page_name.replace("\\\/", "/"));
 
         //      console.log("Page: "+page_name+", Scope: "+scope);
         var selector = (scope !== undefined && scope !== null) ? '.page[id^="' + scope + '"] h1:contains(' + page_name + ')' : '.page h1:contains(' + page_name + ')';
