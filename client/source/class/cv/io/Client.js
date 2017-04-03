@@ -391,6 +391,12 @@ qx.Class.define('cv.io.Client', {
         return request;
       },
       "qx": function(url, data, callback, context, options) {
+        // append data to URL
+        var qs = "";
+        Object.getOwnPropertyNames(data).forEach(function(key) {
+          qs+=key+"="+data[key]+"&";
+        });
+        url = qx.util.Uri.appendParamsToUrl(url, qs.substring(0, qs.length-1));
         var ajaxRequest = new qx.io.request.Xhr(url);
         if (options) {
           if (options.beforeSend) {
@@ -405,8 +411,7 @@ qx.Class.define('cv.io.Client', {
           }
         }
         ajaxRequest.set(qx.lang.Object.mergeWith({
-          accept: "application/json",
-          requestData: data
+          accept: "application/json"
         }, options || {}));
         if (callback) {
           ajaxRequest.addListener("success", callback, context);
@@ -466,12 +471,23 @@ qx.Class.define('cv.io.Client', {
      * @param addresses {Array}
      * @return {Map}
      */
-    buildRequest : function (addresses) {
-      return {
-        s: this.session,
-        a: addresses ? addresses : this.addresses,
-        f: this.filters
-      };
+    buildRequest : function (addresses, asString) {
+      if (asString === true) {
+        // return as query string
+        var qs = "s="+this.session;
+        addresses = addresses ? addresses : this.addresses;
+        qs += "&a="+addresses.join("&a=");
+        if (this.filters.length) {
+          qs += "&f="+this.filters.join("&f=");
+        }
+        return qs;
+      } else {
+        return {
+          s: this.session,
+          a: addresses ? addresses : this.addresses,
+          f: this.filters
+        };
+      }
     },
 
     /**

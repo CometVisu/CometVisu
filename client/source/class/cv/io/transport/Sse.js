@@ -74,7 +74,7 @@ qx.Class.define('cv.io.transport.Sse', {
       this.client.setDataReceived(false);
       this.eventSource = new EventSource(qx.util.Uri.appendParamsToUrl(
         this.client.getResourcePath("read"),
-        this.client.buildRequest())
+        this.client.buildRequest(null, true))
       );
       this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
       this.eventSource.addEventListener('error', this.handleError.bind(this), false);
