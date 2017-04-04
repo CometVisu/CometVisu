@@ -238,19 +238,25 @@ define([ 'jquery' ], function( $ ) {
     }
   };
   
-  window.svgKUF = function( iconID ) {
-    return function( color, styling, classes, asText )
-    {
-      if( color in colorMapping )
-        color = colorMapping[ color ];
-      
-      var style='';
-      if( color )
-        style = 'style="color:' + color + '" ';
-      
-      return '<svg ' + style + 'class="' + classes + '"><use xlink:href="icon/knx-uf-iconset.svg#kuf-' + iconID + '"></use></svg>';
+  if (typeof SVGRect != "undefined") {
+    window.svgKUF = function( iconID ) {
+      return function( color, styling, classes, asText )
+      {
+        if( color in colorMapping )
+          color = colorMapping[ color ];
+        
+        var style='';
+        if( color )
+          style = 'style="color:' + color + '" ';
+        
+        return '<svg ' + style + 'class="' + classes + '"><use xlink:href="icon/knx-uf-iconset.svg#kuf-' + iconID + '"></use></svg>';
+      }
+    };
+  } else {
+    window.svgKUF = function( iconID ) {
+      return window.recolorNonTransparent( 'icon/knx-uf-iconset/128x128_white/' + iconID + '.png' );
     }
-  };
+  }
 })(window);
 
 });

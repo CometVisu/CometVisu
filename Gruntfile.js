@@ -231,6 +231,7 @@ module.exports = function(grunt) {
           mainConfigFile: 'src/main.js',
           optimize: 'uglify2',
           generateSourceMaps: true,
+          useSourceUrl: true,
           preserveLicenseComments: false,
           removeCombined: true,
           wrapShim: true,
@@ -604,6 +605,16 @@ module.exports = function(grunt) {
           //'git commit -m "icons updated"'
         ].join('&&')
       },
+
+      createPNGs: {
+        command: [
+          'mkdir -p release/icon/knx-uf-iconset/128x128_white',
+          'cd external/knx-uf-iconset',
+          'for i in raw_480x480/*.png; do OUT=${1}/`basename ${i}`; echo "Processing `basename ${i}`..."; convert ${i} -shave "40x40" -resize 128 ../../release/icon/knx-uf-iconset/128x128_white/`basename ${i}`; done',
+          'cd ../../'
+        ].join('&&')
+      },
+
       // additional build step - TODO include into requirejs when known how to do it...
       // Copy the required files for the 2D demo - and all other files by the 
       // user which try to achive similiar effects
@@ -713,7 +724,7 @@ module.exports = function(grunt) {
   // Default task runs all code checks, updates the banner and builds the release
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   //grunt.registerTask('default', [ 'jshint', 'jscs', 'usebanner', 'requirejs', 'manifest', 'compress:tar', 'compress:zip' ]);
-  grunt.registerTask('build', [ 'updateicons', 'jscs', 'clean', 'file-creator', 'buildicons', 'requirejs', 'shell:postbuild', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
+  grunt.registerTask('build', [ 'updateicons', 'jscs', 'clean', 'file-creator', 'buildicons', 'requirejs', 'createPNGs', 'shell:postbuild', 'manifest', 'update-demo-config', 'chmod', 'compress:tar', 'compress:zip' ]);
   grunt.registerTask('lint', [ 'jshint', 'jscs' ]);
 
   grunt.registerTask('release', [ 'prompt', 'build', 'github-release' ]);
@@ -727,6 +738,7 @@ module.exports = function(grunt) {
 
   // update icon submodule
   grunt.registerTask('updateicons', ['shell:updateicons']);
+  grunt.registerTask('createPNGs',  ['shell:createPNGs']);
 
   grunt.registerTask('default', 'build');
 
