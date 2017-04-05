@@ -330,6 +330,7 @@ qx.Class.define('cv.plugins.RssLog', {
         }
 
         var rowElem = qx.dom.Element.create('li', { 'class' : 'rsslogRow ' + row });
+        qx.bom.element.Attribute.set(rowElem, "html", itemHtml);
 
         if (item.mapping && item.mapping !== '') {
           var mappedValue = this.applyMapping(itemack === 'disable' ? 0 : item.state, item.mapping);
@@ -355,8 +356,12 @@ qx.Class.define('cv.plugins.RssLog', {
         qx.bom.element.Dataset.set(rowElem, 'id', item.id);
         qx.bom.element.Dataset.set(rowElem, 'mapping', item.mapping);
         if (item.tags) {
-          var tmp = qx.bom.Selector.query('span', rowElem);
-          item.tags.forEach(qx.lang.Function.curry(qx.bom.element.Class.add, tmp), this);
+          var tmp = qx.bom.Selector.query('span', rowElem)[0];
+          if (qx.lang.Type.isArray(item.tags)) {
+            item.tags.forEach(qx.lang.Function.curry(qx.bom.element.Class.add, tmp), this);
+          } else {
+            qx.bom.element.Class.add(tmp, item.tags);
+          }
         }
         if (item.state === 1 && itemack !== 'disable') {
           qx.bom.element.Class.add(rowElem, "rsslog_ack");
