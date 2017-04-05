@@ -22,9 +22,8 @@
  * Replay tool for user interactions on existing configs. Used for bug reproduction
  *
  * TODO:
- * - Progressbar + Laufzeitangabe
+ * - Progressbar + Controls(Stop, Pause, Fast Mode)
  * - weitere user events (slider, colorchooser)
- * - weitere Daten (diagram RRD, RSS?)
  *
  * @author Tobias Bräutigam
  * @since 0.11.0 (2017)
@@ -137,7 +136,7 @@ qx.Class.define('cv.report.Replay', {
 
         case cv.report.Record.SCREEN:
           // most browsers do not allow resizing the window
-          console.log("resize event received "+record.d);
+          console.log("resize event received "+qx.lang.Json.stringify(record.d));
           window.resizeTo(record.d.w, record.d.h);
           break;
 
@@ -182,8 +181,8 @@ qx.Class.define('cv.report.Replay', {
 
     __playScrollEvent: function(record) {
       var elem = qx.bom.Selector.query("#"+record.d.page)[0];
-      elem.scrollTop = record.d.native.pageY;
-      elem.scrollLeft = record.d.native.pageX;
+      elem.scrollTop = record.d.native ? record.d.native.pageY : record.d.y;
+      elem.scrollLeft = record.d.native ? record.d.native.pageX : record.d.x;
     },
 
     __playPointerEvent: function(record) {
