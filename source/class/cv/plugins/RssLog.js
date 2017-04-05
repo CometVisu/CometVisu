@@ -215,7 +215,7 @@ qx.Class.define('cv.plugins.RssLog', {
         if (this.getFuture()) {
           requestData.future = this.getFuture();
         }
-        if (!src.match(/rsslog\.php/) && !src.match(/rsslog_mysql\.php/) && !src.match(/rsslog_mysql\.php/)) {
+        if (!src.match(/rsslog\.php/) && !src.match(/rsslog_mysql\.php/) && !src.match(/rsslog_oh\.php/)) {
           requestData.url = src;
           src = "plugins/rsslog/rsslog_external.php";
         } else {
