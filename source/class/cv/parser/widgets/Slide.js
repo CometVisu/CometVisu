@@ -67,7 +67,13 @@ qx.Class.define('cv.parser.widgets.Slide', {
     getAttributeToPropertyMappings: function () {
       return {
         'step': {"default": 0.5, transform: parseFloat},
-        'send_on_finish': {target: 'sendOnFinish', "default": false}
+        'send_on_finish': {
+          target: 'sendOnFinish',
+          "default": false,
+          transform: function(value) {
+            return value === "true";
+          }
+        }
       };
     }
   },
