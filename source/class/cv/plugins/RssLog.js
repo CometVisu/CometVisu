@@ -25,7 +25,7 @@
  */
 qx.Class.define('cv.plugins.RssLog', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.ui.common.Refresh, cv.ui.common.Update],
+  include: [cv.ui.common.Refresh, cv.ui.common.Update, cv.ui.common.Operate],
 
   /*
   ******************************************************
@@ -155,6 +155,7 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _onDomReady: function () {
+      this.base(arguments);
       qx.event.message.Bus.subscribe("path." + this.getParentPage().getPath() + ".beforePageChange", this.refreshRSSlog, this);
       this.__html = '<span class="mappedValue" /><span>{text}</span>';
       if (this.getDatetime()) {
@@ -184,7 +185,7 @@ qx.Class.define('cv.plugins.RssLog', {
         // But delay it so that any change done to the data has a chance to
         // arrive here.
 
-        if (qx.bom.element.Class.has(popup, 'popup') && this.getItemack() === 'modify') {
+        if (popup.getCurrentDomElement() && qx.bom.element.Class.has(popup.getCurrentDomElement(), 'popup') && this.getItemack() === 'modify') {
           qx.event.Timer.once(function () {
             this.refreshRSSlog();
           }, this, 100);
@@ -194,7 +195,7 @@ qx.Class.define('cv.plugins.RssLog', {
           }
         }
       }, this);
-      qx.bom.element.Style.set(qx.bom.Selector.query('.main', popup)[0], "overflow", "auto");
+      qx.bom.element.Style.set(qx.bom.Selector.query('.main', popup.getCurrentDomElement())[0], "overflow", "auto");
       this.refreshRSSlog(true);
     },
 
@@ -227,12 +228,12 @@ qx.Class.define('cv.plugins.RssLog', {
           requestData: requestData,
           method: "GET"
         });
-        this.__request.addListener("success", qx.lang.Function.curry(this.__updateContent, isBig), this);
+        this.__request.addListener("success", this.__updateContent, this);
         this.__request.addListener("error", function(ev) {
           this.error('C: #rss_%s, Error: %s, Feed: %s', this.getPath(), ev.getTarget().getResponse(), src);
         }, this);
       }
-      this.__request.setUserData("selector", '#rss_' + this.getPath() + (isBig === true ? '_big' : ''));
+      this.__request.setUserData("big", isBig);
       this.__request.send();
 
       var refresh = this.getRefresh();
@@ -244,17 +245,19 @@ qx.Class.define('cv.plugins.RssLog', {
       }
     },
 
-    __updateContent: function(isBig, ev) {
+    __updateContent: function(ev) {
       var result = ev.getTarget().getResponse();
       if (qx.lang.Type.isString(result)) {
         // no json -> error
         this.error(result);
         return;
       }
-      var c = qx.bom.Selector.query('#rss_' + this.getPath() + (isBig === true ? '_big' : ''))[0];
+      var isBig = this.__request.getUserData("big");
+      var selector = '#rss_' + this.getPath() + (isBig === true ? '_big' : '');
+      var c = qx.bom.Selector.query(selector)[0];
       var itemack = isBig === true ? this.getItemack() : ( 'modify' === this.getItemack() ? 'display' : this.getItemack());
 
-      //console.log('C: #%s, Success, Feed: %s', $(c).attr('id'), o.src);
+      this.debug("ID: "+qx.bom.element.Attribute.get(c, "id")+", Feed: "+this.getSrc());
 
       qx.dom.Element.empty(c);
       var ul = qx.dom.Element.create("ul");
@@ -366,6 +369,7 @@ qx.Class.define('cv.plugins.RssLog', {
         if (item.state === 1 && itemack !== 'disable') {
           qx.bom.element.Class.add(rowElem, "rsslog_ack");
         }
+        console.log(itemack);
 
         if (itemack === 'modify') {
           qx.event.Registration.addListener(rowElem, "tap", this._onTap, this);
@@ -390,7 +394,7 @@ qx.Class.define('cv.plugins.RssLog', {
         qx.dom.Element.empty(span);
         this.defaultValue2DOM(mappedValue, qx.lang.Function.curry(this._applyValueToDom, span));
       }
-      var req = new qx.io.request.Xhr(this.__request.getSrc());
+      var req = new qx.io.request.Xhr(this.__request.getUrl());
       req.set({
         method: "GET",
         requestData: {
