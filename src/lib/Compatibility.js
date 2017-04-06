@@ -24,8 +24,9 @@
  * @author Christian Mayer
  * @since 2013
  */
-define( ['jquery', 'dependencies/sprintf'], function( $ ) {
+define( ['jquery', 'dependencies/sprintf', 'dependencies/svg4everybody'], function( $ ) {
   "use strict";
+  svg4everybody();
   if( /(msie)/i.test(navigator.userAgent.toLowerCase()) )
   {
     var IE_version = /MSIE\s([\d]+)/;
