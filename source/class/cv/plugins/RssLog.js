@@ -366,7 +366,7 @@ qx.Class.define('cv.plugins.RssLog', {
             qx.bom.element.Class.add(tmp, item.tags);
           }
         }
-        if (item.state === 1 && itemack !== 'disable') {
+        if (item.state === "1" && itemack !== 'disable') {
           qx.bom.element.Class.add(rowElem, "rsslog_ack");
         }
         console.log(itemack);
