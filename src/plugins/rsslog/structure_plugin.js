@@ -297,9 +297,13 @@ define( ['structure_custom', 'MessageBroker', 'css!plugins/rsslog/rsslog' ], fun
               $row.data({ 'id': item.id, 'mapping': item.mapping });
               if (item.tags) {
                 var tmp = $('span', $row);
-                $.each(item.tags, function (i, tag) {
-                  tmp.addClass(tag);
-                });
+                if (typeof(item.tags) === "array") {
+                  $.each(item.tags, function (i, tag) {
+                    tmp.addClass(tag);
+                  });
+                } else {
+                  tmp.addClass(item.tags);
+                }
               }
               if( item.state == 1 && o.itemack !== 'disable' ) {
                 $row.addClass("rsslog_ack");
