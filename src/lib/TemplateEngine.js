@@ -845,11 +845,6 @@ define([
         icons.insert(name, uri, type, flavour, color, styling, dynamic);
       });
 
-      $('label > icon', xml).each(function(i) {
-        var $this = $(this);
-        icons.getIconElement($this.attr('name'), $this.attr('type'), $this.attr('flavour'), $this.attr('color'), $this.attr('styling'), $this.attr('class'));
-      });
-
       // then the mappings
       $('meta > mappings mapping', xml).each(function(i) {
         var $this = $(this);
