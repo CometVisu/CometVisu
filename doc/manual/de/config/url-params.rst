@@ -170,6 +170,8 @@ Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu ang
     Default: true (enableCache=true)
     Options: false (enableCache=false), true (enableCache=true), invalid (enableCache=invalid)
 
+.. _reporting:
+
 *reporting* - Session aufzeichnen
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
