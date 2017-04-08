@@ -369,7 +369,6 @@ qx.Class.define('cv.plugins.RssLog', {
         if (item.state === "1" && itemack !== 'disable') {
           qx.bom.element.Class.add(rowElem, "rsslog_ack");
         }
-        console.log(itemack);
 
         if (itemack === 'modify') {
           qx.event.Registration.addListener(rowElem, "tap", this._onTap, this);
