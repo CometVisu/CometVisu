@@ -393,10 +393,12 @@ qx.Class.define('cv.io.Client', {
       "qx": function(url, data, callback, context, options) {
         // append data to URL
         var qs = "";
-        Object.getOwnPropertyNames(data).forEach(function(key) {
-          qs+=key+"="+data[key]+"&";
-        });
-        url = qx.util.Uri.appendParamsToUrl(url, qs.substring(0, qs.length-1));
+        if (data) {
+          Object.getOwnPropertyNames(data).forEach(function (key) {
+            qs += key + "=" + data[key] + "&";
+          });
+          url = qx.util.Uri.appendParamsToUrl(url, qs.substring(0, qs.length-1));
+        }
         var ajaxRequest = new qx.io.request.Xhr(url);
         if (options) {
           if (options.beforeSend) {
@@ -502,10 +504,12 @@ qx.Class.define('cv.io.Client', {
        * could maybe selective based on UserAgent but isn't that costly on writes
        */
       var ts = new Date().getTime();
-      var url = qx.util.Uri.appendParamsToUrl(
-        this.getResourcePath("write"),
-        's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts);
-      this.doRequest(url, null, null, null, {
+      this.doRequest(this.getResourcePath("write"), {
+        s: this.session,
+        a: address,
+        v: value,
+        ts: ts
+      }, null, null, {
         accept: "application/json, text/javascript, */*; q=0.01"
       });
     },
