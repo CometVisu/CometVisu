@@ -20,7 +20,6 @@
 
 /**
  * Handles all popups
- * @class cv.ui.PopupHandler
  */
 qx.Class.define('cv.ui.PopupHandler', {
   type: "static",
@@ -93,10 +92,10 @@ qx.Class.define('cv.ui.PopupHandler', {
      * on the numeric keypad. I.e. a value of "6" means centered above the anchor.
      * A value of "0" means centered to the page
      *
-     * @param anchor
-     * @param popup
-     * @param page
-     * @param preference
+     * @param anchor {Map}
+     * @param popup {Map}
+     * @param page {Map}
+     * @param preference {Number}
      * @return {Map}
      */
     placementStrategy: function( anchor, popup, page, preference ) {

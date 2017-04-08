@@ -130,8 +130,7 @@ qx.Class.define('cv.ui.PageHandler', {
 
     /**
      * Get the animation configs for the current animationType setting
-     * @param direction
-     * @private
+     * @param direction {String} "up" or "down"
      */
     __getAnimationConfig: function(direction) {
       var inAnim, outAnim;
