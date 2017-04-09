@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The rss plugin &mdash; CometVisu</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="CometVisu" href="../../../../index.html"/>
+        <link rel="up" title="Operatable widgets" href="../../index.html"/>
+        <link rel="next" title="The Speech plugin" href="../speech/index.html"/>
+        <link rel="prev" title="The powerspectrum plugin" href="../powerspectrum/index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu
+          
+
+          
+            
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.10.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Operatable widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html#informative-widgets">Informative widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html#other-widgets">Other widgets</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../diagram/index.html">The diagram plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gauge/index.html">The gauge plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../link/index.html">The link plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openweathermap/index.html">The openweathermap plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../powerspectrum/index.html">The powerspectrum plugin</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The rss plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#settings">Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#allowed-attributes-in-the-rss-element">Allowed attributes in the rss-element</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allowed-child-elements-und-their-attributes">Allowed child-elements und their attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../speech/index.html">The Speech plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../strftime/index.html">The strftime plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timeout/index.html">The timeout plugin</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CometVisu</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Operatable widgets</a> &raquo;</li>
+        
+      <li>The rss plugin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="the-rss-plugin">
+<span id="rss"></span><h1>The rss plugin<a class="headerlink" href="#the-rss-plugin" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This plugins integrates zrssfeed to display RSS-Feeds via Google-API
+<em>and</em> a parser for local feeds using jQuery 1.5+ into CometVisu.
+rssfeedlocal is derived from simplerss and zrssfeed
+rssfeedlocal is mainly meant to be used with rsslog.php and plugins</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;rss</span> <span class="na">src=</span><span class="s">&quot;/visu/plugins/rss/rsslog.php&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span> <span class="na">link=</span><span class="s">&quot;false&quot;</span> <span class="na">title=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;&lt;/rss&gt;</span>
+<span class="nt">&lt;rss</span> <span class="na">src=</span><span class="s">&quot;http://www.tagesschau.de/xml/rss2&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span><span class="nt">&gt;</span>Test API<span class="nt">&lt;/rss&gt;</span>
+<span class="nt">&lt;rss</span> <span class="na">src=</span><span class="s">&quot;/visu/plugins/rss/tagesschau-rss2.xml&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span> <span class="na">header=</span><span class="s">&quot;true&quot;</span> <span class="na">date=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;&lt;/rss&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p>For a general understanding of how the configuration files are structured and what elements and attributes are
+it is recommended to read this section first: <span class="xref std std-ref">visu-config-details</span>.</p>
+<p>The behaviour and appearance of the rss plugins can be influenced by using certain attributes and elements.
+The following tables show the allowed attributes and elements and their possible values.
+The screenshots show, how both can be edited in the <span class="xref std std-ref">editor</span>.</p>
+<p>Attributes underlined by ..... are mandatory, all the others are optional and be omitted.</p>
+<div class="section" id="allowed-attributes-in-the-rss-element">
+<h3>Allowed attributes in the rss-element<a class="headerlink" href="#allowed-attributes-in-the-rss-element" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">&nbsp;</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="14">rss</td>
+<td><abbr title="mandatory">src</abbr></td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>dimenstion (number+unit)</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>height</td>
+<td>dimenstion (number+unit)</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>refresh</td>
+<td>integer</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>limit</td>
+<td>integer</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td><abbr title="mandatory">header</abbr></td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>date</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>content</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>snippet</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>showerror</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>ssl</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>linktarget</td>
+<td><em>_new</em>, <em>_blank</em> or <em>_self</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>link</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>title</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="allowed-child-elements-und-their-attributes">
+<h3>Allowed child-elements und their attributes<a class="headerlink" href="#allowed-child-elements-und-their-attributes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
+<dt>rss</dt>
+<dd><ul class="first last simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>decimal</td>
+<td>Amount of coloumns this widget sould be wide.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a small screen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>decimal</td>
+<td>Amount of rows this widget should be high.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>string</td>
+<td>Reserved for future use.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>string</td>
+<td>Width for the widget for 2D pages.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>rss</dt>
+<dd><ul class="first simple">
+<li>label</li>
+</ul>
+<blockquote class="last">
+<div><ul class="simple">
+<li>icon</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">name</abbr></td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>string</td>
+<td>Selection of a display variant. See also :ref:&#8217;flavour&#8217;.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>string</td>
+<td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>rss</dt>
+<dd><ul class="first simple">
+<li>label</li>
+</ul>
+<blockquote class="last">
+<div><ul class="simple">
+<li>#text</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</td>
+<td>&nbsp;</td>
+<td>string</td>
+<td>Text to display a label for the widget.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to manually edit the <span class="xref doc">visu_config.xml</span> and add an entry
+for the rss plugin.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+XML-editor to UTF-8 mode!</p>
+</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../speech/index.html" class="btn btn-neutral float-right" title="The Speech plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../powerspectrum/index.html" class="btn btn-neutral" title="The powerspectrum plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2010-2017 Christian Mayer and the CometVisu contributers.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
