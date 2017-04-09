@@ -26,6 +26,7 @@ dependencies/jquery.js
 dependencies/jsfloorplan.js
 dependencies/Three.js
 dependencies/poly2tri.js
+dependencies/svg4everybody.js
 lib/IconHandler.js
 lib/IconTools.js
 lib/Compatibility.js
