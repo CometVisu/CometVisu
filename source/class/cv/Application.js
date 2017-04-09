@@ -139,6 +139,9 @@ qx.Class.define("cv.Application",
       this.base(arguments);
       this.block(true);
 
+      // run svg4everybody to support SVG sprites in older browsers
+      svg4everybody();
+
       // Enable logging in debug variant
       if (qx.core.Environment.get("qx.debug")) {
         // support native logging capabilities, e.g. Firebug for Firefox

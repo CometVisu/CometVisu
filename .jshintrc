@@ -38,6 +38,7 @@
     "steelseries": false,
     "EventSource": false,
     "fs": false,
-    "replayLog": false
+    "replayLog": false,
+    "svg4everybody": false
   }
 }

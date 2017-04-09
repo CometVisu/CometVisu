@@ -90,7 +90,8 @@
           "jQuery",
           "THREE",
           "sprintf",
-          "replayLog"
+          "replayLog",
+          "svg4everybody"
         ]
       },
 
@@ -115,6 +116,9 @@
         },
         {
           "uri" : "resource/libs/strftime.js"
+        },
+        {
+          "uri" : "resource/libs/svg4everybody.js"
         }
       ],
       "copy-files" :
@@ -123,6 +127,7 @@
           "resource/libs/sprintf.js",
           //"resource/libs/Three.js",
           "resource/libs/jquery.js",
+          "resource/libs/svg4everybody.js",
           "resource/libs/strftime.js",
           "editor",
           "upgrade",
@@ -150,7 +155,8 @@
           "jQuery",
           "THREE",
           "sprintf",
-          "replayLog"
+          "replayLog",
+          "svg4everybody"
         ]
       }
     },
@@ -355,7 +361,8 @@
           "THREE",
           "sprintf",
           "Sunlight",
-          "replayLog"
+          "replayLog",
+          "svg4everybody"
         ],
         "generate-widget-examples": true
       },
