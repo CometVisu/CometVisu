@@ -37,7 +37,7 @@ describe("testing a colorchooser plugin", function() {
         cv.TemplateEngine.getInstance().setPartsLoaded(true);
       }, this, 10);
     }, this);
-  }),
+  });
 
   it("should test the colorchooser creator", function() {
     var res = this.createTestWidgetString("colorchooser", {id: 'test'}, '<label>Test</label>');
