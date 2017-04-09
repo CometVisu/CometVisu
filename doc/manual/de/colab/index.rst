@@ -56,7 +56,8 @@ Und nun noch einmal dieselben Schritte im Detail:
 1. Auf Kommandozeile in das Verzeichnis mit dem lokalen Repository wechseln
    ``git checkout -b name-des-branches`` (Der Name des neuen Branches kann frei gewählt werden, es darf nur kein existierender sein)
 2. Die gewünschten Dateien mit einem Editor nach Wahl bearbeiten und speichern
-3. ``git commit -a -m "Kurze Beschreibung der Änderung"`` (Die Beschreibung nach Möglichkeit auf Englisch formulieren)
+3. ``git commit -a -m "Kurze Beschreibung der Änderung"`` (Die Beschreibung nach Möglichkeit auf Englisch formulieren). 
+   Mit ``git status`` kann zunächst nochmal geprüft werden, welche Änderungen alle *commited* werden. 
 4. s.o.
 5. ``git push``
 6. Auf die Github-Seite des private Repositories gehen und auf *new pull request* klicken.
@@ -76,15 +77,124 @@ im Pull-Request tun. Ist dies der Fall, kommt nun der Vorteil des im Schritt 1. 
 Man muss nähmlich nur die Schritte 2., 3. und 5. ausführen um die Korrekturwünsche des Maintainers auszuführen.
 Damit sind die Änderungen automatisch Teil des vorhandenen Pull-Requests.
 
+Sind alle Änderungen abgestimmt und übernommen worden, kann der Branch gelöscht werden.
+``git branch -D name-des-branches``
+
 Wenn man z.B. schon mit neuen Änderungen in einem neuen Branch begonnen hat, kann man beliebig zwischen den Branches
 hin und her wechseln und so sogar mehrere Pull-Requests und Änderungen gleichzeitig bearbeiten ohne diese inhaltlich
 zu vermischen. In einen anderen Branch wechseln kann man immer nach einem commit (siehe Schritt 3.) mit
-``git checkout name-des-branches``
+``git checkout name-des-branches``.
+
+Repositories synchron halten
+----------------------------
+
+Über github.com
+^^^^^^^^^^^^^^^
+
+Um die von anderen Entwicklern *gemergeden* Änderungen mit dem eigenen Fork synchron zu halten, muss ein Pull-Request  
+vom privaten Repository aus gemacht werden. In der Zeile *This branch is ... commits ahead of CometVisu:develop.* zeigt 
+an, wieviele Änderungen seit der letzten Synchronisierung vorgenommen wurden. Direkt daneben befindet sich der Link zum *Pull Request*, 
+welcher in der darauffolgenden Seite die Änderungen anzeigt, die in das private Repository *gemerged* werden können. 
+
+.. figure:: doc/_static/pull_request_sync.png
+
+	Pull Request für Synchronisation zwischen Haupt- und privaten Repository
+
+.. figure:: doc/_static/github_sync2.png
+
+	Vergleich der Änderungen
+
+.. IMPORTANT::
+
+	Wichtig bei diesem Vergleich ist, dass der eigene *base fork* links und der offizielle *head fork* rechts steht.
+
+.. figure:: doc/_static/github_sync3.png
+
+	Merge pull request erzeugen
+
+Das Akzeptieren aller Änderungen synchronisiert die Änderungen vom Haupt-Repository auf das private Repository.   
+
+.. figure:: doc/_static/github_sync4.png
+
+	Merge bestätigen
+
+.. figure:: doc/_static/github_sync5.png
+
+	Erfolgreiche Synchronisierung   
+     
+Die lokale Kopie des privaten Repositories muss dann ebenso aktualisiert werden. Dazu muss im lokalen Repository in den Branch 
+*develop* gewechselt werden (``git checkout develop``), dort werden alle abgestimmten Änderungen der Entwickler *gemerged*.
+Mit dem Befehl ``git pull`` erfolgt die Synchronisation zwischen lokalem und privatem Repository. Nachdem nun alle Repositories 
+wieder synchron sind, kann wie oben unter 1. beschrieben mit neuen Änderungen an der Dokumentation fortgefahren werden.
+
+
+Über die Kommandozeile
+^^^^^^^^^^^^^^^^^^^^^^
+
+Natürlich kann man den lokalen Klon seines Repositories auch rein über Kommandozeilenbefehle komfortabel synchron halten.
+Um dieses möglichst einfach zu machen, muss man die *Remotes* seines lokalen Klons entsprechend konfigurieren.
+
+.. HINT::
+    Für die folgenden Beispiele wird angenommen, dass man den Usernamen ``gh-user`` hat und das CometVisu Repository über SSH
+    geklont wurde (``git clone git@github.com:gh-user/CometVisu.git``). Wenn über HTTPS geklont wurde
+    (``https://github.com/CometVisu/CometVisu.git``) sehen die URLs entsprechend anders aus.
+
+Zusammenfassung
+"""""""""""""""
+
+.. code-block:: bash
+
+    # aktuelle Einstellungen abfragen
+    git remote -v
+    >>> origin	git@github.com:gh-user/CometVisu.git (fetch)
+    >>> origin	git@github.com:gh-user/CometVisu.git (push)
+
+    # Aktualisierungen vom original Repository holen
+    git remote set-url origin git@github.com:CometVisu/CometVisu.git
+
+    # aktuelle Einstellungen prüfen
+    git remote -v
+    >>> origin	git@github.com:CometVisu/CometVisu.git (fetch)
+    >>> origin	git@github.com:gh-user/CometVisu.git (push)
+
+    # develop branch mit original Repository synchronisieren
+    git checkout develop
+    git pull
+
+Ausführliche Vorgehensweise
+"""""""""""""""""""""""""""
+
+Die aktuellen Einstellungen kann man mit dem Befehl ``git remote -v`` abfragen.
+Üblicherweise liefert das folgende Werte:
+
+.. code-block:: bash
+
+    origin	git@github.com:gh-user/CometVisu.git (fetch)
+    origin	git@github.com:gh-user/CometVisu.git (push)
+
+Das bedeuted, dass git beim Aktualisieren (*fetch*, *pull*) und auch beim *pushen* den Fork des Users auf github benutzt.
+Man möchte nun aber möglichst einfach Änderungen auf dem Haupt-Repository in den lokalen Klon laden. Dazu ändert man die
+*fetch* URL des remotes mit folgendem Befehl: ``git remote set-url origin git@github.com:CometVisu/CometVisu.git``.
+Danach sollte ``git remote -v`` folgende Ausgabe liefern:
+
+.. code-block:: bash
+
+    origin	git@github.com:CometVisu/CometVisu.git (fetch)
+    origin	git@github.com:gh-user/CometVisu.git (push)
+
+Damit sind die Vorraussetzungen erfüllt und man kann seinen lokalen *develop* Branch (dieser enthält die neuesten Weiterenwicklungen)
+ganz einfach durch ein ``git pull`` aktualisieren.
+
+.. HINT::
+    Diese Vorgehensweise ist nur ratsam, wenn man nur an einem Rechner Änderungen an der CometVisu vornimmt.
+    Wenn man gleichzeitig mehrere Rechner benutzt, muss man zwangsläufig die Änderungen die man von dem anderen Rechner
+    in den eigenen Fork *gepushed* hat in den lokalen Klon bekommen. Dazu kann man ein zweites Remote einrichten mit
+    ``git remote add fork git@github.com:gh-user/CometVisu.git`` und dann davon *pullen*
+    ``git pull fork develop``
 
 .. TODO::
 
     * weitere nützliche Git-Befehle (branches löschen, status, ...)
-    * Eigenen Fork vom Haupt-Repository aktualisieren
     * Merge-Konflikte
     * Ablauf-Diagramm für Workflow Änderung -> Pull-Request
 

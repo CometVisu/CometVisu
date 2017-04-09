@@ -1,6 +1,6 @@
 /* CometVisuClient.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -127,8 +127,9 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest(session.initialAddresses) + '&t=0',
+              data        : 't=0&' + session.buildRequest(session.initialAddresses),
               success     : this.handleReadStart,
+              error       : this.handleError,
               beforeSend  : this.beforeSend
             });
           } else {
@@ -137,7 +138,7 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest() + '&t=0',
+              data        : 't=0&' + session.buildRequest(),
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -160,7 +161,7 @@ define( ['jquery'], function( $ ) {
                 url : session.getResourcePath("read"),
                 dataType : 'json',
                 context : this,
-                data : session.buildRequest() + '&t=0',
+                data : 't=0&' + session.buildRequest(),
                 success : this.handleRead,
                 error : this.handleError,
                 beforeSend : this.beforeSend
@@ -185,7 +186,7 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest() + '&i=' + this.lastIndex,
+              data        : 'i=' + this.lastIndex + '&' + session.buildRequest(),
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -202,8 +203,9 @@ define( ['jquery'], function( $ ) {
                 url         : session.getResourcePath("read"),
                 dataType    : 'json',
                 context     : this,
-                data        : session.buildRequest(session.initialAddresses) + '&t=0',
+                data        : 't=0&' + session.buildRequest(session.initialAddresses),
                 success     : this.handleReadStart,
+                error       : this.handleError,
                 beforeSend  : this.beforeSend
               });
               session.watchdog.ping();
@@ -228,7 +230,7 @@ define( ['jquery'], function( $ ) {
               url         : session.getResourcePath("read"),
               dataType    : 'json',
               context     : this,
-              data        : session.buildRequest(diffAddresses) + '&t=0',
+              data        : 't=0&' + session.buildRequest(diffAddresses),
               success     : this.handleRead,
               error       : this.handleError,
               beforeSend  : this.beforeSend
@@ -272,6 +274,16 @@ define( ['jquery'], function( $ ) {
             }
             alert('Error! Type: "' + str + '" ExceptionObject: "'
               + excptObj + '" readyState: ' + readyState);
+          } else if( 'parsererror' === str )
+          {
+            // make sure that a possible resart loop isn't draining all
+            // ressources by limiting it
+            var now = new Date();
+            if( !this.lastRestartTime )
+              this.lastRestartTime = now;
+            
+            // limit to an interval of at least 1000 ms
+            setTimeout( function(){ self.restart( true ) }, Math.max(0,1000 - (now - this.lastRestartTime)) );
           }
         };
 
@@ -324,6 +336,7 @@ define( ['jquery'], function( $ ) {
           if( doFullReload )
             this.lastIndex = -1; // reload all data
 
+          self.lastRestartTime = new Date();
           self.doRestart = true;
           self.abort();
           self.handleRead(); // restart
@@ -468,6 +481,10 @@ define( ['jquery'], function( $ ) {
     // check and fix if the user forgot the "new" keyword
     if (!(this instanceof CometVisuClient)) {
       return new CometVisuClient();
+    }
+
+    this.setInitialAddresses = function(addresses) {
+      this.initialAddresses = addresses;
     }
 
     /**
@@ -723,7 +740,7 @@ define( ['jquery'], function( $ ) {
         + addresses.join('&a=') : '',
         requestFilters = (this.filters.length) ? 'f='
         + this.filters.join('&f=') : '';
-      return 's=' + this.session + '&' + requestAddresses
+      return 's=' + this.currentTransport.sessionId + '&' + requestAddresses
         + ((addresses.length && this.filters.length) ? '&' : '')
         + requestFilters;
     };
@@ -744,7 +761,7 @@ define( ['jquery'], function( $ ) {
         url: this.getResourcePath("write"),
         dataType: 'json',
         context: this,
-        data: 's=' + this.session + '&a=' + address + '&v=' + value + '&ts=' + ts
+        data: 's=' + this.currentTransport.sessionId + '&a=' + address + '&v=' + value + '&ts=' + ts
       });
     };
 

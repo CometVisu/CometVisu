@@ -1,6 +1,6 @@
 /* TemplateEngine.js 
  * 
- * copyright (c) 2010-2016, Christian Mayer and the CometVisu contributers.
+ * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
@@ -1118,8 +1118,11 @@ define([
               rememberLastPage = false;
             }
           }
+          // check if startpage contains a page name and find the page id
+          startpage = thisTemplateEngine.getPageIdByPath(startpage) || startpage;
+
           // check that startpage does exits
-          if( $('#'+startpage+'.page').length === 0 )
+          if($('#'+startpage+'.page').length === 0)
             startpage = 'id_';   // default to top most page
         }
         thisTemplateEngine.currentPage = $('#'+startpage);
@@ -1311,7 +1314,7 @@ define([
         // decode html code (e.g. like &apos; => ')
         page_name = $("<textarea/>").html(page_name).val();
         // remove escaped slashes
-        page_name = page_name.replace("\\\/","/");
+        page_name = decodeURI(page_name.replace("\\\/","/"));
 
         //      console.log("Page: "+page_name+", Scope: "+scope);
         var selector = (scope!=undefined && scope!=null) ? '.page[id^="'+scope+'"] h1:contains(' + page_name + ')' :  '.page h1:contains(' + page_name + ')';
