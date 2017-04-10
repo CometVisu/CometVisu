@@ -111,7 +111,7 @@ qx.Class.define("cv.Application",
       }
       cv.report.Record.prepare();
 
-      var info = ""+
+      var info = "\n"+
         "  _____                     ___      ___\n"+
         " / ____|                   | \\ \\    / (_)\n"+
         "| |     ___  _ __ ___   ___| |\\ \\  / / _ ___ _   _\n"+
