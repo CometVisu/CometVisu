@@ -11,11 +11,11 @@ cache:
   - downloads
 env:
   - CV_BUILD="test" CV_BROWSER=Chrome CV_VERSION=stable
-  - CV_BUILD="docs" ENCRYPTION_LABEL="4c79fec0aeb9" COMMIT_AUTHOR_EMAIL="generator@cometvisu.org"
+  - CV_BUILD="docs" ENCRYPTION_LABEL="4c79fec0aeb9" COMMIT_AUTHOR_EMAIL="generator@cometvisu.org" CV_BROWSER=Chrome CV_VERSION=stable
 before_install:
 - mkdir -p downloads
 - nvm install 4.2
-- if [ "$CV_BUILD" == "docs" ]; then sudo ./utils/travis/browser-setup.sh; fi
+- sudo ./utils/travis/browser-setup.sh
 - if [ "$CV_BUILD" == "docs" ]; then export CHROME_BIN=`pwd`/chrome/google-chrome; fi
 - if [ "$CV_BUILD" == "docs" ] && ! [ -e downloads/plantuml.deb ]; then wget -O downloads/plantuml.deb http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb; fi
 - mkdir cache
