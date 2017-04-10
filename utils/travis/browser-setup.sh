@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "installing $CV_BROWSER - $CV_VERSION..."
+
 if [ "$CV_BROWSER" = "" ]; then
     exit 0
 fi
