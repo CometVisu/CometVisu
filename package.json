@@ -54,7 +54,6 @@
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-qooxdoo": "^0.6.0",
     "libxml-xsd": "^0.5.2",
-    "phantomjs-prebuilt": "^2.1.13",
     "protractor": "^4.0.10",
     "request": "^2.69.0",
     "rjs-build-analysis": "0.0.3",
