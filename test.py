@@ -1,3 +1,3 @@
 #!/usr/bin/python2
 
-import lxml
+from lxml import etree
