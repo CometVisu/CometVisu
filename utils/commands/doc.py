@@ -508,6 +508,7 @@ class DocGenerator(Command):
         parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
         parser.add_argument("--move-apiviewer", dest="move-apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
         parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/current docs and weite version files")
+        parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
 
         options = parser.parse_args(args)
 
@@ -530,6 +531,9 @@ class DocGenerator(Command):
                                default_style='"',
                                allow_unicode=True)
 
+        elif options.get_version:
+            print(self._get_doc_version())
+
         elif options.process_versions:
             self.process_versions(self.config.get("DEFAULT", "doc-dir"))
 
@@ -542,7 +546,7 @@ class DocGenerator(Command):
             sys.exit(0)
 
         elif options.doc == "source":
-            cmd = "python2 ./generate.py api -sI --macro=CV_VERSION:%s" % self._get_doc_version()
+            cmd = "./generate.py api -sI --macro=CV_VERSION:%s" % self._get_doc_version()
             subprocess.call(cmd, shell=True)
 
         elif options.move_apiviewer:
