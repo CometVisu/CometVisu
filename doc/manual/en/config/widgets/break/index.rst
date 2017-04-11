@@ -13,11 +13,6 @@ Description
 A break tag is used to start in new line for a grouped and thereby tidy display of
 elements on one page.
 
-.. code-block:: xml
-    :caption: The break tag has no content
-
-    <break/>
-
 
 .. ###END-WIDGET-DESCRIPTION###
 

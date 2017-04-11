@@ -34,7 +34,7 @@ daher weg gelassen werden.
 
 
 Erlaubte Attribute im Page-Element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: page
 

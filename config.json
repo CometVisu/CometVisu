@@ -1,0 +1,425 @@
+{
+  "name"    : "CometVisu",
+
+  "include" :
+  [
+    {
+      "path" : "${QOOXDOO_PATH}/tool/data/config/application.json"
+    }
+  ],
+
+  "export" :
+  [
+    "api",
+    "api-data",
+    "build",
+    "clean",
+    "distclean",
+    "dependencies",
+    "fix",
+    "info",
+    "lint",
+    "migration",
+    "pretty",
+    "profiling",
+    "source",
+    "source-all",
+    "source-hybrid",
+    "source-server",
+    "source-server-reload",
+    "source-httpd-config",
+    "test",
+    "test-source",
+    "translation",
+    "validate-config",
+    "validate-manifest",
+    "watch",
+    "profile"
+  ],
+
+  "default-job" : "source-hybrid",
+
+  "let" :
+  {
+    "APPLICATION"  : "cv",
+    "QOOXDOO_PATH" : "./external/qooxdoo",
+    "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.test.*"],
+    "LOCALES"      : [ "en", "de" ],
+    "CACHE"        : "${TMPDIR}/qx${QOOXDOO_VERSION}/cache",
+    "ROOT"         : ".",
+    "CV_VERSION"   : "dev"
+  },
+
+  "config-warnings" :
+  {
+    "job-shadowing" : [
+      "common",
+      "dependencies",
+      "source-all-script",
+      "build-script",
+      "lint",
+      "source-script",
+      "api",
+      "api-data",
+      "source",
+      "build",
+      "libraries",
+      "source-hybrid"
+    ]
+  },
+
+  // You only need to edit the remainder of this file, if you want to customize
+  // specific jobs, or add own job definitions.
+
+  "jobs" :
+  {
+    "common" :
+    {
+      "=include" :
+      [
+        "${APPLICATION}.Application",
+        "${APPLICATION}.ui.structure.pure.*",
+        "${APPLICATION}.transforms.*",
+        "${APPLICATION}.plugins.*",
+        "${APPLICATION}.parser.*"
+      ],
+
+      "lint-check" : {
+        "allowed-globals" : [
+          "$",
+          "jQuery",
+          "THREE",
+          "sprintf",
+          "replayLog",
+          "svg4everybody"
+        ]
+      },
+
+      "=environment" :
+      {
+        "qx.version"     : "5.1",
+        "qx.application" : "${APPLICATION}.Application",
+        "qx.promise"     : false,
+        "cv.version"     : "${CV_VERSION}",
+        "cv.xhr"         : "qx"
+      },
+
+      "add-script" : [
+        {
+          "uri" : "resource/libs/sprintf.js"
+        },
+//        {
+//          "uri" : "resource/libs/Three.js"
+//        },
+        {
+          "uri" : "resource/libs/jquery.js"
+        },
+        {
+          "uri" : "resource/libs/strftime.js"
+        },
+        {
+          "uri" : "resource/libs/svg4everybody.js"
+        }
+      ],
+      "copy-files" :
+      {
+        "files" : [
+          "resource/libs/sprintf.js",
+          //"resource/libs/Three.js",
+          "resource/libs/jquery.js",
+          "resource/libs/svg4everybody.js",
+          "resource/libs/strftime.js",
+          "editor",
+          "upgrade",
+          "check_config.php",
+          "manager.php",
+          "version",
+          "library_version.inc.php",
+          "manifest.json"
+        ]
+      }
+    },
+
+    "libraries" :
+    {
+      "library" :
+      [
+        { "manifest" : "client/Manifest.json" }
+      ]
+    },
+
+    "lint": {
+      "lint-check" : {
+        "allowed-globals" : [
+          "$",
+          "jQuery",
+          "THREE",
+          "sprintf",
+          "replayLog",
+          "svg4everybody"
+        ]
+      }
+    },
+
+    "parts-config":
+    {
+      "packages" :
+      {
+//        "verifier-bombs-on-error" : false,
+//        "separate-loader" : true,
+        "parts"  :
+        {
+          "boot"     :
+          {
+            "include" : [
+              "${APPLICATION}.Application",
+              "${APPLICATION}.transforms.*",
+              "${APPLICATION}.parser.widgets.*"
+            ]
+          },
+          "structure-pure" : {
+            "include": [ "${APPLICATION}.ui.structure.pure.*" ]
+          },
+
+          "plugin-diagram" :
+          {
+            "include" : [ "${APPLICATION}.plugins.diagram.*" ]
+          },
+          "plugin-colorchooser" :
+          {
+            "include" : [ "${APPLICATION}.plugins.ColorChooser" ]
+          },
+          "plugin-calendarlist" :
+          {
+            "include" : [ "${APPLICATION}.plugins.CalendarList" ]
+          },
+          "plugin-clock" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Clock" ]
+          },
+          "plugin-gauge" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Gauge" ]
+          },
+          "plugin-link" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Link" ]
+          },
+          "plugin-mobilemenu" :
+          {
+            "include" : [ "${APPLICATION}.plugins.MobileMenu" ]
+          },
+          "plugin-powerspectrum" :
+          {
+            "include" : [ "${APPLICATION}.plugins.PowerSpectrum" ]
+          },
+          "plugin-openweathermap" :
+          {
+            "include" : [ "${APPLICATION}.plugins.OpenweatherMap" ]
+          },
+          "plugin-rss" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Rss" ]
+          },
+          "plugin-rsslog" :
+          {
+            "include" : [ "${APPLICATION}.plugins.RssLog" ]
+          },
+          "plugin-strftime" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Strftime" ]
+          },
+          "plugin-speech" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Speech" ]
+          },
+          "plugin-timeout" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Timeout" ]
+          },
+          "plugin-svg" :
+          {
+            "include" : [ "${APPLICATION}.plugins.Svg" ]
+          },
+          "plugin-upnpcontroller" :
+          {
+            "include" : [ "${APPLICATION}.plugins.UpnpController" ]
+          }
+        }
+      }
+    },
+
+    "source" :
+    {
+      "extend" : [ "parts-config" ],
+      "environment" :
+      {
+        "cv.build": "source"
+      },
+      "run" :
+      [
+        "update-version",
+        "source-script"
+      ]
+    },
+
+    "source-hybrid" :
+    {
+      "extend" : [ "parts-config" ]
+    },
+
+    "update-version": {
+      "shell" :
+      {
+        "command" : "utils/update_version.py"
+      }
+    },
+
+    "build" :
+    {
+      "extend" : [ "parts-config" ],
+      "environment" :
+      {
+        "cv.build": "build"
+      },
+      "run" :
+      [
+        "build-resources",
+        "update-version",
+        "build-script",
+        "build-files",
+        "build-libs",
+        "build-append-plugin-libs"
+      ]
+    },
+
+    "build-libs" : {
+      "shell" :
+      {
+        "command" : "grunt uglify:libs"
+      }
+    },
+
+    "build-append-plugin-libs" : {
+      "shell" :
+      {
+        "command" : "./cv build -bp"
+      }
+    },
+
+    "source-all-script" :
+    {
+      "=exclude" :
+      [
+        "qx.test.*",
+        "${APPLICATION}.test.*"
+      ]
+    },
+
+    "build-script": {
+
+      "=copy-files" :
+      {
+        "files" : ["loader.js"],
+        "source": "${SOURCE_PATH}/loader/build/",
+        "target" : "${BUILD_PATH}/loader"
+      },
+      "environment" :
+      {
+        "engine.name" : [ "gecko", "mshtml", "webkit", "opera" ]
+      },
+      "compile-options" :
+      {
+        "paths" :
+        {
+          "file" : "${BUILD_PATH}/script/${APPLICATION}-{engine.name}.js"
+        }
+      }
+    },
+
+    "dependencies" :
+    {
+      "=exclude" : [ "${APPLICATION}.test.*" ]
+    },
+
+    "api" :
+    {
+      "desc"   : "create api doc for the current library",
+
+      "extend" : ["libraries", "apiconf::build-viewer"],
+
+      "environment" :
+      {
+        "versionLabel.name"     : "CometVisu",
+        "versionLabel.version"  : "${CV_VERSION}"
+      },
+
+      "lint-check" : {
+        "allowed-globals" : [
+          "$",
+          "jQuery",
+          "THREE",
+          "sprintf",
+          "Sunlight",
+          "replayLog",
+          "svg4everybody"
+        ],
+        "generate-widget-examples": true
+      },
+
+      "add-script" : [
+        {
+          "uri" : "resource/apiviewer/lib/sunlight-min.js"
+        },
+        {
+          "uri" : "resource/apiviewer/lib/sunlight.xml-min.js"
+        },
+        {
+          "uri" : "resource/apiviewer/lib/sunlight.javascript-min.js"
+        }
+      ],
+
+      "copy-files" : {
+        "files": [
+          "resource/apiviewer/lib/sunlight-min.js",
+          "resource/apiviewer/lib/sunlight.xml-min.js",
+          "resource/apiviewer/lib/sunlight.javascript-min.js"
+        ]
+      },
+
+      "run" : [
+        "api-data"
+      ],
+
+      "let"    :
+      {
+        "APIVIEWER_ROOT" : "${QOOXDOO_PATH}/component/apiviewer",
+        "BUILD_PATH"     : "${ROOT}/out/api"
+      }
+    },
+
+
+    "api-data" :
+    {
+      "desc"   : "create api doc json data files",
+
+      "extend" : ["libraries", "apiconf::build-data"],
+
+      "let"    :
+      {
+        "BUILD_PATH"     : "${ROOT}/out/api",
+        "API_INCLUDE"    : ["qx.*", "${APPLICATION}.*"],
+        "API_EXCLUDE"    : ["qx.test.*", "${APPLICATION}.test.*"]
+      }
+    },
+    "profile" :
+    {
+      "desc" : "generate source for profiling",
+      "extend" : [ "source" ],
+      "environment" :
+      {
+        "qx.aspects" : true
+      }
+    }
+  }
+}

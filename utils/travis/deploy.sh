@@ -44,10 +44,17 @@ echo "generating api"
 ./cv doc --doc-type source
 echo "updating english manual from source code doc comments"
 ./cv doc --from-source
+
+# update symlinks and write version files
+./cv doc --process-versions
+
 echo "generating english manual, including screenshot generation for all languages"
 ./cv doc --doc-type manual -c -f -l en
 echo "generating german manual again with existing screenshots"
 ./cv doc --doc-type manual -f -l de
+
+# move the apiviewer to the correct version subfolder
+./cv doc --move-apiviewer
 
 echo "generating feature yml file for homepage"
 ./cv doc --generate-features
