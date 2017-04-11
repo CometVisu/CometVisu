@@ -1,5 +1,9 @@
 ## Change Log
 
+### 0.10.2 (2017/04/09 16:17 +00:00)
+- [#539](https://github.com/CometVisu/CometVisu/pull/539) check if tags is array otherwise treat is as string (@peuter)
+- [#538](https://github.com/CometVisu/CometVisu/pull/538) Release 0.10.1 (@ChristianMayer, @peuter, @Jens-Me)
+
 0.10.1
 ======
 
