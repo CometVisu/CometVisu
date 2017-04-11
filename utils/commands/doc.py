@@ -477,7 +477,7 @@ class DocGenerator(Command):
 
                 # saving versions to json file
                 try:
-                    with open(self.config.get("DEFAULT", "versions-file-%s" % lang_dir), "w") as f:
+                    with open(self.config.get("DEFAULT", "versions-file-%s" % lang_dir), "w+") as f:
                         f.write(dumps({
                             "versions": versions+special_versions,
                             "symlinks": symlinks
