@@ -23,6 +23,7 @@
 ##
 
 import sys, os, re, subprocess, codecs, optparse
+from lxml import etree
 
 CMD_PYTHON = sys.executable
 QOOXDOO_PATH = './external/qooxdoo'

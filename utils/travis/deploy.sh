@@ -40,11 +40,13 @@ cd ..
 # Run our creation script
 echo "generating german manual to extract screenshot examples"
 ./cv doc --doc-type manual -f -l de
-echo "generating api"
-#./cv doc --doc-type source
+
 VERSION=`./cv doc --get-version`
 echo "generating api version $VERSION"
+source temp-python/bin/activate
 ./generate.py api -sI --macro=CV_VERSION:$VERSION
+deactivate
+
 echo "updating english manual from source code doc comments"
 ./cv doc --from-source
 
