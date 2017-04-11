@@ -26,11 +26,11 @@ install:
 - if [ "$CV_BUILD" == "test" ]; then grunt setup; fi
 - if [ "$CV_BUILD" == "test" ]; then cd ../../; fi
 - npm install
-- if [ "$CV_BUILD" == "test" ]; then virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages; fi
-- if [ "$CV_BUILD" == "test" ]; then source temp-python/bin/activate; fi
-- if [ "$CV_BUILD" == "test" ]; then sudo pip install -r utils/requirements.txt; fi
+- virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages
+- source temp-python/bin/activate
+- sudo pip install -r utils/requirements.txt
 - if [ "$CV_BUILD" == "test" ]; then ./generate.py source -sI; fi
-- if [ "$CV_BUILD" == "test" ]; then deactivate; fi
+- deactivate
 - "./node_modules/protractor/bin/webdriver-manager update"
 - if [ "$CV_BUILD" == "docs" ]; then sudo pip install -r utils/requirements.txt; fi
 - if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install graphviz; fi
