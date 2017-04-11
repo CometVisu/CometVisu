@@ -32,7 +32,11 @@ install:
 - if [ "$CV_BUILD" == "test" ]; then ./generate.py source -sI; fi
 - if [ "$CV_BUILD" == "test" ]; then deactivate; fi
 - "./node_modules/protractor/bin/webdriver-manager update"
+- python --version
+- python3 --version
+- python2 --version
 - if [ "$CV_BUILD" == "docs" ]; then sudo pip install -r utils/requirements.txt; fi
+- if [ "$CV_BUILD" == "docs" ]; then sudo pip3 install -r utils/requirements.txt; fi
 - if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install graphviz; fi
 - if [ "$CV_BUILD" == "docs" ]; then sudo dpkg -i downloads/plantuml.deb; fi
 - npm install
