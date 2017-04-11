@@ -78,6 +78,8 @@ for the Text widget.
     
     <text align="center"><label>Example text</label></text>
         
+    
+    
 
 .. ###END-WIDGET-EXAMPLES###
 

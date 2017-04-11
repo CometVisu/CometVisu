@@ -1,0 +1,1 @@
+{"attributes": {"isStatic": true, "group": "Polyfill", "name": "Polyfill", "packageName": "qx.module", "fullName": "qx.module.Polyfill", "type": "bootstrap"}, "type": "class", "children": [{"attributes": {"text": "<p>Adds JavaScript features that may not be supported by all clients.</p>"}, "type": "desc"}]}

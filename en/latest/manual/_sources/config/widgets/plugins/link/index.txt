@@ -3,7 +3,7 @@
 The link plugin
 ===============
 
-.. api-doc:: link
+.. api-doc:: Link
 
 Description
 -----------
@@ -11,6 +11,7 @@ Description
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
 This plugins integrates a simple link.
+
 
 .. ###END-WIDGET-DESCRIPTION###
 

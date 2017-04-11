@@ -3,7 +3,7 @@
 The Speech plugin
 =================
 
-.. api-doc:: speech
+.. api-doc:: Speech
 
 Description
 -----------
@@ -14,15 +14,19 @@ Use the Web Speech API (https://developer.mozilla.org/en-US/docs/Web/API/Web_Spe
 to make text-to-speech service available. This plugin listens to a address and forwards the
 incoming data to the browser TTS engine (if the browser supports it)
 
+**Simple example**
+
 .. code-block:: xml
-    :caption: Simple example
 
     <speech lang="en">
      <address transform="OH:string" mode="read">Speak</address>
     </speech>
 
+
+
+**Example preventing repetition within a timeout and use mapping**
+
 .. code-block:: xml
-    :caption: Example preventing repetition within a timeout and use mapping
 
     ...
     <meta>
@@ -41,6 +45,9 @@ incoming data to the browser TTS engine (if the browser supports it)
     <speech lang="en" repeat-timout="300" mapping="speak">
      <address transform="DPT:5.010" mode="read">Speak</address>
     </speech>
+
+
+
 
 
 .. ###END-WIDGET-DESCRIPTION###

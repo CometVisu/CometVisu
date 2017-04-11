@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.10.1
+                0.11.0-dev
               </div>
             
           
@@ -112,6 +112,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#enablequeue-queue"><em>enableQueue</em> - Queue</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#testmode-testmodus-ohne-echtes-backend"><em>testMode</em> - Testmodus ohne echtes Backend</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enablecache-caching-aktivieren"><em>enableCache</em> - Caching aktivieren</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reporting-session-aufzeichnen"><em>reporting</em> - Session aufzeichnen</a></li>
 </ul>
 </li>
 </ul>
@@ -190,7 +191,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="url-parameter">
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="url-parameter">
 <h1>URL-Parameter<a class="headerlink" href="#url-parameter" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Das Verhalten der CometVisu lässt sich teilweise durch URL-Parameter
 anpassen. Da sich diese Parameter mit in den Favoriten des Browsers
@@ -341,6 +348,33 @@ Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu ang
 </pre></div>
 </div>
 </div>
+<div class="section" id="reporting-session-aufzeichnen">
+<span id="reporting"></span><h3><em>reporting</em> - Session aufzeichnen<a class="headerlink" href="#reporting-session-aufzeichnen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Zur Unterstützung einer Fehlermeldung, kann die Interaktion mit der CometVisu aufgezeichnet und
+den Entwicklern als Log-Datei zu Verfügung gestellt werden. Diese können damit genau sehen, welche Daten
+zwischen der CometVisu und dem Backend geflossen sind und welche Aktionen der Benutzer vorgenommen hat.
+Idealerweise lässt sich ein Fehler mit diesen Log-Dateien zuverlässig reproduzieren und erleichern so die Behebung
+des Problems erheblich.</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
+<span class="n">Options</span><span class="p">:</span> <span class="n">true</span>  <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">false</span> <span class="p">(</span><span class="n">reporting</span><span class="o">=</span><span class="n">false</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">Achtung</p>
+<p class="last">In den Log-Dateien wird die komplette Konfigurationsdatei abgespeichert. Sollten sich Zugangsdaten in dieser
+Konfiguration befinden, sollte eine Kopie der Konfiguration ohne solch sensible Daten erstellt werden
+und das Log mit dieser Konfiguration aufgezeichnet werden.</p>
+</div>
+<p>Um diese Log-Dateien aufzuzeichnen, muss man die CometVisu mit <cite>reporting=true</cite> laden.
+Nachdem man den fehlerhaften Zustand erreicht hat, kann man die Log-Datei herunterladen indem man in der
+Browser-Console (öffnen mit F12) <code class="docutils literal"><span class="pre">downloadLog()</span></code> ein gibt und mit <em>enter</em> bestätigt.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Da die Log-Dateien in Echtzeit abgespielt werden, empfiehlt es sich die Laufzeit möglichst kurz zu halten.
+Eine Log-Datei die 30 Minuten oder mehr läuft bis das Problem zu sehen ist, wird die Fehlerbehebung
+erschweren, da der Entwickler diese ggf. sehr oft abspielen muss während der Fehleranalyse und -behebung.</p>
+</div>
+</div>
 </div>
 </div>
 
@@ -380,6 +414,27 @@ Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu ang
 
   </div>
   
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.11.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.0/manual">0.10.0</a></dd>
+        
+          <dd><a href="../../0.10.2/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../latest/manual">latest</a></dd>
+        
+      </dl>
+      
+    </div>
+  </div>
 
 
   

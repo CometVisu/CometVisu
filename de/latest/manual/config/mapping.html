@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.10.1
+                0.11.0-dev
               </div>
             
           
@@ -112,6 +112,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#mapping-von-werten-in-icons">Mapping von Werten in Icons</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mapping-von-nicht-binaren-werten">Mapping von nicht-binären Werten</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#wertebereiche">Wertebereiche</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#besondere-mapping-werte">Besondere Mapping-Werte</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#formeln-einsteiger">Formeln (Einsteiger)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#formeln-advanced">Formeln (Advanced)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#beispiel-mappings">Beispiel-Mappings</a></li>
@@ -190,7 +191,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="mapping">
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="mapping">
 <span id="id1"></span><h1>Mapping<a class="headerlink" href="#mapping" title="Link zu dieser Überschrift">¶</a></h1>
 <div class="section" id="bedeutung">
 <h2>Bedeutung<a class="headerlink" href="#bedeutung" title="Link zu dieser Überschrift">¶</a></h2>
@@ -217,11 +224,11 @@ beziehen kann.</p>
 <p>Dies würde bei Benutzung mit z.B. einem <a class="reference internal" href="widgets/switch/index.html"><span class="doc">Switch-Widget</span></a></p>
 <p>Statt 0 und 1:</p>
 <div class="figure">
-<img alt="Einfacher Switch" src="../_images/switch.png" />
+<img alt="Einfacher Switch" src="config/widgets/switch/_static/switch.png" />
 </div>
 <p>An und Aus anzeigen:</p>
 <div class="figure">
-<img alt="Switch mit mapping" src="../_images/switch_mapping.png" />
+<img alt="Switch mit mapping" src="config/widgets/switch/_static/switch_mapping.png" />
 </div>
 <p>Die Farbe kann durch die Definition des <a class="reference internal" href="styling.html"><span class="doc">Styling</span></a> bestimmt werden.</p>
 </div>
@@ -248,16 +255,16 @@ anzuzeigen.</p>
 <p>So würde bei Benutzung mit z.B. einem <a class="reference internal" href="widgets/switch/index.html"><span class="doc">Switch-Widget</span></a></p>
 <p>statt 0 und 1:</p>
 <div class="figure" id="id2">
-<img alt="switch.png" src="../_images/switch.png" />
+<img alt="switch.png" src="config/widgets/switch/_static/switch.png" />
 <p class="caption"><span class="caption-text">Einfacher Switch</span></p>
 </div>
 <p>die Birne mit Status in der Schaltfläche anzeigt werden:</p>
 <div class="figure" id="id3">
-<img alt="Ausgeschaltet" src="../_images/switch_mapping_styling_off.png" />
+<img alt="Ausgeschaltet" src="config/_static/switch_mapping_styling_off.png" />
 <p class="caption"><span class="caption-text">Ausgeschaltet</span></p>
 </div>
 <div class="figure" id="id4">
-<img alt="Eingeschaltet" src="../_images/switch_mapping_styling_on.png" />
+<img alt="Eingeschaltet" src="config/_static/switch_mapping_styling_on.png" />
 <p class="caption"><span class="caption-text">Eingeschaltet</span></p>
 </div>
 <p>Die Farbe eines Icons wird hierbei NICHT über das Styling gesteuert,
@@ -284,13 +291,13 @@ bei gekippter Tür. Das Mapping ersetzt die wenig aussagekräftige Zahl
 durch die entsprechenden Icons aus dem bei der CometVisu mitgeliefertem
 <a class="reference external" href="http://knx-user-forum.de/knx-uf-iconset/">KNX User Forum Iconset</a></p>
 <div class="figure">
-<img alt="../_images/mapping_door_closed.png" src="../_images/mapping_door_closed.png" />
+<img alt="config/_static/mapping_door_closed.png" src="config/_static/mapping_door_closed.png" />
 </div>
 <div class="figure">
-<img alt="../_images/mapping_door_open.png" src="../_images/mapping_door_open.png" />
+<img alt="config/_static/mapping_door_open.png" src="config/_static/mapping_door_open.png" />
 </div>
 <div class="figure">
-<img alt="../_images/mapping_door_tilt.png" src="../_images/mapping_door_tilt.png" />
+<img alt="config/_static/mapping_door_tilt.png" src="config/_static/mapping_door_tilt.png" />
 </div>
 </div>
 <div class="section" id="wertebereiche">
@@ -310,6 +317,23 @@ priorisiert werden, als die Werte innerhalb eines Wertebereichs. Dadurch
 ist es möglich, für einzelne Werte Sonderbezeichnungen (in diesem Fall
 die &#8220;Null&#8221;) zu definieren.</p>
 </div>
+<div class="section" id="besondere-mapping-werte">
+<h2>Besondere Mapping-Werte<a class="headerlink" href="#besondere-mapping-werte" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Es gibt zwei Mapping Werte die gesondert behandelt werden:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">NULL</span></code>: wird angewendet, wenn der Wert leer ist</li>
+<li><code class="docutils literal"><span class="pre">*</span></code>: wird angewendet, wenn kein vorher definiertes Mapping für den Wert gefunden wurde</li>
+</ul>
+</div></blockquote>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Fehler&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;NULL&quot;</span><span class="nt">&gt;</span>Fehler<span class="nt">&lt;/entry&gt;</span>
+    <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;*&quot;</span><span class="nt">&gt;</span>Ok<span class="nt">&lt;/entry&gt;</span>
+<span class="nt">&lt;/mapping&gt;</span>
+</pre></div>
+</div>
+<p>Liefert das Backend keine Wert, liefert das Mapping den Wert <em>Fehler</em> zurück, ansonsten <em>Ok</em>.</p>
+</div>
 <div class="section" id="formeln-einsteiger">
 <h2>Formeln (Einsteiger)<a class="headerlink" href="#formeln-einsteiger" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Manchmal ist es auch nötig, Werte vor der Darstellung umzurechnen, z.B.
@@ -327,7 +351,7 @@ gegebenen JavaScript-Funktionen zu verwenden. Mehr dazu weiter unten.</p>
 </div>
 <p>Beispielsweise kann man damit °C in °F umrechnen:</p>
 <div class="figure">
-<img alt="../_images/mappong_formula.png" src="../_images/mappong_formula.png" />
+<img alt="config/_static/mappong_formula.png" src="config/_static/mappong_formula.png" />
 </div>
 <div class="highlight-xml"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
@@ -372,12 +396,12 @@ so dass dessen Methoden direkt angewendet werden können.</p>
 <p>Ohne Mapping resp. Formel sieht der Output eines openHAB-DateTime-Items
 bspw. so aus:</p>
 <div class="figure">
-<img alt="../_images/oh_datetime.png" src="../_images/oh_datetime.png" />
+<img alt="config/_static/oh_datetime.png" src="config/_static/oh_datetime.png" />
 </div>
 <p>Möchte man jedoch lediglich die Uhrzeit im Output haben, so geht das mit
 folgendem Mapping:</p>
 <div class="figure">
-<img alt="../_images/mapping_oh_datetime.png" src="../_images/mapping_oh_datetime.png" />
+<img alt="config/_static/mapping_oh_datetime.png" src="config/_static/mapping_oh_datetime.png" />
 </div>
 <div class="highlight-xml"><div class="highlight"><pre><span></span>...
 <span class="nt">&lt;meta&gt;</span>
@@ -636,6 +660,27 @@ Objekt aufrufen kann.</p>
 
   </div>
   
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.11.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.0/manual">0.10.0</a></dd>
+        
+          <dd><a href="../../0.10.2/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../latest/manual">latest</a></dd>
+        
+      </dl>
+      
+    </div>
+  </div>
 
 
   

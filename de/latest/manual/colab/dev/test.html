@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.10.1
+                0.11.0-dev
               </div>
             
           
@@ -112,6 +112,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#fehlerbericht-erstellen">Fehlerbericht erstellen</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
@@ -178,7 +179,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="automatisierte-tests">
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="automatisierte-tests">
 <h1>Automatisierte Tests<a class="headerlink" href="#automatisierte-tests" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Die CometVisu nutzt zwei Arten von automatisierten Softwaretests: Unittests und End-to-End Tests.
 Bei Unittest geht es darum einzelne Funktionen innerhalb des Sourcecodes zu testen.
@@ -223,7 +230,7 @@ nützlich, um zu sehen an welchen Stellen die Tests noch verfollständigt werden
 <div class="section" id="eigene-tests-schreiben">
 <h2>Eigene Tests schreiben<a class="headerlink" href="#eigene-tests-schreiben" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Unittests werden mit Hilfe des <a class="reference external" href="http://jasmine.github.io/2.4/introduction.html">Jasmine Frameworks</a>
-geschrieben. Dadurch ist es möglich die Test fast in natürlicher Sprache zu schreiben. Der Grundaufbau eines
+geschrieben. Dadurch ist es möglich, die Tests fast in natürlicher Sprache zu schreiben. Der Grundaufbau eines
 Tests sieht so aus:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;Meine Testsuite&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should add two numbers&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -233,38 +240,40 @@ Tests sieht so aus:</p>
 </pre></div>
 </div>
 <p>Dieser Code testet eine <code class="docutils literal"><span class="pre">add</span></code>-Funktion die einfach zwei Zahlen addiert.</p>
-<p>Zu finden sind die vorhandenen Tests im <code class="docutils literal"><span class="pre">test/karma</span></code> Untervezeichnis. Möchte man nun einen neuen Test für eine (fiktive)
-Sourcecode Datei unter <code class="docutils literal"><span class="pre">src/structure/pure/new-widget.js</span></code> schreiben, legt man die neue Datei <code class="docutils literal"><span class="pre">test/karma/structure/pure/new-widget-spec.js</span></code> an.
+<p>Zu finden sind die vorhandenen Tests im <code class="docutils literal"><span class="pre">source/test/karma</span></code> Untervezeichnis. Möchte man nun einen neuen Test für eine (fiktive)
+Sourcecode Datei unter <code class="docutils literal"><span class="pre">source/ui/structure/pure/NewWidget.js</span></code> schreiben, legt man die neue Datei
+<code class="docutils literal"><span class="pre">source/test/karma/ui/structure/pure/NewWidget-spec.js</span></code> an.
 Wichtig ist hier, dass der Name der Testdatei auf <code class="docutils literal"><span class="pre">-spec</span></code> endet, sonst wird sie vom Testrunner nicht gefunden.</p>
-<p>Innerhalb der Testdatei gibt es jetzt noch eine Besonderheit zu beachten. Die CometVisu nutzt <a class="reference external" href="http://requirejs.org">RequireJS</a>
-um Javascript Module zu laden (vergleichbar mit der <code class="docutils literal"><span class="pre">import</span></code> Anweisung in anderen Programmiersprachen). Man muss nun also
-natürlich zunächst die Source-Datei die man testen möchte auf diesem Weg laden. Man braucht nun also zunächst den Modulnamen der zu
-testenden Datei. Diese werden in der <code class="docutils literal"><span class="pre">src/main.js</span></code> definiert, dort sollte ein Eintrag nach folgendem Muster zu finden sein
-<code class="docutils literal"><span class="pre">'widget_new-widget':</span> <span class="pre">'structure/pure/new-widget',</span></code>.</p>
-<p>Der Test für diese Datei sollte nun folgendermaßen aussehen (es werden hier noch 3 weitere Module importiert, die man eigentlich für die
-meisten Tests braucht und daher als default angesehen werden sollten):</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">define</span><span class="p">(</span> <span class="p">[</span><span class="s1">&#39;TemplateEngine&#39;</span><span class="p">,</span> <span class="s1">&#39;_common&#39;</span><span class="p">,</span> <span class="s1">&#39;CometVisuMockup&#39;</span><span class="p">,</span> <span class="s1">&#39;widget_new-widget&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">engine</span><span class="p">,</span> <span class="nx">design</span><span class="p">,</span> <span class="nx">ClientMockup</span><span class="p">)</span> <span class="p">{</span>
+<p>Der Test für diese Datei sollte nun folgendermaßen aussehen:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;testing the new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
-  <span class="nx">describe</span><span class="p">(</span><span class="s2">&quot;testing the new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test the creation of a new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Hilfsfunktion die den HTML-Code des widgets erzeugt (weitere Hilfsfunktionen sind in source/test/karma/helper-spec.js zu finden)</span>
+    <span class="c1">// die Hilfsfunktion gibt ein Array mit 2 Elementen zurück, das erste ist die Instanz den Widget-Objekts, das zweite der HTML-Code als String</span>
+    <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">createTestWidgetString</span><span class="p">(</span><span class="s2">&quot;new-widget&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="s2">&quot;&lt;label&gt;Test&lt;/label&gt;&quot;</span><span class="p">);</span>
+    <span class="c1">// macht aus dem String ein DOM Element</span>
+    <span class="kd">var</span> <span class="nx">widget</span> <span class="o">=</span> <span class="nx">qx</span><span class="p">.</span><span class="nx">bom</span><span class="p">.</span><span class="nx">Html</span><span class="p">.</span><span class="nx">clean</span><span class="p">([</span><span class="nx">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]])[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="c1">// das Widget Object (Instanz der Klasse cv.ui.structure.pure.NewWidget)</span>
+    <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">res</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 
-    <span class="kd">var</span> <span class="nx">templateEngine</span> <span class="o">=</span> <span class="nx">engine</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
-    <span class="nx">templateEngine</span><span class="p">.</span><span class="nx">visu</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ClientMockup</span><span class="p">();</span>
-
-    <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test whatever the new-widget does&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="c1">// write your test and assertions here</span>
-
-    <span class="p">});</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test another part of the new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="c1">// write another test</span>
-    <span class="p">});</span>
-
-    <span class="p">...</span>
-
+    <span class="c1">// prüft ob das DOM Element die CSS Klasse newwidget hat</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">).</span><span class="nx">toHaveClass</span><span class="p">(</span><span class="s1">&#39;newwidget&#39;</span><span class="p">);</span>
+    <span class="c1">// prüft ob das DOM Element ein Label mit dem Text &#39;Test&#39; hat</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">widget</span><span class="p">).</span><span class="nx">toHaveLabel</span><span class="p">(</span><span class="s1">&#39;Test&#39;</span><span class="p">);</span>
+    <span class="c1">// prüft ob der widget Pfad &#39;id_0&#39; ist</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">getPath</span><span class="p">()).</span><span class="nx">toBe</span><span class="p">(</span><span class="s2">&quot;id_0&quot;</span><span class="p">);</span>
   <span class="p">});</span>
+
+  <span class="nx">it</span><span class="p">(</span><span class="s2">&quot;should test another part of the new-widget&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// weitere Tests</span>
+  <span class="p">});</span>
+
+  <span class="p">...</span>
+
 <span class="p">});</span>
 </pre></div>
 </div>
-<p>Als Beispiele, wie man Tests schreibt und welche Dinge man wie testen kann, sollten die vorhandenen Tests dienen</p>
+<p>Als Beispiele, wie man Tests schreibt und welche Dinge man wie testen kann, sollten die vorhandenen Tests dienen.</p>
 </div>
 </div>
 
@@ -304,6 +313,27 @@ meisten Tests braucht und daher als default angesehen werden sollten):</p>
 
   </div>
   
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.11.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.0/manual">0.10.0</a></dd>
+        
+          <dd><a href="../../0.10.2/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../latest/manual">latest</a></dd>
+        
+      </dl>
+      
+    </div>
+  </div>
 
 
   

@@ -3,7 +3,7 @@
 The strftime plugin
 ===================
 
-.. api-doc:: strftime
+.. api-doc:: Strftime
 
 Description
 -----------

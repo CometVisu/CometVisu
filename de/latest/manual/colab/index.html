@@ -71,7 +71,7 @@
             
             
               <div class="version">
-                0.10.1
+                0.11.0-dev
               </div>
             
           
@@ -119,6 +119,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#mithilfe-bei-der-entwicklung">Mithilfe bei der Entwicklung</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="dev/test.html">Automatisierte Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#fehlerbericht-erstellen">Fehlerbericht erstellen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fehlerberichte-mit-log-dateien">Fehlerberichte mit Log-Dateien</a></li>
 </ul>
 </li>
 </ul>
@@ -185,7 +189,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="hilf-dem-cometvisu-projekt">
+  <div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">Dies ist die Dokumentation des aktuellen Entwicklungszweigs der CometVisu.
+Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
+mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
+</div>
+<div class="section" id="hilf-dem-cometvisu-projekt">
 <h1>Hilf dem CometVisu Projekt<a class="headerlink" href="#hilf-dem-cometvisu-projekt" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Die Mitarbeit am CometVisu Projekt ist problemlos möglich und auch höchst willkommen!
 Hierbei sind nicht nur Entwickler angesprochen, die neue Features oder Bugfixes beitragen möchten, sondern
@@ -447,12 +457,51 @@ Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
 </li>
 </ul>
 </div>
+</div>
+<div class="section" id="fehlerbericht-erstellen">
+<h2>Fehlerbericht erstellen<a class="headerlink" href="#fehlerbericht-erstellen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Fehlerberichte sollten nach Möglichkeit durch Anlegen eines Issues auf <a class="reference external" href="https://github.com/CometVisu/CometVisu/issues">github.com</a>
+erfolgen. Bevorzugte Sprache ist hier Englisch. Der Fehlerbericht sollte aus folgenden Teilen bestehen, die so detailliert wie möglich
+ausformuliert sind.</p>
+<ol class="arabic simple">
+<li>Welche Schritte sind nötig um das Fehlverhalten hervorzurufen</li>
+<li>Eine detaillierte Fehlerbeschreibung</li>
+<li>Wie würde das korrekte Verhalten aus Sicht des Autors aussehen</li>
+<li>[Optional] eine Logdatei mit aufgezeichnetem Fehler</li>
+</ol>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Bei Unsicherheiten bzgl. des Fehlers kann zunächst im <a class="reference external" href="https://knx-user-forum.de/forum/supportforen/cometvisu">KNX-User-Forum</a>
+oder auf <a class="reference external" href="https://gitter.im/CometVisu/CometVisu_DE">Gitter</a> um Rat gefragt werden.</p>
+</div>
+<div class="section" id="fehlerberichte-mit-log-dateien">
+<h3>Fehlerberichte mit Log-Dateien<a class="headerlink" href="#fehlerberichte-mit-log-dateien" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Ab Version 0.11.0 steht eine zusätzliche Möglichkeit zur Verfügung, den Entwicklern die Fehlersuche zu erleichtern
+und die Fehlerberichte zu verbessern. Benutzer können das Verhalten der CometVisu aufzeichnen und eine sogenannte
+Log-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hinweis</p>
+<p class="last">Sie Aufzeichnung der Log-Dateien kann mit dem URL-Parameter <code class="docutils literal"><span class="pre">reporting=true</span></code> aktiviert werden
+(siehe: <a class="reference internal" href="../config/url-params.html#reporting"><span class="std std-ref">URL-Parameter</span></a>). Sobald man den Fehler nachgestellt hat, kann die Logdatei durch Eingabe
+des Befehls <code class="docutils literal"><span class="pre">downloadLog()</span></code> in der Browserkonsole (öffnen mit F12-Taste) heruntergeladen werden.</p>
+</div>
+<p>Die Log-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
+( z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.
+Eventuell ist es daher ratsam, denn Fehler mit einer abgewandelten Konfigurationsdatei zu erstellen, die z.B. keine
+sensiblen Daten enthält.
+Der große Vorteil dieser Log-Dateien ist aber, dass die Entwickler beim Abspielen dieser Logs eine originalgetreue
+Nachbildung des Benutzersystems sehen und somit in der Regel auch direkt den Fehler sehen, diesen beheben und direkt
+testen können ob die Fehlerkorrektur auch wirkt.</p>
+<p>Natürlich gibt es auch Einschränkungen, denn nicht alles kann durch die Log-Dateien aufgezeichnet werden.
+Wenn ein Nutzer z.B. die vorhandenen Designs angepasst hat, eigene Icons/Bilder benutzt, die nicht Teil der
+CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil des Logs sind.</p>
 <table class="docutils citation" frame="void" id="rst-wiki" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[RST-Wiki]</a></td><td><a class="reference external" href="https://de.wikipedia.org/wiki/ReStructuredText">https://de.wikipedia.org/wiki/ReStructuredText</a></td></tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 
@@ -492,6 +541,27 @@ Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
 
   </div>
   
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.11.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../0.10.0/manual">0.10.0</a></dd>
+        
+          <dd><a href="../../0.10.2/manual">0.10.2</a></dd>
+        
+          <dd><a href="../../latest/manual">latest</a></dd>
+        
+      </dl>
+      
+    </div>
+  </div>
 
 
   

@@ -10,9 +10,8 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
-.. TODO::
-
-    add widget description
+Adds a dynamic field to the visu that can represent values from the BUS
+(e.g. 14-byte text or temperature measurements).
 
 
 .. ###END-WIDGET-DESCRIPTION###
