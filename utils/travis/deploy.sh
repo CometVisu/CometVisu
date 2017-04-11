@@ -55,6 +55,7 @@ echo "updating english manual from source code doc comments"
 ./cv doc --move-apiviewer
 
 # update symlinks and write version files
+ls -la
 ls -la out
 ls -la out/en
 ./cv doc --process-versions
