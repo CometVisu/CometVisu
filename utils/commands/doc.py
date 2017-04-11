@@ -467,6 +467,7 @@ class DocGenerator(Command):
                 # checking current symlink to max version
                 if 'current' not in symlinks or symlinks['current'] != max_version:
                     print("setting 'current' symlink to '%s'" % max_version)
+                    cwd = os.getcwd()
                     os.chdir(root)
                     try:
                         os.remove('current')
@@ -474,6 +475,7 @@ class DocGenerator(Command):
                         pass
                     os.symlink(max_version, 'current')
                     symlinks['current'] = max_version
+                    os.chdir(cwd)
 
                 # saving versions to json file
                 try:
