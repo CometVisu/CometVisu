@@ -41,7 +41,7 @@ cd ..
 echo "generating german manual to extract screenshot examples"
 ./cv doc --doc-type manual -f -l de
 echo "generating api"
-./cv doc --doc-type source
+#./cv doc --doc-type source
 VERSION=`./cv doc --get-version`
 echo "generating api version $VERSION"
 ./generate.py api -sI --macro=CV_VERSION:$VERSION
