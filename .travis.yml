@@ -40,6 +40,7 @@ before_script:
 - "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
 - sleep 3
 script:
+- ./test.py
 - if [ "$CV_BUILD" == "test" ]; then source temp-python/bin/activate; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt jscs; fi
 - if [ "$CV_BUILD" == "test" ]; then ./generate.py lint; fi
