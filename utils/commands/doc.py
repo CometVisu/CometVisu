@@ -506,7 +506,7 @@ class DocGenerator(Command):
 
         parser.add_argument("--from-source", dest="from_source", action="store_true", help="generate english manual from source comments")
         parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
-        parser.add_argument("--move-apiviewer", dest="move-apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
+        parser.add_argument("--move-apiviewer", dest="move_apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
         parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/current docs and weite version files")
         parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
 
@@ -541,6 +541,12 @@ class DocGenerator(Command):
             self.from_source(self.config.get("manual-en", "widgets-path"))
             self.from_source(self.config.get("manual-en", "plugins-path"), plugin=True)
 
+        elif options.move_apiviewer:
+            # move to the correct dir
+            target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
+            target_dir = target_dir.replace("<version>", self._get_doc_version())
+            shutil.move(self.config.get("api", "generator_target"), target_dir)
+
         elif 'doc' not in options or options.doc == "manual":
             self._run(options.language, options.target, options.browser, force=options.force, skip_screenshots=not options.complete)
             sys.exit(0)
@@ -548,12 +554,6 @@ class DocGenerator(Command):
         elif options.doc == "source":
             cmd = "./generate.py api -sI --macro=CV_VERSION:%s" % self._get_doc_version()
             subprocess.call(cmd, shell=True)
-
-        elif options.move_apiviewer:
-            # move to the correct dir
-            target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
-            target_dir = target_dir.replace("<version>", self._get_doc_version())
-            shutil.move(self.config.get("api", "generator_target"), target_dir)
 
         else:
             self.log.error("generation of '%s' documentation is not available" % options.type)
