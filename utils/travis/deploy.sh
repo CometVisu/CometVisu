@@ -52,6 +52,7 @@ echo "updating english manual from source code doc comments"
 ./cv doc --from-source
 
 # move the apiviewer to the correct version subfolder
+rm -r out/en/$VERSION/api
 ./cv doc --move-apiviewer
 
 # update symlinks and write version files
