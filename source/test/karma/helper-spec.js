@@ -33,7 +33,6 @@ var templateEngine = cv.TemplateEngine.getInstance();
  * @param attributes {Map} widget attributes
  * @param content {String} content od the widget
  * @return [{WidgetInstance}, {xml-string}]
- * @private
  */
 var createTestWidgetString = function (name, attributes, content) {
 

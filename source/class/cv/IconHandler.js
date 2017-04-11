@@ -26,8 +26,6 @@
 /**
  * The object "icon" contains the whole API necessary to handle the icons.
  *
- * @class icon
- * @constructor FOO
  */
 qx.Class.define('cv.IconHandler', {
   extend: qx.core.Object,
@@ -51,9 +49,6 @@ qx.Class.define('cv.IconHandler', {
     /**
      * Internal database of the known icons.
      * Initially filled with the default icons.
-     *
-     * @property this.__db
-     * @private
      */
     __db: null,
 

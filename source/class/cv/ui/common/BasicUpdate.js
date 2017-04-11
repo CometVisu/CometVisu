@@ -21,7 +21,6 @@
 /**
  * This role provides the basic update methods
  *
- * @class cv.ui.common.BasicUpdate
  */
 qx.Mixin.define("cv.ui.common.BasicUpdate", {
   include: cv.ui.common.HasAddress,

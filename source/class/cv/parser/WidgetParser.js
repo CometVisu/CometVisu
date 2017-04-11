@@ -108,7 +108,6 @@ qx.Class.define('cv.parser.WidgetParser', {
      *
      * @param handler {Class} parser handler
      * @return {Map} parser configuration: describes how Attributes are mapped to properties
-     * @private
      */
     __getAttributeToPropertyMappings: function(handler) {
       return handler && handler.getAttributeToPropertyMappings ? handler.getAttributeToPropertyMappings() : {};

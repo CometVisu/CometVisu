@@ -20,7 +20,6 @@
 
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
- * @class cv.ui.structure.AbstractWidget
  */
 qx.Class.define('cv.ui.structure.AbstractWidget', {
   extend: cv.ui.structure.AbstractBasicWidget,

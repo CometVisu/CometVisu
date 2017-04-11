@@ -183,7 +183,6 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     /**
      * Handle incoming value changes send by the slider widget (e.g. triggered by user interaction)
      * @param value {Number}
-     * @private
      */
     _onChangeValue: function(value) {
       if (!this.__initialized || this.__skipUpdatesFromSlider === true) { return; }

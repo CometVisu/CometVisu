@@ -19,7 +19,6 @@
 
 
 /**
- * @class cv.ui.layout.Manager
  */
 qx.Class.define('cv.ui.layout.Manager', {
 

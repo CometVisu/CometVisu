@@ -210,7 +210,6 @@ qx.Class.define('cv.plugins.UpnpController', {
      * @param type {String} type of backend controller
      * @param data {Map|null} additional data to send to the backend
      * @param callback {Function} callback that should be called in success
-     * @private
      */
     __callRemote: function (type, data, callback) {
       var req = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri("plugins/upnpcontroller/" + type + ".php"));

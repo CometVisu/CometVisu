@@ -165,7 +165,6 @@ qx.Class.define("cv.Application",
 
     /**
      * Internal initialization method
-     * @private
      */
     __init: function() {
       qx.event.Registration.addListener(window, 'resize', cv.ui.layout.ResizeHandler.invalidateScreensize, cv.ui.layout.ResizeHandler);
