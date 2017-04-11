@@ -544,8 +544,7 @@ class DocGenerator(Command):
         elif options.doc == "source":
             if os.environ.get('CV_BUILD') == "docs":
                 # use virtualenv in travis
-                subprocess.call("ls -la", shell=True)
-                subprocess.call("source ./temp-python/bin/activate", shell=True)
+                subprocess.call(". temp-python/bin/activate", shell=True)
             cmd = "python2 ./generate.py api -sI --macro=CV_VERSION:%s" % self._get_doc_version()
             subprocess.call(cmd, shell=True)
             if os.environ.get('CV_BUILD') == "docs":
