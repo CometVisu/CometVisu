@@ -126,6 +126,7 @@ class DocParser:
 
 class DocGenerator(Command):
     _source_version = None
+    _doc_version = None
 
     def __init__(self):
         super(DocGenerator, self).__init__()
@@ -133,15 +134,17 @@ class DocGenerator(Command):
         logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
     def _get_doc_version(self):
-        git = sh.Command("git")
-        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
-            else os.environ.get('TRAVIS_BRANCH')
+        if self._doc_version is None:
+            git = sh.Command("git")
+            branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
+                else os.environ.get('TRAVIS_BRANCH')
 
-        if branch == "develop":
-            return self.config.get("DEFAULT", "develop-version-mapping")
-        else:
-            # read version
-            return self._get_source_version()
+            if branch == "develop":
+                self._doc_version = self.config.get("DEFAULT", "develop-version-mapping")
+            else:
+                # read version
+                self._doc_version = self._get_source_version()
+        return self._doc_version
 
     def _get_source_version(self):
         if self._source_version is None:
