@@ -21,11 +21,10 @@ before_install:
 - mkdir cache
 install:
 - npm install -g grunt-cli
-- if [ "$CV_BUILD" == "test" ]; then cd external/qooxdoo; fi
-- if [ "$CV_BUILD" == "test" ]; then npm install; fi
-- if [ "$CV_BUILD" == "test" ]; then grunt setup; fi
-- if [ "$CV_BUILD" == "test" ]; then cd ../../; fi
+- cd external/qooxdoo
 - npm install
+- grunt setup
+- cd ../../
 - sudo pip install -r utils/requirements.txt
 - virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages
 - if [ "$CV_BUILD" == "test" ]; then source temp-python/bin/activate; fi
