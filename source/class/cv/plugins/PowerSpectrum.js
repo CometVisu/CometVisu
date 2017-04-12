@@ -287,8 +287,19 @@ qx.Class.define('cv.plugins.PowerSpectrum', {
             show: false
           }
         };
-      this.__plotCurve = this.isShowCurve() && $.plot(diagramCurve, this.createDatasetCurve(), optionsCurve);
-      this.__plot = $.plot(diagramSpectrum, this.createDatasetSpectrum(), optionsSpectrum);
+
+      var init = function() {
+        this.__plotCurve = this.isShowCurve() && $.plot(diagramCurve, this.createDatasetCurve(), optionsCurve);
+        this.__plot = $.plot(diagramSpectrum, this.createDatasetSpectrum(), optionsSpectrum);
+      }.bind(this);
+
+      // check if sizes are set yet, otherwise wait some time
+      // TODO: should be done with events
+      if (cv.ui.layout.ResizeHandler.invalidPagesize) {
+        qx.event.Timer.once(init, this, 10);
+      } else {
+        init();
+      }
     },
 
     _update: function( ga, data ) {
