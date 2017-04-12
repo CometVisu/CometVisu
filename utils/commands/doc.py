@@ -187,8 +187,8 @@ class DocGenerator(Command):
         if not skip_screenshots:
             grunt = sh.Command("grunt")
             # generate the screenshots
-            grunt("screenshots", "--subDir=manual", "--browserName=%s" % browser, "--target=%s" % screenshot_build,
-                  " --force", _out=self.process_output, _err=self.process_output)
+            grunt("--force", "screenshots", "--subDir=manual", "--browserName=%s" % browser,
+                  "--target=%s" % screenshot_build, _out=self.process_output, _err=self.process_output)
 
             # 2dn run with access to the generated screenshots
             sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
