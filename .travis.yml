@@ -27,9 +27,9 @@ install:
 - cd ../../
 - sudo pip install -r utils/requirements.txt
 - virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages
-- if [ "$CV_BUILD" == "test" ]; then source temp-python/bin/activate; fi
-- if [ "$CV_BUILD" == "test" ]; then ./generate.py source -sI; fi
-- if [ "$CV_BUILD" == "test" ]; then deactivate; fi
+- source temp-python/bin/activate
+- ./generate.py source -sI
+- deactivate
 - "./node_modules/protractor/bin/webdriver-manager update"
 - if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install graphviz python-lxml python3-lxml; fi
 - if [ "$CV_BUILD" == "docs" ]; then sudo dpkg -i downloads/plantuml.deb; fi
