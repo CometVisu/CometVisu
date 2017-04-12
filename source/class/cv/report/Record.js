@@ -97,7 +97,7 @@ qx.Class.define('cv.report.Record', {
           browserVersion: Env.get("browser.version"),
           deviceName: Env.get("device.name"),
           deviceType: Env.get("device.type"),
-          pixelRatio: Env.get("device.pixelRation"),
+          pixelRatio: Env.get("device.pixelRatio"),
           touch: Env.get("device.touch"),
           osName: Env.get("os.name"),
           osVersion: Env.get("os.version"),
