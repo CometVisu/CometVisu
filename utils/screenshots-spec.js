@@ -10,7 +10,7 @@ var fs = require('fs'),
 var CometVisuMockup = require('../source/test/protractor/pages/Mock');
 var cvMockup = new CometVisuMockup(browser.target || 'source');
 var CometVisuEditorMockup = require('../source/test/protractor/pages/EditorMock');
-var editorMock = new CometVisuEditorMockup(browser.target || 'source');
+var editorMockup = new CometVisuEditorMockup(browser.target || 'source');
 
 var errorHandler = function(err) {
   if (err) throw err;
