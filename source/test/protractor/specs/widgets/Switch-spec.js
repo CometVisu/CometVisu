@@ -5,7 +5,8 @@
  * @since 2016
  */
 
-var cvMockup = require('../../pages/Mock');
+var CometVisuMockup = require('../../pages/Mock');
+var cvMockup = new CometVisuMockup();
 
 describe('switch widget testing', function () {
   'use strict';

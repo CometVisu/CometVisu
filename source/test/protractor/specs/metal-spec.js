@@ -4,7 +4,8 @@
  * @since 2016
  */
 
-var cvMockup = require('../pages/Mock');
+var CometVisuMockup = require('../pages/Mock');
+var cvMockup = new CometVisuMockup();
 
 describe('cometvisu metal design config test:', function () {
   'use strict';
