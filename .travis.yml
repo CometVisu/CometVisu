@@ -28,7 +28,8 @@ install:
 - sudo pip install -r utils/requirements.txt
 - virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages
 - source temp-python/bin/activate
-- ./generate.py source -sI
+- if [ "$CV_BUILD" == "test" ]; then ./generate.py source -sI; fi
+- if [ "$CV_BUILD" == "docs" ]; then ./generate.py build -sI; fi
 - deactivate
 - "./node_modules/protractor/bin/webdriver-manager update"
 - if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install graphviz python-lxml python3-lxml; fi

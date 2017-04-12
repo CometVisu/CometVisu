@@ -459,7 +459,8 @@ module.exports = function(grunt) {
           args: {
             params: {
               subDir: grunt.option('subDir'),
-              screenshots: grunt.option('files')
+              screenshots: grunt.option('files'),
+              target: grunt.option('target')
             },
             capabilities: {
               browserName: grunt.option('browserName') || 'firefox',

@@ -22,8 +22,9 @@
  * A break tag is used to start in new line for a grouped and thereby tidy display of
  * elements on one page.
  *
- * @widgetexample <caption>The break tag has no content</caption>
- * <break/>
+ * <pre class="sunlight-highlight-xml">
+ * &lt;break/&gt;
+ * </pre>
  *
  * @author Christian Mayer
  * @since 0.8.0 (2012)

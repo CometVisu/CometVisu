@@ -55,9 +55,12 @@ echo "updating english manual from source code doc comments"
 ./cv doc --process-versions
 
 echo "generating english manual, including screenshot generation for all languages"
-./cv doc --doc-type manual -c -f -l en
+./cv doc --doc-type manual -c -f -l en -t build
 echo "generating german manual again with existing screenshots"
 ./cv doc --doc-type manual -f -l de
+
+echo "generate API screenshots"
+grunt screenshots --subDir=source --browserName=chrome --target=build --force
 
 # move the apiviewer to the correct version subfolder, including screenshots
 rm -r out/en/$VERSION/api

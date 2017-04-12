@@ -7,17 +7,18 @@
 var basePage = require("../pages/BasePage.js");
 var request = require('request');
 
-var CometVisuEditorMockup = function () {
+var CometVisuEditorMockup = function (target) {
   'use strict';
+  target = target || "source";
 
-  this.url = 'http://localhost:8000/source/editor/editor.html?config=mockup&testMode=true';
+  this.url = 'http://localhost:8000/'+target+'/editor/editor.html?config=mockup&testMode=true';
 
   this.mockupReady = false;
 
   this.mockupConfig = function(config) {
     request({
       method: 'POST',
-      uri: 'http://localhost:8000/mock/source/resource/config/visu_config_mockup.xml',
+      uri: 'http://localhost:8000/mock/'+target+'/resource/config/visu_config_mockup.xml',
       body: config
     }, function(error, response, body) {
       if (!error && response.statusCode === 200) {
@@ -35,4 +36,4 @@ var CometVisuEditorMockup = function () {
   );
 };
 CometVisuEditorMockup.prototype = basePage;
-module.exports = new CometVisuEditorMockup();
+module.exports = CometVisuEditorMockup;

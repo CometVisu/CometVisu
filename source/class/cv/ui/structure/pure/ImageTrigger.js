@@ -114,7 +114,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
 
       var actor = '<div class="actor">';
       if ( this.getUpdateType() === 'show' ) {
-        actor += '<img src="' + this.getSrc() + '.' + this.getSuffix() + '"' + style.trim() + ' />';
+        actor += '<img src="' + this.__getUrl(this.getSrc() + '.' + this.getSuffix()) + '"' + style.trim() + ' />';
       }
       else {
         actor += '<img src=""' + style + ' />';
@@ -131,7 +131,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
           qx.bom.element.Style.set(imageChild, "display", "none");
         }
         else {
-          qx.bom.element.Attribute.set(imageChild, "src", this.getSrc() + '.' + this.getSuffix());
+          qx.bom.element.Attribute.set(imageChild, "src", this.__getUrl(this.getSrc() + '.' + this.getSuffix()));
           qx.bom.element.Style.set(imageChild, "display", "block");
         }
       }
@@ -140,7 +140,7 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
           qx.bom.element.Style.set(imageChild, "display", "none");
         }
         else {
-          qx.bom.element.Attribute.set(imageChild, "src", this.getSrc() + value + '.' + this.getSuffix());
+          qx.bom.element.Attribute.set(imageChild, "src", this.__getUrl(this.getSrc() + value + '.' + this.getSuffix()));
           qx.bom.element.Style.set(imageChild, "display", "block");
         }
       }
@@ -149,6 +149,15 @@ qx.Class.define('cv.ui.structure.pure.ImageTrigger', {
       //TODO: get image name from mapping
       //TODO: add bitmask for multiple images
       //TODO: add SVG-magics
+    },
+
+    __getUrl: function(url) {
+      var parsedUri = qx.util.Uri.parseUri(url);
+      if (!parsedUri.protocol && !url.startsWith("/")) {
+        // is relative URI, use the ResourceManager
+        url = qx.util.ResourceManager.getInstance().toUri(url);
+      }
+      return url;
     },
 
     _action: function() {

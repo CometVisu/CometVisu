@@ -70,7 +70,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
       var parsedUri = qx.util.Uri.parseUri(this.getSrc());
       if (!parsedUri.protocol &&  !this.getSrc().startsWith("/")) {
         // is relative URI, use the ResourceManager
-        src = qx.util.ResourceManager.getInstance().toUri(this.getSrc())
+        src = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
       }
       return '<div class="actor"><img src="' + src + '" style="' + imgStyle + '" /></div>';
     }

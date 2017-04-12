@@ -153,7 +153,7 @@ class DocGenerator(Command):
                 self._source_version = data['version']
         return self._source_version
 
-    def _run(self, language, target_dir, browser, skip_screenshots=True, force=False):
+    def _run(self, language, target_dir, browser, skip_screenshots=True, force=False, screenshot_build="source"):
 
         sphinx_build = sh.Command("sphinx-build")
 
@@ -187,7 +187,8 @@ class DocGenerator(Command):
         if not skip_screenshots:
             grunt = sh.Command("grunt")
             # generate the screenshots
-            grunt("screenshots", "--subDir=manual", "--browserName=%s" % browser, _out=self.process_output, _err=self.process_output)
+            grunt("screenshots", "--subDir=manual", "--browserName=%s" % browser, "--target=%s" % screenshot_build,
+                  " --force", _out=self.process_output, _err=self.process_output)
 
             # 2dn run with access to the generated screenshots
             sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
@@ -514,6 +515,7 @@ class DocGenerator(Command):
         parser.add_argument("--move-apiviewer", dest="move_apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
         parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/current docs and weite version files")
         parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
+        parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
 
         options = parser.parse_args(args)
 
@@ -555,7 +557,8 @@ class DocGenerator(Command):
             shutil.move(self.config.get("api", "generator_target"), target_dir)
 
         elif 'doc' not in options or options.doc == "manual":
-            self._run(options.language, options.target, options.browser, force=options.force, skip_screenshots=not options.complete)
+            self._run(options.language, options.target, options.browser, force=options.force,
+                      skip_screenshots=not options.complete, screenshot_build=options.screenshot_build)
             sys.exit(0)
 
         elif options.doc == "source":
