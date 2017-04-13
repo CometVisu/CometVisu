@@ -110,7 +110,23 @@ qx.Class.define('cv.report.Replay', {
       }, this, delay);
     },
 
+    /**
+     * Find DOM element for given path
+     * @param path {String} CSS selector or "Window"
+     * @return {Element|null}
+     */
+    __findElement: function(path) {
+      if (path === "Window") {
+        return window;
+      } else if (path === "document") {
+        return document;
+      } else {
+        return qx.bom.Selector.query(path)[0];
+      }
+    },
+
     __replay: function(index) {
+      this.__currentIndex = index;
       var record = this.__log[index];
       this.__dispatchRecord(record);
       if (this.__log.length === index + 1) {
@@ -141,36 +157,39 @@ qx.Class.define('cv.report.Replay', {
           break;
 
         case cv.report.Record.USER:
-          if (record.i === "pointer") {
-            this.__playPointerEvent(record);
-            return;
-          } else if (record.i === "scroll") {
+          if (record.i === "scroll") {
             this.__playScrollEvent(record);
-            return;
-          }
-          var target;
-          if (/^id_([0-9_]+)?$/.test(record.i)) {
-            var widget = cv.ui.structure.WidgetFactory.getInstanceById(record.i);
-            if (!widget) {
-              this.error("widget with id " + record.i + " not found");
+          } else {
+            var target = this.__findElement(record.i);
+            if (!target) {
+              this.error("no target found for path " + record.i);
               return;
             }
-            target = widget.getInteractionElement();
-          } else {
-            // muss be an CSS selector
-            target = qx.bom.Selector.query(record.i)[0];
+            if (/(pointer|mouse|gesture).+/.test(record.d.native.type)) {
+              this._simulateCursor(record);
+            }
+            var evt = record.d.native;
+            evt.view = evt.view === "Window" ? window : null;
+            evt.target = target;
+            ["currentTarget", "relatedTarget"].forEach(function (key) {
+              evt[key] = evt[key] ? this.__findElement(evt[key]) : null;
+            }, this);
+            var event = new window[record.d.eventClass](record.d.native.type, evt);
+            if (record.d.native.type === "pointerup" && target.nodeName === "A") {
+              // workaround for mouse clicks on <a> elemente e.g. in the breadcrumb navigation
+              // check for last pointerdown event, if id was on same element we have a click
+              for (var i=this.__currentIndex-1; i>0; i--) {
+                if (this.__log[i].d.native.type === "pointerdown") {
+                  if (this.__log[i].i === record.i) {
+                    // same element
+                    target.click();
+                  }
+                  break;
+                }
+              }
+            }
+            target.dispatchEvent(event);
           }
-          if (!target) {
-            this.error("no target found for path " + record.i);
-            return;
-          }
-          if (record.o && record.o.fire === "click") {
-            // just use builtin click
-            target.click();
-            return;
-          }
-          var event = this.__createEvent(target, record);
-          qx.event.Registration.dispatchEvent(target, event);
           break;
 
         default:
@@ -185,7 +204,7 @@ qx.Class.define('cv.report.Replay', {
       elem.scrollLeft = record.d.native ? record.d.native.pageX : record.d.x;
     },
 
-    __playPointerEvent: function(record) {
+    _simulateCursor: function(record) {
       // simulate cursor
       if (!this.__cursor) {
         this.__cursor = qx.dom.Element.create("span", {
@@ -194,82 +213,16 @@ qx.Class.define('cv.report.Replay', {
         qx.bom.element.Attribute.set(this.__cursor, "html", "&uarr;");
         qx.dom.Element.insertEnd(this.__cursor, qx.bom.Selector.query("body")[0]);
       }
-      qx.bom.element.Style.setStyles(this.__cursor, {top: record.d.native.pageY+"px", left: record.d.native.pageX+"px"});
-      var target = document;
-      if (record.d.path) {
-        if (record.d.path.startsWith("document")) {
-          var parts = record.d.path.split(".");
-          if (parts.length === 2) {
-            target = document[parts[1]];
-          }
-        } else {
-          target = qx.bom.Selector.query(record.d.path)[0];
-        }
-      }
+      qx.bom.element.Style.setStyles(this.__cursor, {top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"});
+
       switch(record.d.type) {
         case "pointerdown":
           qx.bom.element.Style.set(this.__cursor, "color", "red");
-          // also dispatch event
-          this.__simulatePointerEvent(target, record);
           break;
         case "pointerup":
           qx.bom.element.Style.set(this.__cursor, "color", "white");
-          // also dispatch event
-          this.__simulatePointerEvent(target, record);
           break;
       }
-    },
-
-    /**
-     * Create a fake native event
-     * @param target {Element} event target
-     * @param record {Map} recorded event meta-data
-     * @return {Map}
-     */
-    __createNativeEvent: function(target, record) {
-      return {
-        button: 0,
-        wheelDelta: 0,
-        wheelDeltaX: 0,
-        wheelDeltaY: 0,
-        wheelX: 0,
-        wheelY: 0,
-        target: target,
-        clientX: record.d.x,
-        clientY: record.d.y,
-        pageX: record.d.x,
-        pageY: record.d.y,
-        screenX: 0,
-        screenY: 0,
-        shiftKey: false,
-        ctrlKey: false,
-        altKey: false,
-        metaKey: false
-      };
-    },
-
-    __createEvent: function(target, record) {
-      var nativeEvent = record.d.native || this.__createNativeEvent(target, record);
-      var type = record.d.type;
-      var event;
-      if (type.startsWith("pointer")) {
-        event = new qx.event.type.Pointer();
-      } else if (type === "tap") {
-        event = new qx.event.type.Tap();
-      } else {
-        return null;
-      }
-      event.init(nativeEvent, target, null, true, true);
-      event.setType(record.d.type);
-      return event;
-    },
-
-    __simulatePointerEvent: function(target, record) {
-      var nativeEvent = this.__createNativeEvent(target, record);
-      var event = new qx.event.type.Pointer();
-      event.init(nativeEvent, target, null, true, true);
-      event.setType(record.d.type);
-      qx.event.Registration.dispatchEvent(target, event);
     },
 
     __dispatchBackendRecord: function(record) {

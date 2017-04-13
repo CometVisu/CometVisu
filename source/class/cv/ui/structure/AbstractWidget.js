@@ -18,6 +18,7 @@
  */
 
 
+//noinspection JSUnusedGlobalSymbols
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
  */
@@ -208,7 +209,6 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       if (this.isAnonymous()) { return; }
       var widget = this.getInteractionElement();
       if (widget) {
-        cv.report.Record.register(widget, this.getPath(), [type]);
         return qx.event.Registration.addListener(widget, type, callback, context);
       }
       return null;
