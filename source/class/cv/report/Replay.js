@@ -208,7 +208,7 @@ qx.Class.define('cv.report.Replay', {
       // simulate cursor
       if (!this.__cursor) {
         this.__cursor = qx.dom.Element.create("span", {
-          style: "position: absolute; transform: rotate(-40deg); font-size: 36px;"
+          style: "position: absolute; transform: rotate(-40deg); font-size: 36px; z-index: 1000000"
         });
         qx.bom.element.Attribute.set(this.__cursor, "html", "&uarr;");
         qx.dom.Element.insertEnd(this.__cursor, qx.bom.Selector.query("body")[0]);

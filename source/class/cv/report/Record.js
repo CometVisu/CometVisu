@@ -58,6 +58,9 @@ qx.Class.define('cv.report.Record', {
     REPLAYING: false,
     data: null,
 
+    // Events that should be recorded
+    USER_EVENTS: /(.+(down|up|over|out|cancel)|.*click|touchstart|touchend|wheel)/i,
+
     prepare: function() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
         cv.Application.registerConsoleCommand("downloadLog", cv.report.Record.download, "Download recorded log file.");
@@ -76,10 +79,8 @@ qx.Class.define('cv.report.Record', {
           });
         }, this);
 
-        qx.bom.Event.addNativeListener(document, "pointerdown", record.recordNativeEvent.bind(record));
-        qx.bom.Event.addNativeListener(document, "pointerup", record.recordNativeEvent.bind(record));
-        qx.bom.Event.addNativeListener(document, "pointermove", record.recordNativeEvent.bind(record));
-        qx.bom.Event.addNativeListener(document, "pointercancel", record.recordNativeEvent.bind(record));
+        // apply event recorder
+        qx.bom.Event.RECORD = record.recordNativeEvent.bind(record);
 
         // add scroll listeners to all pages
         qx.event.message.Bus.subscribe("setup.dom.finished", function() {
@@ -88,11 +89,6 @@ qx.Class.define('cv.report.Record', {
             Reg.addListener(page, "scroll", throttled, record);
           }, this);
         }, this);
-
-        qx.bom.Event.addNativeListener(window, "scroll", record.recordNativeEvent.bind(record));
-        var data = qx.bom.client.Event.getMouseWheel(window);
-        qx.bom.Event.addNativeListener(data.target, data.type, record.recordNativeEvent.bind(record));
-
 
         // save browser settings
         var req = qx.util.Uri.parseUri(window.location.href);
@@ -130,6 +126,7 @@ qx.Class.define('cv.report.Record', {
         });
       }
     },
+
 
     register: function(target, path, events) {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
@@ -279,12 +276,15 @@ qx.Class.define('cv.report.Record', {
     },
 
     recordNativeEvent: function(ev) {
+      if (!cv.report.Record.USER_EVENTS.test(ev.type)) {
+        return;
+      }
       if (ev.type.endsWith("down")) {
         this.__delta = this.__minDelta;
       } else if (ev.type.endsWith("up")) {
         this.__delta = this.__maxDelta;
       }
-      if (/.+(move|over|out|enter|leave)/.test(ev.type)) {
+      if (/.+(move|over|out)/.test(ev.type)) {
         if (!this.__deltas[ev.type]) {
           this.__deltas[ev.type] = {x: ev.clientX, y: ev.clientY};
         } else {
@@ -298,6 +298,10 @@ qx.Class.define('cv.report.Record', {
       }
       // get path
       var path = this.__getDomPath(ev.target);
+      if (!path) {
+        return;
+      }
+      // console.log("recording "+ev.type+" on "+path);
       var data = this.__extractDataFromEvent(ev);
       this.record(cv.report.Record.USER, path, data);
     },
