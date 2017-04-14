@@ -3,7 +3,7 @@
 The openweathermap plugin
 =========================
 
-.. api-doc:: openweathermap
+.. api-doc:: OpenweatherMap
 
 Description
 -----------

@@ -18,15 +18,20 @@ exports.config = {
     browser.ignoreSynchronization = true;
 
     // set implicit wait times in ms...
-    browser.manage().timeouts().implicitlyWait(1000);
+    browser.manage().timeouts().implicitlyWait(5000);
     // set browser size...
     browser.manage().window().setSize(1300, 800);
     return browser.getProcessedConfig().then(function(config) {
-      if (config.params && config.params.subDir) {
-        browser.onlySubDir = config.params.subDir;
-      }
-      if (config.params && config.params.screenshots) {
-        browser.screenshots = config.params.screenshots;
+      if (config.params) {
+        if (config.params.subDir) {
+          browser.onlySubDir = config.params.subDir;
+        }
+        if (config.params.screenshots) {
+          browser.screenshots = config.params.screenshots;
+        }
+        if (config.params.target) {
+          browser.target = config.params.target;
+        }
       }
     });
   }
