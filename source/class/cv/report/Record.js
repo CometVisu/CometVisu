@@ -92,6 +92,8 @@ qx.Class.define('cv.report.Record', {
 
         // save browser settings
         var req = qx.util.Uri.parseUri(window.location.href);
+        // delete reporting queryKey
+        delete req.queryKey.reporting;
         var Env = qx.core.Environment;
         var runtime = {
           browserName: Env.get("browser.name"),
@@ -107,8 +109,11 @@ qx.Class.define('cv.report.Record', {
           cv: {},
           width: qx.bom.Viewport.getWidth(),
           height: qx.bom.Viewport.getHeight(),
-          anchor: req.anchor
+          anchor: req.anchor,
+          query: req.queryKey,
+          path: req.relative
         };
+        console.log(req);
 
         // save CometVisu build information
         Object.getOwnPropertyNames(cv.Version).forEach(function(name) {
