@@ -366,10 +366,16 @@ qx.Class.define('cv.report.Record', {
       };
 
       var d = new Date();
+      var ts = d.getFullYear()+"-"+
+        qx.lang.String.pad(""+d.getMonth(), 2, "0")+"-"+
+        qx.lang.String.pad(""+d.getDate(), 2, "0")+"_"+
+        qx.lang.String.pad(""+d.getHours(), 2, "0")+":"+
+        qx.lang.String.pad(""+d.getMinutes(), 2, "0")+":" +
+        qx.lang.String.pad(""+d.getSeconds(), 2, "0");
 
       var a = window.document.createElement('a');
       a.href = window.URL.createObjectURL(new Blob([qx.lang.Json.stringify(data)], {type: 'application/json'}));
-      a.download = 'CometVisu-replay-'+d.toISOString()+'.json';
+      a.download = 'CometVisu-replay-'+ts+'.json';
 
       // Append anchor to body.
       document.body.appendChild(a);
