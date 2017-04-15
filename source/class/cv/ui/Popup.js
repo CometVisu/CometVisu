@@ -167,9 +167,6 @@ qx.Class.define('cv.ui.Popup', {
         this.fireEvent('close');
       }, this);
 
-      cv.report.Record.register(ret_val, "#popup_"+this.__counter, ["tap"]);
-      cv.report.Record.register(close, "#popup_"+this.__counter+" .popup_close", ["tap"]);
-
       qx.bom.element.Style.set(ret_val, 'display', 'block');
       qx.bom.Selector.query(this.__deactivateSelectors.join(",")).forEach(function(elem) {
         qx.bom.element.Class.add(elem, 'inactiveMain');
