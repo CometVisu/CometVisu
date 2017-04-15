@@ -68,6 +68,10 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
     except OSError:
         pass
 
+    if browser not in ["firefox", "chrome"]:
+        print("browser %s not yet supported, falling back to chrome" % browser)
+        browser = "chrome"
+
     if browser == "chrome":
         flags = [
             "--no-first-run", "--disk-cache-dir=/dev/null",
@@ -100,9 +104,6 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
             "-height", dimension[1], "--profile", user_dir, "-url", url
         ]
         sh.firefox(*flags)
-
-    else:
-        print("browser %s not yet supported" % browser)
 
 
 def get_server(host="", port=9000, next_attempts=0):
