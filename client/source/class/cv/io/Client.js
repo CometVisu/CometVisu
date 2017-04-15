@@ -393,9 +393,16 @@ qx.Class.define('cv.io.Client', {
       "qx": function(url, data, callback, context, options) {
         // append data to URL
         var qs = "";
+        var requestData = {};
         if (data) {
           Object.getOwnPropertyNames(data).forEach(function (key) {
-            qs += key + "=" + data[key] + "&";
+            if (key === "i" || key === "t") {
+              requestData[key] = data[key];
+            } else if (qx.lang.Type.isArray(data[key])) {
+              qs += key + "=" + data[key].join("&"+key+"=")+"&";
+            } else {
+              qs += key + "=" + data[key] + "&";
+            }
           });
           url = qx.util.Uri.appendParamsToUrl(url, qs.substring(0, qs.length-1));
         }
@@ -413,7 +420,8 @@ qx.Class.define('cv.io.Client', {
           }
         }
         ajaxRequest.set(qx.lang.Object.mergeWith({
-          accept: "application/json"
+          accept: "application/json",
+          requestData: requestData
         }, options || {}));
         if (callback) {
           ajaxRequest.addListener("success", callback, context);
@@ -484,11 +492,17 @@ qx.Class.define('cv.io.Client', {
         }
         return qs;
       } else {
-        return {
-          s: this.session,
-          a: addresses ? addresses : this.addresses,
-          f: this.filters
+        var data = {
+          s: this.session
         };
+        addresses = addresses || this.addresses;
+        if (addresses && addresses.length) {
+          data.a = addresses;
+        }
+        if (this.filters.length) {
+          data.f = this.filters;
+        }
+        return data;
       }
     },
 
