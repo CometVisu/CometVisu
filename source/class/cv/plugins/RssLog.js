@@ -172,13 +172,15 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _onDomReady: function () {
-      this.base(arguments);
-      qx.event.message.Bus.subscribe("path." + this.getParentPage().getPath() + ".beforePageChange", this.refreshRSSlog, this);
-      this.__html = '<span class="mappedValue" /><span>{text}</span>';
-      if (this.getDatetime()) {
-        this.__html = '{date}: ' + this.__html;
+      if (!this.$$domReady) {
+        this.base(arguments);
+        qx.event.message.Bus.subscribe("path." + this.getParentPage().getPath() + ".beforePageChange", this.refreshRSSlog, this);
+        this.__html = '<span class="mappedValue" /><span>{text}</span>';
+        if (this.getDatetime()) {
+          this.__html = '{date}: ' + this.__html;
+        }
+        this.__wrapper = 'li';
       }
-      this.__wrapper = 'li';
     },
 
     _update: function () {
