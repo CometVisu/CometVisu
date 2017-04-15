@@ -393,12 +393,6 @@ qx.Class.define('cv.io.Client', {
       "qx": function(url, data, callback, context, options) {
         // append data to URL
         var qs = "";
-        if (data) {
-          Object.getOwnPropertyNames(data).forEach(function (key) {
-            qs += key + "=" + data[key] + "&";
-          });
-          url = qx.util.Uri.appendParamsToUrl(url, qs.substring(0, qs.length-1));
-        }
         var ajaxRequest = new qx.io.request.Xhr(url);
         if (options) {
           if (options.beforeSend) {
@@ -417,6 +411,11 @@ qx.Class.define('cv.io.Client', {
         }, options || {}));
         if (callback) {
           ajaxRequest.addListener("success", callback, context);
+        }
+        if(data) {
+          ajaxRequest.set({
+            requestData: data
+          });
         }
         ajaxRequest.send();
         return ajaxRequest;
