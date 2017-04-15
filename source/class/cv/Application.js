@@ -148,6 +148,8 @@ qx.Class.define("cv.Application",
 
       console.log(info);
 
+      this.registerServiceWorker();
+
       if (qx.core.Environment.get("qx.aspects")) {
         qx.dev.Profile.stop();
         qx.dev.Profile.start();
@@ -561,6 +563,36 @@ qx.Class.define("cv.Application",
         qx.event.message.Bus.subscribe("setup.dom.finished.before", function() {
           cv.Config.initialPage = cv.TemplateEngine.getInstance().getPageIdByPath(startpage) || "id_";
         });
+      }
+    },
+
+    /**
+     * Install the service-worker if possible
+     */
+    registerServiceWorker: function() {
+      if (cv.Config.useServiceWorker === true) {
+        navigator.serviceWorker.register('ServiceWorker.js').then(function(reg) {
+          this.debug("ServiceWorker successfully registered for scope "+reg.scope);
+
+          // configure service worker
+          var configMessage = {
+            "command": "configure",
+            "message": {
+              forceReload: cv.Config.forceReload,
+              disableCache: qx.core.Environment.get("qx.debug")
+            }
+          };
+
+          if (reg.active) {
+            reg.active.postMessage(configMessage);
+          } else {
+            navigator.serviceWorker.ready.then(function(ev) {
+              ev.active.postMessage(configMessage);
+            });
+          }
+        }.bind(this)).catch(function(err) {
+          this.error("Error registering service-worker: ", err);
+        }.bind(this));
       }
     },
 

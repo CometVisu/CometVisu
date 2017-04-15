@@ -175,6 +175,11 @@ qx.Class.define('cv.Config', {
     configServer: null,
 
     /**
+     * If the CometVisu can use service workers
+     */
+    useServiceWorker: false,
+
+    /**
      * Get the structure that is related to this design
      * @param design {String?} name of the design
      * @return {String} name of the structure
@@ -331,5 +336,7 @@ qx.Class.define('cv.Config', {
     if (isNaN(cv.Config.use_maturity)) {
       cv.Config.use_maturity = statics.Maturity.release; // default to release
     }
+
+    cv.Config.useServiceWorker = 'serviceWorker' in navigator && (req.protocol === "https" || req.host === "localhost");
   }
 });
