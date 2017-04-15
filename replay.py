@@ -82,6 +82,7 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
 
         flags.append("--app=%s" % url)
         sh.google_chrome(*flags)
+
     elif browser == "firefox":
         os.makedirs(user_dir)
         sh.firefox("--no-remote", "-CreateProfile", "replay "+user_dir)
@@ -98,7 +99,6 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, u
             "--no-remote", "--new-window", "--new-instance", "-width", "%s" % dimension[0],
             "-height", dimension[1], "--profile", user_dir, "-url", url
         ]
-        print(flags)
         sh.firefox(*flags)
 
     else:
