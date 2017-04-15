@@ -130,6 +130,7 @@ else if(isset($_GET['r']))
 // JSON dump function
 else if(isset($_GET['j']))
 {
+	header('Content-Type: application/json');
 	?>
 	{
 	  "responseData" : {
