@@ -492,11 +492,17 @@ qx.Class.define('cv.io.Client', {
         }
         return qs;
       } else {
-        return {
-          s: this.session,
-          a: addresses ? addresses : this.addresses,
-          f: this.filters
+        var data = {
+          s: this.session
         };
+        addresses = addresses || this.addresses;
+        if (addresses && addresses.length) {
+          data.a = addresses;
+        }
+        if (this.filters.length) {
+          data.f = this.filters;
+        }
+        return data;
       }
     },
 
