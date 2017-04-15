@@ -127,10 +127,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
 
       if (this.running) { // keep the requests going
         this.retryCounter++;
-        data = this.client.buildRequest();
-        data.i = this.lastIndex;
         this.xhr.set({
-          requestData: data
+          requestData: {i: this.lastIndex}
         });
         this.xhr.send();
         this.client.watchdog.ping();
@@ -161,10 +159,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
             diffAddresses.push(this.client.addresses[i]);
           }
         }
-        var data = this.client.buildRequest(diffAddresses);
-        data.t = 0;
         this.xhr.set({
-          requestData: data
+          requestData: {t: 0}
         });
         this.xhr.removeListener("success", this.handleReadStart, this);
         this.xhr.addListener("success", this.handleRead, this);
