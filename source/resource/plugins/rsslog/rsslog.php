@@ -108,6 +108,7 @@ if( isset($_GET['c']) )
   delete( $db, $timestamp, $filter );
 } else if( isset($_GET['j']) )
 {
+  header('Content-Type: application/json');
   ?>
 {
   "responseData" : {

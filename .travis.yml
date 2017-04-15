@@ -48,11 +48,12 @@ script:
 - if [ "$CV_BUILD" == "test" ]; then grunt e2e-chrome; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
 before_deploy:
-- grunt release-build
+- grunt release-cv
+- if [ $(git reflog --after='24 hours' client/ | wc -l) -gt 0 ]; then grunt release-client; fi
 deploy:
   on:
     branch: develop
-    condition: "$CV_BUILD = test && $TRAVIS_EVENT_TYPE = cron && $(git reflog --no-merges --after='24 hours' | wc -l) -gt 0"
+    condition: "$CV_BUILD = test && $TRAVIS_EVENT_TYPE = cron && $(git reflog --after='24 hours' | wc -l) -gt 0"
   provider: bintray
   file: "./deploy.json"
   user: peuter

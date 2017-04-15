@@ -71,14 +71,6 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         }
       }
       qx.bom.Selector.query(".nav_path")[0].innerHTML = nav;
-
-      if (cv.Config.reporting === true) {
-        // register listeners to elements
-        qx.bom.Selector.query(".nav_path > a").forEach(function(elem) {
-          var path = qx.bom.element.Attribute.get(elem, "id");
-          cv.report.Record.register(elem, "#"+path, ["click"]);
-        });
-      }
       // cv.TemplateEngine.getInstance().handleResize(); - TODO CM160528: why? This shouldn't have
       //                             any effect on the page size => commented out
     },

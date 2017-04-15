@@ -39,6 +39,7 @@ qx.Class.define('cv.report.Record', {
     this.__start = Date.now();
     this.__xhr = { response: [], request:[] };
     this.__data = {};
+    this.__deltas = {};
   },
 
   /*
@@ -56,6 +57,9 @@ qx.Class.define('cv.report.Record', {
     RUNTIME: "runtime",
     REPLAYING: false,
     data: null,
+
+    // Events that should be recorded
+    USER_EVENTS: /(.+(down|up|over|out|cancel)|.*click|touchstart|touchend|wheel)/i,
 
     prepare: function() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
@@ -75,11 +79,8 @@ qx.Class.define('cv.report.Record', {
           });
         }, this);
 
-        // capture mouse cursor
-        Reg.addListener(document, "pointermove",
-          qx.util.Function.throttle(record.recordDocumentPointer, 500, true), record);
-        Reg.addListener(document, "pointerdown", record.recordDocumentPointer, record);
-        Reg.addListener(document, "pointerup", record.recordDocumentPointer, record);
+        // apply event recorder
+        qx.bom.Event.RECORD = record.recordNativeEvent.bind(record);
 
         // add scroll listeners to all pages
         qx.event.message.Bus.subscribe("setup.dom.finished", function() {
@@ -91,6 +92,8 @@ qx.Class.define('cv.report.Record', {
 
         // save browser settings
         var req = qx.util.Uri.parseUri(window.location.href);
+        // delete reporting queryKey
+        delete req.queryKey.reporting;
         var Env = qx.core.Environment;
         var runtime = {
           browserName: Env.get("browser.name"),
@@ -106,8 +109,11 @@ qx.Class.define('cv.report.Record', {
           cv: {},
           width: qx.bom.Viewport.getWidth(),
           height: qx.bom.Viewport.getHeight(),
-          anchor: req.anchor
+          anchor: req.anchor,
+          query: req.queryKey,
+          path: req.relative
         };
+        console.log(req);
 
         // save CometVisu build information
         Object.getOwnPropertyNames(cv.Version).forEach(function(name) {
@@ -117,8 +123,15 @@ qx.Class.define('cv.report.Record', {
         });
 
         this.record(this.RUNTIME, "config", runtime);
+
+        // save initial size
+        this.record(this.SCREEN, "resize", {
+          w: qx.bom.Viewport.getWidth(),
+          h: qx.bom.Viewport.getHeight()
+        });
       }
     },
+
 
     register: function(target, path, events) {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
@@ -172,25 +185,10 @@ qx.Class.define('cv.report.Record', {
     __xhr: null,
     __listeners: null,
     __data: null,
-
-    register: function(target, path, events) {
-      var lid;
-      var Reg = qx.event.Registration;
-
-      events.forEach(function(event) {
-        var options = {};
-        if (event === "click") {
-          options.fire = "click";
-          event = "tap";
-        }
-        lid = Reg.addListener(target, event, qx.lang.Function.curry(this._onEvent, path, options), this);
-      }, this);
-    },
-
-    _onEvent: function(path, options, ev) {
-      var data = this.__extractDataFromEvent(ev);
-      this.record(cv.report.Record.USER, path, data, options);
-    },
+    __delta: 50,
+    __minDelta: 1,
+    __maxDelta: 50,
+    __deltas: null,
 
     record: function(category, path, data, options) {
       switch (category) {
@@ -218,18 +216,21 @@ qx.Class.define('cv.report.Record', {
 
     /**
      * Extract useful data we need from every event
-     * @param ev {Event}
+     * @param nativeEvent {Event}
      */
-    __extractDataFromEvent: function(ev) {
-      var nativeEvent = ev.getNativeEvent();
+    __extractDataFromEvent: function(nativeEvent) {
       var data = {
-        type: ev.getType(),
+        eventClass: nativeEvent.constructor.name,
         "native": {
+          bubbles: nativeEvent.bubbles,
           button: nativeEvent.button,
           clientX: Math.round(nativeEvent.clientX),
           clientY: Math.round(nativeEvent.clientY),
+          currentTarget: nativeEvent.currentTarget ? this.__getDomPath(nativeEvent.currentTarget) : undefined,
+          relatedTarget: nativeEvent.relatedTarget ? this.__getDomPath(nativeEvent.relatedTarget) : undefined,
           pageX: nativeEvent.pageX ? Math.round(nativeEvent.pageX) : undefined,
           pageY: nativeEvent.pageY ? Math.round(nativeEvent.pageY) : undefined,
+          returnValue: nativeEvent.returnValue,
           screenX : Math.round(nativeEvent.screenX),
           screenY : Math.round(nativeEvent.screenY),
           wheelDelta : nativeEvent.wheelDelta,
@@ -243,11 +244,15 @@ qx.Class.define('cv.report.Record', {
           axis : nativeEvent.axis,
           wheelX : nativeEvent.wheelX,
           wheelY : nativeEvent.wheelY,
-          HORIZONTAL_AXIS : nativeEvent.HORIZONTAL_AXIS
+          view : nativeEvent.view ? nativeEvent.view.constructor.name : undefined,
+          HORIZONTAL_AXIS : nativeEvent.HORIZONTAL_AXIS,
+          type: nativeEvent.type,
+          x: nativeEvent.x,
+          y: nativeEvent.y
         }
       };
 
-      if (ev instanceof qx.event.type.Pointer) {
+      if (data.eventClass === "PointerEvent") {
         qx.lang.Object.mergeWith(data.native, {
           pointerId : nativeEvent.pointerId,
           width : nativeEvent.width,
@@ -258,17 +263,52 @@ qx.Class.define('cv.report.Record', {
           pointerType : nativeEvent.pointerType,
           isPrimary : nativeEvent.isPrimary
         });
+      } else if (data.eventClass === "WheelEvent") {
+        qx.lang.Object.mergeWith(data.native, {
+          deltaX : nativeEvent.deltaX,
+          deltaY : nativeEvent.deltaY,
+          deltaZ : nativeEvent.deltaZ,
+          deltaMode : nativeEvent.deltaMode
+        });
       }
+      // delete undefined values
+      Object.keys(data.native).forEach(function(key) {
+        if (data.native[key] === undefined || data.native[key] === null) {
+          delete data.native[key];
+        }
+      });
       return data;
     },
 
-    recordDocumentPointer: function(ev) {
-      this.recordPointer("document", ev);
-    },
-
-    recordPointer: function(path, ev) {
-      var data = qx.lang.Object.mergeWith({ path: path }, this.__extractDataFromEvent(ev));
-      this.record(cv.report.Record.USER, "pointer", data);
+    recordNativeEvent: function(ev) {
+      if (!cv.report.Record.USER_EVENTS.test(ev.type)) {
+        return;
+      }
+      if (ev.type.endsWith("down")) {
+        this.__delta = this.__minDelta;
+      } else if (ev.type.endsWith("up")) {
+        this.__delta = this.__maxDelta;
+      }
+      if (/.+(move|over|out)/.test(ev.type)) {
+        if (!this.__deltas[ev.type]) {
+          this.__deltas[ev.type] = {x: ev.clientX, y: ev.clientY};
+        } else {
+          var lastDelta = this.__deltas[ev.type];
+          if (Math.abs(lastDelta.x - ev.clientX) <= this.__delta || Math.abs(lastDelta.y - ev.clientY) <= this.__delta) {
+            // below delta -> skip this event
+            return;
+          }
+          this.__deltas[ev.type] = {x: ev.clientX, y: ev.clientY};
+        }
+      }
+      // get path
+      var path = this.__getDomPath(ev.target);
+      if (!path) {
+        return;
+      }
+      // console.log("recording "+ev.type+" on "+path);
+      var data = this.__extractDataFromEvent(ev);
+      this.record(cv.report.Record.USER, path, data);
     },
 
     recordScroll: function(ev) {
@@ -281,6 +321,39 @@ qx.Class.define('cv.report.Record', {
         y: page.scrollTop
       };
       this.record(cv.report.Record.USER, "scroll", data);
+    },
+
+    __getDomPath: function(el) {
+      if (el === window) {
+        return "Window";
+      } else if (el === document) {
+        return "document";
+      }
+      var stack = [];
+      while ( el.parentNode !== null ) {
+        var sibCount = 0;
+        var sibIndex = 0;
+        for ( var i = 0; i < el.parentNode.childNodes.length; i++ ) {
+          var sib = el.parentNode.childNodes[i];
+          if ( sib.nodeName === el.nodeName ) {
+            if ( sib === el ) {
+              sibIndex = sibCount;
+            }
+            sibCount++;
+          }
+        }
+        if ( el.hasAttribute('id') && el.id !== '' ) {
+          stack.unshift(el.nodeName.toLowerCase() + '#' + el.id);
+          return stack.join(">");
+        } else if ( sibCount > 1 ) {
+          stack.unshift(el.nodeName.toLowerCase() + ':eq(' + sibIndex + ')');
+        } else {
+          stack.unshift(el.nodeName.toLowerCase());
+        }
+        el = el.parentNode;
+      }
+
+      return stack.slice(1).join(">"); // removes the html element
     },
 
     /**
@@ -298,10 +371,16 @@ qx.Class.define('cv.report.Record', {
       };
 
       var d = new Date();
+      var ts = d.getFullYear()+"-"+
+        qx.lang.String.pad(""+d.getMonth(), 2, "0")+"-"+
+        qx.lang.String.pad(""+d.getDate(), 2, "0")+"_"+
+        qx.lang.String.pad(""+d.getHours(), 2, "0")+":"+
+        qx.lang.String.pad(""+d.getMinutes(), 2, "0")+":" +
+        qx.lang.String.pad(""+d.getSeconds(), 2, "0");
 
       var a = window.document.createElement('a');
       a.href = window.URL.createObjectURL(new Blob([qx.lang.Json.stringify(data)], {type: 'application/json'}));
-      a.download = 'CometVisu-replay-'+d.toISOString()+'.json';
+      a.download = 'CometVisu-replay-'+ts+'.json';
 
       // Append anchor to body.
       document.body.appendChild(a);

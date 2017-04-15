@@ -55,7 +55,7 @@
       {
         "paths"  :
         {
-          "loader-template": "${QOOXDOO_PATH}/tool/data/generator/oo.loader.tmpl.js"
+          "loader-template": "oo.loader.tmpl.js"
         }
       }
     },

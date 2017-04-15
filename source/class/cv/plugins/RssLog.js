@@ -35,7 +35,8 @@ qx.Class.define('cv.plugins.RssLog', {
   properties: {
     src: {
       check: "String",
-      nullable:true
+      nullable:true,
+      transform: "normalizeUrl"
     },
     filter: {
       check: "String",
@@ -133,6 +134,22 @@ qx.Class.define('cv.plugins.RssLog', {
     __request: null,
     __html: null,
     __wrapper: null,
+    __fixedRequestData: null,
+
+    /**
+     * Strip querystring from URL and store is as Map
+     * @param value {String} URL
+     * @return {String} normalized URL
+     */
+    normalizeUrl: function(value) {
+      this.__fixedRequestData = {};
+      if (value && value.indexOf("?") > 0) {
+        var parts = qx.util.Uri.parseUri(value);
+        value = value.substring(0, value.indexOf("?"));
+        this.__fixedRequestData = parts.queryKey;
+      }
+      return value;
+    },
 
     _getInnerDomString: function () {
       var style = '';
@@ -155,13 +172,15 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _onDomReady: function () {
-      this.base(arguments);
-      qx.event.message.Bus.subscribe("path." + this.getParentPage().getPath() + ".beforePageChange", this.refreshRSSlog, this);
-      this.__html = '<span class="mappedValue" /><span>{text}</span>';
-      if (this.getDatetime()) {
-        this.__html = '{date}: ' + this.__html;
+      if (!this.$$domReady) {
+        this.base(arguments);
+        qx.event.message.Bus.subscribe("path." + this.getParentPage().getPath() + ".beforePageChange", this.refreshRSSlog, this);
+        this.__html = '<span class="mappedValue" /><span>{text}</span>';
+        if (this.getDatetime()) {
+          this.__html = '{date}: ' + this.__html;
+        }
+        this.__wrapper = 'li';
       }
-      this.__wrapper = 'li';
     },
 
     _update: function () {
@@ -206,7 +225,7 @@ qx.Class.define('cv.plugins.RssLog', {
           this.error("no src given, aborting RSS-Log refresh");
           return;
         }
-        var requestData = {};
+        var requestData = qx.lang.Object.clone(this.__fixedRequestData);
         if (this.getFilter()) {
           requestData.f = this.getFilter();
         }
@@ -396,10 +415,10 @@ qx.Class.define('cv.plugins.RssLog', {
       var req = new qx.io.request.Xhr(this.__request.getUrl());
       req.set({
         method: "GET",
-        requestData: {
+        requestData: qx.lang.Object.mergeWith(qx.lang.Object.clone(this.__fixedRequestData), {
           'u': id,
           'state': state
-        },
+        }),
         accept: "application/json"
       });
       req.send();

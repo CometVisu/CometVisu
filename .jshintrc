@@ -39,6 +39,9 @@
     "EventSource": false,
     "fs": false,
     "replayLog": false,
-    "svg4everybody": false
+    "svg4everybody": false,
+    "PointerEvent": false,
+    "MouseEvent": false,
+    "WheelEvent": false
   }
 }

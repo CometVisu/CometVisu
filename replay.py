@@ -58,7 +58,7 @@ def prepare_replay(file):
             return json.loads(data)["data"]["runtime"]
 
 
-def start_browser(url, browser="chrome", size="1024,768", open_devtools=False):
+def start_browser(url, browser="chrome", size="1024,768", open_devtools=False, user_agent=None):
     print("Starting browser %s..." % browser)
 
     user_dir = os.getcwd()+"/."+browser
@@ -67,6 +67,10 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False):
         shutil.rmtree(user_dir)
     except OSError:
         pass
+
+    if browser not in ["firefox", "chrome"]:
+        print("browser %s not yet supported, falling back to chrome" % browser)
+        browser = "chrome"
 
     if browser == "chrome":
         flags = [
@@ -77,11 +81,29 @@ def start_browser(url, browser="chrome", size="1024,768", open_devtools=False):
         ]
         if open_devtools is True:
             flags.append("--auto-open-devtools-for-tabs")
+        if user_agent is not None:
+            flags.append("--user-agent=%s" % user_agent)
 
         flags.append("--app=%s" % url)
         sh.google_chrome(*flags)
-    else:
-        print("browser %s not yet supported" % browser)
+
+    elif browser == "firefox":
+        os.makedirs(user_dir)
+        sh.firefox("--no-remote", "-CreateProfile", "replay "+user_dir)
+        with open(os.path.join(user_dir, "prefs.js"), "w") as f:
+            f.write('user_pref("dom.disable_open_during_load", false);\n')
+            f.write('user_pref("datareporting.healthreport.service_enabled", false);\n')
+            f.write('user_pref("browser.cache.disk.enable", false);\n')
+            f.write('user_pref("browser.cache.disk.smart_size.enabled", false);\n')
+            f.write('user_pref("browser.cache.disk.capacity", 0);\n')
+            if user_agent is not None:
+                f.write('user_pref("general.useragent.override", "%s");\n' % user_agent)
+        dimension = size.split(",")
+        flags = [
+            "--no-remote", "--new-window", "--new-instance", "-width", "%s" % dimension[0],
+            "-height", dimension[1], "--profile", user_dir, "-url", url
+        ]
+        sh.firefox(*flags)
 
 
 def get_server(host="", port=9000, next_attempts=0):
