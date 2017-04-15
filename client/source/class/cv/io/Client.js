@@ -395,7 +395,11 @@ qx.Class.define('cv.io.Client', {
         var qs = "";
         if (data) {
           Object.getOwnPropertyNames(data).forEach(function (key) {
-            qs += key + "=" + data[key] + "&";
+            if (qx.lang.Type.isArray(data[key])) {
+              qs += key + "=" + data[key].join("&"+key+"=")+"&";
+            } else {
+              qs += key + "=" + data[key] + "&";
+            }
           });
           url = qx.util.Uri.appendParamsToUrl(url, qs.substring(0, qs.length-1));
         }
