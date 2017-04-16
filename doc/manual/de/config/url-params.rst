@@ -201,14 +201,3 @@ Browser-Console (öffnen mit F12) ``downloadLog()`` ein gibt und mit *enter* bes
     Da die Log-Dateien in Echtzeit abgespielt werden, empfiehlt es sich die Laufzeit möglichst kurz zu halten.
     Eine Log-Datei die 30 Minuten oder mehr läuft bis das Problem zu sehen ist, wird die Fehlerbehebung
     erschweren, da der Entwickler diese ggf. sehr oft abspielen muss während der Fehleranalyse und -behebung.
-
-
-.. _log:
-
-*log* - Logging in der Browserconsole an-/abschalten
-
-Mit diesem Parameter können die Debug-Logausgaben auf der Browserkonsole ein- und ausgeschaltet werden.
-In der Entwicklerversion sind diese standardmäßig eingeschaltet in einem Release aus.
-
-    Default: false im Release, true in Entwicklerversion
-    Options: true  (log=true), false (log=false)
