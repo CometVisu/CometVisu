@@ -324,7 +324,7 @@ qx.Class.define("cv.Application",
       var ajaxRequest = new qx.io.request.Xhr(uri);
       ajaxRequest.set({
         accept: "application/xml",
-        cache: !cv.Config.forceReload
+        cache: false
       });
       ajaxRequest.setUserData("noDemo", true);
       ajaxRequest.addListenerOnce("success", function (e) {
@@ -578,8 +578,7 @@ qx.Class.define("cv.Application",
           var configMessage = {
             "command": "configure",
             "message": {
-              forceReload: cv.Config.forceReload,
-              disableCache: qx.core.Environment.get("qx.debug")
+              forceReload: cv.Config.forceReload
             }
           };
 

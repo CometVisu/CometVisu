@@ -179,6 +179,8 @@ qx.Class.define('cv.Config', {
      */
     useServiceWorker: false,
 
+    enableServiceWorkerCache : true,
+
     /**
      * Get the structure that is related to this design
      * @param design {String?} name of the design
@@ -338,5 +340,12 @@ qx.Class.define('cv.Config', {
     }
 
     cv.Config.useServiceWorker = 'serviceWorker' in navigator && (req.protocol === "https" || req.host === "localhost");
+
+    if (cv.Config.useServiceWorker) {
+      if (qx.core.Environment.get("qx.debug")) {
+        // disable service worker in dev environment unless the user wants it
+        cv.Config.useServiceWorker = req.queryKey.worker === "true";
+      }
+    }
   }
 });
