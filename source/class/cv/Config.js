@@ -164,6 +164,11 @@ qx.Class.define('cv.Config', {
     reporting: false,
 
     /**
+     * Set console logging
+     */
+    enableLogging: true,
+
+    /**
      * Get the structure that is related to this design
      * @param design {String?} name of the design
      * @return {String} name of the structure
@@ -262,6 +267,13 @@ qx.Class.define('cv.Config', {
       cv.Config.enableCache = true;
     } else {
       cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : true;
+    }
+
+    cv.Config.enableLogging = qx.core.Environment.get("html.console");
+    if (req.queryKey.log === "false") {
+      cv.Config.enableLogging = false;
+    } else if (req.queryKey.log === "true") {
+      cv.Config.enableLogging = true;
     }
 
     // "Bug"-Fix for ID: 3204682 "Caching on web server"

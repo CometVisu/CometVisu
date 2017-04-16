@@ -142,11 +142,12 @@ qx.Class.define("cv.Application",
       // run svg4everybody to support SVG sprites in older browsers
       svg4everybody();
 
+      // support native logging capabilities, e.g. Firebug for Firefox
+      //noinspection BadExpressionStatementJS,JSHint
+      cv.log.appender.Native;
+
       // Enable logging in debug variant
       if (qx.core.Environment.get("qx.debug")) {
-        // support native logging capabilities, e.g. Firebug for Firefox
-        //noinspection BadExpressionStatementJS,JSHint
-        qx.log.appender.Native;
         // support additional cross-browser console. Press F7 to toggle visibility
         //noinspection BadExpressionStatementJS,JSHint
         qx.log.appender.Console;
