@@ -394,10 +394,10 @@ qx.Class.define('cv.TemplateEngine', {
         var startPageAddresses = {};
         var pageWidget = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
         pageWidget.getChildWidgets().forEach(function(child) {
-          var address = child.getAddress();
+          var address = child.getAddress ? child.getAddress() : {};
           for (var addr in address) {
             if (address.hasOwnProperty(addr)) {
-              startPageAddresses[addr.substring(1)] = 1;
+              startPageAddresses[addr] = 1;
             }
           }
         }, this);

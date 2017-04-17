@@ -362,6 +362,28 @@ qx.Class.define('cv.io.Client', {
       }
     }),
 
+    getQueryString: function(data) {
+      var prefix = "";
+      var suffix = "";
+      if (data) {
+        Object.getOwnPropertyNames(data).forEach(function (key) {
+          if (key === "i" || key === "t") {
+            prefix += key + "=" + data[key] + "&";
+          } else if (qx.lang.Type.isArray(data[key])) {
+            suffix += key + "=" + data[key].join("&" + key + "=") + "&";
+          } else {
+            suffix += key + "=" + data[key] + "&";
+          }
+        });
+        if (suffix.length) {
+          suffix = suffix.substring(0, suffix.length-1);
+        } else if (prefix.length) {
+          prefix = prefix.substring(0, prefix.length-1);
+        }
+      }
+      return prefix+suffix;
+    },
+
     /**
      * Creates an XHR request. The request type depends von the "cv.xhr" environment setting
      * (currently "qx" and "jquery" are supported)
@@ -374,25 +396,15 @@ qx.Class.define('cv.io.Client', {
     doRequest: qx.core.Environment.select("cv.xhr", {
       "jquery": function(url, data, callback, context, options) {
         var qs = "";
-        var requestData = {};
         if (data) {
-          Object.getOwnPropertyNames(data).forEach(function (key) {
-            if (key === "i" || key === "t") {
-              requestData[key] = data[key];
-            } else if (qx.lang.Type.isArray(data[key])) {
-              qs += key + "=" + data[key].join("&"+key+"=")+"&";
-            } else {
-              qs += key + "=" + data[key] + "&";
-            }
-          });
-          url = qx.util.Uri.appendParamsToUrl(url, qs.substring(0, qs.length-1));
+          qs = this.getQueryString(data);
+          url = qx.util.Uri.appendParamsToUrl(url, qs);
         }
         var config = {
           url         : url,
           dataType    : 'json',
           context     : context,
-          success     : callback,
-          data        : requestData
+          success     : callback
         };
         if (options) {
           if (options.listeners) {
@@ -408,18 +420,9 @@ qx.Class.define('cv.io.Client', {
       "qx": function(url, data, callback, context, options) {
         // append data to URL
         var qs = "";
-        var requestData = {};
         if (data) {
-          Object.getOwnPropertyNames(data).forEach(function (key) {
-            if (key === "i" || key === "t") {
-              requestData[key] = data[key];
-            } else if (qx.lang.Type.isArray(data[key])) {
-              qs += key + "=" + data[key].join("&"+key+"=")+"&";
-            } else {
-              qs += key + "=" + data[key] + "&";
-            }
-          });
-          url = qx.util.Uri.appendParamsToUrl(url, qs.substring(0, qs.length-1));
+          qs = this.getQueryString(data);
+          url = qx.util.Uri.appendParamsToUrl(url, qs);
         }
         var ajaxRequest = new qx.io.request.Xhr(url);
         if (options) {
@@ -435,8 +438,7 @@ qx.Class.define('cv.io.Client', {
           }
         }
         ajaxRequest.set(qx.lang.Object.mergeWith({
-          accept: "application/json",
-          requestData: requestData
+          accept: "application/json"
         }, options || {}));
         if (callback) {
           ajaxRequest.addListener("success", callback, context);
