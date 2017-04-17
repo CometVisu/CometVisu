@@ -206,6 +206,7 @@ Browser-Console (öffnen mit F12) ``downloadLog()`` ein gibt und mit *enter* bes
 .. _log:
 
 *log* - Logging in der Browserconsole an-/abschalten
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Mit diesem Parameter können die Debug-Logausgaben auf der Browserkonsole ein- und ausgeschaltet werden.
 In der Entwicklerversion sind diese standardmäßig eingeschaltet in einem Release aus.
