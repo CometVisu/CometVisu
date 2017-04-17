@@ -211,5 +211,7 @@ Browser-Console (öffnen mit F12) ``downloadLog()`` ein gibt und mit *enter* bes
 Mit diesem Parameter können die Debug-Logausgaben auf der Browserkonsole ein- und ausgeschaltet werden.
 In der Entwicklerversion sind diese standardmäßig eingeschaltet in einem Release aus.
 
+.. code::
+
     Default: false im Release, true in Entwicklerversion
     Options: true  (log=true), false (log=false)
