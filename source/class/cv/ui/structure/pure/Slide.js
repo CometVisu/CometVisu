@@ -190,7 +190,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         var currentValue = this.getValue();
         this.sendToBackend(value, function(addr) {
           var newValue = cv.Transform.encode(addr[0], value);
-          return newValue !== cv.Transform.encode(addr[0], currentValue);
+          return newValue !== NaN && newValue !== cv.Transform.encode(addr[0], currentValue);
         });
       }
       this.setValue(value);
