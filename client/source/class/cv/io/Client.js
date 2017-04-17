@@ -424,7 +424,6 @@ qx.Class.define('cv.io.Client', {
           qs = this.getQueryString(data);
           url = qx.util.Uri.appendParamsToUrl(url, qs);
         }
-        console.log(qs);
         var ajaxRequest = new qx.io.request.Xhr(url);
         if (options) {
           if (options.beforeSend) {
