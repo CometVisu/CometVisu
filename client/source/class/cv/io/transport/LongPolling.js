@@ -73,12 +73,6 @@ qx.Class.define('cv.io.transport.LongPolling', {
       this.running = true;
       // send first request
 
-      var options = {
-        beforeSend: this.beforeSend.bind(this),
-        listeners: {
-          error: this.handleError
-        }
-      };
       var data = [];
       var successCallback = null;
       if (this.client.initialAddresses.length) {
@@ -89,9 +83,21 @@ qx.Class.define('cv.io.transport.LongPolling', {
         data = this.client.buildRequest();
         successCallback = this.handleRead;
       }
-      data.t = 0;
-      this.xhr = this.client.doRequest(this.client.getResourcePath("read"), data, successCallback, this, options);
+      this.__startReading(data, successCallback);
       this.client.watchdog.start(5);
+    },
+
+    __startReading: function(data, callback) {
+      data = data || this.client.buildRequest();
+      callback = callback || this.handleRead;
+      data.t = 0;
+      var options = {
+        beforeSend: this.beforeSend.bind(this),
+        listeners: {
+          error: this.handleError
+        }
+      };
+      this.xhr = this.client.doRequest(this.client.getResourcePath("read"), data, callback, this, options);
     },
 
     /**
@@ -107,8 +113,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
         if (this.running) { // retry initial request
           this.retryCounter++;
           qx.event.Timer.once(function () {
-            this.error("read request received emtpy response => retrying");
-            this.xhr.send();
+            this.error("restarting XHR read requests");
+            this.__startReading();
             this.client.watchdog.ping(true);
           }, this, 100 * Math.pow(this.retryCounter, 2));
         }
@@ -270,6 +276,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     abort: function () {
       if (this.xhr && this.xhr.abort) {
         this.xhr.abort();
+        this.xhr.dispose();
 
         if (this.client.backend && this.client.backend.hooks.onClose) {
           this.client.backend.hooks.onClose.bind(this);
