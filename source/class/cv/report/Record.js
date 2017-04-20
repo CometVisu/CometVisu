@@ -136,6 +136,10 @@ qx.Class.define('cv.report.Record', {
 
     patchEventListeners: function() {
       // patch addEventListener
+      if (!('addEventListener' in window)) {
+        // browser does not support this
+        return;
+      }
 
       var addEventListener = function(type, listener, options) {
         if (type === "mousewheel") {
