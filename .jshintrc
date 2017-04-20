@@ -42,6 +42,7 @@
     "svg4everybody": false,
     "PointerEvent": false,
     "MouseEvent": false,
-    "WheelEvent": false
+    "WheelEvent": false,
+    "HTMLDocument": false
   }
 }

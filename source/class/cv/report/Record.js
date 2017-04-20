@@ -59,16 +59,21 @@ qx.Class.define('cv.report.Record', {
     data: null,
 
     // Events that should be recorded
-    USER_EVENTS: /(.+(down|up|over|out|cancel)|.*click|touchstart|touchend|wheel)/i,
+    USER_EVENTS: /(.+(down|up|cancel|move)|.*click|contextmenu|touch.*|.*wheel)/i,
 
     prepare: function() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
         cv.Application.registerConsoleCommand("downloadLog", cv.report.Record.download, "Download recorded log file.");
 
+        // apply event recorder
+        var record = cv.report.Record.getInstance();
+        qx.bom.Event.RECORD = record.recordNativeEvent.bind(record);
+
+        this.patchEventListeners();
+
         // patch XHR
         qx.Class.patch(qx.io.request.Xhr, cv.report.utils.MXhrHook);
 
-        var record = cv.report.Record.getInstance();
         var Reg = qx.event.Registration;
 
         // add resize listener
@@ -78,9 +83,6 @@ qx.Class.define('cv.report.Record', {
             h: qx.bom.Viewport.getHeight()
           });
         }, this);
-
-        // apply event recorder
-        qx.bom.Event.RECORD = record.recordNativeEvent.bind(record);
 
         // add scroll listeners to all pages
         qx.event.message.Bus.subscribe("setup.dom.finished", function() {
@@ -132,11 +134,61 @@ qx.Class.define('cv.report.Record', {
       }
     },
 
-
-    register: function(target, path, events) {
-      if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-        cv.report.Record.getInstance().register(target, path, events);
+    patchEventListeners: function() {
+      // patch addEventListener
+      if (!('addEventListener' in window)) {
+        // browser does not support this
+        return;
       }
+
+      var addEventListener = function(type, listener, options) {
+        if (type === "mousewheel") {
+          // for some reason this event does not work in diagrams if we wrap it
+          // as the wheel event is captured elsewhere we don't need it here => skip
+          this.addNativeEventListener(type, listener, options);
+          return;
+        }
+        // console.log("adding "+type+" event listener to %O", this);
+        var wrapper = function(ev) {
+          qx.bom.Event.RECORD(ev);
+          listener(ev);
+        };
+        if (!this.$$wrappers) {
+          this.$$wrappers = {};
+          this.$$wrappers[type] = {};
+          this.$$wrappers[type][listener] = wrapper;
+        } else if (!this.$$wrappers[type]) {
+          this.$$wrappers[type] = {};
+          this.$$wrappers[type][listener] = wrapper;
+        } else if (!this.$$wrappers[type][listener]) {
+          this.$$wrappers[type][listener] = wrapper;
+        } else {
+          // event already wrapped
+          this.addNativeEventListener(type, listener, options);
+          return;
+        }
+
+        this.addNativeEventListener(type, wrapper, options);
+      };
+      Element.prototype.addNativeEventListener = Element.prototype.addEventListener;
+      Element.prototype.addEventListener = addEventListener;
+      HTMLDocument.prototype.addNativeEventListener = Document.prototype.addEventListener;
+      HTMLDocument.prototype.addEventListener = addEventListener;
+
+      // patch removeEventListener
+      var removeEventListener = function(type, listener, options) {
+        if (this.$$wrappers[type] && this.$$wrappers[type][listener]) {
+          this.removeNativeEventListener(type, this.$$wrappers[type][listener], options);
+          delete this.$$wrappers[type][listener];
+        } else {
+          this.removeNativeEventListener(type, listener, options);
+        }
+      };
+
+      Element.prototype.removeNativeEventListener = Element.prototype.removeEventListener;
+      Element.prototype.removeEventListener = removeEventListener;
+      HTMLDocument.prototype.removeNativeEventListener = Document.prototype.removeEventListener;
+      HTMLDocument.prototype.removeEventListener = removeEventListener;
     },
 
     record: function(category, path, data) {
@@ -189,6 +241,7 @@ qx.Class.define('cv.report.Record', {
     __minDelta: 1,
     __maxDelta: 50,
     __deltas: null,
+    __ID: 0,
 
     record: function(category, path, data, options) {
       switch (category) {
@@ -209,9 +262,11 @@ qx.Class.define('cv.report.Record', {
             t: Date.now(),
             i: path,
             d: data,
-            o: options
+            o: options,
+            ID: this.__ID
           });
       }
+      this.__ID++;
     },
 
     /**
@@ -281,12 +336,13 @@ qx.Class.define('cv.report.Record', {
     },
 
     recordNativeEvent: function(ev) {
-      if (!cv.report.Record.USER_EVENTS.test(ev.type)) {
+      if (!cv.report.Record.USER_EVENTS.test(ev.type) || ev.$$RID) {
         return;
       }
-      if (ev.type.endsWith("down")) {
+      ev.$$RID = this.__ID;
+      if (ev.type.endsWith("down") || ev.type.endsWith("start")) {
         this.__delta = this.__minDelta;
-      } else if (ev.type.endsWith("up")) {
+      } else if (ev.type.endsWith("up") || ev.type.endsWith("end")) {
         this.__delta = this.__maxDelta;
       }
       if (/.+(move|over|out)/.test(ev.type)) {
