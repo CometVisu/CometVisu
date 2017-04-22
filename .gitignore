@@ -22,3 +22,7 @@ settings/keys/deploy_key
 /source/replay-log.js
 /client/build/
 /.chrome
+/.firefox
+/coverage
+/out
+*.pyc
