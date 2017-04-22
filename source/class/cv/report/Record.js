@@ -67,9 +67,7 @@ qx.Class.define('cv.report.Record', {
 
         // apply event recorder
         var record = cv.report.Record.getInstance();
-        qx.bom.Event.RECORD = record.recordNativeEvent.bind(record);
-
-        this.patchEventListeners();
+        EVENT_RECORDER = record.recordNativeEvent.bind(record);
 
         // patch XHR
         qx.Class.patch(qx.io.request.Xhr, cv.report.utils.MXhrHook);
@@ -115,7 +113,6 @@ qx.Class.define('cv.report.Record', {
           query: req.queryKey,
           path: req.relative
         };
-        console.log(req);
 
         // save CometVisu build information
         Object.getOwnPropertyNames(cv.Version).forEach(function(name) {
@@ -132,63 +129,6 @@ qx.Class.define('cv.report.Record', {
           h: qx.bom.Viewport.getHeight()
         });
       }
-    },
-
-    patchEventListeners: function() {
-      // patch addEventListener
-      if (!('addEventListener' in window)) {
-        // browser does not support this
-        return;
-      }
-
-      var addEventListener = function(type, listener, options) {
-        if (type === "mousewheel") {
-          // for some reason this event does not work in diagrams if we wrap it
-          // as the wheel event is captured elsewhere we don't need it here => skip
-          this.addNativeEventListener(type, listener, options);
-          return;
-        }
-        // console.log("adding "+type+" event listener to %O", this);
-        var wrapper = function(ev) {
-          qx.bom.Event.RECORD(ev);
-          listener(ev);
-        };
-        if (!this.$$wrappers) {
-          this.$$wrappers = {};
-          this.$$wrappers[type] = {};
-          this.$$wrappers[type][listener] = wrapper;
-        } else if (!this.$$wrappers[type]) {
-          this.$$wrappers[type] = {};
-          this.$$wrappers[type][listener] = wrapper;
-        } else if (!this.$$wrappers[type][listener]) {
-          this.$$wrappers[type][listener] = wrapper;
-        } else {
-          // event already wrapped
-          this.addNativeEventListener(type, listener, options);
-          return;
-        }
-
-        this.addNativeEventListener(type, wrapper, options);
-      };
-      Element.prototype.addNativeEventListener = Element.prototype.addEventListener;
-      Element.prototype.addEventListener = addEventListener;
-      HTMLDocument.prototype.addNativeEventListener = Document.prototype.addEventListener;
-      HTMLDocument.prototype.addEventListener = addEventListener;
-
-      // patch removeEventListener
-      var removeEventListener = function(type, listener, options) {
-        if (this.$$wrappers[type] && this.$$wrappers[type][listener]) {
-          this.removeNativeEventListener(type, this.$$wrappers[type][listener], options);
-          delete this.$$wrappers[type][listener];
-        } else {
-          this.removeNativeEventListener(type, listener, options);
-        }
-      };
-
-      Element.prototype.removeNativeEventListener = Element.prototype.removeEventListener;
-      Element.prototype.removeEventListener = removeEventListener;
-      HTMLDocument.prototype.removeNativeEventListener = Document.prototype.removeEventListener;
-      HTMLDocument.prototype.removeEventListener = removeEventListener;
     },
 
     record: function(category, path, data) {
@@ -362,7 +302,7 @@ qx.Class.define('cv.report.Record', {
       if (!path) {
         return;
       }
-      // console.log("recording "+ev.type+" on "+path);
+      this.debug("recording "+ev.type+" on "+path);
       var data = this.__extractDataFromEvent(ev);
       this.record(cv.report.Record.USER, path, data);
     },

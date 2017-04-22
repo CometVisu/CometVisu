@@ -43,6 +43,7 @@
     "PointerEvent": false,
     "MouseEvent": false,
     "WheelEvent": false,
-    "HTMLDocument": false
+    "HTMLDocument": false,
+    "EVENT_RECORDER": true
   }
 }

@@ -106,6 +106,9 @@
 
       "add-script" : [
         {
+          "uri" : "resource/libs/EventRecorder.js"
+        },
+        {
           "uri" : "resource/libs/sprintf.js"
         },
 //        {
@@ -124,6 +127,7 @@
       "copy-files" :
       {
         "files" : [
+          "resource/libs/EventRecorder.js",
           "resource/libs/sprintf.js",
           //"resource/libs/Three.js",
           "resource/libs/jquery.js",
