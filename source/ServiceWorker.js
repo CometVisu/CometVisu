@@ -5,10 +5,12 @@
  * @since (0.11.0) 2017
  */
 
-var CACHE = "cv-cache-v1";
+var CACHE = "cv-cache-v2";
 var NO_CACHE_TEST = /.+\.php$/i;
 var CONFIG_TEST = /.+visu_config.*\.xml.*/i;
 var config = {};
+var updateQueue = [];
+var queueTid = null;
 
 self.addEventListener('message', function(event) {
   var data = event.data;
@@ -59,6 +61,12 @@ self.addEventListener('fetch', function(ev) {
       // console.log(ev.request.url+" from cache");
       if (config.forceReload === true) {
         update(ev.request);
+      } else {
+        updateQueue.push(ev.request);
+        if (queueTid) {
+          clearTimeout(queueTid);
+        }
+        queueTid = setTimeout(processQueue, 1000);
       }
 
       return response;
@@ -87,6 +95,13 @@ function fromNetwork(request, timeout) {
   });
 }
 
+function processQueue() {
+  while (updateQueue.length) {
+    var request = updateQueue.shift();
+    update(request);
+  }
+}
+
 /**
  * Get response from cache
  * @param request {Request}
@@ -106,9 +121,11 @@ function fromCache(request) {
  * @return {Promise}
  */
 function update(request) {
-  return caches.open(CACHE).then(function (cache) {
-    return fetch(request).then(function (response) {
-      return cache.put(request, response);
+  caches.open(CACHE).then(function (cache) {
+    fetch(request).then(function (response) {
+      if (response.status < 400) {
+        cache.put(request, response);
+      }
     });
   });
 }
