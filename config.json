@@ -301,6 +301,13 @@
       }
     },
 
+    "update-version-cache": {
+      "shell" :
+      {
+        "command" : "utils/update_version.py worker"
+      }
+    },
+
     "build" :
     {
       "extend" : [ "parts-config" ],
@@ -312,7 +319,7 @@
       "run" :
       [
         "build-resources",
-        "update-version",
+        "update-version-cache",
         "build-script",
         "build-files",
         "build-libs",
