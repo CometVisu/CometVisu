@@ -285,7 +285,7 @@ qx.Class.define('cv.parser.WidgetParser', {
       var ret_val = '<div class="' + (labelClass !== undefined ? labelClass : 'label') + '"' +
         ( style ? (' style="' + style + '"') : '' ) + '>';
 
-      label.childNodes.forEach(function(elem) {
+      Array.prototype.forEach.call(label.childNodes, function(elem) {
         if( qx.dom.Node.isNodeName(elem, 'icon') ) {
           ret_val += cv.IconHandler.getInstance().getIconText(
             qx.bom.element.Attribute.get(elem, 'name'),
