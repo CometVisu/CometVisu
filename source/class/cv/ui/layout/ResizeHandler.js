@@ -277,7 +277,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       for (var rowspan in cv.Config.configSettings.usedRowspans) {
         styles += '.rowspan.rowspan' + rowspan + ' { height: ' + Math.round(rowspan * height) + "px;}\n";
       }
-      elem.remove();
+      qx.dom.Element.remove( elem );
 
       // set css style
       qx.bom.Selector.query('#rowspanStyle')[0].innerHTML = styles;
