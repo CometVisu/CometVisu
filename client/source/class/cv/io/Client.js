@@ -27,7 +27,7 @@
  *
  * @author Christan Mayer
  * @author Tobias Bräutigam
- * @since 0.5.3 (initial contribution) 0.10.0 (major refactoring)
+ * @since 0.5.3 (initial contribution) 0.10.0+0.11.0 (major refactoring)
  */
 qx.Class.define('cv.io.Client', {
   extend: qx.core.Object,
@@ -245,6 +245,7 @@ qx.Class.define('cv.io.Client', {
     getBackend: function() {
       return this.backend;
     },
+
     /**
      * manipulates the header of the current ajax query before it is been send to the server
      */
