@@ -455,10 +455,10 @@ qx.Class.define("cv.Application",
      */
     configError: function( textStatus, additionalErrorInfo ) {
       var configSuffix = (cv.Config.configSuffix ? cv.Config.configSuffix : '');
-      var message = 'cv.Config.File Error!<br/>';
+      var message = qx.locale.Manager.tr('Config-File Error!')+'<br/>';
       switch (textStatus) {
         case 'parsererror':
-          message += 'Invalid config file!<br/><a href="check_config.php?config=' + configSuffix + '">Please check!</a>';
+          message += qx.locale.Manager.tr("Invalid config file!")+'<br/><a href="check_config.php?config=' + configSuffix + '">'+qx.locale.Manager.tr("Please check!")+'</a>';
           break;
         case 'libraryerror':
           var link = window.location.href;
@@ -466,18 +466,16 @@ qx.Class.define("cv.Application",
             link = link + '?';
           }
           link = link + '&libraryCheck=false';
-          message += 'cv.Config.file has wrong library version!<br/>' +
-            'This can cause problems with your configuration</br>' +
-            '<p>You can run the <a href="./upgrade/index.php?config=' + configSuffix + '">cv.Config.ration Upgrader</a>.</br>' +
-            'Or you can start without upgrading <a href="' + link + '">with possible configuration problems</a>.</p>';
+          message += qx.locale.Manager.tr('Config file has wrong library version!')+'<br/>' +
+            qx.locale.Manager.tr('This can cause problems with your configuration')+'</br>' +
+            '<p>'+qx.locale.Manager.tr("You can run the %1Configuration Upgrader%2.", '<a href="./upgrade/index.php?config=' + configSuffix + '">', '</a>') +'</br>' +
+            qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>')+'</p>';
           break;
         case 'filenotfound':
-          message += '404: cv.Config.file not found. Neither as normal config (' +
-            additionalErrorInfo[0] + ') nor as demo config (' +
-            additionalErrorInfo[1] + ').';
+          message += qx.locale.Manager.tr('404: Config file not found. Neither as normal config (%1) nor as demo config (%2).', additionalErrorInfo[0], additionalErrorInfo[1]);
           break;
         default:
-          message += 'Unhandled error of type "' + textStatus + '"';
+          message += qx.locale.Manager.tr('Unhandled error of type "%1"', textStatus);
           if( additionalErrorInfo ) {
             message += ': ' + additionalErrorInfo;
           }
