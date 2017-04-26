@@ -33,7 +33,7 @@ msgstr "Das kann Probleme in Ihrer Konfiguration verursachen"
 
 #: cv/Application.js:471
 msgid "You can run the %1Configuration Upgrader%2."
-msgstr "Sie können den %sKonfigurations-Upgrader%s laufen lassen."
+msgstr "Sie können den %1Konfigurations-Upgrader%2 laufen lassen."
 
 #: cv/Application.js:472
 msgid ""
