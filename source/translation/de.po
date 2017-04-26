@@ -52,3 +52,7 @@ msgstr ""
 #: cv/Application.js:478
 msgid "Unhandled error of type \"%1\""
 msgstr "Unbekannter Fehler vom Typ \"%1\""
+
+#: cv/ui/structure/pure/Unknown.js:88
+msgid "unknown: %1"
+msgstr "Unbekannt: %1"
