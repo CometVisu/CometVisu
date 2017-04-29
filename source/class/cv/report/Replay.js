@@ -58,6 +58,8 @@ qx.Class.define('cv.report.Replay', {
     prepare: function(data) {
       cv.report.Record.REPLAYING = true;
       cv.report.Replay.getInstance().prepare(data);
+      // override startpage setting
+      cv.Config.startpage = data.data.runtime.path.split("#").pop();
     },
 
     start: function() {
@@ -215,13 +217,10 @@ qx.Class.define('cv.report.Replay', {
       }
       qx.bom.element.Style.setStyles(this.__cursor, {top: (record.d.native.clientY-10)+"px", left: (record.d.native.clientX-10)+"px"});
 
-      switch(record.d.type) {
-        case "pointerdown":
-          qx.bom.element.Style.set(this.__cursor, "color", "red");
-          break;
-        case "pointerup":
-          qx.bom.element.Style.set(this.__cursor, "color", "white");
-          break;
+      if (/.+(down|start)/.test(record.d.native.type)) {
+        qx.bom.element.Style.set(this.__cursor, "color", record.d.native.button === 2 ? "blue" : "red");
+      } else if (/.+(up|end)/.test(record.d.native.type)) {
+        qx.bom.element.Style.set(this.__cursor, "color", "white");
       }
     },
 

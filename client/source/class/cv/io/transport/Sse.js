@@ -126,7 +126,7 @@ qx.Class.define('cv.io.transport.Sse', {
      *
      */
     restart: function (doFullReload) {
-      if (doFullReload) {
+      if (doFullReload || !this.isConnectionRunning()) {
         this.abort();
         this.connect();
       }

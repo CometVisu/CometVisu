@@ -5,6 +5,11 @@ SOURCE_BRANCH="develop"
 TARGET_BRANCH="gh-pages"
 REPO_SLUG="CometVisu/CometVisu"
 
+if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
+    echo "Skipping deploy in cron build"
+    exit 0
+fi
+
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
 if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [ "$TRAVIS_BRANCH" != "master" ] ); then
     echo "Skipping deploy;"

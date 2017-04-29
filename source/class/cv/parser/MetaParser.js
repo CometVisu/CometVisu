@@ -61,7 +61,7 @@ qx.Class.define("cv.parser.MetaParser", {
           var v = origin[i];
           if (qx.dom.Node.isElement(v) && qx.dom.Node.getName(v).toLowerCase() === 'icon') {
             var icon = this.__parseIconDefinition(v);
-            value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon.class));
+            value.push(cv.IconHandler.getInstance().getIconElement(icon.name, icon.type, icon.flavour, icon.color, icon.styling, icon["class"]));
           }
           else if (qx.dom.Node.getText(v).trim().length) {
             value.push(qx.dom.Node.getText(v).trim());

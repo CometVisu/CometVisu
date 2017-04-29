@@ -464,7 +464,6 @@ body br
     width: 2.5rem;
     height: 2.5rem;
     cursor: default;
-    overflow: hidden;
 }
 
 .ui-slider-horizontal { height: .8em; }
