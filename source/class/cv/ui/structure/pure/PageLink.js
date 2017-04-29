@@ -46,6 +46,10 @@ qx.Class.define('cv.ui.structure.pure.PageLink', {
     address : {
       check: "Object",
       init: {}
+    },
+    bindClickToWidget: {
+      refine: true,
+      init: true
     }
   },
 
