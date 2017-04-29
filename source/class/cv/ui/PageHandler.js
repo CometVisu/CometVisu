@@ -123,13 +123,17 @@ qx.Class.define('cv.ui.PageHandler', {
         this.__onEnterPage(pageWidget);
       } else {
         if (oldPageWidget) {
-          this.__onLeavePage(oldPageWidget);
+          var outAnim = qx.bom.element.Animation.animate(oldPageWidget.getDomElement(), animationConfig.out, speed);
+          qx.bom.element.Style.set(oldPageWidget.getDomElement(), "overflowY", "hidden");
+          outAnim.addListenerOnce("end", qx.lang.Function.curry(this.__onLeavePage, oldPageWidget), this);
         }
         // get page widget and set it to visible
         pageWidget.setVisible(true);
+        var oldPos = qx.bom.element.Style.get(pageWidget.getDomElement(), "position");
+        qx.bom.element.Style.set(pageWidget.getDomElement(), "position", "absolute");
         qx.bom.AnimationFrame.request(function() {
           var animation = qx.bom.element.Animation.animate(pageWidget.getDomElement(), animationConfig["in"], speed);
-          animation.addListenerOnce("end", qx.lang.Function.curry(this.__onEnterPage, pageWidget), this);
+          animation.addListenerOnce("end", qx.lang.Function.curry(this.__onEnterPage, pageWidget, oldPos), this);
         }, this);
       }
     },
@@ -192,7 +196,7 @@ qx.Class.define('cv.ui.PageHandler', {
      * Cleanup after page has been entered
      * @param pageWidget {cv.ui.structure.pure.Page}
      */
-    __onEnterPage: function(pageWidget) {
+    __onEnterPage: function(pageWidget, oldPos) {
       var page = pageWidget.getDomElement();
       var target = pageWidget.getPath();
       qx.bom.element.Class.addClasses(page, ['pageActive', 'activePage']);// show new page
@@ -203,7 +207,7 @@ qx.Class.define('cv.ui.PageHandler', {
       qx.event.message.Bus.dispatchByName("page." + target + ".appear", target);
       qx.event.message.Bus.dispatchByName("path.pageChanged", target);
       // show scrollbar after animation
-      qx.bom.element.Style.setStyles(page, {"overflow": null, "display": null});
+      qx.bom.element.Style.setStyles(page, {"overflow": null, "display": null, "position": oldPos});
     }
   }
 });
