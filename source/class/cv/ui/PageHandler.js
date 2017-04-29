@@ -97,6 +97,11 @@ qx.Class.define('cv.ui.PageHandler', {
 
       var direction = null;
       var animationEnabled = speed > 0 || this.getAnimationType() !== "none";
+
+      // browser check
+      if (qx.core.Environment.get("browser.name") === "safari" && parseInt(qx.core.Environment.get("browser.version")) <= 5) {
+        animationEnabled = false;
+      }
       if (animationEnabled) {
         var currentDepth = currentPath.split("_").length;
         var targetDepth = target.split("_").length;
