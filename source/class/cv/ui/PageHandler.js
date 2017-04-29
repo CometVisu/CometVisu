@@ -119,6 +119,7 @@ qx.Class.define('cv.ui.PageHandler', {
         if (oldPageWidget) {
           this.__onLeavePage(oldPageWidget);
         }
+        pageWidget.setVisible(true);
         this.__onEnterPage(pageWidget);
       } else {
         if (oldPageWidget) {
