@@ -18,7 +18,7 @@
  */
 
 
-//noinspection JSUnusedGlobalSymbols
+//noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols,JSHint
 /**
  * This class defines all the building blocks for a Visu in the "Pure" design
  */
@@ -91,7 +91,8 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
     visible           : {
       check: "Boolean",
       init: false,
-      event: "changeVisible"
+      event: "changeVisible",
+      apply: "_applyVisible"
     }
   },
 
@@ -111,6 +112,10 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
   */
   members: {
     $$domReady: null,
+
+    // property apply
+    _applyVisible: function(value, old) {
+    },
 
     /**
      * Property transformaon helper
