@@ -56,8 +56,23 @@ qx.Class.define('cv.ui.structure.pure.Video', {
         style += 'height:' + this.getHeight() + ';';
       }
       if (style !== '') { style = 'style="' + style + '"'; }
-      var autoplay = (this.getAutoplay() === true) ? ' autoplay="autoplay"' : '';
+      var autoplay = this.isAutoplay() ? ' autoplay="autoplay"' : '';
       return '<div class="actor"><video src="' + this.getSrc() + '" ' + style + autoplay + '  controls="controls" /></div>';
+    },
+
+    // overridden
+    getValueElement: function() {
+      return qx.bom.Selector.query("video", this.getDomElement())[0];
+    },
+
+    // overridden
+    _applyVisible: function(value) {
+      var video = this.getValueElement();
+      if (value === true && this.isAutoplay()) {
+        video.play();
+      } else {
+        video.pause();
+      }
     }
   }
 });

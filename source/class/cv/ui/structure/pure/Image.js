@@ -53,6 +53,8 @@ qx.Class.define('cv.ui.structure.pure.Image', {
   ******************************************************
   */
   members: {
+    __src: null,
+
     // overridden
     _getInnerDomString: function () {
       // create the actor
@@ -66,13 +68,37 @@ qx.Class.define('cv.ui.structure.pure.Image', {
       if (this.getHeight()) {
         imgStyle += 'height:' + this.getHeight() + ';';
       }
-      var src = this.getSrc();
-      var parsedUri = qx.util.Uri.parseUri(this.getSrc());
-      if (!parsedUri.protocol &&  !this.getSrc().startsWith("/")) {
-        // is relative URI, use the ResourceManager
-        src = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
+      return '<div class="actor"><img src="' + this.__getSrc() + '" style="' + imgStyle + '" /></div>';
+    },
+
+    /**
+     * Return the real src value
+     */
+    __getSrc: function() {
+      if (!this.__src) {
+        var src = this.getSrc();
+        var parsedUri = qx.util.Uri.parseUri(this.getSrc());
+        if (!parsedUri.protocol && !this.getSrc().startsWith("/")) {
+          // is relative URI, use the ResourceManager
+          src = qx.util.ResourceManager.getInstance().toUri(this.getSrc());
+        }
+        this.__src = src;
       }
-      return '<div class="actor"><img src="' + src + '" style="' + imgStyle + '" /></div>';
+      return this.__src;
+    },
+
+    // overridden
+    getValueElement: function() {
+      return qx.bom.Selector.query("img", this.getDomElement())[0];
+    },
+
+    // overridden
+    _applyVisible: function(value) {
+      if (value === true) {
+        qx.bom.element.Attribute.set(this.getValueElement(), "src", this.__getSrc());
+      } else {
+        qx.bom.element.Attribute.set(this.getValueElement(), "src", "");
+      }
     }
   },
 
