@@ -44,6 +44,7 @@
     "MouseEvent": false,
     "WheelEvent": false,
     "HTMLDocument": false,
-    "EVENT_RECORDER": true
+    "EVENT_RECORDER": true,
+    "DOMWindow": false
   }
 }

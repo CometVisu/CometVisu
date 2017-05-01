@@ -65,10 +65,17 @@ var EVENT_RECORDER = null;
       HTMLDocument.prototype.addNativeEventListener = HTMLDocument.prototype.addEventListener;
     }
     HTMLDocument.prototype.addEventListener = addEventListener;
-    if (Window.prototype.addEventListener) {
-      Window.prototype.addNativeEventListener = Window.prototype.addEventListener;
+    if (Window) {
+      if (Window.prototype.addEventListener) {
+        Window.prototype.addNativeEventListener = Window.prototype.addEventListener;
+      }
+      Window.prototype.addEventListener = addEventListener;
+    } else if (DOMWindow) { // Safari 5
+      if (DOMWindow.prototype.addEventListener) {
+        DOMWindow.prototype.addNativeEventListener = DOMWindow.prototype.addEventListener;
+      }
+      DOMWindow.prototype.addEventListener = addEventListener;
     }
-    Window.prototype.addEventListener = addEventListener;
 
     // patch removeEventListener
     var removeEventListener = function(type, listener, options) {
@@ -108,10 +115,17 @@ var EVENT_RECORDER = null;
       HTMLDocument.prototype.removeNativeEventListener = HTMLDocument.prototype.removeEventListener;
     }
     HTMLDocument.prototype.removeEventListener = removeEventListener;
-    if (Window.prototype.removeEventListener) {
-      Window.prototype.removeNativeEventListener = Window.prototype.removeEventListener;
+    if (Window) {
+      if (Window.prototype.removeEventListener) {
+        Window.prototype.removeNativeEventListener = Window.prototype.removeEventListener;
+      }
+      Window.prototype.removeEventListener = removeEventListener;
+    } else if (DOMWindow) { // Safari 5
+      if (DOMWindow.prototype.removeEventListener) {
+        DOMWindow.prototype.removeNativeEventListener = DOMWindow.prototype.removeEventListener;
+      }
+      DOMWindow.prototype.removeEventListener = removeEventListener;
     }
-    Window.prototype.removeEventListener = removeEventListener;
   }
 
   // check if reporting is enabled and apply the patches
