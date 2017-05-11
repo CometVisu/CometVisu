@@ -13,7 +13,6 @@ env:
   - CV_BUILD="test" CV_BROWSER=Chrome CV_VERSION=stable
   - CV_BUILD="test" CV_BROWSER=Chrome CV_VERSION=beta
   - CV_BUILD="test" CV_BROWSER=Chrome CV_VERSION=unstable
-  - CV_BUILD="test" CV_BROWSER=Firefox CV_VERSION=latest
   - CV_BUILD="docs" ENCRYPTION_LABEL="4c79fec0aeb9" COMMIT_AUTHOR_EMAIL="generator@cometvisu.org" CV_BROWSER=Chrome CV_VERSION=stable
 before_install:
 - mkdir -p downloads
@@ -50,8 +49,6 @@ script:
 - if [ "$CV_BUILD" == "test" ]; then ./generate.py lint; fi
 - if [ "$CV_BUILD" == "test" ]; then deactivate; fi
 - export PATH=`pwd`/firefox:$PATH
-- which firefox
-- firefox --version
 - if [ "$CV_BUILD" == "test" ]; then grunt karma:travis --browser $CV_BROWSER; fi
 - if [ "$CV_BUILD" == "test" ] && [ "$CV_BROWSER" == "Chrome" ]; then grunt e2e-chrome; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
