@@ -20,6 +20,7 @@ before_install:
 - nvm install 4.2
 - sudo ./utils/travis/browser-setup.sh
 - export CHROME_BIN=`pwd`/chrome/google-chrome
+- export PATH=`pwd`/firefox:$PATH
 - if [ "$CV_BUILD" == "docs" ] && ! [ -e downloads/plantuml.deb ]; then wget -O downloads/plantuml.deb http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb; fi
 - mkdir cache
 install:
@@ -48,8 +49,8 @@ script:
 - if [ "$CV_BUILD" == "test" ]; then grunt jscs; fi
 - if [ "$CV_BUILD" == "test" ]; then ./generate.py lint; fi
 - if [ "$CV_BUILD" == "test" ]; then deactivate; fi
-- if [ "$CV_BUILD" == "test" ]; then grunt karma:travis; fi
-- if [ "$CV_BUILD" == "test" ]; then grunt e2e-chrome; fi
+- if [ "$CV_BUILD" == "test" ]; then grunt karma:travis --browser $CV_BROWSER; fi
+- if [ "$CV_BUILD" == "test" ] && [ "$CV_BROWSER" == "Chrome" ]; then grunt e2e-chrome; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
 before_deploy:
 - grunt release-cv

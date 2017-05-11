@@ -400,7 +400,7 @@ module.exports = function(grunt) {
       travis: {
         configFile: 'karma.conf.js',
         singleRun: true,
-        browsers: ['Chrome'],
+        browsers: [grunt.option('browser') || 'Chrome'],
         coverageReporter : {
           dir: 'coverage',
           reporters: [
