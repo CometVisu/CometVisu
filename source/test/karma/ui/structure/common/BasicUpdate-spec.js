@@ -31,7 +31,7 @@ describe("testing the basic update mixin", function() {
     });
     var trigger = new cv.ui.structure.pure.Trigger({
       path: "id_0",
-      type: "trigger",
+      $$type: "trigger",
       value: "0"
     });
     expect(trigger.applyMapping("0", "test")).toBe("OFF");
@@ -50,7 +50,7 @@ describe("testing the basic update mixin", function() {
     });
     var trigger = new cv.ui.structure.pure.Trigger({
       path: "id_0",
-      type: "trigger",
+      $$type: "trigger",
       value: "0"
     });
     expect(trigger.applyMapping("0", "test")).toBe("range1");
@@ -71,7 +71,7 @@ describe("testing the basic update mixin", function() {
     });
     var trigger = new cv.ui.structure.pure.Trigger({
       path: "id_0",
-      type: "trigger",
+      $$type: "trigger",
       value: "0"
     });
     expect(trigger.applyMapping(null, "test")).toBe("no value");
@@ -88,7 +88,7 @@ describe("testing the basic update mixin", function() {
     });
     var trigger = new cv.ui.structure.pure.Trigger({
       path: "id_0",
-      type: "trigger",
+      $$type: "trigger",
       value: "0"
     });
     expect(trigger.applyMapping(10, "test")).toBe(20);
