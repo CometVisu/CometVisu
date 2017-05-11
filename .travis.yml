@@ -52,6 +52,7 @@ script:
 - if [ "$CV_BUILD" == "test" ]; then grunt jscs; fi
 - if [ "$CV_BUILD" == "test" ]; then ./generate.py lint; fi
 - if [ "$CV_BUILD" == "test" ]; then deactivate; fi
+- firefox --version
 - if [ "$CV_BUILD" == "test" ]; then grunt karma:travis --browser $CV_BROWSER; fi
 - if [ "$CV_BUILD" == "test" ] && [ "$CV_BROWSER" == "Chrome" ]; then grunt e2e-chrome; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
