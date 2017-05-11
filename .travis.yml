@@ -20,7 +20,10 @@ before_install:
 - nvm install 4.2
 - sudo ./utils/travis/browser-setup.sh
 - export CHROME_BIN=`pwd`/chrome/google-chrome
+- which firefox
 - export PATH=`pwd`/firefox:$PATH
+- which firefox
+- firefox --version
 - if [ "$CV_BUILD" == "docs" ] && ! [ -e downloads/plantuml.deb ]; then wget -O downloads/plantuml.deb http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb; fi
 - mkdir cache
 install:
