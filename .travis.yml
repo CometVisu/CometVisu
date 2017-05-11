@@ -21,6 +21,7 @@ before_install:
 - mkdir cache
 install:
 - npm install -g grunt-cli
+- npm install
 - cd external/qooxdoo
 - npm install
 - grunt setup
