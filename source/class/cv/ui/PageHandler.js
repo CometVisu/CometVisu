@@ -96,7 +96,7 @@ qx.Class.define('cv.ui.PageHandler', {
       var oldPageWidget = currentPath ? cv.ui.structure.WidgetFactory.getInstanceById(currentPath) : null;
 
       var direction = null;
-      var animationEnabled = speed > 0 || this.getAnimationType() !== "none";
+      var animationEnabled = speed > 0 && this.getAnimationType() !== "none";
 
       // browser check
       if (qx.core.Environment.get("browser.name") === "safari" && parseInt(qx.core.Environment.get("browser.version")) <= 5) {

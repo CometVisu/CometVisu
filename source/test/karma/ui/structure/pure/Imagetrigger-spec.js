@@ -26,6 +26,22 @@ var templateEngine = cv.TemplateEngine.getInstance();
 
 describe("testing a imagetrigger widget", function() {
 
+  var con = qx.event.Timer;
+  var spiedTimer;
+
+  beforeEach(function() {
+
+    spyOn(qx.event, "Timer").and.callFake(function() {
+      spiedTimer = new con();
+      spyOn(spiedTimer, "start");
+      return spiedTimer;
+    });
+  });
+
+  afterEach(function(){
+    qx.event.Timer = con;
+  });
+
   it("should test the imagetrigger creator", function() {
 
     var res = this.createTestWidgetString("imagetrigger", {flavour: 'potassium'}, '<label>Test</label>');
@@ -47,14 +63,6 @@ describe("testing a imagetrigger widget", function() {
       type: 'show',
       src: 'imgs',
       suffix: 'jpg'
-    });
-
-    var con = qx.event.Timer;
-    var spiedTimer;
-    spyOn(qx.event, "Timer").and.callFake(function() {
-      spiedTimer = new con();
-      spyOn(spiedTimer, "start");
-      return spiedTimer;
     });
 
     this.initWidget(res);

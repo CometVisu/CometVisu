@@ -129,6 +129,10 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
       }
     },
 
+    getActors: function(){
+      return qx.bom.Selector.query('.actor_container .actor', this.getDomElement());
+    },
+
     // overridden, only transform the value, do not apply it to DOM
     _processIncomingValue: function (address, data) {
       return this.applyTransform(address, data);
@@ -138,7 +142,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
      * Handles the incoming data from the backend for this widget
      */
     handleUpdate: function () {
-      var children = qx.bom.Selector.query('.actor_container .actor', this.getDomElement());
+      var children = this.getActors();
       children.forEach(function(actor) {
         var index = children.indexOf(actor)+1;
         var isPressed = this.getBasicValue() === this['getButton' + index + 'value']();

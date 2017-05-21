@@ -11,16 +11,20 @@ cache:
   - downloads
 env:
   - CV_BUILD="test" CV_BROWSER=Chrome CV_VERSION=stable
+  - CV_BUILD="test" CV_BROWSER=Chrome CV_VERSION=beta
+  - CV_BUILD="test" CV_BROWSER=Chrome CV_VERSION=unstable
   - CV_BUILD="docs" ENCRYPTION_LABEL="4c79fec0aeb9" COMMIT_AUTHOR_EMAIL="generator@cometvisu.org" CV_BROWSER=Chrome CV_VERSION=stable
 before_install:
 - mkdir -p downloads
 - nvm install 4.2
 - sudo ./utils/travis/browser-setup.sh
-- if [ "$CV_BUILD" == "docs" ]; then export CHROME_BIN=`pwd`/chrome/google-chrome; fi
+- export CHROME_BIN=`pwd`/chrome/google-chrome
+- export PATH=`pwd`/firefox:$PATH
 - if [ "$CV_BUILD" == "docs" ] && ! [ -e downloads/plantuml.deb ]; then wget -O downloads/plantuml.deb http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb; fi
 - mkdir cache
 install:
 - npm install -g grunt-cli
+- npm install
 - cd external/qooxdoo
 - npm install
 - grunt setup
@@ -44,8 +48,9 @@ script:
 - if [ "$CV_BUILD" == "test" ]; then grunt jscs; fi
 - if [ "$CV_BUILD" == "test" ]; then ./generate.py lint; fi
 - if [ "$CV_BUILD" == "test" ]; then deactivate; fi
-- if [ "$CV_BUILD" == "test" ]; then grunt karma:travis; fi
-- if [ "$CV_BUILD" == "test" ]; then grunt e2e-chrome; fi
+- export PATH=`pwd`/firefox:$PATH
+- if [ "$CV_BUILD" == "test" ]; then grunt karma:travis --browser $CV_BROWSER; fi
+- if [ "$CV_BUILD" == "test" ] && [ "$CV_BROWSER" == "Chrome" ]; then grunt e2e-chrome; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
 before_deploy:
 - grunt release-cv

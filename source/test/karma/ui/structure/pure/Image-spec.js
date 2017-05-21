@@ -26,6 +26,22 @@
  */
 describe("testing a image widget", function() {
 
+  var con = qx.event.Timer;
+  var spiedTimer;
+
+  beforeEach(function() {
+
+    spyOn(qx.event, "Timer").and.callFake(function() {
+      spiedTimer = new con();
+      spyOn(spiedTimer, "start");
+      return spiedTimer;
+    });
+  });
+
+  afterEach(function(){
+    qx.event.Timer = con;
+  });
+
   it("should test the image creator", function() {
 
     var res = this.createTestWidgetString("image", {
@@ -41,13 +57,7 @@ describe("testing a image widget", function() {
     expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "style")).toBe('width:100%;');
   });
   it("should test the image creator and refreshing", function() {
-    var con = qx.event.Timer;
-    var spiedTimer;
-    spyOn(qx.event, "Timer").and.callFake(function() {
-      spiedTimer = new con();
-      spyOn(spiedTimer, "start");
-      return spiedTimer;
-    });
+
     var res = this.createTestElement("image", {
       src: '',
       width: '50%',

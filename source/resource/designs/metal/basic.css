@@ -835,6 +835,8 @@ background-color: #000;
     line-height: normal;
 }
 
+.rsslog_popup ul li a { color: inherit; }
+
  
  /*****************************************************************************/
 /* The definition of the flavours - overwrite the generic settings           */

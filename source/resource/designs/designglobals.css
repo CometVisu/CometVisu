@@ -105,6 +105,7 @@ body
   -webkit-transform: translateZ(0);
   -webkit-overflow-scrolling:touch;
 }
+.page > .clearfix { position:relative; }
 
 /* 
  * colspans, each design needs to define a colspan0
