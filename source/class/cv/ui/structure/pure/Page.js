@@ -204,7 +204,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
 
       var subpageClass = this.getFlavour() ? (' flavour_' + this.getFlavour()) : '';
       var subpage = '<div class="page type_' + pageType + subpageClass + '" id="' + this.getPath() + '">';
-      var container = '<div class="clearfix" style="height:100%;position:relative;"><h1>' + this.getName() + '</h1>';
+      var container = '<div class="clearfix"><h1>' + this.getName() + '</h1>';
 
       if( '2d' === pageType )
       {
