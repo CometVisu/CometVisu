@@ -84,8 +84,6 @@ qx.Class.define('cv.ui.PageHandler', {
 
       templateEngine.currentPage = pageWidget;
 
-      qx.event.message.Bus.dispatchByName("path."+target+".duringPageChange", target);
-
       // update visibility of navbars, top-navigation, footer
       templateEngine.pagePartsHandler.updatePageParts( pageWidget, speed );
 
