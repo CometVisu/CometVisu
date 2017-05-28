@@ -272,9 +272,12 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         parts.pop();
         parts[0] = '';
         for (var i = 0; i < parts.length; i++) {
-          var item = qx.bom.Selector.query('#id' + parts.slice(0, i + 1).join('_') + "_.page");
-          if (item.length === 1) {
-            tree.push(item[0]);
+          var subPath = parts.slice(0, i + 1).join('_');
+          if (subPath) {
+            var item = qx.bom.Selector.query('#id' + subPath + "_.page");
+            if (item.length === 1) {
+              tree.push(item[0]);
+            }
           }
         }
       }
