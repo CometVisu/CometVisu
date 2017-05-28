@@ -57,7 +57,7 @@ qx.Class.define('cv.parser.widgets.NavBar', {
       id.pop();
       var pos = qx.bom.element.Attribute.get(n, 'position') || 'left';
       cv.data.Model.getInstance().setWidgetData(id.join('_') + '_' + pos + '_navbar', {
-        'scope': parseFloat(qx.bom.element.Attribute.get(n, 'scope')) || -1
+        'scope': cv.parser.widgets.NavBar._transformScope(qx.bom.element.Attribute.get(n, 'scope'))
       });
 
       return cv.data.Model.getInstance().setWidgetData(cv.parser.WidgetParser.getStoragePath(n, path), {
@@ -67,9 +67,18 @@ qx.Class.define('cv.parser.widgets.NavBar', {
       });
     },
 
+    _transformScope: function(value) {
+      value = parseInt(value);
+      if (value >= 0) {
+        return value;
+      } else {
+        return -1;
+      }
+    },
+
     getAttributeToPropertyMappings: function () {
       return {
-        'scope': {"default": -1, transform: parseFloat},
+        'scope': {"default": -1, transform: cv.parser.widgets.NavBar._transformScope},
         'name': {},
         'dynamic': {
           transform: function (value) {
