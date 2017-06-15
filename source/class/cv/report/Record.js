@@ -368,7 +368,7 @@ qx.Class.define('cv.report.Record', {
 
       var d = new Date();
       var ts = d.getFullYear()+
-        qx.lang.String.pad(""+d.getMonth()+1, 2, "0")+
+        qx.lang.String.pad(""+(d.getMonth()+1), 2, "0")+
         qx.lang.String.pad(""+d.getDate(), 2, "0")+"-"+
         qx.lang.String.pad(""+d.getHours(), 2, "0")+
         qx.lang.String.pad(""+d.getMinutes(), 2, "0")+
