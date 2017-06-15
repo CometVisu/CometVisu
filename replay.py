@@ -43,7 +43,20 @@ class ThreadingSimpleServer(ThreadingMixIn, HTTPServer):
     pass
 
 
-class MutedHttpRequestHandler(SimpleHTTPRequestHandler):
+class MutedHttpRequestHandler(SimpleHTTPRequestHandler, object):
+
+    def do_GET(self):
+        if self.path.startswith("/rest/cv/r"):
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/event-stream; charset=utf-8')
+            self.send_header('Cache-Control', 'no-cache')
+            self.send_header('Connection', 'keep-alive')
+            self.end_headers()
+            print("SSE request received")
+        else:
+            super(MutedHttpRequestHandler, self).do_GET()
+
+
     """ Mute the log messages """
     def log_message(self, format, *args):
         pass
