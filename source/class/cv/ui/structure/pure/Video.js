@@ -68,10 +68,12 @@ qx.Class.define('cv.ui.structure.pure.Video', {
     // overridden
     _applyVisible: function(value) {
       var video = this.getValueElement();
-      if (value === true && this.isAutoplay()) {
-        video.play();
-      } else {
-        video.pause();
+      if (video) {
+        if (value === true && this.isAutoplay()) {
+          video.play();
+        } else {
+          video.pause();
+        }
       }
     }
   }
