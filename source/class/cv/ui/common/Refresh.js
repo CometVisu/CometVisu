@@ -26,9 +26,13 @@ qx.Mixin.define("cv.ui.common.Refresh", {
    ******************************************************
    */
   construct: function () {
-    qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+    if (cv.TemplateEngine.getInstance().isDomFinished()) {
       this.setupRefreshAction();
-    }, this);
+    } else {
+      qx.event.message.Bus.subscribe("setup.dom.finished", function () {
+        this.setupRefreshAction();
+      }, this);
+    }
 
     // Stop the while invisible
     this.addListener("changeVisible", function(ev) {
@@ -103,6 +107,17 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           qx.bom.element.Attribute.set(target, "src", src + '&' + new Date().getTime());
         }
       }
+    }
+  },
+
+  /*
+  ******************************************************
+    DESTRUCTOR
+  ******************************************************
+  */
+  destruct: function() {
+    if (this._timer) {
+      this._disposeObjects("_timer");
     }
   }
 });

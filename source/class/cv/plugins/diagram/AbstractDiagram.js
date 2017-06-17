@@ -328,15 +328,19 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
     _setupRefreshAction: function() {
       if (this.getRefresh()) {
-        this._timer = new qx.event.Timer(this.getRefresh());
-        this._timer.addListener("interval", function () {
-          this.loadDiagramData(this.plot, false, true);
-        }, this);
+        if (!this._timer) {
+          this._timer = new qx.event.Timer(this.getRefresh());
+          this._timer.addListener("interval", function () {
+            this.loadDiagramData(this.plot, false, true);
+          }, this);
+        }
 
-        this._timerPopup = new qx.event.Timer(this.getRefresh());
-        this._timerPopup.addListener("interval", function () {
-          this.loadDiagramData(this.popupplot, false, true);
-        }, this);
+        if (!this._timerPopup) {
+          this._timerPopup = new qx.event.Timer(this.getRefresh());
+          this._timerPopup.addListener("interval", function () {
+            this.loadDiagramData(this.popupplot, false, true);
+          }, this);
+        }
       }
     },
 
@@ -631,6 +635,17 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
         }.bind(this));
       }, this);
+    }
+  },
+
+  /*
+  ******************************************************
+    DESTRUCTOR
+  ******************************************************
+  */
+  destruct: function() {
+    if (this._timerPopup) {
+      this._disposeObjects("_timerPopup");
     }
   },
 
