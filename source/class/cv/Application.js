@@ -216,11 +216,6 @@ qx.Class.define("cv.Application",
         }
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
-          console.log(typeof xml);
-          console.log("XML.documentElement: ");
-          console.log(xml.documentElement);
-          console.log("XML.getElementsByTagName: ");
-          console.log(xml.getElementsByTagName("parsererror"));
           this.configError("parsererror");
         }
         else {
@@ -494,7 +489,7 @@ qx.Class.define("cv.Application",
       var messageElement = qx.bom.Selector.query('#message')[0];
       qx.bom.element.Class.add(messageElement, 'error');
       messageElement.innerHTML = message;
-      this.error(message+': ' + additionalErrorInfo);
+      this.error(message);
       this.block(false);
     }
   }

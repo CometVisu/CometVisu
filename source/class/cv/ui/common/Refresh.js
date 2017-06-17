@@ -73,6 +73,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           this._setupRefreshAction();
         } else {
           var element = this.getDomElement();
+          console.log(element);
           var target = qx.bom.Selector.query('img', element)[0] || qx.bom.Selector.query('iframe', element)[0];
           var src = qx.bom.element.Attribute.get(target, "src");
           if (src.indexOf('?') < 0) {
