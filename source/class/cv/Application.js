@@ -211,9 +211,11 @@ qx.Class.define("cv.Application",
         var req = e.getTarget();
         // Response parsed according to the server's response content type
         var xml = req.getResponse();
+        if (xml && qx.lang.Type.isString(xml)) {
+          xml = qx.xml.Document.fromString(xml);
+        }
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
-          console.log("XML: ");
           console.log(typeof xml);
           console.log("XML.documentElement: ");
           console.log(xml.documentElement);
