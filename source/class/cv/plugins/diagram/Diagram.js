@@ -127,15 +127,13 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
               } else {
                 this.initDiagram(false);
               }
+              this.removeListenerById(this.__vlid1);
+              this.__vlid1 = null;
             }
-            this.removeListenerById(this.__vlid1);
-            this.__vlid1 = null;
           }, this);
         }
         this.$$domReady = true;
         this.initListeners();
-      } else {
-        console.log("diagram dom not ready yet");
       }
     },
 
