@@ -486,7 +486,7 @@ qx.Class.define("cv.Application",
       var messageElement = qx.bom.Selector.query('#message')[0];
       qx.bom.element.Class.add(messageElement, 'error');
       messageElement.innerHTML = message;
-      this.error(message);
+      this.error(message+': ' + additionalErrorInfo);
       this.block(false);
     }
   }
