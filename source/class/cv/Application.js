@@ -214,7 +214,7 @@ qx.Class.define("cv.Application",
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
           console.log("XML: ");
-          console.log(xml);
+          console.log(typeof xml);
           console.log("XML.documentElement: ");
           console.log(xml.documentElement);
           console.log("XML.getElementsByTagName: ");
