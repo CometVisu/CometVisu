@@ -335,5 +335,6 @@ afterEach(function () {
   // load empty HTML structure
   qx.dom.Element.empty(body);
   qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+  cv.TemplateEngine.getInstance().resetDomFinished();
   // resetApplication();
 });
