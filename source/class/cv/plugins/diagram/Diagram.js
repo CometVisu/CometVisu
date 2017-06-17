@@ -83,6 +83,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
    ******************************************************
    */
   members: {
+    __vlid1: null,
 
     _onDomReady: function() {
       if (!this.$$domReady) {

@@ -86,6 +86,7 @@ qx.Class.define('cv.report.Replay', {
     __data: null,
     __config: null,
     __cursor: null,
+    __currentIndex: null,
 
     prepare: function(log) {
       // patch XHR
