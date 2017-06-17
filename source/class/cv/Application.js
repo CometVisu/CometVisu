@@ -213,8 +213,11 @@ qx.Class.define("cv.Application",
         var xml = req.getResponse();
 
         if (!xml || !xml.documentElement || xml.getElementsByTagName("parsererror").length) {
+          console.log("XML: ");
           console.log(xml);
+          console.log("XML.documentElement: ");
           console.log(xml.documentElement);
+          console.log("XML.getElementsByTagName: ");
           console.log(xml.getElementsByTagName("parsererror"));
           this.configError("parsererror");
         }
