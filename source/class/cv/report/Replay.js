@@ -59,7 +59,11 @@ qx.Class.define('cv.report.Replay', {
       cv.report.Record.REPLAYING = true;
       cv.report.Replay.getInstance().prepare(data);
       // override startpage setting
-      cv.Config.startpage = data.data.runtime.path.split("#").pop();
+      if (data.data.runtime.path.indexOf("#") >= 0) {
+        cv.Config.startpage = data.data.runtime.path.split("#").pop();
+      } else {
+        cv.Config.startpage = "id_";
+      }
     },
 
     start: function() {
@@ -82,6 +86,7 @@ qx.Class.define('cv.report.Replay', {
     __data: null,
     __config: null,
     __cursor: null,
+    __currentIndex: null,
 
     prepare: function(log) {
       // patch XHR

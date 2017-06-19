@@ -91,7 +91,8 @@
           "THREE",
           "sprintf",
           "replayLog",
-          "svg4everybody"
+          "svg4everybody",
+          "EVENT_RECORDER"
         ]
       },
 
@@ -160,7 +161,8 @@
           "THREE",
           "sprintf",
           "replayLog",
-          "svg4everybody"
+          "svg4everybody",
+          "EVENT_RECORDER"
         ]
       }
     },

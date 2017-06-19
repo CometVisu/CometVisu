@@ -83,6 +83,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
    ******************************************************
    */
   members: {
+    __vlid1: null,
 
     _onDomReady: function() {
       if (!this.$$domReady) {
@@ -100,7 +101,7 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
           }
         }, this);
 
-        broker.subscribe("path." + pageId + ".duringPageChange", function () {
+        broker.subscribe("path." + pageId + ".appear", function () {
           // create diagram when it's not already existing
           if (this._init) {
             this.initDiagram(false);
@@ -108,19 +109,32 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
           // start refreshing when page is entered
           this._startRefresh(this._timer);
         }, this);
+
         // initialize the diagram but don't make the initialization process wait for it
         // by using a deferred call
-        new qx.util.DeferredCall(function() {
-          if (!this._init) {
-            this.loadDiagramData(this.plot, false, false);
-          } else {
-            this.initDiagram(false);
-          }
-        }, this).schedule();
+        if (this.isVisible()) {
+          new qx.util.DeferredCall(function () {
+            if (!this._init) {
+              this.loadDiagramData(this.plot, false, false);
+            } else {
+              this.initDiagram(false);
+            }
+          }, this).schedule();
+        } else {
+          this.__vlid1 = this.addListener("changeVisible", function(ev) {
+            if (ev.getData()) {
+              if (!this._init) {
+                this.loadDiagramData(this.plot, false, false);
+              } else {
+                this.initDiagram(false);
+              }
+              this.removeListenerById(this.__vlid1);
+              this.__vlid1 = null;
+            }
+          }, this);
+        }
         this.$$domReady = true;
         this.initListeners();
-      } else {
-        console.log("diagram dom not ready yet");
       }
     },
 

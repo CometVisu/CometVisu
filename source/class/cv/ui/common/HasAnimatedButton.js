@@ -37,7 +37,11 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
   members: {
 
     __initListeners: function() {
-      qx.bom.Selector.query('.actor', this.getDomElement()).forEach(function(actor) {
+      var actors = [this.getActor()];
+      if (this.getActors) {
+        actors = qx.lang.Array.append(actors, this.getActors());
+      }
+      actors.forEach(function(actor) {
         qx.event.Registration.addListener(actor, "pointerdown", this.buttonPressed, this);
         qx.event.Registration.addListener(actor, "pointerup", this.buttonReleased, this);
       }, this);

@@ -136,9 +136,13 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
       return ret_val + '</div>';
     },
 
+    getActors: function(){
+      return qx.bom.Selector.query(".actor.uplabel, .actor.downlabel", this.getDomElement());
+    },
+
     // overridden
     initListeners: function() {
-      qx.bom.Selector.query(".actor.uplabel, .actor.downlabel", this.getDomElement()).forEach(function(actor) {
+      this.getActors().forEach(function(actor) {
         if (this.getShortThreshold() > 0) {
           qx.event.Registration.addListener(actor, "tap", this.action, this);
           qx.event.Registration.addListener(actor, "longtap", this._onLongTap, this);
