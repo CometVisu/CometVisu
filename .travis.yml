@@ -16,7 +16,6 @@ env:
   #- CV_BUILD="docs" ENCRYPTION_LABEL="4c79fec0aeb9" COMMIT_AUTHOR_EMAIL="generator@cometvisu.org" CV_BROWSER=Chrome_travis CV_VERSION=stable
 before_install:
 - sudo apt-get --only-upgrade install libnss3
-- dpkg -s libnss3
 - mkdir -p downloads
 - nvm install 4.2
 - sudo ./utils/travis/browser-setup.sh
