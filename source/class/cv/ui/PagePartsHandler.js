@@ -63,7 +63,8 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         pageTitle + '</a>';
       for (var i = 1; i < path.length; i++) { // element 0 is id_ (JNK)
         id += path[i] + '_';
-        if (qx.bom.element.Class.has(qx.bom.Selector.query("#"+id)[0], "page")) { // FIXME is this still needed?!?
+        var pageElem = qx.bom.Selector.query("#"+id)[0];
+        if (pageElem && qx.bom.element.Class.has(pageElem, "page")) { // FIXME is this still needed?!?
           pageTitle = qx.bom.Selector.query("#"+id+" h1")[0].textContent;
           nav += '<span> &#x25ba; </span>' +
             '<a href="javascript:cv.TemplateEngine.getInstance().scrollToPage(\'' + id + '\')" id="breadcrump_pagejump_'+id+'">' +
@@ -272,9 +273,12 @@ qx.Class.define('cv.ui.PagePartsHandler', {
         parts.pop();
         parts[0] = '';
         for (var i = 0; i < parts.length; i++) {
-          var item = qx.bom.Selector.query('#id' + parts.slice(0, i + 1).join('_') + "_.page");
-          if (item.length === 1) {
-            tree.push(item[0]);
+          var subPath = parts.slice(0, i + 1).join('_');
+          if (subPath) {
+            var item = qx.bom.Selector.query('#id' + subPath + "_.page");
+            if (item.length === 1) {
+              tree.push(item[0]);
+            }
           }
         }
       }

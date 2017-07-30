@@ -294,6 +294,9 @@ beforeAll(function(done) {
     l.importPackageData(qx.$$packageData[bootPackageHash]);
     qx.util.ResourceManager.getInstance().__registry = qx.$$resources;
     qx.$$loader.signalStartup();
+
+    // always test in 'en' locale
+    qx.locale.Manager.getInstance().setLocale("en");
   }
 });
 
@@ -332,5 +335,6 @@ afterEach(function () {
   // load empty HTML structure
   qx.dom.Element.empty(body);
   qx.bom.Html.clean([cv.Application.HTML_STRUCT], null, body);
+  cv.TemplateEngine.getInstance().resetDomFinished();
   // resetApplication();
 });

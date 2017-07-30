@@ -147,6 +147,11 @@ qx.Class.define('cv.plugins.RssLog', {
     __fixedRequestData: null,
     __external : false,
 
+    __separatordate: null,
+    __separatoradd: null,
+    __isFuture: null,
+    __separatorprevday: null,
+
     /**
      * Strip querystring from URL and store is as Map
      * @param value {String} URL

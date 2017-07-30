@@ -84,7 +84,20 @@ module.exports = function(config) {
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true,
 
-    // Concurrency level
+    customLaunchers: {
+      Chrome_travis: {
+        base: 'Chrome',
+        flags: [
+          '--no-sandbox',
+          '--headless',
+          '--disable-gpu',
+          '--remote-debugging-port=9222'
+        ]
+      }
+},
+
+
+  // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity,
 
