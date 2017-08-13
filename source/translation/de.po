@@ -53,11 +53,19 @@ msgstr ""
 msgid "Unhandled error of type \"%1\""
 msgstr "Unbekannter Fehler vom Typ \"%1\""
 
-#: cv/ui/NotificationCenter.js:135
+#: cv/TemplateEngine.js:204
+msgid "Connection error"
+msgstr "Verbindungsfehler"
+
+#: cv/TemplateEngine.js:205
+msgid "Connection to backend is lost."
+msgstr "Verbindung zum Backend verloren."
+
+#: cv/ui/NotificationCenter.js:189
 msgid "Delete all"
 msgstr "Alle löschen"
 
-#: cv/ui/NotificationCenter.js:135
+#: cv/ui/NotificationCenter.js:189
 msgid "Message center"
 msgstr "Nachrichtenzentrale"
 

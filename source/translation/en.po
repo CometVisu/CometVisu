@@ -50,11 +50,19 @@ msgstr ""
 msgid "Unhandled error of type \"%1\""
 msgstr ""
 
-#: cv/ui/NotificationCenter.js:135
+#: cv/TemplateEngine.js:204
+msgid "Connection error"
+msgstr ""
+
+#: cv/TemplateEngine.js:205
+msgid "Connection to backend is lost."
+msgstr ""
+
+#: cv/ui/NotificationCenter.js:189
 msgid "Delete all"
 msgstr ""
 
-#: cv/ui/NotificationCenter.js:135
+#: cv/ui/NotificationCenter.js:189
 msgid "Message center"
 msgstr ""
 

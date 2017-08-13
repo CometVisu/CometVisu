@@ -201,10 +201,11 @@ qx.Class.define('cv.TemplateEngine', {
       this.visu.addListener("changeRunning", function(ev) {
         var message = {
           topic: "cv.client.connection",
-          title: qx.locale.Manager.tr("Connection"),
-          message: qx.locale.Manager.tr("Client has lostc connection to backend"),
+          title: qx.locale.Manager.tr("Connection error"),
+          message: qx.locale.Manager.tr("Connection to backend is lost."),
           severity: "urgent",
           unique: true,
+          deletable: false,
           condition: !ev.getData()
         };
         cv.data.NotificationRouter.getInstance().dispatchMessage(message.topic, message);
