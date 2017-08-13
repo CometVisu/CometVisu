@@ -19,23 +19,22 @@
 /**
  * The NotificationCenter shows messages in a list. Messages are Maps which can have the following structure:
  *
- *  .. code-block: javascript
- *
- *    {
- *      topic: {String} Topic of the message
- *      title: {String} Title of the message
- *      message: {String} The message content
- *      deletable: {Boolean} Flag to determine if the user can delete the message
- *      severity: {String} one of "low", "normal", "high", "urgent"
- *      action: {Map}
- *        {
- *          callback: {Function} Called when the action gets executed (when the user clicks on the message)
- *          params {Array?} Additional parameters for the callback
- *          needsConfirmation: {Boolean} If true the execution of the action must be confirmed by the user
- *        }
- *      unique: {Boolean} If true there can be only one message of that topic at once
- *      condition: {Boolean|Function} if true this unique message gets removed
- *    }
+ * <pre>
+ * {
+ *   topic: {String} Topic of the message
+ *   title: {String} Title of the message
+ *   message: {String} The message content
+ *   deletable: {Boolean} Flag to determine if the user can delete the message
+ *   severity: {String} one of "low", "normal", "high", "urgent"
+ *   action: {
+ *     callback: {Function} Called when the action gets executed (when the user clicks on the message)
+ *     params {Array?} Additional parameters for the callback
+ *     needsConfirmation: {Boolean} If true the execution of the action must be confirmed by the user
+ *   }
+ *   unique: {Boolean} If true there can be only one message of that topic at once
+ *   condition: {Boolean|Function} if true this unique message gets removed
+ * }
+ * </pre>
  *
  *
  * @author Tobias Bräutigam

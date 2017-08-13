@@ -17,7 +17,7 @@
 
 
 /**
- * Global notification handler that routes messages topic-dependent to different {cv.data.INotificationHandlers}
+ * Global notification handler that routes messages topic-dependent to different {@link cv.data.INotificationHandler}
  * (e.g. NotificationCenter, Dialog, Toast, console.log, native notification, internal message bus ...)
  *
  * @author Tobias Bräutigam

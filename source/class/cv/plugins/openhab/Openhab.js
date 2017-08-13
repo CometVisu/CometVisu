@@ -17,7 +17,11 @@
 
 
 /**
- * This Plugin provides some specials for better integration with openHAB backend
+ * This Plugin provides some specials to improve the integration with openHAB backend.
+ *
+ * .. NOTE::
+ *    This plugin gets automatically activated if the openHAB2 backend is used.
+ *    There is no need to add it to the ``plugins`` section of the ``visu_config.xml``.
  *
  * @author Tobias Bräutigam
  * @since 0.11.0

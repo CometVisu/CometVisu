@@ -29,7 +29,7 @@ qx.Interface.define('cv.data.INotificationHandler', {
   */
   members: {
     /**
-     * Handle messages from {cv.data.NotificationRouter}
+     * Handle messages from {@link cv.data.NotificationRouter}
      * @param message {Map}
      */
     handleMessage: function(message) {}  // jshint ignore:line
