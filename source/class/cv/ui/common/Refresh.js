@@ -55,6 +55,10 @@ qx.Mixin.define("cv.ui.common.Refresh", {
     refresh: {
       check: 'Number',
       init: 0
+    },
+    preventcache: {
+      check: 'Boolean',
+      init: true
     }
   },
 
@@ -75,7 +79,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           var element = this.getDomElement();
           var target = qx.bom.Selector.query('img', element)[0] || qx.bom.Selector.query('iframe', element)[0];
           var src = qx.bom.element.Attribute.get(target, "src");
-          if (src.indexOf('?') < 0) {
+          if (src.indexOf('?') < 0 && this.isPreventcache()) {
             src += '?';
           }
           this._timer = new qx.event.Timer(this.getRefresh());
@@ -98,7 +102,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
          * "flickering" so we avoid to use it on images, internal iframes and others
          */
         var parenthost = window.location.protocol + "//" + window.location.host;
-        if (target.nodeName === "IFRAME" && src.indexOf(parenthost) !== 0) {
+        if ((target.nodeName === "IFRAME" && src.indexOf(parenthost) !== 0) || !this.isPreventcache()) {
           qx.bom.element.Attribute.set(target, "src", "");
           qx.event.Timer.once(function () {
             qx.bom.element.Attribute.set(target, "src", src);
