@@ -307,7 +307,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         // check if message is already shown
         this.__messages.some(function(msg, index) {
           if (message.topic === msg.topic) {
-             // replace message
+            // replace message
             found = msg;
             message.id = this.__messages.length;
             if (!message.hasOwnProperty("deletable")) {
