@@ -92,7 +92,8 @@
           "sprintf",
           "replayLog",
           "svg4everybody",
-          "EVENT_RECORDER"
+          "EVENT_RECORDER",
+          "Favico"
         ]
       },
 
@@ -123,6 +124,9 @@
         },
         {
           "uri" : "resource/libs/svg4everybody.js"
+        },
+        {
+          "uri" : "resource/libs/favico.js"
         }
       ],
       "copy-files" :
@@ -162,7 +166,8 @@
           "sprintf",
           "replayLog",
           "svg4everybody",
-          "EVENT_RECORDER"
+          "EVENT_RECORDER",
+          "Favico"
         ]
       }
     },
@@ -373,7 +378,8 @@
           "sprintf",
           "Sunlight",
           "replayLog",
-          "svg4everybody"
+          "svg4everybody",
+          "Favico"
         ],
         "generate-widget-examples": true
       },

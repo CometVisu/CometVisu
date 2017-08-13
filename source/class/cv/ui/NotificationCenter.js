@@ -155,6 +155,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     __blocker: null,
     __badge: null,
     __severities: null,
+    __favico: null,
 
     _onResize: function() {
       var height = qx.bom.Viewport.getHeight();
@@ -181,6 +182,11 @@ qx.Class.define("cv.ui.NotificationCenter", {
       this.__blocker = new qx.bom.Blocker();
       this.__blocker.setBlockerOpacity(0.5);
       this.__blocker.setBlockerColor("#000000");
+
+      this.__favico = new Favico({
+        animation:'fade',
+        bgColor: "#1C391C"
+      });
 
       // create new element
       var elem = this.__element = qx.dom.Element.create("div", {
@@ -231,6 +237,22 @@ qx.Class.define("cv.ui.NotificationCenter", {
       qx.bom.element.Class.removeClasses(this.__badge, this.__severities);
       if (severityRank >= 0) {
         qx.bom.element.Class.add(this.__badge, this.__severities[severityRank]);
+      }
+
+      // update favicon badge
+      this.__favico.badge(this.__messages.length, {
+        bgColor: this.__getSeverityColor(this.__severities[severityRank])
+      });
+    },
+
+    __getSeverityColor: function(severity) {
+      switch(severity) {
+        case "urgent":
+          return "#FF0000";
+        case "high":
+          return "#FF7900";
+        default:
+          return "#1C391C";
       }
     },
 
