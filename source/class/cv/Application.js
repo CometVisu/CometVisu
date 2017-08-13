@@ -173,6 +173,8 @@ qx.Class.define("cv.Application",
         cv.io.Client.stopAll();
       }, this);
       qx.bom.Lifecycle.onReady(function () {
+        // init notification router
+        cv.data.NotificationRouter.getInstance();
         var body = qx.bom.Selector.query("body")[0];
         if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
           // load settings
@@ -273,6 +275,10 @@ qx.Class.define("cv.Application",
       this.debug("bootstrapping");
       var engine = cv.TemplateEngine.getInstance();
       var loader = cv.util.ScriptLoader.getInstance();
+
+      // initialize NotificationCenter
+      cv.ui.NotificationCenter.getInstance();
+
       engine.xml = xml;
       loader.addListenerOnce("finished", function() {
         engine.setScriptsLoaded(true);

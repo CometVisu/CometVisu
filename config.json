@@ -250,6 +250,10 @@
           "plugin-upnpcontroller" :
           {
             "include" : [ "${APPLICATION}.plugins.UpnpController" ]
+          },
+          "plugin-openhab" :
+          {
+            "include" : [ "${APPLICATION}.plugins.openhab.*" ]
           }
         }
       }

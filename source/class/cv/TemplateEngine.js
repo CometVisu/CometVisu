@@ -184,6 +184,8 @@ qx.Class.define('cv.TemplateEngine', {
       }
       else if (backendName === "oh2") {
         this.visu = cv.Application.createClient('openhab2', cv.Config.backendUrl);
+        // auto-load openhab plugin for this backend
+        cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
       } else {
         this.visu = cv.Application.createClient(backendName, cv.Config.backendUrl);
       }

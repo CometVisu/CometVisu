@@ -11,43 +11,51 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cv/Application.js:458
+#: cv/Application.js:467
 msgid "Config-File Error!"
 msgstr ""
 
-#: cv/Application.js:461
+#: cv/Application.js:470
 msgid "Invalid config file!"
 msgstr ""
 
-#: cv/Application.js:461
+#: cv/Application.js:470
 msgid "Please check!"
 msgstr ""
 
-#: cv/Application.js:469
+#: cv/Application.js:478
 msgid "Config file has wrong library version!"
 msgstr ""
 
-#: cv/Application.js:470
+#: cv/Application.js:479
 msgid "This can cause problems with your configuration"
 msgstr ""
 
-#: cv/Application.js:471
+#: cv/Application.js:480
 msgid "You can run the %1Configuration Upgrader%2."
 msgstr ""
 
-#: cv/Application.js:472
+#: cv/Application.js:481
 msgid ""
 "Or you can start without upgrading %1with possible configuration problems%2"
 msgstr ""
 
-#: cv/Application.js:475
+#: cv/Application.js:484
 msgid ""
 "404: Config file not found. Neither as normal config (%1) nor as demo config"
 " (%2)."
 msgstr ""
 
-#: cv/Application.js:478
+#: cv/Application.js:487
 msgid "Unhandled error of type \"%1\""
+msgstr ""
+
+#: cv/ui/NotificationCenter.js:135
+msgid "Delete all"
+msgstr ""
+
+#: cv/ui/NotificationCenter.js:135
+msgid "Message center"
 msgstr ""
 
 #: cv/ui/structure/pure/Unknown.js:88

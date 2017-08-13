@@ -32,6 +32,7 @@ qx.Class.define('cv.io.transport.Sse', {
    */
   construct: function(client) {
     this.client = client;
+    this.__additionalTopics = [];
   },
 
   /*
@@ -45,6 +46,7 @@ qx.Class.define('cv.io.transport.Sse', {
     sessionId: null,
     client: null,
     eventSource: null,
+    __additionalTopics: null,
     /**
      * This function gets called once the communication is established
      * and session information is available
@@ -76,8 +78,13 @@ qx.Class.define('cv.io.transport.Sse', {
         this.client.getResourcePath("read"),
         this.client.buildRequest(null, true))
       );
+      // add default listeners
       this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
       this.eventSource.addEventListener('error', this.handleError.bind(this), false);
+      // add additional listeners
+      this.__additionalTopics.forEach(function(entry) {
+        this.eventSource.addEventListener(entry[0], entry[1].bind(entry[2]), false);
+      }, this);
       this.eventSource.onerror = function () {
         this.error("connection lost");
       }.bind(this);
@@ -100,6 +107,19 @@ qx.Class.define('cv.io.transport.Sse', {
     },
 
     /**
+     * Subscribe to SSE events of a certain topic
+     * @param topic {String}
+     * @param callback {Function}
+     * @param context {Object}
+     */
+    subscribe: function(topic, callback, context) {
+      this.__additionalTopics.push([topic, callback, context]);
+      if (this.isConnectionRunning()) {
+        this.eventSource.addEventListener(topic, callback.bind(context, false));
+      }
+    },
+
+    /**
      * Handle errors
      */
     handleError: function (e) {
@@ -117,7 +137,7 @@ qx.Class.define('cv.io.transport.Sse', {
      * @return {Boolean}
      */
     isConnectionRunning: function () {
-      return this.eventSource.readyState === EventSource.OPEN;
+      return this.eventSource && this.eventSource.readyState === EventSource.OPEN;
     },
 
     /**

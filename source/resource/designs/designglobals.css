@@ -247,3 +247,140 @@ button.ui-slider-handle {
   min-width: 2em;
   min-height: 2em;
 }
+
+#notification-center {
+  position: absolute;
+  width: 300px;
+  top: 0;
+  background-color: rgba(61, 61, 61, 0.9);
+  border-left: 3px solid #111;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  z-index: 1000000;
+}
+
+#notification-center > .badge {
+  position: absolute;
+  top: 5px;
+  left: -53px; /*width + border*/
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  display: none;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgba(61, 61, 61, 0.9);
+  font-weight: bold;
+  font-size: 1.4em;
+  border-left: 3px solid #111;
+  border-top: 3px solid #111;
+  border-bottom: 3px solid #111;
+  cursor: pointer;
+}
+#notification-center > .badge:hover {
+  border-color: #CCC;
+}
+
+/*severities*/
+#notification-center > .badge.urgent {
+  background-color: rgba(255, 0, 0, 0.9);
+}
+
+#notification-center > .badge.high {
+  background-color: rgba(255, 121, 0, 0.9);
+}
+
+#notification-center > .badge.normal {
+  background-color: rgba(255, 244, 230, 0.9);
+}
+
+#notification-center > .badge.low {
+  background-color: rgba(61, 61, 61, 0.9);
+}
+
+#notification-center .message.urgent {
+  border-left: 8px solid rgba(255, 0, 0, 0.9);
+}
+
+#notification-center .message.high {
+  border-left: 8px solid rgba(255, 121, 0, 0.9);
+}
+
+#notification-center .message.normal {
+  border-left: 8px solid rgba(255, 244, 230, 0.9);
+}
+
+#notification-center .message.low {
+  border-left: 8px solid rgba(61, 61, 61, 0.9);
+}
+
+#notification-center > .badge:not(:empty) {
+  display: block;
+}
+
+#notification-center > header {
+  padding: 10px 18px;
+  border-bottom: 2px solid #CCC;
+}
+
+#notification-center footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 18px;
+  border-top: 2px solid #CCC;
+  font-size: 1.1em;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#notification-center footer:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#notification-center footer::before {
+  content: "X ";
+}
+
+#notification-center > header > h3 {
+  overflow: auto;
+}
+
+#notification-center > header .hide {
+  float: right;
+}
+
+#notification-center .message header h4 {
+  font-size: 1.2em;
+  margin: 0 0 3px 0;
+}
+
+#notification-center .message {
+  border-bottom: 1px solid #CECECE;
+  padding: 10px 18px;
+  overflow: auto;
+  vertical-align: middle;
+  min-height: 25px;
+}
+
+#notification-center .message:last-child {
+  border-bottom: none;
+}
+
+#notification-center .message .content {
+  float: left;
+  width: 100%;
+}
+
+#notification-center .message .delete {
+  float: right;
+}
+
+#notification-center .action a {
+  color: #fff;
+  text-decoration: none;
+}
