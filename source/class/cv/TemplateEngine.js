@@ -196,6 +196,19 @@ qx.Class.define('cv.TemplateEngine', {
         this.visu.record = qx.lang.Function.curry(cv.report.Record.getInstance().record, cv.report.Record.BACKEND).bind(cv.report.Record.getInstance());
       }
       this.visu.user = 'demo_user'; // example for setting a user
+
+      // show connection state in NotificationCenter
+      this.visu.addListener("changeRunning", function(ev) {
+        var message = {
+          topic: "cv.client.connection",
+          title: qx.locale.Manager.tr("Connection"),
+          message: qx.locale.Manager.tr("Client has lostc connection to backend"),
+          severity: "urgent",
+          unique: true,
+          condition: !ev.getData()
+        };
+        cv.data.NotificationRouter.getInstance().dispatchMessage(message.topic, message);
+      }, this);
     },
 
     /**

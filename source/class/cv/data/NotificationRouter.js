@@ -82,16 +82,20 @@ qx.Class.define("cv.data.NotificationRouter", {
       segments.some(function(segmentName) {
         if (!currentSegment) {
           // segment does not exists, stop searching
-          return false;
+          return true;
         } else if (segmentName === "*") {
           // collect all
           this.__collectAllFromSegment(currentSegment, handlers);
+          return true;
         } else {
-          if (currentSegment[segmentName]) {
-            currentSegment = currentSegment[segmentName];
-          }
           if (currentSegment["*"]) {
             handlers.append(currentSegment["*"].__handlers__);
+          }
+          if (currentSegment[segmentName]) {
+            currentSegment = currentSegment[segmentName];
+          } else{
+            // stop searching
+            return true;
           }
         }
       }, this);
@@ -108,6 +112,7 @@ qx.Class.define("cv.data.NotificationRouter", {
 
     dispatchMessage: function(topic, message) {
       this.__collectHandlers(topic).forEach(function(entry) {
+        this.debug("dispatching '"+topic+"' message to handler: "+ entry.handler);
         entry.handler.handleMessage(message);
       }, this);
     }

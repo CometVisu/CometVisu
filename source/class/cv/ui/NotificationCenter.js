@@ -34,6 +34,7 @@
  *          needsConfirmation: {Boolean} If true the execution of the action must be confirmed by the user
  *        }
  *      unique: {Boolean} If true there can be only one message of that topic at once
+ *      condition: {Boolean|Function} if true this unique message gets removed
  *    }
  *
  *
@@ -291,7 +292,11 @@ qx.Class.define("cv.ui.NotificationCenter", {
             if (!message.hasOwnProperty("deletable")) {
               message.deletable = true;
             }
-            this.__messages.setItem(index, message);
+            if (this.__evaluateCondition(message)) {
+              this.__messages.setItem(index, message);
+            } else{
+              this.__messages.removeAt(index);
+            }
             // stop search
             return true;
           }
@@ -306,6 +311,25 @@ qx.Class.define("cv.ui.NotificationCenter", {
       } else {
         // refresh list
         this.__list.update();
+      }
+    },
+
+    /**
+     * Evaluate the message condition, default to true is message has no condition set
+     * @param message {Map}
+     * @returns {Boolean}
+     * @private
+     */
+    __evaluateCondition: function(message) {
+      if (!message.hasOwnProperty("condition")) {
+        // nothing to evaluate
+        return true;
+      } else if (qx.lang.Type.isBoolean(message.condition)) {
+        return message.condition;
+      } else if (qx.lang.Type.isFunction()) {
+        return message.condition();
+      } else {
+        this.error("unhandled message condition type: %o", message.condition);
       }
     },
 

@@ -170,7 +170,8 @@ qx.Class.define('cv.io.Client', {
      */
     running : {
       check: "Boolean",
-      init: false
+      init: false,
+      event: "changeRunning"
     },
 
     /**
