@@ -288,7 +288,9 @@ qx.Class.define("cv.ui.NotificationCenter", {
              // replace message
             found = msg;
             message.id = this.__messages.length;
-            message.deletable = true;
+            if (!message.hasOwnProperty("deletable")) {
+              message.deletable = true;
+            }
             this.__messages.setItem(index, message);
             // stop search
             return true;
@@ -297,14 +299,14 @@ qx.Class.define("cv.ui.NotificationCenter", {
       }
       if (!found) {
         message.id = this.__messages.length;
-        message.deletable = true;
+        if (!message.hasOwnProperty("deletable")) {
+          message.deletable = true;
+        }
         this.__messages.push(message);
       } else {
         // refresh list
         this.__list.update();
       }
-      // this.show();
-      // this.debouncedHide();
     },
 
     clear: function() {
@@ -320,7 +322,10 @@ qx.Class.define("cv.ui.NotificationCenter", {
      * @param index {Number}
      */
     deleteMessage: function(index) {
-      this.__messages.removeAt(index);
+      var message = this.__messages.getItem(index);
+      if (message.deletable === true) {
+        this.__messages.removeAt(index);
+      }
     },
 
     performAction: function(messageId) {
