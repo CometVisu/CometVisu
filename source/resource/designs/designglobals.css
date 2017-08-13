@@ -283,6 +283,10 @@ button.ui-slider-handle {
   border-color: #CCC;
 }
 
+#notification-center section.messages {
+  overflow-y: auto;
+}
+
 /*severities*/
 #notification-center > .badge.urgent {
   background-color: rgba(255, 0, 0, 0.9);

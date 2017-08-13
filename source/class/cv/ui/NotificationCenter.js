@@ -89,6 +89,23 @@ qx.Class.define("cv.ui.NotificationCenter", {
       }
     },
 
+    BLINK: {
+      duration: 1000,
+      timing: "ease-in-out",
+      origin: "bottom center",
+      keyFrames : {
+        0: {
+          backgroundColor : ["rgba(61, 61, 61, 0.9)"]
+        },
+        50:{
+          backgroundColor : ["rgba(255, 121, 0, 0.9)"]
+        },
+        100: {
+          backgroundColor : ["rgba(61, 61, 61, 0.9)"]
+        }
+      }
+    },
+
     /**
      * Delete a message by index
      * @param index {Number}
@@ -140,9 +157,18 @@ qx.Class.define("cv.ui.NotificationCenter", {
     __severities: null,
 
     _onResize: function() {
+      var height = qx.bom.Viewport.getHeight();
       qx.bom.element.Style.setStyles(this.__element, {
         left: qx.bom.Viewport.getWidth()+"px",
-        height: qx.bom.Viewport.getHeight()+"px"
+        height: height+"px"
+      }, false);
+
+      // get header+footer heights
+      var messageBoxHeight = height -
+          qx.bom.element.Dimension.getHeight(qx.bom.Selector.query("> header", this.__element)[0]) -
+          qx.bom.element.Dimension.getHeight(qx.bom.Selector.query("> footer", this.__element)[0]);
+      qx.bom.element.Style.setStyles(this.__messagesContainer, {
+        height: messageBoxHeight+"px"
       }, false);
     },
 
@@ -167,12 +193,6 @@ qx.Class.define("cv.ui.NotificationCenter", {
       this.__badge = qx.bom.Selector.query(".badge", elem)[0];
       qx.event.Registration.addListener(this.__badge, "tap", this.toggleVisibility, this);
 
-      // style the element
-      qx.bom.element.Style.setStyles(elem, {
-        left: qx.bom.Viewport.getWidth()+"px",
-        height: qx.bom.Viewport.getHeight()+"px"
-      }, false);
-
       // add HTML template for messages to header
 
       var template = qx.dom.Element.create("script", {
@@ -185,9 +205,17 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
       // connect badge content
       this.__messages.addListener("changeLength", this.__updateBadge, this);
+
+      // update dimensions
+      this._onResize();
     },
 
     __updateBadge: function() {
+      var currentContent = parseInt(qx.bom.element.Attribute.get(this.__badge, "html"));
+      if (currentContent < this.__messages.length) {
+        // blink to get the users attention for the new message
+        qx.bom.element.Animation.animate(this.__badge, cv.ui.NotificationCenter.BLINK);
+      }
       if (this.__messages.length) {
         qx.bom.element.Attribute.set(this.__badge, "html", ""+this.__messages.length);
       } else{
@@ -252,7 +280,6 @@ qx.Class.define("cv.ui.NotificationCenter", {
     },
 
     handleMessage: function(message) {
-      console.log(message);
       var found = null;
       if (message.unique) {
         // check if message is already shown
