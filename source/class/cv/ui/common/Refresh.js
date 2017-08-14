@@ -56,9 +56,9 @@ qx.Mixin.define("cv.ui.common.Refresh", {
       check: 'Number',
       init: 0
     },
-    preventcache: {
-      check: 'Boolean',
-      init: true
+    cachecontrol: {
+      check: 'String',
+      init: 'full'
     }
   },
 
@@ -79,7 +79,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           var element = this.getDomElement();
           var target = qx.bom.Selector.query('img', element)[0] || qx.bom.Selector.query('iframe', element)[0];
           var src = qx.bom.element.Attribute.get(target, "src");
-          if (src.indexOf('?') < 0 && this.isPreventcache()) {
+          if (src.indexOf('?') < 0 && this.getCachecontrol() === 'full') {
             src += '?';
           }
           this._timer = new qx.event.Timer(this.getRefresh());
@@ -102,13 +102,29 @@ qx.Mixin.define("cv.ui.common.Refresh", {
          * "flickering" so we avoid to use it on images, internal iframes and others
          */
         var parenthost = window.location.protocol + "//" + window.location.host;
-        if ((target.nodeName === "IFRAME" && src.indexOf(parenthost) !== 0) || !this.isPreventcache()) {
+        if (target.nodeName === "IFRAME" && src.indexOf(parenthost) !== 0) {
           qx.bom.element.Attribute.set(target, "src", "");
           qx.event.Timer.once(function () {
             qx.bom.element.Attribute.set(target, "src", src);
           }, this, 0);
         } else {
-          qx.bom.element.Attribute.set(target, "src", src + '&' + new Date().getTime());
+          console.log('refresh timestamp',this.getCachecontrol() );
+          switch( this.getCachecontrol() ) {
+            case 'full':
+              qx.bom.element.Attribute.set(target, "src", src + '&' + new Date().getTime());
+              break;
+              
+            case 'weak':
+              qx.bom.element.Attribute.set(target, "src", src + '#' + new Date().getTime());
+              break;
+              
+            case 'force':
+              console.log( 'force' );
+              
+            // not needed as NOP:
+            // case 'none':
+            // default:
+          }
         }
       }
     }

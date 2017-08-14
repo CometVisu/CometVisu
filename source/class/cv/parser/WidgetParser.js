@@ -407,7 +407,7 @@ qx.Class.define('cv.parser.WidgetParser', {
     parseRefresh: function (xml, path) {
       var data = this.model.getWidgetData(path);
       data.refresh = xml.getAttribute('refresh') ? parseInt(xml.getAttribute('refresh')) * 1000 : 0;
-      data.cacheControl = (function(x){switch(x){
+      data.cachecontrol = function(x){switch(x){
           case 'full':
           case 'force':
           case 'weak':
@@ -418,7 +418,7 @@ qx.Class.define('cv.parser.WidgetParser', {
           case 'true':
           default:
             return 'full';
-      }}( xml.getAttribute('cacheControl') ));
+      }}( xml.getAttribute('cachecontrol') );
     },
 
     parseStyling: function (xml, path) {
