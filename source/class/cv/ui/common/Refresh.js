@@ -112,9 +112,9 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           
           // force is only implied for images
           if( target.nodeName !== 'IMG' && cachecontrol === 'force' )
+          {
             cachecontrol = 'full';
-          
-          console.log('refresh timestamp',this.getCachecontrol(), cachecontrol );
+          }
           
           switch( this.getCachecontrol() ) {
             case 'full':
@@ -126,7 +126,6 @@ qx.Mixin.define("cv.ui.common.Refresh", {
               break;
               
             case 'force':
-              console.log( 'force' );
               cv.ui.common.Refresh.__forceImgReload( src );
               
             // not needed as those are NOP:
@@ -164,7 +163,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           elements.forEach(function(elem){
             // place a canvas above the image to prevent a flicker on the 
             // screen when the image src is reset
-            canvas = window.document.createElement('canvas');
+            var canvas = window.document.createElement('canvas');
             canvas.width = elem.width;
             canvas.height = elem.height;
             canvas.style = 'position:fixed';
@@ -185,52 +184,65 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           });
         },
         iframe = window.document.createElement('iframe'), // Hidden iframe, in which to perform the load+reload.
+        doc,
         loadCallback = function(e)                        // Callback function, called after iframe load+reload completes (or fails).
         {                                                 // Will be called TWICE unless twostage-mode process is cancelled. (Once after load, once after reload).
-          if(!step)                                       // initial load just completed.  Note that it doesn't actually matter if this load succeeded or not!
+          if( !step )                                     // initial load just completed.  Note that it doesn't actually matter if this load succeeded or not!
           {
-            if(twostage) 
+            if( twostage )
+            {
               step = 1;                                   // wait for twostage-mode proceed or cancel; don't do anything else just yet
-            else { 
+            } else { 
               step = 2;                                   // initiate forced-reload
               imgReloadBlank(); 
               iframe.contentWindow.location.reload(true); 
             }
           }
-          else if(step===2)                               // forced re-load is done
+          else if( step===2 )                             // forced re-load is done
           {
             imgReloadRestore((e||window.event).type==="error");    // last parameter checks whether loadCallback was called from the "load" or the "error" event.
             if(iframe.parentNode) 
+            {
               iframe.parentNode.removeChild(iframe);
+            }
           }
         };
       iframe.style.display = 'none';
       window.parent.document.body.appendChild(iframe);
       iframe.addEventListener('load',loadCallback,false);
       iframe.addEventListener('error',loadCallback,false);
-      var doc = iframe.contentWindow.document;
+      doc = iframe.contentWindow.document;
       doc.open();
       doc.write('<html><head><title></title></head><body><img src="' + src + '"></body></html>');
       doc.close();
-      if(twostage)
+      if( twostage )
       {
-        return function(proceed,dim)
+        return function( proceed )
         {
-          if (!twostage) return;
-          twostage = false;
-          if (proceed)
+          if( !twostage ) 
           {
-            if (step===1) { 
+            return;
+          }
+          
+          twostage = false;
+          if( proceed )
+          {
+            if( step === 1 )
+            { 
               step = 2; 
               imgReloadBlank(); 
               iframe.contentWindow.location.reload(true); 
             }
-          }
-          else
-          {
+          } else {
             step = 3;
-            if (iframe.contentWindow.stop) iframe.contentWindow.stop();
-            if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+            if( iframe.contentWindow.stop )
+            {
+              iframe.contentWindow.stop();
+            }
+            if( iframe.parentNode )
+            {
+              iframe.parentNode.removeChild(iframe);
+            }
           }
         }
       }
