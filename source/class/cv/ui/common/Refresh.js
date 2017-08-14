@@ -79,7 +79,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
           var element = this.getDomElement();
           var target = qx.bom.Selector.query('img', element)[0] || qx.bom.Selector.query('iframe', element)[0];
           var src = qx.bom.element.Attribute.get(target, "src");
-          if (src.indexOf('?') < 0 && this.getCachecontrol() === 'full') {
+          if (src.indexOf('?') < 0 && ((target.nodeName === 'IMG' && this.getCachecontrol() === 'full') || target.nodeName !== 'IMG')) {
             src += '?';
           }
           this._timer = new qx.event.Timer(this.getRefresh());
@@ -108,7 +108,14 @@ qx.Mixin.define("cv.ui.common.Refresh", {
             qx.bom.element.Attribute.set(target, "src", src);
           }, this, 0);
         } else {
-          console.log('refresh timestamp',this.getCachecontrol() );
+          var cachecontrol = this.getCachecontrol();
+          
+          // force is only implied for images
+          if( target.nodeName !== 'IMG' && cachecontrol === 'force' )
+            cachecontrol = 'full';
+          
+          console.log('refresh timestamp',this.getCachecontrol(), cachecontrol );
+          
           switch( this.getCachecontrol() ) {
             case 'full':
               qx.bom.element.Attribute.set(target, "src", src + '&' + new Date().getTime());
@@ -120,8 +127,9 @@ qx.Mixin.define("cv.ui.common.Refresh", {
               
             case 'force':
               console.log( 'force' );
+              cv.ui.common.Refresh.__forceImgReload( src );
               
-            // not needed as NOP:
+            // not needed as those are NOP:
             // case 'none':
             // default:
           }
@@ -138,6 +146,74 @@ qx.Mixin.define("cv.ui.common.Refresh", {
   destruct: function() {
     if (this._timer) {
       this._disposeObjects("_timer");
+    }
+  },
+  
+  /*
+   ******************************************************
+   STATICS
+   ******************************************************
+   */
+  statics: {
+    // based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url
+    __forceImgReload: function(src, imgDim, twostage) {
+      var 
+        // TODO: für uns passend befüllen
+        imgReloadBlank = function(src){console.log('imgReloadBlank',src);},
+        imgReloadRestore = function(src){console.log('imgReloadRestore',src);};
+        
+      var blankList, step = 0,                            // step: 0 - started initial load, 1 - wait before proceeding (twostage mode only), 2 - started forced reload, 3 - cancelled
+        iframe = window.document.createElement('iframe'), // Hidden iframe, in which to perform the load+reload.
+        loadCallback = function(e)                        // Callback function, called after iframe load+reload completes (or fails).
+        {                                                 // Will be called TWICE unless twostage-mode process is cancelled. (Once after load, once after reload).
+          if(!step)                                       // initial load just completed.  Note that it doesn't actually matter if this load succeeded or not!
+          {
+            if(twostage) 
+              step = 1;                                   // wait for twostage-mode proceed or cancel; don't do anything else just yet
+            else { 
+              step = 2;                                   // initiate forced-reload
+              blankList = imgReloadBlank(src); 
+              iframe.contentWindow.location.reload(true); 
+            }
+          }
+          else if(step===2)                               // forced re-load is done
+          {
+            imgReloadRestore(src,blankList,imgDim,(e||window.event).type==="error");    // last parameter checks whether loadCallback was called from the "load" or the "error" event.
+            if(iframe.parentNode) 
+              iframe.parentNode.removeChild(iframe);
+          }
+        };
+      iframe.style.display = 'none';
+      window.parent.document.body.appendChild(iframe);
+      iframe.addEventListener('load',loadCallback,false);
+      iframe.addEventListener('error',loadCallback,false);
+      var doc = iframe.contentWindow.document;
+      doc.open();
+      doc.write('<html><head><title></title></head><body><img src="' + src + '"></body></html>');
+      doc.close();
+      return (twostage
+        ? function(proceed,dim)
+          {
+            if (!twostage) return;
+            twostage = false;
+            if (proceed)
+            {
+              imgDim = (dim||imgDim);  // overwrite imgDim passed in to forceImgReload() - just in case you know the correct img dimensions now, but didn't when forceImgReload() was called.
+              if (step===1) { 
+                step = 2; 
+                blankList = imgReloadBlank(src); 
+                iframe.contentWindow.location.reload(true); 
+              }
+            }
+            else
+            {
+              step = 3;
+              if (iframe.contentWindow.stop) iframe.contentWindow.stop();
+              if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+            }
+          }
+        : null);
+
     }
   }
 });
