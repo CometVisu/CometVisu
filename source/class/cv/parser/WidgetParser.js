@@ -409,18 +409,22 @@ qx.Class.define('cv.parser.WidgetParser', {
       data.refresh = xml.getAttribute('refresh') ? parseInt(xml.getAttribute('refresh')) * 1000 : 0;
       if( doCacheControl )
       {
-        data.cachecontrol = function(x){switch(x){
+        data.cachecontrol = function(x){
+          switch(x) {
             case 'full':
             case 'force':
             case 'weak':
             case 'none':
               return x;
+              
             case 'false':
               return 'none';
+              
             case 'true':
             default:
               return 'full';
-        }}( xml.getAttribute('cachecontrol') );
+          }
+        }( xml.getAttribute('cachecontrol') );
       }
     },
 

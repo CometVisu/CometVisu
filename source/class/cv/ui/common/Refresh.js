@@ -159,8 +159,31 @@ qx.Mixin.define("cv.ui.common.Refresh", {
     __forceImgReload: function(src, twostage) {
       var step = 0,                                       // step: 0 - started initial load, 1 - wait before proceeding (twostage mode only), 2 - started forced reload, 3 - cancelled
         elements = qx.bom.Selector.query('img[src="'+src+'"]'),
-        imgReloadBlank = function(){elements.forEach(function(elem) { qx.bom.element.Attribute.reset(elem, "src"); }) },
-        imgReloadRestore = function(){elements.forEach(function(elem) { qx.bom.element.Attribute.set(elem, "src", src); }) },
+        canvases = [],
+        imgReloadBlank = function(){
+          elements.forEach(function(elem){
+            // place a canvas above the image to prevent a flicker on the 
+            // screen when the image src is reset
+            canvas = window.document.createElement('canvas');
+            canvas.width = elem.width;
+            canvas.height = elem.height;
+            canvas.style = 'position:fixed';
+            canvas.getContext('2d').drawImage(elem,0,0);
+            canvases.push( canvas );
+            elem.width = elem.width;
+            elem.height = elem.height;
+            elem.parentNode.insertBefore( canvas, elem );
+            qx.bom.element.Attribute.reset(elem, "src"); 
+          });
+        },
+        imgReloadRestore = function(){
+          elements.forEach(function(elem){
+            qx.bom.element.Attribute.set(elem, "src", src); 
+          });
+          canvases.forEach(function(elem){
+            elem.parentNode.removeChild(elem);
+          });
+        },
         iframe = window.document.createElement('iframe'), // Hidden iframe, in which to perform the load+reload.
         loadCallback = function(e)                        // Callback function, called after iframe load+reload completes (or fails).
         {                                                 // Will be called TWICE unless twostage-mode process is cancelled. (Once after load, once after reload).
