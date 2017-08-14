@@ -407,6 +407,18 @@ qx.Class.define('cv.parser.WidgetParser', {
     parseRefresh: function (xml, path) {
       var data = this.model.getWidgetData(path);
       data.refresh = xml.getAttribute('refresh') ? parseInt(xml.getAttribute('refresh')) * 1000 : 0;
+      data.cacheControl = (function(x){switch(x){
+          case 'full':
+          case 'force':
+          case 'weak':
+          case 'none':
+            return x;
+          case 'false':
+            return 'none';
+          case 'true':
+          default:
+            return 'full';
+      }}( xml.getAttribute('cacheControl') ));
     },
 
     parseStyling: function (xml, path) {
