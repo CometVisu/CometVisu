@@ -212,28 +212,29 @@ qx.Mixin.define("cv.ui.common.Refresh", {
       doc.open();
       doc.write('<html><head><title></title></head><body><img src="' + src + '"></body></html>');
       doc.close();
-      return (twostage
-        ? function(proceed,dim)
+      if(twostage)
+      {
+        return function(proceed,dim)
+        {
+          if (!twostage) return;
+          twostage = false;
+          if (proceed)
           {
-            if (!twostage) return;
-            twostage = false;
-            if (proceed)
-            {
-              if (step===1) { 
-                step = 2; 
-                imgReloadBlank(); 
-                iframe.contentWindow.location.reload(true); 
-              }
-            }
-            else
-            {
-              step = 3;
-              if (iframe.contentWindow.stop) iframe.contentWindow.stop();
-              if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+            if (step===1) { 
+              step = 2; 
+              imgReloadBlank(); 
+              iframe.contentWindow.location.reload(true); 
             }
           }
-        : null);
-
+          else
+          {
+            step = 3;
+            if (iframe.contentWindow.stop) iframe.contentWindow.stop();
+            if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
+          }
+        }
+      }
+      return null;
     }
   }
 });
