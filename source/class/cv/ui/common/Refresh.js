@@ -156,13 +156,11 @@ qx.Mixin.define("cv.ui.common.Refresh", {
    */
   statics: {
     // based on https://stackoverflow.com/questions/1077041/refresh-image-with-a-new-one-at-the-same-url
-    __forceImgReload: function(src, imgDim, twostage) {
-      var 
-        // TODO: für uns passend befüllen
-        imgReloadBlank = function(src){console.log('imgReloadBlank',src);},
-        imgReloadRestore = function(src){console.log('imgReloadRestore',src);};
-        
-      var blankList, step = 0,                            // step: 0 - started initial load, 1 - wait before proceeding (twostage mode only), 2 - started forced reload, 3 - cancelled
+    __forceImgReload: function(src, twostage) {
+      var step = 0,                                       // step: 0 - started initial load, 1 - wait before proceeding (twostage mode only), 2 - started forced reload, 3 - cancelled
+        elements = qx.bom.Selector.query('img[src="'+src+'"]'),
+        imgReloadBlank = function(){elements.forEach(function(elem) { qx.bom.element.Attribute.reset(elem, "src"); }) },
+        imgReloadRestore = function(){elements.forEach(function(elem) { qx.bom.element.Attribute.set(elem, "src", src); }) },
         iframe = window.document.createElement('iframe'), // Hidden iframe, in which to perform the load+reload.
         loadCallback = function(e)                        // Callback function, called after iframe load+reload completes (or fails).
         {                                                 // Will be called TWICE unless twostage-mode process is cancelled. (Once after load, once after reload).
@@ -172,13 +170,13 @@ qx.Mixin.define("cv.ui.common.Refresh", {
               step = 1;                                   // wait for twostage-mode proceed or cancel; don't do anything else just yet
             else { 
               step = 2;                                   // initiate forced-reload
-              blankList = imgReloadBlank(src); 
+              imgReloadBlank(); 
               iframe.contentWindow.location.reload(true); 
             }
           }
           else if(step===2)                               // forced re-load is done
           {
-            imgReloadRestore(src,blankList,imgDim,(e||window.event).type==="error");    // last parameter checks whether loadCallback was called from the "load" or the "error" event.
+            imgReloadRestore((e||window.event).type==="error");    // last parameter checks whether loadCallback was called from the "load" or the "error" event.
             if(iframe.parentNode) 
               iframe.parentNode.removeChild(iframe);
           }
@@ -198,10 +196,9 @@ qx.Mixin.define("cv.ui.common.Refresh", {
             twostage = false;
             if (proceed)
             {
-              imgDim = (dim||imgDim);  // overwrite imgDim passed in to forceImgReload() - just in case you know the correct img dimensions now, but didn't when forceImgReload() was called.
               if (step===1) { 
                 step = 2; 
-                blankList = imgReloadBlank(src); 
+                imgReloadBlank(); 
                 iframe.contentWindow.location.reload(true); 
               }
             }
