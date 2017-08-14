@@ -48,7 +48,7 @@ qx.Class.define('cv.parser.widgets.Refresh', {
 
     getAttributeToPropertyMappings: function () {
       return {
-        'preventcache': { 'default': false },
+        'preventcache': { 'default': true },
         'value': {target: 'sendValue'}
       };
     }
