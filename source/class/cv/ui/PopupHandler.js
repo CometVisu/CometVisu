@@ -48,10 +48,11 @@ qx.Class.define('cv.ui.PopupHandler', {
       var popupConfig = {
         title: message.title,
         content: message.message,
-        closable: message.deletable
+        closable: message.deletable,
       };
       // TODO: handle unique messages and conditions
       if (message.topic.indexOf("error") >= 0) {
+        popupConfig.icon = "message_attention";
         this.showPopup("error", popupConfig);
       } else {
         this.showPopup("info", popupConfig);
