@@ -70,7 +70,45 @@ describe("testing a image widget", function() {
     expect(spiedTimer.start).toHaveBeenCalled();
     expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "style")).toBe('width:50%;height:51%;');
   });
+  it("should test the image creator and refreshing with cache control", function() {
 
+    var resFull = this.createTestElement("image", {
+      src: '',
+      width: '50%',
+      height: '51%',
+      refresh: 5,
+      cachecontrol: 'full'
+    });
+    var resWeak = this.createTestElement("image", {
+      src: '',
+      width: '50%',
+      height: '51%',
+      refresh: 5,
+      cachecontrol: 'weak'
+    });
+    var resNone = this.createTestElement("image", {
+      src: '',
+      width: '50%',
+      height: '51%',
+      refresh: 5,
+      cachecontrol: 'none'
+    });
+    var widgets = [
+      resFull.getDomElement(),
+      resWeak.getDomElement(),
+      resNone.getDomElement()
+    ];
+    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+
+    expect(spiedTimer.start).toHaveBeenCalled();
+    setTimeout(function(){
+      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[0])[0], "src")).toBe('?');
+      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[1])[0], "src")).toBe('#');
+      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[2])[0], "src")).toBe('');
+      done();
+    }, 10);
+  });
+  
   it("should test the image creator width size", function() {
 
     var res = this.createTestElement("image", {
