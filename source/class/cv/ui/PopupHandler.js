@@ -50,6 +50,7 @@ qx.Class.define('cv.ui.PopupHandler', {
         content: message.message,
         closable: message.deletable
       };
+      // TODO: handle unique messages and conditions
       if (message.topic.indexOf("error") >= 0) {
         this.showPopup("error", popupConfig);
       } else {

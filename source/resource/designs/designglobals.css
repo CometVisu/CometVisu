@@ -389,9 +389,8 @@ button.ui-slider-handle {
   float: right;
 }
 
-#notification-center .action a {
+#notification-center a {
   color: #fff;
-  text-decoration: none;
 }
 
 .popup,
@@ -450,5 +449,7 @@ button.ui-slider-handle {
   border: #f00;
   color: #FFF;
 }
+
+.popup_background.error a { color: #FFF; }
 
 pre.inline { display: inline-block; }

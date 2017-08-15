@@ -204,7 +204,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       var template = qx.dom.Element.create("script", {
         id: "MessageTemplate",
         type: "text/template",
-        html: '<div class="message {{severity}}" title="{{severity}}" id="notification_{{ id }}"{{#action}} onclick="cv.ui.NotificationCenter.performAction({{id}})"{{/action}}>{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}<div class="content">{{ message }} {{#deletable}}<div class="action delete"><a href="#" onclick="cv.ui.NotificationCenter.deleteMessage({{ id }})">x</a></div>{{/deletable}}</div></div>'
+        html: '<div class="message {{severity}}" title="{{severity}}" id="notification_{{ id }}"{{#action}} onclick="cv.ui.NotificationCenter.performAction({{id}})"{{/action}}>{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}<div class="content">{{&message}} {{#deletable}}<div class="action delete"><a href="#" onclick="cv.ui.NotificationCenter.deleteMessage({{ id }})">x</a></div>{{/deletable}}</div></div>'
       });
       qx.dom.Element.insertEnd(template, body);
       this.__list = new qx.data.controller.website.List(this.__messages, this.__messagesContainer, "MessageTemplate");
