@@ -180,6 +180,9 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
       }
     },
 
+    // override Operate Mixins on click action, we handle that ourselfs with _onChangeValue
+    _action: function() {},
+
     /**
      * Handle incoming value changes send by the slider widget (e.g. triggered by user interaction)
      * @param value {Number}
@@ -190,7 +193,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         var currentValue = this.getValue();
         this.sendToBackend(value, function(addr) {
           var newValue = cv.Transform.encode(addr[0], value);
-          return newValue !== NaN && newValue !== cv.Transform.encode(addr[0], currentValue);
+          return !isNaN(newValue) && newValue !== cv.Transform.encode(addr[0], currentValue);
         });
       }
       this.setValue(value);
