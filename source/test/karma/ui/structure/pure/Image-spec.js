@@ -70,10 +70,10 @@ describe("testing a image widget", function() {
     expect(spiedTimer.start).toHaveBeenCalled();
     expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "style")).toBe('width:50%;height:51%;');
   });
-  it("should test the image creator and refreshing with cache control", function() {
+  it("should test the image creator and refreshing with cache control", function(done) {
 
     var resFull = this.createTestElement("image", {
-      src: '',
+      src: 'resource/icon/comet_64_ff8000.png',
       width: '50%',
       height: '51%',
       refresh: 5,
@@ -105,7 +105,10 @@ describe("testing a image widget", function() {
 
     expect(spiedTimer.start).toHaveBeenCalled();
     setTimeout(function(){
-      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "src")).toMatch(/^\?force Fail!/);
+      //expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "src")).toMatch(/^resource/icon/comet_64_ff8000.png\?force Fail!/);
+      //expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "src")).not.toMatch(/^resource/icon/comet_64_ff8000.png\?force Fail!/);
+      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "src")).toMatch(/^resource\/icon\/comet_64_ff8000.pngforce Fail!/);
+      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "src")).not.toMatch(/^resource\/icon\/comet_64_ff8000.pngforce Fail!/);
       //expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[0])[0], "src")).toMatch(/^\?/);
       //expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[1])[0], "src")).toMatch(/^#/);
       //expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[2])[0], "src")).toBe('');
