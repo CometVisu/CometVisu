@@ -79,6 +79,7 @@ describe("testing a image widget", function() {
       refresh: 5,
       cachecontrol: 'full'
     });
+    /*
     var resWeak = this.createTestElement("image", {
       src: '',
       width: '50%',
@@ -98,13 +99,16 @@ describe("testing a image widget", function() {
       resWeak.getDomElement(),
       resNone.getDomElement()
     ];
+    */
+    var widget = resFull.getDomElement();
     qx.event.message.Bus.dispatchByName("setup.dom.finished");
 
     expect(spiedTimer.start).toHaveBeenCalled();
     setTimeout(function(){
-      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[0])[0], "src")).toBe('?');
-      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[1])[0], "src")).toBe('#');
-      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[2])[0], "src")).toBe('');
+      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "src")).toMatch(/^\?force Fail!/);
+      //expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[0])[0], "src")).toMatch(/^\?/);
+      //expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[1])[0], "src")).toMatch(/^#/);
+      //expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[2])[0], "src")).toBe('');
       done();
     }, 7000);
   }, 10000);
