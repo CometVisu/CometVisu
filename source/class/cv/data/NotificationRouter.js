@@ -79,7 +79,8 @@ qx.Class.define("cv.data.NotificationRouter", {
       var segments = topic.split(".");
       var firstSegment = segments.shift();
       var currentSegment = this.__routes[firstSegment];
-      segments.some(function(segmentName) {
+      var last = segments.length-1;
+      segments.some(function(segmentName, idx) {
         if (!currentSegment) {
           // segment does not exists, stop searching
           return true;
@@ -92,6 +93,9 @@ qx.Class.define("cv.data.NotificationRouter", {
             handlers.append(currentSegment["*"].__handlers__);
           }
           if (currentSegment[segmentName]) {
+            if (idx === last) {
+              handlers.append(currentSegment[segmentName].__handlers__);
+            }
             currentSegment = currentSegment[segmentName];
           } else{
             // stop searching

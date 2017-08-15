@@ -180,9 +180,8 @@ qx.Class.define("cv.ui.NotificationCenter", {
      */
     _init: function() {
       var body = qx.bom.Selector.query("body")[0];
-      this.__blocker = new qx.bom.Blocker();
-      this.__blocker.setBlockerOpacity(0.5);
-      this.__blocker.setBlockerColor("#000000");
+      
+      this.__blocker = cv.ui.BodyBlocker.getInstance();
 
       this.__favico = new Favico({
         animation:'fade',
@@ -214,7 +213,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       this.__messages.addListener("changeLength", this.__updateBadge, this);
 
       // update dimensions
-      this._onResize();
+      new qx.util.DeferredCall(this._onResize, this).schedule();
     },
 
     __updateBadge: function() {
@@ -263,7 +262,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     show: function() {
       if (!this.__visible) {
         this.__visible = true;
-        this.__blocker.block(qx.bom.Selector.query("body")[0]);
+        this.__blocker.block();
         qx.event.Registration.addListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
         var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
         anim.on("end", function () {

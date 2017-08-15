@@ -13,6 +13,10 @@ body
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  min-height: 100%;
+  position: relative;
+  margin: 0;
+  overflow: hidden;
 }
 
 /*
@@ -389,3 +393,62 @@ button.ui-slider-handle {
   color: #fff;
   text-decoration: none;
 }
+
+.popup,
+.popup_background {
+  position: absolute;
+  padding: 30px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+}
+
+.popup {
+  z-index: 100001;
+  background: transparent;
+  font-family: Arial, sans-serif;
+}
+
+.popup_close {
+  position: absolute;
+  z-index: 100002;
+  right: 1em;
+  top: -0.8em;
+  width: 1.2em;
+  text-align: center;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 1px solid #fff;
+  cursor: default;
+}
+
+.popup .head {
+  font-size: 1.3em;
+  font-weight: bold;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+}
+
+.popup_background {
+  z-index: 100000;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 1px solid #fff;
+  opacity: 0.75;
+}
+
+.popup div {
+  margin: 4px;
+}
+
+.popup div.head {
+  border-bottom: 1px solid;
+}
+
+.popup_background.error {
+  background: #800000;
+  border: #f00;
+  color: #FFF;
+}
+
+pre.inline { display: inline-block; }

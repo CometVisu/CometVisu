@@ -37,6 +37,24 @@ qx.Class.define('cv.ui.PopupHandler', {
       this.addPopup(new cv.ui.Popup("info"));
       this.addPopup(new cv.ui.Popup("warning"));
       this.addPopup(new cv.ui.Popup("error"));
+
+      // register to topics
+      cv.data.NotificationRouter.getInstance().registerMessageHandler(this, {
+        'cv.config.error': {}
+      });
+    },
+
+    handleMessage: function(message) {
+      var popupConfig = {
+        title: message.title,
+        content: message.message,
+        closable: message.deletable
+      };
+      if (message.topic.indexOf("error") >= 0) {
+        this.showPopup("error", popupConfig);
+      } else {
+        this.showPopup("info", popupConfig);
+      }
     },
 
     /**
@@ -165,6 +183,7 @@ qx.Class.define('cv.ui.PopupHandler', {
   },
 
   defer: function(statics) {
-    qx.event.message.Bus.subscribe("setup.dom.finished", statics.init, statics);
+    // qx.event.message.Bus.subscribe("setup.dom.finished", statics.init, statics);
+    statics.init();
   }
 });
