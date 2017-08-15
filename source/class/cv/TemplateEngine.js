@@ -198,7 +198,7 @@ qx.Class.define('cv.TemplateEngine', {
       this.visu.user = 'demo_user'; // example for setting a user
 
       // show connection state in NotificationCenter
-      this.visu.addListener("changeRunning", function(ev) {
+      this.visu.addListener("changeConnected", function(ev) {
         var message = {
           topic: "cv.client.connection",
           title: qx.locale.Manager.tr("Connection error"),

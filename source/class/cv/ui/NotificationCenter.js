@@ -54,7 +54,6 @@ qx.Class.define("cv.ui.NotificationCenter", {
     this.base(arguments);
 
     this.__messages = new qx.data.Array();
-    qx.event.message.Bus.subscribe("setup.dom.finished", this._init, this);
 
     // register to topics
     cv.data.NotificationRouter.getInstance().registerMessageHandler(this, {
@@ -67,6 +66,8 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     // severities in order of importance -> more important
     this.__severities = ["low", "normal", "high", "urgent"];
+
+    this._init();
   },
 
   /*
@@ -324,11 +325,13 @@ qx.Class.define("cv.ui.NotificationCenter", {
         }, this);
       }
       if (!found) {
-        message.id = this.__messages.length;
-        if (!message.hasOwnProperty("deletable")) {
-          message.deletable = true;
+        if (this.__evaluateCondition(message)) {
+          message.id = this.__messages.length;
+          if (!message.hasOwnProperty("deletable")) {
+            message.deletable = true;
+          }
+          this.__messages.push(message);
         }
-        this.__messages.push(message);
       } else {
         // refresh list
         this.__list.update();

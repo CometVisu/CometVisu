@@ -87,9 +87,11 @@ qx.Class.define('cv.io.transport.Sse', {
       }, this);
       this.eventSource.onerror = function () {
         this.error("connection lost");
+        this.client.setConnected(false);
       }.bind(this);
       this.eventSource.onopen = function () {
         this.debug("connection established");
+        this.client.setConnected(true);
       }.bind(this);
       this.client.watchdog.start(5);
     },

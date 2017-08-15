@@ -166,12 +166,21 @@ qx.Class.define('cv.io.Client', {
    */
   properties: {
     /**
-     * is the communication running at the moment?
+     * Is the communication running at the moment?
      */
     running : {
       check: "Boolean",
       init: false,
       event: "changeRunning"
+    },
+
+    /**
+     * Is the client connected to a backend at the moment?
+     */
+    connected: {
+      check: "Boolean",
+      init: false,
+      event: "changeConnected"
     },
 
     /**

@@ -129,6 +129,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.client.update(data);
         this.retryCounter = 0;
         this.client.setDataReceived(true);
+        this.client.setConnected(true);
       }
 
       if (this.running) { // keep the requests going
@@ -156,6 +157,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.readResendHeaderValues();
         this.client.update(json.d);
         this.client.setDataReceived(true);
+        this.client.setConnected(true);
       }
       if (this.running) { // keep the requests going, but only
         // request
@@ -189,6 +191,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         // ignore error when connection is irrelevant
         if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) {
           this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
+          this.client.setConnected(false);
         }
       },
       "jquery": function(xhr, str, excptObj) {
@@ -213,6 +216,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
               break;
           }
           this.error('Error! Type: "' + str + '" ExceptionObject: "'+ excptObj + '" readyState: ' + readyState);
+          this.client.setConnected(false);
         }
       }
     }),

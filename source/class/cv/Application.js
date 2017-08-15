@@ -40,7 +40,7 @@ qx.Class.define("cv.Application",
    ******************************************************
    */
   statics: {
-    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div><div id="message"></div>',
+    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
     consoleCommands: [],
 
     /**
@@ -176,13 +176,18 @@ qx.Class.define("cv.Application",
         // init notification router
         cv.data.NotificationRouter.getInstance();
         var body = qx.bom.Selector.query("body")[0];
+
         if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
           // load settings
           this.debug("using cache");
           cv.ConfigCache.restore();
+          // initialize NotificationCenter
+          cv.ui.NotificationCenter.getInstance();
         } else {
           // load empty HTML structure
           qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
+          // initialize NotificationCenter
+          cv.ui.NotificationCenter.getInstance();
         }
         this.loadConfig();
       }, this);
@@ -257,14 +262,6 @@ qx.Class.define("cv.Application",
       }, this);
 
       ajaxRequest.send();
-
-      // message discarding - but not for errors:
-      var messageElement = qx.bom.Selector.query('#message')[0];
-      qx.event.Registration.addListener(messageElement, 'tap', function () {
-        if (!qx.bom.element.Class.has(messageElement, 'error')) {
-          this.innerHTML = '';
-        }
-      }, messageElement);
     },
 
     /**
@@ -275,9 +272,6 @@ qx.Class.define("cv.Application",
       this.debug("bootstrapping");
       var engine = cv.TemplateEngine.getInstance();
       var loader = cv.util.ScriptLoader.getInstance();
-
-      // initialize NotificationCenter
-      cv.ui.NotificationCenter.getInstance();
 
       engine.xml = xml;
       loader.addListenerOnce("finished", function() {
@@ -464,10 +458,11 @@ qx.Class.define("cv.Application",
      */
     configError: function( textStatus, additionalErrorInfo ) {
       var configSuffix = (cv.Config.configSuffix ? cv.Config.configSuffix : '');
-      var message = qx.locale.Manager.tr('Config-File Error!')+'<br/>';
+      var title = qx.locale.Manager.tr('Config-File Error!');
+      var message = '';
       switch (textStatus) {
         case 'parsererror':
-          message += qx.locale.Manager.tr("Invalid config file!")+'<br/><a href="check_config.php?config=' + configSuffix + '">'+qx.locale.Manager.tr("Please check!")+'</a>';
+          message = qx.locale.Manager.tr("Invalid config file!")+'<br/><a href="check_config.php?config=' + configSuffix + '">'+qx.locale.Manager.tr("Please check!")+'</a>';
           break;
         case 'libraryerror':
           var link = window.location.href;
@@ -475,16 +470,16 @@ qx.Class.define("cv.Application",
             link = link + '?';
           }
           link = link + '&libraryCheck=false';
-          message += qx.locale.Manager.tr('Config file has wrong library version!')+'<br/>' +
+          message = qx.locale.Manager.tr('Config file has wrong library version!')+'<br/>' +
             qx.locale.Manager.tr('This can cause problems with your configuration')+'</br>' +
             '<p>'+qx.locale.Manager.tr("You can run the %1Configuration Upgrader%2.", '<a href="./upgrade/index.php?config=' + configSuffix + '">', '</a>') +'</br>' +
             qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>')+'</p>';
           break;
         case 'filenotfound':
-          message += qx.locale.Manager.tr('404: Config file not found. Neither as normal config (%1) nor as demo config (%2).', additionalErrorInfo[0], additionalErrorInfo[1]);
+          message = qx.locale.Manager.tr('404: Config file not found. Neither as normal config (%1) nor as demo config (%2).', additionalErrorInfo[0], additionalErrorInfo[1]);
           break;
         default:
-          message += qx.locale.Manager.tr('Unhandled error of type "%1"', textStatus);
+          message = qx.locale.Manager.tr('Unhandled error of type "%1"', textStatus);
           if( additionalErrorInfo ) {
             message += ': ' + additionalErrorInfo;
           }
@@ -492,9 +487,15 @@ qx.Class.define("cv.Application",
             message += '.';
           }
       }
-      var messageElement = qx.bom.Selector.query('#message')[0];
-      qx.bom.element.Class.add(messageElement, 'error');
-      messageElement.innerHTML = message;
+      var notification = {
+        topic: "cv.config.error",
+        title: title,
+        message: message,
+        severity: "urgent",
+        unique: true,
+        deletable: false
+      };
+      cv.data.NotificationRouter.getInstance().dispatchMessage(notification.topic, notification);
       this.error(message);
       this.block(false);
     }
