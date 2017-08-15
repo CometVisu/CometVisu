@@ -106,8 +106,8 @@ describe("testing a image widget", function() {
       expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[1])[0], "src")).toBe('#');
       expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widgets[2])[0], "src")).toBe('');
       done();
-    }, 10);
-  });
+    }, 7000);
+  }, 10000);
   
   it("should test the image creator width size", function() {
 
