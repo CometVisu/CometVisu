@@ -189,7 +189,7 @@ qx.Class.define("cv.data.NotificationRouter", {
     dispatchMessage: function(topic, message, target) {
       if (target && target.handleMessage) {
         this.debug("dispatching '" + topic + "' message to handler: " + target);
-        target.handleMessage(message);
+        target.handleMessage(message, {});
       } else {
         this.__collectHandlers(topic).forEach(function (entry) {
           this.debug("dispatching '" + topic + "' message to handler: " + entry.handler);

@@ -31,7 +31,8 @@ qx.Interface.define('cv.data.INotificationHandler', {
     /**
      * Handle messages from {@link cv.data.NotificationRouter}
      * @param message {Map}
+     * @param config {Map?} optional configuration of this message for the handler
      */
-    handleMessage: function(message) {}  // jshint ignore:line
+    handleMessage: function(message, config) {}  // jshint ignore:line
   }
 });

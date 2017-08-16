@@ -215,8 +215,8 @@ qx.Class.define("cv.parser.MetaParser", {
         var config = {
           target: target,
           severity: qx.bom.element.Attribute.get(elem, 'severity'),
-          skipInitial: qx.bom.element.Attribute.get(elem, 'skip-initial') === "true",
-          deletable: !qx.bom.element.Attribute.get(elem, 'deletable') || qx.bom.element.Attribute.get(elem, 'deletable') === "true",
+          skipInitial: qx.bom.element.Attribute.get(elem, 'skip-initial') !== "false",
+          deletable: qx.bom.element.Attribute.get(elem, 'deletable') !== "false",
           unique: qx.bom.element.Attribute.get(elem, 'unique') === "true"
         };
 
