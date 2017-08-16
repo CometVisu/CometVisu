@@ -313,7 +313,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
             if (!message.hasOwnProperty("deletable")) {
               message.deletable = true;
             }
-            if (this.__evaluateCondition(message)) {
+            if (cv.data.NotificationRouter.evaluateCondition(message)) {
               this.__messages.setItem(index, message);
             } else{
               this.__messages.removeAt(index);
@@ -324,7 +324,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         }, this);
       }
       if (!found) {
-        if (this.__evaluateCondition(message)) {
+        if (cv.data.NotificationRouter.evaluateCondition(message)) {
           message.id = this.__messages.length;
           if (!message.hasOwnProperty("deletable")) {
             message.deletable = true;
@@ -334,25 +334,6 @@ qx.Class.define("cv.ui.NotificationCenter", {
       } else {
         // refresh list
         this.__list.update();
-      }
-    },
-
-    /**
-     * Evaluate the message condition, default to true is message has no condition set
-     * @param message {Map}
-     * @returns {Boolean}
-     * @private
-     */
-    __evaluateCondition: function(message) {
-      if (!message.hasOwnProperty("condition")) {
-        // nothing to evaluate
-        return true;
-      } else if (qx.lang.Type.isBoolean(message.condition)) {
-        return message.condition;
-      } else if (qx.lang.Type.isFunction()) {
-        return message.condition();
-      } else {
-        this.error("unhandled message condition type: %o", message.condition);
       }
     },
 

@@ -59,11 +59,12 @@ qx.Class.define('cv.data.Model', {
      * @param state {var} new state
      */
     onUpdate: function(address, state) {
+      var initial = !this.__states.hasOwnProperty(address);
       this.__states[address] = state;
       // notify listeners
       if (this.__stateListeners[address]) {
         this.__stateListeners[address].forEach(function(listener) {
-          listener[0].call(listener[1], address, state);
+          listener[0].call(listener[1], address, state, initial);
         }, this);
       }
     },

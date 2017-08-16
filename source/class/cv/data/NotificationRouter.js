@@ -35,6 +35,67 @@ qx.Class.define("cv.data.NotificationRouter", {
   construct: function() {
     this.base(arguments);
     this.__routes = {};
+
+    var motion = {
+      topic: "cv.state.motion",
+      target: "cv.ui.PopupHandler",
+      severity: "high",
+      deletable: true,
+      unique: true,
+      titleTemplate: qx.locale.Manager.tr("Movement alert"),
+      messageTemplate: qx.locale.Manager.tr("Motion signalized from {{ address }} on {{ time }}"),
+      condition: "ON",
+      skipInitial: true
+    };
+    // Test code
+    this.__stateMessageConfig = {
+      "Light_FF_Living": [
+        {
+          target: "cv.ui.NotificationCenter",
+          severity: "normal",
+          deletable: true,
+          unique: true,
+          condition: "ON", // visible when value equals the condition value
+          titleTemplate: qx.locale.Manager.tr("Living room light"),
+          messageTemplate: qx.locale.Manager.tr("Living room light has been turned {{ value }} on {{ time }}")
+        }
+      ],
+      "Motion_FF_Dining": [motion],
+      "Motion_FF_Corridor": [motion],
+      "Motion_FF_Kitchen": [motion]
+    };
+
+    Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function(address) {
+      cv.data.Model.getInstance().addUpdateListener(address, this._onIncomingData, this);
+    }, this);
+
+    this.__dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat("short"));
+    this.__timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat("short"));
+  },
+
+  /*
+  ******************************************************
+    STATICS
+  ******************************************************
+  */
+  statics: {
+    /**
+     * Evaluate the message condition, default to true is message has no condition set
+     * @param message {Map}
+     * @returns {Boolean}
+     */
+    evaluateCondition: function(message) {
+      if (!message.hasOwnProperty("condition")) {
+        // nothing to evaluate
+        return true;
+      } else if (qx.lang.Type.isBoolean(message.condition)) {
+        return message.condition;
+      } else if (qx.lang.Type.isFunction()) {
+        return message.condition();
+      } else {
+        this.error("unhandled message condition type: %o", message.condition);
+      }
+    }
   },
 
 
@@ -45,6 +106,7 @@ qx.Class.define("cv.data.NotificationRouter", {
   */
   members: {
     __routes: null,
+    __stateMessageConfig: null,
 
     /**
      * Register a handler for a list of topics
@@ -72,6 +134,42 @@ qx.Class.define("cv.data.NotificationRouter", {
           config: topics[topic]
         });
       }, this);
+    },
+
+    /**
+     * Handle address state updates and show them as message
+     * @param address {String} GA or openHAB item name
+     * @param state {var} received State
+     * @param initial {Boolean} true id this is the first state update for this address
+     * @protected
+     */
+    _onIncomingData: function(address, state, initial) {
+      var now = new Date();
+      var templateData = {
+        address: address,
+        value: state,
+        date: this.__dateFormat.format(now),
+        time: this.__timeFormat.format(now)
+      };
+
+      this.__stateMessageConfig[address].forEach(function(config) {
+        if (initial === true && config.skipInitial === true) {
+          // do not handle the first update
+          return;
+        }
+        var message = {
+          topic: config.hasOwnProperty("topic") ? config.topic : "cv.state.update."+address,
+          title: qx.bom.Template.render(""+config.titleTemplate, templateData),
+          message: qx.bom.Template.render(""+config.messageTemplate,templateData),
+          deletable: config.hasOwnProperty("deletable") ? config.deletable : true,
+          unique: config.hasOwnProperty("unique") ? config.unique : false
+        };
+        if (config.hasOwnProperty("condition")){
+          message.condition = state === config.condition;
+        }
+        this.dispatchMessage(message.topic, message, config.target);
+      }, this);
+
     },
 
     __collectHandlers: function(topic) {
@@ -114,11 +212,18 @@ qx.Class.define("cv.data.NotificationRouter", {
       return handlers;
     },
 
-    dispatchMessage: function(topic, message) {
-      this.__collectHandlers(topic).forEach(function(entry) {
-        this.debug("dispatching '"+topic+"' message to handler: "+ entry.handler);
-        entry.handler.handleMessage(message);
-      }, this);
+    dispatchMessage: function(topic, message, target) {
+      if (target && qx.Class.getByName(target)) {
+        var clazz = qx.Class.getByName(target);
+        var handler = clazz.getInstance ? clazz.getInstance() : clazz;
+        this.debug("dispatching '" + topic + "' message to handler: " + handler);
+        handler.handleMessage(message);
+      } else {
+        this.__collectHandlers(topic).forEach(function (entry) {
+          this.debug("dispatching '" + topic + "' message to handler: " + entry.handler);
+          entry.handler.handleMessage(message);
+        }, this);
+      }
     }
   },
 

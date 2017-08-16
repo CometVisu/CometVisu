@@ -31,6 +31,7 @@ qx.Class.define('cv.ui.PopupHandler', {
   */
   statics: {
     popups: {},
+    configs: {},
 
     init: function() {
       this.addPopup(new cv.ui.Popup("unknown"));
@@ -48,14 +49,19 @@ qx.Class.define('cv.ui.PopupHandler', {
       var popupConfig = {
         title: message.title,
         content: message.message,
-        closable: message.deletable,
+        closable: message.deletable
       };
-      // TODO: handle unique messages and conditions
-      if (message.topic.indexOf("error") >= 0) {
-        popupConfig.icon = "message_attention";
-        this.showPopup("error", popupConfig);
+      var type = (message.topic.indexOf("error") >= 0) ? "error" : "info";
+      if (cv.data.NotificationRouter.evaluateCondition(message)) {
+        if (type === "error") {
+          popupConfig.icon = "message_attention";
+        }
+        this.showPopup(type, popupConfig);
       } else {
-        this.showPopup("info", popupConfig);
+        var popup = this.getPopup(type);
+        if (!popup.isClosed()) {
+          popup.close();
+        }
       }
     },
 
@@ -68,6 +74,9 @@ qx.Class.define('cv.ui.PopupHandler', {
      */
     showPopup: function (type, attributes) {
       var popup = this.getPopup(type);
+      if (!popup.isClosed()) {
+        popup.close();
+      }
       popup.create(attributes);
       return popup;
     },

@@ -554,55 +554,7 @@ html[xmlns] .clearfix {
 div#loading {
     display: none !important;
 }
-
-
-.popup,
-.popup_background {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  top: 5%;
-  left: 5%;
-}
-
-.popup {
-  z-index: 101;
-  background: transparent;
-}
-
-.popup_close {
-  position: absolute;
-  z-index: 102;
-  right: 1em;
-  top: -0.8em;
-  width: 1.2em;
-  text-align: center;
-  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
-  background: #000;
-  border: 1px solid #666;
-  cursor: default;
-}
-
-.popup_background {
-  z-index: 100;
-  border-color: #020202;
-  border-style: solid;
-  border-width: 2px 0px 0px 2px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  background: #101010;
-  opacity: .98;
-}
-
-.popup div {
-  margin: 4px;
-}
-
-.popup div.head {
-  border-bottom: 1px solid;
-}
-
+.popup { font-family: Dosis, Helvetica, Arial, sans-serif; }
 .popup_background.error {
   background: #800000;
   border: #f00;

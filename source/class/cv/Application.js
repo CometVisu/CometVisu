@@ -496,7 +496,7 @@ qx.Class.define("cv.Application",
         deletable: false
       };
       cv.data.NotificationRouter.getInstance().dispatchMessage(notification.topic, notification);
-      this.error(message);
+      this.error(message.toString());
       this.block(false);
     }
   }

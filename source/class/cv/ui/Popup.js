@@ -178,6 +178,7 @@ qx.Class.define('cv.ui.Popup', {
       }
 
       qx.bom.element.Style.set(ret_val, 'display', 'block');
+      attributes.id = this.__counter;
       this.__counter++;
       return ret_val;
     },
@@ -191,6 +192,10 @@ qx.Class.define('cv.ui.Popup', {
         qx.dom.Element.remove(this.__domElement);
         this.__domElement = null;
       }
+    },
+
+    isClosed: function(){
+      return this.__domElement === null;
     }
   }
 });

@@ -418,7 +418,7 @@ button.ui-slider-handle {
   -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
   background: #000;
   border: 1px solid #fff;
-  cursor: default;
+  cursor: pointer;
 }
 
 .popup .head {
@@ -433,7 +433,6 @@ button.ui-slider-handle {
   -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
   background: #000;
   border: 1px solid #fff;
-  opacity: 0.75;
 }
 
 .popup div {
