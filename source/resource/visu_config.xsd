@@ -454,6 +454,7 @@
       <xsd:element name="mappings" type="mappings" />
       <xsd:element name="stylings" type="stylings" />
       <xsd:element name="statusbar" type="statusbar" />
+      <xsd:element name="notifications" type="notifications" />
     </xsd:choice>
   </xsd:complexType>
 
@@ -549,6 +550,81 @@
   <xsd:complexType name="statusbar">
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
       <xsd:element name="status" type="status" minOccurs="1" />
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="notifications">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="state-notification" type="state-notification" />
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="state-notification">
+    <xsd:sequence>
+      <xsd:element name="addresses" type="addresses" />
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="title-template" />
+        <xsd:element name="message-template" />
+        <xsd:element name="condition" />
+      </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Name is required when unique=true</xsd:documentation>
+        <xsd:documentation xml:lang="de">Name muss definiert werden, wenn unique=true ist</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="target" type="xsd:string">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="popup">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Show message as popup</xsd:documentation>
+          <xsd:documentation xml:lang="de">Nachricht als Popup anzeigen</xsd:documentation>
+        </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="notificationCenter">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Show message in notification center</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nachricht im Notification-Center anzeigen</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+      </xsd:restriction>
+    </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="unique" type="xsd:boolean" default="false">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show only one message for this update (name is required)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Nur eine Nachricht für dieses Update zeigen (name muss angegeben werden)</xsd:documentation>
+      </xsd:annotation>
+      </xsd:attribute>
+    <xsd:attribute name="deletable" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">User can delete this message</xsd:documentation>
+        <xsd:documentation xml:lang="de">Benutzer kann diese Nachricht löschen</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="skip-initial" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Ignore inital state update</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erstes Statusupdate ignorieren</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="severity" type="xsd:string" default="normal">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="urgent" />
+          <xsd:enumeration value="high" />
+          <xsd:enumeration value="normal" />
+          <xsd:enumeration value="low" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="addresses">
+    <xsd:choice minOccurs="1" maxOccurs="unbounded">
+      <xsd:element name="address" type="address" />
     </xsd:choice>
   </xsd:complexType>
 

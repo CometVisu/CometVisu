@@ -41,24 +41,25 @@ qx.Class.define('cv.ui.PopupHandler', {
 
       // register to topics
       cv.data.NotificationRouter.getInstance().registerMessageHandler(this, {
-        'cv.config.error': {}
+        'cv.config.error': {
+          type: "error",
+          icon: "message_attention"
+        }
       });
     },
 
-    handleMessage: function(message) {
+    handleMessage: function(message, config) {
       var popupConfig = {
         title: message.title,
         content: message.message,
-        closable: message.deletable
+        closable: message.deletable,
+        icon: config.icon
       };
-      var type = (message.topic.indexOf("error") >= 0) ? "error" : "info";
+      // popups are always unique
       if (cv.data.NotificationRouter.evaluateCondition(message)) {
-        if (type === "error") {
-          popupConfig.icon = "message_attention";
-        }
-        this.showPopup(type, popupConfig);
+        this.showPopup(config.type, popupConfig);
       } else {
-        var popup = this.getPopup(type);
+        var popup = this.getPopup(config.type);
         if (!popup.isClosed()) {
           popup.close();
         }

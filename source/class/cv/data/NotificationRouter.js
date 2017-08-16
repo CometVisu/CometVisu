@@ -36,39 +36,6 @@ qx.Class.define("cv.data.NotificationRouter", {
     this.base(arguments);
     this.__routes = {};
 
-    var motion = {
-      topic: "cv.state.motion",
-      target: "cv.ui.PopupHandler",
-      severity: "high",
-      deletable: true,
-      unique: true,
-      titleTemplate: qx.locale.Manager.tr("Movement alert"),
-      messageTemplate: qx.locale.Manager.tr("Motion signalized from {{ address }} on {{ time }}"),
-      condition: "ON",
-      skipInitial: true
-    };
-    // Test code
-    this.__stateMessageConfig = {
-      "Light_FF_Living": [
-        {
-          target: "cv.ui.NotificationCenter",
-          severity: "normal",
-          deletable: true,
-          unique: true,
-          condition: "ON", // visible when value equals the condition value
-          titleTemplate: qx.locale.Manager.tr("Living room light"),
-          messageTemplate: qx.locale.Manager.tr("Living room light has been turned {{ value }} on {{ time }}")
-        }
-      ],
-      "Motion_FF_Dining": [motion],
-      "Motion_FF_Corridor": [motion],
-      "Motion_FF_Kitchen": [motion]
-    };
-
-    Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function(address) {
-      cv.data.Model.getInstance().addUpdateListener(address, this._onIncomingData, this);
-    }, this);
-
     this.__dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat("short"));
     this.__timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat("short"));
   },
@@ -107,6 +74,13 @@ qx.Class.define("cv.data.NotificationRouter", {
   members: {
     __routes: null,
     __stateMessageConfig: null,
+
+    registerStateUpdateHandler: function(config) {
+      this.__stateMessageConfig = config;
+      Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function(address) {
+        cv.data.Model.getInstance().addUpdateListener(address, this._onIncomingData, this);
+      }, this);
+    },
 
     /**
      * Register a handler for a list of topics
@@ -213,15 +187,13 @@ qx.Class.define("cv.data.NotificationRouter", {
     },
 
     dispatchMessage: function(topic, message, target) {
-      if (target && qx.Class.getByName(target)) {
-        var clazz = qx.Class.getByName(target);
-        var handler = clazz.getInstance ? clazz.getInstance() : clazz;
-        this.debug("dispatching '" + topic + "' message to handler: " + handler);
-        handler.handleMessage(message);
+      if (target && target.handleMessage) {
+        this.debug("dispatching '" + topic + "' message to handler: " + target);
+        target.handleMessage(message);
       } else {
         this.__collectHandlers(topic).forEach(function (entry) {
           this.debug("dispatching '" + topic + "' message to handler: " + entry.handler);
-          entry.handler.handleMessage(message);
+          entry.handler.handleMessage(message, entry.config);
         }, this);
       }
     }

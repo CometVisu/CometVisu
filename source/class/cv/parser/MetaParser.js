@@ -40,6 +40,8 @@ qx.Class.define("cv.parser.MetaParser", {
 
       // then the status bar
       qx.bom.Selector.query('meta > statusbar status', xml).forEach(this.parseStatusBar, this);
+
+      this.parseStateNotifications(xml);
     },
 
     parseIcons: function(elem) {
@@ -195,6 +197,65 @@ qx.Class.define("cv.parser.MetaParser", {
         dynamic : qx.bom.element.Attribute.get(elem, 'dynamic'),
         'class' : qx.bom.element.Attribute.get(elem, 'class')
       };
+    },
+
+    parseStateNotifications: function(xml) {
+      var stateConfig = {};
+      qx.bom.Selector.query('meta > notifications state-notification', xml).forEach(function (elem) {
+        var target = cv.ui.NotificationCenter.getInstance();
+        switch (qx.bom.element.Attribute.get(elem, 'target')) {
+          case "popup":
+            target = cv.ui.PopupHandler;
+            break;
+          case "notificationCenter":
+            target = cv.ui.NotificationCenter.getInstance();
+            break;
+        }
+
+        var config = {
+          target: target,
+          severity: qx.bom.element.Attribute.get(elem, 'severity'),
+          skipInitial: qx.bom.element.Attribute.get(elem, 'skip-initial') === "true",
+          deletable: !qx.bom.element.Attribute.get(elem, 'deletable') || qx.bom.element.Attribute.get(elem, 'deletable') === "true",
+          unique: qx.bom.element.Attribute.get(elem, 'unique') === "true"
+        };
+
+        var name = qx.bom.element.Attribute.get(elem, 'name');
+        if (name) {
+          config.topic = "cv.state."+name;
+        }
+
+        // templates
+        var titleElem = qx.bom.Selector.query('title-template', elem)[0];
+        if (titleElem) {
+          config.titleTemplate = qx.bom.element.Attribute.get(titleElem, "html");
+        }
+        var messageElem = qx.bom.Selector.query('message-template', elem)[0];
+        if (messageElem) {
+          config.messageTemplate = qx.bom.element.Attribute.get(messageElem, "html");
+        }
+
+        // condition
+        var conditionElem = qx.bom.Selector.query('condition', elem)[0];
+        var condition = qx.bom.element.Attribute.get(conditionElem, "text");
+        if (condition === "true") {
+          condition = true;
+        } else if (condition === "false") {
+          condition = false;
+        }
+        config.condition = condition;
+
+        // TODO parse complete address with transform etc.
+        // addresses
+        qx.bom.Selector.query('addresses > address', elem).forEach(function(addressElem) {
+          var address = qx.bom.element.Attribute.get(addressElem, "text");
+          if (!stateConfig.hasOwnProperty(address)) {
+            stateConfig[address] = [];
+          }
+          stateConfig[address].push(config);
+        });
+      });
+      cv.data.NotificationRouter.getInstance().registerStateUpdateHandler(stateConfig);
     }
   }
 });
