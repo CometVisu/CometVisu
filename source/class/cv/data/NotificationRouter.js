@@ -136,7 +136,8 @@ qx.Class.define("cv.data.NotificationRouter", {
           title: qx.bom.Template.render(""+config.titleTemplate, templateData),
           message: qx.bom.Template.render(""+config.messageTemplate,templateData),
           deletable: config.hasOwnProperty("deletable") ? config.deletable : true,
-          unique: config.hasOwnProperty("unique") ? config.unique : false
+          unique: config.hasOwnProperty("unique") ? config.unique : false,
+          severity: config.severity
         };
         if (config.hasOwnProperty("condition")){
           message.condition = state === config.condition;

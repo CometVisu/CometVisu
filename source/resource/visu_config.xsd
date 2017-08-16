@@ -561,12 +561,10 @@
 
   <xsd:complexType name="state-notification">
     <xsd:sequence>
+      <xsd:element name="title-template" />
       <xsd:element name="addresses" type="addresses" />
-      <xsd:choice minOccurs="0" maxOccurs="unbounded">
-        <xsd:element name="title-template" />
-        <xsd:element name="message-template" />
-        <xsd:element name="condition" />
-      </xsd:choice>
+      <xsd:element name="message-template" />
+      <xsd:element name="condition" minOccurs="0"/>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string">
       <xsd:annotation>
@@ -574,7 +572,7 @@
         <xsd:documentation xml:lang="de">Name muss definiert werden, wenn unique=true ist</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="target" type="xsd:string">
+    <xsd:attribute name="target">
     <xsd:simpleType>
       <xsd:restriction base="xsd:string">
         <xsd:enumeration value="popup">
@@ -610,7 +608,7 @@
         <xsd:documentation xml:lang="de">Erstes Statusupdate ignorieren</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="severity" type="xsd:string" default="normal">
+    <xsd:attribute name="severity" default="normal">
       <xsd:simpleType>
         <xsd:restriction base="xsd:string">
           <xsd:enumeration value="urgent" />
