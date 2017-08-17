@@ -589,6 +589,10 @@
     </xsd:attribute>
     <xsd:attribute name="target">
     <xsd:simpleType>
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Where to show the message</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wo die Nachricht angezeigt werden soll</xsd:documentation>
+      </xsd:annotation>
       <xsd:restriction base="xsd:string">
         <xsd:enumeration value="popup">
         <xsd:annotation>
