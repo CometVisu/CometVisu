@@ -104,6 +104,7 @@ qx.Class.define("cv.Application",
      * during startup of the application
      */
     main : function() {
+      qx.event.GlobalError.setErrorHandler(this.__globalErrorHandler, this);
       if (qx.core.Environment.get("qx.debug")) {
         if (typeof replayLog !== "undefined" && replayLog) {
           cv.report.Replay.prepare(replayLog);
@@ -162,6 +163,17 @@ qx.Class.define("cv.Application",
       qx.bom.Stylesheet.includeFile(qx.util.ResourceManager.getInstance().toUri('designs/designglobals.css'));
 
       this.__init();
+    },
+
+    __globalErrorHandler: function(ex) {
+      this.error(ex.getSourceException());
+      var notification = {
+        topic: "cv.error",
+        title: qx.locale.Manager.tr("An error occured"),
+        message: ex.toString()+"\n\n"+qx.dev.StackTrace.getStackTraceFromError(ex.getSourceException()),
+        severity: "urgent"
+      };
+      cv.data.NotificationRouter.getInstance().dispatchMessage(notification.topic, notification);
     },
 
     /**

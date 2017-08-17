@@ -341,7 +341,8 @@
       },
       "environment" :
       {
-        "engine.name" : [ "gecko", "mshtml", "webkit", "opera" ]
+        "engine.name" : [ "gecko", "mshtml", "webkit", "opera" ],
+        "qx.globalErrorHandling": true
       },
       "compile-options" :
       {
