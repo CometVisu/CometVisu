@@ -212,12 +212,16 @@ qx.Class.define("cv.parser.MetaParser", {
             break;
         }
 
+        var addressContainer = qx.bom.Selector.query('addresses', elem)[0];
+
         var config = {
           target: target,
           severity: qx.bom.element.Attribute.get(elem, 'severity'),
           skipInitial: qx.bom.element.Attribute.get(elem, 'skip-initial') !== "false",
           deletable: qx.bom.element.Attribute.get(elem, 'deletable') !== "false",
-          unique: qx.bom.element.Attribute.get(elem, 'unique') === "true"
+          unique: qx.bom.element.Attribute.get(elem, 'unique') === "true",
+          valueMapping: qx.bom.element.Attribute.get(addressContainer, 'value-mapping'),
+          addressMapping: qx.bom.element.Attribute.get(addressContainer, 'address-mapping')
         };
 
         var name = qx.bom.element.Attribute.get(elem, 'name');
@@ -246,13 +250,15 @@ qx.Class.define("cv.parser.MetaParser", {
         config.condition = condition;
 
         // TODO parse complete address with transform etc.
+        var addresses = cv.parser.WidgetParser.makeAddressList(addressContainer, null, null, true);
         // addresses
-        qx.bom.Selector.query('addresses > address', elem).forEach(function(addressElem) {
-          var address = qx.bom.element.Attribute.get(addressElem, "text");
+        Object.getOwnPropertyNames(addresses).forEach(function(address) {
           if (!stateConfig.hasOwnProperty(address)) {
             stateConfig[address] = [];
           }
-          stateConfig[address].push(config);
+          var addressConfig = qx.lang.Object.clone(config);
+          addressConfig.addressConfig = addresses[address];
+          stateConfig[address].push(addressConfig);
         });
       });
       cv.data.NotificationRouter.getInstance().registerStateUpdateHandler(stateConfig);

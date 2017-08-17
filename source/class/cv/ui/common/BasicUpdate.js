@@ -60,38 +60,18 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
 
   /*
   ******************************************************
-    MEMBERS
+    STATICS
   ******************************************************
   */
-  members: {
-    formatValueCache : null,
-    /**
-     * Decode the given data with the addresses transform
-     *
-     * @param address {String} KNX-GA or openHAB-item name
-     * @param data {var} value to be decoded
-     * @return {var}
-     */
-    applyTransform: function (address, data) {
-      if (address) {
-        var transform = this.getAddress()[address][0];
-        // transform the raw value to a JavaScript type
-        return cv.Transform.decode(transform, data);
-      }
-      return data;
-    },
-
+  statics: {
     /**
      * Apply the given mapping to the value
      *
      * @param value {var} value to be mapped
-     * @param mappingName {String?} mapping name, if not set the <code>mapping</code> property value is used
+     * @param mappingName {String} mapping name, if not set the <code>mapping</code> property value is used
      * @return {var} the mapped value
      */
     applyMapping: function (value, mappingName) {
-      if (!mappingName) {
-        mappingName = this.getMapping();
-      }
       if (mappingName && cv.Config.hasMapping(mappingName)) {
         var mapping = cv.Config.getMapping(mappingName);
 
@@ -128,6 +108,45 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
         }
       }
       return value;
+    }
+  },
+
+
+  /*
+  ******************************************************
+    MEMBERS
+  ******************************************************
+  */
+  members: {
+    formatValueCache : null,
+    /**
+     * Decode the given data with the addresses transform
+     *
+     * @param address {String} KNX-GA or openHAB-item name
+     * @param data {var} value to be decoded
+     * @return {var}
+     */
+    applyTransform: function (address, data) {
+      if (address) {
+        var transform = this.getAddress()[address][0];
+        // transform the raw value to a JavaScript type
+        return cv.Transform.decode(transform, data);
+      }
+      return data;
+    },
+
+    /**
+     * Apply the given mapping to the value
+     *
+     * @param value {var} value to be mapped
+     * @param mappingName {String?} mapping name, if not set the <code>mapping</code> property value is used
+     * @return {var} the mapped value
+     */
+    applyMapping: function (value, mappingName) {
+      if (!mappingName) {
+        mappingName = this.getMapping();
+      }
+      return cv.ui.common.BasicUpdate.applyMapping(value, mappingName);
     },
 
     /**

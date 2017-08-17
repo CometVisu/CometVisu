@@ -119,18 +119,33 @@ qx.Class.define("cv.data.NotificationRouter", {
      */
     _onIncomingData: function(address, state, initial) {
       var now = new Date();
-      var templateData = {
-        address: address,
-        value: state,
-        date: this.__dateFormat.format(now),
-        time: this.__timeFormat.format(now)
-      };
+      var formattedDate = this.__dateFormat.format(now);
+      var formattedTime =this.__timeFormat.format(now);
 
       this.__stateMessageConfig[address].forEach(function(config) {
         if (initial === true && config.skipInitial === true) {
           // do not handle the first update
           return;
         }
+        var templateData = {
+          address: address,
+          value: state,
+          date: formattedDate,
+          time: formattedTime
+        };
+
+        // process value
+        var transform = config.addressConfig[0];
+        // transform the raw value to a JavaScript type
+        templateData.value =  cv.Transform.decode(transform, templateData.value);
+        if (config.valueMapping) {
+          // apply mapping
+          templateData.value = cv.ui.common.BasicUpdate.applyMapping(templateData.value, config.valueMapping);
+        }
+        if (config.addressMapping) {
+          templateData.address = cv.ui.common.BasicUpdate.applyMapping(templateData.address, config.addressMapping);
+        }
+
         var message = {
           topic: config.hasOwnProperty("topic") ? config.topic : "cv.state.update."+address,
           title: qx.bom.Template.render(""+config.titleTemplate, templateData),

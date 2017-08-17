@@ -621,9 +621,11 @@
   </xsd:complexType>
 
   <xsd:complexType name="addresses">
-    <xsd:choice minOccurs="1" maxOccurs="unbounded">
+    <xsd:sequence minOccurs="1" maxOccurs="unbounded">
       <xsd:element name="address" type="address" />
-    </xsd:choice>
+    </xsd:sequence>
+    <xsd:attribute name="value-mapping" type="xsd:string" />
+    <xsd:attribute name="address-mapping" type="xsd:string" />
   </xsd:complexType>
 
   <!-- define a page -->
