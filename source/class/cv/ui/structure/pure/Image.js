@@ -94,10 +94,14 @@ qx.Class.define('cv.ui.structure.pure.Image', {
 
     // overridden
     _applyVisible: function(value) {
+      var valueElem = this.getValueElement();
+      if (!valueElem || this.getRefresh() > 0) {
+        return;
+      }
       if (value === true) {
-        qx.bom.element.Attribute.set(this.getValueElement(), "src", this.__getSrc());
+        qx.bom.element.Attribute.set(valueElem, "src", this.__getSrc());
       } else {
-        qx.bom.element.Attribute.set(this.getValueElement(), "src", "");
+        qx.bom.element.Attribute.set(valueElem, "src", "");
       }
     }
   },

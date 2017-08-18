@@ -26,26 +26,26 @@
  */
 describe("testing a image widget", function() {
 
-  var con = qx.event.Timer;
+  var Con = qx.event.Timer;
   var spiedTimer;
 
-  beforeEach(function() {
+  beforeEach(function () {
 
-    spyOn(qx.event, "Timer").and.callFake(function() {
-      spiedTimer = new con();
+    spyOn(qx.event, "Timer").and.callFake(function () {
+      spiedTimer = new Con();
       spyOn(spiedTimer, "start");
       return spiedTimer;
     });
   });
 
-  afterEach(function(){
-    qx.event.Timer = con;
+  afterEach(function () {
+    qx.event.Timer = Con;
   });
 
-  it("should test the image creator", function() {
+  it("should test the image creator", function () {
 
     var res = this.createTestWidgetString("image", {
-      src: '',
+      src: '/source/resource/icon/comet_64_ff8000.png',
       flavour: 'potassium'
     }, '<label>Test</label>');
 
@@ -54,8 +54,10 @@ describe("testing a image widget", function() {
     expect(widget).toHaveClass('image');
     expect(widget).toHaveLabel('Test');
     expect(res[0].getPath()).toBe("id_0");
+    expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "src")).toBe('/source/resource/icon/comet_64_ff8000.png');
     expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "style")).toBe('width:100%;');
   });
+
   it("should test the image creator and refreshing", function() {
 
     var res = this.createTestElement("image", {
@@ -80,4 +82,93 @@ describe("testing a image widget", function() {
     var widget = res.getDomElement();
     expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", widget)[0], "style")).toBe('width:100%;max-width:100%;');
   });
+
+});
+
+describe("testing the refresh caching of the image widget", function() {
+
+  it("should test refreshing with full cache control", function(done) {
+    var widget = this.createTestElement("image", {
+      src: '/source/resource/icon/comet_64_ff8000.png',
+      width: '50%',
+      height: '51%',
+      refresh: 1,
+      cachecontrol: 'full'
+    });
+    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    var domElement = widget.getDomElement();
+    expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", domElement)[0], "src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+
+    qx.event.Timer.once(function() {
+      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", domElement)[0], "src")).toMatch(/^\/source\/resource\/icon\/comet_64_ff8000.png\?/);
+
+      // cleanup
+      widget.dispose();
+      done();
+    }, this, 1200);
+  });
+
+  it("should test refreshing with weak cache control", function(done) {
+    var widget = this.createTestElement("image", {
+      src: '/source/resource/icon/comet_64_ff8000.png',
+      width: '50%',
+      height: '51%',
+      refresh: 1,
+      cachecontrol: 'weak'
+    });
+    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    var domElement = widget.getDomElement();
+    expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", domElement)[0], "src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+
+    qx.event.Timer.once(function() {
+      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", domElement)[0], "src")).toMatch(/^\/source\/resource\/icon\/comet_64_ff8000.png#/);
+
+      // cleanup
+      widget.dispose();
+      done();
+    }, this, 1200);
+  });
+
+  it("should test refreshing with no cache control", function(done) {
+    var widget = this.createTestElement("image", {
+      src: '/source/resource/icon/comet_64_ff8000.png',
+      width: '50%',
+      height: '51%',
+      refresh: 1,
+      cachecontrol: 'none'
+    });
+    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    var domElement = widget.getDomElement();
+    expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", domElement)[0], "src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+
+    qx.event.Timer.once(function() {
+      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", domElement)[0], "src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+
+      // cleanup
+      widget.dispose();
+      done();
+    }, this, 1200);
+  });
+
+  it("should test refreshing with no cache control and long refresh time", function(done) {
+    var widget = this.createTestElement("image", {
+      src: '/source/resource/icon/comet_64_ff8000.png',
+      width: '50%',
+      height: '51%',
+      refresh: 10,
+      cachecontrol: 'none'
+    });
+    qx.event.message.Bus.dispatchByName("setup.dom.finished");
+    var domElement = widget.getDomElement();
+    expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", domElement)[0], "src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+
+    qx.event.Timer.once(function() {
+      expect(qx.bom.element.Attribute.get(qx.bom.Selector.query("img", domElement)[0], "src")).toBe('/source/resource/icon/comet_64_ff8000.png');
+
+      // cleanup
+      widget.dispose();
+      done();
+    }, this, 1200);
+  });
+
 });
