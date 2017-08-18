@@ -95,7 +95,7 @@ qx.Class.define('cv.ui.structure.pure.Image', {
     // overridden
     _applyVisible: function(value) {
       var valueElem = this.getValueElement();
-      if (!valueElem) {
+      if (!valueElem || this.getRefresh() > 0) {
         return;
       }
       if (value === true) {

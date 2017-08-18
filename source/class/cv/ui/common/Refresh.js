@@ -36,7 +36,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
 
     // Stop the while invisible
     this.addListener("changeVisible", function(ev) {
-      if (this._timer) {
+      if (this._timer && ev.getData() !== ev.getOldData()) {
         if (ev.getData()) {
           this._timer.start();
         } else {
@@ -69,13 +69,18 @@ qx.Mixin.define("cv.ui.common.Refresh", {
    */
   members: {
     _timer: null,
+    __setup: false,
 
     setupRefreshAction: function () {
       if (this.getRefresh() && this.getRefresh() > 0) {
+        if (this.__setup === true) {
+          return;
+        }
+        this.__setup = true;
         if (this._setupRefreshAction) {
           // overridden by inheriting class
           this._setupRefreshAction();
-        } else {
+        } else if (!this._timer || !this._timer.isEnabled()) {
           var element = this.getDomElement();
           var target = qx.bom.Selector.query('img', element)[0] || qx.bom.Selector.query('iframe', element)[0];
           var src = qx.bom.element.Attribute.get(target, "src");
@@ -116,9 +121,9 @@ qx.Mixin.define("cv.ui.common.Refresh", {
             cachecontrol = 'full';
           }
           
-          switch( this.getCachecontrol() ) {
+          switch( cachecontrol ) {
             case 'full':
-              qx.bom.element.Attribute.set(target, "src", src + '&' + new Date().getTime());
+              qx.bom.element.Attribute.set(target, "src", qx.util.Uri.appendParamsToUrl(src, ""+new Date().getTime()));
               break;
               
             case 'weak':
@@ -144,6 +149,7 @@ qx.Mixin.define("cv.ui.common.Refresh", {
   */
   destruct: function() {
     if (this._timer) {
+      this._timer.stop();
       this._disposeObjects("_timer");
     }
   },

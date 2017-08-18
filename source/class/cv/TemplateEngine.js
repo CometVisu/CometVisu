@@ -324,8 +324,10 @@ qx.Class.define('cv.TemplateEngine', {
         qx.event.message.Bus.dispatchByName("setup.dom.finished.before");
         this.setDomFinished(true);
 
-        this.setCurrentPage(cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage));
-
+        var currentPage = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.initialPage);
+        if (currentPage) {
+          this.setCurrentPage(currentPage);
+        }
         cv.ui.layout.Manager.adjustColumns();
         cv.ui.layout.Manager.applyColumnWidths('#'+cv.Config.initialPage, true);
 

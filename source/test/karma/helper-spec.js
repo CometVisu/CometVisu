@@ -84,6 +84,7 @@ var createTestWidgetString = function (name, attributes, content) {
 };
 
 var createTestElement = function (name, attributes, content, address, addressAttributes) {
+  cv.TemplateEngine.getInstance().setDomFinished(false);
   if (!address && address !== false) {
     address = '12/7/37';
   }
@@ -111,7 +112,8 @@ var createTestElement = function (name, attributes, content, address, addressAtt
   container.innerHTML = res[1];
   document.body.appendChild(container);
 
-  this.container = container;
+  this.container = container
+  cv.TemplateEngine.getInstance().setDomFinished(true);
   return res[0];
 };
 
