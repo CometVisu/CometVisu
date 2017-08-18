@@ -19,15 +19,17 @@
   <xsd:simpleType name="uri">
     <xsd:restriction base="xsd:anyURI" />
   </xsd:simpleType>
-  
-  <xsd:simpleType name="cachecontrol">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="full" />
-      <xsd:enumeration value="force" />
-      <xsd:enumeration value="weak" />
-      <xsd:enumeration value="none" />
-    </xsd:restriction>
-  </xsd:simpleType>
+
+  <xsd:attribute name="cachecontrol">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="full" />
+        <xsd:enumeration value="force" />
+        <xsd:enumeration value="weak" />
+        <xsd:enumeration value="none" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
   
   <xsd:complexType name="layout">
     <xsd:attribute name="colspan" type="xsd:decimal" use="optional">
@@ -1258,7 +1260,7 @@
         <xsd:documentation xml:lang="de">Definiert die Aktualisierungsrate des Bildes in Sekunden</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="cachecontrol" type="cachecontrol" use="optional">
+    <xsd:attribute ref="cachecontrol" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Set the cache control strategy for refresh.</xsd:documentation>
         <xsd:documentation xml:lang="de">Definiert Methode um den Cache während einer Aktualisierung zu Steuern.</xsd:documentation>
