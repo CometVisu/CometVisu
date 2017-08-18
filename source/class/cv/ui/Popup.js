@@ -116,6 +116,24 @@ qx.Class.define('cv.ui.Popup', {
         }
       }
 
+      if (attributes.actions && attributes.actions.length > 0) {
+        var actions = qx.dom.Element.create("div", {"class": "actions"});
+
+        attributes.actions.forEach(function(action) {
+          var actionButton = qx.dom.Element.create("button", {
+            "class": "action",
+            "text": action.title
+          });
+          qx.dom.Element.insertEnd(actionButton, actions);
+          qx.event.Registration.addListener(actionButton, "tap", function(ev) {
+            ev.stopPropagation();
+            ev.preventDefault();
+            window.open(action.link, '_blank');
+          });
+        });
+        qx.dom.Element.insertEnd(actions, ret_val);
+      }
+
       if (attributes.width) {
         qx.bom.element.Style.add(ret_val, "width", attributes.width);
       }

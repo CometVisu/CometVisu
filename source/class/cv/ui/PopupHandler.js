@@ -44,6 +44,10 @@ qx.Class.define('cv.ui.PopupHandler', {
         'cv.config.error': {
           type: "error",
           icon: "message_attention"
+        },
+        'cv.error': {
+          type: "error",
+          icon: "message_attention"
         }
       });
     },
@@ -53,7 +57,8 @@ qx.Class.define('cv.ui.PopupHandler', {
         title: message.title,
         content: message.message,
         closable: message.deletable,
-        icon: config.icon
+        icon: config.icon,
+        actions: message.actions
       };
       // popups are always unique
       if (cv.data.NotificationRouter.evaluateCondition(message)) {

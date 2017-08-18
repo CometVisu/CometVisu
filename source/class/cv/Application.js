@@ -166,12 +166,26 @@ qx.Class.define("cv.Application",
     },
 
     __globalErrorHandler: function(ex) {
-      this.error(ex.getSourceException());
+      this.error(ex.toString());
+      // connect client data for Bug-Report
+      var bugData = cv.report.Record.getClientData();
+      var body = "**"+qx.locale.Manager.tr("Please describe what you have done until the error occured?")+"**\n \n\n";
+      body += "**Stacktrace:**\n```\n"+ex.stack+"\n```"+"\n\n**Client-Data:**\n```\n"+qx.lang.Json.stringify(bugData, null, 2)+"\n```";
       var notification = {
         topic: "cv.error",
         title: qx.locale.Manager.tr("An error occured"),
-        message: ex.toString()+"\n\n"+qx.dev.StackTrace.getStackTraceFromError(ex.getSourceException()),
-        severity: "urgent"
+        message: "<pre>"+ex.stack+"</pre>",
+        severity: "urgent",
+        deletable: false,
+        actions: [{
+          title: qx.locale.Manager.tr("Report Bug"),
+          link: "https://github.com/CometVisu/CometVisu/issues/new?"+qx.util.Uri.toParameter({
+            labels: "bug / bugfix",
+            title: ex.toString(),
+            body: body
+          }),
+          needsConfirmation: false
+        }]
       };
       cv.data.NotificationRouter.getInstance().dispatchMessage(notification.topic, notification);
     },

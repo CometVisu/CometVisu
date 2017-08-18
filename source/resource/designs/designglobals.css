@@ -448,7 +448,18 @@ button.ui-slider-handle {
   margin: -1em 1em 0 0;
   vertical-align: middle;
   width: 64px;
-  height: 64px;
+  height: 100%;
+}
+
+.popup .main pre {
+  overflow: auto;
+  font-size: 0.8em;
+}
+
+.popup .actions { text-align: center; }
+.popup .actions button {
+  padding: 0.3em 1em;
+  font-size: 0.9em;
 }
 
 .popup_background.error {
