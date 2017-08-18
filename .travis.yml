@@ -55,6 +55,8 @@ script:
 before_deploy:
 - grunt release-cv
 - if [ $(git reflog --after='24 hours' client/ | wc -l) -gt 0 ]; then grunt release-client; fi
+- echo "$CV_BUILD = test && CV_VERSION = stable && $TRAVIS_EVENT_TYPE = cron"
+- $(git reflog --after='24 hours' | wc -l)
 deploy:
   on:
     branch: develop
