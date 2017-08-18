@@ -267,7 +267,7 @@ daher weg gelassen werden.</p>
 <td>Definiert die Aktualisierungsrate des Bildes in Sekunden</td>
 </tr>
 <tr class="row-even"><td>cachecontrol</td>
-<td>cachecontrol</td>
+<td><em>full</em>, <em>force</em>, <em>weak</em> oder <em>none</em></td>
 <td>Definiert Methode um den Cache während einer Aktualisierung zu Steuern.</td>
 </tr>
 <tr class="row-odd"><td>flavour</td>
@@ -282,18 +282,22 @@ daher weg gelassen werden.</p>
 </table>
 <p>Die gültigen Werte für <code class="docutils literal"><span class="pre">cachecontrol</span></code> sind:</p>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">full</span></code>   Standard. Durch Erweitern der URL um einen Zeitstempel wird</dt>
-<dd>sichergestellt, dass immer eine neue Version geladen wird. Der
+<dt><code class="docutils literal"><span class="pre">full</span></code></dt>
+<dd>Standard. Durch Erweitern der URL um einen Zeitstempel wird
+sichergestellt, dass immer eine neue Version geladen wird. Der
 Server muss dies jedoch unterstützen.</dd>
-<dt><code class="docutils literal"><span class="pre">force</span></code>  Durch aufwändigere, interne Maßnahmen wird versucht eine</dt>
-<dd>Aktualisierung des Bildes zu erzwingen.</dd>
-<dt><code class="docutils literal"><span class="pre">weak</span></code>   Die URL wird nur durch einen Anker (Raute) mit Zeitstempel erweitert.</dt>
-<dd>Server die Bilder bei <code class="docutils literal"><span class="pre">full</span></code> nicht übertragen sind jedoch meist
-mit <code class="docutils literal"><span class="pre">weak</span></code> kompatiebel. Jedoch müssen hier die Cache-Parameter
+<dt><code class="docutils literal"><span class="pre">force</span></code></dt>
+<dd>Durch aufwändigere, interne Maßnahmen wird versucht eine
+Aktualisierung des Bildes zu erzwingen.</dd>
+<dt><code class="docutils literal"><span class="pre">weak</span></code></dt>
+<dd>Die URL wird nur durch einen Anker (Raute) mit Zeitstempel erweitert.
+Server die Bilder bei <code class="docutils literal"><span class="pre">full</span></code> nicht übertragen sind jedoch meist
+mit <code class="docutils literal"><span class="pre">weak</span></code> kompatibel. Jedoch müssen hier die Cache-Parameter
 im HTTP-Header vom Server richtig gesetzt werden so wie der Browser
 korrekt reagieren.</dd>
-<dt><code class="docutils literal"><span class="pre">none</span></code>   Die URL wird nicht verändert, dass eine Aktualisierung des Bildes</dt>
-<dd>durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
+<dt><code class="docutils literal"><span class="pre">none</span></code></dt>
+<dd>Die URL wird nicht verändert, dass eine Aktualisierung des Bildes
+durch den Cache verhindert wird ist jedoch wahrscheinlich.</dd>
 </dl>
 <div class="figure align-center">
 <img alt="../../../_images/de_config_widgets_image_index1.png" src="../../../_images/de_config_widgets_image_index1.png" />
