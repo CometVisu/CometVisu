@@ -12,6 +12,10 @@ Das ``state-notification`` Element im Meta-Bereich der Konfiguration erlaubt es 
 ein neuer Wert für ein Widget vom Backend hochgemeldet wird. Diese Benachrichtigungen können als Popup oder
 als Eintrag in der Benachrichtigungszentrale angezeigt werden.
 
+Sobald Nachrichten in der Benachritigungszentrale vorhanden sind, wird die Anzahl der Nachrichten am oberen rechten
+Rand des Browserfensters und im Favicon (im Browser-Tab) anzeigt. Sollten Nachrichten mit höherer Priotität darunter
+sein, wird dies durch farbigen Hintergrund gekennzeichnet.
+
 .. code-block:: xml
     :caption: Einfaches Beispiel zeigt eine Nachricht in der Nachrichtenzentrale, wenn die Wohnzimmerlampe eingeschaltet ist.
 

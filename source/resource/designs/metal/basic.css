@@ -1042,3 +1042,33 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 .powerspectrum > .actor:only-child {
   width: 100%;
 }
+
+.widget .actor.badge {
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgba(61, 61, 61, 0.9);
+    cursor: pointer;
+    width: 50px !important;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+    border: 3px solid #111;
+}
+
+/*severities*/
+.actor.badge.urgent {
+    background-color: rgba(255, 0, 0, 0.9);
+}
+
+.actor.badge.high {
+    background-color: rgba(255, 121, 0, 0.9);
+}
+
+.widget.notificationcenterbadge.right {
+    float: right;
+    text-align: center;
+}
+
+.widget_container.float-right {
+    float: right;
+}

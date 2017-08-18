@@ -975,6 +975,7 @@
       <xsd:element name="pagejump" type="pagejump" />
       <xsd:element name="wgplugin_info" type="wgplugin_info"/>
       <xsd:element name="mobilemenu" type="mobilemenu"/>
+      <xsd:element name="notificationcenterbadge" type="notificationcenterbadge"/>
     </xsd:choice>
   </xsd:group>
 
@@ -988,6 +989,22 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
 	<xsd:attribute ref="class" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="notificationcenterbadge">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute ref="align" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute name="hide-when-empty" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Hide this widget when the NotificationCenter is empty.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Dieses Widget nicht anzeigen, wenn die Benachritigungszentrale leer ist.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="designtoggle">

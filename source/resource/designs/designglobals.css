@@ -324,8 +324,10 @@ button.ui-slider-handle {
 #notification-center .message.low {
   border-left: 8px solid rgba(61, 61, 61, 0.9);
 }
-
-#notification-center > .badge:not(:empty) {
+#notification-center > .badge.hidden {
+  display: none;
+}
+#notification-center > .badge:not(:empty):not(.hidden) {
   display: block;
 }
 

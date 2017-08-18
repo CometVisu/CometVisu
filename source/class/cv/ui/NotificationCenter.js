@@ -135,10 +135,31 @@ qx.Class.define("cv.ui.NotificationCenter", {
  *****************************************************************************
  */
   properties: {
+    /**
+     * Maximum allowed messages
+     */
     maxEntries: {
       check: "Number",
       init: 50,
       event: "_applyMaxEntries"
+    },
+
+    /**
+     * Current amount of messages
+     */
+    counter: {
+      check: "Number",
+      init: 0,
+      event: "changeCounter"
+    },
+
+    /**
+     * Highest severity of the messages
+     */
+    globalSeverity: {
+      check: ["low", "normal", "high", "urgent"],
+      init: "normal",
+      event: "changeGlobalSeverity"
     }
   },
 
@@ -157,6 +178,18 @@ qx.Class.define("cv.ui.NotificationCenter", {
     __badge: null,
     __severities: null,
     __favico: null,
+
+    getSeverities: function() {
+      return this.__severities;
+    },
+
+    disableBadge: function(value) {
+      if (value) {
+        qx.bom.element.Class.add(this.__badge, "hidden");
+      } else {
+        qx.bom.element.Class.remove(this.__badge, "hidden");
+      }
+    },
 
     _onResize: function() {
       var height = qx.bom.Viewport.getHeight();
@@ -218,6 +251,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     __updateBadge: function() {
       var currentContent = parseInt(qx.bom.element.Attribute.get(this.__badge, "html"));
+      this.setCounter(this.__messages.length);
       if (currentContent < this.__messages.length) {
         // blink to get the users attention for the new message
         qx.bom.element.Animation.animate(this.__badge, cv.ui.NotificationCenter.BLINK);
@@ -236,7 +270,10 @@ qx.Class.define("cv.ui.NotificationCenter", {
       }, this);
       qx.bom.element.Class.removeClasses(this.__badge, this.__severities);
       if (severityRank >= 0) {
+        this.setGlobalSeverity(this.__severities[severityRank]);
         qx.bom.element.Class.add(this.__badge, this.__severities[severityRank]);
+      } else {
+        this.resetGlobalSeverity();
       }
 
       // update favicon badge
