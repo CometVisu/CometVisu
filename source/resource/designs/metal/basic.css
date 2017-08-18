@@ -1048,11 +1048,18 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
     vertical-align: middle;
     background-color: rgba(61, 61, 61, 0.9);
     cursor: pointer;
-    width: 50px !important;
-    height: 50px;
-    line-height: 50px;
-    border-radius: 50px;
-    border: 3px solid #111;
+    width: 40px !important;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 40px;
+    border: 1px solid #111;
+}
+
+#navbarTop .widget .actor.badge, #navbarBottom .widget .actor.badge {
+    width: 60px !important;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 60px;
 }
 
 /*severities*/
