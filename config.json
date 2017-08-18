@@ -357,7 +357,8 @@
       "environment" :
       {
         "versionLabel.name"     : "CometVisu",
-        "versionLabel.version"  : "${CV_VERSION}"
+        "versionLabel.version"  : "${CV_VERSION}",
+        "qx.version"            : null
       },
 
       "lint-check" : {
