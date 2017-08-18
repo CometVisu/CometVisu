@@ -270,7 +270,8 @@
       "extend" : [ "parts-config" ],
       "environment" :
       {
-        "cv.build": "source"
+        "cv.build": "source",
+        "qx.globalErrorHandling": false
       },
       "run" :
       [
