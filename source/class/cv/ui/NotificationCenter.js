@@ -42,7 +42,7 @@
  */
 qx.Class.define("cv.ui.NotificationCenter", {
   extend: qx.core.Object,
-  implement: cv.data.INotificationHandler,
+  implement: cv.core.notifications.IHandler,
   type: "singleton",
 
   /*
@@ -56,7 +56,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     this.__messages = new qx.data.Array();
 
     // register to topics
-    cv.data.NotificationRouter.getInstance().registerMessageHandler(this, {
+    cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
       'cv.*': {}
     });
 
@@ -350,7 +350,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
             if (!message.hasOwnProperty("deletable")) {
               message.deletable = true;
             }
-            if (cv.data.NotificationRouter.evaluateCondition(message)) {
+            if (cv.core.notifications.Router.evaluateCondition(message)) {
               this.__messages.setItem(index, message);
             } else{
               this.__messages.removeAt(index);
@@ -361,7 +361,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         }, this);
       }
       if (!found) {
-        if (cv.data.NotificationRouter.evaluateCondition(message)) {
+        if (cv.core.notifications.Router.evaluateCondition(message)) {
           message.id = this.__messages.length;
           if (!message.hasOwnProperty("deletable")) {
             message.deletable = true;

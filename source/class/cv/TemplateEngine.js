@@ -208,7 +208,7 @@ qx.Class.define('cv.TemplateEngine', {
           deletable: false,
           condition: !ev.getData()
         };
-        cv.data.NotificationRouter.getInstance().dispatchMessage(message.topic, message);
+        cv.core.notifications.Router.dispatchMessage(message.topic, message);
       }, this);
     },
 

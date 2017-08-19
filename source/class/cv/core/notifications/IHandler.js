@@ -21,7 +21,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Interface.define('cv.data.INotificationHandler', {
+qx.Interface.define('cv.core.notifications.IHandler', {
   /*
   ******************************************************
     MEMBERS
@@ -29,7 +29,7 @@ qx.Interface.define('cv.data.INotificationHandler', {
   */
   members: {
     /**
-     * Handle messages from {@link cv.data.NotificationRouter}
+     * Handle messages from {@link cv.core.notifications.Router}
      * @param message {Map}
      * @param config {Map?} optional configuration of this message for the handler
      */

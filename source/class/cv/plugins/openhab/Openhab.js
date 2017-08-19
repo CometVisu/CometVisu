@@ -38,7 +38,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
   construct: function () {
     this.base(arguments);
 
-    this.__notificationRouter = cv.data.NotificationRouter.getInstance();
+    this.__notificationRouter = cv.core.notifications.Router.getInstance();
 
     // listen to notifications
     var client = cv.TemplateEngine.getInstance().visu;

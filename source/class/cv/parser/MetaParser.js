@@ -261,7 +261,7 @@ qx.Class.define("cv.parser.MetaParser", {
           stateConfig[address].push(addressConfig);
         });
       });
-      cv.data.NotificationRouter.getInstance().registerStateUpdateHandler(stateConfig);
+      cv.core.notifications.Router.getInstance().registerStateUpdateHandler(stateConfig);
     }
   }
 });

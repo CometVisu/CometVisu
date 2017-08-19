@@ -116,20 +116,12 @@ qx.Class.define('cv.ui.Popup', {
         }
       }
 
-      if (attributes.actions && attributes.actions.length > 0) {
+      if (attributes.actions && Object.getOwnPropertyNames(attributes.actions).length > 0) {
         var actions = qx.dom.Element.create("div", {"class": "actions"});
 
-        attributes.actions.forEach(function(action) {
-          var actionButton = qx.dom.Element.create("button", {
-            "class": "action",
-            "text": action.title
-          });
+        Object.getOwnPropertyNames(attributes.actions).forEach(function(type) {
+          var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, attributes.actions[type]);
           qx.dom.Element.insertEnd(actionButton, actions);
-          qx.event.Registration.addListener(actionButton, "tap", function(ev) {
-            ev.stopPropagation();
-            ev.preventDefault();
-            window.open(action.link, '_blank');
-          });
         });
         qx.dom.Element.insertEnd(actions, ret_val);
       }

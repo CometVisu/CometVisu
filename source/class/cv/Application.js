@@ -177,17 +177,19 @@ qx.Class.define("cv.Application",
         message: "<pre>"+ex.stack+"</pre>",
         severity: "urgent",
         deletable: false,
-        actions: [{
-          title: qx.locale.Manager.tr("Report Bug"),
-          link: "https://github.com/CometVisu/CometVisu/issues/new?"+qx.util.Uri.toParameter({
-            labels: "bug / bugfix",
-            title: ex.toString(),
-            body: body
-          }),
-          needsConfirmation: false
-        }]
+        actions: {
+          link: {
+            title: qx.locale.Manager.tr("Report Bug"),
+            url: "https://github.com/CometVisu/CometVisu/issues/new?" + qx.util.Uri.toParameter({
+              labels: "bug / bugfix",
+              title: ex.toString(),
+              body: body
+            }),
+            needsConfirmation: false
+          }
+        }
       };
-      cv.data.NotificationRouter.getInstance().dispatchMessage(notification.topic, notification);
+      cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
     },
 
     /**
@@ -200,7 +202,7 @@ qx.Class.define("cv.Application",
       }, this);
       qx.bom.Lifecycle.onReady(function () {
         // init notification router
-        cv.data.NotificationRouter.getInstance();
+        cv.core.notifications.Router.getInstance();
         var body = qx.bom.Selector.query("body")[0];
 
         if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
@@ -521,7 +523,7 @@ qx.Class.define("cv.Application",
         unique: true,
         deletable: false
       };
-      cv.data.NotificationRouter.getInstance().dispatchMessage(notification.topic, notification);
+      cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
       this.error(message.toString());
       this.block(false);
     }

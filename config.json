@@ -81,7 +81,8 @@
         "${APPLICATION}.ui.structure.pure.*",
         "${APPLICATION}.transforms.*",
         "${APPLICATION}.plugins.*",
-        "${APPLICATION}.parser.*"
+        "${APPLICATION}.parser.*",
+        "${APPLICATION}.core.*"
       ],
 
       "lint-check" : {
@@ -186,7 +187,8 @@
             "include" : [
               "${APPLICATION}.Application",
               "${APPLICATION}.transforms.*",
-              "${APPLICATION}.parser.widgets.*"
+              "${APPLICATION}.parser.widgets.*",
+              "${APPLICATION}.core.notifications.actions.*"
             ]
           },
           "structure-pure" : {

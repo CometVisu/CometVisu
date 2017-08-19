@@ -40,7 +40,7 @@ qx.Class.define('cv.ui.PopupHandler', {
       this.addPopup(new cv.ui.Popup("error"));
 
       // register to topics
-      cv.data.NotificationRouter.getInstance().registerMessageHandler(this, {
+      cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
         'cv.config.error': {
           type: "error",
           icon: "message_attention"
@@ -61,7 +61,7 @@ qx.Class.define('cv.ui.PopupHandler', {
         actions: message.actions
       };
       // popups are always unique
-      if (cv.data.NotificationRouter.evaluateCondition(message)) {
+      if (cv.core.notifications.Router.evaluateCondition(message)) {
         this.showPopup(config.type, popupConfig);
       } else {
         var popup = this.getPopup(config.type);

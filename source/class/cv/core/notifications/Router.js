@@ -17,13 +17,13 @@
 
 
 /**
- * Global notification handler that routes messages topic-dependent to different {@link cv.data.INotificationHandler}
+ * Global notification handler that routes messages topic-dependent to different {@link cv.core.notifications.IHandler}
  * (e.g. NotificationCenter, Dialog, Toast, console.log, native notification, internal message bus ...)
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
  */
-qx.Class.define("cv.data.NotificationRouter", {
+qx.Class.define("cv.core.notifications.Router", {
   extend: qx.core.Object,
   type: "singleton",
 
@@ -62,6 +62,11 @@ qx.Class.define("cv.data.NotificationRouter", {
       } else {
         this.error("unhandled message condition type: %o", message.condition);
       }
+    },
+
+    // shortcut
+    dispatchMessage: function(topic, message, target) {
+      return this.getInstance().dispatchMessage(topic, message, target);
     }
   },
 

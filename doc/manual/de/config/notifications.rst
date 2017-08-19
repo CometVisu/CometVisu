@@ -3,7 +3,7 @@
 Benachrichtigungen
 ==================
 
-.. api-doc:: cv.data.NotificationRouter
+.. api-doc:: cv.core.notifications.Router
 
 Beschreibung
 ------------
