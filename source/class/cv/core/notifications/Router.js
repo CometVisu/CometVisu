@@ -35,6 +35,7 @@ qx.Class.define("cv.core.notifications.Router", {
   construct: function() {
     this.base(arguments);
     this.__routes = {};
+    this.debug("new router");
 
     this.__dateFormat = new qx.util.format.DateFormat(qx.locale.Date.getDateFormat("short"));
     this.__timeFormat = new qx.util.format.DateFormat(qx.locale.Date.getTimeFormat("short"));
@@ -57,10 +58,10 @@ qx.Class.define("cv.core.notifications.Router", {
         return true;
       } else if (qx.lang.Type.isBoolean(message.condition)) {
         return message.condition;
-      } else if (qx.lang.Type.isFunction()) {
+      } else if (qx.lang.Type.isFunction(message.condition)) {
         return message.condition();
       } else {
-        this.error("unhandled message condition type: %o", message.condition);
+        qx.log.Logger.error(this, "unhandled message condition type: "+message.condition);
       }
     },
 
@@ -80,6 +81,30 @@ qx.Class.define("cv.core.notifications.Router", {
     __routes: null,
     __stateMessageConfig: null,
 
+    /**
+     * Register state update handler for one or more addresses.
+     *
+     * <h4>Config Map explanation:</h4>
+     * <pre class="javascript">
+     * {
+     *   <address>: [{
+     *    topic: "cv.state.<address>", // message topic used for routing
+     *    target: "popup", // where to show the message
+     *    severity: "normal", // message severity e.g. high, normal, low
+     *    skipInitial: true, // do not show message for initial state update
+     *    deletable: true, // user can delete this message
+     *    unique: true, // show message once at a time
+     *    valueMapping: "mapping-name", // optional mapping for value
+     *    addressMapping: "mapping-name", // optional mapping name for address
+     *    titleTemplate: "Kitchen light on", // title template of the message
+     *    messageTemplate: "turned on at {{ time }} o'clock", // message content template
+     *    condition: 1 // show only when the value equals the contition value
+     *   }]
+     * }
+     * </pre>
+     *
+     * @param config {Map}
+     */
     registerStateUpdateHandler: function(config) {
       this.__stateMessageConfig = config;
       Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function(address) {
@@ -89,7 +114,7 @@ qx.Class.define("cv.core.notifications.Router", {
 
     /**
      * Register a handler for a list of topics
-     * @param handler {cv.ui.INotificationHandler}
+     * @param handler {cv.core.notifications.IHandler}
      * @param topics {Map} map of topics as key and configuration-maps as values
      */
     registerMessageHandler: function(handler, topics) {
@@ -217,6 +242,11 @@ qx.Class.define("cv.core.notifications.Router", {
           entry.handler.handleMessage(message, entry.config);
         }, this);
       }
+    },
+
+    clear: function() {
+      this.__routes = {};
+      this.__stateMessageConfig = {};
     }
   },
 
@@ -226,6 +256,6 @@ qx.Class.define("cv.core.notifications.Router", {
   ******************************************************
   */
   destruct: function() {
-    this._disposeMap("__routes");
+    this.clear();
   }
 });
