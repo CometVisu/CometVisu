@@ -111,7 +111,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     _onChangeCounter: function(ev) {
       qx.bom.element.Attribute.set(this.__getBadgeElement(), "html", ""+ev.getData());
       if (this.isHideWhenEmpty()) {
-       qx.bom.element.Style.set(this.__getBadgeElement(), "display", ev.getData() === 0 ? "none" : "block");
+        qx.bom.element.Style.set(this.__getBadgeElement(), "display", ev.getData() === 0 ? "none" : "block");
       }
     },
 
