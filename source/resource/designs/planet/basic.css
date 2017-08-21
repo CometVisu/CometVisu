@@ -723,21 +723,6 @@ position: relative;
   opacity: 0.80;
 }
 
-
-.popup,
-.popup_background {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  top: 5%;
-  left: 5%;
-}
-
-.popup {
-  z-index: 101;
-  background: transparent;
-}
-
 .popup_close {
   position: absolute;
   z-index: 102;
@@ -760,7 +745,6 @@ position: relative;
 }
 
 .popup_background {
-  z-index: 100;
   -moz-border-radius: 0.6rem; -webkit-border-radius: 0.6rem; border-radius: 0.6rem;
   background: #000;
   border: none;

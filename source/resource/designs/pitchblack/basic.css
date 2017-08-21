@@ -362,23 +362,6 @@ html[xmlns] .clearfix, .clearfix:after {
   display: block !important;
 }
 
-.popup, .popup_background {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  top: 5%;
-  left: 5%;
-}
-
-.popup {
-  z-index: 101;
-  background: transparent;
-}
-
-.popup_background {
-  z-index: 100;
-}
-
 .clickable {
   cursor: pointer;
 }

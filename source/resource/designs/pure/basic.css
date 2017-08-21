@@ -426,20 +426,6 @@ div#loading {
     display: none !important;
 }
 
-.popup,
-.popup_background {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  top: 5%;
-  left: 5%;
-}
-
-.popup {
-  z-index: 101;
-  background: transparent;
-}
-
 .popup_close {
   position: absolute;
   z-index: 102;
@@ -454,7 +440,6 @@ div#loading {
 }
 
 .popup_background {
-  z-index: 100;
   -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
   background: #000;
   border: 1px solid #fff;
