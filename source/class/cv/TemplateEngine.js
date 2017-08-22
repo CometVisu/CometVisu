@@ -202,12 +202,18 @@ qx.Class.define('cv.TemplateEngine', {
         var message = {
           topic: "cv.client.connection",
           title: qx.locale.Manager.tr("Connection error"),
-          message: qx.locale.Manager.tr("Connection to backend is lost."),
           severity: "urgent",
           unique: true,
           deletable: false,
           condition: !ev.getData()
         };
+        var lastError = this.visu.getLastError();
+        console.log((Date.now() - lastError.time));
+        if (lastError && (Date.now() - lastError.time) < 100) {
+          message.message = qx.locale.Manager.tr("Error requesting %1: %2 - %3.", lastError.url, lastError.code, lastError.text);
+        } else {
+          message.message = qx.locale.Manager.tr("Connection to backend is lost.");
+        }
         cv.core.notifications.Router.dispatchMessage(message.topic, message);
       }, this);
     },
