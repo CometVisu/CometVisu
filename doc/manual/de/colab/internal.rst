@@ -55,8 +55,6 @@ Der Ablauf des Ladens der Visu läuft nach dem CometVisu-Protokoll in folgenden 
 #. Die CometVisu fängt an die Werte vom Backend abzufragen, zunächst initial alle benötigten Werten und im
    zweiten Schritt wird nur noch auf Änderungen der Werte gelauscht.
 
-.. _transportschichten::
-
 Transportschichten
 ------------------
 
@@ -69,54 +67,31 @@ Zur Zeit unterstützt die CometVisu zwei unterschiedliche Transportschichten:
 * :ref:`Long polling <long-polling>`: wird vom Default-Backend benutzt
 * :ref:`Server sent events <sse>`: wird vom openHAB-Backend benutzt
 
-.. _long-polling:
+.. toctree::
 
-Long polling
-^^^^^^^^^^^^
+    transport/long-polling
+    transport/sse
 
-Lesende Anfragen
-****************
+Caching
+-------
 
-Beim Long polling stellt die CometVisu eine Verbindung zum Backend her und lässt diese offen bis das Backend Daten sendet.
-Die initiale Anfrage nach alles Werten beantwortet das Backend sofort. Die darauffolgenden Anfragen werden beantwortet,
-sobald ein neuer Wert eintrifft. Dieser wird dann an die CometVisu gesendet, worauf die Verbindung geschlossen und sofort
-wieder aufgebaut wird.
+Die CometVisu nutzt eigene Caching Mechanismen um das initiale Laden zu beschleunigen.
+Die meiste Zeit wird benötigt um die XML-Konfigurationsdatei vom Server zu laden, dann zu parsen und daraus
+den HTML Code zu generieren der die tatsächliche Visu im Browser darstellt.
 
-.. HINT::
+Da sich der Inhalt der Konfigurationsdatei in der Regel selten ändert, liegt es Nahe diese nicht jedesmal erneut zu laden und
+zu parsen. Daher wird nach dem ersten Parsen der erzeugte HTML und die internen Datenstrukturen im *LocalStorage* des Browsers
+abgespeichert. Beim nächsten Laden der Visu werden diese Daten ausgelesen und die Oberfläche sofort dargestellt.
+Erst danach fragt die Visu die Konfigurationsdatei vom Server ab und vergleicht ob es Änderungen gegeben hat.
+Sofern dies nicht der Fall ist wird die gerade geladenen Datei verworfen, andernfalls der parse und speicher-Vorgang erneut
+durchgeführt und die Daten aus dem Cache werden verworfen.
 
-    Als Besonderheit ist hier noch der interne *Watchdog* zu nennen, welcher eine Long polling Anfrage automatisch
-    beendet und neu started, wenn innerhalb von 60 Sekunden keine Antwort gekommen ist.
+Das Caching kann durch den URL-Parameter :ref:`enableCache` beeinflusst werden.
 
-Schreibende Anfragen
-********************
 
-Wenn ein neuer Wert an das Backend gesendet werden soll (weil z.B. der Benutzer ein Widget bedient hat), wird
-eine neue Anfrage, die vollkommen unabhängig von den lesenden Anfragen ist an das Backend gesendet.
-Hier bestätigt das Backend auch lediglich das erfolgreiche Empfangen der Anfrage, neue Werte werden immer nur über
-die lesenden Anfragen gesendet.
+Fehlerbehandlung
+----------------
 
-.. _sse:
+.. TODO::
 
-Server sent events (SSE)
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Lesende Anfragen
-****************
-
-Bei *Server sent events* wird eine einmalige lesende Verbindung aufgebaut. Über diese schickt das Backend
-initial einmalig alle angefragten Werte, danach nur noch geänderte Werte.
-
-.. HINT::
-    Der Browser kümmert sich automatisch um die Wiederherstellung der Verbindung bei Abbrüchen.
-    Daher ist der interne *Watchdog* bei SSE in der Regel nicht zum Einsatz.
-
-Der Browser muss diese Technologie jedoch überstützen.
-Eine Übersicht der unterstützen Browser liefert `Caniuse <http://caniuse.com/eventsource/embed/>`__.
-
-Schreibende Anfragen
-********************
-
-Wenn ein neuer Wert an das Backend gesendet werden soll (weil z.B. der Benutzer ein Widget bedient hat), wird
-eine neue Anfrage, die vollkommen unabhängig von den lesenden Anfragen ist an das Backend gesendet.
-Hier bestätigt das Backend auch lediglich das erfolgreiche Empfangen der Anfrage, neue Werte werden immer nur über
-die lesenden Anfragen gesendet.
+    NotificationRouter, -Center, GlobalError-handling
