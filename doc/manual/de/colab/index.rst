@@ -264,6 +264,7 @@ Mithilfe bei der Entwicklung
 
 .. toctree::
 
+    internal
     dev/test
 
 
