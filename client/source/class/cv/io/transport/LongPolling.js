@@ -111,12 +111,18 @@ qx.Class.define('cv.io.transport.LongPolling', {
       if (this.doRestart || (!json && (-1 === this.lastIndex))) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
+          var delay = 100 * Math.pow(this.retryCounter, 2);
           this.retryCounter++;
+          if (this.doRestart) {
+            // planned restart, only inform user
+            this.info("restarting XHR read requests in "+delay+" ms");
+          } else {
+            this.error("restarting XHR read requests in "+delay+" ms");
+          }
           qx.event.Timer.once(function () {
-            this.error("restarting XHR read requests");
             this.__startReading();
             this.client.watchdog.ping(true);
-          }, this, 100 * Math.pow(this.retryCounter, 2));
+          }, this, delay);
         }
         return;
       }
@@ -280,7 +286,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     abort: function () {
       if (this.xhr && this.xhr.abort) {
         this.xhr.abort();
-        this.xhr.dispose();
+        this.xhr = null;
 
         if (this.client.backend && this.client.backend.hooks.onClose) {
           this.client.backend.hooks.onClose.bind(this);
