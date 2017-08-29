@@ -554,6 +554,14 @@ html[xmlns] .clearfix {
 div#loading {
     display: none !important;
 }
+.popup,
+.popup_background {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+}
 .popup { font-family: Dosis, Helvetica, Arial, sans-serif; }
 .popup_background.error {
   background: #800000;

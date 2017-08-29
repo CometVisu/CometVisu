@@ -395,8 +395,10 @@ button.ui-slider-handle {
   color: #fff;
 }
 
-.popup,
-.popup_background {
+.popup.error,
+.popup_background.error,
+.popup.info,
+.popup_background.info {
   position: absolute;
   padding: 30px;
   top: 33%;
