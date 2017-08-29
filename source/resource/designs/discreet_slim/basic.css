@@ -334,6 +334,21 @@ div#loading {
     display: none !important;
 }
 
+.popup,
+.popup_background {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  top: 5%;
+  left: 5%;
+}
+
+.popup {
+  z-index: 101;
+  background: transparent;
+}
+
+
 .popup_close {
   position: absolute;
   z-index: 102;
@@ -348,6 +363,7 @@ div#loading {
 }
 
 .popup_background {
+  z-index: 100;
   border-color: #020202;
   border-style: solid;
   border-radius: 1px;
