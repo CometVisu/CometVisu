@@ -166,11 +166,38 @@ qx.Class.define("cv.Application",
     },
 
     __globalErrorHandler: function(ex) {
-      this.error(ex.toString());
       // connect client data for Bug-Report
       var bugData = cv.report.Record.getClientData();
       var body = "**"+qx.locale.Manager.tr("Please describe what you have done until the error occured?")+"**\n \n\n";
-      body += "**Stacktrace:**\n```\n"+ex.stack+"\n```"+"\n\n**Client-Data:**\n```\n"+qx.lang.Json.stringify(bugData, null, 2)+"\n```";
+      var exString = "";
+      if (ex.getSourceException()) {
+        ex = ex.getSourceException();
+      }
+      else if (ex instanceof qx.core.WindowError) {
+        exString = ex.toString() + "\nin " + ex.getUri() + " line " + ex.getLineNumber();
+      }
+      if (!exString) {
+        exString = ex.name + ": " + ex.message;
+        if (ex.fileName) {
+          exString += "\n in file " + ex.fileName;
+        }
+        if (ex.lineNumber) {
+          exString += "\n line " + ex.lineNumber;
+        }
+        if (ex.description) {
+          exString += "\n Description: " + ex.description;
+        }
+        try {
+          console.log(qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t"));
+          console.log(ex.stack);
+          exString += "\nStack: " + qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t")+"\n";
+        } catch(exc) {
+          if (ex.stack) {
+            exString += "\nStack: " + ex.stack+"\n";
+          }
+        }
+      }
+      body += "```\n"+exString+"\n```\n\n**Client-Data:**\n```\n"+qx.lang.Json.stringify(bugData, null, 2)+"\n```";
       var notification = {
         topic: "cv.error",
         title: qx.locale.Manager.tr("An error occured"),
