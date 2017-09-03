@@ -404,6 +404,8 @@ button.ui-slider-handle {
   top: 33%;
   transform: translate(-50%, -50%);
   left: 50%;
+  width: auto;
+  height: auto;
 }
 
 .popup {
@@ -423,13 +425,6 @@ button.ui-slider-handle {
   background: #000;
   border: 1px solid #fff;
   cursor: pointer;
-}
-
-.popup .head {
-  font-size: 1.3em;
-  font-weight: bold;
-  padding-bottom: 0.5em;
-  margin-bottom: 1em;
 }
 
 .popup_background {
