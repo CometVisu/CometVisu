@@ -308,7 +308,11 @@ qx.Class.define('cv.plugins.RssLog', {
       if (!this.__request) {
         this.__request = new qx.data.store.Yql("SELECT * FROM rss WHERE url='"+this.getSrc()+"'", {
           manipulateData: function (data) {
-            return data.query.results.item || data.query.results.entry;
+            if (data.query.results) {
+              return data.query.results.item || data.query.results.entry;
+            } else {
+              return [];
+            }
           }
         });
 
