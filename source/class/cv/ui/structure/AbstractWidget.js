@@ -88,6 +88,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
     colspanM          : { check: "Number", init: 6, transform: "string2number" },
     colspanS          : { check: "Number", init: 6, transform: "string2number" },
     rowspanClass      : { check: "String", init: "" },
+    containerClass    : { check: "String", nullable: true },
     visible           : {
       check: "Boolean",
       init: false,

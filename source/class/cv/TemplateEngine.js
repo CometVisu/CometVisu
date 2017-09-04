@@ -184,6 +184,8 @@ qx.Class.define('cv.TemplateEngine', {
       }
       else if (backendName === "oh2") {
         this.visu = cv.Application.createClient('openhab2', cv.Config.backendUrl);
+        // auto-load openhab plugin for this backend
+        cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
       } else {
         this.visu = cv.Application.createClient(backendName, cv.Config.backendUrl);
       }
@@ -194,6 +196,27 @@ qx.Class.define('cv.TemplateEngine', {
         this.visu.record = qx.lang.Function.curry(cv.report.Record.getInstance().record, cv.report.Record.BACKEND).bind(cv.report.Record.getInstance());
       }
       this.visu.user = 'demo_user'; // example for setting a user
+
+      // show connection state in NotificationCenter
+      this.visu.addListener("changeConnected", function(ev) {
+        var message = {
+          topic: "cv.client.connection",
+          title: qx.locale.Manager.tr("Connection error"),
+          severity: "urgent",
+          unique: true,
+          deletable: false,
+          condition: !ev.getData()
+        };
+        var lastError = this.visu.getLastError();
+        if (!ev.getData()) {
+          if (lastError && (Date.now() - lastError.time) < 100) {
+            message.message = qx.locale.Manager.tr("Error requesting %1: %2 - %3.", lastError.url, lastError.code, lastError.text);
+          } else {
+            message.message = qx.locale.Manager.tr("Connection to backend is lost.");
+          }
+        }
+        cv.core.notifications.Router.dispatchMessage(message.topic, message);
+      }, this);
     },
 
     /**

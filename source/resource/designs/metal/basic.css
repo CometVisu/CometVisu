@@ -554,55 +554,15 @@ html[xmlns] .clearfix {
 div#loading {
     display: none !important;
 }
-
-
 .popup,
 .popup_background {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  top: 5%;
-  left: 5%;
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
 }
-
-.popup {
-  z-index: 101;
-  background: transparent;
-}
-
-.popup_close {
-  position: absolute;
-  z-index: 102;
-  right: 1em;
-  top: -0.8em;
-  width: 1.2em;
-  text-align: center;
-  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
-  background: #000;
-  border: 1px solid #666;
-  cursor: default;
-}
-
-.popup_background {
-  z-index: 100;
-  border-color: #020202;
-  border-style: solid;
-  border-width: 2px 0px 0px 2px;
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  background: #101010;
-  opacity: .98;
-}
-
-.popup div {
-  margin: 4px;
-}
-
-.popup div.head {
-  border-bottom: 1px solid;
-}
-
+.popup { font-family: Dosis, Helvetica, Arial, sans-serif; }
 .popup_background.error {
   background: #800000;
   border: #f00;
@@ -1089,4 +1049,41 @@ background-image: -o-linear-gradient(top , #ff8000 , #333 );
 }
 .powerspectrum > .actor:only-child {
   width: 100%;
+}
+
+.widget .actor.badge {
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgba(61, 61, 61, 0.9);
+    cursor: pointer;
+    width: 40px !important;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 40px;
+    border: 1px solid #111;
+}
+
+#navbarTop .widget .actor.badge, #navbarBottom .widget .actor.badge {
+    width: 60px !important;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 60px;
+}
+
+/*severities*/
+.actor.badge.urgent {
+    background-color: rgba(255, 0, 0, 0.9);
+}
+
+.actor.badge.high {
+    background-color: rgba(255, 121, 0, 0.9);
+}
+
+.widget.notificationcenterbadge.right {
+    float: right;
+    text-align: center;
+}
+
+.widget_container.float-right {
+    float: right;
 }

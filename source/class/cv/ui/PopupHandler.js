@@ -31,12 +31,44 @@ qx.Class.define('cv.ui.PopupHandler', {
   */
   statics: {
     popups: {},
+    configs: {},
 
     init: function() {
       this.addPopup(new cv.ui.Popup("unknown"));
       this.addPopup(new cv.ui.Popup("info"));
       this.addPopup(new cv.ui.Popup("warning"));
       this.addPopup(new cv.ui.Popup("error"));
+
+      // register to topics
+      cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
+        'cv.config.error': {
+          type: "error",
+          icon: "message_attention"
+        },
+        'cv.error': {
+          type: "error",
+          icon: "message_attention"
+        }
+      });
+    },
+
+    handleMessage: function(message, config) {
+      var popupConfig = {
+        title: message.title,
+        content: message.message,
+        closable: message.deletable,
+        icon: config.icon,
+        actions: message.actions
+      };
+      // popups are always unique
+      if (cv.core.notifications.Router.evaluateCondition(message)) {
+        this.showPopup(config.type, popupConfig);
+      } else {
+        var popup = this.getPopup(config.type);
+        if (!popup.isClosed()) {
+          popup.close();
+        }
+      }
     },
 
     /**
@@ -48,6 +80,9 @@ qx.Class.define('cv.ui.PopupHandler', {
      */
     showPopup: function (type, attributes) {
       var popup = this.getPopup(type);
+      if (!popup.isClosed()) {
+        popup.close();
+      }
       popup.create(attributes);
       return popup;
     },
@@ -165,6 +200,7 @@ qx.Class.define('cv.ui.PopupHandler', {
   },
 
   defer: function(statics) {
-    qx.event.message.Bus.subscribe("setup.dom.finished", statics.init, statics);
+    // qx.event.message.Bus.subscribe("setup.dom.finished", statics.init, statics);
+    statics.init();
   }
 });

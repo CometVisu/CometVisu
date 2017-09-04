@@ -166,11 +166,22 @@ qx.Class.define('cv.io.Client', {
    */
   properties: {
     /**
-     * is the communication running at the moment?
+     * Is the communication running at the moment?
      */
     running : {
       check: "Boolean",
-      init: false
+      init: false,
+      event: "changeRunning"
+    },
+
+    /**
+     * Is the client connected to a backend at the moment?
+     */
+    connected: {
+      check: "Boolean",
+      init: false,
+      event: "changeConnected",
+      apply: "_applyConnected"
     },
 
     /**
@@ -208,6 +219,14 @@ qx.Class.define('cv.io.Client', {
 
     loginSettings : null,
     headers: null,
+    __lastError: null,
+
+    // property apply
+    _applyConnected: function(value) {
+      if (value === true) {
+        this.__lastError = null;
+      }
+    },
 
     setInitialAddresses: function(addresses) {
       this.initialAddresses = addresses;
@@ -443,11 +462,38 @@ qx.Class.define('cv.io.Client', {
         }, options || {}));
         if (callback) {
           ajaxRequest.addListener("success", callback, context);
+          ajaxRequest.addListener("statusError", this._onError, this);
         }
         ajaxRequest.send();
         return ajaxRequest;
       }
     }),
+
+    /**
+     * Handle errors from qooxdoos XHR request
+     * @param ev {Event}
+     */
+    _onError: function(ev) {
+      var req = ev.getTarget();
+      this.__lastError = {
+        code: req.getStatus(),
+        text: req.getStatusText(),
+        response: req.getResponse(),
+        url: req.getUrl(),
+        time: Date.now()
+      };
+      this.setConnected(false);
+      this.fireDataEvent("changeConnected", false);
+    },
+
+    /**
+     * Get the last recorded error
+     *
+     * @return {{code: (*|Integer), text: (*|String), response: (*|String|null), url: (*|String), time: number}|*}
+     */
+    getLastError: function() {
+      return this.__lastError;
+    },
 
     /**
      * Handles login response, applies backend configuration if send by

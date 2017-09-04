@@ -344,14 +344,12 @@ div#loading {
 }
 
 .popup {
-  z-index: 101;
   background: transparent;
 }
 
 
 .popup_close {
   position: absolute;
-  z-index: 102;
   right: 1em;
   top: -0.8em;
   width: 1.2em;
@@ -363,7 +361,6 @@ div#loading {
 }
 
 .popup_background {
-  z-index: 100;
   border-color: #020202;
   border-style: solid;
   border-radius: 1px;

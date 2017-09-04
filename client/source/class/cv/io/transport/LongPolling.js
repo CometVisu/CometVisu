@@ -111,12 +111,18 @@ qx.Class.define('cv.io.transport.LongPolling', {
       if (this.doRestart || (!json && (-1 === this.lastIndex))) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
+          var delay = 100 * Math.pow(this.retryCounter, 2);
           this.retryCounter++;
+          if (this.doRestart) {
+            // planned restart, only inform user
+            this.info("restarting XHR read requests in "+delay+" ms");
+          } else {
+            this.error("restarting XHR read requests in "+delay+" ms");
+          }
           qx.event.Timer.once(function () {
-            this.error("restarting XHR read requests");
             this.__startReading();
             this.client.watchdog.ping(true);
-          }, this, 100 * Math.pow(this.retryCounter, 2));
+          }, this, delay);
         }
         return;
       }
@@ -129,6 +135,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.client.update(data);
         this.retryCounter = 0;
         this.client.setDataReceived(true);
+        this.client.setConnected(true);
       }
 
       if (this.running) { // keep the requests going
@@ -156,6 +163,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.readResendHeaderValues();
         this.client.update(json.d);
         this.client.setDataReceived(true);
+        this.client.setConnected(true);
       }
       if (this.running) { // keep the requests going, but only
         // request
@@ -189,6 +197,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         // ignore error when connection is irrelevant
         if (this.running && req.getReadyState() !== 4 && !this.doRestart && req.getStatus() !== 0) {
           this.error('Error! Type: "' + req.getResponse() + '" readyState: ' + req.getStatusText());
+          this.client.setConnected(false);
         }
       },
       "jquery": function(xhr, str, excptObj) {
@@ -213,6 +222,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
               break;
           }
           this.error('Error! Type: "' + str + '" ExceptionObject: "'+ excptObj + '" readyState: ' + readyState);
+          this.client.setConnected(false);
         }
       }
     }),
@@ -276,7 +286,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
     abort: function () {
       if (this.xhr && this.xhr.abort) {
         this.xhr.abort();
-        this.xhr.dispose();
+        this.xhr = null;
 
         if (this.client.backend && this.client.backend.hooks.onClose) {
           this.client.backend.hooks.onClose.bind(this);

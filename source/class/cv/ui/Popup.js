@@ -77,20 +77,23 @@ qx.Class.define('cv.ui.Popup', {
      * @return {Element} Popup as DOM Element
      */
     create: function (attributes) {
+      cv.ui.BodyBlocker.getInstance().block();
+      var closable = !attributes.hasOwnProperty("closable") || attributes.closable;
       var body = qx.bom.Selector.query('body')[0];
-      qx.bom.Html.clean(['<div id="popup_'+this.__counter+'" class="popup popup_background" style="display:none"><div class="popup_close">X</div></div>'],
-        null, body);
-      var ret_val = this.__domElement = qx.bom.Selector.query("#popup_"+this.__counter, body)[0];
-
-      qx.bom.element.Class.add(ret_val, this.getType());
+      var ret_val = this.__domElement = qx.dom.Element.create("div", {
+        id: "popup_"+this.__counter,
+        "class": "popup popup_background "+this.getType(),
+        style: "display:none",
+        html: closable ? '<div class="popup_close">X</div>' : ""
+      });
+      qx.dom.Element.insertEnd(ret_val, body);
 
       if (attributes.title) {
-        var title = qx.bom.Html.clean(['<div class="head"></div>'])[0];
+        var title = qx.dom.Element.create("div", { "class": "head"});
         qx.dom.Element.insertEnd(title, ret_val);
 
         if (qx.lang.Type.isString(attributes.title)) {
-          var titleContent = qx.bom.Html.clean([attributes.title])[0];
-          qx.dom.Element.insertEnd(titleContent, title);
+          qx.bom.element.Attribute.set(title, "html", ""+attributes.title);
         } else {
           qx.dom.Element.insertEnd(attributes.title, title);
         }
@@ -98,14 +101,28 @@ qx.Class.define('cv.ui.Popup', {
       }
 
       if (attributes.content) {
-        var content = qx.bom.Html.clean(['<div class="main"></div>'])[0];
+        var content = qx.dom.Element.create("div", { "class": "main"});
         qx.dom.Element.insertEnd(content, ret_val);
         if (qx.lang.Type.isString(attributes.content)) {
-          var mainContent =  qx.bom.Html.clean([attributes.content])[0];
-          qx.dom.Element.insertEnd(mainContent, content);
+          var html = ""+attributes.content;
+          if (attributes.icon) {
+            var icon = qx.util.ResourceManager.getInstance().toUri("icon/knx-uf-iconset.svg")+"#kuf-"+attributes.icon;
+            html = '<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'+icon+'"></use></svg>'+html;
+          }
+          qx.bom.element.Attribute.set(content, "html", html);
         } else {
           qx.dom.Element.insertEnd(attributes.content, content);
         }
+      }
+
+      if (attributes.actions && Object.getOwnPropertyNames(attributes.actions).length > 0) {
+        var actions = qx.dom.Element.create("div", {"class": "actions"});
+
+        Object.getOwnPropertyNames(attributes.actions).forEach(function(type) {
+          var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, attributes.actions[type]);
+          qx.dom.Element.insertEnd(actionButton, actions);
+        });
+        qx.dom.Element.insertEnd(actions, ret_val);
       }
 
       if (attributes.width) {
@@ -156,21 +173,21 @@ qx.Class.define('cv.ui.Popup', {
       qx.bom.element.Style.set(ret_val, 'left', placement.x);
       qx.bom.element.Style.set(ret_val, 'top', placement.y);
 
-      this.addListener('close', this.close, this);
-      qx.event.Registration.addListener(ret_val, 'tap', function () {
-        // note: this will call two events - one for the popup itself and
-        //       one for the popup_background.
-        this.fireEvent('close');
-      }, this);
-      var close = qx.bom.Selector.query(".popup_close", ret_val)[0];
-      qx.event.Registration.addListener(close, 'tap', function () {
-        this.fireEvent('close');
-      }, this);
+      if (closable) {
+        this.addListener('close', this.close, this);
+        qx.event.Registration.addListener(ret_val, 'tap', function () {
+          // note: this will call two events - one for the popup itself and
+          //       one for the popup_background.
+          this.fireEvent('close');
+        }, this);
+        var close = qx.bom.Selector.query(".popup_close", ret_val)[0];
+        qx.event.Registration.addListener(close, 'tap', function () {
+          this.fireEvent('close');
+        }, this);
+      }
 
       qx.bom.element.Style.set(ret_val, 'display', 'block');
-      qx.bom.Selector.query(this.__deactivateSelectors.join(",")).forEach(function(elem) {
-        qx.bom.element.Class.add(elem, 'inactiveMain');
-      }, this);
+      attributes.id = this.__counter;
       this.__counter++;
       return ret_val;
     },
@@ -179,13 +196,15 @@ qx.Class.define('cv.ui.Popup', {
      * Closes this popup
      */
     close: function () {
-      qx.bom.Selector.query(this.__deactivateSelectors.join(",")).forEach(function(elem) {
-        qx.bom.element.Class.remove(elem, 'inactiveMain');
-      }, this);
+      cv.ui.BodyBlocker.getInstance().unblock();
       if (this.__domElement) {
         qx.dom.Element.remove(this.__domElement);
         this.__domElement = null;
       }
+    },
+
+    isClosed: function(){
+      return this.__domElement === null;
     }
   }
 });

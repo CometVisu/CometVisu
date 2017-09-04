@@ -170,5 +170,6 @@ sonstiges
 .. toctree::
     :maxdepth: 1
 
+    notifications
     rrd_examples
     hydraulik
