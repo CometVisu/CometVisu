@@ -13,7 +13,6 @@
   "manual":
     "de": "/de/latest/manual/config/widgets/plugins/colorchooser/index.html"
   "name": "ColorChooser"
-  "screenshot": "/de/latest/manual/_images/colorchooser_simple.png"
 - "description":
     "de": "RRD-basierte Diagramme"
     "en": "RRD based graphs."
@@ -40,7 +39,6 @@
     "de": "/de/latest/manual/config/widgets/plugins/powerspectrum/index.html"
     "en": "/en/latest/manual/config/widgets/plugins/powerspectrum/index.html"
   "name": "PowerSpectrum"
-  "screenshot": "/de/latest/manual/_images/powerspectrum.png"
 - "description":
     "de": "RSS"
     "en": "Display of RSS feed."
@@ -80,6 +78,12 @@
     "de": "UPNP-Controller"
     "en": "UPNP Controller."
   "name": "UPNPController"
+- "description":
+    "de": "Verbesserte Integration mit dem openHAB2 Backend"
+  "manual":
+    "de": "/de/latest/manual/config/widgets/plugins/openhab/index.html"
+  "name": "openHAB"
+  "screenshot": {}
 "widgets":
 - "description":
     "de": "Mit diesem Widget kann in die Visu eine Audio-Datei eingebunden werden, die sich über eine Adresse abspielen lässt."
@@ -89,6 +93,12 @@
     "en": "/en/latest/manual/config/widgets/audio/index.html"
   "name": "Audio"
   "screenshot": "/de/latest/manual/_images/audio_simple.png"
+- "description":
+    "de": "Das NotificationCenterBadge Widget zeigt die aktuelle Anzahl der Nachrichten in der Benachrichtungszentrale an und öffnet diese, wenn es angeklickt wird."
+  "manual":
+    "de": "/de/latest/manual/config/widgets/notificationcenterbadge/index.html"
+  "name": "Badge"
+  "screenshot": {}
 - "description":
     "de": "Fügt der Visu einen Zeilenumbruch hinzu."
     "en": "Adds a line break to the visu."
