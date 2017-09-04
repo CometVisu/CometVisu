@@ -40,7 +40,7 @@ body
   float: left;
   display: block;
 }
-#centerContainer.inactiveMain {
+.blurred {
   -webkit-filter: blur(3px);
   filter: blur(3px);
 }

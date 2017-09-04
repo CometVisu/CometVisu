@@ -46,6 +46,10 @@ qx.Class.define('cv.ui.BodyBlocker', {
     block: function() {
       this.base(arguments, this.__getBody());
       this.__counter++;
+
+      qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
+        qx.bom.element.Class.add(elem, "blurred");
+      });
     },
 
     unblock: function() {
@@ -53,6 +57,9 @@ qx.Class.define('cv.ui.BodyBlocker', {
       if (this.__counter <= 0) {
         this.base(arguments);
       }
+      qx.bom.Selector.query("#centerContainer, #navbarTop, #top, #navbarBottom").forEach(function(elem) {
+        qx.bom.element.Class.remove(elem, "blurred");
+      });
     },
 
     __getBody: function() {
