@@ -107,7 +107,6 @@ qx.Class.define('cv.ui.Popup', {
           var html = ""+attributes.content;
           if (attributes.icon) {
             var icon = qx.util.ResourceManager.getInstance().toUri("icon/knx-uf-iconset.svg")+"#kuf-"+attributes.icon;
-            console.log(icon);
             html = '<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'+icon+'"></use></svg>'+html;
           }
           qx.bom.element.Attribute.set(content, "html", html);
