@@ -401,7 +401,7 @@ button.ui-slider-handle {
 .popup_background.info {
   position: absolute;
   padding: 30px;
-  top: 33%;
+  top: 50%;
   transform: translate(-50%, -50%);
   left: 50%;
   width: auto;
