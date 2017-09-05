@@ -68,7 +68,7 @@ qx.Class.define("cv.core.notifications.actions.Link", {
       ev.stopPropagation();
       ev.preventDefault();
       if (this.getAction()) {
-        this.getAction()();
+        this.getAction()(ev);
       }
       if (this.getUrl()) {
         window.open(this.getUrl(), '_blank');
