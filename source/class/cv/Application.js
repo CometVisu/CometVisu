@@ -205,15 +205,24 @@ qx.Class.define("cv.Application",
         severity: "urgent",
         deletable: false,
         actions: {
-          link: {
-            title: qx.locale.Manager.tr("Report Bug"),
-            url: "https://github.com/CometVisu/CometVisu/issues/new?" + qx.util.Uri.toParameter({
-              labels: "bug / bugfix",
-              title: ex.toString(),
-              body: body
-            }),
-            needsConfirmation: false
-          }
+          link: [
+            {
+              title: qx.locale.Manager.tr("Reload"),
+              action: function() {
+                cv.util.Location.reload(true);
+              },
+              needsConfirmation: false
+            },
+            {
+              title: qx.locale.Manager.tr("Report Bug"),
+              url: "https://github.com/CometVisu/CometVisu/issues/new?" + qx.util.Uri.toParameter({
+                labels: "bug / bugfix",
+                title: ex.toString(),
+                body: body
+              }),
+              needsConfirmation: false
+            }
+          ]
         }
       };
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
