@@ -455,10 +455,11 @@ button.ui-slider-handle {
   font-size: 0.8em;
 }
 
-.popup .actions { text-align: center; }
+.popup .actions { text-align: center; white-space: nowrap; clear: both; }
 .popup .actions button {
   padding: 0.3em 1em;
   font-size: 0.9em;
+  margin: 0 0.5em;
 }
 
 .popup_background.error {
