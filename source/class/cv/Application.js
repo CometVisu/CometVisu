@@ -188,8 +188,6 @@ qx.Class.define("cv.Application",
           exString += "\n Description: " + ex.description;
         }
         try {
-          console.log(qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t"));
-          console.log(ex.stack);
           exString += "\nStack: " + qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t")+"\n";
         } catch(exc) {
           if (ex.stack) {
