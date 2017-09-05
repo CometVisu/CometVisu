@@ -198,8 +198,10 @@ qx.Class.define("cv.Application",
         }
       }
       body += "```\n"+exString+"\n```\n\n**Client-Data:**\n```\n"+qx.lang.Json.stringify(bugData, null, 2)+"\n```";
+
       var notification = {
         topic: "cv.error",
+        target: cv.ui.PopupHandler,
         title: qx.locale.Manager.tr("An error occured"),
         message: "<pre>"+ex.stack+"</pre>",
         severity: "urgent",
@@ -208,23 +210,50 @@ qx.Class.define("cv.Application",
           link: [
             {
               title: qx.locale.Manager.tr("Reload"),
-              action: function() {
-                cv.util.Location.reload(true);
+              action: function(ev) {
+                var parent = ev.getTarget().parentNode;
+                while (parent) {
+                  if (parent.id === "notification-center" || qx.bom.element.Class.has(parent, "popup")) {
+                    break;
+                  }
+                  parent = parent.parentNode;
+                }
+                var box = qx.bom.Selector.query(".enableReporting", parent)[0];
+                if (box.checked) {
+                  // reload with reporting enabled
+                  var url = window.location.href.split("#").shift();
+                  cv.util.Location.setHref(qx.util.Uri.appendParamsToUrl(url, "reporting=true"));
+                } else {
+                  cv.util.Location.reload(true);
+                }
               },
-              needsConfirmation: false
-            },
-            {
-              title: qx.locale.Manager.tr("Report Bug"),
-              url: "https://github.com/CometVisu/CometVisu/issues/new?" + qx.util.Uri.toParameter({
-                labels: "bug / bugfix",
-                title: ex.toString(),
-                body: body
-              }),
               needsConfirmation: false
             }
           ]
         }
       };
+      // reload with reporting checkbox
+      var reportAction = null;
+      if (cv.Config.reporting) {
+        // reporting is enabled -> download log and show hint how to append it to the ticket
+        body = '<!--\n'+qx.locale.Manager.tr("Please do not forget to attach the downloaded Logfile to this ticket.")+'\n-->\n\n'+body;
+        reportAction = cv.report.Record.download;
+      } else {
+        notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+'</div>';
+
+      }
+      notification.actions.link.push(
+        {
+          title: qx.locale.Manager.tr("Report Bug"),
+          url: "https://github.com/CometVisu/CometVisu/issues/new?" + qx.util.Uri.toParameter({
+            labels: "bug / bugfix",
+            title: ex.toString(),
+            body: body
+          }),
+          action: reportAction,
+          needsConfirmation: false
+        }
+      );
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
     },
 
