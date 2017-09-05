@@ -239,7 +239,11 @@ qx.Class.define("cv.Application",
         body = '<!--\n'+qx.locale.Manager.tr("Please do not forget to attach the downloaded Logfile to this ticket.")+'\n-->\n\n'+body;
         reportAction = cv.report.Record.download;
       } else {
-        notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+'</div>';
+        var link = "";
+        if (qx.locale.Manager.getInstance().getLocale() === "de") {
+          link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+        }
+        notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
 
       }
       notification.actions.link.push(
