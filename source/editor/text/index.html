@@ -12,7 +12,13 @@
         <span id="errors"></span>
     </div>
     <div id="container"></div>
+    <script>
+      var documentationMappingPrefix = "../";
+    </script>
     <script src="../dependencies/jquery.min.js"></script>
+    <script src="../dependencies/jquery.xpath.min.js"></script>
+    <script src="../lib/Messages.js"></script>
+    <script src="../lib/Schema.js"></script>
     <script src="./utils.js"></script>
     <script src="./xmllint.js"></script>
     <script src="../../../node_modules/monaco-editor/dev/vs/loader.js"></script>
@@ -112,24 +118,48 @@
             });
         }
 
-        function showErrors(errors) {
+        function showErrors(errorList) {
           var markers = [];
           var model = editor.getModel();
           // "file_0.xml:286: element layout: Schemas validity error : Element 'layout': This element is not expected."
-          if (errors) {
-            errors.forEach(function (error) {
-              var parts = error.split(":");
-              var file = parts.shift();
-              var line = parseInt(parts.shift());
+          if (errorList) {
+//            console.error(errorList);
+            var currentMessage = null;
+            // collect complete error messages
+            errorList.forEach(function (error) {
+              if (/.*\.xml:[\d]+:.+/.test(error)) {
+                if (currentMessage !== null) {
+                  markers.push({
+                    severity: monaco.Severity.Error,
+                    startLineNumber: currentMessage.line,
+                    startColumn: 1,
+                    endLineNumber: currentMessage.line,
+                    endColumn: model.getLineContent(currentMessage.line).length,
+                    message: currentMessage.message
+                  });
+                }
+                // add marker for completed message
+                var parts = error.split(":");
+                var file = parts.shift();
+                var line = parseInt(parts.shift());
 
-              markers.push({
-                severity: monaco.Severity.Error,
-                startLineNumber: line,
-                startColumn: 1,
-                endLineNumber: line,
-                endColumn: model.getLineContent(line).length,
-                message: parts.slice(2).join(":")
-              });
+                // in the last part there might be a more precise line number for the error
+                var match = /.+line ([\d]+) -+/.exec(parts[parts.length-1]);
+                if (match) {
+                  line = parseInt(match[1])
+                }
+                if (isNaN(line)) {
+                  return;
+                }
+                // new error line
+                currentMessage = {
+                  line: line,
+                  message: parts.slice(-2).join(":"),
+                  file: file
+                };
+              } else {
+                currentMessage.message += "\n"+error;
+              }
             });
           }
           monaco.editor.setModelMarkers(model, '', markers);
@@ -137,9 +167,10 @@
 
         // strip namespace
 //        schema = schema.replace(/xsd\:/g, '');
-//        var schemaNode = stringToXml(schema).childNodes[0];
-//        var completionProvider = new CompletionProvider(monaco, schemaNode);
-//        monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
+        var schemaNode = stringToXml(schema);
+        var parsedSchema = new Schema("visu_config.xsd", schemaNode);
+        var completionProvider = new CompletionProvider(monaco, parsedSchema);
+        monaco.languages.registerCompletionItemProvider('xml', completionProvider.getProvider());
 
         saveButton.addEventListener("click", save);
 

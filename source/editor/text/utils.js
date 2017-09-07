@@ -2,7 +2,7 @@ function stringToXml(text) {
   var xmlDoc;
   if (window.DOMParser) {
     var parser = new DOMParser();
-    xmlDoc = parser.parseFromString(text, 'text/xml');
+    xmlDoc = parser.parseFromString(text, 'application/xml');
   }
   else {
     xmlDoc = new ActiveXObject('Microsoft.XMLDOM');
