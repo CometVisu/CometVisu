@@ -35,6 +35,7 @@ define('BACKUP_FILENAME', '../../resource/config/backup/visu_config%s-%s.xml');
 // get everything the user has provided ...
 $strJson   = (true === isset($_POST['data']))   ? $_POST['data']   : null;
 $strConfig = (true === isset($_POST['config'])) ? $_POST['config'] : null;
+$configType = (true === isset($_POST['configType'])) ? $_POST['configType'] : "json";
 
 $strConfigSuffix = preg_replace('/^resource\/config\/visu_config(_?.*?)\.xml$/', '$1', $strConfig);
 
@@ -74,7 +75,6 @@ if ($strConfigCleaned !== '_previewtemp' && $isOhGenerated === false) {
 if (true === empty($strJson)) {
     exitWithResponse(false, 'no configuration-content given');
 }
-
 // decode json
 if (true === function_exists("get_magic_quotes_gpc") && 1 == get_magic_quotes_gpc()) {
     // magic_quotes are on, so we have to remove those unneccessary slashes from input
@@ -89,25 +89,25 @@ if (false === is_array($arrData) || true ===  empty($arrData)) {
         // json_last_error is only available with PHP >= 5.3
         switch (json_last_error()) {
             case JSON_ERROR_NONE:
-                echo ' - No errors';
+                $strResponse .= ' - No errors';
                 break;
             case JSON_ERROR_DEPTH:
-                echo ' - Maximum stack depth exceeded';
+                $strResponse .= ' - Maximum stack depth exceeded';
                 break;
             case JSON_ERROR_STATE_MISMATCH:
-                echo ' - Underflow or the modes mismatch';
+                $strResponse .= ' - Underflow or the modes mismatch';
                 break;
             case JSON_ERROR_CTRL_CHAR:
-                echo ' - Unexpected control character found';
+                $strResponse .= ' - Unexpected control character found';
                 break;
             case JSON_ERROR_SYNTAX:
-                echo ' - Syntax error, malformed JSON';
+                $strResponse .= ' - Syntax error, malformed JSON';
                 break;
             case JSON_ERROR_UTF8:
-                echo ' - Malformed UTF-8 characters, possibly incorrectly encoded';
+                $strResponse .= ' - Malformed UTF-8 characters, possibly incorrectly encoded';
                 break;
             default:
-                echo ' - Unknown error ' . json_last_error();
+                $strResponse .= ' - Unknown error ' . json_last_error();
                 break;
         }
     }
@@ -119,11 +119,14 @@ try {
     $objDOM = new DOMDocument('1.0', 'UTF-8');
     $objDOM->formatOutput = true;
 
+    if ($configType === "string") {
+        $objDOM->loadXML($arrData[0]);
+    } else {
 
-    foreach ($arrData as $arrRootNodeData) {
-        $objDOM->appendChild(createDOMFromData($objDOM, $arrRootNodeData));
+      foreach ($arrData as $arrRootNodeData) {
+          $objDOM->appendChild(createDOMFromData($objDOM, $arrRootNodeData));
+      }
     }
-
 
     $objDOM->preserveWhiteSpace = false;
     $objDOM->formatOutput = true;
