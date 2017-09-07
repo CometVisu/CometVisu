@@ -24,3 +24,5 @@ body {
     width: 5px !important;
     left: 3px;
 }
+
+#errors, .error { color: red; font-weight: bold; }

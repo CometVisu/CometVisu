@@ -40,41 +40,43 @@ function debounce(innerFunc, delay) {
 }
 
 function saveConfig(filename, data) {
-  $.ajax('../bin/save_config.php',
-    {
-      dataType: 'json',
-      data: {
-        config: filename,
-        data: JSON.stringify([data]),
-        configType: "string"
-      },
-      type: 'POST',
-      cache: false,
-      success: function (data) {
-        if (!data) {
-          // some weird generic error
-          console.error('configuration_saving_error');
-          return;
-        }
-
-        if (data.success === false) {
-          // we have an error.
-          var message;
-
-          if (data.message) {
-            message = data.message;
+  return new Promise(function(resolve, reject) {
+    $.ajax('../bin/save_config.php',
+      {
+        dataType: 'json',
+        data: {
+          config: filename,
+          data: JSON.stringify([data]),
+          configType: "string"
+        },
+        type: 'POST',
+        cache: false,
+        success: function (data) {
+          if (!data) {
+            // some weird generic error
+            reject('configuration_saving_error');
+            return;
           }
-          console.error("error saving config "+message);
-          return;
+
+          if (data.success === false) {
+            // we have an error.
+            var message;
+
+            if (data.message) {
+              message = data.message;
+            }
+            reject("error saving config "+message);
+            return;
+          }
+
+          // everything is pretty cool.
+          resolve('configuration_saving_success');
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          reject('configuration_saving_error', textStatus, errorThrown);
         }
-
-        // everything is pretty cool.
-        console.log('configuration_saving_success');
-
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        console.error('configuration_saving_error', textStatus, errorThrown);
       }
-    }
-  );
+    );
+  });
 }
