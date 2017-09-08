@@ -25,6 +25,7 @@ function CompletionProvider(monaco, schemaNode) {
             // we found our tag, but let's get the information if we are looking for
             // a child element or an attribute
             text = text.substring(tagPosition);
+
             var openedTag = text.indexOf('<') > text.indexOf('>');
             var contentSearch = openedTag && /="[^"]*$/.test(text)
             return {
@@ -44,7 +45,7 @@ function CompletionProvider(monaco, schemaNode) {
   }
 
   function findElements(parent, elementName, maxDepth, currentDepth) {
-    if (maxDepth <= currentDepth) {
+    if (maxDepth < currentDepth) {
       return null;
     }
     if (!parent) {
@@ -54,13 +55,18 @@ function CompletionProvider(monaco, schemaNode) {
       currentDepth = 1;
     }
     var allowedElements = parent.getAllowedElements();
+    // console.log(parent.name+" looking for "+elementName+" in tree level "+currentDepth+ "(<"+maxDepth+") ("+Object.getOwnPropertyNames(allowedElements).join(", ")+")");
     if (elementName in allowedElements) {
+      // console.log("found "+elementName+" in tree level "+currentDepth);
       return allowedElements[elementName];
     } else {
       for (var element in allowedElements) {
-        var result = findElements(allowedElements[element], elementName, maxDepth, currentDepth++);
-        if (result) {
-          return result;
+        if (maxDepth > currentDepth) {
+          var result = findElements(allowedElements[element], elementName, maxDepth, currentDepth + 1);
+          if (result) {
+            // console.log("found " + elementName + " in tree level " + currentDepth);
+            return result;
+          }
         }
       }
     }
@@ -69,7 +75,7 @@ function CompletionProvider(monaco, schemaNode) {
 
   function getAreaInfo(text) {
     // opening for strings, comments and CDATA
-    var items = ['"', '\'', '<!--', '<![CDATA['];
+    var items = ['<!--', '<![CDATA['];
     var isCompletionAvailable = true;
     // remove all comments, strings and CDATA
     text = text.replace(/"([^"\\]*(\\.[^"\\]*)*)"|\'([^\'\\]*(\\.[^\'\\]*)*)\'|<!--([\s\S])*?-->|<!\[CDATA\[(.*?)\]\]>/g, '');
@@ -116,11 +122,48 @@ function CompletionProvider(monaco, schemaNode) {
     return count === 0 || parseInt(maxOccurs) > count;
   }
 
+  function getElementString(element, indent, prefix) {
+    var insertText = indent+prefix+element.name+" ";
+    // add all required attributes with default values
+    Object.getOwnPropertyNames(element.allowedAttributes).forEach(function(attr) {
+      var attribute = element.allowedAttributes[attr];
+      if (!attribute.isOptional) {
+        insertText += attr+'="'+(attribute.defaultValue ? attribute.defaultValue : "")+'" ';
+      }
+    });
+    // add mandatory children
+    var requiredElements = element.getRequiredElements();
+    var allowedContent = element.getAllowedContent();
+    var isContentAllowed = allowedContent._text || requiredElements.length > 0;
+    if (!isContentAllowed) {
+      // close tag
+      insertText = insertText.trim()+"/";
+    } else {
+      // close open tag
+      insertText = insertText.trim()+">";
+
+      // insert required elements
+      var children = 0;
+      requiredElements.forEach(function(elemName) {
+        var elem = findElements(element, elemName, 1, 0);
+        if (elem) {
+          insertText += "\n    " + getElementString(elem, indent + "    ", "<") + ">";
+          children++;
+        }
+      });
+      // add closing tag
+      if (children > 0) {
+        insertText += "\n"+indent;
+      }
+      insertText += "</"+element.name;
+    }
+    return insertText;
+  }
+
   function getAvailableElements(monaco, element, usedItems) {
     var availableItems = [];
     var children = element.getAllowedElements();
 
-    console.log(children);
     // if there are no such elements, then there are no suggestions
     if (!children) {
       return [];
@@ -133,9 +176,10 @@ function CompletionProvider(monaco, schemaNode) {
         // mark it as a 'field', and get the documentation
         availableItems.push({
           label: childElem.name,
+          insertText: getElementString(childElem, "", ""),
           kind: monaco.languages.CompletionItemKind.Field,
           detail: childElem.type,
-          documentation: childElem.getDocumentation()
+          documentation: childElem.getDocumentation().join("\n")
         });
       }
     });
@@ -154,9 +198,10 @@ function CompletionProvider(monaco, schemaNode) {
         // mark it as a 'property', and get it's documentation
         availableItems.push({
           label: attr.name,
+          insertText: attr.name+'=""',
           kind: monaco.languages.CompletionItemKind.Property,
           detail: attr.getTypeString(),
-          documentation: attr.getDocumentation()
+          documentation: attr.getDocumentation().join("\n")
         });
       }
     });
@@ -167,7 +212,7 @@ function CompletionProvider(monaco, schemaNode) {
 
   this.getProvider = function() {
     return {
-      triggerCharacters: ['<'],
+      triggerCharacters: ['<', '"'],
       provideCompletionItems: function (model, position) {
         // get editor content before the pointer
         var textUntilPosition = model.getValueInRange({
@@ -226,8 +271,7 @@ function CompletionProvider(monaco, schemaNode) {
           }
           if (!lastFound) {
             // fallback -> parse string
-            console.log(lastOpenedTag.text);
-            if (isAttributeSearch) {
+            if (isAttributeSearch || isContentSearch) {
               var parts = lastOpenedTag.text.split(" ");
               // skip tag name
               parts.shift();
@@ -239,13 +283,29 @@ function CompletionProvider(monaco, schemaNode) {
         }
         // find the last opened tag in the schema to see what elements/attributes it can have
         var searchedElement = openedTags[openedTags.length-1];
+        if (isContentSearch) {
+          searchedElement = lastOpenedTag.tagName;
+        }
         var currentItem = findElements(schemaNode.allowedRootElements.pages, searchedElement, openedTags.length);
         var res = [];
 
         // return available elements/attributes if the tag exists in the schema, or an empty
         // array if it doesn't
         if (isContentSearch) {
-          // TODO
+          var currentAttribute = usedItems[usedItems.length-1];
+
+          if (currentItem && currentAttribute in currentItem.allowedAttributes) {
+            var attribute = currentItem.allowedAttributes[currentAttribute];
+            var type = attribute.getTypeString();
+            attribute.getEnumeration().forEach(function(entry) {
+              res.push({
+                label: entry,
+                kind: monaco.languages.CompletionItemKind.Value,
+                detail: type,
+                documentation: attribute.getDocumentation().join("\n")
+              });
+            });
+          }
         }
         else if (isAttributeSearch) {
           // get attributes completions
