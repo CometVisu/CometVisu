@@ -10,8 +10,8 @@ Bei *Server sent events* wird eine einmalige lesende Verbindung aufgebaut. Über
 initial einmalig alle angefragten Werte, danach nur noch geänderte Werte.
 
 .. HINT::
-Der Browser kümmert sich automatisch um die Wiederherstellung der Verbindung bei Abbrüchen.
-    Daher ist der interne *Watchdog* bei SSE in der Regel nicht zum Einsatz.
+    Der Browser kümmert sich automatisch um die Wiederherstellung der Verbindung bei Abbrüchen.
+    Daher kommt der interne *Watchdog* bei SSE in der Regel nicht zum Einsatz.
 
 Der Browser muss diese Technologie jedoch überstützen.
 Eine Übersicht der unterstützen Browser liefert `Caniuse <http://caniuse.com/eventsource/embed/>`__.
