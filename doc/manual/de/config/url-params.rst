@@ -153,6 +153,8 @@ funktionieren.
     Default: 0 (testMode=0)
     Options: 0 (testMode=0), 1 (testMode=1)
 
+.. _enableCache:
+
 *enableCache* - Caching aktivieren
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

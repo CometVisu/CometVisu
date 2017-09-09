@@ -175,7 +175,7 @@
   <xsd:attribute name="flavour" type="xsd:string">
     <xsd:annotation>
       <xsd:appinfo>level:expert</xsd:appinfo>
-      <xsd:documentation xml:lang="en">Selection of a display variant. See also :ref:'flavour'.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Selection of a display variant. See also :ref:`flavour`.</xsd:documentation>
       <xsd:documentation xml:lang="de">Auswahl der Darstellungsvariante. Siehe auch :ref:`Flavour &lt;flavour&gt;`.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
