@@ -51,11 +51,23 @@ function hashCode(string) {
   return hash;
 }
 
-
+/**
+ * Called after editor has been loaded with a config file
+ * @param data {Map}
+ */
 function openFile(data) {
   initialCode = data.code.split("\n");
   initialHash = hashCode(data.code);
   schema = data.schema;
+}
+
+/**
+ * Called after file has been saved
+ * @param data {String} Complete code
+ */
+function savedFile(data) {
+  initialCode = data.split("\n");
+  initialHash = hashCode(data);
 }
 
 function contentChange(data) {
