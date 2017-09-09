@@ -263,6 +263,7 @@ Mithilfe bei der Entwicklung
     * ..
 
 .. toctree::
+    :glob:
 
     dev/test
 
