@@ -23,6 +23,7 @@
  * @author Tobias Bräutigam
  */
 function CompletionProvider(monaco, schemaNode) {
+  var __elementCache = {};
 
   function getLastOpenedTag(text) {
     // get all tags inside of the content
@@ -50,10 +51,12 @@ function CompletionProvider(monaco, schemaNode) {
             text = text.substring(tagPosition);
 
             var openedTag = text.indexOf('<') > text.indexOf('>');
-            var contentSearch = openedTag && /="[^"]*$/.test(text)
+            var contentSearch = openedTag && /="[^"]*$/.test(text);
+            var space = text.indexOf(" ") >= 0;
             return {
               tagName: tag,
-              isAttributeSearch: openedTag && !contentSearch,
+              filteredElementSearch: !space,
+              isAttributeSearch: space && openedTag && !contentSearch,
               isContentSearch: contentSearch,
               text: text
             };
@@ -68,6 +71,9 @@ function CompletionProvider(monaco, schemaNode) {
   }
 
   function findElements(parent, elementName, maxDepth, currentDepth) {
+    if (elementName in __elementCache) {
+      return __elementCache[elementName];
+    }
     if (maxDepth < currentDepth) {
       return null;
     }
@@ -81,12 +87,14 @@ function CompletionProvider(monaco, schemaNode) {
     // console.log(parent.name+" looking for "+elementName+" in tree level "+currentDepth+ "(<"+maxDepth+") ("+Object.getOwnPropertyNames(allowedElements).join(", ")+")");
     if (elementName in allowedElements) {
       // console.log("found "+elementName+" in tree level "+currentDepth);
+      __elementCache[elementName] = allowedElements[elementName];
       return allowedElements[elementName];
     } else {
       for (var element in allowedElements) {
         if (maxDepth > currentDepth) {
           var result = findElements(allowedElements[element], elementName, maxDepth, currentDepth + 1);
           if (result) {
+            __elementCache[elementName] = result;
             // console.log("found " + elementName + " in tree level " + currentDepth);
             return result;
           }
@@ -117,14 +125,6 @@ function CompletionProvider(monaco, schemaNode) {
       clearedText: text
     };
   }
-
-  // function findAttributes(elements) {
-  //   var attrs = [];
-  //   for (var i = 0; i < elements.length; i++) {
-  //     Object.getOwnPropertyNames(elements[i].allowedAttributes).forEach(attrs.push);
-  //   }
-  //   return attrs;
-  // }
 
   function isItemAvailable(itemName, maxOccurs, items) {
     // the default for 'maxOccurs' is 1
@@ -252,12 +252,14 @@ function CompletionProvider(monaco, schemaNode) {
         }
         // if we want suggestions, inside of which tag are we?
         var lastOpenedTag = getLastOpenedTag(areaUntilPositionInfo.clearedText);
+        console.log(lastOpenedTag);
         // get opened tags to see what tag we should look for in the XSD schema
         var openedTags = [];
         // get the elements/attributes that are already mentioned in the element we're in
         var usedItems = [];
         var isAttributeSearch = lastOpenedTag && lastOpenedTag.isAttributeSearch;
         var isContentSearch = lastOpenedTag && lastOpenedTag.isContentSearch;
+        var filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch;
         // no need to calculate the position in the XSD schema if we are in the root element
         if (lastOpenedTag) {
           // parse the content (not cleared text) into an xml document
@@ -308,6 +310,8 @@ function CompletionProvider(monaco, schemaNode) {
         var searchedElement = openedTags[openedTags.length-1];
         if (isContentSearch) {
           searchedElement = lastOpenedTag.tagName;
+        } else if (!isAttributeSearch && filteredElementSearch) {
+          searchedElement = openedTags[openedTags.length-2];
         }
         var currentItem = findElements(schemaNode.allowedRootElements.pages, searchedElement, openedTags.length);
         var res = [];
