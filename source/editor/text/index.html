@@ -59,6 +59,10 @@
           schema: schema
         }]);
 
+        var editorState = {
+          modified: false,
+          valid: true
+        };
 
         var saveButton = document.getElementById("save");
         var errorField = document.getElementById("errors");
@@ -110,19 +114,25 @@
           if (saveButton.hasAttribute("disabled")) {
             return;
           }
-          saveConfig(configSuffix, editor.getValue())
-            .then(function(result) {
-              console.log(result);
-              errorField.innerHTML = "";
-              // update hash value + disable save button
-              worker.postMessage(["savedFile", editor.getValue()]);
-              saveButton.setAttribute("disabled", "disabled");
-              saveButton.removeAttribute("class");
-            })
-            .catch(function(error) {
-              errorField.innerHTML = error;
-              saveButton.setAttribute("class", "error");
-            });
+          var confirmed = true;
+          if (editorState.valid === false) {
+            confirmed = confirm("You are about to save a config file with invalid syntax. Please confirm!");
+          }
+          if (confirmed) {
+            saveConfig(configSuffix, editor.getValue())
+              .then(function (result) {
+                console.log(result);
+                errorField.innerHTML = "";
+                // update hash value + disable save button
+                worker.postMessage(["savedFile", editor.getValue()]);
+                saveButton.setAttribute("disabled", "disabled");
+                saveButton.removeAttribute("class");
+              })
+              .catch(function (error) {
+                errorField.innerHTML = error;
+                saveButton.setAttribute("class", "error");
+              });
+          }
         }
 
         function showErrors(errorList) {
@@ -187,13 +197,8 @@
 
         saveButton.addEventListener("click", save);
 
-        var editorState = {
-          modified: false,
-          valid: true
-        };
-
         function maintainSaveButton() {
-          if (editorState.modified && editorState.valid) {
+          if (editorState.modified) {
             saveButton.removeAttribute("disabled");
           } else {
             saveButton.setAttribute("disabled", "disabled");
