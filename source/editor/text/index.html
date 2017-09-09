@@ -24,6 +24,28 @@
     <script src="./monaco/completion-provider.js"></script>
     <script>
 
+      var language = navigator.language || navigator.userLanguage;
+
+      var messages = {
+        "de": {
+          "You are about to save a config file with invalid syntax. Please confirm!": "Sie sind dabei eine ungültige Konfigurationsdatei abzuspeichern. Bitte bestätigen Sie das!",
+          "Save": "Speichern",
+          "Ctrl+S": "Strg+S"
+        }
+      };
+      Messages.language = language;
+
+      /**
+       * simple translation method
+       */
+      function tr(message) {
+        if (language in messages && messages[language][message]) {
+          return messages[language][message];
+        } else {
+          return message;
+        }
+      }
+
       // create WebWorker
       var worker = new Worker('worker.js');
 
@@ -35,7 +57,7 @@
       require.config({
         'vs/nls' : {
           availableLanguages: {
-            '*': 'de'
+            '*': language
           }
         }
       });
@@ -65,6 +87,7 @@
         };
 
         var saveButton = document.getElementById("save");
+        saveButton.innerText = tr("Save")+" ("+tr("Ctrl+S")+")";
         var errorField = document.getElementById("errors");
 
         var editor = monaco.editor.create(document.getElementById('container'), {
@@ -85,7 +108,7 @@
           id: 'save',
 
           // A label of the action that will be presented to the user.
-          label: 'Save',
+          label: tr('Save'),
 
           // An optional array of keybindings for the action.
           keybindings: [
@@ -116,7 +139,7 @@
           }
           var confirmed = true;
           if (editorState.valid === false) {
-            confirmed = confirm("You are about to save a config file with invalid syntax. Please confirm!");
+            confirmed = confirm(tr("You are about to save a config file with invalid syntax. Please confirm!"));
           }
           if (confirmed) {
             saveConfig(configSuffix, editor.getValue())
