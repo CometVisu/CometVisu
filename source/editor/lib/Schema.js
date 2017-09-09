@@ -2428,21 +2428,23 @@ var regexFromString = function (input, modifiers) {
  * @param   selector    string  the selector to parse
  */
 var fixNamespace = function (selector) {
-  // if (true == $.browser.webkit) {
-  //   // jquery 1.8.2 on webkit expects namespaces in selectors in some cases, and not in others.
-  //   // from my understanding, it expects none when jquery does take care of the selection.
-  //   // this goes for anything with ancestry (>-selector) and anything with defined attributes (e.g. [ref=name])
-  //   // and it is true for selectors with multiple selections, comma-separated.
-  //   // told you, it is bizarre.
-  //   // this is a test-driven result, not knowledge! prone to fail in a future version of jquery :(
-  //
-  //   if (!selector.match(',')) {
-  //     // only rewrite selector if it is not a list of multiple selections
-  //     selector = selector.replace(/(>\s*)xsd\\:(\S*)/g, '$1$2');
-  //     selector = selector.replace(/xsd\\:(\S*[=]+[^\s,$]*)(\s|,|$)/g, '$1$2');
-  //   }
-  //
-  // }
+  if (true === $.browser.webkit && parseInt($.browser.version) < 60) {
+    // jquery 1.8.2 on webkit expects namespaces in selectors in some cases, and not in others.
+    // from my understanding, it expects none when jquery does take care of the selection.
+    // this goes for anything with ancestry (>-selector) and anything with defined attributes (e.g. [ref=name])
+    // and it is true for selectors with multiple selections, comma-separated.
+    // told you, it is bizarre.
+    // this is a test-driven result, not knowledge! prone to fail in a future version of jquery :(
+
+    // chrome in version 60 does not seem to need this workaround anymore
+
+    if (!selector.match(',')) {
+      // only rewrite selector if it is not a list of multiple selections
+      selector = selector.replace(/(>\s*)xsd\\:(\S*)/g, '$1$2');
+      selector = selector.replace(/xsd\\:(\S*[=]+[^\s,$]*)(\s|,|$)/g, '$1$2');
+    }
+
+  }
     
   return selector;
 }

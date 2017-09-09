@@ -104,28 +104,6 @@ function CompletionProvider(monaco, schemaNode) {
 
   }
 
-  function getAreaInfo(text) {
-    // opening for strings, comments and CDATA
-    var items = ['<!--', '<![CDATA['];
-    var isCompletionAvailable = true;
-    // remove all comments, strings and CDATA
-    text = text.replace(/"([^"\\]*(\\.[^"\\]*)*)"|\'([^\'\\]*(\\.[^\'\\]*)*)\'|<!--([\s\S])*?-->|<!\[CDATA\[(.*?)\]\]>/g, '');
-    for (var i = 0; i < items.length; i++) {
-      var itemIdx = text.indexOf(items[i]);
-      if (itemIdx > -1) {
-        // we are inside one of unavailable areas, so we remote that area
-        // from our clear text
-        text = text.substring(0, itemIdx);
-        // and the completion is not available
-        isCompletionAvailable = false;
-      }
-    }
-    return {
-      isCompletionAvailable: isCompletionAvailable,
-      clearedText: text
-    };
-  }
-
   function isItemAvailable(itemName, maxOccurs, items) {
     // the default for 'maxOccurs' is 1
     maxOccurs = maxOccurs || '1';
@@ -244,14 +222,10 @@ function CompletionProvider(monaco, schemaNode) {
           endLineNumber: position.lineNumber,
           endColumn: position.column
         });
-        // get content info - are we inside of the area where we don't want suggestions, what is the content without those areas
-        var areaUntilPositionInfo = getAreaInfo(textUntilPosition); // isCompletionAvailable, clearedText
-        // if we don't want any suggestions, return empty array
-        if (!areaUntilPositionInfo.isCompletionAvailable) {
-          return [];
-        }
+
         // if we want suggestions, inside of which tag are we?
-        var lastOpenedTag = getLastOpenedTag(areaUntilPositionInfo.clearedText);
+        var lastOpenedTag = getLastOpenedTag(textUntilPosition);
+        // console.log(lastOpenedTag);
         // get opened tags to see what tag we should look for in the XSD schema
         var openedTags = [];
         // get the elements/attributes that are already mentioned in the element we're in
