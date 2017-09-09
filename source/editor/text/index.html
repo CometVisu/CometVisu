@@ -20,11 +20,12 @@
     <script src="../lib/Messages.js"></script>
     <script src="../lib/Schema.js"></script>
     <script src="./utils.js"></script>
-    <script src="./xmllint.js"></script>
     <script src="../../../node_modules/monaco-editor/dev/vs/loader.js"></script>
     <script src="./monaco/completion-provider.js"></script>
     <script>
-      var initialHash = null;
+
+      // create WebWorker
+      var worker = new Worker('worker.js');
 
       require.config({
         paths: {
@@ -53,7 +54,11 @@
         'xml!*../../resource/config/visu_config'+configSuffix+'.xml',
         'vs/editor/editor.main'], function(schema, code) {
 
-        initialHash = hashCode(code);
+        worker.postMessage(["openFile", {
+          code: code,
+          schema: schema
+        }]);
+
 
         var saveButton = document.getElementById("save");
         var errorField = document.getElementById("errors");
@@ -174,25 +179,48 @@
 
         saveButton.addEventListener("click", save);
 
+        var editorState = {
+          modified: false,
+          valid: true
+        };
+
+        function maintainSaveButton() {
+          if (editorState.modified && editorState.valid) {
+            saveButton.removeAttribute("disabled");
+          } else {
+            saveButton.setAttribute("disabled", "disabled");
+          }
+        }
+
+        /**
+         * Handle messages from WebWorker
+         * @param e {Event}
+         */
+        worker.onmessage = function(e) {
+          var topic = e.data.shift();
+          var data = e.data.shift();
+          switch(topic) {
+
+            case "modified":
+              editorState.modified = data;
+              maintainSaveButton();
+              break;
+
+            case "errors":
+              editorState.valid = !data || data.length === 0;
+              maintainSaveButton();
+              showErrors(data);
+              break;
+          }
+        };
+
         editor.onDidChangeModelContent(function(ev) {
           if (ev.changes.length) {
             debounce(function() {
-              var code = editor.getValue();
-              var lint = xmllint.validateXML({
-                xml: code,
-                schema: schema
-              });
-              showErrors(lint.errors);
-              if (!lint.errors) {
-                var newHash = hashCode(code);
-                if (newHash !== initialHash) {
-                  saveButton.removeAttribute("disabled");
-                } else {
-                  saveButton.setAttribute("disabled", "disabled");
-                }
-              } else {
-                saveButton.setAttribute("disabled", "disabled");
-              }
+              worker.postMessage(["contentChange", {
+                event: ev,
+                code: editor.getValue()
+              }]);
             }, 1000);
           }
         })
