@@ -14,9 +14,30 @@ body {
     position:absolute; top: 40px; bottom:0; right:0; left:0;
     border:1px solid grey;
 }
+.actions { background-color: #1e1e1e; height: 100%; }
 .actions > button {
-    padding: 5px 15px;
     margin: 5px 10px;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 5px;
+    border: none;
+    color: black;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.actions > button[disabled="disabled"] {
+    color: grey;
+    cursor: auto;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.actions > button img {
+    width: 25px;
+}
+.actions > button .name {
+    margin: 5px;
+    float: right;
+    vertical-align: middle;
 }
 
 .line-error {

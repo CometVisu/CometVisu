@@ -52,11 +52,11 @@ function CompletionProvider(monaco, schemaNode) {
 
             var openedTag = text.indexOf('<') > text.indexOf('>');
             var contentSearch = openedTag && /="[^"]*$/.test(text);
-            var space = text.indexOf(" ") >= 0;
+            var filteredElementSearch = /<[\w-_\d]+$/.test(text);
             return {
               tagName: tag,
-              filteredElementSearch: !space,
-              isAttributeSearch: space && openedTag && !contentSearch,
+              filteredElementSearch: filteredElementSearch,
+              isAttributeSearch: !filteredElementSearch && openedTag && !contentSearch,
               isContentSearch: contentSearch,
               text: text
             };
