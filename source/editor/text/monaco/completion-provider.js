@@ -247,7 +247,7 @@ function CompletionProvider(monaco, schemaNode) {
               lastFound = true;
               // if we are looking for attributes, then used items should
               // be the attributes we already used
-              if (lastOpenedTag.isAttributeSearch) {
+              if (lastOpenedTag.isAttributeSearch && lastChild.outerHTML === lastOpenedTag.text) {
                 var attrs = lastChild.attributes;
                 for (i = 0; i < attrs.length; i++) {
                   usedItems.push(attrs[i].nodeName);
