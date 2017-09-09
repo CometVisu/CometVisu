@@ -201,6 +201,17 @@
                 currentMessage.message += "\n"+error;
               }
             });
+            if (currentMessage !== null) {
+              // show last error too
+              markers.push({
+                severity: monaco.Severity.Error,
+                startLineNumber: currentMessage.line,
+                startColumn: 1,
+                endLineNumber: currentMessage.line,
+                endColumn: model.getLineContent(currentMessage.line).length,
+                message: currentMessage.message
+              });
+            }
           }
           monaco.editor.setModelMarkers(model, '', markers);
         }
