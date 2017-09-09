@@ -68,6 +68,35 @@ function contentChange(data) {
     schema: schema
   });
   postMessage(["errors", lint.errors]);
+
+  // currently disabled as these are hard to maintain (e.g. if you delete a line the range of existing decorators change
+  // and they all need to be re-evaluated)
+  //checkModification(data.code.split("\n"), data.event.changes);
+}
+
+function checkModification(lines, changes) {
+  var decorations = [];
+
+  changes.forEach(function(change) {
+    for (var i=change.range.startLineNumber; i<=change.range.endLineNumber; i++) {
+      if (initialCode[i] !== lines[i]) {
+        decorations.push({
+          range: {
+            startLineNumber: change.range.startLineNumber+1,
+            endLineNumber: change.range.endLineNumber+1,
+            startColumn: 1,
+            endColumn: 1
+          },
+          options: {
+            isWholeLine: true,
+            linesDecorationsClassName: 'modified-line'
+          }
+        });
+        break;
+      }
+    }
+  });
+  postMessage(["decorations", decorations]);
 }
 
 /**

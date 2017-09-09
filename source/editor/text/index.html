@@ -71,7 +71,8 @@
           autoIndent: true,
           minimap: {
             enabled: true
-          }
+          },
+          theme: 'vs-dark'
         });
 
         editor.addAction({
@@ -170,6 +171,12 @@
           monaco.editor.setModelMarkers(model, '', markers);
         }
 
+        var currentDecorations = [];
+        function showDecorations(decorators) {
+          editor.deltaDecorations(currentDecorations, decorators);
+          currentDecorations = decorators;
+        }
+
         // strip namespace
 //        schema = schema.replace(/xsd\:/g, '');
         var schemaNode = stringToXml(schema);
@@ -210,6 +217,10 @@
               editorState.valid = !data || data.length === 0;
               maintainSaveButton();
               showErrors(data);
+              break;
+
+            case "decorations":
+              showDecorations(data);
               break;
           }
         };
