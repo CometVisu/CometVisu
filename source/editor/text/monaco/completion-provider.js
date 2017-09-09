@@ -339,7 +339,14 @@ function CompletionProvider(monaco, schemaNode) {
         }
         else {
           // get elements completions
-          res = currentItem ? getAvailableElements(monaco, currentItem, usedItems) : [];
+          if (lastOpenedTag && lastOpenedTag.text.endsWith("</")) {
+            res.push({
+              label: lastOpenedTag.tagName,
+              kind: monaco.languages.CompletionItemKind.Field
+            });
+          } else {
+            res = currentItem ? getAvailableElements(monaco, currentItem, usedItems) : [];
+          }
         }
         return res;
       }

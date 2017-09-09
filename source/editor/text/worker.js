@@ -59,6 +59,9 @@ function openFile(data) {
   initialCode = data.code.split("\n");
   initialHash = hashCode(data.code);
   schema = data.schema;
+
+  // initial syntax check
+  contentChange(data);
 }
 
 /**
