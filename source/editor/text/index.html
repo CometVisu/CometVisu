@@ -99,7 +99,7 @@
 
           // Method that will be executed when the action is triggered.
           // @param editor The editor instance is passed in as a convinience
-          run: function(ed) {
+          run: function() {
             save();
             return null;
           }
@@ -111,6 +111,7 @@
           }
           saveConfig(configSuffix, editor.getValue())
             .then(function(result) {
+              console.log(result);
               errorField.innerHTML = "";
               // update hash value + disable save button
               worker.postMessage(["savedFile", editor.getValue()]);
