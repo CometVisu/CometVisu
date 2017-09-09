@@ -252,7 +252,6 @@ function CompletionProvider(monaco, schemaNode) {
         }
         // if we want suggestions, inside of which tag are we?
         var lastOpenedTag = getLastOpenedTag(areaUntilPositionInfo.clearedText);
-        console.log(lastOpenedTag);
         // get opened tags to see what tag we should look for in the XSD schema
         var openedTags = [];
         // get the elements/attributes that are already mentioned in the element we're in
