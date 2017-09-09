@@ -111,7 +111,7 @@ Da sich der Inhalt der Konfigurationsdatei in der Regel selten ändert, liegt es
 zu parsen. Daher wird nach dem ersten Parsen der erzeugte HTML und die internen Datenstrukturen im *LocalStorage* des Browsers
 abgespeichert. Beim nächsten Laden der Visu werden diese Daten ausgelesen und die Oberfläche sofort dargestellt.
 Erst danach fragt die Visu die Konfigurationsdatei vom Server ab und vergleicht ob es Änderungen gegeben hat.
-Sofern dies nicht der Fall ist wird die gerade geladenen Datei verworfen, andernfalls der parse und speicher-Vorgang erneut
+Sofern dies nicht der Fall ist wird die gerade geladenen Datei verworfen, andernfalls der Parse und Speicher-Vorgang erneut
 durchgeführt und die Daten aus dem Cache werden verworfen.
 
 Das Caching kann durch den URL-Parameter :ref:`enableCache` beeinflusst werden.
@@ -164,7 +164,7 @@ Fehlerbehandlung
 ----------------
 
 Der NotificationRouter wird auch dazu genutzt alle nicht abgefangenen Fehler zur Laufzeit der Visu anzuzeigen.
-Diese Fehler werden als Popup angezeigt und ermöglichen es dem Nutzer direkt ein Issue aus Github mit vor-ausgefüllten
+Diese Fehler werden als Popup angezeigt und ermöglichen es dem Nutzer direkt ein Issue auf Github mit vorausgefüllten
 Formular mit den wichtigsten Informationen zu eröffnen. Diese Funktion ist nur
 in den Build-Versionen aktiv (also auch in den Releases), während der Entwicklung werden die Fehler weiterhin
 auf der Javascript-Konsole des Browsers angezeigt.
