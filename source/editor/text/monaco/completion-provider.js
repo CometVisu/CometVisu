@@ -135,7 +135,7 @@ function CompletionProvider(monaco, schemaNode) {
     // add mandatory children
     var requiredElements = element.getRequiredElements();
     var allowedContent = element.getAllowedContent();
-    var isContentAllowed = allowedContent._text || requiredElements.length > 0;
+    var isContentAllowed = allowedContent._text || requiredElements.length > 0 || !!allowedContent._grouping;
     if (!isContentAllowed) {
       // close tag
       insertText = insertText.trim()+"/";
@@ -222,7 +222,6 @@ function CompletionProvider(monaco, schemaNode) {
           endLineNumber: position.lineNumber,
           endColumn: position.column
         });
-
         // if we want suggestions, inside of which tag are we?
         var lastOpenedTag = getLastOpenedTag(textUntilPosition);
         // console.log(lastOpenedTag);
@@ -235,8 +234,16 @@ function CompletionProvider(monaco, schemaNode) {
         var filteredElementSearch = lastOpenedTag && lastOpenedTag.filteredElementSearch;
         // no need to calculate the position in the XSD schema if we are in the root element
         if (lastOpenedTag) {
+          // try to create a valid XML document
+          var parts = lastOpenedTag.text.split(" ");
+          parts.shift();
+          var cleanedText = textUntilPosition;
+          if (parts.length) {
+            cleanedText = cleanedText.substring(0, cleanedText.length-parts.join(" ").length)+">";
+            console.log(cleanedText);
+          }
           // parse the content (not cleared text) into an xml document
-          var xmlDoc = stringToXml(textUntilPosition);
+          var xmlDoc = stringToXml(cleanedText);
           var lastChild = xmlDoc.lastElementChild;
           var i;
           var lastFound = false;

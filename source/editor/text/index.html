@@ -10,6 +10,7 @@
     <div class="actions">
         <button id="save" disabled="disabled">Save (Ctrl+S)</button>
         <span id="errors"></span>
+        <button id="manager" style="float: right"></button>
     </div>
     <div id="container"></div>
     <script>
@@ -30,10 +31,16 @@
         "de": {
           "You are about to save a config file with invalid syntax. Please confirm!": "Sie sind dabei eine ungültige Konfigurationsdatei abzuspeichern. Bitte bestätigen Sie das!",
           "Save": "Speichern",
-          "Ctrl+S": "Strg+S"
+          "Ctrl+S": "Strg+S",
+          "Open manager": "Manager öffnen"
         }
       };
       Messages.language = language;
+      var managerButton = document.getElementById("manager");
+      managerButton.innerText = tr("Open manager");
+      managerButton.onclick = function() {
+        window.location.href = "../../manager.php";
+      }
 
       /**
        * simple translation method
