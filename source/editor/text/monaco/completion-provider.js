@@ -240,7 +240,6 @@ function CompletionProvider(monaco, schemaNode) {
           var cleanedText = textUntilPosition;
           if (parts.length) {
             cleanedText = cleanedText.substring(0, cleanedText.length-parts.join(" ").length)+">";
-            console.log(cleanedText);
           }
           // parse the content (not cleared text) into an xml document
           var xmlDoc = stringToXml(cleanedText);
