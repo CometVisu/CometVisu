@@ -146,7 +146,8 @@
           "manager.php",
           "version",
           "library_version.inc.php",
-          "manifest.json"
+          "manifest.json",
+          "../node_modules/monaco-editor"
         ]
       }
     },
@@ -309,7 +310,8 @@
         "build-script",
         "build-files",
         "build-libs",
-        "build-append-plugin-libs"
+        "build-append-plugin-libs",
+        "build-paths"
       ]
     },
 
@@ -317,6 +319,13 @@
       "shell" :
       {
         "command" : "grunt uglify:libs"
+      }
+    },
+
+    "build-paths" : {
+      "shell" :
+      {
+        "command" : "./cv build -up"
       }
     },
 

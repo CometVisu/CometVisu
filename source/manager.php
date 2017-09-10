@@ -65,6 +65,7 @@ $_STRINGS = array(
     'Demo config' => 'Demo config',
     'Download' => 'Download',
     'Edit' => 'Edit',
+    'Text edit' => 'Text edit',
     'Empty configuration is not readable -> CometVisu installation is badly broken!' => 'Empty configuration is not readable -> CometVisu installation is badly broken!',
     'Installation error - please check file permissions!' => 'Installation error - please check file permissions!',
     'Name' => 'Name',
@@ -107,6 +108,7 @@ $_STRINGS = array(
     'Demo config' => 'Demo Konfiguration',
     'Download' => 'Herunterladen',
     'Edit' => 'Editieren',
+    'Text edit' => 'Text editieren',
     'Empty configuration is not readable -> CometVisu installation is badly broken!' => 'Die leere Konfigurationsdatei konnte nicht gelesen werden -> CometVisu-Installation ist defekt!',
     'Installation error - please check file permissions!' => 'Installationsfehler - bitte die Datei-Berechtigungen überprüfen!',
     'Name' => 'Name',
@@ -124,6 +126,7 @@ define( 'VISU_TABLE_ROW', '<tr class="visuline">'
 . '<td><a href=".?config=%3$s">'.icon('edit_open').'</a></td>'
 . '<td><a href="check_config.php?config=%3$s">'.icon('control_clear').'</a></td>'
 . '<td><a href="editor/?config=%3$s">'.icon('edit_settings').'</a></td>'
+. '<td><a href="editor/text/?config=%3$s">'.icon('edit_paste').'</a></td>'
 . '<td><a href="%4$s" download target="_blank">'.icon('control_arrow_downward').'</a></td>'
 . '<td><label for="%3$s_xml">'.icon('control_return').'</label><input type="file" id="%3$s_xml" name="%3$s_xml"/></td>'
 . '<td class="warn"><a href="javascript:deleteConfig(\'%2$s\', \'%3$s\')">'.icon('message_garbage').'</a></td>'
@@ -133,6 +136,7 @@ define( 'DEMO_TABLE_ROW', '<tr class="visuline">'
 . '<td><a href=".?config=%3$s">'.icon('edit_open').'</a></td>'
 . '<td>-</td>'
 . '<td><a href="editor/?config=%3$s">'.icon('edit_settings').'</a></td>'
+. '<td>-</td>'
 . '<td><a href="%4$s" download target="_blank">'.icon('control_arrow_downward').'</a></td>'
 . '<td>-</td>'
 . '<td>-</td>'
@@ -494,6 +498,7 @@ if( $resetUrl )
         . '<th>'.$_['View'].'</th>'
         . '<th>'.$_['Check'].'</th>'
         . '<th>'.$_['Edit'].'</th>'
+        . '<th>'.$_['Text edit'].'</th>'
         . '<th>'.$_['Download'].'</th>'
         . '<th>'.$_['Replace'].'</th>'
         . '<th>'.$_['Delete'].'</th></tr>';

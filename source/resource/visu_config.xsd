@@ -994,7 +994,7 @@
   <xsd:complexType name="notificationcenterbadge">
     <xsd:sequence>
       <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
-      <xsd:element name="label" type="label" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
     </xsd:sequence>
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />

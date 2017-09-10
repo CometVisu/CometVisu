@@ -46,7 +46,7 @@ var xsdNamespaceResolver = function(prefix) {
  * @var object
  */
 var documentationMapping;
-$.getJSON( 'lib/DocumentationMapping.json', function( json ){
+$.getJSON( window.documentationMappingPrefix+'lib/DocumentationMapping.json', function( json ){
   documentationMapping = json;
 });
 
@@ -55,7 +55,7 @@ $.getJSON( 'lib/DocumentationMapping.json', function( json ){
  * 
  * @param   filename    string  filename of the schema, including a relative path
  */
-var Schema = function (filename) {
+var Schema = function (filename, content) {
   if (filename == undefined || filename == '' || !filename.match(/\.xsd$/)) {
     throw 'no, empty or invalid filename given, can not instantiate without one';
   }
@@ -211,8 +211,18 @@ var Schema = function (filename) {
   _schema.getSchemaDOM = function () {
     return $xsd;
   }
-    
-  cacheXSD();
+
+  if (!content) {
+    cacheXSD();
+  } else {
+    $xsd = $(content);
+
+    // parse the data, to have at least a list of root-level-elements
+    parseXSD();
+
+    // tell everyone that we are done!
+    $(document).trigger('schema_loaded');
+  }
 }
 
 /**
@@ -2418,20 +2428,22 @@ var regexFromString = function (input, modifiers) {
  * @param   selector    string  the selector to parse
  */
 var fixNamespace = function (selector) {
-  if (true == $.browser.webkit) {
+  if (true === $.browser.webkit && parseInt($.browser.version) < 60) {
     // jquery 1.8.2 on webkit expects namespaces in selectors in some cases, and not in others.
     // from my understanding, it expects none when jquery does take care of the selection.
     // this goes for anything with ancestry (>-selector) and anything with defined attributes (e.g. [ref=name])
     // and it is true for selectors with multiple selections, comma-separated.
     // told you, it is bizarre.
     // this is a test-driven result, not knowledge! prone to fail in a future version of jquery :(
-        
+
+    // chrome in version 60 does not seem to need this workaround anymore
+
     if (!selector.match(',')) {
       // only rewrite selector if it is not a list of multiple selections
       selector = selector.replace(/(>\s*)xsd\\:(\S*)/g, '$1$2');
       selector = selector.replace(/xsd\\:(\S*[=]+[^\s,$]*)(\s|,|$)/g, '$1$2');
     }
-        
+
   }
     
   return selector;
