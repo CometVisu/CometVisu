@@ -10,7 +10,7 @@
       <dl>
         <dt>{{ _('Versions') }}</dt>
         {% for slug, url in versions %}
-          <dd><a href="{{ url }}">{{ slug }}</a></dd>
+          <dd><a href="{{ '%s/%s/index.html' % ('/'.join(pathto(master_doc)[0:-1].split('/')[0:-1]), url) }}">{{ slug }}</a></dd>
         {% endfor %}
       </dl>
       {#
