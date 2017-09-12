@@ -561,7 +561,7 @@
 
   <xsd:complexType name="state-notification">
     <xsd:sequence>
-      <xsd:element name="title-template">
+      <xsd:element name="title-template" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">Template for message title</xsd:documentation>
           <xsd:documentation xml:lang="de">Vorlage für Nachrichtentitel</xsd:documentation>
@@ -604,6 +604,12 @@
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Show message in notification center</xsd:documentation>
             <xsd:documentation xml:lang="de">Nachricht im Notification-Center anzeigen</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="speech">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Say message with text-to-speech</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nachricht per Sprachausgabe ausgeben</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>

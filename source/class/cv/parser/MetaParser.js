@@ -210,6 +210,14 @@ qx.Class.define("cv.parser.MetaParser", {
           case "notificationCenter":
             target = cv.ui.NotificationCenter.getInstance();
             break;
+          case "speech":
+            if (!window.speechSynthesis) {
+              // not supported
+              qx.log.Logger.warn(this, "this browser does not support the Web Speech API");
+              return;
+            }
+            target = cv.core.notifications.SpeechHandler.getInstance();
+            break;
         }
 
         var addressContainer = qx.bom.Selector.query('addresses', elem)[0];
@@ -249,8 +257,7 @@ qx.Class.define("cv.parser.MetaParser", {
         }
         config.condition = condition;
 
-        // TODO parse complete address with transform etc.
-        var addresses = cv.parser.WidgetParser.makeAddressList(addressContainer, null, null, true);
+        var addresses = cv.parser.WidgetParser.makeAddressList(addressContainer);
         // addresses
         Object.getOwnPropertyNames(addresses).forEach(function(address) {
           if (!stateConfig.hasOwnProperty(address)) {
