@@ -39,6 +39,11 @@ describe("testing the meta parser", function() {
         <mapping name="One1000th">
           <formula>y = x/1000;</formula>
         </mapping>
+        <mapping name="Motion_name">
+                <entry value="Motion_FF_Corridor">Flur OG</entry>
+                <entry value="Motion_FF_Kitchen">Küche</entry>
+                <entry value="Motion_FF_Dining">Esszimmer</entry>
+            </mapping>
       </mappings>
       <stylings>
         <styling name="Red_Green">
@@ -51,6 +56,18 @@ describe("testing the meta parser", function() {
           <entry range_min="0" range_max="100">red</entry>
         </styling>
       </stylings>
+      <notifications>
+            <state-notification name="motion" target="notificationCenter" unique="true" severity="high">
+                <title-template>Bewegungsalarm</title-template>
+                <message-template>Bewegung erkannt: {{ address }}, {{ time }}</message-template>
+                <condition>ON</condition>
+                <addresses address-mapping="Motion_name">
+                    <address transform="OH:switch">Motion_FF_Dining</address>
+                    <address transform="OH:switch">Motion_FF_Corridor</address>
+                    <address transform="OH:switch">Motion_FF_Kitchen</address>
+                </addresses>
+            </state-notification>
+        </notifications>
       <statusbar>
         <status type="html"><![CDATA[
         <img src="icon/comet_64_ff8000.png" alt="CometVisu" /> by <a href="http://www.cometvisu.org/">CometVisu.org</a>
@@ -77,6 +94,7 @@ describe("testing the meta parser", function() {
     expect(cv.Config.hasMapping('Sign')).toBeTruthy();
     expect(cv.Config.hasMapping('KonnexHVAC')).toBeTruthy();
     expect(cv.Config.hasMapping('One1000th')).toBeTruthy();
+    expect(cv.Config.hasMapping('Motion_name')).toBeTruthy();
 
     // check stylings
     expect(cv.Config.hasStyling('Red_Green')).toBeTruthy();
@@ -87,6 +105,21 @@ describe("testing the meta parser", function() {
     expect(plugins).toContain("plugin-colorchooser");
     expect(plugins).toContain("plugin-diagram");
     expect(plugins).toContain("plugin-strftime");
+
+    // test notifications
+    var router = cv.core.notifications.Router.getInstance();
+    var config = router.__stateMessageConfig;
+    console.log(config);
+    expect(config.hasOwnProperty("Motion_FF_Dining")).toBeTruthy();
+    expect(config.hasOwnProperty("Motion_FF_Corridor")).toBeTruthy();
+    expect(config.hasOwnProperty("Motion_FF_Kitchen")).toBeTruthy();
+
+    // state listeners must be set
+    var model = cv.data.Model.getInstance();
+    ["Motion_FF_Dining", "Motion_FF_Corridor", "Motion_FF_Kitchen"].forEach(function(address) {
+      expect(model.__stateListeners.hasOwnProperty(address)).toBeTruthy();
+      expect(model.__stateListeners[address].length).toEqual(1);
+    });
 
     qx.dom.Element.remove(footer);
   });

@@ -35,6 +35,7 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
           text: text,
           time: Date.now()
         };
+        return;
       }
       if (cv.core.notifications.Router.evaluateCondition(message)) {
         if (!text || text.length === 0) {
@@ -68,7 +69,8 @@ qx.Class.define("cv.core.notifications.SpeechHandler", {
       }
     },
 
-    say: function(text, language) {
+    say: /* istanbul ignore next [no need to text the browsers TTS capability] */ function(text, language) {
+
       if (!window.speechSynthesis) {
         this.warn(this, "this browser does not support the Web Speech API");
         return;
