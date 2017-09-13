@@ -109,7 +109,7 @@ describe("testing the meta parser", function() {
     // test notifications
     var router = cv.core.notifications.Router.getInstance();
     var config = router.__stateMessageConfig;
-    console.log(config);
+
     expect(config.hasOwnProperty("Motion_FF_Dining")).toBeTruthy();
     expect(config.hasOwnProperty("Motion_FF_Corridor")).toBeTruthy();
     expect(config.hasOwnProperty("Motion_FF_Kitchen")).toBeTruthy();
