@@ -7,36 +7,63 @@ python:
 cache:
   directories:
   - node_modules
-  - $HOME/.cache/pip
+  - "$HOME/.cache/pip"
   - downloads
 env:
-  - CV_BUILD="test"
-  - CV_BUILD="docs" ENCRYPTION_LABEL="4c79fec0aeb9" COMMIT_AUTHOR_EMAIL="generator@cometvisu.org" CV_BROWSER=Chrome CV_VERSION=stable
+  - CV_BUILD="test" CV_BROWSER=Chrome_travis CV_VERSION=stable
+  - CV_BUILD="test" CV_BROWSER=Chrome_travis CV_VERSION=beta
+  - CV_BUILD="test" CV_BROWSER=Chrome_travis CV_VERSION=unstable
+  - CV_BUILD="docs" ENCRYPTION_LABEL="4c79fec0aeb9" COMMIT_AUTHOR_EMAIL="generator@cometvisu.org" CV_BROWSER=Chrome_travis CV_VERSION=stable
 before_install:
 - mkdir -p downloads
 - nvm install 4.2
-- if [ "$CV_BUILD" == "docs" ]; then sudo ./utils/travis/browser-setup.sh; fi
-- if [ "$CV_BUILD" == "docs" ]; then export CHROME_BIN=`pwd`/chrome/google-chrome; fi
+- sudo ./utils/travis/browser-setup.sh
+- export CHROME_BIN=`pwd`/chrome/google-chrome
+- export PATH=`pwd`/firefox:$PATH
 - if [ "$CV_BUILD" == "docs" ] && ! [ -e downloads/plantuml.deb ]; then wget -O downloads/plantuml.deb http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb; fi
 - mkdir cache
 install:
 - npm install -g grunt-cli
 - npm install
+- cd external/qooxdoo
+- npm install
+- grunt setup
+- cd ../../
+- sudo pip install -r utils/requirements.txt
+- virtualenv -p /usr/bin/python2.7 --distribute temp-python --system-site-packages
+- source temp-python/bin/activate
+- if [ "$CV_BUILD" == "test" ]; then ./generate.py source -sI; fi
+- if [ "$CV_BUILD" == "docs" ]; then ./generate.py build -sI; fi
+- deactivate
 - "./node_modules/protractor/bin/webdriver-manager update"
-- if [ "$CV_BUILD" == "docs" ]; then sudo pip install -r utils/requirements.txt; fi # for documentation
-- if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install libxml2-dev libxslt-dev graphviz; fi
+- if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install graphviz python-lxml python3-lxml; fi
 - if [ "$CV_BUILD" == "docs" ]; then sudo dpkg -i downloads/plantuml.deb; fi
-- if [ "$CV_BUILD" == "docs" ]; then utils/travis/npm-setup.sh; fi
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
 - sleep 3
 script:
+- if [ "$CV_BUILD" == "test" ]; then source temp-python/bin/activate; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt jscs; fi
-- if [ "$CV_BUILD" == "test" ]; then grunt karma:travis; fi
-- if [ "$CV_BUILD" == "test" ]; then grunt e2e; fi
+- if [ "$CV_BUILD" == "test" ]; then ./generate.py lint; fi
+- if [ "$CV_BUILD" == "test" ]; then deactivate; fi
+- export PATH=`pwd`/firefox:$PATH
+- if [ "$CV_BUILD" == "test" ]; then grunt karma:travis --browser $CV_BROWSER; fi
+- if [ "$CV_BUILD" == "test" ] && [ "$CV_BROWSER" == "Chrome" ]; then grunt e2e-chrome; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
+before_deploy:
+- grunt release-cv
+- if [ $(git reflog --after='24 hours' client/ | wc -l) -gt 0 ]; then grunt release-client; fi
+deploy:
+  on:
+    branch: develop
+    condition: "$CV_BUILD = test && $CV_VERSION = stable && $TRAVIS_EVENT_TYPE = cron && $(git reflog --after='24 hours' | wc -l) -gt 0"
+  provider: bintray
+  file: "./deploy.json"
+  user: peuter
+  key:
+    secure: dnqHD0ynwCvyxeniG5ee+ImtnQPP02c4WkV8EVgVwSKcEQ5xtdlfy9/6M4znDMlEKcfwvUr9O8JVtrmTqyLNlcwxiIgnrzfIUBrzwPRhSrDgAbUUHOy4bpES58rGKZvwvavhaRhMnd5nQivG4w7ltKdVX4MY8ht4gGLVIlK5RSA=
+  dry-run: false
 after_success:
-- if [ "$CV_BUILD" == "test" ]; then grunt coveralls; fi
-
+- if [ "$CV_BUILD" == "test" ] && [ "$CV_VERSION" == "stable" ] ; then grunt coveralls; fi

@@ -10,13 +10,14 @@ Description
 
 .. ###START-WIDGET-DESCRIPTION### Please do not change the following content. Changes will be overwritten
 
-Adds an image like the {@link structure/pure/Image} widget, but additionally the image can be changed by incoming
+Adds an image like the {@link cv.ui.structure.pure.Image} widget, but additionally the image can be changed by incoming
 data and can send data to the backend by clicking on it.
-There modes to react on incoming data:
+There are two modes to react on incoming data:
 
-* type="show": Hides the image when incoming data == 0
-* type="select": Changes the image by appending the incoming data to the initial configured image source,
-  or hide it when incoming data == 0
+
+ type="show": Hides the image when incoming data === 0
+ type="select": Changes the image by appending the incoming data to the initial configured image source,
+  or hide it when incoming data === 0
 
 Example:
 
@@ -27,8 +28,9 @@ Example:
     </imagetrigger>
 
 
-initially shows nothing. When the CometVisu receives the string '_icon' in address `0/0/0`,
-the image `icon/comet_opt_icon.svg` is shown. When the CometVisu receives '0' on address `0/0/0`,
+
+initially shows nothing. When the CometVisu receives the string _icon in address 0/0/0,
+the image icon/comet_opt_icon.svg is shown. When the CometVisu receives '0' on address 0/0/0,
 this image is hidden.
 
 
@@ -91,14 +93,6 @@ for the ImageTrigger widget.
 
 .. ###START-WIDGET-EXAMPLES### Please do not change the following content. Changes will be overwritten
 
-.. figure:: _static/image_trigger.png
-
-    Image changed by incoming data 'blue'
-
-.. figure:: _static/image_trigger_changes.png
-
-    Image changed by incoming data 'grey'
-
 .. code-block:: xml
 
     
@@ -107,7 +101,6 @@ for the ImageTrigger widget.
       <address transform="DPT:16.001" mode="readwrite">0/0/0</address>
     </imagetrigger>
         
-.. figure:: _static/image_trigger_colspan0.png
 .. code-block:: xml
 
     
@@ -116,6 +109,7 @@ for the ImageTrigger widget.
       <address transform="DPT:1.001" mode="readwrite">0/0/0</address>
     </imagetrigger>
         
+    
 
 .. ###END-WIDGET-EXAMPLES###
 

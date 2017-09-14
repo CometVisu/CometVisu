@@ -13,7 +13,7 @@ Zu kann man z.B. prüfen ob das Klicken auf einen Switch den passenden Wert an d
 wenn das Backend ein Update für den Switch liefert, dieser diesen entsprechend anzeigt.
 
 Unittests
-----------
+---------
 
 Als Testrunner für die Unittests kommt `Karma <https://karma-runner.github.io>`__ zum Einsatz.
 Ausgeführt werden die Tests über das Kommandozeilen-Tool Grunt.
@@ -57,7 +57,7 @@ Eigene Tests schreiben
 ----------------------
 
 Die Unittests werden mit Hilfe des `Jasmine Frameworks <http://jasmine.github.io/2.4/introduction.html>`__ 
-geschrieben. Dadurch ist es möglich die Test fast in natürlicher Sprache zu schreiben. Der Grundaufbau eines
+geschrieben. Dadurch ist es möglich, die Tests fast in natürlicher Sprache zu schreiben. Der Grundaufbau eines
 Tests sieht so aus:
 
 .. code-block:: javascript
@@ -70,40 +70,41 @@ Tests sieht so aus:
 
 Dieser Code testet eine ``add``-Funktion die einfach zwei Zahlen addiert.
 
-Zu finden sind die vorhandenen Tests im ``test/karma`` Untervezeichnis. Möchte man nun einen neuen Test für eine (fiktive)
-Sourcecode Datei unter ``src/structure/pure/new-widget.js`` schreiben, legt man die neue Datei ``test/karma/structure/pure/new-widget-spec.js`` an.
+Zu finden sind die vorhandenen Tests im ``source/test/karma`` Untervezeichnis. Möchte man nun einen neuen Test für eine (fiktive)
+Sourcecode Datei unter ``source/ui/structure/pure/NewWidget.js`` schreiben, legt man die neue Datei
+``source/test/karma/ui/structure/pure/NewWidget-spec.js`` an.
 Wichtig ist hier, dass der Name der Testdatei auf ``-spec`` endet, sonst wird sie vom Testrunner nicht gefunden.
 
-Innerhalb der Testdatei gibt es jetzt noch eine Besonderheit zu beachten. Die CometVisu nutzt `RequireJS <http://requirejs.org>`__
-um Javascript Module zu laden (vergleichbar mit der ``import`` Anweisung in anderen Programmiersprachen). Man muss nun also
-natürlich zunächst die Source-Datei die man testen möchte auf diesem Weg laden. Man braucht nun also zunächst den Modulnamen der zu
-testenden Datei. Diese werden in der ``src/main.js`` definiert, dort sollte ein Eintrag nach folgendem Muster zu finden sein
-``'widget_new-widget': 'structure/pure/new-widget',``.
-
-Der Test für diese Datei sollte nun folgendermaßen aussehen (es werden hier noch 3 weitere Module importiert, die man eigentlich für die 
-meisten Tests braucht und daher als default angesehen werden sollten):
+Der Test für diese Datei sollte nun folgendermaßen aussehen:
 
 .. code-block:: javascript
 
-  define( ['TemplateEngine', '_common', 'CometVisuMockup', 'widget_new-widget'], function(engine, design, ClientMockup) {
-
     describe("testing the new-widget", function() {
 
-      var templateEngine = engine.getInstance();
-      templateEngine.visu = new ClientMockup();
+      it("should test the creation of a new-widget", function() {
+        // Hilfsfunktion die den HTML-Code des widgets erzeugt (weitere Hilfsfunktionen sind in source/test/karma/helper-spec.js zu finden)
+        // die Hilfsfunktion gibt ein Array mit 2 Elementen zurück, das erste ist die Instanz den Widget-Objekts, das zweite der HTML-Code als String
+        var res = this.createTestWidgetString("new-widget", {}, "<label>Test</label>");
+        // macht aus dem String ein DOM Element
+        var widget = qx.bom.Html.clean([res[1]])[0];
+        // das Widget Object (Instanz der Klasse cv.ui.structure.pure.NewWidget)
+        var obj = res[0];
 
-      it("should test whatever the new-widget does", function() {
-	// write your test and assertions here
-
+        // prüft ob das DOM Element die CSS Klasse newwidget hat
+        expect(widget).toHaveClass('newwidget');
+        // prüft ob das DOM Element ein Label mit dem Text 'Test' hat
+        expect(widget).toHaveLabel('Test');
+        // prüft ob der widget Pfad 'id_0' ist
+        expect(obj.getPath()).toBe("id_0");
       });
+
       it("should test another part of the new-widget", function() {
-	// write another test
+        // weitere Tests
       });
 
       ...
 
     });
-  });
 
 
-Als Beispiele, wie man Tests schreibt und welche Dinge man wie testen kann, sollten die vorhandenen Tests dienen
+Als Beispiele, wie man Tests schreibt und welche Dinge man wie testen kann, sollten die vorhandenen Tests dienen.

@@ -3,6 +3,7 @@ sh
 sphinx==1.4.8
 lxml
 sphinxcontrib-plantuml
-sphinx_rtd_theme
 configparser
 PyYAML
+rjsmin
+semver

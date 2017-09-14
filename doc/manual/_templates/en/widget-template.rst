@@ -21,7 +21,7 @@ The behaviour and appearance of the %%%WIDGET_NAME%%% widget can be influenced b
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the :ref:`editor <editor>`.
 
-Attributes underlined by ..... are mandatory, all the others are optional and be omitted.
+Attributes underlined by ..... are mandatory, all the others are optional and can be omitted.
 
 Allowed attributes in the %%%WIDGET_NAME%%%-element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

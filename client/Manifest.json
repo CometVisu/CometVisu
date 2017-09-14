@@ -1,0 +1,32 @@
+{
+  "info" :
+  {
+    "name" : "CometVisuClient",
+
+    "summary" : "CometVisu-Client",
+    "description" : "The JavaScript library that implements the CometVisu protocol.",
+
+    "homepage" : "http://www.cometvisu.org/",
+
+    "license" : "GPL-3.0",
+    "authors" :
+    [
+      {
+        "name": "Christian Mayer (ChristianMayer)",
+        "email": "CometVisu at ChristianMayer dot de"
+      },
+      {
+        "name": "Tobias Bräutigam (Peuter)",
+        "email": "tbraeutigam at gmail dot com"
+      }
+    ]
+  },
+
+  "provides" :
+  {
+    "namespace"   : "cv.io",
+    "encoding"    : "utf-8",
+    "class"       : "source/class",
+    "type"        : "library"
+  }
+}

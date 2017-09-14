@@ -243,7 +243,16 @@ class BaseXsdDirective(BaseDirective):
 
         if sub_run is False:
             if len(table_body) == 0:
-                return None
+                elem = schema.find(".//xs:element[@name='%s']" % element_name)
+                doc = schema.get_node_documentation(elem, self.locale)
+                if doc is not None:
+                    if include_name:
+                        row = [self.get_cell_data(element_name), self.get_cell_data(""), self.get_cell_data(self.normalize_type("string")), self.get_cell_data(doc.text)]
+                    else:
+                        row = [self.get_cell_data(element_name), self.get_cell_data(self.normalize_type("string")), self.get_cell_data(doc)]
+                    table_body.append(row)
+                else:
+                    return None
 
             if include_name:
                 table_head = [

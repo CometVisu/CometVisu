@@ -1,0 +1,472 @@
+/* 
+ * global CSS declarations for all designs 
+ */
+
+html
+{
+  height: 100%;
+}
+
+body 
+{
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  min-height: 100%;
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+}
+
+/*
+ * Default height for all icons
+ */
+.icon {
+  height: 2em;
+  width: 2em;
+}
+
+/*
+ * create a three column layout in the middle of the page to allow navbars
+ * inspired by http://www.alistapart.com/articles/holygrail
+ */
+#centerContainer {
+  padding-left: 0;   /* left bar width */
+  padding-right: 0;  /* right bar width */
+}
+#centerContainer > div {
+  position: relative;
+  float: left;
+  display: block;
+}
+.blurred {
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+#navbarLeft {
+  width: 0;          /* left bar width */
+}
+#navbarRight {
+  width: 0;          /* right bar width */
+  margin-right: 0;   /* right bar width */
+}
+#navbarTop {
+}
+#navbarBottom {
+  clear: both;
+}
+#bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* The message popup.
+ * It will hide itself when it's empty, otherwise will stick on the top of the
+ * window.
+ */
+#message {
+  display: none;
+}
+
+#message:not(:empty) {
+  display: block;
+  position: fixed;
+  left: 1em;
+  top: 1em;
+  right: 1em;
+  padding: 0.5em;
+  color: #000;
+  background-color: #bbb;
+  border: 1px solid #000;
+  box-shadow: 0 0 0.5em 0.35em blue;
+}
+
+/*
+ * Option for a close button:
+#message::before {
+  content: '[X]';
+  display: block;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+*/
+
+#message.warning {
+  box-shadow: 0 0 0.5em 0.35em #ffc107;
+}
+
+#message.error {
+  box-shadow: 0 0 0.5em 0.35em #f00;
+  background-color: #ffafaf;
+}
+
+#pages,
+.page > .clearfix, 
+#navbarTop, #navbarBottom {
+  -webkit-transform: translateZ(0);
+  -webkit-overflow-scrolling:touch;
+}
+.page > .clearfix { position:relative; }
+
+/* 
+ * colspans, each design needs to define a colspan0
+ * class, this class is the default widget size
+ */
+ 
+.innerrowspan {
+ position:absolute;
+ top:0;
+ bottom:0;
+ left:0;
+ right:0;
+}
+
+/*
+ * Disable all pages except the active ones
+ * 
+ * Note: the .navbar class needs all of this decoration to overwrite the 
+ * .clearfix class without using an !important qualifier
+ */
+.page, html[xmlns] .navbar.clearfix {
+  display: none;
+}
+
+.pageActive, html[xmlns] .navbar.clearfix.navbarActive {
+  display: block;
+}
+/*
+ * global color declarations for stylings in all designs
+ * may be overloaded by designs
+ */
+.rowspan { overflow:hidden; position:relative; }
+.red
+{
+  color:#FF0000;
+}
+.white
+{
+  color:#FFFFFF;
+}
+.cyan
+{
+  color:#00FFFF;
+}
+.silver
+{
+  color:#C0C0C0;
+}
+.blue
+{
+  color:#0000FF;
+}
+.grey
+{
+  color:#808080;
+}
+.darkblue
+{
+  color:#0000A0;
+}
+.black
+{
+  color:#000000;
+}
+.lightblue
+{
+  color:#ADD8E6;
+}
+.orange
+{
+  color:#FFA500;
+}
+.purple
+{
+  color:#800080;
+}
+.brown
+{
+  color:#A52A2A;
+}
+.yellow
+{
+  color:#FFFF00;
+}
+.maroon
+{
+  color:#800000;
+}
+.lime
+{
+  color:#00FF00;
+}
+.green
+{
+  color:#008000;
+}
+.fuchsia
+{
+  color:#FF00FF;
+}
+.olive
+{
+  color:#808000;
+}
+
+/* special case for the break widget as it wouldn't be possible otherwise */
+.widget_container.break_container
+{
+  clear: both;
+}
+
+/* infoaction widget basic styling, just positioning no fancy stuff */
+.infoaction { position: relative; }
+.infoaction .widget_container.widgetinfo {
+  width: auto !important;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.infoaction .widget_container.widgetaction {
+  z-index: 1;
+}
+
+.infoaction .widget_container.widgetinfo .widget .actor {
+  width: 100%;
+  margin: 0;
+}
+
+.infoaction .widget_container.widgetinfo .widget .actor div { float: none; }
+
+.navbar .infoaction .label {
+  float: left;
+  margin: 0 auto;
+}
+
+button.ui-slider-handle {
+  min-width: 2em;
+  min-height: 2em;
+}
+
+#notification-center {
+  position: absolute;
+  width: 300px;
+  top: 0;
+  background-color: rgba(61, 61, 61, 0.9);
+  border-left: 3px solid #111;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  z-index: 1000000;
+  color: #FFF;
+}
+
+#notification-center > .badge {
+  position: absolute;
+  top: 5px;
+  left: -53px; /*width + border*/
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  display: none;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgba(61, 61, 61, 0.9);
+  font-weight: bold;
+  font-size: 1.4em;
+  border-left: 3px solid #111;
+  border-top: 3px solid #111;
+  border-bottom: 3px solid #111;
+  cursor: pointer;
+}
+#notification-center > .badge:hover {
+  border-color: #CCC;
+}
+
+#notification-center section.messages {
+  overflow-y: auto;
+}
+
+/*severities*/
+#notification-center > .badge.urgent {
+  background-color: rgba(255, 0, 0, 0.9);
+}
+
+#notification-center > .badge.high {
+  background-color: rgba(255, 121, 0, 0.9);
+}
+
+#notification-center > .badge.normal {
+  background-color: rgba(255, 244, 230, 0.9);
+}
+
+#notification-center > .badge.low {
+  background-color: rgba(61, 61, 61, 0.9);
+}
+
+#notification-center .message.urgent {
+  border-left: 8px solid rgba(255, 0, 0, 0.9);
+}
+
+#notification-center .message.high {
+  border-left: 8px solid rgba(255, 121, 0, 0.9);
+}
+
+#notification-center .message.normal {
+  border-left: 8px solid rgba(255, 244, 230, 0.9);
+}
+
+#notification-center .message.low {
+  border-left: 8px solid rgba(61, 61, 61, 0.9);
+}
+#notification-center > .badge.hidden {
+  display: none;
+}
+#notification-center > .badge:not(:empty):not(.hidden) {
+  display: block;
+}
+
+#notification-center > header {
+  padding: 10px 18px;
+  border-bottom: 2px solid #CCC;
+}
+
+#notification-center footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 18px;
+  border-top: 2px solid #CCC;
+  font-size: 1.1em;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#notification-center footer:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#notification-center footer::before {
+  content: "X ";
+}
+
+#notification-center > header > h3 {
+  overflow: auto;
+}
+
+#notification-center > header .hide {
+  float: right;
+}
+
+#notification-center .message header h4 {
+  font-size: 1.2em;
+  margin: 0 0 3px 0;
+}
+
+#notification-center .message {
+  border-bottom: 1px solid #CECECE;
+  padding: 10px 18px;
+  overflow: auto;
+  vertical-align: middle;
+  min-height: 25px;
+}
+
+#notification-center .message:last-child {
+  border-bottom: none;
+}
+
+#notification-center .message .content {
+  float: left;
+  width: 100%;
+}
+
+#notification-center .message .delete {
+  float: right;
+}
+
+#notification-center a {
+  color: #fff;
+}
+
+.popup.error,
+.popup_background.error,
+.popup.info,
+.popup_background.info {
+  position: absolute;
+  padding: 30px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  width: auto;
+  height: auto;
+}
+
+.popup {
+  z-index: 100001;
+  background: transparent;
+  font-family: Arial, sans-serif;
+}
+
+.popup_close {
+  position: absolute;
+  z-index: 100002;
+  right: 1em;
+  top: -0.8em;
+  width: 1.2em;
+  text-align: center;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.popup_background {
+  z-index: 100000;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  background: #000;
+  border: 1px solid #fff;
+}
+
+.popup div {
+  margin: 4px;
+}
+
+.popup div.head {
+  border-bottom: 1px solid;
+}
+
+.popup .main .icon {
+  float: left;
+  margin: -1em 1em 0 0;
+  vertical-align: middle;
+  width: 64px;
+  height: 100%;
+}
+
+.popup .main pre {
+  overflow: auto;
+  font-size: 0.8em;
+}
+
+.popup .actions { text-align: center; }
+.popup .actions button {
+  padding: 0.3em 1em;
+  font-size: 0.9em;
+}
+
+.popup_background.error {
+  background: #800000;
+  border: #f00;
+  color: #FFF;
+}
+
+.popup_background.error a { color: #FFF; }
+
+pre.inline { display: inline-block; }

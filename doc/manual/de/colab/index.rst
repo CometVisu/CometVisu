@@ -235,11 +235,11 @@ Dokumentation schreiben mit VisualStudio Code
 Der Editor `Visual Studio Code <https://code.visualstudio.com>`__ bietet ein Plugin, mit dessen Hilfe man sich eine
 Live Preview der geschriebenen Dokumentation anzeigen lassen kann. Dazu muss zunächst der Editor installiert werden und
 darin die Extension ``restructuredtext`` (über den Menüpunkt Anzeigen -> Extensions suchen nach rst) installiert werden.
-Nach einmaligem Neuladen des Editors steht diese zur Verfügung. 
+Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
 
 
 Damit die Live Preview funktioniert muss Python installiert sein.
-Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier: 
+Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
 `Install Sphinx <https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md>`__
 
 
@@ -263,7 +263,52 @@ Mithilfe bei der Entwicklung
     * ..
 
 .. toctree::
+    :glob:
 
     dev/test
+
+
+Fehlerbericht erstellen
+-----------------------
+
+Fehlerberichte sollten nach Möglichkeit durch Anlegen eines Issues auf `github.com <https://github.com/CometVisu/CometVisu/issues>`__
+erfolgen. Bevorzugte Sprache ist hier Englisch. Der Fehlerbericht sollte aus folgenden Teilen bestehen, die so detailliert wie möglich
+ausformuliert sind.
+
+1. Welche Schritte sind nötig um das Fehlverhalten hervorzurufen
+2. Eine detaillierte Fehlerbeschreibung
+3. Wie würde das korrekte Verhalten aus Sicht des Autors aussehen
+4. [Optional] eine Logdatei mit aufgezeichnetem Fehler
+
+.. HINT::
+
+    Bei Unsicherheiten bzgl. des Fehlers kann zunächst im `KNX-User-Forum <https://knx-user-forum.de/forum/supportforen/cometvisu>`__
+    oder auf `Gitter <https://gitter.im/CometVisu/CometVisu_DE>`__ um Rat gefragt werden.
+
+
+Fehlerberichte mit Log-Dateien
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Ab Version 0.11.0 steht eine zusätzliche Möglichkeit zur Verfügung, den Entwicklern die Fehlersuche zu erleichtern
+und die Fehlerberichte zu verbessern. Benutzer können das Verhalten der CometVisu aufzeichnen und eine sogenannte
+Log-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).
+
+.. HINT::
+
+    Sie Aufzeichnung der Log-Dateien kann mit dem URL-Parameter ``reporting=true`` aktiviert werden
+    (siehe: :ref:`URL-Parameter <reporting>`). Sobald man den Fehler nachgestellt hat, kann die Logdatei durch Eingabe
+    des Befehls ``downloadLog()`` in der Browserkonsole (öffnen mit F12-Taste) heruntergeladen werden.
+
+Die Log-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
+( z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.
+Eventuell ist es daher ratsam, denn Fehler mit einer abgewandelten Konfigurationsdatei zu erstellen, die z.B. keine
+sensiblen Daten enthält.
+Der große Vorteil dieser Log-Dateien ist aber, dass die Entwickler beim Abspielen dieser Logs eine originalgetreue
+Nachbildung des Benutzersystems sehen und somit in der Regel auch direkt den Fehler sehen, diesen beheben und direkt
+testen können ob die Fehlerkorrektur auch wirkt.
+
+Natürlich gibt es auch Einschränkungen, denn nicht alles kann durch die Log-Dateien aufgezeichnet werden.
+Wenn ein Nutzer z.B. die vorhandenen Designs angepasst hat, eigene Icons/Bilder benutzt, die nicht Teil der
+CometVisu sind, so fehlen diese beim Abspielen, da sie nicht Teil des Logs sind.
 
 .. [RST-Wiki] https://de.wikipedia.org/wiki/ReStructuredText

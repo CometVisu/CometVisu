@@ -1,0 +1,87 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: you@your.org\n"
+"POT-Creation-Date: 2017-04-26 18:57+0100\n"
+"PO-Revision-Date: 2017-04-26 18:57+0100\n"
+"Last-Translator: you <you@your.org>\n"
+"Language-Team: Team <yourteam@your.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: cv/Application.js:172
+msgid "Please describe what you have done until the error occured?"
+msgstr ""
+
+#: cv/Application.js:176
+msgid "An error occured"
+msgstr ""
+
+#: cv/Application.js:182
+msgid "Report Bug"
+msgstr ""
+
+#: cv/Application.js:489
+msgid "Config-File Error!"
+msgstr ""
+
+#: cv/Application.js:493
+msgid "Invalid config file!"
+msgstr ""
+
+#: cv/Application.js:493
+msgid "Please check!"
+msgstr ""
+
+#: cv/Application.js:501
+msgid "Config file has wrong library version!"
+msgstr ""
+
+#: cv/Application.js:502
+msgid "This can cause problems with your configuration"
+msgstr ""
+
+#: cv/Application.js:503
+msgid "You can run the %1Configuration Upgrader%2."
+msgstr ""
+
+#: cv/Application.js:504
+msgid ""
+"Or you can start without upgrading %1with possible configuration problems%2"
+msgstr ""
+
+#: cv/Application.js:507
+msgid ""
+"404: Config file not found. Neither as normal config (%1) nor as demo config"
+" (%2)."
+msgstr ""
+
+#: cv/Application.js:510
+msgid "Unhandled error of type \"%1\""
+msgstr ""
+
+#: cv/TemplateEngine.js:204
+msgid "Connection error"
+msgstr ""
+
+#: cv/TemplateEngine.js:213
+msgid "Error requesting %1: %2 - %3."
+msgstr ""
+
+#: cv/TemplateEngine.js:215
+msgid "Connection to backend is lost."
+msgstr ""
+
+#: cv/ui/NotificationCenter.js:227
+msgid "Delete all"
+msgstr ""
+
+#: cv/ui/NotificationCenter.js:227
+msgid "Message center"
+msgstr ""
+
+#: cv/ui/structure/pure/Unknown.js:88
+msgid "unknown: %1"
+msgstr ""

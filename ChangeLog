@@ -1,5 +1,24 @@
 ## Change Log
 
+### 0.10.2 (2017/04/09 16:17 +00:00)
+- [#539](https://github.com/CometVisu/CometVisu/pull/539) check if tags is array otherwise treat is as string (@peuter)
+- [#538](https://github.com/CometVisu/CometVisu/pull/538) Release 0.10.1 (@ChristianMayer, @peuter, @Jens-Me)
+
+0.10.1
+======
+
+### 0.10.1 (2017/04/01 22:55 +00:00)
+- [#536](https://github.com/CometVisu/CometVisu/pull/536) fix startpage feature to allow Page names again (@peuter)
+- [#534](https://github.com/CometVisu/CometVisu/pull/534) Fix client (@ChristianMayer)
+- [#531](https://github.com/CometVisu/CometVisu/pull/531) update copyright year in header (@peuter)
+- [#530](https://github.com/CometVisu/CometVisu/pull/530) use current year in copyright hint (@peuter)
+- [#529](https://github.com/CometVisu/CometVisu/pull/529) add description how to sync local repo on command line (@peuter)
+- [#526](https://github.com/CometVisu/CometVisu/pull/526) add missing method (@peuter)
+- [#527](https://github.com/CometVisu/CometVisu/pull/527) github synchronisation documented (@staehler)
+- [#524](https://github.com/CometVisu/CometVisu/pull/524) Bump version to 0.10.0-dev (@ChristianMayer)
+- [#522](https://github.com/CometVisu/CometVisu/pull/522) Release 0.10.0 (@ChristianMayer, @peuter, @Jens-Me)
+- [#521](https://github.com/CometVisu/CometVisu/pull/521) Docu updated (@staehler)
+
 0.10.0
 ======
 

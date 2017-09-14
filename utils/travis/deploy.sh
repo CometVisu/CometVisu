@@ -5,6 +5,11 @@ SOURCE_BRANCH="develop"
 TARGET_BRANCH="gh-pages"
 REPO_SLUG="CometVisu/CometVisu"
 
+if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
+    echo "Skipping deploy in cron build"
+    exit 0
+fi
+
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
 if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [ "$TRAVIS_BRANCH" != "master" ] ); then
     echo "Skipping deploy;"
@@ -40,14 +45,31 @@ cd ..
 # Run our creation script
 echo "generating german manual to extract screenshot examples"
 ./cv doc --doc-type manual -f -l de
-echo "generating api"
-./cv doc --doc-type source
+
+VERSION=`./cv doc --get-version`
+utils/update_version.py
+echo "generating api version $VERSION"
+source temp-python/bin/activate
+./generate.py api -sI --macro=CV_VERSION:$VERSION
+deactivate
+
 echo "updating english manual from source code doc comments"
 ./cv doc --from-source
+
+# update symlinks and write version files
+./cv doc --process-versions
+
 echo "generating english manual, including screenshot generation for all languages"
-./cv doc --doc-type manual -c -f -l en
+./cv doc --doc-type manual -c -f -l en -t build
 echo "generating german manual again with existing screenshots"
 ./cv doc --doc-type manual -f -l de
+
+echo "generate API screenshots"
+grunt screenshots --subDir=source --browserName=chrome --target=build --force
+
+# move the apiviewer to the correct version subfolder, including screenshots
+rm -r out/en/$VERSION/api
+./cv doc --move-apiviewer
 
 echo "generating feature yml file for homepage"
 ./cv doc --generate-features

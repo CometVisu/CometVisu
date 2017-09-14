@@ -20,13 +20,13 @@
 import sh
 import json
 import os
-import ConfigParser
+import configparser
 
 root_dir = os.path.abspath(os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', '..', '..'))
 
 class Version:
     _source_version = None
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.read(os.path.join(root_dir, 'utils', 'config.ini'))
 
     @classmethod

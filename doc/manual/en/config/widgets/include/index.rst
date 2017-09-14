@@ -1,7 +1,7 @@
 .. _include:
 
-The Include widget
-==================
+The Include element
+===================
 
 .. api-doc:: Include
 
@@ -13,6 +13,18 @@ Description
 Includes other configuration snippets. Note that this is no widget shown in your visualization it just gives
 you the opportunity to split you configuration into multiple files. If you have a large configuration file
 splitting it up might help to keep track of your configuration.
+The path to the included files must be relative to the root folder (the one with the index.html).
+
+**Example**
+
+.. code-block:: xml
+
+    <page>
+     <include src="config/part1.xml"/>
+     <include src="config/part2.xml"/>
+    </page>
+
+
 
 
 .. ###END-WIDGET-DESCRIPTION###
@@ -27,7 +39,7 @@ The behaviour and appearance of the Include widget can be influenced by using ce
 The following tables show the allowed attributes and elements and their possible values.
 The screenshots show, how both can be edited in the :ref:`editor <editor>`.
 
-Attributes underlined by ..... are mandatory, all the others are optional and be omitted.
+Attributes underlined by ..... are mandatory, all the others are optional and can be omitted.
 
 Allowed attributes in the Include-element
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -40,9 +52,7 @@ Allowed attributes in the Include-element
     :align: center
 
     <caption>Attributes in the editor (simple view) [#f1]_</caption>
-    <include>
-        <layout colspan="4" />
-    </include>
+    <include src="test.xml"/>
 
 
 Allowed child-elements und their attributes

@@ -3,7 +3,7 @@
 The diagram plugin
 ==================
 
-.. api-doc:: diagram
+.. api-doc:: diagram/AbstractDiagram
 
 Description
 -----------

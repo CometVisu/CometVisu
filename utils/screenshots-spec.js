@@ -7,8 +7,10 @@
 var fs = require('fs'),
   path = require('path'),
   easyimg = require('easyimage');
-var cvMockup = require('../test/protractor/pages/Mock');
-var editorMockup = require('../test/protractor/pages/EditorMock');
+var CometVisuMockup = require('../source/test/protractor/pages/Mock');
+var cvMockup = new CometVisuMockup(browser.target || 'source');
+var CometVisuEditorMockup = require('../source/test/protractor/pages/EditorMock');
+var editorMockup = new CometVisuEditorMockup(browser.target || 'source');
 
 var errorHandler = function(err) {
   if (err) throw err;
@@ -119,6 +121,9 @@ var cropInFile = function(size, location, srcFile, width, height) {
 };
 
 var createDir = function(dir) {
+  if (dir.substring(dir.length-1) == "/") {
+    dir = dir.substring(0,dir.length-1);
+  }
   try {
     fs.statSync(dir);
   } catch(e) {
@@ -241,8 +246,8 @@ describe('generation screenshots from jsdoc examples', function () {
               browser.wait(function() {
                 return widget.isDisplayed();
               }, 1000).then(function() {
+                console.log(">>> processing "+filePath+"...");
                 settings.screenshots.forEach(function(setting) {
-
                   if (setting.data && Array.isArray(setting.data)) {
                     setting.data.forEach(function (data) {
                       var value = data.value;
@@ -277,6 +282,7 @@ describe('generation screenshots from jsdoc examples', function () {
                       if (setting.sleep) {
                         browser.sleep(setting.sleep);
                       }
+                      console.log("  - creating screenshot '"+setting.name+"'");
                       browser.takeScreenshot().then(function (data) {
                         var base64Data = data.replace(/^data:image\/png;base64,/, "");
                         var imgFile = path.join(settings.screenshotDir, setting.name + ".png");
@@ -294,7 +300,7 @@ describe('generation screenshots from jsdoc examples', function () {
                             } else {
                               cropInFile(size, location, imgFile);
                             }
-                            console.log("generated screenshot "+setting.name);
+                            console.log("  -> OK");
                           }
                         });
                       });

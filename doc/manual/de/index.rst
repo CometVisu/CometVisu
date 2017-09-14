@@ -96,5 +96,6 @@ oder `hier <http://de.selfhtml.org/helferlein/farben.htm>`__
     install/index
     config/index
     colab/index
+    devel/index
     faq
 

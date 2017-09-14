@@ -19,8 +19,12 @@
 
 import os
 import logging
-import ConfigParser
+import configparser
 import codecs
+
+import subprocess
+from json import dumps
+from semver import compare
 import yaml
 
 import sh
@@ -32,9 +36,15 @@ from lxml import etree
 from argparse import ArgumentParser
 from . import Command
 from scaffolding import Scaffolder
+try:
+    # Python 2.6-2.7
+    from HTMLParser import HTMLParser
+    html = HTMLParser()
+except ImportError:
+    # Python 3
+    import html
 
 root_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
-
 
 class DocParser:
     """
@@ -43,7 +53,7 @@ class DocParser:
     """
 
     def __init__(self, widget=None, plugin=None):
-        self.config = ConfigParser.ConfigParser()
+        self.config = configparser.ConfigParser()
         self.config.read(os.path.join(root_dir, 'utils', 'config.ini'))
         self.sections = {}
         self.lines = []
@@ -116,6 +126,7 @@ class DocParser:
 
 class DocGenerator(Command):
     _source_version = None
+    _doc_version = None
 
     def __init__(self):
         super(DocGenerator, self).__init__()
@@ -123,15 +134,17 @@ class DocGenerator(Command):
         logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
     def _get_doc_version(self):
-        git = sh.Command("git")
-        branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
-            else os.environ.get('TRAVIS_BRANCH')
+        if self._doc_version is None:
+            git = sh.Command("git")
+            branch = git("rev-parse", "--abbrev-ref", "HEAD").strip() if os.environ.get('TRAVIS_BRANCH') is None \
+                else os.environ.get('TRAVIS_BRANCH')
 
-        if branch == "develop":
-            return self.config.get("DEFAULT", "develop-version-mapping")
-        else:
-            # read version
-            return self._get_source_version()
+            if branch == "develop":
+                self._doc_version = self.config.get("DEFAULT", "develop-version-mapping")
+            else:
+                # read version
+                self._doc_version = self._get_source_version()
+        return self._doc_version
 
     def _get_source_version(self):
         if self._source_version is None:
@@ -140,7 +153,7 @@ class DocGenerator(Command):
                 self._source_version = data['version']
         return self._source_version
 
-    def _run(self, language, target_dir, browser, skip_screenshots=True, force=False):
+    def _run(self, language, target_dir, browser, skip_screenshots=True, force=False, screenshot_build="source"):
 
         sphinx_build = sh.Command("sphinx-build")
 
@@ -174,7 +187,8 @@ class DocGenerator(Command):
         if not skip_screenshots:
             grunt = sh.Command("grunt")
             # generate the screenshots
-            grunt("screenshots", "--subDir=manual", "--browserName=%s" % browser, _out=self.process_output, _err=self.process_output)
+            grunt("--force", "screenshots", "--subDir=manual", "--browserName=%s" % browser,
+                  "--target=%s" % screenshot_build, _out=self.process_output, _err=self.process_output)
 
             # 2dn run with access to the generated screenshots
             sphinx_build("-b", target_type, source_dir, target_dir, _out=self.process_output, _err=self.process_output)
@@ -186,13 +200,28 @@ class DocGenerator(Command):
         # traverse through the widgets
         root, dirs, files = os.walk(path).next()
         source_files = []
+        cleanr = re.compile('</?h.*?>')
+        clean_tags = re.compile('</?.*?>')
         if plugin:
-            for dir in dirs:
-                source_files.append((dir, os.path.join(root, dir, "structure_plugin.js")))
+            for file in files:
+                if file.split(os.path.sep)[0] in dirs and file.startswith("Abstract"):
+                    # plugin in subdirectory, only read the Abstract Main Class
+                    source_files.append((file[0:-3], os.path.join(root, file)))
+                elif not file.startswith("Abstract") and file != "__init__.js":
+                    source_files.append((file[0:-3], os.path.join(root, file)))
         else:
             for file in files:
-                if file not in ["_common.js", "Unknown.js"]:
+                if file not in ["PageLink.js", "Unknown.js", "WidgetInfoAction.js", "__init__.js"] and not file.startswith("Abstract"):
                     source_files.append((file[0:-3], os.path.join(root, file)))
+
+            # add parser widgets if defined
+
+            for parser in self.config.get("manual-en", "parsers-doc-source").split(","):
+                parser_path = os.path.join(self.config.get("manual-en", "parsers-path"), "%s.js" % parser)
+                if os.path.exists(parser_path):
+                    source_files.append((parser, parser_path))
+                else:
+                    print("file not found %s" % parser_path)
 
         for name, file in source_files:
             parser = DocParser(widget=name) if not plugin else DocParser(plugin=name)
@@ -205,6 +234,7 @@ class DocGenerator(Command):
                 }
                 reading = False
                 code_block = False
+                unescape = False
                 example = False
                 section = "WIDGET-DESCRIPTION"
                 skip_lines_before = 0
@@ -213,7 +243,7 @@ class DocGenerator(Command):
                     if skip_lines_before > i:
                         continue
 
-                    if line.startswith("define"):
+                    if line.startswith("qx.Class.define"):
                         # source code starts here -> do not proceed
                         break
 
@@ -228,13 +258,16 @@ class DocGenerator(Command):
                         if match:
                             indent = ""
                             if match.group(1)[0:1] == "@":
-                                if match.group(1)[1:15] == "widget_example":
+                                directive = match.group(1)[1:].split(" ")[0]
+                                # print(directive)
+                                if directive == "widgetexample":
                                     section = "WIDGET-EXAMPLES"
 
                                     # we need to parse the examples xml and check if the screenshots already exist
-                                    # in the api-docs, then we need not to process them twice and jsut add a combination
+                                    # in the api-docs, then we need not to process them twice and just add a combination
                                     # of a figure and a clode-block here
-                                    example_code = match.group(1)[16:]
+                                    raw_code = match.group(1)[14:]
+                                    example_code = raw_code
                                     for k, example_line in enumerate(lines[i+1:]):
                                         if re.match("^[\s*]*(\*/|@.+)\s*$", example_line) or len(re.sub("[\s*\n]", "", example_line)) == 0:
                                             # example finished
@@ -276,10 +309,10 @@ class DocGenerator(Command):
                                             # no screenshot name defined, the auto-configured name cannot be guessed
                                             # reliable -> using widget-example
                                             skip_lines_before = 0
-                                            content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+                                            content[section].append(".. widget-example::\n\n    %s\n" % raw_code)
                                     else:
                                         # no screenshot found, add widget-example th generate one
-                                        content[section].append(".. widget-example::\n\n    %s\n" % match.group(1)[16:])
+                                        content[section].append(".. widget-example::\n\n    %s\n" % raw_code)
 
                                 elif match.group(1)[1:8] == "example":
                                     section = "WIDGET-DESCRIPTION"
@@ -301,20 +334,29 @@ class DocGenerator(Command):
                             if section == "WIDGET-EXAMPLES" or example:
                                 indent = "    "
                             else:
-                                if re.match("\s*```\s*$", line_content):
+                                if line_content.strip() in ["```", "<pre class=\"sunlight-highlight-xml\">", "</pre>"]:
                                     if not code_block:
+                                        if line_content.strip() == "<pre class=\"sunlight-highlight-xml\">":
+                                            unescape = True
                                         line_content = "\n.. code-block:: xml\n"
                                         code_block = True
                                     else:
                                         line_content = "\n"
                                         code_block = False
+                                        unescape = False
                                 elif code_block:
                                     indent = "    "
                                 elif re.match("\s*TODO:?\s(.*)$", line_content):
                                     todo = re.match("\s*TODO:?\s(.*)$", line_content)
                                     line_content = ".. TODO::\n\n    %s\n" % todo.group(1)
 
-                            content[section].append("%s%s\n" % (indent, line_content))
+                            if unescape is True:
+                                content[section].append("%s%s\n" % (indent, html.unescape(line_content)))
+                            else:
+                                line_content = re.sub(cleanr, '**', line_content)
+                                if section != "WIDGET-EXAMPLES" and example is False:
+                                     line_content = re.sub(clean_tags, '', line_content)
+                                content[section].append("%s%s\n" % (indent, line_content))
 
             if (len("".join(x.strip() for x in content['WIDGET-DESCRIPTION'])) == 0 or
                     content['WIDGET-DESCRIPTION'][0].startswith(".. TODO::\n\n    complete docs")):
@@ -403,6 +445,52 @@ class DocGenerator(Command):
 
         return None
 
+    def process_versions(self, path):
+        root, dirs, files = os.walk(path).next()
+        for lang_dir in dirs:
+            if lang_dir[0:1] != "." and len(lang_dir) == 2:
+                print("checking versions in language: %s" % lang_dir)
+                # collect versions and symlinks
+                root, dirs, files = os.walk(os.path.join(path, lang_dir)).next()
+                symlinks = {}
+                versions = []
+                special_versions = []
+                for version_dir in dirs:
+                    if os.path.islink(os.path.join(root, version_dir)):
+                        symlinks[version_dir] = os.readlink(os.path.join(root, version_dir)).rstrip("/")
+                    elif len(version_dir.split(".")) == 3:
+                        versions.append(version_dir)
+                    else:
+                        special_versions.append(version_dir)
+
+                # max_version = max_ver(versions)
+                versions.sort(compare)
+                max_version = versions[-1:][0]
+                print("versions found: %s" % versions)
+
+                # checking current symlink to max version
+                if 'current' not in symlinks or symlinks['current'] != max_version:
+                    print("setting 'current' symlink to '%s'" % max_version)
+                    cwd = os.getcwd()
+                    os.chdir(root)
+                    try:
+                        os.remove('current')
+                    except Exception:
+                        pass
+                    os.symlink(max_version, 'current')
+                    symlinks['current'] = max_version
+                    os.chdir(cwd)
+
+                # saving versions to json file
+                try:
+                    with open(self.config.get("DEFAULT", "versions-file-%s" % lang_dir), "w+") as f:
+                        f.write(dumps({
+                            "versions": versions+special_versions,
+                            "symlinks": symlinks
+                        }))
+                except configparser.NoOptionError:
+                    pass
+
     def run(self, args):
         parser = ArgumentParser(usage="%(prog)s - CometVisu documentation generator")
 
@@ -424,6 +512,10 @@ class DocGenerator(Command):
 
         parser.add_argument("--from-source", dest="from_source", action="store_true", help="generate english manual from source comments")
         parser.add_argument("--generate-features", dest="features", action="store_true", help="generate the feature YAML file")
+        parser.add_argument("--move-apiviewer", dest="move_apiviewer", action="store_true", help="move the generated apiviewer to the correct version subfolder")
+        parser.add_argument("--process-versions", dest="process_versions", action="store_true", help="update symlinks to latest/current docs and weite version files")
+        parser.add_argument("--get-version", dest="get_version", action="store_true", help="get version")
+        parser.add_argument("--screenshot-build", "-t", dest="screenshot_build", default="source", help="Use 'source' od 'build' to generate screenshots")
 
         options = parser.parse_args(args)
 
@@ -446,21 +538,33 @@ class DocGenerator(Command):
                                default_style='"',
                                allow_unicode=True)
 
+        elif options.get_version:
+            print(self._get_doc_version())
+
+        elif options.process_versions:
+            self.process_versions(self.config.get("DEFAULT", "doc-dir"))
+
         elif options.from_source:
-            self.from_source(os.path.join("src", "structure", "pure"))
-            self.from_source(os.path.join("src", "plugins"), plugin=True)
+            self.from_source(self.config.get("manual-en", "widgets-path"))
+            self.from_source(self.config.get("manual-en", "plugins-path"), plugin=True)
+
+        elif options.move_apiviewer:
+            # move to the correct dir
+            target_dir = options.target if options.target is not None else os.path.join(self.root_dir, self.config.get("api", "target"))
+            target_dir = target_dir.replace("<version>", self._get_doc_version())
+            # remove api suffix from target
+            target_dir = os.path.sep.join(target_dir.split(os.path.sep)[0:-1])
+            shutil.move(self.config.get("api", "generator_target"), target_dir)
 
         elif 'doc' not in options or options.doc == "manual":
-            self._run(options.language, options.target, options.browser, force=options.force, skip_screenshots=not options.complete)
+            self._run(options.language, options.target, options.browser, force=options.force,
+                      skip_screenshots=not options.complete, screenshot_build=options.screenshot_build)
             sys.exit(0)
 
         elif options.doc == "source":
-            grunt = sh.Command("grunt")
-            if options.target is not None:
-                grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, "--targetDir=%s" % options.target, _out=self.process_output, _err=self.process_output)
-            else:
-                target_dir = self.config.get("api", "target").replace("<version>", self._get_doc_version())
-                grunt("api-doc", "--subDir=jsdoc", "--browserName=%s" % options.browser, "--targetDir=%s" % target_dir, _out=self.process_output, _err=self.process_output)
+            cmd = "./generate.py api -sI --macro=CV_VERSION:%s" % self._get_doc_version()
+            subprocess.call(cmd, shell=True)
+
         else:
             self.log.error("generation of '%s' documentation is not available" % options.type)
             sys.exit(1)
