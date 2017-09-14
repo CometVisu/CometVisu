@@ -37,6 +37,11 @@ qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
     needsConfirmation: {
       check: "Boolean",
       init: false
+    },
+
+    deleteMessageAfterExecution: {
+      check: "Boolean",
+      init: false
     }
   }
 });

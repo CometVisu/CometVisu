@@ -83,6 +83,7 @@ qx.Class.define('cv.io.transport.Sse', {
       this.eventSource.addEventListener('error', this.handleError.bind(this), false);
       // add additional listeners
       this.__additionalTopics.forEach(function(entry) {
+        this.debug("subscribing to topic "+entry[0]);
         this.eventSource.addEventListener(entry[0], entry[1].bind(entry[2]), false);
       }, this);
       this.eventSource.onerror = function () {

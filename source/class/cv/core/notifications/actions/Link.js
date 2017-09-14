@@ -55,6 +55,10 @@ qx.Class.define("cv.core.notifications.actions.Link", {
     action: {
       check: "Function",
       nullable: true
+    },
+    hidden: {
+      check: "Boolean",
+      init: false
     }
   },
 
@@ -71,7 +75,13 @@ qx.Class.define("cv.core.notifications.actions.Link", {
         this.getAction()(ev);
       }
       if (this.getUrl()) {
-        window.open(this.getUrl(), '_blank');
+        if (this.isHidden()) {
+          // open link in background (fire and forget)
+          var req = new qx.io.request.Xhr(this.getUrl());
+          req.send();
+        } else {
+          window.open(this.getUrl(), '_blank');
+        }
       }
     },
 

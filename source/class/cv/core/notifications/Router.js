@@ -100,7 +100,7 @@ qx.Class.define("cv.core.notifications.Router", {
      *    addressMapping: "mapping-name", // optional mapping name for address
      *    titleTemplate: "Kitchen light on", // title template of the message
      *    messageTemplate: "turned on at {{ time }} o'clock", // message content template
-     *    condition: 1 // show only when the value equals the contition value
+     *    condition: 1 // show only when the value equals the condition value
      *   }]
      * }
      * </pre>

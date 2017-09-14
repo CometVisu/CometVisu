@@ -247,12 +247,25 @@ qx.Class.define('cv.io.Client', {
       if (backend.baseURL && backend.baseURL.substr(-1) !== "/") {
         backend.baseURL += "/";
       }
+      var currentTransport = this.getCurrentTransport();
       switch(backend.transport) {
         case "long-polling":
-          this.setCurrentTransport(new cv.io.transport.LongPolling(this));
+          if (!(currentTransport instanceof cv.io.transport.LongPolling)) {
+            // replace old transport
+            if (currentTransport) {
+              currentTransport.dispose();
+            }
+            this.setCurrentTransport(new cv.io.transport.LongPolling(this));
+          }
           break;
         case "sse":
-          this.setCurrentTransport(new cv.io.transport.Sse(this));
+          if (!(currentTransport instanceof cv.io.transport.Sse)) {
+            // replace old transport
+            if (currentTransport) {
+              currentTransport.dispose();
+            }
+            this.setCurrentTransport(new cv.io.transport.Sse(this));
+          }
           break;
       }
       if (this.backend.name === "openHAB") {

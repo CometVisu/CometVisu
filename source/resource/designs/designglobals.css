@@ -378,6 +378,10 @@ button.ui-slider-handle {
   min-height: 25px;
 }
 
+#notification-center .message[onclick] {
+  cursor: pointer;
+}
+
 #notification-center .message:last-child {
   border-bottom: none;
 }

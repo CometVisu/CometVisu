@@ -112,9 +112,10 @@ qx.Class.define("cv.ui.NotificationCenter", {
     /**
      * Delete a message by index
      * @param index {Number}
+     * @param ev {Event}
      */
-    deleteMessage: function(index) {
-      this.getInstance().deleteMessage(index);
+    deleteMessage: function(index, ev) {
+      this.getInstance().deleteMessage(index, ev);
     },
 
     clear: function() {
@@ -125,8 +126,8 @@ qx.Class.define("cv.ui.NotificationCenter", {
       this.getInstance().hide();
     },
 
-    performAction: function(messageId) {
-      this.getInstance().performAction(messageId);
+    performAction: function(messageId, ev) {
+      this.getInstance().performAction(messageId, ev);
     }
   },
 
@@ -239,7 +240,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       var template = qx.dom.Element.create("script", {
         id: "MessageTemplate",
         type: "text/template",
-        html: '<div class="message {{severity}}" title="{{severity}}" id="notification_{{ id }}"{{#action}} onclick="cv.ui.NotificationCenter.performAction({{id}})"{{/action}}>{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}<div class="content">{{&message}} {{#deletable}}<div class="action delete"><a href="#" onclick="cv.ui.NotificationCenter.deleteMessage({{ id }})">x</a></div>{{/deletable}}</div></div>'
+        html: '<div class="message {{severity}}" title="{{tooltip}}" id="notification_{{ id }}"{{#actions}} onclick="cv.ui.NotificationCenter.performAction({{id}}, event)"{{/actions}}>{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}<div class="content">{{&message}} {{#deletable}}<div class="action delete"><a href="#" onclick="cv.ui.NotificationCenter.deleteMessage({{id}}, event)">x</a></div>{{/deletable}}</div></div>'
       });
       qx.dom.Element.insertEnd(template, body);
       this.__list = new qx.data.controller.website.List(this.__messages, this.__messagesContainer, "MessageTemplate");
@@ -352,6 +353,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
             // replace message
             found = msg;
             message.id = this.__messages.length;
+            message.tooltip = this.__getTooltip(message);
             if (!message.hasOwnProperty("deletable")) {
               message.deletable = true;
             }
@@ -372,6 +374,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (!found) {
         if (cv.core.notifications.Router.evaluateCondition(message)) {
           message.id = this.__messages.length;
+          message.tooltip = this.__getTooltip(message);
           if (!message.hasOwnProperty("deletable")) {
             message.deletable = true;
           }
@@ -388,6 +391,18 @@ qx.Class.define("cv.ui.NotificationCenter", {
       }
     },
 
+    __getTooltip: function(message) {
+      var tooltip = message.severity;
+      if (message.actions) {
+        Object.getOwnPropertyNames(message.actions).forEach(function(type) {
+          if (message.actions[type].title) {
+            tooltip = message.actions[type].title;
+          }
+        });
+      }
+      return tooltip;
+    },
+
     clear: function() {
       // collect all deletable messages
       var deletable = this.__messages.filter(function(message) {
@@ -398,29 +413,39 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     /**
      * Delete a message by index
+     * @param ev {Event}
      * @param index {Number}
      */
-    deleteMessage: function(index) {
+    deleteMessage: function(index, ev) {
+      if (ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+      }
       var message = this.__messages.getItem(index);
       if (message.deletable === true) {
         this.__messages.removeAt(index);
       }
     },
 
-    performAction: function(messageId) {
+    performAction: function(messageId, ev) {
       var message = this.__messages.getItem(messageId);
-      var action = message.action;
-      if (action.needsConfirmation) {
-        // TODO: open confirm dialog
-      } else {
-        this.__performAction(action);
+      if (!message || !message.actions) {
+        return;
       }
-    },
-
-    __performAction: function(action) {
-      if (action.callback) {
-        action.callback.call(action.callback || this, action.params);
-      }
+      Object.getOwnPropertyNames(message.actions).forEach(function(type) {
+          var typeActions = qx.lang.Type.isArray(message.actions[type]) ? message.actions[type] : [message.actions[type]];
+          typeActions.forEach(function(action) {
+            if (!action.needsConfirmation) {
+              var handler = cv.core.notifications.ActionRegistry.getActionHandler(type, action);
+              if (handler) {
+                handler.handleAction(ev);
+                if (action.deleteMessageAfterExecution) {
+                  this.deleteMessage(messageId);
+                }
+              }
+            }
+          }, this);
+      }, this);
     }
   },
 

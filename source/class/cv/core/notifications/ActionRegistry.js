@@ -44,6 +44,14 @@ qx.Class.define("cv.core.notifications.ActionRegistry", {
       this.__handlers[type] = handler;
     },
 
+    getActionHandler: function(type, config) {
+      if (this.__handlers[type]) {
+        return new (this.__handlers[type])(config);
+      } else {
+        return null;
+      }
+    },
+
     createActionElement: function(type, config) {
       if (!this.__handlers[type]) {
         qx.log.Logger.error(this, "no action handler registered for '%1' action type", type);

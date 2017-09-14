@@ -77,12 +77,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
     }
   },
 
-  /*
- *****************************************************************************
-    DESTRUCTOR
- *****************************************************************************
- */
-  destruct: function (statics) {
+  defer: function(statics) {
     // initialize on load
     statics.getInstance();
   }
