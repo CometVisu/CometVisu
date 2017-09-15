@@ -99,6 +99,8 @@ qx.Class.define("cv.core.notifications.Router", {
   members: {
     __routes: null,
     __stateMessageConfig: null,
+    __dateFormat: null,
+    __timeFormat: null,
 
     /**
      * Register state update handler for one or more addresses.
@@ -279,5 +281,6 @@ qx.Class.define("cv.core.notifications.Router", {
   */
   destruct: function() {
     this.clear();
+    this._disposeObjects("__dateFormat", "__timeFormat");
   }
 });
