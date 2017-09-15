@@ -84,7 +84,7 @@ qx.Class.define('cv.io.transport.Sse', {
       // add additional listeners
       this.__additionalTopics.forEach(function(entry) {
         this.debug("subscribing to topic "+entry[0]);
-        this.eventSource.addEventListener(entry[0], entry[1].bind(entry[2]), false);
+        this.__addRecordedEventListener(entry[0], entry[1], entry[2]);
       }, this);
       this.eventSource.onerror = function () {
         this.error("connection lost");
@@ -109,6 +109,14 @@ qx.Class.define('cv.io.transport.Sse', {
       this.client.setDataReceived(true);
     },
 
+    dispatchTopicMessage: function(topic, message) {
+      this.__additionalTopics.forEach(function(entry) {
+        if (entry[0] === topic) {
+          entry[1].call(entry[2], message);
+        }
+      });
+    },
+
     /**
      * Subscribe to SSE events of a certain topic
      * @param topic {String}
@@ -118,8 +126,15 @@ qx.Class.define('cv.io.transport.Sse', {
     subscribe: function(topic, callback, context) {
       this.__additionalTopics.push([topic, callback, context]);
       if (this.isConnectionRunning()) {
-        this.eventSource.addEventListener(topic, callback.bind(context, false));
+        this.__addRecordedEventListener(topic, callback, context);
       }
+    },
+
+    __addRecordedEventListener: function(topic, callback, context) {
+      this.eventSource.addEventListener(topic, function(e) {
+        this.client.record(topic, e.data);
+        callback.call(context, e);
+      }.bind(this), false);
     },
 
     /**

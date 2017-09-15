@@ -3,6 +3,8 @@
  *
  * @author tobiasb
  * @since 2017
+ *
+ * @ignore(SpeechSynthesisUtterance)
  */
 
 qx.Class.define("cv.core.notifications.SpeechHandler", {

@@ -202,23 +202,7 @@ qx.Class.define("cv.parser.MetaParser", {
     parseStateNotifications: function(xml) {
       var stateConfig = {};
       qx.bom.Selector.query('meta > notifications state-notification', xml).forEach(function (elem) {
-        var target = cv.ui.NotificationCenter.getInstance();
-        switch (qx.bom.element.Attribute.get(elem, 'target')) {
-          case "popup":
-            target = cv.ui.PopupHandler;
-            break;
-          case "notificationCenter":
-            target = cv.ui.NotificationCenter.getInstance();
-            break;
-          case "speech":
-            if (!window.speechSynthesis) {
-              // not supported
-              qx.log.Logger.warn(this, "this browser does not support the Web Speech API");
-              return;
-            }
-            target = cv.core.notifications.SpeechHandler.getInstance();
-            break;
-        }
+        var target = cv.core.notifications.Router.getTarget(qx.bom.element.Attribute.get(elem, 'target')) || cv.ui.NotificationCenter.getInstance();
 
         var addressContainer = qx.bom.Selector.query('addresses', elem)[0];
 

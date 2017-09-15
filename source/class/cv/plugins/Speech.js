@@ -54,7 +54,6 @@
  * @author Tobias Bräutigam
  * @since 0.10.0
  *
- * @ignore(SpeechSynthesisUtterance)
  */
 qx.Class.define('cv.plugins.Speech', {
   extend: qx.core.Object,

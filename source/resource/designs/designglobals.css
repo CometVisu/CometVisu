@@ -399,10 +399,8 @@ button.ui-slider-handle {
   color: #fff;
 }
 
-.popup.error,
-.popup_background.error,
-.popup.info,
-.popup_background.info {
+.popup.notification,
+.popup_background.notification {
   position: absolute;
   padding: 30px;
   top: 50%;
@@ -446,12 +444,30 @@ button.ui-slider-handle {
   border-bottom: 1px solid;
 }
 
-.popup .main .icon {
+.popup .main .icon:not(.spinner) {
   float: left;
   margin: -1em 1em 0 0;
   vertical-align: middle;
   width: 64px;
   height: 100%;
+}
+
+.popup .main .icon.spinner {
+  vertical-align: middle;
+  align: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  animation: spinner 2s linear infinite;
+}
+
+@keyframes spinner {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+.popup.notification .main .message {
+  margin: 1em 0;
 }
 
 .popup .main pre {
@@ -475,3 +491,21 @@ button.ui-slider-handle {
 .popup_background.error a { color: #FFF; }
 
 pre.inline { display: inline-block; }
+
+/* progressbar */
+.popup div.progressbar {
+  height: 10px;
+  background-color: white;
+  padding: 1px;
+  margin: 10px 5px;
+  position: relative;
+}
+
+.popup div.progressbar div.completed {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: grey;
+  margin: 1px;
+}

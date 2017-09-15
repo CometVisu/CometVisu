@@ -70,6 +70,23 @@ qx.Class.define("cv.core.notifications.Router", {
     // shortcut
     dispatchMessage: function(topic, message, target) {
       return this.getInstance().dispatchMessage(topic, message, target);
+    },
+
+    getTarget: function(name) {
+      switch (name) {
+        case "popup":
+          return cv.ui.PopupHandler;
+        case "notificationCenter":
+          return cv.ui.NotificationCenter.getInstance();
+        case "speech":
+          if (!window.speechSynthesis) {
+            // not supported
+            qx.log.Logger.warn(this, "this browser does not support the Web Speech API");
+            return;
+          }
+          return cv.core.notifications.SpeechHandler.getInstance();
+      }
+      return null;
     }
   },
 
@@ -235,6 +252,9 @@ qx.Class.define("cv.core.notifications.Router", {
     },
 
     dispatchMessage: function(topic, message, target) {
+      if (message.target && !target) {
+        target = cv.core.notifications.Router.getTarget(message.target);
+      }
       if (target && target.handleMessage) {
         this.debug("dispatching '" + topic + "' message to handler: " + target);
         target.handleMessage(message, {});

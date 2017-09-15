@@ -54,7 +54,8 @@ qx.Class.define("cv.core.notifications.actions.Link", {
     },
     action: {
       check: "Function",
-      nullable: true
+      nullable: true,
+      transform: "_transformAction"
     },
     hidden: {
       check: "Boolean",
@@ -68,6 +69,22 @@ qx.Class.define("cv.core.notifications.actions.Link", {
   *****************************************************************************
   */
   members: {
+
+    _transformAction: function(value) {
+      if (qx.lang.Type.isFunction(value)) {
+        return value;
+      }
+      switch(value) {
+        case "reload":
+        case "restart":
+          return function() {
+            window.location.reload();
+          };
+      }
+      this.error("Unknown action: "+value);
+      return null;
+    },
+
     handleAction: function(ev) {
       ev.stopPropagation();
       ev.preventDefault();
