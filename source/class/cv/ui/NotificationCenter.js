@@ -433,18 +433,18 @@ qx.Class.define("cv.ui.NotificationCenter", {
         return;
       }
       Object.getOwnPropertyNames(message.actions).forEach(function(type) {
-          var typeActions = qx.lang.Type.isArray(message.actions[type]) ? message.actions[type] : [message.actions[type]];
-          typeActions.forEach(function(action) {
-            if (!action.needsConfirmation) {
-              var handler = cv.core.notifications.ActionRegistry.getActionHandler(type, action);
-              if (handler) {
-                handler.handleAction(ev);
-                if (action.deleteMessageAfterExecution) {
-                  this.deleteMessage(messageId);
-                }
+        var typeActions = qx.lang.Type.isArray(message.actions[type]) ? message.actions[type] : [message.actions[type]];
+        typeActions.forEach(function(action) {
+          if (!action.needsConfirmation) {
+            var handler = cv.core.notifications.ActionRegistry.getActionHandler(type, action);
+            if (handler) {
+              handler.handleAction(ev);
+              if (action.deleteMessageAfterExecution) {
+                this.deleteMessage(messageId);
               }
             }
-          }, this);
+          }
+        }, this);
       }, this);
     }
   },
