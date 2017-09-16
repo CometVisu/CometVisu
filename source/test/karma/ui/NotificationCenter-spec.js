@@ -229,7 +229,7 @@ describe('test the NotificationCenter', function () {
       var element = qx.bom.Selector.query(".content", messageElement)[0];
       element.dispatchEvent(down);
       element.dispatchEvent(up);
-      expect(center.performAction).toHaveBeenCalledWith(0, jasmine.any(Event));
+      expect(center.performAction).toHaveBeenCalledWith(0, jasmine.any(qx.event.type.Event));
 
       // click on the delete button
       element = qx.bom.Selector.query(".delete", messageElement)[0];
