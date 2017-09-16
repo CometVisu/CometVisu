@@ -67,11 +67,19 @@ qx.Class.define("cv.core.notifications.Router", {
       }
     },
 
-    // shortcut
+    /**
+     * Shortcut to {@link cv.core.notifications.Router#dispatchMessage}
+     */
     dispatchMessage: function(topic, message, target) {
       return this.getInstance().dispatchMessage(topic, message, target);
     },
 
+    /**
+     * Converts a target name to the related target object/function.
+     *
+     * @param name {String} target name, e.g. popup, notificationCenter, etc.
+     * @return {Object|Function|null} the target that can handle messages
+     */
     getTarget: function(name) {
       switch (name) {
         case "popup":
