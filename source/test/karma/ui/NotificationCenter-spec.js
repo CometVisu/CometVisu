@@ -169,7 +169,6 @@ describe('test the NotificationCenter', function () {
       }
     };
     center.handleMessage(message);
-    console.log(center.__messages.toArray());
     cv.ui.NotificationCenter.performAction(center.__messages.getLength()-1);
     expect(spy).toHaveBeenCalled();
     cv.core.notifications.ActionRegistry.unregisterActionHandler("test");
