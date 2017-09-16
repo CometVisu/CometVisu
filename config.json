@@ -403,6 +403,7 @@
           "Sunlight",
           "replayLog",
           "svg4everybody",
+          "EVENT_RECORDER",
           "Favico"
         ],
         "generate-widget-examples": true
