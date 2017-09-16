@@ -10,7 +10,7 @@ describe('test the NotificationCenter', function () {
   });
 
   afterEach(function() {
-    cv.ui.NotificationCenter.clear();
+    cv.ui.NotificationCenter.clear(true);
     cv.ui.NotificationCenter.SLIDE.duration = 350;
   });
 
@@ -139,22 +139,42 @@ describe('test the NotificationCenter', function () {
   });
 
   it("should perform a message action", function() {
+    var spy = jasmine.createSpy();
+
+    qx.Class.define("cv.test.ActionHandler", {
+      extend: cv.core.notifications.actions.AbstractActionHandler,
+      implement: cv.core.notifications.IActionHandler,
+
+      members: {
+        handleAction: function() {
+          spy();
+        },
+        getDomElement: function() {
+          return null;
+        }
+      }
+    });
+    cv.core.notifications.ActionRegistry.registerActionHandler("test", cv.test.ActionHandler);
+
     var message = {
       topic: "cv.test",
       title: "Title",
       message: "Test message",
       severity: "normal",
-      action: {
-        needsConfirmation: false,
-        callback: function() {
-
-        }
+      actions: {
+        test: [{
+          needsConfirmation: false,
+          deleteMessageAfterExecution: true
+        }]
       }
     };
-    var spy = spyOn(message.action, "callback");
     center.handleMessage(message);
     console.log(center.__messages.toArray());
     cv.ui.NotificationCenter.performAction(center.__messages.getLength()-1);
     expect(spy).toHaveBeenCalled();
+    cv.core.notifications.ActionRegistry.unregisterActionHandler("test");
+
+    // message should have been deleted by action execution
+    expect(center.__messages.getLength()).toEqual(0);
   });
 });
