@@ -70,7 +70,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
      */
     _onNotification: function(e) {
       if (!e.data) {
-        this.error("invalid content received from SSE: %o", e);
+        this.error("invalid content received from SSE: ", e);
       }
       var json = qx.lang.Type.isObject(e.data) ? e.data : qx.lang.Json.parse(e.data);
       this.__notificationRouter.dispatchMessage(json.topic || "cv.backend", json);
