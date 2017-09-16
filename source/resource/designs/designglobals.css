@@ -378,7 +378,7 @@ button.ui-slider-handle {
   min-height: 25px;
 }
 
-#notification-center .message[onclick] {
+#notification-center .message.selectable, #notification-center .message .delete {
   cursor: pointer;
 }
 
@@ -386,13 +386,12 @@ button.ui-slider-handle {
   border-bottom: none;
 }
 
-#notification-center .message .content {
-  float: left;
-  width: 100%;
-}
-
 #notification-center .message .delete {
   float: right;
+  font-weight: bold;
+  height: 100%;
+  margin-left: 1em;
+  text-transform: uppercase;
 }
 
 #notification-center a {
