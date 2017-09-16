@@ -279,7 +279,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       // lets find the real target
       var target = ev.getTarget();
       var deleteTarget = null;
-      var messageId = null;
+      var messageId = -1;
       var id = qx.bom.element.Attribute.get(target, "id");
       while (!id || !id.startsWith("notification-center")) {
         if (qx.bom.element.Class.has(target, "delete")) {

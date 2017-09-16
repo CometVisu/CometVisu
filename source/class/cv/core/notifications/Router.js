@@ -142,6 +142,19 @@ qx.Class.define("cv.core.notifications.Router", {
     },
 
     /**
+     * Unregister state update listeners for a list of addresses
+     * @param addresses {Array}
+     */
+    unregisterStateUpdatehandler: function(addresses) {
+      addresses.forEach(function(address) {
+        cv.data.Model.getInstance().removeUpdateListener(address, this._onIncomingData, this);
+        if (this.__stateMessageConfig[address]) {
+          delete this.__stateMessageConfig[address];
+        }
+      },this);
+    },
+
+    /**
      * Register a handler for a list of topics
      * @param handler {cv.core.notifications.IHandler}
      * @param topics {Map} map of topics as key and configuration-maps as values
@@ -177,6 +190,10 @@ qx.Class.define("cv.core.notifications.Router", {
      * @protected
      */
     _onIncomingData: function(address, state, initial) {
+      if (!this.__stateMessageConfig[address]) {
+        return;
+      }
+
       var now = new Date();
       var formattedDate = this.__dateFormat.format(now);
       var formattedTime =this.__timeFormat.format(now);
@@ -254,9 +271,11 @@ qx.Class.define("cv.core.notifications.Router", {
     },
 
     __collectAllFromSegment: function(segment, handlers) {
+      handlers.append(segment.__handlers__);
       Object.getOwnPropertyNames(segment).forEach(function(segmentName) {
-        handlers.append(segment[segmentName].__handlers__);
-        this.__collectAllFromSegment(segment[segmentName], handlers);
+        if (segmentName !== "__handlers__") {
+          this.__collectAllFromSegment(segment[segmentName], handlers);
+        }
       }, this);
       return handlers;
     },

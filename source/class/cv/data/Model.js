@@ -108,6 +108,31 @@ qx.Class.define('cv.data.Model', {
     },
 
     /**
+     * Remove an address listener
+     *
+     * @param address {String} KNX-GA or openHAB item name
+     * @param callback {Function} called on updates
+     * @param context {Object} context of the callback
+     */
+    removeUpdateListener: function(address, callback, context) {
+      if (this.__stateListeners[address]) {
+        var removeIndex = -1;
+        this.__stateListeners[address].some(function(entry, i) {
+          if (entry[0] === callback && entry[1] === context) {
+            removeIndex = i;
+            return true;
+          }
+        });
+        if (removeIndex >= 0) {
+          qx.lang.Array.removeAt(this.__stateListeners[address], removeIndex);
+          if (this.__stateListeners[address].length === 0) {
+            delete this.__stateListeners[address];
+          }
+        }
+      }
+    },
+
+    /**
      * Add an Address -> Path mapping to the addressList
      * @param address {String} KNX-GA or openHAB item name
      * @param id {String} path to the widget

@@ -77,9 +77,7 @@ qx.Class.define("cv.core.notifications.actions.Link", {
       switch(value) {
         case "reload":
         case "restart":
-          return function() {
-            window.location.reload();
-          };
+          return cv.util.Location.reload;
       }
       this.error("Unknown action: "+value);
       return null;
@@ -99,7 +97,7 @@ qx.Class.define("cv.core.notifications.actions.Link", {
           var req = new qx.io.request.Xhr(this.getUrl());
           req.send();
         } else {
-          window.open(this.getUrl(), '_blank');
+          cv.util.Location.open(this.getUrl(), '_blank');
         }
       }
     },

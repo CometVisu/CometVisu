@@ -175,5 +175,67 @@ describe('test the NotificationCenter', function () {
 
     // message should have been deleted by action execution
     expect(center.__messages.getLength()).toEqual(0);
+
+    qx.Class.undefine("cv.test.ActionHandler");
+  });
+
+  it("should test the interaction handling with list items", function() {
+    if (window.PointerEvent) {
+
+      qx.Class.define("cv.test.ActionHandler", {
+        extend: cv.core.notifications.actions.AbstractActionHandler,
+        implement: cv.core.notifications.IActionHandler,
+
+        members: {
+          handleAction: function () {
+          },
+          getDomElement: function () {
+            return null;
+          }
+        }
+      });
+      cv.core.notifications.ActionRegistry.registerActionHandler("test", cv.test.ActionHandler);
+
+      var message = {
+        topic: "cv.test",
+        title: "Title",
+        message: "Test message",
+        severity: "normal",
+        actions: {
+          test: [{
+            needsConfirmation: false,
+            deleteMessageAfterExecution: true
+          }]
+        }
+      };
+      center.handleMessage(message);
+
+      var messageElement = qx.bom.Selector.query("#notification_0")[0];
+      spyOn(center, "deleteMessage");
+      spyOn(center, "performAction");
+
+      // click on the message content
+      // qx.event.Registration.fireEvent(qx.bom.Selector.query(".content", messageElement)[0], "tap");
+      var down = new PointerEvent("pointerdown", {
+        bubbles: true,
+        cancelable: true,
+        view: window
+      });
+      var up = new PointerEvent("pointerup", {
+        bubbles: true,
+        cancelable: true,
+        view: window
+      });
+      var element = qx.bom.Selector.query(".content", messageElement)[0];
+      element.dispatchEvent(down);
+      element.dispatchEvent(up);
+      expect(center.performAction).toHaveBeenCalledWith(0, jasmine.any(Event));
+
+      // click on the delete button
+      element = qx.bom.Selector.query(".delete", messageElement)[0];
+      element.dispatchEvent(down);
+      element.dispatchEvent(up);
+      expect(center.deleteMessage).toHaveBeenCalledWith(0, jasmine.any(qx.event.type.Event));
+    }
   });
 });
