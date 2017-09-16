@@ -510,7 +510,6 @@ qx.Class.define("cv.ui.NotificationCenter", {
             var handler = cv.core.notifications.ActionRegistry.getActionHandler(type, action);
             if (handler) {
               handler.handleAction(ev);
-              console.log(action);
               if (action.deleteMessageAfterExecution) {
                 this.deleteMessage(messageId);
               }
