@@ -32,7 +32,7 @@ qx.Class.define('cv.io.transport.Sse', {
    */
   construct: function(client) {
     this.client = client;
-    this.__additionalTopics = [];
+    this.__additionalTopics = {};
   },
 
   /*
@@ -82,10 +82,7 @@ qx.Class.define('cv.io.transport.Sse', {
       this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
       this.eventSource.addEventListener('error', this.handleError.bind(this), false);
       // add additional listeners
-      this.__additionalTopics.forEach(function(entry) {
-        this.debug("subscribing to topic "+entry[0]);
-        this.__addRecordedEventListener(entry[0], entry[1], entry[2]);
-      }, this);
+      Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
       this.eventSource.onerror = function () {
         this.error("connection lost");
         this.client.setConnected(false);
@@ -110,11 +107,12 @@ qx.Class.define('cv.io.transport.Sse', {
     },
 
     dispatchTopicMessage: function(topic, message) {
-      this.__additionalTopics.forEach(function(entry) {
-        if (entry[0] === topic) {
-          entry[1].call(entry[2], message);
-        }
-      });
+      this.client.record(topic, message);
+      if (this.__additionalTopics[topic]) {
+        this.__additionalTopics[topic].forEach(function(entry) {
+          entry[0].call(entry[1], message);
+        });
+      }
     },
 
     /**
@@ -124,16 +122,19 @@ qx.Class.define('cv.io.transport.Sse', {
      * @param context {Object}
      */
     subscribe: function(topic, callback, context) {
-      this.__additionalTopics.push([topic, callback, context]);
+      if (!this.__additionalTopics[topic]) {
+        this.__additionalTopics[topic] = [];
+      }
+      this.__additionalTopics[topic].push([callback, context]);
       if (this.isConnectionRunning()) {
-        this.__addRecordedEventListener(topic, callback, context);
+        this.__addRecordedEventListener(topic);
       }
     },
 
-    __addRecordedEventListener: function(topic, callback, context) {
+    __addRecordedEventListener: function(topic) {
+      this.debug("subscribing to topic "+topic);
       this.eventSource.addEventListener(topic, function(e) {
-        this.client.record(topic, e.data);
-        callback.call(context, e);
+        this.dispatchTopicMessage(topic, e);
       }.bind(this), false);
     },
 
