@@ -28,6 +28,7 @@
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
+ * @asset(qx/decoration/Indigo/*)
  */
 qx.Class.define("cv.plugins.openhab.Openhab", {
   extend: qx.core.Object,
@@ -48,7 +49,25 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
     var sse = client.getCurrentTransport();
     sse.subscribe("notifications", this._onNotification, this);
 
-    qx.event.message.Bus.subscribe("setup.dom.finished.before", function() {
+    if (cv.TemplateEngine.getInstance().isDomFinished()) {
+      this._createSettings();
+    } else {
+      qx.event.message.Bus.subscribe("setup.dom.finished.before", function () {
+        this._createSettings();
+      }, this);
+    }
+  },
+
+  /*
+  *****************************************************************************
+     MEMBERS
+  *****************************************************************************
+  */
+  members: {
+    __notificationRouter: null,
+    __settings: null,
+
+    _createSettings: function() {
       // add element structure to notification-center
       var root = qx.dom.Element.create("section", {"id": "qxsettings", "html": "<div></div>"});
       qx.dom.Element.insertAfter(root, qx.bom.Selector.query("#notification-center section.messages")[0]);
@@ -62,9 +81,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
       qx.event.Registration.addListener(button, "tap", function() {
         this.__settings.show();
       }, this);
-    }, this);
 
-    qx.event.message.Bus.subscribe("setup.dom.finished", function() {
       //add to DOM
       qx.theme.manager.Meta.getInstance().setTheme(qx.theme.Indigo);
       this._inline = new qx.ui.root.Inline(qx.bom.Selector.query("#qxsettings > div")[0], true, false);
@@ -72,17 +89,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
       this.__settings = new cv.plugins.openhab.Settings();
       this.__settings.exclude();
       this._inline.add(this.__settings, {flex: 1});
-    }, this);
-  },
-
-  /*
-  *****************************************************************************
-     MEMBERS
-  *****************************************************************************
-  */
-  members: {
-    __notificationRouter: null,
-    __settings: null,
+    },
 
     /**
      * Handles notification messages from backend

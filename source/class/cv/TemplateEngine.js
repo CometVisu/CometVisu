@@ -112,6 +112,9 @@ qx.Class.define('cv.TemplateEngine', {
 
     __partQueue: null,
 
+    // plugins that do not need to be loaded to proceed with the initial setup
+    lazyPlugins: ["plugin-openhab"],
+
     /**
      * Load parts (e.g. plugins, structure)
      *
@@ -121,11 +124,28 @@ qx.Class.define('cv.TemplateEngine', {
       if (!qx.lang.Type.isArray(parts)) {
         parts = [parts];
       }
+      var loadLazyParts = this.lazyPlugins.filter(function(part) {
+        return parts.indexOf(part) >= 0;
+      });
+      if (loadLazyParts.length) {
+        qx.lang.Array.exclude(parts, loadLazyParts);
+      }
       this.__partQueue.append(parts);
       qx.io.PartLoader.require(parts, function(states) {
         parts.forEach(function(part, idx) {
           if (states[idx] === "complete") {
             this.__partQueue.remove(part);
+            this.debug("successfully loaded part "+part);
+          } else {
+            this.error("error loading part "+part);
+          }
+        }, this);
+      }, this);
+
+      // load the lazy plugins no one needs to wait for
+      qx.io.PartLoader.require(loadLazyParts, function(states) {
+        loadLazyParts.forEach(function(part, idx) {
+          if (states[idx] === "complete") {
             this.debug("successfully loaded part "+part);
           } else {
             this.error("error loading part "+part);
