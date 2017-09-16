@@ -12,5 +12,6 @@ describe('test the ActionRegistry', function () {
     cv.core.notifications.ActionRegistry.registerActionHandler("test", actionHandler);
     expect(cv.core.notifications.ActionRegistry.createActionElement("unknown")).toBeNull();
     expect(cv.core.notifications.ActionRegistry.createActionElement("test"), {}).toEqual("test");
+    cv.core.notifications.ActionRegistry.unregisterActionHandler("test");
   });
 });
