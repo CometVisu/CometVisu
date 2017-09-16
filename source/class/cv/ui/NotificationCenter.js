@@ -26,12 +26,18 @@
  *   topic: {String} Topic of the message
  *   title: {String} Title of the message
  *   message: {String} The message content
+ *   icon: {String} icon name (KNX-UF icon)
+ *   iconClasses: {String} CSS classes that should be added to the icon element
  *   deletable: {Boolean} Flag to determine if the user can delete the message
  *   severity: {String} one of "low", "normal", "high", "urgent"
+ *   tooltip: {String} Tooltip for the message
+ *   progress: {Integer} indicates a progress state in percent of some long running process.
  *   action: {
- *     callback: {Function} Called when the action gets executed (when the user clicks on the message)
- *     params {Array?} Additional parameters for the callback
- *     needsConfirmation: {Boolean} If true the execution of the action must be confirmed by the user
+ *     actionType {String}: {
+ *      action: {Function} Called when the action gets executed (when the user clicks on the message)
+ *      params: {Array?} Additional parameters for the callback
+ *      needsConfirmation: {Boolean} If true the execution of the action must be confirmed by the user
+ *      deleteMessageAfterExecution: {Boolean} If true the message gets deleted after action execution
  *   }
  *   unique: {Boolean} If true there can be only one message of that topic at once
  *   condition: {Boolean|Function} if true this unique message gets removed
@@ -110,22 +116,38 @@ qx.Class.define("cv.ui.NotificationCenter", {
     },
 
     /**
-     * Delete a message by index
+     * Shortcut to {@link cv.ui.NotificationCenter#deleteMessage}
      * @param index {Number}
      * @param ev {Event}
+     * @see cv.ui.NotificationCenter#deleteMessage
      */
     deleteMessage: function(index, ev) {
       this.getInstance().deleteMessage(index, ev);
     },
 
-    clear: function() {
-      this.getInstance().clear();
+    /**
+     * Shortcut to {@link cv.ui.NotificationCenter#clear}
+     * @param force {Boolean}
+     * @see cv.ui.NotificationCenter#clear
+     */
+    clear: function(force) {
+      this.getInstance().clear(force);
     },
 
+    /**
+     * Shortcut to {@link cv.ui.NotificationCenter#hide}
+     * @see cv.ui.NotificationCenter#hide
+     */
     hide: function() {
       this.getInstance().hide();
     },
 
+    /**
+     * Shortcut to {@link cv.ui.NotificationCenter#performAction}
+     * @param messageId {Number}
+     * @param ev {Event}
+     * @see cv.ui.NotificationCenter#performAction
+     */
     performAction: function(messageId, ev) {
       this.getInstance().performAction(messageId, ev);
     }
@@ -240,10 +262,11 @@ qx.Class.define("cv.ui.NotificationCenter", {
       var template = qx.dom.Element.create("script", {
         id: "MessageTemplate",
         type: "text/template",
-        html: '<div class="message {{severity}}" title="{{tooltip}}" id="notification_{{ id }}"{{#actions}} onclick="cv.ui.NotificationCenter.performAction({{id}}, event)"{{/actions}}>{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}<div class="content">{{&message}} {{#deletable}}<div class="action delete"><a href="#" onclick="cv.ui.NotificationCenter.deleteMessage({{id}}, event)">x</a></div>{{/deletable}}</div></div>'
+        html: '<div class="message {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="notification_{{ id }}">{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}{{#deletable}}<div class="action delete">x</div>{{/deletable}}<div class="content">{{&message}}</div></div>'
       });
       qx.dom.Element.insertEnd(template, body);
       this.__list = new qx.data.controller.website.List(this.__messages, this.__messagesContainer, "MessageTemplate");
+      qx.event.Registration.addListener(this.__messagesContainer, "tap", this._onListTap, this);
 
       // connect badge content
       this.__messages.addListener("changeLength", this.__updateBadge, this);
@@ -252,9 +275,48 @@ qx.Class.define("cv.ui.NotificationCenter", {
       new qx.util.DeferredCall(this._onResize, this).schedule();
     },
 
+    _onListTap: function(ev) {
+      // lets find the real target
+      var target = ev.getTarget();
+      var deleteTarget = null;
+      var messageId = null;
+      var id = qx.bom.element.Attribute.get(target, "id");
+      while (!id || !id.startsWith("notification-center")) {
+        if (qx.bom.element.Class.has(target, "delete")) {
+          deleteTarget = target;
+        }
+        if (id && id.startsWith("notification_")) {
+          // found the message container, get message id and stop
+          messageId = parseInt(id.replace("notification_", ""));
+          break;
+        }
+        target = target.parentNode;
+        if (!target) {
+          break;
+        }
+        id = qx.bom.element.Attribute.get(target, "id");
+      }
+      if (messageId >= 0) {
+        if (deleteTarget) {
+          this.deleteMessage(messageId, ev);
+        } else {
+          this.performAction(messageId, ev);
+        }
+      }
+    },
+
     __updateBadge: function() {
       var currentContent = parseInt(qx.bom.element.Attribute.get(this.__badge, "html"));
       this.setCounter(this.__messages.length);
+      if (this.__messages.length === 0) {
+        // close center if empty
+        qx.event.Timer.once(function() {
+          // still empty
+          if (this.__messages.length === 0) {
+            this.hide();
+          }
+        }, this, 1000);
+      }
       if (currentContent < this.__messages.length) {
         // blink to get the users attention for the new message
         qx.bom.element.Animation.animate(this.__badge, cv.ui.NotificationCenter.BLINK);
@@ -403,12 +465,21 @@ qx.Class.define("cv.ui.NotificationCenter", {
       return tooltip;
     },
 
-    clear: function() {
-      // collect all deletable messages
-      var deletable = this.__messages.filter(function(message) {
-        return message.deletable === true;
-      }, this);
-      this.__messages.exclude(deletable);
+    /**
+     * Delete all messages.
+     *
+     * @param force {Boolean} if false: only delete "deletable" messages, if true: delete all messages
+     */
+    clear: function(force) {
+      if (force) {
+        this.__messages.removeAll();
+      } else {
+        // collect all deletable messages
+        var deletable = this.__messages.filter(function (message) {
+          return message.deletable === true;
+        }, this);
+        this.__messages.exclude(deletable);
+      }
     },
 
     /**
@@ -439,6 +510,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
             var handler = cv.core.notifications.ActionRegistry.getActionHandler(type, action);
             if (handler) {
               handler.handleAction(ev);
+              console.log(action);
               if (action.deleteMessageAfterExecution) {
                 this.deleteMessage(messageId);
               }
@@ -457,6 +529,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
   destruct:  /* istanbul ignore next [destructor not called in singleton] */ function () {
     qx.event.Registration.removeListener(window, "resize", this._onResize, this);
     qx.event.Registration.removeListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
-    this._disposeObjects("__blocker");
+    qx.event.Registration.removeListener(this.__messagesContainer, "tap", this._onListTap, this);
+    this._disposeObjects("__blocker", "__messagesContainer");
   }
 });
