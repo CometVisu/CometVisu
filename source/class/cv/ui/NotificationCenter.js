@@ -249,7 +249,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       // create new element
       var elem = this.__element = qx.dom.Element.create("div", {
         id: "notification-center",
-        html: '<div class="badge"></div><header><h3>'+qx.locale.Manager.tr("Message center")+'<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer class="action clear" onclick="cv.ui.NotificationCenter.clear()">'+qx.locale.Manager.tr("Delete all")+'</footer>'
+        html: '<div class="badge"></div><header><h3>'+qx.locale.Manager.tr("Message center")+'<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">'+qx.locale.Manager.tr("Delete all")+'<div></div></footer>'
       });
       qx.dom.Element.insertEnd(elem, body);
 

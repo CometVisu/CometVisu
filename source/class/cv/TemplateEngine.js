@@ -184,8 +184,6 @@ qx.Class.define('cv.TemplateEngine', {
       }
       else if (backendName === "oh2") {
         this.visu = cv.Application.createClient('openhab2', cv.Config.backendUrl);
-        // auto-load openhab plugin for this backend
-        cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
       } else {
         this.visu = cv.Application.createClient(backendName, cv.Config.backendUrl);
       }
@@ -313,7 +311,7 @@ qx.Class.define('cv.TemplateEngine', {
       var metaParser = new cv.parser.MetaParser();
 
       // start with the plugins
-      settings.pluginsToLoad = metaParser.parsePlugins(loaded_xml);
+      settings.pluginsToLoad = qx.lang.Array.append(settings.pluginsToLoad, metaParser.parsePlugins(loaded_xml));
       // and then the rest
       metaParser.parse(loaded_xml);
       this.debug("parsed");

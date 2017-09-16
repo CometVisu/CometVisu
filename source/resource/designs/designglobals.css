@@ -349,11 +349,11 @@ button.ui-slider-handle {
   font-weight: bold;
 }
 
-#notification-center footer:hover {
+#notification-center footer .clear:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-#notification-center footer::before {
+#notification-center footer .clear::before {
   content: "X ";
 }
 
@@ -507,4 +507,11 @@ pre.inline { display: inline-block; }
   bottom: 0;
   background-color: grey;
   margin: 1px;
+}
+#qxsettings {
+  position: absolute;
+  top: revert;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
