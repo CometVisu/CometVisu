@@ -201,39 +201,39 @@ qx.Class.define("cv.plugins.openhab.Settings", {
       this.setModified(modified);
     },
 
-     // overridden
-     _createChildControlImpl : function(id, hash) {
-       var control;
-       switch(id) {
+    // overridden
+    _createChildControlImpl : function(id, hash) {
+      var control;
+      switch(id) {
 
-         case "title":
-           control = new qx.ui.basic.Label(this.tr("openHAB backend settings"));
-           control.set({
-             font: "bold",
-             marginBottom: 5,
-             allowGrowX: true,
-             decorator: "window-caption"
-           });
-           this._addAt(control, 0);
-           break;
+        case "title":
+          control = new qx.ui.basic.Label(this.tr("openHAB backend settings"));
+          control.set({
+            font: "bold",
+            marginBottom: 5,
+            allowGrowX: true,
+            decorator: "window-caption"
+          });
+          this._addAt(control, 0);
+          break;
 
-         case "form":
-           control = new qx.ui.form.Form();
-           break;
+        case "form":
+          control = new qx.ui.form.Form();
+          break;
 
-         case "cancel-button":
-           control = new qx.ui.form.Button(qx.locale.Manager.tr("Cancel"));
-           control.addListener("execute", this.close, this);
-           break;
+        case "cancel-button":
+          control = new qx.ui.form.Button(qx.locale.Manager.tr("Cancel"));
+          control.addListener("execute", this.close, this);
+          break;
 
-         case "save-button":
-           control = new qx.ui.form.Button(qx.locale.Manager.tr("Save"));
-           control.addListener("execute", this._saveConfig, this);
-           this.bind("modified", control, "enabled");
-           break;
-       }
-       return control || this.base(arguments, id, hash);
-     },
+        case "save-button":
+          control = new qx.ui.form.Button(qx.locale.Manager.tr("Save"));
+          control.addListener("execute", this._saveConfig, this);
+          this.bind("modified", control, "enabled");
+          break;
+      }
+      return control || this.base(arguments, id, hash);
+    },
 
     close: function() {
       this.setVisibility("excluded");

@@ -66,8 +66,8 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
      * e.g. messages get mes_1, mes_2, ... mes_ is the messageElementId)
      */
     messageElementId: {
-     check: "String",
-     nullable: true
+      check: "String",
+      nullable: true
     },
 
     delegate: {

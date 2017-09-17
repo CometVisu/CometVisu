@@ -51,41 +51,41 @@ qx.Class.define("cv.plugins.openhab.renderer.Single", {
       }
     },
 
-     // overridden
-     _createChildControlImpl : function(id, hash) {
-       var control;
-       switch(id) {
+    // overridden
+    _createChildControlImpl : function(id, hash) {
+      var control;
+      switch(id) {
 
-         case "content":
-           control = new qx.ui.container.Composite(new qx.ui.layout.VBox(8));
-           this._addAt(control, 1);
-           break;
+        case "content":
+          control = new qx.ui.container.Composite(new qx.ui.layout.VBox(8));
+          this._addAt(control, 1);
+          break;
 
-         case "bottom-text":
-           control = new qx.ui.basic.Label(this.getBottomText());
-           control.set({
-             rich: true,
-             wrap: true
-           });
-           this._addAt(control, 2);
-           if (this.getBottomText()) {
-             control.show();
-           } else {
-             control.exclude();
-           }
-           break;
+        case "bottom-text":
+          control = new qx.ui.basic.Label(this.getBottomText());
+          control.set({
+            rich: true,
+            wrap: true
+          });
+          this._addAt(control, 2);
+          if (this.getBottomText()) {
+            control.show();
+          } else {
+            control.exclude();
+          }
+          break;
 
-         case "button-container":
-           var hbox = new qx.ui.layout.HBox();
-           hbox.setAlignX("right");
-           hbox.setSpacing(5);
-           control = new qx.ui.container.Composite(hbox);
-           this._addAt(control, 3);
-           break;
+        case "button-container":
+          var hbox = new qx.ui.layout.HBox();
+          hbox.setAlignX("right");
+          hbox.setSpacing(5);
+          control = new qx.ui.container.Composite(hbox);
+          this._addAt(control, 3);
+          break;
 
-       }
-       return control || this.base(arguments, id, hash);
-     },
+      }
+      return control || this.base(arguments, id, hash);
+    },
 
     /**
      * Add a group of form items with the corresponding names. The names are
@@ -118,7 +118,7 @@ qx.Class.define("cv.plugins.openhab.renderer.Single", {
           box.add(item, {width: "50%"});
           container.add(box);
         }
-         else {
+        else {
           container.add(label);
           container.add(item);
         }
