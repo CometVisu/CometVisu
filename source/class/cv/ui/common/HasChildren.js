@@ -94,10 +94,10 @@ qx.Mixin.define("cv.ui.common.HasChildren", {
         if (noWidgetContainer === true) {
           container += subelement;
         } else {
-          container += '<div class="widget_container ' +
-            (widget.getRowspanClass ? widget.getRowspanClass() : '') +
-            (widget.getContainerClass ? widget.getContainerClass() : '') +
-            ('break' === widget.get$$type() ? 'break_container' : '') + // special case for break widget
+          container += '<div class="widget_container' +
+            (widget.getRowspanClass ? ' '+widget.getRowspanClass() : '') +
+            (widget.getContainerClass && widget.getContainerClass() ? ' '+widget.getContainerClass() : '') +
+            ('break' === widget.get$$type() ? ' break_container' : '') + // special case for break widget
             '" id="' + widget.getPath() + '" data-type="' + widget.get$$type() + '">' + subelement + '</div>';
         }
       }, this);
