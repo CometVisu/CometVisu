@@ -1,4 +1,4 @@
-/* Openhab.js 
+/* Settings.js 
  * 
  * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
