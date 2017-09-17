@@ -101,17 +101,27 @@ qx.Class.define("cv.plugins.openhab.renderer.Single", {
       // add the header
       if (title !== null) {
         this.getChildControl("content").add(this._createHeader(title));
-        this._row++;
       }
+
+      var container = this.getChildControl("content");
 
       // add the items
       for (var i = 0; i < items.length; i++) {
         var label = this._createLabel(names[i], items[i]);
-        this.getChildControl("content").add(label);
         var item = items[i];
         label.setBuddy(item);
-        this.getChildControl("content").add(item);
-        this._row++;
+
+        if (item instanceof qx.ui.form.CheckBox) {
+          // label + checkbox in one line
+          var box = new qx.ui.container.Composite(new qx.ui.layout.HBox());
+          box.add(label, {width: "50%"});
+          box.add(item, {width: "50%"});
+          container.add(box);
+        }
+         else {
+          container.add(label);
+          container.add(item);
+        }
 
         this._connectVisibility(item, label);
 

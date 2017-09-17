@@ -162,28 +162,27 @@ qx.Class.define("cv.plugins.openhab.Settings", {
         if (param.required) {
           field.setRequired(true);
         }
-        var tooltip = new qx.ui.tooltip.ToolTip(param.description);
-        field.setToolTip(tooltip);
+        field.setToolTipText(param.description);
         field.addListener("changeValue", this._onFormFieldChange, this);
         form.add(field, param.label, null, param.name, null, param);
       }, this);
 
-      this._addAt(new cv.plugins.openhab.renderer.Single(form), 1);
-
-      var controller = new qx.data.controller.Form(null, form);
-      this._store.bind("model", controller, "model");
-
+      var renderer = new cv.plugins.openhab.renderer.Single(form);
       if (cv.Config.guessIfProxied()) {
-        controller.setBottomText(this.tr("The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing."));
-        controller.getChildControl("bottom-text").set({
+        renderer.setBottomText(this.tr("The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing."));
+        renderer.getChildControl("bottom-text").set({
           padding: 10,
           textAlign: "center",
           font: "bold"
         });
       }
+      renderer.addButton(this.getChildControl("cancel-button"));
+      renderer.addButton(this.getChildControl("save-button"));
 
-      controller.addButton(this.getChildControl("cancel-button"));
-      controller.addButton(this.getChildControl("save-button"));
+      this._addAt(renderer, 1);
+      var controller = new qx.data.controller.Form(null, form);
+
+      this._store.bind("model", controller, "model");
 
       this.setModified(false);
     },

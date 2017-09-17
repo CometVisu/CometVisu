@@ -28,6 +28,8 @@
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
+ *
+ * @require(qx.ui.root.Inline,qx.ui.tooltip.Manager)
  */
 qx.Class.define("cv.plugins.openhab.Openhab", {
   extend: qx.core.Object,
@@ -62,8 +64,8 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
 
     _createSettings: function() {
       // add element structure to notification-center
-      var root = qx.dom.Element.create("section", {"id": "qxsettings", "html": "<div></div>"});
-      qx.dom.Element.insertAfter(root, qx.bom.Selector.query("#notification-center section.messages")[0]);
+      var settingsRoot = qx.dom.Element.create("section", {"id": "qxsettings", "html": "<div></div>"});
+      qx.dom.Element.insertAfter(settingsRoot, qx.bom.Selector.query("#notification-center section.messages")[0]);
 
       // add a settings button to trigger opening the settings
       var button = qx.dom.Element.create("div", {
@@ -77,6 +79,11 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
 
       //add to DOM
       qx.theme.manager.Meta.getInstance().setTheme(cv.theme.Dark);
+
+      // Initialize tooltip manager (currently disable as it requires a root with basic layout
+      // and that breaks the inline container sizes)
+      // qx.ui.tooltip.Manager.getInstance();
+
       this._inline = new qx.ui.root.Inline(qx.bom.Selector.query("#qxsettings > div")[0], true, false);
       this._inline.setLayout(new qx.ui.layout.VBox());
       this.__settings = new cv.plugins.openhab.Settings();
