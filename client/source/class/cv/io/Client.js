@@ -196,6 +196,14 @@ qx.Class.define('cv.io.Client', {
      */
     currentTransport: {
       init: null
+    },
+
+    /**
+     * The server we are currently speaking to (read from the login response)
+     */
+    server: {
+      check: "String",
+      nullable: true
     }
   },
 
@@ -247,12 +255,25 @@ qx.Class.define('cv.io.Client', {
       if (backend.baseURL && backend.baseURL.substr(-1) !== "/") {
         backend.baseURL += "/";
       }
+      var currentTransport = this.getCurrentTransport();
       switch(backend.transport) {
         case "long-polling":
-          this.setCurrentTransport(new cv.io.transport.LongPolling(this));
+          if (!(currentTransport instanceof cv.io.transport.LongPolling)) {
+            // replace old transport
+            if (currentTransport) {
+              currentTransport.dispose();
+            }
+            this.setCurrentTransport(new cv.io.transport.LongPolling(this));
+          }
           break;
         case "sse":
-          this.setCurrentTransport(new cv.io.transport.Sse(this));
+          if (!(currentTransport instanceof cv.io.transport.Sse)) {
+            // replace old transport
+            if (currentTransport) {
+              currentTransport.dispose();
+            }
+            this.setCurrentTransport(new cv.io.transport.Sse(this));
+          }
           break;
       }
       if (this.backend.name === "openHAB") {
@@ -364,14 +385,16 @@ qx.Class.define('cv.io.Client', {
      * Get the json response from the parameter received from the used XHR transport
      */
     getResponse: qx.core.Environment.select("cv.xhr", {
-      "jquery": function(data) {
+      "jquery": function(args) {
+        var data = args[0];
         if (data && $.type(data) === "string") {
           data = cv.io.parser.Json.parse(data);
         }
         return data;
       },
 
-      "qx": function(ev) {
+      "qx": function(args) {
+        var ev = args[0];
         if (!ev) { return null; }
         var json = ev.getTarget().getResponse();
         if (!json) { return null; }
@@ -379,6 +402,18 @@ qx.Class.define('cv.io.Client', {
           json = cv.io.parser.Json.parse(json);
         }
         return json;
+      }
+    }),
+
+    getResponseHeader: qx.core.Environment.select("cv.xhr", {
+      "jquery": function (args, name) {
+        return args[2].getResponseHeader(name);
+      },
+      "qx": function (args, name) {
+        if (!args[0]) {
+          return null;
+        }
+        return args[0].getTarget().getResponseHeader(name);
       }
     }),
 
@@ -500,21 +535,30 @@ qx.Class.define('cv.io.Client', {
      * backend and forwards to the configurated transport handleSession
      * function
      *
-     * @param ev {Event} the 'success' event from the XHR request
+     * Parameter vary dependent from the XHR type used
+     * qx (Qooxdoo):
+     *   ev {Event} the 'success' event from the XHR request
+     *
+     * jQuery:
+     *   data {Object} The JSON data returned from the server
+     *   textStatus {String} a string describing the status
+     *   request {Object} the jqXHR object
      */
-    handleLogin : function (ev) {
-      var json = this.getResponse(ev);
+    handleLogin : function () {
+      var args = Array.prototype.slice.call(arguments, 0);
+      var json = this.getResponse(args);
       // read backend configuration if send by backend
       if (json.c) {
         this.setBackend(qx.lang.Object.mergeWith(this.getBackend(), json.c));
       }
       this.session = json.s || "SESSION";
+      this.setServer(this.getResponseHeader(args, "Server"));
 
       this.setDataReceived(false);
       if (this.loginSettings.loginOnly) {
-        this.getCurrentTransport().handleSession(ev, false);
+        this.getCurrentTransport().handleSession(args, false);
       } else {
-        this.getCurrentTransport().handleSession(ev, true);
+        this.getCurrentTransport().handleSession(args, true);
         // once the connection is set up, start the watchdog
         this.watchdog.start(5);
       }

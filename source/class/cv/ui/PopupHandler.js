@@ -57,8 +57,11 @@ qx.Class.define('cv.ui.PopupHandler', {
         title: message.title,
         content: message.message,
         closable: message.deletable,
-        icon: config.icon,
-        actions: message.actions
+        icon: message.icon || config.icon,
+        iconClasses: message.iconClasses,
+        actions: message.actions,
+        progress: message.progress,
+        type: "notification"
       };
       // popups are always unique
       if (cv.core.notifications.Router.evaluateCondition(message)) {
@@ -80,9 +83,9 @@ qx.Class.define('cv.ui.PopupHandler', {
      */
     showPopup: function (type, attributes) {
       var popup = this.getPopup(type);
-      if (!popup.isClosed()) {
-        popup.close();
-      }
+      // if (!popup.isClosed()) {
+      //   popup.close();
+      // }
       popup.create(attributes);
       return popup;
     },

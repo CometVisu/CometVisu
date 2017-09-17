@@ -49,6 +49,10 @@ qx.Class.define("cv.Application",
      */
     createClient: function() {
       var args = Array.prototype.slice.call(arguments);
+      if (args[0] === "openhab2") {
+        // auto-load openhab plugin for this backend
+        cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
+      }
       args.unshift(null);
       if (cv.Config.testMode === true) {
         return  new (Function.prototype.bind.apply(cv.io.Mockup, args)); // jshint ignore:line
@@ -71,6 +75,18 @@ qx.Class.define("cv.Application",
       }
     }
   },
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    root: {
+      nullable: true
+    }
+  },
+
 
   /*
   *****************************************************************************
@@ -188,7 +204,8 @@ qx.Class.define("cv.Application",
           exString += "\n Description: " + ex.description;
         }
         try {
-          exString += "\nStack: " + qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t")+"\n";
+          exString += "\nNormalized Stack: " + qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t")+"\n";
+          exString += "\nOriginal Stack: " + ex.stack +"\n";
         } catch(exc) {
           if (ex.stack) {
             exString += "\nStack: " + ex.stack+"\n";
@@ -311,6 +328,7 @@ qx.Class.define("cv.Application",
       ajaxRequest.addListenerOnce("success", function (e) {
         this.block(false);
         var req = e.getTarget();
+        cv.Config.configServer = req.getResponseHeader("Server");
         // Response parsed according to the server's response content type
         var xml = req.getResponse();
         if (xml && qx.lang.Type.isString(xml)) {

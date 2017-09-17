@@ -54,7 +54,12 @@ qx.Class.define("cv.core.notifications.actions.Link", {
     },
     action: {
       check: "Function",
-      nullable: true
+      nullable: true,
+      transform: "_transformAction"
+    },
+    hidden: {
+      check: "Boolean",
+      init: false
     }
   },
 
@@ -64,14 +69,36 @@ qx.Class.define("cv.core.notifications.actions.Link", {
   *****************************************************************************
   */
   members: {
+
+    _transformAction: function(value) {
+      if (qx.lang.Type.isFunction(value)) {
+        return value;
+      }
+      switch(value) {
+        case "reload":
+        case "restart":
+          return cv.util.Location.reload;
+      }
+      this.error("Unknown action: "+value);
+      return null;
+    },
+
     handleAction: function(ev) {
-      ev.stopPropagation();
-      ev.preventDefault();
+      if (ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+      }
       if (this.getAction()) {
         this.getAction()(ev);
       }
       if (this.getUrl()) {
-        window.open(this.getUrl(), '_blank');
+        if (this.isHidden()) {
+          // open link in background (fire and forget)
+          var req = new qx.io.request.Xhr(this.getUrl());
+          req.send();
+        } else {
+          cv.util.Location.open(this.getUrl(), '_blank');
+        }
       }
     },
 

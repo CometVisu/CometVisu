@@ -11,62 +11,64 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cv/Application.js:171
+#: cv/Application.js:175
 msgid "Please describe what you have done until the error occured?"
 msgstr ""
 "Bitte beschreiben, was Sie gemacht haben bis der Fehler aufgetreten ist."
 
-#: cv/Application.js:205
+#: cv/Application.js:207
 msgid "An error occured"
 msgstr "Ein Fehler ist aufgetreten"
 
-#: cv/Application.js:212
+#: cv/Application.js:214
 msgid "Reload"
 msgstr "Neu laden"
 
-#: cv/Application.js:239
+#: cv/Application.js:241
 msgid "Please do not forget to attach the downloaded Logfile to this ticket."
-msgstr "Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Ticket zu hängen."
+msgstr ""
+"Bitte vergessen Sie nicht, die heruntergeladenen Log-Datei an dieses Ticket "
+"zu hängen."
 
-#: cv/Application.js:242
+#: cv/Application.js:248
 msgid "Enable reporting on reload"
 msgstr "Neu laden mit aktivierter Aufzeichnung"
 
-#: cv/Application.js:247
+#: cv/Application.js:253
 msgid "Report Bug"
 msgstr "Fehler berichten"
 
-#: cv/Application.js:554
+#: cv/Application.js:561
 msgid "Config-File Error!"
 msgstr "Fehler in Konfigurations-Datei!"
 
-#: cv/Application.js:558
+#: cv/Application.js:565
 msgid "Invalid config file!"
 msgstr "Ungültige Konfigurations-Datei!"
 
-#: cv/Application.js:558
+#: cv/Application.js:565
 msgid "Please check!"
 msgstr "Bitte prüfen!"
 
-#: cv/Application.js:566
+#: cv/Application.js:573
 msgid "Config file has wrong library version!"
 msgstr "Konfigurations-Datei hat die falsche 'library' Version"
 
-#: cv/Application.js:567
+#: cv/Application.js:574
 msgid "This can cause problems with your configuration"
 msgstr "Das kann Probleme in Ihrer Konfiguration verursachen"
 
-#: cv/Application.js:568
+#: cv/Application.js:575
 msgid "You can run the %1Configuration Upgrader%2."
 msgstr "Sie können den %1Konfigurations-Upgrader%2 laufen lassen."
 
-#: cv/Application.js:569
+#: cv/Application.js:576
 msgid ""
 "Or you can start without upgrading %1with possible configuration problems%2"
 msgstr ""
 "Oder Sie starten ohne Upgrade %1mit möglichen Konfigurations-Problemen%2"
 
-#: cv/Application.js:572
+#: cv/Application.js:579
 msgid ""
 "404: Config file not found. Neither as normal config (%1) nor as demo config"
 " (%2)."
@@ -74,27 +76,49 @@ msgstr ""
 "404: Konfigurations-Datei nicht gefunden. Weder als normale Konfiguration "
 "(%1) noch als Demo-Konfiguration (%2)"
 
-#: cv/Application.js:575
+#: cv/Application.js:582
 msgid "Unhandled error of type \"%1\""
 msgstr "Unbekannter Fehler vom Typ \"%1\""
 
-#: cv/TemplateEngine.js:204
+#: cv/TemplateEngine.js:245
 msgid "Connection error"
 msgstr "Verbindungsfehler"
 
-#: cv/TemplateEngine.js:213
+#: cv/TemplateEngine.js:254
 msgid "Error requesting %1: %2 - %3."
 msgstr "Fehler beim Laden von %1: %2 - %3."
 
-#: cv/TemplateEngine.js:215
+#: cv/TemplateEngine.js:256
 msgid "Connection to backend is lost."
 msgstr "Verbindung zum Backend verloren."
 
-#: cv/ui/NotificationCenter.js:229
+#: cv/plugins/openhab/Settings.js:173
+msgid ""
+"The CometVisu seems to be delivered by a proxied webserver. Changing "
+"configuration values might not have the expected effect. Please proceed only"
+" if you know what you are doing."
+msgstr ""
+"Die CometVisu scheint über einen Proxy ausgeliefert zu werden. Änderungen "
+"an den Einstellungen könnten deshalb nicht den gewünschten Effekt habe."
+"Bitte führen Sie daher nur Änderungen durch, wenn Sie wissen was Sie tun."
+
+#: cv/plugins/openhab/Settings.js:211
+msgid "openHAB backend settings"
+msgstr "openHAB Backend Einstellungen"
+
+#: cv/plugins/openhab/Settings.js:226
+msgid "Cancel"
+msgstr "Abbruch"
+
+#: cv/plugins/openhab/Settings.js:231
+msgid "Save"
+msgstr "Speichern"
+
+#: cv/ui/NotificationCenter.js:257
 msgid "Delete all"
 msgstr "Alle löschen"
 
-#: cv/ui/NotificationCenter.js:229
+#: cv/ui/NotificationCenter.js:257
 msgid "Message center"
 msgstr "Nachrichtenzentrale"
 

@@ -1,4 +1,4 @@
-/* AbstractActionHandler.js 
+/* Font.js 
  * 
  * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
@@ -19,29 +19,38 @@
 
 
 /**
- * Opens a link in a new window.
+ * Font definitions
  *
- * @author Tobias Bräutigam
- * @since 0.11.0
  */
-qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
-  extend: qx.core.Object,
-  type: "abstract",
+qx.Theme.define("cv.theme.dark.Font",
+{
+  extend : qx.theme.simple.Font,
 
-  /*
-  ******************************************************
-    PROPERTIES
-  ******************************************************
-  */
-  properties: {
-    needsConfirmation: {
-      check: "Boolean",
-      init: false
+  fonts : {
+    "default" :
+    {
+      size : 13,
+      family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"]
     },
 
-    deleteMessageAfterExecution: {
-      check: "Boolean",
-      init: false
+    "bold" :
+      {
+        size : 13,
+        family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"],
+        bold: true
+      },
+
+    "subtext" :
+    {
+      size : 12,
+      family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"]
+    },
+    
+    "title" :
+    {
+      size : 18,
+      bold : true,
+      family : ['URW Gothic L','Century Gothic','Apple Gothic',"arial","sans-serif"]
     }
   }
 });

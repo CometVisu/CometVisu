@@ -55,6 +55,16 @@ qx.Class.define('cv.util.Location', {
      */
     reload: function(value) {
       window.location.reload(value);
+    },
+
+    /**
+     * Wrapper for calling <code>window.open()</code>
+     *
+     * @param url {String} url to open
+     * @param target {String} where to open the window
+     */
+    open: function(url, target) {
+      window.open(url, target);
     }
   }
 

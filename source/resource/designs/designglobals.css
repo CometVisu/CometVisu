@@ -293,19 +293,19 @@ button.ui-slider-handle {
 }
 
 /*severities*/
-#notification-center > .badge.urgent {
+#notification-center > .badge.urgent, #toast-list .toast.urgent {
   background-color: rgba(255, 0, 0, 0.9);
 }
 
-#notification-center > .badge.high {
+#notification-center > .badge.high, #toast-list .toast.high {
   background-color: rgba(255, 121, 0, 0.9);
 }
 
-#notification-center > .badge.normal {
+#notification-center > .badge.normal, #toast-list .toast.normal {
   background-color: rgba(255, 244, 230, 0.9);
 }
 
-#notification-center > .badge.low {
+#notification-center > .badge.low, #toast-list .toast.low {
   background-color: rgba(61, 61, 61, 0.9);
 }
 
@@ -349,11 +349,11 @@ button.ui-slider-handle {
   font-weight: bold;
 }
 
-#notification-center footer:hover {
+#notification-center footer .clear:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-#notification-center footer::before {
+#notification-center footer .clear::before {
   content: "X ";
 }
 
@@ -378,27 +378,28 @@ button.ui-slider-handle {
   min-height: 25px;
 }
 
+#notification-center .message.selectable, #notification-center .message .delete {
+  cursor: pointer;
+}
+
 #notification-center .message:last-child {
   border-bottom: none;
 }
 
-#notification-center .message .content {
-  float: left;
-  width: 100%;
-}
-
 #notification-center .message .delete {
   float: right;
+  font-weight: bold;
+  height: 100%;
+  margin-left: 1em;
+  text-transform: uppercase;
 }
 
 #notification-center a {
   color: #fff;
 }
 
-.popup.error,
-.popup_background.error,
-.popup.info,
-.popup_background.info {
+.popup.notification,
+.popup_background.notification {
   position: absolute;
   padding: 30px;
   top: 50%;
@@ -442,12 +443,31 @@ button.ui-slider-handle {
   border-bottom: 1px solid;
 }
 
-.popup .main .icon {
+.popup .main .icon:not(.spinner) {
   float: left;
   margin: -1em 1em 0 0;
   vertical-align: middle;
   width: 64px;
   height: 100%;
+}
+
+.popup .main .icon.spinner {
+  vertical-align: middle;
+  align: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  animation: spinner 2s linear infinite;
+}
+
+@keyframes spinner {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+.popup.notification .main .message {
+  margin: 1em 0;
+  user-select: text;
 }
 
 .popup .main pre {
@@ -471,3 +491,45 @@ button.ui-slider-handle {
 .popup_background.error a { color: #FFF; }
 
 pre.inline { display: inline-block; }
+
+/* progressbar */
+.popup div.progressbar {
+  height: 10px;
+  background-color: white;
+  padding: 1px;
+  margin: 10px 5px;
+  position: relative;
+}
+
+.popup div.progressbar div.completed {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: grey;
+  margin: 1px;
+}
+#qxsettings {
+  position: absolute;
+  top: revert;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#toast-list {
+  position: absolute;
+  right: 100px;
+  bottom: 10px;
+}
+
+#toast-list .toast {
+  background-color: rgba(61, 61, 61, 0.9);
+  padding: 8px 18px;
+  margin: 10px 0;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 200px;
+  font-size: 14px;
+  text-align: center;
+}

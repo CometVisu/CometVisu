@@ -67,9 +67,36 @@ qx.Class.define("cv.core.notifications.Router", {
       }
     },
 
-    // shortcut
+    /**
+     * Shortcut to {@link cv.core.notifications.Router#dispatchMessage}
+     */
     dispatchMessage: function(topic, message, target) {
       return this.getInstance().dispatchMessage(topic, message, target);
+    },
+
+    /**
+     * Converts a target name to the related target object/function.
+     *
+     * @param name {String} target name, e.g. popup, notificationCenter, etc.
+     * @return {Object|Function|null} the target that can handle messages
+     */
+    getTarget: function(name) {
+      switch (name) {
+        case "popup":
+          return cv.ui.PopupHandler;
+        case "notificationCenter":
+          return cv.ui.NotificationCenter.getInstance();
+        case "speech":
+          if (!window.speechSynthesis) {
+            // not supported
+            qx.log.Logger.warn(this, "this browser does not support the Web Speech API");
+            return;
+          }
+          return cv.core.notifications.SpeechHandler.getInstance();
+        case "toast":
+          return cv.ui.ToastManager.getInstance();
+      }
+      return null;
     }
   },
 
@@ -82,6 +109,8 @@ qx.Class.define("cv.core.notifications.Router", {
   members: {
     __routes: null,
     __stateMessageConfig: null,
+    __dateFormat: null,
+    __timeFormat: null,
 
     /**
      * Register state update handler for one or more addresses.
@@ -100,7 +129,7 @@ qx.Class.define("cv.core.notifications.Router", {
      *    addressMapping: "mapping-name", // optional mapping name for address
      *    titleTemplate: "Kitchen light on", // title template of the message
      *    messageTemplate: "turned on at {{ time }} o'clock", // message content template
-     *    condition: 1 // show only when the value equals the contition value
+     *    condition: 1 // show only when the value equals the condition value
      *   }]
      * }
      * </pre>
@@ -112,6 +141,19 @@ qx.Class.define("cv.core.notifications.Router", {
       Object.getOwnPropertyNames(this.__stateMessageConfig).forEach(function(address) {
         cv.data.Model.getInstance().addUpdateListener(address, this._onIncomingData, this);
       }, this);
+    },
+
+    /**
+     * Unregister state update listeners for a list of addresses
+     * @param addresses {Array}
+     */
+    unregisterStateUpdatehandler: function(addresses) {
+      addresses.forEach(function(address) {
+        cv.data.Model.getInstance().removeUpdateListener(address, this._onIncomingData, this);
+        if (this.__stateMessageConfig[address]) {
+          delete this.__stateMessageConfig[address];
+        }
+      },this);
     },
 
     /**
@@ -150,6 +192,10 @@ qx.Class.define("cv.core.notifications.Router", {
      * @protected
      */
     _onIncomingData: function(address, state, initial) {
+      if (!this.__stateMessageConfig[address]) {
+        return;
+      }
+
       var now = new Date();
       var formattedDate = this.__dateFormat.format(now);
       var formattedTime =this.__timeFormat.format(now);
@@ -227,14 +273,19 @@ qx.Class.define("cv.core.notifications.Router", {
     },
 
     __collectAllFromSegment: function(segment, handlers) {
+      handlers.append(segment.__handlers__);
       Object.getOwnPropertyNames(segment).forEach(function(segmentName) {
-        handlers.append(segment[segmentName].__handlers__);
-        this.__collectAllFromSegment(segment[segmentName], handlers);
+        if (segmentName !== "__handlers__") {
+          this.__collectAllFromSegment(segment[segmentName], handlers);
+        }
       }, this);
       return handlers;
     },
 
     dispatchMessage: function(topic, message, target) {
+      if (message.target && !target) {
+        target = cv.core.notifications.Router.getTarget(message.target);
+      }
       if (target && target.handleMessage) {
         this.debug("dispatching '" + topic + "' message to handler: " + target);
         target.handleMessage(message, {});
@@ -259,5 +310,6 @@ qx.Class.define("cv.core.notifications.Router", {
   */
   destruct: function() {
     this.clear();
+    this._disposeObjects("__dateFormat", "__timeFormat");
   }
 });

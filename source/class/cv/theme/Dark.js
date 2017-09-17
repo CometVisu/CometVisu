@@ -1,4 +1,4 @@
-/* AbstractActionHandler.js 
+/* Dark.js 
  * 
  * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
@@ -18,30 +18,17 @@
  */
 
 
+
 /**
- * Opens a link in a new window.
- *
- * @author Tobias Bräutigam
- * @since 0.11.0
+ * Basic theme for QX-UI relevant parts (should be seen as equilavent to designglobals.css, not design specific
+ * but something like the common sense of all designs)
  */
-qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
-  extend: qx.core.Object,
-  type: "abstract",
-
-  /*
-  ******************************************************
-    PROPERTIES
-  ******************************************************
-  */
-  properties: {
-    needsConfirmation: {
-      check: "Boolean",
-      init: false
-    },
-
-    deleteMessageAfterExecution: {
-      check: "Boolean",
-      init: false
-    }
+qx.Theme.define("cv.theme.Dark", {
+  meta: {
+    color: cv.theme.dark.Color,
+    decoration: cv.theme.dark.Decoration,
+    font: cv.theme.dark.Font,
+    icon: cv.theme.dark.Icon,
+    appearance: cv.theme.dark.Appearance
   }
 });

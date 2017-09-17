@@ -44,7 +44,8 @@
   {
     "APPLICATION"  : "cv",
     "QOOXDOO_PATH" : "./external/qooxdoo",
-    "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.test.*"],
+    "QXTHEME"      : "cv.theme.Dark",
+    "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.test.*", "${QXTHEME}"],
     "LOCALES"      : [ "en", "de" ],
     "CACHE"        : "${TMPDIR}/qx${QOOXDOO_VERSION}/cache",
     "ROOT"         : ".",
@@ -83,7 +84,8 @@
         "${APPLICATION}.transforms.*",
         "${APPLICATION}.plugins.*",
         "${APPLICATION}.parser.*",
-        "${APPLICATION}.core.*"
+        "${APPLICATION}.core.*",
+        "${QXTHEME}"
       ],
 
       "lint-check" : {
@@ -263,7 +265,7 @@
           },
           "plugin-openhab" :
           {
-            "include" : [ "${APPLICATION}.plugins.openhab.*" ]
+            "include" : [ "${APPLICATION}.plugins.openhab.*", "${QXTHEME}" ]
           }
         }
       }
@@ -403,6 +405,7 @@
           "Sunlight",
           "replayLog",
           "svg4everybody",
+          "EVENT_RECORDER",
           "Favico"
         ],
         "generate-widget-examples": true

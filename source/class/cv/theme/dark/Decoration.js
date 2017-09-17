@@ -1,4 +1,4 @@
-/* AbstractActionHandler.js 
+/* Decoration.js 
  * 
  * copyright (c) 2010-2017, Christian Mayer and the CometVisu contributers.
  * 
@@ -18,30 +18,13 @@
  */
 
 
-/**
- * Opens a link in a new window.
- *
- * @author Tobias Bräutigam
- * @since 0.11.0
- */
-qx.Class.define("cv.core.notifications.actions.AbstractActionHandler", {
-  extend: qx.core.Object,
-  type: "abstract",
 
-  /*
-  ******************************************************
-    PROPERTIES
-  ******************************************************
-  */
-  properties: {
-    needsConfirmation: {
-      check: "Boolean",
-      init: false
-    },
+qx.Theme.define("cv.theme.dark.Decoration", {
+  extend : qx.theme.simple.Decoration,
 
-    deleteMessageAfterExecution: {
-      check: "Boolean",
-      init: false
+  decorations : {
+    "window-caption-active": {
+
     }
   }
 });

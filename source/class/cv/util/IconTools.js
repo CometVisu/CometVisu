@@ -245,9 +245,12 @@ qx.Class.define('cv.util.IconTools', {
         }
         var iconPath = qx.util.ResourceManager.getInstance().toUri('icon/knx-uf-iconset.svg');
 
-        var style = '';
+        var style = styling || "";
         if (color) {
-          style = 'style="color:' + color + '" ';
+          style += 'color:' + color + ';';
+        }
+        if (style) {
+          style = ' style="'+style+'" ';
         }
         return '<svg ' + style + 'class="' + classes + '"><use xlink:href="'+iconPath+'#kuf-' + iconID + '"></use></svg>';
       };

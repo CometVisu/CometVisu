@@ -22,11 +22,14 @@
  * This Plugin provides some specials to improve the integration with openHAB backend.
  *
  * .. NOTE::
+ *
  *    This plugin gets automatically activated if the openHAB2 backend is used.
  *    There is no need to add it to the ``plugins`` section of the ``visu_config.xml``.
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
+ *
+ * @require(qx.ui.root.Inline)
  */
 qx.Class.define("cv.plugins.openhab.Openhab", {
   extend: qx.core.Object,
@@ -46,22 +49,47 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
     var client = cv.TemplateEngine.getInstance().visu;
     var sse = client.getCurrentTransport();
     sse.subscribe("notifications", this._onNotification, this);
+
+    cv.TemplateEngine.getInstance().executeWhenDomFinished(this._createSettings, this);
   },
 
   /*
- *****************************************************************************
-    PROPERTIES
- *****************************************************************************
- */
-  properties: {},
-
-  /*
-*****************************************************************************
-   MEMBERS
-*****************************************************************************
-*/
+  *****************************************************************************
+     MEMBERS
+  *****************************************************************************
+  */
   members: {
     __notificationRouter: null,
+    __settings: null,
+
+    _createSettings: function() {
+      // add element structure to notification-center
+      var settingsRoot = qx.dom.Element.create("section", {"id": "qxsettings", "html": "<div></div>"});
+      qx.dom.Element.insertAfter(settingsRoot, qx.bom.Selector.query("#"+cv.ui.NotificationCenter.getInstance().getRootElementId()+" section.messages")[0]);
+
+      // add a settings button to trigger opening the settings
+      var button = qx.dom.Element.create("div", {
+        html: cv.util.IconTools.svgKUF("edit_settings")(null, "width: 22px; height: 22px;"),
+        style: "float: left;"
+      });
+      qx.dom.Element.insertBegin(button, qx.bom.Selector.query("#notification-center footer")[0]);
+      qx.event.Registration.addListener(button, "tap", function() {
+        this.__settings.show();
+      }, this);
+
+      //add to DOM
+      qx.theme.manager.Meta.getInstance().setTheme(cv.theme.Dark);
+
+      // Initialize tooltip manager (currently disable as it requires a root with basic layout
+      // and that breaks the inline container sizes)
+      // qx.ui.tooltip.Manager.getInstance();
+
+      this._inline = new qx.ui.root.Inline(qx.bom.Selector.query("#qxsettings > div")[0], true, false);
+      this._inline.setLayout(new qx.ui.layout.VBox());
+      this.__settings = new cv.plugins.openhab.Settings();
+      this.__settings.exclude();
+      this._inline.add(this.__settings, {flex: 1});
+    },
 
     /**
      * Handles notification messages from backend
@@ -70,7 +98,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
      */
     _onNotification: function(e) {
       if (!e.data) {
-        this.error("invalid content received from SSE: %o", e);
+        this.error("invalid content received from SSE: ", e);
       }
       var json = qx.lang.Type.isObject(e.data) ? e.data : qx.lang.Json.parse(e.data);
       this.__notificationRouter.dispatchMessage(json.topic || "cv.backend", json);
@@ -78,11 +106,16 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
   },
 
   /*
- *****************************************************************************
+  ******************************************************
     DESTRUCTOR
- *****************************************************************************
- */
-  destruct: function (statics) {
+  ******************************************************
+  */
+  destruct: function() {
+    this._disposeObjects("__settings");
+    this.__notificationRouter = null;
+  },
+
+  defer: function(statics) {
     // initialize on load
     statics.getInstance();
   }
