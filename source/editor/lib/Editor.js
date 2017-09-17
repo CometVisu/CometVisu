@@ -1132,7 +1132,9 @@ var EditorConfigurationElement = function (parent, element) {
       if (typeof $attributes == 'undefined') {
         // inject the actual HTML
         $attributes = Attributes.getAsHTML();
-        Attributes.$htmlPlaceholder.replaceWith($attributes);
+        if (typeof $attributes != 'undefined') {
+          Attributes.$htmlPlaceholder.replaceWith($attributes);
+        }
         Attributes.$htmlPlaceholder = undefined;
       }
     },
