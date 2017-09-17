@@ -51,11 +51,11 @@ qx.Class.define('cv.io.transport.Sse', {
      * This function gets called once the communication is established
      * and session information is available
      *
-     * @param ev {Event}
+     * @param args {Array} arguments from the XHR response callback
      * @param connect {Boolean} whether to start the connection or not
      */
-    handleSession: function (ev, connect) {
-      var json = this.client.getResponse(ev);
+    handleSession: function (args, connect) {
+      var json = this.client.getResponse(args);
       this.sessionId = json.s;
       this.version = json.v.split('.', 3);
 

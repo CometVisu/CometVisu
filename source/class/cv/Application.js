@@ -315,6 +315,7 @@ qx.Class.define("cv.Application",
       ajaxRequest.addListenerOnce("success", function (e) {
         this.block(false);
         var req = e.getTarget();
+        cv.Config.configServer = req.getResponseHeader("Server");
         // Response parsed according to the server's response content type
         var xml = req.getResponse();
         if (xml && qx.lang.Type.isString(xml)) {

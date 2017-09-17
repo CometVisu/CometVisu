@@ -28,7 +28,6 @@
  *
  * @author Tobias Bräutigam
  * @since 0.11.0
- * @asset(qx/decoration/Indigo/*)
  */
 qx.Class.define("cv.plugins.openhab.Openhab", {
   extend: qx.core.Object,
@@ -49,13 +48,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
     var sse = client.getCurrentTransport();
     sse.subscribe("notifications", this._onNotification, this);
 
-    if (cv.TemplateEngine.getInstance().isDomFinished()) {
-      this._createSettings();
-    } else {
-      qx.event.message.Bus.subscribe("setup.dom.finished.before", function () {
-        this._createSettings();
-      }, this);
-    }
+    cv.TemplateEngine.getInstance().executeWhenDomFinished(this._createSettings, this);
   },
 
   /*
@@ -83,7 +76,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
       }, this);
 
       //add to DOM
-      qx.theme.manager.Meta.getInstance().setTheme(qx.theme.Indigo);
+      qx.theme.manager.Meta.getInstance().setTheme(cv.theme.Dark);
       this._inline = new qx.ui.root.Inline(qx.bom.Selector.query("#qxsettings > div")[0], true, false);
       this._inline.setLayout(new qx.ui.layout.VBox());
       this.__settings = new cv.plugins.openhab.Settings();

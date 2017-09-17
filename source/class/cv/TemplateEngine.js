@@ -30,6 +30,7 @@ qx.Class.define('cv.TemplateEngine', {
     this.pagePartsHandler = new cv.ui.PagePartsHandler();
 
     this.__partQueue = new qx.data.Array();
+    this._domFinishedQueue = [];
     this.__partQueue.addListener("changeLength", function(ev) {
       this.setPartsLoaded(ev.getData() === 0);
     }, this);
@@ -111,6 +112,7 @@ qx.Class.define('cv.TemplateEngine', {
     xml : null,
 
     __partQueue: null,
+    _domFinishedQueue: null,
 
     // plugins that do not need to be loaded to proceed with the initial setup
     lazyPlugins: ["plugin-openhab"],
@@ -173,6 +175,27 @@ qx.Class.define('cv.TemplateEngine', {
     _applyDomFinished: function(value) {
       if (value) {
         qx.event.message.Bus.dispatchByName("setup.dom.finished");
+        // flush the queue
+        this._domFinishedQueue.forEach(function(entry) {
+          var callback = entry.shift();
+          var context = entry.shift();
+          callback.apply(context, entry);
+        }, this);
+        this._domFinishedQueue = [];
+      }
+    },
+
+    /**
+     * Adds a callback to a queue which is executed after DOM has been rendered
+     * @param callback {Function}
+     * @param context {Object}
+     */
+    executeWhenDomFinished: function(callback, context) {
+      if (!this.isDomFinished()) {
+        // queue callback
+        this._domFinishedQueue.push(Array.prototype.slice.call(arguments));
+      } else {
+        callback.apply(context, Array.prototype.slice.call(arguments, 2));
       }
     },
 

@@ -168,15 +168,23 @@ qx.Class.define("cv.plugins.openhab.Settings", {
         form.add(field, param.label, null, param.name, null, param);
       }, this);
 
-      this._add(new cv.plugins.openhab.renderer.Single(form));
+      this._addAt(new cv.plugins.openhab.renderer.Single(form), 1);
 
       var controller = new qx.data.controller.Form(null, form);
       this._store.bind("model", controller, "model");
 
-      this._createChildControl("cancel-button");
-      this._createChildControl("save-button");
+      if (cv.Config.guessIfProxied()) {
+        controller.setBottomText(this.tr("The CometVisu seems to be delivered by a proxied webserver. Changing configuration values might not have the expected effect. Please proceed only if you know what you are doing."));
+        controller.getChildControl("bottom-text").set({
+          padding: 10,
+          textAlign: "center",
+          font: "bold"
+        });
+      }
 
-      this._add(this.getChildControl("button-container"));
+      controller.addButton(this.getChildControl("cancel-button"));
+      controller.addButton(this.getChildControl("save-button"));
+
       this.setModified(false);
     },
 
@@ -205,31 +213,24 @@ qx.Class.define("cv.plugins.openhab.Settings", {
              font: "bold",
              marginBottom: 5,
              allowGrowX: true,
-             decorator: "window-caption-active"
+             decorator: "window-caption"
            });
-           this._add(control);
+           this._addAt(control, 0);
            break;
 
          case "form":
            control = new qx.ui.form.Form();
            break;
 
-         case "button-container":
-           control = new qx.ui.container.Composite(new qx.ui.layout.HBox(8));
-           control.addAt(new qx.ui.core.Spacer(), 0, {flex: 1});
-           break;
-
          case "cancel-button":
            control = new qx.ui.form.Button(qx.locale.Manager.tr("Cancel"));
            control.addListener("execute", this.close, this);
-           this.getChildControl("button-container").addAt(control, 1);
            break;
 
          case "save-button":
            control = new qx.ui.form.Button(qx.locale.Manager.tr("Save"));
            control.addListener("execute", this._saveConfig, this);
            this.bind("modified", control, "enabled");
-           this.getChildControl("button-container").addAt(control, 2);
            break;
        }
        return control || this.base(arguments, id, hash);

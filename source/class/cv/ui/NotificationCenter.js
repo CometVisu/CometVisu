@@ -75,7 +75,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     // severities in order of importance -> more important
     this.__severities = ["low", "normal", "high", "urgent"];
 
-    this._init();
+    cv.TemplateEngine.getInstance().executeWhenDomFinished(this._init, this);
   },
 
   /*
@@ -237,6 +237,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
      * @private
      */
     _init: function() {
+      console.log(this.toHashCode()+" initializing");
       var body = qx.bom.Selector.query("body")[0];
       
       this.__blocker = cv.ui.BodyBlocker.getInstance();
@@ -246,12 +247,24 @@ qx.Class.define("cv.ui.NotificationCenter", {
         bgColor: "#1C391C"
       });
 
-      // create new element
-      var elem = this.__element = qx.dom.Element.create("div", {
-        id: "notification-center",
-        html: '<div class="badge"></div><header><h3>'+qx.locale.Manager.tr("Message center")+'<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">'+qx.locale.Manager.tr("Delete all")+'<div></div></footer>'
-      });
-      qx.dom.Element.insertEnd(elem, body);
+      // check if the element is already there (might have been cached)
+      var elem = this.__element = qx.bom.Selector.query("#notification-center")[0];
+
+      if (!elem) {
+        // create new element
+        elem = this.__element = qx.dom.Element.create("div", {
+          id: "notification-center",
+          html: '<div class="badge"></div><header><h3>' + qx.locale.Manager.tr("Message center") + '<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">' + qx.locale.Manager.tr("Delete all") + '<div></div></footer>'
+        });
+        qx.dom.Element.insertEnd(elem, body);
+
+        var template = qx.dom.Element.create("script", {
+          id: "MessageTemplate",
+          type: "text/template",
+          html: '<div class="message {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="notification_{{ id }}">{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}{{#deletable}}<div class="action delete">x</div>{{/deletable}}<div class="content">{{&message}}</div></div>'
+        });
+        qx.dom.Element.insertEnd(template, body);
+      }
 
       this.__messagesContainer = qx.bom.Selector.query("section.messages", elem)[0];
       this.__badge = qx.bom.Selector.query(".badge", elem)[0];
@@ -259,12 +272,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
       // add HTML template for messages to header
 
-      var template = qx.dom.Element.create("script", {
-        id: "MessageTemplate",
-        type: "text/template",
-        html: '<div class="message {{severity}}{{#actions}} selectable{{/actions}}" title="{{tooltip}}" id="notification_{{ id }}">{{#title}}<header><h4>{{ title }}</h4></header>{{/title}}{{#deletable}}<div class="action delete">x</div>{{/deletable}}<div class="content">{{&message}}</div></div>'
-      });
-      qx.dom.Element.insertEnd(template, body);
+
       this.__list = new qx.data.controller.website.List(this.__messages, this.__messagesContainer, "MessageTemplate");
       qx.event.Registration.addListener(this.__messagesContainer, "tap", this._onListTap, this);
 
