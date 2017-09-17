@@ -51,6 +51,10 @@ qx.Class.define("cv.core.notifications.actions.Link", {
     url: {
       check: "String",
       nullable: true
+    },
+    action: {
+      check: "Function",
+      nullable: true
     }
   },
 
@@ -63,7 +67,12 @@ qx.Class.define("cv.core.notifications.actions.Link", {
     handleAction: function(ev) {
       ev.stopPropagation();
       ev.preventDefault();
-      window.open(this.getUrl(), '_blank');
+      if (this.getAction()) {
+        this.getAction()(ev);
+      }
+      if (this.getUrl()) {
+        window.open(this.getUrl(), '_blank');
+      }
     },
 
     getDomElement: function() {

@@ -119,8 +119,11 @@ qx.Class.define('cv.ui.Popup', {
         var actions = qx.dom.Element.create("div", {"class": "actions"});
 
         Object.getOwnPropertyNames(attributes.actions).forEach(function(type) {
-          var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, attributes.actions[type]);
-          qx.dom.Element.insertEnd(actionButton, actions);
+          var typeActions = qx.lang.Type.isArray(attributes.actions[type]) ? attributes.actions[type] : [attributes.actions[type]];
+          typeActions.forEach(function(action) {
+            var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, action);
+            qx.dom.Element.insertEnd(actionButton, actions);
+          });
         });
         qx.dom.Element.insertEnd(actions, ret_val);
       }

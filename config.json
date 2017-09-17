@@ -26,6 +26,7 @@
     "source-all",
     "source-hybrid",
     "source-server",
+    "source-error",
     "source-server-reload",
     "source-httpd-config",
     "test",
@@ -281,6 +282,15 @@
         "update-version",
         "source-script"
       ]
+    },
+
+    "source-error": {
+      "extend" : [ "source" ],
+      "environment" :
+      {
+        "cv.build": "source",
+        "qx.globalErrorHandling": true
+      },
     },
 
     "source-hybrid" :

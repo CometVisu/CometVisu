@@ -337,6 +337,9 @@ qx.Class.define("cv.ui.NotificationCenter", {
     },
 
     _applyMaxEntries: function(value) {
+      if (this.__messages.getLength() > value) {
+        this.__messages.splice(this.__messages.getLength() - value);
+      }
       this.__messages.setMaxEntries(value);
     },
 
@@ -353,7 +356,11 @@ qx.Class.define("cv.ui.NotificationCenter", {
               message.deletable = true;
             }
             if (cv.core.notifications.Router.evaluateCondition(message)) {
+              var changed = msg.severity !== message.severity;
               this.__messages.setItem(index, message);
+              if (changed) {
+                this.__updateBadge();
+              }
             } else{
               this.__messages.removeAt(index);
             }
@@ -367,6 +374,11 @@ qx.Class.define("cv.ui.NotificationCenter", {
           message.id = this.__messages.length;
           if (!message.hasOwnProperty("deletable")) {
             message.deletable = true;
+          }
+          if (this.getMaxEntries() > 0) {
+            if (this.__messages.getLength() >= this.getMaxEntries()) {
+              this.__messages.splice(0, this.__messages.getLength() - this.getMaxEntries() + 1).forEach(this._disposeMap);
+            }
           }
           this.__messages.push(message);
         }
@@ -417,7 +429,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     DESTRUCTOR
  *****************************************************************************
  */
-  destruct: function () {
+  destruct:  /* istanbul ignore next [destructor not called in singleton] */ function () {
     qx.event.Registration.removeListener(window, "resize", this._onResize, this);
     qx.event.Registration.removeListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
     this._disposeObjects("__blocker");
