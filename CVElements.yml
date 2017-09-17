@@ -13,6 +13,7 @@
   "manual":
     "de": "/de/latest/manual/config/widgets/plugins/colorchooser/index.html"
   "name": "ColorChooser"
+  "screenshot": "/de/latest/manual/_images/colorchooser_simple.png"
 - "description":
     "de": "RRD-basierte Diagramme"
     "en": "RRD based graphs."
@@ -39,6 +40,7 @@
     "de": "/de/latest/manual/config/widgets/plugins/powerspectrum/index.html"
     "en": "/en/latest/manual/config/widgets/plugins/powerspectrum/index.html"
   "name": "PowerSpectrum"
+  "screenshot": "/de/latest/manual/_images/powerspectrum.png"
 - "description":
     "de": "RSS"
     "en": "Display of RSS feed."
