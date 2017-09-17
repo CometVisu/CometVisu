@@ -192,18 +192,22 @@ qx.Class.define("cv.ui.NotificationCenter", {
 
     _onResize: function() {
       var height = qx.bom.Viewport.getHeight();
-      qx.bom.element.Style.setStyles(this.__element, {
-        left: qx.bom.Viewport.getWidth()+"px",
-        height: height+"px"
-      }, false);
+      if (this.__element) {
+        qx.bom.element.Style.setStyles(this.__element, {
+          left: qx.bom.Viewport.getWidth() + "px",
+          height: height + "px"
+        }, false);
+      }
 
-      // get header+footer heights
-      var messageBoxHeight = height -
+      if (this.__messagesContainer) {
+        // get header+footer heights
+        var messageBoxHeight = height -
           qx.bom.element.Dimension.getHeight(qx.bom.Selector.query("> header", this.__element)[0]) -
           qx.bom.element.Dimension.getHeight(qx.bom.Selector.query("> footer", this.__element)[0]);
-      qx.bom.element.Style.setStyles(this.__messagesContainer, {
-        height: messageBoxHeight+"px"
-      }, false);
+        qx.bom.element.Style.setStyles(this.__messagesContainer, {
+          height: messageBoxHeight + "px"
+        }, false);
+      }
     },
 
     /**
@@ -282,13 +286,17 @@ qx.Class.define("cv.ui.NotificationCenter", {
     },
 
     _onSeverityChange: function(ev) {
-      qx.bom.element.Class.removeClasses(this.__badge, this._severities);
-      qx.bom.element.Class.add(this.__badge, ev.getData());
+      if (this.__badge) {
+        qx.bom.element.Class.removeClasses(this.__badge, this._severities);
+        qx.bom.element.Class.add(this.__badge, ev.getData());
+      }
 
-      // update favicon badge
-      this.__favico.badge(this.getMessages().getLength(), {
-        bgColor: this.getSeverityColor(ev.getData())
-      });
+      if (this.__favico) {
+        // update favicon badge
+        this.__favico.badge(this.getMessages().getLength(), {
+          bgColor: this.getSeverityColor(ev.getData())
+        });
+      }
     },
 
     /**

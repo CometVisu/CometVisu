@@ -467,6 +467,7 @@ button.ui-slider-handle {
 
 .popup.notification .main .message {
   margin: 1em 0;
+  user-select: text;
 }
 
 .popup .main pre {

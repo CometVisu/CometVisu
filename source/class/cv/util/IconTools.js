@@ -245,7 +245,7 @@ qx.Class.define('cv.util.IconTools', {
         }
         var iconPath = qx.util.ResourceManager.getInstance().toUri('icon/knx-uf-iconset.svg');
 
-        var style = styling;
+        var style = styling || "";
         if (color) {
           style += 'color:' + color + ';';
         }

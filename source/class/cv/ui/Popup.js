@@ -133,21 +133,6 @@ qx.Class.define('cv.ui.Popup', {
           qx.dom.Element.insertEnd(this.__elementMap.content, ret_val);
         }
 
-        if (attributes.icon) {
-          if (!this.__elementMap.icon) {
-            this.__elementMap.icon = qx.dom.Element.create("div", {"html": cv.util.IconTools.svgKUF(attributes.icon)(null, null, "icon " + attributes.iconClasses)});
-            qx.dom.Element.insertBegin(this.__elementMap.icon, this.__elementMap.content);
-          } else {
-            var use = qx.bom.Selector.query("use", this.__elementMap.icon)[0];
-            var currentIconPath = qx.bom.element.Attribute.get(use, "xlink:href");
-            if (!currentIconPath.endsWith("#kuf-"+attributes.icon)) {
-              var parts = currentIconPath.split("#");
-              qx.bom.element.Attribute.set(use, "xlink:href", parts[0]+"#kuf-"+attributes.icon);
-            }
-          }
-        } else  {
-          this.destroyElement("icon");
-        }
         if (attributes.content) {
           if (!this.__elementMap.messageContent) {
             this.__elementMap.messageContent = qx.dom.Element.create("div", {"class": "message"});
@@ -161,6 +146,23 @@ qx.Class.define('cv.ui.Popup', {
           }
         } else {
           this.destroyElement("messageContent");
+        }
+        
+        if (attributes.icon) {
+          if (!this.__elementMap.icon) {
+            var iconClasses = attributes.iconClasses ? " "+attributes.iconClasses : "";
+            this.__elementMap.icon = qx.dom.Element.create("div", {"html": cv.util.IconTools.svgKUF(attributes.icon)(null, null, "icon" + iconClasses)});
+            qx.dom.Element.insertBegin(this.__elementMap.icon, this.__elementMap.content);
+          } else {
+            var use = qx.bom.Selector.query("use", this.__elementMap.icon)[0];
+            var currentIconPath = qx.bom.element.Attribute.get(use, "xlink:href");
+            if (!currentIconPath.endsWith("#kuf-"+attributes.icon)) {
+              var parts = currentIconPath.split("#");
+              qx.bom.element.Attribute.set(use, "xlink:href", parts[0]+"#kuf-"+attributes.icon);
+            }
+          }
+        } else  {
+          this.destroyElement("icon");
         }
 
         if (attributes.progress) {

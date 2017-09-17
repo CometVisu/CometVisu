@@ -204,7 +204,8 @@ qx.Class.define("cv.Application",
           exString += "\n Description: " + ex.description;
         }
         try {
-          exString += "\nStack: " + qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t")+"\n";
+          exString += "\nNormalized Stack: " + qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t")+"\n";
+          exString += "\nOriginal Stack: " + ex.stack +"\n";
         } catch(exc) {
           if (ex.stack) {
             exString += "\nStack: " + ex.stack+"\n";
