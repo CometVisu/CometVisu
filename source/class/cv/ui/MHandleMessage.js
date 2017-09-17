@@ -84,6 +84,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
   members: {
     _messages: null,
     _severities: null,
+    __idCounter: 0,
 
     getSeverities: function() {
       return this._severities;
@@ -141,7 +142,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
           if (message.topic === msg.topic) {
             // replace message
             found = msg;
-            message.id = this._messages.length;
+            message.id = msg.id;
             message.tooltip = this._getTooltip(message);
             if (!message.hasOwnProperty("deletable")) {
               message.deletable = true;
@@ -168,7 +169,8 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
       }
       if (!found) {
         if (cv.core.notifications.Router.evaluateCondition(message)) {
-          message.id = this._messages.length;
+          message.id = this.__idCounter;
+          this.__idCounter++;
           message.tooltip = this._getTooltip(message);
           if (!message.hasOwnProperty("deletable")) {
             message.deletable = true;
@@ -256,6 +258,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
     clear: function(force) {
       if (force) {
         this._messages.removeAll();
+        this.__idCounter = 0;
       } else {
         // collect all deletable messages
         var deletable = this._messages.filter(function (message) {

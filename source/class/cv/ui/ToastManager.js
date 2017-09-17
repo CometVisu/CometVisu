@@ -79,8 +79,10 @@ qx.Class.define("cv.ui.ToastManager", {
         this.__domElement = qx.bom.Selector.query(this.getRootElementId())[0];
         if (!this.__domElement) {
           this.__domElement = qx.dom.Element.create("div", {"id": this.getRootElementId()});
-          qx.dom.Element.insertEnd(this.__domElement, document.body);
         }
+      }
+      if (qx.bom.Selector.query(this.getRootElementId()).length === 0) {
+        qx.dom.Element.insertEnd(this.__domElement, document.body);
       }
       if (qx.bom.Selector.query("#ToastTemplate").length === 0) {
         var template = qx.dom.Element.create("script", {
