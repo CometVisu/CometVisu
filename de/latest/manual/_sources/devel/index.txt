@@ -170,7 +170,20 @@ in den Build-Versionen aktiv (also auch in den Releases), während der Entwicklu
 auf der Javascript-Konsole des Browsers angezeigt.
 
 Weitere Fehler werden, je nach Art, entweder als Popup oder als Nachricht in der Nachrichtenzentrale angezeigt.
-Als ein wichtiges Beispiel wären hier noch Verbindungsprobleme mit dem Backend zu nennen. Diese werden ebenfalls
-als Popup über der Visu angezeigt, solange das Problem besteht.
+Als ein wichtiges Beispiel wären hier noch Verbindungsprobleme mit dem Backend zu nennen. Diese werden angezeigt,
+solange das Problem besteht und verschwinden automatisch, sobald das Problem behoben wurde.
+
+
+.. figure:: _static/noticenter_hidden.png
+    :scale: 70%
+    :align: center
+
+    Geschlossene Nachrichtenzentrale mit einer kritischen Fehlermeldung
+
+.. figure:: _static/NotificationCenter.png
+    :scale: 70%
+    :align: center
+
+    Geöffnete Nachrichtenzentrale mit einer kritischen Fehlermeldung
 
 Der ``NotificationRouter`` wird ebenfalls für die :ref:`Benachrichtigungen <notifications>` genutzt.

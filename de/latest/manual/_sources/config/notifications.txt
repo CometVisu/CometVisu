@@ -19,16 +19,19 @@ sein, wird dies durch farbigen Hintergrund gekennzeichnet.
 .. code-block:: xml
     :caption: Einfaches Beispiel zeigt eine Nachricht in der Nachrichtenzentrale, wenn die Wohnzimmerlampe eingeschaltet ist.
 
-    <notifications>
-        <state-notification target="notificationCenter" unique="true">
-            <title-template>Wohnzimmerlicht</title-template>
-            <message-template>eingeschaltet um {{ time }} Uhr</message-template>
-            <condition>ON</condition>
-            <addresses>
-                <address transform="OH:switch">Light_FF_Living</address>
-            </addresses>
-        </state-notification>
-    </notifications>
+    <meta>
+        <notifications>
+            <state-notification target="notificationCenter" unique="true">
+                <title-template>Wohnzimmerlicht</title-template>
+                <message-template>eingeschaltet um {{ time }} Uhr</message-template>
+                <condition>ON</condition>
+                <addresses>
+                    <address transform="OH:switch">Light_FF_Living</address>
+                </addresses>
+            </state-notification>
+        </notifications>
+        ...
+    </meta>
 
 **Erklärung:**
 
@@ -74,30 +77,35 @@ Erklärung zu den Attributen im state-notification-Element
 Weitere Beispiele
 -----------------
 
+Komplexes Beispiel mit Mapping
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. code-block:: xml
     :caption: Komplexes Beispiel mit Benachrichtungen für Bewegungen inkl. Mapping
 
-    <mappings>
-        <mapping name="Motion_name">
-            <entry value="Motion_FF_Corridor">Flur OG</entry>
-            <entry value="Motion_FF_Kitchen">Küche</entry>
-            <entry value="Motion_FF_Dining">Esszimmer</entry>
-        </mapping>
+    <meta>
+        <mappings>
+            <mapping name="Motion_name">
+                <entry value="Motion_FF_Corridor">Flur OG</entry>
+                <entry value="Motion_FF_Kitchen">Küche</entry>
+                <entry value="Motion_FF_Dining">Esszimmer</entry>
+            </mapping>
+            ...
+        </mappings>
         ...
-    </mappings>
-    ...
-    <notifications>
-        <state-notification name="motion" target="notificationCenter" unique="true" severity="high">
-            <title-template>Bewegungsalarm</title-template>
-            <message-template>Bewegung erkannt: {{ address }}, {{ time }}</message-template>
-            <condition>ON</condition>
-            <addresses address-mapping="Motion_name">
-                <address transform="OH:switch">Motion_FF_Dining</address>
-                <address transform="OH:switch">Motion_FF_Corridor</address>
-                <address transform="OH:switch">Motion_FF_Kitchen</address>
-            </addresses>
-        </state-notification>
-    </notifications>
+        <notifications>
+            <state-notification name="motion" target="notificationCenter" unique="true" severity="high">
+                <title-template>Bewegungsalarm</title-template>
+                <message-template>Bewegung erkannt: {{ address }}, {{ time }}</message-template>
+                <condition>ON</condition>
+                <addresses address-mapping="Motion_name">
+                    <address transform="OH:switch">Motion_FF_Dining</address>
+                    <address transform="OH:switch">Motion_FF_Corridor</address>
+                    <address transform="OH:switch">Motion_FF_Kitchen</address>
+                </addresses>
+            </state-notification>
+        </notifications>
+    </meta>
 
 Dieses Beispiel zeigt ein Benachrichtigung wenn einer der Bewegungsmelder eine Bewegung liefert
 mit hoher Priorität (``severity="high"``, wird orange markiert).
@@ -106,8 +114,44 @@ Um den etwas kryptischen Adressennamen in ein lesbares Format zu bringen wird ei
 Wenn der Bewegungsmelder mit dem Namen *Motion_FF_Corridor* nun eine Bewegung signalisiert würde die Nachricht
 folgenden Inhalt haben:
 
+.. figure:: _static/nachrichten_zentrale.png
+    :align: center
+
+    Beispiel einer Nachricht in der Nachrichtenzentrale
+
+Sprachausgabe
+^^^^^^^^^^^^^
+
+.. code-block:: xml
+    :caption: Ausgabe der Nachricht über die Text-to-speech Engine des Browsers
+
+        <meta>
+            <mappings>
+                <mapping name="Motion_name">
+                    <entry value="Motion_FF_Corridor">Flur OG</entry>
+                    <entry value="Motion_FF_Kitchen">Küche</entry>
+                    <entry value="Motion_FF_Dining">Esszimmer</entry>
+                </mapping>
+                ...
+            </mappings>
+            ...
+            <notifications>
+                <state-notification name="motion" target="speech">
+                    <message-template>Bewegung im {{ address }}</message-template>
+                    <condition>ON</condition>
+                    <addresses address-mapping="Motion_name">
+                        <address transform="OH:switch">Motion_FF_Dining</address>
+                        <address transform="OH:switch">Motion_FF_Corridor</address>
+                        <address transform="OH:switch">Motion_FF_Kitchen</address>
+                    </addresses>
+                </state-notification>
+            </notifications>
+        </meta>
+
+Dieses Beispiel erzeugt Sprachausgaben über die in modernen Browsers eingebaute Text-to-Speech Engine.
+In diesem Fall wird, sofern einer der durch die drei ``address`` Einträge gekennzeichneten Bewegungsmelder
+als Wert ``ON`` liefert folgende Nachricht ausgegeben.
+
 .. code-block:: text
 
-    Bewegungsalarm
-    Bewegung erkannt: Flur OG, 12:45
-
+    Bewegung im Flur OG
