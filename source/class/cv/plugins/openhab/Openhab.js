@@ -29,7 +29,7 @@
  * @author Tobias Bräutigam
  * @since 0.11.0
  *
- * @require(qx.ui.root.Inline,qx.ui.tooltip.Manager)
+ * @require(qx.ui.root.Inline)
  */
 qx.Class.define("cv.plugins.openhab.Openhab", {
   extend: qx.core.Object,
@@ -65,7 +65,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
     _createSettings: function() {
       // add element structure to notification-center
       var settingsRoot = qx.dom.Element.create("section", {"id": "qxsettings", "html": "<div></div>"});
-      qx.dom.Element.insertAfter(settingsRoot, qx.bom.Selector.query("#notification-center section.messages")[0]);
+      qx.dom.Element.insertAfter(settingsRoot, qx.bom.Selector.query("#"+cv.ui.NotificationCenter.getInstance().getRootElementId()+" section.messages")[0]);
 
       // add a settings button to trigger opening the settings
       var button = qx.dom.Element.create("div", {

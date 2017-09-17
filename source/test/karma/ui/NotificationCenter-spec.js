@@ -68,7 +68,7 @@ describe('test the NotificationCenter', function () {
     expect(badge).not.toBeUndefined();
 
     center.handleMessage(qx.lang.Object.clone(message));
-    expect(center.__messages.getLength()).toBe(1);
+    expect(center.getMessages().getLength()).toBe(1);
 
     expect(qx.bom.element.Attribute.get(badge, "html")).toEqual("1");
     expect(qx.bom.element.Class.has(badge, "normal")).toBeTruthy();
@@ -79,7 +79,7 @@ describe('test the NotificationCenter', function () {
 
     center.handleMessage(qx.lang.Object.clone(message));
     // as the message was unique it replaces the old one
-    expect(center.__messages.getLength()).toBe(1);
+    expect(center.getMessages().getLength()).toBe(1);
 
     expect(qx.bom.element.Attribute.get(badge, "html")).toEqual("1");
     expect(qx.bom.element.Class.has(badge, "high")).toBeTruthy();
@@ -90,7 +90,7 @@ describe('test the NotificationCenter', function () {
 
     center.handleMessage(qx.lang.Object.clone(message));
     // as the message was unique it replaces the old one
-    expect(center.__messages.getLength()).toBe(2);
+    expect(center.getMessages().getLength()).toBe(2);
 
     expect(qx.bom.element.Attribute.get(badge, "html")).toEqual("2");
     expect(qx.bom.element.Class.has(badge, "urgent")).toBeTruthy();
@@ -102,7 +102,7 @@ describe('test the NotificationCenter', function () {
     center.handleMessage(qx.lang.Object.clone(message));
     center.handleMessage(qx.lang.Object.clone(message));
     // as we had 2 messages with same topic both should be gone now
-    expect(center.__messages.getLength()).toBe(0);
+    expect(center.getMessages().getLength()).toBe(0);
 
     expect(qx.bom.element.Attribute.get(badge, "html")).toBeNull();
     expect(qx.bom.element.Class.has(badge, "urgent")).toBeFalsy();
@@ -123,19 +123,19 @@ describe('test the NotificationCenter', function () {
       center.handleMessage(msg);
     }
 
-    expect(center.__messages.getLength()).toBe(5);
-    expect(center.__messages.getItem(0).title).toBe(5);
+    expect(center.getMessages().getLength()).toBe(5);
+    expect(center.getMessages().getItem(0).title).toBe(5);
 
     // delete a message by index
     cv.ui.NotificationCenter.deleteMessage(0);
-    expect(center.__messages.getLength()).toBe(4);
-    expect(center.__messages.getItem(0).title).toBe(6);
+    expect(center.getMessages().getLength()).toBe(4);
+    expect(center.getMessages().getItem(0).title).toBe(6);
 
     // delete a message by index which is not deletable
-    center.__messages.getItem(0).deletable = false;
+    center.getMessages().getItem(0).deletable = false;
     cv.ui.NotificationCenter.deleteMessage(0);
-    expect(center.__messages.getLength()).toBe(4);
-    expect(center.__messages.getItem(0).title).toBe(6);
+    expect(center.getMessages().getLength()).toBe(4);
+    expect(center.getMessages().getItem(0).title).toBe(6);
   });
 
   it("should perform a message action", function() {
@@ -169,12 +169,12 @@ describe('test the NotificationCenter', function () {
       }
     };
     center.handleMessage(message);
-    cv.ui.NotificationCenter.performAction(center.__messages.getLength()-1);
+    cv.ui.NotificationCenter.performAction(center.getMessages().getLength()-1);
     expect(spy).toHaveBeenCalled();
     cv.core.notifications.ActionRegistry.unregisterActionHandler("test");
 
     // message should have been deleted by action execution
-    expect(center.__messages.getLength()).toEqual(0);
+    expect(center.getMessages().getLength()).toEqual(0);
 
     qx.Class.undefine("cv.test.ActionHandler");
   });

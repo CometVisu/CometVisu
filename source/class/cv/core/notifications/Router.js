@@ -93,6 +93,8 @@ qx.Class.define("cv.core.notifications.Router", {
             return;
           }
           return cv.core.notifications.SpeechHandler.getInstance();
+        case "toast":
+          return cv.ui.ToastManager.getInstance();
       }
       return null;
     }
