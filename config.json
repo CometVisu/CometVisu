@@ -83,7 +83,9 @@
         "${APPLICATION}.ui.structure.pure.*",
         "${APPLICATION}.transforms.*",
         "${APPLICATION}.plugins.*",
-        "${APPLICATION}.parser.*"
+        "${APPLICATION}.parser.*",
+        "${APPLICATION}.core.*",
+        "${QXTHEME}"
       ],
 
       "lint-check" : {
@@ -93,7 +95,9 @@
           "THREE",
           "sprintf",
           "replayLog",
-          "svg4everybody"
+          "svg4everybody",
+          "EVENT_RECORDER",
+          "Favico"
         ]
       },
 
@@ -107,6 +111,9 @@
       },
 
       "add-script" : [
+        {
+          "uri" : "resource/libs/EventRecorder.js"
+        },
         {
           "uri" : "resource/libs/sprintf.js"
         },
