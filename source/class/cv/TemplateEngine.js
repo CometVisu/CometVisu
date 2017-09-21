@@ -36,6 +36,7 @@ qx.Class.define('cv.TemplateEngine', {
     }, this);
 
     this.defaults = {widget: {}, plugin: {}};
+    this.setCommands(new qx.ui.command.Group());
   },
 
   properties: {
@@ -81,6 +82,11 @@ qx.Class.define('cv.TemplateEngine', {
       init: false,
       apply: "_applyDomFinished",
       event: "changeDomFinished"
+    },
+
+    commands: {
+      check: "qx.ui.command.Group",
+      nullable: true
     }
   },
 

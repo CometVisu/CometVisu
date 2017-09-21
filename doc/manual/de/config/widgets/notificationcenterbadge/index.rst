@@ -29,6 +29,11 @@ Außerdem wird das Widget rechts platziert (in CSS: ``float: right``) und
 ``<layout colspan="0"/>`` bewirkt, dass das Widget in der Breite nur soviel Platz belegt wie es wirklich benötigt.
 
 
+.. HINT::
+
+    Unabhängig davon, ob man dieses Widget benutzt, kann man die Benachrichtigungszentrale immer mit dem
+    Tastaturkürzel ``Strg + M`` öffnen.
+
 Einstellungen
 -------------
 

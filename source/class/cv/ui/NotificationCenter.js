@@ -70,6 +70,9 @@ qx.Class.define("cv.ui.NotificationCenter", {
     cv.core.notifications.Router.getInstance().registerMessageHandler(this, {
       'cv.*': {}
     });
+    this._openCommand = new qx.ui.command.Command("Ctrl+M");
+    this._openCommand.addListener("execute", this.toggleVisibility, this);
+    cv.TemplateEngine.getInstance().getCommands().add("open-notificationcenter", this._openCommand);
 
     qx.event.Registration.addListener(window, "resize", this._onResize, this);
 
@@ -181,6 +184,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
     __blocker: null,
     __badge: null,
     __favico: null,
+    _openCommand: null,
 
     disableBadge: function(value) {
       if (value) {
@@ -350,6 +354,6 @@ qx.Class.define("cv.ui.NotificationCenter", {
     qx.event.Registration.removeListener(window, "resize", this._onResize, this);
     qx.event.Registration.removeListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
     qx.event.Registration.removeListener(this.__messagesContainer, "tap", this._onListTap, this);
-    this._disposeObjects("__blocker", "__messagesContainer");
+    this._disposeObjects("__blocker", "__messagesContainer", "_openCommand");
   }
 });
