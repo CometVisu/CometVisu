@@ -131,7 +131,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
 
         this.addListener("changeVisible", function (ev) {
           if (ev.getData() === true) {
-            this.__updateSlider();
+            new qx.util.DeferredCall(this.__updateSlider, this).schedule();
           }
         }, this);
         if (this.isVisible()) {

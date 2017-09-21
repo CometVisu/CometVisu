@@ -69,7 +69,7 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
 
       // add a settings button to trigger opening the settings
       var button = qx.dom.Element.create("div", {
-        html: cv.util.IconTools.svgKUF("edit_settings")(null, "width: 22px; height: 22px;"),
+        html: cv.util.IconTools.svgKUF("edit_settings")(null, 'style="width: 22px; height: 22px;"'),
         style: "float: left;"
       });
       qx.dom.Element.insertBegin(button, qx.bom.Selector.query("#notification-center footer")[0]);
