@@ -248,6 +248,9 @@ qx.Class.define('cv.util.IconTools', {
         if (color) {
           style += 'color:' + color + ';';
         }
+        if (style) {
+          style = ' style="'+style+'"';
+        }
         return '<svg ' + style + ' class="' + classes + '"><use xlink:href="'+iconPath+'#kuf-' + iconID + '"></use></svg>';
       };
     }
