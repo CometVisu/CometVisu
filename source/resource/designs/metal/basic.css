@@ -464,6 +464,7 @@ body br
     width: 2.5rem;
     height: 2.5rem;
     cursor: default;
+    font-size: 0.7em;
 }
 .ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; top: 0; height: 100%; }
 
