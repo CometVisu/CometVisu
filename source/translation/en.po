@@ -11,43 +11,106 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cv/Application.js:458
+#: cv/Application.js:175
+msgid "Please describe what you have done until the error occured?"
+msgstr ""
+
+#: cv/Application.js:207
+msgid "An error occured"
+msgstr ""
+
+#: cv/Application.js:214
+msgid "Reload"
+msgstr ""
+
+#: cv/Application.js:241
+msgid "Please do not forget to attach the downloaded Logfile to this ticket."
+msgstr ""
+
+#: cv/Application.js:248
+msgid "Enable reporting on reload"
+msgstr ""
+
+#: cv/Application.js:253
+msgid "Report Bug"
+msgstr ""
+
+#: cv/Application.js:561
 msgid "Config-File Error!"
 msgstr ""
 
-#: cv/Application.js:461
+#: cv/Application.js:565
 msgid "Invalid config file!"
 msgstr ""
 
-#: cv/Application.js:461
+#: cv/Application.js:565
 msgid "Please check!"
 msgstr ""
 
-#: cv/Application.js:469
+#: cv/Application.js:573
 msgid "Config file has wrong library version!"
 msgstr ""
 
-#: cv/Application.js:470
+#: cv/Application.js:574
 msgid "This can cause problems with your configuration"
 msgstr ""
 
-#: cv/Application.js:471
+#: cv/Application.js:575
 msgid "You can run the %1Configuration Upgrader%2."
 msgstr ""
 
-#: cv/Application.js:472
+#: cv/Application.js:576
 msgid ""
 "Or you can start without upgrading %1with possible configuration problems%2"
 msgstr ""
 
-#: cv/Application.js:475
+#: cv/Application.js:579
 msgid ""
 "404: Config file not found. Neither as normal config (%1) nor as demo config"
 " (%2)."
 msgstr ""
 
-#: cv/Application.js:478
+#: cv/Application.js:582
 msgid "Unhandled error of type \"%1\""
+msgstr ""
+
+#: cv/TemplateEngine.js:245
+msgid "Connection error"
+msgstr ""
+
+#: cv/TemplateEngine.js:254
+msgid "Error requesting %1: %2 - %3."
+msgstr ""
+
+#: cv/TemplateEngine.js:256
+msgid "Connection to backend is lost."
+msgstr ""
+
+#: cv/plugins/openhab/Settings.js:173
+msgid ""
+"The CometVisu seems to be delivered by a proxied webserver. Changing "
+"configuration values might not have the expected effect. Please proceed only"
+" if you know what you are doing."
+msgstr ""
+
+#: cv/plugins/openhab/Settings.js:211
+msgid "openHAB backend settings"
+msgstr ""
+
+#: cv/plugins/openhab/Settings.js:226
+msgid "Cancel"
+msgstr ""
+
+#: cv/plugins/openhab/Settings.js:231
+msgid "Save"
+msgstr ""
+
+#: cv/ui/NotificationCenter.js:257
+msgid "Delete all"
+msgstr ""
+
+#: cv/ui/NotificationCenter.js:257
+msgid "Message center"
 msgstr ""
 
 #: cv/ui/structure/pure/Unknown.js:88

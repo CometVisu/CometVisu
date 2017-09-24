@@ -46,9 +46,31 @@ daher weg gelassen werden.
 
 
 Erlaubte Attribute im Image-Element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: image
+
+Die gültigen Werte für ``cachecontrol`` sind:
+
+``full``
+    Standard. Durch Erweitern der URL um einen Zeitstempel wird
+    sichergestellt, dass immer eine neue Version geladen wird. Der
+    Server muss dies jedoch unterstützen.
+
+``force``
+    Durch aufwändigere, interne Maßnahmen wird versucht eine
+    Aktualisierung des Bildes zu erzwingen.
+
+``weak``
+    Die URL wird nur durch einen Anker (Raute) mit Zeitstempel erweitert.
+    Server die Bilder bei ``full`` nicht übertragen sind jedoch meist
+    mit ``weak`` kompatibel. Jedoch müssen hier die Cache-Parameter
+    im HTTP-Header vom Server richtig gesetzt werden so wie der Browser
+    korrekt reagieren.
+
+``none``
+    Die URL wird nicht verändert, dass eine Aktualisierung des Bildes
+    durch den Cache verhindert wird ist jedoch wahrscheinlich.
 
 .. widget-example::
     :editor: attributes

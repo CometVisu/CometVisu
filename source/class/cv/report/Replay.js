@@ -242,6 +242,8 @@ qx.Class.define('cv.report.Replay', {
         default:
           if (client[record.i]) {
             client[record.i].apply(client, record.d);
+          } else if (this.__client.getCurrentTransport() instanceof cv.io.transport.Sse) {
+            this.__client.getCurrentTransport().dispatchTopicMessage(record.i, record.d);
           } else {
             this.error("unhandled backend record of type "+record.i);
           }

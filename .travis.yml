@@ -15,7 +15,6 @@ env:
   - CV_BUILD="test" CV_BROWSER=Chrome_travis CV_VERSION=unstable
   - CV_BUILD="docs" ENCRYPTION_LABEL="4c79fec0aeb9" COMMIT_AUTHOR_EMAIL="generator@cometvisu.org" CV_BROWSER=Chrome_travis CV_VERSION=stable
 before_install:
-- sudo apt-get --only-upgrade install libnss3
 - mkdir -p downloads
 - nvm install 4.2
 - sudo ./utils/travis/browser-setup.sh
@@ -55,11 +54,13 @@ script:
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
 before_deploy:
 - grunt release-cv
-- if [ $(git reflog --after='24 hours' client/ | wc -l) -gt 0 ]; then grunt release-client; fi
+- CLIENT_CHANGES=`git reflog --after='48 hours' client/ | wc -l`
+- echo "$CLIENT_CHANGES client changes"
+- if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
 deploy:
   on:
     branch: develop
-    condition: "$CV_BUILD = test && CV_VERSION = stable && $TRAVIS_EVENT_TYPE = cron && $(git reflog --after='24 hours' | wc -l) -gt 0"
+    condition: "$CV_BUILD = test && $CV_VERSION = stable && $TRAVIS_EVENT_TYPE = cron && $(git reflog --after='24 hours' | wc -l) -gt 0"
   provider: bintray
   file: "./deploy.json"
   user: peuter
@@ -67,4 +68,4 @@ deploy:
     secure: dnqHD0ynwCvyxeniG5ee+ImtnQPP02c4WkV8EVgVwSKcEQ5xtdlfy9/6M4znDMlEKcfwvUr9O8JVtrmTqyLNlcwxiIgnrzfIUBrzwPRhSrDgAbUUHOy4bpES58rGKZvwvavhaRhMnd5nQivG4w7ltKdVX4MY8ht4gGLVIlK5RSA=
   dry-run: false
 after_success:
-- if [ "$CV_BUILD" == "test" ]; then grunt coveralls; fi
+- if [ "$CV_BUILD" == "test" ] && [ "$CV_VERSION" == "stable" ] ; then grunt coveralls; fi

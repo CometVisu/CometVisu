@@ -32,6 +32,7 @@ qx.Class.define('cv.io.transport.Sse', {
    */
   construct: function(client) {
     this.client = client;
+    this.__additionalTopics = {};
   },
 
   /*
@@ -45,15 +46,16 @@ qx.Class.define('cv.io.transport.Sse', {
     sessionId: null,
     client: null,
     eventSource: null,
+    __additionalTopics: null,
     /**
      * This function gets called once the communication is established
      * and session information is available
      *
-     * @param ev {Event}
+     * @param args {Array} arguments from the XHR response callback
      * @param connect {Boolean} whether to start the connection or not
      */
-    handleSession: function (ev, connect) {
-      var json = this.client.getResponse(ev);
+    handleSession: function (args, connect) {
+      var json = this.client.getResponse(args);
       this.sessionId = json.s;
       this.version = json.v.split('.', 3);
 
@@ -76,13 +78,18 @@ qx.Class.define('cv.io.transport.Sse', {
         this.client.getResourcePath("read"),
         this.client.buildRequest(null, true))
       );
+      // add default listeners
       this.eventSource.addEventListener('message', this.handleMessage.bind(this), false);
       this.eventSource.addEventListener('error', this.handleError.bind(this), false);
+      // add additional listeners
+      Object.getOwnPropertyNames(this.__additionalTopics).forEach(this.__addRecordedEventListener, this);
       this.eventSource.onerror = function () {
         this.error("connection lost");
+        this.client.setConnected(false);
       }.bind(this);
       this.eventSource.onopen = function () {
         this.debug("connection established");
+        this.client.setConnected(true);
       }.bind(this);
       this.client.watchdog.start(5);
     },
@@ -97,6 +104,38 @@ qx.Class.define('cv.io.transport.Sse', {
       this.client.watchdog.ping(true);
       this.client.update(data);
       this.client.setDataReceived(true);
+    },
+
+    dispatchTopicMessage: function(topic, message) {
+      this.client.record(topic, message);
+      if (this.__additionalTopics[topic]) {
+        this.__additionalTopics[topic].forEach(function(entry) {
+          entry[0].call(entry[1], message);
+        });
+      }
+    },
+
+    /**
+     * Subscribe to SSE events of a certain topic
+     * @param topic {String}
+     * @param callback {Function}
+     * @param context {Object}
+     */
+    subscribe: function(topic, callback, context) {
+      if (!this.__additionalTopics[topic]) {
+        this.__additionalTopics[topic] = [];
+      }
+      this.__additionalTopics[topic].push([callback, context]);
+      if (this.isConnectionRunning()) {
+        this.__addRecordedEventListener(topic);
+      }
+    },
+
+    __addRecordedEventListener: function(topic) {
+      this.debug("subscribing to topic "+topic);
+      this.eventSource.addEventListener(topic, function(e) {
+        this.dispatchTopicMessage(topic, e);
+      }.bind(this), false);
     },
 
     /**
@@ -117,7 +156,7 @@ qx.Class.define('cv.io.transport.Sse', {
      * @return {Boolean}
      */
     isConnectionRunning: function () {
-      return this.eventSource.readyState === EventSource.OPEN;
+      return this.eventSource && this.eventSource.readyState === EventSource.OPEN;
     },
 
     /**

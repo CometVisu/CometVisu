@@ -412,7 +412,7 @@ module.exports = function(grunt) {
       },
       debug: {
         configFile: 'karma.conf.js',
-        singleRun: true,
+        singleRun: !grunt.option('no-single'),
         browsers: [grunt.option('browser') || 'Chrome'],
         reporters: ['progress']
       }

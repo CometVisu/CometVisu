@@ -23,6 +23,9 @@ import json
 import rjsmin
 import logging
 from argparse import ArgumentParser
+
+import shutil
+
 from . import Command
 
 
@@ -92,12 +95,40 @@ class BuildHelper(Command):
                             f.write(content)
                             print("%s has peen processed" % os.path.join(subdir, file))
 
+    def update_paths(self):
+        with open(os.path.join("build", "editor", "text", "index.html"), "r+") as f:
+            data = f.read()
+            # change path to node_modules
+            data = data.replace("../../../node_modules", "../../node_modules")
+            # we want the min version
+            data = data.replace("monaco-editor/dev/vs", "monaco-editor/min/vs")
+            f.seek(0)
+            f.write(data)
+            f.truncate()
+
+        # cleanup
+        try:
+            dev = os.path.join("build", "node_modules", "monaco-editor", "dev")
+            if os.path.exists(dev):
+                shutil.rmtree(dev)
+            maps = os.path.join("build", "node_modules", "monaco-editor", "min-maps")
+            if os.path.exists(maps):
+                shutil.rmtree(maps)
+            ts = os.path.join("build", "node_modules", "monaco-editor", "monaco.d.ts")
+            if os.path.exists(ts):
+                os.unlink(ts)
+        except Exception as e:
+            print(str(e))
+
     def run(self, args):
         parser = ArgumentParser(usage="%(prog)s - CometVisu build helper scrips")
 
         parser.add_argument("--build-plugins", "-bp", dest="build_plugins", action='store_true', help="include external libs in plugin parts")
+        parser.add_argument("--update-paths", "-up", dest="update_paths", action='store_true', help="update some paths inside certain files")
 
         options = parser.parse_args(args)
 
         if options.build_plugins:
             self.build_plugins()
+        elif options.update_paths:
+            self.update_paths()

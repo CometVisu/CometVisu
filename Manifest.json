@@ -66,7 +66,7 @@
 
     "version": "0.10.0-dev",
     "qooxdoo-versions": ["5.1"],
-    "sourceViewUri": "https://github.com/peuter/CometVisu/blob/qx-core/source/class/%{classFilePath}#L%{lineNumber}"
+    "sourceViewUri": "https://github.com/CometVisu/CometVisu/blob/develop/source/class/%{classFilePath}#L%{lineNumber}"
   },
   
   "provides" : 

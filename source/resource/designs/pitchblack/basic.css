@@ -371,12 +371,7 @@ html[xmlns] .clearfix, .clearfix:after {
 }
 
 .popup {
-  z-index: 101;
   background: transparent;
-}
-
-.popup_background {
-  z-index: 100;
 }
 
 .clickable {

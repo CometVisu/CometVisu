@@ -13,7 +13,7 @@ Zu kann man z.B. prüfen ob das Klicken auf einen Switch den passenden Wert an d
 wenn das Backend ein Update für den Switch liefert, dieser diesen entsprechend anzeigt.
 
 Unittests
-----------
+---------
 
 Als Testrunner für die Unittests kommt `Karma <https://karma-runner.github.io>`__ zum Einsatz.
 Ausgeführt werden die Tests über das Kommandozeilen-Tool Grunt.

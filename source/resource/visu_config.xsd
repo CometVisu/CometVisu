@@ -20,6 +20,17 @@
     <xsd:restriction base="xsd:anyURI" />
   </xsd:simpleType>
 
+  <xsd:attribute name="cachecontrol">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="full" />
+        <xsd:enumeration value="force" />
+        <xsd:enumeration value="weak" />
+        <xsd:enumeration value="none" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+  
   <xsd:complexType name="layout">
     <xsd:attribute name="colspan" type="xsd:decimal" use="optional">
       <xsd:annotation>
@@ -164,7 +175,7 @@
   <xsd:attribute name="flavour" type="xsd:string">
     <xsd:annotation>
       <xsd:appinfo>level:expert</xsd:appinfo>
-      <xsd:documentation xml:lang="en">Selection of a display variant. See also :ref:'flavour'.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Selection of a display variant. See also :ref:`flavour`.</xsd:documentation>
       <xsd:documentation xml:lang="de">Auswahl der Darstellungsvariante. Siehe auch :ref:`Flavour &lt;flavour&gt;`.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
@@ -443,6 +454,7 @@
       <xsd:element name="mappings" type="mappings" />
       <xsd:element name="stylings" type="stylings" />
       <xsd:element name="statusbar" type="statusbar" />
+      <xsd:element name="notifications" type="notifications" />
     </xsd:choice>
   </xsd:complexType>
 
@@ -539,6 +551,110 @@
     <xsd:choice minOccurs="0" maxOccurs="unbounded">
       <xsd:element name="status" type="status" minOccurs="1" />
     </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="notifications">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="state-notification" type="state-notification" />
+    </xsd:choice>
+  </xsd:complexType>
+
+  <xsd:complexType name="state-notification">
+    <xsd:sequence>
+      <xsd:element name="title-template" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Template for message title</xsd:documentation>
+          <xsd:documentation xml:lang="de">Vorlage für Nachrichtentitel</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="addresses" type="addresses" />
+      <xsd:element name="message-template">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Template for message content</xsd:documentation>
+          <xsd:documentation xml:lang="de">Vorlage für Nachrichteninhalt</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="condition" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Show message only when incoming data equals the condition</xsd:documentation>
+          <xsd:documentation xml:lang="de">Nachricht nur anzeigen, wenn Wert diesem gleicht</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Name is required when unique=true</xsd:documentation>
+        <xsd:documentation xml:lang="de">Name muss definiert werden, wenn unique=true ist</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="target">
+    <xsd:simpleType>
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Where to show the message</xsd:documentation>
+        <xsd:documentation xml:lang="de">Wo die Nachricht angezeigt werden soll</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="popup">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">Show message as popup</xsd:documentation>
+          <xsd:documentation xml:lang="de">Nachricht als Popup anzeigen</xsd:documentation>
+        </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="notificationCenter">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Show message in notification center</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nachricht im Notification-Center anzeigen</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="speech">
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Say message with text-to-speech</xsd:documentation>
+            <xsd:documentation xml:lang="de">Nachricht per Sprachausgabe ausgeben</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+      </xsd:restriction>
+    </xsd:simpleType>
+    </xsd:attribute>
+    <xsd:attribute name="unique" type="xsd:boolean" default="false">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show only one message for this update (name is required)</xsd:documentation>
+        <xsd:documentation xml:lang="de">Nur eine Nachricht für dieses Update zeigen (name muss angegeben werden)</xsd:documentation>
+      </xsd:annotation>
+      </xsd:attribute>
+    <xsd:attribute name="deletable" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">User can delete this message</xsd:documentation>
+        <xsd:documentation xml:lang="de">Benutzer kann diese Nachricht löschen</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="skip-initial" type="xsd:boolean" default="true">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Ignore inital state update</xsd:documentation>
+        <xsd:documentation xml:lang="de">Erstes Statusupdate ignorieren</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="severity" default="normal">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Messages with higher priority are marked with different colors</xsd:documentation>
+        <xsd:documentation xml:lang="de">Nachrichten mit höherer Priorität werden farblich gekennzeichnet</xsd:documentation>
+      </xsd:annotation>
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="urgent" />
+          <xsd:enumeration value="high" />
+          <xsd:enumeration value="normal" />
+          <xsd:enumeration value="low" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="addresses">
+    <xsd:sequence minOccurs="1" maxOccurs="unbounded">
+      <xsd:element name="address" type="address" />
+    </xsd:sequence>
+    <xsd:attribute name="value-mapping" type="xsd:string" />
+    <xsd:attribute name="address-mapping" type="xsd:string" />
   </xsd:complexType>
 
   <!-- define a page -->
@@ -869,6 +985,7 @@
       <xsd:element name="pagejump" type="pagejump" />
       <xsd:element name="wgplugin_info" type="wgplugin_info"/>
       <xsd:element name="mobilemenu" type="mobilemenu"/>
+      <xsd:element name="notificationcenterbadge" type="notificationcenterbadge"/>
     </xsd:choice>
   </xsd:group>
 
@@ -882,6 +999,22 @@
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
 	<xsd:attribute ref="class" use="optional" />
+  </xsd:complexType>
+
+  <xsd:complexType name="notificationcenterbadge">
+    <xsd:sequence>
+      <xsd:element name="layout" type="layout" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute ref="align" use="optional" />
+    <xsd:attribute ref="flavour" use="optional" />
+    <xsd:attribute ref="class" use="optional" />
+    <xsd:attribute name="hide-when-empty" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Hide this widget when the NotificationCenter is empty.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Dieses Widget nicht anzeigen, wenn die Benachritigungszentrale leer ist.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="designtoggle">
@@ -1247,6 +1380,12 @@
       <xsd:annotation>
         <xsd:documentation xml:lang="en">Sets the update rate for the picture in seconds</xsd:documentation>
         <xsd:documentation xml:lang="de">Definiert die Aktualisierungsrate des Bildes in Sekunden</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="cachecontrol" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Set the cache control strategy for refresh.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Definiert Methode um den Cache während einer Aktualisierung zu Steuern.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />

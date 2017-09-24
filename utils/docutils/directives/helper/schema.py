@@ -84,13 +84,14 @@ class Schema:
     def get_attribute_type(self, node):
         type = None
         values = []
+        enums = None
         if 'type' in node.attrib:
             type = node.get('type')
         elif len(node.findall("xs:simpleType/xs:restriction/xs:enumeration".replace("xs:", SCHEMA_SPACE))) > 0:
             enums = node.findall("xs:simpleType/xs:restriction/xs:enumeration".replace("xs:", SCHEMA_SPACE))
             values = [enum.get('value') for enum in enums]
             type = node.find("xs:simpleType/xs:restriction".replace("xs:", SCHEMA_SPACE)).get("base")
-        return type, values
+        return type, values, enums
 
     def get_element_attributes(self, name):
 

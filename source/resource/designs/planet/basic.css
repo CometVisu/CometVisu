@@ -740,7 +740,6 @@ position: relative;
 
 .popup_close {
   position: absolute;
-  z-index: 102;
   right: 2rem;
   top: -0.5rem;
   width: 2.0rem;
@@ -760,7 +759,6 @@ position: relative;
 }
 
 .popup_background {
-  z-index: 100;
   -moz-border-radius: 0.6rem; -webkit-border-radius: 0.6rem; border-radius: 0.6rem;
   background: #000;
   border: none;

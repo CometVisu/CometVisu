@@ -40,7 +40,7 @@ qx.Class.define("cv.Application",
    ******************************************************
    */
   statics: {
-    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div><div id="message"></div>',
+    HTML_STRUCT: '<div id="top" class="loading"><div class="nav_path">-</div></div><div id="navbarTop" class="loading"></div><div id="centerContainer"><div id="navbarLeft" class="loading page"></div><div id="main" style="position:relative; overflow: hidden;" class="loading"><div id="pages" class="clearfix" style="position:relative;clear:both;"><!-- all pages will be inserted here --></div></div><div id="navbarRight" class="loading page"></div></div><div id="navbarBottom" class="loading"></div><div id="bottom" class="loading"><hr /><div class="footer"></div></div>',
     consoleCommands: [],
 
     /**
@@ -49,6 +49,10 @@ qx.Class.define("cv.Application",
      */
     createClient: function() {
       var args = Array.prototype.slice.call(arguments);
+      if (args[0] === "openhab2") {
+        // auto-load openhab plugin for this backend
+        cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
+      }
       args.unshift(null);
       if (cv.Config.testMode === true) {
         return  new (Function.prototype.bind.apply(cv.io.Mockup, args)); // jshint ignore:line
@@ -71,6 +75,18 @@ qx.Class.define("cv.Application",
       }
     }
   },
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    root: {
+      nullable: true
+    }
+  },
+
 
   /*
   *****************************************************************************
@@ -104,6 +120,7 @@ qx.Class.define("cv.Application",
      * during startup of the application
      */
     main : function() {
+      qx.event.GlobalError.setErrorHandler(this.__globalErrorHandler, this);
       if (qx.core.Environment.get("qx.debug")) {
         if (typeof replayLog !== "undefined" && replayLog) {
           cv.report.Replay.prepare(replayLog);
@@ -164,6 +181,101 @@ qx.Class.define("cv.Application",
       this.__init();
     },
 
+    __globalErrorHandler: function(ex) {
+      // connect client data for Bug-Report
+      var bugData = cv.report.Record.getClientData();
+      var body = "**"+qx.locale.Manager.tr("Please describe what you have done until the error occured?")+"**\n \n\n";
+      var exString = "";
+      if (ex.getSourceException()) {
+        ex = ex.getSourceException();
+      }
+      else if (ex instanceof qx.core.WindowError) {
+        exString = ex.toString() + "\nin " + ex.getUri() + " line " + ex.getLineNumber();
+      }
+      if (!exString) {
+        exString = ex.name + ": " + ex.message;
+        if (ex.fileName) {
+          exString += "\n in file " + ex.fileName;
+        }
+        if (ex.lineNumber) {
+          exString += "\n line " + ex.lineNumber;
+        }
+        if (ex.description) {
+          exString += "\n Description: " + ex.description;
+        }
+        try {
+          exString += "\nNormalized Stack: " + qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t")+"\n";
+          exString += "\nOriginal Stack: " + ex.stack +"\n";
+        } catch(exc) {
+          if (ex.stack) {
+            exString += "\nStack: " + ex.stack+"\n";
+          }
+        }
+      }
+      body += "```\n"+exString+"\n```\n\n**Client-Data:**\n```\n"+qx.lang.Json.stringify(bugData, null, 2)+"\n```";
+
+      var notification = {
+        topic: "cv.error",
+        target: cv.ui.PopupHandler,
+        title: qx.locale.Manager.tr("An error occured"),
+        message: "<pre>"+ex.stack+"</pre>",
+        severity: "urgent",
+        deletable: false,
+        actions: {
+          link: [
+            {
+              title: qx.locale.Manager.tr("Reload"),
+              action: function(ev) {
+                var parent = ev.getTarget().parentNode;
+                while (parent) {
+                  if (parent.id === "notification-center" || qx.bom.element.Class.has(parent, "popup")) {
+                    break;
+                  }
+                  parent = parent.parentNode;
+                }
+                var box = qx.bom.Selector.query(".enableReporting", parent)[0];
+                if (box.checked) {
+                  // reload with reporting enabled
+                  var url = window.location.href.split("#").shift();
+                  cv.util.Location.setHref(qx.util.Uri.appendParamsToUrl(url, "reporting=true"));
+                } else {
+                  cv.util.Location.reload(true);
+                }
+              },
+              needsConfirmation: false
+            }
+          ]
+        }
+      };
+      // reload with reporting checkbox
+      var reportAction = null;
+      if (cv.Config.reporting) {
+        // reporting is enabled -> download log and show hint how to append it to the ticket
+        body = '<!--\n'+qx.locale.Manager.tr("Please do not forget to attach the downloaded Logfile to this ticket.")+'\n-->\n\n'+body;
+        reportAction = cv.report.Record.download;
+      } else {
+        var link = "";
+        if (qx.locale.Manager.getInstance().getLocale() === "de") {
+          link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+        }
+        notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
+
+      }
+      notification.actions.link.push(
+        {
+          title: qx.locale.Manager.tr("Report Bug"),
+          url: "https://github.com/CometVisu/CometVisu/issues/new?" + qx.util.Uri.toParameter({
+            labels: "bug / bugfix",
+            title: ex.toString(),
+            body: body
+          }),
+          action: reportAction,
+          needsConfirmation: false
+        }
+      );
+      cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+    },
+
     /**
      * Internal initialization method
      */
@@ -173,14 +285,21 @@ qx.Class.define("cv.Application",
         cv.io.Client.stopAll();
       }, this);
       qx.bom.Lifecycle.onReady(function () {
+        // init notification router
+        cv.core.notifications.Router.getInstance();
         var body = qx.bom.Selector.query("body")[0];
+
         if (cv.Config.enableCache && cv.ConfigCache.isCached()) {
           // load settings
           this.debug("using cache");
           cv.ConfigCache.restore();
+          // initialize NotificationCenter
+          cv.ui.NotificationCenter.getInstance();
         } else {
           // load empty HTML structure
           qx.bom.element.Attribute.set(body, "html", cv.Application.HTML_STRUCT);
+          // initialize NotificationCenter
+          cv.ui.NotificationCenter.getInstance();
         }
         this.loadConfig();
       }, this);
@@ -209,6 +328,7 @@ qx.Class.define("cv.Application",
       ajaxRequest.addListenerOnce("success", function (e) {
         this.block(false);
         var req = e.getTarget();
+        cv.Config.configServer = req.getResponseHeader("Server");
         // Response parsed according to the server's response content type
         var xml = req.getResponse();
         if (xml && qx.lang.Type.isString(xml)) {
@@ -255,14 +375,6 @@ qx.Class.define("cv.Application",
       }, this);
 
       ajaxRequest.send();
-
-      // message discarding - but not for errors:
-      var messageElement = qx.bom.Selector.query('#message')[0];
-      qx.event.Registration.addListener(messageElement, 'tap', function () {
-        if (!qx.bom.element.Class.has(messageElement, 'error')) {
-          this.innerHTML = '';
-        }
-      }, messageElement);
     },
 
     /**
@@ -273,6 +385,7 @@ qx.Class.define("cv.Application",
       this.debug("bootstrapping");
       var engine = cv.TemplateEngine.getInstance();
       var loader = cv.util.ScriptLoader.getInstance();
+
       engine.xml = xml;
       loader.addListenerOnce("finished", function() {
         engine.setScriptsLoaded(true);
@@ -458,10 +571,11 @@ qx.Class.define("cv.Application",
      */
     configError: function( textStatus, additionalErrorInfo ) {
       var configSuffix = (cv.Config.configSuffix ? cv.Config.configSuffix : '');
-      var message = qx.locale.Manager.tr('Config-File Error!')+'<br/>';
+      var title = qx.locale.Manager.tr('Config-File Error!');
+      var message = '';
       switch (textStatus) {
         case 'parsererror':
-          message += qx.locale.Manager.tr("Invalid config file!")+'<br/><a href="check_config.php?config=' + configSuffix + '">'+qx.locale.Manager.tr("Please check!")+'</a>';
+          message = qx.locale.Manager.tr("Invalid config file!")+'<br/><a href="check_config.php?config=' + configSuffix + '">'+qx.locale.Manager.tr("Please check!")+'</a>';
           break;
         case 'libraryerror':
           var link = window.location.href;
@@ -469,16 +583,16 @@ qx.Class.define("cv.Application",
             link = link + '?';
           }
           link = link + '&libraryCheck=false';
-          message += qx.locale.Manager.tr('Config file has wrong library version!')+'<br/>' +
+          message = qx.locale.Manager.tr('Config file has wrong library version!')+'<br/>' +
             qx.locale.Manager.tr('This can cause problems with your configuration')+'</br>' +
             '<p>'+qx.locale.Manager.tr("You can run the %1Configuration Upgrader%2.", '<a href="./upgrade/index.php?config=' + configSuffix + '">', '</a>') +'</br>' +
             qx.locale.Manager.tr('Or you can start without upgrading %1with possible configuration problems%2', '<a href="' + link + '">', '</a>')+'</p>';
           break;
         case 'filenotfound':
-          message += qx.locale.Manager.tr('404: Config file not found. Neither as normal config (%1) nor as demo config (%2).', additionalErrorInfo[0], additionalErrorInfo[1]);
+          message = qx.locale.Manager.tr('404: Config file not found. Neither as normal config (%1) nor as demo config (%2).', additionalErrorInfo[0], additionalErrorInfo[1]);
           break;
         default:
-          message += qx.locale.Manager.tr('Unhandled error of type "%1"', textStatus);
+          message = qx.locale.Manager.tr('Unhandled error of type "%1"', textStatus);
           if( additionalErrorInfo ) {
             message += ': ' + additionalErrorInfo;
           }
@@ -486,10 +600,16 @@ qx.Class.define("cv.Application",
             message += '.';
           }
       }
-      var messageElement = qx.bom.Selector.query('#message')[0];
-      qx.bom.element.Class.add(messageElement, 'error');
-      messageElement.innerHTML = message;
-      this.error(message);
+      var notification = {
+        topic: "cv.config.error",
+        title: title,
+        message: message,
+        severity: "urgent",
+        unique: true,
+        deletable: false
+      };
+      cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
+      this.error(message.toString());
       this.block(false);
     }
   }

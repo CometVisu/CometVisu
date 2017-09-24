@@ -65,12 +65,12 @@ Der Wert für diesen Parameter lässt sich leicht herausfinden, in dem man
 in einem Browser auf dem PC mit der Maus über den Link zur Unter-Seite
 fährt und den Inhalt des Links in der Browser-Statuszeile ansieht.
 Dieser lautet ähnlich wie ``javascript:templateEngine.scrollToPage('id_0_33')``.
-Hier wäre nun das ``0_33`` der Wert für den Parameter *startpage*,
+Hier wäre nun das ``id_0_33`` der Wert für den Parameter *startpage*,
 d.h. zusammengesetzt müsste an die URL angehängt werden:
-``startpage=0_33``
+``startpage=id_0_33``
 
 
-Gerade wenn man Visus an meheren Orten im Haus verteilt hat, kann es
+Gerade wenn man Visus an mehreren Orten im Haus verteilt hat, kann es
 Sinn machen bei einer gesammten Config-Datei je nach Visu-Standort die
 Unter-Seite als erstes anzuzeigen, die dem Raum entspricht.
 
@@ -152,6 +152,8 @@ funktionieren.
 
     Default: 0 (testMode=0)
     Options: 0 (testMode=0), 1 (testMode=1)
+
+.. _enableCache:
 
 *enableCache* - Caching aktivieren
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

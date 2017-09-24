@@ -130,7 +130,8 @@ qx.Class.define('cv.Config', {
        * Stores the rowspans used by the current confid
        * @type {Map} of rowspan-value as key and true as value
        */
-      usedRowspans: {}
+      usedRowspans: {},
+      pluginsToLoad: []
     },
 
     /**
@@ -169,6 +170,11 @@ qx.Class.define('cv.Config', {
     enableLogging: true,
 
     /**
+     * The server that responded to the config request
+     */
+    configServer: null,
+
+    /**
      * Get the structure that is related to this design
      * @param design {String?} name of the design
      * @return {String} name of the structure
@@ -186,6 +192,18 @@ qx.Class.define('cv.Config', {
       }
       // fallback to pure
       return "structure-pure";
+    },
+
+    /**
+     * This method tries to guess if the CometVisu is running on a proxied webserver.
+     * (by comparing if the visu_config.xml-File has been delivered from another server than the
+     * loging response). As this is just an assumption, you should not treat this result as reliable.
+     */
+    guessIfProxied: function() {
+      if (this.configServer === null || cv.TemplateEngine.getInstance().visu.getServer() === null) {
+        throw new Error("not ready yet");
+      }
+      return this.configServer !== cv.TemplateEngine.getInstance().visu.getServer();
     },
 
     addMapping: function (name, mapping) {

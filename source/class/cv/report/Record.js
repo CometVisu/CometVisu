@@ -90,38 +90,7 @@ qx.Class.define('cv.report.Record', {
           }, this);
         }, this);
 
-        // save browser settings
-        var req = qx.util.Uri.parseUri(window.location.href);
-        // delete reporting queryKey
-        delete req.queryKey.reporting;
-        var Env = qx.core.Environment;
-        var runtime = {
-          browserName: Env.get("browser.name"),
-          browserVersion: Env.get("browser.version"),
-          deviceName: Env.get("device.name"),
-          deviceType: Env.get("device.type"),
-          pixelRatio: Env.get("device.pixelRatio"),
-          touch: Env.get("device.touch"),
-          osName: Env.get("os.name"),
-          osVersion: Env.get("os.version"),
-          build: Env.get("cv.build"),
-          locale: qx.bom.client.Locale.getLocale(),
-          cv: {},
-          width: qx.bom.Viewport.getWidth(),
-          height: qx.bom.Viewport.getHeight(),
-          anchor: req.anchor,
-          query: req.queryKey,
-          path: req.relative
-        };
-
-        // save CometVisu build information
-        Object.getOwnPropertyNames(cv.Version).forEach(function(name) {
-          if (/^[A-Z]+$/.test(name)) {
-            runtime.cv[name] = cv.Version[name];
-          }
-        });
-
-        this.record(this.RUNTIME, "config", runtime);
+        this.record(this.RUNTIME, "config", this.getClientData());
 
         // save initial size
         this.record(this.SCREEN, "resize", {
@@ -129,6 +98,39 @@ qx.Class.define('cv.report.Record', {
           h: qx.bom.Viewport.getHeight()
         });
       }
+    },
+
+    getClientData: function() {
+      // save browser settings
+      var req = qx.util.Uri.parseUri(window.location.href);
+      // delete reporting queryKey
+      delete req.queryKey.reporting;
+      var Env = qx.core.Environment;
+      var runtime = {
+        browserName: Env.get("browser.name"),
+        browserVersion: Env.get("browser.version"),
+        deviceName: Env.get("device.name"),
+        deviceType: Env.get("device.type"),
+        pixelRatio: Env.get("device.pixelRatio"),
+        touch: Env.get("device.touch"),
+        osName: Env.get("os.name"),
+        osVersion: Env.get("os.version"),
+        build: Env.get("cv.build"),
+        locale: qx.bom.client.Locale.getLocale(),
+        cv: {},
+        width: qx.bom.Viewport.getWidth(),
+        height: qx.bom.Viewport.getHeight(),
+        anchor: req.anchor,
+        query: req.queryKey,
+        path: req.relative
+      };
+      // save CometVisu build information
+      Object.getOwnPropertyNames(cv.Version).forEach(function(name) {
+        if (/^[A-Z]+$/.test(name)) {
+          runtime.cv[name] = cv.Version[name];
+        }
+      });
+      return runtime;
     },
 
     record: function(category, path, data) {
@@ -161,8 +163,9 @@ qx.Class.define('cv.report.Record', {
 
     download: function() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-        cv.report.Record.getInstance().download();
+        return cv.report.Record.getInstance().download();
       }
+      return null;
     }
   },
 
@@ -384,6 +387,7 @@ qx.Class.define('cv.report.Record', {
 
       // Remove anchor from body
       document.body.removeChild(a);
+      return a.download;
     }
   }
 });

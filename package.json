@@ -53,5 +53,8 @@
     "protractor": "^4.0.10",
     "request": "^2.69.0",
     "svgmin": "^0.1.0"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.10.0"
   }
 }

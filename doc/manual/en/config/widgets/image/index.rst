@@ -33,6 +33,19 @@ Allowed attributes in the Image-element
 
 .. parameter-information:: image
 
+Valid values for ``cachecontrol`` are:
+
+``full``   Standard. By extending the URL with a timestamp a refresh is
+           ensured. Server support is required though.
+``force``  Using sophisticated methods an enfocrement of the refresh is
+           attempted.
+``weak``   The URL will be extended by an anchor with timestamp. This will
+           work with most servers where ``full`` mode doesn't work. But it
+           requires the correct use of HTTP headers by the server as well
+           as a correct reaction by the web browser.
+``none``   The URL will not be modified. A working refresh can be prevented
+           by caching.
+           
 .. widget-example::
     :editor: attributes
     :scale: 75

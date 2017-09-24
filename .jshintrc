@@ -45,6 +45,7 @@
     "WheelEvent": false,
     "HTMLDocument": false,
     "EVENT_RECORDER": true,
-    "DOMWindow": false
+    "DOMWindow": false,
+    "Favico": false
   }
 }

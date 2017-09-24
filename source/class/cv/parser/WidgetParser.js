@@ -367,9 +367,10 @@ qx.Class.define('cv.parser.WidgetParser', {
      * @param element {Element} address XML-Element from the config file
      * @param id {String} id / path to the widget
      * @param makeAddressListFn {Function?} callback for parsing address variants
+     * @param skipAdding {Boolean?} do not add address to model if true
      * @return {Object} address
      */
-    makeAddressList: function (element, id, makeAddressListFn) {
+    makeAddressList: function (element, id, makeAddressListFn, skipAdding) {
       var address = {};
       qx.bom.Selector.query('address', element).forEach(function (elem) {
         var
@@ -379,6 +380,7 @@ qx.Class.define('cv.parser.WidgetParser', {
           mode = 1 | 2; // Bit 0 = read, Bit 1 = write  => 1|2 = 3 = readwrite
 
         if ((!src) || (!transform)) {// fix broken address-entries in config
+          this.error("Either address or transform is missing in address element %1", element.outerHTML);
           return;
         }
         switch (qx.bom.element.Attribute.get(elem, 'mode')) {
@@ -396,7 +398,7 @@ qx.Class.define('cv.parser.WidgetParser', {
             break;
         }
         var variantInfo = makeAddressListFn ? makeAddressListFn(src, transform, mode, qx.bom.element.Attribute.get(elem, 'variant')) : [true, undefined];
-        if ((mode & 1) && variantInfo[0]) {// add only addresses when reading from them
+        if (!skipAdding && (mode & 1) && variantInfo[0]) {// add only addresses when reading from them
           this.model.addAddress(src, id);
         }
         address[src] = [transform, mode, variantInfo[1], formatPos];
@@ -404,9 +406,28 @@ qx.Class.define('cv.parser.WidgetParser', {
       return address;
     },
 
-    parseRefresh: function (xml, path) {
+    parseRefresh: function (xml, path, doCacheControl) {
       var data = this.model.getWidgetData(path);
       data.refresh = xml.getAttribute('refresh') ? parseInt(xml.getAttribute('refresh')) * 1000 : 0;
+      if( doCacheControl )
+      {
+        data.cachecontrol = function(x){
+          switch(x) {
+            case 'full':
+            case 'force':
+            case 'weak':
+            case 'none':
+              return x;
+              
+            case 'false':
+              return 'none';
+              
+            case 'true':
+            default:
+              return 'full';
+          }
+        }( xml.getAttribute('cachecontrol') );
+      }
     },
 
     parseStyling: function (xml, path) {

@@ -49,6 +49,7 @@ module.exports = function(config) {
     port: 9876,
 
     proxies: {
+      '/source/resource/designs/get_designs.php': '/base/source/test/fixtures/designs.json',
       '/source/resource/designs': '/base/source/resource/designs',
       '/source/class/cv': '/base/source/class/cv',
       '/external/qooxdoo': '/base/external/qooxdoo',

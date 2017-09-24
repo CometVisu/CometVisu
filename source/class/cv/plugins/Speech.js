@@ -54,7 +54,6 @@
  * @author Tobias Bräutigam
  * @since 0.10.0
  *
- * @ignore(SpeechSynthesisUtterance)
  */
 qx.Class.define('cv.plugins.Speech', {
   extend: qx.core.Object,
@@ -173,27 +172,7 @@ qx.Class.define('cv.plugins.Speech', {
         time: Date.now()
       };
 
-      var synth = window.speechSynthesis;
-
-      // speak
-      var utterThis = new SpeechSynthesisUtterance(text);
-
-      var selectedVoice, defaultVoice;
-      var voices = synth.getVoices();
-      for (var i = 0, l = voices.length; i < l; i++) {
-        if (this.language && voices[i].lang.substr(0, 2).toLowerCase() === this.language) {
-          selectedVoice = voices[i];
-        }
-        if (voices[i]["default"]) {
-          defaultVoice = voices[i];
-        }
-      }
-      if (!selectedVoice) {
-        selectedVoice = defaultVoice;
-      }
-      utterThis.voice = selectedVoice;
-      this.debug("saying '%s' in voice %s", text, selectedVoice.name);
-      synth.speak(utterThis);
+      cv.core.notifications.SpeechHandler.getInstance().say(text, this.getLanguage());
     }
   },
 

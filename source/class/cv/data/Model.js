@@ -59,11 +59,12 @@ qx.Class.define('cv.data.Model', {
      * @param state {var} new state
      */
     onUpdate: function(address, state) {
+      var initial = !this.__states.hasOwnProperty(address);
       this.__states[address] = state;
       // notify listeners
       if (this.__stateListeners[address]) {
         this.__stateListeners[address].forEach(function(listener) {
-          listener[0].call(listener[1], address, state);
+          listener[0].call(listener[1], address, state, initial);
         }, this);
       }
     },
@@ -104,6 +105,31 @@ qx.Class.define('cv.data.Model', {
         this.__stateListeners[address] = [];
       }
       this.__stateListeners[address].push([callback, context]);
+    },
+
+    /**
+     * Remove an address listener
+     *
+     * @param address {String} KNX-GA or openHAB item name
+     * @param callback {Function} called on updates
+     * @param context {Object} context of the callback
+     */
+    removeUpdateListener: function(address, callback, context) {
+      if (this.__stateListeners[address]) {
+        var removeIndex = -1;
+        this.__stateListeners[address].some(function(entry, i) {
+          if (entry[0] === callback && entry[1] === context) {
+            removeIndex = i;
+            return true;
+          }
+        });
+        if (removeIndex >= 0) {
+          qx.lang.Array.removeAt(this.__stateListeners[address], removeIndex);
+          if (this.__stateListeners[address].length === 0) {
+            delete this.__stateListeners[address];
+          }
+        }
+      }
     },
 
     /**

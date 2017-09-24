@@ -242,13 +242,17 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       if (!cv.Config.currentPageId) { return; }
       qx.log.Logger.debug(this, "makePagesizeValid");
       var page = cv.ui.structure.WidgetFactory.getInstanceById(cv.Config.currentPageId);
-      if (!page.isInitialized()) {
+      if (page && !page.isInitialized()) {
         page.addListenerOnce("changeInitialized", this.__makePagesizeValid, this);
         return;
       }
       this.width = cv.ui.layout.Manager.getAvailableWidth();
       this.height = cv.ui.layout.Manager.getAvailableHeight();
-      this.getPageSize().innerHTML = '#main,.page{width:' + this.width + 'px;height:' + this.height + 'px;}';
+      var pageSizeElement = this.getPageSize();
+
+      if (pageSizeElement) {
+        pageSizeElement.innerHTML = '#main,.page{width:' + this.width + 'px;height:' + this.height + 'px;}';
+      }
 
       this.invalidPagesize = false;
     },
@@ -259,7 +263,11 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     __makeRowspanValid: function () {
       qx.log.Logger.debug(this, "makeRowspanValid");
-      var elem = qx.bom.Html.clean(['<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>'])[0];
+      var elem = qx.dom.Element.create("div", {
+        "class": "clearfix",
+        "id": "calcrowspan",
+        "html": '<div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv"></div>'
+      });
       qx.dom.Element.insertEnd(elem, document.body);
       // use the internal div for height as in mobile view the elem uses the full screen height
       this.__updateRowHeight(qx.bom.Selector.query("#containerDiv", elem)[0]);
@@ -280,7 +288,10 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       qx.dom.Element.remove( elem );
 
       // set css style
-      qx.bom.Selector.query('#rowspanStyle')[0].innerHTML = styles;
+      var rowSpanStyle = qx.bom.Selector.query('#rowspanStyle')[0];
+      if (rowSpanStyle) {
+        rowSpanStyle.innerHTML = styles;
+      }
       this.invalidRowspan = false;
     },
 
