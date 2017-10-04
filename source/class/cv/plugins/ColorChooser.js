@@ -126,7 +126,7 @@ qx.Class.define('cv.plugins.ColorChooser', {
       var templateEngine = cv.TemplateEngine.getInstance();
       for( var addr in address )
       {
-        if( !(address[addr][1] & 2) ) { continue; } // skip when write flag not set
+        if( !cv.data.Model.isWriteAddress(address[addr]) ) { continue; } // skip when write flag not set
         switch( address[addr][2] )
         {
           case 'r':

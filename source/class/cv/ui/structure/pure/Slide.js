@@ -40,7 +40,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     var readonly = true;
     for (var addrIdx in this.getAddress()) {
       //noinspection JSBitwiseOperatorUsage
-      if (this.getAddress()[addrIdx][1] & 2) {
+      if (cv.data.Model.isWriteAddress(this.getAddress()[addrIdx])) {
         // write-access detected --> no read-only mode
         readonly = false;
         break;

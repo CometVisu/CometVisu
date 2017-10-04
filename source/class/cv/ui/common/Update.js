@@ -46,6 +46,10 @@ qx.Mixin.define("cv.ui.common.Update", {
     __initUpdater : function() {
       var model = cv.data.Model.getInstance();
       Object.getOwnPropertyNames(this.getAddress()).forEach(function(address) {
+        if (!cv.data.Model.isReadAddress(this.getAddress()[address])) {
+          // no read address
+          return;
+        }
         var state = model.getState(address);
         if (state !== undefined) {
           this.update(address, state);

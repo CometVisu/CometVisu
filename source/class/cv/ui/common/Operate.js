@@ -74,7 +74,7 @@ qx.Mixin.define("cv.ui.common.Operate", {
         for (var id in list) {
           if (list.hasOwnProperty(id)) {
             var address = list[id];
-            if (!!(address[1] & 2) && (!filter || filter(address))) {
+            if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
               cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address[0], value));
             }
           }

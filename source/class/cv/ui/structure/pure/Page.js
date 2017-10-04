@@ -313,7 +313,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
         for (var id in list) {
           if (list.hasOwnProperty(id)) {
             var address = list[id];
-            if (!!(address[1] & 2)) {
+            if (cv.data.Model.isWriteAddress(address)) {
               cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address[0], value));
             }
           }
