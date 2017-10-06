@@ -47,9 +47,10 @@ qx.Class.define("cv.plugins.openhab.Openhab", {
 
     // listen to notifications
     var client = cv.TemplateEngine.getInstance().visu;
-    var sse = client.getCurrentTransport();
-    sse.subscribe("notifications", this._onNotification, this);
-
+    var sse = client.getCurrentTransport && client.getCurrentTransport();
+    if (sse) {
+      sse.subscribe("notifications", this._onNotification, this);
+    }
     cv.TemplateEngine.getInstance().executeWhenDomFinished(this._createSettings, this);
   },
 
