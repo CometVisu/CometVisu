@@ -76,6 +76,10 @@ qx.Class.define('cv.ui.structure.pure.Page', {
         }
       }, this);
     }, this).schedule();
+
+    if (this.getAddress()) {
+      this._initOnCreate = true;
+    }
   },
 
   /*
@@ -300,8 +304,8 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       //
       //   default:
       // TODO: data comparision has to be refactored to use DPT and a value
-      if (data===1) {
-        cv.TemplateEngine.getInstance().scrollToPage(this.getName());
+      if (parseInt(data) === 1) {
+        cv.TemplateEngine.getInstance().scrollToPage(this.getPath());
         this.sendToBackend("0");
       }
       // }

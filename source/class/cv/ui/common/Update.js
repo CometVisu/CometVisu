@@ -31,8 +31,13 @@ qx.Mixin.define("cv.ui.common.Update", {
    ******************************************************
    */
   construct: function () {
-    if (this.getAddress && qx.Class.getEventType(this.constructor, "domReady")) {
-      this.addListenerOnce("domReady", this.__initUpdater, this);
+    if (this.getAddress) {
+      if (this._initOnCreate === true) {
+        this.__initUpdater();
+      }
+      else if (qx.Class.getEventType(this.constructor, "domReady")) {
+        this.addListenerOnce("domReady", this.__initUpdater, this);
+      }
     }
   },
 
@@ -42,10 +47,12 @@ qx.Mixin.define("cv.ui.common.Update", {
   ******************************************************
   */
   members: {
+    _initOnCreate: false,
 
     __initUpdater : function() {
       var model = cv.data.Model.getInstance();
       Object.getOwnPropertyNames(this.getAddress()).forEach(function(address) {
+
         if (!cv.data.Model.isReadAddress(this.getAddress()[address])) {
           // no read address
           return;
