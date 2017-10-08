@@ -102,7 +102,7 @@ qx.Class.define('cv.ui.PagePartsHandler', {
 
     getNavbarsVisibility: function (page) {
       if (!page) {
-        page = cv.TemplateEngine.getInstance().currentPage;
+        page = cv.TemplateEngine.getInstance().getCurrentPage();
       }
       if (!page) { return {top: true, bottom: true, left: true, right: true}; }
       if (typeof page === "string") {
