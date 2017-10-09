@@ -263,7 +263,11 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     __makeRowspanValid: function () {
       qx.log.Logger.debug(this, "makeRowspanValid");
-      var elem = qx.bom.Html.clean(['<div class="clearfix" id="calcrowspan"><div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv" /></div></div>'])[0];
+      var elem = qx.dom.Element.create("div", {
+        "class": "clearfix",
+        "id": "calcrowspan",
+        "html": '<div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv"></div>'
+      });
       qx.dom.Element.insertEnd(elem, document.body);
       // use the internal div for height as in mobile view the elem uses the full screen height
       this.__updateRowHeight(qx.bom.Selector.query("#containerDiv", elem)[0]);

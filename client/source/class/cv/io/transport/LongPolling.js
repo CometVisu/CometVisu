@@ -53,11 +53,11 @@ qx.Class.define('cv.io.transport.LongPolling', {
      * This function gets called once the communication is established
      * and this.client information is available.
      *
-     * @param ev {Event|Object} qx event or json response
+     * @param args {Array} arguments from the XHR response callback
      * @param connect {Boolean} whether to start the connection or not
      */
-    handleSession: function (ev, connect) {
-      var json =  this.client.getResponse(ev);
+    handleSession: function (args, connect) {
+      var json =  this.client.getResponse(args);
       this.sessionId = json.s;
       this.version = json.v.split('.', 3);
 
@@ -103,11 +103,9 @@ qx.Class.define('cv.io.transport.LongPolling', {
     /**
      * This function gets called once the communication is established
      * and this.client information is available
-     *
-     * @param ev {Event}
      */
-    handleRead: function (ev) {
-      var json = this.client.getResponse(ev);
+    handleRead: function () {
+      var json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
       if (this.doRestart || (!json && (-1 === this.lastIndex))) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
@@ -149,8 +147,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
       }
     },
 
-    handleReadStart: function (ev) {
-      var json = this.client.getResponse(ev);
+    handleReadStart: function () {
+      var json = this.client.getResponse(Array.prototype.slice.call(arguments, 0));
       if (!json && (-1 === this.lastIndex)) {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request

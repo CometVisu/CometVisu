@@ -30,11 +30,13 @@ qx.Class.define('cv.TemplateEngine', {
     this.pagePartsHandler = new cv.ui.PagePartsHandler();
 
     this.__partQueue = new qx.data.Array();
+    this._domFinishedQueue = [];
     this.__partQueue.addListener("changeLength", function(ev) {
       this.setPartsLoaded(ev.getData() === 0);
     }, this);
 
     this.defaults = {widget: {}, plugin: {}};
+    this.setCommands(new qx.ui.command.Group());
   },
 
   properties: {
@@ -80,6 +82,11 @@ qx.Class.define('cv.TemplateEngine', {
       init: false,
       apply: "_applyDomFinished",
       event: "changeDomFinished"
+    },
+
+    commands: {
+      check: "qx.ui.command.Group",
+      nullable: true
     }
   },
 
@@ -111,6 +118,10 @@ qx.Class.define('cv.TemplateEngine', {
     xml : null,
 
     __partQueue: null,
+    _domFinishedQueue: null,
+
+    // plugins that do not need to be loaded to proceed with the initial setup
+    lazyPlugins: ["plugin-openhab"],
 
     /**
      * Load parts (e.g. plugins, structure)
@@ -121,11 +132,28 @@ qx.Class.define('cv.TemplateEngine', {
       if (!qx.lang.Type.isArray(parts)) {
         parts = [parts];
       }
+      var loadLazyParts = this.lazyPlugins.filter(function(part) {
+        return parts.indexOf(part) >= 0;
+      });
+      if (loadLazyParts.length) {
+        qx.lang.Array.exclude(parts, loadLazyParts);
+      }
       this.__partQueue.append(parts);
       qx.io.PartLoader.require(parts, function(states) {
         parts.forEach(function(part, idx) {
           if (states[idx] === "complete") {
             this.__partQueue.remove(part);
+            this.debug("successfully loaded part "+part);
+          } else {
+            this.error("error loading part "+part);
+          }
+        }, this);
+      }, this);
+
+      // load the lazy plugins no one needs to wait for
+      qx.io.PartLoader.require(loadLazyParts, function(states) {
+        loadLazyParts.forEach(function(part, idx) {
+          if (states[idx] === "complete") {
             this.debug("successfully loaded part "+part);
           } else {
             this.error("error loading part "+part);
@@ -153,6 +181,27 @@ qx.Class.define('cv.TemplateEngine', {
     _applyDomFinished: function(value) {
       if (value) {
         qx.event.message.Bus.dispatchByName("setup.dom.finished");
+        // flush the queue
+        this._domFinishedQueue.forEach(function(entry) {
+          var callback = entry.shift();
+          var context = entry.shift();
+          callback.apply(context, entry);
+        }, this);
+        this._domFinishedQueue = [];
+      }
+    },
+
+    /**
+     * Adds a callback to a queue which is executed after DOM has been rendered
+     * @param callback {Function}
+     * @param context {Object}
+     */
+    executeWhenDomFinished: function(callback, context) {
+      if (!this.isDomFinished()) {
+        // queue callback
+        this._domFinishedQueue.push(Array.prototype.slice.call(arguments));
+      } else {
+        callback.apply(context, Array.prototype.slice.call(arguments, 2));
       }
     },
 
@@ -184,8 +233,6 @@ qx.Class.define('cv.TemplateEngine', {
       }
       else if (backendName === "oh2") {
         this.visu = cv.Application.createClient('openhab2', cv.Config.backendUrl);
-        // auto-load openhab plugin for this backend
-        cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
       } else {
         this.visu = cv.Application.createClient(backendName, cv.Config.backendUrl);
       }
@@ -313,7 +360,7 @@ qx.Class.define('cv.TemplateEngine', {
       var metaParser = new cv.parser.MetaParser();
 
       // start with the plugins
-      settings.pluginsToLoad = metaParser.parsePlugins(loaded_xml);
+      settings.pluginsToLoad = qx.lang.Array.append(settings.pluginsToLoad, metaParser.parsePlugins(loaded_xml));
       // and then the rest
       metaParser.parse(loaded_xml);
       this.debug("parsed");

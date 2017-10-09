@@ -202,15 +202,7 @@ qx.Class.define("cv.parser.MetaParser", {
     parseStateNotifications: function(xml) {
       var stateConfig = {};
       qx.bom.Selector.query('meta > notifications state-notification', xml).forEach(function (elem) {
-        var target = cv.ui.NotificationCenter.getInstance();
-        switch (qx.bom.element.Attribute.get(elem, 'target')) {
-          case "popup":
-            target = cv.ui.PopupHandler;
-            break;
-          case "notificationCenter":
-            target = cv.ui.NotificationCenter.getInstance();
-            break;
-        }
+        var target = cv.core.notifications.Router.getTarget(qx.bom.element.Attribute.get(elem, 'target')) || cv.ui.NotificationCenter.getInstance();
 
         var addressContainer = qx.bom.Selector.query('addresses', elem)[0];
 
@@ -249,8 +241,7 @@ qx.Class.define("cv.parser.MetaParser", {
         }
         config.condition = condition;
 
-        // TODO parse complete address with transform etc.
-        var addresses = cv.parser.WidgetParser.makeAddressList(addressContainer, null, null, true);
+        var addresses = cv.parser.WidgetParser.makeAddressList(addressContainer);
         // addresses
         Object.getOwnPropertyNames(addresses).forEach(function(address) {
           if (!stateConfig.hasOwnProperty(address)) {

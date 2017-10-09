@@ -26,6 +26,7 @@
     "source-all",
     "source-hybrid",
     "source-server",
+    "source-error",
     "source-server-reload",
     "source-httpd-config",
     "test",
@@ -43,7 +44,8 @@
   {
     "APPLICATION"  : "cv",
     "QOOXDOO_PATH" : "./external/qooxdoo",
-    "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.test.*"],
+    "QXTHEME"      : "cv.theme.Dark",
+    "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.test.*", "${QXTHEME}"],
     "LOCALES"      : [ "en", "de" ],
     "CACHE"        : "${TMPDIR}/qx${QOOXDOO_VERSION}/cache",
     "ROOT"         : ".",
@@ -82,7 +84,8 @@
         "${APPLICATION}.transforms.*",
         "${APPLICATION}.plugins.*",
         "${APPLICATION}.parser.*",
-        "${APPLICATION}.core.*"
+        "${APPLICATION}.core.*",
+        "${QXTHEME}"
       ],
 
       "lint-check" : {
@@ -262,7 +265,7 @@
           },
           "plugin-openhab" :
           {
-            "include" : [ "${APPLICATION}.plugins.openhab.*" ]
+            "include" : [ "${APPLICATION}.plugins.openhab.*", "${QXTHEME}" ]
           }
         }
       }
@@ -281,6 +284,15 @@
         "update-version",
         "source-script"
       ]
+    },
+
+    "source-error": {
+      "extend" : [ "source" ],
+      "environment" :
+      {
+        "cv.build": "source",
+        "qx.globalErrorHandling": true
+      },
     },
 
     "source-hybrid" :
@@ -393,6 +405,7 @@
           "Sunlight",
           "replayLog",
           "svg4everybody",
+          "EVENT_RECORDER",
           "Favico"
         ],
         "generate-widget-examples": true

@@ -171,7 +171,7 @@ qx.Class.define('cv.IconHandler', {
         }
 
         if (typeof i === 'function') {
-          i.icon = i(arguments[3], !styling ? '' : ' style="'+styling+'"', classes, false);
+          i.icon = i(arguments[3], styling, classes, false);
         } else {
           i.icon = qx.dom.Element.create('img', {
             'class': classes,

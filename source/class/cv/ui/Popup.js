@@ -32,6 +32,7 @@ qx.Class.define('cv.ui.Popup', {
       this.setType(type);
     }
     this.__deactivateSelectors = ['#top', '#navbarTop', '#centerContainer', '#navbarBottom', '#bottom'];
+    this.__elementMap = {};
   },
 
   /*
@@ -65,6 +66,7 @@ qx.Class.define('cv.ui.Popup', {
     __counter: 0,
     __deactivateSelectors: null,
     __domElement: null,
+    __elementMap: null,
 
     getCurrentDomElement: function() {
       return this.__domElement;
@@ -80,49 +82,119 @@ qx.Class.define('cv.ui.Popup', {
       cv.ui.BodyBlocker.getInstance().block();
       var closable = !attributes.hasOwnProperty("closable") || attributes.closable;
       var body = qx.bom.Selector.query('body')[0];
-      var ret_val = this.__domElement = qx.dom.Element.create("div", {
-        id: "popup_"+this.__counter,
-        "class": "popup popup_background "+this.getType(),
-        style: "display:none",
-        html: closable ? '<div class="popup_close">X</div>' : ""
-      });
-      qx.dom.Element.insertEnd(ret_val, body);
+      var ret_val;
+      var classes = ["popup", "popup_background", this.getType()];
+      var isNew = true;
+      var addCloseListeners = false;
+      if (attributes.type) {
+        classes.push(attributes.type);
+      }
+
+      if (!this.__domElement) {
+        ret_val = this.__domElement = qx.dom.Element.create("div", {
+          id: "popup_" + this.__counter,
+          "class": classes.join(" "),
+          style: "display:none",
+          html: closable ? '<div class="popup_close">X</div>' : ""
+        });
+        qx.dom.Element.insertEnd(ret_val, body);
+        this.__elementMap.close = qx.bom.Selector.query("div.popup_close", ret_val);
+        addCloseListeners = true;
+      } else {
+        isNew = false;
+        ret_val = this.__domElement;
+        qx.bom.element.Attribute.set(ret_val, "class", classes.join(" "));
+        if (closable && !this.__elementMap.close) {
+          this.__domElement.close = qx.dom.Element.create("div", {"class": "popup_close", "html": "X"});
+          qx.dom.Element.insertBegin(this.__domElement.close, body);
+          addCloseListeners = true;
+        } else if (!closable) {
+          this.destroyElement("close");
+        }
+      }
 
       if (attributes.title) {
-        var title = qx.dom.Element.create("div", { "class": "head"});
-        qx.dom.Element.insertEnd(title, ret_val);
+        if (!this.__elementMap.title) {
+          this.__elementMap.title = qx.dom.Element.create("div", {"class": "head"});
+          qx.dom.Element.insertEnd(this.__elementMap.title, ret_val);
+        }
 
         if (qx.lang.Type.isString(attributes.title)) {
-          qx.bom.element.Attribute.set(title, "html", ""+attributes.title);
+          qx.bom.element.Attribute.set(this.__elementMap.title, "html", "" + attributes.title);
         } else {
-          qx.dom.Element.insertEnd(attributes.title, title);
+          qx.dom.Element.insertEnd(attributes.title, this.__elementMap.title);
         }
 
       }
 
-      if (attributes.content) {
-        var content = qx.dom.Element.create("div", { "class": "main"});
-        qx.dom.Element.insertEnd(content, ret_val);
-        if (qx.lang.Type.isString(attributes.content)) {
-          var html = ""+attributes.content;
-          if (attributes.icon) {
-            var icon = qx.util.ResourceManager.getInstance().toUri("icon/knx-uf-iconset.svg")+"#kuf-"+attributes.icon;
-            html = '<svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'+icon+'"></use></svg>'+html;
+      if (attributes.content || attributes.icon || attributes.progress) {
+        if (!this.__elementMap.content) {
+          this.__elementMap.content = qx.dom.Element.create("div", {"class": "main"});
+          qx.dom.Element.insertEnd(this.__elementMap.content, ret_val);
+        }
+
+        if (attributes.content) {
+          if (!this.__elementMap.messageContent) {
+            this.__elementMap.messageContent = qx.dom.Element.create("div", {"class": "message"});
+            qx.dom.Element.insertBegin(this.__elementMap.messageContent, this.__elementMap.content);
           }
-          qx.bom.element.Attribute.set(content, "html", html);
+          if (qx.lang.Type.isString(attributes.content)) {
+            qx.bom.element.Attribute.set(this.__elementMap.messageContent, "html", attributes.content);
+          } else {
+            qx.dom.Element.replaceChild(attributes.content, this.__elementMap.messageContent);
+            this.__elementMap.messageContent = attributes.content;
+          }
         } else {
-          qx.dom.Element.insertEnd(attributes.content, content);
+          this.destroyElement("messageContent");
+        }
+        
+        if (attributes.icon) {
+          if (!this.__elementMap.icon) {
+            var iconClasses = attributes.iconClasses ? " "+attributes.iconClasses : "";
+            this.__elementMap.icon = qx.dom.Element.create("div", {"html": cv.util.IconTools.svgKUF(attributes.icon)(null, null, "icon" + iconClasses)});
+            qx.dom.Element.insertBegin(this.__elementMap.icon, this.__elementMap.content);
+          } else {
+            var use = qx.bom.Selector.query("use", this.__elementMap.icon)[0];
+            var currentIconPath = qx.bom.element.Attribute.get(use, "xlink:href");
+            if (!currentIconPath.endsWith("#kuf-"+attributes.icon)) {
+              var parts = currentIconPath.split("#");
+              qx.bom.element.Attribute.set(use, "xlink:href", parts[0]+"#kuf-"+attributes.icon);
+            }
+          }
+        } else  {
+          this.destroyElement("icon");
+        }
+
+        if (attributes.progress) {
+          if (!this.__elementMap.progress) {
+            var bar = new cv.ui.util.ProgressBar();
+            this.__elementMap.progress = bar.getDomElement();
+            qx.dom.Element.insertEnd(this.__elementMap.progress, this.__elementMap.content);
+          }
+          this.__elementMap.progress.$$widget.setValue(attributes.progress);
+        } else {
+          this.destroyElement("progress");
         }
       }
 
       if (attributes.actions && Object.getOwnPropertyNames(attributes.actions).length > 0) {
-        var actions = qx.dom.Element.create("div", {"class": "actions"});
+        if (!this.__elementMap.actions) {
+          this.__elementMap.actions = qx.dom.Element.create("div", {"class": "actions"});
+          qx.dom.Element.insertEnd(this.__elementMap.actions, ret_val);
+        } else {
+          // clear content
+          qx.bom.element.Attribute.set(this.__elementMap.actions, "html", "");
+        }
 
-        Object.getOwnPropertyNames(attributes.actions).forEach(function(type) {
-          var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, attributes.actions[type]);
-          qx.dom.Element.insertEnd(actionButton, actions);
-        });
-        qx.dom.Element.insertEnd(actions, ret_val);
+        Object.getOwnPropertyNames(attributes.actions).forEach(function (type) {
+          var typeActions = qx.lang.Type.isArray(attributes.actions[type]) ? attributes.actions[type] : [attributes.actions[type]];
+          typeActions.forEach(function (action) {
+            var actionButton = cv.core.notifications.ActionRegistry.createActionElement(type, action);
+            qx.dom.Element.insertEnd(actionButton, this.__elementMap.actions);
+          }, this);
+        }, this);
+      } else {
+        this.destroyElement("actions");
       }
 
       if (attributes.width) {
@@ -173,7 +245,7 @@ qx.Class.define('cv.ui.Popup', {
       qx.bom.element.Style.set(ret_val, 'left', placement.x);
       qx.bom.element.Style.set(ret_val, 'top', placement.y);
 
-      if (closable) {
+      if (closable && addCloseListeners) {
         this.addListener('close', this.close, this);
         qx.event.Registration.addListener(ret_val, 'tap', function () {
           // note: this will call two events - one for the popup itself and
@@ -186,10 +258,19 @@ qx.Class.define('cv.ui.Popup', {
         }, this);
       }
 
-      qx.bom.element.Style.set(ret_val, 'display', 'block');
       attributes.id = this.__counter;
-      this.__counter++;
+      if (isNew) {
+        qx.bom.element.Style.set(ret_val, 'display', 'block');
+        this.__counter++;
+      }
       return ret_val;
+    },
+
+    destroyElement: function(name) {
+      if (this.__elementMap[name]) {
+        qx.dom.Element.remove(this.__elementMap[name]);
+        delete this.__elementMap[name];
+      }
     },
 
     /**
@@ -200,11 +281,21 @@ qx.Class.define('cv.ui.Popup', {
       if (this.__domElement) {
         qx.dom.Element.remove(this.__domElement);
         this.__domElement = null;
+        this.__elementMap = {};
       }
     },
 
     isClosed: function(){
       return this.__domElement === null;
     }
+  },
+
+  /*
+  ******************************************************
+    DESTRUCTOR
+  ******************************************************
+  */
+  destruct: function() {
+    this.close();
   }
 });

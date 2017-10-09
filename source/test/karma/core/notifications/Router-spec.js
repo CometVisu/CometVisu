@@ -33,17 +33,20 @@ describe('test the notification router', function () {
   });
 
   it("should test the routing", function() {
+    var callCounter = 0;
     qx.Class.define("cv.test.MessageHandler", {
       extend: qx.core.Object,
       implement: cv.core.notifications.IHandler,
 
       members: {
-        handleMessage: function() {}
+        handleMessage: function() {
+          callCounter++;
+        }
       }
     });
 
     var handler = new cv.test.MessageHandler();
-    var spiedHandleMessage = spyOn(handler, "handleMessage");
+    var spiedHandleMessage = spyOn(handler, "handleMessage").and.callThrough();
 
     router.registerMessageHandler(handler, {
       "test.message": {},
@@ -67,6 +70,23 @@ describe('test the notification router', function () {
 
     router.dispatchMessage("test.wildcard.anything.thats.possible", {});
     expect(spiedHandleMessage).toHaveBeenCalled();
+
+    // get target from message
+    var spy = spyOn(cv.ui.PopupHandler, "handleMessage");
+    router.dispatchMessage("test.message", {target: "popup"});
+    expect(spy).toHaveBeenCalled();
+
+    spiedHandleMessage.calls.reset();
+    // test unknown topic
+    router.dispatchMessage("unknown.message", {});
+    expect(spiedHandleMessage).not.toHaveBeenCalled();
+
+    // for some reason the spy does not count the number of calls right, so we use our own counter
+    callCounter = 0;
+    // dispatch with wildcard
+    router.dispatchMessage("test.*", {});
+    expect(spy).toHaveBeenCalled();
+    expect(callCounter).toEqual(2);
   });
 
   it("should test the state notification handling", function() {
@@ -109,5 +129,22 @@ describe('test the notification router', function () {
     popup = qx.bom.Selector.query("#popup_0")[0];
     // as the condition isn't met anymore the popup must be gone
     expect(popup).toBeUndefined();
+
+    qx.Class.undefine("cv.test.MessageHandler");
+    router.unregisterStateUpdatehandler(["0/0/1"]);
+  });
+
+  it("should test the target mapping", function() {
+    expect(cv.core.notifications.Router.getTarget("popup")).toEqual(cv.ui.PopupHandler);
+    expect(cv.core.notifications.Router.getTarget("notificationCenter")).toEqual(cv.ui.NotificationCenter.getInstance());
+
+    // prevent speech target if no browser support
+    var speechSynthesis = window.speechSynthesis;
+    delete window.speechSynthesis;
+    expect(cv.core.notifications.Router.getTarget("speech")).toBeUndefined();
+    window.speechSynthesis = speechSynthesis;
+    expect(cv.core.notifications.Router.getTarget("speech")).toEqual(cv.core.notifications.SpeechHandler.getInstance());
+
+    expect(cv.core.notifications.Router.getTarget("unknown")).toBeNull();
   });
 });

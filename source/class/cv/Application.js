@@ -49,6 +49,10 @@ qx.Class.define("cv.Application",
      */
     createClient: function() {
       var args = Array.prototype.slice.call(arguments);
+      if (args[0] === "openhab2") {
+        // auto-load openhab plugin for this backend
+        cv.Config.configSettings.pluginsToLoad.push("plugin-openhab");
+      }
       args.unshift(null);
       if (cv.Config.testMode === true) {
         return  new (Function.prototype.bind.apply(cv.io.Mockup, args)); // jshint ignore:line
@@ -71,6 +75,18 @@ qx.Class.define("cv.Application",
       }
     }
   },
+
+  /*
+  ******************************************************
+    PROPERTIES
+  ******************************************************
+  */
+  properties: {
+    root: {
+      nullable: true
+    }
+  },
+
 
   /*
   *****************************************************************************
@@ -188,9 +204,8 @@ qx.Class.define("cv.Application",
           exString += "\n Description: " + ex.description;
         }
         try {
-          console.log(qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t"));
-          console.log(ex.stack);
-          exString += "\nStack: " + qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t")+"\n";
+          exString += "\nNormalized Stack: " + qx.dev.StackTrace.getStackTraceFromError(ex).join("\n\t")+"\n";
+          exString += "\nOriginal Stack: " + ex.stack +"\n";
         } catch(exc) {
           if (ex.stack) {
             exString += "\nStack: " + ex.stack+"\n";
@@ -198,24 +213,66 @@ qx.Class.define("cv.Application",
         }
       }
       body += "```\n"+exString+"\n```\n\n**Client-Data:**\n```\n"+qx.lang.Json.stringify(bugData, null, 2)+"\n```";
+
       var notification = {
         topic: "cv.error",
+        target: cv.ui.PopupHandler,
         title: qx.locale.Manager.tr("An error occured"),
         message: "<pre>"+ex.stack+"</pre>",
         severity: "urgent",
         deletable: false,
         actions: {
-          link: {
-            title: qx.locale.Manager.tr("Report Bug"),
-            url: "https://github.com/CometVisu/CometVisu/issues/new?" + qx.util.Uri.toParameter({
-              labels: "bug / bugfix",
-              title: ex.toString(),
-              body: body
-            }),
-            needsConfirmation: false
-          }
+          link: [
+            {
+              title: qx.locale.Manager.tr("Reload"),
+              action: function(ev) {
+                var parent = ev.getTarget().parentNode;
+                while (parent) {
+                  if (parent.id === "notification-center" || qx.bom.element.Class.has(parent, "popup")) {
+                    break;
+                  }
+                  parent = parent.parentNode;
+                }
+                var box = qx.bom.Selector.query(".enableReporting", parent)[0];
+                if (box.checked) {
+                  // reload with reporting enabled
+                  var url = window.location.href.split("#").shift();
+                  cv.util.Location.setHref(qx.util.Uri.appendParamsToUrl(url, "reporting=true"));
+                } else {
+                  cv.util.Location.reload(true);
+                }
+              },
+              needsConfirmation: false
+            }
+          ]
         }
       };
+      // reload with reporting checkbox
+      var reportAction = null;
+      if (cv.Config.reporting) {
+        // reporting is enabled -> download log and show hint how to append it to the ticket
+        body = '<!--\n'+qx.locale.Manager.tr("Please do not forget to attach the downloaded Logfile to this ticket.")+'\n-->\n\n'+body;
+        reportAction = cv.report.Record.download;
+      } else {
+        var link = "";
+        if (qx.locale.Manager.getInstance().getLocale() === "de") {
+          link = ' <a href="http://cometvisu.org/CometVisu/de/latest/manual/config/url-params.html#reporting-session-aufzeichnen" target="_blank" title="Hilfe">(?)</a>';
+        }
+        notification.message+='<div class="actions"><input class="enableReporting" type="checkbox" value="true"/>'+qx.locale.Manager.tr("Enable reporting on reload")+link+'</div>';
+
+      }
+      notification.actions.link.push(
+        {
+          title: qx.locale.Manager.tr("Report Bug"),
+          url: "https://github.com/CometVisu/CometVisu/issues/new?" + qx.util.Uri.toParameter({
+            labels: "bug / bugfix",
+            title: ex.toString(),
+            body: body
+          }),
+          action: reportAction,
+          needsConfirmation: false
+        }
+      );
       cv.core.notifications.Router.dispatchMessage(notification.topic, notification);
     },
 
@@ -271,6 +328,7 @@ qx.Class.define("cv.Application",
       ajaxRequest.addListenerOnce("success", function (e) {
         this.block(false);
         var req = e.getTarget();
+        cv.Config.configServer = req.getResponseHeader("Server");
         // Response parsed according to the server's response content type
         var xml = req.getResponse();
         if (xml && qx.lang.Type.isString(xml)) {

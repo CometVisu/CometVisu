@@ -69,6 +69,20 @@ qx.Class.define('cv.ui.website.Slider', {
   members: {
     __pointerMoveEvent: null,
 
+    init: function() {
+      this.base(arguments);
+      if (this.getChildren(".ui-slider-range").length === 0) {
+        this.append(qx.ui.website.Widget.create("<div>")
+          .addClass("ui-slider-range"));
+      }
+      this.on("changePosition", function(pos) {
+        var knob = this.getChildren(".ui-slider-range");
+        var paddingLeft = Math.ceil(parseFloat(this.getStyle("paddingLeft")) || 0);
+        knob.setStyle("width", (pos+paddingLeft)+"px");
+        knob.setStyle("marginLeft", paddingLeft*-1+"px");
+      }, this);
+    },
+
     // overridden
     _getKnobContent: function() {
       if (this.getFormat() && this.getValue() !== undefined) {

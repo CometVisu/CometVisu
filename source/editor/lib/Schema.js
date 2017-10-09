@@ -46,6 +46,9 @@ var xsdNamespaceResolver = function(prefix) {
  * @var object
  */
 var documentationMapping;
+if (typeof window.documentationMappingPrefix === 'undefined') {
+  window.documentationMappingPrefix = "";
+}
 $.getJSON( window.documentationMappingPrefix+'lib/DocumentationMapping.json', function( json ){
   documentationMapping = json;
 });

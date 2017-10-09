@@ -163,8 +163,9 @@ qx.Class.define('cv.report.Record', {
 
     download: function() {
       if (cv.Config.reporting === true && !cv.report.Record.REPLAYING) {
-        cv.report.Record.getInstance().download();
+        return cv.report.Record.getInstance().download();
       }
+      return null;
     }
   },
 
@@ -386,6 +387,7 @@ qx.Class.define('cv.report.Record', {
 
       // Remove anchor from body
       document.body.removeChild(a);
+      return a.download;
     }
   }
 });

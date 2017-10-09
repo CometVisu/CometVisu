@@ -28,7 +28,6 @@
 qx.Class.define("cv.core.notifications.ActionRegistry", {
   type: "static",
 
-
   /*
   ******************************************************
     STATICS
@@ -37,13 +36,55 @@ qx.Class.define("cv.core.notifications.ActionRegistry", {
   statics: {
     __handlers: {},
 
+    /**
+     * Register an action handler for an action type.
+     *
+     * Note: There can only be one action handler per type. If there is currently
+     *       another handler registered for this type it will be replaced.
+     *
+     * @param type {String} action type
+     * @param handler {cv.core.notifications.IActionHandler}
+     */
     registerActionHandler: function(type, handler) {
       if (this.__handlers[type]) {
-        qx.log.Logger.warning(this, "there is already an action handler registered for '%1' action. replacing now", type);
+        qx.log.Logger.warn(this, "there is already an action handler registered for '"+type+"' action. replacing now");
       }
       this.__handlers[type] = handler;
     },
 
+    /**
+     * Unregister an action handler for an action type.
+     *
+     * @param type {String} action type
+     */
+    unregisterActionHandler: function(type) {
+      if (this.__handlers[type]) {
+        delete this.__handlers[type];
+      }
+    },
+
+    /**
+     * Get an instance of the registered action handler for the requested action type.
+     * @param type {String} action type
+     * @param config {Map?} additional parameters that should be passed to the action handlers constructor
+     * @return {cv.core.notifications.IActionHandler|null}
+     */
+    getActionHandler: function(type, config) {
+      if (this.__handlers[type]) {
+        return new (this.__handlers[type])(config);
+      } else {
+        return null;
+      }
+    },
+
+    /**
+     * Creates an action element for the given action type. Unsually this is a button or a similar DOMElement
+     * with a listener attached.
+     *
+     * @param type {String} action type
+     * @param config {Map} additional parameters that should be passed to the action handlers constructor
+     * @return {Element|null}
+     */
     createActionElement: function(type, config) {
       if (!this.__handlers[type]) {
         qx.log.Logger.error(this, "no action handler registered for '%1' action type", type);

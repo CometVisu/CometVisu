@@ -51,6 +51,15 @@ qx.Class.define("cv.core.notifications.actions.Link", {
     url: {
       check: "String",
       nullable: true
+    },
+    action: {
+      check: "Function",
+      nullable: true,
+      transform: "_transformAction"
+    },
+    hidden: {
+      check: "Boolean",
+      init: false
     }
   },
 
@@ -60,10 +69,37 @@ qx.Class.define("cv.core.notifications.actions.Link", {
   *****************************************************************************
   */
   members: {
+
+    _transformAction: function(value) {
+      if (qx.lang.Type.isFunction(value)) {
+        return value;
+      }
+      switch(value) {
+        case "reload":
+        case "restart":
+          return cv.util.Location.reload;
+      }
+      this.error("Unknown action: "+value);
+      return null;
+    },
+
     handleAction: function(ev) {
-      ev.stopPropagation();
-      ev.preventDefault();
-      window.open(this.getUrl(), '_blank');
+      if (ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+      }
+      if (this.getAction()) {
+        this.getAction()(ev);
+      }
+      if (this.getUrl()) {
+        if (this.isHidden()) {
+          // open link in background (fire and forget)
+          var req = new qx.io.request.Xhr(this.getUrl());
+          req.send();
+        } else {
+          cv.util.Location.open(this.getUrl(), '_blank');
+        }
+      }
     },
 
     getDomElement: function() {

@@ -91,16 +91,18 @@ class BaseXsdDirective(BaseDirective):
         for attr in attributes:
             if 'name' in attr.attrib:
                 name = attr.get('name')
-                atype, values = schema.get_attribute_type(attr)
+                atype, values, enums = schema.get_attribute_type(attr)
                 description = schema.get_node_documentation(attr, self.locale)
                 if description is not None:
                     description = re.sub("\n\s+", " ", description.text).strip()
+                elif enums is not None:
+                    description = self.get_description(enums)
                 else:
                     description = ''
             elif 'ref' in attr.attrib:
                 name = attr.get('ref')
                 type_def = schema.get_attribute(name)
-                atype, values = schema.get_attribute_type(type_def)
+                atype, values, enums = schema.get_attribute_type(type_def)
                 # check if there is some documentation here
                 description = schema.get_node_documentation(attr, self.locale)
                 if description is None:
@@ -108,6 +110,8 @@ class BaseXsdDirective(BaseDirective):
                     description = schema.get_node_documentation(type_def, self.locale)
                 if description is not None:
                     description = re.sub("\n\s+", " ", description.text).strip()
+                elif enums is not None:
+                    description = self.get_description(enums)
                 else:
                     description = ''
 
@@ -150,6 +154,19 @@ class BaseXsdDirective(BaseDirective):
 
         return table_node
 
+    def get_description(self, enums):
+        tmp_doc = ""
+        enum_doc_found = False
+        for enum_node in enums:
+            ed = schema.get_node_documentation(enum_node, self.locale)
+            if ed is not None:
+                enum_doc_found = True
+                tmp_doc += "%s* *%s*: %s" % ("\n" if len(tmp_doc) else "", enum_node.get('value'), ed.text)
+        if enum_doc_found:
+            return tmp_doc
+        else:
+            return ""
+
     def generate_complex_table(self, element_name, include_name=False, mandatory=False,
                                table_body=None, sub_run=False, parent=None):
         """ needs to be fixed """
@@ -166,19 +183,23 @@ class BaseXsdDirective(BaseDirective):
             for attr in attributes:
                 if 'name' in attr.attrib:
                     name = attr.get('name')
-                    atype, values = schema.get_attribute_type(attr)
+                    atype, values, enums = schema.get_attribute_type(attr)
                     description = schema.get_node_documentation(attr, self.locale)
                     if description is not None:
                         description = description.text
+                    elif enums is not None:
+                        description = self.get_description(enums)
                     else:
                         description = ''
                 elif 'ref' in attr.attrib:
                     name = attr.get('ref')
                     type_def = schema.get_attribute(name)
-                    atype, values = schema.get_attribute_type(type_def)
+                    atype, values, enums = schema.get_attribute_type(type_def)
                     description = schema.get_node_documentation(type_def, self.locale)
                     if description is not None:
                         description = description.text
+                    elif enums is not None:
+                        description = self.get_description(enums)
                     else:
                         description = ''
 
