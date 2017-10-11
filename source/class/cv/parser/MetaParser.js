@@ -56,7 +56,8 @@ qx.Class.define("cv.parser.MetaParser", {
         var func = qx.lang.Function.globalEval('var func = function(x){var y;' + qx.dom.Node.getText(formula[0]) + '; return y;}; func');
         mapping.formula = func;
       }
-      qx.bom.Selector.query('entry', elem).forEach(function (subElem) {
+      var subElements = qx.bom.Selector.query('entry', elem);
+      subElements.forEach(function (subElem) {
         var origin = subElem.childNodes;
         var value = [];
         for (var i = 0; i < origin.length; i++) {
@@ -84,7 +85,7 @@ qx.Class.define("cv.parser.MetaParser", {
             mapping.defaultValue = subElem.getAttribute('value');
           }
         }
-        else {
+        else if (subElem.hasAttribute("range_min")) {
           if (!mapping.range) {
             mapping.range = {};
           }
@@ -92,6 +93,9 @@ qx.Class.define("cv.parser.MetaParser", {
           if (isDefaultValue) {
             mapping.defaultValue = parseFloat(qx.bom.element.Attribute.get(subElem, 'range_min'));
           }
+        } else if (subElements.length === 1) {
+          // use as catchall mapping
+          mapping["*"] = value.length === 1 ? value[0] : value;
         }
       }, this);
       cv.Config.addMapping(name, mapping);
