@@ -82,7 +82,7 @@ qx.Class.define('cv.ui.PageHandler', {
 
       templateEngine.resetPageValues();
 
-      templateEngine.currentPage = pageWidget;
+      templateEngine.setCurrentPage(pageWidget);
 
       // update visibility of navbars, top-navigation, footer
       templateEngine.pagePartsHandler.updatePageParts( pageWidget, speed );

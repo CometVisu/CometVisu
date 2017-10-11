@@ -35,6 +35,7 @@ qx.Class.define('cv.plugins.Timeout', {
   construct: function(props) {
     this.base(arguments, props);
     this.__timeoutIdleCount = 0;
+    this.__initialize();
   },
 
 
@@ -105,11 +106,13 @@ qx.Class.define('cv.plugins.Timeout', {
     __timeoutTargetPage: null,
     __timer: null,
 
-    _onDomReady: function () {
-      this.debug("Timeout Set to : " + this.getTimeout());
-      this.debug("Target Page: " + this.getTarget());
+    __initialize: function () {
+      if (this.isDebug()) {
+        this.debug("Timeout Set to : " + this.getTime());
+        this.debug("Target Page: " + this.getTarget());
+      }
 
-      var deltaT = this.getTimeout() * 100;
+      var deltaT = this.getTime() * 100;
       this.__timer = new qx.event.Timer(deltaT);
       this.__timer.addListener("interval", this.timeoutTrigger, this);
       this.__timer.start();
@@ -131,7 +134,7 @@ qx.Class.define('cv.plugins.Timeout', {
          console.log("XXXXXX TIMEOUT: Scrolled to: " + path + " ("+timeoutTargetPage + ")");
          }
          */
-      });
+      }, this);
     },
 
     _onUserAction: function() {
@@ -139,7 +142,9 @@ qx.Class.define('cv.plugins.Timeout', {
     },
 
     timeoutTrigger: function () {
-      this.debug("TIMEOUT: Got Trigger (" + this.__timeoutIdleCount + ")");
+      if (this.isDebug()) {
+        this.debug("TIMEOUT: Got Trigger (" + this.__timeoutIdleCount + ")");
+      }
       this.__timeoutIdleCount++;
       this.__timeoutTargetPage = this.getTarget();
       if (this.__timeoutIdleCount >= 10) {
@@ -147,13 +152,17 @@ qx.Class.define('cv.plugins.Timeout', {
         var templateEngine = cv.TemplateEngine.getInstance();
 
         if (this.__timeoutCurrentPage !== this.__timeoutTargetPage && this.__timeoutCurrentPageTitle !== this.__timeoutTargetPage) {
-          this.debug("TIMEOUT: Got Timeout - Now Goto Page " + this.__timeoutTargetPage);
+          if (this.isDebug()) {
+            this.debug("TIMEOUT: Got Timeout - Now Goto Page " + this.__timeoutTargetPage);
+          }
           templateEngine.scrollToPage(this.__timeoutTargetPage);
-          templateEngine.getCurrentPage().getDomElement().scrollTop(0);
+          templateEngine.getCurrentPage().getDomElement().scrollTop = 0;
           //templateEngine.updateTopNavigation();
         } else {
-          this.debug("TIMEOUT: Already on page " + this.__timeoutTargetPage);
-          templateEngine.getCurrentPage().getDomElement().scrollTop(0);
+          if (this.isDebug()) {
+            this.debug("TIMEOUT: Already on page " + this.__timeoutTargetPage);
+          }
+          templateEngine.getCurrentPage().getDomElement().scrollTop = 0;
         }
       }
     }
