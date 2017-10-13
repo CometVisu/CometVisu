@@ -111,8 +111,8 @@ class WidgetExampleDirective(Directive):
         editor = self.options['editor'] if 'editor' in self.options else None
         self.assert_has_content()
         source = "\n".join(self.content)
-        source_path = self.state_machine.document.settings._source.split("doc/manual/", 1)[1]
-        screenshot_dir = path.join("doc", "manual", path.dirname(self.state_machine.document.settings._source).split("doc/manual/", 1)[1], "_static")
+        source_path = self.state_machine.document.settings._source.split("%s%s" % (path.join("doc", "manual"), path.sep), 1)[1]
+        screenshot_dir = path.join("doc", "manual", source_path, "_static")
         parser.set_screenshot_dir(screenshot_dir)
         name = source_path[:-4].replace("/", "_")
 
