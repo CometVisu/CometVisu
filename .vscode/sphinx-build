@@ -16,7 +16,7 @@ fi
 exit
 
 :CMDSCRIPT
-for /f %a in ('docker ps -a -f name=cv_doc --quiet') do set "cid=%a"
+for /f %%a in ('docker ps -a -f name=cv_doc --quiet') do set "cid=%%a"
 IF "%cid%"=="" (
     ECHO "Creating 'cv_doc' container"
     ECHO %~dp0
