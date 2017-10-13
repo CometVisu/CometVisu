@@ -234,7 +234,7 @@ qx.Class.define('cv.plugins.RssLog', {
             this.refreshRSSlog();
           }, this, 100);
           for (var addr in this.getAddress()) {
-            if (!(this.getAddress()[addr][1] & 2)) { continue; }// skip when write flag not set
+            if (!cv.data.Model.isWriteAddress(this.getAddress()[addr])) { continue; }// skip when write flag not set
             cv.TemplateEngine.getInstance().visu.write(addr, cv.Transform.encode(this.getAddress()[addr][0], 0));
           }
         }

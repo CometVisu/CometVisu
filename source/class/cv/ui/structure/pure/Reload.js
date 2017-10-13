@@ -27,8 +27,7 @@
 qx.Class.define('cv.ui.structure.pure.Reload', {
   extend: cv.ui.structure.AbstractWidget,
   include: [
-    cv.ui.common.Update,
-    cv.ui.common.HasAnimatedButton
+    cv.ui.common.Update
   ],
 
   /*
@@ -37,9 +36,14 @@ qx.Class.define('cv.ui.structure.pure.Reload', {
   ******************************************************
   */
   members: {
+    // overridden, return undefined to prevent widget from being renderered into DOM
+    getDomString: function() {
+      return;
+    },
+
     // overridden
     _getInnerDomString: function () {
-      return null;
+      return;
     },
 
     handleUpdate: function (value) {

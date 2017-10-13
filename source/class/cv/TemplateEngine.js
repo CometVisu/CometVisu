@@ -325,6 +325,9 @@ qx.Class.define('cv.TemplateEngine', {
         settings.minColumnWidth = qx.bom.element.Attribute.get(pagesNode, 'min_column_width');
       }
       settings.screensave_time = qx.bom.element.Attribute.get(pagesNode, 'screensave_time');
+      if (settings.screensave_time) {
+        settings.screensave_time = parseInt(settings.screensave_time, 10);
+      }
       settings.screensave_page = qx.bom.element.Attribute.get(pagesNode, 'screensave_page');
 
       if (qx.bom.element.Attribute.get(pagesNode, 'max_mobile_screen_width') !== null) {
@@ -630,7 +633,7 @@ qx.Class.define('cv.TemplateEngine', {
 
     scrollToPage: function (target, speed, skipHistory) {
       if (undefined === target) {
-        target = this.screensave_page;
+        target = cv.Config.configSettings.screensave_page;
       }
       var page_id = this.getPageIdByPath(target);
       if (page_id === null) {

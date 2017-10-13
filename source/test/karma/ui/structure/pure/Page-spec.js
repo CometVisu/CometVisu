@@ -140,7 +140,7 @@ describe("testing a page widget", function() {
 
     page.update('1/0/0', 1);
     expect(page.sendToBackend).toHaveBeenCalledWith('0');
-    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('Testpage');
+    expect(templateEngine.scrollToPage).toHaveBeenCalledWith('id_0_');
   });
 
   it("should trigger the page action", function() {

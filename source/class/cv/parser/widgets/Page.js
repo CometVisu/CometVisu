@@ -38,7 +38,7 @@ qx.Class.define('cv.parser.widgets.Page', {
       if (qx.bom.element.Attribute.get(page, 'ga')) {
         var src = qx.bom.element.Attribute.get(page, 'ga');
         cv.data.Model.getInstance().addAddress(src, storagePath);
-        addresses[ src ] = [ 'DPT:1.001', 0 ];
+        addresses[ src ] = [ 'DPT:1.001', cv.data.Model.READ ];
       }
 
       var name    = qx.bom.element.Attribute.get(page, 'name');

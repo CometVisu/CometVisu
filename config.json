@@ -292,7 +292,7 @@
       {
         "cv.build": "source",
         "qx.globalErrorHandling": true
-      },
+      }
     },
 
     "source-hybrid" :
