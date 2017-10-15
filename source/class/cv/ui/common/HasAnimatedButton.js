@@ -89,6 +89,7 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
           qx.bom.element.Class.remove(button, 'switchUnpressed');
         });
       } else {
+        console.log("unpressed");
         buttons.forEach(function(button) {
           qx.bom.element.Class.add(button, 'switchUnpressed');
           qx.bom.element.Class.remove(button, 'switchPressed');
