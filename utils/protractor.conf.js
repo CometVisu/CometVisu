@@ -13,6 +13,16 @@ exports.config = {
   suites: {
     common: ['screenshots-spec.js']
   },
+  capabilities: {
+    browserName: 'chrome',
+    'chromeOptions': {
+      args: [
+        // '--no-sandbox',
+        '--headless',
+        '--disable-gpu'
+      ]
+    }
+  },
 
   onPrepare: function(){
     browser.ignoreSynchronization = true;

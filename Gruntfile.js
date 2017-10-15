@@ -461,10 +461,6 @@ module.exports = function(grunt) {
               subDir: grunt.option('subDir'),
               screenshots: grunt.option('files'),
               target: grunt.option('target')
-            },
-            capabilities: {
-              browserName: grunt.option('browserName') || 'firefox',
-              marionette: true
             }
           }
         }
