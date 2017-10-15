@@ -40,6 +40,25 @@ qx.Class.define('cv.util.String', {
       }
       this.__elem.innerHTML = str;
       return this.__elem.innerText;
+    },
+    
+    /**
+     * Insert in string values as the well known sprint() function of other
+     * programming languages does.
+     * When a malformation happens a generic string is returned and a warning
+     * is shown on the console.
+     * @return {String}
+     */
+    sprintf: function() {
+      var args = qx.lang.Array.fromArguments(arguments);
+      var string = '-';
+      try {
+        string = sprintf.apply(this, args);
+      }
+      catch ( err ) {
+        console.warn( err, args );
+      }
+      return string;
     }
   }
 

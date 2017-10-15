@@ -183,15 +183,7 @@ qx.Mixin.define("cv.ui.common.BasicUpdate", {
 
         this.formatValueCache[argListPos] = value;
 
-        try {
-          var string = sprintf.apply(this, this.formatValueCache);
-        } 
-        catch( err ) {
-          console.warn( err );
-          string = '-';
-        }
-        
-        return string;
+        return cv.util.String.sprintf.apply(this, this.formatValueCache);
       }
       return value;
     },
