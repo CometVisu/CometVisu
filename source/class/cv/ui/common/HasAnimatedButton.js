@@ -39,14 +39,22 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
     __ilid: null,
 
     __initListeners: function() {
-      var actors = [this.getActor()];
-      if (this.getActors) {
-        actors = qx.lang.Array.append(actors, this.getActors());
+      var actors = this.__getActors();
+      if (this.isBindClickToWidget()) {
+        actors = [this.getInteractionElement()];
       }
       actors.forEach(function(actor) {
         qx.event.Registration.addListener(actor, "pointerdown", this.buttonPressed, this);
         qx.event.Registration.addListener(actor, "pointerup", this.buttonReleased, this);
       }, this);
+    },
+
+    __getActors : function() {
+      var actors = [this.getActor()];
+      if (this.getActors) {
+        actors = qx.lang.Array.append(actors, this.getActors());
+      }
+      return actors;
     },
 
     /**
@@ -58,22 +66,27 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
      */
     buttonPressed: function(event) {
       var actor = event.getCurrentTarget();
-      this.__updateButton(actor, true);
+      var buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
+      this.__updateButtons(buttons, true);
       this.__olid = qx.event.Registration.addListener(actor, "pointerout", function() {
-        this.__updateButton(actor, false);
+        this.__updateButtons(buttons, false);
       }, this);
       this.__ilid = qx.event.Registration.addListener(actor, "pointerover", function() {
-        this.__updateButton(actor, true);
+        this.__updateButtons(buttons, true);
       }, this);
     },
 
-    __updateButton: function(actor, pressed) {
+    __updateButtons: function(buttons, pressed) {
       if (pressed) {
-        qx.bom.element.Class.add(actor, 'switchPressed');
-        qx.bom.element.Class.remove(actor, 'switchUnpressed');
+        buttons.forEach(function(button) {
+          qx.bom.element.Class.add(button, 'switchPressed');
+          qx.bom.element.Class.remove(button, 'switchUnpressed');
+        });
       } else {
-        qx.bom.element.Class.add(actor, 'switchUnpressed');
-        qx.bom.element.Class.remove(actor, 'switchPressed');
+        buttons.forEach(function(button) {
+          qx.bom.element.Class.add(button, 'switchUnpressed');
+          qx.bom.element.Class.remove(button, 'switchPressed');
+        });
       }
     },
 
@@ -86,7 +99,8 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
      */
     buttonReleased: function(event) {
       var actor = event.getCurrentTarget();
-      this.__updateButton(actor, false);
+      var buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
+      this.__updateButtons(buttons, false);
       qx.event.Registration.removeListenerById(actor, this.__olid);
       qx.event.Registration.removeListenerById(actor, this.__ilid);
       this.__olid = null;
