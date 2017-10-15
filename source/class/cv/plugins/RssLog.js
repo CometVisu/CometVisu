@@ -122,6 +122,9 @@ qx.Class.define('cv.plugins.RssLog', {
         datetime:   {
           "default": true,
           transform: function(value) {
+            if (typeof value === 'boolean') {
+              return value;
+            }
             return value === "true";
           }
         },
