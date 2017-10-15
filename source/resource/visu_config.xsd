@@ -183,8 +183,8 @@
   <xsd:attribute name="target" type="xsd:string">
     <xsd:annotation>
       <xsd:appinfo>level:expert</xsd:appinfo>
-      <xsd:documentation xml:lang="en">The name of the page, that should be shown.</xsd:documentation>
-      <xsd:documentation xml:lang="de">Der Name der Seite, die angezeigt werden soll.</xsd:documentation>
+      <xsd:documentation xml:lang="en">The name of the page, that should be called.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Der Name der Seite, die aufgerufen werden soll.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 
