@@ -91,6 +91,8 @@ describe('cometvisu demo config test:', function () {
       cvDemo.getLastWrite().then(function (lastWrite) {
         expect(lastWrite.value).toEqual(widgetData.sendValue);
       });
+      expect(labelPromise).not.toBeNull();
+      expect(actorPromise).not.toBeNull();
 
       // same with click on label
       expect(actor.getAttribute('class')).not.toContain('switchPressed');
