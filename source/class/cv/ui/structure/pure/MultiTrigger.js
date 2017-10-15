@@ -115,7 +115,7 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
 
     // overridden
     _onDomReady: function() {
-      this.initListeners();
+      this.base(arguments);
       var actor = this.getActor();
       var children = qx.dom.Hierarchy.getChildElements(actor);
       var value;
@@ -146,14 +146,18 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
       children.forEach(function(actor) {
         var index = children.indexOf(actor)+1;
         var isPressed = this.getBasicValue() === this['getButton' + index + 'value']();
-        qx.bom.element.Class.remove(actor, isPressed ? 'switchUnpressed' : 'switchPressed');
-        qx.bom.element.Class.add(actor, isPressed ? 'switchPressed' : 'switchUnpressed');
+
+        // delay this a little bit to give the HasAnimatedButton stuff time to finish
+        // otherwise it might override the settings here
+        new qx.util.DeferredCall(function() {
+          qx.bom.element.Class.remove(actor, isPressed ? 'switchUnpressed' : 'switchPressed');
+          qx.bom.element.Class.add(actor, isPressed ? 'switchPressed' : 'switchUnpressed');
+        }, this).schedule();
       }, this);
     },
 
     /**
      * Get the value that should be send to backend after the action has been triggered
-     *
      *
      */
     getActionValue: function (event) {
@@ -163,8 +167,11 @@ qx.Class.define('cv.ui.structure.pure.MultiTrigger', {
 
     // overridden
     initListeners: function() {
-      qx.bom.Selector.query('.actor_container .actor', this.getDomElement()).forEach(function(actor) {
+      if (this.isAnonymous()) { return; }
+
+      this.getActors().forEach(function(actor) {
         qx.event.Registration.addListener(actor, "tap", this.action, this);
+        qx.event.Registration.addListener(actor, "pointerdown", this._onPointerDown, this);
       }, this);
 
     }

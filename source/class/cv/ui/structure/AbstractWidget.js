@@ -206,17 +206,17 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       this.addElementListener("tap", this.action, this);
 
       // we need to listen to pointerdown to detect taps with
-      this.addElementListener("pointerdown", this.__onPointerDown, this);
+      this.addElementListener("pointerdown", this._onPointerDown, this);
     },
 
-    __onPointerDown: function(ev) {
+    _onPointerDown: function(ev) {
       // listen to pointerup globally
       this.__pointerDownElement = ev.getCurrentTarget();
-      qx.event.Registration.addListener(document, "pointerup", this.__onPointerUp, this);
+      qx.event.Registration.addListener(document, "pointerup", this._onPointerUp, this);
     },
 
-    __onPointerUp: function(ev) {
-      qx.event.Registration.removeListener(document, "pointerup", this.__onPointerUp, this);
+    _onPointerUp: function(ev) {
+      qx.event.Registration.removeListener(document, "pointerup", this._onPointerUp, this);
       var upElement = ev.getTarget();
       while (upElement && upElement !== this.__pointerDownElement) {
         upElement = upElement.parentNode;
@@ -226,6 +226,7 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       }
       if (upElement && upElement === this.__pointerDownElement) {
         // both events happened on the same element
+        ev.setCurrentTarget(upElement);
         this.action(ev);
         this._skipNextEvent = "tap";
       }
@@ -281,5 +282,14 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
     _getInnerDomString: function() {
       return "";
     }
+  },
+
+  /*
+  ******************************************************
+    DESTRUCTOR
+  ******************************************************
+  */
+  destruct: function() {
+    qx.event.Registration.removeListener(document, "pointerup", this._onPointerUp, this);
   }
 });

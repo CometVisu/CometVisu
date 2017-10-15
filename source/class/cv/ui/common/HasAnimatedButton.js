@@ -37,6 +37,7 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
   members: {
     __olid: null,
     __ilid: null,
+    __downTarget: null,
 
     __initListeners: function() {
       var actors = this.__getActors();
@@ -45,14 +46,17 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
       }
       actors.forEach(function(actor) {
         qx.event.Registration.addListener(actor, "pointerdown", this.buttonPressed, this);
-        qx.event.Registration.addListener(actor, "pointerup", this.buttonReleased, this);
       }, this);
     },
 
     __getActors : function() {
       var actors = [this.getActor()];
       if (this.getActors) {
-        actors = qx.lang.Array.append(actors, this.getActors());
+        this.getActors().forEach(function(a) {
+          if (actors.indexOf(a) === -1) {
+            actors.push(a);
+          }
+        });
       }
       return actors;
     },
@@ -66,6 +70,8 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
      */
     buttonPressed: function(event) {
       var actor = event.getCurrentTarget();
+      this.__downTarget = actor;
+      qx.event.Registration.addListener(document, "pointerup", this.buttonReleased, this);
       var buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
       this.__updateButtons(buttons, true);
       this.__olid = qx.event.Registration.addListener(actor, "pointerout", function() {
@@ -83,6 +89,7 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
           qx.bom.element.Class.remove(button, 'switchUnpressed');
         });
       } else {
+        console.log("unpressed");
         buttons.forEach(function(button) {
           qx.bom.element.Class.add(button, 'switchUnpressed');
           qx.bom.element.Class.remove(button, 'switchPressed');
@@ -98,13 +105,24 @@ qx.Mixin.define("cv.ui.common.HasAnimatedButton", {
      * @param event {Event} pointerup event
      */
     buttonReleased: function(event) {
-      var actor = event.getCurrentTarget();
+      qx.event.Registration.removeListener(document, "pointerup", this.buttonReleased, this);
+      var actor = this.__downTarget;
       var buttons = this.isBindClickToWidget() ? this.__getActors() : [actor];
       this.__updateButtons(buttons, false);
       qx.event.Registration.removeListenerById(actor, this.__olid);
       qx.event.Registration.removeListenerById(actor, this.__ilid);
       this.__olid = null;
       this.__ilid = null;
+      this.__downTarget = null;
     }
+  },
+
+  /*
+  ******************************************************
+    DESTRUCTOR
+  ******************************************************
+  */
+  destruct: function() {
+    qx.event.Registration.addListener(document, "pointerup", this.buttonReleased, this);
   }
 });

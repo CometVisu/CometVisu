@@ -152,6 +152,7 @@ qx.Class.define('cv.ui.structure.pure.InfoTrigger', {
           qx.event.Registration.addListener(actor, "tap", this._onLongTap, this);
           qx.event.Registration.addListener(actor, "longtap", this._onLongTap, this);
         }
+        qx.event.Registration.addListener(actor, "pointerdown", this._onPointerDown, this);
       }, this);
 
     },
