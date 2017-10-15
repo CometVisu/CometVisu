@@ -323,6 +323,7 @@ qx.Class.define('cv.transforms.Knx', {
         },
         encode: function (phy) {
           var val = '80';
+          phy += ''; // force datatype String
           for (var i = 0; i < 14; i++) {
             var c = phy.charCodeAt(i);
             val += c ? ( (c < 16 ? '0' : '') + c.toString(16) ) : '00';

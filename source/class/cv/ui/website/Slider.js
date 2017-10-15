@@ -86,7 +86,15 @@ qx.Class.define('cv.ui.website.Slider', {
     // overridden
     _getKnobContent: function() {
       if (this.getFormat() && this.getValue() !== undefined) {
-        return sprintf(this.getFormat(), this.getValue());
+        try {
+          var string = sprintf(this.getFormat(), this.getValue());
+        } 
+        catch( err ) {
+          console.warn( err );
+          string = '-';
+        }
+        
+        return string;
       } else {
         return "";
       }
