@@ -123,7 +123,7 @@
     "de": "/de/latest/manual/config/widgets/group/index.html"
     "en": "/en/latest/manual/config/widgets/group/index.html"
   "name": "Group"
-  "screenshot": "/de/latest/manual/_images/group_format.png"
+  "screenshot": "/de/latest/manual/_images/group_simple.png"
 - "description":
     "de": "Fügt der Visu ein statisches Bild oder ein Kamerabild hinzu."
     "en": "Adds a static image or a live camera image to the visu."
