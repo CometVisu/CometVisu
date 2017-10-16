@@ -17,7 +17,7 @@ ins Querformat) beeinflusst werden.
 Mit dem nowidget Attribut werden die Widget-Rahmen innerhalb der Gruppe unterdrückt. Damit können einzelne Widgets zu einem 
 Bedienelement gruppiert werden zB. mehrere Trigger- und ein Info-Widget zu einem speziellen Info-Trigger.
 
-.. figure:: _static/group_format.png
+.. figure:: _static/group_nowidget.png
 
 
 Einstellungen
