@@ -105,9 +105,10 @@ Gruppe mit Switch- und Info-Widget
         </stylings>
     </meta>
     <group name="Esszimmer">
+        <layout colspan="6"/>
         <switch mapping="OnOff" styling="RedGreen">
             <layout colspan="3"/>
-            <label><icon name="light_ceiling_light"/>Licht Esstisch</label>
+            <label><icon name="light_ceiling_light"/>Licht</label>
             <address transform="DPT:1.001" mode="readwrite">3/1/1</address>
         </switch>
         <info format="%.1f °C">
