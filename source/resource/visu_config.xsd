@@ -779,8 +779,8 @@
     </xsd:attribute>
     <xsd:attribute name="nowidget" type="xsd:boolean" use="optional">
       <xsd:annotation>
-          <xsd:documentation xml:lang="en">Removes the frame borders inside the group</xsd:documentation>
-          <xsd:documentation xml:lang="de">Unterdrückt die Rahmen innerhalb der Gruppe</xsd:documentation>
+          <xsd:documentation xml:lang="en">Removes the frame borders inside the group (only in Metal Design)</xsd:documentation>
+          <xsd:documentation xml:lang="de">Unterdrückt die Rahmen innerhalb der Gruppe (nur im Design Metal)</xsd:documentation>
         </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />

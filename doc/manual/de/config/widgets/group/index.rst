@@ -95,7 +95,7 @@ daher weg gelassen werden.
 
 
 Erlaubte Attribute im Group-Element
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. parameter-information:: group
 
@@ -110,7 +110,7 @@ Des weiteren können im Group-Widget alle vorhandenen Widgets verwendet werden.
 XML Syntax minimal
 ------------------
 
-Alternativ kann man für das Info Widget auch von Hand einen Eintrag in
+Alternativ kann man für das Group Widget auch von Hand einen Eintrag in
 der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
 
 .. CAUTION::
@@ -142,9 +142,7 @@ Beispiele
 ---------
 
 Gruppe mit Switch- und Info-Widget
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Hier eine Beispielcode der das Group-Widget aus dem folgenden Screenshot erzeugt:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. widget-example::
 
@@ -184,8 +182,6 @@ Hier eine Beispielcode der das Group-Widget aus dem folgenden Screenshot erzeugt
 
 Zwei Gruppen inkl. Anwendung von nowidget
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Hier eine Beispielcode der das Group-Widget aus dem folgenden Screenshot erzeugt:
 
 .. widget-example::
 
