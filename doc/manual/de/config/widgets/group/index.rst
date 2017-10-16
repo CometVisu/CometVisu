@@ -12,75 +12,12 @@ Mit dem Group-Widget können mehrere Widgets mit einem Rahmen gruppiert werden. 
 andererseits kann damit die automatische Anordnung der widgets (zB beim Drehen des Anzeigegerätes vom Hoch- 
 ins Querformat) beeinflusst werden. 
 
-.. widget-example::
-    :hide-source: true
-
-    <settings>
-        <screenshot name="group_format">
-            <caption>Beispiel Group Widget</caption>
-        </screenshot>
-    </settings>
-    <group name="Gruppenname">    
-        <text align="left">
-            <layout colspan="3"/>
-            <label>Widget 1</label>
-        </text>
-        <text align="left">
-            <layout colspan="3"/>
-            <label>Widget 2</label>
-        </text>
-    </group>  
+.. figure:: _static/group_simple.png
 
 Mit dem nowidget Attribut werden die Widget-Rahmen innerhalb der Gruppe unterdrückt. Damit können einzelne Widgets zu einem 
-Bedienelement gruppiert werden zB. mehrere Trigger- und ein Info-Widget zu einem speziellen Info-Trigger.  
+Bedienelement gruppiert werden zB. mehrere Trigger- und ein Info-Widget zu einem speziellen Info-Trigger.
 
-.. widget-example::
-    :hide-source: true
-
-    <settings>
-        <screenshot name="group_format">
-            <caption>Beispiel Group Widget mit nowidget="true"</caption>
-            <data address="4/1/43">47</data>
-        </screenshot>
-    </settings>
-    <meta>
-        <mappings>
-            <mapping name="AnAusSymbol">
-                <entry value="0">○</entry>
-                <entry value="1">●</entry>
-            </mapping>
-            <mapping name="AufAbSymbol">
-                <entry value="0">▲</entry>
-                <entry value="1">▼</entry>
-            </mapping>
-        </mappings>
-    </meta>
-    <group name="Jalousiesteuerung">
-        <group nowidget="true">
-            <layout colspan="6"/>
-            <text align="left">
-                <layout colspan="1"/>
-                <label>Küche</label>
-            </text>
-            <trigger value="1" mapping="AufAbSymbol">
-                <layout colspan="1"/>
-                <address transform="DPT:1.008" mode="write">3/0/0</address>
-            </trigger>
-            <trigger value="1" mapping="AnAusSymbol">
-                <layout colspan="1"/>
-                <address transform="DPT:1.001" mode="write">3/0/1</address>
-            </trigger>
-            <trigger value="0" mapping="AufAbSymbol">
-                <layout colspan="1"/>
-                <address transform="DPT:1.008" mode="write">3/0/0</address>
-            </trigger>
-            <info format="%.1f %%">
-                <layout colspan="2"/>
-                <label><icon name="fts_shutter_30"/>Höhe</label>
-                <address transform="DPT:5.001" mode="read">4/1/43</address>
-            </info>
-        </group>
-    </group>
+.. figure:: _static/group_format.png
 
 
 Einstellungen
@@ -122,7 +59,7 @@ Hier der minimale Beispielcode der das Group Widget aus dem folgenden Screenshot
 .. widget-example::
 
     <settings>
-        <screenshot name="group_format">
+        <screenshot name="group_simple">
             <caption>Beispiel Group Widget</caption>
         </screenshot>
     </settings>
@@ -147,8 +84,8 @@ Gruppe mit Switch- und Info-Widget
 .. widget-example::
 
     <settings>
-        <screenshot name="group_format">
-            <caption>Beispiel Group Widget mit nowidget="true"</caption>
+        <screenshot name="group_info">
+            <caption>Beispiel Group- mit Info-Widget</caption>
             <data address="3/1/1">1</data>
             <data address="5/1/90">23.4</data>
         </screenshot>
@@ -186,7 +123,7 @@ Zwei Gruppen inkl. Anwendung von nowidget
 .. widget-example::
 
     <settings>
-        <screenshot name="group_format">
+        <screenshot name="group_nowidget">
             <caption>Beispiel Group Widget mit nowidget="true"</caption>
             <data address="4/1/43">30</data>
         </screenshot>
@@ -205,25 +142,25 @@ Zwei Gruppen inkl. Anwendung von nowidget
     </meta>
     <group name="Jalousiesteuerung">
         <group nowidget="true">
-            <layout colspan="6"/>
+            <layout colspan="12"/>
             <text align="left">
-                <layout colspan="1"/>
+                <layout colspan="2"/>
                 <label>Küche</label>
             </text>
             <trigger value="1" mapping="AufAbSymbol">
-                <layout colspan="1"/>
+                <layout colspan="2"/>
                 <address transform="DPT:1.008" mode="write">3/0/0</address>
             </trigger>
             <trigger value="1" mapping="AnAusSymbol">
-                <layout colspan="1"/>
+                <layout colspan="2"/>
                 <address transform="DPT:1.001" mode="write">3/0/1</address>
             </trigger>
             <trigger value="0" mapping="AufAbSymbol">
-                <layout colspan="1"/>
+                <layout colspan="2"/>
                 <address transform="DPT:1.008" mode="write">3/0/0</address>
             </trigger>
             <info format="%.1f %%">
-                <layout colspan="2"/>
+                <layout colspan="4"/>
                 <label><icon name="fts_shutter_30"/>Höhe</label>
                 <address transform="DPT:5.001" mode="read">4/1/43</address>
             </info>
