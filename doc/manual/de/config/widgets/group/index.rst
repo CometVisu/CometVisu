@@ -117,7 +117,7 @@ der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
     werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
 
-Hier der minimale Beispielcode der das Info Widget aus dem folgenden Screenshot erzeugt:
+Hier der minimale Beispielcode der das Group Widget aus dem folgenden Screenshot erzeugt:
 
 .. widget-example::
 
