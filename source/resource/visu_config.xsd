@@ -773,11 +773,16 @@
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="optional">
     	<xsd:annotation>
-            <xsd:documentation xml:lang="en">Name/title of the group</xsd:documentation>
-            <xsd:documentation xml:lang="de">Name/Überschrift der Gruppe</xsd:documentation>
+          <xsd:documentation xml:lang="en">Name/title of the group</xsd:documentation>
+          <xsd:documentation xml:lang="de">Name/Überschrift der Gruppe</xsd:documentation>
         </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="nowidget" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="nowidget" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+          <xsd:documentation xml:lang="en">Removes the frame borders inside the group</xsd:documentation>
+          <xsd:documentation xml:lang="de">Unterdrückt die Rahmen innerhalb der Gruppe</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="target" use="optional" />
     <xsd:attribute ref="align" use="optional" />
