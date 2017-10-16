@@ -3,7 +3,7 @@ set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH="develop"
 TARGET_BRANCH="gh-pages"
-REPO_SLUG="peuter/CometVisu"
+REPO_SLUG="cometvisu/CometVisu"
 
 if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
     echo "Skipping deploy in cron build"
@@ -11,15 +11,15 @@ if [ "$TRAVIS_EVENT_TYPE" == "cron" ]; then
 fi
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [ "$TRAVIS_BRANCH" != "master" ] ); then
-    echo "Skipping deploy;"
-    exit 0
-fi
-
-if [ "$TRAVIS_REPO_SLUG" != "$REPO_SLUG" ]; then
-    echo "Not in main repository => skipping deploy;"
-    exit 0
-fi
+#if [ "$TRAVIS_PULL_REQUEST" != "false" ] || ( [ "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ] && [ "$TRAVIS_BRANCH" != "master" ] ); then
+#    echo "Skipping deploy;"
+#    exit 0
+#fi
+#
+#if [ "$TRAVIS_REPO_SLUG" != "$REPO_SLUG" ]; then
+#    echo "Not in main repository => skipping deploy;"
+#    exit 0
+#fi
 
 if [ "$TRAVIS_BRANCH" != "master" ]; then
     echo "ATTENTION! Deploying docs from non master branch. Please change this!!!"
