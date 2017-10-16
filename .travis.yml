@@ -24,7 +24,6 @@ before_install:
 - sudo ./utils/travis/browser-setup.sh
 - export CHROME_BIN=`pwd`/chrome/google-chrome
 - export PATH=`pwd`/firefox:$PATH
-- if [ "$CV_BUILD" == "docs" ] && ! [ -e downloads/plantuml.deb ]; then wget -O downloads/plantuml.deb http://yar.fruct.org/attachments/download/362/plantuml_7707-1_all.deb; fi
 - mkdir cache
 install:
 - npm install -g grunt-cli
@@ -40,8 +39,7 @@ install:
 - if [ "$CV_BUILD" == "docs" ]; then ./generate.py build -sI; fi
 - deactivate
 - "./node_modules/protractor/bin/webdriver-manager update"
-- if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install graphviz python-lxml python3-lxml; fi
-- if [ "$CV_BUILD" == "docs" ]; then sudo dpkg -i downloads/plantuml.deb; fi
+- if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install python-lxml python3-lxml; fi
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
