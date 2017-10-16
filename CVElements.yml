@@ -120,8 +120,10 @@
     "de": "Mit group können Widgets in einem Rahmen als Gruppe zusammengefasst werden. Die Größe der Gruppe kann über \"layout\" eingestellt werden."
     "en": "With group, widgets can be grouped together. The group can be given a size via \"layout\"."
   "manual":
+    "de": "/de/latest/manual/config/widgets/group/index.html"
     "en": "/en/latest/manual/config/widgets/group/index.html"
   "name": "Group"
+  "screenshot": "/de/latest/manual/_images/group_format.png"
 - "description":
     "de": "Fügt der Visu ein statisches Bild oder ein Kamerabild hinzu."
     "en": "Adds a static image or a live camera image to the visu."

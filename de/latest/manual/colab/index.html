@@ -423,9 +423,15 @@ Mit dem Wissen dieses Abschnitts sollte es möglich sein, eigene Beiträge für 
 <div class="section" id="dokumentation-schreiben-mit-visualstudio-code">
 <h3>Dokumentation schreiben mit VisualStudio Code<a class="headerlink" href="#dokumentation-schreiben-mit-visualstudio-code" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Der Editor <a class="reference external" href="https://code.visualstudio.com">Visual Studio Code</a> bietet ein Plugin, mit dessen Hilfe man sich eine
-Live Preview der geschriebenen Dokumentation anzeigen lassen kann. Dazu muss zunächst der Editor installiert werden und
-darin die Extension <code class="docutils literal"><span class="pre">restructuredtext</span></code> (über den Menüpunkt Anzeigen -&gt; Extensions suchen nach rst) installiert werden.
-Nach einmaligem Neuladen des Editors steht diese zur Verfügung.</p>
+Live Preview der geschriebenen Dokumentation anzeigen lassen kann.</p>
+<div class="admonition important">
+<p class="first admonition-title">Wichtig</p>
+<p class="last">Einige der verwendeten Tools stehen nur unter Linux zur Verfügung. Das Live Preview steht daher in Visual Studio
+Code unter Windows derzeit nicht zur Verfügung. Für Windows Anwender wird daher Visual Studio Code in einer
+Virtual Machine mit Linux (Ubuntu, Mint, ...) empfohlen.</p>
+</div>
+<p>Nach Installation des Editors muss darin die Extension <code class="docutils literal"><span class="pre">restructuredtext</span></code> (über den Menüpunkt Anzeigen -&gt; Extensions
+suchen nach rst) installiert werden. Nach einmaligem Neuladen des Editors steht diese zur Verfügung.</p>
 <p>Damit die Live Preview funktioniert muss Python installiert sein.
 Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
 <a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md">Install Sphinx</a></p>
