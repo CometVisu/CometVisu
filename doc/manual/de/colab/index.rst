@@ -233,9 +233,16 @@ Dokumentation schreiben mit VisualStudio Code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Der Editor `Visual Studio Code <https://code.visualstudio.com>`__ bietet ein Plugin, mit dessen Hilfe man sich eine
-Live Preview der geschriebenen Dokumentation anzeigen lassen kann. Dazu muss zunächst der Editor installiert werden und
-darin die Extension ``restructuredtext`` (über den Menüpunkt Anzeigen -> Extensions suchen nach rst) installiert werden.
-Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
+Live Preview der geschriebenen Dokumentation anzeigen lassen kann. 
+
+.. IMPORTANT::
+
+      Einige der verwendeten Tools stehen nur unter Linux zur Verfügung. Das Live Preview steht daher in Visual Studio 
+      Code unter Windows derzeit nicht zur Verfügung. Für Windows Anwender wird daher Visual Studio Code in einer 
+      Virtual Machine mit Linux (Ubuntu, Mint, ...) empfohlen.  
+
+Nach Installation des Editors muss darin die Extension ``restructuredtext`` (über den Menüpunkt Anzeigen -> Extensions 
+suchen nach rst) installiert werden. Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
 
 
 Damit die Live Preview funktioniert muss Python installiert sein.
