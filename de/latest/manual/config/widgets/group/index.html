@@ -214,7 +214,7 @@ ins Querformat) beeinflusst werden.</p>
 <p>Mit dem nowidget Attribut werden die Widget-Rahmen innerhalb der Gruppe unterdrückt. Damit können einzelne Widgets zu einem
 Bedienelement gruppiert werden zB. mehrere Trigger- und ein Info-Widget zu einem speziellen Info-Trigger.</p>
 <div class="figure">
-<img alt="config/widgets/group/_static/group_format.png" src="config/widgets/group/_static/group_format.png" />
+<img alt="../../../_images/group_nowidget.png" src="../../../_images/group_nowidget.png" />
 </div>
 </div>
 <div class="section" id="einstellungen">
@@ -330,9 +330,10 @@ werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 <span class="nt">&lt;/meta&gt;</span>
 ...
 <span class="nt">&lt;group</span> <span class="na">name=</span><span class="s">&quot;Esszimmer&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;switch</span> <span class="na">mapping=</span><span class="s">&quot;OnOff&quot;</span> <span class="na">styling=</span><span class="s">&quot;RedGreen&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;3&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;label&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;light_ceiling_light&quot;</span><span class="nt">/&gt;</span>Licht Esstisch<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;label&gt;&lt;icon</span> <span class="na">name=</span><span class="s">&quot;light_ceiling_light&quot;</span><span class="nt">/&gt;</span>Licht<span class="nt">&lt;/label&gt;</span>
         <span class="nt">&lt;address</span> <span class="na">transform=</span><span class="s">&quot;DPT:1.001&quot;</span> <span class="na">mode=</span><span class="s">&quot;readwrite&quot;</span><span class="nt">&gt;</span>3/1/1<span class="nt">&lt;/address&gt;</span>
     <span class="nt">&lt;/switch&gt;</span>
     <span class="nt">&lt;info</span> <span class="na">format=</span><span class="s">&quot;%.1f °C&quot;</span><span class="nt">&gt;</span>
