@@ -3,7 +3,7 @@ Einrichten einer VM mit Visual Studio Code
 ******************************************
 
 Einige der verwendeten Tools zur Generierung der Dokumentation stehen nur unter Linux zur Verfügung. 
-Das Live Preview fuktioniert daher in Visual Studio Code unter Windows derzeit nicht. 
+Die Live Preview funktioniert daher in Visual Studio Code unter Windows derzeit nicht.
 
 Nachstehend wird für Windows Anwender Schritt für Schritt erklärt, wie man eine Virtual Machine mit Ubuntu erstellt und 
 darin Visual Studio Code inkl. lauffähigem Live-Preview für rst-files einrichtet. Schwerpunkt ist die Konfiguration  
@@ -77,7 +77,7 @@ herunterladen und mit folgendem Befehl ``sudo dpkg -i code_1.17.1-1507645403_amd
 7. Im VS Code Editor die Extension ``restructuredtext`` installieren. Dazu über den Menüpunkt Anzeigen -> Extensions 
    suchen -> "restructuredtext" eingeben und dann "install" wählen. Danach den Editor am besten schließen!
 
-Auf die Installation von Python wird hier nicht näher eingegangen, da Pyhthon auf Ubuntu (und den meisten anderen 
+Auf die Installation von Python wird hier nicht näher eingegangen, da Python auf Ubuntu (und den meisten anderen
 Linux Distributionen) bereits vorinstalliert ist. 
 
 

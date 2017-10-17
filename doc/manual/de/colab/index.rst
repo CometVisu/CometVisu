@@ -260,6 +260,11 @@ Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation ö
 
    Ansicht des Editors mit Live-Preview
 
+.. toctree::
+    :hidden:
+
+    howto-vm
+
 
 Mithilfe bei der Entwicklung
 ----------------------------
