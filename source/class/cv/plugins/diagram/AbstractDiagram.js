@@ -495,7 +495,6 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       // plot diagram initially with empty values
       diagram.empty();
       qx.bom.AnimationFrame.request(function() {
-        console.log(qx.bom.element.Dimension.getContentSize(diagram[0]));
         var plot = $.plot(diagram, [], options);
         if( isPopup ) {
           this.debug("popup plot generated");
