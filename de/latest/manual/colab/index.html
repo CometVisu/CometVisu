@@ -114,7 +114,10 @@
 <li class="toctree-l3"><a class="reference internal" href="doc/rst.html">Die RST-Syntax</a></li>
 <li class="toctree-l3"><a class="reference internal" href="doc/rst.html#eigene-direktiven">Eigene Direktiven</a></li>
 <li class="toctree-l3"><a class="reference internal" href="todos.html">TODO&#8217;s</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dokumentation-schreiben-mit-visualstudio-code">Dokumentation schreiben mit VisualStudio Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dokumentation-schreiben-mit-visualstudio-code">Dokumentation schreiben mit VisualStudio Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="howto-vm.html">Einrichten einer VM mit Visual Studio Code</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#mithilfe-bei-der-entwicklung">Mithilfe bei der Entwicklung</a><ul>
@@ -428,18 +431,23 @@ Live Preview der geschriebenen Dokumentation anzeigen lassen kann.</p>
 <p class="first admonition-title">Wichtig</p>
 <p class="last">Einige der verwendeten Tools stehen nur unter Linux zur Verfügung. Das Live Preview steht daher in Visual Studio
 Code unter Windows derzeit nicht zur Verfügung. Für Windows Anwender wird daher Visual Studio Code in einer
-Virtual Machine mit Linux (Ubuntu, Mint, ...) empfohlen.</p>
+Virtual Machine mit Linux (Ubuntu, Mint, ...) empfohlen.
+Siehe <a class="reference internal" href="howto-vm.html"><span class="doc">VM Einrichten</span></a> für eine detaillierte Vorgehensweise.</p>
 </div>
 <p>Nach Installation des Editors muss darin die Extension <code class="docutils literal"><span class="pre">restructuredtext</span></code> (über den Menüpunkt Anzeigen -&gt; Extensions
 suchen nach rst) installiert werden. Nach einmaligem Neuladen des Editors steht diese zur Verfügung.</p>
 <p>Damit die Live Preview funktioniert muss Python installiert sein.
 Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
-<a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md">Install Sphinx</a></p>
+<a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md">Install Sphinx</a>.
+Um die erforderlichen Tools zu installieren, den Befehl <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">-H</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">utils/requirements.txt</span></code> im
+CometVisu Verzeichnis ausführen.</p>
 <p>Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation öffnen und mit <code class="docutils literal"><span class="pre">Strg+Shift</span> <span class="pre">r</span></code> das Live-Preview Fenster öffnen.
 Änderungen an der RST-Datei, sollten dann mit kurzer Verzögerung automatisch in Preview Fenster zu sehen sein.</p>
 <div class="figure" id="id7">
 <img alt="../_images/visual_studio_live_preview.png" src="../_images/visual_studio_live_preview.png" />
 <p class="caption"><span class="caption-text">Ansicht des Editors mit Live-Preview</span></p>
+</div>
+<div class="toctree-wrapper compound">
 </div>
 </div>
 </div>
