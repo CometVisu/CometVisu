@@ -239,7 +239,8 @@ Live Preview der geschriebenen Dokumentation anzeigen lassen kann.
 
       Einige der verwendeten Tools stehen nur unter Linux zur Verfügung. Das Live Preview steht daher in Visual Studio 
       Code unter Windows derzeit nicht zur Verfügung. Für Windows Anwender wird daher Visual Studio Code in einer 
-      Virtual Machine mit Linux (Ubuntu, Mint, ...) empfohlen.  
+      Virtual Machine mit Linux (Ubuntu, Mint, ...) empfohlen. 
+      Siehe :doc:`VM Einrichten <howto-vm>` für eine detaillierte Vorgehensweise.
 
 Nach Installation des Editors muss darin die Extension ``restructuredtext`` (über den Menüpunkt Anzeigen -> Extensions 
 suchen nach rst) installiert werden. Nach einmaligem Neuladen des Editors steht diese zur Verfügung.
@@ -247,7 +248,9 @@ suchen nach rst) installiert werden. Nach einmaligem Neuladen des Editors steht 
 
 Damit die Live Preview funktioniert muss Python installiert sein.
 Eine Anleitung um die nötigen Vorraussetzungen zu schaffen findet man hier:
-`Install Sphinx <https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md>`__
+`Install Sphinx <https://github.com/vscode-restructuredtext/vscode-restructuredtext/blob/master/docs/sphinx.md>`__. 
+Um die erforderlichen Tools zu installieren, den Befehl ``sudo -H pip install -r utils/requirements.txt`` im 
+CometVisu Verzeichnis ausführen. 
 
 
 Ist alles korrekt eingerichtet, kann man eine RST-Datei aus der Dokumentation öffnen und mit ``Strg+Shift r`` das Live-Preview Fenster öffnen.
