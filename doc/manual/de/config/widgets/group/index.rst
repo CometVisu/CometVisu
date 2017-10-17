@@ -12,12 +12,75 @@ Mit dem Group-Widget können mehrere Widgets mit einem Rahmen gruppiert werden. 
 andererseits kann damit die automatische Anordnung der widgets (zB beim Drehen des Anzeigegerätes vom Hoch- 
 ins Querformat) beeinflusst werden. 
 
-.. figure:: _static/group_simple.png
+.. widget-example::
+    :hide-source: true
+
+    <settings>
+        <screenshot name="group_format">
+            <caption>Beispiel Group Widget</caption>
+        </screenshot>
+    </settings>
+    <group name="Gruppenname">    
+        <text align="left">
+            <layout colspan="3"/>
+            <label>Widget 1</label>
+        </text>
+        <text align="left">
+            <layout colspan="3"/>
+            <label>Widget 2</label>
+        </text>
+    </group>  
 
 Mit dem nowidget Attribut werden die Widget-Rahmen innerhalb der Gruppe unterdrückt. Damit können einzelne Widgets zu einem 
 Bedienelement gruppiert werden zB. mehrere Trigger- und ein Info-Widget zu einem speziellen Info-Trigger.
 
-.. figure:: _static/group_nowidget.png
+.. widget-example::
+    :hide-source: true
+
+    <settings>
+        <screenshot name="group_format">
+            <caption>Beispiel Group Widget mit nowidget="true"</caption>
+            <data address="4/1/43">47</data>
+        </screenshot>
+    </settings>
+    <meta>
+        <mappings>
+            <mapping name="AnAusSymbol">
+                <entry value="0">○</entry>
+                <entry value="1">●</entry>
+            </mapping>
+            <mapping name="AufAbSymbol">
+                <entry value="0">▲</entry>
+                <entry value="1">▼</entry>
+            </mapping>
+        </mappings>
+    </meta>
+    <group name="Jalousiesteuerung">
+        <group nowidget="true">
+            <layout colspan="6"/>
+            <text align="left">
+                <layout colspan="1"/>
+                <label>Küche</label>
+            </text>
+            <trigger value="1" mapping="AufAbSymbol">
+                <layout colspan="1"/>
+                <address transform="DPT:1.008" mode="write">3/0/0</address>
+            </trigger>
+            <trigger value="1" mapping="AnAusSymbol">
+                <layout colspan="1"/>
+                <address transform="DPT:1.001" mode="write">3/0/1</address>
+            </trigger>
+            <trigger value="0" mapping="AufAbSymbol">
+                <layout colspan="1"/>
+                <address transform="DPT:1.008" mode="write">3/0/0</address>
+            </trigger>
+            <info format="%.1f %%">
+                <layout colspan="2"/>
+                <label><icon name="fts_shutter_30"/>Höhe</label>
+                <address transform="DPT:5.001" mode="read">4/1/43</address>
+            </info>
+        </group>
+    </group>
 
 
 Einstellungen
