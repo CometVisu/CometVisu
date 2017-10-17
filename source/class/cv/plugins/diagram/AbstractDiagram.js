@@ -494,39 +494,42 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       // plot diagram initially with empty values
       diagram.empty();
-      var plot = $.plot(diagram, [], options);
-      if( isPopup ) {
-        this.debug("popup plot generated");
-        this.popupplot = plot;
-      }
-      else {
-        this.debug("plot generated");
-        this.plot = plot;
-      }
-      this.plotted = true;
-
-      var that = this;
-      diagram.bind("plotpan", function(event, plot, args) {
-        if (args.dragEnded) {
-          that.loadDiagramData( plot, isPopup, false );
+      qx.bom.AnimationFrame.request(function() {
+        console.log(qx.bom.element.Dimension.getContentSize(diagram[0]));
+        var plot = $.plot(diagram, [], options);
+        if( isPopup ) {
+          this.debug("popup plot generated");
+          this.popupplot = plot;
         }
-      }).bind("plotzoom", function() {
-        that.loadDiagramData( plot, isPopup, false );
-      }).bind("touchended", function() {
-        that.loadDiagramData( plot, isPopup, false );
-      }).bind("tap", function() {
-        var self = this;
-        var container = $(self).closest('.widget_container')[0];
-        if ( !isPopup && container !== undefined) {
-          var actor = $(self).closest('.actor')[0];
-          var path = container.id;
-          if( actor !== undefined && path.length > 0 ) {
-            that.action();
+        else {
+          this.debug("plot generated");
+          this.plot = plot;
+        }
+        this.plotted = true;
+
+        var that = this;
+        diagram.bind("plotpan", function(event, plot, args) {
+          if (args.dragEnded) {
+            that.loadDiagramData( plot, isPopup, false );
           }
-        }
-      });
+        }).bind("plotzoom", function() {
+          that.loadDiagramData( plot, isPopup, false );
+        }).bind("touchended", function() {
+          that.loadDiagramData( plot, isPopup, false );
+        }).bind("tap", function() {
+          var self = this;
+          var container = $(self).closest('.widget_container')[0];
+          if ( !isPopup && container !== undefined) {
+            var actor = $(self).closest('.actor')[0];
+            var path = container.id;
+            if( actor !== undefined && path.length > 0 ) {
+              that.action();
+            }
+          }
+        });
 
-      this.loadDiagramData( plot, isPopup, false );
+        this.loadDiagramData( plot, isPopup, false );
+      }, this);
     },
 
     getSeriesSettings: function(xAxis, isInteractive) {
