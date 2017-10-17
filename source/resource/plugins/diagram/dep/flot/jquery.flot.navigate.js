@@ -1,6 +1,6 @@
 /* Flot plugin for adding the ability to pan and zoom the plot.
 
-Copyright (c) 2007-2013 IOLA and Ole Laursen.
+Copyright (c) 2007-2014 IOLA and Ole Laursen.
 Licensed under the MIT license.
 
 The default behaviour is double click and scrollwheel up/down to zoom in, drag
@@ -161,8 +161,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 
             panTimeout = setTimeout(function () {
                 plot.pan({ left: prevPageX - e.pageX,
-                           top: prevPageY - e.pageY,
-                           dragEnded: false });
+                           top: prevPageY - e.pageY });
                 prevPageX = e.pageX;
                 prevPageY = e.pageY;
                                                     
@@ -178,8 +177,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
                     
             plot.getPlaceholder().css('cursor', prevCursor);
             plot.pan({ left: prevPageX - e.pageX,
-                       top: prevPageY - e.pageY,
-                       dragEnded: true });
+                       top: prevPageY - e.pageY });
         }
         
         function bindEvents(plot, eventHolder) {
