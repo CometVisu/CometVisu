@@ -117,7 +117,7 @@ class WidgetExampleDirective(Directive):
         name = source_path[:-4].replace("/", "_")
 
         # visu_config_parts = self.config_parts.copy()
-        parse_result = parser.parse(source, name)
+        parse_result = parser.parse(source, name, editor)
         # try:
         #     # we need one surrouding element to prevent parse errors
         #     xml = etree.fromstring("<root>%s</root>" % source)
