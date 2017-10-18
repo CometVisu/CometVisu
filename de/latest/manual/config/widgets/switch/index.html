@@ -220,16 +220,9 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 <p>Das Switch Widget fügt der Visualisierung eine Schaltfläche hinzu. Mit
 dieser können z.B. Ein/Aus Schalter realisiert werden.</p>
 <div class="figure align-center">
-<p class="plantuml">
-<img src="../../../_images/plantuml-1a61418267c7b6fe195ac4ac0fb40662046d55e8.png" alt="title Switch
-state An
-state Aus
-An --&gt; Aus : sende off_value bei Klick
-Aus --&gt; An : sende on_value bei Klick" />
-</p>
 </div>
 <div class="figure">
-<img alt="../../../_images/switch.png" src="../../../_images/switch.png" />
+<img alt="config/widgets/switch/_static/switch.png" src="config/widgets/switch/_static/switch.png" />
 </div>
 <p>Es kann über ein <a class="reference internal" href="../../mapping.html#mapping"><span class="std std-ref">Mapping</span></a> eine Ersetzung
 der 0/1 im Switch durch Texte oder Symbole vorgenommen werden (z.B.
@@ -238,16 +231,16 @@ Zur CometVisu gehört die umfangreiche Sammlung an Icons für die
 verschiedensten Zwecke. Weitere Informationen findet man auf der
 Dokumentations-Seite für das <a class="reference internal" href="../../mapping.html#mapping"><span class="std std-ref">Mapping</span></a>.</p>
 <div class="figure">
-<img alt="../../../_images/switch_mapping.png" src="../../../_images/switch_mapping.png" />
+<img alt="config/widgets/switch/_static/switch_mapping.png" src="config/widgets/switch/_static/switch_mapping.png" />
 </div>
 <p>und/oder über ein <a class="reference internal" href="../../styling.html#styling"><span class="std std-ref">Styling</span></a> Farben
 gesetzt werden (z.B. An in rot und Aus in Grün)</p>
 <div class="figure">
-<img alt="../../../_images/switch_styling.png" src="../../../_images/switch_styling.png" />
+<img alt="config/widgets/switch/_static/switch_styling.png" src="config/widgets/switch/_static/switch_styling.png" />
 </div>
 <p>Natürlich kann man auch beides gleichzeitig nutzen:</p>
 <div class="figure">
-<img alt="../../../_images/switch_mapping_styling.png" src="../../../_images/switch_mapping_styling.png" />
+<img alt="config/widgets/switch/_static/switch_mapping_styling.png" src="config/widgets/switch/_static/switch_mapping_styling.png" />
 </div>
 </div>
 <div class="section" id="einstellungen">
@@ -314,11 +307,9 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center">
-<img alt="../../../_images/de_config_widgets_switch_index4.png" src="../../../_images/de_config_widgets_switch_index4.png" />
-</div>
-<div class="figure align-center">
-<img alt="../../../_images/de_config_widgets_switch_index_editor_attributes.png" src="../../../_images/de_config_widgets_switch_index_editor_attributes.png" />
+<div class="figure align-center" id="id2">
+<img alt="config/widgets/switch/_static/de_config_widgets_switch_index_editor_attributes.png" src="config/widgets/switch/_static/de_config_widgets_switch_index_editor_attributes.png" />
+<p class="caption"><span class="caption-text">Attribute im Editor (vereinfachte Ansicht) <a class="footnote-reference" href="#f1" id="id1">[1]</a></span></p>
 </div>
 </div>
 <div class="section" id="erlaubte-kind-elemente-und-deren-attribute">
@@ -518,11 +509,9 @@ daher weg gelassen werden.</p>
 </tr>
 </tbody>
 </table>
-<div class="figure align-center">
-<img alt="../../../_images/de_config_widgets_switch_index5.png" src="../../../_images/de_config_widgets_switch_index5.png" />
-</div>
-<div class="figure align-center">
-<img alt="../../../_images/de_config_widgets_switch_index_editor_elements.png" src="../../../_images/de_config_widgets_switch_index_editor_elements.png" />
+<div class="figure align-center" id="id3">
+<img alt="config/widgets/switch/_static/de_config_widgets_switch_index_editor_elements.png" src="config/widgets/switch/_static/de_config_widgets_switch_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elemente im Editor</span></p>
 </div>
 </div>
 </div>
@@ -536,8 +525,8 @@ der <a class="reference internal" href="../../xml-format.html"><span class="doc"
 werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
 </div>
 <p>Hier der minimale Beispielcode der das switch Widget aus dem folgenden Screenshot erzeugt:</p>
-<div class="figure" id="id1">
-<img alt="Einfacher Switch" src="../../../_images/switch_simple.png" />
+<div class="figure" id="id4">
+<img alt="Einfacher Switch" src="config/widgets/switch/_static/switch_simple.png" />
 <p class="caption"><span class="caption-text">Einfacher Switch</span></p>
 </div>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;switch</span> <span class="na">on_value=</span><span class="s">&quot;1&quot;</span> <span class="na">off_value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
@@ -556,8 +545,8 @@ mitbekommt und den Status falsch anzeigt.</p>
 <h2>XML Syntax komplett<a class="headerlink" href="#xml-syntax-komplett" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Hier der Beispielcode der das switch Widget mit den allen gezeigten
 Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:</p>
-<div class="figure" id="id2">
-<img alt="Switch mit mapping + styling" src="../../../_images/switch_complete1.png" />
+<div class="figure" id="id5">
+<img alt="Switch mit mapping + styling" src="config/widgets/switch/_static/switch_complete.png" />
 <p class="caption"><span class="caption-text">Switch mit mapping + styling</span></p>
 </div>
 <div class="highlight-xml"><div class="highlight"><pre><span></span>...
@@ -587,7 +576,7 @@ Eigenschaften einfügt, inkl. der benutzten Mappings / Stylings:</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>In der vereinfachten Ansicht sind ggf. einige Dinge ausgeblendet. In der Expertenansicht ist alles zu sehen.</td></tr>
 </tbody>
 </table>
 </div>

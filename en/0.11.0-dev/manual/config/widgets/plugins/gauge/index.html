@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The gauge plugin &mdash; CometVisu</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../../../_static/theme_override.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../search.html"/>
+    <link rel="top" title="CometVisu" href="../../../../index.html"/>
+        <link rel="up" title="Operatable widgets" href="../../index.html"/>
+        <link rel="next" title="The link plugin" href="../link/index.html"/>
+        <link rel="prev" title="The diagram plugin" href="../diagram/index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> CometVisu
+          
+
+          
+            
+            <img src="../../../../_static/comet_webapp_icon_android_48.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.11.0-dev
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Operatable widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html#informative-widgets">Informative widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html#other-widgets">Other widgets</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html#widgets-that-can-be-included-as-plugin">Widgets that can be included as plugin</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../diagram/index.html">The diagram plugin</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The gauge plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#settings">Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#allowed-attributes-in-the-gauge-element">Allowed attributes in the gauge-element</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#allowed-child-elements-und-their-attributes">Allowed child-elements und their attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../link/index.html">The link plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../openweathermap/index.html">The openweathermap plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../powerspectrum/index.html">The powerspectrum plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rss/index.html">The rss plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../speech/index.html">The Speech plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../strftime/index.html">The strftime plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../timeout/index.html">The timeout plugin</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">CometVisu</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Operatable widgets</a> &raquo;</li>
+        
+      <li>The gauge plugin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p>This is the documentation for the current development branch of the CometVisu.
+It is possible that some of the described features are not yet available in the current release.</p>
+<p class="last">Also there might be lots of errors in this documentation as some parts of the content have been translated
+by an online translation service.</p>
+</div>
+<div class="section" id="the-gauge-plugin">
+<span id="gauge"></span><h1>The gauge plugin<a class="headerlink" href="#the-gauge-plugin" title="Permalink to this headline">¶</a></h1>
+<div class="line"><div class="line-block">
+<div class="line"><strong>Available since version</strong>: 0.8.1</div>
+<div class="line"><strong>Author</strong>: NetFritz [NetFritz at gmx dot de]</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This plugins integrates Gauge (in canvas) into the visualization</p>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p>For a general understanding of how the configuration files are structured and what elements and attributes are
+it is recommended to read this section first: <span class="xref std std-ref">visu-config-details</span>.</p>
+<p>The behaviour and appearance of the gauge plugins can be influenced by using certain attributes and elements.
+The following tables show the allowed attributes and elements and their possible values.
+The screenshots show, how both can be edited in the <span class="xref std std-ref">editor</span>.</p>
+<p>Attributes underlined by ..... are mandatory, all the others are optional and be omitted.</p>
+<div class="section" id="allowed-attributes-in-the-gauge-element">
+<h3>Allowed attributes in the gauge-element<a class="headerlink" href="#allowed-attributes-in-the-gauge-element" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="15%" />
+<col width="20%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">&nbsp;</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="23">gauge</td>
+<td>type</td>
+<td><em>Radial</em>, <em>RadialBargraph</em>, <em>RadialVertical</em>, <em>Linear</em>, <em>LinearBargraph</em>, <em>DisplaySingle</em>, <em>DisplayMulti</em>, <em>Level</em>, <em>Compass</em>, <em>WindDirection</em>, <em>Horizon</em>, <em>Led</em>, <em>Clock</em>, <em>Battery</em>, <em>StopWatch</em>, <em>Altimeter</em>, <em>TrafficLight</em>, <em>LightBulb</em> or <em>Odometer</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>subtype</td>
+<td><em>type1</em>, <em>type2</em>, <em>type3</em>, <em>type4</em> or <em>type5</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>titleString</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>unitString</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>unitStringVisible</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>minValue</td>
+<td>decimal</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>maxValue</td>
+<td>decimal</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>size</td>
+<td>decimal</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>threshold</td>
+<td>decimal</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>thresholdRising</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>ledVisible</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>lcdVisible</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>trendVisible</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>autoScroll</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>valuesNumeric</td>
+<td><em>true</em> or <em>false</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>lcdDecimals</td>
+<td>number &gt; 0</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>background</td>
+<td><em>DARK_GRAY</em>, <em>SATIN_GRAY</em>, <em>LIGHT_GRAY</em>, <em>WHITE</em>, <em>BLACK</em>, <em>BEIGE</em>, <em>BROWN</em>, <em>RED</em>, <em>GREEN</em>, <em>BLUE</em>, <em>ANTHRACITE</em>, <em>MUD</em>, <em>PUNCHED_SHEET</em>, <em>CARBON</em>, <em>STAINLESS</em>, <em>BRUSHED_METAL</em>, <em>BRUSHED_STAINLESS</em> or <em>TURNED</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>framedesign</td>
+<td><em>BLACK_METAL</em>, <em>METAL</em>, <em>SHINY_METAL</em>, <em>BRASS</em>, <em>STEEL</em>, <em>CHROME</em>, <em>GOLD</em>, <em>ANTHRACITE</em>, <em>TILTED_GRAY</em>, <em>TILTED_BLACK</em> or <em>GLOSSY_METAL</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>width</td>
+<td>dimenstion (number+unit)</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>height</td>
+<td>dimenstion (number+unit)</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>valueColor</td>
+<td><em>RED</em>, <em>GREEN</em>, <em>BLUE</em>, <em>ORANGE</em>, <em>YELLOW</em>, <em>CYAN</em>, <em>MAGENTA</em>, <em>WHITE</em>, <em>GRAY</em>, <em>BLACK</em>, <em>RAITH</em>, <em>GREEN_LCD</em> or <em>JUG_GREEN</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>mapping</td>
+<td>string</td>
+<td>Map the bus value to a different value for displaying.</td>
+</tr>
+<tr class="row-odd"><td>target</td>
+<td>string</td>
+<td>The name of the page, that should be called.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="allowed-child-elements-und-their-attributes">
+<h3>Allowed child-elements und their attributes<a class="headerlink" href="#allowed-child-elements-und-their-attributes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="8"><dl class="first last docutils">
+<dt>gauge</dt>
+<dd><ul class="first last simple">
+<li>layout</li>
+</ul>
+</dd>
+</dl>
+</td>
+<td>colspan</td>
+<td>decimal</td>
+<td>Amount of coloumns this widget sould be wide.</td>
+</tr>
+<tr class="row-even"><td>colspan-m</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a medium screen.</td>
+</tr>
+<tr class="row-odd"><td>colspan-s</td>
+<td>decimal</td>
+<td>Overrules the amount of coloumns on a small screen.</td>
+</tr>
+<tr class="row-even"><td>rowspan</td>
+<td>decimal</td>
+<td>Amount of rows this widget should be high.</td>
+</tr>
+<tr class="row-odd"><td>x</td>
+<td>string</td>
+<td>Horizontal position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-even"><td>y</td>
+<td>string</td>
+<td>Vertical position of the widget for 2D pages.</td>
+</tr>
+<tr class="row-odd"><td>z</td>
+<td>string</td>
+<td>Reserved for future use.</td>
+</tr>
+<tr class="row-even"><td>width</td>
+<td>string</td>
+<td>Width for the widget for 2D pages.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="6"><dl class="first last docutils">
+<dt>gauge</dt>
+<dd><ul class="first simple">
+<li>label</li>
+</ul>
+<blockquote class="last">
+<div><ul class="simple">
+<li>icon</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">name</abbr></td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>flavour</td>
+<td>string</td>
+<td>Selection of a display variant. See also <span class="xref std std-ref">flavour</span>.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>styling</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>class</td>
+<td>string</td>
+<td>Add this value to the CSS class so that it can be formated by a user provided style sheet.</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>gauge</dt>
+<dd><ul class="first simple">
+<li>label</li>
+</ul>
+<blockquote class="last">
+<div><ul class="simple">
+<li>#text</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</td>
+<td>&nbsp;</td>
+<td>string</td>
+<td>Text to display a label for the widget.</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="schema-table docutils">
+<colgroup>
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Element</th>
+<th class="head" colspan="4">Attribute</th>
+</tr>
+<tr class="row-even"><th class="head">Structure</th>
+<th class="head">Name</th>
+<th class="head">Content</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td rowspan="4"><dl class="first last docutils">
+<dt>gauge</dt>
+<dd><ul class="first last simple">
+<li><abbr title="mandatory">address</abbr></li>
+</ul>
+</dd>
+</dl>
+</td>
+<td><abbr title="mandatory">transform</abbr></td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>mode</td>
+<td><em>disable</em>, <em>read</em>, <em>write</em> or <em>readwrite</em></td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>variant</td>
+<td>string</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>format-pos</td>
+<td>decimal</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>gauge</dt>
+<dd><ul class="first simple">
+<li>address</li>
+</ul>
+<blockquote class="last">
+<div><ul class="simple">
+<li>#text</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</td>
+<td>&nbsp;</td>
+<td>string</td>
+<td>The GA (like: 12/0/7) for KNX-backends or the item name for openHAB-backend</td>
+</tr>
+</tbody>
+</table>
+<div class="figure align-center" id="id1">
+<img alt="config/widgets/plugins/gauge/_static/en_config_widgets_plugins_gauge_index_editor_elements.png" src="config/widgets/plugins/gauge/_static/en_config_widgets_plugins_gauge_index_editor_elements.png" />
+<p class="caption"><span class="caption-text">Elements in the editor</span></p>
+</div>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to manually edit the <span class="xref doc">visu_config.xml</span> and add an entry
+for the gauge plugin.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">Make sure that you only use UTF-8 encoded characters by settings the encoding in your
+XML-editor to UTF-8 mode!</p>
+</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>The simple view might not show everything. To see all elements/attributes use the expert view.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../link/index.html" class="btn btn-neutral float-right" title="The link plugin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../diagram/index.html" class="btn btn-neutral" title="The diagram plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2010-2017 Christian Mayer and the CometVisu contributers.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Version</span>
+      v: 0.11.0-dev
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>Versions</dt>
+        
+          <dd><a href="../../../../../../0.10.0/manual/index.html">0.10.0</a></dd>
+        
+          <dd><a href="../../../../../../0.10.2/manual/index.html">0.10.2</a></dd>
+        
+          <dd><a href="../../../../../../latest/manual/index.html">latest</a></dd>
+        
+      </dl>
+      
+    </div>
+  </div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
