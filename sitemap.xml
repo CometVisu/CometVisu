@@ -461,6 +461,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/size-attributes.html</loc>
+    <lastmod>2017-10-18</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/hydraulik.html</loc>
     <lastmod>2017-10-18</lastmod>
     <priority>0.5</priority>
@@ -482,6 +487,11 @@
   </url>
   <url>
     <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/mapping.html</loc>
+    <lastmod>2017-10-18</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/layout.html</loc>
     <lastmod>2017-10-18</lastmod>
     <priority>0.5</priority>
   </url>
