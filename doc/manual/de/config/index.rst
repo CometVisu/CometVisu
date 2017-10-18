@@ -115,6 +115,30 @@ Die verfügbaren Designs
     Weitere Beispielseiten für die anderen Designs
 
 
+Grundlegende Elemente zum Gestalten des Layouts
+-----------------------------------------------
+
+In der CometVisu kann die Größe und Anordnung der Widgets mit dem Kind-Element ``Layout`` gesteuert werden. 
+Damit kann ein "Responsive Design" realisiert werden, dass sich an die Displaygröße des Endgerätes anpasst, vom dem 
+aus die CometVisu betrachtet wird. Dies erfolgt nicht nur zum Zeitpunkt des URL-Aufrufes, sondern dynamisch 
+zB. auch beim Drehen des Endgerätes vom Quer- ins Hochformat bzw. beim Ändern der Fenstergröße am PC.   
+
+Innerhalb der Widgets stehen noch verschiedene Attribute wie ``width``, ``height``, etc. zur Verfügung. Damit kann
+die Größe des Widgetinhaltes (zB. Bild- und Diagrammgröße, etc.) gesteuert werden.
+
+Detaillierte Beschreibungen zur Formatierung der Widgetgrößen- und -inhalte:
+
+.. toctree::
+    :hidden:
+
+    layout
+    size-attributes
+ 
+-  :doc:`Layout <layout>` legt die Größe und Anordnung der Widgets fest 
+-  :doc:`Width und Height <size-attributes>` beeinflusst die Größe des Widgetinhaltes
+
+
+
 Elemente für Konvertierung und Formatierung in der CometVisu
 ------------------------------------------------------------
 
