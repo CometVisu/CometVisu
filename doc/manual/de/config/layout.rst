@@ -14,9 +14,9 @@ Einleitung
 
 Jedes Page-Element (=Seite der Visualisierung) wird grundsätzlich in 12 Spalten aufgeteilt. Das gilt auch bei 
 Verwendung eines Navbars auf der linken oder rechten Seite. Das Page-Element nimmt in diesem Fall zwar einen 
-schmäleren Bereich am Bildschirm ein, hat aber dennoch 12 Spalten. 
+schmaleren Bereich am Bildschirm ein, hat aber dennoch 12 Spalten. 
 
-Das wichtigste Element zur Beeinflussung des Gesamtlayouts ist das Kind-Element layout, das in allen 
+Das wichtigste Element zur Beeinflussung des Gesamtlayouts ist das Kind-Element ``layout``, das in allen 
 sichtbaren Widgets zur Verfügung steht. Nachstehend sind am Beispiel des Line-Widgets alle Attribute aufgelistet, 
 die in den nächsten Abschnitten genauer erklärt werden:
 
@@ -48,7 +48,7 @@ soll.
 
 .. IMPORTANT::
 
-      Ob ein Display als normal, medium oder small erkannt wird, hängt nicht von der physiklischen Auflösung des Displays
+      Ob ein Display als normal, medium oder small erkannt wird, hängt nicht von der physikalischen Auflösung des Displays
       ab,sondern von der Viewport Größe, die für jedes Gerät auf Basis der Displaygröße (Bildschirmdiagonale) definiert 
       ist. Eine Übersicht liefert zB. `<viewportsizes.com>`__
 
@@ -93,9 +93,9 @@ Nachfolgend wird ein Beispiel gezeigt, bei dem die Widgets auf 3 Displaygrößen
 Das Attribut rowspan
 ^^^^^^^^^^^^^^^^^^^^
 
-Mit rowspan wird die Anzahl der Zeilen festgelegt, die ein Widget einnimmt. Derzeit sind nur ganzzahlige Angaben für
-rowspan erlaubt. Für die meisten Widgets ist die Angabe von rowspan nicht erforderlich, da der default-Wert ``rowspan="1"`` 
-ausreichend ist.
+Mit ``rowspan`` wird die Anzahl der Zeilen festgelegt, die ein Widget einnimmt. Derzeit sind nur ganzzahlige Angaben für
+``rowspan`` erlaubt. Für die meisten Widgets ist die Angabe von ``rowspan`` nicht erforderlich, da der default-Wert 
+``rowspan="1"`` ausreichend ist.
 
 Notwendig bzw. sinnvoll kann die Angabe bei folgenden Widgets sein:
 
@@ -112,8 +112,8 @@ Widgets auf der linken Seite.
     
    Image-Widget mit rowspan="5"  
 
-Da die Widget-Anordnung nacheinander in Reihen erfolgt, können bei Anwendung von unterschiedlichen Werten für rowspan
-leere Bereiche entstehen. 
+Da die Widget-Anordnung nacheinander in Reihen erfolgt, können bei Anwendung von unterschiedlichen Werten für 
+``rowspan`` leere Bereiche entstehen. 
 
 .. figure:: _static/Layout_rowspan.png
     
