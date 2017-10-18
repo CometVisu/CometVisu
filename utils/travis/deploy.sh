@@ -87,7 +87,8 @@ git config user.email "$COMMIT_AUTHOR_EMAIL"
 # as the changesets on master are too big we skip this check to prevent timeouts
 if [ "$TRAVIS_BRANCH" != "master" ]; then
     echo "checking diff"
-    if [ -z `git diff --exit-code` ]; then
+    git diff --exit-code > /dev/null
+    if [ $? -eq 0 ]; then
         echo "No changes to the output on this push; exiting."
         exit 0
     fi
