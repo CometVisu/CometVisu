@@ -37,6 +37,10 @@ qx.Class.define('cv.io.Client', {
    CONSTRUCTOR
    ******************************************************
    */
+  /**
+   * @param backendName {String} name of the backend
+   * @param backendUrl {String} URL of the login resource
+   */
   construct: function(backendName, backendUrl) {
     this.base(arguments);
     cv.io.Client.CLIENTS.push(this);

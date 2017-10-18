@@ -54,7 +54,9 @@ script:
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
 before_deploy:
 - grunt release-cv
-- CLIENT_CHANGES=`git reflog --after='48 hours' client/ | wc -l`
+- ls -la
+- git reflog --after='24 hours' client/
+- CLIENT_CHANGES=`git reflog --after='24 hours' client/ | wc -l`
 - echo "$CLIENT_CHANGES client changes"
 - if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
 deploy:
