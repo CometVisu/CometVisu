@@ -115,7 +115,7 @@ body br
 .widget
 {
   margin: -1px 0 0 -1px;
-  padding: 0.3em;
+  padding: 6px;
   border-color: #666;
   border-style: solid;
   border-width: 1px;
@@ -325,13 +325,14 @@ body br
 	margin-left:0;
 	margin-right: 0;
 	float: left;
+    padding: 0;
 }
-.group  
-.pagejump  .switchUnpressed div, .group .pagejump  .switchPressed div {
+.group .pagejump .switchUnpressed div, .group .pagejump .switchPressed div {
 	width: auto;
 	text-align: left;
 	margin-left: 0.3em;
     line-height: 2em;
+    padding: 0;
 }
 
 .group.widget {
