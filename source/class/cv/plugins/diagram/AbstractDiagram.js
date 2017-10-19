@@ -195,6 +195,9 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         this.cache[ key ].waitingCallbacks.push( [ callback, callbackParameter ] );
 
         if( this.cache[ key ].waitingCallbacks.length === 1 ) {
+          if (this.cache[ key ].xhr) {
+            this.cache[ key ].xhr.dispose();
+          }
           var xhr = new qx.io.request.Xhr(url);
           xhr.set({
             accept: "application/json"
@@ -216,6 +219,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
               waitingCallback[0](this.cache[key].data, waitingCallback[1]);
             }, this);
             this.cache[key].waitingCallbacks.length = 0; // empty array)
+            rrddata = null;
           }, this);
 
           this.cache[ key ].xhr = xhr;
@@ -633,6 +637,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
             plot.setData(fulldata);
             plot.setupGrid();
             plot.draw();
+
+            loadedData = [];
           }
 
         }.bind(this));
