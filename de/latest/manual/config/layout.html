@@ -105,7 +105,8 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Funktionen zur Steuerung des Layouts</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#einleitung">Einleitung</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#das-attribut-colspan">Das Attribut colspan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#das-attribut-rowspan">Das Attribut rowspan</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="size-attributes.html">Ändern der Größe von Widget-Inhalten</a></li>
@@ -191,8 +192,6 @@ mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <div class="section" id="funktionen-zur-steuerung-des-layouts">
 <span id="layout"></span><h1>Funktionen zur Steuerung des Layouts<a class="headerlink" href="#funktionen-zur-steuerung-des-layouts" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="section" id="einleitung">
-<h2>Einleitung<a class="headerlink" href="#einleitung" title="Link zu dieser Überschrift">¶</a></h2>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Zu tun</p>
 <ul class="last simple">
@@ -266,7 +265,7 @@ die in den nächsten Abschnitten genauer erklärt werden:</p>
 </tbody>
 </table>
 <div class="section" id="das-attribut-colspan">
-<h3>Das Attribut colspan<a class="headerlink" href="#das-attribut-colspan" title="Link zu dieser Überschrift">¶</a></h3>
+<h2>Das Attribut colspan<a class="headerlink" href="#das-attribut-colspan" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Mit colspan wird festgelegt, wie viele Spalten das Widget auf einem großen Display einnehmen soll. Der Defaultwert
 ist <code class="docutils literal"><span class="pre">colspan=&quot;6&quot;</span></code>, wenn keine Angabe erfolgt. Dies legt die Widgetbreite auf die Hälfte der Page-Größe fest.
 Somit passen 2 Widgets nebeneinander, erst dann wird die nächste Reihe mit dem nächsten Widget begonnen.</p>
@@ -322,7 +321,7 @@ ist. Eine Übersicht liefert zB. <a class="reference external" href="viewportsiz
 </div>
 </div>
 <div class="section" id="das-attribut-rowspan">
-<h3>Das Attribut rowspan<a class="headerlink" href="#das-attribut-rowspan" title="Link zu dieser Überschrift">¶</a></h3>
+<h2>Das Attribut rowspan<a class="headerlink" href="#das-attribut-rowspan" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Mit <code class="docutils literal"><span class="pre">rowspan</span></code> wird die Anzahl der Zeilen festgelegt, die ein Widget einnimmt. Derzeit sind nur ganzzahlige Angaben für
 <code class="docutils literal"><span class="pre">rowspan</span></code> erlaubt. Für die meisten Widgets ist die Angabe von <code class="docutils literal"><span class="pre">rowspan</span></code> nicht erforderlich, da der default-Wert
 <code class="docutils literal"><span class="pre">rowspan=&quot;1&quot;</span></code> ausreichend ist.</p>
@@ -372,7 +371,6 @@ Widgets auf der linken Seite.</p>
     <span class="nt">&lt;label&gt;</span>Colspan 6, Rowspan 3<span class="nt">&lt;/label&gt;</span>
 <span class="nt">&lt;/text&gt;</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
