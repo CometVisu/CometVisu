@@ -167,7 +167,7 @@ also z.B.:
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`Diagram <plugins/diagram/index>`                   | RRD-basierte Diagramme                                              |
 +----------------------------------------------------------+---------------------------------------------------------------------+
-| :doc:`Diagram_Info <plugins/diagram_info/index>`        | Informations-Anzeige, die beim Klick ein Diagramm öffnet            |
+| :doc:`Diagram_Info <plugins/diagram_info/index>`         | Informations-Anzeige, die beim Klick ein Diagramm öffnet            |
 +----------------------------------------------------------+---------------------------------------------------------------------+
 | :doc:`PowerSpectrum <plugins/powerspectrum/index>`       | Darstellung des Strom-Spektrums                                     |
 +----------------------------------------------------------+---------------------------------------------------------------------+
