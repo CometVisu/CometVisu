@@ -57,7 +57,7 @@ CometVisu/0.8.x/widgets/break/de/|de/latest/manual/config/widgets/break/index.ht
 CometVisu/0.8.x/widgets/colorchooser/de/|de/latest/manual/config/widgets/plugins/colorchooser/index.html
 CometVisu/0.8.x/widgets/de|de/latest/manual/config/widgets/index.html
 CometVisu/0.8.x/widgets/designtoggle/de/|de/latest/manual/config/widgets/designtoggle/index.html
-CometVisu/0.8.x/widgets/diagramm_info/de/|de/latest/manual/config/widgets/plugins/diagram_info/indext.html
+CometVisu/0.8.x/widgets/diagramm_info/de/|de/latest/manual/config/widgets/plugins/diagram_info/index.html
 CometVisu/0.8.x/widgets/gauge/de/|de/latest/manual/config/widgets/plugins/gauge/index.html
 CometVisu/0.8.x/widgets/image/de/|de/latest/manual/config/widgets/image/index.html
 CometVisu/0.8.x/widgets/imagetrigger/de/|de/latest/manual/config/widgets/imagetrigger/index.html
@@ -126,9 +126,9 @@ CometVisu/Widget/ColorChooser/de|de/latest/manual/config/widgets/plugins/colorch
 CometVisu/Widget/ColorChooser/en|
 CometVisu/Widget/Iframe/de|de/latest/manual/config/widgets/web/index.html
 CometVisu/Widget/Iframe/en|
-CometVisu/Widget/diagram_inline/de|de/latest/manual/config/widgets/plugins/diagram_info/indext.html
+CometVisu/Widget/diagram_inline/de|de/latest/manual/config/widgets/plugins/diagram/index.html
 CometVisu/Widget/diagram_inline/en|
-CometVisu/Widget/diagram_popup/de|de/latest/manual/config/widgets/plugins/diagram_info/indext.html
+CometVisu/Widget/diagram_popup/de|de/latest/manual/config/widgets/plugins/diagram/index.html
 CometVisu/Widget/diagram_popup/en|
 CometVisu/Widget/image/de|de/latest/manual/config/widgets/image/index.html
 CometVisu/Widget/image/en|

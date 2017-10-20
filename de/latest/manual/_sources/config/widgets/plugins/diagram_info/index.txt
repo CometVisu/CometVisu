@@ -1,6 +1,4 @@
 .. replaces:: CometVisu/0.8.x/widgets/diagramm_info/de/
-    CometVisu/Widget/diagram_inline/de
-    CometVisu/Widget/diagram_popup/de
 
 .. _diagram_info:
 
@@ -12,7 +10,6 @@ Das Diagramm_Info Plugin
 .. TODO::
 
     Inhalt übertragen + openHAB Ergänzungen
-    Link auf RRD
 
 Beschreibung
 ------------

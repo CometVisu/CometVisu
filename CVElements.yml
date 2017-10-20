@@ -24,6 +24,8 @@
 - "description":
     "de": "Informations-Anzeige, die beim Klick ein Diagramm öffnet"
     "en": "Information display that opens a graph when you click on it."
+  "manual":
+    "de": "/de/latest/manual/config/widgets/plugins/diagram_info/index.html"
   "name": "Diagram_Info"
 - "description":
     "de": "Zeigerinstrument"
