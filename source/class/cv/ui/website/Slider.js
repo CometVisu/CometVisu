@@ -81,8 +81,6 @@ qx.Class.define('cv.ui.website.Slider', {
         knob.setStyle("width", (pos+paddingLeft)+"px");
         knob.setStyle("marginLeft", paddingLeft*-1+"px");
       }, this);
-      qx.event.Registration.addListener(this.getParents()[0], "pointerup", this._onSliderPointerUp, this);
-      this.off("pointerup", this._onSliderPointerUp, this);
     },
 
     // overridden
@@ -121,11 +119,6 @@ qx.Class.define('cv.ui.website.Slider', {
 
     isInPointerMove: function() {
       return this.__pointerMoveEvent === true;
-    },
-
-    dispose: function() {
-      qx.event.Registration.removeListener(this.getParents()[0], "pointerup", this._onSliderPointerUp, this);
-      this.base(arguments);
     }
   }
 });
