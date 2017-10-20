@@ -1930,7 +1930,7 @@
         <xsd:attribute name="yaxis" type="xsd:string" >
           <xsd:annotation>
             <xsd:documentation xml:lang="en">Assigns the rrd-data to a y-axis</xsd:documentation>
-            <xsd:documentation xml:lang="de">Weißt die Daten einer y-Achse zu</xsd:documentation>
+            <xsd:documentation xml:lang="de">Weist die Daten einer y-Achse zu</xsd:documentation>
             </xsd:annotation>
           </xsd:attribute>
         <xsd:attribute name="color" type="xsd:string" >

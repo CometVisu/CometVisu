@@ -15,11 +15,11 @@ Attribute wie zB. ``width`` und ``height`` zur Beeinflussung des Inhaltes zur Ve
 -  :doc:`RSS <widgets/plugins/rss/index>`
 -  :doc:`Gauge <widgets/plugins/gauge/index>`
 
-Grundsätzlich wird empfohlen, zu Beginn ohne diesen Attributen zu beginnen, da in den meisten Fällen die Größe des 
+Grundsätzlich wird empfohlen, zu Beginn ohne diese Attribute zu beginnen, da in den meisten Fällen die Größe des 
 Inhaltes automatisch an die Widgetgröße angepasst wird.  Trotzdem kann es in einigen Fällen sinnvoll sein, zusätzlich
 das ``width`` oder ``height`` Attribut zu verwenden.
 
-Die Angabe erfolgt im CSS-Format und kann dabei in Pixel), Prozent oder relativ zur Schriftgröße erfolgen. 
+Die Angabe erfolgt im CSS-Format und kann dabei in Pixel, Prozent oder relativ zur Schriftgröße erfolgen. 
 
 
 Größenangaben in Pixel

@@ -17,8 +17,8 @@ Das Diagram Plugin
 Beschreibung
 ------------
 
-Das Diagram-Plugin biete die Möglichkeit zeitliche Verläufe von Messwerten etc. zu visualisieren. Die Datenquelle 
-muss im rrd-Format vorliegen. Genaueres dazu im Abschnitt RRD-Einführung & Beispiele.
+Das Diagram-Plugin bietet die Möglichkeit den zeitlichen Verlauf von Messwerten etc. zu visualisieren. Die Datenquelle 
+muss im rrd-Format vorliegen. Genaueres dazu im Abschnitt :ref:`RRD-Einführung & Beispiele <rrd_introduction>`.
 
 Das Diagramm wird standardmäßig im Inline-Modus als Widget dargestellt. Zusätzlich kann die Option Popup 
 aktiviert werden, so dass das Diagramm nach dem Anklicken im Vollbildmodus erscheint. Je nach Widgetgröße kann

@@ -18,8 +18,8 @@ Beschreibung
 ------------
 
 Das Diagram-Plugin biete die Möglichkeit als Widget einen aktuellen Wert anzuzeigen, der beim Anklicken
-ein Popup-Diagramm öffnet, dass den zeitlichen Verläufe des Wertes visualisiert. Die Datenquelle 
-muss im rrd-Format vorliegen. Genaueres dazu im Abschnitt RRD-Einführung & Beispiele.
+ein Popup-Diagramm öffnet, dass den zeitlichen Verlauf des Wertes visualisiert. Die Datenquelle 
+muss im rrd-Format vorliegen. Genaueres dazu im Abschnitt :ref:`RRD-Einführung & Beispiele <rrd_introduction>`.
 
 Soll das Diagramm selbst als Widget angezeigt werdeb, muss das ``diagram``-Plugin verwendet werden.
 Genauere Informationen dazu unter :ref:`diagram`.
