@@ -202,32 +202,32 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           xhr.set({
             accept: "application/json"
           });
-          xhr.addListener("success", function( ev ) {
-            var rrddata = ev.getTarget().getResponse();
-            if (rrddata !== null) {
-              // calculate timestamp offset and scaling
-              var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
-              for (var j = 0; j < rrddata.length; j++) {
-                rrddata[j][0] = rrddata[j][0] + millisOffset;
-                rrddata[j][1] = parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling;
-              }
-            }
-            this.cache[key].data = rrddata;
-            this.cache[key].timestamp = Date.now();
-
-            this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
-              waitingCallback[0](this.cache[key].data, waitingCallback[1]);
-            }, this);
-            this.cache[key].waitingCallbacks.length = 0; // empty array)
-            rrddata = null;
-          }, this);
-
+          xhr.addListener("success", qx.lang.Function.curry(this._onSuccess, rrd, key), this);
           this.cache[ key ].xhr = xhr;
           xhr.send();
         }
       } else {
         callback( this.cache[key].data, callbackParameter );
       }
+    },
+
+    _onSuccess: function(rrd, key, ev) {
+      var rrddata = ev.getTarget().getResponse();
+      if (rrddata !== null) {
+        // calculate timestamp offset and scaling
+        var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
+        for (var j = 0; j < rrddata.length; j++) {
+          rrddata[j][0] = rrddata[j][0] + millisOffset;
+          rrddata[j][1] = parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling;
+        }
+      }
+      this.cache[key].data = rrddata;
+      this.cache[key].timestamp = Date.now();
+
+      this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
+        waitingCallback[0](rrddata, waitingCallback[1]);
+      }, this);
+      this.cache[key].waitingCallbacks.length = 0; // empty array)
     }
   },
 
