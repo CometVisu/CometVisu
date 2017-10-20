@@ -25,9 +25,9 @@ aktiviert werden, so dass das Diagramm nach dem Anklicken im Vollbildmodus ersch
 für die Inline Ansicht festgelegt werden ob Legende bzw. Achsenbeschriftungen angezeigt werden sollen.
 
 
-.. figure:: _static/Diagram_simple_inline.png
+.. figure:: _static/Diagram_simple_inline2.png
     
-   Diagramm als Widget (Inline-Diagramm) mit 5 Datenreihen
+   Diagramm als Widget (Inline-Diagramm) mit 5 Datenreihen und rechts unten als kleine Voransicht
 
 .. figure:: _static/Diagram_simple_popup.png
     
