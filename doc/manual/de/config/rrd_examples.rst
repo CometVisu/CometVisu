@@ -1,5 +1,7 @@
 .. replaces:: CometVisu/0.8.x/etc/rrd/de/
 
+.. _rrd_introduction:
+
 RRD Einführung & Beispiele
 ==========================
 
