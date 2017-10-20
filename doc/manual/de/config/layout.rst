@@ -4,8 +4,6 @@
 Funktionen zur Steuerung des Layouts
 ====================================
 
-Einleitung
-----------
 
 .. TODO::
 
@@ -23,7 +21,7 @@ die in den nächsten Abschnitten genauer erklärt werden:
 .. elements-information:: line
 
 Das Attribut colspan
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 Mit colspan wird festgelegt, wie viele Spalten das Widget auf einem großen Display einnehmen soll. Der Defaultwert
 ist ``colspan="6"``, wenn keine Angabe erfolgt. Dies legt die Widgetbreite auf die Hälfte der Page-Größe fest. 
@@ -91,7 +89,7 @@ Nachfolgend wird ein Beispiel gezeigt, bei dem die Widgets auf 3 Displaygrößen
 
 
 Das Attribut rowspan
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 Mit ``rowspan`` wird die Anzahl der Zeilen festgelegt, die ein Widget einnimmt. Derzeit sind nur ganzzahlige Angaben für
 ``rowspan`` erlaubt. Für die meisten Widgets ist die Angabe von ``rowspan`` nicht erforderlich, da der default-Wert 
