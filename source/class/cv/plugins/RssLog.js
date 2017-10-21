@@ -122,6 +122,9 @@ qx.Class.define('cv.plugins.RssLog', {
         datetime:   {
           "default": true,
           transform: function(value) {
+            if (typeof value === 'boolean') {
+              return value;
+            }
             return value === "true";
           }
         },
@@ -196,7 +199,7 @@ qx.Class.define('cv.plugins.RssLog', {
       if (!this.$$domReady) {
         this.base(arguments);
         qx.event.message.Bus.subscribe("path." + this.getParentPage().getPath() + ".beforePageChange", this.refreshRSSlog, this);
-        this.__html = '<span class="mappedValue" /><span>{text}</span>';
+        this.__html = '<span class="mappedValue"></span><span>{text}</span>';
         if (this.getDatetime()) {
           this.__html = '{date}: ' + this.__html;
         }
@@ -495,7 +498,7 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _onTap: function(ev) {
-      var item = ev.getTarget();
+      var item = ev.getCurrentTarget();
 
       var id = qx.bom.element.Dataset.get(item, 'id');
       var mapping = qx.bom.element.Dataset.get(item, 'mapping');
