@@ -37,6 +37,10 @@ qx.Mixin.define("cv.ui.common.Operate", {
      * @param event {Event} tap event
      */
     action: function (event) {
+      if (this._skipNextEvent === event.getType()) {
+        this._skipNextEvent = null;
+        return;
+      }
       if (this._action) {
         this._action(event);
       } else {
