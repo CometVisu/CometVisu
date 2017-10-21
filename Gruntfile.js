@@ -1,5 +1,4 @@
 // requires
-var qx = require("./external/qooxdoo/tool/grunt");
 var path = require('path');
 var fs = require('fs');
 
@@ -91,57 +90,6 @@ module.exports = function(grunt) {
     ];
 
   var config = {
-
-    generator_config: {
-      let: {
-      }
-    },
-
-    common: {
-      "APPLICATION" : "cv",
-      "QOOXDOO_PATH" : "./external/qooxdoo",
-      "LOCALES": ["en", "de"],
-      "QXTHEME": "cv.theme.Theme"
-    },
-
-    'http-server': {
- 
-        'dev': {
- 
-            // the server root directory 
-            root: ".",
- 
-            // the server port 
-            // can also be written as a function, e.g. 
-            // port: function() { return 8282; } 
-            port: 9999,
- 
-            // the host ip address 
-            // If specified to, for example, "127.0.0.1" the server will 
-            // only be available on that ip. 
-            // Specify "0.0.0.0" to be available everywhere 
-            host: "127.0.0.1",
- 
-            showDir : true,
-            autoIndex: true,
- 
-            // server default file extension 
-            ext: "html",
- 
-            // specify a logger function. By default the requests are 
-            // sent to stdout. 
-            // logFn: function(req, res, error) {},
- 
-            // Proxies all requests which can't be resolved locally to the given url 
-            // Note this this will disable 'showDir' 
-            // proxy: "http://mybackendserver.com",
-
-            // Tell grunt task to open the browser 
-            openBrowser : true
- 
-        }
- 
-    },
 
     // license header adding
     usebanner: {
@@ -530,6 +478,12 @@ module.exports = function(grunt) {
           'rm -rf release',
           'mv build release'
         ].join('&&')
+      },
+      lint: {
+        command: './generate.py lint'
+      },
+      build: {
+        command: './generate.py build'
       }
     },
 
@@ -567,19 +521,7 @@ module.exports = function(grunt) {
       }
     }
   };
-
-  var mergedConf = qx.config.mergeConfig(config);
-  grunt.initConfig(mergedConf);
-
-  qx.task.registerTasks(grunt);
-
-  // // 3. Where we tell Grunt we plan to use this plug-in.
-  // grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-http-server');
-
-  // // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-  // grunt.registerTask('default', ['concat']);
-  grunt.registerTask('source-server-nodejs', ['http-server:dev']);
+  grunt.initConfig(config);
 
   // custom task to update the version in the releases demo config
   grunt.registerTask('update-demo-config', function() {
@@ -668,7 +610,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildicons', ['clean:iconcache', 'svgmin', 'svgstore', 'handle-kuf-svg']);
   grunt.registerTask('release-build', [ 'release-cv', 'release-client' ]);
   grunt.registerTask('release-cv', [
-    'updateicons', 'lint', 'clean', 'file-creator', 'buildicons', 'build',
+    'updateicons', 'shell:lint', 'clean', 'file-creator', 'buildicons', 'shell:build',
     'update-demo-config', 'chmod', 'shell:buildToRelease', 'compress:tar', 'compress:zip' ]);
 
   grunt.registerTask('release-client', ['shell:buildClient', 'rename-client-build']);
