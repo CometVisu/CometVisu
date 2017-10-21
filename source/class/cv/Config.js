@@ -284,7 +284,7 @@ qx.Class.define('cv.Config', {
       cv.ConfigCache.clear(cv.Config.configSuffix);
       cv.Config.enableCache = true;
     } else {
-      cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : true;
+      cv.Config.enableCache = req.queryKey.enableCache ? req.queryKey.enableCache === "true" : !qx.core.Environment.get("qx.debug");
     }
 
     cv.Config.enableLogging = qx.core.Environment.get("html.console");

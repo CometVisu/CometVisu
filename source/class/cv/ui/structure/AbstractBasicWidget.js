@@ -103,7 +103,7 @@ qx.Class.define('cv.ui.structure.AbstractBasicWidget', {
      * @return {String|null}
      */
     getDomString : function() {
-      return this._getInnerDomString ? this._getInnerDomString() : null;
+      return this._getInnerDomString ? this._getInnerDomString() : undefined;
     },
 
     /**

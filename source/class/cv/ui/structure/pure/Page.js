@@ -76,6 +76,10 @@ qx.Class.define('cv.ui.structure.pure.Page', {
         }
       }, this);
     }, this).schedule();
+
+    if (this.getAddress()) {
+      this._initOnCreate = true;
+    }
   },
 
   /*
@@ -300,8 +304,8 @@ qx.Class.define('cv.ui.structure.pure.Page', {
       //
       //   default:
       // TODO: data comparision has to be refactored to use DPT and a value
-      if (data===1) {
-        cv.TemplateEngine.getInstance().scrollToPage(this.getName());
+      if (parseInt(data) === 1) {
+        cv.TemplateEngine.getInstance().scrollToPage(this.getPath());
         this.sendToBackend("0");
       }
       // }
@@ -313,7 +317,7 @@ qx.Class.define('cv.ui.structure.pure.Page', {
         for (var id in list) {
           if (list.hasOwnProperty(id)) {
             var address = list[id];
-            if (!!(address[1] & 2)) {
+            if (cv.data.Model.isWriteAddress(address)) {
               cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address[0], value));
             }
           }

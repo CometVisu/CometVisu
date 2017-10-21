@@ -59,7 +59,7 @@ describe("testing a multitrigger widget", function() {
     }
   });
 
-  it("should update an multitrigger widget", function() {
+  it("should update an multitrigger widget", function(done) {
     var creator = this.createTestElement('multitrigger', {
       'button1label': 'B1',
       'button2label': 'B2',
@@ -85,10 +85,42 @@ describe("testing a multitrigger widget", function() {
       });
     }.bind(this);
 
-    for (var i=1; i<=4; i++) {
+    var i = 1;
+    new Promise(function(resolve) {
       creator.update('12/7/37', i.toString());
-      check(i-1);
-    }
+      qx.event.Timer.once(function() {
+        check(i-1);
+        i++;
+        resolve();
+      }, this, 10);
+    }).then(function() {
+      return new Promise(function(resolve) {
+        creator.update('12/7/37', i.toString());
+        qx.event.Timer.once(function () {
+          check(i - 1);
+          i++;
+          resolve();
+        }, this, 10);
+      });
+    }).then(function() {
+      return new Promise(function(resolve) {
+        creator.update('12/7/37', i.toString());
+        qx.event.Timer.once(function () {
+          check(i - 1);
+          i++;
+          resolve();
+        }, this, 10);
+      });
+    }).then(function() {
+      return new Promise(function(resolve) {
+        creator.update('12/7/37', i.toString());
+        qx.event.Timer.once(function () {
+          check(i - 1);
+          i++;
+          resolve();
+        }, this, 10);
+      });
+    }).then(done);
   });
 
   it('should trigger the multitrigger action', function() {

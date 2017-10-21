@@ -27,7 +27,10 @@ from json import dumps
 from semver import compare
 import yaml
 
-import sh
+try:
+    import sh
+except:
+    import pbs as sh
 import shutil
 import json
 import sys
@@ -36,6 +39,7 @@ from lxml import etree
 from argparse import ArgumentParser
 from . import Command
 from scaffolding import Scaffolder
+from sphinx import main
 try:
     # Python 2.6-2.7
     from HTMLParser import HTMLParser

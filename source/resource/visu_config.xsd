@@ -163,13 +163,17 @@
 
   <xsd:attribute name="mapping" type="xsd:string">
     <xsd:annotation>
-      <xsd:documentation xml:lang="en">Map the bus value to a different value for displaying.</xsd:documentation>
-      <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere zur Anzeige zu.</xsd:documentation>
+      <xsd:documentation xml:lang="en">Map the bus value to a different value, text or symbol for displaying. See also :ref:`mapping`</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ordnet den Werten vom Bus andere Werte, Texte oder Symbole zur Anzeige zu. Siehe auch :ref:`Mapping &lt;mapping&gt;`</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 
-  <xsd:attribute name="styling" type="xsd:string" />
-
+  <xsd:attribute name="styling" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Change the color of the dispayed value depending on its value. See also :ref:`styling`</xsd:documentation>
+      <xsd:documentation xml:lang="de">Ändert die Farbe des angezeigten Wertes abhängig vom Wert selbst. Siehe auch :ref:`Styling &lt;styling&gt;`</xsd:documentation>
+    </xsd:annotation> 
+  </xsd:attribute>
   <xsd:attribute name="value" type="xsd:string" />
 
   <xsd:attribute name="flavour" type="xsd:string">
@@ -183,8 +187,8 @@
   <xsd:attribute name="target" type="xsd:string">
     <xsd:annotation>
       <xsd:appinfo>level:expert</xsd:appinfo>
-      <xsd:documentation xml:lang="en">The name of the page, that should be shown.</xsd:documentation>
-      <xsd:documentation xml:lang="de">Der Name der Seite, die angezeigt werden soll.</xsd:documentation>
+      <xsd:documentation xml:lang="en">The name of the page, that should be called.</xsd:documentation>
+      <xsd:documentation xml:lang="de">Der Name der Seite, die aufgerufen werden soll.</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
 
@@ -334,7 +338,7 @@
   <xsd:attribute name="bind_click_to_widget" type="xsd:boolean">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">use the whole widget area to react on click events</xsd:documentation>
-      <xsd:documentation xml:lang="de">Beim aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</xsd:documentation>
+      <xsd:documentation xml:lang="de">Beim Aktivieren dieser Option wird die gesamte Widget Fläche als Schaltfläche genutzt</xsd:documentation>
     </xsd:annotation>
   </xsd:attribute>
   
@@ -773,11 +777,16 @@
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="optional">
     	<xsd:annotation>
-            <xsd:documentation xml:lang="en">Name/title of the group</xsd:documentation>
-            <xsd:documentation xml:lang="de">Name/Überschrift der Gruppe</xsd:documentation>
+          <xsd:documentation xml:lang="en">Name/title of the group</xsd:documentation>
+          <xsd:documentation xml:lang="de">Name/Überschrift der Gruppe</xsd:documentation>
         </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="nowidget" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="nowidget" type="xsd:boolean" use="optional">
+      <xsd:annotation>
+          <xsd:documentation xml:lang="en">Removes the frame borders inside the group (only in Metal Design)</xsd:documentation>
+          <xsd:documentation xml:lang="de">Unterdrückt die Rahmen innerhalb der Gruppe (nur im Design Metal)</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="flavour" use="optional" />
     <xsd:attribute ref="target" use="optional" />
     <xsd:attribute ref="align" use="optional" />
@@ -1056,7 +1065,7 @@
     </xsd:attribute>
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="flavour" use="optional" />
-    <xsd:attribute ref="bind_click_to_widget" use="optional"/>
+    <xsd:attribute ref="bind_click_to_widget" use="optional" />
     <xsd:attribute ref="class" use="optional" />
   </xsd:complexType>
 
@@ -1541,19 +1550,84 @@
     </xsd:sequence>
     <xsd:attribute name="width" type="dimension" use="optional" />
     <xsd:attribute name="height" type="dimension" use="optional" />
-    <xsd:attribute name="popup" type="xsd:boolean" use="optional" />
-    <xsd:attribute name="previewlabels" type="xsd:boolean" use="optional" />
-    <xsd:attribute ref="series" use="optional" />
-    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
-    <xsd:attribute name="period" type="xsd:string" use="optional" />
-    <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
-    <xsd:attribute ref="legend" use="optional" />
-    <xsd:attribute ref="legendposition" use="optional" />
-    <xsd:attribute name="title" type="xsd:string" use="optional" />
-    <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" />
-    <xsd:attribute ref="timeformat" use="optional" />
-    <xsd:attribute ref="timeformatTooltip" use="optional" />
-    <xsd:attribute name="zoomYAxis" type="xsd:boolean" use="optional" />
+    <xsd:attribute name="popup" type="xsd:boolean" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Makes diagram clickable and opens fullscreen view of diagram when clicked</xsd:documentation>
+        <xsd:documentation xml:lang="de">Aktiviert die Popup-Funktion, die ein Vollbilddiagramm anzeigt, wenn das Diagramm angeklickt wird</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="previewlabels" type="xsd:boolean" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Show labels on inline-diagram in widget</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeigt die Achsenbeschriftung im Inline-diagramm an</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>  
+    <xsd:attribute ref="series" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the base unit for the period attribute</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Einheit des period Attributs fest</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="refresh" type="xsd:integer" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">refresh-rate in seconds, no refresh if missing</xsd:documentation>
+        <xsd:documentation xml:lang="de">Aktualisierungsintervall des Diagramms ins Sekundens</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="period" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines whether an interval of hours, weeks, month or years is displayed (as multiple of "series)"</xsd:documentation>
+        <xsd:documentation xml:lang="de">Definiert ob ein Stunden-, Tage-, Wochen- oder Jahresbereich dargestellt werden soll (als Vielfaches von "series")</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="gridcolor" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the grid shown behind the graphs</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe der Gitternetzlinien im Diagramm</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="legend" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines whether legend is shown in combination with popup attribute. "none" => no legend, "both" => legend is shown in small inline diagram and popup, "inline" => legend in inline diagram only, "popup" => legend is only dispayed in popup diagram</xsd:documentation>
+        <xsd:documentation xml:lang="de">Definiert ob eine Legende angezeigt werden soll (in Verbindung mit popup Parameter). "None" => keine Legende, "both" => Legende im kleinen Inline Diagramm und Popup, "inline" => Legende nur im Inline Diagramm, "popup" => Legende nur im Popup Diagramm</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="legendposition" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines position of legend in diagram</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Position der Legende im Diagramm fest</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="title" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Adds a title to the diagram</xsd:documentation>
+        <xsd:documentation xml:lang="de">Fügt dem Diagramm einen Titel hinzu</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="tooltip" type="xsd:boolean" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Enables a tooltip which displays the current value where the graph is clicked</xsd:documentation>
+        <xsd:documentation xml:lang="de">Aktiviert die Tooltip-Funktion, die den aktuellen Wert anzeigt, an der die Diagrammlinie angeklickt wird</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="timeformat" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines time format for x-axis</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt das Datums-Zeitformat für x-Achse fest</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ref="timeformatTooltip" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines time format for displayed values if tooltip is used</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt das Datums-Zeitformat für die im Tooltip angezeigten Werte fest</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="zoomYAxis" type="xsd:boolean" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines whether zoom acts on y-axis in addition to x-axis</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt fest, ob beim Zoomen die y-Achse zusätzlich zur x-Achse skaliert wird</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="seriesStart" use="optional" />
     <xsd:attribute ref="seriesEnd" use="optional" />
     <xsd:attribute ref="seriesResolution" use="optional" />
@@ -1572,10 +1646,25 @@
     <xsd:attribute ref="mapping" use="optional" />
     <xsd:attribute ref="align" use="optional" />
     <xsd:attribute ref="bind_click_to_widget" use="optional"/>
-    <xsd:attribute ref="series" use="optional" />
+    <xsd:attribute ref="series" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the base unit for the period attribute eg. day, hour</xsd:documentation>
+        <xsd:documentation xml:lang="de">Legt die Einheit des period Attributs fest zB. day, hour</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
-    <xsd:attribute name="period" type="xsd:string" use="optional" />
-    <xsd:attribute name="gridcolor" type="xsd:string" use="optional" />
+    <xsd:attribute name="period" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Time period shown in the diagram as multiple of "series"</xsd:documentation>
+        <xsd:documentation xml:lang="de">Zeitraum als Vielfaches von "series" der im Diagram dargestellt wird</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="gridcolor" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Color of the grid shown behind the graphs</xsd:documentation>
+        <xsd:documentation xml:lang="de">Farbe der Gitternetzlinien im Diagramm</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="legend" use="optional" />
     <xsd:attribute ref="legendposition" use="optional" />
     <xsd:attribute name="title" type="xsd:string" use="optional" />
@@ -1793,19 +1882,44 @@
   <xsd:complexType name="axis">
     <xsd:simpleContent>
       <xsd:extension base="xsd:string">
-        <xsd:attribute name="label" type="xsd:string" />
-        <xsd:attribute name="min" type="xsd:decimal" />
-        <xsd:attribute name="max" type="xsd:decimal" />
-        <xsd:attribute name="position" >
+        <xsd:attribute name="label" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the label of the axis</xsd:documentation>
+            <xsd:documentation xml:lang="de">Legt die Achsenbeschriftung fest</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="min" type="xsd:decimal" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the minimum of y-axis.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Definiert das Minimum der y-Achse.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="max" type="xsd:decimal" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the maximum of y-axis.</xsd:documentation>
+            <xsd:documentation xml:lang="de">Definiert das Maximum der y-Achse.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="position">
           <xsd:simpleType>
-              <xsd:restriction base="xsd:string">
-                <xsd:enumeration value="left" />
-                <xsd:enumeration value="right" />
-              </xsd:restriction>
-            </xsd:simpleType>
-          </xsd:attribute>
-        <xsd:attribute name="unit" type="xsd:string" use="optional" />
-        <xsd:attribute name="decimals" type="xsd:integer" use="optional" />
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="left" />
+              <xsd:enumeration value="right" />
+            </xsd:restriction>
+          </xsd:simpleType>         
+        </xsd:attribute>
+        <xsd:attribute name="unit" type="xsd:string" use="optional" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the unit shown behind values in y-axis and tooltip</xsd:documentation>
+            <xsd:documentation xml:lang="de">Legt die Einheit fest, die hinter den Zahlen der y-Achsenbeschriftung bzw. im Tooltip angezeigt werden</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="decimals" type="xsd:integer" use="optional" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the number of digits in values of y-axis</xsd:documentation>
+            <xsd:documentation xml:lang="de">Legt die Anzahl der Nachkommastellen fest, die in der y-Achsenbeschriftung bzw. im Tooltip angezeigt werden</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -1813,12 +1927,32 @@
   <xsd:complexType name="rrd">
     <xsd:simpleContent>
       <xsd:extension base="xsd:string">
-        <xsd:attribute name="yaxis" type="xsd:string" />
-        <xsd:attribute name="color" type="xsd:string" />
-        <xsd:attribute name="label" type="xsd:string" />
+        <xsd:attribute name="yaxis" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Assigns the rrd-data to a y-axis</xsd:documentation>
+            <xsd:documentation xml:lang="de">Weist die Daten einer y-Achse zu</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+        <xsd:attribute name="color" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the color of the data-line in the graph</xsd:documentation>
+            <xsd:documentation xml:lang="de">Legt die Farbe der Diagrammlinie fest</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="label" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Defines the label of the data-series in the legend</xsd:documentation>
+            <xsd:documentation xml:lang="de">Defininiert den Namen der Datenreihe in der Legende</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
         <xsd:attribute name="scaling" type="xsd:decimal" />
         <xsd:attribute name="steps" type="xsd:boolean" />
-        <xsd:attribute name="fill" type="xsd:boolean" />
+        <xsd:attribute name="fill" type="xsd:boolean" >
+          <xsd:annotation>
+            <xsd:documentation xml:lang="en">Fill the space below the data-series or bar</xsd:documentation>
+            <xsd:documentation xml:lang="de">Füllt den Bereich unterhalb der Datenreihe bzw. Säule</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
         <xsd:attribute name="style" use="optional" >
           <xsd:simpleType>
             <xsd:restriction base="xsd:string">

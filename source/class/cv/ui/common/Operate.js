@@ -37,6 +37,10 @@ qx.Mixin.define("cv.ui.common.Operate", {
      * @param event {Event} tap event
      */
     action: function (event) {
+      if (this._skipNextEvent === event.getType()) {
+        this._skipNextEvent = null;
+        return;
+      }
       if (this._action) {
         this._action(event);
       } else {
@@ -74,7 +78,7 @@ qx.Mixin.define("cv.ui.common.Operate", {
         for (var id in list) {
           if (list.hasOwnProperty(id)) {
             var address = list[id];
-            if (!!(address[1] & 2) && (!filter || filter(address))) {
+            if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
               cv.TemplateEngine.getInstance().visu.write(id, cv.Transform.encode(address[0], value));
             }
           }

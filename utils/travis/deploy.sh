@@ -60,12 +60,12 @@ echo "updating english manual from source code doc comments"
 ./cv doc --process-versions
 
 echo "generating english manual, including screenshot generation for all languages"
-./cv doc --doc-type manual -c -f -l en -t build
+./docker-run ./cv doc --doc-type manual -c -f -l en -t build
 echo "generating german manual again with existing screenshots"
 ./cv doc --doc-type manual -f -l de
 
 echo "generate API screenshots"
-grunt screenshots --subDir=source --browserName=chrome --target=build --force
+./docker-run grunt screenshots --subDir=source --browserName=chrome --target=build --force
 
 # move the apiviewer to the correct version subfolder, including screenshots
 rm -r out/en/$VERSION/api
@@ -87,9 +87,9 @@ git config user.email "$COMMIT_AUTHOR_EMAIL"
 # as the changesets on master are too big we skip this check to prevent timeouts
 if [ "$TRAVIS_BRANCH" != "master" ]; then
     echo "checking diff"
-    if [ -z `git diff --exit-code` ]; then
-        echo "No changes to the output on this push; exiting."
-        exit 0
+    if [ `git diff --shortstat | wc -l` -eq 0 ]; then
+       echo "No changes to the output on this push; exiting."
+       exit 0Dito
     fi
 fi
 

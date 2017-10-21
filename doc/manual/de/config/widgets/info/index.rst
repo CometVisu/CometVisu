@@ -192,7 +192,7 @@ mitbekommt und den Status falsch anzeigt.
 XML Syntax komplett
 -------------------
 
-Hier Beispielcodes die das Info Widget mit den allen oben gezeigten Eigenschaften einfügen (siehe oben):
+Hier eine Beispielcode der das Info Widget aus dem folgenden Screenshot erzeugt:
 
 .. code-block:: xml
 

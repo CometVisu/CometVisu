@@ -18,7 +18,10 @@
 # 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 import logging
-import sh
+try:
+    import sh
+except:
+    import pbs as sh
 from . import Command
 
 class TranslationHandler(Command):

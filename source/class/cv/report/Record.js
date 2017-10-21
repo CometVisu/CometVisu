@@ -368,6 +368,8 @@ qx.Class.define('cv.report.Record', {
         configSuffix: cv.Config.configSuffix,
         end: Date.now()
       };
+      // show the user what he gets
+      console.log(data);
 
       var d = new Date();
       var ts = d.getFullYear()+
