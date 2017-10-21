@@ -50,11 +50,10 @@ if (! is_writable($dbfile_dir))
         "the directory are writeable by the webserver!"); 
 
 // create database connection
-$db = sqlite_open($dbfile, 0666, $error);
-if (!$db) die ($error);
+$dbh = new PDO('sqlite2:' . $dbfile) or die("cannot open the database");
 
 // create table if it doesn't exists
-create( $db );
+create( $dbh );
 
 if( isset($_GET['c']) )
 { 
@@ -71,19 +70,18 @@ if( isset($_GET['c']) )
   $log_tags    = $_GET['t'] ? $_GET['t'] : array();
   if(! is_array($log_tags))
     die("wrong format - use one or more t[]= for tags");
-  insert( $db, $log_content, $log_title, $log_tags, $log_mapping, $log_state );
+  insert( $dbh, $log_content, $log_title, $log_tags, $log_mapping, $log_state );
 } else if( isset($_GET['dump']) )
 {
-  $result = retrieve( $db, $log_filter, NULL, NULL );
+  $result = retrieve( $dbh, $log_filter, NULL, NULL );
   ?>
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /></head><body>
 <table border="1">
   <?php
   $records = 0;
   echo '<tr><th>ID</th><th>DateTime</th><th>Timestamp</th><th>Title</th><th>Content</th><th>Tags</th><th>Mapping</th><th>State</th></tr>';
-  while( sqlite_has_more($result) )
+  foreach ( $result as $row )
   {
-    $row = sqlite_fetch_array($result, SQLITE_ASSOC ); 
     echo '<tr>';
     echo '<td>' . $row['id'] . '</td>';
     echo '<td>' . date( DATE_ATOM, $row['t'] ) . '</td>';
@@ -105,7 +103,7 @@ if( isset($_GET['c']) )
 {
   $timestamp  = $_GET['r'] ? $_GET['r'] : '';
   $filter  = $_GET['f'] ? $_GET['f'] : '';
-  delete( $db, $timestamp, $filter );
+  delete( $dbh, $timestamp, $filter );
 } else if( isset($_GET['j']) )
 {
   header('Content-Type: application/json');
@@ -128,11 +126,10 @@ if( isset($_GET['c']) )
   $future = $_GET['future'];
 
   // retrieve data
-  $result = retrieve( $db, $log_filter, $state, $future );
+  $result = retrieve( $dbh, $log_filter, $state, $future );
   $first = true;
-  while( sqlite_has_more($result) )
+  while( $row = $result->fetch(PDO::FETCH_ASSOC) )
   {
-    $row = sqlite_fetch_array($result, SQLITE_ASSOC ); 
     if( !$first ) echo ",\n";
     echo '{';
     echo '"id": "' . $row['id'] . '",';
@@ -160,7 +157,7 @@ if( isset($_GET['c']) )
   $newstate = $_GET['state'];
   if (!is_numeric($newstate))
     die("wrong format - state is required and has to be numeric");
-  updatestate( $db, $id, $newstate );
+  updatestate( $dbh, $id, $newstate );
 ?>
 Successfully updated ID=<?php echo $id; ?>.
 <?php
@@ -168,7 +165,7 @@ Successfully updated ID=<?php echo $id; ?>.
   $id = $_GET['d'];
   if (!is_numeric($id))
     die("wrong format - id has to be numeric");
-  deleteentry( $db, $id );
+  deleteentry( $dbh, $id );
 ?>
 Successfully deleted ID=<?php echo $id; ?>.
 <?php
@@ -179,7 +176,7 @@ Successfully deleted ID=<?php echo $id; ?>.
   $future = $_GET['future'];
 
   // retrieve data
-  $result = retrieve( $db, $log_filter, $state, $future );
+  $result = retrieve( $dbh, $log_filter, $state, $future );
   echo '<?xml version="1.0"?>';
   ?>
 <rss version="2.0">
@@ -189,9 +186,8 @@ Successfully deleted ID=<?php echo $id; ?>.
     <description>RSS supplied logs</description>
   <?php
   // echo '<description>foo</description>';
-  while( sqlite_has_more($result) )
+  foreach ( $result as $row )
   {
-    $row = sqlite_fetch_array($result, SQLITE_ASSOC );
     $tags = ' [ id=' . $row['id']. ',state=' . $row['state'];
     if ($row['tags'])
         $tags .= ',' . $row['tags'];
@@ -208,34 +204,33 @@ Successfully deleted ID=<?php echo $id; ?>.
   <?php
 }
 
-sqlite_close($db);
-
 ///////////////////////////////////////////////////////////////////////////////
 // create tables if they don't exist
-function create( $db )
+function create( $dbh )
 {
   $logschema = 0;  // default: nothing exists yet
   
   // check: do we have a version information?
   $q = "SELECT name FROM sqlite_master WHERE type='table' AND name='Version';";
-  $result = sqlite_query( $db, $q, SQLITE_NUM );
+  $result = $dbh->query( $q );
   if (!$result) die("Cannot execute query. $q");
-  if( !sqlite_has_more($result) )
+  if( !$result->fetch(PDO::FETCH_NUM) )
   {
     // no table found - create it
     $q = 'CREATE TABLE Version(' .
         '  logschema INT' .
         ');' . 
         'INSERT INTO Version( logschema ) VALUES( 0 );';
-    $ok = sqlite_exec($db, $q, $error);
+    $sth = $dbh->prepare( $q );
+    $ok = $sth->execute( array($newstate, $id) );
     
     if (!$ok)
-      die("Cannot execute query $q. $error");
+      die("Cannot execute query. $q. " . end($dbh->errorInfo()));
     
     $q = "SELECT name FROM sqlite_master WHERE type='table' AND name='Logs';";
-    $result = sqlite_query( $db, $q, SQLITE_NUM );
+    $result = $dbh->query( $q );
     if (!$result) die("Cannot execute query. $q");
-    if( sqlite_has_more($result) )
+    if( !$result->fetch(PDO::FETCH_NUM) )
     {
       // no Version table but Log table
       // => database version prior 2016
@@ -243,8 +238,9 @@ function create( $db )
     }
   } else {
     $q = "SELECT logschema FROM Version";
-    $res = sqlite_query( $db, $q, SQLITE_ASSOC );
-    $logschema = sqlite_fetch_single( $res );
+    $result = $dbh->query( $q );
+    $row = $result->fetch(PDO::FETCH_NUM);
+    $logschema = $row[0];
   }
   
   $currentSchema = 
@@ -263,10 +259,10 @@ function create( $db )
     case 0:  // inital setup of database
       // no table found - create it
       $q = 'CREATE TABLE Logs' . $currentSchema;
-      $ok = sqlite_exec($db, $q, $error);
-      if (!$ok) die("Cannot execute query $q. $error");
+      $ok = $dbh->exec( $q );
+      if (!$ok) die("Cannot execute query $q. " . end($dbh->errorInfo()));
         
-      $logschema = 2;
+      $logschemaNew = 2;
       break;
       
     case 1:  // version without mapping
@@ -277,10 +273,10 @@ function create( $db )
         'CREATE TABLE Logs' . $currentSchema .
         'INSERT INTO Logs SELECT id, title, content, tags, mapping, t, state FROM TempLogs;' .
         'DROP TABLE TempLogs;';
-      $ok = sqlite_exec($db, $q, $error);
-      if (!$ok) die("Cannot execute query $q. $error");
+      $ok = $dbh->exec( $q );
+      if (!$ok) die("Cannot execute query $q. " . end($dbh->errorInfo()));
     
-      $logschema = 2;
+      $logschemaNew = 2;
       break;
       
     case 2:  // current
@@ -288,39 +284,49 @@ function create( $db )
   }
   
   // bump logschema
-  $q = 'UPDATE Version SET logschema=' . $logschema . ';';
-  $ok = sqlite_exec($db, $q, $error);
-  if (!$ok) die("Cannot execute query. $error");
+  if( $logschema != $logschemaNew )
+  {
+    $q = 'UPDATE Version SET logschema=' . $logschema . ';';
+    $ok = $dbh->exec( $q );
+    if (!$ok) die("Cannot execute query $q. " . end($dbh->errorInfo()));
+  }
 }
 
 // insert a new log line
-function insert( $db, $content, $title, $tags, $mapping, $state )
+function insert( $dbh, $content, $title, $tags, $mapping, $state )
 {
   // store a new log line
   $q = 'INSERT INTO Logs(content, title, tags, mapping, t, state) VALUES( ' .
-       "  '" . sqlite_escape_string( $content ) . "'," .
-       "  '" . sqlite_escape_string( $title ) . "'," .
-       "  '" . sqlite_escape_string( implode(",",$tags) ) . "'," .
-       "  '" . sqlite_escape_string( $mapping ) . "'," .
+       "  ?," .
+       "  ?," .
+       "  ?," .
+       "  ?," .
        "  datetime('now')," .
        "  $state" .
        ')';
   
-  $ok = sqlite_exec($db, $q, $error);
+  $sth = $dbh->prepare( $q );
+  $ok = $sth->execute( array($content, $title, implode(",",$tags), $mapping) );
   
   if (!$ok)
-    die("Cannot execute query. $error (Title: $itle Content: $content Tags: $tags State: $state)");
+    die("Cannot execute query. " . end($dbh->errorInfo()) . " (Title: $itle Content: $content Tags: $tags State: $state)");
 }
 
 // return a handle to all the data
-function retrieve( $db, $filter, $state, $future )
+function retrieve( $dbh, $filter, $state, $future )
 {
-  $filters = explode(',', $filter); // accept filters by separated by ,
-  foreach ($filters as $i => $val) {
-    $filters[$i] = " (tags LIKE '%" . sqlite_escape_string($val) . "%') ";
+  if( $filter === '' )
+  {
+    $filters = Array();
+    $filterString = '1=1';
+  } else {
+    $filters = explode(',', $filter); // accept filters by separated by ,
+    function substrmatch($s) { return "%$s%"; };
+    $filters = array_map( substrmatch, $filters );
+    $filterString = '(tags LIKE ?) ' . str_repeat( 'OR (tags LIKE ?) ', count( $filters )-1 );
   }
   
-  $q = "SELECT id, title, content, tags, mapping, state, strftime('%s', t) AS t FROM Logs WHERE (" . implode('OR', $filters) . ")";
+  $q = "SELECT id, title, content, tags, mapping, state, strftime('%s', t) AS t FROM Logs WHERE ($filterString) ";
   
   if (isset($state) AND is_numeric($state))
     $q .= " AND state=" . $state . " ";
@@ -336,39 +342,51 @@ function retrieve( $db, $filter, $state, $future )
       $q .= " LIMIT 100";
     else
       $q .= " LIMIT " . $_GET['limit'];
-  return sqlite_query( $db, $q, SQLITE_ASSOC );
+  
+  $sth = $dbh->prepare( $q );
+  $sth->execute( $filters );
+  return $sth;
 }
 
 // delete all log lines older than the timestamp and optional a filter
-function delete( $db, $timestamp, $filter )
+function delete( $dbh, $timestamp, $filter )
 {
-  $filters = explode(',', $filter); // accept filters by separated by ,
-  foreach ($filters as $i => $val) {
-    $filters[$i] = " (tags LIKE '%" . sqlite_escape_string($val) . "%') ";
+  if( $filter === '' )
+  {
+    $filters = Array();
+    $filterString = '1=1';
+  } else {
+    $filters = explode(',', $filter); // accept filters by separated by ,
+    function substrmatch($s) { return "%$s%"; };
+    $filters = array_map( substrmatch, $filters );
+    $filterString = '(tags LIKE ?) ' . str_repeat( 'OR (tags LIKE ?) ', count( $filters )-1 );
   }
 
-  $q = "DELETE from Logs WHERE t < datetime($timestamp, 'unixepoch') AND (" . implode('OR', $filters) . ")";
-  $ok = sqlite_exec($db, $q, $error);
+  $q = "DELETE from Logs WHERE t < datetime($timestamp, 'unixepoch') AND ($filterString)";
+  $sth = $dbh->prepare( $q );
+  $ok = $sth->execute( $filters );
   
   if (!$ok)
-    die("Cannot execute query. $error");
+    die("Cannot execute query. " . end($dbh->errorInfo()));
 }
 
-function deleteentry( $db, $id )
+function deleteentry( $dbh, $id )
 {
-  $q = "DELETE from Logs WHERE id = $id";
-  $ok = sqlite_exec($db, $q, $error);
+  $q = "DELETE from Logs WHERE id = ?";
+  $sth = $dbh->prepare( $q );
+  $ok = $sth->execute( array($id) );
   
   if (!$ok)
-    die("Cannot execute query. $error");
+    die("Cannot execute query. " . end($dbh->errorInfo()));
 }
 
-function updatestate( $db, $id, $newstate)
+function updatestate( $dbh, $id, $newstate)
 {
-  $q = 'UPDATE Logs SET state=' . $newstate . ' WHERE id=' . $id . ';';
-  $ok = sqlite_exec($db, $q, $error);
+  $q = 'UPDATE Logs SET state=? WHERE id=?';
+  $sth = $dbh->prepare( $q );
+  $ok = $sth->execute( array($newstate, $id) );
   
   if (!$ok)
-    die("Cannot execute query. $error");
+    die("Cannot execute query. " . end($dbh->errorInfo()));
 }
 ?>
