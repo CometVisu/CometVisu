@@ -346,7 +346,7 @@ die gerenderte HTML-Struktur inkl. aller weiterer benötigter Daten lokal im Bro
 das Laden der Visu auf leistungsschwachen Geräten wie z.B. Smartphones beschleunigt.</p>
 <p>Der Cache kann über diesen Parameter aktiviert (=true), deaktivert (=false) oder gelöscht werden (=invalid).
 Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu angelegt werden.</p>
-<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">true</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">true</span><span class="p">)</span>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">Default</span><span class="p">:</span> <span class="n">Im</span> <span class="n">Release</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="ow">in</span> <span class="n">der</span> <span class="n">Entwicklerversion</span><span class="p">:</span> <span class="n">false</span>
 <span class="n">Options</span><span class="p">:</span> <span class="n">false</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">false</span><span class="p">),</span> <span class="n">true</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">true</span><span class="p">),</span> <span class="n">invalid</span> <span class="p">(</span><span class="n">enableCache</span><span class="o">=</span><span class="n">invalid</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -370,7 +370,9 @@ und das Log mit dieser Konfiguration aufgezeichnet werden.</p>
 </div>
 <p>Um diese Log-Dateien aufzuzeichnen, muss man die CometVisu mit <cite>reporting=true</cite> laden.
 Nachdem man den fehlerhaften Zustand erreicht hat, kann man die Log-Datei herunterladen indem man in der
-Browser-Console (öffnen mit F12) <code class="docutils literal"><span class="pre">downloadLog()</span></code> ein gibt und mit <em>enter</em> bestätigt.</p>
+Browser-Console (öffnen mit F12) <code class="docutils literal"><span class="pre">downloadLog()</span></code> ein gibt und mit <em>enter</em> bestätigt.
+Neben dem automatischen Download der Logdatei, wird der Inhalt des Logs ebenfalls auf der Konsole
+ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hinweis</p>
 <p class="last">Da die Log-Dateien in Echtzeit abgespielt werden, empfiehlt es sich die Laufzeit möglichst kurz zu halten.

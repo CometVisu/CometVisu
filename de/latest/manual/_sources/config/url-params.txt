@@ -169,7 +169,7 @@ Das Löschen bewirkt, dass alle Werte aus dem Cache gelöscht werden und neu ang
 
 .. code::
 
-    Default: true (enableCache=true)
+    Default: Im Release: true, in der Entwicklerversion: false
     Options: false (enableCache=false), true (enableCache=true), invalid (enableCache=invalid)
 
 .. _reporting:
@@ -197,6 +197,8 @@ des Problems erheblich.
 Um diese Log-Dateien aufzuzeichnen, muss man die CometVisu mit `reporting=true` laden.
 Nachdem man den fehlerhaften Zustand erreicht hat, kann man die Log-Datei herunterladen indem man in der
 Browser-Console (öffnen mit F12) ``downloadLog()`` ein gibt und mit *enter* bestätigt.
+Neben dem automatischen Download der Logdatei, wird der Inhalt des Logs ebenfalls auf der Konsole
+ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.
 
 .. HINT::
 
