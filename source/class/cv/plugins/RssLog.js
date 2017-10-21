@@ -199,7 +199,7 @@ qx.Class.define('cv.plugins.RssLog', {
       if (!this.$$domReady) {
         this.base(arguments);
         qx.event.message.Bus.subscribe("path." + this.getParentPage().getPath() + ".beforePageChange", this.refreshRSSlog, this);
-        this.__html = '<span class="mappedValue" /><span>{text}</span>';
+        this.__html = '<span class="mappedValue"></span><span>{text}</span>';
         if (this.getDatetime()) {
           this.__html = '{date}: ' + this.__html;
         }
