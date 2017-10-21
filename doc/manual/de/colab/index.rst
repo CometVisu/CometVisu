@@ -313,6 +313,8 @@ Log-Datei zu Verfügung stellen (am besten als Anhang an das Issue hängen).
     Sie Aufzeichnung der Log-Dateien kann mit dem URL-Parameter ``reporting=true`` aktiviert werden
     (siehe: :ref:`URL-Parameter <reporting>`). Sobald man den Fehler nachgestellt hat, kann die Logdatei durch Eingabe
     des Befehls ``downloadLog()`` in der Browserkonsole (öffnen mit F12-Taste) heruntergeladen werden.
+    Neben dem automatischen Download der Logdatei, wird der Inhalt des Logs ebenfalls auf der Konsole
+    ausgegeben. So kann man kontrollieren, welche Daten in dem Log enthalten sind.
 
 Die Log-Dateien enthalten die Konfigurationsdatei, sämtliche Kommunikation mit dem Backend und die Benutzerinteraktionen
 ( z.B. Klicks auf Widgets usw.). Daher muss der Benutzer damit einverständen sein diese Daten zu veröffentlichen.
