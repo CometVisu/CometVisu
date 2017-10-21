@@ -216,10 +216,11 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       if (rrddata !== null) {
         // calculate timestamp offset and scaling
         var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
-        for (var j = 0; j < rrddata.length; j++) {
-          rrddata[j][0] = rrddata[j][0] + millisOffset;
-          rrddata[j][1] = parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling;
+        var newRrd = new Array(rrddata.length);
+        for (var j = 0, l = rrddata.length; j < l; j++) {
+          newRrd[j] = [(rrddata[j][0] + millisOffset), (parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling)];
         }
+        rrddata = newRrd;
       }
       this.cache[key].data = rrddata;
       this.cache[key].timestamp = Date.now();
