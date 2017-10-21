@@ -498,7 +498,7 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _onTap: function(ev) {
-      var item = ev.getTarget();
+      var item = ev.getCurrentTarget();
 
       var id = qx.bom.element.Dataset.get(item, 'id');
       var mapping = qx.bom.element.Dataset.get(item, 'mapping');
