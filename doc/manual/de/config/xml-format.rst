@@ -1,6 +1,8 @@
 .. replaces:: CometVisu/XML-Elemente
     XML-Elemente
 
+.. _xml-format:
+
 XML-Struktur
 ============
 
@@ -9,8 +11,10 @@ einen Baum darstellen. Ein Element kann weitere Elemente einschließen.
 Über "Attribute" kann ein Element Werte annehmen. Einige dieser
 Attribute müssen zwingend vergeben werden.
 
-Die visu_config.xml (Header)
-----------------------------
+.. _xml-format_header:
+
+Der Header der visu_config.xml
+------------------------------
 
 Die Konfigurationsdatei beginnt immer mit folgenden beiden Zeilen:
 
@@ -79,6 +83,8 @@ ist wie folgt:
 
 Die Optionen von oben nach unten im Überblick:
 
+.. _xml-format_plugins:
+
 Plugins
 -------
 
@@ -87,6 +93,8 @@ Plugins
 +==========================+======================================================================================================================================================+==================================+============+
 | ``<plugin name=" "/>``   | Mit dieser Option werden die Plugins eingebunden. Hier wird der Name des Plugins eingetragen. Pro Plugin muss ein solcher Eintrag angelegt werden.   | z.B. colorchooser oder diagram   | NEIN       |
 +--------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------+------------+
+
+.. _xml-format_mappings:
 
 Mappings
 --------
@@ -99,6 +107,8 @@ Mappings
 | ``<entry value="WERT">NAME</entry>``       | Mit dieser Option wird einem Wert ein Namen zugewiesen. Für jeden möglichen Wert muss ein solcher Eintrag angelegt werden.     | z.B. Stop   | JA         |
 +--------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+-------------+------------+
 
+.. _xml-format_stylings:
+
 Stylings
 --------
 
@@ -110,6 +120,8 @@ Stylings
 | ``<entry value="WERT">FARBE</entry>``       | Mit dieser Option wird einem Wert eine Farbe zugewiesen.                                                                       | z.B. red   | JA         |
 +---------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+------------+------------+
 
+.. _xml-format_icons:
+
 Icons
 -----
 
@@ -119,12 +131,15 @@ Icons
 | ``<icon-definition name=" " uri="WERT">``     | Mit dieser Option wird der Name des Icons definiert, welches sich unter dem in uri angegebenen Verzeichnis befindet. Auf die so definierten Icons kann dann im weiteren Verlauf über den einfacher zu merkenden Namen zugegriffen werden. Die Verzeichnisangabe ist im Beispiel relativ zur CV installation. Hier wurden vorher die Icons in einem eigenen Unterverzeichnis abgelegt.   | z.B.    | NEIN       |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+------------+
 
+.. _xml-format_statusbar:
+
 Statusbar
 ---------
 
-.. TODO::
+Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt das zB. Abzeigen von externen Links (über URL). 
 
-    Statusbar beschreiben
+
+.. _xml-format_pages:
 
 Aufbau der Visu-Seiten
 ----------------------
