@@ -72,7 +72,7 @@ if( isset($_GET['c']) )
   insert( $dbh, $log_content, $log_title, $log_tags, $log_mapping, $log_state );
 } else if( isset($_GET['dump']) )
 {
-  $result = retrieve( $dbh, $log_filter, NULL, NULL );
+  $result = retrieve( $dbh, $log_filter, NULL, NULL, true );
   ?>
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /></head><body>
 <table border="1">
@@ -231,7 +231,32 @@ function openDb( $dbfile )
       $result = $dbh->query( $q );
       if (!$result) die("Database read with PDO(sqlite2) failed!");
       
-      // TODO : convert DB to sqlite3
+      $dbfileTmp = $dbfile . '.tmpMigration2to3';
+      if( file_exists($dbfileTmp) )
+      {
+        // migration already going on
+        if( time()-filemtime($dbfileTmp) > 600) {
+          // file older than 10 minutes
+          if( !unlink( $dbfileTmp ) )
+            die( "Error: can't clean up potentially broken migration!" );
+        } else {
+          // file younger than 10 minuts
+          die( "Error: already migrating!" );
+        }
+      }
+      $dbhTmp = new PDO('sqlite:' . $dbfileTmp) or die("cannot open the temp database with PDO(sqlite)");
+      create( $dbhTmp );
+      $result = retrieve( $dbh, '', NULL, NULL, true, 'ASC', false );
+      foreach ( $result as $row )
+        insert( $dbhTmp, $row['content'], $row['title'], explode(',', $row['tags']), $row['mapping'], $row['state'], '"' . $row['t'] . '"' );
+      
+      // transfer done => close DBs and move file
+      $dbh = null;
+      $dbhTmp = null;
+      rename( $dbfileTmp, $dbfile ) or die("Error: moving transfered database over old file");
+      
+      // and return the handle to the new version
+      $dbh = new PDO('sqlite:' . $dbfile) or die("cannot open the database with PDO(sqlite)");
     } 
     else 
       die("Database couldn't be open. Sqlite2 check couldn't be performed as driver is missing.");
@@ -331,7 +356,7 @@ function create( $dbh )
 }
 
 // insert a new log line
-function insert( $dbh, $content, $title, $tags, $mapping, $state )
+function insert( $dbh, $content, $title, $tags, $mapping, $state, $time = "datetime('now')" )
 {
   // store a new log line
   $q = 'INSERT INTO Logs(content, title, tags, mapping, t, state) VALUES( ' .
@@ -339,19 +364,18 @@ function insert( $dbh, $content, $title, $tags, $mapping, $state )
        "  ?," .
        "  ?," .
        "  ?," .
-       "  datetime('now')," .
-       "  $state" .
+       "  $time," .
+       "  ?" .
        ')';
-  
   $sth = $dbh->prepare( $q );
-  $ok = $sth->execute( array($content, $title, implode(",",$tags), $mapping) );
+  $ok = $sth->execute( array($content, $title, implode(",",$tags), $mapping, $state) );
   
   if (!$ok)
     die("Cannot execute query. " . end($dbh->errorInfo()) . " (Title: $itle Content: $content Tags: $tags State: $state)");
 }
 
 // return a handle to all the data
-function retrieve( $dbh, $filter, $state, $future )
+function retrieve( $dbh, $filter, $state, $future, $dump = false, $order = 'DESC', $asUnix = true )
 {
   if( $filter === '' )
   {
@@ -364,7 +388,7 @@ function retrieve( $dbh, $filter, $state, $future )
     $filterString = '(tags LIKE ?) ' . str_repeat( 'OR (tags LIKE ?) ', count( $filters )-1 );
   }
   
-  $q = "SELECT id, title, content, tags, mapping, state, strftime('%s', t) AS t FROM Logs WHERE ($filterString) ";
+  $q = "SELECT id, title, content, tags, mapping, state, " . ($asUnix ? "strftime('%s', t) AS t" : 't') . " FROM Logs WHERE ($filterString) ";
   
   if (isset($state) AND is_numeric($state))
     $q .= " AND state=" . $state . " ";
@@ -374,8 +398,8 @@ function retrieve( $dbh, $filter, $state, $future )
   else
     $q .= " AND ((t  <= datetime('now') ))";
   
-  $q .= "ORDER by t DESC";
-  if (!isset($_GET['dump']))
+  $q .= "ORDER by t $order";
+  if (!$dump)
     if( !isset($_GET['limit']) || !is_numeric($_GET['limit']) || '0' == $_GET['limit'] )
       $q .= " LIMIT 100";
     else
