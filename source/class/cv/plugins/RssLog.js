@@ -336,7 +336,7 @@ qx.Class.define('cv.plugins.RssLog', {
       qx.dom.Element.insertEnd(ul, c);
 
       // get height of one entry, calc max num of display items in widget
-      var displayrows = qx.bom.element.Dataset.get(c, "last_rowcount") || 0;
+      var displayrows = parseInt(qx.bom.element.Dataset.get(c, "last_rowcount"), 10) || 0;
       qx.bom.Html.clean(['<li class="rsslogRow odd" id="dummydiv">.</li>'], null, c);
       var dummyDiv = qx.bom.Selector.query('#dummydiv', c)[0];
       var itemheight = qx.bom.element.Dimension.getHeight(dummyDiv);
@@ -391,7 +391,7 @@ qx.Class.define('cv.plugins.RssLog', {
           itemoffset = itemnum - displayrows;
         }
         if (this.getMode() === 'rollover') {
-          itemoffset = qx.bom.element.Dataset.get(c, "itemoffset") || 0;
+          itemoffset = parseInt(qx.bom.element.Dataset.get(c, "itemoffset"), 10) || 0;
           if (itemoffset === itemnum) {
             itemoffset = 0;
           }
