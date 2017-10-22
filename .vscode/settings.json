@@ -1,6 +1,6 @@
 {
     "restructuredtext.confPath" : "${workspaceRoot}/doc/manual/de",
     "restructuredtext.builtDocumentationPath" : "${workspaceRoot}/out/preview/de",
-    "restructuredtext.updateOnTextChanged" : "true",
-    "restructuredtext.sphinxBuildPath": "${workspaceRoot}/sphinx-build"
+    "restructuredtext.updateOnTextChanged" : "false"
+    // "restructuredtext.sphinxBuildPath": "${workspaceRoot}/sphinx-build"
 }

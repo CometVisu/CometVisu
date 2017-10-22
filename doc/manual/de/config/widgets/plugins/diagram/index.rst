@@ -9,10 +9,6 @@ Das Diagram Plugin
 
 .. api-doc:: diagram
 
-.. TODO::
-
-    Inhalt übertragen + openHAB Ergänzungen
-    Link auf RRD
 
 Beschreibung
 ------------

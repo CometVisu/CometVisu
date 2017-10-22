@@ -51,6 +51,8 @@ durch Anhängen von check_config.php an den URL erzwingen.
 
     url-params
 
+Genaue Beschreibungen zu den verfügbaren URL-Parameter sind unter :doc:`URL-Parameter <url-params>` zu finden.
+
 .. _visu-config-details:
 
 Seiten und Struktur der CometVisu
@@ -98,22 +100,29 @@ Tags umschlossen aufgenommen werden:
 Navigationselemente in der CometVisu
 ------------------------------------
 
-Zur Navigation stehen in der Cometvisu zahlreiche Möglichkeiten zur Verfügung:  
+Zur Navigation stehen in der Cometvisu zahlreiche Möglichkeiten für die Navigation durch den Benutzer zur Verfügung:  
 
--  Das :ref:`Page-Widget <page>` ruft die zugehörige Unterseite auf
+-  Das :ref:`Page-Widget <page>` ruft die zugehörige Unterseite auf.
 -  Die Top-Navigation Anzeige: zeigt den aktuellen Pfad und erlaubt auf übergeordnete Seiten
-   zurück zu navigieren 
+   zurück zu navigieren .
 -  Der Zurück-Button des Browsers bzw. des Betriebssystems (zB. iOS, Android)  
 -  Das Navbar-Widget in Verbingung mit Pagejump-Widgets
--  Das :ref:`Pagejump-Widget <pagejump>` erlaubt den Aufruf einer beliebigen Unterseite
--  Das :ref:`Group-Widget <group>` kann mit der Option ``target=`` ebenfalls eine beliebige Unterseite aufrufen
--  Weiters wird per KNX Gruppenadresse auf eine Unterseite gesprungen, wenn das Attribut ``ga=x/y/z`` in der zugehörigen 
-   Page Definition eingetragen ist.
--  Eine Besonderheit ist der Statusbar am unteren Bilschirmrand. Von dort können zB. externe URL aufgerufen werden   
+-  Das :ref:`Pagejump-Widget <pagejump>` erlaubt den Aufruf einer beliebigen Unterseite.
+-  Das :ref:`Group-Widget <group>` kann mit der Option ``target=`` ebenfalls eine beliebige Unterseite aufrufen.
+-  Eine Besonderheit ist der :ref:`Statusbar <xml-format_statusbar>` am unteren Bilschirmrand. Von dort können zB. externe URL aufgerufen werden.  
 
 .. figure:: _static/Navigation_withDescription.png
     
    Übersicht der wichtigsten Navigationselemente.
+
+Weiters sind verschiedene Funtionalitäten implementiert, die eine Navigation ohne Benutzereingriff bewirken:
+
+-  Per KNX Gruppenadresse kann auf eine Unterseite gesprungen werden, wenn das Attribut ``ga=x/y/z`` in der zugehörigen 
+   :ref:`Page Definition <page>` eingetragen ist.
+-  Die Optionen ``screensave_time`` und ``screensave_page``. Damit wird nach Ablauf einer definierten Zeit eine festgelegte 
+   Seite aufgerufen. 
+-  Das :ref:`timeout-Plugin <timeout>` funktioniert ähnlich der screensave-Funktion, wird aber auch ausgeführt, wenn die Unterseite
+   per GA aufgerufen wurde. 
 
 
 Die verfügbaren Designs
