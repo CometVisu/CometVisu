@@ -49,8 +49,7 @@ if (! is_writable($dbfile_dir))
     die ("Database $dbfile not writeable! make sure the file AND " .
         "the directory are writeable by the webserver!"); 
 
-// create database connection
-$dbh = new PDO('sqlite2:' . $dbfile) or die("cannot open the database");
+$dbh = openDb( $dbfile );
 
 // create table if it doesn't exists
 create( $dbh );
@@ -202,6 +201,43 @@ Successfully deleted ID=<?php echo $id; ?>.
   </channel>
 </rss>
   <?php
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Open database
+function openDb( $dbfile )
+{
+  ////////////////////////////////////////////////////////////////////////////
+  // Handle history:
+  // rsslog.php used to use sqlite2 which is outdated and replaced by sqlite3.
+  // As it is not clear whether the database file is already a sqlite3 we 
+  // assume it optimistically but check it later on when a problem occurs:
+
+  // create database connection - assuming it's sqlite3
+  $dbh = new PDO('sqlite:' . $dbfile) or die("cannot open the database with PDO(sqlite)");
+  
+  // check whether we can read
+  $q = "SELECT name FROM sqlite_master WHERE type='table'";
+  $result = $dbh->query( $q );
+  if (!$result) 
+  {
+    // open and read did not work => file might be sqlite2
+    if( in_array('sqlite2', PDO::getAvailableDrivers()) )
+    {
+      $dbh = new PDO('sqlite2:' . $dbfile) or die("cannot open the database with PDO(sqlite2)");
+      
+      // check whether we can read now
+      $q = "SELECT name FROM sqlite_master WHERE type='table'";
+      $result = $dbh->query( $q );
+      if (!$result) die("Database read with PDO(sqlite2) failed!");
+      
+      // TODO : convert DB to sqlite3
+    } 
+    else 
+      die("Database couldn't be open. Sqlite2 check couldn't be performed as driver is missing.");
+  }
+  
+  return $dbh;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
