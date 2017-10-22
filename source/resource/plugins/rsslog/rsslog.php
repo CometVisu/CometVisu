@@ -37,7 +37,7 @@
 
 // look where to store DB
 if (is_dir('/etc/wiregate/rss'))  // Default for Wiregate
-  $dbfile = '/etc/wiregate/rss/rsslog.db';
+  $dbfile = '/etc/wiregate/rss/rsslogX.db';
 elseif (is_dir('/etc/cometvisu')) // Central option for non-Wiregate systems
   $dbfile = '/etc/cometvisu/rsslog.db';
 else                              // if not found use local plugin directory
@@ -244,6 +244,10 @@ function openDb( $dbfile )
 // create tables if they don't exist
 function create( $dbh )
 {
+  // Database versions:
+  // 0: nothing
+  // 1: old version prior 2016
+  // 2: currently the latest one
   $logschema = 0;  // default: nothing exists yet
   
   // check: do we have a version information?
@@ -255,28 +259,31 @@ function create( $dbh )
     // no table found - create it
     $q = 'CREATE TABLE Version(' .
         '  logschema INT' .
-        ');' . 
-        'INSERT INTO Version( logschema ) VALUES( 0 );';
-    $sth = $dbh->prepare( $q );
-    $ok = $sth->execute( array($newstate, $id) );
-    
-    if (!$ok)
+        ');';
+    $ok = $dbh->exec( $q );
+    if ($ok===false)
       die("Cannot execute query. $q. " . end($dbh->errorInfo()));
     
     $q = "SELECT name FROM sqlite_master WHERE type='table' AND name='Logs';";
     $result = $dbh->query( $q );
     if (!$result) die("Cannot execute query. $q");
-    if( !$result->fetch(PDO::FETCH_NUM) )
+    if( $result->fetch(PDO::FETCH_NUM) )
     {
       // no Version table but Log table
       // => database version prior 2016
       $logschema = 1;
     }
+    
+    $q = "INSERT INTO Version( logschema ) VALUES( $logschema )";
+    $ok = $dbh->exec( $q );
+    if ($ok===false)
+      die("Cannot execute query. $q. " . end($dbh->errorInfo()));
   } else {
     $q = "SELECT logschema FROM Version";
     $result = $dbh->query( $q );
     $row = $result->fetch(PDO::FETCH_NUM);
-    $logschema = $row[0];
+    if( $row )
+      $logschema = $row[0];
   }
   
   $currentSchema = 
@@ -296,35 +303,30 @@ function create( $dbh )
       // no table found - create it
       $q = 'CREATE TABLE Logs' . $currentSchema;
       $ok = $dbh->exec( $q );
-      if (!$ok) die("Cannot execute query $q. " . end($dbh->errorInfo()));
+      if ($ok===false) die("Cannot execute query $q. " . end($dbh->errorInfo()));
         
       $logschemaNew = 2;
       break;
       
     case 1:  // version without mapping
-      // note: SQLite2 has no ALTER TABLE - so do it the hard way
-      $q = 'CREATE TEMPORARY TABLE TempLogs' . $currentSchema .
-        'INSERT INTO TempLogs SELECT id, title, content, tags, "", t, state FROM Logs;' .
-        'DROP TABLE Logs;' .
-        'CREATE TABLE Logs' . $currentSchema .
-        'INSERT INTO Logs SELECT id, title, content, tags, mapping, t, state FROM TempLogs;' .
-        'DROP TABLE TempLogs;';
-      $ok = $dbh->exec( $q );
-      if (!$ok) die("Cannot execute query $q. " . end($dbh->errorInfo()));
-    
+      // note: SQLite2 has no ALTER TABLE - so do it the hard 
+      global $dbfile;
+      die("Error: Database version is too old! Please use a rsslog.php of the CometVisu release 0.9.x or 0.10.x to convert it or discard it by deleting the file '$dbfile'.");
+      
       $logschemaNew = 2;
       break;
       
     case 2:  // current
+      $logschemaNew = 2;
       return; 
   }
   
   // bump logschema
   if( $logschema != $logschemaNew )
   {
-    $q = 'UPDATE Version SET logschema=' . $logschema . ';';
+    $q = 'UPDATE Version SET logschema=' . $logschemaNew . ';';
     $ok = $dbh->exec( $q );
-    if (!$ok) die("Cannot execute query $q. " . end($dbh->errorInfo()));
+    if ($ok===false) die("Cannot execute query $q. " . end($dbh->errorInfo()));
   }
 }
 
