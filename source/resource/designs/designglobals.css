@@ -443,7 +443,7 @@ button.ui-slider-handle {
   border-bottom: 1px solid;
 }
 
-.popup .main .icon:not(.spinner) {
+.popup .main .icon:not(.spinner, .rsslogRow) {
   float: left;
   margin: -1em 1em 0 0;
   vertical-align: middle;

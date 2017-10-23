@@ -15,6 +15,7 @@ qx.Class.define("cv.report.utils.FakeServer", {
     init: function (log, build) {
 
       var prependResourcePath = null;
+      console.log(build+" log replaying in "+qx.core.Environment.get("cv.build"));
       if (build !== qx.core.Environment.get("cv.build")) {
         // the log has not been recorded in the same build as is is replayed, some paths must be adjusted
         if (build === "build") {
@@ -47,6 +48,9 @@ qx.Class.define("cv.report.utils.FakeServer", {
       var url = cv.report.Record.normalizeUrl(request.url);
       if (url.indexOf("nocache=") >= 0) {
         url = url.replace(/[\?|&]nocache=[0-9]+/, "");
+      }
+      if (!xhrData[url] && !url.startsWith("/") && qx.core.Environment.get("cv.build") === "source") {
+        url = '../source/' + url;
       }
       if (!xhrData[url] || xhrData[url].length === 0) {
         qx.log.Logger.error(this, "404: no logged responses for URI "+url+" found");

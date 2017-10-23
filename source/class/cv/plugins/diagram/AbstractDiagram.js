@@ -195,35 +195,40 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
         this.cache[ key ].waitingCallbacks.push( [ callback, callbackParameter ] );
 
         if( this.cache[ key ].waitingCallbacks.length === 1 ) {
+          if (this.cache[ key ].xhr) {
+            this.cache[ key ].xhr.dispose();
+          }
           var xhr = new qx.io.request.Xhr(url);
           xhr.set({
             accept: "application/json"
           });
-          xhr.addListener("success", function( ev ) {
-            var rrddata = ev.getTarget().getResponse();
-            if (rrddata !== null) {
-              // calculate timestamp offset and scaling
-              var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
-              for (var j = 0; j < rrddata.length; j++) {
-                rrddata[j][0] = rrddata[j][0] + millisOffset;
-                rrddata[j][1] = parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling;
-              }
-            }
-            this.cache[key].data = rrddata;
-            this.cache[key].timestamp = Date.now();
-
-            this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
-              waitingCallback[0](this.cache[key].data, waitingCallback[1]);
-            }, this);
-            this.cache[key].waitingCallbacks.length = 0; // empty array)
-          }, this);
-
+          xhr.addListener("success", qx.lang.Function.curry(this._onSuccess, rrd, key), this);
           this.cache[ key ].xhr = xhr;
           xhr.send();
         }
       } else {
         callback( this.cache[key].data, callbackParameter );
       }
+    },
+
+    _onSuccess: function(rrd, key, ev) {
+      var rrddata = ev.getTarget().getResponse();
+      if (rrddata !== null) {
+        // calculate timestamp offset and scaling
+        var millisOffset = (rrd.offset ? rrd.offset * 1000 : 0);
+        var newRrd = new Array(rrddata.length);
+        for (var j = 0, l = rrddata.length; j < l; j++) {
+          newRrd[j] = [(rrddata[j][0] + millisOffset), (parseFloat(rrddata[j][1][rrd.dsIndex]) * rrd.scaling)];
+        }
+        rrddata = newRrd;
+      }
+      this.cache[key].data = rrddata;
+      this.cache[key].timestamp = Date.now();
+
+      this.cache[key].waitingCallbacks.forEach(function (waitingCallback) {
+        waitingCallback[0](rrddata, waitingCallback[1]);
+      }, this);
+      this.cache[key].waitingCallbacks.length = 0; // empty array)
     }
   },
 
@@ -494,39 +499,41 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       // plot diagram initially with empty values
       diagram.empty();
-      var plot = $.plot(diagram, [], options);
-      if( isPopup ) {
-        this.debug("popup plot generated");
-        this.popupplot = plot;
-      }
-      else {
-        this.debug("plot generated");
-        this.plot = plot;
-      }
-      this.plotted = true;
-
-      var that = this;
-      diagram.bind("plotpan", function(event, plot, args) {
-        if (args.dragEnded) {
-          that.loadDiagramData( plot, isPopup, false );
+      qx.bom.AnimationFrame.request(function() {
+        var plot = $.plot(diagram, [], options);
+        if( isPopup ) {
+          this.debug("popup plot generated");
+          this.popupplot = plot;
         }
-      }).bind("plotzoom", function() {
-        that.loadDiagramData( plot, isPopup, false );
-      }).bind("touchended", function() {
-        that.loadDiagramData( plot, isPopup, false );
-      }).bind("tap", function() {
-        var self = this;
-        var container = $(self).closest('.widget_container')[0];
-        if ( !isPopup && container !== undefined) {
-          var actor = $(self).closest('.actor')[0];
-          var path = container.id;
-          if( actor !== undefined && path.length > 0 ) {
-            that.action();
+        else {
+          this.debug("plot generated");
+          this.plot = plot;
+        }
+        this.plotted = true;
+
+        var that = this;
+        diagram.bind("plotpan", function(event, plot, args) {
+          if (args.dragEnded) {
+            that.loadDiagramData( plot, isPopup, false );
           }
-        }
-      });
+        }).bind("plotzoom", function() {
+          that.loadDiagramData( plot, isPopup, false );
+        }).bind("touchended", function() {
+          that.loadDiagramData( plot, isPopup, false );
+        }).bind("tap", function() {
+          var self = this;
+          var container = $(self).closest('.widget_container')[0];
+          if ( !isPopup && container !== undefined) {
+            var actor = $(self).closest('.actor')[0];
+            var path = container.id;
+            if( actor !== undefined && path.length > 0 ) {
+              that.action();
+            }
+          }
+        });
 
-      this.loadDiagramData( plot, isPopup, false );
+        this.loadDiagramData( plot, isPopup, false );
+      }, this);
     },
 
     getSeriesSettings: function(xAxis, isInteractive) {
@@ -631,6 +638,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
             plot.setData(fulldata);
             plot.setupGrid();
             plot.draw();
+
+            loadedData = [];
           }
 
         }.bind(this));

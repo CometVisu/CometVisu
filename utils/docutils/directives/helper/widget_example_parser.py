@@ -45,7 +45,7 @@ class WidgetExampleParser:
     def set_screenshot_dir(self, dir):
         self.screenshot_dir = dir
 
-    def parse(self, source, name=""):
+    def parse(self, source, name="", editor=False):
         meta_node = None
         settings_node = None
         global_caption = None
@@ -134,7 +134,7 @@ class WidgetExampleParser:
                 global_caption = caption.text
 
         # no screenshots defined, add a default one
-        if len(settings['screenshots']) == 0:
+        if len(settings['screenshots']) == 0 and editor is False:
             settings['screenshots'].append({
                 "name": name + str(self.counters[name] + shot_index)
             })

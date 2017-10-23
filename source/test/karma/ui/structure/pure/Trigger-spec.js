@@ -116,7 +116,7 @@ describe("testing a trigger", function() {
     expect(actor).toHaveClass("switchPressed");
     expect(actor).not.toHaveClass("switchUnpressed");
     // up
-    Reg.fireEvent(actor, "pointerup", qx.event.type.Event, []);
+    Reg.fireEvent(actor, "pointerup", qx.event.type.Event, [true, true]);
     expect(actor).not.toHaveClass("switchPressed");
     expect(actor).toHaveClass("switchUnpressed");
   });

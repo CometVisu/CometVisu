@@ -87,6 +87,8 @@ qx.Class.define('cv.report.Replay', {
     __config: null,
     __cursor: null,
     __currentIndex: null,
+    __skipMoveEvents: false,
+    __startTime: null,
 
     prepare: function(log) {
       // patch XHR
@@ -111,6 +113,8 @@ qx.Class.define('cv.report.Replay', {
     start: function() {
       var runtime = Math.round((this.__end - this.__start)/1000);
       console.log("Replay time: "+Math.floor(runtime/60)+":"+ qx.lang.String.pad(""+(runtime  % 60), 2, "0"));
+      this.__startTime = Date.now();
+
       var delay = this.__log[0].t - this.__start;
       qx.event.Timer.once(function() {
         this.__replay(0);
@@ -141,6 +145,8 @@ qx.Class.define('cv.report.Replay', {
         qx.event.Timer.once(function() {
           qx.bom.Notification.getInstance().show("Replay", "Replay finished");
           cv.io.Client.stopAll();
+          var runtime = Math.round((Date.now() - this.__startTime) / 1000);
+          console.log("Log replayed in: "+Math.floor(runtime/60)+":"+ qx.lang.String.pad(""+(runtime  % 60), 2, "0"));
         }, this, this.__end - this.__log[index].t);
         return;
       }
