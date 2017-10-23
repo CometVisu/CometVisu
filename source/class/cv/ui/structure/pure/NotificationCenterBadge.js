@@ -90,7 +90,11 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       cv.ui.NotificationCenter.getInstance().disableBadge(value);
     },
 
-    action: function() {
+    action: function(ev) {
+      if (this._skipNextEvent === ev.getType()) {
+        this._skipNextEvent = null;
+        return;
+      }
       cv.ui.NotificationCenter.getInstance().toggleVisibility();
     },
 
