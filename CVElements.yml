@@ -76,6 +76,7 @@
     "de": "Wechselt nach gewisser Zeit der Inaktivität auf eine andere Seite"
     "en": "Changes currently displayed page after some time of inactivity."
   "manual":
+    "de": "/de/latest/manual/config/widgets/plugins/timeout/index.html"
     "en": "/en/latest/manual/config/widgets/plugins/timeout/index.html"
   "name": "Timeout"
 - "description":

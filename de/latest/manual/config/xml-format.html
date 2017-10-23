@@ -37,10 +37,7 @@
         <link rel="index" title="Stichwortverzeichnis"
               href="../genindex.html"/>
         <link rel="search" title="Suche" href="../search.html"/>
-    <link rel="top" title="CometVisu" href="../index.html"/>
-        <link rel="up" title="Konfiguration der CometVisu" href="index.html"/>
-        <link rel="next" title="Funktionen zur Steuerung des Layouts" href="layout.html"/>
-        <link rel="prev" title="URL-Parameter" href="url-params.html"/> 
+    <link rel="top" title="CometVisu" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -96,27 +93,9 @@
               
             
             
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation der CometVisu</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Konfiguration der CometVisu</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="url-params.html">URL-Parameter</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#seiten-und-struktur-der-cometvisu">Seiten und Struktur der CometVisu</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html#grundsatzliches">Grundsätzliches</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html#arbeiten-mit-der-konfigurationsdatei">Arbeiten mit der Konfigurationsdatei</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">XML-Struktur</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#navigationselemente-in-der-cometvisu">Navigationselemente in der CometVisu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#die-verfugbaren-designs">Die verfügbaren Designs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#grundlegende-elemente-zum-gestalten-des-layouts">Grundlegende Elemente zum Gestalten des Layouts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#elemente-fur-konvertierung-und-formatierung-in-der-cometvisu">Elemente für Konvertierung und Formatierung in der CometVisu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#widgets-in-der-cometvisu">Widgets in der CometVisu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#cometvisu-beispiele">CometVisu - Beispiele</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#sonstiges">sonstiges</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Konfiguration der CometVisu</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../colab/index.html">Hilf dem CometVisu Projekt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devel/index.html">Informationen für Entwickler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
@@ -164,8 +143,6 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Konfiguration der CometVisu</a> &raquo;</li>
-        
       <li>XML-Struktur</li>
     
     
@@ -190,25 +167,25 @@ Es besteht daher die Möglichkeit, dass einige der hier beschriebenen Features
 mit dem aktuellsten Release der CometVisu nicht genutzt werden können.</p>
 </div>
 <div class="section" id="xml-struktur">
-<h1>XML-Struktur<a class="headerlink" href="#xml-struktur" title="Link zu dieser Überschrift">¶</a></h1>
+<span id="xml-format"></span><h1>XML-Struktur<a class="headerlink" href="#xml-struktur" title="Link zu dieser Überschrift">¶</a></h1>
 <p>Eine XML-Datei besteht aus verschiedenen &#8220;Elementen&#8221;, die insgesamt
 einen Baum darstellen. Ein Element kann weitere Elemente einschließen.
 Über &#8220;Attribute&#8221; kann ein Element Werte annehmen. Einige dieser
 Attribute müssen zwingend vergeben werden.</p>
-<div class="section" id="die-visu-config-xml-header">
-<h2>Die visu_config.xml (Header)<a class="headerlink" href="#die-visu-config-xml-header" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="der-header-der-visu-config-xml">
+<span id="xml-format-header"></span><h2>Der Header der visu_config.xml<a class="headerlink" href="#der-header-der-visu-config-xml" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Die Konfigurationsdatei beginnt immer mit folgenden beiden Zeilen:</p>
 <div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
 <span class="nt">&lt;pages</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">design=</span><span class="s">&quot;pure&quot;</span> <span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&quot;visu_config.xsd&quot;</span><span class="nt">&gt;</span>
 </pre></div>
 </div>
-<p>In der zweiten Zeile ist folgende Einstellung relevant:</p>
+<p>In der zweiten Zeile sind folgende Einstellungen relevant:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="10%" />
-<col width="50%" />
-<col width="35%" />
-<col width="6%" />
+<col width="12%" />
+<col width="49%" />
+<col width="34%" />
+<col width="5%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Option</th>
@@ -223,58 +200,25 @@ Attribute müssen zwingend vergeben werden.</p>
 <td>pure, metal, discreet, discreet_sand, discreet_slim, alaska, alaska_slim</td>
 <td>JA</td>
 </tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">screensave_time=&quot;60&quot;</span></code></td>
+<td>Mit dieser Option kann festgelegt werden, nach welcher Zeit auf eine bestimmte Seite zurückgekehrt wird</td>
+<td>beliebige Angabe in Sekunden</td>
+<td>NEIN</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">screensave_page=&quot;main&quot;</span></code></td>
+<td>Mit dieser Option kann festgelegt werden, auf welche Seite nach Ablauf von <code class="docutils literal"><span class="pre">sceensave_time</span></code> angezeigt wird</td>
+<td>Angabe der Seite-ID zB. &#8220;id_1&#8221; bzw. Seitenname zB. &#8220;Main&#8221;</td>
+<td>NEIN</td>
+</tr>
 </tbody>
 </table>
-<p>Als nächstes kommen in der visu_config.xml alle Definitionen für
-Plugins, Mappings, Stylings, Icons und die Statusleiste. Die Reihenfolge
-ist wie folgt:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
-   <span class="nt">&lt;plugins&gt;</span>
-      <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;colorchooser&quot;</span><span class="nt">/&gt;</span>
-   <span class="nt">&lt;/plugins&gt;</span>
-
-   <span class="nt">&lt;mappings&gt;</span>
-      <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Start/Stop&quot;</span><span class="nt">&gt;</span>
-         <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Stop<span class="nt">&lt;/entry&gt;</span>
-         <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>Start<span class="nt">&lt;/entry&gt;</span>
-      <span class="nt">&lt;/mapping&gt;</span>
-   <span class="nt">&lt;/mappings&gt;</span>
-
-   <span class="nt">&lt;stylings&gt;</span>
-      <span class="nt">&lt;styling</span> <span class="na">name=</span><span class="s">&quot;RedGreen&quot;</span><span class="nt">&gt;</span>
-         <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
-         <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
-      <span class="nt">&lt;/styling&gt;</span>
-   <span class="nt">&lt;/stylings&gt;</span>
-
-   <span class="nt">&lt;icons&gt;</span>
-      <span class="nt">&lt;icon-definition</span> <span class="na">name=</span><span class="s">&quot;Icon1&quot;</span> <span class="na">uri=</span><span class="s">&quot;./icon/unterverzeichnis/icon1.png&quot;</span><span class="nt">/&gt;</span>
-   <span class="nt">&lt;/icons&gt;</span>
-
-   <span class="nt">&lt;statusbar&gt;</span>
-       <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
-<span class="cp">           &lt;img src=&quot;icon/comet_64_ff8000.png&quot; alt=&quot;CometVisu&quot; /&gt; by &lt;a href=&quot;http://www.cometvisu.org/&quot;&gt;CometVisu.org&lt;/a&gt;</span>
-<span class="cp">           - &lt;a href=&quot;.?forceReload=true&quot;&gt;Reload&lt;/a&gt;</span>
-<span class="cp">           - &lt;a href=&quot;?config=demo&quot;&gt;Widget Demo&lt;/a&gt;</span>
-<span class="cp">         ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-       <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span> <span class="na">condition=</span><span class="s">&quot;!edit&quot;</span> <span class="na">hrefextend=</span><span class="s">&quot;config&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
-<span class="cp">           - &lt;a href=&quot;edit_config.html&quot;&gt;Edit&lt;/a&gt;</span>
-<span class="cp">         ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-       <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span> <span class="na">condition=</span><span class="s">&quot;edit&quot;</span> <span class="na">hrefextend=</span><span class="s">&quot;all&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
-<span class="cp">           - &lt;a href=&quot;.&quot;&gt;normal Mode&lt;/a&gt;</span>
-<span class="cp">         ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-       <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
-<span class="cp">           - &lt;a href=&quot;check_config.php&quot;&gt;Check Config&lt;/a&gt;</span>
-<span class="cp">           &lt;div style=&quot;float:right;padding-right:0.5em&quot;&gt;Version: SVN&lt;/div&gt;</span>
-<span class="cp">         ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
-     <span class="nt">&lt;/statusbar&gt;</span>
-  <span class="nt">&lt;/meta&gt;</span>
-</pre></div>
-</div>
-<p>Die Optionen von oben nach unten im Überblick:</p>
+<p>Als nächstes kommen in der visu_config.xml innerhalb des meta-tags alle Definitionen für
+Plugins, Mappings, Stylings, Icons und die Statusleiste. Die richtige Reihenfolge ist dabei
+einzuhalten!</p>
+<p>Nachstehend wird werden der Reihe nach ein Überblick über die Optionen im meta-tag gegeben.</p>
 </div>
 <div class="section" id="plugins">
-<h2>Plugins<a class="headerlink" href="#plugins" title="Link zu dieser Überschrift">¶</a></h2>
+<span id="xml-format-plugins"></span><h2>Plugins<a class="headerlink" href="#plugins" title="Link zu dieser Überschrift">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
 <col width="12%" />
@@ -297,9 +241,17 @@ ist wie folgt:</p>
 </tr>
 </tbody>
 </table>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">&quot;colorchooser&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+    ...
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="mappings">
-<h2>Mappings<a class="headerlink" href="#mappings" title="Link zu dieser Überschrift">¶</a></h2>
+<span id="xml-format-mappings"></span><h2>Mappings<a class="headerlink" href="#mappings" title="Link zu dieser Überschrift">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
 <col width="22%" />
@@ -327,9 +279,21 @@ ist wie folgt:</p>
 </tr>
 </tbody>
 </table>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+    ...
+    <span class="nt">&lt;mappings&gt;</span>
+        <span class="nt">&lt;mapping</span> <span class="na">name=</span><span class="s">&quot;Start/Stop&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>Stop<span class="nt">&lt;/entry&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>Start<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/mapping&gt;</span>
+    <span class="nt">&lt;/mappings&gt;</span>
+    ...
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="stylings">
-<h2>Stylings<a class="headerlink" href="#stylings" title="Link zu dieser Überschrift">¶</a></h2>
+<span id="xml-format-stylings"></span><h2>Stylings<a class="headerlink" href="#stylings" title="Link zu dieser Überschrift">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -357,9 +321,21 @@ ist wie folgt:</p>
 </tr>
 </tbody>
 </table>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+    ...
+    <span class="nt">&lt;stylings&gt;</span>
+        <span class="nt">&lt;styling</span> <span class="na">name=</span><span class="s">&quot;RedGreen&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>red<span class="nt">&lt;/entry&gt;</span>
+            <span class="nt">&lt;entry</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>green<span class="nt">&lt;/entry&gt;</span>
+        <span class="nt">&lt;/styling&gt;</span>
+    <span class="nt">&lt;/stylings&gt;</span>
+    ...
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="icons">
-<h2>Icons<a class="headerlink" href="#icons" title="Link zu dieser Überschrift">¶</a></h2>
+<span id="xml-format-icons"></span><h2>Icons<a class="headerlink" href="#icons" title="Link zu dieser Überschrift">¶</a></h2>
 <table border="1" class="docutils">
 <colgroup>
 <col width="11%" />
@@ -382,16 +358,44 @@ ist wie folgt:</p>
 </tr>
 </tbody>
 </table>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+    ...
+    <span class="nt">&lt;icons&gt;</span>
+        <span class="nt">&lt;icon-definition</span> <span class="na">name=</span><span class="s">&quot;Icon1&quot;</span> <span class="na">uri=</span><span class="s">&quot;./icon/unterverzeichnis/icon1.png&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/icons&gt;</span>
+    ...
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="statusbar">
-<h2>Statusbar<a class="headerlink" href="#statusbar" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Zu tun</p>
-<p class="last">Statusbar beschreiben</p>
+<span id="xml-format-statusbar"></span><h2>Statusbar<a class="headerlink" href="#statusbar" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Der Statusbar befindet sich am unteren Bildschirmrand und erlaubt das zB. Abzeigen von externen Links (über URL).</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;meta&gt;</span>
+    ...
+    <span class="nt">&lt;statusbar&gt;</span>
+        <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">            &lt;img src=&quot;icon/comet_64_ff8000.png&quot; alt=&quot;CometVisu&quot; /&gt; by &lt;a href=&quot;http://www.cometvisu.org/&quot;&gt;CometVisu.org&lt;/a&gt;</span>
+<span class="cp">            - &lt;a href=&quot;.?forceReload=true&quot;&gt;Reload&lt;/a&gt;</span>
+<span class="cp">            - &lt;a href=&quot;?config=demo&quot;&gt;Widget Demo&lt;/a&gt;</span>
+<span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
+        <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span> <span class="na">condition=</span><span class="s">&quot;!edit&quot;</span> <span class="na">hrefextend=</span><span class="s">&quot;config&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">            - &lt;a href=&quot;edit_config.html&quot;&gt;Edit&lt;/a&gt;</span>
+<span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
+        <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span> <span class="na">condition=</span><span class="s">&quot;edit&quot;</span> <span class="na">hrefextend=</span><span class="s">&quot;all&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">            - &lt;a href=&quot;.&quot;&gt;normal Mode&lt;/a&gt;</span>
+<span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
+        <span class="nt">&lt;status</span> <span class="na">type=</span><span class="s">&quot;html&quot;</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[</span>
+<span class="cp">            - &lt;a href=&quot;check_config.php&quot;&gt;Check Config&lt;/a&gt;</span>
+<span class="cp">            &lt;div style=&quot;float:right;padding-right:0.5em&quot;&gt;Version: SVN&lt;/div&gt;</span>
+<span class="cp">            ]]&gt;</span><span class="nt">&lt;/status&gt;</span>
+    <span class="nt">&lt;/statusbar&gt;</span>
+<span class="nt">&lt;/meta&gt;</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="aufbau-der-visu-seiten">
-<h2>Aufbau der Visu-Seiten<a class="headerlink" href="#aufbau-der-visu-seiten" title="Link zu dieser Überschrift">¶</a></h2>
+<span id="xml-format-pages"></span><h2>Aufbau der Visu-Seiten<a class="headerlink" href="#aufbau-der-visu-seiten" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Als erstes muss eine Seite als Startseite angelegt werden. Dies
 geschieht mit dem obersten Container. Alle weiteren Widgets und Seiten
 befinden sich innerhalb dieser Hauptseite. Die Position der Elemente
@@ -454,15 +458,6 @@ werden:</p>
            </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="layout.html" class="btn btn-neutral float-right" title="Funktionen zur Steuerung des Layouts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="url-params.html" class="btn btn-neutral" title="URL-Parameter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
