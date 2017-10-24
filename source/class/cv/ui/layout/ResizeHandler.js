@@ -263,12 +263,15 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
 
     __makeRowspanValid: function () {
       qx.log.Logger.debug(this, "makeRowspanValid");
-      var elem = qx.dom.Element.create("div", {
-        "class": "clearfix",
-        "id": "calcrowspan",
-        "html": '<div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv"></div>'
-      });
-      qx.dom.Element.insertEnd(elem, document.body);
+      var elem = qx.bom.Selector.query("#calcrowspan")[0];
+      if (!elem) {
+        elem = qx.dom.Element.create("div", {
+          "class": "clearfix",
+          "id": "calcrowspan",
+          "html": '<div id="containerDiv" class="widget_container"><div class="widget clearfix text" id="innerDiv"></div>'
+        });
+        qx.dom.Element.insertEnd(elem, document.body);
+      }
       // use the internal div for height as in mobile view the elem uses the full screen height
       this.__updateRowHeight(qx.bom.Selector.query("#containerDiv", elem)[0]);
     },
@@ -285,7 +288,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
       for (var rowspan in cv.Config.configSettings.usedRowspans) {
         styles += '.rowspan.rowspan' + rowspan + ' { height: ' + Math.round(rowspan * height) + "px;}\n";
       }
-      qx.dom.Element.remove( elem );
+      qx.dom.Element.remove( qx.bom.Selector.query("#calcrowspan")[0] );
 
       // set css style
       var rowSpanStyle = qx.bom.Selector.query('#rowspanStyle')[0];
