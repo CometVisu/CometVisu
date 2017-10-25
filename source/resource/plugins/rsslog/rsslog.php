@@ -33,6 +33,8 @@
 // 6. Update state:
 //    URL parameter "u" id of row
 //    URL parameter "state": new state
+// 7. Info page:
+//    URL parameter "info" Show an info page
 
 
 // look where to store DB
@@ -54,7 +56,10 @@ $dbh = openDb( $dbfile );
 // create table if it doesn't exists
 create( $dbh );
 
-if( isset($_GET['c']) )
+if( isset($_GET['info']) )
+{
+  showInfo();
+} else if( isset($_GET['c']) )
 { 
   // store a new log
   $store = true;
@@ -212,9 +217,11 @@ function openDb( $dbfile )
   // rsslog.php used to use sqlite2 which is outdated and replaced by sqlite3.
   // As it is not clear whether the database file is already a sqlite3 we 
   // assume it optimistically but check it later on when a problem occurs:
+  global $usedDBdriver;
 
   // create database connection - assuming it's sqlite3
   $dbh = new PDO('sqlite:' . $dbfile) or die("cannot open the database with PDO(sqlite)");
+  $usedDBdriver = 'sqlite';
   
   // check whether we can read
   $q = "SELECT name FROM sqlite_master WHERE type='table'";
@@ -231,6 +238,9 @@ function openDb( $dbfile )
       $result = $dbh->query( $q );
       if (!$result) die("Database read with PDO(sqlite2) failed!");
       
+      $usedDBdriver = 'sqlite2';
+      
+      /*
       $dbfileTmp = $dbfile . '.tmpMigration2to3';
       if( file_exists($dbfileTmp) )
       {
@@ -257,6 +267,7 @@ function openDb( $dbfile )
       
       // and return the handle to the new version
       $dbh = new PDO('sqlite:' . $dbfile) or die("cannot open the database with PDO(sqlite)");
+      */
     } 
     else 
       die("Database couldn't be open. Sqlite2 check couldn't be performed as driver is missing.");
@@ -450,5 +461,47 @@ function updatestate( $dbh, $id, $newstate)
   
   if (!$ok)
     die("Cannot execute query. " . end($dbh->errorInfo()));
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Show management informations
+function showInfo()
+{
+  global $dbfile, $usedDBdriver;
+?>
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /></head><body>
+<h1>Information</h1>
+<ul>
+  <li>
+    Database file: <?php echo $dbfile; ?>
+  </li>
+  <li>
+    Active database driver: <?php echo $usedDBdriver; ?>
+  </li>
+  <li>
+    Available database drivers: <?php echo join( ', ', PDO::getAvailableDrivers() ); ?>
+  </li>
+<?php
+if( 'sqlite' !== $usedDBdriver )
+  echo '<li>Please update to latest database version by opening this <a href="?convert">update page</a>.</li>';
+?>
+  <li>
+    Current number of entries in the database: <?php echo '<TODO>'; ?>
+  </li>
+  <li>
+    <a href="?dump">Show complete database content</a>.
+  </li>
+  <li>
+    <a href="?r=<?php echo strtotime("-1 week"); ?>">Delete entries older than 1 week</a>.
+  </li>
+  <li>
+    <a href="?r=<?php echo strtotime("-1 month"); ?>">Delete entries older than 1 month</a>.
+  </li>
+  <li>
+    <a href="?r=<?php echo strtotime("-1 year"); ?>">Delete entries older than 1 year</a>.
+  </li>
+</ul>
+</body></html>
+<?php
 }
 ?>
