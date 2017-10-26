@@ -388,6 +388,10 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       popup.addListener('close', function() {
         this._stopRefresh(this._timerPopup);
         qx.event.Registration.removeAllListeners(popupDiagram);
+        if (this.popupplot) {
+          this.popupplot.shutdown();
+          this.popupplot = null;
+        }
       }, this);
 
       var parent = qx.dom.Element.getParentElement(popupDiagram);
@@ -404,13 +408,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     },
 
     initDiagram: function( isPopup ) {
-      var diagram = isPopup ? $( '#' + this.getPath() + '_big' ) : $( '#' + this.getPath() + ' .actor div' );
-
       if (!this._init) {
+
         return;
       }
       this._init = false;
-      isPopup |= this.__isPopup;
+      isPopup = isPopup || this.__isPopup;
 
       var options = {
         canvas  : true,
@@ -498,42 +501,40 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }
 
       // plot diagram initially with empty values
-      diagram.empty();
-      qx.bom.AnimationFrame.request(function() {
-        var plot = $.plot(diagram, [], options);
-        if( isPopup ) {
-          this.debug("popup plot generated");
-          this.popupplot = plot;
-        }
-        else {
-          this.debug("plot generated");
-          this.plot = plot;
-        }
-        this.plotted = true;
+      var diagram = isPopup ? $( '#' + this.getPath() + '_big' ) : $( '#' + this.getPath() + ' .actor div' );
+      var plot = $.plot(diagram, [], options);
+      if( isPopup ) {
+        this.debug("popup plot generated");
+        this.popupplot = plot;
+      }
+      else {
+        this.debug("plot generated");
+        this.plot = plot;
+      }
+      this.plotted = true;
 
-        var that = this;
-        diagram.bind("plotpan", function(event, plot, args) {
-          if (args.dragEnded) {
-            that.loadDiagramData( plot, isPopup, false );
-          }
-        }).bind("plotzoom", function() {
+      var that = this;
+      diagram.bind("plotpan", function(event, plot, args) {
+        if (args.dragEnded) {
           that.loadDiagramData( plot, isPopup, false );
-        }).bind("touchended", function() {
-          that.loadDiagramData( plot, isPopup, false );
-        }).bind("tap", function() {
-          var self = this;
-          var container = $(self).closest('.widget_container')[0];
-          if ( !isPopup && container !== undefined) {
-            var actor = $(self).closest('.actor')[0];
-            var path = container.id;
-            if( actor !== undefined && path.length > 0 ) {
-              that.action();
-            }
+        }
+      }).bind("plotzoom", function() {
+        that.loadDiagramData( plot, isPopup, false );
+      }).bind("touchended", function() {
+        that.loadDiagramData( plot, isPopup, false );
+      }).bind("tap", function() {
+        var self = this;
+        var container = $(self).closest('.widget_container')[0];
+        if ( !isPopup && container !== undefined) {
+          var actor = $(self).closest('.actor')[0];
+          var path = container.id;
+          if( actor !== undefined && path.length > 0 ) {
+            that.action();
           }
-        });
+        }
+      });
 
-        this.loadDiagramData( plot, isPopup, false );
-      }, this);
+      this.loadDiagramData( plot, isPopup, false );
     },
 
     getSeriesSettings: function(xAxis, isInteractive) {

@@ -206,7 +206,9 @@ qx.Class.define('cv.ui.structure.AbstractWidget', {
       this.addElementListener("tap", this.action, this);
 
       // we need to listen to pointerdown to detect taps with
-      this.addElementListener("pointerdown", this._onPointerDown, this);
+      if (this.buttonPressed) {
+        this.addElementListener("pointerdown", this._onPointerDown, this);
+      }
     },
 
     _onPointerDown: function(ev) {
