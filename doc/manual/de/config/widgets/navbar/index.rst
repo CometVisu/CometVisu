@@ -8,7 +8,7 @@ Das Navbar Widget
 Beschreibung
 ------------
 
-Mit dem Navbar-Widget kann man ein (auf der jeweiligen Seite) permanent sichtbares Navigationsmenü erstellen, 
+Mit dem Navbar-Widget kann man ein permanent sichtbares Navigationsmenü erstellen, 
 das auf jeder Seite der Visualisierung getrennt konfiguriert oder auch ausgeblendet werden kann.  
 
 Am häufigsten werden im Navbar PageJump-Widgets zur Navigation platziert. Besonders praktisch ist auch die 
@@ -18,7 +18,7 @@ Je Seite können bis zu 4 Navbars konfiguriert werden, am häufigsten werden abe
 Die Sichtbarkeit der Navbars kann über die Attribute des Page-Elementes zB. ``showtopnavigation="true"`` gesteuert
 werden.
 
-.. figure:: _static/pagejump_komplex.png
+.. figure:: _static/Navbar_TopLeft.png
 
 
 Einstellungen
@@ -64,135 +64,92 @@ der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
     In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
     werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
 
-Hier ein komplexes Beispiel für ein Navigationsmenü in einer Navbar:
+Ein komplexes Beispiel für einen Navbar mit PageJump- und InfoAction-Widgets findet sich in der Dokumentation
+des :ref:`PageJump-Widgets <pagejump>`.
 
+Nachstehend ein weiteres Beispiel für ein Navigationsmenü mit zwei Navbar-Widgets. Im top-Navbar wird neben mehreren
+PageJump-Widgets das strftime-Plugin zur Anzeige von Datum und Uhrzeit angewendet.  
 
-.. widget-example::
+.. figure:: _static/Navbar_TopLeft.png
 
-    <settings selector="#navbarTop .navbar">
-        <screenshot name="pagejump_komplex">
-            <caption>Navbar mit PageJump-Widgets</caption>
-            <data address="1/0/0" type="float">20.5</data>
-            <data address="1/0/1" type="float">21.5</data>
-            <data address="1/0/2" type="float">22</data>
-            <data address="1/0/3" type="float">18</data>
-        </screenshot>
-    </settings>
-    <navbar position="top" dynamic="true">
-        <pagejump target="Übersicht">
-            <layout colspan="0" />
-            <label>
-                <icon name="control_building_empty" />
-                Übersicht
-            </label>
-        </pagejump>
-        <line>
-            <layout colspan="0" />
-        </line>
-        <pagejump target="Wohnzimmer">
-            <layout colspan="0" />
-            <label>
-                <icon name="scene_livingroom" />
-                Wohnen
-            </label>
-            <widgetinfo>
-                <info format="%d">
-                    <layout colspan="0" />
-                    <address transform="DPT:9.001" mode="read" variant="">1/0/0</address>
-                </info>
-            </widgetinfo>
-        </pagejump>
-        <pagejump target="Esszimmer">
-            <layout colspan="0" />
-            <label>
-                <icon name="scene_dinner" />
-                Essen
-            </label>
-            <widgetinfo>
-                <info format="%d">
-            <layout colspan="0" />
-            <address transform="DPT:9.001" mode="read" variant="">1/0/1</address>
-                </info>
-            </widgetinfo>
-        </pagejump>
-        <pagejump target="Schlafzimmer">
-            <layout colspan="0" />
-            <label>
-                <icon name="scene_sleeping" />
-                Schlafen
-            </label>
-            <widgetinfo>
-                <info format="%d">
-                    <layout colspan="0" />
-                    <address transform="DPT:9.001" mode="read" variant="">1/0/2</address>
-                </info>
-            </widgetinfo>
-        </pagejump>
-        <pagejump target="Büro">
-            <layout colspan="0" />
-            <label>
-                <icon name="it_pc" />
-                Büro
-            </label>
-        </pagejump>
-        <pagejump target="Küche">
-            <layout colspan="0" />
-            <label>
-                <icon name="scene_baking_oven" /> Küche
-            </label>
-            <widgetinfo>
-                <info format="%d">
-                    <layout colspan="0" />
-                    <address transform="DPT:9.001" mode="read" variant="">1/0/3</address>
-                </info>
-            </widgetinfo>
-        </pagejump>
-        <pagejump target="Bad">
-            <layout colspan="0" />
-            <label>
-                <icon name="scene_bath" />
-                Bad
-            </label>
-        </pagejump>
-        <pagejump target="Flure">
-            <layout colspan="0" />
-            <label>
-                <icon name="scene_hall" />
-                Flure
-            </label>
-        </pagejump>
-        <pagejump target="Garage">
-            <layout colspan="0" />
-            <label>
-                <icon name="fts_garage" />
-                Garage
-            </label>
-        </pagejump>
-        <line>
-            <layout colspan="0" />
-        </line>
-        <pagejump target="Multiroom">
-            <layout colspan="0" />
-            <label>
-                <icon name="audio_sound" />
-                Audio
-            </label>
-        </pagejump>
-        <pagejump target="Temperaturen">
-            <layout colspan="0" />
-            <label>
-                <icon name="temp_temperature" />
-                Temperatur
-            </label>
-        </pagejump>
-        <pagejump target="Netzwerk">
-            <layout colspan="0" />
-            <label>
-                <icon name="it_network" />
-                Netzwerk
-            </label>
-        </pagejump>
-    </navbar>
+.. code-block:: xml
+
+    <meta>
+        <plugins>      
+            <plugin name="strftime"/>    
+        </plugins>
+    </meta>
+    <page name="Uebersicht" showtopnavigation="false" showfooter="false" shownavbar-top="true" shownavbar-left="true">
+        <navbar position="top">
+            <pagejump target="Uebersicht">
+                <layout colspan="1"/>
+                <label><icon name="control_home"/>Startseite</label>
+            </pagejump>
+            <line>
+                <layout colspan="0.07"/>
+            </line>
+            <line>
+                <layout colspan="0"/>
+            </line>
+            <pagejump target="Erdgeschoß">
+                <layout colspan="1"/>
+                <label><icon name="control_building_s_eg"/>Erdgeschoß</label>
+            </pagejump>
+            <pagejump target="Obergeschoß">
+                <layout colspan="1"/>
+                <label><icon name="control_building_s_og"/>Obergeschoß</label>
+            </pagejump>
+            <pagejump target="Kellergeschoß">
+                <layout colspan="1"/>
+                <label><icon name="control_building_s_kg"/>Kellergeschoß</label>
+            </pagejump>
+            <line>
+                <layout colspan="0"/>
+            </line>
+            <pagejump target="Technik">
+                <layout colspan="1"/>
+                <label><icon name="sani_boiler_temp"/>Technik</label>
+            </pagejump>
+            <pagejump target="Wetter">
+                <layout colspan="1"/>
+                <label><icon name="weather_sun"/>Wetter</label>
+            </pagejump>
+            <line>
+                <layout colspan="0"/>
+            </line> 
+            <strftime lang="de" format="%A, %d. %B %Y %H:%M:%S">
+                <layout colspan="0"/>
+            </strftime>
+        </navbar>
+        <navbar position="left" dynamic="true" width="180px">
+            <group name="Küche">
+                <pagejump target="Kueche" name="Küche">
+                    <label><icon name="scene_cooking"/></label>
+                </pagejump>
+                <pagejump target="Esszimmer" name="Esszimmer">
+                    <label><icon name="sani_solar"/></label>
+                </pagejump>
+                <pagejump target="Wohnzimmer" name="Wohnzimmer">
+                    <label><icon name="scene_living"/></label>
+                </pagejump>
+                <pagejump target="Arbeitszimmer" name="Arbeitszimmer">
+                    <label><icon name="it_pc"/></label>
+                </pagejump>
+            </group>
+            <group name="Quick Links">
+                <pagejump target="Beschattung" name="Beschattung">
+                    <label><icon name="fts_shutter"/></label>
+                </pagejump>
+                <pagejump target="Alarmanlage" name="Alarmanlage">
+                    <label><icon name="secur_alarm"/></label>
+                </pagejump>
+                <pagejump target="Wartung" name="Wartung">
+                    <label><icon name="control_building_control"/></label>
+                </pagejump>
+            </group>
+        </navbar>
+    
+  </page>
 
 
 .. rubric:: Fußnoten
