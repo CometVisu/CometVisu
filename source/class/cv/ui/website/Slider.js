@@ -81,6 +81,10 @@ qx.Class.define('cv.ui.website.Slider', {
         knob.setStyle("width", (pos+paddingLeft)+"px");
         knob.setStyle("marginLeft", paddingLeft*-1+"px");
       }, this);
+      this.on("pointerdown", function(ev) {
+        this._onSliderPointerUp(ev);
+        this._onPointerDown(ev);
+      }, this);
     },
 
     // overridden
