@@ -12,6 +12,10 @@ Description
 
 Adds an dynamic field to the visu that shows live information from a WireGate plugin.
 
+Note: The service helper from
+https://raw.githubusercontent.com/OpenAutomationProject/Wiregate/master/tools/wg-plugindb/wg-plugindb.php
+must be "installed" in the directory /var/www/ (i.e. the web root)
+
 
 .. ###END-WIDGET-DESCRIPTION###
 
