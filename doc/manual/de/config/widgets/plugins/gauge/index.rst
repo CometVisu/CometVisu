@@ -19,6 +19,11 @@ die verschiedenen Elemente liefert. Geladen werden kann sie über folgenden Link
 
 über die Slider kann man dann verschiedenen Werte einstellen und sehen, wie diese angezeigt werden.
 
+.. figure:: _static/DisplayElements_GaugePlugin.png
+
+    Beispiele für Anzeigeelemente des Gauge-Plugins
+
+
 Einstellungen
 -------------
 

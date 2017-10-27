@@ -1853,7 +1853,12 @@
   </xsd:complexType>
 
   <xsd:complexType name="timeout">
-    <xsd:attribute name="time" type="xsd:string" use="optional" />
+    <xsd:attribute name="time" type="xsd:string" use="optional" >
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">Defines the time until target page is called.</xsd:documentation>
+        <xsd:documentation xml:lang="de">Definiert die Zeit, bis die festgelegte Seite aufgerufen wird.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute ref="target" use="required" />
     <xsd:attribute name="debug" type="xsd:boolean" use="optional" />
   </xsd:complexType>

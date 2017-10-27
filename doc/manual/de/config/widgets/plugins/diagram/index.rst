@@ -54,3 +54,32 @@ Erlaubte Kind-Elemente und deren Attribute
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. elements-information:: diagram
+
+
+XML Syntax minimal
+------------------
+
+Alternativ kann man für das Diagram-Widget auch von Hand einen Eintrag in
+der :doc:`visu_config.xml <../../xml-format>` hinzufügen.
+
+.. CAUTION::
+    In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+    werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!
+
+Nachstehend ein einfaches Beispiel für das Diagram als Widget mit Popup-Funktion inkl. Beispielcode. 
+
+.. figure:: _static/Diagram_simple_inline3.png
+
+.. code-block:: xml
+
+    <diagram  period="24" refresh="300" series="hour" gridcolor="#707070" popup="true" previewlabels="true" legend="both" legendposition="nw">
+        <layout colspan="6" rowspan="6"/>
+        <axis unit="°C" label="Temperatur"/>
+        <rrd color="#FF0000" label="Solar RL [°C]">28.9B3172020000_temp</rrd>
+        <rrd color="#FF00FF" label="Buffer 190cm [°C]">28.56A61B030000_temp</rrd>
+        <rrd color="#FFFF00" label="Buffer 160cm [°C]">28.DCA672020000_temp</rrd>
+        <rrd color="#00FF00" label="Buffer 100cm [°C]">28.EEA21B030000_temp</rrd>
+        <rrd color="#0000FF" label="Buffer 40cm [°C]">28.E7E17D020000_temp</rrd>
+    </diagram>
+
+
