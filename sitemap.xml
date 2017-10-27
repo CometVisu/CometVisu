@@ -561,6 +561,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/widgets/navbar/index.html</loc>
+    <lastmod>2017-10-27</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/widgets/break/index.html</loc>
     <lastmod>2017-10-27</lastmod>
     <priority>0.5</priority>
@@ -662,6 +667,11 @@
   </url>
   <url>
     <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/widgets/plugins/gauge/index.html</loc>
+    <lastmod>2017-10-27</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.cometvisu.org/CometVisu/de/latest/manual/config/widgets/wgplugin_info/index.html</loc>
     <lastmod>2017-10-27</lastmod>
     <priority>0.5</priority>
   </url>

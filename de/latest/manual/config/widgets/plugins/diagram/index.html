@@ -630,6 +630,31 @@ sehr ansehnliche Diagramme in der CometVisu dargestellt werden können.</p>
 </table>
 </div>
 </div>
+<div class="section" id="xml-syntax-minimal">
+<h2>XML Syntax minimal<a class="headerlink" href="#xml-syntax-minimal" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Alternativ kann man für das Diagram-Widget auch von Hand einen Eintrag in
+der <span class="xref doc">visu_config.xml</span> hinzufügen.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Vorsicht</p>
+<p class="last">In der Config selbst dürfen NUR UTF-8 Zeichen verwendet
+werden. Dazu muss ein auf UTF-8 eingestellter Editor verwendet werden!</p>
+</div>
+<p>Nachstehend ein einfaches Beispiel für das Diagram als Widget mit Popup-Funktion inkl. Beispielcode.</p>
+<div class="figure">
+<img alt="../../../../_images/Diagram_simple_inline3.png" src="../../../../_images/Diagram_simple_inline3.png" />
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;diagram</span>  <span class="na">period=</span><span class="s">&quot;24&quot;</span> <span class="na">refresh=</span><span class="s">&quot;300&quot;</span> <span class="na">series=</span><span class="s">&quot;hour&quot;</span> <span class="na">gridcolor=</span><span class="s">&quot;#707070&quot;</span> <span class="na">popup=</span><span class="s">&quot;true&quot;</span> <span class="na">previewlabels=</span><span class="s">&quot;true&quot;</span> <span class="na">legend=</span><span class="s">&quot;both&quot;</span> <span class="na">legendposition=</span><span class="s">&quot;nw&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;layout</span> <span class="na">colspan=</span><span class="s">&quot;6&quot;</span> <span class="na">rowspan=</span><span class="s">&quot;6&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;axis</span> <span class="na">unit=</span><span class="s">&quot;°C&quot;</span> <span class="na">label=</span><span class="s">&quot;Temperatur&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;rrd</span> <span class="na">color=</span><span class="s">&quot;#FF0000&quot;</span> <span class="na">label=</span><span class="s">&quot;Solar RL [°C]&quot;</span><span class="nt">&gt;</span>28.9B3172020000_temp<span class="nt">&lt;/rrd&gt;</span>
+    <span class="nt">&lt;rrd</span> <span class="na">color=</span><span class="s">&quot;#FF00FF&quot;</span> <span class="na">label=</span><span class="s">&quot;Buffer 190cm [°C]&quot;</span><span class="nt">&gt;</span>28.56A61B030000_temp<span class="nt">&lt;/rrd&gt;</span>
+    <span class="nt">&lt;rrd</span> <span class="na">color=</span><span class="s">&quot;#FFFF00&quot;</span> <span class="na">label=</span><span class="s">&quot;Buffer 160cm [°C]&quot;</span><span class="nt">&gt;</span>28.DCA672020000_temp<span class="nt">&lt;/rrd&gt;</span>
+    <span class="nt">&lt;rrd</span> <span class="na">color=</span><span class="s">&quot;#00FF00&quot;</span> <span class="na">label=</span><span class="s">&quot;Buffer 100cm [°C]&quot;</span><span class="nt">&gt;</span>28.EEA21B030000_temp<span class="nt">&lt;/rrd&gt;</span>
+    <span class="nt">&lt;rrd</span> <span class="na">color=</span><span class="s">&quot;#0000FF&quot;</span> <span class="na">label=</span><span class="s">&quot;Buffer 40cm [°C]&quot;</span><span class="nt">&gt;</span>28.E7E17D020000_temp<span class="nt">&lt;/rrd&gt;</span>
+<span class="nt">&lt;/diagram&gt;</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

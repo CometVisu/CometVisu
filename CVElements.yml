@@ -193,6 +193,7 @@
     "de": "Mit dem Widget navbar kann der gesamten Visu ein Navigationsmenü hinzu gefügt werden. Das Menü lässt sich an einer Seite (oben, unten, link, rechts) darstellen. Die Navigation durch die Visu lässt sich damit strukturieren."
     "en": "With the widget navbar, you can add a navigation menu to the entire visu. The menu can be displayed on a page (top, bottom, left, right)."
   "manual":
+    "de": "/de/latest/manual/config/widgets/navbar/index.html"
     "en": "/en/latest/manual/config/widgets/navbar/index.html"
   "name": "Navbar"
 - "description":
@@ -301,6 +302,7 @@
     "de": "Fügt der Visu ein dynamisches Feld hinzu mit dem Daten aus WireGate Plugins dargestellt werden können."
     "en": "Adds an dynamic field to the visu that shows live information from a WireGate plugin."
   "manual":
+    "de": "/de/latest/manual/config/widgets/wgplugin_info/index.html"
     "en": "/en/latest/manual/config/widgets/wgplugininfo/index.html"
   "name": "WG_Plugin_Info"
 - "description":
