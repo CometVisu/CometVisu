@@ -32,6 +32,8 @@ qx.Class.define('cv.io.transport.LongPolling', {
    */
   construct: function(client) {
     this.client = client;
+    this.watchdog = new cv.io.Watchdog();
+    this.watchdog.setClient(client);
   },
 
 
@@ -41,6 +43,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
   ******************************************************
   */
   members: {
+    watchdog: null,
     doRestart: false, // are we currently in a restart, e.g. due to the watchdog
     xhr: null, // the ongoing AJAX request
     lastIndex: -1,    // index returned by the last request
@@ -84,7 +87,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         successCallback = this.handleRead;
       }
       this.__startReading(data, successCallback);
-      this.client.watchdog.start(5);
+      this.watchdog.start(5);
     },
 
     __startReading: function(data, callback) {
@@ -290,6 +293,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
           this.client.backend.hooks.onClose.bind(this);
         }
       }
+      this.watchdog.stop();
     }
   }
 });
