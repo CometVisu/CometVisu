@@ -524,7 +524,21 @@ qx.Class.define("cv.Application",
             }, this, 0);
           }
         }, this);
-        engine.loadParts(plugins);
+        var parts = qx.Part.getInstance().getParts();
+        var partPlugins = [];
+        var standalonePlugins = [];
+        var path = qx.util.LibraryManager.getInstance().get('cv', 'resourceUri');
+        plugins.forEach(function(plugin) {
+          if (parts.hasOwnProperty(plugin)) {
+            partPlugins.push(plugin);
+          } else {
+            standalonePlugins.push(path + "/plugins/" + plugin.replace("plugin-", "") + "/index.js");
+          }
+        });
+        // load part plugins
+        engine.loadParts(partPlugins);
+        // load script plugins
+        cv.util.ScriptLoader.getInstance().addScripts(standalonePlugins);
       } else {
         this.debug("no plugins to load => all scripts queued");
         cv.util.ScriptLoader.getInstance().setAllQueued(true);
