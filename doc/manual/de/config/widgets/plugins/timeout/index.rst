@@ -5,7 +5,6 @@ Das Timeout Plugin
 
 .. api-doc:: timeout
 
-
 Beschreibung
 ------------
 
@@ -56,4 +55,3 @@ Nachstehend ein vollständiges Config-File für eine Visualisierungsseite mit Ti
             </page>    
         </page>
     </pages>
-

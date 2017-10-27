@@ -159,18 +159,6 @@ qx.Class.define("cv.ui.NotificationCenter", {
     }
   },
 
-
-  /*
- *****************************************************************************
-    PROPERTIES
- *****************************************************************************
- */
-  properties: {
-
-
-
-  },
-
   /*
 *****************************************************************************
    MEMBERS
@@ -235,6 +223,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
         // create new element
         elem = this.__element = qx.dom.Element.create("div", {
           id: this.getRootElementId(),
+          style: "visibility: hidden;",
           html: '<div class="badge"></div><header><h3>' + qx.locale.Manager.tr("Message center") + '<div class="action hide"><a href="#" onclick="cv.ui.NotificationCenter.hide()">X</a></div></h3></header><section class="messages"></section><footer><div class="action clear" onclick="cv.ui.NotificationCenter.clear()">' + qx.locale.Manager.tr("Delete all") + '<div></div></footer>'
         });
         qx.dom.Element.insertEnd(elem, body);
@@ -310,6 +299,7 @@ qx.Class.define("cv.ui.NotificationCenter", {
       if (!this.__visible) {
         this.__visible = true;
         this.__blocker.block();
+        qx.bom.element.Style.reset(this.__element, "visibility");
         qx.event.Registration.addListener(this.__blocker.getBlockerElement(), "tap", this.hide, this);
         var anim = qx.bom.element.Animation.animate(this.__element, cv.ui.NotificationCenter.SLIDE);
         anim.on("end", function () {
