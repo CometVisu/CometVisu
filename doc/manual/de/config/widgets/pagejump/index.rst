@@ -14,7 +14,7 @@ ein permanent sichtbares Navigationsmenü zu erstellen.
 
 .. figure:: _static/pagejump_komplex.png
 
-Zusätzlich kann ein PageJump-Widget sichtbares Widget in einem Page-Element platziert werden.
+Zusätzlich kann ein PageJump-Widget in einem Page-Element platziert werden.
 
 Einstellungen
 -------------

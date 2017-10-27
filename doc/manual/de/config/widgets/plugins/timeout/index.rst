@@ -11,8 +11,8 @@ Beschreibung
 
 Mit dem Timeout-Plugin wird erreicht, dass die CometVisu nach Ablauf einer bestimmten Zeit wieder eine definierte Seite 
 angezeigt wird. Das Timeout-Plugin aktiviert bei jedem Seitenwechsel (inkl. Page-Aufruf per GA) einen Timer, der
-durch Bedienung des Anzeigegerätes zurückgesetzt wird. Nach Ablauf eines festgelegten Timeouts ohne Aktivität
-wird die angegebene Seite der Visualisierung aktiviert.
+durch jegliche Benutzerinteraktion (zB. Mauszeigerbewegung oder -klick) zurückgesetzt wird. Nach Ablauf eines 
+festgelegten Timeouts ohne Aktivität wird die angegebene Seite der Visualisierung aktiviert.
 
 Das Timeout-Plugin hat kein sichtbares Widget. 
 

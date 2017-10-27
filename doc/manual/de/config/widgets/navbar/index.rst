@@ -14,7 +14,7 @@ das auf jeder Seite der Visualisierung getrennt konfiguriert oder auch ausgeblen
 Am häufigsten werden im Navbar PageJump-Widgets zur Navigation platziert. Besonders praktisch ist auch die 
 Anzeige der Uhrzeit- bzw. des  Datums mit dem strftime-Plugin. 
 
-Je Seite können bis zu 4 Navbars konfiguriert werden, am häufigsten werden aber nur 1-2 Navbars verwendet. 
+Je Seite können bis zu 4 Navbars konfiguriert werden, meistens werden aber nur 1-2 Navbars verwendet. 
 Die Sichtbarkeit der Navbars kann über die Attribute des Page-Elementes zB. ``showtopnavigation="true"`` gesteuert
 werden.
 
@@ -33,11 +33,11 @@ Die folgenden Tabellen zeigen die erlaubten Attribute und Elemente.
 Nur die mit ..... unterstrichenen Attribute/Elemente müssen zwingend angegeben werden, alle anderen sind optional und können
 daher weg gelassen werden.
 
-Über das ``scope``-Attribut kann die Vererbung des Navbars auf die nächsten Unterseiten gesteuert werden. Mit ``scope="0"``
-erfolgt keine Vererbung, d.h. der Navbar mussfür jede Seite individuell definiert werden. 
+Über das ``scope``-Attribut kann die Vererbung der Navbars auf die nächsten Unterseiten gesteuert werden. Mit ``scope="0"``
+erfolgt keine Vererbung, d.h. die Navbar mussfür jede Seite individuell definiert werden. 
 
-Mit ``scope="1"`` wird der Navbar auf das nächste Page-Element vererbt, d.h. eine weitere Navbar-Definition auf 
-der Unterseite wird zusätzlich zum Navbar der übergeordneten Page angezeigt, mit ``scope="2"`` wird um 2 Ebenen 
+Mit ``scope="1"`` wird die Navbar auf das nächste Page-Element vererbt, d.h. eine weitere Navbar-Definition auf 
+der Unterseite wird zusätzlich zur Navbar der übergeordneten Page angezeigt, mit ``scope="2"`` wird um 2 Ebenen 
 vererbt, usw.
 
 
@@ -49,7 +49,7 @@ Erlaubte Attribute im Navbar-Element
 Erlaubte Kind-Elemente und deren Attribute
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Im Navbar können grundsätzlich alle verfügbaren Widget-Elemente eingesetzt werden. Am häufigsten werden im Navbar 
+In einer Navbar können grundsätzlich alle verfügbaren Widget-Elemente eingesetzt werden. Am häufigsten werden  
 jedoch PageJump-Widgets platziert, die zusätzlich durch Gruppen-, Line und Text-Widgets optisch gestaltet werden 
 können. Besonders praktisch ist auch die Anzeige der Uhrzeit- bzw. des  Datums mit dem strftime-Plugin. 
 

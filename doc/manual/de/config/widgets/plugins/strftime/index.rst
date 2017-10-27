@@ -54,7 +54,7 @@ Erlaubte Attribute im strftime-Element
 
 .. HINT::
    
-   Das Attribut class wird im Editor nur angezeigt, wenn der complex-Modus aktiviert wurde.
+   Das Attribut ``class`` wird im Editor nur angezeigt, wenn der complex-Modus aktiviert wurde.
 
 Mögliche Formatierungsoptionen findet man `hier <http://hacks.bluesmoon.info/strftime/format_specifiers.html>`__.
 Ohne Angabe wird das Standardformat der jeweiligen Sprache verwendet.
@@ -110,10 +110,10 @@ Hier der minimale Beispielcode der das strftime Plugin aus dem folgenden Screens
 Beispiele
 ---------
 
-Zeitanzeige im linken Navbar
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Zeitanzeige in der linken Navbar
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Im linken Navbar reicht die Breite typischerweise nicht für die Anzeige von Datum- und Uhrzeit in
+In der linken Navbar reicht die Breite typischerweise nicht für die Anzeige von Datum- und Uhrzeit in
 einer Zeile. Aus diesem Grund wird im nachstehenden Beispiel eine Möglichkeit beschrieben, Datum und Uhrzeit 
 übereinander anzuordnen und zusätzlich ansprechend mittels ``class``-Element zu formatieren.  
 
