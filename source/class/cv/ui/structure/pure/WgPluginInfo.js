@@ -20,6 +20,10 @@
 
 /**
  * Adds an dynamic field to the visu that shows live information from a WireGate plugin.
+ * 
+ * Note: The service helper from
+ * https://raw.githubusercontent.com/OpenAutomationProject/Wiregate/master/tools/wg-plugindb/wg-plugindb.php
+ * must be "installed" in the directory /var/www/ (i.e. the web root)
  *
  * @author Christian Mayer
  * @since 2012
@@ -51,15 +55,15 @@ qx.Class.define('cv.ui.structure.pure.WgPluginInfo', {
       if (value) {
         if (!this.__request) {
           // create the request
-          this.__request = new qx.io.request.Xhr('/wg-plugindb.pl?name=' + value);
+          this.__request = new qx.io.request.Xhr('/wg-plugindb.php?name=' + value);
           this.__request.set({
-            accept: "application/json",
-            async: false
+            accept: "application/json"
           });
           this.__request.addListener("success", this._onSuccess, this);
         } else {
-          this.__request.setUrl('/wg-plugindb.pl?name=' + value);
+          this.__request.setUrl('/wg-plugindb.php?name=' + value);
         }
+        cv.TemplateEngine.getInstance().executeWhenDomFinished(this.__request.send, this.__request);
       }
     },
 
