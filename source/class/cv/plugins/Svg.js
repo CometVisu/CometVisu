@@ -25,7 +25,7 @@
  */
 qx.Class.define('cv.plugins.Svg', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.ui.common.Update, cv.ui.common.Refresh],
+  include: [cv.ui.common.Update],
 
   /*
   ******************************************************
@@ -47,7 +47,6 @@ qx.Class.define('cv.plugins.Svg', {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path);
-      cv.parser.WidgetParser.parseRefresh(xml, path);
       return data;
     }
   },
@@ -63,25 +62,35 @@ qx.Class.define('cv.plugins.Svg', {
     },
 
     _onDomReady: function() {
-      // TODO: replace jquery
-      var actor = $(this.getActor());
-      actor.svg({loadURL: qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg')});
+      this.base(arguments);
+      var ajaxRequest = new qx.io.request.Xhr(qx.util.ResourceManager.getInstance().toUri('plugins/svg/rollo.svg'));
+      ajaxRequest.set({
+        accept: "text/plain",
+        cache: !cv.Config.forceReload
+      });
+      ajaxRequest.addListenerOnce("success", function (e) {
+        var req = e.getTarget();
+        var actor = this.getActor();
+        qx.bom.element.Attribute.set(actor, 'html', req.getResponseText());
+      }, this);
+      ajaxRequest.send();
     },
 
-    handleUpdate: function(value) {
-      var element = this.getDomElement();
+    _update: function(address, value) {
+      value = this.defaultValueHandling(address, value);
+      var element = this.getActor();
       var linewidth=3;
       var space = 1;
       var total = linewidth + space;
       var line_qty = 48 / total;
       var line, i, l;
       for(i = 0, l = Math.floor(value/line_qty); i<=l;i++) {
-        line = qx.bom.Selector.query('#line'+(i+1), element);
+        line = qx.bom.Selector.query('#line'+(i+1), element)[0];
         qx.bom.element.Attribute.set(line, 'y1', 9+total*(i)+((value%line_qty)/line_qty)*total);
         qx.bom.element.Attribute.set(line, 'y2', 9+total*(i)+((value%line_qty)/line_qty)*total);
       }
       for(i = Math.floor(value/line_qty)+1; i<=line_qty;i++) {
-        line = qx.bom.Selector.query('#line'+(i+1), element);
+        line = qx.bom.Selector.query('#line'+(i+1), element)[0];
         qx.bom.element.Attribute.set(line, 'y1', 9);
         qx.bom.element.Attribute.set(line, 'y2', 9);
       }
