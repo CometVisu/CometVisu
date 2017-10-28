@@ -502,6 +502,7 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
 
       // plot diagram initially with empty values
       var diagram = isPopup ? $( '#' + this.getPath() + '_big' ) : $( '#' + this.getPath() + ' .actor div' );
+      diagram.empty();
       var plot = $.plot(diagram, [], options);
       if( isPopup ) {
         this.debug("popup plot generated");
