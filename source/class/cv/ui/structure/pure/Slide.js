@@ -117,7 +117,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         // set initial value
         slider.setValue(parseFloat(this.getValue()));
 
-        slider.on("changeValue", qx.util.Function.throttle(this._onChangeValue, 250, true), this);
+        slider.on("changeValue", qx.util.Function.throttle(this._onChangeValue, 250), this);
 
         this.addListener("changeValue", function (ev) {
           slider.setValue(parseFloat(ev.getData()));
@@ -193,7 +193,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
         var currentValue = this.getValue();
         this.sendToBackend(value, function(addr) {
           var newValue = cv.Transform.encode(addr[0], value);
-          return !isNaN(newValue) && newValue !== cv.Transform.encode(addr[0], currentValue);
+          return (newValue !== cv.Transform.encode(addr[0], currentValue));
         });
       }
       this.setValue(value);
