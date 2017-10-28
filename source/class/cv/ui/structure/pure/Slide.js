@@ -78,10 +78,6 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     sendOnFinish: {
       check: "Boolean",
       init: false
-    },
-    inAction: {
-      check: "Boolean",
-      init: false
     }
   },
 
@@ -161,7 +157,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     },
 
     _update: function (ga, d) {
-      if (this.getInAction() || d === undefined) {
+      if (this.__slider.isInPointerMove() || d === undefined) {
         return;
       }
       var value = this.applyTransform(ga, d);
