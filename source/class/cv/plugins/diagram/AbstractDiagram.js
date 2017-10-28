@@ -459,8 +459,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           hoverable       : true
         },
         touch: {
-          pan: 'x',              // what axis pan work
-          scale: 'x',            // what axis zoom work
+          pan: isPopup ? 'x' : 'none',              // what axis pan work
+          scale: isPopup ? 'x' : 'none',            // what axis zoom work
           autoWidth: false,
           autoHeight: false,
           delayTouchEnded: 500,   // delay in ms before touchended event is fired if no more touches
@@ -534,6 +534,11 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           }
         }
       });
+
+      if (!isPopup) {
+        // disable touch plugin in non-popup
+        plot.getPlaceholder().unbind('touchstart').unbind('touchmove').unbind('touchend');
+      }
 
       this.loadDiagramData( plot, isPopup, false );
     },
