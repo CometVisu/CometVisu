@@ -120,6 +120,10 @@ qx.Class.define('cv.io.transport.LongPolling', {
           } else {
             this.error("restarting XHR read requests in "+delay+" ms");
           }
+          if (!this.watchdog.isActive()) {
+            // watchdog has been stopped in the abort function -> restart it
+            this.watchdog.start(5);
+          }
           qx.event.Timer.once(function () {
             this.__startReading();
             this.watchdog.ping(true);

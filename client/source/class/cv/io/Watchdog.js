@@ -80,6 +80,10 @@ qx.Class.define("cv.io.Watchdog", {
       }
     },
 
+    isActive: function() {
+      return !!this.__id;
+    },
+
     ping: function (fullReload) {
       this.last = new Date();
       if (fullReload) {
