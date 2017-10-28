@@ -113,6 +113,9 @@ if( isset($_GET['info']) )
   $timestamp  = $_GET['r'] ? $_GET['r'] : '';
   $filter  = $_GET['f'] ? $_GET['f'] : '';
   delete( $dbh, $timestamp, $filter );
+?>
+Successfully run deletion.
+<?php
 } else if( isset($_GET['j']) )
 {
   header('Content-Type: application/json');
