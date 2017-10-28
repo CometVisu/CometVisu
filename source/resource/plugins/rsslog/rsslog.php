@@ -39,7 +39,7 @@
 
 // look where to store DB
 if (is_dir('/etc/wiregate/rss'))  // Default for Wiregate
-  $dbfile = '/etc/wiregate/rss/rsslogX.db';
+  $dbfile = '/etc/wiregate/rss/rsslog.db';
 elseif (is_dir('/etc/cometvisu')) // Central option for non-Wiregate systems
   $dbfile = '/etc/cometvisu/rsslog.db';
 else                              // if not found use local plugin directory
@@ -294,15 +294,10 @@ function create( $dbh )
     if ($ok===false)
       die("Cannot execute query. $q. " . end($dbh->errorInfo()));
   } else {
-    $q = "SELECT logschema FROM Version";
-    $result = $dbh->query( $q );
-    $row = $result->fetch(PDO::FETCH_NUM);
-    if( $row )
+    $logschema = dbSchemaVersion( $dbh );
+    if( -1 === $logschema )
     {
-      $logschema = $row[0];
-    } else {
       // this shouldn't happen - the table Version does exist but is empty
-      $logschema = -1;
       $logschemaNew = 2;
     }
   }
@@ -466,6 +461,12 @@ function dbSchemaVersion( $dbh )
   $row = $result->fetch(PDO::FETCH_NUM);
   if( $row )
     return $row[0];
+  
+  // this shouldn't happen - no version entry in the table => fix it
+  $q = "INSERT INTO Version( logschema ) VALUES( -1 )";
+  $ok = $dbh->exec( $q );
+  if ($ok===false)
+    die("Cannot execute query. $q. " . end($dbh->errorInfo()));
   return -1;
 }
 
@@ -561,7 +562,7 @@ function runUpdate($dbh)
 <title>RSSLog Update</title>
 <link type="text/css" rel="stylesheet" href="../../cometvisu_management.css"></head><body>
   <h1>Update</h1>
-  Updating database: <?php $result = update2to3( $dbh, $dbfile ); echo $result === true ? 'Success' : $result; ?>
+  Updating database (might take a while): <?php $result = update2to3( $dbh, $dbfile ); echo $result === true ? 'Success' : $result; ?>
 </body></html>
 <?php
 }
