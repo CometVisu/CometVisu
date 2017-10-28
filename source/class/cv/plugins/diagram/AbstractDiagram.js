@@ -388,6 +388,10 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       popup.addListener('close', function() {
         this._stopRefresh(this._timerPopup);
         qx.event.Registration.removeAllListeners(popupDiagram);
+        if (this.popupplot) {
+          this.popupplot.shutdown();
+          this.popupplot = null;
+        }
       }, this);
 
       var parent = qx.dom.Element.getParentElement(popupDiagram);
@@ -404,13 +408,12 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
     },
 
     initDiagram: function( isPopup ) {
-      var diagram = isPopup ? $( '#' + this.getPath() + '_big' ) : $( '#' + this.getPath() + ' .actor div' );
-
       if (!this._init) {
+
         return;
       }
       this._init = false;
-      isPopup |= this.__isPopup;
+      isPopup = isPopup || this.__isPopup;
 
       var options = {
         canvas  : true,
@@ -456,8 +459,8 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
           hoverable       : true
         },
         touch: {
-          pan: 'x',              // what axis pan work
-          scale: 'x',            // what axis zoom work
+          pan: isPopup ? 'x' : 'none',              // what axis pan work
+          scale: isPopup ? 'x' : 'none',            // what axis zoom work
           autoWidth: false,
           autoHeight: false,
           delayTouchEnded: 500,   // delay in ms before touchended event is fired if no more touches
@@ -498,42 +501,46 @@ qx.Class.define('cv.plugins.diagram.AbstractDiagram', {
       }
 
       // plot diagram initially with empty values
+      var diagram = isPopup ? $( '#' + this.getPath() + '_big' ) : $( '#' + this.getPath() + ' .actor div' );
       diagram.empty();
-      qx.bom.AnimationFrame.request(function() {
-        var plot = $.plot(diagram, [], options);
-        if( isPopup ) {
-          this.debug("popup plot generated");
-          this.popupplot = plot;
-        }
-        else {
-          this.debug("plot generated");
-          this.plot = plot;
-        }
-        this.plotted = true;
+      var plot = $.plot(diagram, [], options);
+      if( isPopup ) {
+        this.debug("popup plot generated");
+        this.popupplot = plot;
+      }
+      else {
+        this.debug("plot generated");
+        this.plot = plot;
+      }
+      this.plotted = true;
 
-        var that = this;
-        diagram.bind("plotpan", function(event, plot, args) {
-          if (args.dragEnded) {
-            that.loadDiagramData( plot, isPopup, false );
-          }
-        }).bind("plotzoom", function() {
+      var that = this;
+      diagram.bind("plotpan", function(event, plot, args) {
+        if (args.dragEnded) {
           that.loadDiagramData( plot, isPopup, false );
-        }).bind("touchended", function() {
-          that.loadDiagramData( plot, isPopup, false );
-        }).bind("tap", function() {
-          var self = this;
-          var container = $(self).closest('.widget_container')[0];
-          if ( !isPopup && container !== undefined) {
-            var actor = $(self).closest('.actor')[0];
-            var path = container.id;
-            if( actor !== undefined && path.length > 0 ) {
-              that.action();
-            }
+        }
+      }).bind("plotzoom", function() {
+        that.loadDiagramData( plot, isPopup, false );
+      }).bind("touchended", function() {
+        that.loadDiagramData( plot, isPopup, false );
+      }).bind("tap", function() {
+        var self = this;
+        var container = $(self).closest('.widget_container')[0];
+        if ( !isPopup && container !== undefined) {
+          var actor = $(self).closest('.actor')[0];
+          var path = container.id;
+          if( actor !== undefined && path.length > 0 ) {
+            that.action();
           }
-        });
+        }
+      });
 
-        this.loadDiagramData( plot, isPopup, false );
-      }, this);
+      if (!isPopup) {
+        // disable touch plugin in non-popup
+        plot.getPlaceholder().unbind('touchstart').unbind('touchmove').unbind('touchend');
+      }
+
+      this.loadDiagramData( plot, isPopup, false );
     },
 
     getSeriesSettings: function(xAxis, isInteractive) {
