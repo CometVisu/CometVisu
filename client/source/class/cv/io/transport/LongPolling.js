@@ -122,7 +122,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
           }
           qx.event.Timer.once(function () {
             this.__startReading();
-            this.client.watchdog.ping(true);
+            this.watchdog.ping(true);
           }, this, delay);
         }
         return;
@@ -146,7 +146,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         var url = this.xhr.getUrl().split("?").shift()+"?"+this.client.getQueryString(data);
         this.xhr.setUrl(url);
         this.xhr.send();
-        this.client.watchdog.ping();
+        this.watchdog.ping();
       }
     },
 
@@ -156,7 +156,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.client.setDataReceived(false);
         if (this.running) { // retry initial request
           this.xhr.send();
-          this.client.watchdog.ping();
+          this.watchdog.ping();
         }
         return;
       }
@@ -182,7 +182,7 @@ qx.Class.define('cv.io.transport.LongPolling', {
         this.xhr.removeListener("success", this.handleReadStart, this);
         this.xhr.addListener("success", this.handleRead, this);
         this.xhr.send();
-        this.client.watchdog.ping();
+        this.watchdog.ping();
       }
     },
 
