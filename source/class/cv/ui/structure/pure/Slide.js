@@ -157,7 +157,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     },
 
     _update: function (ga, d) {
-      if (this.__slider.isInPointerMove() || d === undefined) {
+      if ((this.__slider && this.__slider.isInPointerMove()) || d === undefined) {
         return;
       }
       var value = this.applyTransform(ga, d);
