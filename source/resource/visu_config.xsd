@@ -1824,7 +1824,6 @@
       <xsd:element name="label" type="label" minOccurs="0" maxOccurs="1"/>
       <xsd:element name="address" type="address" minOccurs="1" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="refresh" type="xsd:integer" use="optional" />
   </xsd:complexType>
 
   <xsd:complexType name="strftime">
