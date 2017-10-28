@@ -57,7 +57,7 @@ qx.Class.define('cv.io.Mockup', {
     },
     server: {
       check: "String",
-      init: null
+      init: "Mockup"
     }
   },
 

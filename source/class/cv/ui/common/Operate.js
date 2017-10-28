@@ -37,7 +37,7 @@ qx.Mixin.define("cv.ui.common.Operate", {
      * @param event {Event} tap event
      */
     action: function (event) {
-      if (this._skipNextEvent === event.getType()) {
+      if (event && this._skipNextEvent === event.getType()) {
         this._skipNextEvent = null;
         return;
       }
@@ -48,7 +48,7 @@ qx.Mixin.define("cv.ui.common.Operate", {
           this.sendToBackend(this.getActionValue(event));
         }
       }
-      if (event.getBubbles()) {
+      if (event && event.getBubbles()) {
         event.stopPropagation();
       }
     },

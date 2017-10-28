@@ -80,7 +80,7 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
     _onDomReady: function() {
       this.base(arguments);
       var center = cv.ui.NotificationCenter.getInstance();
-      center.addListener("changeCounter", this._onChangeCounter, this);
+      center.getMessages().addListener("changeLength", this._onChangeCounter, this);
       center.addListener("changeGlobalSeverity", this._onChangeGlobalSeverity, this);
     },
 
@@ -90,7 +90,11 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
       cv.ui.NotificationCenter.getInstance().disableBadge(value);
     },
 
-    action: function() {
+    action: function(ev) {
+      if (this._skipNextEvent === ev.getType()) {
+        this._skipNextEvent = null;
+        return;
+      }
       cv.ui.NotificationCenter.getInstance().toggleVisibility();
     },
 
@@ -132,7 +136,8 @@ qx.Class.define('cv.ui.structure.pure.NotificationCenterBadge', {
   */
   destruct: function() {
     var center = cv.ui.NotificationCenter.getInstance();
-    center.removeListener("changeCounter", this._onChangeCounter, this);
+    center.getMessages().removeListener("changeLength", this._onChangeCounter, this);
+    center.removeListener("changeGlobalSeverity", this._onChangeGlobalSeverity, this);
   },
 
   defer: function(statics) {

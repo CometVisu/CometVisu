@@ -122,6 +122,9 @@ qx.Class.define('cv.plugins.RssLog', {
         datetime:   {
           "default": true,
           transform: function(value) {
+            if (typeof value === 'boolean') {
+              return value;
+            }
             return value === "true";
           }
         },
@@ -196,7 +199,7 @@ qx.Class.define('cv.plugins.RssLog', {
       if (!this.$$domReady) {
         this.base(arguments);
         qx.event.message.Bus.subscribe("path." + this.getParentPage().getPath() + ".beforePageChange", this.refreshRSSlog, this);
-        this.__html = '<span class="mappedValue" /><span>{text}</span>';
+        this.__html = '<span class="mappedValue"></span><span>{text}</span>';
         if (this.getDatetime()) {
           this.__html = '{date}: ' + this.__html;
         }
@@ -336,7 +339,7 @@ qx.Class.define('cv.plugins.RssLog', {
       qx.dom.Element.insertEnd(ul, c);
 
       // get height of one entry, calc max num of display items in widget
-      var displayrows = qx.bom.element.Dataset.get(c, "last_rowcount") || 0;
+      var displayrows = parseInt(qx.bom.element.Dataset.get(c, "last_rowcount"), 10) || 0;
       qx.bom.Html.clean(['<li class="rsslogRow odd" id="dummydiv">.</li>'], null, c);
       var dummyDiv = qx.bom.Selector.query('#dummydiv', c)[0];
       var itemheight = qx.bom.element.Dimension.getHeight(dummyDiv);
@@ -391,7 +394,7 @@ qx.Class.define('cv.plugins.RssLog', {
           itemoffset = itemnum - displayrows;
         }
         if (this.getMode() === 'rollover') {
-          itemoffset = qx.bom.element.Dataset.get(c, "itemoffset") || 0;
+          itemoffset = parseInt(qx.bom.element.Dataset.get(c, "itemoffset"), 10) || 0;
           if (itemoffset === itemnum) {
             itemoffset = 0;
           }
@@ -495,7 +498,7 @@ qx.Class.define('cv.plugins.RssLog', {
     },
 
     _onTap: function(ev) {
-      var item = ev.getTarget();
+      var item = ev.getCurrentTarget();
 
       var id = qx.bom.element.Dataset.get(item, 'id');
       var mapping = qx.bom.element.Dataset.get(item, 'mapping');
