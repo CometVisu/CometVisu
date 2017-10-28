@@ -58,7 +58,10 @@ create( $dbh );
 
 if( isset($_GET['info']) )
 {
-  showInfo();
+  showInfo( $dbh );
+} else if( isset($_GET['update']) )
+{
+  runUpdate( $dbh );
 } else if( isset($_GET['c']) )
 { 
   // store a new log
@@ -79,7 +82,9 @@ if( isset($_GET['info']) )
 {
   $result = retrieve( $dbh, $log_filter, NULL, NULL, true );
   ?>
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /></head><body>
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>RSSLog Information</title>
+<link type="text/css" rel="stylesheet" href="../../cometvisu_management.css"></head><body>
 <table border="1">
   <?php
   $records = 0;
@@ -239,35 +244,6 @@ function openDb( $dbfile )
       if (!$result) die("Database read with PDO(sqlite2) failed!");
       
       $usedDBdriver = 'sqlite2';
-      
-      /*
-      $dbfileTmp = $dbfile . '.tmpMigration2to3';
-      if( file_exists($dbfileTmp) )
-      {
-        // migration already going on
-        if( time()-filemtime($dbfileTmp) > 600) {
-          // file older than 10 minutes
-          if( !unlink( $dbfileTmp ) )
-            die( "Error: can't clean up potentially broken migration!" );
-        } else {
-          // file younger than 10 minuts
-          die( "Error: already migrating!" );
-        }
-      }
-      $dbhTmp = new PDO('sqlite:' . $dbfileTmp) or die("cannot open the temp database with PDO(sqlite)");
-      create( $dbhTmp );
-      $result = retrieve( $dbh, '', NULL, NULL, true, 'ASC', false );
-      foreach ( $result as $row )
-        insert( $dbhTmp, $row['content'], $row['title'], explode(',', $row['tags']), $row['mapping'], $row['state'], '"' . $row['t'] . '"' );
-      
-      // transfer done => close DBs and move file
-      $dbh = null;
-      $dbhTmp = null;
-      rename( $dbfileTmp, $dbfile ) or die("Error: moving transfered database over old file");
-      
-      // and return the handle to the new version
-      $dbh = new PDO('sqlite:' . $dbfile) or die("cannot open the database with PDO(sqlite)");
-      */
     } 
     else 
       die("Database couldn't be open. Sqlite2 check couldn't be performed as driver is missing.");
@@ -319,7 +295,13 @@ function create( $dbh )
     $result = $dbh->query( $q );
     $row = $result->fetch(PDO::FETCH_NUM);
     if( $row )
+    {
       $logschema = $row[0];
+    } else {
+      // this shouldn't happen - the table Version does exist but is empty
+      $logschema = -1;
+      $logschemaNew = 2;
+    }
   }
   
   $currentSchema = 
@@ -463,14 +445,70 @@ function updatestate( $dbh, $id, $newstate)
     die("Cannot execute query. " . end($dbh->errorInfo()));
 }
 
+function countentries( $dbh )
+{
+  $q = "SELECT COUNT(*) from Logs";
+  $result = $dbh->query( $q );
+  $row = $result->fetch(PDO::FETCH_NUM);
+  if( $row )
+    return $row[0];
+    
+  return 'FAIL';
+}
+
+function dbSchemaVersion( $dbh )
+{
+  $q = "SELECT logschema FROM Version";
+  $result = $dbh->query( $q );
+  $row = $result->fetch(PDO::FETCH_NUM);
+  if( $row )
+    return $row[0];
+  return -1;
+}
+
+function update2to3( $dbh, $dbfile )
+{
+  global $usedDBdriver;
+  
+  if( 'sqlite' === $usedDBdriver )
+    return "Error: Database already updated!";
+  
+  $dbfileTmp = $dbfile . '.tmpMigration2to3';
+  if( file_exists($dbfileTmp) )
+  {
+    // migration already going on
+    if( time()-filemtime($dbfileTmp) > 600) {
+      // file older than 10 minutes
+      if( !unlink( $dbfileTmp ) )
+        die( "Error: can't clean up potentially broken migration!" );
+    } else {
+      // file younger than 10 minuts
+      die( "Error: already migrating!" );
+    }
+  }
+  $dbhTmp = new PDO('sqlite:' . $dbfileTmp) or die("cannot open the temp database with PDO(sqlite)");
+  create( $dbhTmp );
+  $result = retrieve( $dbh, '', NULL, NULL, true, 'ASC', false );
+  foreach ( $result as $row )
+    insert( $dbhTmp, $row['content'], $row['title'], explode(',', $row['tags']), $row['mapping'], $row['state'], '"' . $row['t'] . '"' );
+  
+  // transfer done => close DBs and move file
+  $dbh = null;
+  $dbhTmp = null;
+  rename( $dbfileTmp, $dbfile ) or die("Error: moving transfered database over old file");
+  
+  // return success
+  return true;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Show management informations
-function showInfo()
+function showInfo($dbh)
 {
   global $dbfile, $usedDBdriver;
 ?>
 <html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<title>XX</title>
+<title>RSSLog Information</title>
 <link type="text/css" rel="stylesheet" href="../../cometvisu_management.css"></head><body>
 <h1>Information</h1>
 <ul>
@@ -483,12 +521,15 @@ function showInfo()
   <li>
     Available database drivers: <?php echo join( ', ', PDO::getAvailableDrivers() ); ?>
   </li>
+  <li>
+    Schema version: <?php echo dbSchemaVersion( $dbh ); ?>
+  </li>
 <?php
 if( 'sqlite' !== $usedDBdriver )
-  echo '<li>Please update to latest database version by opening this <a href="?convert">update page</a>.</li>';
+  echo '<li>Please update to latest database version by opening this <a href="?update">update page</a>.</li>';
 ?>
   <li>
-    Current number of entries in the database: <?php echo '<TODO>'; ?>
+    Current number of entries in the database: <?php echo countentries($dbh); ?>
   </li>
   <li>
     <a href="?dump">Show complete database content</a>.
@@ -503,6 +544,21 @@ if( 'sqlite' !== $usedDBdriver )
     <a href="?r=<?php echo strtotime("-1 year"); ?>">Delete entries older than 1 year</a>.
   </li>
 </ul>
+</body></html>
+<?php
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Update database to new version
+function runUpdate($dbh)
+{
+  global $dbfile;
+?>
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>RSSLog Update</title>
+<link type="text/css" rel="stylesheet" href="../../cometvisu_management.css"></head><body>
+  <h1>Update</h1>
+  Updating database: <?php $result = update2to3( $dbh, $dbfile ); echo $result === true ? 'Success' : $result; ?>
 </body></html>
 <?php
 }
