@@ -469,7 +469,9 @@ function showInfo()
 {
   global $dbfile, $usedDBdriver;
 ?>
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /></head><body>
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>XX</title>
+<link type="text/css" rel="stylesheet" href="../../cometvisu_management.css"></head><body>
 <h1>Information</h1>
 <ul>
   <li>
