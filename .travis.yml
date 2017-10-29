@@ -56,8 +56,8 @@ script:
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
 before_deploy:
 - grunt release-cv
-- git log --pretty=format: --name-only --since="1 days ago" client/ | sort | uniq
-- CLIENT_CHANGES=`git log --pretty=format: --name-only --since="1 days ago" client/ | sort | uniq | wc -l`
+- git log --pretty=format: --name-only --since="2 days ago" client/ | sort | uniq
+- CLIENT_CHANGES=`git log --pretty=format: --name-only --since="2 days ago" client/ | sort | uniq | wc -l`
 - echo "$CLIENT_CHANGES client changes"
 - if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
 deploy:
