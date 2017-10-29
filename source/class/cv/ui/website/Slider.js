@@ -68,6 +68,7 @@ qx.Class.define('cv.ui.website.Slider', {
   */
   members: {
     __pointerMoveEvent: null,
+    __positionKnob: null,
 
     init: function() {
       this.base(arguments);
@@ -106,7 +107,25 @@ qx.Class.define('cv.ui.website.Slider', {
     //overridden
     _onPointerMove : function(e) {
       this.__pointerMoveEvent = true;
-      this.base(arguments, e);
+      e.preventDefault();
+
+      if (this.__dragMode) {
+        // position normalization
+        var dragBoundaries = this._getDragBoundaries();
+        var dragPosition = Math.max(e.getDocumentLeft(), dragBoundaries.min);
+        dragPosition = Math.min(dragPosition, dragBoundaries.max);
+
+        var paddingLeft = Math.ceil(parseFloat(this.getStyle("paddingLeft")) || 0);
+        var positionKnob = dragPosition - this.getOffset().left - this._getHalfKnobWidth() - paddingLeft;
+
+        if (this.__positionKnob !== positionKnob) {
+          this.setValue(this._getNearestValue(dragPosition));
+          this._setKnobPosition(positionKnob);
+          this.emit("changePosition", positionKnob);
+          this.__positionKnob = positionKnob;
+        }
+        e.stopPropagation();
+      }
     },
 
     // overridden
