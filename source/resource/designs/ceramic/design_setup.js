@@ -21,10 +21,12 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-$('#navbarLeft').data('columns', 6 );
-$('#main').data('columns', 12 );
-$('#navbarRight').data('columns', 6 );
-
+qx.event.message.Bus.subscribe("setup.dom.finished.before", function() {
+  qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarLeft')[0], 'columns', 6);
+  qx.bom.element.Dataset.set(qx.bom.Selector.query('#main')[0], 'columns', 12);
+  qx.bom.element.Dataset.set(qx.bom.Selector.query('#navbarRight')[0], 'columns', 6);
+});
+/*
 templateEngine.defaults = { plugin: { controllerinput: {
   sparklineWidth: 1.5,
   sparklineSpotradius: 3,
@@ -32,3 +34,4 @@ templateEngine.defaults = { plugin: { controllerinput: {
   colorSetpoint: 'hsl(45,80%,50%)',
   colorControl:  'hsl(345,80%,50%)'
 }}};
+*/
