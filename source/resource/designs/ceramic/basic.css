@@ -583,7 +583,7 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
 }
 .widget .ui-slider
 {
-  width: 30%;
+  width: 45%;
   float: left;
   margin-left: 10px;
   margin-left: 1em;
@@ -816,6 +816,10 @@ div#loading {
 {
   border: #000000 1px solid;
 }
+.flavour_black:not(.group) .ui-slider
+{
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,#000000 100%);
+}
 
 body hr,
 .flavour_white hr
@@ -836,6 +840,10 @@ body hr,
 {
   background-color: hsl(345,35%,95%);
 }
+.flavour_white:not(.group) .ui-slider
+{
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(345,35%,95%) 100%);
+}
 
 .flavour_antimony hr
 {
@@ -854,6 +862,10 @@ body hr,
 .flavour_antimony .widget
 {
   background-color: hsl(165,35%,40%);
+}
+.flavour_antimony:not(.group) .ui-slider
+{
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(165,35%,40%) 100%);
 }
 
 .flavour_boron hr
@@ -874,6 +886,10 @@ body hr,
 {
   background-color: hsl(105,35%,40%);
 }
+.flavour_boron:not(.group) .ui-slider
+{
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(105,35%,40%) 100%);
+}
 
 .flavour_lithium hr
 {
@@ -892,6 +908,10 @@ body hr,
 .flavour_lithium .widget
 {
   background-color: hsl(345,35%,40%);
+}
+.flavour_lithium:not(.group) .ui-slider
+{
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(345,35%,40%) 100%);
 }
 
 .flavour_potassium hr
@@ -912,6 +932,10 @@ body hr,
 {
   background-color: hsl(285,35%,40%);
 }
+.flavour_potassium:not(.group) .ui-slider
+{
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(285,35%,40%) 100%);
+}
 
 .flavour_sodium hr
 {
@@ -930,6 +954,10 @@ body hr,
 .flavour_sodium .widget
 {
   background-color: hsl(45,35%,40%);
+}
+.flavour_sodium:not(.group) .ui-slider
+{
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(45,35%,40%) 100%);
 }
 
 /* styles for the preview */
