@@ -399,39 +399,6 @@ qx.Class.define('cv.plugins.ControllerInput', {
           plot.draw();
     
         }, variant );
-        /*
-        $.ajax({
-          url: templateEngine.visu.urlPrefix+"rrdfetch?rrd=" + rrd.src + ".rrd&ds=" + rrd.cFunc + "&start=" + rrd.start + "&end=" + rrd.end + "&res=" + rrd.resol,
-          dataType: "json",
-          type: "GET",
-          context: this,
-          variant: variant,
-          success: function( rrdContent,aaa ) { 
-            if( !rrdContent )
-              return;
-            
-            var plotData = data.plot.getData();
-            rrdContent.forEach(function(a){a[1]=+a[1][0];});
-            switch( this.variant )
-            {
-              case 'actual':
-                plotData[0].data = rrdContent;
-                plotData[3].data[0][0] = rrdContent[rrdContent.length-1][0];
-              break;
-              case 'control':
-                plotData[1].data = rrdContent;
-                plotData[4].data[0][0] = rrdContent[rrdContent.length-1][0];
-              break;
-              case 'setpoint':
-                plotData[2].data = rrdContent;
-                plotData[5].data[0][0] = rrdContent[rrdContent.length-1][0];
-              break;
-            }
-            data.plot.setData( plotData );
-            data.plot.setupGrid();
-            data.plot.draw();
-          }
-        });*/
       }
     },
 
@@ -483,6 +450,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
     
     _downaction: function (event) {
+      console.log('_downaction', event);
       this._inAction = true;
       this._lastValue = undefined;
       this.moveAction(event);
@@ -508,6 +476,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
 
     moveAction: function (e) {
+      console.log('moveAction', e);
       if (e !== undefined) {
         var bounds = e.getTarget().getBoundingClientRect();
         var
