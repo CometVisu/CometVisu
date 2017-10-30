@@ -42,35 +42,28 @@ qx.Class.define('cv.plugins.ControllerInput', {
   statics: {
     DEFAULTS: {},
 
+    makeAddressListFn: function( src, transform, mode, variant ) {
+      return [ true, variant ];
+    },
     parse: function (xml, path, flavour, pageType) {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseFormat(xml, path);
-      cv.parser.WidgetParser.parseAddress(xml, path);
+      cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
 
-      // get min/max from transform if not set by xml
-      if (!data.hasOwnProperty('min') || data.hasOwnProperty('max')) {
-        var datatype_min, datatype_max;
-        for (var ga in data.address) {
-          var addr = data.address[ga];
-          var transform = addr[0];
-          if( cv.Transform.registry[ transform ] && cv.Transform.registry[ transform ].range )
-          {
-            if (datatype_min > cv.Transform.registry[ transform ].range.min) {
-              datatype_min = cv.Transform.registry[transform].range.min;
-            }
-            if (datatype_max < cv.Transform.registry[ transform ].range.max) {
-              datatype_max = cv.Transform.registry[transform].range.max;
-            }
+      var datatype_min, datatype_max;
+      qx.bom.Selector.matches("address", qx.dom.Hierarchy.getChildElements(xml)).forEach(function(elem) {
+        var transform = elem.getAttribute('transform');
+        if (cv.Transform.registry[transform] && cv.Transform.registry[transform].range) {
+          if (!( datatype_min > cv.Transform.registry[transform].range.min )) {// jshint ignore:line
+            datatype_min = cv.Transform.registry[transform].range.min;
+          }
+          if (!( datatype_max < cv.Transform.registry[transform].range.max )) {// jshint ignore:line
+            datatype_max = cv.Transform.registry[transform].range.max;
           }
         }
-
-        if (data.hasOwnProperty('min')) {
-          data.min = datatype_min !== undefined ? datatype_min : 0;
-        }
-        if (data.hasOwnProperty('max')) {
-          data.max = datatype_max !== undefined ? datatype_max : 100;
-        }
-      }
+      });
+      data.min = parseFloat(xml.getAttribute('min') || datatype_min || 0);
+      data.max = parseFloat(xml.getAttribute('max') || datatype_max || 100);
 
       data.rrd = {};
       qx.bom.Selector.query("rrd", xml).forEach(function(elem) {
@@ -112,6 +105,10 @@ qx.Class.define('cv.plugins.ControllerInput', {
   ******************************************************
   */
   properties: {
+    rrd: {
+      check: "Object",
+      init: {}
+    },
     min: {
       check: "Number",
       init: 0
@@ -266,10 +263,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
       ];
 
       // draw the sparkline
-      // data.plot = $.plot('.sparkline', series, options);
-      return; // FIXME
       this.plot = $(qx.bom.Selector.query('.sparkline', element)).plot(series, options).data('plot');
-      //this.debug(data.plot);
     },
 
     createDataLine: function( axis, color ) {
@@ -333,13 +327,15 @@ qx.Class.define('cv.plugins.ControllerInput', {
       this.debug('uSP', $('#' + id + ' .actor')[0].className, isHidden);
       handler.css('transform', handlerTranslate);
       handlerVal.css('transform', 'rotate(' + (90 - percentage * 180) + 'deg)');
-      handlerVal.text(format ? sprintf(format, value) : value);
+      handlerVal.text(format ? cv.util.String.sprintf(format, value) : value);
     },
 
     getRRDData: function(  ) {
-      return; // FIXME
       //templateEngine.lookupRRDcache( rrd, start, end, res, refresh, force, callback );
-      var rrds = this.getRrd();
+      var 
+        rrds = this.getRrd(),
+        plot = this.plot;
+        
       for( var variant in rrds )
       {
         var
@@ -350,7 +346,12 @@ qx.Class.define('cv.plugins.ControllerInput', {
             return;
           }
     
-          var plotData = this.plot.getData();
+          if( undefined === plot ) 
+          {
+            console.warn('undefined === this.plot  => early exit!');
+            return;
+          }
+          var plotData = plot.getData();
           //rrdContent.forEach(function(a){a[1]=+a[1][0];});
           switch( thisVariant )
           {
@@ -367,9 +368,9 @@ qx.Class.define('cv.plugins.ControllerInput', {
               plotData[5].data[0][0] = rrdContent[rrdContent.length-1][0];
               break;
           }
-          this.plot.setData( plotData );
-          this.plot.setupGrid();
-          this.plot.draw();
+          plot.setData( plotData );
+          plot.setupGrid();
+          plot.draw();
     
         }, variant );
         /*
@@ -409,9 +410,14 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
 
     _update: function (ga, d) {
-      return; // FIXME
+      if( undefined === this.plot ) 
+      {
+        console.warn('undefined === this.plot  => early exit!', ga, d);
+        return;
+      }
+      
       var
-        value = this.defaultValueHandling(ga, d),
+        value = cv.Transform.decode( this.getAddress()[ ga ][0], d ),
         plotData = this.plot.getData();
 
       //templateEngine.design.defaultUpdate( ga, d, element, true, element.parent().attr('id') );
