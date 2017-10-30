@@ -23,6 +23,13 @@
  * -
  */ 
  
+/**
+ *
+ * @since 0.11.0
+ * @author Christian Mayer [CometVisu at ChristianMayer dot de]
+ *
+ * @asset(plugins/controllerinput/controllerinput.css)
+ */
 qx.Class.define('cv.plugins.ControllerInput', {
   extend: cv.ui.structure.AbstractWidget,
   include: [cv.ui.common.Update, cv.ui.common.Operate],
@@ -260,6 +267,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
 
       // draw the sparkline
       // data.plot = $.plot('.sparkline', series, options);
+      return; // FIXME
       this.plot = $(qx.bom.Selector.query('.sparkline', element)).plot(series, options).data('plot');
       //this.debug(data.plot);
     },
@@ -329,6 +337,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
 
     getRRDData: function(  ) {
+      return; // FIXME
       //templateEngine.lookupRRDcache( rrd, start, end, res, refresh, force, callback );
       var rrds = this.getRrd();
       for( var variant in rrds )
@@ -400,6 +409,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
 
     _update: function (ga, d) {
+      return; // FIXME
       var
         value = this.defaultValueHandling(ga, d),
         plotData = this.plot.getData();
@@ -507,6 +517,8 @@ qx.Class.define('cv.plugins.ControllerInput', {
   },
 
   defer: function(statics) {
+    var loader = cv.util.ScriptLoader.getInstance();
+    loader.addStyles('plugins/controllerinput/controllerinput.css');
     // register the parser
     cv.parser.WidgetParser.addHandler("controllerinput", statics);
     cv.ui.structure.WidgetFactory.registerClass("controllerinput", statics);
