@@ -43,7 +43,8 @@ qx.Class.define('cv.plugins.ControllerInput', {
       // get min/max from transform if not set by xml
       if (!data.hasOwnProperty('min') || data.hasOwnProperty('max')) {
         var datatype_min, datatype_max;
-        data.address.forEach(function(addr) {
+        for (var ga in data.address) {
+          var addr = data.address[ga];
           var transform = addr[0];
           if( cv.Transform.registry[ transform ] && cv.Transform.registry[ transform ].range )
           {
@@ -54,7 +55,8 @@ qx.Class.define('cv.plugins.ControllerInput', {
               datatype_max = cv.Transform.registry[transform].range.max;
             }
           }
-        });
+        }
+
         if (data.hasOwnProperty('min')) {
           data.min = datatype_min !== undefined ? datatype_min : 0;
         }
@@ -63,6 +65,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
         }
       }
 
+      data.rrd = {};
       qx.bom.Selector.query("rrd", xml).forEach(function(elem) {
         var variant = elem.getAttribute('variant');
         if( variant ) {
@@ -147,45 +150,64 @@ qx.Class.define('cv.plugins.ControllerInput', {
     _inAction: false,
 
     _onDomReady: function () {
-      this.base(arguments);
-      this.updateSetpoint(this.getPath(), '-', 0, 0);
-      qx.bom.element.Class.remove(this.getActor(), 'notransition');
+      if (!this.$$domReady) {
+        this.initListeners();
+        this.fireEvent("domReady");
+        this.$$domReady = true;
+        this.updateSetpoint(this.getPath(), '-', 0, 0);
+        qx.bom.element.Class.remove(this.getActor(), 'notransition');
 
-      /*
-      var 
-        handler = $('#' + path + ' .handler' ),
-        mouseDown = false,
-        dx, dy;
-    
-      this.debug( handler );
-      handler.mousedown( function(e){
-        this.debug(e);
-        if(e.which == 1){
-          mouseDown = true;
-          dx = e.clientX - this.offsetLeft;
-          dy = e.clientY - this.offsetTop;
+        /*
+        var
+          handler = $('#' + path + ' .handler' ),
+          mouseDown = false,
+          dx, dy;
+
+        this.debug( handler );
+        handler.mousedown( function(e){
+          this.debug(e);
+          if(e.which == 1){
+            mouseDown = true;
+            dx = e.clientX - this.offsetLeft;
+            dy = e.clientY - this.offsetTop;
+          }
+        });
+        $(window).on("mousemove", function(e){
+          if(!mouseDown) return false;
+
+                  var p = e.clientX - dx, q = e.clientY - dy,
+              a1 = ele1.offsetLeft, b1 = ele2.offsetTop,
+              a2 = ele1.offsetLeft, b2 = ele2.offsetTop;
+
+
+          this.debug( dx,dy,p,q,a1,b1,a2,b2);
+          e.preventDefault();
+        }).mouseup(function(){
+            mouseDown = false;
+        });
+        */
+
+
+        //setTimeout( createSparkline, 3000 );
+        if (this.isVisible()) {
+          new qx.util.DeferredCall(this.__init, this).schedule();
+        } else {
+          this.__vlid1 = this.addListener("changeVisible", function(ev) {
+            if (ev.getData()) {
+              this.__init();
+              this.removeListenerById(this.__vlid1);
+              this.__vlid1 = null;
+            }
+          }, this);
         }
-      });
-      $(window).on("mousemove", function(e){
-        if(!mouseDown) return false;
-        
-                var p = e.clientX - dx, q = e.clientY - dy,
-            a1 = ele1.offsetLeft, b1 = ele2.offsetTop,
-            a2 = ele1.offsetLeft, b2 = ele2.offsetTop;
-                  
-                  
-        this.debug( dx,dy,p,q,a1,b1,a2,b2);
-        e.preventDefault();
-      }).mouseup(function(){
-          mouseDown = false;
-      });
-      */
 
+        //templateEngine.lookupRRDcache( rrd, start, end, res, refresh, force, callback );
+      }
+    },
 
-      //setTimeout( createSparkline, 3000 );
+    __init: function() {
       this.createSparkline();
       this.getRRDData();
-      //templateEngine.lookupRRDcache( rrd, start, end, res, refresh, force, callback );
     },
 
     _getInnerDomString: function () {
@@ -418,7 +440,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
       this.plot.draw();
     },
     
-    downaction: function (event) {
+    _downaction: function (event) {
       this._inAction = true;
       this._lastValue = undefined;
       this.moveAction(event);
@@ -460,7 +482,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
       }
     },
     
-    action: function (ev) {
+    _action: function (ev) {
       this.debug('ci action', this._inAction);
       if (this._sendTimer) {
         this._sendTimer.stop();
@@ -482,5 +504,11 @@ qx.Class.define('cv.plugins.ControllerInput', {
   */
   destruct: function() {
     this._disposeObjects('_sendTimer');
-  }  
+  },
+
+  defer: function(statics) {
+    // register the parser
+    cv.parser.WidgetParser.addHandler("controllerinput", statics);
+    cv.ui.structure.WidgetFactory.registerClass("controllerinput", statics);
+  }
 });
