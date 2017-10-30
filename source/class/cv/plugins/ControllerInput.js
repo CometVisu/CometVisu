@@ -238,9 +238,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
         if (!this._timer) {
           this._timer = new qx.event.Timer(this.getRefresh());
           this._timer.addListener("interval", function () {
-            console.log( 'run refresh', this );
             this.getRRDData();
-            //this.loadDiagramData(this.plot, false, true);
           }, this);
         }
       }
