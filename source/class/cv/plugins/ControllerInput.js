@@ -32,7 +32,7 @@
  */
 qx.Class.define('cv.plugins.ControllerInput', {
   extend: cv.ui.structure.AbstractWidget,
-  include: [cv.ui.common.Update, cv.ui.common.Operate],
+  include: [cv.ui.common.Update, cv.ui.common.Operate, cv.ui.common.Refresh],
 
   /*
   ******************************************************
@@ -49,6 +49,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
       var data = cv.parser.WidgetParser.parseElement(this, xml, path, flavour, pageType);
       cv.parser.WidgetParser.parseFormat(xml, path);
       cv.parser.WidgetParser.parseAddress(xml, path, this.makeAddressListFn);
+      cv.parser.WidgetParser.parseRefresh(xml, path);
 
       var datatype_min, datatype_max;
       qx.bom.Selector.matches("address", qx.dom.Hierarchy.getChildElements(xml)).forEach(function(elem) {
@@ -94,7 +95,8 @@ qx.Class.define('cv.plugins.ControllerInput', {
         'colorActual'    : { "default": '#0000f0'},
         'colorSetpoint'  : { "default": '#f0f000'},
         'colorControl'   : { "default": '#f00000'},
-        'rrd'            : {}
+        'rrd'            : {},
+        refresh          : {}
       };
     }
   },
@@ -153,46 +155,60 @@ qx.Class.define('cv.plugins.ControllerInput', {
     _lastValue: null,
     _inAction: false,
 
-    _onDomReady: function () {
+    _onDomReady: function() {
       if (!this.$$domReady) {
+        var pageId = this.getParentPage().getPath();
+        var broker = qx.event.message.Bus;
+
+        // stop refreshing when page is left
+        broker.subscribe("path." + pageId + ".exitingPageChange", function () {
+          this._stopRefresh(this._timer);
+        }, this);
+
+        broker.subscribe("path." + pageId + ".beforePageChange", function () {
+          if (!this._init) {
+            this.getRRDData();
+          }
+        }, this);
+
+        broker.subscribe("path." + pageId + ".appear", function () {
+          // create diagram when it's not already existing
+          if (this._init) {
+            this.createSparkline();
+          }
+          // start refreshing when page is entered
+          this._startRefresh(this._timer);
+        }, this);
+
+        // initialize the diagram but don't make the initialization process wait for it
+        // by using a deferred call
+        if (this.isVisible()) {
+          new qx.util.DeferredCall(function () {
+            if (!this._init) {
+              this.getRRDData();
+            } else {
+              this.createSparkline();
+            }
+          }, this).schedule();
+        } else {
+          this.__vlid1 = this.addListener("changeVisible", function(ev) {
+            if (ev.getData()) {
+              if (!this._init) {
+                this.getRRDData();
+              } else {
+                this.createSparkline();
+              }
+              this.removeListenerById(this.__vlid1);
+              this.__vlid1 = null;
+            }
+          }, this);
+        }
         this.initListeners();
         this.fireEvent("domReady");
         this.$$domReady = true;
         this.updateSetpoint(this.getPath(), '-', 0, 0);
         qx.bom.element.Class.remove(this.getActor(), 'notransition');
-
-        /*
-        var
-          handler = $('#' + path + ' .handler' ),
-          mouseDown = false,
-          dx, dy;
-
-        this.debug( handler );
-        handler.mousedown( function(e){
-          this.debug(e);
-          if(e.which == 1){
-            mouseDown = true;
-            dx = e.clientX - this.offsetLeft;
-            dy = e.clientY - this.offsetTop;
-          }
-        });
-        $(window).on("mousemove", function(e){
-          if(!mouseDown) return false;
-
-                  var p = e.clientX - dx, q = e.clientY - dy,
-              a1 = ele1.offsetLeft, b1 = ele2.offsetTop,
-              a2 = ele1.offsetLeft, b2 = ele2.offsetTop;
-
-
-          this.debug( dx,dy,p,q,a1,b1,a2,b2);
-          e.preventDefault();
-        }).mouseup(function(){
-            mouseDown = false;
-        });
-        */
-
-
-        //setTimeout( createSparkline, 3000 );
+        
         if (this.isVisible()) {
           new qx.util.DeferredCall(this.__init, this).schedule();
         } else {
@@ -205,7 +221,6 @@ qx.Class.define('cv.plugins.ControllerInput', {
           }, this);
         }
 
-        //templateEngine.lookupRRDcache( rrd, start, end, res, refresh, force, callback );
       }
     },
 
@@ -218,6 +233,19 @@ qx.Class.define('cv.plugins.ControllerInput', {
       return '<div class="actor notransition"><div class="roundbarbox"><div class="roundbarbackground border"></div><div class="roundbarbackground color"></div><div class="roundbarclip"><div class="roundbar"></div></div></div><div class="handler shadow" style="transform:translate(-999cm,0)"></div><div class="handler" style="transform:translate(-999cm,0)"><div class="handlervalue"></div></div><div class="value">-</div><div class="smallvalue left">' + this.getMin() + '</div><div class="smallvalue right">' + this.getMax() + '</div><div class="sparkline"></div></div>';
     },
 
+    _setupRefreshAction: function() {
+      if (this.getRefresh()) {
+        if (!this._timer) {
+          this._timer = new qx.event.Timer(this.getRefresh());
+          this._timer.addListener("interval", function () {
+            console.log( 'run refresh', this );
+            this.getRRDData();
+            //this.loadDiagramData(this.plot, false, true);
+          }, this);
+        }
+      }
+    },
+    
     createSparkline: function() {
       /*
       var dataActual   = [ [0, 21], [1, 12], [2, 32], [3, 32], [4, 22], [5, 23], [6, 24], [7, 22], [8, 28], [9, 23], [10, 25], [11, 25], [12, 24] ];
@@ -341,7 +369,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
         var
           rrd = rrds[ variant ];
 
-        cv.plugins.diagram.AbstractDiagram.lookupRRDcache( rrd, rrd.start, rrd.end, rrd.resol, undefined, false, function( rrdContent, thisVariant ) {
+        cv.plugins.diagram.AbstractDiagram.lookupRRDcache( rrd, rrd.start, rrd.end, rrd.resol, this.getRefresh(), false, function( rrdContent, thisVariant ) {
           if( !rrdContent ) {
             return;
           }
