@@ -201,7 +201,7 @@
 
           "plugin-diagram" :
           {
-            "include" : [ "${APPLICATION}.plugins.diagram.*" ]
+            "include" : [ "${APPLICATION}.plugins.diagram.Diagram","${APPLICATION}.plugins.diagram.Info" ]
           },
           "plugin-colorchooser" :
           {
@@ -266,6 +266,10 @@
           "plugin-openhab" :
           {
             "include" : [ "${APPLICATION}.plugins.openhab.*", "${QXTHEME}" ]
+          },
+          "plugin-controllerinput" :
+          {
+            "include" : [ "${APPLICATION}.plugins.ControllerInput" ]
           }
         }
       }
