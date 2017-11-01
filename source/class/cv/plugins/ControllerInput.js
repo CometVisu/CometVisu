@@ -220,6 +220,9 @@ qx.Class.define('cv.plugins.ControllerInput', {
             }
           }, this);
         }
+        
+        //this.addElementListener("pointerdown", this._onPointerDown, this);
+        this.addElementListener("pointerdown", this._downaction, this);
 
       }
     },
@@ -403,6 +406,7 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
 
     _update: function (ga, d) {
+      console.log('_update',ga,d);
       if( undefined === this.plot ) 
       {
         console.warn('undefined === this.plot  => early exit!', ga, d);
@@ -442,11 +446,16 @@ qx.Class.define('cv.plugins.ControllerInput', {
           }
           plotData[2].data[plotData[2].data.length - 1][1] = value;
           plotData[5].data[0][1] = value;
+          this._busRawValue = d;
           break;
       }
       this.plot.setData(plotData);
       this.plot.setupGrid();
       this.plot.draw();
+    },
+    
+    buttonPressed: function(event) {
+      console.log('buttonPressed', event);
     },
     
     _downaction: function (event) {
@@ -458,42 +467,32 @@ qx.Class.define('cv.plugins.ControllerInput', {
 
       this._inAction = true;
       //data.valueInternal = true;
-      
-      // update KNX every 250 ms
-      this._sendTimer = new qx.event.Timer(250);
-      this._sendTimer.addListener('inverval', function() {
-        if (this._lastValue === this.getValue()) {
-          return;
-        }
-        this._lastValue= this.getValue();
-        this.debug('updatefn');
-        this.sendToBackend(this.getValue(), function(addr) {
-          return addr[2] === 'setpoint';
-        });
-      }, this);
 
       qx.event.Registration.addListener(this.getActor(), 'pointermove', this.moveAction, this);
+      
+      this._sendTimer = new qx.event.Timer(250);
+      this._sendTimer.addListener('interval', this.sendSetpointToBackend, this );
+      this._sendTimer.start();
     },
 
     moveAction: function (e) {
-      console.log('moveAction', e);
       if (e !== undefined) {
-        var bounds = e.getTarget().getBoundingClientRect();
+        var bounds = this.getActor().getBoundingClientRect();
         var
-          cX = e.touches ? e.touches[0].clientX : e.clientX,
-          cY = e.touches ? e.touches[0].clientY : e.clientY,
+          cX = e._native.touches ? e._native.touches[0].clientX : e._native.clientX,
+          cY = e._native.touches ? e._native.touches[0].clientY : e._native.clientY,
           dx = cX - bounds.left - bounds.width / 2,
           dy = -cY + (bounds.top + bounds.height),
           percentageRaw = Math.atan2(dx, dy) / Math.PI + 0.5,
           percentage = Math.min(Math.max(percentageRaw, 0), 1),
           value = this.getMin() + percentage * (this.getMax() - this.getMin());
         this.updateSetpoint(this.getPath(), this.getFormat(), value, percentage);
-
         this.setValue(value);
       }
     },
     
     _action: function (ev) {
+      console.log('_action',ev);
       this.debug('ci action', this._inAction);
       if (this._sendTimer) {
         this._sendTimer.stop();
@@ -501,10 +500,21 @@ qx.Class.define('cv.plugins.ControllerInput', {
       }
       this._inAction = false;
       qx.bom.element.Class.remove(this.getActor(), 'notransition');
-      this.sendToBackend(this.getValue(), function(addr) {
+      this.sendSetpointToBackend();
+      qx.event.Registration.removeListener(this.getActor(), 'pointermove', this.moveAction, this);
+    },
+    
+    sendSetpointToBackend: function() {
+      var
+        value = this.getValue(),
+        newBusRawValue = cv.Transform.encode(address[addr][0], value );
+      
+      console.log( value, newBusRawValue, this._busRawValue );
+      //value = cv.Transform.decode( this.getAddress()[ ga ][0], d ),
+                
+      this.sendToBackend( value, function(addr) {
         return addr[2] === 'setpoint';
       });
-      qx.event.Registration.removeListener(this.getActor(), 'pointermove', this.moveAction, this);
     }
   },
   
