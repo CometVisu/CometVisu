@@ -75,21 +75,24 @@ qx.Mixin.define("cv.ui.common.Operate", {
      *          that was sent on the bus. When the encoding of the new value
      *          to send is equal to the currentBusValue a transmission will 
      *          be suppressed.
+     * @return the encoded value that was sent last
      */
     sendToBackend: function (value, filter, currentBusValue) {
+      var encodedValue;
       if (this.getAddress) {
         var list = this.getAddress();
         for (var id in list) {
           if (list.hasOwnProperty(id)) {
             var address = list[id];
             if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
-              var encodedValue = cv.Transform.encode(address[0], value);
+              encodedValue = cv.Transform.encode(address[0], value);
               if( encodedValue !== currentBusValue )
                 cv.TemplateEngine.getInstance().visu.write(id, encodedValue);
             }
           }
         }
       }
+      return encodedValue;
     }
   }
 });
