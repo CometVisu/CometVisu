@@ -71,28 +71,33 @@ qx.Mixin.define("cv.ui.common.Operate", {
      *
      * @param value {var} value to send
      * @param filter {Function} optional filter function for addresses
-     * @param currentBusValue {var} optional: the (assumed) last encoded value
-     *          that was sent on the bus. When the encoding of the new value
-     *          to send is equal to the currentBusValue a transmission will 
-     *          be suppressed.
-     * @return the encoded value that was sent last
+     * @param currentBusValues {Object} optional: the (assumed) last encoded values
+     *          that were sent on the bus. When the encoding of the new value
+     *          to send is equal to the currentBusValues a transmission will 
+     *          be suppressed. The object is a hash with the encoding as a key
+     *          for the encoded value
+     * @return the object/hash of encoded values that were sent last time
      */
-    sendToBackend: function (value, filter, currentBusValue) {
-      var encodedValue;
+    sendToBackend: function (value, filter, currentBusValues) {
+      var 
+        encodedValues = {},
+        encodedCurrentBusValues = currentBusValues || {};
+      
       if (this.getAddress) {
         var list = this.getAddress();
         for (var id in list) {
           if (list.hasOwnProperty(id)) {
             var address = list[id];
             if (cv.data.Model.isWriteAddress(address) && (!filter || filter(address))) {
-              encodedValue = cv.Transform.encode(address[0], value);
-              if( encodedValue !== currentBusValue )
+              var encodedValue = cv.Transform.encode(address[0], value);
+              if( encodedValue !== encodedCurrentBusValues[address[0]] )
                 cv.TemplateEngine.getInstance().visu.write(id, encodedValue);
+              encodedValues[address[0]] = encodedValue;
             }
           }
         }
       }
-      return encodedValue;
+      return encodedValues;
     }
   }
 });
