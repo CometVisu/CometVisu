@@ -186,11 +186,7 @@ qx.Class.define('cv.ui.structure.pure.Slide', {
     _onChangeValue: function(value) {
       if (!this.__initialized || this.__skipUpdatesFromSlider === true) { return; }
       if (this.isSendOnFinish() === false || this.__slider.isInPointerMove()) {
-        var currentValue = this.getValue();
-        this.sendToBackend(value, function(addr) {
-          var newValue = cv.Transform.encode(addr[0], value);
-          return (newValue !== cv.Transform.encode(addr[0], currentValue));
-        });
+        this._lastBusValue = this.sendToBackend(value, false, this._lastBusValue );
       }
       this.setValue(value);
     },
