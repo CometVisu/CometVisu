@@ -406,7 +406,6 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
 
     _update: function (ga, d) {
-      console.log('_update',ga,d);
       if( undefined === this.plot ) 
       {
         console.warn('undefined === this.plot  => early exit!', ga, d);
@@ -446,7 +445,6 @@ qx.Class.define('cv.plugins.ControllerInput', {
           }
           plotData[2].data[plotData[2].data.length - 1][1] = value;
           plotData[5].data[0][1] = value;
-          this._busRawValue = d;
           break;
       }
       this.plot.setData(plotData);
@@ -505,16 +503,9 @@ qx.Class.define('cv.plugins.ControllerInput', {
     },
     
     sendSetpointToBackend: function() {
-      var
-        value = this.getValue(),
-        newBusRawValue = cv.Transform.encode(address[addr][0], value );
-      
-      console.log( value, newBusRawValue, this._busRawValue );
-      //value = cv.Transform.decode( this.getAddress()[ ga ][0], d ),
-                
-      this.sendToBackend( value, function(addr) {
+      this._lastBusValue = this.sendToBackend( this.getValue(), function(addr) {
         return addr[2] === 'setpoint';
-      });
+      }, this._lastBusValue );
     }
   },
   
