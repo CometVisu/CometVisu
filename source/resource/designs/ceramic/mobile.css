@@ -1,11 +1,11 @@
+::-webkit-scrollbar {
+  width: 3px;
+}
+
 .widget_container {
     width: 98%;
 }
 
 #bottom {
     display: none;
-}
-
-.page {
-    overflow: visible;
 }

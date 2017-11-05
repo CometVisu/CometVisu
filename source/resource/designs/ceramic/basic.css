@@ -43,7 +43,30 @@ body
   text-shadow: 1px 1px 1px #000;
   */
 }
-a 
+
+::-webkit-scrollbar {
+  width: 10px;
+} 
+
+::-webkit-scrollbar-track {
+  background: linear-gradient( hsl(345,10%,22%), hsl(345,10%,18%) );
+} 
+ 
+::-webkit-scrollbar-thumb {
+  background: hsl(345,35%,95%);
+  border-radius: 1px;
+  box-shadow: 2px 3px 7px #000;
+} 
+
+::-webkit-scrollbar-button {
+  display: none;
+} 
+ 
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
+a
 {
   color: hsl(345,35%,95%);
   text-decoration: none;
@@ -546,7 +569,7 @@ body br
 .ui-slider .ui-slider-handle { position: absolute; z-index: 2; cursor: default; 
   background: hsl(345,35%,95%);
   box-shadow: 2px 3px 7px #000;
-  width: 2.4em;
+  min-width: 2.4em;
   height: 1.6em;
   min-height: 0; 
 }
