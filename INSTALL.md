@@ -4,7 +4,7 @@ Installation with the eibread-cgi backend:
 The installation of the CometVisu is very simple. You only need to follow a
 few simple steps:
 
-0. Install a web server and (optional but recomended) PHP.
+0. Install a web server and (optional but recommended) PHP.
 
    When you use the WireGate, this is already done for you.
    
@@ -13,7 +13,7 @@ few simple steps:
    Detailed instructions are given on the web page at:
        http://cometvisu.de/wiki/CometVisu/Installation/Backend/en
   
-   When you use the WireGate it should be already installed for you.
+   When you use the WireGate, it should be already installed for you.
    
    When you use any other x86 based debian system, you can get the package
    out of the WireGate repository. It is contained in the package "eibd-clients"
@@ -25,18 +25,18 @@ few simple steps:
    a good choice; in the following steps it's assumed that this directroy is
    used.
    
-   Please make sure that the file permissions (mode) is allways kept!
-   When you use the zip version of the archive this should have already happend,
-   when you use the tar.gz version, please unpack it with the paramter "p", like
+   Please make sure that the file permissions (mode) are always kept!
+   When you use the zip version of the archive this should have already happened,
+   when you use the tar.gz version, please unpack it with the parameter "p", like
      tar -xvpf CometVisu-releaseversion.tar.gz
 
-3. When the permissions were not set correctly or just to be sure, please fix
+3. When the permissions were not set correctly or when you just want to be sure, please fix
    them by calling:
    
        chmod -R a+w /var/www/visu_release/config
        
    It will give everyone write permissions for the config files - so it's
-   probably too permissive for a shared server, but assuming the typical useage
+   probably too permissive for a shared server, but assuming the typical usage
    of the WireGate it should be fine.
    
 Installation with OpenHAB:
@@ -53,8 +53,8 @@ https://github.com/openhab/openhab2-addons/tree/master/addons/ui/org.openhab.ui.
 NOTE:
 =====
 
-Please allways also refer the online documentation at 
+Please also refer always to the online documentation at 
 
      http://www.cometvisu.org/
 
-as it will contain the latest informations.
+as it will contain the latest information.
