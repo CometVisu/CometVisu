@@ -199,7 +199,6 @@ body br
   vertical-align: middle;
 }
 
-
 .widget_container {
    float: left;
 }
@@ -221,6 +220,12 @@ body br
   width: 6px;
 }
 
+.page.type_2d > div.clearfix
+{
+  height: calc(100% - 12px);
+}
+
+.page.type_2d > div.clearfix,
 .widget, h2
 {
   background: hsl(345,10%,20%);
@@ -251,6 +256,7 @@ body br
   */
 }
 
+.page.type_2d > div,
 .widget.group
 {
   background: none;
@@ -295,7 +301,7 @@ body br
 
 #navbarLeft .widget > .label, #navbarRight .widget > .label
 {
-  width: 90%;
+  width: auto;
   text-align: left;
 }
 #navbarTop .widget .actor, #navbarBottom .widget .actor
@@ -339,11 +345,15 @@ body br
     left:0;
     right:0;
     bottom:0;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin: 0em;
 }
 
 .navbar .pagejump .actor .value {
+  text-align: left;
   border: none;
   box-shadow: none;
 }
@@ -1055,6 +1065,8 @@ body .infoaction .widget_container.widgetinfo .widget {
   border-radius: 0 0 0 2px;
   background: hsl(345,35%,95%);
   box-shadow: 0px 1px 5px 0px #000;
+  min-height: fit-content;
+  /* FIXME Widgetinfo in the Top Leiste */
 }
 
 .infoaction .widgetinfo .widget .label {
