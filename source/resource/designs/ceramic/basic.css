@@ -136,6 +136,12 @@ body hr
   height: 3.6em;
 }
 
+#navbarTop .icon
+{
+  width: 3em;
+  height: 3em;
+}
+
 #centerContainer
 {
   border: none;
@@ -304,7 +310,7 @@ body br
   width: auto;
   text-align: left;
 }
-#navbarTop .widget .actor, #navbarBottom .widget .actor
+#navbarTop > .widget > .actor, #navbarBottom .widget .actor
 {
   display: none;
 }
@@ -363,8 +369,8 @@ body br
   position: absolute;
 }
 
-#navbarTop .navbar .pagejump .actor, 
-#navbarBottom .navbar .pagejump .actor 
+#navbarTop .navbar .pagejump > .actor, 
+#navbarBottom .navbar .pagejump > .actor 
 {
   display: block !important;
   top: 0;
@@ -372,6 +378,7 @@ body br
   left: 0;
   right: 0;
   position: absolute;
+  z-index: 10;
 }
 
 .navbar .pagejump .actor.switchUnpressed,
