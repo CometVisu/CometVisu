@@ -46,6 +46,7 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     $navbarBottom: null,
     width: 0,
     height: 0,
+    __initial: true,
 
     validationQueue: [],
 
@@ -235,7 +236,13 @@ qx.Class.define('cv.ui.layout.ResizeHandler', {
     },
 
     makePagesizeValid: function () {
-      this.queueJob("__makePagesizeValid");
+      if (this.__initial === true) {
+        // do not queue -> call now
+        this.__initial = false;
+        this.__makePagesizeValid();
+      } else {
+        this.queueJob("__makePagesizeValid");
+      }
     },
 
     __makePagesizeValid: function() {
