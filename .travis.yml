@@ -64,7 +64,7 @@ before_deploy:
 deploy:
   on:
     branch: develop
-    condition: "$CV_BUILD = test AND $CV_VERSION = stable AND $TRAVIS_EVENT_TYPE = cron AND ($CORE_CHANGES -gt 0 OR $CLIENT_CHANGES -gt 0)"
+    condition: "$CV_BUILD = test && $CV_VERSION = stable && $TRAVIS_EVENT_TYPE = cron && ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0)"
   provider: bintray
   file: "./deploy.json"
   user: peuter
