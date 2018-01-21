@@ -59,6 +59,9 @@ before_deploy:
 - "CLIENT_CHANGES=`git log --pretty=format: --name-only --since=\"2 days ago\" ${TRAVIS_BUILD_DIR}/client/ | sort | uniq | wc -l`"
 - echo "$CLIENT_CHANGES client changes"
 - if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
+- "CORE_CHANGES=`git reflog --after='24 hours' | wc -l`"
+- echo "$CORE_CHANGES core changes"
+- if [ $CORE_CHANGES -gt 0 ]; then git reflog --after='24 hours'; fi 
 deploy:
   on:
     branch: develop
