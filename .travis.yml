@@ -54,15 +54,17 @@ script:
 - if [ "$CV_BUILD" == "test" ]; then grunt karma:travis --browser $CV_BROWSER; fi
 - if [ "$CV_BUILD" == "test" ] && [ "$CV_BROWSER" == "Chrome" ]; then grunt e2e-chrome; fi
 - if [ "$CV_BUILD" == "docs" ]; then utils/travis/deploy.sh; fi
+after_script:
+- "CLIENT_CHANGES=`git log --pretty=format: --name-only --since=\"2 days ago\" ${TRAVIS_BUILD_DIR}/client/ | sort | uniq | sed '/^$/d' | wc -l`"
+- "CORE_CHANGES=`git log --pretty=format: --name-only --since=\"2 days ago\" ${TRAVIS_BUILD_DIR}/source/ | sort | uniq | sed '/^$/d' | wc -l`"
+- echo "$CORE_CHANGES changes in core, $CLIENT_CHANGES changes in client"
 before_deploy:
-- grunt release-cv
-- "CLIENT_CHANGES=`git log --pretty=format: --name-only --since=\"2 days ago\" ${TRAVIS_BUILD_DIR}/client/ | sort | uniq | wc -l`"
-- echo "$CLIENT_CHANGES client changes"
+- if [ $CORE_CHANGES -gt 0 ]; then grunt release-cv; fi
 - if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
 deploy:
   on:
     branch: develop
-    condition: "$CV_BUILD = test && $CV_VERSION = stable && $TRAVIS_EVENT_TYPE = cron && $(git reflog --after='24 hours' | wc -l) -gt 0"
+    condition: "$CV_BUILD = test && $CV_VERSION = stable && $TRAVIS_EVENT_TYPE = cron && ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0)"
   provider: bintray
   file: "./deploy.json"
   user: peuter
