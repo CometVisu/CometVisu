@@ -140,6 +140,9 @@ body hr
 {
   width: 3em;
   height: 3em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #centerContainer
@@ -343,6 +346,9 @@ body br
 
 .navbar .pagejump .label {
   font-size: 75%;
+  text-align: center;
+  width: auto;
+  min-width: 5em;
 }
 
 .navbar .pagejump .actor {
@@ -1068,11 +1074,16 @@ body .controllerinput .handlervalue {
   font-size: 75%;
 }
 
+.navbar .infoaction .label {
+  margin-right: 2em;
+}
+
 body .infoaction .widget_container.widgetinfo .widget {
   border-radius: 0 0 0 2px;
   background: hsl(345,35%,95%);
   box-shadow: 0px 1px 5px 0px #000;
   min-height: fit-content;
+  font-size: 75%;
   /* FIXME Widgetinfo in the Top Leiste */
 }
 
