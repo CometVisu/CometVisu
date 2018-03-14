@@ -25,7 +25,15 @@
     <script src="./monaco/completion-provider.js"></script>
     <script>
 
-      var language = navigator.language || navigator.userLanguage;
+      var language = navigator.language.toLowerCase() || navigator.userLanguage.toLowerCase();
+      // chrome >= v65 returns e.g. 'de-DE' here (instead of 'de' on older versions), but we only need the first part)
+      var parts = language.split('-');
+      if (parts.length === 2) {
+        var lang = language.split('-').shift();
+        if (lang !== "'zh") {
+          language = lang;
+        }
+      }
 
       var messages = {
         "de": {
