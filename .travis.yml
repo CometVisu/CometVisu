@@ -57,7 +57,7 @@ script:
 after_script:
 - "CLIENT_CHANGES=`git log --pretty=format: --name-only --since=\"2 days ago\" ${TRAVIS_BUILD_DIR}/client/ | sort | uniq | sed '/^$/d' | wc -l`"
 - "CORE_CHANGES=`git log --pretty=format: --name-only --since=\"2 days ago\" ${TRAVIS_BUILD_DIR}/source/ | sort | uniq | sed '/^$/d' | wc -l`"
-- echo "$CORE_CHANGES changes in core, $CLIENT_CHANGES changes in client"
+- echo "$CORE_CHANGES changes in core, $CLIENT_CHANGES changes in client, $CV_BUILD build, $CV_VERSION version, $TRAVIS_EVENT_TYPE event type"
 before_deploy:
 - if [ $CORE_CHANGES -gt 0 ]; then grunt release-cv; fi
 - if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
