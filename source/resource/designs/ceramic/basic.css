@@ -264,6 +264,10 @@ body br
   backdrop-filter: blur(10px);
   */
 }
+.page .widget
+{
+  position: relative;
+}
 
 .page.type_2d > div,
 .widget.group
@@ -293,12 +297,18 @@ body br
 
 .widget > .label
 {
-  float:left; 
+  float:left;
   width:49%;
 /*  color:red; */
 /*  padding-right:0.25em; */
   text-align:right;
 /*  border:blue 1px solid; */
+}
+.page .widget > .label
+{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .widget .actor
@@ -306,6 +316,18 @@ body br
   float:left;
  /* margin-left:1em;*/
   margin-top: 0.2em;
+}
+.page .widget .actor
+{
+  position: absolute;
+  left: 50%;
+  width: auto;
+  right: 0.3em;
+  margin-left: 0.3em;
+}
+.page .widget .actor:first-child
+{
+  left: 0;
 }
 
 #navbarLeft .widget > .label, #navbarRight .widget > .label
@@ -520,7 +542,7 @@ body br
   color: hsl(345,10%,20%);
 }
 
-.switchPressed, .switchUnpressed
+.page .widget .actor.switchPressed, .page .widget .actor.switchUnpressed
 {
   position:relative;
 }
@@ -588,11 +610,15 @@ body br
   float: left;
 }
 
-.ui-slider { position: relative; text-align: left; }
+.ui-slider { 
+  position: relative; 
+  text-align: left; 
+  padding: 0 1.5em;
+}
 .ui-slider .ui-slider-handle { position: absolute; z-index: 2; cursor: default; 
   background: hsl(345,35%,95%);
   box-shadow: 2px 3px 7px #000;
-  min-width: 2.4em;
+  min-width: 3em;
   height: 1.6em;
   min-height: 0; 
 }
