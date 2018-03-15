@@ -126,7 +126,9 @@ qx.Class.define('cv.plugins.diagram.Diagram', {
               if (!this._init) {
                 this.loadDiagramData(this.plot, false, false);
               } else {
-                this.initDiagram(false);
+                qx.bom.AnimationFrame.request(function () {
+                  this.initDiagram(false);
+                }, this);
               }
               this.removeListenerById(this.__vlid1);
               this.__vlid1 = null;
