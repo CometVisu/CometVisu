@@ -61,10 +61,12 @@ after_script:
 before_deploy:
 - if [ $CORE_CHANGES -gt 0 ]; then grunt release-cv; fi
 - if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
+- export DEPLOY_NIGHTLY=0
+- if [[ $CV_BUILD == test && $CV_VERSION == stable && $TRAVIS_EVENT_TYPE == cron && ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0) ]]; then export DEPLOY_NIGHTLY=1; fi
 deploy:
   on:
     branch: develop
-    condition: "$CV_BUILD = test && $CV_VERSION = stable && $TRAVIS_EVENT_TYPE = cron && ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0)"
+    condition: "$DEPLOY_NIGHTLY -eq 1"
   provider: bintray
   file: "./deploy.json"
   user: peuter
