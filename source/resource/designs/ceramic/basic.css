@@ -367,7 +367,7 @@ body br
 
 #navbarTop .navbar .pagejump:hover,#navbarTop .navbar .pagejump.active,#navbarTop .navbar .pagejump.active_ancestor,#navbarTop .navbar .refresh:hover {
   color: hsl(345,10%,20%);
-  background: hsl(345,35%,95%);
+  background: hsl(345,35%,95%) !important;
   box-shadow: 2px 3px 7px rgba(0,0,0,0.5) inset;
 }
 
@@ -389,12 +389,21 @@ body br
     flex-direction: column;
     justify-content: center;
     margin: 0em;
+    width: 100%;
 }
 
 .navbar .pagejump .actor .value {
   text-align: left;
   border: none;
   box-shadow: none;
+  background: none;
+}
+
+.navbar .pagejump > .actor > .value {
+  width: auto;
+  height: 100%;
+  padding-left: 2em;
+  line-height: 2em;
 }
 
 .navbar .widgetinfo {
@@ -534,7 +543,8 @@ body br
   background: linear-gradient( hsl(345,10%,27%), hsl(345,10%,23%) );
 }
 
-.switchPressed
+.switchPressed,
+.pagejump.active
 {
   /*
   border-style:  solid;
@@ -546,6 +556,8 @@ body br
   padding: 1px;
   */
   color: hsl(345,10%,20%);
+  background-color: hsl(345,35%,95%);
+  background: linear-gradient( hsl(345,35%,97%), hsl(345,35%,93%) );
 }
 
 .page .widget .actor.switchPressed, .page .widget .actor.switchUnpressed
@@ -595,7 +607,7 @@ body br
   box-shadow: 0 -1px 1px #666666, 0 1px 1px #FFFFFF;
   */
   border: 1px solid hsl(345,35%,95%);
-  background: hsl(345,35%,95%);
+  background: hsl(345,35%,95%) !important;
   box-shadow: 2px 3px 7px rgba(0,0,0,0.5) inset;
 }
 
@@ -644,8 +656,8 @@ body br
 .ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
 .ui-slider-vertical .ui-slider-range-min { bottom: 0; }
 .ui-slider-vertical .ui-slider-range-max { top: 0; }
-.ui-widget-content { /*border: 1px solid #dddddd; background: #000 ; color: #000;*/ background: linear-gradient(to bottom right, rgba(254,191,1,0) 0%,rgba(254,191,1,0) 48%,rgba(254,191,1,1) 52%,rgba(254,191,1,1) 100%) }
-.ui-widget-content { background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(254,191,1,1) 100%) }
+.ui-widget-content { /*border: 1px solid #dddddd; background: #000 ; color: #000;*/ background: linear-gradient(to bottom right, rgba(254,191,1,0) 0%,rgba(254,191,1,0) 48%,rgba(254,191,1,1) 52%,rgba(254,191,1,1) 100%) !important }
+.ui-widget-content { background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(254,191,1,1) 100%) !important }
 .ui-widget-content a { color: #333333; }
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { /*border: 1px solid #cccccc; background: #000 ; font-weight: bold;*/ color: #1c94c4; }
 a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited { 
@@ -718,6 +730,7 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
   width: calc(100% + 2px);
   margin-left: -2px;
   min-height: 2em;
+  line-height: 2em;
 }
 .widget.multitrigger .actor
 {
@@ -904,7 +917,7 @@ div#loading {
 }
 .flavour_black:not(.group) .ui-slider
 {
-  background: linear-gradient(to right, rgba(0,0,0,0) 0%,#000000 100%);
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,#000000 100%) !important;
 }
 
 body hr,
@@ -928,7 +941,7 @@ body hr,
 }
 .flavour_white:not(.group) .ui-slider
 {
-  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(345,35%,95%) 100%);
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(345,35%,95%) 100%) !important;
 }
 
 .flavour_antimony hr
@@ -951,7 +964,7 @@ body hr,
 }
 .flavour_antimony:not(.group) .ui-slider
 {
-  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(165,35%,40%) 100%);
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(165,35%,40%) 100%) !important;
 }
 
 .flavour_boron hr
@@ -974,7 +987,7 @@ body hr,
 }
 .flavour_boron:not(.group) .ui-slider
 {
-  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(105,35%,40%) 100%);
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(105,35%,40%) 100%) !important;
 }
 
 .flavour_lithium hr
@@ -997,7 +1010,7 @@ body hr,
 }
 .flavour_lithium:not(.group) .ui-slider
 {
-  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(345,35%,40%) 100%);
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(345,35%,40%) 100%) !important;
 }
 
 .flavour_potassium hr
@@ -1020,7 +1033,7 @@ body hr,
 }
 .flavour_potassium:not(.group) .ui-slider
 {
-  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(285,35%,40%) 100%);
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(285,35%,40%) 100%) !important;
 }
 
 .flavour_sodium hr
@@ -1043,7 +1056,7 @@ body hr,
 }
 .flavour_sodium:not(.group) .ui-slider
 {
-  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(45,35%,40%) 100%);
+  background: linear-gradient(to right, rgba(0,0,0,0) 0%,hsl(45,35%,40%) 100%) !important;
 }
 
 /* styles for the preview */
