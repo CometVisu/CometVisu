@@ -746,6 +746,10 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
   border: none;
   background: none;
 }
+.multitrigger .actor div
+{
+  background: none !important;
+}
 
 .page .multitrigger .actor_container .switchPressed
 {
