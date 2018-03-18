@@ -301,7 +301,6 @@ body br
   width:49%;
 /*  color:red; */
 /*  padding-right:0.25em; */
-  text-align:right;
 /*  border:blue 1px solid; */
 }
 .page .widget > .label
@@ -316,18 +315,21 @@ body br
   float:left;
  /* margin-left:1em;*/
   margin-top: 0.2em;
+  background: none;
 }
 .page .widget .actor
 {
-  position: absolute;
+  position: relative;
   left: 50%;
-  width: auto;
+  width: calc(50% - 0.6em);
   right: 0.3em;
   margin-left: 0.3em;
+  box-sizing: border-box;
 }
-.page .widget .actor:first-child
+.page .widget > .actor:first-child
 {
   left: 0;
+  width: calc(100% - 0.6em);
 }
 
 #navbarLeft .widget > .label, #navbarRight .widget > .label
@@ -340,10 +342,13 @@ body br
   display: none;
 }
 
-.widget .actor div
+.widget > .actor > div
 {
   float:left;
   white-space: pre-wrap;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #navbarTop .navbar .widget, #navbarBottom .navbar .widget,
@@ -373,7 +378,7 @@ body br
   min-width: 5em;
 }
 
-.navbar .pagejump .actor {
+.navbar .widget_container > .widget.pagejump > .actor {
     /*position: absolute;*/
     top:0;
     left:0;
@@ -520,6 +525,7 @@ body br
   box-shadow: 2px 3px 7px rgba(0,0,0,0.5);
 }
 
+.pagejump:hover,
 .pagelink:hover,
 .switchUnpressed div:hover,
 .multitrigger .switchUnpressed:hover
@@ -546,7 +552,7 @@ body br
 {
   position:relative;
 }
-.switch .switchPressed::before, .switch .switchUnpressed::before
+.switch .switchPressed > .value::before, .switch .switchUnpressed > .value::before
 {
   display: block;
   width: 33%;
@@ -556,15 +562,17 @@ body br
   */
   background-color: hsl(345,80%,50%);
   margin-top: -3px;
+  top: -1px;
   content: "";
   position: absolute;
   -webkit-transition: right 1s;
-  right: 67%;
+  right: calc(67% + 1px);
   transition: right 0.5s;
+  border-radius: 2px 2px 0 0;
 }
-.switch .switchPressed::before
+.switch .switchPressed > .value::before
 {
-  right: 0px;
+  right: -1px;
 }
 
 .switchPressed div
@@ -693,9 +701,12 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
 {
   display: none;
 }
-.multitrigger .label
+.widget.multitrigger .label
 {
+  position: relative;
   width: 100%;
+  top: 0;
+  transform: none;
   text-align: left;
   box-sizing: border-box;
 }
@@ -706,12 +717,14 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
   jusitfy-content: space-between;
   width: calc(100% + 2px);
   margin-left: -2px;
+  min-height: 2em;
 }
-.multitrigger .actor
+.widget.multitrigger .actor
 {
   margin-left: 2px;
   margin-top: 2px;
   width: 100%;
+  left: 0;
 }
 .multitrigger .actor div, .multitrigger div
 {
@@ -721,11 +734,12 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
   background: none;
 }
 
-.multitrigger .switchPressed
+.page .multitrigger .actor_container .switchPressed
 {
   margin-top: -0.3em;
   padding-top: 0.3em;
   background-color: hsl(345,35%,95%);
+  background: linear-gradient( hsl(345,35%,97%), hsl(345,35%,93%) );
   box-shadow: 5px 0px 10px rgba(0,0,0,0.5);
   box-shadow: 6px 2px 10px 2px rgba(0,0,0,0.4);
   z-index: 5;
@@ -1052,7 +1066,7 @@ div#demo_3 {
     background-color: black;
 }
 
-img.icon, canvas.icon
+img.icon, canvas.icon, svg.icon
 {
   vertical-align: middle;
 }
@@ -1135,10 +1149,10 @@ body .infoaction .widget_container.widgetinfo .widget .actor {
 }
 
 /* define own colors */
-.switch .red.switchPressed::before, .switch .red.switchUnpressed::before {
+.switch .red.switchPressed > .value::before, .switch .red.switchUnpressed > .value::before {
   background-color: hsl(345,80%,50%);
 }
 
-.switch .green.switchPressed::before, .switch .green.switchUnpressed::before {
+.switch .green.switchPressed > .value::before, .switch .green.switchUnpressed > .value::before {
   background-color: hsl(105,80%,50%);
 }
