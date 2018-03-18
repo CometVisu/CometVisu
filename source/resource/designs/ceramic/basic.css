@@ -762,6 +762,18 @@ a.ui-state-default, a.ui-state-default:link, a.ui-state-default:visited {
   z-index: 5;
 }
 
+.page .infotrigger > div:not(.label)
+{
+  position: absolute;
+  width: 50%;
+  left: 50%;
+}
+.page .infotrigger > div > .actor
+{
+  left: 0;
+  width: calc(33% - 0.6em);
+}
+
 /* image widget - center */
 .image > .actor
 {
