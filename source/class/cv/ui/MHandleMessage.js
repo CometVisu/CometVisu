@@ -203,7 +203,7 @@ qx.Mixin.define("cv.ui.MHandleMessage", {
           this._messages.push(message);
           this._updateHighestSeverity();
         }
-      } else {
+      } else if (this._list) {
         // refresh list
         this._list.update();
       }
