@@ -268,6 +268,10 @@ body br
 {
   position: relative;
 }
+.page .rowspan > .innerrowspan
+{
+  position: absolute;
+}
 
 .page.type_2d > div,
 .widget.group
@@ -1101,6 +1105,29 @@ img.icon, canvas.icon, svg.icon
 }
 
 /* use body to make sure these rules are more specific and thus win */
+body .page .controllerinput > .actor
+{
+  width: auto;
+}
+
+.page .controllerinput > .actor
+{
+  left: 75%;
+  transform: translateX(-50%);
+}
+
+.page .controllerinput > .actor:first-child
+{
+  left: 50%;
+  width: auto;
+}
+
+.controllerinput .actor div
+{
+  left: auto;
+  transform: none;
+}
+
 body .controllerinput .roundbarbackground.border {
   display: none;
 }
