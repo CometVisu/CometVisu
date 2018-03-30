@@ -67,7 +67,7 @@ before_deploy:
 deploy:
   on:
     branch: develop
-    condition: "$DEPLOY_NIGHTLY -eq 1"
+    condition: $DEPLOY_NIGHTLY = 1
   provider: bintray
   file: "./deploy.json"
   user: peuter
