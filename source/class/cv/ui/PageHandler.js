@@ -117,7 +117,6 @@ qx.Class.define('cv.ui.PageHandler', {
         if (oldPageWidget) {
           this.__onLeavePage(oldPageWidget);
         }
-        pageWidget.setVisible(true);
         this.__onEnterPage(pageWidget);
       } else {
         if (oldPageWidget) {
@@ -125,8 +124,6 @@ qx.Class.define('cv.ui.PageHandler', {
           qx.bom.element.Style.set(oldPageWidget.getDomElement(), "overflowY", "hidden");
           outAnim.addListenerOnce("end", qx.lang.Function.curry(this.__onLeavePage, oldPageWidget), this);
         }
-        // get page widget and set it to visible
-        pageWidget.setVisible(true);
         var oldPos = qx.bom.element.Style.get(pageWidget.getDomElement(), "position");
         qx.bom.element.Style.set(pageWidget.getDomElement(), "position", "absolute");
         qx.bom.AnimationFrame.request(function() {
@@ -198,6 +195,8 @@ qx.Class.define('cv.ui.PageHandler', {
       var page = pageWidget.getDomElement();
       var target = pageWidget.getPath();
       qx.bom.element.Class.addClasses(page, ['pageActive', 'activePage']);// show new page
+      // set it to visible
+      pageWidget.setVisible(true);
       // final stuff
       this.setCurrentPath(target);
       cv.TemplateEngine.getInstance().pagePartsHandler.updateTopNavigation( target );
