@@ -62,7 +62,7 @@ after_success:
 - export DEPLOY_NIGHTLY=0
 - if [[ $CV_BUILD == test && $CV_VERSION == stable && $TRAVIS_EVENT_TYPE == cron && ($CORE_CHANGES -gt 0 || $CLIENT_CHANGES -gt 0) ]]; then export DEPLOY_NIGHTLY=1; fi
 - if [[ $CV_BUILD == test && $CV_VERSION == stable && ${TRAVIS_COMMIT_MESSAGE:0:12} = "[ci nightly]" ]]; then export DEPLOY_NIGHTLY=1; fi
-- echo $DEPLOY_NIGHTLY
+- echo "$DEPLOY_NIGHTLY, $TRAVIS_COMMIT_MESSAGE, ${TRAVIS_COMMIT_MESSAGE:0:12}"
 before_deploy:
 - if [ $CORE_CHANGES -gt 0 ]; then grunt release-cv; fi
 - if [ $CLIENT_CHANGES -gt 0 ]; then grunt release-client; fi
