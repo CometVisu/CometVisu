@@ -192,6 +192,8 @@ qx.Class.define('cv.ui.PageHandler', {
     /**
      * Cleanup after page has been entered
      * @param pageWidget {cv.ui.structure.pure.Page}
+     * @param oldPos {String} CSS-position value to set
+     * @param updateVisibility {Boolean} set the visibility property of the page to true or do not change it
      */
     __onEnterPage: function(pageWidget, oldPos, updateVisibility) {
       var page = pageWidget.getDomElement();
@@ -208,7 +210,11 @@ qx.Class.define('cv.ui.PageHandler', {
       qx.event.message.Bus.dispatchByName("page." + target + ".appear", target);
       qx.event.message.Bus.dispatchByName("path.pageChanged", target);
       // show scrollbar after animation
-      qx.bom.element.Style.setStyles(page, {"overflow": null, "display": null, "position": oldPos});
+      var styles =  {"overflow": null, "display": null}
+      if (oldPos) {
+        styles.position = oldPos;
+      }
+      qx.bom.element.Style.setStyles(page, styles);
     }
   }
 });
