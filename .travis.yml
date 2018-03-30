@@ -3,8 +3,6 @@ language: python
 dist: trusty
 services:
   - docker
-node_js:
-- '4.2'
 python:
 - '3.5'
 cache:
@@ -20,7 +18,7 @@ env:
 before_install:
 - if [ "$CV_BUILD" == "docs" ]; then docker pull cometvisu/dev-helper; fi
 - mkdir -p downloads
-- nvm install 4.2
+- nvm install 6.9
 - sudo ./utils/travis/browser-setup.sh
 - export CHROME_BIN=`pwd`/chrome/google-chrome
 - export PATH=`pwd`/firefox:$PATH
@@ -40,11 +38,6 @@ install:
 - deactivate
 - "./node_modules/protractor/bin/webdriver-manager update"
 - if [ "$CV_BUILD" == "docs" ]; then sudo apt-get install python-lxml python3-lxml; fi
-before_script:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- "./node_modules/protractor/bin/webdriver-manager start 2>&1 &"
-- sleep 3
 script:
 - if [ "$CV_BUILD" == "test" ]; then source temp-python/bin/activate; fi
 - if [ "$CV_BUILD" == "test" ]; then grunt jscs; fi

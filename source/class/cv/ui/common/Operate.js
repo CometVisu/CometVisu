@@ -89,8 +89,9 @@ qx.Mixin.define("cv.ui.common.Operate", {
               var
                 encoding = address[0],
                 encodedValue = cv.Transform.encode(encoding, value);
-              if( !currentBusValues || encodedValue !== currentBusValues[encoding] )
+              if( !currentBusValues || encodedValue !== currentBusValues[encoding] ) {
                 cv.TemplateEngine.getInstance().visu.write(id, encodedValue);
+              }
               encodedValues[encoding] = encodedValue;
             }
           }
