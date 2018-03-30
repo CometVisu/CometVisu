@@ -48,10 +48,10 @@ echo "generating german manual to extract screenshot examples"
 
 VERSION=`./cv doc --get-version`
 utils/update_version.py
-#echo "generating api version $VERSION"
-#source temp-python/bin/activate
-#./generate.py api -sI --macro=CV_VERSION:$VERSION
-#deactivate
+echo "generating api version $VERSION"
+source temp-python/bin/activate
+./generate.py api -sI --macro=CV_VERSION:$VERSION
+deactivate
 
 echo "updating english manual from source code doc comments"
 ./cv doc --from-source
